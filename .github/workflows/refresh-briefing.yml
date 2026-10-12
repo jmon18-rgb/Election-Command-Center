@@ -1,6 +1,12 @@
 name: Refresh election briefing
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/update_briefing.py'
+      - 'scripts/update_polls.py'
+      - '.github/workflows/refresh-briefing.yml'
   schedule:
     - cron: '17 */4 * * *'
 permissions:
