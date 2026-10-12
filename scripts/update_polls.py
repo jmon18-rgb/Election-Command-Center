@@ -156,6 +156,59 @@ def race_polls(rows):
     results.sort(key=lambda x: (x["latest_field_end"], x["recent_poll_count"]), reverse=True)
     return results
 
+def observation_key(race, poll):
+    return "|".join([race.get("race_code", ""), str(poll.get("poll_id") or ""),
+                     poll.get("field_end", ""), poll.get("pollster", ""),
+                     poll.get("dem_name", ""), poll.get("rep_name", ""),
+                     str(poll.get("dem", "")), str(poll.get("rep", ""))])
+
+def build_changes(prior, result):
+    """Only call a genuinely new poll a change; don't compare different race matchups."""
+    old = set()
+    for race in prior.get("races", []) or []:
+        for poll in race.get("polls", []) or []:
+            old.add(observation_key(race, poll))
+    current = []
+    for race in result.get("races", []) or []:
+        for poll in race.get("polls", []) or []:
+            key = observation_key(race, poll)
+            if key not in old:
+                current.append({
+                    "race_code": race["race_code"], "race_type": race["race_type"],
+                    "pollster": poll["pollster"], "field_end": poll["field_end"],
+                    "dem": poll["dem"], "rep": poll["rep"], "margin": poll["margin"],
+                    "dem_name": poll.get("dem_name"), "rep_name": poll.get("rep_name"),
+                    "sample_size": poll.get("sample_size"),
+                    "source_url": race.get("source_url"),
+                })
+    current.sort(key=lambda p: p["field_end"], reverse=True)
+    previous_g = (prior.get("generic_ballot") or {}).get("summary")
+    latest_g = (result.get("generic_ballot") or {}).get("summary")
+    delta = None
+    if previous_g and latest_g and previous_g.get("margin") is not None and latest_g.get("margin") is not None:
+        delta = round(latest_g["margin"] - previous_g["margin"], 2)
+    return {
+        "new_polls": current[:35], "new_poll_count": len(current),
+        "generic_margin_change": delta,
+        "comparison_at": UTC_NOW,
+        "previous_snapshot_at": prior.get("updated_at"),
+        "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing.",
+    }
+
+def update_history(prior, result):
+    """Bounded history of distinct daily descriptive generic-ballot snapshots."""
+    history = list(prior.get("generic_history") or [])
+    summary = (result.get("generic_ballot") or {}).get("summary")
+    if summary and summary.get("margin") is not None:
+        item = {"date": TODAY.isoformat(), "margin": summary["margin"],
+                "dem": summary["dem"], "rep": summary["rep"],
+                "pollsters": summary["pollsters"]}
+        if history and history[-1].get("date") == item["date"]:
+            history[-1] = item
+        else:
+            history.append(item)
+    return history[-120:]
+
 def main():
     try:
         prior = json.loads(OUTPUT.read_text(encoding="utf-8"))
@@ -178,6 +231,14 @@ def main():
             success.append(key)
         except Exception as exc:
             errors.append(f"{key}: {type(exc).__name__}: {exc}")
+    if "races" in success and prior.get("updated_at"):
+        result["changes"] = build_changes(prior, result)
+    else:
+        result["changes"] = {"new_polls": [], "new_poll_count": 0, "comparison_at": UTC_NOW,
+                             "previous_snapshot_at": prior.get("updated_at"),
+                             "method": "No prior comparable successful race snapshot."}
+    if "generic_ballot" in success:
+        result["generic_history"] = update_history(prior, result)
     result["source"] = {
         "publisher": "New York Times polling data / ElectIndex curated tables",
         "license": "CC BY 4.0", "upstream": "https://github.com/ElectIndex/26_us_forecast_data",
