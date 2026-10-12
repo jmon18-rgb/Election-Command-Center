@@ -1,0 +1,28 @@
+name: Refresh election briefing
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */4 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: election-briefing
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Collect election reporting
+        run: python3 scripts/update_briefing.py
+      - name: Commit updated briefing
+        run: |
+          git config user.name "election-briefing-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/briefing.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update sourced election briefing"
+            git push
+          fi
