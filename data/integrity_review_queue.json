@@ -1,9 +1,151 @@
 {
-  "updated_at": "2026-10-13T20:51:01.138904Z",
+  "updated_at": "2026-10-13T21:51:56.712815Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 8,
   "items": [
+    {
+      "id": "f4bbb3bc84dd4b9d1bae",
+      "title": "Portland city council Districts 3 and 4 face reelection after just 2 years - KATU",
+      "url": "https://news.google.com/rss/articles/CBMikwJBVV95cUxOYU14RlVWbTRmWWZ3R0MtTmJTVlZGSXVKRVE4UUFIYXlnUWpRN2toYnE0NXpHd1AtNXRNSXUxb2U0VnhySE85R0VQdWljeVhwcTdxRnRYOFFPNnk3T01xMUVuSHNfNTZjZHhqUXpSLVFLLThlbFlSZ3FlRDVpZFgweWc1a1pSSGNWNVFTaEk0WEdROHJ3SGhPX3JxaWNVaHhVT19uRFRGZF9Xdjl5YlU0dExuazBRcjBOaFZ0c0NyMlE3V0lLWHhKaURzNW15bVZ4d3dvV3ZZZzVrdlJfZVRCZVZpVDhSVEZqZkRNSVJMd1YzWGxwZlhqQmV2N0R2eHVVeEozNHZsdTRLSklGZnhRNEhGQQ?oc=5",
+      "publisher": "KATU",
+      "published_at": "2026-10-13T21:30:44Z",
+      "detected_at": "2026-10-13T21:51:56.712815Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [
+        "3 ",
+        "4 ",
+        "2 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "3482fe530527e24ce7c5",
+      "title": "Judge denies request to reopen 92 closed Tarrant County voting locations - WFAA",
+      "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxPcWVwVTFfM2x0cTY1T3lCSTI1bDdUc1ZTdXJrTC1XdlE2RnRqR2ZJRTdYX0xOajRsVGRpNE1BMUJQWVkwMmQ4d0dVekFMdVBKaExIdUJDcW5sZ2VjM3FPbWZ5WWxSNnhEUU5iU1U1Rkt0bHFtZHZiOE5ITFNTZFB0ZU5URUlRLWhsYUZEX3RhT0NuMlFFYkpvZU9BWnF4WXVoQWo2UVEwOXlxakhQWkEwU24wcG40SmdXS0hSOVp4VWRDNkRZNGZLWDd3RWszRzJwUnFSeTk0dGp1a08tOVRjaWdGbEVyUFhtbnVwaTAzQldxak1aSlR6WmpWVHdaY29BSjV2Y2w4eGo4TzlFQUE?oc=5",
+      "publisher": "WFAA",
+      "published_at": "2026-10-13T21:24:00Z",
+      "detected_at": "2026-10-13T21:51:56.712815Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "92 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "a9e34fe54dc8216cf7f5",
+      "title": "Supreme Court refuses to toss out fees for lawyers who sought hand count in Arizona election - WSLS",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQamcwQ25WVmd4SVBKcW8tTGdMYk4tSG1BUWhzcnRvVDVKbURCRWtjNXJXQktSWlFIMTBRZERzUHFuOUhYVUtCQWU4SWhUUmNScEl0V0dlOG1RLVJNOEZwcVVpRnBYcThHRnVEMDJSa2otdnJpZGlQVmVCc0lrazZtZm9sVXh3czRUaUZTYnYtcGw1dXJYeVhzd29QZUdaRF81R3JmS3hZbjk1TldlM3BXV3NBOW1LUl9mUGdyaEhDVEk5NVhXc0VkMUVVbGVlVHMxbHNxY1FB?oc=5",
+      "publisher": "WSLS",
+      "published_at": "2026-10-13T21:12:16Z",
+      "detected_at": "2026-10-13T21:51:56.712815Z",
+      "state_hints": [
+        "AZ"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "70fab558f71b227525be",
+      "title": "Trump pressed states for info on millions of voters in the midterms. It\u2019s mostly failed. - Juneau Independent",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNalFFWEppYkcwdmNqWkdPMDh6MXlLSlFXdVJGVWtQejlBTHVEdTBRWjlwOWYwRkZSd3VNLWF0aW5teEtFbjA2UDRQNHhoaWdfT3F4MjlGaXRJMThKUjNMV1daR05pREI4V0UyNTNhbVp4YzhsOHVaQmYydEd6Q19Tdk1BLVcxZUpuMkplMWtRQ05lTDlpSG5zMkZ1aTNvNkVJTE9vM3lMOGpvWmRfbElVaXZWMGZteE5TZ25oVC1zbko4MDg?oc=5",
+      "publisher": "Juneau Independent",
+      "published_at": "2026-10-13T21:07:53Z",
+      "detected_at": "2026-10-13T21:51:56.712815Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "76ae0a641076efb3b13d",
+      "title": "NC to send letters to 1,400 \u2018potential non-citizens\u2019 on voter rolls - Raleigh News & Observer",
+      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNUENKUmpGT3pVRUtfM2l6Q3FEVXRFWFpjLUZwenp2WlB6dklDS2IwWFN6RXowbzYwbjEzZEh5SDA2bU8tR0t6ei1zMnU1V0l2dVhfb2dvWHEyVjJURzdlQjU0NTJ6d0U2NFpZdVRkaFhvWnhrTDMxN1JlaGZacDZyd0pJZHNlNFZJX3ZGWNIBjAFBVV95cUxOeGk3am4xZmh2bk9ydHBkcG9JTGFSS0lTRGtKeDRaS0FfcUlwYUFocFJPYkI4c0xPUDJPZ21LZzJJX0g5SEFuOURIQU1LbzkyZDJyYUNzWmp5cTZtc3loakFiWWxNM1ZrQzI1dnEtTFJmaHQwRWs1LTVYei1EaFB4R2hOVUpJbkIwUk1TWg?oc=5",
+      "publisher": "Raleigh News & Observer",
+      "published_at": "2026-10-13T21:04:35Z",
+      "detected_at": "2026-10-13T21:51:56.712815Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [
+        "1,400"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "3e85b1acce95671935af",
+      "title": "Can ICE Be at Voting Centers? What DHS and Federal Law Say - MundoNOW",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFB6SUF3eHkwWFNRblJleS13dDVKc1pWMXpqQklWeGZxZnN2U1h1bHFudVBWTURQZDRNTjltemZ2VWVEaTNWQ2ZLSkhCYWtUcEtrOUJodURzdnVVX3hSSmdmSnNidTZ2RURM?oc=5",
+      "publisher": "MundoNOW",
+      "published_at": "2026-10-13T21:03:51Z",
+      "detected_at": "2026-10-13T21:51:56.712815Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "dfc9e8d887fca638ac8a",
+      "title": "Opinion | Are the Midterm Elections Safe? 8 Experts Weigh In on the Threats. - The New York Times",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOV3NoUjk1bWVENTRKbUt5ejVkRUhqUzl6a0taRExZc0N2aE1Tc3QxSG8yV19UMHRubWFpZTlVRmRmbXBxNVh6Z1dVR1J2WFNvcVVsbUg1Ny1Sb2dlYjVWaFF3b09xVlRDeUlYMkhvZWIwMWZBYThQMkE2dG9XZndCbTRvMmxqZC0zOXhMLXRwejBKRmcteF9EZg?oc=5",
+      "publisher": "The New York Times",
+      "published_at": "2026-10-13T21:01:19Z",
+      "detected_at": "2026-10-13T21:51:56.712815Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [
+        "8 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "422add14fd0c904674ec",
+      "title": "Campaign Legal Center Action and Partners Successfully Halt President Trump\u2019s Illegal Taxpayer-Funded Ads Scheme - Campaign Legal Center",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNZHMzN002ZGhPbE53bUEtclpRaXRERjR6M2RWV3NvNmxxcXQyRW1mMFloclZaRHlQb1BneXdvZ0xRblZvSU5PdWRnQkI2ekVhbldlaHZFcmhjY1BjU1ZMWi1IWjROYXN0LS16dVN2enk0alJuclZEN1lTRkNpakNFRWpINjFyUVJ6NkhoMEtSYXJkSGp0Sl85X18yUFRjOGdPandMd24zUVpfZEhRemZ3MmhCWHMzUlBB?oc=5",
+      "publisher": "Campaign Legal Center",
+      "published_at": "2026-10-13T20:57:55Z",
+      "detected_at": "2026-10-13T21:51:56.712815Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "f179c21ed5f0c6f19b35",
       "title": "NC elections board to notify 1,392 voters flagged as potential non-citizens - WECT",

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-13T20:51:01.409352+00:00",
+  "updated_at": "2026-10-13T21:51:57.180613+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -13,12 +13,36 @@
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 855,
+      "available_in_source": 856,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 299,
   "observations": [
+    {
+      "race_code": "RI-GOV",
+      "race_type": "governor",
+      "state": "RI",
+      "poll_id": "15c62ccc-5850-4c8a-b4b9-a4be7a36102a",
+      "question_id": "34a5dbd1-5e9e-4691-a3ee-6bdd24dce1bf",
+      "pollster": "Emerson College",
+      "dem_name": "Helena Foulkes",
+      "rep_name": "Aaron Guckian",
+      "dem": 44.0,
+      "rep": 10.0,
+      "margin": 34.0,
+      "field_end": "2026-10-11",
+      "field_start": "2026-10-08",
+      "posted_date": "2026-10-13",
+      "posted_source_datetime": "2026-10-13T17:27:00",
+      "posted_source_time": "10/13/26 17:27",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.wpri.com/news/elections/5p-wpri-emerson-poll-story/",
+      "sample_population": "lv",
+      "sample_size": 800,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "FL-GOV",
       "race_type": "governor",
