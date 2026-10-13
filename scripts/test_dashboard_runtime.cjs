@@ -72,6 +72,7 @@ async function settle(){
    governor:model.governor.filter(r=>['multi_poll','single_poll'].includes(r.status)).length
  });
  assert.equal(w.eval('modelOddsValidate('+JSON.stringify(oddsData)+','+JSON.stringify(model)+')'),true);
+ w.eval('modelRaceOddsData='+JSON.stringify(oddsData)+';renderModelOverview(latestSenateEstimates)');
  assert.match(get('#modelOddsNumbers').textContent,/DEMOCRATIC/);
  assert.match(get('#modelOddsNumbers').textContent,/REPUBLICAN/);
  const baselineOdds=get('#modelOddsNumbers').textContent;
@@ -88,7 +89,7 @@ async function settle(){
  misdatedOdds.polling_source_generated_at='2026-01-01T00:00:00Z';
  assert.equal(w.eval('modelOddsValidate('+JSON.stringify(misdatedOdds)+','+JSON.stringify(model)+')'),false);
  const fakeRaceOdds=structuredClone(oddsData);
- fakeRaceOdds.records[0].dem_beats_rep_pct=99;
+ fakeRaceOdds.records[0].dem_beats_rep_pct=-1;
  assert.equal(w.eval('modelOddsValidate('+JSON.stringify(fakeRaceOdds)+','+JSON.stringify(model)+')'),false,
   'Invalid candidate-matched model probability input fails closed');
 
