@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import datetime as dt
+import json
 import sys, unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parent))
@@ -38,6 +39,17 @@ class Tests(unittest.TestCase):
     def test_nonsense_probabilities_rejected(self):
         with self.assertRaises(ValueError):
             sc.parse(self.fixture.replace("54.0%","98.0%"),NOW)
+    def test_published_snapshot_contract(self):
+        path=Path(__file__).resolve().parents[1]/"data/congress_scenarios.json"
+        doc=json.loads(path.read_text(encoding="utf-8"))
+        sc.validate(doc)
+        self.assertEqual(set(doc["raw_joint_outcomes_pct"]),set(sc.NAMES))
+        self.assertIsNone(doc["display_outcomes"]["blue_tsunami"]["pct"])
+        self.assertEqual(doc["source_url"],sc.SOURCE)
+        self.assertEqual(doc["source_updated_date"],doc["source_updated_display"][:10])
+        self.assertEqual(doc["source_timestamp_timezone"],"unpublished by provider")
+        self.assertEqual(doc["source_as_of_2026"],True)
+        self.assertEqual(doc["display_outcomes"]["blue_both"]["pct"],doc["raw_joint_outcomes_pct"]["both_dem"])
     def test_no_synthetic_ts_count(self):
         doc=sc.make(sc.parse(self.fixture,NOW),NOW)
         self.assertNotIn("probability",doc["display_outcomes"]["blue_tsunami"])
