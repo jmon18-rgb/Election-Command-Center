@@ -4,9 +4,9 @@ Updated October 13, 2026. Goal: a useful, trustworthy watch-through-the-evening 
 
 ## Election Night rehearsal and reliability upgrade (October 13)
 
-The browser **continues to fetch Open America's documented public CORS-enabled API directly**. Its [version 1 contract](https://openamerica.io/elections/api/) expressly supports cross-origin, unauthenticated requests. We did **not** create a GitHub mirror or copy its live data to a separate unlicensed results service.
+**Important correction (verified October 13):** [Open America's election-specific v1 API contract](https://openamerica.io/elections/api/) explicitly states its results endpoints **do not currently send cross-origin resource-sharing (CORS) headers**. The site's general API page describes CORS more broadly, but that generic guidance does not override the election endpoint's dedicated contract. The previous cross-origin browser request on GitHub Pages was not a functional integration. We removed it rather than claiming live 2026 coverage that cannot load. Open America also asks developers to contact them before repackaging its live results as a standalone results service; no unauthorized mirror has been deployed.
 
-The page opens the **2024 archival data by default before the November 3 election**. This is a static historic snapshot, **not** a chronological evening replay, a verified source of race calls or certification. On and after Election Day, the default changes to 2026 results. A visitor can always toggle year, office (House/Senate/Governor), search, and refresh manually.
+The page opens a **first-party 2024 House archival rehearsal by default before the November 3 election**, sourced from the project's separately staged MIT Election Data and Science Lab 2024 candidate-party vote totals, under a CC0-identified public mirror. It includes **all 435 voting House districts**, with **44** lacking a recorded vote for at least one major party. It contains *party aggregates*, not named-candidate returns, official certification, precinct-level progress, or winner calls. No 2024 House party-total district is automatically mapped as a 2026 geographic prior. This is a static historic dataset, **not** a chronological evening replay or a certified race result. On and after Election Day, the default changes to 2026 mode, but **the live national feed is not connected** pending a browser-compatible, rights-cleared source or provider approval for a backend service. The year/office switches remain visible; only 2024 House has a verified local archive today. Unsupported views display an explicit limitation and working external-source links rather than false zeros.
 
 Client validation rejects unexpected year/office/API version, invalid district IDs, implausible vote totals or candidate percentages, contradictory live/stale/final flags, reported winner-call fields and dates too far into the future. Before polls close, any supposed 2026 vote totals are rejected. A failed subsequent refresh clearly warns visitors and preserves the last validated data in that tab, rather than zeroing totals or substituting polling averages.
 
@@ -16,14 +16,14 @@ The roadmap still requires another independent call source, broader state covera
 
 ## What the current screen already does
 
-The Election Night tab can select 2026 live or 2024 historical results, switch House, Senate or Governors, search reported races, display candidate vote totals, show state-source timestamps and update automatically when the primary API reports a live count. It cannot currently make race calls or calculate chamber control from incomplete coverage.
+The Election Night tab currently has a **working, self-hosted 2024 House party-total archive across all 435 seats**, filtered by district and displayed with source provenance. It has a separate, **not connected** 2026 live-results mode and unsupported 2024 Senate/governor views; those views do not fabricate results. The existing source-contract and within-session change-tracking functions remain ready for a licensed/authorized future provider adapter.
 
 ### Primary: Open America state-derived results
 
 - Docs: https://openamerica.io/elections/api/
 - JSON: `https://openamerica.io/elections/results.json?year=2026&office=House` (also `Senate`, `Governor`, and year `2024`).
 - Free, documented, unauthenticated, official-state-derived counts; **22-state coverage**, not a national dataset.
-- Current documentation expressly says `Access-Control-Allow-Origin: *` permits direct GitHub Pages browser fetches without cookies. Use requests without credentials.
+- The **election-specific** provider contract says results.json currently **does not provide CORS** and cannot be fetched from an unrelated browser origin (including GitHub Pages). A separate general API page's broad CORS claim is inconsistent with that dedicated contract. The dashboard must not depend on that direct request.
 - Observe server `as_of`, `live`, `stale`, `counting`, `final`. It *does not call races*. Percent of precincts is not percent of ballots, and 100% precincts does not equal certification.
 - Source suggests **60-second polls while live**, 10–15 minutes while not live, and ETag / conditional requests for server collectors. Do not run multiple parallel minute-by-minute polls without reason.
 - The provider's documented supported states at review: AR, AZ, CO, CT, FL, GA, IA, ID, IN, LA, MI, MN, NC, PA, RI, SC, TX, UT, VA, VT, WA, and WV. Do not hardcode or extrapolate missing seats from partial coverage.
@@ -63,7 +63,7 @@ Start with public structured exports, then published HTML when necessary. Add a 
 
 ## Build sequence
 
-**Now:** Complete JackStradamus multichamber polling views and monitored Bullshittery scenarios. Election Night includes direct Open America data plus governor switching.
+**Now:** Working 2024 House historical party-total archive, source guardrails, and fail-closed 2026 unsupported state. **Next:** negotiate a permitted 2026 live feed or document an independently browser-compatible civicAPI v2 integration using real endpoint fixtures and attribution. Do not silently proxy an external live feed contrary to its stated republishing condition.
 
 **Next:** Verify civicAPI v2 endpoints and coverage, add its adapter and a provider-comparison test suite without enabling any unverified race-call statuses.
 
