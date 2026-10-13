@@ -77,3 +77,10 @@
 2. **Resolve 2026 redistricting against each 2024 historical district geography.** Different lines require reaggregation using precinct data, not an unverified match by district number.
 3. **Source 2026 candidates and incumbency + Senate holdovers dynamically**, with snapshot dates, third-party rules and district election types.
 4. **Backtest actual previous elections before modeling winning probabilities**: leave-year-out errors, national/regional correlations and full-district completeness, then joint House/Senate simulations. All four control-outcome categories stay unmodeled meanwhile. See [SEAT_MODEL.md](SEAT_MODEL.md).
+
+### Historical results import (October 13)
+- [x] Stage 2024 MIT/MEDSL House candidate-level **raw recorded votes** for exactly **435 voting seats**, with explicit CC0 mirror attribution; do not count D.C.'s non-voting delegate as a seat.
+- [x] Flag **44** 2024 House districts missing a recorded major-party vote instead of inventing a two-party preference, and preserve the 2024 election district identity.
+- [x] Test the staging parser, source fields and House universe in a separate GitHub Actions workflow.
+- [ ] Import additional 2022 House and 2020/2022/2024 Senate results, verify source license and election-year outcome denominator, then fit leave-year-out historical baselines.
+- [ ] Map/reaggregate 2024 votes onto **actual 2026 district geometries** where boundaries changed. Do not simply join 2024 district numbers onto 2026 seat slots.
