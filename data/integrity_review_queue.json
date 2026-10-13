@@ -1,9 +1,28 @@
 {
-  "updated_at": "2026-10-13T23:29:30.251641Z",
+  "updated_at": "2026-10-13T23:34:58.290710Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "items": [
+    {
+      "id": "24eaae113963af5cec8d",
+      "title": "Why are NC registered voters getting letters questioning citizenship in 2026? - Carolina Public Press",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPMEplcm9XQ0t1ZTlOTnI4ckFHOHNaYWoyMTNQNjd6NC1HOTRMWUkyUkgxWXBTaElMYVRSRllmRENmQnBSa0NjcnUwaGpfWUh6dklZUTZONkgwckFjT2F4MlFMa0drb3V3SDJNaEFQY3pMcF93OTM3T3dvOXUwY1lVdWxWeDFLbTFpS3dybFJHT0h0VU5udlJnUVRVejJxQ3BLNXBmZG1XNUZFZFlrMjBnZmo4a0UxQQ?oc=5",
+      "publisher": "Carolina Public Press",
+      "published_at": "2026-10-13T23:15:27Z",
+      "detected_at": "2026-10-13T23:34:58.290710Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [
+        "2026"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "def31835052d6a1343ee",
       "title": "NC elections board to notify 1,392 voters flagged as potential noncitizens - NC Newsline",
