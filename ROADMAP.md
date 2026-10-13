@@ -9,7 +9,7 @@
 - **Bullshittery Index:** Separate sourced election-administration concerns from the candidate polling data.
 - **Election Night (new):** A live-results view from a documented, free state-derived JSON source with a 2024 historical archive, party-colored D/R margin indicators, vote gaps and labeled precinct progress. It is partial (22 states supported by the provider), never calls a winner, and does not yet estimate chamber control. The former manual vote-entry prototype is retired. The old **Senate Paths** slider remains retired.
 - **Bullshittery Index v1.2:** Conservative 0–100 monitoring priority plus subjective, explicitly defined P(100+ otherwise-eligible voters unable to cast countable ballots because of the incident), with broad uncertainty ranges. Actual worst-case distinct people remain unquantified; exposure proxies keep their original units. See [BULLSHITTERY.md](BULLSHITTERY.md).
-- **National scenario tracker v0:** Exhaustive Red Dawn / The Shrug / Blue Wave / Blue Tsunami bins from the national House popular-vote polling average, using explicit provisional election-day uncertainty. This is **not** chamber control probability; see [SCENARIOS.md](SCENARIOS.md).
+- **Congressional scenarios:** Red Dawn / Shrug / Blue Wave / Blue Tsunami are now **chamber-control definitions**, with Blue Tsunami reserved for near-sweep of a predeclared competitive slate. Old national vote-margin percentages were invalid for this question and removed. Probabilities await joint seat simulations; see [SCENARIOS.md](SCENARIOS.md).
 
 ## P0 — Substantially better race drilldowns
 1. **Long-term race polling history.** Save older surveys and dated model snapshots to chart actual changes over months rather than drawing fake trend lines through 12 recent polls.
@@ -22,7 +22,7 @@
 6. **Better race context:** Historical results, incumbency, fundraising and other non-poll indicators with explicit sources. Do not silently roll these into a polling average.
 
 ## P2 — Modeling beyond polling averages
-7. **Calibrated uncertainty.** The current Blue Wave scenario bands use a disclosed 4-point provisional election-day error SD. Replace this with calibrated, time-dependent, potentially fat-tailed errors from pre-election historical snapshots. Expand fundamentals, district boundaries, national/regional common errors and full seat simulations before making election-outcome or chamber-control probability claims.
+7. **Calibrated uncertainty.** The previous 4-point vote-margin assumption is no longer displayed as a congressional-control probability. Fit time-dependent and possibly fat-tailed errors to real pre-election historical snapshots and outcomes. Expand fundamentals, district boundaries, national/regional common errors and full seat simulations before making election-outcome or chamber-control probability claims.
 8. **Election Night nationwide control:** Source hierarchy and acceptance tests documented in [ELECTION_NIGHT_SOURCES.md](ELECTION_NIGHT_SOURCES.md). Expand beyond the Open America 22-state feed; test civicAPI as a secondary call/coverage provider; ingest structured state exports and site HTML via controlled state parsers. No control board until complete verified calls, holdover Senate seats and uncalled contests are reconciled. Add county benchmarks only from verified historical and current county vote data.
 9. **Mobile polish.** Make overview-to-race navigation seamless and preserve direct links to individual races.
 
@@ -58,3 +58,9 @@
 - Link externally supported population labels and poll disclosures to the actual survey PDFs, including signed bias differences.
 - Fit national/regional time effects and signed house effects with **historical timestamped election results** and leave-election-year-out holdouts, not one 2026 rolling feed.
 - Fit correlated errors and validate reliability/coverage and proper scoring rules before attaching probabilities to who controls a chamber. Document differences from Silver/FLIPR rather than claiming a clone.
+
+## October 13: daily brief redesign
+- Replaced permanently featured largest-lead/closest-race tiles with event-based insights (leader flips, meaningful margin shifts, new competitive polls, and coverage improvements). Material changes are checked against a bounded model history, by **matching candidate matchups**, not ad hoc headlines.
+- Put new polling postings and election reporting higher on the daily brief, before the static cards.
+- PollResults.org posted-poll ordering uses source **date/time** (full `createdAt`); timezone remains unknown, and this is not an independently verified public release timestamp. Priority: add verified original article `datePublished` evidence when available.
+- Fully define four mutually exclusive House/Senate control outcomes and freeze the major-race slate in advance before any "Blue Tsunami" scenario probability is shown.
