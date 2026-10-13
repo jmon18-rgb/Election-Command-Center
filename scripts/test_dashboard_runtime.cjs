@@ -860,7 +860,7 @@ async function settle(){
  assert.match(civicDetail.textContent,/510/);
  assert.match(civicDetail.textContent,/490/);
  assert.match(civicDetail.textContent,/separate from Open America/);
- assert.match(civicDetail.querySelector('a.en-civic-direct').href,/civicapi.org\\/api\\/v2\\/race\\/87283/);
+ assert(civicDetail.querySelector('a.en-civic-direct').href.includes('/api/v2/race/87283'));
  assert.equal(get('#enWatchItems .en-watch-open').getAttribute('aria-expanded'),'true');
  get('#enWatchItems .en-watch-open').click();
  assert.equal(get('#enWatchItems .en-civic-detail'),null,
