@@ -1,0 +1,45 @@
+{
+  "status": "external_model_attributed_not_jackstradamus_probabilities",
+  "generated_at": "2026-10-13T17:00:00Z",
+  "model": "Decision Desk HQ 2026 joint congressional forecast",
+  "source_url": "https://votes.decisiondeskhq.com/forecast/2026",
+  "source_updated_display": "2026-10-13 01:52 PM",
+  "source_updated_date": "2026-10-13",
+  "source_timestamp_timezone": "unpublished by provider",
+  "raw_joint_outcomes_pct": {
+    "both_dem": 54,
+    "senate_only": 2,
+    "house_only": 22,
+    "both_rep": 21
+  },
+  "display_outcomes": {
+    "red_dawn": {
+      "pct": 21,
+      "definition": "Republicans control both chambers"
+    },
+    "shrug": {
+      "pct": 24,
+      "definition": "Democrats control exactly one chamber"
+    },
+    "blue_both": {
+      "pct": 54,
+      "definition": "Democrats control both chambers, INCLUDING any tsunami"
+    },
+    "blue_tsunami": {
+      "pct": null,
+      "definition": "Democrats control both and win ≥90% of a predeclared competitive slate",
+      "reason": "No conditional near-sweep probability in published joint DDHQ model"
+    }
+  },
+  "house_dem_control_pct": 76,
+  "senate_dem_control_pct": 56,
+  "rounding_total_pct": 99,
+  "source_as_of_2026": true,
+  "limitations": [
+    "This is an external DDHQ joint congressional forecast, NOT a JackStradamus model output.",
+    "Blue Wave denotes both chambers, inclusive of Blue Tsunami; a separate tsunami probability is unavailable.",
+    "Published percentages may sum to 99% or 101% due to rounding.",
+    "Last-updated timezone is not specified by the provider.",
+    "Do not calculate joint probabilities by multiplying separate chamber forecasts."
+  ]
+}
