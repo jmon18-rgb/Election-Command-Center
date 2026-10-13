@@ -46,3 +46,15 @@
 4. **CANTOR-like polling priors:** ingest contemporaneous district/state partisanship, post-redistricting boundaries, national environment and geographic/electoral similarities; mark unpolled races as imputed, not surveyed.
 5. **Classic/Deluxe:** add fundraising, incumbency, experience, and separately attributed Cook/Ettingermentum/Silver outside forecasts (respecting reuse terms and analyst correlations).
 6. **Calibration:** time-stamped historical election-result holdouts, correlated national/regional error, seat-by-seat simulations, proper scoring rules and reliability checks. Do not claim a scientifically calibrated win percentage before passing these gates.
+
+## Completed source and diagnostics upgrade — October 13
+- Governors now use consistent machine-readable singular office type throughout Race Lab.
+- Scoped polling-lead counts show surveyed D-leading, R-leading, tied and insufficient-data contests, never implied national chamber control.
+- Added PollResults.org supplemental source to daily briefing with posted dates, original source links, LV/RV labels, and strict ID/source reconciliation; primary model unchanged.
+- Staged the actual January 2026 Silver Bulletin historical pollster XLSX with validated column mapping; held-out next-poll testing and experimental race-level comparison are live, full correction not adopted.
+
+### Still essential before probabilities or projected seats
+- Verify current incumbent/holdover Senate rosters, complete House district coverage and statewide fundamentals; handle independent senators and unusual matchups.
+- Link externally supported population labels and poll disclosures to the actual survey PDFs, including signed bias differences.
+- Fit national/regional time effects and signed house effects with **historical timestamped election results** and leave-election-year-out holdouts, not one 2026 rolling feed.
+- Fit correlated errors and validate reliability/coverage and proper scoring rules before attaching probabilities to who controls a chamber. Document differences from Silver/FLIPR rather than claiming a clone.
