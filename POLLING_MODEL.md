@@ -66,7 +66,7 @@ FLIPR's code and parameters are proprietary; publicly described statistical meth
 - **D +x** in blue, **R +x** in red, across the Senate cards, JackStradamus and Election Night.
 - **🐑 HERDING?** reports simple inter-poll spread: a tight flock is observed agreement, **not evidence that firms coordinated**.
 - Race drilldowns show individual polls, sponsor labels, archival quality ratings, and actual weights from the published model rather than a hand-computed approximation.
-- The separate [SCENARIOS.md](SCENARIOS.md) describes the experimental national House popular-vote bands; they do not predict which party controls a chamber.
+- The separate [SCENARIOS.md](SCENARIOS.md) now defines four **congressional-control** outcomes. The obsolete vote-margin probability bands have been removed. Probabilities are withheld until a full, validated seat-level model is available.
 
 ## Next accuracy milestones
 
@@ -86,3 +86,9 @@ The research-only alternative reweights the **same already-eligible polls** usin
 **Poll freshness and sample types:** [PollResults.org's API](https://pollresults.org/) provides NYT-derived 2026 records sorted by its posted timestamp, original links and likely-voter/registered-voter sample flags. We import those records into `data/pollresults_recent.json` and mark the timestamp **posted to that source, not public release date**. Only an exact poll ID, contest, field-end and share match enriches an existing JackStradamus poll. Unmatched observations appear in the supplemental newest-poll browser only and do not change the headline. LV/RV bias adjustments are deferred until complete, validated source coverage and a historical fit.
 
 **Coverage caveat:** even two NYT-derived services don't capture every poll published by campaigns, local media, universities, or organizations. This is not a claim of exhaustive survey collection.
+
+## Daily movement monitoring
+
+The daily brief records `data/model_history.json` each successful refresh (bounded to 30 days / 190 snapshots) with the poll mean, matchup identity, firm count and poll recency. New signals can include the **same-matchup polling leader flipping**, movement of **at least 0.75 points**, gaining corroboration across three or more firms, or the posting of a survey in a competitive race. This is an **evidence change log**, not a validated voter-support trend or 2026 election forecast. The display will show the absence of meaningful new changes when that is what the data supports.
+
+The posted-poll browser uses the supplemental source's **date AND hour/minute**, with original links and fieldwork end dates displayed separately. The source does not specify a timezone or an authoritative first-publication timestamp; don't confuse `createdAt` with the verified release time. Once original article publication metadata is reliably available, it can take precedence only with clear provenance.
