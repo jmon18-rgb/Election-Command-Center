@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "updated_at": null,
-  "coverage": "Not yet populated with independently verified state-level incident records",
+  "updated_at": "2026-10-12",
+  "coverage": "Initial curated, non-exhaustive election-administration litigation records; voter-impact counts not established",
   "methodology": {
     "primary_metric": "Potentially affected voters or ballots, only when grounded in a cited primary source",
     "count_rules": [
@@ -21,6 +21,182 @@
       "resolved"
     ]
   },
-  "states": [],
-  "incidents": []
+  "states": [
+    {
+      "state": "ME",
+      "name": "Maine",
+      "records": 1,
+      "unique_voters_affected": null
+    },
+    {
+      "state": "NH",
+      "name": "New Hampshire",
+      "records": 1,
+      "unique_voters_affected": null
+    },
+    {
+      "state": "MI",
+      "name": "Michigan",
+      "records": 1,
+      "unique_voters_affected": null
+    },
+    {
+      "state": "GA",
+      "name": "Georgia",
+      "records": 1,
+      "unique_voters_affected": null
+    },
+    {
+      "state": "MN",
+      "name": "Minnesota",
+      "records": 1,
+      "unique_voters_affected": null
+    },
+    {
+      "state": "MA",
+      "name": "Massachusetts",
+      "records": 1,
+      "unique_voters_affected": null
+    }
+  ],
+  "incidents": [
+    {
+      "id": "doj-voter-rolls-me",
+      "state": "ME",
+      "title": "Maine — DOJ voter-list disclosure litigation",
+      "mechanism": "Voter-list disclosure litigation",
+      "verification_status": "documented_action",
+      "last_updated": "2026-10-08",
+      "event_date": "2026-05-21",
+      "summary": "Dismissed at district court; appeal ongoing. Litigation concerns access to statewide voter-list data; no count of eligible voters denied voting is established by this source.",
+      "units": "voters",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "sources": [
+        {
+          "publisher": "National Conference of State Legislatures",
+          "url": "https://www.ncsl.org/elections-and-campaigns/federal-requests-for-statewide-voter-lists"
+        }
+      ],
+      "impact_assessment": "not_quantified",
+      "case_type": "legal_dispute"
+    },
+    {
+      "id": "doj-voter-rolls-nh",
+      "state": "NH",
+      "title": "New Hampshire — DOJ voter-list disclosure litigation",
+      "mechanism": "Voter-list disclosure litigation",
+      "verification_status": "documented_action",
+      "last_updated": "2026-10-08",
+      "event_date": "2026-06-29",
+      "summary": "Dismissed at district court; appeal ongoing. Litigation concerns access to statewide voter-list data; no count of eligible voters denied voting is established by this source.",
+      "units": "voters",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "sources": [
+        {
+          "publisher": "National Conference of State Legislatures",
+          "url": "https://www.ncsl.org/elections-and-campaigns/federal-requests-for-statewide-voter-lists"
+        }
+      ],
+      "impact_assessment": "not_quantified",
+      "case_type": "legal_dispute"
+    },
+    {
+      "id": "doj-voter-rolls-mi",
+      "state": "MI",
+      "title": "Michigan — DOJ voter-list disclosure litigation",
+      "mechanism": "Voter-list disclosure litigation",
+      "verification_status": "documented_action",
+      "last_updated": "2026-10-08",
+      "event_date": "2026-08-14",
+      "summary": "Dismissal affirmed by Sixth Circuit. Litigation concerns access to statewide voter-list data; no count of eligible voters denied voting is established by this source.",
+      "units": "voters",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "sources": [
+        {
+          "publisher": "National Conference of State Legislatures",
+          "url": "https://www.ncsl.org/elections-and-campaigns/federal-requests-for-statewide-voter-lists"
+        }
+      ],
+      "impact_assessment": "not_quantified",
+      "case_type": "legal_dispute"
+    },
+    {
+      "id": "doj-voter-rolls-ga",
+      "state": "GA",
+      "title": "Georgia — DOJ voter-list disclosure litigation",
+      "mechanism": "Voter-list disclosure litigation",
+      "verification_status": "documented_action",
+      "last_updated": "2026-10-08",
+      "event_date": "2026-09-30",
+      "summary": "Two federal district court suits dismissed, most recently September 30. Litigation concerns access to statewide voter-list data; no count of eligible voters denied voting is established by this source.",
+      "units": "voters",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "sources": [
+        {
+          "publisher": "National Conference of State Legislatures",
+          "url": "https://www.ncsl.org/elections-and-campaigns/federal-requests-for-statewide-voter-lists"
+        }
+      ],
+      "impact_assessment": "not_quantified",
+      "case_type": "legal_dispute"
+    },
+    {
+      "id": "doj-voter-rolls-mn",
+      "state": "MN",
+      "title": "Minnesota — DOJ voter-list disclosure litigation",
+      "mechanism": "Voter-list disclosure litigation",
+      "verification_status": "documented_action",
+      "last_updated": "2026-10-08",
+      "event_date": "2026-08-17",
+      "summary": "Dismissed at district court; appeal ongoing. Litigation concerns access to statewide voter-list data; no count of eligible voters denied voting is established by this source.",
+      "units": "voters",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "sources": [
+        {
+          "publisher": "National Conference of State Legislatures",
+          "url": "https://www.ncsl.org/elections-and-campaigns/federal-requests-for-statewide-voter-lists"
+        }
+      ],
+      "impact_assessment": "not_quantified",
+      "case_type": "legal_dispute"
+    },
+    {
+      "id": "doj-voter-rolls-ma",
+      "state": "MA",
+      "title": "Massachusetts — DOJ voter-list disclosure litigation",
+      "mechanism": "Voter-list disclosure litigation",
+      "verification_status": "documented_action",
+      "last_updated": "2026-10-08",
+      "event_date": "2026-04-09",
+      "summary": "Dismissed at district court; appeal ongoing. Litigation concerns access to statewide voter-list data; no count of eligible voters denied voting is established by this source.",
+      "units": "voters",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "sources": [
+        {
+          "publisher": "National Conference of State Legislatures",
+          "url": "https://www.ncsl.org/elections-and-campaigns/federal-requests-for-statewide-voter-lists"
+        }
+      ],
+      "impact_assessment": "not_quantified",
+      "case_type": "legal_dispute"
+    }
+  ]
 }
