@@ -12,7 +12,8 @@ If all feeds fail, the script preserves existing items and exits unsuccessfully 
 
 ## Limitations
 
-* No real polling averages, seat forecasts, or confidence intervals are integrated yet.
-* No election-night vote returns provider is integrated yet.
+* JackStradamus polling averages are integrated and use archived 538 pollster ratings, age, bounded sample-size and symmetric sponsorship weights. They are **not** calibrated seat forecasts.
+* Election Night uses a partial state-derived feed; it is not a nationwide race-call or chamber-control service.
+* The current poll CSV does **not** contain public release dates, demographic sample-population categories, or per-poll source URLs. First-seen timestamps are collection times, not publication dates.
 * RSS results depend on external service availability and can include syndicated/duplicated coverage.
 * To publish: GitHub Settings → Pages → Deploy from branch → main → /(root).
