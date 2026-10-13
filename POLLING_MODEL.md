@@ -116,3 +116,22 @@ A standalone research pipeline now compares historical Senate survey averages ag
 **Critical limitation:** The third-party historical compilation **does not contain verified original public release dates**, and was curated knowing which candidates ultimately reached each general-election ballot. Therefore the cutoff is based on *fieldwork*, not on verified public information available as of that date. This introduces potential *hindsight leakage*. This is useful retrospective error research, **NOT** a fully leakage-free historical as-of forecast backtest, a national correlated forecast error distribution, or a calibrated source of 2026 Senate win probabilities. None of these metrics currently change the deployed JackStradamus weighted averages or the congressional-control forecast boxes.
 
 **True next calibration step:** Obtain archived original release dates and contemporaneous candidate-matchup sets (and election-year contemporaneous pollster ratings), verify regular/special ballot mapping, reproduce the full JackStradamus estimator for each independent historic election year, perform leave-year-out testing, estimate common election error with far more than three cycles, and evaluate 2026 forecast probability calibration using proper scoring rules.
+
+## Next validation milestone: does a historical partisan-bias correction travel across election years?
+
+The research script `scripts/build_senate_bias_holdout.py` now consumes the independently sourced historical Senate poll-to-outcome errors **without downloading additional data**. It holds out an **entire election year** at a time (2020, 2022, 2024), averages the signed Democratic-minus-Republican polling-margin errors within each of the *two other* years, then gives each training year **equal weight**. That prevents the 15 races in 2024 from counting as 15 independent national polling-error realizations while 2020 has 13.
+
+The experimental offsets are fixed in advance: **no correction**, **50% of the past-cycle bias**, and **100% of the past-cycle bias**. All are measured against the same held-out races; no correction can use the testing election's vote results to determine its own adjustment. This is an error study, not a live model change.
+
+From the October 13 source snapshot (42 eligible Senate races), in mean absolute *D–R margin* error points:
+
+| Held-out election | Races | No correction | Half past bias | Full past bias |
+|---|---:|---:|---:|---:|
+| 2020 | 13 | 5.54 | 4.97 | 4.51 |
+| 2022 | 14 | 3.46 | 4.28 | 5.90 |
+| 2024 | 15 | 4.35 | 3.35 | 2.58 |
+| All 42 | 42 | 4.42 | 4.16 | 4.28 |
+
+The **2022 correction fails badly**: it would be wrong to infer a universal Democratic overestimation correction from 2020 and 2024. In pooled results, the retrospective full correction's MAE improvement is small (~0.14 percentage points), and a half correction is ~0.26 points better. These differences are **not validation for shipping either correction**. A small selection of retrospective, nonrepresentative Senate races drawn from only three cycles gives insufficient independent election-year observations. The source lacks independently verified poll-publication timestamps and may contain hindsight candidate selection, so this is **year-held-out stress testing of a retrospectively constructed dataset**, not a leakage-free prospective historic forecast. The audit itself and dashboard explicitly set `is_as_of_leakage_free=false`, `is_statistically_calibrated_for_2026=false`, and `permitted_to_change_live_2026_polling_model=false`.
+
+The deployment bar remains unchanged: historical polling as-of evidence and independently held-out *whole election years*, properly mapped 2026 district/candidate fundamentals, clustered national/regional residuals, and reliability testing of actual projected winners and joint chamber outcomes before showing internally modeled chances of Blue Wave / Red Dawn / Shrug / Blue Tsunami.

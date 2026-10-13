@@ -114,6 +114,58 @@ async function settle(){
  assert.equal(get('#senateBacktestRaces').querySelectorAll('.en-activity-item').length,3);
  w.eval('setHistoricalSenatePollStudy(null)');
  assert.match(get('#senateBacktestSummary').textContent,/awaiting source verification/);
+ // Actual 42-race study is the contract for the year-held-out UI. Use
+ // externally sourced historical errors, not synthetic claims of model odds.
+ const trueStudy=json('data/historical_senate_poll_backtest.json');
+ assert.equal(trueStudy.races_evaluated,42);
+ const historicalYears=[2020,2022,2024];
+ const cycleScores={};
+ const mean=a=>a.reduce((s,x)=>s+x,0)/a.length;
+ const mae=a=>Math.round(mean(a.map(Math.abs))*1000)/1000;
+ const byYearValues=Object.fromEntries(historicalYears.map(year=>[
+   year,trueStudy.records.filter(x=>x.cycle===year).map(x=>x.methods.recency21.error)
+ ]));
+ for(const year of historicalYears){
+   const train=historicalYears.filter(y=>y!==year);
+   const learned=mean(train.map(y=>mean(byYearValues[y])));
+   const errors=byYearValues[year],methods={};
+   for(const [key,mult] of [['uncorrected',0],['half_prior_bias',.5],['full_prior_bias',1]]){
+     methods[key]={mae_points:mae(errors.map(e=>e-mult*learned))};
+   }
+   cycleScores[year]={
+     test_cycle:year,test_races:errors.length,training_cycles:train,
+     fixed_training_bias_points:learned,methods
+   };
+ }
+ const holdoutStudy={
+   schema_version:'senate-bias-holdout-v1',
+   status:'retrospective_leave_election_year_out_research_only',
+   is_forecast:false,is_as_of_leakage_free:false,
+   is_statistically_calibrated_for_2026:false,
+   permitted_to_change_live_2026_polling_model:false,
+   training_and_test_years_never_overlap:true,
+   source_race_count:trueStudy.records.length,
+   all_heldout_races:{uncorrected:{races:42,mae_points:4.420},
+     half_prior_bias:{mae_points:4.159},full_prior_bias:{mae_points:4.284}},
+   by_test_year:cycleScores
+ };
+ w.eval('setHistoricalSenatePollStudy('+JSON.stringify(trueStudy)+')');
+ w.eval('setSenateBiasHoldoutData('+JSON.stringify(holdoutStudy)+')');
+ assert.match(get('#senateBiasSummary').textContent,/42-race error check/);
+ assert.match(get('#senateBiasSummary').textContent,/4.42 to 4.28/);
+ const yearRows=[...get('#senateBiasRows').querySelectorAll('tr')];
+ assert.equal(yearRows.length,3,'One out-of-election-year comparison per cycle');
+ assert.match(yearRows[1].textContent,/2022/);
+ assert(yearRows[1].textContent.includes('5.9'),'A full prior over-correction makes 2022 worse');
+ assert.match(get('#senateBiasNote').textContent,/do NOT justify applying either correction to 2026/);
+ const invalidHoldout=structuredClone(holdoutStudy);
+ invalidHoldout.by_test_year['2022'].training_cycles=[2020,2022];
+ w.eval('setSenateBiasHoldoutData('+JSON.stringify(invalidHoldout)+')');
+ assert.match(get('#senateBiasSummary').textContent,/awaiting source-matched verification/,
+    'Future-year leakage must fail closed');
+ assert.equal(get('#senateBiasRows').querySelectorAll('tr').length,0);
+ w.eval('setSenateBiasHoldoutData(null)');
+ w.eval('setHistoricalSenatePollStudy(null)');
  // Poll Wire is a real searchable, source-attributed full-feed explorer,
  // not just the top ten survey postings shown on the Daily Brief.
  const wireTab=get('.tab[data-page="wire"]');
