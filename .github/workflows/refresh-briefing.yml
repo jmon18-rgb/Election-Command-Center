@@ -9,6 +9,8 @@ on:
       - 'scripts/test_polling_models.py'
       - 'scripts/build_polling_estimates.py'
       - 'scripts/update_integrity_queue.py'
+      - 'scripts/validate_integrity_impact.py'
+      - 'data/integrity_impact.json'
       - '.github/workflows/refresh-briefing.yml'
   schedule:
     - cron: '17 */4 * * *'
@@ -27,6 +29,8 @@ jobs:
       - name: Collect election reporting
         continue-on-error: true
         run: python3 scripts/update_briefing.py
+      - name: Validate published integrity evidence
+        run: python3 scripts/validate_integrity_impact.py
       - name: Queue integrity reports for source verification
         run: python3 scripts/update_integrity_queue.py
       - name: Collect 2026 polling data
