@@ -166,6 +166,50 @@ async function settle(){
  assert.equal(get('#senateBiasRows').querySelectorAll('tr').length,0);
  w.eval('setSenateBiasHoldoutData(null)');
  w.eval('setHistoricalSenatePollStudy(null)');
+ // Ten-cycle study must independently enforce chronology, provenance,
+ // full year coverage and explicitly nonforecast status in the browser.
+ const years10=[2006,2008,2010,2012,2014,2016,2018,2020,2022,2024];
+ const metrics10=(n,mae,signed)=>({races:n,mae_points:mae,signed_error_points:signed,rmse_points:mae+1});
+ const yr10=Object.fromEntries(years10.map(y=>[String(y),{
+    races:3,observed_poll_error:metrics10(3,4.5,y%4===0?5:-1)
+ }]));
+ const held10=Object.fromEntries(years10.slice(3).map((y,i)=>[String(y),{
+    test_cycle:y,training_cycles:years10.slice(0,i+3),races:3,
+    learned_past_bias_points:1.2,
+    methods:{none:metrics10(3,4.5,1),half_prior_bias:metrics10(3,4.51,.5),
+       full_prior_bias:metrics10(3,4.55,.1)}
+ }]));
+ const study10={
+    schema_version:'senate-long-run-walk-forward-v1',
+    status:'research_only_retrospective_chronological_diagnostic',
+    is_forecast:false,is_as_of_leakage_free:false,
+    source_publication_timestamps_verified:false,
+    can_justify_2026_bias_correction:false,
+    can_calibrate_2026_chamber_probabilities:false,
+    history_cycles:10,evaluated_test_cycles:7,years:years10,
+    poll_file_sha256:Object.fromEntries(years10.map(y=>[String(y),'a'.repeat(64)])),
+    total_race_observations:30,by_year:yr10,holdout_by_year:held10,
+    pooled_walk_forward:{none:metrics10(21,4.5,1),
+      half_prior_bias:metrics10(21,4.51,1),full_prior_bias:metrics10(21,4.55,1)}
+ };
+ assert.equal(w.eval('longRunSourceValid('+JSON.stringify(study10)+')'),true);
+ w.eval('setLongRunSenateData('+JSON.stringify(study10)+')');
+ assert.match(get('#longRunSummary').textContent,/30 races/);
+ assert.equal(get('#longRunBars').querySelectorAll('.longrun-bar-row').length,10);
+ assert.equal(get('#longRunTestRows').querySelectorAll('tr').length,7);
+ assert.match(get('#longRunVerdict').textContent,/Neither fixed partisan-bias correction/);
+ assert.match(get('#longRunCaveats').textContent,/ONLY EARLIER election years/);
+ const leaked10=structuredClone(study10);
+ leaked10.holdout_by_year['2014'].training_cycles.push(2020);
+ w.eval('setLongRunSenateData('+JSON.stringify(leaked10)+')');
+ assert.equal(get('#longRunTestRows').querySelectorAll('tr').length,0,
+    'Future election entering a training set must fail closed');
+ assert.match(get('#longRunSummary').textContent,/awaiting source-matched validation/);
+ const incorrect10=structuredClone(study10);
+ incorrect10.is_as_of_leakage_free=true;
+ assert.equal(w.eval('longRunSourceValid('+JSON.stringify(incorrect10)+')'),false,
+    'Retrospective poll source may not claim release-date completeness');
+ w.eval('setLongRunSenateData(null)');
  // Poll Wire is a real searchable, source-attributed full-feed explorer,
  // not just the top ten survey postings shown on the Daily Brief.
  const wireTab=get('.tab[data-page="wire"]');
