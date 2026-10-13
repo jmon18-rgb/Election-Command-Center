@@ -228,6 +228,27 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-civic-call{font-size:11px;font-weight:850;color:#edcf91;padding:5px 0;margin:7px 0}
 .en-civic-caveat{font-size:10px;color:#9fb8d0;line-height:1.6;margin:9px 0}
 .en-civic-direct{font-size:10px;font-weight:750}
+.en-national-senate{border:1px solid #335776;background:linear-gradient(130deg,#12243a,#0f1a2c);border-radius:12px;padding:16px 18px;margin:10px 0 16px}
+.en-national-senate[hidden]{display:none}
+.en-national-header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.en-national-header h3{font-size:19px;margin:7px 0 5px}
+.en-national-header p{font-size:11px;line-height:1.6;color:#aec5db;margin:0;max-width:710px}
+.en-national-header button{flex-shrink:0;background:#214868;border:1px solid #6592b6;padding:10px 12px;font-weight:800}
+.en-national-header button[aria-pressed=true]{background:#294c3e;border-color:#7bbba1}
+.en-national-summary{color:#c3d9ec;font-size:11px;line-height:1.55;font-weight:700;padding:12px 0}
+.en-national-details{border-top:1px solid #324c67;padding-top:11px}
+.en-national-details summary{cursor:pointer;font-size:12px;color:#d4eafa;font-weight:800}
+.en-national-details summary span{font-size:11px;color:#a0b9d1;font-weight:500}
+.en-national-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:13px 0}
+.en-national-seat{border:1px solid #36516b;background:#172c42;border-radius:8px;min-width:0;padding:9px 10px;text-align:left;cursor:pointer;color:#e1f0ff;display:flex;flex-direction:column;gap:5px}
+.en-national-seat:hover{border-color:#81b8df;background:#20405e}
+.en-national-seat strong{font-size:12px}
+.en-national-seat small{font-size:10px;line-height:1.4;color:#acc5da}
+.en-national-seat[data-reporting=true]{border-color:#4a897c}
+.en-national-seat .en-national-provider{font-size:9px;font-weight:800;color:#93bbd9;text-transform:uppercase;letter-spacing:.06em}
+.en-national-source{font-size:10px;color:#8faec9;line-height:1.6;margin:9px 0 0}
+@media(max-width:850px){.en-national-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:570px){.en-national-grid{grid-template-columns:1fr}.en-national-header{flex-direction:column;align-items:flex-start}.en-national-senate{padding:14px}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -411,6 +432,20 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 </div>
 <div class="en-status" id="enStatus" role="status">Election Day is November 3. The 2024 archive is available for rehearsal before 2026 results begin.</div>
 <div class="en-archive-intro" id="enArchiveIntro">2024 House rehearsal uses MIT/MEDSL's historical recorded party-level votes across all 435 districts. It is <strong>not a minute-by-minute replay</strong> and does not identify individual candidates, certified winners, or precinct progress. A 2024 district number must not be treated as the same geographic seat in 2026 after redistricting.</div>
+<section id="enNationalSenate" class="en-national-senate" aria-label="Nationwide 2026 Senate vote monitor" hidden>
+ <div class="en-national-header">
+  <div><span class="label">SENATE · 35 CONTESTS · TWO INDEPENDENT SOURCES</span>
+   <h3>2026 Senate results desk</h3>
+   <p>Every Senate race on the ballot, including Florida and Ohio specials. No reporting means unknown, not zero. Provider calls remain labeled by source.</p></div>
+  <button id="enNationalToggle" class="chip" type="button" aria-pressed="false">Track all 35</button>
+ </div>
+ <div id="enNationalSummary" class="en-national-summary">Validating the 2026 Senate seat universe…</div>
+ <details id="enNationalDetails" class="en-national-details">
+  <summary>All 35 Senate contests <span id="enNationalExpandHint">· expand list</span></summary>
+  <div id="enNationalRows" class="en-national-grid"><p class="empty">Loading 2026 Senate contests…</p></div>
+ </details>
+ <p class="en-national-source">State-derived counts: Open America (supported states) · Other states: individually validated civicAPI races. No mixing totals or assuming winner calls. <a href="https://civicapi.org" target="_blank" rel="noopener noreferrer">civicAPI ↗</a></p>
+</section>
 <section class="en-watchlist" aria-label="Your election night watchlist">
  <div class="en-watch-head"><div><strong>MY WATCHLIST</strong><span>Saved on this laptop · follows 2026 races across offices</span></div>
  <span id="enWatchCount" class="en-watch-count">0 races</span></div>
@@ -1649,6 +1684,149 @@ const enHouseSeatCounts={AL:7,AK:1,AZ:9,AR:4,CA:52,CO:8,CT:5,DE:1,FL:28,GA:14,
  OK:5,OR:6,PA:17,RI:2,SC:7,SD:1,TN:9,TX:38,UT:4,VT:1,VA:11,
  WA:10,WV:2,WI:8,WY:1};
 let enOfficeSnapshots=Object.create(null),enOfficeErrors=Object.create(null);
+const enNationalStorageKey='bluewaves_national_senate_2026_v1';
+let enNationalSeats=null,enNationalError=null,enNationalExpanded=new Set();
+let enNationalEnabled=(()=>{
+ try{const saved=localStorage.getItem(enNationalStorageKey);
+  return saved===null?Date.now()>=Date.parse('2026-11-03T05:00:00Z'):saved==='true'}
+ catch{return Date.now()>=Date.parse('2026-11-03T05:00:00Z')}
+})();
+function enNationalValidate(doc){
+ if(!doc||doc.schema_version!=='1.0'||doc.is_election_forecast!==false||
+    doc.status!=='complete_slot_inventory_incomplete_forecast_inputs'||
+    doc.senate?.contested_total!==35||doc.senate.contested_regular!==33||
+    doc.senate.contested_special!==2||
+    !Array.isArray(doc.senate.contested_seats)||doc.senate.contested_seats.length!==35)return null;
+ const seats=[],states=new Set(),specials=[];
+ for(const row of doc.senate.contested_seats){
+  if(!row||typeof row.state!=='string'||!enHouseSeatCounts[row.state]||
+      row.race_code!==row.state+'-SEN'||states.has(row.state)||
+      !['regular','special'].includes(row.election_kind))return null;
+  states.add(row.state);
+  if(row.election_kind==='special')specials.push(row.state);
+  seats.push({office:'Senate',state:row.state,code:row.race_code,kind:row.election_kind,
+    key:row.state+(row.election_kind==='special'?'-special':'')});
+ }
+ if(specials.sort().join(',')!=='FL,OH'||states.size!==35)return null;
+ return seats.sort((a,b)=>a.state.localeCompare(b.state));
+}
+function enNationalSetUniverse(doc){
+ const parsed=enNationalValidate(doc);
+ if(!parsed){enNationalError='2026 Senate seat inventory failed validation';enNationalSeats=null}
+ else {
+  enNationalSeats=parsed;enNationalError=null;
+  // Legacy pins from before the 2026 special-election seat identity was
+  // reconciled: migrate FL-SEN / OH-SEN to their actual special Senate seat.
+  let changed=false;
+  enWatched=enWatched.map(x=>{
+   if(x.office!=='Senate')return x;
+   const item=parsed.find(y=>y.state===x.key.slice(0,2));
+   if(item&&item.key!==x.key){changed=true;return {office:'Senate',key:item.key}}
+   return x;
+  });
+  if(changed){enWatched=[...new Map(enWatched.map(x=>[enWatchId(x),x])).values()];enWatchSave()}
+ }
+ enRenderNationalSenate();enRenderWatchlist();
+}
+function enNationalWatchItems(){
+ return enNationalEnabled&&enNationalSeats?enNationalSeats:[];
+}
+function enNationalTracked(item){
+ const id=enWatchId(item);
+ return enWatched.some(x=>enWatchId(x)===id)||
+   (enNationalEnabled&&enNationalSeats?.some(x=>enWatchId(x)===id))||
+   enNationalExpanded.has(id);
+}
+function enNationalToggle(enabled){
+ if(!enNationalSeats)return;
+ enNationalEnabled=Boolean(enabled);
+ try{localStorage.setItem(enNationalStorageKey,String(enNationalEnabled))}catch{}
+ enRenderNationalSenate();
+ if(enNationalEnabled&&enModeYear===2026&&enIsVisible()){
+  void enRefreshWatchedOffices('');
+  void enRefreshCivicWatchlist(true);
+ }
+}
+function enNationalSourceStatus(item){
+ const isPrimary=enSupportedStates.has(item.state);
+ const data=isPrimary?(enOfficeSnapshots.Senate||
+   (enModeYear===2026&&enOffice==='Senate'?enData:null)):
+   enCivicByWatch[enWatchId(item)];
+ const row=isPrimary?data?.races?.[item.key]:data;
+ if(!row||!Number.isSafeInteger(row.total)||row.total===0)
+  return {reported:false,source:isPrimary?'Open America':'civicAPI',
+    text:!enNationalEnabled?'Not monitoring this source yet':
+    row?'No reported votes yet':isPrimary&&data?'No record reported · not zero':
+    !isPrimary&&enCivicErrors[enWatchId(item)]?'Secondary source unavailable':
+    'Awaiting verified source'};
+ if(isPrimary){
+  const lead=enCurrentLeader(row),edge=enLeadInfo(row);
+  return {reported:true,source:'Open America',
+    text:enNum(row.total)+' votes · '+(lead?edge.short+' leads':'Tied')+
+      (Number.isFinite(row.pct_in)?' · '+row.pct_in.toFixed(0)+'% precincts':'')+
+      (data.stale?' · STALE SOURCE':'')};
+ }
+ const candidates=[...row.candidates].sort((a,b)=>b.votes-a.votes);
+ const lead=candidates[0],runner=candidates[1];
+ const voteLead=lead&&runner&&lead.votes>runner.votes?
+  lead.party+' lead':'Tied / uncertain';
+ return {reported:true,source:'civicAPI',
+   text:enNum(row.total)+' votes · '+voteLead+' · '+
+    row.percent_reporting.toFixed(0)+'% precincts'+
+    (row.called?' · civicAPI call':'')};
+}
+function enRenderNationalSenate(){
+ const panel=$('#enNationalSenate'),summary=$('#enNationalSummary'),
+  rows=$('#enNationalRows'),toggle=$('#enNationalToggle');
+ if(!panel||!summary||!rows||!toggle)return;
+ panel.hidden=enModeYear!==2026;
+ if(panel.hidden)return;
+ rows.replaceChildren();
+ if(!enNationalSeats){
+  summary.textContent=enNationalError||'Verifying the 35 Senate ballot slots…';
+  toggle.disabled=true;return;
+ }
+ toggle.disabled=false;
+ toggle.textContent=enNationalEnabled?'Tracking all 35 · Pause':'Track all 35';
+ toggle.setAttribute('aria-pressed',String(enNationalEnabled));
+ const statuses=enNationalSeats.map(item=>({item,result:enNationalSourceStatus(item)}));
+ const reported=statuses.filter(x=>x.result.reported);
+ const primary=reported.filter(x=>x.result.source==='Open America').length;
+ const secondary=reported.length-primary;
+ const sourceCoverage=enNationalSeats.filter(x=>enSupportedStates.has(x.state)).length;
+ summary.textContent=(enNationalEnabled?'MONITOR ACTIVE':'MONITOR PAUSED')+' · '+
+  reported.length+' / 35 races with recorded votes · '+primary+
+  ' state-derived · '+secondary+' civicAPI · '+sourceCoverage+
+  ' states in primary source coverage, '+(35-sourceCoverage)+' supplemental. '+
+  (reported.length?'Leaders are not race calls.':'Counts have not begun; no zeros are inferred.');
+ for(const {item,result} of statuses){
+  const card=elt('button','en-national-seat');card.type='button';
+  card.dataset.reporting=String(result.reported);
+  const title=item.code+(item.kind==='special'?' · SPECIAL':'');
+  card.setAttribute('aria-label',title+', '+result.source+': '+result.text);
+  card.append(elt('strong','',title),elt('span','en-national-provider',result.source),
+    elt('small','',result.text));
+  const id=enWatchId(item);
+  if(!enSupportedStates.has(item.state)){
+   card.setAttribute('aria-expanded',String(enNationalExpanded.has(id)));
+   card.addEventListener('click',()=>{
+    if(enNationalExpanded.has(id))enNationalExpanded.delete(id);
+    else enNationalExpanded.add(id);
+    enRenderNationalSenate();
+    if(enNationalExpanded.has(id)&&!enCivicByWatch[id]&&enModeYear===2026&&enIsVisible())
+     void enCivicFetchOne(item);
+   });
+   const group=elt('div','en-watch-group');
+   group.append(card);
+   if(enNationalExpanded.has(id))group.append(enRenderCivicCandidateDetails(item));
+   rows.append(group);
+  }else{
+   card.addEventListener('click',()=>enSwitch(2026,'Senate',item.key));
+   rows.append(card);
+  }
+ }
+}
+$('#enNationalToggle').addEventListener('click',()=>enNationalToggle(!enNationalEnabled));
 function enWatchParse(input){
  const value=String(input||'').toUpperCase().trim().replace(/\s+/g,'');
  let match=value.match(/^([A-Z]{2})-(\d{2})$/);
@@ -1658,8 +1836,13 @@ function enWatchParse(input){
   return {office:'House',key:match[1]+'-'+match[2]};
  }
  match=value.match(/^([A-Z]{2})-(SEN|SENATE|SEN-SPECIAL)$/);
- if(match&&enHouseSeatCounts[match[1]])
-  return {office:'Senate',key:match[1]+(match[2]==='SEN-SPECIAL'?'-special':'')};
+ if(match&&enHouseSeatCounts[match[1]]){
+  const seat=enNationalSeats?.find(x=>x.state===match[1]);
+  if(enNationalSeats&&!seat)return null;
+  if(seat&&match[2]==='SEN-SPECIAL'&&seat.kind!=='special')return null;
+  return {office:'Senate',key:seat?.key||
+    match[1]+(match[2]==='SEN-SPECIAL'?'-special':'')};
+ }
  match=value.match(/^([A-Z]{2})-(GOV|GOVERNOR)$/);
  if(match&&enHouseSeatCounts[match[1]])
   return {office:'Governor',key:match[1]};
@@ -1816,8 +1999,7 @@ async function enCivicFetchOne(item){
   if(!response.ok)throw Error('Race HTTP '+response.status);
   const next=enCivicValidate(item,row,await response.json());
   if(!next)throw Error('Supplementary result integrity check failed');
-  if(!enIsVisible()||enModeYear!==2026||
-     !enWatched.some(x=>enWatchId(x)===id))return;
+  if(!enIsVisible()||enModeYear!==2026||!enNationalTracked(item))return;
   const old=enCivicByWatch[id],oldTime=Date.parse(old?.last_updated||''),
       newTime=Date.parse(next.last_updated||'');
   if(Number.isFinite(oldTime)&&Number.isFinite(newTime)&&newTime<oldTime-1000)
@@ -1827,11 +2009,11 @@ async function enCivicFetchOne(item){
   enCivicByWatch[id]=next;
   enCivicRaceIds[id]=row;
   delete enCivicErrors[id];
-  enRenderWatchlist();
+  enRenderWatchlist();enRenderNationalSenate();
  }catch(err){
   if(enIsVisible()&&enModeYear===2026){
    enCivicErrors[id]=String(err?.message||err);
-   enRenderWatchlist();
+   enRenderWatchlist();enRenderNationalSenate();
   }
  }finally{enCivicPending.delete(id)}
 }
@@ -1840,8 +2022,11 @@ async function enRefreshCivicWatchlist(force=false){
  const now=Date.now(),interval=now<Date.parse('2026-11-03T05:00:00Z')?600000:60000;
  if(!force&&now-enCivicLastSweep<interval)return;
  enCivicLastSweep=now;
- // Low-impact serial client requests; only manually pinned out-of-feed races.
- const all=enWatched.filter(x=>!enSupportedStates.has(x.key.slice(0,2)));
+ // Bound to 12 serial civicAPI records per sweep; append verified national
+ // Senate seats only after explicit tracking or on election night.
+ const all=[...new Map([...enWatched,...enNationalWatchItems()]
+   .filter(x=>!enSupportedStates.has(x.key.slice(0,2)))
+   .map(x=>[enWatchId(x),x])).values()];
  if(!all.length)return;
  // Rotate rather than permanently skipping the 13th–40th personally
  // watched supplemental race when the number of pins exceeds one sweep.
@@ -2210,6 +2395,7 @@ function enRender(){
   'MIT/MEDSL 2024 House (435 districts) and Senate (35 contests) historical party aggregates. No candidate names or precinct progress. Select State feed to rehearse the same named-candidate format as 2026 live results.';
  enRenderMovement();
  enRenderWatchlist();
+ enRenderNationalSenate();
  enUpdateSelection();
  const query=($('#enSearch').value||'').trim().toLowerCase(),list=$('#enRaceList');list.replaceChildren();
  if(!rows.length){list.append(elt('p','empty',enModeYear===2026&&enData?
@@ -2311,7 +2497,8 @@ function enFetchUrl(year,office){
 const enWatchRefreshPending=new Set();
 async function enRefreshWatchedOffices(exceptOffice){
  if(enModeYear!==2026||!enIsVisible())return;
- const offices=[...new Set(enWatched.map(x=>x.office))].filter(x=>x!==exceptOffice);
+ const offices=[...new Set([...enWatched.map(x=>x.office),
+  ...(enNationalEnabled&&enNationalSeats?['Senate']:[])])].filter(x=>x!==exceptOffice);
  await Promise.all(offices.map(async office=>{
   if(enWatchRefreshPending.has(office))return;
   enWatchRefreshPending.add(office);
@@ -2331,7 +2518,7 @@ async function enRefreshWatchedOffices(exceptOffice){
    delete enOfficeErrors[office];
    if(enOffice===office){
     enData=obj;enFetchError=null;enLastFetchAt=new Date();enRender();
-   }else enRenderWatchlist();
+   }else {enRenderWatchlist();enRenderNationalSenate()}
   }catch(err){
    if(enModeYear===2026&&enIsVisible()){enOfficeErrors[office]=String(err?.message||err);enRenderWatchlist()}
   }finally{enWatchRefreshPending.delete(office)}
@@ -2352,7 +2539,7 @@ function enQueueRefresh(){
  });
  const preferred=watchingLive?{live:true}:enData;
  const civicActive=Date.now()>=Date.parse('2026-11-03T05:00:00Z')&&
-  enWatched.some(x=>!enSupportedStates.has(x.key.slice(0,2)));
+  [...enWatched,...enNationalWatchItems()].some(x=>!enSupportedStates.has(x.key.slice(0,2)));
  const interval=enRefreshInterval(preferred,enFailures);
  enTimer=setTimeout(()=>{enTimer=null;enLoad(false)},
    civicActive?Math.min(interval,60000):interval);
@@ -2669,7 +2856,7 @@ function renderSeatUniverse(data){
  for(const reason of reasons){const item=elt('div','item');item.append(elt('strong','',reason));gate.append(item)}
 
 }
-fetch('./data/seat_universe.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('inventory unavailable');return r.json()}).then(renderSeatUniverse).catch(()=>{$('#seatInventoryAsOf').textContent='Inventory awaiting verified refresh';});
+fetch('./data/seat_universe.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('inventory unavailable');return r.json()}).then(d=>{renderSeatUniverse(d);enNationalSetUniverse(d)}).catch(()=>{enNationalSetUniverse(null);$('#seatInventoryAsOf').textContent='Inventory awaiting verified refresh';});
 
 let modelHistoryData=null;
 function setModelHistoryData(snapshot){
