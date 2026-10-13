@@ -28,7 +28,16 @@
     'Senate|NJ':{state:'NJ',name:'New Jersey US Senate',office:'Senate',id:87302},
     'Governor|NY':{state:'NY',name:'New York Governor',office:'Governor',id:87329},
     'Senate|OR':{state:'OR',name:'Oregon US Senate',office:'Senate',id:87374},
-    'Governor|OR':{state:'OR',name:'Oregon Governor',office:'Governor',id:87375}
+    'Governor|OR':{state:'OR',name:'Oregon Governor',office:'Governor',id:87375},
+    // Third geographically targeted batch; eight independently CORS-verified 2026 races.
+    'Senate|AL':{state:'AL',name:'Alabama US Senate',office:'Senate',id:86907},
+    'Governor|AL':{state:'AL',name:'Alabama Governor',office:'Governor',id:86908},
+    'Senate|MT':{state:'MT',name:'Montana US Senate',office:'Senate',id:87247},
+    'Senate|NM':{state:'NM',name:'New Mexico US Senate',office:'Senate',id:87288},
+    'Governor|NM':{state:'NM',name:'New Mexico Governor',office:'Governor',id:87289},
+    'Senate|OK':{state:'OK',name:'Oklahoma US Senate',office:'Senate',id:87526},
+    'Senate|TN':{state:'TN',name:'Tennessee US Senate',office:'Senate',id:87475},
+    'Governor|TN':{state:'TN',name:'Tennessee Governor',office:'Governor',id:87476}
   });
   const configuration=item=>item&&RACES[item.office+'|'+item.key]||null;
   const supports=item=>Boolean(configuration(item));
