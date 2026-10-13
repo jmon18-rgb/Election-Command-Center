@@ -10,7 +10,14 @@ const cases=[
   ['ME','Senate','Maine US Senate',87188],
   ['ME','Governor','Maine Governor',87189],
   ['MA','Governor','Massachusetts Governor',87276],
-  ['NV','Governor','Nevada Governor',87260]
+  ['NV','Governor','Nevada Governor',87260],
+  ['OH','Senate','Ohio US Senate Special',87527],
+  ['OH','Governor','Ohio Governor',87365],
+  ['WI','Governor','Wisconsin Governor',87491],
+  ['NE','Senate','Nebraska US Senate',87254],
+  ['NE','Governor','Nebraska Governor',87255],
+  ['KS','Senate','Kansas US Senate',87162],
+  ['KS','Governor','Kansas Governor',87163]
 ];
 function row(state,office,name,id){
  return {country:'US',province:state,municipality:null,district:null,
@@ -31,19 +38,28 @@ function detail(search,counted=false){
   ]};
 }
 const fixtureRaces=cases.map(([state,office,name,id])=>({
-  item:{office,key:state},search:row(state,office,name,id)}));
+  item:{office,key:state==='OH'&&office==='Senate'?'OH-special':state},
+  search:row(state,office,name,id)}));
 for(const {item,search} of fixtureRaces){
  assert(adapter.supports(item),JSON.stringify(item));
  assert(adapter.match(item,search),'Expected exact race: '+JSON.stringify(item));
  const request=new URL(adapter.query(item));
  assert.equal(request.hostname,'civicapi.org');
  assert.equal(request.pathname,'/api/v2/race/search');
- assert.equal(request.searchParams.get('province'),item.key);
+ assert.equal(request.searchParams.get('province'),search.province,
+   'Ohio special uses OH source province but a distinct OH-special watch key');
  assert.equal(request.searchParams.get('query'),item.office==='Senate'?'US Senate':'Governor');
  assert.equal(request.searchParams.get('startDate'),'2026-11-03');
  assert.equal(request.searchParams.get('endDate'),'2026-11-03');
  assert.equal(adapter.select(item,{races:[search]}).id,search.id);
  assert.equal(adapter.select(item,{races:[search,search]}),null,'Two exact matches are unsafe');
+ if(item.key==='OH-special'){
+  assert.equal(adapter.supports({office:'Senate',key:'OH'}),false,
+    'Never infer regular Ohio Senate contest from special source ID');
+  assert.equal(adapter.select(item,{races:[{...search,id:search.id+1}]}),null,
+    'Ohio special cannot ingest a regular Senate or different race ID');
+  assert.equal(adapter.select({office:'Senate',key:'OH'},{races:[search]}),null);
+ }
  assert.equal(adapter.select(item,{races:[]}),null,'Unknown is not zero');
  assert.equal(adapter.select(item,{races:[search],count:22}),null,
    'Refuse truncated discovery pages');
@@ -108,8 +124,9 @@ for(const {item,search} of fixtureRaces){
 for(const missing of [{office:'Senate',key:'NV'},
  {office:'Senate',key:'MA'},
  {office:'Senate',key:'NH'},{office:'House',key:'ME-01'},
- {office:'Governor',key:'WI'},{office:'Governor',key:'NH'}]){
+ {office:'Senate',key:'OH'}, {office:'Senate',key:'WI'},
+ {office:'Governor',key:'NH'}]){
  assert.equal(adapter.supports(missing),false);
  assert.equal(adapter.query(missing),null);
 }
-console.log('Four-state civicAPI batch: 6 source-verified race fixtures, cross-state isolation and safety checks passed');
+console.log('Eight-state civicAPI pilot: 13 individually source-verified fixtures including Ohio special, identity and safety checks passed');
