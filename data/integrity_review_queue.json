@@ -1,9 +1,24 @@
 {
-  "updated_at": "2026-10-13T16:02:07.722593Z",
+  "updated_at": "2026-10-13T16:06:31.370736Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "items": [
+    {
+      "id": "688736ee1b7d314d7c5c",
+      "title": "Virginia AG launches voter protection unit ahead of midterm elections - Virginia Mercury",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQMnhTcTdWM2QzMjFVZkduWVVNWFJNeDNjd2sxdTRSczV1aFN5UjVGTVVhSlVUamZZbHdYYXh3a2xqcnU4NjFGamtjamxRUF8xQzVaRFIxcjdTZGgtOENjN1BMVU1hRVczVzZldlc4QUcyRHJWUy1fVDN4TlN2TnR6bFViZW1nTDAzbEVEb1g5SzJ0R3FmcUdTX0h1dExsSGpscVBNVXJicm5kSVdyNGc?oc=5",
+      "publisher": "Virginia Mercury",
+      "published_at": "2026-10-13T16:03:47Z",
+      "detected_at": "2026-10-13T16:06:31.370736Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "b4f36f72f38f3d52a2b5",
       "title": "Election skeptics are pushing Trump to ban voting machines or even declare martial law as November election looms - Votebeat",
