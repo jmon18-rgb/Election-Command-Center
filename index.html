@@ -154,7 +154,7 @@ fetch('./data/integrity_impact.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw
 impactLedger=d;
 const select=document.getElementById('impactState');
 for(const state of [...new Set((d.incidents||[]).map(x=>x.state).filter(Boolean))].sort()){const opt=document.createElement('option');opt.value=state;opt.textContent=state;select.append(opt)}
-renderImpactLedger();renderBullshitteryStates();renderBriefIntegrity();
+renderImpactLedger();renderBullshitteryStates();renderBriefIntegrity();if(latestSenateEstimates)showSenateEstimates(latestSenateEstimates);
 }).catch(()=>{renderImpactLedger();renderBullshitteryStates();renderBriefIntegrity()});
 document.querySelectorAll('#impactState,#impactStatus').forEach(el=>el.addEventListener('change',renderImpactLedger));
 let securityArticles=[];
@@ -162,7 +162,9 @@ function renderSecurity(){const box=$('#security');box.replaceChildren();const q
 document.querySelectorAll('#securitySearch,#securityOrder').forEach(e=>e.addEventListener('input',renderSecurity));
 
 
+let latestSenateEstimates=null;
 function showSenateEstimates(data){
+latestSenateEstimates=data;
 const box=document.getElementById('senateEstimateCards');box.replaceChildren();
 const safeNumber=v=>typeof v==='number'&&Number.isFinite(v);
 const pos=margin=>Math.max(0,Math.min(100,50+margin*1.5));
@@ -203,13 +205,31 @@ if(u.stale_latest_poll)flags.push('Latest poll over 14 days old');
 if(u.high_poll_disagreement)flags.push('Polls differ substantially');
 if(u.different_matchups_excluded)flags.push(u.different_matchups_excluded+' polls of other matchups excluded');
 boxU.append(elt('div','unotes',flags.length?flags.join(' · '):'Multiple recent pollsters; expand the meter for details.'));
-boxU.append(elt('div','integrity-note','Election-integrity concerns are tracked separately under Integrity Watch.'));
+boxU.append(elt('div','integrity-note','Poll quality above is independent of election-integrity evidence below.'));
 card.append(boxU);
 }else{card.append(elt('div','meta','No qualifying recent polls · polling uncertainty cannot be quantified.'))}
+const integrity=elt('div','uncertainty');
+const ih=elt('div','uhead');ih.append(elt('span','','🎛️ BULLSHITTERY METER · ELECTION INTEGRITY'));integrity.append(ih);
+if(!impactLedger){
+integrity.append(elt('div','unotes','Loading documented election-integrity evidence…'));
+}else{
+const cases=(impactLedger.incidents||[]).filter(z=>z.state===x.state);
+const documented=cases.filter(z=>z.verification_status!=='unverified_report');
+const quantified=cases.filter(z=>typeof z.confirmed_affected==='number'||typeof z.potentially_affected==='number');
+const row=elt('div','pq-grid');
+for(const [label,value,note] of [['DOCUMENTED',String(documented.length),'Developments'],['VOTER IMPACT',String(quantified.length),'Cases quantified'],['RISK SCORE','N/A','Not established']]){
+const cell=elt('div','pq-cell');cell.append(elt('div','pq-label',label));cell.append(elt('div','pq-value',value));cell.append(elt('div','pq-caption',note));row.append(cell)}
+integrity.append(row);
+const info=elt('div','unotes',cases.length?'Recorded: '+[...new Set(cases.map(z=>z.mechanism))].join(', '):'No cases in this limited ledger; absence of reports does not mean zero risk.');
+integrity.append(info);
+integrity.append(elt('div','integrity-note','These are counts of sourced developments, not a 0–100 fraud probability. Voter impact is unknown unless explicitly quantified.'));
+const link=elt('a','pollsource','View evidence and sources ↗');link.href='#integrity';integrity.append(link);
+}
+card.append(integrity);
 if(x.poll_source_url&&/^https:\/\//.test(x.poll_source_url)){const a=elt('a','pollsource','View polling source ↗');a.href=x.poll_source_url;a.target='_blank';a.rel='noopener noreferrer';card.append(a)}
 box.append(card);
 }
 }
-fetch('./data/polling_estimates.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('not ready');return r.json()}).then(showSenateEstimates).catch(()=>{document.getElementById('senateEstimateCards').textContent='Waiting for first automated polling summary refresh.'});
+fetch('./data/polling_estimates.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('not ready');return r.json()}).then(d=>showSenateEstimates(d)).catch(()=>{document.getElementById('senateEstimateCards').textContent='Waiting for first automated polling summary refresh.'});
 fetch('./data/briefing.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(d=>{feedHealth.news=d;updateHealth();if(d.updated_at){const date=new Date(d.updated_at);if(!Number.isNaN(+date)){$('#freshness').textContent='News collected '+date.toLocaleString();$('#updated').textContent='News collected '+date.toLocaleDateString()}}renderItems('updates',d.updates);securityArticles=Array.isArray(d.security)?d.security:[];renderSecurity()}).catch(()=>updateHealth());
 </script></body></html>
