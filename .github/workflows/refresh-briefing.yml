@@ -80,13 +80,57 @@ jobs:
       - name: Build safe 2022-2024 historical swing context
         run: python3 scripts/build_house_two_cycle.py
       - name: Commit updated briefing
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name "election-briefing-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/briefing.json data/polls.json data/model_tests.json data/polling_estimates.json data/integrity_review_queue.json data/model_history.json data/seat_universe.json data/house_geography_bridge.json data/house_two_cycle_context.json
-          if [ -f data/pollresults_recent.json ]; then git add data/pollresults_recent.json; fi
-          if ! git diff --cached --quiet; then
+          source_sha="$(git rev-parse HEAD)"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            # Rebuild with the next scheduled run rather than publishing JSON
+            # calculated against a newer/revised forecasting algorithm.
+            if ! git diff --quiet "$source_sha" origin/main -- index.html scripts/ .github/workflows/; then
+              echo "Application or pipeline changed during refresh. Skipping stale outputs; the new source revision has its own refresh."
+              exit 0
+            fi
+            # Never overwrite a newer successful model refresh with data
+            # computed by an earlier workflow run.
+            if python3 - <<'PY'
+          import datetime as dt
+          import json
+          import subprocess
+          from pathlib import Path
+          local=json.loads(Path("data/polling_estimates.json").read_text(encoding="utf-8"))
+          try:
+              text=subprocess.check_output(["git","show","origin/main:data/polling_estimates.json"],text=True)
+              remote=json.loads(text)
+              a=dt.datetime.fromisoformat(local["generated_at"].replace("Z","+00:00"))
+              b=dt.datetime.fromisoformat(remote["generated_at"].replace("Z","+00:00"))
+              raise SystemExit(0 if b>=a else 1)
+          except (subprocess.CalledProcessError,KeyError,ValueError):
+              raise SystemExit(1)
+          PY
+            then
+              echo "A newer polling refresh is already published. Skipping this older snapshot."
+              exit 0
+            fi
+            # Rebase GENERATED OUTPUTS as fresh changes on the newest remote
+            # commit, not an entire stale JSON commit that can conflict.
+            git reset --mixed origin/main
+            git add data/briefing.json data/polls.json data/model_tests.json data/polling_estimates.json data/integrity_review_queue.json data/model_history.json data/seat_universe.json data/house_geography_bridge.json data/house_two_cycle_context.json
+            if [ -f data/pollresults_recent.json ]; then git add data/pollresults_recent.json; fi
+            if git diff --cached --quiet; then
+              echo "No source-data changes to commit."
+              exit 0
+            fi
             git commit -m "Update sourced election briefing"
-            git pull --rebase origin main
-            git push
-          fi
+            if git push origin HEAD:main; then
+              echo "Refresh published."
+              exit 0
+            fi
+            echo "Concurrent push; retrying against newer remote HEAD (attempt $attempt)."
+            git reset --mixed HEAD~1
+          done
+          echo "Could not publish refreshed data after three non-destructive retries."
+          exit 1
