@@ -369,6 +369,7 @@ function renderModelRaceDetail(){
  }
  const foot=$('#modelDetailsFooter');foot.replaceChildren();
  if(estimate.poll_source_url&&estimate.poll_source_url.startsWith('https://')){const a=elt('a','','Polling data ↗');a.href=estimate.poll_source_url;a.target='_blank';a.rel='noopener noreferrer';foot.append(a)}
+ const methodLink=elt('a','','Weights & ratings ↗');methodLink.href='https://github.com/jmon18-rgb/Election-Command-Center/blob/main/POLLING_MODEL.md';methodLink.target='_blank';methodLink.rel='noopener noreferrer';foot.append(methodLink);
  const context=elt('span','',(modelMode==='generic'?'Generic ballot feed retains 35 recent observations.':'Race feed retains 12 recent surveys.')+' Influence reflects recency, sample size, historical 538 grade and sponsorship.');foot.append(context);
 }
 $('#modelPollIncluded').addEventListener('click',()=>{modelPollMode='included';renderModelRaceDetail()});
@@ -452,11 +453,13 @@ function renderElectionScenarios(){
   {name:'BLUE WAVE',range:'D +5 to +10',p:cdf(10)-cdf(5),kind:'blue'},
   {name:'BLUE TSUNAMI',range:'D +10 or more',p:1-cdf(10),kind:'blue'}
  ];
+ const rounded=definitions.map(s=>Math.round(1000*s.p)/10);
+ rounded[rounded.length-1]=Math.round((100-rounded.slice(0,-1).reduce((a,b)=>a+b,0))*10)/10;
  $('#scenarioCenter').textContent='Current center: '+marginText(mean)+' · 4-point assumed uncertainty';
  $('#scenarioUpdated').textContent='Model '+(latestSenateEstimates.method_version||'');
- for(const s of definitions){
+ for(const [idx,s] of definitions.entries()){
   const box=elt('div','scenario-tile scenario-'+s.kind);
-  const top=elt('div','scenario-top');top.append(elt('strong','',s.name),elt('strong','scenario-prob',(s.p*100).toFixed(1)+'%'));
+  const top=elt('div','scenario-top');top.append(elt('strong','',s.name),elt('strong','scenario-prob',rounded[idx].toFixed(1)+'%'));
   box.append(top,elt('div','scenario-range',s.range));
   const bar=elt('div','scenario-track'),fill=elt('div','scenario-fill');
   fill.style.width=Math.max(0,Math.min(100,s.p*100))+'%';bar.append(fill);box.append(bar);host.append(box)
