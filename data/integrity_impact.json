@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "updated_at": "2026-10-12",
   "coverage": "Curated, non-exhaustive sourced litigation and administration developments; reported record volumes are not disenfranchised voter counts",
   "methodology": {
@@ -19,7 +19,21 @@
       "officially_confirmed",
       "court_finding",
       "resolved"
-    ]
+    ],
+    "monitoring_priority_v1": {
+      "definition": "0–100 provisional operational monitoring score, NOT a probability of fraud or a calibrated probability of affected voters.",
+      "scoring_rules": [
+        "Documented voter-list disclosure litigation without shown voting-access consequences: 4 points.",
+        "Documented change to early-voting opportunity: 18 points; +2 when the change covers at least 10 counties.",
+        "Documented voter-registration transmission/processing incident: 25 points; -4 if the transfer defect is officially reported fixed but processing outcomes remain unverified.",
+        "Never use raw registration-record counts as counts of unique voters at risk.",
+        "Unverified reports cannot increase the index. Fully resolved cases require manual review rather than automatic treatment as active.",
+        "A state's provisional score is the maximum distinct documented incident score, not the sum of litigation, press articles or overlapping incidents.",
+        "Actual confirmed disenfranchisement would trigger a re-review and replacement of this starter rubric, not an arbitrary automatic extra point."
+      ],
+      "missingness": "Absence of an incident in the curated tracker is Not assessed, not 0. Unknown probabilities and voter counts remain null.",
+      "roadmap": "Move to severity × bounded unique voter exposure × probability of the precisely defined adverse outcome, once incident-level estimates are supported and can be reviewed."
+    }
   },
   "states": [
     {
@@ -93,7 +107,16 @@
         }
       ],
       "impact_assessment": "not_quantified",
-      "case_type": "legal_dispute"
+      "case_type": "legal_dispute",
+      "adverse_scenario": {
+        "definition": "A court or administrative development tied to this litigation results in eligible voters being unable to cast or have their ballots counted. Filing the lawsuit is not itself such an outcome.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "Not established; requires voter-level deduplication, affected voters and counterfactual access data.",
+        "probability_of_scenario": null,
+        "probability_basis": "Not estimated; insufficient verified administrative outcomes or comparable historical frequency data.",
+        "probability_interval": null,
+        "confirmed_unique_voters_adversely_affected": null
+      }
     },
     {
       "id": "doj-voter-rolls-nh",
@@ -116,7 +139,16 @@
         }
       ],
       "impact_assessment": "not_quantified",
-      "case_type": "legal_dispute"
+      "case_type": "legal_dispute",
+      "adverse_scenario": {
+        "definition": "A court or administrative development tied to this litigation results in eligible voters being unable to cast or have their ballots counted. Filing the lawsuit is not itself such an outcome.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "Not established; requires voter-level deduplication, affected voters and counterfactual access data.",
+        "probability_of_scenario": null,
+        "probability_basis": "Not estimated; insufficient verified administrative outcomes or comparable historical frequency data.",
+        "probability_interval": null,
+        "confirmed_unique_voters_adversely_affected": null
+      }
     },
     {
       "id": "doj-voter-rolls-mi",
@@ -139,7 +171,16 @@
         }
       ],
       "impact_assessment": "not_quantified",
-      "case_type": "legal_dispute"
+      "case_type": "legal_dispute",
+      "adverse_scenario": {
+        "definition": "A court or administrative development tied to this litigation results in eligible voters being unable to cast or have their ballots counted. Filing the lawsuit is not itself such an outcome.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "Not established; requires voter-level deduplication, affected voters and counterfactual access data.",
+        "probability_of_scenario": null,
+        "probability_basis": "Not estimated; insufficient verified administrative outcomes or comparable historical frequency data.",
+        "probability_interval": null,
+        "confirmed_unique_voters_adversely_affected": null
+      }
     },
     {
       "id": "doj-voter-rolls-ga",
@@ -162,7 +203,16 @@
         }
       ],
       "impact_assessment": "not_quantified",
-      "case_type": "legal_dispute"
+      "case_type": "legal_dispute",
+      "adverse_scenario": {
+        "definition": "A court or administrative development tied to this litigation results in eligible voters being unable to cast or have their ballots counted. Filing the lawsuit is not itself such an outcome.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "Not established; requires voter-level deduplication, affected voters and counterfactual access data.",
+        "probability_of_scenario": null,
+        "probability_basis": "Not estimated; insufficient verified administrative outcomes or comparable historical frequency data.",
+        "probability_interval": null,
+        "confirmed_unique_voters_adversely_affected": null
+      }
     },
     {
       "id": "doj-voter-rolls-mn",
@@ -185,7 +235,16 @@
         }
       ],
       "impact_assessment": "not_quantified",
-      "case_type": "legal_dispute"
+      "case_type": "legal_dispute",
+      "adverse_scenario": {
+        "definition": "A court or administrative development tied to this litigation results in eligible voters being unable to cast or have their ballots counted. Filing the lawsuit is not itself such an outcome.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "Not established; requires voter-level deduplication, affected voters and counterfactual access data.",
+        "probability_of_scenario": null,
+        "probability_basis": "Not estimated; insufficient verified administrative outcomes or comparable historical frequency data.",
+        "probability_interval": null,
+        "confirmed_unique_voters_adversely_affected": null
+      }
     },
     {
       "id": "doj-voter-rolls-ma",
@@ -208,7 +267,16 @@
         }
       ],
       "impact_assessment": "not_quantified",
-      "case_type": "legal_dispute"
+      "case_type": "legal_dispute",
+      "adverse_scenario": {
+        "definition": "A court or administrative development tied to this litigation results in eligible voters being unable to cast or have their ballots counted. Filing the lawsuit is not itself such an outcome.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "Not established; requires voter-level deduplication, affected voters and counterfactual access data.",
+        "probability_of_scenario": null,
+        "probability_basis": "Not estimated; insufficient verified administrative outcomes or comparable historical frequency data.",
+        "probability_interval": null,
+        "confirmed_unique_voters_adversely_affected": null
+      }
     },
     {
       "id": "tx-registration-transmission-2026",
@@ -229,6 +297,10 @@
       "count_source_notes": "Reported statewide backlog of at least 500,000 registration and update records; does not establish unique individuals or ballots.",
       "sources": [
         {
+          "publisher": "Texas Secretary of State Elections Division (Sept. 22 directive)",
+          "url": "https://content.govdelivery.com/accounts/TXSOS/bulletins/42c0759"
+        },
+        {
           "publisher": "Texas Tribune / Votebeat",
           "url": "https://www.texastribune.org/2026/10/01/texas-voter-registration-dps-secretary-state-2026-delay-dmv/"
         }
@@ -236,7 +308,16 @@
       "case_type": "administrative_issue",
       "process_status": "Transfer defect fixed per Texas DPS; county processing completion not established statewide",
       "scope_label": "500,000+ registration/update records delayed",
-      "scope_note": "Records, not unique voters or lost votes"
+      "scope_note": "Records, not unique voters or lost votes",
+      "adverse_scenario": {
+        "definition": "Eligible Texans whose new or changed registration remained unprocessed through the relevant voting deadline and who could not correct the problem or cast a countable ballot. This is NOT the same as delayed DPS records.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "Not established; requires voter-level deduplication, affected voters and counterfactual access data.",
+        "probability_of_scenario": null,
+        "probability_basis": "Not estimated; insufficient verified administrative outcomes or comparable historical frequency data.",
+        "probability_interval": null,
+        "confirmed_unique_voters_adversely_affected": null
+      }
     },
     {
       "id": "nc-sunday-voting-2026",
@@ -267,7 +348,16 @@
       "process_status": "Early-voting schedule approved; Sunday hours removed in 10 counties relative to 2022",
       "scope_label": "10 counties with Sunday hours removed",
       "scope_note": "No count of voters unable to cast a ballot established",
-      "geographic_scope_counties": 10
+      "geographic_scope_counties": 10,
+      "adverse_scenario": {
+        "definition": "Voters in the named counties who would otherwise vote on the removed Sundays but cannot reasonably vote through another available method or date. County electorate is NOT an estimate of lost ballots.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "Not established; requires voter-level deduplication, affected voters and counterfactual access data.",
+        "probability_of_scenario": null,
+        "probability_basis": "Not estimated; insufficient verified administrative outcomes or comparable historical frequency data.",
+        "probability_interval": null,
+        "confirmed_unique_voters_adversely_affected": null
+      }
     }
   ]
 }
