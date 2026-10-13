@@ -49,7 +49,7 @@ def date_value(text):
     if not value:
         return None
     # Important: date-only comparison, not a claim of original publication time.
-    for fmt in ("%Y-%m-%d","%m/%d/%y","%m/%d/%Y","%Y-%m-%dT%H:%M:%S",
+    for fmt in ("%Y/%m/%d","%Y-%m-%d","%m/%d/%y","%m/%d/%Y","%Y-%m-%dT%H:%M:%S",
                 "%Y-%m-%d %H:%M:%S","%m/%d/%y %H:%M","%m/%d/%Y %H:%M"):
         try:
             return dt.datetime.strptime(value[:19] if fmt.startswith("%Y-%m-%dT") else value,fmt).date()
