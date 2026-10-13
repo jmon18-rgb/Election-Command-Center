@@ -1,50 +1,90 @@
 {
-  "source_snapshot": "2026-10-13T14:22:06.960281Z",
+  "source_snapshot": "2026-10-13T14:24:35.226954Z",
   "test": "Strict walk-forward, held-out next poll, grouped by candidate matchup",
-  "eligible_matchup_groups": 35,
+  "eligible_matchup_groups": 50,
   "methods": {
-    "equal": {
-      "comparisons": 98,
-      "independent_matchup_clusters": 31,
-      "mae_points": 3.01,
-      "rmse_points": 3.855,
+    "recency21_sponsored_25": {
+      "comparisons": 133,
+      "independent_matchup_clusters": 39,
+      "mae_points": 3.385,
+      "rmse_points": 4.361,
       "cluster_bootstrap_mae_95pct_range": [
-        2.503,
-        3.542
+        2.864,
+        3.911
+      ]
+    },
+    "recency21_sponsored_50": {
+      "comparisons": 133,
+      "independent_matchup_clusters": 39,
+      "mae_points": 3.337,
+      "rmse_points": 4.325,
+      "cluster_bootstrap_mae_95pct_range": [
+        2.842,
+        3.847
+      ]
+    },
+    "recency21_sponsored_100": {
+      "comparisons": 133,
+      "independent_matchup_clusters": 39,
+      "mae_points": 3.344,
+      "rmse_points": 4.37,
+      "cluster_bootstrap_mae_95pct_range": [
+        2.863,
+        3.905
+      ]
+    },
+    "equal": {
+      "comparisons": 122,
+      "independent_matchup_clusters": 37,
+      "mae_points": 3.528,
+      "rmse_points": 4.677,
+      "cluster_bootstrap_mae_95pct_range": [
+        2.967,
+        4.188
       ]
     },
     "recency21": {
-      "comparisons": 98,
-      "independent_matchup_clusters": 31,
-      "mae_points": 3.01,
-      "rmse_points": 3.861,
+      "comparisons": 122,
+      "independent_matchup_clusters": 37,
+      "mae_points": 3.528,
+      "rmse_points": 4.68,
       "cluster_bootstrap_mae_95pct_range": [
-        2.522,
-        3.534
+        2.961,
+        4.167
       ]
     },
     "recency21_size": {
-      "comparisons": 98,
-      "independent_matchup_clusters": 31,
-      "mae_points": 2.989,
-      "rmse_points": 3.836,
+      "comparisons": 122,
+      "independent_matchup_clusters": 37,
+      "mae_points": 3.507,
+      "rmse_points": 4.657,
       "cluster_bootstrap_mae_95pct_range": [
-        2.507,
-        3.518
+        2.938,
+        4.186
       ]
     },
     "recency35_size": {
-      "comparisons": 98,
-      "independent_matchup_clusters": 31,
-      "mae_points": 2.981,
-      "rmse_points": 3.827,
+      "comparisons": 122,
+      "independent_matchup_clusters": 37,
+      "mae_points": 3.5,
+      "rmse_points": 4.651,
       "cluster_bootstrap_mae_95pct_range": [
-        2.506,
-        3.473
+        2.912,
+        4.149
+      ]
+    },
+    "recency21_sponsored_0": {
+      "comparisons": 122,
+      "independent_matchup_clusters": 37,
+      "mae_points": 3.528,
+      "rmse_points": 4.68,
+      "cluster_bootstrap_mae_95pct_range": [
+        2.987,
+        4.175
       ]
     }
   },
-  "lowest_observed_mae": "recency35_size",
+  "lowest_observed_mae": "recency21_sponsored_50",
   "production_model_status": "NOT VALIDATED FOR ELECTION-RESULT FORECASTING",
   "model_selection_policy": "No model is promoted from this test. Require historical election-result holdout validation, calibration, and correlated error assessment.",
   "limitations": [
@@ -52,6 +92,7 @@
     "Short rolling upstream history can bias which races are testable.",
     "Within-race and cross-race systematic polling errors remain.",
     "Bootstrap interval describes evaluation metric variability, not a race forecast confidence interval.",
-    "No win probabilities, house effects or election-security adjustments inferred."
+    "No win probabilities, calibrated pollster house effects or election-security adjustments inferred.",
+    "Sponsored-poll weight factors are experimental; target surveys remain non-sponsored only."
   ]
 }
