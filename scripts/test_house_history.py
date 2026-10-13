@@ -36,6 +36,16 @@ class HouseHistoryTests(unittest.TestCase):
         by={r["2024_race_code"]:r for r in doc["records"]}
         self.assertEqual(by["TX-01"]["recorded_dem_votes"],250)
         self.assertEqual(by["TX-01"]["recorded_rep_votes"],260)
+    def test_2022_historical_rows_have_distinct_year_keys_and_no_priors(self):
+        # Build a complete 2022 input from a 2024 fixture, preserving its
+        # intentionally included stray rows from the other year.
+        content=input_csv().replace("2024,", "2022,")
+        doc=history.stage(content,year=2022)
+        self.assertEqual(doc["2022_district_rows"],435)
+        self.assertEqual(doc["status"],"2022_history_staged_not_2026_priors")
+        self.assertTrue(all(r["election_year"]==2022 and
+            r["eligible_as_2026_prior"] is False and
+            "2022_race_code" in r and "2024_race_code" not in r for r in doc["records"]))
     def test_uncontested_is_recorded_not_imputed(self):
         raw=input_csv().replace("DEMOCRAT,250","INDEPENDENT,250",1)
         doc=history.stage(raw)
