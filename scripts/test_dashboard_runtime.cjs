@@ -82,6 +82,38 @@ async function settle(){
  eligible.geography_comparable_across_all_three_elections=false;
  assert.equal(w.eval('historicalHouseSwingSample('+JSON.stringify(corruptTwoCycle)+')'),null,
   'Data with an unmapped district may not enter model research');
+ // Historical Senate polling study is a REAL error diagnostic, never an
+ // election-odds model. Exercise year controls and actual source limitations.
+ const studyRow=(year,state,error)=>({
+   cycle:year,state,label:state+' · Senate',pollster_count:3,
+   actual_two_party_margin:2.0,cutoff_is_fieldwork_only:true,
+   methods:{
+     recency21:{predicted_two_party_margin:2+error,error},
+     equal_firm:{predicted_two_party_margin:2+error*.8,error:error*.8}
+   }
+ });
+ const study={
+   schema_version:'historical-poll-backtest-v1',
+   status:'retrospective_poll_research_not_calibrated_forecast',
+   is_forecast:false,can_calibrate_2026_win_probabilities:false,
+   poll_source_first_publication_dates_available:false,
+   outcome_eligible_races:16,cutoff_days_before_election:7,
+   records:[studyRow(2020,'AZ',3),studyRow(2022,'PA',-5),studyRow(2024,'WI',2)]
+ };
+ w.eval('setHistoricalSenatePollStudy('+JSON.stringify(study)+')');
+ assert.match(get('#senateBacktestSummary').textContent,/3 \/ 16/);
+ assert.equal(get('#senateBacktestRaces').querySelectorAll('.en-activity-item').length,3);
+ assert.match(get('#senateBacktestRaces').querySelector('.en-activity-item strong').textContent,/PA.*2022/);
+ assert.match(get('#senateBacktestNote').textContent,/NOT leakage-free/);
+ assert.match(get('#senateBacktestNote').textContent,/NOT a backtest of live JackStradamus/);
+ const filter2024=get('#senateBacktestTabs [data-hist-year="2024"]');filter2024.click();
+ assert.equal(filter2024.getAttribute('aria-pressed'),'true');
+ assert.equal(get('#senateBacktestRaces').querySelectorAll('.en-activity-item').length,1);
+ assert.match(get('#senateBacktestRaces').textContent,/WI/);
+ get('#senateBacktestTabs [data-hist-year="all"]').click();
+ assert.equal(get('#senateBacktestRaces').querySelectorAll('.en-activity-item').length,3);
+ w.eval('setHistoricalSenatePollStudy(null)');
+ assert.match(get('#senateBacktestSummary').textContent,/awaiting source verification/);
  // Poll Wire is a real searchable, source-attributed full-feed explorer,
  // not just the top ten survey postings shown on the Daily Brief.
  const wireTab=get('.tab[data-page="wire"]');
