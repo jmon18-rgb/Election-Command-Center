@@ -554,9 +554,9 @@ function renderPostedPolls(){
  };
  for(const p of entries.slice(0,10))box.append(render(p));
  if(entries.length>10){
-   const more=elt('details','poll-list-more'),summary=elt('summary','', 'Show '+Math.min(90,entries.length-10)+' more posted polls');
+   const more=elt('details','poll-list-more'),summary=elt('summary','', 'Show '+entries.length-10+' more posted polls');
    summary.style.cursor='pointer';summary.style.padding='11px 0';more.append(summary);
-   for(const p of entries.slice(10,100))more.append(render(p));
+   for(const p of entries.slice(10))more.append(render(p));
    box.append(more);
  }
  box.append(elt('div','poll-list-note','Source: NYT-derived PollResults.org feed, independently labeled from JackStradamus. “Posted” is when that feed added the poll, NOT a verified public release date. LV/RV/other sample types are labeled. These records are not necessarily included in the weighted model; Race Lab shows the model source.'));
