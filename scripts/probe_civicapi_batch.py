@@ -51,8 +51,18 @@ def main():
         print("STATE BATCH INDEXED",state,office,row["id"],
               "candidates",len(detail["candidates"]))
     print("STATE BATCH VERIFIED",len(good),"/",len(RACES))
-    if ("NV","Governor",87260) not in good and not any(s=="NV" and o=="Governor" for s,o,_ in good):
-        raise ValueError("Known NV governor source identity disappeared")
+    # Only the six individually indexed Oct. 13 source races are in the
+    # production pilot. Massachusetts Senate stays intentionally excluded.
+    # Pin the observed real-source IDs so an unrelated race cannot replace
+    # any pilot even when office/state/name looks similar.
+    required={
+        ("NV","Governor",87260),("ME","Senate",87188),
+        ("ME","Governor",87189),("MA","Governor",87276),
+        ("AK","Senate",86916),("AK","Governor",148898),
+    }
+    missing=required-set(good)
+    if missing:
+        raise ValueError("Pilot source match missing or re-keyed: "+repr(sorted(missing)))
 
 if __name__=="__main__":
     main()
