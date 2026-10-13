@@ -278,8 +278,66 @@ def build(data):
         ]
     }
 
+HISTORY=ROOT/"data/model_history.json"
+
+def write_history(snapshot):
+    """Bounded chronological polling evidence snapshots for change detection.
+
+    Compare only identical candidate matchups; descriptive shifts are NOT vote
+    projections and never imply completed election results.
+    """
+    try:
+        archive=json.loads(HISTORY.read_text(encoding="utf-8"))
+        history=archive.get("snapshots",[]) if isinstance(archive,dict) else []
+    except (OSError,ValueError,TypeError):
+        history=[]
+    observed=[]
+    for office in ("senate_all","house","governor"):
+        for r in snapshot.get(office,[]):
+            if r.get("status") not in ("single_poll","multi_poll"):continue
+            if not isinstance(r.get("dem_minus_rep"),(int,float)):continue
+            observed.append({
+                "race_code":r["race_code"],"race_type":r["race_type"],
+                "state":r["state"],"state_name":r["state_name"],
+                "dem_candidate":r.get("dem_candidate"),"rep_candidate":r.get("rep_candidate"),
+                "dem_minus_rep":r["dem_minus_rep"],
+                "contributing_pollsters":r.get("contributing_pollsters",0),
+                "latest_poll_end":r.get("latest_poll_end"),
+                "status":r["status"]
+            })
+    generic=snapshot.get("generic_ballot",{})
+    if isinstance(generic.get("dem_minus_rep"),(int,float)):
+        observed.append({"race_code":"US-GENERIC","race_type":"generic",
+                         "dem_minus_rep":generic["dem_minus_rep"],
+                         "contributing_pollsters":generic.get("contributing_pollsters",0),
+                         "latest_poll_end":generic.get("latest_poll_end")})
+    new={"at":snapshot["generated_at"],"method_version":snapshot["method_version"],
+         "source_snapshot":snapshot.get("source_snapshot"),"races":observed}
+    # Same exact generation should not create duplicate rows.
+    if history and history[-1].get("at")==new["at"]:
+        history[-1]=new
+    else:
+        history.append(new)
+    # Retain no more than 30 days, capped at 190 snapshots.
+    cutoff=datetime.now(timezone.utc).timestamp()-30*86400
+    kept=[]
+    for row in history:
+        try:
+            stamp=datetime.fromisoformat(row["at"].replace("Z","+00:00")).timestamp()
+            if stamp>=cutoff:kept.append(row)
+        except (ValueError,KeyError,TypeError):
+            continue
+    kept=kept[-190:]
+    HISTORY.write_text(json.dumps({
+      "generated_at":snapshot["generated_at"],
+      "schema_version":"1.0",
+      "description":"Observed poll-average snapshots; no forecasts or win probabilities.",
+      "snapshots":kept
+    },indent=2)+"\n",encoding="utf-8")
+
 if __name__=="__main__":
     output=build(json.loads(SOURCE.read_text(encoding="utf-8")))
     DEST.write_text(json.dumps(output,indent=2)+"\n",encoding="utf-8")
+    write_history(output)
     print("Built Senate",len(output["senate_all"]),"House",len(output["house"]),
           "Governor",len(output["governor"]),"generic",output["generic_ballot"]["status"])
