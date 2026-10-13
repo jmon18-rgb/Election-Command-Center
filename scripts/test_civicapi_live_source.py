@@ -52,6 +52,7 @@ def main():
         (("NH","Governor",None),"Governor"),
         (("NV","Governor",None),"Governor")
     ]
+    confirmed=[]
     for item,query in examples:
         state,office,district=item
         results=source("/race/search",{
@@ -63,8 +64,13 @@ def main():
         if not isinstance(rows,list) or len(rows)>20:
             raise ValueError("Search result cardinality invalid")
         matches=[row for row in rows if match(item,row)]
-        if len(matches)!=1:
-            raise ValueError("Could not uniquely match "+str(item)+": "+str(len(matches)))
+        if len(matches)>1:
+            raise ValueError("Ambiguous identity: "+str(item)+": "+str(len(matches)))
+        if not matches:
+            # The pre-election index may omit some races. That is a coverage
+            # gap, NOT an excuse to accept another district or fabricate data.
+            print("civicAPI NOT INDEXED: exact 2026 race unavailable",state,office,district)
+            continue
         row=matches[0]
         detail=source("/race/"+str(row["id"]),{"light":""})
         for key in ("country","province","district","election_date","election_name"):
@@ -82,8 +88,13 @@ def main():
         if any(type(x.get("votes")) is not int or x["votes"]<0
                or type(x.get("winner")) is not bool for x in candidates):
             raise ValueError("Invalid candidate totals or winner call shape")
+        confirmed.append(item)
         print("civicAPI CORS and 2026 race identity verified",state,office,row["id"],
               "candidate_count",len(candidates))
+    if ("NH","Senate",None) not in confirmed:
+        raise ValueError("Required independently verified 2026 NH Senate identity missing")
+    print("civicAPI exact verified race count",len(confirmed),"of",len(examples),
+          "(unindexed races remain source-unavailable, not zero)")
 
 if __name__=="__main__":
     main()
