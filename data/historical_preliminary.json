@@ -1,0 +1,69 @@
+{
+  "status": "preliminary_historical_backtest",
+  "run_basis": "Historical Senate polls ending at least 8 days before election; up to 45-day window; latest per pollster; at least 2 pollsters; excludes pollster labels with (D) or (R)",
+  "source_url": "https://github.com/Jack-Whitcomb/All-US-Senate-polls-2006-2024/blob/main/2006_to_2024_senate_polls_with_actuals.csv",
+  "source_warning": "Community compiled reported outcomes not independently verified against certified returns. Candidate mismatch, independent candidates and overlapping special races may distort some comparisons.",
+  "metric": "Mean absolute error in Democratic minus Republican two-party margin, percentage points",
+  "n_races": 68,
+  "results": {
+    "overall": {
+      "equal": {
+        "n": 68,
+        "mae": 4.797,
+        "bias": 3.002
+      },
+      "recency21": {
+        "n": 68,
+        "mae": 4.687,
+        "bias": 2.745
+      },
+      "recency21_size": {
+        "n": 68,
+        "mae": 4.651,
+        "bias": 2.677
+      },
+      "recency35_size": {
+        "n": 68,
+        "mae": 4.677,
+        "bias": 2.775
+      }
+    },
+    "by_year": {
+      "2018": {
+        "n": 21,
+        "equal": 5.098,
+        "recency21": 4.804,
+        "recency21_size": 4.641,
+        "recency35_size": 4.762
+      },
+      "2020": {
+        "n": 14,
+        "equal": 5.645,
+        "recency21": 5.571,
+        "recency21_size": 5.626,
+        "recency35_size": 5.635
+      },
+      "2022": {
+        "n": 16,
+        "equal": 3.551,
+        "recency21": 3.617,
+        "recency21_size": 3.689,
+        "recency35_size": 3.62
+      },
+      "2024": {
+        "n": 17,
+        "equal": 4.9,
+        "recency21": 4.821,
+        "recency21_size": 4.765,
+        "recency35_size": 4.779
+      }
+    }
+  },
+  "next_validation": [
+    "Reconcile outcomes against certified FEC returns",
+    "Exclude races with incompatible candidate matchups, ranked-choice elections, or independent caucus mismatches",
+    "Backtest true election-day windows and alternative historical-era weights",
+    "Estimate confidence intervals by clustered race resampling"
+  ],
+  "is_election_forecast": false
+}
