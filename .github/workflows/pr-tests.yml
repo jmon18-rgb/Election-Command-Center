@@ -55,6 +55,8 @@ jobs:
           node --check scripts/civicapi_state_batch.js
           node --check scripts/test_civicapi_state_batch.cjs
           node scripts/test_civicapi_state_batch.cjs
+      - name: Probe four new states for indexed 2026 civicAPI contests
+        run: python3 scripts/probe_civicapi_oh_wi_ne_ks.py
       - name: Advisory four-state civicAPI source indexing health
         continue-on-error: true
         run: python3 scripts/probe_civicapi_batch.py
