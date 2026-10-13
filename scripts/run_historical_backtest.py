@@ -92,6 +92,78 @@ def run(polls,official):
             evaluations.append({"year":year,"state":state,"method":method,"error":weighted/weight-official[(year,state)]})
     return evaluations,list(discrepancies.values())
 
+def leave_one_year_out(evaluations):
+    """Select parameters using only other cycles, then score held-out year.
+
+    Each Senate race contributes one observation per method. Parameter selection
+    uses training-cycle MAE only, with a fixed alphabetical tie-breaker.
+    This is cross-validation, not a genuinely prospective forecast backtest.
+    """
+    by_method_year=defaultdict(list)
+    for row in evaluations:
+        by_method_year[(row["method"],row["year"])].append(row)
+    years=sorted({row["year"] for row in evaluations})
+    folds=[]
+    for heldout in years:
+        training=[r for r in evaluations if r["year"]!=heldout]
+        test=[r for r in evaluations if r["year"]==heldout]
+        training_years=sorted({r["year"] for r in training})
+        if len(training_years)<2 or not test:continue
+        methods=sorted({r["method"] for r in training})
+        # Restrict training to race keys present for every candidate method.
+        train_keys={m:{(r["year"],r["state"]) for r in training if r["method"]==m} for m in methods}
+        common=set.intersection(*train_keys.values())
+        if not common:continue
+        train=[r for r in training if (r["year"],r["state"]) in common]
+        train_scores={m:sum(abs(r["error"]) for r in train if r["method"]==m)/len(common) for m in methods}
+        selected=min(methods,key=lambda m:(train_scores[m],m))
+        test_keys={m:{(r["year"],r["state"]) for r in test if r["method"]==m} for m in methods}
+        test_common=set.intersection(*test_keys.values())
+        held=[r for r in test if (r["year"],r["state"]) in test_common]
+        selected_errors=[r["error"] for r in held if r["method"]==selected]
+        equal_errors=[r["error"] for r in held if r["method"]=="equal"]
+        if not selected_errors or not equal_errors:continue
+        folds.append({
+            "held_out_year":heldout,"training_years":training_years,
+            "training_races":len(common),"held_out_races":len(test_common),
+            "selected_method":selected,
+            "training_mae_by_method":{m:round(v,3) for m,v in train_scores.items()},
+            "held_out_selected_mae":round(sum(map(abs,selected_errors))/len(selected_errors),3),
+            "held_out_equal_mae":round(sum(map(abs,equal_errors))/len(equal_errors),3),
+            "held_out_selected_bias":round(sum(selected_errors)/len(selected_errors),3),
+            "held_out_equal_bias":round(sum(equal_errors)/len(equal_errors),3),
+        })
+    if not folds:return {"status":"insufficient_data","folds":[]}
+    n=sum(f["held_out_races"] for f in folds)
+    return {"status":"completed","protocol":"Leave-one-election-year-out, train on other available cycles, test on held-out cycle; equal weighting as baseline",
+            "note":"Uses future cycles to train some folds, so it is not a forward-only test. No per-race predictions are used to select a model.",
+            "folds":folds,
+            "pooled_held_out_races":n,
+            "pooled_selected_mae":round(sum(f["held_out_selected_mae"]*f["held_out_races"] for f in folds)/n,3),
+            "pooled_equal_mae":round(sum(f["held_out_equal_mae"]*f["held_out_races"] for f in folds)/n,3)}
+
+def forward_year_holdouts(evaluations):
+    """Stricter chronological selection: only earlier cycles may train."""
+    years=sorted({r["year"] for r in evaluations})
+    folds=[]
+    for heldout in years[1:]:
+        training=[r for r in evaluations if r["year"]<heldout]
+        test=[r for r in evaluations if r["year"]==heldout]
+        methods=sorted({r["method"] for r in evaluations})
+        train_keys={m:{(r["year"],r["state"]) for r in training if r["method"]==m} for m in methods}
+        common=set.intersection(*train_keys.values())
+        if not common:continue
+        scores={m:sum(abs(r["error"]) for r in training if r["method"]==m and (r["year"],r["state"]) in common)/len(common) for m in methods}
+        chosen=min(methods,key=lambda m:(scores[m],m))
+        held={m:[r for r in test if r["method"]==m] for m in methods}
+        if not held[chosen] or not held["equal"]:continue
+        folds.append({"held_out_year":heldout,"training_years":[y for y in years if y<heldout],
+            "selected_method":chosen,"training_races":len(common),"held_out_races":len(held[chosen]),
+            "selected_mae":round(sum(abs(r["error"]) for r in held[chosen])/len(held[chosen]),3),
+            "equal_mae":round(sum(abs(r["error"]) for r in held["equal"])/len(held["equal"]),3)})
+    return {"status":"completed" if folds else "insufficient_data","folds":folds,
+            "warning":"First fold has only one training election; 2022 and 2024 folds are more informative."}
+
 def main():
     official=official_outcomes(fetch(RESULT_URL))
     evaluations,discrepancies=run(fetch(POLL_URL),official)
@@ -102,6 +174,8 @@ def main():
         "n_evaluations":len(evaluations),"overall":summarize(evaluations),
         "by_year":{str(y):summarize([r for r in evaluations if r["year"]==y]) for y in YEARS},
         "bundled_result_discrepancies":discrepancies,
+        "leave_one_year_out":leave_one_year_out(evaluations),
+        "forward_year_holdouts":forward_year_holdouts(evaluations),
         "limitations":["Not an election forecast.","Excludes special, multiple-seat, ranked-choice and independent-winner races.","Coverage differs by year; no candidate-name validation or holdout model selection.","Partisan-sponsored poll exclusion relies on pollster-name labels."]}
     out=ROOT/"data"/"historical_verified.json"
     out.write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
