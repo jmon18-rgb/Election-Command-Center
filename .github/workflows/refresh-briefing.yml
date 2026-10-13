@@ -6,6 +6,7 @@ on:
     paths:
       - 'scripts/update_briefing.py'
       - 'scripts/update_polls.py'
+      - 'scripts/test_polling_models.py'
       - '.github/workflows/refresh-briefing.yml'
   schedule:
     - cron: '17 */4 * * *'
@@ -27,11 +28,13 @@ jobs:
       - name: Collect 2026 polling data
         continue-on-error: true
         run: python3 scripts/update_polls.py
+      - name: Run model diagnostics
+        run: python3 scripts/test_polling_models.py
       - name: Commit updated briefing
         run: |
           git config user.name "election-briefing-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/briefing.json data/polls.json
+          git add data/briefing.json data/polls.json data/model_tests.json
           if ! git diff --cached --quiet; then
             git commit -m "Update sourced election briefing"
             git push
