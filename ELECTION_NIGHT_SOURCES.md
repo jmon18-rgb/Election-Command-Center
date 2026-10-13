@@ -203,6 +203,24 @@ The new coverage is limited to these seven verified source records. There is
 live November 3 votes before Election Day**. As before, no civicAPI tally is
 added to Open America's primary source or to JackStradamus probabilities.
 
+## Five-state source-verified pilot: Illinois, Kentucky, New Jersey, New York, Oregon (Oct 13)
+
+The next **five-state batch** adds seven additional Nov. 3, 2026 statewide civicAPI source records, each independently found through a search request followed by a browser-CORS-verified race-by-ID detail request:
+
+| State | Statewide race | civicAPI source race ID |
+|---|---|---|
+| IL | U.S. Senate | `87129` |
+| IL | Governor | `87130` |
+| KY | U.S. Senate | `87174` |
+| NJ | U.S. Senate | `87302` |
+| NY | Governor | `87329` |
+| OR | U.S. Senate | `87374` |
+| OR | Governor | `87375` |
+
+The source identity is pinned to exact state, office, stage, race name and ID in `scripts/civicapi_state_batch.js`. The unchanged source validation also rejects mismatched detail records, malformed vote/percentage distributions, duplicate candidate identities, pre-election totals, premature provider calls, regressed source updates and multiple competing search matches. An API error leaves the last verified browser-local result intact, labeled as retrying rather than incorrectly zero. civicAPI data **never enters the Open America national totals or JackStradamus probability calculations** and an upstream `winner` flag is explicitly attributed to its publisher rather than certification.
+
+Release gates are `scripts/test_civicapi_il_ky_nj_ny_or.cjs` (7 distinct simulated race fixtures with negative cases), `scripts/test_dashboard_runtime.cjs` (actual seven watchlist pins, external source links and failed-update preservation), and `scripts/probe_civicapi_il_ky_nj_ny_or.py` (real provider search, CORS, exact seven IDs and matching detail). Source discovery does **not** establish real election-night vote operations until counting is underway on November 3.
+
 ## Nationwide 35-race Senate desk (October 13)
 
 A new collapsible **35-contest Senate results monitor** is driven directly by `data/seat_universe.json`: 33 regular races and the Florida/Ohio special elections, with precise different keys (`FL-special` / `OH-special`). It validates all 35 named ballot slots before rendering. The primary Open America provider handles its supported states; civicAPI provides separately identified data for individual unmatched-state races. **Source totals are never merged or extrapolated**. A count of recorded races means that a trusted provider reported at least one vote, not that the seat has been won. A civicAPI call is separately labeled as a *provider call*, not official certification.
