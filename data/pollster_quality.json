@@ -1,0 +1,487 @@
+{
+  "schema_version": "1.0",
+  "source_name": "FiveThirtyEight Pollster Ratings (Nate-era 2024 archive)",
+  "source_url": "https://github.com/fivethirtyeight/data/blob/master/pollster-ratings/pollster-ratings-combined.csv",
+  "methodology_url": "https://fivethirtyeight.com/methodology/how-our-pollster-ratings-work/",
+  "source_repo_sha": "6ca53b1aa5ac70b081a62f4e7430cf300d1b1743",
+  "created": "2026-10-13",
+  "scale": "0–3 numeric_grade; includes predictive record and survey transparency",
+  "weight_policy": "quality factor = 1 + 0.25*(shrunk rating - 2), shrink towards 2 with up to 20 historical polls; unrated default factor 1.0",
+  "coverage": {
+    "rated_in_current_feed": 78,
+    "unrated_in_current_feed": 49
+  },
+  "explicit_exclusions": {
+    "ActiVote": "Not rated in the archived quality file; Silver Bulletin January 2026 explicitly excludes ActiVote from its scientific polling database. Review method before reinstating."
+  },
+  "entries": {
+    "20/20 Insight": {
+      "rating": 1.1,
+      "history_count": 9,
+      "reference_pollster": "20/20 Insight",
+      "matching": "exact"
+    },
+    "Alaska Survey Research": {
+      "rating": 1.9,
+      "history_count": 16,
+      "reference_pollster": "Alaska Survey Research",
+      "matching": "exact"
+    },
+    "Angus Reid Global": {
+      "rating": 2,
+      "history_count": 38,
+      "reference_pollster": "Angus Reid Global",
+      "matching": "exact"
+    },
+    "Beacon Research/Shaw & Company Research": {
+      "rating": 2.8,
+      "history_count": 73,
+      "reference_pollster": "Beacon Research/Shaw & Co. Research",
+      "matching": "reviewed_alias"
+    },
+    "Bendixen & Amandi International": {
+      "rating": 1,
+      "history_count": 4,
+      "reference_pollster": "Bendixen & Amandi International",
+      "matching": "exact"
+    },
+    "Big Data Poll": {
+      "rating": 1.1,
+      "history_count": 4,
+      "reference_pollster": "Big Data Poll",
+      "matching": "exact"
+    },
+    "Braun Research": {
+      "rating": 2.3,
+      "history_count": 10,
+      "reference_pollster": "Braun Research",
+      "matching": "exact"
+    },
+    "CNN/SSRS": {
+      "rating": 2.4,
+      "history_count": 10,
+      "reference_pollster": "SSRS",
+      "matching": "reviewed_alias"
+    },
+    "Change Research": {
+      "rating": 1.4,
+      "history_count": 123,
+      "reference_pollster": "Change Research",
+      "matching": "exact"
+    },
+    "Clarity Campaign Labs": {
+      "rating": 1.6,
+      "history_count": 25,
+      "reference_pollster": "Clarity Campaign Labs",
+      "matching": "exact"
+    },
+    "Concord Public Opinion Partners": {
+      "rating": 1.1,
+      "history_count": 1,
+      "reference_pollster": "Concord Public Opinion Partners",
+      "matching": "exact"
+    },
+    "Cygnal": {
+      "rating": 2.1,
+      "history_count": 42,
+      "reference_pollster": "Cygnal",
+      "matching": "exact"
+    },
+    "Cygnal Political": {
+      "rating": 2.1,
+      "history_count": 42,
+      "reference_pollster": "Cygnal",
+      "matching": "reviewed_alias"
+    },
+    "DCCC Targeting Team": {
+      "rating": 1.1,
+      "history_count": 19,
+      "reference_pollster": "DCCC Targeting and Analytics Department",
+      "matching": "reviewed_alias"
+    },
+    "DHM Research": {
+      "rating": 2.1,
+      "history_count": 20,
+      "reference_pollster": "DHM Research",
+      "matching": "exact"
+    },
+    "Data for Progress": {
+      "rating": 2.6,
+      "history_count": 122,
+      "reference_pollster": "Data for Progress",
+      "matching": "exact"
+    },
+    "East Carolina University Center for Survey Research": {
+      "rating": 2.6,
+      "history_count": 19,
+      "reference_pollster": "East Carolina University Center for Survey Research",
+      "matching": "exact"
+    },
+    "Echelon Insights": {
+      "rating": 2.7,
+      "history_count": 10,
+      "reference_pollster": "Echelon Insights",
+      "matching": "exact"
+    },
+    "Emerson College": {
+      "rating": 2.9,
+      "history_count": 266,
+      "reference_pollster": "Emerson College",
+      "matching": "exact"
+    },
+    "Expedition Strategies": {
+      "rating": 1.2,
+      "history_count": 1,
+      "reference_pollster": "Expedition Strategies",
+      "matching": "exact"
+    },
+    "Fabrizio Ward/Impact Research": {
+      "rating": 1.7,
+      "history_count": 4,
+      "reference_pollster": "Fabrizio Lee & Associates/Impact Research",
+      "matching": "reviewed_alias"
+    },
+    "Fabrizio, Lee & Associates": {
+      "rating": 1.7,
+      "history_count": 13,
+      "reference_pollster": "Fabrizio, Lee & Associates",
+      "matching": "exact"
+    },
+    "Franklin & Marshall College": {
+      "rating": 2.4,
+      "history_count": 30,
+      "reference_pollster": "Franklin & Marshall College Center for Opinion Research",
+      "matching": "reviewed_alias"
+    },
+    "GBAO": {
+      "rating": 1.2,
+      "history_count": 20,
+      "reference_pollster": "GBAO",
+      "matching": "exact"
+    },
+    "GQR": {
+      "rating": 2,
+      "history_count": 88,
+      "reference_pollster": "GQR",
+      "matching": "exact"
+    },
+    "Global Strategy Group": {
+      "rating": 1.8,
+      "history_count": 53,
+      "reference_pollster": "Global Strategy Group",
+      "matching": "exact"
+    },
+    "GreatBlue Research": {
+      "rating": 2,
+      "history_count": 3,
+      "reference_pollster": "GreatBlue Research",
+      "matching": "exact"
+    },
+    "Hart Research Associates/Public Opinion Strategies": {
+      "rating": 2.6,
+      "history_count": 53,
+      "reference_pollster": "Hart Research Associates/Public Opinion Strategies",
+      "matching": "exact"
+    },
+    "Hendrix College": {
+      "rating": 0.9,
+      "history_count": 21,
+      "reference_pollster": "Hendrix College",
+      "matching": "exact"
+    },
+    "High Point University": {
+      "rating": 2.5,
+      "history_count": 6,
+      "reference_pollster": "High Point University Survey Research Center",
+      "matching": "reviewed_alias"
+    },
+    "HighGround": {
+      "rating": 1.8,
+      "history_count": 8,
+      "reference_pollster": "HighGround Inc.",
+      "matching": "reviewed_alias"
+    },
+    "Impact Research": {
+      "rating": 1.5,
+      "history_count": 43,
+      "reference_pollster": "Impact Research",
+      "matching": "exact"
+    },
+    "InsiderAdvantage": {
+      "rating": 2,
+      "history_count": 196,
+      "reference_pollster": "InsiderAdvantage",
+      "matching": "exact"
+    },
+    "Ipsos": {
+      "rating": 2.8,
+      "history_count": 267,
+      "reference_pollster": "Ipsos",
+      "matching": "exact"
+    },
+    "J.L. Partners": {
+      "rating": 1.6,
+      "history_count": 2,
+      "reference_pollster": "J.L. Partners",
+      "matching": "exact"
+    },
+    "John Zogby Strategies": {
+      "rating": 1.8,
+      "history_count": 2,
+      "reference_pollster": "John Zogby Strategies",
+      "matching": "exact"
+    },
+    "KFF": {
+      "rating": 2.5,
+      "history_count": 2,
+      "reference_pollster": "KFF",
+      "matching": "exact"
+    },
+    "Lake Research Partners": {
+      "rating": 1.2,
+      "history_count": 21,
+      "reference_pollster": "Lake Research Partners",
+      "matching": "exact"
+    },
+    "Maine People's Resource Center": {
+      "rating": 1.9,
+      "history_count": 18,
+      "reference_pollster": "Maine People's Resource Center",
+      "matching": "exact"
+    },
+    "Marist University": {
+      "rating": 2.9,
+      "history_count": 209,
+      "reference_pollster": "Marist College",
+      "matching": "reviewed_alias"
+    },
+    "Marquette University Law School": {
+      "rating": 3,
+      "history_count": 21,
+      "reference_pollster": "Marquette University Law School",
+      "matching": "exact"
+    },
+    "Mason-Dixon Polling & Research, Inc.": {
+      "rating": 2.6,
+      "history_count": 498,
+      "reference_pollster": "Mason-Dixon Polling & Strategy",
+      "matching": "reviewed_alias"
+    },
+    "MassINC Polling Group": {
+      "rating": 2.8,
+      "history_count": 28,
+      "reference_pollster": "MassINC Polling Group",
+      "matching": "exact"
+    },
+    "McLaughlin & Associates": {
+      "rating": 0.5,
+      "history_count": 47,
+      "reference_pollster": "McLaughlin & Associates",
+      "matching": "exact"
+    },
+    "Mitchell Research & Communications": {
+      "rating": 2.4,
+      "history_count": 84,
+      "reference_pollster": "Mitchell Research & Communications",
+      "matching": "exact"
+    },
+    "Morning Consult": {
+      "rating": 1.9,
+      "history_count": 96,
+      "reference_pollster": "Morning Consult",
+      "matching": "exact"
+    },
+    "Noble Predictive Insights": {
+      "rating": 2.4,
+      "history_count": 14,
+      "reference_pollster": "Noble Predictive Insights",
+      "matching": "exact"
+    },
+    "Normington, Petts & Associates": {
+      "rating": 0.7,
+      "history_count": 28,
+      "reference_pollster": "Normington, Petts & Associates",
+      "matching": "exact"
+    },
+    "Pew Research Center": {
+      "rating": 2.5,
+      "history_count": 29,
+      "reference_pollster": "Pew Research Center",
+      "matching": "exact"
+    },
+    "Public Opinion Strategies": {
+      "rating": 1.6,
+      "history_count": 118,
+      "reference_pollster": "Public Opinion Strategies",
+      "matching": "exact"
+    },
+    "Public Policy Institute of California": {
+      "rating": 2.5,
+      "history_count": 19,
+      "reference_pollster": "Public Policy Institute of California",
+      "matching": "exact"
+    },
+    "Public Policy Polling": {
+      "rating": 1.4,
+      "history_count": 537,
+      "reference_pollster": "Public Policy Polling",
+      "matching": "exact"
+    },
+    "Quinnipiac University": {
+      "rating": 2.8,
+      "history_count": 288,
+      "reference_pollster": "Quinnipiac University",
+      "matching": "exact"
+    },
+    "RMG Research": {
+      "rating": 2.3,
+      "history_count": 38,
+      "reference_pollster": "RMG Research",
+      "matching": "exact"
+    },
+    "Remington": {
+      "rating": 2.6,
+      "history_count": 57,
+      "reference_pollster": "Remington Research Group",
+      "matching": "reviewed_alias"
+    },
+    "Research & Polling Inc.": {
+      "rating": 2.1,
+      "history_count": 56,
+      "reference_pollster": "Research & Polling Inc.",
+      "matching": "exact"
+    },
+    "Rutgers-Eagleton": {
+      "rating": 2.3,
+      "history_count": 21,
+      "reference_pollster": "Rutgers University Eagleton Center for Public Interest Polling",
+      "matching": "reviewed_alias"
+    },
+    "SEA Polling": {
+      "rating": 1.6,
+      "history_count": 15,
+      "reference_pollster": "SEA Polling & Strategic Design",
+      "matching": "reviewed_alias"
+    },
+    "Siena University": {
+      "rating": 2.7,
+      "history_count": 81,
+      "reference_pollster": "Siena College",
+      "matching": "reviewed_alias"
+    },
+    "Slingshot Strategies": {
+      "rating": 1.4,
+      "history_count": 2,
+      "reference_pollster": "Slingshot Strategies",
+      "matching": "exact"
+    },
+    "St. Anselm": {
+      "rating": 2.4,
+      "history_count": 17,
+      "reference_pollster": "Saint Anselm College Survey Center",
+      "matching": "reviewed_alias"
+    },
+    "St. Pete Polls": {
+      "rating": 2.4,
+      "history_count": 29,
+      "reference_pollster": "St. Pete Polls",
+      "matching": "exact"
+    },
+    "Stetson University Center for Public Opinion Research": {
+      "rating": 1.5,
+      "history_count": 2,
+      "reference_pollster": "Stetson University Center for Public Opinion Research",
+      "matching": "exact"
+    },
+    "Strategies 360": {
+      "rating": 1.3,
+      "history_count": 9,
+      "reference_pollster": "Strategies 360",
+      "matching": "exact"
+    },
+    "Suffolk University": {
+      "rating": 2.9,
+      "history_count": 122,
+      "reference_pollster": "Suffolk University",
+      "matching": "exact"
+    },
+    "SurveyUSA": {
+      "rating": 2.8,
+      "history_count": 1101,
+      "reference_pollster": "SurveyUSA",
+      "matching": "exact"
+    },
+    "Susquehanna Polling & Research, Inc.": {
+      "rating": 2.3,
+      "history_count": 59,
+      "reference_pollster": "Susquehanna Polling & Research Inc.",
+      "matching": "reviewed_alias"
+    },
+    "TIPP Insights": {
+      "rating": 1.8,
+      "history_count": 36,
+      "reference_pollster": "TIPP Insights",
+      "matching": "exact"
+    },
+    "TargetSmart": {
+      "rating": 2,
+      "history_count": 3,
+      "reference_pollster": "TargetSmart",
+      "matching": "exact"
+    },
+    "Targoz Market Research": {
+      "rating": 1.8,
+      "history_count": 25,
+      "reference_pollster": "Targoz Market Research",
+      "matching": "exact"
+    },
+    "The New York Times/Siena University": {
+      "rating": 3,
+      "history_count": 120,
+      "reference_pollster": "The New York Times/Siena College",
+      "matching": "reviewed_alias"
+    },
+    "The Washington Post/George Mason University Schar School of Policy and Government": {
+      "rating": 2.7,
+      "history_count": 8,
+      "reference_pollster": "The Washington Post/George Mason University Schar School of Policy and Government",
+      "matching": "exact"
+    },
+    "Trafalgar Group": {
+      "rating": 0.7,
+      "history_count": 131,
+      "reference_pollster": "Trafalgar Group",
+      "matching": "exact"
+    },
+    "Tulchin Research": {
+      "rating": 0.9,
+      "history_count": 8,
+      "reference_pollster": "Tulchin Research",
+      "matching": "exact"
+    },
+    "University of California Berkeley Institute of Governmental Studies": {
+      "rating": 2.5,
+      "history_count": 4,
+      "reference_pollster": "University of California Berkeley Institute of Governmental Studies",
+      "matching": "exact"
+    },
+    "University of New Hampshire": {
+      "rating": 2.6,
+      "history_count": 149,
+      "reference_pollster": "University of New Hampshire Survey Center",
+      "matching": "reviewed_alias"
+    },
+    "YouGov": {
+      "rating": 3,
+      "history_count": 596,
+      "reference_pollster": "YouGov",
+      "matching": "exact"
+    },
+    "co/efficient": {
+      "rating": 1.1,
+      "history_count": 20,
+      "reference_pollster": "co/efficient",
+      "matching": "exact"
+    }
+  }
+}
