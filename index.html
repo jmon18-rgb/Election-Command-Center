@@ -64,6 +64,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 @media(max-width:620px){.hero-waves{margin-top:12px;min-height:330px;padding:32px 23px;align-items:flex-end;background-position:35% center;background-image:linear-gradient(0deg,rgba(6,16,31,.98) 0%,rgba(7,18,32,.88) 29%,rgba(7,18,32,.15) 70%),url('blue-waves-hero.jpg'),linear-gradient(125deg,#0c3e61,#111d34,#6d2839)}.hero-copy{width:100%;max-width:none}.hero-copy h1{font-size:clamp(37px,10vw,53px)}.hero-art-credit{display:none}.pulse-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pulse-tile{padding:12px}.pulse-tile .pulse-race{flex-wrap:wrap}.pulse-tile .pulse-race b{font-size:20px}}
 .poll-seat-panel{margin:15px 0 18px;padding:16px;border:1px solid #334861;border-radius:10px;background:#0c1a2b}.poll-seat-stats{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}.poll-seat-stats strong{font-size:19px}.poll-seat-stats .poll-stat{display:flex;align-items:center;gap:7px;color:#a9bad0;font-size:11px}.poll-seat-track{height:10px;display:flex;overflow:hidden;gap:2px;background:#26394f;border-radius:5px;margin-top:12px}.poll-seat-track span{height:100%;min-width:0}.poll-seat-track .poll-d{background:#6aa9ff}.poll-seat-track .poll-r{background:#f1858c}.poll-seat-track .poll-tie{background:#b4c3d7}.poll-seat-panel .methodline{font-size:10px;margin:12px 0 0;line-height:1.6}.scenario-tile .scenario-prob{font-size:11px;color:#93a4b8!important;font-weight:650;letter-spacing:0!important}.scenario-tile .scenario-range{font-size:12px;line-height:1.45}.scenario-status{text-align:right;font-size:10px;color:#92a3b9;margin-top:9px}
 .model-universe{margin:4px 0 20px;border:1px solid var(--line);padding:17px 21px;border-radius:12px;background:linear-gradient(135deg,#132335,#0c1725)}.model-universe-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.model-universe-header strong{font-size:12px;letter-spacing:.02em}.model-universe-row{display:grid;grid-template-columns:minmax(180px,260px) 1fr;gap:16px;align-items:center;margin:13px 0}.model-universe-row>div:first-child{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}.model-universe-row strong{white-space:nowrap;font-size:17px}.model-universe-row span{font-size:11px;color:var(--muted)}.model-universe-track{height:7px;border-radius:5px;background:#26374b;overflow:hidden}.model-universe-track i{display:block;height:100%;width:0;background:#7aa8d4;border-radius:5px;transition:width .25s}.model-universe .methodline{margin:13px 0 7px;font-size:11px;line-height:1.6}.seat-model-link{font-size:11px;font-weight:700}@media(max-width:640px){.model-universe{padding:15px}.model-universe-row{grid-template-columns:1fr;gap:7px}}.model-history-context{border:1px solid #3d4c62;border-radius:9px;background:#111e30;padding:13px 15px;margin:13px 0 20px}.model-history-context[hidden]{display:none}.model-history-context strong{font-size:12px}.model-history-context p{font-size:11px;line-height:1.55;color:#9db0c9;margin:8px 0 0}.model-historic-figures{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0 6px;font-size:12px}.model-historic-figures b{font-weight:800}
+.pulse-race span{font-size:13px}.pulse-match{overflow-wrap:anywhere}.model-featured-poll{background:rgba(76,141,213,.18)!important;outline:2px solid #7cb8ef;outline-offset:-2px}.model-unmatched-poll td{color:#e2c18d;font-size:11px;line-height:1.5}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -228,6 +229,7 @@ else for(const x of cases)add(watch,KEY_STATES[x.state]||x.state,x.scope_label);
 let modelMode='senate';
 let selectedModelState='TX-SEN';
 let modelPollMode='included';
+let highlightedModelPoll=null;
 function formattedModelDate(value){
  if(!value)return '—';
  const date=new Date(value+'T12:00:00Z');
@@ -284,7 +286,7 @@ function renderModelOverview(data){
   if(firms<3)quality.append(elt('span','model-thin','Limited data'));
   row.append(place,matchup,margin,quality);
   row.addEventListener('click',()=>{
-   selectedModelState=key;modelPollMode='included';
+   selectedModelState=key;modelPollMode='included';highlightedModelPoll=null;
    if(window.history?.replaceState)window.history.replaceState(null,'','#model/'+modelMode+'/'+key);
    renderModelOverview(latestSenateEstimates);
    if(window.matchMedia&&window.matchMedia('(max-width:820px)').matches)$('#modelDetail').scrollIntoView({behavior:'smooth',block:'start'});
@@ -307,7 +309,7 @@ document.querySelectorAll('[data-model-scope]').forEach(b=>b.addEventListener('c
  modelMode=b.dataset.modelScope;
  const keys=modelRows(latestSenateEstimates);
  selectedModelState=keys[0]?.race_code||'';
- modelPollMode='included';
+ modelPollMode='included';highlightedModelPoll=null;
  if(window.history?.replaceState)window.history.replaceState(null,'','#model/'+modelMode);
  renderModelOverview(latestSenateEstimates);
 }));
@@ -363,9 +365,9 @@ function modelPlot(estimate,entries){
 function renderModelRaceDetail(){
  const estimate=modelRows(latestSenateEstimates).find(s=>(s.race_code||s.state+'-SEN')===selectedModelState);
  if(!estimate||!$('#modelDetail'))return;
- $('#modelDetailEyebrow').textContent=modelLabel(estimate).toUpperCase()+' · '+modelMode.toUpperCase();
+ $('#modelDetailEyebrow').textContent=raceIdentity(estimate).toUpperCase();
  const margin=marginText(estimate.dem_minus_rep);
- $('#modelDetailTitle').replaceChildren(elt('span',marginColor(estimate.dem_minus_rep),margin),elt('span','',' in current polls'));
+ $('#modelDetailTitle').replaceChildren(elt('span','',raceIdentity(estimate)+' · '),elt('span',marginColor(estimate.dem_minus_rep),margin));
  $('#modelDetailCaption').textContent=modelMode==='generic'?'Which party would you vote for in the congressional election?':(estimate.dem_candidate||'Democratic candidate')+' vs. '+(estimate.rep_candidate||'Republican candidate');
  $('#modelDemName').textContent=estimate.dem_candidate||'Democrat';
  $('#modelRepName').textContent=estimate.rep_candidate||'Republican';
@@ -416,6 +418,7 @@ function renderModelRaceDetail(){
  $('#modelPollIncluded').setAttribute('aria-pressed',String(modelPollMode!=='all'));
  $('#modelPollAll').setAttribute('aria-pressed',String(modelPollMode==='all'));
  const tbody=$('#modelPollRows');tbody.replaceChildren();
+ let highlightedFound=false;
  const byFirm=new Map((estimate.pollsters||[]).map(q=>[(q.name+'|'+q.field_end).toLowerCase(),q]));
  const firmInfo=p=>byFirm.get((p.pollster+'|'+p.field_end).toLowerCase());
  const weightPct=p=>p.included&&Number.isFinite(firmInfo(p)?.weight_share)?firmInfo(p).weight_share:null;
@@ -426,11 +429,16 @@ function renderModelRaceDetail(){
   const tr=elt('tr');const td=elt('td','',pollingSnapshot?'No matching surveys in this feed.':'Fetching surveys…');td.colSpan=7;tr.append(td);tbody.append(tr)
  }
  for(const p of selected){
-  const tr=elt('tr',p.included?'':'excluded');
+  const isHighlighted=Boolean(highlightedModelPoll&&highlightedModelPoll.race_code===estimate.race_code&&
+    highlightedModelPoll.poll_id===p.poll_id&&highlightedModelPoll.pollster===p.pollster&&
+    highlightedModelPoll.field_end===p.field_end);
+  if(isHighlighted)highlightedFound=true;
+  const tr=elt('tr',(p.included?'':'excluded')+(isHighlighted?' model-featured-poll':''));
+  if(isHighlighted)tr.setAttribute('aria-label','Selected poll from the daily briefing');
   const meta=firmInfo(p),quality=Number.isFinite(meta?.quality_rating)?' · 538 '+meta.quality_rating.toFixed(1)+'/3':' · unrated';
   tr.append(elt('td','',formattedModelDate(p.field_end)));
   const pollsterCell=elt('td');
-  pollsterCell.append(elt('span','',p.pollster+(p.partisan_lean?' · '+p.partisan_lean+' sponsor':'')+quality));
+  pollsterCell.append(elt('span','',p.pollster+(isHighlighted?' · FROM DAILY BRIEF':'')+(p.partisan_lean?' · '+p.partisan_lean+' sponsor':'')+quality));
   if(typeof p.source_poll_url==='string'&&p.source_poll_url.startsWith('http')){
     const source=elt('a','','Source ↗');source.href=p.source_poll_url;source.target='_blank';
     source.rel='noopener noreferrer';source.style.display='block';source.style.marginTop='4px';
@@ -453,6 +461,11 @@ function renderModelRaceDetail(){
   if(!p.included)tr.title='Not in the current polling average';
   tbody.append(tr);
  }
+ if(highlightedModelPoll&&highlightedModelPoll.race_code===estimate.race_code&&!highlightedFound&&pollingSnapshot){
+   const alert=elt('tr','model-unmatched-poll');
+   const cell=elt('td','','The linked survey could not be matched to this model snapshot. It may have been excluded or replaced by a newer poll from the same firm.');
+   cell.colSpan=7;alert.append(cell);tbody.prepend(alert);
+ }
  const foot=$('#modelDetailsFooter');foot.replaceChildren();
  if(estimate.poll_source_url&&estimate.poll_source_url.startsWith('https://')){const a=elt('a','','Polling data ↗');a.href=estimate.poll_source_url;a.target='_blank';a.rel='noopener noreferrer';foot.append(a)}
  const methodLink=elt('a','','Weights & ratings ↗');methodLink.href='https://github.com/jmon18-rgb/Election-Command-Center/blob/main/POLLING_MODEL.md';methodLink.target='_blank';methodLink.rel='noopener noreferrer';foot.append(methodLink);
@@ -469,6 +482,42 @@ function elt(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className
 function pct(v){return typeof v==='number'&&Number.isFinite(v)?v.toFixed(1)+'%':'—'}
 function marginText(n){if(typeof n!=='number')return '—';return Math.abs(n)<.05?'Even':(n>0?'D +':'R +')+Math.abs(n).toFixed(1)}
 
+
+function raceIdentity(r){
+ const office={senate:'Senate',governor:'Governor',house:'House',generic:'Generic ballot'}[r?.race_type]||'Race';
+ const location=r?.race_type==='house'?(r.label||r.race_code||'Unknown district'):(r?.state_name||r?.state||'U.S.');
+ return r?.race_type==='generic'?'U.S. · Generic ballot':location+' · '+office;
+}
+function raceMatchup(r){
+ if(!r||r.race_type==='generic')return 'Democratic vs. Republican congressional preference';
+ return (r.dem_candidate||'Democratic candidate')+' (D) vs. '+(r.rep_candidate||'Republican candidate')+' (R)';
+}
+function postedMatchesModelSurvey(p,r){
+ if(!p||!r||!pollingSnapshot)return false;
+ if(p.race_code!==r.race_code||p.dem_name!==r.dem_candidate||p.rep_name!==r.rep_candidate)return false;
+ const raw=pollingSnapshot.races?.find(x=>x.race_code===p.race_code);
+ return Boolean(raw?.polls?.some(x=>x.poll_id===p.poll_id&&x.field_end===p.field_end&&
+  x.pollster===p.pollster&&x.dem_name===p.dem_name&&x.rep_name===p.rep_name&&
+  Math.abs(x.dem-p.dem)<.11&&Math.abs(x.rep-p.rep)<.11));
+}
+function navigateInsightToModel(item){
+ modelMode=item.office==='generic'?'generic':item.office;
+ selectedModelState=item.race?.race_code||'US-GENERIC';
+ modelPollMode='included';
+ highlightedModelPoll=null;
+ if(item.poll){
+  highlightedModelPoll={poll_id:item.poll.poll_id,race_code:item.poll.race_code,
+     pollster:item.poll.pollster,field_end:item.poll.field_end,source_url:item.poll.source_url};
+  const included=item.race?.pollsters?.some(x=>x.name===item.poll.pollster&&x.field_end===item.poll.field_end);
+  if(!included)modelPollMode='all';
+ }
+ const tab=document.querySelector('.tab[data-page="model"]');if(tab)tab.click();
+ if(window.history?.replaceState)window.history.replaceState(null,'','#model/'+modelMode+'/'+encodeURIComponent(selectedModelState));
+ renderModelOverview(latestSenateEstimates);
+ const target=highlightedModelPoll?document.querySelector('.model-featured-poll')||$('#modelDetail'):$('#modelDetail');
+ if(target?.scrollIntoView)target.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
 function renderRacePulse(data){
  const host=$('#racePulse');if(!host)return;host.replaceChildren();
  const stamp=data?.generated_at?new Date(data.generated_at):new Date();
@@ -484,8 +533,8 @@ function renderRacePulse(data){
  const period=deltaHours===null?'':deltaHours>=24?Math.round(deltaHours/24)+'d':deltaHours+'h';
  $('#pulseAsOf').textContent=prior?'Compared with '+new Date(prior.at).toLocaleDateString('en-US',{month:'short',day:'numeric'})+' ('+period+' ago)': 'Waiting for comparable polling history';
  const candidates=[];
- const emit=(kind,office,label,margin,detail,meta,race,priority)=>{
-    candidates.push({kind,office,label,margin,detail,meta,race,priority});
+ const emit=(kind,office,label,margin,detail,meta,race,priority,poll=null)=>{
+    candidates.push({kind,office,label,margin,detail,meta,race,priority,poll});
  };
  if(prior){
   const previous=new Map(prior.races.map(r=>[r.race_code,r]));
@@ -547,9 +596,10 @@ function renderRacePulse(data){
   if(candidates.filter(c=>c.kind==='posted').length>=2)break;
   if(candidates.some(c=>c.race?.race_code===p.race_code))continue;
   const r=byCode.get(p.race_code);
+  if(!postedMatchesModelSurvey(p,r))continue;
   emit('posted',r.race_type,'New poll in a competitive race',r.dem_minus_rep,
-       (r.label||r.state_name||r.race_code)+' · '+p.pollster+' poll '+marginText(p.margin),
-       'Source posted '+p.posted_date+' · model average '+marginText(r.dem_minus_rep),r,25);
+       p.pollster+' survey '+marginText(p.margin)+' · '+raceMatchup(r),
+       'Source posted '+p.posted_date+' · model average '+marginText(r.dem_minus_rep),r,25,p);
  }
  candidates.sort((a,b)=>b.priority-a.priority);
  if(!candidates.length){
@@ -564,17 +614,12 @@ function renderRacePulse(data){
   const tile=elt('button','pulse-tile');tile.type='button';
   tile.append(elt('div','pulse-label',item.label));
   const head=elt('div','pulse-race');
-  const label=item.race?.label||item.race?.state_name||item.race?.race_code||'National';
+  const label=raceIdentity(item.race||{race_type:'generic'});
   head.append(elt('span','',label),elt('b',marginColor(item.margin),marginText(item.margin)));
-  tile.append(head,elt('div','pulse-match',item.detail),elt('div','pulse-meta',item.meta));
-  tile.addEventListener('click',()=>{
-   modelMode=item.office==='generic'?'generic':item.office;
-   selectedModelState=item.race?.race_code||'US-GENERIC';modelPollMode='included';
-   const tab=document.querySelector('.tab[data-page="model"]');if(tab)tab.click();
-   if(history.replaceState)history.replaceState(null,'','#model/'+modelMode+'/'+encodeURIComponent(selectedModelState));
-   renderModelOverview(latestSenateEstimates);
-   window.scrollTo({top:0,behavior:'smooth'});
-  });
+  const matchup=item.kind==='posted'?item.detail:raceMatchup(item.race)+' · '+item.detail;
+  tile.append(head,elt('div','pulse-match',matchup),elt('div','pulse-meta',item.meta));
+  tile.title=item.poll?'Open exact '+item.poll.pollster+' poll in '+label:'Open '+label+' polling';
+  tile.addEventListener('click',()=>navigateInsightToModel(item));
   host.append(tile);
  }
 }
@@ -790,7 +835,7 @@ $('#genericMargin').textContent=marginText(gb.summary.margin);$('#genericMargin'
 $('#genericDetail').textContent='D '+pct(gb.summary.dem)+' · R '+pct(gb.summary.rep)+' · '+gb.summary.pollsters+' pollsters · '+gb.summary.window_days+'-day window. Equal-weight descriptive mean, not a forecast.';
 $('#genericFresh').textContent='Latest field end: '+gb.summary.latest_field_end;
 }else{$('#genericDetail').textContent='Insufficient recent independent polls for a descriptive mean.'}
-renderRaceList();if(latestSenateEstimates){renderModelRaceDetail();renderModelGenericHeadline()}
+renderRaceList();if(latestSenateEstimates){renderModelRaceDetail();renderModelGenericHeadline();renderRacePulse(latestSenateEstimates)}
 if(d.updated_at){const date=new Date(d.updated_at);if(!Number.isNaN(+date))$('#genericFresh').textContent+=' · fetched '+date.toLocaleDateString()}
 }
 fetch('./data/pollresults_recent.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('supplemental not ready');return r.json()}).then(d=>{postedPollingSnapshot=d;if(pollingSnapshot)renderFreshPolls(pollingSnapshot);if(latestSenateEstimates)renderRacePulse(latestSenateEstimates)}).catch(()=>{/* Main source fallback stays available. */});
