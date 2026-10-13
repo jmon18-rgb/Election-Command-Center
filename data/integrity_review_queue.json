@@ -1,9 +1,26 @@
 {
-  "updated_at": "2026-10-13T12:58:10.047868Z",
+  "updated_at": "2026-10-13T13:06:21.005490Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "items": [
+    {
+      "id": "c24f5fbc8f7ae0197f9a",
+      "title": "Supreme Court Opens Explosive New Term on the Eve of the Midterms With Trump Appeals, Gun Bans, Abortion Pills and Deportation Fights on the Docket - USA Herald",
+      "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxOdHlFbUdmdXFTV1NXa3BiM2VpdTEzaW11ZGFOM0p0d29SYmx1NUtjV20zWmFhQ0JGRE4ycldBNFZkYXhVNzVUVnY3ZFRWSXY4ZzFKOEktMFBrZ0xHOEFwNmQyNGZUeU1rYS00RWNIdWdRQUZIdHpFNks5QWZKT2lfdHcyZW91ajg3MmZvWUhncWVJUnJoeHVsZnhjX1FYMlk1N3Y0WXEwZE9LcXB6ZURieVhxZ19BemhZTDFlS191NjJCSEVzM2Q2TFNoc0hXNHdBc3BnZlRyS0V6WnlUN29vVUtwM3c2b0VWZktPczFxS1FZWmpvZGFDZmpEUEk?oc=5",
+      "publisher": "USA Herald",
+      "published_at": "2026-10-13T12:56:49Z",
+      "detected_at": "2026-10-13T13:06:21.005490Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "ec8129144076828f587c",
       "title": "Court Fixes Nov 20 For Ruling On Atiku's Motion To Amend Eligibility Suit Against Tinubu, APC - Channels Television",
