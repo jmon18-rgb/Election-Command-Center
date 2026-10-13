@@ -62,7 +62,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .scenario-summary-strip span{height:100%;min-width:0}.scenario-summary-strip span:first-child{border-radius:6px 0 0 6px}
 @media(max-width:960px){.pulse-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-waves{min-height:255px}.hero-copy{width:62%}}
 @media(max-width:620px){.hero-waves{margin-top:12px;min-height:330px;padding:32px 23px;align-items:flex-end;background-position:35% center;background-image:linear-gradient(0deg,rgba(6,16,31,.98) 0%,rgba(7,18,32,.88) 29%,rgba(7,18,32,.15) 70%),url('blue-waves-hero.jpg'),linear-gradient(125deg,#0c3e61,#111d34,#6d2839)}.hero-copy{width:100%;max-width:none}.hero-copy h1{font-size:clamp(37px,10vw,53px)}.hero-art-credit{display:none}.pulse-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pulse-tile{padding:12px}.pulse-tile .pulse-race{flex-wrap:wrap}.pulse-tile .pulse-race b{font-size:20px}}
-</style></head><body>
+.poll-seat-panel{margin:15px 0 18px;padding:16px;border:1px solid #334861;border-radius:10px;background:#0c1a2b}.poll-seat-stats{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}.poll-seat-stats strong{font-size:19px}.poll-seat-stats .poll-stat{display:flex;align-items:center;gap:7px;color:#a9bad0;font-size:11px}.poll-seat-track{height:10px;display:flex;overflow:hidden;gap:2px;background:#26394f;border-radius:5px;margin-top:12px}.poll-seat-track span{height:100%;min-width:0}.poll-seat-track .poll-d{background:#6aa9ff}.poll-seat-track .poll-r{background:#f1858c}.poll-seat-track .poll-tie{background:#b4c3d7}.poll-seat-panel .methodline{font-size:10px;margin:12px 0 0;line-height:1.6}</style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
   <div class="hero-copy"><div class="eyebrow">2026 U.S. MIDTERMS · NOVEMBER 3</div><h1>In Search of <em>Blue Waves</em></h1>
@@ -93,7 +93,8 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <div class="card radar-wrap"><div id="jackRadar" class="radar-grid"><div class="empty">Scanning close races, polling blind spots, and election developments…</div></div><p class="methodline">The closest margins, thin polling, and documented election-administration issues.</p></div>
 
 </section>
-<section id="races" class="page"><div class="sectionhead"><h2>Race intelligence</h2><span class="tiny">Advanced analysis workspace</span></div><div class="grid"><div class="card twelve"><div class="row"><span class="label">Battleground tracker</span><span class="tag teal">POLLING DATA</span></div><div class="big">The races that matter.</div><p class="detail">Browse individual surveys, pollsters, sample sizes, and field dates.</p><div class="chips"><button class="chip active" data-race="Senate">Senate</button><button class="chip" data-race="House">House</button><button class="chip" data-race="Governors">Governors</button></div><div class="statbar"><div class="stat"><small>RACES WITH RECENT POLLS</small><b id="raceCount">—</b></div><div class="stat"><small>NEWEST POLL FIELD DATE</small><b id="raceNewest">—</b></div></div><div class="toolrow"><input id="raceSearch" type="search" placeholder="Filter by state, race, pollster"><select id="raceSort" aria-label="Sort races"><option value="recent">Most recent</option><option value="closest">Closest latest poll</option><option value="count">Most polls</option><option value="state">State A–Z</option></select></div><div class="statusline" id="raceStatus">Loading the latest Senate surveys…</div><div class="tablewrap"><table class="datatable"><thead><tr><th>Race</th><th>Latest margin</th><th>Pollster</th><th>Field end</th><th>Polls</th></tr></thead><tbody id="raceTable"></tbody></table></div><div id="raceList"></div></div></div></section>
+<section id="races" class="page"><div class="sectionhead"><h2>Race intelligence</h2><span class="tiny">Advanced analysis workspace</span></div><div class="grid"><div class="card twelve"><div class="row"><span class="label">Battleground tracker</span><span class="tag teal">POLLING DATA</span></div><div class="big">The races that matter.</div><p class="detail">Browse individual surveys, pollsters, sample sizes, and field dates.</p><div class="chips"><button class="chip active" data-race="Senate">Senate</button><button class="chip" data-race="House">House</button><button class="chip" data-race="Governors">Governors</button></div><div class="statbar"><div class="stat"><small>RACES WITH RECENT POLLS</small><b id="raceCount">—</b></div><div class="stat"><small>NEWEST POLL FIELD DATE</small><b id="raceNewest">—</b></div></div><div class="toolrow"><input id="raceSearch" type="search" placeholder="Filter by state, race, pollster"><select id="raceSort" aria-label="Sort races"><option value="recent">Most recent</option><option value="closest">Closest latest poll</option><option value="count">Most polls</option><option value="state">State A–Z</option></select></div><div class="statusline" id="raceStatus">Loading the latest Senate surveys…</div>
+<div id="pollLeadSeats" class="poll-seat-panel"><span class="label">Seats currently leading in the polling averages</span><div id="pollLeadSummary" class="poll-seat-stats"><span class="tiny">Awaiting data…</span></div><div class="poll-seat-track" id="pollLeadTrack" aria-label="Distribution of polled race leaders"></div><p id="pollLeadNote" class="methodline">Only races with qualifying surveys are counted. Other races are not assigned to a party. This is a snapshot of polling leads, not an election result or chamber-control estimate.</p></div><div class="tablewrap"><table class="datatable"><thead><tr><th>Race</th><th>Latest margin</th><th>Pollster</th><th>Field end</th><th>Polls</th></tr></thead><tbody id="raceTable"></tbody></table></div><div id="raceList"></div></div></div></section>
 <section id="model" class="page">
 <div class="sectionhead model-heading"><div><h2>JackStradamus</h2><p class="detail">Polling averages for Senate, House, governors and the generic ballot.</p></div><span class="tiny model-updated" id="modelUpdated">Checking latest snapshot…</span></div>
 <div class="model-scope-tabs" aria-label="JackStradamus office">
@@ -458,13 +459,37 @@ function renderRacePulse(data){
 }
 
 function pollRow(p,code){const div=elt('div','item');const heading=elt('strong','',code?code+' · '+p.pollster:p.pollster);div.append(heading);const details=[marginText(p.margin),'D '+pct(p.dem),'R '+pct(p.rep),'Field end '+p.field_end,p.sample_size?'n='+p.sample_size:null,p.partisan_lean?'Sponsor lean: '+p.partisan_lean:null].filter(Boolean);div.append(elt('small','',details.join(' · ')));return div}
+function renderPollLeadSeats(kind,matching){
+ const holder=$('#pollLeadSummary'),track=$('#pollLeadTrack'),note=$('#pollLeadNote');
+ if(!holder||!track||!note)return;
+ holder.replaceChildren();track.replaceChildren();
+ const rows=(kind==='senate'?(latestSenateEstimates?.senate_all||latestSenateEstimates?.states):
+             kind==='house'?latestSenateEstimates?.house:latestSenateEstimates?.governor)||[];
+ const keyed=new Map(rows.map(r=>[r.race_code,r]));
+ const values=matching.map(r=>keyed.get(r.race_code)).filter(r=>r&&['multi_poll','single_poll'].includes(r.status)&&Number.isFinite(r.dem_minus_rep));
+ const d=values.filter(r=>r.dem_minus_rep>.05).length;
+ const r=values.filter(r=>r.dem_minus_rep<-.05).length;
+ const tied=values.length-d-r;
+ const unqualified=matching.length-values.length;
+ for(const [label,value,style] of [['D leads',d,'party-d'],['R leads',r,'party-r'],['Tied',tied,'party-even'],['No usable average',unqualified,'party-even']]){
+   const el=elt('span','poll-stat');el.append(elt('strong',style,String(value)),elt('span','',label));holder.append(el);
+ }
+ for(const [count,style] of [[d,'poll-d'],[r,'poll-r'],[tied,'poll-tie']])if(count&&values.length){
+   const seg=elt('span',style);seg.style.width=100*count/values.length+'%';track.append(seg);
+ }
+ const title=({senate:'Senate',house:'House',governor:'Governor'})[kind]||kind;
+ note.textContent='Among '+matching.length+' '+title.toLowerCase()+' contests in the rolling feed, '+values.length+
+ ' have usable named-matchup averages; '+unqualified+' do not. Counts cover the current filter, not all nationwide seats, and exclude unpolled races, holdover Senate seats and any third-party/independent outcome. A polling lead is not a projected win.';
+}
 function renderRaceList(){
 const list=$('#raceList'),body=$('#raceTable');list.replaceChildren();body.replaceChildren();
-const label=window.selectedRaceType;let arr=pollingSnapshot&&Array.isArray(pollingSnapshot.races)?pollingSnapshot.races.filter(x=>x.race_type===label):[];
+const label=window.selectedRaceType;
+const raceKind=label==='governors'?'governor':label;
+let arr=pollingSnapshot&&Array.isArray(pollingSnapshot.races)?pollingSnapshot.races.filter(x=>x.race_type===raceKind):[];
 const query=($('#raceSearch')?.value||'').trim().toLowerCase();if(query)arr=arr.filter(x=>[x.race_code,x.state,x.latest.pollster,x.latest.dem_name,x.latest.rep_name].join(' ').toLowerCase().includes(query));
 const sort=$('#raceSort')?.value||'recent';arr=[...arr];if(sort==='closest')arr.sort((a,b)=>Math.abs(a.latest.margin)-Math.abs(b.latest.margin));else if(sort==='count')arr.sort((a,b)=>b.recent_poll_count-a.recent_poll_count);else if(sort==='state')arr.sort((a,b)=>a.race_code.localeCompare(b.race_code));else arr.sort((a,b)=>b.latest_field_end.localeCompare(a.latest_field_end));
 $('#raceCount').textContent=arr.length;$('#raceNewest').textContent=arr.length?arr.map(x=>x.latest_field_end).sort().at(-1).slice(5):'—';
-$('#raceStatus').textContent=arr.length?arr.length+' '+label+' races matched · last 65 days · margins are individual poll results, not averages.':'No matching recent '+label+' polling records.';
+$('#raceStatus').textContent=arr.length?arr.length+' '+label+' races matched · 65-day rolling source · margins here show individual polls, not the modeled race averages.':'No matching recent '+label+' polling records.';renderPollLeadSeats(raceKind,arr);
 for(const race of arr.slice(0,100)){
 const tr=document.createElement('tr');tr.style.cursor='pointer';
 const vals=[race.race_code,marginText(race.latest.margin),race.latest.pollster,race.latest_field_end,race.recent_poll_count];
@@ -874,6 +899,7 @@ if(x.poll_source_url&&/^https:\/\//.test(x.poll_source_url)){const a=elt('a','po
 box.append(card);
 }
 renderJackRadar();
+renderRaceList();
 modelApplyHash();renderModelOverview(data);renderModelGenericHeadline();renderElectionScenarios();
 }
 fetch('./data/polling_estimates.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('not ready');return r.json()}).then(d=>showSenateEstimates(d)).catch(()=>{document.getElementById('senateEstimateCards').textContent='Waiting for first automated polling summary refresh.'});
