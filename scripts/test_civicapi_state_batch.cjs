@@ -5,12 +5,12 @@ const adapter=require('./civicapi_state_batch.js');
 const election=Date.parse('2026-11-04T03:15:00Z');
 const pre=Date.parse('2026-10-13T19:00:00Z');
 const cases=[
-  ['AK','Senate','Alaska US Senate'],
-  ['AK','Governor','Alaska Governor'],
-  ['ME','Senate','Maine US Senate'],
-  ['ME','Governor','Maine Governor'],
-  ['MA','Governor','Massachusetts Governor'],
-  ['NV','Governor','Nevada Governor']
+  ['AK','Senate','Alaska US Senate',86916],
+  ['AK','Governor','Alaska Governor',148898],
+  ['ME','Senate','Maine US Senate',87188],
+  ['ME','Governor','Maine Governor',87189],
+  ['MA','Governor','Massachusetts Governor',87276],
+  ['NV','Governor','Nevada Governor',87260]
 ];
 function row(state,office,name,id){
  return {country:'US',province:state,municipality:null,district:null,
@@ -30,8 +30,8 @@ function detail(search,counted=false){
        percent:counted?49:0,winner:false}
   ]};
 }
-const fixtureRaces=cases.map(([state,office,name],i)=>({
-  item:{office,key:state},search:row(state,office,name,87400+i)}));
+const fixtureRaces=cases.map(([state,office,name,id])=>({
+  item:{office,key:state},search:row(state,office,name,id)}));
 for(const {item,search} of fixtureRaces){
  assert(adapter.supports(item),JSON.stringify(item));
  assert(adapter.match(item,search),'Expected exact race: '+JSON.stringify(item));
@@ -76,6 +76,7 @@ for(const {item,search} of fixtureRaces){
  assert.equal(adapter.validate(item,search,emptyCall,election),null);
  for(const invalid of [
   {...search,id:String(search.id)},
+  {...search,id:search.id+9},
   {...search,municipality:'Concord'},
   {...search,district:item.key+'-01'},
   {...search,province:'NH'},
