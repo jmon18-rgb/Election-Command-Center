@@ -1704,7 +1704,7 @@ function renderEnForecastStrip(){
 let enModeYear=Date.now()<Date.parse('2026-11-03T05:00:00Z')?2024:2026;
 let enOffice='House',enData=null,enSelected=null,enTimer=null,enRequestSerial=0,enVisibleLimit=120;
 let enFetchError=null,enLastFetchAt=null,enMovements=[],enFailures=0,enArchiveSource='medsl';
-let enResumePending=false,enRestoredAt=null;
+let enResumePendingOffices=new Set(),enRestoredAt=null;
 const enRemoteBase='https://openamerica.io/elections/results.json';
 /* A personal, browser-local 2026 viewing list. No account, server upload,
  * candidate inference, or old-district-to-new-district mapping. */
@@ -2561,7 +2561,7 @@ function enResumeRestore(){
   enOfficeSnapshots=hydrated;
   enMovements=doc.movements.slice(0,70);
   enRestoredAt=doc.saved_at;
-  enResumePending=true;
+  enResumePendingOffices=new Set(offices);
   if(enModeYear===2026)enData=enOfficeSnapshots[enOffice]||null;
   return true;
  }catch{return false}
@@ -2587,7 +2587,7 @@ function enAcceptSource(o){
  enData=o;enFetchError=null;enLastFetchAt=new Date();
  if(enModeYear===2026){
   enOfficeSnapshots[enOffice]=o;
-  enResumePending=false;enRestoredAt=null;
+  enResumePendingOffices.delete(enOffice);
   delete enOfficeErrors[enOffice];
   enResumeSave();
  }
@@ -2642,6 +2642,7 @@ function enRender(){
  $('#enArchiveSource').value=enArchiveSource;
  const archivedSenate=enModeYear===2024&&enData?.source==='medsl_senate_2024_party_aggregates';
  const asOfAge=enData?.as_of?(Date.now()-Date.parse(enData.as_of))/60000:Infinity;
+ const enResumePending=enModeYear===2026&&enResumePendingOffices.has(enOffice);
  const sourceDelayed=enModeYear===2026&&enData&&(enResumePending||enData.stale||(enData.counting&&(!enData.live||asOfAge>180)));
  const connection=$('#enConnection');
  connection.className='en-connection'+(enFetchError?' error':enModeYear===2026&&enData?.live&&!sourceDelayed?' live':' wait');
@@ -2793,6 +2794,7 @@ async function enRefreshWatchedOffices(exceptOffice){
    const old=enOfficeSnapshots[office]||null;
    if(!enSnapshotCompatible(old,obj))throw Error('Unordered source update');
    enOfficeSnapshots[office]=obj;
+   enResumePendingOffices.delete(office);
    const changes=enCompareSnapshots(old,obj);
    enMovements=[...changes,...enMovements].slice(0,70);
    enProcessPrimaryAlerts(changes);
@@ -2829,7 +2831,7 @@ function enQueueRefresh(){
 async function enLoad(manual=false){
  if(enTimer){clearTimeout(enTimer);enTimer=null}
  const serial=++enRequestSerial,year=enModeYear,office=enOffice;
- if(manual&&!(enResumePending&&enData))$('#enStatus').textContent='Checking '+office+' source results…';
+ if(manual&&!(enResumePendingOffices.has(office)&&enData))$('#enStatus').textContent='Checking '+office+' source results…';
  try{
   let obj;
   if(year===2026||(year===2024&&enArchiveSource==='state')){
