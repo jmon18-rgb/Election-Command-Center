@@ -778,6 +778,109 @@ async function settle(){
  w.eval('enWatched=[];enRenderWatchlist()');
  w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
 
+ // Supplemental provider is separately identified; never merge civicAPI
+ // votes into Open America's national office counts or accept primary races.
+ const nhSenateItem={office:'Senate',key:'NH'};
+ const nhSenateSearch={
+   id:87283,country:'US',province:'NH',municipality:null,district:null,
+   type:'US Senate',election_type:'General',election_name:'New Hampshire US Senate',
+   election_date:'2026-11-03T05:00:00.000Z',
+   candidates:[
+    {name:'First candidate',party:'Democratic',votes:0,percent:0,winner:false},
+    {name:'Second candidate',party:'Republican',votes:0,percent:0,winner:false}
+   ],percent_reporting:0
+ };
+ const nhSenateDetail={
+   ...nhSenateSearch,election_type:'US Senate',last_updated:'2026-11-04T01:30:00Z',
+   candidates:[
+    {name:'First candidate',party:'Democratic',votes:510,percent:51,winner:false},
+    {name:'Second candidate',party:'Republican',votes:490,percent:49,winner:false}
+   ],percent_reporting:45
+ };
+ const civicDoc={count:1,limit:20,offset:0,races:[nhSenateSearch]};
+ assert.equal(w.eval('enCivicMatch('+JSON.stringify(nhSenateItem)+','+JSON.stringify(nhSenateSearch)+')'),true);
+ assert.equal(w.eval('enCivicSelect('+JSON.stringify(nhSenateItem)+','+JSON.stringify(civicDoc)+')').id,87283);
+ const badPrimary={...nhSenateSearch,election_type:'Primary',election_name:'New Hampshire US Senate Primary'};
+ assert.equal(w.eval('enCivicMatch('+JSON.stringify(nhSenateItem)+','+JSON.stringify(badPrimary)+')'),false);
+ assert.equal(w.eval('enCivicMatch({office:"House",key:"NH-01"},'+JSON.stringify(nhSenateSearch)+')'),false);
+ const wrongDistrict={...nhSenateSearch,type:'House of Representatives',district:'NH-02',election_name:'New Hampshire US House 2'};
+ assert.equal(w.eval('enCivicMatch({office:"House",key:"NH-01"},'+JSON.stringify(wrongDistrict)+')'),false);
+ assert.equal(w.eval('enCivicSelect('+JSON.stringify(nhSenateItem)+','+JSON.stringify({...civicDoc,races:[nhSenateSearch,nhSenateSearch]})+')'),null,
+   'Duplicate race identity from a secondary provider must fail closed');
+ const oldClock=w.Date.now;
+ w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ const rawCivic=w.eval('enCivicValidate('+JSON.stringify(nhSenateItem)+','+
+    JSON.stringify(nhSenateSearch)+','+JSON.stringify(nhSenateDetail)+')');
+ assert.equal(rawCivic.provider,'civicAPI');
+ assert.equal(rawCivic.total,1000);
+ assert.equal(rawCivic.called,null);
+ const calledDetail=structuredClone(nhSenateDetail);
+ calledDetail.candidates[0].winner=true;
+ assert.equal(w.eval('enCivicValidate('+JSON.stringify(nhSenateItem)+','+
+   JSON.stringify(nhSenateSearch)+','+JSON.stringify(calledDetail)+')').called,'First candidate',
+   'Source-originated call is stored as a civicAPI call, not an official certification');
+ const badVotes=structuredClone(nhSenateDetail);badVotes.candidates[0].votes=-1;
+ assert.equal(w.eval('enCivicValidate('+JSON.stringify(nhSenateItem)+','+
+   JSON.stringify(nhSenateSearch)+','+JSON.stringify(badVotes)+')'),null);
+ const invalidDate=structuredClone(nhSenateDetail);invalidDate.election_date='2026-09-08T05:00:00.000Z';
+ assert.equal(w.eval('enCivicValidate('+JSON.stringify(nhSenateItem)+','+
+   JSON.stringify(nhSenateSearch)+','+JSON.stringify(invalidDate)+')'),null);
+ const preElectionClock=Date.parse('2026-10-13T20:00:00Z');
+ w.Date.now=()=>preElectionClock;
+ assert.equal(w.eval('enCivicValidate('+JSON.stringify(nhSenateItem)+','+
+   JSON.stringify(nhSenateSearch)+','+JSON.stringify(nhSenateDetail)+')'),null,
+   'No 2026 civicAPI counting or calls accepted before November 3');
+ w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ const originalCivicFetch=w.fetch,civicRequests=[];
+ w.fetch=async(url)=>{
+   civicRequests.push(String(url));
+   if(String(url).startsWith('https://civicapi.org/api/v2/race/search'))
+     return {ok:true,json:async()=>civicDoc};
+   if(String(url).startsWith('https://civicapi.org/api/v2/race/87283'))
+     return {ok:true,json:async()=>nhSenateDetail};
+   return {ok:true,json:async()=>empty2026};
+ };
+ // NH-SEN was pinned through the real watchlist form earlier in this suite.
+ // Never replace a lexical 'let' by w.eval assignment: it creates an unrelated
+ // global and does not change the script's actual saved watchlist.
+ assert(get('#enWatchItems .en-watch-open[aria-label="Open NH-SEN Senate 2026 results"]'));
+ get('.tab[data-page="electionNight"]').click();
+ const primaryRaceCountBeforeCivic=get('#enRaces').textContent;
+ await w.eval('enRefreshCivicWatchlist(true)');
+ assert(civicRequests.some(x=>x.includes('province=NH')&&x.includes('startDate=2026-11-03')));
+ assert(civicRequests.some(x=>x.includes('/race/87283?light=')));
+ assert.match(get('#enWatchItems').textContent,/civicAPI · 1,000 reported votes/);
+ assert.match(get('#enWatchItems').textContent,/Outside the 22-state source/);
+ assert.match(get('#enWatchItems').textContent,/civicAPI race source/);
+ assert.equal(w.eval('enCivicStatus({office:"Senate",key:"NH"})').includes('1,000 reported votes'),true,
+    'Validated supplemental vote totals must reach rendered source status');
+ const nhWatchEntry=get('#enWatchItems .en-watch-open[aria-label="Open NH-SEN Senate 2026 results"]');
+ assert(nhWatchEntry,'Verified civicAPI race should be present in personal watchlist');
+ assert.equal(nhWatchEntry.getAttribute('aria-expanded'),'false');
+ nhWatchEntry.click();
+ assert.equal(get('#enWatchItems .en-watch-open[aria-label="Open NH-SEN Senate 2026 results"]').getAttribute('aria-expanded'),'true',
+   'Out-of-coverage watchlist item should toggle open; captured errors: '+errors.slice(-3).join(' | ')+
+   '; markup: '+get('#enWatchItems').innerHTML.slice(0,800));
+ const civicDetail=get('#enWatchItems .en-civic-detail');
+ assert(civicDetail,'Clicking an out-of-primary-state pinned race expands source-native candidate details');
+ assert.match(civicDetail.textContent,/First candidate/);
+ assert.match(civicDetail.textContent,/Second candidate/);
+ assert.match(civicDetail.textContent,/510/);
+ assert.match(civicDetail.textContent,/490/);
+ assert.match(civicDetail.textContent,/separate from Open America/);
+ assert(civicDetail.querySelector('a.en-civic-direct').href.includes('/api/v2/race/87283'));
+ assert.equal(get('#enWatchItems .en-watch-open[aria-label="Open NH-SEN Senate 2026 results"]').getAttribute('aria-expanded'),'true');
+ get('#enWatchItems .en-watch-open[aria-label="Open NH-SEN Senate 2026 results"]').click();
+ assert.equal(w.document.querySelector('#enWatchItems .en-civic-detail'),null,
+  'Supplemental race detail should collapse without losing its verified source snapshot');
+
+ assert.equal(get('#enRaces').textContent,primaryRaceCountBeforeCivic,
+   'Supplemental provider votes must never alter the previously validated primary source race count');
+ w.fetch=originalCivicFetch;
+ w.Date.now=oldClock;
+ w.eval('enWatched=[];enRenderWatchlist()');
+ w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
+
  assert.equal(errors.length,0,'Application emitted errors: '+errors.slice(0,4).join(' | '));
  console.log('Dashboard DOM integration passed: exact TX-SEN/TX-GOV poll drilldowns, race labels, DDHQ stale-data guards, dated news feed, and no script errors.');
  dom.window.close();
