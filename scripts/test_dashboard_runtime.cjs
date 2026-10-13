@@ -691,6 +691,93 @@ async function settle(){
  assert.equal(get('#newPolls').querySelectorAll('.item').length,2,
   'Two same-poll distinct ballot questions should both display');
  assert.match(get('#changesSince').textContent,/2 source postings/);
+ // Personal 2026 watchlist must be storable before Election Day and must
+ // never silently turn source coverage gaps into zero-valued race results.
+ assert.deepEqual(w.eval('enWatchParse("CA-53")'),null,'2026 California only has 52 voting House seats');
+ assert.equal(w.eval('enWatchParse("AK-00").key'),'AK-00','At-large House uses 00');
+ assert.equal(w.eval('enWatchParse(" NC-SEN ").office'),'Senate');
+ assert.equal(w.eval('enWatchParse("TX-GOV").office'),'Governor');
+ assert.equal(w.eval('enWatchParse("NE-SEN-SPECIAL").key'),'NE-special');
+ assert.equal(w.eval('enWatchParse("NC-99")'),null);
+ w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
+ w.eval('enWatched=[];enRenderWatchlist()');
+ const watchInput=get('#enWatchInput'),watchForm=get('#enWatchForm');
+ for(const race of ['NC-SEN','AZ-01','NH-SEN']){
+  watchInput.value=race;
+  watchForm.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
+ }
+ assert.equal(get('#enWatchCount').textContent,'3 races');
+ const stored=JSON.parse(w.localStorage.getItem('bluewaves_election_watch_2026_v1'));
+ assert.equal(stored.length,3);
+ assert(stored.some(r=>r.office==='Senate'&&r.key==='NC'));
+ assert.match(get('#enWatchItems').textContent,/Outside the 22-state source/,
+  'Unsupported state must never be represented as zero counted votes');
+ watchInput.value='CA-53';
+ watchForm.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
+ assert.equal(get('#enWatchCount').textContent,'3 races');
+ assert.match(get('#enWatchError').textContent,/valid 2026 seat/);
+ const originalClock=w.Date.now;
+ w.Date.now=()=>Date.parse('2026-11-04T02:40:00Z');
+ const counted2026={
+  api:1,year:2026,office:'Senate',source:'state',as_of:'2026-11-04T02:30:00Z',
+  live:true,stale:false,counting:true,final:false,
+  counts:{races:1,with_precincts:1,reporting:0,not_called:1,called:{}},
+  races:{NC:{leader:'D',called:false,winner:'',pct_in:42,total:300,
+   uncontested:false,cands:[
+     {n:'Democratic candidate',p:'D',v:160,pct:53.33,inc:false,w:false,b:''},
+     {n:'Republican candidate',p:'R',v:140,pct:46.67,inc:false,w:false,b:''}
+   ]}}
+ };
+ assert.equal(w.eval('enSourceValid('+JSON.stringify(counted2026)+',2026,"Senate")'),true);
+ const preWatchFetch=w.fetch;
+ w.fetch=async url=>({
+  ok:true,json:async()=>
+    String(url).includes('office=Senate')?counted2026:empty2026
+ });
+ get('#enMode2026').click();
+ get('#enOfficeSenate').click();
+ await w.eval('enLoad(true)');
+ w.fetch=preWatchFetch;
+ assert.match(get('#enWatchItems').textContent,/NC-SEN/);
+ assert.match(get('#enWatchItems').textContent,/300 counted/);
+ assert.match(get('#enPinArea').textContent,/Unpin from watchlist/);
+ assert.match(get('#enWatchItems').textContent,/Outside the 22-state source/);
+ const vanished=structuredClone(counted2026);vanished.races={};vanished.counts.races=0;
+ vanished.counting=false;vanished.live=false;
+ assert.equal(w.eval('enSnapshotCompatible('+JSON.stringify(counted2026)+','+JSON.stringify(vanished)+')'),false,
+  'A transient empty feed must not overwrite the most recent verified reported vote counts');
+ const backdated=structuredClone(counted2026);backdated.as_of='2026-11-04T02:01:00Z';
+ assert.equal(w.eval('enSnapshotCompatible('+JSON.stringify(counted2026)+','+JSON.stringify(backdated)+')'),false);
+ const sameStamp=structuredClone(counted2026);
+ sameStamp.races.NC.cands[0].v=150;sameStamp.races.NC.cands[1].v=150;
+ const correctedSameTime=w.eval('enCompareSnapshots('+JSON.stringify(counted2026)+','+JSON.stringify(sameStamp)+')');
+ assert.equal(correctedSameTime.length,1,
+  'The national as_of is not a per-state revision timestamp: detect actual state changes anyway');
+ assert.equal(correctedSameTime[0].delta,0);
+ assert.equal(correctedSameTime[0].candidateChanged,true);
+ const removedRace=w.eval('enCompareSnapshots('+JSON.stringify(counted2026)+','+JSON.stringify(vanished)+')');
+ assert.equal(removedRace.length,1);
+ assert.equal(removedRace[0].withdrawn,true);
+ const fetchBeforeWatch=w.fetch;
+ const seenBackground=[];
+ w.fetch=async(url)=>{
+  seenBackground.push(String(url));
+  if(String(url).includes('office=Senate'))
+   return {ok:true,json:async()=>counted2026};
+  if(String(url).includes('office=House'))
+   return {ok:true,json:async()=>empty2026};
+  return {ok:false,status:404};
+ };
+ get('.tab[data-page="electionNight"]').click();
+ await w.eval('enRefreshWatchedOffices("House")');
+ assert(seenBackground.some(x=>x.includes('office=Senate')));
+ assert.match(get('#enWatchItems').textContent,/300 counted/);
+ w.fetch=fetchBeforeWatch;
+ w.Date.now=originalClock;
+ // Clear only synthetic test selections; browser users keep their own pins.
+ w.eval('enWatched=[];enRenderWatchlist()');
+ w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
+
  assert.equal(errors.length,0,'Application emitted errors: '+errors.slice(0,4).join(' | '));
  console.log('Dashboard DOM integration passed: exact TX-SEN/TX-GOV poll drilldowns, race labels, DDHQ stale-data guards, dated news feed, and no script errors.');
  dom.window.close();

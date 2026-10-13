@@ -187,6 +187,29 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-archive-option{display:inline-flex;gap:7px;align-items:center;font-size:11px;font-weight:700;color:#aac3dc}
 .en-archive-option select{background:#13273b;border:1px solid #405b78;border-radius:7px;color:#d9eafd;padding:7px;font-size:11px}
 .en-archive-option[hidden]{display:none}
+.en-watchlist{border:1px solid #335372;border-radius:12px;background:linear-gradient(135deg,#12283f,#101d30);padding:15px 16px;margin:12px 0 15px}
+.en-watch-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.en-watch-head>div{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.en-watch-head strong{font-size:12px;letter-spacing:.08em}
+.en-watch-head span{font-size:10px;color:#acc2d6}
+.en-watch-count{font-weight:850;background:#20394f;border-radius:25px;padding:5px 9px;white-space:nowrap}
+.en-watch-form{display:flex;gap:7px;margin:12px 0 5px}
+.en-watch-form input{flex:1;min-width:100px;background:#0d1928;color:#e2effe;border:1px solid #3f5870;border-radius:8px;padding:10px 11px;font-size:12px}
+.en-watch-form button,.en-pin-area button{cursor:pointer;border:1px solid #487da9;color:#d1e8fa;background:#20445e;border-radius:8px;font-weight:800;font-size:11px;padding:10px 13px;white-space:nowrap}
+.en-watch-form button:hover,.en-pin-area button:hover{border-color:#8bbce2;background:#29577b}
+.en-watch-help{font-size:10px;color:#96b1c9;line-height:1.5}
+.en-watch-error{font-size:11px;color:#ecc29b;min-height:0;margin-top:4px}
+.en-watch-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:8px;margin-top:12px}
+.en-watch-entry{display:flex;align-items:stretch;border:1px solid #34516c;background:#152a40;border-radius:8px;overflow:hidden;min-width:0}
+.en-watch-open{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px;text-align:left;border:0;background:none;padding:11px;color:#e1ecf9;cursor:pointer}
+.en-watch-open:hover{background:#1d3c58}
+.en-watch-open strong{font-size:12px;display:block}
+.en-watch-open small{font-size:10px;line-height:1.5;color:#abc5db}
+.en-watch-remove{flex:0 0 29px;background:none;border:0;border-left:1px solid #34516c;color:#acc2d5;cursor:pointer;font-size:16px}
+.en-watch-remove:hover{background:#59323d;color:#fff}
+.en-pin-area{margin:5px 0 12px}
+.en-pin-area button[aria-pressed=true]{background:#395329;border-color:#82b478;color:#e5f3dc}
+@media(max-width:650px){.en-watchlist{padding:12px}.en-watch-head>div{gap:3px;align-items:flex-start;flex-direction:column}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -370,6 +393,18 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 </div>
 <div class="en-status" id="enStatus" role="status">Election Day is November 3. The 2024 archive is available for rehearsal before 2026 results begin.</div>
 <div class="en-archive-intro" id="enArchiveIntro">2024 House rehearsal uses MIT/MEDSL's historical recorded party-level votes across all 435 districts. It is <strong>not a minute-by-minute replay</strong> and does not identify individual candidates, certified winners, or precinct progress. A 2024 district number must not be treated as the same geographic seat in 2026 after redistricting.</div>
+<section class="en-watchlist" aria-label="Your election night watchlist">
+ <div class="en-watch-head"><div><strong>MY WATCHLIST</strong><span>Saved on this laptop · follows 2026 races across offices</span></div>
+ <span id="enWatchCount" class="en-watch-count">0 races</span></div>
+ <form id="enWatchForm" class="en-watch-form">
+  <label for="enWatchInput" class="sr-only">Add a 2026 race to your watchlist</label>
+  <input id="enWatchInput" type="text" placeholder="AZ-01, NC-SEN, TX-GOV" autocomplete="off" aria-describedby="enWatchHelp" />
+  <button id="enWatchAdd" type="submit">Pin race</button>
+ </form>
+ <div id="enWatchHelp" class="en-watch-help">Use ST-01 for House · ST-SEN for Senate · ST-GOV for governor. Pin any 2026 race now, before votes begin.</div>
+ <div id="enWatchError" class="en-watch-error" role="status"></div>
+ <div id="enWatchItems" class="en-watch-items"><p class="empty">Add the races you want at your fingertips on election night.</p></div>
+ </section>
 <div class="en-activity-box" id="enActivityBox"><div class="en-activity-head"><strong>What just changed in the reported vote?</strong><span class="tiny">Session tracking · source update comparisons</span></div><div id="enActivityFeed" class="en-message">Reporting movements will appear when refreshed 2026 source snapshots change during this viewing session. This is not a nationally complete timeline.</div></div>
 <div class="en-metrics">
  <div class="en-stat"><small>RACES IN THIS FEED</small><b id="enRaces">—</b></div>
@@ -386,6 +421,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div class="en-detail" id="enRaceDetail">
   <span class="label">SELECTED RACE</span>
   <h3 id="enDetailTitle">Choose a race</h3>
+  <div id="enPinArea" class="en-pin-area"></div>
   <div id="enDetailSummary" class="en-detail-summary">Reported votes will appear here.</div>
   <div id="enCandidateList" class="en-candidates"></div>
   <div id="enDetailMeta" class="en-detail-meta"></div>
@@ -1585,7 +1621,115 @@ let enModeYear=Date.now()<Date.parse('2026-11-03T05:00:00Z')?2024:2026;
 let enOffice='House',enData=null,enSelected=null,enTimer=null,enRequestSerial=0,enVisibleLimit=120;
 let enFetchError=null,enLastFetchAt=null,enMovements=[],enFailures=0,enArchiveSource='medsl';
 const enRemoteBase='https://openamerica.io/elections/results.json';
-function enIsVisible(){return $('#electionNight')?.classList.contains('active')}
+/* A personal, browser-local 2026 viewing list. No account, server upload,
+ * candidate inference, or old-district-to-new-district mapping. */
+const enWatchStorageKey='bluewaves_election_watch_2026_v1';
+const enSupportedStates=new Set('AR AZ CO CT FL GA IA ID IN LA MI MN NC PA RI SC TX UT VA VT WA WV'.split(' '));
+const enHouseSeatCounts={AL:7,AK:1,AZ:9,AR:4,CA:52,CO:8,CT:5,DE:1,FL:28,GA:14,
+ HI:2,ID:2,IL:17,IN:9,IA:4,KS:4,KY:6,LA:6,ME:2,MD:8,MA:9,MI:13,MN:8,
+ MS:4,MO:8,MT:2,NE:3,NV:4,NH:2,NJ:12,NM:3,NY:26,NC:14,ND:1,OH:15,
+ OK:5,OR:6,PA:17,RI:2,SC:7,SD:1,TN:9,TX:38,UT:4,VT:1,VA:11,
+ WA:10,WV:2,WI:8,WY:1};
+let enOfficeSnapshots=Object.create(null),enOfficeErrors=Object.create(null);
+function enWatchParse(input){
+ const value=String(input||'').toUpperCase().trim().replace(/\s+/g,'');
+ let match=value.match(/^([A-Z]{2})-(\d{2})$/);
+ if(match){
+  const size=enHouseSeatCounts[match[1]],number=+match[2];
+  if(!size||(size===1&&number!==0)||(size>1&&(number<1||number>size)))return null;
+  return {office:'House',key:match[1]+'-'+match[2]};
+ }
+ match=value.match(/^([A-Z]{2})-(SEN|SENATE|SEN-SPECIAL)$/);
+ if(match&&enHouseSeatCounts[match[1]])
+  return {office:'Senate',key:match[1]+(match[2]==='SEN-SPECIAL'?'-special':'')};
+ match=value.match(/^([A-Z]{2})-(GOV|GOVERNOR)$/);
+ if(match&&enHouseSeatCounts[match[1]])
+  return {office:'Governor',key:match[1]};
+ return null;
+}
+function enWatchId(item){return item.office+'|'+item.key}
+function enWatchLoad(){
+ try{
+  const raw=JSON.parse(localStorage.getItem(enWatchStorageKey)||'[]');
+  if(!Array.isArray(raw))return [];
+  const seen=new Set(),out=[];
+  for(const item of raw){
+   const parsed=item?.office==='House'?enWatchParse(item.key):
+    item?.office==='Senate'?enWatchParse(item.key.replace('-special','-SEN-SPECIAL').replace(/^([A-Z]{2})$/,'$1-SEN')):
+    item?.office==='Governor'?enWatchParse(item.key+'-GOV'):null;
+   if(parsed&&parsed.office===item.office&&!seen.has(enWatchId(parsed))){
+    seen.add(enWatchId(parsed));out.push(parsed);
+   }
+   if(out.length>=40)break;
+  }
+  return out;
+ }catch{return []}
+}
+let enWatched=enWatchLoad();
+function enWatchSave(){
+ try{localStorage.setItem(enWatchStorageKey,JSON.stringify(enWatched))}catch{}
+}
+function enWatchToggle(item){
+ const id=enWatchId(item),index=enWatched.findIndex(x=>enWatchId(x)===id);
+ if(index>=0)enWatched.splice(index,1);
+ else if(enWatched.length>=40){
+  $('#enWatchError').textContent='40 saved races maximum. Remove an old one before adding more.';return;
+ }else enWatched.push({office:item.office,key:item.key});
+ $('#enWatchError').textContent='';
+ enWatchSave();enRenderWatchlist();if(enModeYear===2026)enRender();
+}
+function enWatchStatus(item){
+ const state=item.key.slice(0,2),data=enOfficeSnapshots[item.office]||
+   (enModeYear===2026&&enOffice===item.office?enData:null);
+ const race=data?.races?.[item.key];
+ if(!enSupportedStates.has(state))return 'Outside the 22-state source · use linked decision desks for results';
+ if(race&&race.total>0){
+  const lead=enLeadInfo(race),leader=enCurrentLeader(race);
+  return (leader?lead.short+' · '+enNum(lead.votes)+' votes ahead':'Even')+
+   ' · '+enNum(race.total)+' counted'+
+   (Number.isFinite(race.pct_in)?' · '+race.pct_in.toFixed(0)+'% precincts':' · precincts not supplied')+
+   (data.stale?' · STALE SOURCE':'');
+ }
+ if(data&&!race)return 'No race record in the current state feed · not a zero';
+ if(race)return 'Race listed by the source; no votes reported yet';
+ if(enOfficeErrors[item.office])return 'Source check failed · will retry';
+ return 'Waiting for '+item.office.toLowerCase()+' source check';
+}
+function enRenderWatchlist(){
+ const host=$('#enWatchItems'),count=$('#enWatchCount');if(!host||!count)return;
+ count.textContent=enWatched.length+' '+(enWatched.length===1?'race':'races');
+ host.replaceChildren();
+ if(!enWatched.length){
+  host.append(elt('p','empty','No races pinned yet. Add any 2026 House district, Senate race, or governor race above.'));
+  return;
+ }
+ for(const item of enWatched){
+  const line=elt('div','en-watch-entry');
+  const open=elt('button','en-watch-open');open.type='button';
+  const title=item.office==='House'?item.key:
+    item.key.replace('-special','')+(item.office==='Senate'?'-SEN':'-GOV')+
+       (item.key.endsWith('-special')?' SPECIAL':'');
+  open.append(elt('strong','',title+' · '+item.office),
+    elt('small','',enWatchStatus(item)));
+  open.setAttribute('aria-label','Open '+title+' '+item.office+' 2026 results');
+  open.addEventListener('click',()=>enSwitch(2026,item.office,item.key));
+  const remove=elt('button','en-watch-remove','×');remove.type='button';
+  remove.setAttribute('aria-label','Remove '+title+' from watchlist');
+  remove.addEventListener('click',()=>enWatchToggle(item));
+  line.append(open,remove);host.append(line);
+ }
+}
+$('#enWatchForm').addEventListener('submit',event=>{
+ event.preventDefault();
+ const field=$('#enWatchInput'),item=enWatchParse(field.value);
+ if(!item){$('#enWatchError').textContent='Use a valid 2026 seat such as AZ-01, NC-SEN, or TX-GOV. At-large House seats use 00.';return}
+ if(enWatched.some(w=>enWatchId(w)===enWatchId(item))){
+  $('#enWatchError').textContent='Already on your watchlist.';return;
+ }
+ enWatchToggle(item);field.value='';
+});
+
+function enIsVisible(){return typeof document!=='undefined'&&Boolean(document?.querySelector?.('#electionNight')?.classList.contains('active'))}
 function enNum(n){return typeof n==='number'&&Number.isFinite(n)?n.toLocaleString('en-US'):'—'}
 function enFormattedTime(v){const d=v?new Date(v):null;return d&&!isNaN(+d)?d.toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}):'unknown'}
 
@@ -1701,7 +1845,7 @@ function enSourceValid(o,year,office){
 }
 function enCompareSnapshots(previous,next){
  if(!previous||!next||previous.year!==2026||next.year!==2026||
-   previous.office!==next.office||previous.as_of===next.as_of)return [];
+   previous.office!==next.office)return [];
  const changes=[];
  for(const [id,r] of Object.entries(next.races||{})){
   const old=previous.races?.[id];
@@ -1715,16 +1859,38 @@ function enCompareSnapshots(previous,next){
   if(old&&delta===0&&!candidateChanged&&!leaderChanged)continue;
   changes.push({at:next.as_of,key:id,office:next.office,
     prior:old?.total||0,current:r.total,delta,
-    newRace:!old,leaderChanged,candidateChanged});
+    newRace:!old||(old.total===0&&r.total>0),leaderChanged,candidateChanged});
  }
- return changes.sort((a,b)=>Number(b.leaderChanged)-Number(a.leaderChanged)||
+ for(const [id,r] of Object.entries(previous.races||{})){
+  if(r.total>0&&!Object.prototype.hasOwnProperty.call(next.races,id))
+   changes.push({at:next.as_of,key:id,office:next.office,prior:r.total,current:null,
+     delta:0,withdrawn:true,leaderChanged:false,newRace:false});
+ }
+ return changes.sort((a,b)=>Number(b.withdrawn)-Number(a.withdrawn)||
+   Number(b.leaderChanged)-Number(a.leaderChanged)||
    Number(b.newRace)-Number(a.newRace)||Math.abs(b.delta)-Math.abs(a.delta)).slice(0,30);
 }
+function enSnapshotCompatible(previous,next){
+ if(!previous||previous.year!==next.year||previous.office!==next.office)return true;
+ if(previous.counting&&Object.keys(previous.races).length&&
+    !next.counting&&!Object.keys(next.races).length)return false;
+ const oldTime=Date.parse(previous.as_of||''),newTime=Date.parse(next.as_of||'');
+ if(Number.isFinite(oldTime)&&Number.isFinite(newTime)&&newTime<oldTime-1000)return false;
+ return true;
+}
 function enAcceptSource(o){
- if(!enSourceValid(o,enModeYear,enOffice))throw Error('Results format or vote-count integrity check failed');
- const changes=enCompareSnapshots(enData,o);
+ if(!enSourceValid(o,enModeYear,enOffice))
+  throw Error('Results format or vote-count integrity check failed');
+ const previous=enModeYear===2026?(enOfficeSnapshots[enOffice]||enData):enData;
+ if(!enSnapshotCompatible(previous,o))
+  throw Error('Provider snapshot unexpectedly reversed in time or lost all counted races');
+ const changes=enCompareSnapshots(previous,o);
  enMovements=[...changes,...enMovements].slice(0,70);
  enData=o;enFetchError=null;enLastFetchAt=new Date();
+ if(enModeYear===2026){
+  enOfficeSnapshots[enOffice]=o;
+  delete enOfficeErrors[enOffice];
+ }
  enRender();
 }
 function enRenderMovement(){
@@ -1738,9 +1904,9 @@ function enRenderMovement(){
  const visible=enMovements.filter(x=>x.office===enOffice).slice(0,8);
  if(!visible.length){host.append(elt('div','en-message','No new reporting movements in this office yet.'));return}
  for(const x of visible){
-  const row=elt('div','en-activity-item'),heading=elt('strong','',x.key+(x.newRace?' · NEW REPORTING':'')+(x.leaderChanged?' · LEAD CHANGED':'')),
-    diff=elt('span',x.delta<0?'en-revision':'',x.newRace?
-      x.current.toLocaleString()+' first recorded votes':
+  const row=elt('div','en-activity-item'),heading=elt('strong','',x.key+(x.withdrawn?' · REMOVED FROM FEED':'')+(x.newRace?' · NEW REPORTING':'')+(x.leaderChanged?' · LEAD CHANGED':'')),
+    diff=elt('span',x.delta<0?'en-revision':'',x.withdrawn?'Race no longer present in the source; do not count its old votes as a zero':
+      x.newRace?x.current.toLocaleString()+' first reported votes':
       x.delta<0?Math.abs(x.delta).toLocaleString()+' votes revised downward':
       x.delta>0?'+'+x.delta.toLocaleString()+' recorded votes since prior update':
       'Candidate totals revised; total ballots unchanged');
@@ -1805,6 +1971,7 @@ function enRender(){
   'State-derived 2024 source rehearsal: named candidates and official-state reported precinct shares via Open America. Partial coverage, stored historical results, not a timed 2024 replay or a certified race call.':
   'MIT/MEDSL 2024 House (435 districts) and Senate (35 contests) historical party aggregates. No candidate names or precinct progress. Select State feed to rehearse the same named-candidate format as 2026 live results.';
  enRenderMovement();
+ enRenderWatchlist();
  enUpdateSelection();
  const query=($('#enSearch').value||'').trim().toLowerCase(),list=$('#enRaceList');list.replaceChildren();
  if(!rows.length){list.append(elt('p','empty',enModeYear===2026&&enData?
@@ -1812,7 +1979,13 @@ function enRender(){
   enModeYear===2026?'Waiting for the state-derived results feed. Use the source links below if it is inaccessible.':
   'No verified historical archive for this office. 2024 House and Senate archives are available.'));enRenderDetail();return}
  const filtered=rows.filter(([key,r])=>!query||(key+' '+(r.cands||[]).map(p=>p.n).join(' ')).toLowerCase().includes(query));
- filtered.sort((a,b)=>{const pa=a[1].pct_in,pb=b[1].pct_in;return (a[1].total?0:1)-(b[1].total?0:1)||String(a[0]).localeCompare(String(b[0]))});
+ filtered.sort((a,b)=>{
+  if(enModeYear===2026){
+   const aw=enWatched.some(w=>w.office===enOffice&&w.key===a[0]),bw=enWatched.some(w=>w.office===enOffice&&w.key===b[0]);
+   if(aw!==bw)return aw?-1:1;
+  }
+  return (a[1].total?0:1)-(b[1].total?0:1)||String(a[0]).localeCompare(String(b[0]));
+ });
  for(const [key,r] of filtered.slice(0,enVisibleLimit)){
   const btn=elt('button','en-race-entry');btn.type='button';btn.setAttribute('aria-pressed',String(key===enSelected));
   const name=elt('div');name.append(elt('strong','',key),elt('small','',enNum(r.total)+' votes · '+(typeof r.pct_in==='number'?r.pct_in.toFixed(1)+'% precincts':'precinct data unavailable')));
@@ -1835,9 +2008,18 @@ function archivedMEDSLDetail(){return enModeYear===2024&&['medsl_house_2024_part
 function enRenderDetail(){
  const found=enCurrentRaces().find(([id])=>id===enSelected);
  const title=$('#enDetailTitle'),summary=$('#enDetailSummary'),cands=$('#enCandidateList'),meta=$('#enDetailMeta'),comparison=$('#enPollReference');
- cands.replaceChildren();comparison.replaceChildren();
+ const pin=$('#enPinArea');
+ cands.replaceChildren();comparison.replaceChildren();pin.replaceChildren();
  if(!found){title.textContent='No reported race selected';summary.textContent='Results will appear as supported states report vote totals.';meta.textContent='';return}
  const [key,r]=found;
+ if(enModeYear===2026){
+  const item={office:enOffice,key},button=elt('button','',
+    enWatched.some(w=>enWatchId(w)===enWatchId(item))?'★ Unpin from watchlist':'☆ Pin to my watchlist');
+  button.type='button';
+  button.setAttribute('aria-pressed',String(enWatched.some(w=>enWatchId(w)===enWatchId(item))));
+  button.addEventListener('click',()=>enWatchToggle(item));
+  pin.append(button);
+ }
  title.textContent=key+' '+enOffice+(enModeYear===2024?' · 2024 archive':' · unofficial');
  const leader=enCurrentLeader(r);
  const edge=enLeadInfo(r);
@@ -1888,6 +2070,36 @@ function enFetchUrl(year,office){
    throw Error('Unsupported live-results source request');
  return enRemoteBase+'?year='+year+'&office='+encodeURIComponent(office);
 }
+const enWatchRefreshPending=new Set();
+async function enRefreshWatchedOffices(exceptOffice){
+ if(enModeYear!==2026||!enIsVisible())return;
+ const offices=[...new Set(enWatched.map(x=>x.office))].filter(x=>x!==exceptOffice);
+ await Promise.all(offices.map(async office=>{
+  if(enWatchRefreshPending.has(office))return;
+  enWatchRefreshPending.add(office);
+  try{
+   const response=await fetch(enFetchUrl(2026,office),{
+      mode:'cors',credentials:'omit',cache:'no-store',
+      headers:{Accept:'application/json'}
+   });
+   if(!response.ok)throw Error('HTTP '+response.status);
+   const obj=await response.json();
+   if(!enSourceValid(obj,2026,office))throw Error('Unrecognized vote source');
+   if(enModeYear!==2026||!enIsVisible())return;
+   const old=enOfficeSnapshots[office]||null;
+   if(!enSnapshotCompatible(old,obj))throw Error('Unordered source update');
+   enOfficeSnapshots[office]=obj;
+   enMovements=[...enCompareSnapshots(old,obj),...enMovements].slice(0,70);
+   delete enOfficeErrors[office];
+   if(enOffice===office){
+    enData=obj;enFetchError=null;enLastFetchAt=new Date();enRender();
+   }else enRenderWatchlist();
+  }catch(err){
+   if(enModeYear===2026&&enIsVisible()){enOfficeErrors[office]=String(err?.message||err);enRenderWatchlist()}
+  }finally{enWatchRefreshPending.delete(office)}
+ }));
+ if(enModeYear===2026&&enIsVisible())enQueueRefresh();
+}
 function enRefreshInterval(data,failures=0){
  if(failures>0)return Math.min(600000,60000*Math.pow(2,Math.min(failures-1,4)));
  if(data?.live)return 60000;
@@ -1896,7 +2108,12 @@ function enRefreshInterval(data,failures=0){
 function enQueueRefresh(){
  if(enTimer){clearTimeout(enTimer);enTimer=null}
  if(enModeYear!==2026||!enIsVisible())return;
- enTimer=setTimeout(()=>{enTimer=null;enLoad(false)},enRefreshInterval(enData,enFailures));
+ const watchingLive=enWatched.some(x=>{
+  const snap=enOfficeSnapshots[x.office],at=Date.parse(snap?.as_of||'');
+  return snap?.live&&Number.isFinite(at)&&Date.now()-at<180*60000;
+ });
+ const preferred=watchingLive?{live:true}:enData;
+ enTimer=setTimeout(()=>{enTimer=null;enLoad(false)},enRefreshInterval(preferred,enFailures));
 }
 async function enLoad(manual=false){
  if(enTimer){clearTimeout(enTimer);enTimer=null}
@@ -1922,6 +2139,7 @@ async function enLoad(manual=false){
   if(serial!==enRequestSerial)return;
   enFailures=0;
   enAcceptSource(obj);
+  if(year===2026)void enRefreshWatchedOffices(office);
  }catch(error){
   if(serial!==enRequestSerial)return;
   enFailures++;
@@ -1934,9 +2152,11 @@ async function enLoad(manual=false){
  }
  if(serial===enRequestSerial)enQueueRefresh();
 }
-function enSwitch(year,office){
+function enSwitch(year,office,preferredKey=null){
  if(year===2024&&office==='Governor')enArchiveSource='state';
- enModeYear=year;enOffice=office;enData=null;enFetchError=null;enFailures=0;enSelected=null;enVisibleLimit=120;$('#enSearch').value='';enRender();enLoad(true);
+ enModeYear=year;enOffice=office;
+ enData=year===2026?(enOfficeSnapshots[office]||null):null;
+ enFetchError=null;enFailures=0;enSelected=preferredKey;enVisibleLimit=120;$('#enSearch').value='';enRender();enLoad(true);
 }
 $('#enMode2026').addEventListener('click',()=>enSwitch(2026,enOffice));
 $('#enMode2024').addEventListener('click',()=>enSwitch(2024,enOffice));
