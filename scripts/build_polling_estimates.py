@@ -16,6 +16,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "data/polls.json"
 DEST = ROOT / "data/polling_estimates.json"
+QUALITY_FILE = ROOT / "data/pollster_quality.json"
+QUALITY_DATA = json.loads(QUALITY_FILE.read_text(encoding="utf-8"))
+QUALITY = {k.casefold():v for k,v in QUALITY_DATA["entries"].items()}
+EXCLUSIONS = {k.casefold():v for k,v in QUALITY_DATA.get("explicit_exclusions",{}).items()}
+SIZE_EXPONENT = 0.20
 WINDOW = 45
 HALF_LIFE = 21
 PARTISAN_FACTOR = 0.5
@@ -37,9 +42,23 @@ def numeric(p):
     return all(type(p.get(k)) in (int,float) and math.isfinite(p[k])
                for k in ("dem","rep","margin"))
 
+def quality_multiplier(p):
+    rated=QUALITY.get(p["pollster"].casefold())
+    if not rated:return 1.0
+    # Sparse historic records shouldn't move a pollster's weight much.
+    shrunk=2.0+(rated["rating"]-2.0)*min(1.0,rated["history_count"]/20.0)
+    return 1.0+0.25*(shrunk-2.0)
+
+def size_multiplier(p):
+    n=p.get("sample_size")
+    if not isinstance(n,(int,float)) or n<=0:return 1.0
+    return (max(300,min(2500,n))/800.0)**SIZE_EXPONENT
+
 def weighted(p, today):
-    age = (today - date.fromisoformat(p["field_end"])).days
-    return 0.5**(age / HALF_LIFE) * (PARTISAN_FACTOR if p.get("partisan_lean") else 1.0)
+    age=(today-date.fromisoformat(p["field_end"])).days
+    return (0.5**(age/HALF_LIFE)
+            *(PARTISAN_FACTOR if p.get("partisan_lean") else 1.0)
+            *quality_multiplier(p)*size_multiplier(p))
 
 def estimate(race, today, generic=False):
     grouped=defaultdict(list)
@@ -48,7 +67,7 @@ def estimate(race, today, generic=False):
         try:
             day=date.fromisoformat(p["field_end"])
             age=(today-day).days
-            if not 0 <= age <= (30 if generic else WINDOW) or not numeric(p):
+            if not 0 <= age <= (30 if generic else WINDOW) or not numeric(p) or (p.get("pollster") or "").casefold() in EXCLUSIONS:
                 continue
             if generic:
                 key=("Generic Democratic","Generic Republican")
@@ -112,8 +131,11 @@ def estimate(race, today, generic=False):
             "sample_size":p.get("sample_size"),
             "partisan_lean":p.get("partisan_lean") or "",
             "weight_share":round(100*weighted(p,today)/sw,3),
+            "quality_rating":(QUALITY.get(p["pollster"].casefold()) or {}).get("rating"),
+            "quality_multiplier":round(quality_multiplier(p),3),
+            "sample_multiplier":round(size_multiplier(p),3),
         } for p in chosen],
-        "method":"One latest wave per firm for a consistent matchup, 21-day recency half-life, 0.5 sponsored-poll factor."
+        "method":"Latest wave per firm; 21d recency, capped sample-size factor, 538 historical pollster quality and 0.5 sponsored-poll factor."
     }
 
 def build(data):
@@ -155,9 +177,13 @@ def build(data):
         "source_snapshot":data.get("updated_at"),
         "type":"descriptive_polling_estimates",
         "is_election_forecast":False,
-        "method_version":"poll-mean-1.2",
+        "method_version":"poll-mean-1.3",
         "window_days":WINDOW,"half_life_days":HALF_LIFE,
         "sponsored_poll_weight_factor":PARTISAN_FACTOR,
+        "pollster_quality_source":QUALITY_DATA["source_url"],
+        "pollster_quality_version":QUALITY_DATA["source_repo_sha"],
+        "sample_size_weight_exponent":SIZE_EXPONENT,
+        "excluded_pollsters":list(QUALITY_DATA.get("explicit_exclusions",{})),
         "states":states,
         "senate_all":senate,
         "house":build_office("house"),
@@ -166,6 +192,8 @@ def build(data):
         "limitations":[
             "Polling averages are not election-win probabilities or projected outcomes.",
             "0.5 sponsor factor is a declared sensitivity choice, not an empirically estimated house effect.",
+            "Historical 538 ratings predate the current cycle and are matched to current pollsters with explicit aliases.",
+            "Unrated firms receive neutral quality weight; sample-size importance is a capped provisional exponent.",
             "The public feed limits polls per race; historical series remain incomplete.",
             "Candidates in different ballot matchups are not averaged together.",
             "Polling quality and candidate support errors are not yet calibrated for 2026."
