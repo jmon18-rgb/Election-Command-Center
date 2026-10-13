@@ -56,7 +56,7 @@ jobs:
         run: |
           git config user.name "election-briefing-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/briefing.json data/polls.json data/model_tests.json data/polling_estimates.json data/integrity_review_queue.json
+          git add data/briefing.json data/polls.json data/model_tests.json data/polling_estimates.json data/integrity_review_queue.json data/model_history.json
           if [ -f data/pollresults_recent.json ]; then git add data/pollresults_recent.json; fi
           if ! git diff --cached --quiet; then
             git commit -m "Update sourced election briefing"
