@@ -292,6 +292,14 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .model-odds-presets button[aria-pressed=true]{background:#295a7b;border-color:#7cb3de;color:white}
 .model-odds-context{font-size:10px;color:#9db5cb;line-height:1.6;margin:8px 0 0}
 @media(max-width:520px){.model-odds-col strong{font-size:23px}}
+.model-odds-movers{background:#11253a;border:1px solid #37546b;border-radius:10px;padding:15px 16px;margin:13px 0 14px}
+.model-odds-movers #oddsMoverList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:11px 0}
+.model-odds-move{cursor:pointer;background:#152d44;border:1px solid #35526c;border-radius:9px;color:#dceaf7;padding:11px;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.model-odds-move:hover,.model-odds-move:focus-visible{background:#1f415e;border-color:#7baed5}
+.model-odds-move strong{display:block;font-size:12px}.model-odds-move small{display:block;color:#a9bed0;font-size:10px;margin-top:4px}
+.model-odds-change{font-size:12px;font-weight:850;white-space:nowrap;font-variant-numeric:tabular-nums}
+.model-odds-change.up{color:#86bbef}.model-odds-change.down{color:#f09fa5}
+@media(max-width:650px){.model-odds-movers #oddsMoverList{grid-template-columns:1fr}.model-odds-movers{padding:13px}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -362,6 +370,13 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div class="model-top-stat"><span>POLLING GAPS UNDER 3 PTS</span><strong id="modelCloseTotal">—</strong></div>
  <div class="model-top-stat"><span>THIN POLLING</span><strong id="modelThinTotal">—</strong></div>
 </div>
+<section class="model-odds-movers" aria-label="Model odds movement since earlier real polling snapshots">
+ <div class="row"><div><span class="label">WHAT ACTUALLY MOVED</span>
+  <h3 style="font-size:17px;margin:8px 0 4px">Race odds changes</h3></div>
+  <span id="oddsMoverWindow" class="tag">OBSERVED SNAPSHOTS</span></div>
+ <div id="oddsMoverList"><p class="empty">Checking previous published model runs…</p></div>
+ <p id="oddsMoverNote" class="house-history-note">Only genuine earlier model runs for the same two candidates count; no invented past probabilities.</p>
+</section>
 <section class="model-evidence-watch" aria-label="2026 polling evidence quality review">
  <div class="row"><div>
    <span class="label">2026 POLLING REALITY CHECK</span>
@@ -731,10 +746,110 @@ function renderModelEvidenceWatch(data){
   'It is NOT a ranking of win probability, an error interval or a claim that a race has recently shifted. '+
   'Changes can reflect which firm was polled or weighted rather than voter opinion moving.';
 }
+
+let raceOddsHistoryData=null;
+function setRaceOddsHistoryData(data){
+ raceOddsHistoryData=data;
+ renderOddsMovers(latestSenateEstimates);
+}
+function oddsMoversFromHistory(history,odds,polls,scope){
+ if(!modelOddsValidate(odds,polls)||!history||
+    history.schema_version!=='observed-race-odds-history-v1'||
+    history.status!=='genuine_model_runs_only'||
+    history.can_infer_chamber_control!==false||
+    history.latest_source_at!==odds.polling_source_generated_at||
+    !Array.isArray(history.snapshots)||history.snapshots.length>90)return null;
+ const latest=history.snapshots.at(-1),latestTime=Date.parse(latest?.source_at||'');
+ if(!Number.isFinite(latestTime)||latest.source_at!==odds.polling_source_generated_at||
+    latest.method_version!=='experimental-race-odds-v1'||!Array.isArray(latest.races)||
+    latest.races.length!==odds.records.length)return null;
+ const sourceFor={senate:polls.senate_all||[],house:polls.house||[],governor:polls.governor||[]};
+ const current=new Map();
+ for(const row of latest.races){
+  const key=row.office+'|'+row.race_code,matching=odds.records.find(r=>r.office===row.office&&r.race_code===row.race_code);
+  const candidate=sourceFor[row.office]?.find(r=>r.race_code===row.race_code);
+  if(current.has(key)||!matching||!candidate||
+     row.dem_candidate!==candidate.dem_candidate||
+     row.rep_candidate!==candidate.rep_candidate||
+     Math.abs(row.dem_beats_rep_pct-matching.dem_beats_rep_pct)>.015||
+     Math.abs(row.dem_minus_rep-matching.dem_minus_rep)>.015)return null;
+  current.set(key,row);
+ }
+ const earlier=history.snapshots.filter(prev=>
+    prev?.method_version==='experimental-race-odds-v1'&&
+    Number.isFinite(Date.parse(prev.source_at||''))&&
+    latestTime-Date.parse(prev.source_at)>=4*3600000&&
+    latestTime-Date.parse(prev.source_at)<=30*86400000).at(-1);
+ if(!earlier)return {movers:[],hours:null,hasComparablePrevious:false};
+ const prevMap=new Map((earlier.races||[]).map(x=>[x.office+'|'+x.race_code,x]));
+ const movers=[];
+ for(const [key,now] of current){
+  if(now.office!==scope)continue;
+  const was=prevMap.get(key);
+  if(!was||was.dem_candidate!==now.dem_candidate||
+    was.rep_candidate!==now.rep_candidate||
+    !Number.isFinite(was.dem_beats_rep_pct))continue;
+  const delta=now.dem_beats_rep_pct-was.dem_beats_rep_pct;
+  if(Math.abs(delta)<2)continue;
+  movers.push({
+   office:now.office,code:now.race_code,delta,
+   prior:was.dem_beats_rep_pct,current:now.dem_beats_rep_pct,
+   label:odds.records.find(r=>r.office===now.office&&r.race_code===now.race_code)?.label||now.race_code,
+   dem:now.dem_candidate,rep:now.rep_candidate
+  });
+ }
+ movers.sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta)||a.code.localeCompare(b.code));
+ return {movers:movers.slice(0,6),
+    hours:Math.round((latestTime-Date.parse(earlier.source_at))/3600000),
+    hasComparablePrevious:true};
+}
+function renderOddsMovers(polls){
+ const box=$('#oddsMoverList'),note=$('#oddsMoverNote'),windowTag=$('#oddsMoverWindow');
+ if(!box||!note||!windowTag)return;
+ box.replaceChildren();
+ const data=oddsMoversFromHistory(raceOddsHistoryData,modelRaceOddsData,polls,modelMode);
+ if(!data){
+  box.append(elt('div','empty','Waiting for verified same-source odds history.'));
+  windowTag.textContent='NO COMPARABLE HISTORY';
+  note.textContent='Model odds movement requires genuine source-dated runs for the same candidates. The full current race probabilities remain available below.';
+  return;
+ }
+ if(!data.hasComparablePrevious){
+  box.append(elt('div','empty','First odds snapshot recorded. Waiting for another source run at least four hours later.'));
+  windowTag.textContent='HISTORY COLLECTING';
+ }else{
+  windowTag.textContent=data.hours+'h COMPARISON';
+  if(!data.movers.length)
+   box.append(elt('div','empty','No '+modelMode+' races changed by at least 2 percentage points in modeled Democratic win chance.'));
+  else for(const m of data.movers){
+   const btn=elt('button','model-odds-move');btn.type='button';
+   btn.setAttribute('aria-label','Open '+m.label+' '+m.office+' probability movement');
+   const identity=elt('div');
+   identity.append(elt('strong','',m.label+' · '+m.code),
+      elt('small','','D '+m.prior.toFixed(1)+'% → '+m.current.toFixed(1)+'% · '+m.dem+' vs. '+m.rep));
+   const change=elt('span','model-odds-change '+(m.delta>=0?'up':'down'),
+     (m.delta>=0?'D +':'D −')+Math.abs(m.delta).toFixed(1)+' pts');
+   btn.append(identity,change);
+   btn.addEventListener('click',()=>{
+    selectedModelState=m.code;modelPollMode='included';highlightedModelPoll=null;
+    renderModelOverview(latestSenateEstimates);
+    if(window.matchMedia&&window.matchMedia('(max-width:820px)').matches)
+      $('#modelDetail')?.scrollIntoView?.({behavior:'smooth',block:'start'});
+   });
+   box.append(btn);
+  }
+ }
+ note.textContent='Real published model snapshots; exact candidate matchups and model method are required. Differences reflect new polls, weight changes and changing assumed uncertainty—not necessarily a change in voter opinion. Only moves ≥2 probability points are listed.';
+}
+fetch('./data/race_probability_history.json',{cache:'no-store'})
+ .then(r=>{if(!r.ok)throw Error('odds history unavailable');return r.json()})
+ .then(setRaceOddsHistoryData).catch(()=>setRaceOddsHistoryData(null));
+
 function renderModelOverview(data){
  const board=$('#modelBoard');if(!board)return;
  const rows=modelRows(data);board.replaceChildren();
  renderModelEvidenceWatch(data);
+ renderOddsMovers(data);
  $('#modelRaceTotal').textContent=rows.length;
  $('#modelCloseTotal').textContent=rows.filter(s=>Math.abs(s.dem_minus_rep)<3).length;
  $('#modelThinTotal').textContent=rows.filter(s=>(s.contributing_pollsters??s.independent_pollsters??0)<3).length;
