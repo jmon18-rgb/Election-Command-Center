@@ -103,6 +103,21 @@ async function settle(){
  const oldRow=get('#modelPollRows tr.model-featured-poll');
  assert(oldRow.classList.contains('excluded'),
    'Previous Recon wave should be highlighted but NOT included in model average');
+ // An older, otherwise valid poll from the SAME firm must be reachable
+ // via All recent, but must NOT masquerade as the firm's included newest wave.
+ const oldRecon=primary.races.find(x=>x.race_code==='TX-SEN')?.polls.find(
+   p=>p.pollster.includes('ReconMR')&&p.field_end<'2026-10-08');
+ assert(oldRecon,'Missing older Recon survey fixture for inclusion-vs-source test');
+ const oldLink={race_code:'TX-SEN',poll_id:oldRecon.poll_id,
+   pollster:oldRecon.pollster,field_end:oldRecon.field_end,
+   source_url:oldRecon.source_poll_url||null};
+ w.eval('navigateInsightToModel({office:"senate",race:'+JSON.stringify(txSen)+
+        ',poll:'+JSON.stringify(oldLink)+'})');
+ assert.equal(get('#modelPollAll').getAttribute('aria-pressed'),'true',
+   'Excluded historic firm wave should open All recent, not In average');
+ const oldRow=get('#modelPollRows tr.model-featured-poll');
+ assert(oldRow.classList.contains('excluded'),
+   'Previous Recon wave should be highlighted but NOT included in model average');
  // Every visible pulse card needs a race office. No repeated anonymous Texas.
  w.eval('renderRacePulse('+JSON.stringify(model)+')');
  for(const card of get('#racePulse').querySelectorAll('button.pulse-tile')){
