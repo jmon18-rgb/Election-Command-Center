@@ -30,6 +30,10 @@ jobs:
         run: python3 scripts/test_senate_bias_holdout.py
       - name: Reproduce historical Senate bias holdouts from published source metrics
         run: python3 scripts/build_senate_bias_holdout.py
+      - name: Test ten-cycle chronological Senate research and future-data isolation
+        run: python3 scripts/test_long_run_senate.py
+      - name: Validate 2006–2024 Senate poll archive against official MIT returns
+        run: python3 scripts/research_long_run_senate.py
       - name: Validate polling model behavior
         run: python3 scripts/test_polling_models.py
       - name: Install DOM test environment
