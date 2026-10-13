@@ -77,7 +77,7 @@ class HistoricalSenateTests(unittest.TestCase):
             m.parse_source(example_csv().replace(",FALSE,",",UNCLEAR,",1))
     def test_reject_missing_candidate_votes(self):
         with self.assertRaisesRegex(ValueError,"missing candidate vote"):
-            m.parse_source(example_csv().replace(",110000\n",",N/A\n",1))
+            m.parse_source(example_csv().replace(",110000",",N/A",1))
     def test_reject_incomplete_universe(self):
         bad="\n".join(x for x in example_csv().splitlines() if not x.startswith("2024,"))
         with self.assertRaisesRegex(ValueError,"contest count"):
