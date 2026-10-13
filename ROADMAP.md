@@ -222,3 +222,11 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Restore is conservative: validate full 2026 vote/schema and all event records, reject pre-election, wrong office, future, corrupted, old (>72h) or oversized records. Restored counts explicitly display stale/reconnecting status rather than falsely appearing as live.
 - Only actual 2026 verified votes are stored, never 2024 rehearsal or derived model forecasts; source errors keep last-good information. DOM tests use a second real page instance across an offline reload and hostile/expired local storage to verify behavior.
 - Next: full cross-provider reconciliation and official call sources; an optional exportable audit trail if source terms and browser storage size allow.
+
+## October 13: source-locked experimental race probabilities
+
+- Added visible 2026 House, Senate, and governor Democratic-versus-Republican race percentages computed from qualifying candidate-specific polling and an explicit election-day error assumption.
+- Senate starting margin error = observed 42-race 2020–24 retrospective RMSE (5.633 points). House/governor defaults assumed; sparse, stale, sponsored-only and divergent sources widen uncertainty. No blanket retrospective partisan-bias correction.
+- Each race detail now has *tighter / baseline / wider* uncertainty controls, updating probability values. Race list also shows compact implied chances.
+- Build and verify the dataset with Python and actual JavaScript interaction tests; regenerate the source-dated artifact automatically after each four-hour polling refresh.
+- Next substantive probability milestone: complete unpolled seat fundamentals, common national/regional election errors, and a frozen competitive House/Senate slate for true four-ending joint simulations.
