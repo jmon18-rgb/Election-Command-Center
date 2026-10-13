@@ -729,10 +729,15 @@ async function settle(){
    ]}}
  };
  assert.equal(w.eval('enSourceValid('+JSON.stringify(counted2026)+',2026,"Senate")'),true);
- w.eval('enModeYear=2026;enOffice="Senate";enData=null');
- assert.equal(w.eval('enSourceValid('+JSON.stringify(counted2026)+',enModeYear,enOffice)'),true,
-  'Global selected year/office should match validated 2026 Senate payload');
- w.eval('enAcceptSource('+JSON.stringify(counted2026)+')');
+ const preWatchFetch=w.fetch;
+ w.fetch=async url=>({
+  ok:true,json:async()=>
+    String(url).includes('office=Senate')?counted2026:empty2026
+ });
+ get('#enMode2026').click();
+ get('#enOfficeSenate').click();
+ await w.eval('enLoad(true)');
+ w.fetch=preWatchFetch;
  assert.match(get('#enWatchItems').textContent,/NC-SEN/);
  assert.match(get('#enWatchItems').textContent,/300 counted/);
  assert.match(get('#enPinArea').textContent,/Unpin from watchlist/);
