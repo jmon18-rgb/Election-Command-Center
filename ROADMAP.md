@@ -84,3 +84,17 @@
 - [x] Test the staging parser, source fields and House universe in a separate GitHub Actions workflow.
 - [ ] Import additional 2022 House and 2020/2022/2024 Senate results, verify source license and election-year outcome denominator, then fit leave-year-out historical baselines.
 - [ ] Map/reaggregate 2024 votes onto **actual 2026 district geometries** where boundaries changed. Do not simply join 2024 district numbers onto 2026 seat slots.
+
+## Completed map-version milestone — October 13, 2026
+- [x] Check Census 120th Congress status against the 2024 map: **9 redrawn states / 173 district slots**, **41 unchanged states / 262 district slots**. Missouri is unchanged because the proposed replacement map was blocked. Historical 2024 two-party D/R vote comparisons are available for **238** unchanged-boundary districts; no old-map votes leak into 173 redrawn seats.
+- [x] Stage **2022 and 2024** MIT/MEDSL House returns separately (435 voting districts each), preserving raw candidate votes and missing-party flags.
+- [x] Check Census 119th Congress status against 2022: **5 additional/overlapping map-change states**; only **222 districts** have unchanged 2022→2024→2026 lines, and **191** have recorded major-party votes in both historical elections.
+- [x] Publish reproducible, source-linked geography bridges, script tests and model-tab historical context labeled *not a forecast*; maintain all 2026 forecast fields null.
+
+### Next priority: redrawn-district vote baselines and election-year validation
+1. Obtain trustworthy **2024 precinct-level election returns** and compatible precinct geography for the **nine changed-2026-map states**; join to 2026 Census 120th congressional boundary/block-equivalency files. Split precinct and non-geocoded returns require separately documented interpolation/uncertainty.
+2. Obtain **2024 presidential district-level baseline** on 2026 boundaries, not merely 2024 House candidate vote shares. Build a redistricting-aware precinct-to-district crosswalk and reconcile statewide totals.
+3. Add **2026 general-election candidate, incumbency and open-seat datasets**, verify actual effective maps and state law status immediately before voting.
+4. Add 2020/2022/2024 Senate historical candidate-vote returns and **verified 65 holdover caucus composition**. Backtest fundamentals out-of-year, then train national/regional correlated forecast errors against actual final results. Only then produce a full set of predicted House/Senate seats and four scenario probabilities.
+
+[Map rules and methodology](MAP_GEOGRAPHY.md) · [Seat model prerequisites](SEAT_MODEL.md).
