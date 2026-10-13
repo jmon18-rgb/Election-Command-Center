@@ -56,3 +56,7 @@ The supplemental PollResults.org feed is sorted by its **full source `createdAt`
 ## Model milestone — full national seat inventory
 
 `scripts/build_seat_universe.py` produces a source-linked `data/seat_universe.json` after every model refresh, and `scripts/test_seat_universe.py` verifies the district census denominator, Class II + Florida/Ohio specials, and missing-data gates. The **JackStradamus** tab displays live House and Senate polling coverage against the full universe. This is a prerequisite for a model, **not** a complete election-day seat projection; no new winning probabilities have been published.
+
+## Historical vote groundwork (not a forecast)
+
+A separate [2024 House history staging workflow](.github/workflows/stage-house-history.yml) ingests MIT/MEDSL constituency-level returns from a [CC0 mirror](https://crproject.org/), with source attribution and validation. It stores exactly 435 voting districts (not D.C.'s non-voting delegate), including flags for 44 contests without recorded votes for one of the two major parties. Every historic result is marked **ineligible as a 2026 prior** until its geography is verified against the 2026 redistricted map. See [SEAT_MODEL.md](SEAT_MODEL.md).
