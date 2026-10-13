@@ -1093,6 +1093,9 @@ async function settle(){
  rw.Date.now=()=>Date.parse('2026-10-22T12:00:00Z');
  assert.equal(rw.eval('enResumeRestore()'),false,
     'Election-night local cache cannot appear as pre-election reported votes');
+ // Allow the second page's normal asynchronous article/research fetches to
+ // settle before tearing down jsdom; an unmounted DOM is not a browser page.
+ await new Promise(resolve=>setTimeout(resolve,100));
  resumed.window.close();
 
  assert.equal(errors.length,0,'Application emitted errors: '+errors.slice(0,4).join(' | '));
