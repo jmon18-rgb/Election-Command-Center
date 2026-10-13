@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-13T00:48:46.464055Z",
-  "source_snapshot": "2026-10-13T00:48:45.908128Z",
+  "generated_at": "2026-10-13T00:53:22.105445Z",
+  "source_snapshot": "2026-10-13T00:53:21.740422Z",
   "type": "descriptive_polling_estimates",
   "is_election_forecast": false,
-  "method_version": "poll-mean-1.0",
+  "method_version": "poll-mean-1.1",
   "window_days": 45,
   "half_life_days": 21,
   "states": [
@@ -13,10 +13,23 @@
       "status": "multi_poll",
       "dem_candidate": "Troy Jackson",
       "rep_candidate": "Susan Collins",
-      "dem_pct": 50.07,
+      "dem_pct": 50.02,
       "rep_pct": 47.49,
-      "dem_minus_rep": 2.58,
+      "dem_minus_rep": 2.52,
       "independent_pollsters": 8,
+      "poll_diagnostics": {
+        "poll_count": 8,
+        "pollster_spread_points": 2.49,
+        "observed_margin_min": -2.8,
+        "observed_margin_max": 4.0,
+        "latest_poll_age_days": 8,
+        "single_poll": false,
+        "thin_polling": false,
+        "stale_latest_poll": false,
+        "high_poll_disagreement": false,
+        "different_matchups_excluded": 0,
+        "interpretation": "Observed poll dispersion and coverage only; not a fraud score, confidence interval, or probability."
+      },
       "latest_poll_end": "2026-10-05",
       "oldest_included_poll_end": "2026-09-21",
       "pollsters": [
@@ -61,7 +74,8 @@
           "sample_size": 1301
         }
       ],
-      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; equal sample-size weights; partisan-sponsored polls excluded",
+      "poll_source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
       "state": "OH",
@@ -69,10 +83,23 @@
       "status": "multi_poll",
       "dem_candidate": "Sherrod Brown",
       "rep_candidate": "Jon Husted",
-      "dem_pct": 49.07,
-      "rep_pct": 44.26,
-      "dem_minus_rep": 4.81,
+      "dem_pct": 48.89,
+      "rep_pct": 44.22,
+      "dem_minus_rep": 4.67,
       "independent_pollsters": 5,
+      "poll_diagnostics": {
+        "poll_count": 5,
+        "pollster_spread_points": 2.32,
+        "observed_margin_min": 2.6,
+        "observed_margin_max": 8.0,
+        "latest_poll_age_days": 8,
+        "single_poll": false,
+        "thin_polling": false,
+        "stale_latest_poll": false,
+        "high_poll_disagreement": false,
+        "different_matchups_excluded": 0,
+        "interpretation": "Observed poll dispersion and coverage only; not a fraud score, confidence interval, or probability."
+      },
       "latest_poll_end": "2026-10-05",
       "oldest_included_poll_end": "2026-09-27",
       "pollsters": [
@@ -102,7 +129,8 @@
           "sample_size": 500
         }
       ],
-      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; equal sample-size weights; partisan-sponsored polls excluded",
+      "poll_source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
       "state": "NC",
@@ -110,10 +138,23 @@
       "status": "multi_poll",
       "dem_candidate": "Roy Cooper",
       "rep_candidate": "Michael Whatley",
-      "dem_pct": 51.68,
-      "rep_pct": 41.36,
-      "dem_minus_rep": 10.31,
+      "dem_pct": 51.25,
+      "rep_pct": 41.26,
+      "dem_minus_rep": 10.0,
       "independent_pollsters": 6,
+      "poll_diagnostics": {
+        "poll_count": 6,
+        "pollster_spread_points": 3.21,
+        "observed_margin_min": 7.0,
+        "observed_margin_max": 15.1,
+        "latest_poll_age_days": 10,
+        "single_poll": false,
+        "thin_polling": false,
+        "stale_latest_poll": false,
+        "high_poll_disagreement": false,
+        "different_matchups_excluded": 0,
+        "interpretation": "Observed poll dispersion and coverage only; not a fraud score, confidence interval, or probability."
+      },
       "latest_poll_end": "2026-10-03",
       "oldest_included_poll_end": "2026-09-15",
       "pollsters": [
@@ -148,7 +189,8 @@
           "sample_size": 608
         }
       ],
-      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; equal sample-size weights; partisan-sponsored polls excluded",
+      "poll_source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
       "state": "MI",
@@ -156,10 +198,23 @@
       "status": "multi_poll",
       "dem_candidate": "Abdul El-Sayed",
       "rep_candidate": "Mike Rogers",
-      "dem_pct": 49.8,
-      "rep_pct": 46.05,
-      "dem_minus_rep": 3.75,
+      "dem_pct": 49.89,
+      "rep_pct": 45.69,
+      "dem_minus_rep": 4.2,
       "independent_pollsters": 6,
+      "poll_diagnostics": {
+        "poll_count": 6,
+        "pollster_spread_points": 2.14,
+        "observed_margin_min": 1.0,
+        "observed_margin_max": 7.0,
+        "latest_poll_age_days": 4,
+        "single_poll": false,
+        "thin_polling": false,
+        "stale_latest_poll": false,
+        "high_poll_disagreement": false,
+        "different_matchups_excluded": 0,
+        "interpretation": "Observed poll dispersion and coverage only; not a fraud score, confidence interval, or probability."
+      },
       "latest_poll_end": "2026-10-09",
       "oldest_included_poll_end": "2026-09-27",
       "pollsters": [
@@ -194,7 +249,8 @@
           "sample_size": 800
         }
       ],
-      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; equal sample-size weights; partisan-sponsored polls excluded",
+      "poll_source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
       "state": "GA",
@@ -202,10 +258,23 @@
       "status": "multi_poll",
       "dem_candidate": "Jon Ossoff",
       "rep_candidate": "Mike Collins",
-      "dem_pct": 53.27,
-      "rep_pct": 43.27,
+      "dem_pct": 53.86,
+      "rep_pct": 43.86,
       "dem_minus_rep": 10.0,
       "independent_pollsters": 2,
+      "poll_diagnostics": {
+        "poll_count": 2,
+        "pollster_spread_points": 0.0,
+        "observed_margin_min": 10.0,
+        "observed_margin_max": 10.0,
+        "latest_poll_age_days": 10,
+        "single_poll": false,
+        "thin_polling": true,
+        "stale_latest_poll": false,
+        "high_poll_disagreement": false,
+        "different_matchups_excluded": 0,
+        "interpretation": "Observed poll dispersion and coverage only; not a fraud score, confidence interval, or probability."
+      },
       "latest_poll_end": "2026-10-03",
       "oldest_included_poll_end": "2026-09-18",
       "pollsters": [
@@ -220,7 +289,8 @@
           "sample_size": 3301
         }
       ],
-      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; equal sample-size weights; partisan-sponsored polls excluded",
+      "poll_source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
       "state": "NH",
@@ -228,10 +298,23 @@
       "status": "multi_poll",
       "dem_candidate": "Chris Pappas",
       "rep_candidate": "John Sununu",
-      "dem_pct": 50.59,
-      "rep_pct": 43.3,
-      "dem_minus_rep": 7.29,
+      "dem_pct": 50.54,
+      "rep_pct": 43.44,
+      "dem_minus_rep": 7.11,
       "independent_pollsters": 4,
+      "poll_diagnostics": {
+        "poll_count": 4,
+        "pollster_spread_points": 1.41,
+        "observed_margin_min": 5.0,
+        "observed_margin_max": 8.0,
+        "latest_poll_age_days": 8,
+        "single_poll": false,
+        "thin_polling": false,
+        "stale_latest_poll": false,
+        "high_poll_disagreement": false,
+        "different_matchups_excluded": 0,
+        "interpretation": "Observed poll dispersion and coverage only; not a fraud score, confidence interval, or probability."
+      },
       "latest_poll_end": "2026-10-05",
       "oldest_included_poll_end": "2026-09-21",
       "pollsters": [
@@ -256,7 +339,8 @@
           "sample_size": 1392
         }
       ],
-      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; equal sample-size weights; partisan-sponsored polls excluded",
+      "poll_source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
       "state": "AK",
@@ -264,10 +348,23 @@
       "status": "multi_poll",
       "dem_candidate": "Mary Peltola",
       "rep_candidate": "Dan Sullivan",
-      "dem_pct": 47.7,
-      "rep_pct": 43.71,
-      "dem_minus_rep": 3.99,
+      "dem_pct": 48.0,
+      "rep_pct": 43.47,
+      "dem_minus_rep": 4.53,
       "independent_pollsters": 3,
+      "poll_diagnostics": {
+        "poll_count": 3,
+        "pollster_spread_points": 2.52,
+        "observed_margin_min": 2.0,
+        "observed_margin_max": 7.0,
+        "latest_poll_age_days": 10,
+        "single_poll": false,
+        "thin_polling": false,
+        "stale_latest_poll": false,
+        "high_poll_disagreement": false,
+        "different_matchups_excluded": 0,
+        "interpretation": "Observed poll dispersion and coverage only; not a fraud score, confidence interval, or probability."
+      },
       "latest_poll_end": "2026-10-03",
       "oldest_included_poll_end": "2026-09-11",
       "pollsters": [
@@ -287,7 +384,8 @@
           "sample_size": 800
         }
       ],
-      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; equal sample-size weights; partisan-sponsored polls excluded",
+      "poll_source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
       "state": "IA",
@@ -295,10 +393,23 @@
       "status": "multi_poll",
       "dem_candidate": "Josh Turek",
       "rep_candidate": "Ashley Hinson",
-      "dem_pct": 46.76,
-      "rep_pct": 45.44,
-      "dem_minus_rep": 1.31,
+      "dem_pct": 46.68,
+      "rep_pct": 45.48,
+      "dem_minus_rep": 1.21,
       "independent_pollsters": 6,
+      "poll_diagnostics": {
+        "poll_count": 6,
+        "pollster_spread_points": 3.95,
+        "observed_margin_min": -2.0,
+        "observed_margin_max": 8.0,
+        "latest_poll_age_days": 7,
+        "single_poll": false,
+        "thin_polling": false,
+        "stale_latest_poll": false,
+        "high_poll_disagreement": false,
+        "different_matchups_excluded": 0,
+        "interpretation": "Observed poll dispersion and coverage only; not a fraud score, confidence interval, or probability."
+      },
       "latest_poll_end": "2026-10-06",
       "oldest_included_poll_end": "2026-09-20",
       "pollsters": [
@@ -333,7 +444,8 @@
           "sample_size": 1050
         }
       ],
-      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; equal sample-size weights; partisan-sponsored polls excluded",
+      "poll_source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
       "state": "TX",
@@ -341,10 +453,23 @@
       "status": "multi_poll",
       "dem_candidate": "James Talarico",
       "rep_candidate": "Ken Paxton",
-      "dem_pct": 49.17,
-      "rep_pct": 44.7,
-      "dem_minus_rep": 4.46,
+      "dem_pct": 49.06,
+      "rep_pct": 44.74,
+      "dem_minus_rep": 4.32,
       "independent_pollsters": 8,
+      "poll_diagnostics": {
+        "poll_count": 8,
+        "pollster_spread_points": 2.58,
+        "observed_margin_min": 0.0,
+        "observed_margin_max": 7.0,
+        "latest_poll_age_days": 8,
+        "single_poll": false,
+        "thin_polling": false,
+        "stale_latest_poll": false,
+        "high_poll_disagreement": false,
+        "different_matchups_excluded": 0,
+        "interpretation": "Observed poll dispersion and coverage only; not a fraud score, confidence interval, or probability."
+      },
       "latest_poll_end": "2026-10-05",
       "oldest_included_poll_end": "2026-09-19",
       "pollsters": [
@@ -389,7 +514,8 @@
           "sample_size": 1800
         }
       ],
-      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; equal sample-size weights; partisan-sponsored polls excluded",
+      "poll_source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
       "state": "NE",
@@ -397,10 +523,23 @@
       "status": "multi_poll",
       "dem_candidate": "Dan Osborn",
       "rep_candidate": "Pete Ricketts",
-      "dem_pct": 47.65,
-      "rep_pct": 47.09,
-      "dem_minus_rep": 0.57,
+      "dem_pct": 47.5,
+      "rep_pct": 47.13,
+      "dem_minus_rep": 0.38,
       "independent_pollsters": 3,
+      "poll_diagnostics": {
+        "poll_count": 3,
+        "pollster_spread_points": 4.04,
+        "observed_margin_min": -4.0,
+        "observed_margin_max": 4.0,
+        "latest_poll_age_days": 10,
+        "single_poll": false,
+        "thin_polling": false,
+        "stale_latest_poll": false,
+        "high_poll_disagreement": false,
+        "different_matchups_excluded": 0,
+        "interpretation": "Observed poll dispersion and coverage only; not a fraud score, confidence interval, or probability."
+      },
       "latest_poll_end": "2026-10-03",
       "oldest_included_poll_end": "2026-09-13",
       "pollsters": [
@@ -420,7 +559,8 @@
           "sample_size": 503
         }
       ],
-      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; equal sample-size weights; partisan-sponsored polls excluded",
+      "poll_source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
       "state": "KS",
@@ -428,10 +568,23 @@
       "status": "multi_poll",
       "dem_candidate": "Adam Hamilton",
       "rep_candidate": "Roger Marshall",
-      "dem_pct": 47.17,
-      "rep_pct": 45.18,
-      "dem_minus_rep": 1.99,
+      "dem_pct": 47.03,
+      "rep_pct": 45.33,
+      "dem_minus_rep": 1.7,
       "independent_pollsters": 4,
+      "poll_diagnostics": {
+        "poll_count": 4,
+        "pollster_spread_points": 1.21,
+        "observed_margin_min": 0.1,
+        "observed_margin_max": 3.0,
+        "latest_poll_age_days": 9,
+        "single_poll": false,
+        "thin_polling": false,
+        "stale_latest_poll": false,
+        "high_poll_disagreement": false,
+        "different_matchups_excluded": 0,
+        "interpretation": "Observed poll dispersion and coverage only; not a fraud score, confidence interval, or probability."
+      },
       "latest_poll_end": "2026-10-04",
       "oldest_included_poll_end": "2026-09-16",
       "pollsters": [
@@ -456,7 +609,8 @@
           "sample_size": 750
         }
       ],
-      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; equal sample-size weights; partisan-sponsored polls excluded",
+      "poll_source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
       "state": "MN",
@@ -464,10 +618,23 @@
       "status": "multi_poll",
       "dem_candidate": "Peggy Flanagan",
       "rep_candidate": "Michele Tafoya",
-      "dem_pct": 45.29,
-      "rep_pct": 41.95,
-      "dem_minus_rep": 3.33,
+      "dem_pct": 45.24,
+      "rep_pct": 42.0,
+      "dem_minus_rep": 3.24,
       "independent_pollsters": 3,
+      "poll_diagnostics": {
+        "poll_count": 3,
+        "pollster_spread_points": 2.31,
+        "observed_margin_min": 0.0,
+        "observed_margin_max": 4.0,
+        "latest_poll_age_days": 6,
+        "single_poll": false,
+        "thin_polling": false,
+        "stale_latest_poll": false,
+        "high_poll_disagreement": false,
+        "different_matchups_excluded": 0,
+        "interpretation": "Observed poll dispersion and coverage only; not a fraud score, confidence interval, or probability."
+      },
       "latest_poll_end": "2026-10-07",
       "oldest_included_poll_end": "2026-09-14",
       "pollsters": [
@@ -487,7 +654,8 @@
           "sample_size": 654
         }
       ],
-      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; equal sample-size weights; partisan-sponsored polls excluded",
+      "poll_source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     }
   ],
   "limitations": [
