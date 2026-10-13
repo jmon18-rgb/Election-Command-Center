@@ -8,7 +8,7 @@ A personal, data-first 2026 U.S. midterms dashboard. Serious about polling; occa
 - **JackStradamus:** weighted polling averages for Senate, House, governors, and national generic ballot. Every firm gets a visible influence share and source-linked ratings context. The **national seat inventory** now identifies all 435 House seats, all 35 Senate contests and 65 holdovers, plus exactly which seats have actual qualifying polling. Full forecasts are blocked until district-specific fundamentals and historical calibration exist; see [SEAT_MODEL.md](SEAT_MODEL.md).
 - **Four congressional outcomes:** Red Dawn = Republicans control both chambers; Shrug = Democrats control one; Blue Wave = Democrats control both; Blue Tsunami = both plus a near-sweep of a frozen battleground slate. No probabilities until the complete seat model is calibrated. See [SCENARIOS.md](SCENARIOS.md).
 - **Race Lab:** individual poll observations, source dates and sponsor labels.
-- **Election Night:** an explicitly partial free-state vote feed, selected 2024 archive, readable D/R leads and vote margins, with reporting limitations.
+- **Election Night:** a working on-site 2024 House archive (435 districts, MIT/MEDSL historical party totals), source-linked and searchable; no invented candidates, precinct progress, calls, or 2026 live results. The provider's election-specific endpoint presently blocks cross-origin browser access; a licensed compatible live feed remains on the roadmap.
 - **Bullshittery Index:** documented election-administration issues kept separate from voter preferences and candidate polling. See [BULLSHITTERY.md](BULLSHITTERY.md).
 
 ## Poll weighting
@@ -99,3 +99,5 @@ Poll Wire distinguishes:
 If a survey has both LV and RV results, different sample populations remain separate **observations**; they are not automatically interpreted as independent surveys. “No sponsor listed” is not proof of an independent survey. Source posting is not independently verified first-release time; the source's timestamp timezone is unspecified. Model averages remain descriptive, not vote or seat predictions.
 
 The existing site keeps its four-hour ingestion schedule, so a new indexed poll will appear only after the next successfully published refresh. This upgrade adds no new email configuration or setup requirements.
+
+**Election Night source correction:** Open America's dedicated [election API documentation](https://openamerica.io/elections/api/) says its results endpoint currently lacks CORS; its generic API page is not a safe guarantee for this endpoint. The local 2024 rehearsal now reads the repository's own [historical 2024 House staging file](data/house_history_2024_staging.json) rather than fetching the inaccessible external results JSON. See [ELECTION_NIGHT_SOURCES.md](ELECTION_NIGHT_SOURCES.md).

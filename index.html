@@ -248,7 +248,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <button id="enRefresh" type="button" class="chip">Refresh</button>
 </div>
 <div class="en-status" id="enStatus" role="status">Election Day is November 3. The 2024 archive is available for rehearsal before 2026 results begin.</div>
-<div class="en-archive-intro" id="enArchiveIntro">Historical replay mode: real 2024 results in the source archive, not a minute-by-minute reconstruction of election night. No race calls or national seat-control projections are inferred.</div>
+<div class="en-archive-intro" id="enArchiveIntro">2024 House rehearsal uses MIT/MEDSL's historical recorded party-level votes across all 435 districts. It is <strong>not a minute-by-minute replay</strong> and does not identify individual candidates, certified winners, or precinct progress. A 2024 district number must not be treated as the same geographic seat in 2026 after redistricting.</div>
 <div class="en-activity-box" id="enActivityBox"><div class="en-activity-head"><strong>What just changed in the reported vote?</strong><span class="tiny">Session tracking · source update comparisons</span></div><div id="enActivityFeed" class="en-message">Reporting movements will appear when refreshed 2026 source snapshots change during this viewing session. This is not a nationally complete timeline.</div></div>
 <div class="en-metrics">
  <div class="en-stat"><small>RACES IN THIS FEED</small><b id="enRaces">—</b></div>
@@ -256,7 +256,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div class="en-stat"><small>REPUBLICAN VOTE LEADS</small><b id="enRLeads">—</b></div>
  <div class="en-stat"><small>RACE CALLS</small><b id="enCalls">Not supplied</b></div>
 </div>
-<div class="en-footnote">The source documents coverage in 22 states, not all 50. Vote leads are <strong>not race calls</strong> or projected winners. Neither chamber's control can be inferred by counting these leaders. Missing races mean no supported feed, not zero votes.</div>
+<div class="en-footnote">2024 House rehearsal: 435 historical districts using MIT/MEDSL candidate-party vote totals. This is <strong>not a chronological election-night replay</strong>, and 2024 districts are not automatically comparable with 2026 lines. The outside Open America election-results endpoint currently prohibits cross-origin browser fetches; its 22-state feed cannot be reliably loaded from GitHub Pages. The 2026 live feed remains <strong>unconnected</strong> rather than presenting missing results as zeros, race calls or national chamber control.</div>
 <div class="en-workspace">
  <div class="en-race-panel">
   <div class="en-race-tools"><strong id="enRaceHeading">House races</strong><input id="enSearch" type="search" placeholder="Search state, seat, candidate" aria-label="Filter election night races"/></div>
@@ -1336,21 +1336,63 @@ document.querySelectorAll('#securitySearch,#securityOrder').forEach(e=>e.addEven
 
 
 /* Election Night: public state-derived feed, no unofficial winner calls. */
-const enApiBase='https://openamerica.io/elections/results.json';
+// A browser cannot fetch Open America's elections endpoint under its current CORS policy.
 let enModeYear=Date.now()<Date.parse('2026-11-03T00:00:00Z')?2024:2026;
-let enOffice='House',enData=null,enSelected=null,enTimer=null,enRequestSerial=0;
+let enOffice='House',enData=null,enSelected=null,enTimer=null,enRequestSerial=0,enVisibleLimit=120;
 let enFetchError=null,enLastFetchAt=null,enMovements=[];
 function enIsVisible(){return $('#electionNight')?.classList.contains('active')}
 function enNum(n){return typeof n==='number'&&Number.isFinite(n)?n.toLocaleString('en-US'):'—'}
 function enFormattedTime(v){const d=v?new Date(v):null;return d&&!isNaN(+d)?d.toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}):'unknown'}
 
+/* Our own CC0 House-returns staging is a robust local 2024 rehearsal.
+   Historical party vote rows are NOT candidate-level results, verified race
+   calls, precinct progress, or 2026 mapped district estimates. */
+function enBuildHouseArchive(raw){
+ if(!raw||raw.status!=='2024_history_staged_not_2026_priors'||
+   raw["2024_district_rows"]!==435||raw.records?.length!==435||
+   raw.source_license?.includes('CC0')!==true)
+   throw Error('2024 MEDSL historical House file failed provenance/coverage checks');
+ const races={};let missingParty=0;
+ for(const row of raw.records){
+  const key=row?.["2024_race_code"];
+  if(typeof key!=='string'||!/^[A-Z]{2}-\d{2}$/.test(key)||races[key]||
+     row.election_year!==2024||row.eligible_as_2026_prior!==false)
+    throw Error('Malformed or duplicate historical 2024 district');
+  const d=row.recorded_dem_votes,r=row.recorded_rep_votes,o=row.recorded_other_votes;
+  if(![d,r,o].every(x=>Number.isSafeInteger(x)&&x>=0)||d+r+o<=0||
+     row.recorded_two_party_vote_total!==d+r||
+     typeof row.missing_major_party_votes!=='boolean')
+    throw Error('Invalid historical party-vote totals');
+  if(row.missing_major_party_votes)missingParty++;
+  const total=d+r+o;
+  const cands=[
+   {n:'Democratic party total',p:'D',v:d,pct:100*d/total},
+   {n:'Republican party total',p:'R',v:r,pct:100*r/total}
+  ];
+  if(o)cands.push({n:'Other party and independent totals',p:'O',v:o,pct:100*o/total});
+  races[key]={leader:'',called:false,winner:'',pct_in:null,total,
+    uncontested:false,cands,missing_major_party_votes:row.missing_major_party_votes};
+ }
+ if(missingParty!==raw.districts_missing_major_party_votes||Object.keys(races).length!==435)
+  throw Error('Historical House coverage or unopposed-ballot flags inconsistent');
+ return {api:1,year:2024,office:'House',live:false,stale:false,counting:true,final:false,
+   source:'medsl_house_2024_party_aggregates',as_of:null,
+   counts:{races:435,with_precincts:0,reporting:0,not_called:435,called:{}},
+   races,archive_missing_major_party_districts:missingParty,
+   archive_source_url:raw.source_original,archive_license:raw.source_license,
+   archive_imported_at:raw.extracted_at};
+}
 function enSourceValid(o,year,office){
  if(!o||o.api!==1||o.year!==year||o.office!==office||
-  (o.source!==''&&o.source!=='state')||!o.races||Array.isArray(o.races)||
+  (o.source!==''&&o.source!=='state'&&!(year===2024&&office==='House'&&o.source==='medsl_house_2024_party_aggregates'))||!o.races||Array.isArray(o.races)||
   typeof o.races!=='object'||Object.keys(o.races).length>550)return false;
  if(['live','stale','counting','final'].some(k=>typeof o[k]!=='boolean'))return false;
  if(o.live&&(o.stale||o.final||!o.counting))return false;
  if(!o.counts||o.counts.races!==Object.keys(o.races).length)return false;
+ if(o.source==='medsl_house_2024_party_aggregates'&&
+   (year!==2024||office!=='House'||Object.keys(o.races).length!==435||
+    !Number.isInteger(o.archive_missing_major_party_districts)||o.archive_missing_major_party_districts<0||
+    !o.archive_source_url?.startsWith('https://dataverse.harvard.edu/')))return false;
  if(year===2026&&Date.now()<Date.parse('2026-11-03T00:00:00Z')&&
     Object.values(o.races).some(r=>Number(r?.total)>0))return false;
  if(o.as_of){
@@ -1440,9 +1482,13 @@ function enRender(){
  $('#enDLeads').textContent=enNum(ready.filter(([,r])=>enCurrentLeader(r)?.p==='D').length);
  $('#enRLeads').textContent=enNum(ready.filter(([,r])=>enCurrentLeader(r)?.p==='R').length);
  $('#enCalls').textContent='Not supplied';
+ const archivedMEDSL=enModeYear===2024&&enData?.source==='medsl_house_2024_party_aggregates';
  const asOfAge=enData?.as_of?(Date.now()-Date.parse(enData.as_of))/60000:Infinity;
  const sourceDelayed=enModeYear===2026&&enData&&(enData.stale||(enData.counting&&(!enData.live||asOfAge>180)));
- let info=enData?
+ let info=enData&&archivedMEDSL?
+  '2024 HOUSE ARCHIVE · '+rows.length+' voting districts nationwide · party-level recorded votes (MIT/MEDSL) · '+
+  enData.archive_missing_major_party_districts+' districts missing one major party\'s recorded vote · no precinct feed or race calls':
+  enData?
   (enModeYear===2024?'2024 ARCHIVE · ':'2026 STATE-DERIVED RETURNS · ')+
   rows.length+' reported races · source updated '+enFormattedTime(enData.as_of)+
   (enModeYear===2026?(sourceDelayed?' · NOT CURRENT':' · '+(enData.live?'LIVE':'REPORTING NOT STARTED')):' · HISTORICAL SNAPSHOT'):
@@ -1458,10 +1504,10 @@ function enRender(){
  enRenderMovement();
  enUpdateSelection();
  const query=($('#enSearch').value||'').trim().toLowerCase(),list=$('#enRaceList');list.replaceChildren();
- if(!rows.length){list.append(elt('p','empty',enModeYear===2026?'No 2026 results from supported states yet. Try 2024 Archive to explore the display.':'No archived race data returned from this feed.'));enRenderDetail();return}
+ if(!rows.length){list.append(elt('p','empty',enModeYear===2026?'No validated 2026 results source is connected. Original state election results can be opened from the source links below.':'No verified archive for this office. 2024 House is available from MIT/MEDSL.'));enRenderDetail();return}
  const filtered=rows.filter(([key,r])=>!query||(key+' '+(r.cands||[]).map(p=>p.n).join(' ')).toLowerCase().includes(query));
  filtered.sort((a,b)=>{const pa=a[1].pct_in,pb=b[1].pct_in;return (a[1].total?0:1)-(b[1].total?0:1)||String(a[0]).localeCompare(String(b[0]))});
- for(const [key,r] of filtered.slice(0,250)){
+ for(const [key,r] of filtered.slice(0,enVisibleLimit)){
   const btn=elt('button','en-race-entry');btn.type='button';btn.setAttribute('aria-pressed',String(key===enSelected));
   const name=elt('div');name.append(elt('strong','',key),elt('small','',enNum(r.total)+' votes · '+(typeof r.pct_in==='number'?r.pct_in.toFixed(1)+'% precincts':'precinct data unavailable')));
   const right=elt('div','en-race-lead');const leader=enCurrentLeader(r),edge=enLeadInfo(r);
@@ -1472,9 +1518,14 @@ function enRender(){
   }else right.append(elt('b','','No votes yet'));
   btn.append(name,right);btn.addEventListener('click',()=>{enSelected=key;enRender()});list.append(btn);
  }
- if(filtered.length>250)list.append(elt('p','empty','Showing first 250 matched races.'));
+ if(filtered.length>enVisibleLimit){
+  const more=elt('button','en-race-entry','Show '+Math.min(120,filtered.length-enVisibleLimit)+
+    ' more districts ('+(filtered.length-enVisibleLimit)+' remaining)');
+  more.type='button';more.addEventListener('click',()=>{enVisibleLimit+=120;enRender()});list.append(more);
+ }
  enRenderDetail();
 }
+function archivedMEDSLDetail(){return enModeYear===2024&&enData?.source==='medsl_house_2024_party_aggregates'}
 function enRenderDetail(){
  const found=enCurrentRaces().find(([id])=>id===enSelected);
  const title=$('#enDetailTitle'),summary=$('#enDetailSummary'),cands=$('#enCandidateList'),meta=$('#enDetailMeta'),comparison=$('#enPollReference');
@@ -1490,7 +1541,10 @@ function enRenderDetail(){
    const votes=elt('span','',enNum(edge.votes)+' votes ahead · '+(leader.n||leader.p));
    summary.append(chip,votes);
  }else summary.append(elt('span','','No votes reported.'));
- summary.append(elt('span','en-report-line',enNum(r.total)+' total votes counted · '+(typeof r.pct_in==='number'?r.pct_in.toFixed(1)+'% of precincts reporting':'Reporting share unavailable')+' · NOT a race call'));
+ summary.append(elt('span','en-report-line',
+  archivedMEDSLDetail()?
+   enNum(r.total)+' recorded party votes in the 2024 House election · candidate-by-candidate counts not in this archive · NOT a race call':
+   enNum(r.total)+' total votes counted · '+(typeof r.pct_in==='number'?r.pct_in.toFixed(1)+'% of precincts reporting':'Reporting share unavailable')+' · NOT a race call'));
  if(Number.isFinite(r.pct_in)){
   const progress=elt('div','en-report-progress'),fill=elt('div','en-report-fill');fill.style.width=Math.min(100,Math.max(0,r.pct_in))+'%';progress.append(fill);summary.append(progress);
   summary.append(elt('span','en-report-note','Precincts reporting, not estimated percent of all votes counted'));
@@ -1502,7 +1556,15 @@ function enRenderDetail(){
   bar.style.width=Math.max(0,Math.min(100,Number(cand.pct)||0))+'%';track.append(bar);
   wrap.append(head,track);cands.append(wrap)
  }
- meta.textContent='Source: official state election office via Open America · '+(enModeYear===2024?'2024 historical snapshot':'2026 unofficial')+' · '+(r.called?'Source reports a call':'No race call supplied')+'.';
+ meta.textContent=archivedMEDSLDetail()?
+  'Source: MIT Election Data and Science Lab, recorded 2024 U.S. House candidate-party returns (CC0 mirror). Aggregated by party, not named candidates. '+(r.missing_major_party_votes?
+  'At least one major party had no recorded candidate votes; do not interpret zero as voter preference. ':'')+
+  'Historical district geography, not 2026 boundaries. No calls, precinct updates or election-day forecasts.':
+  'Source: official state election office via Open America · '+(enModeYear===2024?'2024 historical snapshot':'2026 unofficial')+' · '+(r.called?'Source reports a call':'No race call supplied')+'.';
+ if(archivedMEDSLDetail()){
+   const source=elt('a','pollsource','MIT/MEDSL historical dataset ↗');
+   source.href=enData.archive_source_url;source.target='_blank';source.rel='noopener noreferrer';meta.append(source);
+ }
  const sourceState=key.slice(0,2);
  const officialUrl=sourceState==='NC'?'https://www.ncsbe.gov/results-data/election-results':sourceState==='TX'?'https://electionresults.sos.state.tx.us/results.html':null;
  if(officialUrl){const a=elt('a','pollsource','Official '+sourceState+' results ↗');a.href=officialUrl;a.rel='noopener noreferrer';a.target='_blank';meta.append(a)}
@@ -1519,10 +1581,12 @@ async function enLoad(manual=false){
  const serial=++enRequestSerial,year=enModeYear,office=enOffice;
  if(manual)$('#enStatus').textContent='Checking state-derived '+office.toLowerCase()+' returns…';
  try{
-  const url=enApiBase+'?year='+year+'&office='+encodeURIComponent(office);
-  const res=await fetch(url,{cache:'no-cache',credentials:'omit'});
-  if(!res.ok)throw Error('Results provider HTTP '+res.status);
-  const obj=await res.json();
+  if(year!==2024||office!=='House')
+    throw Error('No browser-compatible, rights-cleared results feed is connected for '+year+' '+office+
+      '. Open an official or decision-desk source below for those results.');
+  const res=await fetch('./data/house_history_2024_staging.json',{cache:'no-store'});
+  if(!res.ok)throw Error('Local 2024 House archive HTTP '+res.status);
+  const obj=enBuildHouseArchive(await res.json());
   if(serial!==enRequestSerial)return;
   enAcceptSource(obj);
  }catch(error){
@@ -1534,13 +1598,11 @@ async function enLoad(manual=false){
   $('#enStatus').textContent=(enData?'LAST VERIFIED RESULTS RETAINED · ':'RESULTS UNAVAILABLE · ')+
    'Last refresh failed: '+enFetchError+'. No polling estimates or fabricated counts are substituted.';
  }
- if(enIsVisible()&&enModeYear===2026){
-  const interval=enData?.live?60000:enData?.counting?900000:600000;
-  enTimer=setTimeout(()=>enLoad(false),interval);
- }
+ // Do not loop-poll a cross-origin API that explicitly denies browser CORS.
+ // A licensed compatible 2026 adapter must pass contract tests before enabling timers.
 }
 function enSwitch(year,office){
- enModeYear=year;enOffice=office;enData=null;enFetchError=null;enSelected=null;$('#enSearch').value='';enRender();enLoad(true);
+ enModeYear=year;enOffice=office;enData=null;enFetchError=null;enSelected=null;enVisibleLimit=120;$('#enSearch').value='';enRender();enLoad(true);
 }
 $('#enMode2026').addEventListener('click',()=>enSwitch(2026,enOffice));
 $('#enMode2024').addEventListener('click',()=>enSwitch(2024,enOffice));
@@ -1548,7 +1610,7 @@ $('#enOfficeHouse').addEventListener('click',()=>enSwitch(enModeYear,'House'));
 $('#enOfficeSenate').addEventListener('click',()=>enSwitch(enModeYear,'Senate'));
 $('#enOfficeGovernor').addEventListener('click',()=>enSwitch(enModeYear,'Governor'));
 $('#enRefresh').addEventListener('click',()=>enLoad(true));
-$('#enSearch').addEventListener('input',enRender);
+$('#enSearch').addEventListener('input',()=>{enVisibleLimit=120;enRender()});
 document.querySelector('.tab[data-page="electionNight"]').addEventListener('click',()=>{if(!enData)enLoad(true);else if(enModeYear===2026&&!enTimer)enLoad(false)});
 document.querySelectorAll('.tab:not([data-page="electionNight"])').forEach(el=>el.addEventListener('click',()=>{if(enTimer){clearTimeout(enTimer);enTimer=null}}));
 enRender();
