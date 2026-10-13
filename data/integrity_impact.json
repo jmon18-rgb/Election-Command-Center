@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "updated_at": "2026-10-12",
-  "coverage": "Initial curated, non-exhaustive election-administration litigation records; voter-impact counts not established",
+  "coverage": "Curated, non-exhaustive sourced litigation and administration developments; reported record volumes are not disenfranchised voter counts",
   "methodology": {
     "primary_metric": "Potentially affected voters or ballots, only when grounded in a cited primary source",
     "count_rules": [
@@ -55,6 +55,18 @@
     {
       "state": "MA",
       "name": "Massachusetts",
+      "records": 1,
+      "unique_voters_affected": null
+    },
+    {
+      "state": "TX",
+      "name": "Texas",
+      "records": 1,
+      "unique_voters_affected": null
+    },
+    {
+      "state": "NC",
+      "name": "North Carolina",
       "records": 1,
       "unique_voters_affected": null
     }
@@ -197,6 +209,58 @@
       ],
       "impact_assessment": "not_quantified",
       "case_type": "legal_dispute"
+    },
+    {
+      "id": "tx-registration-transmission-2026",
+      "state": "TX",
+      "title": "Texas registration-record transmission backlog",
+      "mechanism": "Registration processing",
+      "verification_status": "documented_action",
+      "last_updated": "2026-10-12",
+      "event_date": "2026-09-22",
+      "summary": "A software error delayed delivery of at least 500,000 voter registration applications and update records to counties. State officials report the transmission error was fixed; counties were processing delayed records. This figure is records, not unique voters denied a ballot.",
+      "units": "records",
+      "potentially_affected": 500000,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "impact_assessment": "record_volume_not_unique_voters",
+      "count_as_of": "2026-10-01",
+      "count_source_notes": "Reported statewide backlog of at least 500,000 registration and update records; does not establish unique individuals or ballots.",
+      "sources": [
+        {
+          "publisher": "Texas Tribune / Votebeat",
+          "url": "https://www.texastribune.org/2026/10/01/texas-voter-registration-dps-secretary-state-2026-delay-dmv/"
+        }
+      ],
+      "case_type": "administrative_issue"
+    },
+    {
+      "id": "nc-sunday-voting-2026",
+      "state": "NC",
+      "title": "Sunday early-voting hours removed in 10 counties",
+      "mechanism": "Early voting schedule",
+      "verification_status": "documented_action",
+      "last_updated": "2026-10-12",
+      "event_date": "2026-08-20",
+      "summary": "The state elections board approved early-voting plans eliminating Sunday hours in ten counties that offered them in 2022. This is a change in access options; the number of voters whose ballots are affected is unknown.",
+      "units": "voters",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "impact_assessment": "not_quantified",
+      "sources": [
+        {
+          "publisher": "NC Newsline",
+          "url": "https://ncnewsline.com/2026/08/21/republicans-on-the-nc-elections-board-agree-to-drop-sunday-early-voting-hours-in-10-more-counties/"
+        },
+        {
+          "publisher": "NC State Board of Elections",
+          "url": "https://www.ncsbe.gov/voting/vote-early-person"
+        }
+      ],
+      "case_type": "voting_access"
     }
   ]
 }
