@@ -993,7 +993,8 @@ async function settle(){
  assert(govRequests.some(x=>x.includes('/race/87284?light=')));
  assert.match(get('#enWatchItems').textContent,/NH-GOV/);
  assert.match(get('#enWatchItems').textContent,/civicAPI · 1,000 reported votes/);
- assert.equal(w.eval('enCivicByWatch["Governor|NH"].race_id'),87284);
+ assert.match(w.eval('enCivicURL('+JSON.stringify(govItem)+')'),/\/race\/87284$/,
+   'New Hampshire governor source link must match the exact validated race ID');
  assert.equal(get('#enRaces').textContent,primaryRaceCountBeforeCivic,
    'NH Governor civicAPI counts must never enter primary provider totals');
  const govRow=get('#enWatchItems .en-watch-open[aria-label="Open NH-GOV Governor 2026 results"]');
@@ -1004,7 +1005,7 @@ async function settle(){
  providerGovDetail={...govDetail,id:87283,percent_reporting:75,
    last_updated:'2026-11-04T02:00:00Z'};
  await w.eval('enCivicFetchOne('+JSON.stringify(govItem)+')');
- assert.equal(w.eval('enCivicByWatch["Governor|NH"].total'),1000,
+ assert.match(w.eval('enCivicStatus('+JSON.stringify(govItem)+')'),/1,000 reported votes/,
    'Wrong ID must not erase the last verified New Hampshire governor vote count');
  assert.match(get('#enWatchItems').textContent,/SOURCE RETRYING/);
  assert.equal(get('#enRaces').textContent,primaryRaceCountBeforeCivic);
