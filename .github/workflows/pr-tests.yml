@@ -18,6 +18,8 @@ jobs:
         run: python3 scripts/test_poll_alerts.py
       - name: Validate historical Senate election importer without network access
         run: python3 scripts/test_senate_history.py
+      - name: Stage MIT Senate research outcomes from official Harvard Dataverse
+        run: python3 scripts/stage_senate_history.py
       - name: Validate polling model behavior
         run: python3 scripts/test_polling_models.py
       - name: Install DOM test environment
