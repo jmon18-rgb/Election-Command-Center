@@ -8,6 +8,11 @@ root = Path(__file__).resolve().parents[1]
 html = (root / "index.html").read_text(encoding="utf-8")
 must_have = (
     'id="modelBoard"',
+    'id="modelDetail"',
+    'id="modelChart"',
+    'id="modelPollRows"',
+    'function modelPollEntries(estimate)',
+    'function renderModelRaceDetail()',
     'function renderModelOverview(data)',
     'renderModelOverview(data);',
     'id="newPolls"',
@@ -29,6 +34,10 @@ must_not_have = (
     'id="modelState"',
     'id="modelHalf"',
     'id="modelDays"',
+    'id="senatePaths"',
+    'id="war"',
+    'data-page="senatePaths"',
+    'data-page="war"',
     'Ridiculous name. Real math.',
     'Methodology, data quality and sources',
     'THE DAILY DAMAGE REPORT',
@@ -38,7 +47,7 @@ for term in must_have:
     assert term in html, f"Required dashboard feature missing: {term}"
 for term in must_not_have:
     assert term not in html, f"Removed or redundant panel returned: {term}"
-for identifier in ('newPolls', 'jackRadar', 'senateEstimateCards', 'modelBoard', 'modelRaceTotal', 'modelCloseTotal', 'modelThinTotal'):
+for identifier in ('newPolls', 'jackRadar', 'senateEstimateCards', 'modelBoard', 'modelRaceTotal', 'modelCloseTotal', 'modelThinTotal', 'modelDetail', 'modelChart', 'modelPollRows', 'modelPollIncluded', 'modelPollAll'):
     assert len(re.findall(rf'id="{identifier}"', html)) == 1, identifier
 scripts = re.findall(r"<script(?:\s[^>]*)?>(.*?)</script>", html, flags=re.S)
 assert scripts, "No inline dashboard script found"
