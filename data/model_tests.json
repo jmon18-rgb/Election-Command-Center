@@ -1,0 +1,57 @@
+{
+  "source_snapshot": "2026-10-13T00:20:17.246200Z",
+  "test": "Strict walk-forward, held-out next poll, grouped by candidate matchup",
+  "eligible_matchup_groups": 35,
+  "methods": {
+    "equal": {
+      "comparisons": 98,
+      "independent_matchup_clusters": 31,
+      "mae_points": 3.01,
+      "rmse_points": 3.855,
+      "cluster_bootstrap_mae_95pct_range": [
+        2.503,
+        3.542
+      ]
+    },
+    "recency21": {
+      "comparisons": 98,
+      "independent_matchup_clusters": 31,
+      "mae_points": 3.01,
+      "rmse_points": 3.861,
+      "cluster_bootstrap_mae_95pct_range": [
+        2.522,
+        3.534
+      ]
+    },
+    "recency21_size": {
+      "comparisons": 98,
+      "independent_matchup_clusters": 31,
+      "mae_points": 2.989,
+      "rmse_points": 3.836,
+      "cluster_bootstrap_mae_95pct_range": [
+        2.507,
+        3.518
+      ]
+    },
+    "recency35_size": {
+      "comparisons": 98,
+      "independent_matchup_clusters": 31,
+      "mae_points": 2.981,
+      "rmse_points": 3.827,
+      "cluster_bootstrap_mae_95pct_range": [
+        2.506,
+        3.473
+      ]
+    }
+  },
+  "lowest_observed_mae": "recency35_size",
+  "production_model_status": "NOT VALIDATED FOR ELECTION-RESULT FORECASTING",
+  "model_selection_policy": "No model is promoted from this test. Require historical election-result holdout validation, calibration, and correlated error assessment.",
+  "limitations": [
+    "Targets are future polls, not actual election results.",
+    "Short rolling upstream history can bias which races are testable.",
+    "Within-race and cross-race systematic polling errors remain.",
+    "Bootstrap interval describes evaluation metric variability, not a race forecast confidence interval.",
+    "No win probabilities, house effects or election-security adjustments inferred."
+  ]
+}

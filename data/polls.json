@@ -1,16 +1,25 @@
 {
-  "updated_at": "2026-10-12T23:25:22.791935Z",
+  "updated_at": "2026-10-13T00:20:17.246200Z",
   "generic_ballot": {
     "summary": {
-      "dem": 47.9,
-      "rep": 41.0,
-      "margin": 7.0,
-      "pollsters": 11,
+      "dem": 48.1,
+      "rep": 40.4,
+      "margin": 7.7,
+      "pollsters": 9,
       "window_days": 14,
-      "latest_field_end": "2026-10-07",
+      "latest_field_end": "2026-10-11",
       "method": "Equal-weight mean of the latest nonpartisan wave per pollster within the stated field-end window; NOT a forecast or a statistical confidence interval."
     },
     "latest": [
+      {
+        "field_end": "2026-10-11",
+        "pollster": "Morning Consult",
+        "dem": 49.6,
+        "rep": 43.1,
+        "margin": 6.5,
+        "sample_size": 17654,
+        "partisan_lean": ""
+      },
       {
         "field_end": "2026-10-07",
         "pollster": "Noble Predictive Insights",
@@ -31,6 +40,15 @@
       },
       {
         "field_end": "2026-10-05",
+        "pollster": "YouGov",
+        "dem": 50.0,
+        "rep": 39.3,
+        "margin": 10.7,
+        "sample_size": 1173,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-10-05",
         "pollster": "Focaldata",
         "dem": 49.6,
         "rep": 42.7,
@@ -45,15 +63,6 @@
         "rep": 33.5,
         "margin": 7.0,
         "sample_size": 3526,
-        "partisan_lean": ""
-      },
-      {
-        "field_end": "2026-10-05",
-        "pollster": "YouGov",
-        "dem": 50.0,
-        "rep": 39.3,
-        "margin": 10.7,
-        "sample_size": 1173,
         "partisan_lean": ""
       },
       {
@@ -85,20 +94,20 @@
       },
       {
         "field_end": "2026-10-02",
-        "pollster": "YouGov",
-        "dem": 54.0,
-        "rep": 45.0,
-        "margin": 9.0,
-        "sample_size": 1572,
-        "partisan_lean": ""
-      },
-      {
-        "field_end": "2026-10-02",
         "pollster": "ActiVote",
         "dem": 52.2,
         "rep": 47.8,
         "margin": 4.4,
         "sample_size": 1000,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-10-02",
+        "pollster": "YouGov",
+        "dem": 54.0,
+        "rep": 45.0,
+        "margin": 9.0,
+        "sample_size": 1572,
         "partisan_lean": ""
       },
       {
@@ -108,6 +117,15 @@
         "rep": 38.0,
         "margin": 9.3,
         "sample_size": 930,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-28",
+        "pollster": "AlphaROC",
+        "dem": 43.4,
+        "rep": 37.1,
+        "margin": 6.3,
+        "sample_size": 1000,
         "partisan_lean": ""
       },
       {
@@ -126,15 +144,6 @@
         "rep": 49.5,
         "margin": 1.0,
         "sample_size": 2200,
-        "partisan_lean": ""
-      },
-      {
-        "field_end": "2026-09-28",
-        "pollster": "AlphaROC",
-        "dem": 43.4,
-        "rep": 37.1,
-        "margin": 6.3,
-        "sample_size": 1000,
         "partisan_lean": ""
       },
       {
@@ -166,21 +175,21 @@
       },
       {
         "field_end": "2026-09-22",
-        "pollster": "McLaughlin & Associates",
-        "dem": 48.0,
-        "rep": 43.0,
-        "margin": 5.0,
-        "sample_size": 1000,
-        "partisan_lean": "R"
-      },
-      {
-        "field_end": "2026-09-22",
         "pollster": "The Argument/Verasight",
         "dem": 53.8,
         "rep": 46.2,
         "margin": 7.6,
         "sample_size": 1603,
         "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-22",
+        "pollster": "McLaughlin & Associates",
+        "dem": 48.0,
+        "rep": 43.0,
+        "margin": 5.0,
+        "sample_size": 1000,
+        "partisan_lean": "R"
       },
       {
         "field_end": "2026-09-22",
@@ -193,38 +202,11 @@
       },
       {
         "field_end": "2026-09-21",
-        "pollster": "Impact Research/National Research Inc.",
-        "dem": 50.0,
-        "rep": 42.0,
-        "margin": 8.0,
-        "sample_size": 1500,
-        "partisan_lean": ""
-      },
-      {
-        "field_end": "2026-09-21",
-        "pollster": "Echelon Insights",
-        "dem": 51.0,
-        "rep": 43.0,
-        "margin": 8.0,
-        "sample_size": 1002,
-        "partisan_lean": "R"
-      },
-      {
-        "field_end": "2026-09-21",
         "pollster": "ActiVote",
         "dem": 52.8,
         "rep": 47.2,
         "margin": 5.6,
         "sample_size": 1000,
-        "partisan_lean": ""
-      },
-      {
-        "field_end": "2026-09-21",
-        "pollster": "YouGov",
-        "dem": 48.5,
-        "rep": 37.0,
-        "margin": 11.5,
-        "sample_size": 975,
         "partisan_lean": ""
       },
       {
@@ -238,6 +220,15 @@
       },
       {
         "field_end": "2026-09-21",
+        "pollster": "Impact Research/National Research Inc.",
+        "dem": 50.0,
+        "rep": 42.0,
+        "margin": 8.0,
+        "sample_size": 1500,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-21",
         "pollster": "KFF",
         "dem": 45.0,
         "rep": 35.0,
@@ -246,12 +237,21 @@
         "partisan_lean": ""
       },
       {
-        "field_end": "2026-09-20",
-        "pollster": "Morning Consult",
-        "dem": 49.7,
-        "rep": 42.6,
-        "margin": 7.1,
-        "sample_size": 18336,
+        "field_end": "2026-09-21",
+        "pollster": "Echelon Insights",
+        "dem": 51.0,
+        "rep": 43.0,
+        "margin": 8.0,
+        "sample_size": 1002,
+        "partisan_lean": "R"
+      },
+      {
+        "field_end": "2026-09-21",
+        "pollster": "YouGov",
+        "dem": 48.5,
+        "rep": 37.0,
+        "margin": 11.5,
+        "sample_size": 975,
         "partisan_lean": ""
       },
       {
@@ -261,6 +261,15 @@
         "rep": 32.0,
         "margin": 8.0,
         "sample_size": 1277,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-20",
+        "pollster": "Morning Consult",
+        "dem": 49.7,
+        "rep": 42.6,
+        "margin": 7.1,
+        "sample_size": 18336,
         "partisan_lean": ""
       },
       {
@@ -274,20 +283,20 @@
       },
       {
         "field_end": "2026-09-17",
-        "pollster": "John Zogby Strategies",
-        "dem": 48.0,
-        "rep": 42.0,
-        "margin": 6.0,
-        "sample_size": 1007,
-        "partisan_lean": ""
-      },
-      {
-        "field_end": "2026-09-17",
         "pollster": "CNN/SSRS",
         "dem": 49.0,
         "rep": 41.0,
         "margin": 8.0,
         "sample_size": 867,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-17",
+        "pollster": "John Zogby Strategies",
+        "dem": 48.0,
+        "rep": 42.0,
+        "margin": 6.0,
+        "sample_size": 1007,
         "partisan_lean": ""
       },
       {
@@ -301,12 +310,12 @@
       },
       {
         "field_end": "2026-09-15",
-        "pollster": "RMG Research",
-        "dem": 51.5,
-        "rep": 44.5,
-        "margin": 7.0,
-        "sample_size": 2000,
-        "partisan_lean": "R"
+        "pollster": "Hart Research Associates/Public Opinion Strategies",
+        "dem": 50.0,
+        "rep": 45.0,
+        "margin": 5.0,
+        "sample_size": 1000,
+        "partisan_lean": ""
       },
       {
         "field_end": "2026-09-15",
@@ -316,214 +325,12 @@
         "margin": 3.0,
         "sample_size": 2102,
         "partisan_lean": ""
-      },
-      {
-        "field_end": "2026-09-15",
-        "pollster": "Emerson College",
-        "dem": 36.5,
-        "rep": 28.6,
-        "margin": 7.9,
-        "sample_size": 1500,
-        "partisan_lean": ""
       }
     ],
     "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/gcb_polls.csv",
     "attribution": "NYT polling data via ElectIndex (CC BY 4.0)"
   },
   "races": [
-    {
-      "race_code": "KS-SEN",
-      "race_type": "senate",
-      "state": "KS",
-      "district": "SEN",
-      "latest_field_end": "2026-10-10",
-      "latest": {
-        "poll_id": "5dde9606-4591-429b-9843-a121714b0a10",
-        "field_end": "2026-10-10",
-        "pollster": "InsiderAdvantage",
-        "dem": 47.5,
-        "rep": 46.7,
-        "margin": 0.8,
-        "sample_size": 1200,
-        "partisan_lean": "R",
-        "dem_name": "Adam Hamilton",
-        "rep_name": "Roger Marshall",
-        "other": 3.4,
-        "other_name": "David Graham"
-      },
-      "polls": [
-        {
-          "poll_id": "5dde9606-4591-429b-9843-a121714b0a10",
-          "field_end": "2026-10-10",
-          "pollster": "InsiderAdvantage",
-          "dem": 47.5,
-          "rep": 46.7,
-          "margin": 0.8,
-          "sample_size": 1200,
-          "partisan_lean": "R",
-          "dem_name": "Adam Hamilton",
-          "rep_name": "Roger Marshall",
-          "other": 3.4,
-          "other_name": "David Graham"
-        },
-        {
-          "poll_id": "d25ef4d2-1ed1-441e-9934-82e258d3931e",
-          "field_end": "2026-10-04",
-          "pollster": "YouGov",
-          "dem": 48.0,
-          "rep": 45.0,
-          "margin": 3.0,
-          "sample_size": 2253,
-          "partisan_lean": "",
-          "dem_name": "Adam Hamilton",
-          "rep_name": "Roger Marshall",
-          "other": null,
-          "other_name": null
-        },
-        {
-          "poll_id": "83a74e52-1bb7-4aa4-8d8c-6c58999faa29",
-          "field_end": "2026-10-04",
-          "pollster": "GBAO",
-          "dem": 46.0,
-          "rep": 41.0,
-          "margin": 5.0,
-          "sample_size": 600,
-          "partisan_lean": "D",
-          "dem_name": "Adam Hamilton",
-          "rep_name": "Roger Marshall",
-          "other": 7.0,
-          "other_name": "David Graham"
-        },
-        {
-          "poll_id": "b53ee011-b0ec-4d53-b00c-4c9309bc24d6",
-          "field_end": "2026-10-01",
-          "pollster": "Trafalgar Group",
-          "dem": 44.4,
-          "rep": 43.5,
-          "margin": 0.9,
-          "sample_size": 1095,
-          "partisan_lean": "R",
-          "dem_name": "Adam Hamilton",
-          "rep_name": "Roger Marshall",
-          "other": 2.0,
-          "other_name": "David Graham"
-        },
-        {
-          "poll_id": "be8c4cbb-f0fa-41c9-860b-2f425d3e4829",
-          "field_end": "2026-09-30",
-          "pollster": "The New York Times/Siena University",
-          "dem": 44.9,
-          "rep": 44.8,
-          "margin": 0.1,
-          "sample_size": 605,
-          "partisan_lean": "",
-          "dem_name": "Adam Hamilton",
-          "rep_name": "Roger Marshall",
-          "other": 4.9,
-          "other_name": "David Graham"
-        },
-        {
-          "poll_id": "a916d81c-f510-477e-919f-23f7a3c91eba",
-          "field_end": "2026-09-24",
-          "pollster": "Wedgewood Polls",
-          "dem": 50.0,
-          "rep": 48.0,
-          "margin": 2.0,
-          "sample_size": 500,
-          "partisan_lean": "",
-          "dem_name": "Adam Hamilton",
-          "rep_name": "Roger Marshall",
-          "other": 2.0,
-          "other_name": "David Graham"
-        },
-        {
-          "poll_id": "8b579ddd-2169-412e-8ce9-074cc2643108",
-          "field_end": "2026-09-16",
-          "pollster": "Emerson College",
-          "dem": 44.8,
-          "rep": 43.3,
-          "margin": 1.5,
-          "sample_size": 750,
-          "partisan_lean": "",
-          "dem_name": "Adam Hamilton",
-          "rep_name": "Roger Marshall",
-          "other": 3.7,
-          "other_name": "David Graham"
-        },
-        {
-          "poll_id": "7a2a5a88-c265-4ab1-a1b3-80926e34f23b",
-          "field_end": "2026-09-16",
-          "pollster": "Global Strategy Group",
-          "dem": 47.0,
-          "rep": 43.0,
-          "margin": 4.0,
-          "sample_size": 800,
-          "partisan_lean": "D",
-          "dem_name": "Adam Hamilton",
-          "rep_name": "Roger Marshall",
-          "other": 5.0,
-          "other_name": "David Graham"
-        },
-        {
-          "poll_id": "8f9d28d7-4b18-4a97-b827-bd29bb7d211a",
-          "field_end": "2026-09-10",
-          "pollster": "co/efficient",
-          "dem": 44.0,
-          "rep": 49.0,
-          "margin": -5.0,
-          "sample_size": 915,
-          "partisan_lean": "R",
-          "dem_name": "Adam Hamilton",
-          "rep_name": "Roger Marshall",
-          "other": 2.0,
-          "other_name": "David Graham"
-        },
-        {
-          "poll_id": "8f9d28d7-4b18-4a97-b827-bd29bb7d211a",
-          "field_end": "2026-09-10",
-          "pollster": "co/efficient",
-          "dem": 45.0,
-          "rep": 51.0,
-          "margin": -6.0,
-          "sample_size": 915,
-          "partisan_lean": "R",
-          "dem_name": "Generic Democrat",
-          "rep_name": "Generic Republican",
-          "other": null,
-          "other_name": null
-        },
-        {
-          "poll_id": "3a7ff75c-d551-4cbd-aadc-b455292f1ada",
-          "field_end": "2026-08-16",
-          "pollster": "Global Strategy Group",
-          "dem": 44.0,
-          "rep": 43.0,
-          "margin": 1.0,
-          "sample_size": 800,
-          "partisan_lean": "D",
-          "dem_name": "Adam Hamilton",
-          "rep_name": "Roger Marshall",
-          "other": 5.0,
-          "other_name": "David Graham"
-        },
-        {
-          "poll_id": "e7abad22-0e2d-47e8-8f87-76f63f3ea716",
-          "field_end": "2026-08-08",
-          "pollster": "Public Policy Polling",
-          "dem": 45.0,
-          "rep": 46.0,
-          "margin": -1.0,
-          "sample_size": null,
-          "partisan_lean": "D",
-          "dem_name": "Adam Hamilton",
-          "rep_name": "Roger Marshall",
-          "other": null,
-          "other_name": null
-        }
-      ],
-      "recent_poll_count": 12,
-      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-    },
     {
       "race_code": "MI-SEN",
       "race_type": "senate",
@@ -908,6 +715,350 @@
         }
       ],
       "recent_poll_count": 12,
+      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
+    },
+    {
+      "race_code": "KS-SEN",
+      "race_type": "senate",
+      "state": "KS",
+      "district": "SEN",
+      "latest_field_end": "2026-10-10",
+      "latest": {
+        "poll_id": "5dde9606-4591-429b-9843-a121714b0a10",
+        "field_end": "2026-10-10",
+        "pollster": "InsiderAdvantage",
+        "dem": 47.5,
+        "rep": 46.7,
+        "margin": 0.8,
+        "sample_size": 1200,
+        "partisan_lean": "R",
+        "dem_name": "Adam Hamilton",
+        "rep_name": "Roger Marshall",
+        "other": 3.4,
+        "other_name": "David Graham"
+      },
+      "polls": [
+        {
+          "poll_id": "5dde9606-4591-429b-9843-a121714b0a10",
+          "field_end": "2026-10-10",
+          "pollster": "InsiderAdvantage",
+          "dem": 47.5,
+          "rep": 46.7,
+          "margin": 0.8,
+          "sample_size": 1200,
+          "partisan_lean": "R",
+          "dem_name": "Adam Hamilton",
+          "rep_name": "Roger Marshall",
+          "other": 3.4,
+          "other_name": "David Graham"
+        },
+        {
+          "poll_id": "d25ef4d2-1ed1-441e-9934-82e258d3931e",
+          "field_end": "2026-10-04",
+          "pollster": "YouGov",
+          "dem": 48.0,
+          "rep": 45.0,
+          "margin": 3.0,
+          "sample_size": 2253,
+          "partisan_lean": "",
+          "dem_name": "Adam Hamilton",
+          "rep_name": "Roger Marshall",
+          "other": null,
+          "other_name": null
+        },
+        {
+          "poll_id": "83a74e52-1bb7-4aa4-8d8c-6c58999faa29",
+          "field_end": "2026-10-04",
+          "pollster": "GBAO",
+          "dem": 46.0,
+          "rep": 41.0,
+          "margin": 5.0,
+          "sample_size": 600,
+          "partisan_lean": "D",
+          "dem_name": "Adam Hamilton",
+          "rep_name": "Roger Marshall",
+          "other": 7.0,
+          "other_name": "David Graham"
+        },
+        {
+          "poll_id": "b53ee011-b0ec-4d53-b00c-4c9309bc24d6",
+          "field_end": "2026-10-01",
+          "pollster": "Trafalgar Group",
+          "dem": 44.4,
+          "rep": 43.5,
+          "margin": 0.9,
+          "sample_size": 1095,
+          "partisan_lean": "R",
+          "dem_name": "Adam Hamilton",
+          "rep_name": "Roger Marshall",
+          "other": 2.0,
+          "other_name": "David Graham"
+        },
+        {
+          "poll_id": "be8c4cbb-f0fa-41c9-860b-2f425d3e4829",
+          "field_end": "2026-09-30",
+          "pollster": "The New York Times/Siena University",
+          "dem": 44.9,
+          "rep": 44.8,
+          "margin": 0.1,
+          "sample_size": 605,
+          "partisan_lean": "",
+          "dem_name": "Adam Hamilton",
+          "rep_name": "Roger Marshall",
+          "other": 4.9,
+          "other_name": "David Graham"
+        },
+        {
+          "poll_id": "a916d81c-f510-477e-919f-23f7a3c91eba",
+          "field_end": "2026-09-24",
+          "pollster": "Wedgewood Polls",
+          "dem": 50.0,
+          "rep": 48.0,
+          "margin": 2.0,
+          "sample_size": 500,
+          "partisan_lean": "",
+          "dem_name": "Adam Hamilton",
+          "rep_name": "Roger Marshall",
+          "other": 2.0,
+          "other_name": "David Graham"
+        },
+        {
+          "poll_id": "8b579ddd-2169-412e-8ce9-074cc2643108",
+          "field_end": "2026-09-16",
+          "pollster": "Emerson College",
+          "dem": 44.8,
+          "rep": 43.3,
+          "margin": 1.5,
+          "sample_size": 750,
+          "partisan_lean": "",
+          "dem_name": "Adam Hamilton",
+          "rep_name": "Roger Marshall",
+          "other": 3.7,
+          "other_name": "David Graham"
+        },
+        {
+          "poll_id": "7a2a5a88-c265-4ab1-a1b3-80926e34f23b",
+          "field_end": "2026-09-16",
+          "pollster": "Global Strategy Group",
+          "dem": 47.0,
+          "rep": 43.0,
+          "margin": 4.0,
+          "sample_size": 800,
+          "partisan_lean": "D",
+          "dem_name": "Adam Hamilton",
+          "rep_name": "Roger Marshall",
+          "other": 5.0,
+          "other_name": "David Graham"
+        },
+        {
+          "poll_id": "8f9d28d7-4b18-4a97-b827-bd29bb7d211a",
+          "field_end": "2026-09-10",
+          "pollster": "co/efficient",
+          "dem": 44.0,
+          "rep": 49.0,
+          "margin": -5.0,
+          "sample_size": 915,
+          "partisan_lean": "R",
+          "dem_name": "Adam Hamilton",
+          "rep_name": "Roger Marshall",
+          "other": 2.0,
+          "other_name": "David Graham"
+        },
+        {
+          "poll_id": "8f9d28d7-4b18-4a97-b827-bd29bb7d211a",
+          "field_end": "2026-09-10",
+          "pollster": "co/efficient",
+          "dem": 45.0,
+          "rep": 51.0,
+          "margin": -6.0,
+          "sample_size": 915,
+          "partisan_lean": "R",
+          "dem_name": "Generic Democrat",
+          "rep_name": "Generic Republican",
+          "other": null,
+          "other_name": null
+        },
+        {
+          "poll_id": "3a7ff75c-d551-4cbd-aadc-b455292f1ada",
+          "field_end": "2026-08-16",
+          "pollster": "Global Strategy Group",
+          "dem": 44.0,
+          "rep": 43.0,
+          "margin": 1.0,
+          "sample_size": 800,
+          "partisan_lean": "D",
+          "dem_name": "Adam Hamilton",
+          "rep_name": "Roger Marshall",
+          "other": 5.0,
+          "other_name": "David Graham"
+        }
+      ],
+      "recent_poll_count": 11,
+      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
+    },
+    {
+      "race_code": "FL-GOV",
+      "race_type": "governor",
+      "state": "FL",
+      "district": "GOV",
+      "latest_field_end": "2026-10-10",
+      "latest": {
+        "poll_id": "3aac0855-adba-4a4d-9607-6fd5383e516f",
+        "field_end": "2026-10-10",
+        "pollster": "Change Research",
+        "dem": 47.0,
+        "rep": 47.0,
+        "margin": 0.0,
+        "sample_size": 920,
+        "partisan_lean": "D",
+        "dem_name": "David Jolly",
+        "rep_name": "Byron Donalds",
+        "other": null,
+        "other_name": null
+      },
+      "polls": [
+        {
+          "poll_id": "3aac0855-adba-4a4d-9607-6fd5383e516f",
+          "field_end": "2026-10-10",
+          "pollster": "Change Research",
+          "dem": 47.0,
+          "rep": 47.0,
+          "margin": 0.0,
+          "sample_size": 920,
+          "partisan_lean": "D",
+          "dem_name": "David Jolly",
+          "rep_name": "Byron Donalds",
+          "other": null,
+          "other_name": null
+        },
+        {
+          "poll_id": "e775512f-7d66-4faa-b573-369e0f127624",
+          "field_end": "2026-10-07",
+          "pollster": "St. Pete Polls",
+          "dem": 44.6,
+          "rep": 44.7,
+          "margin": -0.1,
+          "sample_size": 836,
+          "partisan_lean": "",
+          "dem_name": "David Jolly",
+          "rep_name": "Byron Donalds",
+          "other": null,
+          "other_name": null
+        },
+        {
+          "poll_id": "38af0e14-ef3f-47c6-adc8-f543f24ac35e",
+          "field_end": "2026-10-05",
+          "pollster": "YouGov",
+          "dem": 45.0,
+          "rep": 47.0,
+          "margin": -2.0,
+          "sample_size": 3813,
+          "partisan_lean": "",
+          "dem_name": "David Jolly",
+          "rep_name": "Byron Donalds",
+          "other": null,
+          "other_name": null
+        },
+        {
+          "poll_id": "d4838e04-358f-42db-a0ce-bb4e52d31c89",
+          "field_end": "2026-10-04",
+          "pollster": "Targoz Market Research",
+          "dem": 42.0,
+          "rep": 52.0,
+          "margin": -10.0,
+          "sample_size": 849,
+          "partisan_lean": "",
+          "dem_name": "David Jolly",
+          "rep_name": "Byron Donalds",
+          "other": null,
+          "other_name": null
+        },
+        {
+          "poll_id": "7f8493dd-4729-4532-a244-239a7481b877",
+          "field_end": "2026-10-01",
+          "pollster": "Mason-Dixon Polling & Research, Inc.",
+          "dem": 41.0,
+          "rep": 48.0,
+          "margin": -7.0,
+          "sample_size": 625,
+          "partisan_lean": "",
+          "dem_name": "David Jolly",
+          "rep_name": "Byron Donalds",
+          "other": null,
+          "other_name": null
+        },
+        {
+          "poll_id": "b6ae955e-6757-491f-9253-998c3fb5a395",
+          "field_end": "2026-09-27",
+          "pollster": "Change Research",
+          "dem": 48.0,
+          "rep": 46.0,
+          "margin": 2.0,
+          "sample_size": 1063,
+          "partisan_lean": "D",
+          "dem_name": "David Jolly",
+          "rep_name": "Byron Donalds",
+          "other": null,
+          "other_name": null
+        },
+        {
+          "poll_id": "e5366105-3d6b-41f9-8012-1ee8e307d77e",
+          "field_end": "2026-09-21",
+          "pollster": "Stetson University Center for Public Opinion Research",
+          "dem": 39.0,
+          "rep": 51.0,
+          "margin": -12.0,
+          "sample_size": 830,
+          "partisan_lean": "",
+          "dem_name": "David Jolly",
+          "rep_name": "Byron Donalds",
+          "other": null,
+          "other_name": null
+        },
+        {
+          "poll_id": "1292c8da-3ce1-40f8-8e42-342d50715e67",
+          "field_end": "2026-09-17",
+          "pollster": "St. Pete Polls",
+          "dem": 43.4,
+          "rep": 43.5,
+          "margin": -0.1,
+          "sample_size": 913,
+          "partisan_lean": "",
+          "dem_name": "David Jolly",
+          "rep_name": "Byron Donalds",
+          "other": null,
+          "other_name": null
+        },
+        {
+          "poll_id": "9d8b464b-d0f1-4fa9-a1c2-f611d332cb71",
+          "field_end": "2026-09-09",
+          "pollster": "Change Research",
+          "dem": 47.0,
+          "rep": 44.0,
+          "margin": 3.0,
+          "sample_size": 1107,
+          "partisan_lean": "D",
+          "dem_name": "David Jolly",
+          "rep_name": "Byron Donalds",
+          "other": null,
+          "other_name": null
+        },
+        {
+          "poll_id": "fa210cd9-793f-41f5-aa99-d4461de47e9b",
+          "field_end": "2026-08-13",
+          "pollster": "Hart Research Associates",
+          "dem": 46.0,
+          "rep": 45.0,
+          "margin": 1.0,
+          "sample_size": 600,
+          "partisan_lean": "D",
+          "dem_name": "David Jolly",
+          "rep_name": "Byron Donalds",
+          "other": null,
+          "other_name": null
+        }
+      ],
+      "recent_poll_count": 10,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -1456,6 +1607,59 @@
         }
       ],
       "recent_poll_count": 3,
+      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
+    },
+    {
+      "race_code": "GA-07",
+      "race_type": "house",
+      "state": "GA",
+      "district": "07",
+      "latest_field_end": "2026-10-09",
+      "latest": {
+        "poll_id": "a0be903c-529d-483d-a76c-0ff238468750",
+        "field_end": "2026-10-09",
+        "pollster": "20/20 Insight",
+        "dem": 47.0,
+        "rep": 45.0,
+        "margin": 2.0,
+        "sample_size": 457,
+        "partisan_lean": "D",
+        "dem_name": "Tony Kozycki",
+        "rep_name": "Rich McCormick",
+        "other": null,
+        "other_name": null
+      },
+      "polls": [
+        {
+          "poll_id": "a0be903c-529d-483d-a76c-0ff238468750",
+          "field_end": "2026-10-09",
+          "pollster": "20/20 Insight",
+          "dem": 47.0,
+          "rep": 45.0,
+          "margin": 2.0,
+          "sample_size": 457,
+          "partisan_lean": "D",
+          "dem_name": "Tony Kozycki",
+          "rep_name": "Rich McCormick",
+          "other": null,
+          "other_name": null
+        },
+        {
+          "poll_id": "9b91ef78-703c-4c40-8ae9-47cb323a5d33",
+          "field_end": "2026-08-26",
+          "pollster": "20/20 Insight",
+          "dem": 43.0,
+          "rep": 46.0,
+          "margin": -3.0,
+          "sample_size": 445,
+          "partisan_lean": "D",
+          "dem_name": "Tony Kozycki",
+          "rep_name": "Rich McCormick",
+          "other": null,
+          "other_name": null
+        }
+      ],
+      "recent_poll_count": 2,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -2373,157 +2577,6 @@
         }
       ],
       "recent_poll_count": 10,
-      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-    },
-    {
-      "race_code": "FL-GOV",
-      "race_type": "governor",
-      "state": "FL",
-      "district": "GOV",
-      "latest_field_end": "2026-10-07",
-      "latest": {
-        "poll_id": "e775512f-7d66-4faa-b573-369e0f127624",
-        "field_end": "2026-10-07",
-        "pollster": "St. Pete Polls",
-        "dem": 44.6,
-        "rep": 44.7,
-        "margin": -0.1,
-        "sample_size": 836,
-        "partisan_lean": "",
-        "dem_name": "David Jolly",
-        "rep_name": "Byron Donalds",
-        "other": null,
-        "other_name": null
-      },
-      "polls": [
-        {
-          "poll_id": "e775512f-7d66-4faa-b573-369e0f127624",
-          "field_end": "2026-10-07",
-          "pollster": "St. Pete Polls",
-          "dem": 44.6,
-          "rep": 44.7,
-          "margin": -0.1,
-          "sample_size": 836,
-          "partisan_lean": "",
-          "dem_name": "David Jolly",
-          "rep_name": "Byron Donalds",
-          "other": null,
-          "other_name": null
-        },
-        {
-          "poll_id": "38af0e14-ef3f-47c6-adc8-f543f24ac35e",
-          "field_end": "2026-10-05",
-          "pollster": "YouGov",
-          "dem": 45.0,
-          "rep": 47.0,
-          "margin": -2.0,
-          "sample_size": 3813,
-          "partisan_lean": "",
-          "dem_name": "David Jolly",
-          "rep_name": "Byron Donalds",
-          "other": null,
-          "other_name": null
-        },
-        {
-          "poll_id": "d4838e04-358f-42db-a0ce-bb4e52d31c89",
-          "field_end": "2026-10-04",
-          "pollster": "Targoz Market Research",
-          "dem": 42.0,
-          "rep": 52.0,
-          "margin": -10.0,
-          "sample_size": 849,
-          "partisan_lean": "",
-          "dem_name": "David Jolly",
-          "rep_name": "Byron Donalds",
-          "other": null,
-          "other_name": null
-        },
-        {
-          "poll_id": "7f8493dd-4729-4532-a244-239a7481b877",
-          "field_end": "2026-10-01",
-          "pollster": "Mason-Dixon Polling & Research, Inc.",
-          "dem": 41.0,
-          "rep": 48.0,
-          "margin": -7.0,
-          "sample_size": 625,
-          "partisan_lean": "",
-          "dem_name": "David Jolly",
-          "rep_name": "Byron Donalds",
-          "other": null,
-          "other_name": null
-        },
-        {
-          "poll_id": "b6ae955e-6757-491f-9253-998c3fb5a395",
-          "field_end": "2026-09-27",
-          "pollster": "Change Research",
-          "dem": 48.0,
-          "rep": 46.0,
-          "margin": 2.0,
-          "sample_size": 1063,
-          "partisan_lean": "D",
-          "dem_name": "David Jolly",
-          "rep_name": "Byron Donalds",
-          "other": null,
-          "other_name": null
-        },
-        {
-          "poll_id": "e5366105-3d6b-41f9-8012-1ee8e307d77e",
-          "field_end": "2026-09-21",
-          "pollster": "Stetson University Center for Public Opinion Research",
-          "dem": 39.0,
-          "rep": 51.0,
-          "margin": -12.0,
-          "sample_size": 830,
-          "partisan_lean": "",
-          "dem_name": "David Jolly",
-          "rep_name": "Byron Donalds",
-          "other": null,
-          "other_name": null
-        },
-        {
-          "poll_id": "1292c8da-3ce1-40f8-8e42-342d50715e67",
-          "field_end": "2026-09-17",
-          "pollster": "St. Pete Polls",
-          "dem": 43.4,
-          "rep": 43.5,
-          "margin": -0.1,
-          "sample_size": 913,
-          "partisan_lean": "",
-          "dem_name": "David Jolly",
-          "rep_name": "Byron Donalds",
-          "other": null,
-          "other_name": null
-        },
-        {
-          "poll_id": "9d8b464b-d0f1-4fa9-a1c2-f611d332cb71",
-          "field_end": "2026-09-09",
-          "pollster": "Change Research",
-          "dem": 47.0,
-          "rep": 44.0,
-          "margin": 3.0,
-          "sample_size": 1107,
-          "partisan_lean": "D",
-          "dem_name": "David Jolly",
-          "rep_name": "Byron Donalds",
-          "other": null,
-          "other_name": null
-        },
-        {
-          "poll_id": "fa210cd9-793f-41f5-aa99-d4461de47e9b",
-          "field_end": "2026-08-13",
-          "pollster": "Hart Research Associates",
-          "dem": 46.0,
-          "rep": 45.0,
-          "margin": 1.0,
-          "sample_size": 600,
-          "partisan_lean": "D",
-          "dem_name": "David Jolly",
-          "rep_name": "Byron Donalds",
-          "other": null,
-          "other_name": null
-        }
-      ],
-      "recent_poll_count": 9,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -3522,23 +3575,9 @@
           "rep_name": "Anthony Constantino",
           "other": null,
           "other_name": null
-        },
-        {
-          "poll_id": "3d28e432-a04c-4d63-9505-ffb7420b821c",
-          "field_end": "2026-08-08",
-          "pollster": "SurveyUSA",
-          "dem": 43.0,
-          "rep": 39.0,
-          "margin": 4.0,
-          "sample_size": 612,
-          "partisan_lean": "",
-          "dem_name": "Blake Gendebien",
-          "rep_name": "Anthony Constantino",
-          "other": 5.0,
-          "other_name": "Chris Schmidt"
         }
       ],
-      "recent_poll_count": 7,
+      "recent_poll_count": 6,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -9762,45 +9801,6 @@
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
-      "race_code": "GA-07",
-      "race_type": "house",
-      "state": "GA",
-      "district": "07",
-      "latest_field_end": "2026-08-26",
-      "latest": {
-        "poll_id": "9b91ef78-703c-4c40-8ae9-47cb323a5d33",
-        "field_end": "2026-08-26",
-        "pollster": "20/20 Insight",
-        "dem": 43.0,
-        "rep": 46.0,
-        "margin": -3.0,
-        "sample_size": 445,
-        "partisan_lean": "D",
-        "dem_name": "Tony Kozycki",
-        "rep_name": "Rich McCormick",
-        "other": null,
-        "other_name": null
-      },
-      "polls": [
-        {
-          "poll_id": "9b91ef78-703c-4c40-8ae9-47cb323a5d33",
-          "field_end": "2026-08-26",
-          "pollster": "20/20 Insight",
-          "dem": 43.0,
-          "rep": 46.0,
-          "margin": -3.0,
-          "sample_size": 445,
-          "partisan_lean": "D",
-          "dem_name": "Tony Kozycki",
-          "rep_name": "Rich McCormick",
-          "other": null,
-          "other_name": null
-        }
-      ],
-      "recent_poll_count": 1,
-      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-    },
-    {
       "race_code": "TN-SEN",
       "race_type": "senate",
       "state": "TN",
@@ -10361,12 +10361,56 @@
     "notes": "Descriptive poll observations only; not modeled forecasts."
   },
   "health": {
-    "last_attempt_at": "2026-10-12T23:25:22.791935Z",
+    "last_attempt_at": "2026-10-13T00:20:17.246200Z",
     "successful_sections": [
       "generic_ballot",
       "races"
     ],
     "errors": [],
     "status": "ok"
-  }
+  },
+  "changes": {
+    "new_polls": [
+      {
+        "race_code": "FL-GOV",
+        "race_type": "governor",
+        "pollster": "Change Research",
+        "field_end": "2026-10-10",
+        "dem": 47.0,
+        "rep": 47.0,
+        "margin": 0.0,
+        "dem_name": "David Jolly",
+        "rep_name": "Byron Donalds",
+        "sample_size": 920,
+        "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
+      },
+      {
+        "race_code": "GA-07",
+        "race_type": "house",
+        "pollster": "20/20 Insight",
+        "field_end": "2026-10-09",
+        "dem": 47.0,
+        "rep": 45.0,
+        "margin": 2.0,
+        "dem_name": "Tony Kozycki",
+        "rep_name": "Rich McCormick",
+        "sample_size": 457,
+        "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
+      }
+    ],
+    "new_poll_count": 2,
+    "generic_margin_change": 0.7,
+    "comparison_at": "2026-10-13T00:20:17.246200Z",
+    "previous_snapshot_at": "2026-10-12T23:25:22.791935Z",
+    "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
+  },
+  "generic_history": [
+    {
+      "date": "2026-10-13",
+      "margin": 7.7,
+      "dem": 48.1,
+      "rep": 40.4,
+      "pollsters": 9
+    }
+  ]
 }
