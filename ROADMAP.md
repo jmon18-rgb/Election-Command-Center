@@ -64,3 +64,16 @@
 - Put new polling postings and election reporting higher on the daily brief, before the static cards.
 - PollResults.org posted-poll ordering uses source **date/time** (full `createdAt`); timezone remains unknown, and this is not an independently verified public release timestamp. Priority: add verified original article `datePublished` evidence when available.
 - Fully define four mutually exclusive House/Senate control outcomes and freeze the major-race slate in advance before any "Blue Tsunami" scenario probability is shown.
+
+## Completed milestone — national seat inventory and readiness checks (October 13)
+- [x] Reconcile every voting House district (**435**) using official 2020 Census apportionment as the seat-count denominator.
+- [x] Reconcile 2026 Senate ballot inventory (**33 Class II + FL/OH special = 35**) and account for **65 holdover** seats in the model structure. Dated caucus breakout is a reference, not verified election-night result.
+- [x] Source-linked `data/seat_universe.json` flags missing/usable named-matchup poll averages separately from all raw poll records, and fails on out-of-universe codes.
+- [x] Expose national coverage on the JackStradamus tab, with null forecasts and an explicit refusal to classify chamber control without validated priors and calibration.
+- [x] Integrate independent `scripts/test_seat_universe.py` checks into the four-hour GitHub Actions refresh.
+
+### Next immediate engineering work
+1. **Import historical 2024/2022 House and Senate returns from MIT Election Data and Science Lab**, with stable district keys and separate vote-share denominators; validate completeness.
+2. **Resolve 2026 redistricting against each 2024 historical district geography.** Different lines require reaggregation using precinct data, not an unverified match by district number.
+3. **Source 2026 candidates and incumbency + Senate holdovers dynamically**, with snapshot dates, third-party rules and district election types.
+4. **Backtest actual previous elections before modeling winning probabilities**: leave-year-out errors, national/regional correlations and full-district completeness, then joint House/Senate simulations. All four control-outcome categories stay unmodeled meanwhile. See [SEAT_MODEL.md](SEAT_MODEL.md).
