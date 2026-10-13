@@ -437,40 +437,113 @@ function marginText(n){if(typeof n!=='number')return '—';return Math.abs(n)<.0
 
 function renderRacePulse(data){
  const host=$('#racePulse');if(!host)return;host.replaceChildren();
- const rows=(data?.states||[]).filter(r=>['multi_poll','single_poll'].includes(r.status)&&Number.isFinite(r.dem_minus_rep));
- const now=data?.generated_at?new Date(data.generated_at):null;
- $('#pulseAsOf').textContent=now&&!Number.isNaN(+now)?'Model refreshed '+now.toLocaleDateString('en-US',{month:'short',day:'numeric'}):'Poll averages · not projections';
- if(!rows.length){host.append(elt('div','empty','No qualifying recent Senate race polling.'));return}
- const byAbs=[...rows].sort((a,b)=>Math.abs(a.dem_minus_rep)-Math.abs(b.dem_minus_rep));
- const byFresh=[...rows].sort((a,b)=>(b.latest_poll_end||'').localeCompare(a.latest_poll_end||''));
- const picks=[
-  ['Tightest Senate race',byAbs[0]],
-  ['Largest Democratic lead',[...rows].filter(x=>x.dem_minus_rep>0).sort((a,b)=>b.dem_minus_rep-a.dem_minus_rep)[0]],
-  ['Largest Republican lead',[...rows].filter(x=>x.dem_minus_rep<0).sort((a,b)=>a.dem_minus_rep-b.dem_minus_rep)[0]],
-  ['Most recently surveyed',byFresh[0]]
- ];
- for(const [label,r] of picks){
-  if(!r)continue;
-  const item=elt('button','pulse-tile');item.type='button';
-  const top=elt('div','pulse-label',label),lead=elt('div','pulse-race');
-  lead.append(elt('span','',r.state_name||r.state),elt('b',marginColor(r.dem_minus_rep),marginText(r.dem_minus_rep)));
-  const matchup=elt('div','pulse-match',(r.dem_candidate||'Democrat')+' (D) vs. '+(r.rep_candidate||'Republican')+' (R)');
-  const firms=r.contributing_pollsters??0,age=r.poll_diagnostics?.latest_poll_age_days;
-  const details=[firms+' '+(firms===1?'firm':'firms'),r.partisan_pollsters?r.partisan_pollsters+' sponsored (½ weight)':null,
-   typeof age==='number'?age+'d since newest survey':null, firms<3?'limited sample':null].filter(Boolean);
-  item.append(top,lead,matchup,elt('div','pulse-meta',details.join(' · ')));
-  item.addEventListener('click',()=>{
-    const key=r.race_code||r.state+'-SEN';
-    modelMode='senate';selectedModelState=key;modelPollMode='included';
-    const tab=document.querySelector('.tab[data-page="model"]');if(tab)tab.click();
-    if(history.replaceState)history.replaceState(null,'','#model/senate/'+encodeURIComponent(key));
-    renderModelOverview(latestSenateEstimates);
-    window.scrollTo({top:0,behavior:'smooth'});
+ const stamp=data?.generated_at?new Date(data.generated_at):new Date();
+ const current=[...(data?.senate_all||[]),...(data?.house||[]),...(data?.governor||[])];
+ const usable=current.filter(r=>['multi_poll','single_poll'].includes(r.status)&&Number.isFinite(r.dem_minus_rep));
+ const byCode=new Map(usable.map(r=>[r.race_code,r]));
+ const historyRows=(modelHistoryData?.snapshots||[]).filter(h=>h?.races?.length&&Date.parse(h.at)<=+stamp);
+ // Prefer a 24-hour comparison; if history hasn't accumulated enough yet, use
+ // a prior refresh only if it is at least three hours old, never invent one.
+ const priorDay=historyRows.filter(h=>Date.parse(h.at)<=+stamp-24*3600000).at(-1);
+ const prior=priorDay||historyRows.filter(h=>Date.parse(h.at)<=+stamp-3*3600000).at(-1);
+ const deltaHours=prior?Math.round((+stamp-Date.parse(prior.at))/3600000):null;
+ const period=deltaHours===null?'':deltaHours>=24?Math.round(deltaHours/24)+'d':deltaHours+'h';
+ $('#pulseAsOf').textContent=prior?'Compared with '+new Date(prior.at).toLocaleDateString('en-US',{month:'short',day:'numeric'})+' ('+period+' ago)': 'Waiting for comparable polling history';
+ const candidates=[];
+ const emit=(kind,office,label,margin,detail,meta,race,priority)=>{
+    candidates.push({kind,office,label,margin,detail,meta,race,priority});
+ };
+ if(prior){
+  const previous=new Map(prior.races.map(r=>[r.race_code,r]));
+  const movements=[];
+  for(const r of usable){
+   const old=previous.get(r.race_code);
+   if(!old||old.dem_candidate!==r.dem_candidate||old.rep_candidate!==r.rep_candidate||
+      !Number.isFinite(old.dem_minus_rep))continue;
+   if((r.contributing_pollsters||0)<2)continue;
+   const delta=r.dem_minus_rep-old.dem_minus_rep;
+   if(Math.abs(delta)<0.75)continue;
+   movements.push({r,old,delta});
+  }
+  movements.sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta));
+  const flips=movements.filter(x=>x.old.dem_minus_rep*x.r.dem_minus_rep<0 &&
+     Math.abs(x.old.dem_minus_rep)>.05 && Math.abs(x.r.dem_minus_rep)>.05);
+  for(const x of flips.slice(0,2)){
+   const r=x.r;
+   emit('flip',r.race_type,'Polling leader changed',r.dem_minus_rep,
+        (r.label||r.state_name||r.race_code)+' · '+marginText(x.old.dem_minus_rep)+' → '+marginText(r.dem_minus_rep),
+        Math.abs(x.delta).toFixed(1)+'-point model movement over '+period+' · '+r.contributing_pollsters+' firms',r,100+Math.abs(x.delta));
+  }
+  for(const x of movements.slice(0,5)){
+   if(candidates.some(c=>c.race?.race_code===x.r.race_code))continue;
+   const r=x.r;
+   emit('move',r.race_type,'Biggest polling movement',r.dem_minus_rep,
+        (r.label||r.state_name||r.race_code)+' · '+marginText(x.old.dem_minus_rep)+' → '+marginText(r.dem_minus_rep),
+        (x.delta>0?'D +':'R +')+Math.abs(x.delta).toFixed(1)+' points vs '+period+' ago · '+r.contributing_pollsters+' firms',r,40+Math.abs(x.delta));
+   break;
+  }
+  // A newly corroborated matchup matters more than a permanent "largest lead".
+  for(const r of usable){
+    const old=previous.get(r.race_code);
+    if(r.contributing_pollsters>=3&&old&&old.contributing_pollsters<3 &&
+       !candidates.some(c=>c.race?.race_code===r.race_code)){
+       emit('coverage',r.race_type,'Polling coverage improved',r.dem_minus_rep,
+          (r.label||r.state_name||r.race_code)+' now has '+r.contributing_pollsters+' firms',
+          'Previously '+old.contributing_pollsters+' firm(s) · current '+marginText(r.dem_minus_rep),r,35);
+    }
+  }
+  const genericNow=data?.generic_ballot;
+  const oldGeneric=previous.get('US-GENERIC');
+  if(Number.isFinite(oldGeneric?.dem_minus_rep)&&Number.isFinite(genericNow?.dem_minus_rep)){
+   const shift=genericNow.dem_minus_rep-oldGeneric.dem_minus_rep;
+   if(Math.abs(shift)>=.5)emit('generic','generic','Generic ballot moved',genericNow.dem_minus_rep,
+      marginText(oldGeneric.dem_minus_rep)+' → '+marginText(genericNow.dem_minus_rep),
+      (shift>0?'D +':'R +')+Math.abs(shift).toFixed(1)+' points vs '+period+' ago; descriptive mean',null,32+Math.abs(shift));
+  }
+ }
+ // A recently posted poll in a closely polled race is a legitimate new
+ // development, even while the history file is too young to show movement.
+ const posted=(postedPollingSnapshot?.observations||[]).filter(p=>{
+    const age=Date.now()-Date.parse((p.posted_date||'')+'T12:00:00Z');
+    const r=byCode.get(p.race_code);
+    return age>=-12*3600000 && age<=48*3600000 &&
+      r&&r.contributing_pollsters>=2&&Math.abs(r.dem_minus_rep)<=6;
+ }).sort((a,b)=>pollPostedStamp(b).localeCompare(pollPostedStamp(a)));
+ for(const p of posted){
+  if(candidates.filter(c=>c.kind==='posted').length>=2)break;
+  if(candidates.some(c=>c.race?.race_code===p.race_code))continue;
+  const r=byCode.get(p.race_code);
+  emit('posted',r.race_type,'New poll in a competitive race',r.dem_minus_rep,
+       (r.label||r.state_name||r.race_code)+' · '+p.pollster+' poll '+marginText(p.margin),
+       'Source posted '+p.posted_date+' · model average '+marginText(r.dem_minus_rep),r,25);
+ }
+ candidates.sort((a,b)=>b.priority-a.priority);
+ if(!candidates.length){
+  const info=elt('div','pulse-tile');
+  info.style.cursor='default';
+  info.append(elt('div','pulse-label',prior?'No meaningful movement':'Building comparison history'),
+      elt('div','pulse-match',prior?'No leader flips or ≥0.75-point changes in the matched race averages since the comparison snapshot.':'The model is now saving timestamped snapshots. Changes will appear here once there is a comparable previous refresh.'),
+      elt('div','pulse-meta','Instead of repeatedly featuring the same biggest lead or closest race.'));
+  host.append(info);return;
+ }
+ for(const item of candidates.slice(0,4)){
+  const tile=elt('button','pulse-tile');tile.type='button';
+  tile.append(elt('div','pulse-label',item.label));
+  const head=elt('div','pulse-race');
+  const label=item.race?.label||item.race?.state_name||item.race?.race_code||'National';
+  head.append(elt('span','',label),elt('b',marginColor(item.margin),marginText(item.margin)));
+  tile.append(head,elt('div','pulse-match',item.detail),elt('div','pulse-meta',item.meta));
+  tile.addEventListener('click',()=>{
+   modelMode=item.office==='generic'?'generic':item.office;
+   selectedModelState=item.race?.race_code||'US-GENERIC';modelPollMode='included';
+   const tab=document.querySelector('.tab[data-page="model"]');if(tab)tab.click();
+   if(history.replaceState)history.replaceState(null,'','#model/'+modelMode+'/'+encodeURIComponent(selectedModelState));
+   renderModelOverview(latestSenateEstimates);
+   window.scrollTo({top:0,behavior:'smooth'});
   });
-  host.append(item);
+  host.append(tile);
  }
 }
-
 function pollRow(p,code){const div=elt('div','item');const heading=elt('strong','',code?code+' · '+p.pollster:p.pollster);div.append(heading);const details=[marginText(p.margin),'D '+pct(p.dem),'R '+pct(p.rep),'Field end '+p.field_end,p.sample_size?'n='+p.sample_size:null,p.partisan_lean?'Sponsor lean: '+p.partisan_lean:null].filter(Boolean);div.append(elt('small','',details.join(' · ')));return div}
 function renderPollLeadSeats(kind,matching){
  const holder=$('#pollLeadSummary'),track=$('#pollLeadTrack'),note=$('#pollLeadNote');
@@ -686,7 +759,7 @@ $('#genericFresh').textContent='Latest field end: '+gb.summary.latest_field_end;
 renderRaceList();if(latestSenateEstimates){renderModelRaceDetail();renderModelGenericHeadline()}
 if(d.updated_at){const date=new Date(d.updated_at);if(!Number.isNaN(+date))$('#genericFresh').textContent+=' · fetched '+date.toLocaleDateString()}
 }
-fetch('./data/pollresults_recent.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('supplemental not ready');return r.json()}).then(d=>{postedPollingSnapshot=d;if(pollingSnapshot)renderFreshPolls(pollingSnapshot)}).catch(()=>{/* Main source fallback stays available. */});
+fetch('./data/pollresults_recent.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('supplemental not ready');return r.json()}).then(d=>{postedPollingSnapshot=d;if(pollingSnapshot)renderFreshPolls(pollingSnapshot);if(latestSenateEstimates)renderRacePulse(latestSenateEstimates)}).catch(()=>{/* Main source fallback stays available. */});
 fetch('./data/polls.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(renderPolls).catch(error=>{console.error('Polling feed error',error);$('#newPolls').textContent='Polling feed unavailable: '+error.message+'.';$('#genericDetail').textContent='Polling data could not be displayed.';updateHealth()});
 
 
@@ -915,6 +988,7 @@ document.querySelector('.tab[data-page="electionNight"]').addEventListener('clic
 document.querySelectorAll('.tab:not([data-page="electionNight"])').forEach(el=>el.addEventListener('click',()=>{if(enTimer){clearTimeout(enTimer);enTimer=null}}));
 if(location.hash.split('/')[0]==='#electionNight')enLoad(true);
 
+let modelHistoryData=null;
 let latestSenateEstimates=null;
 function showSenateEstimates(data){
 latestSenateEstimates=data;
@@ -992,6 +1066,7 @@ renderJackRadar();
 renderRaceList();
 modelApplyHash();renderModelOverview(data);renderModelGenericHeadline();renderElectionScenarios();
 }
+fetch('./data/model_history.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('history pending');return r.json()}).then(d=>{modelHistoryData=d;if(latestSenateEstimates)renderRacePulse(latestSenateEstimates)}).catch(()=>{/* History accumulates only after first refresh. */});
 fetch('./data/polling_estimates.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('not ready');return r.json()}).then(d=>showSenateEstimates(d)).catch(()=>{document.getElementById('senateEstimateCards').textContent='Waiting for first automated polling summary refresh.'});
 fetch('./data/briefing.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(d=>{feedHealth.news=d;updateHealth();if(d.updated_at){const date=new Date(d.updated_at);if(!Number.isNaN(+date)){$('#freshness').textContent='News collected '+date.toLocaleString();$('#updated').textContent='News collected '+date.toLocaleDateString()}}renderItems('updates',d.updates);securityArticles=Array.isArray(d.security)?d.security:[];renderSecurity()}).catch(()=>updateHealth());
 </script></body></html>
