@@ -132,3 +132,9 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - All 435 House archive records can be viewed using paginated race buttons instead of hiding the final 185 behind a 250-result cutoff; race search remains available.
 - Source/origin and vote-integrity rules are exercised with real source data in dashboard regression tests. Premature 2026 votes and fabricated calls remain blocked. Failed archive reloads retain previously verified data with a warning.
 - Explicit launch gate for 2026 results: a source whose **browser CORS and usage terms** support the site, documented authentic schemas/keys, test replay, source freshness, and at least one independent verification source. Until then no claims of nationwide live coverage.
+
+## Completed: historical vote-share variation measurement
+
+- JackStradamus's model page now displays the **observed 2022–2024 Democratic two-party House vote-share changes** for exactly 191 map-comparable districts, including median/10th/90th percentiles and an eight-bin distribution.
+- Source checks require all 435 seat records to exist and reject any included record without unchanged boundaries or both parties' votes; 244 ineligible seats are explicitly excluded.
+- This historical result variation is **not** a pollster error calibration or an outcome probability. Next genuinely probabilistic step remains sourcing timestamped pre-election polls and actual results across multiple held-out cycles, then measuring correlated errors. No coefficients are transferred into live predictions.
