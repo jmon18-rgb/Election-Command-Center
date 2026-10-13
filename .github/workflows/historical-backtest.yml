@@ -21,7 +21,7 @@ jobs:
         run: |
           git config user.name "election-model-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/historical_backtest.json
+          git add data/historical_verified.json
           if ! git diff --cached --quiet; then
             git commit -m "Publish historical Senate model evaluation"
             git push
