@@ -26,6 +26,8 @@ class Tests(unittest.TestCase):
         self.assertEqual(o["display_outcomes"]["blue_both"]["pct"],54.)
         self.assertIsNone(o["display_outcomes"]["blue_tsunami"]["pct"])
         self.assertEqual(o["rounding_total_pct"],99.)
+        self.assertEqual(o["house_dem_control_pct"],77.)
+        self.assertEqual(o["senate_dem_control_pct"],56.)
     def test_order_and_spacing_around_markup(self):
         html=self.fixture.replace("<h3>DEM Senate and DEM House</h3><p>54.0%</p>",
           "<h3>DEM Senate and DEM House</h3><p><strong>54.0%</strong></p>")
