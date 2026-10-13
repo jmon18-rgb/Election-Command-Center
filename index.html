@@ -505,43 +505,50 @@ make('line',{x1:10,y1:y(0),x2:330,y2:y(0)});const points=valid.map((p,i)=>[12+i*
 document.querySelectorAll('#raceSearch,#raceSort').forEach(x=>x.addEventListener('input',renderRaceList));
 function renderFreshPolls(d){
  const box=$('#newPolls'),status=$('#changesSince');box.replaceChildren();
- const now=Date.now(),cutoff=now-14*86400000,entries=[];
+ const now=Date.now(),cutoff=now-14*86400000;
  const dateMS=value=>{if(!value||typeof value!=='string')return NaN;const t=Date.parse(value.length===10?value+'T12:00:00Z':value);return Number.isFinite(t)?t:NaN};
+ const fmt=ms=>new Date(ms).toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'});
+ const entries=[],seen=new Set();
  for(const race of d.races||[]){
-  if(race.race_type!=='senate'||!KEY_ORDER.includes(race.state))continue;
+  if(!['senate','house','governor'].includes(race.race_type))continue;
   for(const p of race.polls||[]){
-   const ended=dateMS(p.field_end),added=dateMS(p.first_seen_at),released=dateMS(p.release_date);
+   const ended=dateMS(p.field_end),detected=dateMS(p.first_seen_at),released=dateMS(p.release_date);
    if(!Number.isFinite(ended)||!Number.isFinite(p.margin)||!p.pollster||!p.dem_name||!p.rep_name)continue;
-   // Once timestamp tracking is available, show first-observed surveys; older baseline
-   // observations can fill space but are explicitly identified as undated legacy polls.
-   const date=Number.isFinite(released)?released:Number.isFinite(added)?added:ended;
-   if(date<cutoff||date>now+86400000)continue;
-   entries.push({state:race.state,code:race.race_code,poll:p,date,ended,added,released});
+   // Field-end fallback is explicitly distinct from a verified public release date.
+   const sortTime=Number.isFinite(released)?released:Number.isFinite(detected)?detected:ended;
+   if(sortTime<cutoff||sortTime>now+86400000)continue;
+   const key=[race.race_code,p.poll_id||'',p.pollster.toLowerCase(),p.field_end,p.dem_name,p.rep_name].join('|');
+   if(seen.has(key))continue;seen.add(key);
+   entries.push({race,p,sortTime,detected,released,ended});
   }
  }
- entries.sort((a,b)=>b.date-a.date||b.ended-a.ended||a.code.localeCompare(b.code));
- const unique=[],seen=new Set();
- for(const e of entries){
-  const p=e.poll, key=[e.code,p.poll_id||'',p.pollster.toLowerCase(),p.field_end,p.dem_name,p.rep_name].join('|');
-  if(seen.has(key))continue;seen.add(key);
-  unique.push(e);if(unique.length>=10)break;
+ entries.sort((a,b)=>b.sortTime-a.sortTime||b.ended-a.ended||a.race.race_code.localeCompare(b.race.race_code));
+ const byOffice={senate:0,house:0,governor:0};
+ for(const e of entries)byOffice[e.race.race_type]++;
+ status.textContent=entries.length+' observations · S '+byOffice.senate+' / H '+byOffice.house+' / G '+byOffice.governor;
+ if(!entries.length){box.append(elt('div','empty','No recent newly detected or fielded surveys in the upstream snapshot. Explore older polling in Race Lab.'));return}
+ const makeRow=e=>{
+  const {race,p,released,detected,ended}=e;
+  const row=elt('div','item'),head=elt('div','row');
+  const office=({senate:'Senate',house:'House',governor:'Governor'})[race.race_type];
+  const state=KEY_STATES[race.state]||race.state;
+  const district=race.race_type==='house'?' · '+race.race_code.split('-')[1]:'';
+  head.append(elt('strong','',state+district+' · '+office+' · '+p.pollster),elt('strong',marginColor(p.margin),marginText(p.margin)));
+  row.append(head);
+  const dateLabels=[Number.isFinite(released)?'Released '+fmt(released):Number.isFinite(detected)?'First seen '+fmt(detected):'Field end '+fmt(ended)];
+  if(Number.isFinite(released)||Number.isFinite(detected))dateLabels.push('Field end '+fmt(ended));
+  row.append(elt('small','',dateLabels.join(' · ')));
+  row.append(elt('small','',p.dem_name+' (D) vs '+p.rep_name+' (R)'+(p.sample_size?' · n='+p.sample_size:'')+(p.partisan_lean?' · '+p.partisan_lean+'-sponsored':'') ));
+  return row;
+ };
+ for(const e of entries.slice(0,10))box.append(makeRow(e));
+ if(entries.length>10){
+  const more=elt('details','poll-list-more'),summary=elt('summary','','Show '+Math.min(entries.length-10,90)+' more recent polls');
+  summary.style.cursor='pointer';summary.style.padding='11px 0';summary.style.color='#8bc5ff';more.append(summary);
+  for(const e of entries.slice(10,100))more.append(makeRow(e));box.append(more);
  }
- const withRelease=entries.filter(e=>Number.isFinite(e.released)).length;
- const withDetected=entries.filter(e=>Number.isFinite(e.added)).length;
- status.textContent=entries.length+' observations · newest first';
- if(!unique.length){box.append(elt('div','empty','No newly observed battleground Senate surveys in the last 14 days. Race Lab has the full recent feed.'));return}
- for(const e of unique){
-  const p=e.poll,row=elt('div','item');
-  const top=elt('div','row');top.append(elt('strong','',(KEY_STATES[e.state]||e.state)+' · '+p.pollster),elt('strong',marginColor(p.margin),marginText(p.margin)));row.append(top);
-  const formatDate=ms=>new Date(ms).toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'});
-  const dates=[Number.isFinite(e.released)?'Released '+formatDate(e.released):Number.isFinite(e.added)?'Added to feed '+formatDate(e.added):'Release date unavailable',
-    'Fieldwork ended '+formatDate(e.ended)];
-  row.append(elt('small','',dates.join(' · ')));
-  row.append(elt('small','',(p.dem_name||'Democrat')+' (D) vs. '+(p.rep_name||'Republican')+' (R)'+(p.sample_size?' · n='+p.sample_size:'')+(p.partisan_lean?' · Sponsored ('+p.partisan_lean+')':'')));
-  box.append(row);
- }
- box.append(elt('div','poll-list-note',
- 'Newest first by verified release date when supplied, otherwise the time our feed first detected it; pre-tracking surveys fall back to fieldwork end. The upstream source currently does not supply release dates. “Added” is not a claimed publication date.'));
+ const note=elt('div','poll-list-note','Across Senate, House and governor polling in our upstream 65-day feed. Newest first by verified release date when available, otherwise first detection; older observations sort by fieldwork end. The source does NOT provide published release dates or complete coverage of every public survey. “First seen” only means the scraper detected it, and is not a release date.');
+ box.append(note);
 }
 function standardNormalCDF(z){
  const t=1/(1+0.2316419*Math.abs(z));
