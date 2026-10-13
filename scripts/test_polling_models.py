@@ -1,102 +1,143 @@
 #!/usr/bin/env python3
-"""Walk-forward comparison of descriptive polling-average methods.
+"""Candidate-specific, leakage-free walk-forward polling-model evaluation.
 
-Target is the next published poll margin, NOT the election result. No future polls
-are used to compute a prediction. Tests compare equal weights, 21-day recency
-half-life, and recency plus sqrt(sample size) weighting. This is a diagnostic,
-not a validated election forecasting model.
+Predicts subsequent polls (not election outcomes). Evaluation is grouped by
+race/matchup so repeat observations don't masquerade as independent tests.
+A model is eligible for publication only after historical election-result
+backtesting and uncertainty calibration.
 """
 import json
 import math
+import random
 from collections import defaultdict
 from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-INPUT = ROOT / "data" / "polls.json"
-OUTPUT = ROOT / "data" / "model_tests.json"
-METHODS = ("equal", "recency", "recency_size")
+DATA = ROOT / "data" / "polls.json"
+OUT = ROOT / "data" / "model_tests.json"
+METHODS = ("equal", "recency21", "recency21_size", "recency35_size")
+RNG_SEED = 20261012
 
 
-def valid(p):
-    names = (p.get("dem_name") or "") + " " + (p.get("rep_name") or "")
-    return (isinstance(p.get("margin"), (int, float))
-            and math.isfinite(p["margin"])
-            and p.get("field_end") and p.get("pollster")
-            and p.get("dem_name") and p.get("rep_name")
-            and "generic" not in names.lower()
-            and not p.get("partisan_lean"))
+def eligible(p):
+    try:
+        names = (p["dem_name"] + " " + p["rep_name"]).lower()
+        return ("generic" not in names and not p.get("partisan_lean")
+                and math.isfinite(float(p["margin"])) and p.get("pollster")
+                and p.get("field_end") and date.fromisoformat(p["field_end"]))
+    except (KeyError, ValueError, TypeError):
+        return False
 
 
-def estimate(past, target_date, method):
-    seen = set()
-    total, weighted = 0.0, 0.0
-    for p in reversed(past):
-        if p["pollster"].lower() in seen:
-            continue
-        seen.add(p["pollster"].lower())
-        age = (target_date - date.fromisoformat(p["field_end"])).days
-        if age < 0:
-            raise ValueError("Lookahead detected")
-        w = 1.0 if method == "equal" else 0.5 ** (age / 21)
-        if method == "recency_size":
-            n = p.get("sample_size")
-            n = n if isinstance(n, (int, float)) and n > 0 else 600
-            w *= math.sqrt(max(200, min(3000, n)) / 600)
-        total += w
-        weighted += w * p["margin"]
+def predict(prior, asof, method):
+    # All polls on the target field-end date are withheld, including
+    # alternative releases from the same polling organization.
+    assert all(date.fromisoformat(p["field_end"]) < asof for p in prior)
+    unique = {}
+    for p in sorted(prior, key=lambda x: x["field_end"], reverse=True):
+        firm = p["pollster"].strip().lower()
+        if firm not in unique:
+            unique[firm] = p
+    total = weighted = 0.0
+    for p in unique.values():
+        age = (asof - date.fromisoformat(p["field_end"])).days
+        half_life = 21 if method != "recency35_size" else 35
+        weight = 1.0 if method == "equal" else 0.5 ** (age / half_life)
+        if method.endswith("_size"):
+            n = p.get("sample_size") or 600
+            weight *= math.sqrt(max(200, min(float(n), 3000)) / 600)
+        weighted += weight * float(p["margin"])
+        total += weight
     return weighted / total if total else None
 
 
-def run(data):
-    errors = defaultdict(list)
-    groups = 0
+def grouped_tests(data):
+    grouped = defaultdict(list)
     for race in data.get("races", []):
-        matchups = defaultdict(list)
         for p in race.get("polls", []):
-            if valid(p):
-                matchups[(p["dem_name"].lower(), p["rep_name"].lower())].append(p)
-        for polls in matchups.values():
-            polls.sort(key=lambda p: p["field_end"])
-            if len(polls) < 3:
+            if eligible(p):
+                key = (race["race_code"], p["dem_name"].strip().lower(),
+                       p["rep_name"].strip().lower())
+                grouped[key].append(p)
+    observations = defaultdict(list)
+    eligible_groups = 0
+    for key, polls in grouped.items():
+        dates = sorted(set(p["field_end"] for p in polls))
+        if len(dates) < 3:
+            continue
+        eligible_groups += 1
+        for target_day in dates[2:]:
+            asof = date.fromisoformat(target_day)
+            past = [p for p in polls if p["field_end"] < target_day
+                    and (asof - date.fromisoformat(p["field_end"])).days <= 90]
+            if len(set(p["pollster"].lower() for p in past)) < 2:
                 continue
-            groups += 1
-            for i in range(2, len(polls)):
-                target = polls[i]
-                earlier = [p for p in polls[max(0, i - 8):i]
-                           if p["field_end"] < target["field_end"]]
-                if len(earlier) < 2:
-                    continue
-                target_date = date.fromisoformat(target["field_end"])
-                for method in METHODS:
-                    prediction = estimate(earlier, target_date, method)
-                    if prediction is not None:
-                        errors[method].append(prediction - target["margin"])
-    results = {}
-    for method in METHODS:
-        es = errors[method]
-        results[method] = {
-            "comparisons": len(es),
-            "mae_points": round(sum(abs(e) for e in es) / len(es), 3) if es else None,
-            "rmse_points": round(math.sqrt(sum(e * e for e in es) / len(es)), 3) if es else None,
+            targets = [p for p in polls if p["field_end"] == target_day]
+            # Same-day polls are evaluated together, not as separate time steps.
+            actual = sum(float(p["margin"]) for p in targets) / len(targets)
+            for method in METHODS:
+                estimate = predict(past, asof, method)
+                if estimate is not None:
+                    observations[method].append((key, estimate - actual))
+    return observations, eligible_groups
+
+
+def summarize(observations, nboot=1000):
+    output = {}
+    rng = random.Random(RNG_SEED)
+    for method, values in observations.items():
+        by_race = defaultdict(list)
+        for key, error in values:
+            by_race[key].append(error)
+        keys = sorted(by_race)
+        if not values:
+            continue
+        errors = [e for _, e in values]
+        maes = []
+        # Cluster bootstrap resamples matchups, not individual observations.
+        for _ in range(nboot):
+            sample = [rng.choice(keys) for _ in keys]
+            es = [e for key in sample for e in by_race[key]]
+            maes.append(sum(abs(e) for e in es) / len(es))
+        maes.sort()
+        output[method] = {
+            "comparisons": len(errors),
+            "independent_matchup_clusters": len(keys),
+            "mae_points": round(sum(abs(e) for e in errors) / len(errors), 3),
+            "rmse_points": round(math.sqrt(sum(e * e for e in errors) / len(errors)), 3),
+            "cluster_bootstrap_mae_95pct_range": [
+                round(maes[int(.025 * nboot)], 3),
+                round(maes[int(.975 * nboot) - 1], 3),
+            ],
         }
-    return {
-        "source_poll_snapshot": data.get("updated_at"),
-        "test": "Walk-forward next-poll margin comparison",
-        "matchup_groups_with_three_or_more_polls": groups,
+    return output
+
+
+def main():
+    data = json.loads(DATA.read_text(encoding="utf-8"))
+    observations, groups = grouped_tests(data)
+    results = summarize(observations)
+    winner = min(results, key=lambda k: results[k]["mae_points"]) if results else None
+    output = {
+        "source_snapshot": data.get("updated_at"),
+        "test": "Strict walk-forward, held-out next poll, grouped by candidate matchup",
+        "eligible_matchup_groups": groups,
         "methods": results,
+        "lowest_observed_mae": winner,
+        "production_model_status": "NOT VALIDATED FOR ELECTION-RESULT FORECASTING",
+        "model_selection_policy": "No model is promoted from this test. Require historical election-result holdout validation, calibration, and correlated error assessment.",
         "limitations": [
-            "Predicting a subsequent poll is not the same as predicting an election outcome.",
-            "Polls from the same firm, sponsor, or race may have correlated errors.",
-            "The dataset retains only a bounded recent poll history per race.",
-            "Differences of a few hundredths of a point do not establish model superiority.",
-            "No confidence intervals or election win probabilities are estimated.",
+            "Targets are future polls, not actual election results.",
+            "Short rolling upstream history can bias which races are testable.",
+            "Within-race and cross-race systematic polling errors remain.",
+            "Bootstrap interval describes evaluation metric variability, not a race forecast confidence interval.",
+            "No win probabilities, house effects or election-security adjustments inferred.",
         ],
     }
+    OUT.write_text(json.dumps(output, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps(output, indent=2))
 
 
 if __name__ == "__main__":
-    data = json.loads(INPUT.read_text(encoding="utf-8"))
-    result = run(data)
-    OUTPUT.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps(result, indent=2))
+    main()
