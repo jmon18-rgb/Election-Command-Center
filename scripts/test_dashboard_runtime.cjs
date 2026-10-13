@@ -698,7 +698,7 @@ async function settle(){
  const validate35=w.eval('enNationalValidate('+JSON.stringify(senateUniverse)+')');
  assert.equal(validate35.length,35);
  assert.equal(validate35.filter(x=>x.kind==='special').length,2);
- assert.deepEqual(validate35.filter(x=>x.kind==='special').map(x=>x.state),['FL','OH']);
+ assert.equal(JSON.stringify(validate35.filter(x=>x.kind==='special').map(x=>x.state)),JSON.stringify(['FL','OH']));
  w.eval('enNationalSetUniverse('+JSON.stringify(senateUniverse)+')');
  assert.equal(w.eval('enWatchParse("FL-SEN").key'),'FL-special');
  assert.equal(w.eval('enWatchParse("OH-SEN").key'),'OH-special');
