@@ -222,6 +222,11 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/SEAT_MODEL.md" target="_blank" rel="noopener noreferrer" class="seat-model-link">See model prerequisites ↗</a> <span class="tiny">·</span> <a href="https://www.census.gov/programs-surveys/decennial-census/about/rdo/congressional-districts.html" target="_blank" rel="noopener noreferrer" class="seat-model-link">Census map status ↗</a>
 </section>
 <div class="en-model-blockers" aria-label="Model readiness"><div class="row"><strong>Building a real national forecast</strong><span class="tag" id="forecastGateStatus">NOT CALIBRATED</span></div><p class="detail">JackStradamus's polling averages are descriptive. The prerequisites below come from the full 435-House-seat and 35-Senate-contest inventory, not an invented readiness score.</p><div id="forecastGateList"><div class="empty">Checking the model prerequisites…</div></div></div>
+<section class="en-model-blockers" aria-label="Historical Senate results research" style="margin:15px 0">
+ <div class="row"><strong>Historical Senate returns · research input</strong><span class="tag">NOT A FORECAST</span></div>
+ <p class="detail" id="senateHistoryStatus">Loading MIT/MEDSL 2020, 2022 and 2024 source status…</p>
+ <p class="methodline">Regular and special elections remain distinct. Independents and ballots without a major-party nominee stay unfilled—not reassigned. This is groundwork for out-of-year testing, not calibrated 2026 Senate win odds.</p>
+</section>
 <section class="house-history-audit" aria-label="Historical House two-election variation">
  <div class="row"><div><span class="label">2022 → 2024 · HISTORICAL REALITY CHECK</span><h3 style="font-size:17px;margin:9px 0 5px">How much did comparable House vote shares move?</h3></div><span class="tag">RECORDED VOTES</span></div>
  <p class="detail">Before modeling 2026 uncertainty, inspect the actual difference between two prior House elections on unchanged district boundaries. These are different electorates and candidates—not model forecast errors.</p>
@@ -276,7 +281,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div class="en-stat"><small>REPUBLICAN VOTE LEADS</small><b id="enRLeads">—</b></div>
  <div class="en-stat"><small>RACE CALLS</small><b id="enCalls">Not supplied</b></div>
 </div>
-<div class="en-footnote">2024 House rehearsal: 435 historical districts using MIT/MEDSL candidate-party vote totals. This is <strong>not a chronological election-night replay</strong>, and 2024 districts are not automatically comparable with 2026 lines. The outside Open America election-results endpoint currently prohibits cross-origin browser fetches; its 22-state feed cannot be reliably loaded from GitHub Pages. The 2026 live feed remains <strong>unconnected</strong> rather than presenting missing results as zeros, race calls or national chamber control.</div>
+<div class="en-footnote">2024 House rehearsal: 435 historical districts using MIT/MEDSL candidate-party vote totals. This is <strong>not a chronological election-night replay</strong>, and 2024 districts are not automatically comparable with 2026 lines. The outside Open America election-results endpoint currently prohibits cross-origin browser fetches; its 22-state feed cannot be reliably loaded from GitHub Pages. A separate Senate archive becomes available after MIT/MEDSL source validation. The 2026 live feed remains <strong>unconnected</strong> rather than presenting missing results as zeros, race calls or national chamber control.</div>
 <div class="en-workspace">
  <div class="en-race-panel">
   <div class="en-race-tools"><strong id="enRaceHeading">House races</strong><input id="enSearch" type="search" placeholder="Search state, seat, candidate" aria-label="Filter election night races"/></div>
@@ -1402,9 +1407,47 @@ function enBuildHouseArchive(raw){
    archive_source_url:raw.source_original,archive_license:raw.source_license,
    archive_imported_at:raw.extracted_at};
 }
+
+function enBuildSenateArchive(raw){
+ if(!raw||raw.status!=='historical_senate_results_research_only'||
+    raw.schema_version!=='1.0'||raw.source_doi!=='doi:10.7910/DVN/PEJ5QU'||
+    !raw.source_license?.includes('CC0')||raw.is_election_forecast!==false||
+    raw.can_predict_2026_senate!==false||!Array.isArray(raw.contest_records)||
+    raw.contest_records.length!==raw.contest_count||raw.contest_count<90)return null;
+ const races={},selected=raw.contest_records.filter(r=>r.election_year===2024);
+ if(selected.length<30||selected.length>40||
+    selected.length!==raw.contests_by_year?.['2024'])return null;
+ let missing=0;
+ for(const r of selected){
+  const key=r.state+(r.election_type==='special'?'-special':'');
+  if(!/^[A-Z]{2}(?:-special)?$/.test(key)||races[key]||
+     !['regular','special'].includes(r.election_type)||
+     r.eligible_as_2026_forecast_prior!==false||
+     r.historical_election_result_not_poll!==true)return null;
+  const d=r.recorded_dem_votes,g=r.recorded_rep_votes,o=r.recorded_other_votes,total=d+g+o;
+  if(![d,g,o].every(v=>Number.isSafeInteger(v)&&v>=0)||total<=0||
+     total!==r.recorded_total_candidate_votes||d+g!==r.recorded_two_party_vote_total||
+     r.missing_major_party_vote!==(d===0||g===0))return null;
+  if(r.missing_major_party_vote)missing++;
+  const cands=[
+   {n:'Democratic party total',p:'D',v:d,pct:100*d/total},
+   {n:'Republican party total',p:'R',v:g,pct:100*g/total}
+  ];
+  if(o)cands.push({n:'Other / independent candidate totals',p:'O',v:o,pct:100*o/total});
+  races[key]={leader:'',called:false,winner:'',pct_in:null,total,uncontested:false,
+    cands,missing_major_party_votes:r.missing_major_party_vote,
+    senate_election_type:r.election_type};
+ }
+ return {api:1,year:2024,office:'Senate',live:false,stale:false,counting:true,final:false,
+   source:'medsl_senate_2024_party_aggregates',as_of:null,
+   counts:{races:selected.length,with_precincts:0,reporting:0,not_called:selected.length,called:{}},
+   races,archive_missing_major_party_districts:missing,
+   archive_source_url:raw.source_url,archive_license:raw.source_license,
+   archive_imported_at:raw.imported_at};
+}
 function enSourceValid(o,year,office){
  if(!o||o.api!==1||o.year!==year||o.office!==office||
-  (o.source!==''&&o.source!=='state'&&!(year===2024&&office==='House'&&o.source==='medsl_house_2024_party_aggregates'))||!o.races||Array.isArray(o.races)||
+  (o.source!==''&&o.source!=='state'&&!(year===2024&&office==='House'&&o.source==='medsl_house_2024_party_aggregates')&&!(year===2024&&office==='Senate'&&o.source==='medsl_senate_2024_party_aggregates'))||!o.races||Array.isArray(o.races)||
   typeof o.races!=='object'||Object.keys(o.races).length>550)return false;
  if(['live','stale','counting','final'].some(k=>typeof o[k]!=='boolean'))return false;
  if(o.live&&(o.stale||o.final||!o.counting))return false;
@@ -1413,6 +1456,9 @@ function enSourceValid(o,year,office){
    (year!==2024||office!=='House'||Object.keys(o.races).length!==435||
     !Number.isInteger(o.archive_missing_major_party_districts)||o.archive_missing_major_party_districts<0||
     !o.archive_source_url?.startsWith('https://dataverse.harvard.edu/')))return false;
+ if(o.source==='medsl_senate_2024_party_aggregates'&&
+   (year!==2024||office!=='Senate'||Object.keys(o.races).length<30||
+    Object.keys(o.races).length>40||!o.archive_source_url?.startsWith('https://dataverse.harvard.edu/')))return false;
  if(year===2026&&Date.now()<Date.parse('2026-11-03T00:00:00Z')&&
     Object.values(o.races).some(r=>Number(r?.total)>0))return false;
  if(o.as_of){
@@ -1503,9 +1549,13 @@ function enRender(){
  $('#enRLeads').textContent=enNum(ready.filter(([,r])=>enCurrentLeader(r)?.p==='R').length);
  $('#enCalls').textContent='Not supplied';
  const archivedMEDSL=enModeYear===2024&&enData?.source==='medsl_house_2024_party_aggregates';
+ const archivedSenate=enModeYear===2024&&enData?.source==='medsl_senate_2024_party_aggregates';
  const asOfAge=enData?.as_of?(Date.now()-Date.parse(enData.as_of))/60000:Infinity;
  const sourceDelayed=enModeYear===2026&&enData&&(enData.stale||(enData.counting&&(!enData.live||asOfAge>180)));
- let info=enData&&archivedMEDSL?
+ let info=enData&&archivedSenate?
+  '2024 SENATE ARCHIVE · '+rows.length+' historical contests · MIT/MEDSL recorded party votes · '+
+  enData.archive_missing_major_party_districts+' without both major-party candidates · specials distinct':
+  enData&&archivedMEDSL?
   '2024 HOUSE ARCHIVE · '+rows.length+' voting districts nationwide · party-level recorded votes (MIT/MEDSL) · '+
   enData.archive_missing_major_party_districts+' districts missing one major party\'s recorded vote · no precinct feed or race calls':
   enData?
@@ -1524,7 +1574,7 @@ function enRender(){
  enRenderMovement();
  enUpdateSelection();
  const query=($('#enSearch').value||'').trim().toLowerCase(),list=$('#enRaceList');list.replaceChildren();
- if(!rows.length){list.append(elt('p','empty',enModeYear===2026?'No validated 2026 results source is connected. Original state election results can be opened from the source links below.':'No verified archive for this office. 2024 House is available from MIT/MEDSL.'));enRenderDetail();return}
+ if(!rows.length){list.append(elt('p','empty',enModeYear===2026?'No validated 2026 results source is connected. Original state election results can be opened from the source links below.':'No verified archive for this office. 2024 House is available; MIT/MEDSL 2024 Senate needs its staged source.'));enRenderDetail();return}
  const filtered=rows.filter(([key,r])=>!query||(key+' '+(r.cands||[]).map(p=>p.n).join(' ')).toLowerCase().includes(query));
  filtered.sort((a,b)=>{const pa=a[1].pct_in,pb=b[1].pct_in;return (a[1].total?0:1)-(b[1].total?0:1)||String(a[0]).localeCompare(String(b[0]))});
  for(const [key,r] of filtered.slice(0,enVisibleLimit)){
@@ -1545,7 +1595,7 @@ function enRender(){
  }
  enRenderDetail();
 }
-function archivedMEDSLDetail(){return enModeYear===2024&&enData?.source==='medsl_house_2024_party_aggregates'}
+function archivedMEDSLDetail(){return enModeYear===2024&&['medsl_house_2024_party_aggregates','medsl_senate_2024_party_aggregates'].includes(enData?.source)}
 function enRenderDetail(){
  const found=enCurrentRaces().find(([id])=>id===enSelected);
  const title=$('#enDetailTitle'),summary=$('#enDetailSummary'),cands=$('#enCandidateList'),meta=$('#enDetailMeta'),comparison=$('#enPollReference');
@@ -1563,7 +1613,7 @@ function enRenderDetail(){
  }else summary.append(elt('span','','No votes reported.'));
  summary.append(elt('span','en-report-line',
   archivedMEDSLDetail()?
-   enNum(r.total)+' recorded party votes in the 2024 House election · candidate-by-candidate counts not in this archive · NOT a race call':
+   enNum(r.total)+' recorded party votes in the 2024 '+enOffice+' election · aggregated by party, not named candidate · NOT a race call':
    enNum(r.total)+' total votes counted · '+(typeof r.pct_in==='number'?r.pct_in.toFixed(1)+'% of precincts reporting':'Reporting share unavailable')+' · NOT a race call'));
  if(Number.isFinite(r.pct_in)){
   const progress=elt('div','en-report-progress'),fill=elt('div','en-report-fill');fill.style.width=Math.min(100,Math.max(0,r.pct_in))+'%';progress.append(fill);summary.append(progress);
@@ -1577,7 +1627,7 @@ function enRenderDetail(){
   wrap.append(head,track);cands.append(wrap)
  }
  meta.textContent=archivedMEDSLDetail()?
-  'Source: MIT Election Data and Science Lab, recorded 2024 U.S. House candidate-party returns (CC0 mirror). Aggregated by party, not named candidates. '+(r.missing_major_party_votes?
+  'Source: MIT Election Data and Science Lab, recorded 2024 U.S. '+enOffice+' candidate-party returns (CC0). Aggregated by party, not named candidates. '+(r.missing_major_party_votes?
   'At least one major party had no recorded candidate votes; do not interpret zero as voter preference. ':'')+
   'Historical district geography, not 2026 boundaries. No calls, precinct updates or election-day forecasts.':
   'Source: official state election office via Open America · '+(enModeYear===2024?'2024 historical snapshot':'2026 unofficial')+' · '+(r.called?'Source reports a call':'No race call supplied')+'.';
@@ -1601,12 +1651,14 @@ async function enLoad(manual=false){
  const serial=++enRequestSerial,year=enModeYear,office=enOffice;
  if(manual)$('#enStatus').textContent='Checking state-derived '+office.toLowerCase()+' returns…';
  try{
-  if(year!==2024||office!=='House')
+  if(year!==2024||!['House','Senate'].includes(office))
     throw Error('No browser-compatible, rights-cleared results feed is connected for '+year+' '+office+
       '. Open an official or decision-desk source below for those results.');
-  const res=await fetch('./data/house_history_2024_staging.json',{cache:'no-store'});
-  if(!res.ok)throw Error('Local 2024 House archive HTTP '+res.status);
-  const obj=enBuildHouseArchive(await res.json());
+  const filename=office==='House'?'house_history_2024_staging.json':'senate_history_2020_2022_2024.json';
+  const res=await fetch('./data/'+filename,{cache:'no-store'});
+  if(!res.ok)throw Error('Local 2024 '+office+' archive not yet staged (HTTP '+res.status+')');
+  const obj=office==='House'?enBuildHouseArchive(await res.json()):enBuildSenateArchive(await res.json());
+  if(!obj)throw Error('Historical Senate archive failed validation');
   if(serial!==enRequestSerial)return;
   enAcceptSource(obj);
  }catch(error){
@@ -1701,6 +1753,18 @@ function renderHouseHistoricalSwing(data){
   'It is NOT a calibrated polling-error distribution, forecast uncertainty interval, 2026 swing prediction or national representation.';
 }
 
+fetch('./data/senate_history_2020_2022_2024.json',{cache:'no-store'}).then(r=>{
+ if(!r.ok)throw Error('Historical Senate file has not been published');
+ return r.json()
+}).then(d=>{
+ if(d?.status!=='historical_senate_results_research_only'||d.is_election_forecast!==false||
+  d.can_predict_2026_senate!==false||d.contest_count!==d.contest_records?.length||
+  !['2020','2022','2024'].every(y=>d.contests_by_year?.[y]>=30))throw Error('Historical source integrity mismatch');
+ $('#senateHistoryStatus').textContent='MIT/MEDSL historical returns loaded: '+
+  ['2020','2022','2024'].map(y=>y+': '+d.contests_by_year[y]+' contests').join(' · ')+
+  ' · '+d.contests_without_both_major_party_votes+
+  ' contests without recorded votes for both parties. No candidate-imputed shares or Senate control probabilities.';
+}).catch(()=>{$('#senateHistoryStatus').textContent='Historical Senate return import pending independent Dataverse verification. No historical candidate votes invented.'});
 let houseTwoCycleData=null;
 fetch('./data/house_two_cycle_context.json',{cache:'no-store'})
   .then(r=>{if(!r.ok)throw Error('historical geography not ready');return r.json()})
