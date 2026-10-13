@@ -5,6 +5,8 @@ Verify REAL browser-CORS response, office identity, single exact General race,
 and the matching detailed-race contract; do not ingest votes into primary feed.
 """
 import json
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -18,14 +20,24 @@ def source(path,params=None):
         "Origin":ORIGIN,"Accept":"application/json",
         "User-Agent":"BlueWavesPersonalElectionNight/1.0"
     })
-    with urllib.request.urlopen(req,timeout=25) as response:
-        headers=response.headers
-        body=response.read(300000)
-        if response.status!=200 or headers.get("Access-Control-Allow-Origin") not in ("*",ORIGIN):
-            raise ValueError("civicAPI response is not direct-browser compatible")
-        if "json" not in headers.get("Content-Type","").lower() or len(body)>=300000:
-            raise ValueError("civicAPI source not a bounded JSON result")
-    return json.loads(body)
+    # The supplemental provider sometimes returns transient 502/503 while
+    # its election index updates. Retry those transport errors, but NEVER
+    # relax seat, office, CORS, vote-shape or candidate-identity checks.
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req,timeout=25) as response:
+                headers=response.headers
+                body=response.read(300000)
+                if response.status!=200 or headers.get("Access-Control-Allow-Origin") not in ("*",ORIGIN):
+                    raise ValueError("civicAPI response is not direct-browser compatible")
+                if "json" not in headers.get("Content-Type","").lower() or len(body)>=300000:
+                    raise ValueError("civicAPI source not a bounded JSON result")
+            return json.loads(body)
+        except urllib.error.HTTPError as error:
+            if error.code not in (429,500,502,503,504) or attempt==2:
+                raise
+            print("Transient civicAPI HTTP",error.code,"retry",attempt+1,"of 2")
+            time.sleep(1+attempt*2)
 
 def match(item,record):
     state,office,district=item
