@@ -1836,8 +1836,13 @@ function enWatchParse(input){
   return {office:'House',key:match[1]+'-'+match[2]};
  }
  match=value.match(/^([A-Z]{2})-(SEN|SENATE|SEN-SPECIAL)$/);
- if(match&&enHouseSeatCounts[match[1]])
-  return {office:'Senate',key:match[1]+(match[2]==='SEN-SPECIAL'?'-special':'')};
+ if(match&&enHouseSeatCounts[match[1]]){
+  const seat=enNationalSeats?.find(x=>x.state===match[1]);
+  if(enNationalSeats&&!seat)return null;
+  if(seat&&match[2]==='SEN-SPECIAL'&&seat.kind!=='special')return null;
+  return {office:'Senate',key:seat?.key||
+    match[1]+(match[2]==='SEN-SPECIAL'?'-special':'')};
+ }
  match=value.match(/^([A-Z]{2})-(GOV|GOVERNOR)$/);
  if(match&&enHouseSeatCounts[match[1]])
   return {office:'Governor',key:match[1]};
@@ -1994,8 +1999,7 @@ async function enCivicFetchOne(item){
   if(!response.ok)throw Error('Race HTTP '+response.status);
   const next=enCivicValidate(item,row,await response.json());
   if(!next)throw Error('Supplementary result integrity check failed');
-  if(!enIsVisible()||enModeYear!==2026||
-     !enWatched.some(x=>enWatchId(x)===id))return;
+  if(!enIsVisible()||enModeYear!==2026||!enNationalTracked(item))return;
   const old=enCivicByWatch[id],oldTime=Date.parse(old?.last_updated||''),
       newTime=Date.parse(next.last_updated||'');
   if(Number.isFinite(oldTime)&&Number.isFinite(newTime)&&newTime<oldTime-1000)
@@ -2005,11 +2009,11 @@ async function enCivicFetchOne(item){
   enCivicByWatch[id]=next;
   enCivicRaceIds[id]=row;
   delete enCivicErrors[id];
-  enRenderWatchlist();
+  enRenderWatchlist();enRenderNationalSenate();
  }catch(err){
   if(enIsVisible()&&enModeYear===2026){
    enCivicErrors[id]=String(err?.message||err);
-   enRenderWatchlist();
+   enRenderWatchlist();enRenderNationalSenate();
   }
  }finally{enCivicPending.delete(id)}
 }
@@ -2018,8 +2022,11 @@ async function enRefreshCivicWatchlist(force=false){
  const now=Date.now(),interval=now<Date.parse('2026-11-03T05:00:00Z')?600000:60000;
  if(!force&&now-enCivicLastSweep<interval)return;
  enCivicLastSweep=now;
- // Low-impact serial client requests; only manually pinned out-of-feed races.
- const all=enWatched.filter(x=>!enSupportedStates.has(x.key.slice(0,2)));
+ // Bound to 12 serial civicAPI records per sweep; append verified national
+ // Senate seats only after explicit tracking or on election night.
+ const all=[...new Map([...enWatched,...enNationalWatchItems()]
+   .filter(x=>!enSupportedStates.has(x.key.slice(0,2)))
+   .map(x=>[enWatchId(x),x])).values()];
  if(!all.length)return;
  // Rotate rather than permanently skipping the 13th–40th personally
  // watched supplemental race when the number of pins exceeds one sweep.
@@ -2388,6 +2395,7 @@ function enRender(){
   'MIT/MEDSL 2024 House (435 districts) and Senate (35 contests) historical party aggregates. No candidate names or precinct progress. Select State feed to rehearse the same named-candidate format as 2026 live results.';
  enRenderMovement();
  enRenderWatchlist();
+ enRenderNationalSenate();
  enUpdateSelection();
  const query=($('#enSearch').value||'').trim().toLowerCase(),list=$('#enRaceList');list.replaceChildren();
  if(!rows.length){list.append(elt('p','empty',enModeYear===2026&&enData?
@@ -2489,7 +2497,8 @@ function enFetchUrl(year,office){
 const enWatchRefreshPending=new Set();
 async function enRefreshWatchedOffices(exceptOffice){
  if(enModeYear!==2026||!enIsVisible())return;
- const offices=[...new Set(enWatched.map(x=>x.office))].filter(x=>x!==exceptOffice);
+ const offices=[...new Set([...enWatched.map(x=>x.office),
+  ...(enNationalEnabled&&enNationalSeats?['Senate']:[])])].filter(x=>x!==exceptOffice);
  await Promise.all(offices.map(async office=>{
   if(enWatchRefreshPending.has(office))return;
   enWatchRefreshPending.add(office);
@@ -2509,7 +2518,7 @@ async function enRefreshWatchedOffices(exceptOffice){
    delete enOfficeErrors[office];
    if(enOffice===office){
     enData=obj;enFetchError=null;enLastFetchAt=new Date();enRender();
-   }else enRenderWatchlist();
+   }else {enRenderWatchlist();enRenderNationalSenate()}
   }catch(err){
    if(enModeYear===2026&&enIsVisible()){enOfficeErrors[office]=String(err?.message||err);enRenderWatchlist()}
   }finally{enWatchRefreshPending.delete(office)}
@@ -2530,7 +2539,7 @@ function enQueueRefresh(){
  });
  const preferred=watchingLive?{live:true}:enData;
  const civicActive=Date.now()>=Date.parse('2026-11-03T05:00:00Z')&&
-  enWatched.some(x=>!enSupportedStates.has(x.key.slice(0,2)));
+  [...enWatched,...enNationalWatchItems()].some(x=>!enSupportedStates.has(x.key.slice(0,2)));
  const interval=enRefreshInterval(preferred,enFailures);
  enTimer=setTimeout(()=>{enTimer=null;enLoad(false)},
    civicActive?Math.min(interval,60000):interval);
