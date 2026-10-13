@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import sys
+from unittest.mock import patch
 import unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parent))
@@ -21,6 +22,23 @@ class PollAlerts(unittest.TestCase):
         self.assertEqual(n.choose([p],{n.identity(p)},"2026-10-13"),[])
     def test_old_postings_never_presented_as_new(self):
         self.assertEqual(n.choose([self.fixture(posted_date="2026-10-08")],set(),"2026-10-13"),[])
+    def test_midnight_and_delayed_run_do_not_miss_new_indexing(self):
+        p=self.fixture(posted_date="2026-10-13")
+        self.assertEqual(n.choose([p],set(),"2026-10-14"),[p])
+        self.assertEqual(n.choose([p],{n.identity(p)},"2026-10-14"),[])
+    def test_bounded_catchup_and_future_index_dates_rejected(self):
+        old=self.fixture(posted_date="2026-10-10")
+        future=self.fixture(posted_date="2026-10-15")
+        self.assertEqual(n.choose([old,future],set(),"2026-10-14"),[])
+    def test_gmail_only_requires_two_secrets(self):
+        with patch.dict("os.environ",{"POLL_GMAIL_ADDRESS":"example@gmail.com",
+            "POLL_GMAIL_APP_PASSWORD":"abcd efgh ijkl mnop"},clear=True):
+            self.assertEqual(n.mail_settings(),(
+                "smtp.gmail.com",465,"example@gmail.com","abcdefghijklmnop",
+                "example@gmail.com","example@gmail.com"))
+    def test_unconfigured_sender_is_inactive(self):
+        with patch.dict("os.environ",{},clear=True):
+            self.assertIsNone(n.mail_settings())
     def test_shared_survey_different_question_not_collapsed(self):
         a=self.fixture()
         b=self.fixture(race_code="TX-GOV",question_id="q2")
