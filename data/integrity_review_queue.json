@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-13T01:40:15.040098Z",
+  "updated_at": "2026-10-13T04:38:15.396605Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "items": [
     {
       "id": "535371eb2b067753bc75",
@@ -50,6 +50,21 @@
         "registration",
         "litigation"
       ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "db121a4631f770e3001d",
+      "title": "Markwayne \"Stand Your Butt Up\" Mullin: The Kratom Investor, Cage Fighter and Election Denier Who Runs Homeland Security - Global Project Against Hate and Extremism",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBsLTRVdjlFa1drRjNmV2FHUHFNMU03Z0RIX1JkdE9zWFBzVFlabWdGblk5MDlKYWN2RzhUV0otalN3bVhIbTdDcmhuSU14aGxfOEFJVFlVTjh2a0FYUVow?oc=5",
+      "publisher": "Global Project Against Hate and Extremism",
+      "published_at": "2026-10-12T19:35:43Z",
+      "detected_at": "2026-10-13T04:38:15.396605Z",
+      "state_hints": [],
+      "topic_hints": [],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
