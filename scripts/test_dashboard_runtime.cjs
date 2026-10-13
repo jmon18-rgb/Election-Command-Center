@@ -233,6 +233,66 @@ async function settle(){
  assert.match(get('#enStatus').textContent,/LAST VERIFIED RESULTS RETAINED/);
  assert.equal(get('#enRaces').textContent,'435','Outage must preserve the 435 verified historical records');
  assert.match(get('#enStatus').textContent,/Simulated archive transport outage/);
+ // Optional 2024 Senate archive is only enabled by a verified, complete
+ // historical research file. Never turn a synthetic fixture into production.
+ const states='AK AL AR AZ CA CO CT DE FL GA HI IA ID IL IN KS KY LA MA MD ME MI MN MO MS MT NC ND NE NH NJ NM NV NY'.split(' ');
+ const senateRecords=[];
+ for(const year of [2020,2022,2024]){
+  for(const state of states){
+   senateRecords.push({
+    election_year:year,state,election_type:'regular',
+    eligible_as_2026_forecast_prior:false,historical_election_result_not_poll:true,
+    recorded_dem_votes:1000,recorded_rep_votes:1200,recorded_other_votes:200,
+    recorded_total_candidate_votes:2400,recorded_two_party_vote_total:2200,
+    missing_major_party_vote:false
+   });
+  }
+  senateRecords.push({
+    election_year:year,state:year===2020?'GA':year===2022?'OK':'NE',
+    election_type:'special',eligible_as_2026_forecast_prior:false,historical_election_result_not_poll:true,
+    recorded_dem_votes:year===2024?0:900,recorded_rep_votes:1100,recorded_other_votes:300,
+    recorded_total_candidate_votes:year===2024?1400:2300,
+    recorded_two_party_vote_total:year===2024?1100:2000,
+    missing_major_party_vote:year===2024
+  });
+ }
+ const senateSynthetic={
+  status:'historical_senate_results_research_only',schema_version:'1.0',
+  source_doi:'doi:10.7910/DVN/PEJ5QU',source_license:'CC0 1.0',
+  source_url:'https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/PEJ5QU',
+  imported_at:'2026-10-13T12:00:00Z',
+  is_election_forecast:false,can_predict_2026_senate:false,
+  contest_count:senateRecords.length,contests_by_year:{'2020':35,'2022':35,'2024':35},
+  contest_records:senateRecords
+ };
+ const senateArchive=w.eval('enBuildSenateArchive('+JSON.stringify(senateSynthetic)+')');
+ assert(senateArchive,'2024 historical Senate archive should be generated from validated party votes');
+ assert.equal(Object.keys(senateArchive.races).length,35);
+ assert(senateArchive.races.NE,'Regular Nebraska historical election must survive');
+ assert(senateArchive.races['NE-special'],'Special Nebraska historical election must remain separate');
+ assert.equal(senateArchive.races['NE-special'].cands.find(x=>x.p==='D').v,0);
+ assert(senateArchive.races['NE-special'].cands.some(x=>x.p==='O'));
+ assert.equal(w.eval('enSourceValid('+JSON.stringify(senateArchive)+',2024,"Senate")'),true);
+ const corruptSenate=structuredClone(senateSynthetic);
+ corruptSenate.contest_records.find(r=>r.election_year===2024).recorded_dem_votes=-1;
+ assert.equal(w.eval('enBuildSenateArchive('+JSON.stringify(corruptSenate)+')'),null,
+  'Never show historical Senate archive with corrupt votes');
+ const missingSenate=structuredClone(senateSynthetic);
+ missingSenate.contest_records=missingSenate.contest_records.filter(r=>!(r.election_year===2024&&r.state==='GA'));
+ missingSenate.contest_count--;
+ assert.equal(w.eval('enBuildSenateArchive('+JSON.stringify(missingSenate)+')'),null,
+  'Never accept incomplete historical Senate cycle');
+ fixtures['senate_history_2020_2022_2024.json']=senateSynthetic;
+ w.eval("enModeYear=2024;enOffice='Senate';enSelected=null;");
+ await w.eval('enLoad(true)');
+ assert.equal(get('#enRaces').textContent,'35');
+ assert.match(get('#enStatus').textContent,/2024 SENATE ARCHIVE/);
+ assert(get('#enRaceList').textContent.includes('NE-special'));
+ assert.match(get('#enDetailMeta').textContent,/U.S. Senate candidate-party returns/);
+ // Returning to 2024 House must not leak state-level Senate results.
+ w.eval("enModeYear=2024;enOffice='House';enSelected=null;");
+ await w.eval('enLoad(true)');
+ assert.equal(get('#enRaces').textContent,'435');
  // Canonical in-app identifiers must be visible. TX Senate and TX governor
  // cannot both be ambiguous "Texas" cards any longer.
  const [txSen,txGov]=['senate','governor'].map(type=>
