@@ -138,3 +138,10 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - JackStradamus's model page now displays the **observed 2022–2024 Democratic two-party House vote-share changes** for exactly 191 map-comparable districts, including median/10th/90th percentiles and an eight-bin distribution.
 - Source checks require all 435 seat records to exist and reject any included record without unchanged boundaries or both parties' votes; 244 ineligible seats are explicitly excluded.
 - This historical result variation is **not** a pollster error calibration or an outcome probability. Next genuinely probabilistic step remains sourcing timestamped pre-election polls and actual results across multiple held-out cycles, then measuring correlated errors. No coefficients are transferred into live predictions.
+
+## October 13: official MIT Senate research source
+
+- Added an official-Dataverse, CC0 1.0 Senate 1976–2024 (V8) importer, restricted to 2020/2022/2024 research cycles. Regular/special contests are **not merged**, and independent/minor-party totals are preserved.
+- Automated offline edge-case unit tests and **real-source import verification in PR CI**. Separate GitHub Actions publishes the validated historical artifact after merge; no model-update workflow may silently substitute this for 2026 poll data.
+- The model tab exposes the true availability/status of historical Senate research, while the Election Night 2024 Senate rehearsal becomes available only when the staged, provenance-verified record exists.
+- Still required: reconcile independent vote totals and candidate identities; historical pre-election Senate polls and true year-held-out outcome backtests; 2026 holdovers/incumbents; authorized live election-night feeds.
