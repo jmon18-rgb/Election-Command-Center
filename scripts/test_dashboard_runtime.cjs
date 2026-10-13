@@ -845,6 +845,7 @@ async function settle(){
  // global and does not change the script's actual saved watchlist.
  assert(get('#enWatchItems .en-watch-open[aria-label="Open NH-SEN Senate 2026 results"]'));
  get('.tab[data-page="electionNight"]').click();
+ const primaryRaceCountBeforeCivic=get('#enRaces').textContent;
  await w.eval('enRefreshCivicWatchlist(true)');
  assert(civicRequests.some(x=>x.includes('province=NH')&&x.includes('startDate=2026-11-03')));
  assert(civicRequests.some(x=>x.includes('/race/87283?light=')));
@@ -873,8 +874,8 @@ async function settle(){
  assert.equal(w.document.querySelector('#enWatchItems .en-civic-detail'),null,
   'Supplemental race detail should collapse without losing its verified source snapshot');
 
- assert.equal(get('#enRaces').textContent,'0',
-   'Supplemental provider vote returns must not leak into primary official-state totals');
+ assert.equal(get('#enRaces').textContent,primaryRaceCountBeforeCivic,
+   'Supplemental provider votes must never alter the previously validated primary source race count');
  w.fetch=originalCivicFetch;
  w.Date.now=oldClock;
  w.eval('enWatched=[];enRenderWatchlist()');
