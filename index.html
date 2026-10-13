@@ -516,6 +516,15 @@ const ns='http://www.w3.org/2000/svg';const range=Math.max(5,...valid.map(p=>Mat
 make('line',{x1:10,y1:y(0),x2:330,y2:y(0)});const points=valid.map((p,i)=>[12+i*316/(valid.length-1),y(p.margin)]);make('polyline',{points:points.map(p=>p.join(',')).join(' ')});for(const [i,p] of points.entries()){const c=make('circle',{cx:p[0],cy:p[1],r:2.6,fill:'#72e0d6'});const title=document.createElementNS(ns,'title');title.textContent=valid[i].pollster+' · '+valid[i].field_end+' · '+marginText(valid[i].margin);c.append(title)}const text=make('text',{x:10,y:104});text.textContent=valid[0].field_end+' → '+valid.at(-1).field_end;
 }
 document.querySelectorAll('#raceSearch,#raceSort').forEach(x=>x.addEventListener('input',renderRaceList));
+function pollPostedStamp(p){
+ // API createdAt includes month/day/year AND hour:minute; its timezone is
+ // unspecified, so keep source wall-clock rather than inventing UTC.
+ if(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$/.test(p.posted_source_datetime||''))return p.posted_source_datetime;
+ const m=String(p.posted_source_time||'').match(/^(\\d{1,2})\/(\\d{1,2})\/(\\d{2,4})\s+(\\d{1,2}):(\\d{2})/);
+ if(m){const y=m[3].length===2?'20'+m[3]:m[3];return y+'-'+m[1].padStart(2,'0')+'-'+m[2].padStart(2,'0')+
+      'T'+m[4].padStart(2,'0')+':'+m[5]+':00';}
+ return (p.posted_date||'')+'T00:00:00';
+}
 function renderPostedPolls(){
  const box=$('#newPolls'),status=$('#changesSince');box.replaceChildren();
  const data=postedPollingSnapshot;
@@ -528,13 +537,22 @@ function renderPostedPolls(){
   const old=byPoll.get(key);
   if(!old||(preferred[p.sample_population]||0)>(preferred[old.sample_population]||0))byPoll.set(key,p);
  }
- const entries=[...byPoll.values()].sort((a,b)=>b.posted_date.localeCompare(a.posted_date)||
-   b.field_end.localeCompare(a.field_end)||(a.pollster||'').localeCompare(b.pollster||''));
+ // Never use the fieldwork end date as a secondary sort. A published older
+ // survey can be posted after a newer one. Only createdAt determines order.
+ const entries=[...byPoll.values()].sort((a,b)=>pollPostedStamp(b).localeCompare(pollPostedStamp(a))||
+   String(b.poll_id).localeCompare(String(a.poll_id)));
  const byOffice={senate:0,house:0,governor:0};
  for(const p of entries)byOffice[p.race_type]++;
- status.textContent=entries.length+' posted records · S '+byOffice.senate+' / H '+byOffice.house+' / G '+byOffice.governor;
- if(!entries.length){box.append(elt('div','empty','No dated poll postings from the supplemental feed in the past 14 days.'));return}
+ status.textContent=entries.length+' source postings · newest time first · S '+byOffice.senate+' / H '+byOffice.house+' / G '+byOffice.governor;
+ if(!entries.length){box.append(elt('div','empty','No postings in the source from the past 14 days.'));return}
  const fmt=s=>new Date(s+'T12:00:00Z').toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'});
+ const fmtSource=p=>{
+  const stamp=pollPostedStamp(p);
+  if(stamp.length<16)return p.posted_source_time||p.posted_date||'Unknown';
+  const date=fmt(stamp.slice(0,10)),[h,m]=stamp.slice(11,16).split(':').map(Number);
+  const hour=((h+11)%12)+1;
+  return date+', '+hour+':'+String(m).padStart(2,'0')+(h>=12?' PM':' AM');
+ };
  const render=p=>{
    const row=elt('div','item'),top=elt('div','row');
    const location=(KEY_STATES[p.state]||p.state)+(p.race_type==='house'?' '+p.race_code.split('-')[1]:'');
@@ -543,24 +561,24 @@ function renderPostedPolls(){
               elt('strong',marginColor(p.margin),marginText(p.margin)));
    row.append(top);
    const population=(p.sample_population||'').toUpperCase();
-   row.append(elt('small','','Posted to source '+fmt(p.posted_date)+' · Fieldwork ended '+fmt(p.field_end)
+   row.append(elt('small','','Source posted '+fmtSource(p)+' (source time; timezone unreported) · Fieldwork ended '+fmt(p.field_end)
      +(population?' · '+population:'')+(p.sample_size?' · n='+p.sample_size:'')
      +(p.partisan_lean?' · '+p.partisan_lean+'-sponsored':'')));
    row.append(elt('small','',p.dem_name+' (D) vs '+p.rep_name+' (R)'));
    if(typeof p.source_url==='string'&&p.source_url.startsWith('http')){
-      const link=elt('a','','Original poll source ↗');link.href=p.source_url;link.target='_blank';link.rel='noopener noreferrer';
+      const link=elt('a','','Read the published poll/source ↗');link.href=p.source_url;link.target='_blank';link.rel='noopener noreferrer';
       const line=elt('small');line.append(link);row.append(line);
    }
    return row;
  };
  for(const p of entries.slice(0,10))box.append(render(p));
  if(entries.length>10){
-   const more=elt('details','poll-list-more'),summary=elt('summary','', 'Show '+entries.length-10+' more posted polls');
+   const more=elt('details','poll-list-more'),summary=elt('summary','', 'Show '+(entries.length-10)+' more posted polls');
    summary.style.cursor='pointer';summary.style.padding='11px 0';more.append(summary);
    for(const p of entries.slice(10))more.append(render(p));
    box.append(more);
  }
- box.append(elt('div','poll-list-note','Source: NYT-derived PollResults.org feed, independently labeled from JackStradamus. “Posted” is when that feed added the poll, NOT a verified public release date. LV/RV/other sample types are labeled. These records are not necessarily included in the weighted model; Race Lab shows the model source.'));
+ box.append(elt('div','poll-list-note','Newest-first by the poll index’s full createdAt date AND time, never alphabetical or fieldwork date. The index does not publish a timezone for this field, and its posting time is NOT independently verified first-publication time. Original poll/source links are included so that release information can be checked.'));
 }
 function renderFreshPolls(d){
  if(postedPollingSnapshot?.observations?.length){renderPostedPolls();return}
