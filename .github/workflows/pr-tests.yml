@@ -2,6 +2,8 @@ name: Validate election dashboard PR
 on:
   pull_request:
     branches: [main]
+  push:
+    branches: [feature/2026-live-election-desk]
 permissions:
   contents: read
 jobs:
