@@ -150,15 +150,15 @@ async function settle(){
  const staleCopy=structuredClone(seeded);
  const past=new Date(Date.now()-10*86400000).toISOString().slice(0,10);
  staleCopy.source_updated_date=past;
- w.eval('congressScenarioSnapshot='+JSON.stringify(staleCopy)+';renderElectionScenarios()');
+ w.eval('setCongressScenarioSnapshot('+JSON.stringify(staleCopy)+')');
  assert.match(get('#scenarioUpdated').textContent,/OUTDATED/);
  assert.match(get('#scenarioCenter').textContent,/Historical forecast/);
  assert(!get('#scenarioBands').textContent.includes('54%'),'Expired probability shown as current');
  const corruptCopy=structuredClone(seeded);
  corruptCopy.raw_joint_outcomes_pct.both_dem=90;
- w.eval('congressScenarioSnapshot='+JSON.stringify(corruptCopy)+';renderElectionScenarios()');
+ w.eval('setCongressScenarioSnapshot('+JSON.stringify(corruptCopy)+')');
  assert.match(get('#scenarioBands').textContent,/integrity checks/);
- w.eval('congressScenarioSnapshot='+JSON.stringify(seeded)+';renderElectionScenarios()');
+ w.eval('setCongressScenarioSnapshot('+JSON.stringify(seeded)+')');
  assert(!get('#scenarioSimulator').querySelector('input'),'Hypothetical sliders should be removed');
  assert.match(get('#scenarioSimulator').textContent,/DDHQ does not publish/i);
  assert.match(get('.scenario-source-link').href,/decisiondeskhq.com/);
