@@ -333,13 +333,9 @@ function renderModelRaceDetail(){
  $('#modelPollIncluded').setAttribute('aria-pressed',String(modelPollMode!=='all'));
  $('#modelPollAll').setAttribute('aria-pressed',String(modelPollMode==='all'));
  const tbody=$('#modelPollRows');tbody.replaceChildren();
- const modelDay=latestSenateEstimates?.generated_at?.slice(0,10);
- const dayAge=field=>Math.max(0,Math.round((Date.parse(modelDay+'T12:00:00Z')-Date.parse(field+'T12:00:00Z'))/86400000));
- const halfLife=latestSenateEstimates?.half_life_days||21;
- const sponsoredWeight=latestSenateEstimates?.sponsored_poll_weight_factor??0.5;
- const modelWeights=(estimate.pollsters||[]).map(q=>Math.pow(.5,dayAge(q.field_end)/halfLife)*(q.partisan_lean?sponsoredWeight:1));
- const weightTotal=modelWeights.reduce((s,w)=>s+w,0);
- const weightPct=p=>p.included&&weightTotal>0?100*Math.pow(.5,dayAge(p.field_end)/halfLife)*(p.partisan_lean?sponsoredWeight:1)/weightTotal:null;
+ const byFirm=new Map((estimate.pollsters||[]).map(q=>[(q.name+'|'+q.field_end).toLowerCase(),q]));
+ const firmInfo=p=>byFirm.get((p.pollster+'|'+p.field_end).toLowerCase());
+ const weightPct=p=>p.included&&Number.isFinite(firmInfo(p)?.weight_share)?firmInfo(p).weight_share:null;
  const largest=Math.max(1,...inAverage.map(p=>weightPct(p)||0));
  if(!pollingSnapshot){$('#modelPollStatus').textContent='Loading individual polls…'}
  else $('#modelPollStatus').textContent=modelPollMode==='all'?'All observations for this matchup; partisan sponsors are marked. Included ones receive reduced weight.':'Observations matched to the current JackStradamus average.';
@@ -348,7 +344,8 @@ function renderModelRaceDetail(){
  }
  for(const p of selected){
   const tr=elt('tr',p.included?'':'excluded');
-  const cells=[formattedModelDate(p.field_end),p.pollster+(p.partisan_lean?' · '+p.partisan_lean+' sponsor':''),p.sample_size?Number(p.sample_size).toLocaleString():'—'];
+  const meta=firmInfo(p),quality=Number.isFinite(meta?.quality_rating)?' · 538 '+meta.quality_rating.toFixed(1)+'/3':' · unrated';
+  const cells=[formattedModelDate(p.field_end),p.pollster+(p.partisan_lean?' · '+p.partisan_lean+' sponsor':'')+quality,p.sample_size?Number(p.sample_size).toLocaleString():'—'];
   for(const value of cells)tr.append(elt('td','',value));
   const influence=elt('td');
   const weight=weightPct(p);
@@ -366,7 +363,7 @@ function renderModelRaceDetail(){
  }
  const foot=$('#modelDetailsFooter');foot.replaceChildren();
  if(estimate.poll_source_url&&estimate.poll_source_url.startsWith('https://')){const a=elt('a','','Polling data ↗');a.href=estimate.poll_source_url;a.target='_blank';a.rel='noopener noreferrer';foot.append(a)}
- const context=elt('span','', modelMode==='generic'?'Current generic-ballot feed retains 35 recent observations.':'Current race feed retains up to 12 recent polls per race.');foot.append(context);
+ const context=elt('span','',(modelMode==='generic'?'Generic ballot feed retains 35 recent observations.':'Race feed retains 12 recent surveys.')+' Influence reflects recency, sample size, historical 538 grade and sponsorship.');foot.append(context);
 }
 $('#modelPollIncluded').addEventListener('click',()=>{modelPollMode='included';renderModelRaceDetail()});
 $('#modelPollAll').addEventListener('click',()=>{modelPollMode='all';renderModelRaceDetail()});
