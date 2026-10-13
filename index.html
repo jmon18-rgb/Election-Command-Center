@@ -2107,11 +2107,11 @@ const enCivicBase='https://civicapi.org/api/v2';
 let enCivicByWatch=Object.create(null),enCivicRaceIds=Object.create(null),
  enCivicErrors=Object.create(null),enCivicPending=new Set(),enCivicLastSweep=0,enCivicSweepCursor=0,
  enCivicExpanded=new Set();
-// Exactly these seven source-checked statewide contests use the 4-state
+// Exactly these six source-checked statewide contests use the 4-state
 // adapter. If its script fails to load, do not silently fall back to
 // a broader, less strict match.
 const enBatchPilotSlots=new Set(['Senate|AK','Governor|AK','Senate|ME',
- 'Governor|ME','Senate|MA','Governor|MA','Governor|NV']);
+ 'Governor|ME','Governor|MA','Governor|NV']);
 function enBatchPilot(item){return Boolean(item&&enBatchPilotSlots.has(enWatchId(item)))}
 function enCivicMatch(item,row){
  if(enBatchPilot(item))
