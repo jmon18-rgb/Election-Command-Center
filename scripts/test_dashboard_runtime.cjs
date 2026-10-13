@@ -52,6 +52,67 @@ async function settle(){
 (async()=>{
  w.eval(scripts[0]);
  await settle();
+ // Poll Wire is a real searchable, source-attributed full-feed explorer,
+ // not just the top ten survey postings shown on the Daily Brief.
+ const wireTab=get('.tab[data-page="wire"]');
+ wireTab.click();
+ assert(get('#wire').classList.contains('active'));
+ assert(get('#wireCount').textContent.includes('indexed observation'));
+ const wireWindow=get('#wireWindow');
+ wireWindow.value='all';wireWindow.dispatchEvent(new w.Event('change',{bubbles:true}));
+ assert(get('#wireCount').textContent.includes('available'));
+ let wireCards=[...get('#wireResults').querySelectorAll('.wire-entry')];
+ assert.equal(wireCards.length,24,'Wire must paginate, not render the entire source archive');
+ assert(!get('#wireMore').hidden,'Wire must show a working pagination control');
+ get('#wireMore').click();
+ assert.equal(get('#wireResults').querySelectorAll('.wire-entry').length,48);
+ const sourceAnchor=wireCards[0].querySelector('a[href]');
+ assert(sourceAnchor,'A displayed poll needs its original source link');
+ assert.match(sourceAnchor.href,/^https?:/);
+ assert.match(sourceAnchor.rel,/noopener/);
+ assert.match(wireCards[0].textContent,/Source indexed/);
+ assert.match(wireCards[0].textContent,/Fieldwork/);
+ assert.match(wireCards[0].textContent,/timezone unreported/);
+ // Every index record retains its own candidate matchup and question
+ // even when several questions share the survey poll ID.
+ const wireIdentity=w.eval('wireIdentity('+JSON.stringify(recent.observations[0])+')');
+ const altered={...recent.observations[0],question_id:'distinct-ballot-question'};
+ assert.notEqual(wireIdentity,w.eval('wireIdentity('+JSON.stringify(altered)+')'));
+ // The model filter must use exact poll matching, not infer that
+ // an indexed poll is included just because it shares a race code.
+ const indexedOnly=recent.observations.find(p=>
+   !primary.races.find(r=>r.race_code===p.race_code)?.polls.some(q=>
+     q.poll_id===p.poll_id&&q.field_end===p.field_end&&
+     q.dem_name===p.dem_name&&q.rep_name===p.rep_name&&
+     Math.abs(q.dem-p.dem)<.11&&Math.abs(q.rep-p.rep)<.11));
+ assert(indexedOnly,'Test fixture requires at least one unmatched indexed poll');
+ assert.equal(w.eval('wireModelStatus('+JSON.stringify(indexedOnly)+').kind'),'index');
+ const wireModel=get('#wireModel');
+ wireModel.value='included';wireModel.dispatchEvent(new w.Event('change',{bubbles:true}));
+ wireCards=[...get('#wireResults').querySelectorAll('.wire-entry')];
+ assert(wireCards.length>0,'A source survey should be traceable to the active average');
+ for(const card of wireCards){
+   assert.match(card.textContent,/Included in current average/);
+   const go=card.querySelector('button');
+   assert(go,'Included survey must have model drill-down');
+ }
+ wireCards[0].querySelector('button').click();
+ assert(get('#model').classList.contains('active'),'Clicked survey should open its exact model race');
+ assert(get('#modelPollRows tr.model-featured-poll'),'Clicked poll was not highlighted');
+ // Office, listed sponsor, and search controls must actually change the list.
+ wireTab.click();
+ wireModel.value='all';wireModel.dispatchEvent(new w.Event('change',{bubbles:true}));
+ const wireOffice=get('#wireOffice');wireOffice.value='governor';
+ wireOffice.dispatchEvent(new w.Event('change',{bubbles:true}));
+ for(const card of get('#wireResults').querySelectorAll('.wire-entry')){
+   assert.match(card.querySelector('h3').textContent,/Governor/);
+ }
+ const searchBox=get('#wireSearch');searchBox.value='ZZ-unlikely-race-code';
+ searchBox.dispatchEvent(new w.Event('input',{bubbles:true}));
+ assert.equal(get('#wireResults').querySelectorAll('.wire-entry').length,0);
+ assert.match(get('#wireResults').textContent,/No indexed observations match/);
+ searchBox.value='';searchBox.dispatchEvent(new w.Event('input',{bubbles:true}));
+ wireOffice.value='all';wireOffice.dispatchEvent(new w.Event('change',{bubbles:true}));
  // Canonical in-app identifiers must be visible. TX Senate and TX governor
  // cannot both be ambiguous "Texas" cards any longer.
  const [txSen,txGov]=['senate','governor'].map(type=>
