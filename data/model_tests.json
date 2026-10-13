@@ -1,106 +1,106 @@
 {
-  "source_snapshot": "2026-10-13T15:30:00.385777Z",
+  "source_snapshot": "2026-10-13T15:31:38.477645Z",
   "test": "Strict walk-forward, held-out next poll, grouped by candidate matchup",
   "eligible_matchup_groups": 50,
   "methods": {
     "equal": {
-      "comparisons": 101,
+      "comparisons": 153,
       "independent_matchup_clusters": 31,
-      "mae_points": 3.057,
-      "rmse_points": 3.888,
+      "mae_points": 2.846,
+      "rmse_points": 3.632,
       "cluster_bootstrap_mae_95pct_range": [
-        2.553,
-        3.583
+        2.46,
+        3.273
       ]
     },
     "recency21": {
-      "comparisons": 101,
+      "comparisons": 153,
       "independent_matchup_clusters": 31,
-      "mae_points": 3.056,
-      "rmse_points": 3.893,
+      "mae_points": 2.884,
+      "rmse_points": 3.677,
       "cluster_bootstrap_mae_95pct_range": [
-        2.574,
-        3.589
+        2.512,
+        3.316
       ]
     },
     "recency21_size": {
-      "comparisons": 101,
+      "comparisons": 153,
       "independent_matchup_clusters": 31,
-      "mae_points": 3.031,
-      "rmse_points": 3.86,
+      "mae_points": 2.867,
+      "rmse_points": 3.651,
       "cluster_bootstrap_mae_95pct_range": [
-        2.547,
-        3.555
+        2.528,
+        3.313
       ]
     },
     "recency35_size": {
-      "comparisons": 101,
+      "comparisons": 153,
       "independent_matchup_clusters": 31,
-      "mae_points": 3.023,
-      "rmse_points": 3.851,
+      "mae_points": 2.845,
+      "rmse_points": 3.628,
       "cluster_bootstrap_mae_95pct_range": [
-        2.55,
-        3.517
+        2.479,
+        3.25
       ]
     },
     "recency21_sponsored_0": {
-      "comparisons": 101,
+      "comparisons": 153,
       "independent_matchup_clusters": 31,
-      "mae_points": 3.056,
-      "rmse_points": 3.893,
+      "mae_points": 2.884,
+      "rmse_points": 3.677,
       "cluster_bootstrap_mae_95pct_range": [
-        2.486,
-        3.57
+        2.457,
+        3.317
       ]
     },
     "recency21_sponsored_25": {
-      "comparisons": 101,
+      "comparisons": 153,
       "independent_matchup_clusters": 31,
-      "mae_points": 3.008,
-      "rmse_points": 3.783,
+      "mae_points": 2.857,
+      "rmse_points": 3.597,
       "cluster_bootstrap_mae_95pct_range": [
-        2.481,
-        3.521
+        2.443,
+        3.287
       ]
     },
     "recency21_sponsored_50": {
-      "comparisons": 101,
+      "comparisons": 153,
       "independent_matchup_clusters": 31,
-      "mae_points": 2.997,
-      "rmse_points": 3.781,
+      "mae_points": 2.844,
+      "rmse_points": 3.592,
       "cluster_bootstrap_mae_95pct_range": [
-        2.517,
-        3.49
+        2.455,
+        3.299
       ]
     },
     "recency21_sponsored_100": {
-      "comparisons": 101,
+      "comparisons": 153,
       "independent_matchup_clusters": 31,
-      "mae_points": 3.02,
-      "rmse_points": 3.862,
+      "mae_points": 2.863,
+      "rmse_points": 3.65,
       "cluster_bootstrap_mae_95pct_range": [
-        2.573,
-        3.513
+        2.507,
+        3.298
       ]
     },
     "recency21_sponsored_50_quality": {
-      "comparisons": 101,
+      "comparisons": 153,
       "independent_matchup_clusters": 31,
-      "mae_points": 3.01,
-      "rmse_points": 3.768,
+      "mae_points": 2.845,
+      "rmse_points": 3.572,
       "cluster_bootstrap_mae_95pct_range": [
-        2.495,
-        3.503
+        2.423,
+        3.265
       ]
     },
     "recency21_sponsored_50_quality_size": {
-      "comparisons": 101,
+      "comparisons": 153,
       "independent_matchup_clusters": 31,
-      "mae_points": 2.994,
-      "rmse_points": 3.741,
+      "mae_points": 2.837,
+      "rmse_points": 3.553,
       "cluster_bootstrap_mae_95pct_range": [
-        2.531,
-        3.455
+        2.47,
+        3.234
       ]
     }
   },
