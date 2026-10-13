@@ -1,0 +1,62 @@
+name: Stage ten-cycle Senate walk-forward research
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/research_long_run_senate.py'
+      - 'scripts/test_long_run_senate.py'
+      - 'scripts/stage_senate_history.py'
+      - '.github/workflows/long-run-senate-research.yml'
+permissions:
+  contents: write
+concurrency:
+  group: ten-cycle-senate-research
+  cancel-in-progress: false
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate chronology and election-year separation without downloading
+        run: python3 scripts/test_long_run_senate.py
+      - name: Reproduce ten-cycle study from official MIT and ten public Senate archives
+        run: python3 scripts/research_long_run_senate.py
+      - name: Gate derived research metadata and future-separation
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('data/senate_long_run_walk_forward.json').read_text())
+          assert d['years']==list(range(2006,2025,2))
+          assert d['history_cycles']==10 and d['evaluated_test_cycles']==7
+          assert d['total_race_observations']>=65
+          assert len(d['poll_file_sha256'])==10
+          assert not d['is_forecast'] and not d['is_as_of_leakage_free']
+          assert not d['can_justify_2026_bias_correction']
+          assert not d['can_calibrate_2026_chamber_probabilities']
+          for year,x in d['holdout_by_year'].items():
+              assert len(x['training_cycles'])>=3
+              assert x['training_cycles']==[y for y in d['years'] if y<int(year)]
+              assert all(y<int(year) for y in x['training_cycles'])
+              assert x['races']==d['by_year'][year]['races']
+          assert set(d['pooled_walk_forward'])=={'none','half_prior_bias','full_prior_bias'}
+          print('Long historical audit passed all launch guards')
+          PY
+      - name: Publish only derived, cited metrics to GitHub Pages source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "senate-research-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          if ! git diff --quiet HEAD origin/main -- scripts/stage_senate_history.py scripts/research_long_run_senate.py scripts/test_long_run_senate.py; then
+            echo "Research code changed during source load; refusing stale snapshot."
+            exit 0
+          fi
+          git reset --mixed origin/main
+          git add data/senate_long_run_walk_forward.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Stage 2006-2024 chronological Senate polling audit"
+          git push origin HEAD:main
