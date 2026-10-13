@@ -1752,7 +1752,7 @@ async function enLoad(manual=false){
   enLastFetchAt=new Date();
   enRender();
   $('#enStatus').classList.add('stale');
-  $('#enStatus').textContent=(enData?'LAST VERIFIED COUNTS RETAINED · ':'RESULTS SOURCE UNAVAILABLE · ')+
+  $('#enStatus').textContent=(enData?'LAST VERIFIED RESULTS RETAINED · ':'RESULTS SOURCE UNAVAILABLE · ')+
      enFetchError+'. '+(year===2026?'See the official-state source link below.':'No vote counts are substituted.');
  }
  if(serial===enRequestSerial)enQueueRefresh();
