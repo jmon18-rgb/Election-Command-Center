@@ -156,6 +156,16 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .senate-bias-table th:first-child,.senate-bias-table td:first-child{text-align:left}
 .senate-bias-table td{text-align:right;padding:10px 5px;border-bottom:1px solid #30435b;font-variant-numeric:tabular-nums;white-space:nowrap}
 .senate-bias-table .worse{color:#ec9696}.senate-bias-table .better{color:#9bd4ad}
+.longrun-bars{margin:12px 0 8px}
+.longrun-bar-row{display:grid;grid-template-columns:38px minmax(0,1fr) 138px;gap:8px;align-items:center;font-size:11px;padding:4px 0}
+.longrun-year{font-weight:700;color:#bcd0e2;font-variant-numeric:tabular-nums}
+.longrun-track{position:relative;height:9px;border-radius:4px;background:#253b52;overflow:hidden}
+.longrun-mid{position:absolute;width:1px;background:#f1f5fb77;left:50%;top:0;bottom:0}
+.longrun-fill{position:absolute;top:0;height:100%;border-radius:3px;min-width:1px}
+.longrun-fill.dem{background:#70b4ea}.longrun-fill.rep{background:#ef9292}
+.longrun-label{text-align:right;font-variant-numeric:tabular-nums;font-size:10px;color:#a8bfd5}
+#longRunVerdict strong{color:#edf6ff}
+@media(max-width:510px){.longrun-bar-row{grid-template-columns:36px minmax(0,1fr) 100px;gap:5px}.longrun-label{font-size:9px}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -268,6 +278,24 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   </table></div>
   <p class="house-history-note" id="senateBiasNote">Comparisons use the same 42 source-eligible historical Senate races and are not a leakage-free, prospective 2026 model backtest.</p>
  </div>
+</section>
+<section class="house-history-audit" aria-label="Ten-cycle Senate poll generalization audit">
+ <div class="row">
+  <div><span class="label">2006–2024 · TEN ELECTIONS · STRICT CHRONOLOGY</span>
+   <h3 style="font-size:17px;margin:9px 0 5px">Can we trust a partisan polling-bias adjustment?</h3></div>
+  <span class="tag">RESEARCH · NOT ODDS</span>
+ </div>
+ <p class="detail">A longer reality check. For each election from 2012 onward, estimate past polling bias using only <strong>earlier elections</strong>—never the year being tested or anything after it. Test no correction, half the past bias, or all of it.</p>
+ <div class="house-history-summary" id="longRunSummary"><div class="empty">Loading ten-cycle source-verified results…</div></div>
+ <p class="house-history-note" id="longRunVerdict">The next model milestone requires evidence that historical bias improves previously unseen elections.</p>
+ <div class="row" style="margin:15px 0 8px"><strong class="label">What direction did historical Senate polls miss?</strong><span class="tag">D–R MARGIN · PTS</span></div>
+ <div id="longRunBars" class="longrun-bars" aria-label="National average directional polling error by year"></div>
+ <div class="row" style="margin:16px 0 8px"><strong class="label">Out-of-year test: which approach made smaller errors?</strong><span class="tag">LOWER IS BETTER</span></div>
+ <div class="senate-bias-table-wrap"><table class="senate-bias-table" aria-label="Chronological held-out-year Senate polling-error comparison">
+  <thead><tr><th scope="col">Test year</th><th scope="col">No fix</th><th scope="col">Half fix</th><th scope="col">Full fix</th><th scope="col">Races</th></tr></thead>
+  <tbody id="longRunTestRows"></tbody>
+ </table></div>
+ <p class="house-history-note" id="longRunCaveats">Ten retrospective elections do not substitute for archived, publication-verified historical forecasts. Nothing here changes 2026 polling estimates.</p>
 </section>
 <section class="house-history-audit" aria-label="Historical House two-election variation">
  <div class="row"><div><span class="label">2022 → 2024 · HISTORICAL REALITY CHECK</span><h3 style="font-size:17px;margin:9px 0 5px">How much did comparable House vote shares move?</h3></div><span class="tag">RECORDED VOTES</span></div>
@@ -1812,6 +1840,7 @@ function setHistoricalSenatePollStudy(data){
  historicalSenatePollStudy=data;
  renderSenateBacktest();
  renderSenateBiasHoldout();
+ renderLongRunSenate();
 }
 function renderSenateBacktest(){
  const summary=$('#senateBacktestSummary'),host=$('#senateBacktestRaces'),note=$('#senateBacktestNote');
@@ -1933,6 +1962,114 @@ function renderSenateBiasHoldout(){
 fetch('./data/senate_bias_year_holdout.json',{cache:'no-store'}).then(r=>{
  if(!r.ok)throw Error('year-held-out research not staged');return r.json()
 }).then(d=>{setSenateBiasHoldoutData(d)}).catch(()=>{setSenateBiasHoldoutData(null)});
+
+
+let longRunSenateData=null;
+function setLongRunSenateData(d){longRunSenateData=d;renderLongRunSenate()}
+function longRunSourceValid(d){
+ const years=[2006,2008,2010,2012,2014,2016,2018,2020,2022,2024];
+ if(!d||d.schema_version!=='senate-long-run-walk-forward-v1'||
+   d.status!=='research_only_retrospective_chronological_diagnostic'||
+   d.is_forecast!==false||d.is_as_of_leakage_free!==false||
+   d.source_publication_timestamps_verified!==false||
+   d.can_justify_2026_bias_correction!==false||
+   d.can_calibrate_2026_chamber_probabilities!==false||
+   d.history_cycles!==10||d.evaluated_test_cycles!==7||
+   JSON.stringify(d.years)!==JSON.stringify(years)||
+   !Number.isInteger(d.total_race_observations)||d.total_race_observations<65||
+   !d.poll_file_sha256||Object.keys(d.poll_file_sha256).length!==10)return false;
+ const hashes=years.every(y=>typeof d.poll_file_sha256[String(y)]==='string'&&
+   /^[a-f0-9]{64}$/.test(d.poll_file_sha256[String(y)]));
+ if(!hashes)return false;
+ const metrics=m=>m&&Number.isInteger(m.races)&&m.races>=0&&
+   Number.isFinite(m.mae_points)&&m.mae_points>=0&&
+   Number.isFinite(m.signed_error_points);
+ let races=0,evalRaces=0;
+ for(const [i,y] of years.entries()){
+  const row=d.by_year?.[String(y)],m=row?.observed_poll_error;
+  if(!metrics(m)||m.races<2||m.races!==row.races)return false;
+  races+=row.races;
+  if(i<3)continue;
+  const test=d.holdout_by_year?.[String(y)];
+  if(test?.test_cycle!==y||test?.races!==m.races||
+     JSON.stringify(test.training_cycles)!==JSON.stringify(years.slice(0,i)))return false;
+  evalRaces+=test.races;
+  if(!['none','half_prior_bias','full_prior_bias'].every(k=>
+      metrics(test.methods?.[k])&&test.methods[k].races===test.races))return false;
+  if(Math.abs(test.methods.none.mae_points-m.mae_points)>.011)return false;
+ }
+ if(races!==d.total_race_observations||
+   Object.keys(d.holdout_by_year||{}).length!==7||
+   !['none','half_prior_bias','full_prior_bias'].every(k=>
+     metrics(d.pooled_walk_forward?.[k])&&d.pooled_walk_forward[k].races===evalRaces))return false;
+ // Cross-check overlapping 2020–24 results against the independently
+ // published three-cycle study whenever both downloads are available.
+ const study=historicalSenatePollStudy;
+ if(study?.by_year){
+  if(![2020,2022,2024].every(y=>
+     Math.abs(d.by_year[String(y)].observed_poll_error.mae_points-
+       study.by_year[String(y)].benchmarks.recency21.mae)<.03))return false;
+ }
+ return true;
+}
+function renderLongRunSenate(){
+ const summary=$('#longRunSummary'),bars=$('#longRunBars'),rows=$('#longRunTestRows'),
+   verdict=$('#longRunVerdict'),notes=$('#longRunCaveats');
+ if(!summary||!bars||!rows||!verdict||!notes)return;
+ summary.replaceChildren();bars.replaceChildren();rows.replaceChildren();
+ const d=longRunSenateData;
+ if(!longRunSourceValid(d)){
+  summary.append(elt('div','empty','Long-run polling research is awaiting source-matched validation.'));
+  verdict.textContent='No historical adjustments can be adopted from missing or incompatible research results.';
+  notes.textContent='Verified retrospective studies may be incomplete. The live 2026 polling model remains unchanged.';
+  return;
+ }
+ const total=d.pooled_walk_forward,none=total.none,half=total.half_prior_bias,full=total.full_prior_bias;
+ const stat=(value,label)=>{
+  const box=elt('div','house-history-stat');
+  box.append(elt('strong','',value),elt('small','',label));summary.append(box);
+ };
+ stat(d.total_race_observations+' races','Recorded historical comparisons across ten elections');
+ stat(none.mae_points.toFixed(2)+' pts','Walk-forward mean absolute miss with NO partisan correction');
+ stat(Math.min(half.mae_points,full.mae_points).toFixed(2)+' pts',
+     'Best corrected average miss of the two predeclared tests');
+ const improved=half.mae_points<none.mae_points||full.mae_points<none.mae_points;
+ verdict.textContent=improved?
+  'A correction reduced error in the historical test, but remains unvalidated for 2026.':
+  'Neither fixed partisan-bias correction improved the aggregate walk-forward error. Keeping the 2026 model unadjusted is the evidence-respecting choice.';
+ const years=d.years;
+ const maxError=Math.max(5,...years.map(y=>Math.abs(d.by_year[String(y)].observed_poll_error.signed_error_points)));
+ for(const y of years){
+  const m=d.by_year[String(y)].observed_poll_error;
+  const e=m.signed_error_points;
+  const row=elt('div','longrun-bar-row'),track=elt('div','longrun-track'),mid=elt('span','longrun-mid'),
+    fill=elt('span','longrun-fill '+(e>=0?'dem':'rep'));
+  const width=50*Math.abs(e)/maxError;
+  fill.style.width=width.toFixed(2)+'%';
+  if(e>=0)fill.style.left='50%';else fill.style.right='50%';
+  track.append(fill,mid);
+  const label=elt('span','longrun-label',(e>=0?'D':'R')+' overstated '+Math.abs(e).toFixed(1)+' · '+m.races+' races');
+  row.append(elt('span','longrun-year',String(y)),track,label);bars.append(row);
+ }
+ for(const y of years.slice(3)){
+  const x=d.holdout_by_year[String(y)],m=x.methods;
+  const tr=document.createElement('tr');
+  const cell=(v,cls='')=>tr.append(elt('td',cls,v));
+  cell(String(y));cell(m.none.mae_points.toFixed(2));
+  cell(m.half_prior_bias.mae_points.toFixed(2),m.half_prior_bias.mae_points<m.none.mae_points?'better':'worse');
+  cell(m.full_prior_bias.mae_points.toFixed(2),m.full_prior_bias.mae_points<m.none.mae_points?'better':'worse');
+  cell(String(x.races));
+  rows.append(tr);
+ }
+ notes.textContent='2006–2024 source: retrospective public RealClearPolling compilation compared with MIT/MEDSL candidate returns. '+
+  d.total_race_observations+' races across ten elections; '+none.races+' races evaluated chronologically in seven held-out years. '+
+  'Positive signed error means polls overstated Democratic strength; negative overstated Republican strength. '+
+  'Each test correction uses ONLY EARLIER election years, weighted equally by year. The source lacks original release timestamps '+
+  'and was assembled retrospectively, so this is NOT a leakage-free 2026 forecast validation or a calibrated source for Blue Wave / Red Dawn odds.';
+}
+fetch('./data/senate_long_run_walk_forward.json',{cache:'no-store'}).then(r=>{
+ if(!r.ok)throw Error('ten-cycle study has not been staged');return r.json()
+}).then(setLongRunSenateData).catch(()=>setLongRunSenateData(null));
 
 let houseTwoCycleData=null;
 fetch('./data/house_two_cycle_context.json',{cache:'no-store'})
