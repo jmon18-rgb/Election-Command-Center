@@ -109,7 +109,10 @@ async function settle(){
    assert(card,'Missing clearly identified '+identifier+' Texas insight');
    card.click();
    assert.match(get('#modelDetailTitle').textContent,new RegExp('Texas.*'+identifier));
-   assert.match(get('#modelPollRows tr.model-featured-poll').textContent,/ReconMR/);
+   const sourceFirm=card.textContent.includes('ReconMR')?'ReconMR':card.textContent.includes('GBAO')?'GBAO':null;
+   assert(sourceFirm,'Expected named poll source in '+identifier+' insight');
+   assert(get('#modelPollRows tr.model-featured-poll').textContent.includes(sourceFirm),
+     'Insight opened a different survey instead of the clicked '+identifier+' '+sourceFirm+' poll');
  }
  // Scenarios MUST do something; no longer four static paragraphs.
  const cards=[...get('#scenarioBands').querySelectorAll('button.scenario-tile')];
