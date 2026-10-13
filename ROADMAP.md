@@ -236,6 +236,14 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Added standalone and browser-level regression checks: the real watchlist displays civicAPI Governor details and **retains last-good votes** if a later provider detail response fails identity validation. Source totals remain outside Open America.
 - Tightened the real civicAPI CI gate to require NH Governor. The NH House districts stay explicitly unverified rather than showing invented data. Next small adapter can start with NH House only after the provider's real source returns a correctly indexed House race.
 
+## October 13: source-locked experimental race probabilities
+
+- Added visible 2026 House, Senate, and governor Democratic-versus-Republican race percentages computed from qualifying candidate-specific polling and an explicit election-day error assumption.
+- Senate starting margin error = observed 42-race 2020–24 retrospective RMSE (5.633 points). House/governor defaults assumed; sparse, stale, sponsored-only and divergent sources widen uncertainty. No blanket retrospective partisan-bias correction.
+- Each race detail now has *tighter / baseline / wider* uncertainty controls, updating probability values. Race list also shows compact implied chances.
+- Build and verify the dataset with Python and actual JavaScript interaction tests; regenerate the source-dated artifact automatically after each four-hour polling refresh.
+- Next substantive probability milestone: complete unpolled seat fundamentals, common national/regional election errors, and a frozen competitive House/Senate slate for true four-ending joint simulations.
+
 ## Oct 13: Four-state civicAPI adapter batch (source verified)
 
 - Consolidated strict civicAPI race matching for **Alaska, Maine, Massachusetts and Nevada** into one six-race adapter instead of one race per pull request.
