@@ -41,6 +41,17 @@ for incident in data["incidents"]:
         assert scenario.get("worst_case_source") and scenario.get("worst_case_source")!="Not established; requires voter-level deduplication, affected voters and counterfactual access data.",f"Worst-case voter number missing provenance: {ident}"
     if prob is not None:
         assert scenario.get("probability_basis") and not scenario["probability_basis"].startswith("Not estimated"),f"Numerical probability lacks estimable basis: {ident}"
+    assert scenario.get("probability_threshold_unique_voters")==100, f"Scenario probability must specify the >=100 voter threshold: {ident}"
+    assert scenario.get("probability_method"),f"Missing probability model identifier: {ident}"
+    if prob is not None:
+        assert isinstance(scenario.get("probability_as_of"),str) and scenario["probability_as_of"], f"Missing review date for probability: {ident}"
+        assert bounds is not None,f"Working subjective probabilities require a range: {ident}"
+        assert scenario.get("probability_empirically_calibrated") is False, f"Do not describe subjective odds as calibrated: {ident}"
+    proxy=scenario.get("exposure_proxy")
+    assert isinstance(proxy,dict), f"Exposure proxy required, even if unknown: {ident}"
+    assert proxy.get("unit") and proxy.get("notes"), f"Exposure proxy must identify units and interpretation: {ident}"
+    pv=proxy.get("value")
+    assert pv is None or (type(pv) is int and pv>=0), f"Exposure proxy numeric value must be a nonnegative integer: {ident}"
     if incident.get("verification_status")=="unverified_report":
         assert all(v is None for v in values),f"Unverified report has published impact count: {ident}"
 print("Validated",len(ids),"sourced integrity incidents; no unsupported numerical impacts")
