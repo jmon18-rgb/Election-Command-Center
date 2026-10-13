@@ -76,6 +76,8 @@ jobs:
       - name: Advisory civicAPI live-provider health and CORS
         continue-on-error: true
         run: python3 scripts/test_civicapi_live_source.py
+      - name: Discover five more uncovered 2026 states in real civicAPI
+        run: python3 scripts/probe_civicapi_al_mt_nm_ok_tn.py
       - name: Install DOM test environment
         run: npm install --no-save --no-package-lock --ignore-scripts jsdom@26.1.0
       - name: Check JavaScript syntax and exercise actual dashboard
