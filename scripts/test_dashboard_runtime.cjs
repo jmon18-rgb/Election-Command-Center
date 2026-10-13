@@ -857,8 +857,8 @@ async function settle(){
  assert(civicDetail,'Clicking an out-of-primary-state pinned race expands source-native candidate details');
  assert.match(civicDetail.textContent,/First candidate/);
  assert.match(civicDetail.textContent,/Second candidate/);
- assert.match(civicDetail.textContent,/600/);
- assert.match(civicDetail.textContent,/400/);
+ assert.match(civicDetail.textContent,/510/);
+ assert.match(civicDetail.textContent,/490/);
  assert.match(civicDetail.textContent,/separate from Open America/);
  assert.match(civicDetail.querySelector('a.en-civic-direct').href,/civicapi.org\\/api\\/v2\\/race\\/87283/);
  assert.equal(get('#enWatchItems .en-watch-open').getAttribute('aria-expanded'),'true');
