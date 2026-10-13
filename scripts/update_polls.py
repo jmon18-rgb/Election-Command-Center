@@ -100,7 +100,7 @@ def generic_ballot(rows):
                      "margin": round(dem-rep, 1), "pollsters": len(chosen),
                      "window_days": days, "latest_field_end": chosen[0]["field_end"],
                      "method": "Equal-weight mean of the latest nonpartisan wave per pollster within the stated field-end window; NOT a forecast or a statistical confidence interval."}
-    return {"summary": aggregate, "latest": observations[:35],
+    return {"summary": aggregate, "latest": observations[:90],
             "source_url": TABLES["generic"], "attribution": "NYT polling data via ElectIndex (CC BY 4.0)"}
 
 def race_polls(rows):
