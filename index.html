@@ -2609,11 +2609,11 @@ function enCsvCell(value){
  if(value===null||value===undefined)value='';
  if(typeof value==='number'&&!Number.isFinite(value))value='';
  let text=String(value);
- if(typeof value!=='number'&&/^[\\s\\u0000-\\u001f]*[=+\\-@]/.test(text))
+ if(typeof value!=='number'&&/^[\s\u0000-\u001f]*[=+\-@]/.test(text))
    text="'"+text;
  return '"'+text.replace(/"/g,'""')+'"';
 }
-function enCsv(rows){return '\\uFEFF'+rows.map(row=>row.map(enCsvCell).join(',')).join('\\r\\n')+'\\r\\n'}
+function enCsv(rows){return '\uFEFF'+rows.map(row=>row.map(enCsvCell).join(',')).join('\r\n')+'\r\n'}
 function enBuildResultsCsv(primary=enOfficeSnapshots,secondary=enCivicByWatch){
  const records=[['source','election_year','office','race','source_updated_at',
    'candidate','party','candidate_votes','race_total_votes','candidate_share_pct',
