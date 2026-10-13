@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-13T16:43:41.427559Z",
+  "updated_at": "2026-10-13T16:45:02.928270Z",
   "generic_ballot": {
     "summary": {
       "dem": 48.2,
@@ -14941,7 +14941,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-13T16:43:41.427559Z",
+    "last_attempt_at": "2026-10-13T16:45:02.928270Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -14950,132 +14950,11 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [
-      {
-        "race_code": "MN-01",
-        "race_type": "house",
-        "pollster": "SurveyUSA",
-        "field_end": "2026-10-12",
-        "dem": 46.0,
-        "rep": 44.0,
-        "margin": 2.0,
-        "dem_name": "Jake Johnson",
-        "rep_name": "Brad Finstad",
-        "sample_size": 565,
-        "first_seen_at": "2026-10-13T16:43:41.427559Z",
-        "release_date": null,
-        "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-      },
-      {
-        "race_code": "NC-SEN",
-        "race_type": "senate",
-        "pollster": "SurveyUSA",
-        "field_end": "2026-10-11",
-        "dem": 54.0,
-        "rep": 40.0,
-        "margin": 14.0,
-        "dem_name": "Roy Cooper",
-        "rep_name": "Michael Whatley",
-        "sample_size": 643,
-        "first_seen_at": "2026-10-13T16:43:41.427559Z",
-        "release_date": null,
-        "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-      },
-      {
-        "race_code": "TX-SEN",
-        "race_type": "senate",
-        "pollster": "ReconMR/Siena Research Institute",
-        "field_end": "2026-10-08",
-        "dem": 48.0,
-        "rep": 44.0,
-        "margin": 4.0,
-        "dem_name": "James Talarico",
-        "rep_name": "Ken Paxton",
-        "sample_size": 617,
-        "first_seen_at": "2026-10-13T16:43:41.427559Z",
-        "release_date": null,
-        "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-      },
-      {
-        "race_code": "TX-GOV",
-        "race_type": "governor",
-        "pollster": "GBAO",
-        "field_end": "2026-10-08",
-        "dem": 47.0,
-        "rep": 45.0,
-        "margin": 2.0,
-        "dem_name": "Gina Hinojosa",
-        "rep_name": "Greg Abbott",
-        "sample_size": 800,
-        "first_seen_at": "2026-10-13T16:43:41.427559Z",
-        "release_date": null,
-        "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-      },
-      {
-        "race_code": "TX-GOV",
-        "race_type": "governor",
-        "pollster": "ReconMR/Siena Research Institute",
-        "field_end": "2026-10-08",
-        "dem": 47.0,
-        "rep": 48.0,
-        "margin": -1.0,
-        "dem_name": "Gina Hinojosa",
-        "rep_name": "Greg Abbott",
-        "sample_size": 617,
-        "first_seen_at": "2026-10-13T16:43:41.427559Z",
-        "release_date": null,
-        "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-      },
-      {
-        "race_code": "NC-SEN",
-        "race_type": "senate",
-        "pollster": "Change Research",
-        "field_end": "2026-10-07",
-        "dem": 50.0,
-        "rep": 40.0,
-        "margin": 10.0,
-        "dem_name": "Roy Cooper",
-        "rep_name": "Michael Whatley",
-        "sample_size": 829,
-        "first_seen_at": "2026-10-13T16:43:41.427559Z",
-        "release_date": null,
-        "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-      },
-      {
-        "race_code": "MN-GOV",
-        "race_type": "governor",
-        "pollster": "Mason-Dixon Polling & Research, Inc.",
-        "field_end": "2026-10-07",
-        "dem": 50.0,
-        "rep": 41.0,
-        "margin": 9.0,
-        "dem_name": "Amy Klobuchar",
-        "rep_name": "Lisa Demuth",
-        "sample_size": 800,
-        "first_seen_at": "2026-10-13T16:43:41.427559Z",
-        "release_date": null,
-        "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-      },
-      {
-        "race_code": "GA-03",
-        "race_type": "house",
-        "pollster": "VoteNexus",
-        "field_end": "2026-10-07",
-        "dem": 45.0,
-        "rep": 50.0,
-        "margin": -5.0,
-        "dem_name": "Maura Keller",
-        "rep_name": "Brian Jack",
-        "sample_size": 301,
-        "first_seen_at": "2026-10-13T16:43:41.427559Z",
-        "release_date": null,
-        "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-      }
-    ],
-    "new_poll_count": 8,
-    "generic_margin_change": -0.1,
-    "comparison_at": "2026-10-13T16:43:41.427559Z",
-    "previous_snapshot_at": "2026-10-13T16:39:37.329733Z",
+    "new_polls": [],
+    "new_poll_count": 0,
+    "generic_margin_change": 0.0,
+    "comparison_at": "2026-10-13T16:45:02.928270Z",
+    "previous_snapshot_at": "2026-10-13T16:43:41.427559Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15087,7 +14966,7 @@
       "pollsters": 10
     }
   ],
-  "newly_detected_count": 8,
+  "newly_detected_count": 0,
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
