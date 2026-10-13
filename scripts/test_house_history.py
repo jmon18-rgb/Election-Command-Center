@@ -18,6 +18,8 @@ def input_csv():
             for party,votes in (("DEMOCRAT",250),("REPUBLICAN",260)):
                 writer.writerow({"year":"2024","state_po":state,"district":district,"stage":"GEN",
                                  "special":"FALSE","party":party,"candidatevotes":votes})
+    writer.writerow({"year":"2024","state_po":"DC","district":"1","stage":"GEN",
+                     "special":"FALSE","party":"DEMOCRAT","candidatevotes":12345})
     writer.writerow({"year":"2022","state_po":"TX","district":"1","stage":"GEN",
                      "special":"FALSE","party":"DEMOCRAT","candidatevotes":9999})
     writer.writerow({"year":"2024","state_po":"TX","district":"1","stage":"PRI",
@@ -28,6 +30,7 @@ class HouseHistoryTests(unittest.TestCase):
     def test_full_2024_raw_history_staging(self):
         doc=history.stage(input_csv())
         self.assertEqual(doc["2024_district_rows"],435)
+        self.assertFalse(any(x["2024_race_code"].startswith("DC-") for x in doc["records"]))
         self.assertEqual(doc["status"],"2024_history_staged_not_2026_priors")
         self.assertTrue(all(x["eligible_as_2026_prior"] is False for x in doc["records"]))
         by={r["2024_race_code"]:r for r in doc["records"]}
