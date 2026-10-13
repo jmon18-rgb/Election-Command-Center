@@ -161,3 +161,12 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Added a compact model-tab year-holdout table, independently published derived-JSON artifact, strict source checks and CI tests for duplicate race keys, future-dated polling, malformed errors and training/testing year overlap.
 - The **2026 live polling model is unchanged**; three retrospectively assembled election cycles lacking original release timestamps cannot establish calibrated forecast error or national probabilities.
 - **Next material model work:** obtain as-of historical releases with stable candidate/special-election identity; hold out more entire cycles; estimate shared national/regional election error, not just uncorrected D/R margins. **Next Election Night infrastructure:** source-licensed, functional live 2026 vote counts.
+
+## October 13: live election-night desk and usable desktop layout
+
+- Prioritized current 2026 polling, published model probabilities and Election Night, rather than extending historical biases from older methodological eras. Historical ten-cycle PR #10 was closed without merging.
+- Added a direct browser source adapter for Open America's documented cross-origin election results API, for 2026 House, Senate and governor. The provider covers 22 states (partial national data) and does not call winners.
+- Added 60-second live polling, 10-to-15-minute quiet backoff, a source/freshness indicator, vote validation and retention of last verified counts on failure. An integration test checks the real provider's 2024 archive, 2026 endpoint and cross-origin response headers.
+- Election Night includes a concise dated Decision Desk HQ forecast-reference strip separate from votes. No in-house chamber probabilities are inferred from incomplete polling or results.
+- JackStradamus collapses historical research into a drawer so current 2026 polling comes first.
+- Next priorities: browser-based deployed-source confirmation, race-call provider agreement, and additional election reporting beyond 22 states.
