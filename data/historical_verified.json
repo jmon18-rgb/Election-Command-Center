@@ -3,32 +3,120 @@
   "source_polls": "https://raw.githubusercontent.com/Jack-Whitcomb/All-US-Senate-polls-2006-2024/main/2006_to_2024_senate_polls_with_actuals.csv",
   "source_election_results": "https://raw.githubusercontent.com/fivethirtyeight/election-results/main/election_results_senate.csv",
   "method": "8 days before election; 45-day lookback; latest poll per pollster; at least two pollsters; D-R two-party normalized margin",
-  "official_races_eligible": 117,
-  "matched_poll_races": 48,
-  "n_evaluations": 192,
+  "official_races_eligible": 237,
+  "matched_poll_races": 112,
+  "n_evaluations": 448,
   "overall": {
     "equal": {
-      "n": 48,
-      "mae": 4.743,
-      "bias": 3.553
+      "n": 112,
+      "mae": 4.717,
+      "bias": 1.948
     },
     "recency21": {
-      "n": 48,
-      "mae": 4.506,
-      "bias": 3.269
+      "n": 112,
+      "mae": 4.52,
+      "bias": 1.831
     },
     "recency21_size": {
-      "n": 48,
-      "mae": 4.464,
-      "bias": 3.205
+      "n": 112,
+      "mae": 4.53,
+      "bias": 1.797
     },
     "recency35_size": {
-      "n": 48,
-      "mae": 4.534,
-      "bias": 3.315
+      "n": 112,
+      "mae": 4.589,
+      "bias": 1.841
     }
   },
   "by_year": {
+    "2010": {
+      "equal": {
+        "n": 15,
+        "mae": 4.438,
+        "bias": -1.198
+      },
+      "recency21": {
+        "n": 15,
+        "mae": 4.522,
+        "bias": -1.448
+      },
+      "recency21_size": {
+        "n": 15,
+        "mae": 4.597,
+        "bias": -1.43
+      },
+      "recency35_size": {
+        "n": 15,
+        "mae": 4.555,
+        "bias": -1.339
+      }
+    },
+    "2012": {
+      "equal": {
+        "n": 17,
+        "mae": 4.498,
+        "bias": -3.833
+      },
+      "recency21": {
+        "n": 17,
+        "mae": 4.099,
+        "bias": -3.685
+      },
+      "recency21_size": {
+        "n": 17,
+        "mae": 4.156,
+        "bias": -3.682
+      },
+      "recency35_size": {
+        "n": 17,
+        "mae": 4.32,
+        "bias": -3.748
+      }
+    },
+    "2014": {
+      "equal": {
+        "n": 16,
+        "mae": 4.928,
+        "bias": 4.016
+      },
+      "recency21": {
+        "n": 16,
+        "mae": 4.699,
+        "bias": 4.017
+      },
+      "recency21_size": {
+        "n": 16,
+        "mae": 4.813,
+        "bias": 4.019
+      },
+      "recency35_size": {
+        "n": 16,
+        "mae": 4.889,
+        "bias": 4.009
+      }
+    },
+    "2016": {
+      "equal": {
+        "n": 16,
+        "mae": 4.923,
+        "bias": 4.158
+      },
+      "recency21": {
+        "n": 16,
+        "mae": 4.83,
+        "bias": 4.269
+      },
+      "recency21_size": {
+        "n": 16,
+        "mae": 4.777,
+        "bias": 4.2
+      },
+      "recency35_size": {
+        "n": 16,
+        "mae": 4.776,
+        "bias": 4.173
+      }
+    },
     "2018": {
       "equal": {
         "n": 13,
@@ -146,20 +234,124 @@
     "note": "Uses future cycles to train some folds, so it is not a forward-only test. No per-race predictions are used to select a model.",
     "folds": [
       {
-        "held_out_year": 2018,
+        "held_out_year": 2010,
         "training_years": [
+          2012,
+          2014,
+          2016,
+          2018,
           2020,
           2022,
           2024
         ],
-        "training_races": 35,
+        "training_races": 97,
+        "held_out_races": 15,
+        "selected_method": "recency21_size",
+        "training_mae_by_method": {
+          "equal": 4.761,
+          "recency21": 4.52,
+          "recency21_size": 4.52,
+          "recency35_size": 4.595
+        },
+        "held_out_selected_mae": 4.597,
+        "held_out_equal_mae": 4.438,
+        "held_out_selected_bias": -1.43,
+        "held_out_equal_bias": -1.198
+      },
+      {
+        "held_out_year": 2012,
+        "training_years": [
+          2010,
+          2014,
+          2016,
+          2018,
+          2020,
+          2022,
+          2024
+        ],
+        "training_races": 95,
+        "held_out_races": 17,
+        "selected_method": "recency21",
+        "training_mae_by_method": {
+          "equal": 4.757,
+          "recency21": 4.596,
+          "recency21_size": 4.597,
+          "recency35_size": 4.638
+        },
+        "held_out_selected_mae": 4.099,
+        "held_out_equal_mae": 4.498,
+        "held_out_selected_bias": -3.685,
+        "held_out_equal_bias": -3.833
+      },
+      {
+        "held_out_year": 2014,
+        "training_years": [
+          2010,
+          2012,
+          2016,
+          2018,
+          2020,
+          2022,
+          2024
+        ],
+        "training_races": 96,
+        "held_out_races": 16,
+        "selected_method": "recency21_size",
+        "training_mae_by_method": {
+          "equal": 4.682,
+          "recency21": 4.49,
+          "recency21_size": 4.483,
+          "recency35_size": 4.539
+        },
+        "held_out_selected_mae": 4.813,
+        "held_out_equal_mae": 4.928,
+        "held_out_selected_bias": 4.019,
+        "held_out_equal_bias": 4.016
+      },
+      {
+        "held_out_year": 2016,
+        "training_years": [
+          2010,
+          2012,
+          2014,
+          2018,
+          2020,
+          2022,
+          2024
+        ],
+        "training_races": 96,
+        "held_out_races": 16,
+        "selected_method": "recency21",
+        "training_mae_by_method": {
+          "equal": 4.683,
+          "recency21": 4.469,
+          "recency21_size": 4.489,
+          "recency35_size": 4.558
+        },
+        "held_out_selected_mae": 4.83,
+        "held_out_equal_mae": 4.923,
+        "held_out_selected_bias": 4.269,
+        "held_out_equal_bias": 4.158
+      },
+      {
+        "held_out_year": 2018,
+        "training_years": [
+          2010,
+          2012,
+          2014,
+          2016,
+          2020,
+          2022,
+          2024
+        ],
+        "training_races": 99,
         "held_out_races": 13,
         "selected_method": "recency21",
         "training_mae_by_method": {
-          "equal": 4.697,
-          "recency21": 4.588,
-          "recency21_size": 4.622,
-          "recency35_size": 4.628
+          "equal": 4.698,
+          "recency21": 4.551,
+          "recency21_size": 4.594,
+          "recency35_size": 4.63
         },
         "held_out_selected_mae": 4.284,
         "held_out_equal_mae": 4.867,
@@ -169,81 +361,147 @@
       {
         "held_out_year": 2020,
         "training_years": [
+          2010,
+          2012,
+          2014,
+          2016,
           2018,
           2022,
           2024
         ],
-        "training_races": 38,
+        "training_races": 102,
         "held_out_races": 10,
-        "selected_method": "recency21_size",
+        "selected_method": "recency21",
         "training_mae_by_method": {
-          "equal": 4.352,
-          "recency21": 4.05,
-          "recency21_size": 3.988,
-          "recency35_size": 4.084
+          "equal": 4.569,
+          "recency21": 4.352,
+          "recency21_size": 4.359,
+          "recency35_size": 4.427
         },
-        "held_out_selected_mae": 6.275,
+        "held_out_selected_mae": 6.237,
         "held_out_equal_mae": 6.231,
-        "held_out_selected_bias": 6.214,
+        "held_out_selected_bias": 6.185,
         "held_out_equal_bias": 6.231
       },
       {
         "held_out_year": 2022,
         "training_years": [
+          2010,
+          2012,
+          2014,
+          2016,
           2018,
           2020,
           2024
         ],
-        "training_races": 37,
+        "training_races": 101,
         "held_out_races": 11,
-        "selected_method": "recency21_size",
+        "selected_method": "recency21",
         "training_mae_by_method": {
-          "equal": 4.932,
-          "recency21": 4.644,
-          "recency21_size": 4.565,
-          "recency35_size": 4.666
+          "equal": 4.784,
+          "recency21": 4.572,
+          "recency21_size": 4.574,
+          "recency35_size": 4.644
         },
-        "held_out_selected_mae": 4.124,
+        "held_out_selected_mae": 4.042,
         "held_out_equal_mae": 4.109,
-        "held_out_selected_bias": 0.942,
+        "held_out_selected_bias": 0.932,
         "held_out_equal_bias": 1.443
       },
       {
         "held_out_year": 2024,
         "training_years": [
+          2010,
+          2012,
+          2014,
+          2016,
           2018,
           2020,
           2022
         ],
-        "training_races": 34,
+        "training_races": 98,
         "held_out_races": 14,
-        "selected_method": "recency21_size",
+        "selected_method": "recency21",
         "training_mae_by_method": {
-          "equal": 5.023,
-          "recency21": 4.78,
-          "recency21_size": 4.724,
-          "recency35_size": 4.795
+          "equal": 4.811,
+          "recency21": 4.617,
+          "recency21_size": 4.63,
+          "recency35_size": 4.688
         },
-        "held_out_selected_mae": 3.832,
+        "held_out_selected_mae": 3.84,
         "held_out_equal_mae": 4.064,
-        "held_out_selected_bias": 3.582,
+        "held_out_selected_bias": 3.637,
         "held_out_equal_bias": 3.772
       }
     ],
-    "pooled_held_out_races": 48,
-    "pooled_selected_mae": 4.53,
-    "pooled_equal_mae": 4.743
+    "pooled_held_out_races": 112,
+    "pooled_selected_mae": 4.547,
+    "pooled_equal_mae": 4.717
   },
   "forward_year_holdouts": {
     "status": "completed",
     "folds": [
       {
+        "held_out_year": 2012,
+        "training_years": [
+          2010
+        ],
+        "selected_method": "equal",
+        "training_races": 15,
+        "held_out_races": 17,
+        "selected_mae": 4.498,
+        "equal_mae": 4.498
+      },
+      {
+        "held_out_year": 2014,
+        "training_years": [
+          2010,
+          2012
+        ],
+        "selected_method": "recency21",
+        "training_races": 32,
+        "held_out_races": 16,
+        "selected_mae": 4.699,
+        "equal_mae": 4.928
+      },
+      {
+        "held_out_year": 2016,
+        "training_years": [
+          2010,
+          2012,
+          2014
+        ],
+        "selected_method": "recency21",
+        "training_races": 48,
+        "held_out_races": 16,
+        "selected_mae": 4.83,
+        "equal_mae": 4.923
+      },
+      {
+        "held_out_year": 2018,
+        "training_years": [
+          2010,
+          2012,
+          2014,
+          2016
+        ],
+        "selected_method": "recency21",
+        "training_races": 64,
+        "held_out_races": 13,
+        "selected_mae": 4.284,
+        "equal_mae": 4.867
+      },
+      {
         "held_out_year": 2020,
         "training_years": [
+          2010,
+          2012,
+          2014,
+          2016,
           2018
         ],
         "selected_method": "recency21_size",
-        "training_races": 13,
+        "training_races": 77,
         "held_out_races": 10,
         "selected_mae": 6.275,
         "equal_mae": 6.231
@@ -251,50 +509,66 @@
       {
         "held_out_year": 2022,
         "training_years": [
+          2010,
+          2012,
+          2014,
+          2016,
           2018,
           2020
         ],
-        "selected_method": "recency21_size",
-        "training_races": 23,
+        "selected_method": "recency21",
+        "training_races": 87,
         "held_out_races": 11,
-        "selected_mae": 4.124,
+        "selected_mae": 4.042,
         "equal_mae": 4.109
       },
       {
         "held_out_year": 2024,
         "training_years": [
+          2010,
+          2012,
+          2014,
+          2016,
           2018,
           2020,
           2022
         ],
-        "selected_method": "recency21_size",
-        "training_races": 34,
+        "selected_method": "recency21",
+        "training_races": 98,
         "held_out_races": 14,
-        "selected_mae": 3.832,
+        "selected_mae": 3.84,
         "equal_mae": 4.064
       }
     ],
-    "warning": "First fold has only one training election; 2022 and 2024 folds are more informative."
+    "warning": "Early folds have limited training history; evaluate modern-era results separately."
   },
   "correlated_error_diagnostics": {
     "status": "descriptive_only",
     "method": "recency21_size",
     "years": [
+      2010,
+      2012,
+      2014,
+      2016,
       2018,
       2020,
       2022,
       2024
     ],
-    "n_races": 48,
+    "n_races": 112,
     "year_mean_errors": {
+      "2010": -1.43,
+      "2012": -3.682,
+      "2014": 4.019,
+      "2016": 4.2,
       "2018": 2.399,
       "2020": 6.214,
       "2022": 0.942,
       "2024": 3.582
     },
-    "overall_race_weighted_bias": 3.205,
-    "between_year_mean_sd": 2.232,
-    "within_year_residual_sd": 4.125,
+    "overall_race_weighted_bias": 1.797,
+    "between_year_mean_sd": 3.262,
+    "within_year_residual_sd": 4.431,
     "interpretation": "Between-year dispersion suggests shared national polling error; within-year dispersion captures remaining state-specific and measurement variation.",
     "warnings": [
       "Four years are insufficient for stable national-error variance calibration.",
@@ -302,6 +576,72 @@
       "Do not convert these components into election-win probabilities without additional holdout validation.",
       "No region/state covariance matrix estimated; only one observation per race-year."
     ]
+  },
+  "modern_era_2018_onward": {
+    "equal": {
+      "n": 48,
+      "mae": 4.743,
+      "bias": 3.553
+    },
+    "recency21": {
+      "n": 48,
+      "mae": 4.506,
+      "bias": 3.269
+    },
+    "recency21_size": {
+      "n": 48,
+      "mae": 4.464,
+      "bias": 3.205
+    },
+    "recency35_size": {
+      "n": 48,
+      "mae": 4.534,
+      "bias": 3.315
+    }
+  },
+  "midterm_cycles": {
+    "equal": {
+      "n": 55,
+      "mae": 4.616,
+      "bias": 1.849
+    },
+    "recency21": {
+      "n": 55,
+      "mae": 4.421,
+      "bias": 1.576
+    },
+    "recency21_size": {
+      "n": 55,
+      "mae": 4.434,
+      "bias": 1.535
+    },
+    "recency35_size": {
+      "n": 55,
+      "mae": 4.493,
+      "bias": 1.637
+    }
+  },
+  "presidential_cycles": {
+    "equal": {
+      "n": 57,
+      "mae": 4.815,
+      "bias": 2.043
+    },
+    "recency21": {
+      "n": 57,
+      "mae": 4.616,
+      "bias": 2.078
+    },
+    "recency21_size": {
+      "n": 57,
+      "mae": 4.623,
+      "bias": 2.051
+    },
+    "recency35_size": {
+      "n": 57,
+      "mae": 4.682,
+      "bias": 2.039
+    }
   },
   "limitations": [
     "Not an election forecast.",
