@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-13T18:57:13.441743+00:00",
+  "updated_at": "2026-10-13T19:22:10.828954+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 755,
+      "available_in_source": 756,
       "records_examined": 300
     },
     "house": {
@@ -13,12 +13,60 @@
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 852,
+      "available_in_source": 853,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 299,
   "observations": [
+    {
+      "race_code": "FL-SEN",
+      "race_type": "senate",
+      "state": "FL",
+      "poll_id": "87803ecd-1309-4c1d-9a0e-731f609ae48e",
+      "question_id": "47258a6c-32ee-4fe9-815a-c6ca3ad4d230",
+      "pollster": "Stetson University Center for Public Opinion Research",
+      "dem_name": "Angie Nixon",
+      "rep_name": "Ashley Moody",
+      "dem": 41.0,
+      "rep": 52.0,
+      "margin": -11.0,
+      "field_end": "2026-10-09",
+      "field_start": "2026-10-01",
+      "posted_date": "2026-10-13",
+      "posted_source_datetime": "2026-10-13T14:56:00",
+      "posted_source_time": "10/13/26 14:56",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.stetson.edu/artsci/cpor/media/cpor-october-2026-pr.docx",
+      "sample_population": "lv",
+      "sample_size": 716,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "FL-GOV",
+      "race_type": "governor",
+      "state": "FL",
+      "poll_id": "87803ecd-1309-4c1d-9a0e-731f609ae48e",
+      "question_id": "742098e3-0e62-4499-be7d-64d6ba373981",
+      "pollster": "Stetson University Center for Public Opinion Research",
+      "dem_name": "David Jolly",
+      "rep_name": "Byron Donalds",
+      "dem": 41.0,
+      "rep": 52.0,
+      "margin": -11.0,
+      "field_end": "2026-10-09",
+      "field_start": "2026-10-01",
+      "posted_date": "2026-10-13",
+      "posted_source_datetime": "2026-10-13T14:56:00",
+      "posted_source_time": "10/13/26 14:56",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.stetson.edu/artsci/cpor/media/cpor-october-2026-pr.docx",
+      "sample_population": "lv",
+      "sample_size": 716,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "AZ-GOV",
       "race_type": "governor",

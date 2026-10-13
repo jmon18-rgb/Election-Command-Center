@@ -1,9 +1,24 @@
 {
-  "updated_at": "2026-10-13T18:57:12.779060Z",
+  "updated_at": "2026-10-13T19:22:10.306074Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "items": [
+    {
+      "id": "37cbc916a2881ffe7d45",
+      "title": "Sounds \u201cDesperate\u201d: Secretary of State Shirley Weber Calls O... - LA Focus",
+      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPWmI4bkE0dm5rOEhsVjBtQl9TMXgwMmd4M213SUxVSkRJMklYWTgwT0tOUHNUd1RVRkJkOVpKWGRsLTQwZWJpVGREZUNNNzVWTkhFR0ZHMWZDNjVyb2tGOWw3djZubm1XTHhJZ2NCTUFNZXJjbkZRLVU5YWY2SWdqRWkwX0dtZTdNb09tV3MtSXF6Wk1LUEd3LXktN1ZSODh1bkhGNTJlNTNRVkxRLTBXR28zek5rd0lfMmZLcFlISDRCZ080bGpPbTJzZkVnTGxpa2VyeDl6NmgwRWR4Q0thQWhzMA?oc=5",
+      "publisher": "LA Focus",
+      "published_at": "2026-10-13T19:00:36Z",
+      "detected_at": "2026-10-13T19:22:10.306074Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "80c2982de7d2ea7db3ea",
       "title": "Texas\u2019 backlog of voter registrations needs immediate fix, voting groups say in lawsuit - Democracy Docket",
