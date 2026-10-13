@@ -7,7 +7,9 @@ import subprocess
 root = Path(__file__).resolve().parents[1]
 html = (root / "index.html").read_text(encoding="utf-8")
 must_have = (
-    'The JackStradamus model',
+    'id="modelBoard"',
+    'function renderModelOverview(data)',
+    'renderModelOverview(data);',
     'id="newPolls"',
     'function renderFreshPolls(d)',
     'renderFreshPolls(d);',
@@ -24,12 +26,19 @@ must_not_have = (
     'id="genericPollCount"',
     'id="genericPollContext"',
     'id="genericDeltaNote"',
+    'id="modelState"',
+    'id="modelHalf"',
+    'id="modelDays"',
+    'Ridiculous name. Real math.',
+    'Methodology, data quality and sources',
+    'THE DAILY DAMAGE REPORT',
+    'Now with receipts.',
 )
 for term in must_have:
     assert term in html, f"Required dashboard feature missing: {term}"
 for term in must_not_have:
     assert term not in html, f"Removed or redundant panel returned: {term}"
-for identifier in ('newPolls', 'jackRadar', 'senateEstimateCards'):
+for identifier in ('newPolls', 'jackRadar', 'senateEstimateCards', 'modelBoard', 'modelRaceTotal', 'modelCloseTotal', 'modelThinTotal'):
     assert len(re.findall(rf'id="{identifier}"', html)) == 1, identifier
 scripts = re.findall(r"<script(?:\s[^>]*)?>(.*?)</script>", html, flags=re.S)
 assert scripts, "No inline dashboard script found"
