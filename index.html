@@ -1684,6 +1684,149 @@ const enHouseSeatCounts={AL:7,AK:1,AZ:9,AR:4,CA:52,CO:8,CT:5,DE:1,FL:28,GA:14,
  OK:5,OR:6,PA:17,RI:2,SC:7,SD:1,TN:9,TX:38,UT:4,VT:1,VA:11,
  WA:10,WV:2,WI:8,WY:1};
 let enOfficeSnapshots=Object.create(null),enOfficeErrors=Object.create(null);
+const enNationalStorageKey='bluewaves_national_senate_2026_v1';
+let enNationalSeats=null,enNationalError=null,enNationalExpanded=new Set();
+let enNationalEnabled=(()=>{
+ try{const saved=localStorage.getItem(enNationalStorageKey);
+  return saved===null?Date.now()>=Date.parse('2026-11-03T05:00:00Z'):saved==='true'}
+ catch{return Date.now()>=Date.parse('2026-11-03T05:00:00Z')}
+})();
+function enNationalValidate(doc){
+ if(!doc||doc.schema_version!=='1.0'||doc.is_election_forecast!==false||
+    doc.status!=='complete_slot_inventory_incomplete_forecast_inputs'||
+    doc.senate?.contested_total!==35||doc.senate.contested_regular!==33||
+    doc.senate.contested_special!==2||
+    !Array.isArray(doc.senate.contested_seats)||doc.senate.contested_seats.length!==35)return null;
+ const seats=[],states=new Set(),specials=[];
+ for(const row of doc.senate.contested_seats){
+  if(!row||typeof row.state!=='string'||!enHouseSeatCounts[row.state]||
+      row.race_code!==row.state+'-SEN'||states.has(row.state)||
+      !['regular','special'].includes(row.election_kind))return null;
+  states.add(row.state);
+  if(row.election_kind==='special')specials.push(row.state);
+  seats.push({office:'Senate',state:row.state,code:row.race_code,kind:row.election_kind,
+    key:row.state+(row.election_kind==='special'?'-special':'')});
+ }
+ if(specials.sort().join(',')!=='FL,OH'||states.size!==35)return null;
+ return seats.sort((a,b)=>a.state.localeCompare(b.state));
+}
+function enNationalSetUniverse(doc){
+ const parsed=enNationalValidate(doc);
+ if(!parsed){enNationalError='2026 Senate seat inventory failed validation';enNationalSeats=null}
+ else {
+  enNationalSeats=parsed;enNationalError=null;
+  // Legacy pins from before the 2026 special-election seat identity was
+  // reconciled: migrate FL-SEN / OH-SEN to their actual special Senate seat.
+  let changed=false;
+  enWatched=enWatched.map(x=>{
+   if(x.office!=='Senate')return x;
+   const item=parsed.find(y=>y.state===x.key.slice(0,2));
+   if(item&&item.key!==x.key){changed=true;return {office:'Senate',key:item.key}}
+   return x;
+  });
+  if(changed){enWatched=[...new Map(enWatched.map(x=>[enWatchId(x),x])).values()];enWatchSave()}
+ }
+ enRenderNationalSenate();enRenderWatchlist();
+}
+function enNationalWatchItems(){
+ return enNationalEnabled&&enNationalSeats?enNationalSeats:[];
+}
+function enNationalTracked(item){
+ const id=enWatchId(item);
+ return enWatched.some(x=>enWatchId(x)===id)||
+   (enNationalEnabled&&enNationalSeats?.some(x=>enWatchId(x)===id))||
+   enNationalExpanded.has(id);
+}
+function enNationalToggle(enabled){
+ if(!enNationalSeats)return;
+ enNationalEnabled=Boolean(enabled);
+ try{localStorage.setItem(enNationalStorageKey,String(enNationalEnabled))}catch{}
+ enRenderNationalSenate();
+ if(enNationalEnabled&&enModeYear===2026&&enIsVisible()){
+  void enRefreshWatchedOffices('');
+  void enRefreshCivicWatchlist(true);
+ }
+}
+function enNationalSourceStatus(item){
+ const isPrimary=enSupportedStates.has(item.state);
+ const data=isPrimary?(enOfficeSnapshots.Senate||
+   (enModeYear===2026&&enOffice==='Senate'?enData:null)):
+   enCivicByWatch[enWatchId(item)];
+ const row=isPrimary?data?.races?.[item.key]:data;
+ if(!row||!Number.isSafeInteger(row.total)||row.total===0)
+  return {reported:false,source:isPrimary?'Open America':'civicAPI',
+    text:!enNationalEnabled?'Not monitoring this source yet':
+    row?'No reported votes yet':isPrimary&&data?'No record reported · not zero':
+    !isPrimary&&enCivicErrors[enWatchId(item)]?'Secondary source unavailable':
+    'Awaiting verified source'};
+ if(isPrimary){
+  const lead=enCurrentLeader(row),edge=enLeadInfo(row);
+  return {reported:true,source:'Open America',
+    text:enNum(row.total)+' votes · '+(lead?edge.short+' leads':'Tied')+
+      (Number.isFinite(row.pct_in)?' · '+row.pct_in.toFixed(0)+'% precincts':'')+
+      (data.stale?' · STALE SOURCE':'')};
+ }
+ const candidates=[...row.candidates].sort((a,b)=>b.votes-a.votes);
+ const lead=candidates[0],runner=candidates[1];
+ const voteLead=lead&&runner&&lead.votes>runner.votes?
+  lead.party+' lead':'Tied / uncertain';
+ return {reported:true,source:'civicAPI',
+   text:enNum(row.total)+' votes · '+voteLead+' · '+
+    row.percent_reporting.toFixed(0)+'% precincts'+
+    (row.called?' · civicAPI call':'')};
+}
+function enRenderNationalSenate(){
+ const panel=$('#enNationalSenate'),summary=$('#enNationalSummary'),
+  rows=$('#enNationalRows'),toggle=$('#enNationalToggle');
+ if(!panel||!summary||!rows||!toggle)return;
+ panel.hidden=enModeYear!==2026;
+ if(panel.hidden)return;
+ rows.replaceChildren();
+ if(!enNationalSeats){
+  summary.textContent=enNationalError||'Verifying the 35 Senate ballot slots…';
+  toggle.disabled=true;return;
+ }
+ toggle.disabled=false;
+ toggle.textContent=enNationalEnabled?'Tracking all 35 · Pause':'Track all 35';
+ toggle.setAttribute('aria-pressed',String(enNationalEnabled));
+ const statuses=enNationalSeats.map(item=>({item,result:enNationalSourceStatus(item)}));
+ const reported=statuses.filter(x=>x.result.reported);
+ const primary=reported.filter(x=>x.result.source==='Open America').length;
+ const secondary=reported.length-primary;
+ const sourceCoverage=enNationalSeats.filter(x=>enSupportedStates.has(x.state)).length;
+ summary.textContent=(enNationalEnabled?'MONITOR ACTIVE':'MONITOR PAUSED')+' · '+
+  reported.length+' / 35 races with recorded votes · '+primary+
+  ' state-derived · '+secondary+' civicAPI · '+sourceCoverage+
+  ' states in primary source coverage, '+(35-sourceCoverage)+' supplemental. '+
+  (reported.length?'Leaders are not race calls.':'Counts have not begun; no zeros are inferred.');
+ for(const {item,result} of statuses){
+  const card=elt('button','en-national-seat');card.type='button';
+  card.dataset.reporting=String(result.reported);
+  const title=item.code+(item.kind==='special'?' · SPECIAL':'');
+  card.setAttribute('aria-label',title+', '+result.source+': '+result.text);
+  card.append(elt('strong','',title),elt('span','en-national-provider',result.source),
+    elt('small','',result.text));
+  const id=enWatchId(item);
+  if(!enSupportedStates.has(item.state)){
+   card.setAttribute('aria-expanded',String(enNationalExpanded.has(id)));
+   card.addEventListener('click',()=>{
+    if(enNationalExpanded.has(id))enNationalExpanded.delete(id);
+    else enNationalExpanded.add(id);
+    enRenderNationalSenate();
+    if(enNationalExpanded.has(id)&&!enCivicByWatch[id]&&enModeYear===2026&&enIsVisible())
+     void enCivicFetchOne(item);
+   });
+   const group=elt('div','en-watch-group');
+   group.append(card);
+   if(enNationalExpanded.has(id))group.append(enRenderCivicCandidateDetails(item));
+   rows.append(group);
+  }else{
+   card.addEventListener('click',()=>enSwitch(2026,'Senate',item.key));
+   rows.append(card);
+  }
+ }
+}
+$('#enNationalToggle').addEventListener('click',()=>enNationalToggle(!enNationalEnabled));
 function enWatchParse(input){
  const value=String(input||'').toUpperCase().trim().replace(/\s+/g,'');
  let match=value.match(/^([A-Z]{2})-(\d{2})$/);
@@ -2704,7 +2847,7 @@ function renderSeatUniverse(data){
  for(const reason of reasons){const item=elt('div','item');item.append(elt('strong','',reason));gate.append(item)}
 
 }
-fetch('./data/seat_universe.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('inventory unavailable');return r.json()}).then(renderSeatUniverse).catch(()=>{$('#seatInventoryAsOf').textContent='Inventory awaiting verified refresh';});
+fetch('./data/seat_universe.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('inventory unavailable');return r.json()}).then(d=>{renderSeatUniverse(d);enNationalSetUniverse(d)}).catch(()=>{enNationalSetUniverse(null);$('#seatInventoryAsOf').textContent='Inventory awaiting verified refresh';});
 
 let modelHistoryData=null;
 function setModelHistoryData(snapshot){
