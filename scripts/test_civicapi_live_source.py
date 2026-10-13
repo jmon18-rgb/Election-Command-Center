@@ -69,7 +69,7 @@ def main():
         detail=source("/race/"+str(row["id"]),{"light":""})
         for key in ("country","province","district","election_date","election_name","election_type"):
             if detail.get(key)!=row.get(key):
-                raise ValueError("Detailed race mismatches discovery record: "+key)
+                raise ValueError("Detailed race mismatches discovery record for "+str(item)+": "+key+" search="+repr(row.get(key))+" detail="+repr(detail.get(key)))
         candidates=detail.get("candidates")
         if not isinstance(candidates,list) or len(candidates)<2 or len(candidates)>60:
             raise ValueError("Unexpected candidate list in civicAPI detailed record")
