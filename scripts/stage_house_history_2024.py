@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stage 2024 House general-election candidate-vote totals, never impute 2026.
+"""Stage 2022 and 2024 House general-election returns, never impute 2026.
 
 Public CC0 copy of the MIT Election Data and Science Lab constituency results.
 A 2024 numbered district is NOT necessarily a 2026 numbered district's geography.
@@ -33,7 +33,8 @@ def count(value):
     except (TypeError,ValueError):pass
     return None
 
-def stage(text):
+def stage(text, year=2024):
+    if year not in (2022,2024):raise ValueError("Only 2022/2024 source snapshots approved")
     source=csv.DictReader(io.StringIO(text))
     columns=set(source.fieldnames or [])
     required={"year","state_po","district","stage","party","candidatevotes"}
@@ -43,7 +44,7 @@ def stage(text):
                                      "candidate_rows":0,"missing_vote_rows":0})
     seen=0
     for row in source:
-        if str(row.get("year") or "")!="2024":continue
+        if str(row.get("year") or "")!=str(year):continue
         if str(row.get("stage") or "").upper() not in ("GEN","GENERAL"):continue
         if str(row.get("special") or "").strip().lower() in ("true","1","yes"):continue
         state=(row.get("state_po") or "").strip().upper()
@@ -64,12 +65,12 @@ def stage(text):
         a[group]+=votes
         seen+=1
     if len(aggregates)!=435:
-        raise ValueError("2024 voting House must contain exactly 435 seat records; parsed "+str(len(aggregates)))
+        raise ValueError(f"{year} voting House must contain exactly 435 seat records; parsed "+str(len(aggregates)))
     records=[]
     for key,a in sorted(aggregates.items()):
         total=a["dem"]+a["rep"]
         records.append({
-            "2024_race_code":key,"election_year":2024,
+            f"{year}_race_code":key,"election_year":year,
             "recorded_dem_votes":a["dem"],"recorded_rep_votes":a["rep"],
             "recorded_other_votes":a["other"],
             "recorded_two_party_vote_total":total,
@@ -80,7 +81,7 @@ def stage(text):
             "geography_comparable_to_2026":"not_verified",
             "eligible_as_2026_prior":False
         })
-    return {"status":"2024_history_staged_not_2026_priors",
+    return {"status":f"{year}_history_staged_not_2026_priors",
        "source_dataset":"MIT Election Data and Science Lab — US House 1976–2024",
        "source_original":SOURCE_ORIGINAL,
        "source_mirror":SOURCE,
@@ -88,9 +89,9 @@ def stage(text):
        "extracted_at":dt.datetime.now(dt.timezone.utc).isoformat(),
        "source_schema":list(source.fieldnames),
        "source_candidate_rows_with_votes":seen,
-       "2024_district_rows":len(records),
+       f"{year}_district_rows":len(records),
        "districts_missing_major_party_votes":sum(x["missing_major_party_votes"] for x in records),
-       "map_warning":"2024 House vote shares must NOT be mapped by district number into 2026 jurisdictions, especially redistricted states.",
+       "map_warning":f"{year} House vote shares must NOT be mapped by district number into 2026 jurisdictions without confirming district geography across each election year.",
        "vote_warning":"Raw party rows can reflect fusion ballots, write-ins and uncontested races. Zero recorded party votes is not an inferred electorate share.",
        "records":records}
 
@@ -99,9 +100,12 @@ def main():
     with urllib.request.urlopen(request,timeout=45) as response:
         data=response.read(9_000_000)
     if len(data)<100_000 or len(data)>=9_000_000:raise ValueError("source download size outside expected bounds")
-    parsed=stage(data.decode("utf-8-sig"))
-    DEST.write_text(json.dumps(parsed,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
-    print("Staged {} 2024 House districts, {} rows with candidate votes; NOT linked to 2026 maps.".format(
-         parsed["2024_district_rows"],parsed["source_candidate_rows_with_votes"]))
+    text=data.decode("utf-8-sig")
+    for year in (2022,2024):
+        parsed=stage(text,year=year)
+        out=ROOT/"data"/f"house_history_{year}_staging.json"
+        out.write_text(json.dumps(parsed,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
+        print(f"Staged {parsed[f'{year}_district_rows']} {year} voting House districts, "+
+              f"{parsed['source_candidate_rows_with_votes']} valid candidate vote rows; NOT 2026 forecasts.")
 
 if __name__=="__main__":main()
