@@ -177,3 +177,9 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Election Night includes a concise dated Decision Desk HQ forecast-reference strip separate from votes. No in-house chamber probabilities are inferred from incomplete polling or results.
 - JackStradamus collapses historical research into a drawer so current 2026 polling comes first.
 - Next priorities: browser-based deployed-source confirmation, race-call provider agreement, and additional election reporting beyond 22 states.
+
+## Oct 13: source-native rehearsal and vote-update accuracy
+
+- Added a second 2024 rehearsal source using the Open America browser-native archive: named candidates, reported precinct shares, House/Senate and available governor data, independent from MIT full 2024 historical party aggregates. This is archived final-source-style data, not a timed historical count replay.
+- Fixed reporting timeline edge cases: **first arrivals**, **lead changes at unchanged overall votes** and **candidate reallocations** now surface without generating false movement on identical refreshed records.
+- Added deterministic browser tests for state archive source switching, native candidate/precinct rendering, unchanged-total corrections, initial reporting and never confusing archived records with live 2026 counts.
