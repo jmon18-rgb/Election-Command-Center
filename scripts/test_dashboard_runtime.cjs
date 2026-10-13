@@ -26,7 +26,8 @@ w.Element.prototype.scrollIntoView=function(){};
 w.matchMedia=()=>({matches:false,addListener(){},removeListener(){}});
 const fixtures={
  'polling_estimates.json':model,'polls.json':primary,
- 'pollresults_recent.json':recent,'model_history.json':history
+ 'pollresults_recent.json':recent,'model_history.json':history,
+ 'congress_scenarios.json':json('data/congress_scenarios.json')
 };
 for(const file of ['briefing.json','integrity_impact.json','seat_universe.json','house_geography_bridge.json','house_two_cycle_context.json']){
  const name='data/'+file;
@@ -129,20 +130,25 @@ async function settle(){
    assert(get('#modelPollRows tr.model-featured-poll').textContent.includes(sourceFirm),
      'Insight opened a different survey instead of the clicked '+identifier+' '+sourceFirm+' poll');
  }
- // Scenarios MUST do something; no longer four static paragraphs.
- const cards=[...get('#scenarioBands').querySelectorAll('button.scenario-tile')];
+ // Four Endings must be attributable MODEL probabilities, not sliders or
+ // invented split probability for the DDHQ-unpublished Blue Tsunami subset.
+ const cards=[...get('#scenarioBands').querySelectorAll('.scenario-tile')];
  assert.equal(cards.length,4);
- cards.find(c=>c.textContent.includes('BLUE TSUNAMI')).click();
- assert.match(get('.scenario-result').textContent,/BLUE TSUNAMI/);
- assert.equal(get('#scenario-sweep').value,'92');
- const input=(id,value)=>{const el=get('#scenario-'+id);el.value=String(value);el.dispatchEvent(new w.Event('input',{bubbles:true}));};
- input('house',220);input('senate',52);input('sweep',65);
- assert.match(get('.scenario-result').textContent,/BLUE WAVE/);
- input('house',211);input('senate',48);
- assert.match(get('.scenario-result').textContent,/RED DAWN/);
- input('senate',53);
- assert.match(get('.scenario-result').textContent,/THE SHRUG/);
- assert.match(get('#scenarioSimulator').textContent,/NOT a forecast|not a forecast|not measured/i);
+ const seeded=json('data/congress_scenarios.json');
+ assert.equal(seeded.status,'external_model_attributed_not_jackstradamus_probabilities');
+ const findCard=name=>cards.find(c=>c.textContent.includes(name));
+ for(const [label,key] of [['RED DAWN','red_dawn'],['THE SHRUG','shrug'],['BLUE WAVE','blue_both']]){
+   const expected=seeded.display_outcomes[key].pct;
+   assert(findCard(label).textContent.includes(expected+'%'),
+     label+' should show DDHQ '+expected+'% model-based probability');
+ }
+ const tsunami=findCard('BLUE TSUNAMI');
+ assert(tsunami,'Missing tsunami outcome');
+ assert.match(tsunami.textContent,/not separately estimated/i);
+ assert(!tsunami.textContent.includes('0%'),'Unreported tsunami probability cannot be shown as 0%');
+ assert(!get('#scenarioSimulator').querySelector('input'),'Hypothetical sliders should be removed');
+ assert.match(get('#scenarioSimulator').textContent,/DDHQ does not publish/i);
+ assert.match(get('.scenario-source-link').href,/decisiondeskhq.com/);
  // Sort all posted polls by full timestamps; no alphabetical field-end tie.
  const posted=recent.observations.filter(p=>p.posted_date>=new Date(Date.now()-14*86400000).toISOString().slice(0,10));
  const topTime=posted.reduce((max,p)=>{
