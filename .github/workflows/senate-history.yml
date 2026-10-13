@@ -1,0 +1,60 @@
+name: Stage historical Senate election outcomes
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/stage_senate_history.py'
+      - 'scripts/test_senate_history.py'
+      - '.github/workflows/senate-history.yml'
+permissions:
+  contents: write
+concurrency:
+  group: senate-history-staging
+  cancel-in-progress: false
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test candidate and special-election import contract
+        run: python3 scripts/test_senate_history.py
+      - name: Fetch official MIT Senate historical dataset from Harvard Dataverse
+        run: python3 scripts/stage_senate_history.py
+      - name: Verify staged artifact remains historical research only
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('data/senate_history_2020_2022_2024.json')
+          o=json.loads(p.read_text())
+          assert o['source_license']=='CC0 1.0'
+          assert o['source_datafile_id'] and o['source_file_sha256']
+          assert not o['is_election_forecast'] and not o['can_predict_2026_senate']
+          assert 90<=o['contest_count']<=115
+          assert o['contest_count']==len(o['contest_records'])
+          for row in o['contest_records']:
+              assert row['recorded_dem_votes']+row['recorded_rep_votes']+row['recorded_other_votes']==row['recorded_total_candidate_votes']
+              assert not row['eligible_as_2026_forecast_prior']
+          print('Historical Senate dataset passed research-only validation:',o['contests_by_year'])
+          PY
+      - name: Commit source-provenance snapshot without overwriting model code
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "election-history-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          if ! git diff --quiet HEAD origin/main -- scripts/stage_senate_history.py scripts/test_senate_history.py; then
+            echo "Importer changed during source download; skipping stale snapshot."
+            exit 0
+          fi
+          git reset --mixed origin/main
+          git add data/senate_history_2020_2022_2024.json
+          if git diff --cached --quiet; then
+            echo "Historical Senate dataset already up to date."
+            exit 0
+          fi
+          git commit -m "Stage MIT Senate 2020-2024 historical outcomes"
+          git push origin HEAD:main
