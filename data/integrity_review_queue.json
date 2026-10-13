@@ -1,9 +1,24 @@
 {
-  "updated_at": "2026-10-13T14:27:31.915000Z",
+  "updated_at": "2026-10-13T14:31:02.888556Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "items": [
+    {
+      "id": "d0a395b1cb946cd1fccc",
+      "title": "Black Church Leaders Broaden Voter Outreach Ahead of Midterm Elections - Word&Way",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPbXIwZjYzVEZUa0lTZTZ3WnRzTUszZFQ1c2dlMTVuZDVfU1Z0ZVpveTZ3N2FsTWxFazRBMTdsRnlIc1R6eU9NSmh1YkJLVTVGTU1JOUlGOTJNd2pKajMzWDF1ZktWbkU3Q29lT1NhNFRkWFEzNjUxRGdieS04V18zSkxBRXduVS13NEFzcTFKRjBCdzBndFVJNWc2UzBJbVJxTy1hN3pkaTc?oc=5",
+      "publisher": "Word&Way",
+      "published_at": "2026-10-13T14:16:42Z",
+      "detected_at": "2026-10-13T14:31:02.888556Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "0f4a6464ff925f41424f",
       "title": "Supreme Court turns away Kari Lake lawyer\u2019s challenge to sanctions in Arizona voting machine lawsuit - The Hill",
