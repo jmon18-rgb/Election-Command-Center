@@ -162,6 +162,33 @@ def observation_key(race, poll):
                      poll.get("dem_name", ""), poll.get("rep_name", ""),
                      str(poll.get("dem", "")), str(poll.get("rep", ""))])
 
+def stamp_poll_first_seen(prior_races, new_races, observed_at):
+    """Preserve detection timestamps without pretending they're publication dates.
+
+    On the first run using an old snapshot, existing polls are historical baseline
+    with unknown first-seen time. Only a genuinely new poll gets observed_at.
+    """
+    old = {}
+    for race in prior_races or []:
+        for poll in race.get("polls", []):
+            old[observation_key(race, poll)] = poll.get("first_seen_at")
+    has_prior = bool(prior_races)
+    count = 0
+    for race in new_races:
+        for poll in race.get("polls", []):
+            key = observation_key(race, poll)
+            if key in old:
+                poll["first_seen_at"] = old[key]
+            elif has_prior:
+                poll["first_seen_at"] = observed_at
+                count += 1
+            else:
+                poll["first_seen_at"] = None
+            # Upstream CSV provides field-end dates, not public release dates.
+            poll["release_date"] = poll.get("release_date") or None
+        race["latest"] = race["polls"][0]
+    return count
+
 def build_changes(prior, result):
     """Only call a genuinely new poll a change; don't compare different race matchups."""
     old = set()
@@ -179,6 +206,8 @@ def build_changes(prior, result):
                     "dem": poll["dem"], "rep": poll["rep"], "margin": poll["margin"],
                     "dem_name": poll.get("dem_name"), "rep_name": poll.get("rep_name"),
                     "sample_size": poll.get("sample_size"),
+                    "first_seen_at": poll.get("first_seen_at"),
+                    "release_date": poll.get("release_date"),
                     "source_url": race.get("source_url"),
                 })
     current.sort(key=lambda p: p["field_end"], reverse=True)
@@ -231,6 +260,10 @@ def main():
             success.append(key)
         except Exception as exc:
             errors.append(f"{key}: {type(exc).__name__}: {exc}")
+    if "races" in success:
+        result["newly_detected_count"] = stamp_poll_first_seen(
+            prior.get("races"), result["races"], UTC_NOW
+        )
     if "races" in success and prior.get("updated_at"):
         result["changes"] = build_changes(prior, result)
     else:
