@@ -8,6 +8,12 @@ root = Path(__file__).resolve().parents[1]
 html = (root / "index.html").read_text(encoding="utf-8")
 must_have = (
     'id="modelBoard"',
+    'id="seatHouseCount"',
+    'id="seatSenateCount"',
+    'function renderSeatUniverse(data)',
+    "data/seat_universe.json",
+    'SEAT_MODEL.md',
+
     "blue-waves-hero.jpg",
     'In Search of <em>Blue Waves</em>',
     'id="racePulse"',
