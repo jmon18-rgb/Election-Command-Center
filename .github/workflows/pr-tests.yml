@@ -50,6 +50,14 @@ jobs:
           node --check scripts/civicapi_nh_governor_adapter.js
           node --check scripts/test_civicapi_nh_governor_adapter.cjs
           node scripts/test_civicapi_nh_governor_adapter.cjs
+      - name: Test four-state supplemental civicAPI race adapters
+        run: |
+          node --check scripts/civicapi_state_batch.js
+          node --check scripts/test_civicapi_state_batch.cjs
+          node scripts/test_civicapi_state_batch.cjs
+      - name: Advisory four-state civicAPI source indexing health
+        continue-on-error: true
+        run: python3 scripts/probe_civicapi_batch.py
       # Third-party 503 is a health warning; source contracts are tested offline.
       - name: Advisory civicAPI live-provider health and CORS
         continue-on-error: true

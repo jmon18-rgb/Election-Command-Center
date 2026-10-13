@@ -243,3 +243,11 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Each race detail now has *tighter / baseline / wider* uncertainty controls, updating probability values. Race list also shows compact implied chances.
 - Build and verify the dataset with Python and actual JavaScript interaction tests; regenerate the source-dated artifact automatically after each four-hour polling refresh.
 - Next substantive probability milestone: complete unpolled seat fundamentals, common national/regional election errors, and a frozen competitive House/Senate slate for true four-ending joint simulations.
+
+## Oct 13: Four-state civicAPI adapter batch (source verified)
+
+- Consolidated strict civicAPI race matching for **Alaska, Maine, Massachusetts and Nevada** into one six-race adapter instead of one race per pull request.
+- Verified via live provider search/detail + CORS: AK Senate/Governor, ME Senate/Governor, MA Governor, NV Governor. Each exact civicAPI ID is independently gated by GitHub Actions.
+- Explicitly excluded **MA Senate** (not uniquely returned in the 20-result discovery), other unverified statewide contests and House districts. No fabricated coverage or source calls.
+- App regression checks source-specific 2026 votes on four personal watchlist pins and rejects later cross-race details while retaining last-good counts. No source totals flow into Open America or forecast probabilities.
+- Future development cadence: **3–5 states per PR** when actual source coverage supports it; collect verified IDs, implement shared mappings and tests, merge only after the complete PR suite passes, then stop.

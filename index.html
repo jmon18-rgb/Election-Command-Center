@@ -557,6 +557,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <footer class="footer"><span>2026 ELECTION COMMAND CENTER · CLARITY OVER NOISE</span><span><a href="https://github.com/jmon18-rgb/Election-Command-Center">Source code ↗</a> · <span id="updated">Briefing pending</span></span></footer></main>
 <script src="./scripts/civicapi_nh_adapter.js"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js"></script>
+<script src="./scripts/civicapi_state_batch.js"></script>
 <script>
 const $=s=>document.querySelector(s);
 function activatePage(tab,updateUrl){
@@ -2221,7 +2222,15 @@ const enCivicBase='https://civicapi.org/api/v2';
 let enCivicByWatch=Object.create(null),enCivicRaceIds=Object.create(null),
  enCivicErrors=Object.create(null),enCivicPending=new Set(),enCivicLastSweep=0,enCivicSweepCursor=0,
  enCivicExpanded=new Set();
+// Exactly these six source-checked statewide contests use the 4-state
+// adapter. If its script fails to load, do not silently fall back to
+// a broader, less strict match.
+const enBatchPilotSlots=new Set(['Senate|AK','Governor|AK','Senate|ME',
+ 'Governor|ME','Governor|MA','Governor|NV']);
+function enBatchPilot(item){return Boolean(item&&enBatchPilotSlots.has(enWatchId(item)))}
 function enCivicMatch(item,row){
+ if(enBatchPilot(item))
+  return Boolean(window.StateBatchCivicAdapter?.match(item,row));
  if(item?.office==='Governor'&&item?.key==='NH')
   return Boolean(window.NHGovernorCivicAdapter?.match(item,row));
  if(item?.office==='Senate'&&item?.key==='NH')
@@ -2245,6 +2254,8 @@ function enCivicMatch(item,row){
  return false;
 }
 function enCivicSelect(item,doc){
+ if(enBatchPilot(item))
+  return window.StateBatchCivicAdapter?.select(item,doc)||null;
  if(item?.office==='Governor'&&item?.key==='NH')
   return window.NHGovernorCivicAdapter?.select(item,doc)||null;
  if(item?.office==='Senate'&&item?.key==='NH')
@@ -2259,6 +2270,8 @@ function enCivicParty(name){
    ['republican','r','gop'].includes(v)?'R':'O';
 }
 function enCivicValidate(item,row,detail){
+ if(enBatchPilot(item))
+  return window.StateBatchCivicAdapter?.validate(item,row,detail)||null;
  if(item?.office==='Governor'&&item?.key==='NH')
   return window.NHGovernorCivicAdapter?.validate(item,row,detail)||null;
  if(item?.office==='Senate'&&item?.key==='NH')
@@ -2303,6 +2316,8 @@ function enCivicValidate(item,row,detail){
   source_url:enCivicBase+'/race/'+row.id};
 }
 function enCivicQuery(item){
+ if(enBatchPilot(item))
+  return window.StateBatchCivicAdapter?.query(item)||'';
  if(item?.office==='Governor'&&item?.key==='NH')
   return window.NHGovernorCivicAdapter?.query(item)||'';
  if(item?.office==='Senate'&&item?.key==='NH')
@@ -2338,6 +2353,8 @@ async function enCivicFetchOne(item){
    throw Error('NH Senate race adapter is unavailable');
   if(item.office==='Governor'&&item.key==='NH'&&!window.NHGovernorCivicAdapter)
    throw Error('NH governor race adapter is unavailable');
+  if(enBatchPilot(item)&&!window.StateBatchCivicAdapter)
+   throw Error('Four-state civicAPI race adapter is unavailable');
   let row=enCivicRaceIds[id];
   if(!row){
    const response=await fetch(enCivicQuery(item),{mode:'cors',
