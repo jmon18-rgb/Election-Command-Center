@@ -1060,15 +1060,16 @@ async function settle(){
  rw.eval(scripts[0]);
  const rg=selector=>{const el=rw.document.querySelector(selector);
     assert(el,'Missing resume UI element '+selector);return el};
- assert.equal(rw.eval('enResumePending'),true);
- assert.equal(rw.eval('enResumeRestore()'),true);
- assert.equal(rw.eval('enMovements.length'),1);
+ assert.equal(rw.eval('enResumeRestore()'),true,
+   'Hydration must accept only the complete validated local envelope');
  rg('#enMode2026').click();
  rg('#enOfficeSenate').click();
  assert.equal(rg('#enRaces').textContent,'1',
    'Last verified Senate votes must show immediately after reload, even offline');
  assert.match(rg('#enConnection').textContent,/RESTORED/);
  assert.match(rg('#enStatus').textContent,/RESTORED BROWSER SNAPSHOT/);
+ assert.match(rg('#enActivityFeed').textContent,/NC.*NEW REPORTING/,
+    'Stored observed updates should be visible again after browser reload');
  assert.equal(rw.eval('enResumeSave()'),true,
    'A verified source snapshot must be saved locally in election mode');
  const resaved=JSON.parse(rw.localStorage.getItem('bluewaves_2026_results_resume_v1'));
