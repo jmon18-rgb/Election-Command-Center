@@ -414,7 +414,7 @@ function renderModelRaceDetail(){
 $('#modelPollIncluded').addEventListener('click',()=>{modelPollMode='included';renderModelRaceDetail()});
 $('#modelPollAll').addEventListener('click',()=>{modelPollMode='all';renderModelRaceDetail()});
 $('#modelBack').addEventListener('click',()=>$('#modelBoard').scrollIntoView({behavior:'smooth',block:'start'}));
-let pollingSnapshot=null;window.selectedRaceType='senate';
+let pollingSnapshot=null;let postedPollingSnapshot=null;window.selectedRaceType='senate';
 let feedHealth={polls:null,news:null};
 function updateHealth(){const parts=[];let good=0;for(const [name,item] of Object.entries(feedHealth)){if(!item){parts.push(name+': unavailable');continue}const date=item.updated_at?new Date(item.updated_at):null;const age=date&&!isNaN(+date)?(Date.now()-date.getTime())/3600000:Infinity;const status=item.health?.status||(item.pipeline?.successful_queries?'available':'unknown');const label=!Number.isFinite(age)?'no timestamp':age<-.25?'clock mismatch':age<12?'fresh':age<48?'delayed':'stale';if(age>=-.25&&age<12&&status!=='error')good++;parts.push(name+': '+label+(Number.isFinite(age)?' ('+Math.max(0,Math.round(age))+'h old)':''))}$('#healthText').textContent=parts.join(' · ');$('#healthDot').className='healthdot '+(good===2?'ok':good===0?'bad':'');const diagnostics=$('#feedDiagnostics');if(diagnostics){diagnostics.replaceChildren();for(const p of parts)diagnostics.append(elt('div','item',p))}}
 
@@ -503,7 +503,54 @@ const ns='http://www.w3.org/2000/svg';const range=Math.max(5,...valid.map(p=>Mat
 make('line',{x1:10,y1:y(0),x2:330,y2:y(0)});const points=valid.map((p,i)=>[12+i*316/(valid.length-1),y(p.margin)]);make('polyline',{points:points.map(p=>p.join(',')).join(' ')});for(const [i,p] of points.entries()){const c=make('circle',{cx:p[0],cy:p[1],r:2.6,fill:'#72e0d6'});const title=document.createElementNS(ns,'title');title.textContent=valid[i].pollster+' · '+valid[i].field_end+' · '+marginText(valid[i].margin);c.append(title)}const text=make('text',{x:10,y:104});text.textContent=valid[0].field_end+' → '+valid.at(-1).field_end;
 }
 document.querySelectorAll('#raceSearch,#raceSort').forEach(x=>x.addEventListener('input',renderRaceList));
+function renderPostedPolls(){
+ const box=$('#newPolls'),status=$('#changesSince');box.replaceChildren();
+ const data=postedPollingSnapshot;
+ const cutoff=new Date(Date.now()-14*86400000).toISOString().slice(0,10);
+ const preferred={lv:3,rv:2,a:1,adults:1};
+ const byPoll=new Map();
+ for(const p of data?.observations||[]){
+  if(!p.posted_date||p.posted_date<cutoff)continue;
+  const key=p.poll_id+'|'+p.race_code;
+  const old=byPoll.get(key);
+  if(!old||(preferred[p.sample_population]||0)>(preferred[old.sample_population]||0))byPoll.set(key,p);
+ }
+ const entries=[...byPoll.values()].sort((a,b)=>b.posted_date.localeCompare(a.posted_date)||
+   b.field_end.localeCompare(a.field_end)||(a.pollster||'').localeCompare(b.pollster||''));
+ const byOffice={senate:0,house:0,governor:0};
+ for(const p of entries)byOffice[p.race_type]++;
+ status.textContent=entries.length+' posted records · S '+byOffice.senate+' / H '+byOffice.house+' / G '+byOffice.governor;
+ if(!entries.length){box.append(elt('div','empty','No dated poll postings from the supplemental feed in the past 14 days.'));return}
+ const fmt=s=>new Date(s+'T12:00:00Z').toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'});
+ const render=p=>{
+   const row=elt('div','item'),top=elt('div','row');
+   const location=(KEY_STATES[p.state]||p.state)+(p.race_type==='house'?' '+p.race_code.split('-')[1]:'');
+   const office={senate:'Senate',house:'House',governor:'Governor'}[p.race_type]||p.race_type;
+   top.append(elt('strong','',location+' · '+office+' · '+p.pollster),
+              elt('strong',marginColor(p.margin),marginText(p.margin)));
+   row.append(top);
+   const population=(p.sample_population||'').toUpperCase();
+   row.append(elt('small','','Posted to source '+fmt(p.posted_date)+' · Fieldwork ended '+fmt(p.field_end)
+     +(population?' · '+population:'')+(p.sample_size?' · n='+p.sample_size:'')
+     +(p.partisan_lean?' · '+p.partisan_lean+'-sponsored':'')));
+   row.append(elt('small','',p.dem_name+' (D) vs '+p.rep_name+' (R)'));
+   if(typeof p.source_url==='string'&&p.source_url.startsWith('http')){
+      const link=elt('a','','Original poll source ↗');link.href=p.source_url;link.target='_blank';link.rel='noopener noreferrer';
+      const line=elt('small');line.append(link);row.append(line);
+   }
+   return row;
+ };
+ for(const p of entries.slice(0,10))box.append(render(p));
+ if(entries.length>10){
+   const more=elt('details','poll-list-more'),summary=elt('summary','', 'Show '+Math.min(90,entries.length-10)+' more posted polls');
+   summary.style.cursor='pointer';summary.style.padding='11px 0';more.append(summary);
+   for(const p of entries.slice(10,100))more.append(render(p));
+   box.append(more);
+ }
+ box.append(elt('div','poll-list-note','Source: NYT-derived PollResults.org feed, independently labeled from JackStradamus. “Posted” is when that feed added the poll, NOT a verified public release date. LV/RV/other sample types are labeled. These records are not necessarily included in the weighted model; Race Lab shows the model source.'));
+}
 function renderFreshPolls(d){
+ if(postedPollingSnapshot?.observations?.length){renderPostedPolls();return}
  const box=$('#newPolls'),status=$('#changesSince');box.replaceChildren();
  const now=Date.now(),cutoff=now-14*86400000;
  const dateMS=value=>{if(!value||typeof value!=='string')return NaN;const t=Date.parse(value.length===10?value+'T12:00:00Z':value);return Number.isFinite(t)?t:NaN};
@@ -610,6 +657,7 @@ $('#genericFresh').textContent='Latest field end: '+gb.summary.latest_field_end;
 renderRaceList();if(latestSenateEstimates){renderModelRaceDetail();renderModelGenericHeadline()}
 if(d.updated_at){const date=new Date(d.updated_at);if(!Number.isNaN(+date))$('#genericFresh').textContent+=' · fetched '+date.toLocaleDateString()}
 }
+fetch('./data/pollresults_recent.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('supplemental not ready');return r.json()}).then(d=>{postedPollingSnapshot=d;if(pollingSnapshot)renderFreshPolls(pollingSnapshot)}).catch(()=>{/* Main source fallback stays available. */});
 fetch('./data/polls.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(renderPolls).catch(error=>{console.error('Polling feed error',error);$('#newPolls').textContent='Polling feed unavailable: '+error.message+'.';$('#genericDetail').textContent='Polling data could not be displayed.';updateHealth()});
 
 
