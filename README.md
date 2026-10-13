@@ -84,3 +84,18 @@ The hypothetical slider widget has been retired. The Daily Brief now displays **
 - **Two-secret Gmail notification setup**: the existing four-hour GitHub Actions refresh can email new source-indexed poll observations, including survey details and original release links. Setup and delivery limitations: [ALERTS.md](ALERTS.md). This is **off until secrets are configured**; the first run initializes a no-spam baseline.
 - **New since last visit**: the Daily Brief tracks poll questions indexed since the current browser last viewed the site, using local browser storage. These are *source-index postings*, not verified first-publication dates. Multiple ballot questions in the same survey are kept distinct.
 - **Beyond the battlegrounds**: South Carolina Senate is shown as a dated, source-attributed reach-race example. A Democratic win outside the current toss-up slate would not itself define Blue Tsunami or supply an independent outcome probability.
+
+## Poll Wire — full indexed survey explorer (October 13)
+
+The **Poll Wire** tab shows the currently available supplemental PollResults.org / NYT-derived **survey observations** (not only the Daily Brief's top ten). It supports race/candidate/pollster search, Senate/House/governor filters, 3/7/14-day source-posting windows or all retained observations, sponsorship filters and model-inclusion filters. Records are sorted by the **source index's full posting timestamp** and paginated for performance.
+
+Poll Wire distinguishes:
+
+- **Included in current average:** exact candidate matchup, source poll identifier and field end are found in the raw primary feed and the same source poll appears among JackStradamus's active weighted observations. A button opens that precise model race and survey.
+- **Primary feed, not in average:** exact survey is in the primary feed but not among the model's current selected observations (e.g. outside weighting window, older wave from a repeat pollster, or alternative matchup).
+- **Source index only:** source record cannot be matched exactly to the primary polling data. It does **not** secretly alter an average.
+- **Matching pending:** one of the required source/model feeds has not loaded; we don't guess inclusion.
+
+If a survey has both LV and RV results, different sample populations remain separate **observations**; they are not automatically interpreted as independent surveys. “No sponsor listed” is not proof of an independent survey. Source posting is not independently verified first-release time; the source's timestamp timezone is unspecified. Model averages remain descriptive, not vote or seat predictions.
+
+The existing site keeps its four-hour ingestion schedule, so a new indexed poll will appear only after the next successfully published refresh. This upgrade adds no new email configuration or setup requirements.
