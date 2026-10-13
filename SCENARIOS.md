@@ -23,9 +23,15 @@ Proposed working cutoff: **90%** of the frozen slate's contests won by Democrati
 
 Do not use the currently *polled* set as the competitive universe. It disproportionately selects closely watched contests, and the available survey feed covers just a fraction of 435 House districts.
 
-## Probabilities — not yet available
+## Published joint control odds (external source; October 13 update)
 
-The old four percentages used a guessed 4-point standard deviation around the national generic ballot. Those percentages never estimated the outcomes listed above. They have been **removed**, not relabeled. Display "Not modeled" until the dataset and forecaster support real control-of-chambers draws.
+The old four percentages used a guessed 4-point standard deviation around the national generic ballot. Those percentages never estimated congressional control. They are retired. **The site now uses Decision Desk HQ's publicly published, joint House/Senate 2026 outcome forecast** with explicit attribution. These are DDHQ model outputs, not calculated from JackStradamus polling averages.
+
+At its October 13 publicly posted update, DDHQ reports **54% Democratic control of both**, **2% Democratic Senate / Republican House**, **22% Republican Senate / Democratic House**, and **21% Republican control of both**. The source-rounded 4 cells sum to 99%. Therefore the displayed outcomes are **Red Dawn 21%, The Shrug 24%, Blue Wave including any Tsunami 54%**, and **Blue Tsunami not separately estimated**. The blue-together odds are *not* the exclusive non-tsunami odds.
+
+DDHQ does **not** publicly break its joint Democratic sweep probability into an ordinary wave and a near-clean sweep of battleground races. Blue Tsunami probability stays `null`, **not zero**. These are nested: `P(Blue Wave including Tsunami)=P(D House and D Senate)`, `P(Tsunami)≤P(D House and D Senate)`, and `P(Blue Wave excluding Tsunami)=P(D both)-P(Tsunami)`. The final two can't be assigned numerical probabilities until the conditional split is modeled. The site explains this clearly instead of presenting false four-way percentages.
+
+Source: [DDHQ 2026 forecast](https://votes.decisiondeskhq.com/forecast/2026). `scripts/update_scenario_forecast.py` extracts exact *joint* probabilities and original provider updated date, rejects missing categories/implausible totals, and safely retains the last attributed snapshot if the page is unavailable. It runs in the every-four-hours pipeline. The source wall-clock timezone is unspecified. `data/congress_scenarios.json` is the source-attributed snapshot; `scripts/test_scenario_forecast.py` and dashboard DOM tests check it.
 
 A future outcome simulation must jointly generate:
 
@@ -47,10 +53,14 @@ A House popular-vote margin alone does not determine House seats. Senate control
 
 These references inform the design; this site is an independent project, **not** their model.
 
-## Interactive seat-math sandbox (October 13)
+## Retired: hypothetical seat-math sandbox
 
-The site now has a deliberately **hypothetical calculator**, so the four scenario cards do something even before an empirical forecast is available. Selecting Red Dawn, Shrug, Blue Wave or Blue Tsunami loads an illustrative House Democratic seat total, Senate Democratic-caucusing seat total and hypothetical share of a *future frozen battleground slate* won by Democratic candidates. Three range controls recalculate the classification immediately. All these values are user-provided **what-if assumptions**, not model predictions, current seats or data-derived probabilities.
+The former hypothetical calculator has been replaced by source-attributed DDHQ joint chamber-control probabilities. It no longer has seat-total sliders or user-input scenario presets. The original calculation rules are preserved here as historical background only.
 
 The illustrative rules assume **435 occupied voting House seats** (218 Democratic seats for control) and **100 Senate seats**. Senate Democrats/independents caucusing with them need **51** for outright control; a 50–50 tie is treated as Republican control given the Republican vice president in October 2026. The Blue Tsunami classification requires both Democratic majorities and the user-assumed **≥90%** share of an as-yet-unfrozen competitive-race list. That component is not an actual determination until the list is fixed and real outcomes exist.
 
-In particular, do not label these sliders “odds,” “probabilities,” or “projections.” [QA_AUDIT.md](QA_AUDIT.md) explains the interactive tests and known limitations.
+The discarded sliders did not provide empirical odds. Source-attributed DDHQ figures now do, but must not be represented as a fully calibrated, internally developed JackStradamus forecast. [QA_AUDIT.md](QA_AUDIT.md) explains the tests and limitations.
+
+## Next step: separating ordinary Blue Wave from Tsunami
+
+Use the same complete joint House and Senate simulations, with a timestamp-frozen external competitive House/Senate race slate. For each draw: classify exact congressional control, and among Democratic two-chamber wins test whether Democrats win at least 90% of the frozen slate. This creates **four disjoint simulated outcome counts**, not a guessed conditional percentage from independent marginals. Independently check any race probability inputs, simulate correlated national/regional errors, and demonstrate historical calibration before calling those probabilities "JackStradamus." An exact value may differ substantially from a casual assumption about the likelihood of a landslide.
