@@ -6,7 +6,7 @@ A personal, data-first 2026 U.S. midterms dashboard. Serious about polling; occa
 
 - **Daily briefing:** 2026 generic congressional ballot, clearly blue/red party margins, key Senate polling snapshots, and newest observations sorted by first-seen date when the upstream cannot supply a verified publication date.
 - **JackStradamus:** weighted polling averages for Senate, House, governors, and national generic ballot. Every firm gets a visible influence share and source-linked ratings context.
-- **Scenario lab:** Red Dawn / The Shrug / Blue Wave / Blue Tsunami are provisional national House **popular-vote margin bands**, **not** Congress-control probabilities. See [SCENARIOS.md](SCENARIOS.md).
+- **Four congressional outcomes:** Red Dawn = Republicans control both chambers; Shrug = Democrats control one; Blue Wave = Democrats control both; Blue Tsunami = both plus a near-sweep of a frozen battleground slate. No probabilities until the complete seat model is calibrated. See [SCENARIOS.md](SCENARIOS.md).
 - **Race Lab:** individual poll observations, source dates and sponsor labels.
 - **Election Night:** an explicitly partial free-state vote feed, selected 2024 archive, readable D/R leads and vote margins, with reporting limitations.
 - **Bullshittery Index:** documented election-administration issues kept separate from voter preferences and candidate polling. See [BULLSHITTERY.md](BULLSHITTERY.md).
@@ -46,3 +46,9 @@ v1.4 retains more qualifying pollsters, calculates effective-firm concentration 
 - The Daily Brief ingests a second NYT-derived public feed ([PollResults.org](https://pollresults.org/), CC BY 4.0) with original survey links, LV/RV sample labels and source **posted dates**. These are **not** verified publication dates. The full source archive includes additional records beyond the displayed 14-day window. Fallback to the original ElectIndex feed remains in place.
 - Supplemental observations are strictly matched back to existing model polls using poll ID, race, field end, and vote shares. **Unmatched polls never silently alter the model average.**
 - [Silver Bulletin January 2026 XLSX](https://www.natesilver.net/p/pollster-ratings-silver-bulletin) has been parsed into `data/silver_ratings_staging.json`. It contains 540 pollsters, with 68 reviewed/archived name matches. Its predictive accuracy and bias scores are **research-only**. See `data/model_tests.json` for held-out future-poll comparisons and `POLLING_MODEL.md` for the calculations.
+
+## Dynamic daily brief and correct post-time sorting
+
+The daily brief prioritizes **new survey postings and meaningful changes in matched polling averages**, replacing the static largest-lead / closest-race tiles. `data/model_history.json` keeps up to 30 days of compact time-stamped model snapshots. A shift only compares the same race **and same candidate matchup**; field-end age changes are not asserted as evidence of changing voter sentiment. Model history requires time to accumulate after deployment. When there is no meaningful movement, the page says so rather than filling the space with trivia.
+
+The supplemental PollResults.org feed is sorted by its **full source `createdAt` date and time**, not fieldwork end, state or pollster alphabetically. Its timezone is unspecified. **This is an index-posting time, not necessarily when the poll was publicly released.** Original-source links remain attached so publication timestamps can be checked independently. The UI puts these postings near the top of Daily Brief.
