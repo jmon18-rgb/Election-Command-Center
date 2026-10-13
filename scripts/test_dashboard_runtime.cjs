@@ -34,7 +34,8 @@ w.matchMedia=()=>({matches:false,addListener(){},removeListener(){}});
 const fixtures={
  'polling_estimates.json':model,'polls.json':primary,
  'pollresults_recent.json':recent,'model_history.json':history,
- 'congress_scenarios.json':json('data/congress_scenarios.json')
+ 'congress_scenarios.json':json('data/congress_scenarios.json'),
+ 'house_history_2024_staging.json':json('data/house_history_2024_staging.json')
 };
 for(const file of ['briefing.json','integrity_impact.json','seat_universe.json','house_geography_bridge.json','house_two_cycle_context.json']){
  const name='data/'+file;
@@ -156,6 +157,36 @@ async function settle(){
  assert.equal(get('#enCalls').textContent,'Not supplied');
  assert.match(get('#enDetailSummary').textContent,/NOT a race call/);
  assert.equal(get('#enActivityBox').hidden,true,'No live update timeline in a 2024 archive');
+ // The entire 435-district 2024 House archive must load through the real
+ // same-origin fetch path. No cross-origin election-results request is needed.
+ await w.eval('enLoad(true)');
+ assert.equal(get('#enRaces').textContent,'435','2024 House should have nationwide coverage');
+ assert.match(get('#enStatus').textContent,/2024 HOUSE ARCHIVE/);
+ assert.match(get('#enStatus').textContent,/44 districts missing one major party/);
+ assert.equal(get('#enRaceList').querySelectorAll('button.en-race-entry').length,121,
+  'Archive begins with 120 districts and a Show more button');
+ get('#enRaceList button.en-race-entry:last-child').click();
+ assert.equal(get('#enRaceList').querySelectorAll('button.en-race-entry').length,241);
+ w.eval("enSelected='AK-01';enRender()");
+ assert.match(get('#enDetailMeta').textContent,/MIT Election Data and Science Lab/);
+ assert.match(get('#enDetailSummary').textContent,/recorded party votes/);
+ assert.match(get('#enDetailMeta a[href]').href,/dataverse.harvard.edu/);
+ assert.match(get('#enCandidateList').textContent,/Democratic party total/);
+ assert(!get('#enDetailSummary').querySelector('.en-report-progress'),
+  'Historical party totals do not contain precinct progress');
+ w.eval("enSelected='AL-03';enRender()");
+ assert.match(get('#enDetailMeta').textContent,/no recorded candidate votes/);
+ const rawArchive=json('data/house_history_2024_staging.json');
+ const incompleteArchive=structuredClone(rawArchive);
+ incompleteArchive.records=incompleteArchive.records.slice(1);
+ assert.throws(()=>w.eval('enBuildHouseArchive('+JSON.stringify(incompleteArchive)+')'),
+  /coverage\/provenance|provenance\/coverage|historical/i,
+  'Fail closed on incomplete archive');
+ const adulteratedArchive=structuredClone(rawArchive);
+ adulteratedArchive.records[0].recorded_dem_votes=-100;
+ assert.throws(()=>w.eval('enBuildHouseArchive('+JSON.stringify(adulteratedArchive)+')'),
+  /Invalid historical party-vote totals/);
+
  const early=structuredClone(archival),late=structuredClone(archival);
  early.year=late.year=2026;early.as_of='2026-11-04T02:00:00Z';late.as_of='2026-11-04T02:05:00Z';
  late.races['AZ-01'].total=180;late.races['AZ-01'].cands[0].v=80;
@@ -167,9 +198,13 @@ async function settle(){
  assert.match(JSON.stringify(movement),/AZ-01/);
  // A connection outage must preserve previously verified results, rather than
  // quietly replacing them with zeros or JackStradamus probabilities.
+ const savedFetch=w.fetch;
+ w.fetch=async()=>{throw Error('Simulated archive transport outage')};
  await w.eval('enLoad(true)');
+ w.fetch=savedFetch;
  assert.match(get('#enStatus').textContent,/LAST VERIFIED RESULTS RETAINED/);
- assert.equal(get('#enDLeads').textContent,'1');
+ assert.equal(get('#enRaces').textContent,'435','Outage must preserve the 435 verified historical records');
+ assert.match(get('#enStatus').textContent,/Simulated archive transport outage/);
  // Canonical in-app identifiers must be visible. TX Senate and TX governor
  // cannot both be ambiguous "Texas" cards any longer.
  const [txSen,txGov]=['senate','governor'].map(type=>
