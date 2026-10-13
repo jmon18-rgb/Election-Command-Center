@@ -1789,6 +1789,10 @@ fetch('./data/senate_history_2020_2022_2024.json',{cache:'no-store'}).then(r=>{
   ' contests without recorded votes for both parties. No candidate-imputed shares or Senate control probabilities.';
 }).catch(()=>{$('#senateHistoryStatus').textContent='Historical Senate return import pending independent Dataverse verification. No historical candidate votes invented.'});
 let historicalSenatePollStudy=null,senateBacktestSelected='all';
+function setHistoricalSenatePollStudy(data){
+ historicalSenatePollStudy=data;
+ renderSenateBacktest();
+}
 function renderSenateBacktest(){
  const summary=$('#senateBacktestSummary'),host=$('#senateBacktestRaces'),note=$('#senateBacktestNote');
  if(!summary||!host||!note)return;
@@ -1851,8 +1855,8 @@ fetch('./data/historical_senate_poll_backtest.json',{cache:'no-store'}).then(r=>
         r.pollster_count>=2&&r.methods?.recency21&&
         Number.isFinite(r.methods.recency21.error)&&
         r.cutoff_is_fieldwork_only===true))throw Error('unverified study data');
- historicalSenatePollStudy=d;renderSenateBacktest()
-}).catch(()=>{historicalSenatePollStudy=null;renderSenateBacktest()});
+ setHistoricalSenatePollStudy(d)
+}).catch(()=>{setHistoricalSenatePollStudy(null)});
 let houseTwoCycleData=null;
 fetch('./data/house_two_cycle_context.json',{cache:'no-store'})
   .then(r=>{if(!r.ok)throw Error('historical geography not ready');return r.json()})
