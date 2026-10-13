@@ -1695,21 +1695,21 @@ function enCompareSnapshots(previous,next){
    previous.office!==next.office||previous.as_of===next.as_of)return [];
  const changes=[];
  for(const [id,r] of Object.entries(next.races||{})){
-   const old=previous.races?.[id];
-   if(!old||r.total===old.total)continue;
-   const movement=r.total-old.total;
-   const oldLeader=enCurrentLeader(old),newLeader=enCurrentLeader(r);
-   changes.push({
-     at:next.as_of,
-     key:id,
-     office:next.office,
-     prior:old.total,
-     current:r.total,
-     delta:movement,
-     leaderChanged:Boolean(oldLeader&&newLeader&&oldLeader.p!==newLeader.p)
-   });
+  const old=previous.races?.[id];
+  if(!old&&r.total<=0)continue;
+  const delta=r.total-(old?.total||0);
+  const previousLeader=enCurrentLeader(old),nextLeader=enCurrentLeader(r);
+  const leaderChanged=Boolean(previousLeader&&nextLeader&&previousLeader.p!==nextLeader.p);
+  const oldCands=new Map((old?.cands||[]).map(c=>[c.n+'|'+c.p,c.v]));
+  const candidateChanged=Boolean(old)&&
+   (r.cands.length!==old.cands.length||r.cands.some(c=>oldCands.get(c.n+'|'+c.p)!==c.v));
+  if(old&&delta===0&&!candidateChanged&&!leaderChanged)continue;
+  changes.push({at:next.as_of,key:id,office:next.office,
+    prior:old?.total||0,current:r.total,delta,
+    newRace:!old,leaderChanged,candidateChanged});
  }
- return changes.sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta)).slice(0,30);
+ return changes.sort((a,b)=>Number(b.leaderChanged)-Number(a.leaderChanged)||
+   Number(b.newRace)-Number(a.newRace)||Math.abs(b.delta)-Math.abs(a.delta)).slice(0,30);
 }
 function enAcceptSource(o){
  if(!enSourceValid(o,enModeYear,enOffice))throw Error('Results format or vote-count integrity check failed');
@@ -1729,10 +1729,12 @@ function enRenderMovement(){
  const visible=enMovements.filter(x=>x.office===enOffice).slice(0,8);
  if(!visible.length){host.append(elt('div','en-message','No new reporting movements in this office yet.'));return}
  for(const x of visible){
-  const row=elt('div','en-activity-item'),heading=elt('strong','',x.key+(x.leaderChanged?' · LEAD CHANGED':'')),
-    diff=elt('span',x.delta<0?'en-revision':'',x.delta<0?
-      Math.abs(x.delta).toLocaleString()+' votes revised downward':
-      '+'+x.delta.toLocaleString()+' votes since last source update');
+  const row=elt('div','en-activity-item'),heading=elt('strong','',x.key+(x.newRace?' · NEW REPORTING':'')+(x.leaderChanged?' · LEAD CHANGED':'')),
+    diff=elt('span',x.delta<0?'en-revision':'',x.newRace?
+      x.current.toLocaleString()+' first recorded votes':
+      x.delta<0?Math.abs(x.delta).toLocaleString()+' votes revised downward':
+      x.delta>0?'+'+x.delta.toLocaleString()+' recorded votes since prior update':
+      'Candidate totals revised; total ballots unchanged');
   row.append(heading,diff);host.append(row);
  }
 }
