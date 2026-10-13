@@ -34,6 +34,8 @@ jobs:
         run: python3 scripts/test_polling_models.py
       - name: Verify browser-compatible live official-state election API
         run: python3 scripts/test_live_results_source.py
+      - name: Nonpublishing secondary civicAPI 2026 coverage and CORS probe
+        run: python3 scripts/probe_civicapi.py
       - name: Install DOM test environment
         run: npm install --no-save --no-package-lock --ignore-scripts jsdom@26.1.0
       - name: Check JavaScript syntax and exercise actual dashboard
