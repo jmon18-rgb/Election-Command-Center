@@ -67,7 +67,7 @@ def parse(html,clock=None):
     # Prefer the provider's separately displayed chamber marginals. Adding
     # already-rounded joint outcomes can disagree by 1 percentage point.
     def find_marginal(chamber):
-        pat=rf"{chamber}\\s+Control\\s+Democrats\\s+(\\d{{1,3}}(?:\\.\\d+)?)\\s*%"
+        pat=rf"{chamber}\s+Control\s+Democrats\s+(\d{{1,3}}(?:\.\d+)?)\s*%"
         matches=re.findall(pat,text,flags=re.I)
         if len(matches)!=1:raise ValueError(f"Cannot validate DDHQ {chamber} marginal: {matches}")
         n=float(matches[0])
