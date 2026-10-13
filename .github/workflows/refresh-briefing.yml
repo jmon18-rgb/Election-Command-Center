@@ -21,6 +21,8 @@ on:
       - 'scripts/validate_integrity_impact.py'
       - 'scripts/check_dashboard.py'
       - 'scripts/test_dashboard_runtime.cjs'
+      - 'scripts/update_scenario_forecast.py'
+      - 'scripts/test_scenario_forecast.py'
       - 'scripts/validate_model_drilldown.py'
       - 'index.html'
       - 'data/integrity_impact.json'
@@ -61,6 +63,11 @@ jobs:
       - name: Supplement polling with dated source links and poll-type data
         continue-on-error: true
         run: python3 scripts/update_pollresults_recent.py
+      - name: Test joint congressional probability import
+        run: python3 scripts/test_scenario_forecast.py
+      - name: Update published DDHQ joint outcome probabilities
+        continue-on-error: true
+        run: python3 scripts/update_scenario_forecast.py
       - name: Run model diagnostics
         run: python3 scripts/test_polling_models.py
       - name: Build Senate polling estimates
@@ -118,7 +125,7 @@ jobs:
             # Rebase GENERATED OUTPUTS as fresh changes on the newest remote
             # commit, not an entire stale JSON commit that can conflict.
             git reset --mixed origin/main
-            git add data/briefing.json data/polls.json data/model_tests.json data/polling_estimates.json data/integrity_review_queue.json data/model_history.json data/seat_universe.json data/house_geography_bridge.json data/house_two_cycle_context.json
+            git add data/briefing.json data/polls.json data/model_tests.json data/polling_estimates.json data/integrity_review_queue.json data/model_history.json data/seat_universe.json data/house_geography_bridge.json data/house_two_cycle_context.json data/congress_scenarios.json
             if [ -f data/pollresults_recent.json ]; then git add data/pollresults_recent.json; fi
             if git diff --cached --quiet; then
               echo "No source-data changes to commit."
