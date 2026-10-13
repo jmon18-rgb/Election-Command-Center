@@ -1898,6 +1898,180 @@ function enWatchLoad(){
  }catch{return []}
 }
 let enWatched=enWatchLoad();
+
+/* Meaningful, source-separated 2026 changes for personally pinned races.
+ * The event inbox is stored on this browser only. Browser notifications
+ * are opt-in, never requested on page load or silently enabled. */
+const enAlertKey='bluewaves_election_alerts_2026_v1';
+const enAlertDesktopKey='bluewaves_election_desktop_2026_v1';
+function enAlertLoad(){
+ try{
+  const data=JSON.parse(localStorage.getItem(enAlertKey)||'[]');
+  if(!Array.isArray(data))return [];
+  return data.filter(x=>x&&typeof x.id==='string'&&x.id.length<500&&
+    ['first','flip','call','revision','withdrawn'].includes(x.kind)&&
+    ['House','Senate','Governor'].includes(x.office)&&
+    typeof x.race==='string'&&typeof x.title==='string'&&typeof x.details==='string'&&
+    typeof x.seen==='string').slice(0,35);
+ }catch{return []}
+}
+let enAlertRows=enAlertLoad(),enAlertSeen=new Set(enAlertRows.map(e=>e.id));
+let enDesktopAlertsEnabled=(()=>{
+ try{return localStorage.getItem(enAlertDesktopKey)==='on'}
+ catch{return false}
+})();
+function enAlertSave(){
+ try{localStorage.setItem(enAlertKey,JSON.stringify(enAlertRows))}catch{}
+}
+function enAlertLabel(item){
+ return item.office==='House'?item.key:
+   item.key.slice(0,2)+(item.office==='Senate'?'-SEN'+(item.key.endsWith('-special')?' special':''):'-GOV');
+}
+function enAlertSubscribed(office,key){
+ return enWatched.some(x=>x.office===office&&x.key===key);
+}
+function enAlertRecord(item,source,kind,details,signature){
+ if(enModeYear!==2026||Date.now()<Date.parse('2026-11-03T05:00:00Z')||
+   !enAlertSubscribed(item.office,item.key))return false;
+ const id=[source,enWatchId(item),kind,signature].join('|');
+ if(enAlertSeen.has(id))return false;
+ enAlertSeen.add(id);
+ const label=enAlertLabel(item);
+ const event={
+  id,source,office:item.office,race:item.key,kind,
+  title:label+' · '+(kind==='first'?'First votes reporting':
+   kind==='flip'?'Vote leader changed':
+   kind==='call'?'Provider race call':
+   kind==='withdrawn'?'Race dropped from feed':'Candidate totals revised'),
+  details,seen:new Date().toISOString()
+ };
+ enAlertRows.unshift(event);
+ enAlertRows=enAlertRows.slice(0,35);
+ // Recent event dedup survives browser reloads; memory stays bounded.
+ if(enAlertSeen.size>180)enAlertSeen=new Set(enAlertRows.map(e=>e.id));
+ enAlertSave();enRenderAlertInbox();
+ if(enDesktopAlertsEnabled&&typeof window!=='undefined'&&
+    window.Notification?.permission==='granted'){
+  try{new window.Notification(event.title,{
+    body:source+' · '+details,
+    tag:'bluewaves-'+source+'-'+enWatchId(item)+'-'+kind
+  })}catch{}
+ }
+ return true;
+}
+function enProcessPrimaryAlerts(changes){
+ for(const x of changes||[]){
+  const item={office:x.office,key:x.key};
+  if(!enAlertSubscribed(item.office,item.key))continue;
+  if(x.withdrawn){
+   enAlertRecord(item,'Open America','withdrawn',
+     'Previously reporting race is absent from the latest source update. This is not a zero or a race call.',
+     'missing-'+x.prior+'-'+x.at);
+  }else if(x.leaderChanged){
+   enAlertRecord(item,'Open America','flip',
+     'Reported vote leader changed; '+enNum(x.current)+' total votes. No winner has been called.',
+     x.prior+'-'+x.current+'-'+x.at);
+  }else if(x.newRace&&x.current>0){
+   enAlertRecord(item,'Open America','first',
+     enNum(x.current)+' first recorded votes in the state-derived source. No winner has been called.',
+     x.current+'-'+x.at);
+  }else if(x.candidateChanged&&x.delta===0){
+   enAlertRecord(item,'Open America','revision',
+     'Candidate votes were revised without changing '+enNum(x.current)+' total ballots.',
+     x.current+'-'+x.at);
+  }
+ }
+}
+function enCivicTopCandidate(data){
+ if(!data?.candidates||data.total<=0)return null;
+ const ranks=[...data.candidates].sort((a,b)=>b.votes-a.votes);
+ return ranks.length&&ranks[0].votes>0&&(!ranks[1]||ranks[0].votes>ranks[1].votes)?
+  ranks[0].name+'|'+ranks[0].party:null;
+}
+function enProcessCivicAlert(item,previous,next){
+ if(!previous||!next||!enAlertSubscribed(item.office,item.key))return;
+ const votesStamp=next.last_updated||String(next.total);
+ if(next.called&&previous.called!==next.called){
+  enAlertRecord(item,'civicAPI','call',
+    'civicAPI reports a call for '+next.called+'; provider call, not official certification.',
+    next.race_id+'-'+next.called+'-'+votesStamp);
+  return;
+ }
+ if(previous.total===0&&next.total>0){
+  enAlertRecord(item,'civicAPI','first',
+    enNum(next.total)+' first recorded votes · '+next.percent_reporting.toFixed(0)+'% precincts.',
+    next.race_id+'-'+next.total+'-'+votesStamp);
+  return;
+ }
+ const oldLeader=enCivicTopCandidate(previous),newLeader=enCivicTopCandidate(next);
+ if(oldLeader&&newLeader&&oldLeader!==newLeader){
+  enAlertRecord(item,'civicAPI','flip',
+   'Reported vote leader changed to '+newLeader.split('|')[0]+
+    ' · '+enNum(next.total)+' total votes. Not a race call.',
+   next.race_id+'-'+newLeader+'-'+next.total+'-'+votesStamp);
+ }
+}
+function enRenderAlertInbox(){
+ const host=$('#enAlertItems'),label=$('#enAlertCount'),toggle=$('#enAlertDesktop');
+ if(!host||!label||!toggle)return;
+ const isArchive=enModeYear!==2026;
+ const panel=$('.en-alert-desk');if(panel)panel.hidden=isArchive;
+ if(isArchive)return;
+ host.replaceChildren();
+ label.textContent=enAlertRows.length?
+   enAlertRows.length+' notable update'+(enAlertRows.length===1?'':'s')+' on this browser':
+   'No noteworthy watched-race changes observed yet';
+ const available=typeof window!=='undefined'&&typeof window.Notification==='function';
+ toggle.textContent=!available?'Desktop alerts unavailable':
+   'Desktop alerts: '+(enDesktopAlertsEnabled&&window.Notification.permission==='granted'?'on':'off');
+ toggle.setAttribute('aria-pressed',String(Boolean(available&&enDesktopAlertsEnabled&&
+   window.Notification.permission==='granted')));
+ toggle.disabled=!available;
+ if(!enAlertRows.length){
+  host.append(elt('p','en-alert-empty','Pin races to receive first-vote, leader-change and provider-call alerts.'));
+  return;
+ }
+ for(const event of enAlertRows.slice(0,12)){
+  const row=elt('button','en-alert-row '+event.kind);row.type='button';
+  row.setAttribute('aria-label','Inspect '+event.title);
+  const left=elt('div');
+  left.append(elt('strong','',event.title),
+    elt('small','',event.source+' · '+event.details));
+  row.append(left,elt('span','en-alert-time',enFormattedTime(event.seen)));
+  row.addEventListener('click',()=>{
+   const item={office:event.office,key:event.race};
+   if(enSupportedStates.has(item.key.slice(0,2))){
+    enSwitch(2026,item.office,item.key);
+   }else{
+    enCivicExpanded.add(enWatchId(item));
+    enRenderWatchlist();
+   }
+  });
+  host.append(row);
+ }
+}
+$('#enAlertClear').addEventListener('click',()=>{
+ enAlertRows=[];enAlertSeen.clear();enAlertSave();enRenderAlertInbox();
+});
+$('#enAlertDesktop').addEventListener('click',async()=>{
+ const N=typeof window!=='undefined'?window.Notification:null;
+ if(typeof N!=='function')return;
+ if(enDesktopAlertsEnabled){
+  enDesktopAlertsEnabled=false;
+ }else{
+  let permission=N.permission;
+  if(permission==='default'){
+   try{permission=await N.requestPermission()}
+   catch{permission='denied'}
+  }
+  enDesktopAlertsEnabled=permission==='granted';
+  if(!enDesktopAlertsEnabled)$('#enAlertPermission').textContent=
+    'Browser notifications are blocked or were not approved. In-page alerts remain enabled.';
+ }
+ try{localStorage.setItem(enAlertDesktopKey,enDesktopAlertsEnabled?'on':'off')}catch{}
+ enRenderAlertInbox();
+});
+
 function enWatchSave(){
  try{localStorage.setItem(enWatchStorageKey,JSON.stringify(enWatched))}catch{}
 }
