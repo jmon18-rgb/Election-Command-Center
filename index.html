@@ -920,6 +920,10 @@ function renderModelTrend(estimate){
   '. A line connects observations; no daily values between them were measured. Poll-age reweighting and newly added polls can both move the average. This is NOT an election-outcome forecast.';
 }
 let modelRaceOddsData=null,modelOddsErrorWidth='standard';
+function setModelRaceOddsData(data){
+ modelRaceOddsData=data;
+ if(latestSenateEstimates)renderModelOverview(latestSenateEstimates);
+}
 function modelOddsValidate(data,source){
  if(!data||!source||data.schema_version!=='experimental-race-odds-v1'||
   data.status!=='experimental_poll_margin_probability_not_chamber_forecast'||
@@ -993,13 +997,7 @@ document.querySelectorAll('.model-odds-presets [data-odds-width]').forEach(butto
 fetch('./data/race_probabilities.json',{cache:'no-store'}).then(response=>{
  if(!response.ok)throw Error('probability model is not staged');
  return response.json();
-}).then(data=>{
- modelRaceOddsData=data;
- if(latestSenateEstimates)renderModelOverview(latestSenateEstimates);
-}).catch(()=>{
- modelRaceOddsData=null;
- if(latestSenateEstimates)renderModelOverview(latestSenateEstimates);
-});
+}).then(setModelRaceOddsData).catch(()=>setModelRaceOddsData(null));
 
 function renderModelRaceDetail(){
  const estimate=modelRows(latestSenateEstimates).find(s=>(s.race_code||s.state+'-SEN')===selectedModelState);
