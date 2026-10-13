@@ -1270,6 +1270,8 @@ function enSourceValid(o,year,office){
  if(['live','stale','counting','final'].some(k=>typeof o[k]!=='boolean'))return false;
  if(o.live&&(o.stale||o.final||!o.counting))return false;
  if(!o.counts||o.counts.races!==Object.keys(o.races).length)return false;
+ if(year===2026&&Date.now()<Date.parse('2026-11-03T00:00:00Z')&&
+    Object.values(o.races).some(r=>Number(r?.total)>0))return false;
  if(o.as_of){
   const d=Date.parse(o.as_of);
   if(!Number.isFinite(d)||d>Date.now()+15*60000)return false;
