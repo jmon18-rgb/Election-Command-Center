@@ -22,6 +22,10 @@ for incident in data["incidents"]:
         assert incident.get("impact_assessment")!="not_quantified",ident
         assert incident.get("count_source_notes"),f"Numeric count lacks provenance: {ident}"
         assert incident.get("count_as_of"),f"Numeric count lacks date: {ident}"
+    if incident.get("scope_label"):
+        assert incident.get("scope_note"), f"Scope needs unit clarification: {ident}"
+    if incident.get("process_status"):
+        assert incident.get("last_updated"), f"Status requires review date: {ident}"
     if incident.get("verification_status")=="unverified_report":
         assert all(v is None for v in values),f"Unverified report has published impact count: {ident}"
 print("Validated",len(ids),"sourced integrity incidents; no unsupported numerical impacts")
