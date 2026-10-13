@@ -156,6 +156,13 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .senate-bias-table th:first-child,.senate-bias-table td:first-child{text-align:left}
 .senate-bias-table td{text-align:right;padding:10px 5px;border-bottom:1px solid #30435b;font-variant-numeric:tabular-nums;white-space:nowrap}
 .senate-bias-table .worse{color:#ec9696}.senate-bias-table .better{color:#9bd4ad}
+.en-connection{display:inline-flex;align-items:center;gap:6px;color:#acc4d9;font-size:11px;font-weight:700}
+.en-connection:before{content:"";width:7px;height:7px;border-radius:50%;background:#8f9ba9}
+.en-connection.live:before{background:#4fce97;box-shadow:0 0 8px #4fce9799}
+.en-connection.wait:before{background:#ebba70}
+.en-connection.error:before{background:#e8787c}
+#electionNight .en-toolbar{position:sticky;top:0;z-index:8;padding:10px 0;background:#0c1928ed;backdrop-filter:blur(12px);border-bottom:1px solid #2a415a}
+@media(min-width:940px){#electionNight .en-race-panel,#electionNight .en-detail{max-height:70vh;overflow-y:auto}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -302,7 +309,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 </section>
 <section id="integrity" class="page"><div class="sectionhead"><h2>Bullshittery Index</h2><span class="tiny">Evidence-first reporting</span></div><div class="card" style="margin-bottom:16px"><div class="row"><span class="label">Documented issue monitoring</span><span class="tiny">Provisional 0–100 index</span></div><div id="bullScoreStates" class="bs-state-scores"><span class="empty">Loading incident scorecards…</span></div><details class="bs-method"><summary>What exactly is being estimated?</summary><p><strong>Two separate figures:</strong> the 0–100 score is an operational monitoring priority. The percentage is our rough, subjective probability that the named incident prevents <strong>at least 100 otherwise-eligible people</strong> from casting a countable ballot after ordinary remedies and review. Neither measures election fraud or who wins.</p><p>The probabilities are judgmental working estimates with deliberately broad ranges: registration backlog 12% (3–30%), ten-county Sunday-hours change 10% (2–25%), voter-list litigation without a demonstrated access effect 1% (0.1–5%). They are not historically calibrated. The records/county counts show the scale of the issue, not how many ballots will be lost. Each figure will be revised when processing reports, alternative access and actual voting data arrive. <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/BULLSHITTERY.md" target="_blank" rel="noopener noreferrer">Full assumptions ↗</a></p></details></div><div class="card" style="margin-bottom:16px"><div class="row"><span class="label">Voter impact · evidence ledger</span><span class="tag">COUNTS REQUIRE SOURCES</span></div><p class="detail">Track potentially exposed voters or ballots separately from confirmed effects and remedies. Unknown is not zero. Overlapping incidents are never added into a statewide total.</p><div class="toolrow"><select id="impactState" aria-label="Filter state voter impact"><option value="">All monitored states</option></select><select id="impactStatus" aria-label="Filter evidence status"><option value="">All evidence statuses</option><option value="unverified_report">Unverified report</option><option value="documented_action">Documented action</option><option value="officially_confirmed">Officially confirmed</option><option value="court_finding">Court finding</option><option value="resolved">Resolved</option></select></div><div id="impactSummary" class="statusline">Loading sourced impact ledger…</div><div id="impactCases" class="racecards racecards-wide"></div><p class="methodline">Counts preserve their units (voters, ballots, registrations, records). Potential exposure does not imply disenfranchisement, fraud, or an election outcome change.</p></div><div class="card" style="margin-bottom:16px"><div class="row"><span class="label">Incoming integrity reports · verification queue</span><span class="tag">NOT VERIFIED</span></div><p class="detail">Automatically collected leads requiring original documents. Numbers in headlines are not confirmed voter-impact counts.</p><div id="integrityQueueSummary" class="statusline">Checking verification queue…</div><div id="integrityQueue" class="racecards racecards-wide"></div></div><div class="grid"><div class="card seven"><div class="row"><span class="label">Documented developments</span><span class="tag">FEED PENDING</span></div><div class="toolrow"><input type="search" id="securitySearch" placeholder="Search voter rolls, ICE, courts…"><select id="securityOrder" aria-label="Sort news"><option value="recent">Newest first</option><option value="oldest">Oldest first</option></select></div><div class="statusline" id="securityCount">No articles loaded yet.</div><div id="security" class="empty">No articles loaded yet. These are automatically collected news leads, not verified incidents.</div></div><div class="card five"><span class="label">Monitoring priorities</span><div class="item"><strong>Voter rolls and registration</strong><small>Eligibility challenges, list maintenance, notices, and court orders.</small></div><div class="item"><strong>Federal agency activity</strong><small>Documented actions that may affect voting access, including ICE.</small></div><div class="item"><strong>Threats and disruptions</strong><small>Cyber incidents, polling-place threats, and official responses.</small></div><div class="item"><strong>Litigation and oversight</strong><small>Injunctions, appeals, election procedures, and implementation.</small></div></div></div><div class="note">An allegation is not a verified incident. Every report should distinguish evidence, disputed claims, and unresolved questions.</div></section>
 <section id="electionNight" class="page">
-<div class="sectionhead"><div><h2>Election Night</h2><p class="detail">Unofficial, source-attributed vote counts, verified for consistency. Rehearse with the archived 2024 results before the 2026 feed goes live.</p></div><span class="tiny" id="enChecked">Not connected yet</span></div>
+<div class="sectionhead"><div><h2>Election Night</h2><p class="detail">Unofficial, source-attributed vote counts, verified for consistency. Watch state-reported counts as they arrive. Rehearse with the 2024 archives before election night.</p></div><span class="tiny" id="enChecked">Not connected yet</span></div>
 <div class="en-toolbar">
  <div class="en-toggle" aria-label="Election data mode">
  <button id="enMode2026" type="button" aria-pressed="true">2026 · Results</button>
@@ -312,7 +319,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <button id="enOfficeHouse" type="button" aria-pressed="true">House</button>
  <button id="enOfficeSenate" type="button" aria-pressed="false">Senate</button><button id="enOfficeGovernor" type="button" aria-pressed="false">Governors</button>
  </div>
- <button id="enRefresh" type="button" class="chip">Refresh</button>
+ <button id="enRefresh" type="button" class="chip">Refresh now</button><span id="enConnection" class="en-connection" role="status">Connecting…</span>
 </div>
 <div class="en-status" id="enStatus" role="status">Election Day is November 3. The 2024 archive is available for rehearsal before 2026 results begin.</div>
 <div class="en-archive-intro" id="enArchiveIntro">2024 House rehearsal uses MIT/MEDSL's historical recorded party-level votes across all 435 districts. It is <strong>not a minute-by-minute replay</strong> and does not identify individual candidates, certified winners, or precinct progress. A 2024 district number must not be treated as the same geographic seat in 2026 after redistricting.</div>
@@ -323,7 +330,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div class="en-stat"><small>REPUBLICAN VOTE LEADS</small><b id="enRLeads">—</b></div>
  <div class="en-stat"><small>RACE CALLS</small><b id="enCalls">Not supplied</b></div>
 </div>
-<div class="en-footnote">2024 House rehearsal: 435 historical districts using MIT/MEDSL candidate-party vote totals. This is <strong>not a chronological election-night replay</strong>, and 2024 districts are not automatically comparable with 2026 lines. The outside Open America election-results endpoint currently prohibits cross-origin browser fetches; its 22-state feed cannot be reliably loaded from GitHub Pages. A separate Senate archive becomes available after MIT/MEDSL source validation. The 2026 live feed remains <strong>unconnected</strong> rather than presenting missing results as zeros, race calls or national chamber control.</div>
+<div class="en-footnote">2024 House rehearsal: 435 historical districts using MIT/MEDSL candidate-party vote totals. This is <strong>not a chronological election-night replay</strong>, and 2024 districts are not automatically comparable with 2026 lines. The source-documented browser-compatible 2026 feed is <a href="https://openamerica.io/elections/api/" target="_blank" rel="noopener noreferrer">Open America ↗</a>, carrying official state-derived results from 22 states. States outside coverage are not zero or projected; the feed makes no race calls. Auto-refresh runs every minute during live counting. It is not a national results service.</div>
 <div class="en-workspace">
  <div class="en-race-panel">
   <div class="en-race-tools"><strong id="enRaceHeading">House races</strong><input id="enSearch" type="search" placeholder="Search state, seat, candidate" aria-label="Filter election night races"/></div>
@@ -1403,10 +1410,12 @@ document.querySelectorAll('#securitySearch,#securityOrder').forEach(e=>e.addEven
 
 
 /* Election Night: public state-derived feed, no unofficial winner calls. */
-// A browser cannot fetch Open America's elections endpoint under its current CORS policy.
-let enModeYear=Date.now()<Date.parse('2026-11-03T00:00:00Z')?2024:2026;
+// Election-specific CORS support now documented by Open America (Oct. 2026).
+// Use direct client-to-provider requests, not a republished proxy.
+let enModeYear=Date.now()<Date.parse('2026-11-03T05:00:00Z')?2024:2026;
 let enOffice='House',enData=null,enSelected=null,enTimer=null,enRequestSerial=0,enVisibleLimit=120;
-let enFetchError=null,enLastFetchAt=null,enMovements=[];
+let enFetchError=null,enLastFetchAt=null,enMovements=[],enFailures=0;
+const enRemoteBase='https://openamerica.io/elections/results.json';
 function enIsVisible(){return $('#electionNight')?.classList.contains('active')}
 function enNum(n){return typeof n==='number'&&Number.isFinite(n)?n.toLocaleString('en-US'):'—'}
 function enFormattedTime(v){const d=v?new Date(v):null;return d&&!isNaN(+d)?d.toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}):'unknown'}
