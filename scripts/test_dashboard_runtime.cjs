@@ -146,6 +146,19 @@ async function settle(){
  assert(tsunami,'Missing tsunami outcome');
  assert.match(tsunami.textContent,/not separately estimated/i);
  assert(!tsunami.textContent.includes('0%'),'Unreported tsunami probability cannot be shown as 0%');
+ // A source outage must not leave a week-old percentage looking current.
+ const staleCopy=structuredClone(seeded);
+ const past=new Date(Date.now()-10*86400000).toISOString().slice(0,10);
+ staleCopy.source_updated_date=past;
+ w.eval('setCongressScenarioSnapshot('+JSON.stringify(staleCopy)+')');
+ assert.match(get('#scenarioUpdated').textContent,/OUTDATED/);
+ assert.match(get('#scenarioCenter').textContent,/Historical forecast/);
+ assert(!get('#scenarioBands').textContent.includes('54%'),'Expired probability shown as current');
+ const corruptCopy=structuredClone(seeded);
+ corruptCopy.raw_joint_outcomes_pct.both_dem=90;
+ w.eval('setCongressScenarioSnapshot('+JSON.stringify(corruptCopy)+')');
+ assert.match(get('#scenarioBands').textContent,/integrity checks/);
+ w.eval('setCongressScenarioSnapshot('+JSON.stringify(seeded)+')');
  assert(!get('#scenarioSimulator').querySelector('input'),'Hypothetical sliders should be removed');
  assert.match(get('#scenarioSimulator').textContent,/DDHQ does not publish/i);
  assert.match(get('.scenario-source-link').href,/decisiondeskhq.com/);
@@ -157,7 +170,24 @@ async function settle(){
  },'');
  assert(topTime,'No recent full timestamp data');
  assert(get('#newPolls').textContent.includes('Source posted'),'Posted date labels disappeared');
+ // The outreach context is clearly a dated external rating, not a fourth invented probability.
+ const reach=get('#tsunamiReachWatch');
+ assert.match(reach.textContent,/South Carolina U.S. Senate/);
+ assert.match(reach.textContent,/Darline Graham/);
+ assert.match(reach.textContent,/Likely Republican/);
+ assert.match(reach.textContent,/not by itself/);
+ assert(reach.querySelector('a[href*="cookpolitical.com/senate/race/"]'));
+ // Index-poll listing must preserve distinct ballot questions in one race,
+ // unlike a poll-id-only dedupe that discards one matchup.
+ const sameRace=recent.observations.find(p=>p.race_code==='TX-GOV');
+ assert(sameRace,'Need TX governor posting to test shared-survey questions');
+ const secondQuestion={...sameRace,question_id:'another-qualifying-question',
+   dem_name:'Another named challenger'};
+ w.eval('setPostedPollingSnapshot('+JSON.stringify({observations:[sameRace,secondQuestion]})+')');
+ assert.equal(get('#newPolls').querySelectorAll('.item').length,2,
+  'Two same-poll distinct ballot questions should both display');
+ assert.match(get('#changesSince').textContent,/2 source postings/);
  assert.equal(errors.length,0,'Application emitted errors: '+errors.slice(0,4).join(' | '));
- console.log('Dashboard DOM integration passed: exact TX-SEN/TX-GOV poll drilldowns, race labels, four active hypothetical scenarios, dated news feed, and no script errors.');
+ console.log('Dashboard DOM integration passed: exact TX-SEN/TX-GOV poll drilldowns, race labels, DDHQ stale-data guards, dated news feed, and no script errors.');
  dom.window.close();
 })().catch(e=>{console.error(e.stack||e);dom.window.close();process.exitCode=1});

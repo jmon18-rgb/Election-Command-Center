@@ -23,6 +23,9 @@ on:
       - 'scripts/test_dashboard_runtime.cjs'
       - 'scripts/update_scenario_forecast.py'
       - 'scripts/test_scenario_forecast.py'
+      - 'scripts/notify_new_polls.py'
+      - 'scripts/test_poll_alerts.py'
+      - 'ALERTS.md'
       - 'scripts/validate_model_drilldown.py'
       - 'index.html'
       - 'data/integrity_impact.json'
@@ -68,6 +71,10 @@ jobs:
       - name: Update published DDHQ joint outcome probabilities
         continue-on-error: true
         run: python3 scripts/update_scenario_forecast.py
+      - name: Validate refreshed scenario snapshot and rendered dashboard
+        run: |
+          python3 scripts/test_scenario_forecast.py
+          node scripts/test_dashboard_runtime.cjs
       - name: Run model diagnostics
         run: python3 scripts/test_polling_models.py
       - name: Build Senate polling estimates
@@ -86,6 +93,19 @@ jobs:
         run: python3 scripts/test_house_two_cycle.py
       - name: Build safe 2022-2024 historical swing context
         run: python3 scripts/build_house_two_cycle.py
+      - name: Test new-poll notification filtering and deduplication
+        run: python3 scripts/test_poll_alerts.py
+      - name: Email newly indexed polls if SMTP credentials are configured
+        env:
+          POLL_GMAIL_ADDRESS: ${{ secrets.POLL_GMAIL_ADDRESS }}
+          POLL_GMAIL_APP_PASSWORD: ${{ secrets.POLL_GMAIL_APP_PASSWORD }}
+          POLL_SMTP_HOST: ${{ secrets.POLL_SMTP_HOST }}
+          POLL_SMTP_PORT: ${{ secrets.POLL_SMTP_PORT }}
+          POLL_SMTP_USERNAME: ${{ secrets.POLL_SMTP_USERNAME }}
+          POLL_SMTP_PASSWORD: ${{ secrets.POLL_SMTP_PASSWORD }}
+          POLL_ALERT_FROM: ${{ secrets.POLL_ALERT_FROM }}
+          POLL_ALERT_TO: ${{ secrets.POLL_ALERT_TO }}
+        run: python3 scripts/notify_new_polls.py
       - name: Commit updated briefing
         shell: bash
         run: |
@@ -125,7 +145,7 @@ jobs:
             # Rebase GENERATED OUTPUTS as fresh changes on the newest remote
             # commit, not an entire stale JSON commit that can conflict.
             git reset --mixed origin/main
-            git add data/briefing.json data/polls.json data/model_tests.json data/polling_estimates.json data/integrity_review_queue.json data/model_history.json data/seat_universe.json data/house_geography_bridge.json data/house_two_cycle_context.json data/congress_scenarios.json
+            git add data/briefing.json data/polls.json data/model_tests.json data/polling_estimates.json data/integrity_review_queue.json data/model_history.json data/seat_universe.json data/house_geography_bridge.json data/house_two_cycle_context.json data/congress_scenarios.json data/poll_alert_state.json
             if [ -f data/pollresults_recent.json ]; then git add data/pollresults_recent.json; fi
             if git diff --cached --quiet; then
               echo "No source-data changes to commit."

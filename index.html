@@ -93,6 +93,11 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div id="scenarioSimulator" class="scenario-forecast-summary" aria-label="Model sources and chamber control"></div>
  <p class="methodline">These odds are sourced from <a href="https://votes.decisiondeskhq.com/forecast/2026" target="_blank" rel="noopener noreferrer">Decision Desk HQ's joint 2026 election model</a>, <strong>not calculated from JackStradamus polling averages</strong>. House/Senate outcomes are correlated; joint odds cannot be obtained by multiplying standalone chamber forecasts. <strong>Blue Wave includes Blue Tsunami</strong> until near-sweep simulations can separate them. Values can sum to 99% or 101% due to source rounding. <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/SCENARIOS.md" target="_blank" rel="noopener noreferrer">Full definitions and limitations ↗</a>.</p>
 </div>
+<div class="callout" id="tsunamiReachWatch" style="margin-bottom:17px">
+ <div class="label">Beyond the battlegrounds · South Carolina U.S. Senate</div>
+ <p style="margin:9px 0 7px"><strong>Darline Graham (R) vs. Annie Andrews (D).</strong> <a href="https://www.cookpolitical.com/senate/race/488671" target="_blank" rel="noopener noreferrer">Cook Political Report: Likely Republican</a> (rating page updated Sept. 23, 2026; Oct. 6 national ratings still include SC in Likely Republican). A Democratic win in a race outside the current toss-ups would describe a broader geographic result, but is <strong>not by itself</strong> a Blue Tsunami definition or a model probability.</p>
+ <div class="tiny">Research watch · dated external race rating, not a live rating feed. <a href="https://www.cookpolitical.com/ratings/senate-race-ratings" target="_blank" rel="noopener noreferrer">Check the current race ratings ↗</a></div>
+</div>
 <div class="sectionhead"><h2>What to watch</h2><span class="tiny">What deserves a closer look?</span></div>
 <div class="card radar-wrap"><div id="jackRadar" class="radar-grid"><div class="empty">Scanning close races, polling blind spots, and election developments…</div></div><p class="methodline">The closest margins, thin polling, and documented election-administration issues.</p></div>
 
@@ -480,6 +485,11 @@ $('#modelPollIncluded').addEventListener('click',()=>{modelPollMode='included';r
 $('#modelPollAll').addEventListener('click',()=>{modelPollMode='all';renderModelRaceDetail()});
 $('#modelBack').addEventListener('click',()=>$('#modelBoard').scrollIntoView({behavior:'smooth',block:'start'}));
 let pollingSnapshot=null;let postedPollingSnapshot=null;window.selectedRaceType='senate';
+function setPostedPollingSnapshot(snapshot){
+ postedPollingSnapshot=snapshot;
+ if(pollingSnapshot)renderFreshPolls(pollingSnapshot);
+ if(latestSenateEstimates)renderRacePulse(latestSenateEstimates);
+}
 let feedHealth={polls:null,news:null};
 function updateHealth(){const parts=[];let good=0;for(const [name,item] of Object.entries(feedHealth)){if(!item){parts.push(name+': unavailable');continue}const date=item.updated_at?new Date(item.updated_at):null;const age=date&&!isNaN(+date)?(Date.now()-date.getTime())/3600000:Infinity;const status=item.health?.status||(item.pipeline?.successful_queries?'available':'unknown');const label=!Number.isFinite(age)?'no timestamp':age<-.25?'clock mismatch':age<12?'fresh':age<48?'delayed':'stale';if(age>=-.25&&age<12&&status!=='error')good++;parts.push(name+': '+label+(Number.isFinite(age)?' ('+Math.max(0,Math.round(age))+'h old)':''))}$('#healthText').textContent=parts.join(' · ');$('#healthDot').className='healthdot '+(good===2?'ok':good===0?'bad':'');const diagnostics=$('#feedDiagnostics');if(diagnostics){diagnostics.replaceChildren();for(const p of parts)diagnostics.append(elt('div','item',p))}}
 
@@ -686,6 +696,19 @@ function pollPostedStamp(p){
       'T'+m[4].padStart(2,'0')+':'+m[5]+':00';}
  return (p.posted_date||'')+'T00:00:00';
 }
+let newIndexSinceLastVisit;
+function countUnseenIndexPolls(entries){
+ if(newIndexSinceLastVisit!==undefined)return newIndexSinceLastVisit;
+ const key='election-command-center-poll-index-seen-v1';
+ const ids=entries.map(p=>[p.race_code,p.poll_id,p.question_id,p.field_end,p.dem_name,p.rep_name].join('|'));
+ try{
+  const previous=window.localStorage.getItem(key);
+  const prior=new Set(previous?JSON.parse(previous):[]);
+  newIndexSinceLastVisit=previous?ids.filter(id=>!prior.has(id)).length:0;
+  window.localStorage.setItem(key,JSON.stringify(ids.slice(0,1800)));
+ }catch(_){newIndexSinceLastVisit=null}
+ return newIndexSinceLastVisit;
+}
 function renderPostedPolls(){
  const box=$('#newPolls'),status=$('#changesSince');box.replaceChildren();
  const data=postedPollingSnapshot;
@@ -694,7 +717,7 @@ function renderPostedPolls(){
  const byPoll=new Map();
  for(const p of data?.observations||[]){
   if(!p.posted_date||p.posted_date<cutoff)continue;
-  const key=p.poll_id+'|'+p.race_code;
+  const key=[p.race_code,p.poll_id,p.question_id,p.field_end,p.dem_name,p.rep_name].join('|');
   const old=byPoll.get(key);
   if(!old||(preferred[p.sample_population]||0)>(preferred[old.sample_population]||0))byPoll.set(key,p);
  }
@@ -704,7 +727,9 @@ function renderPostedPolls(){
    String(b.poll_id).localeCompare(String(a.poll_id)));
  const byOffice={senate:0,house:0,governor:0};
  for(const p of entries)byOffice[p.race_type]++;
- status.textContent=entries.length+' source postings · newest time first · S '+byOffice.senate+' / H '+byOffice.house+' / G '+byOffice.governor;
+ const unseen=countUnseenIndexPolls(entries);
+ status.textContent=entries.length+' source postings · newest time first · S '+byOffice.senate+' / H '+byOffice.house+' / G '+byOffice.governor+
+   (unseen>0?' · '+unseen+' newly indexed since last visit':'');
  if(!entries.length){box.append(elt('div','empty','No postings in the source from the past 14 days.'));return}
  const fmt=s=>new Date(s+'T12:00:00Z').toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'});
  const fmtSource=p=>{
@@ -797,6 +822,10 @@ function standardNormalCDF(z){
  return z>=0?positive:1-positive
 }
 let congressScenarioSnapshot=null;
+function setCongressScenarioSnapshot(snapshot){
+ congressScenarioSnapshot=snapshot;
+ renderElectionScenarios();
+}
 function renderElectionScenarios(){
  const host=$('#scenarioBands'),info=$('#scenarioSimulator');
  if(!host||!info)return;
@@ -815,11 +844,28 @@ function renderElectionScenarios(){
   info.append(elt('div','scenario-info-note','The separate JackStradamus race polling averages remain available, but they do not constitute a calibrated joint House/Senate forecast.'));
   return;
  }
- const when=new Date(x.source_updated_date+'T12:00:00Z');
- const age=Math.floor((Date.now()-Date.parse(x.source_updated_date+'T12:00:00Z'))/86400000);
+ const sourceDay=Date.parse(x.source_updated_date+'T00:00:00Z');
+ const todayDay=Date.parse(new Date().toISOString().slice(0,10)+'T00:00:00Z');
+ const age=Number.isFinite(sourceDay)?Math.round((todayDay-sourceDay)/86400000):NaN;
+ const snapshotValid=Number.isFinite(age)&&age>=0&&
+  Object.values(x.raw_joint_outcomes_pct||{}).length===4&&
+  ['both_dem','senate_only','house_only','both_rep'].every(k=>Number.isFinite(x.raw_joint_outcomes_pct?.[k])&&x.raw_joint_outcomes_pct[k]>=0&&x.raw_joint_outcomes_pct[k]<=100)&&
+  Math.abs(Object.values(x.raw_joint_outcomes_pct).reduce((a,b)=>a+b,0)-100)<=2.5&&
+  x.display_outcomes.blue_both.pct===x.raw_joint_outcomes_pct.both_dem&&
+  x.display_outcomes.shrug.pct===x.raw_joint_outcomes_pct.house_only+x.raw_joint_outcomes_pct.senate_only&&
+  x.display_outcomes.red_dawn.pct===x.raw_joint_outcomes_pct.both_rep;
+ if(!snapshotValid){
+  $('#scenarioCenter').textContent='Congressional forecast unavailable';
+  $('#scenarioUpdated').textContent='DDHQ source date or probability integrity check failed';
+  host.append(elt('div','empty','The source snapshot did not pass integrity checks. No probabilities are displayed.'));
+  return;
+ }
+ const when=new Date(sourceDay);
  const stale=age>2;
- $('#scenarioCenter').textContent='The actual model odds, not hypothetical sliders';
- $('#scenarioUpdated').textContent='DDHQ · '+when.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'})+(stale?' · source aging':'');
+ const expired=age>7;
+ $('#scenarioCenter').textContent=expired?'Historical forecast only · refresh required':'The actual model odds, not hypothetical sliders';
+ $('#scenarioUpdated').textContent='DDHQ source · '+when.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'})+
+   (expired?' · OUTDATED ('+age+' days old)':stale?' · aging ('+age+' days old)':' · '+age+' days old');
  const defs=[
   {key:'red_dawn',title:'RED DAWN',kind:'red',detail:'Republicans retain the House and Senate.'},
   {key:'shrug',title:'THE SHRUG',kind:'neutral',detail:'Democrats win exactly one chamber.'},
@@ -831,9 +877,11 @@ function renderElectionScenarios(){
   const card=elt('div','scenario-tile scenario-'+d.kind+(d.key==='blue_tsunami'?' scenario-unresolved':''));
   const header=elt('div','scenario-top');
   header.append(elt('strong','',d.title),elt('strong','scenario-prob',
-    Number.isFinite(probability)?probability.toFixed(probability%1?1:0)+'%':'—'));
+    Number.isFinite(probability)&&!expired?probability.toFixed(probability%1?1:0)+'%':'—'));
   card.append(header,elt('div','scenario-range',d.detail));
-  if(Number.isFinite(probability)){
+  if(Number.isFinite(probability)&&expired){
+   card.append(elt('div','scenario-status','Historical DDHQ snapshot · not current odds'));
+  }else if(Number.isFinite(probability)){
    const track=elt('div','scenario-track'),fill=elt('div','scenario-fill');
    fill.style.width=Math.max(0,Math.min(100,probability))+'%';track.append(fill);card.append(track);
    card.append(elt('div','scenario-status','DDHQ joint model'));
@@ -849,18 +897,19 @@ function renderElectionScenarios(){
    entry.append(elt('strong','',pct.toFixed(pct%1?1:0)+'%'),elt('span','',label));
    house.append(entry);
  }
- info.append(house);
+ if(expired)info.append(elt('p','scenario-info-note','DDHQ has not supplied a validated update in more than seven days. Historical values are hidden rather than shown as current forecast probabilities.'));
+ else info.append(house);
  const explanation=elt('p','scenario-info-note',
   'Blue Wave + Blue Tsunami together: '+x.display_outcomes.blue_both.pct.toFixed(0)+
   '%. DDHQ does not publish an independently isolatable near-sweep probability. The remaining three outcomes are disjoint; their published totals can differ from 100% by rounding.');
- info.append(explanation);
+ if(!expired)info.append(explanation);
  const attribution=elt('a','scenario-source-link','See the original DDHQ joint forecast ↗');
  attribution.href=x.source_url;attribution.target='_blank';attribution.rel='noopener noreferrer';
  info.append(attribution);
 }
 fetch('./data/congress_scenarios.json',{cache:'no-store'})
  .then(r=>{if(!r.ok)throw Error('Joint congressional forecast unavailable');return r.json()})
- .then(d=>{congressScenarioSnapshot=d;renderElectionScenarios()})
+ .then(setCongressScenarioSnapshot)
  .catch(()=>renderElectionScenarios());
 function renderModelGenericHeadline(){
  const g=latestSenateEstimates?.generic_ballot;
@@ -892,7 +941,7 @@ $('#genericFresh').textContent='Latest field end: '+gb.summary.latest_field_end;
 renderRaceList();if(latestSenateEstimates){renderModelRaceDetail();renderModelGenericHeadline();renderRacePulse(latestSenateEstimates)}
 if(d.updated_at){const date=new Date(d.updated_at);if(!Number.isNaN(+date))$('#genericFresh').textContent+=' · fetched '+date.toLocaleDateString()}
 }
-fetch('./data/pollresults_recent.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('supplemental not ready');return r.json()}).then(d=>{postedPollingSnapshot=d;if(pollingSnapshot)renderFreshPolls(pollingSnapshot);if(latestSenateEstimates)renderRacePulse(latestSenateEstimates)}).catch(()=>{/* Main source fallback stays available. */});
+fetch('./data/pollresults_recent.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('supplemental not ready');return r.json()}).then(setPostedPollingSnapshot).catch(()=>{/* Main source fallback stays available. */});
 fetch('./data/polls.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(renderPolls).catch(error=>{console.error('Polling feed error',error);$('#newPolls').textContent='Polling feed unavailable: '+error.message+'.';$('#genericDetail').textContent='Polling data could not be displayed.';updateHealth()});
 
 
