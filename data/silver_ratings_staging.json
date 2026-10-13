@@ -4,7 +4,7 @@
   "source_page": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
   "source_download": "https://www.natesilver.net/api/v1/file/7bd65470-3e0d-4c0f-a658-22ca23b216ae.xlsx",
   "source_publication_date": "2026-01-14",
-  "fetched_at": "2026-10-13T15:47:18.917741+00:00",
+  "fetched_at": "2026-10-13T15:48:19.572660+00:00",
   "attribution": "Nate Silver and Eli McKown-Dawson / Silver Bulletin",
   "worksheet": "xl/worksheets/sheet1.xml",
   "source_header": {
@@ -33,3792 +33,3862 @@
     "name": 0,
     "predictive_plus_minus": 7,
     "mean_reverted_bias": 9,
-    "grade": null,
-    "history_count": null
+    "grade": 8,
+    "history_count": 3,
+    "resolved_name": 1
   },
   "rows_parsed": 540,
-  "matched_to_older_538_aliases": 0,
-  "matches": {},
+  "matched_to_older_538_aliases": 68,
+  "matches": {
+    "20/20 Insight": "20/20 Insight",
+    "Alaska Survey Research": "Alaska Survey Research",
+    "Angus Reid Global": "Angus Reid Global",
+    "Beacon Research/Shaw & Company Research": "Beacon Research/Shaw & Co. Research",
+    "Bendixen & Amandi International": "Bendixen & Amandi International",
+    "Big Data Poll": "Big Data Poll",
+    "Braun Research": "Braun Research",
+    "CNN/SSRS": "SSRS",
+    "Change Research": "Change Research",
+    "Clarity Campaign Labs": "Clarity Campaign Labs",
+    "Concord Public Opinion Partners": "Concord Public Opinion Partners",
+    "Cygnal": "Cygnal",
+    "Cygnal Political": "Cygnal",
+    "DHM Research": "DHM Research",
+    "Data for Progress": "Data for Progress",
+    "Echelon Insights": "Echelon Insights",
+    "Emerson College": "Emerson College",
+    "Fabrizio Ward/Impact Research": "Fabrizio Lee & Associates/Impact Research",
+    "Fabrizio, Lee & Associates": "Fabrizio, Lee & Associates",
+    "Franklin & Marshall College": "Franklin & Marshall College",
+    "GBAO": "GBAO",
+    "Global Strategy Group": "Global Strategy Group",
+    "GreatBlue Research": "GreatBlue Research",
+    "Hart Research Associates/Public Opinion Strategies": "Hart Research Associates/Public Opinion Strategies",
+    "Hendrix College": "Hendrix College",
+    "High Point University": "High Point University",
+    "HighGround": "HighGround Inc.",
+    "Impact Research": "Impact Research",
+    "InsiderAdvantage": "InsiderAdvantage",
+    "Ipsos": "Ipsos",
+    "J.L. Partners": "J.L. Partners",
+    "John Zogby Strategies": "John Zogby Strategies",
+    "Lake Research Partners": "Lake Research Partners",
+    "Maine People's Resource Center": "Maine People's Resource Center",
+    "Marist University": "Marist College",
+    "Marquette University Law School": "Marquette University Law School",
+    "Mason-Dixon Polling & Research, Inc.": "Mason-Dixon Polling & Strategy",
+    "MassINC Polling Group": "MassINC Polling Group",
+    "McLaughlin & Associates": "McLaughlin & Associates",
+    "Mitchell Research & Communications": "Mitchell Research & Communications",
+    "Morning Consult": "Morning Consult",
+    "Normington, Petts & Associates": "Normington, Petts & Associates",
+    "Pew Research Center": "Pew Research Center",
+    "Public Opinion Strategies": "Public Opinion Strategies",
+    "Public Policy Institute of California": "Public Policy Institute of California",
+    "Public Policy Polling": "Public Policy Polling",
+    "Quinnipiac University": "Quinnipiac University",
+    "RMG Research": "RMG Research",
+    "Remington": "Remington Research Group",
+    "Research & Polling Inc.": "Research & Polling Inc.",
+    "SEA Polling": "SEA Polling & Strategic Design",
+    "Siena University": "Siena College",
+    "Slingshot Strategies": "Slingshot Strategies",
+    "St. Pete Polls": "St. Pete Polls",
+    "Strategies 360": "Strategies 360",
+    "Suffolk University": "Suffolk University",
+    "SurveyUSA": "SurveyUSA",
+    "Susquehanna Polling & Research, Inc.": "Susquehanna Polling & Research Inc.",
+    "TIPP Insights": "TIPP Insights",
+    "TargetSmart": "TargetSmart",
+    "Targoz Market Research": "Targoz Market Research",
+    "The New York Times/Siena University": "The New York Times/Siena College",
+    "The Washington Post/George Mason University Schar School of Policy and Government": "The Washington Post/George Mason University Schar School of Policy and Government",
+    "Trafalgar Group": "Trafalgar Group",
+    "Tulchin Research": "Tulchin Research",
+    "University of New Hampshire": "University of New Hampshire",
+    "YouGov": "YouGov",
+    "co/efficient": "co/efficient"
+  },
   "entries": {
-    "1": {
-      "pollster": "1",
+    "the washington post": {
+      "pollster": "The Washington Post",
       "predictive_plus_minus_raw": "-1.0888932292810101",
       "mean_reverted_bias_raw": "0.89811018395004605",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A+",
+      "history_count_raw": "98"
     },
-    "2": {
-      "pollster": "2",
+    "marquette university law school": {
+      "pollster": "Marquette University Law School",
       "predictive_plus_minus_raw": "-0.99721655233265205",
       "mean_reverted_bias_raw": "0.31545373042691299",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "17"
     },
-    "3": {
-      "pollster": "3",
+    "research polling inc": {
+      "pollster": "Research & Polling Inc.",
       "predictive_plus_minus_raw": "-0.97525821742491903",
       "mean_reverted_bias_raw": "-0.54944506367468904",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A+",
+      "history_count_raw": "44"
     },
-    "4": {
-      "pollster": "4",
+    "onmessage inc": {
+      "pollster": "OnMessage Inc.",
       "predictive_plus_minus_raw": "-0.85028832134265997",
       "mean_reverted_bias_raw": "-1.2251531942114",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A",
+      "history_count_raw": "32"
     },
-    "5": {
-      "pollster": "5",
+    "data orbital": {
+      "pollster": "Data Orbital",
       "predictive_plus_minus_raw": "-0.83054762242903502",
       "mean_reverted_bias_raw": "7.9388549541296802E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "18"
     },
-    "6": {
-      "pollster": "6",
+    "tipp insights": {
+      "pollster": "TIPP Insights",
       "predictive_plus_minus_raw": "-0.81192813084434001",
       "mean_reverted_bias_raw": "-7.0992935632207294E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A",
+      "history_count_raw": "51"
     },
-    "7": {
-      "pollster": "7",
+    "cygnal": {
+      "pollster": "Cygnal",
       "predictive_plus_minus_raw": "-0.80364925522458397",
       "mean_reverted_bias_raw": "2.0375623127915099",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A",
+      "history_count_raw": "58"
     },
-    "8": {
-      "pollster": "8",
+    "the new york times siena college": {
+      "pollster": "The New York Times/Siena College",
       "predictive_plus_minus_raw": "-0.79508246688462803",
       "mean_reverted_bias_raw": "1.41210767186513",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A",
+      "history_count_raw": "116"
     },
-    "9": {
-      "pollster": "9",
+    "monmouth university": {
+      "pollster": "Monmouth University",
       "predictive_plus_minus_raw": "-0.77185778211261902",
       "mean_reverted_bias_raw": "2.0013120796263899",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A",
+      "history_count_raw": "131"
     },
-    "10": {
-      "pollster": "10",
+    "surveyusa": {
+      "pollster": "SurveyUSA",
       "predictive_plus_minus_raw": "-0.65740353478054103",
       "mean_reverted_bias_raw": "8.5738369232671405E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A",
+      "history_count_raw": "871"
     },
-    "11": {
-      "pollster": "11",
+    "cbs news the new york times": {
+      "pollster": "CBS News/The New York Times",
       "predictive_plus_minus_raw": "-0.65218072363336499",
       "mean_reverted_bias_raw": "0.26831293974281201",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A",
+      "history_count_raw": "66"
     },
-    "12": {
-      "pollster": "12",
+    "public opinion strategies": {
+      "pollster": "Public Opinion Strategies",
       "predictive_plus_minus_raw": "-0.64112523875455696",
       "mean_reverted_bias_raw": "-1.27871083699196",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A",
+      "history_count_raw": "80"
     },
-    "13": {
-      "pollster": "13",
+    "atlasintel": {
+      "pollster": "AtlasIntel",
       "predictive_plus_minus_raw": "-0.63584747267930297",
       "mean_reverted_bias_raw": "-3.5831969327407398E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A",
+      "history_count_raw": "93"
     },
-    "14": {
-      "pollster": "14",
+    "emerson college": {
+      "pollster": "Emerson College",
       "predictive_plus_minus_raw": "-0.60981766890566902",
       "mean_reverted_bias_raw": "0.60742786112269098",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A",
+      "history_count_raw": "320"
     },
-    "15": {
-      "pollster": "15",
+    "siena college": {
+      "pollster": "Siena College",
       "predictive_plus_minus_raw": "-0.603876305722577",
       "mean_reverted_bias_raw": "0.11891342201070899",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A",
+      "history_count_raw": "67"
     },
-    "16": {
-      "pollster": "16",
+    "muhlenberg college": {
+      "pollster": "Muhlenberg College",
       "predictive_plus_minus_raw": "-0.57718941269322699",
       "mean_reverted_bias_raw": "-0.109281081158076",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A-",
+      "history_count_raw": "36"
     },
-    "17": {
-      "pollster": "17",
+    "echelon insights": {
+      "pollster": "Echelon Insights",
       "predictive_plus_minus_raw": "-0.55231671755854495",
       "mean_reverted_bias_raw": "-0.193408120105661",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A-",
+      "history_count_raw": "19"
     },
-    "18": {
-      "pollster": "18",
+    "university of north florida": {
+      "pollster": "University of North Florida",
       "predictive_plus_minus_raw": "-0.54317151519134099",
       "mean_reverted_bias_raw": "1.58047880928655",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "14"
     },
-    "19": {
-      "pollster": "19",
+    "beacon research shaw co research": {
+      "pollster": "Beacon Research/Shaw & Co. Research",
       "predictive_plus_minus_raw": "-0.53238358166850897",
       "mean_reverted_bias_raw": "1.34434153228505",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A-",
+      "history_count_raw": "63"
     },
-    "20": {
-      "pollster": "20",
+    "hart research associates public opinion strategies": {
+      "pollster": "Hart Research Associates/Public Opinion Strategies",
       "predictive_plus_minus_raw": "-0.52529393732736196",
       "mean_reverted_bias_raw": "0.85034750261231096",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A-",
+      "history_count_raw": "37"
     },
-    "21": {
-      "pollster": "21",
+    "public policy institute of california": {
+      "pollster": "Public Policy Institute of California",
       "predictive_plus_minus_raw": "-0.5244823780283",
       "mean_reverted_bias_raw": "-0.99512278656473796",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "18"
     },
-    "22": {
-      "pollster": "22",
+    "grove insight": {
+      "pollster": "Grove Insight",
       "predictive_plus_minus_raw": "-0.52033282223556498",
       "mean_reverted_bias_raw": "0.46524185399324502",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "29"
     },
-    "23": {
-      "pollster": "23",
+    "massinc polling group": {
+      "pollster": "MassINC Polling Group",
       "predictive_plus_minus_raw": "-0.49613660280477501",
       "mean_reverted_bias_raw": "-0.54868830029025994",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "22"
     },
-    "24": {
-      "pollster": "24",
+    "suffolk university": {
+      "pollster": "Suffolk University",
       "predictive_plus_minus_raw": "-0.49578322744985998",
       "mean_reverted_bias_raw": "0.70505253254039801",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A-",
+      "history_count_raw": "112"
     },
-    "25": {
-      "pollster": "25",
+    "susquehanna polling research inc": {
+      "pollster": "Susquehanna Polling & Research Inc.",
       "predictive_plus_minus_raw": "-0.44599467915399499",
       "mean_reverted_bias_raw": "0.43292538954948101",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A-",
+      "history_count_raw": "56"
     },
-    "26": {
-      "pollster": "26",
+    "greenberg quinlan rosner": {
+      "pollster": "Greenberg Quinlan Rosner",
       "predictive_plus_minus_raw": "-0.44556007456035202",
       "mean_reverted_bias_raw": "2.1836888810388202",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A-",
+      "history_count_raw": "62"
     },
-    "27": {
-      "pollster": "27",
+    "mason dixon polling strategy": {
+      "pollster": "Mason-Dixon Polling & Strategy",
       "predictive_plus_minus_raw": "-0.439340563892198",
       "mean_reverted_bias_raw": "-0.50374803384058298",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A-",
+      "history_count_raw": "446"
     },
-    "28": {
-      "pollster": "28",
+    "landmark communications": {
+      "pollster": "Landmark Communications",
       "predictive_plus_minus_raw": "-0.40959682105909601",
       "mean_reverted_bias_raw": "0.82627107357822505",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A-",
+      "history_count_raw": "41"
     },
-    "29": {
-      "pollster": "29",
+    "marist college": {
+      "pollster": "Marist College",
       "predictive_plus_minus_raw": "-0.40212610849709302",
       "mean_reverted_bias_raw": "0.52121602899355401",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A-",
+      "history_count_raw": "213"
     },
-    "30": {
-      "pollster": "30",
+    "angus reid global": {
+      "pollster": "Angus Reid Global",
       "predictive_plus_minus_raw": "-0.39499783518452303",
       "mean_reverted_bias_raw": "-0.97743787619653499",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "32"
     },
-    "31": {
-      "pollster": "31",
+    "national journal": {
+      "pollster": "National Journal",
       "predictive_plus_minus_raw": "-0.38744287457462301",
       "mean_reverted_bias_raw": "-0.110097635153056",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "12"
     },
-    "32": {
-      "pollster": "32",
+    "the winston group": {
+      "pollster": "The Winston Group",
       "predictive_plus_minus_raw": "-0.38292762649752499",
       "mean_reverted_bias_raw": "1.0321692127875799",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "11"
     },
-    "33": {
-      "pollster": "33",
+    "los angeles times": {
+      "pollster": "Los Angeles Times",
       "predictive_plus_minus_raw": "-0.38115693910683002",
       "mean_reverted_bias_raw": "-0.13585153060490701",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "37"
     },
-    "34": {
-      "pollster": "34",
+    "stockton university": {
+      "pollster": "Stockton University",
       "predictive_plus_minus_raw": "-0.37861295682826701",
       "mean_reverted_bias_raw": "0.84282686516447003",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "12"
     },
-    "35": {
-      "pollster": "35",
+    "greenberg quinlan rosner american viewpoint": {
+      "pollster": "Greenberg Quinlan Rosner/American Viewpoint",
       "predictive_plus_minus_raw": "-0.37774588534551601",
       "mean_reverted_bias_raw": "-0.51904153329929803",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "8"
     },
-    "36": {
-      "pollster": "36",
+    "university of massachusetts lowell": {
+      "pollster": "University of Massachusetts Lowell",
       "predictive_plus_minus_raw": "-0.37115057258142797",
       "mean_reverted_bias_raw": "1.2852683398626901",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A-",
+      "history_count_raw": "38"
     },
-    "37": {
-      "pollster": "37",
+    "concord public opinion partners": {
+      "pollster": "Concord Public Opinion Partners",
       "predictive_plus_minus_raw": "-0.35118325441722398",
       "mean_reverted_bias_raw": "-1.87133660820617E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "4"
     },
-    "38": {
-      "pollster": "38",
+    "christopher newport university": {
+      "pollster": "Christopher Newport University",
       "predictive_plus_minus_raw": "-0.34017457576346499",
       "mean_reverted_bias_raw": "0.81442527275835197",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "16"
     },
-    "39": {
-      "pollster": "39",
+    "university of connecticut": {
+      "pollster": "University of Connecticut",
       "predictive_plus_minus_raw": "-0.34013630089119701",
       "mean_reverted_bias_raw": "-0.12579478391375001",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "11"
     },
-    "40": {
-      "pollster": "40",
+    "elway research": {
+      "pollster": "Elway Research",
       "predictive_plus_minus_raw": "-0.33098673174186999",
       "mean_reverted_bias_raw": "0.63228814045659198",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "21"
     },
-    "41": {
-      "pollster": "41",
+    "tarrance group": {
+      "pollster": "Tarrance Group",
       "predictive_plus_minus_raw": "-0.32054942274012699",
       "mean_reverted_bias_raw": "-0.872001182935769",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "32"
     },
-    "42": {
-      "pollster": "42",
+    "field research corp field poll": {
+      "pollster": "Field Research Corp. (Field Poll)",
       "predictive_plus_minus_raw": "-0.31857919943920798",
       "mean_reverted_bias_raw": "-0.54905006024780501",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "25"
     },
-    "43": {
-      "pollster": "43",
+    "fairleigh dickinson university": {
+      "pollster": "Fairleigh Dickinson University",
       "predictive_plus_minus_raw": "-0.317499855428511",
       "mean_reverted_bias_raw": "1.8004163340304798E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "22"
     },
-    "44": {
-      "pollster": "44",
+    "garin hart yang research group": {
+      "pollster": "Garin-Hart-Yang Research Group",
       "predictive_plus_minus_raw": "-0.29691685952195501",
       "mean_reverted_bias_raw": "1.73337404643867",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A-",
+      "history_count_raw": "33"
     },
-    "45": {
-      "pollster": "45",
+    "western new england university": {
+      "pollster": "Western New England University",
       "predictive_plus_minus_raw": "-0.28629464435990498",
       "mean_reverted_bias_raw": "-0.31661577790851902",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "11"
     },
-    "46": {
-      "pollster": "46",
+    "oh predictive insights": {
+      "pollster": "OH Predictive Insights",
       "predictive_plus_minus_raw": "-0.28194006856003101",
       "mean_reverted_bias_raw": "0.55064571672912199",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B+",
+      "history_count_raw": "22"
     },
-    "47": {
-      "pollster": "47",
+    "opinion dynamics": {
+      "pollster": "Opinion Dynamics",
       "predictive_plus_minus_raw": "-0.26715718806712901",
       "mean_reverted_bias_raw": "-0.248833750925332",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "34"
     },
-    "48": {
-      "pollster": "48",
+    "alaska survey research": {
+      "pollster": "Alaska Survey Research",
       "predictive_plus_minus_raw": "-0.264490402996862",
       "mean_reverted_bias_raw": "1.76971438023357",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "16"
     },
-    "49": {
-      "pollster": "49",
+    "princeton survey research associates international": {
+      "pollster": "Princeton Survey Research Associates International",
       "predictive_plus_minus_raw": "-0.263479239171164",
       "mean_reverted_bias_raw": "0.38408483961318801",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "35"
     },
-    "50": {
-      "pollster": "50",
+    "lake research partners the tarrance group": {
+      "pollster": "Lake Research Partners/The Tarrance Group",
       "predictive_plus_minus_raw": "-0.261701219236118",
       "mean_reverted_bias_raw": "-0.59511159818082304",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "33"
     },
-    "51": {
-      "pollster": "51",
+    "elon university": {
+      "pollster": "Elon University",
       "predictive_plus_minus_raw": "-0.25633151862115",
       "mean_reverted_bias_raw": "0.36261221410642502",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "8"
     },
-    "52": {
-      "pollster": "52",
+    "national research": {
+      "pollster": "National Research",
       "predictive_plus_minus_raw": "-0.24670937720398101",
       "mean_reverted_bias_raw": "-0.347150082696145",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "15"
     },
-    "53": {
-      "pollster": "53",
+    "abt associates": {
+      "pollster": "Abt Associates",
       "predictive_plus_minus_raw": "-0.234681040773908",
       "mean_reverted_bias_raw": "0.67124328295776603",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "13"
     },
-    "54": {
-      "pollster": "54",
+    "pharos research group": {
+      "pollster": "Pharos Research Group",
       "predictive_plus_minus_raw": "-0.23285975764660999",
       "mean_reverted_bias_raw": "0.67828181511454799",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "F",
+      "history_count_raw": "33"
     },
-    "55": {
-      "pollster": "55",
+    "university of california berkeley": {
+      "pollster": "University of California Berkeley",
       "predictive_plus_minus_raw": "-0.22766726141919999",
       "mean_reverted_bias_raw": "0.32201099379048398",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "8"
     },
-    "56": {
-      "pollster": "56",
+    "strategic vision llc": {
+      "pollster": "Strategic Vision LLC",
       "predictive_plus_minus_raw": "-0.217849611396116",
       "mean_reverted_bias_raw": "-1.41427993327001",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "F",
+      "history_count_raw": "133"
     },
-    "57": {
-      "pollster": "57",
+    "gfk group": {
+      "pollster": "GfK Group",
       "predictive_plus_minus_raw": "-0.21491151323539001",
       "mean_reverted_bias_raw": "0.18635848893967499",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "21"
     },
-    "58": {
-      "pollster": "58",
+    "quinnipiac university": {
+      "pollster": "Quinnipiac University",
       "predictive_plus_minus_raw": "-0.21105186391387601",
       "mean_reverted_bias_raw": "0.58508322293000103",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B+",
+      "history_count_raw": "229"
     },
-    "59": {
-      "pollster": "59",
+    "dittman research": {
+      "pollster": "Dittman Research",
       "predictive_plus_minus_raw": "-0.20611419334101599",
       "mean_reverted_bias_raw": "0.81492639069713002",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "10"
     },
-    "60": {
-      "pollster": "60",
+    "temple university": {
+      "pollster": "Temple University",
       "predictive_plus_minus_raw": "-0.202527953038312",
       "mean_reverted_bias_raw": "-0.16539953751473299",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "6"
     },
-    "61": {
-      "pollster": "61",
+    "michigan state university": {
+      "pollster": "Michigan State University",
       "predictive_plus_minus_raw": "-0.190021492311229",
       "mean_reverted_bias_raw": "-3.5545262377925997E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "2"
     },
-    "62": {
-      "pollster": "62",
+    "selzer": {
+      "pollster": "Selzer",
       "predictive_plus_minus_raw": "-0.181226324643493",
       "mean_reverted_bias_raw": "1.2678818883162299",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B+",
+      "history_count_raw": "59"
     },
-    "63": {
-      "pollster": "63",
+    "franklin marshall college": {
+      "pollster": "Franklin & Marshall College",
       "predictive_plus_minus_raw": "-0.18112285954747701",
       "mean_reverted_bias_raw": "0.56057823831285702",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "25"
     },
-    "64": {
-      "pollster": "64",
+    "krc research": {
+      "pollster": "KRC Research",
       "predictive_plus_minus_raw": "-0.17910293984273701",
       "mean_reverted_bias_raw": "6.5072451820903293E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "22"
     },
-    "65": {
-      "pollster": "65",
+    "fabrizio lee associates": {
+      "pollster": "Fabrizio, Lee & Associates",
       "predictive_plus_minus_raw": "-0.173074591490647",
       "mean_reverted_bias_raw": "-0.30031373245390303",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "11"
     },
-    "66": {
-      "pollster": "66",
+    "rkm research and communications inc": {
+      "pollster": "RKM Research and Communications Inc.",
       "predictive_plus_minus_raw": "-0.160724834549411",
       "mean_reverted_bias_raw": "-0.105073644122458",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "35"
     },
-    "67": {
-      "pollster": "67",
+    "florida atlantic university mainstreet research": {
+      "pollster": "Florida Atlantic University/Mainstreet Research",
       "predictive_plus_minus_raw": "-0.152291093128715",
       "mean_reverted_bias_raw": "1.36071428571428",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B+",
+      "history_count_raw": "25"
     },
-    "68": {
-      "pollster": "68",
+    "north star opinion research": {
+      "pollster": "North Star Opinion Research",
       "predictive_plus_minus_raw": "-0.134045900822892",
       "mean_reverted_bias_raw": "-0.62697508967905302",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "13"
     },
-    "69": {
-      "pollster": "69",
+    "gallup": {
+      "pollster": "Gallup",
       "predictive_plus_minus_raw": "-0.124398896999561",
       "mean_reverted_bias_raw": "-0.56518363162543594",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B+",
+      "history_count_raw": "84"
     },
-    "70": {
-      "pollster": "70",
+    "kaconsulting": {
+      "pollster": "KAConsulting",
       "predictive_plus_minus_raw": "-0.111829469850037",
       "mean_reverted_bias_raw": "-1.66534340339791",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "12"
     },
-    "71": {
-      "pollster": "71",
+    "public religion research institute": {
+      "pollster": "Public Religion Research Institute",
       "predictive_plus_minus_raw": "-0.111054167129179",
       "mean_reverted_bias_raw": "9.0211581623533005E-3",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "1"
     },
-    "72": {
-      "pollster": "72",
+    "saint anselm college": {
+      "pollster": "Saint Anselm College",
       "predictive_plus_minus_raw": "-0.110694829312071",
       "mean_reverted_bias_raw": "-0.27550859232751002",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "14"
     },
-    "73": {
-      "pollster": "73",
+    "vox populi polling": {
+      "pollster": "Vox Populi Polling",
       "predictive_plus_minus_raw": "-0.107711740011386",
       "mean_reverted_bias_raw": "0.33029877489291098",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "19"
     },
-    "74": {
-      "pollster": "74",
+    "public opinion strategies hamilton campaigns texas credit union league": {
+      "pollster": "Public Opinion Strategies/Hamilton Campaigns (Texas Credit Union League)",
       "predictive_plus_minus_raw": "-0.102842212596924",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "2"
     },
-    "75": {
-      "pollster": "75",
+    "wirthlin worldwide": {
+      "pollster": "Wirthlin Worldwide",
       "predictive_plus_minus_raw": "-0.101333616307066",
       "mean_reverted_bias_raw": "-0.133586462832714",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "4"
     },
-    "76": {
-      "pollster": "76",
+    "university of arkansas": {
+      "pollster": "University of Arkansas",
       "predictive_plus_minus_raw": "-9.4020262453177406E-2",
       "mean_reverted_bias_raw": "0.89724586191943101",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "10"
     },
-    "77": {
-      "pollster": "77",
+    "glengariff group": {
+      "pollster": "Glengariff Group",
       "predictive_plus_minus_raw": "-9.3210217599770703E-2",
       "mean_reverted_bias_raw": "0.83929820340906802",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "16"
     },
-    "78": {
-      "pollster": "78",
+    "belden russonello": {
+      "pollster": "Belden Russonello",
       "predictive_plus_minus_raw": "-8.5118038427222098E-2",
       "mean_reverted_bias_raw": "4.1330267615728299E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "3"
     },
-    "79": {
-      "pollster": "79",
+    "indiana university": {
+      "pollster": "Indiana University",
       "predictive_plus_minus_raw": "-8.4507264511121893E-2",
       "mean_reverted_bias_raw": "2.0599827151993998E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "2"
     },
-    "80": {
-      "pollster": "80",
+    "knowledge networks": {
+      "pollster": "Knowledge Networks",
       "predictive_plus_minus_raw": "-8.1337080852337498E-2",
       "mean_reverted_bias_raw": "0.246817726200042",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "4"
     },
-    "81": {
-      "pollster": "81",
+    "louis harris associates": {
+      "pollster": "Louis Harris & Associates",
       "predictive_plus_minus_raw": "-6.6808978921476997E-2",
       "mean_reverted_bias_raw": "1.4241654473542101E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "2"
     },
-    "82": {
-      "pollster": "82",
+    "rand american life panel": {
+      "pollster": "RAND (American Life Panel)",
       "predictive_plus_minus_raw": "-6.0870595158425501E-2",
       "mean_reverted_bias_raw": "0.13339095738749701",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "4"
     },
-    "83": {
-      "pollster": "83",
+    "epic mra": {
+      "pollster": "EPIC-MRA",
       "predictive_plus_minus_raw": "-5.2078050394795197E-2",
       "mean_reverted_bias_raw": "0.21965607748157701",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B+",
+      "history_count_raw": "58"
     },
-    "84": {
-      "pollster": "84",
+    "lake research partners": {
+      "pollster": "Lake Research Partners",
       "predictive_plus_minus_raw": "-5.0489037021077002E-2",
       "mean_reverted_bias_raw": "0.65252458437010596",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "12"
     },
-    "85": {
-      "pollster": "85",
+    "university of florida": {
+      "pollster": "University of Florida",
       "predictive_plus_minus_raw": "-4.5075621276770603E-2",
       "mean_reverted_bias_raw": "2.8016747694067201E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "1"
     },
-    "86": {
-      "pollster": "86",
+    "ohio state university": {
+      "pollster": "Ohio State University",
       "predictive_plus_minus_raw": "-4.12725080447943E-2",
       "mean_reverted_bias_raw": "-3.5381568749440699E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "1"
     },
-    "87": {
-      "pollster": "87",
+    "gordon s black corp": {
+      "pollster": "Gordon S. Black Corp.",
       "predictive_plus_minus_raw": "-4.1121616843160298E-2",
       "mean_reverted_bias_raw": "-0.105322002850846",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "2"
     },
-    "88": {
-      "pollster": "88",
+    "insideradvantage": {
+      "pollster": "InsiderAdvantage",
       "predictive_plus_minus_raw": "-3.7880544167960897E-2",
       "mean_reverted_bias_raw": "0.31805015052199698",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B+",
+      "history_count_raw": "208"
     },
-    "89": {
-      "pollster": "89",
+    "rasmussen reports": {
+      "pollster": "Rasmussen Reports",
       "predictive_plus_minus_raw": "-2.55354942619818E-2",
       "mean_reverted_bias_raw": "-1.3521063844357899",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B+",
+      "history_count_raw": "797"
     },
-    "90": {
-      "pollster": "90",
+    "pew research center": {
+      "pollster": "Pew Research Center",
       "predictive_plus_minus_raw": "-2.3128153859310899E-2",
       "mean_reverted_bias_raw": "0.63138617817662701",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "25"
     },
-    "91": {
-      "pollster": "91",
+    "public policy polling": {
+      "pollster": "Public Policy Polling",
       "predictive_plus_minus_raw": "-1.19319522589667E-2",
       "mean_reverted_bias_raw": "0.87802504780527701",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B+",
+      "history_count_raw": "468"
     },
-    "92": {
-      "pollster": "92",
+    "pan atlantic research": {
+      "pollster": "Pan Atlantic Research",
       "predictive_plus_minus_raw": "-1.00732532649345E-2",
       "mean_reverted_bias_raw": "0.61087653959419597",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "17"
     },
-    "93": {
-      "pollster": "93",
+    "polling company global strategy group": {
+      "pollster": "Polling Company/Global Strategy Group",
       "predictive_plus_minus_raw": "-3.9035192662608001E-3",
       "mean_reverted_bias_raw": "-0.16115986802184801",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "4"
     },
-    "94": {
-      "pollster": "94",
+    "gqr research public opinion strategies": {
+      "pollster": "GQR Research/Public Opinion Strategies",
       "predictive_plus_minus_raw": "-3.1945739526000002E-3",
       "mean_reverted_bias_raw": "9.9946580812309005E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "1"
     },
-    "95": {
-      "pollster": "95",
+    "harvard university": {
+      "pollster": "Harvard University",
       "predictive_plus_minus_raw": "-1.3152524217925001E-3",
       "mean_reverted_bias_raw": "7.6128576030756498E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "A/B",
+      "history_count_raw": "1"
     },
-    "96": {
-      "pollster": "96",
+    "fleming associates": {
+      "pollster": "Fleming & Associates",
       "predictive_plus_minus_raw": "8.0275845076011997E-3",
       "mean_reverted_bias_raw": "-0.48452234922432602",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "18"
     },
-    "97": {
-      "pollster": "97",
+    "rrh elections": {
+      "pollster": "RRH Elections",
       "predictive_plus_minus_raw": "9.6153957134801002E-3",
       "mean_reverted_bias_raw": "-0.25888827821273303",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "15"
     },
-    "98": {
-      "pollster": "98",
+    "wpa intelligence": {
+      "pollster": "WPA Intelligence",
       "predictive_plus_minus_raw": "1.7478050450457899E-2",
       "mean_reverted_bias_raw": "-0.80394011173737101",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "20"
     },
-    "99": {
-      "pollster": "99",
+    "florida atlantic university": {
+      "pollster": "Florida Atlantic University",
       "predictive_plus_minus_raw": "2.7620762495061599E-2",
       "mean_reverted_bias_raw": "0.512019473583744",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "9"
     },
-    "100": {
-      "pollster": "100",
+    "leger": {
+      "pollster": "Leger",
       "predictive_plus_minus_raw": "2.7786429089215501E-2",
       "mean_reverted_bias_raw": "0.25427635936481002",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "13"
     },
-    "101": {
-      "pollster": "101",
+    "university of cincinnati ohio poll": {
+      "pollster": "University of Cincinnati (Ohio Poll)",
       "predictive_plus_minus_raw": "4.6737423700921502E-2",
       "mean_reverted_bias_raw": "-1.0886287764907301",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "39"
     },
-    "102": {
-      "pollster": "102",
+    "sea polling strategic design": {
+      "pollster": "SEA Polling & Strategic Design",
       "predictive_plus_minus_raw": "5.2361911738672599E-2",
       "mean_reverted_bias_raw": "0.45099812397298",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "14"
     },
-    "103": {
-      "pollster": "103",
+    "harper polling": {
+      "pollster": "Harper Polling",
       "predictive_plus_minus_raw": "5.3937032617596803E-2",
       "mean_reverted_bias_raw": "0.39239970766676302",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "14"
     },
-    "104": {
-      "pollster": "104",
+    "research co": {
+      "pollster": "Research Co.",
       "predictive_plus_minus_raw": "6.1249874464384901E-2",
       "mean_reverted_bias_raw": "1.42967995163454",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B",
+      "history_count_raw": "85"
     },
-    "105": {
-      "pollster": "105",
+    "harstad strategic research": {
+      "pollster": "Harstad Strategic Research",
       "predictive_plus_minus_raw": "6.9718103624141103E-2",
       "mean_reverted_bias_raw": "0.49002200045640598",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "11"
     },
-    "106": {
-      "pollster": "106",
+    "blueprint polling": {
+      "pollster": "Blueprint Polling",
       "predictive_plus_minus_raw": "7.2184213011960999E-2",
       "mean_reverted_bias_raw": "-0.52181452285347096",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "8"
     },
-    "107": {
-      "pollster": "107",
+    "praecones analytica": {
+      "pollster": "Praecones Analytica",
       "predictive_plus_minus_raw": "7.4045239051103495E-2",
       "mean_reverted_bias_raw": "-0.108255129814669",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "5"
     },
-    "108": {
-      "pollster": "108",
+    "east carolina university": {
+      "pollster": "East Carolina University",
       "predictive_plus_minus_raw": "7.4613630322732799E-2",
       "mean_reverted_bias_raw": "1.3153347737436401",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "18"
     },
-    "109": {
-      "pollster": "109",
+    "new england college polling center": {
+      "pollster": "New England College Polling Center",
       "predictive_plus_minus_raw": "7.6088795777884494E-2",
       "mean_reverted_bias_raw": "-1.02870561171106",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "19"
     },
-    "110": {
-      "pollster": "110",
+    "ciruli associates": {
+      "pollster": "Ciruli Associates",
       "predictive_plus_minus_raw": "7.9479940651436404E-2",
       "mean_reverted_bias_raw": "-0.53030526565291303",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "20"
     },
-    "111": {
-      "pollster": "111",
+    "clemson university": {
+      "pollster": "Clemson University",
       "predictive_plus_minus_raw": "7.96443400406186E-2",
       "mean_reverted_bias_raw": "2.3159712078582799E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "8"
     },
-    "112": {
-      "pollster": "112",
+    "j l partners": {
+      "pollster": "J.L. Partners",
       "predictive_plus_minus_raw": "8.6488072172073396E-2",
       "mean_reverted_bias_raw": "0.39106346521150198",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "10"
     },
-    "113": {
-      "pollster": "113",
+    "mellman group": {
+      "pollster": "Mellman Group",
       "predictive_plus_minus_raw": "9.2452024560146395E-2",
       "mean_reverted_bias_raw": "1.6941407205402601",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "28"
     },
-    "114": {
-      "pollster": "114",
+    "st norbert college": {
+      "pollster": "St. Norbert College",
       "predictive_plus_minus_raw": "9.47962716636752E-2",
       "mean_reverted_bias_raw": "-8.5508772922187008E-3",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "12"
     },
-    "115": {
-      "pollster": "115",
+    "strategies 360": {
+      "pollster": "Strategies 360",
       "predictive_plus_minus_raw": "9.8985083214201006E-2",
       "mean_reverted_bias_raw": "1.1511543495260901",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "9"
     },
-    "116": {
-      "pollster": "116",
+    "blum weprin associates": {
+      "pollster": "Blum & Weprin Associates",
       "predictive_plus_minus_raw": "0.10320858264478899",
       "mean_reverted_bias_raw": "-0.54608209079184",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "19"
     },
-    "117": {
-      "pollster": "117",
+    "lee business school university of nevada las vegas": {
+      "pollster": "Lee Business School (University of Nevada Las Vegas)",
       "predictive_plus_minus_raw": "0.103819799543184",
       "mean_reverted_bias_raw": "0.141419364535154",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "5"
     },
-    "118": {
-      "pollster": "118",
+    "yougov": {
+      "pollster": "YouGov",
       "predictive_plus_minus_raw": "0.111421255037673",
       "mean_reverted_bias_raw": "1.07911825588518",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B",
+      "history_count_raw": "521"
     },
-    "119": {
-      "pollster": "119",
+    "ward research": {
+      "pollster": "Ward Research",
       "predictive_plus_minus_raw": "0.11483862198407301",
       "mean_reverted_bias_raw": "-0.32782514960152598",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "15"
     },
-    "120": {
-      "pollster": "120",
+    "landmark communications rosetta stone communications": {
+      "pollster": "Landmark Communications/Rosetta Stone Communications",
       "predictive_plus_minus_raw": "0.116809815039951",
       "mean_reverted_bias_raw": "1.04751235721257",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "11"
     },
-    "121": {
-      "pollster": "121",
+    "middle tennessee state university": {
+      "pollster": "Middle Tennessee State University",
       "predictive_plus_minus_raw": "0.136035742522292",
       "mean_reverted_bias_raw": "0.42572821305157799",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "5"
     },
-    "122": {
-      "pollster": "122",
+    "civiqs": {
+      "pollster": "Civiqs",
       "predictive_plus_minus_raw": "0.14137994772138099",
       "mean_reverted_bias_raw": "2.82786316570184",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B",
+      "history_count_raw": "43"
     },
-    "123": {
-      "pollster": "123",
+    "university of georgia": {
+      "pollster": "University of Georgia",
       "predictive_plus_minus_raw": "0.143310446392931",
       "mean_reverted_bias_raw": "5.03996504222873E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "7"
     },
-    "124": {
-      "pollster": "124",
+    "research 2000": {
+      "pollster": "Research 2000",
       "predictive_plus_minus_raw": "0.14556365318251799",
       "mean_reverted_bias_raw": "1.1918705026904199",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "F",
+      "history_count_raw": "278"
     },
-    "125": {
-      "pollster": "125",
+    "clarity campaign labs": {
+      "pollster": "Clarity Campaign Labs",
       "predictive_plus_minus_raw": "0.148082405354654",
       "mean_reverted_bias_raw": "1.23069631013409",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "16"
     },
-    "126": {
-      "pollster": "126",
+    "yankelovich partners inc": {
+      "pollster": "Yankelovich Partners Inc.",
       "predictive_plus_minus_raw": "0.16403697605099701",
       "mean_reverted_bias_raw": "-2.85005872220775E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "7"
     },
-    "127": {
-      "pollster": "127",
+    "trafalgar group": {
+      "pollster": "Trafalgar Group",
       "predictive_plus_minus_raw": "0.17656494517788099",
       "mean_reverted_bias_raw": "-1.88100007049513",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B",
+      "history_count_raw": "143"
     },
-    "128": {
-      "pollster": "128",
+    "wick": {
+      "pollster": "Wick",
       "predictive_plus_minus_raw": "0.17939482445051599",
       "mean_reverted_bias_raw": "-1.19461617607949",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "16"
     },
-    "129": {
-      "pollster": "129",
+    "keating research": {
+      "pollster": "Keating Research",
       "predictive_plus_minus_raw": "0.19156654264077499",
       "mean_reverted_bias_raw": "0.16907368998797401",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "6"
     },
-    "130": {
-      "pollster": "130",
+    "rmg research": {
+      "pollster": "RMG Research",
       "predictive_plus_minus_raw": "0.19691732525727301",
       "mean_reverted_bias_raw": "3.2477651788035402",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B",
+      "history_count_raw": "28"
     },
-    "131": {
-      "pollster": "131",
+    "ipsos": {
+      "pollster": "Ipsos",
       "predictive_plus_minus_raw": "0.19849431612740301",
       "mean_reverted_bias_raw": "1.8925899601660301",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B",
+      "history_count_raw": "116"
     },
-    "132": {
-      "pollster": "132",
+    "co efficient": {
+      "pollster": "co/efficient",
       "predictive_plus_minus_raw": "0.201790326557547",
       "mean_reverted_bias_raw": "-2.6914946464296601",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B",
+      "history_count_raw": "24"
     },
-    "133": {
-      "pollster": "133",
+    "redfield wilton strategies": {
+      "pollster": "Redfield & Wilton Strategies",
       "predictive_plus_minus_raw": "0.207544534068763",
       "mean_reverted_bias_raw": "2.2802135513568502",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B",
+      "history_count_raw": "45"
     },
-    "134": {
-      "pollster": "134",
+    "starboard communications": {
+      "pollster": "Starboard Communications",
       "predictive_plus_minus_raw": "0.21460588292124499",
       "mean_reverted_bias_raw": "0.289875419984924",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "135": {
-      "pollster": "135",
+    "strategic national": {
+      "pollster": "Strategic National",
       "predictive_plus_minus_raw": "0.23693118112495201",
       "mean_reverted_bias_raw": "0.34290840237806602",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "136": {
-      "pollster": "136",
+    "gbao": {
+      "pollster": "GBAO",
       "predictive_plus_minus_raw": "0.23904128866379801",
       "mean_reverted_bias_raw": "1.36011629976696",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "14"
     },
-    "137": {
-      "pollster": "137",
+    "big village": {
+      "pollster": "Big Village",
       "predictive_plus_minus_raw": "0.24261540734627299",
       "mean_reverted_bias_raw": "0.21942562763953999",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B",
+      "history_count_raw": "107"
     },
-    "138": {
-      "pollster": "138",
+    "pasquines": {
+      "pollster": "Pasquines",
       "predictive_plus_minus_raw": "0.249595759548428",
       "mean_reverted_bias_raw": "5.8760903618615502E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "139": {
-      "pollster": "139",
+    "ragnar research partners": {
+      "pollster": "Ragnar Research Partners",
       "predictive_plus_minus_raw": "0.25306283013907599",
       "mean_reverted_bias_raw": "0.24461091074445099",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "140": {
-      "pollster": "140",
+    "rbi strategies research": {
+      "pollster": "RBI Strategies & Research",
       "predictive_plus_minus_raw": "0.26080295145423998",
       "mean_reverted_bias_raw": "0.27990455341043002",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "141": {
-      "pollster": "141",
+    "impact research": {
+      "pollster": "Impact Research",
       "predictive_plus_minus_raw": "0.265380340268356",
       "mean_reverted_bias_raw": "1.32059594367203",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "22"
     },
-    "142": {
-      "pollster": "142",
+    "cvoter": {
+      "pollster": "CVOTER",
       "predictive_plus_minus_raw": "0.27022486771959497",
       "mean_reverted_bias_raw": "-0.188566465745234",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "6"
     },
-    "143": {
-      "pollster": "143",
+    "patriot polling": {
+      "pollster": "Patriot Polling",
       "predictive_plus_minus_raw": "0.28448003165675601",
       "mean_reverted_bias_raw": "-0.401939286361648",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B",
+      "history_count_raw": "22"
     },
-    "144": {
-      "pollster": "144",
+    "market shares corp": {
+      "pollster": "Market Shares Corp.",
       "predictive_plus_minus_raw": "0.290630412027093",
       "mean_reverted_bias_raw": "-0.89691321708258398",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "25"
     },
-    "145": {
-      "pollster": "145",
+    "benenson strategy group": {
+      "pollster": "Benenson Strategy Group",
       "predictive_plus_minus_raw": "0.291438530689695",
       "mean_reverted_bias_raw": "1.0424228650535301",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "12"
     },
-    "146": {
-      "pollster": "146",
+    "spry strategies": {
+      "pollster": "Spry Strategies",
       "predictive_plus_minus_raw": "0.29262589816586498",
       "mean_reverted_bias_raw": "-0.35234885537859501",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "5"
     },
-    "147": {
-      "pollster": "147",
+    "roi rocket": {
+      "pollster": "ROI Rocket",
       "predictive_plus_minus_raw": "0.29373346381687399",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "148": {
-      "pollster": "148",
+    "cardinal point analytics cardinalgps": {
+      "pollster": "Cardinal Point Analytics (CardinalGPS)",
       "predictive_plus_minus_raw": "0.29373346381687399",
       "mean_reverted_bias_raw": "-0.27565821891168302",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "149": {
-      "pollster": "149",
+    "optimus analytics": {
+      "pollster": "Optimus Analytics",
       "predictive_plus_minus_raw": "0.294794185535528",
       "mean_reverted_bias_raw": "-0.47570955371111501",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "17"
     },
-    "150": {
-      "pollster": "150",
+    "state navigate": {
+      "pollster": "State Navigate",
       "predictive_plus_minus_raw": "0.30655481258646899",
       "mean_reverted_bias_raw": "-0.251867662753468",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "151": {
-      "pollster": "151",
+    "university of south alabama": {
+      "pollster": "University of South Alabama",
       "predictive_plus_minus_raw": "0.31100270031972699",
       "mean_reverted_bias_raw": "-0.329663436826301",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "9"
     },
-    "152": {
-      "pollster": "152",
+    "lucid": {
+      "pollster": "Lucid",
       "predictive_plus_minus_raw": "0.31155269121891399",
       "mean_reverted_bias_raw": "1.6663859286312399",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "25"
     },
-    "153": {
-      "pollster": "153",
+    "frederick polls": {
+      "pollster": "Frederick Polls",
       "predictive_plus_minus_raw": "0.32664782172868201",
       "mean_reverted_bias_raw": "0.55041815880714495",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "8"
     },
-    "154": {
-      "pollster": "154",
+    "axis research": {
+      "pollster": "Axis Research",
       "predictive_plus_minus_raw": "0.32742312296786602",
       "mean_reverted_bias_raw": "-9.5000000000000306E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "155": {
-      "pollster": "155",
+    "fabrizio lee associates gbao": {
+      "pollster": "Fabrizio, Lee & Associates/GBAO",
       "predictive_plus_minus_raw": "0.32742312296786602",
       "mean_reverted_bias_raw": "-0.109999999999999",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "156": {
-      "pollster": "156",
+    "edgewater research my people vote": {
+      "pollster": "Edgewater Research/My People Vote",
       "predictive_plus_minus_raw": "0.33337332271620201",
       "mean_reverted_bias_raw": "-4.51732474062203E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "157": {
-      "pollster": "157",
+    "kiley company": {
+      "pollster": "Kiley & Company",
       "predictive_plus_minus_raw": "0.33534880998852701",
       "mean_reverted_bias_raw": "0.309301966185829",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "5"
     },
-    "158": {
-      "pollster": "158",
+    "university of washington": {
+      "pollster": "University of Washington",
       "predictive_plus_minus_raw": "0.336714675503899",
       "mean_reverted_bias_raw": "4.2270125170571902E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "9"
     },
-    "159": {
-      "pollster": "159",
+    "maine people s resource center": {
+      "pollster": "Maine People's Resource Center",
       "predictive_plus_minus_raw": "0.344109248896588",
       "mean_reverted_bias_raw": "0.10337142202067599",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "14"
     },
-    "160": {
-      "pollster": "160",
+    "rt strategies": {
+      "pollster": "RT Strategies",
       "predictive_plus_minus_raw": "0.34623189832142298",
       "mean_reverted_bias_raw": "0.83579362797350798",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "45"
     },
-    "161": {
-      "pollster": "161",
+    "david binder research": {
+      "pollster": "David Binder Research",
       "predictive_plus_minus_raw": "0.351278931192335",
       "mean_reverted_bias_raw": "7.3416464690082894E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "162": {
-      "pollster": "162",
+    "louisville courier journal": {
+      "pollster": "Louisville Courier-Journal",
       "predictive_plus_minus_raw": "0.35578367706422898",
       "mean_reverted_bias_raw": "-0.17246857824574399",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "10"
     },
-    "163": {
-      "pollster": "163",
+    "ogden fry": {
+      "pollster": "Ogden & Fry",
       "predictive_plus_minus_raw": "0.35602531620915501",
       "mean_reverted_bias_raw": "-1.0009671252781301E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "164": {
-      "pollster": "164",
+    "riley research associates": {
+      "pollster": "Riley Research Associates",
       "predictive_plus_minus_raw": "0.35881809225415201",
       "mean_reverted_bias_raw": "-5.5728586694266898E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "7"
     },
-    "165": {
-      "pollster": "165",
+    "market research institute inc": {
+      "pollster": "Market Research Institute Inc.",
       "predictive_plus_minus_raw": "0.35951557268870099",
       "mean_reverted_bias_raw": "7.6907491903357494E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "11"
     },
-    "166": {
-      "pollster": "166",
+    "bsp research shaw company research": {
+      "pollster": "BSP Research/Shaw & Company Research",
       "predictive_plus_minus_raw": "0.36567841311457",
       "mean_reverted_bias_raw": "-6.7947723747833394E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "167": {
-      "pollster": "167",
+    "schoen cooperman research": {
+      "pollster": "Schoen Cooperman Research",
       "predictive_plus_minus_raw": "0.375608743897616",
       "mean_reverted_bias_raw": "-1.8584503759421198E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "168": {
-      "pollster": "168",
+    "gravis marketing kaplan strategies": {
+      "pollster": "Gravis Marketing/Kaplan Strategies",
       "predictive_plus_minus_raw": "0.37937242891511502",
       "mean_reverted_bias_raw": "1.30175577898338",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B-",
+      "history_count_raw": "158"
     },
-    "169": {
-      "pollster": "169",
+    "iowa state university": {
+      "pollster": "Iowa State University",
       "predictive_plus_minus_raw": "0.38973242790089502",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "170": {
-      "pollster": "170",
+    "dfm research": {
+      "pollster": "DFM Research",
       "predictive_plus_minus_raw": "0.38975694191826199",
       "mean_reverted_bias_raw": "1.22012191889739",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "10"
     },
-    "171": {
-      "pollster": "171",
+    "tufts university": {
+      "pollster": "Tufts University",
       "predictive_plus_minus_raw": "0.39343287149101003",
       "mean_reverted_bias_raw": "0.37294374805862601",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "172": {
-      "pollster": "172",
+    "mckeon associates": {
+      "pollster": "McKeon & Associates",
       "predictive_plus_minus_raw": "0.39391066492830901",
       "mean_reverted_bias_raw": "0.14734518202963101",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "173": {
-      "pollster": "173",
+    "financial dynamics": {
+      "pollster": "Financial Dynamics",
       "predictive_plus_minus_raw": "0.39403604533985898",
       "mean_reverted_bias_raw": "-0.33822680452026099",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "15"
     },
-    "174": {
-      "pollster": "174",
+    "latino decisions": {
+      "pollster": "Latino Decisions",
       "predictive_plus_minus_raw": "0.399620579625318",
       "mean_reverted_bias_raw": "0.174364103638946",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "175": {
-      "pollster": "175",
+    "alabama state university": {
+      "pollster": "Alabama State University",
       "predictive_plus_minus_raw": "0.399950808284252",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "176": {
-      "pollster": "176",
+    "richard day research": {
+      "pollster": "Richard Day Research",
       "predictive_plus_minus_raw": "0.40033942246988102",
       "mean_reverted_bias_raw": "-0.347073784110771",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "11"
     },
-    "177": {
-      "pollster": "177",
+    "tulchin research": {
+      "pollster": "Tulchin Research",
       "predictive_plus_minus_raw": "0.40058911102100198",
       "mean_reverted_bias_raw": "-6.4198312659368706E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "178": {
-      "pollster": "178",
+    "keating research onsight public affairs melanson": {
+      "pollster": "Keating Research/OnSight Public Affairs/Melanson",
       "predictive_plus_minus_raw": "0.41563560946092598",
       "mean_reverted_bias_raw": "-8.6877129202009407E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "179": {
-      "pollster": "179",
+    "bk strategies": {
+      "pollster": "BK Strategies",
       "predictive_plus_minus_raw": "0.42690483856859801",
       "mean_reverted_bias_raw": "0.31250996718304602",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "180": {
-      "pollster": "180",
+    "university of new orleans": {
+      "pollster": "University of New Orleans",
       "predictive_plus_minus_raw": "0.42721338929246999",
       "mean_reverted_bias_raw": "0.267659541328303",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "13"
     },
-    "181": {
-      "pollster": "181",
+    "orion strategies": {
+      "pollster": "Orion Strategies",
       "predictive_plus_minus_raw": "0.427694513674029",
       "mean_reverted_bias_raw": "8.0776335590745096E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "182": {
-      "pollster": "182",
+    "cherry communications": {
+      "pollster": "Cherry Communications",
       "predictive_plus_minus_raw": "0.428321295479691",
       "mean_reverted_bias_raw": "0.356391518050165",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "8"
     },
-    "183": {
-      "pollster": "183",
+    "zogby analytics": {
+      "pollster": "Zogby Analytics",
       "predictive_plus_minus_raw": "0.43186108182918298",
       "mean_reverted_bias_raw": "-0.59111750471726199",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B-",
+      "history_count_raw": "495"
     },
-    "184": {
-      "pollster": "184",
+    "winthrop university": {
+      "pollster": "Winthrop University",
       "predictive_plus_minus_raw": "0.431959911069564",
       "mean_reverted_bias_raw": "3.0961688225126E-3",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "185": {
-      "pollster": "185",
+    "john zogby strategies": {
+      "pollster": "John Zogby Strategies",
       "predictive_plus_minus_raw": "0.43276013475839598",
       "mean_reverted_bias_raw": "0.38675935709987103",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "186": {
-      "pollster": "186",
+    "gs strategy group": {
+      "pollster": "GS Strategy Group",
       "predictive_plus_minus_raw": "0.434796404209082",
       "mean_reverted_bias_raw": "-0.33487500253565",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "187": {
-      "pollster": "187",
+    "dccc": {
+      "pollster": "DCCC",
       "predictive_plus_minus_raw": "0.43525375387399401",
       "mean_reverted_bias_raw": "1.59699020520754",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "10"
     },
-    "188": {
-      "pollster": "188",
+    "jmc analytics": {
+      "pollster": "JMC Analytics",
       "predictive_plus_minus_raw": "0.43604316211338501",
       "mean_reverted_bias_raw": "-0.64922232985844897",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "13"
     },
-    "189": {
-      "pollster": "189",
+    "opinionworks": {
+      "pollster": "OpinionWorks",
       "predictive_plus_minus_raw": "0.43616919048615799",
       "mean_reverted_bias_raw": "-0.481649076078843",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "7"
     },
-    "190": {
-      "pollster": "190",
+    "ivr polls": {
+      "pollster": "IVR Polls",
       "predictive_plus_minus_raw": "0.43867593141545502",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "191": {
-      "pollster": "191",
+    "quantus insights": {
+      "pollster": "Quantus Insights",
       "predictive_plus_minus_raw": "0.44265383170297601",
       "mean_reverted_bias_raw": "-1.0482911907857799",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "9"
     },
-    "192": {
-      "pollster": "192",
+    "onpoint": {
+      "pollster": "OnPoint",
       "predictive_plus_minus_raw": "0.444717145108803",
       "mean_reverted_bias_raw": "1.94582271901272E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "6"
     },
-    "193": {
-      "pollster": "193",
+    "focaldata": {
+      "pollster": "Focaldata",
       "predictive_plus_minus_raw": "0.44610851624393999",
       "mean_reverted_bias_raw": "1.3037037037037",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "9"
     },
-    "194": {
-      "pollster": "194",
+    "msr group": {
+      "pollster": "MSR Group",
       "predictive_plus_minus_raw": "0.44618123283408101",
       "mean_reverted_bias_raw": "8.0244336334899996E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "6"
     },
-    "195": {
-      "pollster": "195",
+    "marshall marketing": {
+      "pollster": "Marshall Marketing",
       "predictive_plus_minus_raw": "0.448692805347433",
       "mean_reverted_bias_raw": "-0.16161637339231999",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "196": {
-      "pollster": "196",
+    "google consumer surveys": {
+      "pollster": "Google Consumer Surveys",
       "predictive_plus_minus_raw": "0.44930540163739602",
       "mean_reverted_bias_raw": "-7.5598455333856104E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "24"
     },
-    "197": {
-      "pollster": "197",
+    "southern media opinion research": {
+      "pollster": "Southern Media & Opinion Research",
       "predictive_plus_minus_raw": "0.45123002887462699",
       "mean_reverted_bias_raw": "7.2838873890486697E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "7"
     },
-    "198": {
-      "pollster": "198",
+    "wiese research associates": {
+      "pollster": "Wiese Research Associates",
       "predictive_plus_minus_raw": "0.45285395445522297",
       "mean_reverted_bias_raw": "0.74292370827013599",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "7"
     },
-    "199": {
-      "pollster": "199",
+    "high point university": {
+      "pollster": "High Point University",
       "predictive_plus_minus_raw": "0.45382972838355201",
       "mean_reverted_bias_raw": "2.6956678757493E-3",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "5"
     },
-    "200": {
-      "pollster": "200",
+    "master image": {
+      "pollster": "Master Image",
       "predictive_plus_minus_raw": "0.45611620217952997",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "201": {
-      "pollster": "201",
+    "douglas fulmer associates": {
+      "pollster": "Douglas Fulmer & Associates",
       "predictive_plus_minus_raw": "0.45611620217952997",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "202": {
-      "pollster": "202",
+    "meeting street insights": {
+      "pollster": "Meeting Street Insights",
       "predictive_plus_minus_raw": "0.45794435071942102",
       "mean_reverted_bias_raw": "0.54576770446249401",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "5"
     },
-    "203": {
-      "pollster": "203",
+    "aytm": {
+      "pollster": "AYTM",
       "predictive_plus_minus_raw": "0.458798161124649",
       "mean_reverted_bias_raw": "0.51670382288189198",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "204": {
-      "pollster": "204",
+    "global strategy group": {
+      "pollster": "Global Strategy Group",
       "predictive_plus_minus_raw": "0.45968949383119001",
       "mean_reverted_bias_raw": "1.6109997575242301",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "26"
     },
-    "205": {
-      "pollster": "205",
+    "missouri state university": {
+      "pollster": "Missouri State University",
       "predictive_plus_minus_raw": "0.461173334859105",
       "mean_reverted_bias_raw": "0.23407688026308901",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "206": {
-      "pollster": "206",
+    "dan jones associates": {
+      "pollster": "Dan Jones & Associates",
       "predictive_plus_minus_raw": "0.46217034017296099",
       "mean_reverted_bias_raw": "0.75607160017048702",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "40"
     },
-    "207": {
-      "pollster": "207",
+    "the washington post george mason university schar school of policy and government": {
+      "pollster": "The Washington Post/George Mason University Schar School of Policy and Government",
       "predictive_plus_minus_raw": "0.46284027445391501",
       "mean_reverted_bias_raw": "-0.18940248027057399",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "208": {
-      "pollster": "208",
+    "northern arizona university": {
+      "pollster": "Northern Arizona University",
       "predictive_plus_minus_raw": "0.46711536776683399",
       "mean_reverted_bias_raw": "-0.18271221032847601",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "209": {
-      "pollster": "209",
+    "harris insights analytics": {
+      "pollster": "Harris Insights & Analytics",
       "predictive_plus_minus_raw": "0.46731683970826998",
       "mean_reverted_bias_raw": "-1.0490151247423001",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B-",
+      "history_count_raw": "193"
     },
-    "210": {
-      "pollster": "210",
+    "mwr strategies": {
+      "pollster": "MWR Strategies",
       "predictive_plus_minus_raw": "0.46929538189285402",
       "mean_reverted_bias_raw": "-2.61559477875302E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "211": {
-      "pollster": "211",
+    "psb research": {
+      "pollster": "PSB Research",
       "predictive_plus_minus_raw": "0.470789389817243",
       "mean_reverted_bias_raw": "1.8895054136585701",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "19"
     },
-    "212": {
-      "pollster": "212",
+    "potomac incorporated": {
+      "pollster": "Potomac Incorporated",
       "predictive_plus_minus_raw": "0.47252040380562499",
       "mean_reverted_bias_raw": "-0.229233950938938",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "8"
     },
-    "213": {
-      "pollster": "213",
+    "torchlight strategies": {
+      "pollster": "Torchlight Strategies",
       "predictive_plus_minus_raw": "0.47444272317364899",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "214": {
-      "pollster": "214",
+    "gotham polling analytics": {
+      "pollster": "Gotham Polling & Analytics",
       "predictive_plus_minus_raw": "0.47444272317364899",
       "mean_reverted_bias_raw": "-0.168421052631579",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "215": {
-      "pollster": "215",
+    "m3 strategies": {
+      "pollster": "M3 Strategies",
       "predictive_plus_minus_raw": "0.47444272317364899",
       "mean_reverted_bias_raw": "-0.163157894736842",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "216": {
-      "pollster": "216",
+    "basswood research": {
+      "pollster": "Basswood Research",
       "predictive_plus_minus_raw": "0.47525466895652002",
       "mean_reverted_bias_raw": "-0.158703739767519",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "217": {
-      "pollster": "217",
+    "university of wisconsin madison": {
+      "pollster": "University of Wisconsin (Madison)",
       "predictive_plus_minus_raw": "0.477912321807969",
       "mean_reverted_bias_raw": "0.534428464552959",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "8"
     },
-    "218": {
-      "pollster": "218",
+    "apc research": {
+      "pollster": "APC Research",
       "predictive_plus_minus_raw": "0.47940881171840899",
       "mean_reverted_bias_raw": "0.12910981879802699",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "219": {
-      "pollster": "219",
+    "voter consumer research": {
+      "pollster": "Voter/Consumer Research",
       "predictive_plus_minus_raw": "0.48307226916320001",
       "mean_reverted_bias_raw": "-7.2926661509642707E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "8"
     },
-    "220": {
-      "pollster": "220",
+    "cj n": {
+      "pollster": "CJ&N",
       "predictive_plus_minus_raw": "0.484934306731377",
       "mean_reverted_bias_raw": "7.0285751535090701E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "221": {
-      "pollster": "221",
+    "stetson university": {
+      "pollster": "Stetson University",
       "predictive_plus_minus_raw": "0.48710354281696799",
       "mean_reverted_bias_raw": "1.3666215877915999",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "222": {
-      "pollster": "222",
+    "el nuevo d a the research office": {
+      "pollster": "El Nuevo D√É¬≠a/The Research Office",
       "predictive_plus_minus_raw": "0.487678625127339",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "223": {
-      "pollster": "223",
+    "moore information group": {
+      "pollster": "Moore Information Group",
       "predictive_plus_minus_raw": "0.49196383308971298",
       "mean_reverted_bias_raw": "-1.55584656365457",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "18"
     },
-    "224": {
-      "pollster": "224",
+    "fabrizio lee associates impact research": {
+      "pollster": "Fabrizio Lee & Associates/Impact Research",
       "predictive_plus_minus_raw": "0.495500187552259",
       "mean_reverted_bias_raw": "3.11759935117603E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "225": {
-      "pollster": "225",
+    "ethridge associates llc": {
+      "pollster": "Ethridge & Associates LLC",
       "predictive_plus_minus_raw": "0.49559163689996499",
       "mean_reverted_bias_raw": "-4.2465788897253699E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "6"
     },
-    "226": {
-      "pollster": "226",
+    "cws research": {
+      "pollster": "CWS Research",
       "predictive_plus_minus_raw": "0.496190310838176",
       "mean_reverted_bias_raw": "-4.5847049282001003E-3",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "227": {
-      "pollster": "227",
+    "mfour mobile research": {
+      "pollster": "MFour Mobile Research",
       "predictive_plus_minus_raw": "0.49985614874547601",
       "mean_reverted_bias_raw": "-0.12577537930823601",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "228": {
-      "pollster": "228",
+    "the tyson group": {
+      "pollster": "The Tyson Group",
       "predictive_plus_minus_raw": "0.500142420204301",
       "mean_reverted_bias_raw": "8.5312789668279598E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "14"
     },
-    "229": {
-      "pollster": "229",
+    "big ten": {
+      "pollster": "Big Ten",
       "predictive_plus_minus_raw": "0.50155218356813402",
       "mean_reverted_bias_raw": "0.62755819545260505",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "10"
     },
-    "230": {
-      "pollster": "230",
+    "montana state university billings": {
+      "pollster": "Montana State University Billings",
       "predictive_plus_minus_raw": "0.50381781688193095",
       "mean_reverted_bias_raw": "1.6173281982271901",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "11"
     },
-    "231": {
-      "pollster": "231",
+    "slingshot strategies": {
+      "pollster": "Slingshot Strategies",
       "predictive_plus_minus_raw": "0.506027873799755",
       "mean_reverted_bias_raw": "0.35101334004611601",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "232": {
-      "pollster": "232",
+    "market decisions research": {
+      "pollster": "Market Decisions Research",
       "predictive_plus_minus_raw": "0.50616067156818201",
       "mean_reverted_bias_raw": "-5.2717219845912197E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "233": {
-      "pollster": "233",
+    "big data poll": {
+      "pollster": "Big Data Poll",
       "predictive_plus_minus_raw": "0.50791835712503997",
       "mean_reverted_bias_raw": "-0.34282638504678498",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "F",
+      "history_count_raw": "6"
     },
-    "234": {
-      "pollster": "234",
+    "university of massachusetts amherst": {
+      "pollster": "University of Massachusetts (Amherst)",
       "predictive_plus_minus_raw": "0.51157389892251304",
       "mean_reverted_bias_raw": "-0.116780573815965",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "11"
     },
-    "235": {
-      "pollster": "235",
+    "park street strategies": {
+      "pollster": "Park Street Strategies",
       "predictive_plus_minus_raw": "0.51395754075863698",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "236": {
-      "pollster": "236",
+    "data targeting": {
+      "pollster": "Data Targeting",
       "predictive_plus_minus_raw": "0.51395754075863698",
       "mean_reverted_bias_raw": "-0.159601010195832",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "237": {
-      "pollster": "237",
+    "newsnation": {
+      "pollster": "NewsNation",
       "predictive_plus_minus_raw": "0.51413750339221798",
       "mean_reverted_bias_raw": "6.6478221458900005E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "238": {
-      "pollster": "238",
+    "american viewpoint": {
+      "pollster": "American Viewpoint",
       "predictive_plus_minus_raw": "0.51423017764836698",
       "mean_reverted_bias_raw": "-0.535933773446165",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "9"
     },
-    "239": {
-      "pollster": "239",
+    "blumenthal research daily": {
+      "pollster": "Blumenthal Research Daily",
       "predictive_plus_minus_raw": "0.51436460405699502",
       "mean_reverted_bias_raw": "-0.120384426355428",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "F",
+      "history_count_raw": "2"
     },
-    "240": {
-      "pollster": "240",
+    "magellan strategies": {
+      "pollster": "Magellan Strategies",
       "predictive_plus_minus_raw": "0.51469957982597903",
       "mean_reverted_bias_raw": "-0.38347572182135797",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "18"
     },
-    "241": {
-      "pollster": "241",
+    "braun research": {
+      "pollster": "Braun Research",
       "predictive_plus_minus_raw": "0.51995459782474496",
       "mean_reverted_bias_raw": "0.90929836732326397",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "6"
     },
-    "242": {
-      "pollster": "242",
+    "virginia commonwealth university": {
+      "pollster": "Virginia Commonwealth University",
       "predictive_plus_minus_raw": "0.52240391385620499",
       "mean_reverted_bias_raw": "5.3070703893516001E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "8"
     },
-    "243": {
-      "pollster": "243",
+    "bendixen amandi international": {
+      "pollster": "Bendixen & Amandi International",
       "predictive_plus_minus_raw": "0.52339419937601706",
       "mean_reverted_bias_raw": "8.7511652926431593E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "244": {
-      "pollster": "244",
+    "strategic research associates": {
+      "pollster": "Strategic Research Associates",
       "predictive_plus_minus_raw": "0.52719110810297198",
       "mean_reverted_bias_raw": "0.29797874357187998",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "5"
     },
-    "245": {
-      "pollster": "245",
+    "global strategy group national research philadelphia inquirer": {
+      "pollster": "Global Strategy Group/National Research (Philadelphia Inquirer)",
       "predictive_plus_minus_raw": "0.52820812881199297",
       "mean_reverted_bias_raw": "-0.227868180008061",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "246": {
-      "pollster": "246",
+    "mason strategies": {
+      "pollster": "Mason Strategies",
       "predictive_plus_minus_raw": "0.53010785903467506",
       "mean_reverted_bias_raw": "6.5576880487874606E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "247": {
-      "pollster": "247",
+    "1892 polling": {
+      "pollster": "1892 Polling",
       "predictive_plus_minus_raw": "0.53010785903467506",
       "mean_reverted_bias_raw": "-2.0818057297737801E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "248": {
-      "pollster": "248",
+    "rethink priorities": {
+      "pollster": "Rethink Priorities",
       "predictive_plus_minus_raw": "0.53125577119303602",
       "mean_reverted_bias_raw": "0.29160673692384098",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "F",
+      "history_count_raw": "2"
     },
-    "249": {
-      "pollster": "249",
+    "pacific market research": {
+      "pollster": "Pacific Market Research",
       "predictive_plus_minus_raw": "0.53229620055833804",
       "mean_reverted_bias_raw": "-0.50165766525827404",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "250": {
-      "pollster": "250",
+    "targoz market research": {
+      "pollster": "Targoz Market Research",
       "predictive_plus_minus_raw": "0.53280974175041296",
       "mean_reverted_bias_raw": "1.3137914996879401",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B-",
+      "history_count_raw": "26"
     },
-    "251": {
-      "pollster": "251",
+    "scripps howard": {
+      "pollster": "Scripps Howard",
       "predictive_plus_minus_raw": "0.53639995231890403",
       "mean_reverted_bias_raw": "-0.106437278788822",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "5"
     },
-    "252": {
-      "pollster": "252",
+    "the polling company inc national research inc": {
+      "pollster": "The Polling Company Inc./National Research Inc.",
       "predictive_plus_minus_raw": "0.53740231936639704",
       "mean_reverted_bias_raw": "-8.6041826333478594E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "253": {
-      "pollster": "253",
+    "csp polling": {
+      "pollster": "CSP Polling",
       "predictive_plus_minus_raw": "0.53740231936639704",
       "mean_reverted_bias_raw": "8.2807171208160099E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "F",
+      "history_count_raw": "1"
     },
-    "254": {
-      "pollster": "254",
+    "forward strategies": {
+      "pollster": "Forward Strategies",
       "predictive_plus_minus_raw": "0.53788578810548704",
       "mean_reverted_bias_raw": "5.0466259486698202E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "255": {
-      "pollster": "255",
+    "national public affairs": {
+      "pollster": "National Public Affairs",
       "predictive_plus_minus_raw": "0.537925539547085",
       "mean_reverted_bias_raw": "1.05263157894738E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "256": {
-      "pollster": "256",
+    "personal marketing research": {
+      "pollster": "Personal Marketing Research",
       "predictive_plus_minus_raw": "0.53822637941919704",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "257": {
-      "pollster": "257",
+    "university of houston": {
+      "pollster": "University of Houston",
       "predictive_plus_minus_raw": "0.54421811674709897",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "258": {
-      "pollster": "258",
+    "targeted persuasion": {
+      "pollster": "Targeted Persuasion",
       "predictive_plus_minus_raw": "0.54421811674709897",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "259": {
-      "pollster": "259",
+    "singularis group": {
+      "pollster": "Singularis Group",
       "predictive_plus_minus_raw": "0.54421811674709897",
       "mean_reverted_bias_raw": "-2.4120449066309502E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "260": {
-      "pollster": "260",
+    "imge insights": {
+      "pollster": "IMGE Insights",
       "predictive_plus_minus_raw": "0.54545926324772998",
       "mean_reverted_bias_raw": "-0.40294283795594399",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "261": {
-      "pollster": "261",
+    "kg polling": {
+      "pollster": "KG Polling",
       "predictive_plus_minus_raw": "0.54713596087234895",
       "mean_reverted_bias_raw": "0.14553437615112999",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "F",
+      "history_count_raw": "2"
     },
-    "262": {
-      "pollster": "262",
+    "drake research strategy inc": {
+      "pollster": "Drake Research & Strategy, Inc.",
       "predictive_plus_minus_raw": "0.54813707255882105",
       "mean_reverted_bias_raw": "-6.4194871590987001E-3",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "8"
     },
-    "263": {
-      "pollster": "263",
+    "purple strategies": {
+      "pollster": "Purple Strategies",
       "predictive_plus_minus_raw": "0.55097482587132496",
       "mean_reverted_bias_raw": "-0.25680382191384699",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "264": {
-      "pollster": "264",
+    "university of wisconsin milwaukee": {
+      "pollster": "University of Wisconsin-Milwaukee",
       "predictive_plus_minus_raw": "0.55130360408873103",
       "mean_reverted_bias_raw": "-4.5145641083396602E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "265": {
-      "pollster": "265",
+    "jim meader keloland tv": {
+      "pollster": "Jim Meader (KELOLAND-TV)",
       "predictive_plus_minus_raw": "0.55300294034919495",
       "mean_reverted_bias_raw": "0.191386777457592",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "266": {
-      "pollster": "266",
+    "columbus dispatch": {
+      "pollster": "Columbus Dispatch",
       "predictive_plus_minus_raw": "0.55431029303181301",
       "mean_reverted_bias_raw": "0.79838530453763201",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "22"
     },
-    "267": {
-      "pollster": "267",
+    "washington college": {
+      "pollster": "Washington College",
       "predictive_plus_minus_raw": "0.55472947599516598",
       "mean_reverted_bias_raw": "0.230152187395639",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "268": {
-      "pollster": "268",
+    "richmond times dispatch": {
+      "pollster": "Richmond Times-Dispatch",
       "predictive_plus_minus_raw": "0.554973671913227",
       "mean_reverted_bias_raw": "0.122168062645845",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "269": {
-      "pollster": "269",
+    "behavior research center rocky mountain poll": {
+      "pollster": "Behavior Research Center (Rocky Mountain Poll)",
       "predictive_plus_minus_raw": "0.55588371317811502",
       "mean_reverted_bias_raw": "0.33539306338770902",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "7"
     },
-    "270": {
-      "pollster": "270",
+    "university of southern california": {
+      "pollster": "University of Southern California",
       "predictive_plus_minus_raw": "0.55591807915326197",
       "mean_reverted_bias_raw": "1.26708845436151",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "13"
     },
-    "271": {
-      "pollster": "271",
+    "mercyhurst university": {
+      "pollster": "Mercyhurst University",
       "predictive_plus_minus_raw": "0.55652970382191003",
       "mean_reverted_bias_raw": "-1.9376068498700501E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "272": {
-      "pollster": "272",
+    "odney": {
+      "pollster": "Odney",
       "predictive_plus_minus_raw": "0.55652970382191003",
       "mean_reverted_bias_raw": "5.4724301570654499E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "273": {
-      "pollster": "273",
+    "montgomery research": {
+      "pollster": "Montgomery Research",
       "predictive_plus_minus_raw": "0.556979214940588",
       "mean_reverted_bias_raw": "-0.24210526315789399",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "274": {
-      "pollster": "274",
+    "remington research group": {
+      "pollster": "Remington Research Group",
       "predictive_plus_minus_raw": "0.55731362471477397",
       "mean_reverted_bias_raw": "1.2821452625438801",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B-",
+      "history_count_raw": "55"
     },
-    "275": {
-      "pollster": "275",
+    "thirty ninth street strategies": {
+      "pollster": "Thirty-Ninth Street Strategies",
       "predictive_plus_minus_raw": "0.55746548419237096",
       "mean_reverted_bias_raw": "-7.0434427190680396E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "276": {
-      "pollster": "276",
+    "university of tennessee": {
+      "pollster": "University of Tennessee",
       "predictive_plus_minus_raw": "0.55906711957258504",
       "mean_reverted_bias_raw": "-6.9250117291501406E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "277": {
-      "pollster": "277",
+    "diamond state consulting group": {
+      "pollster": "Diamond State Consulting Group",
       "predictive_plus_minus_raw": "0.56003135848840102",
       "mean_reverted_bias_raw": "9.8975052601471006E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "278": {
-      "pollster": "278",
+    "greatblue research": {
+      "pollster": "GreatBlue Research",
       "predictive_plus_minus_raw": "0.56077116075369304",
       "mean_reverted_bias_raw": "-2.2767560992233898E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "279": {
-      "pollster": "279",
+    "market solutions group": {
+      "pollster": "Market Solutions Group",
       "predictive_plus_minus_raw": "0.56336469770896302",
       "mean_reverted_bias_raw": "-2.6500424611661001E-3",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "280": {
-      "pollster": "280",
+    "frank n magid associates inc": {
+      "pollster": "Frank N. Magid Associates Inc.",
       "predictive_plus_minus_raw": "0.56449912177101702",
       "mean_reverted_bias_raw": "0.33682125696682902",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "5"
     },
-    "281": {
-      "pollster": "281",
+    "reconnect research probolsky research": {
+      "pollster": "Reconnect Research/Probolsky Research",
       "predictive_plus_minus_raw": "0.564699015151368",
       "mean_reverted_bias_raw": "-0.12661871471693101",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "282": {
-      "pollster": "282",
+    "myers research strategic services": {
+      "pollster": "Myers Research & Strategic Services",
       "predictive_plus_minus_raw": "0.56604572449080204",
       "mean_reverted_bias_raw": "0.105730615839883",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "283": {
-      "pollster": "283",
+    "university of new hampshire": {
+      "pollster": "University of New Hampshire",
       "predictive_plus_minus_raw": "0.56651365247484098",
       "mean_reverted_bias_raw": "2.0454695899761299",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B-",
+      "history_count_raw": "150"
     },
-    "284": {
-      "pollster": "284",
+    "garin hart yang global strategy group": {
+      "pollster": "Garin-Hart-Yang/Global Strategy Group",
       "predictive_plus_minus_raw": "0.56725950304350603",
       "mean_reverted_bias_raw": "-1.9999609950312001E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "285": {
-      "pollster": "285",
+    "valley research": {
+      "pollster": "Valley Research",
       "predictive_plus_minus_raw": "0.56758603625743498",
       "mean_reverted_bias_raw": "0.31922555788057799",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "8"
     },
-    "286": {
-      "pollster": "286",
+    "quest research group": {
+      "pollster": "Quest Research Group",
       "predictive_plus_minus_raw": "0.56802810528483005",
       "mean_reverted_bias_raw": "-0.10076255826321701",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "5"
     },
-    "287": {
-      "pollster": "287",
+    "west chester university": {
+      "pollster": "West Chester University",
       "predictive_plus_minus_raw": "0.56876008294813696",
       "mean_reverted_bias_raw": "8.1735707070128394E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "7"
     },
-    "288": {
-      "pollster": "288",
+    "manhattanville college": {
+      "pollster": "Manhattanville College",
       "predictive_plus_minus_raw": "0.56945301254423497",
       "mean_reverted_bias_raw": "-0.129020374691282",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "289": {
-      "pollster": "289",
+    "the polling company inc": {
+      "pollster": "The Polling Company Inc.",
       "predictive_plus_minus_raw": "0.56975034060887397",
       "mean_reverted_bias_raw": "-0.84666629932164805",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "7"
     },
-    "290": {
-      "pollster": "290",
+    "dhm research": {
+      "pollster": "DHM Research",
       "predictive_plus_minus_raw": "0.57013569505389905",
       "mean_reverted_bias_raw": "-7.2788643370051906E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "14"
     },
-    "291": {
-      "pollster": "291",
+    "the citadel": {
+      "pollster": "The Citadel",
       "predictive_plus_minus_raw": "0.57192086348095905",
       "mean_reverted_bias_raw": "0.3",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "292": {
-      "pollster": "292",
+    "franklin pierce university": {
+      "pollster": "Franklin Pierce University",
       "predictive_plus_minus_raw": "0.57206452151491205",
       "mean_reverted_bias_raw": "0.58282263910318799",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "17"
     },
-    "293": {
-      "pollster": "293",
+    "seven letter insight": {
+      "pollster": "Seven Letter Insight",
       "predictive_plus_minus_raw": "0.57352571179096701",
       "mean_reverted_bias_raw": "0.11599303468345901",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "294": {
-      "pollster": "294",
+    "jmc analytics bold blue campaigns": {
+      "pollster": "JMC Analytics/Bold Blue Campaigns",
       "predictive_plus_minus_raw": "0.57404938449701903",
       "mean_reverted_bias_raw": "-0.84214033459374005",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "5"
     },
-    "295": {
-      "pollster": "295",
+    "baruch college survey research": {
+      "pollster": "Baruch College Survey Research",
       "predictive_plus_minus_raw": "0.57531207017847297",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "296": {
-      "pollster": "296",
+    "crantford research": {
+      "pollster": "Crantford Research",
       "predictive_plus_minus_raw": "0.576601334217127",
       "mean_reverted_bias_raw": "4.8898094815469202E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "297": {
-      "pollster": "297",
+    "rivercity polling": {
+      "pollster": "Rivercity Polling",
       "predictive_plus_minus_raw": "0.576601334217127",
       "mean_reverted_bias_raw": "-0.13151221468515301",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "298": {
-      "pollster": "298",
+    "lincoln institute": {
+      "pollster": "Lincoln Institute",
       "predictive_plus_minus_raw": "0.57852434814831799",
       "mean_reverted_bias_raw": "-7.8872243640218304E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "299": {
-      "pollster": "299",
+    "centre college": {
+      "pollster": "Centre College",
       "predictive_plus_minus_raw": "0.58124256687893705",
       "mean_reverted_bias_raw": "0.11577815551828601",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "300": {
-      "pollster": "300",
+    "victory research": {
+      "pollster": "Victory Research",
       "predictive_plus_minus_raw": "0.58161663318047996",
       "mean_reverted_bias_raw": "0.25682257891252003",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "11"
     },
-    "301": {
-      "pollster": "301",
+    "florida international university univision": {
+      "pollster": "Florida International University/Univision",
       "predictive_plus_minus_raw": "0.58472761491186998",
       "mean_reverted_bias_raw": "3.0777763693145801E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "302": {
-      "pollster": "302",
+    "penta": {
+      "pollster": "Penta",
       "predictive_plus_minus_raw": "0.58541544068651197",
       "mean_reverted_bias_raw": "-0.13067926956169701",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "303": {
-      "pollster": "303",
+    "becker institute": {
+      "pollster": "Becker Institute",
       "predictive_plus_minus_raw": "0.58955483833043698",
       "mean_reverted_bias_raw": "0.26876393244360702",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "5"
     },
-    "304": {
-      "pollster": "304",
+    "war room logistics": {
+      "pollster": "War Room Logistics",
       "predictive_plus_minus_raw": "0.59062287107521805",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "305": {
-      "pollster": "305",
+    "zimmerman associates marketing intelligence": {
+      "pollster": "Zimmerman & Associates/Marketing Intelligence",
       "predictive_plus_minus_raw": "0.59099586199367005",
       "mean_reverted_bias_raw": "0.14711763353686499",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "306": {
-      "pollster": "306",
+    "cromer group": {
+      "pollster": "Cromer Group",
       "predictive_plus_minus_raw": "0.59693947592616403",
       "mean_reverted_bias_raw": "-5.8254221443517197E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "307": {
-      "pollster": "307",
+    "canisius college": {
+      "pollster": "Canisius College",
       "predictive_plus_minus_raw": "0.59792678568625401",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "308": {
-      "pollster": "308",
+    "central surveys inc": {
+      "pollster": "Central Surveys Inc.",
       "predictive_plus_minus_raw": "0.59792678568625401",
       "mean_reverted_bias_raw": "2.1452988618106999E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "309": {
-      "pollster": "309",
+    "morningside college": {
+      "pollster": "Morningside College",
       "predictive_plus_minus_raw": "0.59907500717893403",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "310": {
-      "pollster": "310",
+    "ourprogress the progress campaign": {
+      "pollster": "OurProgress (The Progress Campaign)",
       "predictive_plus_minus_raw": "0.59977122094638302",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "F",
+      "history_count_raw": "1"
     },
-    "311": {
-      "pollster": "311",
+    "bigresearch": {
+      "pollster": "BIGresearch",
       "predictive_plus_minus_raw": "0.60068438568638904",
       "mean_reverted_bias_raw": "-2.2599914127595901E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "312": {
-      "pollster": "312",
+    "wood communications group": {
+      "pollster": "Wood Communications Group",
       "predictive_plus_minus_raw": "0.60069464600196099",
       "mean_reverted_bias_raw": "1.6562257921368499E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "313": {
-      "pollster": "313",
+    "escalent": {
+      "pollster": "Escalent",
       "predictive_plus_minus_raw": "0.60325341225329299",
       "mean_reverted_bias_raw": "-1.2465497829597501E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "314": {
-      "pollster": "314",
+    "cooper secrest": {
+      "pollster": "Cooper & Secrest",
       "predictive_plus_minus_raw": "0.60325341225329299",
       "mean_reverted_bias_raw": "-2.9382959169765601E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "315": {
-      "pollster": "315",
+    "analytical group": {
+      "pollster": "Analytical Group",
       "predictive_plus_minus_raw": "0.60598146508409401",
       "mean_reverted_bias_raw": "4.4853532368998403E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "316": {
-      "pollster": "316",
+    "minneapolis star tribune": {
+      "pollster": "Minneapolis Star Tribune",
       "predictive_plus_minus_raw": "0.60612544477607699",
       "mean_reverted_bias_raw": "0.61612132402004405",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "14"
     },
-    "317": {
-      "pollster": "317",
+    "rossman group": {
+      "pollster": "Rossman Group",
       "predictive_plus_minus_raw": "0.60752437792464997",
       "mean_reverted_bias_raw": "8.3008459344002097E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "318": {
-      "pollster": "318",
+    "dynamics marketing": {
+      "pollster": "Dynamics Marketing",
       "predictive_plus_minus_raw": "0.60787537076780496",
       "mean_reverted_bias_raw": "2.9115078371474298E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "319": {
-      "pollster": "319",
+    "vox populi communications": {
+      "pollster": "Vox Populi Communications",
       "predictive_plus_minus_raw": "0.60787537076780496",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "320": {
-      "pollster": "320",
+    "diversified research inc": {
+      "pollster": "Diversified Research Inc",
       "predictive_plus_minus_raw": "0.60787537076780496",
       "mean_reverted_bias_raw": "-4.81073645939262E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "321": {
-      "pollster": "321",
+    "qev analytics": {
+      "pollster": "QEV Analytics",
       "predictive_plus_minus_raw": "0.61104961859881302",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "322": {
-      "pollster": "322",
+    "wick communications": {
+      "pollster": "Wick Communications",
       "predictive_plus_minus_raw": "0.61182657942142504",
       "mean_reverted_bias_raw": "4.1948968622176598E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "323": {
-      "pollster": "323",
+    "lauer lalley victoria": {
+      "pollster": "Lauer, Lalley, Victoria",
       "predictive_plus_minus_raw": "0.61188414392089596",
       "mean_reverted_bias_raw": "-1.37761189578656E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "324": {
-      "pollster": "324",
+    "southeastern louisiana university": {
+      "pollster": "Southeastern Louisiana University",
       "predictive_plus_minus_raw": "0.612929484089757",
       "mean_reverted_bias_raw": "7.4011926368148101E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "8"
     },
-    "325": {
-      "pollster": "325",
+    "market trends pacific": {
+      "pollster": "Market Trends Pacific",
       "predictive_plus_minus_raw": "0.61364851542107701",
       "mean_reverted_bias_raw": "5.0641084932740103E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "326": {
-      "pollster": "326",
+    "callfire": {
+      "pollster": "CallFire",
       "predictive_plus_minus_raw": "0.61441540603856504",
       "mean_reverted_bias_raw": "-0.33595131300908398",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "327": {
-      "pollster": "327",
+    "highground inc": {
+      "pollster": "HighGround Inc.",
       "predictive_plus_minus_raw": "0.61530115498041205",
       "mean_reverted_bias_raw": "-9.4535591295929797E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "6"
     },
-    "328": {
-      "pollster": "328",
+    "triumph campaigns": {
+      "pollster": "Triumph Campaigns",
       "predictive_plus_minus_raw": "0.61658168145862202",
       "mean_reverted_bias_raw": "-0.118579158981445",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "329": {
-      "pollster": "329",
+    "neighborhood research and media": {
+      "pollster": "Neighborhood Research and Media",
       "predictive_plus_minus_raw": "0.61790161345947003",
       "mean_reverted_bias_raw": "-4.48637719271473E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "330": {
-      "pollster": "330",
+    "paradigm": {
+      "pollster": "Paradigm",
       "predictive_plus_minus_raw": "0.61908705856022495",
       "mean_reverted_bias_raw": "0.36499999999999999",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "331": {
-      "pollster": "331",
+    "20 20 insight": {
+      "pollster": "20/20 Insight",
       "predictive_plus_minus_raw": "0.62110814756427402",
       "mean_reverted_bias_raw": "0.40675347039072701",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "8"
     },
-    "332": {
-      "pollster": "332",
+    "victoria research consulting": {
+      "pollster": "Victoria Research & Consulting",
       "predictive_plus_minus_raw": "0.62220764983101495",
       "mean_reverted_bias_raw": "0.103539573809546",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "333": {
-      "pollster": "333",
+    "jorge ben tez": {
+      "pollster": "Jorge Ben√É¬≠tez",
       "predictive_plus_minus_raw": "0.62511138096235697",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "334": {
-      "pollster": "334",
+    "strategy research": {
+      "pollster": "Strategy Research",
       "predictive_plus_minus_raw": "0.62540181728845501",
       "mean_reverted_bias_raw": "-0.38602299872606699",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "335": {
-      "pollster": "335",
+    "iona university": {
+      "pollster": "Iona University",
       "predictive_plus_minus_raw": "0.62572746904082599",
       "mean_reverted_bias_raw": "8.5966005401389295E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "336": {
-      "pollster": "336",
+    "asa marketing group": {
+      "pollster": "ASA Marketing Group",
       "predictive_plus_minus_raw": "0.626237544682962",
       "mean_reverted_bias_raw": "8.2119182391115902E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "337": {
-      "pollster": "337",
+    "dartmouth college": {
+      "pollster": "Dartmouth College",
       "predictive_plus_minus_raw": "0.626858112660994",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "338": {
-      "pollster": "338",
+    "african american research collaborative": {
+      "pollster": "African American Research Collaborative",
       "predictive_plus_minus_raw": "0.62754543065634505",
       "mean_reverted_bias_raw": "0.12287009207576",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "339": {
-      "pollster": "339",
+    "new mexico state university": {
+      "pollster": "New Mexico State University",
       "predictive_plus_minus_raw": "0.62802713900501095",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "340": {
-      "pollster": "340",
+    "nreca market research": {
+      "pollster": "NRECA Market Research",
       "predictive_plus_minus_raw": "0.62831952277556402",
       "mean_reverted_bias_raw": "5.2349252039889202E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "341": {
-      "pollster": "341",
+    "targetsmart": {
+      "pollster": "TargetSmart",
       "predictive_plus_minus_raw": "0.62875211323539903",
       "mean_reverted_bias_raw": "0.454973564597701",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "342": {
-      "pollster": "342",
+    "probolsky research": {
+      "pollster": "Probolsky Research",
       "predictive_plus_minus_raw": "0.629075516658545",
       "mean_reverted_bias_raw": "-0.52650735892330502",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "343": {
-      "pollster": "343",
+    "clarus research group": {
+      "pollster": "Clarus Research Group",
       "predictive_plus_minus_raw": "0.63056036610205501",
       "mean_reverted_bias_raw": "0.23218954722371299",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "344": {
-      "pollster": "344",
+    "beacon research": {
+      "pollster": "Beacon Research",
       "predictive_plus_minus_raw": "0.63238747731089595",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "5"
     },
-    "345": {
-      "pollster": "345",
+    "old dominion university": {
+      "pollster": "Old Dominion University",
       "predictive_plus_minus_raw": "0.63523833145476505",
       "mean_reverted_bias_raw": "0.109048864912548",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "346": {
-      "pollster": "346",
+    "west virginia research center": {
+      "pollster": "West Virginia Research Center",
       "predictive_plus_minus_raw": "0.63556054089902103",
       "mean_reverted_bias_raw": "0.123178201326733",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "347": {
-      "pollster": "347",
+    "deltapoll": {
+      "pollster": "Deltapoll",
       "predictive_plus_minus_raw": "0.63600119075708905",
       "mean_reverted_bias_raw": "0.23684210526315699",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "348": {
-      "pollster": "348",
+    "rice university": {
+      "pollster": "Rice University",
       "predictive_plus_minus_raw": "0.63663136973678003",
       "mean_reverted_bias_raw": "0.13010743782325199",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "349": {
-      "pollster": "349",
+    "alloy analytics": {
+      "pollster": "Alloy Analytics",
       "predictive_plus_minus_raw": "0.63705259572373296",
       "mean_reverted_bias_raw": "-0.21410572014693899",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "350": {
-      "pollster": "350",
+    "illinois wesleyan university": {
+      "pollster": "Illinois Wesleyan University",
       "predictive_plus_minus_raw": "0.63770432716684",
       "mean_reverted_bias_raw": "-0.24921191719105601",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "351": {
-      "pollster": "351",
+    "multi quest international": {
+      "pollster": "Multi-Quest International",
       "predictive_plus_minus_raw": "0.63851919917819699",
       "mean_reverted_bias_raw": "-3.2871935725496001E-3",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "352": {
-      "pollster": "352",
+    "independent market research": {
+      "pollster": "Independent Market Research",
       "predictive_plus_minus_raw": "0.63922545972809097",
       "mean_reverted_bias_raw": "8.7851136025745305E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "353": {
-      "pollster": "353",
+    "dixie strategies": {
+      "pollster": "Dixie Strategies",
       "predictive_plus_minus_raw": "0.63951300681150702",
       "mean_reverted_bias_raw": "-0.897319273446745",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "11"
     },
-    "354": {
-      "pollster": "354",
+    "aspen media market research": {
+      "pollster": "Aspen Media & Market Research",
       "predictive_plus_minus_raw": "0.64270799188336802",
       "mean_reverted_bias_raw": "-3.8869657661030001E-3",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "355": {
-      "pollster": "355",
+    "marketing research institute": {
+      "pollster": "Marketing Research Institute",
       "predictive_plus_minus_raw": "0.64372315303517103",
       "mean_reverted_bias_raw": "-8.2361324945555398E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "356": {
-      "pollster": "356",
+    "the florida poll": {
+      "pollster": "The Florida Poll",
       "predictive_plus_minus_raw": "0.64385697287564103",
       "mean_reverted_bias_raw": "0.20606749538872099",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "5"
     },
-    "357": {
-      "pollster": "357",
+    "dynata": {
+      "pollster": "Dynata",
       "predictive_plus_minus_raw": "0.64492013146181704",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "358": {
-      "pollster": "358",
+    "merrill poll": {
+      "pollster": "Merrill Poll",
       "predictive_plus_minus_raw": "0.64499354639418205",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "359": {
-      "pollster": "359",
+    "smithjohnson opinion research": {
+      "pollster": "SmithJohnson Opinion Research",
       "predictive_plus_minus_raw": "0.64645201076789605",
       "mean_reverted_bias_raw": "-0.145681414814223",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "360": {
-      "pollster": "360",
+    "global strategy group gbao navigator research": {
+      "pollster": "Global Strategy Group/GBAO (Navigator Research)",
       "predictive_plus_minus_raw": "0.64697821563620805",
       "mean_reverted_bias_raw": "0.82390641362762795",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "361": {
-      "pollster": "361",
+    "harper polling clarity campaign labs": {
+      "pollster": "Harper Polling/Clarity Campaign Labs",
       "predictive_plus_minus_raw": "0.65095702808716704",
       "mean_reverted_bias_raw": "0.26010605254804298",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "362": {
-      "pollster": "362",
+    "tmr research": {
+      "pollster": "TMR Research",
       "predictive_plus_minus_raw": "0.65481807210075904",
       "mean_reverted_bias_raw": "0.13041049881295799",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "363": {
-      "pollster": "363",
+    "crosstarget": {
+      "pollster": "CrossTarget",
       "predictive_plus_minus_raw": "0.655094232883626",
       "mean_reverted_bias_raw": "-0.29893041059936998",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "364": {
-      "pollster": "364",
+    "hellenthal associates": {
+      "pollster": "Hellenthal & Associates",
       "predictive_plus_minus_raw": "0.65650215384299004",
       "mean_reverted_bias_raw": "0.28952396127521501",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "5"
     },
-    "365": {
-      "pollster": "365",
+    "howey politics depauw university": {
+      "pollster": "Howey Politics/DePauw University",
       "predictive_plus_minus_raw": "0.66008115267609102",
       "mean_reverted_bias_raw": "6.5407413515570501E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "7"
     },
-    "366": {
-      "pollster": "366",
+    "a a research": {
+      "pollster": "A&A Research",
       "predictive_plus_minus_raw": "0.660707153950993",
       "mean_reverted_bias_raw": "-0.111744284115321",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "367": {
-      "pollster": "367",
+    "decision forecasting": {
+      "pollster": "Decision Forecasting",
       "predictive_plus_minus_raw": "0.661630087047821",
       "mean_reverted_bias_raw": "-4.0103541973505498E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "368": {
-      "pollster": "368",
+    "premise": {
+      "pollster": "Premise",
       "predictive_plus_minus_raw": "0.66164074210775103",
       "mean_reverted_bias_raw": "0.21456419063975901",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "369": {
-      "pollster": "369",
+    "feldman group": {
+      "pollster": "Feldman Group",
       "predictive_plus_minus_raw": "0.66265542205894501",
       "mean_reverted_bias_raw": "0.15526280796108",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "370": {
-      "pollster": "370",
+    "data for progress": {
+      "pollster": "Data for Progress",
       "predictive_plus_minus_raw": "0.66531481770566103",
       "mean_reverted_bias_raw": "1.5928681964212501",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C+",
+      "history_count_raw": "114"
     },
-    "371": {
-      "pollster": "371",
+    "american pulse research polling": {
+      "pollster": "American Pulse Research & Polling",
       "predictive_plus_minus_raw": "0.66966571633991401",
       "mean_reverted_bias_raw": "0.40500000000000003",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "372": {
-      "pollster": "372",
+    "california state university bakersfield": {
+      "pollster": "California State University, Bakersfield",
       "predictive_plus_minus_raw": "0.66991207450932",
       "mean_reverted_bias_raw": "-9.5057838656535498E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "373": {
-      "pollster": "373",
+    "southern opinion research": {
+      "pollster": "Southern Opinion Research",
       "predictive_plus_minus_raw": "0.67080096937575695",
       "mean_reverted_bias_raw": "1.4572855740368601E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "374": {
-      "pollster": "374",
+    "sky research": {
+      "pollster": "Sky Research",
       "predictive_plus_minus_raw": "0.67102506539527695",
       "mean_reverted_bias_raw": "-0.28335578897792202",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "375": {
-      "pollster": "375",
+    "university of nevada las vegas": {
+      "pollster": "University of Nevada Las Vegas",
       "predictive_plus_minus_raw": "0.67111862957271895",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "376": {
-      "pollster": "376",
+    "st pete polls": {
+      "pollster": "St. Pete Polls",
       "predictive_plus_minus_raw": "0.67289362968896305",
       "mean_reverted_bias_raw": "0.68741527787466705",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C+",
+      "history_count_raw": "31"
     },
-    "377": {
-      "pollster": "377",
+    "detroit free press": {
+      "pollster": "Detroit Free Press",
       "predictive_plus_minus_raw": "0.673039268281442",
       "mean_reverted_bias_raw": "9.9946580812309005E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "378": {
-      "pollster": "378",
+    "university of illinois at chicago": {
+      "pollster": "University of Illinois at Chicago",
       "predictive_plus_minus_raw": "0.67377165307223097",
       "mean_reverted_bias_raw": "-0.117639706737167",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "379": {
-      "pollster": "379",
+    "southern research group": {
+      "pollster": "Southern Research Group",
       "predictive_plus_minus_raw": "0.67512437846376705",
       "mean_reverted_bias_raw": "9.3030334345341997E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "380": {
-      "pollster": "380",
+    "great lakes strategies group": {
+      "pollster": "Great Lakes Strategies Group",
       "predictive_plus_minus_raw": "0.68026536186198705",
       "mean_reverted_bias_raw": "-0.14846881208083901",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "381": {
-      "pollster": "381",
+    "swayable": {
+      "pollster": "Swayable",
       "predictive_plus_minus_raw": "0.68073312677436704",
       "mean_reverted_bias_raw": "3.7963340943908999",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C+",
+      "history_count_raw": "89"
     },
-    "382": {
-      "pollster": "382",
+    "university of north carolina": {
+      "pollster": "University of North Carolina",
       "predictive_plus_minus_raw": "0.680887690273555",
       "mean_reverted_bias_raw": "0.155437821724009",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "383": {
-      "pollster": "383",
+    "tulsa surveys": {
+      "pollster": "Tulsa Surveys",
       "predictive_plus_minus_raw": "0.68154949507796103",
       "mean_reverted_bias_raw": "-9.9355039756727603E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "384": {
-      "pollster": "384",
+    "public strategies inc": {
+      "pollster": "Public Strategies Inc.",
       "predictive_plus_minus_raw": "0.68184712915211998",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "6"
     },
-    "385": {
-      "pollster": "385",
+    "abacus associates": {
+      "pollster": "Abacus Associates",
       "predictive_plus_minus_raw": "0.68191988082437704",
       "mean_reverted_bias_raw": "0.12542021520253699",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "386": {
-      "pollster": "386",
+    "marketaide services inc": {
+      "pollster": "MarketAide Services Inc.",
       "predictive_plus_minus_raw": "0.68251735897858701",
       "mean_reverted_bias_raw": "0.12487757647150401",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "387": {
-      "pollster": "387",
+    "kimball political consulting": {
+      "pollster": "Kimball Political Consulting",
       "predictive_plus_minus_raw": "0.68376263111543101",
       "mean_reverted_bias_raw": "-0.77223137404370901",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "6"
     },
-    "388": {
-      "pollster": "388",
+    "liberty opinion research": {
+      "pollster": "Liberty Opinion Research",
       "predictive_plus_minus_raw": "0.68385645445358301",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "389": {
-      "pollster": "389",
+    "marbleport": {
+      "pollster": "MarblePort",
       "predictive_plus_minus_raw": "0.68402865950107095",
       "mean_reverted_bias_raw": "-0.30365112817098899",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "390": {
-      "pollster": "390",
+    "opinion consultants": {
+      "pollster": "Opinion Consultants",
       "predictive_plus_minus_raw": "0.686527237574171",
       "mean_reverted_bias_raw": "-0.19324328563458101",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "391": {
-      "pollster": "391",
+    "forman center": {
+      "pollster": "Forman Center",
       "predictive_plus_minus_raw": "0.68805783792498898",
       "mean_reverted_bias_raw": "0.18224349707131501",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "392": {
-      "pollster": "392",
+    "socialsphere": {
+      "pollster": "SocialSphere",
       "predictive_plus_minus_raw": "0.68837095945666005",
       "mean_reverted_bias_raw": "-0.31333371044264202",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "393": {
-      "pollster": "393",
+    "teleresearch corporation": {
+      "pollster": "TeleResearch Corporation",
       "predictive_plus_minus_raw": "0.68937362040115402",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "394": {
-      "pollster": "394",
+    "hill research consultants": {
+      "pollster": "Hill Research Consultants",
       "predictive_plus_minus_raw": "0.68962416016878403",
       "mean_reverted_bias_raw": "-0.13787392647531199",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "6"
     },
-    "395": {
-      "pollster": "395",
+    "arthur j finkelstein associates": {
+      "pollster": "Arthur J. Finkelstein & Associates",
       "predictive_plus_minus_raw": "0.68991044005315705",
       "mean_reverted_bias_raw": "-0.152145852973748",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "396": {
-      "pollster": "396",
+    "bannon communications research": {
+      "pollster": "Bannon Communications Research",
       "predictive_plus_minus_raw": "0.69038449386298095",
       "mean_reverted_bias_raw": "0.24755514826009001",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "397": {
-      "pollster": "397",
+    "hays research group": {
+      "pollster": "Hays Research Group",
       "predictive_plus_minus_raw": "0.69110492960838599",
       "mean_reverted_bias_raw": "0.73763042161333303",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "9"
     },
-    "398": {
-      "pollster": "398",
+    "normington petts associates": {
+      "pollster": "Normington, Petts & Associates",
       "predictive_plus_minus_raw": "0.69224456915742905",
       "mean_reverted_bias_raw": "0.69038501186983903",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "12"
     },
-    "399": {
-      "pollster": "399",
+    "sms research marketing services": {
+      "pollster": "SMS Research & Marketing Services",
       "predictive_plus_minus_raw": "0.69342213228579896",
       "mean_reverted_bias_raw": "-0.12524948444703199",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "400": {
-      "pollster": "400",
+    "patinkin research strategies": {
+      "pollster": "Patinkin Research Strategies",
       "predictive_plus_minus_raw": "0.69343079214972203",
       "mean_reverted_bias_raw": "0.76060564780302597",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "401": {
-      "pollster": "401",
+    "baselice associates": {
+      "pollster": "Baselice & Associates",
       "predictive_plus_minus_raw": "0.69521355700660903",
       "mean_reverted_bias_raw": "0.22922298229506699",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "402": {
-      "pollster": "402",
+    "gapundit com": {
+      "pollster": "GaPundit.com",
       "predictive_plus_minus_raw": "0.69598688100458195",
       "mean_reverted_bias_raw": "0.42126543643387798",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "403": {
-      "pollster": "403",
+    "zata3": {
+      "pollster": "Zata3",
       "predictive_plus_minus_raw": "0.69712815520621696",
       "mean_reverted_bias_raw": "-0.152752279672382",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "404": {
-      "pollster": "404",
+    "castleton university": {
+      "pollster": "Castleton University",
       "predictive_plus_minus_raw": "0.69804118032586304",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "405": {
-      "pollster": "405",
+    "glover park group": {
+      "pollster": "Glover Park Group",
       "predictive_plus_minus_raw": "0.70202767568645097",
       "mean_reverted_bias_raw": "-0.25817678299493502",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "406": {
-      "pollster": "406",
+    "ed renwick loyola university new orleans": {
+      "pollster": "Ed Renwick/Loyola University New Orleans",
       "predictive_plus_minus_raw": "0.708334133562739",
       "mean_reverted_bias_raw": "0.69523834217218305",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "10"
     },
-    "407": {
-      "pollster": "407",
+    "hoffman research group": {
+      "pollster": "Hoffman Research Group",
       "predictive_plus_minus_raw": "0.71101575335318101",
       "mean_reverted_bias_raw": "-0.55440684190532197",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "408": {
-      "pollster": "408",
+    "a2 insights": {
+      "pollster": "A2 Insights",
       "predictive_plus_minus_raw": "0.71302143761052506",
       "mean_reverted_bias_raw": "-0.89434364994663795",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "409": {
-      "pollster": "409",
+    "auburn university": {
+      "pollster": "Auburn University",
       "predictive_plus_minus_raw": "0.71573634544479003",
       "mean_reverted_bias_raw": "0.60776983064127099",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "410": {
-      "pollster": "410",
+    "lit data": {
+      "pollster": "LIT Data",
       "predictive_plus_minus_raw": "0.71608063702526203",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "411": {
-      "pollster": "411",
+    "jeffrey stonecash": {
+      "pollster": "Jeffrey Stonecash",
       "predictive_plus_minus_raw": "0.71836653928900596",
       "mean_reverted_bias_raw": "-0.16927817019973701",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "412": {
-      "pollster": "412",
+    "lycoming college polling institute": {
+      "pollster": "Lycoming College Polling Institute",
       "predictive_plus_minus_raw": "0.72027435952906804",
       "mean_reverted_bias_raw": "0.36764848490473201",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "413": {
-      "pollster": "413",
+    "psi": {
+      "pollster": "PSI",
       "predictive_plus_minus_raw": "0.72315563486832402",
       "mean_reverted_bias_raw": "-3.2007304699766502E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "414": {
-      "pollster": "414",
+    "ohio university": {
+      "pollster": "Ohio University",
       "predictive_plus_minus_raw": "0.72366120809552004",
       "mean_reverted_bias_raw": "0.26358373622203002",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "415": {
-      "pollster": "415",
+    "the kitchens group": {
+      "pollster": "The Kitchens Group",
       "predictive_plus_minus_raw": "0.72471266733690198",
       "mean_reverted_bias_raw": "0.19458386157110999",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "416": {
-      "pollster": "416",
+    "neighbor": {
+      "pollster": "Neighbor",
       "predictive_plus_minus_raw": "0.72551346204885103",
       "mean_reverted_bias_raw": "-0.14268719575146799",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "417": {
-      "pollster": "417",
+    "lester associates": {
+      "pollster": "Lester & Associates",
       "predictive_plus_minus_raw": "0.72703170475405898",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "418": {
-      "pollster": "418",
+    "rainmaker media group": {
+      "pollster": "Rainmaker Media Group",
       "predictive_plus_minus_raw": "0.72880696358176",
       "mean_reverted_bias_raw": "0.207236942200515",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "419": {
-      "pollster": "419",
+    "cometrends": {
+      "pollster": "Cometrends",
       "predictive_plus_minus_raw": "0.72907919311831504",
       "mean_reverted_bias_raw": "0.30084790421914298",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "420": {
-      "pollster": "420",
+    "lauer johnson research": {
+      "pollster": "Lauer Johnson Research",
       "predictive_plus_minus_raw": "0.73179237291697896",
       "mean_reverted_bias_raw": "0.20485326726448",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "421": {
-      "pollster": "421",
+    "brilliant corners research strategies": {
+      "pollster": "brilliant corners Research & Strategies",
       "predictive_plus_minus_raw": "0.73244432364323098",
       "mean_reverted_bias_raw": "0.48997510130120397",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "422": {
-      "pollster": "422",
+    "gonzales research marketing strategies inc": {
+      "pollster": "Gonzales Research & Marketing Strategies Inc.",
       "predictive_plus_minus_raw": "0.73320100196999105",
       "mean_reverted_bias_raw": "-0.51087060325039002",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "10"
     },
-    "423": {
-      "pollster": "423",
+    "consumer logic": {
+      "pollster": "Consumer Logic",
       "predictive_plus_minus_raw": "0.73326083214907301",
       "mean_reverted_bias_raw": "0.23170041494263599",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "424": {
-      "pollster": "424",
+    "gazette communications": {
+      "pollster": "Gazette Communications",
       "predictive_plus_minus_raw": "0.73498933709591696",
       "mean_reverted_bias_raw": "0.17743924684524801",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "425": {
-      "pollster": "425",
+    "university of colorado boulder": {
+      "pollster": "University of Colorado (Boulder)",
       "predictive_plus_minus_raw": "0.73635602211310203",
       "mean_reverted_bias_raw": "0.39307073538527598",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "426": {
-      "pollster": "426",
+    "morning consult": {
+      "pollster": "Morning Consult",
       "predictive_plus_minus_raw": "0.73798464251887896",
       "mean_reverted_bias_raw": "3.3696143942291799",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C+",
+      "history_count_raw": "114"
     },
-    "427": {
-      "pollster": "427",
+    "overtime politics": {
+      "pollster": "Overtime Politics",
       "predictive_plus_minus_raw": "0.73861933029540605",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "F",
+      "history_count_raw": "12"
     },
-    "428": {
-      "pollster": "428",
+    "st cloud state university": {
+      "pollster": "St. Cloud State University",
       "predictive_plus_minus_raw": "0.74066950117458996",
       "mean_reverted_bias_raw": "1.5348450074297999",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "17"
     },
-    "429": {
-      "pollster": "429",
+    "university of texas at tyler": {
+      "pollster": "University of Texas at Tyler",
       "predictive_plus_minus_raw": "0.74131502075365396",
       "mean_reverted_bias_raw": "0.76930072667411897",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "10"
     },
-    "430": {
-      "pollster": "430",
+    "minnesota state university": {
+      "pollster": "Minnesota State University",
       "predictive_plus_minus_raw": "0.74265983726319695",
       "mean_reverted_bias_raw": "0.35302282123538298",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "431": {
-      "pollster": "431",
+    "change research": {
+      "pollster": "Change Research",
       "predictive_plus_minus_raw": "0.74410574750243896",
       "mean_reverted_bias_raw": "2.6814570080486901",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C+",
+      "history_count_raw": "115"
     },
-    "432": {
-      "pollster": "432",
+    "y2 analytics": {
+      "pollster": "Y2 Analytics",
       "predictive_plus_minus_raw": "0.74676567730384702",
       "mean_reverted_bias_raw": "1.0821722298168699",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "8"
     },
-    "433": {
-      "pollster": "433",
+    "data west polling": {
+      "pollster": "Data West Polling",
       "predictive_plus_minus_raw": "0.74840776345364501",
       "mean_reverted_bias_raw": "0.28828373913629302",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "434": {
-      "pollster": "434",
+    "univision latino decisions north star opinion research": {
+      "pollster": "Univision/Latino Decisions/North Star Opinion Research",
       "predictive_plus_minus_raw": "0.74902356827274297",
       "mean_reverted_bias_raw": "1.05646576649292",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "7"
     },
-    "435": {
-      "pollster": "435",
+    "wcia tv": {
+      "pollster": "WCIA-TV",
       "predictive_plus_minus_raw": "0.75082993014551502",
       "mean_reverted_bias_raw": "-0.30238675661264902",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "436": {
-      "pollster": "436",
+    "datamar analytics": {
+      "pollster": "Datamar Analytics",
       "predictive_plus_minus_raw": "0.75297360031804905",
       "mean_reverted_bias_raw": "-0.20773702600934599",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "8"
     },
-    "437": {
-      "pollster": "437",
+    "new frontier strategy": {
+      "pollster": "New Frontier Strategy",
       "predictive_plus_minus_raw": "0.75471705408627099",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "438": {
-      "pollster": "438",
+    "university of alabama at birmingham": {
+      "pollster": "University of Alabama at Birmingham",
       "predictive_plus_minus_raw": "0.75513377600367504",
       "mean_reverted_bias_raw": "-0.26417753872741601",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "439": {
-      "pollster": "439",
+    "nelson research": {
+      "pollster": "Nelson Research",
       "predictive_plus_minus_raw": "0.75631597364410597",
       "mean_reverted_bias_raw": "-0.28975335146223902",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "440": {
-      "pollster": "440",
+    "bold decision": {
+      "pollster": "Bold Decision",
       "predictive_plus_minus_raw": "0.758401532179652",
       "mean_reverted_bias_raw": "0.39428462382519902",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "441": {
-      "pollster": "441",
+    "vcreek amg": {
+      "pollster": "VCreek/AMG",
       "predictive_plus_minus_raw": "0.759781222462524",
       "mean_reverted_bias_raw": "0.31361598503480997",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "442": {
-      "pollster": "442",
+    "digital research": {
+      "pollster": "Digital Research",
       "predictive_plus_minus_raw": "0.76024027115308701",
       "mean_reverted_bias_raw": "9.5731986091629195E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "21"
     },
-    "443": {
-      "pollster": "443",
+    "hickman analytics": {
+      "pollster": "Hickman Analytics",
       "predictive_plus_minus_raw": "0.76393679240295698",
       "mean_reverted_bias_raw": "0.33787739014824503",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "444": {
-      "pollster": "444",
+    "hunt research": {
+      "pollster": "Hunt Research",
       "predictive_plus_minus_raw": "0.763963703778898",
       "mean_reverted_bias_raw": "0.39736842105263098",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "445": {
-      "pollster": "445",
+    "emc research": {
+      "pollster": "EMC Research",
       "predictive_plus_minus_raw": "0.765342465255476",
       "mean_reverted_bias_raw": "1.1125692716001501",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "15"
     },
-    "446": {
-      "pollster": "446",
+    "saguaro strategies": {
+      "pollster": "Saguaro Strategies",
       "predictive_plus_minus_raw": "0.77191796975981597",
       "mean_reverted_bias_raw": "0.295607924600989",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "447": {
-      "pollster": "447",
+    "open model project": {
+      "pollster": "Open Model Project",
       "predictive_plus_minus_raw": "0.77435289605569202",
       "mean_reverted_bias_raw": "-0.43357317463676398",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "448": {
-      "pollster": "448",
+    "consultor a acad mica e investigaci n social llc": {
+      "pollster": "Consultor√É¬≠a Acad√É¬©mica e Investigaci√É¬≥n Social LLC",
       "predictive_plus_minus_raw": "0.774392368438658",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "449": {
-      "pollster": "449",
+    "rms research": {
+      "pollster": "RMS Research",
       "predictive_plus_minus_raw": "0.77449709113352605",
       "mean_reverted_bias_raw": "0.25296509991750199",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "450": {
-      "pollster": "450",
+    "east tennessee state university": {
+      "pollster": "East Tennessee State University",
       "predictive_plus_minus_raw": "0.77840441531040605",
       "mean_reverted_bias_raw": "0.66395867460654001",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "451": {
-      "pollster": "451",
+    "colby college": {
+      "pollster": "Colby College",
       "predictive_plus_minus_raw": "0.78034790141777999",
       "mean_reverted_bias_raw": "1.58503129009407",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "6"
     },
-    "452": {
-      "pollster": "452",
+    "victory insights": {
+      "pollster": "Victory Insights",
       "predictive_plus_minus_raw": "0.78048086017331397",
       "mean_reverted_bias_raw": "0.96054921852388597",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "9"
     },
-    "453": {
-      "pollster": "453",
+    "opinium": {
+      "pollster": "Opinium",
       "predictive_plus_minus_raw": "0.79632652350156596",
       "mean_reverted_bias_raw": "0.55635495860469797",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "454": {
-      "pollster": "454",
+    "thomas partners strategies optimus": {
+      "pollster": "Thomas Partners Strategies/Optimus",
       "predictive_plus_minus_raw": "0.79756673254975097",
       "mean_reverted_bias_raw": "-0.73437853403450604",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "455": {
-      "pollster": "455",
+    "ssrs": {
+      "pollster": "SSRS",
       "predictive_plus_minus_raw": "0.79784946462190898",
       "mean_reverted_bias_raw": "2.7767855090685498",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C+",
+      "history_count_raw": "47"
     },
-    "456": {
-      "pollster": "456",
+    "zia poll": {
+      "pollster": "Zia Poll",
       "predictive_plus_minus_raw": "0.79807875164173103",
       "mean_reverted_bias_raw": "-0.64692422196097599",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "457": {
-      "pollster": "457",
+    "global marketing research services": {
+      "pollster": "Global Marketing Research Services",
       "predictive_plus_minus_raw": "0.79820307652176004",
       "mean_reverted_bias_raw": "0.38064840931705901",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "458": {
-      "pollster": "458",
+    "capital survey research center": {
+      "pollster": "Capital Survey Research Center",
       "predictive_plus_minus_raw": "0.80172059095588799",
       "mean_reverted_bias_raw": "2.30589447910572E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "13"
     },
-    "459": {
-      "pollster": "459",
+    "the justice collaborative institute": {
+      "pollster": "The Justice Collaborative Institute",
       "predictive_plus_minus_raw": "0.81803009410745797",
       "mean_reverted_bias_raw": "0.51223025499122299",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "460": {
-      "pollster": "460",
+    "baydoun consulting": {
+      "pollster": "Baydoun Consulting",
       "predictive_plus_minus_raw": "0.82299810906428905",
       "mean_reverted_bias_raw": "-0.74615658943816299",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "6"
     },
-    "461": {
-      "pollster": "461",
+    "arizona state university": {
+      "pollster": "Arizona State University",
       "predictive_plus_minus_raw": "0.83007077755923897",
       "mean_reverted_bias_raw": "0.42636110551128598",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "8"
     },
-    "462": {
-      "pollster": "462",
+    "bluegrass community and technical college": {
+      "pollster": "Bluegrass Community and Technical College",
       "predictive_plus_minus_raw": "0.83216592091235297",
       "mean_reverted_bias_raw": "0.83913675480584504",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "463": {
-      "pollster": "463",
+    "marketing resource group mrg": {
+      "pollster": "Marketing Resource Group (MRG)",
       "predictive_plus_minus_raw": "0.83501430117564901",
       "mean_reverted_bias_raw": "0.25237738115006098",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "10"
     },
-    "464": {
-      "pollster": "464",
+    "victory enterprises": {
+      "pollster": "Victory Enterprises",
       "predictive_plus_minus_raw": "0.84350258199870998",
       "mean_reverted_bias_raw": "-0.39453775992888002",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "465": {
-      "pollster": "465",
+    "phillips academy": {
+      "pollster": "Phillips Academy",
       "predictive_plus_minus_raw": "0.84356448676528895",
       "mean_reverted_bias_raw": "-0.88919557002282401",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "7"
     },
-    "466": {
-      "pollster": "466",
+    "gcr associates": {
+      "pollster": "GCR & Associates",
       "predictive_plus_minus_raw": "0.84442493244644001",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "467": {
-      "pollster": "467",
+    "clout research": {
+      "pollster": "Clout Research",
       "predictive_plus_minus_raw": "0.84840360081889599",
       "mean_reverted_bias_raw": "-1.5580409364536001",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "16"
     },
-    "468": {
-      "pollster": "468",
+    "brandwatch qriously": {
+      "pollster": "Brandwatch Qriously",
       "predictive_plus_minus_raw": "0.85124702608305503",
       "mean_reverted_bias_raw": "0.72498850603849996",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "469": {
-      "pollster": "469",
+    "schapiro group": {
+      "pollster": "Schapiro Group",
       "predictive_plus_minus_raw": "0.86141009514007905",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "470": {
-      "pollster": "470",
+    "millersville university": {
+      "pollster": "Millersville University",
       "predictive_plus_minus_raw": "0.86424039677855802",
       "mean_reverted_bias_raw": "-0.47641420347505897",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "5"
     },
-    "471": {
-      "pollster": "471",
+    "miami univerity": {
+      "pollster": "Miami Univerity",
       "predictive_plus_minus_raw": "0.86572952399812697",
       "mean_reverted_bias_raw": "0.69",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "472": {
-      "pollster": "472",
+    "hampton university": {
+      "pollster": "Hampton University",
       "predictive_plus_minus_raw": "0.870667457195891",
       "mean_reverted_bias_raw": "-0.62966314259497402",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "473": {
-      "pollster": "473",
+    "bainbridge media group": {
+      "pollster": "Bainbridge Media Group",
       "predictive_plus_minus_raw": "0.876054379911123",
       "mean_reverted_bias_raw": "0.362151686122682",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "474": {
-      "pollster": "474",
+    "massie associates": {
+      "pollster": "Massie & Associates",
       "predictive_plus_minus_raw": "0.89167798206263704",
       "mean_reverted_bias_raw": "-0.39694471829163303",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "475": {
-      "pollster": "475",
+    "loras college": {
+      "pollster": "Loras College",
       "predictive_plus_minus_raw": "0.89582620399844803",
       "mean_reverted_bias_raw": "1.2705244274418399",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "18"
     },
-    "476": {
-      "pollster": "476",
+    "university of iowa": {
+      "pollster": "University of Iowa",
       "predictive_plus_minus_raw": "0.89939756174704999",
       "mean_reverted_bias_raw": "-0.24255843724739601",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "477": {
-      "pollster": "477",
+    "constituent dynamics": {
+      "pollster": "Constituent Dynamics",
       "predictive_plus_minus_raw": "0.90924542162894395",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "7"
     },
-    "478": {
-      "pollster": "478",
+    "survation": {
+      "pollster": "Survation",
       "predictive_plus_minus_raw": "0.91218570780725095",
       "mean_reverted_bias_raw": "0.61099999999999899",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "479": {
-      "pollster": "479",
+    "desales university": {
+      "pollster": "DeSales University",
       "predictive_plus_minus_raw": "0.91871931809379404",
       "mean_reverted_bias_raw": "0.56897760134814102",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "480": {
-      "pollster": "480",
+    "greg smith associates": {
+      "pollster": "Greg Smith & Associates",
       "predictive_plus_minus_raw": "0.91927964770625303",
       "mean_reverted_bias_raw": "0.71888838870029204",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "5"
     },
-    "481": {
-      "pollster": "481",
+    "cole hargrave snodgrass associates": {
+      "pollster": "Cole Hargrave Snodgrass & Associates",
       "predictive_plus_minus_raw": "0.92490355648212796",
       "mean_reverted_bias_raw": "7.1374270485579094E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "5"
     },
-    "482": {
-      "pollster": "482",
+    "roanoke college": {
+      "pollster": "Roanoke College",
       "predictive_plus_minus_raw": "0.92969715567000899",
       "mean_reverted_bias_raw": "0.63334230077763198",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "23"
     },
-    "483": {
-      "pollster": "483",
+    "kiaer research": {
+      "pollster": "Kiaer Research",
       "predictive_plus_minus_raw": "0.94117399901641896",
       "mean_reverted_bias_raw": "0.81496409108715795",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "484": {
-      "pollster": "484",
+    "hendrix college": {
+      "pollster": "Hendrix College",
       "predictive_plus_minus_raw": "0.941629424048951",
       "mean_reverted_bias_raw": "1.7852503809092799",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "18"
     },
-    "485": {
-      "pollster": "485",
+    "marketing workshop": {
+      "pollster": "Marketing Workshop",
       "predictive_plus_minus_raw": "0.94233353669431896",
       "mean_reverted_bias_raw": "0.26444726494698401",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "8"
     },
-    "486": {
-      "pollster": "486",
+    "momentum analysis": {
+      "pollster": "Momentum Analysis",
       "predictive_plus_minus_raw": "0.94748682104145299",
       "mean_reverted_bias_raw": "0.27907222035483198",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "487": {
-      "pollster": "487",
+    "craciun research group": {
+      "pollster": "Craciun Research Group",
       "predictive_plus_minus_raw": "0.94808751263453594",
       "mean_reverted_bias_raw": "0.57798626075144399",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "488": {
-      "pollster": "488",
+    "western kentucky university": {
+      "pollster": "Western Kentucky University",
       "predictive_plus_minus_raw": "0.96550856447065303",
       "mean_reverted_bias_raw": "0.69540056552007901",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "489": {
-      "pollster": "489",
+    "market research insight": {
+      "pollster": "Market Research Insight",
       "predictive_plus_minus_raw": "0.97056587052588605",
       "mean_reverted_bias_raw": "-0.45275671267041701",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "27"
     },
-    "490": {
-      "pollster": "490",
+    "izq strategies": {
+      "pollster": "IZQ Strategies",
       "predictive_plus_minus_raw": "0.98259333344894895",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "491": {
-      "pollster": "491",
+    "citizen data": {
+      "pollster": "Citizen Data",
       "predictive_plus_minus_raw": "0.98494888512515599",
       "mean_reverted_bias_raw": "2.3437089683258701",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "12"
     },
-    "492": {
-      "pollster": "492",
+    "truedot": {
+      "pollster": "Truedot",
       "predictive_plus_minus_raw": "1.0359362209634699",
       "mean_reverted_bias_raw": "0.95299999999999996",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "493": {
-      "pollster": "493",
+    "baldwin wallace university": {
+      "pollster": "Baldwin Wallace University",
       "predictive_plus_minus_raw": "1.04061582186492",
       "mean_reverted_bias_raw": "1.2939738511977601",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "494": {
-      "pollster": "494",
+    "amber integrated": {
+      "pollster": "Amber Integrated",
       "predictive_plus_minus_raw": "1.0604345651785601",
       "mean_reverted_bias_raw": "1.8677781921826699",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "8"
     },
-    "495": {
-      "pollster": "495",
+    "bwd global": {
+      "pollster": "BWD Global",
       "predictive_plus_minus_raw": "1.078198170446",
       "mean_reverted_bias_raw": "-0.106092662769235",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "496": {
-      "pollster": "496",
+    "repass": {
+      "pollster": "Repass",
       "predictive_plus_minus_raw": "1.08931856491294",
       "mean_reverted_bias_raw": "6.4994608503859103E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "497": {
-      "pollster": "497",
+    "rutgers university": {
+      "pollster": "Rutgers University",
       "predictive_plus_minus_raw": "1.0910799761590599",
       "mean_reverted_bias_raw": "0.96990859518087702",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "19"
     },
-    "498": {
-      "pollster": "498",
+    "we ask america": {
+      "pollster": "We Ask America",
       "predictive_plus_minus_raw": "1.0947634719372401",
       "mean_reverted_bias_raw": "-0.781913641402468",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C",
+      "history_count_raw": "56"
     },
-    "499": {
-      "pollster": "499",
+    "carroll strategies": {
+      "pollster": "Carroll Strategies",
       "predictive_plus_minus_raw": "1.0969847072961501",
       "mean_reverted_bias_raw": "-1.5051278049540799",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "5"
     },
-    "500": {
-      "pollster": "500",
+    "glascock group": {
+      "pollster": "Glascock Group",
       "predictive_plus_minus_raw": "1.10877805638561",
       "mean_reverted_bias_raw": "0.19391988594170001",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "501": {
-      "pollster": "501",
+    "tomahawk strategies": {
+      "pollster": "Tomahawk Strategies",
       "predictive_plus_minus_raw": "1.11042033709121",
       "mean_reverted_bias_raw": "0.78215066075091799",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "502": {
-      "pollster": "502",
+    "ccadvertising": {
+      "pollster": "ccAdvertising",
       "predictive_plus_minus_raw": "1.1296406732559701",
       "mean_reverted_bias_raw": "-2.2422501971790401",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "33"
     },
-    "503": {
-      "pollster": "503",
+    "center street pac": {
+      "pollster": "Center Street PAC",
       "predictive_plus_minus_raw": "1.13280122678202",
       "mean_reverted_bias_raw": "1.55088407985237",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "504": {
-      "pollster": "504",
+    "thomas partners strategies": {
+      "pollster": "Thomas Partners Strategies",
       "predictive_plus_minus_raw": "1.1356618220807699",
       "mean_reverted_bias_raw": "-1.04288458486178",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "505": {
-      "pollster": "505",
+    "american research group": {
+      "pollster": "American Research Group",
       "predictive_plus_minus_raw": "1.1424363567670299",
       "mean_reverted_bias_raw": "6.9949056242931906E-2",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C",
+      "history_count_raw": "280"
     },
-    "506": {
-      "pollster": "506",
+    "dane associates": {
+      "pollster": "Dane & Associates",
       "predictive_plus_minus_raw": "1.1514139678991999",
       "mean_reverted_bias_raw": "-0.71616160045724098",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "507": {
-      "pollster": "507",
+    "gop calls": {
+      "pollster": "GOP Calls",
       "predictive_plus_minus_raw": "1.1520805963395799",
       "mean_reverted_bias_raw": "-0.81403430053256598",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "508": {
-      "pollster": "508",
+    "mclaughlin associates": {
+      "pollster": "McLaughlin & Associates",
       "predictive_plus_minus_raw": "1.16273131126915",
       "mean_reverted_bias_raw": "-1.69673219249254",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "29"
     },
-    "509": {
-      "pollster": "509",
+    "mitchell research communications": {
+      "pollster": "Mitchell Research & Communications",
       "predictive_plus_minus_raw": "1.1643609472226999",
       "mean_reverted_bias_raw": "0.93573167833587501",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C",
+      "history_count_raw": "82"
     },
-    "510": {
-      "pollster": "510",
+    "riggs research services": {
+      "pollster": "Riggs Research Services",
       "predictive_plus_minus_raw": "1.1648691142624801",
       "mean_reverted_bias_raw": "0.66347616554053901",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "511": {
-      "pollster": "511",
+    "meredith college": {
+      "pollster": "Meredith College",
       "predictive_plus_minus_raw": "1.16749215241857",
       "mean_reverted_bias_raw": "1.054104379038",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "6"
     },
-    "512": {
-      "pollster": "512",
+    "fm3 research": {
+      "pollster": "FM3 Research",
       "predictive_plus_minus_raw": "1.1804637539176499",
       "mean_reverted_bias_raw": "1.8390744309532601",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "11"
     },
-    "513": {
-      "pollster": "513",
+    "saint leo university polling institute": {
+      "pollster": "Saint Leo University Polling Institute",
       "predictive_plus_minus_raw": "1.19110221788381",
       "mean_reverted_bias_raw": "1.3805101219004601",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "6"
     },
-    "514": {
-      "pollster": "514",
+    "cpec": {
+      "pollster": "CPEC",
       "predictive_plus_minus_raw": "1.19687115742911",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "515": {
-      "pollster": "515",
+    "soonerpoll com": {
+      "pollster": "SoonerPoll.com",
       "predictive_plus_minus_raw": "1.19703316155029",
       "mean_reverted_bias_raw": "2.6558154519920798",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "26"
     },
-    "516": {
-      "pollster": "516",
+    "targetpoint": {
+      "pollster": "TargetPoint",
       "predictive_plus_minus_raw": "1.2067092967067301",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "2"
     },
-    "517": {
-      "pollster": "517",
+    "university of minnesota": {
+      "pollster": "University of Minnesota",
       "predictive_plus_minus_raw": "1.2507127098375801",
       "mean_reverted_bias_raw": "0.43176431284005701",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "10"
     },
-    "518": {
-      "pollster": "518",
+    "elucd": {
+      "pollster": "Elucd",
       "predictive_plus_minus_raw": "1.25367036808517",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "4"
     },
-    "519": {
-      "pollster": "519",
+    "target insyght": {
+      "pollster": "Target Insyght",
       "predictive_plus_minus_raw": "1.2561732771582199",
       "mean_reverted_bias_raw": "-0.48779746927658701",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "6"
     },
-    "520": {
-      "pollster": "520",
+    "island analytics marketing llc": {
+      "pollster": "Island Analytics & Marketing, LLC",
       "predictive_plus_minus_raw": "1.26356916427476",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "521": {
-      "pollster": "521",
+    "trafalgar group insider advantage": {
+      "pollster": "Trafalgar Group/Insider Advantage",
       "predictive_plus_minus_raw": "1.26844793103453",
       "mean_reverted_bias_raw": "-1.9108409321175199",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "3"
     },
-    "522": {
-      "pollster": "522",
+    "opinion research associates": {
+      "pollster": "Opinion Research Associates",
       "predictive_plus_minus_raw": "1.2866619528186301",
       "mean_reverted_bias_raw": "1.61024192585813",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "14"
     },
-    "523": {
-      "pollster": "523",
+    "capen analytics": {
+      "pollster": "Capen Analytics",
       "predictive_plus_minus_raw": "1.29012940726501",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "B/C",
+      "history_count_raw": "1"
     },
-    "524": {
-      "pollster": "524",
+    "merriman river group": {
+      "pollster": "Merriman River Group",
       "predictive_plus_minus_raw": "1.32183459036794",
       "mean_reverted_bias_raw": "-2.76274141224676",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C/D",
+      "history_count_raw": "25"
     },
-    "525": {
-      "pollster": "525",
+    "brigham young university": {
+      "pollster": "Brigham Young University",
       "predictive_plus_minus_raw": "1.3713247213823401",
       "mean_reverted_bias_raw": "1.5969336468347",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C/D",
+      "history_count_raw": "4"
     },
-    "526": {
-      "pollster": "526",
+    "triton polling research": {
+      "pollster": "Triton Polling & Research",
       "predictive_plus_minus_raw": "1.38217677204725",
       "mean_reverted_bias_raw": "0.97864409088787196",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C/D",
+      "history_count_raw": "3"
     },
-    "527": {
-      "pollster": "527",
+    "university of wyoming": {
+      "pollster": "University of Wyoming",
       "predictive_plus_minus_raw": "1.4612309135180801",
       "mean_reverted_bias_raw": "2.2189868023370098",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C/D",
+      "history_count_raw": "5"
     },
-    "528": {
-      "pollster": "528",
+    "raba research": {
+      "pollster": "RABA Research",
       "predictive_plus_minus_raw": "1.4734589026718199",
       "mean_reverted_bias_raw": "2.4359162162671901",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C/D",
+      "history_count_raw": "9"
     },
-    "529": {
-      "pollster": "529",
+    "point blank political": {
+      "pollster": "Point Blank Political",
       "predictive_plus_minus_raw": "1.4949041633615401",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C/D",
+      "history_count_raw": "6"
     },
-    "530": {
-      "pollster": "530",
+    "the political matrix the listener group": {
+      "pollster": "The Political Matrix/The Listener Group",
       "predictive_plus_minus_raw": "1.5142294263288201",
       "mean_reverted_bias_raw": "1.4483584860913199",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C/D",
+      "history_count_raw": "12"
     },
-    "531": {
-      "pollster": "531",
+    "surveymonkey": {
+      "pollster": "SurveyMonkey",
       "predictive_plus_minus_raw": "1.6336655896418",
       "mean_reverted_bias_raw": "4.6289402660429104",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "D+",
+      "history_count_raw": "268"
     },
-    "532": {
-      "pollster": "532",
+    "tcj research": {
+      "pollster": "TCJ Research",
       "predictive_plus_minus_raw": "1.64889766104346",
       "mean_reverted_bias_raw": "-4.07232467967426",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "F",
+      "history_count_raw": "132"
     },
-    "533": {
-      "pollster": "533",
+    "brown university": {
+      "pollster": "Brown University",
       "predictive_plus_minus_raw": "1.6737389004596701",
       "mean_reverted_bias_raw": "-0.20327688206140401",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C/D",
+      "history_count_raw": "14"
     },
-    "534": {
-      "pollster": "534",
+    "indiana university purdue university fort wayne downs center": {
+      "pollster": "Indiana University-Purdue University Fort Wayne (Downs Center)",
       "predictive_plus_minus_raw": "1.7661937902803799",
       "mean_reverted_bias_raw": "",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C/D",
+      "history_count_raw": "3"
     },
-    "535": {
-      "pollster": "535",
+    "long island university": {
+      "pollster": "Long Island University",
       "predictive_plus_minus_raw": "1.77033258150604",
       "mean_reverted_bias_raw": "1.8762417609044699",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C/D",
+      "history_count_raw": "4"
     },
-    "536": {
-      "pollster": "536",
+    "nielson brothers polling": {
+      "pollster": "Nielson Brothers Polling",
       "predictive_plus_minus_raw": "2.00361183532406",
       "mean_reverted_bias_raw": "3.0515239426485299",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C/D",
+      "history_count_raw": "11"
     },
-    "537": {
-      "pollster": "537",
+    "ascend action": {
+      "pollster": "Ascend Action",
       "predictive_plus_minus_raw": "2.2345058535814499",
       "mean_reverted_bias_raw": "3.34854381743382",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C/D",
+      "history_count_raw": "6"
     },
-    "538": {
-      "pollster": "538",
+    "jayhawk consulting services": {
+      "pollster": "Jayhawk Consulting Services",
       "predictive_plus_minus_raw": "2.29243245593804",
       "mean_reverted_bias_raw": "2.2674108427372301",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C/D",
+      "history_count_raw": "2"
     },
-    "539": {
-      "pollster": "539",
+    "fort hays state university": {
+      "pollster": "Fort Hays State University",
       "predictive_plus_minus_raw": "2.4952983078331599",
       "mean_reverted_bias_raw": "-1.09609076993139",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C/D",
+      "history_count_raw": "6"
     },
-    "540": {
-      "pollster": "540",
+    "the dartmouth poll": {
+      "pollster": "The Dartmouth Poll",
       "predictive_plus_minus_raw": "3.6857156488613501",
       "mean_reverted_bias_raw": "4.4045454545454499",
-      "grade_raw": null,
-      "history_count_raw": null
+      "grade_raw": "C/D",
+      "history_count_raw": "4"
     }
   },
   "caveats": [
