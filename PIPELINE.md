@@ -17,3 +17,9 @@ If all feeds fail, the script preserves existing items and exits unsuccessfully 
 * The current poll CSV does **not** contain public release dates, demographic sample-population categories, or per-poll source URLs. First-seen timestamps are collection times, not publication dates.
 * RSS results depend on external service availability and can include syndicated/duplicated coverage.
 * To publish: GitHub Settings → Pages → Deploy from branch → main → /(root).
+
+## Additional posted-date poll source
+
+A second data step, `scripts/update_pollresults_recent.py`, fetches publicly accessible poll records from PollResults.org (NYT-derived, CC BY 4.0), with original links, sample populations and API posted dates. These records populate `data/pollresults_recent.json`. They are separate from the ElectIndex primary model source and not an independent underlying survey dataset. The script optionally enriches primary polls only on exact poll ID/race/field-date/share matches. On supplemental-source failure the weighted average continues to use the established primary feed; the UI falls back to its old observation list. Do not call the API's created/posted date a publicly verified release date.
+
+The January 2026 Silver Bulletin pollster workbook is imported separately by `scripts/stage_silver_ratings.py` with a dedicated workflow. Staging and any alternative quality weights never silently modify production polling averages.
