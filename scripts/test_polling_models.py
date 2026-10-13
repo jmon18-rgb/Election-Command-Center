@@ -19,8 +19,41 @@ OUT = ROOT / "data" / "model_tests.json"
 QUALITY_DATA=json.loads((ROOT/"data/pollster_quality.json").read_text(encoding="utf-8"))
 QUALITY={k.casefold():v for k,v in QUALITY_DATA["entries"].items()}
 EXCLUSIONS={k.casefold() for k in QUALITY_DATA.get("explicit_exclusions",{})}
-METHODS = ("equal", "recency21", "recency21_size", "recency35_size", "recency21_sponsored_0", "recency21_sponsored_25", "recency21_sponsored_50", "recency21_sponsored_100", "recency21_sponsored_50_quality", "recency21_sponsored_50_quality_size", "recency21_sponsored_50_quality_size_bias17", "recency21_sponsored_50_quality_size_recency14")
+METHODS = ("equal", "recency21", "recency21_size", "recency35_size", "recency21_sponsored_0", "recency21_sponsored_25", "recency21_sponsored_50", "recency21_sponsored_100", "recency21_sponsored_50_quality", "recency21_sponsored_50_quality_size", "recency21_sponsored_50_quality_size_bias17", "recency21_sponsored_50_quality_size_recency14", "recency21_silver_quality_size", "recency21_silver_quality_size_bias50", "recency21_silver_quality_size_bias100")
 RNG_SEED = 20261012
+
+# Independently sourced Silver Bulletin January 2026 ratings. This is a
+# research-only benchmark until election-outcome validation and alias review.
+STAGED = ROOT / "data/silver_ratings_staging.json"
+SILVER = {}
+if STAGED.exists():
+    staged=json.loads(STAGED.read_text(encoding="utf-8"))
+    if staged.get("status")=="staged_not_used_in_live_model" and staged.get("matched_to_older_538_aliases",0)>=20:
+        entries=staged.get("entries",{})
+        for alias,name in staged.get("matches",{}).items():
+            key=" ".join(name.casefold().replace("&","and").split())
+            match=entries.get(key) or entries.get(name.casefold())
+            if match:
+                SILVER[alias.casefold()]=match
+        for entry in entries.values():
+            SILVER.setdefault(entry["pollster"].casefold(),entry)
+
+def silver_terms(p):
+    record=SILVER.get(p["pollster"].casefold())
+    if not record:
+        return 1.0,0.0
+    try:
+        pm=float(record["predictive_plus_minus_raw"])
+        bias=float(record["mean_reverted_bias_raw"])
+        history=float(record.get("history_count_raw") or 0)
+    except (KeyError,ValueError,TypeError):
+        return 1.0,0.0
+    if not math.isfinite(pm) or not math.isfinite(bias):
+        return 1.0,0.0
+    shrink=min(1.0,max(0.0,history)/20.0)
+    quality=max(.65,min(1.5,math.exp(-0.12*pm*shrink)))
+    return quality, bias
+
 
 
 def eligible(p):
@@ -50,13 +83,13 @@ def predict(prior, asof, method):
         sponsor_factor = {"recency21_sponsored_0": 0, "recency21_sponsored_25": .25,
                           "recency21_sponsored_50": .5, "recency21_sponsored_100": 1.0}
         if p.get("partisan_lean"):
-            if method.startswith("recency21_sponsored_50_quality"):
+            if method.startswith("recency21_sponsored_50_quality") or method.startswith("recency21_silver_"):
                 weight *= .5
             elif method in sponsor_factor:
                 weight *= sponsor_factor[method]
             else:
                 continue
-        if "_quality" in method:
+        if "_quality" in method and "silver" not in method:
             rated=QUALITY.get(p["pollster"].casefold())
             if rated:
                 shrunk=2+(rated["rating"]-2)*min(1,rated["history_count"]/20)
@@ -69,6 +102,11 @@ def predict(prior, asof, method):
             n = p.get("sample_size") or 600
             weight *= math.sqrt(max(200, min(float(n), 3000)) / 600)
         margin=float(p["margin"])
+        if "silver" in method:
+            multiplier,bias=silver_terms(p)
+            weight*=multiplier
+            if method.endswith("_bias50"):margin-=.5*bias
+            if method.endswith("_bias100"):margin-=bias
         if method.endswith("_bias17") and p.get("partisan_lean") in ("D","R"):
             # EXPERIMENT ONLY: an a-priori sponsor-aligned 1.7pt margin correction,
             # from Silver's published generic-ballot methodology. Do not promote
@@ -171,6 +209,7 @@ def main():
             "Sponsored-poll weight factors are experimental; target surveys remain non-sponsored only.",
             "Pollster quality comes from 538 archived pre-2026 grades, not an updated Silver Bulletin 2026 recalibration.",
             "Test currently compares future independent polls, and overfitting to this cycle must be avoided.",
+            "January 2026 Silver Bulletin plus-minus and signed bias tests are experimental and do not alter live polling estimates; 2026 rolling next-poll tests are not final-outcome validation.",
             "Alternative half-lives and the Silver-inspired 1.7-point signed sponsor correction are test-only; no new coefficient is deployed on the live average.",
         ],
     }
