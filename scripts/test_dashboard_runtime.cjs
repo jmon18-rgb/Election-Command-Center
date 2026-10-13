@@ -840,7 +840,10 @@ async function settle(){
      return {ok:true,json:async()=>nhSenateDetail};
    return {ok:true,json:async()=>empty2026};
  };
- w.eval('enWatched=[{office:"Senate",key:"NH"}];enRenderWatchlist()');
+ // NH-SEN was pinned through the real watchlist form earlier in this suite.
+ // Never replace a lexical 'let' by w.eval assignment: it creates an unrelated
+ // global and does not change the script's actual saved watchlist.
+ assert(get('#enWatchItems .en-watch-open[aria-label="Open NH-SEN Senate 2026 results"]'));
  get('.tab[data-page="electionNight"]').click();
  await w.eval('enRefreshCivicWatchlist(true)');
  assert(civicRequests.some(x=>x.includes('province=NH')&&x.includes('startDate=2026-11-03')));
@@ -850,11 +853,11 @@ async function settle(){
  assert.match(get('#enWatchItems').textContent,/civicAPI race source/);
  assert.equal(w.eval('enCivicStatus({office:"Senate",key:"NH"})').includes('1,000 reported votes'),true,
     'Validated supplemental vote totals must reach rendered source status');
- const nhWatchEntry=get('#enWatchItems .en-watch-open');
+ const nhWatchEntry=get('#enWatchItems .en-watch-open[aria-label="Open NH-SEN Senate 2026 results"]');
  assert(nhWatchEntry,'Verified civicAPI race should be present in personal watchlist');
  assert.equal(nhWatchEntry.getAttribute('aria-expanded'),'false');
  nhWatchEntry.click();
- assert.equal(get('#enWatchItems .en-watch-open').getAttribute('aria-expanded'),'true',
+ assert.equal(get('#enWatchItems .en-watch-open[aria-label="Open NH-SEN Senate 2026 results"]').getAttribute('aria-expanded'),'true',
    'Out-of-coverage watchlist item should toggle open; captured errors: '+errors.slice(-3).join(' | ')+
    '; markup: '+get('#enWatchItems').innerHTML.slice(0,800));
  const civicDetail=get('#enWatchItems .en-civic-detail');
@@ -866,7 +869,7 @@ async function settle(){
  assert.match(civicDetail.textContent,/separate from Open America/);
  assert(civicDetail.querySelector('a.en-civic-direct').href.includes('/api/v2/race/87283'));
  assert.equal(get('#enWatchItems .en-watch-open').getAttribute('aria-expanded'),'true');
- get('#enWatchItems .en-watch-open').click();
+ get('#enWatchItems .en-watch-open[aria-label="Open NH-SEN Senate 2026 results"]').click();
  assert.equal(get('#enWatchItems .en-civic-detail'),null,
   'Supplemental race detail should collapse without losing its verified source snapshot');
 
