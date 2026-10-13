@@ -1,0 +1,123 @@
+#!/usr/bin/env node
+// End-to-end-ish DOM smoke tests against the ACTUAL index.html and data JSON.
+// Run with: npm install --no-save --no-package-lock jsdom@26.1.0 && node scripts/test_dashboard_runtime.cjs
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const {JSDOM,VirtualConsole}=require('jsdom');
+const ROOT=path.resolve(__dirname,'..');
+const read=(f)=>fs.readFileSync(path.join(ROOT,f),'utf8');
+const json=(f)=>JSON.parse(read(f));
+const model=json('data/polling_estimates.json');
+const primary=json('data/polls.json');
+const recent=json('data/pollresults_recent.json');
+const history=json('data/model_history.json');
+const html=read('index.html');
+const scripts=[...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)].map(x=>x[1]);
+assert.equal(scripts.length,1,'Expected exactly one live inline application script');
+const errors=[];
+const virtualConsole=new VirtualConsole();
+virtualConsole.on('jsdomError',(err)=>errors.push(String(err)));
+const dom=new JSDOM(html,{url:'https://election-command-center.local/',runScripts:'outside-only',
+  pretendToBeVisual:true,virtualConsole});
+const w=dom.window;
+w.scrollTo=()=>{};
+w.Element.prototype.scrollIntoView=function(){};
+w.matchMedia=()=>({matches:false,addListener(){},removeListener(){}});
+const fixtures={
+ 'polling_estimates.json':model,'polls.json':primary,
+ 'pollresults_recent.json':recent,'model_history.json':history
+};
+for(const file of ['briefing.json','integrity_impact.json','seat_universe.json','house_geography_bridge.json','house_two_cycle_context.json']){
+ const name='data/'+file;
+ if(fs.existsSync(path.join(ROOT,name)))fixtures[file]=json(name);
+}
+w.fetch=async (url)=>{
+ const name=String(url).split('?')[0].split('/').pop();
+ if(!(name in fixtures))return {ok:false,status:404,json:async()=>({})};
+ return {ok:true,status:200,json:async()=>fixtures[name]};
+};
+w.console.error=(...parts)=>errors.push(parts.map(String).join(' '));
+function get(selector){const el=w.document.querySelector(selector);assert(el,'Missing '+selector);return el}
+async function settle(){
+ for(let n=0;n<60;n++){
+  await new Promise(resolve=>setTimeout(resolve,20));
+  if(get('#modelBoard').querySelectorAll('.model-race-row').length&&
+      get('#scenarioBands').querySelectorAll('.scenario-tile').length===4&&
+      get('#newPolls').querySelectorAll('.item').length)return;
+ }
+ throw Error('Timed out waiting for model and dynamic section rendering');
+}
+(async()=>{
+ w.eval(scripts[0]);
+ await settle();
+ // Canonical in-app identifiers must be visible. TX Senate and TX governor
+ // cannot both be ambiguous "Texas" cards any longer.
+ const [txSen,txGov]=['senate','governor'].map(type=>
+   model[type==='senate'?'senate_all':'governor'].find(x=>x.race_code==='TX-'+(type==='senate'?'SEN':'GOV')));
+ assert(txSen&&txGov,'Both TX Senate and TX governor model averages required');
+ const identity=(type,data)=>w.eval('raceIdentity('+JSON.stringify(data)+')');
+ assert.match(identity('senate',txSen),/Texas.*Senate/);
+ assert.match(identity('governor',txGov),/Texas.*Governor/);
+ assert.notEqual(identity('senate',txSen),identity('governor',txGov));
+
+ // The same multipurpose Recon survey contains DISTINCT 2026 Senate and
+ // Governor ballot questions. Check model inclusion, vote-share match and
+ // exact original drilldown selection in BOTH office tabs.
+ for(const [office,race] of [['senate',txSen],['governor',txGov]]){
+  const p=recent.observations.find(p=>p.race_code===race.race_code&&
+    p.pollster.includes('ReconMR')&&p.field_end===race.latest_poll_end);
+  assert(p,'Recon poll missing from supplemental '+office+' feed');
+  const raw=primary.races.find(x=>x.race_code===race.race_code);
+  assert(raw?.polls.some(x=>x.poll_id===p.poll_id&&x.dem_name===p.dem_name&&x.rep_name===p.rep_name),
+    'Recon poll missing from primary '+office+' source');
+  const code='postedMatchesModelSurvey('+JSON.stringify(p)+','+JSON.stringify(race)+')';
+  assert.equal(w.eval(code),true,'Source reconciliation failed in '+office);
+  w.eval('navigateInsightToModel({office:'+JSON.stringify(office)+',race:'+
+       JSON.stringify(race)+',poll:'+JSON.stringify(p)+'})');
+  assert.match(get('#modelDetailTitle').textContent,new RegExp('Texas.*'+(office==='senate'?'Senate':'Governor')));
+  const highlighted=get('#modelPollRows tr.model-featured-poll');
+  assert.match(highlighted.textContent,/ReconMR/,'Did not select correct '+office+' Recon observation');
+  assert.match(get('#modelPollStatus').textContent,/Observations matched|All observations/);
+  assert.equal(get('#modelDetailEyebrow').textContent.includes(office.toUpperCase()),true);
+  const sourceLink=highlighted.querySelector('a[href]');
+  assert(sourceLink,'Recon primary poll source should be clickable in drilldown');
+ }
+ // A different question or candidate matchup sharing a poll ID MUST be
+ // rejected as evidence for the selected race.
+ const mistaken=recent.observations.find(p=>p.race_code==='TX-GOV'&&p.pollster.includes('ReconMR'));
+ assert.equal(w.eval('postedMatchesModelSurvey('+JSON.stringify(mistaken)+','+
+      JSON.stringify(txSen)+')'),false,'Cross-office shared poll ID contaminated race');
+ // Every visible pulse card needs a race office. No repeated anonymous Texas.
+ w.eval('renderRacePulse('+JSON.stringify(model)+')');
+ for(const card of get('#racePulse').querySelectorAll('button.pulse-tile')){
+  const label=card.querySelector('.pulse-race span')?.textContent||'';
+  assert(/Senate|Governor|House|Generic ballot/.test(label),'Insight lacks office: '+label);
+ }
+
+ // Scenarios MUST do something; no longer four static paragraphs.
+ const cards=[...get('#scenarioBands').querySelectorAll('button.scenario-tile')];
+ assert.equal(cards.length,4);
+ cards.find(c=>c.textContent.includes('BLUE TSUNAMI')).click();
+ assert.match(get('.scenario-result').textContent,/BLUE TSUNAMI/);
+ assert.equal(get('#scenario-sweep').value,'92');
+ const input=(id,value)=>{const el=get('#scenario-'+id);el.value=String(value);el.dispatchEvent(new w.Event('input',{bubbles:true}));};
+ input('house',220);input('senate',52);input('sweep',65);
+ assert.match(get('.scenario-result').textContent,/BLUE WAVE/);
+ input('house',211);input('senate',48);
+ assert.match(get('.scenario-result').textContent,/RED DAWN/);
+ input('senate',53);
+ assert.match(get('.scenario-result').textContent,/THE SHRUG/);
+ assert.match(get('#scenarioSimulator').textContent,/NOT a forecast|not a forecast|not measured/i);
+ // Sort all posted polls by full timestamps; no alphabetical field-end tie.
+ const posted=recent.observations.filter(p=>p.posted_date>=new Date(Date.now()-14*86400000).toISOString().slice(0,10));
+ const topTime=posted.reduce((max,p)=>{
+  const t=w.eval('pollPostedStamp('+JSON.stringify(p)+')');
+  return t>max?t:max;
+ },'');
+ assert(topTime,'No recent full timestamp data');
+ assert(get('#newPolls').textContent.includes('Source posted'),'Posted date labels disappeared');
+ assert.equal(errors.length,0,'Application emitted errors: '+errors.slice(0,4).join(' | '));
+ console.log('Dashboard DOM integration passed: exact TX-SEN/TX-GOV poll drilldowns, race labels, four active hypothetical scenarios, dated news feed, and no script errors.');
+ dom.window.close();
+})().catch(e=>{console.error(e.stack||e);dom.window.close();process.exitCode=1});
