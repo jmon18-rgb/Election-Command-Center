@@ -4,7 +4,7 @@ A personal, data-first 2026 U.S. midterms dashboard. Serious about polling; occa
 
 ## What the site shows
 
-- **Daily briefing:** 2026 generic congressional ballot, clearly blue/red party margins, key Senate polling snapshots, and newest observations sorted by first-seen date when the upstream cannot supply a verified publication date.
+- **Daily briefing:** 2026 generic congressional ballot, clearly blue/red party margins, key Senate polling snapshots, and newest observations sorted by full source-posting date/time, with original poll links. Source-posting time is not verified publication time.
 - **JackStradamus:** weighted polling averages for Senate, House, governors, and national generic ballot. Every firm gets a visible influence share and source-linked ratings context.
 - **Four congressional outcomes:** Red Dawn = Republicans control both chambers; Shrug = Democrats control one; Blue Wave = Democrats control both; Blue Tsunami = both plus a near-sweep of a frozen battleground slate. No probabilities until the complete seat model is calibrated. See [SCENARIOS.md](SCENARIOS.md).
 - **Race Lab:** individual poll observations, source dates and sponsor labels.
