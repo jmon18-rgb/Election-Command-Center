@@ -276,6 +276,22 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-export-actions button:disabled{opacity:.45;cursor:not-allowed}
 .en-export-status{font-size:10px;color:#a6c9d6;margin:5px 0 3px;min-height:0}
 @media(max-width:580px){.en-export-actions{width:100%}.en-export-actions button{flex:1}}
+.model-odds-panel{background:#10243c;border:1px solid #355577;border-radius:11px;padding:14px 15px;margin:14px 0 15px}
+.model-odds-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.model-odds-heading strong{font-size:10px;letter-spacing:.12em;color:#a2c7ed}
+.model-odds-heading span{font-size:10px;color:#96abc2}
+.model-odds-numbers{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0 10px;font-variant-numeric:tabular-nums}
+.model-odds-numbers .model-odds-col{display:flex;flex-direction:column;gap:3px}
+.model-odds-col strong{font-size:27px;line-height:1.12;letter-spacing:-.03em}
+.model-odds-col span{font-size:10px;font-weight:700;color:#a2b4c9}
+.model-odds-col:last-child{text-align:right}
+.model-odds-bar{height:8px;background:#ad555d;border-radius:12px;overflow:hidden}
+.model-odds-bar>div{height:100%;background:#659bd5;transition:width .2s}
+.model-odds-presets{display:flex;gap:6px;margin:11px 0;flex-wrap:wrap}
+.model-odds-presets button{cursor:pointer;font-size:10px;font-weight:700;padding:6px 10px;background:#182e45;border:1px solid #38536e;border-radius:7px;color:#bacfe0}
+.model-odds-presets button[aria-pressed=true]{background:#295a7b;border-color:#7cb3de;color:white}
+.model-odds-context{font-size:10px;color:#9db5cb;line-height:1.6;margin:8px 0 0}
+@media(max-width:520px){.model-odds-col strong{font-size:23px}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -413,7 +429,18 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div class="model-detail" id="modelDetail">
   <div class="model-detail-top"><span class="label" id="modelDetailEyebrow">SENATE · POLLING</span><h3 id="modelDetailTitle">Select a race</h3><p class="model-detail-caption" id="modelDetailCaption">Polling averages and individual observations.</p></div>
   <div class="model-candidates"><div class="model-candidate dem"><span id="modelDemName">Democrat</span><strong id="modelDemPct">—</strong></div><div class="model-candidate rep"><span id="modelRepName">Republican</span><strong id="modelRepPct">—</strong></div></div>
-  <div id="modelDetailStats" class="model-detail-stats"></div>
+  <section id="modelRaceOdds" class="model-odds-panel" aria-label="Experimental probability of winning the polled Democratic–Republican matchup">
+ <div class="model-odds-heading"><strong>JACKSTRADAMUS · RACE ODDS</strong><span>Experimental · current polls</span></div>
+ <div id="modelOddsNumbers" class="model-odds-numbers"><p>Loading probability model…</p></div>
+ <div id="modelOddsBar" class="model-odds-bar" aria-hidden="true"></div>
+ <div class="model-odds-presets" role="group" aria-label="Adjust polling error uncertainty">
+  <button type="button" data-odds-width="tight" aria-pressed="false">Tighter error</button>
+  <button type="button" data-odds-width="standard" aria-pressed="true">Baseline</button>
+  <button type="button" data-odds-width="wide" aria-pressed="false">Wider error</button>
+ </div>
+ <p id="modelOddsContext" class="model-odds-context">These are experimental probabilities from current two-party polling margins; they aren't DDHQ chamber forecasts.</p>
+</section>
+<div id="modelDetailStats" class="model-detail-stats"></div>
   <div id="modelHistoryContext" class="model-history-context" hidden></div>
   <div class="model-trend" id="modelTrendPanel" aria-label="Observed polling average history">
    <div class="model-trend-head"><strong>How this polling average actually moved</strong><span id="modelTrendChange" class="model-trend-change">Collecting snapshots</span></div>
@@ -719,6 +746,7 @@ function renderModelOverview(data){
  if(!rows.some(r=>r.race_code===selectedModelState)){
   selectedModelState=rows.find(r=>r.race_code==='TX-SEN')?.race_code||rows[0].race_code;
  }
+ const oddsReady=modelOddsValidate(modelRaceOddsData,data);
  const surname=name=>(name||'').trim().split(/\s+/).at(-1)||'—';
  const ordered=[...rows].sort((a,b)=>Math.abs(a.dem_minus_rep)-Math.abs(b.dem_minus_rep)||(a.race_code||'').localeCompare(b.race_code||''));
  for(const race of ordered){
@@ -731,6 +759,12 @@ function renderModelOverview(data){
   if(modelMode==='generic')matchup.append(elt('span','','Democratic vs Republican congressional preference'));
   else matchup.append(elt('span','',surname(race.dem_candidate)),elt('span','model-vs','vs.'),elt('span','',surname(race.rep_candidate)));
   const margin=elt('div','model-race-edge');margin.append(elt('strong',marginColor(race.dem_minus_rep),marginText(race.dem_minus_rep)),elt('small','','polling average'));
+  const probability=modelRaceOddsData?.records.find(x=>x.office===modelMode&&x.race_code===key);
+  if(probability&&oddsReady){
+   const d=modelOddsErrorWidth==='tight'?probability.tight_error_dem_pct:
+     modelOddsErrorWidth==='wide'?probability.wide_error_dem_pct:probability.dem_beats_rep_pct;
+   margin.append(elt('small','', 'D '+Math.round(d)+'% · R '+Math.round(100-d)+'%'));
+  }
   const quality=elt('div','model-race-quality');
   const firms=race.contributing_pollsters??race.independent_pollsters??0;
   quality.append(elt('span','',firms+' '+(firms===1?'firm':'firms')+' · latest '+formattedModelDate(race.latest_poll_end)));
@@ -886,6 +920,86 @@ function renderModelTrend(estimate){
  note.textContent=points.length+' actual saved average snapshots for this exact candidate matchup, all using model '+(latestSenateEstimates?.method_version||'unknown')+
   '. A line connects observations; no daily values between them were measured. Poll-age reweighting and newly added polls can both move the average. This is NOT an election-outcome forecast.';
 }
+let modelRaceOddsData=null,modelOddsErrorWidth='standard';
+function setModelRaceOddsData(data){
+ modelRaceOddsData=data;
+ if(latestSenateEstimates)renderModelOverview(latestSenateEstimates);
+}
+function modelOddsValidate(data,source){
+ if(!data||!source||data.schema_version!=='experimental-race-odds-v1'||
+  data.status!=='experimental_poll_margin_probability_not_chamber_forecast'||
+  data.normal_error_model!==true||data.probabilities_calibrated_on_2026_outcomes!==false||
+  data.can_infer_chamber_control!==false||data.can_infer_blue_tsunami!==false||
+  data.partisan_bias_correction_points!==0||
+  data.polling_source_generated_at!==source.generated_at||
+  !Array.isArray(data.records)||data.records.length<30||
+  data.historical_senate_races!==42||
+  !Number.isFinite(data.senate_baseline_rmse_points))return false;
+ const sourceGroups={senate:source.senate_all||[],house:source.house||[],governor:source.governor||[]};
+ const seen=new Set();
+ for(const item of data.records){
+  const code=item.race_code,office=item.office,key=office+'|'+code;
+  if(seen.has(key)||!Object.prototype.hasOwnProperty.call(sourceGroups,office))return false;
+  seen.add(key);
+  const race=sourceGroups[office].find(r=>r.race_code===code&&
+   ['single_poll','multi_poll'].includes(r.status));
+  if(!race||Math.abs(race.dem_minus_rep-item.dem_minus_rep)>.011||
+    race.latest_poll_end!==item.latest_poll_end||
+    item.contributing_firms!==race.contributing_pollsters||
+    !Number.isFinite(item.sigma_points)||item.sigma_points<3||
+    !['dem_beats_rep_pct','rep_beats_dem_pct','tight_error_dem_pct','wide_error_dem_pct']
+       .every(k=>Number.isFinite(item[k])&&item[k]>=0&&item[k]<=100)||
+    Math.abs(item.dem_beats_rep_pct+item.rep_beats_dem_pct-100)>.02)return false;
+ }
+ return Object.entries(sourceGroups).every(([office,rows])=>
+  data.records.filter(x=>x.office===office).length===
+    rows.filter(r=>['multi_poll','single_poll'].includes(r.status)).length);
+}
+function renderModelRaceOdds(estimate){
+ const host=$('#modelOddsNumbers'),bar=$('#modelOddsBar'),note=$('#modelOddsContext');
+ if(!host||!bar||!note)return;
+ host.replaceChildren();bar.replaceChildren();
+ document.querySelectorAll('.model-odds-presets [data-odds-width]').forEach(b=>
+  b.setAttribute('aria-pressed',String(b.dataset.oddsWidth===modelOddsErrorWidth)));
+ const item=estimate&&modelRaceOddsData?.records.find(x=>
+    x.office===modelMode&&x.race_code===estimate.race_code);
+ if(modelMode==='generic'){
+  host.append(elt('span','','Generic ballot: not a two-candidate race.'));
+  note.textContent='See individual contests to compare model-implied matchup probabilities.';
+  return;
+ }
+ if(!item||!modelOddsValidate(modelRaceOddsData,latestSenateEstimates)){
+  host.append(elt('span','','Waiting for the matching probability snapshot…'));
+  note.textContent='Current race odds will appear after the probability model has been rebuilt from the same polling snapshot.';
+  return;
+ }
+ const p=modelOddsErrorWidth==='tight'?item.tight_error_dem_pct:
+   modelOddsErrorWidth==='wide'?item.wide_error_dem_pct:item.dem_beats_rep_pct;
+ const format=n=>n>=99.5?'>99%':n<=.5?'<1%':Math.round(n)+'%';
+ const dem=elt('div','model-odds-col');
+ dem.append(elt('span','','DEMOCRATIC'),elt('strong','party-d',format(p)));
+ const rep=elt('div','model-odds-col');
+ rep.append(elt('span','','REPUBLICAN'),elt('strong','party-r',format(100-p)));
+ host.append(dem,rep);
+ const fill=elt('div');fill.style.width=Math.max(0,Math.min(100,p))+'%';bar.append(fill);
+ note.textContent='Poll average '+marginText(item.dem_minus_rep)+' · '+
+    'assumed election-day error '+(item.sigma_points*(modelOddsErrorWidth==='tight'?.75:
+     modelOddsErrorWidth==='wide'?1.25:1)).toFixed(1)+' margin points. '+
+    (modelMode==='senate'?'Error scale anchored to 42 realized 2020–24 Senate polling misses.':
+    'House and governor starting error scale is assumed, not historically measured.')+
+    ' Adjusting the error width shows sensitivity, not a confidence interval. Candidate fundamentals, non-major-party outcomes and shared national error are not modeled.';
+}
+document.querySelectorAll('.model-odds-presets [data-odds-width]').forEach(button=>
+ button.addEventListener('click',()=>{
+  modelOddsErrorWidth=button.dataset.oddsWidth;
+  const estimate=modelRows(latestSenateEstimates).find(x=>x.race_code===selectedModelState);
+  renderModelRaceOdds(estimate);
+ }));
+fetch('./data/race_probabilities.json',{cache:'no-store'}).then(response=>{
+ if(!response.ok)throw Error('probability model is not staged');
+ return response.json();
+}).then(setModelRaceOddsData).catch(()=>setModelRaceOddsData(null));
+
 function renderModelRaceDetail(){
  const estimate=modelRows(latestSenateEstimates).find(s=>(s.race_code||s.state+'-SEN')===selectedModelState);
  if(!estimate||!$('#modelDetail'))return;
@@ -899,6 +1013,7 @@ function renderModelRaceDetail(){
  $('#modelRepPct').textContent=pct(estimate.rep_pct);
  const stats=$('#modelDetailStats');stats.replaceChildren();
  const u=estimate.poll_diagnostics||{};
+ renderModelRaceOdds(estimate);
  for(const item of [
   (estimate.contributing_pollsters??estimate.independent_pollsters??0)+' polling firms',
   'Latest eligible poll '+formattedModelDate(estimate.latest_poll_end),
