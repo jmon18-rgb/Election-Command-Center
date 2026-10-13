@@ -32,6 +32,10 @@ jobs:
         run: python3 scripts/build_senate_bias_holdout.py
       - name: Validate polling model behavior
         run: python3 scripts/test_polling_models.py
+      - name: Test real 2026 poll-to-race probability model
+        run: python3 scripts/test_race_probabilities.py
+      - name: Rebuild experimental 2026 race probability snapshot
+        run: python3 scripts/build_race_probabilities.py
       - name: Verify browser-compatible live official-state election API
         run: python3 scripts/test_live_results_source.py
       - name: Nonpublishing secondary civicAPI 2026 coverage and CORS probe
