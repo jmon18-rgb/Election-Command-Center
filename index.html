@@ -32,7 +32,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .model-scatter{display:block;width:100%;height:auto;margin:8px 0 0;overflow:visible}.model-chart-legend{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:10px;color:#94abc3}.model-chart-legend span{display:flex;align-items:center;gap:5px}.model-dot{width:7px;height:7px;border-radius:50%;display:inline-block}.model-dot.blue{background:#7eaaf9}.model-dot.red{background:#f08187}.model-dot.muted{background:#64758b}
 .model-chart-note{font-size:10px;color:#8fa5bc;line-height:1.4;margin:8px 0 20px}
 .model-poll-head{display:flex;align-items:center;justify-content:space-between;gap:9px;padding-top:15px;border-top:1px solid #293e55}.model-poll-head strong{font-size:14px}.model-poll-modes{display:flex;gap:4px}.model-poll-modes button{border:1px solid #384e68;border-radius:6px;padding:7px 9px;background:#16263a;color:#9eafc1;font-size:10px;font-weight:750;cursor:pointer}.model-poll-modes button[aria-pressed=true]{background:#2b4b68;border-color:#73aacf;color:#e9f3ff}
-.model-poll-status{font-size:10px;color:#94abc4;margin:9px 0}.model-tablewrap{overflow-x:auto}.model-poll-table{width:100%;border-collapse:collapse;min-width:450px;font-size:10px}.model-poll-table th{text-align:left;text-transform:uppercase;color:#8da8c3;letter-spacing:.06em;font-size:9px;padding:9px 6px;border-bottom:1px solid #34485b}.model-poll-table td{padding:10px 6px;border-bottom:1px solid #24384d;color:#c0d0e1}.model-poll-table td:nth-child(4){color:#8cb7fa}.model-poll-table td:nth-child(5){color:#f3a2a3}.model-poll-table tr.excluded td{opacity:.62}.model-poll-table tr:last-child td{border-bottom:0}
+.model-poll-status{font-size:10px;color:#94abc4;margin:9px 0}.model-tablewrap{overflow-x:auto}.model-poll-table{width:100%;border-collapse:collapse;min-width:520px;font-size:10px}.model-poll-table th{text-align:left;text-transform:uppercase;color:#8da8c3;letter-spacing:.06em;font-size:9px;padding:9px 6px;border-bottom:1px solid #34485b}.model-poll-table td{padding:10px 6px;border-bottom:1px solid #24384d;color:#c0d0e1}.model-poll-table td:nth-child(5){color:#8cb7fa}.model-poll-table td:nth-child(6){color:#f3a2a3}.model-influence{display:flex;align-items:center;gap:5px;color:#b8d8f4}.model-influence-track{display:inline-block;width:35px;height:6px;background:#33465a;border-radius:3px;overflow:hidden;flex-shrink:0}.model-influence-track i{display:block;background:#7f98b1;height:100%;border-radius:3px}.model-poll-table tr.excluded td{opacity:.62}.model-poll-table tr:last-child td{border-bottom:0}
 .model-source-row{display:flex;flex-wrap:wrap;gap:10px;font-size:11px;margin-top:13px}.model-source-row a{color:#8ec4f6}.model-back{display:none;background:none;border:0;color:#9bc6ec;font-size:11px;margin-top:20px;cursor:pointer}
 @media(max-width:820px){.model-workspace{grid-template-columns:minmax(0,1fr)}.model-board{display:grid;grid-template-columns:minmax(0,1fr)}.model-race-row{min-height:65px}.model-detail{padding:15px}.model-back{display:block}}
 @media(max-width:550px){.model-top-stat{padding:10px}.model-top-stat span{font-size:9px;letter-spacing:0}.model-top-stat strong{font-size:21px}.model-updated{font-size:10px}.model-heading{align-items:start}.model-candidate strong{font-size:23px}.model-candidate span{font-size:10px}}
@@ -72,7 +72,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   <p class="model-chart-note" id="modelChartNote">Dashed reference lines are current averages, not a historical trend.</p>
   <div class="model-poll-head"><strong>Individual polls</strong><div class="model-poll-modes"><button type="button" id="modelPollIncluded" aria-pressed="true">In average</button><button type="button" id="modelPollAll" aria-pressed="false">All recent</button></div></div>
   <div id="modelPollStatus" class="model-poll-status">Loading source observations…</div>
-  <div class="model-tablewrap"><table class="model-poll-table"><thead><tr><th>Field end</th><th>Pollster</th><th>Sample</th><th>D</th><th>R</th><th>Margin</th></tr></thead><tbody id="modelPollRows"></tbody></table></div>
+  <div class="model-tablewrap"><table class="model-poll-table"><thead><tr><th>Field end</th><th>Pollster</th><th>Sample</th><th>Influence</th><th>D</th><th>R</th><th>Margin</th></tr></thead><tbody id="modelPollRows"></tbody></table></div>
   <div class="model-source-row" id="modelDetailsFooter"></div>
   <button class="model-back" type="button" id="modelBack">↑ All races</button>
  </div>
@@ -246,15 +246,33 @@ function renderModelRaceDetail(){
  $('#modelPollIncluded').setAttribute('aria-pressed',String(modelPollMode!=='all'));
  $('#modelPollAll').setAttribute('aria-pressed',String(modelPollMode==='all'));
  const tbody=$('#modelPollRows');tbody.replaceChildren();
+ const modelDay=latestSenateEstimates?.generated_at?.slice(0,10);
+ const dayAge=field=>Math.max(0,Math.round((Date.parse(modelDay+'T12:00:00Z')-Date.parse(field+'T12:00:00Z'))/86400000));
+ const halfLife=latestSenateEstimates?.half_life_days||21;
+ const modelWeights=(estimate.pollsters||[]).map(q=>Math.pow(.5,dayAge(q.field_end)/halfLife));
+ const weightTotal=modelWeights.reduce((s,w)=>s+w,0);
+ const weightPct=p=>p.included&&weightTotal>0?100*Math.pow(.5,dayAge(p.field_end)/halfLife)/weightTotal:null;
+ const largest=Math.max(1,...inAverage.map(p=>weightPct(p)||0));
  if(!pollingSnapshot){$('#modelPollStatus').textContent='Loading individual polls…'}
  else $('#modelPollStatus').textContent=modelPollMode==='all'?'All source observations for this matchup; partisan-sponsored polls are marked.':'Observations matched to the current JackStradamus average.';
  if(!selected.length){
-  const tr=elt('tr');const td=elt('td','',pollingSnapshot?'No matching surveys in this feed.':'Fetching surveys…');td.colSpan=6;tr.append(td);tbody.append(tr)
+  const tr=elt('tr');const td=elt('td','',pollingSnapshot?'No matching surveys in this feed.':'Fetching surveys…');td.colSpan=7;tr.append(td);tbody.append(tr)
  }
  for(const p of selected){
   const tr=elt('tr',p.included?'':'excluded');
-  const cells=[formattedModelDate(p.field_end),p.pollster+(p.partisan_lean?' · '+p.partisan_lean+' sponsor':''),p.sample_size?Number(p.sample_size).toLocaleString():'—',pct(p.dem),pct(p.rep),marginText(p.margin)];
+  const cells=[formattedModelDate(p.field_end),p.pollster+(p.partisan_lean?' · '+p.partisan_lean+' sponsor':''),p.sample_size?Number(p.sample_size).toLocaleString():'—'];
   for(const value of cells)tr.append(elt('td','',value));
+  const influence=elt('td');
+  const weight=weightPct(p);
+  if(weight===null)influence.textContent='—';
+  else{
+   const meter=elt('div','model-influence');
+   const bar=elt('span','model-influence-track'),fill=elt('i');
+   fill.style.width=Math.round(weight/largest*100)+'%';bar.append(fill);
+   meter.append(bar,elt('span','',weight.toFixed(1)+'%'));influence.append(meter)
+  }
+  tr.append(influence);
+  for(const value of [pct(p.dem),pct(p.rep),marginText(p.margin)])tr.append(elt('td','',value));
   if(!p.included)tr.title='Not in the current polling average';
   tbody.append(tr);
  }
