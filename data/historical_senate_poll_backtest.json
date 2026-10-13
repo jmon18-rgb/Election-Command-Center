@@ -1,0 +1,1544 @@
+{
+  "schema_version": "historical-poll-backtest-v1",
+  "status": "retrospective_poll_research_not_calibrated_forecast",
+  "generated_at": "2026-10-13T19:22:00.046876+00:00",
+  "poll_source": "https://github.com/Jack-Whitcomb/All-US-Senate-polls-2006-2024",
+  "poll_source_attribution": "https://github.com/Jack-Whitcomb/All-US-Senate-polls-2006-2024",
+  "poll_source_license": "No explicit license in public compilation; only derived metrics retained",
+  "poll_source_sha256": {
+    "2020": "9b38c080c503c75c1cc1aed50692db7ece16abf11a25d45dbe9263f1e52fbd5b",
+    "2022": "36869e199da0a92dd0b2976ac76daae71f804cd9001b8fc3ba28d67c3f8946f4",
+    "2024": "710c592e3f664bb46888d3fa27c59798a8cfcc492346dc74fd95018377eaa57d"
+  },
+  "poll_source_first_publication_dates_available": false,
+  "source_dataset": "Third-party compilation of RealClearPolling Senate polls, curated retrospectively",
+  "outcomes_source": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/PEJ5QU",
+  "outcomes_source_license": "CC0 1.0",
+  "cutoff_days_before_election": 7,
+  "poll_lookback_days": 45,
+  "poll_observation_coverage": {
+    "raw_records": {
+      "2020": 374,
+      "2022": 346,
+      "2024": 510
+    },
+    "eligible_records": {
+      "2020": 178,
+      "2022": 184,
+      "2024": 205
+    },
+    "invalid_or_inverted_dates": {
+      "2020": 2,
+      "2022": 1,
+      "2024": 1
+    },
+    "missing_or_invalid_ballot_shares": {
+      "2020": 2,
+      "2022": 5,
+      "2024": 2
+    }
+  },
+  "outcome_eligible_races": 87,
+  "outcome_eligible_by_year": {
+    "2020": 31,
+    "2022": 27,
+    "2024": 29
+  },
+  "excluded_insufficient_pollsters": 45,
+  "races_evaluated": 42,
+  "by_year": {
+    "2020": {
+      "eligible_races": 13,
+      "benchmarks": {
+        "equal_firm": {
+          "races": 13,
+          "mae": 5.508,
+          "signed_bias": 5.508,
+          "rmse": 6.966
+        },
+        "recency14": {
+          "races": 13,
+          "mae": 5.576,
+          "signed_bias": 5.33,
+          "rmse": 6.903
+        },
+        "recency21": {
+          "races": 13,
+          "mae": 5.541,
+          "signed_bias": 5.375,
+          "rmse": 6.911
+        },
+        "recency35": {
+          "races": 13,
+          "mae": 5.507,
+          "signed_bias": 5.423,
+          "rmse": 6.927
+        }
+      }
+    },
+    "2022": {
+      "eligible_races": 14,
+      "benchmarks": {
+        "equal_firm": {
+          "races": 14,
+          "mae": 3.305,
+          "signed_bias": 0.313,
+          "rmse": 4.451
+        },
+        "recency14": {
+          "races": 14,
+          "mae": 3.517,
+          "signed_bias": -0.351,
+          "rmse": 4.511
+        },
+        "recency21": {
+          "races": 14,
+          "mae": 3.458,
+          "signed_bias": -0.161,
+          "rmse": 4.473
+        },
+        "recency35": {
+          "races": 14,
+          "mae": 3.395,
+          "signed_bias": 0.014,
+          "rmse": 4.45
+        }
+      }
+    },
+    "2024": {
+      "eligible_races": 15,
+      "benchmarks": {
+        "equal_firm": {
+          "races": 15,
+          "mae": 4.677,
+          "signed_bias": 4.404,
+          "rmse": 5.651
+        },
+        "recency14": {
+          "races": 15,
+          "mae": 4.223,
+          "signed_bias": 4.061,
+          "rmse": 5.264
+        },
+        "recency21": {
+          "races": 15,
+          "mae": 4.346,
+          "signed_bias": 4.156,
+          "rmse": 5.365
+        },
+        "recency35": {
+          "races": 15,
+          "mae": 4.465,
+          "signed_bias": 4.247,
+          "rmse": 5.465
+        }
+      }
+    }
+  },
+  "overall_recency21": {
+    "races": 42,
+    "mae": 4.42,
+    "signed_bias": 3.095,
+    "rmse": 5.633
+  },
+  "records": [
+    {
+      "cycle": 2020,
+      "state": "AZ",
+      "label": "Arizona · Senate",
+      "historical_race_id": "2020-AZ-SEN-special",
+      "actual_two_party_margin": 2.347,
+      "other_vote_share_pct": 0.02,
+      "pollster_count": 11,
+      "field_end_range": [
+        "2020-09-20",
+        "2020-10-27"
+      ],
+      "cutoff": "2020-10-27",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 6.477,
+          "error": 4.13
+        },
+        "recency14": {
+          "predicted_two_party_margin": 6.161,
+          "error": 3.814
+        },
+        "recency21": {
+          "predicted_two_party_margin": 6.29,
+          "error": 3.943
+        },
+        "recency35": {
+          "predicted_two_party_margin": 6.382,
+          "error": 4.035
+        }
+      }
+    },
+    {
+      "cycle": 2020,
+      "state": "CO",
+      "label": "Colorado · Senate",
+      "historical_race_id": "2020-CO-SEN-regular",
+      "actual_two_party_margin": 9.543,
+      "other_vote_share_pct": 2.32,
+      "pollster_count": 2,
+      "field_end_range": [
+        "2020-10-06",
+        "2020-10-09"
+      ],
+      "cutoff": "2020-10-27",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 9.718,
+          "error": 0.175
+        },
+        "recency14": {
+          "predicted_two_party_margin": 9.671,
+          "error": 0.128
+        },
+        "recency21": {
+          "predicted_two_party_margin": 9.687,
+          "error": 0.144
+        },
+        "recency35": {
+          "predicted_two_party_margin": 9.699,
+          "error": 0.156
+        }
+      }
+    },
+    {
+      "cycle": 2020,
+      "state": "IA",
+      "label": "Iowa · Senate",
+      "historical_race_id": "2020-IA-SEN-regular",
+      "actual_two_party_margin": -6.799,
+      "other_vote_share_pct": 4.72,
+      "pollster_count": 8,
+      "field_end_range": [
+        "2020-09-17",
+        "2020-10-27"
+      ],
+      "cutoff": "2020-10-27",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 2.171,
+          "error": 8.971
+        },
+        "recency14": {
+          "predicted_two_party_margin": 1.738,
+          "error": 8.537
+        },
+        "recency21": {
+          "predicted_two_party_margin": 1.861,
+          "error": 8.66
+        },
+        "recency35": {
+          "predicted_two_party_margin": 1.974,
+          "error": 8.773
+        }
+      }
+    },
+    {
+      "cycle": 2020,
+      "state": "KY",
+      "label": "Kentucky · Senate",
+      "historical_race_id": "2020-KY-SEN-regular",
+      "actual_two_party_margin": -20.349,
+      "other_vote_share_pct": 4.0,
+      "pollster_count": 2,
+      "field_end_range": [
+        "2020-09-14",
+        "2020-10-15"
+      ],
+      "cutoff": "2020-10-27",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": -11.222,
+          "error": 9.127
+        },
+        "recency14": {
+          "predicted_two_party_margin": -10.225,
+          "error": 10.124
+        },
+        "recency21": {
+          "predicted_two_party_margin": -10.494,
+          "error": 9.855
+        },
+        "recency35": {
+          "predicted_two_party_margin": -10.762,
+          "error": 9.587
+        }
+      }
+    },
+    {
+      "cycle": 2020,
+      "state": "ME",
+      "label": "Maine · Senate",
+      "historical_race_id": "2020-ME-SEN-regular",
+      "actual_two_party_margin": -9.207,
+      "other_vote_share_pct": 7.66,
+      "pollster_count": 6,
+      "field_end_range": [
+        "2020-09-14",
+        "2020-10-25"
+      ],
+      "cutoff": "2020-10-27",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 6.211,
+          "error": 15.418
+        },
+        "recency14": {
+          "predicted_two_party_margin": 5.202,
+          "error": 14.409
+        },
+        "recency21": {
+          "predicted_two_party_margin": 5.494,
+          "error": 14.701
+        },
+        "recency35": {
+          "predicted_two_party_margin": 5.765,
+          "error": 14.973
+        }
+      }
+    },
+    {
+      "cycle": 2020,
+      "state": "MI",
+      "label": "Michigan · Senate",
+      "historical_race_id": "2020-MI-SEN-regular",
+      "actual_two_party_margin": 1.717,
+      "other_vote_share_pct": 1.88,
+      "pollster_count": 14,
+      "field_end_range": [
+        "2020-09-19",
+        "2020-10-27"
+      ],
+      "cutoff": "2020-10-27",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 6.497,
+          "error": 4.78
+        },
+        "recency14": {
+          "predicted_two_party_margin": 7.103,
+          "error": 5.386
+        },
+        "recency21": {
+          "predicted_two_party_margin": 6.936,
+          "error": 5.219
+        },
+        "recency35": {
+          "predicted_two_party_margin": 6.779,
+          "error": 5.062
+        }
+      }
+    },
+    {
+      "cycle": 2020,
+      "state": "MN",
+      "label": "Minnesota · Senate",
+      "historical_race_id": "2020-MN-SEN-regular",
+      "actual_two_party_margin": 5.679,
+      "other_vote_share_pct": 7.77,
+      "pollster_count": 5,
+      "field_end_range": [
+        "2020-09-23",
+        "2020-10-27"
+      ],
+      "cutoff": "2020-10-27",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 6.072,
+          "error": 0.393
+        },
+        "recency14": {
+          "predicted_two_party_margin": 4.08,
+          "error": -1.6
+        },
+        "recency21": {
+          "predicted_two_party_margin": 4.605,
+          "error": -1.074
+        },
+        "recency35": {
+          "predicted_two_party_margin": 5.133,
+          "error": -0.547
+        }
+      }
+    },
+    {
+      "cycle": 2020,
+      "state": "MT",
+      "label": "Montana · Senate",
+      "historical_race_id": "2020-MT-SEN-regular",
+      "actual_two_party_margin": -10.024,
+      "other_vote_share_pct": 0.0,
+      "pollster_count": 5,
+      "field_end_range": [
+        "2020-10-07",
+        "2020-10-24"
+      ],
+      "cutoff": "2020-10-27",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": -2.526,
+          "error": 7.498
+        },
+        "recency14": {
+          "predicted_two_party_margin": -1.816,
+          "error": 8.209
+        },
+        "recency21": {
+          "predicted_two_party_margin": -2.034,
+          "error": 7.99
+        },
+        "recency35": {
+          "predicted_two_party_margin": -2.223,
+          "error": 7.801
+        }
+      }
+    },
+    {
+      "cycle": 2020,
+      "state": "NC",
+      "label": "North Carolina · Senate",
+      "historical_race_id": "2020-NC-SEN-regular",
+      "actual_two_party_margin": -1.827,
+      "other_vote_share_pct": 4.37,
+      "pollster_count": 17,
+      "field_end_range": [
+        "2020-09-13",
+        "2020-10-27"
+      ],
+      "cutoff": "2020-10-27",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 2.974,
+          "error": 4.801
+        },
+        "recency14": {
+          "predicted_two_party_margin": 2.84,
+          "error": 4.667
+        },
+        "recency21": {
+          "predicted_two_party_margin": 2.874,
+          "error": 4.701
+        },
+        "recency35": {
+          "predicted_two_party_margin": 2.909,
+          "error": 4.736
+        }
+      }
+    },
+    {
+      "cycle": 2020,
+      "state": "NH",
+      "label": "New Hampshire · Senate",
+      "historical_race_id": "2020-NH-SEN-regular",
+      "actual_two_party_margin": 16.029,
+      "other_vote_share_pct": 2.38,
+      "pollster_count": 5,
+      "field_end_range": [
+        "2020-10-01",
+        "2020-10-26"
+      ],
+      "cutoff": "2020-10-27",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 16.1,
+          "error": 0.071
+        },
+        "recency14": {
+          "predicted_two_party_margin": 16.127,
+          "error": 0.097
+        },
+        "recency21": {
+          "predicted_two_party_margin": 16.114,
+          "error": 0.085
+        },
+        "recency35": {
+          "predicted_two_party_margin": 16.107,
+          "error": 0.078
+        }
+      }
+    },
+    {
+      "cycle": 2020,
+      "state": "SC",
+      "label": "South Carolina · Senate",
+      "historical_race_id": "2020-SC-SEN-regular",
+      "actual_two_party_margin": -10.416,
+      "other_vote_share_pct": 1.4,
+      "pollster_count": 4,
+      "field_end_range": [
+        "2020-09-25",
+        "2020-10-25"
+      ],
+      "cutoff": "2020-10-27",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": -2.815,
+          "error": 7.601
+        },
+        "recency14": {
+          "predicted_two_party_margin": -3.674,
+          "error": 6.741
+        },
+        "recency21": {
+          "predicted_two_party_margin": -3.454,
+          "error": 6.962
+        },
+        "recency35": {
+          "predicted_two_party_margin": -3.224,
+          "error": 7.191
+        }
+      }
+    },
+    {
+      "cycle": 2020,
+      "state": "TX",
+      "label": "Texas · Senate",
+      "historical_race_id": "2020-TX-SEN-regular",
+      "actual_two_party_margin": -9.899,
+      "other_vote_share_pct": 2.62,
+      "pollster_count": 8,
+      "field_end_range": [
+        "2020-09-18",
+        "2020-10-26"
+      ],
+      "cutoff": "2020-10-27",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": -8.317,
+          "error": 1.583
+        },
+        "recency14": {
+          "predicted_two_party_margin": -8.438,
+          "error": 1.461
+        },
+        "recency21": {
+          "predicted_two_party_margin": -8.429,
+          "error": 1.47
+        },
+        "recency35": {
+          "predicted_two_party_margin": -8.402,
+          "error": 1.497
+        }
+      }
+    },
+    {
+      "cycle": 2020,
+      "state": "VA",
+      "label": "Virginia · Senate",
+      "historical_race_id": "2020-VA-SEN-regular",
+      "actual_two_party_margin": 12.096,
+      "other_vote_share_pct": 0.1,
+      "pollster_count": 4,
+      "field_end_range": [
+        "2020-10-12",
+        "2020-10-27"
+      ],
+      "cutoff": "2020-10-27",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 19.146,
+          "error": 7.051
+        },
+        "recency14": {
+          "predicted_two_party_margin": 19.411,
+          "error": 7.315
+        },
+        "recency21": {
+          "predicted_two_party_margin": 19.321,
+          "error": 7.225
+        },
+        "recency35": {
+          "predicted_two_party_margin": 19.25,
+          "error": 7.154
+        }
+      }
+    },
+    {
+      "cycle": 2022,
+      "state": "AR",
+      "label": "Arkansas · Senate",
+      "historical_race_id": "2022-AR-SEN-regular",
+      "actual_two_party_margin": -35.783,
+      "other_vote_share_pct": 3.18,
+      "pollster_count": 2,
+      "field_end_range": [
+        "2022-10-18",
+        "2022-10-31"
+      ],
+      "cutoff": "2022-11-01",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": -26.409,
+          "error": 9.374
+        },
+        "recency14": {
+          "predicted_two_party_margin": -29.232,
+          "error": 6.551
+        },
+        "recency21": {
+          "predicted_two_party_margin": -28.326,
+          "error": 7.457
+        },
+        "recency35": {
+          "predicted_two_party_margin": -27.57,
+          "error": 8.212
+        }
+      }
+    },
+    {
+      "cycle": 2022,
+      "state": "AZ",
+      "label": "Arizona · Senate",
+      "historical_race_id": "2022-AZ-SEN-regular",
+      "actual_two_party_margin": 4.991,
+      "other_vote_share_pct": 2.1,
+      "pollster_count": 15,
+      "field_end_range": [
+        "2022-09-17",
+        "2022-11-01"
+      ],
+      "cutoff": "2022-11-01",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 3.176,
+          "error": -1.815
+        },
+        "recency14": {
+          "predicted_two_party_margin": 2.615,
+          "error": -2.376
+        },
+        "recency21": {
+          "predicted_two_party_margin": 2.768,
+          "error": -2.224
+        },
+        "recency35": {
+          "predicted_two_party_margin": 2.915,
+          "error": -2.076
+        }
+      }
+    },
+    {
+      "cycle": 2022,
+      "state": "FL",
+      "label": "Florida · Senate",
+      "historical_race_id": "2022-FL-SEN-regular",
+      "actual_two_party_margin": -16.588,
+      "other_vote_share_pct": 1.05,
+      "pollster_count": 8,
+      "field_end_range": [
+        "2022-09-18",
+        "2022-11-01"
+      ],
+      "cutoff": "2022-11-01",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": -7.372,
+          "error": 9.216
+        },
+        "recency14": {
+          "predicted_two_party_margin": -7.761,
+          "error": 8.827
+        },
+        "recency21": {
+          "predicted_two_party_margin": -7.696,
+          "error": 8.891
+        },
+        "recency35": {
+          "predicted_two_party_margin": -7.603,
+          "error": 8.984
+        }
+      }
+    },
+    {
+      "cycle": 2022,
+      "state": "GA",
+      "label": "Georgia · Senate",
+      "historical_race_id": "2022-GA-SEN-regular",
+      "actual_two_party_margin": 0.977,
+      "other_vote_share_pct": 2.07,
+      "pollster_count": 15,
+      "field_end_range": [
+        "2022-09-19",
+        "2022-10-31"
+      ],
+      "cutoff": "2022-11-01",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 1.138,
+          "error": 0.16
+        },
+        "recency14": {
+          "predicted_two_party_margin": 0.236,
+          "error": -0.741
+        },
+        "recency21": {
+          "predicted_two_party_margin": 0.476,
+          "error": -0.501
+        },
+        "recency35": {
+          "predicted_two_party_margin": 0.712,
+          "error": -0.266
+        }
+      }
+    },
+    {
+      "cycle": 2022,
+      "state": "MO",
+      "label": "Missouri · Senate",
+      "historical_race_id": "2022-MO-SEN-regular",
+      "actual_two_party_margin": -13.653,
+      "other_vote_share_pct": 0.0,
+      "pollster_count": 4,
+      "field_end_range": [
+        "2022-10-25",
+        "2022-11-01"
+      ],
+      "cutoff": "2022-11-01",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": -11.51,
+          "error": 2.143
+        },
+        "recency14": {
+          "predicted_two_party_margin": -11.49,
+          "error": 2.163
+        },
+        "recency21": {
+          "predicted_two_party_margin": -11.499,
+          "error": 2.154
+        },
+        "recency35": {
+          "predicted_two_party_margin": -11.505,
+          "error": 2.148
+        }
+      }
+    },
+    {
+      "cycle": 2022,
+      "state": "NC",
+      "label": "North Carolina · Senate",
+      "historical_race_id": "2022-NC-SEN-regular",
+      "actual_two_party_margin": -3.299,
+      "other_vote_share_pct": 2.23,
+      "pollster_count": 6,
+      "field_end_range": [
+        "2022-10-02",
+        "2022-10-29"
+      ],
+      "cutoff": "2022-11-01",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": -4.294,
+          "error": -0.994
+        },
+        "recency14": {
+          "predicted_two_party_margin": -4.594,
+          "error": -1.295
+        },
+        "recency21": {
+          "predicted_two_party_margin": -4.516,
+          "error": -1.216
+        },
+        "recency35": {
+          "predicted_two_party_margin": -4.438,
+          "error": -1.139
+        }
+      }
+    },
+    {
+      "cycle": 2022,
+      "state": "NH",
+      "label": "New Hampshire · Senate",
+      "historical_race_id": "2022-NH-SEN-regular",
+      "actual_two_party_margin": 9.35,
+      "other_vote_share_pct": 2.07,
+      "pollster_count": 11,
+      "field_end_range": [
+        "2022-09-19",
+        "2022-11-01"
+      ],
+      "cutoff": "2022-11-01",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 4.799,
+          "error": -4.551
+        },
+        "recency14": {
+          "predicted_two_party_margin": 3.478,
+          "error": -5.872
+        },
+        "recency21": {
+          "predicted_two_party_margin": 3.844,
+          "error": -5.506
+        },
+        "recency35": {
+          "predicted_two_party_margin": 4.191,
+          "error": -5.159
+        }
+      }
+    },
+    {
+      "cycle": 2022,
+      "state": "NV",
+      "label": "Nevada · Senate",
+      "historical_race_id": "2022-NV-SEN-regular",
+      "actual_two_party_margin": 0.802,
+      "other_vote_share_pct": 3.15,
+      "pollster_count": 11,
+      "field_end_range": [
+        "2022-10-02",
+        "2022-10-29"
+      ],
+      "cutoff": "2022-11-01",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": -1.391,
+          "error": -2.193
+        },
+        "recency14": {
+          "predicted_two_party_margin": -1.479,
+          "error": -2.281
+        },
+        "recency21": {
+          "predicted_two_party_margin": -1.445,
+          "error": -2.247
+        },
+        "recency35": {
+          "predicted_two_party_margin": -1.42,
+          "error": -2.222
+        }
+      }
+    },
+    {
+      "cycle": 2022,
+      "state": "NY",
+      "label": "New York · Senate",
+      "historical_race_id": "2022-NY-SEN-regular",
+      "actual_two_party_margin": 15.655,
+      "other_vote_share_pct": 10.62,
+      "pollster_count": 7,
+      "field_end_range": [
+        "2022-09-25",
+        "2022-10-31"
+      ],
+      "cutoff": "2022-11-01",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 15.993,
+          "error": 0.339
+        },
+        "recency14": {
+          "predicted_two_party_margin": 15.744,
+          "error": 0.09
+        },
+        "recency21": {
+          "predicted_two_party_margin": 15.769,
+          "error": 0.115
+        },
+        "recency35": {
+          "predicted_two_party_margin": 15.825,
+          "error": 0.17
+        }
+      }
+    },
+    {
+      "cycle": 2022,
+      "state": "OH",
+      "label": "Ohio · Senate",
+      "historical_race_id": "2022-OH-SEN-regular",
+      "actual_two_party_margin": -6.114,
+      "other_vote_share_pct": 0.04,
+      "pollster_count": 8,
+      "field_end_range": [
+        "2022-10-07",
+        "2022-11-01"
+      ],
+      "cutoff": "2022-11-01",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": -2.653,
+          "error": 3.461
+        },
+        "recency14": {
+          "predicted_two_party_margin": -3.538,
+          "error": 2.576
+        },
+        "recency21": {
+          "predicted_two_party_margin": -3.184,
+          "error": 2.931
+        },
+        "recency35": {
+          "predicted_two_party_margin": -2.943,
+          "error": 3.171
+        }
+      }
+    },
+    {
+      "cycle": 2022,
+      "state": "OR",
+      "label": "Oregon · Senate",
+      "historical_race_id": "2022-OR-SEN-regular",
+      "actual_two_party_margin": 15.409,
+      "other_vote_share_pct": 3.24,
+      "pollster_count": 2,
+      "field_end_range": [
+        "2022-10-18",
+        "2022-11-01"
+      ],
+      "cutoff": "2022-11-01",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 16.044,
+          "error": 0.635
+        },
+        "recency14": {
+          "predicted_two_party_margin": 17.363,
+          "error": 1.954
+        },
+        "recency21": {
+          "predicted_two_party_margin": 16.942,
+          "error": 1.534
+        },
+        "recency35": {
+          "predicted_two_party_margin": 16.589,
+          "error": 1.18
+        }
+      }
+    },
+    {
+      "cycle": 2022,
+      "state": "PA",
+      "label": "Pennsylvania · Senate",
+      "historical_race_id": "2022-PA-SEN-regular",
+      "actual_two_party_margin": 5.035,
+      "other_vote_share_pct": 2.42,
+      "pollster_count": 16,
+      "field_end_range": [
+        "2022-09-22",
+        "2022-11-01"
+      ],
+      "cutoff": "2022-11-01",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 2.217,
+          "error": -2.819
+        },
+        "recency14": {
+          "predicted_two_party_margin": 1.65,
+          "error": -3.385
+        },
+        "recency21": {
+          "predicted_two_party_margin": 1.794,
+          "error": -3.241
+        },
+        "recency35": {
+          "predicted_two_party_margin": 1.937,
+          "error": -3.098
+        }
+      }
+    },
+    {
+      "cycle": 2022,
+      "state": "WA",
+      "label": "Washington · Senate",
+      "historical_race_id": "2022-WA-SEN-regular",
+      "actual_two_party_margin": 14.551,
+      "other_vote_share_pct": 0.22,
+      "pollster_count": 7,
+      "field_end_range": [
+        "2022-09-26",
+        "2022-10-31"
+      ],
+      "cutoff": "2022-11-01",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 7.723,
+          "error": -6.827
+        },
+        "recency14": {
+          "predicted_two_party_margin": 5.243,
+          "error": -9.308
+        },
+        "recency21": {
+          "predicted_two_party_margin": 5.943,
+          "error": -8.608
+        },
+        "recency35": {
+          "predicted_two_party_margin": 6.606,
+          "error": -7.944
+        }
+      }
+    },
+    {
+      "cycle": 2022,
+      "state": "WI",
+      "label": "Wisconsin · Senate",
+      "historical_race_id": "2022-WI-SEN-regular",
+      "actual_two_party_margin": -1.009,
+      "other_vote_share_pct": 0.18,
+      "pollster_count": 11,
+      "field_end_range": [
+        "2022-09-18",
+        "2022-11-01"
+      ],
+      "cutoff": "2022-11-01",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": -2.751,
+          "error": -1.742
+        },
+        "recency14": {
+          "predicted_two_party_margin": -2.822,
+          "error": -1.813
+        },
+        "recency21": {
+          "predicted_two_party_margin": -2.797,
+          "error": -1.788
+        },
+        "recency35": {
+          "predicted_two_party_margin": -2.775,
+          "error": -1.766
+        }
+      }
+    },
+    {
+      "cycle": 2024,
+      "state": "AZ",
+      "label": "Arizona · Senate",
+      "historical_race_id": "2024-AZ-SEN-regular",
+      "actual_two_party_margin": 2.462,
+      "other_vote_share_pct": 2.27,
+      "pollster_count": 17,
+      "field_end_range": [
+        "2024-09-24",
+        "2024-10-29"
+      ],
+      "cutoff": "2024-10-29",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 7.441,
+          "error": 4.979
+        },
+        "recency14": {
+          "predicted_two_party_margin": 5.868,
+          "error": 3.406
+        },
+        "recency21": {
+          "predicted_two_party_margin": 6.317,
+          "error": 3.855
+        },
+        "recency35": {
+          "predicted_two_party_margin": 6.737,
+          "error": 4.274
+        }
+      }
+    },
+    {
+      "cycle": 2024,
+      "state": "FL",
+      "label": "Florida · Senate",
+      "historical_race_id": "2024-FL-SEN-regular",
+      "actual_two_party_margin": -12.992,
+      "other_vote_share_pct": 1.64,
+      "pollster_count": 6,
+      "field_end_range": [
+        "2024-10-04",
+        "2024-10-27"
+      ],
+      "cutoff": "2024-10-29",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": -5.282,
+          "error": 7.71
+        },
+        "recency14": {
+          "predicted_two_party_margin": -4.697,
+          "error": 8.295
+        },
+        "recency21": {
+          "predicted_two_party_margin": -4.871,
+          "error": 8.121
+        },
+        "recency35": {
+          "predicted_two_party_margin": -5.027,
+          "error": 7.965
+        }
+      }
+    },
+    {
+      "cycle": 2024,
+      "state": "MA",
+      "label": "Massachusetts · Senate",
+      "historical_race_id": "2024-MA-SEN-regular",
+      "actual_two_party_margin": 19.848,
+      "other_vote_share_pct": 3.01,
+      "pollster_count": 4,
+      "field_end_range": [
+        "2024-09-16",
+        "2024-10-26"
+      ],
+      "cutoff": "2024-10-29",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 24.537,
+          "error": 4.69
+        },
+        "recency14": {
+          "predicted_two_party_margin": 23.125,
+          "error": 3.277
+        },
+        "recency21": {
+          "predicted_two_party_margin": 23.553,
+          "error": 3.706
+        },
+        "recency35": {
+          "predicted_two_party_margin": 23.94,
+          "error": 4.093
+        }
+      }
+    },
+    {
+      "cycle": 2024,
+      "state": "MD",
+      "label": "Maryland · Senate",
+      "historical_race_id": "2024-MD-SEN-regular",
+      "actual_two_party_margin": 12.107,
+      "other_vote_share_pct": 2.52,
+      "pollster_count": 3,
+      "field_end_range": [
+        "2024-09-17",
+        "2024-10-21"
+      ],
+      "cutoff": "2024-10-29",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 14.612,
+          "error": 2.505
+        },
+        "recency14": {
+          "predicted_two_party_margin": 14.659,
+          "error": 2.552
+        },
+        "recency21": {
+          "predicted_two_party_margin": 14.618,
+          "error": 2.511
+        },
+        "recency35": {
+          "predicted_two_party_margin": 14.6,
+          "error": 2.494
+        }
+      }
+    },
+    {
+      "cycle": 2024,
+      "state": "MI",
+      "label": "Michigan · Senate",
+      "historical_race_id": "2024-MI-SEN-regular",
+      "actual_two_party_margin": 0.352,
+      "other_vote_share_pct": 3.06,
+      "pollster_count": 22,
+      "field_end_range": [
+        "2024-09-17",
+        "2024-10-29"
+      ],
+      "cutoff": "2024-10-29",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 4.041,
+          "error": 3.69
+        },
+        "recency14": {
+          "predicted_two_party_margin": 3.449,
+          "error": 3.097
+        },
+        "recency21": {
+          "predicted_two_party_margin": 3.599,
+          "error": 3.247
+        },
+        "recency35": {
+          "predicted_two_party_margin": 3.751,
+          "error": 3.399
+        }
+      }
+    },
+    {
+      "cycle": 2024,
+      "state": "MN",
+      "label": "Minnesota · Senate",
+      "historical_race_id": "2024-MN-SEN-regular",
+      "actual_two_party_margin": 16.236,
+      "other_vote_share_pct": 3.3,
+      "pollster_count": 4,
+      "field_end_range": [
+        "2024-09-18",
+        "2024-10-28"
+      ],
+      "cutoff": "2024-10-29",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 14.19,
+          "error": -2.046
+        },
+        "recency14": {
+          "predicted_two_party_margin": 15.017,
+          "error": -1.219
+        },
+        "recency21": {
+          "predicted_two_party_margin": 14.812,
+          "error": -1.424
+        },
+        "recency35": {
+          "predicted_two_party_margin": 14.602,
+          "error": -1.634
+        }
+      }
+    },
+    {
+      "cycle": 2024,
+      "state": "MT",
+      "label": "Montana · Senate",
+      "historical_race_id": "2024-MT-SEN-regular",
+      "actual_two_party_margin": -7.278,
+      "other_vote_share_pct": 1.86,
+      "pollster_count": 3,
+      "field_end_range": [
+        "2024-09-20",
+        "2024-10-25"
+      ],
+      "cutoff": "2024-10-29",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": -6.944,
+          "error": 0.334
+        },
+        "recency14": {
+          "predicted_two_party_margin": -5.742,
+          "error": 1.536
+        },
+        "recency21": {
+          "predicted_two_party_margin": -6.124,
+          "error": 1.155
+        },
+        "recency35": {
+          "predicted_two_party_margin": -6.451,
+          "error": 0.827
+        }
+      }
+    },
+    {
+      "cycle": 2024,
+      "state": "NJ",
+      "label": "New Jersey · Senate",
+      "historical_race_id": "2024-NJ-SEN-regular",
+      "actual_two_party_margin": 9.858,
+      "other_vote_share_pct": 2.4,
+      "pollster_count": 3,
+      "field_end_range": [
+        "2024-10-22",
+        "2024-10-27"
+      ],
+      "cutoff": "2024-10-29",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 24.103,
+          "error": 14.245
+        },
+        "recency14": {
+          "predicted_two_party_margin": 23.621,
+          "error": 13.764
+        },
+        "recency21": {
+          "predicted_two_party_margin": 23.782,
+          "error": 13.924
+        },
+        "recency35": {
+          "predicted_two_party_margin": 23.91,
+          "error": 14.052
+        }
+      }
+    },
+    {
+      "cycle": 2024,
+      "state": "NV",
+      "label": "Nevada · Senate",
+      "historical_race_id": "2024-NV-SEN-regular",
+      "actual_two_party_margin": 1.746,
+      "other_vote_share_pct": 5.91,
+      "pollster_count": 10,
+      "field_end_range": [
+        "2024-09-16",
+        "2024-10-29"
+      ],
+      "cutoff": "2024-10-29",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 8.303,
+          "error": 6.557
+        },
+        "recency14": {
+          "predicted_two_party_margin": 6.915,
+          "error": 5.169
+        },
+        "recency21": {
+          "predicted_two_party_margin": 7.227,
+          "error": 5.482
+        },
+        "recency35": {
+          "predicted_two_party_margin": 7.581,
+          "error": 5.836
+        }
+      }
+    },
+    {
+      "cycle": 2024,
+      "state": "NY",
+      "label": "New York · Senate",
+      "historical_race_id": "2024-NY-SEN-regular",
+      "actual_two_party_margin": 18.408,
+      "other_vote_share_pct": 5.05,
+      "pollster_count": 3,
+      "field_end_range": [
+        "2024-09-25",
+        "2024-10-27"
+      ],
+      "cutoff": "2024-10-29",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 23.205,
+          "error": 4.797
+        },
+        "recency14": {
+          "predicted_two_party_margin": 23.033,
+          "error": 4.625
+        },
+        "recency21": {
+          "predicted_two_party_margin": 23.202,
+          "error": 4.794
+        },
+        "recency35": {
+          "predicted_two_party_margin": 23.264,
+          "error": 4.856
+        }
+      }
+    },
+    {
+      "cycle": 2024,
+      "state": "OH",
+      "label": "Ohio · Senate",
+      "historical_race_id": "2024-OH-SEN-regular",
+      "actual_two_party_margin": -3.748,
+      "other_vote_share_pct": 3.44,
+      "pollster_count": 7,
+      "field_end_range": [
+        "2024-09-26",
+        "2024-10-28"
+      ],
+      "cutoff": "2024-10-29",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 1.224,
+          "error": 4.971
+        },
+        "recency14": {
+          "predicted_two_party_margin": 0.952,
+          "error": 4.699
+        },
+        "recency21": {
+          "predicted_two_party_margin": 1.009,
+          "error": 4.757
+        },
+        "recency35": {
+          "predicted_two_party_margin": 1.078,
+          "error": 4.826
+        }
+      }
+    },
+    {
+      "cycle": 2024,
+      "state": "PA",
+      "label": "Pennsylvania · Senate",
+      "historical_race_id": "2024-PA-SEN-regular",
+      "actual_two_party_margin": -0.223,
+      "other_vote_share_pct": 2.58,
+      "pollster_count": 23,
+      "field_end_range": [
+        "2024-09-14",
+        "2024-10-29"
+      ],
+      "cutoff": "2024-10-29",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 3.223,
+          "error": 3.446
+        },
+        "recency14": {
+          "predicted_two_party_margin": 2.809,
+          "error": 3.031
+        },
+        "recency21": {
+          "predicted_two_party_margin": 2.908,
+          "error": 3.131
+        },
+        "recency35": {
+          "predicted_two_party_margin": 3.016,
+          "error": 3.238
+        }
+      }
+    },
+    {
+      "cycle": 2024,
+      "state": "TX",
+      "label": "Texas · Senate",
+      "historical_race_id": "2024-TX-SEN-regular",
+      "actual_two_party_margin": -8.705,
+      "other_vote_share_pct": 2.39,
+      "pollster_count": 8,
+      "field_end_range": [
+        "2024-09-18",
+        "2024-10-28"
+      ],
+      "cutoff": "2024-10-29",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": -4.229,
+          "error": 4.476
+        },
+        "recency14": {
+          "predicted_two_party_margin": -4.095,
+          "error": 4.61
+        },
+        "recency21": {
+          "predicted_two_party_margin": -4.145,
+          "error": 4.561
+        },
+        "recency35": {
+          "predicted_two_party_margin": -4.184,
+          "error": 4.522
+        }
+      }
+    },
+    {
+      "cycle": 2024,
+      "state": "VA",
+      "label": "Virginia · Senate",
+      "historical_race_id": "2024-VA-SEN-regular",
+      "actual_two_party_margin": 8.952,
+      "other_vote_share_pct": 0.19,
+      "pollster_count": 6,
+      "field_end_range": [
+        "2024-09-24",
+        "2024-10-29"
+      ],
+      "cutoff": "2024-10-29",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 13.644,
+          "error": 4.692
+        },
+        "recency14": {
+          "predicted_two_party_margin": 12.754,
+          "error": 3.802
+        },
+        "recency21": {
+          "predicted_two_party_margin": 13.022,
+          "error": 4.07
+        },
+        "recency35": {
+          "predicted_two_party_margin": 13.264,
+          "error": 4.312
+        }
+      }
+    },
+    {
+      "cycle": 2024,
+      "state": "WI",
+      "label": "Wisconsin · Senate",
+      "historical_race_id": "2024-WI-SEN-regular",
+      "actual_two_party_margin": 0.868,
+      "other_vote_share_pct": 2.18,
+      "pollster_count": 15,
+      "field_end_range": [
+        "2024-09-14",
+        "2024-10-29"
+      ],
+      "cutoff": "2024-10-29",
+      "cutoff_is_fieldwork_only": true,
+      "methods": {
+        "equal_firm": {
+          "predicted_two_party_margin": 1.886,
+          "error": 1.018
+        },
+        "recency14": {
+          "predicted_two_party_margin": 1.136,
+          "error": 0.268
+        },
+        "recency21": {
+          "predicted_two_party_margin": 1.323,
+          "error": 0.455
+        },
+        "recency35": {
+          "predicted_two_party_margin": 1.52,
+          "error": 0.652
+        }
+      }
+    }
+  ],
+  "is_forecast": false,
+  "can_calibrate_2026_win_probabilities": false,
+  "limitations": [
+    "NOT a historical backtest of the deployed JackStradamus model; this is a simple retrospective poll-only error benchmark.",
+    "Original source polls have no verified initial publication dates. End-fieldwork cutoffs alone cannot establish what was publicly known at each cutoff.",
+    "The compilation selects eventual general-election candidates retrospectively; selection hindsight cannot be ruled out.",
+    "States with two same-year Senate elections are excluded until questions are correctly matched to regular/special seats.",
+    "Third-party candidacies with >20% of actual recorded vote and elections missing one major party are excluded.",
+    "A latest poll per named firm is retained; 2026 pollster-quality ratings, future results and election forecasts are not used.",
+    "Only two-party margins from recorded candidate vote totals are compared; respondent population/method differences and selection bias remain.",
+    "No correlated forecast-error calibration, chamber control probabilities, or 2026 win odds are licensed by this descriptive three-cycle study."
+  ]
+}
