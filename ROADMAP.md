@@ -1,31 +1,31 @@
-# JackStradamus · build roadmap
+# JackStradamus · development plan
 
-The dashboard is a personal, lightly irreverent election briefing. Jokes belong in the presentation; polling, election administration, and factual claims still require sources and clear definitions.
+**Direction:** A personal election site with the utility of a serious polling desk and occasional deadpan humor. No forced jokes, no repetitive methodology cards, no controls that exist just because they can.
 
-## Shipping now
-- JackStradamus is the name of the descriptive Senate polling model, not a probabilistic election forecast.
-- Fresh Off the Poll Presses shows field-ended battleground Senate polls from the last 14 days (not just new changes in a four-hour refresh). Partisan sponsors are labeled.
-- JackStradamus Radar surfaces closest model margins, polling blind spots, and documented integrity issues instead of repeating the Senate margin cards.
-- Dashboard smoke checks run during refreshes to catch malformed scripts and removed panels returning.
+## Current experience
+- **Daily briefing:** Generic ballot, Senate polling overview, new surveys, race alerts, and the Bullshittery Index radar.
+- **JackStradamus:** A complete Senate polling board plus a selected-race breakdown inspired by the useful FLIPR interaction pattern. Each drilldown shows the dated, recency-weighted polling average; candidate support; pollster coverage; a chart of source observations; a sortable-in-spirit survey table with "In average" vs "All recent" views and recency influence. Selected polls are reconciled with the published model after refreshes.
+- **Race Lab:** Explore Senate, House and gubernatorial polls without altering the headline Senate model.
+- **Bullshittery Index:** Separate sourced election-administration concerns from the candidate polling data.
+- The former **Senate Paths** and **Election Night** prototypes were removed. Do not re-add the old manual seat slider or vote-entry calculators.
 
-## P0 · Trust the data
-1. **Actual-new-poll history.** Keep persistent first-seen timestamps and a rolling seven-day list separate from date-of-fieldwork. Avoid incorrectly calling refreshed historical polls new. Persist the historical poll ID index, and cap storage.
-2. **Automated incident reconciliation.** Verify each Texas and North Carolina record against original election-office documents, follow changes to administrative remediation and early-vote plans, log review dates, distinguish reported record counts from eligible voters unable to cast ballots.
-3. **Poll quality audit.** Review pollster duplication, partisan sponsor exclusions, matching of candidates, and upstream source coverage. Flag silent feed failures.
+## P0 — Substantially better race drilldowns
+1. **Long-term race polling history.** Save older surveys and dated model snapshots to chart actual changes over months rather than drawing fake trend lines through 12 recent polls.
+2. **Individual poll sources.** Capture poll-specific URLs, field start/end, likely-voter vs registered-voter samples, and sponsor information when supported by upstream data.
+3. **Pollster track record.** Add defensible pollster quality ratings, assess systematic effects and compare alternative average models. Separate model changes from polling changes.
 
-## P1 · A genuinely useful daily briefing
-4. **What actually changed since yesterday?** Show changes in poll estimates only when reproducible from comparable snapshots; explain which new/expired polls drove them. Avoid passing refresh noise off as voter movement.
-5. **Senate seat math.** Combine battleground pathways and fixed baseline seats into an interactive, source-documented path-to-control calculation with correct caucus rules.
-6. **Integrity priority scale.** Build a *descriptive monitoring-priority index* with published weights (severity, exposure, unresolved status, election proximity, quality of sources), versus an unsupported “fraud probability.” No-event data means unassessed, not safe.
+## P1 — What's changed?
+4. **Since yesterday:** Report first-seen polls, substantive polling-average changes, and new verified Bullshittery developments in a compact morning briefing. Preserve baseline snapshots.
+5. **Bullshittery Index evidence quality:** Update TX/NC developments with official documents, current remediation status, quantified exposure only with matching units, and citations for every critical claim.
+6. **Better race context:** Historical results, incumbency, fundraising and other non-poll indicators with explicit sources. Do not silently roll these into a polling average.
 
-## P2 · The full JackStradamus experience
-7. **Calibration first, forecast second.** Keep descriptive polling averages distinct from win probabilities. Backtest 2018/2022/2024 analogs and candidate-specific errors before publishing a forecast.
-8. **Visual trend sparklines.** Store daily immutable snapshots to support meaningful graphs and change logs.
-9. **Mobile-first morning briefing.** Compact “Since your last visit” news, polling, Bullshittery changes with direct citations and no duplicated panels.
-10. **Personality pass.** Light jokes in headings, actionable labels throughout, no self-serious “war room” theater where actual facts should do the work.
+## P2 — Modeling beyond polling averages
+7. **Calibrated uncertainty.** Expand historical backtests, correlated errors and model sensitivity before making any election-outcome or majority-control claims.
+8. **Real election night data, if worth building.** Only reconsider an Election Night experience after integrating a trustworthy live results feed and a clearly documented unofficial-versus-certified status.
+9. **Mobile polish.** Make overview-to-race navigation seamless and preserve direct links to individual races.
 
-## Rules
-- An incident count is not an affected-voter count.
-- A polling margin is not a win probability.
-- New source observations and substantive electoral changes are not the same thing.
-- Never quietly convert uncertain reports into confirmed allegations.
+## Boundaries
+- Polling margins are descriptive measurements, not outcome probabilities or projected winners.
+- A chart of historical poll observations is not historical model output.
+- A reported incident, an affected record and a disenfranchised voter are different things.
+- Sources and units are more useful than more disclaimers.
