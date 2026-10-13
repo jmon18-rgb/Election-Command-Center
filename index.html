@@ -88,6 +88,26 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .wire-more{display:block;background:#162b40;color:#c5e4ff;border:1px solid #3a5976;padding:11px 20px;border-radius:8px;cursor:pointer;margin:18px auto 2px}
 @media(max-width:980px){.wire-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.wire-controls label:first-child{grid-column:span 2}}
 @media(max-width:500px){.wire-controls{grid-template-columns:1fr}.wire-controls label:first-child{grid-column:span 1}}
+
+/* Preserve the full surfer photo on narrow screens. Using cover with a
+   landscape asset cropped the face horizontally on portrait phones. */
+@media(max-width:620px){
+ .hero-waves{
+   min-height:410px;
+   padding:28px 22px 30px;
+   align-items:flex-end;
+   background-image:
+     linear-gradient(0deg,rgba(6,16,31,.98) 0%,rgba(7,18,32,.94) 22%,rgba(7,18,32,.60) 41%,rgba(7,18,32,.04) 70%),
+     url('blue-waves-hero.jpg'),
+     linear-gradient(125deg,#0c3e61,#111d34,#6d2839);
+   /* Image layer is width-fitted, never cropped on either side. */
+   background-size:100% 100%,100% auto,cover;
+   background-position:center,center top,center;
+   background-repeat:no-repeat;
+ }
+ .hero-waves::before{background:linear-gradient(0deg,rgba(5,13,24,.28),transparent 48%)}
+ .hero-copy{width:100%;max-width:none}
+}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
