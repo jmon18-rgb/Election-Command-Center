@@ -332,18 +332,20 @@ async function settle(){
  const calls=[];
  w.fetch=async(url,options)=>{calls.push({url,options});
   return {ok:true,json:async()=>empty2026};};
- w.eval('enModeYear=2026;enOffice="House";enData=null');
+ get('#enMode2026').click();
  await w.eval('enLoad(true)');
- assert.equal(calls.length,1);
- assert.match(calls[0].url,/openamerica.io\/elections\/results.json\?year=2026&office=House/);
- assert.equal(calls[0].options.mode,'cors');
- assert.equal(calls[0].options.credentials,'omit');
+ const requests=calls.filter(c=>String(c.url).startsWith('https://openamerica.io/elections/results.json'));
+ assert(requests.length>=1,'2026 mode must fetch the live state-derived source');
+ assert.match(requests[0].url,/openamerica.io\/elections\/results.json\?year=2026&office=House/);
+ assert.equal(requests[0].options.mode,'cors');
+ assert.equal(requests[0].options.credentials,'omit');
  assert.equal(get('#enRaces').textContent,'0');
  assert.match(get('#enStatus').textContent,/AWAITING FIRST COUNTS|COUNTING NOT LIVE/);
  assert.match(get('#enConnection').textContent,/WAITING FOR VOTES/);
  assert.equal(get('#enCalls').textContent,'Not supplied');
  w.fetch=originalRemoteFetch;
- w.eval('enModeYear=2024;enOffice="House";enData=null');
+ get('#enMode2024').click();
+ await w.eval('enLoad(true)');
  const nightTab=get('.tab[data-page="electionNight"]');
  // Avoid network in deterministic tests; the public API is integration-tested
  // separately on the real site and this suite validates rendering/contracts.
