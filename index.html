@@ -171,8 +171,8 @@ else if(u.thin_polling)flags.push('Limited pollster coverage');
 if(u.stale_latest_poll)flags.push('Latest poll over 14 days old');
 if(u.high_poll_disagreement)flags.push('Polls differ substantially');
 if(u.different_matchups_excluded)flags.push(u.different_matchups_excluded+' polls of other matchups excluded');
-boxU.append(elt('div','unotes',flags.length?flags.join(' · '):'Multiple recent pollsters; see observed spread above.'));
-boxU.append(elt('div','integrity-note','Election administration / integrity: no state-specific verified incident assessment connected. News allegations are not evidence of fraud.'));
+boxU.append(elt('div','unotes',flags.length?flags.join(' · '):'Multiple recent pollsters; expand the meter for details.'));
+boxU.append(elt('div','integrity-note','Election-integrity voter impact is tracked separately under Integrity Watch. This meter cannot detect fraud.'));
 card.append(boxU);
 }else{card.append(elt('div','meta','No qualifying recent polls · polling uncertainty cannot be quantified.'))}
 if(x.poll_source_url&&/^https:\/\//.test(x.poll_source_url)){const a=elt('a','pollsource','View polling source ↗');a.href=x.poll_source_url;a.target='_blank';a.rel='noopener noreferrer';card.append(a)}
