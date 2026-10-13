@@ -19,7 +19,7 @@ OUT = ROOT / "data" / "model_tests.json"
 QUALITY_DATA=json.loads((ROOT/"data/pollster_quality.json").read_text(encoding="utf-8"))
 QUALITY={k.casefold():v for k,v in QUALITY_DATA["entries"].items()}
 EXCLUSIONS={k.casefold() for k in QUALITY_DATA.get("explicit_exclusions",{})}
-METHODS = ("equal", "recency21", "recency21_size", "recency35_size", "recency21_sponsored_0", "recency21_sponsored_25", "recency21_sponsored_50", "recency21_sponsored_100", "recency21_sponsored_50_quality", "recency21_sponsored_50_quality_size")
+METHODS = ("equal", "recency21", "recency21_size", "recency35_size", "recency21_sponsored_0", "recency21_sponsored_25", "recency21_sponsored_50", "recency21_sponsored_100", "recency21_sponsored_50_quality", "recency21_sponsored_50_quality_size", "recency21_sponsored_50_quality_size_bias17", "recency21_sponsored_50_quality_size_recency14")
 RNG_SEED = 20261012
 
 
@@ -45,26 +45,36 @@ def predict(prior, asof, method):
     total = weighted = 0.0
     for p in unique.values():
         age = (asof - date.fromisoformat(p["field_end"])).days
-        half_life = 21 if method != "recency35_size" else 35
+        half_life = 14 if method.endswith("_recency14") else 35 if method == "recency35_size" else 21
         weight = 1.0 if method == "equal" else 0.5 ** (age / half_life)
+        sponsor_factor = {"recency21_sponsored_0": 0, "recency21_sponsored_25": .25,
+                          "recency21_sponsored_50": .5, "recency21_sponsored_100": 1.0}
         if p.get("partisan_lean"):
-            if method.startswith("recency21_sponsored_"):
-                weight *= 0.5 if method.endswith(("_quality","_quality_size")) else int(method.rsplit("_",1)[-1])/100
+            if method.startswith("recency21_sponsored_50_quality"):
+                weight *= .5
+            elif method in sponsor_factor:
+                weight *= sponsor_factor[method]
             else:
                 continue
-        if method.endswith(("_quality","_quality_size")):
+        if "_quality" in method:
             rated=QUALITY.get(p["pollster"].casefold())
             if rated:
                 shrunk=2+(rated["rating"]-2)*min(1,rated["history_count"]/20)
                 weight *= 1+0.25*(shrunk-2)
-        if method.endswith("_quality_size"):
+        if "_quality_size" in method:
             n=p.get("sample_size")
             if isinstance(n,(int,float)) and n>0:
                 weight *= (max(300,min(2500,n))/800)**0.20
         elif method.endswith("_size"):
             n = p.get("sample_size") or 600
             weight *= math.sqrt(max(200, min(float(n), 3000)) / 600)
-        weighted += weight * float(p["margin"])
+        margin=float(p["margin"])
+        if method.endswith("_bias17") and p.get("partisan_lean") in ("D","R"):
+            # EXPERIMENT ONLY: an a-priori sponsor-aligned 1.7pt margin correction,
+            # from Silver's published generic-ballot methodology. Do not promote
+            # without a held-out election-results evaluation.
+            margin -= 1.7 if p["partisan_lean"]=="D" else -1.7
+        weighted += weight * margin
         total += weight
     return weighted / total if total else None
 
@@ -160,7 +170,8 @@ def main():
             "No win probabilities, calibrated pollster house effects or election-security adjustments inferred.",
             "Sponsored-poll weight factors are experimental; target surveys remain non-sponsored only.",
             "Pollster quality comes from 538 archived pre-2026 grades, not an updated Silver Bulletin 2026 recalibration.",
-            "Test currently compares future independent polls, and overfitting to this cycle must be avoided."
+            "Test currently compares future independent polls, and overfitting to this cycle must be avoided.",
+            "Alternative half-lives and the Silver-inspired 1.7-point signed sponsor correction are test-only; no new coefficient is deployed on the live average.",
         ],
     }
     OUT.write_text(json.dumps(output, indent=2) + "\n", encoding="utf-8")
