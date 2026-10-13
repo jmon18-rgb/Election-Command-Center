@@ -83,6 +83,7 @@ def convert(office,p):
               "field_end":end.date().isoformat(),
               "field_start":dtparse(p.get("startDate")).date().isoformat() if dtparse(p.get("startDate")) else None,
               "posted_date":created.date().isoformat(),
+              "posted_source_datetime":created.strftime("%Y-%m-%dT%H:%M:%S"),
               "posted_source_time":str(p.get("createdAt") or ""), # Time zone unspecified by source
               "posted_date_provenance":"Date PollResults added the poll, NOT independently verified public release date",
               "source_url":source_link(p),
@@ -162,14 +163,15 @@ def main():
         key=(p["poll_id"],p["question_id"],p["race_code"])
         seen[key]=p
     distinct=list(seen.values())
-    distinct.sort(key=lambda p:(p["posted_date"],p["field_end"],p["poll_id"]),reverse=True)
+    distinct.sort(key=lambda p:(p["posted_source_datetime"],p["poll_id"]),reverse=True)
     matches=enrich_existing(distinct)
     payload={"updated_at":NOW.isoformat(),"source":"PollResults.org / NYT-derived CC BY 4.0",
              "source_url":"https://pollresults.org/",
              "date_warning":"Posted date is when this API ingested a poll; not the first public release date.",
              "source_totals":counts,"matched_primary_observations":matches,
              "observations":distinct,
-             "retention":"Posted within the previous 21 calendar days; up to five API pages per office; all candidate populations labeled."}
+             "retention":"Posted within the previous 21 calendar days; up to five API pages per office; all candidate populations labeled.",
+             "sort_policy":"Descending source createdAt date AND time; timezone unspecified, no cross-source UTC inference."}
     OUT.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print("PollResults supplemental rows",len(distinct),"exact primary matches",matches,
           "counts",json.dumps(counts))
