@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-13T16:38:59.337156Z",
+  "updated_at": "2026-10-13T16:39:37.256996Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "items": [
     {
       "id": "688736ee1b7d314d7c5c",
@@ -14,6 +14,25 @@
       "state_hints": [],
       "topic_hints": [],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "df3009a199a8f541e86a",
+      "title": "A Guide to the People, Organizations, and Myths Threatening the 2026 Midterms - American Oversight",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOWHViOGkzbjNRLVNOMUJrRktVMjJvcEFhU0ptTVRxYjJuenlmQ0xSWm5aNDB2VjRja1JsV2FhRVVkSlRzcUFNc0kxcUFpcGoxV29UcVhqOWhZajFreGNuVkNhTmlKWk56ejE1ZDQyNEl0NnR6TWZYTlVNWDNQcGlhWDBMaGVGZnhpdG16OGo2dEtObmtKQkVIUWlHLUxHOGNyTFFncUo3eVFkYVFyeGtfX2tyUkRVdw?oc=5",
+      "publisher": "American Oversight",
+      "published_at": "2026-10-13T15:10:18Z",
+      "detected_at": "2026-10-13T16:39:37.256996Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
