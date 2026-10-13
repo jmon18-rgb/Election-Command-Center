@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-13T15:57:02.950989Z",
-  "source_snapshot": "2026-10-13T15:56:52.867243Z",
+  "generated_at": "2026-10-13T15:58:21.806759Z",
+  "source_snapshot": "2026-10-13T15:58:16.554978Z",
   "type": "descriptive_polling_estimates",
   "is_election_forecast": false,
   "method_version": "poll-mean-1.4",
@@ -9,6 +9,8 @@
   "sponsored_poll_weight_factor": 0.5,
   "pollster_quality_source": "https://github.com/fivethirtyeight/data/blob/master/pollster-ratings/pollster-ratings-combined.csv",
   "pollster_quality_version": "6ca53b1aa5ac70b081a62f4e7430cf300d1b1743",
+  "silver_2026_comparison_source": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+  "silver_2026_comparison_status": "experimental_not_used_for_headline",
   "sample_size_weight_exponent": 0.2,
   "excluded_pollsters": [
     "ActiVote"
@@ -48,6 +50,16 @@
           "alternative_margin_min": 1.85,
           "alternative_margin_max": 2.61,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 2.17,
+          "dem_pct": 49.2,
+          "rep_pct": 47.03,
+          "difference_from_live": -0.05,
+          "rated_pollster_count": 12,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -234,6 +246,16 @@
           "alternative_margin_max": 4.69,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 3.72,
+          "dem_pct": 47.83,
+          "rep_pct": 44.11,
+          "difference_from_live": -0.18,
+          "rated_pollster_count": 10,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -379,6 +401,16 @@
           "alternative_margin_max": 10.1,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 9.48,
+          "dem_pct": 50.73,
+          "rep_pct": 41.25,
+          "difference_from_live": -0.09,
+          "rated_pollster_count": 8,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -523,6 +555,16 @@
           "alternative_margin_min": 3.28,
           "alternative_margin_max": 3.97,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 3.61,
+          "dem_pct": 48.39,
+          "rep_pct": 44.78,
+          "difference_from_live": -0.03,
+          "rated_pollster_count": 16,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -779,6 +821,16 @@
           "alternative_margin_max": 10.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 9.0,
+          "dem_pct": 52.53,
+          "rep_pct": 43.54,
+          "difference_from_live": -0.11,
+          "rated_pollster_count": 5,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -883,6 +935,16 @@
           "alternative_margin_min": 5.22,
           "alternative_margin_max": 7.17,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 6.52,
+          "dem_pct": 49.36,
+          "rep_pct": 42.84,
+          "difference_from_live": -0.18,
+          "rated_pollster_count": 7,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -1009,6 +1071,16 @@
           "alternative_margin_max": 4.55,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 3.18,
+          "dem_pct": 47.49,
+          "rep_pct": 44.31,
+          "difference_from_live": -0.31,
+          "rated_pollster_count": 7,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -1123,6 +1195,16 @@
           "alternative_margin_min": 0.49,
           "alternative_margin_max": 1.17,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 0.74,
+          "dem_pct": 46.22,
+          "rep_pct": 45.48,
+          "difference_from_live": -0.13,
+          "rated_pollster_count": 13,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -1308,6 +1390,16 @@
           "alternative_margin_min": 3.14,
           "alternative_margin_max": 4.31,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 3.65,
+          "dem_pct": 48.51,
+          "rep_pct": 44.86,
+          "difference_from_live": -0.13,
+          "rated_pollster_count": 11,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -1534,6 +1626,16 @@
           "alternative_margin_max": 0.65,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -0.03,
+          "dem_pct": 46.91,
+          "rep_pct": 46.94,
+          "difference_from_live": -0.25,
+          "rated_pollster_count": 4,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -1628,6 +1730,16 @@
           "alternative_margin_min": 1.37,
           "alternative_margin_max": 1.8,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 1.67,
+          "dem_pct": 46.62,
+          "rep_pct": 44.95,
+          "difference_from_live": -0.06,
+          "rated_pollster_count": 8,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -1763,6 +1875,16 @@
           "alternative_margin_min": 2.86,
           "alternative_margin_max": 3.48,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 3.25,
+          "dem_pct": 45.67,
+          "rep_pct": 42.42,
+          "difference_from_live": -0.02,
+          "rated_pollster_count": 8,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -1901,6 +2023,16 @@
           "alternative_margin_max": 4.55,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 3.18,
+          "dem_pct": 47.49,
+          "rep_pct": 44.31,
+          "difference_from_live": -0.31,
+          "rated_pollster_count": 7,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -2016,6 +2148,16 @@
           "alternative_margin_max": -21.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -21.0,
+          "dem_pct": 33.0,
+          "rep_pct": 54.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -2071,6 +2213,16 @@
           "alternative_margin_max": -11.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -11.0,
+          "dem_pct": 39.0,
+          "rep_pct": 50.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 0,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -2125,6 +2277,16 @@
           "alternative_margin_min": -7.22,
           "alternative_margin_max": -6.75,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -7.09,
+          "dem_pct": 42.08,
+          "rep_pct": 49.17,
+          "difference_from_live": -0.2,
+          "rated_pollster_count": 7,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -2251,6 +2413,16 @@
           "alternative_margin_max": 10.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 9.0,
+          "dem_pct": 52.53,
+          "rep_pct": 43.54,
+          "difference_from_live": -0.11,
+          "rated_pollster_count": 5,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -2355,6 +2527,16 @@
           "alternative_margin_min": 0.49,
           "alternative_margin_max": 1.17,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 0.74,
+          "dem_pct": 46.22,
+          "rep_pct": 45.48,
+          "difference_from_live": -0.13,
+          "rated_pollster_count": 13,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -2541,6 +2723,16 @@
           "alternative_margin_max": 11.6,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -3.99,
+          "dem_pct": 38.98,
+          "rep_pct": 42.97,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 0,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -2606,6 +2798,16 @@
           "alternative_margin_max": 13.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 13.0,
+          "dem_pct": 49.0,
+          "rep_pct": 36.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -2660,6 +2862,16 @@
           "alternative_margin_min": 1.37,
           "alternative_margin_max": 1.8,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 1.67,
+          "dem_pct": 46.62,
+          "rep_pct": 44.95,
+          "difference_from_live": -0.06,
+          "rated_pollster_count": 8,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -2805,6 +3017,16 @@
           "alternative_margin_max": -4.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -4.0,
+          "dem_pct": 44.0,
+          "rep_pct": 48.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 0,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -2859,6 +3081,16 @@
           "alternative_margin_min": 24.5,
           "alternative_margin_max": 24.62,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 24.67,
+          "dem_pct": 53.56,
+          "rep_pct": 28.88,
+          "difference_from_live": 0.06,
+          "rated_pollster_count": 2,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -2924,6 +3156,16 @@
           "alternative_margin_min": 1.85,
           "alternative_margin_max": 2.61,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 2.17,
+          "dem_pct": 49.2,
+          "rep_pct": 47.03,
+          "difference_from_live": -0.05,
+          "rated_pollster_count": 12,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -3109,6 +3351,16 @@
           "alternative_margin_min": 3.28,
           "alternative_margin_max": 3.97,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 3.61,
+          "dem_pct": 48.39,
+          "rep_pct": 44.78,
+          "difference_from_live": -0.03,
+          "rated_pollster_count": 16,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -3365,6 +3617,16 @@
           "alternative_margin_max": 3.48,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 3.25,
+          "dem_pct": 45.67,
+          "rep_pct": 42.42,
+          "difference_from_live": -0.02,
+          "rated_pollster_count": 8,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -3509,6 +3771,16 @@
           "alternative_margin_max": -24.77,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -25.5,
+          "dem_pct": 17.33,
+          "rep_pct": 42.82,
+          "difference_from_live": -0.09,
+          "rated_pollster_count": 2,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -3593,6 +3865,16 @@
           "alternative_margin_min": 9.35,
           "alternative_margin_max": 10.1,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 9.48,
+          "dem_pct": 50.73,
+          "rep_pct": 41.25,
+          "difference_from_live": -0.09,
+          "rated_pollster_count": 8,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -3739,6 +4021,16 @@
           "alternative_margin_max": 0.65,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -0.03,
+          "dem_pct": 46.91,
+          "rep_pct": 46.94,
+          "difference_from_live": -0.25,
+          "rated_pollster_count": 4,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -3833,6 +4125,16 @@
           "alternative_margin_min": 5.22,
           "alternative_margin_max": 7.17,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 6.52,
+          "dem_pct": 49.36,
+          "rep_pct": 42.84,
+          "difference_from_live": -0.18,
+          "rated_pollster_count": 7,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -3959,6 +4261,16 @@
           "alternative_margin_max": 18.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 18.0,
+          "dem_pct": 54.0,
+          "rep_pct": 36.0,
+          "difference_from_live": -0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4013,6 +4325,16 @@
           "alternative_margin_min": 3.2,
           "alternative_margin_max": 4.69,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 3.72,
+          "dem_pct": 47.83,
+          "rep_pct": 44.11,
+          "difference_from_live": -0.18,
+          "rated_pollster_count": 10,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -4159,6 +4481,16 @@
           "alternative_margin_max": 20.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 20.0,
+          "dem_pct": 53.0,
+          "rep_pct": 33.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4213,6 +4545,16 @@
           "alternative_margin_min": -1.05,
           "alternative_margin_max": -1.04,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -1.05,
+          "dem_pct": 43.77,
+          "rep_pct": 44.82,
+          "difference_from_live": -0.01,
+          "rated_pollster_count": 2,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -4278,6 +4620,16 @@
           "alternative_margin_min": -5.2,
           "alternative_margin_max": -4.5,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -4.9,
+          "dem_pct": 45.17,
+          "rep_pct": 50.07,
+          "difference_from_live": 0.11,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -4352,6 +4704,16 @@
           "alternative_margin_min": 3.14,
           "alternative_margin_max": 4.31,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 3.65,
+          "dem_pct": 48.51,
+          "rep_pct": 44.86,
+          "difference_from_live": -0.13,
+          "rated_pollster_count": 11,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -4580,6 +4942,16 @@
           "alternative_margin_max": -38.53,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -39.54,
+          "dem_pct": 7.71,
+          "rep_pct": 47.26,
+          "difference_from_live": -0.1,
+          "rated_pollster_count": 3,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4665,6 +5037,16 @@
           "alternative_margin_max": 0.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 0.0,
+          "dem_pct": 47.0,
+          "rep_pct": 47.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4728,6 +5110,16 @@
           "alternative_margin_min": 2.8,
           "alternative_margin_max": 2.8,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 2.8,
+          "dem_pct": 44.4,
+          "rep_pct": 41.6,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 0,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -4793,6 +5185,16 @@
           "alternative_margin_max": 9.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 9.0,
+          "dem_pct": 47.0,
+          "rep_pct": 38.0,
+          "difference_from_live": -0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4847,6 +5249,16 @@
           "alternative_margin_min": -5.0,
           "alternative_margin_max": -5.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -5.0,
+          "dem_pct": 40.0,
+          "rep_pct": 45.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -4903,6 +5315,16 @@
           "alternative_margin_max": -1.7,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -1.7,
+          "dem_pct": 46.3,
+          "rep_pct": 48.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4957,6 +5379,16 @@
           "alternative_margin_min": 0.0,
           "alternative_margin_max": 0.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 0.0,
+          "dem_pct": 41.0,
+          "rep_pct": 41.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -5021,6 +5453,16 @@
           "alternative_margin_min": -3.2,
           "alternative_margin_max": -1.5,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -2.83,
+          "dem_pct": 39.23,
+          "rep_pct": 42.06,
+          "difference_from_live": -0.08,
+          "rated_pollster_count": 2,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -5087,6 +5529,16 @@
           "alternative_margin_max": 2.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 2.0,
+          "dem_pct": 46.0,
+          "rep_pct": 44.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5141,6 +5593,16 @@
           "alternative_margin_min": -0.65,
           "alternative_margin_max": -0.5,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -0.61,
+          "dem_pct": 45.61,
+          "rep_pct": 46.23,
+          "difference_from_live": -0.02,
+          "rated_pollster_count": 2,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -5207,6 +5669,16 @@
           "alternative_margin_max": 2.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 2.0,
+          "dem_pct": 47.0,
+          "rep_pct": 45.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5262,6 +5734,16 @@
           "alternative_margin_max": 2.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 2.0,
+          "dem_pct": 42.0,
+          "rep_pct": 40.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 0,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5316,6 +5798,16 @@
           "alternative_margin_min": 6.67,
           "alternative_margin_max": 6.78,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 6.74,
+          "dem_pct": 45.13,
+          "rep_pct": 38.39,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 2,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -5392,6 +5884,16 @@
           "alternative_margin_max": 22.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 22.0,
+          "dem_pct": 57.0,
+          "rep_pct": 35.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5446,6 +5948,16 @@
           "alternative_margin_min": 2.67,
           "alternative_margin_max": 6.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 3.59,
+          "dem_pct": 50.31,
+          "rep_pct": 46.72,
+          "difference_from_live": -0.37,
+          "rated_pollster_count": 3,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -5522,6 +6034,16 @@
           "alternative_margin_max": 1.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 1.0,
+          "dem_pct": 47.0,
+          "rep_pct": 46.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5595,6 +6117,16 @@
           "alternative_margin_max": 1.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 1.0,
+          "dem_pct": 47.0,
+          "rep_pct": 46.0,
+          "difference_from_live": -0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5649,6 +6181,16 @@
           "alternative_margin_min": 12.0,
           "alternative_margin_max": 12.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 12.0,
+          "dem_pct": 52.0,
+          "rep_pct": 40.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -5705,6 +6247,16 @@
           "alternative_margin_max": -1.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -1.0,
+          "dem_pct": 42.0,
+          "rep_pct": 43.0,
+          "difference_from_live": -0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5759,6 +6311,16 @@
           "alternative_margin_min": -1.0,
           "alternative_margin_max": 0.88,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 0.72,
+          "dem_pct": 44.42,
+          "rep_pct": 43.7,
+          "difference_from_live": 0.14,
+          "rated_pollster_count": 3,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -5845,6 +6407,16 @@
           "alternative_margin_max": -22.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -22.0,
+          "dem_pct": 26.0,
+          "rep_pct": 48.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 0,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5899,6 +6471,16 @@
           "alternative_margin_min": 6.0,
           "alternative_margin_max": 10.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 6.45,
+          "dem_pct": 47.72,
+          "rep_pct": 41.27,
+          "difference_from_live": -0.41,
+          "rated_pollster_count": 2,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -5994,6 +6576,16 @@
           "alternative_margin_max": -4.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -4.0,
+          "dem_pct": 42.0,
+          "rep_pct": 46.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6058,6 +6650,16 @@
           "alternative_margin_max": 4.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 4.0,
+          "dem_pct": 49.0,
+          "rep_pct": 45.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6112,6 +6714,16 @@
           "alternative_margin_min": 4.0,
           "alternative_margin_max": 4.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 4.0,
+          "dem_pct": 46.0,
+          "rep_pct": 42.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -6168,6 +6780,16 @@
           "alternative_margin_max": 4.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 4.0,
+          "dem_pct": 46.0,
+          "rep_pct": 42.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6222,6 +6844,16 @@
           "alternative_margin_min": 21.0,
           "alternative_margin_max": 21.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 21.0,
+          "dem_pct": 56.0,
+          "rep_pct": 35.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -6278,6 +6910,16 @@
           "alternative_margin_max": 5.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 5.0,
+          "dem_pct": 47.0,
+          "rep_pct": 42.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 0,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6332,6 +6974,16 @@
           "alternative_margin_min": 3.5,
           "alternative_margin_max": 3.83,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 3.77,
+          "dem_pct": 47.53,
+          "rep_pct": 43.77,
+          "difference_from_live": 0.04,
+          "rated_pollster_count": 2,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -6398,6 +7050,16 @@
           "alternative_margin_max": 1.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 1.0,
+          "dem_pct": 38.0,
+          "rep_pct": 37.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6452,6 +7114,16 @@
           "alternative_margin_min": -0.35,
           "alternative_margin_max": 2.3,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 0.74,
+          "dem_pct": 47.63,
+          "rep_pct": 46.9,
+          "difference_from_live": -0.46,
+          "rated_pollster_count": 2,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -6518,6 +7190,16 @@
           "alternative_margin_max": 17.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 17.0,
+          "dem_pct": 52.0,
+          "rep_pct": 35.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6572,6 +7254,16 @@
           "alternative_margin_min": -1.33,
           "alternative_margin_max": 4.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 1.06,
+          "dem_pct": 45.37,
+          "rep_pct": 44.31,
+          "difference_from_live": -0.38,
+          "rated_pollster_count": 3,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -6648,6 +7340,16 @@
           "alternative_margin_max": -17.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -17.0,
+          "dem_pct": 35.0,
+          "rep_pct": 52.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6721,6 +7423,16 @@
           "alternative_margin_max": 0.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 0.0,
+          "dem_pct": 48.0,
+          "rep_pct": 48.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 0,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6775,6 +7487,16 @@
           "alternative_margin_min": 1.0,
           "alternative_margin_max": 1.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 1.0,
+          "dem_pct": 46.0,
+          "rep_pct": 45.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 0,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -6831,6 +7553,16 @@
           "alternative_margin_max": -5.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -5.0,
+          "dem_pct": 43.0,
+          "rep_pct": 48.0,
+          "difference_from_live": -0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6885,6 +7617,16 @@
           "alternative_margin_min": -4.5,
           "alternative_margin_max": -1.74,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -2.7,
+          "dem_pct": 44.8,
+          "rep_pct": 47.5,
+          "difference_from_live": -0.34,
+          "rated_pollster_count": 2,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -6951,6 +7693,16 @@
           "alternative_margin_max": 5.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 5.0,
+          "dem_pct": 45.0,
+          "rep_pct": 40.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7006,6 +7758,16 @@
           "alternative_margin_max": 3.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 3.0,
+          "dem_pct": 47.0,
+          "rep_pct": 44.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7060,6 +7822,16 @@
           "alternative_margin_min": -4.69,
           "alternative_margin_max": -3.5,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -4.4,
+          "dem_pct": 40.0,
+          "rep_pct": 44.4,
+          "difference_from_live": -0.07,
+          "rated_pollster_count": 2,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -7126,6 +7898,16 @@
           "alternative_margin_max": -4.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -4.0,
+          "dem_pct": 43.0,
+          "rep_pct": 47.0,
+          "difference_from_live": -0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7180,6 +7962,16 @@
           "alternative_margin_min": -5.0,
           "alternative_margin_max": -5.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -5.0,
+          "dem_pct": 41.0,
+          "rep_pct": 46.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -7236,6 +8028,16 @@
           "alternative_margin_max": -4.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -4.0,
+          "dem_pct": 44.0,
+          "rep_pct": 48.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 0,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7290,6 +8092,16 @@
           "alternative_margin_min": -9.0,
           "alternative_margin_max": -9.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -9.0,
+          "dem_pct": 37.0,
+          "rep_pct": 46.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -7346,6 +8158,16 @@
           "alternative_margin_max": -6.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -6.0,
+          "dem_pct": 39.0,
+          "rep_pct": 45.0,
+          "difference_from_live": -0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7401,6 +8223,16 @@
           "alternative_margin_max": -7.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -7.0,
+          "dem_pct": 41.0,
+          "rep_pct": 48.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7455,6 +8287,16 @@
           "alternative_margin_min": 13.0,
           "alternative_margin_max": 13.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 13.0,
+          "dem_pct": 54.0,
+          "rep_pct": 41.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -7529,6 +8371,16 @@
           "alternative_margin_max": -1.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -1.0,
+          "dem_pct": 44.0,
+          "rep_pct": 45.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7584,6 +8436,16 @@
           "alternative_margin_max": 41.5,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 41.5,
+          "dem_pct": 62.7,
+          "rep_pct": 21.2,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 0,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7638,6 +8500,16 @@
           "alternative_margin_min": -5.0,
           "alternative_margin_max": -1.05,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -2.34,
+          "dem_pct": 34.3,
+          "rep_pct": 36.64,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 0,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -7704,6 +8576,16 @@
           "alternative_margin_max": -18.1,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -18.1,
+          "dem_pct": 26.4,
+          "rep_pct": 44.5,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 0,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7758,6 +8640,16 @@
           "alternative_margin_min": -8.8,
           "alternative_margin_max": 6.95,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 2.05,
+          "dem_pct": 38.0,
+          "rep_pct": 35.95,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 0,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -7824,6 +8716,16 @@
           "alternative_margin_max": 4.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 2.74,
+          "dem_pct": 48.99,
+          "rep_pct": 46.25,
+          "difference_from_live": -0.27,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7888,6 +8790,16 @@
           "alternative_margin_min": -6.0,
           "alternative_margin_max": -3.5,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -4.56,
+          "dem_pct": 45.0,
+          "rep_pct": 49.56,
+          "difference_from_live": 0.08,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -7954,6 +8866,16 @@
           "alternative_margin_max": -30.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -30.0,
+          "dem_pct": 29.0,
+          "rep_pct": 59.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -8008,6 +8930,16 @@
           "alternative_margin_min": 26.35,
           "alternative_margin_max": 26.97,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 26.23,
+          "dem_pct": 56.33,
+          "rep_pct": 30.1,
+          "difference_from_live": -0.73,
+          "rated_pollster_count": 2,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -8074,6 +9006,16 @@
           "alternative_margin_max": -1.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -1.0,
+          "dem_pct": 47.0,
+          "rep_pct": 48.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -8128,6 +9070,16 @@
           "alternative_margin_min": 0.5,
           "alternative_margin_max": 0.62,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 0.56,
+          "dem_pct": 48.0,
+          "rep_pct": 47.44,
+          "difference_from_live": -0.03,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -8195,6 +9147,16 @@
           "alternative_margin_min": 20.46,
           "alternative_margin_max": 21.02,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 20.74,
+          "dem_pct": 43.61,
+          "rep_pct": 22.87,
+          "difference_from_live": 0.08,
+          "rated_pollster_count": 4,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -8281,6 +9243,16 @@
           "alternative_margin_max": -13.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -13.0,
+          "dem_pct": 37.0,
+          "rep_pct": 50.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -8345,6 +9317,16 @@
           "alternative_margin_max": 6.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 6.0,
+          "dem_pct": 50.0,
+          "rep_pct": 44.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 0,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -8399,6 +9381,16 @@
           "alternative_margin_min": 18.25,
           "alternative_margin_max": 19.17,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 18.5,
+          "dem_pct": 54.52,
+          "rep_pct": 36.03,
+          "difference_from_live": -0.11,
+          "rated_pollster_count": 3,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -8505,6 +9497,16 @@
           "alternative_margin_max": 16.68,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 15.15,
+          "dem_pct": 53.26,
+          "rep_pct": 38.11,
+          "difference_from_live": -0.45,
+          "rated_pollster_count": 4,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -8589,6 +9591,16 @@
           "alternative_margin_min": -5.18,
           "alternative_margin_max": -4.35,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -4.89,
+          "dem_pct": 43.21,
+          "rep_pct": 48.1,
+          "difference_from_live": -0.26,
+          "rated_pollster_count": 5,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -8695,6 +9707,16 @@
           "alternative_margin_max": -1.3,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -1.44,
+          "dem_pct": 47.09,
+          "rep_pct": 48.53,
+          "difference_from_live": -0.03,
+          "rated_pollster_count": 3,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -8779,6 +9801,16 @@
           "alternative_margin_min": 7.92,
           "alternative_margin_max": 9.12,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 8.68,
+          "dem_pct": 51.62,
+          "rep_pct": 42.93,
+          "difference_from_live": -0.13,
+          "rated_pollster_count": 9,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -8925,6 +9957,16 @@
           "alternative_margin_max": -10.1,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -10.1,
+          "dem_pct": 27.2,
+          "rep_pct": 37.3,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 0,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -8980,6 +10022,16 @@
           "alternative_margin_max": 20.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 20.0,
+          "dem_pct": 54.0,
+          "rep_pct": 34.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -9034,6 +10086,16 @@
           "alternative_margin_min": -4.2,
           "alternative_margin_max": -3.82,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -3.97,
+          "dem_pct": 44.98,
+          "rep_pct": 48.95,
+          "difference_from_live": -0.05,
+          "rated_pollster_count": 5,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -9140,6 +10202,16 @@
           "alternative_margin_max": 19.25,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 19.35,
+          "dem_pct": 54.0,
+          "rep_pct": 34.65,
+          "difference_from_live": 0.13,
+          "rated_pollster_count": 2,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -9205,6 +10277,16 @@
           "alternative_margin_max": 27.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 27.0,
+          "dem_pct": 51.0,
+          "rep_pct": 24.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 0,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -9259,6 +10341,16 @@
           "alternative_margin_min": 11.69,
           "alternative_margin_max": 12.03,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 11.86,
+          "dem_pct": 51.27,
+          "rep_pct": 39.42,
+          "difference_from_live": -0.01,
+          "rated_pollster_count": 8,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -9394,6 +10486,16 @@
           "alternative_margin_min": 7.89,
           "alternative_margin_max": 8.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 7.96,
+          "dem_pct": 50.14,
+          "rep_pct": 42.17,
+          "difference_from_live": 0.01,
+          "rated_pollster_count": 10,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -9590,6 +10692,16 @@
           "alternative_margin_max": 8.31,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 7.69,
+          "dem_pct": 47.47,
+          "rep_pct": 39.78,
+          "difference_from_live": -0.14,
+          "rated_pollster_count": 4,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -9674,6 +10786,16 @@
           "alternative_margin_min": -5.8,
           "alternative_margin_max": -4.49,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -5.19,
+          "dem_pct": 38.84,
+          "rep_pct": 44.04,
+          "difference_from_live": -0.19,
+          "rated_pollster_count": 5,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -9780,6 +10902,16 @@
           "alternative_margin_max": -7.98,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -8.84,
+          "dem_pct": 41.54,
+          "rep_pct": 50.38,
+          "difference_from_live": -0.28,
+          "rated_pollster_count": 4,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -9875,6 +11007,16 @@
           "alternative_margin_max": 6.6,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 6.62,
+          "dem_pct": 48.23,
+          "rep_pct": 41.62,
+          "difference_from_live": 0.05,
+          "rated_pollster_count": 2,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -9940,6 +11082,16 @@
           "alternative_margin_max": 0.1,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -0.44,
+          "dem_pct": 41.56,
+          "rep_pct": 42.0,
+          "difference_from_live": -0.06,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -10004,6 +11156,16 @@
           "alternative_margin_min": 10.43,
           "alternative_margin_max": 12.71,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 11.84,
+          "dem_pct": 52.6,
+          "rep_pct": 40.76,
+          "difference_from_live": -0.29,
+          "rated_pollster_count": 6,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -10109,6 +11271,16 @@
           "alternative_margin_min": 3.99,
           "alternative_margin_max": 5.98,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 4.76,
+          "dem_pct": 48.6,
+          "rep_pct": 43.84,
+          "difference_from_live": -0.26,
+          "rated_pollster_count": 7,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -10225,6 +11397,16 @@
           "alternative_margin_max": 3.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 2.76,
+          "dem_pct": 46.0,
+          "rep_pct": 43.24,
+          "difference_from_live": 0.12,
+          "rated_pollster_count": 2,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -10289,6 +11471,16 @@
           "alternative_margin_min": 22.64,
           "alternative_margin_max": 23.51,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 23.01,
+          "dem_pct": 55.91,
+          "rep_pct": 32.9,
+          "difference_from_live": -0.03,
+          "rated_pollster_count": 3,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -10385,6 +11577,16 @@
           "alternative_margin_max": 24.5,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 24.18,
+          "dem_pct": 42.31,
+          "rep_pct": 18.13,
+          "difference_from_live": -0.26,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -10459,6 +11661,16 @@
           "alternative_margin_max": -9.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -9.0,
+          "dem_pct": 36.0,
+          "rep_pct": 45.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -10513,6 +11725,16 @@
           "alternative_margin_min": -2.25,
           "alternative_margin_max": -1.25,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -1.65,
+          "dem_pct": 46.3,
+          "rep_pct": 47.95,
+          "difference_from_live": -0.17,
+          "rated_pollster_count": 9,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
         },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -10709,6 +11931,16 @@
           "alternative_margin_max": -1.94,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -2.31,
+          "dem_pct": 42.24,
+          "rep_pct": 44.55,
+          "difference_from_live": -0.38,
+          "rated_pollster_count": 3,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -10784,6 +12016,16 @@
           "alternative_margin_max": 4.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 3.74,
+          "dem_pct": 49.0,
+          "rep_pct": 45.26,
+          "difference_from_live": 0.06,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -10844,6 +12086,16 @@
         "alternative_margin_min": 7.9,
         "alternative_margin_max": 8.22,
         "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+      },
+      "silver_2026_comparison": {
+        "dem_minus_rep": 7.96,
+        "dem_pct": 47.75,
+        "rep_pct": 39.79,
+        "difference_from_live": -0.0,
+        "rated_pollster_count": 6,
+        "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+        "status": "experimental_not_used_for_headline",
+        "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
       },
       "different_matchups_excluded": 0,
       "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
