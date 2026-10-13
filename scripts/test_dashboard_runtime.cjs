@@ -943,7 +943,8 @@ async function settle(){
  get('#enMode2026').click();
  await w.eval('enLoad(true)');
  w.fetch=savedAlertFetch;
- assert.equal(w.eval('enModeYear'),2026,'Alert suite requires the actual 2026 mode');
+ assert.equal(get('#enMode2026').getAttribute('aria-pressed'),'true',
+  'Actual 2026 mode must be selected on the visible Election Night UI');
  w.localStorage.removeItem('bluewaves_election_alerts_2026_v1');
  w.eval('enAlertRows=[];enAlertSeen.clear();enRenderAlertInbox()');
  const alertRows=()=>[...get('#enAlertItems').querySelectorAll('button.en-alert-row')];
