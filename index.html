@@ -1704,6 +1704,7 @@ function renderEnForecastStrip(){
 let enModeYear=Date.now()<Date.parse('2026-11-03T05:00:00Z')?2024:2026;
 let enOffice='House',enData=null,enSelected=null,enTimer=null,enRequestSerial=0,enVisibleLimit=120;
 let enFetchError=null,enLastFetchAt=null,enMovements=[],enFailures=0,enArchiveSource='medsl';
+let enResumePending=false,enRestoredAt=null;
 const enRemoteBase='https://openamerica.io/elections/results.json';
 /* A personal, browser-local 2026 viewing list. No account, server upload,
  * candidate inference, or old-district-to-new-district mapping. */
@@ -2500,6 +2501,72 @@ function enCompareSnapshots(previous,next){
    Number(b.leaderChanged)-Number(a.leaderChanged)||
    Number(b.newRace)-Number(a.newRace)||Math.abs(b.delta)-Math.abs(a.delta)).slice(0,30);
 }
+/* Browser-local interruption recovery: one source-validated 2026 snapshot
+ * per office plus compact observed activity. Never restore live/called state
+ * as a fresh fetch and never manufacture results from polling estimates. */
+const enResumeKey='bluewaves_2026_results_resume_v1';
+const enResumeWindowMs=72*60*60*1000;
+function enResumeMovementValid(row){
+ return Boolean(row&&['House','Senate','Governor'].includes(row.office)&&
+  typeof row.key==='string'&&row.key.length<=30&&
+  (row.office==='House'?/^[A-Z]{2}-\\d{2}$/.test(row.key):
+   row.office==='Senate'?/^[A-Z]{2}(?:-special)?$/.test(row.key):
+   /^[A-Z]{2}$/.test(row.key))&&
+  Number.isSafeInteger(row.prior)&&row.prior>=0&&
+  (row.current===null||Number.isSafeInteger(row.current)&&row.current>=0)&&
+  Number.isSafeInteger(row.delta)&&
+  ['newRace','leaderChanged','candidateChanged','withdrawn'].every(k=>
+    row[k]===undefined||typeof row[k]==='boolean')&&
+  (row.at===null||typeof row.at==='string'&&row.at.length<=60)&&
+  (row.fingerprint===undefined||typeof row.fingerprint==='string'&&row.fingerprint.length<=2500));
+}
+function enResumeSave(){
+ if(Date.now()<Date.parse('2026-11-03T05:00:00Z'))return false;
+ const snapshots=Object.create(null);
+ for(const office of ['House','Senate','Governor']){
+  const d=enOfficeSnapshots[office];
+  if(d&&enSourceValid(d,2026,office))snapshots[office]=d;
+ }
+ if(!Object.keys(snapshots).length)return false;
+ const movements=enMovements.filter(enResumeMovementValid).slice(0,70);
+ const envelope={schema_version:1,election:'2026-11-03',
+   saved_at:new Date(Date.now()).toISOString(),snapshots,movements};
+ try{
+  const value=JSON.stringify(envelope);
+  if(value.length>850000)return false;
+  localStorage.setItem(enResumeKey,value);
+  return true;
+ }catch{return false}
+}
+function enResumeRestore(){
+ try{
+  if(Date.now()<Date.parse('2026-11-03T05:00:00Z'))return false;
+  const raw=localStorage.getItem(enResumeKey);
+  if(!raw||raw.length>850000)return false;
+  const doc=JSON.parse(raw),time=Date.parse(doc?.saved_at||'');
+  if(doc?.schema_version!==1||doc.election!=='2026-11-03'||
+    !Number.isFinite(time)||time>Date.now()+60000||
+    Date.now()-time>enResumeWindowMs||
+    !doc.snapshots||Array.isArray(doc.snapshots)||
+    typeof doc.snapshots!=='object'||
+    !Array.isArray(doc.movements)||doc.movements.length>70)return false;
+  const offices=Object.keys(doc.snapshots);
+  if(!offices.length||offices.length>3||
+    !offices.every(office=>['House','Senate','Governor'].includes(office)&&
+      enSourceValid(doc.snapshots[office],2026,office))||
+    !doc.movements.every(enResumeMovementValid))return false;
+  // Atomic restore: no partially trusted office payload survives validation.
+  const hydrated=Object.create(null);
+  for(const office of offices)hydrated[office]=doc.snapshots[office];
+  enOfficeSnapshots=hydrated;
+  enMovements=doc.movements.slice(0,70);
+  enRestoredAt=doc.saved_at;
+  enResumePending=true;
+  if(enModeYear===2026)enData=enOfficeSnapshots[enOffice]||null;
+  return true;
+ }catch{return false}
+}
+
 function enSnapshotCompatible(previous,next){
  if(!previous||previous.year!==next.year||previous.office!==next.office)return true;
  if(previous.counting&&Object.keys(previous.races).length&&
@@ -2520,7 +2587,9 @@ function enAcceptSource(o){
  enData=o;enFetchError=null;enLastFetchAt=new Date();
  if(enModeYear===2026){
   enOfficeSnapshots[enOffice]=o;
+  enResumePending=false;enRestoredAt=null;
   delete enOfficeErrors[enOffice];
+  enResumeSave();
  }
  enRender();
 }
@@ -2573,10 +2642,10 @@ function enRender(){
  $('#enArchiveSource').value=enArchiveSource;
  const archivedSenate=enModeYear===2024&&enData?.source==='medsl_senate_2024_party_aggregates';
  const asOfAge=enData?.as_of?(Date.now()-Date.parse(enData.as_of))/60000:Infinity;
- const sourceDelayed=enModeYear===2026&&enData&&(enData.stale||(enData.counting&&(!enData.live||asOfAge>180)));
+ const sourceDelayed=enModeYear===2026&&enData&&(enResumePending||enData.stale||(enData.counting&&(!enData.live||asOfAge>180)));
  const connection=$('#enConnection');
  connection.className='en-connection'+(enFetchError?' error':enModeYear===2026&&enData?.live&&!sourceDelayed?' live':' wait');
- connection.textContent=enFetchError?'SOURCE RETRYING':archivedState?'STATE SOURCE · ARCHIVE':enModeYear===2024?'ARCHIVE · REHEARSAL':
+ connection.textContent=enFetchError?'SOURCE RETRYING':enModeYear===2026&&enResumePending?'RESTORED · REFRESHING':archivedState?'STATE SOURCE · ARCHIVE':enModeYear===2024?'ARCHIVE · REHEARSAL':
    enData?.live&&!sourceDelayed?'LIVE · 60 SEC AUTO':
    enData?.counting?'STATE COUNT RECEIVED':'WAITING FOR VOTES';
  let info=enData&&archivedSenate?
@@ -2592,6 +2661,7 @@ function enRender(){
   (enModeYear===2026&&Date.now()<Date.parse('2026-11-03T00:00:00Z')?
     '2026 returns have not begun. Switch to 2024 Archive for the rehearsal.':
     'Connecting to the source results feed. Nothing is being inferred.');
+ if(enModeYear===2026&&enResumePending)info='RESTORED BROWSER SNAPSHOT · saved '+enFormattedTime(enRestoredAt)+' · '+info;
  if(enFetchError)info+=' · Last refresh failed: '+enFetchError;
  $('#enStatus').classList.toggle('stale',Boolean(sourceDelayed||enFetchError));
  $('#enStatus').classList.toggle('fresh',Boolean(enData&&enModeYear===2026&&enData.live&&!sourceDelayed&&!enFetchError));
@@ -2726,6 +2796,7 @@ async function enRefreshWatchedOffices(exceptOffice){
    const changes=enCompareSnapshots(old,obj);
    enMovements=[...changes,...enMovements].slice(0,70);
    enProcessPrimaryAlerts(changes);
+   enResumeSave();
    delete enOfficeErrors[office];
    if(enOffice===office){
     enData=obj;enFetchError=null;enLastFetchAt=new Date();enRender();
@@ -2816,6 +2887,7 @@ $('#enRefresh').addEventListener('click',()=>enLoad(true));
 $('#enSearch').addEventListener('input',()=>{enVisibleLimit=120;enRender()});
 document.querySelector('.tab[data-page="electionNight"]').addEventListener('click',()=>{if(!enData||enModeYear===2026)enLoad(false)});
 document.querySelectorAll('.tab:not([data-page="electionNight"])').forEach(el=>el.addEventListener('click',()=>{if(enTimer){clearTimeout(enTimer);enTimer=null}}));
+enResumeRestore();
 enRender();
 if(location.hash.split('/')[0]==='#electionNight')enLoad(true);
 
