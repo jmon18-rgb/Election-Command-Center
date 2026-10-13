@@ -1,5 +1,5 @@
-/* Four-state civicAPI adapter: validated Nov. 3, 2026 regular
- * Senate and governor races in AK, ME, MA, NV. Provider calls remain
+/* Four-state civicAPI adapter: validated Nov. 3, 2026 six
+ * statewide Senate and governor races in AK, ME, MA, NV. Provider calls remain
  * civicAPI calls only, never official certifications. */
 (function(root){
   'use strict';
@@ -11,7 +11,6 @@
     'Governor|AK':{state:'AK',name:'Alaska Governor',office:'Governor'},
     'Senate|ME':{state:'ME',name:'Maine US Senate',office:'Senate'},
     'Governor|ME':{state:'ME',name:'Maine Governor',office:'Governor'},
-    'Senate|MA':{state:'MA',name:'Massachusetts US Senate',office:'Senate'},
     'Governor|MA':{state:'MA',name:'Massachusetts Governor',office:'Governor'},
     'Governor|NV':{state:'NV',name:'Nevada Governor',office:'Governor'}
   });
