@@ -34,7 +34,6 @@ class RaceProbabilityTests(unittest.TestCase):
         self.assertAlmostEqual(p.normal_cdf(0),.5)
         self.assertAlmostEqual(p.normal_cdf(1),.841344746,places=6)
         self.assertAlmostEqual(p.normal_cdf(-1),.158655254,places=6)
-        self.assertFalse(p.build.__doc__ or False)
     def test_uncertainty_increases_for_sparse_stale_sponsored(self):
         base,_=fixtures()
         strong=base["senate_all"][0]
