@@ -1678,6 +1678,155 @@ function enWatchToggle(item){
  $('#enWatchError').textContent='';
  enWatchSave();enRenderWatchlist();if(enModeYear===2026)enRender();
 }
+/* civicAPI is a separately attributed watchlist supplement for races in
+ * states missing from Open America's 22-state source. Never mix provider
+ * votes into the Open America national metrics or treat a winner flag as
+ * official certification. Keep identifier verification and source isolation. */
+const enCivicBase='https://civicapi.org/api/v2';
+let enCivicByWatch=Object.create(null),enCivicRaceIds=Object.create(null),
+ enCivicErrors=Object.create(null),enCivicPending=new Set(),enCivicLastSweep=0;
+function enCivicMatch(item,row){
+ if(!item||!row||row.country!=='US'||row.province!==item.key.slice(0,2)||
+    typeof row.election_date!=='string'||!row.election_date.startsWith('2026-11-03')||
+    !Number.isSafeInteger(row.id)||row.id<=0||row.municipality||
+    !Array.isArray(row.candidates)||row.candidates.length>60||
+    !['General','Statewide'].includes(row.election_type)||
+    /primary|runoff/i.test(row.election_name||'')||/primary|runoff/i.test(row.election_type||''))return false;
+ if(item.office==='House')
+  return row.type==='House of Representatives'&&row.election_type==='General'&&
+    row.district===item.key&&/US House/i.test(row.election_name||'');
+ if(item.office==='Senate')
+  return row.type==='US Senate'&&row.election_type==='General'&&
+   (row.district===null||row.district==='')&&/US Senate/i.test(row.election_name||'')&&
+   /special/i.test(row.election_name||'')===item.key.endsWith('-special');
+ if(item.office==='Governor')
+  return row.type==='Governor'&&row.election_type==='Statewide'&&
+    (row.district===null||row.district==='')&&/Governor/i.test(row.election_name||'');
+ return false;
+}
+function enCivicSelect(item,doc){
+ if(!doc||!Array.isArray(doc.races)||doc.races.length>25||doc.races.length<1)return null;
+ const matches=doc.races.filter(row=>enCivicMatch(item,row));
+ return matches.length===1?matches[0]:null;
+}
+function enCivicParty(name){
+ const v=String(name||'').toLowerCase();
+ return ['democratic','democrat','d'].includes(v)?'D':
+   ['republican','r','gop'].includes(v)?'R':'O';
+}
+function enCivicValidate(item,row,detail){
+ if(!enCivicMatch(item,row)||!detail||
+    detail.country!==row.country||detail.province!==row.province||
+    detail.election_date!==row.election_date||
+    detail.election_name!==row.election_name||
+    detail.election_type!==row.election_type||
+    detail.district!==row.district||
+    !Array.isArray(detail.candidates)||detail.candidates.length<1||
+    detail.candidates.length>60||
+    !Number.isFinite(detail.percent_reporting)||detail.percent_reporting<0||
+    detail.percent_reporting>100)return null;
+ const candidateKeys=new Set(),candidates=[];
+ let total=0,called=[];
+ for(const c of detail.candidates){
+  if(!c||typeof c.name!=='string'||!c.name.trim()||
+      typeof c.party!=='string'||!Number.isSafeInteger(c.votes)||
+      c.votes<0||!Number.isFinite(c.percent)||c.percent<0||c.percent>100||
+      typeof c.winner!=='boolean')return null;
+  const key=c.name+'|'+c.party;
+  if(candidateKeys.has(key))return null;
+  candidateKeys.add(key);
+  total+=c.votes;
+  if(!Number.isSafeInteger(total))return null;
+  if(c.winner)called.push(c.name);
+  candidates.push({name:c.name,party:enCivicParty(c.party),votes:c.votes,
+    percent:c.percent});
+ }
+ // No pre-election votes or winner calls can be accepted.
+ if(Date.now()<Date.parse('2026-11-03T05:00:00Z')&&(total>0||called.length))return null;
+ if(called.length>1)return null;
+ if(total>0&&Math.abs(candidates.reduce((sum,c)=>sum+c.percent,0)-100)>2)return null;
+ if(total===0&&candidates.some(c=>c.percent>0))return null;
+ const stamp=detail.last_updated||null;
+ if(stamp&&(typeof stamp!=='string'||!Number.isFinite(Date.parse(stamp))||
+     Date.parse(stamp)>Date.now()+15*60000))return null;
+ return {provider:'civicAPI',office:item.office,key:item.key,race_id:row.id,
+  last_updated:stamp,percent_reporting:detail.percent_reporting,
+  total,candidates,called:called[0]||null,
+  source_url:enCivicBase+'/race/'+row.id};
+}
+function enCivicQuery(item){
+ const province=item.key.slice(0,2);
+ const query=item.office==='Senate'?'US Senate':
+   item.office==='Governor'?'Governor':
+   'US House '+Number(item.key.slice(3));
+ const params=new URLSearchParams({country:'US',province,
+   startDate:'2026-11-03',endDate:'2026-11-03',query,limit:'20'});
+ return enCivicBase+'/race/search?'+params.toString();
+}
+function enCivicStatus(item){
+ const id=enWatchId(item),data=enCivicByWatch[id];
+ if(!data)return enCivicErrors[id]?'civicAPI source check unavailable · keeping watch':'civicAPI · checking November 3 race';
+ const revision=data.last_updated?' · updated '+enFormattedTime(data.last_updated):'';
+ const reporting=data.percent_reporting.toFixed(0)+'% precincts';
+ const tally=[...data.candidates].sort((a,b)=>b.votes-a.votes);
+ const leader=tally[0],runner=tally[1],validLead=leader&&runner&&leader.votes>runner.votes;
+ const lead=validLead?(leader.party+' +'+(100*(leader.votes-runner.votes)/data.total).toFixed(1)):'Even';
+ const call=data.called?' · civicAPI CALL: '+data.called+' (not certification)':' · NO CALL';
+ if(!data.total)return 'civicAPI · no votes reported · '+reporting+call+revision;
+ return 'civicAPI · '+enNum(data.total)+' reported votes · '+lead+
+  ' · '+reporting+call+revision;
+}
+function enCivicURL(item){return enCivicByWatch[enWatchId(item)]?.source_url||'https://civicapi.org'}
+async function enCivicFetchOne(item){
+ const id=enWatchId(item);
+ if(enCivicPending.has(id))return;
+ enCivicPending.add(id);
+ try{
+  let row=enCivicRaceIds[id];
+  if(!row){
+   const response=await fetch(enCivicQuery(item),{mode:'cors',
+      credentials:'omit',cache:'no-store',headers:{Accept:'application/json'}});
+   if(!response.ok)throw Error('Search HTTP '+response.status);
+   row=enCivicSelect(item,await response.json());
+   if(!row)throw Error('No unique matching November 3 general-election race');
+  }
+  const response=await fetch(enCivicBase+'/race/'+row.id+'?light=',{
+     mode:'cors',credentials:'omit',cache:'no-store',headers:{Accept:'application/json'}});
+  if(!response.ok)throw Error('Race HTTP '+response.status);
+  const next=enCivicValidate(item,row,await response.json());
+  if(!next)throw Error('Supplementary result integrity check failed');
+  if(!enIsVisible()||enModeYear!==2026||
+     !enWatched.some(x=>enWatchId(x)===id))return;
+  const old=enCivicByWatch[id],oldTime=Date.parse(old?.last_updated||''),
+      newTime=Date.parse(next.last_updated||'');
+  if(Number.isFinite(oldTime)&&Number.isFinite(newTime)&&newTime<oldTime-1000)
+   throw Error('Supplementary source timestamp regressed');
+  if(old?.total>0&&next.total===0)
+   throw Error('Supplementary source unexpectedly cleared a counted race');
+  enCivicByWatch[id]=next;
+  enCivicRaceIds[id]=row;
+  delete enCivicErrors[id];
+  enRenderWatchlist();
+ }catch(err){
+  if(enIsVisible()&&enModeYear===2026){
+   enCivicErrors[id]=String(err?.message||err);
+   enRenderWatchlist();
+  }
+ }finally{enCivicPending.delete(id)}
+}
+async function enRefreshCivicWatchlist(force=false){
+ if(enModeYear!==2026||!enIsVisible())return;
+ const now=Date.now(),interval=now<Date.parse('2026-11-03T05:00:00Z')?600000:60000;
+ if(!force&&now-enCivicLastSweep<interval)return;
+ enCivicLastSweep=now;
+ // Low-impact serial client requests; only manually pinned out-of-feed races.
+ const missing=enWatched.filter(x=>!enSupportedStates.has(x.key.slice(0,2))).slice(0,12);
+ for(const item of missing){
+  if(enModeYear!==2026||!enIsVisible())return;
+  await enCivicFetchOne(item);
+ }
+}
+
 function enWatchStatus(item){
  const state=item.key.slice(0,2),data=enOfficeSnapshots[item.office]||
    (enModeYear===2026&&enOffice===item.office?enData:null);
