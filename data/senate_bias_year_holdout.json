@@ -1,0 +1,172 @@
+{
+  "schema_version": "senate-bias-holdout-v1",
+  "status": "retrospective_leave_election_year_out_research_only",
+  "source_poll_study_sha256": "d7a24df9e0a698a656655ec149531610041507e61c99e934cfb10e17a4d7bc8d",
+  "source_poll_study_generated_at": "2026-10-13T19:35:18.651276+00:00",
+  "source_race_count": 42,
+  "years": [
+    2020,
+    2022,
+    2024
+  ],
+  "test_design": "one entire election year held out; equal-weight training-year signed errors",
+  "training_and_test_years_never_overlap": true,
+  "correction_factors_fixed_in_advance": {
+    "uncorrected": 0.0,
+    "half_prior_bias": 0.5,
+    "full_prior_bias": 1.0
+  },
+  "scoring_units": "two-party Democratic-minus-Republican margin percentage points",
+  "by_test_year": {
+    "2020": {
+      "test_cycle": 2020,
+      "training_cycles": [
+        2022,
+        2024
+      ],
+      "training_cycle_signed_errors": {
+        "2022": -0.161,
+        "2024": 4.156
+      },
+      "fixed_training_bias_points": 1.998,
+      "test_races": 13,
+      "methods": {
+        "uncorrected": {
+          "races": 13,
+          "mae_points": 5.541,
+          "rmse_points": 6.911,
+          "signed_error_points": 5.375,
+          "shift_applied_points": 0.0
+        },
+        "half_prior_bias": {
+          "races": 13,
+          "mae_points": 4.968,
+          "rmse_points": 6.166,
+          "signed_error_points": 4.377,
+          "shift_applied_points": 0.999
+        },
+        "full_prior_bias": {
+          "races": 13,
+          "mae_points": 4.511,
+          "rmse_points": 5.503,
+          "signed_error_points": 3.378,
+          "shift_applied_points": 1.998
+        }
+      },
+      "full_prior_bias_mae_improvement_points": 1.03,
+      "half_prior_bias_mae_improvement_points": 0.573
+    },
+    "2022": {
+      "test_cycle": 2022,
+      "training_cycles": [
+        2020,
+        2024
+      ],
+      "training_cycle_signed_errors": {
+        "2020": 5.375,
+        "2024": 4.156
+      },
+      "fixed_training_bias_points": 4.766,
+      "test_races": 14,
+      "methods": {
+        "uncorrected": {
+          "races": 14,
+          "mae_points": 3.458,
+          "rmse_points": 4.473,
+          "signed_error_points": -0.161,
+          "shift_applied_points": 0.0
+        },
+        "half_prior_bias": {
+          "races": 14,
+          "mae_points": 4.276,
+          "rmse_points": 5.143,
+          "signed_error_points": -2.544,
+          "shift_applied_points": 2.383
+        },
+        "full_prior_bias": {
+          "races": 14,
+          "mae_points": 5.9,
+          "rmse_points": 6.652,
+          "signed_error_points": -4.927,
+          "shift_applied_points": 4.766
+        }
+      },
+      "full_prior_bias_mae_improvement_points": -2.442,
+      "half_prior_bias_mae_improvement_points": -0.818
+    },
+    "2024": {
+      "test_cycle": 2024,
+      "training_cycles": [
+        2020,
+        2022
+      ],
+      "training_cycle_signed_errors": {
+        "2020": 5.375,
+        "2022": -0.161
+      },
+      "fixed_training_bias_points": 2.607,
+      "test_races": 15,
+      "methods": {
+        "uncorrected": {
+          "races": 15,
+          "mae_points": 4.346,
+          "rmse_points": 5.365,
+          "signed_error_points": 4.156,
+          "shift_applied_points": 0.0
+        },
+        "half_prior_bias": {
+          "races": 15,
+          "mae_points": 3.349,
+          "rmse_points": 4.432,
+          "signed_error_points": 2.853,
+          "shift_applied_points": 1.304
+        },
+        "full_prior_bias": {
+          "races": 15,
+          "mae_points": 2.58,
+          "rmse_points": 3.729,
+          "signed_error_points": 1.549,
+          "shift_applied_points": 2.607
+        }
+      },
+      "full_prior_bias_mae_improvement_points": 1.766,
+      "half_prior_bias_mae_improvement_points": 0.997
+    }
+  },
+  "all_heldout_races": {
+    "uncorrected": {
+      "races": 42,
+      "mae_points": 4.42,
+      "rmse_points": 5.633,
+      "signed_error_points": 3.095
+    },
+    "half_prior_bias": {
+      "races": 42,
+      "mae_points": 4.159,
+      "rmse_points": 5.254,
+      "signed_error_points": 1.526,
+      "mae_improvement_vs_uncorrected_points": 0.261,
+      "improved_heldout_cycles": 2
+    },
+    "full_prior_bias": {
+      "races": 42,
+      "mae_points": 4.284,
+      "rmse_points": 5.393,
+      "signed_error_points": -0.044,
+      "mae_improvement_vs_uncorrected_points": 0.136,
+      "improved_heldout_cycles": 2
+    }
+  },
+  "is_forecast": false,
+  "is_as_of_leakage_free": false,
+  "is_statistically_calibrated_for_2026": false,
+  "permitted_to_change_live_2026_polling_model": false,
+  "limitations": [
+    "Only 2020, 2022 and 2024 were evaluated; two independent training election cycles per test are far too few to estimate reliable national polling bias.",
+    "The retrospective third-party polling compilation lacks verified original release timestamps; fieldwork-only cutoff is not a real historical as-of knowledge cutoff.",
+    "Surviving nominees and included survey questions were curated retrospectively; candidate-selection hindsight remains possible.",
+    "The historical poll-only recency21 mean is NOT identical to live JackStradamus pollster-grade, sample-size or sponsorship weighting.",
+    "Senate races within an election cycle share national errors and are not 42 independent national-bias observations.",
+    "Test-method comparisons are not a green light to tune coefficients on this same three-election dataset; no 2026 correction has been enabled."
+  ]
+}
