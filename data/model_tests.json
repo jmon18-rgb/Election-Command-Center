@@ -1,5 +1,5 @@
 {
-  "source_snapshot": "2026-10-13T15:33:18.718131Z",
+  "source_snapshot": "2026-10-13T15:34:32.042500Z",
   "test": "Strict walk-forward, held-out next poll, grouped by candidate matchup",
   "eligible_matchup_groups": 50,
   "methods": {
@@ -102,9 +102,29 @@
         2.47,
         3.234
       ]
+    },
+    "recency21_sponsored_50_quality_size_bias17": {
+      "comparisons": 153,
+      "independent_matchup_clusters": 31,
+      "mae_points": 2.799,
+      "rmse_points": 3.514,
+      "cluster_bootstrap_mae_95pct_range": [
+        2.416,
+        3.222
+      ]
+    },
+    "recency21_sponsored_50_quality_size_recency14": {
+      "comparisons": 153,
+      "independent_matchup_clusters": 31,
+      "mae_points": 2.876,
+      "rmse_points": 3.596,
+      "cluster_bootstrap_mae_95pct_range": [
+        2.494,
+        3.309
+      ]
     }
   },
-  "lowest_observed_mae": "recency21_sponsored_50_quality_size",
+  "lowest_observed_mae": "recency21_sponsored_50_quality_size_bias17",
   "production_model_status": "NOT VALIDATED FOR ELECTION-RESULT FORECASTING",
   "model_selection_policy": "No model is promoted from this test. Require historical election-result holdout validation, calibration, and correlated error assessment.",
   "limitations": [
@@ -115,6 +135,7 @@
     "No win probabilities, calibrated pollster house effects or election-security adjustments inferred.",
     "Sponsored-poll weight factors are experimental; target surveys remain non-sponsored only.",
     "Pollster quality comes from 538 archived pre-2026 grades, not an updated Silver Bulletin 2026 recalibration.",
-    "Test currently compares future independent polls, and overfitting to this cycle must be avoided."
+    "Test currently compares future independent polls, and overfitting to this cycle must be avoided.",
+    "Alternative half-lives and the Silver-inspired 1.7-point signed sponsor correction are test-only; no new coefficient is deployed on the live average."
   ]
 }
