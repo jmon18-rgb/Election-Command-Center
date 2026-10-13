@@ -88,6 +88,17 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .wire-more{display:block;background:#162b40;color:#c5e4ff;border:1px solid #3a5976;padding:11px 20px;border-radius:8px;cursor:pointer;margin:18px auto 2px}
 @media(max-width:980px){.wire-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.wire-controls label:first-child{grid-column:span 2}}
 @media(max-width:500px){.wire-controls{grid-template-columns:1fr}.wire-controls label:first-child{grid-column:span 1}}
+
+.en-activity{background:linear-gradient(135deg,#163148,#101f31);border:1px solid #3b5870;border-radius:12px;padding:17px 19px;margin:14px 0}
+.en-activity h3{font-size:12px;text-transform:uppercase;letter-spacing:.11em;margin:0 0 5px}
+.en-activity-row{display:flex;justify-content:space-between;gap:15px;padding:10px 0;border-top:1px solid #294358;font-size:12px;flex-wrap:wrap}
+.en-activity-row:first-child{margin-top:10px}
+.en-activity-row small{color:#aabfd3}
+.en-activity-row .revised{color:#f6ca96}
+.en-status-warning{border-color:#987047;background:#33291e;color:#f4d6ad}
+.en-status-ok{border-color:#397e72;background:#14372f;color:#b1eada}
+.en-preview{font-size:11px;color:#c9dae9;line-height:1.65}
+.en-preview a{color:#a8d4ff}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -189,10 +200,10 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 </section>
 <section id="integrity" class="page"><div class="sectionhead"><h2>Bullshittery Index</h2><span class="tiny">Evidence-first reporting</span></div><div class="card" style="margin-bottom:16px"><div class="row"><span class="label">Documented issue monitoring</span><span class="tiny">Provisional 0–100 index</span></div><div id="bullScoreStates" class="bs-state-scores"><span class="empty">Loading incident scorecards…</span></div><details class="bs-method"><summary>What exactly is being estimated?</summary><p><strong>Two separate figures:</strong> the 0–100 score is an operational monitoring priority. The percentage is our rough, subjective probability that the named incident prevents <strong>at least 100 otherwise-eligible people</strong> from casting a countable ballot after ordinary remedies and review. Neither measures election fraud or who wins.</p><p>The probabilities are judgmental working estimates with deliberately broad ranges: registration backlog 12% (3–30%), ten-county Sunday-hours change 10% (2–25%), voter-list litigation without a demonstrated access effect 1% (0.1–5%). They are not historically calibrated. The records/county counts show the scale of the issue, not how many ballots will be lost. Each figure will be revised when processing reports, alternative access and actual voting data arrive. <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/BULLSHITTERY.md" target="_blank" rel="noopener noreferrer">Full assumptions ↗</a></p></details></div><div class="card" style="margin-bottom:16px"><div class="row"><span class="label">Voter impact · evidence ledger</span><span class="tag">COUNTS REQUIRE SOURCES</span></div><p class="detail">Track potentially exposed voters or ballots separately from confirmed effects and remedies. Unknown is not zero. Overlapping incidents are never added into a statewide total.</p><div class="toolrow"><select id="impactState" aria-label="Filter state voter impact"><option value="">All monitored states</option></select><select id="impactStatus" aria-label="Filter evidence status"><option value="">All evidence statuses</option><option value="unverified_report">Unverified report</option><option value="documented_action">Documented action</option><option value="officially_confirmed">Officially confirmed</option><option value="court_finding">Court finding</option><option value="resolved">Resolved</option></select></div><div id="impactSummary" class="statusline">Loading sourced impact ledger…</div><div id="impactCases" class="racecards racecards-wide"></div><p class="methodline">Counts preserve their units (voters, ballots, registrations, records). Potential exposure does not imply disenfranchisement, fraud, or an election outcome change.</p></div><div class="card" style="margin-bottom:16px"><div class="row"><span class="label">Incoming integrity reports · verification queue</span><span class="tag">NOT VERIFIED</span></div><p class="detail">Automatically collected leads requiring original documents. Numbers in headlines are not confirmed voter-impact counts.</p><div id="integrityQueueSummary" class="statusline">Checking verification queue…</div><div id="integrityQueue" class="racecards racecards-wide"></div></div><div class="grid"><div class="card seven"><div class="row"><span class="label">Documented developments</span><span class="tag">FEED PENDING</span></div><div class="toolrow"><input type="search" id="securitySearch" placeholder="Search voter rolls, ICE, courts…"><select id="securityOrder" aria-label="Sort news"><option value="recent">Newest first</option><option value="oldest">Oldest first</option></select></div><div class="statusline" id="securityCount">No articles loaded yet.</div><div id="security" class="empty">No articles loaded yet. These are automatically collected news leads, not verified incidents.</div></div><div class="card five"><span class="label">Monitoring priorities</span><div class="item"><strong>Voter rolls and registration</strong><small>Eligibility challenges, list maintenance, notices, and court orders.</small></div><div class="item"><strong>Federal agency activity</strong><small>Documented actions that may affect voting access, including ICE.</small></div><div class="item"><strong>Threats and disruptions</strong><small>Cyber incidents, polling-place threats, and official responses.</small></div><div class="item"><strong>Litigation and oversight</strong><small>Injunctions, appeals, election procedures, and implementation.</small></div></div></div><div class="note">An allegation is not a verified incident. Every report should distinguish evidence, disputed claims, and unresolved questions.</div></section>
 <section id="electionNight" class="page">
-<div class="sectionhead"><div><h2>Election Night</h2><p class="detail">Live unofficial vote totals and a 2024 historical test snapshot. Not a race-calling service.</p></div><span class="tiny" id="enChecked">Not connected yet</span></div>
+<div class="sectionhead"><div><h2>Election Night</h2><p class="detail">Official state-derived vote counts through a validated same-origin cache, plus a 2024 rehearsal archive. Unofficial leaders are not race calls.</p></div><span class="tiny" id="enChecked">Checking snapshot cache…</span></div>
 <div class="en-toolbar">
  <div class="en-toggle" aria-label="Election data mode">
- <button id="enMode2026" type="button" aria-pressed="true">2026 · Live</button>
+ <button id="enMode2026" type="button" aria-pressed="true">2026 · Results</button>
  <button id="enMode2024" type="button" aria-pressed="false">2024 · Archive</button>
  </div>
  <div class="en-toggle" aria-label="Chamber">
@@ -201,7 +212,9 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  </div>
  <button id="enRefresh" type="button" class="chip">Refresh</button>
 </div>
-<div class="en-status" id="enStatus" role="status">Connect to the public results feed. Live results will begin when official state election offices report votes.</div>
+<div class="en-status" id="enStatus" role="status">The live reporting feed begins on Election Day, November 3. Use the 2024 archive to rehearse the display now.</div>
+<div class="en-preview" id="enCoverage">Source-derived reporting is limited to states available to the provider. The feed has no race calls or nationwide control totals.</div>
+<div class="en-activity" id="enActivityBox"><div class="row"><h3>Latest reported movements</h3><span class="tiny" id="enActivityTime">Source snapshot comparisons · not results projections</span></div><div id="enActivityFeed" class="empty">Movement history starts when the first 2026 results snapshots are archived. Corrections are labeled revisions, not treated as misconduct.</div></div>
 <div class="en-metrics">
  <div class="en-stat"><small>RACES IN THIS FEED</small><b id="enRaces">—</b></div>
  <div class="en-stat"><small>DEMOCRATIC VOTE LEADS</small><b id="enDLeads">—</b></div>
@@ -1218,11 +1231,81 @@ document.querySelectorAll('#securitySearch,#securityOrder').forEach(e=>e.addEven
 
 
 /* Election Night: public state-derived feed, no unofficial winner calls. */
-const enApiBase='https://openamerica.io/elections/results.json';
+// Live data is published by the server-side, source-validated GitHub Actions collector.
 let enModeYear=2026,enOffice='House',enData=null,enSelected=null,enTimer=null,enRequestSerial=0;
+let enLastSuccess=null,enFetchFailed=false,enChanges=null;
 function enIsVisible(){return $('#electionNight')?.classList.contains('active')}
 function enNum(n){return typeof n==='number'&&Number.isFinite(n)?n.toLocaleString('en-US'):'—'}
 function enFormattedTime(v){const d=v?new Date(v):null;return d&&!isNaN(+d)?d.toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}):'unknown'}
+function enCacheUrl(year,office){
+ return './data/election_results_'+year+'_'+office.toLowerCase()+'.json';
+}
+function enValidateSnapshot(obj,year,office){
+ if(!obj||obj.schema_version!=='election-night-cache-v1'||obj.api!==1||
+    obj.year!==year||obj.office!==office||obj.source!=='state'||
+    !obj.provider_url?.startsWith('https://openamerica.io/elections/results.json?')||
+    !obj.races||Array.isArray(obj.races)||typeof obj.races!=='object')return false;
+ const fetched=Date.parse(obj.fetched_at);
+ if(!Number.isFinite(fetched)||fetched>Date.now()+15*60000)return false;
+ if(['live','stale','counting','final'].some(k=>typeof obj[k]!=='boolean'))return false;
+ if(obj.live&&(obj.stale||!obj.counting||obj.final))return false;
+ if(obj.counts?.races!==Object.keys(obj.races).length)return false;
+ if(year===2026&&Date.now()<Date.parse('2026-11-03T00:00:00Z')&&
+    Object.values(obj.races).some(r=>r.total>0))return false;
+ if(obj.as_of&&!Number.isFinite(Date.parse(obj.as_of)))return false;
+ const pattern=office==='House'?/^[A-Z]{2}-\d{2}$/:
+    office==='Senate'?/^[A-Z]{2}(?:-special)?$/:/^[A-Z]{2}$/;
+ return Object.entries(obj.races).every(([key,r])=>{
+   if(!pattern.test(key)||!r||!Number.isSafeInteger(r.total)||r.total<0||
+      r.called!==false||Boolean(r.winner)||!Array.isArray(r.cands)||r.cands.length>60)return false;
+   if(r.pct_in!==null&&(!Number.isFinite(r.pct_in)||r.pct_in<0||r.pct_in>100))return false;
+   let total=0;
+   for(const c of r.cands){
+     if(!c||typeof c.n!=='string'||!c.n.trim()||
+        typeof c.p!=='string'||!Number.isSafeInteger(c.v)||c.v<0)return false;
+     total+=c.v;
+   }
+   return total<=r.total&&(!r.total||r.cands.length>0);
+ });
+}
+function enApplySnapshot(doc){
+ if(!enValidateSnapshot(doc,enModeYear,enOffice))throw Error('Election-night cache failed integrity checks');
+ enData=doc;enFetchFailed=false;enLastSuccess=new Date();
+ enRender();
+}
+function enRenderActivity(){
+ const host=$('#enActivityFeed');host.replaceChildren();
+ $('#enActivityBox').style.display=enModeYear===2026?'block':'none';
+ if(enModeYear!==2026)return;
+ const entries=(Array.isArray(enChanges?.events)?enChanges.events:[]).filter(x=>
+   x.office===enOffice&&Number.isSafeInteger(x.previous_total)&&Number.isSafeInteger(x.current_total));
+ $('#enActivityTime').textContent=enChanges?.updated_at?
+   'Recorded through '+enFormattedTime(enChanges.updated_at):
+   'Waiting for recorded source changes';
+ if(!entries.length){
+  host.append(elt('p','empty','No changes between cached '+enOffice.toLowerCase()+
+    ' reporting snapshots yet. Nothing is inferred from this absence.'));
+  return;
+ }
+ for(const x of entries.slice(0,7)){
+  const row=elt('div','en-activity-row'),description=elt('strong','',x.race_key+' · '+enNum(x.current_total)+' votes reported');
+  const change=x.current_total-x.previous_total;
+  const detail=elt('small',x.kind==='revision'?'revised':'',
+    x.kind==='revision'?'Count revision ('+enNum(change)+' votes). Not a misconduct finding.':
+      '+'+enNum(change)+' newly reported votes');
+  row.append(description,detail);host.append(row);
+ }
+}
+async function enLoadActivity(){
+ try{
+  const response=await fetch('./data/election_night_changes.json',{cache:'no-store'});
+  if(!response.ok)throw Error('No changes cache');
+  const doc=await response.json();
+  if(doc.schema_version!=='election-night-changes-v1'||!Array.isArray(doc.events))throw Error('Invalid changes');
+  enChanges=doc;enRenderActivity();
+ }catch(_){enChanges=null;enRenderActivity()}
+}
+
 function enCurrentRaces(){return enData?.races&&typeof enData.races==='object'?Object.entries(enData.races):[]}
 function enUpdateSelection(){const ids=enCurrentRaces().map(([id])=>id);if(!ids.includes(enSelected))enSelected=ids[0]||null}
 function enLeaders(r){return (r?.cands||[]).filter(x=>Number.isFinite(x.v)).sort((a,b)=>b.v-a.v)}
@@ -1242,12 +1325,27 @@ function enRender(){
  const rows=enCurrentRaces();
  const ready=rows.filter(([,r])=>r.total>0);
  $('#enRaces').textContent=enNum(rows.length);
- $('#enDLeads').textContent=enNum(ready.filter(([,r])=>r.leader==='D').length);
- $('#enRLeads').textContent=enNum(ready.filter(([,r])=>r.leader==='R').length);
+ $('#enDLeads').textContent=enNum(ready.filter(([,r])=>enCurrentLeader(r)?.p==='D').length);
+ $('#enRLeads').textContent=enNum(ready.filter(([,r])=>enCurrentLeader(r)?.p==='R').length);
  $('#enCalls').textContent='Not supplied';
- const info=enData?((enModeYear===2024?'2024 ARCHIVED RESULTS · ':'2026 STATE RETURNS · ')+rows.length+' supported races · provider snapshot '+enFormattedTime(enData.as_of)+(enModeYear===2026&&enData.stale?' · FEED STALE':'')):'Waiting for results feed…';
+ const age=enData?Math.max(0,Math.floor((Date.now()-Date.parse(enData.fetched_at))/60000)):null;
+ const delayed=enModeYear===2026&&enData&&(age>12||enData.stale||!enData.live);
+ const info=enData?
+   (enModeYear===2024?'2024 ARCHIVE · not a live replay · ':'2026 UNOFFICIAL COUNTS · ')+
+   rows.length+' races in covered states · source update '+enFormattedTime(enData.as_of)+
+   ' · cache fetched '+enFormattedTime(enData.fetched_at)+
+   (enModeYear===2026?(enData.live&&!delayed?' · LIVE CACHE':' · NOT LIVE / POSSIBLY DELAYED'):' · HISTORICAL'):
+   (enModeYear===2026&&Date.now()<Date.parse('2026-11-03T00:00:00Z')?
+    '2026 reporting has not begun. Choose 2024 Archive to rehearse the results board.':
+    'No validated results cache yet. A scheduled server-side collector must publish one.');
+ $('#enStatus').classList.toggle('en-status-warning',Boolean(delayed||enFetchFailed));
+ $('#enStatus').classList.toggle('en-status-ok',Boolean(enData&&enModeYear===2026&&enData.live&&!delayed&&!enFetchFailed));
  $('#enStatus').textContent=info;
- $('#enChecked').textContent=enData?'Checked '+new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}):'Not connected';
+ $('#enChecked').textContent=enData?'Snapshot cached '+enFormattedTime(enData.fetched_at):'No validated cache';
+ $('#enCoverage').textContent=enModeYear===2024?
+   'HISTORICAL REHEARSAL · this archive is not a minute-by-minute replay and does not certify a winner.':
+   'STATE-COVERAGE ONLY · missing states are not zero votes. Source counts cannot establish nationwide chamber control. '+(enData?.live&&!delayed?'Reporting cache active.':'Live feed not confirmed fresh.');
+ enRenderActivity();
  enUpdateSelection();
  const query=($('#enSearch').value||'').trim().toLowerCase(),list=$('#enRaceList');list.replaceChildren();
  if(!rows.length){list.append(elt('p','empty',enModeYear===2026?'No 2026 results from supported states yet. Try 2024 Archive to explore the display.':'No archived race data returned from this feed.'));enRenderDetail();return}
@@ -1311,25 +1409,27 @@ async function enLoad(manual=false){
  const serial=++enRequestSerial,year=enModeYear,office=enOffice;
  if(manual)$('#enStatus').textContent='Checking state-derived '+office.toLowerCase()+' returns…';
  try{
-  const url=enApiBase+'?year='+year+'&office='+encodeURIComponent(office);
-  const res=await fetch(url,{cache:'no-cache',credentials:'omit'});
-  if(!res.ok)throw Error('Results provider HTTP '+res.status);
+  const res=await fetch(enCacheUrl(year,office),{cache:'no-store'});
+  if(!res.ok)throw Error('Validated '+year+' results have not been cached (HTTP '+res.status+')');
   const obj=await res.json();
   if(serial!==enRequestSerial)return;
-  if(obj.api!==1||obj.year!==year||obj.office.toLowerCase()!==office.toLowerCase()||!obj.races||typeof obj.races!=='object')throw Error('Unexpected results format');
-  enData=obj;enRender();
+  enApplySnapshot(obj);
+  if(year===2026)enLoadActivity();
  }catch(error){
   if(serial!==enRequestSerial)return;
-  $('#enStatus').textContent='Results feed unavailable: '+error.message+'. Open the source or try Refresh.';
+  enData=null;enFetchFailed=true;enRender();
+  $('#enStatus').classList.add('en-status-warning');
+  $('#enStatus').textContent='No validated '+year+' results available: '+error.message+
+    '. The dashboard will not replace missing votes with poll projections.';
   $('#enChecked').textContent='Last attempt '+new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
  }
  if(enIsVisible()&&enModeYear===2026){
-  const interval=enData?.live?60000:enData?.counting?900000:600000;
+  const interval=enData?.live?120000:enData?.counting?300000:600000;
   enTimer=setTimeout(()=>enLoad(false),interval);
  }
 }
 function enSwitch(year,office){
- enModeYear=year;enOffice=office;enData=null;enSelected=null;$('#enSearch').value='';enRender();enLoad(true);
+ enModeYear=year;enOffice=office;enData=null;enFetchFailed=false;enSelected=null;$('#enSearch').value='';enRender();enLoad(true);
 }
 $('#enMode2026').addEventListener('click',()=>enSwitch(2026,enOffice));
 $('#enMode2024').addEventListener('click',()=>enSwitch(2024,enOffice));
