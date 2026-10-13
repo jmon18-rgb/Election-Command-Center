@@ -94,7 +94,7 @@ def parse(text_by_year):
         audit["eligible_records"][str(year)]=sum(len(v) for (y,state),v in polls.items() if y==year)
         audit["invalid_or_inverted_dates"][str(year)]=invalid_date
         audit["missing_or_invalid_ballot_shares"][str(year)]=invalid_share
-        if not 80<=counter<=5000:raise ValueError("Unrealistic historical poll-row count")
+        if not 1<=counter<=5000:raise ValueError("No valid historical poll rows")
     return polls,audit
 
 def build(texts,mit_doc,digests=None):
@@ -187,7 +187,7 @@ def main():
     outcomes=json.loads((ROOT/"data/senate_history_2020_2022_2024.json").read_text(encoding="utf-8"))
     doc=build(texts,outcomes,digests)
     supported=sum(item["eligible_races"]>=3 for item in doc["by_year"].values())
-    if doc["races_evaluated"]<12 or supported<2:
+    if (doc["races_evaluated"]<12 or supported<2 or\n        any(count<80 for count in doc["poll_observation_coverage"]["raw_records"].values())):
         raise ValueError("Not enough historical Senate races for publication: "+str(doc["by_year"]))
     OUT.write_text(json.dumps(doc,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print("Retrospective Senate poll research",doc["races_evaluated"],"races; year coverage",doc["by_year"])
