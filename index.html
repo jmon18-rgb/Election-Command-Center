@@ -208,13 +208,14 @@ const track=elt('div','bs-mini-track');const ticks=elt('div','bs-mini-ticks');
 for(let i=0;i<12;i++){const tick=elt('span','bs-mini-tick');if(i<Math.min(12,documented.length))tick.classList.add('bs-mini-active');ticks.append(tick)}
 track.append(ticks);integrity.append(track);
 if(documented.length){
-integrity.append(elt('div','bs-mini-sub',documented.length+' sourced development'+(documented.length===1?'':'s')+' · '+(quantified.length?'impact quantified in '+quantified.length:'voter impact not quantified')));
+const featured=cases.find(z=>z.scope_label);
+integrity.append(elt('div','bs-mini-sub',featured?featured.scope_label:documented.length+' sourced development'+(documented.length===1?'':'s')+' · '+(quantified.length?'impact quantified':'impact not quantified')));
 }else{
 integrity.append(elt('div','bs-mini-sub','No tracked cases in this limited ledger'));
 }
 const details=elt('details','bs-mini-details');details.append(elt('summary','',documented.length?'Sources':'About coverage'));
 for(const issue of cases){
-const row=elt('div','unotes',issue.title||issue.mechanism||'Documented issue');details.append(row);
+const row=elt('div','unotes',issue.title||issue.mechanism||'Documented issue');details.append(row);if(issue.process_status)details.append(elt('div','unotes',issue.process_status));if(issue.scope_note)details.append(elt('div','unotes',issue.scope_note));
 for(const source of issue.sources||[]){if(source.url&&source.url.startsWith('https://')){const link=elt('a','pollsource',source.publisher||'Source');link.href=source.url;link.target='_blank';link.rel='noopener noreferrer';details.append(link)}}
 }
 const link=elt('a','pollsource','Full tracker →');link.href='#integrity';details.append(link);integrity.append(details);
