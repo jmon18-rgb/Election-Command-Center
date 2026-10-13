@@ -72,6 +72,30 @@ for state in all_rows:
         age=(asof-date.fromisoformat(p["field_end"])).days
         weight=0.5**(age/half_life)*(partisan if p.get("partisan_lean") else 1.)*additional_weight(p)
         assert abs(pick["weight_share"]-100*weight/total_weight)<0.015,f"{code} displayed influence mismatch"
+    sensitivity=(state.get("poll_diagnostics") or {}).get("model_sensitivity")
+    if sensitivity:
+        selected=[]
+        for pick in selections:
+            poll=next(p for p in source if p["pollster"].casefold()==pick["name"].casefold()
+                      and p["field_end"]==pick["field_end"]
+                      and (is_generic or (p["dem_name"]==state["dem_candidate"] and
+                                          p["rep_name"]==state["rep_candidate"])))
+            days=(asof-date.fromisoformat(poll["field_end"])).days
+            weight=0.5**(days/half_life)*(partisan if poll.get("partisan_lean") else 1)*additional_weight(poll)
+            selected.append((poll,weight,days))
+        effective=total_weight**2/sum(w*w for _,w,_ in selected)
+        assert abs(effective-sensitivity["effective_firms"])<=0.011,code
+        assert abs(100*max(w for _,w,_ in selected)/total_weight-
+                   sensitivity["largest_firm_weight_pct"])<=0.051,code
+        equal=sum(p["dem"]-p["rep"] for p,_,_ in selected)/len(selected)
+        assert abs(equal-sensitivity["equal_firms_margin"])<=0.011,code
+        independent=[(p,w) for p,w,_ in selected if not p.get("partisan_lean")]
+        if independent:
+            indep=sum(w*(p["dem"]-p["rep"]) for p,w in independent)/sum(w for _,w in independent)
+            assert abs(indep-sensitivity["independent_only_margin"])<=0.011,code
+        else:
+            assert sensitivity["independent_only_margin"] is None,code
+        assert sensitivity["alternative_margin_min"]<=sensitivity["alternative_margin_max"],code
     dm=weighted_dem/total_weight
     rp=weighted_rep/total_weight
     assert abs(dm-state["dem_pct"])<0.011,(code,dm,state["dem_pct"])
