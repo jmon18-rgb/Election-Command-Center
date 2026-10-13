@@ -194,7 +194,7 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 
 ## Oct 13: additional election-night coverage from civicAPI
 
-- Verified civicAPI v2 **real browser CORS**, source race search, and exact Nov. 3, 2026 election IDs for New Hampshire House/Senate/Governor and Nevada; unlike its failing election-date directory, the search and detailed race record endpoints respond with valid JSON.
+- Verified civicAPI v2 **real browser CORS** and exact Nov. 3, 2026 indexes for **New Hampshire Senate and Governor** and Nevada statewide races. The Oct. 13 targeted `US House 1` check returned **no indexed NH-01 race**; NH House district coverage is not yet verified. The provider's election-date directory remains unreliable.
 - Connected civicAPI as a **separate, source-attributed live watchlist fallback** for manually pinned races outside Open America's 22-state coverage. Matched US state, Nov. 3 date, race office, 2026 district identifier, special-vs-regular seat and provider ID to prevent displaying irrelevant primary/special-election counts.
 - Added real source contract tests and client-side regression tests for candidate totals, race IDs, bad dates, source calls, wrong offices and independence from Open America's metrics. Calls clearly identified as civicAPI's own, never as official certification.
 - Source-aware polling runs only for watchlisted out-of-coverage seats, at most 12 per sweep, with one-minute election-night / ten-minute pre-election pacing. User pins stay local; raw provider results are not mirrored.
@@ -228,3 +228,10 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Added two local 2026 CSV downloads: source-attributed candidate vote totals across separately verified Open America and civicAPI records, plus only actually observed (or source-verified locally restored) vote movement events.
 - Export rows include source timestamps, office, race code, per-candidate votes and precinct share, independent call provenance and official-source links. No poll-based results or invented 2026 probabilities enter the export.
 - Sanitize arbitrary external text to prevent common Excel formula injection; use UTF-8 Excel BOM and CRLF. Download UI is disabled when no validated vote/activity records exist. DOM regression tests cover party votes, provider separation, row counts and text escaping.
+
+## Oct 13: Second isolated state race adapter — New Hampshire Governor
+
+- Added a dedicated, independently source-verified NH-GOV 2026 civicAPI adapter, retaining the first NH-SEN pilot without expanding to another state.
+- Exact statewide general identity and candidate vote/percent consistency; reject cross-office, cross-race ID, stale/future records, fabricated pre-election votes and zero-vote provider calls.
+- Added standalone and browser-level regression checks: the real watchlist displays civicAPI Governor details and **retains last-good votes** if a later provider detail response fails identity validation. Source totals remain outside Open America.
+- Tightened the real civicAPI CI gate to require NH Governor. The NH House districts stay explicitly unverified rather than showing invented data. Next small adapter can start with NH House only after the provider's real source returns a correctly indexed House race.
