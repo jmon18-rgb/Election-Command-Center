@@ -62,6 +62,15 @@ async function settle(){
  await settle();
  // Distinguish observed historical election variation from a calibrated
  // outcome forecast. Audit exactly the 191 map-comparable party-vote seats.
+ const researchDrawer=get('.model-research-drawer');
+ assert(!researchDrawer.open,'Historical research must be collapsed by default');
+ assert(researchDrawer.querySelector('#senateBacktestSummary'),
+   'Historical research must still exist inside the drawer');
+ assert(!researchDrawer.contains(get('#modelBoard')),
+   'Current 2026 polling race board must remain visible without opening the research drawer');
+ researchDrawer.open=true;
+ assert.equal(researchDrawer.open,true);
+ researchDrawer.open=false;
  const twoCycle=json('data/house_two_cycle_context.json');
  assert.equal(twoCycle.coverage.districts_with_two_historical_major_party_shares,191);
  const points=w.eval('historicalHouseSwingSample('+JSON.stringify(twoCycle)+')');
@@ -549,6 +558,8 @@ async function settle(){
  w.eval('setCongressScenarioSnapshot('+JSON.stringify(seeded)+')');
  assert(!get('#scenarioSimulator').querySelector('input'),'Hypothetical sliders should be removed');
  assert.match(get('#scenarioSimulator').textContent,/DDHQ does not publish/i);
+ assert.match(get('#enForecastOdds').textContent,/Both D .*% · Split .*% · Both R .*%/);
+ assert.match(get('#enForecastOdds').textContent,/DDHQ 2026-10-13/);
  assert.match(get('.scenario-source-link').href,/decisiondeskhq.com/);
  // Sort all posted polls by full timestamps; no alphabetical field-end tie.
  const posted=recent.observations.filter(p=>p.posted_date>=new Date(Date.now()-14*86400000).toISOString().slice(0,10));
