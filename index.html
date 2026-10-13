@@ -2378,12 +2378,14 @@ async function enLoad(manual=false){
    obj=office==='House'?enBuildHouseArchive(await response.json()):enBuildSenateArchive(await response.json());
    if(!obj)throw Error('Historical archive failed integrity checks');
   }else throw Error('2024 Governor archive unavailable');
-  if(serial!==enRequestSerial)return;
+  if(serial!==enRequestSerial||typeof document==='undefined'||!document?.querySelectorAll)return;
   enFailures=0;
   enAcceptSource(obj);
   if(year===2026)void enRefreshWatchedOffices(office);
  }catch(error){
-  if(serial!==enRequestSerial)return;
+  // An abandoned browser view can outlive an in-flight network response.
+  // In particular, JSDOM teardown and real page unload invalidate document.
+  if(serial!==enRequestSerial||typeof document==='undefined'||!document?.querySelectorAll)return;
   enFailures++;
   enFetchError=String(error?.message||error);
   enLastFetchAt=new Date();
