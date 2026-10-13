@@ -164,6 +164,38 @@ def forward_year_holdouts(evaluations):
     return {"status":"completed" if folds else "insufficient_data","folds":folds,
             "warning":"First fold has only one training election; 2022 and 2024 folds are more informative."}
 
+def correlated_error_diagnostics(evaluations):
+    """Estimate common election-year error vs within-year race residuals.
+
+    Correlation cannot be estimated reliably from four election-year clusters;
+    these are descriptive variance components, not a calibrated covariance
+    matrix or simulation-ready Senate-control forecast.
+    """
+    chosen=[r for r in evaluations if r["method"]=="recency21_size"]
+    by_year=defaultdict(list)
+    for row in chosen:by_year[row["year"]].append(row)
+    years=sorted(by_year)
+    if len(years)<3:return {"status":"insufficient_years","years":len(years)}
+    means={y:sum(r["error"] for r in by_year[y])/len(by_year[y]) for y in years}
+    overall=sum(r["error"] for r in chosen)/len(chosen)
+    centered_year=[means[y]-sum(means.values())/len(means) for y in years]
+    year_sd=(sum(v*v for v in centered_year)/(len(years)-1))**.5
+    within=[r["error"]-means[r["year"]] for r in chosen]
+    within_sd=(sum(x*x for x in within)/(len(within)-len(years)))**.5 if len(within)>len(years) else None
+    # Equal-year weighting prevents years with more sampled races from
+    # mechanically dominating the between-year variance estimate.
+    return {"status":"descriptive_only","method":"recency21_size",
+        "years":years,"n_races":len(chosen),
+        "year_mean_errors":{str(y):round(means[y],3) for y in years},
+        "overall_race_weighted_bias":round(overall,3),
+        "between_year_mean_sd":round(year_sd,3),
+        "within_year_residual_sd":round(within_sd,3) if within_sd is not None else None,
+        "interpretation":"Between-year dispersion suggests shared national polling error; within-year dispersion captures remaining state-specific and measurement variation.",
+        "warnings":["Four years are insufficient for stable national-error variance calibration.",
+            "The year-level standard deviation includes changes in race composition and sampling noise.",
+            "Do not convert these components into election-win probabilities without additional holdout validation.",
+            "No region/state covariance matrix estimated; only one observation per race-year."]}
+
 def main():
     official=official_outcomes(fetch(RESULT_URL))
     evaluations,discrepancies=run(fetch(POLL_URL),official)
@@ -176,7 +208,8 @@ def main():
         "bundled_result_discrepancies":discrepancies,
         "leave_one_year_out":leave_one_year_out(evaluations),
         "forward_year_holdouts":forward_year_holdouts(evaluations),
-        "limitations":["Not an election forecast.","Excludes special, multiple-seat, ranked-choice and independent-winner races.","Coverage differs by year; no candidate-name validation or holdout model selection.","Partisan-sponsored poll exclusion relies on pollster-name labels."]}
+        "correlated_error_diagnostics":correlated_error_diagnostics(evaluations),
+        "limitations":["Not an election forecast.","Excludes special, multiple-seat, ranked-choice and independent-winner races.","Coverage differs by year; candidate-name validation remains incomplete.","Partisan-sponsored poll exclusion relies on pollster-name labels."]}
     out=ROOT/"data"/"historical_verified.json"
     out.write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
     print("Historical results:",result["matched_poll_races"],"races",result["overall"])
