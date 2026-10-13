@@ -1,46 +1,48 @@
-# Election-night scenarios: model v0 (national House vote)
+# The four endings: control of Congress
 
-Published October 13, 2026.
+Revised October 13, 2026.
 
-The four probability bands in the daily briefing are a **first-pass, explicitly experimental** distribution over the **national Democratic minus Republican House popular-vote margin**, not over seats, chamber control, named race outcomes or national turnout.
+These are **congressional-control outcomes**, not bins of the national popular vote. The earlier experimental normal-distribution bands (`R vote lead`, `D +0–5`, `D +5–10`, `D +10+`) answered the wrong question; they have been removed from the dashboard. A generic-ballot advantage does **not** establish House or Senate control.
 
-## Input
+## Mutually exclusive outcomes
 
-- Center = JackStradamus's `generic_ballot.dem_minus_rep` (poll-mean-1.3), a recency-, capped-sample-, historical pollster quality- and sponsorship-weighted estimate of current generic congressional ballot preference.
-- Uncertainty = **4.0 margin points** one standard deviation, selected as a conservative working spread for final national polling error and movement before Election Day. This is a *declared assumption*, not yet a fitted or backtested 2026-calibrated distribution.
-- Prediction distribution: `election_day_national_margin ~ Normal(center, 4.0^2)`.
-- This assumes no net partisan bias by default. Historical cycles have sometimes shown systematic pro-D polling error, which must be evaluated rather than mechanically assumed identical in 2026. The current model excludes adjustments for national vote-to-seat geographic effects, incumbency, special elections, turnout and demographic correlations.
-
-## Four exhaustive, mutually exclusive bins
-
-| Name | National two-party House vote margin (D minus R) |
+| Label | Operational meaning |
 |---|---|
-| **RED DAWN** | Less than 0: Republican leads the national House popular vote |
-| **THE SHRUG** | 0 up to 5: Democratic lead below five points |
-| **BLUE WAVE** | 5 up to 10: Democratic lead of five to ten points |
-| **BLUE TSUNAMI** | 10 or more: Democratic lead ten points or more |
+| **RED DAWN** | Republicans control **both** the House and Senate. |
+| **THE SHRUG** | Democrats control **exactly one** chamber: House only or Senate only. |
+| **BLUE WAVE** | Democrats control **both** chambers, without satisfying the near-sweep test below. |
+| **BLUE TSUNAMI** | Democrats control **both** chambers **and** win **at least 90%** of a predeclared slate of major competitive House and Senate races. |
 
-Probabilities are normal CDF differences at boundaries 0, 5, 10. They sum to 100%. They are redone after each published model snapshot. The labels are editorial shorthand, not historical election classifications or an endorsement of either party.
+The fourth is deliberately a **subset of the unqualified two-chamber Democratic outcome**. Applying Blue Tsunami first makes the categories mutually exclusive and collectively exhaustive **when chamber-control outcomes are fully resolved**. Chamber control should use seats/caucus organization and relevant tie-breaking rules, not simply poll leader party or a generic-ballot proxy. This classification is not an endorsement.
 
-## Why this is not an actual congressional-control forecast
+## Defining "major competitive races" before computing a tsunami
 
-- House **seats and chamber majority** depend on how national vote is distributed among all 435 districts, district boundaries, uncontested races, turnout, historical vote splits and race-specific candidate factors. A national D lead **does not guarantee** a House majority.
-- Senate control depends on a much smaller set of separately elected races plus the holdover seats and tie-breaking rules; neither the generic ballot nor the names of these bands predicts Senate seats.
-- County-level and demographic correlations can create fat tails. A normal distribution may understate extreme outcomes.
-- A more serious version needs leave-one-election-year-out validation using actual historic generic-ballot snapshots available *before* those elections, not reconstructed from post-election information, plus a seat-level correlated model.
+The slate must be frozen before Election Day from timestamped **external nonpartisan race ratings** (e.g. tossups and lean-category contests) with provenance and a documented cutoff. It must include both House and Senate and must not be revised after seeing results or dropped just because an outcome is inconvenient.
 
-## Source context
+Proposed working cutoff: **90%** of the frozen slate's contests won by Democratic candidates; validate sensitivity to 85%, 90%, and 95%. This percentage is a descriptive scenario convention, **not** a statistical threshold inferred from the polling. A completed slate is required to classify the final outcome as a tsunami. If any critical race's result or chamber organization is unresolved, show **Pending**, not an invented category.
 
-- Nate Silver's [2026 FLIPR methodology](https://www.natesilver.net/p/flipr-midterms-model-methodology) uses polling, fundamentals, expert assessments and correlated simulation draws. The experimental band model here implements **none** of those seat-level forecast mechanics.
-- [Silver Bulletin's polling average methodology](https://www.natesilver.net/p/silver-bulletin-polling-average-methodology) describes historical pollster ratings, diminishing size weights, house effects, adjustments for population type and sponsored polls.
-- Historic generic-ballot averages have differed from final House popular votes by several points in both directions (e.g. 2018 and 2020). We still need a consistent in-repository dataset and backtest before moving away from the disclosed 4.0-point placeholder.
+Do not use the currently *polled* set as the competitive universe. It disproportionately selects closely watched contests, and the available survey feed covers just a fraction of 435 House districts.
 
-## Next version
+## Probabilities — not yet available
 
-1. Bring together authenticated historical GCB snapshots and final nationwide House two-party popular vote, across multiple cycles.
-2. Fit drift, bias, variance and fat-tail behavior by time before Election Day, evaluate held-out election years.
-3. Build a House prior for every district using contemporaneous boundaries, historical election results and incumbency, then translate correlated simulated margins to seats.
-4. Simulate Senate races with their own fundamentals and correlated polling errors, plus holdover and caucus seats.
-5. Only then show probabilities of House majority, Senate majority, both chambers, or sweep/landslide outcomes.
+The old four percentages used a guessed 4-point standard deviation around the national generic ballot. Those percentages never estimated the outcomes listed above. They have been **removed**, not relabeled. Display "Not modeled" until the dataset and forecaster support real control-of-chambers draws.
 
-The site should never treat the v0 bin probabilities as certainty about control of Congress.
+A future outcome simulation must jointly generate:
+
+1. Votes for **every House district**, including unsurveyed districts, with a redistricting-aware baseline, incumbency, fundamentals, and national/regional correlations.
+2. **Every Senate race on the ballot**, accounting for holdovers, third-party outcomes, independent caucus affiliation, and any ties.
+3. Race results within a *predeclared* competitive slate for the blue-tsunami condition, all using the **same joint simulation draw**.
+4. A chamber-control and scenario label for each complete draw, producing four probabilities that sum to 100%.
+
+Before publishing probabilistic outputs, backtest on elections and snapshots not used for fitting; report proper scores, probability calibration, reliability curves, error dependence, and sensitivity to assumptions. Public outside forecasts can be linked as attributed external context, but must not be silently blended with primary polling.
+
+## Why this distinction matters
+
+A House popular-vote margin alone does not determine House seats. Senate control depends on holdovers and the specific election map, not the national generic ballot. Treating a predicted national margin as a chamber-control probability would exaggerate rigor precisely where this tracker most needs rigor.
+
+## External methodological references
+
+- [Silver/FLIPR methods](https://www.natesilver.net/p/flipr-midterms-model-methodology)
+- [Ettingermentum — Blue Tsunami discussion](https://www.ettingermentum.news/p/what-to-expect-from-a-blue-tsunami)
+
+These references inform the design; this site is an independent project, **not** their model.
