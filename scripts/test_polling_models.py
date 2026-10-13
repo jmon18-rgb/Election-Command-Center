@@ -16,14 +16,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "polls.json"
 OUT = ROOT / "data" / "model_tests.json"
-METHODS = ("equal", "recency21", "recency21_size", "recency35_size")
+METHODS = ("equal", "recency21", "recency21_size", "recency35_size", "recency21_sponsored_0", "recency21_sponsored_25", "recency21_sponsored_50", "recency21_sponsored_100")
 RNG_SEED = 20261012
 
 
 def eligible(p):
     try:
         names = (p["dem_name"] + " " + p["rep_name"]).lower()
-        return ("generic" not in names and not p.get("partisan_lean")
+        return ("generic" not in names
                 and math.isfinite(float(p["margin"])) and p.get("pollster")
                 and p.get("field_end") and date.fromisoformat(p["field_end"]))
     except (KeyError, ValueError, TypeError):
@@ -44,6 +44,11 @@ def predict(prior, asof, method):
         age = (asof - date.fromisoformat(p["field_end"])).days
         half_life = 21 if method != "recency35_size" else 35
         weight = 1.0 if method == "equal" else 0.5 ** (age / half_life)
+        if p.get("partisan_lean"):
+            if method.startswith("recency21_sponsored_"):
+                weight *= int(method.rsplit("_",1)[-1]) / 100
+            else:
+                continue
         if method.endswith("_size"):
             n = p.get("sample_size") or 600
             weight *= math.sqrt(max(200, min(float(n), 3000)) / 600)
@@ -73,7 +78,10 @@ def grouped_tests(data):
                     and (asof - date.fromisoformat(p["field_end"])).days <= 90]
             if len(set(p["pollster"].lower() for p in past)) < 2:
                 continue
-            targets = [p for p in polls if p["field_end"] == target_day]
+            # Hold out independent surveys only: a partisan target may reflect sponsor selection.
+            targets = [p for p in polls if p["field_end"] == target_day and not p.get("partisan_lean")]
+            if not targets:
+                continue
             # Same-day polls are evaluated together, not as separate time steps.
             actual = sum(float(p["margin"]) for p in targets) / len(targets)
             for method in METHODS:
@@ -132,7 +140,8 @@ def main():
             "Short rolling upstream history can bias which races are testable.",
             "Within-race and cross-race systematic polling errors remain.",
             "Bootstrap interval describes evaluation metric variability, not a race forecast confidence interval.",
-            "No win probabilities, house effects or election-security adjustments inferred.",
+            "No win probabilities, calibrated pollster house effects or election-security adjustments inferred.",
+            "Sponsored-poll weight factors are experimental; target surveys remain non-sponsored only.",
         ],
     }
     OUT.write_text(json.dumps(output, indent=2) + "\n", encoding="utf-8")
