@@ -170,6 +170,24 @@ async function settle(){
  },'');
  assert(topTime,'No recent full timestamp data');
  assert(get('#newPolls').textContent.includes('Source posted'),'Posted date labels disappeared');
+ // The outreach context is clearly a dated external rating, not a fourth invented probability.
+ const reach=get('#tsunamiReachWatch');
+ assert.match(reach.textContent,/South Carolina U.S. Senate/);
+ assert.match(reach.textContent,/Darline Graham/);
+ assert.match(reach.textContent,/Likely Republican/);
+ assert.match(reach.textContent,/not by itself/);
+ assert(reach.querySelector('a[href*="cookpolitical.com/senate/race/"]'));
+ // Index-poll listing must preserve distinct ballot questions in one race,
+ // unlike a poll-id-only dedupe that discards one matchup.
+ const sameRace=recent.observations.find(p=>p.race_code==='TX-GOV');
+ assert(sameRace,'Need TX governor posting to test shared-survey questions');
+ const secondQuestion={...sameRace,question_id:'another-qualifying-question',
+   dem_name:'Another named challenger'};
+ w.eval('postedPollingSnapshot='+JSON.stringify({observations:[sameRace,secondQuestion]})+
+   ';newIndexSinceLastVisit=2;renderPostedPolls()');
+ assert.equal(get('#newPolls').querySelectorAll('.item').length,2,
+  'Two same-poll distinct ballot questions should both display');
+ assert.match(get('#changesSince').textContent,/2 newly indexed since last visit/);
  assert.equal(errors.length,0,'Application emitted errors: '+errors.slice(0,4).join(' | '));
  console.log('Dashboard DOM integration passed: exact TX-SEN/TX-GOV poll drilldowns, race labels, DDHQ stale-data guards, dated news feed, and no script errors.');
  dom.window.close();
