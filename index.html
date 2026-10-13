@@ -122,6 +122,12 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-archive-intro{padding:12px 15px;border-radius:9px;background:#16283a;border:1px solid #354e67;line-height:1.65;font-size:12px;margin-bottom:11px}
 .en-model-blockers{margin-top:14px;background:#101e31;border:1px solid #32465d;border-radius:10px;padding:15px}
 .en-model-blockers .item{font-size:12px}
+.model-trend{background:#0d1b2c;border:1px solid #314a62;border-radius:10px;padding:16px;margin:13px 0}
+.model-trend-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.model-trend-head strong{font-size:12px}
+.model-trend svg{width:100%;height:170px;display:block;margin:8px 0}
+.model-trend-note{color:#a0b6ca;font-size:11px;line-height:1.7;margin-top:7px}
+.model-trend-change{font-size:13px;font-weight:800}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -210,6 +216,11 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   <div class="model-candidates"><div class="model-candidate dem"><span id="modelDemName">Democrat</span><strong id="modelDemPct">—</strong></div><div class="model-candidate rep"><span id="modelRepName">Republican</span><strong id="modelRepPct">—</strong></div></div>
   <div id="modelDetailStats" class="model-detail-stats"></div>
   <div id="modelHistoryContext" class="model-history-context" hidden></div>
+  <div class="model-trend" id="modelTrendPanel" aria-label="Observed polling average history">
+   <div class="model-trend-head"><strong>How this polling average actually moved</strong><span id="modelTrendChange" class="model-trend-change">Collecting snapshots</span></div>
+   <svg id="modelTrendChart" viewBox="0 0 640 170" role="img" aria-label="Saved model-average snapshots over time"></svg>
+   <p class="model-trend-note" id="modelTrendNote">This chart uses actual saved model snapshots, not individual poll fieldwork dates or invented daily values.</p>
+  </div>
   <div class="model-chart-heading"><strong>Recent polling</strong><span>Each dot is one survey</span></div>
   <svg id="modelChart" class="model-scatter" viewBox="0 0 720 270" role="img" aria-label="Poll observations by date and candidate support percentage"></svg>
   <div class="model-chart-legend"><span><i class="model-dot blue"></i>Democratic support</span><span><i class="model-dot red"></i>Republican support</span><span><i class="model-dot muted"></i>Not included in average</span></div>
@@ -450,6 +461,75 @@ function modelPlot(estimate,entries){
  add('text',{x:right,y:bottom+23,'text-anchor':'end',fill:'#8ca5bf','font-size':11},dateText(maxT));
  $('#modelChartNote').textContent='Survey results by field-end date. Dashed lines show the current JackStradamus average, not a historical trend.';
 }
+
+function modelHistorySeries(estimate,history=modelHistoryData){
+ const snapshots=Array.isArray(history?.snapshots)?history.snapshots:[];
+ if(!estimate?.race_code||!snapshots.length)return [];
+ const currentMethod=latestSenateEstimates?.method_version;
+ const points=[];
+ for(const snap of snapshots){
+  if(currentMethod&&snap.method_version!==currentMethod)continue;
+  const t=Date.parse(snap.at||'');
+  if(!Number.isFinite(t))continue;
+  const matches=(snap.races||[]).filter(r=>r.race_code===estimate.race_code&&
+    r.race_type===estimate.race_type&&
+    (r.dem_candidate||'')===(estimate.dem_candidate||'')&&
+    (r.rep_candidate||'')===(estimate.rep_candidate||'')&&
+    Number.isFinite(r.dem_minus_rep));
+  if(matches.length!==1)continue;
+  points.push({t,at:snap.at,margin:matches[0].dem_minus_rep});
+ }
+ points.sort((a,b)=>a.t-b.t);
+ const seen=new Set();
+ return points.filter(x=>{
+  if(seen.has(x.t))return false;
+  seen.add(x.t);return true;
+ }).slice(-90);
+}
+function renderModelTrend(estimate){
+ const svg=$('#modelTrendChart'),note=$('#modelTrendNote'),headline=$('#modelTrendChange');
+ if(!svg||!note||!headline)return;
+ svg.replaceChildren();
+ const points=modelHistorySeries(estimate);
+ if(points.length<2||points.at(-1).t-points[0].t<3600000){
+  headline.textContent='Awaiting longer history';
+  note.textContent='A model-average timeline appears after at least two comparable saved snapshots an hour apart. No imaginary trend line is drawn.';
+  return;
+ }
+ const first=points[0],last=points.at(-1),delta=last.margin-first.margin,
+  hours=Math.round((last.t-first.t)/3600000);
+ headline.textContent=(Math.abs(delta)<.05?'No change':delta>0?'D +'+delta.toFixed(1):'R +'+(-delta).toFixed(1))+
+  ' pts in '+(hours>=48?Math.round(hours/24)+'d':hours+'h');
+ headline.className='model-trend-change '+(delta>0?'party-d':delta<0?'party-r':'party-even');
+ const ns='http://www.w3.org/2000/svg';
+ const add=(tag,attributes,label)=>{
+  const el=document.createElementNS(ns,tag);
+  for(const [k,v] of Object.entries(attributes))el.setAttribute(k,String(v));
+  if(label!==undefined)el.textContent=label;
+  svg.append(el);return el;
+ };
+ const left=47,right=625,top=18,bottom=135;
+ const max=Math.max(1,...points.map(p=>p.margin))+1.5;
+ const min=Math.min(-1,...points.map(p=>p.margin))-1.5;
+ const x=p=>left+(right-left)*(p.t-first.t)/(last.t-first.t);
+ const y=p=>bottom-(bottom-top)*(p.margin-min)/(max-min);
+ if(min<=0&&max>=0){const zero=bottom-(bottom-top)*(0-min)/(max-min);
+  add('line',{x1:left,x2:right,y1:zero,y2:zero,stroke:'#60738c','stroke-dasharray':'5,5'});}
+ const path=points.map(p=>x(p).toFixed(1)+','+y(p).toFixed(1)).join(' ');
+ add('polyline',{points:path,fill:'none',stroke:delta<0?'#e4898e':'#70caff','stroke-width':'3','stroke-linejoin':'round'});
+ for(const p of points){
+  const dot=add('circle',{cx:x(p),cy:y(p),r:points.length>40?2:3.2,fill:'#dcefff'});
+  dot.appendChild(document.createElementNS(ns,'title')).textContent=
+    new Date(p.t).toLocaleString('en-US')+' · '+marginText(p.margin);
+ }
+ const fmt=t=>new Date(t).toLocaleDateString('en-US',{month:'short',day:'numeric'});
+ add('text',{x:left,y:161,fill:'#9fb6ca','font-size':11},fmt(first.t));
+ add('text',{x:right,y:161,fill:'#9fb6ca','font-size':11,'text-anchor':'end'},fmt(last.t));
+ add('text',{x:5,y:y(first)-4,fill:'#9fb6ca','font-size':10},marginText(first.margin));
+ add('text',{x:right-3,y:y(last)-8,fill:'#e0efff','font-size':11,'text-anchor':'end'},marginText(last.margin));
+ note.textContent=points.length+' actual saved average snapshots for this exact candidate matchup, all using model '+(latestSenateEstimates?.method_version||'unknown')+
+  '. A line connects observations; no daily values between them were measured. Poll-age reweighting and newly added polls can both move the average. This is NOT an election-outcome forecast.';
+}
 function renderModelRaceDetail(){
  const estimate=modelRows(latestSenateEstimates).find(s=>(s.race_code||s.state+'-SEN')===selectedModelState);
  if(!estimate||!$('#modelDetail'))return;
@@ -497,6 +577,7 @@ function renderModelRaceDetail(){
     historical.append(heading,numbers,elt('p','','Recorded two-party House candidate votes. Candidate changes and midterm/presidential turnout affect this comparison; it is not a 2026 prediction.'));
   }
  }
+ renderModelTrend(estimate);
  const entries=modelPollEntries(estimate);
  modelPlot(estimate,entries);
  const inAverage=entries.filter(p=>p.included);
@@ -1597,7 +1678,7 @@ renderJackRadar();
 renderRaceList();
 modelApplyHash();renderModelOverview(data);renderModelGenericHeadline();renderElectionScenarios();
 }
-fetch('./data/model_history.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('history pending');return r.json()}).then(d=>{modelHistoryData=d;if(latestSenateEstimates)renderRacePulse(latestSenateEstimates)}).catch(()=>{/* History accumulates only after first refresh. */});
+fetch('./data/model_history.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('history pending');return r.json()}).then(d=>{modelHistoryData=d;if(latestSenateEstimates){renderRacePulse(latestSenateEstimates);renderModelRaceDetail()}}).catch(()=>{/* History accumulates only after first refresh. */});
 fetch('./data/polling_estimates.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('not ready');return r.json()}).then(d=>showSenateEstimates(d)).catch(()=>{document.getElementById('senateEstimateCards').textContent='Waiting for first automated polling summary refresh.'});
 fetch('./data/briefing.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(d=>{feedHealth.news=d;updateHealth();if(d.updated_at){const date=new Date(d.updated_at);if(!Number.isNaN(+date)){$('#freshness').textContent='News collected '+date.toLocaleString();$('#updated').textContent='News collected '+date.toLocaleDateString()}}renderItems('updates',d.updates);securityArticles=Array.isArray(d.security)?d.security:[];renderSecurity()}).catch(()=>updateHealth());
 </script></body></html>
