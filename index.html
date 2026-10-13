@@ -1810,7 +1810,7 @@ function renderSenateBacktest(){
  const avgError=(xs,method,absolute)=>xs.length?
   xs.reduce((a,b)=>a+(absolute?Math.abs(b.methods[method].error):b.methods[method].error),0)/xs.length:null;
  const numbers=[
-  {val:rows.length+' / '+data.outcome_eligible_races,
+  {val:rows.length+' / '+(senateBacktestSelected==='all'?data.outcome_eligible_races:(data.outcome_eligible_by_year?.[senateBacktestSelected]??'—')),
    label:'Senate contests with ≥2 polling firms in this selected slice / study-wide eligible outcomes'},
   {val:rows.length?avgError(rows,'recency21',true).toFixed(2)+' pts':'—',
    label:'Mean absolute miss · 21-day recency benchmark'},
@@ -1835,7 +1835,7 @@ function renderSenateBacktest(){
      sign+' by '+Math.abs(result.error).toFixed(1)+' pts');
   line.append(info,edge);host.append(line);
  }
- note.textContent='Source: retrospective third-party RealClearPolling compilation, compared with MIT/MEDSL certified-history candidate-vote totals. '+
+ note.textContent='Source: retrospective third-party RealClearPolling compilation, compared with MIT/MEDSL recorded historical candidate-vote totals. '+
  'Polls must have ended at least '+data.cutoff_days_before_election+' days before voting and come from distinct firms. '+
  'Original public release dates are unavailable, and the compilation was curated knowing eventual general-election candidates: these estimates are NOT leakage-free historical as-of forecasts. '+
  'Ambiguous regular/special contests, missing-major-party ballots, and large independent-candidate races are excluded. '+
