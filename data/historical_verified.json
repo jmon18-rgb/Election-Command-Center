@@ -577,6 +577,178 @@
       "No region/state covariance matrix estimated; only one observation per race-year."
     ]
   },
+  "historical_interval_coverage": {
+    "status": "completed",
+    "folds": [
+      {
+        "held_out_year": 2012,
+        "selected_method": "equal",
+        "training_races": 15,
+        "test_races": 17,
+        "intervals": {
+          "80": {
+            "lower": -7.561,
+            "upper": 5.511,
+            "covered": 15,
+            "total": 17,
+            "coverage": 0.882
+          },
+          "90": {
+            "lower": -8.486,
+            "upper": 6.09,
+            "covered": 16,
+            "total": 17,
+            "coverage": 0.941
+          }
+        }
+      },
+      {
+        "held_out_year": 2014,
+        "selected_method": "recency21",
+        "training_races": 32,
+        "test_races": 16,
+        "intervals": {
+          "80": {
+            "lower": -8.693,
+            "upper": 4.371,
+            "covered": 9,
+            "total": 16,
+            "coverage": 0.562
+          },
+          "90": {
+            "lower": -9.63,
+            "upper": 4.979,
+            "covered": 10,
+            "total": 16,
+            "coverage": 0.625
+          }
+        }
+      },
+      {
+        "held_out_year": 2016,
+        "selected_method": "recency21",
+        "training_races": 48,
+        "test_races": 16,
+        "intervals": {
+          "80": {
+            "lower": -7.205,
+            "upper": 6.706,
+            "covered": 12,
+            "total": 16,
+            "coverage": 0.75
+          },
+          "90": {
+            "lower": -8.997,
+            "upper": 10.17,
+            "covered": 15,
+            "total": 16,
+            "coverage": 0.938
+          }
+        }
+      },
+      {
+        "held_out_year": 2018,
+        "selected_method": "recency21",
+        "training_races": 64,
+        "test_races": 13,
+        "intervals": {
+          "80": {
+            "lower": -5.458,
+            "upper": 8.11,
+            "covered": 13,
+            "total": 13,
+            "coverage": 1.0
+          },
+          "90": {
+            "lower": -8.63,
+            "upper": 10.684,
+            "covered": 13,
+            "total": 13,
+            "coverage": 1.0
+          }
+        }
+      },
+      {
+        "held_out_year": 2020,
+        "selected_method": "recency21_size",
+        "training_races": 77,
+        "test_races": 10,
+        "intervals": {
+          "80": {
+            "lower": -5.072,
+            "upper": 7.159,
+            "covered": 5,
+            "total": 10,
+            "coverage": 0.5
+          },
+          "90": {
+            "lower": -7.937,
+            "upper": 9.514,
+            "covered": 7,
+            "total": 10,
+            "coverage": 0.7
+          }
+        }
+      },
+      {
+        "held_out_year": 2022,
+        "selected_method": "recency21",
+        "training_races": 87,
+        "test_races": 11,
+        "intervals": {
+          "80": {
+            "lower": -4.896,
+            "upper": 8.562,
+            "covered": 9,
+            "total": 11,
+            "coverage": 0.818
+          },
+          "90": {
+            "lower": -7.409,
+            "upper": 10.702,
+            "covered": 10,
+            "total": 11,
+            "coverage": 0.909
+          }
+        }
+      },
+      {
+        "held_out_year": 2024,
+        "selected_method": "recency21",
+        "training_races": 98,
+        "test_races": 14,
+        "intervals": {
+          "80": {
+            "lower": -4.889,
+            "upper": 8.526,
+            "covered": 14,
+            "total": 14,
+            "coverage": 1.0
+          },
+          "90": {
+            "lower": -7.623,
+            "upper": 10.308,
+            "covered": 14,
+            "total": 14,
+            "coverage": 1.0
+          }
+        }
+      }
+    ],
+    "pooled_coverage": {
+      "80": {
+        "covered": 77,
+        "total": 97,
+        "coverage": 0.794
+      },
+      "90": {
+        "covered": 85,
+        "total": 97,
+        "coverage": 0.876
+      }
+    },
+    "note": "Descriptive forward-tested margin-error coverage, not candidate victory probabilities. Observations within an election year are correlated."
+  },
   "modern_era_2018_onward": {
     "equal": {
       "n": 48,
