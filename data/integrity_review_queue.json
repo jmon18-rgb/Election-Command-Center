@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-13T15:29:01.867982Z",
+  "updated_at": "2026-10-13T15:30:00.149988Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "items": [
     {
       "id": "b4f36f72f38f3d52a2b5",
@@ -45,6 +45,23 @@
       "detected_at": "2026-10-13T14:48:47.690739Z",
       "state_hints": [],
       "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "ef658fb27a0d48d41484",
+      "title": "In The Know: Oklahoma state board again rejects Jewish charter school | Oklahoma tribe\u2019s prediction market app complicates gaming debate | Ballot proposal would impact Oklahoma judicial selection panel - Oklahoma Policy Institute",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5aVWxwVm9BQWFlSlFrNzZ5LUQ3SDFaVDFzWEpNMEFmNE01M2hoYWJWVTdMbEdsOS10b0dMeXdMLW5qYVZmdWQyUEJ2ZGlrQV9QZ3E1d3BsOA?oc=5",
+      "publisher": "Oklahoma Policy Institute",
+      "published_at": "2026-10-13T14:20:17Z",
+      "detected_at": "2026-10-13T15:30:00.149988Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
