@@ -14,7 +14,7 @@ The Election Night tab can select 2026 live or 2024 historical results, switch H
 - Current documentation expressly says `Access-Control-Allow-Origin: *` permits direct GitHub Pages browser fetches without cookies. Use requests without credentials.
 - Observe server `as_of`, `live`, `stale`, `counting`, `final`. It *does not call races*. Percent of precincts is not percent of ballots, and 100% precincts does not equal certification.
 - Source suggests **60-second polls while live**, 10–15 minutes while not live, and ETag / conditional requests for server collectors. Do not run multiple parallel minute-by-minute polls without reason.
-- The provider's documented supported states at review: AR, AZ, CO, CT, FL, GA, IA, ID, IN, LA, MI, MN, NC, PA, RI, SC, TX, UT, VA, VT, WA, and one additional state from the live registry. Do not hardcode or extrapolate missing seats from partial coverage.
+- The provider's documented supported states at review: AR, AZ, CO, CT, FL, GA, IA, ID, IN, LA, MI, MN, NC, PA, RI, SC, TX, UT, VA, VT, WA, and WV. Do not hardcode or extrapolate missing seats from partial coverage.
 
 ### Secondary candidate: civicAPI
 
