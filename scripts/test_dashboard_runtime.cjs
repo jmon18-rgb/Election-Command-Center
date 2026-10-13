@@ -166,6 +166,59 @@ async function settle(){
  assert.equal(get('#senateBiasRows').querySelectorAll('tr').length,0);
  w.eval('setSenateBiasHoldoutData(null)');
  w.eval('setHistoricalSenatePollStudy(null)');
+ // Verify that 2026 evidence triage is genuinely about polling input
+ // uncertainty, not a past partisan-bias proxy or an invented win interval.
+ const evidenceSenate=w.eval('modelEvidenceWatchItems('+JSON.stringify(model)+',"senate")');
+ assert(evidenceSenate.length>=2,'Actual 2026 Senate sources should produce quality checks');
+ assert(evidenceSenate.every(x=>x.scope==='senate'&&x.race_code.endsWith('-SEN')));
+ assert(evidenceSenate.some(x=>x.race_code==='ID-SEN'&&x.signal==='Weighting changes the lead'),
+  'Large weighting sensitivity must surface with exact Senate office');
+ assert(evidenceSenate.some(x=>x.signal==='No independent confirmation'),
+  'No independently sourced current Senate poll must be clearly signaled');
+ assert(evidenceSenate.every(x=>Math.abs(x.margin)<=12));
+ assert(evidenceSenate.every(x=>!x.reason.toLowerCase().includes('win probability')));
+ const evidenceHouse=w.eval('modelEvidenceWatchItems('+JSON.stringify(model)+',"house")');
+ assert(evidenceHouse.length>=3);
+ assert(evidenceHouse.every(x=>x.scope==='house'&&/^[A-Z]{2}-\d{2}$/.test(x.race_code)));
+ assert(evidenceHouse.some(x=>x.race_code==='UT-04'&&x.signal==='Weighting changes the lead'));
+ const evidenceGov=w.eval('modelEvidenceWatchItems('+JSON.stringify(model)+',"governor")');
+ assert(evidenceGov.length>=2);
+ assert(evidenceGov.every(x=>x.scope==='governor'&&x.race_code.endsWith('-GOV')));
+ assert.equal(w.eval('modelEvidenceWatchItems({is_election_forecast:true,senate_all:'+JSON.stringify(model.senate_all)+'},"senate")').length,0);
+ const synthetic={is_election_forecast:false,senate_all:[
+   {race_code:'TX-SEN',status:'multi_poll',dem_minus_rep:1.2,state_name:'Texas',
+    independent_pollsters:0,partisan_pollsters:2,contributing_pollsters:2,
+    latest_poll_end:'2026-10-10',poll_diagnostics:{latest_poll_age_days:3,
+     model_sensitivity:{alternative_margin_min:1,alternative_margin_max:2}}},
+   {race_code:'ME-SEN',status:'multi_poll',dem_minus_rep:2,state_name:'Maine',
+    independent_pollsters:1,partisan_pollsters:1,contributing_pollsters:2,
+    latest_poll_end:'2026-10-11',poll_diagnostics:{latest_poll_age_days:2,
+     model_sensitivity:{alternative_margin_min:-3,alternative_margin_max:5,
+      independent_only_margin:-3}}}
+ ]};
+ const syntheticWatch=w.eval('modelEvidenceWatchItems('+JSON.stringify(synthetic)+',"senate")');
+ assert.equal(syntheticWatch.length,2);
+ assert.equal(syntheticWatch[0].race_code,'ME-SEN');
+ assert.equal(syntheticWatch[0].signal,'Weighting changes the lead');
+ assert.equal(syntheticWatch[1].signal,'No independent confirmation');
+ w.eval("modelMode='senate';renderModelEvidenceWatch("+JSON.stringify(synthetic)+")");
+ assert.equal(get('#modelEvidenceList').querySelectorAll('.model-evidence-entry').length,2);
+ assert.match(get('#modelEvidenceList').textContent,/Maine · ME-SEN/);
+ assert.match(get('#modelEvidenceList').textContent,/Texas · TX-SEN/);
+ assert.match(get('#modelEvidenceNote').textContent,/NOT a ranking of win probability/);
+ // Click a real 2026 office-specific evidence item; race selector, model
+ // detail and location hash must follow rather than showing a different Texas office.
+ w.eval("modelMode='senate';renderModelOverview(latestSenateEstimates)");
+ const idEntry=[...get('#modelEvidenceList').querySelectorAll('button')].find(x=>
+   x.textContent.includes('ID-SEN'));
+ assert(idEntry,'The evidence list must offer the real published ID-SEN result');
+ idEntry.click();
+ assert.equal(get('#modelDetailEyebrow').textContent,'IDAHO · SENATE');
+ assert.match(w.location.hash,/model\/senate\/ID-SEN/);
+ w.eval("modelMode='governor';renderModelOverview(latestSenateEstimates)");
+ assert([...get('#modelEvidenceList').querySelectorAll('button')].every(b=>
+   b.getAttribute('aria-label').includes('governor')));
+ w.eval("modelMode='senate';renderModelOverview(latestSenateEstimates)");
  // Poll Wire is a real searchable, source-attributed full-feed explorer,
  // not just the top ten survey postings shown on the Daily Brief.
  const wireTab=get('.tab[data-page="wire"]');
