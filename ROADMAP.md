@@ -115,3 +115,12 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - [x] Distinguish Red Dawn, Shrug, and the inclusive Democratic two-chamber win probability; **do not invent the Blue Tsunami conditional split**, which is not published by the source.
 - [x] Unit tests for joint source ingestion + UI regression showing real probability values, no sliders and no fictional tsunami percentage.
 - [ ] For a four-way *mutually exclusive* probability distribution, obtain calibrated correlated simulations of every House and Senate contest plus predeclared battleground membership and score each draw for the 90%-sweep test. Add independent provider comparisons without assuming different forecasters are statistically independent.
+
+## October 13: election-night rehearsal and actual model-average history
+
+- **2024 rehearsal is the pre-election default** of the Election Night page. It uses Open America's documented state-derived CORS-enabled direct API, with no republished third-party feed. Actual 2026 reporting becomes default on Election Day.
+- **Source-contract checks:** invalid year, office, result totals, precinct coverage, fake race calls, premature 2026 vote totals and conflicting freshness flags are rejected; failed refreshes preserve the last verified data with a clear warning. These tests run in the site's DOM regression suite.
+- **Within-session live movements:** first-party browser view compares *real, distinct-source-time* snapshots and flags changes, provisional lead flips and vote-count revisions. It cannot infer what happened before the viewer opened the page.
+- **Historical model averages:** each JackStradamus race detail shows a chart of genuinely saved model snapshots for the same candidates and model methodology only. Averages are distinct from poll fieldwork dates, and missing historical intervals are not invented. Fewer than two compatible snapshots means no trend chart.
+- **Readiness blockers:** the polling-model tab now displays all machine-generated forecast-readiness blockers from the complete 470-contest House/Senate inventory, instead of an invented % complete.
+- Still ahead: reliable direct historical election-result calibration, 2026 district fundamentals and holdovers, all-state results/night calls and county reporting benchmarks. No internal House/Senate control probabilities until those inputs pass validation.
