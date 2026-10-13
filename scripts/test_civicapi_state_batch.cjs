@@ -9,7 +9,6 @@ const cases=[
   ['AK','Governor','Alaska Governor'],
   ['ME','Senate','Maine US Senate'],
   ['ME','Governor','Maine Governor'],
-  ['MA','Senate','Massachusetts US Senate'],
   ['MA','Governor','Massachusetts Governor'],
   ['NV','Governor','Nevada Governor']
 ];
@@ -106,9 +105,10 @@ for(const {item,search} of fixtureRaces){
  }
 }
 for(const missing of [{office:'Senate',key:'NV'},
+ {office:'Senate',key:'MA'},
  {office:'Senate',key:'NH'},{office:'House',key:'ME-01'},
  {office:'Governor',key:'WI'},{office:'Governor',key:'NH'}]){
  assert.equal(adapter.supports(missing),false);
  assert.equal(adapter.query(missing),null);
 }
-console.log('Four-state civicAPI batch: 7 race fixtures, cross-state isolation and safety checks passed');
+console.log('Four-state civicAPI batch: 6 source-verified race fixtures, cross-state isolation and safety checks passed');
