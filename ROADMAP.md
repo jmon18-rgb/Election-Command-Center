@@ -243,3 +243,10 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Each race detail now has *tighter / baseline / wider* uncertainty controls, updating probability values. Race list also shows compact implied chances.
 - Build and verify the dataset with Python and actual JavaScript interaction tests; regenerate the source-dated artifact automatically after each four-hour polling refresh.
 - Next substantive probability milestone: complete unpolled seat fundamentals, common national/regional election errors, and a frozen competitive House/Senate slate for true four-ending joint simulations.
+
+## Follow-up: meaningful probability movement, not static race snapshots
+
+- Added a 30-day bounded archive of up to 90 genuine, dated JackStradamus race-probability model runs. Never backfill imaginary historical odds from old poll fieldwork dates.
+- Each model refresh records exactly the published D/R probability with candidate identity, actual source model timestamp, race key, margin and uncertainty. De-duplicate reruns, drop snapshots older than 30 days and reject source timestamp mismatch.
+- New compact What Actually Moved panel shows the top odds moves of at least 2 percentage points, comparing to a genuinely observed previous run at least four hours old, filtered by current office, with a direct click to the source race polling detail.
+- JSDOM and Python regressions verify source identity, election-year model method, minimum time separation, changed candidate rejection, and no false movement when history is still collecting.
