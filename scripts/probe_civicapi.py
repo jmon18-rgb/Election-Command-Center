@@ -19,7 +19,10 @@ CHECKS=[
  ("race/search",{"country":"US","startDate":"2026-11-03","endDate":"2026-11-03","limit":4}),
  ("race/search",{"country":"US","startDate":"2026-09-08","endDate":"2026-09-08","limit":3}),
  ("race/search",{"country":"US","province":"NH","startDate":"2026-11-03","endDate":"2026-11-03","limit":8}),
- ("race/search",{"country":"US","province":"NV","startDate":"2026-11-03","endDate":"2026-11-03","limit":8}),
+ ("race/search",{"country":"US","province":"NV","startDate":"2026-11-03","endDate":"2026-11-03","limit":12}),
+ ("race/search",{"country":"US","province":"AK","startDate":"2026-11-03","endDate":"2026-11-03","limit":20}),
+ ("race/search",{"country":"US","province":"OH","startDate":"2026-11-03","endDate":"2026-11-03","limit":25}),
+ ("race/search",{"country":"US","province":"ND","startDate":"2026-11-03","endDate":"2026-11-03","limit":12}),
  ("race/search",{"country":"US","province":"NH","query":"US Senate","startDate":"2026-11-03","endDate":"2026-11-03","limit":20}),
  ("race/search",{"country":"US","province":"NH","startDate":"2024-11-05","endDate":"2024-11-05","limit":12}),
 ]
@@ -34,7 +37,7 @@ def summarize(content):
        k:entry[k] for k in ("id","country","province","district","election_date",
        "election_name","election_type","type","percent_reporting","municipality")
        if k in entry
-      } for entry in value[:3] if isinstance(entry,dict)],
+      } for entry in value[:15] if isinstance(entry,dict)],
       "candidate_sample":[{k:entry.get(k) for k in ("party","votes","percent","winner") if k in entry}
         for entry in value[0].get("candidates",[])[:3] if isinstance(entry,dict)]
         if value and isinstance(value[0],dict) else [],
