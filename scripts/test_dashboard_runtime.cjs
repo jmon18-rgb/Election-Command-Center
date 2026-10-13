@@ -167,14 +167,20 @@ async function settle(){
   'Archive begins with 120 districts and a Show more button');
  get('#enRaceList button.en-race-entry:last-child').click();
  assert.equal(get('#enRaceList').querySelectorAll('button.en-race-entry').length,241);
- w.eval("enSelected='AK-01';enRender()");
+ const chooseArchiveRace=key=>{
+   const row=[...get('#enRaceList').querySelectorAll('button.en-race-entry')].find(b=>
+     b.querySelector('strong')?.textContent===key);
+   assert(row,'Missing 2024 House row '+key);
+   row.click();
+ };
+ chooseArchiveRace('AK-01');
  assert.match(get('#enDetailMeta').textContent,/MIT Election Data and Science Lab/);
  assert.match(get('#enDetailSummary').textContent,/recorded party votes/);
  assert.match(get('#enDetailMeta a[href]').href,/dataverse.harvard.edu/);
  assert.match(get('#enCandidateList').textContent,/Democratic party total/);
  assert(!get('#enDetailSummary').querySelector('.en-report-progress'),
   'Historical party totals do not contain precinct progress');
- w.eval("enSelected='AL-03';enRender()");
+ chooseArchiveRace('AL-03');
  assert.match(get('#enDetailMeta').textContent,/no recorded candidate votes/);
  const rawArchive=json('data/house_history_2024_staging.json');
  const incompleteArchive=structuredClone(rawArchive);
