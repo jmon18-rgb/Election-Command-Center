@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-13T04:38:15.396605Z",
+  "updated_at": "2026-10-13T08:40:27.092018Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "items": [
     {
       "id": "535371eb2b067753bc75",
@@ -13,6 +13,40 @@
       "detected_at": "2026-10-13T01:03:38.436117Z",
       "state_hints": [
         "NH"
+      ],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "410b3a28090b4d941647",
+      "title": "Merrimack councilors to address access for voters with disab... - New Hampshire Union Leader",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQNjBYRlYtRFk4dm45NEFMcWQzNVg2LWlULUtHMVdQVkowYkVNVVBmSmdnU1JadlZaeUpiQlM1TGVhUGZTaFN5aUItb0lNZWttX0hPdHlCbGNEcmZaQVAxaGdTQTN1X25nUlkwSFpkVkV5d2VVSGNRdXdnb1l0M3lXb1lDN1RJb2psSFBJd2JvUzdjejA5SFBoZEVBUkQ1NXBQbnVzeWZUek5TVlpXR3c?oc=5",
+      "publisher": "New Hampshire Union Leader",
+      "published_at": "2026-10-13T00:03:33Z",
+      "detected_at": "2026-10-13T08:40:27.092018Z",
+      "state_hints": [
+        "NH"
+      ],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "f28e5d78403b77c11788",
+      "title": "Pennsylvania election officials face added scrutiny ahead of the midterms - Pittsburgh Post-Gazette",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPNXFnam44Z09rcVM0ZFNUb29qR3FEMXMwdWFzUVBCTVhzYlhKSnE2M3BCLUlsWjBJNDBET0ZTVlRyWjB5LURrRnBGeFdoTnd2ekxyaHB3NEI3ZjdjTHR2dnRRbHd1NTB3UXhYNFZlUjZFcEN5NmQ5R1pIcl91MDM4WjRoVjRCekNkUUNiajRTQ2wwNjh6UnRvVG8xaTZSMlVVeWVyVDlwQjB6U3MzbHNYUg?oc=5",
+      "publisher": "Pittsburgh Post-Gazette",
+      "published_at": "2026-10-12T21:09:28Z",
+      "detected_at": "2026-10-13T08:40:27.092018Z",
+      "state_hints": [
+        "PA"
       ],
       "topic_hints": [],
       "headline_numbers_unverified": [],
