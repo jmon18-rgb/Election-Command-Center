@@ -1970,15 +1970,15 @@ function enProcessPrimaryAlerts(changes){
   }else if(x.leaderChanged){
    enAlertRecord(item,'Open America','flip',
      'Reported vote leader changed; '+enNum(x.current)+' total votes. No winner has been called.',
-     x.prior+'-'+x.current+'-'+x.at);
+     x.prior+'-'+x.current+'-'+x.fingerprint);
   }else if(x.newRace&&x.current>0){
    enAlertRecord(item,'Open America','first',
      enNum(x.current)+' first recorded votes in the state-derived source. No winner has been called.',
-     x.current+'-'+x.at);
+     x.current+'-'+x.fingerprint);
   }else if(x.candidateChanged&&x.delta===0){
    enAlertRecord(item,'Open America','revision',
      'Candidate votes were revised without changing '+enNum(x.current)+' total ballots.',
-     x.current+'-'+x.at);
+     x.current+'-'+x.fingerprint);
   }
  }
 }
@@ -2212,6 +2212,7 @@ async function enCivicFetchOne(item){
   if(old?.total>0&&next.total===0)
    throw Error('Supplementary source unexpectedly cleared a counted race');
   enCivicByWatch[id]=next;
+  enProcessCivicAlert(item,old,next);
   enCivicRaceIds[id]=row;
   delete enCivicErrors[id];
   enRenderWatchlist();enRenderNationalSenate();
@@ -2487,7 +2488,8 @@ function enCompareSnapshots(previous,next){
   if(old&&delta===0&&!candidateChanged&&!leaderChanged)continue;
   changes.push({at:next.as_of,key:id,office:next.office,
     prior:old?.total||0,current:r.total,delta,
-    newRace:!old||(old.total===0&&r.total>0),leaderChanged,candidateChanged});
+    newRace:!old||(old.total===0&&r.total>0),leaderChanged,candidateChanged,
+    fingerprint:r.cands.map(c=>[c.n,c.p,c.v].join(':')).sort().join(',')});
  }
  for(const [id,r] of Object.entries(previous.races||{})){
   if(r.total>0&&!Object.prototype.hasOwnProperty.call(next.races,id))
@@ -2514,6 +2516,7 @@ function enAcceptSource(o){
   throw Error('Provider snapshot unexpectedly reversed in time or lost all counted races');
  const changes=enCompareSnapshots(previous,o);
  enMovements=[...changes,...enMovements].slice(0,70);
+ if(enModeYear===2026)enProcessPrimaryAlerts(changes);
  enData=o;enFetchError=null;enLastFetchAt=new Date();
  if(enModeYear===2026){
   enOfficeSnapshots[enOffice]=o;
@@ -2601,6 +2604,7 @@ function enRender(){
  enRenderMovement();
  enRenderWatchlist();
  enRenderNationalSenate();
+ enRenderAlertInbox();
  enUpdateSelection();
  const query=($('#enSearch').value||'').trim().toLowerCase(),list=$('#enRaceList');list.replaceChildren();
  if(!rows.length){list.append(elt('p','empty',enModeYear===2026&&enData?
@@ -2719,7 +2723,9 @@ async function enRefreshWatchedOffices(exceptOffice){
    const old=enOfficeSnapshots[office]||null;
    if(!enSnapshotCompatible(old,obj))throw Error('Unordered source update');
    enOfficeSnapshots[office]=obj;
-   enMovements=[...enCompareSnapshots(old,obj),...enMovements].slice(0,70);
+   const changes=enCompareSnapshots(old,obj);
+   enMovements=[...changes,...enMovements].slice(0,70);
+   enProcessPrimaryAlerts(changes);
    delete enOfficeErrors[office];
    if(enOffice===office){
     enData=obj;enFetchError=null;enLastFetchAt=new Date();enRender();
