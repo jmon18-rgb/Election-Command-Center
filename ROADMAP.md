@@ -266,3 +266,11 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Routed these seven watchlist races through the same strict shared adapter, reusing the existing source-ID, date, office and detail validation rather than creating duplicative one-off adapters.
 - Added independent fixture tests and full Election Night watchlist regression checks, including last-good vote retention and source isolation. Never infer zero votes or official winner calls from missing provider coverage.
 - Follow the batch rule: source discovery → implement only verified races → full CI test → merge one PR → stop. Real November 3 counting behavior remains to be smoke-tested on Election Day.
+
+## October 13: five-state Senate-first civicAPI batch — AL, MT, NM, OK, TN
+
+- Added strict supplemental source IDs for **eight Nov. 3 races**: AL Senate/Governor, MT Senate, NM Senate/Governor, OK Senate, TN Senate/Governor.
+- Oklahoma governor did not have a source record satisfying the same exact statewide contract and remains unverified, not assigned zero votes.
+- Reused the common state-batch adapter. New deterministic and full browser tests cover per-race identity, source attribution, correct watchlist rendering, rejecting bad provider updates and preserving valid vote totals.
+- Keep supplemental civicAPI numbers outside the Open America national metrics and outside polling-model probabilities. Provider calls are not official certifications.
+- Next: continue batching meaningful missing statewide source coverage, then implement a first-vote Election Day smoke test when real November 3 counts exist. Merge only after green CI.
