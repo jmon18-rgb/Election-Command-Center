@@ -4,7 +4,7 @@ A personal, data-first 2026 U.S. midterms dashboard. Serious about polling; occa
 
 ## What the site shows
 
-- **Daily briefing:** 2026 generic congressional ballot, clearly blue/red party margins, key Senate polling snapshots and new surveys.
+- **Daily briefing:** 2026 generic congressional ballot, clearly blue/red party margins, key Senate polling snapshots, and newest observations sorted by first-seen date when the upstream cannot supply a verified publication date.
 - **JackStradamus:** weighted polling averages for Senate, House, governors, and national generic ballot. Every firm gets a visible influence share and source-linked ratings context.
 - **Scenario lab:** Red Dawn / The Shrug / Blue Wave / Blue Tsunami are provisional national House **popular-vote margin bands**, **not** Congress-control probabilities. See [SCENARIOS.md](SCENARIOS.md).
 - **Race Lab:** individual poll observations, source dates and sponsor labels.
@@ -25,7 +25,7 @@ See [POLLING_MODEL.md](POLLING_MODEL.md) for parameters, Silver Bulletin compari
 
 ## Site artwork
 
-The editorial hero supports **`assets/blue-waves-hero.jpg`**, a panoramic, user-approved surf image. The CSS has a restrained navy/blue/red gradient fallback so the page still works if the asset isn't uploaded. Upload that JPEG under exactly that path to activate the photo. The photo contains **no modeled polling numbers**: everything numerical is rendered from the actual data feed. The image has a separate downloaded copy in the user's ChatGPT Library under `Election Command Center/blue-waves-hero.jpg`.
+The editorial hero supports **`blue-waves-hero.jpg`**, a panoramic, user-approved surf image. The CSS has a restrained navy/blue/red gradient fallback so the page still works if the asset isn't uploaded. The JPEG is checked in at repository root. The photo contains **no modeled polling numbers**: everything numerical is rendered from the actual data feed. The image has a separate downloaded copy in the user's ChatGPT Library under `Election Command Center/blue-waves-hero.jpg`.
 
 ## Refresh & checks
 
@@ -34,3 +34,7 @@ This is a static GitHub Pages site built from `index.html` and files under `data
 Use GitHub Settings → Pages → Deploy from branch `main`, directory `/ (root)`.
 
 **Model outputs depend on data availability**. A polling margin is not an election result, a chart of observed polls is not a historical model trend, and a verified incident is not evidence of a nationwide election outcome.
+
+## Model QA (October 2026)
+
+v1.4 retains more qualifying pollsters, calculates effective-firm concentration and sensitivity to weighting assumptions, and compares signed sponsorship-prior corrections against held-out *future polls* in an experimental test. The latter is deliberately **not** deployed without election-result validation. The official January 2026 Silver Bulletin ratings file is not yet incorporated; see [POLLING_MODEL.md](POLLING_MODEL.md).
