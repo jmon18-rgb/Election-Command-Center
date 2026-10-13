@@ -13,6 +13,13 @@ const primary=json('data/polls.json');
 const recent=json('data/pollresults_recent.json');
 const history=json('data/model_history.json');
 const html=read('index.html');
+const mobileHeroCSS=html.match(/\/\* Preserve the full surfer photo on narrow screens\.[\s\S]*?\*\/\s*@media\(max-width:620px\)\{[\s\S]*?background-repeat:no-repeat;/)?.[0];
+assert(mobileHeroCSS,'Mobile portrait hero should explicitly preserve surfer-image framing');
+assert.match(mobileHeroCSS,/background-size:100% 100%,100% auto,cover;/,
+ 'Surfer photo must fit full width instead of horizontally cropping a face with cover');
+assert.match(mobileHeroCSS,/background-position:center,center top,center;/,
+ 'Keep the surfer image anchored at the top while copy remains at the bottom');
+
 const scripts=[...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)].map(x=>x[1]);
 assert.equal(scripts.length,1,'Expected exactly one live inline application script');
 const errors=[];
