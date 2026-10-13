@@ -259,3 +259,10 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Added fixed-identity CORS discovery and deterministic candidate/percentage/identity test fixtures for all seven races, plus real dashboard interactions showing valid counts and last-good retention when a provider ID changes.
 - Preserved the existing New Hampshire and first four-state adapters, provider isolation, national Senate 35-seat universe, alert rules, and live forecast probabilities.
 - Continue adding 3–5 carefully sourced states at a time; do not promote unindexed races. Actual general-election counted-vote behavior remains to be tested live on November 3.
+
+## Oct 13: Five-state civicAPI expansion — Illinois, Kentucky, New Jersey, New York, Oregon
+
+- Indexed seven additional real Nov. 3 source-race IDs through exact `/race/search` → `/race/{id}` browser-CORS checks: IL Senate and Governor; KY Senate; NJ Senate; NY Governor; OR Senate and Governor.
+- Routed these seven watchlist races through the same strict shared adapter, reusing the existing source-ID, date, office and detail validation rather than creating duplicative one-off adapters.
+- Added independent fixture tests and full Election Night watchlist regression checks, including last-good vote retention and source isolation. Never infer zero votes or official winner calls from missing provider coverage.
+- Follow the batch rule: source discovery → implement only verified races → full CI test → merge one PR → stop. Real November 3 counting behavior remains to be smoke-tested on Election Day.
