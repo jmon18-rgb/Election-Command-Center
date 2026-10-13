@@ -365,6 +365,9 @@ function renderModelRaceDetail(){
   'Latest eligible poll '+formattedModelDate(estimate.latest_poll_end),
   Number.isFinite(u.pollster_spread_points)?'🐑 '+u.pollster_spread_points.toFixed(1)+'pt spread':null,
   Number.isFinite(u.model_sensitivity?.effective_firms)?u.model_sensitivity.effective_firms.toFixed(1)+' effective firms (weight concentration)':null,
+  Number.isFinite(u.silver_2026_comparison?.dem_minus_rep)?
+    'Silver 2026 rating-weighted comparison: '+marginText(u.silver_2026_comparison.dem_minus_rep)+
+    ' · '+u.silver_2026_comparison.rated_pollster_count+'/'+(estimate.contributing_pollsters||0)+' firms matched · experimental':null,
   Number.isFinite(u.model_sensitivity?.alternative_margin_min)&&Number.isFinite(u.model_sensitivity?.alternative_margin_max)
     ?'Weight sensitivity: '+marginText(u.model_sensitivity.alternative_margin_min)+' to '+marginText(u.model_sensitivity.alternative_margin_max)+' (NOT a confidence interval)':null,
   estimate.partisan_pollsters?estimate.partisan_pollsters+' sponsored firm(s), half weight':null
@@ -929,6 +932,12 @@ const cell=elt('div','pq-cell');if(label.includes('HERDING'))cell.title='Inter-p
 const track=elt('div','pq-track');const fill=elt('div','pq-fill');fill.style.width=pct+'%';track.append(fill);cell.append(track);metrics.append(cell)}
 boxU.append(metrics);
 card.append(boxU);
+const silver=u.silver_2026_comparison;
+if(silver&&Number.isFinite(silver.dem_minus_rep)){
+  const compare=elt('div','meta','Silver 2026 ratings comparison: '+marginText(silver.dem_minus_rep)+' · '+silver.rated_pollster_count+'/'+count+' firms matched. Experimental weighting only; live mean unchanged.');
+  compare.title='Different quality weights applied to the same observed surveys. Not a forecast or official Silver polling average.';
+  card.append(compare);
+}
 const sensitivity=u.model_sensitivity;
 if(sensitivity&&Number.isFinite(sensitivity.effective_firms)){
  const line=elt('div','meta','Effective firms: '+sensitivity.effective_firms.toFixed(1)+' of '+count+' · largest firm '+sensitivity.largest_firm_weight_pct.toFixed(1)+'% weight. Alternative weighting gives '+marginText(sensitivity.alternative_margin_min)+' to '+marginText(sensitivity.alternative_margin_max)+' (sensitivity only, NOT error bars).');
