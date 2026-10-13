@@ -145,3 +145,11 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Automated offline edge-case unit tests and **real-source import verification in PR CI**. Separate GitHub Actions publishes the validated historical artifact after merge; no model-update workflow may silently substitute this for 2026 poll data.
 - The model tab exposes the true availability/status of historical Senate research, while the Election Night 2024 Senate rehearsal becomes available only when the staged, provenance-verified record exists.
 - Still required: reconcile independent vote totals and candidate identities; historical pre-election Senate polls and true year-held-out outcome backtests; 2026 holdovers/incumbents; authorized live election-night feeds.
+
+## October 13: Senate poll-to-election retrospective research
+
+- Added an exploratory comparison of **2020, 2022 and 2024 historical Senate polls versus MIT/MEDSL actual election results**, using a public source-attributed third-party compilation of historical RealClearPolling surveys. CI verifies raw-source shape, chronology and minimum observed races.
+- **Polls are compared using fieldwork cutoffs 7 days pre-election**, one survey per firm and equal / 14d / 21d / 35d recency mean scenarios. The JackStradamus research panel shows actual poll-minus-result misses by year and state.
+- The public compilation is retrospectively curated and lacks independently verified first-publication timestamps, so it **cannot establish strict historical as-of information** or calibrate model win odds. Do not call this a prospective holdout experiment.
+- Same-state Senate regular/special collisions are excluded, as are missing major-party ballots and unusually large third-party votes. Source malformed dates are excluded and audited.
+- **Next:** secure a licensed, timestamped historic poll dataset with full candidate-matchup and special-seat identities; then train/evaluate actual JackStradamus algorithms on leave-election-year-out final result errors. For Election Night, obtain a permitted 2026 live-return connection before enabling live counts.
