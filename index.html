@@ -17,7 +17,7 @@
 <div class="card eight featured"><div class="row"><span class="label">National generic ballot · recent polls</span><span class="tag teal">OBSERVED DATA</span></div><div class="featureline"><div><div class="big" id="genericMargin">—</div><p class="detail" id="genericDetail">Awaiting verified polling observations.</p></div><div class="featuredelta"><span class="label">SINCE LAST REFRESH</span><strong id="genericDelta">—</strong></div></div><div class="barlabels"><span>DEMOCRATIC</span><span>REPUBLICAN</span></div><div class="ballotbar"><div id="ballotDem" class="ballotdem"></div><div id="ballotRep" class="ballotrep"></div></div><div class="barvalues"><span id="ballotDemLabel">—</span><span id="ballotRepLabel">—</span></div><div class="rule"></div><div class="row"><span class="tiny" id="genericFresh">Polling feed not yet loaded</span><button class="textlink" type="button" data-jump="races">Explore races →</button></div><p class="methodline">Descriptive polling average, not a prediction of House seats or win probabilities.</p></div>
 <div class="card four"><div class="row"><span class="label">Recent individual poll margins</span><span class="tag">INDIVIDUAL POLLS</span></div><svg class="spark" id="genericChart" viewBox="0 0 340 110" role="img" aria-label="Recent generic-ballot poll margins"><text x="8" y="58">Chart awaiting data</text></svg><p class="detail">Each point is a poll's Democratic minus Republican margin. The connecting line is a visual guide, not a fitted trend.</p><div class="rule"></div><span class="tiny" id="genericDeltaNote">Waiting for two comparable polling snapshots.</span></div>
 </div>
-<div class="sectionhead"><h2>What's new</h2><span class="tiny" id="freshness">Checking latest update</span></div>
+<div class="sectionhead"><h2>Senate polling estimates</h2><span class="tiny">Weighted observations · not forecasts</span></div><div class="card"><div id="senateEstimateCards" class="racecards racecards-wide"><div class="empty">Awaiting first automated model update.</div></div><p class="methodline">Named-candidate polls, one latest wave per pollster, recency and sample-size weighting. Not election-win probabilities.</p></div><div class="sectionhead"><h2>What's new</h2><span class="tiny" id="freshness">Checking latest update</span></div>
 <div class="grid"><div class="card seven"><div class="row"><span class="label">Newly added polls</span><span class="tiny" id="changesSince">Awaiting comparison</span></div><div id="newPolls" class="empty">Comparing the current snapshot with the previous refresh.</div><button class="textlink" type="button" data-jump="races">Open polling explorer →</button></div>
 <div class="card five"><div class="row"><span class="label">Election developments</span><span class="tag">NEWS LEADS</span></div><div id="updates" class="empty">Loading recent election reporting.</div><button class="textlink" type="button" data-jump="integrity">Election integrity watch →</button></div></div>
 <div class="sectionhead"><h2>Key battlegrounds</h2><button class="textlink" type="button" data-jump="races">See all races →</button></div>
@@ -87,5 +87,23 @@ let securityArticles=[];
 function renderSecurity(){const box=$('#security');box.replaceChildren();const q=($('#securitySearch').value||'').trim().toLowerCase();const items=securityArticles.filter(x=>(x.title+' '+(x.source||'')).toLowerCase().includes(q)).sort((a,b)=>$('#securityOrder').value==='oldest'?(a.published_at||'').localeCompare(b.published_at||''):(b.published_at||'').localeCompare(a.published_at||''));$('#securityCount').textContent=items.length+' automatically collected articles · not independently verified';if(!items.length){box.textContent='No matching articles.';return}for(const x of items){const wrap=elt('div','item');const label=elt('span','securityBadge','NEWS REPORT · UNVERIFIED');wrap.append(label);const title=elt('strong','',x.title);wrap.append(title);wrap.append(elt('small','',[(x.source||'Source not specified'),x.published_at?new Date(x.published_at).toLocaleString():''].filter(Boolean).join(' · ')));if(typeof x.url==='string'&&x.url.startsWith('https://')){const link=elt('a','','Open article ↗');link.href=x.url;link.target='_blank';link.rel='noopener';wrap.append(link)}box.append(wrap)}}
 document.querySelectorAll('#securitySearch,#securityOrder').forEach(e=>e.addEventListener('input',renderSecurity));
 
+
+function showSenateEstimates(data){
+const box=document.getElementById('senateEstimateCards');box.replaceChildren();
+for(const x of data.states||[]){
+const card=elt('div','racecard');const head=elt('div','racehead');
+head.append(elt('strong','racecode',x.state_name));
+const ok=x.status==='multi_poll'||x.status==='single_poll';
+head.append(elt('strong','racemargin',ok?marginText(x.dem_minus_rep):'—'));
+card.append(head);
+if(ok){
+card.append(elt('div','meta',x.dem_candidate+' vs. '+x.rep_candidate));
+const bar=elt('div','ballotbar');const dem=elt('div','ballotdem');const rep=elt('div','ballotrep');
+dem.style.width=x.dem_pct+'%';rep.style.width=x.rep_pct+'%';bar.append(dem,rep);card.append(bar);
+card.append(elt('div','meta',x.independent_pollsters+' pollster(s) · '+x.latest_poll_end));
+}else{card.append(elt('div','meta','No qualifying recent polls'))}
+box.append(card)
+}}
+fetch('./data/polling_estimates.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('not ready');return r.json()}).then(showSenateEstimates).catch(()=>{document.getElementById('senateEstimateCards').textContent='Waiting for first automated polling summary refresh.'});
 fetch('./data/briefing.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(d=>{feedHealth.news=d;updateHealth();if(d.updated_at){const date=new Date(d.updated_at);if(!Number.isNaN(+date)){$('#freshness').textContent='News collected '+date.toLocaleString();$('#updated').textContent='News collected '+date.toLocaleDateString()}}renderItems('updates',d.updates);securityArticles=Array.isArray(d.security)?d.security:[];renderSecurity()}).catch(()=>updateHealth());
 </script></body></html>
