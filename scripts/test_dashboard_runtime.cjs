@@ -143,6 +143,9 @@ async function settle(){
   'State-derived provider cannot inject fabricated race calls');
  assert.equal(w.eval('enSourceValid('+JSON.stringify(archival)+',2024,"Senate")'),false,
   'Wrong office data must never render as House');
+ const suspicious2026=structuredClone(archival);suspicious2026.year=2026;
+ assert.equal(w.eval('enSourceValid('+JSON.stringify(suspicious2026)+',2026,"House")'),false,
+  'Pre-election vote totals must never pass as live 2026 results');
  const nightTab=get('.tab[data-page="electionNight"]');
  // Avoid network in deterministic tests; the public API is integration-tested
  // separately on the real site and this suite validates rendering/contracts.
@@ -177,6 +180,41 @@ async function settle(){
  assert.match(identity('governor',txGov),/Texas.*Governor/);
  assert.notEqual(identity('senate',txSen),identity('governor',txGov));
 
+
+ // Model-roadmap milestone: saved snapshots can make a real timeline but
+ // only for the SAME race, candidate matchup, and model version.
+ const modelGate=get('#forecastGateList');
+ assert(modelGate.querySelectorAll('.item').length>=4,'Show actual model-readiness blockers');
+ assert.match(get('#forecastGateStatus').textContent,/NOT CALIBRATED/);
+ const fakeSnap=(at,candidate,margin,method='poll-mean-1.4')=>({
+   at,method_version:method,races:[{
+      race_code:txSen.race_code,race_type:txSen.race_type,
+      dem_candidate:candidate,rep_candidate:txSen.rep_candidate,
+      dem_minus_rep:margin
+   }]
+ });
+ const goodHistory={snapshots:[
+   fakeSnap('2026-10-11T12:00:00Z',txSen.dem_candidate,0.5),
+   fakeSnap('2026-10-12T12:00:00Z',txSen.dem_candidate,1.7)
+ ]};
+ const serie=w.eval('modelHistorySeries('+JSON.stringify(txSen)+','+JSON.stringify(goodHistory)+')');
+ assert.equal(serie.length,2);
+ assert.equal(serie[1].margin,1.7);
+ const mismatch=w.eval('modelHistorySeries('+JSON.stringify(txSen)+','+JSON.stringify({snapshots:[
+   fakeSnap('2026-10-11T12:00:00Z',txSen.dem_candidate,0.5),
+   fakeSnap('2026-10-12T12:00:00Z','Different D Candidate',2.7),
+   fakeSnap('2026-10-13T12:00:00Z',txSen.dem_candidate,3.2,'changed-method')
+ ]})+')');
+ assert.equal(mismatch.length,1,'Never draw poll changes across candidate or algorithm changes');
+ w.eval('modelHistoryData='+JSON.stringify(goodHistory)+';renderModelTrend('+JSON.stringify(txSen)+')');
+ assert(get('#modelTrendChart').querySelector('polyline'),'Real two-snapshot model series must plot');
+ assert.match(get('#modelTrendNote').textContent,/actual saved average snapshots/);
+ assert.match(get('#modelTrendChange').textContent,/D \+1\.2/);
+ w.eval('modelHistoryData='+JSON.stringify({snapshots:[goodHistory.snapshots[0]]})+
+  ';renderModelTrend('+JSON.stringify(txSen)+')');
+ assert(!get('#modelTrendChart').querySelector('polyline'),'One snapshot cannot create a fake trend');
+ assert.match(get('#modelTrendChange').textContent,/Awaiting longer history/);
+ w.eval('modelHistoryData='+JSON.stringify(history));
  // The same multipurpose Recon survey contains DISTINCT 2026 Senate and
  // Governor ballot questions. Check model inclusion, vote-share match and
  // exact original drilldown selection in BOTH office tabs.
