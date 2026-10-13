@@ -1,0 +1,26 @@
+name: Validate election dashboard PR
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate dashboard contracts
+        run: python3 scripts/check_dashboard.py
+      - name: Validate DDHQ snapshot and parser
+        run: python3 scripts/test_scenario_forecast.py
+      - name: Validate new-poll notification behavior without email credentials
+        run: python3 scripts/test_poll_alerts.py
+      - name: Validate polling model behavior
+        run: python3 scripts/test_polling_models.py
+      - name: Install DOM test environment
+        run: npm install --no-save --no-package-lock --ignore-scripts jsdom@26.1.0
+      - name: Check JavaScript syntax and exercise actual dashboard
+        run: |
+          node --check scripts/test_dashboard_runtime.cjs
+          node scripts/test_dashboard_runtime.cjs
