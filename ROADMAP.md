@@ -235,3 +235,11 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Exact statewide general identity and candidate vote/percent consistency; reject cross-office, cross-race ID, stale/future records, fabricated pre-election votes and zero-vote provider calls.
 - Added standalone and browser-level regression checks: the real watchlist displays civicAPI Governor details and **retains last-good votes** if a later provider detail response fails identity validation. Source totals remain outside Open America.
 - Tightened the real civicAPI CI gate to require NH Governor. The NH House districts stay explicitly unverified rather than showing invented data. Next small adapter can start with NH House only after the provider's real source returns a correctly indexed House race.
+
+## Oct 13: Four-state civicAPI adapter batch (source verified)
+
+- Consolidated strict civicAPI race matching for **Alaska, Maine, Massachusetts and Nevada** into one six-race adapter instead of one race per pull request.
+- Verified via live provider search/detail + CORS: AK Senate/Governor, ME Senate/Governor, MA Governor, NV Governor. Each exact civicAPI ID is independently gated by GitHub Actions.
+- Explicitly excluded **MA Senate** (not uniquely returned in the 20-result discovery), other unverified statewide contests and House districts. No fabricated coverage or source calls.
+- App regression checks source-specific 2026 votes on four personal watchlist pins and rejects later cross-race details while retaining last-good counts. No source totals flow into Open America or forecast probabilities.
+- Future development cadence: **3–5 states per PR** when actual source coverage supports it; collect verified IDs, implement shared mappings and tests, merge only after the complete PR suite passes, then stop.
