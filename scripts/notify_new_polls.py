@@ -65,7 +65,7 @@ def send(body,count):
     msg["From"]=sender
     msg["To"]=recipient
     msg.set_content(body)
-    port=int(os.environ.get("POLL_SMTP_PORT","465"))
+    port=int(os.environ.get("POLL_SMTP_PORT") or "465")
     if port==465:
         with smtplib.SMTP_SSL(host,port,timeout=25,context=ssl.create_default_context()) as connection:
             connection.login(username,password);connection.send_message(msg)
