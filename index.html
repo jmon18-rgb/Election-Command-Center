@@ -195,17 +195,6 @@ for(const [label,value,status,pct] of metricsData){
 const cell=elt('div','pq-cell');cell.append(elt('div','pq-label',label));cell.append(elt('div','pq-value',value));cell.append(elt('div','pq-caption',status));
 const track=elt('div','pq-track');const fill=elt('div','pq-fill');fill.style.width=pct+'%';track.append(fill);cell.append(track);metrics.append(cell)}
 boxU.append(metrics);
-const details=elt('details','bs-details');details.append(elt('summary','','What do these mean?'));
-details.append(elt('div','unotes','Coverage: number of independent polling firms (5+ is broad). Freshness: days since the newest poll (7 or fewer is recent). Agreement: how much firms differ in the Democratic-minus-Republican margin, measured as standard deviation in points (under 3 is close together).'));
-details.append(elt('div','unotes','These are descriptive thresholds, not a statistical confidence interval, election prediction, or election-integrity assessment.'));boxU.append(details);
-const flags=[];
-if(u.single_poll)flags.push('Only one pollster');
-else if(u.thin_polling)flags.push('Limited pollster coverage');
-if(u.stale_latest_poll)flags.push('Latest poll over 14 days old');
-if(u.high_poll_disagreement)flags.push('Polls differ substantially');
-if(u.different_matchups_excluded)flags.push(u.different_matchups_excluded+' polls of other matchups excluded');
-boxU.append(elt('div','unotes',flags.length?flags.join(' · '):'Multiple recent pollsters; expand the meter for details.'));
-boxU.append(elt('div','integrity-note','Poll quality above is independent of election-integrity evidence below.'));
 card.append(boxU);
 }else{card.append(elt('div','meta','No qualifying recent polls · polling uncertainty cannot be quantified.'))}
 const integrity=elt('div','bs-mini');
