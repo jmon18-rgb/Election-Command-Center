@@ -691,13 +691,56 @@ async function settle(){
  assert.equal(get('#newPolls').querySelectorAll('.item').length,2,
   'Two same-poll distinct ballot questions should both display');
  assert.match(get('#changesSince').textContent,/2 source postings/);
+ // Nationwide 2026 Senate desk derives all 35 seat IDs from the
+ // published ballot universe. Florida/Ohio must be special, no phantom
+ // noncontested-state Senate entry and no fabricated source counting.
+ const senateUniverse=json('data/seat_universe.json');
+ const validate35=w.eval('enNationalValidate('+JSON.stringify(senateUniverse)+')');
+ assert.equal(validate35.length,35);
+ assert.equal(validate35.filter(x=>x.kind==='special').length,2);
+ assert.deepEqual(validate35.filter(x=>x.kind==='special').map(x=>x.state),['FL','OH']);
+ w.eval('enNationalSetUniverse('+JSON.stringify(senateUniverse)+')');
+ assert.equal(w.eval('enWatchParse("FL-SEN").key'),'FL-special');
+ assert.equal(w.eval('enWatchParse("OH-SEN").key'),'OH-special');
+ assert.equal(w.eval('enWatchParse("OH-SEN-SPECIAL").key'),'OH-special');
+ assert.equal(w.eval('enWatchParse("NE-SEN-SPECIAL")'),null);
+ assert.equal(w.eval('enWatchParse("CA-SEN")'),null,'California has no 2026 Senate contest');
+ assert.equal(w.eval('enWatchParse("NC-SEN").key'),'NC');
+ get('#enMode2026').click();
+ assert.equal(get('#enNationalSenate').hidden,false);
+ assert.equal(get('#enNationalRows').querySelectorAll('.en-national-seat').length,35);
+ assert.match(get('#enNationalRows').textContent,/FL-SEN · SPECIAL/);
+ assert.match(get('#enNationalRows').textContent,/OH-SEN · SPECIAL/);
+ assert.match(get('#enNationalSummary').textContent,/35/);
+ const corrupted35=structuredClone(senateUniverse);
+ corrupted35.senate.contested_seats.pop();
+ assert.equal(w.eval('enNationalValidate('+JSON.stringify(corrupted35)+')'),null,
+   'A partial or corrupted election contest universe must never appear as all 35 races');
+ const beforeFollow=w.localStorage.getItem('bluewaves_national_senate_2026_v1');
+ w.eval('enNationalToggle(false)');
+ assert.equal(get('#enNationalToggle').getAttribute('aria-pressed'),'false');
+ assert.equal(w.eval('enNationalWatchItems().length'),0);
+ // Use 2024 mode to activate tracking without live source fetches in tests.
+ get('#enMode2024').click();
+ w.eval('enNationalToggle(true)');
+ assert.equal(w.eval('enNationalWatchItems().length'),35);
+ assert.equal(w.localStorage.getItem('bluewaves_national_senate_2026_v1'),'true');
+ get('#enMode2026').click();
+ assert.equal(get('#enNationalRows').querySelectorAll('.en-national-seat').length,35);
+ // Restore default paused mode for unrelated provider tests below.
+ get('#enMode2024').click();
+ w.eval('enNationalToggle(false)');
+ get('#enMode2026').click();
+ if(beforeFollow===null)w.localStorage.removeItem('bluewaves_national_senate_2026_v1');
+ else w.localStorage.setItem('bluewaves_national_senate_2026_v1',beforeFollow);
+
  // Personal 2026 watchlist must be storable before Election Day and must
  // never silently turn source coverage gaps into zero-valued race results.
  assert.deepEqual(w.eval('enWatchParse("CA-53")'),null,'2026 California only has 52 voting House seats');
  assert.equal(w.eval('enWatchParse("AK-00").key'),'AK-00','At-large House uses 00');
  assert.equal(w.eval('enWatchParse(" NC-SEN ").office'),'Senate');
  assert.equal(w.eval('enWatchParse("TX-GOV").office'),'Governor');
- assert.equal(w.eval('enWatchParse("NE-SEN-SPECIAL").key'),'NE-special');
+ assert.equal(w.eval('enWatchParse("OH-SEN-SPECIAL").key'),'OH-special');
  assert.equal(w.eval('enWatchParse("NC-99")'),null);
  w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
  w.eval('enWatched=[];enRenderWatchlist()');
@@ -740,6 +783,9 @@ async function settle(){
  w.fetch=preWatchFetch;
  assert.match(get('#enWatchItems').textContent,/NC-SEN/);
  assert.match(get('#enWatchItems').textContent,/300 counted/);
+ assert.match(get('#enNationalSummary').textContent,/1 \/ 35 races with recorded votes/);
+ assert.equal(get('#enNationalRows').querySelectorAll('.en-national-seat[data-reporting="true"]').length,1);
+ assert.match(get('#enNationalRows').textContent,/NC-SEN/);
  assert.match(get('#enPinArea').textContent,/Unpin from watchlist/);
  assert.match(get('#enWatchItems').textContent,/Outside the 22-state source/);
  const vanished=structuredClone(counted2026);vanished.races={};vanished.counts.races=0;
