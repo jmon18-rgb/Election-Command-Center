@@ -135,9 +135,9 @@ for state in all_rows:
                                           p["rep_name"]==state["rep_candidate"])))
             days=(asof-date.fromisoformat(poll["field_end"])).days
             old_weight=.5**(days/half_life)*(partisan if poll.get("partisan_lean") else 1.)*additional_weight(poll)
-            quality,is_matched=silver_multiplier(poll)
+            silver_factor,is_matched=silver_multiplier(poll)
             matched+=int(is_matched)
-            w=old_weight/older_quality_factor(poll)*quality
+            w=old_weight/older_quality_factor(poll)*silver_factor
             silver_total+=w
             silver_dem+=w*poll["dem"]
             silver_rep+=w*poll["rep"]
