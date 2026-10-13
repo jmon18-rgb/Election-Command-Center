@@ -9,6 +9,8 @@ on:
       - 'scripts/update_pollresults_recent.py'
       - 'scripts/test_polling_models.py'
       - 'scripts/build_polling_estimates.py'
+      - 'scripts/build_race_probabilities.py'
+      - 'scripts/test_race_probabilities.py'
       - 'scripts/build_seat_universe.py'
       - 'scripts/build_map_bridge.py'
       - 'scripts/test_map_bridge.py'
@@ -79,6 +81,10 @@ jobs:
         run: python3 scripts/test_polling_models.py
       - name: Build Senate polling estimates
         run: python3 scripts/build_polling_estimates.py
+      - name: Test experimental polling-margin probabilities
+        run: python3 scripts/test_race_probabilities.py
+      - name: Regenerate race probabilities from refreshed polls
+        run: python3 scripts/build_race_probabilities.py
       - name: Verify all model polls and averages
         run: python3 scripts/validate_model_drilldown.py
       - name: Test complete congressional seat inventory
@@ -145,7 +151,7 @@ jobs:
             # Rebase GENERATED OUTPUTS as fresh changes on the newest remote
             # commit, not an entire stale JSON commit that can conflict.
             git reset --mixed origin/main
-            git add data/briefing.json data/polls.json data/model_tests.json data/polling_estimates.json data/integrity_review_queue.json data/model_history.json data/seat_universe.json data/house_geography_bridge.json data/house_two_cycle_context.json data/congress_scenarios.json data/poll_alert_state.json
+            git add data/briefing.json data/polls.json data/model_tests.json data/polling_estimates.json data/integrity_review_queue.json data/model_history.json data/seat_universe.json data/house_geography_bridge.json data/house_two_cycle_context.json data/congress_scenarios.json data/race_probabilities.json data/poll_alert_state.json
             if [ -f data/pollresults_recent.json ]; then git add data/pollresults_recent.json; fi
             if git diff --cached --quiet; then
               echo "No source-data changes to commit."
