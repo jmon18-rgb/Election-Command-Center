@@ -53,11 +53,8 @@ class HistoricalSenateTests(unittest.TestCase):
         self.assertEqual(len(races["2020-GA-SEN-regular"]["candidates"]),3)
         self.assertTrue(all(not r["eligible_as_2026_forecast_prior"] for r in races.values()))
     def test_independent_is_not_imputed_as_democrat(self):
-        # UT is in the complete raw Senate dataset, but not in first 34
-        # alphabetical state codes. Rewrite AZ to UT for this deliberate edge.
-        csv_text=example_csv().replace(",AZ,",",UT,")
-        # Fixture then has 34 unique regular contests per year.
-        data=m.parse_source(csv_text)
+        # The fixture includes a 2022 Utah ballot with no Democratic nominee.
+        data=m.parse_source(example_csv())
         row=next(r for r in data["contest_records"] if
                  r["historical_race_id"]=="2022-UT-SEN-regular")
         self.assertEqual(row["recorded_dem_votes"],0)
