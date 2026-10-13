@@ -64,8 +64,19 @@ def parse(html,clock=None):
     if updated > now.date()+dt.timedelta(days=1):
         date=date.replace(year=now.year-1)
     if date.year!=2026:raise ValueError("Wrong election/model year")
-    house_dem=values["both_dem"]+values["house_only"]
-    senate_dem=values["both_dem"]+values["senate_only"]
+    # Prefer the provider's separately displayed chamber marginals. Adding
+    # already-rounded joint outcomes can disagree by 1 percentage point.
+    def find_marginal(chamber):
+        pat=rf"{chamber}\\s+Control\\s+Democrats\\s+(\\d{{1,3}}(?:\\.\\d+)?)\\s*%"
+        matches=re.findall(pat,text,flags=re.I)
+        if len(matches)!=1:raise ValueError(f"Cannot validate DDHQ {chamber} marginal: {matches}")
+        n=float(matches[0])
+        if not 0<=n<=100:raise ValueError("Invalid DDHQ control marginal")
+        return n
+    house_dem=find_marginal("House")
+    senate_dem=find_marginal("Senate")
+    if abs(house_dem-(values["both_dem"]+values["house_only"]))>2 or abs(senate_dem-(values["both_dem"]+values["senate_only"]))>2:
+        raise ValueError("Published marginals contradict joint outcome cells")
     return {"source_displayed_updated":date.strftime("%Y-%m-%d %I:%M %p"),
       "source_date":date.date().isoformat(),"joint":values,
       "house_dem_control":house_dem,"senate_dem_control":senate_dem,
@@ -119,8 +130,8 @@ def validate(doc):
     assert doc["display_outcomes"]["blue_both"]["pct"]==j["both_dem"]
     assert doc["display_outcomes"]["shrug"]["pct"]==j["senate_only"]+j["house_only"]
     assert doc["display_outcomes"]["red_dawn"]["pct"]==j["both_rep"]
-    assert abs(doc["house_dem_control_pct"]-(j["both_dem"]+j["house_only"]))<.0001
-    assert abs(doc["senate_dem_control_pct"]-(j["both_dem"]+j["senate_only"]))<.0001
+    assert abs(doc["house_dem_control_pct"]-(j["both_dem"]+j["house_only"]))<=2
+    assert abs(doc["senate_dem_control_pct"]-(j["both_dem"]+j["senate_only"]))<=2
 
 def main():
     parsed=parse(fetch())
