@@ -1,9 +1,28 @@
 {
-  "updated_at": "2026-10-13T17:35:00.114945Z",
+  "updated_at": "2026-10-13T17:57:24.802704Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "items": [
+    {
+      "id": "13e75b802b9e6a9ab8d0",
+      "title": "Michigan Court of Claims to decide fusion voting case as League of Women Voters weighs in - Michigan Advance",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPWHYycFpldmxwM1pORUpVZ05BR3o2Y2gwQkxIcUxZbG5LTHRmT1Z0SGZuMjhFUVRKckRsN202VjlNRGYwbi1na2pNd2tfTmYzVDNKY0IyVjZOelJOSmZ0Z2R6WFZqR0JJT2FNV3lUNmpreGluMGRmUFc5dU1LMmZoTXB4YV9XeWJOZzcwc3lZSi1QNHlUa1AtQXdpOWVERkc2NFhDVEJHNnJGM3lwaVk0alVFaW96UkZXa2RCdWFVSWZNOGRxN2JybQ?oc=5",
+      "publisher": "Michigan Advance",
+      "published_at": "2026-10-13T17:55:16Z",
+      "detected_at": "2026-10-13T17:57:24.802704Z",
+      "state_hints": [
+        "MI"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "688736ee1b7d314d7c5c",
       "title": "Virginia AG launches voter protection unit ahead of midterm elections - Virginia Mercury",

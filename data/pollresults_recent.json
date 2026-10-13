@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-13T17:35:00.415984+00:00",
+  "updated_at": "2026-10-13T17:57:25.209085+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 754,
+      "available_in_source": 755,
       "records_examined": 300
     },
     "house": {
@@ -19,6 +19,30 @@
   },
   "matched_primary_observations": 299,
   "observations": [
+    {
+      "race_code": "TX-SEN",
+      "race_type": "senate",
+      "state": "TX",
+      "poll_id": "a891d4a9-58f2-4418-94e9-7b9760e82c7e",
+      "question_id": "a3fa911e-37db-456e-85ca-f77ea6a43abc",
+      "pollster": "Quantus Insights",
+      "dem_name": "James Talarico",
+      "rep_name": "Ken Paxton",
+      "dem": 46.7,
+      "rep": 47.2,
+      "margin": -0.5,
+      "field_end": "2026-10-11",
+      "field_start": "2026-10-09",
+      "posted_date": "2026-10-13",
+      "posted_source_datetime": "2026-10-13T13:45:00",
+      "posted_source_time": "10/13/26 13:45",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://quantusinsights.org/f/texas-senate-paxton-and-talarico-in-a-near-tie",
+      "sample_population": "lv",
+      "sample_size": 854,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "GA-03",
       "race_type": "house",
