@@ -854,6 +854,9 @@ async function settle(){
  assert(nhWatchEntry,'Verified civicAPI race should be present in personal watchlist');
  assert.equal(nhWatchEntry.getAttribute('aria-expanded'),'false');
  nhWatchEntry.click();
+ assert.equal(get('#enWatchItems .en-watch-open').getAttribute('aria-expanded'),'true',
+   'Out-of-coverage watchlist item should toggle open; captured errors: '+errors.slice(-3).join(' | ')+
+   '; markup: '+get('#enWatchItems').innerHTML.slice(0,800));
  const civicDetail=get('#enWatchItems .en-civic-detail');
  assert(civicDetail,'Clicking an out-of-primary-state pinned race expands source-native candidate details');
  assert.match(civicDetail.textContent,/First candidate/);
