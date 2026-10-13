@@ -11,6 +11,7 @@ on:
       - 'scripts/update_integrity_queue.py'
       - 'scripts/validate_integrity_impact.py'
       - 'scripts/check_dashboard.py'
+      - 'scripts/validate_model_drilldown.py'
       - 'index.html'
       - 'data/integrity_impact.json'
       - '.github/workflows/refresh-briefing.yml'
@@ -44,6 +45,8 @@ jobs:
         run: python3 scripts/test_polling_models.py
       - name: Build Senate polling estimates
         run: python3 scripts/build_polling_estimates.py
+      - name: Verify all model polls and averages
+        run: python3 scripts/validate_model_drilldown.py
       - name: Commit updated briefing
         run: |
           git config user.name "election-briefing-bot"
