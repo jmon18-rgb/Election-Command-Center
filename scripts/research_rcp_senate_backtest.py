@@ -163,6 +163,7 @@ def build(texts,mit_doc,digests=None):
         "poll_lookback_days":WINDOW_DAYS,
         "poll_observation_coverage":source_audit,
         "outcome_eligible_races":len(outcomes),
+        "outcome_eligible_by_year":{str(y):sum(key[0]==y for key in outcomes) for y in YEARS},
         "excluded_insufficient_pollsters":underpolled,
         "races_evaluated":len(rows),
         "by_year":by_year,
