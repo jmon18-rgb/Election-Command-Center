@@ -210,6 +210,9 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-pin-area{margin:5px 0 12px}
 .en-pin-area button[aria-pressed=true]{background:#395329;border-color:#82b478;color:#e5f3dc}
 @media(max-width:650px){.en-watchlist{padding:12px}.en-watch-head>div{gap:3px;align-items:flex-start;flex-direction:column}}
+.en-civic-link{font-size:10px;align-self:center;color:#91c9ef;margin:0 0 0 -4px;white-space:nowrap}
+.en-watch-entry:has(+.en-civic-link){margin-right:0}
+.en-watch-items .en-civic-link{padding:0 4px}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -1677,6 +1680,8 @@ function enWatchToggle(item){
  }else enWatched.push({office:item.office,key:item.key});
  $('#enWatchError').textContent='';
  enWatchSave();enRenderWatchlist();if(enModeYear===2026)enRender();
+ if(enModeYear===2026&&enIsVisible()&&!enSupportedStates.has(item.key.slice(0,2)))
+  void enRefreshCivicWatchlist(true);
 }
 /* civicAPI is a separately attributed watchlist supplement for races in
  * states missing from Open America's 22-state source. Never mix provider
@@ -1831,7 +1836,7 @@ function enWatchStatus(item){
  const state=item.key.slice(0,2),data=enOfficeSnapshots[item.office]||
    (enModeYear===2026&&enOffice===item.office?enData:null);
  const race=data?.races?.[item.key];
- if(!enSupportedStates.has(state))return 'Outside the 22-state source · use linked decision desks for results';
+ if(!enSupportedStates.has(state))return 'Outside the 22-state source · '+enCivicStatus(item);
  if(race&&race.total>0){
   const lead=enLeadInfo(race),leader=enCurrentLeader(race);
   return (leader?lead.short+' · '+enNum(lead.votes)+' votes ahead':'Even')+
@@ -1866,6 +1871,11 @@ function enRenderWatchlist(){
   remove.setAttribute('aria-label','Remove '+title+' from watchlist');
   remove.addEventListener('click',()=>enWatchToggle(item));
   line.append(open,remove);host.append(line);
+  if(!enSupportedStates.has(item.key.slice(0,2))){
+   const source=elt('a','en-civic-link',enCivicByWatch[enWatchId(item)]?'civicAPI race source ↗':'civicAPI provider ↗');
+   source.href=enCivicURL(item);source.target='_blank';source.rel='noopener noreferrer';
+   host.append(source);
+  }
  }
 }
 $('#enWatchForm').addEventListener('submit',event=>{
@@ -2262,7 +2272,11 @@ function enQueueRefresh(){
   return snap?.live&&Number.isFinite(at)&&Date.now()-at<180*60000;
  });
  const preferred=watchingLive?{live:true}:enData;
- enTimer=setTimeout(()=>{enTimer=null;enLoad(false)},enRefreshInterval(preferred,enFailures));
+ const civicActive=Date.now()>=Date.parse('2026-11-03T05:00:00Z')&&
+  enWatched.some(x=>!enSupportedStates.has(x.key.slice(0,2)));
+ const interval=enRefreshInterval(preferred,enFailures);
+ enTimer=setTimeout(()=>{enTimer=null;enLoad(false)},
+   civicActive?Math.min(interval,60000):interval);
 }
 async function enLoad(manual=false){
  if(enTimer){clearTimeout(enTimer);enTimer=null}
@@ -2299,7 +2313,10 @@ async function enLoad(manual=false){
   $('#enStatus').textContent=(enData?'LAST VERIFIED RESULTS RETAINED · ':'RESULTS SOURCE UNAVAILABLE · ')+
      enFetchError+'. '+(year===2026?'See the official-state source link below.':'No vote counts are substituted.');
  }
- if(serial===enRequestSerial)enQueueRefresh();
+ if(serial===enRequestSerial){
+  enQueueRefresh();
+  if(year===2026)void enRefreshCivicWatchlist();
+ }
 }
 function enSwitch(year,office,preferredKey=null){
  if(year===2024&&office==='Governor')enArchiveSource='state';
