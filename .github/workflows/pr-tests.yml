@@ -76,6 +76,11 @@ jobs:
       - name: Advisory civicAPI live-provider health and CORS
         continue-on-error: true
         run: python3 scripts/test_civicapi_live_source.py
+      - name: Test eight additional Senate and governor civicAPI adapters
+        run: |
+          node --check scripts/civicapi_state_batch.js
+          node --check scripts/test_civicapi_al_mt_nm_ok_tn.cjs
+          node scripts/test_civicapi_al_mt_nm_ok_tn.cjs
       - name: Discover five more uncovered 2026 states in real civicAPI
         run: python3 scripts/probe_civicapi_al_mt_nm_ok_tn.py
       - name: Install DOM test environment
