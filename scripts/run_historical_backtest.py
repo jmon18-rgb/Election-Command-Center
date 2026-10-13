@@ -196,6 +196,49 @@ def correlated_error_diagnostics(evaluations):
             "Do not convert these components into election-win probabilities without additional holdout validation.",
             "No region/state covariance matrix estimated; only one observation per race-year."]}
 
+def historical_interval_coverage(evaluations):
+    """Forward-only coverage of empirical polling margin error intervals."""
+    def quantile(values, probability):
+        values=sorted(values)
+        position=(len(values)-1)*probability
+        lower=int(position)
+        upper=min(lower+1,len(values)-1)
+        return values[lower]+(values[upper]-values[lower])*(position-lower)
+
+    years=sorted({r["year"] for r in evaluations})
+    folds=[]
+    for year in years[1:]:
+        training=[r for r in evaluations if r["year"]<year]
+        testing=[r for r in evaluations if r["year"]==year]
+        candidates=sorted({r["method"] for r in training})
+        if not candidates:continue
+        scores={method:sum(abs(r["error"]) for r in training if r["method"]==method)/
+                sum(r["method"]==method for r in training) for method in candidates}
+        selected=min(candidates,key=lambda method:(scores[method],method))
+        past=[r["error"] for r in training if r["method"]==selected]
+        future=[r["error"] for r in testing if r["method"]==selected]
+        if len(past)<10 or not future:continue
+        intervals={}
+        for level in (80,90):
+            alpha=(100-level)/200
+            lo=quantile(past,alpha)
+            hi=quantile(past,1-alpha)
+            hits=sum(lo<=error<=hi for error in future)
+            intervals[str(level)]={"lower":round(lo,3),"upper":round(hi,3),
+                "covered":hits,"total":len(future),"coverage":round(hits/len(future),3)}
+        folds.append({"held_out_year":year,"selected_method":selected,
+            "training_races":len(past),"test_races":len(future),"intervals":intervals})
+    total=sum(fold["test_races"] for fold in folds)
+    pooled={}
+    for level in ("80","90"):
+        covered=sum(fold["intervals"][level]["covered"] for fold in folds)
+        pooled[level]={"covered":covered,"total":total,
+            "coverage":round(covered/total,3) if total else None}
+    return {"status":"completed" if folds else "insufficient_data",
+        "folds":folds,"pooled_coverage":pooled,
+        "note":"Descriptive forward-tested margin-error coverage, not candidate victory probabilities. Observations within an election year are correlated."}
+
+
 def main():
     official=official_outcomes(fetch(RESULT_URL))
     evaluations,discrepancies=run(fetch(POLL_URL),official)
@@ -209,6 +252,7 @@ def main():
         "leave_one_year_out":leave_one_year_out(evaluations),
         "forward_year_holdouts":forward_year_holdouts(evaluations),
         "correlated_error_diagnostics":correlated_error_diagnostics(evaluations),
+        "historical_interval_coverage":historical_interval_coverage(evaluations),
         "modern_era_2018_onward":summarize([r for r in evaluations if r["year"]>=2018]),
         "midterm_cycles":summarize([r for r in evaluations if r["year"]%4==2]),
         "presidential_cycles":summarize([r for r in evaluations if r["year"]%4==0]),
