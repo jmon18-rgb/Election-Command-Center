@@ -183,3 +183,11 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Added a second 2024 rehearsal source using the Open America browser-native archive: named candidates, reported precinct shares, House/Senate and available governor data, independent from MIT full 2024 historical party aggregates. This is archived final-source-style data, not a timed historical count replay.
 - Fixed reporting timeline edge cases: **first arrivals**, **lead changes at unchanged overall votes** and **candidate reallocations** now surface without generating false movement on identical refreshed records.
 - Added deterministic browser tests for state archive source switching, native candidate/precinct rendering, unchanged-total corrections, initial reporting and never confusing archived records with live 2026 counts.
+
+## Oct 13: personal desktop watchlist and multi-office live caching
+
+- Added personally pinned 2026 House/Senate/governor races, persistent **on this laptop/browser**, with strict seat-code validation and no app sign-in or remote collection. Users can pin ahead of Election Day.
+- Watchlist surfaces saved races across the three offices, displays real reported leads/precinct data where supported, and labels unsupported states and unreported races without pretending a zero vote count. Current-race detail supports pin/unpin.
+- Added per-office in-session last-verified-result caches; switching among House, Senate and governors no longer discards verified counts. Watched offices can refresh in the background while Election Night is open, using 60-second updates when the source is live.
+- Fixed a subtler reporting bug: global provider `as_of` can remain unchanged while a state changes; individual candidate vote differences still produce activity. Race withdrawals are shown as missing from the source, not assigned zero.
+- Validations reject regressed timestamps or a sudden blank state feed after confirmed counting, retaining last verified data. DOM regression tests cover persistence, pin inputs, unsupported-state accuracy, cross-office refreshing and fail-closed updates.
