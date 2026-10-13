@@ -124,10 +124,17 @@
     }
   ],
   "pipeline": {
-    "last_attempt_at": "2026-10-13T13:06:18.257452Z",
-    "successful_queries": 6,
+    "last_attempt_at": "2026-10-13T13:08:57.328799Z",
+    "successful_queries": 0,
     "total_queries": 6,
     "kind": "automated_news_headlines_not_verified_facts",
-    "errors": []
+    "errors": [
+      "updates: HTTPError: HTTP Error 503: Service Unavailable",
+      "updates: HTTPError: HTTP Error 503: Service Unavailable",
+      "updates: HTTPError: HTTP Error 503: Service Unavailable",
+      "security: HTTPError: HTTP Error 503: Service Unavailable",
+      "security: HTTPError: HTTP Error 503: Service Unavailable",
+      "security: HTTPError: HTTP Error 503: Service Unavailable"
+    ]
   }
 }
