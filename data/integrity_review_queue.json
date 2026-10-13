@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-13T01:03:38.436117Z",
+  "updated_at": "2026-10-13T01:07:18.387708Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 8,
+  "new_leads": 1,
   "items": [
     {
       "id": "535371eb2b067753bc75",
@@ -63,6 +63,21 @@
       "publisher": "PBS",
       "published_at": "2026-10-12T17:27:25Z",
       "detected_at": "2026-10-13T01:03:38.436117Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "d15e82638a33bdaee303",
+      "title": "Many GOP states have imposed voting rules mirroring Trump's midterm proposals - PBS",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNYnpJUHd6RFhnRkJoeWZFN1RCb3J1UmdZSTFPM1VBY2pJZUJSNGNNS2U3Q3BjemdCRWVheGNidjVOeEU3Q1NneTJoUjVONDY4VmVmeTJXaFNDTmNuVFJBaGdsc0NaUGNFWlNzWHhYN1B5UWRSNEtYNkd1WEFwTWp1LTA5M01YRllnanZuT2V1ME81a3psUUxyT09RZXhReWFEM0kwUmxobkR2bzR6LXFINF9UQlJfVEpSYVHSAboBQVVfeXFMTWJ6SVB3ekRYZ0ZCaHlmRTdUQm9ydVJnWUkxTzNVQWNqSWVCUjRjTUtlN0NwY3pnQkVlYXhjYnY1TnhFN0NTZ3kyaFI1TjQ2OFZlZnkyV2hTQ05jblRSQWhnbHNDWlBjRVpTc1h4WDdQeVFkUjRLWDZHdVhBcE1qdS0wOTNNWEZZZ2p2bk9ldTBPNWt6bFFMck9PUWV4UXlhRDNJMFJsaG5Edm80ei1xSDRfVEJSX1RKUmFR?oc=5",
+      "publisher": "PBS",
+      "published_at": "2026-10-12T17:27:25Z",
+      "detected_at": "2026-10-13T01:07:18.387708Z",
       "state_hints": [],
       "topic_hints": [],
       "headline_numbers_unverified": [],
