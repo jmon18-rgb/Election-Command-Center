@@ -1,9 +1,26 @@
 {
-  "updated_at": "2026-10-13T14:34:40.508077Z",
+  "updated_at": "2026-10-13T14:41:12.157398Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "items": [
+    {
+      "id": "8d352ca2ff37d1991521",
+      "title": "House Democrats Host Shadow Hearing Ahead of Midterm Elections - New York City News Service",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOLVQydkExeXl0ZG8zSmdJSXk3RWZ5NjB4aGNodGpuNTN5MlFOYkQ1d1ZNR21YUXFhX29ReE01c3MwaE5va0dFN0hlZTBGc3daNENFZ1FWVUhPMnppSVBZZ0hkZkNOc0lzemI0ZnVjZEpBOFRpVzFxTDduYXF4MWUwRU9aM0lRUHcxcmUxdlFtaGlHMUYtUGhVSk1LMjBBT1B0ekkyNHBYNEE2U0d0?oc=5",
+      "publisher": "New York City News Service",
+      "published_at": "2026-10-13T14:39:32Z",
+      "detected_at": "2026-10-13T14:41:12.157398Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "d0a395b1cb946cd1fccc",
       "title": "Black Church Leaders Broaden Voter Outreach Ahead of Midterm Elections - Word&Way",
