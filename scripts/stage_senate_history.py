@@ -65,14 +65,14 @@ def normalize_party(text):
 
 def as_votes(raw):
     value=str(raw or "").strip().replace(",","")
-    if not re.fullmatch(r"[0-9]+(?:\\.0+)?",value):return None
+    if not re.fullmatch(r"[0-9]+(?:\.0+)?",value):return None
     num=int(float(value))
     return num if 0<=num<=50_000_000 else None
 
 def parse_source(text,source_file_id=None,sha256=None):
     if not isinstance(text,str) or not text.strip():raise ValueError("No source records")
     first_line=text.splitlines()[0]
-    delimiter="\\t" if first_line.count("\\t")>first_line.count(",") else ","
+    delimiter="\t" if first_line.count("\t")>first_line.count(",") else ","
     reader=csv.DictReader(io.StringIO(text),delimiter=delimiter)
     reader.fieldnames=[str(x).strip().lower().replace(" ","_") for x in (reader.fieldnames or [])]
     columns=set(reader.fieldnames)
@@ -156,7 +156,7 @@ def parse_source(text,source_file_id=None,sha256=None):
 def main():
     text,file_id,checksum=download()
     doc=parse_source(text,file_id,checksum)
-    DEST.write_text(json.dumps(doc,ensure_ascii=False,separators=(",",":"))+"\\n",encoding="utf-8")
+    DEST.write_text(json.dumps(doc,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
     print("MIT Senate historical outcomes staged:",doc["contests_by_year"],
           "missing major-party vote contests:",doc["contests_without_both_major_party_votes"])
 
