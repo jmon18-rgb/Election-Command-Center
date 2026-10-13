@@ -14,6 +14,7 @@ on:
       - 'scripts/validate_model_drilldown.py'
       - 'index.html'
       - 'data/integrity_impact.json'
+      - 'data/pollster_quality.json'
       - '.github/workflows/refresh-briefing.yml'
   schedule:
     - cron: '17 */4 * * *'
