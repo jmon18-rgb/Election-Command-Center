@@ -1912,7 +1912,7 @@ function renderSenateBiasHoldout(){
  const h=d.all_heldout_races.half_prior_bias.mae_points;
  const full=d.all_heldout_races.full_prior_bias.mae_points;
  const meaning=full>u?'increased':full<u?'reduced':'left unchanged';
- summary.append(elt('strong','', '42-race error check · '),
+ summary.append(elt('strong','', d.source_race_count+'-race error check · '),
    elt('span','', 'A full past-bias correction '+meaning+' average absolute error from '+
      u.toFixed(2)+' to '+full.toFixed(2)+' points. A half-strength correction: '+h.toFixed(2)+' points.'));
  const addcell=(row,value,style='')=>row.append(elt('td',style,value));
