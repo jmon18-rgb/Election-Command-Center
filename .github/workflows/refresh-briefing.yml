@@ -68,6 +68,10 @@ jobs:
       - name: Update published DDHQ joint outcome probabilities
         continue-on-error: true
         run: python3 scripts/update_scenario_forecast.py
+      - name: Validate refreshed scenario snapshot and rendered dashboard
+        run: |
+          python3 scripts/test_scenario_forecast.py
+          node scripts/test_dashboard_runtime.cjs
       - name: Run model diagnostics
         run: python3 scripts/test_polling_models.py
       - name: Build Senate polling estimates
