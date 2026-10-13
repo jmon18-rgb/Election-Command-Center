@@ -191,3 +191,11 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Added per-office in-session last-verified-result caches; switching among House, Senate and governors no longer discards verified counts. Watched offices can refresh in the background while Election Night is open, using 60-second updates when the source is live.
 - Fixed a subtler reporting bug: global provider `as_of` can remain unchanged while a state changes; individual candidate vote differences still produce activity. Race withdrawals are shown as missing from the source, not assigned zero.
 - Validations reject regressed timestamps or a sudden blank state feed after confirmed counting, retaining last verified data. DOM regression tests cover persistence, pin inputs, unsupported-state accuracy, cross-office refreshing and fail-closed updates.
+
+## Oct 13: additional election-night coverage from civicAPI
+
+- Verified civicAPI v2 **real browser CORS**, source race search, and exact Nov. 3, 2026 election IDs for New Hampshire House/Senate/Governor and Nevada; unlike its failing election-date directory, the search and detailed race record endpoints respond with valid JSON.
+- Connected civicAPI as a **separate, source-attributed live watchlist fallback** for manually pinned races outside Open America's 22-state coverage. Matched US state, Nov. 3 date, race office, 2026 district identifier, special-vs-regular seat and provider ID to prevent displaying irrelevant primary/special-election counts.
+- Added real source contract tests and client-side regression tests for candidate totals, race IDs, bad dates, source calls, wrong offices and independence from Open America's metrics. Calls clearly identified as civicAPI's own, never as official certification.
+- Source-aware polling runs only for watchlisted out-of-coverage seats, at most 12 per sweep, with one-minute election-night / ten-minute pre-election pacing. User pins stay local; raw provider results are not mirrored.
+- **Next:** reconcile more source-specific races and winner-call changes, ensure full state/county coverage only when observed, and improve laptop alerting when watched results update.
