@@ -206,15 +206,15 @@ async function settle(){
    fakeSnap('2026-10-13T12:00:00Z',txSen.dem_candidate,3.2,'changed-method')
  ]})+')');
  assert.equal(mismatch.length,1,'Never draw poll changes across candidate or algorithm changes');
- w.eval('modelHistoryData='+JSON.stringify(goodHistory)+';renderModelTrend('+JSON.stringify(txSen)+')');
+ w.eval('setModelHistoryData('+JSON.stringify(goodHistory)+');renderModelTrend('+JSON.stringify(txSen)+')');
  assert(get('#modelTrendChart').querySelector('polyline'),'Real two-snapshot model series must plot');
  assert.match(get('#modelTrendNote').textContent,/actual saved average snapshots/);
  assert.match(get('#modelTrendChange').textContent,/D \+1\.2/);
- w.eval('modelHistoryData='+JSON.stringify({snapshots:[goodHistory.snapshots[0]]})+
+ w.eval('setModelHistoryData('+JSON.stringify({snapshots:[goodHistory.snapshots[0]]})+')'+
   ';renderModelTrend('+JSON.stringify(txSen)+')');
  assert(!get('#modelTrendChart').querySelector('polyline'),'One snapshot cannot create a fake trend');
  assert.match(get('#modelTrendChange').textContent,/Awaiting longer history/);
- w.eval('modelHistoryData='+JSON.stringify(history));
+ w.eval('setModelHistoryData('+JSON.stringify(history)+')');
  // The same multipurpose Recon survey contains DISTINCT 2026 Senate and
  // Governor ballot questions. Check model inclusion, vote-share match and
  // exact original drilldown selection in BOTH office tabs.
