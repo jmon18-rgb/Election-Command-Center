@@ -4,7 +4,7 @@
 
 ## Current experience
 - **Daily briefing:** Generic ballot, Senate polling overview, new surveys, race alerts, and the Bullshittery Index radar.
-- **JackStradamus v1.3:** Four office tabs: Senate, House, Governors and National Generic Ballot. Averages use 21-day recency weights, bounded sample-size influence, published 538 historical accuracy/transparency ratings, and a symmetric 0.5× sponsorship factor. Explicitly excluded pollsters are declared, and unrated firms receive neutral quality weights. Every included poll shows its published influence and historical rating; full source-to-model reconciliation runs after refreshes. See [POLLING_MODEL.md](POLLING_MODEL.md). House/Gov coverage is still limited to races with polling, not all contests.
+- **JackStradamus v1.4:** Four office tabs: Senate, House, Governors and National Generic Ballot. Averages use 21-day recency weights, bounded sample-size influence, published 538 historical accuracy/transparency ratings, and a symmetric 0.5× sponsorship factor. Explicitly excluded pollsters are declared, and unrated firms receive neutral quality weights. Every included poll shows its published influence and historical rating; full source-to-model reconciliation runs after refreshes. See [POLLING_MODEL.md](POLLING_MODEL.md). House/Gov coverage is still limited to races with polling, not all contests.
 - **Race Lab:** Explore Senate, House and gubernatorial polls without altering the headline Senate model.
 - **Bullshittery Index:** Separate sourced election-administration concerns from the candidate polling data.
 - **Election Night (new):** A live-results view from a documented, free state-derived JSON source with a 2024 historical archive, party-colored D/R margin indicators, vote gaps and labeled precinct progress. It is partial (22 states supported by the provider), never calls a winner, and does not yet estimate chamber control. The former manual vote-entry prototype is retired. The old **Senate Paths** slider remains retired.
@@ -31,3 +31,18 @@
 - A chart of historical poll observations is not historical model output.
 - A reported incident, an affected record and a disenfranchised voter are different things.
 - Sources and units are more useful than more disclaimers.
+
+## October 13 build notes (v1.4)
+- Fixed root-level `blue-waves-hero.jpg` reference; removed the forced slogan.
+- New polls now sort by official release timestamp when supplied, else scraper first-seen. Upstream currently provides **field-end only**, so the brief must not label first-seen as release.
+- Expanded retained race observations from 12 to 60 to avoid dropping distinct firms from the analysis; no change to the symmetric 0.5× sponsored weight.
+- Visible sensitivity and effective-pollster metrics help identify weight concentration without inventing a probability interval.
+- Staged, *not deployed*, a Silver-inspired signed sponsorship-prior test. Future independent-poll error changed only marginally (2.837 to 2.799 points), and no historic election-result calibration exists to support enabling it.
+
+### Silver-parity roadmap
+1. **Pollster quality:** parse Silver's January 2026 XLSX, preserve original metadata, review aliases, and evaluate predictive plus-minus against archived 538 quality on held-out election years.
+2. **Poll sample type and original release:** source poll URLs and LV/RV/adult breakdowns from primary records rather than guessing from the current ElectIndex CSV.
+3. **Poll averaging:** fit local-regression smoothing and population corrections against strictly future polling observations, compare house-effect shrinkage and effective-firm caps.
+4. **CANTOR-like polling priors:** ingest contemporaneous district/state partisanship, post-redistricting boundaries, national environment and geographic/electoral similarities; mark unpolled races as imputed, not surveyed.
+5. **Classic/Deluxe:** add fundraising, incumbency, experience, and separately attributed Cook/Ettingermentum/Silver outside forecasts (respecting reuse terms and analyst correlations).
+6. **Calibration:** time-stamped historical election-result holdouts, correlated national/regional error, seat-by-seat simulations, proper scoring rules and reliability checks. Do not claim a scientifically calibrated win percentage before passing these gates.
