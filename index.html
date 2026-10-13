@@ -89,8 +89,16 @@ document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==
 if(updateUrl&&window.history?.replaceState)history.replaceState(null,'','#'+tab.dataset.page)
 }
 document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>activatePage(t,true)));
-window.addEventListener('hashchange',()=>activatePage(document.querySelector('.tab[data-page="'+location.hash.slice(1)+'"]'),false));
-activatePage(document.querySelector('.tab[data-page="'+location.hash.slice(1)+'"]'),false);
+
+const tabFromHash=()=>document.querySelector('.tab[data-page="'+location.hash.slice(1).split('/')[0]+'"]');
+window.addEventListener('hashchange',()=>{
+ activatePage(tabFromHash(),false);
+ const state=location.hash.match(/^#model\/([A-Z]{2})$/)?.[1];
+ if(state&&typeof latestSenateEstimates!=='undefined'&&latestSenateEstimates?.states?.some(s=>s.state===state)){
+  selectedModelState=state;renderModelOverview(latestSenateEstimates)
+ }
+});
+activatePage(tabFromHash(),false);
 document.querySelectorAll('.chip').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x===t));window.selectedRaceType=t.dataset.race.toLowerCase();renderRaceList()}));
 document.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>{const tab=document.querySelector('.tab[data-page="'+b.dataset.jump+'"]');if(tab){tab.click();window.scrollTo({top:0,behavior:'smooth'})}}));function countdown(){const d=new Date();const today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(d);const m=today.match(/(\d{4})-(\d{2})-(\d{2})/);if(!m)return;const days=Math.round((Date.UTC(2026,10,3)-Date.UTC(+m[1],+m[2]-1,+m[3]))/86400000);$('#countdown').textContent=days>0?days+' days':days===0?'Election Day':'Election complete'}countdown();
 function renderItems(id,items){if(!Array.isArray(items)||!items.length)return;const node=$('#'+id);node.replaceChildren();for(const x of items){if(!x||typeof x.title!=='string')continue;const div=document.createElement('div');div.className='item';const title=document.createElement('strong');title.textContent=x.title;div.append(title);if(x.source||x.published_at){const meta=document.createElement('small');const date=x.published_at?new Date(x.published_at).toLocaleDateString('en-US',{month:'short',day:'numeric'}):'';meta.textContent=[x.source,date].filter(Boolean).join(' · ');div.append(meta)}if(typeof x.url==='string'&&x.url.startsWith('https://')){const link=document.createElement('a');link.href=x.url;link.target='_blank';link.rel='noopener';link.textContent='Read source ↗';const sm=document.createElement('small');sm.append(link);div.append(sm)}node.append(div)}}
@@ -135,6 +143,8 @@ function renderModelOverview(data){
  const updated=data?.generated_at?new Date(data.generated_at):null;
  $('#modelUpdated').textContent=updated&&!Number.isNaN(+updated)?'Updated '+updated.toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):'Latest snapshot';
  if(!races.length){board.append(elt('div','empty','No current Senate polling estimates.'));return}
+ const requested=window.location.hash.match(/^#model\/([A-Z]{2})$/)?.[1];
+ if(requested&&races.some(r=>r.state===requested))selectedModelState=requested;
  if(!races.some(r=>r.state===selectedModelState))selectedModelState=races[0].state;
  const surname=name=>(name||'').trim().split(/\s+/).at(-1)||'—';
  races.sort((a,b)=>Math.abs(a.dem_minus_rep)-Math.abs(b.dem_minus_rep)||a.state_name.localeCompare(b.state_name));
@@ -154,6 +164,7 @@ function renderModelOverview(data){
   row.addEventListener('click',()=>{
    selectedModelState=race.state;
    modelPollMode='included';
+   if(window.history?.replaceState)window.history.replaceState(null,'','#model/'+race.state);
    renderModelOverview(latestSenateEstimates);
    if(window.matchMedia&&window.matchMedia('(max-width:820px)').matches)$('#modelDetail').scrollIntoView({behavior:'smooth',block:'start'})
   });
