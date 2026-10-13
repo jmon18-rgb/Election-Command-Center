@@ -1632,8 +1632,8 @@ const enHouseSeatCounts={AL:7,AK:1,AZ:9,AR:4,CA:52,CO:8,CT:5,DE:1,FL:28,GA:14,
  WA:10,WV:2,WI:8,WY:1};
 let enOfficeSnapshots=Object.create(null),enOfficeErrors=Object.create(null);
 function enWatchParse(input){
- const value=String(input||'').toUpperCase().trim().replace(/\\s+/g,'');
- let match=value.match(/^([A-Z]{2})-(\\d{2})$/);
+ const value=String(input||'').toUpperCase().trim().replace(/\s+/g,'');
+ let match=value.match(/^([A-Z]{2})-(\d{2})$/);
  if(match){
   const size=enHouseSeatCounts[match[1]],number=+match[2];
   if(!size||(size===1&&number!==0)||(size>1&&(number<1||number>size)))return null;
