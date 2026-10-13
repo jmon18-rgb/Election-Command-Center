@@ -24,7 +24,7 @@ BASE="https://dataverse.harvard.edu"
 DATASET=BASE+"/dataset.xhtml?persistentId="+urllib.parse.quote(DOI,safe=":/")
 API=BASE+"/api/datasets/:persistentId/?persistentId="+urllib.parse.quote(DOI,safe="")
 YEARS=(2020,2022,2024)
-EXPECTED_FIELDS={"year","state_po","stage","special","party","candidatevotes"}
+EXPECTED_FIELDS={"year","state_po","stage","special","party_detailed","party_simplified","candidatevotes"}
 STATE_CODES={
 "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA",
 "KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ",
@@ -100,10 +100,11 @@ def parse_source(text,source_file_id=None,sha256=None):
         if votes is None:
             bucket["invalid_vote_rows"]+=1
             continue
-        party=normalize_party(row.get("party"))
+        party=normalize_party(row.get("party_simplified"))
         bucket[party]+=votes
         bucket["candidates"].append({"name":candidate or "Name missing from source",
-                                      "party":str(row.get("party") or "").strip(),
+                                      "party":str(row.get("party_detailed") or "").strip(),
+                                      "party_simplified":str(row.get("party_simplified") or "").strip(),
                                       "party_group":party,"votes":votes})
     out=[]
     for (year,state,contest),v in sorted(all_rows.items()):
