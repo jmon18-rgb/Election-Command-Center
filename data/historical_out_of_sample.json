@@ -1,0 +1,142 @@
+{
+  "status": "executed_out_of_sample_historical_senate",
+  "source_polling": "https://github.com/Jack-Whitcomb/All-US-Senate-polls-2006-2024/blob/main/2006_to_2024_senate_polls_with_actuals.csv",
+  "source_results": "https://github.com/fivethirtyeight/election-results/blob/main/election_results_senate.csv",
+  "race_count": 51,
+  "methods": [
+    "equal",
+    "recency21",
+    "recency21_size",
+    "recency35_size"
+  ],
+  "protocol": "8 days before election, 45 day window, most recent poll per pollster, 2+ firms; exclude special/multiple-seat/RCV/independent-winner and bundled result mismatch >0.2",
+  "leave_one_year_out": {
+    "folds": [
+      {
+        "year": 2018,
+        "training_years": [
+          2020,
+          2022,
+          2024
+        ],
+        "n": 14,
+        "selected": "recency21_size",
+        "training_mae": {
+          "equal": 4.828,
+          "recency21": 4.696,
+          "recency21_size": 4.69,
+          "recency35_size": 4.703
+        },
+        "heldout_mae": 3.956,
+        "equal_mae": 4.776
+      },
+      {
+        "year": 2020,
+        "training_years": [
+          2018,
+          2022,
+          2024
+        ],
+        "n": 11,
+        "selected": "recency21_size",
+        "training_mae": {
+          "equal": 4.578,
+          "recency21": 4.245,
+          "recency21_size": 4.142,
+          "recency35_size": 4.249
+        },
+        "heldout_mae": 5.749,
+        "equal_mae": 5.673
+      },
+      {
+        "year": 2022,
+        "training_years": [
+          2018,
+          2020,
+          2024
+        ],
+        "n": 12,
+        "selected": "recency21_size",
+        "training_mae": {
+          "equal": 4.773,
+          "recency21": 4.49,
+          "recency21_size": 4.417,
+          "recency35_size": 4.515
+        },
+        "heldout_mae": 4.721,
+        "equal_mae": 4.946
+      },
+      {
+        "year": 2024,
+        "training_years": [
+          2018,
+          2020,
+          2022
+        ],
+        "n": 14,
+        "selected": "recency21_size",
+        "training_mae": {
+          "equal": 5.098,
+          "recency21": 4.829,
+          "recency21_size": 4.737,
+          "recency35_size": 4.815
+        },
+        "heldout_mae": 3.832,
+        "equal_mae": 4.064
+      }
+    ],
+    "pooled": {
+      "n": 51,
+      "selected_mae": 4.489,
+      "equal_mae": 4.814
+    }
+  },
+  "forward_only": {
+    "folds": [
+      {
+        "year": 2020,
+        "training_years": [
+          2018
+        ],
+        "n": 11,
+        "selected": "recency21_size",
+        "heldout_mae": 5.749,
+        "equal_mae": 5.673
+      },
+      {
+        "year": 2022,
+        "training_years": [
+          2018,
+          2020
+        ],
+        "n": 12,
+        "selected": "recency21_size",
+        "heldout_mae": 4.721,
+        "equal_mae": 4.946
+      },
+      {
+        "year": 2024,
+        "training_years": [
+          2018,
+          2020,
+          2022
+        ],
+        "n": 14,
+        "selected": "recency21_size",
+        "heldout_mae": 3.832,
+        "equal_mae": 4.064
+      }
+    ],
+    "pooled": {
+      "n": 37,
+      "selected_mae": 4.69,
+      "equal_mae": 4.828
+    }
+  },
+  "limitations": [
+    "Historical selection tests reuse one data sample for developing the method candidates; do not treat as fully independent prospective validation.",
+    "2020 forward fold trained on 2018 only.",
+    "Candidate-level matchup and pollster sponsorship verification incomplete.",
+    "Published election returns are independently sourced but not a state-by-state certified audit."
+  ]
+}
