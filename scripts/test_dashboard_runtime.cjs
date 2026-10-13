@@ -60,6 +60,28 @@ async function settle(){
 (async()=>{
  w.eval(scripts[0]);
  await settle();
+ // Distinguish observed historical election variation from a calibrated
+ // outcome forecast. Audit exactly the 191 map-comparable party-vote seats.
+ const twoCycle=json('data/house_two_cycle_context.json');
+ assert.equal(twoCycle.coverage.districts_with_two_historical_major_party_shares,191);
+ const points=w.eval('historicalHouseSwingSample('+JSON.stringify(twoCycle)+')');
+ assert.equal(points.length,191,'Only directly comparable 2022/24 House races');
+ assert(points.every(Number.isFinite));
+ assert.equal(points[0]<=points.at(-1),true,'Sorted historical shifts');
+ assert(twoCycle.rows.some(x=>x.race_code_2026==='TX-01'&&!x.can_compare_historic_two_party_votes),
+  'Changed-map Texas seat must be excluded');
+ w.eval('renderHouseHistoricalSwing('+JSON.stringify(twoCycle)+')');
+ assert.match(get('#houseSwingSummary').textContent,/191 \/ 435/);
+ assert.match(get('#houseSwingNote').textContent,/NOT a calibrated polling-error distribution/);
+ const bins=[...get('#houseSwingDistribution').querySelectorAll('.house-history-bin')];
+ assert.equal(bins.length,8);
+ assert.equal(bins.reduce((n,x)=>n+Number(x.querySelector('strong').textContent),0),191,
+  'Every eligible district must appear exactly once in the historical distribution');
+ const corruptTwoCycle=structuredClone(twoCycle);
+ const eligible=corruptTwoCycle.rows.find(x=>x.can_compare_historic_two_party_votes);
+ eligible.geography_comparable_across_all_three_elections=false;
+ assert.equal(w.eval('historicalHouseSwingSample('+JSON.stringify(corruptTwoCycle)+')'),null,
+  'Data with an unmapped district may not enter model research');
  // Poll Wire is a real searchable, source-attributed full-feed explorer,
  // not just the top ten survey postings shown on the Daily Brief.
  const wireTab=get('.tab[data-page="wire"]');
