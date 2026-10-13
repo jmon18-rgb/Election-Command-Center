@@ -71,8 +71,8 @@ def find_columns(headers):
     pollster = get(lambda v: v in {"pollster", "pollster name", "pollster pollster"})
     plusminus = get(lambda v: "predictive" in v and "plus" in v and "minus" in v)
     bias = get(lambda v: ("mean" in v and "revert" in v and "bias" in v))
-    grade = get(lambda v: v in {"grade", "rating", "overall grade", "letter grade"})
-    history = get(lambda v: v in {"number of polls", "polls", "poll count", "n polls"})
+    grade = get(lambda v: v in {"grade", "rating", "overall grade", "letter grade", "sb grade"})
+    history = get(lambda v: v in {"number of polls", "polls", "poll count", "n polls", "of polls"})
     if pollster is not None and plusminus is not None and bias is not None:
         return dict(name=pollster,predictive_plus_minus=plusminus,
                     mean_reverted_bias=bias,grade=grade,history_count=history)
@@ -92,9 +92,18 @@ def main():
             columns=find_columns(headers)
             if not columns:
                 continue
+            # The supplied sheet uses column A for a numeric ranking and puts
+            # pollster names in adjacent unlabeled column B. Resolve by content,
+            # not header text, and reject rank IDs mistakenly parsed as names.
+            candidate_cols=[columns["name"],columns["name"]+1]
+            def alpha_score(col):
+                sample=[str(row.get(col,"")).strip() for row in rows[i+1:i+60]]
+                return sum(bool(re.search(r"[A-Za-z]",v)) and not v.startswith("http") for v in sample)
+            name_col=max(candidate_cols,key=alpha_score)
             found={}
             for rec in rows[i+1:]:
-                name=rec.get(columns["name"],"").strip()
+                name=rec.get(name_col,"").strip()
+                if not re.search(r"[A-Za-z]",name):continue
                 pm=rec.get(columns["predictive_plus_minus"],"").strip()
                 if not name or not pm or norm(name) in {"total", "pollster", "average"}:
                     continue
@@ -108,6 +117,7 @@ def main():
                 except ValueError:
                     continue
                 found.setdefault(norm(name),entry)
+            columns["resolved_name"]=name_col
             valid.append((len(found),sheet,headers,columns,found))
     if not valid:
         raise ValueError("Could not validate pollster / predictive plus-minus / bias headers. No output written.")
@@ -120,6 +130,8 @@ def main():
         opts=[firm,entry.get("reference_pollster")]
         key=next((norm(o) for o in opts if norm(o) in records),None)
         if key:matches[firm]=records[key]["pollster"]
+    if len(matches)<20:
+        raise ValueError(f"Only {len(matches)} archived names matched; probable bad pollster column mapping")
     staged={
         "status":"staged_not_used_in_live_model",
         "source_name":"Silver Bulletin Pollster Stats Full 2026",
