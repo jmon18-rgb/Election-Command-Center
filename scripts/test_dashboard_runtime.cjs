@@ -72,7 +72,7 @@ async function settle(){
    governor:model.governor.filter(r=>['multi_poll','single_poll'].includes(r.status)).length
  });
  assert.equal(w.eval('modelOddsValidate('+JSON.stringify(oddsData)+','+JSON.stringify(model)+')'),true);
- w.eval('modelRaceOddsData='+JSON.stringify(oddsData)+';renderModelOverview(latestSenateEstimates)');
+ w.eval('setModelRaceOddsData('+JSON.stringify(oddsData)+')');
  assert.match(get('#modelOddsNumbers').textContent,/DEMOCRATIC/);
  assert.match(get('#modelOddsNumbers').textContent,/REPUBLICAN/);
  const baselineOdds=get('#modelOddsNumbers').textContent;
