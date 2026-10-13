@@ -1697,35 +1697,60 @@ function enRenderDetail(){
   if(est&&Number.isFinite(est.dem_minus_rep))comparison.textContent='Pre-election JackStradamus polling average: '+marginText(est.dem_minus_rep)+' · a polling baseline, not adjusted for current reporting geography or vote method.';
  }
 }
+
+function enFetchUrl(year,office){
+ if(year!==2026||!['House','Senate','Governor'].includes(office))
+   throw Error('Unsupported live-results source request');
+ return enRemoteBase+'?year='+year+'&office='+encodeURIComponent(office);
+}
+function enRefreshInterval(data,failures=0){
+ if(failures>0)return Math.min(600000,60000*Math.pow(2,Math.min(failures-1,4)));
+ if(data?.live)return 60000;
+ return data?.counting?900000:600000;
+}
+function enQueueRefresh(){
+ if(enTimer){clearTimeout(enTimer);enTimer=null}
+ if(enModeYear!==2026||!enIsVisible())return;
+ enTimer=setTimeout(()=>{enTimer=null;enLoad(false)},enRefreshInterval(enData,enFailures));
+}
 async function enLoad(manual=false){
  if(enTimer){clearTimeout(enTimer);enTimer=null}
  const serial=++enRequestSerial,year=enModeYear,office=enOffice;
- if(manual)$('#enStatus').textContent='Checking state-derived '+office.toLowerCase()+' returns…';
+ if(manual)$('#enStatus').textContent='Checking '+office+' source results…';
  try{
-  if(year!==2024||!['House','Senate'].includes(office))
-    throw Error('No browser-compatible, rights-cleared results feed is connected for '+year+' '+office+
-      '. Open an official or decision-desk source below for those results.');
-  const filename=office==='House'?'house_history_2024_staging.json':'senate_history_2020_2022_2024.json';
-  const res=await fetch('./data/'+filename,{cache:'no-store'});
-  if(!res.ok)throw Error('Local 2024 '+office+' archive not yet staged (HTTP '+res.status+')');
-  const obj=office==='House'?enBuildHouseArchive(await res.json()):enBuildSenateArchive(await res.json());
-  if(!obj)throw Error('Historical Senate archive failed validation');
+  let obj;
+  if(year===2026){
+   // Fetch from the browser, not a republished or cached server mirror.
+   const response=await fetch(enFetchUrl(year,office),{
+      mode:'cors',credentials:'omit',cache:'no-store',
+      headers:{Accept:'application/json'}
+   });
+   if(!response.ok)throw Error('Open America results HTTP '+response.status);
+   obj=await response.json();
+  }else if(year===2024&&['House','Senate'].includes(office)){
+   const filename=office==='House'?'house_history_2024_staging.json':'senate_history_2020_2022_2024.json';
+   const response=await fetch('./data/'+filename,{cache:'no-store'});
+   if(!response.ok)throw Error('Historical archive HTTP '+response.status);
+   obj=office==='House'?enBuildHouseArchive(await response.json()):enBuildSenateArchive(await response.json());
+   if(!obj)throw Error('Historical archive failed integrity checks');
+  }else throw Error('2024 Governor archive unavailable');
   if(serial!==enRequestSerial)return;
+  enFailures=0;
   enAcceptSource(obj);
  }catch(error){
   if(serial!==enRequestSerial)return;
-  enFetchError=error.message;
+  enFailures++;
+  enFetchError=String(error?.message||error);
   enLastFetchAt=new Date();
   enRender();
   $('#enStatus').classList.add('stale');
-  $('#enStatus').textContent=(enData?'LAST VERIFIED RESULTS RETAINED · ':'RESULTS UNAVAILABLE · ')+
-   'Last refresh failed: '+enFetchError+'. No polling estimates or fabricated counts are substituted.';
+  $('#enStatus').textContent=(enData?'LAST VERIFIED COUNTS RETAINED · ':'RESULTS SOURCE UNAVAILABLE · ')+
+     enFetchError+'. '+(year===2026?'See the official-state source link below.':'No vote counts are substituted.');
  }
- // Do not loop-poll a cross-origin API that explicitly denies browser CORS.
- // A licensed compatible 2026 adapter must pass contract tests before enabling timers.
+ if(serial===enRequestSerial)enQueueRefresh();
 }
 function enSwitch(year,office){
- enModeYear=year;enOffice=office;enData=null;enFetchError=null;enSelected=null;enVisibleLimit=120;$('#enSearch').value='';enRender();enLoad(true);
+ enModeYear=year;enOffice=office;enData=null;enFetchError=null;enFailures=0;enSelected=null;enVisibleLimit=120;$('#enSearch').value='';enRender();enLoad(true);
 }
 $('#enMode2026').addEventListener('click',()=>enSwitch(2026,enOffice));
 $('#enMode2024').addEventListener('click',()=>enSwitch(2024,enOffice));
@@ -1734,7 +1759,7 @@ $('#enOfficeSenate').addEventListener('click',()=>enSwitch(enModeYear,'Senate'))
 $('#enOfficeGovernor').addEventListener('click',()=>enSwitch(enModeYear,'Governor'));
 $('#enRefresh').addEventListener('click',()=>enLoad(true));
 $('#enSearch').addEventListener('input',()=>{enVisibleLimit=120;enRender()});
-document.querySelector('.tab[data-page="electionNight"]').addEventListener('click',()=>{if(!enData)enLoad(true);else if(enModeYear===2026&&!enTimer)enLoad(false)});
+document.querySelector('.tab[data-page="electionNight"]').addEventListener('click',()=>{if(!enData||enModeYear===2026)enLoad(false)});
 document.querySelectorAll('.tab:not([data-page="electionNight"])').forEach(el=>el.addEventListener('click',()=>{if(enTimer){clearTimeout(enTimer);enTimer=null}}));
 enRender();
 if(location.hash.split('/')[0]==='#electionNight')enLoad(true);
