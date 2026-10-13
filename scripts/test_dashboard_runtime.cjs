@@ -209,14 +209,14 @@ async function settle(){
  assert.match(get('#modelEvidenceNote').textContent,/NOT a ranking of win probability/);
  // Click a real 2026 office-specific evidence item; race selector, model
  // detail and location hash must follow rather than showing a different Texas office.
- w.eval("modelMode='senate';renderModelOverview(latestSenateEstimates)");
+ get('[data-model-scope="senate"]').click();
  const idEntry=[...get('#modelEvidenceList').querySelectorAll('button')].find(x=>
    x.textContent.includes('ID-SEN'));
  assert(idEntry,'The evidence list must offer the real published ID-SEN result');
  idEntry.click();
  assert.equal(get('#modelDetailEyebrow').textContent,'IDAHO · SENATE');
  assert.match(w.location.hash,/model\/senate\/ID-SEN/);
- w.eval("modelMode='governor';renderModelOverview(latestSenateEstimates)");
+ get('[data-model-scope="governor"]').click();
  assert([...get('#modelEvidenceList').querySelectorAll('button')].every(b=>
    b.getAttribute('aria-label').includes('governor')));
  w.eval("modelMode='senate';renderModelOverview(latestSenateEstimates)");
