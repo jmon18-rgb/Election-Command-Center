@@ -9,6 +9,8 @@ on:
       - 'scripts/update_pollresults_recent.py'
       - 'scripts/test_polling_models.py'
       - 'scripts/build_polling_estimates.py'
+      - 'scripts/build_seat_universe.py'
+      - 'scripts/test_seat_universe.py'
       - 'scripts/update_integrity_queue.py'
       - 'scripts/validate_integrity_impact.py'
       - 'scripts/check_dashboard.py'
@@ -52,11 +54,15 @@ jobs:
         run: python3 scripts/build_polling_estimates.py
       - name: Verify all model polls and averages
         run: python3 scripts/validate_model_drilldown.py
+      - name: Test complete congressional seat inventory
+        run: python3 scripts/test_seat_universe.py
+      - name: Build verified seat inventory and forecast-readiness gate
+        run: python3 scripts/build_seat_universe.py
       - name: Commit updated briefing
         run: |
           git config user.name "election-briefing-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/briefing.json data/polls.json data/model_tests.json data/polling_estimates.json data/integrity_review_queue.json data/model_history.json
+          git add data/briefing.json data/polls.json data/model_tests.json data/polling_estimates.json data/integrity_review_queue.json data/model_history.json data/seat_universe.json
           if [ -f data/pollresults_recent.json ]; then git add data/pollresults_recent.json; fi
           if ! git diff --cached --quiet; then
             git commit -m "Update sourced election briefing"
