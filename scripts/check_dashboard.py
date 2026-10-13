@@ -16,7 +16,7 @@ must_have = (
     "label==='governors'?'governor':label",
     'function renderFreshPolls(d)',
     'First seen ',
-    'Fieldwork ended ',
+    'Field end ',
     'model_sensitivity',
     'id="modelDetail"',
     'id="modelChart"',
