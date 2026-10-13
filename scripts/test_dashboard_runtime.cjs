@@ -185,7 +185,7 @@ async function settle(){
  assert(evidenceGov.length>=2);
  assert(evidenceGov.every(x=>x.scope==='governor'&&x.race_code.endsWith('-GOV')));
  assert.equal(w.eval('modelEvidenceWatchItems({is_election_forecast:true,senate_all:'+JSON.stringify(model.senate_all)+'},"senate")').length,0);
- const synthetic={is_election_forecast:false,senate_all:[
+ const signalSynthetic={is_election_forecast:false,senate_all:[
    {race_code:'TX-SEN',status:'multi_poll',dem_minus_rep:1.2,state_name:'Texas',
     independent_pollsters:0,partisan_pollsters:2,contributing_pollsters:2,
     latest_poll_end:'2026-10-10',poll_diagnostics:{latest_poll_age_days:3,
@@ -196,12 +196,12 @@ async function settle(){
      model_sensitivity:{alternative_margin_min:-3,alternative_margin_max:5,
       independent_only_margin:-3}}}
  ]};
- const syntheticWatch=w.eval('modelEvidenceWatchItems('+JSON.stringify(synthetic)+',"senate")');
+ const syntheticWatch=w.eval('modelEvidenceWatchItems('+JSON.stringify(signalSynthetic)+',"senate")');
  assert.equal(syntheticWatch.length,2);
  assert.equal(syntheticWatch[0].race_code,'ME-SEN');
  assert.equal(syntheticWatch[0].signal,'Weighting changes the lead');
  assert.equal(syntheticWatch[1].signal,'No independent confirmation');
- w.eval("modelMode='senate';renderModelEvidenceWatch("+JSON.stringify(synthetic)+")");
+ w.eval("modelMode='senate';renderModelEvidenceWatch("+JSON.stringify(signalSynthetic)+")");
  assert.equal(get('#modelEvidenceList').querySelectorAll('.model-evidence-entry').length,2);
  assert.match(get('#modelEvidenceList').textContent,/Maine · ME-SEN/);
  assert.match(get('#modelEvidenceList').textContent,/Texas · TX-SEN/);
