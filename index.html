@@ -363,6 +363,9 @@ function renderModelRaceDetail(){
   (estimate.contributing_pollsters??estimate.independent_pollsters??0)+' polling firms',
   'Latest eligible poll '+formattedModelDate(estimate.latest_poll_end),
   Number.isFinite(u.pollster_spread_points)?'🐑 '+u.pollster_spread_points.toFixed(1)+'pt spread':null,
+  Number.isFinite(u.model_sensitivity?.effective_firms)?u.model_sensitivity.effective_firms.toFixed(1)+' effective firms (weight concentration)':null,
+  Number.isFinite(u.model_sensitivity?.alternative_margin_min)&&Number.isFinite(u.model_sensitivity?.alternative_margin_max)
+    ?'Weight sensitivity: '+marginText(u.model_sensitivity.alternative_margin_min)+' to '+marginText(u.model_sensitivity.alternative_margin_max)+' (NOT a confidence interval)':null,
   estimate.partisan_pollsters?estimate.partisan_pollsters+' sponsored firm(s), half weight':null
  ].filter(Boolean))stats.append(elt('span','',item));
  const entries=modelPollEntries(estimate);
@@ -837,6 +840,11 @@ const cell=elt('div','pq-cell');if(label.includes('HERDING'))cell.title='Inter-p
 const track=elt('div','pq-track');const fill=elt('div','pq-fill');fill.style.width=pct+'%';track.append(fill);cell.append(track);metrics.append(cell)}
 boxU.append(metrics);
 card.append(boxU);
+const sensitivity=u.model_sensitivity;
+if(sensitivity&&Number.isFinite(sensitivity.effective_firms)){
+ const line=elt('div','meta','Effective firms: '+sensitivity.effective_firms.toFixed(1)+' of '+count+' · largest firm '+sensitivity.largest_firm_weight_pct.toFixed(1)+'% weight. Alternative weighting gives '+marginText(sensitivity.alternative_margin_min)+' to '+marginText(sensitivity.alternative_margin_max)+' (sensitivity only, NOT error bars).');
+ line.title='Sensitivity to changing only the aggregation weights, not a probability, election outcome prediction, or confidence interval.';card.append(line);
+}
 }else{card.append(elt('div','meta','No qualifying recent polls · polling uncertainty cannot be quantified.'))}
 const integrity=elt('div','bs-mini');
 const cases=impactLedger?(impactLedger.incidents||[]).filter(z=>z.state===x.state):[];
