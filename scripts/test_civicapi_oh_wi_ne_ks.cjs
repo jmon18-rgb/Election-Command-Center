@@ -104,7 +104,7 @@ for(const missing of [
  {office:'Senate',key:'OH'},
  {office:'Senate',key:'WI'},
  {office:'Senate',key:'NV'},
- {office:'Governor',key:'NY'},
+ {office:'Senate',key:'NY'},
  {office:'House',key:'KS-01'}
 ]){
  assert.equal(adapter.supports(missing),false,'No unsupported race promoted');

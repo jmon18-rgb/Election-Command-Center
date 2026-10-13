@@ -2227,7 +2227,9 @@ let enCivicByWatch=Object.create(null),enCivicRaceIds=Object.create(null),
 // looser generic source matcher.
 const enBatchPilotSlots=new Set(['Senate|AK','Governor|AK','Senate|ME',
  'Governor|ME','Governor|MA','Governor|NV','Senate|OH-special',
- 'Governor|OH','Governor|WI','Senate|NE','Governor|NE','Senate|KS','Governor|KS']);
+ 'Governor|OH','Governor|WI','Senate|NE','Governor|NE','Senate|KS','Governor|KS',
+ 'Senate|IL','Governor|IL','Senate|KY','Senate|NJ','Governor|NY',
+ 'Senate|OR','Governor|OR']);
 function enBatchPilot(item){return Boolean(item&&enBatchPilotSlots.has(enWatchId(item)))}
 function enCivicMatch(item,row){
  if(enBatchPilot(item))

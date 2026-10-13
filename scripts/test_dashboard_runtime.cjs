@@ -1237,6 +1237,99 @@ async function settle(){
  w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
 
 
+ // Five-state source-ID batch: real Election Night watchlist, no synthetic
+ // votes may leak into primary state source or scenario probabilities.
+ const fiveSpecs=[
+  {state:'IL',office:'Senate',name:'Illinois US Senate',id:87129,pin:'IL-SEN'},
+  {state:'IL',office:'Governor',name:'Illinois Governor',id:87130,pin:'IL-GOV'},
+  {state:'KY',office:'Senate',name:'Kentucky US Senate',id:87174,pin:'KY-SEN'},
+  {state:'NJ',office:'Senate',name:'New Jersey US Senate',id:87302,pin:'NJ-SEN'},
+  {state:'NY',office:'Governor',name:'New York Governor',id:87329,pin:'NY-GOV'},
+  {state:'OR',office:'Senate',name:'Oregon US Senate',id:87374,pin:'OR-SEN'},
+  {state:'OR',office:'Governor',name:'Oregon Governor',id:87375,pin:'OR-GOV'}
+ ];
+ const fiveRows=new Map();
+ for(const spec of fiveSpecs){
+  const item={office:spec.office,key:spec.state};
+  assert(w.StateBatchCivicAdapter.supports(item));
+  const searchRow={
+   id:spec.id,country:'US',province:spec.state,municipality:null,district:null,
+   type:spec.office==='Senate'?'US Senate':'Governor',
+   election_type:spec.office==='Senate'?'General':'Statewide',
+   election_date:'2026-11-03T05:00:00.000Z',election_name:spec.name,
+   candidates:[
+    {name:'Candidate D',party:'Democratic',votes:0,percent:0,winner:false},
+    {name:'Candidate R',party:'Republican',votes:0,percent:0,winner:false}
+   ]
+  };
+  const result={...searchRow,election_type:searchRow.type,
+   percent_reporting:50,last_updated:'2026-11-04T01:45:00Z',
+   candidates:[
+    {name:'Candidate D',party:'Democratic',votes:540,percent:54,winner:false},
+    {name:'Candidate R',party:'Republican',votes:460,percent:46,winner:false}
+   ]
+  };
+  fiveRows.set(spec.id,{spec,searchRow,result});
+  assert.equal(w.eval('enCivicMatch('+JSON.stringify(item)+','+
+     JSON.stringify(searchRow)+')'),true,
+    'Shared adapter must receive '+spec.pin);
+ }
+ assert.equal(w.StateBatchCivicAdapter.supports({office:'Senate',key:'NY'}),false,
+   'Uncontested Senate seat must not be invented');
+ const fiveClock=w.Date.now,fiveFetch=w.fetch,fiveRequests=[];
+ let fiveInvalidId=null;
+ w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ w.fetch=async(url)=>{
+  const address=String(url);fiveRequests.push(address);
+  if(address.startsWith('https://civicapi.org/api/v2/race/search')){
+   const u=new URL(address),state=u.searchParams.get('province');
+   const office=u.searchParams.get('query')==='US Senate'?'Senate':'Governor';
+   const record=[...fiveRows.values()].find(x=>x.spec.state===state&&x.spec.office===office);
+   return {ok:true,json:async()=>({races:record?[record.searchRow]:[],
+     count:record?1:0})};
+  }
+  if(address.startsWith('https://civicapi.org/api/v2/race/')){
+   const sourceId=Number(address.match(/\/race\/(\d+)/)?.[1]);
+   const record=fiveRows.get(sourceId);
+   if(!record)return {ok:false,status:404,json:async()=>({})};
+   const detail=fiveInvalidId===sourceId?
+     {...record.result,id:sourceId+1,last_updated:'2026-11-04T02:00:00Z'}:
+     record.result;
+   return {ok:true,json:async()=>detail};
+  }
+  return {ok:true,json:async()=>empty2026};
+ };
+ for(const spec of fiveSpecs){
+  get('#enWatchInput').value=spec.pin;
+  get('#enWatchForm').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
+ }
+ await new Promise(resolve=>setTimeout(resolve,80));
+ await w.eval('enRefreshCivicWatchlist(true)');
+ for(const spec of fiveSpecs){
+  const item={office:spec.office,key:spec.state};
+  const status=w.eval('enCivicStatus('+JSON.stringify(item)+')');
+  assert.match(status,/1,000 reported votes/,
+    'Five-state pilot must render '+spec.pin+' votes, status: '+status);
+  assert(w.eval('enCivicURL('+JSON.stringify(item)+')').endsWith('/race/'+spec.id),
+    'Wrong external race link for '+spec.pin);
+  assert.match(get('#enWatchItems').textContent,new RegExp(spec.pin));
+  assert(fiveRequests.some(url=>url.includes('province='+spec.state)),
+    'No direct state query for '+spec.pin);
+ }
+ assert.equal(get('#enRaces').textContent,primaryRaceCountBeforeCivic,
+  'Supplemental provider cannot mutate Open America race totals');
+ const ilItem={office:'Senate',key:'IL'};
+ fiveInvalidId=87129;
+ await w.eval('enCivicFetchOne('+JSON.stringify(ilItem)+')');
+ assert.match(w.eval('enCivicStatus('+JSON.stringify(ilItem)+')'),/1,000 reported votes/,
+  'Rejected Illinois cross-ID correction must retain last verified votes');
+ assert.match(w.eval('enCivicStatus('+JSON.stringify(ilItem)+')'),/SOURCE RETRYING/);
+ assert.equal(get('#enRaces').textContent,primaryRaceCountBeforeCivic);
+ w.Date.now=fiveClock;w.fetch=fiveFetch;
+ w.eval('enWatched=[];enRenderWatchlist()');
+ w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
+
+
  // Meaningful alerts never grant Notification access without a click, never
  // fire for a mere timestamp refresh, and require the race be pinned.
  const alertInput=get('#enWatchInput'),alertForm=get('#enWatchForm');
