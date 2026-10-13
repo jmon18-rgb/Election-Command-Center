@@ -147,6 +147,15 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 #senateBacktestRaces .en-activity-item{border-color:#30465e}
 #senateBacktestRaces .en-activity-item strong{display:block;margin-bottom:3px}
 #senateBacktestRaces .en-activity-item small{display:block;color:#9fb4c8}
+.senate-bias-audit{border-top:1px solid #344d66;margin-top:18px;padding-top:7px}
+.senate-bias-summary{margin:12px 0;font-size:12px;font-weight:600;line-height:1.65;color:#c9daee}
+.senate-bias-summary strong{color:#f2f7ff}
+.senate-bias-table-wrap{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.senate-bias-table{width:100%;border-collapse:collapse;font-size:11px;min-width:415px;color:#c2d4e7}
+.senate-bias-table th{font-size:10px;font-weight:650;white-space:nowrap;text-align:right;color:#9bb7d0;border-bottom:1px solid #425672;padding:9px 5px}
+.senate-bias-table th:first-child,.senate-bias-table td:first-child{text-align:left}
+.senate-bias-table td{text-align:right;padding:10px 5px;border-bottom:1px solid #30435b;font-variant-numeric:tabular-nums;white-space:nowrap}
+.senate-bias-table .worse{color:#ec9696}.senate-bias-table .better{color:#9bd4ad}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -249,6 +258,16 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <h4 style="font-size:12px;margin:10px 0">Errors by race · largest misses first</h4>
  <div id="senateBacktestRaces"><div class="empty">Waiting for historical polling validation.</div></div>
  <p class="house-history-note" id="senateBacktestNote">No winning odds are inferred. Source compilation lacks first-publication timestamps, and polling cutoffs use fieldwork dates only.</p>
+ <div class="senate-bias-audit" aria-label="Year-heldout Senate bias correction study">
+  <div class="row" style="margin-top:13px"><strong>Does fixing past polling bias help in a different election?</strong><span class="tag">YEARS HELD OUT</span></div>
+  <p class="house-history-note">Train on two past election years, test on the third. Each training year gets equal weight; no held-out results are used to set its correction. The table compares the <strong>uncorrected</strong> average against applying half or all of the training-years' historical partisan bias.</p>
+  <div id="senateBiasSummary" class="senate-bias-summary"><div class="empty">Loading independent election-year test…</div></div>
+  <div class="senate-bias-table-wrap"><table class="senate-bias-table" aria-label="Out-of-election-year mean absolute polling errors">
+   <thead><tr><th scope="col">Held-out year</th><th scope="col">Past bias learned</th><th scope="col">No correction</th><th scope="col">Half</th><th scope="col">Full</th></tr></thead>
+   <tbody id="senateBiasRows"></tbody>
+  </table></div>
+  <p class="house-history-note" id="senateBiasNote">Comparisons use the same 42 source-eligible historical Senate races and are not a leakage-free, prospective 2026 model backtest.</p>
+ </div>
 </section>
 <section class="house-history-audit" aria-label="Historical House two-election variation">
  <div class="row"><div><span class="label">2022 → 2024 · HISTORICAL REALITY CHECK</span><h3 style="font-size:17px;margin:9px 0 5px">How much did comparable House vote shares move?</h3></div><span class="tag">RECORDED VOTES</span></div>
@@ -1792,6 +1811,7 @@ let historicalSenatePollStudy=null,senateBacktestSelected='all';
 function setHistoricalSenatePollStudy(data){
  historicalSenatePollStudy=data;
  renderSenateBacktest();
+ renderSenateBiasHoldout();
 }
 function renderSenateBacktest(){
  const summary=$('#senateBacktestSummary'),host=$('#senateBacktestRaces'),note=$('#senateBacktestNote');
@@ -1857,6 +1877,63 @@ fetch('./data/historical_senate_poll_backtest.json',{cache:'no-store'}).then(r=>
         r.cutoff_is_fieldwork_only===true))throw Error('unverified study data');
  setHistoricalSenatePollStudy(d)
 }).catch(()=>{setHistoricalSenatePollStudy(null)});
+
+let senateBiasHoldoutData=null;
+function setSenateBiasHoldoutData(d){senateBiasHoldoutData=d;renderSenateBiasHoldout()}
+function renderSenateBiasHoldout(){
+ const summary=$('#senateBiasSummary'),tbody=$('#senateBiasRows'),note=$('#senateBiasNote');
+ if(!summary||!tbody||!note)return;
+ summary.replaceChildren();tbody.replaceChildren();
+ const d=senateBiasHoldoutData,study=historicalSenatePollStudy;
+ const good=d?.schema_version==='senate-bias-holdout-v1'&&
+   d.status==='retrospective_leave_election_year_out_research_only'&&
+   d.is_forecast===false&&d.is_as_of_leakage_free===false&&
+   d.is_statistically_calibrated_for_2026===false&&
+   d.permitted_to_change_live_2026_polling_model===false&&
+   d.training_and_test_years_never_overlap===true&&
+   d.source_race_count===study?.records?.length&&
+   d.all_heldout_races?.uncorrected?.races===d.source_race_count&&
+   [2020,2022,2024].every(year=>{
+     const x=d.by_test_year?.[String(year)],m=x?.methods;
+     const baseline=study?.by_year?.[String(year)]?.benchmarks?.recency21?.mae;
+     return x?.test_cycle===year&&x?.training_cycles?.length===2&&
+       !x.training_cycles.includes(year)&&
+       x.test_races===study.by_year[String(year)].eligible_races&&
+       ['uncorrected','half_prior_bias','full_prior_bias'].every(z=>
+         Number.isFinite(m?.[z]?.mae_points)&&m[z].mae_points>=0)&&
+       Number.isFinite(baseline)&&Math.abs(m.uncorrected.mae_points-baseline)<.02;
+   });
+ if(!good){
+   summary.append(elt('span','','Cross-election study awaiting source-matched verification.'));
+   note.textContent='Model readiness unchanged: no full past-election error data that meets a leakage-free prospective calibration standard.';
+   return;
+ }
+ const u=d.all_heldout_races.uncorrected.mae_points;
+ const h=d.all_heldout_races.half_prior_bias.mae_points;
+ const full=d.all_heldout_races.full_prior_bias.mae_points;
+ const meaning=full>u?'increased':full<u?'reduced':'left unchanged';
+ summary.append(elt('strong','', '42-race error check · '),
+   elt('span','', 'A full past-bias correction '+meaning+' average absolute error from '+
+     u.toFixed(2)+' to '+full.toFixed(2)+' points. A half-strength correction: '+h.toFixed(2)+' points.'));
+ const addcell=(row,value,style='')=>row.append(elt('td',style,value));
+ for(const year of [2020,2022,2024]){
+  const x=d.by_test_year[String(year)],m=x.methods;
+  const tr=document.createElement('tr');
+  addcell(tr,String(year)+' ('+x.test_races+')');
+  addcell(tr,(x.fixed_training_bias_points>=0?'D +':'R +')+Math.abs(x.fixed_training_bias_points).toFixed(2));
+  addcell(tr,m.uncorrected.mae_points.toFixed(2));
+  addcell(tr,m.half_prior_bias.mae_points.toFixed(2),
+          m.half_prior_bias.mae_points<m.uncorrected.mae_points?'better':'worse');
+  addcell(tr,m.full_prior_bias.mae_points.toFixed(2),
+          m.full_prior_bias.mae_points<m.uncorrected.mae_points?'better':'worse');
+  tbody.append(tr);
+ }
+ note.textContent='Lower errors are better. "Past bias learned" is the equal-weight mean of national signed polling errors in the OTHER two election years; positive means prior polls overestimated Democrats. Corrections are predeclared fixed fractions, not optimized to each test year. Only three historical cycles, retrospective source-selection and unknown poll publication times: these results do NOT justify applying either correction to 2026 or generating chamber-control probabilities.';
+}
+fetch('./data/senate_bias_year_holdout.json',{cache:'no-store'}).then(r=>{
+ if(!r.ok)throw Error('year-held-out research not staged');return r.json()
+}).then(d=>{setSenateBiasHoldoutData(d)}).catch(()=>{setSenateBiasHoldoutData(null)});
+
 let houseTwoCycleData=null;
 fetch('./data/house_two_cycle_context.json',{cache:'no-store'})
   .then(r=>{if(!r.ok)throw Error('historical geography not ready');return r.json()})
