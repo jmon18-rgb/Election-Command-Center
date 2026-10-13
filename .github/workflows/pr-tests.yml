@@ -2,6 +2,8 @@ name: Validate election dashboard PR
 on:
   pull_request:
     branches: [main]
+  push:
+    branches: [feature/experimental-2026-race-odds]
 permissions:
   contents: read
 jobs:
