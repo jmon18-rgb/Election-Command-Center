@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-13T15:34:32.042500Z",
+  "updated_at": "2026-10-13T15:38:26.275064Z",
   "generic_ballot": {
     "summary": {
       "dem": 48.1,
@@ -324,6 +324,501 @@
         "rep": 43.0,
         "margin": 3.0,
         "sample_size": 2102,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-15",
+        "pollster": "Emerson College",
+        "dem": 36.5,
+        "rep": 28.6,
+        "margin": 7.9,
+        "sample_size": 1500,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-15",
+        "pollster": "Big Data Poll",
+        "dem": 49.1,
+        "rep": 38.7,
+        "margin": 10.4,
+        "sample_size": 2633,
+        "partisan_lean": "R"
+      },
+      {
+        "field_end": "2026-09-15",
+        "pollster": "Marist University",
+        "dem": 53.0,
+        "rep": 41.0,
+        "margin": 12.0,
+        "sample_size": 1280,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-15",
+        "pollster": "RMG Research",
+        "dem": 51.5,
+        "rep": 44.5,
+        "margin": 7.0,
+        "sample_size": 2000,
+        "partisan_lean": "R"
+      },
+      {
+        "field_end": "2026-09-14",
+        "pollster": "Bedrock Polling",
+        "dem": 48.0,
+        "rep": 42.0,
+        "margin": 6.0,
+        "sample_size": 1004,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-14",
+        "pollster": "YouGov",
+        "dem": 47.5,
+        "rep": 39.0,
+        "margin": 8.5,
+        "sample_size": 1051,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-14",
+        "pollster": "Ipsos",
+        "dem": 41.5,
+        "rep": 34.0,
+        "margin": 7.5,
+        "sample_size": 1143,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-14",
+        "pollster": "Beacon Research/Shaw & Company Research",
+        "dem": 51.0,
+        "rep": 44.0,
+        "margin": 7.0,
+        "sample_size": 1211,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-13",
+        "pollster": "The Honest Poll",
+        "dem": 50.5,
+        "rep": 41.0,
+        "margin": 9.5,
+        "sample_size": 1392,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-13",
+        "pollster": "The New York Times/Siena University",
+        "dem": 50.1,
+        "rep": 42.5,
+        "margin": 7.6,
+        "sample_size": 1503,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-13",
+        "pollster": "Morning Consult",
+        "dem": 47.7,
+        "rep": 42.9,
+        "margin": 4.8,
+        "sample_size": 18127,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-11",
+        "pollster": "YouGov",
+        "dem": 54.0,
+        "rep": 46.0,
+        "margin": 8.0,
+        "sample_size": 1750,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-10",
+        "pollster": "ActiVote",
+        "dem": 52.3,
+        "rep": 47.7,
+        "margin": 4.6,
+        "sample_size": 1000,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-09",
+        "pollster": "Marquette University Law School",
+        "dem": 50.7,
+        "rep": 40.7,
+        "margin": 10.0,
+        "sample_size": 583,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-09",
+        "pollster": "YouGov",
+        "dem": 43.5,
+        "rep": 33.0,
+        "margin": 10.5,
+        "sample_size": 1200,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-08",
+        "pollster": "YouGov",
+        "dem": 45.5,
+        "rep": 36.5,
+        "margin": 9.0,
+        "sample_size": 1015,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-06",
+        "pollster": "Quinnipiac University",
+        "dem": 49.0,
+        "rep": 38.0,
+        "margin": 11.0,
+        "sample_size": 970,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-06",
+        "pollster": "Morning Consult",
+        "dem": 47.8,
+        "rep": 42.6,
+        "margin": 5.2,
+        "sample_size": 17739,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-02",
+        "pollster": "Focaldata",
+        "dem": 49.0,
+        "rep": 42.6,
+        "margin": 6.4,
+        "sample_size": 1837,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-02",
+        "pollster": "Cygnal Political",
+        "dem": 50.7,
+        "rep": 42.1,
+        "margin": 8.6,
+        "sample_size": 1500,
+        "partisan_lean": "R"
+      },
+      {
+        "field_end": "2026-09-01",
+        "pollster": "Bowling Green State University Democracy and Public Policy Research Network/YouGov",
+        "dem": 51.0,
+        "rep": 44.0,
+        "margin": 7.0,
+        "sample_size": 1200,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-01",
+        "pollster": "The Honest Poll",
+        "dem": 50.7,
+        "rep": 41.3,
+        "margin": 9.4,
+        "sample_size": 783,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-31",
+        "pollster": "YouGov",
+        "dem": 41.0,
+        "rep": 35.5,
+        "margin": 5.5,
+        "sample_size": 1434,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-31",
+        "pollster": "Ipsos",
+        "dem": 40.5,
+        "rep": 34.5,
+        "margin": 6.0,
+        "sample_size": 1167,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-30",
+        "pollster": "Morning Consult",
+        "dem": 47.1,
+        "rep": 42.3,
+        "margin": 4.8,
+        "sample_size": 28429,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-30",
+        "pollster": "HarrisX/Harris Poll",
+        "dem": 50.0,
+        "rep": 50.0,
+        "margin": 0.0,
+        "sample_size": 2100,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-28",
+        "pollster": "Quantus Insights",
+        "dem": 49.7,
+        "rep": 42.8,
+        "margin": 6.9,
+        "sample_size": 1200,
+        "partisan_lean": "R"
+      },
+      {
+        "field_end": "2026-08-26",
+        "pollster": "YouGov",
+        "dem": 42.0,
+        "rep": 34.0,
+        "margin": 8.0,
+        "sample_size": 1000,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-24",
+        "pollster": "YouGov",
+        "dem": 41.5,
+        "rep": 35.5,
+        "margin": 6.0,
+        "sample_size": 1377,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-24",
+        "pollster": "Ipsos",
+        "dem": 38.0,
+        "rep": 32.0,
+        "margin": 6.0,
+        "sample_size": 951,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-24",
+        "pollster": "McLaughlin & Associates",
+        "dem": 48.0,
+        "rep": 43.0,
+        "margin": 5.0,
+        "sample_size": 1000,
+        "partisan_lean": "R"
+      },
+      {
+        "field_end": "2026-08-24",
+        "pollster": "ActiVote",
+        "dem": 51.7,
+        "rep": 48.3,
+        "margin": 3.4,
+        "sample_size": 1000,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-19",
+        "pollster": "Verasight",
+        "dem": 48.5,
+        "rep": 42.0,
+        "margin": 6.5,
+        "sample_size": 1514,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-17",
+        "pollster": "The Bullfinch Group",
+        "dem": 41.0,
+        "rep": 36.0,
+        "margin": 5.0,
+        "sample_size": 1000,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-17",
+        "pollster": "Echelon Insights",
+        "dem": 50.0,
+        "rep": 44.0,
+        "margin": 6.0,
+        "sample_size": 1004,
+        "partisan_lean": "R"
+      },
+      {
+        "field_end": "2026-08-17",
+        "pollster": "YouGov",
+        "dem": 42.5,
+        "rep": 35.5,
+        "margin": 7.0,
+        "sample_size": 1449,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-17",
+        "pollster": "Ipsos",
+        "dem": 38.0,
+        "rep": 33.0,
+        "margin": 5.0,
+        "sample_size": 1166,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-17",
+        "pollster": "Emerson College",
+        "dem": 50.6,
+        "rep": 43.0,
+        "margin": 7.6,
+        "sample_size": 1000,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-16",
+        "pollster": "Noble Predictive Insights",
+        "dem": 47.0,
+        "rep": 42.0,
+        "margin": 5.0,
+        "sample_size": 2533,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-16",
+        "pollster": "Morning Consult",
+        "dem": 46.2,
+        "rep": 42.3,
+        "margin": 3.9,
+        "sample_size": 29685,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-16",
+        "pollster": "Morning Consult",
+        "dem": 47.0,
+        "rep": 42.0,
+        "margin": 5.0,
+        "sample_size": 4150,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-13",
+        "pollster": "Change Research",
+        "dem": 45.0,
+        "rep": 40.0,
+        "margin": 5.0,
+        "sample_size": 2045,
+        "partisan_lean": "D"
+      },
+      {
+        "field_end": "2026-08-11",
+        "pollster": "Wave Polling and Research/Verasight",
+        "dem": 50.0,
+        "rep": 43.0,
+        "margin": 7.0,
+        "sample_size": 1591,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-11",
+        "pollster": "Angus Reid Global",
+        "dem": 46.0,
+        "rep": 37.0,
+        "margin": 9.0,
+        "sample_size": 1132,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-10",
+        "pollster": "YouGov",
+        "dem": 43.0,
+        "rep": 36.0,
+        "margin": 7.0,
+        "sample_size": 1419,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-10",
+        "pollster": "Focaldata",
+        "dem": 49.2,
+        "rep": 43.2,
+        "margin": 6.0,
+        "sample_size": 1857,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-10",
+        "pollster": "AlphaROC",
+        "dem": 41.0,
+        "rep": 37.3,
+        "margin": 3.7,
+        "sample_size": 1000,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-09",
+        "pollster": "Morning Consult",
+        "dem": 46.5,
+        "rep": 42.4,
+        "margin": 4.1,
+        "sample_size": 29719,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-08",
+        "pollster": "ActiVote",
+        "dem": 52.5,
+        "rep": 47.5,
+        "margin": 5.0,
+        "sample_size": 1000,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-07",
+        "pollster": "Cygnal Political",
+        "dem": 48.8,
+        "rep": 41.9,
+        "margin": 6.9,
+        "sample_size": 1500,
+        "partisan_lean": "R"
+      },
+      {
+        "field_end": "2026-08-05",
+        "pollster": "John Zogby Strategies",
+        "dem": 50.6,
+        "rep": 39.6,
+        "margin": 11.0,
+        "sample_size": 921,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-04",
+        "pollster": "RMG Research",
+        "dem": 47.0,
+        "rep": 45.0,
+        "margin": 2.0,
+        "sample_size": 2000,
+        "partisan_lean": "R"
+      },
+      {
+        "field_end": "2026-08-04",
+        "pollster": "Quantus Insights",
+        "dem": 49.0,
+        "rep": 42.6,
+        "margin": 6.4,
+        "sample_size": 1048,
+        "partisan_lean": "R"
+      },
+      {
+        "field_end": "2026-08-03",
+        "pollster": "YouGov",
+        "dem": 43.5,
+        "rep": 37.5,
+        "margin": 6.0,
+        "sample_size": 1472,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-08-03",
+        "pollster": "Ipsos",
+        "dem": 39.0,
+        "rep": 33.5,
+        "margin": 5.5,
+        "sample_size": 4505,
         "partisan_lean": ""
       }
     ],
@@ -12711,7 +13206,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-13T15:34:32.042500Z",
+    "last_attempt_at": "2026-10-13T15:38:26.275064Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -12723,8 +13218,8 @@
     "new_polls": [],
     "new_poll_count": 0,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-13T15:34:32.042500Z",
-    "previous_snapshot_at": "2026-10-13T15:33:18.718131Z",
+    "comparison_at": "2026-10-13T15:38:26.275064Z",
+    "previous_snapshot_at": "2026-10-13T15:34:32.042500Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
