@@ -95,6 +95,22 @@ async function settle(){
   assert(/Senate|Governor|House|Generic ballot/.test(label),'Insight lacks office: '+label);
  }
 
+ // Force BOTH Texas races into the insight feed simultaneously. This catches
+ // collisions where a shared poll ID and the same state hide the office.
+ const synthetic={generated_at:model.generated_at,senate_all:[txSen],house:[],
+   governor:[txGov],generic_ballot:{status:'insufficient_data'}};
+ w.eval('modelHistoryData=null;renderRacePulse('+JSON.stringify(synthetic)+')');
+ const texasCards=[...get('#racePulse').querySelectorAll('button.pulse-tile')];
+ assert.equal(texasCards.length,2,'Texas Senate and governor should each receive one insight');
+ assert(texasCards.some(c=>/Texas.*Senate/.test(c.textContent)));
+ assert(texasCards.some(c=>/Texas.*Governor/.test(c.textContent)));
+ for(const [office,identifier] of [['senate','Senate'],['governor','Governor']]){
+   const card=texasCards.find(c=>c.textContent.includes('Texas · '+identifier));
+   assert(card,'Missing clearly identified '+identifier+' Texas insight');
+   card.click();
+   assert.match(get('#modelDetailTitle').textContent,new RegExp('Texas.*'+identifier));
+   assert.match(get('#modelPollRows tr.model-featured-poll').textContent,/ReconMR/);
+ }
  // Scenarios MUST do something; no longer four static paragraphs.
  const cards=[...get('#scenarioBands').querySelectorAll('button.scenario-tile')];
  assert.equal(cards.length,4);
