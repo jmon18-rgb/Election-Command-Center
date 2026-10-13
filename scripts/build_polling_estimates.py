@@ -313,12 +313,16 @@ def write_history(snapshot):
                          "latest_poll_end":generic.get("latest_poll_end")})
     new={"at":snapshot["generated_at"],"method_version":snapshot["method_version"],
          "source_snapshot":snapshot.get("source_snapshot"),"races":observed}
-    # Same exact generation should not create duplicate rows.
-    if history and history[-1].get("at")==new["at"]:
+    # Store the latest observation in each UTC 12-hour block. This preserves
+    # real daily movement without publishing 4-MB redundant refresh archives.
+    def block_key(item):
+        instant=datetime.fromisoformat(item["at"].replace("Z","+00:00"))
+        return (instant.date().isoformat(),instant.hour//12)
+    if history and block_key(history[-1])==block_key(new):
         history[-1]=new
     else:
         history.append(new)
-    # Retain no more than 30 days, capped at 190 snapshots.
+    # Keep up to 30 days of half-day snapshots (plus a safety cap).
     cutoff=datetime.now(timezone.utc).timestamp()-30*86400
     kept=[]
     for row in history:
@@ -327,13 +331,13 @@ def write_history(snapshot):
             if stamp>=cutoff:kept.append(row)
         except (ValueError,KeyError,TypeError):
             continue
-    kept=kept[-190:]
+    kept=kept[-70:]
     HISTORY.write_text(json.dumps({
       "generated_at":snapshot["generated_at"],
       "schema_version":"1.0",
       "description":"Observed poll-average snapshots; no forecasts or win probabilities.",
       "snapshots":kept
-    },indent=2)+"\n",encoding="utf-8")
+    },separators=(",",":"))+"\n",encoding="utf-8")
 
 if __name__=="__main__":
     output=build(json.loads(SOURCE.read_text(encoding="utf-8")))
