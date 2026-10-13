@@ -1,0 +1,500 @@
+{
+  "generated_at": "2026-10-13T00:27:20.872582Z",
+  "source_snapshot": "2026-10-13T00:27:20.493814Z",
+  "type": "descriptive_polling_estimates",
+  "is_election_forecast": false,
+  "method_version": "poll-mean-1.0",
+  "window_days": 45,
+  "half_life_days": 21,
+  "states": [
+    {
+      "state": "ME",
+      "state_name": "Maine",
+      "status": "multi_poll",
+      "dem_candidate": "Troy Jackson",
+      "rep_candidate": "Susan Collins",
+      "dem_pct": 50.07,
+      "rep_pct": 47.49,
+      "dem_minus_rep": 2.58,
+      "independent_pollsters": 8,
+      "latest_poll_end": "2026-10-05",
+      "oldest_included_poll_end": "2026-09-21",
+      "pollsters": [
+        {
+          "name": "The Washington Post/George Mason University Schar School of Policy and Government",
+          "field_end": "2026-10-05",
+          "sample_size": 800
+        },
+        {
+          "name": "Marist University",
+          "field_end": "2026-10-04",
+          "sample_size": 1505
+        },
+        {
+          "name": "YouGov",
+          "field_end": "2026-10-01",
+          "sample_size": 1136
+        },
+        {
+          "name": "Wedgewood Polls",
+          "field_end": "2026-10-01",
+          "sample_size": 400
+        },
+        {
+          "name": "Maine People's Resource Center",
+          "field_end": "2026-09-29",
+          "sample_size": 684
+        },
+        {
+          "name": "The New York Times/Siena University",
+          "field_end": "2026-09-22",
+          "sample_size": 619
+        },
+        {
+          "name": "Fabrizio Ward/Impact Research",
+          "field_end": "2026-09-22",
+          "sample_size": 982
+        },
+        {
+          "name": "University of New Hampshire",
+          "field_end": "2026-09-21",
+          "sample_size": 1301
+        }
+      ],
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+    },
+    {
+      "state": "OH",
+      "state_name": "Ohio",
+      "status": "multi_poll",
+      "dem_candidate": "Sherrod Brown",
+      "rep_candidate": "Jon Husted",
+      "dem_pct": 49.07,
+      "rep_pct": 44.26,
+      "dem_minus_rep": 4.81,
+      "independent_pollsters": 5,
+      "latest_poll_end": "2026-10-05",
+      "oldest_included_poll_end": "2026-09-27",
+      "pollsters": [
+        {
+          "name": "CNN/SSRS",
+          "field_end": "2026-10-05",
+          "sample_size": 760
+        },
+        {
+          "name": "The New York Times/Siena University",
+          "field_end": "2026-10-01",
+          "sample_size": 616
+        },
+        {
+          "name": "YouGov",
+          "field_end": "2026-09-30",
+          "sample_size": 3777
+        },
+        {
+          "name": "Marist University",
+          "field_end": "2026-09-27",
+          "sample_size": 1298
+        },
+        {
+          "name": "Suffolk University",
+          "field_end": "2026-09-27",
+          "sample_size": 500
+        }
+      ],
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+    },
+    {
+      "state": "NC",
+      "state_name": "North Carolina",
+      "status": "multi_poll",
+      "dem_candidate": "Roy Cooper",
+      "rep_candidate": "Michael Whatley",
+      "dem_pct": 51.68,
+      "rep_pct": 41.36,
+      "dem_minus_rep": 10.31,
+      "independent_pollsters": 6,
+      "latest_poll_end": "2026-10-03",
+      "oldest_included_poll_end": "2026-09-15",
+      "pollsters": [
+        {
+          "name": "East Carolina University Center for Survey Research",
+          "field_end": "2026-10-03",
+          "sample_size": 810
+        },
+        {
+          "name": "Fabrizio Ward/Impact Research",
+          "field_end": "2026-09-20",
+          "sample_size": 1115
+        },
+        {
+          "name": "Opinion Diagnostics",
+          "field_end": "2026-09-20",
+          "sample_size": 857
+        },
+        {
+          "name": "YouGov",
+          "field_end": "2026-09-18",
+          "sample_size": 3511
+        },
+        {
+          "name": "High Point University",
+          "field_end": "2026-09-16",
+          "sample_size": 706
+        },
+        {
+          "name": "Harper Polling",
+          "field_end": "2026-09-15",
+          "sample_size": 608
+        }
+      ],
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+    },
+    {
+      "state": "MI",
+      "state_name": "Michigan",
+      "status": "multi_poll",
+      "dem_candidate": "Abdul El-Sayed",
+      "rep_candidate": "Mike Rogers",
+      "dem_pct": 49.8,
+      "rep_pct": 46.05,
+      "dem_minus_rep": 3.75,
+      "independent_pollsters": 6,
+      "latest_poll_end": "2026-10-09",
+      "oldest_included_poll_end": "2026-09-27",
+      "pollsters": [
+        {
+          "name": "Wedgewood Polls",
+          "field_end": "2026-10-09",
+          "sample_size": 607
+        },
+        {
+          "name": "YouGov",
+          "field_end": "2026-10-04",
+          "sample_size": 3947
+        },
+        {
+          "name": "Mitchell Research & Communications",
+          "field_end": "2026-10-01",
+          "sample_size": 682
+        },
+        {
+          "name": "Beacon Research/Shaw & Company Research",
+          "field_end": "2026-09-28",
+          "sample_size": 1203
+        },
+        {
+          "name": "Marist University",
+          "field_end": "2026-09-27",
+          "sample_size": 1235
+        },
+        {
+          "name": "Guidant Polling and Strategy",
+          "field_end": "2026-09-27",
+          "sample_size": 800
+        }
+      ],
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+    },
+    {
+      "state": "GA",
+      "state_name": "Georgia",
+      "status": "multi_poll",
+      "dem_candidate": "Jon Ossoff",
+      "rep_candidate": "Mike Collins",
+      "dem_pct": 53.27,
+      "rep_pct": 43.27,
+      "dem_minus_rep": 10.0,
+      "independent_pollsters": 2,
+      "latest_poll_end": "2026-10-03",
+      "oldest_included_poll_end": "2026-09-18",
+      "pollsters": [
+        {
+          "name": "Wedgewood Polls",
+          "field_end": "2026-10-03",
+          "sample_size": 600
+        },
+        {
+          "name": "YouGov",
+          "field_end": "2026-09-18",
+          "sample_size": 3301
+        }
+      ],
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+    },
+    {
+      "state": "NH",
+      "state_name": "New Hampshire",
+      "status": "multi_poll",
+      "dem_candidate": "Chris Pappas",
+      "rep_candidate": "John Sununu",
+      "dem_pct": 50.59,
+      "rep_pct": 43.3,
+      "dem_minus_rep": 7.29,
+      "independent_pollsters": 4,
+      "latest_poll_end": "2026-10-05",
+      "oldest_included_poll_end": "2026-09-21",
+      "pollsters": [
+        {
+          "name": "YouGov",
+          "field_end": "2026-10-05",
+          "sample_size": 1519
+        },
+        {
+          "name": "St. Anselm",
+          "field_end": "2026-09-29",
+          "sample_size": 1042
+        },
+        {
+          "name": "The New York Times/Siena University",
+          "field_end": "2026-09-22",
+          "sample_size": 613
+        },
+        {
+          "name": "University of New Hampshire",
+          "field_end": "2026-09-21",
+          "sample_size": 1392
+        }
+      ],
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+    },
+    {
+      "state": "AK",
+      "state_name": "Alaska",
+      "status": "multi_poll",
+      "dem_candidate": "Mary Peltola",
+      "rep_candidate": "Dan Sullivan",
+      "dem_pct": 47.7,
+      "rep_pct": 43.71,
+      "dem_minus_rep": 3.99,
+      "independent_pollsters": 3,
+      "latest_poll_end": "2026-10-03",
+      "oldest_included_poll_end": "2026-09-11",
+      "pollsters": [
+        {
+          "name": "Alaska Survey Research",
+          "field_end": "2026-10-03",
+          "sample_size": 1512
+        },
+        {
+          "name": "The New York Times/Siena University",
+          "field_end": "2026-10-01",
+          "sample_size": 504
+        },
+        {
+          "name": "Fabrizio Ward/Impact Research",
+          "field_end": "2026-09-11",
+          "sample_size": 800
+        }
+      ],
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+    },
+    {
+      "state": "IA",
+      "state_name": "Iowa",
+      "status": "multi_poll",
+      "dem_candidate": "Josh Turek",
+      "rep_candidate": "Ashley Hinson",
+      "dem_pct": 46.76,
+      "rep_pct": 45.44,
+      "dem_minus_rep": 1.31,
+      "independent_pollsters": 6,
+      "latest_poll_end": "2026-10-06",
+      "oldest_included_poll_end": "2026-09-20",
+      "pollsters": [
+        {
+          "name": "Emerson College",
+          "field_end": "2026-10-06",
+          "sample_size": 650
+        },
+        {
+          "name": "CNN/SSRS",
+          "field_end": "2026-10-05",
+          "sample_size": 801
+        },
+        {
+          "name": "Suffolk University",
+          "field_end": "2026-10-04",
+          "sample_size": 500
+        },
+        {
+          "name": "The New York Times/Siena University",
+          "field_end": "2026-10-01",
+          "sample_size": 606
+        },
+        {
+          "name": "Beacon Research/Shaw & Company Research",
+          "field_end": "2026-09-28",
+          "sample_size": 1008
+        },
+        {
+          "name": "Marist University",
+          "field_end": "2026-09-20",
+          "sample_size": 1050
+        }
+      ],
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+    },
+    {
+      "state": "TX",
+      "state_name": "Texas",
+      "status": "multi_poll",
+      "dem_candidate": "James Talarico",
+      "rep_candidate": "Ken Paxton",
+      "dem_pct": 49.17,
+      "rep_pct": 44.7,
+      "dem_minus_rep": 4.46,
+      "independent_pollsters": 8,
+      "latest_poll_end": "2026-10-05",
+      "oldest_included_poll_end": "2026-09-19",
+      "pollsters": [
+        {
+          "name": "YouGov",
+          "field_end": "2026-10-05",
+          "sample_size": 3623
+        },
+        {
+          "name": "The New York Times/Siena University",
+          "field_end": "2026-09-30",
+          "sample_size": 615
+        },
+        {
+          "name": "Beacon Research/Shaw & Company Research",
+          "field_end": "2026-09-28",
+          "sample_size": 1203
+        },
+        {
+          "name": "Guidant Polling and Strategy",
+          "field_end": "2026-09-28",
+          "sample_size": 800
+        },
+        {
+          "name": "University of Massachusetts Lowell Center for Public Opinion/YouGov",
+          "field_end": "2026-09-28",
+          "sample_size": 850
+        },
+        {
+          "name": "Slingshot Strategies",
+          "field_end": "2026-09-22",
+          "sample_size": 1007
+        },
+        {
+          "name": "Marist University",
+          "field_end": "2026-09-20",
+          "sample_size": 1139
+        },
+        {
+          "name": "Barbara Jordan Public Policy Research and Survey Center",
+          "field_end": "2026-09-19",
+          "sample_size": 1800
+        }
+      ],
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+    },
+    {
+      "state": "NE",
+      "state_name": "Nebraska",
+      "status": "multi_poll",
+      "dem_candidate": "Dan Osborn",
+      "rep_candidate": "Pete Ricketts",
+      "dem_pct": 47.65,
+      "rep_pct": 47.09,
+      "dem_minus_rep": 0.57,
+      "independent_pollsters": 3,
+      "latest_poll_end": "2026-10-03",
+      "oldest_included_poll_end": "2026-09-13",
+      "pollsters": [
+        {
+          "name": "YouGov",
+          "field_end": "2026-10-03",
+          "sample_size": 1808
+        },
+        {
+          "name": "Wedgewood Polls",
+          "field_end": "2026-09-16",
+          "sample_size": 500
+        },
+        {
+          "name": "SurveyUSA",
+          "field_end": "2026-09-13",
+          "sample_size": 503
+        }
+      ],
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+    },
+    {
+      "state": "KS",
+      "state_name": "Kansas",
+      "status": "multi_poll",
+      "dem_candidate": "Adam Hamilton",
+      "rep_candidate": "Roger Marshall",
+      "dem_pct": 47.17,
+      "rep_pct": 45.18,
+      "dem_minus_rep": 1.99,
+      "independent_pollsters": 4,
+      "latest_poll_end": "2026-10-04",
+      "oldest_included_poll_end": "2026-09-16",
+      "pollsters": [
+        {
+          "name": "YouGov",
+          "field_end": "2026-10-04",
+          "sample_size": 2253
+        },
+        {
+          "name": "The New York Times/Siena University",
+          "field_end": "2026-09-30",
+          "sample_size": 605
+        },
+        {
+          "name": "Wedgewood Polls",
+          "field_end": "2026-09-24",
+          "sample_size": 500
+        },
+        {
+          "name": "Emerson College",
+          "field_end": "2026-09-16",
+          "sample_size": 750
+        }
+      ],
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+    },
+    {
+      "state": "MN",
+      "state_name": "Minnesota",
+      "status": "multi_poll",
+      "dem_candidate": "Peggy Flanagan",
+      "rep_candidate": "Michele Tafoya",
+      "dem_pct": 45.29,
+      "rep_pct": 41.95,
+      "dem_minus_rep": 3.33,
+      "independent_pollsters": 3,
+      "latest_poll_end": "2026-10-07",
+      "oldest_included_poll_end": "2026-09-14",
+      "pollsters": [
+        {
+          "name": "Mason-Dixon Polling & Research, Inc.",
+          "field_end": "2026-10-07",
+          "sample_size": 800
+        },
+        {
+          "name": "Morning Consult",
+          "field_end": "2026-10-07",
+          "sample_size": 1000
+        },
+        {
+          "name": "SurveyUSA",
+          "field_end": "2026-09-14",
+          "sample_size": 654
+        }
+      ],
+      "method": "One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded"
+    }
+  ],
+  "limitations": [
+    "Not an election prediction or calibrated probability.",
+    "Unmeasured pollster house effects and correlated errors remain.",
+    "Averages exclude sponsored polls but lack independent pollster-quality ratings.",
+    "Candidate matchups are not combined.",
+    "Historical election backtesting required before claiming election-outcome accuracy."
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-13T00:20:17.246200Z",
+  "updated_at": "2026-10-13T00:27:20.493814Z",
   "generic_ballot": {
     "summary": {
       "dem": 48.1,
@@ -10361,7 +10361,7 @@
     "notes": "Descriptive poll observations only; not modeled forecasts."
   },
   "health": {
-    "last_attempt_at": "2026-10-13T00:20:17.246200Z",
+    "last_attempt_at": "2026-10-13T00:27:20.493814Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -10370,38 +10370,11 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [
-      {
-        "race_code": "FL-GOV",
-        "race_type": "governor",
-        "pollster": "Change Research",
-        "field_end": "2026-10-10",
-        "dem": 47.0,
-        "rep": 47.0,
-        "margin": 0.0,
-        "dem_name": "David Jolly",
-        "rep_name": "Byron Donalds",
-        "sample_size": 920,
-        "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-      },
-      {
-        "race_code": "GA-07",
-        "race_type": "house",
-        "pollster": "20/20 Insight",
-        "field_end": "2026-10-09",
-        "dem": 47.0,
-        "rep": 45.0,
-        "margin": 2.0,
-        "dem_name": "Tony Kozycki",
-        "rep_name": "Rich McCormick",
-        "sample_size": 457,
-        "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-      }
-    ],
-    "new_poll_count": 2,
-    "generic_margin_change": 0.7,
-    "comparison_at": "2026-10-13T00:20:17.246200Z",
-    "previous_snapshot_at": "2026-10-12T23:25:22.791935Z",
+    "new_polls": [],
+    "new_poll_count": 0,
+    "generic_margin_change": 0.0,
+    "comparison_at": "2026-10-13T00:27:20.493814Z",
+    "previous_snapshot_at": "2026-10-13T00:20:17.246200Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
