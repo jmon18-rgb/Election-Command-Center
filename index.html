@@ -65,7 +65,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .poll-seat-panel{margin:15px 0 18px;padding:16px;border:1px solid #334861;border-radius:10px;background:#0c1a2b}.poll-seat-stats{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}.poll-seat-stats strong{font-size:19px}.poll-seat-stats .poll-stat{display:flex;align-items:center;gap:7px;color:#a9bad0;font-size:11px}.poll-seat-track{height:10px;display:flex;overflow:hidden;gap:2px;background:#26394f;border-radius:5px;margin-top:12px}.poll-seat-track span{height:100%;min-width:0}.poll-seat-track .poll-d{background:#6aa9ff}.poll-seat-track .poll-r{background:#f1858c}.poll-seat-track .poll-tie{background:#b4c3d7}.poll-seat-panel .methodline{font-size:10px;margin:12px 0 0;line-height:1.6}.scenario-tile .scenario-prob{font-size:11px;color:#93a4b8!important;font-weight:650;letter-spacing:0!important}.scenario-tile .scenario-range{font-size:12px;line-height:1.45}.scenario-status{text-align:right;font-size:10px;color:#92a3b9;margin-top:9px}
 .model-universe{margin:4px 0 20px;border:1px solid var(--line);padding:17px 21px;border-radius:12px;background:linear-gradient(135deg,#132335,#0c1725)}.model-universe-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.model-universe-header strong{font-size:12px;letter-spacing:.02em}.model-universe-row{display:grid;grid-template-columns:minmax(180px,260px) 1fr;gap:16px;align-items:center;margin:13px 0}.model-universe-row>div:first-child{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}.model-universe-row strong{white-space:nowrap;font-size:17px}.model-universe-row span{font-size:11px;color:var(--muted)}.model-universe-track{height:7px;border-radius:5px;background:#26374b;overflow:hidden}.model-universe-track i{display:block;height:100%;width:0;background:#7aa8d4;border-radius:5px;transition:width .25s}.model-universe .methodline{margin:13px 0 7px;font-size:11px;line-height:1.6}.seat-model-link{font-size:11px;font-weight:700}@media(max-width:640px){.model-universe{padding:15px}.model-universe-row{grid-template-columns:1fr;gap:7px}}.model-history-context{border:1px solid #3d4c62;border-radius:9px;background:#111e30;padding:13px 15px;margin:13px 0 20px}.model-history-context[hidden]{display:none}.model-history-context strong{font-size:12px}.model-history-context p{font-size:11px;line-height:1.55;color:#9db0c9;margin:8px 0 0}.model-historic-figures{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0 6px;font-size:12px}.model-historic-figures b{font-weight:800}
 .pulse-race span{font-size:13px}.pulse-match{overflow-wrap:anywhere}.model-featured-poll{background:rgba(76,141,213,.18)!important;outline:2px solid #7cb8ef;outline-offset:-2px}.model-unmatched-poll td{color:#e2c18d;font-size:11px;line-height:1.5}
-</style></head><body>
+.scenario-tile{appearance:none;color:inherit;font:inherit;display:block;width:100%;text-align:left;cursor:pointer}.scenario-tile:hover,.scenario-tile:focus-visible{border-color:#a6c7e9;background:#162840}.scenario-tile[aria-pressed="true"]{outline:2px solid #8bbae6;outline-offset:-2px;background:#172e46}.scenario-tile .scenario-prob{font-size:10px!important;letter-spacing:0;color:#b3c4d9!important}.scenario-sandbox{border-top:1px solid #304359;margin-top:18px;padding-top:16px}.scenario-result{display:flex;align-items:baseline;gap:9px 18px;flex-wrap:wrap;margin-bottom:15px}.scenario-result-label{font-size:10px;color:#9cb2ca;text-transform:uppercase;letter-spacing:.06em}.scenario-result>strong{font-size:19px;color:#d9eafe}.scenario-result-description{width:100%;font-size:12px;color:#b8c7d9}.scenario-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}.scenario-control label{display:flex;flex-direction:column;gap:7px;font-size:11px;color:#a8bcd2}.scenario-control label strong{font-size:16px;color:#f1f5fb}.scenario-control input{width:100%;accent-color:#8cb6dc;margin:12px 0 4px}.scenario-disclaimer{font-size:10px;color:#95a9be;line-height:1.55;margin:12px 0 0}@media(max-width:700px){.scenario-controls{grid-template-columns:1fr}.scenario-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}</style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
   <div class="hero-copy"><div class="eyebrow">2026 U.S. MIDTERMS · NOVEMBER 3</div><h1>In Search of <em>Blue Waves</em></h1>
@@ -88,9 +88,10 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <div class="card five"><div class="row"><span class="label">Election developments</span><span class="tag">NEWS LEADS</span></div><div id="updates" class="empty">Loading recent election reporting.</div><button class="textlink" type="button" data-jump="integrity">Bullshittery Index →</button></div></div>
 <div class="sectionhead"><h2>Senate polling estimates</h2><span class="tiny">Observed polls · data quality</span></div><div class="card"><div id="senateEstimateCards" class="racecards racecards-wide"><div class="empty">Awaiting first automated model update.</div></div><p class="methodline">Named-candidate polls, newest wave per firm · 21-day half-life · historical pollster quality · diminishing sample-size weight · independently conducted polls 1.0×, qualifying sponsored polls 0.5× regardless of party. <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/POLLING_MODEL.md" target="_blank" rel="noopener noreferrer">Full methodology ↗</a> Polling disagreement is descriptive, and unrelated to election-integrity scores.</p></div><div class="sectionhead"><h2>The four endings</h2><span class="tiny">Who controls Congress · probability model pending</span></div>
 <div class="card" style="margin-bottom:16px">
- <div class="scenario-lead"><strong id="scenarioCenter">House and Senate control, not generic-ballot margins.</strong><span id="scenarioUpdated" class="tiny"></span></div>
- <div id="scenarioBands" class="scenario-grid"><div class="empty">Loading control-of-Congress definitions…</div></div>
- <p class="methodline">Categories refer to <strong>actual House and Senate control</strong>. Blue Tsunami is a subset of Democrats taking both chambers, distinguished by a near-sweep of a <em>predeclared</em> competitive-race slate. No trustworthy probability percentages are available yet: the current poll means do not model unpolled districts, Senate holdovers, chamber correlations, or the pre-election battleground universe. <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/SCENARIOS.md" target="_blank" rel="noopener noreferrer">Precisely defined outcomes and next steps ↗</a>.</p>
+ <div class="scenario-lead"><strong id="scenarioCenter">What would each outcome look like?</strong><span id="scenarioUpdated" class="tiny">Seat-math sandbox · not a forecast</span></div>
+ <div id="scenarioBands" class="scenario-grid"><div class="empty">Loading chamber-control scenarios…</div></div>
+ <div id="scenarioSimulator" class="scenario-sandbox" aria-label="Hypothetical congressional seat outcomes"></div>
+ <p class="methodline">Categories refer to <strong>actual House and Senate control</strong>. Blue Tsunami is a subset of Democrats taking both chambers, distinguished by a near-sweep of a <em>predeclared</em> competitive-race slate. Select any ending or adjust the seat counts to see how congressional control is classified. These are <strong>hypothetical inputs</strong>, not election projections. Actual probabilities remain unavailable until all races, Senate holdovers, historical calibration and a frozen battleground slate are modeled. <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/SCENARIOS.md" target="_blank" rel="noopener noreferrer">Precisely defined outcomes and next steps ↗</a>.</p>
 </div>
 <div class="sectionhead"><h2>What to watch</h2><span class="tiny">What deserves a closer look?</span></div>
 <div class="card radar-wrap"><div id="jackRadar" class="radar-grid"><div class="empty">Scanning close races, polling blind spots, and election developments…</div></div><p class="methodline">The closest margins, thin polling, and documented election-administration issues.</p></div>
@@ -787,26 +788,81 @@ function standardNormalCDF(z){
  const positive=1-density*poly;
  return z>=0?positive:1-positive
 }
+function classifyCongressOutcome(houseD,senateD,competitiveDemPct){
+ // Illustration assumes all 435 voting House seats and 100 Senate seats are
+ // seated. At 50-50 Senate, the Republican VP breaks organizational ties.
+ const dHouse=houseD>=218,dSenate=senateD>=51;
+ if(!dHouse&&!dSenate)return 'RED DAWN';
+ if(dHouse!==dSenate)return 'THE SHRUG';
+ if(competitiveDemPct>=90)return 'BLUE TSUNAMI';
+ return 'BLUE WAVE';
+}
 function renderElectionScenarios(){
- const host=$('#scenarioBands');if(!host)return;host.replaceChildren();
- // These are mutually exclusive descriptions of actual future congressional
- // control; they are NOT derived from a national vote margin.
+ const host=$('#scenarioBands'),sandbox=$('#scenarioSimulator');
+ if(!host||!sandbox)return;
+ host.replaceChildren();sandbox.replaceChildren();
  const scenarios=[
- {name:'RED DAWN',range:'Republicans retain both the House and Senate.',kind:'red'},
- {name:'THE SHRUG',range:'Democrats control exactly one chamber; Republicans control the other.',kind:'neutral'},
- {name:'BLUE WAVE',range:'Democrats control both chambers, without the near-sweep condition below.',kind:'blue'},
- {name:'BLUE TSUNAMI',range:'Democrats control both chambers AND win at least 90% of a predeclared Senate/House battleground slate.',kind:'blue'}
+  {name:'RED DAWN',copy:'Republicans retain both chambers.',kind:'red',house:212,senate:48,sweep:35},
+  {name:'THE SHRUG',copy:'Democrats win exactly one chamber.',kind:'neutral',house:225,senate:49,sweep:60},
+  {name:'BLUE WAVE',copy:'Democrats win both chambers, without a near-sweep.',kind:'blue',house:230,senate:52,sweep:70},
+  {name:'BLUE TSUNAMI',copy:'Democrats win both and ≥90% of the *fixed* battleground slate.',kind:'blue',house:255,senate:56,sweep:92}
  ];
- $('#scenarioCenter').textContent='The outcome is about seats. No more generic-ballot cutoffs.';
- $('#scenarioUpdated').textContent='Probabilities require a calibrated, complete seat model';
- for(const definition of scenarios){
-  const box=elt('div','scenario-tile scenario-'+definition.kind);
+ $('#scenarioUpdated').textContent='Interactive hypothetical seat outcomes · NOT probabilities';
+ const cards=new Map();
+ const sliders={};
+ const control=(name,label,min,max,value,suffix)=>{
+  const block=elt('div','scenario-control');
+  const head=elt('label');head.htmlFor='scenario-'+name;
+  const text=elt('span','',label),out=elt('strong','',value+suffix);
+  head.append(text,out);
+  const input=elt('input');input.type='range';input.id='scenario-'+name;
+  input.min=min;input.max=max;input.step='1';input.value=String(value);
+  input.setAttribute('aria-label',label+' (hypothetical, not forecast)');
+  block.append(head,input);sandbox.append(block);
+  sliders[name]={input,out,suffix};return input;
+ };
+ for(const spec of scenarios){
+  const card=elt('button','scenario-tile scenario-'+spec.kind);
+  card.type='button';card.setAttribute('aria-pressed','false');
+  card.title='Explore a hypothetical '+spec.name.toLowerCase()+' outcome';
   const top=elt('div','scenario-top');
-  top.append(elt('strong','',definition.name),elt('strong','scenario-prob','Not modeled'));
-  box.append(top,elt('div','scenario-range',definition.range));
-  box.append(elt('div','scenario-status','Congressional-control scenario'));
-  host.append(box);
+  top.append(elt('strong','',spec.name),elt('span','scenario-prob','Explore ↗'));
+  card.append(top,elt('div','scenario-range',spec.copy));
+  host.append(card);cards.set(spec.name,card);
+  card.addEventListener('click',()=>{
+   sliders.house.input.value=String(spec.house);
+   sliders.senate.input.value=String(spec.senate);
+   sliders.sweep.input.value=String(spec.sweep);
+   update();
+  });
  }
+ const current=elt('div','scenario-result');sandbox.append(current);
+ const inputGrid=elt('div','scenario-controls');sandbox.append(inputGrid);
+ // Place controls in their own grid (control() appends to sandbox first).
+ control('house','Democratic House seats',180,270,225,' / 435');
+ control('senate','Democratic-caucusing Senate seats',40,60,49,' / 100');
+ control('sweep','Democratic wins in a hypothetical frozen battleground slate',0,100,60,'%');
+ for(const field of Array.from(sandbox.children).filter(x=>x.classList.contains('scenario-control')))inputGrid.append(field);
+ const note=elt('p','scenario-disclaimer',
+   'Sandbox only: assumed 435 filled House seats, and a 50–50 Senate tie goes to the Republican vice president. Independents caucusing with Democrats count in the D-aligned Senate total. The actual 2026 competitive-race slate is NOT frozen yet; its percentage is hypothetical, not measured. No result here is a forecast.');
+ sandbox.append(note);
+ function update(){
+  const h=Number(sliders.house.input.value),sen=Number(sliders.senate.input.value),sweep=Number(sliders.sweep.input.value);
+  for(const item of Object.values(sliders))item.out.textContent=item.input.value+item.suffix;
+  const chosen=classifyCongressOutcome(h,sen,sweep);
+  for(const [name,card] of cards){
+   card.setAttribute('aria-pressed',String(name===chosen));
+   const label=card.querySelector('.scenario-prob');
+   if(label)label.textContent=name===chosen?'SELECTED':'Explore ↗';
+  }
+  current.replaceChildren(elt('span','scenario-result-label','Hypothetical result'),elt('strong','',chosen));
+  const controlText=(h>=218?'Democrats':'Republicans')+' control the House · '+
+    (sen>=51?'Democrats':'Republicans')+' control the Senate';
+  current.append(elt('span','scenario-result-description',controlText));
+  $('#scenarioCenter').textContent='What would it take? Choose an ending or change the numbers.';
+ }
+ for(const {input} of Object.values(sliders))input.addEventListener('input',update);
+ update();
 }
 function renderModelGenericHeadline(){
  const g=latestSenateEstimates?.generic_ballot;
