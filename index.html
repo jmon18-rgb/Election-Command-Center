@@ -203,16 +203,16 @@ const documented=cases.filter(z=>z.verification_status!=='unverified_report');
 const quantified=cases.filter(z=>typeof z.confirmed_affected==='number'||typeof z.potentially_affected==='number');
 const top=elt('div','bs-mini-head');
 top.append(elt('span','','🎛️ Integrity watch'));
-top.append(elt('span','',impactLedger?(documented.length?documented.length+' documented':'No tracked cases'):'Loading…'));integrity.append(top);
+top.append(elt('span','',impactLedger?(documented.length?documented.length+' tracked':'Not assessed'):'Loading…'));integrity.append(top);
 const track=elt('div','bs-mini-track');const ticks=elt('div','bs-mini-ticks');
 for(let i=0;i<12;i++){const tick=elt('span','bs-mini-tick');if(i<Math.min(12,documented.length))tick.classList.add('bs-mini-active');ticks.append(tick)}
 track.append(ticks);integrity.append(track);
 if(documented.length){
 integrity.append(elt('div','bs-mini-sub',documented.length+' sourced development'+(documented.length===1?'':'s')+' · '+(quantified.length?'impact quantified in '+quantified.length:'voter impact not quantified')));
 }else{
-integrity.append(elt('div','bs-mini-sub','No entries in limited tracker · not a clean bill of health'));
+integrity.append(elt('div','bs-mini-sub','No tracked cases in this limited ledger'));
 }
-const details=elt('details','bs-mini-details');details.append(elt('summary','','Sources'));
+const details=elt('details','bs-mini-details');details.append(elt('summary','',documented.length?'Sources':'About coverage'));
 for(const issue of cases){
 const row=elt('div','unotes',issue.title||issue.mechanism||'Documented issue');details.append(row);
 for(const source of issue.sources||[]){if(source.url&&source.url.startsWith('https://')){const link=elt('a','pollsource',source.publisher||'Source');link.href=source.url;link.target='_blank';link.rel='noopener noreferrer';details.append(link)}}
