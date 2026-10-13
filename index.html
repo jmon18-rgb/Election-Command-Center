@@ -1880,7 +1880,7 @@ function enSnapshotCompatible(previous,next){
 }
 function enAcceptSource(o){
  if(!enSourceValid(o,enModeYear,enOffice))
-  throw Error('Results format or vote-count integrity check failed: selected='+enModeYear+'/'+enOffice+', payload='+o?.year+'/'+o?.office+', current='+Date.now()+', rawValid='+enSourceValid(o,2026,'Senate'));
+  throw Error('Results format or vote-count integrity check failed');
  const previous=enModeYear===2026?(enOfficeSnapshots[enOffice]||enData):enData;
  if(!enSnapshotCompatible(previous,o))
   throw Error('Provider snapshot unexpectedly reversed in time or lost all counted races');
