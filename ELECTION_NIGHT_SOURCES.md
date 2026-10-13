@@ -107,6 +107,35 @@ A second **independently attributed** browser data source now supports the elect
 
 **Limitations:** Watchlist-supplemental coverage is not proof of 50-state continuous reporting. Specific candidate / special-race identity and independent winner-call behavior remain dependent on civicAPI's reporting quality, timestamps, and attribution. The model's probabilities are untouched.
 
+## New Hampshire Senate adapter pilot (October 13; build → test → merge → stop)
+
+The first **individually testable civicAPI race adapter** is
+[`scripts/civicapi_nh_adapter.js`](scripts/civicapi_nh_adapter.js), used only for the
+**2026 New Hampshire US Senate general election** (`NH-SEN`, internal `Senate|NH`).
+This does not introduce a second winner-call authority or expand state coverage.
+The personal watchlist and 35-contest Senate board still label its results as
+**civicAPI** and keep those vote totals completely separate from Open America.
+
+The pilot locks the discovery query to `country=US`, `province=NH`,
+`2026-11-03`, `US Senate`. Its source matcher rejects House races,
+September primaries, specials, invalid dates, municipal elections and
+multiple plausible NH Senate races. The race-by-ID response must agree on the
+provider ID (where included), state, office, election date, seat and contest
+name. Candidate totals must be safe nonnegative integers; identities unique;
+candidate percentages consistent with vote counts; and at most one candidate
+can have a provider call. Votes and calls cannot appear before Election Day;
+stale/future-dated sources and no-vote winner flags are rejected. There is no
+fallback to an unverified candidate or zero total if validation fails.
+
+Tests: `node scripts/test_civicapi_nh_adapter.cjs` (standalone,
+fixture-based checks) plus `node scripts/test_dashboard_runtime.cjs`
+(real application DOM and source-isolation coverage). Both are PR gates, alongside
+the already existing real-source CORS/scheme smoke test. The deployment remains
+a live-feed *readiness* integration: there are no authentic November 2026
+general-election votes to verify until counting begins. Other states retain
+their existing generic, separately attributed experimental adapter; none
+are declared validated by the NH pilot alone.
+
 ## Nationwide 35-race Senate desk (October 13)
 
 A new collapsible **35-contest Senate results monitor** is driven directly by `data/seat_universe.json`: 33 regular races and the Florida/Ohio special elections, with precise different keys (`FL-special` / `OH-special`). It validates all 35 named ballot slots before rendering. The primary Open America provider handles its supported states; civicAPI provides separately identified data for individual unmatched-state races. **Source totals are never merged or extrapolated**. A count of recorded races means that a trusted provider reported at least one vote, not that the seat has been won. A civicAPI call is separately labeled as a *provider call*, not official certification.

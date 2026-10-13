@@ -528,6 +528,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 </div>
 </section>
 <footer class="footer"><span>2026 ELECTION COMMAND CENTER · CLARITY OVER NOISE</span><span><a href="https://github.com/jmon18-rgb/Election-Command-Center">Source code ↗</a> · <span id="updated">Briefing pending</span></span></footer></main>
+<script src="./scripts/civicapi_nh_adapter.js"></script>
 <script>
 const $=s=>document.querySelector(s);
 function activatePage(tab,updateUrl){
@@ -2105,6 +2106,8 @@ let enCivicByWatch=Object.create(null),enCivicRaceIds=Object.create(null),
  enCivicErrors=Object.create(null),enCivicPending=new Set(),enCivicLastSweep=0,enCivicSweepCursor=0,
  enCivicExpanded=new Set();
 function enCivicMatch(item,row){
+ if(item?.office==='Senate'&&item?.key==='NH')
+  return Boolean(window.NHCivicRaceAdapter?.match(item,row));
  if(!item||!row||row.country!=='US'||row.province!==item.key.slice(0,2)||
     typeof row.election_date!=='string'||!row.election_date.startsWith('2026-11-03')||
     !Number.isSafeInteger(row.id)||row.id<=0||row.municipality||
@@ -2124,6 +2127,8 @@ function enCivicMatch(item,row){
  return false;
 }
 function enCivicSelect(item,doc){
+ if(item?.office==='Senate'&&item?.key==='NH')
+  return window.NHCivicRaceAdapter?.select(item,doc)||null;
  if(!doc||!Array.isArray(doc.races)||doc.races.length>25||doc.races.length<1)return null;
  const matches=doc.races.filter(row=>enCivicMatch(item,row));
  return matches.length===1?matches[0]:null;
@@ -2134,6 +2139,8 @@ function enCivicParty(name){
    ['republican','r','gop'].includes(v)?'R':'O';
 }
 function enCivicValidate(item,row,detail){
+ if(item?.office==='Senate'&&item?.key==='NH')
+  return window.NHCivicRaceAdapter?.validate(item,row,detail)||null;
  if(!enCivicMatch(item,row)||!detail||
     detail.country!==row.country||detail.province!==row.province||
     detail.election_date!==row.election_date||
@@ -2174,6 +2181,8 @@ function enCivicValidate(item,row,detail){
   source_url:enCivicBase+'/race/'+row.id};
 }
 function enCivicQuery(item){
+ if(item?.office==='Senate'&&item?.key==='NH')
+  return window.NHCivicRaceAdapter?.query(item)||'';
  const province=item.key.slice(0,2);
  const query=item.office==='Senate'?'US Senate':
    item.office==='Governor'?'Governor':
@@ -2201,6 +2210,8 @@ async function enCivicFetchOne(item){
  if(enCivicPending.has(id))return;
  enCivicPending.add(id);
  try{
+  if(item.office==='Senate'&&item.key==='NH'&&!window.NHCivicRaceAdapter)
+   throw Error('NH Senate race adapter is unavailable');
   let row=enCivicRaceIds[id];
   if(!row){
    const response=await fetch(enCivicQuery(item),{mode:'cors',

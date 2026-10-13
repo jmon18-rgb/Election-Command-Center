@@ -20,7 +20,9 @@ assert.match(mobileHeroCSS,/background-size:100% 100%,100% auto,cover;/,
 assert.match(mobileHeroCSS,/background-position:center,center top,center;/,
  'Keep the surfer image anchored at the top while copy remains at the bottom');
 
-const scripts=[...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)].map(x=>x[1]);
+const scripts=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(x=>x[1]);
+assert.match(html,/<script src="\.\/scripts\/civicapi_nh_adapter\.js"><\/script>/,
+ 'NH civicAPI adapter must load on GitHub Pages before the main application');
 assert.equal(scripts.length,1,'Expected exactly one live inline application script');
 const errors=[];
 const virtualConsole=new VirtualConsole();
@@ -58,6 +60,8 @@ async function settle(){
  throw Error('Timed out waiting for model and dynamic section rendering');
 }
 (async()=>{
+ w.eval(read('scripts/civicapi_nh_adapter.js'));
+ assert(w.NHCivicRaceAdapter,'NH adapter must actually load before the application');
  w.eval(scripts[0]);
  await settle();
  // Distinguish observed historical election variation from a calibrated
@@ -827,6 +831,8 @@ async function settle(){
  // Supplemental provider is separately identified; never merge civicAPI
  // votes into Open America's national office counts or accept primary races.
  const nhSenateItem={office:'Senate',key:'NH'};
+ assert.equal(w.NHCivicRaceAdapter.supports(nhSenateItem),true);
+ assert.equal(w.NHCivicRaceAdapter.supports({office:'Senate',key:'NV'}),false);
  const nhSenateSearch={
    id:87283,country:'US',province:'NH',municipality:null,district:null,
    type:'US Senate',election_type:'General',election_name:'New Hampshire US Senate',
@@ -860,6 +866,10 @@ async function settle(){
  assert.equal(rawCivic.provider,'civicAPI');
  assert.equal(rawCivic.total,1000);
  assert.equal(rawCivic.called,null);
+ const badRaceID={...nhSenateDetail,id:11111};
+ assert.equal(w.eval('enCivicValidate('+JSON.stringify(nhSenateItem)+','+
+    JSON.stringify(nhSenateSearch)+','+JSON.stringify(badRaceID)+')'),null,
+    'NH adapter must reject a race-by-ID payload for a different race');
  const calledDetail=structuredClone(nhSenateDetail);
  calledDetail.candidates[0].winner=true;
  assert.equal(w.eval('enCivicValidate('+JSON.stringify(nhSenateItem)+','+

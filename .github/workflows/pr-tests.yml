@@ -36,6 +36,11 @@ jobs:
         run: python3 scripts/test_live_results_source.py
       - name: Nonpublishing secondary civicAPI 2026 coverage and CORS probe
         run: python3 scripts/probe_civicapi.py
+      - name: Test isolated New Hampshire Senate civicAPI adapter
+        run: |
+          node --check scripts/civicapi_nh_adapter.js
+          node --check scripts/test_civicapi_nh_adapter.cjs
+          node scripts/test_civicapi_nh_adapter.cjs
       - name: Gate civicAPI browser CORS and 2026 House/Senate/Governor identity using real source
         run: python3 scripts/test_civicapi_live_source.py
       - name: Install DOM test environment
