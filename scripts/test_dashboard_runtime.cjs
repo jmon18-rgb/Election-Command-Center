@@ -1330,6 +1330,98 @@ async function settle(){
  w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
 
 
+ // Fifth batch: eight source-ID-pinned 2026 races across AL / MT / NM / OK / TN.
+ // The real Election Night watchlist must show each state's own result,
+ // and civicAPI counts must not alter the primary election metrics.
+ const almtBatch=[
+  {state:'AL',office:'Senate',name:'Alabama US Senate',id:86907,pin:'AL-SEN'},
+  {state:'AL',office:'Governor',name:'Alabama Governor',id:86908,pin:'AL-GOV'},
+  {state:'MT',office:'Senate',name:'Montana US Senate',id:87247,pin:'MT-SEN'},
+  {state:'NM',office:'Senate',name:'New Mexico US Senate',id:87288,pin:'NM-SEN'},
+  {state:'NM',office:'Governor',name:'New Mexico Governor',id:87289,pin:'NM-GOV'},
+  {state:'OK',office:'Senate',name:'Oklahoma US Senate',id:87526,pin:'OK-SEN'},
+  {state:'TN',office:'Senate',name:'Tennessee US Senate',id:87475,pin:'TN-SEN'},
+  {state:'TN',office:'Governor',name:'Tennessee Governor',id:87476,pin:'TN-GOV'}
+ ];
+ const almtRecords=new Map();
+ for(const spec of almtBatch){
+  const item={office:spec.office,key:spec.state};
+  assert(w.StateBatchCivicAdapter.supports(item),
+   'Verified 2026 race should use strict civicAPI adapter: '+spec.pin);
+  const row={
+   id:spec.id,country:'US',province:spec.state,district:null,municipality:null,
+   type:spec.office==='Senate'?'US Senate':'Governor',
+   election_type:spec.office==='Senate'?'General':'Statewide',
+   election_name:spec.name,election_date:'2026-11-03T05:00:00.000Z',
+   candidates:[
+    {name:'Election D',party:'Democratic',votes:0,percent:0,winner:false},
+    {name:'Election R',party:'Republican',votes:0,percent:0,winner:false}
+   ]
+  };
+  const detail={...row,election_type:row.type,percent_reporting:42,
+   last_updated:'2026-11-04T01:35:00Z',
+   candidates:[
+    {name:'Election D',party:'Democratic',votes:520,percent:52,winner:false},
+    {name:'Election R',party:'Republican',votes:480,percent:48,winner:false}
+   ]
+  };
+  almtRecords.set(spec.id,{row,detail,spec});
+  assert.equal(w.eval('enCivicSelect('+JSON.stringify(item)+','+
+   JSON.stringify({races:[row],count:1})+')').id,spec.id,
+    'Only the correct provider race ID can enter '+spec.pin);
+ }
+ assert.equal(w.StateBatchCivicAdapter.supports({office:'Governor',key:'OK'}),false,
+  'Oklahoma governor was unverified and must stay off the strict roster');
+ const almtClock=w.Date.now,almtFetch=w.fetch,almtRequests=[];
+ let almtBadId=null;
+ w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ w.fetch=async(url)=>{
+  const u=String(url);almtRequests.push(u);
+  if(u.startsWith('https://civicapi.org/api/v2/race/search')){
+   const parsed=new URL(u),state=parsed.searchParams.get('province');
+   const office=parsed.searchParams.get('query')==='US Senate'?'Senate':'Governor';
+   const match=[...almtRecords.values()].find(x=>x.spec.state===state&&x.spec.office===office);
+   return {ok:true,json:async()=>({races:match?[match.row]:[],count:match?1:0})};
+  }
+  if(u.startsWith('https://civicapi.org/api/v2/race/')){
+   const id=Number(u.match(/\/race\/(\d+)/)?.[1]),record=almtRecords.get(id);
+   if(!record)return {ok:false,status:404,json:async()=>({})};
+   return {ok:true,json:async()=>almtBadId===id?
+    {...record.detail,id:id+1,last_updated:'2026-11-04T02:00:00Z'}:record.detail};
+  }
+  return {ok:true,json:async()=>empty2026};
+ };
+ for(const spec of almtBatch){
+  get('#enWatchInput').value=spec.pin;
+  get('#enWatchForm').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
+ }
+ await new Promise(resolve=>setTimeout(resolve,90));
+ await w.eval('enRefreshCivicWatchlist(true)');
+ for(const spec of almtBatch){
+  const item={office:spec.office,key:spec.state};
+  const status=w.eval('enCivicStatus('+JSON.stringify(item)+')');
+  assert.match(status,/1,000 reported votes/,
+   'Source count should render for '+spec.pin+': '+status);
+  assert(w.eval('enCivicURL('+JSON.stringify(item)+')').endsWith('/race/'+spec.id),
+   'Source URL must link to exact '+spec.pin+' civicAPI ID');
+  assert.match(get('#enWatchItems').textContent,new RegExp(spec.pin));
+  assert(almtRequests.some(url=>url.includes('province='+spec.state)),
+   'Browser did not query the correct state for '+spec.pin);
+ }
+ assert.equal(get('#enRaces').textContent,primaryRaceCountBeforeCivic,
+  'Eight civicAPI watches must not alter Open America race counts');
+ const almtItem={office:'Senate',key:'MT'};
+ almtBadId=87247;
+ await w.eval('enCivicFetchOne('+JSON.stringify(almtItem)+')');
+ assert.match(w.eval('enCivicStatus('+JSON.stringify(almtItem)+')'),/1,000 reported votes/,
+  'Bad later Montana result must retain last-good votes');
+ assert.match(w.eval('enCivicStatus('+JSON.stringify(almtItem)+')'),/SOURCE RETRYING/);
+ assert.equal(get('#enRaces').textContent,primaryRaceCountBeforeCivic);
+ w.Date.now=almtClock;w.fetch=almtFetch;
+ w.eval('enWatched=[];enRenderWatchlist()');
+ w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
+
+
  // Meaningful alerts never grant Notification access without a click, never
  // fire for a mere timestamp refresh, and require the race be pinned.
  const alertInput=get('#enWatchInput'),alertForm=get('#enWatchForm');

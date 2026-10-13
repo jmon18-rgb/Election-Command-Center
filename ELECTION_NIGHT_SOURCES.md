@@ -221,6 +221,27 @@ The source identity is pinned to exact state, office, stage, race name and ID in
 
 Release gates are `scripts/test_civicapi_il_ky_nj_ny_or.cjs` (7 distinct simulated race fixtures with negative cases), `scripts/test_dashboard_runtime.cjs` (actual seven watchlist pins, external source links and failed-update preservation), and `scripts/probe_civicapi_il_ky_nj_ny_or.py` (real provider search, CORS, exact seven IDs and matching detail). Source discovery does **not** establish real election-night vote operations until counting is underway on November 3.
 
+## Five-state Senate-first expansion: Alabama, Montana, New Mexico, Oklahoma, Tennessee (Oct 13)
+
+A single source-verified batch adds **eight exact statewide 2026 civicAPI records** across five previously uncovered states:
+
+| State | 2026 race | Verified civicAPI ID |
+|---|---|---|
+| AL | Senate | `86907` |
+| AL | Governor | `86908` |
+| MT | Senate | `87247` |
+| NM | Senate | `87288` |
+| NM | Governor | `87289` |
+| OK | Senate | `87526` |
+| TN | Senate | `87475` |
+| TN | Governor | `87476` |
+
+Each identity was checked against a real Nov. 3 `race/search` record followed by the corresponding CORS-compatible `race/{id}` detailed source, including office, state, date, stage and candidate-list shape. The Oct. 13 Oklahoma governor discovery **did not pass** the same exact statewide office/stage matcher; it is **not** included as a verified adapter or assigned any result.
+
+The shared adapter continues to reject mismatched IDs, primaries, special-election substitutions, wrong offices/states/dates, ambiguous search results, impossible vote/percentage distributions, premature reporting or calls, and invalid timestamps. Failed provider updates retain the latest valid counts, labeled as retrying. Vote reporting is supplementary and attributed to civicAPI only; no values mix into Open America source totals or JackStradamus odds, and civicAPI winner flags do not establish official certification.
+
+Testing: `scripts/test_civicapi_al_mt_nm_ok_tn.cjs` exercises all eight source IDs plus negative cases; `scripts/test_dashboard_runtime.cjs` pins and renders all eight from the actual Election Night controls, verifies per-race source URLs and primary-provider isolation, and preserves Montana's last-good count after a wrong-ID response; `scripts/probe_civicapi_al_mt_nm_ok_tn.py` verifies real browser CORS/search/detail identity for all eight in CI. **Real general-election counting must still be checked on November 3.**
+
 ## Nationwide 35-race Senate desk (October 13)
 
 A new collapsible **35-contest Senate results monitor** is driven directly by `data/seat_universe.json`: 33 regular races and the Florida/Ohio special elections, with precise different keys (`FL-special` / `OH-special`). It validates all 35 named ballot slots before rendering. The primary Open America provider handles its supported states; civicAPI provides separately identified data for individual unmatched-state races. **Source totals are never merged or extrapolated**. A count of recorded races means that a trusted provider reported at least one vote, not that the seat has been won. A civicAPI call is separately labeled as a *provider call*, not official certification.
