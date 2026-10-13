@@ -24,6 +24,7 @@ on:
       - 'scripts/update_scenario_forecast.py'
       - 'scripts/test_scenario_forecast.py'
       - 'scripts/notify_new_polls.py'
+      - 'scripts/test_poll_alerts.py'
       - 'scripts/validate_model_drilldown.py'
       - 'index.html'
       - 'data/integrity_impact.json'
@@ -91,6 +92,8 @@ jobs:
         run: python3 scripts/test_house_two_cycle.py
       - name: Build safe 2022-2024 historical swing context
         run: python3 scripts/build_house_two_cycle.py
+      - name: Test new-poll notification filtering and deduplication
+        run: python3 scripts/test_poll_alerts.py
       - name: Email newly indexed polls if SMTP credentials are configured
         env:
           POLL_SMTP_HOST: ${{ secrets.POLL_SMTP_HOST }}
