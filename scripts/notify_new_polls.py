@@ -28,9 +28,15 @@ def choose(observations,known,today):
     result=[]
     for p in observations:
         if identity(p) in known:continue
-        # No catch-up alerts for historic polling first added by a delayed feed.
-        posted=str(p.get("posted_date") or "")
-        if posted!=today:continue
+        # Limit catch-up alerts to recent source-index postings.
+        posted=str(p.get("posted_date") or "")[:10]
+        try:
+            days_old=(dt.date.fromisoformat(today)-dt.date.fromisoformat(posted)).days
+        except ValueError:
+            continue
+        # Four-hour jobs can straddle midnight or be delayed. Use a
+        # bounded 48-hour catch-up window, with identity-based deduping.
+        if not 0<=days_old<=2:continue
         if not (p.get("race_code") and p.get("pollster") and p.get("source_url")):continue
         result.append(p)
     return sorted(result,key=lambda p:(p.get("posted_source_datetime") or "",p.get("race_code") or ""),reverse=True)
@@ -51,28 +57,47 @@ def format_email(polls):
       "Source index: https://pollresults.org/"])
     return "\n".join(lines)
 
+def mail_settings():
+    """Single-account Gmail needs only two GitHub secrets.
+
+    Keep the existing generic SMTP configuration for non-Gmail providers.
+    An optional POLL_ALERT_TO overrides Gmail's self-delivery address.
+    """
+    gmail=os.getenv("POLL_GMAIL_ADDRESS","").strip()
+    app_password=os.getenv("POLL_GMAIL_APP_PASSWORD","").replace(" ","").strip()
+    if gmail and app_password:
+        return ("smtp.gmail.com",465,gmail,app_password,gmail,
+                os.getenv("POLL_ALERT_TO") or gmail)
+    host=os.getenv("POLL_SMTP_HOST")
+    username=os.getenv("POLL_SMTP_USERNAME")
+    password=os.getenv("POLL_SMTP_PASSWORD")
+    sender=os.getenv("POLL_ALERT_FROM")
+    recipient=os.getenv("POLL_ALERT_TO")
+    if all([host,username,password,sender,recipient]):
+        return (host,int(os.getenv("POLL_SMTP_PORT") or "465"),
+                username,password,sender,recipient)
+    return None
+
 def send(body,count):
-    host=os.environ.get("POLL_SMTP_HOST")
-    username=os.environ.get("POLL_SMTP_USERNAME")
-    password=os.environ.get("POLL_SMTP_PASSWORD")
-    recipient=os.environ.get("POLL_ALERT_TO")
-    sender=os.environ.get("POLL_ALERT_FROM")
-    if not all([host,username,password,recipient,sender]):
+    settings=mail_settings()
+    if not settings:
         print("Email not configured; skipped without claiming delivery.")
         return False
+    host,port,username,password,sender,recipient=settings
     msg=EmailMessage()
     msg["Subject"]=f"Election Command Center: {count} newly indexed poll observation(s)"
     msg["From"]=sender
     msg["To"]=recipient
     msg.set_content(body)
-    port=int(os.environ.get("POLL_SMTP_PORT") or "465")
     if port==465:
         with smtplib.SMTP_SSL(host,port,timeout=25,context=ssl.create_default_context()) as connection:
             connection.login(username,password);connection.send_message(msg)
-    else:
+    elif port==587:
         with smtplib.SMTP(host,port,timeout=25) as connection:
             connection.starttls(context=ssl.create_default_context())
             connection.login(username,password);connection.send_message(msg)
+    else:
+        raise ValueError("SMTP must use port 465 (implicit TLS) or 587 (STARTTLS)")
     return True
 
 def main():
@@ -89,8 +114,7 @@ def main():
     fresh=choose(observations,known,today)
     # No recipient configured: keep historical state stable so alerting
     # starts fresh once secrets are provided (without a catch-up flood).
-    configured=all(os.getenv(k) for k in ["POLL_SMTP_HOST","POLL_SMTP_USERNAME",
-                                            "POLL_SMTP_PASSWORD","POLL_ALERT_TO","POLL_ALERT_FROM"])
+    configured=mail_settings() is not None
     if fresh and configured:
         if not send(format_email(fresh),len(fresh)):
             raise RuntimeError("SMTP send did not complete")
