@@ -95,10 +95,36 @@ def estimate(race, today, generic=False):
     for p in sorted(polls,key=lambda v:v["field_end"],reverse=True):
         latest.setdefault(p["pollster"].casefold(),p)
     chosen=list(latest.values())
-    sw=sum(weighted(p,today) for p in chosen)
-    dem=sum(weighted(p,today)*p["dem"] for p in chosen)/sw
-    rep=sum(weighted(p,today)*p["rep"] for p in chosen)/sw
+    weights=[weighted(p,today) for p in chosen]
+    sw=sum(weights)
+    dem=sum(w*p["dem"] for p,w in zip(chosen,weights))/sw
+    rep=sum(w*p["rep"] for p,w in zip(chosen,weights))/sw
     margins=[p["dem"]-p["rep"] for p in chosen]
+    # Effective number of independent firms after weighting; this is NOT
+    # sample size or forecast confidence. A single huge weight drives it toward 1.
+    effective_firms=sw*sw/sum(w*w for w in weights)
+    independent=[(p,w) for p,w in zip(chosen,weights) if not p.get("partisan_lean")]
+    independent_mean=(sum((p["dem"]-p["rep"])*w for p,w in independent)/
+                      sum(w for _,w in independent)) if independent else None
+    alternatives={"equal_firms":sum(margins)/len(margins)}
+    if independent_mean is not None:
+        alternatives["independent_only"]=independent_mean
+    alternatives["faster_recency_14d"]=(
+        sum((p["dem"]-p["rep"])*w*2**(-max(0,(today-date.fromisoformat(p["field_end"])).days)*(1/14-1/HALF_LIFE))
+            for p,w in zip(chosen,weights))/
+        sum(w*2**(-max(0,(today-date.fromisoformat(p["field_end"])).days)*(1/14-1/HALF_LIFE))
+            for p,w in zip(chosen,weights)))
+    # Diagnostic sensitivity to defensible weighting choices, never uncertainty.
+    model_sensitivity={
+        "effective_firms":round(effective_firms,2),
+        "largest_firm_weight_pct":round(100*max(weights)/sw,1),
+        "independent_only_margin":round(independent_mean,2) if independent_mean is not None else None,
+        "equal_firms_margin":round(alternatives["equal_firms"],2),
+        "faster_recency_margin":round(alternatives["faster_recency_14d"],2),
+        "alternative_margin_min":round(min(alternatives.values()),2),
+        "alternative_margin_max":round(max(alternatives.values()),2),
+        "interpretation":"Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+    }
     m=sum(margins)/len(margins)
     spread=(sum((v-m)**2 for v in margins)/(len(margins)-1))**0.5 if len(margins)>1 else None
     age=min((today-date.fromisoformat(p["field_end"])).days for p in chosen)
@@ -121,6 +147,7 @@ def estimate(race, today, generic=False):
             "thin_polling":len(chosen)<3,
             "stale_latest_poll":age>14,
             "high_poll_disagreement":spread is not None and spread>=6,
+            "model_sensitivity":model_sensitivity,
             "different_matchups_excluded":sum(len(v) for k,v in grouped.items() if k!=matchup),
             "interpretation":"Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
         },
@@ -177,7 +204,7 @@ def build(data):
         "source_snapshot":data.get("updated_at"),
         "type":"descriptive_polling_estimates",
         "is_election_forecast":False,
-        "method_version":"poll-mean-1.3",
+        "method_version":"poll-mean-1.4",
         "window_days":WINDOW,"half_life_days":HALF_LIFE,
         "sponsored_poll_weight_factor":PARTISAN_FACTOR,
         "pollster_quality_source":QUALITY_DATA["source_url"],
@@ -194,7 +221,7 @@ def build(data):
             "0.5 sponsor factor is a declared sensitivity choice, not an empirically estimated house effect.",
             "Historical 538 ratings predate the current cycle and are matched to current pollsters with explicit aliases.",
             "Unrated firms receive neutral quality weight; sample-size importance is a capped provisional exponent.",
-            "The public feed limits polls per race; historical series remain incomplete.",
+            "The public feed retains up to 60 surveys per race over 65 days; historical series remain incomplete.",
             "Candidates in different ballot matchups are not averaged together.",
             "Polling quality and candidate support errors are not yet calibrated for 2026."
         ]
