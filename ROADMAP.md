@@ -215,3 +215,10 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Optional desktop notifications require a user click and the browser's own permission; off by default. In-page event history and browser-only retention work without notifications.
 - DOM tests cover source provenance, consent, dedup, pre-election silence, same-timestamp revisions, civicAPI calls, persistence and clearing.
 - **Next:** independent real Nov. 3 in-browser smoke test, election-night fallback for stale/slow providers, and coverage for more local House/Governor races without treating unreported regions as zero.
+
+## Oct 13: source-verified local reload recovery
+
+- A laptop page reload previously erased all 2026 office snapshots and observed vote movement. Added bounded localStorage recovery for last verified Open America House/Senate/Governor data and at most 70 observed updates.
+- Restore is conservative: validate full 2026 vote/schema and all event records, reject pre-election, wrong office, future, corrupted, old (>72h) or oversized records. Restored counts explicitly display stale/reconnecting status rather than falsely appearing as live.
+- Only actual 2026 verified votes are stored, never 2024 rehearsal or derived model forecasts; source errors keep last-good information. DOM tests use a second real page instance across an offline reload and hostile/expired local storage to verify behavior.
+- Next: full cross-provider reconciliation and official call sources; an optional exportable audit trail if source terms and browser storage size allow.

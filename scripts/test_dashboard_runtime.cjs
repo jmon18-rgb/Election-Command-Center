@@ -1031,6 +1031,88 @@ async function settle(){
  w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
  w.localStorage.removeItem('bluewaves_election_desktop_2026_v1');
 
+ // A real second document instance must restore source-verified 2026
+ // results and movement history from the same browser's saved bytes.
+ // No mocked "live" freshness or reconstructed race calls are allowed.
+ const resumePayload={
+   schema_version:1,election:'2026-11-03',
+   saved_at:'2026-11-04T03:30:00Z',
+   snapshots:{Senate:counted2026,House:empty2026},
+   movements:[{office:'Senate',key:'NC',at:'2026-11-04T02:30:00Z',
+     prior:0,current:300,delta:300,newRace:true,
+     leaderChanged:false,candidateChanged:true,
+     fingerprint:'Democratic candidate:D:160,Republican candidate:R:140'}]
+ };
+ const resumeConsole=new VirtualConsole();
+ resumeConsole.on('jsdomError',err=>errors.push('Resume document: '+String(err)));
+ const resumed=new JSDOM(html,{url:'https://election-command-center.local/',runScripts:'outside-only',
+   pretendToBeVisual:true,virtualConsole:resumeConsole});
+ const rw=resumed.window;
+ rw.scrollTo=()=>{};rw.Element.prototype.scrollIntoView=function(){};
+ rw.matchMedia=()=>({matches:false,addListener(){},removeListener(){}});
+ rw.Date.now=()=>Date.parse('2026-11-04T03:40:00Z');
+ rw.localStorage.setItem('bluewaves_2026_results_resume_v1',JSON.stringify(resumePayload));
+ rw.fetch=async url=>{
+   const name=String(url).split('?')[0].split('/').pop();
+   if(name in fixtures)return {ok:true,json:async()=>fixtures[name]};
+   throw Error('Simulated remote outage after browser reload');
+ };
+ rw.eval(scripts[0]);
+ const rg=selector=>{const el=rw.document.querySelector(selector);
+    assert(el,'Missing resume UI element '+selector);return el};
+ assert.equal(rw.eval('enResumeRestore()'),true,
+   'Hydration must accept only the complete validated local envelope');
+ rg('#enMode2026').click();
+ rg('#enOfficeSenate').click();
+ assert.equal(rg('#enRaces').textContent,'1',
+   'Last verified Senate votes must show immediately after reload, even offline');
+ assert.match(rg('#enConnection').textContent,/RESTORED/);
+ assert.match(rg('#enStatus').textContent,/RESTORED BROWSER SNAPSHOT/);
+ assert.match(rg('#enActivityFeed').textContent,/NC.*NEW REPORTING/,
+    'Stored observed updates should be visible again after browser reload');
+ assert.equal(rw.eval('enResumeSave()'),true,
+   'A verified source snapshot must be saved locally in election mode');
+ const resaved=JSON.parse(rw.localStorage.getItem('bluewaves_2026_results_resume_v1'));
+ assert.equal(resaved.snapshots.Senate.races.NC.total,300);
+ assert.equal(resaved.movements.length,1);
+ // Reconnecting another office must NEVER remove the restored/stale badge
+ // from a separate Senate office whose source has not been refreshed.
+ rw.fetch=async url=>{
+   const name=String(url).split('?')[0].split('/').pop();
+   if(String(url).includes('openamerica.io')&&String(url).includes('office=House'))
+     return {ok:true,json:async()=>empty2026};
+   if(name in fixtures)return {ok:true,json:async()=>fixtures[name]};
+   throw Error('Senate source still offline');
+ };
+ rg('#enOfficeHouse').click();
+ await rw.eval('enLoad(true)');
+ rg('#enOfficeSenate').click();
+ assert.equal(rg('#enRaces').textContent,'1');
+ assert.match(rg('#enConnection').textContent,/RESTORED/,
+   'Updating House cannot silently mark restored Senate votes as live');
+ const invalid={...resumePayload,
+   snapshots:{Senate:{...counted2026,office:'House'}}};
+ rw.localStorage.setItem('bluewaves_2026_results_resume_v1',JSON.stringify(invalid));
+ assert.equal(rw.eval('enResumeRestore()'),false,
+    'Cross-office payload must never restore as another race');
+ const expired={...resumePayload,saved_at:'2026-10-20T20:00:00Z'};
+ rw.localStorage.setItem('bluewaves_2026_results_resume_v1',JSON.stringify(expired));
+ assert.equal(rw.eval('enResumeRestore()'),false,
+    'Snapshots older than the 72-hour resume window must not load');
+ const fakeCall=structuredClone(counted2026);fakeCall.races.NC.called=true;
+ rw.localStorage.setItem('bluewaves_2026_results_resume_v1',
+   JSON.stringify({...resumePayload,snapshots:{Senate:fakeCall}}));
+ assert.equal(rw.eval('enResumeRestore()'),false,
+    'Unverified vote calls in saved storage must not be trusted');
+ rw.localStorage.setItem('bluewaves_2026_results_resume_v1',JSON.stringify(resumePayload));
+ rw.Date.now=()=>Date.parse('2026-10-22T12:00:00Z');
+ assert.equal(rw.eval('enResumeRestore()'),false,
+    'Election-night local cache cannot appear as pre-election reported votes');
+ // Allow the second page's normal asynchronous article/research fetches to
+ // settle before tearing down jsdom; an unmounted DOM is not a browser page.
+ await new Promise(resolve=>setTimeout(resolve,100));
+ resumed.window.close();
+
  assert.equal(errors.length,0,'Application emitted errors: '+errors.slice(0,4).join(' | '));
  console.log('Dashboard DOM integration passed: exact TX-SEN/TX-GOV poll drilldowns, race labels, DDHQ stale-data guards, dated news feed, and no script errors.');
  dom.window.close();
