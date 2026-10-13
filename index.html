@@ -485,6 +485,11 @@ $('#modelPollIncluded').addEventListener('click',()=>{modelPollMode='included';r
 $('#modelPollAll').addEventListener('click',()=>{modelPollMode='all';renderModelRaceDetail()});
 $('#modelBack').addEventListener('click',()=>$('#modelBoard').scrollIntoView({behavior:'smooth',block:'start'}));
 let pollingSnapshot=null;let postedPollingSnapshot=null;window.selectedRaceType='senate';
+function setPostedPollingSnapshot(snapshot){
+ postedPollingSnapshot=snapshot;
+ if(pollingSnapshot)renderFreshPolls(pollingSnapshot);
+ if(latestSenateEstimates)renderRacePulse(latestSenateEstimates);
+}
 let feedHealth={polls:null,news:null};
 function updateHealth(){const parts=[];let good=0;for(const [name,item] of Object.entries(feedHealth)){if(!item){parts.push(name+': unavailable');continue}const date=item.updated_at?new Date(item.updated_at):null;const age=date&&!isNaN(+date)?(Date.now()-date.getTime())/3600000:Infinity;const status=item.health?.status||(item.pipeline?.successful_queries?'available':'unknown');const label=!Number.isFinite(age)?'no timestamp':age<-.25?'clock mismatch':age<12?'fresh':age<48?'delayed':'stale';if(age>=-.25&&age<12&&status!=='error')good++;parts.push(name+': '+label+(Number.isFinite(age)?' ('+Math.max(0,Math.round(age))+'h old)':''))}$('#healthText').textContent=parts.join(' · ');$('#healthDot').className='healthdot '+(good===2?'ok':good===0?'bad':'');const diagnostics=$('#feedDiagnostics');if(diagnostics){diagnostics.replaceChildren();for(const p of parts)diagnostics.append(elt('div','item',p))}}
 
@@ -936,7 +941,7 @@ $('#genericFresh').textContent='Latest field end: '+gb.summary.latest_field_end;
 renderRaceList();if(latestSenateEstimates){renderModelRaceDetail();renderModelGenericHeadline();renderRacePulse(latestSenateEstimates)}
 if(d.updated_at){const date=new Date(d.updated_at);if(!Number.isNaN(+date))$('#genericFresh').textContent+=' · fetched '+date.toLocaleDateString()}
 }
-fetch('./data/pollresults_recent.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('supplemental not ready');return r.json()}).then(d=>{postedPollingSnapshot=d;if(pollingSnapshot)renderFreshPolls(pollingSnapshot);if(latestSenateEstimates)renderRacePulse(latestSenateEstimates)}).catch(()=>{/* Main source fallback stays available. */});
+fetch('./data/pollresults_recent.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('supplemental not ready');return r.json()}).then(setPostedPollingSnapshot).catch(()=>{/* Main source fallback stays available. */});
 fetch('./data/polls.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(renderPolls).catch(error=>{console.error('Polling feed error',error);$('#newPolls').textContent='Polling feed unavailable: '+error.message+'.';$('#genericDetail').textContent='Polling data could not be displayed.';updateHealth()});
 
 
