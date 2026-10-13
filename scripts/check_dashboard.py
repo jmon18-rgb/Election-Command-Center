@@ -11,6 +11,12 @@ must_have = (
     'id="modelDetail"',
     'id="modelChart"',
     'id="modelPollRows"',
+    'data-model-scope="senate"',
+    'data-model-scope="house"',
+    'data-model-scope="governor"',
+    'data-model-scope="generic"',
+    'function modelRows(data)',
+    '🐑 HERDING?',
     'function modelPollEntries(estimate)',
     'function renderModelRaceDetail()',
     'function renderModelOverview(data)',
@@ -28,6 +34,8 @@ must_have = (
     'id="electionNight"',
     'id="enMode2026"',
     'id="enMode2024"',
+    'id="enOfficeGovernor"',
+    'function renderBullStateScores()',
     'id="enRaceList"',
     'function enLoad(manual=false)',
 )
@@ -43,8 +51,6 @@ must_not_have = (
     'id="modelDays"',
     'id="war"',
     'id="senatePaths"',
-    'id="senatePaths"',
-    'id="war"',
     'data-page="senatePaths"',
     'data-page="war"',
     'Ridiculous name. Real math.',
@@ -56,7 +62,7 @@ for term in must_have:
     assert term in html, f"Required dashboard feature missing: {term}"
 for term in must_not_have:
     assert term not in html, f"Removed or redundant panel returned: {term}"
-for identifier in ('newPolls', 'jackRadar', 'senateEstimateCards', 'modelBoard', 'modelRaceTotal', 'modelCloseTotal', 'modelThinTotal', 'modelDetail', 'modelChart', 'modelPollRows', 'modelPollIncluded', 'modelPollAll', 'bullScoreStates', 'electionNight', 'enMode2026', 'enMode2024', 'enRaceList'):
+for identifier in ('newPolls', 'jackRadar', 'senateEstimateCards', 'modelBoard', 'modelRaceTotal', 'modelCloseTotal', 'modelThinTotal', 'modelDetail', 'modelChart', 'modelPollRows', 'modelPollIncluded', 'modelPollAll', 'bullScoreStates', 'electionNight', 'enMode2026', 'enMode2024', 'enOfficeGovernor', 'enRaceList'):
     assert len(re.findall(rf'id="{identifier}"', html)) == 1, identifier
 scripts = re.findall(r"<script(?:\s[^>]*)?>(.*?)</script>", html, flags=re.S)
 assert scripts, "No inline dashboard script found"
