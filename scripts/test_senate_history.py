@@ -13,7 +13,7 @@ def example_csv(delimiter=","):
     fields=["year","state_po","office","stage","special","candidate","party","candidatevotes"]
     writer=csv.DictWriter(f,fieldnames=fields,delimiter=delimiter)
     writer.writeheader()
-    states=sorted(m.STATE_CODES)[:34]
+    states=sorted(m.STATE_CODES)[:33]+['UT']
     # Force special-election states into the fixture regardless of alphabetic subset.
     for year in m.YEARS:
         for state in states:
