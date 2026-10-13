@@ -10,6 +10,8 @@ on:
       - 'scripts/test_polling_models.py'
       - 'scripts/build_polling_estimates.py'
       - 'scripts/build_seat_universe.py'
+      - 'scripts/build_map_bridge.py'
+      - 'scripts/test_map_bridge.py'
       - 'scripts/test_seat_universe.py'
       - 'scripts/update_integrity_queue.py'
       - 'scripts/validate_integrity_impact.py'
@@ -58,11 +60,15 @@ jobs:
         run: python3 scripts/test_seat_universe.py
       - name: Build verified seat inventory and forecast-readiness gate
         run: python3 scripts/build_seat_universe.py
+      - name: Test 2024-to-2026 district geography mapping
+        run: python3 scripts/test_map_bridge.py
+      - name: Build 2026 House redistricting safeguards
+        run: python3 scripts/build_map_bridge.py
       - name: Commit updated briefing
         run: |
           git config user.name "election-briefing-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/briefing.json data/polls.json data/model_tests.json data/polling_estimates.json data/integrity_review_queue.json data/model_history.json data/seat_universe.json
+          git add data/briefing.json data/polls.json data/model_tests.json data/polling_estimates.json data/integrity_review_queue.json data/model_history.json data/seat_universe.json data/house_geography_bridge.json
           if [ -f data/pollresults_recent.json ]; then git add data/pollresults_recent.json; fi
           if ! git diff --cached --quiet; then
             git commit -m "Update sourced election briefing"
