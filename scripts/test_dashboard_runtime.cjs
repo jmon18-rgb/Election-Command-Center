@@ -39,6 +39,7 @@ const fixtures={
  'polling_estimates.json':model,'polls.json':primary,
  'pollresults_recent.json':recent,'model_history.json':history,
  'race_probabilities.json':json('data/race_probabilities.json'),
+ 'race_probability_history.json':json('data/race_probability_history.json'),
  'congress_scenarios.json':json('data/congress_scenarios.json'),
  'house_history_2024_staging.json':json('data/house_history_2024_staging.json')
 };
@@ -100,6 +101,49 @@ async function settle(){
  fakeRaceOdds.records[0].dem_beats_rep_pct=-1;
  assert.equal(w.eval('modelOddsValidate('+JSON.stringify(fakeRaceOdds)+','+JSON.stringify(model)+')'),false,
   'Invalid candidate-matched model probability input fails closed');
+
+ // Never synthesize probability moves from poll fieldwork dates. A real
+ // current-source run and a four-hour-separated real earlier run are required.
+ const oddsHistory=json('data/race_probability_history.json');
+ const liveOdds=json('data/race_probabilities.json');
+ assert.equal(oddsHistory.latest_source_at,liveOdds.polling_source_generated_at);
+ assert.equal(oddsHistory.snapshots.length,1);
+ const firstOddsHistory=w.eval('oddsMoversFromHistory('+
+   JSON.stringify(oddsHistory)+','+JSON.stringify(liveOdds)+','+
+   JSON.stringify(model)+',"senate")');
+ assert.equal(firstOddsHistory.hasComparablePrevious,false);
+ assert.match(get('#oddsMoverList').textContent,/First odds snapshot recorded|Waiting for verified/);
+ const synthetic=structuredClone(oddsHistory);
+ const newer=synthetic.snapshots[0];
+ const older=structuredClone(newer);
+ older.source_at=new Date(Date.parse(newer.source_at)-6*3600000).toISOString();
+ const txEarlier=older.races.find(r=>r.office==='senate'&&r.race_code==='TX-SEN');
+ assert(txEarlier,'Texas Senate must have a valid current observed source row');
+ txEarlier.dem_beats_rep_pct-=4.25;
+ synthetic.snapshots.unshift(older);
+ const moves=w.eval('oddsMoversFromHistory('+
+   JSON.stringify(synthetic)+','+JSON.stringify(liveOdds)+','+
+   JSON.stringify(model)+',"senate")');
+ assert.equal(moves.hasComparablePrevious,true);
+ assert(moves.movers.some(m=>m.code==='TX-SEN'&&m.delta>4),
+   'Only comparable same-candidate historical probability change qualifies');
+ w.eval('setRaceOddsHistoryData('+JSON.stringify(synthetic)+')');
+ assert.match(get('#oddsMoverWindow').textContent,/6h COMPARISON/);
+ assert.match(get('#oddsMoverList').textContent,/TX-SEN/);
+ const wrongCandidate=structuredClone(synthetic);
+ wrongCandidate.snapshots[0].races.find(r=>r.office==='senate'&&r.race_code==='TX-SEN')
+   .dem_candidate='An unrelated candidate';
+ const unmatched=w.eval('oddsMoversFromHistory('+
+   JSON.stringify(wrongCandidate)+','+JSON.stringify(liveOdds)+','+
+   JSON.stringify(model)+',"senate")');
+ assert(!unmatched.movers.some(m=>m.code==='TX-SEN'));
+ const falseCurrent=structuredClone(synthetic);
+ falseCurrent.snapshots[1].races[0].dem_beats_rep_pct=-999;
+ assert.equal(w.eval('oddsMoversFromHistory('+
+   JSON.stringify(falseCurrent)+','+JSON.stringify(liveOdds)+','+
+   JSON.stringify(model)+',"senate")'),null,
+   'Stale or source-altered latest probability snapshot never renders');
+ w.eval('setRaceOddsHistoryData('+JSON.stringify(oddsHistory)+')');
 
  // Distinguish observed historical election variation from a calibrated
  // outcome forecast. Audit exactly the 191 map-comparable party-vote seats.
