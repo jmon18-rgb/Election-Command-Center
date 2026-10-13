@@ -1864,11 +1864,27 @@ function enCompareSnapshots(previous,next){
  return changes.sort((a,b)=>Number(b.leaderChanged)-Number(a.leaderChanged)||
    Number(b.newRace)-Number(a.newRace)||Math.abs(b.delta)-Math.abs(a.delta)).slice(0,30);
 }
+function enSnapshotCompatible(previous,next){
+ if(!previous||previous.year!==next.year||previous.office!==next.office)return true;
+ if(previous.counting&&Object.keys(previous.races).length&&
+    !next.counting&&!Object.keys(next.races).length)return false;
+ const oldTime=Date.parse(previous.as_of||''),newTime=Date.parse(next.as_of||'');
+ if(Number.isFinite(oldTime)&&Number.isFinite(newTime)&&newTime<oldTime-1000)return false;
+ return true;
+}
 function enAcceptSource(o){
- if(!enSourceValid(o,enModeYear,enOffice))throw Error('Results format or vote-count integrity check failed');
- const changes=enCompareSnapshots(enData,o);
+ if(!enSourceValid(o,enModeYear,enOffice))
+  throw Error('Results format or vote-count integrity check failed');
+ const previous=enModeYear===2026?(enOfficeSnapshots[enOffice]||enData):enData;
+ if(!enSnapshotCompatible(previous,o))
+  throw Error('Provider snapshot unexpectedly reversed in time or lost all counted races');
+ const changes=enCompareSnapshots(previous,o);
  enMovements=[...changes,...enMovements].slice(0,70);
  enData=o;enFetchError=null;enLastFetchAt=new Date();
+ if(enModeYear===2026){
+  enOfficeSnapshots[enOffice]=o;
+  delete enOfficeErrors[enOffice];
+ }
  enRender();
 }
 function enRenderMovement(){
@@ -2048,6 +2064,36 @@ function enFetchUrl(year,office){
    throw Error('Unsupported live-results source request');
  return enRemoteBase+'?year='+year+'&office='+encodeURIComponent(office);
 }
+const enWatchRefreshPending=new Set();
+async function enRefreshWatchedOffices(exceptOffice){
+ if(enModeYear!==2026||!enIsVisible())return;
+ const offices=[...new Set(enWatched.map(x=>x.office))].filter(x=>x!==exceptOffice);
+ await Promise.all(offices.map(async office=>{
+  if(enWatchRefreshPending.has(office))return;
+  enWatchRefreshPending.add(office);
+  try{
+   const response=await fetch(enFetchUrl(2026,office),{
+      mode:'cors',credentials:'omit',cache:'no-store',
+      headers:{Accept:'application/json'}
+   });
+   if(!response.ok)throw Error('HTTP '+response.status);
+   const obj=await response.json();
+   if(!enSourceValid(obj,2026,office))throw Error('Unrecognized vote source');
+   if(enModeYear!==2026)return;
+   const old=enOfficeSnapshots[office]||null;
+   if(!enSnapshotCompatible(old,obj))throw Error('Unordered source update');
+   enOfficeSnapshots[office]=obj;
+   enMovements=[...enCompareSnapshots(old,obj),...enMovements].slice(0,70);
+   delete enOfficeErrors[office];
+   if(enOffice===office){
+    enData=obj;enFetchError=null;enLastFetchAt=new Date();enRender();
+   }else enRenderWatchlist();
+  }catch(err){
+   if(enModeYear===2026){enOfficeErrors[office]=String(err?.message||err);enRenderWatchlist()}
+  }finally{enWatchRefreshPending.delete(office)}
+ }));
+ if(enModeYear===2026&&enIsVisible())enQueueRefresh();
+}
 function enRefreshInterval(data,failures=0){
  if(failures>0)return Math.min(600000,60000*Math.pow(2,Math.min(failures-1,4)));
  if(data?.live)return 60000;
@@ -2056,7 +2102,12 @@ function enRefreshInterval(data,failures=0){
 function enQueueRefresh(){
  if(enTimer){clearTimeout(enTimer);enTimer=null}
  if(enModeYear!==2026||!enIsVisible())return;
- enTimer=setTimeout(()=>{enTimer=null;enLoad(false)},enRefreshInterval(enData,enFailures));
+ const watchingLive=enWatched.some(x=>{
+  const snap=enOfficeSnapshots[x.office],at=Date.parse(snap?.as_of||'');
+  return snap?.live&&Number.isFinite(at)&&Date.now()-at<180*60000;
+ });
+ const preferred=watchingLive?{live:true}:enData;
+ enTimer=setTimeout(()=>{enTimer=null;enLoad(false)},enRefreshInterval(preferred,enFailures));
 }
 async function enLoad(manual=false){
  if(enTimer){clearTimeout(enTimer);enTimer=null}
@@ -2082,6 +2133,7 @@ async function enLoad(manual=false){
   if(serial!==enRequestSerial)return;
   enFailures=0;
   enAcceptSource(obj);
+  if(year===2026)void enRefreshWatchedOffices(office);
  }catch(error){
   if(serial!==enRequestSerial)return;
   enFailures++;
