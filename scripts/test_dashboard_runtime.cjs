@@ -1276,11 +1276,11 @@ async function settle(){
  }
  assert.equal(w.StateBatchCivicAdapter.supports({office:'Senate',key:'NY'}),false,
    'Uncontested Senate seat must not be invented');
- const fiveClock=w.Date.now,fiveFetch=w.fetch,requests=[];
+ const fiveClock=w.Date.now,fiveFetch=w.fetch,fiveRequests=[];
  let fiveInvalidId=null;
  w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
  w.fetch=async(url)=>{
-  const address=String(url);requests.push(address);
+  const address=String(url);fiveRequests.push(address);
   if(address.startsWith('https://civicapi.org/api/v2/race/search')){
    const u=new URL(address),state=u.searchParams.get('province');
    const office=u.searchParams.get('query')==='US Senate'?'Senate':'Governor';
@@ -1313,7 +1313,7 @@ async function settle(){
   assert(w.eval('enCivicURL('+JSON.stringify(item)+')').endsWith('/race/'+spec.id),
     'Wrong external race link for '+spec.pin);
   assert.match(get('#enWatchItems').textContent,new RegExp(spec.pin));
-  assert(requests.some(url=>url.includes('province='+spec.state)),
+  assert(fiveRequests.some(url=>url.includes('province='+spec.state)),
     'No direct state query for '+spec.pin);
  }
  assert.equal(get('#enRaces').textContent,primaryRaceCountBeforeCivic,
