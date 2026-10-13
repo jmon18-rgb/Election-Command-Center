@@ -1,9 +1,77 @@
 {
-  "updated_at": "2026-10-13T21:59:58.134931Z",
+  "updated_at": "2026-10-13T23:02:52.465730Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 5,
   "items": [
+    {
+      "id": "def31835052d6a1343ee",
+      "title": "NC elections board to notify 1,392 voters flagged as potential noncitizens - NC Newsline",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPS3JzQTl5dW9LcXRBMy1QY1dnLUw4QklpT09PcVBpS1FOSjRfZHZlLUtNd29yV0RHOE1WOHNEYnYzSEljTDlSdG9sT0ZVdGdSajBNbnJuYUVUNVV0ZTNIdm44RzJEMExiZGtMb2pRdjhsVloycF9xbkNRbU01RTRJejR2WTN6WkpseEtnUTk5RGxWTDBXeDlSVUhrbHVlcG82dmdlRk5HcWJRQ19Z?oc=5",
+      "publisher": "NC Newsline",
+      "published_at": "2026-10-13T22:43:43Z",
+      "detected_at": "2026-10-13T23:02:52.465730Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [
+        "1,392 voters"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "e6c61a9ec632cc71f3a8",
+      "title": "Clean Elections Commission to high court: Green Party candidates\u2019 harm is self-inflicted - Arizona Mirror",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPUVI1OUZ1MVVkMFFiVDRITHFTMldSdElnSWpiaUpsd1hKeDc5Q1lBVVIwckhnX00tY1lYc3c3R0I0NTNxOFpTYlBxWW9qRkxFdVVBWnBsMHlQSTdmNEh4eF9WbEZkaFhBM05aNUU5YkpuSmpIa29YQ281SUMxckcxV0tTYmJpOVlRMWxYNVJuNjE2SkdBYzl0ejhsYkEzci1iWnpwTWFzVW1YT3p5dVlFSE1nRUFMLVFmbXd3?oc=5",
+      "publisher": "Arizona Mirror",
+      "published_at": "2026-10-13T22:17:07Z",
+      "detected_at": "2026-10-13T23:02:52.465730Z",
+      "state_hints": [
+        "AZ"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "b6302e6eeee9c6ba474b",
+      "title": "CA Sec. of State: \u2018Do Not Let Anyone Keep You From Voting\u2019 - American Community Media",
+      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNV2RKLUZyWVNoR091LXEzaEZzZHgzZF9sVnhVdWFlLTNCQTFvazhmZUxGSFV3NHdhbFI3ZnZrQjRNOE1LMUI2WkVLNkU2eEE5QzRxTmZDLXNDS3RjLTViOUlFTTlCUnBNYnJ0cEVtT3h2V2M1amk5Z3o3Y3RpQkZwWWRHSGNkZThvYXVvYWVvVUtXeXV1azkyd0Z3ZEdBTWJp?oc=5",
+      "publisher": "American Community Media",
+      "published_at": "2026-10-13T22:12:12Z",
+      "detected_at": "2026-10-13T23:02:52.465730Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "b5771f41492df51ebd5b",
+      "title": "Court dismisses Wahl residency lawsuit after plaintiffs seek dismissal - Alabama Political Reporter",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOM0I5LV9TWHg1bFdFMlpBRGt3U3IwaF9STGNYRnVwTjcyaFBycjZwZW5JQXc4dzh6YmloY2d6U21maHdtMlhaejc3aUNXV1NsT1FGbXhhQVV1dkJwOGRkZ1NyZ2VHR3JLcWlCRXF6enZJOGx5aFVYQ3BISjE1R3drX3lZVWEya3hNdmVXb293RXlBWXdlenVhRDJZWnRCaGJkMmNmMUtqUVdhbDJHQ0E?oc=5",
+      "publisher": "Alabama Political Reporter",
+      "published_at": "2026-10-13T22:01:00Z",
+      "detected_at": "2026-10-13T23:02:52.465730Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "18783e20ed863557e3f5",
       "title": "What to know about mail-in voting in WA for the 2026 midterms - RANGE Media",
@@ -16,6 +84,23 @@
       "headline_numbers_unverified": [
         "2026 "
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "fd5af57478116b73dffb",
+      "title": "Granbury Officials Sue To Stop Recall Election - Texas Scorecard",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOWVF0LWpJRk01amJQLS1XU2tmdDljNnpEWlF4Q1lfeGJNeDBtSFhRVXdaa3pMV1BxTVlIRFVpQXg0NWhtLXhWVmNycDVkZzhmeS1qRi1iY2tyRURjSG5QeEwzNEt0Tm1DSllfR0F1R0RJQi04VjZvZi01TW04REN6eV95M2dxYmM?oc=5",
+      "publisher": "Texas Scorecard",
+      "published_at": "2026-10-13T21:41:14Z",
+      "detected_at": "2026-10-13T23:02:52.465730Z",
+      "state_hints": [
+        "TX"
+      ],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
