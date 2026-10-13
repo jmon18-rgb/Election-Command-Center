@@ -20,6 +20,10 @@ jobs:
         run: python3 scripts/test_senate_history.py
       - name: Stage MIT Senate research outcomes from official Harvard Dataverse
         run: python3 scripts/stage_senate_history.py
+      - name: Test historical Senate poll-only backtesting and date leakage
+        run: python3 scripts/test_historical_senate_poll_backtest.py
+      - name: Validate actual archived 538 poll source and historical Senate joins
+        run: python3 scripts/backtest_historical_senate_polls.py
       - name: Validate polling model behavior
         run: python3 scripts/test_polling_models.py
       - name: Install DOM test environment
