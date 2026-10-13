@@ -34,6 +34,7 @@ w.matchMedia=()=>({matches:false,addListener(){},removeListener(){}});
 const fixtures={
  'polling_estimates.json':model,'polls.json':primary,
  'pollresults_recent.json':recent,'model_history.json':history,
+ 'race_probabilities.json':json('data/race_probabilities.json'),
  'congress_scenarios.json':json('data/congress_scenarios.json'),
  'house_history_2024_staging.json':json('data/house_history_2024_staging.json')
 };
@@ -60,6 +61,37 @@ async function settle(){
 (async()=>{
  w.eval(scripts[0]);
  await settle();
+ // Actual model probabilities come from the same 2026 polls and a
+ // measured historical Senate error scale, not the DDHQ joint forecast.
+ const oddsData=json('data/race_probabilities.json');
+ assert.equal(oddsData.schema_version,'experimental-race-odds-v1');
+ assert.equal(oddsData.senate_baseline_rmse_points,5.633);
+ assert.deepEqual(oddsData.number_of_races_by_office,{
+   senate:model.senate_all.filter(r=>['multi_poll','single_poll'].includes(r.status)).length,
+   house:model.house.filter(r=>['multi_poll','single_poll'].includes(r.status)).length,
+   governor:model.governor.filter(r=>['multi_poll','single_poll'].includes(r.status)).length
+ });
+ assert.equal(w.eval('modelOddsValidate('+JSON.stringify(oddsData)+','+JSON.stringify(model)+')'),true);
+ assert.match(get('#modelOddsNumbers').textContent,/DEMOCRATIC/);
+ assert.match(get('#modelOddsNumbers').textContent,/REPUBLICAN/);
+ const baselineOdds=get('#modelOddsNumbers').textContent;
+ const widthWide=get('.model-odds-presets [data-odds-width="wide"]');
+ widthWide.click();
+ assert.equal(widthWide.getAttribute('aria-pressed'),'true');
+ assert.notEqual(get('#modelOddsNumbers').textContent,baselineOdds,
+   'Changing the error assumption must update the displayed model percentages');
+ get('.model-odds-presets [data-odds-width="tight"]').click();
+ assert.equal(get('.model-odds-presets [data-odds-width="tight"]').getAttribute('aria-pressed'),'true');
+ get('.model-odds-presets [data-odds-width="standard"]').click();
+ assert.match(get('#modelOddsContext').textContent,/42 realized 2020–24 Senate polling misses/);
+ const misdatedOdds=structuredClone(oddsData);
+ misdatedOdds.polling_source_generated_at='2026-01-01T00:00:00Z';
+ assert.equal(w.eval('modelOddsValidate('+JSON.stringify(misdatedOdds)+','+JSON.stringify(model)+')'),false);
+ const fakeRaceOdds=structuredClone(oddsData);
+ fakeRaceOdds.records[0].dem_beats_rep_pct=99;
+ assert.equal(w.eval('modelOddsValidate('+JSON.stringify(fakeRaceOdds)+','+JSON.stringify(model)+')'),false,
+  'Invalid candidate-matched model probability input fails closed');
+
  // Distinguish observed historical election variation from a calibrated
  // outcome forecast. Audit exactly the 191 map-comparable party-vote seats.
  const researchDrawer=get('.model-research-drawer');
