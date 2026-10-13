@@ -1,9 +1,45 @@
 {
-  "updated_at": "2026-10-13T23:43:28.434332Z",
+  "updated_at": "2026-10-13T23:51:12.636833Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "items": [
+    {
+      "id": "e10c3d3bbdb416e1ee79",
+      "title": "Fort Worth judge denies request to reinstate 92 polling sites for Tarrant County midterms - www.kera.org",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPSk1GYUFIdGN2RjJQNUQ3NGNYSkNEY0MwLVZWWTBDeVB2RHFsdjFJMjlMU0w4WU5scWlyMWlEc2xDUWltQnJqZ1IyVG9QM2JCR0ltVTg3NW11MmFydTZhYkhPQjFVeE54MWx4VmpYcHZrRWRBVVh3QkNxSDd4UU16TGJGajBjNW1yNWpCZVpPNjQ3c3lGSDVMc3EzcU1BZG5RYUJTZ2l3TXJZMlA3WV9rYjYta25DSGNSc18zVzFXYw?oc=5",
+      "publisher": "www.kera.org",
+      "published_at": "2026-10-13T23:46:29Z",
+      "detected_at": "2026-10-13T23:51:12.636833Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "92 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "4f83488fe8eb4be0e48b",
+      "title": "NCSBE To Send Letter To Potential Non-Citizens on Voter Rolls - WHKY",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQSFU4ejJXQzFLYnZyTlpJdTFuMXNKVk90MXMtNW13Zi1ZbmJXZkVxRHJyY3JPQmlCMm9nVzhaeHlBaUxWRmRJRkJ2RkNDTUM0dlBva016U0VPcHF6S3NkaUlIV005SDExV0ZWSjJDb01YLXBsWmxzUGJkMk9KdU5aVXllQ3drUQ?oc=5",
+      "publisher": "WHKY",
+      "published_at": "2026-10-13T23:44:10Z",
+      "detected_at": "2026-10-13T23:51:12.636833Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "24eaae113963af5cec8d",
       "title": "Why are NC registered voters getting letters questioning citizenship in 2026? - Carolina Public Press",
