@@ -249,6 +249,28 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-national-source{font-size:10px;color:#8faec9;line-height:1.6;margin:9px 0 0}
 @media(max-width:850px){.en-national-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:570px){.en-national-grid{grid-template-columns:1fr}.en-national-header{flex-direction:column;align-items:flex-start}.en-national-senate{padding:14px}}
+.en-alert-desk{padding:13px 15px;margin:12px 0 14px;border:1px solid #35516b;border-radius:10px;background:#101d2f}
+.en-alert-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.en-alert-head>div{display:flex;flex-direction:column;gap:4px}
+.en-alert-head strong{font-size:11px;letter-spacing:.09em}
+.en-alert-head span,.en-alert-permission{font-size:10px;color:#a8bdd0;line-height:1.55}
+.en-alert-actions{display:flex;gap:6px;align-items:center}
+.en-alert-actions button{font-size:10px;font-weight:750;background:#152c42;color:#bad0e5;border:1px solid #3a5975;padding:7px 10px;border-radius:7px;cursor:pointer}
+#enAlertDesktop[aria-pressed=true]{border-color:#609f90;color:#a9e5ce;background:#15382e}
+.en-alert-actions button:hover{border-color:#91bde3}
+.en-alert-permission{margin:9px 0 2px}
+.en-alert-count{font-size:10px;color:#99b4cb;padding:6px 0}
+.en-alert-items{display:grid;gap:5px;max-height:340px;overflow-y:auto}
+.en-alert-row{width:100%;padding:9px 10px;background:#14273c;border:1px solid #2d4862;border-radius:7px;cursor:pointer;color:#e2eefe;text-align:left;display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.en-alert-row:hover{border-color:#80add6;background:#1b344d}
+.en-alert-row strong{display:block;font-size:11px;margin-bottom:3px}
+.en-alert-row small{font-size:10px;color:#afc4d8;line-height:1.45}
+.en-alert-time{color:#91afca;font-size:10px;white-space:nowrap}
+.en-alert-row.call{border-left:3px solid #81c9a0}
+.en-alert-row.flip{border-left:3px solid #e8c076}
+.en-alert-row.first{border-left:3px solid #73b4e8}
+.en-alert-empty{font-size:11px;color:#99b3ca;margin:9px 0}
+@media(max-width:650px){.en-alert-head{align-items:flex-start;flex-direction:column;gap:9px}.en-alert-time{white-space:normal}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -458,6 +480,15 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div id="enWatchError" class="en-watch-error" role="status"></div>
  <div id="enWatchItems" class="en-watch-items"><p class="empty">Add the races you want at your fingertips on election night.</p></div>
  </section>
+<section class="en-alert-desk" aria-label="Watchlist election alerts">
+ <div class="en-alert-head"><div><strong>WATCHLIST ALERTS</strong><span>First votes · lead changes · verified provider calls</span></div>
+  <div class="en-alert-actions"><button id="enAlertDesktop" type="button" aria-pressed="false">Desktop alerts: off</button>
+   <button id="enAlertClear" type="button">Clear</button></div>
+ </div>
+ <div class="en-alert-permission" id="enAlertPermission">In-page alerts for pinned races are automatic. Desktop notifications are optional.</div>
+ <div id="enAlertCount" class="en-alert-count">No notable changes observed yet</div>
+ <div id="enAlertItems" class="en-alert-items" aria-live="polite"><p class="en-alert-empty">Pin races above to watch noteworthy updates.</p></div>
+</section>
 <div class="en-activity-box" id="enActivityBox"><div class="en-activity-head"><strong>What just changed in the reported vote?</strong><span class="tiny">Session tracking · source update comparisons</span></div><div id="enActivityFeed" class="en-message">Reporting movements will appear when refreshed 2026 source snapshots change during this viewing session. This is not a nationally complete timeline.</div></div>
 <div class="en-metrics">
  <div class="en-stat"><small>RACES IN THIS FEED</small><b id="enRaces">—</b></div>
