@@ -276,10 +276,37 @@
     ],
     "warning": "First fold has only one training election; 2022 and 2024 folds are more informative."
   },
+  "correlated_error_diagnostics": {
+    "status": "descriptive_only",
+    "method": "recency21_size",
+    "years": [
+      2018,
+      2020,
+      2022,
+      2024
+    ],
+    "n_races": 48,
+    "year_mean_errors": {
+      "2018": 2.399,
+      "2020": 6.214,
+      "2022": 0.942,
+      "2024": 3.582
+    },
+    "overall_race_weighted_bias": 3.205,
+    "between_year_mean_sd": 2.232,
+    "within_year_residual_sd": 4.125,
+    "interpretation": "Between-year dispersion suggests shared national polling error; within-year dispersion captures remaining state-specific and measurement variation.",
+    "warnings": [
+      "Four years are insufficient for stable national-error variance calibration.",
+      "The year-level standard deviation includes changes in race composition and sampling noise.",
+      "Do not convert these components into election-win probabilities without additional holdout validation.",
+      "No region/state covariance matrix estimated; only one observation per race-year."
+    ]
+  },
   "limitations": [
     "Not an election forecast.",
     "Excludes special, multiple-seat, ranked-choice and independent-winner races.",
-    "Coverage differs by year; no candidate-name validation or holdout model selection.",
+    "Coverage differs by year; candidate-name validation remains incomplete.",
     "Partisan-sponsored poll exclusion relies on pollster-name labels."
   ]
 }
