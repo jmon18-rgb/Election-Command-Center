@@ -935,7 +935,15 @@ async function settle(){
   alertInput.value=label;
   alertForm.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
  }
- assert.equal(w.eval('enModeYear'),2026,'Alert suite requires the real 2026 election desk');
+ // Switch through the actual UI, not a detached eval assignment to
+ // a top-level lexical 'let' that would leave the application in 2024 mode.
+ const savedAlertFetch=w.fetch;
+ w.fetch=async()=>({ok:true,json:async()=>empty2026});
+ get('#enOfficeHouse').click();
+ get('#enMode2026').click();
+ await w.eval('enLoad(true)');
+ w.fetch=savedAlertFetch;
+ assert.equal(w.eval('enModeYear'),2026,'Alert suite requires the actual 2026 mode');
  w.localStorage.removeItem('bluewaves_election_alerts_2026_v1');
  w.eval('enAlertRows=[];enAlertSeen.clear();enRenderAlertInbox()');
  const alertRows=()=>[...get('#enAlertItems').querySelectorAll('button.en-alert-row')];
