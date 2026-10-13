@@ -1,9 +1,29 @@
 {
-  "updated_at": "2026-10-13T18:28:15.225534Z",
+  "updated_at": "2026-10-13T18:36:44.068104Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "items": [
+    {
+      "id": "80c2982de7d2ea7db3ea",
+      "title": "Texas\u2019 backlog of voter registrations needs immediate fix, voting groups say in lawsuit - Democracy Docket",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPNFdtYWxNclU5Zmd1UUdqclZaV2ozQjBQY3ZZRXNESi1LQjhuRmFObnpieVVYeUQ3THlZUkZabHhXQTZvLVBxR2J2ejJvZjllTjlpRUstTnV2MjA1QzQzYmdjN3FCaFQ3THV2N1NFN2Y1YkJpWDlPN01qcUo5UVJvYjc0RUJIVjhwcnd6S25Jcmt4WXItS0U0UlhfVldqeUFSWEp4SUkwY01xQnRQTDVzY2pPeEg3cE5RWkl3dkY2OXJfdUtOa09CbGt3?oc=5",
+      "publisher": "Democracy Docket",
+      "published_at": "2026-10-13T18:32:26Z",
+      "detected_at": "2026-10-13T18:36:44.068104Z",
+      "state_hints": [
+        "TX"
+      ],
+      "topic_hints": [
+        "registration",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "13e75b802b9e6a9ab8d0",
       "title": "Michigan Court of Claims to decide fusion voting case as League of Women Voters weighs in - Michigan Advance",
