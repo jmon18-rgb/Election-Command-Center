@@ -849,6 +849,23 @@ async function settle(){
  assert.match(get('#enWatchItems').textContent,/Outside the 22-state source/);
  assert.match(get('#enWatchItems').textContent,/civicAPI race source/);
  assert.equal(w.eval('enCivicByWatch["Senate|NH"].total'),1000);
+ const nhWatchEntry=get('#enWatchItems .en-watch-open');
+ assert(nhWatchEntry,'Verified civicAPI race should be present in personal watchlist');
+ assert.equal(nhWatchEntry.getAttribute('aria-expanded'),'false');
+ nhWatchEntry.click();
+ const civicDetail=get('#enWatchItems .en-civic-detail');
+ assert(civicDetail,'Clicking an out-of-primary-state pinned race expands source-native candidate details');
+ assert.match(civicDetail.textContent,/First candidate/);
+ assert.match(civicDetail.textContent,/Second candidate/);
+ assert.match(civicDetail.textContent,/600/);
+ assert.match(civicDetail.textContent,/400/);
+ assert.match(civicDetail.textContent,/separate from Open America/);
+ assert.match(civicDetail.querySelector('a.en-civic-direct').href,/civicapi.org\\/api\\/v2\\/race\\/87283/);
+ assert.equal(get('#enWatchItems .en-watch-open').getAttribute('aria-expanded'),'true');
+ get('#enWatchItems .en-watch-open').click();
+ assert.equal(get('#enWatchItems .en-civic-detail'),null,
+  'Supplemental race detail should collapse without losing its verified source snapshot');
+
  assert.equal(get('#enRaces').textContent,'0',
    'Supplemental provider vote returns must not leak into primary official-state totals');
  w.fetch=originalCivicFetch;
