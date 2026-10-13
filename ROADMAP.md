@@ -153,3 +153,11 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - The public compilation is retrospectively curated and lacks independently verified first-publication timestamps, so it **cannot establish strict historical as-of information** or calibrate model win odds. Do not call this a prospective holdout experiment.
 - Same-state Senate regular/special collisions are excluded, as are missing major-party ballots and unusually large third-party votes. Source malformed dates are excluded and audited.
 - **Next:** secure a licensed, timestamped historic poll dataset with full candidate-matchup and special-seat identities; then train/evaluate actual JackStradamus algorithms on leave-election-year-out final result errors. For Election Night, obtain a permitted 2026 live-return connection before enabling live counts.
+
+## Completed: whole-election-year bias generalization test · October 13
+
+- Added a deterministic **leave-one-election-year-out** evaluation of 2020, 2022, 2024 Senate *poll-to-result* signed errors, with each training cycle equally weighted. It tests three **precommitted** methods (no bias correction, half bias, full bias) and prohibits the held-out year's errors from influencing its own learned correction.
+- Real-source comparisons show the full bias adjustment improves 2020 and 2024 retrospective MAE but makes 2022 markedly worse (3.46 to 5.90 D–R margin points), warning against blindly copying a partisan correction from the last election.
+- Added a compact model-tab year-holdout table, independently published derived-JSON artifact, strict source checks and CI tests for duplicate race keys, future-dated polling, malformed errors and training/testing year overlap.
+- The **2026 live polling model is unchanged**; three retrospectively assembled election cycles lacking original release timestamps cannot establish calibrated forecast error or national probabilities.
+- **Next material model work:** obtain as-of historical releases with stable candidate/special-election identity; hold out more entire cycles; estimate shared national/regional election error, not just uncorrected D/R margins. **Next Election Night infrastructure:** source-licensed, functional live 2026 vote counts.
