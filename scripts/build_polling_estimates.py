@@ -9,6 +9,7 @@ a provisional assumption, not an empirical pollster-specific house effect.
 """
 import json
 import math
+import re
 from collections import defaultdict
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -20,6 +21,34 @@ QUALITY_FILE = ROOT / "data/pollster_quality.json"
 QUALITY_DATA = json.loads(QUALITY_FILE.read_text(encoding="utf-8"))
 QUALITY = {k.casefold():v for k,v in QUALITY_DATA["entries"].items()}
 EXCLUSIONS = {k.casefold():v for k,v in QUALITY_DATA.get("explicit_exclusions",{}).items()}
+SILVER_STAGED = ROOT / "data/silver_ratings_staging.json"
+SILVER = {}
+SILVER_SOURCE = None
+if SILVER_STAGED.exists():
+    staging=json.loads(SILVER_STAGED.read_text(encoding="utf-8"))
+    if staging.get("status")=="staged_not_used_in_live_model" and staging.get("matched_to_older_538_aliases",0)>=20:
+        names=staging.get("entries",{})
+        def normalized_name(n):
+            return re.sub(r"[^a-z0-9]+"," ",str(n or "").casefold()).strip()
+        for alias,target in staging.get("matches",{}).items():
+            entry=names.get(normalized_name(target))
+            if entry:SILVER[normalized_name(alias)]=entry
+        for entry in names.values():
+            SILVER.setdefault(normalized_name(entry.get("pollster")),entry)
+        SILVER_SOURCE=staging.get("source_page")
+
+def silver_quality_factor(p):
+    item=SILVER.get(re.sub(r"[^a-z0-9]+"," ",p["pollster"].casefold()).strip())
+    if not item:return 1.0,False
+    try:
+        pm=float(item["predictive_plus_minus_raw"])
+        history=float(item.get("history_count_raw") or 0)
+        if not math.isfinite(pm) or not math.isfinite(history):return 1.0,False
+    except (TypeError,ValueError,KeyError):
+        return 1.0,False
+    shrink=min(1,max(0,history)/20)
+    return max(.65,min(1.5,math.exp(-.12*pm*shrink))),True
+
 SIZE_EXPONENT = 0.20
 WINDOW = 45
 HALF_LIFE = 21
@@ -115,6 +144,25 @@ def estimate(race, today, generic=False):
         sum(w*2**(-max(0,(today-date.fromisoformat(p["field_end"])).days)*(1/14-1/HALF_LIFE))
             for p,w in zip(chosen,weights)))
     # Diagnostic sensitivity to defensible weighting choices, never uncertainty.
+    # Research comparison only: same polls and 0.5 sponsorship, with source-
+    # attributed Silver Bulletin 2026 predictive plus-minus replacing 538 grades.
+    silver_alt=None
+    if SILVER_SOURCE:
+        alt=[weighted(p,today)/quality_multiplier(p)*silver_quality_factor(p)[0] for p in chosen]
+        alt_total=sum(alt)
+        alt_dem=sum(w*p["dem"] for p,w in zip(chosen,alt))/alt_total
+        alt_rep=sum(w*p["rep"] for p,w in zip(chosen,alt))/alt_total
+        alt_margin=alt_dem-alt_rep
+        silver_alt={
+            "dem_minus_rep":round(alt_margin,2),
+            "dem_pct":round(alt_dem,2),
+            "rep_pct":round(alt_rep,2),
+            "difference_from_live":round(alt_margin-(dem-rep),2),
+            "rated_pollster_count":sum(silver_quality_factor(p)[1] for p in chosen),
+            "source_url":SILVER_SOURCE,
+            "status":"experimental_not_used_for_headline",
+            "method":"Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        }
     model_sensitivity={
         "effective_firms":round(effective_firms,2),
         "largest_firm_weight_pct":round(100*max(weights)/sw,1),
@@ -148,6 +196,7 @@ def estimate(race, today, generic=False):
             "stale_latest_poll":age>14,
             "high_poll_disagreement":spread is not None and spread>=6,
             "model_sensitivity":model_sensitivity,
+            "silver_2026_comparison":silver_alt,
             "different_matchups_excluded":sum(len(v) for k,v in grouped.items() if k!=matchup),
             "interpretation":"Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
         },
@@ -209,6 +258,8 @@ def build(data):
         "sponsored_poll_weight_factor":PARTISAN_FACTOR,
         "pollster_quality_source":QUALITY_DATA["source_url"],
         "pollster_quality_version":QUALITY_DATA["source_repo_sha"],
+        "silver_2026_comparison_source":SILVER_SOURCE,
+        "silver_2026_comparison_status":"experimental_not_used_for_headline" if SILVER_SOURCE else "unavailable",
         "sample_size_weight_exponent":SIZE_EXPONENT,
         "excluded_pollsters":list(QUALITY_DATA.get("explicit_exclusions",{})),
         "states":states,
