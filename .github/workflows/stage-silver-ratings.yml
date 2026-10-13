@@ -1,0 +1,28 @@
+name: Stage Silver Bulletin ratings
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/stage_silver_ratings.py
+      - .github/workflows/stage-silver-ratings.yml
+permissions:
+  contents: write
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and validate published Silver Bulletin ratings
+        run: python3 scripts/stage_silver_ratings.py
+      - name: Commit staged (nonproduction) results
+        run: |
+          git config user.name "election-briefing-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/silver_ratings_staging.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Stage reviewed Silver ratings for comparison"
+            git pull --rebase
+            git push
+          fi
