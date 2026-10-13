@@ -25,6 +25,8 @@ assert.match(html,/<script src="\.\/scripts\/civicapi_nh_adapter\.js"><\/script>
  'NH civicAPI adapter must load on GitHub Pages before the main application');
 assert.match(html,/<script src="\.\/scripts\/civicapi_nh_governor_adapter\.js"><\/script>/,
  'NH governor adapter must load before the election-night application');
+assert.match(html,/<script src="\.\/scripts\/civicapi_state_batch\.js"><\/script>/,
+ 'Four-state supplemental provider module must load before the application');
 assert.equal(scripts.length,1,'Expected exactly one live inline application script');
 const errors=[];
 const virtualConsole=new VirtualConsole();
@@ -66,6 +68,8 @@ async function settle(){
  assert(w.NHCivicRaceAdapter,'NH adapter must actually load before the application');
  w.eval(read('scripts/civicapi_nh_governor_adapter.js'));
  assert(w.NHGovernorCivicAdapter,'NH governor adapter must load before the application');
+ w.eval(read('scripts/civicapi_state_batch.js'));
+ assert(w.StateBatchCivicAdapter,'Four-state adapter must load before the application');
  w.eval(scripts[0]);
  await settle();
  // Distinguish observed historical election variation from a calibrated
@@ -1010,6 +1014,91 @@ async function settle(){
  assert.match(get('#enWatchItems').textContent,/SOURCE RETRYING/);
  assert.equal(get('#enRaces').textContent,primaryRaceCountBeforeCivic);
  w.fetch=govFetch;w.Date.now=govClock;
+ w.eval('enWatched=[];enRenderWatchlist()');
+ w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
+
+ // Four-state batch: pin exactly one race in each state and prove that the
+ // real watchlist requests distinct provider IDs. Bad cross-race details
+ // cannot replace the last valid result, and primary metrics remain isolated.
+ const batchSpecs=[
+  {state:'NV',office:'Governor',pin:'NV-GOV',name:'Nevada Governor',id:87260},
+  {state:'ME',office:'Senate',pin:'ME-SEN',name:'Maine US Senate',id:87188},
+  {state:'MA',office:'Governor',pin:'MA-GOV',name:'Massachusetts Governor',id:87276},
+  {state:'AK',office:'Senate',pin:'AK-SEN',name:'Alaska US Senate',id:86916}
+ ];
+ const batchRecords=new Map();
+ for(const spec of batchSpecs){
+  const row={
+   id:spec.id,country:'US',province:spec.state,municipality:null,district:null,
+   type:spec.office==='Senate'?'US Senate':'Governor',
+   election_type:spec.office==='Senate'?'General':'Statewide',
+   election_name:spec.name,election_date:'2026-11-03T05:00:00.000Z',
+   candidates:[
+    {name:spec.state+' Democrat',party:'Democratic',votes:0,percent:0,winner:false},
+    {name:spec.state+' Republican',party:'Republican',votes:0,percent:0,winner:false}
+   ]
+  };
+  const detail={
+   ...row,election_type:row.type,percent_reporting:41,
+   last_updated:'2026-11-04T01:45:00Z',
+   candidates:[
+    {name:spec.state+' Democrat',party:'Democratic',votes:610,percent:61,winner:false},
+    {name:spec.state+' Republican',party:'Republican',votes:390,percent:39,winner:false}
+   ]
+  };
+  batchRecords.set(spec.state+'|'+spec.office,{row,detail});
+  assert(w.StateBatchCivicAdapter.supports({key:spec.state,office:spec.office}));
+ }
+ assert.equal(w.StateBatchCivicAdapter.supports({office:'Senate',key:'MA'}),false,
+  'Unverified Massachusetts Senate index must not be promoted');
+ assert.equal(w.StateBatchCivicAdapter.supports({office:'Senate',key:'NV'}),false,
+  'Nevada has no 2026 Senate race in this batch');
+ const batchOriginalClock=w.Date.now,batchFetch=w.fetch;
+ w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ let wrongBatchDetail=false;
+ const batchURLs=[];
+ w.fetch=async url=>{
+  const str=String(url);batchURLs.push(str);
+  if(str.startsWith('https://civicapi.org/api/v2/race/search')){
+   const u=new URL(str),state=u.searchParams.get('province');
+   const office=u.searchParams.get('query')==='US Senate'?'Senate':'Governor';
+   const data=batchRecords.get(state+'|'+office);
+   return {ok:true,json:async()=>({races:data?[data.row]:[],count:data?1:0})};
+  }
+  if(str.startsWith('https://civicapi.org/api/v2/race/')){
+   const id=Number(str.match(/\/race\/(\d+)/)?.[1]);
+   const data=[...batchRecords.values()].find(v=>v.row.id===id);
+   const detail=wrongBatchDetail&&id===87260?
+     {...data.detail,id:87261,last_updated:'2026-11-04T02:30:00Z'}:data?.detail;
+   return {ok:Boolean(detail),status:detail?200:404,
+     json:async()=>detail||{}};
+  }
+  return {ok:true,json:async()=>empty2026};
+ };
+ for(const spec of batchSpecs){
+  get('#enWatchInput').value=spec.pin;
+  get('#enWatchForm').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
+ }
+ await new Promise(resolve=>setTimeout(resolve,75));
+ await w.eval('enRefreshCivicWatchlist(true)');
+ for(const spec of batchSpecs){
+  const item={office:spec.office,key:spec.state};
+  assert.match(w.eval('enCivicStatus('+JSON.stringify(item)+')'),/1,000 reported votes/,
+    'Four-state batch must render '+spec.pin+' from its own source');
+  assert(w.eval('enCivicURL('+JSON.stringify(item)+')').endsWith('/race/'+spec.id),
+    'Exactly matched race ID expected: '+spec.pin);
+  assert(batchURLs.some(u=>u.includes('province='+spec.state)),
+    'Must query each chosen state separately: '+spec.pin);
+  assert.match(get('#enWatchItems').textContent,new RegExp(spec.pin));
+ }
+ assert.equal(get('#enRaces').textContent,primaryRaceCountBeforeCivic,
+  'All four state adapters must remain outside Open America official-source totals');
+ wrongBatchDetail=true;
+ await w.eval('enCivicFetchOne({office:"Governor",key:"NV"})');
+ assert.match(w.eval('enCivicStatus({office:"Governor",key:"NV"})'),/1,000 reported votes/,
+  'Wrong later provider ID must never erase last verified Nevada governor votes');
+ assert.match(w.eval('enCivicStatus({office:"Governor",key:"NV"})'),/SOURCE RETRYING/);
+ w.fetch=batchFetch;w.Date.now=batchOriginalClock;
  w.eval('enWatched=[];enRenderWatchlist()');
  w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
 
