@@ -16,14 +16,17 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "polls.json"
 OUT = ROOT / "data" / "model_tests.json"
-METHODS = ("equal", "recency21", "recency21_size", "recency35_size", "recency21_sponsored_0", "recency21_sponsored_25", "recency21_sponsored_50", "recency21_sponsored_100")
+QUALITY_DATA=json.loads((ROOT/"data/pollster_quality.json").read_text(encoding="utf-8"))
+QUALITY={k.casefold():v for k,v in QUALITY_DATA["entries"].items()}
+EXCLUSIONS={k.casefold() for k in QUALITY_DATA.get("explicit_exclusions",{})}
+METHODS = ("equal", "recency21", "recency21_size", "recency35_size", "recency21_sponsored_0", "recency21_sponsored_25", "recency21_sponsored_50", "recency21_sponsored_100", "recency21_sponsored_50_quality", "recency21_sponsored_50_quality_size")
 RNG_SEED = 20261012
 
 
 def eligible(p):
     try:
         names = (p["dem_name"] + " " + p["rep_name"]).lower()
-        return ("generic" not in names
+        return ("generic" not in names and p["pollster"].casefold() not in EXCLUSIONS
                 and math.isfinite(float(p["margin"])) and p.get("pollster")
                 and p.get("field_end") and date.fromisoformat(p["field_end"]))
     except (KeyError, ValueError, TypeError):
@@ -46,10 +49,19 @@ def predict(prior, asof, method):
         weight = 1.0 if method == "equal" else 0.5 ** (age / half_life)
         if p.get("partisan_lean"):
             if method.startswith("recency21_sponsored_"):
-                weight *= int(method.rsplit("_",1)[-1]) / 100
+                weight *= 0.5 if method.endswith(("_quality","_quality_size")) else int(method.rsplit("_",1)[-1])/100
             else:
                 continue
-        if method.endswith("_size"):
+        if method.endswith(("_quality","_quality_size")):
+            rated=QUALITY.get(p["pollster"].casefold())
+            if rated:
+                shrunk=2+(rated["rating"]-2)*min(1,rated["history_count"]/20)
+                weight *= 1+0.25*(shrunk-2)
+        if method.endswith("_quality_size"):
+            n=p.get("sample_size")
+            if isinstance(n,(int,float)) and n>0:
+                weight *= (max(300,min(2500,n))/800)**0.20
+        elif method.endswith("_size"):
             n = p.get("sample_size") or 600
             weight *= math.sqrt(max(200, min(float(n), 3000)) / 600)
         weighted += weight * float(p["margin"])
@@ -147,6 +159,8 @@ def main():
             "Bootstrap interval describes evaluation metric variability, not a race forecast confidence interval.",
             "No win probabilities, calibrated pollster house effects or election-security adjustments inferred.",
             "Sponsored-poll weight factors are experimental; target surveys remain non-sponsored only.",
+            "Pollster quality comes from 538 archived pre-2026 grades, not an updated Silver Bulletin 2026 recalibration.",
+            "Test currently compares future independent polls, and overfitting to this cycle must be avoided."
         ],
     }
     OUT.write_text(json.dumps(output, indent=2) + "\n", encoding="utf-8")
