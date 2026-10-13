@@ -45,21 +45,40 @@ def estimate(race, today):
     for p in chosen:
         age=(today-date.fromisoformat(p["field_end"])).days
         n=p.get("sample_size") or 600
-        w=math.pow(.5,age/HALF_LIFE)*math.sqrt(max(200,min(3000,n))/600)
+        w=math.pow(.5,age/HALF_LIFE)
         sw+=w
         sd+=w*p["dem"]
         sr+=w*p["rep"]
     dem,rep=sd/sw,sr/sw
+    margins=[p["dem"]-p["rep"] for p in chosen]
+    mean_margin=sum(margins)/len(margins)
+    spread=(sum((v-mean_margin)**2 for v in margins)/(len(margins)-1))**.5 if len(margins)>1 else None
+    freshest=min((today-date.fromisoformat(p["field_end"])).days for p in chosen)
+    # These are diagnostics of observed polls, not an election outcome interval.
+    diagnostics={
+        "poll_count":len(chosen),
+        "pollster_spread_points":round(spread,2) if spread is not None else None,
+        "observed_margin_min":round(min(margins),2),
+        "observed_margin_max":round(max(margins),2),
+        "latest_poll_age_days":freshest,
+        "single_poll":len(chosen)==1,
+        "thin_polling":len(chosen)<3,
+        "stale_latest_poll":freshest>14,
+        "high_poll_disagreement":spread is not None and spread>=6,
+        "different_matchups_excluded":sum(len(v) for k,v in grouped.items() if k!=matchup),
+        "interpretation":"Observed poll dispersion and coverage only; not a fraud score, confidence interval, or probability."
+    }
     return {
         "status":"multi_poll" if len(chosen)>=2 else "single_poll",
         "dem_candidate":chosen[0]["dem_name"],"rep_candidate":chosen[0]["rep_name"],
         "dem_pct":round(dem,2),"rep_pct":round(rep,2),
         "dem_minus_rep":round(dem-rep,2),
         "independent_pollsters":len(chosen),
+        "poll_diagnostics":diagnostics,
         "latest_poll_end":max(p["field_end"] for p in chosen),
         "oldest_included_poll_end":min(p["field_end"] for p in chosen),
         "pollsters":[{"name":p["pollster"],"field_end":p["field_end"],"sample_size":p.get("sample_size")} for p in chosen],
-        "method":"One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; sqrt(n) weights; partisan-sponsored polls excluded",
+        "method":"One latest wave per pollster for most-covered named matchup; 21-day exponential half-life; equal sample-size weights; partisan-sponsored polls excluded",
     }
 
 def build(data):
@@ -69,13 +88,14 @@ def build(data):
     for state,name in STATES.items():
         row={"state":state,"state_name":name}
         row.update(estimate(races[state],today) if state in races else {"status":"no_recent_qualifying_polls"})
+        row["poll_source_url"]=races.get(state,{}).get("source_url")
         rows.append(row)
     return {
         "generated_at":datetime.now(timezone.utc).isoformat().replace("+00:00","Z"),
         "source_snapshot":data.get("updated_at"),
         "type":"descriptive_polling_estimates",
         "is_election_forecast":False,
-        "method_version":"poll-mean-1.0",
+        "method_version":"poll-mean-1.1",
         "window_days":WINDOW,
         "half_life_days":HALF_LIFE,
         "states":rows,
