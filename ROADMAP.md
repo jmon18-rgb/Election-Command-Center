@@ -222,3 +222,9 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Restore is conservative: validate full 2026 vote/schema and all event records, reject pre-election, wrong office, future, corrupted, old (>72h) or oversized records. Restored counts explicitly display stale/reconnecting status rather than falsely appearing as live.
 - Only actual 2026 verified votes are stored, never 2024 rehearsal or derived model forecasts; source errors keep last-good information. DOM tests use a second real page instance across an offline reload and hostile/expired local storage to verify behavior.
 - Next: full cross-provider reconciliation and official call sources; an optional exportable audit trail if source terms and browser storage size allow.
+
+## Oct 13: exportable laptop election-night audit
+
+- Added two local 2026 CSV downloads: source-attributed candidate vote totals across separately verified Open America and civicAPI records, plus only actually observed (or source-verified locally restored) vote movement events.
+- Export rows include source timestamps, office, race code, per-candidate votes and precinct share, independent call provenance and official-source links. No poll-based results or invented 2026 probabilities enter the export.
+- Sanitize arbitrary external text to prevent common Excel formula injection; use UTF-8 Excel BOM and CRLF. Download UI is disabled when no validated vote/activity records exist. DOM regression tests cover party votes, provider separation, row counts and text escaping.

@@ -271,6 +271,11 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-alert-row.first{border-left:3px solid #73b4e8}
 .en-alert-empty{font-size:11px;color:#99b3ca;margin:9px 0}
 @media(max-width:650px){.en-alert-head{align-items:flex-start;flex-direction:column;gap:9px}.en-alert-time{white-space:normal}}
+.en-export-actions{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.en-export-actions button{font-size:10px;font-weight:800;padding:7px 10px;background:#1d3c55;color:#d5eaff;border:1px solid #456683;border-radius:7px;cursor:pointer}
+.en-export-actions button:disabled{opacity:.45;cursor:not-allowed}
+.en-export-status{font-size:10px;color:#a6c9d6;margin:5px 0 3px;min-height:0}
+@media(max-width:580px){.en-export-actions{width:100%}.en-export-actions button{flex:1}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -489,7 +494,11 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div id="enAlertCount" class="en-alert-count">No notable changes observed yet</div>
  <div id="enAlertItems" class="en-alert-items" aria-live="polite"><p class="en-alert-empty">Pin races above to watch noteworthy updates.</p></div>
 </section>
-<div class="en-activity-box" id="enActivityBox"><div class="en-activity-head"><strong>What just changed in the reported vote?</strong><span class="tiny">Session tracking · source update comparisons</span></div><div id="enActivityFeed" class="en-message">Reporting movements will appear when refreshed 2026 source snapshots change during this viewing session. This is not a nationally complete timeline.</div></div>
+<div class="en-activity-box" id="enActivityBox"><div class="en-activity-head"><strong>What just changed in the reported vote?</strong>
+ <span class="tiny">Locally observed source changes · saved across refreshes</span>
+ <div class="en-export-actions"><button type="button" id="enExportResults" disabled>Export vote CSV</button>
+ <button type="button" id="enExportChanges" disabled>Export activity CSV</button></div></div>
+ <div id="enExportStatus" class="en-export-status" role="status"></div><div id="enActivityFeed" class="en-message">Reporting movements will appear when refreshed 2026 source snapshots change during this viewing session. This is not a nationally complete timeline.</div></div>
 <div class="en-metrics">
  <div class="en-stat"><small>RACES IN THIS FEED</small><b id="enRaces">—</b></div>
  <div class="en-stat"><small>DEMOCRATIC VOTE LEADS</small><b id="enDLeads">—</b></div>
@@ -2216,7 +2225,7 @@ async function enCivicFetchOne(item){
   enProcessCivicAlert(item,old,next);
   enCivicRaceIds[id]=row;
   delete enCivicErrors[id];
-  enRenderWatchlist();enRenderNationalSenate();
+  enRenderWatchlist();enRenderNationalSenate();enRenderExportControls();
  }catch(err){
   if(enIsVisible()&&enModeYear===2026){
    enCivicErrors[id]=String(err?.message||err);
@@ -2593,6 +2602,90 @@ function enAcceptSource(o){
  }
  enRender();
 }
+/* CSV export operates only on source-validated, reported 2026 votes
+ * and locally observed movement events. No polling estimates or inferred
+ * winner calls; provider records remain separate in the source column. */
+function enCsvCell(value){
+ if(value===null||value===undefined)value='';
+ if(typeof value==='number'&&!Number.isFinite(value))value='';
+ let text=String(value);
+ if(typeof value!=='number'&&/^[\s\u0000-\u001f]*[=+\-@]/.test(text))
+   text="'"+text;
+ return '"'+text.replace(/"/g,'""')+'"';
+}
+function enCsv(rows){return '\uFEFF'+rows.map(row=>row.map(enCsvCell).join(',')).join('\r\n')+'\r\n'}
+function enBuildResultsCsv(primary=enOfficeSnapshots,secondary=enCivicByWatch){
+ const records=[['source','election_year','office','race','source_updated_at',
+   'candidate','party','candidate_votes','race_total_votes','candidate_share_pct',
+   'precincts_reporting_pct','provider_call','source_url']];
+ for(const office of ['House','Senate','Governor']){
+  const snapshot=primary?.[office];
+  if(!enSourceValid(snapshot,2026,office))continue;
+  for(const [key,r] of Object.entries(snapshot.races)){
+   if(r.total<=0)continue;
+   for(const c of r.cands)records.push([
+    'Open America',2026,office,key,snapshot.as_of||'',c.n,c.p,c.v,
+    r.total,c.pct,r.pct_in,'NO CALL','https://openamerica.io/elections/api/'
+   ]);
+  }
+ }
+ for(const data of Object.values(secondary||{})){
+  if(data?.provider!=='civicAPI'||!['House','Senate','Governor'].includes(data.office)||
+    !enResumeMovementValid({office:data.office,key:data.key,at:null,prior:0,current:0,delta:0})||
+    !Number.isSafeInteger(data.total)||data.total<=0||
+    !Array.isArray(data.candidates)||!data.source_url?.startsWith('https://civicapi.org/api/v2/race/'))continue;
+  for(const c of data.candidates){
+   if(!c||!Number.isSafeInteger(c.votes)||c.votes<0||typeof c.name!=='string')continue;
+   records.push(['civicAPI',2026,data.office,data.key,data.last_updated||'',
+     c.name,c.party,c.votes,data.total,c.percent,data.percent_reporting,
+     data.called?'civicAPI CALL · '+data.called:'NO CALL',data.source_url]);
+  }
+ }
+ return records.length>1?enCsv(records):'';
+}
+function enBuildActivityCsv(events=enMovements){
+ const records=[['source','election_year','office','race','event_at',
+   'event','votes_before','votes_after','net_vote_change','lead_changed',
+   'candidate_votes_revised','source_note']];
+ for(const event of (Array.isArray(events)?events:[]).filter(enResumeMovementValid)){
+  const kind=event.withdrawn?'REMOVED FROM SOURCE':
+   event.leaderChanged?'VOTE LEAD FLIPPED':
+   event.newRace?'FIRST VOTES':
+   event.delta<0?'NET DOWNWARD REVISION':
+   event.delta>0?'MORE VOTES REPORTED':'CANDIDATE VOTES REVISED';
+  records.push(['Open America',2026,event.office,event.key,event.at||'',
+   kind,event.prior,event.current,event.delta,
+   event.leaderChanged?'YES':'NO',event.candidateChanged?'YES':'NO',
+   'Observed in this browser, not official certification']);
+ }
+ return records.length>1?enCsv(records):'';
+}
+function enRenderExportControls(){
+ const counts=$('#enExportResults'),movements=$('#enExportChanges');
+ if(!counts||!movements)return;
+ const sources=Object.values(enOfficeSnapshots).some(o=>
+  o?.year===2026&&Object.values(o.races||{}).some(r=>r.total>0));
+ const extra=Object.values(enCivicByWatch).some(o=>o?.total>0);
+ counts.disabled=enModeYear!==2026||!(sources||extra);
+ movements.disabled=enModeYear!==2026||!enMovements.some(enResumeMovementValid);
+}
+function enDownloadCsv(csv,kind){
+ const status=$('#enExportStatus');
+ if(!csv){if(status)status.textContent='No source-reported records available for this export.';return}
+ try{
+  const filename='bluewaves-2026-'+kind+'-'+new Date().toISOString().slice(0,10)+'.csv';
+  const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  const a=document.createElement('a');a.href=url;a.download=filename;
+  document.body.append(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1500);
+  if(status)status.textContent='Local CSV download requested: '+filename;
+ }catch{
+  if(status)status.textContent='This browser blocked the local CSV export.';
+ }
+}
+$('#enExportResults').addEventListener('click',()=>enDownloadCsv(enBuildResultsCsv(),'reported-results'));
+$('#enExportChanges').addEventListener('click',()=>enDownloadCsv(enBuildActivityCsv(),'reporting-activity'));
+
 function enRenderMovement(){
  const host=$('#enActivityFeed');host.replaceChildren();
  $('#enActivityBox').hidden=enModeYear!==2026;
@@ -2674,6 +2767,7 @@ function enRender(){
   'MIT/MEDSL 2024 House (435 districts) and Senate (35 contests) historical party aggregates. No candidate names or precinct progress. Select State feed to rehearse the same named-candidate format as 2026 live results.';
  enRenderMovement();
  enRenderWatchlist();
+ enRenderExportControls();
  enRenderNationalSenate();
  enRenderAlertInbox();
  enUpdateSelection();
