@@ -1,0 +1,77 @@
+name: Archive and refresh election-night results
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/refresh_election_night.py'
+      - 'scripts/test_election_night_cache.py'
+      - '.github/workflows/election-night.yml'
+  schedule:
+    # UTC: frequent snapshots during Nov 3-4, 2026. The Python script
+    # gates collection by the actual calendar year and election period.
+    - cron: '*/5 * 3-4 11 *'
+    - cron: '17 * 5-11 11 *'
+permissions:
+  contents: write
+concurrency:
+  group: election-night-results
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test results source contracts and revision handling
+        run: python3 scripts/test_election_night_cache.py
+      - name: Cache 2024 rehearsal or 2026 results from state-derived publisher
+        run: python3 scripts/refresh_election_night.py
+      - name: Publish only fetched results and revision records
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "election-night-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          source_sha="$(git rev-parse HEAD)"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            # Do not publish data computed against a changed importer.
+            if ! git diff --quiet "$source_sha" origin/main -- scripts/refresh_election_night.py scripts/test_election_night_cache.py .github/workflows/election-night.yml; then
+              echo "Importer changed while fetching; skipping stale output."
+              exit 0
+            fi
+            # Avoid replacing a fresher completed results snapshot.
+            if ! python3 - <<'PY'
+          import json,subprocess
+          from datetime import datetime
+          from pathlib import Path
+          for f in Path("data").glob("election_results_2026_*.json"):
+              try:
+                  new=json.loads(f.read_text())["fetched_at"]
+                  old=json.loads(subprocess.check_output(
+                      ["git","show","origin/main:"+str(f)],text=True))["fetched_at"]
+                  if datetime.fromisoformat(old)>datetime.fromisoformat(new):
+                      raise SystemExit(1)
+              except (subprocess.CalledProcessError,KeyError,ValueError):
+                  continue
+          PY
+            then
+              echo "Another refresh has newer 2026 data; skipping this update."
+              exit 0
+            fi
+            git reset --mixed origin/main
+            git add data/election_results_2024_*.json data/election_results_2026_*.json data/election_night_changes.json 2>/dev/null || true
+            if git diff --cached --quiet; then
+              echo "No new election-night data."
+              exit 0
+            fi
+            git commit -m "Cache source-validated election night results"
+            if git push origin HEAD:main; then
+              echo "Election results cache published."
+              exit 0
+            fi
+            git reset --mixed HEAD~1
+          done
+          echo "Could not safely publish election-night data."
+          exit 1
