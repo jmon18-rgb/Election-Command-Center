@@ -600,7 +600,7 @@ const enApiBase='https://openamerica.io/elections/results.json';
 let enModeYear=2026,enOffice='House',enData=null,enSelected=null,enTimer=null,enRequestSerial=0;
 function enIsVisible(){return $('#electionNight')?.classList.contains('active')}
 function enNum(n){return typeof n==='number'&&Number.isFinite(n)?n.toLocaleString('en-US'):'—'}
-function enFormattedTime(v){const d=v?new Date(v):null;return d&&!isNaN(+d)?d.toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):'unknown'}
+function enFormattedTime(v){const d=v?new Date(v):null;return d&&!isNaN(+d)?d.toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}):'unknown'}
 function enCurrentRaces(){return enData?.races&&typeof enData.races==='object'?Object.entries(enData.races):[]}
 function enUpdateSelection(){const ids=enCurrentRaces().map(([id])=>id);if(!ids.includes(enSelected))enSelected=ids[0]||null}
 function enLeaders(r){return (r?.cands||[]).filter(x=>Number.isFinite(x.v)).sort((a,b)=>b.v-a.v)}
@@ -623,7 +623,7 @@ function enRender(){
  $('#enDLeads').textContent=enNum(ready.filter(([,r])=>r.leader==='D').length);
  $('#enRLeads').textContent=enNum(ready.filter(([,r])=>r.leader==='R').length);
  $('#enCalls').textContent='Not supplied';
- const info=enData?((enModeYear===2024?'2024 HISTORICAL SNAPSHOT · ':'2026 STATE RETURNS · ')+rows.length+' supported races · state-source update '+enFormattedTime(enData.as_of)+(enData.stale?' · FEED STALE':'')):'Waiting for results feed…';
+ const info=enData?((enModeYear===2024?'2024 ARCHIVED RESULTS · ':'2026 STATE RETURNS · ')+rows.length+' supported races · provider snapshot '+enFormattedTime(enData.as_of)+(enModeYear===2026&&enData.stale?' · FEED STALE':'')):'Waiting for results feed…';
  $('#enStatus').textContent=info;
  $('#enChecked').textContent=enData?'Checked '+new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}):'Not connected';
  enUpdateSelection();
@@ -651,7 +651,7 @@ function enRenderDetail(){
  cands.replaceChildren();comparison.replaceChildren();
  if(!found){title.textContent='No reported race selected';summary.textContent='Results will appear as supported states report vote totals.';meta.textContent='';return}
  const [key,r]=found;
- title.textContent=key+' '+enOffice+' · unofficial';
+ title.textContent=key+' '+enOffice+(enModeYear===2024?' · 2024 archive':' · unofficial');
  const leader=enCurrentLeader(r);
  const edge=enLeadInfo(r);
  summary.replaceChildren();
