@@ -735,6 +735,7 @@ function renderModelOverview(data){
  if(!rows.some(r=>r.race_code===selectedModelState)){
   selectedModelState=rows.find(r=>r.race_code==='TX-SEN')?.race_code||rows[0].race_code;
  }
+ const oddsReady=modelOddsValidate(modelRaceOddsData,data);
  const surname=name=>(name||'').trim().split(/\s+/).at(-1)||'—';
  const ordered=[...rows].sort((a,b)=>Math.abs(a.dem_minus_rep)-Math.abs(b.dem_minus_rep)||(a.race_code||'').localeCompare(b.race_code||''));
  for(const race of ordered){
@@ -748,7 +749,7 @@ function renderModelOverview(data){
   else matchup.append(elt('span','',surname(race.dem_candidate)),elt('span','model-vs','vs.'),elt('span','',surname(race.rep_candidate)));
   const margin=elt('div','model-race-edge');margin.append(elt('strong',marginColor(race.dem_minus_rep),marginText(race.dem_minus_rep)),elt('small','','polling average'));
   const probability=modelRaceOddsData?.records.find(x=>x.office===modelMode&&x.race_code===key);
-  if(probability&&modelOddsValidate(modelRaceOddsData,data)){
+  if(probability&&oddsReady){
    const d=modelOddsErrorWidth==='tight'?probability.tight_error_dem_pct:
      modelOddsErrorWidth==='wide'?probability.wide_error_dem_pct:probability.dem_beats_rep_pct;
    margin.append(elt('small','', 'D '+Math.round(d)+'% · R '+Math.round(100-d)+'%'));
