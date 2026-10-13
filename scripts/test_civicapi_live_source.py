@@ -67,9 +67,15 @@ def main():
             raise ValueError("Could not uniquely match "+str(item)+": "+str(len(matches)))
         row=matches[0]
         detail=source("/race/"+str(row["id"]),{"light":""})
-        for key in ("country","province","district","election_date","election_name","election_type"):
+        for key in ("country","province","district","election_date","election_name"):
             if detail.get(key)!=row.get(key):
-                raise ValueError("Detailed race mismatches discovery record for "+str(item)+": "+key+" search="+repr(row.get(key))+" detail="+repr(detail.get(key)))
+                raise ValueError("Detailed race mismatches discovery record for "+str(item)+": "+key)
+        # civicAPI search.election_type means electoral stage (General/Statewide),
+        # while detail.election_type means office class (US Senate/Governor/etc).
+        if detail.get("election_type")!=row.get("type"):
+            raise ValueError("Detailed race office class mismatches search type: "+str(item)+
+                             " search_type="+repr(row.get("type"))+
+                             " detail_type="+repr(detail.get("election_type")))
         candidates=detail.get("candidates")
         if not isinstance(candidates,list) or len(candidates)<2 or len(candidates)>60:
             raise ValueError("Unexpected candidate list in civicAPI detailed record")
