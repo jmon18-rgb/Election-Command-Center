@@ -206,3 +206,12 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - An optional one-click **Track all 35** automatically fetches unserved-state Senate races via the existing independently checked civicAPI contract and keeps the primary Senate office snapshot up to date while watching another office. It does **not** consume the 40 individually pinned slots. The preference stays on this browser and auto-starts on Nov. 3 when no preference was set.
 - Tightened Senate pin identity so `FL-SEN` and `OH-SEN` map to the special contests; invalid or noncontested state Senate codes are refused when the 2026 universe is known. Verified legacy pins are migrated. The same per-minute 12-request ceiling and provider-specific vote/call labels remain.
 - Regression coverage checks entire 35-seat list, special-election keys, source status, toggle persistence, no invented votes, and refusal of invalid published universe data.
+
+## Oct 13: watched-race notification desk
+
+- Added a compact Election Night watchlist alert inbox, retaining the last 35 notable 2026 source changes locally on the laptop. Only explicitly pinned races produce alerts; the optional 35-seat monitor remains visible without flooding notifications.
+- Primary Open America data triggers source-attributed first-vote, lead-flip, no-net-change candidate-revision and race-withdrawal notices. Supplemental civicAPI produces separately named first-vote, lead-flip and provider-call notices, carefully distinguished from official certification.
+- No alerts on routine refresh or first loading an existing election-night snapshot; no pre-election or fake alerts. Same-timestamp candidate revisions are compared via actual votes and deduplicated by vote fingerprint.
+- Optional desktop notifications require a user click and the browser's own permission; off by default. In-page event history and browser-only retention work without notifications.
+- DOM tests cover source provenance, consent, dedup, pre-election silence, same-timestamp revisions, civicAPI calls, persistence and clearing.
+- **Next:** independent real Nov. 3 in-browser smoke test, election-night fallback for stale/slow providers, and coverage for more local House/Governor races without treating unreported regions as zero.
