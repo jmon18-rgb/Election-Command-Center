@@ -183,11 +183,10 @@ async function settle(){
  assert(sameRace,'Need TX governor posting to test shared-survey questions');
  const secondQuestion={...sameRace,question_id:'another-qualifying-question',
    dem_name:'Another named challenger'};
- w.eval('postedPollingSnapshot='+JSON.stringify({observations:[sameRace,secondQuestion]})+
-   ';newIndexSinceLastVisit=2;renderPostedPolls()');
+ w.eval('setPostedPollingSnapshot('+JSON.stringify({observations:[sameRace,secondQuestion]})+')');
  assert.equal(get('#newPolls').querySelectorAll('.item').length,2,
   'Two same-poll distinct ballot questions should both display');
- assert.match(get('#changesSince').textContent,/2 newly indexed since last visit/);
+ assert.match(get('#changesSince').textContent,/2 source postings/);
  assert.equal(errors.length,0,'Application emitted errors: '+errors.slice(0,4).join(' | '));
  console.log('Dashboard DOM integration passed: exact TX-SEN/TX-GOV poll drilldowns, race labels, DDHQ stale-data guards, dated news feed, and no script errors.');
  dom.window.close();
