@@ -98,3 +98,13 @@
 4. Add 2020/2022/2024 Senate historical candidate-vote returns and **verified 65 holdover caucus composition**. Backtest fundamentals out-of-year, then train national/regional correlated forecast errors against actual final results. Only then produce a full set of predicted House/Senate seats and four scenario probabilities.
 
 [Map rules and methodology](MAP_GEOGRAPHY.md) · [Seat model prerequisites](SEAT_MODEL.md).
+
+## Completed QA hardening — October 13
+- [x] Distinct race identity in every What Actually Changed insight, including Texas Senate vs governor and House district number.
+- [x] Exact-poll deep links from daily insights into JackStradamus with highlighted included/nonincluded survey and source link.
+- [x] Exact `poll_id` metadata in model, UI and independent model-to-raw-poll reconciliation.
+- [x] Four Endings interactive **hypothetical** House/Senate control calculator with four switchable outcomes; no manufactured probabilities.
+- [x] Automated JSDOM app-level navigation and control tests using real current-source JSON (not just JavaScript syntax checks), including shared Recon poll IDs spanning two Texas offices.
+- [ ] Build real-browser responsiveness/accessibility checks (Playwright/Chrome), comprehensive HTTP error-state tests and verify each original poll's true *first-publication* timestamp when its publisher makes it available.
+
+Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
