@@ -60,3 +60,11 @@ The supplemental PollResults.org feed is sorted by its **full source `createdAt`
 ## Historical vote groundwork (not a forecast)
 
 A separate [2024 House history staging workflow](.github/workflows/stage-house-history.yml) ingests MIT/MEDSL constituency-level returns from a [CC0 mirror](https://crproject.org/), with source attribution and validation. It stores exactly 435 voting districts (not D.C.'s non-voting delegate), including flags for 44 contests without recorded votes for one of the two major parties. Every historic result is marked **ineligible as a 2026 prior** until its geography is verified against the 2026 redistricted map. See [SEAT_MODEL.md](SEAT_MODEL.md).
+
+## Congressional district geography checks (October 13)
+
+The latest build follows the [U.S. Census 120th Congressional District boundary collection](https://www.census.gov/programs-surveys/decennial-census/about/rdo/congressional-districts.html) and the [2024 collection](https://www.census.gov/programs-surveys/decennial-census/about/rdo/congressional-districts.119th_Congress.html). There are **nine states with redrawn 2026 House maps** (AL, CA, FL, LA, NC, OH, TN, TX, UT), affecting **173 district slots**; Missouri's 2026 plan reverted to its previous lines. The **262 other districts** can be compared directly with 2024 geography, and **238** of those have recorded D/R votes in the 2024 House historical file.
+
+The historical research archive now includes **both 2022 and 2024** raw House returns. A separate three-election Census cross-check excludes additional states with boundary changes between 2022 and 2024 (AL, GA, LA, NY, NC): **222** districts share the same boundaries across all three election years; only **191** also have recorded D and R candidate votes in both historical years. The JackStradamus race detail can show their observed two-election House vote shares, clearly labeled historical and never used as a 2026 projected winner. See [MAP_GEOGRAPHY.md](MAP_GEOGRAPHY.md) for sources and rules.
+
+**No full House/Senate forecast or four-scenario probabilities have been enabled.** Changed-map states need geospatial vote reaggregation, and the whole model still needs validated 2026 candidates, incumbents, district fundamentals, Senate holdovers and historical calibration.
