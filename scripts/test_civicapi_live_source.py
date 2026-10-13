@@ -5,6 +5,8 @@ Verify REAL browser-CORS response, office identity, single exact General race,
 and the matching detailed-race contract; do not ingest votes into primary feed.
 """
 import json
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -18,14 +20,24 @@ def source(path,params=None):
         "Origin":ORIGIN,"Accept":"application/json",
         "User-Agent":"BlueWavesPersonalElectionNight/1.0"
     })
-    with urllib.request.urlopen(req,timeout=25) as response:
-        headers=response.headers
-        body=response.read(300000)
-        if response.status!=200 or headers.get("Access-Control-Allow-Origin") not in ("*",ORIGIN):
-            raise ValueError("civicAPI response is not direct-browser compatible")
-        if "json" not in headers.get("Content-Type","").lower() or len(body)>=300000:
-            raise ValueError("civicAPI source not a bounded JSON result")
-    return json.loads(body)
+    # The supplemental provider sometimes returns transient 502/503 while
+    # its election index updates. Retry those transport errors, but NEVER
+    # relax seat, office, CORS, vote-shape or candidate-identity checks.
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req,timeout=25) as response:
+                headers=response.headers
+                body=response.read(300000)
+                if response.status!=200 or headers.get("Access-Control-Allow-Origin") not in ("*",ORIGIN):
+                    raise ValueError("civicAPI response is not direct-browser compatible")
+                if "json" not in headers.get("Content-Type","").lower() or len(body)>=300000:
+                    raise ValueError("civicAPI source not a bounded JSON result")
+            return json.loads(body)
+        except urllib.error.HTTPError as error:
+            if error.code not in (429,500,502,503,504) or attempt==2:
+                raise
+            print("Transient civicAPI HTTP",error.code,"retry",attempt+1,"of 2")
+            time.sleep(1+attempt*2)
 
 def match(item,record):
     state,office,district=item
@@ -52,6 +64,7 @@ def main():
         (("NH","Governor",None),"Governor"),
         (("NV","Governor",None),"Governor")
     ]
+    confirmed=[]
     for item,query in examples:
         state,office,district=item
         results=source("/race/search",{
@@ -63,8 +76,13 @@ def main():
         if not isinstance(rows,list) or len(rows)>20:
             raise ValueError("Search result cardinality invalid")
         matches=[row for row in rows if match(item,row)]
-        if len(matches)!=1:
-            raise ValueError("Could not uniquely match "+str(item)+": "+str(len(matches)))
+        if len(matches)>1:
+            raise ValueError("Ambiguous identity: "+str(item)+": "+str(len(matches)))
+        if not matches:
+            # The pre-election index may omit some races. That is a coverage
+            # gap, NOT an excuse to accept another district or fabricate data.
+            print("civicAPI NOT INDEXED: exact 2026 race unavailable",state,office,district)
+            continue
         row=matches[0]
         detail=source("/race/"+str(row["id"]),{"light":""})
         for key in ("country","province","district","election_date","election_name"):
@@ -82,8 +100,13 @@ def main():
         if any(type(x.get("votes")) is not int or x["votes"]<0
                or type(x.get("winner")) is not bool for x in candidates):
             raise ValueError("Invalid candidate totals or winner call shape")
+        confirmed.append(item)
         print("civicAPI CORS and 2026 race identity verified",state,office,row["id"],
               "candidate_count",len(candidates))
+    if ("NH","Senate",None) not in confirmed:
+        raise ValueError("Required independently verified 2026 NH Senate identity missing")
+    print("civicAPI exact verified race count",len(confirmed),"of",len(examples),
+          "(unindexed races remain source-unavailable, not zero)")
 
 if __name__=="__main__":
     main()

@@ -249,6 +249,28 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-national-source{font-size:10px;color:#8faec9;line-height:1.6;margin:9px 0 0}
 @media(max-width:850px){.en-national-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:570px){.en-national-grid{grid-template-columns:1fr}.en-national-header{flex-direction:column;align-items:flex-start}.en-national-senate{padding:14px}}
+.en-alert-desk{padding:13px 15px;margin:12px 0 14px;border:1px solid #35516b;border-radius:10px;background:#101d2f}
+.en-alert-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.en-alert-head>div{display:flex;flex-direction:column;gap:4px}
+.en-alert-head strong{font-size:11px;letter-spacing:.09em}
+.en-alert-head span,.en-alert-permission{font-size:10px;color:#a8bdd0;line-height:1.55}
+.en-alert-actions{display:flex;gap:6px;align-items:center}
+.en-alert-actions button{font-size:10px;font-weight:750;background:#152c42;color:#bad0e5;border:1px solid #3a5975;padding:7px 10px;border-radius:7px;cursor:pointer}
+#enAlertDesktop[aria-pressed=true]{border-color:#609f90;color:#a9e5ce;background:#15382e}
+.en-alert-actions button:hover{border-color:#91bde3}
+.en-alert-permission{margin:9px 0 2px}
+.en-alert-count{font-size:10px;color:#99b4cb;padding:6px 0}
+.en-alert-items{display:grid;gap:5px;max-height:340px;overflow-y:auto}
+.en-alert-row{width:100%;padding:9px 10px;background:#14273c;border:1px solid #2d4862;border-radius:7px;cursor:pointer;color:#e2eefe;text-align:left;display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.en-alert-row:hover{border-color:#80add6;background:#1b344d}
+.en-alert-row strong{display:block;font-size:11px;margin-bottom:3px}
+.en-alert-row small{font-size:10px;color:#afc4d8;line-height:1.45}
+.en-alert-time{color:#91afca;font-size:10px;white-space:nowrap}
+.en-alert-row.call{border-left:3px solid #81c9a0}
+.en-alert-row.flip{border-left:3px solid #e8c076}
+.en-alert-row.first{border-left:3px solid #73b4e8}
+.en-alert-empty{font-size:11px;color:#99b3ca;margin:9px 0}
+@media(max-width:650px){.en-alert-head{align-items:flex-start;flex-direction:column;gap:9px}.en-alert-time{white-space:normal}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -458,6 +480,15 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div id="enWatchError" class="en-watch-error" role="status"></div>
  <div id="enWatchItems" class="en-watch-items"><p class="empty">Add the races you want at your fingertips on election night.</p></div>
  </section>
+<section class="en-alert-desk" aria-label="Watchlist election alerts">
+ <div class="en-alert-head"><div><strong>WATCHLIST ALERTS</strong><span>First votes · lead changes · verified provider calls</span></div>
+  <div class="en-alert-actions"><button id="enAlertDesktop" type="button" aria-pressed="false">Desktop alerts: off</button>
+   <button id="enAlertClear" type="button">Clear</button></div>
+ </div>
+ <div class="en-alert-permission" id="enAlertPermission">In-page alerts for pinned races are automatic. Desktop notifications are optional.</div>
+ <div id="enAlertCount" class="en-alert-count">No notable changes observed yet</div>
+ <div id="enAlertItems" class="en-alert-items" aria-live="polite"><p class="en-alert-empty">Pin races above to watch noteworthy updates.</p></div>
+</section>
 <div class="en-activity-box" id="enActivityBox"><div class="en-activity-head"><strong>What just changed in the reported vote?</strong><span class="tiny">Session tracking · source update comparisons</span></div><div id="enActivityFeed" class="en-message">Reporting movements will appear when refreshed 2026 source snapshots change during this viewing session. This is not a nationally complete timeline.</div></div>
 <div class="en-metrics">
  <div class="en-stat"><small>RACES IN THIS FEED</small><b id="enRaces">—</b></div>
@@ -1867,6 +1898,180 @@ function enWatchLoad(){
  }catch{return []}
 }
 let enWatched=enWatchLoad();
+
+/* Meaningful, source-separated 2026 changes for personally pinned races.
+ * The event inbox is stored on this browser only. Browser notifications
+ * are opt-in, never requested on page load or silently enabled. */
+const enAlertKey='bluewaves_election_alerts_2026_v1';
+const enAlertDesktopKey='bluewaves_election_desktop_2026_v1';
+function enAlertLoad(){
+ try{
+  const data=JSON.parse(localStorage.getItem(enAlertKey)||'[]');
+  if(!Array.isArray(data))return [];
+  return data.filter(x=>x&&typeof x.id==='string'&&x.id.length<500&&
+    ['first','flip','call','revision','withdrawn'].includes(x.kind)&&
+    ['House','Senate','Governor'].includes(x.office)&&
+    typeof x.race==='string'&&typeof x.title==='string'&&typeof x.details==='string'&&
+    typeof x.seen==='string').slice(0,35);
+ }catch{return []}
+}
+let enAlertRows=enAlertLoad(),enAlertSeen=new Set(enAlertRows.map(e=>e.id));
+let enDesktopAlertsEnabled=(()=>{
+ try{return localStorage.getItem(enAlertDesktopKey)==='on'}
+ catch{return false}
+})();
+function enAlertSave(){
+ try{localStorage.setItem(enAlertKey,JSON.stringify(enAlertRows))}catch{}
+}
+function enAlertLabel(item){
+ return item.office==='House'?item.key:
+   item.key.slice(0,2)+(item.office==='Senate'?'-SEN'+(item.key.endsWith('-special')?' special':''):'-GOV');
+}
+function enAlertSubscribed(office,key){
+ return enWatched.some(x=>x.office===office&&x.key===key);
+}
+function enAlertRecord(item,source,kind,details,signature){
+ if(enModeYear!==2026||Date.now()<Date.parse('2026-11-03T05:00:00Z')||
+   !enAlertSubscribed(item.office,item.key))return false;
+ const id=[source,enWatchId(item),kind,signature].join('|');
+ if(enAlertSeen.has(id))return false;
+ enAlertSeen.add(id);
+ const label=enAlertLabel(item);
+ const event={
+  id,source,office:item.office,race:item.key,kind,
+  title:label+' · '+(kind==='first'?'First votes reporting':
+   kind==='flip'?'Vote leader changed':
+   kind==='call'?'Provider race call':
+   kind==='withdrawn'?'Race dropped from feed':'Candidate totals revised'),
+  details,seen:new Date().toISOString()
+ };
+ enAlertRows.unshift(event);
+ enAlertRows=enAlertRows.slice(0,35);
+ // Recent event dedup survives browser reloads; memory stays bounded.
+ if(enAlertSeen.size>180)enAlertSeen=new Set(enAlertRows.map(e=>e.id));
+ enAlertSave();enRenderAlertInbox();
+ if(enDesktopAlertsEnabled&&typeof window!=='undefined'&&
+    window.Notification?.permission==='granted'){
+  try{new window.Notification(event.title,{
+    body:source+' · '+details,
+    tag:'bluewaves-'+source+'-'+enWatchId(item)+'-'+kind
+  })}catch{}
+ }
+ return true;
+}
+function enProcessPrimaryAlerts(changes){
+ for(const x of changes||[]){
+  const item={office:x.office,key:x.key};
+  if(!enAlertSubscribed(item.office,item.key))continue;
+  if(x.withdrawn){
+   enAlertRecord(item,'Open America','withdrawn',
+     'Previously reporting race is absent from the latest source update. This is not a zero or a race call.',
+     'missing-'+x.prior+'-'+x.at);
+  }else if(x.leaderChanged){
+   enAlertRecord(item,'Open America','flip',
+     'Reported vote leader changed; '+enNum(x.current)+' total votes. No winner has been called.',
+     x.prior+'-'+x.current+'-'+x.fingerprint);
+  }else if(x.newRace&&x.current>0){
+   enAlertRecord(item,'Open America','first',
+     enNum(x.current)+' first recorded votes in the state-derived source. No winner has been called.',
+     x.current+'-'+x.fingerprint);
+  }else if(x.candidateChanged&&x.delta===0){
+   enAlertRecord(item,'Open America','revision',
+     'Candidate votes were revised without changing '+enNum(x.current)+' total ballots.',
+     x.current+'-'+x.fingerprint);
+  }
+ }
+}
+function enCivicTopCandidate(data){
+ if(!data?.candidates||data.total<=0)return null;
+ const ranks=[...data.candidates].sort((a,b)=>b.votes-a.votes);
+ return ranks.length&&ranks[0].votes>0&&(!ranks[1]||ranks[0].votes>ranks[1].votes)?
+  ranks[0].name+'|'+ranks[0].party:null;
+}
+function enProcessCivicAlert(item,previous,next){
+ if(!previous||!next||!enAlertSubscribed(item.office,item.key))return;
+ const votesStamp=next.last_updated||String(next.total);
+ if(next.called&&previous.called!==next.called){
+  enAlertRecord(item,'civicAPI','call',
+    'civicAPI reports a call for '+next.called+'; provider call, not official certification.',
+    next.race_id+'-'+next.called+'-'+votesStamp);
+  return;
+ }
+ if(previous.total===0&&next.total>0){
+  enAlertRecord(item,'civicAPI','first',
+    enNum(next.total)+' first recorded votes · '+next.percent_reporting.toFixed(0)+'% precincts.',
+    next.race_id+'-'+next.total+'-'+votesStamp);
+  return;
+ }
+ const oldLeader=enCivicTopCandidate(previous),newLeader=enCivicTopCandidate(next);
+ if(oldLeader&&newLeader&&oldLeader!==newLeader){
+  enAlertRecord(item,'civicAPI','flip',
+   'Reported vote leader changed to '+newLeader.split('|')[0]+
+    ' · '+enNum(next.total)+' total votes. Not a race call.',
+   next.race_id+'-'+newLeader+'-'+next.total+'-'+votesStamp);
+ }
+}
+function enRenderAlertInbox(){
+ const host=$('#enAlertItems'),label=$('#enAlertCount'),toggle=$('#enAlertDesktop');
+ if(!host||!label||!toggle)return;
+ const isArchive=enModeYear!==2026;
+ const panel=$('.en-alert-desk');if(panel)panel.hidden=isArchive;
+ if(isArchive)return;
+ host.replaceChildren();
+ label.textContent=enAlertRows.length?
+   enAlertRows.length+' notable update'+(enAlertRows.length===1?'':'s')+' on this browser':
+   'No noteworthy watched-race changes observed yet';
+ const available=typeof window!=='undefined'&&typeof window.Notification==='function';
+ toggle.textContent=!available?'Desktop alerts unavailable':
+   'Desktop alerts: '+(enDesktopAlertsEnabled&&window.Notification.permission==='granted'?'on':'off');
+ toggle.setAttribute('aria-pressed',String(Boolean(available&&enDesktopAlertsEnabled&&
+   window.Notification.permission==='granted')));
+ toggle.disabled=!available;
+ if(!enAlertRows.length){
+  host.append(elt('p','en-alert-empty','Pin races to receive first-vote, leader-change and provider-call alerts.'));
+  return;
+ }
+ for(const event of enAlertRows.slice(0,12)){
+  const row=elt('button','en-alert-row '+event.kind);row.type='button';
+  row.setAttribute('aria-label','Inspect '+event.title);
+  const left=elt('div');
+  left.append(elt('strong','',event.title),
+    elt('small','',event.source+' · '+event.details));
+  row.append(left,elt('span','en-alert-time',enFormattedTime(event.seen)));
+  row.addEventListener('click',()=>{
+   const item={office:event.office,key:event.race};
+   if(enSupportedStates.has(item.key.slice(0,2))){
+    enSwitch(2026,item.office,item.key);
+   }else{
+    enCivicExpanded.add(enWatchId(item));
+    enRenderWatchlist();
+   }
+  });
+  host.append(row);
+ }
+}
+$('#enAlertClear').addEventListener('click',()=>{
+ enAlertRows=[];enAlertSeen.clear();enAlertSave();enRenderAlertInbox();
+});
+$('#enAlertDesktop').addEventListener('click',async()=>{
+ const N=typeof window!=='undefined'?window.Notification:null;
+ if(typeof N!=='function')return;
+ if(enDesktopAlertsEnabled){
+  enDesktopAlertsEnabled=false;
+ }else{
+  let permission=N.permission;
+  if(permission==='default'){
+   try{permission=await N.requestPermission()}
+   catch{permission='denied'}
+  }
+  enDesktopAlertsEnabled=permission==='granted';
+  if(!enDesktopAlertsEnabled)$('#enAlertPermission').textContent=
+    'Browser notifications are blocked or were not approved. In-page alerts remain enabled.';
+ }
+ try{localStorage.setItem(enAlertDesktopKey,enDesktopAlertsEnabled?'on':'off')}catch{}
+ enRenderAlertInbox();
+});
+
 function enWatchSave(){
  try{localStorage.setItem(enWatchStorageKey,JSON.stringify(enWatched))}catch{}
 }
@@ -2007,6 +2212,7 @@ async function enCivicFetchOne(item){
   if(old?.total>0&&next.total===0)
    throw Error('Supplementary source unexpectedly cleared a counted race');
   enCivicByWatch[id]=next;
+  enProcessCivicAlert(item,old,next);
   enCivicRaceIds[id]=row;
   delete enCivicErrors[id];
   enRenderWatchlist();enRenderNationalSenate();
@@ -2282,7 +2488,8 @@ function enCompareSnapshots(previous,next){
   if(old&&delta===0&&!candidateChanged&&!leaderChanged)continue;
   changes.push({at:next.as_of,key:id,office:next.office,
     prior:old?.total||0,current:r.total,delta,
-    newRace:!old||(old.total===0&&r.total>0),leaderChanged,candidateChanged});
+    newRace:!old||(old.total===0&&r.total>0),leaderChanged,candidateChanged,
+    fingerprint:r.cands.map(c=>[c.n,c.p,c.v].join(':')).sort().join(',')});
  }
  for(const [id,r] of Object.entries(previous.races||{})){
   if(r.total>0&&!Object.prototype.hasOwnProperty.call(next.races,id))
@@ -2309,6 +2516,7 @@ function enAcceptSource(o){
   throw Error('Provider snapshot unexpectedly reversed in time or lost all counted races');
  const changes=enCompareSnapshots(previous,o);
  enMovements=[...changes,...enMovements].slice(0,70);
+ if(enModeYear===2026)enProcessPrimaryAlerts(changes);
  enData=o;enFetchError=null;enLastFetchAt=new Date();
  if(enModeYear===2026){
   enOfficeSnapshots[enOffice]=o;
@@ -2396,6 +2604,7 @@ function enRender(){
  enRenderMovement();
  enRenderWatchlist();
  enRenderNationalSenate();
+ enRenderAlertInbox();
  enUpdateSelection();
  const query=($('#enSearch').value||'').trim().toLowerCase(),list=$('#enRaceList');list.replaceChildren();
  if(!rows.length){list.append(elt('p','empty',enModeYear===2026&&enData?
@@ -2514,7 +2723,9 @@ async function enRefreshWatchedOffices(exceptOffice){
    const old=enOfficeSnapshots[office]||null;
    if(!enSnapshotCompatible(old,obj))throw Error('Unordered source update');
    enOfficeSnapshots[office]=obj;
-   enMovements=[...enCompareSnapshots(old,obj),...enMovements].slice(0,70);
+   const changes=enCompareSnapshots(old,obj);
+   enMovements=[...changes,...enMovements].slice(0,70);
+   enProcessPrimaryAlerts(changes);
    delete enOfficeErrors[office];
    if(enOffice===office){
     enData=obj;enFetchError=null;enLastFetchAt=new Date();enRender();
