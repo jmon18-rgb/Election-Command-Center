@@ -1,0 +1,128 @@
+{
+  "status": "independently_crosschecked_preliminary",
+  "source_polls": "https://github.com/Jack-Whitcomb/All-US-Senate-polls-2006-2024/blob/main/2006_to_2024_senate_polls_with_actuals.csv",
+  "source_election_results": "https://github.com/fivethirtyeight/election-results/blob/main/election_results_senate.csv",
+  "method": "Eight days before Election Day; 45-day lookback; one latest poll per firm; minimum two pollsters; two-party-normalized margin; excludes special and multiple Senate elections, ranked-choice and independent-winner races; excludes narrowly identified partisan pollster labels",
+  "official_races_eligible": 117,
+  "matched_poll_races": 51,
+  "n_evaluations": 204,
+  "overall": {
+    "equal": {
+      "n": 51,
+      "mae": 4.814,
+      "bias": 3.689
+    },
+    "recency21": {
+      "n": 51,
+      "mae": 4.558,
+      "bias": 3.393
+    },
+    "recency21_size": {
+      "n": 51,
+      "mae": 4.489,
+      "bias": 3.303
+    },
+    "recency35_size": {
+      "n": 51,
+      "mae": 4.563,
+      "bias": 3.416
+    }
+  },
+  "by_year": {
+    "2018": {
+      "equal": {
+        "n": 14,
+        "mae": 4.776,
+        "bias": 3.08
+      },
+      "recency21": {
+        "n": 14,
+        "mae": 4.193,
+        "bias": 2.635
+      },
+      "recency21_size": {
+        "n": 14,
+        "mae": 3.956,
+        "bias": 2.432
+      },
+      "recency35_size": {
+        "n": 14,
+        "mae": 4.193,
+        "bias": 2.607
+      }
+    },
+    "2020": {
+      "equal": {
+        "n": 11,
+        "mae": 5.673,
+        "bias": 5.655
+      },
+      "recency21": {
+        "n": 11,
+        "mae": 5.696,
+        "bias": 5.648
+      },
+      "recency21_size": {
+        "n": 11,
+        "mae": 5.749,
+        "bias": 5.693
+      },
+      "recency35_size": {
+        "n": 11,
+        "mae": 5.708,
+        "bias": 5.708
+      }
+    },
+    "2022": {
+      "equal": {
+        "n": 12,
+        "mae": 4.946,
+        "bias": 2.502
+      },
+      "recency21": {
+        "n": 12,
+        "mae": 4.777,
+        "bias": 1.926
+      },
+      "recency21_size": {
+        "n": 12,
+        "mae": 4.721,
+        "bias": 1.804
+      },
+      "recency35_size": {
+        "n": 12,
+        "mae": 4.721,
+        "bias": 2.019
+      }
+    },
+    "2024": {
+      "equal": {
+        "n": 14,
+        "mae": 4.064,
+        "bias": 3.772
+      },
+      "recency21": {
+        "n": 14,
+        "mae": 3.84,
+        "bias": 3.637
+      },
+      "recency21_size": {
+        "n": 14,
+        "mae": 3.832,
+        "bias": 3.582
+      },
+      "recency35_size": {
+        "n": 14,
+        "mae": 3.899,
+        "bias": 3.624
+      }
+    }
+  },
+  "limitations": [
+    "Not a validated election forecast.",
+    "Cross-check compares returns to independently published election-results records, not a comprehensive state-by-state certification audit.",
+    "Race coverage differs by year; candidate-specific matchup verification remains incomplete.",
+    "Models evaluated on same data; selecting lowest MAE may overfit.",
+    "Excludes only narrowly labeled partisan pollsters; other sponsorship may remain."
+  ]
+}
