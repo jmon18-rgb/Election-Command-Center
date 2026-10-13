@@ -25,6 +25,7 @@ on:
       - 'scripts/test_scenario_forecast.py'
       - 'scripts/notify_new_polls.py'
       - 'scripts/test_poll_alerts.py'
+      - 'ALERTS.md'
       - 'scripts/validate_model_drilldown.py'
       - 'index.html'
       - 'data/integrity_impact.json'
@@ -96,6 +97,8 @@ jobs:
         run: python3 scripts/test_poll_alerts.py
       - name: Email newly indexed polls if SMTP credentials are configured
         env:
+          POLL_GMAIL_ADDRESS: ${{ secrets.POLL_GMAIL_ADDRESS }}
+          POLL_GMAIL_APP_PASSWORD: ${{ secrets.POLL_GMAIL_APP_PASSWORD }}
           POLL_SMTP_HOST: ${{ secrets.POLL_SMTP_HOST }}
           POLL_SMTP_PORT: ${{ secrets.POLL_SMTP_PORT }}
           POLL_SMTP_USERNAME: ${{ secrets.POLL_SMTP_USERNAME }}
