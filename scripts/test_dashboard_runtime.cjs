@@ -1037,7 +1037,7 @@ async function settle(){
  const resumePayload={
    schema_version:1,election:'2026-11-03',
    saved_at:'2026-11-04T03:30:00Z',
-   snapshots:{Senate:counted2026},
+   snapshots:{Senate:counted2026,House:empty2026},
    movements:[{office:'Senate',key:'NC',at:'2026-11-04T02:30:00Z',
      prior:0,current:300,delta:300,newRace:true,
      leaderChanged:false,candidateChanged:true,
@@ -1075,6 +1075,21 @@ async function settle(){
  const resaved=JSON.parse(rw.localStorage.getItem('bluewaves_2026_results_resume_v1'));
  assert.equal(resaved.snapshots.Senate.races.NC.total,300);
  assert.equal(resaved.movements.length,1);
+ // Reconnecting another office must NEVER remove the restored/stale badge
+ // from a separate Senate office whose source has not been refreshed.
+ rw.fetch=async url=>{
+   const name=String(url).split('?')[0].split('/').pop();
+   if(String(url).includes('openamerica.io')&&String(url).includes('office=House'))
+     return {ok:true,json:async()=>empty2026};
+   if(name in fixtures)return {ok:true,json:async()=>fixtures[name]};
+   throw Error('Senate source still offline');
+ };
+ rg('#enOfficeHouse').click();
+ await rw.eval('enLoad(true)');
+ rg('#enOfficeSenate').click();
+ assert.equal(rg('#enRaces').textContent,'1');
+ assert.match(rg('#enConnection').textContent,/RESTORED/,
+   'Updating House cannot silently mark restored Senate votes as live');
  const invalid={...resumePayload,
    snapshots:{Senate:{...counted2026,office:'House'}}};
  rw.localStorage.setItem('bluewaves_2026_results_resume_v1',JSON.stringify(invalid));
