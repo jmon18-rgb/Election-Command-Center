@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "updated_at": "2026-10-12",
   "coverage": "Curated, non-exhaustive sourced litigation and administration developments; reported record volumes are not disenfranchised voter counts",
   "methodology": {
@@ -33,6 +33,24 @@
       ],
       "missingness": "Absence of an incident in the curated tracker is Not assessed, not 0. Unknown probabilities and voter counts remain null.",
       "roadmap": "Move to severity × bounded unique voter exposure × probability of the precisely defined adverse outcome, once incident-level estimates are supported and can be reviewed."
+    },
+    "probability_model_v0": {
+      "headline": "Subjective scenario probability, not a measured statistical frequency or fraud probability.",
+      "common_event": "At least 100 distinct otherwise-eligible voters cannot cast a countable ballot solely because of the specified incident, by the conclusion of ordinary ballot review.",
+      "method": "Transparent judgmental starting priors by observed mechanism, discounted for documented remedies and alternative voting opportunities. Rounded point assessments with wide explicit ranges. No observed frequencies or empirical calibration claimed.",
+      "priors": [
+        "Direct registration processing backlog with remediation opportunities: 12% central, 3–30% subjective range.",
+        "Reduction in voting-time options with alternative voting opportunities: 10% central, 2–25% subjective range.",
+        "Litigation with no implemented voting-access change: 1% central, 0.1–5% subjective range."
+      ],
+      "caveats": [
+        "The ranges are analysts' working assumptions, not probability distributions calibrated from historical outcomes.",
+        "Numbers refer to an adverse operational access outcome affecting at least 100 people, not to fraud, vote suppression intent, or an altered election result.",
+        "A documented decrease in voting convenience may be certain even if 100 people failing to vote is unlikely.",
+        "No automatic partisan adjustments; source conditions, remedies and actual ballot outcomes drive updates.",
+        "An incident's reported records, counties or historical Sunday turnout may contextualize exposure but are not counts of disenfranchised voters."
+      ],
+      "last_reviewed": "2026-10-13"
     }
   },
   "states": [
@@ -109,13 +127,26 @@
       "impact_assessment": "not_quantified",
       "case_type": "legal_dispute",
       "adverse_scenario": {
-        "definition": "A court or administrative development tied to this litigation results in eligible voters being unable to cast or have their ballots counted. Filing the lawsuit is not itself such an outcome.",
+        "definition": "At least 100 otherwise-eligible voters become unable to cast countable ballots by the conclusion of normal review as a direct consequence of voter-list changes resulting from this litigation. Filing or pursuing a lawsuit alone does not satisfy the scenario.",
         "worst_case_unique_eligible_voters": null,
         "worst_case_source": "Not established; requires voter-level deduplication, affected voters and counterfactual access data.",
-        "probability_of_scenario": null,
-        "probability_basis": "Not estimated; insufficient verified administrative outcomes or comparable historical frequency data.",
-        "probability_interval": null,
-        "confirmed_unique_voters_adversely_affected": null
+        "probability_of_scenario": 0.01,
+        "probability_basis": "1% subjective reference scenario probability (0.1–5% uncertainty range). These voter-list disclosure lawsuits have no documented ballot-access change. A new operational order, implemented voter removal, or proof of adverse access impact would require immediate reassessment. Not calibrated from historical cases.",
+        "probability_interval": [
+          0.001,
+          0.05
+        ],
+        "confirmed_unique_voters_adversely_affected": null,
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-13",
+        "probability_method": "judgmental-prior-v0",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": null,
+          "unit": "eligible voters",
+          "qualifier": "no affected cohort identified",
+          "notes": "Statewide voter list access is not itself a population of disenfranchised voters."
+        }
       }
     },
     {
@@ -141,13 +172,26 @@
       "impact_assessment": "not_quantified",
       "case_type": "legal_dispute",
       "adverse_scenario": {
-        "definition": "A court or administrative development tied to this litigation results in eligible voters being unable to cast or have their ballots counted. Filing the lawsuit is not itself such an outcome.",
+        "definition": "At least 100 otherwise-eligible voters become unable to cast countable ballots by the conclusion of normal review as a direct consequence of voter-list changes resulting from this litigation. Filing or pursuing a lawsuit alone does not satisfy the scenario.",
         "worst_case_unique_eligible_voters": null,
         "worst_case_source": "Not established; requires voter-level deduplication, affected voters and counterfactual access data.",
-        "probability_of_scenario": null,
-        "probability_basis": "Not estimated; insufficient verified administrative outcomes or comparable historical frequency data.",
-        "probability_interval": null,
-        "confirmed_unique_voters_adversely_affected": null
+        "probability_of_scenario": 0.01,
+        "probability_basis": "1% subjective reference scenario probability (0.1–5% uncertainty range). These voter-list disclosure lawsuits have no documented ballot-access change. A new operational order, implemented voter removal, or proof of adverse access impact would require immediate reassessment. Not calibrated from historical cases.",
+        "probability_interval": [
+          0.001,
+          0.05
+        ],
+        "confirmed_unique_voters_adversely_affected": null,
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-13",
+        "probability_method": "judgmental-prior-v0",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": null,
+          "unit": "eligible voters",
+          "qualifier": "no affected cohort identified",
+          "notes": "Statewide voter list access is not itself a population of disenfranchised voters."
+        }
       }
     },
     {
@@ -173,13 +217,26 @@
       "impact_assessment": "not_quantified",
       "case_type": "legal_dispute",
       "adverse_scenario": {
-        "definition": "A court or administrative development tied to this litigation results in eligible voters being unable to cast or have their ballots counted. Filing the lawsuit is not itself such an outcome.",
+        "definition": "At least 100 otherwise-eligible voters become unable to cast countable ballots by the conclusion of normal review as a direct consequence of voter-list changes resulting from this litigation. Filing or pursuing a lawsuit alone does not satisfy the scenario.",
         "worst_case_unique_eligible_voters": null,
         "worst_case_source": "Not established; requires voter-level deduplication, affected voters and counterfactual access data.",
-        "probability_of_scenario": null,
-        "probability_basis": "Not estimated; insufficient verified administrative outcomes or comparable historical frequency data.",
-        "probability_interval": null,
-        "confirmed_unique_voters_adversely_affected": null
+        "probability_of_scenario": 0.01,
+        "probability_basis": "1% subjective reference scenario probability (0.1–5% uncertainty range). These voter-list disclosure lawsuits have no documented ballot-access change. A new operational order, implemented voter removal, or proof of adverse access impact would require immediate reassessment. Not calibrated from historical cases.",
+        "probability_interval": [
+          0.001,
+          0.05
+        ],
+        "confirmed_unique_voters_adversely_affected": null,
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-13",
+        "probability_method": "judgmental-prior-v0",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": null,
+          "unit": "eligible voters",
+          "qualifier": "no affected cohort identified",
+          "notes": "Statewide voter list access is not itself a population of disenfranchised voters."
+        }
       }
     },
     {
@@ -205,13 +262,26 @@
       "impact_assessment": "not_quantified",
       "case_type": "legal_dispute",
       "adverse_scenario": {
-        "definition": "A court or administrative development tied to this litigation results in eligible voters being unable to cast or have their ballots counted. Filing the lawsuit is not itself such an outcome.",
+        "definition": "At least 100 otherwise-eligible voters become unable to cast countable ballots by the conclusion of normal review as a direct consequence of voter-list changes resulting from this litigation. Filing or pursuing a lawsuit alone does not satisfy the scenario.",
         "worst_case_unique_eligible_voters": null,
         "worst_case_source": "Not established; requires voter-level deduplication, affected voters and counterfactual access data.",
-        "probability_of_scenario": null,
-        "probability_basis": "Not estimated; insufficient verified administrative outcomes or comparable historical frequency data.",
-        "probability_interval": null,
-        "confirmed_unique_voters_adversely_affected": null
+        "probability_of_scenario": 0.01,
+        "probability_basis": "1% subjective reference scenario probability (0.1–5% uncertainty range). These voter-list disclosure lawsuits have no documented ballot-access change. A new operational order, implemented voter removal, or proof of adverse access impact would require immediate reassessment. Not calibrated from historical cases.",
+        "probability_interval": [
+          0.001,
+          0.05
+        ],
+        "confirmed_unique_voters_adversely_affected": null,
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-13",
+        "probability_method": "judgmental-prior-v0",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": null,
+          "unit": "eligible voters",
+          "qualifier": "no affected cohort identified",
+          "notes": "Statewide voter list access is not itself a population of disenfranchised voters."
+        }
       }
     },
     {
@@ -237,13 +307,26 @@
       "impact_assessment": "not_quantified",
       "case_type": "legal_dispute",
       "adverse_scenario": {
-        "definition": "A court or administrative development tied to this litigation results in eligible voters being unable to cast or have their ballots counted. Filing the lawsuit is not itself such an outcome.",
+        "definition": "At least 100 otherwise-eligible voters become unable to cast countable ballots by the conclusion of normal review as a direct consequence of voter-list changes resulting from this litigation. Filing or pursuing a lawsuit alone does not satisfy the scenario.",
         "worst_case_unique_eligible_voters": null,
         "worst_case_source": "Not established; requires voter-level deduplication, affected voters and counterfactual access data.",
-        "probability_of_scenario": null,
-        "probability_basis": "Not estimated; insufficient verified administrative outcomes or comparable historical frequency data.",
-        "probability_interval": null,
-        "confirmed_unique_voters_adversely_affected": null
+        "probability_of_scenario": 0.01,
+        "probability_basis": "1% subjective reference scenario probability (0.1–5% uncertainty range). These voter-list disclosure lawsuits have no documented ballot-access change. A new operational order, implemented voter removal, or proof of adverse access impact would require immediate reassessment. Not calibrated from historical cases.",
+        "probability_interval": [
+          0.001,
+          0.05
+        ],
+        "confirmed_unique_voters_adversely_affected": null,
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-13",
+        "probability_method": "judgmental-prior-v0",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": null,
+          "unit": "eligible voters",
+          "qualifier": "no affected cohort identified",
+          "notes": "Statewide voter list access is not itself a population of disenfranchised voters."
+        }
       }
     },
     {
@@ -269,13 +352,26 @@
       "impact_assessment": "not_quantified",
       "case_type": "legal_dispute",
       "adverse_scenario": {
-        "definition": "A court or administrative development tied to this litigation results in eligible voters being unable to cast or have their ballots counted. Filing the lawsuit is not itself such an outcome.",
+        "definition": "At least 100 otherwise-eligible voters become unable to cast countable ballots by the conclusion of normal review as a direct consequence of voter-list changes resulting from this litigation. Filing or pursuing a lawsuit alone does not satisfy the scenario.",
         "worst_case_unique_eligible_voters": null,
         "worst_case_source": "Not established; requires voter-level deduplication, affected voters and counterfactual access data.",
-        "probability_of_scenario": null,
-        "probability_basis": "Not estimated; insufficient verified administrative outcomes or comparable historical frequency data.",
-        "probability_interval": null,
-        "confirmed_unique_voters_adversely_affected": null
+        "probability_of_scenario": 0.01,
+        "probability_basis": "1% subjective reference scenario probability (0.1–5% uncertainty range). These voter-list disclosure lawsuits have no documented ballot-access change. A new operational order, implemented voter removal, or proof of adverse access impact would require immediate reassessment. Not calibrated from historical cases.",
+        "probability_interval": [
+          0.001,
+          0.05
+        ],
+        "confirmed_unique_voters_adversely_affected": null,
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-13",
+        "probability_method": "judgmental-prior-v0",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": null,
+          "unit": "eligible voters",
+          "qualifier": "no affected cohort identified",
+          "notes": "Statewide voter list access is not itself a population of disenfranchised voters."
+        }
       }
     },
     {
@@ -303,6 +399,18 @@
         {
           "publisher": "Texas Tribune / Votebeat",
           "url": "https://www.texastribune.org/2026/10/01/texas-voter-registration-dps-secretary-state-2026-delay-dmv/"
+        },
+        {
+          "publisher": "Texas Secretary of State — county processing help, Sept. 25",
+          "url": "https://content.govdelivery.com/accounts/TXSOS/bulletins/42c9345"
+        },
+        {
+          "publisher": "Votebeat / Texas Tribune — provisional ballot remedy, Sept. 22",
+          "url": "https://www.texastribune.org/2026/09/22/texas-dps-voter-registration-applications-unsent/"
+        },
+        {
+          "publisher": "Texas Tribune — system glitches slowing processing, Oct. 5",
+          "url": "https://www.texastribune.org/2026/10/05/texas-voter-registration-backlog-county-frustration/"
         }
       ],
       "case_type": "administrative_issue",
@@ -310,13 +418,26 @@
       "scope_label": "500,000+ registration/update records delayed",
       "scope_note": "Records, not unique voters or lost votes",
       "adverse_scenario": {
-        "definition": "Eligible Texans whose new or changed registration remained unprocessed through the relevant voting deadline and who could not correct the problem or cast a countable ballot. This is NOT the same as delayed DPS records.",
+        "definition": "At least 100 distinct otherwise-eligible Texans fail to cast countable ballots by conclusion of ordinary review because their timely DPS-related registrations or updates remained unprocessed despite available remedies.",
         "worst_case_unique_eligible_voters": null,
         "worst_case_source": "Not established; requires voter-level deduplication, affected voters and counterfactual access data.",
-        "probability_of_scenario": null,
-        "probability_basis": "Not estimated; insufficient verified administrative outcomes or comparable historical frequency data.",
-        "probability_interval": null,
-        "confirmed_unique_voters_adversely_affected": null
+        "probability_of_scenario": 0.12,
+        "probability_basis": "12% subjective central estimate (3–30% range) for >=100 distinct eligible voters unable to cast countable ballots because of this transfer backlog. Upward factors: 500,000+ delayed registration/update records, county processing difficulties ahead of the registration deadline. Downward factors: transfer defect reportedly fixed, state assistance to counties, and provisional-ballot remedies for timely applications. No count of unique affected people or calibrated failure rate exists.",
+        "probability_interval": [
+          0.03,
+          0.3
+        ],
+        "confirmed_unique_voters_adversely_affected": null,
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-13",
+        "probability_method": "judgmental-prior-v0",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": 500000,
+          "unit": "registration/update records",
+          "qualifier": "at least",
+          "notes": "Documented backlog volume, NOT unique voters, not the upper bound on all delayed transactions, and not ballots lost."
+        }
       }
     },
     {
@@ -350,14 +471,39 @@
       "scope_note": "No count of voters unable to cast a ballot established",
       "geographic_scope_counties": 10,
       "adverse_scenario": {
-        "definition": "Voters in the named counties who would otherwise vote on the removed Sundays but cannot reasonably vote through another available method or date. County electorate is NOT an estimate of lost ballots.",
+        "definition": "At least 100 otherwise-eligible North Carolina voters who would use the discontinued Sunday early-voting hours in the named 10 counties do not cast a countable ballot by the conclusion of ordinary review, despite other voting opportunities.",
         "worst_case_unique_eligible_voters": null,
         "worst_case_source": "Not established; requires voter-level deduplication, affected voters and counterfactual access data.",
-        "probability_of_scenario": null,
-        "probability_basis": "Not estimated; insufficient verified administrative outcomes or comparable historical frequency data.",
-        "probability_interval": null,
-        "confirmed_unique_voters_adversely_affected": null
-      }
+        "probability_of_scenario": 0.1,
+        "probability_basis": "10% subjective central estimate (2–25% range) for >=100 otherwise-eligible voters unable to cast countable ballots as a direct consequence of the removed Sunday hours. Downward factor: other early-voting days, election-day and mail options remain. Upward uncertainty: access constraints for Sunday-dependent voters; historical county Sunday turnout and alternate-hours capacity are not yet quantified. No calibrated turnout counterfactual.",
+        "probability_interval": [
+          0.02,
+          0.25
+        ],
+        "confirmed_unique_voters_adversely_affected": null,
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-13",
+        "probability_method": "judgmental-prior-v0",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": 10,
+          "unit": "counties losing 2022 Sunday hours",
+          "qualifier": "documented",
+          "notes": "Geographic scope, NOT number of people prevented from voting. 2022 county Sunday voting figures still require retrieval."
+        }
+      },
+      "affected_counties": [
+        "Anson",
+        "Chatham",
+        "Columbus",
+        "Greene",
+        "Harnett",
+        "Nash",
+        "Pasquotank",
+        "Pitt",
+        "Union",
+        "Wayne"
+      ]
     }
   ]
 }
