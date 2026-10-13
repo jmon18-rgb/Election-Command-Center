@@ -146,6 +146,19 @@ async function settle(){
  assert(tsunami,'Missing tsunami outcome');
  assert.match(tsunami.textContent,/not separately estimated/i);
  assert(!tsunami.textContent.includes('0%'),'Unreported tsunami probability cannot be shown as 0%');
+ // A source outage must not leave a week-old percentage looking current.
+ const staleCopy=structuredClone(seeded);
+ const past=new Date(Date.now()-10*86400000).toISOString().slice(0,10);
+ staleCopy.source_updated_date=past;
+ w.eval('congressScenarioSnapshot='+JSON.stringify(staleCopy)+';renderElectionScenarios()');
+ assert.match(get('#scenarioUpdated').textContent,/OUTDATED/);
+ assert.match(get('#scenarioCenter').textContent,/Historical forecast/);
+ assert(!get('#scenarioBands').textContent.includes('54%'),'Expired probability shown as current');
+ const corruptCopy=structuredClone(seeded);
+ corruptCopy.raw_joint_outcomes_pct.both_dem=90;
+ w.eval('congressScenarioSnapshot='+JSON.stringify(corruptCopy)+';renderElectionScenarios()');
+ assert.match(get('#scenarioBands').textContent,/integrity checks/);
+ w.eval('congressScenarioSnapshot='+JSON.stringify(seeded)+';renderElectionScenarios()');
  assert(!get('#scenarioSimulator').querySelector('input'),'Hypothetical sliders should be removed');
  assert.match(get('#scenarioSimulator').textContent,/DDHQ does not publish/i);
  assert.match(get('.scenario-source-link').href,/decisiondeskhq.com/);
@@ -158,6 +171,6 @@ async function settle(){
  assert(topTime,'No recent full timestamp data');
  assert(get('#newPolls').textContent.includes('Source posted'),'Posted date labels disappeared');
  assert.equal(errors.length,0,'Application emitted errors: '+errors.slice(0,4).join(' | '));
- console.log('Dashboard DOM integration passed: exact TX-SEN/TX-GOV poll drilldowns, race labels, four active hypothetical scenarios, dated news feed, and no script errors.');
+ console.log('Dashboard DOM integration passed: exact TX-SEN/TX-GOV poll drilldowns, race labels, DDHQ stale-data guards, dated news feed, and no script errors.');
  dom.window.close();
 })().catch(e=>{console.error(e.stack||e);dom.window.close();process.exitCode=1});
