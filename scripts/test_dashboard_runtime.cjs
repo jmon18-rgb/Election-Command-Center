@@ -868,7 +868,7 @@ async function settle(){
  assert.match(civicDetail.textContent,/490/);
  assert.match(civicDetail.textContent,/separate from Open America/);
  assert(civicDetail.querySelector('a.en-civic-direct').href.includes('/api/v2/race/87283'));
- assert.equal(get('#enWatchItems .en-watch-open').getAttribute('aria-expanded'),'true');
+ assert.equal(get('#enWatchItems .en-watch-open[aria-label="Open NH-SEN Senate 2026 results"]').getAttribute('aria-expanded'),'true');
  get('#enWatchItems .en-watch-open[aria-label="Open NH-SEN Senate 2026 results"]').click();
  assert.equal(get('#enWatchItems .en-civic-detail'),null,
   'Supplemental race detail should collapse without losing its verified source snapshot');
