@@ -36,6 +36,10 @@ jobs:
         run: python3 scripts/test_race_probabilities.py
       - name: Rebuild 2026 race probabilities from the same polling source
         run: python3 scripts/build_race_probabilities.py
+      - name: Test source-locked observed probability history and clock ordering
+        run: python3 scripts/test_race_odds_history.py
+      - name: Record genuine current probability snapshot without backfilling
+        run: python3 scripts/record_race_odds_history.py
       - name: Verify browser-compatible live official-state election API
         run: python3 scripts/test_live_results_source.py
       - name: Nonpublishing secondary civicAPI 2026 coverage and CORS probe
