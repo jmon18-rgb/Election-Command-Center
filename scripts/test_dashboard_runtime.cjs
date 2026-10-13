@@ -253,6 +253,34 @@ async function settle(){
  const suspicious2026=structuredClone(archival);suspicious2026.year=2026;
  assert.equal(w.eval('enSourceValid('+JSON.stringify(suspicious2026)+',2026,"House")'),false,
   'Pre-election vote totals must never pass as live 2026 results');
+ // The real 2026 adapter issues a direct browser fetch (never through
+ // an unauthorized server mirror), honors source coverage, and backs off.
+ const empty2026={api:1,year:2026,office:'House',
+  live:false,stale:false,counting:false,final:false,as_of:null,
+  source:'',counts:{races:0,with_precincts:0,reporting:0,not_called:0,called:{}},races:{}};
+ assert.equal(w.eval('enFetchUrl(2026,"House")'),
+  'https://openamerica.io/elections/results.json?year=2026&office=House');
+ assert.equal(w.eval('enRefreshInterval({live:true},0)'),60000);
+ assert.equal(w.eval('enRefreshInterval({counting:true},0)'),900000);
+ assert.equal(w.eval('enRefreshInterval({counting:false},0)'),600000);
+ assert.equal(w.eval('enRefreshInterval(null,2)'),120000);
+ assert.equal(w.eval('enRefreshInterval(null,8)'),600000);
+ const originalRemoteFetch=w.fetch;
+ const calls=[];
+ w.fetch=async(url,options)=>{calls.push({url,options});
+  return {ok:true,json:async()=>empty2026};};
+ w.eval('enModeYear=2026;enOffice="House";enData=null');
+ await w.eval('enLoad(true)');
+ assert.equal(calls.length,1);
+ assert.match(calls[0].url,/openamerica.io\/elections\/results.json\?year=2026&office=House/);
+ assert.equal(calls[0].options.mode,'cors');
+ assert.equal(calls[0].options.credentials,'omit');
+ assert.equal(get('#enRaces').textContent,'0');
+ assert.match(get('#enStatus').textContent,/AWAITING FIRST COUNTS|COUNTING NOT LIVE/);
+ assert.match(get('#enConnection').textContent,/WAITING FOR VOTES/);
+ assert.equal(get('#enCalls').textContent,'Not supplied');
+ w.fetch=originalRemoteFetch;
+ w.eval('enModeYear=2024;enOffice="House";enData=null');
  const nightTab=get('.tab[data-page="electionNight"]');
  // Avoid network in deterministic tests; the public API is integration-tested
  // separately on the real site and this suite validates rendering/contracts.
