@@ -20,7 +20,15 @@
     'Senate|NE':{state:'NE',name:'Nebraska US Senate',office:'Senate',id:87254},
     'Governor|NE':{state:'NE',name:'Nebraska Governor',office:'Governor',id:87255},
     'Senate|KS':{state:'KS',name:'Kansas US Senate',office:'Senate',id:87162},
-    'Governor|KS':{state:'KS',name:'Kansas Governor',office:'Governor',id:87163}
+    'Governor|KS':{state:'KS',name:'Kansas Governor',office:'Governor',id:87163},
+    // Five-state release: seven verified civicAPI 2026 general-election IDs.
+    'Senate|IL':{state:'IL',name:'Illinois US Senate',office:'Senate',id:87129},
+    'Governor|IL':{state:'IL',name:'Illinois Governor',office:'Governor',id:87130},
+    'Senate|KY':{state:'KY',name:'Kentucky US Senate',office:'Senate',id:87174},
+    'Senate|NJ':{state:'NJ',name:'New Jersey US Senate',office:'Senate',id:87302},
+    'Governor|NY':{state:'NY',name:'New York Governor',office:'Governor',id:87329},
+    'Senate|OR':{state:'OR',name:'Oregon US Senate',office:'Senate',id:87374},
+    'Governor|OR':{state:'OR',name:'Oregon Governor',office:'Governor',id:87375}
   });
   const configuration=item=>item&&RACES[item.office+'|'+item.key]||null;
   const supports=item=>Boolean(configuration(item));
