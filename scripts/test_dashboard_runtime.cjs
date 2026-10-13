@@ -1113,6 +1113,44 @@ async function settle(){
  await new Promise(resolve=>setTimeout(resolve,100));
  resumed.window.close();
 
+ // Both election-night CSV exports must include only actual source data,
+ // with provider attribution, correct vote totals and spreadsheet-safe cells.
+ const csvClock=w.Date.now;
+ w.Date.now=()=>Date.parse('2026-11-04T03:40:00Z');
+ const emptyExport=w.eval('enBuildResultsCsv({},{})');
+ assert.equal(emptyExport,'','No actual votes should yield a blank export');
+ const sourceCsv=w.eval('enBuildResultsCsv('+
+    JSON.stringify({Senate:counted2026})+','+
+    JSON.stringify({'Senate|NH':rawCivic})+')');
+ assert(sourceCsv.startsWith('\uFEFF'),'CSV should have a real UTF-8 Excel BOM');
+ assert.match(sourceCsv,/Open America/);
+ assert.match(sourceCsv,/civicAPI/);
+ assert.match(sourceCsv,/NC/);
+ assert.match(sourceCsv,/NH/);
+ assert.match(sourceCsv,/Democratic candidate/);
+ assert.match(sourceCsv,/First candidate/);
+ assert.match(sourceCsv,/\"NO CALL\"/,'Primary provider never invents a call');
+ assert.match(sourceCsv,/openamerica.io\/elections\/api/);
+ assert.match(sourceCsv,/civicapi.org\/api\/v2\/race\/87283/);
+ assert.equal(sourceCsv.trim().split('\r\n').length,5,
+    'CSV must contain header and two primary plus two supplementary candidate rows');
+ const eventCsv=w.eval('enBuildActivityCsv('+JSON.stringify([
+   firstNC,correction,flip,{...firstNC,office:'InvalidProvider'},
+ ])+')');
+ assert.match(eventCsv,/FIRST VOTES/);
+ assert.match(eventCsv,/VOTE LEAD FLIPPED/);
+ assert.match(eventCsv,/CANDIDATE VOTES REVISED/);
+ assert.doesNotMatch(eventCsv,/InvalidProvider/);
+ assert.equal(eventCsv.trim().split('\r\n').length,4);
+ const malicious=w.eval('enCsvCell('+JSON.stringify('=HYPERLINK("https://malicious.example")')+')');
+ assert(malicious.startsWith('"\'=HYPERLINK'),
+   'Formula-like external candidate text must never execute as a spreadsheet formula');
+ assert(malicious.includes('""https://malicious.example""'),
+   'Quotes inside external names must be escaped');
+ const quoted=w.eval('enCsvCell('+JSON.stringify('Candidate "A", Jr.')+')');
+ assert.equal(quoted,'"Candidate ""A"", Jr."');
+ w.Date.now=csvClock;
+
  assert.equal(errors.length,0,'Application emitted errors: '+errors.slice(0,4).join(' | '));
  console.log('Dashboard DOM integration passed: exact TX-SEN/TX-GOV poll drilldowns, race labels, DDHQ stale-data guards, dated news feed, and no script errors.');
  dom.window.close();
