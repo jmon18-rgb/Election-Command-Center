@@ -1,9 +1,156 @@
 {
-  "updated_at": "2026-10-13T08:40:27.092018Z",
+  "updated_at": "2026-10-13T12:46:53.774247Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 8,
   "items": [
+    {
+      "id": "ec8129144076828f587c",
+      "title": "Court Fixes Nov 20 For Ruling On Atiku's Motion To Amend Eligibility Suit Against Tinubu, APC - Channels Television",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNR3A0dE5IME1kQmMteXk5X0NNbDVibFhzdXZacHVqVlBCN3UxLWtma0ZOTXJQeG1LRi1EaENlX2tKLWpfUUs0U1lsYjdZOU9BQTRTM1hZRTJ6TlUwSEtlcC1OVF9pNXRrMElwaUdXLVdXVHdUdEdhYW1QOHlMc3Z0YXNiSVctQVhOUElkUjdPUWtYazFraHhqVXQ0ZnZYTTVRX1FmakM0ZzVaalRQNGd2NUluSVhwSzBYVnVCc1dTWTNfNWhha1NhbW93?oc=5",
+      "publisher": "Channels Television",
+      "published_at": "2026-10-13T11:39:45Z",
+      "detected_at": "2026-10-13T12:46:53.774247Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "20 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "16e8f9db0ea6c02be9f3",
+      "title": "Georgia early voting begins under intense scrutiny from White House, GOP - Democracy Docket",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNMFZQMWtaWE5mTE91ZEFER0J0LWc0Z29SYjJ3a0VKcmNoSFREdnFhLURBQ1dOT1hhb0FiMzhFZVFvdmR3ZXRsbk9CZnVZOUdfNHdndU5rQ0luREVGYXpXa3lSbWhBWDItNWl0OTJrOUtiVmU5SURuU2ZBVUVIS3RfM3JXc2pLZlRjN0NacGczc0IwYzc2eEkzTEFhVVo1VlpueDJJMVNOSkNyaGtzZ3g3TnpaeVdnRWc?oc=5",
+      "publisher": "Democracy Docket",
+      "published_at": "2026-10-13T11:06:44Z",
+      "detected_at": "2026-10-13T12:46:53.774247Z",
+      "state_hints": [
+        "GA"
+      ],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "9cb000f62ed7bc85e55c",
+      "title": "Cost of living, technology, and more worry Nashville voters - Nashville Banner",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQMFVDYVVId1Jralk0ZS0tZGE1Q08tdkxCRk5Od25NVzVSc0F1TzZVeGYyOWRrcE1zdER5M1A3RThtZ0xod3A0M2FReUVfWXFIUEdUOWF1ck1aRVZocjNjM25tSHNGOHgyVmdCeDJlZUExbjd5SWxhR2VjLUI5WnQ0TE54eUZlN1I5MXdUMWJ2VUYxZw?oc=5",
+      "publisher": "Nashville Banner",
+      "published_at": "2026-10-13T11:01:00Z",
+      "detected_at": "2026-10-13T12:46:53.774247Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "1f1c9baf95873496f970",
+      "title": "On the issues: A Q&A with U.S. Senate candidates James Talarico, Ken Paxton and Ted Brown - The Texas Tribune",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPQl95VGhGNG8wdXJ3YVBhTng2MENRakJKcVlmaXFvM2EtbmhxZTl5QlYyZlFwdDBMMjY5bE9mOThJbVFfTGhJZkd3b2MtS0p5VFFWY3ZMWkFrNlZ2d0xtbGZURzdEZFNCQmwwRmtKdkR4M2tBdHZxdW0zbkpzejBOd3R6dFdFalBhVndlWjRNX2RlSnBZWERjWTlR?oc=5",
+      "publisher": "The Texas Tribune",
+      "published_at": "2026-10-13T10:06:11Z",
+      "detected_at": "2026-10-13T12:46:53.774247Z",
+      "state_hints": [
+        "TX"
+      ],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "d549b337e9e9386260f7",
+      "title": "Bucks County sheriff pledges not to interfere with elections - Central Bucks Now",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNeWxvR2RSTG9vZVpoVWxlR2pFWXhBQkhaX0xVY2tsd0NLMjloTWhfX0YweEFOTVYzeTZxaTZTX1h1Z2lKS3cyaWFJTDE4Q0lBbU16Zi1kMTBEaENEUUFtNGhCR3Rwd3AxTnFsZEpheWNmNGZyQW1FdHEtaFh1VUltME5YYTlqMlRvZkQ1SDdSRGZBM3dVTENqY1YyYw?oc=5",
+      "publisher": "Central Bucks Now",
+      "published_at": "2026-10-13T09:59:00Z",
+      "detected_at": "2026-10-13T12:46:53.774247Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "2df3b52a6708707a7876",
+      "title": "What\u2019s on Missouri ballots? Explore our voter guide to Nov. 3 midterm election - Kansas City Star",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9NRU1pbkx0aWNTcGxpeTk1bVFXY2N6UjJLc0lCZG1LOHJOSXh0UG5KZHlrNGVrVUc4bW1sUHA4MTZubi0zLUwxSzdRYlpiQnh5QXF0Ml9GbFYwSG1xUmdtUm4xWmhkQWg2WEEycg?oc=5",
+      "publisher": "Kansas City Star",
+      "published_at": "2026-10-13T09:45:00Z",
+      "detected_at": "2026-10-13T12:46:53.774247Z",
+      "state_hints": [
+        "KS"
+      ],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [
+        "3 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "9297e4947c1c59b09fa8",
+      "title": "Voter guide 2026: Where candidates stand on ICE, war and data centers - Pittsburgh's Public Source",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1sT2YwWEhFSHFyaG1qN1RUZUgwY2tnazByS250bFZQcDJ5SWhrdUxiRjl6cTZQNUQzSmhOMEstTmZJRzRYd2lScGJvZE1SbU1wa3dUcU05V3R2cmxDaDNySVhwYXN2VGpmbzBiOTlfaE1NT0VM?oc=5",
+      "publisher": "Pittsburgh's Public Source",
+      "published_at": "2026-10-13T09:30:00Z",
+      "detected_at": "2026-10-13T12:46:53.774247Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [
+        "2026"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "b2b1f6f4be21fad89b32",
+      "title": "What\u2019s on KC, Jackson County ballots? Explore our voter guide to Nov. 3 midterm election - Kansas City Star",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQbXJmNXhxczE2ekxZbnVNT3piTnBtbUpqRVNiQjFnYlVic3gtSkN6b0tNRG84Skh1QXlFa05BV3NOZW50LXppSThHNlNxYlVGYlBpMUNXYzJqaHpyUnctUHlEeTlrSmFFOHRkVzBtOFktMnBHMFlZWHU4TmNFUk1LMEdzNnRpLXlmZk9RZm5TdDNhcGg2b3VMNWV3?oc=5",
+      "publisher": "Kansas City Star",
+      "published_at": "2026-10-13T09:30:00Z",
+      "detected_at": "2026-10-13T12:46:53.774247Z",
+      "state_hints": [
+        "KS"
+      ],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [
+        "3 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "535371eb2b067753bc75",
       "title": "Merrimack councilors to address access for voters with disabilities - New Hampshire Union Leader",
