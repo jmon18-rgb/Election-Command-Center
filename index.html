@@ -36,10 +36,10 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .model-source-row{display:flex;flex-wrap:wrap;gap:10px;font-size:11px;margin-top:13px}.model-source-row a{color:#8ec4f6}.model-back{display:none;background:none;border:0;color:#9bc6ec;font-size:11px;margin-top:20px;cursor:pointer}
 @media(max-width:820px){.model-workspace{grid-template-columns:minmax(0,1fr)}.model-board{display:grid;grid-template-columns:minmax(0,1fr)}.model-race-row{min-height:65px}.model-detail{padding:15px}.model-back{display:block}}
 @media(max-width:550px){.model-top-stat{padding:10px}.model-top-stat span{font-size:9px;letter-spacing:0}.model-top-stat strong{font-size:21px}.model-updated{font-size:10px}.model-heading{align-items:start}.model-candidate strong{font-size:23px}.model-candidate span{font-size:10px}}
-</style></head><body>
+.en-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:14px 0}.en-toggle{display:flex;gap:3px;padding:3px;border:1px solid #2a3e55;border-radius:10px;background:#0e1a2b}.en-toggle button{background:none;color:#9cadc5;border:0;border-radius:7px;padding:9px 11px;cursor:pointer;font-size:11px;font-weight:750}.en-toggle button[aria-pressed=true]{background:#2c4b69;color:#eff6ff}.en-status{font-size:12px;color:#bacce0;line-height:1.5;padding:12px 14px;background:#14253a;border:1px solid #324961;border-radius:10px;margin-bottom:13px}.en-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:12px}.en-stat{padding:13px 14px;background:#112035;border:1px solid #2f4358;border-radius:10px}.en-stat small{display:block;color:#91a7bf;font-size:10px;font-weight:800;line-height:1.4}.en-stat b{display:block;font-size:21px;margin-top:6px;letter-spacing:-.02em}.en-footnote{font-size:11px;line-height:1.55;color:#9cb2cb;margin:12px 0 16px}.en-workspace{display:grid;grid-template-columns:minmax(245px,37%) minmax(0,1fr);gap:14px;align-items:start}.en-race-panel,.en-detail{background:#101e31;border:1px solid #32465d;border-radius:12px;min-width:0;overflow:hidden}.en-race-tools{padding:13px 15px;border-bottom:1px solid #31465b;display:flex;justify-content:space-between;gap:12px;align-items:center}.en-race-tools strong{font-size:13px}.en-race-tools input{min-width:0;width:55%;background:#0c1a2b;color:#e8f2ff;border:1px solid #3c5068;border-radius:7px;padding:9px;font-size:11px}.en-race-list{max-height:670px;overflow:auto}.en-race-entry{display:flex;width:100%;justify-content:space-between;gap:10px;text-align:left;background:none;border:0;border-top:1px solid #27394e;color:inherit;padding:11px 14px;cursor:pointer}.en-race-entry:hover,.en-race-entry[aria-pressed=true]{background:#1c3048}.en-race-entry[aria-pressed=true]{box-shadow:inset 3px 0 #7bc4ee}.en-race-entry:focus-visible{outline:2px solid #8accee;outline-offset:-2px}.en-race-entry strong,.en-race-entry small{display:block}.en-race-entry strong{font-size:12px}.en-race-entry small{font-size:10px;line-height:1.5;color:#9aafc6}.en-race-lead{text-align:right;white-space:nowrap}.en-race-lead b{font-size:12px}.en-race-lead small{font-size:9px}.en-detail{padding:19px}.en-detail h3{font-size:22px;margin:7px 0;letter-spacing:-.02em}.en-detail-summary{font-size:12px;color:#a8bfd7;line-height:1.5;margin-bottom:13px}.en-candidate{margin:14px 0;border-bottom:1px solid #283c53;padding-bottom:12px}.en-candidate-label{display:flex;justify-content:space-between;gap:8px;font-size:12px}.en-candidate-label b{font-size:15px}.en-candidate-track{height:9px;border-radius:4px;background:#213348;overflow:hidden;margin-top:7px}.en-candidate-fill{height:100%;border-radius:4px;background:#849dbb}.en-candidate-fill.dem{background:#70a8ef}.en-candidate-fill.rep{background:#e6878e}.en-detail-meta,.en-poll-reference{font-size:11px;color:#9aafc4;line-height:1.6;margin-top:14px}.en-poll-reference{padding:9px 11px;background:#17283b;border-radius:7px}.en-callout{border-top:1px solid #31465b;font-size:11px;color:#8fa9c3;line-height:1.6;margin-top:16px;padding-top:14px}.en-sources{margin:17px 0;background:#121f30;border:1px solid #2c4056;border-radius:10px;padding:15px}.en-sources strong{font-size:12px}.en-sources p{color:#97adc6;font-size:11px;line-height:1.65}.en-sources a{color:#9acdf1}@media(max-width:800px){.en-workspace{grid-template-columns:1fr}.en-race-list{max-height:380px}.en-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.en-detail{padding:16px}}</style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">◈</span>ELECTION <b>COMMAND</b> CENTER <span style="color:#65dfb5;font-size:10px;margin-left:7px">V1.0</span></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><div class="hero"><div class="eyebrow">2026 U.S. MIDTERMS · NOVEMBER 3</div><h1>An extremely <em>normal</em> election.</h1><p class="subtitle">Polling, Senate math, and whatever happens next.</p></div>
-<div class="split" style="margin-bottom:8px"><div class="health"><span id="healthDot" class="healthdot"></span><span id="healthText">Checking data feeds…</span></div><span class="tiny" id="lastChecked"></span></div><nav class="tabs" aria-label="Dashboard tabs"><button class="tab" data-page="brief" aria-selected="true">Daily briefing</button><button class="tab" data-page="races" aria-selected="false">Race lab</button><button class="tab" data-page="model" aria-selected="false">JackStradamus</button><button class="tab" data-page="integrity" aria-selected="false">Bullshittery Index</button></nav>
+<div class="split" style="margin-bottom:8px"><div class="health"><span id="healthDot" class="healthdot"></span><span id="healthText">Checking data feeds…</span></div><span class="tiny" id="lastChecked"></span></div><nav class="tabs" aria-label="Dashboard tabs"><button class="tab" data-page="brief" aria-selected="true">Daily briefing</button><button class="tab" data-page="races" aria-selected="false">Race lab</button><button class="tab" data-page="model" aria-selected="false">JackStradamus</button><button class="tab" data-page="integrity" aria-selected="false">Bullshittery Index</button><button class="tab" data-page="electionNight" aria-selected="false">Election Night</button></nav>
 <section id="brief" class="page active">
 <div class="brief-intro"><div><span class="eyebrow">DAILY BRIEFING</span><h2>Today’s state of play</h2><p>Start with the numbers. Then see what's new and why it matters.</p></div><div class="brief-date compact-date"><span>Election Day · Nov 3</span><strong id="countdown">—</strong></div></div>
 <div class="grid" style="margin-top:16px">
@@ -79,6 +79,47 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 </div>
 </section>
 <section id="integrity" class="page"><div class="sectionhead"><h2>Bullshittery Index</h2><span class="tiny">Evidence-first reporting</span></div><div class="card" style="margin-bottom:16px"><div class="row"><span class="label">Voter impact · evidence ledger</span><span class="tag">COUNTS REQUIRE SOURCES</span></div><p class="detail">Track potentially exposed voters or ballots separately from confirmed effects and remedies. Unknown is not zero. Overlapping incidents are never added into a statewide total.</p><div class="toolrow"><select id="impactState" aria-label="Filter state voter impact"><option value="">All monitored states</option></select><select id="impactStatus" aria-label="Filter evidence status"><option value="">All evidence statuses</option><option value="unverified_report">Unverified report</option><option value="documented_action">Documented action</option><option value="officially_confirmed">Officially confirmed</option><option value="court_finding">Court finding</option><option value="resolved">Resolved</option></select></div><div id="impactSummary" class="statusline">Loading sourced impact ledger…</div><div id="impactCases" class="racecards racecards-wide"></div><p class="methodline">Counts preserve their units (voters, ballots, registrations, records). Potential exposure does not imply disenfranchisement, fraud, or an election outcome change.</p></div><div class="card" style="margin-bottom:16px"><div class="row"><span class="label">Incoming integrity reports · verification queue</span><span class="tag">NOT VERIFIED</span></div><p class="detail">Automatically collected leads requiring original documents. Numbers in headlines are not confirmed voter-impact counts.</p><div id="integrityQueueSummary" class="statusline">Checking verification queue…</div><div id="integrityQueue" class="racecards racecards-wide"></div></div><div class="grid"><div class="card seven"><div class="row"><span class="label">Documented developments</span><span class="tag">FEED PENDING</span></div><div class="toolrow"><input type="search" id="securitySearch" placeholder="Search voter rolls, ICE, courts…"><select id="securityOrder" aria-label="Sort news"><option value="recent">Newest first</option><option value="oldest">Oldest first</option></select></div><div class="statusline" id="securityCount">No articles loaded yet.</div><div id="security" class="empty">No articles loaded yet. These are automatically collected news leads, not verified incidents.</div></div><div class="card five"><span class="label">Monitoring priorities</span><div class="item"><strong>Voter rolls and registration</strong><small>Eligibility challenges, list maintenance, notices, and court orders.</small></div><div class="item"><strong>Federal agency activity</strong><small>Documented actions that may affect voting access, including ICE.</small></div><div class="item"><strong>Threats and disruptions</strong><small>Cyber incidents, polling-place threats, and official responses.</small></div><div class="item"><strong>Litigation and oversight</strong><small>Injunctions, appeals, election procedures, and implementation.</small></div></div></div><div class="note">An allegation is not a verified incident. Every report should distinguish evidence, disputed claims, and unresolved questions.</div></section>
+<section id="electionNight" class="page">
+<div class="sectionhead"><div><h2>Election Night</h2><p class="detail">Live unofficial vote totals and a clearly labeled historical replay. Not a race-calling service.</p></div><span class="tiny" id="enChecked">Not connected yet</span></div>
+<div class="en-toolbar">
+ <div class="en-toggle" aria-label="Election data mode">
+ <button id="enMode2026" type="button" aria-pressed="true">2026 · Live</button>
+ <button id="enMode2024" type="button" aria-pressed="false">2024 · Replay</button>
+ </div>
+ <div class="en-toggle" aria-label="Chamber">
+ <button id="enOfficeHouse" type="button" aria-pressed="true">House</button>
+ <button id="enOfficeSenate" type="button" aria-pressed="false">Senate</button>
+ </div>
+ <button id="enRefresh" type="button" class="chip">Refresh</button>
+</div>
+<div class="en-status" id="enStatus" role="status">Connect to the public results feed. Live results will begin when official state election offices report votes.</div>
+<div class="en-metrics">
+ <div class="en-stat"><small>RACES IN THIS FEED</small><b id="enRaces">—</b></div>
+ <div class="en-stat"><small>DEMOCRATIC VOTE LEADS</small><b id="enDLeads">—</b></div>
+ <div class="en-stat"><small>REPUBLICAN VOTE LEADS</small><b id="enRLeads">—</b></div>
+ <div class="en-stat"><small>RACE CALLS</small><b id="enCalls">Not supplied</b></div>
+</div>
+<div class="en-footnote">The feed currently covers 22 states, not all 50. Vote leads are <strong>not race calls</strong> or projected winners. Neither chamber's control can be inferred by counting these leaders. Missing races mean no supported feed, not zero votes.</div>
+<div class="en-workspace">
+ <div class="en-race-panel">
+  <div class="en-race-tools"><strong id="enRaceHeading">House races</strong><input id="enSearch" type="search" placeholder="Search state, seat, candidate" aria-label="Filter election night races"/></div>
+  <div id="enRaceList" class="en-race-list"><p class="empty">Awaiting election results…</p></div>
+ </div>
+ <div class="en-detail" id="enRaceDetail">
+  <span class="label">SELECTED RACE</span>
+  <h3 id="enDetailTitle">Choose a race</h3>
+  <div id="enDetailSummary" class="en-detail-summary">Reported votes will appear here.</div>
+  <div id="enCandidateList" class="en-candidates"></div>
+  <div id="enDetailMeta" class="en-detail-meta"></div>
+  <div id="enPollReference" class="en-poll-reference"></div>
+  <div class="en-callout">County-level reporting and an expectations-based comparison will be added only where an adequately sourced county feed and historical baseline are available.</div>
+ </div>
+</div>
+<div class="en-sources">
+ <strong>Results and decision desks</strong>
+ <p>Official counts via <a href="https://openamerica.io/elections/api/" target="_blank" rel="noopener noreferrer">Open America ↗</a>. The feed does not supply winner calls. For independent calls and national coverage: <a href="https://apnews.com/hub/elections" target="_blank" rel="noopener noreferrer">AP ↗</a> · <a href="https://www.decisiondeskhq.com/" target="_blank" rel="noopener noreferrer">DDHQ ↗</a> · <a href="https://www.ncsbe.gov/results-data/election-results" target="_blank" rel="noopener noreferrer">NC official results ↗</a>. These external services are not yet integrated into this board.</p>
+</div>
+</section>
 <footer class="footer"><span>2026 ELECTION COMMAND CENTER · CLARITY OVER NOISE</span><span><a href="https://github.com/jmon18-rgb/Election-Command-Center">Source code ↗</a> · <span id="updated">Briefing pending</span></span></footer></main>
 <script>
 const $=s=>document.querySelector(s);
@@ -425,6 +466,101 @@ let securityArticles=[];
 function renderSecurity(){const box=$('#security');box.replaceChildren();const q=($('#securitySearch').value||'').trim().toLowerCase();const items=securityArticles.filter(x=>(x.title+' '+(x.source||'')).toLowerCase().includes(q)).sort((a,b)=>$('#securityOrder').value==='oldest'?(a.published_at||'').localeCompare(b.published_at||''):(b.published_at||'').localeCompare(a.published_at||''));$('#securityCount').textContent=items.length+' automatically collected articles · not independently verified';if(!items.length){box.textContent='No matching articles.';return}for(const x of items){const wrap=elt('div','item');const label=elt('span','securityBadge','NEWS REPORT · UNVERIFIED');wrap.append(label);const title=elt('strong','',x.title);wrap.append(title);wrap.append(elt('small','',[(x.source||'Source not specified'),x.published_at?new Date(x.published_at).toLocaleString():''].filter(Boolean).join(' · ')));if(typeof x.url==='string'&&x.url.startsWith('https://')){const link=elt('a','','Open article ↗');link.href=x.url;link.target='_blank';link.rel='noopener';wrap.append(link)}box.append(wrap)}}
 document.querySelectorAll('#securitySearch,#securityOrder').forEach(e=>e.addEventListener('input',renderSecurity));
 
+
+
+/* Election Night: public state-derived feed, no unofficial winner calls. */
+const enApiBase='https://openamerica.io/elections/results.json';
+let enModeYear=2026,enOffice='House',enData=null,enSelected=null,enTimer=null,enRequestSerial=0;
+function enIsVisible(){return $('#electionNight')?.classList.contains('active')}
+function enNum(n){return typeof n==='number'&&Number.isFinite(n)?n.toLocaleString('en-US'):'—'}
+function enFormattedTime(v){const d=v?new Date(v):null;return d&&!isNaN(+d)?d.toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):'unknown'}
+function enCurrentRaces(){return enData?.races&&typeof enData.races==='object'?Object.entries(enData.races):[]}
+function enUpdateSelection(){const ids=enCurrentRaces().map(([id])=>id);if(!ids.includes(enSelected))enSelected=ids[0]||null}
+function enCurrentLeader(r){const c=(r?.cands||[]).filter(x=>typeof x.v==='number').sort((a,b)=>b.v-a.v);return c.length&&c[0].v>0?c[0]:null}
+function enRender(){
+ document.querySelectorAll('#enMode2026,#enMode2024').forEach(el=>el.setAttribute('aria-pressed',String((el.id==='enMode2026'?2026:2024)===enModeYear)));
+ document.querySelectorAll('#enOfficeHouse,#enOfficeSenate').forEach(el=>el.setAttribute('aria-pressed',String((el.id==='enOfficeHouse'?'House':'Senate')===enOffice)));
+ $('#enRaceHeading').textContent=enOffice+' races';
+ const rows=enCurrentRaces();
+ const ready=rows.filter(([,r])=>r.total>0);
+ $('#enRaces').textContent=enNum(rows.length);
+ $('#enDLeads').textContent=enNum(ready.filter(([,r])=>r.leader==='D').length);
+ $('#enRLeads').textContent=enNum(ready.filter(([,r])=>r.leader==='R').length);
+ $('#enCalls').textContent='Not supplied';
+ const info=enData?((enModeYear===2024?'ARCHIVED 2024 DATA · ':'2026 STATE RETURNS · ')+rows.length+' supported races · state-source update '+enFormattedTime(enData.as_of)+(enData.stale?' · FEED STALE':'')):'Waiting for results feed…';
+ $('#enStatus').textContent=info;
+ $('#enChecked').textContent=enData?'Checked '+new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}):'Not connected';
+ enUpdateSelection();
+ const query=($('#enSearch').value||'').trim().toLowerCase(),list=$('#enRaceList');list.replaceChildren();
+ if(!rows.length){list.append(elt('p','empty',enModeYear===2026?'No 2026 results from supported states yet. Try 2024 Replay to explore the display.':'No archived race data returned from this feed.'));enRenderDetail();return}
+ const filtered=rows.filter(([key,r])=>!query||(key+' '+(r.cands||[]).map(p=>p.n).join(' ')).toLowerCase().includes(query));
+ filtered.sort((a,b)=>{const pa=a[1].pct_in,pb=b[1].pct_in;return (a[1].total?0:1)-(b[1].total?0:1)||String(a[0]).localeCompare(String(b[0]))});
+ for(const [key,r] of filtered.slice(0,250)){
+  const btn=elt('button','en-race-entry');btn.type='button';btn.setAttribute('aria-pressed',String(key===enSelected));
+  const name=elt('div');name.append(elt('strong','',key),elt('small','',enNum(r.total)+' votes · '+(typeof r.pct_in==='number'?r.pct_in.toFixed(1)+'% precincts':'precinct data unavailable')));
+  const right=elt('div','en-race-lead');const leader=enCurrentLeader(r);
+  right.append(elt('b','',leader?(leader.n||leader.p):'Not reporting'),elt('small','',leader?'Current vote lead':'No votes yet'));
+  btn.append(name,right);btn.addEventListener('click',()=>{enSelected=key;enRender()});list.append(btn);
+ }
+ if(filtered.length>250)list.append(elt('p','empty','Showing first 250 matched races.'));
+ enRenderDetail();
+}
+function enRenderDetail(){
+ const found=enCurrentRaces().find(([id])=>id===enSelected);
+ const title=$('#enDetailTitle'),summary=$('#enDetailSummary'),cands=$('#enCandidateList'),meta=$('#enDetailMeta'),comparison=$('#enPollReference');
+ cands.replaceChildren();comparison.replaceChildren();
+ if(!found){title.textContent='No reported race selected';summary.textContent='Results will appear as supported states report vote totals.';meta.textContent='';return}
+ const [key,r]=found;
+ title.textContent=(enOffice==='Senate'?key+' Senate':key+' House')+' · unofficial';
+ const leader=enCurrentLeader(r);
+ summary.textContent=(leader?leader.n+' currently leads. ':'No votes reported yet. ')+enNum(r.total)+' votes counted · '+(typeof r.pct_in==='number'?r.pct_in.toFixed(1)+'% of precincts reported':'reporting share unavailable')+'. This is not a winner call.';
+ for(const cand of [...(r.cands||[])].sort((a,b)=>Number(b.v||0)-Number(a.v||0)).slice(0,12)){
+  const wrap=elt('div','en-candidate');
+  const head=elt('div','en-candidate-label');head.append(elt('span','',cand.n+' · '+(cand.p||'Other')),elt('b','',(typeof cand.pct==='number'?cand.pct.toFixed(1)+'%':'—')+' · '+enNum(cand.v)));
+  const track=elt('div','en-candidate-track'),bar=elt('div','en-candidate-fill'+(cand.p==='D'?' dem':cand.p==='R'?' rep':''));
+  bar.style.width=Math.max(0,Math.min(100,Number(cand.pct)||0))+'%';track.append(bar);
+  wrap.append(head,track);cands.append(wrap)
+ }
+ meta.textContent='Source: official state election office via Open America · '+(enModeYear===2024?'2024 historical replay':'2026 unofficial')+' · '+(r.called?'Source reports a call':'No race call supplied')+'.';
+ if(enModeYear===2026&&enOffice==='Senate'){
+  const est=latestSenateEstimates?.states?.find(s=>s.state===key);
+  if(est&&Number.isFinite(est.dem_minus_rep))comparison.textContent='Pre-election JackStradamus polling average: '+marginText(est.dem_minus_rep)+' · not adjusted for which counties have reported.';
+ }
+}
+async function enLoad(manual=false){
+ if(enTimer){clearTimeout(enTimer);enTimer=null}
+ const serial=++enRequestSerial,year=enModeYear,office=enOffice;
+ if(manual)$('#enStatus').textContent='Checking state-derived '+office.toLowerCase()+' returns…';
+ try{
+  const url=enApiBase+'?year='+year+'&office='+encodeURIComponent(office);
+  const res=await fetch(url,{cache:'no-cache',credentials:'omit'});
+  if(!res.ok)throw Error('Results provider HTTP '+res.status);
+  const obj=await res.json();
+  if(serial!==enRequestSerial)return;
+  if(obj.api!==1||obj.year!==year||obj.office.toLowerCase()!==office.toLowerCase()||!obj.races||typeof obj.races!=='object')throw Error('Unexpected results format');
+  enData=obj;enRender();
+ }catch(error){
+  if(serial!==enRequestSerial)return;
+  $('#enStatus').textContent='Results feed unavailable: '+error.message+'. Open the source or try Refresh.';
+  $('#enChecked').textContent='Last attempt '+new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+ }
+ if(enIsVisible()&&enModeYear===2026){
+  const interval=enData?.live?60000:enData?.counting?900000:600000;
+  enTimer=setTimeout(()=>enLoad(false),interval);
+ }
+}
+function enSwitch(year,office){
+ enModeYear=year;enOffice=office;enData=null;enSelected=null;$('#enSearch').value='';enRender();enLoad(true);
+}
+$('#enMode2026').addEventListener('click',()=>enSwitch(2026,enOffice));
+$('#enMode2024').addEventListener('click',()=>enSwitch(2024,enOffice));
+$('#enOfficeHouse').addEventListener('click',()=>enSwitch(enModeYear,'House'));
+$('#enOfficeSenate').addEventListener('click',()=>enSwitch(enModeYear,'Senate'));
+$('#enRefresh').addEventListener('click',()=>enLoad(true));
+$('#enSearch').addEventListener('input',enRender);
+document.querySelector('.tab[data-page="electionNight"]').addEventListener('click',()=>{if(!enData)enLoad(true);else if(enModeYear===2026&&!enTimer)enLoad(false)});
+document.querySelectorAll('.tab:not([data-page="electionNight"])').forEach(el=>el.addEventListener('click',()=>{if(enTimer){clearTimeout(enTimer);enTimer=null}}));
+if(location.hash.split('/')[0]==='#electionNight')enLoad(true);
 
 let latestSenateEstimates=null;
 function showSenateEstimates(data){
