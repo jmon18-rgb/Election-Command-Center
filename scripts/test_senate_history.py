@@ -10,7 +10,7 @@ import stage_senate_history as m
 
 def example_csv(delimiter=","):
     f=io.StringIO()
-    fields=["year","state_po","office","stage","special","candidate","party","candidatevotes"]
+    fields=["year","state_po","office","stage","special","candidate","party_detailed","party_simplified","candidatevotes"]
     writer=csv.DictWriter(f,fieldnames=fields,delimiter=delimiter)
     writer.writeheader()
     states=sorted(m.STATE_CODES)[:33]+['UT']
@@ -23,17 +23,17 @@ def example_csv(delimiter=","):
                 ("INDEPENDENT","Independent nominee",7500)):
                 if year==2022 and state=="UT" and party=="DEMOCRAT":continue
                 writer.writerow(dict(year=year,state_po=state,office="US SENATE",stage="GEN",
-                                     special="FALSE",candidate=candidate,party=party,candidatevotes=votes))
+                                     special="FALSE",candidate=candidate,party_detailed=party,party_simplified=party,candidatevotes=votes))
         if year in (2020,2022):
             state="GA" if year==2020 else "OK"
             for party,votes in (("DEMOCRAT",80000),("REPUBLICAN",90000)):
                 writer.writerow(dict(year=year,state_po=state,office="US SENATE",stage="GEN",
-                                     special="TRUE",candidate=party+" SPECIAL",party=party,candidatevotes=votes))
+                                     special="TRUE",candidate=party+" SPECIAL",party_detailed=party,party_simplified=party,candidatevotes=votes))
     # 2024 has 34 regular races, 2022 and 2020 have 35.
     writer.writerow(dict(year=2024,state_po="AZ",office="US SENATE",stage="PRIMARY",
-                         special="FALSE",candidate="Primary candidate",party="DEMOCRAT",candidatevotes=999999))
+                         special="FALSE",candidate="Primary candidate",party_detailed="DEMOCRAT",party_simplified="DEMOCRAT",candidatevotes=999999))
     writer.writerow(dict(year=2026,state_po="AZ",office="US SENATE",stage="GEN",
-                         special="FALSE",candidate="Future",party="DEMOCRAT",candidatevotes=999999))
+                         special="FALSE",candidate="Future",party_detailed="DEMOCRAT",party_simplified="DEMOCRAT",candidatevotes=999999))
     return f.getvalue()
 
 class HistoricalSenateTests(unittest.TestCase):
