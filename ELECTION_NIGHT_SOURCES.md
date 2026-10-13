@@ -97,7 +97,7 @@ The provider's `as_of` is the **latest state update anywhere in the feed**, not 
 
 ## civicAPI: supplemental source for personally pinned out-of-coverage states
 
-A second **independently attributed** browser data source now supports the election-night personal watchlist for 2026 races in states missing from Open America's 22-state feed. [civicAPI v2](https://civicapi.org/api-documentation) returned CORS `Access-Control-Allow-Origin: *` and a structurally valid Nov. 3, 2026 race search for **New Hampshire US Senate, NH-01, NH-02, NH Governor** and 2026 Nevada statewide races in the Oct. 13 GitHub Actions source probes. An independent, source-real contract test checks the actual discover + candidate-detail endpoints before deployment. Its secondary `getElectionDates` directory returned 503, so the dashboard does not depend on that directory.
+A second **independently attributed** browser data source now supports the election-night personal watchlist for 2026 races in states missing from Open America's 22-state feed. [civicAPI v2](https://civicapi.org/api-documentation) returned CORS `Access-Control-Allow-Origin: *` and a structurally valid Nov. 3, 2026 race search for **New Hampshire US Senate, NH Governor** and 2026 Nevada statewide races in the Oct. 13 GitHub Actions source probes. **Important coverage correction:** the separate Oct. 13 source-real check for **NH-01 returned no indexed race** when queried as `US House 1`; NH-02 has not passed an equivalent targeted contract test. Neither NH House district should be described as individually verified. An independent, source-real contract test checks the actual discover + candidate-detail endpoints before deployment. Its secondary `getElectionDates` directory returned 503, so the dashboard does not depend on that directory.
 
 **Isolation:** civicAPI is used **only for a user-pinned 2026 race outside the primary provider's 22 supported states**, and only while Election Night is open. It is never merged into the primary provider House/Senate/Governor totals, not counted as primary official-state-derived votes, and not used to estimate nationwide chamber control. Its calls are shown only as explicitly **civicAPI calls**, not official certifications or votes/projections from AP/DDHQ. Other possible sources are not quietly treated as verified calls.
 
@@ -135,6 +135,14 @@ a live-feed *readiness* integration: there are no authentic November 2026
 general-election votes to verify until counting begins. Other states retain
 their existing generic, separately attributed experimental adapter; none
 are declared validated by the NH pilot alone.
+
+## New Hampshire governor adapter pilot (October 13; second build → test → merge → stop)
+
+`scripts/civicapi_nh_governor_adapter.js` is now the narrowly scoped second adapter, only for the **Nov. 3, 2026 New Hampshire governor general election** (public pin `NH-GOV`, internal `Governor|NH`). Independent live-source verification finds this exact race indexed under civicAPI race ID 87284. The adapter searches by state, date and office; rejects Senate, House, primaries, other dates, local races, duplicate results and detail records for another race; validates candidate identities, count/percentage agreement, zero-vote call flags and timestamps; and attributes any provider call as **civicAPI**, not an official certification.
+
+The generic fallback for other states is unchanged. No NH House or nationwide coverage is asserted from this integration. In the browser, the governor feed only supplements personally pinned races outside Open America's supported states. It cannot alter official-state-derived source totals, and a bad later provider response retains the most recent valid record with an error indicator.
+
+Verification: `node scripts/test_civicapi_nh_governor_adapter.cjs` (deterministic invalid/valid source fixtures), plus full `node scripts/test_dashboard_runtime.cjs` (real watchlist interactions, source isolation, and failed-update retention). PR CI requires both source adapters' tests and the live civicAPI browser-CORS check, which now demands the exact NH Governor record. Genuine November vote counting cannot be tested before Election Day.
 
 ## Nationwide 35-race Senate desk (October 13)
 
