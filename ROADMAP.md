@@ -199,3 +199,10 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Added real source contract tests and client-side regression tests for candidate totals, race IDs, bad dates, source calls, wrong offices and independence from Open America's metrics. Calls clearly identified as civicAPI's own, never as official certification.
 - Source-aware polling runs only for watchlisted out-of-coverage seats, at most 12 per sweep, with one-minute election-night / ten-minute pre-election pacing. User pins stay local; raw provider results are not mirrored.
 - **Next:** reconcile more source-specific races and winner-call changes, ensure full state/county coverage only when observed, and improve laptop alerting when watched results update.
+
+## Oct 13: Nationwide 35-contest Senate monitoring
+
+- Added a compact, collapsible 2026 Senate election-night board with all 35 verified contests, including distinct Florida and Ohio special-election IDs. The panel shows 35 source slots, how many have actual recorded votes, and source-separated Open America/civicAPI reporting; no missing value becomes zero or a call.
+- An optional one-click **Track all 35** automatically fetches unserved-state Senate races via the existing independently checked civicAPI contract and keeps the primary Senate office snapshot up to date while watching another office. It does **not** consume the 40 individually pinned slots. The preference stays on this browser and auto-starts on Nov. 3 when no preference was set.
+- Tightened Senate pin identity so `FL-SEN` and `OH-SEN` map to the special contests; invalid or noncontested state Senate codes are refused when the 2026 universe is known. Verified legacy pins are migrated. The same per-minute 12-request ceiling and provider-specific vote/call labels remain.
+- Regression coverage checks entire 35-seat list, special-election keys, source status, toggle persistence, no invented votes, and refusal of invalid published universe data.
