@@ -142,7 +142,7 @@ def race_polls(rows):
                 continue
             seen.add(key)
             unique.append(p)
-            if len(unique) >= 12:
+            if len(unique) >= 60:
                 break
         latest = unique[0]
         kind = pool[0][0]
@@ -179,7 +179,8 @@ def stamp_poll_first_seen(prior_races, new_races, observed_at):
             key = observation_key(race, poll)
             if key in old:
                 poll["first_seen_at"] = old[key]
-            elif has_prior:
+            elif has_prior and (TODAY - dt.date.fromisoformat(poll["field_end"])).days <= 14:
+                # Newly surfaced older archival polls aren't actual newly released surveys.
                 poll["first_seen_at"] = observed_at
                 count += 1
             else:
@@ -275,7 +276,7 @@ def main():
     result["source"] = {
         "publisher": "New York Times polling data / ElectIndex curated tables",
         "license": "CC BY 4.0", "upstream": "https://github.com/ElectIndex/26_us_forecast_data",
-        "data_urls": TABLES, "notes": "Descriptive poll observations only; not modeled forecasts.",
+        "data_urls": TABLES, "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days.",
     }
     result["health"] = {"last_attempt_at": UTC_NOW, "successful_sections": success,
                         "errors": errors, "status": "ok" if len(success) == 2 else "partial" if success else "error"}
