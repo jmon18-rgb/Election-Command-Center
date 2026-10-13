@@ -218,7 +218,7 @@
       "verification_status": "documented_action",
       "last_updated": "2026-10-12",
       "event_date": "2026-09-22",
-      "summary": "A software error delayed delivery of at least 500,000 voter registration applications and update records to counties. State officials report the transmission error was fixed; counties were processing delayed records. This figure is records, not unique voters denied a ballot.",
+      "summary": "Texas DPS says the data-transfer defect was corrected September 13. At least 500,000 delayed registration/update records were subsequently delivered to counties; statewide processing completion and voter-level consequences are not established.",
       "units": "records",
       "potentially_affected": 500000,
       "confirmed_affected": null,
@@ -233,7 +233,10 @@
           "url": "https://www.texastribune.org/2026/10/01/texas-voter-registration-dps-secretary-state-2026-delay-dmv/"
         }
       ],
-      "case_type": "administrative_issue"
+      "case_type": "administrative_issue",
+      "process_status": "Transfer defect fixed per Texas DPS; county processing completion not established statewide",
+      "scope_label": "500,000+ registration/update records delayed",
+      "scope_note": "Records, not unique voters or lost votes"
     },
     {
       "id": "nc-sunday-voting-2026",
@@ -260,7 +263,11 @@
           "url": "https://www.ncsbe.gov/voting/vote-early-person"
         }
       ],
-      "case_type": "voting_access"
+      "case_type": "voting_access",
+      "process_status": "Early-voting schedule approved; Sunday hours removed in 10 counties relative to 2022",
+      "scope_label": "10 counties with Sunday hours removed",
+      "scope_note": "No count of voters unable to cast a ballot established",
+      "geographic_scope_counties": 10
     }
   ]
 }
