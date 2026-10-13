@@ -76,7 +76,9 @@ def grouped_tests(data):
             asof = date.fromisoformat(target_day)
             past = [p for p in polls if p["field_end"] < target_day
                     and (asof - date.fromisoformat(p["field_end"])).days <= 90]
-            if len(set(p["pollster"].lower() for p in past)) < 2:
+            # All methods must be evaluated on the same targets, including
+            # those that exclude sponsored polls. Avoid different sample sizes.
+            if len(set(p["pollster"].lower() for p in past if not p.get("partisan_lean"))) < 2:
                 continue
             # Hold out independent surveys only: a partisan target may reflect sponsor selection.
             targets = [p for p in polls if p["field_end"] == target_day and not p.get("partisan_lean")]
