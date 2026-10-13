@@ -48,21 +48,22 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px}
 .hero-actions button{cursor:pointer;color:#e9f4ff;border:0;border-bottom:1px solid #b4d5ed;padding:0 0 4px;background:transparent;font-size:11px;font-weight:700}
 .hero-art-credit{position:absolute;left:23px;bottom:17px;font-size:10px;letter-spacing:.015em;color:#dae5ee;text-shadow:0 1px 10px #071323;max-width:40%}
-.pulse-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:7px}
+.pulse-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,215px),1fr));gap:12px;margin-bottom:7px}
 .pulse-tile{min-width:0;text-align:left;cursor:pointer;color:inherit;background:linear-gradient(140deg,#152b41,#101d30);border:1px solid #32475d;border-radius:12px;padding:16px;transition:background .15s,border-color .15s}
 .pulse-tile:hover,.pulse-tile:focus-visible{border-color:#8ab9e4;background:#18334c}
 .pulse-tile .pulse-label{font-size:10px;color:#9fbbd2;letter-spacing:.1em;text-transform:uppercase;font-weight:750}
 .pulse-tile .pulse-race{display:flex;justify-content:space-between;gap:8px;align-items:baseline;font-size:14px;font-weight:750;margin:12px 0 7px}
 .pulse-tile .pulse-race b{font-size:22px;white-space:nowrap}
-.pulse-tile .pulse-match{font-size:11px;color:#d5e4ef;line-height:1.5;min-height:34px}
+.pulse-tile .pulse-match{font-size:11px;color:#d5e4ef;line-height:1.5;min-height:30px}
 .pulse-tile .pulse-meta{font-size:10px;color:#9daec4;line-height:1.5;margin-top:9px}
 .pulse-disclaimer{font-size:10px;line-height:1.55;color:#8fa6bf;margin:0 0 23px}
 #genericMargin.party-d{color:#81b9ff!important}#genericMargin.party-r{color:#f1959c!important}
-.scenario-summary-strip{grid-column:1/-1;height:13px;display:flex;gap:2px;background:#182b40;border-radius:6px;overflow:hidden;margin:0 0 17px}
+.scenario-summary-strip{display:none;grid-column:1/-1;height:13px;display:flex;gap:2px;background:#182b40;border-radius:6px;overflow:hidden;margin:0 0 17px}
 .scenario-summary-strip span{height:100%;min-width:0}.scenario-summary-strip span:first-child{border-radius:6px 0 0 6px}
 @media(max-width:960px){.pulse-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-waves{min-height:255px}.hero-copy{width:62%}}
 @media(max-width:620px){.hero-waves{margin-top:12px;min-height:330px;padding:32px 23px;align-items:flex-end;background-position:35% center;background-image:linear-gradient(0deg,rgba(6,16,31,.98) 0%,rgba(7,18,32,.88) 29%,rgba(7,18,32,.15) 70%),url('blue-waves-hero.jpg'),linear-gradient(125deg,#0c3e61,#111d34,#6d2839)}.hero-copy{width:100%;max-width:none}.hero-copy h1{font-size:clamp(37px,10vw,53px)}.hero-art-credit{display:none}.pulse-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pulse-tile{padding:12px}.pulse-tile .pulse-race{flex-wrap:wrap}.pulse-tile .pulse-race b{font-size:20px}}
-.poll-seat-panel{margin:15px 0 18px;padding:16px;border:1px solid #334861;border-radius:10px;background:#0c1a2b}.poll-seat-stats{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}.poll-seat-stats strong{font-size:19px}.poll-seat-stats .poll-stat{display:flex;align-items:center;gap:7px;color:#a9bad0;font-size:11px}.poll-seat-track{height:10px;display:flex;overflow:hidden;gap:2px;background:#26394f;border-radius:5px;margin-top:12px}.poll-seat-track span{height:100%;min-width:0}.poll-seat-track .poll-d{background:#6aa9ff}.poll-seat-track .poll-r{background:#f1858c}.poll-seat-track .poll-tie{background:#b4c3d7}.poll-seat-panel .methodline{font-size:10px;margin:12px 0 0;line-height:1.6}</style></head><body>
+.poll-seat-panel{margin:15px 0 18px;padding:16px;border:1px solid #334861;border-radius:10px;background:#0c1a2b}.poll-seat-stats{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}.poll-seat-stats strong{font-size:19px}.poll-seat-stats .poll-stat{display:flex;align-items:center;gap:7px;color:#a9bad0;font-size:11px}.poll-seat-track{height:10px;display:flex;overflow:hidden;gap:2px;background:#26394f;border-radius:5px;margin-top:12px}.poll-seat-track span{height:100%;min-width:0}.poll-seat-track .poll-d{background:#6aa9ff}.poll-seat-track .poll-r{background:#f1858c}.poll-seat-track .poll-tie{background:#b4c3d7}.poll-seat-panel .methodline{font-size:10px;margin:12px 0 0;line-height:1.6}.scenario-tile .scenario-prob{font-size:11px;color:#93a4b8!important;font-weight:650;letter-spacing:0!important}.scenario-tile .scenario-range{font-size:12px;line-height:1.45}.scenario-status{text-align:right;font-size:10px;color:#92a3b9;margin-top:9px}
+</style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
   <div class="hero-copy"><div class="eyebrow">2026 U.S. MIDTERMS · NOVEMBER 3</div><h1>In Search of <em>Blue Waves</em></h1>
@@ -77,17 +78,17 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <div class="grid" style="margin-top:16px">
 <div class="card eight featured"><div class="row"><span class="label">National generic ballot · recent polls</span><span class="tag teal">OBSERVED DATA</span></div><div class="featureline"><div><div class="big party-even" id="genericMargin">—</div><p class="detail" id="genericDetail">Awaiting verified polling observations.</p></div><div class="featuredelta"><span class="label">SINCE LAST REFRESH</span><strong id="genericDelta">—</strong></div></div><div class="barlabels"><span>DEMOCRATIC</span><span>REPUBLICAN</span></div><div class="ballotbar"><div id="ballotDem" class="ballotdem"></div><div id="ballotRep" class="ballotrep"></div></div><div class="barvalues"><span id="ballotDemLabel">—</span><span id="ballotRepLabel">—</span></div><div class="rule"></div><div class="row"><span class="tiny" id="genericFresh">Polling feed not yet loaded</span><button class="textlink" type="button" data-jump="races">Explore races →</button></div><p class="methodline">Descriptive polling average, not a prediction of House seats or win probabilities.</p></div>
 </div>
-<div class="sectionhead"><h2>Race snapshot</h2><span class="tiny" id="pulseAsOf">Polls, not projected winners</span></div>
-<div id="racePulse" class="pulse-grid"><div class="empty">Loading Senate race snapshots…</div></div>
-<p class="pulse-disclaimer">All margins are current <strong>polling averages</strong>, not certified votes or projections. Tap a race to inspect its contributing surveys.</p>
-<div class="sectionhead"><h2>Senate polling estimates</h2><span class="tiny">Observed polls · data quality</span></div><div class="card"><div id="senateEstimateCards" class="racecards racecards-wide"><div class="empty">Awaiting first automated model update.</div></div><p class="methodline">Named-candidate polls, newest wave per firm · 21-day half-life · historical pollster quality · diminishing sample-size weight · independently conducted polls 1.0×, qualifying sponsored polls 0.5× regardless of party. <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/POLLING_MODEL.md" target="_blank" rel="noopener noreferrer">Full methodology ↗</a> Polling disagreement is descriptive, and unrelated to election-integrity scores.</p></div><div class="sectionhead"><h2>Election-night scenarios</h2><span class="tiny">National House vote · experimental</span></div>
+<div class="sectionhead"><h2>What actually changed</h2><span class="tiny" id="pulseAsOf">Comparing recent model snapshots</span></div>
+<div id="racePulse" class="pulse-grid"><div class="empty">Checking for meaningful new polling evidence…</div></div>
+<p class="pulse-disclaimer">Changes in polling averages can reflect new surveys, weighting or timing—not necessarily a shift in voter opinion. Only current, qualifying observations are shown; older snapshots are compared only with identical candidate matchups.</p>
+<div class="sectionhead"><h2>Senate polling estimates</h2><span class="tiny">Observed polls · data quality</span></div><div class="card"><div id="senateEstimateCards" class="racecards racecards-wide"><div class="empty">Awaiting first automated model update.</div></div><p class="methodline">Named-candidate polls, newest wave per firm · 21-day half-life · historical pollster quality · diminishing sample-size weight · independently conducted polls 1.0×, qualifying sponsored polls 0.5× regardless of party. <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/POLLING_MODEL.md" target="_blank" rel="noopener noreferrer">Full methodology ↗</a> Polling disagreement is descriptive, and unrelated to election-integrity scores.</p></div><div class="sectionhead"><h2>The four endings</h2><span class="tiny">Who controls Congress · probability model pending</span></div>
 <div class="card" style="margin-bottom:16px">
- <div class="scenario-lead"><strong id="scenarioCenter">Checking the generic ballot…</strong><span id="scenarioUpdated" class="tiny"></span></div>
- <div id="scenarioBands" class="scenario-grid"><div class="empty">Computing scenario ranges…</div></div>
- <p class="methodline">An illustrative distribution of the <strong>national House popular-vote margin</strong>, not probabilities of controlling Congress. Four mutually exclusive bands; baseline 4-point election-day uncertainty, before calibration against historical polling errors. <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/SCENARIOS.md" target="_blank" rel="noopener noreferrer">Assumptions ↗</a> Other views: <a href="https://www.natesilver.net/p/flipr-midterms-model-methodology" target="_blank" rel="noopener noreferrer">Silver/FLIPR ↗</a> · <a href="https://www.ettingermentum.news/p/what-to-expect-from-a-blue-tsunami" target="_blank" rel="noopener noreferrer">Ettingermentum ↗</a>.</p>
+ <div class="scenario-lead"><strong id="scenarioCenter">House and Senate control, not generic-ballot margins.</strong><span id="scenarioUpdated" class="tiny"></span></div>
+ <div id="scenarioBands" class="scenario-grid"><div class="empty">Loading control-of-Congress definitions…</div></div>
+ <p class="methodline">Categories refer to <strong>actual House and Senate control</strong>. Blue Tsunami is a subset of Democrats taking both chambers, distinguished by a near-sweep of a <em>predeclared</em> competitive-race slate. No trustworthy probability percentages are available yet: the current poll means do not model unpolled districts, Senate holdovers, chamber correlations, or the pre-election battleground universe. <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/SCENARIOS.md" target="_blank" rel="noopener noreferrer">Precisely defined outcomes and next steps ↗</a>.</p>
 </div>
 <div class="sectionhead"><h2>What's new</h2><span class="tiny" id="freshness">Checking latest update</span></div>
-<div class="grid"><div class="card seven"><div class="row"><span class="label">New polls</span><span class="tiny" id="changesSince">Checking newly observed surveys</span></div><div id="newPolls" class="empty">Finding recently fielded Senate polls…</div><button class="textlink" type="button" data-jump="races">Open polling explorer →</button></div>
+<div class="grid"><div class="card seven"><div class="row"><span class="label">New polls</span><span class="tiny" id="changesSince">Checking newly observed surveys</span></div><div id="newPolls" class="empty">Checking recent poll postings…</div><button class="textlink" type="button" data-jump="races">Open polling explorer →</button></div>
 <div class="card five"><div class="row"><span class="label">Election developments</span><span class="tag">NEWS LEADS</span></div><div id="updates" class="empty">Loading recent election reporting.</div><button class="textlink" type="button" data-jump="integrity">Bullshittery Index →</button></div></div>
 <div class="sectionhead"><h2>What to watch</h2><span class="tiny">What deserves a closer look?</span></div>
 <div class="card radar-wrap"><div id="jackRadar" class="radar-grid"><div class="empty">Scanning close races, polling blind spots, and election developments…</div></div><p class="methodline">The closest margins, thin polling, and documented election-administration issues.</p></div>
@@ -618,25 +619,23 @@ function standardNormalCDF(z){
 }
 function renderElectionScenarios(){
  const host=$('#scenarioBands');if(!host)return;host.replaceChildren();
- const g=latestSenateEstimates?.generic_ballot;
- if(!Number.isFinite(g?.dem_minus_rep)){host.append(elt('div','empty','Waiting for the national generic ballot average.'));return}
- const mean=g.dem_minus_rep,sigma=4.0,cdf=x=>standardNormalCDF((x-mean)/sigma);
- const definitions=[
-  {name:'RED DAWN',range:'R leads national vote',p:cdf(0),kind:'red'},
-  {name:'THE SHRUG',range:'D +0 to +5',p:cdf(5)-cdf(0),kind:'neutral'},
-  {name:'BLUE WAVE',range:'D +5 to +10',p:cdf(10)-cdf(5),kind:'blue'},
-  {name:'BLUE TSUNAMI',range:'D +10 or more',p:1-cdf(10),kind:'blue'}
+ // These are mutually exclusive descriptions of actual future congressional
+ // control; they are NOT derived from a national vote margin.
+ const scenarios=[
+ {name:'RED DAWN',range:'Republicans retain both the House and Senate.',kind:'red'},
+ {name:'THE SHRUG',range:'Democrats control exactly one chamber; Republicans control the other.',kind:'neutral'},
+ {name:'BLUE WAVE',range:'Democrats control both chambers, without the near-sweep condition below.',kind:'blue'},
+ {name:'BLUE TSUNAMI',range:'Democrats control both chambers AND win at least 90% of a predeclared Senate/House battleground slate.',kind:'blue'}
  ];
- const strip=elt('div','scenario-summary-strip');strip.setAttribute('role','img');strip.setAttribute('aria-label','Illustrative probability distribution across four national House vote-margin bands');for(const s of definitions){const seg=elt('span');seg.style.width=(s.p*100)+'%';seg.style.background=s.kind==='red'?'#e98c93':s.kind==='blue'?'#79aef6':'#ccb882';seg.title=s.name;strip.append(seg)}host.append(strip);const rounded=definitions.map(s=>Math.round(1000*s.p)/10);
- rounded[rounded.length-1]=Math.round((100-rounded.slice(0,-1).reduce((a,b)=>a+b,0))*10)/10;
- $('#scenarioCenter').textContent='Current center: '+marginText(mean)+' · 4-point assumed uncertainty';
- $('#scenarioUpdated').textContent='Model '+(latestSenateEstimates.method_version||'');
- for(const [idx,s] of definitions.entries()){
-  const box=elt('div','scenario-tile scenario-'+s.kind);
-  const top=elt('div','scenario-top');top.append(elt('strong','',s.name),elt('strong','scenario-prob',rounded[idx].toFixed(1)+'%'));
-  box.append(top,elt('div','scenario-range',s.range));
-  const bar=elt('div','scenario-track'),fill=elt('div','scenario-fill');
-  fill.style.width=Math.max(0,Math.min(100,s.p*100))+'%';bar.append(fill);box.append(bar);host.append(box)
+ $('#scenarioCenter').textContent='The outcome is about seats. No more generic-ballot cutoffs.';
+ $('#scenarioUpdated').textContent='Probabilities require a calibrated, complete seat model';
+ for(const definition of scenarios){
+  const box=elt('div','scenario-tile scenario-'+definition.kind);
+  const top=elt('div','scenario-top');
+  top.append(elt('strong','',definition.name),elt('strong','scenario-prob','Not modeled'));
+  box.append(top,elt('div','scenario-range',definition.range));
+  box.append(elt('div','scenario-status','Congressional-control scenario'));
+  host.append(box);
  }
 }
 function renderModelGenericHeadline(){
