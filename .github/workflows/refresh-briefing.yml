@@ -10,6 +10,8 @@ on:
       - 'scripts/build_polling_estimates.py'
       - 'scripts/update_integrity_queue.py'
       - 'scripts/validate_integrity_impact.py'
+      - 'scripts/check_dashboard.py'
+      - 'index.html'
       - 'data/integrity_impact.json'
       - '.github/workflows/refresh-briefing.yml'
   schedule:
@@ -26,6 +28,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Check dashboard JavaScript and layout contracts
+        run: python3 scripts/check_dashboard.py
       - name: Collect election reporting
         continue-on-error: true
         run: python3 scripts/update_briefing.py
