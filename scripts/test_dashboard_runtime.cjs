@@ -283,14 +283,14 @@ async function settle(){
  assert.equal(w.eval('enBuildSenateArchive('+JSON.stringify(missingSenate)+')'),null,
   'Never accept incomplete historical Senate cycle');
  fixtures['senate_history_2020_2022_2024.json']=senateSynthetic;
- w.eval("enModeYear=2024;enOffice='Senate';enSelected=null;");
+ get('#enOfficeSenate').click();
  await w.eval('enLoad(true)');
  assert.equal(get('#enRaces').textContent,'35');
  assert.match(get('#enStatus').textContent,/2024 SENATE ARCHIVE/);
  assert(get('#enRaceList').textContent.includes('NE-special'));
  assert.match(get('#enDetailMeta').textContent,/U.S. Senate candidate-party returns/);
  // Returning to 2024 House must not leak state-level Senate results.
- w.eval("enModeYear=2024;enOffice='House';enSelected=null;");
+ get('#enOfficeHouse').click();
  await w.eval('enLoad(true)');
  assert.equal(get('#enRaces').textContent,'435');
  // Canonical in-app identifiers must be visible. TX Senate and TX governor
