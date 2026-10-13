@@ -23,6 +23,8 @@ assert.match(mobileHeroCSS,/background-position:center,center top,center;/,
 const scripts=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(x=>x[1]);
 assert.match(html,/<script src="\.\/scripts\/civicapi_nh_adapter\.js"><\/script>/,
  'NH civicAPI adapter must load on GitHub Pages before the main application');
+assert.match(html,/<script src="\.\/scripts\/civicapi_nh_governor_adapter\.js"><\/script>/,
+ 'NH governor adapter must load before the election-night application');
 assert.equal(scripts.length,1,'Expected exactly one live inline application script');
 const errors=[];
 const virtualConsole=new VirtualConsole();
@@ -62,6 +64,8 @@ async function settle(){
 (async()=>{
  w.eval(read('scripts/civicapi_nh_adapter.js'));
  assert(w.NHCivicRaceAdapter,'NH adapter must actually load before the application');
+ w.eval(read('scripts/civicapi_nh_governor_adapter.js'));
+ assert(w.NHGovernorCivicAdapter,'NH governor adapter must load before the application');
  w.eval(scripts[0]);
  await settle();
  // Distinguish observed historical election variation from a calibrated
@@ -934,6 +938,77 @@ async function settle(){
    'Supplemental provider votes must never alter the previously validated primary source race count');
  w.fetch=originalCivicFetch;
  w.Date.now=oldClock;
+ w.eval('enWatched=[];enRenderWatchlist()');
+ w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
+
+ // Pilot #2: the separately verified NH governor race must report ONLY its
+ // exact statewide November general ballot. No House / Senate / primary
+ // records may substitute even if they share New Hampshire.
+ const govItem={office:'Governor',key:'NH'};
+ const govSearch={
+   id:87284,country:'US',province:'NH',municipality:null,district:null,
+   type:'Governor',election_type:'Statewide',election_name:'New Hampshire Governor',
+   election_date:'2026-11-03T05:00:00.000Z',
+   candidates:[
+     {name:'Governor D',party:'Democratic',votes:0,percent:0,winner:false},
+     {name:'Governor R',party:'Republican',votes:0,percent:0,winner:false},
+     {name:'Governor I',party:'Independent',votes:0,percent:0,winner:false}
+   ]
+ };
+ const govDetail={
+   ...govSearch,election_type:'Governor',last_updated:'2026-11-04T01:45:00Z',
+   percent_reporting:42,
+   candidates:[
+     {name:'Governor D',party:'Democratic',votes:510,percent:51,winner:false},
+     {name:'Governor R',party:'Republican',votes:490,percent:49,winner:false},
+     {name:'Governor I',party:'Independent',votes:0,percent:0,winner:false}
+   ]
+ };
+ assert(w.NHGovernorCivicAdapter.supports(govItem));
+ assert(!w.NHGovernorCivicAdapter.supports(nhSenateItem));
+ assert.equal(w.eval('enCivicSelect('+JSON.stringify(govItem)+','+
+   JSON.stringify({races:[govSearch]})+')').id,87284);
+ assert.equal(w.eval('enCivicMatch('+JSON.stringify(govItem)+','+
+   JSON.stringify(nhSenateSearch)+')'),false);
+ assert.equal(w.eval('enCivicMatch({office:"House",key:"NH-01"},'+
+   JSON.stringify(govSearch)+')'),false);
+ const govClock=w.Date.now,govFetch=w.fetch;
+ w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ const govRequests=[];
+ let providerGovDetail=govDetail;
+ w.fetch=async(url)=>{
+   const target=String(url);
+   govRequests.push(target);
+   if(target.startsWith('https://civicapi.org/api/v2/race/search'))
+     return {ok:true,json:async()=>({races:[govSearch],count:1})};
+   if(target.startsWith('https://civicapi.org/api/v2/race/87284'))
+     return {ok:true,json:async()=>providerGovDetail};
+   return {ok:true,json:async()=>empty2026};
+ };
+ get('#enWatchInput').value='NH-GOV';
+ get('#enWatchForm').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
+ await new Promise(resolve=>setTimeout(resolve,40)); // allow pin-triggered fetch to finish
+ await w.eval('enCivicFetchOne('+JSON.stringify(govItem)+')');
+ assert(govRequests.some(x=>x.includes('province=NH')&&x.includes('query=Governor')));
+ assert(govRequests.some(x=>x.includes('/race/87284?light=')));
+ assert.match(get('#enWatchItems').textContent,/NH-GOV/);
+ assert.match(get('#enWatchItems').textContent,/civicAPI · 1,000 reported votes/);
+ assert.equal(w.eval('enCivicByWatch["Governor|NH"].race_id'),87284);
+ assert.equal(get('#enRaces').textContent,primaryRaceCountBeforeCivic,
+   'NH Governor civicAPI counts must never enter primary provider totals');
+ const govRow=get('#enWatchItems .en-watch-open[aria-label="Open NH-GOV Governor 2026 results"]');
+ govRow.click();
+ assert.match(get('#enWatchItems .en-civic-detail').textContent,/Governor D/);
+ assert.match(get('#enWatchItems .en-civic-detail').textContent,/510/);
+ assert(get('#enWatchItems .en-civic-direct').href.includes('/race/87284'));
+ providerGovDetail={...govDetail,id:87283,percent_reporting:75,
+   last_updated:'2026-11-04T02:00:00Z'};
+ await w.eval('enCivicFetchOne('+JSON.stringify(govItem)+')');
+ assert.equal(w.eval('enCivicByWatch["Governor|NH"].total'),1000,
+   'Wrong ID must not erase the last verified New Hampshire governor vote count');
+ assert.match(get('#enWatchItems').textContent,/SOURCE RETRYING/);
+ assert.equal(get('#enRaces').textContent,primaryRaceCountBeforeCivic);
+ w.fetch=govFetch;w.Date.now=govClock;
  w.eval('enWatched=[];enRenderWatchlist()');
  w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
 
