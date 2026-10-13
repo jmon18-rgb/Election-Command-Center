@@ -1,0 +1,34 @@
+name: Stage 2024 House historical returns
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/stage_house_history_2024.py
+      - scripts/test_house_history.py
+      - .github/workflows/stage-house-history.yml
+permissions:
+  contents: write
+concurrency:
+  group: stage-house-history
+  cancel-in-progress: false
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unit-test source parser and geography firewall
+        run: python3 scripts/test_house_history.py
+      - name: Download and stage attributed 2024 House raw returns
+        run: python3 scripts/stage_house_history_2024.py
+      - name: Commit historic staging file only
+        run: |
+          git config user.name "election-briefing-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/house_history_2024_staging.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Stage 2024 House district return baselines; no forecast"
+            git pull --rebase origin main
+            git push
+          fi
