@@ -12,6 +12,7 @@ import re
 import urllib.request
 from collections import defaultdict
 from pathlib import Path
+from build_seat_universe import HOUSE_COUNTS
 
 ROOT=Path(__file__).resolve().parents[1]
 SOURCE="https://crproject.org/data/jsoncsv/mit-1976-2024-house.csv"
@@ -48,6 +49,9 @@ def stage(text):
         state=(row.get("state_po") or "").strip().upper()
         district=clean_district(row.get("district"))
         if not re.fullmatch("[A-Z]{2}",state) or district is None:continue
+        # Exclude D.C./territorial non-voting delegates and impossible district
+        # numbers: they are not part of the 435-member House control denominator.
+        if state not in HOUSE_COUNTS or not (1<=district<=HOUSE_COUNTS[state]):continue
         key=f"{state}-{district:02d}"
         votes=count(row.get("candidatevotes"))
         a=aggregates[key]
@@ -59,8 +63,8 @@ def stage(text):
         group="dem" if party in ("DEMOCRAT","DEMOCRATIC","DEM") else ("rep" if party in ("REPUBLICAN","REP","GOP") else "other")
         a[group]+=votes
         seen+=1
-    if len(aggregates)<420:
-        raise ValueError("Expected 2024 district coverage near 435; parsed "+str(len(aggregates)))
+    if len(aggregates)!=435:
+        raise ValueError("2024 voting House must contain exactly 435 seat records; parsed "+str(len(aggregates)))
     records=[]
     for key,a in sorted(aggregates.items()):
         total=a["dem"]+a["rep"]
