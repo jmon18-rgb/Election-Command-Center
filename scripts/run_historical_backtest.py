@@ -7,7 +7,7 @@ from pathlib import Path
 
 POLL_URL="https://raw.githubusercontent.com/Jack-Whitcomb/All-US-Senate-polls-2006-2024/main/2006_to_2024_senate_polls_with_actuals.csv"
 RESULT_URL="https://raw.githubusercontent.com/fivethirtyeight/election-results/main/election_results_senate.csv"
-YEARS=(2018,2020,2022,2024)
+YEARS=(2010,2012,2014,2016,2018,2020,2022,2024)
 METHODS=("equal","recency21","recency21_size","recency35_size")
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -162,7 +162,7 @@ def forward_year_holdouts(evaluations):
             "selected_mae":round(sum(abs(r["error"]) for r in held[chosen])/len(held[chosen]),3),
             "equal_mae":round(sum(abs(r["error"]) for r in held["equal"])/len(held["equal"]),3)})
     return {"status":"completed" if folds else "insufficient_data","folds":folds,
-            "warning":"First fold has only one training election; 2022 and 2024 folds are more informative."}
+            "warning":"Early folds have limited training history; evaluate modern-era results separately."}
 
 def correlated_error_diagnostics(evaluations):
     """Estimate common election-year error vs within-year race residuals.
@@ -209,6 +209,9 @@ def main():
         "leave_one_year_out":leave_one_year_out(evaluations),
         "forward_year_holdouts":forward_year_holdouts(evaluations),
         "correlated_error_diagnostics":correlated_error_diagnostics(evaluations),
+        "modern_era_2018_onward":summarize([r for r in evaluations if r["year"]>=2018]),
+        "midterm_cycles":summarize([r for r in evaluations if r["year"]%4==2]),
+        "presidential_cycles":summarize([r for r in evaluations if r["year"]%4==0]),
         "limitations":["Not an election forecast.","Excludes special, multiple-seat, ranked-choice and independent-winner races.","Coverage differs by year; candidate-name validation remains incomplete.","Partisan-sponsored poll exclusion relies on pollster-name labels."]}
     out=ROOT/"data"/"historical_verified.json"
     out.write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
