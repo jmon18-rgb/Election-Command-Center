@@ -144,6 +144,27 @@ The generic fallback for other states is unchanged. No NH House or nationwide co
 
 Verification: `node scripts/test_civicapi_nh_governor_adapter.cjs` (deterministic invalid/valid source fixtures), plus full `node scripts/test_dashboard_runtime.cjs` (real watchlist interactions, source isolation, and failed-update retention). PR CI requires both source adapters' tests and the live civicAPI browser-CORS check, which now demands the exact NH Governor record. Genuine November vote counting cannot be tested before Election Day.
 
+## Four-state civicAPI race batch: Alaska, Maine, Massachusetts, Nevada (Oct 13)
+
+After two small New Hampshire pilots, a single common `scripts/civicapi_state_batch.js` now performs the same strict search/detail validation across **four additional states and six independently indexed statewide Nov. 3 contests**:
+
+| State | Verified 2026 office | civicAPI race ID |
+|---|---|---|
+| Alaska | US Senate | `86916` |
+| Alaska | Governor | `148898` |
+| Maine | US Senate | `87188` |
+| Maine | Governor | `87189` |
+| Massachusetts | Governor | `87276` |
+| Nevada | Governor | `87260` |
+
+The real-source discovery gate `scripts/probe_civicapi_batch.py` checks CORS, exact race ID, country, state, Nov. 3 date, statewide seat, expected stage, search/detail agreement, and candidate shape **for all six IDs** during PR validation. Massachusetts Senate was **not** returned as an exact indexed race by the first 20-result search and is deliberately **excluded**, along with Nevada Senate (not a 2026 contest), House seats, and races whose source coverage is not proven. Missing or ambiguous records remain unavailable, never zero.
+
+Each adapter enforces the exact 2026 office/state/ID, a bounded single search match, consistent candidate vote counts and reported percentages, unique candidate identities, no pre-election votes or calls, at most one provider call, and source timestamp sanity. On a failed or regressed fetch, the app retains its previous verified per-race result and marks that provider as retrying. All six races remain *supplemental civicAPI* records; they never alter Open America state-derived totals, historical research, or JackStradamus probabilities. civicAPI winner flags are explicitly provider calls, not certification.
+
+Local deterministic verification: `node scripts/test_civicapi_state_batch.cjs` tests all six fixtures and cross-state/office attacks. Browser integration in `node scripts/test_dashboard_runtime.cjs` pins a race in each state, verifies independent source IDs and links, preserves last-good data after bad details, and tests isolation from the primary provider. The existing New Hampshire pilots and full dashboard regressions remain running. Real 2026 counting will still require an Election Day smoke test.
+
+**Larger batch policy:** work in approximately four states per PR when upstream actually indexes the races; confirm provider identity first, build all passing races in one shared adapter, test on simulated counts and real-source metadata, merge only on green checks, then stop. Never treat an unindexed race as covered.
+
 ## Nationwide 35-race Senate desk (October 13)
 
 A new collapsible **35-contest Senate results monitor** is driven directly by `data/seat_universe.json`: 33 regular races and the Florida/Ohio special elections, with precise different keys (`FL-special` / `OH-special`). It validates all 35 named ballot slots before rendering. The primary Open America provider handles its supported states; civicAPI provides separately identified data for individual unmatched-state races. **Source totals are never merged or extrapolated**. A count of recorded races means that a trusted provider reported at least one vote, not that the seat has been won. A civicAPI call is separately labeled as a *provider call*, not official certification.
