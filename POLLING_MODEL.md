@@ -1,4 +1,4 @@
-# JackStradamus polling model · v1.3
+# JackStradamus polling model · v1.4
 
 As of October 13, 2026. **What the model currently produces:** poll averages for Senate, House, governor contests, and the national House generic ballot. These are **estimates of what polls are saying now**; they are not calibrated win probabilities or a forecast of seat control.
 
@@ -15,24 +15,31 @@ For an eligible survey, the published weight is:
 - **Partisan sponsorship:** `sponsor_factor=0.5` for either R or D sponsored polls (otherwise 1.0); applies symmetrically regardless of which party leads. A Republican-sponsored poll with a large Democratic lead is **included**, unless some separate professional-quality rule excludes it.
 - **Professional-quality eligibility:** The currently released data excludes ActiVote, which Silver Bulletin said did not meet the scientific-survey standards for its January 2026 database. This is a judgment call that should be revisited as methodological evidence changes. Other unrated firms are **not automatically excluded**.
 
-Within each contest, the model chooses the most widely polled named-candidate matchup (with a freshness tiebreak), then uses **one latest survey per polling firm** over the last 45 days. It calculates weighted Democratic and Republican vote shares separately, then displays `D − R`.
+Within each contest, the model chooses the most widely polled named-candidate matchup (with a freshness tiebreak), then uses **one latest survey per polling firm** over the last 45 days. The upstream importer now retains up to **60 polls per race** (previously 12) over its 65-day source window to avoid arbitrarily dropping pollsters before weighting. That is still a rolling slice, not a historical record. It calculates weighted Democratic and Republican vote shares separately, then displays `D − R`.
 
 For generic ballot, the window is 14 days when multiple firms are available; otherwise up to 30. The observation source is the NYT-derived ElectIndex data, retained in `data/polls.json` and updated by GitHub Actions.
 
 ## How we checked the weights
 
-`scripts/test_polling_models.py` withholds future **independent** polls and compares each method on an identical evaluation sample. As of Oct 13, 2026, 101 held-out comparisons were testable:
+The live headline is still the v1.3 combination of recency, archived 538 quality, bounded sample size, and **symmetric 0.5 sponsored** weights. v1.4 expands input coverage and adds the following *nonprobabilistic* audit measures:
 
-| Weighting on held-out independent polls | Mean absolute margin error (points) |
+- **Effective pollsters** = `(sum of firm weights)^2 / sum(firm weight squared)`. It identifies weight concentration; it is NOT the number of respondents, the probability of a win, or a confidence estimate.
+- **Weight sensitivity** = compare the live model to an equal-firm mean, an independent-firms-only weighted mean, and a faster 14-day recency weighting. The resulting range is a *sensitivity analysis*, NOT a 90% error bar.
+- `scripts/validate_model_drilldown.py` independently reconstructs both the published headline and these diagnostics from source observations.
+
+`scripts/test_polling_models.py` holds out **future independent polls**, not final election results. At the October 13 snapshot after expanding retention, there were 153 held-out observations across 31 independent race/matchup clusters:
+
+| Trial setting | MAE on future independent poll margins |
 |---|---:|
-| 21-day recency; exclude sponsored | 3.056 |
-| Recency + half-weight sponsored | 2.997 |
-| Recency + half-sponsored + historical 538 quality | 3.010 |
-| **Recency + half-sponsored + historical quality + capped sample** | **2.994** |
+| Equal firm weight | 2.846 pts |
+| Half-weight sponsored polls + 21-day recency | 2.844 pts |
+| Plus historic 538 quality + bounded sample size (**live model**) | **2.837 pts** |
+| Above + test-only sponsor-lean correction of 1.7 margin points | **2.799 pts** |
+| Above + 14-day recency in place of 21-day (no sponsor correction) | 2.876 pts |
 
-Those differences are **much too small to establish a statistically superior estimator**; the evaluation is a narrow 2026 rolling source window predicting new polls, not final election returns. Selection and holdout uncertainty remain. The v1.3 factors are reasonable defaults guided by established model design, not proven optimal coefficients.
+The 0.038-point apparent gain from applying Silver's disclosed ~1.7-point sponsor prior is **not reliable evidence of election accuracy**. All these values are from a narrow rolling 2026 dataset, and the pollster-cluster bootstrap ranges overlap widely. We have **not** enabled this house-effect correction in the live average. Nor does the project infer statistical confidence from poll-to-poll spread alone. Future method changes require historical election-result holdouts, signed systematic-error tests, and coherent chamber-level correlations.
 
-After each refresh, `scripts/validate_model_drilldown.py` reconstructs all available averages from the exact poll IDs, candidate matchup, sponsorship flags, quality multipliers, sample multipliers, and model weights. It also checks that percentages shown for individual polls match the weights applied by the model.
+The feed has only `end_date`, not publication timestamps. The daily briefing now records `first_seen_at` on genuinely new polls. That is the date **our scraper observed it**, not a verified release date; older legacy observations have unknown first-seen timestamps.
 
 ## Silver's methodology: what we adopted versus what remains
 
@@ -63,7 +70,7 @@ FLIPR's code and parameters are proprietary; publicly described statistical meth
 
 ## Next accuracy milestones
 
-1. Obtain a usable, properly attributable **January 2026 Silver Bulletin ratings XLSX** and compare it with the archived 538 ratings for matched firms. Never silently switch source.
+1. Obtain and inspect [Silver Bulletin's published January 2026 ratings XLSX](https://www.natesilver.net/p/pollster-ratings-silver-bulletin), validate column mapping and firm aliases against the archived 538 dataset, and test newer predictive-plus-minus and mean-reverted bias scores before replacing the live source. That XLSX is available from its author, but has **not yet been ingested** by this repository. Never silently switch source.
 2. Expand the 2026 poll source to contain sample population (LV, RV, adults), question wording and individual poll URLs.
 3. Acquire full historic poll + actual race outcomes with pre-election timestamps to fit signed house effects, sponsorship bias and weights using leave-cycle-out evaluation.
 4. Train a separately versioned **forecast** combining polling evidence and race fundamentals, with calibrated uncertainty and correlated outcomes. Only then attach percentages to candidates winning seats or either party controlling Congress.
