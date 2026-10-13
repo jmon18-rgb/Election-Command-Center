@@ -128,6 +128,9 @@ def main():
     data = json.loads(DATA.read_text(encoding="utf-8"))
     observations, groups = grouped_tests(data)
     results = summarize(observations)
+    # Every weighting strategy must see the same held-out target observations.
+    sample_sizes={v["comparisons"] for v in results.values()}
+    assert len(sample_sizes)<=1, f"Incomparable model test samples: {sample_sizes}"
     winner = min(results, key=lambda k: results[k]["mae_points"]) if results else None
     output = {
         "source_snapshot": data.get("updated_at"),
