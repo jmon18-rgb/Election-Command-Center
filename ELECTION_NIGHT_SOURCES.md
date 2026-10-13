@@ -165,6 +165,44 @@ Local deterministic verification: `node scripts/test_civicapi_state_batch.cjs` t
 
 **Larger batch policy:** work in approximately four states per PR when upstream actually indexes the races; confirm provider identity first, build all passing races in one shared adapter, test on simulated counts and real-source metadata, merge only on green checks, then stop. Never treat an unindexed race as covered.
 
+
+## Seven more source-indexed races: Ohio, Wisconsin, Nebraska, Kansas (Oct 13)
+
+The second four-state build extends the existing strict `scripts/civicapi_state_batch.js`
+adapter with these individually verified **November 3, 2026** provider identities:
+
+| State | 2026 contest | civicAPI ID | Internal race key |
+|---|---|---|---|
+| Ohio | **US Senate special election** | `87527` | `Senate|OH-special` |
+| Ohio | Governor | `87365` | `Governor|OH` |
+| Wisconsin | Governor | `87491` | `Governor|WI` |
+| Nebraska | US Senate | `87254` | `Senate|NE` |
+| Nebraska | Governor | `87255` | `Governor|NE` |
+| Kansas | US Senate | `87162` | `Senate|KS` |
+| Kansas | Governor | `87163` | `Governor|KS` |
+
+The Ohio special is **not** interchangeable with a regular Ohio Senate contest.
+The adapter demands source name `Ohio US Senate Special`, source ID `87527`, the
+November general-election date, `US Senate` class and `General` stage, and
+retains `OH-special` as its internal result key. A mismatched office, regular
+seat, date, district or source ID fails closed. Provider winner indicators remain
+*source calls*, never official election certifications. Unindexed races are
+unknown, not a zero-vote result.
+
+Source discovery uses `scripts/probe_civicapi_oh_wi_ne_ks.py` to query
+**actual civicAPI search and detail JSON** through browser-CORS-compatible
+requests, cross-checking all seven IDs and candidate list shapes.
+`scripts/test_civicapi_oh_wi_ne_ks.cjs` supplies simulated counts to check
+party totals, percentages, premature votes, identity substitution and winner
+flags. The main DOM regression checks the actual personal watchlist for all
+seven contests, a wrongly identified Ohio Senate detail update, provider
+separation, and last-good result retention.
+
+The new coverage is limited to these seven verified source records. There is
+**no claim of comprehensive county results, nationwide House coverage, or
+live November 3 votes before Election Day**. As before, no civicAPI tally is
+added to Open America's primary source or to JackStradamus probabilities.
+
 ## Nationwide 35-race Senate desk (October 13)
 
 A new collapsible **35-contest Senate results monitor** is driven directly by `data/seat_universe.json`: 33 regular races and the Florida/Ohio special elections, with precise different keys (`FL-special` / `OH-special`). It validates all 35 named ballot slots before rendering. The primary Open America provider handles its supported states; civicAPI provides separately identified data for individual unmatched-state races. **Source totals are never merged or extrapolated**. A count of recorded races means that a trusted provider reported at least one vote, not that the seat has been won. A civicAPI call is separately labeled as a *provider call*, not official certification.
