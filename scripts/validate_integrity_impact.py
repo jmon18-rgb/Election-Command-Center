@@ -26,6 +26,21 @@ for incident in data["incidents"]:
         assert incident.get("scope_note"), f"Scope needs unit clarification: {ident}"
     if incident.get("process_status"):
         assert incident.get("last_updated"), f"Status requires review date: {ident}"
+    scenario=incident.get("adverse_scenario")
+    assert isinstance(scenario,dict),f"Missing worst-case scenario definition: {ident}"
+    assert scenario.get("definition"),f"Unnamed risk outcome: {ident}"
+    worst=scenario.get("worst_case_unique_eligible_voters")
+    prob=scenario.get("probability_of_scenario")
+    bounds=scenario.get("probability_interval")
+    assert worst is None or (type(worst) is int and worst>=0),f"Invalid eligible-voter bound: {ident}"
+    assert prob is None or (type(prob) in (float,int) and 0<=prob<=1),f"Invalid scenario probability: {ident}"
+    if bounds is not None:
+        assert isinstance(bounds,list) and len(bounds)==2 and all(type(v) in (float,int) and 0<=v<=1 for v in bounds) and bounds[0]<=bounds[1],f"Invalid probability range: {ident}"
+        assert prob is not None and bounds[0]<=prob<=bounds[1],f"Probability outside range: {ident}"
+    if worst is not None:
+        assert scenario.get("worst_case_source") and scenario.get("worst_case_source")!="Not established; requires voter-level deduplication, affected voters and counterfactual access data.",f"Worst-case voter number missing provenance: {ident}"
+    if prob is not None:
+        assert scenario.get("probability_basis") and not scenario["probability_basis"].startswith("Not estimated"),f"Numerical probability lacks estimable basis: {ident}"
     if incident.get("verification_status")=="unverified_report":
         assert all(v is None for v in values),f"Unverified report has published impact count: {ident}"
 print("Validated",len(ids),"sourced integrity incidents; no unsupported numerical impacts")
