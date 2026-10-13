@@ -6,6 +6,16 @@ only, never vote totals. Discovery alone never grants production coverage.
 from test_civicapi_live_source import source
 
 DAY="2026-11-03"
+# Independently observed provider identities in source-real GitHub CI on Oct 13.
+REQUIRED={
+    ("IL","Senate"):(87129,"Illinois US Senate"),
+    ("IL","Governor"):(87130,"Illinois Governor"),
+    ("KY","Senate"):(87174,"Kentucky US Senate"),
+    ("NJ","Senate"):(87302,"New Jersey US Senate"),
+    ("NY","Governor"):(87329,"New York Governor"),
+    ("OR","Senate"):(87374,"Oregon US Senate"),
+    ("OR","Governor"):(87375,"Oregon Governor"),
+}
 TARGETS=[
     ("IL","Senate","US Senate"),
     ("IL","Governor","Governor"),
@@ -57,7 +67,10 @@ def main():
         print("FIVE-STATE VERIFIED",state,office,row["id"],repr(row["election_name"]),
               "candidates",len(detail["candidates"]),flush=True)
     print("FIVE-STATE COVERAGE",len(matches_found),"of",len(TARGETS),flush=True)
-    if not matches_found:
-        raise ValueError("No supported civicAPI source records found")
+    required={(state,office,race_id,name)
+              for (state,office),(race_id,name) in REQUIRED.items()}
+    if set(matches_found)!=required:
+        raise ValueError("Source IDs/names missing or changed: "+
+                         repr(sorted(required-set(matches_found))))
 if __name__=="__main__":
     main()
