@@ -161,3 +161,10 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Added a compact model-tab year-holdout table, independently published derived-JSON artifact, strict source checks and CI tests for duplicate race keys, future-dated polling, malformed errors and training/testing year overlap.
 - The **2026 live polling model is unchanged**; three retrospectively assembled election cycles lacking original release timestamps cannot establish calibrated forecast error or national probabilities.
 - **Next material model work:** obtain as-of historical releases with stable candidate/special-election identity; hold out more entire cycles; estimate shared national/regional election error, not just uncorrected D/R margins. **Next Election Night infrastructure:** source-licensed, functional live 2026 vote counts.
+
+## October 13: Prioritize current-year evidence over older, nonstationary pollster history
+
+- Closed unmerged [PR #10](https://github.com/jmon18-rgb/Election-Command-Center/pull/10) after questioning the relevance of 2006–2018 polling misses for the **2026 changed electorate and changed polling industry**. Longer-run checks may be useful as methods research, but should not dominate the live desk or enter direct 2026 corrections without demonstrated transportability.
+- The current JackStradamus model now includes **2026-specific evidence triage**: flags races where alternative legitimate weights could change the polling leader, no independent firms substantiate a sponsored-only average, independent-only and headline estimates materially differ, pollsters have a wide observed spread, or poll evidence is thin/stale.
+- Each card cites the correct race and office and opens the exact underlying polling record. Current-only, candidate-matched dataset; different races with the same state are never conflated. Observed poll dispersion is **not a forecast uncertainty interval**.
+- Next high-return work: compare 2026 within-pollster *repeated-wave* changes to the overall model average, track original publication timestamps and identify independent confirmation. Live 2026 election-night results still need a working authorized source.

@@ -156,6 +156,16 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .senate-bias-table th:first-child,.senate-bias-table td:first-child{text-align:left}
 .senate-bias-table td{text-align:right;padding:10px 5px;border-bottom:1px solid #30435b;font-variant-numeric:tabular-nums;white-space:nowrap}
 .senate-bias-table .worse{color:#ec9696}.senate-bias-table .better{color:#9bd4ad}
+.model-evidence-watch{border:1px solid #344962;background:#101d2c;border-radius:10px;padding:18px;margin:14px 0 17px}
+.model-evidence-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:14px 0 3px}
+.model-evidence-entry{cursor:pointer;text-align:left;width:100%;border:1px solid #3d5169;background:#14263a;border-radius:9px;padding:12px 13px;color:#d8e8f9;display:flex;flex-direction:column;gap:5px}
+.model-evidence-entry:hover,.model-evidence-entry:focus-visible{border-color:#70acd9;background:#1b344e;outline-offset:2px}
+.model-evidence-entry .evidence-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.model-evidence-entry .evidence-title{font-weight:800;font-size:12px}
+.model-evidence-entry .evidence-signal{font-size:11px;font-weight:750;color:#efd6a1}
+.model-evidence-entry .evidence-reason{font-size:11px;line-height:1.55;color:#bdcfe2}
+.model-evidence-entry .evidence-meta{font-size:10px;line-height:1.45;color:#92b1c9}
+@media(max-width:650px){.model-evidence-list{grid-template-columns:1fr}.model-evidence-watch{padding:14px}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -226,6 +236,15 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div class="model-top-stat"><span>POLLING GAPS UNDER 3 PTS</span><strong id="modelCloseTotal">—</strong></div>
  <div class="model-top-stat"><span>THIN POLLING</span><strong id="modelThinTotal">—</strong></div>
 </div>
+<section class="model-evidence-watch" aria-label="2026 polling evidence quality review">
+ <div class="row"><div>
+   <span class="label">2026 POLLING REALITY CHECK</span>
+   <h3 style="font-size:17px;margin:8px 0 4px">Where the evidence needs a second look</h3>
+  </div><span class="tag">LIVE POLLS · NOT ODDS</span></div>
+ <p class="detail">Which current race averages could change most with more independent polling, fresher surveys, or different defensible weights? Only the selected office is shown. Select a race to inspect the underlying surveys.</p>
+ <div id="modelEvidenceList" class="model-evidence-list"><div class="empty">Checking current poll agreement and sources…</div></div>
+ <p class="house-history-note" id="modelEvidenceNote">A survey disagreement is a reason to verify the evidence—not a measured forecast-error range or evidence of manipulation.</p>
+</section>
 <section class="model-universe" aria-label="National model inventory">
  <div class="model-universe-header"><strong>National seat inventory</strong><span id="seatInventoryAsOf" class="tiny">Checking coverage…</span></div>
  <div class="model-universe-row"><div><strong id="seatHouseCount">— / 435</strong><span>House districts with usable polling</span></div><div class="model-universe-track"><i id="seatHouseBar"></i></div></div>
@@ -416,9 +435,113 @@ function modelApplyHash(){
  else if(segments[1]&&/^[A-Z]{2}$/.test(segments[1])){modelMode='senate';selectedModelState=segments[1]+'-SEN';}
  else if(segments[1]==='generic'){modelMode='generic';selectedModelState='US-GENERIC';}
 }
+/* Current-cycle evidence triage; source fields come from the same
+ * candidate-specific model snapshot as JackStradamus, not old elections.
+ * These are descriptive checks, not calibrated outcome uncertainties. */
+function modelEvidenceWatchItems(data,scope=modelMode){
+ if(!data||data.is_election_forecast!==false)return [];
+ const pool=scope==='senate'?(data.senate_all||data.states):
+   scope==='house'?data.house:scope==='governor'?data.governor:
+   scope==='generic'?[data.generic_ballot]:[];
+ if(!Array.isArray(pool))return [];
+ const items=[];
+ for(const r of pool){
+  if(!r||!['multi_poll','single_poll'].includes(r.status)||
+     !Number.isFinite(r.dem_minus_rep)||Math.abs(r.dem_minus_rep)>12||
+     !(r.race_code||scope==='generic'))continue;
+  const d=r.poll_diagnostics||{},ms=d.model_sensitivity||{};
+  const ind=r.independent_pollsters??0,sponsored=r.partisan_pollsters??0;
+  const firms=r.contributing_pollsters??ind+sponsored,age=d.latest_poll_age_days;
+  if(![ind,sponsored,firms].every(x=>Number.isInteger(x)&&x>=0)||
+     ind+sponsored>firms||!Number.isFinite(age)||age<0)continue;
+  const gap=Number.isFinite(ms.independent_only_margin)&&ind>0?
+    Math.abs(r.dem_minus_rep-ms.independent_only_margin):null;
+  const alternatives=Number.isFinite(ms.alternative_margin_min)&&
+    Number.isFinite(ms.alternative_margin_max)&&
+    ms.alternative_margin_min<=ms.alternative_margin_max?ms:null;
+  const range=alternatives?alternatives.alternative_margin_max-alternatives.alternative_margin_min:0;
+  const signFlip=firms>=2&&ind>0&&alternatives&&
+    alternatives.alternative_margin_min<0&&alternatives.alternative_margin_max>0&&range>=1.0;
+  let signal=null,reason=null,score=0;
+  if(signFlip){
+   signal='Weighting changes the lead';
+   reason='Alternative qualifying weighting methods span '+
+      marginText(ms.alternative_margin_min)+' to '+marginText(ms.alternative_margin_max)+
+      '. That is model sensitivity, NOT a win probability.';
+   score=110+Math.min(20,range)+Math.max(0,7-Math.abs(r.dem_minus_rep));
+  }else if(ind===0&&firms>0&&age<=35){
+   signal='No independent confirmation';
+   reason='The current '+marginText(r.dem_minus_rep)+' polling average uses '+
+      firms+' sponsored '+(firms===1?'firm':'firms')+' and zero independent firms.';
+   score=90+Math.max(0,7-Math.abs(r.dem_minus_rep));
+  }else if(sponsored>0&&gap!==null&&gap>=2.5&&age<=28){
+   signal='Independent polling differs';
+   reason='The headline is '+marginText(r.dem_minus_rep)+', versus '+
+      marginText(ms.independent_only_margin)+' among '+ind+
+      ' independent '+(ind===1?'firm':'firms')+'.';
+   score=80+Math.min(15,gap);
+  }else if(firms>=3&&ind>=2&&Number.isFinite(d.pollster_spread_points)&&
+      d.pollster_spread_points>=5&&age<=25){
+   signal='Pollsters diverge';
+   reason=d.pollster_spread_points.toFixed(1)+'-point observed between-firm margin spread '+
+      'among '+firms+' contributing firms. Not a confidence interval.';
+   score=70+Math.min(15,d.pollster_spread_points);
+  }else if(ind===1&&firms<=3&&age<=21&&Math.abs(r.dem_minus_rep)<7){
+   signal='Just one independent check';
+   reason=ind+' independent of '+firms+' contributing '+
+      (firms===1?'firm':'firms')+'. A fresh independent poll could materially improve confidence.';
+   score=60;
+  }else if(age>21&&Math.abs(r.dem_minus_rep)<7){
+   signal='Evidence is getting old';
+   reason='Latest qualifying fieldwork ended '+age+' days ago; fresh independent polling is needed.';
+   score=50;
+  }
+  if(!signal)continue;
+  items.push({race_code:r.race_code||'US-GENERIC',scope,label:
+   scope==='house'?(r.label||r.race_code):
+   scope==='generic'?'U.S. generic ballot':r.state_name||r.label||r.state,
+   margin:r.dem_minus_rep,signal,reason,score,age,ind,sponsored,firms,
+   latest:r.latest_poll_end});
+ }
+ return items.sort((a,b)=>b.score-a.score||a.race_code.localeCompare(b.race_code)).slice(0,6);
+}
+function renderModelEvidenceWatch(data){
+ const list=$('#modelEvidenceList'),note=$('#modelEvidenceNote');
+ if(!list||!note)return;
+ list.replaceChildren();
+ const alerts=modelEvidenceWatchItems(data,modelMode);
+ if(!alerts.length){
+  list.append(elt('p','empty','No current races in this office meet the published sensitivity or independent-coverage checks.'));
+ }else for(const item of alerts){
+  const row=elt('button','model-evidence-entry');row.type='button';
+  row.setAttribute('aria-label','Inspect '+item.label+' '+item.scope+' polling sources');
+  const top=elt('div','evidence-top');
+  top.append(elt('strong','evidence-title',item.label+' · '+item.race_code),
+    elt('strong',marginColor(item.margin),marginText(item.margin)));
+  row.append(top,elt('div','evidence-signal',item.signal),
+    elt('div','evidence-reason',item.reason),
+    elt('div','evidence-meta',item.ind+' independent · '+item.sponsored+
+      ' sponsored · latest fieldwork '+formattedModelDate(item.latest)));
+  row.addEventListener('click',()=>{
+   modelMode=item.scope;selectedModelState=item.race_code;
+   modelPollMode='included';highlightedModelPoll=null;
+   if(window.history?.replaceState)window.history.replaceState(null,'','#model/'+item.scope+'/'+item.race_code);
+   renderModelOverview(latestSenateEstimates);
+   if(window.matchMedia&&window.matchMedia('(max-width:820px)').matches)
+     $('#modelDetail').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  list.append(row);
+ }
+ note.textContent=alerts.length+' current '+(modelMode==='generic'?'generic-ballot':'race')+
+  ' evidence checks surfaced for '+modelMode+
+  '. The list is recalculated from the published current 2026 candidate-specific poll averages and source weights. '+
+  'It is NOT a ranking of win probability, an error interval or a claim that a race has recently shifted. '+
+  'Changes can reflect which firm was polled or weighted rather than voter opinion moving.';
+}
 function renderModelOverview(data){
  const board=$('#modelBoard');if(!board)return;
  const rows=modelRows(data);board.replaceChildren();
+ renderModelEvidenceWatch(data);
  $('#modelRaceTotal').textContent=rows.length;
  $('#modelCloseTotal').textContent=rows.filter(s=>Math.abs(s.dem_minus_rep)<3).length;
  $('#modelThinTotal').textContent=rows.filter(s=>(s.contributing_pollsters??s.independent_pollsters??0)<3).length;
