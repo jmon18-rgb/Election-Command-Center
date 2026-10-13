@@ -44,3 +44,11 @@ A historical House election under old boundaries is **not** a valid 2026 distric
 ## First historic source import — October 13
 
 The 2024 staging importer retrieved candidate-level results for **435 voting House districts**, with **44** districts lacking recorded votes for one of the two major parties. It deliberately retained raw vote counts rather than filling uncontested contests with invented opposition votes. Its original downloaded source has an additional non-voting House delegate record (D.C.), which is excluded from the 435-seat apportionment universe; a regression test guards this distinction. Raw 2024 vote totals and sample integrity are now available for historical research, **not** yet for assigning 2026 predicted winners.
+
+## Census-verified geography compatibility (October 13, 2026)
+
+The map-version bridge is now implemented as [MAP_GEOGRAPHY.md](MAP_GEOGRAPHY.md). Nine states changed House maps between 2024 and 2026 (AL, CA, FL, LA, NC, OH, TN, TX, UT): **173** districts lack directly comparable old-boundary House votes until vote reaggregation. In the 41 unchanged states, **262** district slots have geographically comparable 2024 vote records, of which **238** have recorded D/R two-party vote totals. The Missouri 2026 legal reversal is handled explicitly.
+
+The 2022 archive was also staged and separately checked against 2024 redistricting (AL, GA, LA, NY, NC). **222** districts share 2022/2024/2026 boundaries; **191** have recorded two-party D/R shares in both 2022 and 2024. Historical shares and swings can now appear in House race drilldowns, but are never published as predicted 2026 vote shares, outcomes or probabilities. `data/house_two_cycle_context.json` and `data/house_geography_bridge.json` contain district-level audit trails with null forecasts.
+
+The next blocker is precinct-level aggregation of old votes onto actual new district boundaries, followed by broader election-year historical validation; identical district names do not imply identical electorate geography.
