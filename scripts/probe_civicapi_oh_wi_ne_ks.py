@@ -57,8 +57,21 @@ def main():
         print("VERIFIED",state,office,row["id"],repr(row["election_name"]),
               "candidate_count",len(candidates))
     print("BATCH DISCOVERY COMPLETE",len(exact),"of",len(TARGETS))
-    if not exact:
-        raise ValueError("No 2026 source-supported races could be verified")
+    # These source IDs were verified independently in the Oct. 13 GitHub
+    # discovery job. An ID re-assignment is a compatibility break, not a
+    # reason to accept a different race with the same office title.
+    required={
+        ("OH","Senate",87527,"Ohio US Senate Special"),
+        ("OH","Governor",87365,"Ohio Governor"),
+        ("WI","Governor",87491,"Wisconsin Governor"),
+        ("NE","Senate",87254,"Nebraska US Senate"),
+        ("NE","Governor",87255,"Nebraska Governor"),
+        ("KS","Senate",87162,"Kansas US Senate"),
+        ("KS","Governor",87163,"Kansas Governor"),
+    }
+    missing=required-set(exact)
+    if missing:
+        raise ValueError("Indexed source record missing/reassigned: "+repr(sorted(missing)))
 
 if __name__=="__main__":
     main()
