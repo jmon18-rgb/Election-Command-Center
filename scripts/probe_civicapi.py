@@ -18,6 +18,8 @@ CHECKS=[
  ("getElectionDates",{"year":2026,"country":"US"}),
  ("race/search",{"country":"US","startDate":"2026-11-03","endDate":"2026-11-03","limit":4}),
  ("race/search",{"country":"US","startDate":"2026-09-08","endDate":"2026-09-08","limit":3}),
+ ("race/search",{"country":"US","province":"NH","startDate":"2026-11-03","endDate":"2026-11-03","limit":8}),
+ ("race/search",{"country":"US","province":"NV","startDate":"2026-11-03","endDate":"2026-11-03","limit":8}),
 ]
 def summarize(content):
  if isinstance(content,dict):
@@ -25,8 +27,16 @@ def summarize(content):
   for key,value in content.items():
    if isinstance(value,list):
     ans["list_"+key]={"size":len(value),
-      "sample_keys":sorted(value[0])[:35] if value and isinstance(value[0],dict) else []}
-   elif key in ("status","message","success","code"):
+      "sample_keys":sorted(value[0])[:35] if value and isinstance(value[0],dict) else [],
+      "sample_races":[{
+       k:entry[k] for k in ("id","country","province","district","election_date",
+       "election_name","election_type","type","percent_reporting","municipality")
+       if k in entry
+      } for entry in value[:3] if isinstance(entry,dict)],
+      "candidate_keys":sorted(value[0].get("candidates",[{}])[0])[:35]
+        if value and isinstance(value[0],dict) and value[0].get("candidates") and
+        isinstance(value[0]["candidates"][0],dict) else []}
+   elif key in ("status","message","success","code","count"):
     ans[key]=value
   return ans
  if isinstance(content,list):
@@ -52,6 +62,7 @@ def probe(path,params):
   try:
    obj=json.loads(body)
    print("SOURCE_SHAPE",json.dumps(summarize(obj),sort_keys=True))
+   return obj
   except Exception as exc:
    print("SOURCE NOT JSON",str(exc),"first_content_type",ct)
  except urllib.error.HTTPError as exc:
@@ -59,5 +70,11 @@ def probe(path,params):
  except Exception as exc:
   print(json.dumps({"endpoint":path,"error":str(exc)}))
 def main():
- for path,params in CHECKS:probe(path,params)
+ for path,params in CHECKS:
+  obj=probe(path,params)
+  if path=="race/search" and params.get("startDate")=="2026-11-03" and "province" not in params:
+   for row in (obj or {}).get("races",[]):
+    if str(row.get("id","")).isdigit():
+     probe("race/"+str(row["id"]),{"light":""})
+     break
 if __name__=="__main__":main()
