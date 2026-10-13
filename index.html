@@ -817,6 +817,10 @@ function standardNormalCDF(z){
  return z>=0?positive:1-positive
 }
 let congressScenarioSnapshot=null;
+function setCongressScenarioSnapshot(snapshot){
+ congressScenarioSnapshot=snapshot;
+ renderElectionScenarios();
+}
 function renderElectionScenarios(){
  const host=$('#scenarioBands'),info=$('#scenarioSimulator');
  if(!host||!info)return;
@@ -900,7 +904,7 @@ function renderElectionScenarios(){
 }
 fetch('./data/congress_scenarios.json',{cache:'no-store'})
  .then(r=>{if(!r.ok)throw Error('Joint congressional forecast unavailable');return r.json()})
- .then(d=>{congressScenarioSnapshot=d;renderElectionScenarios()})
+ .then(setCongressScenarioSnapshot)
  .catch(()=>renderElectionScenarios());
 function renderModelGenericHeadline(){
  const g=latestSenateEstimates?.generic_ballot;
