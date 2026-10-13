@@ -94,7 +94,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  </div>
  <div class="en-toggle" aria-label="Chamber">
  <button id="enOfficeHouse" type="button" aria-pressed="true">House</button>
- <button id="enOfficeSenate" type="button" aria-pressed="false">Senate</button>
+ <button id="enOfficeSenate" type="button" aria-pressed="false">Senate</button><button id="enOfficeGovernor" type="button" aria-pressed="false">Governors</button>
  </div>
  <button id="enRefresh" type="button" class="chip">Refresh</button>
 </div>
@@ -563,7 +563,7 @@ function enUpdateSelection(){const ids=enCurrentRaces().map(([id])=>id);if(!ids.
 function enCurrentLeader(r){const c=(r?.cands||[]).filter(x=>typeof x.v==='number').sort((a,b)=>b.v-a.v);return c.length&&c[0].v>0?c[0]:null}
 function enRender(){
  document.querySelectorAll('#enMode2026,#enMode2024').forEach(el=>el.setAttribute('aria-pressed',String((el.id==='enMode2026'?2026:2024)===enModeYear)));
- document.querySelectorAll('#enOfficeHouse,#enOfficeSenate').forEach(el=>el.setAttribute('aria-pressed',String((el.id==='enOfficeHouse'?'House':'Senate')===enOffice)));
+ document.querySelectorAll('#enOfficeHouse,#enOfficeSenate,#enOfficeGovernor').forEach(el=>el.setAttribute('aria-pressed',String((el.id==='enOfficeHouse'?'House':el.id==='enOfficeSenate'?'Senate':'Governor')===enOffice)));
  $('#enRaceHeading').textContent=enOffice+' races';
  const rows=enCurrentRaces();
  const ready=rows.filter(([,r])=>r.total>0);
@@ -595,7 +595,7 @@ function enRenderDetail(){
  cands.replaceChildren();comparison.replaceChildren();
  if(!found){title.textContent='No reported race selected';summary.textContent='Results will appear as supported states report vote totals.';meta.textContent='';return}
  const [key,r]=found;
- title.textContent=(enOffice==='Senate'?key+' Senate':key+' House')+' · unofficial';
+ title.textContent=key+' '+enOffice+' · unofficial';
  const leader=enCurrentLeader(r);
  summary.textContent=(leader?leader.n+' currently leads. ':'No votes reported yet. ')+enNum(r.total)+' votes counted · '+(typeof r.pct_in==='number'?r.pct_in.toFixed(1)+'% of precincts reported':'reporting share unavailable')+'. This is not a winner call.';
  for(const cand of [...(r.cands||[])].sort((a,b)=>Number(b.v||0)-Number(a.v||0)).slice(0,12)){
@@ -640,6 +640,7 @@ $('#enMode2026').addEventListener('click',()=>enSwitch(2026,enOffice));
 $('#enMode2024').addEventListener('click',()=>enSwitch(2024,enOffice));
 $('#enOfficeHouse').addEventListener('click',()=>enSwitch(enModeYear,'House'));
 $('#enOfficeSenate').addEventListener('click',()=>enSwitch(enModeYear,'Senate'));
+$('#enOfficeGovernor').addEventListener('click',()=>enSwitch(enModeYear,'Governor'));
 $('#enRefresh').addEventListener('click',()=>enLoad(true));
 $('#enSearch').addEventListener('input',enRender);
 document.querySelector('.tab[data-page="electionNight"]').addEventListener('click',()=>{if(!enData)enLoad(true);else if(enModeYear===2026&&!enTimer)enLoad(false)});
