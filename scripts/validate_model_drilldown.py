@@ -2,7 +2,7 @@
 """Reconcile all JackStradamus estimates with exactly their selected source polls.
 A sponsored poll gets the published fixed, symmetric sponsor adjustment.
 """
-import json, math
+import json, math, re
 from datetime import date
 from pathlib import Path
 
@@ -16,6 +16,32 @@ asof=date.fromisoformat(model["generated_at"][:10])
 quality_data=json.loads((ROOT/"data/pollster_quality.json").read_text(encoding="utf-8"))
 quality={k.casefold():v for k,v in quality_data["entries"].items()}
 exclusions={k.casefold() for k in quality_data["explicit_exclusions"]}
+SILVER={}
+STAGED=ROOT/"data/silver_ratings_staging.json"
+def norm_silver(n):
+    return re.sub(r"[^a-z0-9]+"," ",str(n or "").casefold()).strip()
+if STAGED.exists():
+    staged=json.loads(STAGED.read_text(encoding="utf-8"))
+    if staged.get("status")=="staged_not_used_in_live_model":
+        entries=staged.get("entries",{})
+        for alias,name in staged.get("matches",{}).items():
+            obj=entries.get(norm_silver(name))
+            if obj:SILVER[norm_silver(alias)]=obj
+        for item in entries.values():
+            SILVER.setdefault(norm_silver(item.get("pollster")),item)
+def silver_multiplier(p):
+    entry=SILVER.get(norm_silver(p["pollster"]))
+    if entry is None:return 1.,False
+    try:
+        pm=float(entry["predictive_plus_minus_raw"])
+        n=float(entry.get("history_count_raw") or 0)
+    except (TypeError,ValueError,KeyError):return 1.,False
+    if not math.isfinite(pm) or not math.isfinite(n):return 1.,False
+    return max(.65,min(1.5,math.exp(-.12*pm*min(1,max(0,n)/20)))),True
+def older_quality_factor(p):
+    rating=quality.get(p["pollster"].casefold())
+    if not rating:return 1.
+    return 1+.25*((2+(rating["rating"]-2)*min(1,rating["history_count"]/20))-2)
 def additional_weight(p):
     rating=quality.get(p["pollster"].casefold())
     if rating:
@@ -96,6 +122,30 @@ for state in all_rows:
         else:
             assert sensitivity["independent_only_margin"] is None,code
         assert sensitivity["alternative_margin_min"]<=sensitivity["alternative_margin_max"],code
+    silver=(state.get("poll_diagnostics") or {}).get("silver_2026_comparison")
+    if silver:
+        assert silver["status"]=="experimental_not_used_for_headline",code
+        assert SILVER,"Silver comparison published without checked source data"
+        silver_total=silver_dem=silver_rep=0.
+        matched=0
+        for pick in selections:
+            poll=next(p for p in source if p["pollster"].casefold()==pick["name"].casefold()
+                      and p["field_end"]==pick["field_end"]
+                      and (is_generic or (p["dem_name"]==state["dem_candidate"] and
+                                          p["rep_name"]==state["rep_candidate"])))
+            days=(asof-date.fromisoformat(poll["field_end"])).days
+            old_weight=.5**(days/half_life)*(partisan if poll.get("partisan_lean") else 1.)*additional_weight(poll)
+            quality,is_matched=silver_multiplier(poll)
+            matched+=int(is_matched)
+            w=old_weight/older_quality_factor(poll)*quality
+            silver_total+=w
+            silver_dem+=w*poll["dem"]
+            silver_rep+=w*poll["rep"]
+        alternative=silver_dem/silver_total-silver_rep/silver_total
+        assert abs(alternative-silver["dem_minus_rep"])<0.011,code
+        assert abs(silver_dem/silver_total-silver["dem_pct"])<0.011,code
+        assert abs(silver_rep/silver_total-silver["rep_pct"])<0.011,code
+        assert matched==silver["rated_pollster_count"],code
     dm=weighted_dem/total_weight
     rp=weighted_rep/total_weight
     assert abs(dm-state["dem_pct"])<0.011,(code,dm,state["dem_pct"])
