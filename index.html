@@ -453,7 +453,7 @@ function modelEvidenceWatchItems(data,scope=modelMode){
   const ind=r.independent_pollsters??0,sponsored=r.partisan_pollsters??0;
   const firms=r.contributing_pollsters??ind+sponsored,age=d.latest_poll_age_days;
   if(![ind,sponsored,firms].every(x=>Number.isInteger(x)&&x>=0)||
-     ind+sponsored>firms||!Number.isFinite(age)||age<0)return [];
+     ind+sponsored>firms||!Number.isFinite(age)||age<0)continue;
   const gap=Number.isFinite(ms.independent_only_margin)&&ind>0?
     Math.abs(r.dem_minus_rep-ms.independent_only_margin):null;
   const alternatives=Number.isFinite(ms.alternative_margin_min)&&
@@ -497,7 +497,7 @@ function modelEvidenceWatchItems(data,scope=modelMode){
    score=50;
   }
   if(!signal)continue;
-  items.push({race_code:r.race_code,scope,label:
+  items.push({race_code:r.race_code||'US-GENERIC',scope,label:
    scope==='house'?(r.label||r.race_code):
    scope==='generic'?'U.S. generic ballot':r.state_name||r.label||r.state,
    margin:r.dem_minus_rep,signal,reason,score,age,ind,sponsored,firms,
