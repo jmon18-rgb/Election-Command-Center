@@ -251,3 +251,11 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Explicitly excluded **MA Senate** (not uniquely returned in the 20-result discovery), other unverified statewide contests and House districts. No fabricated coverage or source calls.
 - App regression checks source-specific 2026 votes on four personal watchlist pins and rejects later cross-race details while retaining last-good counts. No source totals flow into Open America or forecast probabilities.
 - Future development cadence: **3–5 states per PR** when actual source coverage supports it; collect verified IDs, implement shared mappings and tests, merge only after the complete PR suite passes, then stop.
+
+## Oct 13: Second four-state civicAPI batch — Ohio, Wisconsin, Nebraska, Kansas
+
+- Verified seven 2026 election-night source identities in real civicAPI search/detail requests: OH special Senate/Governor; WI Governor; NE Senate/Governor; KS Senate/Governor.
+- Extended the original shared multi-state adapter instead of creating one repetitive module per contest. Ohio special-election identity is pinned to `OH-special` and an independently checked civicAPI ID, never a regular Senate key.
+- Added fixed-identity CORS discovery and deterministic candidate/percentage/identity test fixtures for all seven races, plus real dashboard interactions showing valid counts and last-good retention when a provider ID changes.
+- Preserved the existing New Hampshire and first four-state adapters, provider isolation, national Senate 35-seat universe, alert rules, and live forecast probabilities.
+- Continue adding 3–5 carefully sourced states at a time; do not promote unindexed races. Actual general-election counted-vote behavior remains to be tested live on November 3.
