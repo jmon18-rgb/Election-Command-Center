@@ -870,7 +870,7 @@ async function settle(){
  assert(civicDetail.querySelector('a.en-civic-direct').href.includes('/api/v2/race/87283'));
  assert.equal(get('#enWatchItems .en-watch-open[aria-label="Open NH-SEN Senate 2026 results"]').getAttribute('aria-expanded'),'true');
  get('#enWatchItems .en-watch-open[aria-label="Open NH-SEN Senate 2026 results"]').click();
- assert.equal(get('#enWatchItems .en-civic-detail'),null,
+ assert.equal(w.document.querySelector('#enWatchItems .en-civic-detail'),null,
   'Supplemental race detail should collapse without losing its verified source snapshot');
 
  assert.equal(get('#enRaces').textContent,'0',
