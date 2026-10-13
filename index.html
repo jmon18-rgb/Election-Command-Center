@@ -1949,6 +1949,7 @@ function enRender(){
   'State-derived 2024 source rehearsal: named candidates and official-state reported precinct shares via Open America. Partial coverage, stored historical results, not a timed 2024 replay or a certified race call.':
   'MIT/MEDSL 2024 House (435 districts) and Senate (35 contests) historical party aggregates. No candidate names or precinct progress. Select State feed to rehearse the same named-candidate format as 2026 live results.';
  enRenderMovement();
+ enRenderWatchlist();
  enUpdateSelection();
  const query=($('#enSearch').value||'').trim().toLowerCase(),list=$('#enRaceList');list.replaceChildren();
  if(!rows.length){list.append(elt('p','empty',enModeYear===2026&&enData?
@@ -1956,7 +1957,13 @@ function enRender(){
   enModeYear===2026?'Waiting for the state-derived results feed. Use the source links below if it is inaccessible.':
   'No verified historical archive for this office. 2024 House and Senate archives are available.'));enRenderDetail();return}
  const filtered=rows.filter(([key,r])=>!query||(key+' '+(r.cands||[]).map(p=>p.n).join(' ')).toLowerCase().includes(query));
- filtered.sort((a,b)=>{const pa=a[1].pct_in,pb=b[1].pct_in;return (a[1].total?0:1)-(b[1].total?0:1)||String(a[0]).localeCompare(String(b[0]))});
+ filtered.sort((a,b)=>{
+  if(enModeYear===2026){
+   const aw=enWatched.some(w=>w.office===enOffice&&w.key===a[0]),bw=enWatched.some(w=>w.office===enOffice&&w.key===b[0]);
+   if(aw!==bw)return aw?-1:1;
+  }
+  return (a[1].total?0:1)-(b[1].total?0:1)||String(a[0]).localeCompare(String(b[0]));
+ });
  for(const [key,r] of filtered.slice(0,enVisibleLimit)){
   const btn=elt('button','en-race-entry');btn.type='button';btn.setAttribute('aria-pressed',String(key===enSelected));
   const name=elt('div');name.append(elt('strong','',key),elt('small','',enNum(r.total)+' votes · '+(typeof r.pct_in==='number'?r.pct_in.toFixed(1)+'% precincts':'precinct data unavailable')));
@@ -1979,9 +1986,18 @@ function archivedMEDSLDetail(){return enModeYear===2024&&['medsl_house_2024_part
 function enRenderDetail(){
  const found=enCurrentRaces().find(([id])=>id===enSelected);
  const title=$('#enDetailTitle'),summary=$('#enDetailSummary'),cands=$('#enCandidateList'),meta=$('#enDetailMeta'),comparison=$('#enPollReference');
- cands.replaceChildren();comparison.replaceChildren();
+ const pin=$('#enPinArea');
+ cands.replaceChildren();comparison.replaceChildren();pin.replaceChildren();
  if(!found){title.textContent='No reported race selected';summary.textContent='Results will appear as supported states report vote totals.';meta.textContent='';return}
  const [key,r]=found;
+ if(enModeYear===2026){
+  const item={office:enOffice,key},button=elt('button','',
+    enWatched.some(w=>enWatchId(w)===enWatchId(item))?'★ Unpin from watchlist':'☆ Pin to my watchlist');
+  button.type='button';
+  button.setAttribute('aria-pressed',String(enWatched.some(w=>enWatchId(w)===enWatchId(item))));
+  button.addEventListener('click',()=>enWatchToggle(item));
+  pin.append(button);
+ }
  title.textContent=key+' '+enOffice+(enModeYear===2024?' · 2024 archive':' · unofficial');
  const leader=enCurrentLeader(r);
  const edge=enLeadInfo(r);
@@ -2078,9 +2094,11 @@ async function enLoad(manual=false){
  }
  if(serial===enRequestSerial)enQueueRefresh();
 }
-function enSwitch(year,office){
+function enSwitch(year,office,preferredKey=null){
  if(year===2024&&office==='Governor')enArchiveSource='state';
- enModeYear=year;enOffice=office;enData=null;enFetchError=null;enFailures=0;enSelected=null;enVisibleLimit=120;$('#enSearch').value='';enRender();enLoad(true);
+ enModeYear=year;enOffice=office;
+ enData=year===2026?(enOfficeSnapshots[office]||null):null;
+ enFetchError=null;enFailures=0;enSelected=preferredKey;enVisibleLimit=120;$('#enSearch').value='';enRender();enLoad(true);
 }
 $('#enMode2026').addEventListener('click',()=>enSwitch(2026,enOffice));
 $('#enMode2024').addEventListener('click',()=>enSwitch(2024,enOffice));
