@@ -1,42 +1,58 @@
-# Bullshittery Index: what the numbers mean
+# Bullshittery Index · how it works
 
-Updated October 13, 2026. This is a deliberately conservative, provisional **monitoring-priority index**, not a probability of election fraud, a forecast of election results, or a calibrated estimate of votes that will go uncounted. Its purpose is to distinguish documented operational issues from ordinary litigation while stronger evidence is collected.
+_Reviewed October 13, 2026._
 
-## Version 1: deterministic 0–100 signal
+**There are two separate outputs.**
 
-- Documented voter-list disclosure litigation without evidence of voter-access effects: **4**.
-- Documented changes to voting-access schedules: **18**, plus **2** when at least 10 counties are identified.
-- Documented registration-system transmission or processing failures: **25**; deduct **4** when the transfer defect is officially reported fixed but downstream processing is not yet verified.
-- Completely resolved cases are **0**; cases lacking the required outcome and source review should not be labeled resolved.
-- Unverified reports cannot increase the index.
-- One state's score is the **maximum score** among distinct documented unresolved cases, not the sum of news articles or overlapping issues.
-- No tracked case means **Not assessed**, not zero.
+- **0–100 monitoring score:** a conservative relative priority indicator of documented election-administration problems, **not** the probability of fraud, intentional interference, or an election result changing.
+- **Scenario probability:** our *subjective, uncalibrated* odds that one *specific documented incident* ultimately prevents **100 or more otherwise-eligible voters** from casting a countable ballot after ordinary corrective processes. It is explicitly NOT the probability of any inconvenience, any voter affected, or a different election winner.
 
-Under today's source records, that puts **Texas at 21**, **North Carolina at 20**, and the voter-list disclosure litigation entries at **4**. The choices of starter weights are a review-priority heuristic, **not calibrated probabilities**, and could change through an explicitly versioned methodology review. Use 0–100 labels without presenting them as precise statistical estimates. The code that displays these scores is in `index.html`.
+## Monitoring score (starter rubric)
 
-## Version 2: scenario-specific voter risk (in progress)
+- Voter-list disclosure litigation with no demonstrated access impact: **4**.
+- Implemented reduction in a voting opportunity: **18**, +2 for at least ten affected counties.
+- Actual registration transmission/processing failure: **25**, -4 when the upstream defect is documented as fixed while downstream resolution remains uncertain.
+- The largest distinct unresolved issue defines a state's score. Repeated reports are never summed; issues with no verified basis cannot add points. No tracked cases = Not assessed, not zero.
 
-Each incident must define a specific adverse outcome and keep three different quantities distinct:
+Currently: **Texas 21/100**, **North Carolina 20/100**, tracked voter-list litigation **4/100**.
 
-1. **Documented footprint**: e.g., delayed registration records, affected counties, removed voting hours, or documented incident reports. These units cannot be mixed.
-2. **Worst-case distinct eligible voters materially affected**: a defensible plausible upper-bound estimate, with a reproducible population and evidence. This is **not** all records or residents in an affected county.
-3. **Probability of the explicitly defined worst-case outcome**, including an uncertainty range and documented basis. P(at least one eligible voter affected) is not the same as P(10,000 affected) or a per-voter risk.
+## Subjective probability v0
 
-For an expected number of affected voters, do **not** simply multiply the maximum exposure by P(the worst case): that generally underestimates or misstates the intermediate possibilities. Estimate the full distribution of outcomes or a justified per-voter probability conditional on exposure.
+Given the user's preference for *rough* estimates now rather than leaving probabilities blank indefinitely, the starter estimates are intentionally simple and explicitly based on judgment, not regression or historical calibration:
 
-### Texas
-The documented transfer backlog includes at least 500,000 registration/update **records**, not verified unique voters or lost ballots. Officials reported that the transfer problem was corrected; county processing and subsequent voter consequences require continuing review. We would need de-duplicated new vs update transactions, jurisdiction-by-jurisdiction processing completion, outstanding valid registrations and missed ballots before quoting a worst-case unique-voter estimate. Probability of the defined adverse outcome is currently **not estimated**.
+| Issue type | Exact scenario | Central | Broad plausible judgment range |
+|---|---|---:|---:|
+| Texas registration backlog | ≥100 unique otherwise-eligible voters cannot cast countable ballots because of this backlog, even after normal remedies | **12%** | 3–30% |
+| NC Sunday-hours elimination | ≥100 unique otherwise-eligible voters fail to cast a countable ballot as a consequence of the changed schedule, even after other voting opportunities | **10%** | 2–25% |
+| DOJ voter-list access litigation | ≥100 unique otherwise-eligible voters cannot cast countable ballots because of an actual access-changing action resulting from this litigation | **1%** | 0.1–5% |
 
-### North Carolina
-Sunday early-voting options were removed in ten named counties relative to the 2022 general election. A worst-case estimate should consider 2022 Sunday turnout, 2026 site and total-hour changes, turnout timing, and documented inability to vote via other methods. Neither 10 counties' populations nor 2022 Sunday turnout alone equals voters disenfranchised. Probability is currently **not estimated**.
+These percentages are **not observed frequencies**; there are no adequate data from which to calculate them precisely. The large uncertainty ranges matter more than the rounded central values.
 
-### Legal-dispute entries
-A filed lawsuit is real, but without an implemented election-administration change or demonstrated access consequence, no affected-voter estimate or outcome probability is established by the case's existence.
+### Sources and reasoning
 
-## Sources and confidence
+**Texas — why 12%?** Evidence of scale and timing: 500,000+ delayed **registration and update records** sent to counties shortly before the registration deadline. Evidence of remediation: state officials said the transmission problem was corrected, facilitated county staffing assistance, and said eligible people could use provisional ballots if their timely submitted registration was missing. Remaining uncertainty: complete county-level processing and subsequent ballot disposition. [Texas SOS September 22 memo](https://content.govdelivery.com/accounts/TXSOS/bulletins/42c0759), [Texas SOS September 25 follow-up](https://content.govdelivery.com/accounts/TXSOS/bulletins/42c9345), [Votebeat reporting](https://www.texastribune.org/2026/10/05/texas-voter-registration-backlog-county-frustration/).
 
-Every numerical impact must preserve its precise unit, source link, date, and remediation status. Unknown exposure and probability are `null` in `data/integrity_impact.json`. `scripts/validate_integrity_impact.py` rejects unsupported numeric entries.
+**North Carolina — why 10%?** Elections board action removed Sunday early-voting hours in ten named counties that had them in 2022. Remaining alternatives—other early-voting days, election-day voting, and mail ballots where available—reduce the risk of *lost votes*, though some individuals face heightened access barriers. Actual county-level Sunday participation and 2026 capacity changes are needed to refine the estimate. [NC Newsline coverage with named counties](https://ncnewsline.com/2026/08/21/republicans-on-the-nc-elections-board-agree-to-drop-sunday-early-voting-hours-in-10-more-counties/), [NC State Board historical absentee data](https://www.ncsbe.gov/results-data/absentee-and-provisional-data).
 
-Current Texas source includes the Secretary of State's September 22 directive: https://content.govdelivery.com/accounts/TXSOS/bulletins/42c0759 . North Carolina Sunday-hour decision reported at https://ncnewsline.com/2026/08/21/republicans-on-the-nc-elections-board-agree-to-drop-sunday-early-voting-hours-in-10-more-counties/ . The evidence ledger includes the full source list and official review dates.
+**DOJ voter-list cases — why 1%?** The database entries cover litigation seeking access to voter-list data. The suits themselves do not demonstrate an implemented election-access change or voter disenfranchisement; several were dismissed or dismissed on appeal. A new order affecting eligibility or verified adverse implementation would trigger rapid reassessment. [NCSL litigation overview](https://www.ncsl.org/elections-and-campaigns/federal-requests-for-statewide-voter-lists).
 
-**Next priorities:** determine county-level outstanding Texas registration processing; quantify 2022 and 2026 Sunday-access changes in the named North Carolina counties; then produce and backtest bounded scenario estimates rather than assigning arbitrary odds.
+## The number of people — what is and isn't estimated
+
+**Texas: 500,000+ is a count of delayed application/update records, not people.** Multiple records may belong to the same voter, many may be updates rather than new registrations, and many timely applications may be counted through corrective procedures. It is **not** a credible worst-case numerical count of lost votes.
+
+**North Carolina: ten counties is the identified geographic scope, not a number of voters deprived of ballots.** The historical number of people who voted on Sundays in these particular counties is needed to form a defensible participation-exposure bound. Even those historical Sunday voters must not be equated with lost ballots.
+
+**Legal disputes:** no verified affected voter population has been identified by these records.
+
+The JSON field `worst_case_unique_eligible_voters` remains null until an evidence-grounded *plausible unique-person bound* is estimated. Each incident contains an explicit `exposure_proxy`, precise units, probability range and assumptions. The repository validator checks that a real number, if later added, has a source.
+
+Avoid the tempting but incorrect calculation `worst_case * P(worst-case scenario)` as an estimate of expected affected voters: it confuses tail risk with the distribution of intermediate outcomes.
+
+## How these estimates should evolve
+
+1. Replace broad priors with date-specific evidence of processed transactions, corrected voter records, provisional ballot acceptance and precinct/site access.
+2. Add state- and county-specific historical comparisons, distinguishing higher exposure from a higher rate of actual lost votes.
+3. Calculate conditional scenario ranges and compare previous assessed situations with final confirmed outcomes, tracking calibration.
+4. Version the assumptions and record review dates in `data/integrity_impact.json`, never silently retroactively rewriting historical assessments.
+
+The index measures monitoring urgency; it is not a statement of any party's intent or voters' political preferences.
