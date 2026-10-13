@@ -346,6 +346,35 @@ async function settle(){
  w.fetch=originalRemoteFetch;
  get('#enMode2024').click();
  await w.eval('enLoad(true)');
+ // Real provider-format 2024 rehearsal must use the 2024 endpoint, and
+ // display named candidates and precinct data from the unmodified source.
+ const stateSelect=get('#enArchiveSource');
+ assert.equal(stateSelect.value,'medsl');
+ const namedQueries=[];
+ const archiveOriginalFetch=w.fetch;
+ w.fetch=async(url,opts)=>{
+  if(String(url).startsWith('https://openamerica.io/')){
+   namedQueries.push(String(url));
+   return {ok:true,json:async()=>archival};
+  }
+  return archiveOriginalFetch(url,opts);
+ };
+ stateSelect.value='state';
+ stateSelect.dispatchEvent(new w.Event('change',{bubbles:true}));
+ await w.eval('enLoad(true)');
+ assert(namedQueries.some(url=>url.includes('year=2024&office=House')),
+   'State rehearsal should load the actual archived provider endpoint');
+ assert.equal(get('#enRaces').textContent,'1');
+ assert.match(get('#enConnection').textContent,/STATE SOURCE/);
+ assert.match(get('#enCandidateList').textContent,/Example D/);
+ assert(get('#enDetailSummary').querySelector('.en-report-progress'),
+   'Source-native archive exposes 2024 reporting progress');
+ assert.match(get('#enArchiveIntro').textContent,/not a timed 2024 replay/);
+ w.fetch=archiveOriginalFetch;
+ stateSelect.value='medsl';
+ stateSelect.dispatchEvent(new w.Event('change',{bubbles:true}));
+ await w.eval('enLoad(true)');
+ assert.equal(get('#enRaces').textContent,'435');
  const nightTab=get('.tab[data-page="electionNight"]');
  // Avoid network in deterministic tests; the public API is integration-tested
  // separately on the real site and this suite validates rendering/contracts.
@@ -401,6 +430,26 @@ async function settle(){
  assert.equal(movement[0].delta,-20);
  assert.equal(movement[0].leaderChanged,true);
  assert.match(JSON.stringify(movement),/AZ-01/);
+ // A new race's initial batch must enter the update feed; a candidate
+ // correction without changed total cannot be silently discarded.
+ const preCount={...early,races:{},counts:{races:0}};
+ const arrival=w.eval('enCompareSnapshots('+JSON.stringify(preCount)+','+JSON.stringify(late)+')');
+ assert.equal(arrival.length,1);
+ assert.equal(arrival[0].newRace,true);
+ assert.equal(arrival[0].delta,180);
+ assert.equal(arrival[0].current,180);
+ const sameTotal=structuredClone(early);
+ sameTotal.as_of='2026-11-04T02:08:00Z';
+ sameTotal.races['AZ-01'].cands[0].v=65;
+ sameTotal.races['AZ-01'].cands[1].v=135;
+ const corrected=w.eval('enCompareSnapshots('+JSON.stringify(early)+','+JSON.stringify(sameTotal)+')');
+ assert.equal(corrected.length,1);
+ assert.equal(corrected[0].delta,0);
+ assert.equal(corrected[0].candidateChanged,true);
+ assert.equal(corrected[0].leaderChanged,true);
+ const identical=w.eval('enCompareSnapshots('+JSON.stringify(early)+','+JSON.stringify({...early,as_of:'2026-11-04T02:10:00Z'})+')');
+ assert.equal(identical.length,0,'A new timestamp by itself is not a vote movement');
+
  // A connection outage must preserve previously verified results, rather than
  // quietly replacing them with zeros or JackStradamus probabilities.
  const savedFetch=w.fetch;

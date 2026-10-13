@@ -184,6 +184,9 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .model-evidence-entry .evidence-reason{font-size:11px;line-height:1.55;color:#bdcfe2}
 .model-evidence-entry .evidence-meta{font-size:10px;line-height:1.45;color:#92b1c9}
 @media(max-width:650px){.model-evidence-list{grid-template-columns:1fr}.model-evidence-watch{padding:14px}}
+.en-archive-option{display:inline-flex;gap:7px;align-items:center;font-size:11px;font-weight:700;color:#aac3dc}
+.en-archive-option select{background:#13273b;border:1px solid #405b78;border-radius:7px;color:#d9eafd;padding:7px;font-size:11px}
+.en-archive-option[hidden]{display:none}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -352,7 +355,13 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <button id="enOfficeHouse" type="button" aria-pressed="true">House</button>
  <button id="enOfficeSenate" type="button" aria-pressed="false">Senate</button><button id="enOfficeGovernor" type="button" aria-pressed="false">Governors</button>
  </div>
- <button id="enRefresh" type="button" class="chip">Refresh now</button><span id="enConnection" class="en-connection" role="status">Connecting…</span>
+ <label class="en-archive-option" id="enArchiveSourceLabel">Rehearsal source
+ <select id="enArchiveSource" aria-label="2024 historical data provider">
+  <option value="medsl">MIT · Full archive</option>
+  <option value="state">State feed · Candidates and precincts</option>
+ </select>
+</label>
+<button id="enRefresh" type="button" class="chip">Refresh now</button><span id="enConnection" class="en-connection" role="status">Connecting…</span>
 </div>
 <div class="en-forecast-strip" id="enForecastStrip" aria-label="Published congressional outcome forecast">
  <strong>FORECAST REFERENCE</strong>
@@ -1574,7 +1583,7 @@ function renderEnForecastStrip(){
 // Use direct client-to-provider requests, not a republished proxy.
 let enModeYear=Date.now()<Date.parse('2026-11-03T05:00:00Z')?2024:2026;
 let enOffice='House',enData=null,enSelected=null,enTimer=null,enRequestSerial=0,enVisibleLimit=120;
-let enFetchError=null,enLastFetchAt=null,enMovements=[],enFailures=0;
+let enFetchError=null,enLastFetchAt=null,enMovements=[],enFailures=0,enArchiveSource='medsl';
 const enRemoteBase='https://openamerica.io/elections/results.json';
 function enIsVisible(){return $('#electionNight')?.classList.contains('active')}
 function enNum(n){return typeof n==='number'&&Number.isFinite(n)?n.toLocaleString('en-US'):'—'}
@@ -1695,21 +1704,21 @@ function enCompareSnapshots(previous,next){
    previous.office!==next.office||previous.as_of===next.as_of)return [];
  const changes=[];
  for(const [id,r] of Object.entries(next.races||{})){
-   const old=previous.races?.[id];
-   if(!old||r.total===old.total)continue;
-   const movement=r.total-old.total;
-   const oldLeader=enCurrentLeader(old),newLeader=enCurrentLeader(r);
-   changes.push({
-     at:next.as_of,
-     key:id,
-     office:next.office,
-     prior:old.total,
-     current:r.total,
-     delta:movement,
-     leaderChanged:Boolean(oldLeader&&newLeader&&oldLeader.p!==newLeader.p)
-   });
+  const old=previous.races?.[id];
+  if(!old&&r.total<=0)continue;
+  const delta=r.total-(old?.total||0);
+  const previousLeader=enCurrentLeader(old),nextLeader=enCurrentLeader(r);
+  const leaderChanged=Boolean(previousLeader&&nextLeader&&previousLeader.p!==nextLeader.p);
+  const oldCands=new Map((old?.cands||[]).map(c=>[c.n+'|'+c.p,c.v]));
+  const candidateChanged=Boolean(old)&&
+   (r.cands.length!==old.cands.length||r.cands.some(c=>oldCands.get(c.n+'|'+c.p)!==c.v));
+  if(old&&delta===0&&!candidateChanged&&!leaderChanged)continue;
+  changes.push({at:next.as_of,key:id,office:next.office,
+    prior:old?.total||0,current:r.total,delta,
+    newRace:!old,leaderChanged,candidateChanged});
  }
- return changes.sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta)).slice(0,30);
+ return changes.sort((a,b)=>Number(b.leaderChanged)-Number(a.leaderChanged)||
+   Number(b.newRace)-Number(a.newRace)||Math.abs(b.delta)-Math.abs(a.delta)).slice(0,30);
 }
 function enAcceptSource(o){
  if(!enSourceValid(o,enModeYear,enOffice))throw Error('Results format or vote-count integrity check failed');
@@ -1729,10 +1738,12 @@ function enRenderMovement(){
  const visible=enMovements.filter(x=>x.office===enOffice).slice(0,8);
  if(!visible.length){host.append(elt('div','en-message','No new reporting movements in this office yet.'));return}
  for(const x of visible){
-  const row=elt('div','en-activity-item'),heading=elt('strong','',x.key+(x.leaderChanged?' · LEAD CHANGED':'')),
-    diff=elt('span',x.delta<0?'en-revision':'',x.delta<0?
-      Math.abs(x.delta).toLocaleString()+' votes revised downward':
-      '+'+x.delta.toLocaleString()+' votes since last source update');
+  const row=elt('div','en-activity-item'),heading=elt('strong','',x.key+(x.newRace?' · NEW REPORTING':'')+(x.leaderChanged?' · LEAD CHANGED':'')),
+    diff=elt('span',x.delta<0?'en-revision':'',x.newRace?
+      x.current.toLocaleString()+' first recorded votes':
+      x.delta<0?Math.abs(x.delta).toLocaleString()+' votes revised downward':
+      x.delta>0?'+'+x.delta.toLocaleString()+' recorded votes since prior update':
+      'Candidate totals revised; total ballots unchanged');
   row.append(heading,diff);host.append(row);
  }
 }
@@ -1760,12 +1771,15 @@ function enRender(){
  $('#enRLeads').textContent=enNum(ready.filter(([,r])=>enCurrentLeader(r)?.p==='R').length);
  $('#enCalls').textContent='Not supplied';
  const archivedMEDSL=enModeYear===2024&&enData?.source==='medsl_house_2024_party_aggregates';
+ const archivedState=enModeYear===2024&&enData?.source==='state';
+ $('#enArchiveSourceLabel').hidden=enModeYear!==2024;
+ $('#enArchiveSource').value=enArchiveSource;
  const archivedSenate=enModeYear===2024&&enData?.source==='medsl_senate_2024_party_aggregates';
  const asOfAge=enData?.as_of?(Date.now()-Date.parse(enData.as_of))/60000:Infinity;
  const sourceDelayed=enModeYear===2026&&enData&&(enData.stale||(enData.counting&&(!enData.live||asOfAge>180)));
  const connection=$('#enConnection');
  connection.className='en-connection'+(enFetchError?' error':enModeYear===2026&&enData?.live&&!sourceDelayed?' live':' wait');
- connection.textContent=enFetchError?'SOURCE RETRYING':enModeYear===2024?'ARCHIVE · REHEARSAL':
+ connection.textContent=enFetchError?'SOURCE RETRYING':archivedState?'STATE SOURCE · ARCHIVE':enModeYear===2024?'ARCHIVE · REHEARSAL':
    enData?.live&&!sourceDelayed?'LIVE · 60 SEC AUTO':
    enData?.counting?'STATE COUNT RECEIVED':'WAITING FOR VOTES';
  let info=enData&&archivedSenate?
@@ -1787,6 +1801,9 @@ function enRender(){
  $('#enStatus').textContent=info;
  $('#enChecked').textContent=enLastFetchAt?'Last checked '+enFormattedTime(enLastFetchAt.toISOString()):'Not checked yet';
  $('#enArchiveIntro').hidden=enModeYear!==2024;
+ if(enModeYear===2024)$('#enArchiveIntro').textContent=archivedState?
+  'State-derived 2024 source rehearsal: named candidates and official-state reported precinct shares via Open America. Partial coverage, stored historical results, not a timed 2024 replay or a certified race call.':
+  'MIT/MEDSL 2024 House (435 districts) and Senate (35 contests) historical party aggregates. No candidate names or precinct progress. Select State feed to rehearse the same named-candidate format as 2026 live results.';
  enRenderMovement();
  enUpdateSelection();
  const query=($('#enSearch').value||'').trim().toLowerCase(),list=$('#enRaceList');list.replaceChildren();
@@ -1867,7 +1884,7 @@ function enRenderDetail(){
 }
 
 function enFetchUrl(year,office){
- if(year!==2026||!['House','Senate','Governor'].includes(office))
+ if(![2024,2026].includes(year)||!['House','Senate','Governor'].includes(office))
    throw Error('Unsupported live-results source request');
  return enRemoteBase+'?year='+year+'&office='+encodeURIComponent(office);
 }
@@ -1887,8 +1904,8 @@ async function enLoad(manual=false){
  if(manual)$('#enStatus').textContent='Checking '+office+' source results…';
  try{
   let obj;
-  if(year===2026){
-   // Fetch from the browser, not a republished or cached server mirror.
+  if(year===2026||(year===2024&&enArchiveSource==='state')){
+   // Fetch directly from the source, not a republished cache.
    const response=await fetch(enFetchUrl(year,office),{
       mode:'cors',credentials:'omit',cache:'no-store',
       headers:{Accept:'application/json'}
@@ -1918,10 +1935,15 @@ async function enLoad(manual=false){
  if(serial===enRequestSerial)enQueueRefresh();
 }
 function enSwitch(year,office){
+ if(year===2024&&office==='Governor')enArchiveSource='state';
  enModeYear=year;enOffice=office;enData=null;enFetchError=null;enFailures=0;enSelected=null;enVisibleLimit=120;$('#enSearch').value='';enRender();enLoad(true);
 }
 $('#enMode2026').addEventListener('click',()=>enSwitch(2026,enOffice));
 $('#enMode2024').addEventListener('click',()=>enSwitch(2024,enOffice));
+$('#enArchiveSource').addEventListener('change',event=>{
+ enArchiveSource=event.target.value==='state'?'state':'medsl';
+ enSwitch(2024,enOffice);
+});
 $('#enOfficeHouse').addEventListener('click',()=>enSwitch(enModeYear,'House'));
 $('#enOfficeSenate').addEventListener('click',()=>enSwitch(enModeYear,'Senate'));
 $('#enOfficeGovernor').addEventListener('click',()=>enSwitch(enModeYear,'Governor'));
