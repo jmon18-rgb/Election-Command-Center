@@ -1,5 +1,5 @@
-/* Four-state civicAPI adapter: validated Nov. 3, 2026 six
- * statewide Senate and governor races in AK, ME, MA, NV. Provider calls remain
+/* Shared civicAPI adapter: strict, source-probed 2026 statewide election
+ * records. Includes OH special Senate as a distinct ballot key. Provider calls remain
  * civicAPI calls only, never official certifications. */
 (function(root){
   'use strict';
@@ -12,7 +12,15 @@
     'Senate|ME':{state:'ME',name:'Maine US Senate',office:'Senate',id:87188},
     'Governor|ME':{state:'ME',name:'Maine Governor',office:'Governor',id:87189},
     'Governor|MA':{state:'MA',name:'Massachusetts Governor',office:'Governor',id:87276},
-    'Governor|NV':{state:'NV',name:'Nevada Governor',office:'Governor',id:87260}
+    'Governor|NV':{state:'NV',name:'Nevada Governor',office:'Governor',id:87260},
+    // Second four-state batch: independently verified Nov. 3 source IDs.
+    'Senate|OH-special':{state:'OH',name:'Ohio US Senate Special',office:'Senate',id:87527},
+    'Governor|OH':{state:'OH',name:'Ohio Governor',office:'Governor',id:87365},
+    'Governor|WI':{state:'WI',name:'Wisconsin Governor',office:'Governor',id:87491},
+    'Senate|NE':{state:'NE',name:'Nebraska US Senate',office:'Senate',id:87254},
+    'Governor|NE':{state:'NE',name:'Nebraska Governor',office:'Governor',id:87255},
+    'Senate|KS':{state:'KS',name:'Kansas US Senate',office:'Senate',id:87162},
+    'Governor|KS':{state:'KS',name:'Kansas Governor',office:'Governor',id:87163}
   });
   const configuration=item=>item&&RACES[item.office+'|'+item.key]||null;
   const supports=item=>Boolean(configuration(item));
@@ -86,7 +94,7 @@
     if(updated&&(typeof updated!=='string'||!Number.isFinite(Date.parse(updated))||
       Date.parse(updated)>now+15*60000||
       (total>0&&Date.parse(updated)<START)))return null;
-    return {provider:'civicAPI',office:cfg.office,key:cfg.state,
+    return {provider:'civicAPI',office:cfg.office,key:item.key,
       race_id:row.id,last_updated:updated,percent_reporting:detail.percent_reporting,
       total,candidates,called,source_url:BASE+'/race/'+row.id};
   }

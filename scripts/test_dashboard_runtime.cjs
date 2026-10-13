@@ -1137,6 +1137,106 @@ async function settle(){
  w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
 
 
+ // Batch #2: verify all seven OH / WI / NE / KS provider race IDs in
+ // the REAL watchlist, including the distinct Ohio special Senate key.
+ const nextBatch=[
+  {state:'OH',office:'Senate',key:'OH-special',pin:'OH-SEN',
+    name:'Ohio US Senate Special',id:87527},
+  {state:'OH',office:'Governor',key:'OH',pin:'OH-GOV',
+    name:'Ohio Governor',id:87365},
+  {state:'WI',office:'Governor',key:'WI',pin:'WI-GOV',
+    name:'Wisconsin Governor',id:87491},
+  {state:'NE',office:'Senate',key:'NE',pin:'NE-SEN',
+    name:'Nebraska US Senate',id:87254},
+  {state:'NE',office:'Governor',key:'NE',pin:'NE-GOV',
+    name:'Nebraska Governor',id:87255},
+  {state:'KS',office:'Senate',key:'KS',pin:'KS-SEN',
+    name:'Kansas US Senate',id:87162},
+  {state:'KS',office:'Governor',key:'KS',pin:'KS-GOV',
+    name:'Kansas Governor',id:87163}
+ ];
+ const nextRecords=new Map();
+ for(const spec of nextBatch){
+  const row={
+   id:spec.id,country:'US',province:spec.state,district:null,
+   municipality:null,type:spec.office==='Senate'?'US Senate':'Governor',
+   election_type:spec.office==='Senate'?'General':'Statewide',
+   election_name:spec.name,election_date:'2026-11-03T05:00:00.000Z',
+   candidates:[
+    {name:spec.state+' D',party:'Democratic',votes:0,percent:0,winner:false},
+    {name:spec.state+' R',party:'Republican',votes:0,percent:0,winner:false}
+   ]
+  };
+  const detail={...row,election_type:row.type,
+   percent_reporting:47,last_updated:'2026-11-04T01:45:00Z',
+   candidates:[
+    {name:spec.state+' D',party:'Democratic',votes:620,percent:62,winner:false},
+    {name:spec.state+' R',party:'Republican',votes:380,percent:38,winner:false}
+   ]
+  };
+  nextRecords.set(spec.id,{row,detail});
+  assert(w.StateBatchCivicAdapter.supports({office:spec.office,key:spec.key}));
+  assert.equal(w.eval('enCivicSelect('+JSON.stringify({office:spec.office,key:spec.key})+','+
+    JSON.stringify({races:[row],count:1})+')').id,spec.id);
+ }
+ assert.equal(w.StateBatchCivicAdapter.supports({office:'Senate',key:'OH'}),false,
+  'Ohio regular Senate result must not masquerade as the 2026 special election');
+ const nextClock=w.Date.now,nextFetch=w.fetch;
+ const seenNext=[],badUpdates=new Set();
+ w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ w.fetch=async url=>{
+  const address=String(url);seenNext.push(address);
+  if(address.startsWith('https://civicapi.org/api/v2/race/search')){
+   const parsed=new URL(address),state=parsed.searchParams.get('province');
+   const office=parsed.searchParams.get('query')==='US Senate'?'Senate':'Governor';
+   const spec=nextBatch.find(s=>s.state===state&&s.office===office);
+   const record=spec?nextRecords.get(spec.id):null;
+   return {ok:true,json:async()=>({races:record?[record.row]:[],count:record?1:0})};
+  }
+  if(address.startsWith('https://civicapi.org/api/v2/race/')){
+   const id=Number(address.match(/\/race\/(\d+)/)?.[1]);
+   const value=nextRecords.get(id);
+   if(!value)return {ok:false,status:404,json:async()=>({})};
+   const detail=badUpdates.has(id)?
+     {...value.detail,id:id+1,last_updated:'2026-11-04T02:00:00Z'}:value.detail;
+   return {ok:true,json:async()=>detail};
+  }
+  return {ok:true,json:async()=>empty2026};
+ };
+ for(const spec of nextBatch){
+  get('#enWatchInput').value=spec.pin;
+  get('#enWatchForm').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
+ }
+ await new Promise(resolve=>setTimeout(resolve,70));
+ await w.eval('enRefreshCivicWatchlist(true)');
+ for(const spec of nextBatch){
+  const item={office:spec.office,key:spec.key};
+  const status=w.eval('enCivicStatus('+JSON.stringify(item)+')');
+  assert.match(status,/1,000 reported votes/,
+   'Expected independent source result for '+spec.pin+': '+status);
+  assert(w.eval('enCivicURL('+JSON.stringify(item)+')').endsWith('/race/'+spec.id),
+   'Provider ID mismatch for '+spec.pin);
+  assert.match(get('#enWatchItems').textContent,new RegExp(spec.pin));
+  assert(seenNext.some(u=>u.includes('province='+spec.state)),
+   'No live provider search was attempted for '+spec.state);
+ }
+ assert.equal(get('#enRaces').textContent,primaryRaceCountBeforeCivic,
+  'Seven additional civicAPI sources may not alter Open America primary totals');
+ const ohSpecial={office:'Senate',key:'OH-special'};
+ assert.equal(w.eval('enCivicSelect('+JSON.stringify(ohSpecial)+','+
+  JSON.stringify({races:[{...nextRecords.get(87527).row,
+   election_name:'Ohio US Senate'}],count:1})+')'),null,
+  'OH Senate special must never ingest regular-election source records');
+ badUpdates.add(87527);
+ await w.eval('enCivicFetchOne('+JSON.stringify(ohSpecial)+')');
+ assert.match(w.eval('enCivicStatus('+JSON.stringify(ohSpecial)+')'),/1,000 reported votes/,
+  'Provider-ID mismatch must retain last verified Ohio Senate special tally');
+ assert.match(w.eval('enCivicStatus('+JSON.stringify(ohSpecial)+')'),/SOURCE RETRYING/);
+ w.fetch=nextFetch;w.Date.now=nextClock;
+ w.eval('enWatched=[];enRenderWatchlist()');
+ w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
+
+
  // Meaningful alerts never grant Notification access without a click, never
  // fire for a mere timestamp refresh, and require the race be pinned.
  const alertInput=get('#enWatchInput'),alertForm=get('#enWatchForm');
