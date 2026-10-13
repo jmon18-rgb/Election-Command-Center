@@ -791,7 +791,7 @@ async function settle(){
    ],percent_reporting:0
  };
  const nhSenateDetail={
-   ...nhSenateSearch,last_updated:'2026-11-04T01:30:00Z',
+   ...nhSenateSearch,election_type:'US Senate',last_updated:'2026-11-04T01:30:00Z',
    candidates:[
     {name:'First candidate',party:'Democratic',votes:510,percent:51,winner:false},
     {name:'Second candidate',party:'Republican',votes:490,percent:49,winner:false}
