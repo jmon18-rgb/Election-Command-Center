@@ -187,7 +187,8 @@ def main():
     outcomes=json.loads((ROOT/"data/senate_history_2020_2022_2024.json").read_text(encoding="utf-8"))
     doc=build(texts,outcomes,digests)
     supported=sum(item["eligible_races"]>=3 for item in doc["by_year"].values())
-    if (doc["races_evaluated"]<12 or supported<2 or\n        any(count<80 for count in doc["poll_observation_coverage"]["raw_records"].values())):
+    if (doc["races_evaluated"]<12 or supported<2 or
+        any(count<80 for count in doc["poll_observation_coverage"]["raw_records"].values())):
         raise ValueError("Not enough historical Senate races for publication: "+str(doc["by_year"]))
     OUT.write_text(json.dumps(doc,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print("Retrospective Senate poll research",doc["races_evaluated"],"races; year coverage",doc["by_year"])
