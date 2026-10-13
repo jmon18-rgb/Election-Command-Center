@@ -23,6 +23,14 @@ Proposed working cutoff: **90%** of the frozen slate's contests won by Democrati
 
 Do not use the currently *polled* set as the competitive universe. It disproportionately selects closely watched contests, and the available survey feed covers just a fraction of 435 House districts.
 
+## A useful reach-race watch: South Carolina Senate
+
+A near-sweep of a **frozen, competitive slate** is the operative Blue Tsunami definition. A single noncompetitive/likely-party-held seat flipping would not alone satisfy it. Nevertheless, outcomes outside the frozen battleground slate can be reported separately as an **outlier/reach-race indicator** showing the geographic breadth of actual results. This is descriptive, not a replacement for calibrated scenario probabilities.
+
+For October 2026, a clear example is **South Carolina U.S. Senate — Darline Graham (R) vs. Annie Andrews (D)**, which [Cook Political Report classified Likely Republican](https://www.cookpolitical.com/senate/race/488671) as of its Sept. 23 race-page update and still listed in that category in its [Oct. 6 Senate ratings](https://www.cookpolitical.com/ratings/senate-race-ratings). The dashboard shows a source-dated research note rather than silently treating South Carolina as one of Cook's seven toss-ups. The outlier note does not change the frozen near-sweep rule.
+
+A standalone probability for a South Carolina flip, or for the tsunami conditional on such a flip, would require a sourced calibrated **joint** distribution of state/district outcomes. Neither DDHQ's publicly reported joint chamber-control totals nor one state poll supplies that. Do not invent the split.
+
 ## Published joint control odds (external source; October 13 update)
 
 The old four percentages used a guessed 4-point standard deviation around the national generic ballot. Those percentages never estimated congressional control. They are retired. **The site now uses Decision Desk HQ's publicly published, joint House/Senate 2026 outcome forecast** with explicit attribution. These are DDHQ model outputs, not calculated from JackStradamus polling averages.
