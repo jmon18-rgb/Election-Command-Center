@@ -1729,7 +1729,7 @@ $('#enWatchForm').addEventListener('submit',event=>{
  enWatchToggle(item);field.value='';
 });
 
-function enIsVisible(){return $('#electionNight')?.classList.contains('active')}
+function enIsVisible(){return typeof document!=='undefined'&&Boolean(document?.querySelector?.('#electionNight')?.classList.contains('active'))}
 function enNum(n){return typeof n==='number'&&Number.isFinite(n)?n.toLocaleString('en-US'):'—'}
 function enFormattedTime(v){const d=v?new Date(v):null;return d&&!isNaN(+d)?d.toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}):'unknown'}
 
@@ -2085,7 +2085,7 @@ async function enRefreshWatchedOffices(exceptOffice){
    if(!response.ok)throw Error('HTTP '+response.status);
    const obj=await response.json();
    if(!enSourceValid(obj,2026,office))throw Error('Unrecognized vote source');
-   if(enModeYear!==2026)return;
+   if(enModeYear!==2026||!enIsVisible())return;
    const old=enOfficeSnapshots[office]||null;
    if(!enSnapshotCompatible(old,obj))throw Error('Unordered source update');
    enOfficeSnapshots[office]=obj;
@@ -2095,7 +2095,7 @@ async function enRefreshWatchedOffices(exceptOffice){
     enData=obj;enFetchError=null;enLastFetchAt=new Date();enRender();
    }else enRenderWatchlist();
   }catch(err){
-   if(enModeYear===2026){enOfficeErrors[office]=String(err?.message||err);enRenderWatchlist()}
+   if(enModeYear===2026&&enIsVisible()){enOfficeErrors[office]=String(err?.message||err);enRenderWatchlist()}
   }finally{enWatchRefreshPending.delete(office)}
  }));
  if(enModeYear===2026&&enIsVisible())enQueueRefresh();
