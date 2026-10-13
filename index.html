@@ -113,8 +113,10 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div class="model-universe-header"><strong>National seat inventory</strong><span id="seatInventoryAsOf" class="tiny">Checking coverage…</span></div>
  <div class="model-universe-row"><div><strong id="seatHouseCount">— / 435</strong><span>House districts with usable polling</span></div><div class="model-universe-track"><i id="seatHouseBar"></i></div></div>
  <div class="model-universe-row"><div><strong id="seatSenateCount">— / 35</strong><span>Senate contests with usable polling</span></div><div class="model-universe-track"><i id="seatSenateBar"></i></div></div>
+ <div class="model-universe-row"><div><strong id="seatHistoricalCount">— / 435</strong><span>2024 district-level two-party results geographically comparable to 2026</span></div><div class="model-universe-track"><i id="seatHistoricalBar"></i></div></div>
+ <p class="methodline" id="seatRedistrictingNote">Verifying 2026 redistricting. Old boundaries must not be treated as current boundaries.</p>
  <p id="seatInventoryNote" class="methodline">The unpolled seats still exist. House districts require map-verified fundamentals; Senate control also requires 65 holdovers. This measures survey coverage, not party seat projections.</p>
- <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/SEAT_MODEL.md" target="_blank" rel="noopener noreferrer" class="seat-model-link">See model prerequisites ↗</a>
+ <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/SEAT_MODEL.md" target="_blank" rel="noopener noreferrer" class="seat-model-link">See model prerequisites ↗</a> <span class="tiny">·</span> <a href="https://www.census.gov/programs-surveys/decennial-census/about/rdo/congressional-districts.html" target="_blank" rel="noopener noreferrer" class="seat-model-link">Census map status ↗</a>
 </section>
 <div class="model-workspace">
  <div class="model-board"><div class="model-board-header"><span id="modelOfficeTitle">Senate races</span><span>Current polling gap</span></div><div id="modelBoard"><div class="empty">Loading the race board…</div></div></div>
@@ -994,6 +996,20 @@ $('#enSearch').addEventListener('input',enRender);
 document.querySelector('.tab[data-page="electionNight"]').addEventListener('click',()=>{if(!enData)enLoad(true);else if(enModeYear===2026&&!enTimer)enLoad(false)});
 document.querySelectorAll('.tab:not([data-page="electionNight"])').forEach(el=>el.addEventListener('click',()=>{if(enTimer){clearTimeout(enTimer);enTimer=null}}));
 if(location.hash.split('/')[0]==='#electionNight')enLoad(true);
+
+function renderHouseGeographyBridge(data){
+ const info=data?.summary;
+ if(!info||info.voting_house_districts!==435||data?.is_forecast!==false)return;
+ $('#seatHistoricalCount').textContent=info.comparable_2024_recorded_two_party_districts+' / 435';
+ $('#seatHistoricalBar').style.width=(100*info.comparable_2024_recorded_two_party_districts/435).toFixed(2)+'%';
+ $('#seatRedistrictingNote').textContent='2026 boundary check: '+info.states_redrawn+' states / '+info.redrawn_districts+
+  ' House districts redrawn since 2024; old district-number vote totals are BLOCKED in those seats. '+
+  info.unchanged_boundary_districts_missing_major_party_votes+
+  ' additional unchanged districts lack votes recorded for one major party. Aligned 2024 votes are historical context, NOT estimated 2026 winners.';
+}
+fetch('./data/house_geography_bridge.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('map bridge unavailable');return r.json()}).then(renderHouseGeographyBridge).catch(()=>{
+ $('#seatRedistrictingNote').textContent='Census district-boundary comparison not yet refreshed. Old House district vote shares are not available as 2026 priors.';
+});
 
 function renderSeatUniverse(data){
  const house=data?.house,senate=data?.senate;
