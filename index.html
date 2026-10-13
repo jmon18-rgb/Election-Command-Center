@@ -1689,7 +1689,7 @@ function enWatchToggle(item){
  * official certification. Keep identifier verification and source isolation. */
 const enCivicBase='https://civicapi.org/api/v2';
 let enCivicByWatch=Object.create(null),enCivicRaceIds=Object.create(null),
- enCivicErrors=Object.create(null),enCivicPending=new Set(),enCivicLastSweep=0;
+ enCivicErrors=Object.create(null),enCivicPending=new Set(),enCivicLastSweep=0,enCivicSweepCursor=0;
 function enCivicMatch(item,row){
  if(!item||!row||row.country!=='US'||row.province!==item.key.slice(0,2)||
     typeof row.election_date!=='string'||!row.election_date.startsWith('2026-11-03')||
@@ -1763,7 +1763,7 @@ function enCivicQuery(item){
  const province=item.key.slice(0,2);
  const query=item.office==='Senate'?'US Senate':
    item.office==='Governor'?'Governor':
-   'US House '+Number(item.key.slice(3));
+   (Number(item.key.slice(3))===0?'US House':'US House '+Number(item.key.slice(3)));
  const params=new URLSearchParams({country:'US',province,
    startDate:'2026-11-03',endDate:'2026-11-03',query,limit:'20'});
  return enCivicBase+'/race/search?'+params.toString();
@@ -1779,7 +1779,7 @@ function enCivicStatus(item){
  const call=data.called?' · civicAPI CALL: '+data.called+' (not certification)':' · NO CALL';
  if(!data.total)return 'civicAPI · no votes reported · '+reporting+call+revision;
  return 'civicAPI · '+enNum(data.total)+' reported votes · '+lead+
-  ' · '+reporting+call+revision;
+  ' · '+reporting+call+revision+(enCivicErrors[id]?' · SOURCE RETRYING':'');
 }
 function enCivicURL(item){return enCivicByWatch[enWatchId(item)]?.source_url||'https://civicapi.org'}
 async function enCivicFetchOne(item){
@@ -1825,7 +1825,14 @@ async function enRefreshCivicWatchlist(force=false){
  if(!force&&now-enCivicLastSweep<interval)return;
  enCivicLastSweep=now;
  // Low-impact serial client requests; only manually pinned out-of-feed races.
- const missing=enWatched.filter(x=>!enSupportedStates.has(x.key.slice(0,2))).slice(0,12);
+ const all=enWatched.filter(x=>!enSupportedStates.has(x.key.slice(0,2)));
+ if(!all.length)return;
+ // Rotate rather than permanently skipping the 13th–40th personally
+ // watched supplemental race when the number of pins exceeds one sweep.
+ const start=enCivicSweepCursor%all.length;
+ const limit=Math.min(12,all.length);
+ const missing=Array.from({length:limit},(_,i)=>all[(start+i)%all.length]);
+ enCivicSweepCursor=(start+limit)%all.length;
  for(const item of missing){
   if(enModeYear!==2026||!enIsVisible())return;
   await enCivicFetchOne(item);
