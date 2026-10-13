@@ -946,7 +946,7 @@ async function settle(){
  assert.equal(get('#enMode2026').getAttribute('aria-pressed'),'true',
   'Actual 2026 mode must be selected on the visible Election Night UI');
  w.localStorage.removeItem('bluewaves_election_alerts_2026_v1');
- w.eval('enAlertRows=[];enAlertSeen.clear();enRenderAlertInbox()');
+ get('#enAlertClear').click(); // reset through the actual app-owned lexical state
  const alertRows=()=>[...get('#enAlertItems').querySelectorAll('button.en-alert-row')];
  const testTime=w.Date.now;
  w.Date.now=()=>Date.parse('2026-10-13T21:00:00Z');
