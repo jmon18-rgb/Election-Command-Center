@@ -69,7 +69,10 @@ def as_votes(raw):
     num=int(float(value))
     return num if 0<=num<=50_000_000 else None
 
-def parse_source(text,source_file_id=None,sha256=None):
+def parse_source(text,source_file_id=None,sha256=None,years=YEARS):
+    years=tuple(years)
+    if not years or len(set(years))!=len(years) or any(type(y) is not int or y%2 or not 1976<=y<=2024 for y in years):
+        raise ValueError("Invalid historical Senate election cycles")
     if not isinstance(text,str) or not text.strip():raise ValueError("No source records")
     first_line=text.splitlines()[0]
     delimiter="\t" if first_line.count("\t")>first_line.count(",") else ","
@@ -81,7 +84,7 @@ def parse_source(text,source_file_id=None,sha256=None):
     all_rows=defaultdict(lambda:{"D":0,"R":0,"OTHER":0,"candidates":[],
                                  "invalid_vote_rows":0,"candidate_rows":0})
     for row in reader:
-        if str(row.get("year","")).strip() not in {str(y) for y in YEARS}:continue
+        if str(row.get("year","")).strip() not in {str(y) for y in years}:continue
         if str(row.get("stage") or "").strip().upper() not in ("GEN","GENERAL"):continue
         office=str(row.get("office") or "").strip().upper()
         if office and office not in ("US SENATE","U.S. SENATE","SENATE"):continue
@@ -127,7 +130,7 @@ def parse_source(text,source_file_id=None,sha256=None):
             "eligible_as_2026_forecast_prior":False,
             "historical_election_result_not_poll":True
         })
-    counts={str(y):sum(r["election_year"]==y for r in out) for y in YEARS}
+    counts={str(y):sum(r["election_year"]==y for r in out) for y in years}
     for y,num in counts.items():
         if not 30<=num<=40:
             raise ValueError(f"Historical Senate {y} has implausible contest count: {num}")
@@ -140,7 +143,7 @@ def parse_source(text,source_file_id=None,sha256=None):
         "source_doi":DOI,"source_url":DATASET,"source_license":"CC0 1.0",
         "source_datafile_id":source_file_id,"source_file_sha256":sha256,
         "imported_at":dt.datetime.now(dt.timezone.utc).isoformat(),
-        "years":list(YEARS),"contests_by_year":counts,
+        "years":list(years),"contests_by_year":counts,
         "contest_count":len(out),"contests_without_both_major_party_votes":sum(r["missing_major_party_vote"] for r in out),
         "contest_records":out,
         "is_election_forecast":False,
