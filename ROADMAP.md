@@ -168,3 +168,12 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - The current JackStradamus model now includes **2026-specific evidence triage**: flags races where alternative legitimate weights could change the polling leader, no independent firms substantiate a sponsored-only average, independent-only and headline estimates materially differ, pollsters have a wide observed spread, or poll evidence is thin/stale.
 - Each card cites the correct race and office and opens the exact underlying polling record. Current-only, candidate-matched dataset; different races with the same state are never conflated. Observed poll dispersion is **not a forecast uncertainty interval**.
 - Next high-return work: compare 2026 within-pollster *repeated-wave* changes to the overall model average, track original publication timestamps and identify independent confirmation. Live 2026 election-night results still need a working authorized source.
+
+## October 13: live election-night desk and usable desktop layout
+
+- Prioritized current 2026 polling, published model probabilities and Election Night, rather than extending historical biases from older methodological eras. Historical ten-cycle PR #10 was closed without merging.
+- Added a direct browser source adapter for Open America's documented cross-origin election results API, for 2026 House, Senate and governor. The provider covers 22 states (partial national data) and does not call winners.
+- Added 60-second live polling, 10-to-15-minute quiet backoff, a source/freshness indicator, vote validation and retention of last verified counts on failure. An integration test checks the real provider's 2024 archive, 2026 endpoint and cross-origin response headers.
+- Election Night includes a concise dated Decision Desk HQ forecast-reference strip separate from votes. No in-house chamber probabilities are inferred from incomplete polling or results.
+- JackStradamus collapses historical research into a drawer so current 2026 polling comes first.
+- Next priorities: browser-based deployed-source confirmation, race-call provider agreement, and additional election reporting beyond 22 states.
