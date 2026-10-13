@@ -1,0 +1,3830 @@
+{
+  "status": "staged_not_used_in_live_model",
+  "source_name": "Silver Bulletin Pollster Stats Full 2026",
+  "source_page": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+  "source_download": "https://www.natesilver.net/api/v1/file/7bd65470-3e0d-4c0f-a658-22ca23b216ae.xlsx",
+  "source_publication_date": "2026-01-14",
+  "fetched_at": "2026-10-13T15:47:18.917741+00:00",
+  "attribution": "Nate Silver and Eli McKown-Dawson / Silver Bulletin",
+  "worksheet": "xl/worksheets/sheet1.xml",
+  "source_header": {
+    "0": "Pollster",
+    "2": "Pollster Rating ID",
+    "3": "# of Polls",
+    "4": "AAPOR / Roper",
+    "5": "Banned by Silver Bulletin",
+    "7": "Predictive    Plus-Minus",
+    "8": "SB Grade",
+    "9": "Mean-Reverted Bias",
+    "11": "Races Called Correctly",
+    "12": "Misses Outside MOE",
+    "13": "Simple Average Error",
+    "14": "Simple Expected Error",
+    "15": "Simple Plus-Minus",
+    "17": "Advanced Plus-Minus",
+    "18": "Mean-Reverted Advanced Plus Minus",
+    "20": "# of Polls for Bias Analysis",
+    "21": "Bias",
+    "22": "House Effect",
+    "24": "Average Distance from Polling Average (ADPA)",
+    "25": "Herding Penalty"
+  },
+  "field_columns": {
+    "name": 0,
+    "predictive_plus_minus": 7,
+    "mean_reverted_bias": 9,
+    "grade": null,
+    "history_count": null
+  },
+  "rows_parsed": 540,
+  "matched_to_older_538_aliases": 0,
+  "matches": {},
+  "entries": {
+    "1": {
+      "pollster": "1",
+      "predictive_plus_minus_raw": "-1.0888932292810101",
+      "mean_reverted_bias_raw": "0.89811018395004605",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "2": {
+      "pollster": "2",
+      "predictive_plus_minus_raw": "-0.99721655233265205",
+      "mean_reverted_bias_raw": "0.31545373042691299",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "3": {
+      "pollster": "3",
+      "predictive_plus_minus_raw": "-0.97525821742491903",
+      "mean_reverted_bias_raw": "-0.54944506367468904",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "4": {
+      "pollster": "4",
+      "predictive_plus_minus_raw": "-0.85028832134265997",
+      "mean_reverted_bias_raw": "-1.2251531942114",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "5": {
+      "pollster": "5",
+      "predictive_plus_minus_raw": "-0.83054762242903502",
+      "mean_reverted_bias_raw": "7.9388549541296802E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "6": {
+      "pollster": "6",
+      "predictive_plus_minus_raw": "-0.81192813084434001",
+      "mean_reverted_bias_raw": "-7.0992935632207294E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "7": {
+      "pollster": "7",
+      "predictive_plus_minus_raw": "-0.80364925522458397",
+      "mean_reverted_bias_raw": "2.0375623127915099",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "8": {
+      "pollster": "8",
+      "predictive_plus_minus_raw": "-0.79508246688462803",
+      "mean_reverted_bias_raw": "1.41210767186513",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "9": {
+      "pollster": "9",
+      "predictive_plus_minus_raw": "-0.77185778211261902",
+      "mean_reverted_bias_raw": "2.0013120796263899",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "10": {
+      "pollster": "10",
+      "predictive_plus_minus_raw": "-0.65740353478054103",
+      "mean_reverted_bias_raw": "8.5738369232671405E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "11": {
+      "pollster": "11",
+      "predictive_plus_minus_raw": "-0.65218072363336499",
+      "mean_reverted_bias_raw": "0.26831293974281201",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "12": {
+      "pollster": "12",
+      "predictive_plus_minus_raw": "-0.64112523875455696",
+      "mean_reverted_bias_raw": "-1.27871083699196",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "13": {
+      "pollster": "13",
+      "predictive_plus_minus_raw": "-0.63584747267930297",
+      "mean_reverted_bias_raw": "-3.5831969327407398E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "14": {
+      "pollster": "14",
+      "predictive_plus_minus_raw": "-0.60981766890566902",
+      "mean_reverted_bias_raw": "0.60742786112269098",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "15": {
+      "pollster": "15",
+      "predictive_plus_minus_raw": "-0.603876305722577",
+      "mean_reverted_bias_raw": "0.11891342201070899",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "16": {
+      "pollster": "16",
+      "predictive_plus_minus_raw": "-0.57718941269322699",
+      "mean_reverted_bias_raw": "-0.109281081158076",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "17": {
+      "pollster": "17",
+      "predictive_plus_minus_raw": "-0.55231671755854495",
+      "mean_reverted_bias_raw": "-0.193408120105661",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "18": {
+      "pollster": "18",
+      "predictive_plus_minus_raw": "-0.54317151519134099",
+      "mean_reverted_bias_raw": "1.58047880928655",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "19": {
+      "pollster": "19",
+      "predictive_plus_minus_raw": "-0.53238358166850897",
+      "mean_reverted_bias_raw": "1.34434153228505",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "20": {
+      "pollster": "20",
+      "predictive_plus_minus_raw": "-0.52529393732736196",
+      "mean_reverted_bias_raw": "0.85034750261231096",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "21": {
+      "pollster": "21",
+      "predictive_plus_minus_raw": "-0.5244823780283",
+      "mean_reverted_bias_raw": "-0.99512278656473796",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "22": {
+      "pollster": "22",
+      "predictive_plus_minus_raw": "-0.52033282223556498",
+      "mean_reverted_bias_raw": "0.46524185399324502",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "23": {
+      "pollster": "23",
+      "predictive_plus_minus_raw": "-0.49613660280477501",
+      "mean_reverted_bias_raw": "-0.54868830029025994",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "24": {
+      "pollster": "24",
+      "predictive_plus_minus_raw": "-0.49578322744985998",
+      "mean_reverted_bias_raw": "0.70505253254039801",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "25": {
+      "pollster": "25",
+      "predictive_plus_minus_raw": "-0.44599467915399499",
+      "mean_reverted_bias_raw": "0.43292538954948101",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "26": {
+      "pollster": "26",
+      "predictive_plus_minus_raw": "-0.44556007456035202",
+      "mean_reverted_bias_raw": "2.1836888810388202",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "27": {
+      "pollster": "27",
+      "predictive_plus_minus_raw": "-0.439340563892198",
+      "mean_reverted_bias_raw": "-0.50374803384058298",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "28": {
+      "pollster": "28",
+      "predictive_plus_minus_raw": "-0.40959682105909601",
+      "mean_reverted_bias_raw": "0.82627107357822505",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "29": {
+      "pollster": "29",
+      "predictive_plus_minus_raw": "-0.40212610849709302",
+      "mean_reverted_bias_raw": "0.52121602899355401",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "30": {
+      "pollster": "30",
+      "predictive_plus_minus_raw": "-0.39499783518452303",
+      "mean_reverted_bias_raw": "-0.97743787619653499",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "31": {
+      "pollster": "31",
+      "predictive_plus_minus_raw": "-0.38744287457462301",
+      "mean_reverted_bias_raw": "-0.110097635153056",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "32": {
+      "pollster": "32",
+      "predictive_plus_minus_raw": "-0.38292762649752499",
+      "mean_reverted_bias_raw": "1.0321692127875799",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "33": {
+      "pollster": "33",
+      "predictive_plus_minus_raw": "-0.38115693910683002",
+      "mean_reverted_bias_raw": "-0.13585153060490701",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "34": {
+      "pollster": "34",
+      "predictive_plus_minus_raw": "-0.37861295682826701",
+      "mean_reverted_bias_raw": "0.84282686516447003",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "35": {
+      "pollster": "35",
+      "predictive_plus_minus_raw": "-0.37774588534551601",
+      "mean_reverted_bias_raw": "-0.51904153329929803",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "36": {
+      "pollster": "36",
+      "predictive_plus_minus_raw": "-0.37115057258142797",
+      "mean_reverted_bias_raw": "1.2852683398626901",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "37": {
+      "pollster": "37",
+      "predictive_plus_minus_raw": "-0.35118325441722398",
+      "mean_reverted_bias_raw": "-1.87133660820617E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "38": {
+      "pollster": "38",
+      "predictive_plus_minus_raw": "-0.34017457576346499",
+      "mean_reverted_bias_raw": "0.81442527275835197",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "39": {
+      "pollster": "39",
+      "predictive_plus_minus_raw": "-0.34013630089119701",
+      "mean_reverted_bias_raw": "-0.12579478391375001",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "40": {
+      "pollster": "40",
+      "predictive_plus_minus_raw": "-0.33098673174186999",
+      "mean_reverted_bias_raw": "0.63228814045659198",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "41": {
+      "pollster": "41",
+      "predictive_plus_minus_raw": "-0.32054942274012699",
+      "mean_reverted_bias_raw": "-0.872001182935769",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "42": {
+      "pollster": "42",
+      "predictive_plus_minus_raw": "-0.31857919943920798",
+      "mean_reverted_bias_raw": "-0.54905006024780501",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "43": {
+      "pollster": "43",
+      "predictive_plus_minus_raw": "-0.317499855428511",
+      "mean_reverted_bias_raw": "1.8004163340304798E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "44": {
+      "pollster": "44",
+      "predictive_plus_minus_raw": "-0.29691685952195501",
+      "mean_reverted_bias_raw": "1.73337404643867",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "45": {
+      "pollster": "45",
+      "predictive_plus_minus_raw": "-0.28629464435990498",
+      "mean_reverted_bias_raw": "-0.31661577790851902",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "46": {
+      "pollster": "46",
+      "predictive_plus_minus_raw": "-0.28194006856003101",
+      "mean_reverted_bias_raw": "0.55064571672912199",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "47": {
+      "pollster": "47",
+      "predictive_plus_minus_raw": "-0.26715718806712901",
+      "mean_reverted_bias_raw": "-0.248833750925332",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "48": {
+      "pollster": "48",
+      "predictive_plus_minus_raw": "-0.264490402996862",
+      "mean_reverted_bias_raw": "1.76971438023357",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "49": {
+      "pollster": "49",
+      "predictive_plus_minus_raw": "-0.263479239171164",
+      "mean_reverted_bias_raw": "0.38408483961318801",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "50": {
+      "pollster": "50",
+      "predictive_plus_minus_raw": "-0.261701219236118",
+      "mean_reverted_bias_raw": "-0.59511159818082304",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "51": {
+      "pollster": "51",
+      "predictive_plus_minus_raw": "-0.25633151862115",
+      "mean_reverted_bias_raw": "0.36261221410642502",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "52": {
+      "pollster": "52",
+      "predictive_plus_minus_raw": "-0.24670937720398101",
+      "mean_reverted_bias_raw": "-0.347150082696145",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "53": {
+      "pollster": "53",
+      "predictive_plus_minus_raw": "-0.234681040773908",
+      "mean_reverted_bias_raw": "0.67124328295776603",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "54": {
+      "pollster": "54",
+      "predictive_plus_minus_raw": "-0.23285975764660999",
+      "mean_reverted_bias_raw": "0.67828181511454799",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "55": {
+      "pollster": "55",
+      "predictive_plus_minus_raw": "-0.22766726141919999",
+      "mean_reverted_bias_raw": "0.32201099379048398",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "56": {
+      "pollster": "56",
+      "predictive_plus_minus_raw": "-0.217849611396116",
+      "mean_reverted_bias_raw": "-1.41427993327001",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "57": {
+      "pollster": "57",
+      "predictive_plus_minus_raw": "-0.21491151323539001",
+      "mean_reverted_bias_raw": "0.18635848893967499",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "58": {
+      "pollster": "58",
+      "predictive_plus_minus_raw": "-0.21105186391387601",
+      "mean_reverted_bias_raw": "0.58508322293000103",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "59": {
+      "pollster": "59",
+      "predictive_plus_minus_raw": "-0.20611419334101599",
+      "mean_reverted_bias_raw": "0.81492639069713002",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "60": {
+      "pollster": "60",
+      "predictive_plus_minus_raw": "-0.202527953038312",
+      "mean_reverted_bias_raw": "-0.16539953751473299",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "61": {
+      "pollster": "61",
+      "predictive_plus_minus_raw": "-0.190021492311229",
+      "mean_reverted_bias_raw": "-3.5545262377925997E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "62": {
+      "pollster": "62",
+      "predictive_plus_minus_raw": "-0.181226324643493",
+      "mean_reverted_bias_raw": "1.2678818883162299",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "63": {
+      "pollster": "63",
+      "predictive_plus_minus_raw": "-0.18112285954747701",
+      "mean_reverted_bias_raw": "0.56057823831285702",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "64": {
+      "pollster": "64",
+      "predictive_plus_minus_raw": "-0.17910293984273701",
+      "mean_reverted_bias_raw": "6.5072451820903293E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "65": {
+      "pollster": "65",
+      "predictive_plus_minus_raw": "-0.173074591490647",
+      "mean_reverted_bias_raw": "-0.30031373245390303",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "66": {
+      "pollster": "66",
+      "predictive_plus_minus_raw": "-0.160724834549411",
+      "mean_reverted_bias_raw": "-0.105073644122458",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "67": {
+      "pollster": "67",
+      "predictive_plus_minus_raw": "-0.152291093128715",
+      "mean_reverted_bias_raw": "1.36071428571428",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "68": {
+      "pollster": "68",
+      "predictive_plus_minus_raw": "-0.134045900822892",
+      "mean_reverted_bias_raw": "-0.62697508967905302",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "69": {
+      "pollster": "69",
+      "predictive_plus_minus_raw": "-0.124398896999561",
+      "mean_reverted_bias_raw": "-0.56518363162543594",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "70": {
+      "pollster": "70",
+      "predictive_plus_minus_raw": "-0.111829469850037",
+      "mean_reverted_bias_raw": "-1.66534340339791",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "71": {
+      "pollster": "71",
+      "predictive_plus_minus_raw": "-0.111054167129179",
+      "mean_reverted_bias_raw": "9.0211581623533005E-3",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "72": {
+      "pollster": "72",
+      "predictive_plus_minus_raw": "-0.110694829312071",
+      "mean_reverted_bias_raw": "-0.27550859232751002",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "73": {
+      "pollster": "73",
+      "predictive_plus_minus_raw": "-0.107711740011386",
+      "mean_reverted_bias_raw": "0.33029877489291098",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "74": {
+      "pollster": "74",
+      "predictive_plus_minus_raw": "-0.102842212596924",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "75": {
+      "pollster": "75",
+      "predictive_plus_minus_raw": "-0.101333616307066",
+      "mean_reverted_bias_raw": "-0.133586462832714",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "76": {
+      "pollster": "76",
+      "predictive_plus_minus_raw": "-9.4020262453177406E-2",
+      "mean_reverted_bias_raw": "0.89724586191943101",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "77": {
+      "pollster": "77",
+      "predictive_plus_minus_raw": "-9.3210217599770703E-2",
+      "mean_reverted_bias_raw": "0.83929820340906802",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "78": {
+      "pollster": "78",
+      "predictive_plus_minus_raw": "-8.5118038427222098E-2",
+      "mean_reverted_bias_raw": "4.1330267615728299E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "79": {
+      "pollster": "79",
+      "predictive_plus_minus_raw": "-8.4507264511121893E-2",
+      "mean_reverted_bias_raw": "2.0599827151993998E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "80": {
+      "pollster": "80",
+      "predictive_plus_minus_raw": "-8.1337080852337498E-2",
+      "mean_reverted_bias_raw": "0.246817726200042",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "81": {
+      "pollster": "81",
+      "predictive_plus_minus_raw": "-6.6808978921476997E-2",
+      "mean_reverted_bias_raw": "1.4241654473542101E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "82": {
+      "pollster": "82",
+      "predictive_plus_minus_raw": "-6.0870595158425501E-2",
+      "mean_reverted_bias_raw": "0.13339095738749701",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "83": {
+      "pollster": "83",
+      "predictive_plus_minus_raw": "-5.2078050394795197E-2",
+      "mean_reverted_bias_raw": "0.21965607748157701",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "84": {
+      "pollster": "84",
+      "predictive_plus_minus_raw": "-5.0489037021077002E-2",
+      "mean_reverted_bias_raw": "0.65252458437010596",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "85": {
+      "pollster": "85",
+      "predictive_plus_minus_raw": "-4.5075621276770603E-2",
+      "mean_reverted_bias_raw": "2.8016747694067201E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "86": {
+      "pollster": "86",
+      "predictive_plus_minus_raw": "-4.12725080447943E-2",
+      "mean_reverted_bias_raw": "-3.5381568749440699E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "87": {
+      "pollster": "87",
+      "predictive_plus_minus_raw": "-4.1121616843160298E-2",
+      "mean_reverted_bias_raw": "-0.105322002850846",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "88": {
+      "pollster": "88",
+      "predictive_plus_minus_raw": "-3.7880544167960897E-2",
+      "mean_reverted_bias_raw": "0.31805015052199698",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "89": {
+      "pollster": "89",
+      "predictive_plus_minus_raw": "-2.55354942619818E-2",
+      "mean_reverted_bias_raw": "-1.3521063844357899",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "90": {
+      "pollster": "90",
+      "predictive_plus_minus_raw": "-2.3128153859310899E-2",
+      "mean_reverted_bias_raw": "0.63138617817662701",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "91": {
+      "pollster": "91",
+      "predictive_plus_minus_raw": "-1.19319522589667E-2",
+      "mean_reverted_bias_raw": "0.87802504780527701",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "92": {
+      "pollster": "92",
+      "predictive_plus_minus_raw": "-1.00732532649345E-2",
+      "mean_reverted_bias_raw": "0.61087653959419597",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "93": {
+      "pollster": "93",
+      "predictive_plus_minus_raw": "-3.9035192662608001E-3",
+      "mean_reverted_bias_raw": "-0.16115986802184801",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "94": {
+      "pollster": "94",
+      "predictive_plus_minus_raw": "-3.1945739526000002E-3",
+      "mean_reverted_bias_raw": "9.9946580812309005E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "95": {
+      "pollster": "95",
+      "predictive_plus_minus_raw": "-1.3152524217925001E-3",
+      "mean_reverted_bias_raw": "7.6128576030756498E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "96": {
+      "pollster": "96",
+      "predictive_plus_minus_raw": "8.0275845076011997E-3",
+      "mean_reverted_bias_raw": "-0.48452234922432602",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "97": {
+      "pollster": "97",
+      "predictive_plus_minus_raw": "9.6153957134801002E-3",
+      "mean_reverted_bias_raw": "-0.25888827821273303",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "98": {
+      "pollster": "98",
+      "predictive_plus_minus_raw": "1.7478050450457899E-2",
+      "mean_reverted_bias_raw": "-0.80394011173737101",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "99": {
+      "pollster": "99",
+      "predictive_plus_minus_raw": "2.7620762495061599E-2",
+      "mean_reverted_bias_raw": "0.512019473583744",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "100": {
+      "pollster": "100",
+      "predictive_plus_minus_raw": "2.7786429089215501E-2",
+      "mean_reverted_bias_raw": "0.25427635936481002",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "101": {
+      "pollster": "101",
+      "predictive_plus_minus_raw": "4.6737423700921502E-2",
+      "mean_reverted_bias_raw": "-1.0886287764907301",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "102": {
+      "pollster": "102",
+      "predictive_plus_minus_raw": "5.2361911738672599E-2",
+      "mean_reverted_bias_raw": "0.45099812397298",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "103": {
+      "pollster": "103",
+      "predictive_plus_minus_raw": "5.3937032617596803E-2",
+      "mean_reverted_bias_raw": "0.39239970766676302",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "104": {
+      "pollster": "104",
+      "predictive_plus_minus_raw": "6.1249874464384901E-2",
+      "mean_reverted_bias_raw": "1.42967995163454",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "105": {
+      "pollster": "105",
+      "predictive_plus_minus_raw": "6.9718103624141103E-2",
+      "mean_reverted_bias_raw": "0.49002200045640598",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "106": {
+      "pollster": "106",
+      "predictive_plus_minus_raw": "7.2184213011960999E-2",
+      "mean_reverted_bias_raw": "-0.52181452285347096",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "107": {
+      "pollster": "107",
+      "predictive_plus_minus_raw": "7.4045239051103495E-2",
+      "mean_reverted_bias_raw": "-0.108255129814669",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "108": {
+      "pollster": "108",
+      "predictive_plus_minus_raw": "7.4613630322732799E-2",
+      "mean_reverted_bias_raw": "1.3153347737436401",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "109": {
+      "pollster": "109",
+      "predictive_plus_minus_raw": "7.6088795777884494E-2",
+      "mean_reverted_bias_raw": "-1.02870561171106",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "110": {
+      "pollster": "110",
+      "predictive_plus_minus_raw": "7.9479940651436404E-2",
+      "mean_reverted_bias_raw": "-0.53030526565291303",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "111": {
+      "pollster": "111",
+      "predictive_plus_minus_raw": "7.96443400406186E-2",
+      "mean_reverted_bias_raw": "2.3159712078582799E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "112": {
+      "pollster": "112",
+      "predictive_plus_minus_raw": "8.6488072172073396E-2",
+      "mean_reverted_bias_raw": "0.39106346521150198",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "113": {
+      "pollster": "113",
+      "predictive_plus_minus_raw": "9.2452024560146395E-2",
+      "mean_reverted_bias_raw": "1.6941407205402601",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "114": {
+      "pollster": "114",
+      "predictive_plus_minus_raw": "9.47962716636752E-2",
+      "mean_reverted_bias_raw": "-8.5508772922187008E-3",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "115": {
+      "pollster": "115",
+      "predictive_plus_minus_raw": "9.8985083214201006E-2",
+      "mean_reverted_bias_raw": "1.1511543495260901",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "116": {
+      "pollster": "116",
+      "predictive_plus_minus_raw": "0.10320858264478899",
+      "mean_reverted_bias_raw": "-0.54608209079184",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "117": {
+      "pollster": "117",
+      "predictive_plus_minus_raw": "0.103819799543184",
+      "mean_reverted_bias_raw": "0.141419364535154",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "118": {
+      "pollster": "118",
+      "predictive_plus_minus_raw": "0.111421255037673",
+      "mean_reverted_bias_raw": "1.07911825588518",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "119": {
+      "pollster": "119",
+      "predictive_plus_minus_raw": "0.11483862198407301",
+      "mean_reverted_bias_raw": "-0.32782514960152598",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "120": {
+      "pollster": "120",
+      "predictive_plus_minus_raw": "0.116809815039951",
+      "mean_reverted_bias_raw": "1.04751235721257",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "121": {
+      "pollster": "121",
+      "predictive_plus_minus_raw": "0.136035742522292",
+      "mean_reverted_bias_raw": "0.42572821305157799",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "122": {
+      "pollster": "122",
+      "predictive_plus_minus_raw": "0.14137994772138099",
+      "mean_reverted_bias_raw": "2.82786316570184",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "123": {
+      "pollster": "123",
+      "predictive_plus_minus_raw": "0.143310446392931",
+      "mean_reverted_bias_raw": "5.03996504222873E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "124": {
+      "pollster": "124",
+      "predictive_plus_minus_raw": "0.14556365318251799",
+      "mean_reverted_bias_raw": "1.1918705026904199",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "125": {
+      "pollster": "125",
+      "predictive_plus_minus_raw": "0.148082405354654",
+      "mean_reverted_bias_raw": "1.23069631013409",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "126": {
+      "pollster": "126",
+      "predictive_plus_minus_raw": "0.16403697605099701",
+      "mean_reverted_bias_raw": "-2.85005872220775E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "127": {
+      "pollster": "127",
+      "predictive_plus_minus_raw": "0.17656494517788099",
+      "mean_reverted_bias_raw": "-1.88100007049513",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "128": {
+      "pollster": "128",
+      "predictive_plus_minus_raw": "0.17939482445051599",
+      "mean_reverted_bias_raw": "-1.19461617607949",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "129": {
+      "pollster": "129",
+      "predictive_plus_minus_raw": "0.19156654264077499",
+      "mean_reverted_bias_raw": "0.16907368998797401",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "130": {
+      "pollster": "130",
+      "predictive_plus_minus_raw": "0.19691732525727301",
+      "mean_reverted_bias_raw": "3.2477651788035402",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "131": {
+      "pollster": "131",
+      "predictive_plus_minus_raw": "0.19849431612740301",
+      "mean_reverted_bias_raw": "1.8925899601660301",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "132": {
+      "pollster": "132",
+      "predictive_plus_minus_raw": "0.201790326557547",
+      "mean_reverted_bias_raw": "-2.6914946464296601",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "133": {
+      "pollster": "133",
+      "predictive_plus_minus_raw": "0.207544534068763",
+      "mean_reverted_bias_raw": "2.2802135513568502",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "134": {
+      "pollster": "134",
+      "predictive_plus_minus_raw": "0.21460588292124499",
+      "mean_reverted_bias_raw": "0.289875419984924",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "135": {
+      "pollster": "135",
+      "predictive_plus_minus_raw": "0.23693118112495201",
+      "mean_reverted_bias_raw": "0.34290840237806602",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "136": {
+      "pollster": "136",
+      "predictive_plus_minus_raw": "0.23904128866379801",
+      "mean_reverted_bias_raw": "1.36011629976696",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "137": {
+      "pollster": "137",
+      "predictive_plus_minus_raw": "0.24261540734627299",
+      "mean_reverted_bias_raw": "0.21942562763953999",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "138": {
+      "pollster": "138",
+      "predictive_plus_minus_raw": "0.249595759548428",
+      "mean_reverted_bias_raw": "5.8760903618615502E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "139": {
+      "pollster": "139",
+      "predictive_plus_minus_raw": "0.25306283013907599",
+      "mean_reverted_bias_raw": "0.24461091074445099",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "140": {
+      "pollster": "140",
+      "predictive_plus_minus_raw": "0.26080295145423998",
+      "mean_reverted_bias_raw": "0.27990455341043002",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "141": {
+      "pollster": "141",
+      "predictive_plus_minus_raw": "0.265380340268356",
+      "mean_reverted_bias_raw": "1.32059594367203",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "142": {
+      "pollster": "142",
+      "predictive_plus_minus_raw": "0.27022486771959497",
+      "mean_reverted_bias_raw": "-0.188566465745234",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "143": {
+      "pollster": "143",
+      "predictive_plus_minus_raw": "0.28448003165675601",
+      "mean_reverted_bias_raw": "-0.401939286361648",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "144": {
+      "pollster": "144",
+      "predictive_plus_minus_raw": "0.290630412027093",
+      "mean_reverted_bias_raw": "-0.89691321708258398",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "145": {
+      "pollster": "145",
+      "predictive_plus_minus_raw": "0.291438530689695",
+      "mean_reverted_bias_raw": "1.0424228650535301",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "146": {
+      "pollster": "146",
+      "predictive_plus_minus_raw": "0.29262589816586498",
+      "mean_reverted_bias_raw": "-0.35234885537859501",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "147": {
+      "pollster": "147",
+      "predictive_plus_minus_raw": "0.29373346381687399",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "148": {
+      "pollster": "148",
+      "predictive_plus_minus_raw": "0.29373346381687399",
+      "mean_reverted_bias_raw": "-0.27565821891168302",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "149": {
+      "pollster": "149",
+      "predictive_plus_minus_raw": "0.294794185535528",
+      "mean_reverted_bias_raw": "-0.47570955371111501",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "150": {
+      "pollster": "150",
+      "predictive_plus_minus_raw": "0.30655481258646899",
+      "mean_reverted_bias_raw": "-0.251867662753468",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "151": {
+      "pollster": "151",
+      "predictive_plus_minus_raw": "0.31100270031972699",
+      "mean_reverted_bias_raw": "-0.329663436826301",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "152": {
+      "pollster": "152",
+      "predictive_plus_minus_raw": "0.31155269121891399",
+      "mean_reverted_bias_raw": "1.6663859286312399",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "153": {
+      "pollster": "153",
+      "predictive_plus_minus_raw": "0.32664782172868201",
+      "mean_reverted_bias_raw": "0.55041815880714495",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "154": {
+      "pollster": "154",
+      "predictive_plus_minus_raw": "0.32742312296786602",
+      "mean_reverted_bias_raw": "-9.5000000000000306E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "155": {
+      "pollster": "155",
+      "predictive_plus_minus_raw": "0.32742312296786602",
+      "mean_reverted_bias_raw": "-0.109999999999999",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "156": {
+      "pollster": "156",
+      "predictive_plus_minus_raw": "0.33337332271620201",
+      "mean_reverted_bias_raw": "-4.51732474062203E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "157": {
+      "pollster": "157",
+      "predictive_plus_minus_raw": "0.33534880998852701",
+      "mean_reverted_bias_raw": "0.309301966185829",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "158": {
+      "pollster": "158",
+      "predictive_plus_minus_raw": "0.336714675503899",
+      "mean_reverted_bias_raw": "4.2270125170571902E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "159": {
+      "pollster": "159",
+      "predictive_plus_minus_raw": "0.344109248896588",
+      "mean_reverted_bias_raw": "0.10337142202067599",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "160": {
+      "pollster": "160",
+      "predictive_plus_minus_raw": "0.34623189832142298",
+      "mean_reverted_bias_raw": "0.83579362797350798",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "161": {
+      "pollster": "161",
+      "predictive_plus_minus_raw": "0.351278931192335",
+      "mean_reverted_bias_raw": "7.3416464690082894E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "162": {
+      "pollster": "162",
+      "predictive_plus_minus_raw": "0.35578367706422898",
+      "mean_reverted_bias_raw": "-0.17246857824574399",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "163": {
+      "pollster": "163",
+      "predictive_plus_minus_raw": "0.35602531620915501",
+      "mean_reverted_bias_raw": "-1.0009671252781301E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "164": {
+      "pollster": "164",
+      "predictive_plus_minus_raw": "0.35881809225415201",
+      "mean_reverted_bias_raw": "-5.5728586694266898E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "165": {
+      "pollster": "165",
+      "predictive_plus_minus_raw": "0.35951557268870099",
+      "mean_reverted_bias_raw": "7.6907491903357494E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "166": {
+      "pollster": "166",
+      "predictive_plus_minus_raw": "0.36567841311457",
+      "mean_reverted_bias_raw": "-6.7947723747833394E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "167": {
+      "pollster": "167",
+      "predictive_plus_minus_raw": "0.375608743897616",
+      "mean_reverted_bias_raw": "-1.8584503759421198E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "168": {
+      "pollster": "168",
+      "predictive_plus_minus_raw": "0.37937242891511502",
+      "mean_reverted_bias_raw": "1.30175577898338",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "169": {
+      "pollster": "169",
+      "predictive_plus_minus_raw": "0.38973242790089502",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "170": {
+      "pollster": "170",
+      "predictive_plus_minus_raw": "0.38975694191826199",
+      "mean_reverted_bias_raw": "1.22012191889739",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "171": {
+      "pollster": "171",
+      "predictive_plus_minus_raw": "0.39343287149101003",
+      "mean_reverted_bias_raw": "0.37294374805862601",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "172": {
+      "pollster": "172",
+      "predictive_plus_minus_raw": "0.39391066492830901",
+      "mean_reverted_bias_raw": "0.14734518202963101",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "173": {
+      "pollster": "173",
+      "predictive_plus_minus_raw": "0.39403604533985898",
+      "mean_reverted_bias_raw": "-0.33822680452026099",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "174": {
+      "pollster": "174",
+      "predictive_plus_minus_raw": "0.399620579625318",
+      "mean_reverted_bias_raw": "0.174364103638946",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "175": {
+      "pollster": "175",
+      "predictive_plus_minus_raw": "0.399950808284252",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "176": {
+      "pollster": "176",
+      "predictive_plus_minus_raw": "0.40033942246988102",
+      "mean_reverted_bias_raw": "-0.347073784110771",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "177": {
+      "pollster": "177",
+      "predictive_plus_minus_raw": "0.40058911102100198",
+      "mean_reverted_bias_raw": "-6.4198312659368706E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "178": {
+      "pollster": "178",
+      "predictive_plus_minus_raw": "0.41563560946092598",
+      "mean_reverted_bias_raw": "-8.6877129202009407E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "179": {
+      "pollster": "179",
+      "predictive_plus_minus_raw": "0.42690483856859801",
+      "mean_reverted_bias_raw": "0.31250996718304602",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "180": {
+      "pollster": "180",
+      "predictive_plus_minus_raw": "0.42721338929246999",
+      "mean_reverted_bias_raw": "0.267659541328303",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "181": {
+      "pollster": "181",
+      "predictive_plus_minus_raw": "0.427694513674029",
+      "mean_reverted_bias_raw": "8.0776335590745096E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "182": {
+      "pollster": "182",
+      "predictive_plus_minus_raw": "0.428321295479691",
+      "mean_reverted_bias_raw": "0.356391518050165",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "183": {
+      "pollster": "183",
+      "predictive_plus_minus_raw": "0.43186108182918298",
+      "mean_reverted_bias_raw": "-0.59111750471726199",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "184": {
+      "pollster": "184",
+      "predictive_plus_minus_raw": "0.431959911069564",
+      "mean_reverted_bias_raw": "3.0961688225126E-3",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "185": {
+      "pollster": "185",
+      "predictive_plus_minus_raw": "0.43276013475839598",
+      "mean_reverted_bias_raw": "0.38675935709987103",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "186": {
+      "pollster": "186",
+      "predictive_plus_minus_raw": "0.434796404209082",
+      "mean_reverted_bias_raw": "-0.33487500253565",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "187": {
+      "pollster": "187",
+      "predictive_plus_minus_raw": "0.43525375387399401",
+      "mean_reverted_bias_raw": "1.59699020520754",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "188": {
+      "pollster": "188",
+      "predictive_plus_minus_raw": "0.43604316211338501",
+      "mean_reverted_bias_raw": "-0.64922232985844897",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "189": {
+      "pollster": "189",
+      "predictive_plus_minus_raw": "0.43616919048615799",
+      "mean_reverted_bias_raw": "-0.481649076078843",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "190": {
+      "pollster": "190",
+      "predictive_plus_minus_raw": "0.43867593141545502",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "191": {
+      "pollster": "191",
+      "predictive_plus_minus_raw": "0.44265383170297601",
+      "mean_reverted_bias_raw": "-1.0482911907857799",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "192": {
+      "pollster": "192",
+      "predictive_plus_minus_raw": "0.444717145108803",
+      "mean_reverted_bias_raw": "1.94582271901272E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "193": {
+      "pollster": "193",
+      "predictive_plus_minus_raw": "0.44610851624393999",
+      "mean_reverted_bias_raw": "1.3037037037037",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "194": {
+      "pollster": "194",
+      "predictive_plus_minus_raw": "0.44618123283408101",
+      "mean_reverted_bias_raw": "8.0244336334899996E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "195": {
+      "pollster": "195",
+      "predictive_plus_minus_raw": "0.448692805347433",
+      "mean_reverted_bias_raw": "-0.16161637339231999",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "196": {
+      "pollster": "196",
+      "predictive_plus_minus_raw": "0.44930540163739602",
+      "mean_reverted_bias_raw": "-7.5598455333856104E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "197": {
+      "pollster": "197",
+      "predictive_plus_minus_raw": "0.45123002887462699",
+      "mean_reverted_bias_raw": "7.2838873890486697E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "198": {
+      "pollster": "198",
+      "predictive_plus_minus_raw": "0.45285395445522297",
+      "mean_reverted_bias_raw": "0.74292370827013599",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "199": {
+      "pollster": "199",
+      "predictive_plus_minus_raw": "0.45382972838355201",
+      "mean_reverted_bias_raw": "2.6956678757493E-3",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "200": {
+      "pollster": "200",
+      "predictive_plus_minus_raw": "0.45611620217952997",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "201": {
+      "pollster": "201",
+      "predictive_plus_minus_raw": "0.45611620217952997",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "202": {
+      "pollster": "202",
+      "predictive_plus_minus_raw": "0.45794435071942102",
+      "mean_reverted_bias_raw": "0.54576770446249401",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "203": {
+      "pollster": "203",
+      "predictive_plus_minus_raw": "0.458798161124649",
+      "mean_reverted_bias_raw": "0.51670382288189198",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "204": {
+      "pollster": "204",
+      "predictive_plus_minus_raw": "0.45968949383119001",
+      "mean_reverted_bias_raw": "1.6109997575242301",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "205": {
+      "pollster": "205",
+      "predictive_plus_minus_raw": "0.461173334859105",
+      "mean_reverted_bias_raw": "0.23407688026308901",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "206": {
+      "pollster": "206",
+      "predictive_plus_minus_raw": "0.46217034017296099",
+      "mean_reverted_bias_raw": "0.75607160017048702",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "207": {
+      "pollster": "207",
+      "predictive_plus_minus_raw": "0.46284027445391501",
+      "mean_reverted_bias_raw": "-0.18940248027057399",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "208": {
+      "pollster": "208",
+      "predictive_plus_minus_raw": "0.46711536776683399",
+      "mean_reverted_bias_raw": "-0.18271221032847601",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "209": {
+      "pollster": "209",
+      "predictive_plus_minus_raw": "0.46731683970826998",
+      "mean_reverted_bias_raw": "-1.0490151247423001",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "210": {
+      "pollster": "210",
+      "predictive_plus_minus_raw": "0.46929538189285402",
+      "mean_reverted_bias_raw": "-2.61559477875302E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "211": {
+      "pollster": "211",
+      "predictive_plus_minus_raw": "0.470789389817243",
+      "mean_reverted_bias_raw": "1.8895054136585701",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "212": {
+      "pollster": "212",
+      "predictive_plus_minus_raw": "0.47252040380562499",
+      "mean_reverted_bias_raw": "-0.229233950938938",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "213": {
+      "pollster": "213",
+      "predictive_plus_minus_raw": "0.47444272317364899",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "214": {
+      "pollster": "214",
+      "predictive_plus_minus_raw": "0.47444272317364899",
+      "mean_reverted_bias_raw": "-0.168421052631579",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "215": {
+      "pollster": "215",
+      "predictive_plus_minus_raw": "0.47444272317364899",
+      "mean_reverted_bias_raw": "-0.163157894736842",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "216": {
+      "pollster": "216",
+      "predictive_plus_minus_raw": "0.47525466895652002",
+      "mean_reverted_bias_raw": "-0.158703739767519",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "217": {
+      "pollster": "217",
+      "predictive_plus_minus_raw": "0.477912321807969",
+      "mean_reverted_bias_raw": "0.534428464552959",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "218": {
+      "pollster": "218",
+      "predictive_plus_minus_raw": "0.47940881171840899",
+      "mean_reverted_bias_raw": "0.12910981879802699",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "219": {
+      "pollster": "219",
+      "predictive_plus_minus_raw": "0.48307226916320001",
+      "mean_reverted_bias_raw": "-7.2926661509642707E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "220": {
+      "pollster": "220",
+      "predictive_plus_minus_raw": "0.484934306731377",
+      "mean_reverted_bias_raw": "7.0285751535090701E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "221": {
+      "pollster": "221",
+      "predictive_plus_minus_raw": "0.48710354281696799",
+      "mean_reverted_bias_raw": "1.3666215877915999",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "222": {
+      "pollster": "222",
+      "predictive_plus_minus_raw": "0.487678625127339",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "223": {
+      "pollster": "223",
+      "predictive_plus_minus_raw": "0.49196383308971298",
+      "mean_reverted_bias_raw": "-1.55584656365457",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "224": {
+      "pollster": "224",
+      "predictive_plus_minus_raw": "0.495500187552259",
+      "mean_reverted_bias_raw": "3.11759935117603E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "225": {
+      "pollster": "225",
+      "predictive_plus_minus_raw": "0.49559163689996499",
+      "mean_reverted_bias_raw": "-4.2465788897253699E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "226": {
+      "pollster": "226",
+      "predictive_plus_minus_raw": "0.496190310838176",
+      "mean_reverted_bias_raw": "-4.5847049282001003E-3",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "227": {
+      "pollster": "227",
+      "predictive_plus_minus_raw": "0.49985614874547601",
+      "mean_reverted_bias_raw": "-0.12577537930823601",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "228": {
+      "pollster": "228",
+      "predictive_plus_minus_raw": "0.500142420204301",
+      "mean_reverted_bias_raw": "8.5312789668279598E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "229": {
+      "pollster": "229",
+      "predictive_plus_minus_raw": "0.50155218356813402",
+      "mean_reverted_bias_raw": "0.62755819545260505",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "230": {
+      "pollster": "230",
+      "predictive_plus_minus_raw": "0.50381781688193095",
+      "mean_reverted_bias_raw": "1.6173281982271901",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "231": {
+      "pollster": "231",
+      "predictive_plus_minus_raw": "0.506027873799755",
+      "mean_reverted_bias_raw": "0.35101334004611601",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "232": {
+      "pollster": "232",
+      "predictive_plus_minus_raw": "0.50616067156818201",
+      "mean_reverted_bias_raw": "-5.2717219845912197E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "233": {
+      "pollster": "233",
+      "predictive_plus_minus_raw": "0.50791835712503997",
+      "mean_reverted_bias_raw": "-0.34282638504678498",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "234": {
+      "pollster": "234",
+      "predictive_plus_minus_raw": "0.51157389892251304",
+      "mean_reverted_bias_raw": "-0.116780573815965",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "235": {
+      "pollster": "235",
+      "predictive_plus_minus_raw": "0.51395754075863698",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "236": {
+      "pollster": "236",
+      "predictive_plus_minus_raw": "0.51395754075863698",
+      "mean_reverted_bias_raw": "-0.159601010195832",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "237": {
+      "pollster": "237",
+      "predictive_plus_minus_raw": "0.51413750339221798",
+      "mean_reverted_bias_raw": "6.6478221458900005E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "238": {
+      "pollster": "238",
+      "predictive_plus_minus_raw": "0.51423017764836698",
+      "mean_reverted_bias_raw": "-0.535933773446165",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "239": {
+      "pollster": "239",
+      "predictive_plus_minus_raw": "0.51436460405699502",
+      "mean_reverted_bias_raw": "-0.120384426355428",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "240": {
+      "pollster": "240",
+      "predictive_plus_minus_raw": "0.51469957982597903",
+      "mean_reverted_bias_raw": "-0.38347572182135797",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "241": {
+      "pollster": "241",
+      "predictive_plus_minus_raw": "0.51995459782474496",
+      "mean_reverted_bias_raw": "0.90929836732326397",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "242": {
+      "pollster": "242",
+      "predictive_plus_minus_raw": "0.52240391385620499",
+      "mean_reverted_bias_raw": "5.3070703893516001E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "243": {
+      "pollster": "243",
+      "predictive_plus_minus_raw": "0.52339419937601706",
+      "mean_reverted_bias_raw": "8.7511652926431593E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "244": {
+      "pollster": "244",
+      "predictive_plus_minus_raw": "0.52719110810297198",
+      "mean_reverted_bias_raw": "0.29797874357187998",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "245": {
+      "pollster": "245",
+      "predictive_plus_minus_raw": "0.52820812881199297",
+      "mean_reverted_bias_raw": "-0.227868180008061",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "246": {
+      "pollster": "246",
+      "predictive_plus_minus_raw": "0.53010785903467506",
+      "mean_reverted_bias_raw": "6.5576880487874606E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "247": {
+      "pollster": "247",
+      "predictive_plus_minus_raw": "0.53010785903467506",
+      "mean_reverted_bias_raw": "-2.0818057297737801E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "248": {
+      "pollster": "248",
+      "predictive_plus_minus_raw": "0.53125577119303602",
+      "mean_reverted_bias_raw": "0.29160673692384098",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "249": {
+      "pollster": "249",
+      "predictive_plus_minus_raw": "0.53229620055833804",
+      "mean_reverted_bias_raw": "-0.50165766525827404",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "250": {
+      "pollster": "250",
+      "predictive_plus_minus_raw": "0.53280974175041296",
+      "mean_reverted_bias_raw": "1.3137914996879401",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "251": {
+      "pollster": "251",
+      "predictive_plus_minus_raw": "0.53639995231890403",
+      "mean_reverted_bias_raw": "-0.106437278788822",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "252": {
+      "pollster": "252",
+      "predictive_plus_minus_raw": "0.53740231936639704",
+      "mean_reverted_bias_raw": "-8.6041826333478594E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "253": {
+      "pollster": "253",
+      "predictive_plus_minus_raw": "0.53740231936639704",
+      "mean_reverted_bias_raw": "8.2807171208160099E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "254": {
+      "pollster": "254",
+      "predictive_plus_minus_raw": "0.53788578810548704",
+      "mean_reverted_bias_raw": "5.0466259486698202E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "255": {
+      "pollster": "255",
+      "predictive_plus_minus_raw": "0.537925539547085",
+      "mean_reverted_bias_raw": "1.05263157894738E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "256": {
+      "pollster": "256",
+      "predictive_plus_minus_raw": "0.53822637941919704",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "257": {
+      "pollster": "257",
+      "predictive_plus_minus_raw": "0.54421811674709897",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "258": {
+      "pollster": "258",
+      "predictive_plus_minus_raw": "0.54421811674709897",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "259": {
+      "pollster": "259",
+      "predictive_plus_minus_raw": "0.54421811674709897",
+      "mean_reverted_bias_raw": "-2.4120449066309502E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "260": {
+      "pollster": "260",
+      "predictive_plus_minus_raw": "0.54545926324772998",
+      "mean_reverted_bias_raw": "-0.40294283795594399",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "261": {
+      "pollster": "261",
+      "predictive_plus_minus_raw": "0.54713596087234895",
+      "mean_reverted_bias_raw": "0.14553437615112999",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "262": {
+      "pollster": "262",
+      "predictive_plus_minus_raw": "0.54813707255882105",
+      "mean_reverted_bias_raw": "-6.4194871590987001E-3",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "263": {
+      "pollster": "263",
+      "predictive_plus_minus_raw": "0.55097482587132496",
+      "mean_reverted_bias_raw": "-0.25680382191384699",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "264": {
+      "pollster": "264",
+      "predictive_plus_minus_raw": "0.55130360408873103",
+      "mean_reverted_bias_raw": "-4.5145641083396602E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "265": {
+      "pollster": "265",
+      "predictive_plus_minus_raw": "0.55300294034919495",
+      "mean_reverted_bias_raw": "0.191386777457592",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "266": {
+      "pollster": "266",
+      "predictive_plus_minus_raw": "0.55431029303181301",
+      "mean_reverted_bias_raw": "0.79838530453763201",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "267": {
+      "pollster": "267",
+      "predictive_plus_minus_raw": "0.55472947599516598",
+      "mean_reverted_bias_raw": "0.230152187395639",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "268": {
+      "pollster": "268",
+      "predictive_plus_minus_raw": "0.554973671913227",
+      "mean_reverted_bias_raw": "0.122168062645845",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "269": {
+      "pollster": "269",
+      "predictive_plus_minus_raw": "0.55588371317811502",
+      "mean_reverted_bias_raw": "0.33539306338770902",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "270": {
+      "pollster": "270",
+      "predictive_plus_minus_raw": "0.55591807915326197",
+      "mean_reverted_bias_raw": "1.26708845436151",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "271": {
+      "pollster": "271",
+      "predictive_plus_minus_raw": "0.55652970382191003",
+      "mean_reverted_bias_raw": "-1.9376068498700501E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "272": {
+      "pollster": "272",
+      "predictive_plus_minus_raw": "0.55652970382191003",
+      "mean_reverted_bias_raw": "5.4724301570654499E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "273": {
+      "pollster": "273",
+      "predictive_plus_minus_raw": "0.556979214940588",
+      "mean_reverted_bias_raw": "-0.24210526315789399",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "274": {
+      "pollster": "274",
+      "predictive_plus_minus_raw": "0.55731362471477397",
+      "mean_reverted_bias_raw": "1.2821452625438801",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "275": {
+      "pollster": "275",
+      "predictive_plus_minus_raw": "0.55746548419237096",
+      "mean_reverted_bias_raw": "-7.0434427190680396E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "276": {
+      "pollster": "276",
+      "predictive_plus_minus_raw": "0.55906711957258504",
+      "mean_reverted_bias_raw": "-6.9250117291501406E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "277": {
+      "pollster": "277",
+      "predictive_plus_minus_raw": "0.56003135848840102",
+      "mean_reverted_bias_raw": "9.8975052601471006E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "278": {
+      "pollster": "278",
+      "predictive_plus_minus_raw": "0.56077116075369304",
+      "mean_reverted_bias_raw": "-2.2767560992233898E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "279": {
+      "pollster": "279",
+      "predictive_plus_minus_raw": "0.56336469770896302",
+      "mean_reverted_bias_raw": "-2.6500424611661001E-3",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "280": {
+      "pollster": "280",
+      "predictive_plus_minus_raw": "0.56449912177101702",
+      "mean_reverted_bias_raw": "0.33682125696682902",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "281": {
+      "pollster": "281",
+      "predictive_plus_minus_raw": "0.564699015151368",
+      "mean_reverted_bias_raw": "-0.12661871471693101",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "282": {
+      "pollster": "282",
+      "predictive_plus_minus_raw": "0.56604572449080204",
+      "mean_reverted_bias_raw": "0.105730615839883",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "283": {
+      "pollster": "283",
+      "predictive_plus_minus_raw": "0.56651365247484098",
+      "mean_reverted_bias_raw": "2.0454695899761299",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "284": {
+      "pollster": "284",
+      "predictive_plus_minus_raw": "0.56725950304350603",
+      "mean_reverted_bias_raw": "-1.9999609950312001E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "285": {
+      "pollster": "285",
+      "predictive_plus_minus_raw": "0.56758603625743498",
+      "mean_reverted_bias_raw": "0.31922555788057799",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "286": {
+      "pollster": "286",
+      "predictive_plus_minus_raw": "0.56802810528483005",
+      "mean_reverted_bias_raw": "-0.10076255826321701",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "287": {
+      "pollster": "287",
+      "predictive_plus_minus_raw": "0.56876008294813696",
+      "mean_reverted_bias_raw": "8.1735707070128394E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "288": {
+      "pollster": "288",
+      "predictive_plus_minus_raw": "0.56945301254423497",
+      "mean_reverted_bias_raw": "-0.129020374691282",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "289": {
+      "pollster": "289",
+      "predictive_plus_minus_raw": "0.56975034060887397",
+      "mean_reverted_bias_raw": "-0.84666629932164805",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "290": {
+      "pollster": "290",
+      "predictive_plus_minus_raw": "0.57013569505389905",
+      "mean_reverted_bias_raw": "-7.2788643370051906E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "291": {
+      "pollster": "291",
+      "predictive_plus_minus_raw": "0.57192086348095905",
+      "mean_reverted_bias_raw": "0.3",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "292": {
+      "pollster": "292",
+      "predictive_plus_minus_raw": "0.57206452151491205",
+      "mean_reverted_bias_raw": "0.58282263910318799",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "293": {
+      "pollster": "293",
+      "predictive_plus_minus_raw": "0.57352571179096701",
+      "mean_reverted_bias_raw": "0.11599303468345901",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "294": {
+      "pollster": "294",
+      "predictive_plus_minus_raw": "0.57404938449701903",
+      "mean_reverted_bias_raw": "-0.84214033459374005",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "295": {
+      "pollster": "295",
+      "predictive_plus_minus_raw": "0.57531207017847297",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "296": {
+      "pollster": "296",
+      "predictive_plus_minus_raw": "0.576601334217127",
+      "mean_reverted_bias_raw": "4.8898094815469202E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "297": {
+      "pollster": "297",
+      "predictive_plus_minus_raw": "0.576601334217127",
+      "mean_reverted_bias_raw": "-0.13151221468515301",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "298": {
+      "pollster": "298",
+      "predictive_plus_minus_raw": "0.57852434814831799",
+      "mean_reverted_bias_raw": "-7.8872243640218304E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "299": {
+      "pollster": "299",
+      "predictive_plus_minus_raw": "0.58124256687893705",
+      "mean_reverted_bias_raw": "0.11577815551828601",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "300": {
+      "pollster": "300",
+      "predictive_plus_minus_raw": "0.58161663318047996",
+      "mean_reverted_bias_raw": "0.25682257891252003",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "301": {
+      "pollster": "301",
+      "predictive_plus_minus_raw": "0.58472761491186998",
+      "mean_reverted_bias_raw": "3.0777763693145801E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "302": {
+      "pollster": "302",
+      "predictive_plus_minus_raw": "0.58541544068651197",
+      "mean_reverted_bias_raw": "-0.13067926956169701",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "303": {
+      "pollster": "303",
+      "predictive_plus_minus_raw": "0.58955483833043698",
+      "mean_reverted_bias_raw": "0.26876393244360702",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "304": {
+      "pollster": "304",
+      "predictive_plus_minus_raw": "0.59062287107521805",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "305": {
+      "pollster": "305",
+      "predictive_plus_minus_raw": "0.59099586199367005",
+      "mean_reverted_bias_raw": "0.14711763353686499",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "306": {
+      "pollster": "306",
+      "predictive_plus_minus_raw": "0.59693947592616403",
+      "mean_reverted_bias_raw": "-5.8254221443517197E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "307": {
+      "pollster": "307",
+      "predictive_plus_minus_raw": "0.59792678568625401",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "308": {
+      "pollster": "308",
+      "predictive_plus_minus_raw": "0.59792678568625401",
+      "mean_reverted_bias_raw": "2.1452988618106999E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "309": {
+      "pollster": "309",
+      "predictive_plus_minus_raw": "0.59907500717893403",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "310": {
+      "pollster": "310",
+      "predictive_plus_minus_raw": "0.59977122094638302",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "311": {
+      "pollster": "311",
+      "predictive_plus_minus_raw": "0.60068438568638904",
+      "mean_reverted_bias_raw": "-2.2599914127595901E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "312": {
+      "pollster": "312",
+      "predictive_plus_minus_raw": "0.60069464600196099",
+      "mean_reverted_bias_raw": "1.6562257921368499E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "313": {
+      "pollster": "313",
+      "predictive_plus_minus_raw": "0.60325341225329299",
+      "mean_reverted_bias_raw": "-1.2465497829597501E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "314": {
+      "pollster": "314",
+      "predictive_plus_minus_raw": "0.60325341225329299",
+      "mean_reverted_bias_raw": "-2.9382959169765601E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "315": {
+      "pollster": "315",
+      "predictive_plus_minus_raw": "0.60598146508409401",
+      "mean_reverted_bias_raw": "4.4853532368998403E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "316": {
+      "pollster": "316",
+      "predictive_plus_minus_raw": "0.60612544477607699",
+      "mean_reverted_bias_raw": "0.61612132402004405",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "317": {
+      "pollster": "317",
+      "predictive_plus_minus_raw": "0.60752437792464997",
+      "mean_reverted_bias_raw": "8.3008459344002097E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "318": {
+      "pollster": "318",
+      "predictive_plus_minus_raw": "0.60787537076780496",
+      "mean_reverted_bias_raw": "2.9115078371474298E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "319": {
+      "pollster": "319",
+      "predictive_plus_minus_raw": "0.60787537076780496",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "320": {
+      "pollster": "320",
+      "predictive_plus_minus_raw": "0.60787537076780496",
+      "mean_reverted_bias_raw": "-4.81073645939262E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "321": {
+      "pollster": "321",
+      "predictive_plus_minus_raw": "0.61104961859881302",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "322": {
+      "pollster": "322",
+      "predictive_plus_minus_raw": "0.61182657942142504",
+      "mean_reverted_bias_raw": "4.1948968622176598E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "323": {
+      "pollster": "323",
+      "predictive_plus_minus_raw": "0.61188414392089596",
+      "mean_reverted_bias_raw": "-1.37761189578656E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "324": {
+      "pollster": "324",
+      "predictive_plus_minus_raw": "0.612929484089757",
+      "mean_reverted_bias_raw": "7.4011926368148101E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "325": {
+      "pollster": "325",
+      "predictive_plus_minus_raw": "0.61364851542107701",
+      "mean_reverted_bias_raw": "5.0641084932740103E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "326": {
+      "pollster": "326",
+      "predictive_plus_minus_raw": "0.61441540603856504",
+      "mean_reverted_bias_raw": "-0.33595131300908398",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "327": {
+      "pollster": "327",
+      "predictive_plus_minus_raw": "0.61530115498041205",
+      "mean_reverted_bias_raw": "-9.4535591295929797E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "328": {
+      "pollster": "328",
+      "predictive_plus_minus_raw": "0.61658168145862202",
+      "mean_reverted_bias_raw": "-0.118579158981445",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "329": {
+      "pollster": "329",
+      "predictive_plus_minus_raw": "0.61790161345947003",
+      "mean_reverted_bias_raw": "-4.48637719271473E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "330": {
+      "pollster": "330",
+      "predictive_plus_minus_raw": "0.61908705856022495",
+      "mean_reverted_bias_raw": "0.36499999999999999",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "331": {
+      "pollster": "331",
+      "predictive_plus_minus_raw": "0.62110814756427402",
+      "mean_reverted_bias_raw": "0.40675347039072701",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "332": {
+      "pollster": "332",
+      "predictive_plus_minus_raw": "0.62220764983101495",
+      "mean_reverted_bias_raw": "0.103539573809546",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "333": {
+      "pollster": "333",
+      "predictive_plus_minus_raw": "0.62511138096235697",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "334": {
+      "pollster": "334",
+      "predictive_plus_minus_raw": "0.62540181728845501",
+      "mean_reverted_bias_raw": "-0.38602299872606699",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "335": {
+      "pollster": "335",
+      "predictive_plus_minus_raw": "0.62572746904082599",
+      "mean_reverted_bias_raw": "8.5966005401389295E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "336": {
+      "pollster": "336",
+      "predictive_plus_minus_raw": "0.626237544682962",
+      "mean_reverted_bias_raw": "8.2119182391115902E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "337": {
+      "pollster": "337",
+      "predictive_plus_minus_raw": "0.626858112660994",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "338": {
+      "pollster": "338",
+      "predictive_plus_minus_raw": "0.62754543065634505",
+      "mean_reverted_bias_raw": "0.12287009207576",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "339": {
+      "pollster": "339",
+      "predictive_plus_minus_raw": "0.62802713900501095",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "340": {
+      "pollster": "340",
+      "predictive_plus_minus_raw": "0.62831952277556402",
+      "mean_reverted_bias_raw": "5.2349252039889202E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "341": {
+      "pollster": "341",
+      "predictive_plus_minus_raw": "0.62875211323539903",
+      "mean_reverted_bias_raw": "0.454973564597701",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "342": {
+      "pollster": "342",
+      "predictive_plus_minus_raw": "0.629075516658545",
+      "mean_reverted_bias_raw": "-0.52650735892330502",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "343": {
+      "pollster": "343",
+      "predictive_plus_minus_raw": "0.63056036610205501",
+      "mean_reverted_bias_raw": "0.23218954722371299",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "344": {
+      "pollster": "344",
+      "predictive_plus_minus_raw": "0.63238747731089595",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "345": {
+      "pollster": "345",
+      "predictive_plus_minus_raw": "0.63523833145476505",
+      "mean_reverted_bias_raw": "0.109048864912548",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "346": {
+      "pollster": "346",
+      "predictive_plus_minus_raw": "0.63556054089902103",
+      "mean_reverted_bias_raw": "0.123178201326733",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "347": {
+      "pollster": "347",
+      "predictive_plus_minus_raw": "0.63600119075708905",
+      "mean_reverted_bias_raw": "0.23684210526315699",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "348": {
+      "pollster": "348",
+      "predictive_plus_minus_raw": "0.63663136973678003",
+      "mean_reverted_bias_raw": "0.13010743782325199",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "349": {
+      "pollster": "349",
+      "predictive_plus_minus_raw": "0.63705259572373296",
+      "mean_reverted_bias_raw": "-0.21410572014693899",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "350": {
+      "pollster": "350",
+      "predictive_plus_minus_raw": "0.63770432716684",
+      "mean_reverted_bias_raw": "-0.24921191719105601",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "351": {
+      "pollster": "351",
+      "predictive_plus_minus_raw": "0.63851919917819699",
+      "mean_reverted_bias_raw": "-3.2871935725496001E-3",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "352": {
+      "pollster": "352",
+      "predictive_plus_minus_raw": "0.63922545972809097",
+      "mean_reverted_bias_raw": "8.7851136025745305E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "353": {
+      "pollster": "353",
+      "predictive_plus_minus_raw": "0.63951300681150702",
+      "mean_reverted_bias_raw": "-0.897319273446745",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "354": {
+      "pollster": "354",
+      "predictive_plus_minus_raw": "0.64270799188336802",
+      "mean_reverted_bias_raw": "-3.8869657661030001E-3",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "355": {
+      "pollster": "355",
+      "predictive_plus_minus_raw": "0.64372315303517103",
+      "mean_reverted_bias_raw": "-8.2361324945555398E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "356": {
+      "pollster": "356",
+      "predictive_plus_minus_raw": "0.64385697287564103",
+      "mean_reverted_bias_raw": "0.20606749538872099",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "357": {
+      "pollster": "357",
+      "predictive_plus_minus_raw": "0.64492013146181704",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "358": {
+      "pollster": "358",
+      "predictive_plus_minus_raw": "0.64499354639418205",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "359": {
+      "pollster": "359",
+      "predictive_plus_minus_raw": "0.64645201076789605",
+      "mean_reverted_bias_raw": "-0.145681414814223",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "360": {
+      "pollster": "360",
+      "predictive_plus_minus_raw": "0.64697821563620805",
+      "mean_reverted_bias_raw": "0.82390641362762795",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "361": {
+      "pollster": "361",
+      "predictive_plus_minus_raw": "0.65095702808716704",
+      "mean_reverted_bias_raw": "0.26010605254804298",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "362": {
+      "pollster": "362",
+      "predictive_plus_minus_raw": "0.65481807210075904",
+      "mean_reverted_bias_raw": "0.13041049881295799",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "363": {
+      "pollster": "363",
+      "predictive_plus_minus_raw": "0.655094232883626",
+      "mean_reverted_bias_raw": "-0.29893041059936998",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "364": {
+      "pollster": "364",
+      "predictive_plus_minus_raw": "0.65650215384299004",
+      "mean_reverted_bias_raw": "0.28952396127521501",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "365": {
+      "pollster": "365",
+      "predictive_plus_minus_raw": "0.66008115267609102",
+      "mean_reverted_bias_raw": "6.5407413515570501E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "366": {
+      "pollster": "366",
+      "predictive_plus_minus_raw": "0.660707153950993",
+      "mean_reverted_bias_raw": "-0.111744284115321",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "367": {
+      "pollster": "367",
+      "predictive_plus_minus_raw": "0.661630087047821",
+      "mean_reverted_bias_raw": "-4.0103541973505498E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "368": {
+      "pollster": "368",
+      "predictive_plus_minus_raw": "0.66164074210775103",
+      "mean_reverted_bias_raw": "0.21456419063975901",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "369": {
+      "pollster": "369",
+      "predictive_plus_minus_raw": "0.66265542205894501",
+      "mean_reverted_bias_raw": "0.15526280796108",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "370": {
+      "pollster": "370",
+      "predictive_plus_minus_raw": "0.66531481770566103",
+      "mean_reverted_bias_raw": "1.5928681964212501",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "371": {
+      "pollster": "371",
+      "predictive_plus_minus_raw": "0.66966571633991401",
+      "mean_reverted_bias_raw": "0.40500000000000003",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "372": {
+      "pollster": "372",
+      "predictive_plus_minus_raw": "0.66991207450932",
+      "mean_reverted_bias_raw": "-9.5057838656535498E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "373": {
+      "pollster": "373",
+      "predictive_plus_minus_raw": "0.67080096937575695",
+      "mean_reverted_bias_raw": "1.4572855740368601E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "374": {
+      "pollster": "374",
+      "predictive_plus_minus_raw": "0.67102506539527695",
+      "mean_reverted_bias_raw": "-0.28335578897792202",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "375": {
+      "pollster": "375",
+      "predictive_plus_minus_raw": "0.67111862957271895",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "376": {
+      "pollster": "376",
+      "predictive_plus_minus_raw": "0.67289362968896305",
+      "mean_reverted_bias_raw": "0.68741527787466705",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "377": {
+      "pollster": "377",
+      "predictive_plus_minus_raw": "0.673039268281442",
+      "mean_reverted_bias_raw": "9.9946580812309005E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "378": {
+      "pollster": "378",
+      "predictive_plus_minus_raw": "0.67377165307223097",
+      "mean_reverted_bias_raw": "-0.117639706737167",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "379": {
+      "pollster": "379",
+      "predictive_plus_minus_raw": "0.67512437846376705",
+      "mean_reverted_bias_raw": "9.3030334345341997E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "380": {
+      "pollster": "380",
+      "predictive_plus_minus_raw": "0.68026536186198705",
+      "mean_reverted_bias_raw": "-0.14846881208083901",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "381": {
+      "pollster": "381",
+      "predictive_plus_minus_raw": "0.68073312677436704",
+      "mean_reverted_bias_raw": "3.7963340943908999",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "382": {
+      "pollster": "382",
+      "predictive_plus_minus_raw": "0.680887690273555",
+      "mean_reverted_bias_raw": "0.155437821724009",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "383": {
+      "pollster": "383",
+      "predictive_plus_minus_raw": "0.68154949507796103",
+      "mean_reverted_bias_raw": "-9.9355039756727603E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "384": {
+      "pollster": "384",
+      "predictive_plus_minus_raw": "0.68184712915211998",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "385": {
+      "pollster": "385",
+      "predictive_plus_minus_raw": "0.68191988082437704",
+      "mean_reverted_bias_raw": "0.12542021520253699",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "386": {
+      "pollster": "386",
+      "predictive_plus_minus_raw": "0.68251735897858701",
+      "mean_reverted_bias_raw": "0.12487757647150401",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "387": {
+      "pollster": "387",
+      "predictive_plus_minus_raw": "0.68376263111543101",
+      "mean_reverted_bias_raw": "-0.77223137404370901",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "388": {
+      "pollster": "388",
+      "predictive_plus_minus_raw": "0.68385645445358301",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "389": {
+      "pollster": "389",
+      "predictive_plus_minus_raw": "0.68402865950107095",
+      "mean_reverted_bias_raw": "-0.30365112817098899",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "390": {
+      "pollster": "390",
+      "predictive_plus_minus_raw": "0.686527237574171",
+      "mean_reverted_bias_raw": "-0.19324328563458101",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "391": {
+      "pollster": "391",
+      "predictive_plus_minus_raw": "0.68805783792498898",
+      "mean_reverted_bias_raw": "0.18224349707131501",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "392": {
+      "pollster": "392",
+      "predictive_plus_minus_raw": "0.68837095945666005",
+      "mean_reverted_bias_raw": "-0.31333371044264202",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "393": {
+      "pollster": "393",
+      "predictive_plus_minus_raw": "0.68937362040115402",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "394": {
+      "pollster": "394",
+      "predictive_plus_minus_raw": "0.68962416016878403",
+      "mean_reverted_bias_raw": "-0.13787392647531199",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "395": {
+      "pollster": "395",
+      "predictive_plus_minus_raw": "0.68991044005315705",
+      "mean_reverted_bias_raw": "-0.152145852973748",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "396": {
+      "pollster": "396",
+      "predictive_plus_minus_raw": "0.69038449386298095",
+      "mean_reverted_bias_raw": "0.24755514826009001",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "397": {
+      "pollster": "397",
+      "predictive_plus_minus_raw": "0.69110492960838599",
+      "mean_reverted_bias_raw": "0.73763042161333303",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "398": {
+      "pollster": "398",
+      "predictive_plus_minus_raw": "0.69224456915742905",
+      "mean_reverted_bias_raw": "0.69038501186983903",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "399": {
+      "pollster": "399",
+      "predictive_plus_minus_raw": "0.69342213228579896",
+      "mean_reverted_bias_raw": "-0.12524948444703199",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "400": {
+      "pollster": "400",
+      "predictive_plus_minus_raw": "0.69343079214972203",
+      "mean_reverted_bias_raw": "0.76060564780302597",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "401": {
+      "pollster": "401",
+      "predictive_plus_minus_raw": "0.69521355700660903",
+      "mean_reverted_bias_raw": "0.22922298229506699",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "402": {
+      "pollster": "402",
+      "predictive_plus_minus_raw": "0.69598688100458195",
+      "mean_reverted_bias_raw": "0.42126543643387798",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "403": {
+      "pollster": "403",
+      "predictive_plus_minus_raw": "0.69712815520621696",
+      "mean_reverted_bias_raw": "-0.152752279672382",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "404": {
+      "pollster": "404",
+      "predictive_plus_minus_raw": "0.69804118032586304",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "405": {
+      "pollster": "405",
+      "predictive_plus_minus_raw": "0.70202767568645097",
+      "mean_reverted_bias_raw": "-0.25817678299493502",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "406": {
+      "pollster": "406",
+      "predictive_plus_minus_raw": "0.708334133562739",
+      "mean_reverted_bias_raw": "0.69523834217218305",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "407": {
+      "pollster": "407",
+      "predictive_plus_minus_raw": "0.71101575335318101",
+      "mean_reverted_bias_raw": "-0.55440684190532197",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "408": {
+      "pollster": "408",
+      "predictive_plus_minus_raw": "0.71302143761052506",
+      "mean_reverted_bias_raw": "-0.89434364994663795",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "409": {
+      "pollster": "409",
+      "predictive_plus_minus_raw": "0.71573634544479003",
+      "mean_reverted_bias_raw": "0.60776983064127099",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "410": {
+      "pollster": "410",
+      "predictive_plus_minus_raw": "0.71608063702526203",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "411": {
+      "pollster": "411",
+      "predictive_plus_minus_raw": "0.71836653928900596",
+      "mean_reverted_bias_raw": "-0.16927817019973701",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "412": {
+      "pollster": "412",
+      "predictive_plus_minus_raw": "0.72027435952906804",
+      "mean_reverted_bias_raw": "0.36764848490473201",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "413": {
+      "pollster": "413",
+      "predictive_plus_minus_raw": "0.72315563486832402",
+      "mean_reverted_bias_raw": "-3.2007304699766502E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "414": {
+      "pollster": "414",
+      "predictive_plus_minus_raw": "0.72366120809552004",
+      "mean_reverted_bias_raw": "0.26358373622203002",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "415": {
+      "pollster": "415",
+      "predictive_plus_minus_raw": "0.72471266733690198",
+      "mean_reverted_bias_raw": "0.19458386157110999",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "416": {
+      "pollster": "416",
+      "predictive_plus_minus_raw": "0.72551346204885103",
+      "mean_reverted_bias_raw": "-0.14268719575146799",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "417": {
+      "pollster": "417",
+      "predictive_plus_minus_raw": "0.72703170475405898",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "418": {
+      "pollster": "418",
+      "predictive_plus_minus_raw": "0.72880696358176",
+      "mean_reverted_bias_raw": "0.207236942200515",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "419": {
+      "pollster": "419",
+      "predictive_plus_minus_raw": "0.72907919311831504",
+      "mean_reverted_bias_raw": "0.30084790421914298",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "420": {
+      "pollster": "420",
+      "predictive_plus_minus_raw": "0.73179237291697896",
+      "mean_reverted_bias_raw": "0.20485326726448",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "421": {
+      "pollster": "421",
+      "predictive_plus_minus_raw": "0.73244432364323098",
+      "mean_reverted_bias_raw": "0.48997510130120397",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "422": {
+      "pollster": "422",
+      "predictive_plus_minus_raw": "0.73320100196999105",
+      "mean_reverted_bias_raw": "-0.51087060325039002",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "423": {
+      "pollster": "423",
+      "predictive_plus_minus_raw": "0.73326083214907301",
+      "mean_reverted_bias_raw": "0.23170041494263599",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "424": {
+      "pollster": "424",
+      "predictive_plus_minus_raw": "0.73498933709591696",
+      "mean_reverted_bias_raw": "0.17743924684524801",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "425": {
+      "pollster": "425",
+      "predictive_plus_minus_raw": "0.73635602211310203",
+      "mean_reverted_bias_raw": "0.39307073538527598",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "426": {
+      "pollster": "426",
+      "predictive_plus_minus_raw": "0.73798464251887896",
+      "mean_reverted_bias_raw": "3.3696143942291799",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "427": {
+      "pollster": "427",
+      "predictive_plus_minus_raw": "0.73861933029540605",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "428": {
+      "pollster": "428",
+      "predictive_plus_minus_raw": "0.74066950117458996",
+      "mean_reverted_bias_raw": "1.5348450074297999",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "429": {
+      "pollster": "429",
+      "predictive_plus_minus_raw": "0.74131502075365396",
+      "mean_reverted_bias_raw": "0.76930072667411897",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "430": {
+      "pollster": "430",
+      "predictive_plus_minus_raw": "0.74265983726319695",
+      "mean_reverted_bias_raw": "0.35302282123538298",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "431": {
+      "pollster": "431",
+      "predictive_plus_minus_raw": "0.74410574750243896",
+      "mean_reverted_bias_raw": "2.6814570080486901",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "432": {
+      "pollster": "432",
+      "predictive_plus_minus_raw": "0.74676567730384702",
+      "mean_reverted_bias_raw": "1.0821722298168699",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "433": {
+      "pollster": "433",
+      "predictive_plus_minus_raw": "0.74840776345364501",
+      "mean_reverted_bias_raw": "0.28828373913629302",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "434": {
+      "pollster": "434",
+      "predictive_plus_minus_raw": "0.74902356827274297",
+      "mean_reverted_bias_raw": "1.05646576649292",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "435": {
+      "pollster": "435",
+      "predictive_plus_minus_raw": "0.75082993014551502",
+      "mean_reverted_bias_raw": "-0.30238675661264902",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "436": {
+      "pollster": "436",
+      "predictive_plus_minus_raw": "0.75297360031804905",
+      "mean_reverted_bias_raw": "-0.20773702600934599",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "437": {
+      "pollster": "437",
+      "predictive_plus_minus_raw": "0.75471705408627099",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "438": {
+      "pollster": "438",
+      "predictive_plus_minus_raw": "0.75513377600367504",
+      "mean_reverted_bias_raw": "-0.26417753872741601",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "439": {
+      "pollster": "439",
+      "predictive_plus_minus_raw": "0.75631597364410597",
+      "mean_reverted_bias_raw": "-0.28975335146223902",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "440": {
+      "pollster": "440",
+      "predictive_plus_minus_raw": "0.758401532179652",
+      "mean_reverted_bias_raw": "0.39428462382519902",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "441": {
+      "pollster": "441",
+      "predictive_plus_minus_raw": "0.759781222462524",
+      "mean_reverted_bias_raw": "0.31361598503480997",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "442": {
+      "pollster": "442",
+      "predictive_plus_minus_raw": "0.76024027115308701",
+      "mean_reverted_bias_raw": "9.5731986091629195E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "443": {
+      "pollster": "443",
+      "predictive_plus_minus_raw": "0.76393679240295698",
+      "mean_reverted_bias_raw": "0.33787739014824503",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "444": {
+      "pollster": "444",
+      "predictive_plus_minus_raw": "0.763963703778898",
+      "mean_reverted_bias_raw": "0.39736842105263098",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "445": {
+      "pollster": "445",
+      "predictive_plus_minus_raw": "0.765342465255476",
+      "mean_reverted_bias_raw": "1.1125692716001501",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "446": {
+      "pollster": "446",
+      "predictive_plus_minus_raw": "0.77191796975981597",
+      "mean_reverted_bias_raw": "0.295607924600989",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "447": {
+      "pollster": "447",
+      "predictive_plus_minus_raw": "0.77435289605569202",
+      "mean_reverted_bias_raw": "-0.43357317463676398",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "448": {
+      "pollster": "448",
+      "predictive_plus_minus_raw": "0.774392368438658",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "449": {
+      "pollster": "449",
+      "predictive_plus_minus_raw": "0.77449709113352605",
+      "mean_reverted_bias_raw": "0.25296509991750199",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "450": {
+      "pollster": "450",
+      "predictive_plus_minus_raw": "0.77840441531040605",
+      "mean_reverted_bias_raw": "0.66395867460654001",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "451": {
+      "pollster": "451",
+      "predictive_plus_minus_raw": "0.78034790141777999",
+      "mean_reverted_bias_raw": "1.58503129009407",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "452": {
+      "pollster": "452",
+      "predictive_plus_minus_raw": "0.78048086017331397",
+      "mean_reverted_bias_raw": "0.96054921852388597",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "453": {
+      "pollster": "453",
+      "predictive_plus_minus_raw": "0.79632652350156596",
+      "mean_reverted_bias_raw": "0.55635495860469797",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "454": {
+      "pollster": "454",
+      "predictive_plus_minus_raw": "0.79756673254975097",
+      "mean_reverted_bias_raw": "-0.73437853403450604",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "455": {
+      "pollster": "455",
+      "predictive_plus_minus_raw": "0.79784946462190898",
+      "mean_reverted_bias_raw": "2.7767855090685498",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "456": {
+      "pollster": "456",
+      "predictive_plus_minus_raw": "0.79807875164173103",
+      "mean_reverted_bias_raw": "-0.64692422196097599",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "457": {
+      "pollster": "457",
+      "predictive_plus_minus_raw": "0.79820307652176004",
+      "mean_reverted_bias_raw": "0.38064840931705901",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "458": {
+      "pollster": "458",
+      "predictive_plus_minus_raw": "0.80172059095588799",
+      "mean_reverted_bias_raw": "2.30589447910572E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "459": {
+      "pollster": "459",
+      "predictive_plus_minus_raw": "0.81803009410745797",
+      "mean_reverted_bias_raw": "0.51223025499122299",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "460": {
+      "pollster": "460",
+      "predictive_plus_minus_raw": "0.82299810906428905",
+      "mean_reverted_bias_raw": "-0.74615658943816299",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "461": {
+      "pollster": "461",
+      "predictive_plus_minus_raw": "0.83007077755923897",
+      "mean_reverted_bias_raw": "0.42636110551128598",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "462": {
+      "pollster": "462",
+      "predictive_plus_minus_raw": "0.83216592091235297",
+      "mean_reverted_bias_raw": "0.83913675480584504",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "463": {
+      "pollster": "463",
+      "predictive_plus_minus_raw": "0.83501430117564901",
+      "mean_reverted_bias_raw": "0.25237738115006098",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "464": {
+      "pollster": "464",
+      "predictive_plus_minus_raw": "0.84350258199870998",
+      "mean_reverted_bias_raw": "-0.39453775992888002",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "465": {
+      "pollster": "465",
+      "predictive_plus_minus_raw": "0.84356448676528895",
+      "mean_reverted_bias_raw": "-0.88919557002282401",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "466": {
+      "pollster": "466",
+      "predictive_plus_minus_raw": "0.84442493244644001",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "467": {
+      "pollster": "467",
+      "predictive_plus_minus_raw": "0.84840360081889599",
+      "mean_reverted_bias_raw": "-1.5580409364536001",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "468": {
+      "pollster": "468",
+      "predictive_plus_minus_raw": "0.85124702608305503",
+      "mean_reverted_bias_raw": "0.72498850603849996",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "469": {
+      "pollster": "469",
+      "predictive_plus_minus_raw": "0.86141009514007905",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "470": {
+      "pollster": "470",
+      "predictive_plus_minus_raw": "0.86424039677855802",
+      "mean_reverted_bias_raw": "-0.47641420347505897",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "471": {
+      "pollster": "471",
+      "predictive_plus_minus_raw": "0.86572952399812697",
+      "mean_reverted_bias_raw": "0.69",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "472": {
+      "pollster": "472",
+      "predictive_plus_minus_raw": "0.870667457195891",
+      "mean_reverted_bias_raw": "-0.62966314259497402",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "473": {
+      "pollster": "473",
+      "predictive_plus_minus_raw": "0.876054379911123",
+      "mean_reverted_bias_raw": "0.362151686122682",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "474": {
+      "pollster": "474",
+      "predictive_plus_minus_raw": "0.89167798206263704",
+      "mean_reverted_bias_raw": "-0.39694471829163303",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "475": {
+      "pollster": "475",
+      "predictive_plus_minus_raw": "0.89582620399844803",
+      "mean_reverted_bias_raw": "1.2705244274418399",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "476": {
+      "pollster": "476",
+      "predictive_plus_minus_raw": "0.89939756174704999",
+      "mean_reverted_bias_raw": "-0.24255843724739601",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "477": {
+      "pollster": "477",
+      "predictive_plus_minus_raw": "0.90924542162894395",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "478": {
+      "pollster": "478",
+      "predictive_plus_minus_raw": "0.91218570780725095",
+      "mean_reverted_bias_raw": "0.61099999999999899",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "479": {
+      "pollster": "479",
+      "predictive_plus_minus_raw": "0.91871931809379404",
+      "mean_reverted_bias_raw": "0.56897760134814102",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "480": {
+      "pollster": "480",
+      "predictive_plus_minus_raw": "0.91927964770625303",
+      "mean_reverted_bias_raw": "0.71888838870029204",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "481": {
+      "pollster": "481",
+      "predictive_plus_minus_raw": "0.92490355648212796",
+      "mean_reverted_bias_raw": "7.1374270485579094E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "482": {
+      "pollster": "482",
+      "predictive_plus_minus_raw": "0.92969715567000899",
+      "mean_reverted_bias_raw": "0.63334230077763198",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "483": {
+      "pollster": "483",
+      "predictive_plus_minus_raw": "0.94117399901641896",
+      "mean_reverted_bias_raw": "0.81496409108715795",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "484": {
+      "pollster": "484",
+      "predictive_plus_minus_raw": "0.941629424048951",
+      "mean_reverted_bias_raw": "1.7852503809092799",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "485": {
+      "pollster": "485",
+      "predictive_plus_minus_raw": "0.94233353669431896",
+      "mean_reverted_bias_raw": "0.26444726494698401",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "486": {
+      "pollster": "486",
+      "predictive_plus_minus_raw": "0.94748682104145299",
+      "mean_reverted_bias_raw": "0.27907222035483198",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "487": {
+      "pollster": "487",
+      "predictive_plus_minus_raw": "0.94808751263453594",
+      "mean_reverted_bias_raw": "0.57798626075144399",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "488": {
+      "pollster": "488",
+      "predictive_plus_minus_raw": "0.96550856447065303",
+      "mean_reverted_bias_raw": "0.69540056552007901",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "489": {
+      "pollster": "489",
+      "predictive_plus_minus_raw": "0.97056587052588605",
+      "mean_reverted_bias_raw": "-0.45275671267041701",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "490": {
+      "pollster": "490",
+      "predictive_plus_minus_raw": "0.98259333344894895",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "491": {
+      "pollster": "491",
+      "predictive_plus_minus_raw": "0.98494888512515599",
+      "mean_reverted_bias_raw": "2.3437089683258701",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "492": {
+      "pollster": "492",
+      "predictive_plus_minus_raw": "1.0359362209634699",
+      "mean_reverted_bias_raw": "0.95299999999999996",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "493": {
+      "pollster": "493",
+      "predictive_plus_minus_raw": "1.04061582186492",
+      "mean_reverted_bias_raw": "1.2939738511977601",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "494": {
+      "pollster": "494",
+      "predictive_plus_minus_raw": "1.0604345651785601",
+      "mean_reverted_bias_raw": "1.8677781921826699",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "495": {
+      "pollster": "495",
+      "predictive_plus_minus_raw": "1.078198170446",
+      "mean_reverted_bias_raw": "-0.106092662769235",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "496": {
+      "pollster": "496",
+      "predictive_plus_minus_raw": "1.08931856491294",
+      "mean_reverted_bias_raw": "6.4994608503859103E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "497": {
+      "pollster": "497",
+      "predictive_plus_minus_raw": "1.0910799761590599",
+      "mean_reverted_bias_raw": "0.96990859518087702",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "498": {
+      "pollster": "498",
+      "predictive_plus_minus_raw": "1.0947634719372401",
+      "mean_reverted_bias_raw": "-0.781913641402468",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "499": {
+      "pollster": "499",
+      "predictive_plus_minus_raw": "1.0969847072961501",
+      "mean_reverted_bias_raw": "-1.5051278049540799",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "500": {
+      "pollster": "500",
+      "predictive_plus_minus_raw": "1.10877805638561",
+      "mean_reverted_bias_raw": "0.19391988594170001",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "501": {
+      "pollster": "501",
+      "predictive_plus_minus_raw": "1.11042033709121",
+      "mean_reverted_bias_raw": "0.78215066075091799",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "502": {
+      "pollster": "502",
+      "predictive_plus_minus_raw": "1.1296406732559701",
+      "mean_reverted_bias_raw": "-2.2422501971790401",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "503": {
+      "pollster": "503",
+      "predictive_plus_minus_raw": "1.13280122678202",
+      "mean_reverted_bias_raw": "1.55088407985237",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "504": {
+      "pollster": "504",
+      "predictive_plus_minus_raw": "1.1356618220807699",
+      "mean_reverted_bias_raw": "-1.04288458486178",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "505": {
+      "pollster": "505",
+      "predictive_plus_minus_raw": "1.1424363567670299",
+      "mean_reverted_bias_raw": "6.9949056242931906E-2",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "506": {
+      "pollster": "506",
+      "predictive_plus_minus_raw": "1.1514139678991999",
+      "mean_reverted_bias_raw": "-0.71616160045724098",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "507": {
+      "pollster": "507",
+      "predictive_plus_minus_raw": "1.1520805963395799",
+      "mean_reverted_bias_raw": "-0.81403430053256598",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "508": {
+      "pollster": "508",
+      "predictive_plus_minus_raw": "1.16273131126915",
+      "mean_reverted_bias_raw": "-1.69673219249254",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "509": {
+      "pollster": "509",
+      "predictive_plus_minus_raw": "1.1643609472226999",
+      "mean_reverted_bias_raw": "0.93573167833587501",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "510": {
+      "pollster": "510",
+      "predictive_plus_minus_raw": "1.1648691142624801",
+      "mean_reverted_bias_raw": "0.66347616554053901",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "511": {
+      "pollster": "511",
+      "predictive_plus_minus_raw": "1.16749215241857",
+      "mean_reverted_bias_raw": "1.054104379038",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "512": {
+      "pollster": "512",
+      "predictive_plus_minus_raw": "1.1804637539176499",
+      "mean_reverted_bias_raw": "1.8390744309532601",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "513": {
+      "pollster": "513",
+      "predictive_plus_minus_raw": "1.19110221788381",
+      "mean_reverted_bias_raw": "1.3805101219004601",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "514": {
+      "pollster": "514",
+      "predictive_plus_minus_raw": "1.19687115742911",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "515": {
+      "pollster": "515",
+      "predictive_plus_minus_raw": "1.19703316155029",
+      "mean_reverted_bias_raw": "2.6558154519920798",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "516": {
+      "pollster": "516",
+      "predictive_plus_minus_raw": "1.2067092967067301",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "517": {
+      "pollster": "517",
+      "predictive_plus_minus_raw": "1.2507127098375801",
+      "mean_reverted_bias_raw": "0.43176431284005701",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "518": {
+      "pollster": "518",
+      "predictive_plus_minus_raw": "1.25367036808517",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "519": {
+      "pollster": "519",
+      "predictive_plus_minus_raw": "1.2561732771582199",
+      "mean_reverted_bias_raw": "-0.48779746927658701",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "520": {
+      "pollster": "520",
+      "predictive_plus_minus_raw": "1.26356916427476",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "521": {
+      "pollster": "521",
+      "predictive_plus_minus_raw": "1.26844793103453",
+      "mean_reverted_bias_raw": "-1.9108409321175199",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "522": {
+      "pollster": "522",
+      "predictive_plus_minus_raw": "1.2866619528186301",
+      "mean_reverted_bias_raw": "1.61024192585813",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "523": {
+      "pollster": "523",
+      "predictive_plus_minus_raw": "1.29012940726501",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "524": {
+      "pollster": "524",
+      "predictive_plus_minus_raw": "1.32183459036794",
+      "mean_reverted_bias_raw": "-2.76274141224676",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "525": {
+      "pollster": "525",
+      "predictive_plus_minus_raw": "1.3713247213823401",
+      "mean_reverted_bias_raw": "1.5969336468347",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "526": {
+      "pollster": "526",
+      "predictive_plus_minus_raw": "1.38217677204725",
+      "mean_reverted_bias_raw": "0.97864409088787196",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "527": {
+      "pollster": "527",
+      "predictive_plus_minus_raw": "1.4612309135180801",
+      "mean_reverted_bias_raw": "2.2189868023370098",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "528": {
+      "pollster": "528",
+      "predictive_plus_minus_raw": "1.4734589026718199",
+      "mean_reverted_bias_raw": "2.4359162162671901",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "529": {
+      "pollster": "529",
+      "predictive_plus_minus_raw": "1.4949041633615401",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "530": {
+      "pollster": "530",
+      "predictive_plus_minus_raw": "1.5142294263288201",
+      "mean_reverted_bias_raw": "1.4483584860913199",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "531": {
+      "pollster": "531",
+      "predictive_plus_minus_raw": "1.6336655896418",
+      "mean_reverted_bias_raw": "4.6289402660429104",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "532": {
+      "pollster": "532",
+      "predictive_plus_minus_raw": "1.64889766104346",
+      "mean_reverted_bias_raw": "-4.07232467967426",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "533": {
+      "pollster": "533",
+      "predictive_plus_minus_raw": "1.6737389004596701",
+      "mean_reverted_bias_raw": "-0.20327688206140401",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "534": {
+      "pollster": "534",
+      "predictive_plus_minus_raw": "1.7661937902803799",
+      "mean_reverted_bias_raw": "",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "535": {
+      "pollster": "535",
+      "predictive_plus_minus_raw": "1.77033258150604",
+      "mean_reverted_bias_raw": "1.8762417609044699",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "536": {
+      "pollster": "536",
+      "predictive_plus_minus_raw": "2.00361183532406",
+      "mean_reverted_bias_raw": "3.0515239426485299",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "537": {
+      "pollster": "537",
+      "predictive_plus_minus_raw": "2.2345058535814499",
+      "mean_reverted_bias_raw": "3.34854381743382",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "538": {
+      "pollster": "538",
+      "predictive_plus_minus_raw": "2.29243245593804",
+      "mean_reverted_bias_raw": "2.2674108427372301",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "539": {
+      "pollster": "539",
+      "predictive_plus_minus_raw": "2.4952983078331599",
+      "mean_reverted_bias_raw": "-1.09609076993139",
+      "grade_raw": null,
+      "history_count_raw": null
+    },
+    "540": {
+      "pollster": "540",
+      "predictive_plus_minus_raw": "3.6857156488613501",
+      "mean_reverted_bias_raw": "4.4045454545454499",
+      "grade_raw": null,
+      "history_count_raw": null
+    }
+  },
+  "caveats": [
+    "No new pollster accuracy score or signed bias correction has been deployed.",
+    "All sheet columns are raw source values and need verified unit/sign conventions.",
+    "Exact/archived aliases may miss renamed organizations; review before using.",
+    "Grade, predictive plus-minus and signed mean-reverted bias have different units."
+  ]
+}
