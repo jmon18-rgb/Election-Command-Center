@@ -1,0 +1,28 @@
+name: Probe posted-poll source
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/probe_pollresults.py
+      - .github/workflows/probe-pollresults.yml
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect recent public poll API response
+        run: python3 scripts/probe_pollresults.py
+      - name: Commit staging metadata
+        run: |
+          git config user.name "election-briefing-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/pollresults_source_probe.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Stage public polling source schema"
+            git pull --rebase
+            git push
+          fi
