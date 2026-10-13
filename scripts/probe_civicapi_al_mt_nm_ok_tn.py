@@ -6,6 +6,19 @@ Print only identity / candidate count metadata; never publish votes.
 from test_civicapi_live_source import source
 
 DAY="2026-11-03"
+# Identity lock from independent real-source CI discovery on Oct 13, 2026.
+# Oklahoma Governor did not have an exact statewide-contract match and is not
+# promoted into the 2026 supplemental feed.
+EXPECTED={
+    ("AL","Senate"):(86907,"Alabama US Senate"),
+    ("AL","Governor"):(86908,"Alabama Governor"),
+    ("MT","Senate"):(87247,"Montana US Senate"),
+    ("NM","Senate"):(87288,"New Mexico US Senate"),
+    ("NM","Governor"):(87289,"New Mexico Governor"),
+    ("OK","Senate"):(87526,"Oklahoma US Senate"),
+    ("TN","Senate"):(87475,"Tennessee US Senate"),
+    ("TN","Governor"):(87476,"Tennessee Governor"),
+}
 TARGETS=[
     ("AL","Senate","US Senate"),
     ("AL","Governor","Governor"),
@@ -60,8 +73,11 @@ def main():
         print("FIVE NEXT VERIFIED",state,office,row["id"],
               repr(row["election_name"]),"candidates",len(candidates),flush=True)
     print("FIVE NEXT TOTAL",len(verified),"of",len(TARGETS),flush=True)
-    if not verified:
-        raise ValueError("No verified source races for this batch")
+    expected={(state,office,race_id,name)
+              for (state,office),(race_id,name) in EXPECTED.items()}
+    if not expected.issubset(set(verified)):
+        raise ValueError("Expected source race IDs missing or changed: "+
+                         repr(sorted(expected-set(verified))))
 
 if __name__=="__main__":
     main()
