@@ -7,12 +7,12 @@
   const ELECTION='2026-11-03';
   const START=Date.parse('2026-11-03T05:00:00Z');
   const RACES=Object.freeze({
-    'Senate|AK':{state:'AK',name:'Alaska US Senate',office:'Senate'},
-    'Governor|AK':{state:'AK',name:'Alaska Governor',office:'Governor'},
-    'Senate|ME':{state:'ME',name:'Maine US Senate',office:'Senate'},
-    'Governor|ME':{state:'ME',name:'Maine Governor',office:'Governor'},
-    'Governor|MA':{state:'MA',name:'Massachusetts Governor',office:'Governor'},
-    'Governor|NV':{state:'NV',name:'Nevada Governor',office:'Governor'}
+    'Senate|AK':{state:'AK',name:'Alaska US Senate',office:'Senate',id:86916},
+    'Governor|AK':{state:'AK',name:'Alaska Governor',office:'Governor',id:148898},
+    'Senate|ME':{state:'ME',name:'Maine US Senate',office:'Senate',id:87188},
+    'Governor|ME':{state:'ME',name:'Maine Governor',office:'Governor',id:87189},
+    'Governor|MA':{state:'MA',name:'Massachusetts Governor',office:'Governor',id:87276},
+    'Governor|NV':{state:'NV',name:'Nevada Governor',office:'Governor',id:87260}
   });
   const configuration=item=>item&&RACES[item.office+'|'+item.key]||null;
   const supports=item=>Boolean(configuration(item));
@@ -29,7 +29,7 @@
     const cfg=configuration(item);
     return Boolean(cfg&&row&&row.country==='US'&&row.province===cfg.state&&
       row.municipality==null&&row.district==null&&validDate(row.election_date)&&
-      Number.isSafeInteger(row.id)&&row.id>0&&
+      Number.isSafeInteger(row.id)&&row.id===cfg.id&&
       row.type===(cfg.office==='Senate'?'US Senate':'Governor')&&
       row.election_type===(cfg.office==='Senate'?'General':'Statewide')&&
       typeof row.election_name==='string'&&row.election_name.trim()===cfg.name&&
