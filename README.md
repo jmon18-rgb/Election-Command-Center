@@ -67,14 +67,20 @@ The latest build follows the [U.S. Census 120th Congressional District boundary 
 
 The historical research archive now includes **both 2022 and 2024** raw House returns. A separate three-election Census cross-check excludes additional states with boundary changes between 2022 and 2024 (AL, GA, LA, NY, NC): **222** districts share the same boundaries across all three election years; only **191** also have recorded D and R candidate votes in both historical years. The JackStradamus race detail can show their observed two-election House vote shares, clearly labeled historical and never used as a 2026 projected winner. See [MAP_GEOGRAPHY.md](MAP_GEOGRAPHY.md) for sources and rules.
 
-**No full House/Senate forecast or four-scenario probabilities have been enabled.** Changed-map states need geospatial vote reaggregation, and the whole model still needs validated 2026 candidates, incumbents, district fundamentals, Senate holdovers and historical calibration.
+**No independently calibrated JackStradamus House/Senate seat forecast has been enabled.** The separate externally attributed DDHQ congressional-control probabilities are available, but should never be conflated with our incomplete district polling model.
 
 ## October 13: dashboard bug audit and interactive scenarios
 
 The [dashboard QA audit](QA_AUDIT.md) documents specific repairs after user testing: What Actually Changed cards identify the precise state/office/matchup, the linked primary-model survey is highlighted on click (including distinct Texas Senate and governor questions in the same ReconMR survey), and the model now preserves exact included poll IDs so it can validate what was really weighted. Poll inclusion and cross-source matching are checked in the normal model reconciliation and new DOM integration suite (`scripts/test_dashboard_runtime.cjs`) in every automated refresh.
 
-The Four Endings is now a **working hypothetical seat-math sandbox**—click one of the endings or change the House/Senate seat totals and hypothetical share of frozen battleground contests. It classifies the outcome instantly. **This is not the promised probabilistic forecast**; those probabilities remain unavailable until the complete joint, historically calibrated House/Senate model exists. See [SCENARIOS.md](SCENARIOS.md).
+The Four Endings formerly included hypothetical seat sliders; those have been retired in favor of external, attributed DDHQ joint-control probabilities. This is **not** a complete JackStradamus congressional forecast; an unreported Blue Tsunami probability remains blank. See [SCENARIOS.md](SCENARIOS.md).
 
 ## Real probabilities in The Four Endings (October 13)
 
 The hypothetical slider widget has been retired. The Daily Brief now displays **joint congressional-control probabilities published by [Decision Desk HQ](https://votes.decisiondeskhq.com/forecast/2026)**, which models House and Senate control together. As of its October 13 public update: Democrats both **54%**, Democrats exactly one chamber **24%**, Republicans both **21%** (99% sum from source rounding). The **Blue Tsunami subset is not separately measured**, so its probability appears unavailable, not zero. These figures are explicitly attributed to DDHQ and are **not independently calculated from JackStradamus's incomplete district polling model**. The public DDHQ joint fields are ingested and validated every four hours; see [SCENARIOS.md](SCENARIOS.md) and `scripts/test_scenario_forecast.py`.
+
+## New-poll alerts and reach-race watch (October 13)
+
+- **Two-secret Gmail notification setup**: the existing four-hour GitHub Actions refresh can email new source-indexed poll observations, including survey details and original release links. Setup and delivery limitations: [ALERTS.md](ALERTS.md). This is **off until secrets are configured**; the first run initializes a no-spam baseline.
+- **New since last visit**: the Daily Brief tracks poll questions indexed since the current browser last viewed the site, using local browser storage. These are *source-index postings*, not verified first-publication dates. Multiple ballot questions in the same survey are kept distinct.
+- **Beyond the battlegrounds**: South Carolina Senate is shown as a dated, source-attributed reach-race example. A Democratic win outside the current toss-up slate would not itself define Blue Tsunami or supply an independent outcome probability.
