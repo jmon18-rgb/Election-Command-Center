@@ -8,6 +8,13 @@ root = Path(__file__).resolve().parents[1]
 html = (root / "index.html").read_text(encoding="utf-8")
 must_have = (
     'id="modelBoard"',
+    "blue-waves-hero.jpg",
+    'In Search of <em>Blue Waves</em>',
+    'id="racePulse"',
+    'function renderFreshPolls(d)',
+    'Added to feed ',
+    'Fieldwork ended ',
+    'model_sensitivity',
     'id="modelDetail"',
     'id="modelChart"',
     'id="modelPollRows"',
@@ -63,13 +70,15 @@ must_not_have = (
     'Ridiculous name. Real math.',
     'Methodology, data quality and sources',
     'THE DAILY DAMAGE REPORT',
+    'Polling. Senate math. Whatever happens next.',
+    "assets/blue-waves-hero.jpg",
     'Now with receipts.',
 )
 for term in must_have:
     assert term in html, f"Required dashboard feature missing: {term}"
 for term in must_not_have:
     assert term not in html, f"Removed or redundant panel returned: {term}"
-for identifier in ('newPolls', 'jackRadar', 'senateEstimateCards', 'modelBoard', 'modelRaceTotal', 'modelCloseTotal', 'modelThinTotal', 'modelDetail', 'modelChart', 'modelPollRows', 'modelPollIncluded', 'modelPollAll', 'bullScoreStates', 'electionNight', 'enMode2026', 'enMode2024', 'enOfficeGovernor', 'enRaceList', 'scenarioBands', 'scenarioCenter'):
+for identifier in ('racePulse', 'newPolls', 'jackRadar', 'senateEstimateCards', 'modelBoard', 'modelRaceTotal', 'modelCloseTotal', 'modelThinTotal', 'modelDetail', 'modelChart', 'modelPollRows', 'modelPollIncluded', 'modelPollAll', 'bullScoreStates', 'electionNight', 'enMode2026', 'enMode2024', 'enOfficeGovernor', 'enRaceList', 'scenarioBands', 'scenarioCenter'):
     assert len(re.findall(rf'id="{identifier}"', html)) == 1, identifier
 scripts = re.findall(r"<script(?:\s[^>]*)?>(.*?)</script>", html, flags=re.S)
 assert scripts, "No inline dashboard script found"
