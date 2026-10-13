@@ -60,5 +60,6 @@ jobs:
           if [ -f data/pollresults_recent.json ]; then git add data/pollresults_recent.json; fi
           if ! git diff --cached --quiet; then
             git commit -m "Update sourced election briefing"
+            git pull --rebase origin main
             git push
           fi
