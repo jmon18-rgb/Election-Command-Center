@@ -46,3 +46,11 @@ A House popular-vote margin alone does not determine House seats. Senate control
 - [Ettingermentum — Blue Tsunami discussion](https://www.ettingermentum.news/p/what-to-expect-from-a-blue-tsunami)
 
 These references inform the design; this site is an independent project, **not** their model.
+
+## Interactive seat-math sandbox (October 13)
+
+The site now has a deliberately **hypothetical calculator**, so the four scenario cards do something even before an empirical forecast is available. Selecting Red Dawn, Shrug, Blue Wave or Blue Tsunami loads an illustrative House Democratic seat total, Senate Democratic-caucusing seat total and hypothetical share of a *future frozen battleground slate* won by Democratic candidates. Three range controls recalculate the classification immediately. All these values are user-provided **what-if assumptions**, not model predictions, current seats or data-derived probabilities.
+
+The illustrative rules assume **435 occupied voting House seats** (218 Democratic seats for control) and **100 Senate seats**. Senate Democrats/independents caucusing with them need **51** for outright control; a 50–50 tie is treated as Republican control given the Republican vice president in October 2026. The Blue Tsunami classification requires both Democratic majorities and the user-assumed **≥90%** share of an as-yet-unfrozen competitive-race list. That component is not an actual determination until the list is fixed and real outcomes exist.
+
+In particular, do not label these sliders “odds,” “probabilities,” or “projections.” [QA_AUDIT.md](QA_AUDIT.md) explains the interactive tests and known limitations.
