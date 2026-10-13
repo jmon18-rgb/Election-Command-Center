@@ -41,5 +41,5 @@ class Tests(unittest.TestCase):
     def test_no_synthetic_ts_count(self):
         doc=sc.make(sc.parse(self.fixture,NOW),NOW)
         self.assertNotIn("probability",doc["display_outcomes"]["blue_tsunami"])
-        self.assertIn("unavailable",doc["display_outcomes"]["blue_tsunami"]["reason"])
+        self.assertIn("unavailable",doc["display_outcomes"]["blue_tsunami"]["reason"].lower())
 if __name__=="__main__":unittest.main()
