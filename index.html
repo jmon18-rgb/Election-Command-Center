@@ -168,6 +168,12 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-forecast-strip #enForecastOdds{font-variant-numeric:tabular-nums;color:#ddeaf7;font-weight:650}
 .en-forecast-strip a{margin-left:auto;white-space:nowrap}
 @media(max-width:680px){.en-forecast-strip{gap:7px}.en-forecast-strip a{margin-left:0}}
+.model-research-drawer{margin:15px 0 20px;padding:0 15px;border:1px solid #314963;border-radius:10px;background:#112036}
+.model-research-drawer>summary{cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 0;font-size:13px;font-weight:800;color:#d5e8fc}
+.model-research-drawer>summary small{font-size:10px;font-weight:600;color:#8baecb;text-align:right}
+.model-research-drawer[open]>summary{border-bottom:1px solid #31465f;margin-bottom:12px}
+.model-research-drawer .house-history-audit{margin:12px 0}
+@media(max-width:630px){.model-research-drawer>summary{align-items:flex-start;flex-direction:column;gap:5px}.model-research-drawer>summary small{text-align:left}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -249,6 +255,8 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/SEAT_MODEL.md" target="_blank" rel="noopener noreferrer" class="seat-model-link">See model prerequisites ↗</a> <span class="tiny">·</span> <a href="https://www.census.gov/programs-surveys/decennial-census/about/rdo/congressional-districts.html" target="_blank" rel="noopener noreferrer" class="seat-model-link">Census map status ↗</a>
 </section>
 <div class="en-model-blockers" aria-label="Model readiness"><div class="row"><strong>Building a real national forecast</strong><span class="tag" id="forecastGateStatus">NOT CALIBRATED</span></div><p class="detail">JackStradamus's polling averages are descriptive. The prerequisites below come from the full 435-House-seat and 35-Senate-contest inventory, not an invented readiness score.</p><div id="forecastGateList"><div class="empty">Checking the model prerequisites…</div></div></div>
+<details class="model-research-drawer">
+<summary><span>Historical research &amp; model validation</span><small>Poll-to-result testing, Senate history, House shifts · expand</small></summary>
 <section class="en-model-blockers" aria-label="Historical Senate results research" style="margin:15px 0">
  <div class="row"><strong>Historical Senate returns · research input</strong><span class="tag">NOT A FORECAST</span></div>
  <p class="detail" id="senateHistoryStatus">Loading MIT/MEDSL 2020, 2022 and 2024 source status…</p>
@@ -288,6 +296,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div id="houseSwingDistribution" aria-label="Distribution of observed Democratic two-party share changes"></div>
  <p class="house-history-note" id="houseSwingNote">Historical inputs require unchanged boundaries across 2022, 2024 and 2026 plus recorded major-party totals in both elections. No imputation, extrapolation, or new forecast probabilities.</p>
 </section>
+</details>
 <div class="model-workspace">
  <div class="model-board"><div class="model-board-header"><span id="modelOfficeTitle">Senate races</span><span>Current polling gap</span></div><div id="modelBoard"><div class="empty">Loading the race board…</div></div></div>
  <div class="model-detail" id="modelDetail">
