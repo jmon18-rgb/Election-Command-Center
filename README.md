@@ -5,7 +5,7 @@ A personal, data-first 2026 U.S. midterms dashboard. Serious about polling; occa
 ## What the site shows
 
 - **Daily briefing:** 2026 generic congressional ballot, clearly blue/red party margins, key Senate polling snapshots, and newest observations sorted by full source-posting date/time, with original poll links. Source-posting time is not verified publication time.
-- **JackStradamus:** weighted polling averages for Senate, House, governors, and national generic ballot. Every firm gets a visible influence share and source-linked ratings context.
+- **JackStradamus:** weighted polling averages for Senate, House, governors, and national generic ballot. Every firm gets a visible influence share and source-linked ratings context. The **national seat inventory** now identifies all 435 House seats, all 35 Senate contests and 65 holdovers, plus exactly which seats have actual qualifying polling. Full forecasts are blocked until district-specific fundamentals and historical calibration exist; see [SEAT_MODEL.md](SEAT_MODEL.md).
 - **Four congressional outcomes:** Red Dawn = Republicans control both chambers; Shrug = Democrats control one; Blue Wave = Democrats control both; Blue Tsunami = both plus a near-sweep of a frozen battleground slate. No probabilities until the complete seat model is calibrated. See [SCENARIOS.md](SCENARIOS.md).
 - **Race Lab:** individual poll observations, source dates and sponsor labels.
 - **Election Night:** an explicitly partial free-state vote feed, selected 2024 archive, readable D/R leads and vote margins, with reporting limitations.
@@ -52,3 +52,7 @@ v1.4 retains more qualifying pollsters, calculates effective-firm concentration 
 The daily brief prioritizes **new survey postings and meaningful changes in matched polling averages**, replacing the static largest-lead / closest-race tiles. `data/model_history.json` keeps up to 30 days of compact time-stamped model snapshots. A shift only compares the same race **and same candidate matchup**; field-end age changes are not asserted as evidence of changing voter sentiment. Model history requires time to accumulate after deployment. When there is no meaningful movement, the page says so rather than filling the space with trivia.
 
 The supplemental PollResults.org feed is sorted by its **full source `createdAt` date and time**, not fieldwork end, state or pollster alphabetically. Its timezone is unspecified. **This is an index-posting time, not necessarily when the poll was publicly released.** Original-source links remain attached so publication timestamps can be checked independently. The UI puts these postings near the top of Daily Brief.
+
+## Model milestone — full national seat inventory
+
+`scripts/build_seat_universe.py` produces a source-linked `data/seat_universe.json` after every model refresh, and `scripts/test_seat_universe.py` verifies the district census denominator, Class II + Florida/Ohio specials, and missing-data gates. The **JackStradamus** tab displays live House and Senate polling coverage against the full universe. This is a prerequisite for a model, **not** a complete election-day seat projection; no new winning probabilities have been published.
