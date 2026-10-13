@@ -38,3 +38,11 @@ Use GitHub Settings → Pages → Deploy from branch `main`, directory `/ (root)
 ## Model QA (October 2026)
 
 v1.4 retains more qualifying pollsters, calculates effective-firm concentration and sensitivity to weighting assumptions, and compares signed sponsorship-prior corrections against held-out *future polls* in an experimental test. The latter is deliberately **not** deployed without election-result validation. The official January 2026 Silver Bulletin ratings file is not yet incorporated; see [POLLING_MODEL.md](POLLING_MODEL.md).
+
+## October 13 data provenance update
+
+- Fixed Race Lab's `Governors` vs `governor` filter mismatch; all available governor contest rows now render.
+- Race Lab displays **party-leading polling-contest counts among the currently filtered, qualified polls**, not predicted chamber seats. Unpolled and insufficient-data races are not assigned to either party.
+- The Daily Brief ingests a second NYT-derived public feed ([PollResults.org](https://pollresults.org/), CC BY 4.0) with original survey links, LV/RV sample labels and source **posted dates**. These are **not** verified publication dates. The full source archive includes additional records beyond the displayed 14-day window. Fallback to the original ElectIndex feed remains in place.
+- Supplemental observations are strictly matched back to existing model polls using poll ID, race, field end, and vote shares. **Unmatched polls never silently alter the model average.**
+- [Silver Bulletin January 2026 XLSX](https://www.natesilver.net/p/pollster-ratings-silver-bulletin) has been parsed into `data/silver_ratings_staging.json`. It contains 540 pollsters, with 68 reviewed/archived name matches. Its predictive accuracy and bias scores are **research-only**. See `data/model_tests.json` for held-out future-poll comparisons and `POLLING_MODEL.md` for the calculations.
