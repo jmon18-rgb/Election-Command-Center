@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-13T13:06:18.257452Z",
+  "updated_at": "2026-10-13T13:16:19.945430Z",
   "updates": [
     {
       "title": "FLIPR 2026 midterm election forecast - Silver Bulletin",
@@ -74,13 +74,6 @@
       "status": "reported_not_independently_verified"
     },
     {
-      "title": "Court Fixes Nov 20 For Ruling On Atiku's Motion To Amend Eligibility Suit Against Tinubu, APC - Channels Television",
-      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNR3A0dE5IME1kQmMteXk5X0NNbDVibFhzdXZacHVqVlBCN3UxLWtma0ZOTXJQeG1LRi1EaENlX2tKLWpfUUs0U1lsYjdZOU9BQTRTM1hZRTJ6TlUwSEtlcC1OVF9pNXRrMElwaUdXLVdXVHdUdEdhYW1QOHlMc3Z0YXNiSVctQVhOUElkUjdPUWtYazFraHhqVXQ0ZnZYTTVRX1FmakM0ZzVaalRQNGd2NUluSVhwSzBYVnVCc1dTWTNfNWhha1NhbW93?oc=5",
-      "source": "Channels Television",
-      "published_at": "2026-10-13T11:39:45Z",
-      "status": "reported_not_independently_verified"
-    },
-    {
       "title": "Georgia early voting begins under intense scrutiny from White House, GOP - Democracy Docket",
       "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNMFZQMWtaWE5mTE91ZEFER0J0LWc0Z29SYjJ3a0VKcmNoSFREdnFhLURBQ1dOT1hhb0FiMzhFZVFvdmR3ZXRsbk9CZnVZOUdfNHdndU5rQ0luREVGYXpXa3lSbWhBWDItNWl0OTJrOUtiVmU5SURuU2ZBVUVIS3RfM3JXc2pLZlRjN0NacGczc0IwYzc2eEkzTEFhVVo1VlpueDJJMVNOSkNyaGtzZ3g3TnpaeVdnRWc?oc=5",
       "source": "Democracy Docket",
@@ -121,20 +114,20 @@
       "source": "Pittsburgh's Public Source",
       "published_at": "2026-10-13T09:30:00Z",
       "status": "reported_not_independently_verified"
+    },
+    {
+      "title": "What’s on KC, Jackson County ballots? Explore our voter guide to Nov. 3 midterm election - Kansas City Star",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQbXJmNXhxczE2ekxZbnVNT3piTnBtbUpqRVNiQjFnYlVic3gtSkN6b0tNRG84Skh1QXlFa05BV3NOZW50LXppSThHNlNxYlVGYlBpMUNXYzJqaHpyUnctUHlEeTlrSmFFOHRkVzBtOFktMnBHMFlZWHU4TmNFUk1LMEdzNnRpLXlmZk9RZm5TdDNhcGg2b3VMNWV3?oc=5",
+      "source": "Kansas City Star",
+      "published_at": "2026-10-13T09:30:00Z",
+      "status": "reported_not_independently_verified"
     }
   ],
   "pipeline": {
-    "last_attempt_at": "2026-10-13T13:08:57.328799Z",
-    "successful_queries": 0,
+    "last_attempt_at": "2026-10-13T13:16:19.945430Z",
+    "successful_queries": 6,
     "total_queries": 6,
     "kind": "automated_news_headlines_not_verified_facts",
-    "errors": [
-      "updates: HTTPError: HTTP Error 503: Service Unavailable",
-      "updates: HTTPError: HTTP Error 503: Service Unavailable",
-      "updates: HTTPError: HTTP Error 503: Service Unavailable",
-      "security: HTTPError: HTTP Error 503: Service Unavailable",
-      "security: HTTPError: HTTP Error 503: Service Unavailable",
-      "security: HTTPError: HTTP Error 503: Service Unavailable"
-    ]
+    "errors": []
   }
 }
