@@ -1600,6 +1600,10 @@ function renderSeatUniverse(data){
 fetch('./data/seat_universe.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('inventory unavailable');return r.json()}).then(renderSeatUniverse).catch(()=>{$('#seatInventoryAsOf').textContent='Inventory awaiting verified refresh';});
 
 let modelHistoryData=null;
+function setModelHistoryData(snapshot){
+ modelHistoryData=snapshot;
+ if(latestSenateEstimates){renderRacePulse(latestSenateEstimates);renderModelRaceDetail()}
+}
 let latestSenateEstimates=null;
 function showSenateEstimates(data){
 latestSenateEstimates=data;
@@ -1678,7 +1682,7 @@ renderJackRadar();
 renderRaceList();
 modelApplyHash();renderModelOverview(data);renderModelGenericHeadline();renderElectionScenarios();
 }
-fetch('./data/model_history.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('history pending');return r.json()}).then(d=>{modelHistoryData=d;if(latestSenateEstimates){renderRacePulse(latestSenateEstimates);renderModelRaceDetail()}}).catch(()=>{/* History accumulates only after first refresh. */});
+fetch('./data/model_history.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('history pending');return r.json()}).then(setModelHistoryData).catch(()=>{/* History accumulates only after first refresh. */});
 fetch('./data/polling_estimates.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('not ready');return r.json()}).then(d=>showSenateEstimates(d)).catch(()=>{document.getElementById('senateEstimateCards').textContent='Waiting for first automated polling summary refresh.'});
 fetch('./data/briefing.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(d=>{feedHealth.news=d;updateHealth();if(d.updated_at){const date=new Date(d.updated_at);if(!Number.isNaN(+date)){$('#freshness').textContent='News collected '+date.toLocaleString();$('#updated').textContent='News collected '+date.toLocaleDateString()}}renderItems('updates',d.updates);securityArticles=Array.isArray(d.security)?d.security:[];renderSecurity()}).catch(()=>updateHealth());
 </script></body></html>
