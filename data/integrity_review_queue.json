@@ -1,9 +1,28 @@
 {
-  "updated_at": "2026-10-13T13:24:51.998431Z",
+  "updated_at": "2026-10-13T14:00:45.792365Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "items": [
+    {
+      "id": "0f4a6464ff925f41424f",
+      "title": "Supreme Court turns away Kari Lake lawyer\u2019s challenge to sanctions in Arizona voting machine lawsuit - The Hill",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNenhseW1HU2JaRExkZUJaWGlORHUwVmdvVEwtRjU0THpDRU43SHl2bEk5aG1jckVfTXJlMHB1eWdYN21zTGlXMTN4THI4c3l3S0czSks3ZkpJU2RGeU5kb2ZDN2FzNVBDbGZEV1FzdHdGYkFqZGs4TDBIS0NQNVJhM3RYVDBJcGcwWDFMWTFWdUNrc2JVdXYzVHZoWnVjcjFDejMtY1pDLUvSAa4BQVVfeXFMTlY0bTJPUkY1ajFiV2pXTUpwbHlYSm42OW12MFVscE1sQXN0WENDbzRjUE1nN0t2ajBKYl9MbndwT09NQ0RONkNMNjNjWnF2VXJmb0U0eGFhNkptZEpLd01HdEUtNDgwYm9CTEs0WGc3QVl4Y3IzQUZONU9LTlZwVUhmaVRxdFJpdGVNRkZuUmFjN0dzZ1ZkSkZwb3J5OFlzTFphVXprMlpvTTZZa3R3?oc=5",
+      "publisher": "The Hill",
+      "published_at": "2026-10-13T13:38:00Z",
+      "detected_at": "2026-10-13T14:00:45.792365Z",
+      "state_hints": [
+        "AZ"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "c24f5fbc8f7ae0197f9a",
       "title": "Supreme Court Opens Explosive New Term on the Eve of the Midterms With Trump Appeals, Gun Bans, Abortion Pills and Deportation Fights on the Docket - USA Herald",
