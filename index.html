@@ -1935,6 +1935,7 @@ async function enLoad(manual=false){
  if(serial===enRequestSerial)enQueueRefresh();
 }
 function enSwitch(year,office){
+ if(year===2024&&office==='Governor')enArchiveSource='state';
  enModeYear=year;enOffice=office;enData=null;enFetchError=null;enFailures=0;enSelected=null;enVisibleLimit=120;$('#enSearch').value='';enRender();enLoad(true);
 }
 $('#enMode2026').addEventListener('click',()=>enSwitch(2026,enOffice));
