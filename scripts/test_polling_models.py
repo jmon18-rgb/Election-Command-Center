@@ -9,6 +9,7 @@ backtesting and uncertainty calibration.
 import json
 import math
 import random
+import re
 from collections import defaultdict
 from datetime import date
 from pathlib import Path
@@ -31,7 +32,7 @@ if STAGED.exists():
     if staged.get("status")=="staged_not_used_in_live_model" and staged.get("matched_to_older_538_aliases",0)>=20:
         entries=staged.get("entries",{})
         for alias,name in staged.get("matches",{}).items():
-            key=" ".join(name.casefold().replace("&","and").split())
+            key=re.sub(r"[^a-z0-9]+"," ",name.casefold()).strip()
             match=entries.get(key) or entries.get(name.casefold())
             if match:
                 SILVER[alias.casefold()]=match
