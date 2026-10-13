@@ -1845,7 +1845,7 @@ function enSourceValid(o,year,office){
 }
 function enCompareSnapshots(previous,next){
  if(!previous||!next||previous.year!==2026||next.year!==2026||
-   previous.office!==next.office||previous.as_of===next.as_of)return [];
+   previous.office!==next.office)return [];
  const changes=[];
  for(const [id,r] of Object.entries(next.races||{})){
   const old=previous.races?.[id];
@@ -1859,9 +1859,15 @@ function enCompareSnapshots(previous,next){
   if(old&&delta===0&&!candidateChanged&&!leaderChanged)continue;
   changes.push({at:next.as_of,key:id,office:next.office,
     prior:old?.total||0,current:r.total,delta,
-    newRace:!old,leaderChanged,candidateChanged});
+    newRace:!old||(old.total===0&&r.total>0),leaderChanged,candidateChanged});
  }
- return changes.sort((a,b)=>Number(b.leaderChanged)-Number(a.leaderChanged)||
+ for(const [id,r] of Object.entries(previous.races||{})){
+  if(r.total>0&&!Object.prototype.hasOwnProperty.call(next.races,id))
+   changes.push({at:next.as_of,key:id,office:next.office,prior:r.total,current:null,
+     delta:0,withdrawn:true,leaderChanged:false,newRace:false});
+ }
+ return changes.sort((a,b)=>Number(b.withdrawn)-Number(a.withdrawn)||
+   Number(b.leaderChanged)-Number(a.leaderChanged)||
    Number(b.newRace)-Number(a.newRace)||Math.abs(b.delta)-Math.abs(a.delta)).slice(0,30);
 }
 function enSnapshotCompatible(previous,next){
@@ -1898,9 +1904,9 @@ function enRenderMovement(){
  const visible=enMovements.filter(x=>x.office===enOffice).slice(0,8);
  if(!visible.length){host.append(elt('div','en-message','No new reporting movements in this office yet.'));return}
  for(const x of visible){
-  const row=elt('div','en-activity-item'),heading=elt('strong','',x.key+(x.newRace?' · NEW REPORTING':'')+(x.leaderChanged?' · LEAD CHANGED':'')),
-    diff=elt('span',x.delta<0?'en-revision':'',x.newRace?
-      x.current.toLocaleString()+' first recorded votes':
+  const row=elt('div','en-activity-item'),heading=elt('strong','',x.key+(x.withdrawn?' · REMOVED FROM FEED':'')+(x.newRace?' · NEW REPORTING':'')+(x.leaderChanged?' · LEAD CHANGED':'')),
+    diff=elt('span',x.delta<0?'en-revision':'',x.withdrawn?'Race no longer present in the source; do not count its old votes as a zero':
+      x.newRace?x.current.toLocaleString()+' first reported votes':
       x.delta<0?Math.abs(x.delta).toLocaleString()+' votes revised downward':
       x.delta>0?'+'+x.delta.toLocaleString()+' recorded votes since prior update':
       'Candidate totals revised; total ballots unchanged');
