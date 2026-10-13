@@ -1,98 +1,98 @@
 {
   "status": "independently_crosschecked_preliminary",
-  "source_polls": "https://github.com/Jack-Whitcomb/All-US-Senate-polls-2006-2024/blob/main/2006_to_2024_senate_polls_with_actuals.csv",
-  "source_election_results": "https://github.com/fivethirtyeight/election-results/blob/main/election_results_senate.csv",
-  "method": "Eight days before Election Day; 45-day lookback; one latest poll per firm; minimum two pollsters; two-party-normalized margin; excludes special and multiple Senate elections, ranked-choice and independent-winner races; excludes narrowly identified partisan pollster labels",
+  "source_polls": "https://raw.githubusercontent.com/Jack-Whitcomb/All-US-Senate-polls-2006-2024/main/2006_to_2024_senate_polls_with_actuals.csv",
+  "source_election_results": "https://raw.githubusercontent.com/fivethirtyeight/election-results/main/election_results_senate.csv",
+  "method": "8 days before election; 45-day lookback; latest poll per pollster; at least two pollsters; D-R two-party normalized margin",
   "official_races_eligible": 117,
-  "matched_poll_races": 51,
-  "n_evaluations": 204,
+  "matched_poll_races": 48,
+  "n_evaluations": 192,
   "overall": {
     "equal": {
-      "n": 51,
-      "mae": 4.814,
-      "bias": 3.689
+      "n": 48,
+      "mae": 4.743,
+      "bias": 3.553
     },
     "recency21": {
-      "n": 51,
-      "mae": 4.558,
-      "bias": 3.393
+      "n": 48,
+      "mae": 4.506,
+      "bias": 3.269
     },
     "recency21_size": {
-      "n": 51,
-      "mae": 4.489,
-      "bias": 3.303
+      "n": 48,
+      "mae": 4.464,
+      "bias": 3.205
     },
     "recency35_size": {
-      "n": 51,
-      "mae": 4.563,
-      "bias": 3.416
+      "n": 48,
+      "mae": 4.534,
+      "bias": 3.315
     }
   },
   "by_year": {
     "2018": {
       "equal": {
-        "n": 14,
-        "mae": 4.776,
-        "bias": 3.08
+        "n": 13,
+        "mae": 4.867,
+        "bias": 3.041
       },
       "recency21": {
-        "n": 14,
-        "mae": 4.193,
-        "bias": 2.635
+        "n": 13,
+        "mae": 4.284,
+        "bias": 2.606
       },
       "recency21_size": {
-        "n": 14,
-        "mae": 3.956,
-        "bias": 2.432
+        "n": 13,
+        "mae": 4.04,
+        "bias": 2.399
       },
       "recency35_size": {
-        "n": 14,
-        "mae": 4.193,
-        "bias": 2.607
+        "n": 13,
+        "mae": 4.278,
+        "bias": 2.57
       }
     },
     "2020": {
       "equal": {
-        "n": 11,
-        "mae": 5.673,
-        "bias": 5.655
+        "n": 10,
+        "mae": 6.231,
+        "bias": 6.231
       },
       "recency21": {
-        "n": 11,
-        "mae": 5.696,
-        "bias": 5.648
+        "n": 10,
+        "mae": 6.237,
+        "bias": 6.185
       },
       "recency21_size": {
-        "n": 11,
-        "mae": 5.749,
-        "bias": 5.693
+        "n": 10,
+        "mae": 6.275,
+        "bias": 6.214
       },
       "recency35_size": {
-        "n": 11,
-        "mae": 5.708,
-        "bias": 5.708
+        "n": 10,
+        "mae": 6.243,
+        "bias": 6.243
       }
     },
     "2022": {
       "equal": {
-        "n": 12,
-        "mae": 4.946,
-        "bias": 2.502
+        "n": 11,
+        "mae": 4.109,
+        "bias": 1.443
       },
       "recency21": {
-        "n": 12,
-        "mae": 4.777,
-        "bias": 1.926
+        "n": 11,
+        "mae": 4.042,
+        "bias": 0.932
       },
       "recency21_size": {
-        "n": 12,
-        "mae": 4.721,
-        "bias": 1.804
+        "n": 11,
+        "mae": 4.124,
+        "bias": 0.942
       },
       "recency35_size": {
-        "n": 12,
-        "mae": 4.721,
-        "bias": 2.019
+        "n": 11,
+        "mae": 4.088,
+        "bias": 1.14
       }
     },
     "2024": {
@@ -118,11 +118,168 @@
       }
     }
   },
+  "bundled_result_discrepancies": [
+    {
+      "year": 2018,
+      "state": "pennsylvania",
+      "difference": -0.26
+    },
+    {
+      "year": 2022,
+      "state": "california",
+      "difference": -0.349
+    },
+    {
+      "year": 2022,
+      "state": "georgia",
+      "difference": 1.823
+    },
+    {
+      "year": 2024,
+      "state": "california",
+      "difference": -0.245
+    }
+  ],
+  "leave_one_year_out": {
+    "status": "completed",
+    "protocol": "Leave-one-election-year-out, train on other available cycles, test on held-out cycle; equal weighting as baseline",
+    "note": "Uses future cycles to train some folds, so it is not a forward-only test. No per-race predictions are used to select a model.",
+    "folds": [
+      {
+        "held_out_year": 2018,
+        "training_years": [
+          2020,
+          2022,
+          2024
+        ],
+        "training_races": 35,
+        "held_out_races": 13,
+        "selected_method": "recency21",
+        "training_mae_by_method": {
+          "equal": 4.697,
+          "recency21": 4.588,
+          "recency21_size": 4.622,
+          "recency35_size": 4.628
+        },
+        "held_out_selected_mae": 4.284,
+        "held_out_equal_mae": 4.867,
+        "held_out_selected_bias": 2.606,
+        "held_out_equal_bias": 3.041
+      },
+      {
+        "held_out_year": 2020,
+        "training_years": [
+          2018,
+          2022,
+          2024
+        ],
+        "training_races": 38,
+        "held_out_races": 10,
+        "selected_method": "recency21_size",
+        "training_mae_by_method": {
+          "equal": 4.352,
+          "recency21": 4.05,
+          "recency21_size": 3.988,
+          "recency35_size": 4.084
+        },
+        "held_out_selected_mae": 6.275,
+        "held_out_equal_mae": 6.231,
+        "held_out_selected_bias": 6.214,
+        "held_out_equal_bias": 6.231
+      },
+      {
+        "held_out_year": 2022,
+        "training_years": [
+          2018,
+          2020,
+          2024
+        ],
+        "training_races": 37,
+        "held_out_races": 11,
+        "selected_method": "recency21_size",
+        "training_mae_by_method": {
+          "equal": 4.932,
+          "recency21": 4.644,
+          "recency21_size": 4.565,
+          "recency35_size": 4.666
+        },
+        "held_out_selected_mae": 4.124,
+        "held_out_equal_mae": 4.109,
+        "held_out_selected_bias": 0.942,
+        "held_out_equal_bias": 1.443
+      },
+      {
+        "held_out_year": 2024,
+        "training_years": [
+          2018,
+          2020,
+          2022
+        ],
+        "training_races": 34,
+        "held_out_races": 14,
+        "selected_method": "recency21_size",
+        "training_mae_by_method": {
+          "equal": 5.023,
+          "recency21": 4.78,
+          "recency21_size": 4.724,
+          "recency35_size": 4.795
+        },
+        "held_out_selected_mae": 3.832,
+        "held_out_equal_mae": 4.064,
+        "held_out_selected_bias": 3.582,
+        "held_out_equal_bias": 3.772
+      }
+    ],
+    "pooled_held_out_races": 48,
+    "pooled_selected_mae": 4.53,
+    "pooled_equal_mae": 4.743
+  },
+  "forward_year_holdouts": {
+    "status": "completed",
+    "folds": [
+      {
+        "held_out_year": 2020,
+        "training_years": [
+          2018
+        ],
+        "selected_method": "recency21_size",
+        "training_races": 13,
+        "held_out_races": 10,
+        "selected_mae": 6.275,
+        "equal_mae": 6.231
+      },
+      {
+        "held_out_year": 2022,
+        "training_years": [
+          2018,
+          2020
+        ],
+        "selected_method": "recency21_size",
+        "training_races": 23,
+        "held_out_races": 11,
+        "selected_mae": 4.124,
+        "equal_mae": 4.109
+      },
+      {
+        "held_out_year": 2024,
+        "training_years": [
+          2018,
+          2020,
+          2022
+        ],
+        "selected_method": "recency21_size",
+        "training_races": 34,
+        "held_out_races": 14,
+        "selected_mae": 3.832,
+        "equal_mae": 4.064
+      }
+    ],
+    "warning": "First fold has only one training election; 2022 and 2024 folds are more informative."
+  },
   "limitations": [
-    "Not a validated election forecast.",
-    "Cross-check compares returns to independently published election-results records, not a comprehensive state-by-state certification audit.",
-    "Race coverage differs by year; candidate-specific matchup verification remains incomplete.",
-    "Models evaluated on same data; selecting lowest MAE may overfit.",
-    "Excludes only narrowly labeled partisan pollsters; other sponsorship may remain."
+    "Not an election forecast.",
+    "Excludes special, multiple-seat, ranked-choice and independent-winner races.",
+    "Coverage differs by year; no candidate-name validation or holdout model selection.",
+    "Partisan-sponsored poll exclusion relies on pollster-name labels."
   ]
 }
