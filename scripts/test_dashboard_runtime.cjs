@@ -219,7 +219,7 @@ async function settle(){
  get('[data-model-scope="governor"]').click();
  assert([...get('#modelEvidenceList').querySelectorAll('button')].every(b=>
    b.getAttribute('aria-label').includes('governor')));
- w.eval("modelMode='senate';renderModelOverview(latestSenateEstimates)");
+ get('[data-model-scope="senate"]').click();
  // Poll Wire is a real searchable, source-attributed full-feed explorer,
  // not just the top ten survey postings shown on the Daily Brief.
  const wireTab=get('.tab[data-page="wire"]');
