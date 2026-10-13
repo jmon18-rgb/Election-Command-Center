@@ -81,6 +81,7 @@ for state in all_rows:
         ]
         assert len(matching)==1,f"{code}: selected poll not unique: {pick}"
         poll=matching[0]
+        assert "poll_id" in pick and pick["poll_id"]==poll.get("poll_id"),f"{code}: published poll ID does not match included source observation"
         assert poll["pollster"].casefold() not in exclusions,f"{code}: explicitly excluded pollster selected"
         assert poll["pollster"].casefold() not in used,f"{code}: duplicate firm"
         used.add(poll["pollster"].casefold())
