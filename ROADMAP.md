@@ -108,3 +108,10 @@
 - [ ] Build real-browser responsiveness/accessibility checks (Playwright/Chrome), comprehensive HTTP error-state tests and verify each original poll's true *first-publication* timestamp when its publisher makes it available.
 
 Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
+
+## Completed: replace hypothetical endings with a sourced joint forecast — October 13
+- [x] Remove seat sliders and four static what-if presets from The Four Endings.
+- [x] Import and display **DDHQ's publicly reported joint House/Senate model probabilities** (not the product of independent House/Senate marginals). Attribute provider and date; reject malformed outcomes or unreasonable percent totals. Keep last known snapshot if new fetch fails.
+- [x] Distinguish Red Dawn, Shrug, and the inclusive Democratic two-chamber win probability; **do not invent the Blue Tsunami conditional split**, which is not published by the source.
+- [x] Unit tests for joint source ingestion + UI regression showing real probability values, no sliders and no fictional tsunami percentage.
+- [ ] For a four-way *mutually exclusive* probability distribution, obtain calibrated correlated simulations of every House and Senate contest plus predeclared battleground membership and score each draw for the 90%-sweep test. Add independent provider comparisons without assuming different forecasters are statistically independent.
