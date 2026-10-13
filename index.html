@@ -1603,6 +1603,11 @@ function enRender(){
  const archivedSenate=enModeYear===2024&&enData?.source==='medsl_senate_2024_party_aggregates';
  const asOfAge=enData?.as_of?(Date.now()-Date.parse(enData.as_of))/60000:Infinity;
  const sourceDelayed=enModeYear===2026&&enData&&(enData.stale||(enData.counting&&(!enData.live||asOfAge>180)));
+ const connection=$('#enConnection');
+ connection.className='en-connection'+(enFetchError?' error':enModeYear===2026&&enData?.live&&!sourceDelayed?' live':' wait');
+ connection.textContent=enFetchError?'SOURCE RETRYING':enModeYear===2024?'ARCHIVE · REHEARSAL':
+   enData?.live&&!sourceDelayed?'LIVE · 60 SEC AUTO':
+   enData?.counting?'STATE COUNT RECEIVED':'WAITING FOR VOTES';
  let info=enData&&archivedSenate?
   '2024 SENATE ARCHIVE · '+rows.length+' historical contests · MIT/MEDSL recorded party votes · '+
   enData.archive_missing_major_party_districts+' without both major-party candidates · specials distinct':
@@ -1611,8 +1616,8 @@ function enRender(){
   enData.archive_missing_major_party_districts+' districts missing one major party\'s recorded vote · no precinct feed or race calls':
   enData?
   (enModeYear===2024?'2024 ARCHIVE · ':'2026 STATE-DERIVED RETURNS · ')+
-  rows.length+' reported races · source updated '+enFormattedTime(enData.as_of)+
-  (enModeYear===2026?(sourceDelayed?' · NOT CURRENT':' · '+(enData.live?'LIVE':'REPORTING NOT STARTED')):' · HISTORICAL SNAPSHOT'):
+  rows.length+' races in source coverage · updated '+enFormattedTime(enData.as_of)+
+  (enModeYear===2026?(sourceDelayed?' · SOURCE STALE':enData.live?' · LIVE':' · COUNTING NOT LIVE'):' · HISTORICAL SNAPSHOT'):
   (enModeYear===2026&&Date.now()<Date.parse('2026-11-03T00:00:00Z')?
     '2026 returns have not begun. Switch to 2024 Archive for the rehearsal.':
     'Connecting to the source results feed. Nothing is being inferred.');
@@ -1625,7 +1630,10 @@ function enRender(){
  enRenderMovement();
  enUpdateSelection();
  const query=($('#enSearch').value||'').trim().toLowerCase(),list=$('#enRaceList');list.replaceChildren();
- if(!rows.length){list.append(elt('p','empty',enModeYear===2026?'No validated 2026 results source is connected. Original state election results can be opened from the source links below.':'No verified archive for this office. 2024 House is available; MIT/MEDSL 2024 Senate needs its staged source.'));enRenderDetail();return}
+ if(!rows.length){list.append(elt('p','empty',enModeYear===2026&&enData?
+  'State results feed connected; no reported races in its coverage yet. Uncovered states are not treated as zero.':
+  enModeYear===2026?'Waiting for the state-derived results feed. Use the source links below if it is inaccessible.':
+  'No verified historical archive for this office. 2024 House and Senate archives are available.'));enRenderDetail();return}
  const filtered=rows.filter(([key,r])=>!query||(key+' '+(r.cands||[]).map(p=>p.n).join(' ')).toLowerCase().includes(query));
  filtered.sort((a,b)=>{const pa=a[1].pct_in,pb=b[1].pct_in;return (a[1].total?0:1)-(b[1].total?0:1)||String(a[0]).localeCompare(String(b[0]))});
  for(const [key,r] of filtered.slice(0,enVisibleLimit)){
