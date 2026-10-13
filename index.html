@@ -93,6 +93,11 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div id="scenarioSimulator" class="scenario-forecast-summary" aria-label="Model sources and chamber control"></div>
  <p class="methodline">These odds are sourced from <a href="https://votes.decisiondeskhq.com/forecast/2026" target="_blank" rel="noopener noreferrer">Decision Desk HQ's joint 2026 election model</a>, <strong>not calculated from JackStradamus polling averages</strong>. House/Senate outcomes are correlated; joint odds cannot be obtained by multiplying standalone chamber forecasts. <strong>Blue Wave includes Blue Tsunami</strong> until near-sweep simulations can separate them. Values can sum to 99% or 101% due to source rounding. <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/SCENARIOS.md" target="_blank" rel="noopener noreferrer">Full definitions and limitations ↗</a>.</p>
 </div>
+<div class="callout" id="tsunamiReachWatch" style="margin-bottom:17px">
+ <div class="label">Beyond the battlegrounds · South Carolina U.S. Senate</div>
+ <p style="margin:9px 0 7px"><strong>Darline Graham (R) vs. Annie Andrews (D).</strong> <a href="https://www.cookpolitical.com/senate/race/488671" target="_blank" rel="noopener noreferrer">Cook Political Report: Likely Republican</a> (rating page updated Sept. 23, 2026; Oct. 6 national ratings still include SC in Likely Republican). A Democratic win in a race outside the current toss-ups would describe a broader geographic result, but is <strong>not by itself</strong> a Blue Tsunami definition or a model probability.</p>
+ <div class="tiny">Research watch · dated external race rating, not a live rating feed. <a href="https://www.cookpolitical.com/ratings/senate-race-ratings" target="_blank" rel="noopener noreferrer">Check the current race ratings ↗</a></div>
+</div>
 <div class="sectionhead"><h2>What to watch</h2><span class="tiny">What deserves a closer look?</span></div>
 <div class="card radar-wrap"><div id="jackRadar" class="radar-grid"><div class="empty">Scanning close races, polling blind spots, and election developments…</div></div><p class="methodline">The closest margins, thin polling, and documented election-administration issues.</p></div>
 
@@ -686,6 +691,19 @@ function pollPostedStamp(p){
       'T'+m[4].padStart(2,'0')+':'+m[5]+':00';}
  return (p.posted_date||'')+'T00:00:00';
 }
+let newIndexSinceLastVisit;
+function countUnseenIndexPolls(entries){
+ if(newIndexSinceLastVisit!==undefined)return newIndexSinceLastVisit;
+ const key='election-command-center-poll-index-seen-v1';
+ const ids=entries.map(p=>[p.race_code,p.poll_id,p.question_id,p.field_end,p.dem_name,p.rep_name].join('|'));
+ try{
+  const previous=window.localStorage.getItem(key);
+  const prior=new Set(previous?JSON.parse(previous):[]);
+  newIndexSinceLastVisit=previous?ids.filter(id=>!prior.has(id)).length:0;
+  window.localStorage.setItem(key,JSON.stringify(ids.slice(0,1800)));
+ }catch(_){newIndexSinceLastVisit=null}
+ return newIndexSinceLastVisit;
+}
 function renderPostedPolls(){
  const box=$('#newPolls'),status=$('#changesSince');box.replaceChildren();
  const data=postedPollingSnapshot;
@@ -694,7 +712,7 @@ function renderPostedPolls(){
  const byPoll=new Map();
  for(const p of data?.observations||[]){
   if(!p.posted_date||p.posted_date<cutoff)continue;
-  const key=p.poll_id+'|'+p.race_code;
+  const key=[p.race_code,p.poll_id,p.question_id,p.field_end,p.dem_name,p.rep_name].join('|');
   const old=byPoll.get(key);
   if(!old||(preferred[p.sample_population]||0)>(preferred[old.sample_population]||0))byPoll.set(key,p);
  }
@@ -704,7 +722,9 @@ function renderPostedPolls(){
    String(b.poll_id).localeCompare(String(a.poll_id)));
  const byOffice={senate:0,house:0,governor:0};
  for(const p of entries)byOffice[p.race_type]++;
- status.textContent=entries.length+' source postings · newest time first · S '+byOffice.senate+' / H '+byOffice.house+' / G '+byOffice.governor;
+ const unseen=countUnseenIndexPolls(entries);
+ status.textContent=entries.length+' source postings · newest time first · S '+byOffice.senate+' / H '+byOffice.house+' / G '+byOffice.governor+
+   (unseen>0?' · '+unseen+' newly indexed since last visit':'');
  if(!entries.length){box.append(elt('div','empty','No postings in the source from the past 14 days.'));return}
  const fmt=s=>new Date(s+'T12:00:00Z').toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'});
  const fmtSource=p=>{
