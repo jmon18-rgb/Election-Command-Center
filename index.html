@@ -431,6 +431,18 @@ row.append(matchup,metrics);box.append(row)
 const note=elt('div','poll-list-note','Sorted by field date, not date uploaded. Includes partisan-sponsored polls (labeled), which may be excluded from the JackStradamus average.');
 box.append(note);
 }
+function renderModelGenericHeadline(){
+ const g=latestSenateEstimates?.generic_ballot;
+ if(!g||!['multi_poll','single_poll'].includes(g.status))return;
+ $('#ballotDem').style.width=g.dem_pct+'%';
+ $('#ballotRep').style.width=g.rep_pct+'%';
+ $('#ballotDemLabel').textContent='D '+pct(g.dem_pct);
+ $('#ballotRepLabel').textContent='R '+pct(g.rep_pct);
+ $('#genericMargin').textContent=marginText(g.dem_minus_rep);
+ $('#genericDetail').textContent='D '+pct(g.dem_pct)+' · R '+pct(g.rep_pct)+' · '+(g.contributing_pollsters||0)+' firms'+(g.partisan_pollsters?' ('+g.partisan_pollsters+' sponsored, half weight)':'')+' · JackStradamus polling mean.';
+ $('#genericFresh').textContent='Latest poll '+g.latest_poll_end+' · model refreshed '+new Date(latestSenateEstimates.generated_at).toLocaleDateString();
+ $('#genericDelta').textContent='—';
+}
 function renderPolls(d){
 pollingSnapshot=d;feedHealth.polls=d;updateHealth();
 renderFreshPolls(d);
@@ -446,7 +458,7 @@ $('#genericMargin').textContent=marginText(gb.summary.margin);
 $('#genericDetail').textContent='D '+pct(gb.summary.dem)+' · R '+pct(gb.summary.rep)+' · '+gb.summary.pollsters+' pollsters · '+gb.summary.window_days+'-day window. Equal-weight descriptive mean, not a forecast.';
 $('#genericFresh').textContent='Latest field end: '+gb.summary.latest_field_end;
 }else{$('#genericDetail').textContent='Insufficient recent independent polls for a descriptive mean.'}
-renderRaceList();if(latestSenateEstimates)renderModelRaceDetail();
+renderRaceList();if(latestSenateEstimates){renderModelRaceDetail();renderModelGenericHeadline()}
 if(d.updated_at){const date=new Date(d.updated_at);if(!Number.isNaN(+date))$('#genericFresh').textContent+=' · fetched '+date.toLocaleDateString()}
 }
 fetch('./data/polls.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(renderPolls).catch(error=>{console.error('Polling feed error',error);$('#newPolls').textContent='Polling feed unavailable: '+error.message+'.';$('#genericDetail').textContent='Polling data could not be displayed.';updateHealth()});
@@ -716,7 +728,7 @@ if(x.poll_source_url&&/^https:\/\//.test(x.poll_source_url)){const a=elt('a','po
 box.append(card);
 }
 renderJackRadar();
-modelApplyHash();renderModelOverview(data);
+modelApplyHash();renderModelOverview(data);renderModelGenericHeadline();
 }
 fetch('./data/polling_estimates.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('not ready');return r.json()}).then(d=>showSenateEstimates(d)).catch(()=>{document.getElementById('senateEstimateCards').textContent='Waiting for first automated polling summary refresh.'});
 fetch('./data/briefing.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(d=>{feedHealth.news=d;updateHealth();if(d.updated_at){const date=new Date(d.updated_at);if(!Number.isNaN(+date)){$('#freshness').textContent='News collected '+date.toLocaleString();$('#updated').textContent='News collected '+date.toLocaleDateString()}}renderItems('updates',d.updates);securityArticles=Array.isArray(d.security)?d.security:[];renderSecurity()}).catch(()=>updateHealth());
