@@ -46,6 +46,11 @@ jobs:
           node --check scripts/civicapi_nh_governor_adapter.js
           node --check scripts/test_civicapi_nh_governor_adapter.cjs
           node scripts/test_civicapi_nh_governor_adapter.cjs
+      - name: Test four-state supplemental civicAPI race adapters
+        run: |
+          node --check scripts/civicapi_state_batch.js
+          node --check scripts/test_civicapi_state_batch.cjs
+          node scripts/test_civicapi_state_batch.cjs
       - name: Probe four-state 2026 Senate and governor civicAPI coverage
         run: python3 scripts/probe_civicapi_batch.py
       - name: Gate civicAPI browser CORS and 2026 House/Senate/Governor identity using real source
