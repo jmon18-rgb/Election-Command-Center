@@ -105,6 +105,8 @@ def main():
               "candidate_count",len(candidates))
     if ("NH","Senate",None) not in confirmed:
         raise ValueError("Required independently verified 2026 NH Senate identity missing")
+    if ("NH","Governor",None) not in confirmed:
+        raise ValueError("Required independently verified 2026 NH Governor identity missing")
     print("civicAPI exact verified race count",len(confirmed),"of",len(examples),
           "(unindexed races remain source-unavailable, not zero)")
 
