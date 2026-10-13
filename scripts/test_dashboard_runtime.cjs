@@ -927,6 +927,101 @@ async function settle(){
  w.eval('enWatched=[];enRenderWatchlist()');
  w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
 
+
+ // Meaningful alerts never grant Notification access without a click, never
+ // fire for a mere timestamp refresh, and require the race be pinned.
+ const alertInput=get('#enWatchInput'),alertForm=get('#enWatchForm');
+ for(const label of ['NC-SEN','NH-SEN']){
+  alertInput.value=label;
+  alertForm.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
+ }
+ assert.equal(w.eval('enModeYear'),2026,'Alert suite requires the real 2026 election desk');
+ w.localStorage.removeItem('bluewaves_election_alerts_2026_v1');
+ w.eval('enAlertRows=[];enAlertSeen.clear();enRenderAlertInbox()');
+ const alertRows=()=>[...get('#enAlertItems').querySelectorAll('button.en-alert-row')];
+ const testTime=w.Date.now;
+ w.Date.now=()=>Date.parse('2026-10-13T21:00:00Z');
+ const firstNC={
+   office:'Senate',key:'NC',at:'2026-11-04T02:00:00Z',prior:0,
+   current:380,delta:380,newRace:true,leaderChanged:false,
+   candidateChanged:true,fingerprint:'Candidate A:D:200,Candidate B:R:180'
+ };
+ w.eval('enProcessPrimaryAlerts('+JSON.stringify([firstNC])+')');
+ assert.equal(alertRows().length,0,'No 2026 general-election alert before Election Day');
+ w.Date.now=()=>Date.parse('2026-11-04T03:40:00Z');
+ w.eval('enProcessPrimaryAlerts('+JSON.stringify([firstNC])+')');
+ assert.equal(alertRows().length,1,'First vote batch should trigger for a pinned race');
+ assert.match(get('#enAlertItems').textContent,/NC-SEN · First votes reporting/);
+ assert.match(get('#enAlertItems').textContent,/Open America/);
+ const durableAlert=JSON.parse(w.localStorage.getItem('bluewaves_election_alerts_2026_v1'));
+ assert.equal(durableAlert.length,1,'Pinned race events should persist locally');
+ w.eval('enProcessPrimaryAlerts('+JSON.stringify([firstNC])+')');
+ assert.equal(alertRows().length,1,'Identical source updates must not duplicate alerts');
+ const notWatched={...firstNC,key:'TX',fingerprint:'U1'};
+ w.eval('enProcessPrimaryAlerts('+JSON.stringify([notWatched])+')');
+ assert.equal(alertRows().length,1,'Unpinned races never generate personal alerts');
+ const correction={...firstNC,newRace:false,prior:380,current:380,delta:0,
+   candidateChanged:true,fingerprint:'Candidate A:D:190,Candidate B:R:190'};
+ w.eval('enProcessPrimaryAlerts('+JSON.stringify([correction])+')');
+ assert.equal(alertRows().length,2);
+ assert.match(get('#enAlertItems').textContent,/Candidate totals revised/);
+ const flip={...correction,leaderChanged:true,
+   fingerprint:'Candidate A:D:170,Candidate B:R:210'};
+ w.eval('enProcessPrimaryAlerts('+JSON.stringify([flip])+')');
+ assert.equal(alertRows().length,3);
+ assert.match(get('#enAlertItems').textContent,/Vote leader changed/);
+ assert.match(get('#enAlertItems').textContent,/No winner has been called/);
+ const sameEvent={...correction,leaderChanged:false,
+   fingerprint:'Candidate A:D:185,Candidate B:R:195'};
+ w.eval('enProcessPrimaryAlerts('+JSON.stringify([sameEvent])+')');
+ assert.equal(alertRows().length,4,
+   'Two distinct vote reallocations under the same source timestamp must remain distinguishable');
+ const civicOriginal={
+   ...rawCivic,total:0,called:null,last_updated:'2026-11-04T02:30:00Z',
+   candidates:rawCivic.candidates.map(c=>({...c,votes:0,percent:0}))
+ };
+ w.eval('enProcessCivicAlert('+JSON.stringify(nhSenateItem)+','+
+  JSON.stringify(civicOriginal)+','+JSON.stringify(rawCivic)+')');
+ assert.match(get('#enAlertItems').textContent,/NH-SEN · First votes reporting/);
+ const civicCall={...rawCivic,called:'First candidate'};
+ w.eval('enProcessCivicAlert('+JSON.stringify(nhSenateItem)+','+
+   JSON.stringify(rawCivic)+','+JSON.stringify(civicCall)+')');
+ assert.match(get('#enAlertItems').textContent,/Provider race call/);
+ assert.match(get('#enAlertItems').textContent,/not official certification/);
+ assert.match(get('#enAlertItems').textContent,/civicAPI/);
+ const civicCount=alertRows().length;
+ w.eval('enProcessCivicAlert('+JSON.stringify(nhSenateItem)+','+
+   JSON.stringify(civicCall)+','+JSON.stringify(civicCall)+')');
+ assert.equal(alertRows().length,civicCount,'Repeated provider call must not create duplicate');
+ const desktopNotifications=[];
+ class FakeDesktopNotification{
+  static permission='default';
+  static async requestPermission(){FakeDesktopNotification.permission='granted';return 'granted'}
+  constructor(title,options){desktopNotifications.push({title,options})}
+ }
+ w.Notification=FakeDesktopNotification;
+ w.eval('enRenderAlertInbox()');
+ assert.equal(get('#enAlertDesktop').getAttribute('aria-pressed'),'false');
+ get('#enAlertDesktop').click();
+ await new Promise(resolve=>setImmediate(resolve));
+ assert.equal(get('#enAlertDesktop').getAttribute('aria-pressed'),'true');
+ assert.equal(w.localStorage.getItem('bluewaves_election_desktop_2026_v1'),'on');
+ const laterVotes={...firstNC,current:900,prior:380,delta:520,
+   fingerprint:'Candidate A:D:500,Candidate B:R:400'};
+ w.eval('enProcessPrimaryAlerts('+JSON.stringify([laterVotes])+')');
+ assert.equal(desktopNotifications.length,1,'Opted-in significant event creates one browser notice');
+ assert.match(desktopNotifications[0].title,/First votes reporting/);
+ assert.match(desktopNotifications[0].options.body,/Open America/);
+ get('#enAlertDesktop').click();
+ assert.equal(get('#enAlertDesktop').getAttribute('aria-pressed'),'false');
+ get('#enAlertClear').click();
+ assert.equal(alertRows().length,0);
+ assert.deepEqual(JSON.parse(w.localStorage.getItem('bluewaves_election_alerts_2026_v1')),[]);
+ w.Date.now=testTime;
+ w.eval('enWatched=[];enRenderWatchlist()');
+ w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
+ w.localStorage.removeItem('bluewaves_election_desktop_2026_v1');
+
  assert.equal(errors.length,0,'Application emitted errors: '+errors.slice(0,4).join(' | '));
  console.log('Dashboard DOM integration passed: exact TX-SEN/TX-GOV poll drilldowns, race labels, DDHQ stale-data guards, dated news feed, and no script errors.');
  dom.window.close();
