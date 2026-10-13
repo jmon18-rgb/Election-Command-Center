@@ -108,7 +108,7 @@ def make(parsed,when=None):
                    "definition":"Democrats control both chambers, INCLUDING any tsunami"},
           "blue_tsunami":{"pct":None,
                    "definition":"Democrats control both and win ≥90% of a predeclared competitive slate",
-                   "reason":"No conditional near-sweep probability in published joint DDHQ model"}
+                   "reason":"Unavailable: no conditional near-sweep probability in published joint DDHQ model"}
         },
         "house_dem_control_pct":parsed["house_dem_control"],
         "senate_dem_control_pct":parsed["senate_dem_control"],
