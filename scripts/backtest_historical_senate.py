@@ -104,9 +104,8 @@ def evaluate(polls,results):
     predictions=[]
     for (year,state),actual in results.items():
         election=date(year,11,1)
-        # Election Day is first Tuesday after first Monday in November.
-        election+=timedelta(days=(1-election.weekday())%7)
-        if election.day==1:election+=timedelta(days=7)
+        # Election Day is the Tuesday after the first Monday in November.
+        election+=timedelta(days=(0-election.weekday())%7+1)
         cutoff=election-timedelta(days=1)
         for days_out in (7,21,42):
             asof=cutoff-timedelta(days=days_out)
