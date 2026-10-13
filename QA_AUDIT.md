@@ -37,3 +37,7 @@ The polling workflow also runs `scripts/validate_model_drilldown.py`, which reco
 ## Concurrent-refresh publishing hardening
 
 During QA, the pipeline sometimes passed all data and DOM tests and then failed its final `git pull --rebase` because another scheduled run committed overlapping JSON files. The refresh publisher now fetches current `main`, checks whether the application/model code changed during its run, rejects an older model snapshot when a fresher one is already committed, and stages **only generated data files** on the current head. Pushes are retried up to three times rather than rebasing an obsolete bulk JSON commit. Source-code changes during a run trigger a safe skip instead of stale model publication. This is operational robustness, not a guarantee about uptime or polling-source availability.
+
+## October 13 probability-panel revision
+
+After user feedback, the Four Endings **hypothetical sliders were retired** in favor of actual joint House/Senate chamber-control odds from publicly attributed Decision Desk HQ forecasts. `data/congress_scenarios.json` carries the published joint fields, source/date, published rounding total and an explicit `null` for the unmodeled Blue Tsunami subset. `scripts/update_scenario_forecast.py` has strict source/parse safeguards; `scripts/test_scenario_forecast.py` tests source extraction; the real page's JSDOM suite verifies that numbers render and no interactive sliders remain. The reported combined Blue Wave/Tsunami chance is **not** mislabeled as exclusive Wave odds.
