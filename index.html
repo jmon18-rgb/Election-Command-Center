@@ -2829,7 +2829,7 @@ function enQueueRefresh(){
 async function enLoad(manual=false){
  if(enTimer){clearTimeout(enTimer);enTimer=null}
  const serial=++enRequestSerial,year=enModeYear,office=enOffice;
- if(manual)$('#enStatus').textContent='Checking '+office+' source results…';
+ if(manual&&!(enResumePending&&enData))$('#enStatus').textContent='Checking '+office+' source results…';
  try{
   let obj;
   if(year===2026||(year===2024&&enArchiveSource==='state')){
