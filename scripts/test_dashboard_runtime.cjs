@@ -831,9 +831,9 @@ async function settle(){
    JSON.stringify(nhSenateSearch)+','+JSON.stringify(nhSenateDetail)+')'),null,
    'No 2026 civicAPI counting or calls accepted before November 3');
  w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
- const originalCivicFetch=w.fetch,requests=[];
+ const originalCivicFetch=w.fetch,civicRequests=[];
  w.fetch=async(url)=>{
-   requests.push(String(url));
+   civicRequests.push(String(url));
    if(String(url).startsWith('https://civicapi.org/api/v2/race/search'))
      return {ok:true,json:async()=>civicDoc};
    if(String(url).startsWith('https://civicapi.org/api/v2/race/87283'))
@@ -843,8 +843,8 @@ async function settle(){
  w.eval('enWatched=[{office:"Senate",key:"NH"}];enRenderWatchlist()');
  get('.tab[data-page="electionNight"]').click();
  await w.eval('enRefreshCivicWatchlist(true)');
- assert(requests.some(x=>x.includes('province=NH')&&x.includes('startDate=2026-11-03')));
- assert(requests.some(x=>x.includes('/race/87283?light=')));
+ assert(civicRequests.some(x=>x.includes('province=NH')&&x.includes('startDate=2026-11-03')));
+ assert(civicRequests.some(x=>x.includes('/race/87283?light=')));
  assert.match(get('#enWatchItems').textContent,/civicAPI · 1,000 reported votes/);
  assert.match(get('#enWatchItems').textContent,/Outside the 22-state source/);
  assert.match(get('#enWatchItems').textContent,/civicAPI race source/);
