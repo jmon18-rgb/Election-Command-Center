@@ -4,8 +4,9 @@ on:
   push:
     branches: [main]
     paths:
-      - 'scripts/backtest_historical_senate_polls.py'
+      - 'scripts/research_rcp_senate_backtest.py'
       - 'scripts/test_historical_senate_poll_backtest.py'
+      - 'scripts/test_rcp_senate_research.py'
       - '.github/workflows/historical-senate-backtest.yml'
 permissions:
   contents: write
@@ -20,8 +21,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run leakage and source-integrity unit tests
         run: python3 scripts/test_historical_senate_poll_backtest.py
+      - name: Test historical RCP source and special-election exclusions
+        run: python3 scripts/test_rcp_senate_research.py
       - name: Stage source-attributed historical error research
-        run: python3 scripts/backtest_historical_senate_polls.py
+        run: python3 scripts/research_rcp_senate_backtest.py
       - name: Verify never publishes win odds or unsupported forecast
         run: |
           python3 - <<'PY'
@@ -45,7 +48,7 @@ jobs:
           git config user.name "historical-poll-research-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
-          if ! git diff --quiet HEAD origin/main -- scripts/backtest_historical_senate_polls.py scripts/test_historical_senate_poll_backtest.py; then
+          if ! git diff --quiet HEAD origin/main -- scripts/research_rcp_senate_backtest.py scripts/test_historical_senate_poll_backtest.py scripts/test_rcp_senate_research.py; then
             echo "Source importer changed during research; skipping stale metrics."
             exit 0
           fi
