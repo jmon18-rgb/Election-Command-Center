@@ -23,3 +23,9 @@ If all feeds fail, the script preserves existing items and exits unsuccessfully 
 A second data step, `scripts/update_pollresults_recent.py`, fetches publicly accessible poll records from PollResults.org (NYT-derived, CC BY 4.0), with original links, sample populations and API posted dates. These records populate `data/pollresults_recent.json`. They are separate from the ElectIndex primary model source and not an independent underlying survey dataset. The script optionally enriches primary polls only on exact poll ID/race/field-date/share matches. On supplemental-source failure the weighted average continues to use the established primary feed; the UI falls back to its old observation list. Do not call the API's created/posted date a publicly verified release date.
 
 The January 2026 Silver Bulletin pollster workbook is imported separately by `scripts/stage_silver_ratings.py` with a dedicated workflow. Staging and any alternative quality weights never silently modify production polling averages.
+
+## Snapshot history and time ordering
+
+The poll model writes `data/model_history.json` alongside `data/polling_estimates.json` at every refresh. A bounded 30-day series records every qualifying race's margin, candidate matchup, pollster count and most recent field date. The Daily Brief selects an older snapshot (preferably 24h; otherwise a prior refresh at least 3h old) and **never** compares different ballot matchups as though they were the same race. Absence of history or meaningful movement is shown explicitly, not replaced with static superlatives.
+
+Posted-poll ingest retains source wall-clock `createdAt` as `posted_source_datetime` (`YYYY-MM-DDTHH:MM:SS`) and sorts on the whole timestamp. The provider specifies **no timezone**; never convert it to an invented UTC offset or call it a verified public release time. Poll field-end dates remain distinct from source posted time.
