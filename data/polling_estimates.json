@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-13T15:31:39.478368Z",
-  "source_snapshot": "2026-10-13T15:31:38.477645Z",
+  "generated_at": "2026-10-13T15:32:15.208496Z",
+  "source_snapshot": "2026-10-13T15:32:14.769109Z",
   "type": "descriptive_polling_estimates",
   "is_election_forecast": false,
-  "method_version": "poll-mean-1.3",
+  "method_version": "poll-mean-1.4",
   "window_days": 45,
   "half_life_days": 21,
   "sponsored_poll_weight_factor": 0.5,
@@ -39,6 +39,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 11.36,
+          "largest_firm_weight_pct": 14.1,
+          "independent_only_margin": 2.61,
+          "equal_firms_margin": 1.85,
+          "faster_recency_margin": 2.25,
+          "alternative_margin_min": 1.85,
+          "alternative_margin_max": 2.61,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -214,6 +224,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 7.76,
+          "largest_firm_weight_pct": 18.9,
+          "independent_only_margin": 4.69,
+          "equal_firms_margin": 3.2,
+          "faster_recency_margin": 3.88,
+          "alternative_margin_min": 3.2,
+          "alternative_margin_max": 4.69,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -349,6 +369,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 8.49,
+          "largest_firm_weight_pct": 18.9,
+          "independent_only_margin": 10.1,
+          "equal_firms_margin": 9.35,
+          "faster_recency_margin": 9.41,
+          "alternative_margin_min": 9.35,
+          "alternative_margin_max": 10.1,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -484,6 +514,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 16.56,
+          "largest_firm_weight_pct": 11.4,
+          "independent_only_margin": 3.97,
+          "equal_firms_margin": 3.28,
+          "faster_recency_margin": 3.67,
+          "alternative_margin_min": 3.28,
+          "alternative_margin_max": 3.97,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -729,6 +769,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 4.76,
+          "largest_firm_weight_pct": 28.7,
+          "independent_only_margin": 10.0,
+          "equal_firms_margin": 8.48,
+          "faster_recency_margin": 9.13,
+          "alternative_margin_min": 8.48,
+          "alternative_margin_max": 10.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -824,6 +874,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 5.35,
+          "largest_firm_weight_pct": 29.4,
+          "independent_only_margin": 7.17,
+          "equal_firms_margin": 5.22,
+          "faster_recency_margin": 6.89,
+          "alternative_margin_min": 5.22,
+          "alternative_margin_max": 7.17,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -939,6 +999,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 5.4,
+          "largest_firm_weight_pct": 26.0,
+          "independent_only_margin": 4.55,
+          "equal_firms_margin": 2.29,
+          "faster_recency_margin": 3.59,
+          "alternative_margin_min": 2.29,
+          "alternative_margin_max": 4.55,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -1044,6 +1114,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 10.09,
+          "largest_firm_weight_pct": 14.1,
+          "independent_only_margin": 1.17,
+          "equal_firms_margin": 0.49,
+          "faster_recency_margin": 0.77,
+          "alternative_margin_min": 0.49,
+          "alternative_margin_max": 1.17,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -1219,6 +1299,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 14.27,
+          "largest_firm_weight_pct": 13.7,
+          "independent_only_margin": 4.31,
+          "equal_firms_margin": 3.14,
+          "faster_recency_margin": 3.85,
+          "alternative_margin_min": 3.14,
+          "alternative_margin_max": 4.31,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -1434,6 +1524,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 3.3,
+          "largest_firm_weight_pct": 47.4,
+          "independent_only_margin": 0.65,
+          "equal_firms_margin": -0.2,
+          "faster_recency_margin": 0.21,
+          "alternative_margin_min": -0.2,
+          "alternative_margin_max": 0.65,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -1519,6 +1619,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 6.38,
+          "largest_firm_weight_pct": 27.0,
+          "independent_only_margin": 1.8,
+          "equal_firms_margin": 1.37,
+          "faster_recency_margin": 1.79,
+          "alternative_margin_min": 1.37,
+          "alternative_margin_max": 1.8,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -1644,6 +1754,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 6.19,
+          "largest_firm_weight_pct": 25.6,
+          "independent_only_margin": 3.2,
+          "equal_firms_margin": 2.86,
+          "faster_recency_margin": 3.48,
+          "alternative_margin_min": 2.86,
+          "alternative_margin_max": 3.48,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -1771,6 +1891,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 5.4,
+          "largest_firm_weight_pct": 26.0,
+          "independent_only_margin": 4.55,
+          "equal_firms_margin": 2.29,
+          "faster_recency_margin": 3.59,
+          "alternative_margin_min": 2.29,
+          "alternative_margin_max": 4.55,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -1876,6 +2006,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": -21.0,
+          "faster_recency_margin": -21.0,
+          "alternative_margin_min": -21.0,
+          "alternative_margin_max": -21.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -1921,6 +2061,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": -11.0,
+          "faster_recency_margin": -11.0,
+          "alternative_margin_min": -11.0,
+          "alternative_margin_max": -11.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -1966,6 +2116,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 5.97,
+          "largest_firm_weight_pct": 25.4,
+          "independent_only_margin": -7.22,
+          "equal_firms_margin": -6.97,
+          "faster_recency_margin": -6.75,
+          "alternative_margin_min": -7.22,
+          "alternative_margin_max": -6.75,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -2081,6 +2241,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 4.76,
+          "largest_firm_weight_pct": 28.7,
+          "independent_only_margin": 10.0,
+          "equal_firms_margin": 8.48,
+          "faster_recency_margin": 9.13,
+          "alternative_margin_min": 8.48,
+          "alternative_margin_max": 10.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -2176,6 +2346,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 10.09,
+          "largest_firm_weight_pct": 14.1,
+          "independent_only_margin": 1.17,
+          "equal_firms_margin": 0.49,
+          "faster_recency_margin": 0.77,
+          "alternative_margin_min": 0.49,
+          "alternative_margin_max": 1.17,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -2351,6 +2531,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": true,
+        "model_sensitivity": {
+          "effective_firms": 1.96,
+          "largest_firm_weight_pct": 57.4,
+          "independent_only_margin": 11.6,
+          "equal_firms_margin": -6.7,
+          "faster_recency_margin": -6.08,
+          "alternative_margin_min": -6.7,
+          "alternative_margin_max": 11.6,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -2406,6 +2596,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": 13.0,
+          "faster_recency_margin": 13.0,
+          "alternative_margin_min": 13.0,
+          "alternative_margin_max": 13.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -2451,6 +2651,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 6.38,
+          "largest_firm_weight_pct": 27.0,
+          "independent_only_margin": 1.8,
+          "equal_firms_margin": 1.37,
+          "faster_recency_margin": 1.79,
+          "alternative_margin_min": 1.37,
+          "alternative_margin_max": 1.8,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -2585,6 +2795,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": -4.0,
+          "faster_recency_margin": -4.0,
+          "alternative_margin_min": -4.0,
+          "alternative_margin_max": -4.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -2630,6 +2850,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.99,
+          "largest_firm_weight_pct": 53.7,
+          "independent_only_margin": 24.61,
+          "equal_firms_margin": 24.5,
+          "faster_recency_margin": 24.62,
+          "alternative_margin_min": 24.5,
+          "alternative_margin_max": 24.62,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -2685,6 +2915,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 11.36,
+          "largest_firm_weight_pct": 14.1,
+          "independent_only_margin": 2.61,
+          "equal_firms_margin": 1.85,
+          "faster_recency_margin": 2.25,
+          "alternative_margin_min": 1.85,
+          "alternative_margin_max": 2.61,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -2860,6 +3100,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 16.56,
+          "largest_firm_weight_pct": 11.4,
+          "independent_only_margin": 3.97,
+          "equal_firms_margin": 3.28,
+          "faster_recency_margin": 3.67,
+          "alternative_margin_min": 3.28,
+          "alternative_margin_max": 3.97,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -3105,6 +3355,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 6.19,
+          "largest_firm_weight_pct": 25.6,
+          "independent_only_margin": 3.2,
+          "equal_firms_margin": 2.86,
+          "faster_recency_margin": 3.48,
+          "alternative_margin_min": 2.86,
+          "alternative_margin_max": 3.48,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -3239,6 +3499,16 @@
         "thin_polling": false,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 3.74,
+          "largest_firm_weight_pct": 33.4,
+          "independent_only_margin": -26.32,
+          "equal_firms_margin": -24.77,
+          "faster_recency_margin": -25.56,
+          "alternative_margin_min": -26.32,
+          "alternative_margin_max": -24.77,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -3314,6 +3584,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 8.49,
+          "largest_firm_weight_pct": 18.9,
+          "independent_only_margin": 10.1,
+          "equal_firms_margin": 9.35,
+          "faster_recency_margin": 9.41,
+          "alternative_margin_min": 9.35,
+          "alternative_margin_max": 10.1,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -3449,6 +3729,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 3.3,
+          "largest_firm_weight_pct": 47.4,
+          "independent_only_margin": 0.65,
+          "equal_firms_margin": -0.2,
+          "faster_recency_margin": 0.21,
+          "alternative_margin_min": -0.2,
+          "alternative_margin_max": 0.65,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -3534,6 +3824,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 5.35,
+          "largest_firm_weight_pct": 29.4,
+          "independent_only_margin": 7.17,
+          "equal_firms_margin": 5.22,
+          "faster_recency_margin": 6.89,
+          "alternative_margin_min": 5.22,
+          "alternative_margin_max": 7.17,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -3649,6 +3949,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": 18.0,
+          "equal_firms_margin": 18.0,
+          "faster_recency_margin": 18.0,
+          "alternative_margin_min": 18.0,
+          "alternative_margin_max": 18.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -3694,6 +4004,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 7.76,
+          "largest_firm_weight_pct": 18.9,
+          "independent_only_margin": 4.69,
+          "equal_firms_margin": 3.2,
+          "faster_recency_margin": 3.88,
+          "alternative_margin_min": 3.2,
+          "alternative_margin_max": 4.69,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -3829,6 +4149,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": 20.0,
+          "equal_firms_margin": 20.0,
+          "faster_recency_margin": 20.0,
+          "alternative_margin_min": 20.0,
+          "alternative_margin_max": 20.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -3874,6 +4204,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.87,
+          "largest_firm_weight_pct": 63.3,
+          "independent_only_margin": null,
+          "equal_firms_margin": -1.05,
+          "faster_recency_margin": -1.04,
+          "alternative_margin_min": -1.05,
+          "alternative_margin_max": -1.04,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -3929,6 +4269,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.79,
+          "largest_firm_weight_pct": 67.1,
+          "independent_only_margin": null,
+          "equal_firms_margin": -4.5,
+          "faster_recency_margin": -5.2,
+          "alternative_margin_min": -5.2,
+          "alternative_margin_max": -4.5,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -3993,6 +4343,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 14.27,
+          "largest_firm_weight_pct": 13.7,
+          "independent_only_margin": 4.31,
+          "equal_firms_margin": 3.14,
+          "faster_recency_margin": 3.85,
+          "alternative_margin_min": 3.14,
+          "alternative_margin_max": 4.31,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4210,6 +4570,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 3.39,
+          "largest_firm_weight_pct": 36.3,
+          "independent_only_margin": -39.44,
+          "equal_firms_margin": -38.53,
+          "faster_recency_margin": -39.78,
+          "alternative_margin_min": -39.78,
+          "alternative_margin_max": -38.53,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4285,6 +4655,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": 0.0,
+          "faster_recency_margin": 0.0,
+          "alternative_margin_min": 0.0,
+          "alternative_margin_max": 0.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4339,6 +4719,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": 2.8,
+          "equal_firms_margin": 2.8,
+          "faster_recency_margin": 2.8,
+          "alternative_margin_min": 2.8,
+          "alternative_margin_max": 2.8,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4393,6 +4783,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": 9.0,
+          "equal_firms_margin": 9.0,
+          "faster_recency_margin": 9.0,
+          "alternative_margin_min": 9.0,
+          "alternative_margin_max": 9.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4438,6 +4838,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": -5.0,
+          "faster_recency_margin": -5.0,
+          "alternative_margin_min": -5.0,
+          "alternative_margin_max": -5.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4483,6 +4893,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": -1.7,
+          "faster_recency_margin": -1.7,
+          "alternative_margin_min": -1.7,
+          "alternative_margin_max": -1.7,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4528,6 +4948,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": 0.0,
+          "faster_recency_margin": 0.0,
+          "alternative_margin_min": 0.0,
+          "alternative_margin_max": 0.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4582,6 +5012,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.6,
+          "largest_firm_weight_pct": 74.9,
+          "independent_only_margin": null,
+          "equal_firms_margin": -1.5,
+          "faster_recency_margin": -3.2,
+          "alternative_margin_min": -3.2,
+          "alternative_margin_max": -1.5,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4637,6 +5077,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": 2.0,
+          "faster_recency_margin": 2.0,
+          "alternative_margin_min": 2.0,
+          "alternative_margin_max": 2.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4682,6 +5132,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.93,
+          "largest_firm_weight_pct": 59.8,
+          "independent_only_margin": null,
+          "equal_firms_margin": -0.5,
+          "faster_recency_margin": -0.65,
+          "alternative_margin_min": -0.65,
+          "alternative_margin_max": -0.5,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4737,6 +5197,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": 2.0,
+          "faster_recency_margin": 2.0,
+          "alternative_margin_min": 2.0,
+          "alternative_margin_max": 2.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4782,6 +5252,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": 2.0,
+          "faster_recency_margin": 2.0,
+          "alternative_margin_min": 2.0,
+          "alternative_margin_max": 2.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4827,6 +5307,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 2.99,
+          "largest_firm_weight_pct": 35.6,
+          "independent_only_margin": null,
+          "equal_firms_margin": 6.67,
+          "faster_recency_margin": 6.78,
+          "alternative_margin_min": 6.67,
+          "alternative_margin_max": 6.78,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4892,6 +5382,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": 22.0,
+          "equal_firms_margin": 22.0,
+          "faster_recency_margin": 22.0,
+          "alternative_margin_min": 22.0,
+          "alternative_margin_max": 22.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -4937,6 +5437,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 2.37,
+          "largest_firm_weight_pct": 56.5,
+          "independent_only_margin": 6.0,
+          "equal_firms_margin": 2.67,
+          "faster_recency_margin": 3.95,
+          "alternative_margin_min": 2.67,
+          "alternative_margin_max": 6.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5002,6 +5512,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": 1.0,
+          "faster_recency_margin": 1.0,
+          "alternative_margin_min": 1.0,
+          "alternative_margin_max": 1.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5065,6 +5585,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": 1.0,
+          "faster_recency_margin": 1.0,
+          "alternative_margin_min": 1.0,
+          "alternative_margin_max": 1.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5110,6 +5640,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": 12.0,
+          "faster_recency_margin": 12.0,
+          "alternative_margin_min": 12.0,
+          "alternative_margin_max": 12.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5155,6 +5695,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": -1.0,
+          "faster_recency_margin": -1.0,
+          "alternative_margin_min": -1.0,
+          "alternative_margin_max": -1.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5200,6 +5750,16 @@
         "thin_polling": false,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 3.76,
+          "largest_firm_weight_pct": 33.5,
+          "independent_only_margin": -1.0,
+          "equal_firms_margin": 0.88,
+          "faster_recency_margin": 0.67,
+          "alternative_margin_min": -1.0,
+          "alternative_margin_max": 0.88,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5275,6 +5835,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": -22.0,
+          "equal_firms_margin": -22.0,
+          "faster_recency_margin": -22.0,
+          "alternative_margin_min": -22.0,
+          "alternative_margin_max": -22.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5320,6 +5890,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 3.12,
+          "largest_firm_weight_pct": 45.7,
+          "independent_only_margin": 10.0,
+          "equal_firms_margin": 6.0,
+          "faster_recency_margin": 6.79,
+          "alternative_margin_min": 6.0,
+          "alternative_margin_max": 10.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5404,6 +5984,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": -4.0,
+          "faster_recency_margin": -4.0,
+          "alternative_margin_min": -4.0,
+          "alternative_margin_max": -4.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5458,6 +6048,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": 4.0,
+          "faster_recency_margin": 4.0,
+          "alternative_margin_min": 4.0,
+          "alternative_margin_max": 4.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5503,6 +6103,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": 4.0,
+          "equal_firms_margin": 4.0,
+          "faster_recency_margin": 4.0,
+          "alternative_margin_min": 4.0,
+          "alternative_margin_max": 4.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5548,6 +6158,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": 4.0,
+          "equal_firms_margin": 4.0,
+          "faster_recency_margin": 4.0,
+          "alternative_margin_min": 4.0,
+          "alternative_margin_max": 4.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5593,6 +6213,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": 21.0,
+          "equal_firms_margin": 21.0,
+          "faster_recency_margin": 21.0,
+          "alternative_margin_min": 21.0,
+          "alternative_margin_max": 21.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5638,6 +6268,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": 5.0,
+          "equal_firms_margin": 5.0,
+          "faster_recency_margin": 5.0,
+          "alternative_margin_min": 5.0,
+          "alternative_margin_max": 5.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5683,6 +6323,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.65,
+          "largest_firm_weight_pct": 72.9,
+          "independent_only_margin": 3.73,
+          "equal_firms_margin": 3.5,
+          "faster_recency_margin": 3.83,
+          "alternative_margin_min": 3.5,
+          "alternative_margin_max": 3.83,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5738,6 +6388,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": 1.0,
+          "faster_recency_margin": 1.0,
+          "alternative_margin_min": 1.0,
+          "alternative_margin_max": 1.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5783,6 +6443,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.49,
+          "largest_firm_weight_pct": 79.1,
+          "independent_only_margin": 2.3,
+          "equal_firms_margin": -0.35,
+          "faster_recency_margin": 1.18,
+          "alternative_margin_min": -0.35,
+          "alternative_margin_max": 2.3,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5838,6 +6508,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": 17.0,
+          "faster_recency_margin": 17.0,
+          "alternative_margin_min": 17.0,
+          "alternative_margin_max": 17.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5883,6 +6563,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.98,
+          "largest_firm_weight_pct": 66.4,
+          "independent_only_margin": 4.0,
+          "equal_firms_margin": -1.33,
+          "faster_recency_margin": 1.72,
+          "alternative_margin_min": -1.33,
+          "alternative_margin_max": 4.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -5948,6 +6638,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": -17.0,
+          "faster_recency_margin": -17.0,
+          "alternative_margin_min": -17.0,
+          "alternative_margin_max": -17.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6011,6 +6711,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": 0.0,
+          "faster_recency_margin": 0.0,
+          "alternative_margin_min": 0.0,
+          "alternative_margin_max": 0.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6056,6 +6766,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": 1.0,
+          "faster_recency_margin": 1.0,
+          "alternative_margin_min": 1.0,
+          "alternative_margin_max": 1.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6101,6 +6821,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": -5.0,
+          "faster_recency_margin": -5.0,
+          "alternative_margin_min": -5.0,
+          "alternative_margin_max": -5.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6146,6 +6876,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": true,
+        "model_sensitivity": {
+          "effective_firms": 1.63,
+          "largest_firm_weight_pct": 73.8,
+          "independent_only_margin": null,
+          "equal_firms_margin": -4.5,
+          "faster_recency_margin": -1.74,
+          "alternative_margin_min": -4.5,
+          "alternative_margin_max": -1.74,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6201,6 +6941,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": 5.0,
+          "equal_firms_margin": 5.0,
+          "faster_recency_margin": 5.0,
+          "alternative_margin_min": 5.0,
+          "alternative_margin_max": 5.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6246,6 +6996,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": 3.0,
+          "equal_firms_margin": 3.0,
+          "faster_recency_margin": 3.0,
+          "alternative_margin_min": 3.0,
+          "alternative_margin_max": 3.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6291,6 +7051,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.8,
+          "largest_firm_weight_pct": 66.6,
+          "independent_only_margin": null,
+          "equal_firms_margin": -3.5,
+          "faster_recency_margin": -4.69,
+          "alternative_margin_min": -4.69,
+          "alternative_margin_max": -3.5,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6346,6 +7116,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": -4.0,
+          "faster_recency_margin": -4.0,
+          "alternative_margin_min": -4.0,
+          "alternative_margin_max": -4.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6391,6 +7171,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": -5.0,
+          "faster_recency_margin": -5.0,
+          "alternative_margin_min": -5.0,
+          "alternative_margin_max": -5.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6436,6 +7226,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": -4.0,
+          "faster_recency_margin": -4.0,
+          "alternative_margin_min": -4.0,
+          "alternative_margin_max": -4.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6481,6 +7281,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": -9.0,
+          "faster_recency_margin": -9.0,
+          "alternative_margin_min": -9.0,
+          "alternative_margin_max": -9.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6526,6 +7336,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": -6.0,
+          "faster_recency_margin": -6.0,
+          "alternative_margin_min": -6.0,
+          "alternative_margin_max": -6.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6571,6 +7391,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": -7.0,
+          "faster_recency_margin": -7.0,
+          "alternative_margin_min": -7.0,
+          "alternative_margin_max": -7.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6616,6 +7446,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": 13.0,
+          "faster_recency_margin": 13.0,
+          "alternative_margin_min": 13.0,
+          "alternative_margin_max": 13.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6679,6 +7519,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": -1.0,
+          "faster_recency_margin": -1.0,
+          "alternative_margin_min": -1.0,
+          "alternative_margin_max": -1.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6724,6 +7574,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": 41.5,
+          "equal_firms_margin": 41.5,
+          "faster_recency_margin": 41.5,
+          "alternative_margin_min": 41.5,
+          "alternative_margin_max": 41.5,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6769,6 +7629,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.81,
+          "largest_firm_weight_pct": 66.3,
+          "independent_only_margin": -5.0,
+          "equal_firms_margin": -1.05,
+          "faster_recency_margin": -2.37,
+          "alternative_margin_min": -5.0,
+          "alternative_margin_max": -1.05,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6824,6 +7694,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": -18.1,
+          "equal_firms_margin": -18.1,
+          "faster_recency_margin": -18.1,
+          "alternative_margin_min": -18.1,
+          "alternative_margin_max": -18.1,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6869,6 +7749,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": true,
+        "model_sensitivity": {
+          "effective_firms": 1.82,
+          "largest_firm_weight_pct": 65.6,
+          "independent_only_margin": -8.8,
+          "equal_firms_margin": 6.95,
+          "faster_recency_margin": 1.58,
+          "alternative_margin_min": -8.8,
+          "alternative_margin_max": 6.95,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6924,6 +7814,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.47,
+          "largest_firm_weight_pct": 80.2,
+          "independent_only_margin": 4.0,
+          "equal_firms_margin": 1.5,
+          "faster_recency_margin": 3.14,
+          "alternative_margin_min": 1.5,
+          "alternative_margin_max": 4.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -6979,6 +7879,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.66,
+          "largest_firm_weight_pct": 72.8,
+          "independent_only_margin": -6.0,
+          "equal_firms_margin": -3.5,
+          "faster_recency_margin": -4.7,
+          "alternative_margin_min": -6.0,
+          "alternative_margin_max": -3.5,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7034,6 +7944,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": -30.0,
+          "faster_recency_margin": -30.0,
+          "alternative_margin_min": -30.0,
+          "alternative_margin_max": -30.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7079,6 +7999,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": true,
+        "model_sensitivity": {
+          "effective_firms": 1.99,
+          "largest_firm_weight_pct": 53.2,
+          "independent_only_margin": 26.97,
+          "equal_firms_margin": 26.35,
+          "faster_recency_margin": 26.97,
+          "alternative_margin_min": 26.35,
+          "alternative_margin_max": 26.97,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7134,6 +8064,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": -1.0,
+          "equal_firms_margin": -1.0,
+          "faster_recency_margin": -1.0,
+          "alternative_margin_min": -1.0,
+          "alternative_margin_max": -1.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7179,6 +8119,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.93,
+          "largest_firm_weight_pct": 59.2,
+          "independent_only_margin": null,
+          "equal_firms_margin": 0.5,
+          "faster_recency_margin": 0.62,
+          "alternative_margin_min": 0.5,
+          "alternative_margin_max": 0.62,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7236,6 +8186,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 3.13,
+          "largest_firm_weight_pct": 38.6,
+          "independent_only_margin": 20.46,
+          "equal_firms_margin": 21.02,
+          "faster_recency_margin": 20.66,
+          "alternative_margin_min": 20.46,
+          "alternative_margin_max": 21.02,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7311,6 +8271,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": -13.0,
+          "faster_recency_margin": -13.0,
+          "alternative_margin_min": -13.0,
+          "alternative_margin_max": -13.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7365,6 +8335,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": 6.0,
+          "faster_recency_margin": 6.0,
+          "alternative_margin_min": 6.0,
+          "alternative_margin_max": 6.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7410,6 +8390,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 5.61,
+          "largest_firm_weight_pct": 24.4,
+          "independent_only_margin": 18.69,
+          "equal_firms_margin": 19.17,
+          "faster_recency_margin": 18.25,
+          "alternative_margin_min": 18.25,
+          "alternative_margin_max": 19.17,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7505,6 +8495,16 @@
         "thin_polling": false,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 3.51,
+          "largest_firm_weight_pct": 33.8,
+          "independent_only_margin": 16.68,
+          "equal_firms_margin": 14.18,
+          "faster_recency_margin": 15.6,
+          "alternative_margin_min": 14.18,
+          "alternative_margin_max": 16.68,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7580,6 +8580,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 5.3,
+          "largest_firm_weight_pct": 27.1,
+          "independent_only_margin": -5.08,
+          "equal_firms_margin": -5.18,
+          "faster_recency_margin": -4.35,
+          "alternative_margin_min": -5.18,
+          "alternative_margin_max": -4.35,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7675,6 +8685,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 3.33,
+          "largest_firm_weight_pct": 36.4,
+          "independent_only_margin": -1.5,
+          "equal_firms_margin": -1.3,
+          "faster_recency_margin": -1.45,
+          "alternative_margin_min": -1.5,
+          "alternative_margin_max": -1.3,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7750,6 +8770,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 8.02,
+          "largest_firm_weight_pct": 16.2,
+          "independent_only_margin": 9.12,
+          "equal_firms_margin": 7.92,
+          "faster_recency_margin": 8.81,
+          "alternative_margin_min": 7.92,
+          "alternative_margin_max": 9.12,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7885,6 +8915,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": -10.1,
+          "equal_firms_margin": -10.1,
+          "faster_recency_margin": -10.1,
+          "alternative_margin_min": -10.1,
+          "alternative_margin_max": -10.1,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7930,6 +8970,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": 20.0,
+          "faster_recency_margin": 20.0,
+          "alternative_margin_min": 20.0,
+          "alternative_margin_max": 20.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -7975,6 +9025,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 4.26,
+          "largest_firm_weight_pct": 35.4,
+          "independent_only_margin": -4.2,
+          "equal_firms_margin": -3.9,
+          "faster_recency_margin": -3.82,
+          "alternative_margin_min": -4.2,
+          "alternative_margin_max": -3.82,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -8070,6 +9130,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.99,
+          "largest_firm_weight_pct": 53.7,
+          "independent_only_margin": 19.22,
+          "equal_firms_margin": 19.0,
+          "faster_recency_margin": 19.25,
+          "alternative_margin_min": 19.0,
+          "alternative_margin_max": 19.25,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -8125,6 +9195,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": 27.0,
+          "equal_firms_margin": 27.0,
+          "faster_recency_margin": 27.0,
+          "alternative_margin_min": 27.0,
+          "alternative_margin_max": 27.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -8170,6 +9250,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 7.66,
+          "largest_firm_weight_pct": 19.0,
+          "independent_only_margin": 12.03,
+          "equal_firms_margin": 11.69,
+          "faster_recency_margin": 11.9,
+          "alternative_margin_min": 11.69,
+          "alternative_margin_max": 12.03,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -8295,6 +9385,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 12.48,
+          "largest_firm_weight_pct": 13.9,
+          "independent_only_margin": 8.0,
+          "equal_firms_margin": 7.97,
+          "faster_recency_margin": 7.89,
+          "alternative_margin_min": 7.89,
+          "alternative_margin_max": 8.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -8480,6 +9580,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 2.64,
+          "largest_firm_weight_pct": 53.2,
+          "independent_only_margin": 8.31,
+          "equal_firms_margin": 6.97,
+          "faster_recency_margin": 8.03,
+          "alternative_margin_min": 6.97,
+          "alternative_margin_max": 8.31,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -8555,6 +9665,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": true,
+        "model_sensitivity": {
+          "effective_firms": 3.66,
+          "largest_firm_weight_pct": 44.7,
+          "independent_only_margin": -5.8,
+          "equal_firms_margin": -5.17,
+          "faster_recency_margin": -4.49,
+          "alternative_margin_min": -5.8,
+          "alternative_margin_max": -4.49,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -8650,6 +9770,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": true,
+        "model_sensitivity": {
+          "effective_firms": 4.06,
+          "largest_firm_weight_pct": 34.5,
+          "independent_only_margin": -7.98,
+          "equal_firms_margin": -10.5,
+          "faster_recency_margin": -8.48,
+          "alternative_margin_min": -10.5,
+          "alternative_margin_max": -7.98,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -8735,6 +9865,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.96,
+          "largest_firm_weight_pct": 56.9,
+          "independent_only_margin": 6.57,
+          "equal_firms_margin": 6.5,
+          "faster_recency_margin": 6.6,
+          "alternative_margin_min": 6.5,
+          "alternative_margin_max": 6.6,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -8790,6 +9930,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.9,
+          "largest_firm_weight_pct": 61.5,
+          "independent_only_margin": -0.38,
+          "equal_firms_margin": 0.1,
+          "faster_recency_margin": -0.67,
+          "alternative_margin_min": -0.67,
+          "alternative_margin_max": 0.1,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -8845,6 +9995,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 4.38,
+          "largest_firm_weight_pct": 29.8,
+          "independent_only_margin": 12.71,
+          "equal_firms_margin": 10.43,
+          "faster_recency_margin": 12.13,
+          "alternative_margin_min": 10.43,
+          "alternative_margin_max": 12.71,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -8940,6 +10100,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 6.1,
+          "largest_firm_weight_pct": 21.9,
+          "independent_only_margin": 5.98,
+          "equal_firms_margin": 3.99,
+          "faster_recency_margin": 5.0,
+          "alternative_margin_min": 3.99,
+          "alternative_margin_max": 5.98,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -9045,6 +10215,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.76,
+          "largest_firm_weight_pct": 68.3,
+          "independent_only_margin": 2.0,
+          "equal_firms_margin": 3.0,
+          "faster_recency_margin": 2.66,
+          "alternative_margin_min": 2.0,
+          "alternative_margin_max": 3.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -9100,6 +10280,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 4.41,
+          "largest_firm_weight_pct": 32.4,
+          "independent_only_margin": 23.51,
+          "equal_firms_margin": 22.64,
+          "faster_recency_margin": 23.06,
+          "alternative_margin_min": 22.64,
+          "alternative_margin_max": 23.51,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -9185,6 +10375,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 2.0,
+          "largest_firm_weight_pct": 51.3,
+          "independent_only_margin": 24.44,
+          "equal_firms_margin": 24.5,
+          "faster_recency_margin": 24.35,
+          "alternative_margin_min": 24.35,
+          "alternative_margin_max": 24.5,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -9249,6 +10449,16 @@
         "thin_polling": true,
         "stale_latest_poll": true,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": -9.0,
+          "faster_recency_margin": -9.0,
+          "alternative_margin_min": -9.0,
+          "alternative_margin_max": -9.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -9294,6 +10504,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 12.35,
+          "largest_firm_weight_pct": 15.1,
+          "independent_only_margin": -1.25,
+          "equal_firms_margin": -2.25,
+          "faster_recency_margin": -1.28,
+          "alternative_margin_min": -2.25,
+          "alternative_margin_max": -1.25,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -9479,6 +10699,16 @@
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": true,
+        "model_sensitivity": {
+          "effective_firms": 2.89,
+          "largest_firm_weight_pct": 42.2,
+          "independent_only_margin": -1.94,
+          "equal_firms_margin": -2.1,
+          "faster_recency_margin": -2.03,
+          "alternative_margin_min": -2.1,
+          "alternative_margin_max": -1.94,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -9544,6 +10774,16 @@
         "thin_polling": true,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.82,
+          "largest_firm_weight_pct": 66.0,
+          "independent_only_margin": 3.0,
+          "equal_firms_margin": 4.0,
+          "faster_recency_margin": 3.74,
+          "alternative_margin_min": 3.0,
+          "alternative_margin_max": 4.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
@@ -9595,6 +10835,16 @@
       "thin_polling": false,
       "stale_latest_poll": false,
       "high_poll_disagreement": false,
+      "model_sensitivity": {
+        "effective_firms": 8.45,
+        "largest_firm_weight_pct": 13.9,
+        "independent_only_margin": 7.9,
+        "equal_firms_margin": 8.22,
+        "faster_recency_margin": 7.92,
+        "alternative_margin_min": 7.9,
+        "alternative_margin_max": 8.22,
+        "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+      },
       "different_matchups_excluded": 0,
       "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
     },
@@ -9705,7 +10955,7 @@
     "0.5 sponsor factor is a declared sensitivity choice, not an empirically estimated house effect.",
     "Historical 538 ratings predate the current cycle and are matched to current pollsters with explicit aliases.",
     "Unrated firms receive neutral quality weight; sample-size importance is a capped provisional exponent.",
-    "The public feed limits polls per race; historical series remain incomplete.",
+    "The public feed retains up to 60 surveys per race over 65 days; historical series remain incomplete.",
     "Candidates in different ballot matchups are not averaged together.",
     "Polling quality and candidate support errors are not yet calibrated for 2026."
   ]
