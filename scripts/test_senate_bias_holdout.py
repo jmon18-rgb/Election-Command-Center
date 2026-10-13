@@ -15,7 +15,7 @@ def source():
     errors={2020:[6,4,5,5],2022:[-1,-1],2024:[5,7]}
     for year,es in errors.items():
         for i,e in enumerate(es):
-            rows.append({"cycle":year,"state":f"{i+1:02d}", "pollster_count":4,
+            rows.append({"cycle":year,"state":("AZ","PA","WI","FL")[i], "pollster_count":4,
                 "cutoff_is_fieldwork_only":True,"cutoff":DATES[year],
                 "field_end_range":[DATES[year],DATES[year]],
                 "actual_two_party_margin":0.0,
