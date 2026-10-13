@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "updated_at": null,
+  "coverage": "Not yet populated with independently verified state-level incident records",
+  "methodology": {
+    "primary_metric": "Potentially affected voters or ballots, only when grounded in a cited primary source",
+    "count_rules": [
+      "Never equate records flagged, lawsuits filed, or challenges submitted with votes lost.",
+      "Record separate counts for potentially exposed, confirmed affected, remedied, and unresolved; unknown values are null.",
+      "Never subtract remediations from exposure without proof they refer to the same population.",
+      "Never sum potentially overlapping incidents into a statewide unique-voter total.",
+      "Preserve units: voters, ballots, registrations, and records are not interchangeable.",
+      "Store earliest/latest date, geographic scope, mechanism, source and verification status for each incident.",
+      "Do not infer partisan effects or probability of fraud from incident counts."
+    ],
+    "verification_statuses": [
+      "unverified_report",
+      "documented_action",
+      "officially_confirmed",
+      "court_finding",
+      "resolved"
+    ]
+  },
+  "states": [],
+  "incidents": []
+}
