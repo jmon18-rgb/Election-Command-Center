@@ -120,6 +120,56 @@ async function settle(){
  assert.match(get('#wireResults').textContent,/No indexed observations match/);
  searchBox.value='';searchBox.dispatchEvent(new w.Event('input',{bubbles:true}));
  wireOffice.value='all';wireOffice.dispatchEvent(new w.Event('change',{bubbles:true}));
+ // Election Night is usable before the 2026 vote: its 2024 archive can
+ // rehearse the real reported-count UI without mistaking leaders for calls.
+ const archival={
+  api:1,year:2024,office:'House',live:false,stale:true,counting:true,final:false,
+  as_of:'2026-09-23T17:47:54+00:00',source:'state',
+  counts:{races:1,with_precincts:1,reporting:1,not_called:1,called:{}},
+  races:{'AZ-01':{leader:'D',called:false,winner:'',pct_in:100,total:200,
+    uncontested:false,cands:[
+     {n:'Example D',p:'D',v:115,pct:57.5,inc:false,w:false,b:''},
+     {n:'Example R',p:'R',v:85,pct:42.5,inc:false,w:false,b:''}
+    ]}}
+ };
+ assert.equal(w.eval('enSourceValid('+JSON.stringify(archival)+',2024,"House")'),true,
+  '2024 official-state archival fixture must pass provider contract');
+ const badArchive=structuredClone(archival);
+ badArchive.races['AZ-01'].cands[0].v=250;
+ assert.equal(w.eval('enSourceValid('+JSON.stringify(badArchive)+',2024,"House")'),false,
+  'Candidate vote sums cannot exceed race totals');
+ badArchive.races['AZ-01'].cands[0].v=115;badArchive.races['AZ-01'].called=true;
+ assert.equal(w.eval('enSourceValid('+JSON.stringify(badArchive)+',2024,"House")'),false,
+  'State-derived provider cannot inject fabricated race calls');
+ assert.equal(w.eval('enSourceValid('+JSON.stringify(archival)+',2024,"Senate")'),false,
+  'Wrong office data must never render as House');
+ const suspicious2026=structuredClone(archival);suspicious2026.year=2026;
+ assert.equal(w.eval('enSourceValid('+JSON.stringify(suspicious2026)+',2026,"House")'),false,
+  'Pre-election vote totals must never pass as live 2026 results');
+ const nightTab=get('.tab[data-page="electionNight"]');
+ // Avoid network in deterministic tests; the public API is integration-tested
+ // separately on the real site and this suite validates rendering/contracts.
+ w.eval('enModeYear=2024;enOffice="House";enAcceptSource('+JSON.stringify(archival)+')');
+ assert.match(get('#enStatus').textContent,/2024 ARCHIVE/);
+ assert.equal(get('#enDLeads').textContent,'1');
+ assert.equal(get('#enRLeads').textContent,'0');
+ assert.equal(get('#enCalls').textContent,'Not supplied');
+ assert.match(get('#enDetailSummary').textContent,/NOT a race call/);
+ assert.equal(get('#enActivityBox').hidden,true,'No live update timeline in a 2024 archive');
+ const early=structuredClone(archival),late=structuredClone(archival);
+ early.year=late.year=2026;early.as_of='2026-11-04T02:00:00Z';late.as_of='2026-11-04T02:05:00Z';
+ late.races['AZ-01'].total=180;late.races['AZ-01'].cands[0].v=80;
+ late.races['AZ-01'].cands[1].v=100;
+ const movement=w.eval('enCompareSnapshots('+JSON.stringify(early)+','+JSON.stringify(late)+')');
+ assert.equal(movement.length,1);
+ assert.equal(movement[0].delta,-20);
+ assert.equal(movement[0].leaderChanged,true);
+ assert.match(JSON.stringify(movement),/AZ-01/);
+ // A connection outage must preserve previously verified results, rather than
+ // quietly replacing them with zeros or JackStradamus probabilities.
+ await w.eval('enLoad(true)');
+ assert.match(get('#enStatus').textContent,/LAST VERIFIED RESULTS RETAINED/);
+ assert.equal(get('#enDLeads').textContent,'1');
  // Canonical in-app identifiers must be visible. TX Senate and TX governor
  // cannot both be ambiguous "Texas" cards any longer.
  const [txSen,txGov]=['senate','governor'].map(type=>
@@ -130,6 +180,41 @@ async function settle(){
  assert.match(identity('governor',txGov),/Texas.*Governor/);
  assert.notEqual(identity('senate',txSen),identity('governor',txGov));
 
+
+ // Model-roadmap milestone: saved snapshots can make a real timeline but
+ // only for the SAME race, candidate matchup, and model version.
+ const modelGate=get('#forecastGateList');
+ assert(modelGate.querySelectorAll('.item').length>=4,'Show actual model-readiness blockers');
+ assert.match(get('#forecastGateStatus').textContent,/NOT CALIBRATED/);
+ const fakeSnap=(at,candidate,margin,method='poll-mean-1.4')=>({
+   at,method_version:method,races:[{
+      race_code:txSen.race_code,race_type:txSen.race_type,
+      dem_candidate:candidate,rep_candidate:txSen.rep_candidate,
+      dem_minus_rep:margin
+   }]
+ });
+ const goodHistory={snapshots:[
+   fakeSnap('2026-10-11T12:00:00Z',txSen.dem_candidate,0.5),
+   fakeSnap('2026-10-12T12:00:00Z',txSen.dem_candidate,1.7)
+ ]};
+ const serie=w.eval('modelHistorySeries('+JSON.stringify(txSen)+','+JSON.stringify(goodHistory)+')');
+ assert.equal(serie.length,2);
+ assert.equal(serie[1].margin,1.7);
+ const mismatch=w.eval('modelHistorySeries('+JSON.stringify(txSen)+','+JSON.stringify({snapshots:[
+   fakeSnap('2026-10-11T12:00:00Z',txSen.dem_candidate,0.5),
+   fakeSnap('2026-10-12T12:00:00Z','Different D Candidate',2.7),
+   fakeSnap('2026-10-13T12:00:00Z',txSen.dem_candidate,3.2,'changed-method')
+ ]})+')');
+ assert.equal(mismatch.length,1,'Never draw poll changes across candidate or algorithm changes');
+ w.eval('setModelHistoryData('+JSON.stringify(goodHistory)+');renderModelTrend('+JSON.stringify(txSen)+')');
+ assert(get('#modelTrendChart').querySelector('polyline'),'Real two-snapshot model series must plot');
+ assert.match(get('#modelTrendNote').textContent,/actual saved average snapshots/);
+ assert.match(get('#modelTrendChange').textContent,/D \+1\.2/);
+ w.eval('setModelHistoryData('+JSON.stringify({snapshots:[goodHistory.snapshots[0]]})+')'+
+  ';renderModelTrend('+JSON.stringify(txSen)+')');
+ assert(!get('#modelTrendChart').querySelector('polyline'),'One snapshot cannot create a fake trend');
+ assert.match(get('#modelTrendChange').textContent,/Awaiting longer history/);
+ w.eval('setModelHistoryData('+JSON.stringify(history)+')');
  // The same multipurpose Recon survey contains DISTINCT 2026 Senate and
  // Governor ballot questions. Check model inclusion, vote-share match and
  // exact original drilldown selection in BOTH office tabs.

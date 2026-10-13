@@ -2,6 +2,18 @@
 
 Updated October 13, 2026. Goal: a useful, trustworthy watch-through-the-evening dashboard that **keeps actual vote counts separate from race calls, from projections, and from polling averages.**
 
+## Election Night rehearsal and reliability upgrade (October 13)
+
+The browser **continues to fetch Open America's documented public CORS-enabled API directly**. Its [version 1 contract](https://openamerica.io/elections/api/) expressly supports cross-origin, unauthenticated requests. We did **not** create a GitHub mirror or copy its live data to a separate unlicensed results service.
+
+The page opens the **2024 archival data by default before the November 3 election**. This is a static historic snapshot, **not** a chronological evening replay, a verified source of race calls or certification. On and after Election Day, the default changes to 2026 results. A visitor can always toggle year, office (House/Senate/Governor), search, and refresh manually.
+
+Client validation rejects unexpected year/office/API version, invalid district IDs, implausible vote totals or candidate percentages, contradictory live/stale/final flags, reported winner-call fields and dates too far into the future. Before polls close, any supposed 2026 vote totals are rejected. A failed subsequent refresh clearly warns visitors and preserves the last validated data in that tab, rather than zeroing totals or substituting polling averages.
+
+**What Just Changed** is a real *within-this-browser-session* comparison of distinct 2026 source timestamps for the same office and race. It records newly reported totals, downward corrections and changes in provisional leading party. It does not reconstruct activity from before the page was opened, imply wrongdoing from corrections, or guess changes for states omitted from the feed. The model's race detail also shows a separate real saved-polling-average history chart, which is never treated as election-night vote movement.
+
+The roadmap still requires another independent call source, broader state coverage, actual live-system testing, nationwide chamber reconciliation and verified county-level baselines before a full results-night desk or 'needle' can be claimed.
+
 ## What the current screen already does
 
 The Election Night tab can select 2026 live or 2024 historical results, switch House, Senate or Governors, search reported races, display candidate vote totals, show state-source timestamps and update automatically when the primary API reports a live count. It cannot currently make race calls or calculate chamber control from incomplete coverage.
