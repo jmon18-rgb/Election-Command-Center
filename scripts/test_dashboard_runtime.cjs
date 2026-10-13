@@ -848,7 +848,8 @@ async function settle(){
  assert.match(get('#enWatchItems').textContent,/civicAPI · 1,000 reported votes/);
  assert.match(get('#enWatchItems').textContent,/Outside the 22-state source/);
  assert.match(get('#enWatchItems').textContent,/civicAPI race source/);
- assert.equal(w.eval('enCivicByWatch["Senate|NH"].total'),1000);
+ assert.equal(w.eval('enCivicStatus({office:"Senate",key:"NH"})').includes('1,000 reported votes'),true,
+    'Validated supplemental vote totals must reach rendered source status');
  const nhWatchEntry=get('#enWatchItems .en-watch-open');
  assert(nhWatchEntry,'Verified civicAPI race should be present in personal watchlist');
  assert.equal(nhWatchEntry.getAttribute('aria-expanded'),'false');
