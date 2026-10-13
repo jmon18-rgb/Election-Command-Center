@@ -176,7 +176,8 @@ async function settle(){
  assert(evidenceSenate.some(x=>x.signal==='No independent confirmation'),
   'No independently sourced current Senate poll must be clearly signaled');
  assert(evidenceSenate.every(x=>Math.abs(x.margin)<=12));
- assert(evidenceSenate.every(x=>!x.reason.toLowerCase().includes('win probability')));
+ assert(evidenceSenate.every(x=>!/[0-9]+(?:\\.[0-9]+)?% chance/i.test(x.reason)),
+  'Evidence review may not invent numerical victory probabilities');
  const evidenceHouse=w.eval('modelEvidenceWatchItems('+JSON.stringify(model)+',"house")');
  assert(evidenceHouse.length>=3);
  assert(evidenceHouse.every(x=>x.scope==='house'&&/^[A-Z]{2}-\d{2}$/.test(x.race_code)));
