@@ -20,7 +20,7 @@ must_have = (
     "No meaningful movement",
     "id=\"scenarioBands\"",
     "The four endings",
-    "Red Dawn",
+    "RED DAWN",
 
     'id="pollLeadSummary"',
     'function renderPollLeadSeats(kind,matching)',
