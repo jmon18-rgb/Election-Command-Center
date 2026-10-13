@@ -71,7 +71,7 @@ def run(polls,official):
                 end=date.fromisoformat(p["end_date"].replace("/","-"))
                 d,r=float(p["dem"]),float(p["rep"])
                 if d<=0 or r<=0 or not 0<=(cutoff-end).days<=45:continue
-                if re.search(r"\\([DR]\\)\\*?",p["pollster"]):continue
+                if re.search(r"\([DR]\)\*?",p["pollster"]):continue
                 eligible.append((end,p,d,r))
             except (ValueError,KeyError,TypeError):continue
         latest={}
@@ -104,7 +104,7 @@ def main():
         "bundled_result_discrepancies":discrepancies,
         "limitations":["Not an election forecast.","Excludes special, multiple-seat, ranked-choice and independent-winner races.","Coverage differs by year; no candidate-name validation or holdout model selection.","Partisan-sponsored poll exclusion relies on pollster-name labels."]}
     out=ROOT/"data"/"historical_verified.json"
-    out.write_text(json.dumps(result,indent=2)+"\\n",encoding="utf-8")
+    out.write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
     print("Historical results:",result["matched_poll_races"],"races",result["overall"])
 
 if __name__=="__main__":main()
