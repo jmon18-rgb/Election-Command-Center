@@ -1422,6 +1422,97 @@ async function settle(){
  w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
 
 
+ // Source-verified statewide civicAPI batch: California, Delaware,
+ // South Dakota and Wyoming, including a simulated bad provider revision.
+ const westSourceSpecs=[
+  {state:'CA',office:'Governor',name:'California Governor',id:86952,pin:'CA-GOV'},
+  {state:'DE',office:'Senate',name:'Delaware US Senate',id:87036,pin:'DE-SEN'},
+  {state:'SD',office:'Senate',name:'South Dakota US Senate',id:87446,pin:'SD-SEN'},
+  {state:'SD',office:'Governor',name:'South Dakota Governor',id:87447,pin:'SD-GOV'},
+  {state:'WY',office:'Senate',name:'Wyoming US Senate',id:87496,pin:'WY-SEN'},
+  {state:'WY',office:'Governor',name:'Wyoming Governor',id:87497,pin:'WY-GOV'},
+  {state:'MD',office:'Governor',name:'Maryland Governor',id:87198,pin:'MD-GOV'}
+ ];
+ const westSourceRecords=new Map();
+ for(const spec of westSourceSpecs){
+  const item={office:spec.office,key:spec.state};
+  assert(w.StateBatchCivicAdapter.supports(item),
+   'Exact 2026 civicAPI adapter must support '+spec.pin);
+  const search={
+   id:spec.id,country:'US',province:spec.state,district:null,municipality:null,
+   type:spec.office==='Senate'?'US Senate':'Governor',
+   election_type:spec.office==='Senate'?'General':'Statewide',
+   election_name:spec.name,election_date:'2026-11-03T05:00:00.000Z',
+   candidates:[
+    {name:'West D',party:'Democratic',votes:0,percent:0,winner:false},
+    {name:'West R',party:'Republican',votes:0,percent:0,winner:false}
+   ]
+  };
+  const detail={...search,election_type:search.type,percent_reporting:41,
+   last_updated:'2026-11-04T01:45:00Z',
+   candidates:[
+    {name:'West D',party:'Democratic',votes:550,percent:55,winner:false},
+    {name:'West R',party:'Republican',votes:450,percent:45,winner:false}
+   ]
+  };
+  westSourceRecords.set(spec.id,{search,detail,spec});
+  assert.equal(w.eval('enCivicSelect('+JSON.stringify(item)+','+
+   JSON.stringify({races:[search],count:1})+')').id,spec.id);
+ }
+ assert.equal(w.StateBatchCivicAdapter.supports({office:'Senate',key:'MS'}),false,
+  'Mississippi Senate did not verify through source index; no pinned adapter');
+ const westSourceClock=w.Date.now,westSourceFetch=w.fetch,westSourceRequests=[];
+ let westSourceInvalidId=null;
+ w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ w.fetch=async(url)=>{
+  const request=String(url);westSourceRequests.push(request);
+  if(request.startsWith('https://civicapi.org/api/v2/race/search')){
+   const params=new URL(request),state=params.searchParams.get('province');
+   const office=params.searchParams.get('query')==='US Senate'?'Senate':'Governor';
+   const match=[...westSourceRecords.values()].find(x=>
+    x.spec.state===state&&x.spec.office===office);
+   return {ok:true,json:async()=>({races:match?[match.search]:[],count:match?1:0})};
+  }
+  if(request.startsWith('https://civicapi.org/api/v2/race/')){
+   const id=Number(request.match(/\/race\/(\d+)/)?.[1]);
+   const record=westSourceRecords.get(id);
+   if(!record)return {ok:false,status:404,json:async()=>({})};
+   return {ok:true,json:async()=>westSourceInvalidId===id?
+    {...record.detail,id:id+1,last_updated:'2026-11-04T02:00:00Z'}:record.detail};
+  }
+  return {ok:true,json:async()=>empty2026};
+ };
+ for(const spec of westSourceSpecs){
+  get('#enWatchInput').value=spec.pin;
+  get('#enWatchForm').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
+ }
+ await new Promise(resolve=>setTimeout(resolve,90));
+ await w.eval('enRefreshCivicWatchlist(true)');
+ for(const spec of westSourceSpecs){
+  const item={office:spec.office,key:spec.state};
+  const status=w.eval('enCivicStatus('+JSON.stringify(item)+')');
+  assert.match(status,/1,000 reported votes/,
+   'Every new watchlist race needs own source total: '+spec.pin+': '+status);
+  assert(w.eval('enCivicURL('+JSON.stringify(item)+')').endsWith('/race/'+spec.id),
+   'Each source deep-link must match independently verified ID: '+spec.pin);
+  assert.match(get('#enWatchItems').textContent,new RegExp(spec.pin));
+  assert(westSourceRequests.some(u=>u.includes('province='+spec.state)),
+   'Did not search exact source state '+spec.state);
+ }
+ assert.equal(get('#enRaces').textContent,primaryRaceCountBeforeCivic,
+  'Supplemental source counts must not mix with primary election-night totals');
+ const westBadItem={office:'Governor',key:'CA'};
+ westSourceInvalidId=86952;
+ await w.eval('enCivicFetchOne('+JSON.stringify(westBadItem)+')');
+ assert.match(w.eval('enCivicStatus('+JSON.stringify(westBadItem)+')'),/1,000 reported votes/,
+  'Invalid California source revision must preserve last valid count');
+ assert.match(w.eval('enCivicStatus('+JSON.stringify(westBadItem)+')'),/SOURCE RETRYING/);
+ assert.equal(get('#enRaces').textContent,primaryRaceCountBeforeCivic);
+ w.Date.now=westSourceClock;w.fetch=westSourceFetch;
+ w.eval('enWatched=[];enRenderWatchlist()');
+ w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
+
+
  // Meaningful alerts never grant Notification access without a click, never
  // fire for a mere timestamp refresh, and require the race be pinned.
  const alertInput=get('#enWatchInput'),alertForm=get('#enWatchForm');

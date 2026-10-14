@@ -83,6 +83,13 @@ jobs:
           node scripts/test_civicapi_al_mt_nm_ok_tn.cjs
       - name: Discover five more uncovered 2026 states in real civicAPI
         run: python3 scripts/probe_civicapi_al_mt_nm_ok_tn.py
+      - name: Test seven strict CA DE MD SD WY civicAPI race adapters
+        run: |
+          node --check scripts/civicapi_state_batch.js
+          node --check scripts/test_civicapi_ca_de_sd_wy.cjs
+          node scripts/test_civicapi_ca_de_sd_wy.cjs
+      - name: Probe civicAPI statewide 2026 source IDs in CA DE MS SD WY
+        run: python3 scripts/probe_civicapi_ca_de_ms_sd_wy.py
       - name: Install DOM test environment
         run: npm install --no-save --no-package-lock --ignore-scripts jsdom@26.1.0
       - name: Check JavaScript syntax and exercise actual dashboard

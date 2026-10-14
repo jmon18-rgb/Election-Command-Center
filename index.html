@@ -2230,7 +2230,9 @@ const enBatchPilotSlots=new Set(['Senate|AK','Governor|AK','Senate|ME',
  'Governor|OH','Governor|WI','Senate|NE','Governor|NE','Senate|KS','Governor|KS',
  'Senate|IL','Governor|IL','Senate|KY','Senate|NJ','Governor|NY',
  'Senate|OR','Governor|OR','Senate|AL','Governor|AL','Senate|MT',
- 'Senate|NM','Governor|NM','Senate|OK','Senate|TN','Governor|TN']);
+ 'Senate|NM','Governor|NM','Senate|OK','Senate|TN','Governor|TN',
+ 'Governor|CA','Senate|DE','Senate|SD','Governor|SD','Senate|WY','Governor|WY',
+ 'Governor|MD']);
 function enBatchPilot(item){return Boolean(item&&enBatchPilotSlots.has(enWatchId(item)))}
 function enCivicMatch(item,row){
  if(enBatchPilot(item))

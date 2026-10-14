@@ -37,7 +37,15 @@
     'Governor|NM':{state:'NM',name:'New Mexico Governor',office:'Governor',id:87289},
     'Senate|OK':{state:'OK',name:'Oklahoma US Senate',office:'Senate',id:87526},
     'Senate|TN':{state:'TN',name:'Tennessee US Senate',office:'Senate',id:87475},
-    'Governor|TN':{state:'TN',name:'Tennessee Governor',office:'Governor',id:87476}
+    'Governor|TN':{state:'TN',name:'Tennessee Governor',office:'Governor',id:87476},
+    // Next source-verified batch. Mississippi Senate remains unverified.
+    'Governor|CA':{state:'CA',name:'California Governor',office:'Governor',id:86952},
+    'Senate|DE':{state:'DE',name:'Delaware US Senate',office:'Senate',id:87036},
+    'Senate|SD':{state:'SD',name:'South Dakota US Senate',office:'Senate',id:87446},
+    'Governor|SD':{state:'SD',name:'South Dakota Governor',office:'Governor',id:87447},
+    'Senate|WY':{state:'WY',name:'Wyoming US Senate',office:'Senate',id:87496},
+    'Governor|WY':{state:'WY',name:'Wyoming Governor',office:'Governor',id:87497},
+    'Governor|MD':{state:'MD',name:'Maryland Governor',office:'Governor',id:87198}
   });
   const configuration=item=>item&&RACES[item.office+'|'+item.key]||null;
   const supports=item=>Boolean(configuration(item));
