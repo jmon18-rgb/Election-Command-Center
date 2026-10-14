@@ -41,7 +41,6 @@ const fixtures={
  'polling_estimates.json':model,'polls.json':primary,
  'pollresults_recent.json':recent,'model_history.json':history,
  'race_probabilities.json':json('data/race_probabilities.json'),
- 'congress_scenarios.json':json('data/congress_scenarios.json'),
  'house_history_2024_staging.json':json('data/house_history_2024_staging.json'),
  'historical_senate_poll_backtest.json':json('data/historical_senate_poll_backtest.json'),
  'senate_history_2020_2022_2024.json':json('data/senate_history_2020_2022_2024.json')
