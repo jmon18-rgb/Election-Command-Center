@@ -5,6 +5,7 @@ A sponsored poll gets the published fixed, symmetric sponsor adjustment.
 import json, math, re
 from datetime import date
 from pathlib import Path
+from poll_source_identity import matches_source_poll
 
 ROOT=Path(__file__).resolve().parents[1]
 data=json.loads((ROOT/"data/polls.json").read_text(encoding="utf-8"))
@@ -72,13 +73,7 @@ for state in all_rows:
     used=set()
     total_weight=weighted_dem=weighted_rep=0.
     for pick in selections:
-        matching=[
-            p for p in source if
-            p["pollster"].casefold()==pick["name"].casefold() and
-            p["field_end"]==pick["field_end"] and
-            (is_generic or (p["dem_name"]==state["dem_candidate"] and
-                            p["rep_name"]==state["rep_candidate"]))
-        ]
+        matching=[p for p in source if matches_source_poll(p,pick,state,is_generic)]
         assert len(matching)==1,f"{code}: selected poll not unique: {pick}"
         poll=matching[0]
         assert "poll_id" in pick and pick["poll_id"]==poll.get("poll_id"),f"{code}: published poll ID does not match included source observation"
@@ -93,9 +88,7 @@ for state in all_rows:
         weighted_rep+=weight*poll["rep"]
     assert total_weight>0
     for pick in selections:
-        p=next(x for x in source if x["pollster"].casefold()==pick["name"].casefold()
-               and x["field_end"]==pick["field_end"]
-               and (is_generic or (x["dem_name"]==state["dem_candidate"] and x["rep_name"]==state["rep_candidate"])))
+        p=next(x for x in source if matches_source_poll(x,pick,state,is_generic))
         age=(asof-date.fromisoformat(p["field_end"])).days
         weight=0.5**(age/half_life)*(partisan if p.get("partisan_lean") else 1.)*additional_weight(p)
         assert abs(pick["weight_share"]-100*weight/total_weight)<0.015,f"{code} displayed influence mismatch"
@@ -103,10 +96,7 @@ for state in all_rows:
     if sensitivity:
         selected=[]
         for pick in selections:
-            poll=next(p for p in source if p["pollster"].casefold()==pick["name"].casefold()
-                      and p["field_end"]==pick["field_end"]
-                      and (is_generic or (p["dem_name"]==state["dem_candidate"] and
-                                          p["rep_name"]==state["rep_candidate"])))
+            poll=next(p for p in source if matches_source_poll(p,pick,state,is_generic))
             days=(asof-date.fromisoformat(poll["field_end"])).days
             weight=0.5**(days/half_life)*(partisan if poll.get("partisan_lean") else 1)*additional_weight(poll)
             selected.append((poll,weight,days))
@@ -130,10 +120,7 @@ for state in all_rows:
         silver_total=silver_dem=silver_rep=0.
         matched=0
         for pick in selections:
-            poll=next(p for p in source if p["pollster"].casefold()==pick["name"].casefold()
-                      and p["field_end"]==pick["field_end"]
-                      and (is_generic or (p["dem_name"]==state["dem_candidate"] and
-                                          p["rep_name"]==state["rep_candidate"])))
+            poll=next(p for p in source if matches_source_poll(p,pick,state,is_generic))
             days=(asof-date.fromisoformat(poll["field_end"])).days
             old_weight=.5**(days/half_life)*(partisan if poll.get("partisan_lean") else 1.)*additional_weight(poll)
             silver_factor,is_matched=silver_multiplier(poll)
