@@ -1127,6 +1127,7 @@ function jointBuildRaceOddsSnapshot(result,basis){
  return {schema_version:'joint-race-probabilities-v1',
   status:'JOINT_CORRELATED_RACE_PROBABILITIES_EXPERIMENTAL',
   race_probability_method:result.race_probability_method,
+  senate_prior_mode:basis.senate_prior_mode,
   samples:result.samples,
   polling_source_generated_at:basis.generated_from_sources.model_polling_at,
   records};
@@ -1159,7 +1160,9 @@ function renderModelRaceOdds(estimate){
  const fill=elt('div');fill.style.width=Math.max(0,Math.min(100,p))+'%';bar.append(fill);
  note.textContent='Only the JOINT JackStradamus odds are displayed (not the older standalone polling odds). Poll average '+
    marginText(item.dem_minus_rep)+' · modeled margin '+
-   marginText(item.model_dem_margin_points)+' · total modeled race uncertainty '+
+   marginText(item.model_dem_margin_points)+
+   (item.office==='senate'?' · 2026 candidate polling + mapped state fundamentals':'')+
+   ' · total modeled race uncertainty '+
    item.sigma_points.toFixed(1)+' points (national + chamber + state + local). '+
    'Same '+modelRaceOddsData.samples.toLocaleString('en-US')+
    ' correlated draws as House/Senate control. Error-width controls rerun the full model. '+
@@ -2273,7 +2276,7 @@ function jointRenderCards(result){
    (h?h.p05+'–'+h.p95+' House':'House unavailable')+' / '+
    (sn?sn.p05+'–'+sn.p95+' Senate':'Senate unavailable')+' · '+
    info.senate_poll_count+'/35 Senate and '+info.house_poll_count+
-   '/435 House races polled · '+info.house_geography_changed+
+   '/435 House races polled · Senate: 2026 named-candidate model · '+info.house_geography_changed+
    ' House districts redrawn (high uncertainty).';
  }
 }
