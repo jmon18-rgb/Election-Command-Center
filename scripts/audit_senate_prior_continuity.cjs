@@ -77,7 +77,7 @@ function evaluate(s){
   const house=houseStats.get(row.state),state=statePres.get(row.state);
   if(!house||!state||!inc.has(row.code))throw Error('Missing state evidence '+row.code);
   const currentHistoricallyEmbedded=relevant?
-   .65*margin(old.recorded_dem_votes,old.recorded_rep_votes)+
+   .65*(200*old.dem_share_of_two_party-100)+
    .35*margin(house.d,house.r):margin(house.d,house.r);
   const currentPrior=currentHistoricallyEmbedded+currentSwing;
   const presStateMargin=margin(state.d,state.r);
