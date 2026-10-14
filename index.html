@@ -1888,16 +1888,25 @@ function bullStateScore(code){
 function renderBullStateScores(){
  const host=$('#bullScoreStates');if(!host)return;host.replaceChildren();
  if(!impactLedger){host.append(elt('div','empty','Evidence unavailable.'));return}
+ const tracked=(impactLedger.incidents||[]).filter(x=>x.verification_status!=='unverified_report');
+ const stateCount=new Set(tracked.map(x=>x.state)).size;
+ const numeric=tracked.filter(x=>Number.isFinite(x.confirmed_affected)||
+   Number.isFinite(x.potentially_affected)).length;
+ const summary=$('#bullCoverageSummary');
+ if(summary)summary.textContent=tracked.length+' source-documented cases across '+
+  stateCount+' states in this curated ledger · '+numeric+
+  ' cases with numeric affected/exposed counts · other states not cleared or comprehensively reviewed. '+
+  'Verified actions and unknown voter effects are different facts.';
  const states=[...new Set((impactLedger.incidents||[]).map(x=>x.state).filter(Boolean))].map(s=>({s,score:bullStateScore(s)})).sort((a,b)=>(b.score??-1)-(a.score??-1)||a.s.localeCompare(b.s));
  for(const {s,score} of states){
   const issues=(impactLedger.incidents||[]).filter(x=>x.state===s&&x.verification_status!=='unverified_report');
   const featured=issues.sort((a,b)=>(bullMonitoringPoints(b)||0)-(bullMonitoringPoints(a)||0))[0];
   const row=elt('div','bs-state-row');
   const head=elt('div','bs-state-header');
-  head.append(elt('strong','',KEY_STATES[s]||s),elt('strong','bs-state-number',score===null?'Not assessed':score+'/100'));
+  head.append(elt('strong','',KEY_STATES[s]||s),elt('strong','bs-state-number',score===null?'Impact not quantified':score+'/100'));
   row.append(head);
   const track=elt('div','bs-state-track'),fill=elt('div','bs-state-fill');fill.style.width=(score===null?0:score)+'%';track.append(fill);row.append(track);
-  const note=elt('div','bs-state-note',featured?.scope_label||featured?.title||'No assessed incident');row.append(note);
+  const note=elt('div','bs-state-note',featured?.scope_label||featured?.title||'Sourced issue; impact not quantified');row.append(note);
   const scenario=featured?.adverse_scenario||{},proxy=scenario.exposure_proxy;
   if(proxy?.value!==null&&typeof proxy?.value==='number'){
    row.append(elt('div','bs-state-detail','Reported exposure: '+(proxy.qualifier==='at least'?'≥':'')+proxy.value.toLocaleString()+' '+proxy.unit+' (not lost votes)'));
@@ -4059,28 +4068,50 @@ if(sensitivity&&Number.isFinite(sensitivity.effective_firms)){
 }
 }else{card.append(elt('div','meta','No qualifying recent polls · polling uncertainty cannot be quantified.'))}
 const integrity=elt('div','bs-mini');
-const cases=impactLedger?(impactLedger.incidents||[]).filter(z=>z.state===x.state):[];
-const documented=cases.filter(z=>z.verification_status!=='unverified_report');
-const quantified=cases.filter(z=>typeof z.confirmed_affected==='number'||typeof z.potentially_affected==='number');
+const ev=bullEvidenceForState(x.state),documented=ev.known,monitorScore=bullStateScore(x.state);
 const top=elt('div','bs-mini-head');
-top.append(elt('span','','🎛️ Bullshittery Index'));
-const monitorScore=bullStateScore(x.state);
-top.append(elt('span','',impactLedger?(monitorScore===null?'Not assessed':monitorScore+'/100 watch'):'Loading…'));integrity.append(top);
-const track=elt('div','bs-mini-track');const ticks=elt('div','bs-mini-ticks');
-for(let i=0;i<12;i++){const tick=elt('span','bs-mini-tick');if(monitorScore!==null&&i<Math.ceil(monitorScore/100*12))tick.classList.add('bs-mini-active');ticks.append(tick)}
-track.append(ticks);integrity.append(track);
-if(documented.length){
-const featured=cases.find(z=>z.scope_label);
-integrity.append(elt('div','bs-mini-sub',featured?featured.scope_label:documented.length+' sourced development'+(documented.length===1?'':'s')+' · '+(quantified.length?'impact quantified':'impact not quantified')));
+top.append(elt('span','','🎛️ Election access evidence'));
+top.append(elt('span','',!impactLedger?'Loading…':
+ documented.length?documented.length+' sourced case'+(documented.length===1?'':'s'):
+ ev.leads?ev.leads+' lead'+(ev.leads===1?'':'s')+' awaiting verification':
+ 'No case in ledger'));
+integrity.append(top);
+if(documented.length&&monitorScore!==null){
+ const track=elt('div','bs-mini-track'),ticks=elt('div','bs-mini-ticks');
+ for(let i=0;i<12;i++){
+  const tick=elt('span','bs-mini-tick');
+  if(i<Math.ceil(monitorScore/100*12))tick.classList.add('bs-mini-active');
+  ticks.append(tick);
+ }
+ track.append(ticks);integrity.append(track);
+ integrity.append(elt('div','bs-mini-sub',monitorScore+'/100 monitoring priority · '+
+  (ev.quantified?ev.quantified+' count(s) documented':'voter impact not quantified')));
+ const featured=documented.find(z=>z.scope_label)||documented[0];
+ if(featured)integrity.append(elt('div','bs-mini-sub',featured.scope_label||featured.title||'Verified source record'));
 }else{
-integrity.append(elt('div','bs-mini-sub','No tracked cases in this limited ledger'));
+ integrity.append(elt('div','bs-mini-sub',impactLedger?
+  'No source-confirmed case for this state in the limited ledger. Not evidence of no issues.':
+  'Evidence ledger has not loaded.'));
 }
-const details=elt('details','bs-mini-details');details.append(elt('summary','',documented.length?'Sources':'About coverage'));
-for(const issue of cases){
-const row=elt('div','unotes',issue.title||issue.mechanism||'Documented issue');details.append(row);if(issue.process_status)details.append(elt('div','unotes',issue.process_status));if(issue.scope_note)details.append(elt('div','unotes',issue.scope_note));
-for(const source of issue.sources||[]){if(source.url&&source.url.startsWith('https://')){const link=elt('a','pollsource',source.publisher||'Source');link.href=source.url;link.target='_blank';link.rel='noopener noreferrer';details.append(link)}}
+if(ev.leads)integrity.append(elt('div','bs-mini-sub',
+ ev.leads+' unverified report'+(ev.leads===1?'':'s')+' in review queue · not part of the score'));
+const details=elt('details','bs-mini-details');
+details.append(elt('summary','',documented.length?'Review sourced cases':'About evidence coverage'));
+for(const issue of documented){
+ const row=elt('div','unotes',issue.title||issue.mechanism||'Sourced issue');details.append(row);
+ if(issue.process_status)details.append(elt('div','unotes',issue.process_status));
+ if(issue.scope_note)details.append(elt('div','unotes',issue.scope_note));
+ for(const source of issue.sources||[]){
+  if(source.url&&source.url.startsWith('https://')){
+   const link=elt('a','pollsource',source.publisher||'Source');
+   link.href=source.url;link.target='_blank';link.rel='noopener noreferrer';
+   details.append(link);
+  }
+ }
 }
-const link=elt('a','pollsource','Full tracker →');link.href='#integrity';details.append(link);integrity.append(details);
+if(!documented.length)details.append(elt('div','unotes','This is not a complete nationwide audit. Reports awaiting verification and uncaptured events are not counted as confirmed.'));
+const link=elt('a','pollsource','Full evidence tracker →');link.href='#integrity';
+details.append(link);integrity.append(details);
 card.append(integrity);
 if(x.poll_source_url&&/^https:\/\//.test(x.poll_source_url)){const a=elt('a','pollsource','View polling source ↗');a.href=x.poll_source_url;a.target='_blank';a.rel='noopener noreferrer';card.append(a)}
 box.append(card);
