@@ -1,9 +1,135 @@
 {
-  "updated_at": "2026-10-14T08:52:37.076493Z",
+  "updated_at": "2026-10-14T11:09:17.083238Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 7,
   "items": [
+    {
+      "id": "fd32f8a05e0cc18ec620",
+      "title": "Immigration, climate, guns: key Trump policies to be tested at supreme court - The Guardian",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOd0VJSTdMbWYtX3JkclozUHUxT3Q3Z19PbC1UdkpMWGhVbmpQV2tLdDRrYTNXZS04WjN0WWJYYXM2SXBiVVFBZ3V2dnhMcW1Ja1ZYVnRiQk90ZlZIYWUyQ2lrejBTckRRQWF0MUwySEctdjAzMkh2RVhIWW5iOGhhRFNwVQ?oc=5",
+      "publisher": "The Guardian",
+      "published_at": "2026-10-14T11:02:00Z",
+      "detected_at": "2026-10-14T11:09:17.083238Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "4865dc64b0950b7058dc",
+      "title": "Oklahoma's Nov. 3 election is coming. How to vote early, by mail - The Oklahoman",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPbkdlbURnX291ZjBPZTQ2bEFpVVZjMVdITkFJUjRqZnhsaW9uamdDS0RWUzh5QkZGeVZqd3JkSmFqT05vYkQwWUg1Y0VfR05xSWVISUVBUFgwYjR3elpzM2x6T0JDVWRVS1hqeGpNVFl3WFFOVFZJTWtLUlc3NVpwLUlmMmsxM3N2MzVReVFjOUhPYkZVRS1nbGhrMWhVRkxPTGxOSjRoLXNlWEpFdGZsTWlpWF9UUUFocnp0Tjk2WGlWUGVQOXc?oc=5",
+      "publisher": "The Oklahoman",
+      "published_at": "2026-10-14T10:04:00Z",
+      "detected_at": "2026-10-14T11:09:17.083238Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [
+        "3 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "4676a3bc71d4a896feab",
+      "title": "Federal Judges Rules DOJ Lacks Authority to Check Voter Lists Against Immigration Database - The Presidential Prayer Team",
+      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQb2xEaHl5bUlleGhnbHlkWFJuLUxsZDgtQlNyMHF0UlZ5YVF5R1psNlZzRDlZM3gxY0pzaFpXMmVCNUdGa0JzX2EwREIxZDRHRTdGQVA4VUZ1WnhLcHluWUloOTliUlVXaGswSy0xNDJOM0VhNk43RzBubkd3LUM1Tm5sTzV4Z3hoRlBnSl9qY1hUS0dQOUxQVkdib0NqMWNPV3ItcVdEdy12VjVvVDliTGM2Ym5zZTBUcVdDamZ2cHF3TEl5U0NfRm5PNGwyNE9VamowNjc5MTk?oc=5",
+      "publisher": "The Presidential Prayer Team",
+      "published_at": "2026-10-14T10:00:00Z",
+      "detected_at": "2026-10-14T11:09:17.083238Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "f0d048dd0aeff453dd71",
+      "title": "Texas sued for failing to process more than 500,000 voter registrations - The Texas Tribune",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPdjlNSkd6Qnh0dnpOUkltQnBBTzl0MXlKZ0xaV1pUMjZGZGg4M3lIZ2lGa2d1eTJZYXBLbU1tbTB1d1NCdWYwX3ZKdGlQckRoTGxFNkUzaWZ1TnVWU0NKbWo3aEtmeEJRcDctVThOYXVoeUNIeU9vTTFLdzJYYXRSNGFBbjA4WW96cUdyQmcyN1RzaU0zTTNxdXJB?oc=5",
+      "publisher": "The Texas Tribune",
+      "published_at": "2026-10-14T09:00:00Z",
+      "detected_at": "2026-10-14T11:09:17.083238Z",
+      "state_hints": [
+        "TX"
+      ],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [
+        "500,000 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "70fc401b2ce1d3afb821",
+      "title": "Civil rights advocates plan to send thousands of observers to midterm polling places - NPR",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNc29ldEZ0UERzZXZ2bF9WNDFfZ0RFbUZSM2hWTW16YmVGcXkwbGVIRDZDZjlDdkJHTGZYNVRRWVFTaHdtTDd5WEFQOEV0WmNiT0twUGJyWWhURFYtQTBWcmlmZXZyQnZqSFhua0l4NUZfckdJVk9pX19wUUN0UVlCbkpmcw?oc=5",
+      "publisher": "NPR",
+      "published_at": "2026-10-14T09:00:00Z",
+      "detected_at": "2026-10-14T11:09:17.083238Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "7434deebaa9fc39d4f90",
+      "title": "If you care about data centers, ICE raids or inflation, watch these Texas races - Houston Chronicle",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE0zY1o2dmI2VVpneW45VElJT3BXb0RCaUZEa2Y5UHRFbVRJWnYxUDVQRmRSOW1xRG40RWNJTzY1THM1UVJoVnVHR1JmNkxJNXNwMUF4QVdXdWZjczIwanZVNDlFLWRYNDA0bEhpSzRSTmw2QVVvNU5vbENB?oc=5",
+      "publisher": "Houston Chronicle",
+      "published_at": "2026-10-14T09:00:00Z",
+      "detected_at": "2026-10-14T11:09:17.083238Z",
+      "state_hints": [
+        "TX"
+      ],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "f631fb2e68b0e98836a5",
+      "title": "What is the Trump-backed SAVE America Act requiring voter ID, proof of citizenship to register? - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPakp6cUZqckpHYXRSRmZ3S1NIVHE3TnR5ek9qN1M2YmVKUV96bjJaUWhGNFZyTFFFSVRoZnNFODZjNWRYT3E5R2lKUDIxTm9UQzlmTVllRS16cmZ1d1hqQ3pYNzNvUnRrR29aUUQyQ043NjhJSXFjV0g2TnY5TmJUYzNOMi1tQnJnUDRWVHl5ZGhGcUI3QkIxWHl5UzhfVm1qYUJ30gGoAUFVX3lxTE1vdmwzR2RvYmZoVzRZNFpoNmxyRE82czE3UlVtWHNqRkFyY2JEWXFjQmZtaUtqQVFpaWZWOGFDdUhMYXctejlGZDV2dWNtanUyVktUakJTZmtTWlFqYzJoU2FEODZjOWJUMmpGNTVya184d1d5SDU1eGcxdzJXc2Vqc1VaUWpjazBRRlRQTVZJVG82enZCTmY0THE1eVo2Rk9mb3I0RFdLRg?oc=5",
+      "publisher": "ABC News - Breaking News, Latest News and Videos",
+      "published_at": "2026-10-14T08:43:08Z",
+      "detected_at": "2026-10-14T11:09:17.083238Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "1a75dced411de87ea2ab",
       "title": "Asaduddin Owaisi Moves Supreme Court Seeking Review Of Bihar SIR Verdict, Says New Material Raises... - Live Law",
