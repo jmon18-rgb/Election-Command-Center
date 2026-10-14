@@ -2202,6 +2202,156 @@ $('#enRehearsalReset').addEventListener('click',()=>{
  enRehearsalStep=0;enRenderRehearsal();
 });
 
+/* Own joint congressional scenario model, source-aligned to current polling.
+ * No source overrides, no fictional votes, no official certification claims.
+ * DDHQ remains the independently published comparison below the home cards. */
+let jointBasis=null,jointErrorMessage=null,jointRefreshTimer=null,jointCacheKey='',
+    jointLastResult=null,jointNationalShift=0,jointErrorMultiplier=1;
+const jointLabels=[
+ ['blue_tsunami','BLUE TSUNAMI','D both chambers · 12+ of 14 battlegrounds','d-tide'],
+ ['blue_wave','BLUE WAVE','D both chambers · below tsunami threshold','d-wave'],
+ ['shrug','SHRUG','One chamber per party','split'],
+ ['red_dawn','RED DAWN','R controls both chambers','r-dawn']
+];
+function jointSourceItem(item){
+ const key=item.code,itemOffice=key.endsWith('-SEN')?'Senate':'House';
+ const state=key.slice(0,2),office=key.endsWith('-GOV')?'Governor':itemOffice;
+ const watchKey=office==='House'?key:
+   office==='Governor'?state:
+   state+(office==='Senate'&&['OH','FL'].includes(state)?'-special':'');
+ const watch={office,key:watchKey};
+ const id=enWatchId(watch);
+ const primary=enSupportedStates.has(state);
+ const snapshot=primary?enOfficeSnapshots[office]||
+  (enModeYear===2026&&enOffice===office?enData:null):null;
+ const err=primary?enOfficeErrors[office]||
+   (enModeYear===2026&&enOffice===office?enFetchError:null):enCivicErrors[id];
+ const source=snapshot&&err?{...snapshot,stale:true}:snapshot;
+ const secondary=!primary&&!err?enCivicByWatch[id]:null;
+ return window.RaceLiveNowcast?.observed(watch,source,secondary)||null;
+}
+function jointLiveObservations(){
+ if(enModeYear!==2026||Date.now()<Date.parse('2026-11-03T05:00:00Z')||
+    !window.RaceLiveNowcast||!jointBasis)return {};
+ const observations={},now=Date.now();
+ for(const r of [...jointBasis.house,...jointBasis.senate,...jointBasis.governors]){
+  const x=jointSourceItem(r);
+  if(!x||x.sourceStale||x.reporting<10||x.time< Date.parse('2026-11-03T05:00:00Z')||
+      x.time>now+900000||now-x.time>180*60000)continue;
+  const priorVariance=r.sigma*r.sigma;
+  const noise=7+20*Math.pow(1-x.reporting/100,1.3),variance=noise*noise;
+  const posteriorVariance=1/(1/priorVariance+1/variance);
+  observations[r.code]={mode:'live_informed',
+   posteriorMargin:posteriorVariance*(r.mean/priorVariance+x.margin/variance),
+   posteriorSigma:Math.sqrt(posteriorVariance)};
+ }
+ return observations;
+}
+function jointRenderCards(result){
+ for(const [id,statusId] of [['jointHomeCards','jointHomeSummary'],
+                            ['jointNightCards','jointNightSummary']]){
+  const host=$('#'+id),status=$('#'+statusId);
+  if(!host||!status)continue;
+  host.replaceChildren();
+  if(!result){
+   status.textContent=jointErrorMessage||
+    'Awaiting a complete, matching polling/seat-geography model. No probabilities inferred.';
+   host.append(elt('p','joint-note','No complete, verified model inputs.'));
+   continue;
+  }
+  const count=Object.keys(result.counts).length;
+  if(count!==4){status.textContent='The four-ending model was incomplete.';continue}
+  for(const [key,label,detail,kind] of jointLabels){
+   const cell=elt('div','joint-cell '+kind);
+   cell.append(elt('strong','',label),
+    elt('div','joint-value',result.probabilities[key].toFixed(1)+'%'),
+    elt('span','',detail));
+   host.append(cell);
+  }
+  const info=jointBasis.generated_from_sources;
+  status.textContent=result.samples.toLocaleString('en-US')+
+   ' correlated simulated elections · D controls both (including tsunami) '+
+   result.blue_both_including_tsunami.toFixed(1)+'% · average D seats: '+
+   result.means.house_dem_seats.toFixed(0)+' House / '+
+   result.means.senate_dem_seats.toFixed(0)+' Senate · '+
+   info.senate_poll_count+'/35 Senate and '+info.house_poll_count+
+   '/435 House races polled · '+info.house_geography_changed+
+   ' House districts redrawn (high uncertainty).';
+ }
+}
+function jointCurrentSignature(){
+ const snaps=['House','Senate','Governor'].map(office=>
+  (enOfficeSnapshots[office]?.as_of||'')+'-'+
+  (enOfficeErrors[office]||'')).join('|');
+ const civic=Object.entries(enCivicByWatch).map(([key,data])=>
+  key+':'+data.last_updated+':'+Boolean(enCivicErrors[key])).sort().join('|');
+ return snaps+':'+civic+':'+jointNationalShift+':'+jointErrorMultiplier+
+  ':'+enModeYear+':'+(Date.now()>=Date.parse('2026-11-03T05:00:00Z'));
+}
+function jointRender(force=false){
+ if(!jointBasis||!window.ChamberControlModel){jointRenderCards(null);return}
+ const key=jointCurrentSignature();
+ if(!force&&jointLastResult&&jointCacheKey===key)return;
+ jointCacheKey=key;
+ const updates=jointLiveObservations();
+ try{
+  const result=window.ChamberControlModel.simulate(jointBasis,{
+   samples:3000,seed:20261103,
+   nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,
+   live:updates});
+  jointLastResult=result;
+  jointRenderCards(result);
+  const note=$('#jointRunStatus');
+  if(note)note.textContent=Object.keys(updates).length+
+   ' source-validated live-informed races · swing '+
+   (jointNationalShift>=0?'+':'')+jointNationalShift.toFixed(1)+
+   ' pts · '+(jointErrorMultiplier===1?'baseline error':
+   jointErrorMultiplier>1?'wider error':'narrower error')+
+   ' · 34 D-caucus Senate holdovers assumed.';
+ }catch(e){
+  jointErrorMessage='Model calculation unavailable: '+String(e.message||e);
+  jointLastResult=null;jointRenderCards(null);
+ }
+}
+function jointQueueRefresh(){
+ if(!jointBasis||jointRefreshTimer!==null)return;
+ jointRefreshTimer=setTimeout(()=>{
+  jointRefreshTimer=null;jointRender();
+ },1500);
+}
+function jointSetSources(sources){
+ try{
+  if(!window.ChamberControlModel)throw Error('Model script unavailable');
+  jointBasis=window.ChamberControlModel.prepare(sources);
+  jointErrorMessage=null;jointCacheKey='';
+  jointRender(true);
+ }catch(e){jointBasis=null;jointErrorMessage='No reliable joint odds: '+String(e.message||e);
+  jointRenderCards(null)}
+}
+async function jointLoadSources(){
+ const files=[
+  ['seats','seat_universe'],['history','house_history_2024_staging'],
+  ['geography','house_geography_bridge'],['senateHistory','senate_history_2020_2022_2024'],
+  ['polls','polling_estimates'],['odds','race_probabilities']
+ ];
+ try{
+  const values=await Promise.all(files.map(async([key,name])=>{
+   const response=await fetch('./data/'+name+'.json',{cache:'no-store'});
+   if(!response.ok)throw Error(name+' source unavailable');
+   return [key,await response.json()];
+  }));
+  jointSetSources(Object.fromEntries(values));
+ }catch(e){jointBasis=null;jointErrorMessage='No joint probability model: '+String(e.message||e);
+  jointRenderCards(null)}
+}
+$('#jointSwing').addEventListener('change',event=>{
+ jointNationalShift=Number(event.target.value);jointRender(true);
+});
+$('#jointError').addEventListener('change',event=>{
+ jointErrorMultiplier=Number(event.target.value);jointRender(true);
+});
+void jointLoadSources();
+
 function enNationalSourceStatus(item){
  const isPrimary=enSupportedStates.has(item.state);
  const data=isPrimary?(enOfficeSnapshots.Senate||
