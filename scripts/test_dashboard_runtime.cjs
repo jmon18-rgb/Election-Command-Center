@@ -60,15 +60,15 @@ async function settle(){
  for(let n=0;n<150;n++){
   await new Promise(resolve=>setTimeout(resolve,20));
   if(get('#modelBoard').querySelectorAll('.model-race-row').length&&
-      w.eval('jointForecastResult()')&&w.eval('modelRaceOddsData')&&
+      w.eval('jointForecastResult()')&&w.eval('jointRaceOddsResult()')&&
       get('#newPolls').querySelectorAll('.item').length)return;
  }
  throw Error('Timed out waiting for linked joint odds: '+
   JSON.stringify({boardRows:get('#modelBoard').querySelectorAll('.model-race-row').length,
    jointSummary:get('#jointHomeSummary').textContent,
    jointReady:Boolean(w.eval('jointForecastResult()')),
-   oddsReady:Boolean(w.eval('modelRaceOddsData')),
-   pollingReady:Boolean(w.eval('latestSenateEstimates')),
+   oddsReady:Boolean(w.eval('jointRaceOddsResult()')),
+   pollingReady:Boolean(w.eval('jointPollingReady()')),
    sourceErrors:errors.slice(0,6),
    newPollRows:get('#newPolls').querySelectorAll('.item').length}));
 }
@@ -92,7 +92,7 @@ async function settle(){
  w.eval(scripts[0]);
  await settle();
  // Race odds and chamber control derive from ONE correlated Monte Carlo.
- const oddsData=w.eval('modelRaceOddsData');
+ const oddsData=w.eval('jointRaceOddsResult()');
  assert(oddsData,'Linked joint simulation must publish race odds');
  assert.equal(oddsData.schema_version,'joint-race-probabilities-v1');
  assert.equal(oddsData.race_probability_method,
@@ -104,7 +104,7 @@ async function settle(){
   house:model.house.filter(r=>['multi_poll','single_poll'].includes(r.status)).length,
   governor:model.governor.filter(r=>['multi_poll','single_poll'].includes(r.status)).length
  });
- assert.equal(w.eval('modelOddsValidate(modelRaceOddsData,latestSenateEstimates)'),true);
+ assert.equal(w.eval('jointRaceOddsIntegrity()'),true);
  assert(!html.includes('DDHQ published forecast · comparison only'));
  assert(!html.includes('scenarioCenter'));
  assert(!html.includes('enForecastSource'));
