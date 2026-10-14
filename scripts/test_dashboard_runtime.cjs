@@ -1513,6 +1513,153 @@ async function settle(){
  w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
 
 
+ // FULL ELECTION-NIGHT RESILIENCE REHEARSAL: a stalled supplemental
+ // source must not block other races, and a failed foreground House feed must
+ // not stop an independently validated watched Senate office. Synthetic votes.
+ const rehearsalClock=w.Date.now,rehearsalFetch=w.fetch;
+ w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ assert.equal(w.eval('enIsVisible()'),true,'Election Night tab must be active');
+ let rehearsalSignal;
+ w.fetch=async(_url,options)=>{
+  rehearsalSignal=options?.signal;
+  return new Promise(()=>{}); // deliberate hung browser request
+ };
+ await assert.rejects(
+  w.eval('enCivicFetchJson("https://civicapi.org/api/v2/race/86916",25)'),
+  /timed out; last verified result retained/,
+  'An unresponsive race fetch must terminate independently');
+ assert.equal(rehearsalSignal?.aborted,true,
+  'Timeout must abort an actual browser-supported provider request');
+ const rehearsalRaces=[
+  {office:'Senate',key:'AK'},{office:'Governor',key:'AK'},
+  {office:'Senate',key:'ME'},{office:'Governor',key:'ME'},
+  {office:'Governor',key:'NV'},{office:'Senate',key:'KY'}
+ ];
+ w.eval('enWatched='+JSON.stringify(rehearsalRaces)+
+   ';enNationalEnabled=false;enRenderWatchlist()');
+ let rehearsalUnblock=null,rehearsalFirst=true;
+ const rehearsalRequests=[];
+ w.fetch=async url=>{
+  if(String(url).startsWith('https://civicapi.org/')){
+   rehearsalRequests.push(String(url));
+   if(rehearsalFirst){
+    rehearsalFirst=false;
+    await new Promise(resolve=>{rehearsalUnblock=resolve});
+   }
+   return {ok:false,status:503,json:async()=>({})};
+  }
+  return {ok:false,status:503,json:async()=>({})};
+ };
+ const rehearsalSweep=w.eval('enRefreshCivicWatchlist(true)');
+ await new Promise(resolve=>setTimeout(resolve,65));
+ assert(rehearsalRequests.length>=4,
+  'Four independent source races must start while first civicAPI fetch is stalled');
+ assert.equal(w.eval('enCivicSweepInFlight'),true);
+ const rehearsalCount=rehearsalRequests.length;
+ await w.eval('enRefreshCivicWatchlist(true)');
+ assert.equal(rehearsalRequests.length,rehearsalCount,
+  'Concurrent manual refresh must not launch a duplicate source sweep');
+ assert(rehearsalUnblock,'First simulated source must be waiting');
+ rehearsalUnblock();
+ await rehearsalSweep;
+ assert.equal(w.eval('enCivicSweepInFlight'),false,
+  'Bounded refresh workers must release sweep mutex after failures');
+ assert(rehearsalRequests.length>=rehearsalRaces.length,
+  'Later races must still be checked when other source requests fail');
+ // Main provider House outage; the background Senate feed still counts 300
+ // real-shaped *simulated* votes without overwriting foreground state.
+ w.eval('enWatched=[{office:"Senate",key:"NC"}];enNationalEnabled=false;'+
+  'enOffice="House";enModeYear=2026;enOfficeSnapshots=Object.create(null);'+
+  'enOfficeErrors=Object.create(null);enData=null;enRender()');
+ const rehearsalOffices=[];
+ w.fetch=async url=>{
+  const address=String(url);rehearsalOffices.push(address);
+  if(address.includes('openamerica.io')&&address.includes('office=House'))
+   throw Error('Rehearsal House source disconnected');
+  if(address.includes('openamerica.io')&&address.includes('office=Senate'))
+   return {ok:true,json:async()=>counted2026};
+  return {ok:false,status:503,json:async()=>({})};
+ };
+ await w.eval('enLoad(true)');
+ await new Promise(resolve=>setTimeout(resolve,80));
+ assert.match(get('#enStatus').textContent,/Rehearsal House source disconnected/);
+ assert.match(get('#enConnection').textContent,/SOURCE RETRYING/);
+ assert(rehearsalOffices.some(v=>v.includes('office=Senate')),
+  'Watched Senate office must refresh during foreground House outage');
+ assert.match(get('#enWatchItems').textContent,/300 counted/,
+  'Independent Senate counts must remain available during House outage');
+ assert.equal(get('#enRaces').textContent,'0','House may not borrow Senate votes');
+ // Same-office out-of-order HTTP responses: a late old request may not
+ // overwrite the newer snapshot or trigger a false rollback.
+ const rehearsalHouseOld={
+  ...counted2026,office:'House',as_of:'2026-11-04T02:30:00Z',
+  races:{'AZ-01':{...counted2026.races.NC}}
+ };
+ const rehearsalHouseNew=structuredClone(rehearsalHouseOld);
+ rehearsalHouseNew.as_of='2026-11-04T02:50:00Z';
+ rehearsalHouseNew.races['AZ-01'].total=500;
+ rehearsalHouseNew.races['AZ-01'].cands[0].v=280;
+ rehearsalHouseNew.races['AZ-01'].cands[0].pct=56;
+ rehearsalHouseNew.races['AZ-01'].cands[1].v=220;
+ rehearsalHouseNew.races['AZ-01'].cands[1].pct=44;
+ let rehearsalReleaseOld;
+ let rehearsalHouseCalls=0;
+ w.fetch=async url=>{
+  const u=String(url);
+  if(u.includes('office=House')){
+   rehearsalHouseCalls++;
+   if(rehearsalHouseCalls===1)
+    return new Promise(resolve=>{rehearsalReleaseOld=()=>resolve({
+     ok:true,json:async()=>rehearsalHouseOld
+    })});
+   return {ok:true,json:async()=>rehearsalHouseNew};
+  }
+  if(u.includes('office=Senate'))
+   return {ok:true,json:async()=>counted2026};
+  return {ok:false,status:503,json:async()=>({})};
+ };
+ const rehearsalOldLoad=w.eval('enLoad(true)');
+ await new Promise(resolve=>setTimeout(resolve,15));
+ assert(rehearsalReleaseOld,'Older source HTTP response must remain pending');
+ await w.eval('enLoad(true)');
+ assert.match(get('#enRaceList').textContent,/AZ-01/);
+ assert.equal(get('#enDLeads').textContent,'1');
+ assert.equal(get('#enRaces').textContent,'1');
+ rehearsalReleaseOld();
+ await rehearsalOldLoad;
+ assert.match(get('#enStatus').textContent,/Nov 4, 2026/,
+  'Late old request cannot undo the newer accepted snapshot');
+ assert.equal(get('#enDLeads').textContent,'1');
+ // Older snapshot arriving through a later request must be rejected while
+ // retaining the last source-validated counts in the dashboard.
+ w.fetch=async url=>{
+  if(String(url).includes('office=House'))
+   return {ok:true,json:async()=>rehearsalHouseOld};
+  if(String(url).includes('office=Senate'))
+   return {ok:true,json:async()=>counted2026};
+  return {ok:false,status:503,json:async()=>({})};
+ };
+ await w.eval('enLoad(true)');
+ assert.match(get('#enStatus').textContent,/LAST VERIFIED RESULTS RETAINED/);
+ assert.match(get('#enConnection').textContent,/SOURCE RETRYING/);
+ assert.equal(get('#enRaces').textContent,'1');
+ // Provider recovery clears the failure; no fabricated race call appears.
+ w.fetch=async url=>{
+  if(String(url).includes('office=House'))
+   return {ok:true,json:async()=>rehearsalHouseNew};
+  if(String(url).includes('office=Senate'))
+   return {ok:true,json:async()=>counted2026};
+  return {ok:false,status:503,json:async()=>({})};
+ };
+ await w.eval('enLoad(true)');
+ assert.doesNotMatch(get('#enConnection').textContent,/SOURCE RETRYING/);
+ assert.equal(get('#enCalls').textContent,'Not supplied');
+ assert.equal(get('#enRaces').textContent,'1');
+ w.Date.now=rehearsalClock;w.fetch=rehearsalFetch;
+ w.eval('enWatched=[];enRenderWatchlist()');
+ w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
+
+
  // Meaningful alerts never grant Notification access without a click, never
  // fire for a mere timestamp refresh, and require the race be pinned.
  const alertInput=get('#enWatchInput'),alertForm=get('#enWatchForm');
