@@ -222,11 +222,16 @@
    if(record.status.startsWith('matched_historic_winner_')){
     const party=record.incumbent_party==='DEM'?'dem':'rep';
     const c=row[party];
+    const alreadyEnriched=c.elected_vs_appointed==='elected'&&
+     c.historical_overperformance_provenance?.source_race===record.prior_source_race&&
+     c.incumbent_last_race_overperformance_points===
+      record.candidate_signed_raw_excess_margin_points;
     if(!c.incumbent_same_seat_candidate||
        !c.source_candidate_identity_verified||
        !namesMatch(c.name,record.prior_candidate_name)||
-       c.elected_vs_appointed!=='unverified'||
-       c.incumbent_last_race_overperformance_points!==null)
+       !alreadyEnriched&&(
+        c.elected_vs_appointed!=='unverified'||
+        c.incumbent_last_race_overperformance_points!==null))
      throw Error('Unverified candidate identity enrichment '+original.race_code);
     c.elected_vs_appointed='elected';
     c.incumbent_last_race_overperformance_points=
