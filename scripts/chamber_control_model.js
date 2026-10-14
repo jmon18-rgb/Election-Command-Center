@@ -94,14 +94,27 @@
    houseDistribution.set(state,vals);
   }
   for(const vals of houseDistribution.values())vals.sort((a,b)=>a-b);
-  const rankByState=new Map();
+  // All nine currently redrawn 2026 states have wholly changed congressional
+  // maps. Their 2024 House marginal distribution is usable as *statewide*
+  // context, NOT a district-number-to-district-number mapping.
+  const redrawnStateDistributions=Object.create(null);
+  for(const [state,values] of houseDistribution){
+   if(s.geography.districts.some(g=>g.state===state&&
+     g.geography_comparable_2024===false)){
+    const redrawn=s.geography.districts.filter(g=>g.state===state&&
+     g.geography_comparable_2024===false);
+    if(redrawn.length!==values.length)throw Error(
+      'Partial state redrawing requires explicit residual margin allocation: '+state);
+    redrawnStateDistributions[state]=values.slice();
+   }
+  }
   for(const seat of s.seats.house.seats){
    const code=normalizeCode(seat.race_code),state=seat.state;
    const g=geo.get(code),h=raw.get(code);
    if(!g||!h)throw Error('House code cannot be paired with geography '+code);
    const unchanged=g.geography_comparable_2024===true;
    const both=h.recorded_dem_votes>0&&h.recorded_rep_votes>0;
-   let baseline,kind,sigma;
+   let baseline,kind,sigma,redrawnMixWeight=0,redrawnStateCenter=null;
    if(unchanged&&both){
     baseline=margin(h.recorded_dem_share_two_party);
     kind='unchanged_2024_recorded';sigma=11;
@@ -113,10 +126,13 @@
     // same 2026 district X. Preserve only the state's aggregate 2024
     // *distribution* as a provisional seat-count proxy, then allow
     // very wide independent and state-correlated errors.
-    const rank=rankByState.get(state)||0;
-    rankByState.set(state,rank+1);
-    const values=houseDistribution.get(state)||[];
-    baseline=values[rank]??stateMargin(state);
+    const values=redrawnStateDistributions[state];
+    if(!values||!values.length)throw Error('Missing state redraw prior '+state);
+    // All unpolled new districts receive the same *exchangeable* prior.
+    // Never silently assert old district 01 corresponds to new district 01.
+    baseline=values.reduce((a,b)=>a+b,0)/values.length;
+    redrawnStateCenter=baseline;
+    redrawnMixWeight=1;
     kind='redrawn_state_distribution_proxy';sigma=25;
    }
    let mean=baseline+projectedSwing,method=kind;
@@ -128,9 +144,11 @@
     sigma=unchanged?Math.max(7,poll.sigma_points):
       Math.max(16,poll.sigma_points);
     method='poll_blend_'+kind;
+    if(!unchanged)redrawnMixWeight=1-w;
    }
    house.push({code,state,mean:limit(mean,-60,60),sigma,
-     method,polled:Boolean(poll)});
+     method,polled:Boolean(poll),redrawn_mix_weight:redrawnMixWeight,
+     redrawn_state_center:redrawnStateCenter});
   }
   const senRecords=s.senateHistory.contest_records.filter(r=>
    r.election_year===2020&&r.election_type==='regular');
@@ -185,6 +203,7 @@
      redrawn_state_additional_sigma:6,
      fixed_battleground_required_dem_wins:REQUIRED_BATTLEGROUND_WINS},
     battlegrounds:[...BATTLEGROUNDS],
+    redrawn_state_distributions:redrawnStateDistributions,
     house,senate,governors:gov};
   return basis;
  }
@@ -206,13 +225,30 @@
   const outcomes={blue_tsunami:0,blue_wave:0,shrug:0,red_dawn:0};
   const rands=seeded(seed),live=options.live||Object.create(null);
   const a=basis.assumptions;
+  const redraws=basis.redrawn_state_distributions||{};
   let houseSeats=0,senateSeats=0,fullBattleground=0;
   for(let k=0;k<samples;k++){
    const national=nationalShift+normal(rands)*a.common_national_sigma*errorMultiplier,
     houseShock=normal(rands)*a.house_chamber_sigma*errorMultiplier,
     senateShock=normal(rands)*a.senate_chamber_sigma*errorMultiplier,
     govShock=normal(rands)*a.governor_chamber_sigma*errorMultiplier;
-   const stateDeltas=new Map();
+   const stateDeltas=new Map(),redrawnBags=new Map();
+   const nextRedrawnMargin=state=>{
+    if(!redrawnBags.has(state)){
+     const bag=(redraws[state]||[]).slice();
+     if(!bag.length)throw Error('No verified redrawn state prior '+state);
+     // Fisher-Yates: a fresh 2024 seat-margin permutation each election
+     // draw, without assigning any old district to a new district ID.
+     for(let z=bag.length-1;z>0;z--){
+      const pick=Math.floor(rands()*(z+1));
+      [bag[z],bag[pick]]=[bag[pick],bag[z]];
+     }
+     redrawnBags.set(state,bag);
+    }
+    const bag=redrawnBags.get(state);
+    if(!bag.length)throw Error('Exhausted state redraw margins '+state);
+    return bag.pop();
+   };
    const stateError=state=>{
     if(!stateDeltas.has(state))
      stateDeltas.set(state,normal(rands));
@@ -225,7 +261,10 @@
      scenario.mode==='live_informed'&&
      Number.isFinite(scenario.posteriorMargin)&&
      Number.isFinite(scenario.posteriorSigma)&&scenario.posteriorSigma>=0;
-    const mean=meaningful?scenario.posteriorMargin:item.mean,
+    const redrawMargin=isHouse&&item.redrawn_mix_weight>0?
+      (nextRedrawnMargin(item.state)-item.redrawn_state_center)*
+      item.redrawn_mix_weight:0;
+    const mean=meaningful?scenario.posteriorMargin:item.mean+redrawMargin,
       sigma=meaningful?scenario.posteriorSigma:item.sigma;
     // The shared shocks remain even for live-informed margins, since the
     // early-return heuristic does not establish random-sample evidence.
