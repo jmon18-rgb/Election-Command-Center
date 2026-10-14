@@ -636,6 +636,8 @@
    senate_independent_context:{
     independent_contender_wins_mean:Math.round(100*independentContestedWins/samples)/100,
     non_majority_caucus_balance_pct:pct(independentPivotDraws),
+    pivot_with_house_dem_pct:pct(independentPivotWithHouseD),
+    pivot_with_house_rep_pct:pct(independentPivotDraws-independentPivotWithHouseD),
     caucus_assumption:'NE_ID_SD_declared_nonmajority_caucus_independent',
     four_outcomes_are_binary_dem_majority_proxy:false,
     separate_fifth_outcome_key:'independent_pivot',
