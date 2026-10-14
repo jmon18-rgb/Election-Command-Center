@@ -6,6 +6,8 @@ on:
     paths:
       - 'scripts/update_briefing.py'
       - 'scripts/update_polls.py'
+      - 'data/geographic_poll_signals.json'
+      - 'scripts/validate_geographic_poll_signals.py'
       - 'scripts/update_pollresults_recent.py'
       - 'scripts/test_polling_models.py'
       - 'scripts/build_polling_estimates.py'
@@ -62,6 +64,10 @@ jobs:
         run: python3 scripts/validate_integrity_impact.py
       - name: Queue integrity reports for source verification
         run: python3 scripts/update_integrity_queue.py
+      - name: Validate geographic substate poll sources without model contamination
+        run: |
+          python3 scripts/validate_geographic_poll_signals.py
+          python3 scripts/test_geographic_poll_signals.py
       - name: Collect 2026 polling data
         continue-on-error: true
         run: python3 scripts/update_polls.py
@@ -78,6 +84,10 @@ jobs:
         run: python3 scripts/test_polling_models.py
       - name: Build Senate polling estimates
         run: python3 scripts/build_polling_estimates.py
+      - name: Refresh bottom-up model research from identical current polling snapshot
+        run: |
+          node scripts/audit_bottom_up_national_environment.cjs --json > data/bottom_up_2026_environment_shadow.json
+          node scripts/audit_bottom_up_national_environment.cjs --check
       - name: Test live-polling-based race probabilities
         run: python3 scripts/test_race_probabilities.py
       - name: Rebuild probability data against refreshed polling
@@ -150,7 +160,7 @@ jobs:
             # Rebase GENERATED OUTPUTS as fresh changes on the newest remote
             # commit, not an entire stale JSON commit that can conflict.
             git reset --mixed origin/main
-            git add data/briefing.json data/polls.json data/model_tests.json data/polling_estimates.json data/integrity_review_queue.json data/model_history.json data/seat_universe.json data/house_geography_bridge.json data/house_two_cycle_context.json data/race_probabilities.json data/poll_alert_state.json
+            git add data/briefing.json data/polls.json data/model_tests.json data/polling_estimates.json data/bottom_up_2026_environment_shadow.json data/integrity_review_queue.json data/model_history.json data/seat_universe.json data/house_geography_bridge.json data/house_two_cycle_context.json data/race_probabilities.json data/poll_alert_state.json
             if [ -f data/pollresults_recent.json ]; then git add data/pollresults_recent.json; fi
             if git diff --cached --quiet; then
               echo "No source-data changes to commit."

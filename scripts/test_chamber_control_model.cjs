@@ -20,8 +20,16 @@ assert.equal(basis.battlegrounds.length,20);
 assert.equal(basis.assumptions.senate_dem_holdovers,34);
 assert(basis.generated_from_sources.generic_ballot_margin>0);
 assert(basis.generated_from_sources.house_geography_changed>0);
-assert.equal(basis.house.filter(r=>r.polled).length,60);
-assert.equal(basis.senate.filter(r=>r.polled).length,24);
+// Current 2026 polls are a LIVE data source. Enforce exact reconciliation
+// with the input universe rather than freezing counts from last week's feed.
+const housePollInputs=sources.odds.records.filter(x=>x.office==='house'&&
+ sources.seats.house.seats.some(seat=>seat.race_code===x.race_code));
+const senatePollInputs=sources.odds.records.filter(x=>x.office==='senate'&&
+ sources.seats.senate.contested_seats.some(seat=>seat.race_code===x.race_code));
+assert(housePollInputs.length>=50,'Too few qualified House polls for model coverage');
+assert(senatePollInputs.length>=20,'Too few qualified Senate polls for model coverage');
+assert.equal(basis.house.filter(r=>r.polled).length,housePollInputs.length);
+assert.equal(basis.senate.filter(r=>r.polled).length,senatePollInputs.length);
 assert(basis.senate.filter(r=>r.polled).every(r=>r.sigma>=7),
  'Current Senate poll estimates must not use election-error widths below seven points');
 // A Silver-inspired disagreement penalty is symmetric in party direction.

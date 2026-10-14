@@ -32,6 +32,11 @@ jobs:
           node scripts/audit_senate_prior_continuity.cjs
       - name: Validate dashboard contracts
         run: python3 scripts/check_dashboard.py
+      - name: Validate verified substate polling and protect statewide averages
+        run: |
+          python3 -m py_compile scripts/validate_geographic_poll_signals.py scripts/test_geographic_poll_signals.py
+          python3 scripts/validate_geographic_poll_signals.py
+          python3 scripts/test_geographic_poll_signals.py
       - name: Test live polling freshness contract with synthetic moving feeds
         run: python3 scripts/test_fresh_poll_sources.py
       - name: Validate same-date named-poll source identity and live drilldown reconciliation

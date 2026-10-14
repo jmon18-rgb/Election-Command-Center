@@ -6,12 +6,16 @@ const read=n=>JSON.parse(fs.readFileSync(path.join(__dirname,'..','data',n+'.jso
 const polls=read('polling_estimates'),pres=read('presidential_2024_by_2026_district_staging');
 const base=model.evaluate(polls,pres),committed=read('bottom_up_2026_environment_shadow');
 assert.deepEqual(base,committed);
-assert.equal(base.total_qualifying_races,15);
-assert.equal(base.states_with_qualified_races,14);
+assert(base.total_qualifying_races>=12,'Need broad modern-race sample before claiming diagnostic');
+assert(base.states_with_qualified_races>=8,'Need meaningful state coverage');
 assert.equal(base.status,'SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE');
-assert.equal(base.generic_ballot_2026_d_minus_r_points,7.88);
-assert.equal(base.bottom_up_implied_national_margin_points,6.62);
-assert.equal(base.bottom_up_minus_generic_environment_points,-1.26);
+assert.equal(base.generic_ballot_2026_d_minus_r_points,
+ polls.generic_ballot.dem_minus_rep,
+ 'The generic ballot must reflect the live fetched survey average, not a frozen test fixture');
+assert(Math.abs(base.bottom_up_implied_national_margin_points-
+ (base.generic_ballot_2026_d_minus_r_points+
+  base.bottom_up_minus_generic_environment_points))<.002,
+ 'Research environment decomposition must reconcile arithmetically');
 assert(base.state_swing_samples.every(x=>x.number_qualifying_races>=1));
 assert(base.qualifying_house_races+base.qualifying_senate_races===base.total_qualifying_races);
 const shuffled=structuredClone(polls);
@@ -33,4 +37,4 @@ unsupported.district_map_year_claimed=2024;
 assert.throws(()=>model.evaluate(polls,unsupported),/geography-correct/);
 assert.equal(base.candidate_quality_calibration_available,false);
 assert.equal(base.candidate_specific_effects_removed,false);
-console.log('Bottom-up 2026 poll environment: 15 qualifying races, 14 states, no older-cycle data or unverified national override. Robustness and fails-closed tests PASS.');
+console.log('Bottom-up 2026 poll environment:',base.total_qualifying_races,'qualifying races,',base.states_with_qualified_races,'states, with current snapshot',polls.generated_at,'and source-provenance safeguards PASS.');

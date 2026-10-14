@@ -395,6 +395,24 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .joint-audit{margin:12px 0 5px;border-top:1px solid #3c546c;padding-top:9px}
 .joint-audit summary{font-size:11px;color:#b9d9fa;cursor:pointer;font-weight:650}
 .joint-audit .joint-note{padding:0 2px}
+/* Verified small-area samples of statewide ballot questions are NOT state polls. */
+.geographic-poll-section:empty{display:none}
+.geographic-poll-section{margin:6px 0 16px;border:1px solid #385f7e;border-radius:11px;padding:12px;background:#142b41}
+.geographic-poll-title{font-size:12px;font-weight:800;color:#c1e1ff;margin:0 0 7px;line-height:1.5}
+.geo-signal-card{padding:12px 0;border-top:1px solid #36516e}
+.geo-signal-head{display:flex;gap:8px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.geo-signal-head strong{font-size:12px;color:#e5f4ff}
+.geo-signal-head .geo-signal-margin{font-size:16px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.geo-signal-district{font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#b4d6f5}
+.geo-signal-subtext{font-size:11px;line-height:1.55;color:#a9c2da;margin:6px 0}
+.geo-signal-contrast{font-size:11px;color:#c4ddf4;font-weight:650;margin:5px 0}
+.geo-signal-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.geo-signal-tags span{font-size:10px;color:#cce6fa;border:1px solid #476581;border-radius:5px;padding:3px 7px}
+.geo-signal-actions{font-size:11px;margin:7px 0 0;display:flex;gap:13px;flex-wrap:wrap}
+.geo-signal-actions a{color:#91c8ff;text-decoration:underline}
+.geo-signal-actions button{font-size:11px;color:#91c8ff;background:transparent;padding:0;border:0;text-decoration:underline;cursor:pointer}
+.geo-signal-caveat{margin-top:8px;font-size:10px;color:#b5c7d8;line-height:1.5}
+
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -414,7 +432,8 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <div id="racePulse" class="pulse-grid"><div class="empty">Checking for meaningful new polling evidence…</div></div>
 <p class="pulse-disclaimer">Changes in polling averages can reflect new surveys, weighting or timing—not necessarily a shift in voter opinion. Only current, qualifying observations are shown; older snapshots are compared only with identical candidate matchups.</p>
 <div class="sectionhead"><h2>What's new</h2><span class="tiny" id="freshness">Checking latest update</span></div>
-<div class="grid"><div class="card seven"><div class="row"><span class="label">New polls</span><span class="tiny" id="changesSince">Checking newly observed surveys</span></div><div id="newPolls" class="empty">Checking recent poll postings…</div><button class="textlink" type="button" data-jump="wire">Open full Poll Wire →</button></div>
+<div class="grid"><div class="card seven"><div class="row"><span class="label">New polls</span><span class="tiny" id="changesSince">Checking newly observed surveys</span></div><div id="geographicPollHighlights" class="geographic-poll-section" aria-live="polite"></div>
+<div id="newPolls" class="empty">Checking recent poll postings…</div><button class="textlink" type="button" data-jump="wire">Open full Poll Wire →</button></div>
 <div class="card five"><div class="row"><span class="label">Election developments</span><span class="tag">NEWS LEADS</span></div><div id="updates" class="empty">Loading recent election reporting.</div><button class="textlink" type="button" data-jump="integrity">Bullshittery Index →</button></div></div>
 <div class="sectionhead"><h2>The four endings</h2><span class="tiny">JackStradamus · one correlated model for races and chamber control</span></div>
 <div class="joint-panel" id="jointHomePanel" aria-label="JackStradamus four outcome probability model">
@@ -448,6 +467,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
    <label for="wireModel">Model inclusion <select id="wireModel"><option value="all">Any status</option><option value="included">In current average</option><option value="primary">Primary feed, excluded</option><option value="index">Index only</option></select></label>
   </div>
   <div class="wire-meta"><strong id="wireCount">Waiting for observations…</strong><span id="wireCoverage">Checking primary-model matching…</span></div>
+  <div id="geographicPollWireHighlights" class="geographic-poll-section" aria-live="polite"></div>
   <div id="wireResults" aria-live="polite"><div class="empty">Loading indexed polls…</div></div>
   <button id="wireMore" class="wire-more" type="button" hidden>Show more observations</button>
   <p class="methodline">Index coverage is incomplete; survey questions or sample populations from the same release may be listed separately. Sorting uses the full index-posting wall-clock timestamp; its timezone is unspecified. This is not an election-outcome forecast.</p>
@@ -1618,6 +1638,101 @@ function pollPostedStamp(p){
  return (p.posted_date||'')+'T00:00:00';
 }
 
+// A survey restricted to TX-09 cannot be entered as a statewide TX-SEN or
+// TX-GOV observation. It belongs in the live news/feed as a geographically
+// scoped signal, with its own provenance and explicit non-model status.
+let geographicPollSignals=null;
+function setGeographicPollSignals(source){
+ if(source?.schema_version!=='geographic-poll-signals-v1'||
+    source.status!=='CURATED_SOURCE_VERIFIED_NON_STATEWIDE_NOT_MODEL_INPUT'||
+    !Array.isArray(source.signals)){
+  geographicPollSignals=null;
+ }else{
+  geographicPollSignals=source;
+ }
+ renderGeographicPollSignals();
+}
+function renderGeographicPollSignals(){
+ const recent=$('#geographicPollHighlights'),wire=$('#geographicPollWireHighlights');
+ const all=(geographicPollSignals?.signals||[]).filter(p=>
+  p.model_eligible===false&&p.sample_scope==='congressional_district'&&
+  p.review_status==='confirmed_public_source'&&
+  /^https:\/\//.test(p.source_url||'')&&
+  Number.isFinite(p.dem_minus_rep_points)&&
+  p.sample_district&&p.race_code);
+ const now=new Date(),localCutoff=new Date(Date.UTC(now.getUTCFullYear(),now.getUTCMonth(),now.getUTCDate()-21)).toISOString().slice(0,10);
+ const current=all.filter(p=>p.release_date>=localCutoff)
+  .sort((a,b)=>b.release_date.localeCompare(a.release_date)||
+   a.race_code.localeCompare(b.race_code));
+ const datestring=v=>new Date(v+'T12:00:00Z').toLocaleDateString('en-US',
+  {month:'short',day:'numeric',timeZone:'UTC'});
+ const cards=(host,signals,wireMode)=>{
+  if(!host)return;
+  host.replaceChildren();
+  if(!signals.length)return;
+  host.append(elt('div','geographic-poll-title',
+   wireMode?'Geographically scoped poll questions · separate from statewide averages':
+   'New: local signals in statewide races'));
+  for(const p of signals){
+   const card=elt('article','geo-signal-card');
+   const head=elt('div','geo-signal-head');
+   head.append(elt('strong','',p.survey_firm),
+    elt('strong','geo-signal-margin '+marginColor(p.dem_minus_rep_points),
+     marginText(p.dem_minus_rep_points)+' · '+p.sample_district+' only'));
+   card.append(head);
+   const title=elt('div','geo-signal-district',
+    (p.office==='senate'?'U.S. Senate':'Governor')+' · '+p.dem_candidate+' vs '+p.rep_candidate);
+   card.append(title);
+   const context=p.dem_minus_rep_points-
+    p.reference_presidential_2024_two_party_d_minus_r_points;
+   card.append(elt('p','geo-signal-contrast',
+    '2024 presidential baseline: Trump +'+
+     Math.abs(p.reference_presidential_2024_two_party_d_minus_r_points).toFixed(0)+
+    ' on today’s district boundaries · '+context.toFixed(0)+
+    ' points bluer in the current '+p.office+' question.'));
+   card.append(elt('p','geo-signal-subtext',
+    'Published '+datestring(p.release_date)+' · fielded '+datestring(p.field_start)+
+    '–'+datestring(p.field_end)+' · n='+p.sample_size+' likely voters · ±'+
+    p.sample_margin_of_error_points+' points reported MOE'));
+   const tags=elt('div','geo-signal-tags');
+   tags.append(elt('span','','District sample, not statewide'),
+    elt('span','','Not included in statewide model average'));
+   card.append(tags);
+   const actions=elt('div','geo-signal-actions');
+   const survey=elt('a','','University of Houston source ↗');
+   survey.href=p.source_url;survey.target='_blank';survey.rel='noopener noreferrer';
+   actions.append(survey);
+   if(wireMode){
+    const reference=elt('a','','2024 district baseline ↗');
+    reference.href=p.reference_url;reference.target='_blank';
+    reference.rel='noopener noreferrer';actions.append(reference);
+   }
+   if(p.office==='senate'){
+    const modelLink=elt('button','','Explore Texas Senate model →');
+    modelLink.type='button';modelLink.addEventListener('click',()=>
+     navigateInsightToModel({office:'senate',race:{race_code:p.race_code}}));
+    actions.append(modelLink);
+   }
+   card.append(actions);host.append(card);
+  }
+  host.append(elt('p','geo-signal-caveat',
+   'Comparing a congressional-district sample with 2024 presidential voting is contextual, not a calibrated statewide swing. These results do not directly alter the Senate or governor forecast.'));
+ };
+ cards(recent,current,false);
+ const office=$('#wireOffice')?.value||'all',search=$('#wireSearch')?.value.trim().toLowerCase()||'',
+  sponsor=$('#wireSponsor')?.value||'all',
+  modelStatus=$('#wireModel')?.value||'all',
+  days=$('#wireWindow')?.value||'all';
+ const cutoff=days==='all'?'':wireCutoff(Number(days));
+ const selected=current.filter(p=>(office==='all'||p.office===office)&&
+   (!cutoff||p.release_date>=cutoff)&&
+   (modelStatus==='all'||modelStatus==='index')&&
+   (sponsor==='all'||sponsor==='unlisted')&&
+   (!search||[p.survey_firm,p.race_code,p.sample_district,
+    p.dem_candidate,p.rep_candidate].join(' ').toLowerCase().includes(search)));
+ cards(wire,selected,true);
+}
+
 const WIRE_PAGE_SIZE=24;
 let wireVisibleLimit=WIRE_PAGE_SIZE;
 const WIRE_OFFICE_NAMES={senate:'Senate',house:'House',governor:'Governor'};
@@ -1663,6 +1778,7 @@ function wireReadableDate(date){
  return new Date(date+'T12:00:00Z').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'});
 }
 function renderPollWire(reset=false){
+ renderGeographicPollSignals();
  const host=$('#wireResults');if(!host)return;
  if(reset)wireVisibleLimit=WIRE_PAGE_SIZE;
  const polls=wireObservations();
@@ -1902,6 +2018,10 @@ $('#genericFresh').textContent='Latest field end: '+gb.summary.latest_field_end;
 renderRaceList();if(latestSenateEstimates){renderModelRaceDetail();renderModelGenericHeadline();renderRacePulse(latestSenateEstimates)}
 if(d.updated_at){const date=new Date(d.updated_at);if(!Number.isNaN(+date))$('#genericFresh').textContent+=' · fetched '+date.toLocaleDateString()}
 }
+fetch('./data/geographic_poll_signals.json',{cache:'no-store'})
+ .then(r=>{if(!r.ok)throw Error('Scoped signals unavailable');return r.json()})
+ .then(setGeographicPollSignals)
+ .catch(()=>{geographicPollSignals=null;renderGeographicPollSignals()});
 fetch('./data/pollresults_recent.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('supplemental not ready');return r.json()}).then(setPostedPollingSnapshot).catch(()=>{/* Main source fallback stays available. */});
 fetch('./data/polls.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(renderPolls).catch(error=>{console.error('Polling feed error',error);$('#newPolls').textContent='Polling feed unavailable: '+error.message+'.';$('#genericDetail').textContent='Polling data could not be displayed.';updateHealth()});
 

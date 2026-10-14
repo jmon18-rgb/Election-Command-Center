@@ -48,7 +48,9 @@ const geographical=model.prepare(src,{fundamentalsMode:'presidential_2024_shadow
 assert.deepEqual(geographical.senate,base.senate,'House geography cannot modify Senate assumptions');
 assert.deepEqual(geographical.governors,base.governors,'House geography cannot modify governor assumptions');
 assert.equal(base.house.length,435);
-assert.equal(base.house.filter(x=>x.polled).length,60);
+assert.equal(base.house.filter(x=>x.polled).length,
+ src.odds.records.filter(x=>x.office==='house'&&currentIds.has(x.race_code)).length,
+ 'House polling coverage must follow current published source, not old count 60');
 assert.equal(src.history.records.length-both.length,44);
 const redrawn=src.geography.districts.filter(x=>x.geography_comparable_2024===false);
 assert.equal(redrawn.length,173);
