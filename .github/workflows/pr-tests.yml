@@ -50,6 +50,8 @@ jobs:
         run: python3 scripts/test_senate_bias_holdout.py
       - name: Reproduce historical Senate bias holdouts from published source metrics
         run: python3 scripts/build_senate_bias_holdout.py
+      - name: Validate poll drilldown identity against published poll IDs
+        run: python3 scripts/validate_model_drilldown.py
       - name: Validate polling model behavior
         run: python3 scripts/test_polling_models.py
       - name: Test 2026 race odds against real poll inputs
