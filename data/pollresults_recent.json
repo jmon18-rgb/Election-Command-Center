@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-14T13:14:27.471978+00:00",
+  "updated_at": "2026-10-14T13:46:29.878792+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,7 +9,7 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1180,
+      "available_in_source": 1182,
       "records_examined": 200
     },
     "governor": {
@@ -244,9 +244,9 @@
       "pollster": "Emerson College",
       "dem_name": "Jack Reed",
       "rep_name": "Raymond McKay",
-      "dem": 59.0,
-      "rep": 25.0,
-      "margin": 34.0,
+      "dem": 59.13,
+      "rep": 25.44,
+      "margin": 33.69,
       "field_end": "2026-10-11",
       "field_start": "2026-10-08",
       "posted_date": "2026-10-13",
@@ -260,6 +260,30 @@
       "source": "PollResults.org / NYT CC BY 4.0"
     },
     {
+      "race_code": "RI-01",
+      "race_type": "house",
+      "state": "RI",
+      "poll_id": "15c62ccc-5850-4c8a-b4b9-a4be7a36102a",
+      "question_id": "3f834095-2b6b-4fad-a6a2-49a2fe678495",
+      "pollster": "Emerson College",
+      "dem_name": "Gabe Amo",
+      "rep_name": "Kellie Keenan",
+      "dem": 53.93,
+      "rep": 25.87,
+      "margin": 28.06,
+      "field_end": "2026-10-11",
+      "field_start": "2026-10-08",
+      "posted_date": "2026-10-13",
+      "posted_source_datetime": "2026-10-13T17:27:00",
+      "posted_source_time": "10/13/26 17:27",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.wpri.com/news/elections/5p-wpri-emerson-poll-story/",
+      "sample_population": "lv",
+      "sample_size": 394,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
       "race_code": "RI-GOV",
       "race_type": "governor",
       "state": "RI",
@@ -268,9 +292,9 @@
       "pollster": "Emerson College",
       "dem_name": "Helena Foulkes",
       "rep_name": "Aaron Guckian",
-      "dem": 44.0,
-      "rep": 10.0,
-      "margin": 34.0,
+      "dem": 47.58,
+      "rep": 11.92,
+      "margin": 35.66,
       "field_end": "2026-10-11",
       "field_start": "2026-10-08",
       "posted_date": "2026-10-13",

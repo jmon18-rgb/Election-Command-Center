@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-14T13:14:27.007100Z",
+  "updated_at": "2026-10-14T13:46:29.235407Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 1,
   "items": [
     {
       "id": "ff3d4bf127edc4333024",
@@ -51,6 +51,23 @@
       ],
       "headline_numbers_unverified": [
         "1,392 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "15cc164d76649110c67d",
+      "title": "Trump And The US Midterms 2026: Nine Concerns Over Election Administration - Outlook India",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxONFV0cXEzVTRhRnBybUxneWlJckhxTUNYRnN2Z19rVjlSeGs5VmN1V0F2MlRtWHdvdkVMZjlmbjA4UHpHTnhZdGVEOVNVenVKU2pyXzRBb2dxRTVROGk2eDNrMkNfbnk5QXJ4MGJpdVcwTVRTYzcyUldQQzFCNFNCekJ1QXdzOHAxbE02X3FqV0NzZFBidDRZSXcyTzhOM2IxYkNPX2lJNF80VFc3cXJhWEhVTzc2MGvSAcQBQVVfeXFMTUFEOXg1aU1CQ0N5S0o2OVZ6TWRzUWk4QUI1eVBJSllINW5TUkdHTmNVQm1Yb0dwSlNIWDMtWjhvY0t0WFBiN05xX2RBc3MzMTBGY0pFbjVIdkVvNFRkczFiYWw1MUROQjBsUHQ1T2xBdUxZdDhtLVFmT3drZm04a3pCMkROSUlkNm1oWFZDWnNTNTM1TEsyblpfbmVtTkdQOHdlc1l5QjJvWTE3OHQ2V0gzQXhSVXNKMk9wYXRJZlViclRoYg?oc=5",
+      "publisher": "Outlook India",
+      "published_at": "2026-10-14T12:45:55Z",
+      "detected_at": "2026-10-14T13:46:29.235407Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [
+        "2026"
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
