@@ -212,5 +212,74 @@
    must_apply_before_poll_blend:true,
    warning:'No coefficients are trained; these effects do not belong in headline odds without held-out testing.'};
  }
- return Object.freeze({VERSION,validate,explain,sensitivity});
+ // Run an explicitly opted-in counterfactual through the existing
+ // joint model without poll double-counting. A candidate's effects modify
+ // the FUNDAMENTALS PRIOR, therefore a poll blend retains only (1-poll_w).
+ // This does not estimate or calibrate coefficients, and the baseline model
+ // is never modified.
+ function scenarioBasis(model,basis,doc,polls,coefficients={}){
+  if(!model||basis?.schema_version!==model.VERSION)
+   throw Error('Invalid joint model for candidate scenario');
+  const {map}=validate(doc);
+  if(!polls||typeof polls!=='object')
+   throw Error('Missing poll-candidate identity records');
+  const pollNames=new Map();
+  for(const [office,list] of [['senate',polls.senate_all],
+   ['house',polls.house],['governor',polls.governor]]){
+   if(!Array.isArray(list))throw Error('Missing candidate-matched '+office+' polls');
+   for(const r of list)pollNames.set(office+'|'+r.race_code,r);
+  }
+  const changes=[],skipped=[];
+  const project=(items,office)=>items.map(item=>{
+   const record=map.get(item.code);
+   if(!record||record.office!==office)
+    throw Error('Missing candidate metadata for modeled race '+item.code);
+   const effect=sensitivity(record,coefficients);
+   if(effect.raw_prior_margin_adjustment_points===0)return item;
+   if(record.incumbency_evidence_unresolved){
+    skipped.push({race_code:item.code,reason:'roster_conflict'});
+    return item;
+   }
+   const names=pollNames.get(office+'|'+item.code);
+   if(item.polled&&(!names||names.dem_candidate!==record.dem.name||
+      names.rep_candidate!==record.rep.name)){
+    skipped.push({race_code:item.code,reason:'unverified_poll_matchup'});
+    return item;
+   }
+   if(!Number.isFinite(item.poll_weight??0)||
+      item.poll_weight!==null&&(item.poll_weight<0||item.poll_weight>1)){
+    skipped.push({race_code:item.code,reason:'invalid_poll_blend'});
+    return item;
+   }
+   const retained=item.polled?1-(item.poll_weight??1):1;
+   const delta=effect.raw_prior_margin_adjustment_points*retained;
+   // Keep the same safety bounds used by the original joint simulator.
+   const cap=office==='senate'?55:60;
+   const mean=limit(item.mean+delta,-cap,cap);
+   if(mean!==item.mean){
+    changes.push({race_code:item.code,office,mean_before:item.mean,
+     mean_after:mean,raw_prior_delta_points:effect.raw_prior_margin_adjustment_points,
+     poll_remainder_weight:retained,applied_margin_delta_points:mean-item.mean,
+     components:effect.components});
+   }
+   return {...item,mean,
+    candidate_sensitivity_status:'COUNTERFACTUAL_UNCALIBRATED',
+    candidate_prior_delta_points:effect.raw_prior_margin_adjustment_points};
+  });
+  const candidateBasis={
+   ...basis,
+   status:'EXPERIMENTAL_UNCALIBRATED_CANDIDATE_SCENARIO',
+   candidate_scenario:{
+    model:'separate_opt_in_untrained_prior_sensitivity',
+    coefficients:{...coefficients},
+    changes,skipped,
+    must_not_replace_headline_odds:true
+   },
+   house:project(basis.house,'house'),
+   senate:project(basis.senate,'senate'),
+   governors:project(basis.governors,'governor')
+  };
+  return candidateBasis;
+ }
+ return Object.freeze({VERSION,validate,explain,sensitivity,scenarioBasis});
 });
