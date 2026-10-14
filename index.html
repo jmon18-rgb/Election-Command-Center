@@ -1846,7 +1846,9 @@ fetch('./data/pollresults_recent.json',{cache:'no-store'}).then(r=>{if(!r.ok)thr
 fetch('./data/polls.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(renderPolls).catch(error=>{console.error('Polling feed error',error);$('#newPolls').textContent='Polling feed unavailable: '+error.message+'.';$('#genericDetail').textContent='Polling data could not be displayed.';updateHealth()});
 
 
+let integrityQueueData=null;
 function renderIntegrityQueue(d){
+ integrityQueueData=d;
 const summary=document.getElementById('integrityQueueSummary'),box=document.getElementById('integrityQueue');
 if(!summary||!box)return;
 box.replaceChildren();
@@ -1858,7 +1860,9 @@ const card=elt('div','racecard');card.append(elt('strong','',x.title||'Unspecifi
 card.append(elt('div','meta',[x.publisher,x.published_at?new Date(x.published_at).toLocaleDateString():null,(x.state_hints||[]).join(', '),x.review_status].filter(Boolean).join(' · ')));
 if((x.headline_numbers_unverified||[]).length)card.append(elt('div','unotes','Headline numbers (unverified): '+x.headline_numbers_unverified.join(', ')));
 const a=elt('a','pollsource','Review original report ↗');a.href=x.url;a.target='_blank';a.rel='noopener noreferrer';card.append(a);box.append(card)
-}}
+}
+ if(impactLedger){renderBullStateScores();if(latestSenateEstimates)showSenateEstimates(latestSenateEstimates);}
+}
 fetch('./data/integrity_review_queue.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(renderIntegrityQueue).catch(()=>{document.getElementById('integrityQueueSummary').textContent='Verification queue unavailable; no inference about incidents can be made.'});
 function bullMonitoringPoints(caseRecord){
  if(!caseRecord||caseRecord.verification_status==='unverified_report')return null;
@@ -1867,6 +1871,14 @@ function bullMonitoringPoints(caseRecord){
  if(caseRecord.case_type==='voting_access')return 18+(Number(caseRecord.geographic_scope_counties)>=10?2:0);
  if(caseRecord.case_type==='administrative_issue')return Math.max(0,25-(/fix(ed)?|resolved/i.test(caseRecord.process_status||'')?4:0));
  return null;
+}
+function bullEvidenceForState(code){
+ const known=impactLedger?((impactLedger.incidents||[]).filter(x=>
+  x.state===code&&x.verification_status!=='unverified_report')):[];
+ const leads=(integrityQueueData?.items||[]).filter(x=>
+  Array.isArray(x.state_hints)&&x.state_hints.includes(code)).length;
+ return {known,leads,quantified:known.filter(x=>
+  Number.isFinite(x.confirmed_affected)||Number.isFinite(x.potentially_affected)).length};
 }
 function bullStateScore(code){
  if(!impactLedger)return null;
