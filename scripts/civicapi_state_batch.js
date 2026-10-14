@@ -44,7 +44,8 @@
     'Senate|SD':{state:'SD',name:'South Dakota US Senate',office:'Senate',id:87446},
     'Governor|SD':{state:'SD',name:'South Dakota Governor',office:'Governor',id:87447},
     'Senate|WY':{state:'WY',name:'Wyoming US Senate',office:'Senate',id:87496},
-    'Governor|WY':{state:'WY',name:'Wyoming Governor',office:'Governor',id:87497}
+    'Governor|WY':{state:'WY',name:'Wyoming Governor',office:'Governor',id:87497},
+    'Governor|MD':{state:'MD',name:'Maryland Governor',office:'Governor',id:87198}
   });
   const configuration=item=>item&&RACES[item.office+'|'+item.key]||null;
   const supports=item=>Boolean(configuration(item));
