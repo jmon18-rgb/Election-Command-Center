@@ -416,7 +416,8 @@
   const rands=seeded(seed),live=options.live||Object.create(null);
   const a=basis.assumptions;
   const redraws=basis.redrawn_state_distributions||{};
-  let houseSeats=0,senateSeats=0,fullBattleground=0;
+  let houseSeats=0,senateSeats=0,fullBattleground=0,houseControl=0,senateControl=0;
+  const houseSeatDraws=[],senateSeatDraws=[];
   for(let k=0;k<samples;k++){
    const national=nationalShift+normal(rands)*a.common_national_sigma*errorMultiplier,
     houseShock=normal(rands)*a.house_chamber_sigma*errorMultiplier,
@@ -470,8 +471,12 @@
     else if(isSenate){if(dem)dSenate++}
     if(dem&&BATTLEGROUND_SET.has(item.code))winBattleground++;
    }
-   const both=dHouse>=a.house_control_dem_seats&&
-     dSenate>=a.senate_control_dem_seats;
+   const houseDem=dHouse>=a.house_control_dem_seats;
+   const senateDem=dSenate>=a.senate_control_dem_seats;
+   if(houseDem)houseControl++;
+   if(senateDem)senateControl++;
+   houseSeatDraws.push(dHouse);senateSeatDraws.push(dSenate);
+   const both=houseDem&&senateDem;
    if(both){
     outcomes[winBattleground>=REQUIRED_BATTLEGROUND_WINS?
      'blue_tsunami':'blue_wave']++;
@@ -482,6 +487,14 @@
    houseSeats+=dHouse;senateSeats+=dSenate;
    fullBattleground+=winBattleground;
   }
+  // Marginal chamber odds MUST be counted from these SAME correlated
+  // draws. Multiplying isolated odds would erase cross-chamber covariance.
+  const bothCount=outcomes.blue_wave+outcomes.blue_tsunami;
+  if(houseControl+senateControl-2*bothCount!==outcomes.shrug||
+     samples-houseControl-senateControl+bothCount!==outcomes.red_dawn)
+   throw Error('Joint probabilities are inconsistent with chamber marginals');
+  houseSeatDraws.sort((a,b)=>a-b);senateSeatDraws.sort((a,b)=>a-b);
+  const quantile=(vals,f)=>vals[Math.floor((vals.length-1)*f)];
   const pct=x=>Math.round(10000*x/samples)/100;
   const probs=Object.fromEntries(Object.entries(outcomes).map(([k,v])=>[k,pct(v)]));
   const means={house_dem_seats:Math.round(100*houseSeats/samples)/100,
@@ -491,7 +504,11 @@
    samples,seed,senate_dem_holdovers:holdovers,national_shift_points:nationalShift,error_multiplier:errorMultiplier,
    probabilities:probs,counts:outcomes,means,
    blue_both_including_tsunami:pct(outcomes.blue_wave+outcomes.blue_tsunami),
-   house_dem_control_pct:null,senate_dem_control_pct:null,
+   house_dem_control_pct:pct(houseControl),senate_dem_control_pct:pct(senateControl),
+   seat_intervals_90_pct:{
+    house_dem_seats:{p05:quantile(houseSeatDraws,.05),p50:quantile(houseSeatDraws,.5),p95:quantile(houseSeatDraws,.95)},
+    senate_dem_seats:{p05:quantile(senateSeatDraws,.05),p50:quantile(senateSeatDraws,.5),p95:quantile(senateSeatDraws,.95)}
+   },
    total_pct:Object.values(probs).reduce((x,y)=>x+y,0),
    description:'A conditional Monte Carlo sensitivity experiment, not a calibrated election forecast.'};
  }

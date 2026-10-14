@@ -169,6 +169,10 @@ async function settle(){
  researchDrawer.open=true;
  assert.equal(researchDrawer.open,true);
  researchDrawer.open=false;
+ assert.match(get('#jointHomeSummary').textContent,/D House control [0-9.]+%/);
+ assert.match(get('#jointHomeSummary').textContent,/D Senate control [0-9.]+%/);
+ assert.match(get('#jointHomeSummary').textContent,/central 90% of draws/);
+ assert.match(get('#jointNightSummary').textContent,/D House control [0-9.]+%/);
  assert.match(get('#jointHomeShadow').textContent,/191\/435 House districts/);
  assert.match(get('#jointHomeShadow').textContent,/NOT independently backtested/);
  assert.match(get('#jointNightShadow').textContent,/research only|Research only/i);
