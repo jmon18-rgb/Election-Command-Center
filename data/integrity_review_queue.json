@@ -1,9 +1,46 @@
 {
-  "updated_at": "2026-10-14T13:46:29.235407Z",
+  "updated_at": "2026-10-14T14:26:26.792039Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 3,
   "items": [
+    {
+      "id": "21340fceee78f2b05d82",
+      "title": "Report Warns Federal Voter Checks Could Disenfranchise Americans - The Seattle Medium",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNa08zV1pjVThJT04xbldSLWtDYUNTenJjZXBGUGRGM1J1dUtLZ3JTUnBLSDByWFVFQjVPTkI4MzVwTWxPdS1TbVZYUm5UWlg2NUJHc2J5UXhleGhzYkZiYklKSkh5NEJBS0tjR0ZJenNIT2cwTEVmR0R1ZEdzcWVJR0NkbVBJbTZVdkZ3V1FJWldFM2c2ZGc?oc=5",
+      "publisher": "The Seattle Medium",
+      "published_at": "2026-10-14T14:00:00Z",
+      "detected_at": "2026-10-14T14:26:26.792039Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "62ba06bc38b18d571ee1",
+      "title": "Absentee ballots mailed to Wisconsin clerks down roughly 30 percent compared to 2022 - WPR",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE8zRFRUUnFwczJGUWhmNlJ3dVRIeHVpeUFQNDJQN0x0NkdyWGQwdW5GUkpfSmZBcUxXQXlaVlJiRDZCSjFjQ0FxQ2E4bWVmeElTTFVETnB6RjA4R1BRWks1cGZGZV9ZWUdMeEk2VlNfVGhOU2p1Mi1fM1B2Z0JJdw?oc=5",
+      "publisher": "WPR",
+      "published_at": "2026-10-14T13:25:39Z",
+      "detected_at": "2026-10-14T14:26:26.792039Z",
+      "state_hints": [
+        "WI"
+      ],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [
+        "30 ",
+        "2022"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "ff3d4bf127edc4333024",
       "title": "NC to notify 1,392 voters flagged as potential noncitizens - Carolina Journal",
@@ -81,6 +118,21 @@
       "publisher": "Business Day",
       "published_at": "2026-10-14T12:10:08Z",
       "detected_at": "2026-10-14T13:00:50.754853Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "423234d81ea6b5807cd1",
+      "title": "SPECIAL REPORT | Nine ways the Trump administration could interfere with the US midterms - TimesLIVE",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQdTJRaDNWeEtrTlk5VkxNU1RYUjhVQmw3ZGd4VG1xTGlpczAteEhTR1pvTE44MHUzd3BfVUlpdDh6WWtueEFxM3VMLTVfcDl1Um1FaFBYTVRGV3Y5WklQZUFCbG9yQ3hGVllseWdLRmFSNVYtQ242eTBqQXlLT2dXbDc3VDlqNElpOFJZaU1fZW1rYi1kbElpa1RnZmMyZjJURmxTb0J6VXJjZ3dSekwwbnNjMTZMdzZSb2JDOHlPZW5mT1dtY1B2VnlkQWYtem9XLVpr?oc=5",
+      "publisher": "TimesLIVE",
+      "published_at": "2026-10-14T12:10:08Z",
+      "detected_at": "2026-10-14T14:26:26.792039Z",
       "state_hints": [],
       "topic_hints": [],
       "headline_numbers_unverified": [],
