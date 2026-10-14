@@ -85,18 +85,23 @@ async function settle(){
  assert(w.SenateCalibrationAudit,'Retrospective probability-score module must be loaded before app');
  w.eval(scripts[0]);
  await settle();
- // Actual model probabilities come from the same 2026 polls and a
- // measured historical Senate error scale, not the DDHQ joint forecast.
- const oddsData=json('data/race_probabilities.json');
- assert.equal(oddsData.schema_version,'experimental-race-odds-v1');
- assert.equal(oddsData.senate_baseline_rmse_points,5.633);
- assert.deepEqual(oddsData.number_of_races_by_office,{
-   senate:model.senate_all.filter(r=>['multi_poll','single_poll'].includes(r.status)).length,
-   house:model.house.filter(r=>['multi_poll','single_poll'].includes(r.status)).length,
-   governor:model.governor.filter(r=>['multi_poll','single_poll'].includes(r.status)).length
+ // Race odds and chamber control derive from ONE correlated Monte Carlo.
+ const oddsData=w.eval('modelRaceOddsData');
+ assert(oddsData,'Linked joint simulation must publish race odds');
+ assert.equal(oddsData.schema_version,'joint-race-probabilities-v1');
+ assert.equal(oddsData.race_probability_method,
+  'SAME_CORRELATED_DRAWS_AS_CHAMBER_CONTROL');
+ assert.equal(oddsData.samples,3000);
+ assert.deepEqual(Object.fromEntries(['senate','house','governor'].map(office=>
+  [office,oddsData.records.filter(r=>r.office===office).length])),{
+  senate:model.senate_all.filter(r=>['multi_poll','single_poll'].includes(r.status)).length,
+  house:model.house.filter(r=>['multi_poll','single_poll'].includes(r.status)).length,
+  governor:model.governor.filter(r=>['multi_poll','single_poll'].includes(r.status)).length
  });
- assert.equal(w.eval('modelOddsValidate('+JSON.stringify(oddsData)+','+JSON.stringify(model)+')'),true);
- w.eval('setModelRaceOddsData('+JSON.stringify(oddsData)+')');
+ assert.equal(w.eval('modelOddsValidate(modelRaceOddsData,latestSenateEstimates)'),true);
+ assert(!html.includes('DDHQ published forecast · comparison only'));
+ assert(!html.includes('scenarioCenter'));
+ assert(!html.includes('enForecastSource'));
  assert.match(get('#modelOddsNumbers').textContent,/DEMOCRATIC/);
  assert.match(get('#modelOddsNumbers').textContent,/REPUBLICAN/);
  const baselineOdds=get('#modelOddsNumbers').textContent;
@@ -108,13 +113,13 @@ async function settle(){
  get('.model-odds-presets [data-odds-width="tight"]').click();
  assert.equal(get('.model-odds-presets [data-odds-width="tight"]').getAttribute('aria-pressed'),'true');
  get('.model-odds-presets [data-odds-width="standard"]').click();
- assert.match(get('#modelOddsContext').textContent,/42 realized 2020–24 Senate polling misses/);
+ assert.match(get('#modelOddsContext').textContent,/Same 3,000 correlated draws/);
  // JackStradamus race board must foreground the published conditional
  // model odds, not hide them inside the selected race's detail panel.
  assert.match(get('#modelProbabilityCoverage').textContent,/of \d+ current polled senate races/);
  assert.match(get('#modelBoard').closest('.model-board').querySelector('.model-board-header').textContent,/D\/R WIN PROBABILITY/);
  const senateRows=get('#modelBoard').querySelectorAll('.model-race-row');
- assert.equal(senateRows.length,oddsData.number_of_races_by_office.senate);
+ assert.equal(senateRows.length,oddsData.records.filter(r=>r.office==='senate').length);
  assert.equal(get('#modelBoard').querySelectorAll('.model-race-win-probabilities').length,
   senateRows.length,'Every polled Senate row must expose source-matched two-party model odds');
  assert.match(senateRows[0].querySelector('.model-race-win-probabilities').textContent,/D .*%R .*%/);
@@ -122,10 +127,10 @@ async function settle(){
  get('[data-model-scope="house"]').click();
  assert.match(get('#modelProbabilityCoverage').textContent,/current polled house races/);
  assert.equal(get('#modelBoard').querySelectorAll('.model-race-win-probabilities').length,
-  oddsData.number_of_races_by_office.house);
+  oddsData.records.filter(r=>r.office==='house').length);
  get('[data-model-scope="governor"]').click();
  assert.equal(get('#modelBoard').querySelectorAll('.model-race-win-probabilities').length,
-  oddsData.number_of_races_by_office.governor);
+  oddsData.records.filter(r=>r.office==='governor').length);
  get('[data-model-scope="generic"]').click();
  assert.match(get('#modelProbabilityCoverage').textContent,/not a two-candidate/);
  assert.equal(get('#modelBoard').querySelectorAll('.model-race-win-probabilities').length,0);
@@ -151,7 +156,7 @@ async function settle(){
  assert.match(get('#modelProbabilityCoverage').textContent,/model odds pending a matching/);
  w.eval('setModelRaceOddsData('+JSON.stringify(oddsData)+')');
  assert.equal(get('#modelBoard').querySelectorAll('.model-race-win-probabilities').length,
-  oddsData.number_of_races_by_office.senate);
+  oddsData.records.filter(r=>r.office==='senate').length);
 
  const fakeRaceOdds=structuredClone(oddsData);
  fakeRaceOdds.records[0].dem_beats_rep_pct=-1;
@@ -744,40 +749,22 @@ async function settle(){
    assert(get('#modelPollRows tr.model-featured-poll').textContent.includes(sourceFirm),
      'Insight opened a different survey instead of the clicked '+identifier+' '+sourceFirm+' poll');
  }
- // Four Endings must be attributable MODEL probabilities, not sliders or
- // invented split probability for the DDHQ-unpublished Blue Tsunami subset.
- const cards=[...get('#scenarioBands').querySelectorAll('.scenario-tile')];
- assert.equal(cards.length,4);
- const seeded=json('data/congress_scenarios.json');
- assert.equal(seeded.status,'external_model_attributed_not_jackstradamus_probabilities');
- const findCard=name=>cards.find(c=>c.textContent.includes(name));
- for(const [label,key] of [['RED DAWN','red_dawn'],['THE SHRUG','shrug'],['BLUE WAVE','blue_both']]){
-   const expected=seeded.display_outcomes[key].pct;
-   assert(findCard(label).textContent.includes(expected+'%'),
-     label+' should show DDHQ '+expected+'% model-based probability');
+ // DDHQ forecast removed; each race marginal comes from the joint simulation.
+ assert.equal(get('#scenarioBands'),null);
+ assert.equal(get('#scenarioCenter'),null);
+ assert.match(get('#enForecastOdds').textContent,/Our model · D both/);
+ assert.match(get('#enForecastOdds').textContent,/linked simulations/);
+ const jointState=w.eval('jointForecastResult()');
+ assert.equal(jointState.race_probability_method,'SAME_CORRELATED_DRAWS_AS_CHAMBER_CONTROL');
+ const mnOdds=oddsData.records.find(x=>x.race_code==='MN-SEN');
+ const mnJoint=jointState.race_probabilities.find(x=>x.race_code==='MN-SEN');
+ assert(mnOdds&&mnJoint);
+ assert.equal(mnOdds.dem_beats_rep_pct,mnJoint.dem_beats_rep_pct);
+ assert(mnOdds.sigma_points>5.633);
+ for(const x of oddsData.records){
+  assert.equal(x.simulation_samples,jointState.samples);
+  assert(Math.abs(x.dem_beats_rep_pct-100*x.simulated_dem_wins/x.simulation_samples)<.011);
  }
- const tsunami=findCard('BLUE TSUNAMI');
- assert(tsunami,'Missing tsunami outcome');
- assert.match(tsunami.textContent,/not separately estimated/i);
- assert(!tsunami.textContent.includes('0%'),'Unreported tsunami probability cannot be shown as 0%');
- // A source outage must not leave a week-old percentage looking current.
- const staleCopy=structuredClone(seeded);
- const past=new Date(Date.now()-10*86400000).toISOString().slice(0,10);
- staleCopy.source_updated_date=past;
- w.eval('setCongressScenarioSnapshot('+JSON.stringify(staleCopy)+')');
- assert.match(get('#scenarioUpdated').textContent,/OUTDATED/);
- assert.match(get('#scenarioCenter').textContent,/Historical forecast/);
- assert(!get('#scenarioBands').textContent.includes('54%'),'Expired probability shown as current');
- const corruptCopy=structuredClone(seeded);
- corruptCopy.raw_joint_outcomes_pct.both_dem=90;
- w.eval('setCongressScenarioSnapshot('+JSON.stringify(corruptCopy)+')');
- assert.match(get('#scenarioBands').textContent,/integrity checks/);
- w.eval('setCongressScenarioSnapshot('+JSON.stringify(seeded)+')');
- assert(!get('#scenarioSimulator').querySelector('input'),'Hypothetical sliders should be removed');
- assert.match(get('#scenarioSimulator').textContent,/DDHQ does not publish/i);
- assert.match(get('#enForecastOdds').textContent,/Both D .*% · Split .*% · Both R .*%/);
- assert.match(get('#enForecastOdds').textContent,/DDHQ 2026-10-13/);
- assert.match(get('.scenario-source-link').href,/decisiondeskhq.com/);
  // Sort all posted polls by full timestamps; no alphabetical field-end tie.
  const posted=recent.observations.filter(p=>p.posted_date>=new Date(Date.now()-14*86400000).toISOString().slice(0,10));
  const topTime=posted.reduce((max,p)=>{
@@ -898,7 +885,7 @@ async function settle(){
  // Validated probabilistic source bridge, actual 2026 dashboard controls.
  w.eval('enRenderLiveDesk()');
  assert.equal(get('.en-live-desk').hidden,false);
- assert.match(get('#enNowcastSummary').textContent,/poll-based race probabilities/);
+ assert.match(get('#enNowcastSummary').textContent,/race probabilities/);
  assert.match(get('#enNowcastRows').textContent,/NC-SEN/);
  assert.match(get('#enNowcastRows').textContent,/RETURNS INFORMED/);
  const ncNowcast=w.eval('enLiveRaceEstimate({office:"Senate",key:"NC"})');
@@ -2055,6 +2042,6 @@ async function settle(){
  w.Date.now=csvClock;
 
  assert.equal(errors.length,0,'Application emitted errors: '+errors.slice(0,4).join(' | '));
- console.log('Dashboard DOM integration passed: exact TX-SEN/TX-GOV poll drilldowns, race labels, DDHQ stale-data guards, dated news feed, and no script errors.');
+ console.log('Dashboard DOM integration passed: exact TX-SEN/TX-GOV poll drilldowns, race labels, linked joint-model race odds and DDHQ removal, dated news feed, and no script errors.');
  dom.window.close();
 })().catch(e=>{console.error(e.stack||e);dom.window.close();process.exitCode=1});
