@@ -78,8 +78,8 @@ const result={
 };
 if(result.house_districts_mapped!==435||result.redrawn_2026_districts_mapped!==173||
  result.geography.alternative_redrawn_exchangeable_seats!==0||
- p.means.senate_dem_seats!==b.means.senate_dem_seats)
- throw Error('Wrong geography, stale Senate assumptions, or incomplete source');
+ JSON.stringify(alternate.senate)!==JSON.stringify(basis.senate))
+ throw Error('Wrong geography, changed Senate priors, or incomplete source');
 if(process.argv.includes('--json'))console.log(JSON.stringify(result,null,2));
 else{
  console.log('Geography-safe presidential House fundamentals SHADOW — NOT PROMOTED');
