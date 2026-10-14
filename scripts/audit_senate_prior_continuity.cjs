@@ -151,7 +151,7 @@ function evaluate(s){
    x.matched_incumbent_relative_history!==null).length,
   continuity_counts:counts,
   current_model_national_swing_assumption:round(currentSwing),
-  2024_presidential_shadow_national_swing_assumption:round(presSwing),
+  presidential_2024_shadow_national_swing_assumption:round(presSwing),
   largest_poll_vs_original_prior_disagreements:sorted.slice(0,12)
    .map(x=>({race_code:x.race_code,poll_minus_prior_points:x.poll_minus_prior_points,
     candidate_continuity:x.candidate_continuity,
