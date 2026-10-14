@@ -2221,7 +2221,7 @@ function enWatchToggle(item){
 const enCivicBase='https://civicapi.org/api/v2';
 let enCivicByWatch=Object.create(null),enCivicRaceIds=Object.create(null),
  enCivicErrors=Object.create(null),enCivicPending=new Set(),enCivicLastSweep=0,enCivicSweepCursor=0,
- enCivicExpanded=new Set();
+ enCivicExpanded=new Set(),enCivicSweepInFlight=false;
 // Only individually verified, source-ID-pinned 2026 contests use the
 // stricter shared adapter. An absent script must never fall back to the
 // looser generic source matcher.
@@ -2350,6 +2350,30 @@ function enCivicStatus(item){
   ' · '+reporting+call+revision+(enCivicErrors[id]?' · SOURCE RETRYING':'');
 }
 function enCivicURL(item){return enCivicByWatch[enWatchId(item)]?.source_url||'https://civicapi.org'}
+// Isolate stalled provider requests from the other watched races.
+// Abort where supported, and reject on time even if a fetch ignores abort.
+async function enCivicFetchJson(url,timeoutMs=12000){
+ const controller=typeof AbortController==='function'?new AbortController():null;
+ let timer;
+ try{
+  return await Promise.race([
+   (async()=>{
+    const response=await fetch(url,{
+      mode:'cors',credentials:'omit',cache:'no-store',
+      headers:{Accept:'application/json'},...(controller?{signal:controller.signal}:{})
+    });
+    if(!response.ok)throw Error('civicAPI HTTP '+response.status);
+    return response.json();
+   })(),
+   new Promise((_,reject)=>{
+    timer=setTimeout(()=>{
+     try{controller?.abort()}catch{}
+     reject(Error('civicAPI request timed out; last verified result retained'));
+    },timeoutMs);
+   })
+  ]);
+ }finally{clearTimeout(timer)}
+}
 async function enCivicFetchOne(item){
  const id=enWatchId(item);
  if(enCivicPending.has(id))return;
@@ -2363,16 +2387,11 @@ async function enCivicFetchOne(item){
    throw Error('Four-state civicAPI race adapter is unavailable');
   let row=enCivicRaceIds[id];
   if(!row){
-   const response=await fetch(enCivicQuery(item),{mode:'cors',
-      credentials:'omit',cache:'no-store',headers:{Accept:'application/json'}});
-   if(!response.ok)throw Error('Search HTTP '+response.status);
-   row=enCivicSelect(item,await response.json());
+   row=enCivicSelect(item,await enCivicFetchJson(enCivicQuery(item)));
    if(!row)throw Error('No unique matching November 3 general-election race');
   }
-  const response=await fetch(enCivicBase+'/race/'+row.id+'?light=',{
-     mode:'cors',credentials:'omit',cache:'no-store',headers:{Accept:'application/json'}});
-  if(!response.ok)throw Error('Race HTTP '+response.status);
-  const next=enCivicValidate(item,row,await response.json());
+  const next=enCivicValidate(item,row,
+    await enCivicFetchJson(enCivicBase+'/race/'+row.id+'?light='));
   if(!next)throw Error('Supplementary result integrity check failed');
   if(!enIsVisible()||enModeYear!==2026||!enNationalTracked(item))return;
   const old=enCivicByWatch[id],oldTime=Date.parse(old?.last_updated||''),
@@ -2394,26 +2413,32 @@ async function enCivicFetchOne(item){
  }finally{enCivicPending.delete(id)}
 }
 async function enRefreshCivicWatchlist(force=false){
- if(enModeYear!==2026||!enIsVisible())return;
+ if(enModeYear!==2026||!enIsVisible()||enCivicSweepInFlight)return;
  const now=Date.now(),interval=now<Date.parse('2026-11-03T05:00:00Z')?600000:60000;
  if(!force&&now-enCivicLastSweep<interval)return;
+ enCivicSweepInFlight=true;
  enCivicLastSweep=now;
- // Bound to 12 serial civicAPI records per sweep; append verified national
- // Senate seats only after explicit tracking or on election night.
- const all=[...new Map([...enWatched,...enNationalWatchItems()]
-   .filter(x=>!enSupportedStates.has(x.key.slice(0,2)))
-   .map(x=>[enWatchId(x),x])).values()];
- if(!all.length)return;
- // Rotate rather than permanently skipping the 13th–40th personally
- // watched supplemental race when the number of pins exceeds one sweep.
- const start=enCivicSweepCursor%all.length;
- const limit=Math.min(12,all.length);
- const missing=Array.from({length:limit},(_,i)=>all[(start+i)%all.length]);
- enCivicSweepCursor=(start+limit)%all.length;
- for(const item of missing){
-  if(enModeYear!==2026||!enIsVisible())return;
-  await enCivicFetchOne(item);
- }
+ try{
+  const all=[...new Map([...enWatched,...enNationalWatchItems()]
+    .filter(x=>!enSupportedStates.has(x.key.slice(0,2)))
+    .map(x=>[enWatchId(x),x])).values()];
+  if(!all.length)return;
+  // Rotating sweep includes entries beyond the first twelve across cycles.
+  const start=enCivicSweepCursor%all.length;
+  const limit=Math.min(12,all.length);
+  const batch=Array.from({length:limit},(_,i)=>all[(start+i)%all.length]);
+  enCivicSweepCursor=(start+limit)%all.length;
+  // Four bounded workers allow independent seats to update while one
+  // provider call is slow or offline. No unbounded 35-seat request burst.
+  let cursor=0;
+  await Promise.all(Array.from({length:Math.min(4,batch.length)},async()=>{
+   while(cursor<batch.length){
+    if(enModeYear!==2026||!enIsVisible())return;
+    const item=batch[cursor++];
+    await enCivicFetchOne(item);
+   }
+  }));
+ }finally{enCivicSweepInFlight=false}
 }
 
 function enWatchStatus(item){
@@ -3106,7 +3131,6 @@ async function enLoad(manual=false){
   if(serial!==enRequestSerial||typeof document==='undefined'||!document?.querySelectorAll)return;
   enFailures=0;
   enAcceptSource(obj);
-  if(year===2026)void enRefreshWatchedOffices(office);
  }catch(error){
   // An abandoned browser view can outlive an in-flight network response.
   // In particular, JSDOM teardown and real page unload invalidate document.
@@ -3121,7 +3145,12 @@ async function enLoad(manual=false){
  }
  if(serial===enRequestSerial){
   enQueueRefresh();
-  if(year===2026)void enRefreshCivicWatchlist();
+  if(year===2026){
+   // Failure of the foreground office must not stop other source-validated
+   // watched offices or the supplemental national Senate desk.
+   void enRefreshWatchedOffices(office);
+   void enRefreshCivicWatchlist();
+  }
  }
 }
 function enSwitch(year,office,preferredKey=null){
