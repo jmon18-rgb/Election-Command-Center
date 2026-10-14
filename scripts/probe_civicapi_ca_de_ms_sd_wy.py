@@ -10,6 +10,7 @@ TARGETS=[
     ("CA","Governor","Governor"),
     ("DE","Senate","US Senate"),
     ("MS","Senate","US Senate"),
+    ("MD","Governor","Governor"),
     ("SD","Senate","US Senate"),
     ("SD","Governor","Governor"),
     ("WY","Senate","US Senate"),
