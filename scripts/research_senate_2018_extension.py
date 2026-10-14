@@ -156,7 +156,9 @@ def main():
     args=parser.parse_args()
     raw,digest=download()
     doc=json.loads(SOURCE.read_text())
-    built=build(raw,doc)\n    # Git blob SHA is our immutable fetch integrity guard; no separate\n    # SHA-256 field is required in the checked-in source artifact.
+    built=build(raw,doc)
+    # Git blob SHA is our immutable fetch integrity guard; no separate
+    # SHA-256 field is required in the checked-in source artifact.
     if (len(built["records"]["20"])<15 or len(built["records"]["7"])<15 or
        built["source_poll_rows"]<200):
         raise ValueError("2018 cohort too small or source record count unexpected")
