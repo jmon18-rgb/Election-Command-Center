@@ -68,6 +68,10 @@ jobs:
           node scripts/audit_senate_prior_continuity.cjs
       - name: Validate dashboard contracts
         run: python3 scripts/check_dashboard.py
+      - name: Test supplemental new-poll propagation into candidate polling averages
+        run: |
+          python3 scripts/test_supplemental_poll_injection.py
+          python3 -m py_compile scripts/merge_supplemental_polls.py scripts/update_polls.py
       - name: Test live polling freshness contract with synthetic moving feeds
         run: python3 scripts/test_fresh_poll_sources.py
       - name: Validate same-date named-poll source identity and live drilldown reconciliation
