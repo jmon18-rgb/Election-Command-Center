@@ -169,6 +169,12 @@ jobs:
           node scripts/test_incumbency_features.cjs
           node scripts/audit_candidate_fundamentals.cjs --json > /tmp/candidate-fundamentals-audit.json
           node -e "const d=require('/tmp/candidate-fundamentals-audit.json');if(d.coverage.total_races!==506 || d.coverage.senate!==35 || d.coverage.governor!==36 || d.minnesota.senate.executive_approval.net_approval_points!==-14 || d.minnesota.approval_transfer_hypothesis.status!=='COUNTERFACTUAL_UNCALIBRATED_NOT_APPLIED_TO_POLLS_OR_ODDS')process.exit(1)"
+      - name: Audit House 2024 uncontested vote reference and 2026 geography seat response
+        run: |
+          node --check scripts/audit_house_seat_vote_reference.cjs
+          node scripts/audit_house_seat_vote_reference.cjs --json > /tmp/house-seat-vote-reference.json
+          node -e "const x=require('/tmp/house-seat-vote-reference.json');if(x.status!=='HOUSE_NATIONAL_REFERENCE_AND_SEAT_RESPONSE_RESEARCH_ONLY'||x['2024_missing_two_party_vote_count']!==44||x['2026_redrawn_districts']!==173||x.presidential_mapped_districts!==435||x.model_scenarios.length!==4||x.house_margin_shift_response.curve.length!==7||x.model_scenarios[0].house_top_same_draw_control_bellwethers.length!==25)process.exit(1)"
+          node scripts/audit_house_seat_vote_reference.cjs
       - name: Audit alternate two-cycle House fundamentals without promotion
         run: |
           node --check scripts/audit_two_cycle_fundamentals.cjs
