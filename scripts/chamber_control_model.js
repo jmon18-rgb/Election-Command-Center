@@ -12,6 +12,21 @@
  const VERSION='joint-control-beta-v1';
  const FUNDAMENTALS_MODES=Object.freeze(['2024_only','two_cycle_shadow','presidential_2024_shadow']);
  const SHADOW_WEIGHT=.25,SHADOW_RESIDUAL_CAP=12;
+ // These contenders are Independents, not Democratic nominees.
+ // As of Oct 14 2026 each publicly pledged NOT to caucus with either
+ // major party. A win is a non-Republican seat, not a Democratic caucus seat.
+ // Poll data labels "dem_candidate" as the opposition slot; never infer D.
+ const INDEPENDENT_SENATE_FIRST=Object.freeze({
+  'NE-SEN':'Dan Osborn',
+  'ID-SEN':'Todd Achilles',
+  'SD-SEN':'Brian Bengs'
+ });
+ // Montana has a three-way contest including Seth Bodnar (I); the
+ // published D-versus-R polling proxy excludes a major alternative.
+ const INCOMPLETE_BALLOT=Object.freeze({
+  'MT-SEN':'Independent Seth Bodnar is a major third candidate',
+  'AK-SEN':'Ranked-choice tabulation and similarly named candidates'
+ });
  const BATTLEGROUNDS=Object.freeze([
   'NC-SEN','MI-SEN','ME-SEN','OH-SEN','TX-SEN','AK-SEN','NE-SEN','IA-SEN',
   'AZ-GOV','GA-GOV','MI-GOV','WI-GOV','NV-GOV','OH-GOV',
@@ -362,6 +377,12 @@
     method='presidential_2024_state_lean_proxy';
    let pollFundamentalsGap=null,disagreementSigma=0,pollWeight=null;
    const poll=odds.get('senate|'+code);
+   const independentCandidate=INDEPENDENT_SENATE_FIRST[code]||null;
+   if(independentCandidate){
+    const sourceRace=s.polls.senate_all.find(x=>x.race_code===code);
+    if(sourceRace?.dem_candidate!==independentCandidate)
+     throw Error('Independent Senate candidate identity changed '+code);
+   }
    if(poll){
     const priorMean=mean;
     const weight=poll.independent_firms>=2?.90:.78;
@@ -384,6 +405,11 @@
    }
    senate.push({code,state,mean:limit(mean,-55,55),sigma,
     method,polled:Boolean(poll),special:seat.election_kind==='special',
+    first_candidate_party:independentCandidate?'I':'D',
+    first_candidate_name:independentCandidate||
+     s.polls.senate_all.find(x=>x.race_code===code)?.dem_candidate||null,
+    first_candidate_dem_caucus:!independentCandidate,
+    incomplete_ballot_caveat:INCOMPLETE_BALLOT[code]||null,
     poll_weight:pollWeight,poll_fundamentals_gap_points:pollFundamentalsGap,
     disagreement_extra_sigma_points:disagreementSigma,
     senate_variance_budget_total_sigma:senateVarianceBudget&&poll?
@@ -533,7 +559,7 @@
     const dem=finalMargin>0;
     if(dem)raceDemWins[j]++;
     if(isHouse){if(dem)dHouse++}
-    else if(isSenate){if(dem)dSenate++}
+    else if(isSenate){if(dem&&item.first_candidate_dem_caucus)dSenate++}
     if(dem&&BATTLEGROUND_SET.has(item.code))winBattleground++;
    }
    const houseDem=dHouse>=a.house_control_dem_seats;
@@ -574,6 +600,10 @@
     officeShared,localShared)*errorMultiplier;
    const wins=raceDemWins[index],demPct=pct(wins);
    return {race_code:item.code,office,model_dem_margin_points:item.mean,
+    first_candidate_party:isSenate?item.first_candidate_party:'D',
+    first_candidate_name:isSenate?item.first_candidate_name:null,
+    first_candidate_caucuses_with_democrats:isSenate?item.first_candidate_dem_caucus:true,
+    incomplete_ballot_caveat:isSenate?item.incomplete_ballot_caveat:null,
     polled:item.polled,poll_weight:item.poll_weight??null,
     source_method:item.method,sigma_points:Math.round(totalSigma*1000)/1000,
     dem_beats_rep_pct:demPct,rep_beats_dem_pct:pct(samples-wins),
@@ -597,6 +627,7 @@
    total_pct:Object.values(probs).reduce((x,y)=>x+y,0),
    description:'A conditional Monte Carlo sensitivity experiment, not a calibrated election forecast.'};
  }
- return Object.freeze({VERSION,BATTLEGROUNDS,FUNDAMENTALS_MODES,prepare,simulate,seeded,
+ return Object.freeze({VERSION,BATTLEGROUNDS,FUNDAMENTALS_MODES,INDEPENDENT_SENATE_FIRST,
+  INCOMPLETE_BALLOT,prepare,simulate,seeded,
   disagreementExtraSigma});
 });
