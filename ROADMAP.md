@@ -302,3 +302,11 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Added user-triggered five-stage simulated Senate result replay (NC, MI, GA, TX) to the 2026 Election Night desk, displaying prior-to-live-informed probability movement.
 - Rehearsal samples remain completely isolated from trusted source votes, real notifications, saved snapshots and national reporting. Prominent permanent SIMULATION ONLY label.
 - Next: Nov 3 live-vote smoke testing, browser soak tests and source-aware joint congressional probability model after independently verified full-seat priors and correlated error calibration.
+
+## October 14 — JackStradamus full-seat joint-control beta
+
+- Implement `scripts/chamber_control_model.js` Monte Carlo over all 435 House seats and 35 Senate contests plus a frozen 20-race Senate/House/Governor sweep slate. Four mutually exclusive outcome probabilities (Blue Tsunami, Blue Wave excluding Tsunami, Shrug, Red Dawn), tied to existing polling and audited historical geography.
+- Missing candidate/geography/polling priors receive explicit wide-variance proxies; national, chamber and state errors are drawn together so chamber control is not estimated by multiplying races or published outsider forecasts.
+- Main dashboard and Election Night display our own probabilities, expected seat totals, full model-input coverage and sensible ±3-point/narrower/wider assumption toggles, retaining DDHQ as a visibly external comparison.
+- Verified November 3 partial votes can enter the joint model as a conservative geographic-noise posterior without contaminating reporting totals or calls; no synthetic votes used in production.
+- **Still necessary before describing as calibrated forecasts:** comprehensive historical holdout backtests, district geography-specific baselines in redrawn states, better candidate fundamentals and Senate caucus verification, improved joint correlated error measurement, validated live Nov 3 election-night results and long-running browser smoke tests.
