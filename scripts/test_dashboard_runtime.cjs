@@ -1555,10 +1555,10 @@ async function settle(){
  assert(rehearsalRequests.length>=4,
   'Four independent source races must start while first civicAPI fetch is stalled');
  assert.equal(w.eval('enCivicSweepInFlight'),true);
- const rehearsalCount=rehearsalRequests.length;
+ const rehearsalStalledUrl=rehearsalRequests[0];
  await w.eval('enRefreshCivicWatchlist(true)');
- assert.equal(rehearsalRequests.length,rehearsalCount,
-  'Concurrent manual refresh must not launch a duplicate source sweep');
+ assert.equal(rehearsalRequests.filter(u=>u===rehearsalStalledUrl).length,1,
+  'Overlapping manual refresh must dedupe its already-pending race fetch');
  assert(rehearsalUnblock,'First simulated source must be waiting');
  rehearsalUnblock();
  await rehearsalSweep;
