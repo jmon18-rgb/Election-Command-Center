@@ -296,3 +296,9 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Apply strictly source-validated, time-gated, sensitivity-disclosed and deliberately conservative updates based on reported two-party votes plus actual precinct reporting. Show **POLL PRIOR** until eligible data exists, never imply a call from odds.
 - Add collapsible source health and retry information for House/Senate/Governor plus civicAPI, with stale-source protection and browser check timestamps.
 - CI exercises per-race mathematical/provenance guardrails and a full simulated Election Night DOM. Next: source-aware election-night House/Senate joint forecast only with complete seat priors and calibrated correlated errors; real Nov 3 vote smoke-test and multi-hour traffic soak test.
+
+## October 14: Election Night probability training mode
+
+- Added user-triggered five-stage simulated Senate result replay (NC, MI, GA, TX) to the 2026 Election Night desk, displaying prior-to-live-informed probability movement.
+- Rehearsal samples remain completely isolated from trusted source votes, real notifications, saved snapshots and national reporting. Prominent permanent SIMULATION ONLY label.
+- Next: Nov 3 live-vote smoke testing, browser soak tests and source-aware joint congressional probability model after independently verified full-seat priors and correlated error calibration.
