@@ -323,3 +323,11 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Exposed source-attributed probability-scoring details in both primary and Election Night four-ending model audit panels, and clarified the actual frozen **18 of 20** near-sweep threshold in scenario cards.
 - Fixed use of the 2020 *regular* Senate result as a proxy for the 2026 *special* seat; current-poll Senate variance uses a conservative 7-point floor. Kept automatic 2026 D/R bias correction **off** rather than assuming a repeated historical political error.
 - Next: independently import the publicly released Silver Bulletin pollster ratings if source terms/firm identity allow; use verified external methodology as a benchmark, validate 2026 district fundamentals and 34/31 holdover caucus assumption, and assemble true election-year-held-out joint 435/35 forecast backtests with geographic histories.
+
+## October 14 — JackStradamus model odds and integrity index clarity
+
+- Show race-level D/R model odds prominently on all **source-matched polled Senate, House and governor** rows, with the polling margin and assumed error width retained nearby.
+- Expose coverage counts and explicit unavailable-source status, rather than silently hiding probabilities when polling/probability snapshots disagree. Mirror current validated odds on the Senate intelligence cards.
+- Replace dozens of vague `Not assessed` labels with separate statuses for documented cases, strictly state-tagged verification leads, and **no matching sourced case in a non-exhaustive ledger**. Unknown is not zero, and no evidence status is manufactured.
+- Hard browser regression tests cover every polled office, generic ballot exclusion, mismatched-model safeguards, visible Senate odds, and incident-ledger coverage.
+- Next: improve the independently sourced ledger's geographic coverage with primary-source verified incidents, then calibrate full-seat forecasts against election-year holdouts rather than extrapolating missing data.

@@ -109,9 +109,48 @@ async function settle(){
  assert.equal(get('.model-odds-presets [data-odds-width="tight"]').getAttribute('aria-pressed'),'true');
  get('.model-odds-presets [data-odds-width="standard"]').click();
  assert.match(get('#modelOddsContext').textContent,/42 realized 2020–24 Senate polling misses/);
+ // JackStradamus race board must foreground the published conditional
+ // model odds, not hide them inside the selected race's detail panel.
+ assert.match(get('#modelProbabilityCoverage').textContent,/of \d+ current polled senate races/);
+ const senateRows=get('#modelBoard').querySelectorAll('.model-race-row');
+ assert.equal(senateRows.length,oddsData.number_of_races_by_office.senate);
+ assert.equal(get('#modelBoard').querySelectorAll('.model-race-win-probabilities').length,
+  senateRows.length,'Every polled Senate row must expose source-matched two-party model odds');
+ assert.match(senateRows[0].querySelector('.model-race-win-probabilities').textContent,/D .*%R .*%/);
+ assert.match(senateRows[0].querySelector('.model-race-edge').textContent,/Poll [DR] [+-]/);
+ get('[data-model-scope="house"]').click();
+ assert.match(get('#modelProbabilityCoverage').textContent,/current polled house races/);
+ assert.equal(get('#modelBoard').querySelectorAll('.model-race-win-probabilities').length,
+  oddsData.number_of_races_by_office.house);
+ get('[data-model-scope="governor"]').click();
+ assert.equal(get('#modelBoard').querySelectorAll('.model-race-win-probabilities').length,
+  oddsData.number_of_races_by_office.governor);
+ get('[data-model-scope="generic"]').click();
+ assert.match(get('#modelProbabilityCoverage').textContent,/not a two-candidate/);
+ assert.equal(get('#modelBoard').querySelectorAll('.model-race-win-probabilities').length,0);
+ get('[data-model-scope="senate"]').click();
+ assert(get('#senateEstimateCards').querySelectorAll('.senate-card-odds').length>0,
+  'Senate intelligence cards should also show conditional model odds');
+ assert.match(get('#senateEstimateCards').textContent,/JACKSTRADAMUS · TWO-PARTY MODEL/);
+ assert.doesNotMatch(get('#senateEstimateCards').textContent,/Not assessed/,
+  'Missing source coverage cannot masquerade as an ambiguous risk score');
+ assert.match(get('#senateEstimateCards').textContent,/No case in ledger/,
+  'A state with no matching source must display the coverage gap');
+ assert.match(get('#bullCoverageSummary').textContent,/source-documented cases across/);
+ assert.match(get('#bullCoverageSummary').textContent,/not cleared or comprehensively reviewed/);
+ assert(get('#bullScoreStates').querySelectorAll('.bs-state-row').length>0,
+  'Verified source states keep their documented incident cards');
+
  const misdatedOdds=structuredClone(oddsData);
  misdatedOdds.polling_source_generated_at='2026-01-01T00:00:00Z';
  assert.equal(w.eval('modelOddsValidate('+JSON.stringify(misdatedOdds)+','+JSON.stringify(model)+')'),false);
+ w.eval('setModelRaceOddsData('+JSON.stringify(misdatedOdds)+')');
+ assert.equal(get('#modelBoard').querySelectorAll('.model-race-win-probabilities').length,0);
+ assert.match(get('#modelProbabilityCoverage').textContent,/model odds pending a matching/);
+ w.eval('setModelRaceOddsData('+JSON.stringify(oddsData)+')');
+ assert.equal(get('#modelBoard').querySelectorAll('.model-race-win-probabilities').length,
+  oddsData.number_of_races_by_office.senate);
+
  const fakeRaceOdds=structuredClone(oddsData);
  fakeRaceOdds.records[0].dem_beats_rep_pct=-1;
  assert.equal(w.eval('modelOddsValidate('+JSON.stringify(fakeRaceOdds)+','+JSON.stringify(model)+')'),false,
