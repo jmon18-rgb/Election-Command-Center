@@ -1,0 +1,3497 @@
+{
+  "schema_version": "presidential-2020-by-2026-district-staging-v1",
+  "status": "2020_presidential_votes_mapped_2026_districts_retro_context_only",
+  "source_url": "https://github.com/ElectIndex/26_us_forecast_data/blob/main/historical.csv",
+  "source_sha": "6416538cf7f1f0531277f0a01659207f603a7ca8",
+  "coverage": {
+    "districts": 435,
+    "same_geometry_2022_2024_2026": 222
+  },
+  "warnings": [
+    "2020 vote totals are redistributed into later Congressional District boundaries by the public data source; no 2020 district-number join is assumed.",
+    "Use only for a retrospective 2022 candidate calculation when 2022, 2024 and 2026 geographical boundaries were the same.",
+    "The derived 2022-to-2024 study evaluates persistence conditional on re-running and source completeness; does not forecast 2026 candidate margin."
+  ],
+  "records": [
+    {
+      "race_code": "AK-01",
+      "state": "AK",
+      "dem_votes": 153778,
+      "rep_votes": 189951,
+      "dem_minus_rep_two_party_points": -10.5237,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "AL-01",
+      "state": "AL",
+      "dem_votes": 111504,
+      "rep_votes": 209022,
+      "dem_minus_rep_two_party_points": -30.4244,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "AL-02",
+      "state": "AL",
+      "dem_votes": 139947,
+      "rep_votes": 166756,
+      "dem_minus_rep_two_party_points": -8.741,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "AL-03",
+      "state": "AL",
+      "dem_votes": 93356,
+      "rep_votes": 225352,
+      "dem_minus_rep_two_party_points": -41.416,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "AL-04",
+      "state": "AL",
+      "dem_votes": 60120,
+      "rep_votes": 262489,
+      "dem_minus_rep_two_party_points": -62.7289,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "AL-05",
+      "state": "AL",
+      "dem_votes": 122869,
+      "rep_votes": 216421,
+      "dem_minus_rep_two_party_points": -27.5729,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "AL-06",
+      "state": "AL",
+      "dem_votes": 116892,
+      "rep_votes": 233531,
+      "dem_minus_rep_two_party_points": -33.2852,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "AL-07",
+      "state": "AL",
+      "dem_votes": 204936,
+      "rep_votes": 127599,
+      "dem_minus_rep_two_party_points": 23.2568,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "AR-01",
+      "state": "AR",
+      "dem_votes": 80516,
+      "rep_votes": 197832,
+      "dem_minus_rep_two_party_points": -42.1472,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "AR-02",
+      "state": "AR",
+      "dem_votes": 140254,
+      "rep_votes": 183964,
+      "dem_minus_rep_two_party_points": -13.4817,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "AR-03",
+      "state": "AR",
+      "dem_votes": 110479,
+      "rep_votes": 180794,
+      "dem_minus_rep_two_party_points": -24.1406,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "AR-04",
+      "state": "AR",
+      "dem_votes": 92683,
+      "rep_votes": 198057,
+      "dem_minus_rep_two_party_points": -36.2434,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "AZ-01",
+      "state": "AZ",
+      "dem_votes": 231828,
+      "rep_votes": 225000,
+      "dem_minus_rep_two_party_points": 1.4947,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "AZ-02",
+      "state": "AZ",
+      "dem_votes": 183709,
+      "rep_votes": 215674,
+      "dem_minus_rep_two_party_points": -8.0036,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "AZ-03",
+      "state": "AZ",
+      "dem_votes": 171012,
+      "rep_votes": 54815,
+      "dem_minus_rep_two_party_points": 51.454,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "AZ-04",
+      "state": "AZ",
+      "dem_votes": 201148,
+      "rep_votes": 162949,
+      "dem_minus_rep_two_party_points": 10.4914,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "AZ-05",
+      "state": "AZ",
+      "dem_votes": 171318,
+      "rep_votes": 239637,
+      "dem_minus_rep_two_party_points": -16.6244,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "AZ-06",
+      "state": "AZ",
+      "dem_votes": 214892,
+      "rep_votes": 214586,
+      "dem_minus_rep_two_party_points": 0.0712,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "AZ-07",
+      "state": "AZ",
+      "dem_votes": 194849,
+      "rep_votes": 97589,
+      "dem_minus_rep_two_party_points": 33.2583,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "AZ-08",
+      "state": "AZ",
+      "dem_votes": 171106,
+      "rep_votes": 225569,
+      "dem_minus_rep_two_party_points": -13.7299,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "AZ-09",
+      "state": "AZ",
+      "dem_votes": 132281,
+      "rep_votes": 225867,
+      "dem_minus_rep_two_party_points": -26.1305,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "CA-01",
+      "state": "CA",
+      "dem_votes": 212964,
+      "rep_votes": 147017,
+      "dem_minus_rep_two_party_points": 18.3196,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-02",
+      "state": "CA",
+      "dem_votes": 263170,
+      "rep_votes": 144491,
+      "dem_minus_rep_two_party_points": 29.1122,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-03",
+      "state": "CA",
+      "dem_votes": 217623,
+      "rep_votes": 163088,
+      "dem_minus_rep_two_party_points": 14.3245,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-04",
+      "state": "CA",
+      "dem_votes": 214496,
+      "rep_votes": 138292,
+      "dem_minus_rep_two_party_points": 21.6005,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-05",
+      "state": "CA",
+      "dem_votes": 159852,
+      "rep_votes": 215543,
+      "dem_minus_rep_two_party_points": -14.8353,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-06",
+      "state": "CA",
+      "dem_votes": 196529,
+      "rep_votes": 151560,
+      "dem_minus_rep_two_party_points": 12.9188,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-07",
+      "state": "CA",
+      "dem_votes": 220144,
+      "rep_votes": 146476,
+      "dem_minus_rep_two_party_points": 20.0938,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-08",
+      "state": "CA",
+      "dem_votes": 241492,
+      "rep_votes": 94851,
+      "dem_minus_rep_two_party_points": 43.5986,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-09",
+      "state": "CA",
+      "dem_votes": 183175,
+      "rep_votes": 105771,
+      "dem_minus_rep_two_party_points": 26.7884,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-10",
+      "state": "CA",
+      "dem_votes": 282092,
+      "rep_votes": 122486,
+      "dem_minus_rep_two_party_points": 39.45,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-11",
+      "state": "CA",
+      "dem_votes": 339716,
+      "rep_votes": 46188,
+      "dem_minus_rep_two_party_points": 76.0624,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-12",
+      "state": "CA",
+      "dem_votes": 328667,
+      "rep_votes": 31678,
+      "dem_minus_rep_two_party_points": 82.418,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-13",
+      "state": "CA",
+      "dem_votes": 128684,
+      "rep_votes": 89225,
+      "dem_minus_rep_two_party_points": 18.108,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-14",
+      "state": "CA",
+      "dem_votes": 234592,
+      "rep_votes": 85794,
+      "dem_minus_rep_two_party_points": 46.4434,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-15",
+      "state": "CA",
+      "dem_votes": 272983,
+      "rep_votes": 71576,
+      "dem_minus_rep_two_party_points": 58.4536,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-16",
+      "state": "CA",
+      "dem_votes": 284912,
+      "rep_votes": 85226,
+      "dem_minus_rep_two_party_points": 53.9491,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-17",
+      "state": "CA",
+      "dem_votes": 221507,
+      "rep_votes": 75429,
+      "dem_minus_rep_two_party_points": 49.1951,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-18",
+      "state": "CA",
+      "dem_votes": 187853,
+      "rep_votes": 73682,
+      "dem_minus_rep_two_party_points": 43.6542,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-19",
+      "state": "CA",
+      "dem_votes": 283131,
+      "rep_votes": 119846,
+      "dem_minus_rep_two_party_points": 40.5197,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-20",
+      "state": "CA",
+      "dem_votes": 118319,
+      "rep_votes": 204971,
+      "dem_minus_rep_two_party_points": -26.8032,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-21",
+      "state": "CA",
+      "dem_votes": 137371,
+      "rep_votes": 88586,
+      "dem_minus_rep_two_party_points": 21.5904,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-22",
+      "state": "CA",
+      "dem_votes": 108930,
+      "rep_votes": 76598,
+      "dem_minus_rep_two_party_points": 17.427,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-23",
+      "state": "CA",
+      "dem_votes": 128992,
+      "rep_votes": 165463,
+      "dem_minus_rep_two_party_points": -12.3859,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-24",
+      "state": "CA",
+      "dem_votes": 239698,
+      "rep_votes": 129955,
+      "dem_minus_rep_two_party_points": 29.6881,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-25",
+      "state": "CA",
+      "dem_votes": 162219,
+      "rep_votes": 115733,
+      "dem_minus_rep_two_party_points": 16.7245,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-26",
+      "state": "CA",
+      "dem_votes": 227110,
+      "rep_votes": 142642,
+      "dem_minus_rep_two_party_points": 22.8445,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-27",
+      "state": "CA",
+      "dem_votes": 193710,
+      "rep_votes": 128922,
+      "dem_minus_rep_two_party_points": 20.0811,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-28",
+      "state": "CA",
+      "dem_votes": 240596,
+      "rep_votes": 120216,
+      "dem_minus_rep_two_party_points": 33.3636,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-29",
+      "state": "CA",
+      "dem_votes": 205835,
+      "rep_votes": 66753,
+      "dem_minus_rep_two_party_points": 51.0228,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-30",
+      "state": "CA",
+      "dem_votes": 273452,
+      "rep_votes": 101697,
+      "dem_minus_rep_two_party_points": 45.7831,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-31",
+      "state": "CA",
+      "dem_votes": 203333,
+      "rep_votes": 120410,
+      "dem_minus_rep_two_party_points": 25.6138,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-32",
+      "state": "CA",
+      "dem_votes": 261121,
+      "rep_votes": 127773,
+      "dem_minus_rep_two_party_points": 34.289,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-33",
+      "state": "CA",
+      "dem_votes": 170325,
+      "rep_votes": 99061,
+      "dem_minus_rep_two_party_points": 26.4542,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-34",
+      "state": "CA",
+      "dem_votes": 205047,
+      "rep_votes": 42312,
+      "dem_minus_rep_two_party_points": 65.789,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-35",
+      "state": "CA",
+      "dem_votes": 176058,
+      "rep_votes": 107853,
+      "dem_minus_rep_two_party_points": 24.0234,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-36",
+      "state": "CA",
+      "dem_votes": 299632,
+      "rep_votes": 113497,
+      "dem_minus_rep_two_party_points": 45.0549,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-37",
+      "state": "CA",
+      "dem_votes": 239694,
+      "rep_votes": 34727,
+      "dem_minus_rep_two_party_points": 74.6907,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-38",
+      "state": "CA",
+      "dem_votes": 192239,
+      "rep_votes": 106965,
+      "dem_minus_rep_two_party_points": 28.5003,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-39",
+      "state": "CA",
+      "dem_votes": 164929,
+      "rep_votes": 95580,
+      "dem_minus_rep_two_party_points": 26.6206,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-40",
+      "state": "CA",
+      "dem_votes": 179744,
+      "rep_votes": 210083,
+      "dem_minus_rep_two_party_points": -7.7827,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-41",
+      "state": "CA",
+      "dem_votes": 215396,
+      "rep_votes": 125512,
+      "dem_minus_rep_two_party_points": 26.3661,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-42",
+      "state": "CA",
+      "dem_votes": 227988,
+      "rep_votes": 151313,
+      "dem_minus_rep_two_party_points": 20.2148,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-43",
+      "state": "CA",
+      "dem_votes": 218705,
+      "rep_votes": 46038,
+      "dem_minus_rep_two_party_points": 65.2206,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-44",
+      "state": "CA",
+      "dem_votes": 197434,
+      "rep_votes": 58412,
+      "dem_minus_rep_two_party_points": 54.3382,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-45",
+      "state": "CA",
+      "dem_votes": 182099,
+      "rep_votes": 148046,
+      "dem_minus_rep_two_party_points": 10.3146,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-46",
+      "state": "CA",
+      "dem_votes": 164307,
+      "rep_votes": 90684,
+      "dem_minus_rep_two_party_points": 28.8728,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-47",
+      "state": "CA",
+      "dem_votes": 219008,
+      "rep_votes": 157105,
+      "dem_minus_rep_two_party_points": 16.4586,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-48",
+      "state": "CA",
+      "dem_votes": 179202,
+      "rep_votes": 154412,
+      "dem_minus_rep_two_party_points": 7.4307,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-49",
+      "state": "CA",
+      "dem_votes": 229526,
+      "rep_votes": 167891,
+      "dem_minus_rep_two_party_points": 15.5089,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-50",
+      "state": "CA",
+      "dem_votes": 239765,
+      "rep_votes": 154464,
+      "dem_minus_rep_two_party_points": 21.6374,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-51",
+      "state": "CA",
+      "dem_votes": 233972,
+      "rep_votes": 145350,
+      "dem_minus_rep_two_party_points": 23.3633,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CA-52",
+      "state": "CA",
+      "dem_votes": 201155,
+      "rep_votes": 99185,
+      "dem_minus_rep_two_party_points": 33.9515,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "CO-01",
+      "state": "CO",
+      "dem_votes": 315919,
+      "rep_votes": 72380,
+      "dem_minus_rep_two_party_points": 62.7195,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "CO-02",
+      "state": "CO",
+      "dem_votes": 306343,
+      "rep_votes": 128381,
+      "dem_minus_rep_two_party_points": 40.9368,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "CO-03",
+      "state": "CO",
+      "dem_votes": 184177,
+      "rep_votes": 218192,
+      "dem_minus_rep_two_party_points": -8.4537,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "CO-04",
+      "state": "CO",
+      "dem_votes": 174566,
+      "rep_votes": 256598,
+      "dem_minus_rep_two_party_points": -19.0257,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "CO-05",
+      "state": "CO",
+      "dem_votes": 160890,
+      "rep_votes": 198634,
+      "dem_minus_rep_two_party_points": -10.4983,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "CO-06",
+      "state": "CO",
+      "dem_votes": 232523,
+      "rep_votes": 141218,
+      "dem_minus_rep_two_party_points": 24.43,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "CO-07",
+      "state": "CO",
+      "dem_votes": 256137,
+      "rep_votes": 190958,
+      "dem_minus_rep_two_party_points": 14.5783,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "CO-08",
+      "state": "CO",
+      "dem_votes": 173797,
+      "rep_votes": 158246,
+      "dem_minus_rep_two_party_points": 4.6834,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "CT-01",
+      "state": "CT",
+      "dem_votes": 227813,
+      "rep_votes": 126734,
+      "dem_minus_rep_two_party_points": 28.5093,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "CT-02",
+      "state": "CT",
+      "dem_votes": 214323,
+      "rep_votes": 169390,
+      "dem_minus_rep_two_party_points": 11.7101,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "CT-03",
+      "state": "CT",
+      "dem_votes": 212970,
+      "rep_votes": 142041,
+      "dem_minus_rep_two_party_points": 19.9794,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "CT-04",
+      "state": "CT",
+      "dem_votes": 230421,
+      "rep_votes": 119649,
+      "dem_minus_rep_two_party_points": 31.6428,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "CT-05",
+      "state": "CT",
+      "dem_votes": 195183,
+      "rep_votes": 156794,
+      "dem_minus_rep_two_party_points": 10.9067,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "DE-01",
+      "state": "DE",
+      "dem_votes": 296268,
+      "rep_votes": 200603,
+      "dem_minus_rep_two_party_points": 19.2535,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "FL-01",
+      "state": "FL",
+      "dem_votes": 139203,
+      "rep_votes": 275564,
+      "dem_minus_rep_two_party_points": -32.8765,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-02",
+      "state": "FL",
+      "dem_votes": 180593,
+      "rep_votes": 225707,
+      "dem_minus_rep_two_party_points": -11.1036,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-03",
+      "state": "FL",
+      "dem_votes": 166674,
+      "rep_votes": 222024,
+      "dem_minus_rep_two_party_points": -14.2398,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-04",
+      "state": "FL",
+      "dem_votes": 184068,
+      "rep_votes": 210863,
+      "dem_minus_rep_two_party_points": -6.7847,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-05",
+      "state": "FL",
+      "dem_votes": 176973,
+      "rep_votes": 244305,
+      "dem_minus_rep_two_party_points": -15.9828,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-06",
+      "state": "FL",
+      "dem_votes": 161022,
+      "rep_votes": 262093,
+      "dem_minus_rep_two_party_points": -23.8874,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-07",
+      "state": "FL",
+      "dem_votes": 202046,
+      "rep_votes": 226041,
+      "dem_minus_rep_two_party_points": -5.6052,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-08",
+      "state": "FL",
+      "dem_votes": 190788,
+      "rep_votes": 237424,
+      "dem_minus_rep_two_party_points": -10.8909,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-09",
+      "state": "FL",
+      "dem_votes": 171889,
+      "rep_votes": 197172,
+      "dem_minus_rep_two_party_points": -6.8506,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-10",
+      "state": "FL",
+      "dem_votes": 220525,
+      "rep_votes": 110247,
+      "dem_minus_rep_two_party_points": 33.3396,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-11",
+      "state": "FL",
+      "dem_votes": 189517,
+      "rep_votes": 230117,
+      "dem_minus_rep_two_party_points": -9.6751,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-12",
+      "state": "FL",
+      "dem_votes": 185004,
+      "rep_votes": 208306,
+      "dem_minus_rep_two_party_points": -5.9246,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-13",
+      "state": "FL",
+      "dem_votes": 199274,
+      "rep_votes": 233340,
+      "dem_minus_rep_two_party_points": -7.8745,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-14",
+      "state": "FL",
+      "dem_votes": 189458,
+      "rep_votes": 200699,
+      "dem_minus_rep_two_party_points": -2.8811,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-15",
+      "state": "FL",
+      "dem_votes": 173755,
+      "rep_votes": 215554,
+      "dem_minus_rep_two_party_points": -10.7367,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-16",
+      "state": "FL",
+      "dem_votes": 199416,
+      "rep_votes": 222824,
+      "dem_minus_rep_two_party_points": -5.5438,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-17",
+      "state": "FL",
+      "dem_votes": 189104,
+      "rep_votes": 250655,
+      "dem_minus_rep_two_party_points": -13.9965,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-18",
+      "state": "FL",
+      "dem_votes": 162062,
+      "rep_votes": 199004,
+      "dem_minus_rep_two_party_points": -10.2314,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-19",
+      "state": "FL",
+      "dem_votes": 165037,
+      "rep_votes": 259154,
+      "dem_minus_rep_two_party_points": -22.1874,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-20",
+      "state": "FL",
+      "dem_votes": 265212,
+      "rep_votes": 91710,
+      "dem_minus_rep_two_party_points": 48.6106,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-21",
+      "state": "FL",
+      "dem_votes": 199523,
+      "rep_votes": 238441,
+      "dem_minus_rep_two_party_points": -8.8861,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-22",
+      "state": "FL",
+      "dem_votes": 198114,
+      "rep_votes": 186929,
+      "dem_minus_rep_two_party_points": 2.9049,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-23",
+      "state": "FL",
+      "dem_votes": 226632,
+      "rep_votes": 130749,
+      "dem_minus_rep_two_party_points": 26.8294,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-24",
+      "state": "FL",
+      "dem_votes": 246096,
+      "rep_votes": 67594,
+      "dem_minus_rep_two_party_points": 56.9039,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-25",
+      "state": "FL",
+      "dem_votes": 209005,
+      "rep_votes": 188734,
+      "dem_minus_rep_two_party_points": 5.0966,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-26",
+      "state": "FL",
+      "dem_votes": 169398,
+      "rep_votes": 173413,
+      "dem_minus_rep_two_party_points": -1.1712,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-27",
+      "state": "FL",
+      "dem_votes": 177712,
+      "rep_votes": 178550,
+      "dem_minus_rep_two_party_points": -0.2352,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "FL-28",
+      "state": "FL",
+      "dem_votes": 158945,
+      "rep_votes": 181518,
+      "dem_minus_rep_two_party_points": -6.6301,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "GA-01",
+      "state": "GA",
+      "dem_votes": 144348,
+      "rep_votes": 189659,
+      "dem_minus_rep_two_party_points": -13.5659,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "GA-02",
+      "state": "GA",
+      "dem_votes": 173868,
+      "rep_votes": 140913,
+      "dem_minus_rep_two_party_points": 10.4692,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "GA-03",
+      "state": "GA",
+      "dem_votes": 132203,
+      "rep_votes": 248167,
+      "dem_minus_rep_two_party_points": -30.4872,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "GA-04",
+      "state": "GA",
+      "dem_votes": 248553,
+      "rep_votes": 65339,
+      "dem_minus_rep_two_party_points": 58.3685,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "GA-05",
+      "state": "GA",
+      "dem_votes": 298153,
+      "rep_votes": 45247,
+      "dem_minus_rep_two_party_points": 73.6476,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "GA-06",
+      "state": "GA",
+      "dem_votes": 272522,
+      "rep_votes": 90694,
+      "dem_minus_rep_two_party_points": 50.0606,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "GA-07",
+      "state": "GA",
+      "dem_votes": 161754,
+      "rep_votes": 239986,
+      "dem_minus_rep_two_party_points": -19.4733,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "GA-08",
+      "state": "GA",
+      "dem_votes": 117855,
+      "rep_votes": 209131,
+      "dem_minus_rep_two_party_points": -27.9143,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "GA-09",
+      "state": "GA",
+      "dem_votes": 121435,
+      "rep_votes": 239400,
+      "dem_minus_rep_two_party_points": -32.6922,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "GA-10",
+      "state": "GA",
+      "dem_votes": 145845,
+      "rep_votes": 225968,
+      "dem_minus_rep_two_party_points": -21.5493,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "GA-11",
+      "state": "GA",
+      "dem_votes": 149122,
+      "rep_votes": 234735,
+      "dem_minus_rep_two_party_points": -22.3034,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "GA-12",
+      "state": "GA",
+      "dem_votes": 151132,
+      "rep_votes": 185716,
+      "dem_minus_rep_two_party_points": -10.2669,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "GA-13",
+      "state": "GA",
+      "dem_votes": 248790,
+      "rep_votes": 104145,
+      "dem_minus_rep_two_party_points": 40.9835,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "GA-14",
+      "state": "GA",
+      "dem_votes": 108927,
+      "rep_votes": 242737,
+      "dem_minus_rep_two_party_points": -38.0505,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "HI-01",
+      "state": "HI",
+      "dem_votes": 178661,
+      "rep_votes": 96350,
+      "dem_minus_rep_two_party_points": 29.9301,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "HI-02",
+      "state": "HI",
+      "dem_votes": 187469,
+      "rep_votes": 100514,
+      "dem_minus_rep_two_party_points": 30.1945,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IA-01",
+      "state": "IA",
+      "dem_votes": 203400,
+      "rep_votes": 215742,
+      "dem_minus_rep_two_party_points": -2.9446,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IA-02",
+      "state": "IA",
+      "dem_votes": 203246,
+      "rep_votes": 222312,
+      "dem_minus_rep_two_party_points": -4.4802,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IA-03",
+      "state": "IA",
+      "dem_votes": 205591,
+      "rep_votes": 207043,
+      "dem_minus_rep_two_party_points": -0.3519,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IA-04",
+      "state": "IA",
+      "dem_votes": 146824,
+      "rep_votes": 252575,
+      "dem_minus_rep_two_party_points": -26.4775,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "ID-01",
+      "state": "ID",
+      "dem_votes": 132143,
+      "rep_votes": 302954,
+      "dem_minus_rep_two_party_points": -39.2581,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "ID-02",
+      "state": "ID",
+      "dem_votes": 154878,
+      "rep_votes": 251165,
+      "dem_minus_rep_two_party_points": -23.7135,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IL-01",
+      "state": "IL",
+      "dem_votes": 260608,
+      "rep_votes": 103962,
+      "dem_minus_rep_two_party_points": 42.9673,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IL-02",
+      "state": "IL",
+      "dem_votes": 231875,
+      "rep_votes": 98019,
+      "dem_minus_rep_two_party_points": 40.5755,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IL-03",
+      "state": "IL",
+      "dem_votes": 207606,
+      "rep_votes": 84237,
+      "dem_minus_rep_two_party_points": 42.2724,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IL-04",
+      "state": "IL",
+      "dem_votes": 175347,
+      "rep_votes": 62773,
+      "dem_minus_rep_two_party_points": 47.2762,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IL-05",
+      "state": "IL",
+      "dem_votes": 277279,
+      "rep_votes": 117413,
+      "dem_minus_rep_two_party_points": 40.504,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IL-06",
+      "state": "IL",
+      "dem_votes": 216291,
+      "rep_votes": 173135,
+      "dem_minus_rep_two_party_points": 11.082,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IL-07",
+      "state": "IL",
+      "dem_votes": 274990,
+      "rep_votes": 41089,
+      "dem_minus_rep_two_party_points": 74.0008,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IL-08",
+      "state": "IL",
+      "dem_votes": 189421,
+      "rep_votes": 138008,
+      "dem_minus_rep_two_party_points": 15.702,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IL-09",
+      "state": "IL",
+      "dem_votes": 265636,
+      "rep_votes": 108344,
+      "dem_minus_rep_two_party_points": 42.0589,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IL-10",
+      "state": "IL",
+      "dem_votes": 220431,
+      "rep_votes": 128452,
+      "dem_minus_rep_two_party_points": 26.3639,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IL-11",
+      "state": "IL",
+      "dem_votes": 215293,
+      "rep_votes": 157092,
+      "dem_minus_rep_two_party_points": 15.6293,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IL-12",
+      "state": "IL",
+      "dem_votes": 106247,
+      "rep_votes": 270231,
+      "dem_minus_rep_two_party_points": -43.5574,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IL-13",
+      "state": "IL",
+      "dem_votes": 195381,
+      "rep_votes": 155133,
+      "dem_minus_rep_two_party_points": 11.4826,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IL-14",
+      "state": "IL",
+      "dem_votes": 191041,
+      "rep_votes": 151038,
+      "dem_minus_rep_two_party_points": 11.6941,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IL-15",
+      "state": "IL",
+      "dem_votes": 117022,
+      "rep_votes": 270205,
+      "dem_minus_rep_two_party_points": -39.559,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IL-16",
+      "state": "IL",
+      "dem_votes": 152607,
+      "rep_votes": 238749,
+      "dem_minus_rep_two_party_points": -22.0112,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IL-17",
+      "state": "IL",
+      "dem_votes": 174840,
+      "rep_votes": 149011,
+      "dem_minus_rep_two_party_points": 7.9756,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IN-01",
+      "state": "IN",
+      "dem_votes": 181830,
+      "rep_votes": 153362,
+      "dem_minus_rep_two_party_points": 8.493,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IN-02",
+      "state": "IN",
+      "dem_votes": 117691,
+      "rep_votes": 187982,
+      "dem_minus_rep_two_party_points": -22.9955,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IN-03",
+      "state": "IN",
+      "dem_votes": 111653,
+      "rep_votes": 209896,
+      "dem_minus_rep_two_party_points": -30.553,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IN-04",
+      "state": "IN",
+      "dem_votes": 118416,
+      "rep_votes": 219016,
+      "dem_minus_rep_two_party_points": -29.8134,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IN-05",
+      "state": "IN",
+      "dem_votes": 151395,
+      "rep_votes": 210211,
+      "dem_minus_rep_two_party_points": -16.2652,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IN-06",
+      "state": "IN",
+      "dem_votes": 109388,
+      "rep_votes": 215299,
+      "dem_minus_rep_two_party_points": -32.6194,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IN-07",
+      "state": "IN",
+      "dem_votes": 213497,
+      "rep_votes": 84812,
+      "dem_minus_rep_two_party_points": 43.1382,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IN-08",
+      "state": "IN",
+      "dem_votes": 112349,
+      "rep_votes": 225278,
+      "dem_minus_rep_two_party_points": -33.4479,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "IN-09",
+      "state": "IN",
+      "dem_votes": 126279,
+      "rep_votes": 224001,
+      "dem_minus_rep_two_party_points": -27.8983,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "KS-01",
+      "state": "KS",
+      "dem_votes": 110565,
+      "rep_votes": 206461,
+      "dem_minus_rep_two_party_points": -30.2486,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "KS-02",
+      "state": "KS",
+      "dem_votes": 130814,
+      "rep_votes": 183254,
+      "dem_minus_rep_two_party_points": -16.697,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "KS-03",
+      "state": "KS",
+      "dem_votes": 205619,
+      "rep_votes": 187733,
+      "dem_minus_rep_two_party_points": 4.5471,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "KS-04",
+      "state": "KS",
+      "dem_votes": 123325,
+      "rep_votes": 193958,
+      "dem_minus_rep_two_party_points": -22.2618,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "KY-01",
+      "state": "KY",
+      "dem_votes": 98067,
+      "rep_votes": 248605,
+      "dem_minus_rep_two_party_points": -43.4238,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "KY-02",
+      "state": "KY",
+      "dem_votes": 108585,
+      "rep_votes": 237267,
+      "dem_minus_rep_two_party_points": -37.2072,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "KY-03",
+      "state": "KY",
+      "dem_votes": 220409,
+      "rep_votes": 138631,
+      "dem_minus_rep_two_party_points": 22.7768,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "KY-04",
+      "state": "KY",
+      "dem_votes": 122873,
+      "rep_votes": 245599,
+      "dem_minus_rep_two_party_points": -33.3067,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "KY-05",
+      "state": "KY",
+      "dem_votes": 64518,
+      "rep_votes": 258770,
+      "dem_minus_rep_two_party_points": -60.0864,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "KY-06",
+      "state": "KY",
+      "dem_votes": 158022,
+      "rep_votes": 197774,
+      "dem_minus_rep_two_party_points": -11.1727,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "LA-01",
+      "state": "LA",
+      "dem_votes": 111184,
+      "rep_votes": 258965,
+      "dem_minus_rep_two_party_points": -39.9247,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "LA-02",
+      "state": "LA",
+      "dem_votes": 266954,
+      "rep_votes": 81693,
+      "dem_minus_rep_two_party_points": 53.1371,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "LA-03",
+      "state": "LA",
+      "dem_votes": 116088,
+      "rep_votes": 230069,
+      "dem_minus_rep_two_party_points": -32.9275,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "LA-04",
+      "state": "LA",
+      "dem_votes": 119767,
+      "rep_votes": 224410,
+      "dem_minus_rep_two_party_points": -30.4038,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "LA-05",
+      "state": "LA",
+      "dem_votes": 121180,
+      "rep_votes": 222382,
+      "dem_minus_rep_two_party_points": -29.4567,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "LA-06",
+      "state": "LA",
+      "dem_votes": 120861,
+      "rep_votes": 238257,
+      "dem_minus_rep_two_party_points": -32.6901,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "MA-01",
+      "state": "MA",
+      "dem_votes": 235201,
+      "rep_votes": 150047,
+      "dem_minus_rep_two_party_points": 22.1037,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MA-02",
+      "state": "MA",
+      "dem_votes": 254519,
+      "rep_votes": 132540,
+      "dem_minus_rep_two_party_points": 31.5143,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MA-03",
+      "state": "MA",
+      "dem_votes": 233535,
+      "rep_votes": 131371,
+      "dem_minus_rep_two_party_points": 27.9973,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MA-04",
+      "state": "MA",
+      "dem_votes": 263665,
+      "rep_votes": 145116,
+      "dem_minus_rep_two_party_points": 29.0006,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MA-05",
+      "state": "MA",
+      "dem_votes": 298874,
+      "rep_votes": 94414,
+      "dem_minus_rep_two_party_points": 51.9873,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MA-06",
+      "state": "MA",
+      "dem_votes": 283227,
+      "rep_votes": 158964,
+      "dem_minus_rep_two_party_points": 28.1017,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MA-07",
+      "state": "MA",
+      "dem_votes": 269379,
+      "rep_votes": 41247,
+      "dem_minus_rep_two_party_points": 73.4427,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MA-08",
+      "state": "MA",
+      "dem_votes": 277345,
+      "rep_votes": 130314,
+      "dem_minus_rep_two_party_points": 36.0672,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MA-09",
+      "state": "MA",
+      "dem_votes": 266298,
+      "rep_votes": 183106,
+      "dem_minus_rep_two_party_points": 18.5116,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MD-01",
+      "state": "MD",
+      "dem_votes": 171274,
+      "rep_votes": 230936,
+      "dem_minus_rep_two_party_points": -14.8335,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MD-02",
+      "state": "MD",
+      "dem_votes": 232384,
+      "rep_votes": 150935,
+      "dem_minus_rep_two_party_points": 21.2484,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MD-03",
+      "state": "MD",
+      "dem_votes": 255269,
+      "rep_votes": 149735,
+      "dem_minus_rep_two_party_points": 26.0575,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MD-04",
+      "state": "MD",
+      "dem_votes": 271634,
+      "rep_votes": 26252,
+      "dem_minus_rep_two_party_points": 82.3745,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MD-05",
+      "state": "MD",
+      "dem_votes": 280869,
+      "rep_votes": 128856,
+      "dem_minus_rep_two_party_points": 37.1012,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MD-06",
+      "state": "MD",
+      "dem_votes": 200390,
+      "rep_votes": 163854,
+      "dem_minus_rep_two_party_points": 10.0306,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MD-07",
+      "state": "MD",
+      "dem_votes": 251744,
+      "rep_votes": 54311,
+      "dem_minus_rep_two_party_points": 64.509,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MD-08",
+      "state": "MD",
+      "dem_votes": 321459,
+      "rep_votes": 71532,
+      "dem_minus_rep_two_party_points": 63.5961,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "ME-01",
+      "state": "ME",
+      "dem_votes": 258033,
+      "rep_votes": 159936,
+      "dem_minus_rep_two_party_points": 23.4699,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "ME-02",
+      "state": "ME",
+      "dem_votes": 177037,
+      "rep_votes": 200831,
+      "dem_minus_rep_two_party_points": -6.2969,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MI-01",
+      "state": "MI",
+      "dem_votes": 182980,
+      "rep_votes": 274976,
+      "dem_minus_rep_two_party_points": -20.0884,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MI-02",
+      "state": "MI",
+      "dem_votes": 145232,
+      "rep_votes": 262161,
+      "dem_minus_rep_two_party_points": -28.7018,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MI-03",
+      "state": "MI",
+      "dem_votes": 222082,
+      "rep_votes": 186676,
+      "dem_minus_rep_two_party_points": 8.6618,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MI-04",
+      "state": "MI",
+      "dem_votes": 196710,
+      "rep_votes": 213174,
+      "dem_minus_rep_two_party_points": -4.0167,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MI-05",
+      "state": "MI",
+      "dem_votes": 150373,
+      "rep_votes": 248444,
+      "dem_minus_rep_two_party_points": -24.5905,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MI-06",
+      "state": "MI",
+      "dem_votes": 286129,
+      "rep_votes": 164372,
+      "dem_minus_rep_two_party_points": 27.027,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MI-07",
+      "state": "MI",
+      "dem_votes": 221984,
+      "rep_votes": 217748,
+      "dem_minus_rep_two_party_points": 0.9633,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MI-08",
+      "state": "MI",
+      "dem_votes": 215709,
+      "rep_votes": 206999,
+      "dem_minus_rep_two_party_points": 2.0605,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MI-09",
+      "state": "MI",
+      "dem_votes": 160625,
+      "rep_votes": 297506,
+      "dem_minus_rep_two_party_points": -29.8781,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MI-10",
+      "state": "MI",
+      "dem_votes": 209969,
+      "rep_votes": 214177,
+      "dem_minus_rep_two_party_points": -0.9921,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MI-11",
+      "state": "MI",
+      "dem_votes": 273913,
+      "rep_votes": 182216,
+      "dem_minus_rep_two_party_points": 20.1033,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MI-12",
+      "state": "MI",
+      "dem_votes": 285421,
+      "rep_votes": 97504,
+      "dem_minus_rep_two_party_points": 49.0741,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MI-13",
+      "state": "MI",
+      "dem_votes": 252919,
+      "rep_votes": 83911,
+      "dem_minus_rep_two_party_points": 50.1761,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MN-01",
+      "state": "MN",
+      "dem_votes": 172290,
+      "rep_votes": 208063,
+      "dem_minus_rep_two_party_points": -9.4052,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MN-02",
+      "state": "MN",
+      "dem_votes": 221065,
+      "rep_votes": 190867,
+      "dem_minus_rep_two_party_points": 7.3308,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MN-03",
+      "state": "MN",
+      "dem_votes": 258519,
+      "rep_votes": 167389,
+      "dem_minus_rep_two_party_points": 21.3966,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MN-04",
+      "state": "MN",
+      "dem_votes": 268899,
+      "rep_votes": 119665,
+      "dem_minus_rep_two_party_points": 38.4065,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MN-05",
+      "state": "MN",
+      "dem_votes": 319421,
+      "rep_votes": 69139,
+      "dem_minus_rep_two_party_points": 64.4127,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MN-06",
+      "state": "MN",
+      "dem_votes": 165870,
+      "rep_votes": 238883,
+      "dem_minus_rep_two_party_points": -18.0389,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MN-07",
+      "state": "MN",
+      "dem_votes": 128550,
+      "rep_votes": 260006,
+      "dem_minus_rep_two_party_points": -33.8319,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MN-08",
+      "state": "MN",
+      "dem_votes": 182463,
+      "rep_votes": 230053,
+      "dem_minus_rep_two_party_points": -11.5365,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MO-01",
+      "state": "MO",
+      "dem_votes": 278286,
+      "rep_votes": 71041,
+      "dem_minus_rep_two_party_points": 59.3269,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MO-02",
+      "state": "MO",
+      "dem_votes": 198772,
+      "rep_votes": 232826,
+      "dem_minus_rep_two_party_points": -7.8902,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MO-03",
+      "state": "MO",
+      "dem_votes": 143368,
+      "rep_votes": 247447,
+      "dem_minus_rep_two_party_points": -26.6313,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MO-04",
+      "state": "MO",
+      "dem_votes": 109083,
+      "rep_votes": 257010,
+      "dem_minus_rep_two_party_points": -40.4069,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MO-05",
+      "state": "MO",
+      "dem_votes": 217868,
+      "rep_votes": 125645,
+      "dem_minus_rep_two_party_points": 26.847,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MO-06",
+      "state": "MO",
+      "dem_votes": 115550,
+      "rep_votes": 255750,
+      "dem_minus_rep_two_party_points": -37.7592,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MO-07",
+      "state": "MO",
+      "dem_votes": 103422,
+      "rep_votes": 254241,
+      "dem_minus_rep_two_party_points": -42.1679,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MO-08",
+      "state": "MO",
+      "dem_votes": 86665,
+      "rep_votes": 274776,
+      "dem_minus_rep_two_party_points": -52.0447,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MS-01",
+      "state": "MS",
+      "dem_votes": 111535,
+      "rep_votes": 217292,
+      "dem_minus_rep_two_party_points": -32.1619,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MS-02",
+      "state": "MS",
+      "dem_votes": 208181,
+      "rep_votes": 121247,
+      "dem_minus_rep_two_party_points": 26.3894,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MS-03",
+      "state": "MS",
+      "dem_votes": 128372,
+      "rep_votes": 212292,
+      "dem_minus_rep_two_party_points": -24.6342,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MS-04",
+      "state": "MS",
+      "dem_votes": 91310,
+      "rep_votes": 205933,
+      "dem_minus_rep_two_party_points": -38.5621,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MT-01",
+      "state": "MT",
+      "dem_votes": 143417,
+      "rep_votes": 165186,
+      "dem_minus_rep_two_party_points": -7.054,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "MT-02",
+      "state": "MT",
+      "dem_votes": 101369,
+      "rep_votes": 178416,
+      "dem_minus_rep_two_party_points": -27.5379,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NC-01",
+      "state": "NC",
+      "dem_votes": 190436,
+      "rep_votes": 218891,
+      "dem_minus_rep_two_party_points": -6.9517,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NC-02",
+      "state": "NC",
+      "dem_votes": 274360,
+      "rep_votes": 129367,
+      "dem_minus_rep_two_party_points": 35.9136,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NC-03",
+      "state": "NC",
+      "dem_votes": 153774,
+      "rep_votes": 182097,
+      "dem_minus_rep_two_party_points": -8.4327,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NC-04",
+      "state": "NC",
+      "dem_votes": 303334,
+      "rep_votes": 109939,
+      "dem_minus_rep_two_party_points": 46.7959,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NC-05",
+      "state": "NC",
+      "dem_votes": 167125,
+      "rep_votes": 228735,
+      "dem_minus_rep_two_party_points": -15.5636,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NC-06",
+      "state": "NC",
+      "dem_votes": 157036,
+      "rep_votes": 218933,
+      "dem_minus_rep_two_party_points": -16.4633,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NC-07",
+      "state": "NC",
+      "dem_votes": 182076,
+      "rep_votes": 227833,
+      "dem_minus_rep_two_party_points": -11.1627,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NC-08",
+      "state": "NC",
+      "dem_votes": 160781,
+      "rep_votes": 231187,
+      "dem_minus_rep_two_party_points": -17.9622,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NC-09",
+      "state": "NC",
+      "dem_votes": 157604,
+      "rep_votes": 209219,
+      "dem_minus_rep_two_party_points": -14.0708,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NC-10",
+      "state": "NC",
+      "dem_votes": 164108,
+      "rep_votes": 227817,
+      "dem_minus_rep_two_party_points": -16.2554,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NC-11",
+      "state": "NC",
+      "dem_votes": 189678,
+      "rep_votes": 237270,
+      "dem_minus_rep_two_party_points": -11.147,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NC-12",
+      "state": "NC",
+      "dem_votes": 262589,
+      "rep_votes": 85342,
+      "dem_minus_rep_two_party_points": 50.9431,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NC-13",
+      "state": "NC",
+      "dem_votes": 158090,
+      "rep_votes": 225136,
+      "dem_minus_rep_two_party_points": -17.4952,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NC-14",
+      "state": "NC",
+      "dem_votes": 163301,
+      "rep_votes": 227009,
+      "dem_minus_rep_two_party_points": -16.3224,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "ND-01",
+      "state": "ND",
+      "dem_votes": 115042,
+      "rep_votes": 235751,
+      "dem_minus_rep_two_party_points": -34.4103,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NE-01",
+      "state": "NE",
+      "dem_votes": 136856,
+      "rep_votes": 171834,
+      "dem_minus_rep_two_party_points": -11.3311,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NE-02",
+      "state": "NE",
+      "dem_votes": 163346,
+      "rep_votes": 143563,
+      "dem_minus_rep_two_party_points": 6.4459,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NE-03",
+      "state": "NE",
+      "dem_votes": 74381,
+      "rep_votes": 241449,
+      "dem_minus_rep_two_party_points": -52.8981,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NH-01",
+      "state": "NH",
+      "dem_votes": 210310,
+      "rep_votes": 186410,
+      "dem_minus_rep_two_party_points": 6.0244,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NH-02",
+      "state": "NH",
+      "dem_votes": 214627,
+      "rep_votes": 179250,
+      "dem_minus_rep_two_party_points": 8.9817,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NJ-01",
+      "state": "NJ",
+      "dem_votes": 247673,
+      "rep_votes": 149308,
+      "dem_minus_rep_two_party_points": 24.7783,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NJ-02",
+      "state": "NJ",
+      "dem_votes": 192116,
+      "rep_votes": 212723,
+      "dem_minus_rep_two_party_points": -5.0902,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NJ-03",
+      "state": "NJ",
+      "dem_votes": 248448,
+      "rep_votes": 186277,
+      "dem_minus_rep_two_party_points": 14.3012,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NJ-04",
+      "state": "NJ",
+      "dem_votes": 163477,
+      "rep_votes": 259866,
+      "dem_minus_rep_two_party_points": -22.7685,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NJ-05",
+      "state": "NJ",
+      "dem_votes": 240337,
+      "rep_votes": 186713,
+      "dem_minus_rep_two_party_points": 12.5568,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NJ-06",
+      "state": "NJ",
+      "dem_votes": 197763,
+      "rep_votes": 131984,
+      "dem_minus_rep_two_party_points": 19.9483,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NJ-07",
+      "state": "NJ",
+      "dem_votes": 235720,
+      "rep_votes": 218813,
+      "dem_minus_rep_two_party_points": 3.7196,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NJ-08",
+      "state": "NJ",
+      "dem_votes": 172263,
+      "rep_votes": 64970,
+      "dem_minus_rep_two_party_points": 45.2268,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NJ-09",
+      "state": "NJ",
+      "dem_votes": 185789,
+      "rep_votes": 125877,
+      "dem_minus_rep_two_party_points": 19.2231,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NJ-10",
+      "state": "NJ",
+      "dem_votes": 236302,
+      "rep_votes": 53598,
+      "dem_minus_rep_two_party_points": 63.0231,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NJ-11",
+      "state": "NJ",
+      "dem_votes": 252518,
+      "rep_votes": 179005,
+      "dem_minus_rep_two_party_points": 17.0357,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NJ-12",
+      "state": "NJ",
+      "dem_votes": 235929,
+      "rep_votes": 114140,
+      "dem_minus_rep_two_party_points": 34.79,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NM-01",
+      "state": "NM",
+      "dem_votes": 201152,
+      "rep_votes": 149216,
+      "dem_minus_rep_two_party_points": 14.8233,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NM-02",
+      "state": "NM",
+      "dem_votes": 137454,
+      "rep_votes": 121870,
+      "dem_minus_rep_two_party_points": 6.0095,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NM-03",
+      "state": "NM",
+      "dem_votes": 163008,
+      "rep_votes": 130808,
+      "dem_minus_rep_two_party_points": 10.9592,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NV-01",
+      "state": "NV",
+      "dem_votes": 172630,
+      "rep_votes": 144981,
+      "dem_minus_rep_two_party_points": 8.7053,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NV-02",
+      "state": "NV",
+      "dem_votes": 173065,
+      "rep_votes": 217352,
+      "dem_minus_rep_two_party_points": -11.3435,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NV-03",
+      "state": "NV",
+      "dem_votes": 190170,
+      "rep_votes": 166060,
+      "dem_minus_rep_two_party_points": 6.7681,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NV-04",
+      "state": "NV",
+      "dem_votes": 167621,
+      "rep_votes": 141497,
+      "dem_minus_rep_two_party_points": 8.4511,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "NY-01",
+      "state": "NY",
+      "dem_votes": 207865,
+      "rep_votes": 215368,
+      "dem_minus_rep_two_party_points": -1.7728,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-02",
+      "state": "NY",
+      "dem_votes": 176294,
+      "rep_votes": 185232,
+      "dem_minus_rep_two_party_points": -2.4723,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-03",
+      "state": "NY",
+      "dem_votes": 216924,
+      "rep_votes": 172450,
+      "dem_minus_rep_two_party_points": 11.4219,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-04",
+      "state": "NY",
+      "dem_votes": 223908,
+      "rep_votes": 166536,
+      "dem_minus_rep_two_party_points": 14.694,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-05",
+      "state": "NY",
+      "dem_votes": 216236,
+      "rep_votes": 49325,
+      "dem_minus_rep_two_party_points": 62.8522,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-06",
+      "state": "NY",
+      "dem_votes": 149650,
+      "rep_votes": 81285,
+      "dem_minus_rep_two_party_points": 29.6036,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-07",
+      "state": "NY",
+      "dem_votes": 199615,
+      "rep_votes": 48431,
+      "dem_minus_rep_two_party_points": 60.95,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-08",
+      "state": "NY",
+      "dem_votes": 203839,
+      "rep_votes": 57668,
+      "dem_minus_rep_two_party_points": 55.8956,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-09",
+      "state": "NY",
+      "dem_votes": 204641,
+      "rep_votes": 63636,
+      "dem_minus_rep_two_party_points": 52.5595,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-10",
+      "state": "NY",
+      "dem_votes": 241979,
+      "rep_votes": 40386,
+      "dem_minus_rep_two_party_points": 71.3945,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-11",
+      "state": "NY",
+      "dem_votes": 134686,
+      "rep_votes": 157195,
+      "dem_minus_rep_two_party_points": -7.7117,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-12",
+      "state": "NY",
+      "dem_votes": 291101,
+      "rep_votes": 47205,
+      "dem_minus_rep_two_party_points": 72.0933,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-13",
+      "state": "NY",
+      "dem_votes": 242573,
+      "rep_votes": 30506,
+      "dem_minus_rep_two_party_points": 77.6577,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-14",
+      "state": "NY",
+      "dem_votes": 178044,
+      "rep_votes": 50778,
+      "dem_minus_rep_two_party_points": 55.6179,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-15",
+      "state": "NY",
+      "dem_votes": 184551,
+      "rep_votes": 31315,
+      "dem_minus_rep_two_party_points": 70.9866,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-16",
+      "state": "NY",
+      "dem_votes": 240160,
+      "rep_votes": 91076,
+      "dem_minus_rep_two_party_points": 45.0084,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-17",
+      "state": "NY",
+      "dem_votes": 210411,
+      "rep_votes": 171524,
+      "dem_minus_rep_two_party_points": 10.1816,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-18",
+      "state": "NY",
+      "dem_votes": 196159,
+      "rep_votes": 163016,
+      "dem_minus_rep_two_party_points": 9.2275,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-19",
+      "state": "NY",
+      "dem_votes": 196142,
+      "rep_votes": 179031,
+      "dem_minus_rep_two_party_points": 4.5608,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-20",
+      "state": "NY",
+      "dem_votes": 224569,
+      "rep_votes": 151118,
+      "dem_minus_rep_two_party_points": 19.5511,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-21",
+      "state": "NY",
+      "dem_votes": 146455,
+      "rep_votes": 202220,
+      "dem_minus_rep_two_party_points": -15.9934,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-22",
+      "state": "NY",
+      "dem_votes": 202853,
+      "rep_votes": 160633,
+      "dem_minus_rep_two_party_points": 11.6153,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-23",
+      "state": "NY",
+      "dem_votes": 160041,
+      "rep_votes": 232953,
+      "dem_minus_rep_two_party_points": -18.553,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-24",
+      "state": "NY",
+      "dem_votes": 146392,
+      "rep_votes": 222924,
+      "dem_minus_rep_two_party_points": -20.7226,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-25",
+      "state": "NY",
+      "dem_votes": 231293,
+      "rep_votes": 150712,
+      "dem_minus_rep_two_party_points": 21.0942,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "NY-26",
+      "state": "NY",
+      "dem_votes": 218505,
+      "rep_votes": 129474,
+      "dem_minus_rep_two_party_points": 25.5852,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "OH-01",
+      "state": "OH",
+      "dem_votes": 200126,
+      "rep_votes": 199450,
+      "dem_minus_rep_two_party_points": 0.1692,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "OH-02",
+      "state": "OH",
+      "dem_votes": 111600,
+      "rep_votes": 261545,
+      "dem_minus_rep_two_party_points": -40.1841,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "OH-03",
+      "state": "OH",
+      "dem_votes": 271664,
+      "rep_votes": 104532,
+      "dem_minus_rep_two_party_points": 44.4268,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "OH-04",
+      "state": "OH",
+      "dem_votes": 114210,
+      "rep_votes": 273297,
+      "dem_minus_rep_two_party_points": -41.054,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "OH-05",
+      "state": "OH",
+      "dem_votes": 150175,
+      "rep_votes": 232535,
+      "dem_minus_rep_two_party_points": -21.5202,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "OH-06",
+      "state": "OH",
+      "dem_votes": 131306,
+      "rep_votes": 245482,
+      "dem_minus_rep_two_party_points": -30.3025,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "OH-07",
+      "state": "OH",
+      "dem_votes": 194811,
+      "rep_votes": 236653,
+      "dem_minus_rep_two_party_points": -9.6977,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "OH-08",
+      "state": "OH",
+      "dem_votes": 173573,
+      "rep_votes": 234543,
+      "dem_minus_rep_two_party_points": -14.9394,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "OH-09",
+      "state": "OH",
+      "dem_votes": 179884,
+      "rep_votes": 206332,
+      "dem_minus_rep_two_party_points": -6.848,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "OH-10",
+      "state": "OH",
+      "dem_votes": 181210,
+      "rep_votes": 203762,
+      "dem_minus_rep_two_party_points": -5.8581,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "OH-11",
+      "state": "OH",
+      "dem_votes": 280544,
+      "rep_votes": 74107,
+      "dem_minus_rep_two_party_points": 58.2085,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "OH-12",
+      "state": "OH",
+      "dem_votes": 141032,
+      "rep_votes": 258365,
+      "dem_minus_rep_two_party_points": -29.3775,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "OH-13",
+      "state": "OH",
+      "dem_votes": 209165,
+      "rep_votes": 185484,
+      "dem_minus_rep_two_party_points": 6.0005,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "OH-14",
+      "state": "OH",
+      "dem_votes": 172571,
+      "rep_votes": 244475,
+      "dem_minus_rep_two_party_points": -17.2413,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "OH-15",
+      "state": "OH",
+      "dem_votes": 167294,
+      "rep_votes": 194272,
+      "dem_minus_rep_two_party_points": -7.4614,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "OK-01",
+      "state": "OK",
+      "dem_votes": 121871,
+      "rep_votes": 190281,
+      "dem_minus_rep_two_party_points": -21.9156,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "OK-02",
+      "state": "OK",
+      "dem_votes": 72000,
+      "rep_votes": 243615,
+      "dem_minus_rep_two_party_points": -54.3748,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "OK-03",
+      "state": "OK",
+      "dem_votes": 76638,
+      "rep_votes": 196075,
+      "dem_minus_rep_two_party_points": -43.7959,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "OK-04",
+      "state": "OK",
+      "dem_votes": 104031,
+      "rep_votes": 200483,
+      "dem_minus_rep_two_party_points": -31.6741,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "OK-05",
+      "state": "OK",
+      "dem_votes": 129350,
+      "rep_votes": 189826,
+      "dem_minus_rep_two_party_points": -18.9475,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "OR-01",
+      "state": "OR",
+      "dem_votes": 268304,
+      "rep_votes": 114116,
+      "dem_minus_rep_two_party_points": 40.319,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "OR-02",
+      "state": "OR",
+      "dem_votes": 138802,
+      "rep_votes": 231497,
+      "dem_minus_rep_two_party_points": -25.0325,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "OR-03",
+      "state": "OR",
+      "dem_votes": 280723,
+      "rep_votes": 97583,
+      "dem_minus_rep_two_party_points": 48.4105,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "OR-04",
+      "state": "OR",
+      "dem_votes": 224384,
+      "rep_votes": 172533,
+      "dem_minus_rep_two_party_points": 13.0634,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "OR-05",
+      "state": "OR",
+      "dem_votes": 225528,
+      "rep_votes": 188045,
+      "dem_minus_rep_two_party_points": 9.0632,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "OR-06",
+      "state": "OR",
+      "dem_votes": 202149,
+      "rep_votes": 153928,
+      "dem_minus_rep_two_party_points": 13.5423,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "PA-01",
+      "state": "PA",
+      "dem_votes": 241494,
+      "rep_votes": 219860,
+      "dem_minus_rep_two_party_points": 4.6892,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "PA-02",
+      "state": "PA",
+      "dem_votes": 221033,
+      "rep_votes": 88070,
+      "dem_minus_rep_two_party_points": 43.0158,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "PA-03",
+      "state": "PA",
+      "dem_votes": 357958,
+      "rep_votes": 36748,
+      "dem_minus_rep_two_party_points": 81.3796,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "PA-04",
+      "state": "PA",
+      "dem_votes": 269145,
+      "rep_votes": 182670,
+      "dem_minus_rep_two_party_points": 19.1395,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "PA-05",
+      "state": "PA",
+      "dem_votes": 276124,
+      "rep_votes": 140476,
+      "dem_minus_rep_two_party_points": 32.5607,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "PA-06",
+      "state": "PA",
+      "dem_votes": 235146,
+      "rep_votes": 174183,
+      "dem_minus_rep_two_party_points": 14.8934,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "PA-07",
+      "state": "PA",
+      "dem_votes": 197109,
+      "rep_votes": 194646,
+      "dem_minus_rep_two_party_points": 0.6287,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "PA-08",
+      "state": "PA",
+      "dem_votes": 183204,
+      "rep_votes": 194298,
+      "dem_minus_rep_two_party_points": -2.9388,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "PA-09",
+      "state": "PA",
+      "dem_votes": 119971,
+      "rep_votes": 261280,
+      "dem_minus_rep_two_party_points": -37.0646,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "PA-10",
+      "state": "PA",
+      "dem_votes": 188628,
+      "rep_votes": 205129,
+      "dem_minus_rep_two_party_points": -4.1907,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "PA-11",
+      "state": "PA",
+      "dem_votes": 153328,
+      "rep_votes": 237727,
+      "dem_minus_rep_two_party_points": -21.5824,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "PA-12",
+      "state": "PA",
+      "dem_votes": 255294,
+      "rep_votes": 169595,
+      "dem_minus_rep_two_party_points": 20.1697,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "PA-13",
+      "state": "PA",
+      "dem_votes": 107201,
+      "rep_votes": 288136,
+      "dem_minus_rep_two_party_points": -45.7673,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "PA-14",
+      "state": "PA",
+      "dem_votes": 138883,
+      "rep_votes": 268695,
+      "dem_minus_rep_two_party_points": -31.8496,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "PA-15",
+      "state": "PA",
+      "dem_votes": 119496,
+      "rep_votes": 263047,
+      "dem_minus_rep_two_party_points": -37.5255,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "PA-16",
+      "state": "PA",
+      "dem_votes": 158729,
+      "rep_votes": 242664,
+      "dem_minus_rep_two_party_points": -20.9109,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "PA-17",
+      "state": "PA",
+      "dem_votes": 237732,
+      "rep_votes": 211218,
+      "dem_minus_rep_two_party_points": 5.9058,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "RI-01",
+      "state": "RI",
+      "dem_votes": 152965,
+      "rep_votes": 83224,
+      "dem_minus_rep_two_party_points": 29.5276,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "RI-02",
+      "state": "RI",
+      "dem_votes": 154521,
+      "rep_votes": 116698,
+      "dem_minus_rep_two_party_points": 13.9456,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "SC-01",
+      "state": "SC",
+      "dem_votes": 171778,
+      "rep_votes": 204859,
+      "dem_minus_rep_two_party_points": -8.7833,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "SC-02",
+      "state": "SC",
+      "dem_votes": 160980,
+      "rep_votes": 199792,
+      "dem_minus_rep_two_party_points": -10.758,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "SC-03",
+      "state": "SC",
+      "dem_votes": 106466,
+      "rep_votes": 236993,
+      "dem_minus_rep_two_party_points": -38.0037,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "SC-04",
+      "state": "SC",
+      "dem_votes": 138166,
+      "rep_votes": 202526,
+      "dem_minus_rep_two_party_points": -18.891,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "SC-05",
+      "state": "SC",
+      "dem_votes": 147082,
+      "rep_votes": 213494,
+      "dem_minus_rep_two_party_points": -18.4183,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "SC-06",
+      "state": "SC",
+      "dem_votes": 219791,
+      "rep_votes": 111767,
+      "dem_minus_rep_two_party_points": 32.5807,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "SC-07",
+      "state": "SC",
+      "dem_votes": 147278,
+      "rep_votes": 215672,
+      "dem_minus_rep_two_party_points": -18.8439,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "SD-01",
+      "state": "SD",
+      "dem_votes": 150471,
+      "rep_votes": 261043,
+      "dem_minus_rep_two_party_points": -26.8696,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "TN-01",
+      "state": "TN",
+      "dem_votes": 74137,
+      "rep_votes": 256562,
+      "dem_minus_rep_two_party_points": -55.1635,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TN-02",
+      "state": "TN",
+      "dem_votes": 122696,
+      "rep_votes": 226782,
+      "dem_minus_rep_two_party_points": -29.7833,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TN-03",
+      "state": "TN",
+      "dem_votes": 116138,
+      "rep_votes": 226942,
+      "dem_minus_rep_two_party_points": -32.2968,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TN-04",
+      "state": "TN",
+      "dem_votes": 126568,
+      "rep_votes": 173814,
+      "dem_minus_rep_two_party_points": -15.7286,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TN-05",
+      "state": "TN",
+      "dem_votes": 138194,
+      "rep_votes": 178897,
+      "dem_minus_rep_two_party_points": -12.8364,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TN-06",
+      "state": "TN",
+      "dem_votes": 137136,
+      "rep_votes": 208115,
+      "dem_minus_rep_two_party_points": -20.5587,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TN-07",
+      "state": "TN",
+      "dem_votes": 139424,
+      "rep_votes": 202866,
+      "dem_minus_rep_two_party_points": -18.5346,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TN-08",
+      "state": "TN",
+      "dem_votes": 144866,
+      "rep_votes": 199444,
+      "dem_minus_rep_two_party_points": -15.8514,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TN-09",
+      "state": "TN",
+      "dem_votes": 144552,
+      "rep_votes": 179053,
+      "dem_minus_rep_two_party_points": -10.6615,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-01",
+      "state": "TX",
+      "dem_votes": 89143,
+      "rep_votes": 231048,
+      "dem_minus_rep_two_party_points": -44.3189,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-02",
+      "state": "TX",
+      "dem_votes": 127510,
+      "rep_votes": 198586,
+      "dem_minus_rep_two_party_points": -21.796,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-03",
+      "state": "TX",
+      "dem_votes": 136761,
+      "rep_votes": 195871,
+      "dem_minus_rep_two_party_points": -17.7704,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-04",
+      "state": "TX",
+      "dem_votes": 143877,
+      "rep_votes": 207432,
+      "dem_minus_rep_two_party_points": -18.0909,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-05",
+      "state": "TX",
+      "dem_votes": 117612,
+      "rep_votes": 163853,
+      "dem_minus_rep_two_party_points": -16.4287,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-06",
+      "state": "TX",
+      "dem_votes": 118506,
+      "rep_votes": 176747,
+      "dem_minus_rep_two_party_points": -19.7258,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-07",
+      "state": "TX",
+      "dem_votes": 180252,
+      "rep_votes": 92917,
+      "dem_minus_rep_two_party_points": 31.9711,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-08",
+      "state": "TX",
+      "dem_votes": 115154,
+      "rep_votes": 167935,
+      "dem_minus_rep_two_party_points": -18.6447,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-09",
+      "state": "TX",
+      "dem_votes": 93941,
+      "rep_votes": 111907,
+      "dem_minus_rep_two_party_points": -8.7278,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-10",
+      "state": "TX",
+      "dem_votes": 144424,
+      "rep_votes": 195622,
+      "dem_minus_rep_two_party_points": -15.0562,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-11",
+      "state": "TX",
+      "dem_votes": 101256,
+      "rep_votes": 190220,
+      "dem_minus_rep_two_party_points": -30.5219,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-12",
+      "state": "TX",
+      "dem_votes": 118763,
+      "rep_votes": 170831,
+      "dem_minus_rep_two_party_points": -17.9797,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-13",
+      "state": "TX",
+      "dem_votes": 81303,
+      "rep_votes": 213331,
+      "dem_minus_rep_two_party_points": -44.8109,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-14",
+      "state": "TX",
+      "dem_votes": 124542,
+      "rep_votes": 193976,
+      "dem_minus_rep_two_party_points": -21.7991,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-15",
+      "state": "TX",
+      "dem_votes": 109875,
+      "rep_votes": 115253,
+      "dem_minus_rep_two_party_points": -2.3889,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-16",
+      "state": "TX",
+      "dem_votes": 163993,
+      "rep_votes": 76842,
+      "dem_minus_rep_two_party_points": 36.187,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-17",
+      "state": "TX",
+      "dem_votes": 132377,
+      "rep_votes": 180962,
+      "dem_minus_rep_two_party_points": -15.5056,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-18",
+      "state": "TX",
+      "dem_votes": 217360,
+      "rep_votes": 47152,
+      "dem_minus_rep_two_party_points": 64.3479,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-19",
+      "state": "TX",
+      "dem_votes": 73170,
+      "rep_votes": 202442,
+      "dem_minus_rep_two_party_points": -46.9036,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-20",
+      "state": "TX",
+      "dem_votes": 172231,
+      "rep_votes": 72239,
+      "dem_minus_rep_two_party_points": 40.9015,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-21",
+      "state": "TX",
+      "dem_votes": 161525,
+      "rep_votes": 227694,
+      "dem_minus_rep_two_party_points": -17.0005,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-22",
+      "state": "TX",
+      "dem_votes": 131979,
+      "rep_votes": 188014,
+      "dem_minus_rep_two_party_points": -17.5113,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-23",
+      "state": "TX",
+      "dem_votes": 138493,
+      "rep_votes": 160217,
+      "dem_minus_rep_two_party_points": -7.2726,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-24",
+      "state": "TX",
+      "dem_votes": 164122,
+      "rep_votes": 211300,
+      "dem_minus_rep_two_party_points": -12.5667,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-25",
+      "state": "TX",
+      "dem_votes": 124453,
+      "rep_votes": 172083,
+      "dem_minus_rep_two_party_points": -16.0621,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-26",
+      "state": "TX",
+      "dem_votes": 142670,
+      "rep_votes": 208544,
+      "dem_minus_rep_two_party_points": -18.7561,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-27",
+      "state": "TX",
+      "dem_votes": 124288,
+      "rep_votes": 177080,
+      "dem_minus_rep_two_party_points": -17.5175,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-28",
+      "state": "TX",
+      "dem_votes": 112597,
+      "rep_votes": 92662,
+      "dem_minus_rep_two_party_points": 9.7121,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-29",
+      "state": "TX",
+      "dem_votes": 139870,
+      "rep_votes": 54929,
+      "dem_minus_rep_two_party_points": 43.6044,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-30",
+      "state": "TX",
+      "dem_votes": 208565,
+      "rep_votes": 56392,
+      "dem_minus_rep_two_party_points": 57.4331,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-31",
+      "state": "TX",
+      "dem_votes": 127209,
+      "rep_votes": 183712,
+      "dem_minus_rep_two_party_points": -18.1728,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-32",
+      "state": "TX",
+      "dem_votes": 142066,
+      "rep_votes": 174362,
+      "dem_minus_rep_two_party_points": -10.2064,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-33",
+      "state": "TX",
+      "dem_votes": 163018,
+      "rep_votes": 60823,
+      "dem_minus_rep_two_party_points": 45.6552,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-34",
+      "state": "TX",
+      "dem_votes": 123605,
+      "rep_votes": 116464,
+      "dem_minus_rep_two_party_points": 2.9746,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-35",
+      "state": "TX",
+      "dem_votes": 141507,
+      "rep_votes": 147047,
+      "dem_minus_rep_two_party_points": -1.9199,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-36",
+      "state": "TX",
+      "dem_votes": 128113,
+      "rep_votes": 186757,
+      "dem_minus_rep_two_party_points": -18.6248,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-37",
+      "state": "TX",
+      "dem_votes": 280916,
+      "rep_votes": 62202,
+      "dem_minus_rep_two_party_points": 63.7431,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "TX-38",
+      "state": "TX",
+      "dem_votes": 142235,
+      "rep_votes": 205122,
+      "dem_minus_rep_two_party_points": -18.1044,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "UT-01",
+      "state": "UT",
+      "dem_votes": 214978,
+      "rep_votes": 127378,
+      "dem_minus_rep_two_party_points": 25.5874,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "UT-02",
+      "state": "UT",
+      "dem_votes": 119335,
+      "rep_votes": 230690,
+      "dem_minus_rep_two_party_points": -31.8134,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "UT-03",
+      "state": "UT",
+      "dem_votes": 104465,
+      "rep_votes": 257824,
+      "dem_minus_rep_two_party_points": -42.3306,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "UT-04",
+      "state": "UT",
+      "dem_votes": 121504,
+      "rep_votes": 249247,
+      "dem_minus_rep_two_party_points": -34.4552,
+      "same_district_boundaries_2022_2024_2026": false
+    },
+    {
+      "race_code": "VA-01",
+      "state": "VA",
+      "dem_votes": 210907,
+      "rep_votes": 241626,
+      "dem_minus_rep_two_party_points": -6.7882,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "VA-02",
+      "state": "VA",
+      "dem_votes": 202122,
+      "rep_votes": 193849,
+      "dem_minus_rep_two_party_points": 2.0893,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "VA-03",
+      "state": "VA",
+      "dem_votes": 230248,
+      "rep_votes": 101373,
+      "dem_minus_rep_two_party_points": 38.8621,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "VA-04",
+      "state": "VA",
+      "dem_votes": 264454,
+      "rep_votes": 123594,
+      "dem_minus_rep_two_party_points": 36.2996,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "VA-05",
+      "state": "VA",
+      "dem_votes": 195887,
+      "rep_votes": 231760,
+      "dem_minus_rep_two_party_points": -8.3885,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "VA-06",
+      "state": "VA",
+      "dem_votes": 151507,
+      "rep_votes": 239666,
+      "dem_minus_rep_two_party_points": -22.5371,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "VA-07",
+      "state": "VA",
+      "dem_votes": 204622,
+      "rep_votes": 178344,
+      "dem_minus_rep_two_party_points": 6.8617,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "VA-08",
+      "state": "VA",
+      "dem_votes": 303882,
+      "rep_votes": 83638,
+      "dem_minus_rep_two_party_points": 56.8342,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "VA-09",
+      "state": "VA",
+      "dem_votes": 113688,
+      "rep_votes": 281828,
+      "dem_minus_rep_two_party_points": -42.5116,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "VA-10",
+      "state": "VA",
+      "dem_votes": 239474,
+      "rep_votes": 165175,
+      "dem_minus_rep_two_party_points": 18.3613,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "VA-11",
+      "state": "VA",
+      "dem_votes": 296777,
+      "rep_votes": 121577,
+      "dem_minus_rep_two_party_points": 41.8784,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "VT-01",
+      "state": "VT",
+      "dem_votes": 242820,
+      "rep_votes": 112704,
+      "dem_minus_rep_two_party_points": 36.5984,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WA-01",
+      "state": "WA",
+      "dem_votes": 250883,
+      "rep_votes": 130736,
+      "dem_minus_rep_two_party_points": 31.4835,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WA-02",
+      "state": "WA",
+      "dem_votes": 263078,
+      "rep_votes": 162799,
+      "dem_minus_rep_two_party_points": 23.5465,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WA-03",
+      "state": "WA",
+      "dem_votes": 196207,
+      "rep_votes": 213882,
+      "dem_minus_rep_two_party_points": -4.31,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WA-04",
+      "state": "WA",
+      "dem_votes": 130115,
+      "rep_votes": 184877,
+      "dem_minus_rep_two_party_points": -17.3852,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WA-05",
+      "state": "WA",
+      "dem_votes": 180837,
+      "rep_votes": 222219,
+      "dem_minus_rep_two_party_points": -10.2671,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WA-06",
+      "state": "WA",
+      "dem_votes": 253642,
+      "rep_votes": 177181,
+      "dem_minus_rep_two_party_points": 17.7477,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WA-07",
+      "state": "WA",
+      "dem_votes": 396920,
+      "rep_votes": 51406,
+      "dem_minus_rep_two_party_points": 77.0676,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WA-08",
+      "state": "WA",
+      "dem_votes": 226805,
+      "rep_votes": 197513,
+      "dem_minus_rep_two_party_points": 6.9033,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WA-09",
+      "state": "WA",
+      "dem_votes": 254217,
+      "rep_votes": 94118,
+      "dem_minus_rep_two_party_points": 45.9612,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WA-10",
+      "state": "WA",
+      "dem_votes": 216908,
+      "rep_votes": 149920,
+      "dem_minus_rep_two_party_points": 18.2614,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WI-01",
+      "state": "WI",
+      "dem_votes": 190048,
+      "rep_votes": 197943,
+      "dem_minus_rep_two_party_points": -2.0348,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WI-02",
+      "state": "WI",
+      "dem_votes": 310862,
+      "rep_votes": 125920,
+      "dem_minus_rep_two_party_points": 42.3419,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WI-03",
+      "state": "WI",
+      "dem_votes": 185086,
+      "rep_votes": 203591,
+      "dem_minus_rep_two_party_points": -4.761,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WI-04",
+      "state": "WI",
+      "dem_votes": 260129,
+      "rep_votes": 78277,
+      "dem_minus_rep_two_party_points": 53.7378,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WI-05",
+      "state": "WI",
+      "dem_votes": 176027,
+      "rep_votes": 282440,
+      "dem_minus_rep_two_party_points": -23.2106,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WI-06",
+      "state": "WI",
+      "dem_votes": 171945,
+      "rep_votes": 237091,
+      "dem_minus_rep_two_party_points": -15.9267,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WI-07",
+      "state": "WI",
+      "dem_votes": 165853,
+      "rep_votes": 250176,
+      "dem_minus_rep_two_party_points": -20.2685,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WI-08",
+      "state": "WI",
+      "dem_votes": 170916,
+      "rep_votes": 234746,
+      "dem_minus_rep_two_party_points": -15.7348,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WV-01",
+      "state": "WV",
+      "dem_votes": 112947,
+      "rep_votes": 273523,
+      "dem_minus_rep_two_party_points": -41.5494,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WV-02",
+      "state": "WV",
+      "dem_votes": 123037,
+      "rep_votes": 271859,
+      "dem_minus_rep_two_party_points": -37.6864,
+      "same_district_boundaries_2022_2024_2026": true
+    },
+    {
+      "race_code": "WY-01",
+      "state": "WY",
+      "dem_votes": 73491,
+      "rep_votes": 193559,
+      "dem_minus_rep_two_party_points": -44.9609,
+      "same_district_boundaries_2022_2024_2026": true
+    }
+  ]
+}
