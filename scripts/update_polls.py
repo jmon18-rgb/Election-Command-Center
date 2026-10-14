@@ -11,6 +11,7 @@ import math
 import sys
 import urllib.request
 from pathlib import Path
+import reconcile_poll_sources as reconciliation
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "data" / "polls.json"
@@ -265,6 +266,14 @@ def main():
         result["newly_detected_count"] = stamp_poll_first_seen(
             prior.get("races"), result["races"], UTC_NOW
         )
+        # ElectIndex often indexes a survey after PollResults. Carry forward
+        # already reconciled secondary observations instead of silently
+        # dropping them at the NEXT four-hour primary refresh.
+        carried = reconciliation.carry_forward(prior, result, TODAY)
+        result["secondary_source_retention"]={
+            "carried_forward_current_observations":carried["new_to_model"],
+            "provenance":"PollResults source-linked fallback; original first_seen_at retained",
+        }
     if "races" in success and prior.get("updated_at"):
         result["changes"] = build_changes(prior, result)
     else:
