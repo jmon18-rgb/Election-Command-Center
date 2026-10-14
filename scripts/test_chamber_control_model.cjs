@@ -200,6 +200,35 @@ assert.throws(()=>model.simulate({...basis,redrawn_state_distributions:{
  ...basis.redrawn_state_distributions,CA:[]}},opts),/No verified redrawn state prior/);
 
 assert.deepEqual(first,second,'Seeds must make simulated election outcomes reproducible');
+const explained=model.simulate(basis,{...opts,explainControl:true});
+assert.deepEqual(explained.probabilities,first.probabilities,
+ 'Requesting diagnostics must NOT change default four-outcome probabilities');
+assert.deepEqual(explained.race_probabilities,first.race_probabilities,
+ 'Pivotal tracing must NOT change any race-winning probability');
+assert.equal(first.control_explanation,undefined,
+ 'Only explicitly requested diagnostics appear in default public output');
+const explanation=explained.control_explanation;
+assert.equal(explanation.senate_pivotal_races.length,35);
+assert.equal(explanation.top_house_pivotal_races.length,20);
+assert(Math.abs(explanation.house_only_pct+explanation.senate_only_pct-
+ explained.probabilities.shrug)<.02);
+assert(Math.abs(explanation.independent_chambers_reference_pct-
+ explained.house_dem_control_pct*explained.senate_dem_control_pct/100)<.02);
+assert(explanation.house_senate_control_phi===null||
+ Math.abs(explanation.house_senate_control_phi)<=1.0001);
+// A deliberately deterministic 16+1 Democratic and 18 Republican contest
+// Senate verifies the exact majority threshold and pivotal outcome counting.
+const rigid={...basis,assumptions:{...basis.assumptions,
+ common_national_sigma:0,house_chamber_sigma:0,senate_chamber_sigma:0,
+ governor_chamber_sigma:0,state_house_sigma:0,state_senate_sigma:0,
+ state_governor_sigma:0,redrawn_state_additional_sigma:0},
+ senate:basis.senate.map((x,i)=>({...x,mean:i<17?50:-50,sigma:0}))};
+const rigidSim=model.simulate(rigid,{samples:300,seed:17,explainControl:true});
+assert.equal(rigidSim.senate_dem_control_pct,100);
+const rigidPivots=new Map(rigidSim.control_explanation.senate_pivotal_races
+ .map(x=>[x.race_code,x.pivotal_pct]));
+rigid.senate.forEach((x,i)=>assert.equal(rigidPivots.get(x.code),i<17?100:0));
+
 assert.equal(JSON.stringify(basis),before,'Forecast must not modify source priors');
 assert.equal(first.counts.blue_tsunami+first.counts.blue_wave+
  first.counts.shrug+first.counts.red_dawn,first.samples);
