@@ -7,6 +7,8 @@ on:
       - 'scripts/research_rcp_senate_backtest.py'
       - 'scripts/test_historical_senate_poll_backtest.py'
       - 'scripts/test_rcp_senate_research.py'
+      - 'scripts/research_senate_horizon_backtest.py'
+      - 'scripts/test_senate_horizon_backtest.py'
       - 'scripts/build_senate_bias_holdout.py'
       - 'scripts/test_senate_bias_holdout.py'
       - '.github/workflows/historical-senate-backtest.yml'
@@ -27,6 +29,22 @@ jobs:
         run: python3 scripts/test_rcp_senate_research.py
       - name: Stage source-attributed historical error research
         run: python3 scripts/research_rcp_senate_backtest.py
+      - name: Rebuild fieldwork-horizon Senate research without poll-release hindsight claims
+        run: |
+          python3 scripts/test_senate_horizon_backtest.py
+          python3 scripts/research_senate_horizon_backtest.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          doc=json.loads(Path('data/historical_senate_horizon_backtest.json').read_text())
+          assert doc['status']=='RETROSPECTIVE_FIELDWORK_PROXY_NOT_AS_OF_VALIDATED'
+          assert doc['cutoffs_days_before_election']==[60,45,30,20,14,10,7,3]
+          assert doc['may_calibrate_2026_probabilities'] is False
+          assert doc['may_automatically_change_live_2026_sigma'] is False
+          assert doc['first_publication_dates_available'] is False
+          assert all(h['unique_election_cycles']>=2 for h in doc['horizon_results'] if h['race_snapshots']>=10)
+          print('Fieldwork-horizon study independently validated')
+          PY
       - name: Test and calculate cross-election-year bias correction robustness
         run: |
           python3 scripts/test_senate_bias_holdout.py
@@ -61,12 +79,12 @@ jobs:
           git config user.name "historical-poll-research-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
-          if ! git diff --quiet HEAD origin/main -- scripts/research_rcp_senate_backtest.py scripts/test_historical_senate_poll_backtest.py scripts/test_rcp_senate_research.py scripts/build_senate_bias_holdout.py scripts/test_senate_bias_holdout.py; then
+          if ! git diff --quiet HEAD origin/main -- scripts/research_rcp_senate_backtest.py scripts/test_historical_senate_poll_backtest.py scripts/test_rcp_senate_research.py scripts/research_senate_horizon_backtest.py scripts/test_senate_horizon_backtest.py scripts/build_senate_bias_holdout.py scripts/test_senate_bias_holdout.py; then
             echo "Source importer changed during research; skipping stale metrics."
             exit 0
           fi
           git reset --mixed origin/main
-          git add data/historical_senate_poll_backtest.json data/senate_bias_year_holdout.json
+          git add data/historical_senate_poll_backtest.json data/historical_senate_horizon_backtest.json data/senate_bias_year_holdout.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Stage historical Senate poll-only backtest diagnostic"
           git push origin HEAD:main
