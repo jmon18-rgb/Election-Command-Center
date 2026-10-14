@@ -9,8 +9,8 @@
   "external_source_blob_sha": "6416538cf7f1f0531277f0a01659207f603a7ca8",
   "external_source_caveat": "Third-party ElectIndex 2026 forecast input, not independently official precinct-certified district overlays. Audit a sample against The Downballot's independently calculated district results. Do not automatically update.",
   "external_crosscheck_reference": "https://www.the-downballot.com/p/the-downballot-releases-presidential",
-  "national_reference_two_party_margin_points": -1.48,
-  "national_reference_type": "external national.csv all-candidate margin (-1.48) used as preliminary proxy; historically different denominator from district two-party margins, must reconcile before promotion",
+  "national_reference_two_party_margin_points": -1.705,
+  "national_reference_type": "sum of D/R presidential vote totals across all 435 staged districts; not official all-candidate national popular vote",
   "totals": {
     "records": 435,
     "states": 50
@@ -3066,5 +3066,9 @@
       "rep_pres_2024_votes": 192633,
       "dem_minus_rep_two_party_points": -46.958
     }
-  ]
+  ],
+  "national_reference_vote_totals": {
+    "dem": 74647307,
+    "rep": 77237215
+  }
 }
