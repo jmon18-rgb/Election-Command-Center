@@ -110,6 +110,23 @@ async function settle(){
  assert(!html.includes('enForecastSource'));
  assert.match(get('#modelOddsNumbers').textContent,/DEMOCRATIC/);
  assert.match(get('#modelOddsNumbers').textContent,/REPUBLICAN/);
+ // The homepage list and combined Race Lab must survive the UI restructure.
+ assert.equal(get('#senateTideRaces').querySelectorAll('.tide-race').length,15);
+ assert.match(get('#senateTideRaces [data-senate-tide="SC-SEN"]').textContent,/South Carolina/);
+ assert.match(get('#senateTideRaces [data-senate-tide="SC-SEN"]').textContent,/Darline Graham/);
+ assert.match(get('#senateTideRaces [data-senate-tide="ME-SEN"]').textContent,/model win chance/);
+ assert.equal(get('#raceWorkbench').open,false,'Survey explorer collapses inside JackStradamus');
+ assert.equal(w.document.querySelectorAll('.tab[data-page="races"]').length,0,
+  'Race Lab is a single integrated JackStradamus destination');
+ assert.match(get('.joint-cell.d-split').textContent,/SHRUG/);
+ assert(!w.document.querySelector('.joint-cell.split'),'No collision with sitewide flex .split');
+ assert(!w.document.querySelector('#tsunamiReachWatch'),'Legacy Graham promo is removed');
+ assert.match(get('.brief-intro h2').textContent,/Today’s tide schedule/);
+ // A narrow TX lead can round to the same integer odds for two distinct
+ // error settings. Select MN (a stronger sensitivity case) before verifying
+ // that the model's 3,000-draw probability actually changes on screen.
+ w.eval("modelMode='senate';selectedModelState='MN-SEN';renderModelOverview(latestSenateEstimates)");
+ assert.match(get('#modelDetail').textContent,/Minnesota/);
  const baselineOdds=get('#modelOddsNumbers').textContent;
  const widthWide=get('.model-odds-presets [data-odds-width="wide"]');
  widthWide.click();
@@ -141,6 +158,10 @@ async function settle(){
  assert.match(get('#modelProbabilityCoverage').textContent,/not a two-candidate/);
  assert.equal(get('#modelBoard').querySelectorAll('.model-race-win-probabilities').length,0);
  get('[data-model-scope="senate"]').click();
+ get('[data-senate-tide="SC-SEN"]').click();
+ assert.equal(get('.tab[data-page="model"]').getAttribute('aria-selected'),'true');
+ assert.equal(w.eval('selectedModelState'),'SC-SEN','SC tide race opens its exact candidate model');
+ assert.equal(get('#raceWorkbench').open,false,'Tide click does not force open poll explorer');
  assert(get('#senateEstimateCards').querySelectorAll('.senate-card-odds').length>0,
   'Senate intelligence cards should also show conditional model odds');
  assert.match(get('#senateEstimateCards').textContent,/JACKSTRADAMUS · CORRELATED JOINT MODEL/);
