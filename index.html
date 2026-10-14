@@ -2350,6 +2350,7 @@ function jointRenderCards(result){
  }
 }
 function jointRenderHouseShadow(base,shadow){
+ const eligible=jointBasisShadow?.fundamentals_shadow?.paired_districts;
  const txt=base&&shadow&&jointBasisShadow?
   'Research only — '+jointBasisShadow.fundamentals_shadow.paired_districts+
   '/435 House districts have comparable 2022 and 2024 two-party results. '+
@@ -2360,10 +2361,25 @@ function jointRenderHouseShadow(base,shadow){
   (shadow.blue_both_including_tsunami-base.blue_both_including_tsunami).toFixed(1)+
   ' points). Historical 2022 changes are national-drift-adjusted, capped and heavily shrunk. '+
   'The alternative is NOT independently backtested and does not replace headline odds.':
+  base&&eligible?
+  'Research only — '+eligible+'/435 House districts have comparable 2022 and 2024 two-party results. '+
+  'Open this section to calculate the alternative odds. This study is NOT independently backtested; headline odds are unchanged.':
   'Two-cycle fundamentals comparison unavailable; default experimental odds are unchanged.';
  for(const id of ['jointHomeShadow','jointNightShadow']){
   const node=$('#'+id);if(node)node.textContent=txt;
  }
+}
+function jointShadowExpanded(){
+ return ['jointHomeShadow','jointNightShadow'].some(id=>{
+  const node=$('#'+id);return Boolean(node&&node.parentElement?.open);
+ });
+}
+for(const id of ['jointHomeShadow','jointNightShadow']){
+ const node=$('#'+id);
+ if(node&&node.parentElement)
+  node.parentElement.addEventListener('toggle',()=>{
+   if(node.parentElement.open&&jointBasis)jointRender(true);
+  });
 }
 function jointForecastResult(){return jointLastResult}
 function jointCurrentSignature(){
@@ -2389,7 +2405,9 @@ function jointRender(force=false){
   jointLastResult=result;
   jointRenderCards(result);
   let shadow=null;
-  if(jointBasisShadow){
+  // Do not double the 3,000-draw workload for every election-night refresh.
+  // Recalculate the shadow only when the research disclosure is actually open.
+  if(jointBasisShadow&&jointShadowExpanded()){
    try{
     shadow=window.ChamberControlModel.simulate(jointBasisShadow,{
      samples:3000,seed:20261103,nationalShift:jointNationalShift,
