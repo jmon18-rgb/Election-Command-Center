@@ -101,7 +101,8 @@ const saved=reader.saveDevice(storage,p,{enabled:true,includeHouse:true},importA
 assert.equal(saved.rows,8);
 assert(storageBacking.has(reader.STORAGE_KEY));
 const restored=reader.restoreDevice(storage,'2026-10-17T18:00:00Z');
-assert.deepEqual(restored.data,p);
+assert.equal(JSON.stringify(restored.data),JSON.stringify(p),
+ 'JSON storage roundtrip must preserve values regardless of safe null-prototype parser');
 assert.deepEqual(restored.settings,{enabled:true,includeHouse:true});
 assert.equal(restored.imported_at,importAt);
 assert.equal(restored.warning,false);
