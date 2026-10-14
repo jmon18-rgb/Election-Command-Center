@@ -918,6 +918,16 @@ async function settle(){
  assert.match(get('#jointNightCards').textContent,/BLUE WAVE/);
  assert.match(get('#jointNightCards').textContent,/SHRUG/);
  assert.match(get('#jointNightCards').textContent,/RED DAWN/);
+ assert.match(get('#jointNightCards').textContent,/INDY WILDCARD/);
+ assert.equal(get('#jointNightCards').querySelectorAll('.joint-cell').length,5);
+ assert.equal(get('#jointHomeCards').querySelectorAll('.joint-cell').length,5);
+ assert.equal(w.eval('jointForecastResult().counts.independent_pivot>0'),true);
+ const ballotOdds=w.eval('jointRaceOddsResult().records.filter(x=>["NE-SEN","SD-SEN","ID-SEN"].includes(x.race_code))');
+ assert.equal(ballotOdds.length,3);
+ assert(ballotOdds.every(x=>x.first_candidate_party==='I'&&
+  x.first_candidate_caucuses_with_democrats===false));
+ assert.match(get('#modelBoard').textContent,/I [0-9.]+%/);
+ assert(!html.includes('DDHQ published forecast · comparison only'));
  const jointBase=w.eval('jointForecastResult()');
  assert(jointBase?.probabilities?.blue_tsunami>=0&&jointBase.total_pct>99.9);
  assert.equal(Object.values(jointBase.counts).reduce((sum,n)=>sum+n,0),3000);
