@@ -471,6 +471,19 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <button type="button" data-model-scope="generic" aria-pressed="false">Generic ballot</button>
 </div>
 <p class="model-probability-coverage" id="modelProbabilityCoverage" role="status">Loading published race-level model estimates…</p>
+<details id="privateContextWorkbench" class="race-workbench">
+ <summary><strong>My private Silver CSV fundamentals</strong><span>Import locally · compare model with / without candidate context</span></summary>
+ <div class="race-workbench-body card" style="display:grid;gap:10px">
+  <p class="detail">Use the Senate fundamentals (Simple / Fancy), expert-ratings (Unadjusted / Adjusted), and optional House fundamentals CSVs. Source CSVs stay in your browser, are not uploaded to this site's servers or committed to public GitHub. Silver's Blended, FLIPR Deluxe and win-probability exports are not used to fit the model.</p>
+  <label for="privateContextFiles" class="label">CHOOSE THE CSV FILES</label>
+  <input type="file" id="privateContextFiles" accept=".csv,text/csv" multiple aria-describedby="privateContextStatus">
+  <label class="detail"><input type="checkbox" id="privateContextEnabled" checked> Use imported Senate context in my live JackStradamus model</label>
+  <label class="detail"><input type="checkbox" id="privateContextHouse"> Also use imported House fundamentals (experimental, 2026 selected districts only)</label>
+  <button type="button" id="privateContextClear" class="model-back">Clear private CSV context</button>
+  <p class="detail" id="privateContextStatus" role="status">No private CSVs imported. Public-model probabilities are unchanged.</p>
+  <p class="detail" id="privateContextComparison">Import the Senate CSVs to see how the same correlated 2026 simulation changes when candidate-fundamental estimates replace some of the neutral geographic prior. This is not Silver's proprietary FLIPR model.</p>
+ </div>
+</details>
 <div class="model-topline">
  <div class="model-top-stat"><span>TRACKED RACES</span><strong id="modelRaceTotal">—</strong></div>
  <div class="model-top-stat"><span>POLLING GAPS UNDER 3 PTS</span><strong id="modelCloseTotal">—</strong></div>
@@ -711,6 +724,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_nowcast.js"></script>
 <script src="./scripts/election_night_rehearsal.js"></script>
 <script src="./scripts/chamber_control_model.js?model=senate-current-2026-20261014-d"></script>
+<script src="./scripts/private_senate_fundamentals.js?local=20261014"></script>
 <script src="./scripts/chamber_poll_error_audit.js"></script>
 <script src="./scripts/senate_calibration_audit.js"></script>
 <script>
