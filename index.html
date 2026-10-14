@@ -2578,10 +2578,14 @@ function jointRenderSenateCorrelationResearch(reference,updates){
       (x.out.senate_dem_control_pct-base.senate_dem_control_pct).toFixed(1)+
       ' pp)')+', D both chambers '+x.out.blue_both_including_tsunami.toFixed(1)+
       '%').join(' · ')+
-   '. Historical cycle-average poll errors at 20 days: 2020 +5.72 D, '+
-   '2022 +0.25 D, 2024 +3.67 D. Only THREE cycles, first-publication '+
-   'dates unavailable: do not use this table as a calibrated posterior or '+
-   'assume the lower-error case is correct.';
+   '. Historical 20-day polling-error means (D minus R): 2018 +2.83 D, '+
+   '2020 +5.72 D, 2022 +0.25 D, 2024 +3.67 D. Four-cycle rough '+
+   'common-error sigma ~1.98 points, versus production 4.61 points. '+
+   'Held-out cycle-MEAN residual log-density scores (lower is better): '+
+   'production 2.627, moderate 2.459, lower 2.393. These are NOT '+
+   'held-out chamber-win forecasts. Only FOUR cycles and poll first-publication '+
+   'dates unavailable; lower common-error settings are NOT promoted to '+
+   'the live model.';
  }catch(e){
   explanation='Shared-error sensitivity unavailable: '+String(e.message||e);
  }
