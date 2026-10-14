@@ -26,6 +26,26 @@ const rebuilt=new Map(basis.house.map(r=>[r.code,r]));
 const los=rebuilt.get('CA-01');
 assert(los&&los.method.includes('redrawn_'),
  'Changed-boundary districts must never use a 2024 district-specific mapping');
+
+const rebuiltCA=basis.house.filter(x=>x.state==='CA');
+const unpolledRedraw=rebuiltCA.filter(x=>x.redrawn_mix_weight===1);
+assert(unpolledRedraw.length>35,
+ 'Most new California districts lack named-matchup polls');
+assert.equal(new Set(unpolledRedraw.map(x=>x.mean)).size,1,
+ 'Unpolled redrawn district numbers cannot determine their assigned 2024 party margin');
+assert.equal(new Set(unpolledRedraw.map(x=>x.redrawn_state_center)).size,1);
+assert.equal(basis.redrawn_state_distributions.CA.length,52);
+assert.equal(basis.redrawn_state_distributions.TX.length,38);
+assert.equal(basis.redrawn_state_distributions.NC.length,14);
+for(const [state,marginList] of Object.entries(basis.redrawn_state_distributions)){
+ const count=basis.house.filter(x=>x.state===state&&x.method.includes('redrawn_')).length;
+ assert.equal(marginList.length,count,'One prior district margin per new House seat: '+state);
+ assert(marginList.every(Number.isFinite),'Redrawn baseline must have finite margins');
+}
+assert(basis.house.some(x=>x.polled&&x.method.includes('redrawn_')&&
+ x.redrawn_mix_weight>0&&x.redrawn_mix_weight<1),
+ 'Polled redrawn districts mix poll and *exchangeable* old state distribution');
+
 const unchanged=rebuilt.get('AK-01');
 assert(unchanged&&unchanged.method.includes('unchanged_2024_recorded'));
 const known=new Set([...basis.house,...basis.senate,...basis.governors].map(x=>x.code));
@@ -37,6 +57,12 @@ for(const seat of [...basis.house,...basis.senate,...basis.governors]){
 const before=JSON.stringify(basis);
 const opts={samples:1200,seed:20261103};
 const first=model.simulate(basis,opts),second=model.simulate(basis,opts);
+const redrawnOnly=model.simulate(basis,{samples:1200,seed:20261104});
+assert.notDeepEqual(redrawnOnly.counts,first.counts,
+ 'Re-drawn seat assignment and independent error must vary across seeded draws');
+assert.throws(()=>model.simulate({...basis,redrawn_state_distributions:{
+ ...basis.redrawn_state_distributions,CA:[]}},opts),/No verified redrawn state prior/);
+
 assert.deepEqual(first,second,'Seeds must make simulated election outcomes reproducible');
 assert.equal(JSON.stringify(basis),before,'Forecast must not modify source priors');
 assert.equal(first.counts.blue_tsunami+first.counts.blue_wave+
