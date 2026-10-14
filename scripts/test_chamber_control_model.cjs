@@ -202,10 +202,20 @@ assert.throws(()=>model.simulate({...basis,redrawn_state_distributions:{
 assert.deepEqual(first,second,'Seeds must make simulated election outcomes reproducible');
 assert.equal(JSON.stringify(basis),before,'Forecast must not modify source priors');
 assert.equal(first.counts.blue_tsunami+first.counts.blue_wave+
- first.counts.shrug+first.counts.red_dawn,first.samples);
+ first.counts.shrug+first.counts.red_dawn+
+ first.counts.independent_pivot,first.samples);
 assert(Math.abs(first.total_pct-100)<0.025);
 assert(Math.abs(first.blue_both_including_tsunami-
  first.probabilities.blue_wave-first.probabilities.blue_tsunami)<.025);
+assert(first.probabilities.independent_pivot>0);
+assert.equal(first.senate_independent_context.non_majority_caucus_balance_pct,
+ first.probabilities.independent_pivot);
+assert.deepEqual(Object.keys(model.INDEPENDENT_SENATE_FIRST).sort(),[
+ 'ID-SEN','NE-SEN','SD-SEN']);
+assert(['ID-SEN','NE-SEN','SD-SEN'].every(code=>
+ basis.senate.find(r=>r.code===code).first_candidate_party==='I'));
+assert(basis.senate.find(r=>r.code==='MT-SEN').incomplete_ballot_caveat);
+assert(basis.senate.find(r=>r.code==='AK-SEN').incomplete_ballot_caveat);
 for(const x of Object.values(first.probabilities))
  assert(Number.isFinite(x)&&x>=0&&x<=100);
 assert(first.means.house_dem_seats>0&&first.means.house_dem_seats<435);
