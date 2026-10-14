@@ -950,7 +950,7 @@ async function settle(){
  assert.match(get('#enRehearsalPanel').textContent,/SIMULATION ONLY/);
  assert.match(get('#enRehearsalStage').textContent,/STEP 1 \/ 5/);
  assert.match(get('#enRehearsalRows').textContent,/NC-SEN/);
- assert.match(get('#enRehearsalRows').textContent,/POLL PRIOR/);
+ assert.match(get('#enRehearsalRows').textContent,/MODEL PRIOR/);
  get('#enRehearsalNext').click();
  assert.match(get('#enRehearsalStage').textContent,/STEP 2 \/ 5/);
  assert.match(get('#enRehearsalRows').textContent,/SIMULATED UPDATE/);
