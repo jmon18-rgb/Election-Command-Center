@@ -1,0 +1,132 @@
+{
+  "schema_version": "bottom-up-2026-poll-environment-shadow-v1",
+  "status": "SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE",
+  "polling_generated_at": "2026-10-14T15:48:30.204875Z",
+  "presidential_geography_year": 2026,
+  "presidential_2024_national_two_party_margin_points": -1.705,
+  "generic_ballot_2026_d_minus_r_points": 7.88,
+  "generic_implied_vs_2024_presidential_swing_points": 9.585,
+  "independent_polling_estimated_presidential_to_race_swing_points": 8.325,
+  "bottom_up_implied_national_margin_points": 6.62,
+  "bottom_up_minus_generic_environment_points": -1.26,
+  "candidate_specific_effects_removed": false,
+  "candidate_quality_calibration_available": false,
+  "total_qualifying_races": 15,
+  "states_with_qualified_races": 14,
+  "trimmed_states_each_tail": 1,
+  "qualifying_house_races": 1,
+  "qualifying_senate_races": 14,
+  "excluded": {
+    "inadequate_polling": 69,
+    "stale": 0,
+    "not_competitive": 0,
+    "missing_geography": 0
+  },
+  "state_swing_samples": [
+    {
+      "state": "ME",
+      "number_qualifying_races": 1,
+      "swing_points": -4.869
+    },
+    {
+      "state": "MT",
+      "number_qualifying_races": 1,
+      "swing_points": -4.832
+    },
+    {
+      "state": "MN",
+      "number_qualifying_races": 1,
+      "swing_points": -1.063
+    },
+    {
+      "state": "AK",
+      "number_qualifying_races": 2,
+      "swing_points": 0.146
+    },
+    {
+      "state": "NH",
+      "number_qualifying_races": 1,
+      "swing_points": 3.879
+    },
+    {
+      "state": "MI",
+      "number_qualifying_races": 1,
+      "swing_points": 5.089
+    },
+    {
+      "state": "FL",
+      "number_qualifying_races": 1,
+      "swing_points": 6.332
+    },
+    {
+      "state": "GA",
+      "number_qualifying_races": 1,
+      "swing_points": 11.309
+    },
+    {
+      "state": "NC",
+      "number_qualifying_races": 1,
+      "swing_points": 13.698
+    },
+    {
+      "state": "IA",
+      "number_qualifying_races": 1,
+      "swing_points": 14.406
+    },
+    {
+      "state": "OH",
+      "number_qualifying_races": 1,
+      "swing_points": 15.203
+    },
+    {
+      "state": "TX",
+      "number_qualifying_races": 1,
+      "swing_points": 17.598
+    },
+    {
+      "state": "KS",
+      "number_qualifying_races": 1,
+      "swing_points": 18.141
+    },
+    {
+      "state": "NE",
+      "number_qualifying_races": 1,
+      "swing_points": 21.071
+    }
+  ],
+  "examples": [
+    {
+      "office": "senate",
+      "race_code": "MN-SEN",
+      "state": "MN",
+      "presidential_2024_margin": 4.343,
+      "poll_margin": 3.28,
+      "raw_swing_points": -1.063,
+      "capped_swing_points": -1.063,
+      "capped_local_outlier": false,
+      "weight": 0.6333333333333333,
+      "independent_firms": 3,
+      "latest_age_days": 7
+    },
+    {
+      "office": "senate",
+      "race_code": "TX-SEN",
+      "state": "TX",
+      "presidential_2024_margin": -13.878,
+      "poll_margin": 3.72,
+      "raw_swing_points": 17.598,
+      "capped_swing_points": 17.598,
+      "capped_local_outlier": false,
+      "weight": 0.8666666666666667,
+      "independent_firms": 13,
+      "latest_age_days": 6
+    }
+  ],
+  "notes": [
+    "Uses current 2026 independent polling only, compared with 2024 presidential margins on 2026 House boundaries or state totals.",
+    "Election-day congressional vs past presidential vote is not necessarily the generic ballot; differing ballot electorates and candidate quality are unmodeled.",
+    "Polled races are disproportionately competitive or newsworthy, not a random nationally representative sample.",
+    "Selection and candidate bias prevent promoting this environmental gap to a 2026 headline forecast without holdout validation.",
+    "State capping, moderate geo-lean inclusion, and trimming are robustness choices, not Silver proprietary coefficients."
+  ]
+}
