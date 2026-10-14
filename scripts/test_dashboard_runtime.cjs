@@ -125,7 +125,7 @@ async function settle(){
  // A narrow TX lead can round to the same integer odds for two distinct
  // error settings. Select MN (a stronger sensitivity case) before verifying
  // that the model's 3,000-draw probability actually changes on screen.
- w.eval("modelMode='senate';selectedModelState='MN-SEN';renderModelOverview(latestSenateEstimates)");
+ w.eval("navigateInsightToModel({office:'senate',race:{race_code:'MN-SEN'}})");
  assert.match(get('#modelDetail').textContent,/Minnesota/);
  const baselineOdds=get('#modelOddsNumbers').textContent;
  const widthWide=get('.model-odds-presets [data-odds-width="wide"]');
@@ -160,7 +160,7 @@ async function settle(){
  get('[data-model-scope="senate"]').click();
  get('[data-senate-tide="SC-SEN"]').click();
  assert.equal(get('.tab[data-page="model"]').getAttribute('aria-selected'),'true');
- assert.equal(w.eval('selectedModelState'),'SC-SEN','SC tide race opens its exact candidate model');
+ assert.equal(w.location.hash,'#model/senate/SC-SEN','SC tide race opens its exact candidate model');
  assert.equal(get('#raceWorkbench').open,false,'Tide click does not force open poll explorer');
  assert(get('#senateEstimateCards').querySelectorAll('.senate-card-odds').length>0,
   'Senate intelligence cards should also show conditional model odds');
