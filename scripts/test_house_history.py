@@ -62,9 +62,9 @@ class HouseHistoryTests(unittest.TestCase):
 
     def test_fusion_votes_follow_verified_candidate_not_ballot_line(self):
         data=input_csv()
-        data+=("2024,NY,1,GEN,FALSE,CONSERVATIVE,100,Sample Republican\\n"
-               "2024,NY,1,GEN,FALSE,WORKING FAMILIES,45,Sample Democrat\\n"
-               "2024,NY,1,GEN,FALSE,INDEPENDENT,60,Third Candidate\\n")
+        data+=("2024,NY,1,GEN,FALSE,CONSERVATIVE,100,Sample Republican\n"
+               "2024,NY,1,GEN,FALSE,WORKING FAMILIES,45,Sample Democrat\n"
+               "2024,NY,1,GEN,FALSE,INDEPENDENT,60,Third Candidate\n")
         doc=history.stage(data)
         r=next(x for x in doc["records"] if x["2024_race_code"]=="NY-01")
         self.assertEqual(r["recorded_dem_votes"],295)
