@@ -1066,7 +1066,13 @@ function renderModelTrend(estimate){
 let modelRaceOddsData=null,modelOddsErrorWidth='standard';
 function setModelRaceOddsData(data){
  modelRaceOddsData=data;
- if(latestSenateEstimates)showSenateEstimates(latestSenateEstimates);
+ if(latestSenateEstimates){
+  // Polling and probability JSON load independently. Redraw the actual
+  // JackStradamus office board as well as the Senate preview cards when
+  // the later odds response arrives (including when stale odds fail shut).
+  renderModelOverview(latestSenateEstimates);
+  showSenateEstimates(latestSenateEstimates);
+ }
  enRenderLiveDesk();
 }
 function modelOddsValidate(data,source){
