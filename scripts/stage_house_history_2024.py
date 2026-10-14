@@ -82,7 +82,7 @@ def stage(text, year=2024):
             group="rep"
         else:
             group="other"
-        name=re.sub(r"\\s+"," ",str(row.get("candidate") or "").strip().casefold())
+        name=re.sub(r"\s+"," ",str(row.get("candidate") or "").strip().casefold())
         if (not name or name in ("writein","write-in","write in","scattered","blank","none")
             or "write-in" in name or "write in" in name):
             name=None
