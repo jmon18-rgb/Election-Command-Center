@@ -242,6 +242,26 @@ The shared adapter continues to reject mismatched IDs, primaries, special-electi
 
 Testing: `scripts/test_civicapi_al_mt_nm_ok_tn.cjs` exercises all eight source IDs plus negative cases; `scripts/test_dashboard_runtime.cjs` pins and renders all eight from the actual Election Night controls, verifies per-race source URLs and primary-provider isolation, and preserves Montana's last-good count after a wrong-ID response; `scripts/probe_civicapi_al_mt_nm_ok_tn.py` verifies real browser CORS/search/detail identity for all eight in CI. **Real general-election counting must still be checked on November 3.**
 
+## Five-state California/Delaware/Maryland/South Dakota/Wyoming civicAPI batch (Oct 13)
+
+This release extends the source-isolated civicAPI watchlist adapter to **seven independently verified November 3, 2026 statewide races**:
+
+| State | Election | civicAPI race ID |
+|---|---|---|
+| California | Governor | `86952` |
+| Delaware | U.S. Senate | `87036` |
+| Maryland | Governor | `87198` |
+| South Dakota | U.S. Senate | `87446` |
+| South Dakota | Governor | `87447` |
+| Wyoming | U.S. Senate | `87496` |
+| Wyoming | Governor | `87497` |
+
+A live source discovery also tested Mississippi Senate, but it did not pass the exact office/stage/November 3 search match. It is **not** included, assigned zero, or represented as operationally confirmed. Maryland governor independently passed the same source test and replaced it for the fifth state.
+
+The shared `scripts/civicapi_state_batch.js` enforces the seven immutable race IDs, exact general/statewide office class, date, source state, stage and name, vote percentages, unique candidate identities, timestamps and pre-election reporting guardrails. Bad provider updates never erase last-known-good source records. civicAPI data remains attributed and completely separate from Open America state reporting, chamber totals and JackStradamus race probabilities. Any publisher winner flag is not an official election certification.
+
+Tests: `scripts/test_civicapi_ca_de_sd_wy.cjs` validates all seven fixture identities and adversarial source payloads; `scripts/test_dashboard_runtime.cjs` exercises actual Election Night pinning, individual state-source deep links, last-good preservation after a deliberately incorrect California race ID, and primary-source isolation. `scripts/probe_civicapi_ca_de_ms_sd_wy.py` requires the seven real provider CORS/search/detail records on GitHub Actions. The existence of indexed races **does not** imply Election Day counted-vote availability; verify that live on November 3.
+
 ## Nationwide 35-race Senate desk (October 13)
 
 A new collapsible **35-contest Senate results monitor** is driven directly by `data/seat_universe.json`: 33 regular races and the Florida/Ohio special elections, with precise different keys (`FL-special` / `OH-special`). It validates all 35 named ballot slots before rendering. The primary Open America provider handles its supported states; civicAPI provides separately identified data for individual unmatched-state races. **Source totals are never merged or extrapolated**. A count of recorded races means that a trusted provider reported at least one vote, not that the seat has been won. A civicAPI call is separately labeled as a *provider call*, not official certification.
