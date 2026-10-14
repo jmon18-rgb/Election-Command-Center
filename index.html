@@ -503,7 +503,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   <div class="model-detail-top"><span class="label" id="modelDetailEyebrow">SENATE · POLLING</span><h3 id="modelDetailTitle">Select a race</h3><p class="model-detail-caption" id="modelDetailCaption">Polling averages and individual observations.</p></div>
   <div class="model-candidates"><div class="model-candidate dem"><span id="modelDemName">Democrat</span><strong id="modelDemPct">—</strong></div><div class="model-candidate rep"><span id="modelRepName">Republican</span><strong id="modelRepPct">—</strong></div></div>
   <section id="modelRaceOdds" class="model-odds-panel" aria-label="Experimental probability of winning the polled Democratic–Republican matchup">
- <div class="model-odds-heading"><strong>JACKSTRADAMUS · RACE ODDS</strong><span>Experimental · current polls</span></div>
+ <div class="model-odds-heading"><strong>JACKSTRADAMUS · RACE ODDS</strong><span>Joint correlated model · not standalone poll odds</span></div>
  <div id="modelOddsNumbers" class="model-odds-numbers"><p>Loading probability model…</p></div>
  <div id="modelOddsBar" class="model-odds-bar" aria-hidden="true"></div>
  <div class="model-odds-presets" role="group" aria-label="Adjust polling error uncertainty">
@@ -660,7 +660,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 </div>
 <div class="en-sources">
  <strong>Results and decision desks</strong>
- <p>Official counts via <a href="https://openamerica.io/elections/api/" target="_blank" rel="noopener noreferrer">Open America ↗</a>. The feed does not supply winner calls. For independent calls and national coverage: <a href="https://apnews.com/hub/elections" target="_blank" rel="noopener noreferrer">AP ↗</a> · <a href="https://www.decisiondeskhq.com/" target="_blank" rel="noopener noreferrer">DDHQ ↗</a> · <a href="https://www.ncsbe.gov/results-data/election-results" target="_blank" rel="noopener noreferrer">NC official results ↗</a> · <a href="https://electionresults.sos.state.tx.us/results.html" target="_blank" rel="noopener noreferrer">TX official results ↗</a> · <a href="https://civicapi.org/api-documentation" target="_blank" rel="noopener noreferrer">civicAPI (secondary candidate) ↗</a>. The secondary and media call services are linked for comparison, not yet merged or independently verified in this board.</p>
+ <p>Official counts via <a href="https://openamerica.io/elections/api/" target="_blank" rel="noopener noreferrer">Open America ↗</a>. The feed does not supply winner calls. For independent calls and national coverage: <a href="https://apnews.com/hub/elections" target="_blank" rel="noopener noreferrer">AP ↗</a> · <a href="https://www.ncsbe.gov/results-data/election-results" target="_blank" rel="noopener noreferrer">NC official results ↗</a> · <a href="https://electionresults.sos.state.tx.us/results.html" target="_blank" rel="noopener noreferrer">TX official results ↗</a> · <a href="https://civicapi.org/api-documentation" target="_blank" rel="noopener noreferrer">civicAPI (secondary candidate) ↗</a>. External election-call services are informational references, not competing forecast percentages.</p>
 </div>
 </section>
 <footer class="footer"><span>2026 ELECTION COMMAND CENTER · CLARITY OVER NOISE</span><span><a href="https://github.com/jmon18-rgb/Election-Command-Center">Source code ↗</a> · <span id="updated">Briefing pending</span></span></footer></main>
@@ -1157,7 +1157,8 @@ function renderModelRaceOdds(estimate){
  rep.append(elt('span','','REPUBLICAN'),elt('strong','party-r',format(100-p)));
  host.append(dem,rep);
  const fill=elt('div');fill.style.width=Math.max(0,Math.min(100,p))+'%';bar.append(fill);
- note.textContent='Poll average '+marginText(item.dem_minus_rep)+' · modeled margin '+
+ note.textContent='Only the JOINT JackStradamus odds are displayed (not the older standalone polling odds). Poll average '+
+   marginText(item.dem_minus_rep)+' · modeled margin '+
    marginText(item.model_dem_margin_points)+' · total modeled race uncertainty '+
    item.sigma_points.toFixed(1)+' points (national + chamber + state + local). '+
    'Same '+modelRaceOddsData.samples.toLocaleString('en-US')+
@@ -4064,7 +4065,7 @@ const modelOdds=elt('div','senate-card-odds');
 if(odds){
  const nice=n=>n>99.5?'>99.5%':n<.5?'<0.5%':n.toFixed(1)+'%';
  const p=odds.dem_beats_rep_pct;
- modelOdds.append(elt('span','senate-card-odds-label','JACKSTRADAMUS · TWO-PARTY MODEL'),
+ modelOdds.append(elt('span','senate-card-odds-label','JACKSTRADAMUS · CORRELATED JOINT MODEL'),
   elt('strong','party-d','D '+nice(p)),
   elt('strong','party-r','R '+nice(100-p)));
  modelOdds.append(elt('small','','Linked simulation · total σ '+

@@ -107,6 +107,11 @@ jobs:
         run: |
           node --check scripts/chamber_control_model.js
           node scripts/test_chamber_control_model.cjs
+      - name: Audit single-source joint race odds and Minnesota probability
+        run: |
+          node --check scripts/audit_joint_race_odds.cjs
+          node scripts/audit_joint_race_odds.cjs --json > /tmp/joint-race-odds-audit.json
+          node -e "const v=require('/tmp/joint-race-odds-audit.json');if(v.status!=='SOURCE_OF_RACE_ODDS_AUDIT_LEGACY_NOT_USER_FACING'||v.modeled_race_count<475||v.minnesota_senate.legacy_poll_only_research_probability_pct<70||v.minnesota_senate.linked_joint_dem_probability_pct>=v.minnesota_senate.legacy_poll_only_research_probability_pct)process.exit(1)"
       - name: Audit forecast optimism under shared polling errors
         run: |
           node --check scripts/forecast_optimism_audit.cjs
