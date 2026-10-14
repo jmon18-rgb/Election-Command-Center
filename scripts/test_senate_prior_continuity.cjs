@@ -39,7 +39,7 @@ const badRecs={...src.presidential,records:src.presidential.records.slice()};
 badRecs.records[1]=badRecs.records[0];
 assert.throws(()=>evaluate({...src,presidential:badRecs}),/duplicated presidential geography/);
 const bogus={...src,candidateOverperformance:{...src.candidateOverperformance,status:'forecast'}};
-assert.throws(()=>evaluate(bogus),/historic incumbent identity/);
+assert.throws(()=>evaluate(bogus),/historical incumbent identity/);
 const alteredPolls={...src.polls,senate_all:src.polls.senate_all.map(x=>
  x.race_code==='ME-SEN'?{...x,dem_candidate:'Different Candidate'}:x)};
 assert.throws(()=>evaluate({...src,polls:alteredPolls}),/Matched Senate incumbent research contradicts 2026 matchup/);
