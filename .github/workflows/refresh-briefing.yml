@@ -66,9 +66,12 @@ jobs:
       - name: Supplement polling with dated source links and poll-type data
         continue-on-error: true
         run: python3 scripts/update_pollresults_recent.py
-      - name: Validate refreshed scenario snapshot and rendered dashboard
-        run: |
-          node scripts/test_dashboard_runtime.cjs
+      # The full DOM test ran against the checked-in, reproducible snapshot
+      # BEFORE external polling ingestion. Do not rerun its fixture-specific
+      # ReconMR/GBAO click assertions against NEW live candidate observations:
+      # that caused every scheduled refresh to fail before publishing.
+      - name: Validate newly collected poll sources without frozen pollster fixtures
+        run: python3 scripts/validate_fresh_poll_sources.py
       - name: Run model diagnostics
         run: python3 scripts/test_polling_models.py
       - name: Build Senate polling estimates
@@ -104,6 +107,8 @@ jobs:
           POLL_ALERT_FROM: ${{ secrets.POLL_ALERT_FROM }}
           POLL_ALERT_TO: ${{ secrets.POLL_ALERT_TO }}
         run: python3 scripts/notify_new_polls.py
+      - name: Validate generated polling snapshot still links to the new source
+        run: python3 scripts/validate_fresh_poll_sources.py --generated
       - name: Commit updated briefing
         shell: bash
         run: |

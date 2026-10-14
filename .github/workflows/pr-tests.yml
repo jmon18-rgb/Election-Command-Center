@@ -32,6 +32,8 @@ jobs:
           node scripts/audit_senate_prior_continuity.cjs
       - name: Validate dashboard contracts
         run: python3 scripts/check_dashboard.py
+      - name: Test live polling freshness contract with synthetic moving feeds
+        run: python3 scripts/test_fresh_poll_sources.py
       - name: Validate new-poll notification behavior without email credentials
         run: python3 scripts/test_poll_alerts.py
       - name: Validate historical Senate election importer without network access
