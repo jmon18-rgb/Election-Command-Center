@@ -1,9 +1,28 @@
 {
-  "updated_at": "2026-10-14T21:45:28.978600Z",
+  "updated_at": "2026-10-14T22:39:50.703688Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "items": [
+    {
+      "id": "7d1609c93b3e7647a9d9",
+      "title": "Voting Rights Groups Say Texas Failed to Process Voter Registrations - notus.org",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1CNkNxemgxWWZMcndybUM3Qi1Uei1ha0F4ZWl0UHE0cUp1LTFEdEg4SGJ3Zi10Yi1JZDZubXhBcW81UEpBa0VSQUxlTkdMTkJJLXk3VHZHUVplUUMySUxyY3prN0RRTmRyMElIMQ?oc=5",
+      "publisher": "notus.org",
+      "published_at": "2026-10-14T22:33:32Z",
+      "detected_at": "2026-10-14T22:39:50.703688Z",
+      "state_hints": [
+        "TX"
+      ],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "79da3e0c945fa956c215",
       "title": "Interactive: 9 ways Trump could interfere with US midterms 2026 - The Indian Express",
@@ -95,6 +114,21 @@
       "publisher": "KQED",
       "published_at": "2026-10-14T19:34:16Z",
       "detected_at": "2026-10-14T20:53:15.333028Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "3cdeb202edbfd1b38243",
+      "title": "Cheryl Leeds: I never feared Election Day, until now - cnhinews.com",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPYXduaEZyNzZsU05oQ29wb0NSbl96c3VuMHZzSTh4UDJLaUVPVGFPX0ZwckF4dnpZbWwyV0c0elg5LUYtUUFVTmxBZ0ZqREJyanZVWXhXSEpwczh6YVpVQTI1SjZ1alZxdUpnN2VWOTFpUERvc0ZSS0xrck1wUW1odDVFYUZHcTVJTk8xNWM1VjNFQQ?oc=5",
+      "publisher": "cnhinews.com",
+      "published_at": "2026-10-14T19:15:00Z",
+      "detected_at": "2026-10-14T22:39:50.703688Z",
       "state_hints": [],
       "topic_hints": [],
       "headline_numbers_unverified": [],
