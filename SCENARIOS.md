@@ -34,7 +34,7 @@ A separate *reach-race* example is South Carolina U.S. Senate (Cook rated Likely
 1. **435 voting House slots** from `data/seat_universe.json`, **2024 House recorded votes** from MIT's verified historical staging, and Census-audited **2024-to-2026 boundaries** from `data/house_geography_bridge.json`.
 2. **35 Senate contests** including two specials from the complete Senate ballot universe, with 2020 Senate historical results and 2024 state House results as optional, explicitly provisional missing-poll priors.
 3. Published `data/polling_estimates.json` 2026 generic ballot, plus 2026 `data/race_probabilities.json` with source-matched per-race two-party polling estimates and error widths. A mismatch refuses to calculate.
-4. Six governor battleground polling estimates needed only for the Blue Tsunami threshold, **not** chamber control.
+4. All polled governor matchups are simulated in the shared draw, including the six predeclared governor battlegrounds relevant to Blue Tsunami. Governors do not contribute to either congressional chamber total.
 
 **House baseline:** A source-audited unchanged district with both parties' 2024 votes uses its recorded two-party margin. The national generic-ballot swing proxy is **0.68 × (current generic-ballot D margin − 2024 recorded national House D margin)**. This damping is a judgment call, *not* a proven statistical conversion. A seat with 2026 polling blends the poll margin with the historical proxy, emphasizing independent multi-poll coverage more heavily. Historically unopposed or missing-party races use a wide party/state proxy. For states with redrawn House boundaries, the model explicitly **does not attach old district X's votes to new district X**: it reuses only the state's 2024 distribution of House-seat margins as an unordered seat-count proxy and applies far greater error. This is a serious uncertainty source. **October 14 refinement:** the model no longer sorts those old margins and assigns each to a new district number. Instead, all unpolled 2026 districts in a fully redrawn state receive the same exchangeable historical baseline. On each simulated election, the state's historical district-margin distribution is freshly shuffled and allocated without replacement, preserving the prior statewide seat-margin spectrum but **not** inventing an old-to-new map. Any genuine 2026 district poll is still tied to its real district and blended with a smaller randomized prior component. Fully redrawn states AL, CA, FL, LA, NC, OH, TN, TX and UT are currently covered; a partially redrawn map must fail closed pending an explicit residual allocation. This remains a proxy, not geographically reaggregated votes.
 
@@ -55,11 +55,21 @@ Starting November 3, the model may *cautiously* use reported votes from **alread
 - A change to the national generic-ballot model or Senate caucus composition can move chamber probabilities significantly. Do not interpret a displayed 73.4% as a verified frequency across comparable prior elections.
 - Coverage gaps **do not** mean no election or zero votes. These probabilities are independent from in-page reporting totals, source calls and election-administration alerts.
 
-## External benchmark retained
+## Unified race and chamber forecast (October 14 update)
 
-The dashboard also shows an *independently attributed* [Decision Desk HQ 2026 joint-chamber forecast](https://votes.decisiondeskhq.com/forecast/2026) as a benchmark only. Its October 13 published 4-way party-control rounded cells were 54% Democratic both, 2% Democratic Senate only, 22% Democratic House only, and 21% Republican both (sum 99% after rounding). DDHQ does **not** estimate the beta-defined Blue Tsunami subset publicly. Its `data/congress_scenarios.json` values **are never blended into** the JackStradamus simulation.
+The standalone polling-only race percentages have been removed from the displayed race board. All current-model race win probabilities now come from the EXACT SAME correlated Monte Carlo draws as House/Senate control and the four mutually exclusive endings. The election-night control strip uses these JackStradamus results rather than any external forecast.
 
-Source/test contracts: `scripts/test_chamber_control_model.cjs`, `scripts/test_dashboard_runtime.cjs`, historical staging checks and GitHub PR CI. Actual November 3 returns, provider bandwidth and continuous laptop operation still need real-world verification.
+For every simulated race, the model counts Democratic wins, providing an integer numerator and common number of simulations. House and Senate expected seat totals therefore equal the sum of those seat-level expected Democratic wins (plus documented uncontested Senate holdovers) to within the displayed rounding. The simulation treats common national, chamber, state and local errors as related—not independent 50/50 coin flips.
+
+All current polled governor races are now included, rather than only the six governor battlegrounds used to classify the Blue Tsunami scenario. Gubernatorial polling estimates still lack independently validated full candidate-specific fundamentals.
+
+Race-level margins and probabilities are **different quantities**. Minnesota's Senate poll average was D+3.28, with the OLD polling-only normal-error calculation giving ~72% for Flanagan. The same-draw joint model blended polls with its Senate historical prior to D+2.59 and allowed shared electoral shocks, yielding ~62% in a deterministic 3,000-draw diagnostic at baseline settings. These are assumption-dependent model percentages, not empirically calibrated frequency forecasts or claims about another forecasting outlet.
+
+The published `data/race_probabilities.json` remains a provenance-checked **poll-input sigma / source mapping file** for the joint simulator. Its standalone `dem_beats_rep_pct` values are **not displayed as current model predictions**. The old external forecast import no longer runs or appears on the website.
+
+The **Tighter / Baseline / Wider** controls now rerun the full joint simulation and apply the chosen error multiplier consistently to both chamber control and individual races, rather than recalculating the displayed race number in isolation.
+
+Source/test contracts: `scripts/test_chamber_control_model.cjs`, `scripts/test_dashboard_runtime.cjs` and GitHub PR CI. Election-night live-return posterior calculations still have experimental geographic-noise assumptions and require on-the-ground reliability validation.
 
 ## Retrospective probability-scoring audit (October 14 update)
 

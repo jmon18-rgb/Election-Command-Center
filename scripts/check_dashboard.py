@@ -32,7 +32,6 @@ must_have = (
     "Polling leader changed",
     "Biggest polling movement",
     "No meaningful movement",
-    "id=\"scenarioBands\"",
     "The four endings",
     "RED DAWN",
 
@@ -52,8 +51,6 @@ must_have = (
     'data-model-scope="generic"',
     'function modelRows(data)',
     '🐑 HERDING?',
-    'id="scenarioBands"',
-    'function renderElectionScenarios()',
     'function enLeadInfo(r)',
     'en-margin-badge',
     'party-d',
@@ -112,7 +109,7 @@ for term in must_have:
     assert term in html, f"Required dashboard feature missing: {term}"
 for term in must_not_have:
     assert term not in html, f"Removed or redundant panel returned: {term}"
-for identifier in ('racePulse', 'newPolls', 'jackRadar', 'senateEstimateCards', 'modelBoard', 'modelRaceTotal', 'modelCloseTotal', 'modelThinTotal', 'modelDetail', 'modelChart', 'modelPollRows', 'modelPollIncluded', 'modelPollAll', 'bullScoreStates', 'electionNight', 'enMode2026', 'enMode2024', 'enOfficeGovernor', 'enRaceList', 'scenarioBands', 'scenarioCenter'):
+for identifier in ('racePulse', 'newPolls', 'jackRadar', 'senateEstimateCards', 'modelBoard', 'modelRaceTotal', 'modelCloseTotal', 'modelThinTotal', 'modelDetail', 'modelChart', 'modelPollRows', 'modelPollIncluded', 'modelPollAll', 'bullScoreStates', 'electionNight', 'enMode2026', 'enMode2024', 'enOfficeGovernor', 'enRaceList', 'jointHomeCards', 'jointHomeSummary'):
     assert len(re.findall(rf'id="{identifier}"', html)) == 1, identifier
 scripts = re.findall(r"<script(?:\s[^>]*)?>(.*?)</script>", html, flags=re.S)
 assert scripts, "No inline dashboard script found"
