@@ -24,12 +24,13 @@ const outputs=cases.map(c=>{
  const both=x.blue_both_including_tsunami;
  const houseOnlyOrSenateOnly=x.probabilities.shrug;
  const p=x.probabilities;
- if(Math.abs(p.blue_wave+p.blue_tsunami+p.shrug+p.red_dawn-100)>.05)
+ if(Math.abs(p.blue_wave+p.blue_tsunami+p.shrug+p.red_dawn+p.independent_pivot-100)>.05)
   throw Error('Forecast buckets not exhaustive: '+c.id);
  return {case:c.id,national_margin_shift_points:c.shift,
   error_scale_multiplier:c.error,dem_both_chambers_pct:both,
   dem_exactly_one_chamber_pct:houseOnlyOrSenateOnly,
   republican_both_chambers_pct:p.red_dawn,
+  independent_senate_balance_of_power_pct:p.independent_pivot,
   dem_near_sweep_and_both_pct:p.blue_tsunami,
   dem_average_house_seats:x.means.house_dem_seats,
   dem_average_senate_seats:x.means.senate_dem_seats};
