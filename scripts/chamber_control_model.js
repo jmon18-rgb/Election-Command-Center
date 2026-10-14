@@ -74,6 +74,9 @@
  function prepare(s,options={}){
   validateInputs(s);
   const fundamentalsMode=options.fundamentalsMode??'2024_only';
+  const senatePriorMode=options.senatePriorMode??'legacy_2020';
+  if(!['legacy_2020','current_2026'].includes(senatePriorMode))
+   throw Error('Unsupported Senate fundamentals mode');
   if(!FUNDAMENTALS_MODES.includes(fundamentalsMode))
    throw Error('Unsupported House fundamentals mode');
   // Require validated two-cycle sources for the explicit alternate model.
@@ -116,9 +119,9 @@
   }
   // District presidential vote totals must be mapped to the CURRENT 2026
   // jurisdiction before blending; a stale 2024 CD number is prohibited.
-  let presidential=null,presidentialNationalMargin=null;
+  let presidential=null,presidentialNationalMargin=null,presidentialStateTotals=null;
   if(fundamentalsMode==='presidential_2024_shadow'||
-     fundamentalsMode==='presidential_2024_gap_fill'){
+     fundamentalsMode==='presidential_2024_gap_fill'||senatePriorMode==='current_2026'){
    const d=s.presidential;
    if(!d||d.schema_version!=='presidential-district-lean-staging-v1'||
       d.status!=='historical_presidential_votes_from_external_model_source_not_forecast'||
@@ -127,7 +130,7 @@
       !d.external_source_blob_sha||!d.district_geo_source)
     throw Error('Missing verified-source presidential 2024 House district data');
    const expected=new Set(s.seats.house.seats.map(x=>normalizeCode(x.race_code)));
-   presidential=new Map();
+   presidential=new Map();presidentialStateTotals=new Map();
    let totalDem=0,totalRep=0;
    for(const row of d.records){
     const code=normalizeCode(row.race_code);
@@ -143,8 +146,12 @@
     presidential.set(code,calculated);
     totalDem+=row.dem_pres_2024_votes;
     totalRep+=row.rep_pres_2024_votes;
+    const st=presidentialStateTotals.get(row.state)||{d:0,r:0};
+    st.d+=row.dem_pres_2024_votes;st.r+=row.rep_pres_2024_votes;
+    presidentialStateTotals.set(row.state,st);
    }
-   if(presidential.size!==HOUSE_SEATS)throw Error('Missing presidential district records');
+   if(presidential.size!==HOUSE_SEATS||presidentialStateTotals.size!==50)
+    throw Error('Incomplete US presidential state aggregates');
    presidentialNationalMargin=100*(totalDem-totalRep)/(totalDem+totalRep);
    if(Math.abs(presidentialNationalMargin-d.national_reference_two_party_margin_points)>.003)
     throw Error('Presidential national reference mismatched district totals');
@@ -318,35 +325,58 @@
   const senRecords=s.senateHistory.contest_records.filter(r=>
    r.election_year===2020&&r.election_type==='regular');
   const senate2020=new Map(senRecords.map(r=>[r.state,r]));
+  // The newer prior explicitly separates current, candidate-neutral geography
+  // from the named current candidate matchup. A 2020 different winner cannot
+  // convey individual 2026 candidate strength, especially for open seats.
+  const currentSenateNationalSwing=senatePriorMode==='current_2026'?
+   .55*(generic-presidentialNationalMargin):null;
+  const senateSharedError=Math.hypot(3.5,3,3.5);
   for(const seat of s.seats.senate.contested_seats){
    const code=normalizeCode(seat.race_code),state=seat.state;
    const prior=senate2020.get(state);
-   // A 2026 special election is a different seat from the state's
-   // 2020 regular Senate election. Never reuse that candidate race as
-   // if it were the same incumbency/fundamentals baseline.
    const special=seat.election_kind==='special';
    const reliable=!special&&prior&&!prior.missing_major_party_vote&&
-      prior.recorded_dem_votes>0&&prior.recorded_rep_votes>0;
+     prior.recorded_dem_votes>0&&prior.recorded_rep_votes>0;
    let mean=(reliable?(0.65*margin(prior.dem_share_of_two_party)+
      .35*stateMargin(state)):stateMargin(state))+projectedSwing*.68;
    let sigma=reliable?17:special?25:23,method=reliable?
-     'historical_2020_senate_plus_state_house':special?
-     'special_election_state_house_proxy':'state_house_proxy_no_2020_two_party';
+    'historical_2020_senate_plus_state_house':special?
+    'special_election_state_house_proxy':'state_house_proxy_no_2020_two_party';
+   const neutralPres=presidentialStateTotals?.get(state);
+   const neutralPresMargin=neutralPres?
+    100*(neutralPres.d-neutralPres.r)/(neutralPres.d+neutralPres.r):null;
+   let currentNeutralPrior=null,candidatePollResidual=null;
+   if(senatePriorMode==='current_2026'){
+    if(!finite(neutralPresMargin))
+     throw Error('Missing verified 2026 Senate state geographic baseline '+code);
+    currentNeutralPrior=neutralPresMargin+currentSenateNationalSwing;
+    mean=currentNeutralPrior;
+    sigma=special?17:15;
+    method='2026_presidential_partisan_environment_no_old_candidate';
+   }
    let pollFundamentalsGap=null,disagreementSigma=0,pollWeight=null;
    const poll=odds.get('senate|'+code);
    if(poll){
     const priorMean=mean;
-    const weight=poll.independent_firms>=2?.90:.78;
+    // 2026 candidate strength is inferred from contemporary named matchup
+    // polls, relative to the state-and-national candidate-neutral baseline.
+    // Keep more weight on surveys than on conjectured candidate quality.
+    const weight=senatePriorMode==='current_2026'?
+     (poll.independent_firms>=3?.75:poll.independent_firms>=2?.72:.60):
+     (poll.independent_firms>=2?.90:.78);
     pollWeight=weight;
+    candidatePollResidual=senatePriorMode==='current_2026'?
+     poll.dem_minus_rep-currentNeutralPrior:null;
     mean=weight*poll.dem_minus_rep+(1-weight)*priorMean;
-    // The historical Senate polling-error RMSE is a floor rather than
-    // a full forecast calibration. Add disagreement uncertainty only
-    // when the historical prior actually describes the same seat.
-    sigma=Math.max(7,poll.sigma_points);
+    // The polled-race error is a TOTAL margin-error budget, not a local
+    // error stacked with independent 2026 national/office/state shocks.
+    sigma=senatePriorMode==='current_2026'?
+     Math.sqrt(Math.max(8.5,poll.sigma_points)**2-senateSharedError**2):
+     Math.max(7,poll.sigma_points);
     if(!special){
      pollFundamentalsGap=Math.round(1000*(poll.dem_minus_rep-priorMean))/1000;
      disagreementSigma=disagreementExtraSigma(poll.dem_minus_rep,priorMean,
-      reliable?.55:.20);
+      senatePriorMode==='current_2026'?.30:reliable?.55:.20);
      sigma=Math.round(1000*Math.hypot(sigma,disagreementSigma))/1000;
     }
     method='2026_poll_blend_'+method;
@@ -356,7 +386,11 @@
    const nonrepIndependentProxy=Boolean(expectedIndependent&&upstream&&
     upstream.dem_candidate?.trim().toLowerCase()===expectedIndependent.toLowerCase());
    senate.push({code,state,mean:limit(mean,-55,55),sigma,
-    method,polled:Boolean(poll),special:seat.election_kind==='special',
+    method,polled:Boolean(poll),special,
+    senate_prior_mode:senatePriorMode,
+    neutral_presidential_margin_points:neutralPresMargin,
+    candidate_neutral_2026_environment_margin_points:currentNeutralPrior,
+    candidate_specific_2026_poll_residual_points:candidatePollResidual,
     nonrep_independent_proxy:nonrepIndependentProxy,
     poll_weight:pollWeight,poll_fundamentals_gap_points:pollFundamentalsGap,
     disagreement_extra_sigma_points:disagreementSigma});
@@ -379,7 +413,20 @@
   if(BATTLEGROUNDS.some(code=>!names.has(code)))
    throw Error('Incomplete fixed battleground slate');
   const basis={schema_version:VERSION,status:'EXPERIMENTAL_UNCALIBRATED',
-    fundamentals_mode:fundamentalsMode,
+    fundamentals_mode:fundamentalsMode,senate_prior_mode:senatePriorMode,
+    senate_current_context:senatePriorMode==='current_2026'?{
+     geographic_baseline:'2024_presidential_two_party_on_2026_district_geography',
+     national_presidential_margin_points:presidentialNationalMargin,
+     national_generic_margin_points:generic,
+     national_swing_coefficient:.55,
+     national_swing_points:currentSenateNationalSwing,
+     candidate_signal:'2026_named_matchup_poll_residual_vs_neutral_geography',
+     historical_2020_senate_candidate_margin_used:false,
+     statewide_2024_house_party_aggregate_used:false,
+     polled_race_total_sigma_floor:8.5,
+     polled_race_sigma_accounts_for_shared_errors:true,
+     status:'PROVISIONAL_TRANSPARENT_FORECAST_NOT_HELDOUT_CALIBRATED'
+    }:null,
     presidential_fundamentals_shadow:{
      mapped_2026_house_districts:presidential?presidential.size:0,
      national_presidential_2024_two_party_margin_points:presidentialNationalMargin,
