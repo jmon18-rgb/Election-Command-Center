@@ -119,6 +119,14 @@ jobs:
           node --check scripts/audit_joint_race_odds.cjs
           node scripts/audit_joint_race_odds.cjs --json > /tmp/joint-race-odds-audit.json
           node -e "const v=require('/tmp/joint-race-odds-audit.json');if(v.status!=='SOURCE_OF_RACE_ODDS_AUDIT_LEGACY_NOT_USER_FACING'||v.modeled_race_count<475||v.minnesota_senate.legacy_poll_only_research_probability_pct<70||v.minnesota_senate.linked_joint_dem_probability_pct>=v.minnesota_senate.legacy_poll_only_research_probability_pct)process.exit(1)"
+      - name: Audit Senate ballot independents and historical total-error budget
+        run: |
+          node --check scripts/audit_senate_probability_mechanics.cjs
+          node scripts/audit_senate_probability_mechanics.cjs --json > /tmp/senate-error-budget-shadow.json
+          node -e "const x=require('/tmp/senate-error-budget-shadow.json');if(x.status!=='MODEL_DIAGNOSTIC_NOT_FORECAST_COEFFICIENT_CALIBRATION'||x.historical_total_polling_error_rmse_points<5||x.outcomes.current.independent_caucus_pivot_pct<=0||x.outcomes.total_error_budget_only.race_estimates.find(r=>r.race_code==='MN-SEN').total_modeled_error_sd_points>=6.5)process.exit(1)"
+          node --check scripts/audit_2026_likely_voter_pairs.cjs
+          node scripts/audit_2026_likely_voter_pairs.cjs --json > /tmp/2026-lv-evidence.json
+          node -e "const x=require('/tmp/2026-lv-evidence.json');if(x.party_bias_correction_applied_to_2026_model!==false||x.total_observed_poll_rows<100)process.exit(1)"
       - name: Audit forecast optimism under shared polling errors
         run: |
           node --check scripts/forecast_optimism_audit.cjs
