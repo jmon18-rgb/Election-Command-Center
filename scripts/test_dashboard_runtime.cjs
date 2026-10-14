@@ -27,7 +27,7 @@ assert.match(html,/<script src="\.\/scripts\/civicapi_nh_governor_adapter\.js"><
  'NH governor adapter must load before the election-night application');
 assert.match(html,/<script src="\.\/scripts\/civicapi_state_batch\.js"><\/script>/,
  'Four-state supplemental provider module must load before the application');
-assert.match(html,/<script src="\.\/scripts\/chamber_control_model\.js\?model=senate-current-2026-[a-zA-Z0-9-]+"><\/script>/,
+assert.match(html,/<script src="\.\/scripts\/chamber_control_model\.js\?model=senate-horizon-error-[a-zA-Z0-9-]+"><\/script>/,
  'Version-pin the Senate engine: uncached index must never reuse the obsolete 2020 candidate model');
 assert.equal(scripts.length,1,'Expected exactly one live inline application script');
 const errors=[];
