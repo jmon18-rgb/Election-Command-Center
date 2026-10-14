@@ -1430,7 +1430,8 @@ async function settle(){
   {state:'SD',office:'Senate',name:'South Dakota US Senate',id:87446,pin:'SD-SEN'},
   {state:'SD',office:'Governor',name:'South Dakota Governor',id:87447,pin:'SD-GOV'},
   {state:'WY',office:'Senate',name:'Wyoming US Senate',id:87496,pin:'WY-SEN'},
-  {state:'WY',office:'Governor',name:'Wyoming Governor',id:87497,pin:'WY-GOV'}
+  {state:'WY',office:'Governor',name:'Wyoming Governor',id:87497,pin:'WY-GOV'},
+  {state:'MD',office:'Governor',name:'Maryland Governor',id:87198,pin:'MD-GOV'}
  ];
  const westSourceRecords=new Map();
  for(const spec of westSourceSpecs){
