@@ -20,6 +20,7 @@
  const REQUIRED_BATTLEGROUND_WINS=18;
  const BATTLEGROUND_SET=new Set(BATTLEGROUNDS);
  const HOUSE_SEATS=435,SENATE_CONTESTS=35;
+ const SHARED_SIGMA=Object.freeze({national:3.5,senateChamber:3,senateState:3.5});
  // Two-party proxy names in source polling are NOT ballot party affiliations.
  const INDEPENDENT_SENATE_PROXY_CANDIDATES=Object.freeze({
   'NE-SEN':'Dan Osborn','SD-SEN':'Brian Bengs'});
@@ -332,7 +333,8 @@
   // convey individual 2026 candidate strength, especially for open seats.
   const currentSenateNationalSwing=senatePriorMode==='current_2026'?
    .55*(generic-presidentialNationalMargin):null;
-  const senateSharedError=Math.hypot(3.5,3,3.5);
+  const senateSharedError=Math.hypot(SHARED_SIGMA.national,
+   SHARED_SIGMA.senateChamber,SHARED_SIGMA.senateState);
   for(const seat of s.seats.senate.contested_seats){
    const code=normalizeCode(seat.race_code),state=seat.state;
    const prior=senate2020.get(state);
@@ -456,9 +458,9 @@
     assumptions:{house_seats:435,senate_contested:35,
      senate_dem_holdovers:34,senate_rep_holdovers:31,
      house_control_dem_seats:218,senate_control_dem_seats:51,
-     common_national_sigma:3.5,house_chamber_sigma:2.5,
-     senate_chamber_sigma:3,governor_chamber_sigma:3.5,
-     state_house_sigma:3,state_senate_sigma:3.5,
+     common_national_sigma:SHARED_SIGMA.national,house_chamber_sigma:2.5,
+     senate_chamber_sigma:SHARED_SIGMA.senateChamber,governor_chamber_sigma:3.5,
+     state_house_sigma:3,state_senate_sigma:SHARED_SIGMA.senateState,
      state_governor_sigma:3,
      redrawn_state_additional_sigma:6,
      fixed_battleground_required_dem_wins:REQUIRED_BATTLEGROUND_WINS,
