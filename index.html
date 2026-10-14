@@ -2377,13 +2377,15 @@ function jointSetSources(sources){
  try{
   if(!window.ChamberControlModel)throw Error('Model script unavailable');
   // A missing research-only input must never disable baseline odds.
-  jointBasis=window.ChamberControlModel.prepare(sources);
+  jointBasis=window.ChamberControlModel.prepare(sources,{
+   senatePriorMode:'current_2026'
+  });
   jointBasisShadow=null;jointBasisPresidential=null;
   try{jointBasisShadow=window.ChamberControlModel.prepare(sources,{
-   fundamentalsMode:'two_cycle_shadow'
+   fundamentalsMode:'two_cycle_shadow',senatePriorMode:'current_2026'
   })}catch(_){}
   try{jointBasisPresidential=window.ChamberControlModel.prepare(sources,{
-   fundamentalsMode:'presidential_2024_shadow'
+   fundamentalsMode:'presidential_2024_shadow',senatePriorMode:'current_2026'
   })}catch(_){}
   jointErrorMessage=null;jointCacheKey='';
   jointRender(true);
@@ -2395,11 +2397,11 @@ async function jointLoadSources(){
  const required=[
   ['seats','seat_universe'],['history','house_history_2024_staging'],
   ['geography','house_geography_bridge'],['senateHistory','senate_history_2020_2022_2024'],
-  ['polls','polling_estimates'],['odds','race_probabilities']
+  ['polls','polling_estimates'],['odds','race_probabilities'],
+  ['presidential','presidential_2024_by_2026_district_staging']
  ];
  const optional=[
-  ['twoCycle','house_two_cycle_context'],
-  ['presidential','presidential_2024_by_2026_district_staging']
+  ['twoCycle','house_two_cycle_context']
  ];
  const load=async([key,name])=>{
   const response=await fetch('./data/'+name+'.json',{cache:'no-store'});
