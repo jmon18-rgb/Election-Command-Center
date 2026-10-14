@@ -667,6 +667,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_rehearsal.js"></script>
 <script src="./scripts/chamber_control_model.js"></script>
 <script src="./scripts/chamber_poll_error_audit.js"></script>
+<script src="./scripts/senate_calibration_audit.js"></script>
 <script>
 const $=s=>document.querySelector(s);
 function activatePage(tab,updateUrl){
@@ -2216,7 +2217,7 @@ $('#enRehearsalReset').addEventListener('click',()=>{
 let jointBasis=null,jointErrorMessage=null,jointRefreshTimer=null,jointCacheKey='',
     jointLastResult=null,jointNationalShift=0,jointErrorMultiplier=1;
 const jointLabels=[
- ['blue_tsunami','BLUE TSUNAMI','D both chambers · 12+ of 14 battlegrounds','d-tide'],
+ ['blue_tsunami','BLUE TSUNAMI','D both chambers · 18+ of 20 battlegrounds','d-tide'],
  ['blue_wave','BLUE WAVE','D both chambers · below tsunami threshold','d-wave'],
  ['shrug','SHRUG','One chamber per party','split'],
  ['red_dawn','RED DAWN','R controls both chambers','r-dawn']
@@ -2359,7 +2360,7 @@ $('#jointSwing').addEventListener('change',event=>{
 $('#jointError').addEventListener('change',event=>{
  jointErrorMultiplier=Number(event.target.value);jointRender(true);
 });
-function jointRenderPollErrorAudit(report){
+function jointRenderPollErrorAudit(report,proper){
  const summary=report?
   '2020 poll minus result '+report.cycles[0].bias_points.toFixed(1)+' pts D; '+
   '2022 '+report.cycles[1].bias_points.toFixed(1)+' pts D; '+
@@ -2372,15 +2373,26 @@ function jointRenderPollErrorAudit(report){
   'This is NOT calibration of the House/Senate joint percentages. '+
   'First-publication timestamps were unavailable in the historical collection.':
   'Historical poll-error audit unavailable. These joint probabilities remain uncalibrated.';
+ const calibration=proper?
+  ' Fixed six-point margin-error model: 90% coverage was '+
+  proper.by_year.map(x=>x.year+': '+x.interval_90_pct.toFixed(0)+'%').join('; ')+
+  '. Held-out-cycle mean Brier score '+proper.pooled_heldout.brier.toFixed(3)+
+  ' and log loss '+proper.pooled_heldout.log_loss.toFixed(3)+
+  ' for a shrinkage-corrected retrospective test. '+
+  'This still does not validate 2026 House seats or joint Congress probabilities.':
+  ' Proper probability scoring unavailable; joint forecast remains uncalibrated.';
  for(const id of ['jointHomeAudit','jointNightAudit']){
-  const row=$('#'+id);if(row)row.textContent=summary;
+  const row=$('#'+id);if(row)row.textContent=summary+calibration;
  }
 }
 async function jointLoadPollErrorAudit(){
  try{
   const response=await fetch('./data/historical_senate_poll_backtest.json',{cache:'no-store'});
   if(!response.ok)throw Error('Missing historical error data');
-  jointRenderPollErrorAudit(window.JackErrorAudit.summarize(await response.json()));
+  const history=await response.json();
+  const prior=window.JackErrorAudit.summarize(history);
+  const scoring=window.SenateCalibrationAudit.evaluate(history);
+  jointRenderPollErrorAudit(prior,scoring);
  }catch(_){jointRenderPollErrorAudit(null)}
 }
 void jointLoadPollErrorAudit();

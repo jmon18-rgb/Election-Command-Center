@@ -156,17 +156,24 @@
   for(const seat of s.seats.senate.contested_seats){
    const code=normalizeCode(seat.race_code),state=seat.state;
    const prior=senate2020.get(state);
-   const reliable=prior&&!prior.missing_major_party_vote&&
+   // A 2026 special election is a different seat from the state's
+   // 2020 regular Senate election. Never reuse that candidate race as
+   // if it were the same incumbency/fundamentals baseline.
+   const special=seat.election_kind==='special';
+   const reliable=!special&&prior&&!prior.missing_major_party_vote&&
       prior.recorded_dem_votes>0&&prior.recorded_rep_votes>0;
    let mean=(reliable?(0.65*margin(prior.dem_share_of_two_party)+
      .35*stateMargin(state)):stateMargin(state))+projectedSwing*.68;
-   let sigma=reliable?17:23,method=reliable?
-     'historical_2020_senate_plus_state_house':'state_house_proxy_no_2020_two_party';
+   let sigma=reliable?17:special?25:23,method=reliable?
+     'historical_2020_senate_plus_state_house':special?
+     'special_election_state_house_proxy':'state_house_proxy_no_2020_two_party';
    const poll=odds.get('senate|'+code);
    if(poll){
     const weight=poll.independent_firms>=2?.90:.78;
     mean=weight*poll.dem_minus_rep+(1-weight)*mean;
-    sigma=Math.max(6,poll.sigma_points);
+    // The 2020 historical Senate polling-error RMSE was near seven
+    // margin points. This is a conservative FLOOR, not a calibration.
+    sigma=Math.max(7,poll.sigma_points);
     method='2026_poll_blend_'+method;
    }
    senate.push({code,state,mean:limit(mean,-55,55),sigma,

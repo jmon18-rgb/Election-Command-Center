@@ -20,6 +20,13 @@ assert(basis.generated_from_sources.generic_ballot_margin>0);
 assert(basis.generated_from_sources.house_geography_changed>0);
 assert.equal(basis.house.filter(r=>r.polled).length,60);
 assert.equal(basis.senate.filter(r=>r.polled).length,24);
+assert(basis.senate.filter(r=>r.polled).every(r=>r.sigma>=7),
+ 'Current Senate poll estimates must not use election-error widths below seven points');
+const specialSeats=basis.senate.filter(x=>x.special);
+assert.equal(specialSeats.length,2);
+assert(specialSeats.every(x=>!x.method.includes('historical_2020_senate')),
+ 'A 2026 special cannot borrow a different seat\'s 2020 regular Senate baseline');
+
 assert(basis.house.some(r=>r.method==='redrawn_state_distribution_proxy'));
 assert(basis.house.some(r=>r.method==='uncontested_or_missing_party_proxy'));
 const rebuilt=new Map(basis.house.map(r=>[r.code,r]));

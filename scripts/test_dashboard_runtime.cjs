@@ -81,6 +81,8 @@ async function settle(){
  assert(w.ChamberControlModel,'Joint Senate/House model must load before app');
  w.eval(read('scripts/chamber_poll_error_audit.js'));
  assert(w.JackErrorAudit,'Retrospective Senate error audit must be loaded before app');
+ w.eval(read('scripts/senate_calibration_audit.js'));
+ assert(w.SenateCalibrationAudit,'Retrospective probability-score module must be loaded before app');
  w.eval(scripts[0]);
  await settle();
  // Actual model probabilities come from the same 2026 polls and a
@@ -860,6 +862,10 @@ async function settle(){
  assert.match(get('#jointHomeAudit').textContent,/2020 poll minus result/);
  assert.match(get('#jointNightAudit').textContent,/NO automatic historic partisan correction/);
  assert.match(get('#jointHomeAudit').textContent,/NOT calibration/);
+ assert.match(get('#jointHomeAudit').textContent,/Held-out-cycle mean Brier score/);
+ assert.match(get('#jointNightAudit').textContent,/90% coverage was/);
+ assert(get('#jointNightCards').textContent.includes('18+ of 20 battlegrounds'));
+
  assert.match(get('#jointNightCards').textContent,/BLUE TSUNAMI/);
  assert.match(get('#jointNightCards').textContent,/BLUE WAVE/);
  assert.match(get('#jointNightCards').textContent,/SHRUG/);
