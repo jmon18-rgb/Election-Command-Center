@@ -98,8 +98,14 @@ const effects=scenarios.map((c,i)=>{
   house_top_same_draw_control_bellwethers:bws
  };
 });
-assert(effects.every(x=>x.d_senate_control_in_model_pct===effects[0].d_senate_control_in_model_pct),
- 'House-only counterfactual should not change Senate outcomes');
+assert(effects.slice(0,3).every(x=>x.d_senate_control_in_model_pct===effects[0].d_senate_control_in_model_pct),
+ 'National House baseline alternatives use identical Senate draws');
+// The 2026-map geography scenario does not reshuffle redrawn 2024 margins.
+// That deliberately changes the PRNG stream, so compare Senate distributions
+// with Monte Carlo tolerance rather than requiring same-draw identity.
+assert(Math.abs(effects[3].d_senate_control_in_model_pct-
+ effects[0].d_senate_control_in_model_pct)<3,
+ 'House-only geography should preserve Senate marginals statistically');
 const curveshift=[-6,-4,-2,0,2,4,6];
 const curveSamples=3000;
 const curve=curveshift.map(shift=>{
@@ -117,8 +123,9 @@ for(let i=1;i<curve.length;i++){
  assert(curve[i].simulated_dem_house_control_pct>=curve[i-1].simulated_dem_house_control_pct);
 }
 assert(effects[0].d_house_seat_mean>=0);
-const redrawnByState=Object.entries(Object.groupBy?Object.groupBy(redrawn,x=>x.state):
- redrawn.reduce((a,x)=>{(a[x.state]??=[]).push(x);return a},{}))
+const redrawnByState=Object.entries(redrawn.reduce((a,x)=>{
+ (a[x.state]??=[]).push(x);return a;
+},{}))
  .map(([state,items])=>({state,redrawn_2026_seats:items.length,
   presidential_2024_state_margin:r3(margin(statePres.get(state).d,statePres.get(state).r))}))
  .sort((a,b)=>a.state.localeCompare(b.state));
@@ -162,7 +169,7 @@ else{
  console.log('HOUSE 2024 VOTE REFERENCE + 2026 SEAT RESPONSE AUDIT (NONPROMOTED)');
  console.table({
   recorded_2024_house_reference_r3:r3(rawReference),
-  391_contested_house_reference_r3:r3(contestedReference),
+  'contested_391_house_reference_r3':r3(contestedReference),
   mapped_2024_presidential_reference_r3:r3(presidentialReference),
   generic_ballot_r3:r3(generic),
   missing_competitive_two_party_races:all.length-both.length
