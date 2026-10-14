@@ -10,6 +10,10 @@ jobs:
     timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
+      - name: Keep new polls in the actual polling and forecast inputs
+        run: |
+          python3 scripts/test_poll_source_reconciliation.py
+          python3 scripts/test_fresh_poll_sources.py
       - name: Verify published 2026 Senate current-candidate odds, variance and House invariance
         run: |
           node --check scripts/chamber_control_model.js

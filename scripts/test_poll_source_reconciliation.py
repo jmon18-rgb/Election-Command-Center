@@ -1,0 +1,155 @@
+#!/usr/bin/env python3
+"""Offline regression: PollResults feed -> live primary model -> refreshed odds."""
+import copy
+import datetime as dt
+import sys
+import unittest
+from pathlib import Path
+
+sys.path.insert(0,str(Path(__file__).resolve().parent))
+import reconcile_poll_sources as recon
+import build_polling_estimates as model
+import validate_fresh_poll_sources as validator
+
+TODAY=dt.date(2026,10,14)
+AT="2026-10-14T23:35:51Z"
+ID="9849d173-7f1b-41ff-9ed9-b3e55032e195"
+
+
+def oldpoll(identifier, pollster, day, dem, rep):
+    return {
+        "poll_id":identifier,"field_end":day,"pollster":pollster,"dem":dem,
+        "rep":rep,"margin":round(dem-rep,2),"sample_size":650,
+        "partisan_lean":"","dem_name":"Peggy Flanagan",
+        "rep_name":"Michele Tafoya","first_seen_at":None,"release_date":None,
+    }
+
+
+def primary():
+    races=[{
+        "race_code":"MN-SEN","race_type":"senate","state":"MN","district":"SEN",
+        "polls":[oldpoll("previous-surveyusa","SurveyUSA","2026-09-14",42,42),
+                 oldpoll("mason-oct07","Mason-Dixon","2026-10-07",47,43)],
+        "source_url":"https://example.org/primary-source.csv",
+    }]
+    races[0]["latest"]=races[0]["polls"][1].copy()
+    races[0]["latest_field_end"]="2026-10-07"
+    races[0]["recent_poll_count"]=2
+    return {"races":races,"updated_at":AT}
+
+
+def newer(**kwargs):
+    entry={
+        "race_code":"MN-SEN","race_type":"senate","state":"MN",
+        "poll_id":ID,"question_id":"mn-lv-718",
+        "pollster":"SurveyUSA","dem_name":"Peggy Flanagan",
+        "rep_name":"Michele Tafoya",
+        "dem":45,"rep":42,"margin":3.0,
+        "field_end":"2026-10-12","field_start":"2026-10-09",
+        "posted_date":"2026-10-14",
+        "source_url":"https://example.org/published-2026-mn-survey.pdf",
+        "sample_population":"lv","sample_size":718,"partisan_lean":""
+    }
+    entry.update(kwargs)
+    return entry
+
+
+class PollToModelTests(unittest.TestCase):
+    def test_new_minnesota_poll_changes_real_aggregate_and_survives_refresh(self):
+        p=primary()
+        old=model.estimate(p["races"][0],TODAY)
+        self.assertEqual(old["latest_poll_end"],"2026-10-07")
+        first=recon.merge(p,[newer()],TODAY,observed_at=AT)
+        self.assertEqual(first["new_to_model"],1)
+        self.assertEqual(first["added_by_race"],{"MN-SEN":1})
+        updated=model.estimate(p["races"][0],TODAY)
+        self.assertEqual(updated["latest_poll_end"],"2026-10-12")
+        survey=next(x for x in updated["pollsters"] if x["name"]=="SurveyUSA")
+        self.assertEqual(survey["field_end"],"2026-10-12")
+        self.assertEqual(survey["poll_id"],ID)
+        self.assertNotEqual(old["dem_minus_rep"],updated["dem_minus_rep"],
+                            "New live data must actually recompute the poll average")
+        self.assertEqual(p["races"][0]["latest"]["poll_id"],ID)
+        self.assertIsNone(p["races"][0]["latest"]["release_date"],
+                          "A source INGESTION DATE is NOT a public release date")
+        self.assertEqual(p["races"][0]["latest"]["first_seen_at"],AT)
+        # Simulate the next 4h ElectIndex ingestion still omitting this study.
+        lagging=primary()
+        persisted=recon.carry_forward(p,lagging,TODAY)
+        self.assertEqual(persisted["new_to_model"],1)
+        self.assertEqual(lagging["races"][0]["latest"]["poll_id"],ID)
+        self.assertEqual(lagging["races"][0]["latest"]["first_seen_at"],AT)
+        # Next time the primary provider catches up, poll ID is not repeated.
+        caught_up=primary()
+        caught_up["races"][0]["polls"].insert(0,copy.deepcopy(p["races"][0]["latest"]))
+        caught_up["races"][0]["latest"]=caught_up["races"][0]["polls"][0]
+        self.assertEqual(recon.carry_forward(p,caught_up,TODAY)["new_to_model"],0)
+        self.assertEqual(len([x for x in caught_up["races"][0]["polls"]
+            if x["poll_id"]==ID]),1)
+
+    def test_same_source_id_alternatives_do_not_double_count(self):
+        p=primary()
+        lv=newer()
+        rv=newer(question_id="mn-rv",sample_population="rv",
+                  sample_size=1200,dem=48,rep=41)
+        r=recon.merge(p,[rv,lv],TODAY)
+        self.assertEqual(r["new_to_model"],1)
+        self.assertEqual(p["races"][0]["latest"]["sample_population"],"lv")
+        self.assertEqual(p["races"][0]["latest"]["dem"],45)
+        self.assertEqual(recon.merge(p,[lv,rv],TODAY)["new_to_model"],0)
+        self.assertEqual(len(p["races"][0]["polls"]),3)
+
+    def test_equal_priority_conflicting_answers_are_quarantined(self):
+        p=primary()
+        left=newer(question_id="one",dem=45,rep=42)
+        right=newer(question_id="two",dem=47,rep=41)
+        self.assertEqual(recon.merge(p,[left,right],TODAY)["new_to_model"],0)
+
+    def test_wrong_matchup_stale_missing_source_and_future_rejected(self):
+        for item in [
+            newer(dem_name="Someone Else"),
+            newer(rep_name="Someone Else"),
+            newer(race_code="MN-GOV"),
+            newer(source_url=None),
+            newer(field_end="2026-05-01"),
+            newer(field_end="2026-10-20"),
+            newer(dem=102),
+            newer(sample_size=None),
+            newer(sample_population="lv",dem=10,rep=9),
+        ]:
+            p=primary()
+            self.assertEqual(recon.merge(p,[item],TODAY)["new_to_model"],0)
+
+    def test_original_primary_study_enriched_not_overridden(self):
+        p=primary()
+        source=newer(poll_id="mason-oct07",pollster="Mason-Dixon",
+                     field_end="2026-10-07",dem=47,rep=43)
+        r=recon.merge(p,[source],TODAY)
+        self.assertEqual(r["new_to_model"],0)
+        self.assertEqual(r["enriched_existing"],1)
+        self.assertEqual(len(p["races"][0]["polls"]),2)
+        self.assertIn("source_poll_url",p["races"][0]["polls"][0])
+
+    def test_preexisting_primary_collision_does_not_replace_share(self):
+        p=primary()
+        fake=newer(poll_id="mason-oct07",dem=69,rep=10)
+        self.assertEqual(recon.merge(p,[fake],TODAY)["new_to_model"],0)
+        self.assertEqual(p["races"][0]["polls"][0]["dem"],47)
+
+    def test_validator_detects_missing_model_poll(self):
+        p=primary()
+        # Validation helper must detect when new-polls shows this source ID
+        # but the model source omits it.
+        self.assertEqual(len(recon.candidate_observations(p,[newer()],TODAY)),1)
+        recon.merge(p,[newer()],TODAY,observed_at=AT)
+        self.assertEqual(recon.candidate_observations(p,[newer()],TODAY),[])
+
+    def test_later_out_of_window_secondary_is_pruned(self):
+        p=primary()
+        recon.merge(p,[newer()],TODAY)
+        lagging=primary()
+        self.assertEqual(recon.carry_forward(p,lagging,dt.date(2026,12,24))["new_to_model"],0)
+
+
+if __name__=="__main__":
+    unittest.main()

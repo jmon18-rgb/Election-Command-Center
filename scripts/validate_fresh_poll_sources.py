@@ -12,6 +12,7 @@ import json
 import re
 import sys
 from pathlib import Path
+import reconcile_poll_sources as reconciliation
 
 ROOT = Path(__file__).resolve().parents[1]
 UTC = dt.timezone.utc
@@ -108,6 +109,18 @@ def verify(primary, supplemental=None, estimates=None, *, now=None):
             details["supplemental_status"] = "stale_warning"
         else:
             details["supplemental_status"] = "current"
+            # No silent "visible in New Polls but absent from model" regressions:
+            # every eligible and source-linked secondary study for a known
+            # current matchup must already exist in the PRIMARY model input.
+            remaining=reconciliation.candidate_observations(
+                primary,polls,now.date())
+            if remaining:
+                names=", ".join(p["race_code"]+"/"+str(p["poll_id"])
+                    for p in remaining[:8])
+                raise ValueError(
+                    "New polls visible in supplemental feed but MISSING "
+                    "from live model input: "+names)
+            details["unmodeled_eligible_secondary_polls"]=0
     if estimates is not None:
         if estimates.get("source_snapshot") != primary.get("updated_at"):
             raise ValueError("Generated estimates derived from an OLD poll snapshot")
