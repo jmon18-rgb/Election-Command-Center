@@ -1058,6 +1058,13 @@ function renderModelTrend(estimate){
   '. A line connects observations; no daily values between them were measured. Poll-age reweighting and newly added polls can both move the average. This is NOT an election-outcome forecast.';
 }
 let modelRaceOddsData=null,modelOddsErrorWidth='standard';
+// Read-only accessors keep browser smoke tests out of script-local bindings
+// and expose the exact probabilities currently being rendered.
+function jointRaceOddsResult(){return modelRaceOddsData}
+function jointPollingReady(){return Boolean(latestSenateEstimates)}
+function jointRaceOddsIntegrity(){
+ return modelOddsValidate(modelRaceOddsData,latestSenateEstimates);
+}
 function setModelRaceOddsData(data){
  modelRaceOddsData=data;
  if(latestSenateEstimates){
