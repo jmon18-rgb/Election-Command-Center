@@ -95,6 +95,11 @@ jobs:
           node --check scripts/election_night_nowcast.js
           node --check scripts/test_election_night_nowcast.cjs
           node scripts/test_election_night_nowcast.cjs
+      - name: Test isolated five-stage election-night probability rehearsal
+        run: |
+          node --check scripts/election_night_rehearsal.js
+          node --check scripts/test_election_night_rehearsal.cjs
+          node scripts/test_election_night_rehearsal.cjs
       - name: Install DOM test environment
         run: npm install --no-save --no-package-lock --ignore-scripts jsdom@26.1.0
       - name: Check JavaScript syntax and exercise actual dashboard

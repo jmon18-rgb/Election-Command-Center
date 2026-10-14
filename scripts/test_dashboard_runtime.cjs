@@ -73,6 +73,8 @@ async function settle(){
  assert(w.StateBatchCivicAdapter,'Four-state adapter must load before the application');
  w.eval(read('scripts/election_night_nowcast.js'));
  assert(w.RaceLiveNowcast,'Live race probability module must load before app');
+ w.eval(read('scripts/election_night_rehearsal.js'));
+ assert(w.ElectionNightRehearsal,'Synthetic rehearsal library must load before app');
  w.eval(scripts[0]);
  await settle();
  // Actual model probabilities come from the same 2026 polls and a
@@ -843,6 +845,42 @@ async function settle(){
  assert.match(get('#enHealthRows').textContent,/Senate · Open America/);
  assert.match(get('#enHealthRows').textContent,/Supplemental · civicAPI/);
  assert.equal(get('#enNowcastRows').querySelectorAll('.en-live-race').length,8);
+ // User-facing rehearsal never feeds fictional votes into the live dashboard.
+ const beforeActualCount=get('#enRaces').textContent,
+  beforeActualWatch=get('#enWatchItems').textContent,
+  beforeActualAlerts=get('#enAlertItems').textContent,
+  beforeResume=w.localStorage.getItem('bluewaves_2026_results_resume_v1');
+ assert.equal(get('#enRehearsalPanel').hidden,true);
+ get('#enRehearsalToggle').click();
+ assert.equal(get('#enRehearsalPanel').hidden,false);
+ assert.equal(get('#enRehearsalToggle').getAttribute('aria-expanded'),'true');
+ assert.match(get('#enRehearsalPanel').textContent,/SIMULATION ONLY/);
+ assert.match(get('#enRehearsalStage').textContent,/STEP 1 \/ 5/);
+ assert.match(get('#enRehearsalRows').textContent,/NC-SEN/);
+ assert.match(get('#enRehearsalRows').textContent,/POLL PRIOR/);
+ get('#enRehearsalNext').click();
+ assert.match(get('#enRehearsalStage').textContent,/STEP 2 \/ 5/);
+ assert.match(get('#enRehearsalRows').textContent,/SIMULATED UPDATE/);
+ get('#enRehearsalNext').click();
+ get('#enRehearsalNext').click();
+ get('#enRehearsalNext').click();
+ assert.match(get('#enRehearsalStage').textContent,/STEP 5 \/ 5/);
+ assert.equal(get('#enRehearsalNext').disabled,true);
+ get('#enRehearsalPrev').click();
+ assert.match(get('#enRehearsalStage').textContent,/STEP 4 \/ 5/);
+ get('#enRehearsalReset').click();
+ assert.match(get('#enRehearsalStage').textContent,/STEP 1 \/ 5/);
+ assert.equal(get('#enRaces').textContent,beforeActualCount,
+  'Simulated scenario must not alter counted live races');
+ assert.equal(get('#enWatchItems').textContent,beforeActualWatch,
+  'Simulated race panel must not mutate saved watchlist');
+ assert.equal(get('#enAlertItems').textContent,beforeActualAlerts,
+  'Rehearsal cannot raise real first-vote/call alerts');
+ assert.equal(w.localStorage.getItem('bluewaves_2026_results_resume_v1'),beforeResume,
+  'Rehearsal cannot poison local recovered actual vote snapshots');
+ get('#enRehearsalToggle').click();
+ assert.equal(get('#enRehearsalPanel').hidden,true);
+
  assert.match(get('#enNationalSummary').textContent,/1 \/ 35 races with recorded votes/);
  assert.equal(get('#enNationalRows').querySelectorAll('.en-national-seat[data-reporting="true"]').length,1);
  assert.match(get('#enNationalRows').textContent,/NC-SEN/);

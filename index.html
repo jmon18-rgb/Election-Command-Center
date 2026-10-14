@@ -319,6 +319,17 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-source-item .en-source-state.bad{color:#ffa5a5}
 .en-source-item .en-source-state.wait{color:#e7cd94}
 @media(max-width:620px){.en-live-desk{padding:12px}.en-live-heading h3{font-size:17px}.en-live-races{grid-template-columns:1fr}}
+/* Interactive training-only returns, visually separated from actual feeds. */
+.en-rehearsal-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:13px;padding:10px 0;border-top:1px solid #33475f}
+.en-rehearsal-controls button,.en-rehearsal-nav button{font-size:11px;font-weight:700;color:#e1ebfa;background:#244464;border:1px solid #486582;border-radius:7px;padding:8px 11px;cursor:pointer}
+.en-rehearsal-controls button:hover,.en-rehearsal-nav button:hover{background:#2a537b}
+.en-rehearsal-controls span{font-size:11px;color:#a9bfd4}
+.en-rehearsal-panel{padding:12px;margin:7px 0 12px;border:1px dashed #d5aa76;border-radius:9px;background:#2a271d}
+.en-rehearsal-warning{font-size:11px;color:#ffe0a7;letter-spacing:.04em}
+.en-rehearsal-panel>p{font-size:12px;color:#e7dfd0;line-height:1.5}
+.en-rehearsal-nav{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.en-rehearsal-nav button:disabled{opacity:.42;cursor:not-allowed}
+.en-rehearsal-panel .en-live-race{background:#2a322f}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -517,6 +528,21 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <p id="enNowcastSummary" class="en-live-summary">Loading the independently calculated race probability model…</p>
  <div id="enNowcastRows" class="en-live-races"><p class="en-live-note">Validating probability inputs…</p></div>
  <p class="en-live-note">Experimental two-party win probabilities, not race calls. Precinct shares are not vote shares; early returns may be geographically unrepresentative. No inferred chamber or Blue Tsunami probability from incomplete race coverage.</p>
+ <div class="en-rehearsal-controls">
+  <button id="enRehearsalToggle" type="button" aria-expanded="false">Try simulated election-night rehearsal</button>
+  <span>Preview model behavior before November 3 without touching live results.</span>
+ </div>
+ <div id="enRehearsalPanel" class="en-rehearsal-panel" hidden aria-label="Simulated election-night model rehearsal">
+  <strong class="en-rehearsal-warning">SIMULATION ONLY · FICTIONAL VOTES · NOT LIVE RESULTS</strong>
+  <p id="enRehearsalStage">No rehearsal started.</p>
+  <div class="en-rehearsal-nav">
+   <button type="button" id="enRehearsalPrev">Previous stage</button>
+   <button type="button" id="enRehearsalNext">Next reporting stage</button>
+   <button type="button" id="enRehearsalReset">Reset</button>
+  </div>
+  <div id="enRehearsalRows" class="en-live-races"></div>
+  <p class="en-live-note">Four fictional Senate count sequences. This demo never modifies the watchlist, vote source, alerts, saved data, or published probabilities. Precinct geography and the displayed odds are illustrative, not historical backtests.</p>
+ </div>
  <details class="en-live-health" id="enLiveHealth">
   <summary>Source health <span id="enHealthHeadline">checking…</span></summary>
   <div class="en-source-grid" id="enHealthRows">Source checks have not started.</div>
@@ -597,6 +623,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/civicapi_nh_governor_adapter.js"></script>
 <script src="./scripts/civicapi_state_batch.js"></script>
 <script src="./scripts/election_night_nowcast.js"></script>
+<script src="./scripts/election_night_rehearsal.js"></script>
 <script>
 const $=s=>document.querySelector(s);
 function activatePage(tab,updateUrl){
@@ -2026,6 +2053,7 @@ function enRenderLiveDesk(){
   summary.textContent='Waiting for a matching, validated polling snapshot and race-probability model.';
   host.append(elt('p','en-live-note',
    'Unmatched snapshots cannot produce election-night probabilities.'));
+  enRenderRehearsal();
   return;
  }
  const lookup=new Map(modelRaceOddsData.records.map(record=>
@@ -2074,7 +2102,69 @@ function enRenderLiveDesk(){
  summary.textContent=selected.slice(0,8).length+' poll-based race probabilities · '+
   live+' adjusted with verified returns. The update assumes additional geographic error; '+
   'not calibrated to 2026 precinct sequences or a substitute for race calls.';
+ enRenderRehearsal();
 }
+
+/* Practice mode is a completely isolated visualization. It never assigns
+ * enData, enOfficeSnapshots, enCivicByWatch, enAlertRows or localStorage. */
+let enRehearsalActive=false,enRehearsalStep=0;
+function enRenderRehearsal(){
+ const toggle=$('#enRehearsalToggle'),panel=$('#enRehearsalPanel'),
+  stage=$('#enRehearsalStage'),rows=$('#enRehearsalRows');
+ if(!toggle||!panel||!stage||!rows)return;
+ toggle.setAttribute('aria-expanded',String(enRehearsalActive));
+ toggle.textContent=enRehearsalActive?'Close simulated rehearsal':
+  'Try simulated election-night rehearsal';
+ panel.hidden=!enRehearsalActive||enModeYear!==2026;
+ if(panel.hidden)return;
+ rows.replaceChildren();
+ const priorReady=window.ElectionNightRehearsal&&window.RaceLiveNowcast&&
+  latestSenateEstimates&&modelOddsValidate(modelRaceOddsData,latestSenateEstimates);
+ if(!priorReady){
+  stage.textContent='The real poll-prior model is not ready. Simulated votes will not be substituted for the missing model.';
+  $('#enRehearsalPrev').disabled=true;
+  $('#enRehearsalNext').disabled=true;
+  return;
+ }
+ const output=window.ElectionNightRehearsal.run(
+  modelRaceOddsData,window.RaceLiveNowcast,enRehearsalStep);
+ stage.textContent='STEP '+(output.step+1)+' / '+output.totalSteps+' · '+
+   output.phase.label.toUpperCase()+' · '+output.phase.note;
+ $('#enRehearsalPrev').disabled=enRehearsalStep===0;
+ $('#enRehearsalNext').disabled=enRehearsalStep>=output.totalSteps-1;
+ const pct=n=>n>=99.5?'>99%':n<=.5?'<1%':Math.round(n)+'%';
+ for(const row of output.rows){
+  const card=elt('div','en-live-race');
+  const header=elt('div','en-live-race-head');
+  header.append(elt('strong','',row.code),elt('span','',
+   row.result?.mode==='live_informed'?'SIMULATED UPDATE':'POLL PRIOR'));
+  card.append(header);
+  if(!row.result){card.append(elt('small','','No published poll prior'));rows.append(card);continue}
+  const odds=elt('div','en-live-prob');
+  odds.append(elt('strong','party-d','D '+pct(row.result.demPct)),
+   elt('strong','party-r','R '+pct(row.result.repPct)));
+  card.append(odds,elt('small','','Start: D '+pct(row.result.priorDemPct)+
+   ' · simulated '+row.simulatedVotes.toLocaleString('en-US')+' ballots · '+
+   row.precinctPct+'% fictional precincts'));
+  rows.append(card);
+ }
+}
+$('#enRehearsalToggle').addEventListener('click',()=>{
+ enRehearsalActive=!enRehearsalActive;
+ if(enRehearsalActive)enRehearsalStep=0;
+ enRenderRehearsal();
+});
+$('#enRehearsalNext').addEventListener('click',()=>{
+ if(enRehearsalStep<4)enRehearsalStep++;
+ enRenderRehearsal();
+});
+$('#enRehearsalPrev').addEventListener('click',()=>{
+ if(enRehearsalStep>0)enRehearsalStep--;
+ enRenderRehearsal();
+});
+$('#enRehearsalReset').addEventListener('click',()=>{
+ enRehearsalStep=0;enRenderRehearsal();
+});
 
 function enNationalSourceStatus(item){
  const isPrimary=enSupportedStates.has(item.state);
