@@ -21,6 +21,10 @@ jobs:
         run: python3 scripts/check_dashboard.py
       - name: Validate new-poll notification behavior without email credentials
         run: python3 scripts/test_poll_alerts.py
+      - name: Test DFL Democratic-NPL and fusion ballot historical House parsing
+        run: |
+          python3 -m py_compile scripts/stage_house_history_2024.py
+          python3 scripts/test_house_history.py
       - name: Validate historical Senate election importer without network access
         run: python3 scripts/test_senate_history.py
       - name: Stage MIT Senate research outcomes from official Harvard Dataverse
