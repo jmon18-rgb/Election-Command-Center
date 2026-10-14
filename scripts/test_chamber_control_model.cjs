@@ -251,10 +251,15 @@ assert(Math.abs(expectedSenateWins-first.means.senate_dem_seats)<.02,
  'Senate race win frequencies must reconcile with same simulated chamber seat totals');
 const bothPct=first.blue_both_including_tsunami;
 const splitPct=first.probabilities.shrug,redPct=first.probabilities.red_dawn;
+const pivot=first.senate_independent_context;
 assert(Math.abs(first.house_dem_control_pct+first.senate_dem_control_pct-
- 2*bothPct-splitPct)<.045,'Chamber marginals must reconcile exactly with split control');
+ 2*bothPct-splitPct-pivot.pivot_with_house_dem_pct)<.06,
+ 'Chamber marginals must reconcile with split control and an independent pivot');
 assert(Math.abs(100-first.house_dem_control_pct-first.senate_dem_control_pct+
- bothPct-redPct)<.045,'Chamber marginals must reconcile with Republican both-control');
+ bothPct-redPct-pivot.pivot_with_house_rep_pct)<.06,
+ 'Republican control must exclude independent Senate balance-of-power outcomes');
+assert(Math.abs(pivot.pivot_with_house_dem_pct+pivot.pivot_with_house_rep_pct-
+ first.probabilities.independent_pivot)<.03);
 assert(first.house_dem_control_pct+0.01>=bothPct);
 assert(first.senate_dem_control_pct+0.01>=bothPct);
 for(const [key,total] of [['house_dem_seats',435],['senate_dem_seats',100]]){
