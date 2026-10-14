@@ -162,6 +162,52 @@ def observation_key(race, poll):
                      poll.get("dem_name", ""), poll.get("rep_name", ""),
                      str(poll.get("dem", "")), str(poll.get("rep", ""))])
 
+def carry_forward_verified_supplemental(prior_races, new_races):
+    """Keep previously ingested, attributed secondary polls through primary refresh.
+
+    A delayed primary vendor must not make a new poll disappear from forecast
+    inputs on the following scheduled update. Retain at most the original
+    rolling model window and never override newer authoritative primary rows.
+    """
+    old = {r["race_code"]: r for r in prior_races or []}
+    persisted = 0
+    for race in new_races:
+        previous = old.get(race["race_code"]) or {}
+        latest_pair = next(((p.get("dem_name") or "").strip().casefold(),
+                            (p.get("rep_name") or "").strip().casefold())
+                           for p in race.get("polls", []) if p.get("dem_name")
+                           and p.get("rep_name") and
+                           "generic" not in (p["dem_name"] + " " + p["rep_name"]).casefold()), None)
+        if not latest_pair:
+            continue
+        seen = {(p.get("poll_id"), p.get("dem_name", "").casefold(),
+                 p.get("rep_name", "").casefold()) for p in race["polls"]}
+        for p in previous.get("polls") or []:
+            if p.get("source_provider") != "PollResults.org":
+                continue
+            try:
+                age = (TODAY - dt.date.fromisoformat(p["field_end"])).days
+                if not 0 <= age <= 45:
+                    continue
+            except (TypeError, ValueError, KeyError):
+                continue
+            key = (p.get("poll_id"), str(p.get("dem_name") or "").casefold(),
+                   str(p.get("rep_name") or "").casefold())
+            if key in seen or key[1:] != latest_pair:
+                continue
+            if not p.get("source_poll_url"):
+                continue
+            race["polls"].append(dict(p))
+            seen.add(key)
+            persisted += 1
+        race["polls"].sort(key=lambda p: p["field_end"], reverse=True)
+        race["polls"] = race["polls"][:60]
+        race["latest"] = race["polls"][0]
+        race["latest_field_end"] = race["latest"]["field_end"]
+        race["recent_poll_count"] = len(race["polls"])
+    return persisted
+
+
 def stamp_poll_first_seen(prior_races, new_races, observed_at):
     """Preserve detection timestamps without pretending they're publication dates.
 
@@ -265,6 +311,8 @@ def main():
         result["newly_detected_count"] = stamp_poll_first_seen(
             prior.get("races"), result["races"], UTC_NOW
         )
+        result["carried_secondary_polls"] = carry_forward_verified_supplemental(
+            prior.get("races"), result["races"])
     if "races" in success and prior.get("updated_at"):
         result["changes"] = build_changes(prior, result)
     else:
