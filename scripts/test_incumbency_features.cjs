@@ -63,7 +63,9 @@ assert.throws(()=>features.validate(falseAdmin),/Invalid MN governor\/Senate/);
 const example=structuredClone(map.get('AK-SEN'));
 const incumbent=example.rep;
 assert.equal(incumbent.incumbent_same_seat_candidate,true);
-assert.equal(incumbent.elected_vs_appointed,'unverified');
+assert.equal(incumbent.elected_vs_appointed,'elected',
+ '2020 named winner is independently verified');
+incumbent.elected_vs_appointed='unverified'; // Explicit synthetic unknown-status test
 assert.equal(features.sensitivity(example,{same_office_incumbent_points:2})
  .raw_prior_margin_adjustment_points,0);
 incumbent.elected_vs_appointed='elected';
@@ -77,7 +79,9 @@ incumbent.elected_vs_appointed='appointed';
 assert.equal(features.sensitivity(example,{same_office_incumbent_points:2})
  .raw_prior_margin_adjustment_points,0);
 const house=structuredClone([...map.values()].find(x=>x.office==='house'&&
- x.incumbent_candidate_party!==null));
+ x.incumbent_candidate_party!==null&&
+ (x.incumbent_candidate_party==='DEM'?x.dem:x.rep)
+  .verified_old_new_district_overlap_fraction===null));
 assert(house,'House incumbent example required');
 const candidate=house.incumbent_candidate_party==='DEM'?house.dem:house.rep;
 candidate.elected_vs_appointed='elected';
