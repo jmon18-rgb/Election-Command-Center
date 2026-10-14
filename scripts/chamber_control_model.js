@@ -437,6 +437,7 @@
   const explainControl=options.explainControl===true;
   const pivotalHouse=new Uint32Array(435),pivotalSenate=new Uint32Array(35);
   const senateWinsWithControl=new Uint32Array(35);
+  const houseWinsWithControl=explainControl?new Uint32Array(435):null;
   const houseWinners=explainControl?new Uint8Array(435):null;
   const senateWinners=explainControl?new Uint8Array(35):null;
   let houseOnly=0,senateOnly=0;
@@ -516,6 +517,8 @@
    if(houseDem&&!senateDem)houseOnly++;
    if(senateDem&&!houseDem)senateOnly++;
    if(explainControl){
+    if(houseDem)for(let q=0;q<435;q++)
+     if(houseWinners[q])houseWinsWithControl[q]++;
     if(senateDem)for(let z=0;z<35;z++)
      if(senateWinners[z])senateWinsWithControl[z]++;
     // A one-seat flip can alter chamber control only at the boundary.
@@ -592,6 +595,21 @@
     mechanical_pivotal_draws:pivotalSenate[i]};
   }).sort((a,b)=>b.control_covariance_pp-a.control_covariance_pp||
    a.race_code.localeCompare(b.race_code)):null;
+  // Unlike mechanical pivots at 217/218, same-draw covariance ranks
+  // uncertain district outcomes informative about House control. This is
+  // NOT a forecast of an individual voter's causal power or elasticity.
+  const houseBellwethers=explainControl?basis.house.map((seat,i)=>{
+   const wins=raceDemWins[i],wonAndControl=houseWinsWithControl[i];
+   const raceP=wins/samples,houseP=houseControl/samples;
+   const cov=wonAndControl/samples-raceP*houseP;
+   return {race_code:seat.code,dem_win_pct:pct(wins),
+    control_covariance_pp:Math.round(cov*10000)/100,
+    house_control_if_dem_win_pct:wins?pct(wonAndControl*samples/wins):null,
+    house_control_if_rep_win_pct:wins<samples?
+     pct((houseControl-wonAndControl)*samples/(samples-wins)):null,
+    mechanical_pivotal_draws:pivotalHouse[i]};
+  }).sort((a,b)=>b.control_covariance_pp-a.control_covariance_pp||
+   a.race_code.localeCompare(b.race_code)):null;
   const controlExplanation=explainControl?{
    house_only_pct:pct(houseOnly),senate_only_pct:pct(senateOnly),
    both_dem_pct:pct(bothCount),neither_dem_pct:pct(outcomes.red_dawn),
@@ -604,8 +622,9 @@
     Math.round(10000*bothCount/senateControl)/100:null,
    senate_pivotal_races:pivotRows(basis.senate,pivotalSenate),
    senate_control_bellwethers:bellwethers,
+   top_house_control_bellwethers:houseBellwethers.slice(0,25),
    top_house_pivotal_races:pivotRows(basis.house,pivotalHouse).slice(0,20),
-   note:'Pivotal is an arithmetic one-seat reversal; bellwether covariance ranks uncertain races informative about Senate control. Neither measures causal campaign influence.'
+   note:'Mechanical pivotal counts are one-seat reversals. House and Senate bellwether covariance ranks observed race outcomes informative about chamber control. Neither measures causal voter influence, elasticity, or campaign impact.'
   }:null;
   return {schema_version:VERSION,status:'EXPERIMENTAL_UNCALIBRATED',
    samples,seed,senate_dem_holdovers:holdovers,national_shift_points:nationalShift,error_multiplier:errorMultiplier,
