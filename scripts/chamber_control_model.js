@@ -10,7 +10,7 @@
 })(typeof window!=='undefined'?window:null,function(){
  'use strict';
  const VERSION='joint-control-beta-v1';
- const FUNDAMENTALS_MODES=Object.freeze(['2024_only','two_cycle_shadow']);
+ const FUNDAMENTALS_MODES=Object.freeze(['2024_only','two_cycle_shadow','presidential_2024_shadow']);
  const SHADOW_WEIGHT=.25,SHADOW_RESIDUAL_CAP=12;
  const BATTLEGROUNDS=Object.freeze([
   'NC-SEN','MI-SEN','ME-SEN','OH-SEN','TX-SEN','AK-SEN','NE-SEN','IA-SEN',
@@ -111,6 +111,46 @@
    if(!finite(pairedNationalChange)||Math.abs(pairedNationalChange)>15)
     throw Error('Implausible paired nationwide district swing');
   }
+  // District presidential vote totals must be mapped to the CURRENT 2026
+  // jurisdiction before blending; a stale 2024 CD number is prohibited.
+  let presidential=null,presidentialNationalMargin=null;
+  if(fundamentalsMode==='presidential_2024_shadow'){
+   const d=s.presidential;
+   if(!d||d.schema_version!=='presidential-district-lean-staging-v1'||
+      d.status!=='historical_presidential_votes_from_external_model_source_not_forecast'||
+      d.election_year!==2024||d.district_map_year_claimed!==2026||
+      !Array.isArray(d.records)||d.records.length!==HOUSE_SEATS||
+      !d.external_source_blob_sha||!d.district_geo_source)
+    throw Error('Missing verified-source presidential 2024 House district data');
+   const expected=new Set(s.seats.house.seats.map(x=>normalizeCode(x.race_code)));
+   presidential=new Map();
+   let totalDem=0,totalRep=0;
+   for(const row of d.records){
+    const code=normalizeCode(row.race_code);
+    if(!expected.has(code)||presidential.has(code)||row.state!==code.slice(0,2)||
+       !Number.isSafeInteger(row.dem_pres_2024_votes)||row.dem_pres_2024_votes<=0||
+       !Number.isSafeInteger(row.rep_pres_2024_votes)||row.rep_pres_2024_votes<=0||
+       !finite(row.dem_minus_rep_two_party_points))
+      throw Error('Invalid or duplicate presidential 2026-map district '+code);
+    const calculated=100*(row.dem_pres_2024_votes-row.rep_pres_2024_votes)/
+      (row.dem_pres_2024_votes+row.rep_pres_2024_votes);
+    if(Math.abs(calculated-row.dem_minus_rep_two_party_points)>.002)
+     throw Error('Presidential district margin/vote disagreement '+code);
+    presidential.set(code,calculated);
+    totalDem+=row.dem_pres_2024_votes;
+    totalRep+=row.rep_pres_2024_votes;
+   }
+   if(presidential.size!==HOUSE_SEATS)throw Error('Missing presidential district records');
+   presidentialNationalMargin=100*(totalDem-totalRep)/(totalDem+totalRep);
+   if(Math.abs(presidentialNationalMargin-d.national_reference_two_party_margin_points)>.003)
+    throw Error('Presidential national reference mismatched district totals');
+   // Independent human spot checks: The Downballot 2026-map 2024 margins
+   // (rounded to 1 point) include VA-01 R+5, AZ-01 R+3, CA-01 D+12.
+   for(const [code,estimate] of [['VA-01',-5],['AZ-01',-3],['CA-01',12],['TX-28',-11]]){
+    if(Math.abs(presidential.get(code)-estimate)>2)
+     throw Error('Presidential geography cross-check failed '+code);
+   }
+  }
   const raw=new Map(s.history.records.map(x=>[normalizeCode(x['2024_race_code']),x]));
   const geo=new Map(s.geography.districts.map(x=>[normalizeCode(x.race_code_2026),x]));
   const odds=new Map(s.odds.records.map(x=>[x.office+'|'+normalizeCode(x.race_code),x]));
@@ -129,6 +169,10 @@
   // non-identical measurements. Dampen the headline implied swing.
   const generic=s.polls.generic_ballot.dem_minus_rep;
   const projectedSwing=.68*(generic-house2024);
+  // Never adjust Senate means with a House-only alternate; that is a
+  // separate forecasting problem with separate candidate fundamentals.
+  const houseProjectedSwing=presidential?
+   .68*(generic-presidentialNationalMargin):projectedSwing;
   const house=[],senate=[],gov=[];
   const stateMargin=state=>{
    const v=stateTotals.get(state);
@@ -188,6 +232,25 @@
     redrawnMixWeight=1;
     kind='redrawn_state_distribution_proxy';sigma=25;
    }
+   // The 2024 presidential baseline is defined on 2026 geometry. Even in
+   // redrawn states, no obsolete 2024 House district votes are assigned by
+   // district number. District-specific presidential estimates are research
+   // inputs, with explicitly broad uncertainty for newly drawn seats.
+   const presidentialMargin=presidential?presidential.get(code):null;
+   if(presidential){
+    if(!finite(presidentialMargin))throw Error('Missing 2026 presidential geographic prior '+code);
+    if(unchanged&&both){
+     baseline=.65*presidentialMargin+.35*baseline;
+     kind='presidential_house_blend_2024';sigma=12;
+    }else if(unchanged){
+     baseline=presidentialMargin;
+     kind='presidential_only_uncontested_house';sigma=19;
+    }else{
+     baseline=presidentialMargin;
+     kind='presidential_2026_redrawn_map';sigma=19;
+     redrawnMixWeight=0;redrawnStateCenter=null;
+    }
+   }
    let twoCycleAdjustment=0,twoCycle2022Margin=null,twoCycleProxy2024=null;
    if(paired&&unchanged&&both){
     const pair=paired.get(code);
@@ -204,7 +267,7 @@
      kind='two_cycle_shadow_2024_recorded';
     }
    }
-   let mean=baseline+projectedSwing,method=kind;
+   let mean=baseline+houseProjectedSwing,method=kind;
    let pollFundamentalsGap=null,disagreementSigma=0,pollWeight=null;
    const poll=odds.get('house|'+code);
    if(poll){
@@ -214,17 +277,18 @@
     pollWeight=w;
     mean=w*poll.dem_minus_rep+(1-w)*priorMean;
     sigma=unchanged?Math.max(7,poll.sigma_points):
-      Math.max(16,poll.sigma_points);
-    // No district-level comparison can be made with an exchangeable
-    // redrawn-state distribution; do not penalize such a meaningless gap.
-    if(unchanged){
+      Math.max(presidential?15:16,poll.sigma_points);
+    // A presidential margin genuinely calculated under the 2026 map can
+    // be compared with polls even for redrawn seats. Exchangeable statewide
+    // 2024 House priors (default mode) still cannot.
+    if(unchanged||presidential){
      pollFundamentalsGap=Math.round(1000*(poll.dem_minus_rep-priorMean))/1000;
      disagreementSigma=disagreementExtraSigma(poll.dem_minus_rep,priorMean,
-      both?.65:.15);
+      presidential?(unchanged&&both?.70:.45):(both?.65:.15));
      sigma=Math.round(1000*Math.hypot(sigma,disagreementSigma))/1000;
     }
     method='poll_blend_'+kind;
-    if(!unchanged)redrawnMixWeight=1-w;
+    if(!unchanged&&!presidential)redrawnMixWeight=1-w;
    }
    house.push({code,state,mean:limit(mean,-60,60),sigma,
      method,polled:Boolean(poll),redrawn_mix_weight:redrawnMixWeight,
@@ -233,7 +297,8 @@
      disagreement_extra_sigma_points:disagreementSigma,
      two_cycle_adjustment_points:Math.round(1000*twoCycleAdjustment)/1000,
      historical_2022_margin:twoCycle2022Margin,
-     projected_2024_from_2022_margin:twoCycleProxy2024});
+     projected_2024_from_2022_margin:twoCycleProxy2024,
+     presidential_2024_margin_points:presidentialMargin});
   }
   const senRecords=s.senateHistory.contest_records.filter(r=>
    r.election_year===2020&&r.election_type==='regular');
@@ -290,6 +355,14 @@
    throw Error('Incomplete fixed battleground slate');
   const basis={schema_version:VERSION,status:'EXPERIMENTAL_UNCALIBRATED',
     fundamentals_mode:fundamentalsMode,
+    presidential_fundamentals_shadow:{
+     mapped_2026_house_districts:presidential?presidential.size:0,
+     national_presidential_2024_two_party_margin_points:presidentialNationalMargin,
+     house_generic_swing_points:houseProjectedSwing,
+     original_house_generic_swing_points:projectedSwing,
+     source:'ElectIndex 2026-map presidential input with The Downballot crosschecks',
+     status:'EXTERNAL_GEOGRAPHIC_PRIOR_NOT_INDEPENDENTLY_BACKTESTED'
+    },
     fundamentals_shadow:{
      paired_districts:paired?paired.size:0,
      median_paired_2022_to_2024_swing_points:pairedNationalChange,

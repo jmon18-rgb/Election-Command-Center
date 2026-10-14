@@ -388,7 +388,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div class="joint-title"><div><span class="label">JACKSTRADAMUS · JOINT CHAMBER BETA</span><h3>Four endings. Our probabilities.</h3></div><span class="joint-tag">EXPERIMENTAL · ASSUMPTION-BASED</span></div>
  <p class="joint-summary" id="jointHomeSummary">Building the 435-House, 35-Senate model from published polling and election history…</p>
  <div class="joint-grid" id="jointHomeCards"><p class="joint-note">Waiting for complete model inputs…</p></div>
- <details class="joint-audit"><summary>2022 + 2024 House fundamentals shadow · compare our assumptions</summary><p id="jointHomeShadow" class="joint-note">Checking historically comparable House districts…</p></details>
+ <details class="joint-audit"><summary>Compare House fundamentals · historical vs presidential</summary><p id="jointHomeShadow" class="joint-note">Checking historically comparable House districts…</p></details>
  <details class="joint-audit"><summary>Historical polling-error check · how reliable is this?</summary><p id="jointHomeAudit" class="joint-note">Reading existing historical Senate poll backtest…</p></details>
  <p class="joint-note">Blue Tsunami = Democrats win both chambers AND at least 18 of 20 fixed House/Senate/governor battleground races. Blue Wave = both chambers without that near-sweep. Shrug = split control. Red Dawn = Republicans retain both. These four outcomes are mutually exclusive. Model estimates are not calibrated forecasts.</p>
 </div>
@@ -562,7 +562,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div class="joint-title"><div><span class="label">JACKSTRADAMUS · JOINT CONTROL</span><h3>Where the night is headed</h3></div><span class="joint-tag">EXPERIMENTAL · NO CALLS</span></div>
  <p id="jointNightSummary" class="joint-summary">Preparing the joint House and Senate probability model…</p>
  <div id="jointNightCards" class="joint-grid"><p class="joint-note">Loading seat-level priors…</p></div>
- <details class="joint-audit"><summary>Alternative two-cycle House fundamentals (research only)</summary><p id="jointNightShadow" class="joint-note">Checking historically comparable House districts…</p></details>
+ <details class="joint-audit"><summary>House fundamentals alternatives (research only)</summary><p id="jointNightShadow" class="joint-note">Checking historically comparable House districts…</p></details>
  <details class="joint-audit"><summary>Historical polling-error check</summary><p id="jointNightAudit" class="joint-note">Reading historical Senate poll backtest…</p></details>
  <div class="joint-tools"><label>National election swing <select id="jointSwing" aria-label="National election swing sensitivity"><option value="-3">D −3.0 points</option><option value="0" selected>Baseline</option><option value="3">D +3.0 points</option></select></label>
  <label>Election error <select id="jointError" aria-label="Election uncertainty sensitivity"><option value=".8">Narrower</option><option value="1" selected>Baseline</option><option value="1.3">Wider</option></select></label>
@@ -2275,7 +2275,7 @@ $('#enRehearsalReset').addEventListener('click',()=>{
 /* Own joint congressional scenario model, source-aligned to current polling.
  * No source overrides, no fictional votes, no official certification claims.
  * DDHQ remains the independently published comparison below the home cards. */
-let jointBasis=null,jointBasisShadow=null,jointErrorMessage=null,jointRefreshTimer=null,jointCacheKey='',
+let jointBasis=null,jointBasisShadow=null,jointBasisPresidential=null,jointErrorMessage=null,jointRefreshTimer=null,jointCacheKey='',
     jointLastResult=null,jointNationalShift=0,jointErrorMultiplier=1;
 const jointLabels=[
  ['blue_tsunami','BLUE TSUNAMI','D both chambers · 18+ of 20 battlegrounds','d-tide'],
@@ -2349,22 +2349,27 @@ function jointRenderCards(result){
    ' House districts redrawn (high uncertainty).';
  }
 }
-function jointRenderHouseShadow(base,shadow){
+function jointRenderHouseShadow(base,shadow,presidentialShadow){
  const eligible=jointBasisShadow?.fundamentals_shadow?.paired_districts;
- const txt=base&&shadow&&jointBasisShadow?
-  'Research only — '+jointBasisShadow.fundamentals_shadow.paired_districts+
-  '/435 House districts have comparable 2022 and 2024 two-party results. '+
-  'The alternative model puts Democrats at '+shadow.blue_both_including_tsunami.toFixed(1)+
-  '% for both chambers vs '+base.blue_both_including_tsunami.toFixed(1)+
-  '% in the default simulation (difference '+
-  (shadow.blue_both_including_tsunami-base.blue_both_including_tsunami>=0?'+':'')+
-  (shadow.blue_both_including_tsunami-base.blue_both_including_tsunami).toFixed(1)+
-  ' points). Historical 2022 changes are national-drift-adjusted, capped and heavily shrunk. '+
-  'The alternative is NOT independently backtested and does not replace headline odds.':
-  base&&eligible?
-  'Research only — '+eligible+'/435 House districts have comparable 2022 and 2024 two-party results. '+
-  'Open this section to calculate the alternative odds. This study is NOT independently backtested; headline odds are unchanged.':
-  'Two-cycle fundamentals comparison unavailable; default experimental odds are unchanged.';
+ const presCount=jointBasisPresidential?.presidential_fundamentals_shadow?.mapped_2026_house_districts;
+ const pct=result=>result.blue_both_including_tsunami.toFixed(1)+'%';
+ const delta=result=>(result.blue_both_including_tsunami-base.blue_both_including_tsunami>=0?'+':'')+
+  (result.blue_both_including_tsunami-base.blue_both_including_tsunami).toFixed(1)+' points';
+ let txt=base?'Research only — default Democrats both chambers: '+pct(base)+'. ':
+  'Alternative House fundamentals unavailable; headline odds unchanged.';
+ if(base&&shadow&&eligible)
+  txt+='2022/24 House: '+eligible+'/435 House districts map-comparable and contested; '+
+   pct(shadow)+' for both chambers vs '+pct(base)+' (difference '+delta(shadow)+'). ';
+ else if(base&&eligible)
+  txt+='2022/24 House: '+eligible+'/435 House districts eligible. Open for the alternative probability. ';
+ if(base&&presidentialShadow&&presCount===435)
+  txt+='2024 presidential district lean: 435/435 districts on the 2026 map; '+
+   pct(presidentialShadow)+' for both chambers vs '+pct(base)+' (difference '+
+   delta(presidentialShadow)+'). This uses third-party historic vote overlays, '+
+   'not validated candidate-level fundamentals. ';
+ else if(base&&presCount===435)
+  txt+='2024 presidential lean: 435/435 district entries staged. ';
+ txt+='Both alternatives are NOT independently backtested and do not replace headline odds.';
  for(const id of ['jointHomeShadow','jointNightShadow']){
   const node=$('#'+id);if(node)node.textContent=txt;
  }
@@ -2404,18 +2409,20 @@ function jointRender(force=false){
    live:updates});
   jointLastResult=result;
   jointRenderCards(result);
-  let shadow=null;
-  // Do not double the 3,000-draw workload for every election-night refresh.
-  // Recalculate the shadow only when the research disclosure is actually open.
-  if(jointBasisShadow&&jointShadowExpanded()){
-   try{
-    shadow=window.ChamberControlModel.simulate(jointBasisShadow,{
-     samples:3000,seed:20261103,nationalShift:jointNationalShift,
-     errorMultiplier:jointErrorMultiplier,live:updates
-    });
-   }catch(_){shadow=null}
+  let shadow=null,presidentialShadow=null;
+  if(jointShadowExpanded()){
+   const args={samples:3000,seed:20261103,
+    nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,live:updates};
+   if(jointBasisShadow){
+    try{shadow=window.ChamberControlModel.simulate(jointBasisShadow,args)}
+    catch(_){shadow=null}
+   }
+   if(jointBasisPresidential){
+    try{presidentialShadow=window.ChamberControlModel.simulate(jointBasisPresidential,args)}
+    catch(_){presidentialShadow=null}
+   }
   }
-  jointRenderHouseShadow(result,shadow);
+  jointRenderHouseShadow(result,shadow,presidentialShadow);
   const note=$('#jointRunStatus');
   if(note)note.textContent=Object.keys(updates).length+
    ' source-validated live-informed races · swing '+
@@ -2437,33 +2444,47 @@ function jointQueueRefresh(){
 function jointSetSources(sources){
  try{
   if(!window.ChamberControlModel)throw Error('Model script unavailable');
+  // A missing research-only input must never disable baseline odds.
   jointBasis=window.ChamberControlModel.prepare(sources);
-  jointBasisShadow=window.ChamberControlModel.prepare(sources,{
+  jointBasisShadow=null;jointBasisPresidential=null;
+  try{jointBasisShadow=window.ChamberControlModel.prepare(sources,{
    fundamentalsMode:'two_cycle_shadow'
-  });
+  })}catch(_){}
+  try{jointBasisPresidential=window.ChamberControlModel.prepare(sources,{
+   fundamentalsMode:'presidential_2024_shadow'
+  })}catch(_){}
   jointErrorMessage=null;jointCacheKey='';
   jointRender(true);
- }catch(e){jointBasis=null;jointBasisShadow=null;
+ }catch(e){jointBasis=null;jointBasisShadow=null;jointBasisPresidential=null;
   jointErrorMessage='No reliable joint odds: '+String(e.message||e);
-  jointRenderCards(null);jointRenderHouseShadow(null,null)}
+  jointRenderCards(null);jointRenderHouseShadow(null,null,null)}
 }
 async function jointLoadSources(){
- const files=[
+ const required=[
   ['seats','seat_universe'],['history','house_history_2024_staging'],
   ['geography','house_geography_bridge'],['senateHistory','senate_history_2020_2022_2024'],
-  ['polls','polling_estimates'],['odds','race_probabilities'],
-  ['twoCycle','house_two_cycle_context']
+  ['polls','polling_estimates'],['odds','race_probabilities']
  ];
+ const optional=[
+  ['twoCycle','house_two_cycle_context'],
+  ['presidential','presidential_2024_by_2026_district_staging']
+ ];
+ const load=async([key,name])=>{
+  const response=await fetch('./data/'+name+'.json',{cache:'no-store'});
+  if(!response.ok)throw Error(name+' source unavailable');
+  return [key,await response.json()];
+ };
  try{
-  const values=await Promise.all(files.map(async([key,name])=>{
-   const response=await fetch('./data/'+name+'.json',{cache:'no-store'});
-   if(!response.ok)throw Error(name+' source unavailable');
-   return [key,await response.json()];
+  const values=await Promise.all(required.map(load));
+  const context=Object.fromEntries(values);
+  const research=await Promise.all(optional.map(async pair=>{
+   try{return await load(pair)}catch(_){return null}
   }));
-  jointSetSources(Object.fromEntries(values));
- }catch(e){jointBasis=null;jointBasisShadow=null;
+  for(const item of research)if(item)context[item[0]]=item[1];
+  jointSetSources(context);
+ }catch(e){jointBasis=null;jointBasisShadow=null;jointBasisPresidential=null;
   jointErrorMessage='No joint probability model: '+String(e.message||e);
-  jointRenderCards(null);jointRenderHouseShadow(null,null)}
+  jointRenderCards(null);jointRenderHouseShadow(null,null,null)}
 }
 $('#jointSwing').addEventListener('change',event=>{
  jointNationalShift=Number(event.target.value);jointRender(true);

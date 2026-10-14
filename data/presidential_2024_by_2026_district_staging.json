@@ -1,0 +1,3074 @@
+{
+  "schema_version": "presidential-district-lean-staging-v1",
+  "status": "historical_presidential_votes_from_external_model_source_not_forecast",
+  "election_year": 2024,
+  "source_election": "Harris vs Trump",
+  "district_map_year_claimed": 2026,
+  "district_geo_source": "https://www.census.gov/programs-surveys/decennial-census/about/rdo/congressional-districts.html",
+  "external_source_url": "https://github.com/ElectIndex/26_us_forecast_data/blob/main/historical.csv",
+  "external_source_blob_sha": "6416538cf7f1f0531277f0a01659207f603a7ca8",
+  "external_source_caveat": "Third-party ElectIndex 2026 forecast input, not independently official precinct-certified district overlays. Audit a sample against The Downballot's independently calculated district results. Do not automatically update.",
+  "external_crosscheck_reference": "https://www.the-downballot.com/p/the-downballot-releases-presidential",
+  "national_reference_two_party_margin_points": -1.705,
+  "national_reference_type": "sum of D/R presidential vote totals across all 435 staged districts; not official all-candidate national popular vote",
+  "totals": {
+    "records": 435,
+    "states": 50
+  },
+  "source_specific_notes": [
+    "Missouri unchanged plan as of Oct 14, 2026. Verify against Census source before running subsequent automatic refreshes.",
+    "Alaska at-large represented by AK-01; DE-01, SD-01, VT-01, WY-01 also normalized as seat numbers 01.",
+    "2024 presidential district results are partisan context, NOT candidate-specific forecast margin."
+  ],
+  "records": [
+    {
+      "race_code": "AK-01",
+      "state": "AK",
+      "dem_pres_2024_votes": 139695,
+      "rep_pres_2024_votes": 184410,
+      "dem_minus_rep_two_party_points": -13.796
+    },
+    {
+      "race_code": "AL-01",
+      "state": "AL",
+      "dem_pres_2024_votes": 103121,
+      "rep_pres_2024_votes": 220876,
+      "dem_minus_rep_two_party_points": -36.344
+    },
+    {
+      "race_code": "AL-02",
+      "state": "AL",
+      "dem_pres_2024_votes": 123962,
+      "rep_pres_2024_votes": 165887,
+      "dem_minus_rep_two_party_points": -14.464
+    },
+    {
+      "race_code": "AL-03",
+      "state": "AL",
+      "dem_pres_2024_votes": 82862,
+      "rep_pres_2024_votes": 230048,
+      "dem_minus_rep_two_party_points": -47.038
+    },
+    {
+      "race_code": "AL-04",
+      "state": "AL",
+      "dem_pres_2024_votes": 52911,
+      "rep_pres_2024_votes": 267661,
+      "dem_minus_rep_two_party_points": -66.99
+    },
+    {
+      "race_code": "AL-05",
+      "state": "AL",
+      "dem_pres_2024_votes": 122382,
+      "rep_pres_2024_votes": 224861,
+      "dem_minus_rep_two_party_points": -29.512
+    },
+    {
+      "race_code": "AL-06",
+      "state": "AL",
+      "dem_pres_2024_votes": 112016,
+      "rep_pres_2024_votes": 231535,
+      "dem_minus_rep_two_party_points": -34.789
+    },
+    {
+      "race_code": "AL-07",
+      "state": "AL",
+      "dem_pres_2024_votes": 175158,
+      "rep_pres_2024_votes": 121748,
+      "dem_minus_rep_two_party_points": 17.989
+    },
+    {
+      "race_code": "AR-01",
+      "state": "AR",
+      "dem_pres_2024_votes": 73540,
+      "rep_pres_2024_votes": 200849,
+      "dem_minus_rep_two_party_points": -46.397
+    },
+    {
+      "race_code": "AR-02",
+      "state": "AR",
+      "dem_pres_2024_votes": 131691,
+      "rep_pres_2024_votes": 182666,
+      "dem_minus_rep_two_party_points": -16.216
+    },
+    {
+      "race_code": "AR-03",
+      "state": "AR",
+      "dem_pres_2024_votes": 114236,
+      "rep_pres_2024_votes": 193730,
+      "dem_minus_rep_two_party_points": -25.813
+    },
+    {
+      "race_code": "AR-04",
+      "state": "AR",
+      "dem_pres_2024_votes": 81677,
+      "rep_pres_2024_votes": 193950,
+      "dem_minus_rep_two_party_points": -40.734
+    },
+    {
+      "race_code": "AZ-01",
+      "state": "AZ",
+      "dem_pres_2024_votes": 216232,
+      "rep_pres_2024_votes": 230237,
+      "dem_minus_rep_two_party_points": -3.137
+    },
+    {
+      "race_code": "AZ-02",
+      "state": "AZ",
+      "dem_pres_2024_votes": 174969,
+      "rep_pres_2024_votes": 237306,
+      "dem_minus_rep_two_party_points": -15.12
+    },
+    {
+      "race_code": "AZ-03",
+      "state": "AZ",
+      "dem_pres_2024_votes": 147522,
+      "rep_pres_2024_votes": 62762,
+      "dem_minus_rep_two_party_points": 40.307
+    },
+    {
+      "race_code": "AZ-04",
+      "state": "AZ",
+      "dem_pres_2024_votes": 182893,
+      "rep_pres_2024_votes": 159723,
+      "dem_minus_rep_two_party_points": 6.763
+    },
+    {
+      "race_code": "AZ-05",
+      "state": "AZ",
+      "dem_pres_2024_votes": 175673,
+      "rep_pres_2024_votes": 264571,
+      "dem_minus_rep_two_party_points": -20.193
+    },
+    {
+      "race_code": "AZ-06",
+      "state": "AZ",
+      "dem_pres_2024_votes": 216024,
+      "rep_pres_2024_votes": 219323,
+      "dem_minus_rep_two_party_points": -0.758
+    },
+    {
+      "race_code": "AZ-07",
+      "state": "AZ",
+      "dem_pres_2024_votes": 170352,
+      "rep_pres_2024_votes": 108028,
+      "dem_minus_rep_two_party_points": 22.388
+    },
+    {
+      "race_code": "AZ-08",
+      "state": "AZ",
+      "dem_pres_2024_votes": 162183,
+      "rep_pres_2024_votes": 226186,
+      "dem_minus_rep_two_party_points": -16.48
+    },
+    {
+      "race_code": "AZ-09",
+      "state": "AZ",
+      "dem_pres_2024_votes": 137012,
+      "rep_pres_2024_votes": 262106,
+      "dem_minus_rep_two_party_points": -31.343
+    },
+    {
+      "race_code": "CA-01",
+      "state": "CA",
+      "dem_pres_2024_votes": 186164,
+      "rep_pres_2024_votes": 144424,
+      "dem_minus_rep_two_party_points": 12.626
+    },
+    {
+      "race_code": "CA-02",
+      "state": "CA",
+      "dem_pres_2024_votes": 236524,
+      "rep_pres_2024_votes": 140558,
+      "dem_minus_rep_two_party_points": 25.45
+    },
+    {
+      "race_code": "CA-03",
+      "state": "CA",
+      "dem_pres_2024_votes": 195637,
+      "rep_pres_2024_votes": 158302,
+      "dem_minus_rep_two_party_points": 10.548
+    },
+    {
+      "race_code": "CA-04",
+      "state": "CA",
+      "dem_pres_2024_votes": 191758,
+      "rep_pres_2024_votes": 141847,
+      "dem_minus_rep_two_party_points": 14.961
+    },
+    {
+      "race_code": "CA-05",
+      "state": "CA",
+      "dem_pres_2024_votes": 139201,
+      "rep_pres_2024_votes": 214114,
+      "dem_minus_rep_two_party_points": -21.203
+    },
+    {
+      "race_code": "CA-06",
+      "state": "CA",
+      "dem_pres_2024_votes": 176808,
+      "rep_pres_2024_votes": 148595,
+      "dem_minus_rep_two_party_points": 8.67
+    },
+    {
+      "race_code": "CA-07",
+      "state": "CA",
+      "dem_pres_2024_votes": 190078,
+      "rep_pres_2024_votes": 145585,
+      "dem_minus_rep_two_party_points": 13.255
+    },
+    {
+      "race_code": "CA-08",
+      "state": "CA",
+      "dem_pres_2024_votes": 204494,
+      "rep_pres_2024_votes": 98040,
+      "dem_minus_rep_two_party_points": 35.187
+    },
+    {
+      "race_code": "CA-09",
+      "state": "CA",
+      "dem_pres_2024_votes": 145369,
+      "rep_pres_2024_votes": 114692,
+      "dem_minus_rep_two_party_points": 11.796
+    },
+    {
+      "race_code": "CA-10",
+      "state": "CA",
+      "dem_pres_2024_votes": 246078,
+      "rep_pres_2024_votes": 119171,
+      "dem_minus_rep_two_party_points": 34.745
+    },
+    {
+      "race_code": "CA-11",
+      "state": "CA",
+      "dem_pres_2024_votes": 295462,
+      "rep_pres_2024_votes": 50870,
+      "dem_minus_rep_two_party_points": 70.624
+    },
+    {
+      "race_code": "CA-12",
+      "state": "CA",
+      "dem_pres_2024_votes": 269134,
+      "rep_pres_2024_votes": 33869,
+      "dem_minus_rep_two_party_points": 77.644
+    },
+    {
+      "race_code": "CA-13",
+      "state": "CA",
+      "dem_pres_2024_votes": 101626,
+      "rep_pres_2024_votes": 100599,
+      "dem_minus_rep_two_party_points": 0.508
+    },
+    {
+      "race_code": "CA-14",
+      "state": "CA",
+      "dem_pres_2024_votes": 186755,
+      "rep_pres_2024_votes": 87473,
+      "dem_minus_rep_two_party_points": 36.204
+    },
+    {
+      "race_code": "CA-15",
+      "state": "CA",
+      "dem_pres_2024_votes": 220581,
+      "rep_pres_2024_votes": 74238,
+      "dem_minus_rep_two_party_points": 49.638
+    },
+    {
+      "race_code": "CA-16",
+      "state": "CA",
+      "dem_pres_2024_votes": 245843,
+      "rep_pres_2024_votes": 82146,
+      "dem_minus_rep_two_party_points": 49.909
+    },
+    {
+      "race_code": "CA-17",
+      "state": "CA",
+      "dem_pres_2024_votes": 177855,
+      "rep_pres_2024_votes": 74877,
+      "dem_minus_rep_two_party_points": 40.746
+    },
+    {
+      "race_code": "CA-18",
+      "state": "CA",
+      "dem_pres_2024_votes": 148784,
+      "rep_pres_2024_votes": 81233,
+      "dem_minus_rep_two_party_points": 29.368
+    },
+    {
+      "race_code": "CA-19",
+      "state": "CA",
+      "dem_pres_2024_votes": 246335,
+      "rep_pres_2024_votes": 116873,
+      "dem_minus_rep_two_party_points": 35.644
+    },
+    {
+      "race_code": "CA-20",
+      "state": "CA",
+      "dem_pres_2024_votes": 103304,
+      "rep_pres_2024_votes": 204989,
+      "dem_minus_rep_two_party_points": -32.983
+    },
+    {
+      "race_code": "CA-21",
+      "state": "CA",
+      "dem_pres_2024_votes": 104262,
+      "rep_pres_2024_votes": 92148,
+      "dem_minus_rep_two_party_points": 6.168
+    },
+    {
+      "race_code": "CA-22",
+      "state": "CA",
+      "dem_pres_2024_votes": 81761,
+      "rep_pres_2024_votes": 84855,
+      "dem_minus_rep_two_party_points": -1.857
+    },
+    {
+      "race_code": "CA-23",
+      "state": "CA",
+      "dem_pres_2024_votes": 107871,
+      "rep_pres_2024_votes": 161464,
+      "dem_minus_rep_two_party_points": -19.898
+    },
+    {
+      "race_code": "CA-24",
+      "state": "CA",
+      "dem_pres_2024_votes": 214059,
+      "rep_pres_2024_votes": 126370,
+      "dem_minus_rep_two_party_points": 25.758
+    },
+    {
+      "race_code": "CA-25",
+      "state": "CA",
+      "dem_pres_2024_votes": 139917,
+      "rep_pres_2024_votes": 124154,
+      "dem_minus_rep_two_party_points": 5.969
+    },
+    {
+      "race_code": "CA-26",
+      "state": "CA",
+      "dem_pres_2024_votes": 193089,
+      "rep_pres_2024_votes": 140597,
+      "dem_minus_rep_two_party_points": 15.731
+    },
+    {
+      "race_code": "CA-27",
+      "state": "CA",
+      "dem_pres_2024_votes": 157992,
+      "rep_pres_2024_votes": 129114,
+      "dem_minus_rep_two_party_points": 10.058
+    },
+    {
+      "race_code": "CA-28",
+      "state": "CA",
+      "dem_pres_2024_votes": 199321,
+      "rep_pres_2024_votes": 116646,
+      "dem_minus_rep_two_party_points": 26.166
+    },
+    {
+      "race_code": "CA-29",
+      "state": "CA",
+      "dem_pres_2024_votes": 156032,
+      "rep_pres_2024_votes": 75625,
+      "dem_minus_rep_two_party_points": 34.71
+    },
+    {
+      "race_code": "CA-30",
+      "state": "CA",
+      "dem_pres_2024_votes": 233206,
+      "rep_pres_2024_votes": 96623,
+      "dem_minus_rep_two_party_points": 41.41
+    },
+    {
+      "race_code": "CA-31",
+      "state": "CA",
+      "dem_pres_2024_votes": 159433,
+      "rep_pres_2024_votes": 123733,
+      "dem_minus_rep_two_party_points": 12.607
+    },
+    {
+      "race_code": "CA-32",
+      "state": "CA",
+      "dem_pres_2024_votes": 219580,
+      "rep_pres_2024_votes": 129616,
+      "dem_minus_rep_two_party_points": 25.763
+    },
+    {
+      "race_code": "CA-33",
+      "state": "CA",
+      "dem_pres_2024_votes": 132778,
+      "rep_pres_2024_votes": 108364,
+      "dem_minus_rep_two_party_points": 10.124
+    },
+    {
+      "race_code": "CA-34",
+      "state": "CA",
+      "dem_pres_2024_votes": 156727,
+      "rep_pres_2024_votes": 48089,
+      "dem_minus_rep_two_party_points": 53.042
+    },
+    {
+      "race_code": "CA-35",
+      "state": "CA",
+      "dem_pres_2024_votes": 136333,
+      "rep_pres_2024_votes": 116142,
+      "dem_minus_rep_two_party_points": 7.997
+    },
+    {
+      "race_code": "CA-36",
+      "state": "CA",
+      "dem_pres_2024_votes": 261900,
+      "rep_pres_2024_votes": 111111,
+      "dem_minus_rep_two_party_points": 40.425
+    },
+    {
+      "race_code": "CA-37",
+      "state": "CA",
+      "dem_pres_2024_votes": 184949,
+      "rep_pres_2024_votes": 42949,
+      "dem_minus_rep_two_party_points": 62.309
+    },
+    {
+      "race_code": "CA-38",
+      "state": "CA",
+      "dem_pres_2024_votes": 142692,
+      "rep_pres_2024_votes": 110315,
+      "dem_minus_rep_two_party_points": 12.797
+    },
+    {
+      "race_code": "CA-39",
+      "state": "CA",
+      "dem_pres_2024_votes": 125176,
+      "rep_pres_2024_votes": 102730,
+      "dem_minus_rep_two_party_points": 9.849
+    },
+    {
+      "race_code": "CA-40",
+      "state": "CA",
+      "dem_pres_2024_votes": 161580,
+      "rep_pres_2024_votes": 208158,
+      "dem_minus_rep_two_party_points": -12.598
+    },
+    {
+      "race_code": "CA-41",
+      "state": "CA",
+      "dem_pres_2024_votes": 172644,
+      "rep_pres_2024_votes": 128621,
+      "dem_minus_rep_two_party_points": 14.613
+    },
+    {
+      "race_code": "CA-42",
+      "state": "CA",
+      "dem_pres_2024_votes": 192310,
+      "rep_pres_2024_votes": 146354,
+      "dem_minus_rep_two_party_points": 13.57
+    },
+    {
+      "race_code": "CA-43",
+      "state": "CA",
+      "dem_pres_2024_votes": 162810,
+      "rep_pres_2024_votes": 53414,
+      "dem_minus_rep_two_party_points": 50.594
+    },
+    {
+      "race_code": "CA-44",
+      "state": "CA",
+      "dem_pres_2024_votes": 145044,
+      "rep_pres_2024_votes": 67751,
+      "dem_minus_rep_two_party_points": 36.323
+    },
+    {
+      "race_code": "CA-45",
+      "state": "CA",
+      "dem_pres_2024_votes": 151753,
+      "rep_pres_2024_votes": 139878,
+      "dem_minus_rep_two_party_points": 4.072
+    },
+    {
+      "race_code": "CA-46",
+      "state": "CA",
+      "dem_pres_2024_votes": 128596,
+      "rep_pres_2024_votes": 91799,
+      "dem_minus_rep_two_party_points": 16.696
+    },
+    {
+      "race_code": "CA-47",
+      "state": "CA",
+      "dem_pres_2024_votes": 190234,
+      "rep_pres_2024_votes": 154166,
+      "dem_minus_rep_two_party_points": 10.473
+    },
+    {
+      "race_code": "CA-48",
+      "state": "CA",
+      "dem_pres_2024_votes": 165384,
+      "rep_pres_2024_votes": 154132,
+      "dem_minus_rep_two_party_points": 3.522
+    },
+    {
+      "race_code": "CA-49",
+      "state": "CA",
+      "dem_pres_2024_votes": 211925,
+      "rep_pres_2024_votes": 164898,
+      "dem_minus_rep_two_party_points": 12.48
+    },
+    {
+      "race_code": "CA-50",
+      "state": "CA",
+      "dem_pres_2024_votes": 214074,
+      "rep_pres_2024_votes": 146224,
+      "dem_minus_rep_two_party_points": 18.832
+    },
+    {
+      "race_code": "CA-51",
+      "state": "CA",
+      "dem_pres_2024_votes": 205084,
+      "rep_pres_2024_votes": 140213,
+      "dem_minus_rep_two_party_points": 18.787
+    },
+    {
+      "race_code": "CA-52",
+      "state": "CA",
+      "dem_pres_2024_votes": 156736,
+      "rep_pres_2024_votes": 108793,
+      "dem_minus_rep_two_party_points": 18.056
+    },
+    {
+      "race_code": "CO-01",
+      "state": "CO",
+      "dem_pres_2024_votes": 280662,
+      "rep_pres_2024_votes": 75479,
+      "dem_minus_rep_two_party_points": 57.613
+    },
+    {
+      "race_code": "CO-02",
+      "state": "CO",
+      "dem_pres_2024_votes": 295692,
+      "rep_pres_2024_votes": 123973,
+      "dem_minus_rep_two_party_points": 40.918
+    },
+    {
+      "race_code": "CO-03",
+      "state": "CO",
+      "dem_pres_2024_votes": 178501,
+      "rep_pres_2024_votes": 218065,
+      "dem_minus_rep_two_party_points": -9.977
+    },
+    {
+      "race_code": "CO-04",
+      "state": "CO",
+      "dem_pres_2024_votes": 182901,
+      "rep_pres_2024_votes": 267114,
+      "dem_minus_rep_two_party_points": -18.713
+    },
+    {
+      "race_code": "CO-05",
+      "state": "CO",
+      "dem_pres_2024_votes": 165522,
+      "rep_pres_2024_votes": 199615,
+      "dem_minus_rep_two_party_points": -9.337
+    },
+    {
+      "race_code": "CO-06",
+      "state": "CO",
+      "dem_pres_2024_votes": 210533,
+      "rep_pres_2024_votes": 139305,
+      "dem_minus_rep_two_party_points": 20.36
+    },
+    {
+      "race_code": "CO-07",
+      "state": "CO",
+      "dem_pres_2024_votes": 249924,
+      "rep_pres_2024_votes": 183164,
+      "dem_minus_rep_two_party_points": 15.415
+    },
+    {
+      "race_code": "CO-08",
+      "state": "CO",
+      "dem_pres_2024_votes": 164426,
+      "rep_pres_2024_votes": 170726,
+      "dem_minus_rep_two_party_points": -1.88
+    },
+    {
+      "race_code": "CT-01",
+      "state": "CT",
+      "dem_pres_2024_votes": 208405,
+      "rep_pres_2024_votes": 129726,
+      "dem_minus_rep_two_party_points": 23.269
+    },
+    {
+      "race_code": "CT-02",
+      "state": "CT",
+      "dem_pres_2024_votes": 205994,
+      "rep_pres_2024_votes": 175984,
+      "dem_minus_rep_two_party_points": 7.856
+    },
+    {
+      "race_code": "CT-03",
+      "state": "CT",
+      "dem_pres_2024_votes": 191715,
+      "rep_pres_2024_votes": 143619,
+      "dem_minus_rep_two_party_points": 14.343
+    },
+    {
+      "race_code": "CT-04",
+      "state": "CT",
+      "dem_pres_2024_votes": 206080,
+      "rep_pres_2024_votes": 127034,
+      "dem_minus_rep_two_party_points": 23.729
+    },
+    {
+      "race_code": "CT-05",
+      "state": "CT",
+      "dem_pres_2024_votes": 179741,
+      "rep_pres_2024_votes": 160435,
+      "dem_minus_rep_two_party_points": 5.675
+    },
+    {
+      "race_code": "DE-01",
+      "state": "DE",
+      "dem_pres_2024_votes": 288933,
+      "rep_pres_2024_votes": 214262,
+      "dem_minus_rep_two_party_points": 14.839
+    },
+    {
+      "race_code": "FL-01",
+      "state": "FL",
+      "dem_pres_2024_votes": 130047,
+      "rep_pres_2024_votes": 286312,
+      "dem_minus_rep_two_party_points": -37.531
+    },
+    {
+      "race_code": "FL-02",
+      "state": "FL",
+      "dem_pres_2024_votes": 166349,
+      "rep_pres_2024_votes": 241011,
+      "dem_minus_rep_two_party_points": -18.328
+    },
+    {
+      "race_code": "FL-03",
+      "state": "FL",
+      "dem_pres_2024_votes": 155705,
+      "rep_pres_2024_votes": 239803,
+      "dem_minus_rep_two_party_points": -21.263
+    },
+    {
+      "race_code": "FL-04",
+      "state": "FL",
+      "dem_pres_2024_votes": 173074,
+      "rep_pres_2024_votes": 220114,
+      "dem_minus_rep_two_party_points": -11.964
+    },
+    {
+      "race_code": "FL-05",
+      "state": "FL",
+      "dem_pres_2024_votes": 169106,
+      "rep_pres_2024_votes": 262791,
+      "dem_minus_rep_two_party_points": -21.692
+    },
+    {
+      "race_code": "FL-06",
+      "state": "FL",
+      "dem_pres_2024_votes": 152600,
+      "rep_pres_2024_votes": 285318,
+      "dem_minus_rep_two_party_points": -30.307
+    },
+    {
+      "race_code": "FL-07",
+      "state": "FL",
+      "dem_pres_2024_votes": 184389,
+      "rep_pres_2024_votes": 237638,
+      "dem_minus_rep_two_party_points": -12.617
+    },
+    {
+      "race_code": "FL-08",
+      "state": "FL",
+      "dem_pres_2024_votes": 177979,
+      "rep_pres_2024_votes": 247784,
+      "dem_minus_rep_two_party_points": -16.395
+    },
+    {
+      "race_code": "FL-09",
+      "state": "FL",
+      "dem_pres_2024_votes": 152205,
+      "rep_pres_2024_votes": 218724,
+      "dem_minus_rep_two_party_points": -17.933
+    },
+    {
+      "race_code": "FL-10",
+      "state": "FL",
+      "dem_pres_2024_votes": 183316,
+      "rep_pres_2024_votes": 111659,
+      "dem_minus_rep_two_party_points": 24.293
+    },
+    {
+      "race_code": "FL-11",
+      "state": "FL",
+      "dem_pres_2024_votes": 187138,
+      "rep_pres_2024_votes": 257579,
+      "dem_minus_rep_two_party_points": -15.84
+    },
+    {
+      "race_code": "FL-12",
+      "state": "FL",
+      "dem_pres_2024_votes": 159992,
+      "rep_pres_2024_votes": 218925,
+      "dem_minus_rep_two_party_points": -15.553
+    },
+    {
+      "race_code": "FL-13",
+      "state": "FL",
+      "dem_pres_2024_votes": 174633,
+      "rep_pres_2024_votes": 228934,
+      "dem_minus_rep_two_party_points": -13.455
+    },
+    {
+      "race_code": "FL-14",
+      "state": "FL",
+      "dem_pres_2024_votes": 171478,
+      "rep_pres_2024_votes": 212233,
+      "dem_minus_rep_two_party_points": -10.621
+    },
+    {
+      "race_code": "FL-15",
+      "state": "FL",
+      "dem_pres_2024_votes": 157393,
+      "rep_pres_2024_votes": 236555,
+      "dem_minus_rep_two_party_points": -20.095
+    },
+    {
+      "race_code": "FL-16",
+      "state": "FL",
+      "dem_pres_2024_votes": 184339,
+      "rep_pres_2024_votes": 243417,
+      "dem_minus_rep_two_party_points": -13.811
+    },
+    {
+      "race_code": "FL-17",
+      "state": "FL",
+      "dem_pres_2024_votes": 174415,
+      "rep_pres_2024_votes": 274186,
+      "dem_minus_rep_two_party_points": -22.24
+    },
+    {
+      "race_code": "FL-18",
+      "state": "FL",
+      "dem_pres_2024_votes": 152345,
+      "rep_pres_2024_votes": 215216,
+      "dem_minus_rep_two_party_points": -17.105
+    },
+    {
+      "race_code": "FL-19",
+      "state": "FL",
+      "dem_pres_2024_votes": 145965,
+      "rep_pres_2024_votes": 273568,
+      "dem_minus_rep_two_party_points": -30.415
+    },
+    {
+      "race_code": "FL-20",
+      "state": "FL",
+      "dem_pres_2024_votes": 221083,
+      "rep_pres_2024_votes": 100489,
+      "dem_minus_rep_two_party_points": 37.501
+    },
+    {
+      "race_code": "FL-21",
+      "state": "FL",
+      "dem_pres_2024_votes": 186840,
+      "rep_pres_2024_votes": 259933,
+      "dem_minus_rep_two_party_points": -16.36
+    },
+    {
+      "race_code": "FL-22",
+      "state": "FL",
+      "dem_pres_2024_votes": 171280,
+      "rep_pres_2024_votes": 211914,
+      "dem_minus_rep_two_party_points": -10.604
+    },
+    {
+      "race_code": "FL-23",
+      "state": "FL",
+      "dem_pres_2024_votes": 191314,
+      "rep_pres_2024_votes": 144504,
+      "dem_minus_rep_two_party_points": 13.939
+    },
+    {
+      "race_code": "FL-24",
+      "state": "FL",
+      "dem_pres_2024_votes": 191452,
+      "rep_pres_2024_votes": 83867,
+      "dem_minus_rep_two_party_points": 39.076
+    },
+    {
+      "race_code": "FL-25",
+      "state": "FL",
+      "dem_pres_2024_votes": 169978,
+      "rep_pres_2024_votes": 204494,
+      "dem_minus_rep_two_party_points": -9.217
+    },
+    {
+      "race_code": "FL-26",
+      "state": "FL",
+      "dem_pres_2024_votes": 131900,
+      "rep_pres_2024_votes": 191796,
+      "dem_minus_rep_two_party_points": -18.504
+    },
+    {
+      "race_code": "FL-27",
+      "state": "FL",
+      "dem_pres_2024_votes": 142685,
+      "rep_pres_2024_votes": 191851,
+      "dem_minus_rep_two_party_points": -14.697
+    },
+    {
+      "race_code": "FL-28",
+      "state": "FL",
+      "dem_pres_2024_votes": 124038,
+      "rep_pres_2024_votes": 209511,
+      "dem_minus_rep_two_party_points": -25.625
+    },
+    {
+      "race_code": "GA-01",
+      "state": "GA",
+      "dem_pres_2024_votes": 152157,
+      "rep_pres_2024_votes": 209766,
+      "dem_minus_rep_two_party_points": -15.917
+    },
+    {
+      "race_code": "GA-02",
+      "state": "GA",
+      "dem_pres_2024_votes": 169767,
+      "rep_pres_2024_votes": 145620,
+      "dem_minus_rep_two_party_points": 7.656
+    },
+    {
+      "race_code": "GA-03",
+      "state": "GA",
+      "dem_pres_2024_votes": 145846,
+      "rep_pres_2024_votes": 270151,
+      "dem_minus_rep_two_party_points": -29.881
+    },
+    {
+      "race_code": "GA-04",
+      "state": "GA",
+      "dem_pres_2024_votes": 234107,
+      "rep_pres_2024_votes": 71829,
+      "dem_minus_rep_two_party_points": 53.043
+    },
+    {
+      "race_code": "GA-05",
+      "state": "GA",
+      "dem_pres_2024_votes": 300220,
+      "rep_pres_2024_votes": 48212,
+      "dem_minus_rep_two_party_points": 72.326
+    },
+    {
+      "race_code": "GA-06",
+      "state": "GA",
+      "dem_pres_2024_votes": 280228,
+      "rep_pres_2024_votes": 92564,
+      "dem_minus_rep_two_party_points": 50.34
+    },
+    {
+      "race_code": "GA-07",
+      "state": "GA",
+      "dem_pres_2024_votes": 166107,
+      "rep_pres_2024_votes": 261295,
+      "dem_minus_rep_two_party_points": -22.271
+    },
+    {
+      "race_code": "GA-08",
+      "state": "GA",
+      "dem_pres_2024_votes": 119189,
+      "rep_pres_2024_votes": 225077,
+      "dem_minus_rep_two_party_points": -30.758
+    },
+    {
+      "race_code": "GA-09",
+      "state": "GA",
+      "dem_pres_2024_votes": 130883,
+      "rep_pres_2024_votes": 267731,
+      "dem_minus_rep_two_party_points": -34.331
+    },
+    {
+      "race_code": "GA-10",
+      "state": "GA",
+      "dem_pres_2024_votes": 162653,
+      "rep_pres_2024_votes": 248788,
+      "dem_minus_rep_two_party_points": -20.935
+    },
+    {
+      "race_code": "GA-11",
+      "state": "GA",
+      "dem_pres_2024_votes": 159375,
+      "rep_pres_2024_votes": 257408,
+      "dem_minus_rep_two_party_points": -23.521
+    },
+    {
+      "race_code": "GA-12",
+      "state": "GA",
+      "dem_pres_2024_votes": 148916,
+      "rep_pres_2024_votes": 198212,
+      "dem_minus_rep_two_party_points": -14.201
+    },
+    {
+      "race_code": "GA-13",
+      "state": "GA",
+      "dem_pres_2024_votes": 257798,
+      "rep_pres_2024_votes": 103643,
+      "dem_minus_rep_two_party_points": 42.65
+    },
+    {
+      "race_code": "GA-14",
+      "state": "GA",
+      "dem_pres_2024_votes": 120771,
+      "rep_pres_2024_votes": 262821,
+      "dem_minus_rep_two_party_points": -37.032
+    },
+    {
+      "race_code": "HI-01",
+      "state": "HI",
+      "dem_pres_2024_votes": 153038,
+      "rep_pres_2024_votes": 91497,
+      "dem_minus_rep_two_party_points": 25.167
+    },
+    {
+      "race_code": "HI-02",
+      "state": "HI",
+      "dem_pres_2024_votes": 160006,
+      "rep_pres_2024_votes": 102164,
+      "dem_minus_rep_two_party_points": 22.063
+    },
+    {
+      "race_code": "IA-01",
+      "state": "IA",
+      "dem_pres_2024_votes": 190502,
+      "rep_pres_2024_votes": 226309,
+      "dem_minus_rep_two_party_points": -8.591
+    },
+    {
+      "race_code": "IA-02",
+      "state": "IA",
+      "dem_pres_2024_votes": 186017,
+      "rep_pres_2024_votes": 227941,
+      "dem_minus_rep_two_party_points": -10.128
+    },
+    {
+      "race_code": "IA-03",
+      "state": "IA",
+      "dem_pres_2024_votes": 199043,
+      "rep_pres_2024_votes": 217645,
+      "dem_minus_rep_two_party_points": -4.464
+    },
+    {
+      "race_code": "IA-04",
+      "state": "IA",
+      "dem_pres_2024_votes": 131716,
+      "rep_pres_2024_votes": 255124,
+      "dem_minus_rep_two_party_points": -31.902
+    },
+    {
+      "race_code": "ID-01",
+      "state": "ID",
+      "dem_pres_2024_votes": 126546,
+      "rep_pres_2024_votes": 343895,
+      "dem_minus_rep_two_party_points": -46.201
+    },
+    {
+      "race_code": "ID-02",
+      "state": "ID",
+      "dem_pres_2024_votes": 148413,
+      "rep_pres_2024_votes": 261355,
+      "dem_minus_rep_two_party_points": -27.562
+    },
+    {
+      "race_code": "IL-01",
+      "state": "IL",
+      "dem_pres_2024_votes": 213695,
+      "rep_pres_2024_votes": 109427,
+      "dem_minus_rep_two_party_points": 32.269
+    },
+    {
+      "race_code": "IL-02",
+      "state": "IL",
+      "dem_pres_2024_votes": 196546,
+      "rep_pres_2024_votes": 97680,
+      "dem_minus_rep_two_party_points": 33.602
+    },
+    {
+      "race_code": "IL-03",
+      "state": "IL",
+      "dem_pres_2024_votes": 171937,
+      "rep_pres_2024_votes": 88946,
+      "dem_minus_rep_two_party_points": 31.812
+    },
+    {
+      "race_code": "IL-04",
+      "state": "IL",
+      "dem_pres_2024_votes": 134061,
+      "rep_pres_2024_votes": 74126,
+      "dem_minus_rep_two_party_points": 28.789
+    },
+    {
+      "race_code": "IL-05",
+      "state": "IL",
+      "dem_pres_2024_votes": 253925,
+      "rep_pres_2024_votes": 115297,
+      "dem_minus_rep_two_party_points": 37.546
+    },
+    {
+      "race_code": "IL-06",
+      "state": "IL",
+      "dem_pres_2024_votes": 190515,
+      "rep_pres_2024_votes": 170076,
+      "dem_minus_rep_two_party_points": 5.668
+    },
+    {
+      "race_code": "IL-07",
+      "state": "IL",
+      "dem_pres_2024_votes": 227681,
+      "rep_pres_2024_votes": 46425,
+      "dem_minus_rep_two_party_points": 66.126
+    },
+    {
+      "race_code": "IL-08",
+      "state": "IL",
+      "dem_pres_2024_votes": 162605,
+      "rep_pres_2024_votes": 141292,
+      "dem_minus_rep_two_party_points": 7.013
+    },
+    {
+      "race_code": "IL-09",
+      "state": "IL",
+      "dem_pres_2024_votes": 234667,
+      "rep_pres_2024_votes": 107823,
+      "dem_minus_rep_two_party_points": 37.036
+    },
+    {
+      "race_code": "IL-10",
+      "state": "IL",
+      "dem_pres_2024_votes": 199021,
+      "rep_pres_2024_votes": 126349,
+      "dem_minus_rep_two_party_points": 22.335
+    },
+    {
+      "race_code": "IL-11",
+      "state": "IL",
+      "dem_pres_2024_votes": 198881,
+      "rep_pres_2024_votes": 157533,
+      "dem_minus_rep_two_party_points": 11.601
+    },
+    {
+      "race_code": "IL-12",
+      "state": "IL",
+      "dem_pres_2024_votes": 102485,
+      "rep_pres_2024_votes": 264356,
+      "dem_minus_rep_two_party_points": -44.126
+    },
+    {
+      "race_code": "IL-13",
+      "state": "IL",
+      "dem_pres_2024_votes": 180960,
+      "rep_pres_2024_votes": 146195,
+      "dem_minus_rep_two_party_points": 10.626
+    },
+    {
+      "race_code": "IL-14",
+      "state": "IL",
+      "dem_pres_2024_votes": 173956,
+      "rep_pres_2024_votes": 156555,
+      "dem_minus_rep_two_party_points": 5.265
+    },
+    {
+      "race_code": "IL-15",
+      "state": "IL",
+      "dem_pres_2024_votes": 111340,
+      "rep_pres_2024_votes": 262935,
+      "dem_minus_rep_two_party_points": -40.504
+    },
+    {
+      "race_code": "IL-16",
+      "state": "IL",
+      "dem_pres_2024_votes": 147464,
+      "rep_pres_2024_votes": 235918,
+      "dem_minus_rep_two_party_points": -23.072
+    },
+    {
+      "race_code": "IL-17",
+      "state": "IL",
+      "dem_pres_2024_votes": 163124,
+      "rep_pres_2024_votes": 148146,
+      "dem_minus_rep_two_party_points": 4.812
+    },
+    {
+      "race_code": "IN-01",
+      "state": "IN",
+      "dem_pres_2024_votes": 161625,
+      "rep_pres_2024_votes": 160330,
+      "dem_minus_rep_two_party_points": 0.402
+    },
+    {
+      "race_code": "IN-02",
+      "state": "IN",
+      "dem_pres_2024_votes": 107779,
+      "rep_pres_2024_votes": 187184,
+      "dem_minus_rep_two_party_points": -26.92
+    },
+    {
+      "race_code": "IN-03",
+      "state": "IN",
+      "dem_pres_2024_votes": 107772,
+      "rep_pres_2024_votes": 207943,
+      "dem_minus_rep_two_party_points": -31.728
+    },
+    {
+      "race_code": "IN-04",
+      "state": "IN",
+      "dem_pres_2024_votes": 115001,
+      "rep_pres_2024_votes": 212994,
+      "dem_minus_rep_two_party_points": -29.876
+    },
+    {
+      "race_code": "IN-05",
+      "state": "IN",
+      "dem_pres_2024_votes": 150105,
+      "rep_pres_2024_votes": 212150,
+      "dem_minus_rep_two_party_points": -17.127
+    },
+    {
+      "race_code": "IN-06",
+      "state": "IN",
+      "dem_pres_2024_votes": 107010,
+      "rep_pres_2024_votes": 212902,
+      "dem_minus_rep_two_party_points": -33.1
+    },
+    {
+      "race_code": "IN-07",
+      "state": "IN",
+      "dem_pres_2024_votes": 189586,
+      "rep_pres_2024_votes": 77134,
+      "dem_minus_rep_two_party_points": 42.161
+    },
+    {
+      "race_code": "IN-08",
+      "state": "IN",
+      "dem_pres_2024_votes": 103783,
+      "rep_pres_2024_votes": 223052,
+      "dem_minus_rep_two_party_points": -36.492
+    },
+    {
+      "race_code": "IN-09",
+      "state": "IN",
+      "dem_pres_2024_votes": 121011,
+      "rep_pres_2024_votes": 226651,
+      "dem_minus_rep_two_party_points": -30.386
+    },
+    {
+      "race_code": "KS-01",
+      "state": "KS",
+      "dem_pres_2024_votes": 103889,
+      "rep_pres_2024_votes": 200988,
+      "dem_minus_rep_two_party_points": -31.849
+    },
+    {
+      "race_code": "KS-02",
+      "state": "KS",
+      "dem_pres_2024_votes": 120738,
+      "rep_pres_2024_votes": 181316,
+      "dem_minus_rep_two_party_points": -20.055
+    },
+    {
+      "race_code": "KS-03",
+      "state": "KS",
+      "dem_pres_2024_votes": 203405,
+      "rep_pres_2024_votes": 187105,
+      "dem_minus_rep_two_party_points": 4.174
+    },
+    {
+      "race_code": "KS-04",
+      "state": "KS",
+      "dem_pres_2024_votes": 116821,
+      "rep_pres_2024_votes": 189393,
+      "dem_minus_rep_two_party_points": -23.7
+    },
+    {
+      "race_code": "KY-01",
+      "state": "KY",
+      "dem_pres_2024_votes": 88125,
+      "rep_pres_2024_votes": 250232,
+      "dem_minus_rep_two_party_points": -47.91
+    },
+    {
+      "race_code": "KY-02",
+      "state": "KY",
+      "dem_pres_2024_votes": 100536,
+      "rep_pres_2024_votes": 245734,
+      "dem_minus_rep_two_party_points": -41.932
+    },
+    {
+      "race_code": "KY-03",
+      "state": "KY",
+      "dem_pres_2024_votes": 194712,
+      "rep_pres_2024_votes": 131797,
+      "dem_minus_rep_two_party_points": 19.269
+    },
+    {
+      "race_code": "KY-04",
+      "state": "KY",
+      "dem_pres_2024_votes": 117644,
+      "rep_pres_2024_votes": 250916,
+      "dem_minus_rep_two_party_points": -36.16
+    },
+    {
+      "race_code": "KY-05",
+      "state": "KY",
+      "dem_pres_2024_votes": 55275,
+      "rep_pres_2024_votes": 257630,
+      "dem_minus_rep_two_party_points": -64.67
+    },
+    {
+      "race_code": "KY-06",
+      "state": "KY",
+      "dem_pres_2024_votes": 147751,
+      "rep_pres_2024_votes": 201182,
+      "dem_minus_rep_two_party_points": -15.313
+    },
+    {
+      "race_code": "LA-01",
+      "state": "LA",
+      "dem_pres_2024_votes": 107889,
+      "rep_pres_2024_votes": 246297,
+      "dem_minus_rep_two_party_points": -39.078
+    },
+    {
+      "race_code": "LA-02",
+      "state": "LA",
+      "dem_pres_2024_votes": 228669,
+      "rep_pres_2024_votes": 78875,
+      "dem_minus_rep_two_party_points": 48.707
+    },
+    {
+      "race_code": "LA-03",
+      "state": "LA",
+      "dem_pres_2024_votes": 105807,
+      "rep_pres_2024_votes": 228229,
+      "dem_minus_rep_two_party_points": -36.649
+    },
+    {
+      "race_code": "LA-04",
+      "state": "LA",
+      "dem_pres_2024_votes": 103232,
+      "rep_pres_2024_votes": 212403,
+      "dem_minus_rep_two_party_points": -34.588
+    },
+    {
+      "race_code": "LA-05",
+      "state": "LA",
+      "dem_pres_2024_votes": 103973,
+      "rep_pres_2024_votes": 212971,
+      "dem_minus_rep_two_party_points": -34.39
+    },
+    {
+      "race_code": "LA-06",
+      "state": "LA",
+      "dem_pres_2024_votes": 117300,
+      "rep_pres_2024_votes": 229730,
+      "dem_minus_rep_two_party_points": -32.398
+    },
+    {
+      "race_code": "MA-01",
+      "state": "MA",
+      "dem_pres_2024_votes": 211784,
+      "rep_pres_2024_votes": 160045,
+      "dem_minus_rep_two_party_points": 13.915
+    },
+    {
+      "race_code": "MA-02",
+      "state": "MA",
+      "dem_pres_2024_votes": 231966,
+      "rep_pres_2024_votes": 141308,
+      "dem_minus_rep_two_party_points": 24.287
+    },
+    {
+      "race_code": "MA-03",
+      "state": "MA",
+      "dem_pres_2024_votes": 208626,
+      "rep_pres_2024_votes": 140854,
+      "dem_minus_rep_two_party_points": 19.392
+    },
+    {
+      "race_code": "MA-04",
+      "state": "MA",
+      "dem_pres_2024_votes": 237730,
+      "rep_pres_2024_votes": 158054,
+      "dem_minus_rep_two_party_points": 20.131
+    },
+    {
+      "race_code": "MA-05",
+      "state": "MA",
+      "dem_pres_2024_votes": 265591,
+      "rep_pres_2024_votes": 97371,
+      "dem_minus_rep_two_party_points": 46.346
+    },
+    {
+      "race_code": "MA-06",
+      "state": "MA",
+      "dem_pres_2024_votes": 255729,
+      "rep_pres_2024_votes": 166654,
+      "dem_minus_rep_two_party_points": 21.089
+    },
+    {
+      "race_code": "MA-07",
+      "state": "MA",
+      "dem_pres_2024_votes": 222689,
+      "rep_pres_2024_votes": 47009,
+      "dem_minus_rep_two_party_points": 65.14
+    },
+    {
+      "race_code": "MA-08",
+      "state": "MA",
+      "dem_pres_2024_votes": 242627,
+      "rep_pres_2024_votes": 139502,
+      "dem_minus_rep_two_party_points": 26.987
+    },
+    {
+      "race_code": "MA-09",
+      "state": "MA",
+      "dem_pres_2024_votes": 249776,
+      "rep_pres_2024_votes": 200506,
+      "dem_minus_rep_two_party_points": 10.942
+    },
+    {
+      "race_code": "MD-01",
+      "state": "MD",
+      "dem_pres_2024_votes": 171555,
+      "rep_pres_2024_votes": 243356,
+      "dem_minus_rep_two_party_points": -17.305
+    },
+    {
+      "race_code": "MD-02",
+      "state": "MD",
+      "dem_pres_2024_votes": 227251,
+      "rep_pres_2024_votes": 154851,
+      "dem_minus_rep_two_party_points": 18.948
+    },
+    {
+      "race_code": "MD-03",
+      "state": "MD",
+      "dem_pres_2024_votes": 249542,
+      "rep_pres_2024_votes": 151360,
+      "dem_minus_rep_two_party_points": 24.49
+    },
+    {
+      "race_code": "MD-04",
+      "state": "MD",
+      "dem_pres_2024_votes": 240880,
+      "rep_pres_2024_votes": 33369,
+      "dem_minus_rep_two_party_points": 75.665
+    },
+    {
+      "race_code": "MD-05",
+      "state": "MD",
+      "dem_pres_2024_votes": 280941,
+      "rep_pres_2024_votes": 138217,
+      "dem_minus_rep_two_party_points": 34.05
+    },
+    {
+      "race_code": "MD-06",
+      "state": "MD",
+      "dem_pres_2024_votes": 200059,
+      "rep_pres_2024_votes": 177663,
+      "dem_minus_rep_two_party_points": 5.929
+    },
+    {
+      "race_code": "MD-07",
+      "state": "MD",
+      "dem_pres_2024_votes": 236114,
+      "rep_pres_2024_votes": 58120,
+      "dem_minus_rep_two_party_points": 60.494
+    },
+    {
+      "race_code": "MD-08",
+      "state": "MD",
+      "dem_pres_2024_votes": 296235,
+      "rep_pres_2024_votes": 78614,
+      "dem_minus_rep_two_party_points": 58.056
+    },
+    {
+      "race_code": "ME-01",
+      "state": "ME",
+      "dem_pres_2024_votes": 261038,
+      "rep_pres_2024_votes": 165742,
+      "dem_minus_rep_two_party_points": 22.329
+    },
+    {
+      "race_code": "ME-02",
+      "state": "ME",
+      "dem_pres_2024_votes": 174614,
+      "rep_pres_2024_votes": 212235,
+      "dem_minus_rep_two_party_points": -9.725
+    },
+    {
+      "race_code": "MI-01",
+      "state": "MI",
+      "dem_pres_2024_votes": 187848,
+      "rep_pres_2024_votes": 290861,
+      "dem_minus_rep_two_party_points": -21.519
+    },
+    {
+      "race_code": "MI-02",
+      "state": "MI",
+      "dem_pres_2024_votes": 151095,
+      "rep_pres_2024_votes": 283938,
+      "dem_minus_rep_two_party_points": -30.536
+    },
+    {
+      "race_code": "MI-03",
+      "state": "MI",
+      "dem_pres_2024_votes": 226939,
+      "rep_pres_2024_votes": 193503,
+      "dem_minus_rep_two_party_points": 7.953
+    },
+    {
+      "race_code": "MI-04",
+      "state": "MI",
+      "dem_pres_2024_votes": 201639,
+      "rep_pres_2024_votes": 225611,
+      "dem_minus_rep_two_party_points": -5.611
+    },
+    {
+      "race_code": "MI-05",
+      "state": "MI",
+      "dem_pres_2024_votes": 151101,
+      "rep_pres_2024_votes": 265208,
+      "dem_minus_rep_two_party_points": -27.409
+    },
+    {
+      "race_code": "MI-06",
+      "state": "MI",
+      "dem_pres_2024_votes": 280092,
+      "rep_pres_2024_votes": 171956,
+      "dem_minus_rep_two_party_points": 23.921
+    },
+    {
+      "race_code": "MI-07",
+      "state": "MI",
+      "dem_pres_2024_votes": 224818,
+      "rep_pres_2024_votes": 230862,
+      "dem_minus_rep_two_party_points": -1.326
+    },
+    {
+      "race_code": "MI-08",
+      "state": "MI",
+      "dem_pres_2024_votes": 209506,
+      "rep_pres_2024_votes": 218087,
+      "dem_minus_rep_two_party_points": -2.007
+    },
+    {
+      "race_code": "MI-09",
+      "state": "MI",
+      "dem_pres_2024_votes": 161398,
+      "rep_pres_2024_votes": 318624,
+      "dem_minus_rep_two_party_points": -32.754
+    },
+    {
+      "race_code": "MI-10",
+      "state": "MI",
+      "dem_pres_2024_votes": 199324,
+      "rep_pres_2024_votes": 227882,
+      "dem_minus_rep_two_party_points": -6.685
+    },
+    {
+      "race_code": "MI-11",
+      "state": "MI",
+      "dem_pres_2024_votes": 262383,
+      "rep_pres_2024_votes": 188356,
+      "dem_minus_rep_two_party_points": 16.423
+    },
+    {
+      "race_code": "MI-12",
+      "state": "MI",
+      "dem_pres_2024_votes": 247356,
+      "rep_pres_2024_votes": 106968,
+      "dem_minus_rep_two_party_points": 39.621
+    },
+    {
+      "race_code": "MI-13",
+      "state": "MI",
+      "dem_pres_2024_votes": 232935,
+      "rep_pres_2024_votes": 94494,
+      "dem_minus_rep_two_party_points": 42.281
+    },
+    {
+      "race_code": "MN-01",
+      "state": "MN",
+      "dem_pres_2024_votes": 167186,
+      "rep_pres_2024_votes": 213794,
+      "dem_minus_rep_two_party_points": -12.234
+    },
+    {
+      "race_code": "MN-02",
+      "state": "MN",
+      "dem_pres_2024_votes": 220555,
+      "rep_pres_2024_votes": 195780,
+      "dem_minus_rep_two_party_points": 5.951
+    },
+    {
+      "race_code": "MN-03",
+      "state": "MN",
+      "dem_pres_2024_votes": 251791,
+      "rep_pres_2024_votes": 161935,
+      "dem_minus_rep_two_party_points": 21.719
+    },
+    {
+      "race_code": "MN-04",
+      "state": "MN",
+      "dem_pres_2024_votes": 251495,
+      "rep_pres_2024_votes": 117085,
+      "dem_minus_rep_two_party_points": 36.467
+    },
+    {
+      "race_code": "MN-05",
+      "state": "MN",
+      "dem_pres_2024_votes": 292800,
+      "rep_pres_2024_votes": 65271,
+      "dem_minus_rep_two_party_points": 63.543
+    },
+    {
+      "race_code": "MN-06",
+      "state": "MN",
+      "dem_pres_2024_votes": 168595,
+      "rep_pres_2024_votes": 253243,
+      "dem_minus_rep_two_party_points": -20.066
+    },
+    {
+      "race_code": "MN-07",
+      "state": "MN",
+      "dem_pres_2024_votes": 123652,
+      "rep_pres_2024_votes": 269504,
+      "dem_minus_rep_two_party_points": -37.098
+    },
+    {
+      "race_code": "MN-08",
+      "state": "MN",
+      "dem_pres_2024_votes": 180905,
+      "rep_pres_2024_votes": 242420,
+      "dem_minus_rep_two_party_points": -14.531
+    },
+    {
+      "race_code": "MO-01",
+      "state": "MO",
+      "dem_pres_2024_votes": 244276,
+      "rep_pres_2024_votes": 64565,
+      "dem_minus_rep_two_party_points": 58.189
+    },
+    {
+      "race_code": "MO-02",
+      "state": "MO",
+      "dem_pres_2024_votes": 196301,
+      "rep_pres_2024_votes": 230858,
+      "dem_minus_rep_two_party_points": -8.09
+    },
+    {
+      "race_code": "MO-03",
+      "state": "MO",
+      "dem_pres_2024_votes": 145345,
+      "rep_pres_2024_votes": 253502,
+      "dem_minus_rep_two_party_points": -27.117
+    },
+    {
+      "race_code": "MO-04",
+      "state": "MO",
+      "dem_pres_2024_votes": 106422,
+      "rep_pres_2024_votes": 264765,
+      "dem_minus_rep_two_party_points": -42.659
+    },
+    {
+      "race_code": "MO-05",
+      "state": "MO",
+      "dem_pres_2024_votes": 204302,
+      "rep_pres_2024_votes": 125669,
+      "dem_minus_rep_two_party_points": 23.83
+    },
+    {
+      "race_code": "MO-06",
+      "state": "MO",
+      "dem_pres_2024_votes": 114947,
+      "rep_pres_2024_votes": 263985,
+      "dem_minus_rep_two_party_points": -39.331
+    },
+    {
+      "race_code": "MO-07",
+      "state": "MO",
+      "dem_pres_2024_votes": 105653,
+      "rep_pres_2024_votes": 266226,
+      "dem_minus_rep_two_party_points": -43.179
+    },
+    {
+      "race_code": "MO-08",
+      "state": "MO",
+      "dem_pres_2024_votes": 83353,
+      "rep_pres_2024_votes": 282416,
+      "dem_minus_rep_two_party_points": -54.423
+    },
+    {
+      "race_code": "MS-01",
+      "state": "MS",
+      "dem_pres_2024_votes": 99871,
+      "rep_pres_2024_votes": 219880,
+      "dem_minus_rep_two_party_points": -37.532
+    },
+    {
+      "race_code": "MS-02",
+      "state": "MS",
+      "dem_pres_2024_votes": 171061,
+      "rep_pres_2024_votes": 112641,
+      "dem_minus_rep_two_party_points": 20.592
+    },
+    {
+      "race_code": "MS-03",
+      "state": "MS",
+      "dem_pres_2024_votes": 112896,
+      "rep_pres_2024_votes": 207370,
+      "dem_minus_rep_two_party_points": -29.499
+    },
+    {
+      "race_code": "MS-04",
+      "state": "MS",
+      "dem_pres_2024_votes": 82839,
+      "rep_pres_2024_votes": 207853,
+      "dem_minus_rep_two_party_points": -43.006
+    },
+    {
+      "race_code": "MT-01",
+      "state": "MT",
+      "dem_pres_2024_votes": 137407,
+      "rep_pres_2024_votes": 174611,
+      "dem_minus_rep_two_party_points": -11.924
+    },
+    {
+      "race_code": "MT-02",
+      "state": "MT",
+      "dem_pres_2024_votes": 94499,
+      "rep_pres_2024_votes": 177468,
+      "dem_minus_rep_two_party_points": -30.507
+    },
+    {
+      "race_code": "NC-01",
+      "state": "NC",
+      "dem_pres_2024_votes": 182065,
+      "rep_pres_2024_votes": 230368,
+      "dem_minus_rep_two_party_points": -11.712
+    },
+    {
+      "race_code": "NC-02",
+      "state": "NC",
+      "dem_pres_2024_votes": 271772,
+      "rep_pres_2024_votes": 132620,
+      "dem_minus_rep_two_party_points": 34.41
+    },
+    {
+      "race_code": "NC-03",
+      "state": "NC",
+      "dem_pres_2024_votes": 147604,
+      "rep_pres_2024_votes": 194722,
+      "dem_minus_rep_two_party_points": -13.764
+    },
+    {
+      "race_code": "NC-04",
+      "state": "NC",
+      "dem_pres_2024_votes": 312412,
+      "rep_pres_2024_votes": 115447,
+      "dem_minus_rep_two_party_points": 46.035
+    },
+    {
+      "race_code": "NC-05",
+      "state": "NC",
+      "dem_pres_2024_votes": 165404,
+      "rep_pres_2024_votes": 237629,
+      "dem_minus_rep_two_party_points": -17.92
+    },
+    {
+      "race_code": "NC-06",
+      "state": "NC",
+      "dem_pres_2024_votes": 159349,
+      "rep_pres_2024_votes": 226292,
+      "dem_minus_rep_two_party_points": -17.359
+    },
+    {
+      "race_code": "NC-07",
+      "state": "NC",
+      "dem_pres_2024_votes": 188294,
+      "rep_pres_2024_votes": 249694,
+      "dem_minus_rep_two_party_points": -14.019
+    },
+    {
+      "race_code": "NC-08",
+      "state": "NC",
+      "dem_pres_2024_votes": 162358,
+      "rep_pres_2024_votes": 241622,
+      "dem_minus_rep_two_party_points": -19.621
+    },
+    {
+      "race_code": "NC-09",
+      "state": "NC",
+      "dem_pres_2024_votes": 158552,
+      "rep_pres_2024_votes": 219095,
+      "dem_minus_rep_two_party_points": -16.032
+    },
+    {
+      "race_code": "NC-10",
+      "state": "NC",
+      "dem_pres_2024_votes": 168702,
+      "rep_pres_2024_votes": 242192,
+      "dem_minus_rep_two_party_points": -17.885
+    },
+    {
+      "race_code": "NC-11",
+      "state": "NC",
+      "dem_pres_2024_votes": 196314,
+      "rep_pres_2024_votes": 238078,
+      "dem_minus_rep_two_party_points": -9.614
+    },
+    {
+      "race_code": "NC-12",
+      "state": "NC",
+      "dem_pres_2024_votes": 254946,
+      "rep_pres_2024_votes": 91834,
+      "dem_minus_rep_two_party_points": 47.036
+    },
+    {
+      "race_code": "NC-13",
+      "state": "NC",
+      "dem_pres_2024_votes": 174774,
+      "rep_pres_2024_votes": 244879,
+      "dem_minus_rep_two_party_points": -16.705
+    },
+    {
+      "race_code": "NC-14",
+      "state": "NC",
+      "dem_pres_2024_votes": 171063,
+      "rep_pres_2024_votes": 232469,
+      "dem_minus_rep_two_party_points": -15.217
+    },
+    {
+      "race_code": "ND-01",
+      "state": "ND",
+      "dem_pres_2024_votes": 112327,
+      "rep_pres_2024_votes": 246505,
+      "dem_minus_rep_two_party_points": -37.393
+    },
+    {
+      "race_code": "NE-01",
+      "state": "NE",
+      "dem_pres_2024_votes": 136153,
+      "rep_pres_2024_votes": 177663,
+      "dem_minus_rep_two_party_points": -13.227
+    },
+    {
+      "race_code": "NE-02",
+      "state": "NE",
+      "dem_pres_2024_votes": 163541,
+      "rep_pres_2024_votes": 148908,
+      "dem_minus_rep_two_party_points": 4.683
+    },
+    {
+      "race_code": "NE-03",
+      "state": "NE",
+      "dem_pres_2024_votes": 70301,
+      "rep_pres_2024_votes": 238245,
+      "dem_minus_rep_two_party_points": -54.431
+    },
+    {
+      "race_code": "NH-01",
+      "state": "NH",
+      "dem_pres_2024_votes": 208186,
+      "rep_pres_2024_votes": 199942,
+      "dem_minus_rep_two_party_points": 2.02
+    },
+    {
+      "race_code": "NH-02",
+      "state": "NH",
+      "dem_pres_2024_votes": 210302,
+      "rep_pres_2024_votes": 195581,
+      "dem_minus_rep_two_party_points": 3.627
+    },
+    {
+      "race_code": "NJ-01",
+      "state": "NJ",
+      "dem_pres_2024_votes": 220362,
+      "rep_pres_2024_votes": 149993,
+      "dem_minus_rep_two_party_points": 19
+    },
+    {
+      "race_code": "NJ-02",
+      "state": "NJ",
+      "dem_pres_2024_votes": 160517,
+      "rep_pres_2024_votes": 209709,
+      "dem_minus_rep_two_party_points": -13.287
+    },
+    {
+      "race_code": "NJ-03",
+      "state": "NJ",
+      "dem_pres_2024_votes": 204031,
+      "rep_pres_2024_votes": 174088,
+      "dem_minus_rep_two_party_points": 7.919
+    },
+    {
+      "race_code": "NJ-04",
+      "state": "NJ",
+      "dem_pres_2024_votes": 136916,
+      "rep_pres_2024_votes": 259999,
+      "dem_minus_rep_two_party_points": -31.01
+    },
+    {
+      "race_code": "NJ-05",
+      "state": "NJ",
+      "dem_pres_2024_votes": 195238,
+      "rep_pres_2024_votes": 190272,
+      "dem_minus_rep_two_party_points": 1.288
+    },
+    {
+      "race_code": "NJ-06",
+      "state": "NJ",
+      "dem_pres_2024_votes": 163739,
+      "rep_pres_2024_votes": 144525,
+      "dem_minus_rep_two_party_points": 6.233
+    },
+    {
+      "race_code": "NJ-07",
+      "state": "NJ",
+      "dem_pres_2024_votes": 210218,
+      "rep_pres_2024_votes": 218352,
+      "dem_minus_rep_two_party_points": -1.898
+    },
+    {
+      "race_code": "NJ-08",
+      "state": "NJ",
+      "dem_pres_2024_votes": 135768,
+      "rep_pres_2024_votes": 74966,
+      "dem_minus_rep_two_party_points": 28.852
+    },
+    {
+      "race_code": "NJ-09",
+      "state": "NJ",
+      "dem_pres_2024_votes": 131176,
+      "rep_pres_2024_votes": 134622,
+      "dem_minus_rep_two_party_points": -1.296
+    },
+    {
+      "race_code": "NJ-10",
+      "state": "NJ",
+      "dem_pres_2024_votes": 185281,
+      "rep_pres_2024_votes": 63876,
+      "dem_minus_rep_two_party_points": 48.726
+    },
+    {
+      "race_code": "NJ-11",
+      "state": "NJ",
+      "dem_pres_2024_votes": 208082,
+      "rep_pres_2024_votes": 177521,
+      "dem_minus_rep_two_party_points": 7.926
+    },
+    {
+      "race_code": "NJ-12",
+      "state": "NJ",
+      "dem_pres_2024_votes": 197885,
+      "rep_pres_2024_votes": 122377,
+      "dem_minus_rep_two_party_points": 23.577
+    },
+    {
+      "race_code": "NM-01",
+      "state": "NM",
+      "dem_pres_2024_votes": 194852,
+      "rep_pres_2024_votes": 150029,
+      "dem_minus_rep_two_party_points": 12.997
+    },
+    {
+      "race_code": "NM-02",
+      "state": "NM",
+      "dem_pres_2024_votes": 130545,
+      "rep_pres_2024_votes": 135450,
+      "dem_minus_rep_two_party_points": -1.844
+    },
+    {
+      "race_code": "NM-03",
+      "state": "NM",
+      "dem_pres_2024_votes": 153404,
+      "rep_pres_2024_votes": 137906,
+      "dem_minus_rep_two_party_points": 5.32
+    },
+    {
+      "race_code": "NV-01",
+      "state": "NV",
+      "dem_pres_2024_votes": 168436,
+      "rep_pres_2024_votes": 160856,
+      "dem_minus_rep_two_party_points": 2.302
+    },
+    {
+      "race_code": "NV-02",
+      "state": "NV",
+      "dem_pres_2024_votes": 176235,
+      "rep_pres_2024_votes": 234860,
+      "dem_minus_rep_two_party_points": -14.261
+    },
+    {
+      "race_code": "NV-03",
+      "state": "NV",
+      "dem_pres_2024_votes": 187977,
+      "rep_pres_2024_votes": 190808,
+      "dem_minus_rep_two_party_points": -0.747
+    },
+    {
+      "race_code": "NV-04",
+      "state": "NV",
+      "dem_pres_2024_votes": 172380,
+      "rep_pres_2024_votes": 164399,
+      "dem_minus_rep_two_party_points": 2.37
+    },
+    {
+      "race_code": "NY-01",
+      "state": "NY",
+      "dem_pres_2024_votes": 190070,
+      "rep_pres_2024_votes": 233206,
+      "dem_minus_rep_two_party_points": -10.191
+    },
+    {
+      "race_code": "NY-02",
+      "state": "NY",
+      "dem_pres_2024_votes": 153928,
+      "rep_pres_2024_votes": 204363,
+      "dem_minus_rep_two_party_points": -14.077
+    },
+    {
+      "race_code": "NY-03",
+      "state": "NY",
+      "dem_pres_2024_votes": 178095,
+      "rep_pres_2024_votes": 194280,
+      "dem_minus_rep_two_party_points": -4.346
+    },
+    {
+      "race_code": "NY-04",
+      "state": "NY",
+      "dem_pres_2024_votes": 194462,
+      "rep_pres_2024_votes": 189492,
+      "dem_minus_rep_two_party_points": 1.294
+    },
+    {
+      "race_code": "NY-05",
+      "state": "NY",
+      "dem_pres_2024_votes": 170189,
+      "rep_pres_2024_votes": 68170,
+      "dem_minus_rep_two_party_points": 42.801
+    },
+    {
+      "race_code": "NY-06",
+      "state": "NY",
+      "dem_pres_2024_votes": 109480,
+      "rep_pres_2024_votes": 96065,
+      "dem_minus_rep_two_party_points": 6.527
+    },
+    {
+      "race_code": "NY-07",
+      "state": "NY",
+      "dem_pres_2024_votes": 168187,
+      "rep_pres_2024_votes": 60343,
+      "dem_minus_rep_two_party_points": 47.19
+    },
+    {
+      "race_code": "NY-08",
+      "state": "NY",
+      "dem_pres_2024_votes": 170473,
+      "rep_pres_2024_votes": 65030,
+      "dem_minus_rep_two_party_points": 44.774
+    },
+    {
+      "race_code": "NY-09",
+      "state": "NY",
+      "dem_pres_2024_votes": 173356,
+      "rep_pres_2024_votes": 71858,
+      "dem_minus_rep_two_party_points": 41.392
+    },
+    {
+      "race_code": "NY-10",
+      "state": "NY",
+      "dem_pres_2024_votes": 218940,
+      "rep_pres_2024_votes": 51536,
+      "dem_minus_rep_two_party_points": 61.892
+    },
+    {
+      "race_code": "NY-11",
+      "state": "NY",
+      "dem_pres_2024_votes": 100628,
+      "rep_pres_2024_votes": 167092,
+      "dem_minus_rep_two_party_points": -24.826
+    },
+    {
+      "race_code": "NY-12",
+      "state": "NY",
+      "dem_pres_2024_votes": 273954,
+      "rep_pres_2024_votes": 58314,
+      "dem_minus_rep_two_party_points": 64.899
+    },
+    {
+      "race_code": "NY-13",
+      "state": "NY",
+      "dem_pres_2024_votes": 188808,
+      "rep_pres_2024_votes": 46800,
+      "dem_minus_rep_two_party_points": 60.273
+    },
+    {
+      "race_code": "NY-14",
+      "state": "NY",
+      "dem_pres_2024_votes": 131879,
+      "rep_pres_2024_votes": 67385,
+      "dem_minus_rep_two_party_points": 32.366
+    },
+    {
+      "race_code": "NY-15",
+      "state": "NY",
+      "dem_pres_2024_votes": 137445,
+      "rep_pres_2024_votes": 47283,
+      "dem_minus_rep_two_party_points": 48.808
+    },
+    {
+      "race_code": "NY-16",
+      "state": "NY",
+      "dem_pres_2024_votes": 216167,
+      "rep_pres_2024_votes": 108141,
+      "dem_minus_rep_two_party_points": 33.31
+    },
+    {
+      "race_code": "NY-17",
+      "state": "NY",
+      "dem_pres_2024_votes": 194302,
+      "rep_pres_2024_votes": 192139,
+      "dem_minus_rep_two_party_points": 0.56
+    },
+    {
+      "race_code": "NY-18",
+      "state": "NY",
+      "dem_pres_2024_votes": 190676,
+      "rep_pres_2024_votes": 178299,
+      "dem_minus_rep_two_party_points": 3.354
+    },
+    {
+      "race_code": "NY-19",
+      "state": "NY",
+      "dem_pres_2024_votes": 194143,
+      "rep_pres_2024_votes": 187277,
+      "dem_minus_rep_two_party_points": 1.8
+    },
+    {
+      "race_code": "NY-20",
+      "state": "NY",
+      "dem_pres_2024_votes": 211181,
+      "rep_pres_2024_votes": 158272,
+      "dem_minus_rep_two_party_points": 14.321
+    },
+    {
+      "race_code": "NY-21",
+      "state": "NY",
+      "dem_pres_2024_votes": 140758,
+      "rep_pres_2024_votes": 214512,
+      "dem_minus_rep_two_party_points": -20.76
+    },
+    {
+      "race_code": "NY-22",
+      "state": "NY",
+      "dem_pres_2024_votes": 194091,
+      "rep_pres_2024_votes": 166358,
+      "dem_minus_rep_two_party_points": 7.694
+    },
+    {
+      "race_code": "NY-23",
+      "state": "NY",
+      "dem_pres_2024_votes": 154428,
+      "rep_pres_2024_votes": 237461,
+      "dem_minus_rep_two_party_points": -21.188
+    },
+    {
+      "race_code": "NY-24",
+      "state": "NY",
+      "dem_pres_2024_votes": 143275,
+      "rep_pres_2024_votes": 230018,
+      "dem_minus_rep_two_party_points": -23.237
+    },
+    {
+      "race_code": "NY-25",
+      "state": "NY",
+      "dem_pres_2024_votes": 220540,
+      "rep_pres_2024_votes": 151196,
+      "dem_minus_rep_two_party_points": 18.654
+    },
+    {
+      "race_code": "NY-26",
+      "state": "NY",
+      "dem_pres_2024_votes": 200098,
+      "rep_pres_2024_votes": 134624,
+      "dem_minus_rep_two_party_points": 19.561
+    },
+    {
+      "race_code": "OH-01",
+      "state": "OH",
+      "dem_pres_2024_votes": 191603,
+      "rep_pres_2024_votes": 201912,
+      "dem_minus_rep_two_party_points": -2.62
+    },
+    {
+      "race_code": "OH-02",
+      "state": "OH",
+      "dem_pres_2024_votes": 107317,
+      "rep_pres_2024_votes": 265831,
+      "dem_minus_rep_two_party_points": -42.48
+    },
+    {
+      "race_code": "OH-03",
+      "state": "OH",
+      "dem_pres_2024_votes": 249431,
+      "rep_pres_2024_votes": 105242,
+      "dem_minus_rep_two_party_points": 40.654
+    },
+    {
+      "race_code": "OH-04",
+      "state": "OH",
+      "dem_pres_2024_votes": 111941,
+      "rep_pres_2024_votes": 280927,
+      "dem_minus_rep_two_party_points": -43.013
+    },
+    {
+      "race_code": "OH-05",
+      "state": "OH",
+      "dem_pres_2024_votes": 145964,
+      "rep_pres_2024_votes": 238010,
+      "dem_minus_rep_two_party_points": -23.972
+    },
+    {
+      "race_code": "OH-06",
+      "state": "OH",
+      "dem_pres_2024_votes": 118027,
+      "rep_pres_2024_votes": 244557,
+      "dem_minus_rep_two_party_points": -34.897
+    },
+    {
+      "race_code": "OH-07",
+      "state": "OH",
+      "dem_pres_2024_votes": 187691,
+      "rep_pres_2024_votes": 234785,
+      "dem_minus_rep_two_party_points": -11.147
+    },
+    {
+      "race_code": "OH-08",
+      "state": "OH",
+      "dem_pres_2024_votes": 167929,
+      "rep_pres_2024_votes": 230834,
+      "dem_minus_rep_two_party_points": -15.775
+    },
+    {
+      "race_code": "OH-09",
+      "state": "OH",
+      "dem_pres_2024_votes": 168624,
+      "rep_pres_2024_votes": 208947,
+      "dem_minus_rep_two_party_points": -10.68
+    },
+    {
+      "race_code": "OH-10",
+      "state": "OH",
+      "dem_pres_2024_votes": 172975,
+      "rep_pres_2024_votes": 202500,
+      "dem_minus_rep_two_party_points": -7.863
+    },
+    {
+      "race_code": "OH-11",
+      "state": "OH",
+      "dem_pres_2024_votes": 247372,
+      "rep_pres_2024_votes": 70858,
+      "dem_minus_rep_two_party_points": 55.467
+    },
+    {
+      "race_code": "OH-12",
+      "state": "OH",
+      "dem_pres_2024_votes": 141594,
+      "rep_pres_2024_votes": 265024,
+      "dem_minus_rep_two_party_points": -30.355
+    },
+    {
+      "race_code": "OH-13",
+      "state": "OH",
+      "dem_pres_2024_votes": 199819,
+      "rep_pres_2024_votes": 186970,
+      "dem_minus_rep_two_party_points": 3.322
+    },
+    {
+      "race_code": "OH-14",
+      "state": "OH",
+      "dem_pres_2024_votes": 162913,
+      "rep_pres_2024_votes": 247101,
+      "dem_minus_rep_two_party_points": -20.533
+    },
+    {
+      "race_code": "OH-15",
+      "state": "OH",
+      "dem_pres_2024_votes": 160499,
+      "rep_pres_2024_votes": 196618,
+      "dem_minus_rep_two_party_points": -10.114
+    },
+    {
+      "race_code": "OK-01",
+      "state": "OK",
+      "dem_pres_2024_votes": 120247,
+      "rep_pres_2024_votes": 188086,
+      "dem_minus_rep_two_party_points": -22.002
+    },
+    {
+      "race_code": "OK-02",
+      "state": "OK",
+      "dem_pres_2024_votes": 69690,
+      "rep_pres_2024_votes": 250807,
+      "dem_minus_rep_two_party_points": -56.511
+    },
+    {
+      "race_code": "OK-03",
+      "state": "OK",
+      "dem_pres_2024_votes": 73264,
+      "rep_pres_2024_votes": 196545,
+      "dem_minus_rep_two_party_points": -45.692
+    },
+    {
+      "race_code": "OK-04",
+      "state": "OK",
+      "dem_pres_2024_votes": 101422,
+      "rep_pres_2024_votes": 203949,
+      "dem_minus_rep_two_party_points": -33.575
+    },
+    {
+      "race_code": "OK-05",
+      "state": "OK",
+      "dem_pres_2024_votes": 134833,
+      "rep_pres_2024_votes": 196699,
+      "dem_minus_rep_two_party_points": -18.661
+    },
+    {
+      "race_code": "OR-01",
+      "state": "OR",
+      "dem_pres_2024_votes": 245702,
+      "rep_pres_2024_votes": 107307,
+      "dem_minus_rep_two_party_points": 39.204
+    },
+    {
+      "race_code": "OR-02",
+      "state": "OR",
+      "dem_pres_2024_votes": 128291,
+      "rep_pres_2024_votes": 227577,
+      "dem_minus_rep_two_party_points": -27.9
+    },
+    {
+      "race_code": "OR-03",
+      "state": "OR",
+      "dem_pres_2024_votes": 248749,
+      "rep_pres_2024_votes": 88287,
+      "dem_minus_rep_two_party_points": 47.61
+    },
+    {
+      "race_code": "OR-04",
+      "state": "OR",
+      "dem_pres_2024_votes": 211865,
+      "rep_pres_2024_votes": 164980,
+      "dem_minus_rep_two_party_points": 12.441
+    },
+    {
+      "race_code": "OR-05",
+      "state": "OR",
+      "dem_pres_2024_votes": 217920,
+      "rep_pres_2024_votes": 182245,
+      "dem_minus_rep_two_party_points": 8.915
+    },
+    {
+      "race_code": "OR-06",
+      "state": "OR",
+      "dem_pres_2024_votes": 188863,
+      "rep_pres_2024_votes": 149183,
+      "dem_minus_rep_two_party_points": 11.738
+    },
+    {
+      "race_code": "PA-01",
+      "state": "PA",
+      "dem_pres_2024_votes": 235347,
+      "rep_pres_2024_votes": 233794,
+      "dem_minus_rep_two_party_points": 0.331
+    },
+    {
+      "race_code": "PA-02",
+      "state": "PA",
+      "dem_pres_2024_votes": 198243,
+      "rep_pres_2024_votes": 93017,
+      "dem_minus_rep_two_party_points": 36.128
+    },
+    {
+      "race_code": "PA-03",
+      "state": "PA",
+      "dem_pres_2024_votes": 345301,
+      "rep_pres_2024_votes": 42202,
+      "dem_minus_rep_two_party_points": 78.218
+    },
+    {
+      "race_code": "PA-04",
+      "state": "PA",
+      "dem_pres_2024_votes": 268450,
+      "rep_pres_2024_votes": 194506,
+      "dem_minus_rep_two_party_points": 15.972
+    },
+    {
+      "race_code": "PA-05",
+      "state": "PA",
+      "dem_pres_2024_votes": 267100,
+      "rep_pres_2024_votes": 147213,
+      "dem_minus_rep_two_party_points": 28.936
+    },
+    {
+      "race_code": "PA-06",
+      "state": "PA",
+      "dem_pres_2024_votes": 234612,
+      "rep_pres_2024_votes": 186122,
+      "dem_minus_rep_two_party_points": 11.525
+    },
+    {
+      "race_code": "PA-07",
+      "state": "PA",
+      "dem_pres_2024_votes": 196712,
+      "rep_pres_2024_votes": 209881,
+      "dem_minus_rep_two_party_points": -3.239
+    },
+    {
+      "race_code": "PA-08",
+      "state": "PA",
+      "dem_pres_2024_votes": 177078,
+      "rep_pres_2024_votes": 210297,
+      "dem_minus_rep_two_party_points": -8.575
+    },
+    {
+      "race_code": "PA-09",
+      "state": "PA",
+      "dem_pres_2024_votes": 121849,
+      "rep_pres_2024_votes": 272916,
+      "dem_minus_rep_two_party_points": -38.268
+    },
+    {
+      "race_code": "PA-10",
+      "state": "PA",
+      "dem_pres_2024_votes": 192786,
+      "rep_pres_2024_votes": 214312,
+      "dem_minus_rep_two_party_points": -5.288
+    },
+    {
+      "race_code": "PA-11",
+      "state": "PA",
+      "dem_pres_2024_votes": 160180,
+      "rep_pres_2024_votes": 248304,
+      "dem_minus_rep_two_party_points": -21.573
+    },
+    {
+      "race_code": "PA-12",
+      "state": "PA",
+      "dem_pres_2024_votes": 253676,
+      "rep_pres_2024_votes": 171379,
+      "dem_minus_rep_two_party_points": 19.361
+    },
+    {
+      "race_code": "PA-13",
+      "state": "PA",
+      "dem_pres_2024_votes": 110800,
+      "rep_pres_2024_votes": 298889,
+      "dem_minus_rep_two_party_points": -45.91
+    },
+    {
+      "race_code": "PA-14",
+      "state": "PA",
+      "dem_pres_2024_votes": 138811,
+      "rep_pres_2024_votes": 279249,
+      "dem_minus_rep_two_party_points": -33.593
+    },
+    {
+      "race_code": "PA-15",
+      "state": "PA",
+      "dem_pres_2024_votes": 121639,
+      "rep_pres_2024_votes": 272661,
+      "dem_minus_rep_two_party_points": -38.301
+    },
+    {
+      "race_code": "PA-16",
+      "state": "PA",
+      "dem_pres_2024_votes": 159548,
+      "rep_pres_2024_votes": 254692,
+      "dem_minus_rep_two_party_points": -22.968
+    },
+    {
+      "race_code": "PA-17",
+      "state": "PA",
+      "dem_pres_2024_votes": 238977,
+      "rep_pres_2024_votes": 213801,
+      "dem_minus_rep_two_party_points": 5.56
+    },
+    {
+      "race_code": "RI-01",
+      "state": "RI",
+      "dem_pres_2024_votes": 140675,
+      "rep_pres_2024_votes": 88768,
+      "dem_minus_rep_two_party_points": 22.623
+    },
+    {
+      "race_code": "RI-02",
+      "state": "RI",
+      "dem_pres_2024_votes": 144457,
+      "rep_pres_2024_votes": 125630,
+      "dem_minus_rep_two_party_points": 6.971
+    },
+    {
+      "race_code": "SC-01",
+      "state": "SC",
+      "dem_pres_2024_votes": 171283,
+      "rep_pres_2024_votes": 223769,
+      "dem_minus_rep_two_party_points": -13.286
+    },
+    {
+      "race_code": "SC-02",
+      "state": "SC",
+      "dem_pres_2024_votes": 154598,
+      "rep_pres_2024_votes": 205591,
+      "dem_minus_rep_two_party_points": -14.157
+    },
+    {
+      "race_code": "SC-03",
+      "state": "SC",
+      "dem_pres_2024_votes": 99238,
+      "rep_pres_2024_votes": 252775,
+      "dem_minus_rep_two_party_points": -43.617
+    },
+    {
+      "race_code": "SC-04",
+      "state": "SC",
+      "dem_pres_2024_votes": 132503,
+      "rep_pres_2024_votes": 215950,
+      "dem_minus_rep_two_party_points": -23.948
+    },
+    {
+      "race_code": "SC-05",
+      "state": "SC",
+      "dem_pres_2024_votes": 141484,
+      "rep_pres_2024_votes": 226482,
+      "dem_minus_rep_two_party_points": -23.099
+    },
+    {
+      "race_code": "SC-06",
+      "state": "SC",
+      "dem_pres_2024_votes": 189674,
+      "rep_pres_2024_votes": 118149,
+      "dem_minus_rep_two_party_points": 23.236
+    },
+    {
+      "race_code": "SC-07",
+      "state": "SC",
+      "dem_pres_2024_votes": 139672,
+      "rep_pres_2024_votes": 241031,
+      "dem_minus_rep_two_party_points": -26.624
+    },
+    {
+      "race_code": "SD-01",
+      "state": "SD",
+      "dem_pres_2024_votes": 145799,
+      "rep_pres_2024_votes": 270651,
+      "dem_minus_rep_two_party_points": -29.98
+    },
+    {
+      "race_code": "TN-01",
+      "state": "TN",
+      "dem_pres_2024_votes": 71642,
+      "rep_pres_2024_votes": 273125,
+      "dem_minus_rep_two_party_points": -58.44
+    },
+    {
+      "race_code": "TN-02",
+      "state": "TN",
+      "dem_pres_2024_votes": 118776,
+      "rep_pres_2024_votes": 242955,
+      "dem_minus_rep_two_party_points": -34.329
+    },
+    {
+      "race_code": "TN-03",
+      "state": "TN",
+      "dem_pres_2024_votes": 114326,
+      "rep_pres_2024_votes": 244099,
+      "dem_minus_rep_two_party_points": -36.206
+    },
+    {
+      "race_code": "TN-04",
+      "state": "TN",
+      "dem_pres_2024_votes": 113664,
+      "rep_pres_2024_votes": 186548,
+      "dem_minus_rep_two_party_points": -24.278
+    },
+    {
+      "race_code": "TN-05",
+      "state": "TN",
+      "dem_pres_2024_votes": 118678,
+      "rep_pres_2024_votes": 191152,
+      "dem_minus_rep_two_party_points": -23.392
+    },
+    {
+      "race_code": "TN-06",
+      "state": "TN",
+      "dem_pres_2024_votes": 130633,
+      "rep_pres_2024_votes": 226645,
+      "dem_minus_rep_two_party_points": -26.873
+    },
+    {
+      "race_code": "TN-07",
+      "state": "TN",
+      "dem_pres_2024_votes": 137698,
+      "rep_pres_2024_votes": 218702,
+      "dem_minus_rep_two_party_points": -22.728
+    },
+    {
+      "race_code": "TN-08",
+      "state": "TN",
+      "dem_pres_2024_votes": 126046,
+      "rep_pres_2024_votes": 190779,
+      "dem_minus_rep_two_party_points": -20.432
+    },
+    {
+      "race_code": "TN-09",
+      "state": "TN",
+      "dem_pres_2024_votes": 124802,
+      "rep_pres_2024_votes": 192860,
+      "dem_minus_rep_two_party_points": -21.425
+    },
+    {
+      "race_code": "TX-01",
+      "state": "TX",
+      "dem_pres_2024_votes": 80850,
+      "rep_pres_2024_votes": 241942,
+      "dem_minus_rep_two_party_points": -49.906
+    },
+    {
+      "race_code": "TX-02",
+      "state": "TX",
+      "dem_pres_2024_votes": 127854,
+      "rep_pres_2024_votes": 204811,
+      "dem_minus_rep_two_party_points": -23.133
+    },
+    {
+      "race_code": "TX-03",
+      "state": "TX",
+      "dem_pres_2024_votes": 136992,
+      "rep_pres_2024_votes": 223427,
+      "dem_minus_rep_two_party_points": -23.982
+    },
+    {
+      "race_code": "TX-04",
+      "state": "TX",
+      "dem_pres_2024_votes": 134682,
+      "rep_pres_2024_votes": 225235,
+      "dem_minus_rep_two_party_points": -25.159
+    },
+    {
+      "race_code": "TX-05",
+      "state": "TX",
+      "dem_pres_2024_votes": 113124,
+      "rep_pres_2024_votes": 176352,
+      "dem_minus_rep_two_party_points": -21.842
+    },
+    {
+      "race_code": "TX-06",
+      "state": "TX",
+      "dem_pres_2024_votes": 116800,
+      "rep_pres_2024_votes": 187669,
+      "dem_minus_rep_two_party_points": -23.276
+    },
+    {
+      "race_code": "TX-07",
+      "state": "TX",
+      "dem_pres_2024_votes": 153127,
+      "rep_pres_2024_votes": 93619,
+      "dem_minus_rep_two_party_points": 24.117
+    },
+    {
+      "race_code": "TX-08",
+      "state": "TX",
+      "dem_pres_2024_votes": 109560,
+      "rep_pres_2024_votes": 194738,
+      "dem_minus_rep_two_party_points": -27.992
+    },
+    {
+      "race_code": "TX-09",
+      "state": "TX",
+      "dem_pres_2024_votes": 78639,
+      "rep_pres_2024_votes": 118132,
+      "dem_minus_rep_two_party_points": -20.071
+    },
+    {
+      "race_code": "TX-10",
+      "state": "TX",
+      "dem_pres_2024_votes": 134085,
+      "rep_pres_2024_votes": 213878,
+      "dem_minus_rep_two_party_points": -22.931
+    },
+    {
+      "race_code": "TX-11",
+      "state": "TX",
+      "dem_pres_2024_votes": 94213,
+      "rep_pres_2024_votes": 194696,
+      "dem_minus_rep_two_party_points": -34.78
+    },
+    {
+      "race_code": "TX-12",
+      "state": "TX",
+      "dem_pres_2024_votes": 117738,
+      "rep_pres_2024_votes": 192719,
+      "dem_minus_rep_two_party_points": -24.152
+    },
+    {
+      "race_code": "TX-13",
+      "state": "TX",
+      "dem_pres_2024_votes": 80162,
+      "rep_pres_2024_votes": 220441,
+      "dem_minus_rep_two_party_points": -46.666
+    },
+    {
+      "race_code": "TX-14",
+      "state": "TX",
+      "dem_pres_2024_votes": 124943,
+      "rep_pres_2024_votes": 206349,
+      "dem_minus_rep_two_party_points": -24.572
+    },
+    {
+      "race_code": "TX-15",
+      "state": "TX",
+      "dem_pres_2024_votes": 92600,
+      "rep_pres_2024_votes": 133315,
+      "dem_minus_rep_two_party_points": -18.022
+    },
+    {
+      "race_code": "TX-16",
+      "state": "TX",
+      "dem_pres_2024_votes": 131985,
+      "rep_pres_2024_votes": 94338,
+      "dem_minus_rep_two_party_points": 16.634
+    },
+    {
+      "race_code": "TX-17",
+      "state": "TX",
+      "dem_pres_2024_votes": 123163,
+      "rep_pres_2024_votes": 192428,
+      "dem_minus_rep_two_party_points": -21.948
+    },
+    {
+      "race_code": "TX-18",
+      "state": "TX",
+      "dem_pres_2024_votes": 186782,
+      "rep_pres_2024_votes": 53117,
+      "dem_minus_rep_two_party_points": 55.717
+    },
+    {
+      "race_code": "TX-19",
+      "state": "TX",
+      "dem_pres_2024_votes": 66862,
+      "rep_pres_2024_votes": 212708,
+      "dem_minus_rep_two_party_points": -52.168
+    },
+    {
+      "race_code": "TX-20",
+      "state": "TX",
+      "dem_pres_2024_votes": 144230,
+      "rep_pres_2024_votes": 79593,
+      "dem_minus_rep_two_party_points": 28.879
+    },
+    {
+      "race_code": "TX-21",
+      "state": "TX",
+      "dem_pres_2024_votes": 159472,
+      "rep_pres_2024_votes": 249919,
+      "dem_minus_rep_two_party_points": -22.093
+    },
+    {
+      "race_code": "TX-22",
+      "state": "TX",
+      "dem_pres_2024_votes": 126899,
+      "rep_pres_2024_votes": 201258,
+      "dem_minus_rep_two_party_points": -22.66
+    },
+    {
+      "race_code": "TX-23",
+      "state": "TX",
+      "dem_pres_2024_votes": 133969,
+      "rep_pres_2024_votes": 181141,
+      "dem_minus_rep_two_party_points": -14.97
+    },
+    {
+      "race_code": "TX-24",
+      "state": "TX",
+      "dem_pres_2024_votes": 153071,
+      "rep_pres_2024_votes": 213069,
+      "dem_minus_rep_two_party_points": -16.387
+    },
+    {
+      "race_code": "TX-25",
+      "state": "TX",
+      "dem_pres_2024_votes": 115592,
+      "rep_pres_2024_votes": 189981,
+      "dem_minus_rep_two_party_points": -24.344
+    },
+    {
+      "race_code": "TX-26",
+      "state": "TX",
+      "dem_pres_2024_votes": 144950,
+      "rep_pres_2024_votes": 237089,
+      "dem_minus_rep_two_party_points": -24.118
+    },
+    {
+      "race_code": "TX-27",
+      "state": "TX",
+      "dem_pres_2024_votes": 125739,
+      "rep_pres_2024_votes": 194368,
+      "dem_minus_rep_two_party_points": -21.439
+    },
+    {
+      "race_code": "TX-28",
+      "state": "TX",
+      "dem_pres_2024_votes": 88409,
+      "rep_pres_2024_votes": 109042,
+      "dem_minus_rep_two_party_points": -10.45
+    },
+    {
+      "race_code": "TX-29",
+      "state": "TX",
+      "dem_pres_2024_votes": 116000,
+      "rep_pres_2024_votes": 61311,
+      "dem_minus_rep_two_party_points": 30.844
+    },
+    {
+      "race_code": "TX-30",
+      "state": "TX",
+      "dem_pres_2024_votes": 177406,
+      "rep_pres_2024_votes": 62648,
+      "dem_minus_rep_two_party_points": 47.805
+    },
+    {
+      "race_code": "TX-31",
+      "state": "TX",
+      "dem_pres_2024_votes": 134712,
+      "rep_pres_2024_votes": 211328,
+      "dem_minus_rep_two_party_points": -22.141
+    },
+    {
+      "race_code": "TX-32",
+      "state": "TX",
+      "dem_pres_2024_votes": 129764,
+      "rep_pres_2024_votes": 187174,
+      "dem_minus_rep_two_party_points": -18.114
+    },
+    {
+      "race_code": "TX-33",
+      "state": "TX",
+      "dem_pres_2024_votes": 136366,
+      "rep_pres_2024_votes": 68170,
+      "dem_minus_rep_two_party_points": 33.342
+    },
+    {
+      "race_code": "TX-34",
+      "state": "TX",
+      "dem_pres_2024_votes": 106947,
+      "rep_pres_2024_votes": 131303,
+      "dem_minus_rep_two_party_points": -10.223
+    },
+    {
+      "race_code": "TX-35",
+      "state": "TX",
+      "dem_pres_2024_votes": 133334,
+      "rep_pres_2024_votes": 164829,
+      "dem_minus_rep_two_party_points": -10.563
+    },
+    {
+      "race_code": "TX-36",
+      "state": "TX",
+      "dem_pres_2024_votes": 114917,
+      "rep_pres_2024_votes": 192668,
+      "dem_minus_rep_two_party_points": -25.278
+    },
+    {
+      "race_code": "TX-37",
+      "state": "TX",
+      "dem_pres_2024_votes": 252342,
+      "rep_pres_2024_votes": 67678,
+      "dem_minus_rep_two_party_points": 57.704
+    },
+    {
+      "race_code": "TX-38",
+      "state": "TX",
+      "dem_pres_2024_votes": 136854,
+      "rep_pres_2024_votes": 210920,
+      "dem_minus_rep_two_party_points": -21.297
+    },
+    {
+      "race_code": "UT-01",
+      "state": "UT",
+      "dem_pres_2024_votes": 197553,
+      "rep_pres_2024_votes": 120241,
+      "dem_minus_rep_two_party_points": 24.328
+    },
+    {
+      "race_code": "UT-02",
+      "state": "UT",
+      "dem_pres_2024_votes": 125175,
+      "rep_pres_2024_votes": 231962,
+      "dem_minus_rep_two_party_points": -29.901
+    },
+    {
+      "race_code": "UT-03",
+      "state": "UT",
+      "dem_pres_2024_votes": 108346,
+      "rep_pres_2024_votes": 267996,
+      "dem_minus_rep_two_party_points": -42.422
+    },
+    {
+      "race_code": "UT-04",
+      "state": "UT",
+      "dem_pres_2024_votes": 131149,
+      "rep_pres_2024_votes": 262883,
+      "dem_minus_rep_two_party_points": -33.432
+    },
+    {
+      "race_code": "VA-01",
+      "state": "VA",
+      "dem_pres_2024_votes": 227074,
+      "rep_pres_2024_votes": 250992,
+      "dem_minus_rep_two_party_points": -5.003
+    },
+    {
+      "race_code": "VA-02",
+      "state": "VA",
+      "dem_pres_2024_votes": 203172,
+      "rep_pres_2024_votes": 204261,
+      "dem_minus_rep_two_party_points": -0.267
+    },
+    {
+      "race_code": "VA-03",
+      "state": "VA",
+      "dem_pres_2024_votes": 213132,
+      "rep_pres_2024_votes": 102213,
+      "dem_minus_rep_two_party_points": 35.174
+    },
+    {
+      "race_code": "VA-04",
+      "state": "VA",
+      "dem_pres_2024_votes": 250985,
+      "rep_pres_2024_votes": 125928,
+      "dem_minus_rep_two_party_points": 33.179
+    },
+    {
+      "race_code": "VA-05",
+      "state": "VA",
+      "dem_pres_2024_votes": 191693,
+      "rep_pres_2024_votes": 246006,
+      "dem_minus_rep_two_party_points": -12.409
+    },
+    {
+      "race_code": "VA-06",
+      "state": "VA",
+      "dem_pres_2024_votes": 152726,
+      "rep_pres_2024_votes": 251675,
+      "dem_minus_rep_two_party_points": -24.468
+    },
+    {
+      "race_code": "VA-07",
+      "state": "VA",
+      "dem_pres_2024_votes": 203210,
+      "rep_pres_2024_votes": 191700,
+      "dem_minus_rep_two_party_points": 2.915
+    },
+    {
+      "race_code": "VA-08",
+      "state": "VA",
+      "dem_pres_2024_votes": 285004,
+      "rep_pres_2024_votes": 92725,
+      "dem_minus_rep_two_party_points": 50.904
+    },
+    {
+      "race_code": "VA-09",
+      "state": "VA",
+      "dem_pres_2024_votes": 112210,
+      "rep_pres_2024_votes": 291613,
+      "dem_minus_rep_two_party_points": -44.426
+    },
+    {
+      "race_code": "VA-10",
+      "state": "VA",
+      "dem_pres_2024_votes": 221133,
+      "rep_pres_2024_votes": 186201,
+      "dem_minus_rep_two_party_points": 8.576
+    },
+    {
+      "race_code": "VA-11",
+      "state": "VA",
+      "dem_pres_2024_votes": 273439,
+      "rep_pres_2024_votes": 130783,
+      "dem_minus_rep_two_party_points": 35.291
+    },
+    {
+      "race_code": "VT-01",
+      "state": "VT",
+      "dem_pres_2024_votes": 235791,
+      "rep_pres_2024_votes": 119395,
+      "dem_minus_rep_two_party_points": 32.77
+    },
+    {
+      "race_code": "WA-01",
+      "state": "WA",
+      "dem_pres_2024_votes": 232693,
+      "rep_pres_2024_votes": 126087,
+      "dem_minus_rep_two_party_points": 29.713
+    },
+    {
+      "race_code": "WA-02",
+      "state": "WA",
+      "dem_pres_2024_votes": 254400,
+      "rep_pres_2024_votes": 154441,
+      "dem_minus_rep_two_party_points": 24.449
+    },
+    {
+      "race_code": "WA-03",
+      "state": "WA",
+      "dem_pres_2024_votes": 197986,
+      "rep_pres_2024_votes": 211907,
+      "dem_minus_rep_two_party_points": -3.396
+    },
+    {
+      "race_code": "WA-04",
+      "state": "WA",
+      "dem_pres_2024_votes": 119032,
+      "rep_pres_2024_votes": 183219,
+      "dem_minus_rep_two_party_points": -21.236
+    },
+    {
+      "race_code": "WA-05",
+      "state": "WA",
+      "dem_pres_2024_votes": 173909,
+      "rep_pres_2024_votes": 217375,
+      "dem_minus_rep_two_party_points": -11.109
+    },
+    {
+      "race_code": "WA-06",
+      "state": "WA",
+      "dem_pres_2024_votes": 251826,
+      "rep_pres_2024_votes": 168264,
+      "dem_minus_rep_two_party_points": 19.891
+    },
+    {
+      "race_code": "WA-07",
+      "state": "WA",
+      "dem_pres_2024_votes": 373392,
+      "rep_pres_2024_votes": 47188,
+      "dem_minus_rep_two_party_points": 77.561
+    },
+    {
+      "race_code": "WA-08",
+      "state": "WA",
+      "dem_pres_2024_votes": 218292,
+      "rep_pres_2024_votes": 193707,
+      "dem_minus_rep_two_party_points": 5.967
+    },
+    {
+      "race_code": "WA-09",
+      "state": "WA",
+      "dem_pres_2024_votes": 219426,
+      "rep_pres_2024_votes": 88121,
+      "dem_minus_rep_two_party_points": 42.694
+    },
+    {
+      "race_code": "WA-10",
+      "state": "WA",
+      "dem_pres_2024_votes": 204893,
+      "rep_pres_2024_votes": 140614,
+      "dem_minus_rep_two_party_points": 18.604
+    },
+    {
+      "race_code": "WI-01",
+      "state": "WI",
+      "dem_pres_2024_votes": 189560,
+      "rep_pres_2024_votes": 207737,
+      "dem_minus_rep_two_party_points": -4.575
+    },
+    {
+      "race_code": "WI-02",
+      "state": "WI",
+      "dem_pres_2024_votes": 324784,
+      "rep_pres_2024_votes": 136734,
+      "dem_minus_rep_two_party_points": 40.746
+    },
+    {
+      "race_code": "WI-03",
+      "state": "WI",
+      "dem_pres_2024_votes": 191708,
+      "rep_pres_2024_votes": 222857,
+      "dem_minus_rep_two_party_points": -7.514
+    },
+    {
+      "race_code": "WI-04",
+      "state": "WI",
+      "dem_pres_2024_votes": 258176,
+      "rep_pres_2024_votes": 80483,
+      "dem_minus_rep_two_party_points": 52.47
+    },
+    {
+      "race_code": "WI-05",
+      "state": "WI",
+      "dem_pres_2024_votes": 183685,
+      "rep_pres_2024_votes": 290063,
+      "dem_minus_rep_two_party_points": -22.455
+    },
+    {
+      "race_code": "WI-06",
+      "state": "WI",
+      "dem_pres_2024_votes": 175480,
+      "rep_pres_2024_votes": 245816,
+      "dem_minus_rep_two_party_points": -16.695
+    },
+    {
+      "race_code": "WI-07",
+      "state": "WI",
+      "dem_pres_2024_votes": 167604,
+      "rep_pres_2024_votes": 266844,
+      "dem_minus_rep_two_party_points": -22.843
+    },
+    {
+      "race_code": "WI-08",
+      "state": "WI",
+      "dem_pres_2024_votes": 177232,
+      "rep_pres_2024_votes": 247092,
+      "dem_minus_rep_two_party_points": -16.464
+    },
+    {
+      "race_code": "WV-01",
+      "state": "WV",
+      "dem_pres_2024_votes": 98066,
+      "rep_pres_2024_votes": 259831,
+      "dem_minus_rep_two_party_points": -45.199
+    },
+    {
+      "race_code": "WV-02",
+      "state": "WV",
+      "dem_pres_2024_votes": 116243,
+      "rep_pres_2024_votes": 273725,
+      "dem_minus_rep_two_party_points": -40.383
+    },
+    {
+      "race_code": "WY-01",
+      "state": "WY",
+      "dem_pres_2024_votes": 69527,
+      "rep_pres_2024_votes": 192633,
+      "dem_minus_rep_two_party_points": -46.958
+    }
+  ],
+  "national_reference_vote_totals": {
+    "dem": 74647307,
+    "rep": 77237215
+  }
+}

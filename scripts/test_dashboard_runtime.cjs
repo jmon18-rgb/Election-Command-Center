@@ -46,7 +46,7 @@ const fixtures={
  'historical_senate_poll_backtest.json':json('data/historical_senate_poll_backtest.json'),
  'senate_history_2020_2022_2024.json':json('data/senate_history_2020_2022_2024.json')
 };
-for(const file of ['briefing.json','integrity_impact.json','seat_universe.json','house_geography_bridge.json','house_two_cycle_context.json']){
+for(const file of ['briefing.json','integrity_impact.json','seat_universe.json','house_geography_bridge.json','house_two_cycle_context.json','presidential_2024_by_2026_district_staging.json']){
  const name='data/'+file;
  if(fs.existsSync(path.join(ROOT,name)))fixtures[file]=json(name);
 }
@@ -176,7 +176,8 @@ async function settle(){
  shadowDisclosure.open=true;
  w.eval('jointRender(true)');
  assert.match(get('#jointHomeShadow').textContent,/for both chambers vs/);
- assert.match(get('#jointHomeShadow').textContent,/does not replace headline odds/);
+ assert.match(get('#jointHomeShadow').textContent,/2024 presidential district lean: 435\/435/);
+ assert.match(get('#jointHomeShadow').textContent,/do not replace headline odds/);
  shadowDisclosure.open=false;
  const twoCycle=json('data/house_two_cycle_context.json');
  assert.equal(twoCycle.coverage.districts_with_two_historical_major_party_shares,191);
