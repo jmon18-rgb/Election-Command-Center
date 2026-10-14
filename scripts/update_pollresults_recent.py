@@ -2,8 +2,8 @@
 """Collect posted-time-sorted 2026 polling with source links and LV/RV flags.
 
 Supplemental NYT-derived source: https://pollresults.org/ (CC BY 4.0).
-This supplements the daily recent-polls panel, not the headline poll model.
-Matched source IDs only can enrich existing observation metadata.
+Source-linked new polls missing from ElectIndex may also enter the live model,
+with deduplication, matched candidates and provenance safeguards.
 """
 import datetime as dt
 import json
@@ -126,33 +126,54 @@ def collect():
     return all_polls,counts
 
 def enrich_existing(polls):
-    """Only match exact PollResults poll ID + office + field end + candidate shares."""
-    if not PRIMARY.exists():return 0
+    """Reconcile new observed polls into the PRIMARY model, not just its feed.
+
+    This is an input-only reconciliation. Raw PollResults posted dates are
+    collection dates, NOT verified original news/public-release timestamps.
+    """
+    if not PRIMARY.exists():return {"new_to_model":0,"enriched_existing":0,"added_ids":[]}
+    import reconcile_poll_sources as reconciliation
     data=json.loads(PRIMARY.read_text(encoding="utf-8"))
-    by={}
-    for p in polls:
-        key=(p["race_code"],p["poll_id"],p["field_end"],
-             round(p["dem"],1),round(p["rep"],1))
-        by.setdefault(key,[]).append(p)
-    changed=0
-    for race in data.get("races",[]):
-        for obs in race.get("polls",[]):
-            key=(race["race_code"],obs.get("poll_id"),obs.get("field_end"),
-                 round(obs.get("dem",0),1),round(obs.get("rep",0),1))
-            choices=by.get(key,[])
-            if len(choices)!=1:continue
-            p=choices[0]
-            obs["upstream_posted_date"]=p["posted_date"]
-            obs["source_poll_url"]=p["source_url"]
-            obs["sample_population"]=p["sample_population"]
-            obs["date_provenance"]="PollResults.org posting; NOT verified release date"
-            changed+=1
-        if race.get("polls"):race["latest"]=race["polls"][0]
-    data["secondary_source"]={"provider":"PollResults.org","url":"https://pollresults.org/",
-                               "matched_observations":changed,
-                               "note":"Only exact ID, race, field date and shares matched; does not affect model weights."}
+    report=reconciliation.merge(data,polls,NOW.date(),observed_at=NOW.isoformat())
+    data["secondary_source"]={
+        "provider":"PollResults.org","url":"https://pollresults.org/",
+        "matched_observations":report["enriched_existing"],
+        "newly_injected_into_model":report["new_to_model"],
+        "newly_injected_by_race":report["added_by_race"],
+        "note":"Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
+    }
+    # The what-changed panel relies on primary changes. A supplemental study
+    # must be visible there too without inventing a public release timestamp.
+    new_ids={(p["race_code"],p["poll_id"]) for p in report["added_ids"]}
+    if new_ids:
+        changes=data.setdefault("changes",{})
+        existing={(p.get("race_code"),p.get("poll_id"))
+                  for p in changes.get("new_polls",[])}
+        additions=[]
+        for race in data.get("races",[]):
+            for obs in race.get("polls",[]):
+                key=(race["race_code"],obs.get("poll_id"))
+                if key not in new_ids or key in existing:continue
+                additions.append({
+                    "race_code":race["race_code"],"race_type":race["race_type"],
+                    "poll_id":obs["poll_id"],"pollster":obs["pollster"],
+                    "field_end":obs["field_end"],"dem":obs["dem"],"rep":obs["rep"],
+                    "margin":obs["margin"],"dem_name":obs["dem_name"],
+                    "rep_name":obs["rep_name"],
+                    "sample_size":obs["sample_size"],
+                    "first_seen_at":obs["first_seen_at"],"release_date":None,
+                    "source_url":obs["source_poll_url"],
+                    "source":reconciliation.FALLBACK_SOURCE
+                })
+        changes["new_polls"]=sorted(
+            changes.get("new_polls",[])+additions,
+            key=lambda p:(p.get("first_seen_at") or "",p.get("field_end") or ""),
+            reverse=True)[:70]
+        changes["new_poll_count"]=max(
+            int(changes.get("new_poll_count") or 0),
+            len(changes["new_polls"]))
     PRIMARY.write_text(json.dumps(data,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    return changed
+    return report
 
 def main():
     polls,counts=collect()
@@ -164,15 +185,18 @@ def main():
         seen[key]=p
     distinct=list(seen.values())
     distinct.sort(key=lambda p:(p["posted_source_datetime"],p["poll_id"]),reverse=True)
-    matches=enrich_existing(distinct)
+    report=enrich_existing(distinct)
     payload={"updated_at":NOW.isoformat(),"source":"PollResults.org / NYT-derived CC BY 4.0",
              "source_url":"https://pollresults.org/",
              "date_warning":"Posted date is when this API ingested a poll; not the first public release date.",
-             "source_totals":counts,"matched_primary_observations":matches,
+             "source_totals":counts,"matched_primary_observations":report["enriched_existing"],
+             "newly_injected_into_model":report["new_to_model"],
+             "injected_poll_ids":report["added_ids"],
              "observations":distinct,
              "retention":"Posted within the previous 21 calendar days; up to five API pages per office; all candidate populations labeled.",
              "sort_policy":"Descending source createdAt date AND time; timezone unspecified, no cross-source UTC inference."}
     OUT.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    print("PollResults supplemental rows",len(distinct),"exact primary matches",matches,
+    print("PollResults supplemental rows",len(distinct),"exact primary matches",
+          report["enriched_existing"],"NEW LIVE MODEL POLLS",report["new_to_model"],
           "counts",json.dumps(counts))
 if __name__=="__main__":main()
