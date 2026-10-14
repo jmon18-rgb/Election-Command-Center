@@ -474,7 +474,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <details id="privateContextWorkbench" class="race-workbench">
  <summary><strong>My private Silver CSV fundamentals</strong><span>Import locally · compare model with / without candidate context</span></summary>
  <div class="race-workbench-body card" style="display:grid;gap:10px">
-  <p class="detail">Use the Senate fundamentals (Simple / Fancy), expert-ratings (Unadjusted / Adjusted), and optional House fundamentals CSVs. Source CSVs stay in your browser, are not uploaded to this site's servers or committed to public GitHub. Silver's Blended, FLIPR Deluxe and win-probability exports are not used to fit the model.</p>
+  <p class="detail">Use the Senate fundamentals (Simple / Fancy), expert-ratings (Unadjusted / Adjusted), and optional House fundamentals CSVs. Source CSVs stay in your browser, are not uploaded to this site's servers or committed to public GitHub. The Blended column inside Silver's Fundamentals section is used; polling averages, FLIPR Deluxe and final win probabilities are NOT fitted.</p>
   <label for="privateContextFiles" class="label">CHOOSE THE CSV FILES</label>
   <input type="file" id="privateContextFiles" accept=".csv,text/csv" multiple aria-describedby="privateContextStatus">
   <label class="detail"><input type="checkbox" id="privateContextEnabled" checked> Use imported Senate context in my live JackStradamus model</label>
@@ -1306,8 +1306,8 @@ function renderModelRaceOdds(estimate){
    note.textContent+=' PRIVATE CSV RESEARCH VARIANT · baseline D '+
     baseline.dem_beats_rep_pct.toFixed(1)+'% → locally augmented D '+p.toFixed(1)+
     '% ('+(change>=0?'+':'')+change.toFixed(1)+' pp). '+
-    'Fundamentals-only “Fancy” and a small unadjusted expert signal; '+
-    'Silver odds and blended forecasts are excluded.';
+    'Blended fundamentals and a small unadjusted expert-rating signal; '+
+    'Silver's final race odds and forecast outputs are excluded.';
   }
  }
 }
