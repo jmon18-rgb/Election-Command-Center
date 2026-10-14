@@ -83,13 +83,13 @@ function analyze(){
    throw Error('Qualified candidate vote/geometry mismatch '+r.race_code);
   const party=h.recorded_dem_votes>h.recorded_rep_votes?'DEM':'REP';
   const firstname=party==='DEM'?n.dem_name:n.rep_name;
-  const freshman=party==='DEM'?!n.dem_was_incumbent_on_2022_ballot:
+  const notIncumbent=party==='DEM'?!n.dem_was_incumbent_on_2022_ballot:
     !n.rep_was_incumbent_on_2022_ballot;
   const presLean=100*(p.dem_votes-p.rep_votes)/(p.dem_votes+p.rep_votes);
   const previousHouseMargin=100*(h.recorded_dem_votes-h.recorded_rep_votes)/
    (h.recorded_dem_votes+h.recorded_rep_votes);
   return {...r,party,candidate_name:firstname,
-   first_election_winner_2022:freshman,
+   not_incumbent_on_2022_ballot:notIncumbent,
    presidential_2020_margin_d_minus_r:presLean,
    previous_house_margin_d_minus_r:previousHouseMargin};
  });
@@ -99,8 +99,8 @@ function analyze(){
   presidential_lean_within_20_points:rows.filter(x=>Math.abs(x.presidential_2020_margin_d_minus_r)<=20),
   presidential_lean_over_20_points:rows.filter(x=>Math.abs(x.presidential_2020_margin_d_minus_r)>20),
   previous_house_margin_within_10_points:rows.filter(x=>Math.abs(x.previous_house_margin_d_minus_r)<=10),
-  elected_first_time_in_2022:rows.filter(x=>x.first_election_winner_2022),
-  already_incumbent_on_2022_ballot:rows.filter(x=>!x.first_election_winner_2022),
+  not_incumbent_on_2022_ballot:rows.filter(x=>x.not_incumbent_on_2022_ballot),
+  incumbent_on_2022_ballot:rows.filter(x=>!x.not_incumbent_on_2022_ballot),
   democratic_2022_winners:rows.filter(x=>x.party==='DEM'),
   republican_2022_winners:rows.filter(x=>x.party==='REP')
  };
@@ -135,7 +135,7 @@ if(process.argv.includes('--check')){
   throw Error('Modern incumbency audit artifact is out of date');
  if(result.cohort_scores.all_modern_2022_2024.sample!==148||
     result.allowed_model_fit_election_years.join(',')!=='2022,2024'||
-    result.cohort_scores.elected_first_time_in_2022.sample===0)
+    result.cohort_scores.not_incumbent_on_2022_ballot.sample===0)
   throw Error('Modern incumbent audit failed its core checks');
 }
 if(process.argv.includes('--json'))console.log(JSON.stringify(result,null,2));
