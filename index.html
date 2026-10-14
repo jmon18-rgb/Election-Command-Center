@@ -964,6 +964,7 @@ let modelRaceOddsData=null,modelOddsErrorWidth='standard';
 function setModelRaceOddsData(data){
  modelRaceOddsData=data;
  if(latestSenateEstimates)renderModelOverview(latestSenateEstimates);
+ enRenderLiveDesk();
 }
 function modelOddsValidate(data,source){
  if(!data||!source||data.schema_version!=='experimental-race-odds-v1'||
@@ -1881,7 +1882,7 @@ const enHouseSeatCounts={AL:7,AK:1,AZ:9,AR:4,CA:52,CO:8,CT:5,DE:1,FL:28,GA:14,
  MS:4,MO:8,MT:2,NE:3,NV:4,NH:2,NJ:12,NM:3,NY:26,NC:14,ND:1,OH:15,
  OK:5,OR:6,PA:17,RI:2,SC:7,SD:1,TN:9,TX:38,UT:4,VT:1,VA:11,
  WA:10,WV:2,WI:8,WY:1};
-let enOfficeSnapshots=Object.create(null),enOfficeErrors=Object.create(null);
+let enOfficeSnapshots=Object.create(null),enOfficeErrors=Object.create(null),enOfficeCheckedAt=Object.create(null);
 const enNationalStorageKey='bluewaves_national_senate_2026_v1';
 let enNationalSeats=null,enNationalError=null,enNationalExpanded=new Set();
 let enNationalEnabled=(()=>{
@@ -1924,7 +1925,7 @@ function enNationalSetUniverse(doc){
   });
   if(changed){enWatched=[...new Map(enWatched.map(x=>[enWatchId(x),x])).values()];enWatchSave()}
  }
- enRenderNationalSenate();enRenderWatchlist();
+ enRenderNationalSenate();enRenderWatchlist();enRenderLiveDesk();
 }
 function enNationalWatchItems(){
  return enNationalEnabled&&enNationalSeats?enNationalSeats:[];
@@ -2452,11 +2453,11 @@ async function enCivicFetchOne(item,forceAfterPending=false){
   enProcessCivicAlert(item,old,next);
   enCivicRaceIds[id]=row;
   delete enCivicErrors[id];
-  enRenderWatchlist();enRenderNationalSenate();enRenderExportControls();
+  enRenderWatchlist();enRenderNationalSenate();enRenderExportControls();enRenderLiveDesk();
  }catch(err){
   if(enIsVisible()&&enModeYear===2026){
    enCivicErrors[id]=String(err?.message||err);
-   enRenderWatchlist();enRenderNationalSenate();
+   enRenderWatchlist();enRenderNationalSenate();enRenderLiveDesk();
   }
  }finally{
   enCivicPending.delete(id);
@@ -2864,6 +2865,7 @@ function enAcceptSource(o){
  if(enModeYear===2026)enProcessPrimaryAlerts(changes);
  enData=o;enFetchError=null;enLastFetchAt=new Date();
  if(enModeYear===2026){
+  enOfficeCheckedAt[enOffice]=Date.now();
   enOfficeSnapshots[enOffice]=o;
   enResumePendingOffices.delete(enOffice);
   delete enOfficeErrors[enOffice];
@@ -3039,6 +3041,7 @@ function enRender(){
  enRenderExportControls();
  enRenderNationalSenate();
  enRenderAlertInbox();
+ enRenderLiveDesk();
  enUpdateSelection();
  const query=($('#enSearch').value||'').trim().toLowerCase(),list=$('#enRaceList');list.replaceChildren();
  if(!rows.length){list.append(elt('p','empty',enModeYear===2026&&enData?
@@ -3157,6 +3160,7 @@ async function enRefreshWatchedOffices(exceptOffice){
    const old=enOfficeSnapshots[office]||null;
    if(!enSnapshotCompatible(old,obj))throw Error('Unordered source update');
    enOfficeSnapshots[office]=obj;
+   enOfficeCheckedAt[office]=Date.now();
    enResumePendingOffices.delete(office);
    const changes=enCompareSnapshots(old,obj);
    enMovements=[...changes,...enMovements].slice(0,70);
@@ -3165,9 +3169,9 @@ async function enRefreshWatchedOffices(exceptOffice){
    delete enOfficeErrors[office];
    if(enOffice===office){
     enData=obj;enFetchError=null;enLastFetchAt=new Date();enRender();
-   }else {enRenderWatchlist();enRenderNationalSenate()}
+   }else {enRenderWatchlist();enRenderNationalSenate();enRenderLiveDesk()}
   }catch(err){
-   if(enModeYear===2026&&enIsVisible()){enOfficeErrors[office]=String(err?.message||err);enRenderWatchlist()}
+   if(enModeYear===2026&&enIsVisible()){enOfficeErrors[office]=String(err?.message||err);enOfficeCheckedAt[office]=Date.now();enRenderWatchlist();enRenderLiveDesk()}
   }finally{enWatchRefreshPending.delete(office)}
  }));
  if(enModeYear===2026&&enIsVisible())enQueueRefresh();
@@ -3220,6 +3224,7 @@ async function enLoad(manual=false){
   // In particular, JSDOM teardown and real page unload invalidate document.
   if(serial!==enRequestSerial||typeof document==='undefined'||!document?.querySelectorAll)return;
   enFailures++;
+  if(year===2026)enOfficeCheckedAt[office]=Date.now();
   enFetchError=String(error?.message||error);
   enLastFetchAt=new Date();
   enRender();
