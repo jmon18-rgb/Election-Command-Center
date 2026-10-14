@@ -843,7 +843,9 @@ async function settle(){
  assert(sameRace,'Need TX governor posting to test shared-survey questions');
  const secondQuestion={...sameRace,question_id:'another-qualifying-question',
    dem_name:'Another named challenger'};
- w.eval('setPostedPollingSnapshot('+JSON.stringify({observations:[sameRace,secondQuestion]})+')');
+ const testSourceAt=new Date(Date.parse(recent.updated_at)+1000).toISOString();
+ w.eval('setPostedPollingSnapshot('+JSON.stringify({updated_at:testSourceAt,
+  observations:[sameRace,secondQuestion]})+')');
  assert.equal(get('#newPolls').querySelectorAll('.item').length,2,
   'Two same-poll distinct ballot questions should both display');
  assert.match(get('#changesSince').textContent,/2 source postings/);
