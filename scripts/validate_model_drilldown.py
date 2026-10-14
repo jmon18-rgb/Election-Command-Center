@@ -69,19 +69,27 @@ for state in all_rows:
     if "independent_pollsters" in state and "partisan_pollsters" in state:
         assert (state["independent_pollsters"]+state["partisan_pollsters"]==
                 len(selections)),code
+    # Same pollster/date/candidate matchup can legitimately have multiple
+    # samples or ballot questions. The model published the specific poll_id,
+    # so validate against that identity instead of assuming a unique date.
+    # This is a strict reconciliation check, NOT an exclusion/relaxation.
+    selected_polls=[]
     used=set()
     total_weight=weighted_dem=weighted_rep=0.
     for pick in selections:
+        poll_id=pick.get("poll_id")
+        assert poll_id, f"{code}: selected poll lacks source poll_id: {pick}"
         matching=[
             p for p in source if
+            p.get("poll_id")==poll_id and
             p["pollster"].casefold()==pick["name"].casefold() and
             p["field_end"]==pick["field_end"] and
             (is_generic or (p["dem_name"]==state["dem_candidate"] and
                             p["rep_name"]==state["rep_candidate"]))
         ]
-        assert len(matching)==1,f"{code}: selected poll not unique: {pick}"
+        assert len(matching)==1,f"{code}: selected source poll_id is missing or ambiguous: {pick}"
         poll=matching[0]
-        assert "poll_id" in pick and pick["poll_id"]==poll.get("poll_id"),f"{code}: published poll ID does not match included source observation"
+        selected_polls.append(poll)
         assert poll["pollster"].casefold() not in exclusions,f"{code}: explicitly excluded pollster selected"
         assert poll["pollster"].casefold() not in used,f"{code}: duplicate firm"
         used.add(poll["pollster"].casefold())
@@ -92,21 +100,14 @@ for state in all_rows:
         weighted_dem+=weight*poll["dem"]
         weighted_rep+=weight*poll["rep"]
     assert total_weight>0
-    for pick in selections:
-        p=next(x for x in source if x["pollster"].casefold()==pick["name"].casefold()
-               and x["field_end"]==pick["field_end"]
-               and (is_generic or (x["dem_name"]==state["dem_candidate"] and x["rep_name"]==state["rep_candidate"])))
+    for pick,p in zip(selections,selected_polls):
         age=(asof-date.fromisoformat(p["field_end"])).days
         weight=0.5**(age/half_life)*(partisan if p.get("partisan_lean") else 1.)*additional_weight(p)
         assert abs(pick["weight_share"]-100*weight/total_weight)<0.015,f"{code} displayed influence mismatch"
     sensitivity=(state.get("poll_diagnostics") or {}).get("model_sensitivity")
     if sensitivity:
         selected=[]
-        for pick in selections:
-            poll=next(p for p in source if p["pollster"].casefold()==pick["name"].casefold()
-                      and p["field_end"]==pick["field_end"]
-                      and (is_generic or (p["dem_name"]==state["dem_candidate"] and
-                                          p["rep_name"]==state["rep_candidate"])))
+        for poll in selected_polls:
             days=(asof-date.fromisoformat(poll["field_end"])).days
             weight=0.5**(days/half_life)*(partisan if poll.get("partisan_lean") else 1)*additional_weight(poll)
             selected.append((poll,weight,days))
@@ -129,11 +130,7 @@ for state in all_rows:
         assert SILVER,"Silver comparison published without checked source data"
         silver_total=silver_dem=silver_rep=0.
         matched=0
-        for pick in selections:
-            poll=next(p for p in source if p["pollster"].casefold()==pick["name"].casefold()
-                      and p["field_end"]==pick["field_end"]
-                      and (is_generic or (p["dem_name"]==state["dem_candidate"] and
-                                          p["rep_name"]==state["rep_candidate"])))
+        for poll in selected_polls:
             days=(asof-date.fromisoformat(poll["field_end"])).days
             old_weight=.5**(days/half_life)*(partisan if poll.get("partisan_lean") else 1.)*additional_weight(poll)
             silver_factor,is_matched=silver_multiplier(poll)
