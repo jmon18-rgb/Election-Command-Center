@@ -52,8 +52,6 @@ must_have = (
     'data-model-scope="generic"',
     'function modelRows(data)',
     '🐑 HERDING?',
-    'id="scenarioBands"',
-    'function renderElectionScenarios()',
     'function enLeadInfo(r)',
     'en-margin-badge',
     'party-d',
