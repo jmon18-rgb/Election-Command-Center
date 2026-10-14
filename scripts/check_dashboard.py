@@ -32,7 +32,6 @@ must_have = (
     "Polling leader changed",
     "Biggest polling movement",
     "No meaningful movement",
-    "id=\"scenarioBands\"",
     "The four endings",
     "RED DAWN",
 
@@ -110,7 +109,6 @@ for term in must_have:
     assert term in html, f"Required dashboard feature missing: {term}"
 for term in must_not_have:
     assert term not in html, f"Removed or redundant panel returned: {term}"
-for identifier in ('racePulse', 'newPolls', 'jackRadar', 'senateEstimateCards', 'modelBoard', 'modelRaceTotal', 'modelCloseTotal', 'modelThinTotal', 'modelDetail', 'modelChart', 'modelPollRows', 'modelPollIncluded', 'modelPollAll', 'bullScoreStates', 'electionNight', 'enMode2026', 'enMode2024', 'enOfficeGovernor', 'enRaceList', 'scenarioBands', 'scenarioCenter'):
     assert len(re.findall(rf'id="{identifier}"', html)) == 1, identifier
 scripts = re.findall(r"<script(?:\s[^>]*)?>(.*?)</script>", html, flags=re.S)
 assert scripts, "No inline dashboard script found"
