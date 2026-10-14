@@ -95,6 +95,20 @@ async function settle(){
  assert(w.PrivateSenateFundamentals,'Private subscriber CSV parser must load before app');
  w.eval(scripts[0]);
  await settle();
+ // A deliberately NON-PRODUCTION shared-error sensitivity that preserves
+ // the original baseline odds and does not read Silver paid CSV values.
+ assert(get('#jointHomeCorrelationDetails'),'Senate covariance research must be discoverable');
+ const beforeCorrelationSenate=w.eval('jointForecastResult().senate_dem_control_pct');
+ const beforeCorrelationHouse=w.eval('jointForecastResult().house_dem_control_pct');
+ get('#jointHomeCorrelationDetails').open=true;
+ w.eval('jointRender(true)');
+ assert.match(get('#jointHomeCorrelation').textContent,/Production shared risk/);
+ assert.match(get('#jointHomeCorrelation').textContent,/Moderately lower shared risk/);
+ assert.match(get('#jointHomeCorrelation').textContent,/2020 \+5\.72 D/);
+ assert.match(get('#jointHomeCorrelation').textContent,/DOES NOT change the live prediction/);
+ assert.equal(w.eval('jointForecastResult().senate_dem_control_pct'),beforeCorrelationSenate);
+ assert.equal(w.eval('jointForecastResult().house_dem_control_pct'),beforeCorrelationHouse);
+ get('#jointHomeCorrelationDetails').open=false;
  assert.match(get('#modelEngineTag').textContent,/2026 Senate model · multi-firm error budget v4/);
  assert.equal(w.eval('jointRaceOddsResult()').senate_prior_mode,'current_2026');
  assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').poll_weight"),.90);

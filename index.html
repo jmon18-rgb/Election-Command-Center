@@ -422,6 +422,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <p class="joint-summary" id="jointHomeSummary">Building the 435-House, 35-Senate model from published polling and election history…</p>
  <div class="joint-grid" id="jointHomeCards"><p class="joint-note">Waiting for complete model inputs…</p></div>
  <details class="joint-audit"><summary>Compare House fundamentals · historical vs presidential</summary><p id="jointHomeShadow" class="joint-note">Checking historically comparable House districts…</p></details>
+ <details class="joint-audit" id="jointHomeCorrelationDetails"><summary>How much do Senate races move together? · probability sensitivity</summary><div id="jointHomeCorrelation" class="joint-note">Open to compare a conservative historical covariance sensitivity without changing the forecast.</div></details>
  <details class="joint-audit"><summary>Historical polling-error check · how reliable is this?</summary><p id="jointHomeAudit" class="joint-note">Reading existing historical Senate poll backtest…</p></details>
  <p class="joint-note">Blue Tsunami = Democrats win both chambers AND at least 18 of 20 fixed House/Senate/governor battleground races. Blue Wave = both chambers without that near-sweep. Shrug = split control. Red Dawn = Republicans retain both. These four outcomes are mutually exclusive. Model estimates are not calibrated forecasts.</p>
 </div>
@@ -613,6 +614,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <p id="jointNightSummary" class="joint-summary">Preparing the joint House and Senate probability model…</p>
  <div id="jointNightCards" class="joint-grid"><p class="joint-note">Loading seat-level priors…</p></div>
  <details class="joint-audit"><summary>House fundamentals alternatives (research only)</summary><p id="jointNightShadow" class="joint-note">Checking historically comparable House districts…</p></details>
+ <details class="joint-audit" id="jointNightCorrelationDetails"><summary>Senate race correlation · impact on control odds (research)</summary><div id="jointNightCorrelation" class="joint-note">Open to inspect shared-error sensitivity without changing published odds.</div></details>
  <details class="joint-audit"><summary>Historical polling-error check</summary><p id="jointNightAudit" class="joint-note">Reading historical Senate poll backtest…</p></details>
  <div class="joint-tools"><label>National election swing <select id="jointSwing" aria-label="National election swing sensitivity"><option value="-3">D −3.0 points</option><option value="0" selected>Baseline</option><option value="3">D +3.0 points</option></select></label>
  <label>Election error <select id="jointError" aria-label="Election uncertainty sensitivity"><option value=".8">Narrower</option><option value="1" selected>Baseline</option><option value="1.3">Wider</option></select></label>
@@ -2530,6 +2532,64 @@ function jointRenderHouseShadow(base,shadow,presidentialShadow){
   const node=$('#'+id);if(node)node.textContent=txt;
  }
 }
+function jointCorrelationExpanded(){
+ return ['jointHomeCorrelationDetails','jointNightCorrelationDetails'].some(id=>
+  Boolean($('#'+id)?.open));
+}
+for(const id of ['jointHomeCorrelationDetails','jointNightCorrelationDetails']){
+ const el=$('#'+id);
+ if(el)el.addEventListener('toggle',()=>{
+  if(el.open&&jointBasis)jointRender(true);
+ });
+}
+function jointRenderSenateCorrelationResearch(reference,updates){
+ const ids=['jointHomeCorrelation','jointNightCorrelation'];
+ if(!jointCorrelationExpanded()||!reference||!jointBasis)return;
+ const active=jointUsesPrivateContext()?'your imported fundamentals model':
+  'the public candidate-neutral model';
+ const formats=[
+  {id:'production',label:'Production shared risk',nat:1,sen:1},
+  {id:'moderate',label:'Moderately lower shared risk',nat:.8,sen:.65},
+  {id:'lower',label:'Lower shared risk stress test',nat:.65,sen:.55}
+ ];
+ let explanation='';
+ if(Object.keys(updates).length){
+  explanation='Research sensitivities are disabled while real vote returns are informing the live election-night forecast.';
+ }else try{
+  const controls=formats.map(x=>{
+   const out=x.id==='production'?reference:window.ChamberControlModel.simulate(
+    jointBasis,{samples:3000,seed:20261103,
+     nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,
+     senateCorrelationResearch:{nationalScale:x.nat,chamberScale:x.sen}});
+   return {...x,out,shared:Math.hypot(
+    jointBasis.assumptions.common_national_sigma*x.nat,
+    jointBasis.assumptions.senate_chamber_sigma*x.sen)};
+  });
+  const base=controls[0].out;
+  explanation='Current forecast: '+active+'. This DOES NOT change the live prediction. '+
+   'Senate common-error volatility currently '+
+   controls[0].shared.toFixed(2)+' margin pts; the sensitivity cases transfer '+
+   'part of it to race-specific errors while keeping every race’s total error '+
+   'unchanged. '+controls.map(x=>
+    x.label+' ('+x.shared.toFixed(2)+' pts shared): Senate D control '+
+    x.out.senate_dem_control_pct.toFixed(1)+'%'+
+    (x.id==='production'?'':' ('+
+      (x.out.senate_dem_control_pct-base.senate_dem_control_pct>=0?'+':'')+
+      (x.out.senate_dem_control_pct-base.senate_dem_control_pct).toFixed(1)+
+      ' pp)')+', D both chambers '+x.out.blue_both_including_tsunami.toFixed(1)+
+      '%').join(' · ')+
+   '. Historical cycle-average poll errors at 20 days: 2020 +5.72 D, '+
+   '2022 +0.25 D, 2024 +3.67 D. Only THREE cycles, first-publication '+
+   'dates unavailable: do not use this table as a calibrated posterior or '+
+   'assume the lower-error case is correct.';
+ }catch(e){
+  explanation='Shared-error sensitivity unavailable: '+String(e.message||e);
+ }
+ for(const id of ids){
+  const node=$('#'+id);
+  if(node)node.textContent=explanation;
+ }
+}
 function jointShadowExpanded(){
  return ['jointHomeShadow','jointNightShadow'].some(id=>{
   const node=$('#'+id);return Boolean(node&&node.parentElement?.open);
@@ -2564,6 +2624,7 @@ function jointRender(force=false){
    nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,live:updates};
   const result=window.ChamberControlModel.simulate(jointBasis,args);
   jointLastResult=result;
+  jointRenderSenateCorrelationResearch(result,updates);
   jointPublicResult=jointUsesPrivateContext()?
    window.ChamberControlModel.simulate(jointBasisPublic,args):null;
   const privateSummary=$('#privateContextComparison');
