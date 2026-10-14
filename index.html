@@ -292,6 +292,8 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .model-odds-numbers .model-odds-col{display:flex;flex-direction:column;gap:3px}
 .model-odds-col strong{font-size:27px;line-height:1.12;letter-spacing:-.03em}
 .model-odds-col span{font-size:10px;font-weight:700;color:#a2b4c9}
+.party-i{color:#e0bb67!important}
+.model-odds-bar.independent>div{background:#d5b669}
 .model-odds-col:last-child{text-align:right}
 .model-odds-bar{height:8px;background:#ad555d;border-radius:12px;overflow:hidden}
 .model-odds-bar>div{height:100%;background:#659bd5;transition:width .2s}
@@ -892,10 +894,16 @@ function renderModelOverview(data){
    const d=probability.dem_beats_rep_pct;
    const odds=elt('div','model-race-win-probabilities');
    const nice=n=>n>99.5?'>99.5%':n<.5?'<0.5%':n.toFixed(1)+'%';
-   odds.append(elt('strong','party-d','D '+nice(d)),
+   const firstParty=probability.first_candidate_party||'D';
+   odds.append(elt('strong',firstParty==='I'?'party-i':'party-d',
+     firstParty+' '+nice(d)),
      elt('strong','party-r','R '+nice(100-d)));
-   margin.append(odds,elt('small','','Poll '+marginText(race.dem_minus_rep)+
-     ' · assumed error ±'+probability.sigma_points.toFixed(1)+' pts'));
+   const caution=probability.incomplete_ballot_caveat?
+     ' · MULTI-CANDIDATE PROXY':'';
+   margin.append(odds,elt('small','',
+     'Poll '+marginText(race.dem_minus_rep)+
+     ' · forecast '+marginText(probability.model_dem_margin_points)+
+     ' · σ '+probability.sigma_points.toFixed(1)+' pts'+caution));
    row.title='Experimental two-party win probabilities, conditional on assumed polling error. Not an official call.';
   }else{
    margin.append(elt('strong',marginColor(race.dem_minus_rep),marginText(race.dem_minus_rep)),
@@ -1093,6 +1101,10 @@ function modelOddsValidate(data,source){
   const poll=sourceGroups[r.office].find(x=>x.race_code===r.race_code&&
    ['single_poll','multi_poll'].includes(x.status));
   if(!poll||poll.latest_poll_end!==r.latest_poll_end||
+   (r.office==='senate'&&
+    (!['D','I'].includes(r.first_candidate_party)||
+     (['NE-SEN','ID-SEN','SD-SEN'].includes(r.race_code)?
+      r.first_candidate_party!=='I':r.first_candidate_party!=='D')))||
    Math.abs(poll.dem_minus_rep-r.dem_minus_rep)>.011||
    r.contributing_firms!==poll.contributing_pollsters||
    !Number.isFinite(r.model_dem_margin_points)||
@@ -1150,14 +1162,23 @@ function renderModelRaceOdds(estimate){
   return;
  }
  const p=item.dem_beats_rep_pct;
+ const firstParty=item.first_candidate_party||'D';
  const format=n=>n>=99.5?'>99%':n<=.5?'<1%':Math.round(n)+'%';
  const dem=elt('div','model-odds-col');
- dem.append(elt('span','','DEMOCRATIC'),elt('strong','party-d',format(p)));
+ dem.append(elt('span','',firstParty==='I'?'INDEPENDENT':'DEMOCRATIC'),
+  elt('strong',firstParty==='I'?'party-i':'party-d',format(p)));
  const rep=elt('div','model-odds-col');
  rep.append(elt('span','','REPUBLICAN'),elt('strong','party-r',format(100-p)));
  host.append(dem,rep);
+ bar.classList.toggle('independent',firstParty==='I');
  const fill=elt('div');fill.style.width=Math.max(0,Math.min(100,p))+'%';bar.append(fill);
- note.textContent='Only the JOINT JackStradamus odds are displayed (not the older standalone polling odds). Poll average '+
+ note.textContent=(firstParty==='I'?
+   'Independent challenger is NOT a Democratic caucus seat. ':
+   'Only the JOINT JackStradamus odds are displayed (not the older standalone polling odds). ')+
+   (item.incomplete_ballot_caveat?
+    'Incomplete ballot model: '+item.incomplete_ballot_caveat+'. ':
+    '')+
+   'Poll average '+
    marginText(item.dem_minus_rep)+' · modeled margin '+
    marginText(item.model_dem_margin_points)+' · total modeled race uncertainty '+
    item.sigma_points.toFixed(1)+' points (national + chamber + state + local). '+
@@ -4066,10 +4087,15 @@ if(odds){
  const nice=n=>n>99.5?'>99.5%':n<.5?'<0.5%':n.toFixed(1)+'%';
  const p=odds.dem_beats_rep_pct;
  modelOdds.append(elt('span','senate-card-odds-label','JACKSTRADAMUS · CORRELATED JOINT MODEL'),
-  elt('strong','party-d','D '+nice(p)),
+  elt('strong',odds.first_candidate_party==='I'?'party-i':'party-d',
+   (odds.first_candidate_party||'D')+' '+nice(p)),
   elt('strong','party-r','R '+nice(100-p)));
- modelOdds.append(elt('small','','Linked simulation · total σ '+
-   odds.sigma_points.toFixed(1)+' pts · not a race call'));
+ modelOdds.append(elt('small','','Poll '+marginText(x.dem_minus_rep)+
+   ' · model '+marginText(odds.model_dem_margin_points)+
+   ' · total σ '+odds.sigma_points.toFixed(1)+' pts'+
+   (odds.first_candidate_party==='I'?' · independent not D caucus':'')+
+   (odds.incomplete_ballot_caveat?' · incomplete ballot proxy':'')+
+   ' · not an official race call'));
 }else{
  modelOdds.append(elt('span','senate-card-odds-label',
   'JACKSTRADAMUS · SOURCE-MATCHED ODDS UNAVAILABLE'));
