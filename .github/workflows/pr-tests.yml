@@ -104,6 +104,11 @@ jobs:
         run: |
           node --check scripts/chamber_control_model.js
           node scripts/test_chamber_control_model.cjs
+      - name: Audit forecast optimism under shared polling errors
+        run: |
+          node --check scripts/forecast_optimism_audit.cjs
+          node scripts/forecast_optimism_audit.cjs --json > /tmp/forecast-optimism-audit.json
+          node -e "const x=require('/tmp/forecast-optimism-audit.json'); if(x.scenarios.length!==7 || x.status!=='UNCALIBRATED_SENSITIVITY_NOT_ELECTION_PREDICTIONS') process.exit(1)"
       - name: Audit historical Senate polling misses without retroactive leakage
         run: |
           node --check scripts/chamber_poll_error_audit.js
