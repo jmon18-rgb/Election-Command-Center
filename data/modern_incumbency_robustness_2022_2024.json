@@ -108,7 +108,7 @@
       "n_states": 19,
       "uncertainty": "Exploratory subgroup in one recent cycle; not separately calibrated"
     },
-    "elected_first_time_in_2022": {
+    "not_incumbent_on_2022_ballot": {
       "sample": 33,
       "zero": {
         "rmse": 5.041,
@@ -128,7 +128,7 @@
       "n_states": 21,
       "uncertainty": "Exploratory subgroup in one recent cycle; not separately calibrated"
     },
-    "already_incumbent_on_2022_ballot": {
+    "incumbent_on_2022_ballot": {
       "sample": 115,
       "zero": {
         "rmse": 5.652,
