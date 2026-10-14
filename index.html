@@ -2298,9 +2298,9 @@ function jointRenderCards(result){
    (sn?sn.p05+'–'+sn.p95+' Senate':'Senate unavailable')+' · '+
    info.senate_poll_count+'/35 Senate and '+info.house_poll_count+
    '/435 House races polled · '+info.house_geography_changed+
-   ' House districts redrawn (high uncertainty).' +
-   Independent Senate balance-of-power '+result.probabilities.independent_pivot.toFixed(1)+
-   '% of draws (NE/ID/SD independents are not assumed to join Democrats).
+   ' House districts redrawn (high uncertainty). '+
+   'Independent Senate balance-of-power '+result.probabilities.independent_pivot.toFixed(1)+
+   '% of draws (NE/ID/SD independents are not assumed to join Democrats).';
  }
 }
 function jointRenderHouseShadow(base,shadow,presidentialShadow){
