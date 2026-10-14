@@ -120,6 +120,12 @@ jobs:
           node scripts/audit_two_cycle_fundamentals.cjs --json > /tmp/house-fundamentals-shadow.json
           node -e "const r=require('/tmp/house-fundamentals-shadow.json'); if(r.status!=='EXPERIMENTAL_SHADOW_NOT_PROMOTED' || r.paired_eligible_districts!==191 || r.excluded_districts!==244) process.exit(1)"
           node scripts/audit_two_cycle_fundamentals.cjs
+      - name: Validate presidential 2026-map House fundamentals shadow
+        run: |
+          node --check scripts/audit_presidential_lean_shadow.cjs
+          node scripts/audit_presidential_lean_shadow.cjs --json > /tmp/presidential-house-shadow.json
+          node -e "const x=require('/tmp/presidential-house-shadow.json'); if(x.house_districts_mapped!==435 || x.redrawn_2026_districts_mapped!==173 || x.status!=='EXPERIMENTAL_PRESIDENTIAL_PARTISAN_LEAN_SHADOW_NOT_PROMOTED' || x.geography.alternative_redrawn_exchangeable_seats!==0) process.exit(1)"
+          node scripts/audit_presidential_lean_shadow.cjs
       - name: Audit historical Senate polling misses without retroactive leakage
         run: |
           node --check scripts/chamber_poll_error_audit.js
