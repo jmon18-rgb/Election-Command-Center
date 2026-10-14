@@ -24,6 +24,11 @@ jobs:
           node scripts/test_senate_probability_calibration.cjs
           node scripts/audit_senate_probability_calibration.cjs --json > /tmp/senate-error-revision.json
           node -e "const x=require('/tmp/senate-error-revision.json');if(x.status!=='RETROSPECTIVE_INFORMED_2026_UNCERTAINTY_REVIEW_NOT_CALIBRATED'||x.races.length!==35||x.historic_probability_scores.overall.candidate.ninety_pct_margin_coverage<90||x.unchanged_house_probabilities!==true)process.exit(1)"
+      - name: Validate private browser-only Silver fundamentals imports without publishing paid CSVs
+        run: |
+          node --check scripts/private_senate_fundamentals.js
+          node --check scripts/test_private_senate_fundamentals.cjs
+          node scripts/test_private_senate_fundamentals.cjs
       - name: Reconcile 2026 Senate four endings after poll-priority and unpolled-solid repairs
         run: |
           node --check scripts/audit_senate_four_endings_reconciliation.cjs

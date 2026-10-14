@@ -471,6 +471,19 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <button type="button" data-model-scope="generic" aria-pressed="false">Generic ballot</button>
 </div>
 <p class="model-probability-coverage" id="modelProbabilityCoverage" role="status">Loading published race-level model estimates…</p>
+<details id="privateContextWorkbench" class="race-workbench">
+ <summary><strong>My private Silver CSV fundamentals</strong><span>Import locally · compare model with / without candidate context</span></summary>
+ <div class="race-workbench-body card" style="display:grid;gap:10px">
+  <p class="detail">Use the Senate fundamentals (Simple / Fancy), expert-ratings (Unadjusted / Adjusted), and optional House fundamentals CSVs. Source CSVs stay in your browser, are not uploaded to this site's servers or committed to public GitHub. The Blended column inside Silver's Fundamentals section is used; polling averages, FLIPR Deluxe and final win probabilities are NOT fitted.</p>
+  <label for="privateContextFiles" class="label">CHOOSE THE CSV FILES</label>
+  <input type="file" id="privateContextFiles" accept=".csv,text/csv" multiple aria-describedby="privateContextStatus">
+  <label class="detail"><input type="checkbox" id="privateContextEnabled" checked> Use imported Senate context in my live JackStradamus model</label>
+  <label class="detail"><input type="checkbox" id="privateContextHouse"> Also use imported House fundamentals (experimental, 2026 selected districts only)</label>
+  <button type="button" id="privateContextClear" class="model-back">Clear private CSV context</button>
+  <p class="detail" id="privateContextStatus" role="status">No private CSVs imported. Public-model probabilities are unchanged.</p>
+  <p class="detail" id="privateContextComparison">Import the Senate CSVs to see how the same correlated 2026 simulation changes when candidate-fundamental estimates replace some of the neutral geographic prior. This is not Silver's proprietary FLIPR model.</p>
+ </div>
+</details>
 <div class="model-topline">
  <div class="model-top-stat"><span>TRACKED RACES</span><strong id="modelRaceTotal">—</strong></div>
  <div class="model-top-stat"><span>POLLING GAPS UNDER 3 PTS</span><strong id="modelCloseTotal">—</strong></div>
@@ -711,6 +724,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_nowcast.js"></script>
 <script src="./scripts/election_night_rehearsal.js"></script>
 <script src="./scripts/chamber_control_model.js?model=senate-current-2026-20261014-d"></script>
+<script src="./scripts/private_senate_fundamentals.js?local=20261014"></script>
 <script src="./scripts/chamber_poll_error_audit.js"></script>
 <script src="./scripts/senate_calibration_audit.js"></script>
 <script>
@@ -1284,6 +1298,18 @@ function renderModelRaceOdds(estimate){
    'Same '+modelRaceOddsData.samples.toLocaleString('en-US')+
    ' correlated draws as House/Senate control. Error-width controls rerun the full model. '+
    'Two-party conditional estimate, not a calibrated race call; special ballot rules remain incomplete.';
+ if(jointUsesPrivateContext()){
+  const baseline=jointPublicResult?.race_probabilities?.find(r=>
+   r.office===item.office&&r.race_code===item.race_code);
+  if(baseline){
+   const change=p-baseline.dem_beats_rep_pct;
+   note.textContent+=' PRIVATE CSV RESEARCH VARIANT · baseline D '+
+    baseline.dem_beats_rep_pct.toFixed(1)+'% → locally augmented D '+p.toFixed(1)+
+    '% ('+(change>=0?'+':'')+change.toFixed(1)+' pp). '+
+    'Blended fundamentals and a small unadjusted expert-rating signal; '+
+    "Silver's final race odds and forecast outputs are excluded.";
+  }
+ }
 }
 document.querySelectorAll('.model-odds-presets [data-odds-width]').forEach(button=>
  button.addEventListener('click',()=>{
@@ -2366,8 +2392,39 @@ $('#enRehearsalReset').addEventListener('click',()=>{
 
 /* One JackStradamus correlated simulation for race and chamber odds.
  * Live results are source-validated separately; no external odds display. */
-let jointBasis=null,jointBasisShadow=null,jointBasisPresidential=null,jointErrorMessage=null,jointRefreshTimer=null,jointCacheKey='',
-    jointLastResult=null,jointNationalShift=0,jointErrorMultiplier=1;
+let jointBasis=null,jointBasisPublic=null,jointBasisShadow=null,jointBasisPresidential=null,
+    jointErrorMessage=null,jointRefreshTimer=null,jointCacheKey='',
+    jointLastResult=null,jointPublicResult=null,jointNationalShift=0,jointErrorMultiplier=1,
+    jointPrivateData=null,jointPrivateEnabled=true,jointPrivateHouse=false,
+    jointPrivatePollData=null;
+function jointUsesPrivateContext(){
+ return Boolean(jointPrivateEnabled&&jointPrivateData&&jointBasis?.private_imported_context);
+}
+function jointPrivateActivate(){
+ if(!jointBasisPublic)return;
+ const tag=$('#modelEngineTag');
+ try{
+  if(jointPrivateEnabled&&jointPrivateData){
+   const housePollMargins=Object.fromEntries((jointPrivatePollData?.records||[])
+    .filter(r=>r.office==='house'&&Number.isFinite(r.dem_minus_rep))
+    .map(r=>[r.race_code,r.dem_minus_rep]));
+   jointBasis=window.PrivateSenateFundamentals.apply(jointBasisPublic,jointPrivateData,
+    {includeHouse:jointPrivateHouse,housePollMargins});
+  }else jointBasis=jointBasisPublic;
+  jointCacheKey='';jointPublicResult=null;
+  if(tag)tag.textContent=jointUsesPrivateContext()?
+   'PRIVATE CSV-AUGMENTED · experimental · not FLIPR':'2026 Senate model · multi-firm error budget v3';
+  jointRender(true);
+ }catch(e){
+  jointBasis=jointBasisPublic;jointPrivateEnabled=false;
+  const toggle=$('#privateContextEnabled');if(toggle)toggle.checked=false;
+  jointCacheKey='';jointPublicResult=null;
+  if(tag)tag.textContent='2026 Senate model · private import rejected';
+  const status=$('#privateContextStatus');
+  if(status)status.textContent='Private context not applied: '+String(e.message||e);
+  jointRender(true);
+ }
+}
 const jointLabels=[
  ['blue_tsunami','BLUE TSUNAMI','D both chambers · 18+ of 20 battlegrounds','d-tide'],
  ['blue_wave','BLUE WAVE','D both chambers · below tsunami threshold','d-wave'],
@@ -2442,7 +2499,8 @@ function jointRenderCards(result){
    (sn?sn.p05+'–'+sn.p95+' Senate':'Senate unavailable')+' · '+
    info.senate_poll_count+'/35 Senate and '+info.house_poll_count+
    '/435 House races polled · Senate: 2026 named-candidate model · '+info.house_geography_changed+
-   ' House districts redrawn (high uncertainty).';
+   ' House districts redrawn (high uncertainty).'+
+   (jointUsesPrivateContext()?' · PRIVATE IMPORTED CONTEXT; NOT THE PUBLIC MODEL.':'');
  }
 }
 function jointRenderHouseShadow(base,shadow,presidentialShadow){
@@ -2483,6 +2541,7 @@ for(const id of ['jointHomeShadow','jointNightShadow']){
   });
 }
 function jointForecastResult(){return jointLastResult}
+function jointBaselineForecastResult(){return jointPublicResult}
 function jointCurrentSignature(){
  const snaps=['House','Senate','Governor'].map(office=>
   (enOfficeSnapshots[office]?.as_of||'')+'-'+
@@ -2499,17 +2558,32 @@ function jointRender(force=false){
  jointCacheKey=key;
  const updates=jointLiveObservations();
  try{
-  const result=window.ChamberControlModel.simulate(jointBasis,{
-   samples:3000,seed:20261103,
-   nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,
-   live:updates});
+  const args={samples:3000,seed:20261103,
+   nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,live:updates};
+  const result=window.ChamberControlModel.simulate(jointBasis,args);
   jointLastResult=result;
+  jointPublicResult=jointUsesPrivateContext()?
+   window.ChamberControlModel.simulate(jointBasisPublic,args):null;
+  const privateSummary=$('#privateContextComparison');
+  if(privateSummary){
+   if(jointPublicResult){
+    const k=jointBasis.private_imported_context;
+    privateSummary.textContent='RESEARCH ONLY: '+k.matched_senate_races+' Senate'+
+     (k.matched_house_races?' + '+k.matched_house_races+' House':'')+
+     ' races with private candidate context. D Senate control: published model '+
+     jointPublicResult.senate_dem_control_pct.toFixed(1)+'% → CSV variant '+
+     result.senate_dem_control_pct.toFixed(1)+'%. D both chambers: '+
+     jointPublicResult.blue_both_including_tsunami.toFixed(1)+'% → '+
+     result.blue_both_including_tsunami.toFixed(1)+
+     '%. Silver win odds were not fitted or used as model inputs.';
+   }else privateSummary.textContent='Public JackStradamus baseline active; import the CSVs to compare an experimental candidate-context variant.';
+  }
   jointRenderCards(result);
   renderSenateTideLine();
   renderEnForecastStrip();
   setModelRaceOddsData(jointBuildRaceOddsSnapshot(result,jointBasis));
   let shadow=null,presidentialShadow=null;
-  if(jointShadowExpanded()){
+  if(jointShadowExpanded()&&!jointUsesPrivateContext()){
    const args={samples:3000,seed:20261103,
     nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,live:updates};
    if(jointBasisShadow){
@@ -2523,7 +2597,8 @@ function jointRender(force=false){
   }
   jointRenderHouseShadow(result,shadow,presidentialShadow);
   const note=$('#jointRunStatus');
-  if(note)note.textContent=Object.keys(updates).length+
+  if(note)note.textContent=(jointUsesPrivateContext()?'PRIVATE CSV CONTEXT ACTIVE · ':'')+
+   Object.keys(updates).length+
    ' source-validated live-informed races · swing '+
    (jointNationalShift>=0?'+':'')+jointNationalShift.toFixed(1)+
    ' pts · '+(jointErrorMultiplier===1?'baseline error':
@@ -2546,9 +2621,10 @@ function jointSetSources(sources){
  try{
   if(!window.ChamberControlModel)throw Error('Model script unavailable');
   // A missing research-only input must never disable baseline odds.
-  jointBasis=window.ChamberControlModel.prepare(sources,{
+  jointBasisPublic=window.ChamberControlModel.prepare(sources,{
    senatePriorMode:'current_2026'
   });
+  jointBasis=jointBasisPublic;
   // An outdated cached JS engine silently ignores the modern options
   // parameter and returns a 2020 legacy Senate forecast (MN D 62.17%).
   // Never show its odds as if they were calculated by the current engine.
@@ -2569,8 +2645,9 @@ function jointSetSources(sources){
    fundamentalsMode:'presidential_2024_shadow',senatePriorMode:'current_2026'
   })}catch(_){}
   jointErrorMessage=null;jointCacheKey='';
-  jointRender(true);
- }catch(e){jointBasis=null;jointBasisShadow=null;jointBasisPresidential=null;
+  jointPrivatePollData=sources.odds;
+  jointPrivateActivate();
+ }catch(e){jointBasis=null;jointBasisPublic=null;jointBasisShadow=null;jointBasisPresidential=null;
   jointLastResult=null;jointCacheKey='';
   jointErrorMessage='No reliable joint odds: '+String(e.message||e);
   const tag=$('#modelEngineTag');
@@ -2621,7 +2698,7 @@ async function jointLoadSources(options={}){
    console.warn('Retaining last validated joint forecast:',e);
    return false;
   }
-  jointBasis=null;jointBasisShadow=null;jointBasisPresidential=null;
+  jointBasis=null;jointBasisPublic=null;jointBasisShadow=null;jointBasisPresidential=null;
   jointLastResult=null;jointCacheKey='';
   jointErrorMessage='No joint probability model: '+String(e.message||e);
   const tag=$('#modelEngineTag');if(tag)tag.textContent='Model input source unavailable';
@@ -2631,6 +2708,56 @@ async function jointLoadSources(options={}){
   return false;
  }
 }
+// User-selected paid CSV files are read in this browser only. Never POST, fetch,
+// commit or expose their source rows in a publicly hosted data endpoint.
+async function importPrivateContextFiles(files){
+ const status=$('#privateContextStatus');
+ if(!window.PrivateSenateFundamentals)throw Error('Local CSV reader unavailable');
+ if(files.length>15)throw Error('Select at most fifteen CSV files');
+ let next=jointPrivateData,accepted=0,ignored=0;const labels=[];
+ for(const file of files){
+  if(!/\.csv$/i.test(file.name)||file.size>250000)
+   throw Error('Expected a CSV no larger than 250 KB: '+file.name);
+  const raw=await file.text();
+  let parsed;
+  try{parsed=window.PrivateSenateFundamentals.parse(raw)}
+  catch(e){
+   if(!/Expected Silver CSV|Expected fundamentals or expert-ratings CSV|CSV contained no usable/.test(
+      String(e.message||e)))throw e;
+   ignored++;continue;
+  }
+  next=window.PrivateSenateFundamentals.accept(next,parsed);
+  accepted++;labels.push(parsed.kind+' ('+Object.keys(parsed.states).length+')');
+ }
+ if(!accepted)throw Error('None of these CSVs contains the Senate or House fundamentals / expert-ratings tables.');
+ jointPrivateData=next;jointPrivateEnabled=$('#privateContextEnabled').checked;
+ if(status)status.textContent='Imported locally: '+labels.join(', ')+
+  (ignored?' · '+ignored+' unrelated Silver output tables ignored':'')+
+  '. Source CSVs remain on this browser tab, not the public GitHub repository.';
+ jointPrivateActivate();
+}
+$('#privateContextFiles').addEventListener('change',event=>{
+ const files=Array.from(event.target.files||[]);
+ if(!files.length)return;
+ importPrivateContextFiles(files).catch(e=>{
+  $('#privateContextStatus').textContent='Import not applied: '+String(e.message||e);
+ }).finally(()=>{event.target.value=''});
+});
+$('#privateContextEnabled').addEventListener('change',event=>{
+ jointPrivateEnabled=event.target.checked;jointPrivateActivate();
+});
+$('#privateContextHouse').addEventListener('change',event=>{
+ jointPrivateHouse=event.target.checked;jointPrivateActivate();
+});
+$('#privateContextClear').addEventListener('click',()=>{
+ jointPrivateData=null;jointPrivateEnabled=false;jointPrivateHouse=false;
+ $('#privateContextFiles').value='';
+ $('#privateContextEnabled').checked=false;
+ $('#privateContextHouse').checked=false;
+ $('#privateContextStatus').textContent=
+  'Private CSV context cleared from this browser tab. Published baseline restored.';
+ jointPrivateActivate();
+});
 $('#jointSwing').addEventListener('change',event=>{
  jointNationalShift=Number(event.target.value);jointRender(true);
 });
