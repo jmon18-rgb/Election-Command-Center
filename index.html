@@ -2280,6 +2280,7 @@ function jointRenderCards(result){
    ' House districts redrawn (high uncertainty).';
  }
 }
+function jointForecastResult(){return jointLastResult}
 function jointCurrentSignature(){
  const snaps=['House','Senate','Governor'].map(office=>
   (enOfficeSnapshots[office]?.as_of||'')+'-'+
