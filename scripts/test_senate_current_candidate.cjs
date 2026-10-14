@@ -49,7 +49,7 @@ const mn=current.senate.find(x=>x.code==='MN-SEN'),old=legacy.senate.find(x=>x.c
 const input=source.odds.records.find(x=>x.race_code==='MN-SEN'&&x.office==='senate');
 assert(input);
 assert.equal(mn.poll_weight,.90);
-assert.equal(current.senate_current_context.model_revision,'late_2026_historical_error_budget_v3');
+assert.equal(current.senate_current_context.model_revision,'late_2026_horizon_error_budget_v4');
 assert.equal(current.senate_current_context.poll_weight_firms_3_plus,.90);
 assert.equal(current.senate_current_context.poll_weight_firms_2,.83);
 assert.equal(current.senate_current_context.poll_weight_firms_1,.60);
@@ -80,13 +80,13 @@ assert(mn.mean>input.dem_minus_rep&&mn.mean<mn.candidate_neutral_2026_environmen
 assert(old.mean<mn.mean);
 const shared=current.assumptions,sharedSigma=Math.hypot(shared.common_national_sigma,
  shared.senate_chamber_sigma,shared.state_senate_sigma);
-assert.equal(current.senate_current_context.polled_race_total_sigma_floor,7.5);
+assert.equal(current.senate_current_context.polled_race_total_sigma_floor,6.5);
 assert.equal(current.senate_current_context.thin_stale_or_special_poll_total_sigma_floor,8.5);
 assert(current.senate.filter(x=>x.polled&&x.polling_error_tier==='recent_multi_firm').length>=5);
 assert(current.senate.filter(x=>x.polled).every(x=>
  ['recent_multi_firm','thin_stale_or_special'].includes(x.polling_error_tier)));
 for(const code of ['NC-SEN','GA-SEN','MN-SEN','ME-SEN']){
- assert.equal(current.senate.find(x=>x.code===code).polling_error_floor_points,7.5,
+ assert.equal(current.senate.find(x=>x.code===code).polling_error_floor_points,6.5,
   'Representative well-polled races must follow shared depth/recency criterion: '+code);
 }
 for(const item of current.senate.filter(x=>x.polled)){

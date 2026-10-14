@@ -30,11 +30,18 @@
   'KY-SEN':'R','MS-SEN':'R','OK-SEN':'R','TN-SEN':'R','WV-SEN':'R','WY-SEN':'R'
  });
  const SOLID_NO_POLL_TOTAL_SIGMA=7;
- const CURRENT_SENATE_MODEL_REVISION='late_2026_historical_error_budget_v3';
-// 42 retrospective Senate contests: 5.633pt RMSE, seven-day FIELDWORK cutoff.
-// Source publication dates are unavailable; this is not a calibrated forecast.
-// Apply a buffered 7.5pt floor only to recent multi-firm regular elections.
-const SENATE_POLL_ERROR_FLOORS=Object.freeze({qualified:7.5,thin:8.5});
+ const CURRENT_SENATE_MODEL_REVISION='late_2026_horizon_error_budget_v4';
+// At 20 days, the recent 2020/22/24 archival FIELDWORK-only cohort (41
+// Senate contests) has a 5.254-point margin RMSE. At seven days the 42-race
+// cohort has 5.633 RMSE. Proper winner scores improve modestly at a 6.5-pt
+// width compared to 7.5, with nominal 90% coverage >=95% at 20 and 7 days.
+// The 2020 cycle is a strong counterexample: its 20-day error RMSE was 7.154,
+// and 6.5-pt 90% interval coverage fell below target. Keep 8.5 for stale,
+// special and thinner polling, and KEEP shared national/Senate/state variance.
+// Archive lacks verified first-publication dates and 2026 fundamentals: the
+// 6.5-ppt choice is a PROVISIONAL conditional error budget, not a backtested
+// probability calibration or a result tuned to an external forecast.
+const SENATE_POLL_ERROR_FLOORS=Object.freeze({qualified:6.5,thin:8.5});
 function senatePollingErrorBudget(info){
  const {independentFirms,contributingFirms,daysSinceLatest,special,sourceSigma}=info||{};
  if(!Number.isInteger(independentFirms)||independentFirms<0||
@@ -491,11 +498,16 @@ function senatePollingErrorBudget(info){
      no_poll_solid_total_sigma:SOLID_NO_POLL_TOTAL_SIGMA,
      historical_2020_senate_candidate_margin_used:false,
      statewide_2024_house_party_aggregate_used:false,
-     polled_race_total_sigma_floor:7.5,
+     polled_race_total_sigma_floor:6.5,
      thin_stale_or_special_poll_total_sigma_floor:8.5,
      qualified_poll_min_independent_firms:2,
      qualified_poll_max_age_days:14,
      retrospective_poll_only_rmse_points:5.633,
+     retrospective_20_day_poll_only_rmse_points:5.254,
+     retrospective_20_day_qualified_floor_brier_6_5:0.1095,
+     retrospective_20_day_previous_floor_brier_7_5:0.1108,
+     retrospective_2020_20_day_exception_undercoverage:true,
+     historical_research_first_publication_dates_verified:false,
      historical_poll_results_are_complete_model_backtest:false,
      polled_race_sigma_accounts_for_shared_errors:true,
      status:'PROVISIONAL_TRANSPARENT_FORECAST_NOT_HELDOUT_CALIBRATED'

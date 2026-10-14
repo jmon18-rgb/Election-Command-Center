@@ -44,10 +44,10 @@ function historicalScore(rows,sigma){
 }
 const years=[2020,2022,2024];
 const history={
- overall:{old:historicalScore(historic.records,8.5),candidate:historicalScore(historic.records,7.5)},
+ overall:{old:historicalScore(historic.records,8.5),candidate:historicalScore(historic.records,6.5)},
  by_year:years.map(year=>{
   const rows=historic.records.filter(x=>x.cycle===year);
-  return {year,old:historicalScore(rows,8.5),candidate:historicalScore(rows,7.5)};
+  return {year,old:historicalScore(rows,8.5),candidate:historicalScore(rows,6.5)};
  })};
 const prepared=model.prepare(source,{senatePriorMode:'current_2026'});
 const opts={samples:6000,seed:20261103};
@@ -99,7 +99,7 @@ const output={status:'RETROSPECTIVE_INFORMED_2026_UNCERTAINTY_REVIEW_NOT_CALIBRA
  old_senate_D_control_pct:oldSim.senate_dem_control_pct,
  updated_senate_D_control_pct:newSim.senate_dem_control_pct,
  older_error_floor_points:8.5,
- qualified_poll_floor_points:7.5,
+ qualified_poll_floor_points:6.5,
  thin_stale_special_floor_points:8.5,
  races};
 assert(races.length===35);

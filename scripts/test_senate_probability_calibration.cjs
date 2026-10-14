@@ -6,10 +6,10 @@ const audit=model.senatePollingErrorBudget;
 const regular={independentFirms:4,contributingFirms:7,daysSinceLatest:3,
  special:false,sourceSigma:5.633};
 assert.deepEqual(audit(regular),
- {floor:7.5,totalSigma:7.5,tier:'recent_multi_firm'});
-assert.equal(audit({...regular,independentFirms:2,contributingFirms:3}).floor,7.5);
+ {floor:6.5,totalSigma:6.5,tier:'recent_multi_firm'});
+assert.equal(audit({...regular,independentFirms:2,contributingFirms:3}).floor,6.5);
 assert.equal(audit({...regular,independentFirms:1}).floor,8.5);
-assert.equal(audit({...regular,daysSinceLatest:14}).floor,7.5);
+assert.equal(audit({...regular,daysSinceLatest:14}).floor,6.5);
 assert.equal(audit({...regular,daysSinceLatest:15}).floor,8.5);
 assert.equal(audit({...regular,special:true}).floor,8.5);
 assert.equal(audit({...regular,sourceSigma:9.5}).totalSigma,9.5,

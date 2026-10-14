@@ -27,7 +27,7 @@ assert.match(html,/<script src="\.\/scripts\/civicapi_nh_governor_adapter\.js"><
  'NH governor adapter must load before the election-night application');
 assert.match(html,/<script src="\.\/scripts\/civicapi_state_batch\.js"><\/script>/,
  'Four-state supplemental provider module must load before the application');
-assert.match(html,/<script src="\.\/scripts\/chamber_control_model\.js\?model=senate-current-2026-[a-zA-Z0-9-]+"><\/script>/,
+assert.match(html,/<script src="\.\/scripts\/chamber_control_model\.js\?model=senate-horizon-error-[a-zA-Z0-9-]+"><\/script>/,
  'Version-pin the Senate engine: uncached index must never reuse the obsolete 2020 candidate model');
 assert.equal(scripts.length,1,'Expected exactly one live inline application script');
 const errors=[];
@@ -95,7 +95,7 @@ async function settle(){
  assert(w.PrivateSenateFundamentals,'Private subscriber CSV parser must load before app');
  w.eval(scripts[0]);
  await settle();
- assert.match(get('#modelEngineTag').textContent,/2026 Senate model · multi-firm error budget v3/);
+ assert.match(get('#modelEngineTag').textContent,/2026 Senate model · multi-firm error budget v4/);
  assert.equal(w.eval('jointRaceOddsResult()').senate_prior_mode,'current_2026');
  assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').poll_weight"),.90);
  // Browser-only CSV ingestion must really update displayed model and restore it
@@ -155,7 +155,7 @@ async function settle(){
  w.ChamberControlModel=freshEngine;
  await w.eval('jointLoadSources()');
  assert.equal(w.eval('jointRaceOddsResult()').senate_prior_mode,'current_2026');
- assert.match(get('#modelEngineTag').textContent,/2026 Senate model · multi-firm error budget v3/);
+ assert.match(get('#modelEngineTag').textContent,/2026 Senate model · multi-firm error budget v4/);
  // Race odds and chamber control derive from ONE correlated Monte Carlo.
  const oddsData=w.eval('jointRaceOddsResult()');
  assert(oddsData,'Linked joint simulation must publish race odds');
