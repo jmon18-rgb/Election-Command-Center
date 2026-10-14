@@ -103,6 +103,52 @@ assert.throws(()=>model.prepare({...pairedSources,twoCycle:swappedPairs},
  {fundamentalsMode:'two_cycle_shadow'}),/Duplicate two-cycle district/);
 const shadowResult=model.simulate(shadow,{samples:1200,seed:20261103});
 assert(Number.isFinite(shadowResult.blue_both_including_tsunami));
+// Silver-style presidential district partisan lean is a SHADOW, never the
+// default production input. Cross-check the entire 2026 geographic universe.
+const presidential=load('presidential_2024_by_2026_district_staging');
+const presSources={...sources,presidential};
+const presShadow=model.prepare(presSources,{fundamentalsMode:'presidential_2024_shadow'});
+assert.equal(presShadow.fundamentals_mode,'presidential_2024_shadow');
+assert.equal(presShadow.presidential_fundamentals_shadow.mapped_2026_house_districts,435);
+assert(presShadow.presidential_fundamentals_shadow.house_generic_swing_points>0);
+assert.equal(model.prepare(presSources).fundamentals_mode,'2024_only');
+assert.deepEqual(model.prepare(presSources).senate,basis.senate,
+ 'Optional presidential House input must not change Senate means');
+assert.deepEqual(presShadow.senate,basis.senate,
+ '2026 district presidential priors must not leak into Senate forecasts');
+assert.deepEqual(presShadow.governors,basis.governors);
+assert.equal(presShadow.house.filter(x=>Number.isFinite(x.presidential_2024_margin_points)).length,435);
+assert(presShadow.house.filter(x=>x.method.includes('redrawn_')).every(x=>
+ x.redrawn_mix_weight===0 && x.redrawn_state_center===null),
+ 'Redrawn districts must use 2026-map-specific presidential leans rather than old House numbers');
+assert(presShadow.house.some(x=>x.code==='CA-01'&&x.presidential_2024_margin_points>10),
+ 'California new district presidential prior should be mapped, not inferred from old district votes');
+assert(presShadow.house.some(x=>x.code==='VA-01'&&x.presidential_2024_margin_points<-4),
+ 'Unchanged Virginia district needs presidential lean');
+assert(presShadow.house.some(x=>x.code==='MO-05'&&x.presidential_2024_margin_points>20),
+ 'Missouri unchanged court-stayed map must use the 2024 configuration');
+assert(presShadow.house.some(x=>x.code==='TX-28'&&x.presidential_2024_margin_points<-10),
+ '2026 Texas district presidential lean must be correctly aligned');
+assert.notDeepEqual(presShadow.house.map(x=>x.mean),basis.house.map(x=>x.mean));
+const presSim=model.simulate(presShadow,{samples:1200,seed:20261103});
+assert(Number.isFinite(presSim.blue_both_including_tsunami));
+assert.throws(()=>model.prepare(sources,{fundamentalsMode:'presidential_2024_shadow'}),
+ /Missing verified-source presidential/);
+const badPres={...presidential,records:presidential.records.slice(1)};
+assert.throws(()=>model.prepare({...presSources,presidential:badPres},
+ {fundamentalsMode:'presidential_2024_shadow'}),/Missing verified-source presidential/);
+const mismatchPres={...presidential,records:presidential.records.map(x=>
+ x.race_code==='VA-01'?{...x,dem_pres_2024_votes:x.dem_pres_2024_votes+10000}:x)};
+assert.throws(()=>model.prepare({...presSources,presidential:mismatchPres},
+ {fundamentalsMode:'presidential_2024_shadow'}),/margin\/vote disagreement/);
+const duplicatePres={...presidential,records:[...presidential.records]};
+duplicatePres.records[0]=duplicatePres.records[1];
+assert.throws(()=>model.prepare({...presSources,presidential:duplicatePres},
+ {fundamentalsMode:'presidential_2024_shadow'}),/duplicate presidential/);
+const wrongMapPres={...presidential,district_map_year_claimed:2024};
+assert.throws(()=>model.prepare({...presSources,presidential:wrongMapPres},
+ {fundamentalsMode:'presidential_2024_shadow'}),/Missing verified-source presidential/);
+
 const specialSeats=basis.senate.filter(x=>x.special);
 assert.equal(specialSeats.length,2);
 assert(specialSeats.every(x=>!x.method.includes('historical_2020_senate')),
