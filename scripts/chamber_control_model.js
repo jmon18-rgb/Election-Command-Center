@@ -174,6 +174,10 @@
      throw Error('Presidential geography cross-check failed '+code);
    }
   }
+  // Senate state partisanship needs 2024 geographic votes without
+  // silently activating the separate House presidential-lean research mode.
+  const housePresidential=fundamentalsMode==='presidential_2024_shadow'?
+   presidential:null;
   const raw=new Map(s.history.records.map(x=>[normalizeCode(x['2024_race_code']),x]));
   const geo=new Map(s.geography.districts.map(x=>[normalizeCode(x.race_code_2026),x]));
   const odds=new Map(s.odds.records.map(x=>[x.office+'|'+normalizeCode(x.race_code),x]));
@@ -194,7 +198,7 @@
   const projectedSwing=.68*(generic-house2024);
   // Never adjust Senate means with a House-only alternate; that is a
   // separate forecasting problem with separate candidate fundamentals.
-  const houseProjectedSwing=presidential?
+  const houseProjectedSwing=housePresidential?
    .68*(generic-presidentialNationalMargin):projectedSwing;
   const house=[],senate=[],gov=[];
   const stateMargin=state=>{
@@ -255,13 +259,13 @@
     redrawnMixWeight=1;
     kind='redrawn_state_distribution_proxy';sigma=25;
    }
-   // The 2024 presidential baseline is defined on 2026 geometry. Even in
+   // The 2024 housePresidential baseline is defined on 2026 geometry. Even in
    // redrawn states, no obsolete 2024 House district votes are assigned by
-   // district number. District-specific presidential estimates are research
+   // district number. District-specific housePresidential estimates are research
    // inputs, with explicitly broad uncertainty for newly drawn seats.
-   const presidentialMargin=presidential?presidential.get(code):null;
-   if(presidential){
-    if(!finite(presidentialMargin))throw Error('Missing 2026 presidential geographic prior '+code);
+   const presidentialMargin=housePresidential?housePresidential.get(code):null;
+   if(housePresidential){
+    if(!finite(presidentialMargin))throw Error('Missing 2026 housePresidential geographic prior '+code);
     if(unchanged&&both){
      baseline=.65*presidentialMargin+.35*baseline;
      kind='presidential_house_blend_2024';sigma=12;
@@ -300,18 +304,18 @@
     pollWeight=w;
     mean=w*poll.dem_minus_rep+(1-w)*priorMean;
     sigma=unchanged?Math.max(7,poll.sigma_points):
-      Math.max(presidential?15:16,poll.sigma_points);
-    // A presidential margin genuinely calculated under the 2026 map can
+      Math.max(housePresidential?15:16,poll.sigma_points);
+    // A housePresidential margin genuinely calculated under the 2026 map can
     // be compared with polls even for redrawn seats. Exchangeable statewide
     // 2024 House priors (default mode) still cannot.
-    if(unchanged||presidential){
+    if(unchanged||housePresidential){
      pollFundamentalsGap=Math.round(1000*(poll.dem_minus_rep-priorMean))/1000;
      disagreementSigma=disagreementExtraSigma(poll.dem_minus_rep,priorMean,
-      presidential?(unchanged&&both?.70:.45):(both?.65:.15));
+      housePresidential?(unchanged&&both?.70:.45):(both?.65:.15));
      sigma=Math.round(1000*Math.hypot(sigma,disagreementSigma))/1000;
     }
     method='poll_blend_'+kind;
-    if(!unchanged&&!presidential)redrawnMixWeight=1-w;
+    if(!unchanged&&!housePresidential)redrawnMixWeight=1-w;
    }
    house.push({code,state,mean:limit(mean,-60,60),sigma,
      method,polled:Boolean(poll),redrawn_mix_weight:redrawnMixWeight,
@@ -445,8 +449,9 @@
       'EXPERIMENTAL_SENATE_SHADOW_NOT_PROMOTED':'LEGACY_BASELINE'
     },
     presidential_fundamentals_shadow:{
-     mapped_2026_house_districts:presidential?presidential.size:0,
-     national_presidential_2024_two_party_margin_points:presidentialNationalMargin,
+     mapped_2026_house_districts:housePresidential?housePresidential.size:0,
+     national_presidential_2024_two_party_margin_points:housePresidential?
+      presidentialNationalMargin:null,
      house_generic_swing_points:houseProjectedSwing,
      original_house_generic_swing_points:projectedSwing,
      source:'ElectIndex 2026-map presidential input with The Downballot crosschecks',
