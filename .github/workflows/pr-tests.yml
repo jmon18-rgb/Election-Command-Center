@@ -57,6 +57,10 @@ jobs:
         run: python3 scripts/test_rcp_senate_research.py
       - name: Validate actual archived RCP compilation and historical Senate joins
         run: python3 scripts/research_rcp_senate_backtest.py
+      - name: Test multi-horizon Senate historical probability backtest and temporal leakage
+        run: |
+          python3 scripts/test_senate_horizon_backtest.py
+          python3 scripts/research_senate_horizon_backtest.py --no-write
       - name: Test independent election-year heldout national polling-bias diagnostics
         run: python3 scripts/test_senate_bias_holdout.py
       - name: Reproduce historical Senate bias holdouts from published source metrics
