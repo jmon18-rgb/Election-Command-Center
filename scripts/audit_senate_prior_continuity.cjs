@@ -23,7 +23,7 @@ function evaluate(s){
   !pres.external_source_blob_sha||!Array.isArray(pres.records)||
   pres.records.length!==435)
   throw Error('Unverified 2024 presidential 2026-map source');
- if(study?.status!=='HISTORIC_INCUMBENT_RELATIVE_OVERPERFORMANCE_NOT_FORECAST'||
+ if(study?.status!=='DESCRIPTIVE_HISTORICAL_CANDIDATE_RESIDUALS_NOT_VALIDATED_PREDICTIONS'||
   !Array.isArray(study.records)||study.records.length!==506)
   throw Error('Unverified historical incumbent identity source');
  const inc=new Map(study.records.filter(x=>x.office==='senate').map(x=>[x.race_code,x]));
@@ -143,7 +143,7 @@ function evaluate(s){
  return {
   status:'SENATE_PRIOR_CONTINUITY_DIAGNOSTIC_NOT_FORECAST',
   snapshot:s.polls.generated_at,
-  2024_presidential_external_source_sha:pres.external_source_blob_sha,
+  presidential_2024_external_source_sha:pres.external_source_blob_sha,
   election_year_reference:2024,
   qualified_senate_matchups:pollCount,senate_seats:rows.length,
   source_model_exact_reconstruction:true,
