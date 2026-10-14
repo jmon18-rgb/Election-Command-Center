@@ -11,7 +11,7 @@ const status={
  schema_version:x.VERSION,
  status:'OBSERVED_CANDIDATE_FEATURES_NOT_A_FORECAST',
  coverage:{...counts,total_races:map.size},
- roster_source_sha:data.source_files.races.blob_sha,
+ roster_source_sha:data.source_files['races.csv'].blob_sha,
  source_claims_with_conflicting_incumbency:conflicts,
  identity_mapping_conflicts:mismatches,
  supplier_same_office_incumbent_flags:candidates.filter(r=>r.incumbent_same_seat_candidate).length,
