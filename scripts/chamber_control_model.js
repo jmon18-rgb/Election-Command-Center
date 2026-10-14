@@ -435,6 +435,32 @@
   // Optional attribution consumes the EXACT SAME joint draws and never
   // changes headline probabilities unless explicitly requested.
   const explainControl=options.explainControl===true;
+  // Optional research-only reference-weighted national vote versus seats.
+  // Weights must be provided explicitly, never guessed as 2026 turnout.
+  const voteSeatWeights=options.voteSeatWeights;
+  const voteSeatEnabled=voteSeatWeights!==undefined;
+  let voteSeatArray=null,weightTotal=0;
+  if(voteSeatEnabled){
+   if(!Array.isArray(voteSeatWeights)||voteSeatWeights.length!==435)
+    throw Error('Vote-seat diagnostic requires 435 audited turnout-weight records');
+   const weights=new Map();
+   for(const item of voteSeatWeights){
+    const code=normalizeCode(item?.race_code),weight=item?.reference_two_party_votes;
+    if(!code||weights.has(code)||!finite(weight)||weight<=0||weight>1e8)
+     throw Error('Invalid or duplicated turnout weight '+code);
+    weights.set(code,weight);
+   }
+   voteSeatArray=basis.house.map(r=>{
+    const weight=weights.get(r.code);
+    if(!finite(weight))throw Error('Missing 2026-district turnout reference '+r.code);
+    weightTotal+=weight;
+    return weight;
+   });
+   if(weights.size!==435||weightTotal<1e7)
+    throw Error('Incomplete nationwide House turnout reference');
+  }
+  const voteSeatBins=voteSeatEnabled?new Map():null;
+  let voteSeatWeightedMarginSum=0;
   const pivotalHouse=new Uint32Array(435),pivotalSenate=new Uint32Array(35);
   const senateWinsWithControl=new Uint32Array(35);
   const houseWinsWithControl=explainControl?new Uint32Array(435):null;
@@ -476,6 +502,7 @@
     return stateDeltas.get(state);
    };
    let dHouse=0,dSenate=holdovers,winBattleground=0;
+   let voteSeatWeightedMarginNumerator=0;
    for(let j=0;j<polls.length;j++){
     const item=polls[j],isHouse=j<435,isSenate=j>=435&&j<470;
     const scenario=live[item.code],meaningful=scenario&&
@@ -499,6 +526,8 @@
     const dem=finalMargin>0;
     if(dem)raceDemWins[j]++;
     if(isHouse){
+     if(voteSeatEnabled)
+      voteSeatWeightedMarginNumerator+=limit(finalMargin,-100,100)*voteSeatArray[j];
      if(dem)dHouse++;
      if(explainControl)houseWinners[j]=dem?1:0;
     }else if(isSenate){
@@ -511,6 +540,20 @@
        item.nonrep_independent_proxy))winBattleground++;
    }
    const houseDem=dHouse>=a.house_control_dem_seats;
+   if(voteSeatEnabled){
+    const weightedMargin=voteSeatWeightedMarginNumerator/weightTotal;
+    const bucket=limit(Math.floor(weightedMargin),-100,99);
+    const row=voteSeatBins.get(bucket)||{draws:0,demSeats:0,houseControl:0,
+     senateControl:0,bothControl:0,weightedMarginSum:0};
+    row.draws++;row.demSeats+=dHouse;
+    row.houseControl+=Number(dHouse>=a.house_control_dem_seats);
+    row.senateControl+=Number(dSenate>=a.senate_control_dem_seats);
+    row.bothControl+=Number(dHouse>=a.house_control_dem_seats&&
+     dSenate>=a.senate_control_dem_seats);
+    row.weightedMarginSum+=weightedMargin;
+    voteSeatBins.set(bucket,row);
+    voteSeatWeightedMarginSum+=weightedMargin;
+   }
    const senateDem=dSenate>=a.senate_control_dem_seats;
    if(houseDem)houseControl++;
    if(senateDem)senateControl++;
@@ -610,6 +653,25 @@
     mechanical_pivotal_draws:pivotalHouse[i]};
   }).sort((a,b)=>b.control_covariance_pp-a.control_covariance_pp||
    a.race_code.localeCompare(b.race_code)):null;
+  const voteSeatExplanation=voteSeatEnabled?{
+   status:'EXPERIMENTAL_VOTE_SEAT_REFERENCE_WEIGHTED_NOT_ACTUAL_2026_VOTE',
+   weight_source_label:options.voteSeatWeightLabel||'supplied_reference_two_party_turnout',
+   weights_are_2026_turnout_forecasts:false,
+   weight_total:weightTotal,verified_districts:voteSeatArray.length,
+   simulated_mean_weighted_dem_margin_points:
+    Math.round(1000*voteSeatWeightedMarginSum/samples)/1000,
+   bins:[...voteSeatBins.entries()].sort((x,y)=>x[0]-y[0]).map(([bin,row])=>({
+    dem_margin_bin_from:bin,dem_margin_bin_to:bin+1,
+    sample_count:row.draws,sample_share_pct:pct(row.draws),
+    simulated_mean_dem_margin_points:Math.round(100*row.weightedMarginSum/row.draws)/100,
+    expected_dem_house_seats:Math.round(100*row.demSeats/row.draws)/100,
+    dem_house_control_pct:Math.round(10000*row.houseControl/row.draws)/100,
+    dem_senate_control_pct:Math.round(10000*row.senateControl/row.draws)/100,
+    dem_both_control_pct:Math.round(10000*row.bothControl/row.draws)/100,
+    low_support:row.draws<30
+   })),
+   method:'Same-draw simulated D-R district vote margin weighted by supplied fixed district reference turnout. Not observed or projected total ballots; third-party and 2026 turnout effects are not modeled.'
+  }:null;
   const controlExplanation=explainControl?{
    house_only_pct:pct(houseOnly),senate_only_pct:pct(senateOnly),
    both_dem_pct:pct(bothCount),neither_dem_pct:pct(outcomes.red_dawn),
@@ -632,6 +694,7 @@
    probabilities:probs,counts:outcomes,means,
    race_probabilities,
    ...(explainControl?{control_explanation:controlExplanation}:{}),
+   ...(voteSeatEnabled?{vote_seat_explanation:voteSeatExplanation}:{}),
    race_probability_method:'SAME_CORRELATED_DRAWS_AS_CHAMBER_CONTROL',
    blue_both_including_tsunami:pct(outcomes.blue_wave+outcomes.blue_tsunami),
    house_dem_control_pct:pct(houseControl),senate_dem_control_pct:pct(senateControl),
