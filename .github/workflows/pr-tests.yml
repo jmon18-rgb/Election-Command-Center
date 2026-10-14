@@ -10,6 +10,13 @@ jobs:
     timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
+      - name: Validate Senate 2020 candidate continuity and statewide presidential audit
+        run: |
+          node --check scripts/audit_senate_prior_continuity.cjs
+          node scripts/test_senate_prior_continuity.cjs
+          node scripts/audit_senate_prior_continuity.cjs --json > /tmp/senate-prior-continuity.json
+          node -e "const x=require('/tmp/senate-prior-continuity.json');if(x.status!=='SENATE_PRIOR_CONTINUITY_DIAGNOSTIC_NOT_FORECAST'||x.source_model_exact_reconstruction!==true||x.qualified_senate_matchups!==24||x.verified_historic_candidate_identity_count!==12)process.exit(1)"
+          node scripts/audit_senate_prior_continuity.cjs
       - name: Validate dashboard contracts
         run: python3 scripts/check_dashboard.py
       - name: Validate new-poll notification behavior without email credentials
