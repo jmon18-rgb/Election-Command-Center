@@ -21,14 +21,14 @@ The current reproducible artifact `data/modern_incumbency_robustness_2022_2024.j
 | Presidential 2020 district margin within 10 points | 32 | 5.978 | 4.641 |
 | Presidential margin within 20 points | 63 | 5.782 | 4.767 |
 | Presidential margin over 20 points | 85 | 5.321 | 4.706 |
-| First elected in 2022 | 33 | 5.041 | 4.695 |
-| Already incumbent in 2022 | 115 | 5.652 | 4.742 |
+| Not incumbent on the 2022 ballot | 33 | 5.041 | 4.695 |
+| Incumbent on the 2022 ballot | 115 | 5.652 | 4.742 |
 | 2022 Democratic winners | 83 | 5.875 | 5.140 |
 | 2022 Republican winners | 65 | 5.035 | 4.152 |
 
 The **all-sample historical shrinkage coefficient is 0.345**. A deterministic **1,200-resample state-cluster sensitivity analysis** yields a 5th–95th-percentile descriptive coefficient range of about **0.265–0.429**, and a descriptive held-out RMSE improvement range of about **0.523–1.075 margin points**. These bootstrap values are diagnostic sample sensitivity, **not calibrated forecasting uncertainty bands**.
 
-This is evidence of *some historical persistence of candidate-specific overperformance*, across both parties and competitive seats. **It is not evidence to give every incumbent an identical bonus**. The first-term cohort has visibly weaker incremental benefit in this single sample, and the competitive cohort is relatively small. No subgroup-specific automatic coefficient is justified by only one two-year test period.
+This is evidence of *some historical persistence of candidate-specific overperformance*, across both parties and competitive seats. **It is not evidence to give every incumbent an identical bonus**. The group not recorded as incumbents on the 2022 ballot has a smaller incremental benefit in this single sample, and the competitive cohort is relatively small. The supplied ballot-incumbency flag is not proof of a politician's first ever term or lack of prior officeholding. No subgroup-specific automatic coefficient is justified by only one two-year test period.
 
 There is an especially important limitation: **only four of the 148 returning 2022 winners lost in 2024**, so these data cannot robustly calibrate upset probabilities or the probability that an apparent incumbency advantage disappears. Selection into running again is not random. A candidate's historical residual combines candidate brand, campaign quality, party environment, turnout and noise. **Forecasting 2026 midterm conditions from a 2022-midterm-to-2024-presidential transition remains a direction-of-cycle mismatch.**
 
