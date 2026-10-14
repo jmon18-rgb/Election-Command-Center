@@ -105,6 +105,9 @@ async function settle(){
  assert.match(get('#jointHomeCorrelation').textContent,/Production shared risk/);
  assert.match(get('#jointHomeCorrelation').textContent,/Moderately lower shared risk/);
  assert.match(get('#jointHomeCorrelation').textContent,/2020 \+5\.72 D/);
+ assert.match(get('#jointHomeCorrelation').textContent,/2018 \+2\.83 D/);
+ assert.match(get('#jointHomeCorrelation').textContent,/four-cycle|Four-cycle/);
+ assert.match(get('#jointHomeCorrelation').textContent,/NOT promoted/);
  assert.match(get('#jointHomeCorrelation').textContent,/DOES NOT change the live prediction/);
  assert.equal(w.eval('jointForecastResult().senate_dem_control_pct'),beforeCorrelationSenate);
  assert.equal(w.eval('jointForecastResult().house_dem_control_pct'),beforeCorrelationHouse);
