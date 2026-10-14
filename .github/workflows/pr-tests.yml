@@ -100,6 +100,10 @@ jobs:
           node --check scripts/election_night_rehearsal.js
           node --check scripts/test_election_night_rehearsal.cjs
           node scripts/test_election_night_rehearsal.cjs
+      - name: Validate joint House and Senate outcome probabilities
+        run: |
+          node --check scripts/chamber_control_model.js
+          node scripts/test_chamber_control_model.cjs
       - name: Install DOM test environment
         run: npm install --no-save --no-package-lock --ignore-scripts jsdom@26.1.0
       - name: Check JavaScript syntax and exercise actual dashboard

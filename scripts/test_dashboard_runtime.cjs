@@ -42,7 +42,8 @@ const fixtures={
  'pollresults_recent.json':recent,'model_history.json':history,
  'race_probabilities.json':json('data/race_probabilities.json'),
  'congress_scenarios.json':json('data/congress_scenarios.json'),
- 'house_history_2024_staging.json':json('data/house_history_2024_staging.json')
+ 'house_history_2024_staging.json':json('data/house_history_2024_staging.json'),
+ 'senate_history_2020_2022_2024.json':json('data/senate_history_2020_2022_2024.json')
 };
 for(const file of ['briefing.json','integrity_impact.json','seat_universe.json','house_geography_bridge.json','house_two_cycle_context.json']){
  const name='data/'+file;
@@ -75,6 +76,8 @@ async function settle(){
  assert(w.RaceLiveNowcast,'Live race probability module must load before app');
  w.eval(read('scripts/election_night_rehearsal.js'));
  assert(w.ElectionNightRehearsal,'Synthetic rehearsal library must load before app');
+ w.eval(read('scripts/chamber_control_model.js'));
+ assert(w.ChamberControlModel,'Joint Senate/House model must load before app');
  w.eval(scripts[0]);
  await settle();
  // Actual model probabilities come from the same 2026 polls and a
@@ -845,6 +848,36 @@ async function settle(){
  assert.match(get('#enHealthRows').textContent,/Senate · Open America/);
  assert.match(get('#enHealthRows').textContent,/Supplemental · civicAPI/);
  assert.equal(get('#enNowcastRows').querySelectorAll('.en-live-race').length,8);
+ // Real published polling + House history + audited geography: four
+ // exhaustive national scenarios must render, not a DDHQ-only estimate.
+ w.eval('jointRender(true)');
+ assert.equal(get('#jointHomeCards').querySelectorAll('.joint-cell').length,4);
+ assert.equal(get('#jointNightCards').querySelectorAll('.joint-cell').length,4);
+ assert.match(get('#jointHomeSummary').textContent,/3,000 correlated simulated elections/);
+ assert.match(get('#jointNightCards').textContent,/BLUE TSUNAMI/);
+ assert.match(get('#jointNightCards').textContent,/BLUE WAVE/);
+ assert.match(get('#jointNightCards').textContent,/SHRUG/);
+ assert.match(get('#jointNightCards').textContent,/RED DAWN/);
+ const jointBase=w.eval('jointForecastResult()');
+ assert(jointBase?.probabilities?.blue_tsunami>=0&&jointBase.total_pct>99.9);
+ assert.equal(Object.values(jointBase.counts).reduce((sum,n)=>sum+n,0),3000);
+ assert(w.eval('Object.keys(jointLiveObservations()).includes("NC-SEN")'),
+  'The live joint model should integrate verified current NC Senate returns');
+ assert.match(get('#jointRunStatus').textContent,/source-validated live-informed races/);
+ const housePrior=jointBase.means.house_dem_seats;
+ get('#jointSwing').value='-3';
+ get('#jointSwing').dispatchEvent(new w.Event('change',{bubbles:true}));
+ const changedJoint=w.eval('jointForecastResult()');
+ assert(changedJoint.means.house_dem_seats<housePrior,
+  'A more Republican national swing must lower expected House D seats');
+ get('#jointSwing').value='0';
+ get('#jointSwing').dispatchEvent(new w.Event('change',{bubbles:true}));
+ get('#jointError').value='1.3';
+ get('#jointError').dispatchEvent(new w.Event('change',{bubbles:true}));
+ assert.match(get('#jointRunStatus').textContent,/wider error/);
+ get('#jointError').value='1';
+ get('#jointError').dispatchEvent(new w.Event('change',{bubbles:true}));
+
  // User-facing rehearsal never feeds fictional votes into the live dashboard.
  const beforeActualCount=get('#enRaces').textContent,
   beforeActualWatch=get('#enWatchItems').textContent,
