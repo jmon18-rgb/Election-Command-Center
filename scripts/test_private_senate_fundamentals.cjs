@@ -104,7 +104,7 @@ const restored=reader.restoreDevice(storage,'2026-10-17T18:00:00Z');
 assert.equal(JSON.stringify(restored.data),JSON.stringify(p),
  'JSON storage roundtrip must preserve values regardless of safe null-prototype parser');
 assert.deepEqual(restored.settings,{enabled:true,includeHouse:true});
-assert.equal(restored.imported_at,importAt);
+assert.equal(restored.imported_at,new Date(importAt).toISOString());
 assert.equal(restored.warning,false);
 assert.equal(restored.expired,false);
 assert.equal(restored.age_days,3);
