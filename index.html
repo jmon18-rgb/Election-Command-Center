@@ -2358,10 +2358,10 @@ function jointRenderHouseShadow(base,shadow,presidentialShadow){
  let txt=base?'Research only — default Democrats both chambers: '+pct(base)+'. ':
   'Alternative House fundamentals unavailable; headline odds unchanged.';
  if(base&&shadow&&eligible)
-  txt+='2022/24 House: '+eligible+'/435 map-comparable, contested districts; '+
+  txt+='2022/24 House: '+eligible+'/435 House districts map-comparable and contested; '+
    pct(shadow)+' for both chambers vs '+pct(base)+' (difference '+delta(shadow)+'). ';
  else if(base&&eligible)
-  txt+='2022/24 House: '+eligible+'/435 eligible. Open for the alternative probability. ';
+  txt+='2022/24 House: '+eligible+'/435 House districts eligible. Open for the alternative probability. ';
  if(base&&presidentialShadow&&presCount===435)
   txt+='2024 presidential district lean: 435/435 districts on the 2026 map; '+
    pct(presidentialShadow)+' for both chambers vs '+pct(base)+' (difference '+
