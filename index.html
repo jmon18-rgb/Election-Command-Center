@@ -2428,8 +2428,13 @@ async function enRefreshCivicWatchlist(force=false){
   // Rotating sweep includes entries beyond the first twelve across cycles.
   const start=enCivicSweepCursor%all.length;
   const limit=Math.min(12,all.length);
-  const batch=Array.from({length:limit},(_,i)=>all[(start+i)%all.length]);
+  const rotation=Array.from({length:limit},(_,i)=>all[(start+i)%all.length]);
   enCivicSweepCursor=(start+limit)%all.length;
+  // An explicit manual refresh prioritizes personally pinned races;
+  // background cycles retain round-robin fairness across 35 Senate seats.
+  const pinned=force?enWatched.filter(x=>!enSupportedStates.has(x.key.slice(0,2))):[];
+  const batch=force?[...new Map([...pinned,...rotation]
+    .map(x=>[enWatchId(x),x])).values()].slice(0,12):rotation;
   // Four bounded workers allow independent seats to update while one
   // provider call is slow or offline. No unbounded 35-seat request burst.
   let cursor=0;
