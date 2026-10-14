@@ -346,7 +346,8 @@
    let sigma=reliable?17:special?25:23,method=reliable?
     'historical_2020_senate_plus_state_house':special?
     'special_election_state_house_proxy':'state_house_proxy_no_2020_two_party';
-   const neutralPres=presidentialStateTotals?.get(state);
+   const neutralPres=senatePriorMode==='current_2026'?
+    presidentialStateTotals?.get(state):null;
    const neutralPresMargin=neutralPres?
     100*(neutralPres.d-neutralPres.r)/(neutralPres.d+neutralPres.r):null;
    let currentNeutralPrior=null,candidatePollResidual=null;
