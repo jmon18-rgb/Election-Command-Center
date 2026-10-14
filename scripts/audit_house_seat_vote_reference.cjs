@@ -49,7 +49,9 @@ assert.deepEqual(geographical.senate,base.senate,'House geography cannot modify 
 assert.deepEqual(geographical.governors,base.governors,'House geography cannot modify governor assumptions');
 assert.equal(base.house.length,435);
 assert.equal(base.house.filter(x=>x.polled).length,60);
-assert.equal(src.history.records.length-both.length,44);
+assert.equal(src.history.records.length-both.length,
+ src.history.districts_missing_major_party_votes,
+ 'Historical major-party coverage metadata must reconcile with the staged voting records');
 const redrawn=src.geography.districts.filter(x=>x.geography_comparable_2024===false);
 assert.equal(redrawn.length,173);
 assert.equal(base.house.filter(x=>x.redrawn_mix_weight>0).length,173);
