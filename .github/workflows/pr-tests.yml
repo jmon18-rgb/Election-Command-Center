@@ -10,6 +10,13 @@ jobs:
     timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
+      - name: Verify published 2026 Senate current-candidate odds, variance and House invariance
+        run: |
+          node --check scripts/chamber_control_model.js
+          node --check scripts/test_senate_current_candidate.cjs
+          node scripts/test_senate_current_candidate.cjs --json > /tmp/current-senate-forecast.json
+          node -e "const x=require('/tmp/current-senate-forecast.json');if(x.status!=='CURRENT_SENATE_PROBABILITIES_PUBLISHED_MODEL_VALIDATION'||x.races.length!==35||x.source_house_probs_unchanged!==true||x.minnesota.model_win_prob_D_new<=x.minnesota.model_win_prob_D_old||x.chamber.old_house_dem_control_pct!==x.chamber.updated_house_dem_control_pct)process.exit(1)"
+          node scripts/test_senate_current_candidate.cjs
       - name: Validate Senate 2020 candidate continuity and statewide presidential audit
         run: |
           node --check scripts/audit_senate_prior_continuity.cjs
