@@ -63,7 +63,14 @@ async function settle(){
       w.eval('jointForecastResult()')&&w.eval('modelRaceOddsData')&&
       get('#newPolls').querySelectorAll('.item').length)return;
  }
- throw Error('Timed out waiting for linked joint odds and model dashboard rendering');
+ throw Error('Timed out waiting for linked joint odds: '+
+  JSON.stringify({boardRows:get('#modelBoard').querySelectorAll('.model-race-row').length,
+   jointSummary:get('#jointHomeSummary').textContent,
+   jointReady:Boolean(w.eval('jointForecastResult()')),
+   oddsReady:Boolean(w.eval('modelRaceOddsData')),
+   pollingReady:Boolean(w.eval('latestSenateEstimates')),
+   sourceErrors:errors.slice(0,6),
+   newPollRows:get('#newPolls').querySelectorAll('.item').length}));
 }
 (async()=>{
  w.eval(read('scripts/civicapi_nh_adapter.js'));
