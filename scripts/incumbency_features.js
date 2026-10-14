@@ -217,7 +217,11 @@
  // the FUNDAMENTALS PRIOR, therefore a poll blend retains only (1-poll_w).
  // This does not estimate or calibrate coefficients, and the baseline model
  // is never modified.
- function scenarioBasis(model,basis,doc,polls,coefficients={}){
+ function scenarioBasis(model,basis,doc,polls,coefficients={},options={}){
+  if(options.onlyOffices!==undefined&&
+     (!Array.isArray(options.onlyOffices)||options.onlyOffices.some(x=>
+      !['house','senate','governor'].includes(x))))
+   throw Error('Invalid office-scoped candidate scenario');
   if(!model||basis?.schema_version!==model.VERSION)
    throw Error('Invalid joint model for candidate scenario');
   const {map}=validate(doc);
@@ -231,6 +235,9 @@
   }
   const changes=[],skipped=[];
   const project=(items,office)=>items.map(item=>{
+   // Historical carryover estimated on House incumbents is NOT a trained
+   // Senate or governor coefficient. Opt-in scenarios may be office-scoped.
+   if(options.onlyOffices&&!options.onlyOffices.includes(office))return item;
    const record=map.get(item.code);
    if(!record||record.office!==office)
     throw Error('Missing candidate metadata for modeled race '+item.code);
