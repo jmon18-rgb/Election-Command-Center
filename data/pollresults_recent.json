@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-14T14:26:27.048854+00:00",
+  "updated_at": "2026-10-14T15:23:42.990611+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,7 +9,7 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1182,
+      "available_in_source": 1183,
       "records_examined": 200
     },
     "governor": {
@@ -19,6 +19,30 @@
   },
   "matched_primary_observations": 289,
   "observations": [
+    {
+      "race_code": "KY-06",
+      "race_type": "house",
+      "state": "KY",
+      "poll_id": "ac27424c-cc80-4f99-bfbe-4fb762913fca",
+      "question_id": "6e02adae-6e35-4a73-aa8a-a51f0ece5f7d",
+      "pollster": "DCCC Targeting Team",
+      "dem_name": "Zach Dembo",
+      "rep_name": "Ralph Alvarado",
+      "dem": 46.0,
+      "rep": 40.0,
+      "margin": 6.0,
+      "field_end": "2026-10-05",
+      "field_start": "2026-10-02",
+      "posted_date": "2026-10-14",
+      "posted_source_datetime": "2026-10-14T10:26:00",
+      "posted_source_time": "10/14/26 10:26",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://dccc.org/dccc-polling-memo-zach-dembo-continues-to-lead-in-ky-06/",
+      "sample_population": "lv",
+      "sample_size": 606,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "TX-SEN",
       "race_type": "senate",
