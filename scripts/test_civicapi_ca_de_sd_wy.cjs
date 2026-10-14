@@ -9,7 +9,8 @@ const specs=[
  ['SD','Senate','South Dakota US Senate',87446],
  ['SD','Governor','South Dakota Governor',87447],
  ['WY','Senate','Wyoming US Senate',87496],
- ['WY','Governor','Wyoming Governor',87497]
+ ['WY','Governor','Wyoming Governor',87497],
+ ['MD','Governor','Maryland Governor',87198]
 ];
 const pre=Date.parse('2026-10-13T20:00:00Z');
 const night=Date.parse('2026-11-04T03:00:00Z');
