@@ -20,8 +20,8 @@
      !Array.isArray(doc.records)||doc.records.length!==506||
      doc.coverage?.house!==435||doc.coverage?.senate!==35||
      doc.coverage?.governor!==36||
-     !doc.source_files?.races?.blob_sha||!doc.source_files?.candidates?.blob_sha||
-     !doc.source_files?.fundraising?.blob_sha)
+     !doc.source_files?.['races.csv']?.blob_sha||!doc.source_files?.['candidates.csv']?.blob_sha||
+     !doc.source_files?.['fundraising.csv']?.blob_sha)
    throw Error('Incomplete candidate context provenance');
   const codes=new Set(),map=new Map(),counts={house:0,senate:0,governor:0};
   for(const r of doc.records){
@@ -99,7 +99,7 @@
       x.candidate_name==='Peggy Flanagan')||
      gov.administration_links.some(x=>x.personal_administration_member))
    throw Error('Invalid MN governor/Senate administration distinction');
-  return {map,counts,source_sha:doc.source_files.races.blob_sha};
+  return {map,counts,source_sha:doc.source_files['races.csv'].blob_sha};
  }
  function explain(row){
   if(!row)throw Error('Candidate race missing');
