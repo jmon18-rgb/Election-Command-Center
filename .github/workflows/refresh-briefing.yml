@@ -12,6 +12,8 @@ on:
       - 'scripts/test_polling_models.py'
       - 'scripts/build_polling_estimates.py'
       - 'scripts/build_race_probabilities.py'
+      - 'scripts/validate_poll_to_odds.py'
+      - 'scripts/test_poll_to_odds.py'
       - 'scripts/test_race_probabilities.py'
       - 'scripts/build_seat_universe.py'
       - 'scripts/build_map_bridge.py'
@@ -34,7 +36,8 @@ on:
       - 'data/pollster_quality.json'
       - '.github/workflows/refresh-briefing.yml'
   schedule:
-    - cron: '17 */4 * * *'
+    # Collect new polling hourly rather than leave a four-hour source-to-odds gap.
+    - cron: '17 * * * *'
 permissions:
   contents: write
 concurrency:
@@ -86,6 +89,10 @@ jobs:
         run: python3 scripts/test_race_probabilities.py
       - name: Rebuild probability data against refreshed polling
         run: python3 scripts/build_race_probabilities.py
+      - name: Regression-test newly posted poll through model and odds
+        run: python3 scripts/test_poll_to_odds.py
+      - name: Verify new source polls reach weighted averages and current odds
+        run: python3 scripts/validate_poll_to_odds.py
       - name: Verify all model polls and averages
         run: python3 scripts/validate_model_drilldown.py
       - name: Rebuild nonheadline bottom-up environment diagnostic from current polling
