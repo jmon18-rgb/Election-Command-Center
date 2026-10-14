@@ -73,9 +73,13 @@ const results=cases.map(c=>{
   row.dem_beats_rep_pct===baseline.race_probabilities[i].dem_beats_rep_pct),
   'Senate uncertainty may not affect House race marginal probabilities');
  if(c.independentSenateCredit){
-  assert.deepEqual(sim.race_probabilities,baseline.race_probabilities,
+  // Compare identical error assumptions: the combined shadow deliberately
+  // uses narrower Senate uncertainty than the *headline* and should not
+  // be compared race-for-race with that different statistical model.
+  const sameErrorBasis=model.simulate(c.basis,{samples,seed});
+  assert.deepEqual(sim.race_probabilities,sameErrorBasis.race_probabilities,
    'Independent caucus credit only affects control outcomes, not votes');
-  assert(sim.senate_dem_control_pct<=baseline.senate_dem_control_pct);
+  assert(sim.senate_dem_control_pct<=sameErrorBasis.senate_dem_control_pct);
  }
  return {case:c.name,d_house_control_pct:sim.house_dem_control_pct,
   d_senate_control_pct:sim.senate_dem_control_pct,
