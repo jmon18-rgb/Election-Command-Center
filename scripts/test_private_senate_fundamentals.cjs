@@ -88,4 +88,45 @@ assert.equal(alt.house_dem_control_pct,b.house_dem_control_pct);
 assert.deepEqual(alt.race_probabilities.filter(r=>r.office==='house'),
  b.race_probabilities.filter(r=>r.office==='house'));
 assert.equal(alt.race_probabilities.length,b.race_probabilities.length);
+// Persist private candidate fundamentals locally, not on the public server.
+// These tests use an in-memory fake Storage object (NO paid source data).
+const storageBacking=new Map();
+const storage={
+ getItem:key=>storageBacking.has(key)?storageBacking.get(key):null,
+ setItem:(key,val)=>{storageBacking.set(key,String(val));},
+ removeItem:key=>{storageBacking.delete(key);}
+};
+const importAt='2026-10-14T18:00:00Z';
+const saved=reader.saveDevice(storage,p,{enabled:true,includeHouse:true},importAt);
+assert.equal(saved.rows,8);
+assert(storageBacking.has(reader.STORAGE_KEY));
+const restored=reader.restoreDevice(storage,'2026-10-17T18:00:00Z');
+assert.equal(JSON.stringify(restored.data),JSON.stringify(p),
+ 'JSON storage roundtrip must preserve values regardless of safe null-prototype parser');
+assert.deepEqual(restored.settings,{enabled:true,includeHouse:true});
+assert.equal(restored.imported_at,new Date(importAt).toISOString());
+assert.equal(restored.warning,false);
+assert.equal(restored.expired,false);
+assert.equal(restored.age_days,3);
+const warning=reader.restoreDevice(storage,'2026-10-25T18:00:00Z');
+assert.equal(warning.warning,true);
+assert.equal(warning.expired,false);
+const expired=reader.restoreDevice(storage,'2026-11-19T18:00:00Z');
+assert.equal(expired.expired,true,'Do not auto-activate stale personal priors');
+assert.equal(expired.warning,true);
+const inactive=reader.saveDevice(storage,p,{enabled:false,includeHouse:false},importAt);
+assert.equal(inactive.rows,8);
+assert.deepEqual(reader.restoreDevice(storage,importAt).settings,
+ {enabled:false,includeHouse:false});
+assert.throws(()=>reader.restoreDevice(storage,'2026-10-12T00:00:00Z'),/date is invalid/);
+const attack=storageBacking.get(reader.STORAGE_KEY);
+storageBacking.set(reader.STORAGE_KEY,attack.replace(reader.VERSION,'unknown-version'));
+assert.throws(()=>reader.restoreDevice(storage,importAt),/schema mismatch/);
+storageBacking.set(reader.STORAGE_KEY,'{not json');
+assert.throws(()=>reader.restoreDevice(storage,importAt),/unreadable/);
+storageBacking.set(reader.STORAGE_KEY,attack);
+reader.clearDevice(storage);
+assert.equal(reader.restoreDevice(storage,importAt),null);
+assert.equal(storageBacking.has(reader.STORAGE_KEY),false);
+assert.equal(typeof reader.STORAGE_KEY,'string');
 console.log('Private Senate/House CSV context parser and no-target-leakage invariants PASS');

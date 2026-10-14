@@ -117,7 +117,26 @@ async function settle(){
  assert.match(get('#privateContextComparison').textContent,/published model/);
  assert(w.eval('jointBaselineForecastResult()'),'Private model must preserve baseline comparison');
  assert.equal(w.eval('jointBaselineForecastResult().senate_dem_control_pct'),baselineSenate);
+ assert.equal(get('#privateContextRemember').checked,true);
+ const savedKey=w.PrivateSenateFundamentals.STORAGE_KEY;
+ assert(w.localStorage.getItem(savedKey),'Imported context should be saved automatically');
+ assert.equal(w.PrivateSenateFundamentals.restoreDevice(w.localStorage).data
+    .senateFundamentals.MN.blended,20);
+ const importTimestamp=w.PrivateSenateFundamentals.restoreDevice(w.localStorage).imported_at;
+ get('#privateContextHouse').click();
+ assert.equal(w.PrivateSenateFundamentals.restoreDevice(w.localStorage).imported_at,
+  importTimestamp,'Changing model options must not silently freshen stale inputs');
+ get('#privateContextRemember').click();
+ assert.equal(w.localStorage.getItem(savedKey),null,
+  'Opting out must remove saved subscriber data');
+ assert.match(get('#modelEngineTag').textContent,/PRIVATE CSV-AUGMENTED/,
+  'Opting out of persistence must not disable active in-memory model');
+ get('#privateContextRemember').click();
+ assert(w.localStorage.getItem(savedKey),
+  'Reenabling persistence must save active imported context');
  get('#privateContextClear').click();
+ assert.equal(w.localStorage.getItem(savedKey),null,
+  'Clear must remove ALL locally stored subscriber context');
  assert.match(get('#modelEngineTag').textContent,/2026 Senate model/);
  assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').model_dem_margin_points"),baselineMN);
  assert.equal(w.eval('jointForecastResult().senate_dem_control_pct'),baselineSenate);

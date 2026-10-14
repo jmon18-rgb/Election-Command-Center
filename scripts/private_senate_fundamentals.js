@@ -179,5 +179,55 @@
    experts_used_as_small_secondary_signal:true,
    silver_win_probs_fitted:false}};
  }
- return Object.freeze({VERSION,parse,accept,apply,validData});
+ const STORAGE_KEY='jackstradamus_private_candidate_context_v1';
+ const MAX_STORED_BYTES=180000;
+ const IMPORT_WARN_AFTER_DAYS=7;
+ const IMPORT_DISABLE_AFTER_DAYS=35;
+ function safeIsoDate(now){
+  const date=now instanceof Date?now:new Date(now===undefined?Date.now():now);
+  if(!Number.isFinite(date.getTime()))throw Error('Invalid import date');
+  return date.toISOString();
+ }
+ // Local-only device persistence: caller supplies same-origin Storage.
+ // Never use the service worker, data API, fetch or a GitHub content endpoint.
+ function saveDevice(storage,data,settings={},now){
+  validData(data);
+  if(!storage||typeof storage.setItem!=='function')
+   throw Error('Browser storage unavailable');
+  const record={schema:VERSION,data,imported_at:safeIsoDate(now),
+   settings:{enabled:settings.enabled!==false,includeHouse:settings.includeHouse===true}};
+  const payload=JSON.stringify(record);
+  if(payload.length>MAX_STORED_BYTES)throw Error('Imported model context exceeds local storage limit');
+  storage.setItem(STORAGE_KEY,payload);
+  return {imported_at:record.imported_at,rows:Object.keys(data.senateFundamentals||{}).length+
+   Object.keys(data.houseFundamentals||{}).length};
+ }
+ function restoreDevice(storage,now){
+  if(!storage||typeof storage.getItem!=='function')return null;
+  const raw=storage.getItem(STORAGE_KEY);
+  if(raw===null||raw===undefined)return null;
+  if(typeof raw!=='string'||raw.length>MAX_STORED_BYTES)
+   throw Error('Stored private model context exceeds safety limit');
+  let record;
+  try{record=JSON.parse(raw)}catch(_){throw Error('Stored private model context is unreadable')}
+  if(record?.schema!==VERSION||!record?.data)throw Error('Stored private model schema mismatch');
+  validData(record.data);
+  const date=Date.parse(record.imported_at),stamp=Date.parse(safeIsoDate(now));
+  if(!Number.isFinite(date)||date>stamp+86400000||date<Date.parse('2026-01-01T00:00:00Z'))
+   throw Error('Stored private input date is invalid');
+  const ageDays=Math.max(0,(stamp-date)/86400000);
+  return {data:record.data,
+   settings:{enabled:record.settings?.enabled!==false,
+    includeHouse:record.settings?.includeHouse===true},
+   imported_at:record.imported_at,age_days:ageDays,
+   warning:ageDays>=IMPORT_WARN_AFTER_DAYS,
+   expired:ageDays>=IMPORT_DISABLE_AFTER_DAYS};
+ }
+ function clearDevice(storage){
+  if(storage&&typeof storage.removeItem==='function')
+   storage.removeItem(STORAGE_KEY);
+ }
+ return Object.freeze({VERSION,STORAGE_KEY,IMPORT_WARN_AFTER_DAYS,
+  IMPORT_DISABLE_AFTER_DAYS,parse,accept,apply,validData,
+  saveDevice,restoreDevice,clearDevice});
 });
