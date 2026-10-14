@@ -93,6 +93,48 @@ async function settle(){
  assert(w.SenateCalibrationAudit,'Retrospective probability-score module must be loaded before app');
  w.eval(scripts[0]);
  await settle();
+ // The open tab should accept a new posted survey without a page reload.
+ // Hold the session's first-loaded IDs fixed for meaningful unseen counts.
+ const freshPosted=structuredClone(recent);
+ freshPosted.updated_at='2026-10-14T21:05:00Z';
+ freshPosted.observations.unshift({...freshPosted.observations[0],
+  race_code:'NC-SEN',state:'NC',race_type:'senate',
+  poll_id:'new-live-refresh-test',question_id:'new-live-refresh-question',
+  pollster:'In-Tab Fresh Survey',posted_date:'2026-10-14',
+  posted_source_datetime:'2026-10-14T21:04:00'});
+ fixtures['pollresults_recent.json']=freshPosted;
+ await w.eval('refreshLivePollSnapshots()');
+ assert.match(get('#newPolls').textContent,/In-Tab Fresh Survey/,
+  'The polling feed must update in a still-open browser tab');
+ assert.match(get('#changesSince').textContent,/newly indexed since opening/,
+  'The unseen-count reference must not silently reset on each render');
+ // A partial publication must not replace the complete previous forecast.
+ const formerModelAt=w.eval('latestSenateEstimates.generated_at');
+ const primaryNext=structuredClone(primary);
+ primaryNext.updated_at='2026-10-14T21:07:00Z';
+ primaryNext.health={...primaryNext.health,status:'ok'};
+ fixtures['polls.json']=primaryNext;
+ await w.eval('refreshLivePollSnapshots()');
+ assert.equal(w.eval('latestSenateEstimates.generated_at'),formerModelAt);
+ assert(w.eval('jointForecastResult()'),
+  'Temporary mismatched polling/model data must not erase good race odds');
+ // Once the corresponding estimate and odds snapshot appear, the same
+ // in-page check should refresh the model and its displayed metadata.
+ const estimatesNext=structuredClone(model);
+ estimatesNext.source_snapshot=primaryNext.updated_at;
+ estimatesNext.generated_at='2026-10-14T21:07:05Z';
+ const oddsNext=structuredClone(fixtures['race_probabilities.json']);
+ oddsNext.polling_source_generated_at=estimatesNext.generated_at;
+ oddsNext.polling_source_snapshot=estimatesNext.source_snapshot;
+ fixtures['polling_estimates.json']=estimatesNext;
+ fixtures['race_probabilities.json']=oddsNext;
+ await w.eval('refreshLivePollSnapshots()');
+ assert.equal(w.eval('latestSenateEstimates.generated_at'),estimatesNext.generated_at,
+  'Polling averages should update without reopening the dashboard');
+ assert.equal(w.eval('jointBasis.senate_prior_mode'),'current_2026');
+ assert.equal(w.eval('jointBasis.polling_source_generated_at'),estimatesNext.generated_at);
+ assert.match(get('#changesSince').textContent,/newly indexed since opening/,
+  'Refreshing the full forecast should preserve newly indexed survey count');
  assert.match(get('#modelEngineTag').textContent,/2026 candidate-based Senate engine · verified · poll-priority v2/);
  assert.equal(w.eval('jointRaceOddsResult()').senate_prior_mode,'current_2026');
  assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').poll_weight"),.90);
