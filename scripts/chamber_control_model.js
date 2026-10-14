@@ -10,6 +10,8 @@
 })(typeof window!=='undefined'?window:null,function(){
  'use strict';
  const VERSION='joint-control-beta-v1';
+ const FUNDAMENTALS_MODES=Object.freeze(['2024_only','two_cycle_shadow']);
+ const SHADOW_WEIGHT=.25,SHADOW_RESIDUAL_CAP=12;
  const BATTLEGROUNDS=Object.freeze([
   'NC-SEN','MI-SEN','ME-SEN','OH-SEN','TX-SEN','AK-SEN','NE-SEN','IA-SEN',
   'AZ-GOV','GA-GOV','MI-GOV','WI-GOV','NV-GOV','OH-GOV',
@@ -66,8 +68,49 @@
      Math.abs(s.polls.generic_ballot.dem_minus_rep)>35)
     throw Error('Generic ballot not verified');
  }
- function prepare(s){
+ function prepare(s,options={}){
   validateInputs(s);
+  const fundamentalsMode=options.fundamentalsMode??'2024_only';
+  if(!FUNDAMENTALS_MODES.includes(fundamentalsMode))
+   throw Error('Unsupported House fundamentals mode');
+  // Require validated two-cycle sources for the explicit alternate model.
+  // Default model must not depend on an experimental comparison file.
+  let paired=null,pairedNationalChange=null;
+  if(fundamentalsMode==='two_cycle_shadow'){
+   const doc=s.twoCycle;
+   if(!doc||doc.status!=='two_cycle_historical_comparison_only'||
+      doc.is_forecast!==false||doc.coverage?.districts_with_two_historical_major_party_shares!==191||
+      !Array.isArray(doc.rows)||doc.rows.length!==435)
+    throw Error('Missing validated 2022/2024 House geography context');
+   paired=new Map();
+   const changes=[],codes=new Set();
+   for(const row of doc.rows){
+    const code=normalizeCode(row.race_code_2026);
+    if(!code||codes.has(code))throw Error('Duplicate two-cycle district '+code);
+    codes.add(code);
+    if(row.can_compare_historic_two_party_votes){
+     if(row.geography_comparable_across_all_three_elections!==true||
+        row.has_recorded_both_major_parties_2022!==true||
+        row.has_recorded_both_major_parties_2024!==true||
+        !finite(row.recorded_dem_share_2022_two_party)||
+        !finite(row.recorded_dem_share_2024_two_party)||
+        row.recorded_dem_share_2022_two_party<=0||
+        row.recorded_dem_share_2022_two_party>=1||
+        row.recorded_dem_share_2024_two_party<=0||
+        row.recorded_dem_share_2024_two_party>=1)
+      throw Error('Unreliable paired district vote source '+code);
+     paired.set(code,row);
+     changes.push(margin(row.recorded_dem_share_2024_two_party)-
+      margin(row.recorded_dem_share_2022_two_party));
+    }
+   }
+   if(codes.size!==435||paired.size!==191)
+    throw Error('Incomplete paired House historic source');
+   changes.sort((a,b)=>a-b);
+   pairedNationalChange=changes[(changes.length-1)/2];
+   if(!finite(pairedNationalChange)||Math.abs(pairedNationalChange)>15)
+    throw Error('Implausible paired nationwide district swing');
+  }
   const raw=new Map(s.history.records.map(x=>[normalizeCode(x['2024_race_code']),x]));
   const geo=new Map(s.geography.districts.map(x=>[normalizeCode(x.race_code_2026),x]));
   const odds=new Map(s.odds.records.map(x=>[x.office+'|'+normalizeCode(x.race_code),x]));
@@ -145,6 +188,22 @@
     redrawnMixWeight=1;
     kind='redrawn_state_distribution_proxy';sigma=25;
    }
+   let twoCycleAdjustment=0,twoCycle2022Margin=null,twoCycleProxy2024=null;
+   if(paired&&unchanged&&both){
+    const pair=paired.get(code);
+    if(pair){
+     if(Math.abs(pair.recorded_dem_share_2024_two_party-h.recorded_dem_share_two_party)>.00011)
+      throw Error('2024 source disagreement for paired House district '+code);
+     twoCycle2022Margin=margin(pair.recorded_dem_share_2022_two_party);
+     twoCycleProxy2024=twoCycle2022Margin+pairedNationalChange;
+     // The 2022 signal is shrunk and winsorized: large candidate-specific
+     // swings should not displace a recent 2024 election by tens of points.
+     twoCycleAdjustment=SHADOW_WEIGHT*limit(twoCycleProxy2024-baseline,
+       -SHADOW_RESIDUAL_CAP,SHADOW_RESIDUAL_CAP);
+     baseline+=twoCycleAdjustment;
+     kind='two_cycle_shadow_2024_recorded';
+    }
+   }
    let mean=baseline+projectedSwing,method=kind;
    let pollFundamentalsGap=null,disagreementSigma=0,pollWeight=null;
    const poll=odds.get('house|'+code);
@@ -171,7 +230,10 @@
      method,polled:Boolean(poll),redrawn_mix_weight:redrawnMixWeight,
      redrawn_state_center:redrawnStateCenter,
      poll_weight:pollWeight,poll_fundamentals_gap_points:pollFundamentalsGap,
-     disagreement_extra_sigma_points:disagreementSigma});
+     disagreement_extra_sigma_points:disagreementSigma,
+     two_cycle_adjustment_points:Math.round(1000*twoCycleAdjustment)/1000,
+     historical_2022_margin:twoCycle2022Margin,
+     projected_2024_from_2022_margin:twoCycleProxy2024});
   }
   const senRecords=s.senateHistory.contest_records.filter(r=>
    r.election_year===2020&&r.election_type==='regular');
@@ -227,6 +289,15 @@
   if(BATTLEGROUNDS.some(code=>!names.has(code)))
    throw Error('Incomplete fixed battleground slate');
   const basis={schema_version:VERSION,status:'EXPERIMENTAL_UNCALIBRATED',
+    fundamentals_mode:fundamentalsMode,
+    fundamentals_shadow:{
+     paired_districts:paired?paired.size:0,
+     median_paired_2022_to_2024_swing_points:pairedNationalChange,
+     prior_weight:fundamentalsMode==='two_cycle_shadow'?SHADOW_WEIGHT:0,
+     absolute_residual_cap_points:SHADOW_RESIDUAL_CAP,
+     changed_means:house.filter(x=>x.two_cycle_adjustment_points!==0).length,
+     status:'NOT_BACKTESTED_DO_NOT_PROMOTE_AUTOMATICALLY'
+    },
     generated_from_sources:{
      model_polling_at:s.polls.generated_at,
      generic_ballot_margin:generic,historical_house_2024_margin:house2024,
@@ -351,6 +422,6 @@
    total_pct:Object.values(probs).reduce((x,y)=>x+y,0),
    description:'A conditional Monte Carlo sensitivity experiment, not a calibrated election forecast.'};
  }
- return Object.freeze({VERSION,BATTLEGROUNDS,prepare,simulate,seeded,
+ return Object.freeze({VERSION,BATTLEGROUNDS,FUNDAMENTALS_MODES,prepare,simulate,seeded,
   disagreementExtraSigma});
 });
