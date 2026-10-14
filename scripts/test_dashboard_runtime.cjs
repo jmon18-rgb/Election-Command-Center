@@ -110,6 +110,23 @@ async function settle(){
  assert(!html.includes('enForecastSource'));
  assert.match(get('#modelOddsNumbers').textContent,/DEMOCRATIC/);
  assert.match(get('#modelOddsNumbers').textContent,/REPUBLICAN/);
+ // The homepage list and combined Race Lab must survive the UI restructure.
+ assert.equal(get('#senateTideRaces').querySelectorAll('.tide-race').length,15);
+ assert.match(get('#senateTideRaces [data-senate-tide="SC-SEN"]').textContent,/South Carolina/);
+ assert.match(get('#senateTideRaces [data-senate-tide="SC-SEN"]').textContent,/Darline Graham/);
+ assert.match(get('#senateTideRaces [data-senate-tide="ME-SEN"]').textContent,/model win chance/);
+ assert.equal(get('#raceWorkbench').open,false,'Survey explorer collapses inside JackStradamus');
+ assert.equal(w.document.querySelectorAll('.tab[data-page="races"]').length,0,
+  'Race Lab is a single integrated JackStradamus destination');
+ assert.match(get('.joint-cell.d-split').textContent,/SHRUG/);
+ assert(!w.document.querySelector('.joint-cell.split'),'No collision with sitewide flex .split');
+ assert(!w.document.querySelector('#tsunamiReachWatch'),'Legacy Graham promo is removed');
+ assert.match(get('.brief-intro h2').textContent,/Today’s tide schedule/);
+ // A narrow TX lead can round to the same integer odds for two distinct
+ // error settings. Select MN (a stronger sensitivity case) before verifying
+ // that the model's 3,000-draw probability actually changes on screen.
+ w.eval("navigateInsightToModel({office:'senate',race:{race_code:'MN-SEN'}})");
+ assert.match(get('#modelDetail').textContent,/Minnesota/);
  const baselineOdds=get('#modelOddsNumbers').textContent;
  const widthWide=get('.model-odds-presets [data-odds-width="wide"]');
  widthWide.click();
@@ -141,6 +158,10 @@ async function settle(){
  assert.match(get('#modelProbabilityCoverage').textContent,/not a two-candidate/);
  assert.equal(get('#modelBoard').querySelectorAll('.model-race-win-probabilities').length,0);
  get('[data-model-scope="senate"]').click();
+ get('[data-senate-tide="SC-SEN"]').click();
+ assert.equal(get('.tab[data-page="model"]').getAttribute('aria-selected'),'true');
+ assert.equal(w.location.hash,'#model/senate/SC-SEN','SC tide race opens its exact candidate model');
+ assert.equal(get('#raceWorkbench').open,false,'Tide click does not force open poll explorer');
  assert(get('#senateEstimateCards').querySelectorAll('.senate-card-odds').length>0,
   'Senate intelligence cards should also show conditional model odds');
  assert.match(get('#senateEstimateCards').textContent,/JACKSTRADAMUS · CORRELATED JOINT MODEL/);
@@ -779,13 +800,14 @@ async function settle(){
  },'');
  assert(topTime,'No recent full timestamp data');
  assert(get('#newPolls').textContent.includes('Source posted'),'Posted date labels disappeared');
- // The outreach context is clearly a dated external rating, not a fourth invented probability.
- const reach=get('#tsunamiReachWatch');
- assert.match(reach.textContent,/South Carolina U.S. Senate/);
- assert.match(reach.textContent,/Darline Graham/);
- assert.match(reach.textContent,/Likely Republican/);
- assert.match(reach.textContent,/not by itself/);
- assert(reach.querySelector('a[href*="cookpolitical.com/senate/race/"]'));
+ // No isolated Graham promo: South Carolina belongs to the same live,
+ // model-sourced Senate tide watchlist as the other pivotal races.
+ assert.equal(w.document.querySelector('#tsunamiReachWatch'),null);
+ const southCarolina=get('#senateTideRaces [data-senate-tide="SC-SEN"]');
+ assert.match(southCarolina.textContent,/Darline Graham/);
+ assert.match(southCarolina.textContent,/Wider wave/);
+ assert.match(southCarolina.textContent,/model win chance/);
+ assert.match(get('.tide-line-note').textContent,/not required conditions for a Blue Tsunami/);
  // Index-poll listing must preserve distinct ballot questions in one race,
  // unlike a poll-id-only dedupe that discards one matchup.
  const sameRace=recent.observations.find(p=>p.race_code==='TX-GOV');
