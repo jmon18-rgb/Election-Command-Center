@@ -14,7 +14,7 @@ assert.equal(basis.status,'EXPERIMENTAL_UNCALIBRATED');
 assert.equal(basis.house.length,435);
 assert.equal(basis.senate.length,35);
 assert.equal(basis.governors.length,6);
-assert.equal(basis.battlegrounds.length,14);
+assert.equal(basis.battlegrounds.length,20);
 assert.equal(basis.assumptions.senate_dem_holdovers,34);
 assert(basis.generated_from_sources.generic_ballot_margin>0);
 assert(basis.generated_from_sources.house_geography_changed>0);
