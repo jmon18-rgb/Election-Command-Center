@@ -7,6 +7,8 @@ on:
       - 'scripts/update_briefing.py'
       - 'scripts/update_polls.py'
       - 'scripts/update_pollresults_recent.py'
+      - 'scripts/reconcile_poll_sources.py'
+      - 'scripts/test_poll_source_reconciliation.py'
       - 'scripts/test_polling_models.py'
       - 'scripts/build_polling_estimates.py'
       - 'scripts/build_race_probabilities.py'
@@ -62,10 +64,12 @@ jobs:
         run: python3 scripts/validate_integrity_impact.py
       - name: Queue integrity reports for source verification
         run: python3 scripts/update_integrity_queue.py
+      - name: Test supplemental-to-model reconciliation before polling refresh
+        run: python3 scripts/test_poll_source_reconciliation.py
       - name: Collect 2026 polling data
         continue-on-error: true
         run: python3 scripts/update_polls.py
-      - name: Supplement polling with dated source links and poll-type data
+      - name: Reconcile supplemental new polls into live model inputs with source links
         continue-on-error: true
         run: python3 scripts/update_pollresults_recent.py
       # The full DOM test ran against the checked-in, reproducible snapshot
