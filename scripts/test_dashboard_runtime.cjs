@@ -11,6 +11,7 @@ const json=(f)=>JSON.parse(read(f));
 const model=json('data/polling_estimates.json');
 const primary=json('data/polls.json');
 const recent=json('data/pollresults_recent.json');
+const geographicallyScoped=json('data/geographic_poll_signals.json');
 const history=json('data/model_history.json');
 const html=read('index.html');
 const mobileHeroCSS=html.match(/\/\* Preserve the full surfer photo on narrow screens\.[\s\S]*?\*\/\s*@media\(max-width:620px\)\{[\s\S]*?background-repeat:no-repeat;/)?.[0];
@@ -42,6 +43,7 @@ w.matchMedia=()=>({matches:false,addListener(){},removeListener(){}});
 const fixtures={
  'polling_estimates.json':model,'polls.json':primary,
  'pollresults_recent.json':recent,'model_history.json':history,
+ 'geographic_poll_signals.json':geographicallyScoped,
  'race_probabilities.json':json('data/race_probabilities.json'),
  'house_history_2024_staging.json':json('data/house_history_2024_staging.json'),
  'historical_senate_poll_backtest.json':json('data/historical_senate_poll_backtest.json'),
@@ -821,6 +823,28 @@ async function settle(){
  },'');
  assert(topTime,'No recent full timestamp data');
  assert(get('#newPolls').textContent.includes('Source posted'),'Posted date labels disappeared');
+ // The University of Houston TX-09 Senate result is a local sample of a
+ // statewide contest. Capture it as an independently sourced signal while
+ // keeping the primary statewide poll averages and correlated odds untouched.
+ const scopedHome=get('#geographicPollHighlights');
+ const scopedWire=get('#geographicPollWireHighlights');
+ assert.equal(scopedHome.querySelectorAll('.geo-signal-card').length,2);
+ assert.match(scopedHome.textContent,/TX-09 only/);
+ assert.match(scopedHome.textContent,/Paxton/);
+ assert.match(scopedHome.textContent,/Trump \+20/);
+ assert.match(scopedHome.textContent,/19 points bluer/);
+ assert.match(scopedHome.textContent,/Not included in statewide model average/);
+ assert(scopedWire.querySelectorAll('.geo-signal-card').length>=1);
+ assert.equal(geographicallyScoped.signals[0].model_eligible,false);
+ const txModelBefore=w.eval("jointRaceOddsResult().records.find(r=>r.race_code==='TX-SEN').dem_beats_rep_pct");
+ w.eval("setGeographicPollSignals({schema_version:'bad',signals:[]})");
+ assert.equal(scopedHome.querySelectorAll('.geo-signal-card').length,0,
+  'Malformed scope data must disappear, not masquerade as statewide polls');
+ w.eval('setGeographicPollSignals('+JSON.stringify(geographicallyScoped)+')');
+ assert.equal(scopedHome.querySelectorAll('.geo-signal-card').length,2);
+ assert.equal(w.eval("jointRaceOddsResult().records.find(r=>r.race_code==='TX-SEN').dem_beats_rep_pct"),
+  txModelBefore,'Scoped data must never rewrite statewide Senate winning odds');
+
  // No isolated Graham promo: South Carolina belongs to the same live,
  // model-sourced Senate tide watchlist as the other pivotal races.
  assert.equal(w.document.querySelector('#tsunamiReachWatch'),null);
