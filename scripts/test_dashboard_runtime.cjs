@@ -2114,13 +2114,13 @@ async function settle(){
  assert.match(get('#changesSince').textContent,/newly indexed since opening/,
   'The unseen-count reference must not silently reset on each render');
  // A partial publication must not replace the complete previous forecast.
- const formerModelAt=w.eval('latestSenateEstimates.generated_at');
+ const formerModelAt=w.eval('jointRaceOddsResult().polling_source_generated_at');
  const primaryNext=structuredClone(primary);
  primaryNext.updated_at=new Date(Date.parse(freshPosted.updated_at)+60000).toISOString();
  primaryNext.health={...primaryNext.health,status:'ok'};
  fixtures['polls.json']=primaryNext;
  await w.eval('refreshLivePollSnapshots()');
- assert.equal(w.eval('latestSenateEstimates.generated_at'),formerModelAt);
+ assert.equal(w.eval('jointRaceOddsResult().polling_source_generated_at'),formerModelAt);
  assert(w.eval('jointForecastResult()'),
   'Temporary mismatched polling/model data must not erase good race odds');
  // Once the corresponding estimate and odds snapshot appear, the same
@@ -2134,10 +2134,10 @@ async function settle(){
  fixtures['polling_estimates.json']=estimatesNext;
  fixtures['race_probabilities.json']=oddsNext;
  await w.eval('refreshLivePollSnapshots()');
- assert.equal(w.eval('latestSenateEstimates.generated_at'),estimatesNext.generated_at,
+ assert.equal(w.eval('jointRaceOddsResult().polling_source_generated_at'),estimatesNext.generated_at,
   'Polling averages should update without reopening the dashboard');
- assert.equal(w.eval('jointBasis.senate_prior_mode'),'current_2026');
- assert.equal(w.eval('jointBasis.generated_from_sources.model_polling_at'),estimatesNext.generated_at);
+ assert.equal(w.eval('jointRaceOddsResult().senate_prior_mode'),'current_2026');
+ assert.equal(w.eval('jointRaceOddsResult().polling_source_generated_at'),estimatesNext.generated_at);
  assert.match(get('#changesSince').textContent,/newly indexed since opening/,
   'Refreshing the full forecast should preserve newly indexed survey count');
 
