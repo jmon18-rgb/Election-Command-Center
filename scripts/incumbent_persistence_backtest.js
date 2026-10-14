@@ -14,7 +14,14 @@
  const margin=(d,r)=>100*(d-r)/(d+r);
  const cap=(x,a,b)=>Math.max(a,Math.min(b,x));
  const round=x=>Math.round(x*1000)/1000;
- const map=(records,key)=>new Map(records.map(x=>[x[key],x]));
+ const map=(records,key)=>{
+  const result=new Map();
+  for(const row of records){
+   if(!row[key]||result.has(row[key]))throw Error('Duplicate historical reference '+row[key]);
+   result.set(row[key],row);
+  }
+  return result;
+ };
  function build(s){
   if(!match||s.twoCycle?.coverage?.districts_with_two_historical_major_party_shares!==191||
     s.house22?.records?.length!==435||s.house24?.records?.length!==435||
