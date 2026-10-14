@@ -27,6 +27,8 @@ assert.match(html,/<script src="\.\/scripts\/civicapi_nh_governor_adapter\.js"><
  'NH governor adapter must load before the election-night application');
 assert.match(html,/<script src="\.\/scripts\/civicapi_state_batch\.js"><\/script>/,
  'Four-state supplemental provider module must load before the application');
+assert.match(html,/<script src="\.\/scripts\/chamber_control_model\.js\?model=senate-current-2026-[a-zA-Z0-9-]+"><\/script>/,
+ 'Version-pin the Senate engine: uncached index must never reuse the obsolete 2020 candidate model');
 assert.equal(scripts.length,1,'Expected exactly one live inline application script');
 const errors=[];
 const virtualConsole=new VirtualConsole();
@@ -91,6 +93,23 @@ async function settle(){
  assert(w.SenateCalibrationAudit,'Retrospective probability-score module must be loaded before app');
  w.eval(scripts[0]);
  await settle();
+ assert.match(get('#modelEngineTag').textContent,/2026 candidate-based Senate engine · verified/);
+ assert.equal(w.eval('jointRaceOddsResult()').senate_prior_mode,'current_2026');
+ // Reproduce the actual failure behind 62.2% Minnesota: an old cached
+ // chamber_control_model.js silently ignores the new Senate options.
+ const freshEngine=w.ChamberControlModel;
+ w.ChamberControlModel={...freshEngine,prepare:()=>({
+  senate_prior_mode:'legacy_2020',senate:[]})};
+ w.eval('jointSetSources({})');
+ assert.match(get('#modelEngineTag').textContent,/Outdated model script detected/);
+ assert.equal(w.eval('jointRaceOddsResult()'),null,
+  'A legacy engine cannot surface 2020-era odds as current 2026 forecasts');
+ assert.equal(w.eval('jointForecastResult()'),null,
+  'Legacy chamber odds must fail shut instead of impersonating the new model');
+ w.ChamberControlModel=freshEngine;
+ await w.eval('jointLoadSources()');
+ assert.equal(w.eval('jointRaceOddsResult()').senate_prior_mode,'current_2026');
+ assert.match(get('#modelEngineTag').textContent,/2026 candidate-based Senate engine · verified/);
  // Race odds and chamber control derive from ONE correlated Monte Carlo.
  const oddsData=w.eval('jointRaceOddsResult()');
  assert(oddsData,'Linked joint simulation must publish race odds');
