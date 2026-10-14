@@ -47,7 +47,26 @@ assert.notEqual(legacyWithDifferentOldCandidate.senate.find(x=>x.code==='MN-SEN'
 const mn=current.senate.find(x=>x.code==='MN-SEN'),old=legacy.senate.find(x=>x.code==='MN-SEN');
 const input=source.odds.records.find(x=>x.race_code==='MN-SEN'&&x.office==='senate');
 assert(input);
-assert.equal(mn.poll_weight,.75);
+assert.equal(mn.poll_weight,.90);
+assert.equal(current.senate_current_context.model_revision,'late_2026_poll_priority_solid_unpolled_v2');
+assert.equal(current.senate_current_context.poll_weight_firms_3_plus,.90);
+assert.equal(current.senate_current_context.poll_weight_firms_2,.83);
+assert.equal(current.senate_current_context.poll_weight_firms_1,.60);
+const solidNoPoll=current.senate.filter(x=>x.public_solid_unpolled_party);
+assert.equal(solidNoPoll.length,11);
+assert.equal(solidNoPoll.filter(x=>x.public_solid_unpolled_party==='D').length,5);
+assert.equal(solidNoPoll.filter(x=>x.public_solid_unpolled_party==='R').length,6);
+assert.deepEqual(solidNoPoll.map(x=>x.code).sort(),[
+ 'CO-SEN','DE-SEN','KY-SEN','MS-SEN','NJ-SEN','OK-SEN',
+ 'OR-SEN','TN-SEN','VA-SEN','WV-SEN','WY-SEN']);
+assert(solidNoPoll.every(x=>!x.polled&&x.method.includes('public_solid_no_poll_')));
+assert(current.senate.filter(x=>x.polled).every(x=>x.public_solid_unpolled_party===null));
+const a=current.assumptions,sigmaShared=Math.hypot(
+ a.common_national_sigma,a.senate_chamber_sigma,a.state_senate_sigma);
+assert(solidNoPoll.every(x=>Math.abs(Math.hypot(x.sigma,sigmaShared)-7)<1e-9));
+assert(current.senate.filter(x=>x.polled&&
+ source.odds.records.find(y=>y.race_code===x.code)?.independent_firms>=3)
+ .every(x=>x.poll_weight===.90));
 assert(mn.candidate_specific_2026_poll_residual_points<0,
  'Recent candidate matchup is LESS Democratic than geography+national mood');
 assert(Math.abs(mn.candidate_specific_2026_poll_residual_points-

@@ -710,7 +710,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/civicapi_state_batch.js"></script>
 <script src="./scripts/election_night_nowcast.js"></script>
 <script src="./scripts/election_night_rehearsal.js"></script>
-<script src="./scripts/chamber_control_model.js?model=senate-current-2026-20261014-b"></script>
+<script src="./scripts/chamber_control_model.js?model=senate-current-2026-20261014-c"></script>
 <script src="./scripts/chamber_poll_error_audit.js"></script>
 <script src="./scripts/senate_calibration_audit.js"></script>
 <script>
@@ -2502,11 +2502,13 @@ function jointSetSources(sources){
   // Never show its odds as if they were calculated by the current engine.
   if(jointBasis?.senate_prior_mode!=='current_2026'||
      jointBasis?.senate?.length!==35||
+     jointBasis.senate_current_context?.model_revision!==
+      'late_2026_poll_priority_solid_unpolled_v2'||
      jointBasis.senate.find(x=>x.code==='MN-SEN')?.senate_prior_mode!=='current_2026'){
     throw Error('OUTDATED FORECAST ENGINE — reload the page to load the 2026 Senate model');
   }
   const tag=$('#modelEngineTag');
-  if(tag)tag.textContent='2026 candidate-based Senate engine · verified';
+  if(tag)tag.textContent='2026 candidate-based Senate engine · verified · poll-priority v2';
   jointBasisShadow=null;jointBasisPresidential=null;
   try{jointBasisShadow=window.ChamberControlModel.prepare(sources,{
    fundamentalsMode:'two_cycle_shadow',senatePriorMode:'current_2026'
