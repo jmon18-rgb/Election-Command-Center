@@ -12,8 +12,8 @@ assert.deepEqual(data.allowed_model_fit_election_years,[2022,2024]);
 assert.equal(data.prior_presidential_geography_context_year,2020);
 assert.match(data.excluded_older_house_elections,/before 2022 are deliberately excluded/);
 assert.equal(data.cohort_scores.all_modern_2022_2024.sample,148);
-assert.equal(data.cohort_scores.elected_first_time_in_2022.sample,33);
-assert.equal(data.cohort_scores.already_incumbent_on_2022_ballot.sample,115);
+assert.equal(data.cohort_scores.not_incumbent_on_2022_ballot.sample,33);
+assert.equal(data.cohort_scores.incumbent_on_2022_ballot.sample,115);
 assert.equal(data.cohort_scores.democratic_2022_winners.sample,83);
 assert.equal(data.cohort_scores.republican_2022_winners.sample,65);
 assert.equal(data.cohort_scores.presidential_lean_within_10_points.sample,32);
@@ -43,7 +43,7 @@ assert(b.state_cluster_fraction_with_positive_gain>=0&&
 assert.equal(data.baseline_loso_coefficient,.345);
 assert(data.cohort_scores.presidential_lean_within_10_points
  .cv_rmse_gain_over_zero>0);
-assert(data.cohort_scores.elected_first_time_in_2022
+assert(data.cohort_scores.not_incumbent_on_2022_ballot
  .cv_rmse_gain_over_zero>=0);
 // Explicit historical data policy: do not load or stage 2012-2018
 // congressional elections for 2026 model fitting.
