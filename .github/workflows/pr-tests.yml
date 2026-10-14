@@ -104,6 +104,11 @@ jobs:
         run: |
           node --check scripts/chamber_control_model.js
           node scripts/test_chamber_control_model.cjs
+      - name: Audit historical Senate polling misses without retroactive leakage
+        run: |
+          node --check scripts/chamber_poll_error_audit.js
+          node --check scripts/test_chamber_poll_error_audit.cjs
+          node scripts/test_chamber_poll_error_audit.cjs
       - name: Install DOM test environment
         run: npm install --no-save --no-package-lock --ignore-scripts jsdom@26.1.0
       - name: Check JavaScript syntax and exercise actual dashboard
