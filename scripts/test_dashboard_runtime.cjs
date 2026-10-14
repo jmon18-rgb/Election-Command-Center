@@ -2093,12 +2093,12 @@ async function settle(){
  // The open tab should accept a new posted survey without a page reload.
  // Hold the session's first-loaded IDs fixed for meaningful unseen counts.
  const freshPosted=structuredClone(recent);
- freshPosted.updated_at='2026-10-14T21:05:00Z';
+ freshPosted.updated_at=new Date(Math.max(Date.now(),Date.parse(recent.updated_at)+60000)).toISOString();
  freshPosted.observations.unshift({...freshPosted.observations[0],
   race_code:'NC-SEN',state:'NC',race_type:'senate',
   poll_id:'new-live-refresh-test',question_id:'new-live-refresh-question',
-  pollster:'In-Tab Fresh Survey',posted_date:'2026-10-14',
-  posted_source_datetime:'2026-10-14T21:04:00'});
+  pollster:'In-Tab Fresh Survey',posted_date:freshPosted.updated_at.slice(0,10),
+  posted_source_datetime:freshPosted.updated_at.slice(0,16)});
  fixtures['pollresults_recent.json']=freshPosted;
  await w.eval('refreshLivePollSnapshots()');
  assert.match(get('#newPolls').textContent,/In-Tab Fresh Survey/,
@@ -2108,7 +2108,7 @@ async function settle(){
  // A partial publication must not replace the complete previous forecast.
  const formerModelAt=w.eval('latestSenateEstimates.generated_at');
  const primaryNext=structuredClone(primary);
- primaryNext.updated_at='2026-10-14T21:07:00Z';
+ primaryNext.updated_at=new Date(Date.parse(freshPosted.updated_at)+60000).toISOString();
  primaryNext.health={...primaryNext.health,status:'ok'};
  fixtures['polls.json']=primaryNext;
  await w.eval('refreshLivePollSnapshots()');
@@ -2119,7 +2119,7 @@ async function settle(){
  // in-page check should refresh the model and its displayed metadata.
  const estimatesNext=structuredClone(model);
  estimatesNext.source_snapshot=primaryNext.updated_at;
- estimatesNext.generated_at='2026-10-14T21:07:05Z';
+ estimatesNext.generated_at=new Date(Date.parse(primaryNext.updated_at)+1000).toISOString();
  const oddsNext=structuredClone(fixtures['race_probabilities.json']);
  oddsNext.polling_source_generated_at=estimatesNext.generated_at;
  oddsNext.polling_source_snapshot=estimatesNext.source_snapshot;
