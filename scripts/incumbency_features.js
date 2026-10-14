@@ -58,7 +58,13 @@
    const incumbent=r.dem.incumbent_same_seat_candidate?'DEM':
      r.rep.incumbent_same_seat_candidate?'REP':null;
    if(r.incumbent_candidate_party!==incumbent||
-      r.is_open_seat_no_same_office_incumbent!==(incumbent===null))
+      r.is_open_seat_no_same_office_incumbent!==(incumbent===null)||
+      typeof r.incumbency_evidence_unresolved!=='boolean'||
+      r.incumbency_evidence_unresolved!==
+       (r.dem.incumbent_identity_conflict||r.rep.incumbent_identity_conflict||
+        !r.dem.source_candidate_identity_verified||
+        !r.rep.source_candidate_identity_verified||
+        r.source_seat_holder_party==='IND'||r.source_incumbent_party==='IND'))
     throw Error('Candidate incumbency mismatch '+code);
    if(!Array.isArray(r.administration_links))
     throw Error('Invalid administration links '+code);
@@ -125,7 +131,11 @@
   const approval=row.executive_approval_context;
   return {
    race_code:row.race_code,office:row.office,
-   open_seat:row.is_open_seat_no_same_office_incumbent,
+   // Unknown is not the same as an open seat. Never treat supplier
+   // identity conflicts or independent holders as a confirmed vacancy.
+   open_seat:row.incumbency_evidence_unresolved?null:
+    row.is_open_seat_no_same_office_incumbent,
+   open_seat_source_only_not_official:true,
    candidates,
    executive_approval:approval?{
     officeholder:approval.person,
