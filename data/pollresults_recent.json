@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-14T22:54:15.324232+00:00",
+  "updated_at": "2026-10-14T23:07:15.157154+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 763,
+      "available_in_source": 764,
       "records_examined": 300
     },
     "house": {
@@ -13,12 +13,60 @@
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 863,
+      "available_in_source": 864,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 309,
   "observations": [
+    {
+      "race_code": "MN-SEN",
+      "race_type": "senate",
+      "state": "MN",
+      "poll_id": "9849d173-7f1b-41ff-9ed9-b3e55032e195",
+      "question_id": "8f51be0a-d98d-4708-8d1d-3bb1d38ec7ef",
+      "pollster": "SurveyUSA",
+      "dem_name": "Peggy Flanagan",
+      "rep_name": "Michele Tafoya",
+      "dem": 45.0,
+      "rep": 42.0,
+      "margin": 3.0,
+      "field_end": "2026-10-12",
+      "field_start": "2026-10-09",
+      "posted_date": "2026-10-14",
+      "posted_source_datetime": "2026-10-14T18:52:00",
+      "posted_source_time": "10/14/26 18:52",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://kstp.com/kstp-news/top-news/kstp-surveyusa-poll-swing-in-senate-and-ag-races-klobuchar-up-slightly-on-demuth/",
+      "sample_population": "lv",
+      "sample_size": 718,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "MN-GOV",
+      "race_type": "governor",
+      "state": "MN",
+      "poll_id": "9849d173-7f1b-41ff-9ed9-b3e55032e195",
+      "question_id": "4c6fe5b3-d3a0-4f35-8b7b-2e3238559b14",
+      "pollster": "SurveyUSA",
+      "dem_name": "Amy Klobuchar",
+      "rep_name": "Lisa Demuth",
+      "dem": 48.0,
+      "rep": 41.0,
+      "margin": 7.0,
+      "field_end": "2026-10-12",
+      "field_start": "2026-10-09",
+      "posted_date": "2026-10-14",
+      "posted_source_datetime": "2026-10-14T18:52:00",
+      "posted_source_time": "10/14/26 18:52",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://kstp.com/kstp-news/top-news/kstp-surveyusa-poll-swing-in-senate-and-ag-races-klobuchar-up-slightly-on-demuth/",
+      "sample_population": "lv",
+      "sample_size": 718,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "GA-GOV",
       "race_type": "governor",
