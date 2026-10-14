@@ -2222,7 +2222,7 @@ const enCivicBase='https://civicapi.org/api/v2';
 let enCivicByWatch=Object.create(null),enCivicRaceIds=Object.create(null),
  enCivicErrors=Object.create(null),enCivicPending=new Set(),enCivicLastSweep=0,enCivicSweepCursor=0,
  enCivicExpanded=new Set(),enCivicSweepInFlight=false,enCivicActiveSweeps=0,
- enCivicPendingTasks=Object.create(null);
+ enCivicPendingTasks=Object.create(null),enCivicSweepTasks=new Set();
 // Only individually verified, source-ID-pinned 2026 contests use the
 // stricter shared adapter. An absent script must never fall back to the
 // looser generic source matcher.
@@ -2427,12 +2427,21 @@ async function enCivicFetchOne(item,forceAfterPending=false){
 }
 async function enRefreshCivicWatchlist(force=false){
  if(enModeYear!==2026||!enIsVisible()||
-    (enCivicActiveSweeps>0&&!force)||enCivicActiveSweeps>=2)return;
+    (enCivicActiveSweeps>0&&!force))return;
+ if(enCivicActiveSweeps>=2){
+  // Explicit refreshes queue behind at least one active sweep instead of
+  // disappearing while another page interaction is still in progress.
+  await Promise.race(enCivicSweepTasks);
+  return enRefreshCivicWatchlist(true);
+ }
  const now=Date.now(),interval=now<Date.parse('2026-11-03T05:00:00Z')?600000:60000;
  if(!force&&now-enCivicLastSweep<interval)return;
  enCivicActiveSweeps++;
  enCivicSweepInFlight=true;
  enCivicLastSweep=now;
+ let completeSweep;
+ const sweepDone=new Promise(resolve=>{completeSweep=resolve});
+ enCivicSweepTasks.add(sweepDone);
  try{
   const all=[...new Map([...enWatched,...enNationalWatchItems()]
     .filter(x=>!enSupportedStates.has(x.key.slice(0,2)))
@@ -2461,6 +2470,8 @@ async function enRefreshCivicWatchlist(force=false){
  }finally{
   enCivicActiveSweeps--;
   enCivicSweepInFlight=enCivicActiveSweeps>0;
+  enCivicSweepTasks.delete(sweepDone);
+  completeSweep();
  }
 }
 
