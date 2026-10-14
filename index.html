@@ -2380,8 +2380,39 @@ $('#enRehearsalReset').addEventListener('click',()=>{
 
 /* One JackStradamus correlated simulation for race and chamber odds.
  * Live results are source-validated separately; no external odds display. */
-let jointBasis=null,jointBasisShadow=null,jointBasisPresidential=null,jointErrorMessage=null,jointRefreshTimer=null,jointCacheKey='',
-    jointLastResult=null,jointNationalShift=0,jointErrorMultiplier=1;
+let jointBasis=null,jointBasisPublic=null,jointBasisShadow=null,jointBasisPresidential=null,
+    jointErrorMessage=null,jointRefreshTimer=null,jointCacheKey='',
+    jointLastResult=null,jointPublicResult=null,jointNationalShift=0,jointErrorMultiplier=1,
+    jointPrivateData=null,jointPrivateEnabled=true,jointPrivateHouse=false,
+    jointPrivatePollData=null;
+function jointUsesPrivateContext(){
+ return Boolean(jointPrivateEnabled&&jointPrivateData&&jointBasis?.private_imported_context);
+}
+function jointPrivateActivate(){
+ if(!jointBasisPublic)return;
+ const tag=$('#modelEngineTag');
+ try{
+  if(jointPrivateEnabled&&jointPrivateData){
+   const housePollMargins=Object.fromEntries((jointPrivatePollData?.records||[])
+    .filter(r=>r.office==='house'&&Number.isFinite(r.dem_minus_rep))
+    .map(r=>[r.race_code,r.dem_minus_rep]));
+   jointBasis=window.PrivateSenateFundamentals.apply(jointBasisPublic,jointPrivateData,
+    {includeHouse:jointPrivateHouse,housePollMargins});
+  }else jointBasis=jointBasisPublic;
+  jointCacheKey='';jointPublicResult=null;
+  if(tag)tag.textContent=jointUsesPrivateContext()?
+   'PRIVATE CSV-AUGMENTED · experimental · not FLIPR':'2026 Senate model · multi-firm error budget v3';
+  jointRender(true);
+ }catch(e){
+  jointBasis=jointBasisPublic;jointPrivateEnabled=false;
+  const toggle=$('#privateContextEnabled');if(toggle)toggle.checked=false;
+  jointCacheKey='';jointPublicResult=null;
+  if(tag)tag.textContent='2026 Senate model · private import rejected';
+  const status=$('#privateContextStatus');
+  if(status)status.textContent='Private context not applied: '+String(e.message||e);
+  jointRender(true);
+ }
+}
 const jointLabels=[
  ['blue_tsunami','BLUE TSUNAMI','D both chambers · 18+ of 20 battlegrounds','d-tide'],
  ['blue_wave','BLUE WAVE','D both chambers · below tsunami threshold','d-wave'],
@@ -2456,7 +2487,8 @@ function jointRenderCards(result){
    (sn?sn.p05+'–'+sn.p95+' Senate':'Senate unavailable')+' · '+
    info.senate_poll_count+'/35 Senate and '+info.house_poll_count+
    '/435 House races polled · Senate: 2026 named-candidate model · '+info.house_geography_changed+
-   ' House districts redrawn (high uncertainty).';
+   ' House districts redrawn (high uncertainty).'+
+   (jointUsesPrivateContext()?' · PRIVATE IMPORTED CONTEXT; NOT THE PUBLIC MODEL.':'');
  }
 }
 function jointRenderHouseShadow(base,shadow,presidentialShadow){
@@ -2513,17 +2545,32 @@ function jointRender(force=false){
  jointCacheKey=key;
  const updates=jointLiveObservations();
  try{
-  const result=window.ChamberControlModel.simulate(jointBasis,{
-   samples:3000,seed:20261103,
-   nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,
-   live:updates});
+  const args={samples:3000,seed:20261103,
+   nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,live:updates};
+  const result=window.ChamberControlModel.simulate(jointBasis,args);
   jointLastResult=result;
+  jointPublicResult=jointUsesPrivateContext()?
+   window.ChamberControlModel.simulate(jointBasisPublic,args):null;
+  const privateSummary=$('#privateContextComparison');
+  if(privateSummary){
+   if(jointPublicResult){
+    const k=jointBasis.private_imported_context;
+    privateSummary.textContent='RESEARCH ONLY: '+k.matched_senate_races+' Senate'+
+     (k.matched_house_races?' + '+k.matched_house_races+' House':'')+
+     ' races with private candidate context. D Senate control: published model '+
+     jointPublicResult.senate_dem_control_pct.toFixed(1)+'% → CSV variant '+
+     result.senate_dem_control_pct.toFixed(1)+'%. D both chambers: '+
+     jointPublicResult.blue_both_including_tsunami.toFixed(1)+'% → '+
+     result.blue_both_including_tsunami.toFixed(1)+
+     '%. Silver win odds were not fitted or used as model inputs.';
+   }else privateSummary.textContent='Public JackStradamus baseline active; import the CSVs to compare an experimental candidate-context variant.';
+  }
   jointRenderCards(result);
   renderSenateTideLine();
   renderEnForecastStrip();
   setModelRaceOddsData(jointBuildRaceOddsSnapshot(result,jointBasis));
   let shadow=null,presidentialShadow=null;
-  if(jointShadowExpanded()){
+  if(jointShadowExpanded()&&!jointUsesPrivateContext()){
    const args={samples:3000,seed:20261103,
     nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,live:updates};
    if(jointBasisShadow){
@@ -2537,7 +2584,8 @@ function jointRender(force=false){
   }
   jointRenderHouseShadow(result,shadow,presidentialShadow);
   const note=$('#jointRunStatus');
-  if(note)note.textContent=Object.keys(updates).length+
+  if(note)note.textContent=(jointUsesPrivateContext()?'PRIVATE CSV CONTEXT ACTIVE · ':'')+
+   Object.keys(updates).length+
    ' source-validated live-informed races · swing '+
    (jointNationalShift>=0?'+':'')+jointNationalShift.toFixed(1)+
    ' pts · '+(jointErrorMultiplier===1?'baseline error':
@@ -2560,9 +2608,10 @@ function jointSetSources(sources){
  try{
   if(!window.ChamberControlModel)throw Error('Model script unavailable');
   // A missing research-only input must never disable baseline odds.
-  jointBasis=window.ChamberControlModel.prepare(sources,{
+  jointBasisPublic=window.ChamberControlModel.prepare(sources,{
    senatePriorMode:'current_2026'
   });
+  jointBasis=jointBasisPublic;
   // An outdated cached JS engine silently ignores the modern options
   // parameter and returns a 2020 legacy Senate forecast (MN D 62.17%).
   // Never show its odds as if they were calculated by the current engine.
@@ -2583,8 +2632,9 @@ function jointSetSources(sources){
    fundamentalsMode:'presidential_2024_shadow',senatePriorMode:'current_2026'
   })}catch(_){}
   jointErrorMessage=null;jointCacheKey='';
-  jointRender(true);
- }catch(e){jointBasis=null;jointBasisShadow=null;jointBasisPresidential=null;
+  jointPrivatePollData=sources.odds;
+  jointPrivateActivate();
+ }catch(e){jointBasis=null;jointBasisPublic=null;jointBasisShadow=null;jointBasisPresidential=null;
   jointLastResult=null;jointCacheKey='';
   jointErrorMessage='No reliable joint odds: '+String(e.message||e);
   const tag=$('#modelEngineTag');
@@ -2635,7 +2685,7 @@ async function jointLoadSources(options={}){
    console.warn('Retaining last validated joint forecast:',e);
    return false;
   }
-  jointBasis=null;jointBasisShadow=null;jointBasisPresidential=null;
+  jointBasis=null;jointBasisPublic=null;jointBasisShadow=null;jointBasisPresidential=null;
   jointLastResult=null;jointCacheKey='';
   jointErrorMessage='No joint probability model: '+String(e.message||e);
   const tag=$('#modelEngineTag');if(tag)tag.textContent='Model input source unavailable';
