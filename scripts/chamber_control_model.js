@@ -505,7 +505,9 @@
        !item.nonrep_independent_proxy))dSenate++;
      if(explainControl)senateWinners[j-435]=dem?1:0;
     }
-    if(dem&&BATTLEGROUND_SET.has(item.code))winBattleground++;
+    if(dem&&BATTLEGROUND_SET.has(item.code)&&
+     !(isSenate&&independentCredit==='no_credit'&&
+       item.nonrep_independent_proxy))winBattleground++;
    }
    const houseDem=dHouse>=a.house_control_dem_seats;
    const senateDem=dSenate>=a.senate_control_dem_seats;
