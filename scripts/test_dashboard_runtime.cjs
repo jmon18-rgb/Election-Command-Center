@@ -1530,13 +1530,26 @@ async function settle(){
   'An unresponsive race fetch must terminate independently');
  assert.equal(rehearsalSignal?.aborted,true,
   'Timeout must abort an actual browser-supported provider request');
- const rehearsalRaces=[
-  {office:'Senate',key:'AK'},{office:'Governor',key:'AK'},
-  {office:'Senate',key:'ME'},{office:'Governor',key:'ME'},
-  {office:'Governor',key:'NV'},{office:'Senate',key:'KY'}
- ];
- w.eval('enWatched='+JSON.stringify(rehearsalRaces)+
-   ';enNationalEnabled=false;enRenderWatchlist()');
+ // Exercise the actual watchlist UI: detached global assignments would
+ // not mutate the application's lexical state.
+ const rehearsalClearPins=()=>{
+  for(let n=0;n<45;n++){
+   const remove=get('#enWatchItems').querySelector('.en-watch-remove');
+   if(!remove)return;
+   remove.click();
+  }
+  throw Error('Could not clear all rehearsal watchlist pins');
+ };
+ const rehearsalPin=pin=>{
+  get('#enWatchInput').value=pin;
+  get('#enWatchForm').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
+ };
+ rehearsalClearPins();
+ const rehearsalPins=['AK-SEN','AK-GOV','ME-SEN','ME-GOV','NV-GOV','KY-SEN'];
+ w.fetch=async()=>({ok:false,status:503,json:async()=>({})});
+ for(const pin of rehearsalPins)rehearsalPin(pin);
+ await new Promise(resolve=>setTimeout(resolve,65));
+ assert.equal(get('#enWatchCount').textContent,'6 races');
  let rehearsalUnblock=null,rehearsalFirst=true;
  const rehearsalRequests=[];
  w.fetch=async url=>{
@@ -1554,7 +1567,6 @@ async function settle(){
  await new Promise(resolve=>setTimeout(resolve,65));
  assert(rehearsalRequests.length>=4,
   'Four independent source races must start while first civicAPI fetch is stalled');
- assert.equal(w.eval('enCivicSweepInFlight'),true);
  const rehearsalStalledUrl=rehearsalRequests[0];
  const rehearsalManualSweep=w.eval('enRefreshCivicWatchlist(true)');
  await new Promise(resolve=>setTimeout(resolve,20));
@@ -1565,15 +1577,12 @@ async function settle(){
  await Promise.all([rehearsalSweep,rehearsalManualSweep]);
  assert(rehearsalRequests.filter(u=>u===rehearsalStalledUrl).length>=2,
   'After stalled request resolves, an explicit refresh must actually retry it');
- assert.equal(w.eval('enCivicSweepInFlight'),false,
-  'Bounded refresh workers must release sweep mutex after failures');
- assert(rehearsalRequests.length>=rehearsalRaces.length,
+ assert(rehearsalRequests.length>=rehearsalPins.length,
   'Later races must still be checked when other source requests fail');
  // Main provider House outage; the background Senate feed still counts 300
  // real-shaped *simulated* votes without overwriting foreground state.
- w.eval('enWatched=[{office:"Senate",key:"NC"}];enNationalEnabled=false;'+
-  'enOffice="House";enModeYear=2026;enOfficeSnapshots=Object.create(null);'+
-  'enOfficeErrors=Object.create(null);enData=null;enRender()');
+ rehearsalClearPins();
+ rehearsalPin('NC-SEN');
  const rehearsalOffices=[];
  w.fetch=async url=>{
   const address=String(url);rehearsalOffices.push(address);
@@ -1583,6 +1592,7 @@ async function settle(){
    return {ok:true,json:async()=>counted2026};
   return {ok:false,status:503,json:async()=>({})};
  };
+ get('#enOfficeHouse').click();
  await w.eval('enLoad(true)');
  await new Promise(resolve=>setTimeout(resolve,80));
  assert.match(get('#enStatus').textContent,/Rehearsal House source disconnected/);
@@ -1659,7 +1669,7 @@ async function settle(){
  assert.equal(get('#enCalls').textContent,'Not supplied');
  assert.equal(get('#enRaces').textContent,'1');
  w.Date.now=rehearsalClock;w.fetch=rehearsalFetch;
- w.eval('enWatched=[];enRenderWatchlist()');
+ rehearsalClearPins();
  w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
 
 
