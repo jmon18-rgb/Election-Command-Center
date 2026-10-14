@@ -54,7 +54,6 @@ class Test2018Extension(unittest.TestCase):
         self.assertFalse(report["can_calibrate_live_2026_model"])
         self.assertFalse(report["may_change_production_candidate_priors"])
         self.assertEqual(len(report["horizons"]),len(base.HORIZONS))
-        self.assertEqual(set(report["records"]["20"]),set()) if False else None
         self.assertEqual({r["state"] for r in report["records"]["20"]},{"FL","AZ","TX"})
         self.assertEqual(report["records"]["20"][0]["pollster_count"],2)
         self.assertEqual(report["records"]["20"][0]["cutoff"],"2018-10-17")
@@ -85,8 +84,7 @@ class Test2018Extension(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"incomplete"):
             ext.eligible_results(corrupted)
         with self.assertRaisesRegex(ValueError,"source hash pin"):
-            ext.source_digest(b"fake source") if False else ext.download(
-             opener=lambda *a,**kw: FakeDownload(b"some fake data" * 400))
+            ext.download(opener=lambda *a,**kw: FakeDownload(b"some fake data" * 400))
     def test_2018_report_and_v4_inputs_both_exist(self):
         saved=json.loads(ext.OUT.read_text())
         self.assertEqual(saved["cycle"],2018)
