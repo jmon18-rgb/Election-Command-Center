@@ -169,6 +169,12 @@ jobs:
           node scripts/test_incumbency_features.cjs
           node scripts/audit_candidate_fundamentals.cjs --json > /tmp/candidate-fundamentals-audit.json
           node -e "const d=require('/tmp/candidate-fundamentals-audit.json');if(d.coverage.total_races!==506 || d.coverage.senate!==35 || d.coverage.governor!==36 || d.minnesota.senate.executive_approval.net_approval_points!==-14 || d.minnesota.approval_transfer_hypothesis.status!=='COUNTERFACTUAL_UNCALIBRATED_NOT_APPLIED_TO_POLLS_OR_ODDS')process.exit(1)"
+      - name: Validate same-draw turnout-weighted House vote to seat diagnostics
+        run: |
+          node --check scripts/audit_joint_vote_seats.cjs
+          node scripts/audit_joint_vote_seats.cjs --json > /tmp/vote-seat-diagnostic.json
+          node -e "const x=require('/tmp/vote-seat-diagnostic.json');if(x.status!=='EXPERIMENTAL_VOTE_SEAT_SAME_DRAW_REFERENCE_ONLY'||x.bins.reduce((a,b)=>a+b.sample_count,0)!==x.samples||x.district_geography_year!==2026)process.exit(1)"
+          node scripts/audit_joint_vote_seats.cjs
       - name: Audit House 2024 uncontested vote reference and 2026 geography seat response
         run: |
           node --check scripts/audit_house_seat_vote_reference.cjs
