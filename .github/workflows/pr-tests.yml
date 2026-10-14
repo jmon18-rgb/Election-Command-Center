@@ -114,6 +114,13 @@ jobs:
           node --check scripts/forecast_optimism_audit.cjs
           node scripts/forecast_optimism_audit.cjs --json > /tmp/forecast-optimism-audit.json
           node -e "const x=require('/tmp/forecast-optimism-audit.json'); if(x.scenarios.length!==7 || x.status!=='UNCALIBRATED_SENSITIVITY_NOT_ELECTION_PREDICTIONS') process.exit(1)"
+      - name: Validate candidate incumbency and governor-approval context
+        run: |
+          node --check scripts/incumbency_features.js
+          node --check scripts/test_incumbency_features.cjs
+          node scripts/test_incumbency_features.cjs
+          node scripts/audit_candidate_fundamentals.cjs --json > /tmp/candidate-fundamentals-audit.json
+          node -e "const d=require('/tmp/candidate-fundamentals-audit.json');if(d.coverage.total_races!==506 || d.coverage.senate!==35 || d.coverage.governor!==36 || d.minnesota.senate.executive_approval.net_approval_points!==-14 || d.minnesota.approval_transfer_hypothesis.status!=='COUNTERFACTUAL_UNCALIBRATED_NOT_APPLIED_TO_POLLS_OR_ODDS')process.exit(1)"
       - name: Audit alternate two-cycle House fundamentals without promotion
         run: |
           node --check scripts/audit_two_cycle_fundamentals.cjs
