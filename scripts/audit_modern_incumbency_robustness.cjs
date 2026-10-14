@@ -90,14 +90,14 @@ function analyze(){
    (h.recorded_dem_votes+h.recorded_rep_votes);
   return {...r,party,candidate_name:firstname,
    first_election_winner_2022:freshman,
-   2020_presidential_margin_d_minus_r:presLean,
+   presidential_2020_margin_d_minus_r:presLean,
    previous_house_margin_d_minus_r:previousHouseMargin};
  });
  const cohorts={
   all_modern_2022_2024:rows,
-  presidential_lean_within_10_points:rows.filter(x=>Math.abs(x['2020_presidential_margin_d_minus_r'])<=10),
-  presidential_lean_within_20_points:rows.filter(x=>Math.abs(x['2020_presidential_margin_d_minus_r'])<=20),
-  presidential_lean_over_20_points:rows.filter(x=>Math.abs(x['2020_presidential_margin_d_minus_r'])>20),
+  presidential_lean_within_10_points:rows.filter(x=>Math.abs(x.presidential_2020_margin_d_minus_r)<=10),
+  presidential_lean_within_20_points:rows.filter(x=>Math.abs(x.presidential_2020_margin_d_minus_r)<=20),
+  presidential_lean_over_20_points:rows.filter(x=>Math.abs(x.presidential_2020_margin_d_minus_r)>20),
   previous_house_margin_within_10_points:rows.filter(x=>Math.abs(x.previous_house_margin_d_minus_r)<=10),
   elected_first_time_in_2022:rows.filter(x=>x.first_election_winner_2022),
   already_incumbent_on_2022_ballot:rows.filter(x=>!x.first_election_winner_2022),
