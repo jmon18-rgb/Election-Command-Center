@@ -574,6 +574,22 @@ function senatePollingErrorBudget(info){
   if(!finite(nationalShift)||Math.abs(nationalShift)>7||
      !finite(errorMultiplier)||errorMultiplier<.6||errorMultiplier>1.7)
     throw Error('Unsupported forecast sensitivity');
+  // Research-only covariance reallocation. It preserves each Senate
+  // race's total error variance and its mean while changing how much of that
+  // error is shared by OTHER Senate races. It must NEVER change the default
+  // run, national-swing sensitivity, or House/governor race marginals.
+  // Too few historical cycles exist to certify these parameters for live use.
+  const corr=options.senateCorrelationResearch||null;
+  if(corr!==null&&(typeof corr!=='object'||Array.isArray(corr)||
+      !finite(corr.nationalScale)||!finite(corr.chamberScale)||
+      corr.nationalScale<.5||corr.nationalScale>1||
+      corr.chamberScale<.5||corr.chamberScale>1))
+   throw Error('Unsupported research-only Senate correlation reallocation');
+  const nationalScale=corr?.nationalScale??1,chamberScale=corr?.chamberScale??1;
+  const senateNationalLocalVar=basis.assumptions.common_national_sigma**2*
+    (1-nationalScale**2);
+  const senateChamberLocalVar=basis.assumptions.senate_chamber_sigma**2*
+    (1-chamberScale**2);
   const polls=basis.house.concat(basis.senate,basis.governors);
   // Optional attribution consumes the EXACT SAME joint draws and never
   // changes headline probabilities unless explicitly requested.
@@ -663,9 +679,14 @@ function senatePollingErrorBudget(info){
       (isHouse?a.state_house_sigma+
        (item.method.includes('redrawn_')?a.redrawn_state_additional_sigma:0):
        isSenate?a.state_senate_sigma:a.state_governor_sigma);
-    const officeShock=isHouse?houseShock:isSenate?senateShock:govShock;
-    const finalMargin=mean+national+officeShock+stateShock+
-      normal(rands)*sigma*errorMultiplier;
+    const officeShock=isHouse?houseShock:isSenate?
+      senateShock*chamberScale:govShock;
+    const effectiveNational=isSenate?
+      nationalShift+(national-nationalShift)*nationalScale:national;
+    const effectiveSigma=isSenate&&corr?
+      Math.sqrt(sigma*sigma+senateNationalLocalVar+senateChamberLocalVar):sigma;
+    const finalMargin=mean+effectiveNational+officeShock+stateShock+
+      normal(rands)*effectiveSigma*errorMultiplier;
     const dem=finalMargin>0;
     if(dem)raceDemWins[j]++;
     if(isHouse){
@@ -747,8 +768,17 @@ function senatePollingErrorBudget(info){
     isSenate?a.state_senate_sigma:a.state_governor_sigma;
    const officeShared=isHouse?a.house_chamber_sigma:
     isSenate?a.senate_chamber_sigma:a.governor_chamber_sigma;
-   const totalSigma=Math.hypot(item.sigma,a.common_national_sigma,
-    officeShared,localShared)*errorMultiplier;
+   // The research distribution reallocates shared Senate variance to
+   // independent Senate local error, so one-race uncertainty is unchanged.
+   const reportedLocalSigma=isSenate&&corr?
+    Math.sqrt(item.sigma**2+senateNationalLocalVar+senateChamberLocalVar):
+    item.sigma;
+   const reportedNationalSigma=isSenate?
+    a.common_national_sigma*nationalScale:a.common_national_sigma;
+   const reportedOfficeSigma=isSenate?
+    officeShared*chamberScale:officeShared;
+   const totalSigma=Math.hypot(reportedLocalSigma,reportedNationalSigma,
+    reportedOfficeSigma,localShared)*errorMultiplier;
    const wins=raceDemWins[index],demPct=pct(wins);
    return {race_code:item.code,office,model_dem_margin_points:item.mean,
     polled:item.polled,poll_weight:item.poll_weight??null,
@@ -835,6 +865,14 @@ function senatePollingErrorBudget(info){
   }:null;
   return {schema_version:VERSION,status:'EXPERIMENTAL_UNCALIBRATED',
    samples,seed,senate_dem_holdovers:holdovers,national_shift_points:nationalShift,error_multiplier:errorMultiplier,
+   ...(corr?{senate_correlation_research:{
+    model:'VARIANCE_CONSERVING_SCENARIO_NOT_BACKTESTED_PARAMETER',
+    national_scale:nationalScale,senate_chamber_scale:chamberScale,
+    senate_common_shared_sigma_points:+Math.hypot(
+     a.common_national_sigma*nationalScale,
+     a.senate_chamber_sigma*chamberScale).toFixed(3),
+    unmodified_total_sigma_each_senate_race:true,
+    house_governor_shared_shocks_unchanged:true}}:{}),
    ...(independentCredit!=='dem_proxy'?{senate_independent_credit_mode:independentCredit}:{}),
    probabilities:probs,counts:outcomes,means,
    race_probabilities,
