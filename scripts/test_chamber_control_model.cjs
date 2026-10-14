@@ -49,6 +49,60 @@ assert([...basis.house,...basis.senate].every(x=>
  x.disagreement_extra_sigma_points>=0 &&
  x.disagreement_extra_sigma_points<=6));
 
+// Geography-gated two-cycle House fundamentals are an explicit SHADOW,
+// never silently used by the deployed 2024-only baseline.
+const pairedContext=load('house_two_cycle_context');
+const pairedSources={...sources,twoCycle:pairedContext};
+const shadow=model.prepare(pairedSources,{fundamentalsMode:'two_cycle_shadow'});
+assert.equal(basis.fundamentals_mode,'2024_only');
+assert.equal(shadow.fundamentals_mode,'two_cycle_shadow');
+assert.equal(shadow.fundamentals_shadow.paired_districts,191);
+assert.equal(shadow.fundamentals_shadow.status,
+ 'NOT_BACKTESTED_DO_NOT_PROMOTE_AUTOMATICALLY');
+assert(Math.abs(shadow.fundamentals_shadow.median_paired_2022_to_2024_swing_points)<5);
+const baseHouse=new Map(basis.house.map(r=>[r.code,r]));
+const shadowHouse=new Map(shadow.house.map(r=>[r.code,r]));
+const comparable=new Set(pairedContext.rows.filter(r=>
+ r.can_compare_historic_two_party_votes).map(r=>r.race_code_2026));
+assert.equal(comparable.size,191);
+let modified=0;
+for(const [code,item] of shadowHouse){
+ const original=baseHouse.get(code);
+ assert(original);
+ const adjustment=item.two_cycle_adjustment_points;
+ if(adjustment!==0)modified++;
+ assert(Math.abs(adjustment)<=3.001,'Bound shadow historical residual');
+ if(!comparable.has(code)){
+  assert.equal(adjustment,0,'Never cross 2022/2024 map or ballot gaps');
+  assert.equal(item.mean,original.mean,'Uncomparable seat prior unchanged');
+ }else{
+  const retained=item.poll_weight===null?1:1-item.poll_weight;
+  if(Math.abs(original.mean)<55)
+   assert(Math.abs((item.mean-original.mean)-retained*adjustment)<.0011,
+    'A paired 2022 residual must be shrunk by the existing 2026 poll blend');
+ }
+}
+assert(modified>150);
+assert.deepEqual(shadow.senate,basis.senate,'House alternate must not alter Senate');
+assert.deepEqual(shadow.governors,basis.governors,'House alternate must not alter Governors');
+assert.deepEqual(shadow.redrawn_state_distributions,basis.redrawn_state_distributions,
+ 'No 2022 votes may be assigned by 2026 redrawn district number');
+assert.deepEqual(model.prepare(pairedSources),basis,
+ 'Providing experimental source alone must never change live baseline');
+assert.throws(()=>model.prepare(sources,{fundamentalsMode:'two_cycle_shadow'}),
+ /Missing validated/);
+assert.throws(()=>model.prepare(pairedSources,{fundamentalsMode:'unsanctioned'}),
+ /Unsupported House fundamentals/);
+const alteredPairs={...pairedContext,rows:pairedContext.rows.map(r=>
+ r.race_code_2026==='AK-01'?{...r,recorded_dem_share_2024_two_party:.8}:r)};
+assert.throws(()=>model.prepare({...pairedSources,twoCycle:alteredPairs},
+ {fundamentalsMode:'two_cycle_shadow'}),/2024 source disagreement/);
+const swappedPairs={...pairedContext,rows:[...pairedContext.rows]};
+swappedPairs.rows[1]=swappedPairs.rows[0];
+assert.throws(()=>model.prepare({...pairedSources,twoCycle:swappedPairs},
+ {fundamentalsMode:'two_cycle_shadow'}),/Duplicate two-cycle district/);
+const shadowResult=model.simulate(shadow,{samples:1200,seed:20261103});
+assert(Number.isFinite(shadowResult.blue_both_including_tsunami));
 const specialSeats=basis.senate.filter(x=>x.special);
 assert.equal(specialSeats.length,2);
 assert(specialSeats.every(x=>!x.method.includes('historical_2020_senate')),

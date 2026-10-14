@@ -169,6 +169,15 @@ async function settle(){
  researchDrawer.open=true;
  assert.equal(researchDrawer.open,true);
  researchDrawer.open=false;
+ assert.match(get('#jointHomeShadow').textContent,/191\/435 House districts/);
+ assert.match(get('#jointHomeShadow').textContent,/NOT independently backtested/);
+ assert.match(get('#jointNightShadow').textContent,/research only|Research only/i);
+ const shadowDisclosure=get('#jointHomeShadow').parentElement;
+ shadowDisclosure.open=true;
+ w.eval('jointRender(true)');
+ assert.match(get('#jointHomeShadow').textContent,/for both chambers vs/);
+ assert.match(get('#jointHomeShadow').textContent,/does not replace headline odds/);
+ shadowDisclosure.open=false;
  const twoCycle=json('data/house_two_cycle_context.json');
  assert.equal(twoCycle.coverage.districts_with_two_historical_major_party_shares,191);
  const points=w.eval('historicalHouseSwingSample('+JSON.stringify(twoCycle)+')');
@@ -1661,7 +1670,11 @@ async function settle(){
  assert.equal(w.eval('enIsVisible()'),true,'Election Night tab must be active');
  let rehearsalSignal;
  w.fetch=async(_url,options)=>{
-  rehearsalSignal=options?.signal;
+  // Other asynchronous watchlist refreshes may also call the fake fetch.
+  // Capture only the specific request under timeout test, not the last
+  // unrelated fetch to arrive while that timer is pending.
+  if(String(_url)==='https://civicapi.org/api/v2/race/86916')
+   rehearsalSignal=options?.signal;
   return new Promise(()=>{}); // deliberate hung browser request
  };
  await assert.rejects(
