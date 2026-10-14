@@ -234,6 +234,11 @@ jobs:
           node --check scripts/senate_calibration_audit.js
           node scripts/test_senate_calibration_audit.cjs
           node scripts/test_chamber_control_model.cjs
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
       - name: Install DOM test environment
         run: npm install --no-save --no-package-lock --ignore-scripts jsdom@26.1.0
       - name: Check JavaScript syntax and exercise actual dashboard
