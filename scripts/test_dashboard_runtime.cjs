@@ -57,13 +57,13 @@ w.fetch=async (url)=>{
 w.console.error=(...parts)=>errors.push(parts.map(String).join(' '));
 function get(selector){const el=w.document.querySelector(selector);assert(el,'Missing '+selector);return el}
 async function settle(){
- for(let n=0;n<60;n++){
+ for(let n=0;n<150;n++){
   await new Promise(resolve=>setTimeout(resolve,20));
   if(get('#modelBoard').querySelectorAll('.model-race-row').length&&
-      get('#scenarioBands').querySelectorAll('.scenario-tile').length===4&&
+      w.eval('jointForecastResult()')&&w.eval('modelRaceOddsData')&&
       get('#newPolls').querySelectorAll('.item').length)return;
  }
- throw Error('Timed out waiting for model and dynamic section rendering');
+ throw Error('Timed out waiting for linked joint odds and model dashboard rendering');
 }
 (async()=>{
  w.eval(read('scripts/civicapi_nh_adapter.js'));
@@ -749,8 +749,8 @@ async function settle(){
      'Insight opened a different survey instead of the clicked '+identifier+' '+sourceFirm+' poll');
  }
  // DDHQ forecast removed; each race marginal comes from the joint simulation.
- assert.equal(get('#scenarioBands'),null);
- assert.equal(get('#scenarioCenter'),null);
+ assert.equal(w.document.querySelector('#scenarioBands'),null);
+ assert.equal(w.document.querySelector('#scenarioCenter'),null);
  assert.match(get('#enForecastOdds').textContent,/Our model · D both/);
  assert.match(get('#enForecastOdds').textContent,/linked simulations/);
  const jointState=w.eval('jointForecastResult()');
