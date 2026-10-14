@@ -292,6 +292,8 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .model-odds-numbers .model-odds-col{display:flex;flex-direction:column;gap:3px}
 .model-odds-col strong{font-size:27px;line-height:1.12;letter-spacing:-.03em}
 .model-odds-col span{font-size:10px;font-weight:700;color:#a2b4c9}
+.party-i{color:#e0bb67!important}
+.model-odds-bar.independent>div{background:#d5b669}
 .model-odds-col:last-child{text-align:right}
 .model-odds-bar{height:8px;background:#ad555d;border-radius:12px;overflow:hidden}
 .model-odds-bar>div{height:100%;background:#659bd5;transition:width .2s}
@@ -338,13 +340,14 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-rehearsal-nav{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
 .en-rehearsal-nav button:disabled{opacity:.42;cursor:not-allowed}
 .en-rehearsal-panel .en-live-race{background:#2a322f}
-/* Mutually exclusive four-endings probability dashboard. */
+/* Four headline endings plus an exclusive independent Senate pivot outcome. */
 .joint-panel{padding:16px 18px;margin:13px 0 17px;border:1px solid #3e5979;border-radius:13px;background:linear-gradient(150deg,#172a41,#111e31)}
 .joint-title{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
 .joint-title h3{font-size:19px;letter-spacing:-.025em;margin:4px 0 0}
 .joint-tag{font-size:10px;letter-spacing:.04em;font-weight:700;color:#e5bd85}
 .joint-summary{font-size:12px;color:#c9d9ed;line-height:1.6;margin:10px 0}
-.joint-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.joint-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
+.joint-cell.indy-pivot .joint-value{color:#e9c57d}
 .joint-cell{padding:13px 11px;border:1px solid #405872;border-radius:8px;background:#1d3047}
 .joint-cell strong{display:block;font-size:11px;letter-spacing:.075em;white-space:nowrap}
 .joint-cell .joint-value{font-size:31px;font-variant-numeric:tabular-nums;letter-spacing:-.045em;margin:7px 0;color:#e5f2ff}
@@ -383,9 +386,9 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <div class="sectionhead"><h2>What's new</h2><span class="tiny" id="freshness">Checking latest update</span></div>
 <div class="grid"><div class="card seven"><div class="row"><span class="label">New polls</span><span class="tiny" id="changesSince">Checking newly observed surveys</span></div><div id="newPolls" class="empty">Checking recent poll postings…</div><button class="textlink" type="button" data-jump="wire">Open full Poll Wire →</button></div>
 <div class="card five"><div class="row"><span class="label">Election developments</span><span class="tag">NEWS LEADS</span></div><div id="updates" class="empty">Loading recent election reporting.</div><button class="textlink" type="button" data-jump="integrity">Bullshittery Index →</button></div></div>
-<div class="sectionhead"><h2>Senate polling estimates</h2><span class="tiny">Observed polls · data quality</span></div><div class="card"><div id="senateEstimateCards" class="racecards racecards-wide"><div class="empty">Awaiting first automated model update.</div></div><p class="methodline">Named-candidate polls, newest wave per firm · 21-day half-life · historical pollster quality · diminishing sample-size weight · independently conducted polls 1.0×, qualifying sponsored polls 0.5× regardless of party. <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/POLLING_MODEL.md" target="_blank" rel="noopener noreferrer">Full methodology ↗</a> Polling disagreement is descriptive, and unrelated to election-integrity scores.</p></div><div class="sectionhead"><h2>The four endings</h2><span class="tiny">JackStradamus · one correlated model for races and chamber control</span></div>
-<div class="joint-panel" id="jointHomePanel" aria-label="JackStradamus four outcome probability model">
- <div class="joint-title"><div><span class="label">JACKSTRADAMUS · JOINT CHAMBER BETA</span><h3>Four endings. Our probabilities.</h3></div><span class="joint-tag">EXPERIMENTAL · ASSUMPTION-BASED</span></div>
+<div class="sectionhead"><h2>Senate polling estimates</h2><span class="tiny">Observed polls · data quality</span></div><div class="card"><div id="senateEstimateCards" class="racecards racecards-wide"><div class="empty">Awaiting first automated model update.</div></div><p class="methodline">Named-candidate polls, newest wave per firm · 21-day half-life · historical pollster quality · diminishing sample-size weight · independently conducted polls 1.0×, qualifying sponsored polls 0.5× regardless of party. <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/POLLING_MODEL.md" target="_blank" rel="noopener noreferrer">Full methodology ↗</a> Polling disagreement is descriptive, and unrelated to election-integrity scores.</p></div><div class="sectionhead"><h2>The four endings + independent wildcard</h2><span class="tiny">JackStradamus · one correlated model for races and chamber control</span></div>
+<div class="joint-panel" id="jointHomePanel" aria-label="JackStradamus five mutually exclusive election outcomes including independent Senate control">
+ <div class="joint-title"><div><span class="label">JACKSTRADAMUS · JOINT CHAMBER BETA</span><h3>Four endings. One independent wildcard.</h3></div><span class="joint-tag">EXPERIMENTAL · ASSUMPTION-BASED</span></div>
  <p class="joint-summary" id="jointHomeSummary">Building the 435-House, 35-Senate model from published polling and election history…</p>
  <div class="joint-grid" id="jointHomeCards"><p class="joint-note">Waiting for complete model inputs…</p></div>
  <details class="joint-audit"><summary>Compare House fundamentals · historical vs presidential</summary><p id="jointHomeShadow" class="joint-note">Checking historically comparable House districts…</p></details>
@@ -552,7 +555,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 </label>
 <button id="enRefresh" type="button" class="chip">Refresh now</button><span id="enConnection" class="en-connection" role="status">Connecting…</span>
 </div>
-<section class="joint-panel joint-night" id="jointNightPanel" aria-label="Live-informed four-ending election probabilities">
+<section class="joint-panel joint-night" id="jointNightPanel" aria-label="Live-informed election probabilities with independent Senate wildcard">
  <div class="joint-title"><div><span class="label">JACKSTRADAMUS · JOINT CONTROL</span><h3>Where the night is headed</h3></div><span class="joint-tag">EXPERIMENTAL · NO CALLS</span></div>
  <p id="jointNightSummary" class="joint-summary">Preparing the joint House and Senate probability model…</p>
  <div id="jointNightCards" class="joint-grid"><p class="joint-note">Loading seat-level priors…</p></div>
@@ -892,10 +895,16 @@ function renderModelOverview(data){
    const d=probability.dem_beats_rep_pct;
    const odds=elt('div','model-race-win-probabilities');
    const nice=n=>n>99.5?'>99.5%':n<.5?'<0.5%':n.toFixed(1)+'%';
-   odds.append(elt('strong','party-d','D '+nice(d)),
+   const firstParty=probability.first_candidate_party||'D';
+   odds.append(elt('strong',firstParty==='I'?'party-i':'party-d',
+     firstParty+' '+nice(d)),
      elt('strong','party-r','R '+nice(100-d)));
-   margin.append(odds,elt('small','','Poll '+marginText(race.dem_minus_rep)+
-     ' · assumed error ±'+probability.sigma_points.toFixed(1)+' pts'));
+   const caution=probability.incomplete_ballot_caveat?
+     ' · MULTI-CANDIDATE PROXY':'';
+   margin.append(odds,elt('small','',
+     'Poll '+marginText(race.dem_minus_rep)+
+     ' · forecast '+marginText(probability.model_dem_margin_points)+
+     ' · σ '+probability.sigma_points.toFixed(1)+' pts'+caution));
    row.title='Experimental two-party win probabilities, conditional on assumed polling error. Not an official call.';
   }else{
    margin.append(elt('strong',marginColor(race.dem_minus_rep),marginText(race.dem_minus_rep)),
@@ -1093,6 +1102,10 @@ function modelOddsValidate(data,source){
   const poll=sourceGroups[r.office].find(x=>x.race_code===r.race_code&&
    ['single_poll','multi_poll'].includes(x.status));
   if(!poll||poll.latest_poll_end!==r.latest_poll_end||
+   (r.office==='senate'&&
+    (!['D','I'].includes(r.first_candidate_party)||
+     (['NE-SEN','ID-SEN','SD-SEN'].includes(r.race_code)?
+      r.first_candidate_party!=='I':r.first_candidate_party!=='D')))||
    Math.abs(poll.dem_minus_rep-r.dem_minus_rep)>.011||
    r.contributing_firms!==poll.contributing_pollsters||
    !Number.isFinite(r.model_dem_margin_points)||
@@ -1150,14 +1163,23 @@ function renderModelRaceOdds(estimate){
   return;
  }
  const p=item.dem_beats_rep_pct;
+ const firstParty=item.first_candidate_party||'D';
  const format=n=>n>=99.5?'>99%':n<=.5?'<1%':Math.round(n)+'%';
  const dem=elt('div','model-odds-col');
- dem.append(elt('span','','DEMOCRATIC'),elt('strong','party-d',format(p)));
+ dem.append(elt('span','',firstParty==='I'?'INDEPENDENT':'DEMOCRATIC'),
+  elt('strong',firstParty==='I'?'party-i':'party-d',format(p)));
  const rep=elt('div','model-odds-col');
  rep.append(elt('span','','REPUBLICAN'),elt('strong','party-r',format(100-p)));
  host.append(dem,rep);
+ bar.classList.toggle('independent',firstParty==='I');
  const fill=elt('div');fill.style.width=Math.max(0,Math.min(100,p))+'%';bar.append(fill);
- note.textContent='Only the JOINT JackStradamus odds are displayed (not the older standalone polling odds). Poll average '+
+ note.textContent=(firstParty==='I'?
+   'Independent challenger is NOT a Democratic caucus seat. ':
+   'Only the JOINT JackStradamus odds are displayed (not the older standalone polling odds). ')+
+   (item.incomplete_ballot_caveat?
+    'Incomplete ballot model: '+item.incomplete_ballot_caveat+'. ':
+    '')+
+   'Poll average '+
    marginText(item.dem_minus_rep)+' · modeled margin '+
    marginText(item.model_dem_margin_points)+' · total modeled race uncertainty '+
    item.sigma_points.toFixed(1)+' points (national + chamber + state + local). '+
@@ -1916,7 +1938,8 @@ function renderEnForecastStrip(){
  const result=jointLastResult;
  box.textContent=result?
   'Our model · D both '+result.blue_both_including_tsunami.toFixed(1)+'% · '+
-  'Split '+result.probabilities.shrug.toFixed(1)+'% · R both '+
+  'Split '+result.probabilities.shrug.toFixed(1)+'% · Independent pivot '+
+  result.probabilities.independent_pivot.toFixed(1)+'% · R both '+
   result.probabilities.red_dawn.toFixed(1)+'% · '+
   result.samples.toLocaleString('en-US')+' linked simulations':
   'Waiting for JackStradamus joint model…';
@@ -2116,15 +2139,19 @@ function enRenderLiveDesk(){
    (item.key.endsWith('-special')?' · SPECIAL':'')),
    elt('span','',result.mode==='live_informed'?'RETURNS INFORMED':'MODEL PRIOR'));
   const odds=elt('div','en-live-prob');
-  odds.append(elt('strong','party-d','D '+fmt(result.demPct)),
+  const firstParty=record.first_candidate_party==='I'?'I':'D';
+  odds.append(elt('strong',firstParty==='I'?'party-i':'party-d',
+    firstParty+' '+fmt(result.demPct)),
     elt('strong','party-r','R '+fmt(result.repPct)));
   card.append(header,odds);
   if(result.mode==='live_informed')
    card.append(elt('small','',result.source+' · '+result.reporting.toFixed(0)+
-    '% precincts · current D'+(result.reportedMargin>=0?'+':'')+
-    result.reportedMargin.toFixed(1)+' two-party margin · D '+fmt(result.sensitivityLow)+
+    '% precincts · current '+firstParty+
+    (result.reportedMargin>=0?'+':'')+
+    result.reportedMargin.toFixed(1)+' two-party margin · '+firstParty+' '+fmt(result.sensitivityLow)+
     '–'+fmt(result.sensitivityHigh)+' across error assumptions'));
-  else card.append(elt('small','','Polling D'+(record.dem_minus_rep>=0?'+':'')+
+  else card.append(elt('small','','Polling '+firstParty+
+    (record.dem_minus_rep>=0?'+':'')+
     record.dem_minus_rep.toFixed(1)+' · modeled total error σ '+
     record.sigma_points.toFixed(1)+' pts · no eligible partial count'));
   host.append(card);
@@ -2171,9 +2198,11 @@ function enRenderRehearsal(){
   card.append(header);
   if(!row.result){card.append(elt('small','','No published poll prior'));rows.append(card);continue}
   const odds=elt('div','en-live-prob');
-  odds.append(elt('strong','party-d','D '+pct(row.result.demPct)),
+  const firstParty=['NE-SEN','ID-SEN','SD-SEN'].includes(row.code)?'I':'D';
+  odds.append(elt('strong',firstParty==='I'?'party-i':'party-d',
+   firstParty+' '+pct(row.result.demPct)),
    elt('strong','party-r','R '+pct(row.result.repPct)));
-  card.append(odds,elt('small','','Start: D '+pct(row.result.priorDemPct)+
+  card.append(odds,elt('small','','Start: '+firstParty+' '+pct(row.result.priorDemPct)+
    ' · simulated '+row.simulatedVotes.toLocaleString('en-US')+' ballots · '+
    row.precinctPct+'% fictional precincts'));
   rows.append(card);
@@ -2204,7 +2233,8 @@ const jointLabels=[
  ['blue_tsunami','BLUE TSUNAMI','D both chambers · 18+ of 20 battlegrounds','d-tide'],
  ['blue_wave','BLUE WAVE','D both chambers · below tsunami threshold','d-wave'],
  ['shrug','SHRUG','One chamber per party','split'],
- ['red_dawn','RED DAWN','R controls both chambers','r-dawn']
+ ['red_dawn','RED DAWN','R controls both chambers','r-dawn'],
+ ['independent_pivot','INDY WILDCARD','Neither Senate caucus holds a majority','indy-pivot']
 ];
 function jointSourceItem(item){
  const key=item.code,itemOffice=key.endsWith('-SEN')?'Senate':'House';
@@ -2253,7 +2283,7 @@ function jointRenderCards(result){
    continue;
   }
   const count=Object.keys(result.counts).length;
-  if(count!==4){status.textContent='The four-ending model was incomplete.';continue}
+  if(count!==5){status.textContent='The five-outcome model was incomplete.';continue}
   for(const [key,label,detail,kind] of jointLabels){
    const cell=elt('div','joint-cell '+kind);
    cell.append(elt('strong','',label),
@@ -2274,7 +2304,9 @@ function jointRenderCards(result){
    (sn?sn.p05+'–'+sn.p95+' Senate':'Senate unavailable')+' · '+
    info.senate_poll_count+'/35 Senate and '+info.house_poll_count+
    '/435 House races polled · '+info.house_geography_changed+
-   ' House districts redrawn (high uncertainty).';
+   ' House districts redrawn (high uncertainty). '+
+   'Independent Senate balance-of-power '+result.probabilities.independent_pivot.toFixed(1)+
+   '% of draws (NE/ID/SD independents are not assumed to join Democrats).';
  }
 }
 function jointRenderHouseShadow(base,shadow,presidentialShadow){
@@ -4066,10 +4098,15 @@ if(odds){
  const nice=n=>n>99.5?'>99.5%':n<.5?'<0.5%':n.toFixed(1)+'%';
  const p=odds.dem_beats_rep_pct;
  modelOdds.append(elt('span','senate-card-odds-label','JACKSTRADAMUS · CORRELATED JOINT MODEL'),
-  elt('strong','party-d','D '+nice(p)),
+  elt('strong',odds.first_candidate_party==='I'?'party-i':'party-d',
+   (odds.first_candidate_party||'D')+' '+nice(p)),
   elt('strong','party-r','R '+nice(100-p)));
- modelOdds.append(elt('small','','Linked simulation · total σ '+
-   odds.sigma_points.toFixed(1)+' pts · not a race call'));
+ modelOdds.append(elt('small','','Poll '+marginText(x.dem_minus_rep)+
+   ' · model '+marginText(odds.model_dem_margin_points)+
+   ' · total σ '+odds.sigma_points.toFixed(1)+' pts'+
+   (odds.first_candidate_party==='I'?' · independent not D caucus':'')+
+   (odds.incomplete_ballot_caveat?' · incomplete ballot proxy':'')+
+   ' · not an official race call'));
 }else{
  modelOdds.append(elt('span','senate-card-odds-label',
   'JACKSTRADAMUS · SOURCE-MATCHED ODDS UNAVAILABLE'));

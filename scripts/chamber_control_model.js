@@ -12,6 +12,21 @@
  const VERSION='joint-control-beta-v1';
  const FUNDAMENTALS_MODES=Object.freeze(['2024_only','two_cycle_shadow','presidential_2024_shadow']);
  const SHADOW_WEIGHT=.25,SHADOW_RESIDUAL_CAP=12;
+ // These contenders are Independents, not Democratic nominees.
+ // As of Oct 14 2026 each publicly pledged NOT to caucus with either
+ // major party. A win is a non-Republican seat, not a Democratic caucus seat.
+ // Poll data labels "dem_candidate" as the opposition slot; never infer D.
+ const INDEPENDENT_SENATE_FIRST=Object.freeze({
+  'NE-SEN':'Dan Osborn',
+  'ID-SEN':'Todd Achilles',
+  'SD-SEN':'Brian Bengs'
+ });
+ // Montana has a three-way contest including Seth Bodnar (I); the
+ // published D-versus-R polling proxy excludes a major alternative.
+ const INCOMPLETE_BALLOT=Object.freeze({
+  'MT-SEN':'Independent Seth Bodnar is a major third candidate',
+  'AK-SEN':'Ranked-choice tabulation and similarly named candidates'
+ });
  const BATTLEGROUNDS=Object.freeze([
   'NC-SEN','MI-SEN','ME-SEN','OH-SEN','TX-SEN','AK-SEN','NE-SEN','IA-SEN',
   'AZ-GOV','GA-GOV','MI-GOV','WI-GOV','NV-GOV','OH-GOV',
@@ -71,6 +86,13 @@
  function prepare(s,options={}){
   validateInputs(s);
   const fundamentalsMode=options.fundamentalsMode??'2024_only';
+  // Independent Senate research switches. No live forecast changes when
+  // unspecified; results require explicit comparison and validation.
+  const senateFundamentalsMode=options.senateFundamentalsMode??'2020_senate_house_proxy';
+  const senateErrorMode=options.senateErrorMode??'additive_wide_legacy';
+  if(!['2020_senate_house_proxy','presidential_2024_state_shadow'].includes(senateFundamentalsMode)||
+     !['additive_wide_legacy','historical_total_budget_shadow'].includes(senateErrorMode))
+   throw Error('Unsupported Senate experimental configuration');
   if(!FUNDAMENTALS_MODES.includes(fundamentalsMode))
    throw Error('Unsupported House fundamentals mode');
   // Require validated two-cycle sources for the explicit alternate model.
@@ -114,7 +136,8 @@
   // District presidential vote totals must be mapped to the CURRENT 2026
   // jurisdiction before blending; a stale 2024 CD number is prohibited.
   let presidential=null,presidentialNationalMargin=null;
-  if(fundamentalsMode==='presidential_2024_shadow'){
+  if(fundamentalsMode==='presidential_2024_shadow'||
+     senateFundamentalsMode==='presidential_2024_state_shadow'){
    const d=s.presidential;
    if(!d||d.schema_version!=='presidential-district-lean-staging-v1'||
       d.status!=='historical_presidential_votes_from_external_model_source_not_forecast'||
@@ -303,6 +326,32 @@
   const senRecords=s.senateHistory.contest_records.filter(r=>
    r.election_year===2020&&r.election_type==='regular');
   const senate2020=new Map(senRecords.map(r=>[r.state,r]));
+  // State presidential votes are aggregated across all 2026-map districts
+  // rather than assigning any obsolete 2024 House district to a new seat.
+  // Cross-check that each of the 50 states has real vote totals.
+  const presidentialStates=new Map();
+  if(senateFundamentalsMode==='presidential_2024_state_shadow'){
+   for(const [code] of presidential){
+    const row=s.presidential.records.find(x=>x.race_code===code);
+    const state=code.slice(0,2),a=presidentialStates.get(state)||{d:0,r:0};
+    a.d+=row.dem_pres_2024_votes;a.r+=row.rep_pres_2024_votes;
+    presidentialStates.set(state,a);
+   }
+   if(presidentialStates.size!==50)throw Error('Incomplete state presidential vote universe');
+  }
+  // Historical Senate polling RMSE describes TOTAL error, not just a
+  // fresh independent/local draw. A research variant budgets its variance
+  // across common-national, Senate and state terms plus one local residual.
+  const historicalTotalSigma=s.odds.senate_baseline_rmse_points;
+  const senateVarianceBudget=senateErrorMode==='historical_total_budget_shadow'?
+   {national:3.5,senate:2,state:2}:null;
+  const sharedSenateVariance=senateVarianceBudget?
+   senateVarianceBudget.national**2+senateVarianceBudget.senate**2+
+   senateVarianceBudget.state**2:null;
+  if(senateVarianceBudget&&(!finite(historicalTotalSigma)||
+     historicalTotalSigma<4||historicalTotalSigma>10||
+     sharedSenateVariance>=historicalTotalSigma**2))
+   throw Error('Cannot decompose historical Senate total error budget');
   for(const seat of s.seats.senate.contested_seats){
    const code=normalizeCode(seat.race_code),state=seat.state;
    const prior=senate2020.get(state);
@@ -314,11 +363,26 @@
       prior.recorded_dem_votes>0&&prior.recorded_rep_votes>0;
    let mean=(reliable?(0.65*margin(prior.dem_share_of_two_party)+
      .35*stateMargin(state)):stateMargin(state))+projectedSwing*.68;
+   if(senateFundamentalsMode==='presidential_2024_state_shadow'){
+    const totals=presidentialStates.get(state);
+    if(!totals||totals.d<=0||totals.r<=0)
+     throw Error('Missing 2024 state presidential votes '+state);
+    const statewide2024=100*(totals.d-totals.r)/(totals.d+totals.r);
+    mean=statewide2024+.68*(generic-presidentialNationalMargin);
+   }
    let sigma=reliable?17:special?25:23,method=reliable?
      'historical_2020_senate_plus_state_house':special?
      'special_election_state_house_proxy':'state_house_proxy_no_2020_two_party';
+   if(senateFundamentalsMode==='presidential_2024_state_shadow')
+    method='presidential_2024_state_lean_proxy';
    let pollFundamentalsGap=null,disagreementSigma=0,pollWeight=null;
    const poll=odds.get('senate|'+code);
+   const independentCandidate=INDEPENDENT_SENATE_FIRST[code]||null;
+   if(independentCandidate){
+    const sourceRace=s.polls.senate_all.find(x=>x.race_code===code);
+    if(sourceRace?.dem_candidate!==independentCandidate)
+     throw Error('Independent Senate candidate identity changed '+code);
+   }
    if(poll){
     const priorMean=mean;
     const weight=poll.independent_firms>=2?.90:.78;
@@ -327,7 +391,10 @@
     // The historical Senate polling-error RMSE is a floor rather than
     // a full forecast calibration. Add disagreement uncertainty only
     // when the historical prior actually describes the same seat.
-    sigma=Math.max(7,poll.sigma_points);
+    sigma=senateVarianceBudget?
+     Math.sqrt(Math.max(0,Math.max(historicalTotalSigma,poll.sigma_points)**2-
+      sharedSenateVariance)):
+     Math.max(7,poll.sigma_points);
     if(!special){
      pollFundamentalsGap=Math.round(1000*(poll.dem_minus_rep-priorMean))/1000;
      disagreementSigma=disagreementExtraSigma(poll.dem_minus_rep,priorMean,
@@ -338,8 +405,15 @@
    }
    senate.push({code,state,mean:limit(mean,-55,55),sigma,
     method,polled:Boolean(poll),special:seat.election_kind==='special',
+    first_candidate_party:independentCandidate?'I':'D',
+    first_candidate_name:independentCandidate||
+     s.polls.senate_all.find(x=>x.race_code===code)?.dem_candidate||null,
+    first_candidate_dem_caucus:!independentCandidate,
+    incomplete_ballot_caveat:INCOMPLETE_BALLOT[code]||null,
     poll_weight:pollWeight,poll_fundamentals_gap_points:pollFundamentalsGap,
-    disagreement_extra_sigma_points:disagreementSigma});
+    disagreement_extra_sigma_points:disagreementSigma,
+    senate_variance_budget_total_sigma:senateVarianceBudget&&poll?
+      Math.hypot(sigma,...Object.values(senateVarianceBudget)):null});
   }
   // Include EVERY polled governor matchup, not just the six governor
   // battlegrounds used by the four-endings near-sweep definition.
@@ -360,6 +434,16 @@
    throw Error('Incomplete fixed battleground slate');
   const basis={schema_version:VERSION,status:'EXPERIMENTAL_UNCALIBRATED',
     fundamentals_mode:fundamentalsMode,
+    senate_fundamentals_mode:senateFundamentalsMode,
+    senate_error_mode:senateErrorMode,
+    senate_research:{
+     historical_total_poll_rmse_points:historicalTotalSigma,
+     shared_error_variance_budget_points2:sharedSenateVariance,
+     variance_decomposition:senateVarianceBudget,
+     source:'data/historical_senate_poll_backtest.json via race_probabilities',
+     status:senateVarianceBudget||senateFundamentalsMode==='presidential_2024_state_shadow'?
+      'EXPERIMENTAL_SENATE_SHADOW_NOT_PROMOTED':'LEGACY_BASELINE'
+    },
     presidential_fundamentals_shadow:{
      mapped_2026_house_districts:presidential?presidential.size:0,
      national_presidential_2024_two_party_margin_points:presidentialNationalMargin,
@@ -388,8 +472,8 @@
      senate_dem_holdovers:34,senate_rep_holdovers:31,
      house_control_dem_seats:218,senate_control_dem_seats:51,
      common_national_sigma:3.5,house_chamber_sigma:2.5,
-     senate_chamber_sigma:3,governor_chamber_sigma:3.5,
-     state_house_sigma:3,state_senate_sigma:3.5,
+     senate_chamber_sigma:senateVarianceBudget?2:3,governor_chamber_sigma:3.5,
+     state_house_sigma:3,state_senate_sigma:senateVarianceBudget?2:3.5,
      state_governor_sigma:3,
      redrawn_state_additional_sigma:6,
      fixed_battleground_required_dem_wins:REQUIRED_BATTLEGROUND_WINS,
@@ -424,12 +508,14 @@
   const senateWinsWithControl=new Uint32Array(35);
   const houseWinners=explainControl?new Uint8Array(435):null;
   const senateWinners=explainControl?new Uint8Array(35):null;
+  const senateFirstWinners=explainControl?new Uint8Array(35):null;
   let houseOnly=0,senateOnly=0;
-  const outcomes={blue_tsunami:0,blue_wave:0,shrug:0,red_dawn:0};
+  const outcomes={blue_tsunami:0,blue_wave:0,shrug:0,red_dawn:0,independent_pivot:0};
   const rands=seeded(seed),live=options.live||Object.create(null);
   const a=basis.assumptions;
   const redraws=basis.redrawn_state_distributions||{};
-  let houseSeats=0,senateSeats=0,fullBattleground=0,houseControl=0,senateControl=0;
+  let houseSeats=0,senateSeats=0,fullBattleground=0,houseControl=0,senateControl=0,
+   independentPivotDraws=0,independentContestedWins=0,independentPivotWithHouseD=0;
   const houseSeatDraws=[],senateSeatDraws=[];
   const raceDemWins=new Uint32Array(polls.length);
   for(let k=0;k<samples;k++){
@@ -459,7 +545,8 @@
      stateDeltas.set(state,normal(rands));
     return stateDeltas.get(state);
    };
-   let dHouse=0,dSenate=holdovers,winBattleground=0;
+   let dHouse=0,dSenate=holdovers,rSenate=100-35-holdovers,
+    iSenate=0,winBattleground=0;
    for(let j=0;j<polls.length;j++){
     const item=polls[j],isHouse=j<435,isSenate=j>=435&&j<470;
     const scenario=live[item.code],meaningful=scenario&&
@@ -486,12 +573,24 @@
      if(dem)dHouse++;
      if(explainControl)houseWinners[j]=dem?1:0;
     }else if(isSenate){
-     if(dem)dSenate++;
-     if(explainControl)senateWinners[j-435]=dem?1:0;
+     if(dem){
+      if(item.first_candidate_dem_caucus)dSenate++;
+      else {iSenate++;independentContestedWins++}
+     }else rSenate++;
+     if(explainControl){
+      senateWinners[j-435]=dem&&item.first_candidate_dem_caucus?1:0;
+      senateFirstWinners[j-435]=dem?1:0;
+     }
     }
     if(dem&&BATTLEGROUND_SET.has(item.code))winBattleground++;
    }
+   // Noncaucusing Independents can leave neither major party with
+   // enough senators to organize a majority. This is genuinely a FIFTH
+   // outcome; never misreport it as Republican Senate control.
+   const independentPivot=dSenate<a.senate_control_dem_seats&&rSenate<50;
+   if(independentPivot)independentPivotDraws++;
    const houseDem=dHouse>=a.house_control_dem_seats;
+   if(independentPivot&&houseDem)independentPivotWithHouseD++;
    const senateDem=dSenate>=a.senate_control_dem_seats;
    if(houseDem)houseControl++;
    if(senateDem)senateControl++;
@@ -499,24 +598,25 @@
    if(senateDem&&!houseDem)senateOnly++;
    if(explainControl){
     if(senateDem)for(let z=0;z<35;z++)
-     if(senateWinners[z])senateWinsWithControl[z]++;
-    // A one-seat flip can alter chamber control only at the boundary.
+     if(senateFirstWinners[z])senateWinsWithControl[z]++;
     if(dHouse===217||dHouse===218){
-     const pivotalWin=dHouse===218?1:0;
-     for(let h=0;h<435;h++)if(houseWinners[h]===pivotalWin)pivotalHouse[h]++;
+     const need=dHouse===218?1:0;
+     for(let h=0;h<435;h++)if(houseWinners[h]===need)pivotalHouse[h]++;
     }
     if(dSenate===50||dSenate===51){
-     const pivotalWin=dSenate===51?1:0;
-     for(let z=0;z<35;z++)if(senateWinners[z]===pivotalWin)pivotalSenate[z]++;
+     const need=dSenate===51?1:0;
+     for(let z=0;z<35;z++)
+      if(basis.senate[z].first_candidate_dem_caucus&&senateWinners[z]===need)
+       pivotalSenate[z]++;
     }
    }
    houseSeatDraws.push(dHouse);senateSeatDraws.push(dSenate);
    const both=houseDem&&senateDem;
-   if(both){
+   if(independentPivot)outcomes.independent_pivot++;
+   else if(both){
     outcomes[winBattleground>=REQUIRED_BATTLEGROUND_WINS?
      'blue_tsunami':'blue_wave']++;
-   }else if(dHouse<a.house_control_dem_seats&&
-            dSenate<a.senate_control_dem_seats){
+   }else if(!houseDem&&!senateDem){
     outcomes.red_dawn++;
    }else outcomes.shrug++;
    houseSeats+=dHouse;senateSeats+=dSenate;
@@ -525,8 +625,11 @@
   // Marginal chamber odds MUST be counted from these SAME correlated
   // draws. Multiplying isolated odds would erase cross-chamber covariance.
   const bothCount=outcomes.blue_wave+outcomes.blue_tsunami;
-  if(houseControl+senateControl-2*bothCount!==outcomes.shrug||
-     samples-houseControl-senateControl+bothCount!==outcomes.red_dawn)
+  if(houseControl+senateControl-2*bothCount!==
+      outcomes.shrug+independentPivotWithHouseD||
+     samples-houseControl-senateControl+bothCount!==
+      outcomes.red_dawn+(independentPivotDraws-independentPivotWithHouseD)||
+     outcomes.independent_pivot!==independentPivotDraws)
    throw Error('Joint probabilities are inconsistent with chamber marginals');
   houseSeatDraws.sort((a,b)=>a-b);senateSeatDraws.sort((a,b)=>a-b);
   const quantile=(vals,f)=>vals[Math.floor((vals.length-1)*f)];
@@ -544,6 +647,10 @@
     officeShared,localShared)*errorMultiplier;
    const wins=raceDemWins[index],demPct=pct(wins);
    return {race_code:item.code,office,model_dem_margin_points:item.mean,
+    first_candidate_party:isSenate?item.first_candidate_party:'D',
+    first_candidate_name:isSenate?item.first_candidate_name:null,
+    first_candidate_caucuses_with_democrats:isSenate?item.first_candidate_dem_caucus:true,
+    incomplete_ballot_caveat:isSenate?item.incomplete_ballot_caveat:null,
     polled:item.polled,poll_weight:item.poll_weight??null,
     source_method:item.method,sigma_points:Math.round(totalSigma*1000)/1000,
     dem_beats_rep_pct:demPct,rep_beats_dem_pct:pct(samples-wins),
@@ -566,17 +673,20 @@
    const wins=raceDemWins[435+i],wonAndControl=senateWinsWithControl[i];
    const raceP=wins/samples,senateP=senateControl/samples;
    const cov=wonAndControl/samples-raceP*senateP;
-   return {race_code:seat.code,dem_win_pct:pct(wins),
+   return {race_code:seat.code,first_candidate_party:seat.first_candidate_party,first_candidate_win_pct:pct(wins),
+    dem_win_pct:seat.first_candidate_dem_caucus?pct(wins):0,
     control_covariance_pp:Math.round(cov*10000)/100,
-    senate_control_if_dem_win_pct:wins?pct(wonAndControl* samples/wins):null,
-    senate_control_if_rep_win_pct:wins<samples?
+    senate_control_if_first_candidate_win_pct:wins?pct(wonAndControl* samples/wins):null,
+    senate_control_if_first_candidate_loss_pct:wins<samples?
      pct((senateControl-wonAndControl)*samples/(samples-wins)):null,
     mechanical_pivotal_draws:pivotalSenate[i]};
   }).sort((a,b)=>b.control_covariance_pp-a.control_covariance_pp||
    a.race_code.localeCompare(b.race_code)):null;
   const controlExplanation=explainControl?{
    house_only_pct:pct(houseOnly),senate_only_pct:pct(senateOnly),
-   both_dem_pct:pct(bothCount),neither_dem_pct:pct(outcomes.red_dawn),
+   both_dem_pct:pct(bothCount),neither_dem_pct:pct(outcomes.red_dawn+independentPivotDraws-independentPivotWithHouseD),
+   independent_pivot_pct:pct(independentPivotDraws),
+   independent_pivot_house_dem_pct:pct(independentPivotWithHouseD),
    independent_chambers_reference_pct:Math.round(10000*h*t)/100,
    house_senate_control_phi:binaryVariance>0?
     Math.round(10000*(both-h*t)/binaryVariance)/10000:null,
@@ -594,6 +704,16 @@
    probabilities:probs,counts:outcomes,means,
    race_probabilities,
    ...(explainControl?{control_explanation:controlExplanation}:{}),
+   senate_independent_context:{
+    independent_contender_wins_mean:Math.round(100*independentContestedWins/samples)/100,
+    non_majority_caucus_balance_pct:pct(independentPivotDraws),
+    pivot_with_house_dem_pct:pct(independentPivotWithHouseD),
+    pivot_with_house_rep_pct:pct(independentPivotDraws-independentPivotWithHouseD),
+    caucus_assumption:'NE_ID_SD_declared_nonmajority_caucus_independent',
+    four_outcomes_are_binary_dem_majority_proxy:false,
+    separate_fifth_outcome_key:'independent_pivot',
+    note:'When neither major-party caucus controls the Senate, the independent pivot is counted in its own mutually exclusive fifth bucket, not misclassified as Republican control.'
+   },
    race_probability_method:'SAME_CORRELATED_DRAWS_AS_CHAMBER_CONTROL',
    blue_both_including_tsunami:pct(outcomes.blue_wave+outcomes.blue_tsunami),
    house_dem_control_pct:pct(houseControl),senate_dem_control_pct:pct(senateControl),
@@ -604,6 +724,7 @@
    total_pct:Object.values(probs).reduce((x,y)=>x+y,0),
    description:'A conditional Monte Carlo sensitivity experiment, not a calibrated election forecast.'};
  }
- return Object.freeze({VERSION,BATTLEGROUNDS,FUNDAMENTALS_MODES,prepare,simulate,seeded,
+ return Object.freeze({VERSION,BATTLEGROUNDS,FUNDAMENTALS_MODES,INDEPENDENT_SENATE_FIRST,
+  INCOMPLETE_BALLOT,prepare,simulate,seeded,
   disagreementExtraSigma});
 });

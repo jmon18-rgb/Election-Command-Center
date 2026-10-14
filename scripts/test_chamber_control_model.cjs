@@ -10,6 +10,41 @@ const sources={
  odds:load('race_probabilities'),polls:load('polling_estimates')
 };
 const basis=model.prepare(sources);
+const presidentialState=load('presidential_2024_by_2026_district_staging');
+const augmentedSources={...sources,presidential:presidentialState};
+const varianceShadow=model.prepare(augmentedSources,{senateErrorMode:'historical_total_budget_shadow'});
+const statePriorShadow=model.prepare(augmentedSources,{
+ senateFundamentalsMode:'presidential_2024_state_shadow'});
+const combinedSenateShadow=model.prepare(augmentedSources,{
+ senateErrorMode:'historical_total_budget_shadow',
+ senateFundamentalsMode:'presidential_2024_state_shadow'});
+assert.equal(varianceShadow.senate_error_mode,'historical_total_budget_shadow');
+assert.equal(statePriorShadow.senate_fundamentals_mode,'presidential_2024_state_shadow');
+assert.equal(combinedSenateShadow.senate.length,35);
+const mnCurrent=basis.senate.find(x=>x.code==='MN-SEN');
+const mnBudget=varianceShadow.senate.find(x=>x.code==='MN-SEN');
+const mnState=statePriorShadow.senate.find(x=>x.code==='MN-SEN');
+assert(mnCurrent.sigma>=7);
+assert(mnBudget.sigma<mnCurrent.sigma&&mnBudget.sigma>3);
+assert.equal(mnBudget.mean,mnCurrent.mean,
+ 'Error budgeting cannot alter the assumed mean margin');
+assert(mnState.mean>mnCurrent.mean,
+ '2024 Minnesota presidential statewide prior must be distinct');
+assert.deepEqual(varianceShadow.house,basis.house);
+assert.deepEqual(statePriorShadow.house,basis.house);
+assert.deepEqual(statePriorShadow.governors,basis.governors);
+assert.throws(()=>model.prepare(sources,{
+ senateFundamentalsMode:'presidential_2024_state_shadow'}),/Missing verified-source presidential/);
+assert.throws(()=>model.prepare(augmentedSources,{
+ senateErrorMode:'unknown'}),/Unsupported Senate/);
+assert.throws(()=>model.prepare(augmentedSources,{
+ senateFundamentalsMode:'unknown'}),/Unsupported Senate/);
+const budgetSimulation=model.simulate(varianceShadow,{samples:1200,seed:20261103});
+const budgetMN=budgetSimulation.race_probabilities.find(x=>x.race_code==='MN-SEN');
+assert(budgetMN.sigma_points>=sources.odds.senate_baseline_rmse_points-.01);
+assert(budgetMN.sigma_points<6.5);
+assert(budgetSimulation.probabilities.independent_pivot>0);
+
 assert.equal(basis.status,'EXPERIMENTAL_UNCALIBRATED');
 assert.equal(basis.house.length,435);
 assert.equal(basis.senate.length,35);
@@ -220,30 +255,45 @@ assert(topBell.some(x=>['TX-SEN','OH-SEN','ME-SEN','IA-SEN','AK-SEN','NE-SEN'].i
  'A useful bellwether ranking should include at least one close contest');
 assert.equal(explanation.top_house_pivotal_races.length,20);
 assert(Math.abs(explanation.house_only_pct+explanation.senate_only_pct-
- explained.probabilities.shrug)<.02);
+ explained.probabilities.shrug-
+ explanation.independent_pivot_house_dem_pct)<.03);
 assert(Math.abs(explanation.independent_chambers_reference_pct-
  explained.house_dem_control_pct*explained.senate_dem_control_pct/100)<.02);
 assert(explanation.house_senate_control_phi===null||
  Math.abs(explanation.house_senate_control_phi)<=1.0001);
 // A deliberately deterministic 16+1 Democratic and 18 Republican contest
 // Senate verifies the exact majority threshold and pivotal outcome counting.
+const rigidDemCodes=new Set(basis.senate.filter(x=>x.first_candidate_dem_caucus)
+ .slice(0,17).map(x=>x.code));
+assert.equal(rigidDemCodes.size,17);
 const rigid={...basis,assumptions:{...basis.assumptions,
  common_national_sigma:0,house_chamber_sigma:0,senate_chamber_sigma:0,
  governor_chamber_sigma:0,state_house_sigma:0,state_senate_sigma:0,
  state_governor_sigma:0,redrawn_state_additional_sigma:0},
- senate:basis.senate.map((x,i)=>({...x,mean:i<17?50:-50,sigma:0}))};
+ senate:basis.senate.map(x=>({...x,mean:rigidDemCodes.has(x.code)?50:-50,sigma:0}))};
 const rigidSim=model.simulate(rigid,{samples:300,seed:17,explainControl:true});
 assert.equal(rigidSim.senate_dem_control_pct,100);
 const rigidPivots=new Map(rigidSim.control_explanation.senate_pivotal_races
  .map(x=>[x.race_code,x.pivotal_pct]));
-rigid.senate.forEach((x,i)=>assert.equal(rigidPivots.get(x.code),i<17?100:0));
+rigid.senate.forEach(x=>assert.equal(rigidPivots.get(x.code),
+ rigidDemCodes.has(x.code)?100:0));
 
 assert.equal(JSON.stringify(basis),before,'Forecast must not modify source priors');
 assert.equal(first.counts.blue_tsunami+first.counts.blue_wave+
- first.counts.shrug+first.counts.red_dawn,first.samples);
+ first.counts.shrug+first.counts.red_dawn+
+ first.counts.independent_pivot,first.samples);
 assert(Math.abs(first.total_pct-100)<0.025);
 assert(Math.abs(first.blue_both_including_tsunami-
  first.probabilities.blue_wave-first.probabilities.blue_tsunami)<.025);
+assert(first.probabilities.independent_pivot>0);
+assert.equal(first.senate_independent_context.non_majority_caucus_balance_pct,
+ first.probabilities.independent_pivot);
+assert.deepEqual(Object.keys(model.INDEPENDENT_SENATE_FIRST).sort(),[
+ 'ID-SEN','NE-SEN','SD-SEN']);
+assert(['ID-SEN','NE-SEN','SD-SEN'].every(code=>
+ basis.senate.find(r=>r.code===code).first_candidate_party==='I'));
+assert(basis.senate.find(r=>r.code==='MT-SEN').incomplete_ballot_caveat);
+assert(basis.senate.find(r=>r.code==='AK-SEN').incomplete_ballot_caveat);
 for(const x of Object.values(first.probabilities))
  assert(Number.isFinite(x)&&x>=0&&x<=100);
 assert(first.means.house_dem_seats>0&&first.means.house_dem_seats<435);
@@ -279,10 +329,15 @@ assert(Math.abs(expectedSenateWins-first.means.senate_dem_seats)<.02,
  'Senate race win frequencies must reconcile with same simulated chamber seat totals');
 const bothPct=first.blue_both_including_tsunami;
 const splitPct=first.probabilities.shrug,redPct=first.probabilities.red_dawn;
+const pivot=first.senate_independent_context;
 assert(Math.abs(first.house_dem_control_pct+first.senate_dem_control_pct-
- 2*bothPct-splitPct)<.045,'Chamber marginals must reconcile exactly with split control');
+ 2*bothPct-splitPct-pivot.pivot_with_house_dem_pct)<.06,
+ 'Chamber marginals must reconcile with split control and an independent pivot');
 assert(Math.abs(100-first.house_dem_control_pct-first.senate_dem_control_pct+
- bothPct-redPct)<.045,'Chamber marginals must reconcile with Republican both-control');
+ bothPct-redPct-pivot.pivot_with_house_rep_pct)<.06,
+ 'Republican control must exclude independent Senate balance-of-power outcomes');
+assert(Math.abs(pivot.pivot_with_house_dem_pct+pivot.pivot_with_house_rep_pct-
+ first.probabilities.independent_pivot)<.03);
 assert(first.house_dem_control_pct+0.01>=bothPct);
 assert(first.senate_dem_control_pct+0.01>=bothPct);
 for(const [key,total] of [['house_dem_seats',435],['senate_dem_seats',100]]){

@@ -67,7 +67,11 @@ const result=cases.map(([name,basis])=>{
  const c=sim.control_explanation;
  const joint=sim.blue_both_including_tsunami;
  assert(Math.abs(c.both_dem_pct-joint)<.01);
- assert(Math.abs(c.house_only_pct+c.senate_only_pct-sim.probabilities.shrug)<.02);
+ assert(Math.abs(c.house_only_pct+c.senate_only_pct-
+  sim.probabilities.shrug-c.independent_pivot_house_dem_pct)<.04);
+ assert(Math.abs(c.neither_dem_pct-sim.probabilities.red_dawn-
+  (sim.probabilities.independent_pivot-c.independent_pivot_house_dem_pct))<.05);
+ assert(Math.abs(Object.values(sim.probabilities).reduce((a,b)=>a+b,0)-100)<.06);
  assert(Math.abs(c.both_dem_pct+c.house_only_pct-
   sim.house_dem_control_pct)<.02);
  assert(Math.abs(c.both_dem_pct+c.senate_only_pct-
@@ -81,6 +85,7 @@ const result=cases.map(([name,basis])=>{
   senate_dem_control_pct:sim.senate_dem_control_pct,
   both_dem_control_pct:joint,house_only_pct:c.house_only_pct,
   senate_only_pct:c.senate_only_pct,neither_pct:c.neither_dem_pct,
+  independent_caucus_balance_of_power_pct:sim.probabilities.independent_pivot,
   independent_product_reference_pct:c.independent_chambers_reference_pct,
   extra_joint_vs_independence_pp:
    +(joint-c.independent_chambers_reference_pct).toFixed(2),
@@ -91,7 +96,9 @@ const result=cases.map(([name,basis])=>{
   top_house_control_pivots:c.top_house_pivotal_races.slice(0,8),
   senate_race_probabilities:sim.race_probabilities.filter(x=>
    x.office==='senate').map(x=>({race_code:x.race_code,
-    dem_win_pct:x.dem_beats_rep_pct,expected_dem_margin:x.model_dem_margin_points}))};
+    first_candidate_party:x.first_candidate_party,
+    first_candidate_win_pct:x.dem_beats_rep_pct,
+    conditional_first_vs_republican_margin:x.model_dem_margin_points}))};
 });
 const reference=result[0],d=x=>+(x-reference.both_dem_control_pct).toFixed(2);
 const report={
@@ -110,7 +117,8 @@ const report={
   'Presidential House results reflect actual 2026-map partisan geography, but the swing coefficients remain uncalibrated.',
   'Unshrunk Senate polling is an intentional extreme to isolate poll/prior discrepancies, not a better model by fiat.',
   'The last two scenarios keep standalone race error variance fixed; changes in joint control come from error covariance.',
-  'Mechanical pivot counts ask whether reversing one seat changes a 50/51 control result. Bellwether rankings instead use same-draw covariance with chamber control, reducing the misleading ranking of safe seats. Neither is a causal campaign effect.',
+  'Independent candidates in Nebraska, Idaho, and South Dakota do not currently pledge to join the D caucus; their wins do not count as Democratic Senate seats. A fifth Independent Wildcard scenario accounts for indeterminate Senate organization.',
+  'Mechanical pivot counts ask whether reversing a Democratic seat changes 50/51 control, and cannot treat an Independent as a Democratic seat. Bellwether rankings use same-draw covariance with Senate control.',
   'Do not fit assumptions to match any proprietary third-party forecast. Require modern held-out forecast snapshots and historical outcomes for promotion.'
  ]
 };
