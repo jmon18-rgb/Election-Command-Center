@@ -1,0 +1,377 @@
+{
+  "schema_version": "presidential-state-2020-staging-v1",
+  "status": "historic_state_presidential_results_not_2026_forecast",
+  "source_url": "https://github.com/ElectIndex/26_us_forecast_data/blob/main/historical.csv",
+  "source_blob_sha": "6416538cf7f1f0531277f0a01659207f603a7ca8",
+  "year": 2020,
+  "states": 51,
+  "national_two_party_margin_points": 4.5411,
+  "national_totals": {
+    "dem": 81285796,
+    "rep": 74223920
+  },
+  "warnings": [
+    "State 2020 presidential D/R totals are not 2026 Senate candidate votes.",
+    "Senate and presidential electorate/ballot differ; use an explicit same-cycle statewide residual baseline.",
+    "Historical Senate candidate name and same-seat election type must match before attributing strength."
+  ],
+  "records": [
+    {
+      "state": "AK",
+      "election_year": 2020,
+      "dem_votes": 153778,
+      "rep_votes": 189951,
+      "dem_minus_rep_two_party_points": -10.5237
+    },
+    {
+      "state": "AL",
+      "election_year": 2020,
+      "dem_votes": 849624,
+      "rep_votes": 1441170,
+      "dem_minus_rep_two_party_points": -25.8227
+    },
+    {
+      "state": "AR",
+      "election_year": 2020,
+      "dem_votes": 423932,
+      "rep_votes": 760647,
+      "dem_minus_rep_two_party_points": -28.4249
+    },
+    {
+      "state": "AZ",
+      "election_year": 2020,
+      "dem_votes": 1672143,
+      "rep_votes": 1661686,
+      "dem_minus_rep_two_party_points": 0.3137
+    },
+    {
+      "state": "CA",
+      "election_year": 2020,
+      "dem_votes": 11110493,
+      "rep_votes": 6006428,
+      "dem_minus_rep_two_party_points": 29.8188
+    },
+    {
+      "state": "CO",
+      "election_year": 2020,
+      "dem_votes": 1804352,
+      "rep_votes": 1364607,
+      "dem_minus_rep_two_party_points": 13.8766
+    },
+    {
+      "state": "CT",
+      "election_year": 2020,
+      "dem_votes": 1080710,
+      "rep_votes": 714608,
+      "dem_minus_rep_two_party_points": 20.392
+    },
+    {
+      "state": "DC",
+      "election_year": 2020,
+      "dem_votes": 317323,
+      "rep_votes": 18586,
+      "dem_minus_rep_two_party_points": 88.9339
+    },
+    {
+      "state": "DE",
+      "election_year": 2020,
+      "dem_votes": 296268,
+      "rep_votes": 200603,
+      "dem_minus_rep_two_party_points": 19.2535
+    },
+    {
+      "state": "FL",
+      "election_year": 2020,
+      "dem_votes": 5297045,
+      "rep_votes": 5668731,
+      "dem_minus_rep_two_party_points": -3.3895
+    },
+    {
+      "state": "GA",
+      "election_year": 2020,
+      "dem_votes": 2474507,
+      "rep_votes": 2461837,
+      "dem_minus_rep_two_party_points": 0.2567
+    },
+    {
+      "state": "HI",
+      "election_year": 2020,
+      "dem_votes": 366130,
+      "rep_votes": 196864,
+      "dem_minus_rep_two_party_points": 30.0653
+    },
+    {
+      "state": "IA",
+      "election_year": 2020,
+      "dem_votes": 759061,
+      "rep_votes": 897672,
+      "dem_minus_rep_two_party_points": -8.3665
+    },
+    {
+      "state": "ID",
+      "election_year": 2020,
+      "dem_votes": 287021,
+      "rep_votes": 554119,
+      "dem_minus_rep_two_party_points": -31.7543
+    },
+    {
+      "state": "IL",
+      "election_year": 2020,
+      "dem_votes": 3471915,
+      "rep_votes": 2446891,
+      "dem_minus_rep_two_party_points": 17.3181
+    },
+    {
+      "state": "IN",
+      "election_year": 2020,
+      "dem_votes": 1242498,
+      "rep_votes": 1729857,
+      "dem_minus_rep_two_party_points": -16.3964
+    },
+    {
+      "state": "KS",
+      "election_year": 2020,
+      "dem_votes": 570323,
+      "rep_votes": 771406,
+      "dem_minus_rep_two_party_points": -14.9869
+    },
+    {
+      "state": "KY",
+      "election_year": 2020,
+      "dem_votes": 772474,
+      "rep_votes": 1326646,
+      "dem_minus_rep_two_party_points": -26.4002
+    },
+    {
+      "state": "LA",
+      "election_year": 2020,
+      "dem_votes": 856034,
+      "rep_votes": 1255776,
+      "dem_minus_rep_two_party_points": -18.9289
+    },
+    {
+      "state": "MA",
+      "election_year": 2020,
+      "dem_votes": 2382043,
+      "rep_votes": 1167119,
+      "dem_minus_rep_two_party_points": 34.2313
+    },
+    {
+      "state": "MD",
+      "election_year": 2020,
+      "dem_votes": 1985023,
+      "rep_votes": 976411,
+      "dem_minus_rep_two_party_points": 34.0582
+    },
+    {
+      "state": "ME",
+      "election_year": 2020,
+      "dem_votes": 435070,
+      "rep_votes": 360767,
+      "dem_minus_rep_two_party_points": 9.3365
+    },
+    {
+      "state": "MI",
+      "election_year": 2020,
+      "dem_votes": 2804046,
+      "rep_votes": 2649864,
+      "dem_minus_rep_two_party_points": 2.827
+    },
+    {
+      "state": "MN",
+      "election_year": 2020,
+      "dem_votes": 1717077,
+      "rep_votes": 1484065,
+      "dem_minus_rep_two_party_points": 7.279
+    },
+    {
+      "state": "MO",
+      "election_year": 2020,
+      "dem_votes": 1253014,
+      "rep_votes": 1718736,
+      "dem_minus_rep_two_party_points": -15.6716
+    },
+    {
+      "state": "MS",
+      "election_year": 2020,
+      "dem_votes": 539398,
+      "rep_votes": 756764,
+      "dem_minus_rep_two_party_points": -16.77
+    },
+    {
+      "state": "MT",
+      "election_year": 2020,
+      "dem_votes": 244786,
+      "rep_votes": 343602,
+      "dem_minus_rep_two_party_points": -16.7944
+    },
+    {
+      "state": "NC",
+      "election_year": 2020,
+      "dem_votes": 2684292,
+      "rep_votes": 2758775,
+      "dem_minus_rep_two_party_points": -1.3684
+    },
+    {
+      "state": "ND",
+      "election_year": 2020,
+      "dem_votes": 115042,
+      "rep_votes": 235751,
+      "dem_minus_rep_two_party_points": -34.4103
+    },
+    {
+      "state": "NE",
+      "election_year": 2020,
+      "dem_votes": 374583,
+      "rep_votes": 556846,
+      "dem_minus_rep_two_party_points": -19.5681
+    },
+    {
+      "state": "NH",
+      "election_year": 2020,
+      "dem_votes": 424937,
+      "rep_votes": 365660,
+      "dem_minus_rep_two_party_points": 7.4978
+    },
+    {
+      "state": "NJ",
+      "election_year": 2020,
+      "dem_votes": 2608335,
+      "rep_votes": 1883274,
+      "dem_minus_rep_two_party_points": 16.1426
+    },
+    {
+      "state": "NM",
+      "election_year": 2020,
+      "dem_votes": 501614,
+      "rep_votes": 401894,
+      "dem_minus_rep_two_party_points": 11.037
+    },
+    {
+      "state": "NV",
+      "election_year": 2020,
+      "dem_votes": 703486,
+      "rep_votes": 669890,
+      "dem_minus_rep_two_party_points": 2.4462
+    },
+    {
+      "state": "NY",
+      "election_year": 2020,
+      "dem_votes": 5244886,
+      "rep_votes": 3251997,
+      "dem_minus_rep_two_party_points": 23.4544
+    },
+    {
+      "state": "OH",
+      "election_year": 2020,
+      "dem_votes": 2679165,
+      "rep_votes": 3154834,
+      "dem_minus_rep_two_party_points": -8.1534
+    },
+    {
+      "state": "OK",
+      "election_year": 2020,
+      "dem_votes": 503890,
+      "rep_votes": 1020280,
+      "dem_minus_rep_two_party_points": -33.8801
+    },
+    {
+      "state": "OR",
+      "election_year": 2020,
+      "dem_votes": 1339890,
+      "rep_votes": 957702,
+      "dem_minus_rep_two_party_points": 16.6343
+    },
+    {
+      "state": "PA",
+      "election_year": 2020,
+      "dem_votes": 3460475,
+      "rep_votes": 3378442,
+      "dem_minus_rep_two_party_points": 1.1995
+    },
+    {
+      "state": "RI",
+      "election_year": 2020,
+      "dem_votes": 307486,
+      "rep_votes": 199922,
+      "dem_minus_rep_two_party_points": 21.1987
+    },
+    {
+      "state": "SC",
+      "election_year": 2020,
+      "dem_votes": 1091541,
+      "rep_votes": 1385103,
+      "dem_minus_rep_two_party_points": -11.8532
+    },
+    {
+      "state": "SD",
+      "election_year": 2020,
+      "dem_votes": 150471,
+      "rep_votes": 261043,
+      "dem_minus_rep_two_party_points": -26.8696
+    },
+    {
+      "state": "TN",
+      "election_year": 2020,
+      "dem_votes": 1143711,
+      "rep_votes": 1852475,
+      "dem_minus_rep_two_party_points": -23.6555
+    },
+    {
+      "state": "TX",
+      "election_year": 2020,
+      "dem_votes": 5259281,
+      "rep_votes": 5890570,
+      "dem_minus_rep_two_party_points": -5.6619
+    },
+    {
+      "state": "UT",
+      "election_year": 2020,
+      "dem_votes": 560282,
+      "rep_votes": 865139,
+      "dem_minus_rep_two_party_points": -21.3872
+    },
+    {
+      "state": "VA",
+      "election_year": 2020,
+      "dem_votes": 2413568,
+      "rep_votes": 1962430,
+      "dem_minus_rep_two_party_points": 10.3094
+    },
+    {
+      "state": "VT",
+      "election_year": 2020,
+      "dem_votes": 242820,
+      "rep_votes": 112704,
+      "dem_minus_rep_two_party_points": 36.5984
+    },
+    {
+      "state": "WA",
+      "election_year": 2020,
+      "dem_votes": 2369612,
+      "rep_votes": 1584651,
+      "dem_minus_rep_two_party_points": 19.851
+    },
+    {
+      "state": "WI",
+      "election_year": 2020,
+      "dem_votes": 1630866,
+      "rep_votes": 1610184,
+      "dem_minus_rep_two_party_points": 0.6381
+    },
+    {
+      "state": "WV",
+      "election_year": 2020,
+      "dem_votes": 235984,
+      "rep_votes": 545382,
+      "dem_minus_rep_two_party_points": -39.5971
+    },
+    {
+      "state": "WY",
+      "election_year": 2020,
+      "dem_votes": 73491,
+      "rep_votes": 193559,
+      "dem_minus_rep_two_party_points": -44.9609
+    }
+  ]
+}
