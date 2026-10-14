@@ -800,13 +800,14 @@ async function settle(){
  },'');
  assert(topTime,'No recent full timestamp data');
  assert(get('#newPolls').textContent.includes('Source posted'),'Posted date labels disappeared');
- // The outreach context is clearly a dated external rating, not a fourth invented probability.
- const reach=get('#tsunamiReachWatch');
- assert.match(reach.textContent,/South Carolina U.S. Senate/);
- assert.match(reach.textContent,/Darline Graham/);
- assert.match(reach.textContent,/Likely Republican/);
- assert.match(reach.textContent,/not by itself/);
- assert(reach.querySelector('a[href*="cookpolitical.com/senate/race/"]'));
+ // No isolated Graham promo: South Carolina belongs to the same live,
+ // model-sourced Senate tide watchlist as the other pivotal races.
+ assert.equal(w.document.querySelector('#tsunamiReachWatch'),null);
+ const southCarolina=get('#senateTideRaces [data-senate-tide="SC-SEN"]');
+ assert.match(southCarolina.textContent,/Darline Graham/);
+ assert.match(southCarolina.textContent,/Wider wave/);
+ assert.match(southCarolina.textContent,/model win chance/);
+ assert.match(get('.tide-line-note').textContent,/not required conditions for a Blue Tsunami/);
  // Index-poll listing must preserve distinct ballot questions in one race,
  // unlike a poll-id-only dedupe that discards one matchup.
  const sameRace=recent.observations.find(p=>p.race_code==='TX-GOV');
