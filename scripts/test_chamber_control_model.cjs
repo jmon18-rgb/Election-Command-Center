@@ -10,6 +10,41 @@ const sources={
  odds:load('race_probabilities'),polls:load('polling_estimates')
 };
 const basis=model.prepare(sources);
+const presidentialState=load('presidential_2024_by_2026_district_staging');
+const augmentedSources={...sources,presidential:presidentialState};
+const varianceShadow=model.prepare(augmentedSources,{senateErrorMode:'historical_total_budget_shadow'});
+const statePriorShadow=model.prepare(augmentedSources,{
+ senateFundamentalsMode:'presidential_2024_state_shadow'});
+const combinedSenateShadow=model.prepare(augmentedSources,{
+ senateErrorMode:'historical_total_budget_shadow',
+ senateFundamentalsMode:'presidential_2024_state_shadow'});
+assert.equal(varianceShadow.senate_error_mode,'historical_total_budget_shadow');
+assert.equal(statePriorShadow.senate_fundamentals_mode,'presidential_2024_state_shadow');
+assert.equal(combinedSenateShadow.senate.length,35);
+const mnCurrent=basis.senate.find(x=>x.code==='MN-SEN');
+const mnBudget=varianceShadow.senate.find(x=>x.code==='MN-SEN');
+const mnState=statePriorShadow.senate.find(x=>x.code==='MN-SEN');
+assert(mnCurrent.sigma>=7);
+assert(mnBudget.sigma<mnCurrent.sigma&&mnBudget.sigma>3);
+assert.equal(mnBudget.mean,mnCurrent.mean,
+ 'Error budgeting cannot alter the assumed mean margin');
+assert(mnState.mean>mnCurrent.mean,
+ '2024 Minnesota presidential statewide prior must be distinct');
+assert.deepEqual(varianceShadow.house,basis.house);
+assert.deepEqual(statePriorShadow.house,basis.house);
+assert.deepEqual(statePriorShadow.governors,basis.governors);
+assert.throws(()=>model.prepare(sources,{
+ senateFundamentalsMode:'presidential_2024_state_shadow'}),/Missing verified-source presidential/);
+assert.throws(()=>model.prepare(augmentedSources,{
+ senateErrorMode:'unknown'}),/Unsupported Senate/);
+assert.throws(()=>model.prepare(augmentedSources,{
+ senateFundamentalsMode:'unknown'}),/Unsupported Senate/);
+const budgetSimulation=model.simulate(varianceShadow,{samples:1200,seed:20261103});
+const budgetMN=budgetSimulation.race_probabilities.find(x=>x.race_code==='MN-SEN');
+assert(budgetMN.sigma_points>=sources.odds.senate_baseline_rmse_points-.01);
+assert(budgetMN.sigma_points<6.5);
+assert(budgetSimulation.probabilities.independent_pivot>0);
+
 assert.equal(basis.status,'EXPERIMENTAL_UNCALIBRATED');
 assert.equal(basis.house.length,435);
 assert.equal(basis.senate.length,35);
