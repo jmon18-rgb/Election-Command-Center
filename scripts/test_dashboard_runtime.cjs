@@ -43,6 +43,7 @@ const fixtures={
  'race_probabilities.json':json('data/race_probabilities.json'),
  'congress_scenarios.json':json('data/congress_scenarios.json'),
  'house_history_2024_staging.json':json('data/house_history_2024_staging.json'),
+ 'historical_senate_poll_backtest.json':json('data/historical_senate_poll_backtest.json'),
  'senate_history_2020_2022_2024.json':json('data/senate_history_2020_2022_2024.json')
 };
 for(const file of ['briefing.json','integrity_impact.json','seat_universe.json','house_geography_bridge.json','house_two_cycle_context.json']){
@@ -78,6 +79,8 @@ async function settle(){
  assert(w.ElectionNightRehearsal,'Synthetic rehearsal library must load before app');
  w.eval(read('scripts/chamber_control_model.js'));
  assert(w.ChamberControlModel,'Joint Senate/House model must load before app');
+ w.eval(read('scripts/chamber_poll_error_audit.js'));
+ assert(w.JackErrorAudit,'Retrospective Senate error audit must be loaded before app');
  w.eval(scripts[0]);
  await settle();
  // Actual model probabilities come from the same 2026 polls and a
@@ -854,6 +857,9 @@ async function settle(){
  assert.equal(get('#jointHomeCards').querySelectorAll('.joint-cell').length,4);
  assert.equal(get('#jointNightCards').querySelectorAll('.joint-cell').length,4);
  assert.match(get('#jointHomeSummary').textContent,/3,000 correlated simulated elections/);
+ assert.match(get('#jointHomeAudit').textContent,/2020 poll minus result/);
+ assert.match(get('#jointNightAudit').textContent,/NO automatic historic partisan correction/);
+ assert.match(get('#jointHomeAudit').textContent,/NOT calibration/);
  assert.match(get('#jointNightCards').textContent,/BLUE TSUNAMI/);
  assert.match(get('#jointNightCards').textContent,/BLUE WAVE/);
  assert.match(get('#jointNightCards').textContent,/SHRUG/);
