@@ -1946,6 +1946,136 @@ function enNationalToggle(enabled){
   void enRefreshCivicWatchlist(true);
  }
 }
+/* Election Night odds & source health: source-attributed and deliberately
+ * distinct from DDHQ's unchanged pre-election joint-chamber scenarios. */
+function enLiveRaceItem(record){
+ const st=record.race_code.slice(0,2);
+ if(record.office==='house')return {office:'House',key:record.race_code};
+ if(record.office==='governor')return {office:'Governor',key:st};
+ if(record.office==='senate'){
+  const seat=enNationalSeats?.find(x=>x.state===st);
+  return {office:'Senate',key:seat?.key||st+(st==='FL'||st==='OH'?'-special':'')};
+ }
+ return null;
+}
+function enLiveRaceEstimate(item){
+ if(!window.RaceLiveNowcast||!latestSenateEstimates||
+   !modelOddsValidate(modelRaceOddsData,latestSenateEstimates))return null;
+ const snap=enOfficeSnapshots[item.office]||
+  (enModeYear===2026&&enOffice===item.office?enData:null);
+ const error=Boolean(enOfficeErrors[item.office]||
+  enOffice===item.office&&enFetchError||
+  enResumePendingOffices.has(item.office));
+ const safe=snap&&error?{...snap,stale:true}:snap;
+ const id=enWatchId(item),civic=enCivicErrors[id]?null:enCivicByWatch[id];
+ return window.RaceLiveNowcast.estimate(modelRaceOddsData,item,safe,civic);
+}
+function enRenderSourceHealth(){
+ const host=$('#enHealthRows'),headline=$('#enHealthHeadline');
+ if(!host||!headline)return;
+ host.replaceChildren();
+ let healthy=0,impaired=0;
+ for(const office of ['House','Senate','Governor']){
+  const snap=enOfficeSnapshots[office]||
+   (enModeYear===2026&&enOffice===office?enData:null);
+  const failure=enOfficeErrors[office]||
+   (enOffice===office&&enFetchError);
+  const restored=enResumePendingOffices.has(office);
+  const sourceTime=Date.parse(snap?.as_of||'');
+  const delayed=Boolean(snap&&(snap.stale||snap.counting&&
+   (!Number.isFinite(sourceTime)||Date.now()-sourceTime>180*60000)));
+  const status=failure?'RETRYING':restored?'RESTORED · VERIFYING':
+   delayed?'SOURCE DELAYED':snap?.live?'CONNECTED':
+   snap?'VALIDATED · STANDBY':'AWAITING SOURCE';
+  if(failure||restored||delayed)impaired++;
+  if(snap&&!failure&&!restored&&!delayed)healthy++;
+  const row=elt('div','en-source-item');
+  row.append(elt('strong','',office+' · Open America'),
+   elt('span','en-source-state '+(failure?'bad':restored||delayed?'wait':snap?'good':'wait'),status),
+   elt('span','','Source as of '+enFormattedTime(snap?.as_of)+
+    (enOfficeCheckedAt[office]?' · Checked '+enFormattedTime(enOfficeCheckedAt[office]):'')+
+    (failure?' · Last verified result retained':'')));
+  host.append(row);
+ }
+ const items=[...new Map([...enWatched,...enNationalWatchItems()]
+  .filter(x=>!enSupportedStates.has(x.key.slice(0,2)))
+  .map(x=>[enWatchId(x),x])).keys()];
+ const ready=items.filter(id=>enCivicByWatch[id]).length,
+  failed=items.filter(id=>enCivicErrors[id]).length;
+ const secondary=elt('div','en-source-item');
+ secondary.append(elt('strong','','Supplemental · civicAPI'),
+  elt('span','en-source-state '+(failed?'bad':ready?'good':'wait'),
+   failed?'RETRYING '+failed+' RACES':ready?'VALIDATED SOURCES':'AWAITING SOURCE'),
+  elt('span','',ready+'/'+items.length+
+   ' tracked races have verified details · '+failed+
+   ' failed most recent checks · no missing race treated as zero'));
+ host.append(secondary);
+ headline.textContent=healthy+'/3 primary offices healthy · '+
+  impaired+' delayed/retrying · '+failed+' civicAPI retrying';
+}
+function enRenderLiveDesk(){
+ const host=$('#enNowcastRows'),summary=$('#enNowcastSummary');
+ if(!host||!summary)return;
+ const container=host.closest('.en-live-desk');
+ if(container)container.hidden=enModeYear!==2026;
+ if(enModeYear!==2026)return;
+ enRenderSourceHealth();
+ host.replaceChildren();
+ if(!window.RaceLiveNowcast||!latestSenateEstimates||
+   !modelOddsValidate(modelRaceOddsData,latestSenateEstimates)){
+  summary.textContent='Waiting for a matching, validated polling snapshot and race-probability model.';
+  host.append(elt('p','en-live-note',
+   'Unmatched snapshots cannot produce election-night probabilities.'));
+  return;
+ }
+ const lookup=new Map(modelRaceOddsData.records.map(record=>
+  [record.office+'|'+record.race_code,record]));
+ const selected=[],known=new Set();
+ function add(record){
+  const item=enLiveRaceItem(record);if(!item)return;
+  const id=enWatchId(item);
+  if(!known.has(id)){known.add(id);selected.push({record,item})}
+ }
+ for(const item of enWatched){
+  const code=window.RaceLiveNowcast.raceCode(item);
+  const record=lookup.get(item.office.toLowerCase()+'|'+code);
+  if(record)add(record);
+ }
+ for(const record of [...modelRaceOddsData.records].sort((a,b)=>
+  (a.office==='senate'?0:1)-(b.office==='senate'?0:1)||
+  Math.abs(a.dem_minus_rep)-Math.abs(b.dem_minus_rep))){
+  if(selected.length>=8)break;
+  add(record);
+ }
+ const fmt=n=>n>=99.5?'>99%':n<=.5?'<1%':Math.round(n)+'%';
+ let live=0;
+ for(const {record,item} of selected.slice(0,8)){
+  const result=enLiveRaceEstimate(item);if(!result)continue;
+  if(result.mode==='live_informed')live++;
+  const card=elt('div','en-live-race');
+  const header=elt('div','en-live-race-head');
+  header.append(elt('strong','',record.race_code+
+   (item.key.endsWith('-special')?' · SPECIAL':'')),
+   elt('span','',result.mode==='live_informed'?'RETURNS INFORMED':'POLL PRIOR'));
+  const odds=elt('div','en-live-prob');
+  odds.append(elt('strong','party-d','D '+fmt(result.demPct)),
+    elt('strong','party-r','R '+fmt(result.repPct)));
+  card.append(header,odds);
+  if(result.mode==='live_informed')
+   card.append(elt('small','',result.source+' · '+result.reporting.toFixed(0)+
+    '% precincts · current D'+(result.reportedMargin>=0?'+':'')+
+    result.reportedMargin.toFixed(1)+' two-party margin · D '+fmt(result.sensitivityLow)+
+    '–'+fmt(result.sensitivityHigh)+' across error assumptions'));
+  else card.append(elt('small','','Polling D'+(record.dem_minus_rep>=0?'+':'')+
+    record.dem_minus_rep.toFixed(1)+' · prior election error ±'+
+    record.sigma_points.toFixed(1)+' pts · no eligible partial count'));
+  host.append(card);
+ }
+ summary.textContent=selected.slice(0,8).length+' poll-based race probabilities · '+
+  live+' adjusted with verified returns. The update assumes additional geographic error; '+
+  'not calibrated to 2026 precinct sequences or a substitute for race calls.';
+}
+
 function enNationalSourceStatus(item){
  const isPrimary=enSupportedStates.has(item.state);
  const data=isPrimary?(enOfficeSnapshots.Senate||
