@@ -132,7 +132,7 @@ async function settle(){
  assert.equal(w.eval('latestSenateEstimates.generated_at'),estimatesNext.generated_at,
   'Polling averages should update without reopening the dashboard');
  assert.equal(w.eval('jointBasis.senate_prior_mode'),'current_2026');
- assert.equal(w.eval('jointBasis.polling_source_generated_at'),estimatesNext.generated_at);
+ assert.equal(w.eval('jointBasis.generated_from_sources.model_polling_at'),estimatesNext.generated_at);
  assert.match(get('#changesSince').textContent,/newly indexed since opening/,
   'Refreshing the full forecast should preserve newly indexed survey count');
  assert.match(get('#modelEngineTag').textContent,/2026 candidate-based Senate engine · verified · poll-priority v2/);
