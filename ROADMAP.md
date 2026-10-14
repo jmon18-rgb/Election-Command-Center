@@ -274,3 +274,11 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Reused the common state-batch adapter. New deterministic and full browser tests cover per-race identity, source attribution, correct watchlist rendering, rejecting bad provider updates and preserving valid vote totals.
 - Keep supplemental civicAPI numbers outside the Open America national metrics and outside polling-model probabilities. Provider calls are not official certifications.
 - Next: continue batching meaningful missing statewide source coverage, then implement a first-vote Election Day smoke test when real November 3 counts exist. Merge only after green CI.
+
+## October 13: Five-state civicAPI batch — California, Delaware, Maryland, South Dakota, Wyoming
+
+- Independently indexed 7 more 2026 civicAPI statewide contests (CA Governor; DE Senate; MD Governor; SD Senate/Governor; WY Senate/Governor), and pinned each provider ID in the strict shared adapter.
+- Mississippi Senate was separately probed but did not satisfy the required general-election identity contract and stays unverified.
+- Added seven synthetic after-election result tests plus pre-election safeguards and a real-browser Election Night watchlist regression for distinct per-state votes, source links, failed update retention and isolation from Open America.
+- Full CI requires all seven actual civicAPI identity/CORS contracts, but no actual Nov 3 counted votes are claimed yet.
+- Continue with meaningful missing districts/states and Election Day real-vote smoke checks rather than duplicating low-value snapshots.
