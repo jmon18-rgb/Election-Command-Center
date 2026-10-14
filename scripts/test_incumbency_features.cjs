@@ -6,6 +6,12 @@ const stage=JSON.parse(fs.readFileSync('data/candidate_fundamentals_staging.json
 const {map,counts}=features.validate(stage);
 assert.deepEqual(counts,{house:435,senate:35,governor:36});
 assert.equal(map.size,506);
+assert.equal(features.explain(map.get('TN-SEN')).open_seat,null,
+ 'Conflicting incumbent records must not be misclassified open');
+assert.equal(features.explain(map.get('CA-06')).open_seat,null,
+ 'Candidate ID/party conflict must not be classified open');
+assert.equal(features.explain(map.get('RI-02')).open_seat,null);
+
 const mnSen=features.explain(map.get('MN-SEN'));
 const mnGov=features.explain(map.get('MN-GOV'));
 assert.equal(mnSen.open_seat,true);
