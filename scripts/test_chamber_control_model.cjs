@@ -208,7 +208,28 @@ for(const x of Object.values(first.probabilities))
  assert(Number.isFinite(x)&&x>=0&&x<=100);
 assert(first.means.house_dem_seats>0&&first.means.house_dem_seats<435);
 assert(first.means.senate_dem_seats>=30&&first.means.senate_dem_seats<=73);
-assert.equal(first.house_dem_control_pct,null,'No uncalibrated named subforecast unless modeled');
+assert(first.house_dem_control_pct>=0&&first.house_dem_control_pct<=100,
+ 'House control probability is derived from joint same-draw votes');
+assert(first.senate_dem_control_pct>=0&&first.senate_dem_control_pct<=100,
+ 'Senate control probability is derived from joint same-draw votes');
+const bothPct=first.blue_both_including_tsunami;
+const splitPct=first.probabilities.shrug,redPct=first.probabilities.red_dawn;
+assert(Math.abs(first.house_dem_control_pct+first.senate_dem_control_pct-
+ 2*bothPct-splitPct)<.045,'Chamber marginals must reconcile exactly with split control');
+assert(Math.abs(100-first.house_dem_control_pct-first.senate_dem_control_pct+
+ bothPct-redPct)<.045,'Chamber marginals must reconcile with Republican both-control');
+assert(first.house_dem_control_pct+0.01>=bothPct);
+assert(first.senate_dem_control_pct+0.01>=bothPct);
+for(const [key,total] of [['house_dem_seats',435],['senate_dem_seats',100]]){
+ const x=first.seat_intervals_90_pct[key];
+ assert(Number.isInteger(x.p05)&&Number.isInteger(x.p50)&&Number.isInteger(x.p95));
+ assert(x.p05<=x.p50&&x.p50<=x.p95);
+ assert(x.p05>=0&&x.p95<=total);
+}
+assert(first.seat_intervals_90_pct.house_dem_seats.p05<=
+ first.means.house_dem_seats);
+assert(first.seat_intervals_90_pct.house_dem_seats.p95>=
+ first.means.house_dem_seats);
 assert.throws(()=>model.prepare({...sources,odds:{...sources.odds,
  polling_source_generated_at:'1970-01-01T00:00:00Z'}}),/stale or mismatched/);
 assert.throws(()=>model.prepare({...sources,history:{records:[]}}),/stale or mismatched/);
