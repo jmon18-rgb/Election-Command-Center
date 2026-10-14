@@ -47,16 +47,16 @@
   if(fundamentals===experts)throw Error('Expected fundamentals or expert-ratings CSV');
   const pair=fundamentals?['Simple','Fancy']:['Unadjusted','Adjusted'];
   const look=rows.slice(ix+1).map(line=>String(line[0]||'').trim().toUpperCase());
-  const house=look.some(id=>/^[A-Z]{2}-\\d{1,2}$/.test(id));
+  const house=look.some(id=>/^[A-Z]{2}-\d{1,2}$/.test(id));
   const kind=(house?'house':'senate')+(fundamentals?'Fundamentals':'Experts');
   const states=Object.create(null);
   for(const line of rows.slice(ix+1)){
    let id=String(line[0]||'').trim().toUpperCase();
-   if(house&&/^[A-Z]{2}-\\d{1,2}$/.test(id)){
+   if(house&&/^[A-Z]{2}-\d{1,2}$/.test(id)){
     const [state,district]=id.split('-');
     id=state+'-'+district.padStart(2,'0');
    }
-   if(!(house?/^[A-Z]{2}-\\d{2}$/:/^[A-Z]{2}$/).test(id))continue;
+   if(!(house?/^[A-Z]{2}-\d{2}$/:/^[A-Z]{2}$/).test(id))continue;
    if(Object.prototype.hasOwnProperty.call(states,id))
     throw Error('Duplicate race in private CSV '+id);
    const record={};
@@ -80,7 +80,7 @@
        Object.keys(values).length>(kind.startsWith('house')?450:50))
     throw Error('Invalid '+kind+' rows');
    for(const [race,item] of Object.entries(values)){
-    if(!(kind.startsWith('house')?/^[A-Z]{2}-\\d{2}$/:/^[A-Z]{2}$/).test(race))
+    if(!(kind.startsWith('house')?/^[A-Z]{2}-\d{2}$/:/^[A-Z]{2}$/).test(race))
      throw Error('Invalid race');
     for(const k of (kind.endsWith('Fundamentals')?['simple','fancy']:['unadjusted','adjusted']))
      if(!finite(item?.[k])||Math.abs(item[k])>70)
