@@ -133,6 +133,7 @@ jobs:
         run: |
           node --check scripts/bottom_up_national_environment.js
           node --check scripts/audit_bottom_up_national_environment.cjs
+          node scripts/audit_bottom_up_national_environment.cjs --write
           node scripts/audit_bottom_up_national_environment.cjs --check --json > /tmp/bottom-up-modern.json
           node scripts/test_bottom_up_national_environment.cjs
           node -e "const x=require('/tmp/bottom-up-modern.json'); if(x.status!=='SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE'||x.total_qualifying_races<12||x.states_with_qualified_races<8||x.candidate_specific_effects_removed!==false)process.exit(1)"
