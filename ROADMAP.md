@@ -290,6 +290,12 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Full browser replay tests stalls, timeout and abort, independent races, timestamp regressions, late responses, restored source availability and no invented winner calls.
 - Remaining high-value work: live November 3 provider smoke test, source rate-limit behavior under hours of use, and explicit desktop source-health telemetry.
 
+## October 14: Historical polling-error honesty and redrawn-state Monte Carlo correction
+
+- Removed fixed alphabetic district assignment of 2024 margins in all nine fully redrawn states, preserving real 2026 polled-district identity and drawing the 2024 state-margin spectrum *without replacement per simulation* for otherwise exchangeable districts.
+- Added retrospective 2020/2022/2024 Senate polling-error diagnostics, including signed error by election year and leave-one-year-out comparisons of bias correction versus no correction. No partisan bias correction is automatically transferred to 2026: historic field-end dates cannot guarantee true polling publication cutoff and the sample does not validate House/Senate joint probabilities.
+- Added browser-exposed historical audit notes and unit/CI guardrails. Next work remains a genuine geographically specific reaggregation of all 173 changed House districts, wider model-year validation, candidate/incumbent data, and live election-day source acceptance.
+
 ## October 14: Election-night live-informed race probability monitor
 
 - Expose the existing poll-derived JackStradamus probabilities on Election Night for up to eight prioritized monitored/competitive races; no unsupported races assigned guessed odds.
