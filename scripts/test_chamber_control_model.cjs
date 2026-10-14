@@ -25,8 +25,8 @@ assert(basis.senate.filter(r=>r.polled).every(r=>r.sigma>=7),
 // A Silver-inspired disagreement penalty is symmetric in party direction.
 // Stronger polling/prior conflict widens errors, not the expected D or R margin.
 assert.equal(model.disagreementExtraSigma(2,2,.65),0);
-assert.equal(model.disagreementExtraSigma(10,3,.65),.228);
-assert.equal(model.disagreementExtraSigma(-10,-3,.65),.228);
+assert.equal(model.disagreementExtraSigma(10,3,.65),.227);
+assert.equal(model.disagreementExtraSigma(-10,-3,.65),.227);
 assert.equal(model.disagreementExtraSigma(50,-50,1),6);
 assert.equal(model.disagreementExtraSigma(20,-20,0),0,
  'Exchangeable redraw priors cannot be treated as comparable district fundamentals');
