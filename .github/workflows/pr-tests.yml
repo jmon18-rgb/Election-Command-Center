@@ -119,6 +119,12 @@ jobs:
           node --check scripts/audit_joint_race_odds.cjs
           node scripts/audit_joint_race_odds.cjs --json > /tmp/joint-race-odds-audit.json
           node -e "const v=require('/tmp/joint-race-odds-audit.json');if(v.status!=='SOURCE_OF_RACE_ODDS_AUDIT_LEGACY_NOT_USER_FACING'||v.modeled_race_count<475||v.minnesota_senate.legacy_poll_only_research_probability_pct<70||v.minnesota_senate.linked_joint_dem_probability_pct>=v.minnesota_senate.legacy_poll_only_research_probability_pct)process.exit(1)"
+      - name: Attribute House/Senate joint control odds and prove variance conservation
+        run: |
+          node --check scripts/audit_joint_control_gap.cjs
+          node scripts/audit_joint_control_gap.cjs --json > /tmp/joint-control-gap.json
+          node -e "const d=require('/tmp/joint-control-gap.json');if(d.status!=='UNCALIBRATED_SAME_DRAW_JOINT_CONTROL_GAP_AUDIT'||d.scenarios.length!==6||d.scenarios[0].top_senate_control_pivots.length!==12||d.scenarios[0].senate_race_probabilities.length!==35)process.exit(1)"
+          node scripts/audit_joint_control_gap.cjs
       - name: Audit forecast optimism under shared polling errors
         run: |
           node --check scripts/forecast_optimism_audit.cjs
