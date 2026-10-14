@@ -110,6 +110,7 @@ class PollChainTests(unittest.TestCase):
     def test_latest_firm_poll_does_not_force_historical_poll(self):
         primary, model, odds = fixture()
         p = copy.deepcopy(primary["races"][0]["polls"][0])
+        p["race_type"], p["race_code"] = "senate", "MN-SEN"
         result = check(primary, model, odds, {"observations": [p]},
                        today=__import__("datetime").date(2026, 10, 14))
         self.assertEqual(result["verified_newest_indexed_waves"], 1)
