@@ -103,4 +103,4 @@ for(const omitted of [
  assert.equal(adapter.supports(omitted),false);
  assert.equal(adapter.query(omitted),null);
 }
-console.log('CA / DE / SD / WY strict civicAPI: 6 real source IDs, synthetic counts and safety cases passed');
+console.log('CA / DE / MD / SD / WY strict civicAPI: 7 real source IDs, synthetic counts and safety cases passed');
