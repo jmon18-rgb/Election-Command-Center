@@ -104,15 +104,27 @@
   };
   const states=[...new Set(examples.map(x=>x.state))];
   const results=examples.map(r=>{
-   const train=examples.filter(x=>x.state!==r.state);
+   // Every 2024 outcome from the HELD-OUT state is absent from both the
+   // coefficient fit and that fold's national 2024 climate benchmark.
+   // This is stricter than fitting a coefficient out-of-state while
+   // normalizing targets with an all-state aggregate containing heldouts.
+   const foldClimate24=trimmedClimate(post.filter(x=>
+    x.code.slice(0,2)!==r.state));
+   const train=examples.filter(x=>x.state!==r.state).map(x=>({
+    ...x,y:(x.party==='DEM'?1:-1)*
+      (x.margin24-x.presidential24_margin-foldClimate24)
+   }));
    const lambda=fit(train);
+   const holdoutTarget=(r.party==='DEM'?1:-1)*
+    (r.margin24-r.presidential24_margin-foldClimate24);
    return {race_code:r.race_code,state:r.state,
-    prior_2022:round(r.x),realized_2024:round(r.y),
+    prior_2022:round(r.x),realized_2024:round(holdoutTarget),
+    heldout_state_excluded_2024_climate:round(foldClimate24),
     fitted_out_of_state_coefficient:round(lambda),
     predicted_excess_from_2022:round(lambda*r.x),
-    error_zero:round(-r.y),
-    error_cv:round(lambda*r.x-r.y),
-    error_full_transfer:round(r.x-r.y)};
+    error_zero:round(-holdoutTarget),
+    error_cv:round(lambda*r.x-holdoutTarget),
+    error_full_transfer:round(r.x-holdoutTarget)};
   });
   const score=key=>({
    mae:round(results.reduce((a,r)=>a+Math.abs(r[key]),0)/results.length),
@@ -141,7 +153,7 @@
     source:'contested_comparable_house_returns_normalized_against_prior_presidential_vote_for_2022_and_same_cycle_presidential_vote_for_2024'
    },
    fitting:{
-    method:'leave_one_state_out_ridge_through_zero',
+    method:'leave_one_state_out_ridge_through_zero_with_fold_specific_climate',
     penalty_variance_multiplier:20,
     coefficient_floor:0,coefficient_cap:.8,
     full_sample_coefficient:round(allFit),
