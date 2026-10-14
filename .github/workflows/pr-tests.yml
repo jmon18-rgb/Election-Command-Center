@@ -17,6 +17,12 @@ jobs:
           node scripts/test_senate_current_candidate.cjs --json > /tmp/current-senate-forecast.json
           node -e "const x=require('/tmp/current-senate-forecast.json');if(x.status!=='CURRENT_SENATE_PROBABILITIES_PUBLISHED_MODEL_VALIDATION'||x.races.length!==35||x.source_house_probs_unchanged!==true||x.minnesota.model_win_prob_D_new<=x.minnesota.model_win_prob_D_old||x.chamber.old_house_dem_control_pct!==x.chamber.updated_house_dem_control_pct)process.exit(1)"
           node scripts/test_senate_current_candidate.cjs
+      - name: Reconcile 2026 Senate four endings after poll-priority and unpolled-solid repairs
+        run: |
+          node --check scripts/audit_senate_four_endings_reconciliation.cjs
+          node scripts/audit_senate_four_endings_reconciliation.cjs --json > /tmp/senate-four-endings-reconciliation.json
+          node -e "const x=require('/tmp/senate-four-endings-reconciliation.json');if(x.status!=='SENATE_CHAMBER_SHIFT_CURRENT_2026_COMPETITIVENESS_AUDIT'||x.solid_rated_unpolled_races.length!==11||x.outcomes.length!==5||x.outcomes[3].senate_dem_control_pct<=x.outcomes[0].senate_dem_control_pct)process.exit(1)"
+          node scripts/audit_senate_four_endings_reconciliation.cjs
       - name: Validate Senate 2020 candidate continuity and statewide presidential audit
         run: |
           node --check scripts/audit_senate_prior_continuity.cjs
