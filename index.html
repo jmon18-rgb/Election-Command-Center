@@ -2541,6 +2541,7 @@ for(const id of ['jointHomeShadow','jointNightShadow']){
   });
 }
 function jointForecastResult(){return jointLastResult}
+function jointBaselineForecastResult(){return jointPublicResult}
 function jointCurrentSignature(){
  const snaps=['House','Senate','Governor'].map(office=>
   (enOfficeSnapshots[office]?.as_of||'')+'-'+
