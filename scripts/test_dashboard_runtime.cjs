@@ -858,7 +858,7 @@ async function settle(){
  assert.match(get('#jointNightCards').textContent,/BLUE WAVE/);
  assert.match(get('#jointNightCards').textContent,/SHRUG/);
  assert.match(get('#jointNightCards').textContent,/RED DAWN/);
- const jointBase=w.eval('jointLastResult');
+ const jointBase=w.eval('jointForecastResult()');
  assert(jointBase?.probabilities?.blue_tsunami>=0&&jointBase.total_pct>99.9);
  assert.equal(Object.values(jointBase.counts).reduce((sum,n)=>sum+n,0),3000);
  assert(w.eval('Object.keys(jointLiveObservations()).includes("NC-SEN")'),
@@ -867,7 +867,7 @@ async function settle(){
  const housePrior=jointBase.means.house_dem_seats;
  get('#jointSwing').value='-3';
  get('#jointSwing').dispatchEvent(new w.Event('change',{bubbles:true}));
- const changedJoint=w.eval('jointLastResult');
+ const changedJoint=w.eval('jointForecastResult()');
  assert(changedJoint.means.house_dem_seats<housePrior,
   'A more Republican national swing must lower expected House D seats');
  get('#jointSwing').value='0';
