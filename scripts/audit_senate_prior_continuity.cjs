@@ -14,6 +14,9 @@ const margin=(d,r)=>100*(d-r)/(d+r);
 const normalize=s=>String(s||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'')
  .toUpperCase().replace(/[^A-Z ]/g,' ').replace(/\s+/g,' ').trim();
 const firstLast=s=>{const w=normalize(s).split(' ');return w.length<2?'':w[0]+' '+w[w.length-1]};
+// Historical candidate and current polling feed may use first-name variants.
+// Narrow, exact, race-specific alias only; no blanket surname matching.
+const verifiedNameAliases=Object.freeze({'ID-SEN':{'JIM RISCH':'JAMES RISCH'}});
 
 function evaluate(s){
  const pres=s.presidential,study=s.candidateOverperformance;
@@ -92,8 +95,11 @@ function evaluate(s){
   }
   const currentNames=pollInput?
    [pollInput.dem_candidate,pollInput.rep_candidate].map(firstLast):[];
+  const historicalKey=firstLast(historicalWinner);
+  const knownAlias=verifiedNameAliases[row.code]?.[historicalKey];
   const historyMatch=historicalWinner?
-   currentNames.includes(firstLast(historicalWinner)):false;
+   currentNames.includes(historicalKey)||
+    Boolean(knownAlias&&currentNames.includes(knownAlias)):false;
   const continuity=row.special?'different_seat_special':
    !relevant?'historical_regular_unusable':
    !pollInput?'no_named_2026_matchup':
