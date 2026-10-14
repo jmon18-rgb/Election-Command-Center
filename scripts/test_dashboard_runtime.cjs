@@ -1517,6 +1517,7 @@ async function settle(){
  // source must not block other races, and a failed foreground House feed must
  // not stop an independently validated watched Senate office. Synthetic votes.
  const rehearsalClock=w.Date.now,rehearsalFetch=w.fetch;
+ await w.eval('enCivicWaitUntilIdle()');
  w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
  assert.equal(w.eval('enIsVisible()'),true,'Election Night tab must be active');
  let rehearsalSignal;
@@ -1548,7 +1549,7 @@ async function settle(){
  const rehearsalPins=['AK-SEN','AK-GOV','ME-SEN','ME-GOV','NV-GOV','KY-SEN'];
  w.fetch=async()=>({ok:false,status:503,json:async()=>({})});
  for(const pin of rehearsalPins)rehearsalPin(pin);
- await new Promise(resolve=>setTimeout(resolve,65));
+ await w.eval('enCivicWaitUntilIdle()');
  assert.equal(get('#enWatchCount').textContent,'6 races');
  let rehearsalUnblock=null,rehearsalFirst=true;
  const rehearsalRequests=[];
