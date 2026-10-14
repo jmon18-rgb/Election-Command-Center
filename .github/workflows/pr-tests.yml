@@ -192,6 +192,12 @@ jobs:
           node scripts/audit_two_cycle_fundamentals.cjs --json > /tmp/house-fundamentals-shadow.json
           node -e "const r=require('/tmp/house-fundamentals-shadow.json'); if(r.status!=='EXPERIMENTAL_SHADOW_NOT_PROMOTED' || r.paired_eligible_districts!==191 || r.excluded_districts!==244) process.exit(1)"
           node scripts/audit_two_cycle_fundamentals.cjs
+      - name: Audit 2026-map presidential gap-fill preserving valid House returns
+        run: |
+          node --check scripts/audit_house_geography_gapfill.cjs
+          node scripts/audit_house_geography_gapfill.cjs --json > /tmp/house-geography-gapfill.json
+          node -e "const r=require('/tmp/house-geography-gapfill.json');if(r.status!=='RESEARCH_GEOGRAPHY_GAP_FILL_PENDING_HELD_OUT_VALIDATION'||r.candidate_blind_presidential_prior_used_in!==197||r.candidate_2024_vote_exact_reused_in!==238||r.models.length!==3)process.exit(1)"
+          node scripts/audit_house_geography_gapfill.cjs
       - name: Validate presidential 2026-map House fundamentals shadow
         run: |
           node --check scripts/audit_presidential_lean_shadow.cjs
