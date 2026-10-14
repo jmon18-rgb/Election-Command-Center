@@ -1406,6 +1406,8 @@ $('#modelPollAll').addEventListener('click',()=>{modelPollMode='all';renderModel
 $('#modelBack').addEventListener('click',()=>$('#modelBoard').scrollIntoView({behavior:'smooth',block:'start'}));
 let pollingSnapshot=null;let postedPollingSnapshot=null;window.selectedRaceType='senate';
 function setPostedPollingSnapshot(snapshot){
+ if(!Array.isArray(snapshot?.observations)||!Number.isFinite(Date.parse(snapshot.updated_at)))return;
+ if(postedPollingSnapshot&&Date.parse(snapshot.updated_at)<=Date.parse(postedPollingSnapshot.updated_at))return;
  postedPollingSnapshot=snapshot;
  if(pollingSnapshot)renderFreshPolls(pollingSnapshot);
  if(latestSenateEstimates)renderRacePulse(latestSenateEstimates);
@@ -1747,18 +1749,21 @@ document.querySelectorAll('#wireSearch,#wireOffice,#wireWindow,#wireSponsor,#wir
  c.addEventListener(c.id==='wireSearch'?'input':'change',()=>renderPollWire(true)));
 $('#wireMore').addEventListener('click',()=>{wireVisibleLimit+=WIRE_PAGE_SIZE;renderPollWire()});
 
-let newIndexSinceLastVisit;
+let indexBaselineIds=null;
 function countUnseenIndexPolls(entries){
- if(newIndexSinceLastVisit!==undefined)return newIndexSinceLastVisit;
  const key='election-command-center-poll-index-seen-v1';
  const ids=entries.map(p=>[p.race_code,p.poll_id,p.question_id,p.field_end,p.dem_name,p.rep_name].join('|'));
  try{
-  const previous=window.localStorage.getItem(key);
-  const prior=new Set(previous?JSON.parse(previous):[]);
-  newIndexSinceLastVisit=previous?ids.filter(id=>!prior.has(id)).length:0;
+  // Freeze the first render's reference set so newly posted polls can be
+  // counted during this browsing session without reloading.
+  if(indexBaselineIds===null){
+   const previous=window.localStorage.getItem(key);
+   indexBaselineIds=new Set(previous?JSON.parse(previous):ids);
+  }
+  const unseen=ids.filter(id=>!indexBaselineIds.has(id)).length;
   window.localStorage.setItem(key,JSON.stringify(ids.slice(0,1800)));
- }catch(_){newIndexSinceLastVisit=null}
- return newIndexSinceLastVisit;
+  return unseen;
+ }catch(_){return null}
 }
 function renderPostedPolls(){
  const box=$('#newPolls'),status=$('#changesSince');box.replaceChildren();
@@ -1780,7 +1785,8 @@ function renderPostedPolls(){
  for(const p of entries)byOffice[p.race_type]++;
  const unseen=countUnseenIndexPolls(entries);
  status.textContent=entries.length+' source postings · newest time first · S '+byOffice.senate+' / H '+byOffice.house+' / G '+byOffice.governor+
-   (unseen>0?' · '+unseen+' newly indexed since last visit':'');
+   (unseen>0?' · '+unseen+' newly indexed since opening':'')+
+   (data.updated_at?' · collected '+new Date(data.updated_at).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}):'');
  if(!entries.length){box.append(elt('div','empty','No postings in the source from the past 14 days.'));return}
  const fmt=s=>new Date(s+'T12:00:00Z').toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'});
  const fmtSource=p=>{
@@ -1904,6 +1910,48 @@ if(d.updated_at){const date=new Date(d.updated_at);if(!Number.isNaN(+date))$('#g
 }
 fetch('./data/pollresults_recent.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('supplemental not ready');return r.json()}).then(setPostedPollingSnapshot).catch(()=>{/* Main source fallback stays available. */});
 fetch('./data/polls.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(renderPolls).catch(error=>{console.error('Polling feed error',error);$('#newPolls').textContent='Polling feed unavailable: '+error.message+'.';$('#genericDetail').textContent='Polling data could not be displayed.';updateHealth()});
+
+// GitHub Pages does not push new data into an already open browser tab.
+// Check the published snapshots every five minutes, without reloading the UI.
+let pollRefreshInFlight=false;
+async function refreshLivePollSnapshots(){
+ if(pollRefreshInFlight||document.visibilityState==='hidden')return false;
+ pollRefreshInFlight=true;
+ try{
+  const get=async name=>{
+   const response=await fetch('./data/'+name+'.json',{cache:'no-store'});
+   if(!response.ok)throw Error(name+' HTTP '+response.status);
+   return response.json();
+  };
+  const [posted,primary,estimates,odds]=await Promise.all([
+   get('pollresults_recent'),get('polls'),get('polling_estimates'),get('race_probabilities')
+  ]);
+  // Show verified source postings even if headline model files are in flight.
+  setPostedPollingSnapshot(posted);
+  if(primary?.health?.status!=='ok'||
+     primary.updated_at!==estimates?.source_snapshot||
+     estimates.generated_at!==odds?.polling_source_generated_at)
+   throw Error('Partial poll/model publication');
+  const primaryNewer=Date.parse(primary.updated_at)>Date.parse(pollingSnapshot?.updated_at||'');
+  const modelNewer=Date.parse(estimates.generated_at)>Date.parse(latestSenateEstimates?.generated_at||'');
+  if(primaryNewer||modelNewer){
+   const complete=await jointLoadSources({preserveOnFailure:true,
+    expectedModelAt:estimates.generated_at,expectedPollAt:primary.updated_at});
+   if(!complete)return false;
+   if(primaryNewer)renderPolls(primary);
+   if(modelNewer)showSenateEstimates(estimates);
+  }
+  return primaryNewer||modelNewer;
+ }catch(error){
+  console.warn('New-polls check deferred; keeping validated data:',error);
+  return false;
+ }finally{pollRefreshInFlight=false}
+}
+setInterval(()=>{void refreshLivePollSnapshots()},5*60*1000);
+document.addEventListener('visibilitychange',()=>{
+ if(document.visibilityState==='visible')void refreshLivePollSnapshots();
+});
+
 
 
 let integrityQueueData=null;
@@ -2529,7 +2577,7 @@ function jointSetSources(sources){
   renderSenateTideLine();
  }
 }
-async function jointLoadSources(){
+async function jointLoadSources(options={}){
  const required=[
   ['seats','seat_universe'],['history','house_history_2024_staging'],
   ['geography','house_geography_bridge'],['senateHistory','senate_history_2020_2022_2024'],
@@ -2551,14 +2599,32 @@ async function jointLoadSources(){
    try{return await load(pair)}catch(_){return null}
   }));
   for(const item of research)if(item)context[item[0]]=item[1];
+  if(options.preserveOnFailure){
+   // Never replace a working forecast with partially published polling/model JSON.
+   if(context.polls?.generated_at!==options.expectedModelAt||
+      context.polls?.source_snapshot!==options.expectedPollAt||
+      context.odds?.polling_source_generated_at!==options.expectedModelAt)
+    throw Error('Polling and model JSON belong to different publication cycles');
+   const candidate=window.ChamberControlModel?.prepare(context,{senatePriorMode:'current_2026'});
+   if(candidate?.senate_prior_mode!=='current_2026'||
+      candidate.senate_current_context?.model_revision!=='late_2026_poll_priority_solid_unpolled_v2')
+    throw Error('New poll snapshot not compatible with the loaded 2026 engine');
+  }
   jointSetSources(context);
- }catch(e){jointBasis=null;jointBasisShadow=null;jointBasisPresidential=null;
+  return Boolean(jointBasis?.senate_prior_mode==='current_2026');
+ }catch(e){
+  if(options.preserveOnFailure){
+   console.warn('Retaining last validated joint forecast:',e);
+   return false;
+  }
+  jointBasis=null;jointBasisShadow=null;jointBasisPresidential=null;
   jointLastResult=null;jointCacheKey='';
   jointErrorMessage='No joint probability model: '+String(e.message||e);
   const tag=$('#modelEngineTag');if(tag)tag.textContent='Model input source unavailable';
   setModelRaceOddsData(null);
   jointRenderCards(null);jointRenderHouseShadow(null,null,null);
   renderSenateTideLine();
+  return false;
  }
 }
 $('#jointSwing').addEventListener('change',event=>{
