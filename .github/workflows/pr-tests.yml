@@ -17,11 +17,25 @@ jobs:
           node scripts/test_senate_current_candidate.cjs --json > /tmp/current-senate-forecast.json
           node -e "const x=require('/tmp/current-senate-forecast.json');if(x.status!=='CURRENT_SENATE_PROBABILITIES_PUBLISHED_MODEL_VALIDATION'||x.races.length!==35||x.source_house_probs_unchanged!==true||x.minnesota.model_win_prob_D_new<=x.minnesota.model_win_prob_D_old||x.chamber.old_house_dem_control_pct!==x.chamber.updated_house_dem_control_pct)process.exit(1)"
           node scripts/test_senate_current_candidate.cjs
+      - name: Verify isolated 2018 historical Senate results and poll-horizon regeneration
+        run: |
+          python3 scripts/test_senate_2018_extension.py
+          python3 scripts/research_senate_2018_extension.py --verify
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          o=json.loads(Path('data/historical_senate_2018_horizon_backtest.json').read_text())
+          assert o['cycle']==2018 and o['eligible_unambiguous_two_party_outcomes']>=20
+          assert len(o['records']['20'])>=15 and len(o['records']['7'])>=15
+          assert o['ambiguous_multiple_contests_excluded']==['MN','MS']
+          assert not o['can_calibrate_live_2026_model'] and not o['may_change_production_candidate_priors']
+          assert not o['poll_release_dates_verified']
+          PY
       - name: Audit Senate shared-error covariance with variance conservation
         run: |
           node --check scripts/audit_senate_correlated_error.cjs
           node scripts/audit_senate_correlated_error.cjs --json > /tmp/senate-correlation-research.json
-          node -e "const x=require('/tmp/senate-correlation-research.json');if(x.status!=='RESEARCH_ONLY_THREE_CYCLE_SENATE_SHARED_ERROR_ATTRIBUTION'||!x.unchanged_house_and_governor_race_probabilities||!x.unchanged_each_senate_race_error_width||x.scenarios.length!==3||x.historical_horizons.find(y=>y.days_before_election===20).rough_shared_error_sd<=0||x.calibration_parameter_promotion_permitted!==false)process.exit(1)"
+          node -e "const x=require('/tmp/senate-correlation-research.json');if(x.status!=='RESEARCH_ONLY_FOUR_CYCLE_SENATE_SHARED_ERROR_ATTRIBUTION'||!x.unchanged_house_and_governor_race_probabilities||!x.unchanged_each_senate_race_error_width||x.scenarios.length!==3||x.historical_horizons.find(y=>y.days_before_election===20).rough_shared_error_sd<=0||x.historical_horizons.find(y=>y.days_before_election===20).historical_races<58||x.historical_horizons.find(y=>y.days_before_election===20).leave_one_year_out_cycle_mean_scores.length!==3||x.original_three_cycle_archive_untouched!==true||x.calibration_parameter_promotion_permitted!==false)process.exit(1)"
       - name: Verify horizon-based Senate error revision, historic exception and joint covariance
         run: |
           node --check scripts/audit_senate_horizon_floor_v4.cjs
