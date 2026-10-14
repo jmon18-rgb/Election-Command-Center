@@ -55,7 +55,7 @@
    asOf=secondary.last_updated;provider='civicAPI';
   }else return null;
   if(!Number.isSafeInteger(d)||!Number.isSafeInteger(r)||d<0||r<0||
-     d+r<2||d+r>total||!Number.isFinite(reporting)||reporting<0||
+     d===0||r===0||d+r>total||!Number.isFinite(reporting)||reporting<0||
      reporting>100||typeof asOf!=='string')return null;
   const time=Date.parse(asOf);
   if(!Number.isFinite(time))return null;
