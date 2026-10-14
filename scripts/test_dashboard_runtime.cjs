@@ -107,7 +107,7 @@ async function settle(){
   'Race,Polls,Simple,Fancy,Blended',
   'MN,D +3@@3,D +10@@10,D +16@@16,D +20@@20',
   'NC,D +9@@9,D +6@@6,D +7@@7,D +8@@8',
-  'GA,D +8@@8,D +10@@10,D +12@@12,D +14@@14'].join('\\n')+'\\n';
+  'GA,D +8@@8,D +10@@10,D +12@@12,D +14@@14'].join('\n')+'\n';
  const privateFile={name:'senate_fundamentals.csv',size:fakeFundamentals.length,
   text:async()=>fakeFundamentals};
  await w.eval('importPrivateContextFiles')([privateFile]);
