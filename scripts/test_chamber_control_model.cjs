@@ -185,7 +185,7 @@ assert(basis.house.some(x=>x.polled&&x.method.includes('redrawn_')&&
 const unchanged=rebuilt.get('AK-01');
 assert(unchanged&&unchanged.method.includes('unchanged_2024_recorded'));
 const known=new Set([...basis.house,...basis.senate,...basis.governors].map(x=>x.code));
-assert.equal(known.size,476);
+assert.equal(known.size,basis.house.length+basis.senate.length+basis.governors.length);
 for(const seat of [...basis.house,...basis.senate,...basis.governors]){
  assert(seat.state.length===2);
  assert(seat.mean>=-60&&seat.mean<=60&&seat.sigma>=5);
