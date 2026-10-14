@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-14T11:09:22.574832+00:00",
+  "updated_at": "2026-10-14T11:16:48.882876+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,7 +9,7 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1179,
+      "available_in_source": 1180,
       "records_examined": 200
     },
     "governor": {
@@ -19,6 +19,30 @@
   },
   "matched_primary_observations": 289,
   "observations": [
+    {
+      "race_code": "TX-09",
+      "race_type": "house",
+      "state": "TX",
+      "poll_id": "343845a3-47ce-4535-80e9-ac63facd7150",
+      "question_id": "6f62b0b1-3115-4357-a53e-b11b992d386a",
+      "pollster": "University of Houston Hobby School of Public Affairs",
+      "dem_name": "Leticia Gutierrez",
+      "rep_name": "Alex Mealer",
+      "dem": 42.0,
+      "rep": 48.0,
+      "margin": -6.0,
+      "field_end": "2026-10-07",
+      "field_start": "2026-10-03",
+      "posted_date": "2026-10-14",
+      "posted_source_datetime": "2026-10-14T07:00:00",
+      "posted_source_time": "10/14/26 07:00",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.uh.edu/hobby/congress2026/cd9.pdf",
+      "sample_population": "lv",
+      "sample_size": 677,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "ME-SEN",
       "race_type": "senate",
