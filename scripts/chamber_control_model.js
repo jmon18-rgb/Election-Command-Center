@@ -341,13 +341,18 @@
     poll_weight:pollWeight,poll_fundamentals_gap_points:pollFundamentalsGap,
     disagreement_extra_sigma_points:disagreementSigma});
   }
-  for(const code of BATTLEGROUNDS.filter(x=>x.endsWith('-GOV'))){
-   const poll=odds.get('governor|'+code);
-   if(!poll)throw Error('Missing predefined governor battleground poll '+code);
-   gov.push({code,state:code.slice(0,2),
-     mean:poll.dem_minus_rep,sigma:Math.max(7,poll.sigma_points),
-     polled:true,method:'2026_governor_poll'});
+  // Include EVERY polled governor matchup, not just the six governor
+  // battlegrounds used by the four-endings near-sweep definition.
+  // This is a polling-only governor prior, not a calibrated gubernatorial
+  // candidate-fundamentals forecast.
+  for(const poll of s.odds.records.filter(x=>x.office==='governor')){
+   const code=normalizeCode(poll.race_code);
+   if(!/^[A-Z]{2}-GOV$/.test(code))throw Error('Invalid governor race ID '+code);
+   gov.push({code,state:code.slice(0,2),mean:poll.dem_minus_rep,
+    sigma:Math.max(7,poll.sigma_points),polled:true,
+    poll_weight:1,method:'2026_governor_poll_only'});
   }
+  gov.sort((a,b)=>a.code.localeCompare(b.code));
   if(house.length!==HOUSE_SEATS||senate.length!==SENATE_CONTESTS)
    throw Error('Incomplete ballot slot model');
   const names=new Set([...house,...senate,...gov].map(x=>x.code));
@@ -399,7 +404,7 @@
  }
  function simulate(basis,options={}){
   if(!basis||basis.schema_version!==VERSION||basis.house?.length!==435||
-     basis.senate?.length!==35||basis.governors?.length!==6)
+     basis.senate?.length!==35||basis.governors?.length<6)
     throw Error('Incomplete joint-control model basis');
   const samples=options.samples??4000,seed=options.seed??20261103;
   if(!Number.isInteger(samples)||samples<300||samples>30000)
@@ -418,6 +423,7 @@
   const redraws=basis.redrawn_state_distributions||{};
   let houseSeats=0,senateSeats=0,fullBattleground=0,houseControl=0,senateControl=0;
   const houseSeatDraws=[],senateSeatDraws=[];
+  const raceDemWins=new Uint32Array(polls.length);
   for(let k=0;k<samples;k++){
    const national=nationalShift+normal(rands)*a.common_national_sigma*errorMultiplier,
     houseShock=normal(rands)*a.house_chamber_sigma*errorMultiplier,
@@ -467,6 +473,7 @@
     const finalMargin=mean+national+officeShock+stateShock+
       normal(rands)*sigma*errorMultiplier;
     const dem=finalMargin>0;
+    if(dem)raceDemWins[j]++;
     if(isHouse){if(dem)dHouse++}
     else if(isSenate){if(dem)dSenate++}
     if(dem&&BATTLEGROUND_SET.has(item.code))winBattleground++;
@@ -497,12 +504,32 @@
   const quantile=(vals,f)=>vals[Math.floor((vals.length-1)*f)];
   const pct=x=>Math.round(10000*x/samples)/100;
   const probs=Object.fromEntries(Object.entries(outcomes).map(([k,v])=>[k,pct(v)]));
+  const race_probabilities=polls.map((item,index)=>{
+   const isHouse=index<435,isSenate=index>=435&&index<470;
+   const office=isHouse?'house':isSenate?'senate':'governor';
+   const localShared=isHouse?a.state_house_sigma+
+    (item.method.includes('redrawn_')?a.redrawn_state_additional_sigma:0):
+    isSenate?a.state_senate_sigma:a.state_governor_sigma;
+   const officeShared=isHouse?a.house_chamber_sigma:
+    isSenate?a.senate_chamber_sigma:a.governor_chamber_sigma;
+   const totalSigma=Math.hypot(item.sigma,a.common_national_sigma,
+    officeShared,localShared)*errorMultiplier;
+   const wins=raceDemWins[index],demPct=pct(wins);
+   return {race_code:item.code,office,model_dem_margin_points:item.mean,
+    polled:item.polled,poll_weight:item.poll_weight??null,
+    source_method:item.method,sigma_points:Math.round(totalSigma*1000)/1000,
+    dem_beats_rep_pct:demPct,rep_beats_dem_pct:pct(samples-wins),
+    simulated_dem_wins:wins,
+    simulation_samples:samples};
+  });
   const means={house_dem_seats:Math.round(100*houseSeats/samples)/100,
    senate_dem_seats:Math.round(100*senateSeats/samples)/100,
    battleground_dem_wins:Math.round(100*fullBattleground/samples)/100};
   return {schema_version:VERSION,status:'EXPERIMENTAL_UNCALIBRATED',
    samples,seed,senate_dem_holdovers:holdovers,national_shift_points:nationalShift,error_multiplier:errorMultiplier,
    probabilities:probs,counts:outcomes,means,
+   race_probabilities,
+   race_probability_method:'SAME_CORRELATED_DRAWS_AS_CHAMBER_CONTROL',
    blue_both_including_tsunami:pct(outcomes.blue_wave+outcomes.blue_tsunami),
    house_dem_control_pct:pct(houseControl),senate_dem_control_pct:pct(senateControl),
    seat_intervals_90_pct:{
