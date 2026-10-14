@@ -116,7 +116,7 @@ async function settle(){
  assert.notEqual(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').model_dem_margin_points"),baselineMN);
  assert.match(get('#privateContextComparison').textContent,/published model/);
  assert(w.eval('jointBaselineForecastResult()'),'Private model must preserve baseline comparison');
- assert.equal(w.eval('jointPublicResult.senate_dem_control_pct'),baselineSenate);
+ assert.equal(w.eval('jointBaselineForecastResult().senate_dem_control_pct'),baselineSenate);
  get('#privateContextClear').click();
  assert.match(get('#modelEngineTag').textContent,/2026 Senate model/);
  assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').model_dem_margin_points"),baselineMN);
