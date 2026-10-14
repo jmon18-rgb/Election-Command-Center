@@ -48,7 +48,7 @@ const mn=current.senate.find(x=>x.code==='MN-SEN'),old=legacy.senate.find(x=>x.c
 const input=source.odds.records.find(x=>x.race_code==='MN-SEN'&&x.office==='senate');
 assert(input);
 assert.equal(mn.poll_weight,.90);
-assert.equal(current.senate_current_context.model_revision,'late_2026_poll_priority_solid_unpolled_v2');
+assert.equal(current.senate_current_context.model_revision,'late_2026_historical_error_budget_v3');
 assert.equal(current.senate_current_context.poll_weight_firms_3_plus,.90);
 assert.equal(current.senate_current_context.poll_weight_firms_2,.83);
 assert.equal(current.senate_current_context.poll_weight_firms_1,.60);
@@ -78,7 +78,7 @@ const shared=current.assumptions,sharedSigma=Math.hypot(shared.common_national_s
 for(const item of current.senate.filter(x=>x.polled)){
  const wholeSigma=Math.hypot(item.sigma,sharedSigma);
  const inputSigma=source.odds.records.find(x=>x.office==='senate'&&x.race_code===item.code).sigma_points;
- const expected=Math.hypot(Math.max(8.5,inputSigma),item.disagreement_extra_sigma_points);
+ const expected=Math.hypot(Math.max(item.polling_error_floor_points,inputSigma),item.disagreement_extra_sigma_points);
  assert(Math.abs(wholeSigma-expected)<.001,
   'Senate shared+conditional variance must reconcile to full race error for '+item.code);
 }
