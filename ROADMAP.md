@@ -316,3 +316,10 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Main dashboard and Election Night display our own probabilities, expected seat totals, full model-input coverage and sensible ±3-point/narrower/wider assumption toggles, retaining DDHQ as a visibly external comparison.
 - Verified November 3 partial votes can enter the joint model as a conservative geographic-noise posterior without contaminating reporting totals or calls; no synthetic votes used in production.
 - **Still necessary before describing as calibrated forecasts:** comprehensive historical holdout backtests, district geography-specific baselines in redrawn states, better candidate fundamentals and Senate caucus verification, improved joint correlated error measurement, validated live Nov 3 election-night results and long-running browser smoke tests.
+
+## October 14: historical polling-probability scoring and special-seat identity hardening
+
+- Scored existing retrospective Senate 2020/2022/2024 dataset with Brier score, log loss and 90% expected margin-interval coverage, including **leave-one-election-year-out** bias/variance evaluation. The historical record has no first-publication timestamps, so these scores are evidence of error patterns, not proof of live forecast calibration.
+- Exposed source-attributed probability-scoring details in both primary and Election Night four-ending model audit panels, and clarified the actual frozen **18 of 20** near-sweep threshold in scenario cards.
+- Fixed use of the 2020 *regular* Senate result as a proxy for the 2026 *special* seat; current-poll Senate variance uses a conservative 7-point floor. Kept automatic 2026 D/R bias correction **off** rather than assuming a repeated historical political error.
+- Next: independently import the publicly released Silver Bulletin pollster ratings if source terms/firm identity allow; use verified external methodology as a benchmark, validate 2026 district fundamentals and 34/31 holdover caucus assumption, and assemble true election-year-held-out joint 435/35 forecast backtests with geographic histories.
