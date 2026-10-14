@@ -114,6 +114,18 @@ jobs:
           node --check scripts/forecast_optimism_audit.cjs
           node scripts/forecast_optimism_audit.cjs --json > /tmp/forecast-optimism-audit.json
           node -e "const x=require('/tmp/forecast-optimism-audit.json'); if(x.scenarios.length!==7 || x.status!=='UNCALIBRATED_SENSITIVITY_NOT_ELECTION_PREDICTIONS') process.exit(1)"
+      - name: Validate historical candidate overperformance and double-counting
+        run: |
+          node --check scripts/historical_candidate_strength.js
+          node --check scripts/build_historical_candidate_strength.cjs
+          node --check scripts/test_historical_candidate_strength.cjs
+          node scripts/build_historical_candidate_strength.cjs --check --json > /tmp/incumbent-relative-margin.json
+          node scripts/test_historical_candidate_strength.cjs
+          node --check scripts/incumbent_persistence_backtest.js
+          node scripts/test_incumbent_persistence_backtest.cjs
+          node scripts/audit_historical_strength_shadow.cjs --json > /tmp/historic-strength-shadow.json
+          node -e "const x=require('/tmp/historic-strength-shadow.json');if(x.training_sample!==148 || x.house2024_baseline_prior_changes!==0 || x.senate_prior_changes!==0 || x.presidential_house_shadow_prior_changes<55)process.exit(1)"
+          node -e "const d=require('/tmp/incumbent-relative-margin.json'); if(d.eligible_house_incumbents!==149 || d.eligible_senate_incumbents!==12 || d.independent_election_year_validation!==false) process.exit(1)"
       - name: Validate candidate incumbency and governor-approval context
         run: |
           node --check scripts/incumbency_features.js

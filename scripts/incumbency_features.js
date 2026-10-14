@@ -217,7 +217,11 @@
  // the FUNDAMENTALS PRIOR, therefore a poll blend retains only (1-poll_w).
  // This does not estimate or calibrate coefficients, and the baseline model
  // is never modified.
- function scenarioBasis(model,basis,doc,polls,coefficients={}){
+ function scenarioBasis(model,basis,doc,polls,coefficients={},options={}){
+  if(options.onlyOffices!==undefined&&
+     (!Array.isArray(options.onlyOffices)||options.onlyOffices.some(x=>
+      !['house','senate','governor'].includes(x))))
+   throw Error('Invalid office-scoped candidate scenario');
   if(!model||basis?.schema_version!==model.VERSION)
    throw Error('Invalid joint model for candidate scenario');
   const {map}=validate(doc);
@@ -231,6 +235,9 @@
   }
   const changes=[],skipped=[];
   const project=(items,office)=>items.map(item=>{
+   // Historical carryover estimated on House incumbents is NOT a trained
+   // Senate or governor coefficient. Opt-in scenarios may be office-scoped.
+   if(options.onlyOffices&&!options.onlyOffices.includes(office))return item;
    const record=map.get(item.code);
    if(!record||record.office!==office)
     throw Error('Missing candidate metadata for modeled race '+item.code);
@@ -252,7 +259,38 @@
     return item;
    }
    const retained=item.polled?1-(item.poll_weight??1):1;
-   const delta=effect.raw_prior_margin_adjustment_points*retained;
+   // How much of LAST election's outcome is ALREADY embedded in the
+   // original fundamentals baseline? Extra prior-race residual must
+   // only fill the remaining gap, NEVER get counted a second time.
+   let historicalAlreadyEmbedded=0;
+   if(office==='house'){
+    if(item.method.includes('presidential_house_blend_2024'))
+     historicalAlreadyEmbedded=.35;
+    else if(item.method.includes('unchanged_2024_recorded')||
+            item.method.includes('two_cycle_shadow_2024_recorded'))
+     historicalAlreadyEmbedded=1;
+   }else if(office==='senate'&&
+      item.method.includes('historical_2020_senate_plus_state_house')){
+    historicalAlreadyEmbedded=.65;
+   }
+   const weightedComponents=effect.components.map(c=>{
+    const isPrior=c.component==='prior_competitive_election_residual';
+    const isPersonal=c.component==='personal_incumbency';
+    // An incumbent's current first-term increment is NEW relative to
+    // a 2024 first-time winner; it is not already in the previous vote.
+    const multiplier=(isPrior||isPersonal)?1-historicalAlreadyEmbedded:1;
+    return {...c,previous_vote_embedded_fraction:
+       isPrior||isPersonal?historicalAlreadyEmbedded:0,
+     residual_after_embedded_prior_points:c.margin_points*multiplier};
+   });
+   const rawIncrement=weightedComponents.reduce((a,c)=>
+    a+c.residual_after_embedded_prior_points,0);
+   const delta=rawIncrement*retained;
+   if(Math.abs(delta)<1e-10){
+    if(effect.components.some(c=>c.margin_points!==0))
+     skipped.push({race_code:item.code,reason:'historic_strength_already_in_prior'});
+    return item;
+   }
    // Keep the same safety bounds used by the original joint simulator.
    const cap=office==='senate'?55:60;
    const mean=limit(item.mean+delta,-cap,cap);
@@ -260,11 +298,13 @@
     changes.push({race_code:item.code,office,mean_before:item.mean,
      mean_after:mean,raw_prior_delta_points:effect.raw_prior_margin_adjustment_points,
      poll_remainder_weight:retained,applied_margin_delta_points:mean-item.mean,
-     components:effect.components});
+     components:weightedComponents,
+     historical_vote_embedded_fraction:historicalAlreadyEmbedded});
    }
    return {...item,mean,
     candidate_sensitivity_status:'COUNTERFACTUAL_UNCALIBRATED',
-    candidate_prior_delta_points:effect.raw_prior_margin_adjustment_points};
+    candidate_prior_delta_points:rawIncrement,
+    historical_vote_embedded_fraction:historicalAlreadyEmbedded};
   });
   const candidateBasis={
    ...basis,
