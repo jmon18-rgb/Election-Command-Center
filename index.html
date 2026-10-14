@@ -2221,7 +2221,8 @@ function enWatchToggle(item){
 const enCivicBase='https://civicapi.org/api/v2';
 let enCivicByWatch=Object.create(null),enCivicRaceIds=Object.create(null),
  enCivicErrors=Object.create(null),enCivicPending=new Set(),enCivicLastSweep=0,enCivicSweepCursor=0,
- enCivicExpanded=new Set(),enCivicSweepInFlight=false,enCivicActiveSweeps=0;
+ enCivicExpanded=new Set(),enCivicSweepInFlight=false,enCivicActiveSweeps=0,
+ enCivicPendingTasks=Object.create(null);
 // Only individually verified, source-ID-pinned 2026 contests use the
 // stricter shared adapter. An absent script must never fall back to the
 // looser generic source matcher.
@@ -2374,10 +2375,18 @@ async function enCivicFetchJson(url,timeoutMs=12000){
   ]);
  }finally{clearTimeout(timer)}
 }
-async function enCivicFetchOne(item){
+async function enCivicFetchOne(item,forceAfterPending=false){
  const id=enWatchId(item);
- if(enCivicPending.has(id))return;
+ if(enCivicPending.has(id)){
+  // The explicit refresh should wait for the previous provider call,
+  // then request a new result; don't silently drop the user's refresh.
+  await enCivicPendingTasks[id];
+  if(forceAfterPending)return enCivicFetchOne(item,false);
+  return;
+ }
  enCivicPending.add(id);
+ let release;
+ enCivicPendingTasks[id]=new Promise(resolve=>{release=resolve});
  try{
   if(item.office==='Senate'&&item.key==='NH'&&!window.NHCivicRaceAdapter)
    throw Error('NH Senate race adapter is unavailable');
@@ -2410,7 +2419,11 @@ async function enCivicFetchOne(item){
    enCivicErrors[id]=String(err?.message||err);
    enRenderWatchlist();enRenderNationalSenate();
   }
- }finally{enCivicPending.delete(id)}
+ }finally{
+  enCivicPending.delete(id);
+  delete enCivicPendingTasks[id];
+  release();
+ }
 }
 async function enRefreshCivicWatchlist(force=false){
  if(enModeYear!==2026||!enIsVisible()||
@@ -2442,7 +2455,7 @@ async function enRefreshCivicWatchlist(force=false){
    while(cursor<batch.length){
     if(enModeYear!==2026||!enIsVisible())return;
     const item=batch[cursor++];
-    await enCivicFetchOne(item);
+    await enCivicFetchOne(item,force);
    }
   }));
  }finally{
