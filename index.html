@@ -4033,6 +4033,11 @@ function setModelHistoryData(snapshot){
 let latestSenateEstimates=null;
 function showSenateEstimates(data){
 latestSenateEstimates=data;
+// Polling and joint-model requests resolve independently. If the joint
+// simulation finished first, attach its race marginals when polling arrives;
+// never fall back to the old standalone odds table.
+if(jointLastResult&&jointBasis&&!modelRaceOddsData)
+ modelRaceOddsData=jointBuildRaceOddsSnapshot(jointLastResult,jointBasis);
 renderPollWire();
 const box=document.getElementById('senateEstimateCards');box.replaceChildren();renderRacePulse(data);
 const safeNumber=v=>typeof v==='number'&&Number.isFinite(v);
