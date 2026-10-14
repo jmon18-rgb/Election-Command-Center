@@ -70,6 +70,7 @@ def validate(source, house_codes=None):
                                 "result_provenance", "reference_provenance")):
             raise ValueError("Missing named candidates or provenance")
         if not all(isinstance(x.get(name), str) and x[name].startswith("https://")
+                   and len(x[name]) > 16 and "." in x[name].split("/")[2]
                    for name in ("source_url", "reference_url")):
             raise ValueError("Missing authenticated https provenance link")
     return len(records)
