@@ -505,7 +505,8 @@
   const rands=seeded(seed),live=options.live||Object.create(null);
   const a=basis.assumptions;
   const redraws=basis.redrawn_state_distributions||{};
-  let houseSeats=0,senateSeats=0,fullBattleground=0,houseControl=0,senateControl=0;
+  let houseSeats=0,senateSeats=0,fullBattleground=0,houseControl=0,senateControl=0,
+   independentPivotDraws=0,independentContestedWins=0;
   const houseSeatDraws=[],senateSeatDraws=[];
   const raceDemWins=new Uint32Array(polls.length);
   for(let k=0;k<samples;k++){
@@ -535,7 +536,8 @@
      stateDeltas.set(state,normal(rands));
     return stateDeltas.get(state);
    };
-   let dHouse=0,dSenate=holdovers,winBattleground=0;
+   let dHouse=0,dSenate=holdovers,rSenate=100-35-holdovers,
+    iSenate=0,winBattleground=0;
    for(let j=0;j<polls.length;j++){
     const item=polls[j],isHouse=j<435,isSenate=j>=435&&j<470;
     const scenario=live[item.code],meaningful=scenario&&
@@ -559,8 +561,20 @@
     const dem=finalMargin>0;
     if(dem)raceDemWins[j]++;
     if(isHouse){if(dem)dHouse++}
-    else if(isSenate){if(dem&&item.first_candidate_dem_caucus)dSenate++}
+    else if(isSenate){
+     if(dem){
+      if(item.first_candidate_dem_caucus)dSenate++;
+      else {iSenate++;independentContestedWins++}
+     }else rSenate++;
+    }
     if(dem&&BATTLEGROUND_SET.has(item.code))winBattleground++;
+   }
+   // A noncaucusing Independent can prevent either major party from
+   // reaching conventional organization thresholds. The familiar four
+   // outcomes remain a binary-D-control approximation; expose ambiguous
+   // draws separately rather than claiming they guarantee GOP control.
+   if(dSenate<a.senate_control_dem_seats&&rSenate<50){
+    independentPivotDraws++;
    }
    const houseDem=dHouse>=a.house_control_dem_seats;
    const senateDem=dSenate>=a.senate_control_dem_seats;
@@ -617,6 +631,13 @@
    samples,seed,senate_dem_holdovers:holdovers,national_shift_points:nationalShift,error_multiplier:errorMultiplier,
    probabilities:probs,counts:outcomes,means,
    race_probabilities,
+   senate_independent_context:{
+    independent_contender_wins_mean:Math.round(100*independentContestedWins/samples)/100,
+    non_majority_caucus_balance_pct:pct(independentPivotDraws),
+    caucus_assumption:'NE_ID_SD_declared_nonmajority_caucus_independent',
+    four_outcomes_are_binary_dem_majority_proxy:true,
+    note:'When neither major-party caucus controls 50+ seats, four-outcome binary scenarios cannot identify Senate organization; track this uncertainty separately.'
+   },
    race_probability_method:'SAME_CORRELATED_DRAWS_AS_CHAMBER_CONTROL',
    blue_both_including_tsunami:pct(outcomes.blue_wave+outcomes.blue_tsunami),
    house_dem_control_pct:pct(houseControl),senate_dem_control_pct:pct(senateControl),
