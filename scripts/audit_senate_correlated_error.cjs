@@ -134,7 +134,7 @@ assert(horizons[1].rough_shared_error_sd>0);
 const output={
  status:'RESEARCH_ONLY_FOUR_CYCLE_SENATE_SHARED_ERROR_ATTRIBUTION',
  since:2018,years,historical_horizons:horizons,
- 2018_outcomes_imported_into_2026_model:false,
+ historical_2018_outcomes_imported_into_2026_model:false,
  original_three_cycle_archive_untouched:true,
  extended_fieldwork_2018_mirror_not_primary_hash_verified:true,
  raw_historic_poll_publication_timestamps_unavailable:true,
