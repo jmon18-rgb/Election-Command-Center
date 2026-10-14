@@ -345,18 +345,32 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .joint-tag{font-size:10px;letter-spacing:.04em;font-weight:700;color:#e5bd85}
 .joint-summary{font-size:12px;color:#c9d9ed;line-height:1.6;margin:10px 0}
 .joint-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
-.joint-cell{padding:13px 11px;border:1px solid #405872;border-radius:8px;background:#1d3047}
-.joint-cell strong{display:block;font-size:11px;letter-spacing:.075em;white-space:nowrap}
-.joint-cell .joint-value{font-size:31px;font-variant-numeric:tabular-nums;letter-spacing:-.045em;margin:7px 0;color:#e5f2ff}
-.joint-cell span{font-size:10px;color:#adc2d7;line-height:1.5;display:block}
-.joint-cell.d-tide .joint-value,.joint-cell.d-wave .joint-value{color:#80c1ff}
+.joint-cell{position:relative;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;min-width:0;min-height:122px;padding:16px;border:1px solid #3c526c;border-radius:12px;background:#1b2b40;overflow:hidden}
+.joint-cell::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:#7791a9}
+.joint-cell strong{display:block;font-size:11px;letter-spacing:.065em;line-height:1.35;white-space:normal;min-height:16px}
+.joint-cell .joint-value{font-size:clamp(26px,2.9vw,34px);font-variant-numeric:tabular-nums;letter-spacing:-.045em;margin:8px 0 5px;color:#e5f2ff;font-weight:800}
+.joint-cell span{font-size:11px;color:#adc2d7;line-height:1.4;display:block;margin-top:auto}
+.joint-cell.d-tide::before,.joint-cell.d-wave::before{background:#4b98f8}
+.joint-cell.d-tide .joint-value,.joint-cell.d-wave .joint-value{color:#8dc4ff}
+.joint-cell.d-split::before{background:#b398d7}
+.joint-cell.d-split .joint-value{color:#d4c4f2}
+.joint-cell.r-dawn::before{background:#f17878}
 .joint-cell.r-dawn .joint-value{color:#ff9a9a}
+.race-workbench{margin:15px 0;border:1px solid #34516d;border-radius:12px;background:#122238;overflow:hidden}
+.race-workbench>summary{padding:15px 18px;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;cursor:pointer;list-style:none;color:#e2efff}
+.race-workbench>summary::-webkit-details-marker{display:none}
+.race-workbench>summary strong{font-size:13px}
+.race-workbench>summary span{font-size:11px;color:#a6bcd4}
+.race-workbench[open]>summary{border-bottom:1px solid #304763}
+.race-workbench-body{padding:15px}
+.race-workbench-body.card{margin:0}
+.race-workbench-body .sectionhead{margin-top:6px}
 .joint-note{font-size:11px;color:#9fb7cf;line-height:1.65;margin:9px 0 0}
 .joint-tools{display:flex;flex-wrap:wrap;gap:11px;align-items:center;margin:13px 0 0;font-size:11px;color:#b9cee4}
 .joint-tools label{display:inline-flex;gap:5px;align-items:center}
 .joint-tools select{font-size:11px;border:1px solid #58718d;color:#e6f3ff;background:#213850;border-radius:6px;padding:6px}
 #jointRunStatus{color:#a9c5d6}
-@media(max-width:740px){.joint-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.joint-cell .joint-value{font-size:25px}}
+@media(max-width:740px){.joint-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.joint-cell .joint-value{font-size:27px}.joint-cell{min-height:116px;padding:13px}}
 @media(max-width:400px){.joint-panel{padding:12px}.joint-cell strong{font-size:10px}.joint-tools{align-items:flex-start}}
 /* Optional retrospective audit; no historical bias correction is silently applied. */
 .joint-audit{margin:12px 0 5px;border-top:1px solid #3c546c;padding-top:9px}
@@ -371,9 +385,9 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   </div>
   
 </section>
-<div class="split" style="margin-bottom:8px"><div class="health"><span id="healthDot" class="healthdot"></span><span id="healthText">Checking data feeds…</span></div><span class="tiny" id="lastChecked"></span></div><nav class="tabs" aria-label="Dashboard tabs"><button class="tab" data-page="brief" aria-selected="true">Daily briefing</button><button class="tab" data-page="wire" aria-selected="false">Poll Wire</button><button class="tab" data-page="races" aria-selected="false">Race lab</button><button class="tab" data-page="model" aria-selected="false">JackStradamus</button><button class="tab" data-page="integrity" aria-selected="false">Bullshittery Index</button><button class="tab" data-page="electionNight" aria-selected="false">Election Night</button></nav>
+<div class="split" style="margin-bottom:8px"><div class="health"><span id="healthDot" class="healthdot"></span><span id="healthText">Checking data feeds…</span></div><span class="tiny" id="lastChecked"></span></div><nav class="tabs" aria-label="Dashboard tabs"><button class="tab" data-page="brief" aria-selected="true">Daily briefing</button><button class="tab" data-page="wire" aria-selected="false">Poll Wire</button><button class="tab" data-page="model" aria-selected="false">JackStradamus</button><button class="tab" data-page="integrity" aria-selected="false">Bullshittery Index</button><button class="tab" data-page="electionNight" aria-selected="false">Election Night</button></nav>
 <section id="brief" class="page active">
-<div class="brief-intro"><div><span class="eyebrow">DAILY BRIEFING</span><h2>Today’s state of play</h2><p>Start with the numbers. Then see what's new and why it matters.</p></div><div class="brief-date compact-date"><span>Election Day · Nov 3</span><strong id="countdown">—</strong></div></div>
+<div class="brief-intro"><div><span class="eyebrow">DAILY BRIEFING</span><h2>Today’s tide schedule</h2><p>Start with the numbers. Then see what's new and why it matters.</p></div><div class="brief-date compact-date"><span>Election Day · Nov 3</span><strong id="countdown">—</strong></div></div>
 <div class="grid" style="margin-top:16px">
 <div class="card eight featured"><div class="row"><span class="label">National generic ballot · recent polls</span><span class="tag teal">OBSERVED DATA</span></div><div class="featureline"><div><div class="big party-even" id="genericMargin">—</div><p class="detail" id="genericDetail">Awaiting verified polling observations.</p></div><div class="featuredelta"><span class="label">SINCE LAST REFRESH</span><strong id="genericDelta">—</strong></div></div><div class="barlabels"><span>DEMOCRATIC</span><span>REPUBLICAN</span></div><div class="ballotbar"><div id="ballotDem" class="ballotdem"></div><div id="ballotRep" class="ballotrep"></div></div><div class="barvalues"><span id="ballotDemLabel">—</span><span id="ballotRepLabel">—</span></div><div class="rule"></div><div class="row"><span class="tiny" id="genericFresh">Polling feed not yet loaded</span><button class="textlink" type="button" data-jump="races">Explore races →</button></div><p class="methodline">Descriptive polling average, not a prediction of House seats or win probabilities.</p></div>
 </div>
@@ -383,7 +397,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <div class="sectionhead"><h2>What's new</h2><span class="tiny" id="freshness">Checking latest update</span></div>
 <div class="grid"><div class="card seven"><div class="row"><span class="label">New polls</span><span class="tiny" id="changesSince">Checking newly observed surveys</span></div><div id="newPolls" class="empty">Checking recent poll postings…</div><button class="textlink" type="button" data-jump="wire">Open full Poll Wire →</button></div>
 <div class="card five"><div class="row"><span class="label">Election developments</span><span class="tag">NEWS LEADS</span></div><div id="updates" class="empty">Loading recent election reporting.</div><button class="textlink" type="button" data-jump="integrity">Bullshittery Index →</button></div></div>
-<div class="sectionhead"><h2>Senate polling estimates</h2><span class="tiny">Observed polls · data quality</span></div><div class="card"><div id="senateEstimateCards" class="racecards racecards-wide"><div class="empty">Awaiting first automated model update.</div></div><p class="methodline">Named-candidate polls, newest wave per firm · 21-day half-life · historical pollster quality · diminishing sample-size weight · independently conducted polls 1.0×, qualifying sponsored polls 0.5× regardless of party. <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/POLLING_MODEL.md" target="_blank" rel="noopener noreferrer">Full methodology ↗</a> Polling disagreement is descriptive, and unrelated to election-integrity scores.</p></div><div class="sectionhead"><h2>The four endings</h2><span class="tiny">JackStradamus · one correlated model for races and chamber control</span></div>
+<div class="sectionhead"><h2>The four endings</h2><span class="tiny">JackStradamus · one correlated model for races and chamber control</span></div>
 <div class="joint-panel" id="jointHomePanel" aria-label="JackStradamus four outcome probability model">
  <div class="joint-title"><div><span class="label">JACKSTRADAMUS · JOINT CHAMBER BETA</span><h3>Four endings. Our probabilities.</h3></div><span class="joint-tag">EXPERIMENTAL · ASSUMPTION-BASED</span></div>
  <p class="joint-summary" id="jointHomeSummary">Building the 435-House, 35-Senate model from published polling and election history…</p>
@@ -391,11 +405,6 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <details class="joint-audit"><summary>Compare House fundamentals · historical vs presidential</summary><p id="jointHomeShadow" class="joint-note">Checking historically comparable House districts…</p></details>
  <details class="joint-audit"><summary>Historical polling-error check · how reliable is this?</summary><p id="jointHomeAudit" class="joint-note">Reading existing historical Senate poll backtest…</p></details>
  <p class="joint-note">Blue Tsunami = Democrats win both chambers AND at least 18 of 20 fixed House/Senate/governor battleground races. Blue Wave = both chambers without that near-sweep. Shrug = split control. Red Dawn = Republicans retain both. These four outcomes are mutually exclusive. Model estimates are not calibrated forecasts.</p>
-</div>
-<div class="callout" id="tsunamiReachWatch" style="margin-bottom:17px">
- <div class="label">Beyond the battlegrounds · South Carolina U.S. Senate</div>
- <p style="margin:9px 0 7px"><strong>Darline Graham (R) vs. Annie Andrews (D).</strong> <a href="https://www.cookpolitical.com/senate/race/488671" target="_blank" rel="noopener noreferrer">Cook Political Report: Likely Republican</a> (rating page updated Sept. 23, 2026; Oct. 6 national ratings still include SC in Likely Republican). A Democratic win in a race outside the current toss-ups would describe a broader geographic result, but is <strong>not by itself</strong> a Blue Tsunami definition or a model probability.</p>
- <div class="tiny">Research watch · dated external race rating, not a live rating feed. <a href="https://www.cookpolitical.com/ratings/senate-race-ratings" target="_blank" rel="noopener noreferrer">Check the current race ratings ↗</a></div>
 </div>
 <div class="sectionhead"><h2>What to watch</h2><span class="tiny">What deserves a closer look?</span></div>
 <div class="card radar-wrap"><div id="jackRadar" class="radar-grid"><div class="empty">Scanning close races, polling blind spots, and election developments…</div></div><p class="methodline">The closest margins, thin polling, and documented election-administration issues.</p></div>
@@ -419,9 +428,16 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   <p class="methodline">Index coverage is incomplete; survey questions or sample populations from the same release may be listed separately. Sorting uses the full index-posting wall-clock timestamp; its timezone is unspecified. This is not an election-outcome forecast.</p>
  </div>
 </section>
-<section id="races" class="page"><div class="sectionhead"><h2>Race intelligence</h2><span class="tiny">Advanced analysis workspace</span></div><div class="grid"><div class="card twelve"><div class="row"><span class="label">Battleground tracker</span><span class="tag teal">POLLING DATA</span></div><div class="big">The races that matter.</div><p class="detail">Browse individual surveys, pollsters, sample sizes, and field dates.</p><div class="chips"><button class="chip active" data-race="Senate">Senate</button><button class="chip" data-race="House">House</button><button class="chip" data-race="Governors">Governors</button></div><div class="statbar"><div class="stat"><small>RACES WITH RECENT POLLS</small><b id="raceCount">—</b></div><div class="stat"><small>NEWEST POLL FIELD DATE</small><b id="raceNewest">—</b></div></div><div class="toolrow"><input id="raceSearch" type="search" placeholder="Filter by state, race, pollster"><select id="raceSort" aria-label="Sort races"><option value="recent">Most recent</option><option value="closest">Closest latest poll</option><option value="count">Most polls</option><option value="state">State A–Z</option></select></div><div class="statusline" id="raceStatus">Loading the latest Senate surveys…</div>
-<div id="pollLeadSeats" class="poll-seat-panel"><span class="label">Seats currently leading in the polling averages</span><div id="pollLeadSummary" class="poll-seat-stats"><span class="tiny">Awaiting data…</span></div><div class="poll-seat-track" id="pollLeadTrack" aria-label="Distribution of polled race leaders"></div><p id="pollLeadNote" class="methodline">Only races with qualifying surveys are counted. Other races are not assigned to a party. This is a snapshot of polling leads, not an election result or chamber-control estimate.</p></div><div class="tablewrap"><table class="datatable"><thead><tr><th>Race</th><th>Latest margin</th><th>Pollster</th><th>Field end</th><th>Polls</th></tr></thead><tbody id="raceTable"></tbody></table></div><div id="raceList"></div></div></div></section>
 <section id="model" class="page">
+<details id="raceWorkbench" class="race-workbench">
+ <summary><strong>Survey explorer</strong><span>Pollster-by-pollster evidence, sortable race lists and seat-lead tracker</span></summary>
+ <div class="race-workbench-body"><div class="sectionhead"><h2>Race intelligence</h2><span class="tiny">Advanced analysis workspace</span></div><div class="grid"><div class="card twelve"><div class="row"><span class="label">Battleground tracker</span><span class="tag teal">POLLING DATA</span></div><div class="big">The races that matter.</div><p class="detail">Browse individual surveys, pollsters, sample sizes, and field dates.</p><div class="chips"><button class="chip active" data-race="Senate">Senate</button><button class="chip" data-race="House">House</button><button class="chip" data-race="Governors">Governors</button></div><div class="statbar"><div class="stat"><small>RACES WITH RECENT POLLS</small><b id="raceCount">—</b></div><div class="stat"><small>NEWEST POLL FIELD DATE</small><b id="raceNewest">—</b></div></div><div class="toolrow"><input id="raceSearch" type="search" placeholder="Filter by state, race, pollster"><select id="raceSort" aria-label="Sort races"><option value="recent">Most recent</option><option value="closest">Closest latest poll</option><option value="count">Most polls</option><option value="state">State A–Z</option></select></div><div class="statusline" id="raceStatus">Loading the latest Senate surveys…</div>
+<div id="pollLeadSeats" class="poll-seat-panel"><span class="label">Seats currently leading in the polling averages</span><div id="pollLeadSummary" class="poll-seat-stats"><span class="tiny">Awaiting data…</span></div><div class="poll-seat-track" id="pollLeadTrack" aria-label="Distribution of polled race leaders"></div><p id="pollLeadNote" class="methodline">Only races with qualifying surveys are counted. Other races are not assigned to a party. This is a snapshot of polling leads, not an election result or chamber-control estimate.</p></div><div class="tablewrap"><table class="datatable"><thead><tr><th>Race</th><th>Latest margin</th><th>Pollster</th><th>Field end</th><th>Polls</th></tr></thead><tbody id="raceTable"></tbody></table></div><div id="raceList"></div></div></div></div>
+ </details>
+<details class="race-workbench" id="senatePollBreakdown">
+ <summary><strong>Full Senate polling breakdown</strong><span>Polling firms, survey quality and candidate matchups · detailed cards</span></summary>
+ <div class="race-workbench-body card"><div id="senateEstimateCards" class="racecards racecards-wide"><div class="empty">Awaiting first automated model update.</div></div><p class="methodline">Latest qualifying wave per pollster, recency, source quality and sponsorship are reflected in the polling average. <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/POLLING_MODEL.md" target="_blank" rel="noopener noreferrer">Methodology ↗</a></p></div>
+ </details>
 <div class="sectionhead model-heading"><div><h2>JackStradamus</h2><p class="detail">Polling averages for Senate, House, governors and the generic ballot.</p></div><span class="tiny model-updated" id="modelUpdated">Checking latest snapshot…</span></div>
 <div class="model-scope-tabs" aria-label="JackStradamus office">
 <button type="button" data-model-scope="senate" aria-pressed="true">Senate</button>
@@ -682,14 +698,20 @@ if(updateUrl&&window.history?.replaceState)history.replaceState(null,'','#'+tab.
 }
 document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>activatePage(t,true)));
 
-const tabFromHash=()=>document.querySelector('.tab[data-page="'+location.hash.slice(1).split('/')[0]+'"]');
+const tabFromHash=()=>document.querySelector('.tab[data-page="'+
+ ((location.hash.slice(1).split('/')[0]==='races')?'model':location.hash.slice(1).split('/')[0])+'"]');
 window.addEventListener('hashchange',()=>{
  activatePage(tabFromHash(),false);
+ if(location.hash.startsWith('#races'))$('#raceWorkbench').open=true;
  if(location.hash.startsWith('#model')&&typeof latestSenateEstimates!=='undefined'&&latestSenateEstimates){modelApplyHash();renderModelOverview(latestSenateEstimates)}
 });
 activatePage(tabFromHash(),false);
+if(location.hash.startsWith('#races'))$('#raceWorkbench').open=true;
 document.querySelectorAll('.chip').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x===t));window.selectedRaceType=t.dataset.race.toLowerCase();renderRaceList()}));
-document.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>{const tab=document.querySelector('.tab[data-page="'+b.dataset.jump+'"]');if(tab){tab.click();window.scrollTo({top:0,behavior:'smooth'})}}));function countdown(){const d=new Date();const today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(d);const m=today.match(/(\d{4})-(\d{2})-(\d{2})/);if(!m)return;const days=Math.round((Date.UTC(2026,10,3)-Date.UTC(+m[1],+m[2]-1,+m[3]))/86400000);$('#countdown').textContent=days>0?days+' days':days===0?'Election Day':'Election complete'}countdown();
+document.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>{const destination=b.dataset.jump==='races'?'model':b.dataset.jump;
+ const tab=document.querySelector('.tab[data-page="'+destination+'"]');
+ if(tab){tab.click();if(b.dataset.jump==='races')$('#raceWorkbench').open=true;
+ window.scrollTo({top:0,behavior:'smooth'})}}));function countdown(){const d=new Date();const today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(d);const m=today.match(/(\d{4})-(\d{2})-(\d{2})/);if(!m)return;const days=Math.round((Date.UTC(2026,10,3)-Date.UTC(+m[1],+m[2]-1,+m[3]))/86400000);$('#countdown').textContent=days>0?days+' days':days===0?'Election Day':'Election complete'}countdown();
 function renderItems(id,items){if(!Array.isArray(items)||!items.length)return;const node=$('#'+id);node.replaceChildren();for(const x of items){if(!x||typeof x.title!=='string')continue;const div=document.createElement('div');div.className='item';const title=document.createElement('strong');title.textContent=x.title;div.append(title);if(x.source||x.published_at){const meta=document.createElement('small');const date=x.published_at?new Date(x.published_at).toLocaleDateString('en-US',{month:'short',day:'numeric'}):'';meta.textContent=[x.source,date].filter(Boolean).join(' · ');div.append(meta)}if(typeof x.url==='string'&&x.url.startsWith('https://')){const link=document.createElement('a');link.href=x.url;link.target='_blank';link.rel='noopener';link.textContent='Read source ↗';const sm=document.createElement('small');sm.append(link);div.append(sm)}node.append(div)}}
 
 
@@ -1728,7 +1750,7 @@ function renderFreshPolls(d){
  const byOffice={senate:0,house:0,governor:0};
  for(const e of entries)byOffice[e.race.race_type]++;
  status.textContent=entries.length+' observations · S '+byOffice.senate+' / H '+byOffice.house+' / G '+byOffice.governor;
- if(!entries.length){box.append(elt('div','empty','No recent newly detected or fielded surveys in the upstream snapshot. Explore older polling in Race Lab.'));return}
+ if(!entries.length){box.append(elt('div','empty','No recent newly detected or fielded surveys in the upstream snapshot. Explore older polling in the JackStradamus survey explorer.'));return}
  const makeRow=e=>{
   const {race,p,released,detected,ended}=e;
   const row=elt('div','item'),head=elt('div','row');
@@ -2206,7 +2228,7 @@ let jointBasis=null,jointBasisShadow=null,jointBasisPresidential=null,jointError
 const jointLabels=[
  ['blue_tsunami','BLUE TSUNAMI','D both chambers · 18+ of 20 battlegrounds','d-tide'],
  ['blue_wave','BLUE WAVE','D both chambers · below tsunami threshold','d-wave'],
- ['shrug','SHRUG','One chamber per party','split'],
+ ['shrug','SHRUG','One chamber per party','d-split'],
  ['red_dawn','RED DAWN','R controls both chambers','r-dawn']
 ];
 function jointSourceItem(item){
