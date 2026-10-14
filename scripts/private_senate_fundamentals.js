@@ -42,10 +42,10 @@
   const ix=rows.findIndex(r=>String(r[0]||'').replace(/^\uFEFF/,'').trim()==='Race');
   if(ix<0||ix>3)throw Error('Expected Silver CSV Race header');
   const header=rows[ix].map(s=>String(s||'').trim());
-  const fundamentals=header.includes('Fancy')&&header.includes('Simple');
+  const fundamentals=header.includes('Fancy')&&header.includes('Simple')&&header.includes('Blended');
   const experts=header.includes('Unadjusted')&&header.includes('Adjusted');
   if(fundamentals===experts)throw Error('Expected fundamentals or expert-ratings CSV');
-  const pair=fundamentals?['Simple','Fancy']:['Unadjusted','Adjusted'];
+  const pair=fundamentals?['Simple','Fancy','Blended']:['Unadjusted','Adjusted'];
   const look=rows.slice(ix+1).map(line=>String(line[0]||'').trim().toUpperCase());
   const house=look.some(id=>/^[A-Z]{2}-\d{1,2}$/.test(id));
   const kind=(house?'house':'senate')+(fundamentals?'Fundamentals':'Experts');
@@ -82,7 +82,7 @@
    for(const [race,item] of Object.entries(values)){
     if(!(kind.startsWith('house')?/^[A-Z]{2}-\d{2}$/:/^[A-Z]{2}$/).test(race))
      throw Error('Invalid race');
-    for(const k of (kind.endsWith('Fundamentals')?['simple','fancy']:['unadjusted','adjusted']))
+    for(const k of (kind.endsWith('Fundamentals')?['simple','fancy','blended']:['unadjusted','adjusted']))
      if(!finite(item?.[k])||Math.abs(item[k])>70)
       throw Error('Invalid '+kind+' margin');
    }
@@ -105,14 +105,14 @@
    const fundamental=privateData.senateFundamentals?.[row.state]||null;
    const expert=privateData.senateExperts?.[row.state]||null;
    if(!fundamental&&!expert)return {...row};
-   // Fancy is Silver's fundamentals-only estimate, not the poll-adjusted
-   // 'Blended' or final FLIPR prediction. Expert UNADJUSTED is a secondary
-   // observational opinion with possible polling overlap. Use cautiously.
+   // Blended is WITHIN the CSV's Fundamentals section (Simple/Fancy/Blended),
+   // not the FINAL race forecast. Use it, not either extreme submodel.
+   // Unadjusted expert ratings can overlap with survey signals: small weight.
    const anchor=fundamental&&expert?
-    .8*fundamental.fancy+.2*expert.unadjusted:
-    fundamental?fundamental.fancy:expert.unadjusted;
-   const source=fundamental&&expert?'fancy_plus_unadjusted_expert':
-    fundamental?'fancy_only':'expert_only';
+    .8*fundamental.blended+.2*expert.unadjusted:
+    fundamental?fundamental.blended:expert.unadjusted;
+   const source=fundamental&&expert?'blended_fundamentals_plus_unadjusted_expert':
+    fundamental?'blended_fundamentals_only':'expert_only';
    const publishedPollWeight=row.polled?
     row.poll_weight:null;
    // A separately labeled PRIVATE RESEARCH variant, never calibrated from
@@ -131,6 +131,7 @@
     private_context_source:source,
     private_context_anchor_points:+anchor.toFixed(3),
     private_context_fancy_points:fundamental?.fancy??null,
+    private_context_blended_fundamentals_points:fundamental?.blended??null,
     private_context_simple_points:fundamental?.simple??null,
     private_context_expert_unadjusted_points:expert?.unadjusted??null,
     private_context_expert_adjusted_comparator_points:expert?.adjusted??null,
@@ -145,8 +146,8 @@
    const expert=privateData.houseExperts?.[row.code]||null;
    if(!fundamental&&!expert)return {...row};
    const anchor=fundamental&&expert?.unadjusted!==undefined?
-    .8*fundamental.fancy+.2*expert.unadjusted:
-    fundamental?fundamental.fancy:expert.unadjusted;
+    .8*fundamental.blended+.2*expert.unadjusted:
+    fundamental?fundamental.blended:expert.unadjusted;
    const previousWeight=row.poll_weight;
    const w=row.polled?(finite(previousWeight)?Math.min(.75,previousWeight):.75):0;
    const prior=row.mean;
