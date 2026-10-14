@@ -30,7 +30,24 @@
   'KY-SEN':'R','MS-SEN':'R','OK-SEN':'R','TN-SEN':'R','WV-SEN':'R','WY-SEN':'R'
  });
  const SOLID_NO_POLL_TOTAL_SIGMA=7;
- const CURRENT_SENATE_MODEL_REVISION='late_2026_poll_priority_solid_unpolled_v2';
+ const CURRENT_SENATE_MODEL_REVISION='late_2026_historical_error_budget_v3';
+// 42 retrospective Senate contests: 5.633pt RMSE, seven-day FIELDWORK cutoff.
+// Source publication dates are unavailable; this is not a calibrated forecast.
+// Apply a buffered 7.5pt floor only to recent multi-firm regular elections.
+const SENATE_POLL_ERROR_FLOORS=Object.freeze({qualified:7.5,thin:8.5});
+function senatePollingErrorBudget(info){
+ const {independentFirms,contributingFirms,daysSinceLatest,special,sourceSigma}=info||{};
+ if(!Number.isInteger(independentFirms)||independentFirms<0||
+    !Number.isInteger(contributingFirms)||contributingFirms<independentFirms||
+    !finite(daysSinceLatest)||daysSinceLatest<0||
+    !finite(sourceSigma)||sourceSigma<=0||typeof special!=='boolean')
+  throw Error('Invalid Senate polling uncertainty provenance');
+ const qualified=!special&&independentFirms>=2&&
+  contributingFirms>=3&&daysSinceLatest<=14;
+ const floor=qualified?SENATE_POLL_ERROR_FLOORS.qualified:SENATE_POLL_ERROR_FLOORS.thin;
+ return {floor,totalSigma:Math.max(floor,sourceSigma),
+  tier:qualified?'recent_multi_firm':'thin_stale_or_special'};
+}
  // Two-party proxy names in source polling are NOT ballot party affiliations.
  const INDEPENDENT_SENATE_PROXY_CANDIDATES=Object.freeze({
   'NE-SEN':'Dan Osborn','SD-SEN':'Brian Bengs'});
@@ -376,7 +393,7 @@
    // a race Solid and no qualifying poll has been observed.
    const publicSolidParty=senatePriorMode==='current_2026'?
     SOLID_UNPOLLED_SENATE[code]||null:null;
-   let pollFundamentalsGap=null,disagreementSigma=0,pollWeight=null;
+   let pollFundamentalsGap=null,disagreementSigma=0,pollWeight=null,pollErrorBudget=null;
    const poll=odds.get('senate|'+code);
    if(poll){
     const priorMean=mean;
@@ -390,10 +407,19 @@
     candidatePollResidual=senatePriorMode==='current_2026'?
      poll.dem_minus_rep-currentNeutralPrior:null;
     mean=weight*poll.dem_minus_rep+(1-weight)*priorMean;
-    // The polled-race error is a TOTAL margin-error budget, not a local
-    // error stacked with independent 2026 national/office/state shocks.
+    // The historical whole-race error INCLUDES national/chamber/state shocks;
+    // do not count it twice as an independent local residual.
+    const latestPollAt=Date.parse(poll.latest_poll_end+'T12:00:00Z');
+    const observedAt=Date.parse(s.polls.generated_at);
+    if(!Number.isFinite(latestPollAt)||!Number.isFinite(observedAt))
+     throw Error('Missing dates for Senate polling error budget '+code);
+    const latestAge=Math.max(0,(observedAt-latestPollAt)/86400000);
+    pollErrorBudget=senatePriorMode==='current_2026'?
+     senatePollingErrorBudget({independentFirms:poll.independent_firms,
+      contributingFirms:poll.contributing_firms,daysSinceLatest:latestAge,
+      special,sourceSigma:poll.sigma_points}):null;
     sigma=senatePriorMode==='current_2026'?
-     Math.sqrt(Math.max(8.5,poll.sigma_points)**2-senateSharedError**2):
+     Math.sqrt(pollErrorBudget.totalSigma**2-senateSharedError**2):
      Math.max(7,poll.sigma_points);
     if(!special){
      pollFundamentalsGap=Math.round(1000*(poll.dem_minus_rep-priorMean))/1000;
@@ -425,6 +451,9 @@
      !poll&&publicSolidParty?SOLID_NO_POLL_TOTAL_SIGMA:null,
     nonrep_independent_proxy:nonrepIndependentProxy,
     poll_weight:pollWeight,poll_fundamentals_gap_points:pollFundamentalsGap,
+    polling_error_floor_points:pollErrorBudget?.floor??null,
+    polling_error_tier:pollErrorBudget?.tier??null,
+    polling_error_whole_race_sigma_points:pollErrorBudget?.totalSigma??null,
     disagreement_extra_sigma_points:disagreementSigma});
   }
   // Include EVERY polled governor matchup, not just the six governor
@@ -462,7 +491,12 @@
      no_poll_solid_total_sigma:SOLID_NO_POLL_TOTAL_SIGMA,
      historical_2020_senate_candidate_margin_used:false,
      statewide_2024_house_party_aggregate_used:false,
-     polled_race_total_sigma_floor:8.5,
+     polled_race_total_sigma_floor:7.5,
+     thin_stale_or_special_poll_total_sigma_floor:8.5,
+     qualified_poll_min_independent_firms:2,
+     qualified_poll_max_age_days:14,
+     retrospective_poll_only_rmse_points:5.633,
+     historical_poll_results_are_complete_model_backtest:false,
      polled_race_sigma_accounts_for_shared_errors:true,
      status:'PROVISIONAL_TRANSPARENT_FORECAST_NOT_HELDOUT_CALIBRATED'
     }:null,
@@ -803,5 +837,5 @@
    description:'A conditional Monte Carlo sensitivity experiment, not a calibrated election forecast.'};
  }
  return Object.freeze({VERSION,BATTLEGROUNDS,FUNDAMENTALS_MODES,prepare,simulate,seeded,
-  disagreementExtraSigma});
+  disagreementExtraSigma,senatePollingErrorBudget});
 });
