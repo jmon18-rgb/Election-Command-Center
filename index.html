@@ -2695,6 +2695,56 @@ async function jointLoadSources(options={}){
   return false;
  }
 }
+// User-selected paid CSV files are read in this browser only. Never POST, fetch,
+// commit or expose their source rows in a publicly hosted data endpoint.
+async function importPrivateContextFiles(files){
+ const status=$('#privateContextStatus');
+ if(!window.PrivateSenateFundamentals)throw Error('Local CSV reader unavailable');
+ if(files.length>15)throw Error('Select at most fifteen CSV files');
+ let next=jointPrivateData,accepted=0,ignored=0;const labels=[];
+ for(const file of files){
+  if(!/\.csv$/i.test(file.name)||file.size>250000)
+   throw Error('Expected a CSV no larger than 250 KB: '+file.name);
+  const raw=await file.text();
+  let parsed;
+  try{parsed=window.PrivateSenateFundamentals.parse(raw)}
+  catch(e){
+   if(!/Expected Silver CSV|Expected fundamentals or expert-ratings CSV|CSV contained no usable/.test(
+      String(e.message||e)))throw e;
+   ignored++;continue;
+  }
+  next=window.PrivateSenateFundamentals.accept(next,parsed);
+  accepted++;labels.push(parsed.kind+' ('+Object.keys(parsed.states).length+')');
+ }
+ if(!accepted)throw Error('None of these CSVs contains the Senate or House fundamentals / expert-ratings tables.');
+ jointPrivateData=next;jointPrivateEnabled=$('#privateContextEnabled').checked;
+ if(status)status.textContent='Imported locally: '+labels.join(', ')+
+  (ignored?' · '+ignored+' unrelated Silver output tables ignored':'')+
+  '. Source CSVs remain on this browser tab, not the public GitHub repository.';
+ jointPrivateActivate();
+}
+$('#privateContextFiles').addEventListener('change',event=>{
+ const files=Array.from(event.target.files||[]);
+ if(!files.length)return;
+ importPrivateContextFiles(files).catch(e=>{
+  $('#privateContextStatus').textContent='Import not applied: '+String(e.message||e);
+ }).finally(()=>{event.target.value=''});
+});
+$('#privateContextEnabled').addEventListener('change',event=>{
+ jointPrivateEnabled=event.target.checked;jointPrivateActivate();
+});
+$('#privateContextHouse').addEventListener('change',event=>{
+ jointPrivateHouse=event.target.checked;jointPrivateActivate();
+});
+$('#privateContextClear').addEventListener('click',()=>{
+ jointPrivateData=null;jointPrivateEnabled=false;jointPrivateHouse=false;
+ $('#privateContextFiles').value='';
+ $('#privateContextEnabled').checked=false;
+ $('#privateContextHouse').checked=false;
+ $('#privateContextStatus').textContent=
+  'Private CSV context cleared from this browser tab. Published baseline restored.';
+ jointPrivateActivate();
+});
 $('#jointSwing').addEventListener('change',event=>{
  jointNationalShift=Number(event.target.value);jointRender(true);
 });
