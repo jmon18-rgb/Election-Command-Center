@@ -20,7 +20,7 @@ function inputCheck(){
     names.year!==2022||names.records.length!==435||
     history.records.length!==435||
     presidential.coverage?.districts!==435||
-    study.records.some(r=>!/^\d{2,3}\.?\d*$/.test(String(r.prior_2022).replace(/^-/,''))))
+    study.records.some(r=>!Number.isFinite(r.prior_2022)||!Number.isFinite(r.realized_2024)))
   throw Error('Invalid modern-incumbent source universe');
  const codes=new Set(study.records.map(x=>x.race_code));
  if(codes.size!==148)throw Error('Duplicate current-era candidate record');
