@@ -13,7 +13,9 @@ const basis=model.prepare(sources);
 assert.equal(basis.status,'EXPERIMENTAL_UNCALIBRATED');
 assert.equal(basis.house.length,435);
 assert.equal(basis.senate.length,35);
-assert.equal(basis.governors.length,6);
+assert.equal(basis.governors.length,
+ sources.odds.records.filter(x=>x.office==='governor').length);
+assert(basis.governors.length>=6);
 assert.equal(basis.battlegrounds.length,20);
 assert.equal(basis.assumptions.senate_dem_holdovers,34);
 assert(basis.generated_from_sources.generic_ballot_margin>0);
@@ -212,6 +214,31 @@ assert(first.house_dem_control_pct>=0&&first.house_dem_control_pct<=100,
  'House control probability is derived from joint same-draw votes');
 assert(first.senate_dem_control_pct>=0&&first.senate_dem_control_pct<=100,
  'Senate control probability is derived from joint same-draw votes');
+assert.equal(first.race_probability_method,'SAME_CORRELATED_DRAWS_AS_CHAMBER_CONTROL');
+assert.equal(first.race_probabilities.length,
+ basis.house.length+basis.senate.length+basis.governors.length);
+const winCodes=new Set(first.race_probabilities.map(x=>x.race_code));
+assert.equal(winCodes.size,first.race_probabilities.length);
+assert(first.race_probabilities.some(x=>x.race_code==='MN-SEN'));
+for(const race of first.race_probabilities){
+ assert.equal(race.simulation_samples,first.samples);
+ assert.equal(race.office,race.race_code.endsWith('-GOV')?'governor':
+  race.race_code.endsWith('-SEN')?'senate':'house');
+ assert(race.simulated_dem_wins>=0&&race.simulated_dem_wins<=first.samples);
+ assert(Math.abs(race.dem_beats_rep_pct-
+  100*race.simulated_dem_wins/first.samples)<.011);
+ assert.equal(Math.round((race.dem_beats_rep_pct+race.rep_beats_dem_pct)*100)/100,100);
+ assert(race.sigma_points>=3);
+}
+const expectedSeatWins=first.race_probabilities.filter(x=>x.office==='house')
+ .reduce((n,x)=>n+x.simulated_dem_wins,0)/first.samples;
+const expectedSenateWins=first.race_probabilities.filter(x=>x.office==='senate')
+ .reduce((n,x)=>n+x.simulated_dem_wins,0)/first.samples+
+ first.senate_dem_holdovers;
+assert(Math.abs(expectedSeatWins-first.means.house_dem_seats)<.02,
+ 'House race win frequencies must reconcile with same simulated chamber seat totals');
+assert(Math.abs(expectedSenateWins-first.means.senate_dem_seats)<.02,
+ 'Senate race win frequencies must reconcile with same simulated chamber seat totals');
 const bothPct=first.blue_both_including_tsunami;
 const splitPct=first.probabilities.shrug,redPct=first.probabilities.red_dawn;
 assert(Math.abs(first.house_dem_control_pct+first.senate_dem_control_pct-
