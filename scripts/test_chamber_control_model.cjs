@@ -200,6 +200,25 @@ assert.throws(()=>model.simulate({...basis,redrawn_state_distributions:{
  ...basis.redrawn_state_distributions,CA:[]}},opts),/No verified redrawn state prior/);
 
 assert.deepEqual(first,second,'Seeds must make simulated election outcomes reproducible');
+const partyProxyIndependents=basis.senate.filter(x=>x.nonrep_independent_proxy)
+ .map(x=>x.code).sort();
+assert.deepEqual(partyProxyIndependents,['NE-SEN','SD-SEN'],
+ 'The October 2026 independent-side matchups must be explicitly identified');
+const independentNoCredit=model.simulate(basis,{...opts,independentSenateCredit:'no_credit'});
+assert.deepEqual(independentNoCredit.race_probabilities,first.race_probabilities,
+ 'Organizational credit scenario must preserve all race vote outcomes');
+assert.equal(independentNoCredit.house_dem_control_pct,first.house_dem_control_pct);
+assert(independentNoCredit.senate_dem_control_pct<=first.senate_dem_control_pct);
+assert(independentNoCredit.blue_both_including_tsunami<=
+ first.blue_both_including_tsunami);
+assert.equal(independentNoCredit.senate_independent_credit_mode,'no_credit');
+assert.throws(()=>model.simulate(basis,{...opts,
+ independentSenateCredit:'caucus_unknown'}),/Unsupported independent Senate/);
+const staleIndependent={...basis,senate:basis.senate.map(x=>
+ x.code==='NE-SEN'?{...x,nonrep_independent_proxy:false}:x)};
+assert.throws(()=>model.simulate(staleIndependent,{...opts,
+ independentSenateCredit:'no_credit'}),/Unverified independent Senate matchup/);
+
 const explained=model.simulate(basis,{...opts,explainControl:true});
 assert.deepEqual(explained.probabilities,first.probabilities,
  'Requesting diagnostics must NOT change default four-outcome probabilities');
