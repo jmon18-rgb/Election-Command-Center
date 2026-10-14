@@ -93,7 +93,8 @@ function evaluate(s){
     .sort((a,b)=>b.votes-a.votes);
    historicalWinner=winners[0]?.name||null;
   }
-  const currentNames=pollInput?
+  const matchupNamed=Boolean(pollInput?.dem_candidate&&pollInput?.rep_candidate);
+  const currentNames=matchupNamed?
    [pollInput.dem_candidate,pollInput.rep_candidate].map(firstLast):[];
   const historicalKey=firstLast(historicalWinner);
   const knownAlias=verifiedNameAliases[row.code]?.[historicalKey];
@@ -102,7 +103,7 @@ function evaluate(s){
     Boolean(knownAlias&&currentNames.includes(knownAlias)):false;
   const continuity=row.special?'different_seat_special':
    !relevant?'historical_regular_unusable':
-   !pollInput?'no_named_2026_matchup':
+   !matchupNamed?'no_named_2026_matchup':
    historyMatch?'2020_winner_on_2026_poll_ballot':'2020_winner_not_on_2026_poll_ballot';
   const priorGaps=p?{current_model:round(p.dem_minus_rep-currentPrior),
    neutral_geography:round(p.dem_minus_rep-candidateNeutralPrior)}:null;
@@ -115,7 +116,7 @@ function evaluate(s){
   reconstructionCount++;
   if(p)pollCount++;
   if(historicalIdentity.status==='matched_historic_winner_2020'&&
-   !historyMatch&&pollInput)
+   !historyMatch&&matchupNamed)
    throw Error('Matched Senate incumbent research contradicts 2026 matchup '+row.code);
   return {
    race_code:row.code,state:row.state,poll_status:row.polled?'qualified':'no_qualified_poll',
