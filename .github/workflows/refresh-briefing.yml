@@ -7,6 +7,8 @@ on:
       - 'scripts/update_briefing.py'
       - 'scripts/update_polls.py'
       - 'scripts/update_pollresults_recent.py'
+      - 'scripts/merge_supplemental_polls.py'
+      - 'scripts/test_supplemental_poll_injection.py'
       - 'scripts/test_polling_models.py'
       - 'scripts/build_polling_estimates.py'
       - 'scripts/build_race_probabilities.py'
@@ -72,6 +74,11 @@ jobs:
       # BEFORE external polling ingestion. Do not rerun its fixture-specific
       # ReconMR/GBAO click assertions against NEW live candidate observations:
       # that caused every scheduled refresh to fail before publishing.
+      # The latest source-linked PollResults rows can precede ElectIndex.
+      # Merge validated named-matchup observations BEFORE building averages.
+      # Missing or stale secondary data never blocks a successful primary feed.
+      - name: Merge supplemental race surveys into model inputs
+        run: python3 scripts/merge_supplemental_polls.py
       - name: Validate newly collected poll sources without frozen pollster fixtures
         run: python3 scripts/validate_fresh_poll_sources.py
       - name: Run model diagnostics
