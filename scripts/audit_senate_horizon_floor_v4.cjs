@@ -111,10 +111,10 @@ const races=proposed.race_probabilities.filter(x=>x.office==='senate').map(x=>{
 });
 assert(Math.abs(proposed.blue_both_including_tsunami-
  (proposed.probabilities.blue_wave+proposed.probabilities.blue_tsunami))<.02);
-assert(Math.abs(proposed.senate_dem_control_pct-
- (proposed.probabilities.blue_wave+proposed.probabilities.blue_tsunami+
- proposed.probabilities.shrug-proposed.house_dem_control_pct+
- proposed.blue_both_including_tsunami))>9999?false:true);
+assert(Math.abs(100-(proposed.probabilities.blue_wave+
+ proposed.probabilities.blue_tsunami+proposed.probabilities.shrug+
+ proposed.probabilities.red_dawn))<.03,
+ 'The Four Endings must still exhaust the correlated outcome space');
 // Same-draw Senate chamber count remains an identical source of races.
 const output={
  status:'PROVISIONAL_2026_SENATE_QUALIFIED_ERROR_REVISION_NOT_FULLY_BACKTESTED',
