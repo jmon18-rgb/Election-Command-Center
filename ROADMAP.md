@@ -282,3 +282,10 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Added seven synthetic after-election result tests plus pre-election safeguards and a real-browser Election Night watchlist regression for distinct per-state votes, source links, failed update retention and isolation from Open America.
 - Full CI requires all seven actual civicAPI identity/CORS contracts, but no actual Nov 3 counted votes are claimed yet.
 - Continue with meaningful missing districts/states and Election Day real-vote smoke checks rather than duplicating low-value snapshots.
+
+## October 13: Election Night source resilience stress rehearsal
+
+- Four concurrent bounded civicAPI workers with per-request timeouts, rotating watchlist fairness and failed-update retention.
+- Independently refresh watched House/Senate/Governor feeds even when the visible office's Open America source fails.
+- Full browser replay tests stalls, timeout and abort, independent races, timestamp regressions, late responses, restored source availability and no invented winner calls.
+- Remaining high-value work: live November 3 provider smoke test, source rate-limit behavior under hours of use, and explicit desktop source-health telemetry.
