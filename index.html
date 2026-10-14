@@ -4157,7 +4157,7 @@ box.append(card);
 }
 renderJackRadar();
 renderRaceList();
-modelApplyHash();renderModelOverview(data);renderModelGenericHeadline();renderElectionScenarios();
+modelApplyHash();renderModelOverview(data);renderModelGenericHeadline();renderEnForecastStrip();
 }
 fetch('./data/model_history.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('history pending');return r.json()}).then(setModelHistoryData).catch(()=>{/* History accumulates only after first refresh. */});
 fetch('./data/polling_estimates.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('not ready');return r.json()}).then(d=>showSenateEstimates(d)).catch(()=>{document.getElementById('senateEstimateCards').textContent='Waiting for first automated polling summary refresh.'});
