@@ -109,6 +109,11 @@ jobs:
           node --check scripts/chamber_poll_error_audit.js
           node --check scripts/test_chamber_poll_error_audit.cjs
           node scripts/test_chamber_poll_error_audit.cjs
+      - name: Audit retrospective Senate probability scores and special-seat priors
+        run: |
+          node --check scripts/senate_calibration_audit.js
+          node scripts/test_senate_calibration_audit.cjs
+          node scripts/test_chamber_control_model.cjs
       - name: Install DOM test environment
         run: npm install --no-save --no-package-lock --ignore-scripts jsdom@26.1.0
       - name: Check JavaScript syntax and exercise actual dashboard
