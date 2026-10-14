@@ -12,9 +12,10 @@
  const VERSION='joint-control-beta-v1';
  const BATTLEGROUNDS=Object.freeze([
   'NC-SEN','MI-SEN','ME-SEN','OH-SEN','TX-SEN','AK-SEN','NE-SEN','IA-SEN',
-  'AZ-GOV','GA-GOV','MI-GOV','WI-GOV','NV-GOV','OH-GOV'
+  'AZ-GOV','GA-GOV','MI-GOV','WI-GOV','NV-GOV','OH-GOV',
+  'AZ-01','ME-02','NC-01','NE-02','NY-17','PA-10'
  ]);
- const REQUIRED_BATTLEGROUND_WINS=12;
+ const REQUIRED_BATTLEGROUND_WINS=18;
  const BATTLEGROUND_SET=new Set(BATTLEGROUNDS);
  const HOUSE_SEATS=435,SENATE_CONTESTS=35;
  const finite=x=>typeof x==='number'&&Number.isFinite(x);
