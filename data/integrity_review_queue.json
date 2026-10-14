@@ -1,9 +1,42 @@
 {
-  "updated_at": "2026-10-14T12:04:20.212894Z",
+  "updated_at": "2026-10-14T13:00:50.754853Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 2,
   "items": [
+    {
+      "id": "0aea8ac6ea26338271e0",
+      "title": "SPECIAL REPORT | Nine ways the Trump administration could interfere with the US midterms - Business Day",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPTkQ4NzdxYW9Gc1FEZERfblE4dHhvQTF2UV9vVmo0ZjhTQ09lXy1CQ0NXSEc2X2oyN1EtOHV4d0RZSGtFWXA5aFd6cjRsTGtXSlRES2EzdG5scTlYSGtoVzE0Nmx2amNiTEhBMDRXZlRQd1F4TDYxUXRIT01NUkd2R19aeWJvYTJOMEtSWjhKenhocGpqcTZkNzNZakpyVEZTR3AxVWtUOXBzSkFSaUpSNlFHRHEyMkFJTno1UWVmUXpITThyam1vUER1dC00eW9m?oc=5",
+      "publisher": "Business Day",
+      "published_at": "2026-10-14T12:10:08Z",
+      "detected_at": "2026-10-14T13:00:50.754853Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "25d2145a8cc39f195dcd",
+      "title": "'Terrorized' battlegrounds turn into 'ghost towns' as ICE swarms early voting - Raw Story",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9zNEM3RUpUOU5abUkxN2ZGRlBqbDhiMUJkNWlBY2xKem1HSGRqOXNjcmNIOXQ5YnZzaGR5eWNhYWVhSEh1a1BpaDF3Um56OUFPbXg1ZXR5dUJxMTBZMFl1bk5RNHZzSTRC0gFkQVVfeXFMTXZuWHlJUFlqandLQ29PRlVOZDk0VnZCekhJSUdUS1drenc0d0pDRE9UcUlrNDFPUDkyQ2tBVXRpZTYxODVRVzhDV1c4X0xvdG1WSjlTSC0zUTZKdlZSZjZKcGpJZQ?oc=5",
+      "publisher": "Raw Story",
+      "published_at": "2026-10-14T11:45:00Z",
+      "detected_at": "2026-10-14T13:00:50.754853Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "9564f5dfc3c40acb7d57",
       "title": "Rutledge Says Maryland\u2019s Attorney General Should Back Police and Stop Suing Washington Over Policy - Howl.link",

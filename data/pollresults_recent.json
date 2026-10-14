@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-14T12:04:20.486161+00:00",
+  "updated_at": "2026-10-14T13:00:51.168065+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 760,
+      "available_in_source": 761,
       "records_examined": 300
     },
     "house": {
@@ -13,12 +13,60 @@
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 858,
+      "available_in_source": 859,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 289,
   "observations": [
+    {
+      "race_code": "TX-SEN",
+      "race_type": "senate",
+      "state": "TX",
+      "poll_id": "5c84ead6-f0b6-4d89-b2ac-92a7face0242",
+      "question_id": "986200cf-7a02-4e12-95ad-51be09affead",
+      "pollster": "YouGov",
+      "dem_name": "James Talarico",
+      "rep_name": "Ken Paxton",
+      "dem": 50.0,
+      "rep": 47.0,
+      "margin": 3.0,
+      "field_end": "2026-10-05",
+      "field_start": "2026-09-25",
+      "posted_date": "2026-10-14",
+      "posted_source_datetime": "2026-10-14T08:19:00",
+      "posted_source_time": "10/14/26 08:19",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://texaspolitics.utexas.edu/blog/latest-ut-texas-politics-poll-finds-historic-levels-of-competition-in-texas-midterm-elections",
+      "sample_population": "lv",
+      "sample_size": 861,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "TX-GOV",
+      "race_type": "governor",
+      "state": "TX",
+      "poll_id": "5c84ead6-f0b6-4d89-b2ac-92a7face0242",
+      "question_id": "6c475ada-575b-43dd-9571-c0dec90aea1c",
+      "pollster": "YouGov",
+      "dem_name": "Gina Hinojosa",
+      "rep_name": "Greg Abbott",
+      "dem": 49.0,
+      "rep": 48.0,
+      "margin": 1.0,
+      "field_end": "2026-10-05",
+      "field_start": "2026-09-25",
+      "posted_date": "2026-10-14",
+      "posted_source_datetime": "2026-10-14T08:19:00",
+      "posted_source_time": "10/14/26 08:19",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://texaspolitics.utexas.edu/blog/latest-ut-texas-politics-poll-finds-historic-levels-of-competition-in-texas-midterm-elections",
+      "sample_population": "lv",
+      "sample_size": 861,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "TX-09",
       "race_type": "house",
@@ -135,7 +183,7 @@
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
       "source_url": "https://maristpoll.marist.edu/polls/2026-midterm-elections-in-texas-october-2026/",
       "sample_population": "lv",
-      "sample_size": null,
+      "sample_size": 1196,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
@@ -183,7 +231,7 @@
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
       "source_url": "https://maristpoll.marist.edu/polls/2026-midterm-elections-in-texas-october-2026/",
       "sample_population": "lv",
-      "sample_size": null,
+      "sample_size": 1196,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
