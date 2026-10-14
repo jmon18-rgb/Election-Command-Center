@@ -25,6 +25,9 @@ HORIZONS=(60,45,30,20,14,10,7,3)
 LOOKBACK=45
 HALF_LIFE=21
 YEAR_FOLDS=(2020,2022,2024)
+# Keep 2018 out of the existing production-era research file. The independent
+# 2018 extension calls the exact same fieldwork/firm snapshot helpers.
+ELECTION_DATES={**baseline.ELECTIONS,2018:dt.date(2018,11,6)}
 CANDIDATE_SIGMAS=(6.,7.5,8.5,10.,12.)
 # A provisional shrinkage benchmark for out-of-sample research, never a
 # 2026 adjustment or a selected best 2026 odds coefficient.
@@ -37,12 +40,12 @@ FALSE="false"
 def r(value,n=3):
     return round(value,n)
 
-def parse_all(texts):
+def parse_all(texts,years=YEAR_FOLDS):
     """Parse source once without imposing a chosen horizon, preserve only
     fieldwork data with valid states, shares and election-year labels."""
     out=defaultdict(list)
     source_counts={}
-    for year in YEAR_FOLDS:
+    for year in years:
         value=texts.get(year)
         if not value:
             raise ValueError("Missing historical source cycle "+str(year))
@@ -85,7 +88,7 @@ def parse_all(texts):
 def snapshot(observations,year,horizon,lookback=LOOKBACK):
     """Only fieldwork ENDING on or before cutoff can be used.
     Latest survey per firm and recency weighting fixed in advance."""
-    cutoff=baseline.ELECTIONS[year]-dt.timedelta(days=horizon)
+    cutoff=ELECTION_DATES[year]-dt.timedelta(days=horizon)
     lower=cutoff-dt.timedelta(days=lookback)
     firms={}
     for obs in observations:
