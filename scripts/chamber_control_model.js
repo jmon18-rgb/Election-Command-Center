@@ -119,6 +119,8 @@
   }
   // District presidential vote totals must be mapped to the CURRENT 2026
   // jurisdiction before blending; a stale 2024 CD number is prohibited.
+  const houseUsesPresidential=fundamentalsMode==='presidential_2024_shadow'||
+    fundamentalsMode==='presidential_2024_gap_fill';
   let presidential=null,presidentialNationalMargin=null,presidentialStateTotals=null;
   if(fundamentalsMode==='presidential_2024_shadow'||
      fundamentalsMode==='presidential_2024_gap_fill'||senatePriorMode==='current_2026'){
@@ -183,7 +185,7 @@
   const projectedSwing=.68*(generic-house2024);
   // Never adjust Senate means with a House-only alternate; that is a
   // separate forecasting problem with separate candidate fundamentals.
-  const houseProjectedSwing=presidential?
+  const houseProjectedSwing=houseUsesPresidential?
    .68*(generic-presidentialNationalMargin):projectedSwing;
   const house=[],senate=[],gov=[];
   const stateMargin=state=>{
@@ -248,8 +250,8 @@
    // redrawn states, no obsolete 2024 House district votes are assigned by
    // district number. District-specific presidential estimates are research
    // inputs, with explicitly broad uncertainty for newly drawn seats.
-   const presidentialMargin=presidential?presidential.get(code):null;
-   const usePresidential=Boolean(presidential&&
+   const presidentialMargin=houseUsesPresidential?presidential.get(code):null;
+   const usePresidential=Boolean(houseUsesPresidential&&
     (fundamentalsMode==='presidential_2024_shadow'||!unchanged||!both));
    if(usePresidential){
     if(!finite(presidentialMargin))throw Error('Missing 2026 presidential geographic prior '+code);
@@ -320,7 +322,7 @@
      presidential_2024_margin_points:presidentialMargin,
      historical_geography_prior_source:usePresidential?'mapped_presidential_2024_two_party':kind,
      historical_2024_house_vote_used:unchanged&&both&&
-      (fundamentalsMode==='presidential_2024_gap_fill'||!presidential)});
+      (fundamentalsMode==='presidential_2024_gap_fill'||!houseUsesPresidential)});
   }
   const senRecords=s.senateHistory.contest_records.filter(r=>
    r.election_year===2020&&r.election_type==='regular');
