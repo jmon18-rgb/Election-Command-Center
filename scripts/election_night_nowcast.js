@@ -28,8 +28,13 @@
  }
  function priorFor(doc,item){
   const office=OFFICES[item?.office],code=raceCode(item);
-  if(!office||!code||!doc||doc.schema_version!=='experimental-race-odds-v1'||
-     !Array.isArray(doc.records)||doc.can_infer_chamber_control!==false)return null;
+  if(!office||!code||!doc||!Array.isArray(doc.records))return null;
+ const newJoint=doc.schema_version==='joint-race-probabilities-v1'&&
+  doc.status==='JOINT_CORRELATED_RACE_PROBABILITIES_EXPERIMENTAL'&&
+  doc.race_probability_method==='SAME_CORRELATED_DRAWS_AS_CHAMBER_CONTROL';
+ const legacy=doc.schema_version==='experimental-race-odds-v1'&&
+  doc.can_infer_chamber_control===false;
+ if(!newJoint&&!legacy)return null;
   const prior=doc.records.find(x=>x.office===office&&x.race_code===code);
   return prior&&Number.isFinite(prior.dem_minus_rep)&&
    Number.isFinite(prior.sigma_points)&&prior.sigma_points>=3&&
@@ -66,15 +71,17 @@
   const prior=priorFor(doc,item);
   if(!prior)return null;
   const baseline=clamp(prior.dem_beats_rep_pct,0,100),sd=prior.sigma_points;
+  const baseMargin=Number.isFinite(prior.model_dem_margin_points)?
+   prior.model_dem_margin_points:prior.dem_minus_rep;
   const defaultResult={
    office:item.office,raceCode:raceCode(item),party:'two_party',
    priorDemPct:baseline,priorRepPct:100-baseline,
    demPct:baseline,repPct:100-baseline,mode:'polls_only',
-   priorMargin:prior.dem_minus_rep,posteriorMargin:prior.dem_minus_rep,
+   priorMargin:baseMargin,posteriorMargin:baseMargin,
    priorSigma:sd,posteriorSigma:sd,reportedMargin:null,reporting:null,
    source:null,sourceUpdated:null,sourceStale:false,
    sensitivityLow:baseline,sensitivityHigh:baseline,
-   explanation:'No eligible verified partial returns; using the pre-election polling model.'
+   explanation:'No eligible verified partial returns; using the pre-election race prior from our linked joint model.'
   };
   const actual=observed(item,primary,secondary);
   if(!actual||!Number.isFinite(now)||now<ELECTION_START||actual.time<ELECTION_START||
@@ -90,7 +97,7 @@
   const combine=(noise)=>{
    const signalVariance=noise*noise;
    const variance=1/(1/priorVar+1/signalVariance);
-   const mean=variance*(prior.dem_minus_rep/priorVar+actual.margin/signalVariance);
+   const mean=variance*(baseMargin/priorVar+actual.margin/signalVariance);
    return {mean,sd:Math.sqrt(variance),demPct:100*normalCdf(mean/Math.sqrt(variance))};
   };
   const middle=combine(geographicNoise),conservative=combine(geographicNoise*1.6),
