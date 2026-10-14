@@ -10,7 +10,7 @@
 })(typeof window!=='undefined'?window:null,function(){
  'use strict';
  const VERSION='joint-control-beta-v1';
- const FUNDAMENTALS_MODES=Object.freeze(['2024_only','two_cycle_shadow','presidential_2024_shadow']);
+ const FUNDAMENTALS_MODES=Object.freeze(['2024_only','two_cycle_shadow','presidential_2024_shadow','presidential_2024_gap_fill']);
  const SHADOW_WEIGHT=.25,SHADOW_RESIDUAL_CAP=12;
  const BATTLEGROUNDS=Object.freeze([
   'NC-SEN','MI-SEN','ME-SEN','OH-SEN','TX-SEN','AK-SEN','NE-SEN','IA-SEN',
@@ -117,7 +117,8 @@
   // District presidential vote totals must be mapped to the CURRENT 2026
   // jurisdiction before blending; a stale 2024 CD number is prohibited.
   let presidential=null,presidentialNationalMargin=null;
-  if(fundamentalsMode==='presidential_2024_shadow'){
+  if(fundamentalsMode==='presidential_2024_shadow'||
+     fundamentalsMode==='presidential_2024_gap_fill'){
    const d=s.presidential;
    if(!d||d.schema_version!=='presidential-district-lean-staging-v1'||
       d.status!=='historical_presidential_votes_from_external_model_source_not_forecast'||
@@ -241,7 +242,9 @@
    // district number. District-specific presidential estimates are research
    // inputs, with explicitly broad uncertainty for newly drawn seats.
    const presidentialMargin=presidential?presidential.get(code):null;
-   if(presidential){
+   const usePresidential=Boolean(presidential&&
+    (fundamentalsMode==='presidential_2024_shadow'||!unchanged||!both));
+   if(usePresidential){
     if(!finite(presidentialMargin))throw Error('Missing 2026 presidential geographic prior '+code);
     if(unchanged&&both){
      baseline=.65*presidentialMargin+.35*baseline;
@@ -271,7 +274,12 @@
      kind='two_cycle_shadow_2024_recorded';
     }
    }
-   let mean=baseline+houseProjectedSwing,method=kind;
+   // Comparable 2024 House elections retain a House-to-generic swing;
+   // unmappable and incomplete House races use the national 2024
+   // presidential-to-generic reference paired with presidential geometry.
+   const districtSwing=fundamentalsMode==='presidential_2024_gap_fill'&&
+    !usePresidential?projectedSwing:houseProjectedSwing;
+   let mean=baseline+districtSwing,method=kind;
    let pollFundamentalsGap=null,disagreementSigma=0,pollWeight=null;
    const poll=odds.get('house|'+code);
    if(poll){
@@ -281,18 +289,18 @@
     pollWeight=w;
     mean=w*poll.dem_minus_rep+(1-w)*priorMean;
     sigma=unchanged?Math.max(7,poll.sigma_points):
-      Math.max(presidential?15:16,poll.sigma_points);
+      Math.max(usePresidential?15:16,poll.sigma_points);
     // A presidential margin genuinely calculated under the 2026 map can
     // be compared with polls even for redrawn seats. Exchangeable statewide
     // 2024 House priors (default mode) still cannot.
-    if(unchanged||presidential){
+    if(unchanged||usePresidential){
      pollFundamentalsGap=Math.round(1000*(poll.dem_minus_rep-priorMean))/1000;
      disagreementSigma=disagreementExtraSigma(poll.dem_minus_rep,priorMean,
-      presidential?(unchanged&&both?.70:.45):(both?.65:.15));
+      usePresidential?(unchanged&&both?.70:.45):(both?.65:.15));
      sigma=Math.round(1000*Math.hypot(sigma,disagreementSigma))/1000;
     }
     method='poll_blend_'+kind;
-    if(!unchanged&&!presidential)redrawnMixWeight=1-w;
+    if(!unchanged&&!usePresidential)redrawnMixWeight=1-w;
    }
    house.push({code,state,mean:limit(mean,-60,60),sigma,
      method,polled:Boolean(poll),redrawn_mix_weight:redrawnMixWeight,
@@ -302,7 +310,10 @@
      two_cycle_adjustment_points:Math.round(1000*twoCycleAdjustment)/1000,
      historical_2022_margin:twoCycle2022Margin,
      projected_2024_from_2022_margin:twoCycleProxy2024,
-     presidential_2024_margin_points:presidentialMargin});
+     presidential_2024_margin_points:presidentialMargin,
+     historical_geography_prior_source:usePresidential?'mapped_presidential_2024_two_party':kind,
+     historical_2024_house_vote_used:unchanged&&both&&
+      (fundamentalsMode==='presidential_2024_gap_fill'||!presidential)});
   }
   const senRecords=s.senateHistory.contest_records.filter(r=>
    r.election_year===2020&&r.election_type==='regular');
