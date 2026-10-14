@@ -60,9 +60,30 @@ This is an **engineering guard against double-counting**, not a historically tra
 - **Minnesota 2nd House:** no current same-seat candidate match, so no candidate residual is attributed to a different person.
 - **Minnesota Senate:** open-seat candidate Peggy Flanagan is not treated as the incumbent 2020 Senator; no historical Senate incumbency residual is fabricated.
 
+## Out-of-state 2022 → 2024 historical persistence test
+
+We have now added a **separate outcome-period validation study** in `scripts/incumbent_persistence_backtest.js` and `data/incumbent_persistence_2022_2024.json`, rather than assuming the 2024 historical advantage is fully transferable to 2026.
+
+- **148** candidates who *won their seat in 2022* and personally ran again in **2024**, from **34 states** with valid 2022/2024/2026 district geometry and independently agreeing D/R election returns. The 2024 evaluation includes **144 subsequent re-elections and 4 subsequent losses**. Winners were selected in 2022; losing re-runners were **not** discarded.
+- A 2022 candidate-strength predictor uses only the **2022 House result** and **2020 presidential returns reallocated to the same 2022 district**. Its 2022 national office gap is determined entirely from 2022/pre-2022 sources.
+- Its 2024 validation target is that candidate's realized **2024 House-vs-2024 presidential** margin, normalized against the **2024 office gap computed only from other states for that held-out state's fold**. The contemporaneous 2024 presidential election is therefore a *validation denominator*, **never a predictor supplied to the 2022 feature**.
+- Each state is held out of regression training **and** the 2024 national benchmark. The coefficient is estimated from other states with ridge shrinkage and a nonnegative cap.
+- Across 148 held-out candidate re-runs, the candidate residual carryover model reduced 2024 relative-margin **RMSE from 5.522 to 4.732 points** (and MAE **4.411 to 3.713 points**) compared with assuming *zero* candidate carryover. Fully transferring the old residual unshrunk had RMSE **5.072**. The all-sample, regularized carryover coefficient is **0.345**. These are *historical relative-margin diagnostics*, **not 2026 election-win probability scores**.
+
+This is real evidence for some **persistence** in candidate-specific residuals among re-running incumbents, but it is not a general validated election forecast: the sample is conditional on re-running, 2022→2024 switches from midterm to presidential turnout, the target is normalized with simultaneous presidential results, and the source includes third-party reconstructions. One two-cycle holdout is not enough to calibrate live win-probability tails.
+
+An **office-scoped experiment** in `scripts/audit_historical_strength_shadow.cjs` uses the fitted **House** carryover only on the House presidential-lean model, with a 65% complement for its already-present 35% 2024 House margin and another discount for 2026 polling. It does **not** insert the House coefficient into Senate or governor, does **not** double-count the main House prior, and **does not update headline probabilities**.
+
+Reproduce:
+
+```sh
+node scripts/test_incumbent_persistence_backtest.cjs
+node scripts/audit_historical_strength_shadow.cjs --json
+```
+
 ## What is still missing for promotion
 
-The historical excess is noisy: it combines actual candidate skill, constituency service, campaign organization, opponent quality, turnout and random errors. The 2024 House residual describes an election that already happened; by itself it does **not validate** its predictive strength in 2026. Backtesting previous-election candidate residuals against *later* election outcomes requires geography-correct presidential results and name-matched candidate returns from earlier cycles, including 2022→2024 and earlier holdouts. Any calibrated coefficient must be tested on election outcomes **without later outcome leakage or winner-only selection bias**.
+The historical excess is noisy: it combines actual candidate skill, constituency service, campaign organization, opponent quality, turnout and random errors. The 2024 House residual describes an election that already happened; by itself it does **not validate** its predictive strength in 2026. We now have one qualified 2022→2024 historical persistence evaluation; **additional disjoint election-year holdouts** with correctly dated political environments and candidate-return names are still necessary for calibration. Any calibrated coefficient must be tested on election outcomes **without later outcome leakage or winner-only selection bias**.
 
 Incumbency congressional approval, first-term, elected vs. appointed, new-district overlap, FEC in-state individual contributions, candidate experience and their interactions still need independent measurement, not speculative bonuses. The 2026 governor context remains a separate office model.
 
