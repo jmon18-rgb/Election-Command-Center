@@ -73,7 +73,7 @@ assert.equal(updated.house_dem_control_pct,baseline.house_dem_control_pct);
 const senRates=updated.race_probabilities.filter(x=>x.office==='senate');
 assert.equal(senRates.length,35);
 assert(senRates.every(x=>x.simulation_samples===12000&&
- x.dem_beats_rep_pct+x.rep_beats_dem_pct===100));
+ Math.abs(x.dem_beats_rep_pct+x.rep_beats_dem_pct-100)<1e-9));
 const mnOld=baseline.race_probabilities.find(x=>x.race_code==='MN-SEN');
 const mnNow=updated.race_probabilities.find(x=>x.race_code==='MN-SEN');
 assert(mnNow.dem_beats_rep_pct>mnOld.dem_beats_rep_pct+5,
