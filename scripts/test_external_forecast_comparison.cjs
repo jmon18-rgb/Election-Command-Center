@@ -16,6 +16,9 @@ const house=parseHouseCandidates([{code:'0101',winner_Dparty:'42.1',winner_Rpart
  name_D1:'Sample Dem',name_R1:'Sample Rep'}]);
 assert.equal(house.get('AL-01').dem_pct,42.1);
 assert.equal(house.get('AL-01').rep_candidate,'Sample Rep');
+const atLarge=parseHouseCandidates([{code:'0200',winner_Dparty:'40',winner_Rparty:'60'}]);
+assert.equal(atLarge.get('AK-01').dem_pct,40);
+assert.throws(()=>parseHouseCandidates([{code:'0100',winner_Dparty:'40',winner_Rparty:'60'}]),/FIPS/);
 assert.throws(()=>parseHouseCandidates([
  {code:'0101',winner_Dparty:'50',winner_Rparty:'50'},
  {code:'0101',winner_Dparty:'50',winner_Rparty:'50'}]),/Duplicate/);
