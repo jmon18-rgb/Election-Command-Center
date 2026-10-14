@@ -112,6 +112,7 @@ async function settle(){
  // JackStradamus race board must foreground the published conditional
  // model odds, not hide them inside the selected race's detail panel.
  assert.match(get('#modelProbabilityCoverage').textContent,/of \d+ current polled senate races/);
+ assert.match(get('#modelBoard').closest('.model-board').querySelector('.model-board-header').textContent,/D\/R WIN PROBABILITY/);
  const senateRows=get('#modelBoard').querySelectorAll('.model-race-row');
  assert.equal(senateRows.length,oddsData.number_of_races_by_office.senate);
  assert.equal(get('#modelBoard').querySelectorAll('.model-race-win-probabilities').length,
@@ -134,10 +135,11 @@ async function settle(){
  assert.match(get('#senateEstimateCards').textContent,/JACKSTRADAMUS · TWO-PARTY MODEL/);
  assert.doesNotMatch(get('#senateEstimateCards').textContent,/Not assessed/,
   'Missing source coverage cannot masquerade as an ambiguous risk score');
- assert.match(get('#senateEstimateCards').textContent,/No case in ledger/,
+ assert.match(get('#senateEstimateCards').textContent,/No documented case in our limited ledger/,
   'A state with no matching source must display the coverage gap');
  assert.match(get('#bullCoverageSummary').textContent,/source-documented cases across/);
  assert.match(get('#bullCoverageSummary').textContent,/not cleared or comprehensively reviewed/);
+ assert.match(get('#senateEstimateCards').textContent,/coverage gap, not a judgment/);
  assert(get('#bullScoreStates').querySelectorAll('.bs-state-row').length>0,
   'Verified source states keep their documented incident cards');
 
