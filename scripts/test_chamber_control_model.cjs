@@ -238,6 +238,18 @@ const topBell=explanation.senate_control_bellwethers.slice(0,6);
 assert(topBell.some(x=>['TX-SEN','OH-SEN','ME-SEN','IA-SEN','AK-SEN','NE-SEN'].includes(x.race_code)),
  'A useful bellwether ranking should include at least one close contest');
 assert.equal(explanation.top_house_pivotal_races.length,20);
+assert.equal(explanation.top_house_control_bellwethers.length,25);
+assert.equal(new Set(explanation.top_house_control_bellwethers.map(x=>x.race_code)).size,25);
+assert(explanation.top_house_control_bellwethers.every((x,i,arr)=>
+ i===0||arr[i-1].control_covariance_pp>=x.control_covariance_pp));
+assert(explanation.top_house_control_bellwethers.every(x=>
+ x.dem_win_pct>=0&&x.dem_win_pct<=100&&
+ Number.isFinite(x.control_covariance_pp)&&
+ x.mechanical_pivotal_draws>=0&&x.mechanical_pivotal_draws<=opts.samples));
+assert(explanation.top_house_control_bellwethers.some(x=>
+ x.dem_win_pct>10&&x.dem_win_pct<90),
+ 'House bellwethers must surface races with genuine model uncertainty');
+
 assert(Math.abs(explanation.house_only_pct+explanation.senate_only_pct-
  explained.probabilities.shrug)<.02);
 assert(Math.abs(explanation.independent_chambers_reference_pct-
