@@ -14,18 +14,18 @@ const f=csv('Race,Polls,Simple,Fancy,Blended',[
  'GA,D +3@@3,D +4@@4,D +12@@12,R +20@@-20',
  'ME,D +1@@1,D +2@@2,R +3@@-3,D +30@@30'
 ]);
-const fAlt=f.replace('D +60@@60','R +60@@-60')
- .replace('R +25@@-25','D +60@@60')
- .replace('R +20@@-20','D +65@@65')
- .replace('D +30@@30','R +65@@-65');
+// Change the POLLS component only, not the Blended fundamentals section.
+const fAlt=f.replace('MN,D +2@@2,','MN,R +25@@-25,')
+ .replace('NC,D +4@@4,','NC,R +25@@-25,')
+ .replace('GA,D +3@@3,','GA,R +25@@-25,');
 const e=csv('Race,FLIPR Classic,Unadjusted,Adjusted,FLIPR Deluxe',[
  'MN,D +1@@1,D +8@@8,D +15@@15,R +55@@-55',
  'NC,D +2@@2,D +10@@10,D +15@@15,D +55@@55',
  'GA,D +3@@3,D +7@@7,D +20@@20,R +50@@-50',
  'ME,D +1@@1,D +2@@2,D +10@@10,D +35@@35'
 ]);
-const eAlt=e.replace('R +55@@-55','D +55@@55')
- .replace('D +55@@55','R +55@@-55')
+const eAlt=e.replace('MN,D +1@@1,','MN,R +25@@-25,')
+ .replace('R +55@@-55','D +55@@55')
  .replace('R +50@@-50','D +50@@50');
 const hf=csv('Race,Polls,Simple,Fancy,Blended',[
  'AK-1,R +2@@-2,R +10@@-10,R +5@@-5,D +50@@50',
@@ -39,6 +39,7 @@ assert.equal(reader.parse(hf).kind,'houseFundamentals');
 assert.equal(reader.parse(hf).states['AK-01'].fancy,-5);
 assert.equal(reader.parse(e).states.MN.unadjusted,8);
 assert.equal(reader.parse(f).states.MN.fancy,9);
+assert.equal(reader.parse(f).states.MN.blended,60);
 assert.throws(()=>reader.parse('district,tipping,vpi\nTX-1,2,5'),/Race header/);
 assert.throws(()=>reader.parse(f.replace('D +7@@7','D +7@@-7')),/Inconsistent/);
 assert.throws(()=>reader.parse(f.replace('GA,D +3@@3,','MN,D +3@@3,')),/Duplicate race/);
@@ -71,7 +72,7 @@ assert(withSenate.senate.filter(r=>!p.senateFundamentals[r.state]&&!p.senateExpe
  .every(r=>r.sigma===baseline.senate.find(x=>x.code===r.code).sigma));
 const altered=reader.accept(reader.accept(null,reader.parse(fAlt)),reader.parse(eAlt));
 assert.deepEqual(reader.apply(baseline,altered).senate,withSenate.senate,
- 'Silver final blended and FLIPR odds must have ZERO effect on model projections');
+ 'Silver polls, FLIPR Classic and FLIPR Deluxe final odds must never become model priors');
 const housePollMargins=Object.fromEntries(source.odds.records.filter(r=>r.office==='house')
  .map(r=>[r.race_code,r.dem_minus_rep]));
 const withHouse=reader.apply(baseline,p,{includeHouse:true,housePollMargins});
