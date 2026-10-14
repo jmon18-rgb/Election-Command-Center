@@ -889,8 +889,7 @@ function renderModelOverview(data){
   const probability=oddsReady&&modelRaceOddsData.records.find(x=>
     x.office===modelMode&&x.race_code===key);
   if(probability){
-   const d=modelOddsErrorWidth==='tight'?probability.tight_error_dem_pct:
-     modelOddsErrorWidth==='wide'?probability.wide_error_dem_pct:probability.dem_beats_rep_pct;
+   const d=probability.dem_beats_rep_pct;
    const odds=elt('div','model-race-win-probabilities');
    const nice=n=>n>99.5?'>99.5%':n<.5?'<0.5%':n.toFixed(1)+'%';
    odds.append(elt('strong','party-d','D '+nice(d)),
@@ -1071,34 +1070,59 @@ function setModelRaceOddsData(data){
  enRenderLiveDesk();
 }
 function modelOddsValidate(data,source){
- if(!data||!source||data.schema_version!=='experimental-race-odds-v1'||
-  data.status!=='experimental_poll_margin_probability_not_chamber_forecast'||
-  data.normal_error_model!==true||data.probabilities_calibrated_on_2026_outcomes!==false||
-  data.can_infer_chamber_control!==false||data.can_infer_blue_tsunami!==false||
-  data.partisan_bias_correction_points!==0||
+ if(!data||!source||data.schema_version!=='joint-race-probabilities-v1'||
+  data.status!=='JOINT_CORRELATED_RACE_PROBABILITIES_EXPERIMENTAL'||
   data.polling_source_generated_at!==source.generated_at||
-  !Array.isArray(data.records)||data.records.length<30||
-  data.historical_senate_races!==42||
-  !Number.isFinite(data.senate_baseline_rmse_points))return false;
- const sourceGroups={senate:source.senate_all||[],house:source.house||[],governor:source.governor||[]};
+  data.race_probability_method!=='SAME_CORRELATED_DRAWS_AS_CHAMBER_CONTROL'||
+  !Number.isInteger(data.samples)||data.samples<300||
+  !Array.isArray(data.records)||data.records.length<30)return false;
+ const sourceGroups={senate:source.senate_all||[],house:source.house||[],
+  governor:source.governor||[]};
  const seen=new Set();
- for(const item of data.records){
-  const code=item.race_code,office=item.office,key=office+'|'+code;
-  if(seen.has(key)||!Object.prototype.hasOwnProperty.call(sourceGroups,office))return false;
+ for(const r of data.records){
+  const key=r.office+'|'+r.race_code;
+  if(seen.has(key)||!Object.prototype.hasOwnProperty.call(sourceGroups,r.office))return false;
   seen.add(key);
-  const race=sourceGroups[office].find(r=>r.race_code===code&&
-   ['single_poll','multi_poll'].includes(r.status));
-  if(!race||Math.abs(race.dem_minus_rep-item.dem_minus_rep)>.011||
-    race.latest_poll_end!==item.latest_poll_end||
-    item.contributing_firms!==race.contributing_pollsters||
-    !Number.isFinite(item.sigma_points)||item.sigma_points<3||
-    !['dem_beats_rep_pct','rep_beats_dem_pct','tight_error_dem_pct','wide_error_dem_pct']
-       .every(k=>Number.isFinite(item[k])&&item[k]>=0&&item[k]<=100)||
-    Math.abs(item.dem_beats_rep_pct+item.rep_beats_dem_pct-100)>.02)return false;
+  const poll=sourceGroups[r.office].find(x=>x.race_code===r.race_code&&
+   ['single_poll','multi_poll'].includes(x.status));
+  if(!poll||poll.latest_poll_end!==r.latest_poll_end||
+   Math.abs(poll.dem_minus_rep-r.dem_minus_rep)>.011||
+   r.contributing_firms!==poll.contributing_pollsters||
+   !Number.isFinite(r.model_dem_margin_points)||
+   !Number.isFinite(r.sigma_points)||r.sigma_points<3||
+   !Number.isInteger(r.simulated_dem_wins)||r.simulated_dem_wins<0||
+   r.simulated_dem_wins>data.samples||
+   Math.abs(r.dem_beats_rep_pct-100*r.simulated_dem_wins/data.samples)>.011||
+   Math.abs(r.dem_beats_rep_pct+r.rep_beats_dem_pct-100)>.02)
+   return false;
  }
  return Object.entries(sourceGroups).every(([office,rows])=>
   data.records.filter(x=>x.office===office).length===
-    rows.filter(r=>['multi_poll','single_poll'].includes(r.status)).length);
+  rows.filter(r=>['multi_poll','single_poll'].includes(r.status)).length);
+}
+function jointBuildRaceOddsSnapshot(result,basis){
+ if(!result||!basis||!latestSenateEstimates||
+  basis.generated_from_sources.model_polling_at!==latestSenateEstimates.generated_at||
+  result.race_probability_method!=='SAME_CORRELATED_DRAWS_AS_CHAMBER_CONTROL')return null;
+ const pools={senate:latestSenateEstimates.senate_all||[],
+  house:latestSenateEstimates.house||[],governor:latestSenateEstimates.governor||[]};
+ const by=new Map(Object.entries(pools).flatMap(([office,rows])=>
+  rows.filter(x=>['single_poll','multi_poll'].includes(x.status))
+   .map(x=>[office+'|'+x.race_code,x])));
+ const records=result.race_probabilities.filter(x=>by.has(x.office+'|'+x.race_code))
+  .map(x=>{
+   const poll=by.get(x.office+'|'+x.race_code);
+   return {...x,dem_minus_rep:poll.dem_minus_rep,
+    latest_poll_end:poll.latest_poll_end,
+    contributing_firms:poll.contributing_pollsters,
+    independent_firms:poll.independent_pollsters};
+  });
+ return {schema_version:'joint-race-probabilities-v1',
+  status:'JOINT_CORRELATED_RACE_PROBABILITIES_EXPERIMENTAL',
+  race_probability_method:result.race_probability_method,
+  samples:result.samples,
+  polling_source_generated_at:basis.generated_from_sources.model_polling_at,
+  records};
 }
 function renderModelRaceOdds(estimate){
  const host=$('#modelOddsNumbers'),bar=$('#modelOddsBar'),note=$('#modelOddsContext');
@@ -1118,8 +1142,7 @@ function renderModelRaceOdds(estimate){
   note.textContent='Current race odds will appear after the probability model has been rebuilt from the same polling snapshot.';
   return;
  }
- const p=modelOddsErrorWidth==='tight'?item.tight_error_dem_pct:
-   modelOddsErrorWidth==='wide'?item.wide_error_dem_pct:item.dem_beats_rep_pct;
+ const p=item.dem_beats_rep_pct;
  const format=n=>n>=99.5?'>99%':n<=.5?'<1%':Math.round(n)+'%';
  const dem=elt('div','model-odds-col');
  dem.append(elt('span','','DEMOCRATIC'),elt('strong','party-d',format(p)));
@@ -1127,24 +1150,22 @@ function renderModelRaceOdds(estimate){
  rep.append(elt('span','','REPUBLICAN'),elt('strong','party-r',format(100-p)));
  host.append(dem,rep);
  const fill=elt('div');fill.style.width=Math.max(0,Math.min(100,p))+'%';bar.append(fill);
- note.textContent='Poll average '+marginText(item.dem_minus_rep)+' · '+
-    'assumed election-day error '+(item.sigma_points*(modelOddsErrorWidth==='tight'?.75:
-     modelOddsErrorWidth==='wide'?1.25:1)).toFixed(1)+' margin points. '+
-    (modelMode==='senate'?'Error scale anchored to 42 realized 2020–24 Senate polling misses.':
-    'House and governor starting error scale is assumed, not historically measured.')+
-    ' Adjusting the error width shows sensitivity, not a confidence interval. Candidate fundamentals, non-major-party outcomes and shared national error are not modeled.';
+ note.textContent='Poll average '+marginText(item.dem_minus_rep)+' · modeled margin '+
+   marginText(item.model_dem_margin_points)+' · total modeled race uncertainty '+
+   item.sigma_points.toFixed(1)+' points (national + chamber + state + local). '+
+   'Same '+modelRaceOddsData.samples.toLocaleString('en-US')+
+   ' correlated draws as House/Senate control. Error-width controls rerun the full model. '+
+   'Two-party conditional estimate, not a calibrated race call; special ballot rules remain incomplete.';
 }
 document.querySelectorAll('.model-odds-presets [data-odds-width]').forEach(button=>
  button.addEventListener('click',()=>{
   modelOddsErrorWidth=button.dataset.oddsWidth;
-  const estimate=modelRows(latestSenateEstimates).find(x=>x.race_code===selectedModelState);
-  renderModelRaceOdds(estimate);
+  jointErrorMultiplier=modelOddsErrorWidth==='tight'?.8:
+   modelOddsErrorWidth==='wide'?1.3:1;
+  const sensitivity=$('#jointError');if(sensitivity)
+   sensitivity.value=String(jointErrorMultiplier);
+  jointRender(true);
  }));
-fetch('./data/race_probabilities.json',{cache:'no-store'}).then(response=>{
- if(!response.ok)throw Error('probability model is not staged');
- return response.json();
-}).then(setModelRaceOddsData).catch(()=>setModelRaceOddsData(null));
-
 function renderModelRaceDetail(){
  const estimate=modelRows(latestSenateEstimates).find(s=>(s.race_code||s.state+'-SEN')===selectedModelState);
  if(!estimate||!$('#modelDetail'))return;
@@ -4029,14 +4050,12 @@ const odds=oddsReady&&modelRaceOddsData.records.find(r=>
 const modelOdds=elt('div','senate-card-odds');
 if(odds){
  const nice=n=>n>99.5?'>99.5%':n<.5?'<0.5%':n.toFixed(1)+'%';
- const p=modelOddsErrorWidth==='tight'?odds.tight_error_dem_pct:
-  modelOddsErrorWidth==='wide'?odds.wide_error_dem_pct:odds.dem_beats_rep_pct;
+ const p=odds.dem_beats_rep_pct;
  modelOdds.append(elt('span','senate-card-odds-label','JACKSTRADAMUS · TWO-PARTY MODEL'),
   elt('strong','party-d','D '+nice(p)),
   elt('strong','party-r','R '+nice(100-p)));
- modelOdds.append(elt('small','','Polling-error assumption ±'+
-  (odds.sigma_points*(modelOddsErrorWidth==='tight'?.75:
-   modelOddsErrorWidth==='wide'?1.25:1)).toFixed(1)+' pts · not a race call'));
+ modelOdds.append(elt('small','','Linked simulation · total σ '+
+   odds.sigma_points.toFixed(1)+' pts · not a race call'));
 }else{
  modelOdds.append(elt('span','senate-card-odds-label',
   'JACKSTRADAMUS · SOURCE-MATCHED ODDS UNAVAILABLE'));
