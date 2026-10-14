@@ -71,6 +71,13 @@
  function prepare(s,options={}){
   validateInputs(s);
   const fundamentalsMode=options.fundamentalsMode??'2024_only';
+  // Independent Senate research switches. No live forecast changes when
+  // unspecified; results require explicit comparison and validation.
+  const senateFundamentalsMode=options.senateFundamentalsMode??'2020_senate_house_proxy';
+  const senateErrorMode=options.senateErrorMode??'additive_wide_legacy';
+  if(!['2020_senate_house_proxy','presidential_2024_state_shadow'].includes(senateFundamentalsMode)||
+     !['additive_wide_legacy','historical_total_budget_shadow'].includes(senateErrorMode))
+   throw Error('Unsupported Senate experimental configuration');
   if(!FUNDAMENTALS_MODES.includes(fundamentalsMode))
    throw Error('Unsupported House fundamentals mode');
   // Require validated two-cycle sources for the explicit alternate model.
@@ -114,7 +121,8 @@
   // District presidential vote totals must be mapped to the CURRENT 2026
   // jurisdiction before blending; a stale 2024 CD number is prohibited.
   let presidential=null,presidentialNationalMargin=null;
-  if(fundamentalsMode==='presidential_2024_shadow'){
+  if(fundamentalsMode==='presidential_2024_shadow'||
+     senateFundamentalsMode==='presidential_2024_state_shadow'){
    const d=s.presidential;
    if(!d||d.schema_version!=='presidential-district-lean-staging-v1'||
       d.status!=='historical_presidential_votes_from_external_model_source_not_forecast'||
@@ -303,6 +311,32 @@
   const senRecords=s.senateHistory.contest_records.filter(r=>
    r.election_year===2020&&r.election_type==='regular');
   const senate2020=new Map(senRecords.map(r=>[r.state,r]));
+  // State presidential votes are aggregated across all 2026-map districts
+  // rather than assigning any obsolete 2024 House district to a new seat.
+  // Cross-check that each of the 50 states has real vote totals.
+  const presidentialStates=new Map();
+  if(senateFundamentalsMode==='presidential_2024_state_shadow'){
+   for(const [code] of presidential){
+    const row=s.presidential.records.find(x=>x.race_code===code);
+    const state=code.slice(0,2),a=presidentialStates.get(state)||{d:0,r:0};
+    a.d+=row.dem_pres_2024_votes;a.r+=row.rep_pres_2024_votes;
+    presidentialStates.set(state,a);
+   }
+   if(presidentialStates.size!==50)throw Error('Incomplete state presidential vote universe');
+  }
+  // Historical Senate polling RMSE describes TOTAL error, not just a
+  // fresh independent/local draw. A research variant budgets its variance
+  // across common-national, Senate and state terms plus one local residual.
+  const historicalTotalSigma=s.odds.senate_baseline_rmse_points;
+  const senateVarianceBudget=senateErrorMode==='historical_total_budget_shadow'?
+   {national:3.5,senate:2,state:2}:null;
+  const sharedSenateVariance=senateVarianceBudget?
+   senateVarianceBudget.national**2+senateVarianceBudget.senate**2+
+   senateVarianceBudget.state**2:null;
+  if(senateVarianceBudget&&(!finite(historicalTotalSigma)||
+     historicalTotalSigma<4||historicalTotalSigma>10||
+     sharedSenateVariance>=historicalTotalSigma**2))
+   throw Error('Cannot decompose historical Senate total error budget');
   for(const seat of s.seats.senate.contested_seats){
    const code=normalizeCode(seat.race_code),state=seat.state;
    const prior=senate2020.get(state);
@@ -314,9 +348,18 @@
       prior.recorded_dem_votes>0&&prior.recorded_rep_votes>0;
    let mean=(reliable?(0.65*margin(prior.dem_share_of_two_party)+
      .35*stateMargin(state)):stateMargin(state))+projectedSwing*.68;
+   if(senateFundamentalsMode==='presidential_2024_state_shadow'){
+    const totals=presidentialStates.get(state);
+    if(!totals||totals.d<=0||totals.r<=0)
+     throw Error('Missing 2024 state presidential votes '+state);
+    const statewide2024=100*(totals.d-totals.r)/(totals.d+totals.r);
+    mean=statewide2024+.68*(generic-presidentialNationalMargin);
+   }
    let sigma=reliable?17:special?25:23,method=reliable?
      'historical_2020_senate_plus_state_house':special?
      'special_election_state_house_proxy':'state_house_proxy_no_2020_two_party';
+   if(senateFundamentalsMode==='presidential_2024_state_shadow')
+    method='presidential_2024_state_lean_proxy';
    let pollFundamentalsGap=null,disagreementSigma=0,pollWeight=null;
    const poll=odds.get('senate|'+code);
    if(poll){
@@ -327,7 +370,10 @@
     // The historical Senate polling-error RMSE is a floor rather than
     // a full forecast calibration. Add disagreement uncertainty only
     // when the historical prior actually describes the same seat.
-    sigma=Math.max(7,poll.sigma_points);
+    sigma=senateVarianceBudget?
+     Math.sqrt(Math.max(0,Math.max(historicalTotalSigma,poll.sigma_points)**2-
+      sharedSenateVariance)):
+     Math.max(7,poll.sigma_points);
     if(!special){
      pollFundamentalsGap=Math.round(1000*(poll.dem_minus_rep-priorMean))/1000;
      disagreementSigma=disagreementExtraSigma(poll.dem_minus_rep,priorMean,
@@ -339,7 +385,9 @@
    senate.push({code,state,mean:limit(mean,-55,55),sigma,
     method,polled:Boolean(poll),special:seat.election_kind==='special',
     poll_weight:pollWeight,poll_fundamentals_gap_points:pollFundamentalsGap,
-    disagreement_extra_sigma_points:disagreementSigma});
+    disagreement_extra_sigma_points:disagreementSigma,
+    senate_variance_budget_total_sigma:senateVarianceBudget&&poll?
+      Math.hypot(sigma,...Object.values(senateVarianceBudget)):null});
   }
   // Include EVERY polled governor matchup, not just the six governor
   // battlegrounds used by the four-endings near-sweep definition.
@@ -360,6 +408,16 @@
    throw Error('Incomplete fixed battleground slate');
   const basis={schema_version:VERSION,status:'EXPERIMENTAL_UNCALIBRATED',
     fundamentals_mode:fundamentalsMode,
+    senate_fundamentals_mode:senateFundamentalsMode,
+    senate_error_mode:senateErrorMode,
+    senate_research:{
+     historical_total_poll_rmse_points:historicalTotalSigma,
+     shared_error_variance_budget_points2:sharedSenateVariance,
+     variance_decomposition:senateVarianceBudget,
+     source:'data/historical_senate_poll_backtest.json via race_probabilities',
+     status:senateVarianceBudget||senateFundamentalsMode==='presidential_2024_state_shadow'?
+      'EXPERIMENTAL_SENATE_SHADOW_NOT_PROMOTED':'LEGACY_BASELINE'
+    },
     presidential_fundamentals_shadow:{
      mapped_2026_house_districts:presidential?presidential.size:0,
      national_presidential_2024_two_party_margin_points:presidentialNationalMargin,
@@ -388,8 +446,8 @@
      senate_dem_holdovers:34,senate_rep_holdovers:31,
      house_control_dem_seats:218,senate_control_dem_seats:51,
      common_national_sigma:3.5,house_chamber_sigma:2.5,
-     senate_chamber_sigma:3,governor_chamber_sigma:3.5,
-     state_house_sigma:3,state_senate_sigma:3.5,
+     senate_chamber_sigma:senateVarianceBudget?2:3,governor_chamber_sigma:3.5,
+     state_house_sigma:3,state_senate_sigma:senateVarianceBudget?2:3.5,
      state_governor_sigma:3,
      redrawn_state_additional_sigma:6,
      fixed_battleground_required_dem_wins:REQUIRED_BATTLEGROUND_WINS,
