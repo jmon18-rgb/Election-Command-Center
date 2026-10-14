@@ -2339,11 +2339,16 @@ function jointRenderCards(result){
    host.append(cell);
   }
   const info=jointBasis.generated_from_sources;
+  const h=result.seat_intervals_90_pct?.house_dem_seats;
+  const sn=result.seat_intervals_90_pct?.senate_dem_seats;
   status.textContent=result.samples.toLocaleString('en-US')+
-   ' correlated simulated elections · D controls both (including tsunami) '+
-   result.blue_both_including_tsunami.toFixed(1)+'% · average D seats: '+
-   result.means.house_dem_seats.toFixed(0)+' House / '+
-   result.means.senate_dem_seats.toFixed(0)+' Senate · '+
+   ' correlated simulated elections · D House control '+
+   result.house_dem_control_pct.toFixed(1)+'% · D Senate control '+
+   result.senate_dem_control_pct.toFixed(1)+'% · D both '+
+   result.blue_both_including_tsunami.toFixed(1)+'% · '+
+   'modeled D seats (central 90% of draws): '+
+   (h?h.p05+'–'+h.p95+' House':'House unavailable')+' / '+
+   (sn?sn.p05+'–'+sn.p95+' Senate':'Senate unavailable')+' · '+
    info.senate_poll_count+'/35 Senate and '+info.house_poll_count+
    '/435 House races polled · '+info.house_geography_changed+
    ' House districts redrawn (high uncertainty).';
