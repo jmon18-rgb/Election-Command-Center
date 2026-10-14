@@ -740,6 +740,8 @@ function senatePollingErrorBudget(info){
    const wins=raceDemWins[index],demPct=pct(wins);
    return {race_code:item.code,office,model_dem_margin_points:item.mean,
     polled:item.polled,poll_weight:item.poll_weight??null,
+    polling_error_tier:item.polling_error_tier??null,
+    polling_error_floor_points:item.polling_error_floor_points??null,
     source_method:item.method,sigma_points:Math.round(totalSigma*1000)/1000,
     dem_beats_rep_pct:demPct,rep_beats_dem_pct:pct(samples-wins),
     simulated_dem_wins:wins,
