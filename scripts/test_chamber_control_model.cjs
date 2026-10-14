@@ -209,6 +209,15 @@ assert.equal(first.control_explanation,undefined,
  'Only explicitly requested diagnostics appear in default public output');
 const explanation=explained.control_explanation;
 assert.equal(explanation.senate_pivotal_races.length,35);
+assert.equal(explanation.senate_control_bellwethers.length,35);
+assert(explanation.senate_control_bellwethers.every((x,i,arr)=>
+ i===0||arr[i-1].control_covariance_pp>=x.control_covariance_pp));
+assert(explanation.senate_control_bellwethers.every(x=>
+ x.dem_win_pct>=0&&x.dem_win_pct<=100&&
+ Number.isFinite(x.control_covariance_pp)));
+const topBell=explanation.senate_control_bellwethers.slice(0,6);
+assert(topBell.some(x=>['TX-SEN','OH-SEN','ME-SEN','IA-SEN','AK-SEN','NE-SEN'].includes(x.race_code)),
+ 'A useful bellwether ranking should include at least one close contest');
 assert.equal(explanation.top_house_pivotal_races.length,20);
 assert(Math.abs(explanation.house_only_pct+explanation.senate_only_pct-
  explained.probabilities.shrug)<.02);
