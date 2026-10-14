@@ -22,6 +22,16 @@
  const limit=(x,l,h)=>Math.max(l,Math.min(h,x));
  const margin=share=>200*share-100;
  function normalizeCode(x){return typeof x==='string'?x.trim().toUpperCase():''}
+ // Silver-inspired, provisional: conflicting polling and independently
+ // informative fundamentals imply additional uncertainty, not an arbitrary
+ // correction toward either party. These coefficients are NOT backtested.
+ // A statewide exchangeable redraw prior has quality zero for district use.
+ function disagreementExtraSigma(pollMargin,priorMargin,priorQuality){
+  if(!finite(pollMargin)||!finite(priorMargin)||!finite(priorQuality)||
+     priorQuality<0||priorQuality>1)throw Error('Invalid disagreement inputs');
+  const excess=Math.max(0,Math.abs(pollMargin-priorMargin)-6);
+  return Math.round(1000*Math.min(6,excess*.35*priorQuality))/1000;
+ }
  function normal(rand){
   const u=Math.max(1e-12,rand()),v=rand();
   return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);
@@ -136,19 +146,32 @@
     kind='redrawn_state_distribution_proxy';sigma=25;
    }
    let mean=baseline+projectedSwing,method=kind;
+   let pollFundamentalsGap=null,disagreementSigma=0,pollWeight=null;
    const poll=odds.get('house|'+code);
    if(poll){
+    const priorMean=mean;
     const w=unchanged?(poll.independent_firms>=2?.78:.60):
       (poll.independent_firms>=2?.88:.76);
-    mean=w*poll.dem_minus_rep+(1-w)*mean;
+    pollWeight=w;
+    mean=w*poll.dem_minus_rep+(1-w)*priorMean;
     sigma=unchanged?Math.max(7,poll.sigma_points):
       Math.max(16,poll.sigma_points);
+    // No district-level comparison can be made with an exchangeable
+    // redrawn-state distribution; do not penalize such a meaningless gap.
+    if(unchanged){
+     pollFundamentalsGap=Math.round(1000*(poll.dem_minus_rep-priorMean))/1000;
+     disagreementSigma=disagreementExtraSigma(poll.dem_minus_rep,priorMean,
+      both?.65:.15);
+     sigma=Math.round(1000*Math.hypot(sigma,disagreementSigma))/1000;
+    }
     method='poll_blend_'+kind;
     if(!unchanged)redrawnMixWeight=1-w;
    }
    house.push({code,state,mean:limit(mean,-60,60),sigma,
      method,polled:Boolean(poll),redrawn_mix_weight:redrawnMixWeight,
-     redrawn_state_center:redrawnStateCenter});
+     redrawn_state_center:redrawnStateCenter,
+     poll_weight:pollWeight,poll_fundamentals_gap_points:pollFundamentalsGap,
+     disagreement_extra_sigma_points:disagreementSigma});
   }
   const senRecords=s.senateHistory.contest_records.filter(r=>
    r.election_year===2020&&r.election_type==='regular');
@@ -167,17 +190,29 @@
    let sigma=reliable?17:special?25:23,method=reliable?
      'historical_2020_senate_plus_state_house':special?
      'special_election_state_house_proxy':'state_house_proxy_no_2020_two_party';
+   let pollFundamentalsGap=null,disagreementSigma=0,pollWeight=null;
    const poll=odds.get('senate|'+code);
    if(poll){
+    const priorMean=mean;
     const weight=poll.independent_firms>=2?.90:.78;
-    mean=weight*poll.dem_minus_rep+(1-weight)*mean;
-    // The 2020 historical Senate polling-error RMSE was near seven
-    // margin points. This is a conservative FLOOR, not a calibration.
+    pollWeight=weight;
+    mean=weight*poll.dem_minus_rep+(1-weight)*priorMean;
+    // The historical Senate polling-error RMSE is a floor rather than
+    // a full forecast calibration. Add disagreement uncertainty only
+    // when the historical prior actually describes the same seat.
     sigma=Math.max(7,poll.sigma_points);
+    if(!special){
+     pollFundamentalsGap=Math.round(1000*(poll.dem_minus_rep-priorMean))/1000;
+     disagreementSigma=disagreementExtraSigma(poll.dem_minus_rep,priorMean,
+      reliable?.55:.20);
+     sigma=Math.round(1000*Math.hypot(sigma,disagreementSigma))/1000;
+    }
     method='2026_poll_blend_'+method;
    }
    senate.push({code,state,mean:limit(mean,-55,55),sigma,
-    method,polled:Boolean(poll),special:seat.election_kind==='special'});
+    method,polled:Boolean(poll),special:seat.election_kind==='special',
+    poll_weight:pollWeight,poll_fundamentals_gap_points:pollFundamentalsGap,
+    disagreement_extra_sigma_points:disagreementSigma});
   }
   for(const code of BATTLEGROUNDS.filter(x=>x.endsWith('-GOV'))){
    const poll=odds.get('governor|'+code);
@@ -208,7 +243,11 @@
      state_house_sigma:3,state_senate_sigma:3.5,
      state_governor_sigma:3,
      redrawn_state_additional_sigma:6,
-     fixed_battleground_required_dem_wins:REQUIRED_BATTLEGROUND_WINS},
+     fixed_battleground_required_dem_wins:REQUIRED_BATTLEGROUND_WINS,
+     disagreement_model:'experimental_poll_vs_informative_prior_sigma_only',
+     disagreement_deadzone_points:6,
+     disagreement_slope:0.35,
+     disagreement_extra_sigma_cap_points:6},
     battlegrounds:[...BATTLEGROUNDS],
     redrawn_state_distributions:redrawnStateDistributions,
     house,senate,governors:gov};
@@ -312,5 +351,6 @@
    total_pct:Object.values(probs).reduce((x,y)=>x+y,0),
    description:'A conditional Monte Carlo sensitivity experiment, not a calibrated election forecast.'};
  }
- return Object.freeze({VERSION,BATTLEGROUNDS,prepare,simulate,seeded});
+ return Object.freeze({VERSION,BATTLEGROUNDS,prepare,simulate,seeded,
+  disagreementExtraSigma});
 });
