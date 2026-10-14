@@ -22,6 +22,33 @@ assert.equal(basis.house.filter(r=>r.polled).length,60);
 assert.equal(basis.senate.filter(r=>r.polled).length,24);
 assert(basis.senate.filter(r=>r.polled).every(r=>r.sigma>=7),
  'Current Senate poll estimates must not use election-error widths below seven points');
+// A Silver-inspired disagreement penalty is symmetric in party direction.
+// Stronger polling/prior conflict widens errors, not the expected D or R margin.
+assert.equal(model.disagreementExtraSigma(2,2,.65),0);
+assert.equal(model.disagreementExtraSigma(10,3,.65),.228);
+assert.equal(model.disagreementExtraSigma(-10,-3,.65),.228);
+assert.equal(model.disagreementExtraSigma(50,-50,1),6);
+assert.equal(model.disagreementExtraSigma(20,-20,0),0,
+ 'Exchangeable redraw priors cannot be treated as comparable district fundamentals');
+assert.throws(()=>model.disagreementExtraSigma(2,1,1.1),/Invalid disagreement/);
+assert.equal(basis.assumptions.disagreement_model,
+ 'experimental_poll_vs_informative_prior_sigma_only');
+assert(basis.house.some(x=>x.polled&&x.disagreement_extra_sigma_points>0),
+ 'At least one well-identified House race should have poll/prior disagreement');
+assert(basis.senate.some(x=>x.polled&&x.disagreement_extra_sigma_points>0),
+ 'At least one comparable Senate race should have poll/prior disagreement');
+assert(basis.house.filter(x=>x.polled&&x.method.includes('redrawn_'))
+ .every(x=>x.poll_fundamentals_gap_points===null &&
+  x.disagreement_extra_sigma_points===0),
+ 'Redrawn-state aggregates are not mapped seat-specific priors');
+assert(basis.senate.filter(x=>x.special)
+ .every(x=>x.poll_fundamentals_gap_points===null &&
+  x.disagreement_extra_sigma_points===0),
+ 'Senate special elections cannot be judged against a different seat');
+assert([...basis.house,...basis.senate].every(x=>
+ x.disagreement_extra_sigma_points>=0 &&
+ x.disagreement_extra_sigma_points<=6));
+
 const specialSeats=basis.senate.filter(x=>x.special);
 assert.equal(specialSeats.length,2);
 assert(specialSeats.every(x=>!x.method.includes('historical_2020_senate')),
