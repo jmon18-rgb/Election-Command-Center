@@ -169,6 +169,11 @@ jobs:
           node scripts/test_incumbency_features.cjs
           node scripts/audit_candidate_fundamentals.cjs --json > /tmp/candidate-fundamentals-audit.json
           node -e "const d=require('/tmp/candidate-fundamentals-audit.json');if(d.coverage.total_races!==506 || d.coverage.senate!==35 || d.coverage.governor!==36 || d.minnesota.senate.executive_approval.net_approval_points!==-14 || d.minnesota.approval_transfer_hypothesis.status!=='COUNTERFACTUAL_UNCALIBRATED_NOT_APPLIED_TO_POLLS_OR_ODDS')process.exit(1)"
+      - name: Check local-only external forecast CSV reader on synthetic fixtures
+        run: |
+          node --check scripts/compare_external_forecast_local.cjs
+          node --check scripts/test_external_forecast_comparison.cjs
+          node scripts/test_external_forecast_comparison.cjs
       - name: Validate same-draw turnout-weighted House vote to seat diagnostics
         run: |
           node --check scripts/audit_joint_vote_seats.cjs
