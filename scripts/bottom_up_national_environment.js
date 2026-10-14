@@ -65,6 +65,8 @@
    }
   }
   if(qualified.length<12)throw Error('Insufficient independent 2026 race polling');
+  qualified.sort((a,b)=>a.office.localeCompare(b.office)||
+    a.race_code.localeCompare(b.race_code));
   const stateGroups=new Map();
   for(const row of qualified){const group=stateGroups.get(row.state)||[];
    group.push(row);stateGroups.set(row.state,group);}
