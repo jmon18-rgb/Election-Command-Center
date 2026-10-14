@@ -40,8 +40,16 @@ def stage(text, year=2024):
     required={"year","state_po","district","stage","party","candidatevotes"}
     if not required<=columns:
         raise ValueError("MIT House source changed schema; fields missing: "+str(sorted(required-columns)))
+    # Treat DFL, Democratic-NPL, and combined party labels as *actual*
+    # major-party ballots, not votes for an 'other' candidate. Fusion states
+    # (especially New York) report several lines for the SAME candidate.
+    # Aggregate candidate identities before summing party totals: votes cast
+    # for that candidate under an endorsed minor-party line still belong to
+    # their candidate's two-party total.
     aggregates=defaultdict(lambda:{"dem":0,"rep":0,"other":0,
-                                     "candidate_rows":0,"missing_vote_rows":0})
+                                     "candidate_rows":0,"missing_vote_rows":0,
+                                     "fusion_vote_rows_attributed":0})
+    ballot_rows=defaultdict(list)
     seen=0
     for row in source:
         if str(row.get("year") or "")!=str(year):continue
@@ -50,20 +58,48 @@ def stage(text, year=2024):
         state=(row.get("state_po") or "").strip().upper()
         district=clean_district(row.get("district"))
         if not re.fullmatch("[A-Z]{2}",state) or district is None:continue
-        # Exclude D.C./territorial non-voting delegates and impossible district
-        # numbers: they are not part of the 435-member House control denominator.
+        # Exclude D.C. and non-voting territorial delegates.
         if state not in HOUSE_COUNTS or not (1<=district<=HOUSE_COUNTS[state]):continue
         key=f"{state}-{district:02d}"
         votes=count(row.get("candidatevotes"))
-        a=aggregates[key]
-        a["candidate_rows"]+=1
+        aggregates[key]["candidate_rows"]+=1
         if votes is None:
-            a["missing_vote_rows"]+=1
+            aggregates[key]["missing_vote_rows"]+=1
             continue
         party=str(row.get("party") or "").upper().strip()
-        group="dem" if party in ("DEMOCRAT","DEMOCRATIC","DEM") else ("rep" if party in ("REPUBLICAN","REP","GOP") else "other")
-        a[group]+=votes
+        # Normalize only unambiguous party labels; never reassign unnamed
+        # or unverified independent candidates to a major party.
+        compact=re.sub(r"[^A-Z0-9]+"," ",party).strip()
+        if (party in ("DEMOCRAT","DEMOCRATIC","DEM","DFL","D F L",
+                      "DEMOCRATIC-FARMER-LABOR","DEMOCRATIC NONPARTISAN LEAGUE",
+                      "DEMOCRATIC-NPL","DEMOCRATIC/NPL","DEMOCRATIC-NONPARTISAN LEAGUE")
+            or compact.startswith("DEMOCRATIC FARMER LABOR")
+            or compact.startswith("DEMOCRATIC NONPARTISAN LEAGUE")
+            or compact.startswith("DEMOCRATIC NPL")):
+            group="dem"
+        elif (party in ("REPUBLICAN","REP","GOP")
+              or compact.startswith("REPUBLICAN ")):
+            group="rep"
+        else:
+            group="other"
+        name=re.sub(r"\\s+"," ",str(row.get("candidate") or "").strip().casefold())
+        if (not name or name in ("writein","write-in","write in","scattered","blank","none")
+            or "write-in" in name or "write in" in name):
+            name=None
+        ballot_rows[key].append((name,group,votes))
         seen+=1
+    for key,rows in ballot_rows.items():
+        candidate_major=defaultdict(set)
+        for name,group,votes in rows:
+            if name and group in ("dem","rep"):
+                candidate_major[name].add(group)
+        for name,group,votes in rows:
+            # A fusion line can only be reassigned when the SAME candidate
+            # has exactly one unambiguous major-party line in this election.
+            if group=="other" and name and len(candidate_major[name])==1:
+                group=next(iter(candidate_major[name]))
+                aggregates[key]["fusion_vote_rows_attributed"]+=1
+            aggregates[key][group]+=votes
     if len(aggregates)!=435:
         raise ValueError(f"{year} voting House must contain exactly 435 seat records; parsed "+str(len(aggregates)))
     records=[]
@@ -78,6 +114,7 @@ def stage(text, year=2024):
             "missing_major_party_votes":a["dem"]==0 or a["rep"]==0,
             "candidate_rows":a["candidate_rows"],
             "missing_vote_rows":a["missing_vote_rows"],
+            "fusion_vote_rows_attributed":a["fusion_vote_rows_attributed"],
             "geography_comparable_to_2026":"not_verified",
             "eligible_as_2026_prior":False
         })
@@ -90,9 +127,10 @@ def stage(text, year=2024):
        "source_schema":list(source.fieldnames),
        "source_candidate_rows_with_votes":seen,
        f"{year}_district_rows":len(records),
+       "fusion_vote_rows_attributed":sum(r["fusion_vote_rows_attributed"] for r in records),
        "districts_missing_major_party_votes":sum(x["missing_major_party_votes"] for x in records),
        "map_warning":f"{year} House vote shares must NOT be mapped by district number into 2026 jurisdictions without confirming district geography across each election year.",
-       "vote_warning":"Raw party rows can reflect fusion ballots, write-ins and uncontested races. Zero recorded party votes is not an inferred electorate share.",
+       "vote_warning":"Repeated ballot lines for a named candidate are combined only when a single major-party candidate identity is verified within the same House race. Ambiguous independents, write-ins and uncontested races remain separate.",
        "records":records}
 
 def main():
