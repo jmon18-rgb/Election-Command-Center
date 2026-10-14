@@ -1298,6 +1298,18 @@ function renderModelRaceOdds(estimate){
    'Same '+modelRaceOddsData.samples.toLocaleString('en-US')+
    ' correlated draws as House/Senate control. Error-width controls rerun the full model. '+
    'Two-party conditional estimate, not a calibrated race call; special ballot rules remain incomplete.';
+ if(jointUsesPrivateContext()){
+  const baseline=jointPublicResult?.race_probabilities?.find(r=>
+   r.office===item.office&&r.race_code===item.race_code);
+  if(baseline){
+   const change=p-baseline.dem_beats_rep_pct;
+   note.textContent+=' PRIVATE CSV RESEARCH VARIANT · baseline D '+
+    baseline.dem_beats_rep_pct.toFixed(1)+'% → locally augmented D '+p.toFixed(1)+
+    '% ('+(change>=0?'+':'')+change.toFixed(1)+' pp). '+
+    'Fundamentals-only “Fancy” and a small unadjusted expert signal; '+
+    'Silver odds and blended forecasts are excluded.';
+  }
+ }
 }
 document.querySelectorAll('.model-odds-presets [data-odds-width]').forEach(button=>
  button.addEventListener('click',()=>{
