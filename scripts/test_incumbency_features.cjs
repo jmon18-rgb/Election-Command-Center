@@ -92,6 +92,36 @@ const sources={seats:load('seat_universe'),history:load('house_history_2024_stag
  geography:load('house_geography_bridge'),
  senateHistory:load('senate_history_2020_2022_2024'),
  odds:load('race_probabilities'),polls:load('polling_estimates')};
+const normal=model.prepare(sources);
+const scenario=features.scenarioBasis(model,normal,stage,sources.polls,{
+ administration_approval_transfer_per_net_point:.15
+});
+assert.equal(normal.status,'EXPERIMENTAL_UNCALIBRATED');
+assert.equal(scenario.status,'EXPERIMENTAL_UNCALIBRATED_CANDIDATE_SCENARIO');
+assert.deepEqual(scenario.house,normal.house,'Context must not move the House by party');
+assert.deepEqual(scenario.governors,normal.governors,'Same party != outgoing governor liability');
+const mnNormal=normal.senate.find(x=>x.code==='MN-SEN');
+const mnSensitivity=scenario.senate.find(x=>x.code==='MN-SEN');
+assert(mnNormal.polled&&mnNormal.poll_weight>=.78);
+assert(Math.abs((mnSensitivity.mean-mnNormal.mean)-
+ -2.1*(1-mnNormal.poll_weight))<1e-6,
+ 'Only the non-poll fundamentals weight may respond to Walz affiliation hypothesis');
+assert.equal(scenario.candidate_scenario.changes.length,1,
+ 'Only the explicitly linked Minnesota Senate office should move');
+assert.equal(scenario.candidate_scenario.changes[0].race_code,'MN-SEN');
+assert.deepEqual(normal,model.prepare(sources),'Scenario cannot mutate production baseline');
+const noScenario=features.scenarioBasis(model,normal,stage,sources.polls,{});
+assert.deepEqual(noScenario.house,normal.house);
+assert.deepEqual(noScenario.senate,normal.senate);
+assert.deepEqual(noScenario.governors,normal.governors);
+const alteredPolls=structuredClone(sources.polls);
+alteredPolls.senate_all.find(x=>x.race_code==='MN-SEN').dem_candidate='Wrong Person';
+const wrongName=features.scenarioBasis(model,normal,stage,alteredPolls,{
+ administration_approval_transfer_per_net_point:.15
+});
+assert.equal(wrongName.candidate_scenario.changes.length,0);
+assert(wrongName.candidate_scenario.skipped.some(x=>x.race_code==='MN-SEN'&&
+ x.reason==='unverified_poll_matchup'));
 assert.deepEqual(model.prepare({...sources,candidateContext:stage}),model.prepare(sources),
  'Staging candidate metadata must never silently alter headline odds');
 console.log('Candidate fundamentals: 506 races; Minnesota office switch/administration guard, source integrity, explicit uncalibrated coefficients, historical overlap and appointment checks PASS');
