@@ -90,6 +90,11 @@ jobs:
           node scripts/test_civicapi_ca_de_sd_wy.cjs
       - name: Probe civicAPI statewide 2026 source IDs in CA DE MS SD WY
         run: python3 scripts/probe_civicapi_ca_de_ms_sd_wy.py
+      - name: Validate experimental live-informed race probabilities
+        run: |
+          node --check scripts/election_night_nowcast.js
+          node --check scripts/test_election_night_nowcast.cjs
+          node scripts/test_election_night_nowcast.cjs
       - name: Install DOM test environment
         run: npm install --no-save --no-package-lock --ignore-scripts jsdom@26.1.0
       - name: Check JavaScript syntax and exercise actual dashboard

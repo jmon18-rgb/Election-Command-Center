@@ -289,3 +289,10 @@ Audit and limitations: [QA_AUDIT.md](QA_AUDIT.md).
 - Independently refresh watched House/Senate/Governor feeds even when the visible office's Open America source fails.
 - Full browser replay tests stalls, timeout and abort, independent races, timestamp regressions, late responses, restored source availability and no invented winner calls.
 - Remaining high-value work: live November 3 provider smoke test, source rate-limit behavior under hours of use, and explicit desktop source-health telemetry.
+
+## October 14: Election-night live-informed race probability monitor
+
+- Expose the existing poll-derived JackStradamus probabilities on Election Night for up to eight prioritized monitored/competitive races; no unsupported races assigned guessed odds.
+- Apply strictly source-validated, time-gated, sensitivity-disclosed and deliberately conservative updates based on reported two-party votes plus actual precinct reporting. Show **POLL PRIOR** until eligible data exists, never imply a call from odds.
+- Add collapsible source health and retry information for House/Senate/Governor plus civicAPI, with stale-source protection and browser check timestamps.
+- CI exercises per-race mathematical/provenance guardrails and a full simulated Election Night DOM. Next: source-aware election-night House/Senate joint forecast only with complete seat priors and calibrated correlated errors; real Nov 3 vote smoke-test and multi-hour traffic soak test.
