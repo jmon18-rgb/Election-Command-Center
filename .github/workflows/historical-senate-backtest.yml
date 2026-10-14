@@ -8,6 +8,9 @@ on:
       - 'scripts/test_historical_senate_poll_backtest.py'
       - 'scripts/test_rcp_senate_research.py'
       - 'scripts/research_senate_horizon_backtest.py'
+      - 'scripts/research_senate_2018_extension.py'
+      - 'scripts/test_senate_2018_extension.py'
+      - 'data/historical_senate_2018_extension.json'
       - 'scripts/test_senate_horizon_backtest.py'
       - 'scripts/build_senate_bias_holdout.py'
       - 'scripts/test_senate_bias_holdout.py'
@@ -45,6 +48,20 @@ jobs:
           assert all(h['unique_election_cycles']>=2 for h in doc['horizon_results'] if h['race_snapshots']>=10)
           print('Fieldwork-horizon study independently validated')
           PY
+      - name: Refresh independent 2018 Senate midterm fieldwork horizon study
+        run: |
+          python3 scripts/test_senate_2018_extension.py
+          python3 scripts/research_senate_2018_extension.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('data/historical_senate_2018_horizon_backtest.json').read_text())
+          assert d['cycle']==2018 and len(d['records']['20'])>=15
+          assert d['poll_release_dates_verified'] is False
+          assert d['can_calibrate_live_2026_model'] is False
+          assert d['may_change_production_candidate_priors'] is False
+          print('Independent 2018 Senate historical extension reproduced')
+          PY
       - name: Test and calculate cross-election-year bias correction robustness
         run: |
           python3 scripts/test_senate_bias_holdout.py
@@ -79,12 +96,12 @@ jobs:
           git config user.name "historical-poll-research-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
-          if ! git diff --quiet HEAD origin/main -- scripts/research_rcp_senate_backtest.py scripts/test_historical_senate_poll_backtest.py scripts/test_rcp_senate_research.py scripts/research_senate_horizon_backtest.py scripts/test_senate_horizon_backtest.py scripts/build_senate_bias_holdout.py scripts/test_senate_bias_holdout.py; then
+          if ! git diff --quiet HEAD origin/main -- scripts/research_rcp_senate_backtest.py scripts/test_historical_senate_poll_backtest.py scripts/test_rcp_senate_research.py scripts/research_senate_horizon_backtest.py scripts/test_senate_horizon_backtest.py scripts/research_senate_2018_extension.py scripts/test_senate_2018_extension.py data/historical_senate_2018_extension.json scripts/build_senate_bias_holdout.py scripts/test_senate_bias_holdout.py; then
             echo "Source importer changed during research; skipping stale metrics."
             exit 0
           fi
           git reset --mixed origin/main
-          git add data/historical_senate_poll_backtest.json data/historical_senate_horizon_backtest.json data/senate_bias_year_holdout.json
+          git add data/historical_senate_poll_backtest.json data/historical_senate_horizon_backtest.json data/historical_senate_2018_horizon_backtest.json data/senate_bias_year_holdout.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Stage historical Senate poll-only backtest diagnostic"
           git push origin HEAD:main

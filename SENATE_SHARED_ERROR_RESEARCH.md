@@ -47,3 +47,29 @@ Run `node scripts/audit_senate_correlated_error.cjs` or `--json`, and `node scri
 **Next empirical prerequisite for promoting any new common-error coefficient**: obtain at least several additional comparable modern Senate election cycles (2018 is useful; pre-Trump history should be downweighted), usable as-published poll dates, verified individual candidate fundamentals, and cross-cycle held-out scoring of **joint** Senate-control outcomes rather than fitting coefficients to another forecaster's published percentages. Even that will yield a wide interval because there is just one Senate chamber outcome per cycle. Until then, leave the published covariance unchanged and display the uncertainty.
 
 **Subscriber privacy**: Silver's private CSVs remain user-local browser inputs and are never included in this research script or published historical file. On an opted-in device, the displayed research sensitivities use that device's *active locally augmented* Senate means; nothing is uploaded.
+
+
+## October 14 extension: independently reconstructed 2018 midterm
+
+The original three-cycle fieldwork study and every live `data/senate_history_2020_2022_2024.json` record remain unchanged. The separate `data/historical_senate_2018_extension.json` contains 35 MIT-derived statewide 2018 contest results (33 states), reconstructed from a historical MIT-format dataset copy archived in a public third-party GitHub repository; its source blob is pinned. **The canonical MIT original was not independently hash-matched with the mirror**, so this research extension must not become a production candidate-history input without further provenance verification. The derived 2018 fieldwork snapshots are in `data/historical_senate_2018_horizon_backtest.json`; **no raw third-party polling rows are committed**.
+
+The exact same 45-day poll lookback, **latest observation per independent firm**, recency half-life of 21 days, minimum two firms, no poll beyond the cutoff, and two-party denominator are reused via `research_senate_horizon_backtest.py`. States with two simultaneous Senate races (**MN and MS**) are excluded entirely rather than falsely merging their overlapping RCP poll questions. Unusual non-D/R comparisons such as California's two Democrats, Maine's independent incumbent, and Vermont's independent incumbent are likewise excluded.
+
+At **20 days** before the election, 2018 adds **19 eligible race snapshots**, bringing the comparison to **60 races in four cycles** (2018: 19, 2020: 13, 2022: 13, 2024: 15). At **seven days**, 2018 adds **21** (63 across four cycles). In 2018, the 20-day poll-minus-result mean was approximately **+2.826 D points**, with whole-race RMSE **6.272 points**, and seven-day bias approximately **+1.349 D**. The 20-day nominal 90% margin coverage on that 2018 sample is **89.5% at 6.5 sigma**, versus 100% at 7.5 sigma. This is another reason to retain source-quality and model-misspecification safeguards rather than shrinking every race's uncertainty.
+
+With all four cycles, a basic *between-cycle-average minus within-cycle sampling-variance* estimate of a common Senate polling-error sigma is approximately **1.98 points at 20 days**, versus approximately 2.57 from the previous three-cycle study and **4.61** from the production shared national-plus-Senate-chamber shocks. **This does not identify a unique true correlation.** It ignores source-selection bias, candidate-fundamentals error, shared House/Senate measurement issues, and the uncertainty in only four observations.
+
+### Out-of-cycle covariance scenario scoring
+
+The enlarged audit now compares the same **fixed three shared-volatility scenarios** with **leave-one-election-cycle-out predictive density of each cycle's mean polling error**. For each held-out cycle, poll bias and within-cycle dispersion are estimated using *only the other three cycles*, with the cohort size and 2018 eligibility determined separately. No cycle is allowed to tune its own predictive width. Lower negative log density is better.
+
+| Scenario | Shared sigma in 2026 model | Mean held-out score at 20 days | At seven days |
+|---|---:|---:|---:|
+| Current production covariance | 4.61 pts | 2.627 | 2.666 |
+| Moderate reduction (research) | 3.41 pts | 2.459 | 2.528 |
+| Lower reduction (research) | 2.81 pts | 2.393 | 2.490 |
+
+All four-cycle cases favor a lower shared-volatility assumption on this **specific proxy scoring method**, but it is **not** a replay of 2018/20/22/24 Senate **control** outcomes, not a validation of 2026 candidate strengths, and cannot separate the national shock from Senate-only partisan error. In particular, heldout 2022 and 2020 sometimes score worse at the lower sigma, even when the pooled four-year score improves. The four samples are not enough to support a precise Bayesian posterior over the covariance coefficient. **No coefficient has been promoted to production, and the current JackStradamus win probabilities remain unchanged.**
+
+To reproduce: `python3 scripts/test_senate_2018_extension.py`, `python3 scripts/research_senate_2018_extension.py --verify` (downloads the immutable, SHA1-blob-pinned source), and `node scripts/audit_senate_correlated_error.cjs`. The 2018 reports are **separate** and must not be used by 2026 public `prepare()`.
+

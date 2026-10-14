@@ -2,7 +2,7 @@
 'use strict';
 /* Research-only: Senate error covariance, not Silver's odds or any paid CSV.
  * Historical poll compilation has field-end dates, not verification that a
- * poll was actually published by the retrospective cutoff. Only 3 cycles.
+ * poll was actually published by the retrospective cutoff. Four cycles incl. 2018.
  */
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path');
@@ -11,27 +11,77 @@ const read=n=>JSON.parse(fs.readFileSync(path.join(__dirname,'..','data',n+'.jso
 const historical=read('historical_senate_horizon_backtest');
 assert.equal(historical.first_publication_dates_available,false);
 assert.equal(historical.schema_version,'senate-horizon-fieldwork-research-v1');
+const extended=read('historical_senate_2018_horizon_backtest');
+assert.equal(extended.schema_version,'senate-2018-horizon-fieldwork-research-v1');
+assert.equal(extended.cycle,2018);
+assert.equal(extended.can_calibrate_live_2026_model,false);
+assert.equal(extended.poll_release_dates_verified,false);
+assert.equal(extended.may_change_production_candidate_priors,false);
+assert.equal(extended.poll_source_blob_sha,'9326214be51d03f4e5adeceb4d1f68eff653651f');
+const years=[2018,...historical.election_cycles];
+assert.equal(years.join(','),'2018,2020,2022,2024');
+const sourceRows=days=>{
+ const old=historical.records[String(days)],add=extended.records[String(days)];
+ if(!Array.isArray(old)||old.length<39||!Array.isArray(add)||add.length<15)
+  throw Error('Incomplete four-cycle Senate horizon cohort '+days);
+ if(add.some(r=>r.cycle!==2018||r.fieldwork_only_not_verified_published!==true))
+  throw Error('Unverified or out-of-cycle 2018 observations');
+ return add.concat(old);
+};
+// Leave-one-CYCLE-out scoring: use only training years to estimate pollster
+// mean error and residual dispersion. Compare fixed 2026 shared-error
+// scenarios to held-out cycle means; this does NOT backtest Senate control.
+const commonSigmaCases=[
+ {id:'production',national:1,chamber:1},
+ {id:'moderate',national:.8,chamber:.65},
+ {id:'lower',national:.65,chamber:.55}
+];
+function scoreHeldoutCycleMeans(byYear){
+ return commonSigmaCases.map(mode=>{
+  const common=Math.hypot(3.5*mode.national,3*mode.chamber);
+  const heldout=byYear.map(test=>{
+   const train=byYear.filter(y=>y.year!==test.year);
+   const bias=train.reduce((n,y)=>n+y.mean_poll_minus_result,0)/train.length;
+   const residualVariance=train.reduce((n,y)=>n+y.residual_variance,0)/train.length;
+   const predictiveVariance=common**2+residualVariance/test.races;
+   const logLoss=.5*Math.log(2*Math.PI*predictiveVariance)+
+     .5*(test.mean_poll_minus_result-bias)**2/predictiveVariance;
+   return {test_year:test.year,test_races:test.races,
+    training_years:train.map(x=>x.year),
+    predictive_mean:+bias.toFixed(3),
+    predictive_sigma:+Math.sqrt(predictiveVariance).toFixed(3),
+    negative_log_density:+logLoss.toFixed(4)};
+  });
+  return {scenario:mode.id,shared_error_sigma_points:+common.toFixed(3),
+   four_cycle_avg_negative_log_density:
+     +(heldout.reduce((n,x)=>n+x.negative_log_density,0)/heldout.length).toFixed(4),
+   heldout};
+ });
+}
 function cycleStats(days){
- const rows=historical.records[String(days)];
- assert(Array.isArray(rows)&&rows.length>=39);
- const byYear=historical.election_cycles.map(year=>{
+ const rows=sourceRows(days);
+ const byYear=years.map(year=>{
   const errors=rows.filter(x=>x.cycle===year).map(r=>r.poll_margin-r.actual_margin);
   assert(errors.length>=10);
   const mean=errors.reduce((a,b)=>a+b,0)/errors.length;
   const residualVariance=errors.reduce((a,e)=>a+(e-mean)**2,0)/(errors.length-1);
   return {year,races:errors.length,mean_poll_minus_result:+mean.toFixed(3),
    within_cycle_sd:+Math.sqrt(residualVariance).toFixed(3),
+   residual_variance:residualVariance,
    mean_sampling_variance:residualVariance/errors.length};
  });
  const means=byYear.map(x=>x.mean_poll_minus_result);
  const avg=means.reduce((a,b)=>a+b)/means.length;
  const between=means.reduce((a,b)=>a+(b-avg)**2,0)/(means.length-1);
  const sampling=byYear.reduce((a,b)=>a+b.mean_sampling_variance,0)/byYear.length;
- return {days_before_election:days,years:byYear.map(({mean_sampling_variance,...rest})=>rest),
+ return {days_before_election:days,
+  historical_races:rows.length,
+  years:byYear.map(({mean_sampling_variance,residual_variance,...rest})=>rest),
   between_cycle_means_sd:+Math.sqrt(between).toFixed(3),
   subtractive_sampling_correction_variance:+sampling.toFixed(3),
   rough_shared_error_sd:+Math.sqrt(Math.max(0,between-sampling)).toFixed(3),
-  caveat:'ONLY THREE CYCLES; 2020/2022/2024; curated fieldwork proxy. No 2026 correlation calibration.'};
+  leave_one_year_out_cycle_mean_scores:scoreHeldoutCycleMeans(byYear),
+  caveat:'ONLY FOUR CYCLES; 2018/2020/2022/2024; fieldwork-only poll proxy, no candidate replay or publication dates. No 2026 correlation calibration.'};
 }
 const horizons=[30,20,14,7].map(cycleStats);
 const sources={seats:read('seat_universe'),history:read('house_history_2024_staging'),
@@ -82,13 +132,16 @@ assert.deepEqual(sims[0].selected_races.map(x=>x.delta_d_win_pp),Array(7).fill(0
 assert.equal(sims[0].senate_dem_control_pct,original.senate_dem_control_pct);
 assert(horizons[1].rough_shared_error_sd>0);
 const output={
- status:'RESEARCH_ONLY_THREE_CYCLE_SENATE_SHARED_ERROR_ATTRIBUTION',
- since:2020,historical_horizons:horizons,
+ status:'RESEARCH_ONLY_FOUR_CYCLE_SENATE_SHARED_ERROR_ATTRIBUTION',
+ since:2018,years,historical_horizons:horizons,
+ historical_2018_outcomes_imported_into_2026_model:false,
+ original_three_cycle_archive_untouched:true,
+ extended_fieldwork_2018_mirror_not_primary_hash_verified:true,
  raw_historic_poll_publication_timestamps_unavailable:true,
  full_2026_fundamentals_covariance_backtested:false,
  calibration_parameter_promotion_permitted:false,
  private_silver_csv_data_used:false,
- historical_notes:'Cycle-mean residual SD after within-cycle sampling correction is an approximate common-mode proxy; it confounds poll bias, selection and unmodeled candidate effects. Three cycles cannot identify an optimum correlation coefficient.',
+ historical_notes:'Four-cycle leave-one-year-out scores use 2018/20/22/24 average Senate polling errors, fixed correlation scenarios and training-year-only mean bias/within-cycle dispersion. They are NOT held-out joint-chamber election-control predictions. Four cycles cannot precisely identify national versus Senate-only shocks or the correct coefficient.',
  samples,original_shared_senate_across_state_sigma_points:
   sims[0].shared_senate_across_state_sigma_points,
  unchanged_house_and_governor_race_probabilities:true,
@@ -97,11 +150,13 @@ const output={
 };
 if(process.argv.includes('--json'))console.log(JSON.stringify(output,null,2));
 else{
- console.log('Senate correlated-error attribution (RESEARCH ONLY; NOT new default odds)');
+ console.log('Four-cycle Senate shared-error research (2018/20/22/24, NOT new default odds)');
  console.table(horizons.map(h=>({days:h.days_before_election,
   sd_cycle_means:h.between_cycle_means_sd,
   rough_shared_error_sd:h.rough_shared_error_sd,
   cycles:h.years.map(x=>x.year+': '+x.mean_poll_minus_result).join('; ')})));
+ console.table(horizons.find(x=>x.days_before_election===20).leave_one_year_out_cycle_mean_scores.map(x=>({
+  scenario:x.scenario,heldout_avg_negative_log_density:x.four_cycle_avg_negative_log_density})));
  console.table(sims.map(s=>({case:s.id,
   shared_sigma:s.shared_senate_across_state_sigma_points,
   d_senate_control_pct:s.senate_dem_control_pct,
