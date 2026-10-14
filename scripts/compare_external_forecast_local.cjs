@@ -98,9 +98,11 @@ function parseHouseCandidates(rows){
  for(const r of rows){
   const code=normalize(r.code);
   const state=FIPS[code.slice(0,2)],n=Number(code.slice(2));
-  if(!state||!Number.isInteger(n)||n<1||n>53||code.length!==4)
+  const atLarge=new Set(['AK','DE','ND','SD','VT','WY']);
+  if(!state||!Number.isInteger(n)||n>53||code.length!==4||
+   (n===0&&!atLarge.has(state))||n<0)
    throw Error('Invalid or unknown US FIPS district code '+code);
-  const race_code=state+'-'+String(n).padStart(2,'0');
+  const race_code=state+'-'+String(n===0?1:n).padStart(2,'0');
   if(map.has(race_code))throw Error('Duplicate external district '+race_code);
   const p=signedPct(r.winner_Dparty),q=signedPct(r.winner_Rparty);
   if(p===null||q===null||p<0||q<0||p>100||q>100||
