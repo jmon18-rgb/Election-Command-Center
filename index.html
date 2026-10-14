@@ -569,7 +569,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 </div>
 <section class="en-live-desk" aria-label="Live model probabilities and election source health">
  <div class="en-live-heading"><div><span class="label">JACKSTRADAMUS · ELECTION NIGHT</span><h3>Race probability monitor</h3></div>
- <span class="tiny">Poll priors + cautiously weighted verified vote returns</span></div>
+ <span class="tiny">Joint-model priors + cautiously weighted verified vote returns</span></div>
  <p id="enNowcastSummary" class="en-live-summary">Loading the independently calculated race probability model…</p>
  <div id="enNowcastRows" class="en-live-races"><p class="en-live-note">Validating probability inputs…</p></div>
  <p class="en-live-note">Experimental two-party win probabilities, not race calls. Precinct shares are not vote shares; early returns may be geographically unrepresentative. No inferred chamber or Blue Tsunami probability from incomplete race coverage.</p>
@@ -1994,8 +1994,8 @@ function enNationalToggle(enabled){
   void enRefreshCivicWatchlist(true);
  }
 }
-/* Election Night odds & source health: source-attributed and deliberately
- * distinct from DDHQ's unchanged pre-election joint-chamber scenarios. */
+/* Election-night priors come from the same JackStradamus joint-chamber
+ * simulations as the main House/Senate probabilities. */
 function enLiveRaceItem(record){
  const st=record.race_code.slice(0,2);
  if(record.office==='house')return {office:'House',key:record.race_code};
@@ -2106,7 +2106,7 @@ function enRenderLiveDesk(){
   const header=elt('div','en-live-race-head');
   header.append(elt('strong','',record.race_code+
    (item.key.endsWith('-special')?' · SPECIAL':'')),
-   elt('span','',result.mode==='live_informed'?'RETURNS INFORMED':'POLL PRIOR'));
+   elt('span','',result.mode==='live_informed'?'RETURNS INFORMED':'MODEL PRIOR'));
   const odds=elt('div','en-live-prob');
   odds.append(elt('strong','party-d','D '+fmt(result.demPct)),
     elt('strong','party-r','R '+fmt(result.repPct)));
@@ -2117,11 +2117,11 @@ function enRenderLiveDesk(){
     result.reportedMargin.toFixed(1)+' two-party margin · D '+fmt(result.sensitivityLow)+
     '–'+fmt(result.sensitivityHigh)+' across error assumptions'));
   else card.append(elt('small','','Polling D'+(record.dem_minus_rep>=0?'+':'')+
-    record.dem_minus_rep.toFixed(1)+' · prior election error ±'+
+    record.dem_minus_rep.toFixed(1)+' · modeled total error σ '+
     record.sigma_points.toFixed(1)+' pts · no eligible partial count'));
   host.append(card);
  }
- summary.textContent=selected.slice(0,8).length+' poll-based race probabilities · '+
+ summary.textContent=selected.slice(0,8).length+' joint-model race probabilities · '+
   live+' adjusted with verified returns. The update assumes additional geographic error; '+
   'not calibrated to 2026 precinct sequences or a substitute for race calls.';
  enRenderRehearsal();
@@ -2159,7 +2159,7 @@ function enRenderRehearsal(){
   const card=elt('div','en-live-race');
   const header=elt('div','en-live-race-head');
   header.append(elt('strong','',row.code),elt('span','',
-   row.result?.mode==='live_informed'?'SIMULATED UPDATE':'POLL PRIOR'));
+   row.result?.mode==='live_informed'?'SIMULATED UPDATE':'MODEL PRIOR'));
   card.append(header);
   if(!row.result){card.append(elt('small','','No published poll prior'));rows.append(card);continue}
   const odds=elt('div','en-live-prob');
@@ -2188,9 +2188,8 @@ $('#enRehearsalReset').addEventListener('click',()=>{
  enRehearsalStep=0;enRenderRehearsal();
 });
 
-/* Own joint congressional scenario model, source-aligned to current polling.
- * No source overrides, no fictional votes, no official certification claims.
- * DDHQ remains the independently published comparison below the home cards. */
+/* One JackStradamus correlated simulation for race and chamber odds.
+ * Live results are source-validated separately; no external odds display. */
 let jointBasis=null,jointBasisShadow=null,jointBasisPresidential=null,jointErrorMessage=null,jointRefreshTimer=null,jointCacheKey='',
     jointLastResult=null,jointNationalShift=0,jointErrorMultiplier=1;
 const jointLabels=[
@@ -2415,7 +2414,9 @@ $('#jointSwing').addEventListener('change',event=>{
  jointNationalShift=Number(event.target.value);jointRender(true);
 });
 $('#jointError').addEventListener('change',event=>{
- jointErrorMultiplier=Number(event.target.value);jointRender(true);
+ jointErrorMultiplier=Number(event.target.value);
+ modelOddsErrorWidth=jointErrorMultiplier<1?'tight':jointErrorMultiplier>1?'wide':'standard';
+ jointRender(true);
 });
 function jointRenderPollErrorAudit(report,proper){
  const summary=report?
