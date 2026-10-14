@@ -1,9 +1,147 @@
 {
-  "updated_at": "2026-10-14T15:46:52.202870Z",
+  "updated_at": "2026-10-14T20:53:15.333028Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 8,
   "items": [
+    {
+      "id": "a1ad9c50e56d0d575f14",
+      "title": "Justice Dept. demands California prove citizenship for lists of voters or withhold ballots - Los Angeles Times",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQNm9EM3BaMC1UOFNjdHVDeGVibUttdGt6T1JwYmw3d0M0dGNmejFFUUFHMnNjTnAycnF6YkxEUkJDSWpUb1IzakJMSEtnVjZoM3c3ZUtyTmcwNFdnU1haZURTWWtuQkV1Njh3UU00THNxMXZlVlBfYjRXZ3l0R2lRa2x4VDAtY2psamtYMlRfbTYxbHBabGp6YnVZdk14SnZkbEFaTDVqaVYxeU81aGNMc3piX200SDRKOWV1Z1lSM1ZIZEtWbkJkQUtfWWpmSVA5cmJlb093?oc=5",
+      "publisher": "Los Angeles Times",
+      "published_at": "2026-10-14T20:16:00Z",
+      "detected_at": "2026-10-14T20:53:15.333028Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "ballot_access",
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "6f9d066e5e2b9a1c53c5",
+      "title": "Florida voting advocates debate: What could go wrong, and right, in November? - Florida Politics",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOWDk4QUl4SS1iaTJYcG1sck40RGlQRlRraGV2dWI2bzhYeE9oaGNEYWZuWjJlVGFRd3lnMk83WTFmRTA3aXhrbkZpUG5OU05MWGF6VmZSSFFRdGdEb3FQVnpGcjJpazVxX0IwNEpxMDlMQ1M0SDMzVFNUekRpeEZUSzFiS1BuUlJOUGdydlJQeDhjVVdHSVVKX3FNOXBkMG5PVFJkYWxNRlZseU1ub0xocGhPS0VJdFNXa0E?oc=5",
+      "publisher": "Florida Politics",
+      "published_at": "2026-10-14T20:15:55Z",
+      "detected_at": "2026-10-14T20:53:15.333028Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "fc1092e2527c9b752831",
+      "title": "Lancaster County officials confident in Election Day security plans - LancasterOnline",
+      "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNZE5ab0xnUjhSYUtHR1dMcGF1QXdvRDhxQjVxdzZ0VlVVcF8xa0VLNTBBV0xwZXhvQ3BGZU1qWXRaamhQNnR2WHE2WlktcXppaHFrYm9uSmhUY0tNS2JXeTFvbXE4dm1WREhHalRtTHBMYXRhN0JkOGMxemI2N2hyVUR1Z0xXdjIzUjZkN0JOR3VfUUFaSzhiZDBNOUIzN1NUd1kxa2pUVUlrSnN6eVpBeFZsR3pQWVgxMVRZNFNxQmZWbjFHQVBhZzVKYXloRGZaNFBiUkFsQzlMOF9IMEFyVXV2MjFGQS0zNVNMbQ?oc=5",
+      "publisher": "LancasterOnline",
+      "published_at": "2026-10-14T20:00:00Z",
+      "detected_at": "2026-10-14T20:53:15.333028Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "548f42b013db69d46a92",
+      "title": "As Election Day nears, these federal cases could still impact access to the ballot - Democracy Docket",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOZkRYMFd6Nm5wSlIwQ2NUSGMwZzRaaE5HZm44a1MtYXJKd19jRWJjVE9aT3BNeXNlekJLZnJCRFV5VkJCb0tFcldVTnRsUFhVZWdzUHoyT2p4S2diaE94RklUT1dJN0xzNFdfNzg2WEZxWnNQNEpseURvYktsR0VDdHdLWFg0bk44cXczZE1MVlo2S05Rdm93TjBzb1lJZkhVemJRVXVKaDVIUEtGdHVnT3NUV2RzbVd4YkRGeVMyV2lnQV82?oc=5",
+      "publisher": "Democracy Docket",
+      "published_at": "2026-10-14T19:49:48Z",
+      "detected_at": "2026-10-14T20:53:15.333028Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "105509c6a80d89101ddb",
+      "title": "Could a Public Wildfire Insurance Plan Work in California? - KQED",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQNzZQNjdNVTBLemsya3ZsVjFlX0FDUF9GYkRsZlRyUGRySnJJX3A0ZmhWUTlicHdMM1Y2eEdMelRSMWxWT05KRmpiSVB4Sm81V2tzNTJPUkttYk5HX2ptVV9QRU14VDZyLXI5RWRVV3FtZVRYN1dIMzc4UUtBUmk1TEpDLXRpVUJyNi16NjA3eTlXbHJQV1Y4?oc=5",
+      "publisher": "KQED",
+      "published_at": "2026-10-14T19:34:16Z",
+      "detected_at": "2026-10-14T20:53:15.333028Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "2ed28067e580b2d1dc8e",
+      "title": "DOJ gave California a voter list, a 48-hour deadline \u2014 and a threat of court action - Axios",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNLXNFYjVhRTItaEJCcVhvT21hbk9zRWl6a3E1Ylp2ZS1sRlBlOVV5ekJ4OTdtTXdDbXloazZxNHh4eGpxdmw1TkdMbmxzMFQ3U0QtY0dXVlRZVlJVZFdRYTFIVWd1b1pMczFfc0dka05ZUVBfWGhmTGZhRUlRa0lJc2J3UDI?oc=5",
+      "publisher": "Axios",
+      "published_at": "2026-10-14T18:54:43Z",
+      "detected_at": "2026-10-14T20:53:15.333028Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "litigation",
+        "security"
+      ],
+      "headline_numbers_unverified": [
+        "48"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "17d877a4f60101790084",
+      "title": "NC sends letters to nearly 1,400 voters flagged as potential noncitizens - WFAE",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNOHdpejFrMFQtNmhVaXl2ZVRvblRLeW1iTjhzM01TdmI4eFJqVDdlVlNwZmNhVk4wODM5bGhxbG1GRVZSX0Fval9EWDVQbmNTcGxLY05fU0tfckVkUjZFcDNMRUQ4U3BBMDRjQXc2R2JobkNUamRWVzdyb0c0dEQ1aUt2c3pGMTVNdFRiaVM0NFNqaVBFYmNSaTN3V2QxT0hfdk1NcmkyZUZJQmp1b3V0aTJDOWp3clVTeng3Mjh4eWZmYTQ2?oc=5",
+      "publisher": "WFAE",
+      "published_at": "2026-10-14T18:40:00Z",
+      "detected_at": "2026-10-14T20:53:15.333028Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [
+        "1,400 voters"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "6dfc0a530137cac05c53",
+      "title": "Texas Sued Over Nearly 600K Delayed Voter Registrations - Yahoo",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxONVp5NlpSNUt5elg2aUcta3B1cEh1ejRxLUU5dUx6c0tVSTRyODVnc2FLWlhNaGR3OUM2elVTc3hmNjhhRnlzRFlneG1WaUplU3cxSE1ncmFxNkdWZ2FIQ3JudFM5ajRGbUlfZ3M0Z0lCMFFYUzFwTms2Z19zUFY4RndSZnNLWUNrMzRaWVlicW0?oc=5",
+      "publisher": "Yahoo",
+      "published_at": "2026-10-14T18:14:40Z",
+      "detected_at": "2026-10-14T20:53:15.333028Z",
+      "state_hints": [
+        "TX"
+      ],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "21340fceee78f2b05d82",
       "title": "Report Warns Federal Voter Checks Could Disenfranchise Americans - The Seattle Medium",
