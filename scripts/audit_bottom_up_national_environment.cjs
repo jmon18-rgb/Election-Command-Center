@@ -7,6 +7,13 @@ const result=b.evaluate(data('polling_estimates'),data('presidential_2024_by_202
 if(result.status!=='SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE'||
  result.states_with_qualified_races<8||result.total_qualifying_races<12)
  throw Error('Insufficient comparable 2026 poll universe');
+if(process.argv.includes('--write')){
+ // Research snapshot is derived from the current polling generation.
+ // It must be regenerated whenever polling_estimates.json changes, without
+ // affecting the headline Senate/House model or any probability coefficients.
+ fs.writeFileSync(path.join(__dirname,'..','data','bottom_up_2026_environment_shadow.json'),
+  JSON.stringify(result,null,2)+'\n','utf8');
+}
 if(process.argv.includes('--check')){
  const saved=data('bottom_up_2026_environment_shadow');
  if(JSON.stringify(saved)!==JSON.stringify(result))

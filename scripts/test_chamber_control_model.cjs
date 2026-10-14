@@ -20,8 +20,10 @@ assert.equal(basis.battlegrounds.length,20);
 assert.equal(basis.assumptions.senate_dem_holdovers,34);
 assert(basis.generated_from_sources.generic_ballot_margin>0);
 assert(basis.generated_from_sources.house_geography_changed>0);
-assert.equal(basis.house.filter(r=>r.polled).length,60);
-assert.equal(basis.senate.filter(r=>r.polled).length,24);
+assert.equal(basis.house.filter(r=>r.polled).length,
+ sources.odds.records.filter(x=>x.office==='house').length);
+assert.equal(basis.senate.filter(r=>r.polled).length,
+ sources.odds.records.filter(x=>x.office==='senate').length);
 assert(basis.senate.filter(r=>r.polled).every(r=>r.sigma>=7),
  'Current Senate poll estimates must not use election-error widths below seven points');
 // A Silver-inspired disagreement penalty is symmetric in party direction.

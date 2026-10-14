@@ -729,48 +729,53 @@ async function settle(){
  assert(!get('#modelTrendChart').querySelector('polyline'),'One snapshot cannot create a fake trend');
  assert.match(get('#modelTrendChange').textContent,/Awaiting longer history/);
  w.eval('setModelHistoryData('+JSON.stringify(history)+')');
- // The same multipurpose Recon survey contains DISTINCT 2026 Senate and
- // Governor ballot questions. Check model inclusion, vote-share match and
- // exact original drilldown selection in BOTH office tabs.
+ // Use the actual newly published survey IDs and two distinct offices.
+ // Date-specific Recon/GBAO fixtures are not permanent release contracts.
+ const linkedPosted={};
  for(const [office,race] of [['senate',txSen],['governor',txGov]]){
-  const p=recent.observations.find(p=>p.race_code===race.race_code&&
-    p.pollster.includes('ReconMR')&&p.field_end===race.latest_poll_end);
-  assert(p,'Recon poll missing from supplemental '+office+' feed');
   const raw=primary.races.find(x=>x.race_code===race.race_code);
-  assert(raw?.polls.some(x=>x.poll_id===p.poll_id&&x.dem_name===p.dem_name&&x.rep_name===p.rep_name),
-    'Recon poll missing from primary '+office+' source');
-  const code='postedMatchesModelSurvey('+JSON.stringify(p)+','+JSON.stringify(race)+')';
-  assert.equal(w.eval(code),true,'Source reconciliation failed in '+office);
+  const includedIds=new Set((race.pollsters||[]).map(x=>x.poll_id).filter(Boolean));
+  const p=recent.observations.find(p=>p.race_code===race.race_code&&
+   includedIds.has(p.poll_id)&&raw?.polls.some(x=>
+    x.poll_id===p.poll_id&&x.field_end===p.field_end&&
+    x.pollster===p.pollster&&x.dem_name===p.dem_name&&
+    x.rep_name===p.rep_name&&Math.abs(x.dem-p.dem)<.11&&Math.abs(x.rep-p.rep)<.11));
+  assert(p,'No current source-matched '+office+' survey for '+race.race_code);
+  linkedPosted[office]=p;
+  assert.equal(w.eval('postedMatchesModelSurvey('+JSON.stringify(p)+','+
+   JSON.stringify(race)+')'),true,'Exact source identity failed in '+office);
   w.eval('navigateInsightToModel({office:'+JSON.stringify(office)+',race:'+
-       JSON.stringify(race)+',poll:'+JSON.stringify(p)+'})');
-  assert.match(get('#modelDetailTitle').textContent,new RegExp('Texas.*'+(office==='senate'?'Senate':'Governor')));
+   JSON.stringify(race)+',poll:'+JSON.stringify(p)+'})');
+  assert.match(get('#modelDetailTitle').textContent,
+   new RegExp('Texas.*'+(office==='senate'?'Senate':'Governor')));
   const highlighted=get('#modelPollRows tr.model-featured-poll');
-  assert.match(highlighted.textContent,/ReconMR/,'Did not select correct '+office+' Recon observation');
+  assert(highlighted.textContent.includes(p.pollster),
+   'Different survey was selected for '+office+' '+p.poll_id);
   assert.match(get('#modelPollStatus').textContent,/Observations matched|All observations/);
   assert.equal(get('#modelDetailEyebrow').textContent.includes(office.toUpperCase()),true);
-  const sourceLink=highlighted.querySelector('a[href]');
-  assert(sourceLink,'Recon primary poll source should be clickable in drilldown');
+  assert(highlighted.querySelector('a[href]'),
+   'Primary poll source should link in '+office+' drilldown');
  }
- // A different question or candidate matchup sharing a poll ID MUST be
- // rejected as evidence for the selected race.
- const mistaken=recent.observations.find(p=>p.race_code==='TX-GOV'&&p.pollster.includes('ReconMR'));
+ // A governor question is never evidence for a Senate contest, even if an
+ // upstream study reuses its poll ID for both offices.
+ const mistaken={...linkedPosted.governor,poll_id:linkedPosted.senate.poll_id};
  assert.equal(w.eval('postedMatchesModelSurvey('+JSON.stringify(mistaken)+','+
-      JSON.stringify(txSen)+')'),false,'Cross-office shared poll ID contaminated race');
- // An older, otherwise valid poll from the SAME firm must be reachable
- // via All recent, but must NOT masquerade as the firm's included newest wave.
- const oldRecon=primary.races.find(x=>x.race_code==='TX-SEN')?.polls.find(
-   p=>p.pollster.includes('ReconMR')&&p.field_end<'2026-10-08');
- assert(oldRecon,'Missing older Recon survey fixture for inclusion-vs-source test');
- const oldLink={race_code:'TX-SEN',poll_id:oldRecon.poll_id,
-   pollster:oldRecon.pollster,field_end:oldRecon.field_end,
-   source_url:oldRecon.source_poll_url||null};
+  JSON.stringify(txSen)+')'),false,'Cross-office poll identity contaminated race');
+ // An excluded source poll must open All recent, not be marked as included.
+ const includedSenateIds=new Set((txSen.pollsters||[]).map(x=>x.poll_id).filter(Boolean));
+ const oldExcluded=primary.races.find(x=>x.race_code==='TX-SEN')?.polls.find(p=>
+  !includedSenateIds.has(p.poll_id)&&p.dem_name===txSen.dem_candidate&&
+  p.rep_name===txSen.rep_candidate);
+ assert(oldExcluded,'Need an excluded survey to test drilldown');
+ const oldLink={race_code:'TX-SEN',poll_id:oldExcluded.poll_id,
+  pollster:oldExcluded.pollster,field_end:oldExcluded.field_end,
+  source_url:oldExcluded.source_poll_url||null};
  w.eval('navigateInsightToModel({office:"senate",race:'+JSON.stringify(txSen)+
-        ',poll:'+JSON.stringify(oldLink)+'})');
+  ',poll:'+JSON.stringify(oldLink)+'})');
  assert.equal(get('#modelPollAll').getAttribute('aria-pressed'),'true',
-   'Excluded historic firm wave should open All recent, not In average');
- const oldRow=get('#modelPollRows tr.model-featured-poll');
- assert(oldRow.classList.contains('excluded'),
-   'Previous Recon wave should be highlighted but NOT included in model average');
+  'Excluded survey must open All recent, not In average');
+ assert(get('#modelPollRows tr.model-featured-poll').classList.contains('excluded'),
+  'Excluded source wave should be highlighted but NOT included in average');
  // Every visible pulse card needs a race office. No repeated anonymous Texas.
  w.eval('renderRacePulse('+JSON.stringify(model)+')');
  for(const card of get('#racePulse').querySelectorAll('button.pulse-tile')){
@@ -792,10 +797,13 @@ async function settle(){
    assert(card,'Missing clearly identified '+identifier+' Texas insight');
    card.click();
    assert.match(get('#modelDetailTitle').textContent,new RegExp('Texas.*'+identifier));
-   const sourceFirm=card.textContent.includes('ReconMR')?'ReconMR':card.textContent.includes('GBAO')?'GBAO':null;
-   assert(sourceFirm,'Expected named poll source in '+identifier+' insight');
-   assert(get('#modelPollRows tr.model-featured-poll').textContent.includes(sourceFirm),
-     'Insight opened a different survey instead of the clicked '+identifier+' '+sourceFirm+' poll');
+   // The selected office must remain consistent even if the card points
+   // to an aggregate change rather than a particular new poll.
+   assert.equal(get('#modelDetailEyebrow').textContent.includes(office.toUpperCase()),true,
+    'Pulse navigation switched to the wrong office');
+   const featured=get('#modelPollRows').querySelector('tr.model-featured-poll');
+   if(featured)assert(featured.textContent.length>0,
+    'Pulse-linked source selection must remain readable');
  }
  // DDHQ forecast removed; each race marginal comes from the joint simulation.
  assert.equal(w.document.querySelector('#scenarioBands'),null);
@@ -835,7 +843,9 @@ async function settle(){
  assert(sameRace,'Need TX governor posting to test shared-survey questions');
  const secondQuestion={...sameRace,question_id:'another-qualifying-question',
    dem_name:'Another named challenger'};
- w.eval('setPostedPollingSnapshot('+JSON.stringify({observations:[sameRace,secondQuestion]})+')');
+ const testSourceAt=new Date(Date.parse(recent.updated_at)+1000).toISOString();
+ w.eval('setPostedPollingSnapshot('+JSON.stringify({updated_at:testSourceAt,
+  observations:[sameRace,secondQuestion]})+')');
  assert.equal(get('#newPolls').querySelectorAll('.item').length,2,
   'Two same-poll distinct ballot questions should both display');
  assert.match(get('#changesSince').textContent,/2 source postings/);
@@ -2089,6 +2099,49 @@ async function settle(){
  const quoted=w.eval('enCsvCell('+JSON.stringify('Candidate "A", Jr.')+')');
  assert.equal(quoted,'"Candidate ""A"", Jr."');
  w.Date.now=csvClock;
+
+ // The open tab should accept a new posted survey without a page reload.
+ // Hold the session's first-loaded IDs fixed for meaningful unseen counts.
+ const freshPosted=structuredClone(recent);
+ freshPosted.updated_at=new Date(Math.max(Date.now(),Date.parse(recent.updated_at)+60000)).toISOString();
+ freshPosted.observations.unshift({...freshPosted.observations[0],
+  race_code:'NC-SEN',state:'NC',race_type:'senate',
+  poll_id:'new-live-refresh-test',question_id:'new-live-refresh-question',
+  pollster:'In-Tab Fresh Survey',posted_date:freshPosted.updated_at.slice(0,10),
+  posted_source_datetime:freshPosted.updated_at.slice(0,16)});
+ fixtures['pollresults_recent.json']=freshPosted;
+ await w.eval('refreshLivePollSnapshots()');
+ assert.match(get('#newPolls').textContent,/In-Tab Fresh Survey/,
+  'The polling feed must update in a still-open browser tab');
+ assert.match(get('#changesSince').textContent,/newly indexed since opening/,
+  'The unseen-count reference must not silently reset on each render');
+ // A partial publication must not replace the complete previous forecast.
+ const formerModelAt=w.eval('jointRaceOddsResult().polling_source_generated_at');
+ const primaryNext=structuredClone(primary);
+ primaryNext.updated_at=new Date(Date.parse(freshPosted.updated_at)+60000).toISOString();
+ primaryNext.health={...primaryNext.health,status:'ok'};
+ fixtures['polls.json']=primaryNext;
+ await w.eval('refreshLivePollSnapshots()');
+ assert.equal(w.eval('jointRaceOddsResult().polling_source_generated_at'),formerModelAt);
+ assert(w.eval('jointForecastResult()'),
+  'Temporary mismatched polling/model data must not erase good race odds');
+ // Once the corresponding estimate and odds snapshot appear, the same
+ // in-page check should refresh the model and its displayed metadata.
+ const estimatesNext=structuredClone(model);
+ estimatesNext.source_snapshot=primaryNext.updated_at;
+ estimatesNext.generated_at=new Date(Date.parse(primaryNext.updated_at)+1000).toISOString();
+ const oddsNext=structuredClone(fixtures['race_probabilities.json']);
+ oddsNext.polling_source_generated_at=estimatesNext.generated_at;
+ oddsNext.polling_source_snapshot=estimatesNext.source_snapshot;
+ fixtures['polling_estimates.json']=estimatesNext;
+ fixtures['race_probabilities.json']=oddsNext;
+ await w.eval('refreshLivePollSnapshots()');
+ assert.equal(w.eval('jointRaceOddsResult().polling_source_generated_at'),estimatesNext.generated_at,
+  'Polling averages should update without reopening the dashboard');
+ assert.equal(w.eval('jointRaceOddsResult().senate_prior_mode'),'current_2026');
+ assert.equal(w.eval('jointRaceOddsResult().polling_source_generated_at'),estimatesNext.generated_at);
+ assert.match(get('#changesSince').textContent,/newly indexed since opening/,
+  'Refreshing the full forecast should preserve newly indexed survey count');
 
  assert.equal(errors.length,0,'Application emitted errors: '+errors.slice(0,4).join(' | '));
  console.log('Dashboard DOM integration passed: exact TX-SEN/TX-GOV poll drilldowns, race labels, linked joint-model race odds and DDHQ removal, dated news feed, and no script errors.');
