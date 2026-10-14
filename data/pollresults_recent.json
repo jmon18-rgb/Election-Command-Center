@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-14T11:16:48.882876+00:00",
+  "updated_at": "2026-10-14T12:04:20.486161+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 759,
+      "available_in_source": 760,
       "records_examined": 300
     },
     "house": {
@@ -808,6 +808,30 @@
       "source_url": "https://insideradvantage.com/insideradvantage-u-s-senate-surveys-alaska-ranks-choice-peltola-50-sullivan-48-kansas-hamilton-48-marshall-47-michigan-el-sayed-48-rogers-46/",
       "sample_population": "lv",
       "sample_size": 1200,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "NM-SEN",
+      "race_type": "senate",
+      "state": "NM",
+      "poll_id": "ec82f919-7670-441e-90f0-e9a83b39b77d",
+      "question_id": "b1ab46eb-f8ad-47cd-a9c2-dca4f0520c1d",
+      "pollster": "Research & Polling Inc.",
+      "dem_name": "Ben Ray Luján",
+      "rep_name": "Larry Marker",
+      "dem": 53.0,
+      "rep": 37.0,
+      "margin": 16.0,
+      "field_end": "2026-10-09",
+      "field_start": "2026-10-01",
+      "posted_date": "2026-10-11",
+      "posted_source_datetime": "2026-10-11T10:45:00",
+      "posted_source_time": "10/11/26 10:45",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.abqjournal.com/news/journal-poll-haaland-maintains-lead-over-hull-as-new-mexicos-race-for-governor-nears-homestretch/3139307",
+      "sample_population": "lv",
+      "sample_size": 1125,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
