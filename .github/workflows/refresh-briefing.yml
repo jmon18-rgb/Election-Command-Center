@@ -84,6 +84,8 @@ jobs:
         run: python3 scripts/build_race_probabilities.py
       - name: Verify all model polls and averages
         run: python3 scripts/validate_model_drilldown.py
+      - name: Rebuild nonheadline bottom-up environment diagnostic from current polling
+        run: node scripts/audit_bottom_up_national_environment.cjs --write
       - name: Test complete congressional seat inventory
         run: python3 scripts/test_seat_universe.py
       - name: Build verified seat inventory and forecast-readiness gate
@@ -150,7 +152,7 @@ jobs:
             # Rebase GENERATED OUTPUTS as fresh changes on the newest remote
             # commit, not an entire stale JSON commit that can conflict.
             git reset --mixed origin/main
-            git add data/briefing.json data/polls.json data/model_tests.json data/polling_estimates.json data/integrity_review_queue.json data/model_history.json data/seat_universe.json data/house_geography_bridge.json data/house_two_cycle_context.json data/race_probabilities.json data/poll_alert_state.json
+            git add data/bottom_up_2026_environment_shadow.json data/briefing.json data/polls.json data/model_tests.json data/polling_estimates.json data/integrity_review_queue.json data/model_history.json data/seat_universe.json data/house_geography_bridge.json data/house_two_cycle_context.json data/race_probabilities.json data/poll_alert_state.json
             if [ -f data/pollresults_recent.json ]; then git add data/pollresults_recent.json; fi
             if git diff --cached --quiet; then
               echo "No source-data changes to commit."
