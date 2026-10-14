@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-14T23:35:51.862624+00:00",
+  "updated_at": "2026-10-14T23:48:06.473281+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,7 +17,42 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 309,
+  "matched_primary_observations": 283,
+  "newly_injected_into_model": 8,
+  "injected_poll_ids": [
+    {
+      "race_code": "CT-GOV",
+      "poll_id": "8732195e-9ed8-4ff7-ba00-e60bde4e33b6"
+    },
+    {
+      "race_code": "FL-GOV",
+      "poll_id": "78502352-75f9-4ca4-9e47-88799143c059"
+    },
+    {
+      "race_code": "FL-SEN",
+      "poll_id": "78502352-75f9-4ca4-9e47-88799143c059"
+    },
+    {
+      "race_code": "GA-GOV",
+      "poll_id": "50059893-b573-4d5e-a109-1d42b580bef6"
+    },
+    {
+      "race_code": "IA-GOV",
+      "poll_id": "ed54f7fc-9dc3-4a6b-b04c-4653389d7c9b"
+    },
+    {
+      "race_code": "IA-SEN",
+      "poll_id": "ed54f7fc-9dc3-4a6b-b04c-4653389d7c9b"
+    },
+    {
+      "race_code": "MN-GOV",
+      "poll_id": "9849d173-7f1b-41ff-9ed9-b3e55032e195"
+    },
+    {
+      "race_code": "MN-SEN",
+      "poll_id": "9849d173-7f1b-41ff-9ed9-b3e55032e195"
+    }
+  ],
   "observations": [
     {
       "race_code": "MN-SEN",
