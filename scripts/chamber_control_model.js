@@ -20,6 +20,9 @@
  const REQUIRED_BATTLEGROUND_WINS=18;
  const BATTLEGROUND_SET=new Set(BATTLEGROUNDS);
  const HOUSE_SEATS=435,SENATE_CONTESTS=35;
+ // Two-party proxy names in source polling are NOT ballot party affiliations.
+ const INDEPENDENT_SENATE_PROXY_CANDIDATES=Object.freeze({
+  'NE-SEN':'Dan Osborn','SD-SEN':'Brian Bengs'});
  const finite=x=>typeof x==='number'&&Number.isFinite(x);
  const limit=(x,l,h)=>Math.max(l,Math.min(h,x));
  const margin=share=>200*share-100;
@@ -154,6 +157,7 @@
   const raw=new Map(s.history.records.map(x=>[normalizeCode(x['2024_race_code']),x]));
   const geo=new Map(s.geography.districts.map(x=>[normalizeCode(x.race_code_2026),x]));
   const odds=new Map(s.odds.records.map(x=>[x.office+'|'+normalizeCode(x.race_code),x]));
+  const senateMatchups=new Map(s.polls.senate_all.map(x=>[normalizeCode(x.race_code),x]));
   const stateTotals=new Map(),all={d:0,r:0};
   for(const record of s.history.records){
    const state=record['2024_race_code'].slice(0,2);
@@ -336,8 +340,13 @@
     }
     method='2026_poll_blend_'+method;
    }
+   const upstream=senateMatchups.get(code);
+   const expectedIndependent=INDEPENDENT_SENATE_PROXY_CANDIDATES[code];
+   const nonrepIndependentProxy=Boolean(expectedIndependent&&upstream&&
+    upstream.dem_candidate?.trim().toLowerCase()===expectedIndependent.toLowerCase());
    senate.push({code,state,mean:limit(mean,-55,55),sigma,
     method,polled:Boolean(poll),special:seat.election_kind==='special',
+    nonrep_independent_proxy:nonrepIndependentProxy,
     poll_weight:pollWeight,poll_fundamentals_gap_points:pollFundamentalsGap,
     disagreement_extra_sigma_points:disagreementSigma});
   }
@@ -410,6 +419,12 @@
   if(!Number.isInteger(samples)||samples<300||samples>30000)
    throw Error('Unacceptable simulation size');
   const holdovers=options.senateDemHoldovers??basis.assumptions.senate_dem_holdovers;
+  const independentCredit=options.independentSenateCredit??'dem_proxy';
+  if(!['dem_proxy','no_credit'].includes(independentCredit))
+   throw Error('Unsupported independent Senate control sensitivity');
+  if(independentCredit==='no_credit'&&
+   basis.senate.filter(x=>x.nonrep_independent_proxy).length!==2)
+   throw Error('Unverified independent Senate matchup identities');
   if(!Number.isInteger(holdovers)||holdovers<30||holdovers>38)
    throw Error('Unsupported Senate holdovers sensitivity');
   const nationalShift=options.nationalShift??0,errorMultiplier=options.errorMultiplier??1;
@@ -486,7 +501,8 @@
      if(dem)dHouse++;
      if(explainControl)houseWinners[j]=dem?1:0;
     }else if(isSenate){
-     if(dem)dSenate++;
+     if(dem&&(independentCredit==='dem_proxy'||
+       !item.nonrep_independent_proxy))dSenate++;
      if(explainControl)senateWinners[j-435]=dem?1:0;
     }
     if(dem&&BATTLEGROUND_SET.has(item.code))winBattleground++;
@@ -591,6 +607,7 @@
   }:null;
   return {schema_version:VERSION,status:'EXPERIMENTAL_UNCALIBRATED',
    samples,seed,senate_dem_holdovers:holdovers,national_shift_points:nationalShift,error_multiplier:errorMultiplier,
+   ...(independentCredit!=='dem_proxy'?{senate_independent_credit_mode:independentCredit}:{}),
    probabilities:probs,counts:outcomes,means,
    race_probabilities,
    ...(explainControl?{control_explanation:controlExplanation}:{}),
