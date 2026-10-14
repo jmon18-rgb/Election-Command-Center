@@ -32,6 +32,7 @@ const changed2024=structuredClone(source);
 const row=changed2024.house24.records.find(x=>x['2024_race_code']===az.race_code);
 row.recorded_dem_votes+=10000;
 row.recorded_two_party_vote_total+=10000;
+changed2024.candidates24.records.find(x=>x.race_code===az.race_code).dem_votes+=10000;
 // A held-out state's result cannot enter the TRAINING coefficient or
 // national 2024 benchmark for that state. This mutation changes only its
 // validation target, not the fitted model for that state.
@@ -48,5 +49,5 @@ changed2022.pres20.records.find(x=>x.race_code===az.race_code).same_district_bou
 assert.throws(()=>persist.build(changed2022),/Noncomparable/);
 const duplicate=structuredClone(source);
 duplicate.candidates22.records[0].race_code=duplicate.candidates22.records[1].race_code;
-assert.throws(()=>persist.build(duplicate),/Insufficient|Noncomparable|Cannot/);
+assert.throws(()=>persist.build(duplicate),/Duplicate historical reference/);
 console.log('2022-to-2024 true out-of-state candidate-strength persistence study: 148 prior winners, 34 states, 4 subsequent losses retained. Train/benchmark state leakage check PASS.');
