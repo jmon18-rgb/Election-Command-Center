@@ -56,3 +56,13 @@ Avoid the tempting but incorrect calculation `worst_case * P(worst-case scenario
 4. Version the assumptions and record review dates in `data/integrity_impact.json`, never silently retroactively rewriting historical assessments.
 
 The index measures monitoring urgency; it is not a statement of any party's intent or voters' political preferences.
+
+## October 14 interface clarity — monitored does not mean assessed
+
+The personal dashboard's `Bullshittery Index` appears on all polled Senate race cards, but the underlying **sourced ledger is curated and non-exhaustive**. The previous generic `Not assessed` label did not distinguish an untouched state from a documented incident with unknown voter effects. The race cards now distinguish:
+- **Sourced cases:** Counts of ledger incidents whose verification status is not `unverified_report`; case titles, dates and source links are inspectable.
+- **Leads awaiting verification:** Only state-tagged leads from `data/integrity_review_queue.json`, clearly separated and never promoted to an incident or included in the 0–100 monitoring priority.
+- **No case in ledger:** A coverage-gap statement, **never a zero-risk score, evidence of no incidents, or a certification that voting is unaffected**.
+- **Documented case with unquantified impact:** Still a sourced case; the impact count remains unknown instead of becoming zero.
+
+The page summarizes the number of states represented, documented incident records, and numeric impact assessments. The 0–100 monitoring-priority indicator is shown on compact cards **only when** a corresponding sourced case has an existing defined score, never assigned to other states by extrapolation. This is a *coverage and interface* improvement, not a newly verified national incident database.
