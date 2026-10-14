@@ -2053,6 +2053,7 @@ function enRenderLiveDesk(){
   summary.textContent='Waiting for a matching, validated polling snapshot and race-probability model.';
   host.append(elt('p','en-live-note',
    'Unmatched snapshots cannot produce election-night probabilities.'));
+  enRenderRehearsal();
   return;
  }
  const lookup=new Map(modelRaceOddsData.records.map(record=>
@@ -2101,7 +2102,69 @@ function enRenderLiveDesk(){
  summary.textContent=selected.slice(0,8).length+' poll-based race probabilities · '+
   live+' adjusted with verified returns. The update assumes additional geographic error; '+
   'not calibrated to 2026 precinct sequences or a substitute for race calls.';
+ enRenderRehearsal();
 }
+
+/* Practice mode is a completely isolated visualization. It never assigns
+ * enData, enOfficeSnapshots, enCivicByWatch, enAlertRows or localStorage. */
+let enRehearsalActive=false,enRehearsalStep=0;
+function enRenderRehearsal(){
+ const toggle=$('#enRehearsalToggle'),panel=$('#enRehearsalPanel'),
+  stage=$('#enRehearsalStage'),rows=$('#enRehearsalRows');
+ if(!toggle||!panel||!stage||!rows)return;
+ toggle.setAttribute('aria-expanded',String(enRehearsalActive));
+ toggle.textContent=enRehearsalActive?'Close simulated rehearsal':
+  'Try simulated election-night rehearsal';
+ panel.hidden=!enRehearsalActive||enModeYear!==2026;
+ if(panel.hidden)return;
+ rows.replaceChildren();
+ const priorReady=window.ElectionNightRehearsal&&window.RaceLiveNowcast&&
+  latestSenateEstimates&&modelOddsValidate(modelRaceOddsData,latestSenateEstimates);
+ if(!priorReady){
+  stage.textContent='The real poll-prior model is not ready. Simulated votes will not be substituted for the missing model.';
+  $('#enRehearsalPrev').disabled=true;
+  $('#enRehearsalNext').disabled=true;
+  return;
+ }
+ const output=window.ElectionNightRehearsal.run(
+  modelRaceOddsData,window.RaceLiveNowcast,enRehearsalStep);
+ stage.textContent='STEP '+(output.step+1)+' / '+output.totalSteps+' · '+
+   output.phase.label.toUpperCase()+' · '+output.phase.note;
+ $('#enRehearsalPrev').disabled=enRehearsalStep===0;
+ $('#enRehearsalNext').disabled=enRehearsalStep>=output.totalSteps-1;
+ const pct=n=>n>=99.5?'>99%':n<=.5?'<1%':Math.round(n)+'%';
+ for(const row of output.rows){
+  const card=elt('div','en-live-race');
+  const header=elt('div','en-live-race-head');
+  header.append(elt('strong','',row.code),elt('span','',
+   row.result?.mode==='live_informed'?'SIMULATED UPDATE':'POLL PRIOR'));
+  card.append(header);
+  if(!row.result){card.append(elt('small','','No published poll prior'));rows.append(card);continue}
+  const odds=elt('div','en-live-prob');
+  odds.append(elt('strong','party-d','D '+pct(row.result.demPct)),
+   elt('strong','party-r','R '+pct(row.result.repPct)));
+  card.append(odds,elt('small','','Start: D '+pct(row.result.priorDemPct)+
+   ' · simulated '+row.simulatedVotes.toLocaleString('en-US')+' ballots · '+
+   row.precinctPct+'% fictional precincts'));
+  rows.append(card);
+ }
+}
+$('#enRehearsalToggle').addEventListener('click',()=>{
+ enRehearsalActive=!enRehearsalActive;
+ if(enRehearsalActive)enRehearsalStep=0;
+ enRenderRehearsal();
+});
+$('#enRehearsalNext').addEventListener('click',()=>{
+ if(enRehearsalStep<4)enRehearsalStep++;
+ enRenderRehearsal();
+});
+$('#enRehearsalPrev').addEventListener('click',()=>{
+ if(enRehearsalStep>0)enRehearsalStep--;
+ enRenderRehearsal();
+});
+$('#enRehearsalReset').addEventListener('click',()=>{
+ enRehearsalStep=0;enRenderRehearsal();
+});
 
 function enNationalSourceStatus(item){
  const isPrimary=enSupportedStates.has(item.state);
