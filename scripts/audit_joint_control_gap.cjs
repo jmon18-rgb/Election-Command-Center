@@ -73,6 +73,7 @@ const result=cases.map(([name,basis])=>{
  assert(Math.abs(c.both_dem_pct+c.senate_only_pct-
   sim.senate_dem_control_pct)<.02);
  assert.equal(c.senate_pivotal_races.length,35);
+ assert.equal(c.senate_control_bellwethers.length,35);
  assert.equal(c.top_house_pivotal_races.length,20);
  assert(c.senate_pivotal_races.every(r=>r.pivotal_draws>=0&&
   r.pivotal_draws<=samples));
@@ -86,7 +87,7 @@ const result=cases.map(([name,basis])=>{
   house_senate_control_phi:c.house_senate_control_phi,
   dem_house_seat_mean:sim.means.house_dem_seats,
   dem_senate_seat_mean:sim.means.senate_dem_seats,
-  top_senate_control_pivots:c.senate_pivotal_races.slice(0,12),
+  top_senate_control_bellwethers:c.senate_control_bellwethers.slice(0,12),
   top_house_control_pivots:c.top_house_pivotal_races.slice(0,8),
   senate_race_probabilities:sim.race_probabilities.filter(x=>
    x.office==='senate').map(x=>({race_code:x.race_code,
@@ -109,7 +110,7 @@ const report={
   'Presidential House results reflect actual 2026-map partisan geography, but the swing coefficients remain uncalibrated.',
   'Unshrunk Senate polling is an intentional extreme to isolate poll/prior discrepancies, not a better model by fiat.',
   'The last two scenarios keep standalone race error variance fixed; changes in joint control come from error covariance.',
-  'Pivotal frequencies mean an isolated one-race result reversal changes chamber control in that simulated election. They do not show the causal impact of a campaign.',
+  'Mechanical pivot counts ask whether reversing one seat changes a 50/51 control result. Bellwether rankings instead use same-draw covariance with chamber control, reducing the misleading ranking of safe seats. Neither is a causal campaign effect.',
   'Do not fit assumptions to match any proprietary third-party forecast. Require modern held-out forecast snapshots and historical outcomes for promotion.'
  ]
 };
@@ -120,7 +121,7 @@ else{
   senate:x.senate_dem_control_pct,both:x.both_dem_control_pct,
   independent_product:x.independent_product_reference_pct,
   dependence_pp:x.extra_joint_vs_independence_pp})));
- console.log('Senate control pivots (same-draw modeled 2026 slate):');
- console.table(reference.top_senate_control_pivots);
+ console.log('Senate control bellwethers (same-draw covariance, NOT causal):');
+ console.table(reference.top_senate_control_bellwethers);
  console.log('All percentage points are uncalibrated conditional model scenarios.');
 }
