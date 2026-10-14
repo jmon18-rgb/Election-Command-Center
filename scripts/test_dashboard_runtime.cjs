@@ -143,7 +143,7 @@ async function settle(){
  get('[data-model-scope="senate"]').click();
  assert(get('#senateEstimateCards').querySelectorAll('.senate-card-odds').length>0,
   'Senate intelligence cards should also show conditional model odds');
- assert.match(get('#senateEstimateCards').textContent,/JACKSTRADAMUS · TWO-PARTY MODEL/);
+ assert.match(get('#senateEstimateCards').textContent,/JACKSTRADAMUS · CORRELATED JOINT MODEL/);
  assert.doesNotMatch(get('#senateEstimateCards').textContent,/Not assessed/,
   'Missing source coverage cannot masquerade as an ambiguous risk score');
  assert.match(get('#senateEstimateCards').textContent,/No documented case in our limited ledger/,
