@@ -6,6 +6,18 @@ Production acceptance locks explicit office, stage, ID and name after discovery.
 from test_civicapi_live_source import source
 
 DAY="2026-11-03"
+# Independently verified exact browser-CORS source IDs in GitHub Actions.
+# MS Senate did not pass the same search/detail identity gate, so it is not
+# included as a production adapter.
+REQUIRED={
+    ("CA","Governor"):(86952,"California Governor"),
+    ("DE","Senate"):(87036,"Delaware US Senate"),
+    ("MD","Governor"):(87198,"Maryland Governor"),
+    ("SD","Senate"):(87446,"South Dakota US Senate"),
+    ("SD","Governor"):(87447,"South Dakota Governor"),
+    ("WY","Senate"):(87496,"Wyoming US Senate"),
+    ("WY","Governor"):(87497,"Wyoming Governor"),
+}
 TARGETS=[
     ("CA","Governor","Governor"),
     ("DE","Senate","US Senate"),
@@ -60,8 +72,11 @@ def main():
               repr(row["election_name"]),"candidates",len(candidates),flush=True)
         verified.append((state,office,row["id"],row["election_name"]))
     print("NEXT FIVE TOTAL",len(verified),"of",len(TARGETS),flush=True)
-    if not verified:
-        raise ValueError("No source-verified 2026 races")
+    required={(state,office,id,name)
+              for (state,office),(id,name) in REQUIRED.items()}
+    if not required.issubset(set(verified)):
+        raise ValueError("Exact source IDs were lost or re-keyed: "+
+                         repr(sorted(required-set(verified))))
 
 if __name__=="__main__":
     main()
