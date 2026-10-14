@@ -501,12 +501,12 @@
      !finite(errorMultiplier)||errorMultiplier<.6||errorMultiplier>1.7)
     throw Error('Unsupported forecast sensitivity');
   const polls=basis.house.concat(basis.senate,basis.governors);
-  const outcomes={blue_tsunami:0,blue_wave:0,shrug:0,red_dawn:0};
+  const outcomes={blue_tsunami:0,blue_wave:0,shrug:0,red_dawn:0,independent_pivot:0};
   const rands=seeded(seed),live=options.live||Object.create(null);
   const a=basis.assumptions;
   const redraws=basis.redrawn_state_distributions||{};
   let houseSeats=0,senateSeats=0,fullBattleground=0,houseControl=0,senateControl=0,
-   independentPivotDraws=0,independentContestedWins=0;
+   independentPivotDraws=0,independentContestedWins=0,independentPivotWithHouseD=0;
   const houseSeatDraws=[],senateSeatDraws=[];
   const raceDemWins=new Uint32Array(polls.length);
   for(let k=0;k<samples;k++){
@@ -569,24 +569,23 @@
     }
     if(dem&&BATTLEGROUND_SET.has(item.code))winBattleground++;
    }
-   // A noncaucusing Independent can prevent either major party from
-   // reaching conventional organization thresholds. The familiar four
-   // outcomes remain a binary-D-control approximation; expose ambiguous
-   // draws separately rather than claiming they guarantee GOP control.
-   if(dSenate<a.senate_control_dem_seats&&rSenate<50){
-    independentPivotDraws++;
-   }
+   // Noncaucusing Independents can leave neither major party with
+   // enough senators to organize a majority. This is genuinely a FIFTH
+   // outcome; never misreport it as Republican Senate control.
+   const independentPivot=dSenate<a.senate_control_dem_seats&&rSenate<50;
+   if(independentPivot)independentPivotDraws++;
    const houseDem=dHouse>=a.house_control_dem_seats;
+   if(independentPivot&&houseDem)independentPivotWithHouseD++;
    const senateDem=dSenate>=a.senate_control_dem_seats;
    if(houseDem)houseControl++;
    if(senateDem)senateControl++;
    houseSeatDraws.push(dHouse);senateSeatDraws.push(dSenate);
    const both=houseDem&&senateDem;
-   if(both){
+   if(independentPivot)outcomes.independent_pivot++;
+   else if(both){
     outcomes[winBattleground>=REQUIRED_BATTLEGROUND_WINS?
      'blue_tsunami':'blue_wave']++;
-   }else if(dHouse<a.house_control_dem_seats&&
-            dSenate<a.senate_control_dem_seats){
+   }else if(!houseDem&&!senateDem){
     outcomes.red_dawn++;
    }else outcomes.shrug++;
    houseSeats+=dHouse;senateSeats+=dSenate;
@@ -595,8 +594,11 @@
   // Marginal chamber odds MUST be counted from these SAME correlated
   // draws. Multiplying isolated odds would erase cross-chamber covariance.
   const bothCount=outcomes.blue_wave+outcomes.blue_tsunami;
-  if(houseControl+senateControl-2*bothCount!==outcomes.shrug||
-     samples-houseControl-senateControl+bothCount!==outcomes.red_dawn)
+  if(houseControl+senateControl-2*bothCount!==
+      outcomes.shrug+independentPivotWithHouseD||
+     samples-houseControl-senateControl+bothCount!==
+      outcomes.red_dawn+(independentPivotDraws-independentPivotWithHouseD)||
+     outcomes.independent_pivot!==independentPivotDraws)
    throw Error('Joint probabilities are inconsistent with chamber marginals');
   houseSeatDraws.sort((a,b)=>a-b);senateSeatDraws.sort((a,b)=>a-b);
   const quantile=(vals,f)=>vals[Math.floor((vals.length-1)*f)];
@@ -635,8 +637,9 @@
     independent_contender_wins_mean:Math.round(100*independentContestedWins/samples)/100,
     non_majority_caucus_balance_pct:pct(independentPivotDraws),
     caucus_assumption:'NE_ID_SD_declared_nonmajority_caucus_independent',
-    four_outcomes_are_binary_dem_majority_proxy:true,
-    note:'When neither major-party caucus controls 50+ seats, four-outcome binary scenarios cannot identify Senate organization; track this uncertainty separately.'
+    four_outcomes_are_binary_dem_majority_proxy:false,
+    separate_fifth_outcome_key:'independent_pivot',
+    note:'When neither major-party caucus controls the Senate, the independent pivot is counted in its own mutually exclusive fifth bucket, not misclassified as Republican control.'
    },
    race_probability_method:'SAME_CORRELATED_DRAWS_AS_CHAMBER_CONTROL',
    blue_both_including_tsunami:pct(outcomes.blue_wave+outcomes.blue_tsunami),
