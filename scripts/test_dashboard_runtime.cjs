@@ -117,7 +117,7 @@ async function settle(){
  assert.equal(get('#modelBoard').querySelectorAll('.model-race-win-probabilities').length,
   senateRows.length,'Every polled Senate row must expose source-matched two-party model odds');
  assert.match(senateRows[0].querySelector('.model-race-win-probabilities').textContent,/D .*%R .*%/);
- assert.match(senateRows[0].querySelector('.model-race-edge').textContent,/Poll [DR][+-]/);
+ assert.match(senateRows[0].querySelector('.model-race-edge').textContent,/Poll [DR] [+-]/);
  get('[data-model-scope="house"]').click();
  assert.match(get('#modelProbabilityCoverage').textContent,/current polled house races/);
  assert.equal(get('#modelBoard').querySelectorAll('.model-race-win-probabilities').length,
