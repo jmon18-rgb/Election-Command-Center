@@ -2221,7 +2221,7 @@ function enWatchToggle(item){
 const enCivicBase='https://civicapi.org/api/v2';
 let enCivicByWatch=Object.create(null),enCivicRaceIds=Object.create(null),
  enCivicErrors=Object.create(null),enCivicPending=new Set(),enCivicLastSweep=0,enCivicSweepCursor=0,
- enCivicExpanded=new Set(),enCivicSweepInFlight=false;
+ enCivicExpanded=new Set(),enCivicSweepInFlight=false,enCivicActiveSweeps=0;
 // Only individually verified, source-ID-pinned 2026 contests use the
 // stricter shared adapter. An absent script must never fall back to the
 // looser generic source matcher.
@@ -2413,9 +2413,11 @@ async function enCivicFetchOne(item){
  }finally{enCivicPending.delete(id)}
 }
 async function enRefreshCivicWatchlist(force=false){
- if(enModeYear!==2026||!enIsVisible()||enCivicSweepInFlight)return;
+ if(enModeYear!==2026||!enIsVisible()||
+    (enCivicActiveSweeps>0&&!force)||enCivicActiveSweeps>=2)return;
  const now=Date.now(),interval=now<Date.parse('2026-11-03T05:00:00Z')?600000:60000;
  if(!force&&now-enCivicLastSweep<interval)return;
+ enCivicActiveSweeps++;
  enCivicSweepInFlight=true;
  enCivicLastSweep=now;
  try{
@@ -2438,7 +2440,10 @@ async function enRefreshCivicWatchlist(force=false){
     await enCivicFetchOne(item);
    }
   }));
- }finally{enCivicSweepInFlight=false}
+ }finally{
+  enCivicActiveSweeps--;
+  enCivicSweepInFlight=enCivicActiveSweeps>0;
+ }
 }
 
 function enWatchStatus(item){
