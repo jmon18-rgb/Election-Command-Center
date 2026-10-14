@@ -2139,15 +2139,19 @@ function enRenderLiveDesk(){
    (item.key.endsWith('-special')?' · SPECIAL':'')),
    elt('span','',result.mode==='live_informed'?'RETURNS INFORMED':'MODEL PRIOR'));
   const odds=elt('div','en-live-prob');
-  odds.append(elt('strong','party-d','D '+fmt(result.demPct)),
+  const firstParty=record.first_candidate_party==='I'?'I':'D';
+  odds.append(elt('strong',firstParty==='I'?'party-i':'party-d',
+    firstParty+' '+fmt(result.demPct)),
     elt('strong','party-r','R '+fmt(result.repPct)));
   card.append(header,odds);
   if(result.mode==='live_informed')
    card.append(elt('small','',result.source+' · '+result.reporting.toFixed(0)+
-    '% precincts · current D'+(result.reportedMargin>=0?'+':'')+
-    result.reportedMargin.toFixed(1)+' two-party margin · D '+fmt(result.sensitivityLow)+
+    '% precincts · current '+firstParty+
+    (result.reportedMargin>=0?'+':'')+
+    result.reportedMargin.toFixed(1)+' two-party margin · '+firstParty+' '+fmt(result.sensitivityLow)+
     '–'+fmt(result.sensitivityHigh)+' across error assumptions'));
-  else card.append(elt('small','','Polling D'+(record.dem_minus_rep>=0?'+':'')+
+  else card.append(elt('small','','Polling '+firstParty+
+    (record.dem_minus_rep>=0?'+':'')+
     record.dem_minus_rep.toFixed(1)+' · modeled total error σ '+
     record.sigma_points.toFixed(1)+' pts · no eligible partial count'));
   host.append(card);
@@ -2194,9 +2198,11 @@ function enRenderRehearsal(){
   card.append(header);
   if(!row.result){card.append(elt('small','','No published poll prior'));rows.append(card);continue}
   const odds=elt('div','en-live-prob');
-  odds.append(elt('strong','party-d','D '+pct(row.result.demPct)),
+  const firstParty=['NE-SEN','ID-SEN','SD-SEN'].includes(row.code)?'I':'D';
+  odds.append(elt('strong',firstParty==='I'?'party-i':'party-d',
+   firstParty+' '+pct(row.result.demPct)),
    elt('strong','party-r','R '+pct(row.result.repPct)));
-  card.append(odds,elt('small','','Start: D '+pct(row.result.priorDemPct)+
+  card.append(odds,elt('small','','Start: '+firstParty+' '+pct(row.result.priorDemPct)+
    ' · simulated '+row.simulatedVotes.toLocaleString('en-US')+' ballots · '+
    row.precinctPct+'% fictional precincts'));
   rows.append(card);
