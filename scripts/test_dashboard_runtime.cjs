@@ -169,6 +169,9 @@ async function settle(){
  researchDrawer.open=true;
  assert.equal(researchDrawer.open,true);
  researchDrawer.open=false;
+ assert.match(get('#jointHomeShadow').textContent,/191\/435 House districts/);
+ assert.match(get('#jointHomeShadow').textContent,/NOT independently backtested/);
+ assert.match(get('#jointNightShadow').textContent,/research only|Research only/i);
  const twoCycle=json('data/house_two_cycle_context.json');
  assert.equal(twoCycle.coverage.districts_with_two_historical_major_party_shares,191);
  const points=w.eval('historicalHouseSwingSample('+JSON.stringify(twoCycle)+')');
