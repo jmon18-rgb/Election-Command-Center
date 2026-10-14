@@ -18,7 +18,7 @@ const pollMap=new Map(sources.odds.records.filter(x=>x.office==='senate')
 const previousSenateItem=item=>{
  const poll=pollMap.get(item.code);
  const originalPollWeight=poll?
-  poll.independent_firms>=3?.75:poll.independent_firms>=2?.72:.60;
+  (poll.independent_firms>=3?.75:poll.independent_firms>=2?.72:.60):null;
  return {...item,
   sigma:item.public_solid_unpolled_party?15:item.sigma,
   mean:poll?originalPollWeight*poll.dem_minus_rep+
