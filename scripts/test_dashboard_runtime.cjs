@@ -71,6 +71,8 @@ async function settle(){
  assert(w.NHGovernorCivicAdapter,'NH governor adapter must load before the application');
  w.eval(read('scripts/civicapi_state_batch.js'));
  assert(w.StateBatchCivicAdapter,'Four-state adapter must load before the application');
+ w.eval(read('scripts/election_night_nowcast.js'));
+ assert(w.RaceLiveNowcast,'Live race probability module must load before app');
  w.eval(scripts[0]);
  await settle();
  // Actual model probabilities come from the same 2026 polls and a
@@ -828,6 +830,19 @@ async function settle(){
  w.fetch=preWatchFetch;
  assert.match(get('#enWatchItems').textContent,/NC-SEN/);
  assert.match(get('#enWatchItems').textContent,/300 counted/);
+ // Validated probabilistic source bridge, actual 2026 dashboard controls.
+ w.eval('enRenderLiveDesk()');
+ assert.equal(get('.en-live-desk').hidden,false);
+ assert.match(get('#enNowcastSummary').textContent,/poll-based race probabilities/);
+ assert.match(get('#enNowcastRows').textContent,/NC-SEN/);
+ assert.match(get('#enNowcastRows').textContent,/RETURNS INFORMED/);
+ const ncNowcast=w.eval('enLiveRaceEstimate({office:"Senate",key:"NC"})');
+ assert(ncNowcast&&ncNowcast.mode==='live_informed',
+  'Only the current source-validated partial Senate count may update NC odds');
+ assert(ncNowcast.demPct>0&&ncNowcast.demPct<100);
+ assert.match(get('#enHealthRows').textContent,/Senate · Open America/);
+ assert.match(get('#enHealthRows').textContent,/Supplemental · civicAPI/);
+ assert.equal(get('#enNowcastRows').querySelectorAll('.en-live-race').length,8);
  assert.match(get('#enNationalSummary').textContent,/1 \/ 35 races with recorded votes/);
  assert.equal(get('#enNationalRows').querySelectorAll('.en-national-seat[data-reporting="true"]').length,1);
  assert.match(get('#enNationalRows').textContent,/NC-SEN/);
