@@ -463,7 +463,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <summary><strong>Full Senate polling breakdown</strong><span>Polling firms, survey quality and candidate matchups · detailed cards</span></summary>
  <div class="race-workbench-body card"><div id="senateEstimateCards" class="racecards racecards-wide"><div class="empty">Awaiting first automated model update.</div></div><p class="methodline">Latest qualifying wave per pollster, recency, source quality and sponsorship are reflected in the polling average. <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/POLLING_MODEL.md" target="_blank" rel="noopener noreferrer">Methodology ↗</a></p></div>
  </details>
-<div class="sectionhead model-heading"><div><h2>JackStradamus</h2><p class="detail">Polling averages for Senate, House, governors and the generic ballot.</p></div><span class="tiny model-updated" id="modelUpdated">Checking latest snapshot…</span></div>
+<div class="sectionhead model-heading"><div><h2>JackStradamus</h2><p class="detail">Polling averages for Senate, House, governors and the generic ballot.</p></div><span class="tiny model-updated" id="modelUpdated">Checking latest snapshot…</span><span class="tiny" id="modelEngineTag" role="status">Verifying 2026 forecast engine…</span></div>
 <div class="model-scope-tabs" aria-label="JackStradamus office">
 <button type="button" data-model-scope="senate" aria-pressed="true">Senate</button>
 <button type="button" data-model-scope="house" aria-pressed="false">House</button>
@@ -710,7 +710,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/civicapi_state_batch.js"></script>
 <script src="./scripts/election_night_nowcast.js"></script>
 <script src="./scripts/election_night_rehearsal.js"></script>
-<script src="./scripts/chamber_control_model.js"></script>
+<script src="./scripts/chamber_control_model.js?model=senate-current-2026-20261014-b"></script>
 <script src="./scripts/chamber_poll_error_audit.js"></script>
 <script src="./scripts/senate_calibration_audit.js"></script>
 <script>
@@ -2497,6 +2497,16 @@ function jointSetSources(sources){
   jointBasis=window.ChamberControlModel.prepare(sources,{
    senatePriorMode:'current_2026'
   });
+  // An outdated cached JS engine silently ignores the modern options
+  // parameter and returns a 2020 legacy Senate forecast (MN D 62.17%).
+  // Never show its odds as if they were calculated by the current engine.
+  if(jointBasis?.senate_prior_mode!=='current_2026'||
+     jointBasis?.senate?.length!==35||
+     jointBasis.senate.find(x=>x.code==='MN-SEN')?.senate_prior_mode!=='current_2026'){
+    throw Error('OUTDATED FORECAST ENGINE — reload the page to load the 2026 Senate model');
+  }
+  const tag=$('#modelEngineTag');
+  if(tag)tag.textContent='2026 candidate-based Senate engine · verified';
   jointBasisShadow=null;jointBasisPresidential=null;
   try{jointBasisShadow=window.ChamberControlModel.prepare(sources,{
    fundamentalsMode:'two_cycle_shadow',senatePriorMode:'current_2026'
@@ -2507,8 +2517,15 @@ function jointSetSources(sources){
   jointErrorMessage=null;jointCacheKey='';
   jointRender(true);
  }catch(e){jointBasis=null;jointBasisShadow=null;jointBasisPresidential=null;
+  jointLastResult=null;jointCacheKey='';
   jointErrorMessage='No reliable joint odds: '+String(e.message||e);
-  jointRenderCards(null);jointRenderHouseShadow(null,null,null)}
+  const tag=$('#modelEngineTag');
+  if(tag)tag.textContent=String(e.message||e).includes('OUTDATED FORECAST ENGINE')?
+   'Outdated model script detected · hard refresh required':'Model inputs unavailable';
+  setModelRaceOddsData(null);
+  jointRenderCards(null);jointRenderHouseShadow(null,null,null);
+  renderSenateTideLine();
+ }
 }
 async function jointLoadSources(){
  const required=[
@@ -2534,8 +2551,13 @@ async function jointLoadSources(){
   for(const item of research)if(item)context[item[0]]=item[1];
   jointSetSources(context);
  }catch(e){jointBasis=null;jointBasisShadow=null;jointBasisPresidential=null;
+  jointLastResult=null;jointCacheKey='';
   jointErrorMessage='No joint probability model: '+String(e.message||e);
-  jointRenderCards(null);jointRenderHouseShadow(null,null,null)}
+  const tag=$('#modelEngineTag');if(tag)tag.textContent='Model input source unavailable';
+  setModelRaceOddsData(null);
+  jointRenderCards(null);jointRenderHouseShadow(null,null,null);
+  renderSenateTideLine();
+ }
 }
 $('#jointSwing').addEventListener('change',event=>{
  jointNationalShift=Number(event.target.value);jointRender(true);
