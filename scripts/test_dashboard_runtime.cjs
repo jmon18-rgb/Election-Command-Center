@@ -93,7 +93,7 @@ async function settle(){
  assert(w.SenateCalibrationAudit,'Retrospective probability-score module must be loaded before app');
  w.eval(scripts[0]);
  await settle();
- assert.match(get('#modelEngineTag').textContent,/2026 candidate-based Senate engine · verified · poll-priority v2/);
+ assert.match(get('#modelEngineTag').textContent,/2026 Senate model · multi-firm error budget v3/);
  assert.equal(w.eval('jointRaceOddsResult()').senate_prior_mode,'current_2026');
  assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').poll_weight"),.90);
  assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='NJ-SEN').source_method.includes('public_solid_no_poll_')"),true);
@@ -111,7 +111,7 @@ async function settle(){
  w.ChamberControlModel=freshEngine;
  await w.eval('jointLoadSources()');
  assert.equal(w.eval('jointRaceOddsResult()').senate_prior_mode,'current_2026');
- assert.match(get('#modelEngineTag').textContent,/2026 candidate-based Senate engine · verified · poll-priority v2/);
+ assert.match(get('#modelEngineTag').textContent,/2026 Senate model · multi-firm error budget v3/);
  // Race odds and chamber control derive from ONE correlated Monte Carlo.
  const oddsData=w.eval('jointRaceOddsResult()');
  assert(oddsData,'Linked joint simulation must publish race odds');

@@ -16,7 +16,8 @@ assert.equal(current.senate_prior_mode,'current_2026');
 assert.equal(current.senate_current_context.historical_2020_senate_candidate_margin_used,false);
 assert.equal(current.senate_current_context.statewide_2024_house_party_aggregate_used,false);
 assert.equal(current.senate.length,35);
-assert.equal(current.senate.filter(x=>x.polled).length,24);
+assert.equal(current.senate.filter(x=>x.polled).length,
+ source.odds.records.filter(x=>x.office==='senate').length);
 assert(current.senate.every(x=>x.senate_prior_mode==='current_2026'));
 assert(current.senate.every(x=>x.method.includes('2026_presidential_partisan_environment_no_old_candidate')));
 assert(current.senate.filter(x=>x.polled).every(x=>
@@ -48,17 +49,21 @@ const mn=current.senate.find(x=>x.code==='MN-SEN'),old=legacy.senate.find(x=>x.c
 const input=source.odds.records.find(x=>x.race_code==='MN-SEN'&&x.office==='senate');
 assert(input);
 assert.equal(mn.poll_weight,.90);
-assert.equal(current.senate_current_context.model_revision,'late_2026_poll_priority_solid_unpolled_v2');
+assert.equal(current.senate_current_context.model_revision,'late_2026_historical_error_budget_v3');
 assert.equal(current.senate_current_context.poll_weight_firms_3_plus,.90);
 assert.equal(current.senate_current_context.poll_weight_firms_2,.83);
 assert.equal(current.senate_current_context.poll_weight_firms_1,.60);
 const solidNoPoll=current.senate.filter(x=>x.public_solid_unpolled_party);
-assert.equal(solidNoPoll.length,11);
-assert.equal(solidNoPoll.filter(x=>x.public_solid_unpolled_party==='D').length,5);
-assert.equal(solidNoPoll.filter(x=>x.public_solid_unpolled_party==='R').length,6);
-assert.deepEqual(solidNoPoll.map(x=>x.code).sort(),[
- 'CO-SEN','DE-SEN','KY-SEN','MS-SEN','NJ-SEN','OK-SEN',
- 'OR-SEN','TN-SEN','VA-SEN','WV-SEN','WY-SEN']);
+const ratedNoPoll=new Map(Object.entries({
+ 'CO-SEN':'D','DE-SEN':'D','NJ-SEN':'D','OR-SEN':'D','VA-SEN':'D',
+ 'KY-SEN':'R','MS-SEN':'R','OK-SEN':'R','TN-SEN':'R','WV-SEN':'R','WY-SEN':'R'
+}));
+const currentlyPolled=new Set(source.odds.records.filter(x=>x.office==='senate')
+ .map(x=>x.race_code));
+const expectedUnpolled=[...ratedNoPoll].filter(([code])=>!currentlyPolled.has(code));
+assert.deepEqual(solidNoPoll.map(x=>x.code).sort(),
+ expectedUnpolled.map(([code])=>code).sort());
+assert(solidNoPoll.every(x=>x.public_solid_unpolled_party===ratedNoPoll.get(x.code)));
 assert(solidNoPoll.every(x=>!x.polled&&x.method.includes('public_solid_no_poll_')));
 assert(current.senate.filter(x=>x.polled).every(x=>x.public_solid_unpolled_party===null));
 const a=current.assumptions,sigmaShared=Math.hypot(
@@ -75,10 +80,19 @@ assert(mn.mean>input.dem_minus_rep&&mn.mean<mn.candidate_neutral_2026_environmen
 assert(old.mean<mn.mean);
 const shared=current.assumptions,sharedSigma=Math.hypot(shared.common_national_sigma,
  shared.senate_chamber_sigma,shared.state_senate_sigma);
+assert.equal(current.senate_current_context.polled_race_total_sigma_floor,7.5);
+assert.equal(current.senate_current_context.thin_stale_or_special_poll_total_sigma_floor,8.5);
+assert(current.senate.filter(x=>x.polled&&x.polling_error_tier==='recent_multi_firm').length>=5);
+assert(current.senate.filter(x=>x.polled).every(x=>
+ ['recent_multi_firm','thin_stale_or_special'].includes(x.polling_error_tier)));
+for(const code of ['NC-SEN','GA-SEN','MN-SEN','ME-SEN']){
+ assert.equal(current.senate.find(x=>x.code===code).polling_error_floor_points,7.5,
+  'Representative well-polled races must follow shared depth/recency criterion: '+code);
+}
 for(const item of current.senate.filter(x=>x.polled)){
  const wholeSigma=Math.hypot(item.sigma,sharedSigma);
  const inputSigma=source.odds.records.find(x=>x.office==='senate'&&x.race_code===item.code).sigma_points;
- const expected=Math.hypot(Math.max(8.5,inputSigma),item.disagreement_extra_sigma_points);
+ const expected=Math.hypot(Math.max(item.polling_error_floor_points,inputSigma),item.disagreement_extra_sigma_points);
  assert(Math.abs(wholeSigma-expected)<.001,
   'Senate shared+conditional variance must reconcile to full race error for '+item.code);
 }
