@@ -209,5 +209,57 @@
    records
   };
  }
- return Object.freeze({build,namesMatch,clean,offset});
+ function enrichCandidateContext(ctx,doc){
+  if(ctx?.records?.length!==506||doc?.records?.length!==506||
+     doc?.status!=='DESCRIPTIVE_HISTORICAL_CANDIDATE_RESIDUALS_NOT_VALIDATED_PREDICTIONS')
+   throw Error('Invalid candidate enrichment source');
+  const byRace=new Map(doc.records.map(x=>[x.race_code,x]));
+  const updated=ctx.records.map(original=>{
+   const record=byRace.get(original.race_code);
+   if(!record||record.office!==original.office)
+    throw Error('Candidate strength record missing '+original.race_code);
+   const row={...original,dem:{...original.dem},rep:{...original.rep}};
+   if(record.status.startsWith('matched_historic_winner_')){
+    const party=record.incumbent_party==='DEM'?'dem':'rep';
+    const c=row[party];
+    if(!c.incumbent_same_seat_candidate||
+       !c.source_candidate_identity_verified||
+       !namesMatch(c.name,record.prior_candidate_name)||
+       c.elected_vs_appointed!=='unverified'||
+       c.incumbent_last_race_overperformance_points!==null)
+     throw Error('Unverified candidate identity enrichment '+original.race_code);
+    c.elected_vs_appointed='elected';
+    c.incumbent_last_race_overperformance_points=
+     record.candidate_signed_raw_excess_margin_points;
+    c.first_term=record.first_elected_term_2026;
+    if(row.office==='house'){
+     if(record.district_geography_identical_2024_2026!==true||
+        record.overlap_fraction_verified!==1)
+      throw Error('House district overlap cannot be asserted '+row.race_code);
+     c.verified_old_new_district_overlap_fraction=1;
+    }
+    c.historical_overperformance_provenance={
+     status:'previous_election_winner_identity_verified_against_staged_history',
+     prior_election_year:record.prior_election_year,
+     source_race:record.prior_source_race,
+     raw_candidate_excess_margin_points:record.candidate_signed_raw_excess_margin_points,
+     first_term_source:row.office==='house'?
+      '2024_historic_candidate_was_incumbent_field':'not_verified',
+     historical_climate_offset_points:record.office_year_climate_gap_points,
+     interpretation:'retrospective_relative_margin_not_causal_or_trained'
+    };
+   }
+   return row;
+  });
+  return {...ctx,records:updated,
+   historical_candidate_strength:{
+    schema_version:doc.schema_version,
+    house_matched:doc.coverage.house_eligible,
+    senate_matched:doc.coverage.senate_eligible,
+    governor_matched:0,
+    source:'data/historical_candidate_overperformance_2026.json',
+    status:'MATCHED_RETROSPECTIVE_NONCAUSAL_NOT_AUTOMATIC_PROBABILITIES'
+   }};
+ }
+ return Object.freeze({build,namesMatch,clean,offset,enrichCandidateContext});
 });
