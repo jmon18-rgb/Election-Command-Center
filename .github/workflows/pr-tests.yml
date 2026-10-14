@@ -17,6 +17,11 @@ jobs:
           node scripts/test_senate_current_candidate.cjs --json > /tmp/current-senate-forecast.json
           node -e "const x=require('/tmp/current-senate-forecast.json');if(x.status!=='CURRENT_SENATE_PROBABILITIES_PUBLISHED_MODEL_VALIDATION'||x.races.length!==35||x.source_house_probs_unchanged!==true||x.minnesota.model_win_prob_D_new<=x.minnesota.model_win_prob_D_old||x.chamber.old_house_dem_control_pct!==x.chamber.updated_house_dem_control_pct)process.exit(1)"
           node scripts/test_senate_current_candidate.cjs
+      - name: Verify horizon-based Senate error revision, historic exception and joint covariance
+        run: |
+          node --check scripts/audit_senate_horizon_floor_v4.cjs
+          node scripts/audit_senate_horizon_floor_v4.cjs --json > /tmp/senate-horizon-v4.json
+          node -e "const x=require('/tmp/senate-horizon-v4.json');if(x.status!=='PROVISIONAL_2026_SENATE_QUALIFIED_ERROR_REVISION_NOT_FULLY_BACKTESTED'||x.qualified_races_narrowed<8||x.known_2020_20_day_coverage_exception!==true||!x.house_probabilities_unchanged||x.historical_scorecard.find(y=>y.days===20).proposed.brier>=x.historical_scorecard.find(y=>y.days===20).original.brier)process.exit(1)"
       - name: Audit historic Senate probability scores and current uncertainty-tier safety
         run: |
           node --check scripts/chamber_control_model.js
