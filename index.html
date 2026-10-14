@@ -1276,7 +1276,11 @@ function renderModelRaceOdds(estimate){
    marginText(item.model_dem_margin_points)+
    (item.office==='senate'?' · 2026 candidate polling + mapped state fundamentals':'')+
    ' · total modeled race uncertainty '+
-   item.sigma_points.toFixed(1)+' points (national + chamber + state + local). '+
+   item.sigma_points.toFixed(1)+' points (national + chamber + state + local)'+
+   (item.office==='senate'&&item.polling_error_tier?
+     (item.polling_error_tier==='recent_multi_firm'?
+      ' · recent multi-firm polling: 7.5-point floor':
+      ' · thin/stale/special polling: 8.5-point floor'):'')+'. '+
    'Same '+modelRaceOddsData.samples.toLocaleString('en-US')+
    ' correlated draws as House/Senate control. Error-width controls rerun the full model. '+
    'Two-party conditional estimate, not a calibrated race call; special ballot rules remain incomplete.';
