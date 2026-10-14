@@ -8,7 +8,7 @@
  if(root)root.PrivateSenateFundamentals=api;
 })(typeof window!=='undefined'?window:null,function(){
  'use strict';
- const VERSION='private-senate-csv-v1',KEY='jack_private_senate_context_v1';
+ const VERSION='private-candidate-context-csv-v2';
  const finite=x=>typeof x==='number'&&Number.isFinite(x);
  function csvRows(text){
   if(typeof text!=='string'||text.length>250000||!text.trim())throw Error('Invalid CSV size');
@@ -45,57 +45,65 @@
   const fundamentals=header.includes('Fancy')&&header.includes('Simple');
   const experts=header.includes('Unadjusted')&&header.includes('Adjusted');
   if(fundamentals===experts)throw Error('Expected fundamentals or expert-ratings CSV');
-  const kind=fundamentals?'fundamentals':'experts',states=Object.create(null);
+  const pair=fundamentals?['Simple','Fancy']:['Unadjusted','Adjusted'];
+  const look=rows.slice(ix+1).map(line=>String(line[0]||'').trim().toUpperCase());
+  const house=look.some(id=>/^[A-Z]{2}-\\d{1,2}$/.test(id));
+  const kind=(house?'house':'senate')+(fundamentals?'Fundamentals':'Experts');
+  const states=Object.create(null);
   for(const line of rows.slice(ix+1)){
-   const state=String(line[0]||'').trim().toUpperCase();
-   if(!/^[A-Z]{2}$/.test(state))continue;
-   if(states[state])throw Error('Duplicate state in private CSV '+state);
-   const pair=fundamentals?['Simple','Fancy']:['Unadjusted','Adjusted'];
-   const record={};
-   for(const k of pair){
-    const pos=header.indexOf(k);
-    record[k.toLowerCase()]=numberInCell(line[pos]);
+   let id=String(line[0]||'').trim().toUpperCase();
+   if(house&&/^[A-Z]{2}-\\d{1,2}$/.test(id)){
+    const [state,district]=id.split('-');
+    id=state+'-'+district.padStart(2,'0');
    }
+   if(!(house?/^[A-Z]{2}-\\d{2}$/:/^[A-Z]{2}$/).test(id))continue;
+   if(Object.prototype.hasOwnProperty.call(states,id))
+    throw Error('Duplicate race in private CSV '+id);
+   const record={};
+   for(const k of pair){const pos=header.indexOf(k);record[k.toLowerCase()]=numberInCell(line[pos]);}
    if(!pair.every(k=>finite(record[k.toLowerCase()])))
-    throw Error('Missing required numeric input for '+state);
-   states[state]=record;
+    throw Error('Missing required numeric input for '+id);
+   states[id]=record;
   }
-  if(Object.keys(states).length<3||Object.keys(states).length>50)
-   throw Error('CSV contained no usable statewide Senate inputs');
+  if(Object.keys(states).length<3||Object.keys(states).length>450)
+   throw Error('CSV contained no usable Senate or House race inputs');
   return {kind,states};
  }
  function validData(data){
   if(!data||data.schema!==VERSION)throw Error('Invalid private context version');
-  if(!data.fundamentals&&!data.experts)throw Error('No private Senate inputs');
-  for(const kind of ['fundamentals','experts']){
+  if(!['senateFundamentals','senateExperts','houseFundamentals','houseExperts']
+     .some(k=>Boolean(data[k])))throw Error('No private context inputs');
+  for(const kind of ['senateFundamentals','senateExperts','houseFundamentals','houseExperts']){
    const values=data[kind];
    if(values===null||values===undefined)continue;
    if(!values||typeof values!=='object'||Array.isArray(values)||
-       Object.keys(values).length>50)throw Error('Invalid '+kind+' rows');
-   for(const [state,item] of Object.entries(values)){
-    if(!/^[A-Z]{2}$/.test(state))throw Error('Invalid state');
-    for(const k of (kind==='fundamentals'?['simple','fancy']:['unadjusted','adjusted']))
-     if(!finite(item?.[k])||Math.abs(item[k])>70)throw Error('Invalid '+kind+' margin');
+       Object.keys(values).length>(kind.startsWith('house')?450:50))
+    throw Error('Invalid '+kind+' rows');
+   for(const [race,item] of Object.entries(values)){
+    if(!(kind.startsWith('house')?/^[A-Z]{2}-\\d{2}$/:/^[A-Z]{2}$/).test(race))
+     throw Error('Invalid race');
+    for(const k of (kind.endsWith('Fundamentals')?['simple','fancy']:['unadjusted','adjusted']))
+     if(!finite(item?.[k])||Math.abs(item[k])>70)
+      throw Error('Invalid '+kind+' margin');
    }
   }
   return data;
  }
  function accept(current,parsed){
-  if(!['fundamentals','experts'].includes(parsed?.kind)||!parsed.states)
-   throw Error('Unrecognized CSV family');
-  const obj=current?{...validData(current)}:
-   {schema:VERSION,fundamentals:null,experts:null};
+  if(!['senateFundamentals','senateExperts','houseFundamentals','houseExperts']
+      .includes(parsed?.kind)||!parsed.states)throw Error('Unrecognized CSV family');
+  const obj=current?{...validData(current)}:{schema:VERSION};
   obj[parsed.kind]=parsed.states;
   return validData(obj);
  }
- function apply(basis,privateData){
+ function apply(basis,privateData,options={}){
   validData(privateData);
   if(basis?.senate_prior_mode!=='current_2026'||basis.senate?.length!==35)
    throw Error('Private context requires the validated 2026 Senate model');
   let count=0;
   const senate=basis.senate.map(row=>{
-   const fundamental=privateData.fundamentals?.[row.state]||null;
-   const expert=privateData.experts?.[row.state]||null;
+   const fundamental=privateData.senateFundamentals?.[row.state]||null;
+   const expert=privateData.senateExperts?.[row.state]||null;
    if(!fundamental&&!expert)return {...row};
    // Fancy is Silver's fundamentals-only estimate, not the poll-adjusted
    // 'Blended' or final FLIPR prediction. Expert UNADJUSTED is a secondary
@@ -130,14 +138,45 @@
     private_context_original_mean_points:row.mean,
     poll_weight:row.polled?w:row.poll_weight};
   });
-  if(!count)throw Error('No private Senate input matched 2026 races');
-  return {...basis,senate,private_imported_context:{
+  let houseCount=0;
+  const house=basis.house.map(row=>{
+   if(options.includeHouse!==true)return {...row};
+   const fundamental=privateData.houseFundamentals?.[row.code]||null;
+   const expert=privateData.houseExperts?.[row.code]||null;
+   if(!fundamental&&!expert)return {...row};
+   const anchor=fundamental&&expert?.unadjusted!==undefined?
+    .8*fundamental.fancy+.2*expert.unadjusted:
+    fundamental?fundamental.fancy:expert.unadjusted;
+   const previousWeight=row.poll_weight;
+   const w=row.polled?(finite(previousWeight)?Math.min(.75,previousWeight):.75):0;
+   const prior=row.mean;
+   let pollMargin=null;
+   if(row.polled&&finite(previousWeight)&&previousWeight>0){
+    // Prefer direct source polling when a previous mixture is available.
+    const src=options.housePollMargins?.[row.code];
+    if(finite(src))pollMargin=src;
+   }
+   if(row.polled&&!finite(pollMargin))return {...row};
+   const mean=row.polled?w*pollMargin+(1-w)*anchor:anchor;
+   if(!finite(mean))throw Error('Invalid House context '+row.code);
+   houseCount++;
+   return {...row,mean:Math.max(-55,Math.min(55,mean)),
+    method:row.method+'+locally_imported_private_house_context',
+    private_context_anchor_points:+anchor.toFixed(3),
+    private_context_original_mean_points:prior,
+    private_context_poll_weight:w,
+    poll_weight:row.polled?w:previousWeight};
+  });
+  if(count===0&&houseCount===0)throw Error('No private race inputs match 2026 races');
+  return {...basis,senate,house,private_imported_context:{
    model:'unvalidated_candidate_context_sensitivity_not_flipr_replication',
    source:'local_only_no_raw_csv_committed',
-   matched_senate_races:count,
-   input_types:['fundamentals','experts'].filter(t=>Boolean(privateData[t])),
+   matched_senate_races:count,matched_house_races:houseCount,
+   include_house:options.includeHouse===true,
+   input_types:['senateFundamentals','senateExperts','houseFundamentals','houseExperts']
+    .filter(t=>Boolean(privateData[t])),
    experts_used_as_small_secondary_signal:true,
    silver_win_probs_fitted:false}};
  }
- return Object.freeze({VERSION,KEY,parse,accept,apply,validData});
+ return Object.freeze({VERSION,parse,accept,apply,validData});
 });
