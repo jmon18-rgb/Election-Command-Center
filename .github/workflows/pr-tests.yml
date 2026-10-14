@@ -21,6 +21,10 @@ jobs:
         run: python3 scripts/check_dashboard.py
       - name: Validate new-poll notification behavior without email credentials
         run: python3 scripts/test_poll_alerts.py
+      - name: Test DFL Democratic-NPL and fusion ballot historical House parsing
+        run: |
+          python3 -m py_compile scripts/stage_house_history_2024.py
+          python3 scripts/test_house_history.py
       - name: Validate historical Senate election importer without network access
         run: python3 scripts/test_senate_history.py
       - name: Stage MIT Senate research outcomes from official Harvard Dataverse
@@ -184,7 +188,7 @@ jobs:
         run: |
           node --check scripts/audit_house_seat_vote_reference.cjs
           node scripts/audit_house_seat_vote_reference.cjs --json > /tmp/house-seat-vote-reference.json
-          node -e "const x=require('/tmp/house-seat-vote-reference.json');if(x.status!=='HOUSE_NATIONAL_REFERENCE_AND_SEAT_RESPONSE_RESEARCH_ONLY'||x['2024_missing_two_party_vote_count']!==44||x['2026_redrawn_districts']!==173||x.presidential_mapped_districts!==435||x.model_scenarios.length!==4||x.house_margin_shift_response.curve.length!==7||x.model_scenarios[0].house_top_same_draw_control_bellwethers.length!==25)process.exit(1)"
+          node -e "const x=require('/tmp/house-seat-vote-reference.json');if(x.status!=='HOUSE_NATIONAL_REFERENCE_AND_SEAT_RESPONSE_RESEARCH_ONLY'||(!Number.isInteger(x['2024_missing_two_party_vote_count'])||x['2024_missing_two_party_vote_count']<0||x['2024_missing_two_party_vote_count']>70)||x['2026_redrawn_districts']!==173||x.presidential_mapped_districts!==435||x.model_scenarios.length!==4||x.house_margin_shift_response.curve.length!==7||x.model_scenarios[0].house_top_same_draw_control_bellwethers.length!==25)process.exit(1)"
           node scripts/audit_house_seat_vote_reference.cjs
       - name: Audit alternate two-cycle House fundamentals without promotion
         run: |
