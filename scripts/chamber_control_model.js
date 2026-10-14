@@ -15,6 +15,7 @@
   'AZ-GOV','GA-GOV','MI-GOV','WI-GOV','NV-GOV','OH-GOV'
  ]);
  const REQUIRED_BATTLEGROUND_WINS=12;
+ const BATTLEGROUND_SET=new Set(BATTLEGROUNDS);
  const HOUSE_SEATS=435,SENATE_CONTESTS=35;
  const finite=x=>typeof x==='number'&&Number.isFinite(x);
  const limit=(x,l,h)=>Math.max(l,Math.min(h,x));
@@ -196,16 +197,20 @@
   const holdovers=options.senateDemHoldovers??basis.assumptions.senate_dem_holdovers;
   if(!Number.isInteger(holdovers)||holdovers<30||holdovers>38)
    throw Error('Unsupported Senate holdovers sensitivity');
+  const nationalShift=options.nationalShift??0,errorMultiplier=options.errorMultiplier??1;
+  if(!finite(nationalShift)||Math.abs(nationalShift)>7||
+     !finite(errorMultiplier)||errorMultiplier<.6||errorMultiplier>1.7)
+    throw Error('Unsupported forecast sensitivity');
   const polls=basis.house.concat(basis.senate,basis.governors);
   const outcomes={blue_tsunami:0,blue_wave:0,shrug:0,red_dawn:0};
   const rands=seeded(seed),live=options.live||Object.create(null);
   const a=basis.assumptions;
   let houseSeats=0,senateSeats=0,fullBattleground=0;
   for(let k=0;k<samples;k++){
-   const national=normal(rands)*a.common_national_sigma,
-    houseShock=normal(rands)*a.house_chamber_sigma,
-    senateShock=normal(rands)*a.senate_chamber_sigma,
-    govShock=normal(rands)*a.governor_chamber_sigma;
+   const national=nationalShift+normal(rands)*a.common_national_sigma*errorMultiplier,
+    houseShock=normal(rands)*a.house_chamber_sigma*errorMultiplier,
+    senateShock=normal(rands)*a.senate_chamber_sigma*errorMultiplier,
+    govShock=normal(rands)*a.governor_chamber_sigma*errorMultiplier;
    const stateDeltas=new Map();
    const stateError=state=>{
     if(!stateDeltas.has(state))
@@ -223,17 +228,17 @@
       sigma=meaningful?scenario.posteriorSigma:item.sigma;
     // The shared shocks remain even for live-informed margins, since the
     // early-return heuristic does not establish random-sample evidence.
-    const stateShock=stateError(item.state)*
+    const stateShock=stateError(item.state)*errorMultiplier*
       (isHouse?a.state_house_sigma+
        (item.method.includes('redrawn_')?a.redrawn_state_additional_sigma:0):
        isSenate?a.state_senate_sigma:a.state_governor_sigma);
     const officeShock=isHouse?houseShock:isSenate?senateShock:govShock;
     const finalMargin=mean+national+officeShock+stateShock+
-      normal(rands)*sigma;
+      normal(rands)*sigma*errorMultiplier;
     const dem=finalMargin>0;
     if(isHouse){if(dem)dHouse++}
     else if(isSenate){if(dem)dSenate++}
-    if(dem&&BATTLEGROUNDS.includes(item.code))winBattleground++;
+    if(dem&&BATTLEGROUND_SET.has(item.code))winBattleground++;
    }
    const both=dHouse>=a.house_control_dem_seats&&
      dSenate>=a.senate_control_dem_seats;
@@ -253,7 +258,7 @@
    senate_dem_seats:Math.round(100*senateSeats/samples)/100,
    battleground_dem_wins:Math.round(100*fullBattleground/samples)/100};
   return {schema_version:VERSION,status:'EXPERIMENTAL_UNCALIBRATED',
-   samples,seed,senate_dem_holdovers:holdovers,
+   samples,seed,senate_dem_holdovers:holdovers,national_shift_points:nationalShift,error_multiplier:errorMultiplier,
    probabilities:probs,counts:outcomes,means,
    blue_both_including_tsunami:pct(outcomes.blue_wave+outcomes.blue_tsunami),
    house_dem_control_pct:null,senate_dem_control_pct:null,
