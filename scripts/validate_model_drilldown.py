@@ -78,10 +78,12 @@ for state in all_rows:
     total_weight=weighted_dem=weighted_rep=0.
     for pick in selections:
         poll_id=pick.get("poll_id")
-        assert poll_id, f"{code}: selected poll lacks source poll_id: {pick}"
+        assert poll_id or is_generic, f"{code}: selected Senate/House/governor poll lacks source poll_id: {pick}"
         matching=[
             p for p in source if
-            p.get("poll_id")==poll_id and
+            (p.get("poll_id")==poll_id if poll_id else
+             (is_generic and not p.get("poll_id") and
+              p.get("sample_size")==pick.get("sample_size"))) and
             p["pollster"].casefold()==pick["name"].casefold() and
             p["field_end"]==pick["field_end"] and
             (is_generic or (p["dem_name"]==state["dem_candidate"] and
