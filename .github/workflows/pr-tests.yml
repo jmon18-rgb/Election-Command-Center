@@ -114,6 +114,11 @@ jobs:
           node --check scripts/forecast_optimism_audit.cjs
           node scripts/forecast_optimism_audit.cjs --json > /tmp/forecast-optimism-audit.json
           node -e "const x=require('/tmp/forecast-optimism-audit.json'); if(x.scenarios.length!==7 || x.status!=='UNCALIBRATED_SENSITIVITY_NOT_ELECTION_PREDICTIONS') process.exit(1)"
+      - name: Audit alternate two-cycle House fundamentals without promotion
+        run: |
+          node --check scripts/audit_two_cycle_fundamentals.cjs
+          node scripts/audit_two_cycle_fundamentals.cjs --json > /tmp/house-fundamentals-shadow.json
+          node -e "const r=require('/tmp/house-fundamentals-shadow.json'); if(r.status!=='EXPERIMENTAL_SHADOW_NOT_PROMOTED' || r.paired_eligible_districts!==191 || r.excluded_districts!==244) process.exit(1)"
       - name: Audit historical Senate polling misses without retroactive leakage
         run: |
           node --check scripts/chamber_poll_error_audit.js
