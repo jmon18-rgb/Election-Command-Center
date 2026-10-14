@@ -2425,6 +2425,15 @@ async function enCivicFetchOne(item,forceAfterPending=false){
   release();
  }
 }
+// Useful for deterministic Election Night rehearsals: settle every pending
+// per-race request and sweep before a new simulated network phase begins.
+async function enCivicWaitUntilIdle(){
+ while(enCivicSweepTasks.size||Object.keys(enCivicPendingTasks).length){
+  const current=[...enCivicSweepTasks,...Object.values(enCivicPendingTasks)];
+  if(!current.length)break;
+  await Promise.all(current);
+ }
+}
 async function enRefreshCivicWatchlist(force=false){
  if(enModeYear!==2026||!enIsVisible()||
     (enCivicActiveSweeps>0&&!force))return;
