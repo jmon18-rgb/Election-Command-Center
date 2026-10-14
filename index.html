@@ -372,6 +372,25 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 #jointRunStatus{color:#a9c5d6}
 @media(max-width:740px){.joint-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.joint-cell .joint-value{font-size:27px}.joint-cell{min-height:116px;padding:13px}}
 @media(max-width:400px){.joint-panel{padding:12px}.joint-cell strong{font-size:10px}.joint-tools{align-items:flex-start}}
+/* Compact Senate tipping-point watch on the daily brief. */
+.tide-line-panel{padding:16px 18px 13px;margin:11px 0 20px;border:1px solid #38556f;border-radius:13px;background:#14243a}
+.tide-line-intro{font-size:12px;line-height:1.65;color:#b9cde0;margin:0 0 13px}
+.tide-races{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.tide-race{display:flex;flex-direction:column;gap:7px;min-width:0;text-align:left;padding:12px 13px;min-height:112px;color:#eaf3ff;background:#1b3047;border:1px solid #37516d;border-radius:10px;cursor:pointer;transition:border-color .15s,background .15s}
+.tide-race:hover,.tide-race:focus-visible{background:#25405b;border-color:#81baff;outline-offset:2px}
+.tide-race-head,.tide-race-readings{display:flex;justify-content:space-between;align-items:center;gap:10px;min-width:0}
+.tide-race-head strong{font-size:13px;letter-spacing:.015em}
+.tide-race-head small{font-size:9px;font-weight:700;text-transform:uppercase;color:#9fb5cf;letter-spacing:.04em}
+.tide-race-candidates{font-size:11px;line-height:1.4;color:#b9cee3;overflow-wrap:anywhere}
+.tide-race-readings{margin-top:auto;align-items:flex-end}
+.tide-race-margin{font-size:19px;font-weight:780;font-variant-numeric:tabular-nums}
+.tide-race-odds{text-align:right;font-size:11px;color:#cedef1;line-height:1.35;font-variant-numeric:tabular-nums}
+.tide-race-odds b{display:block;font-size:14px;color:#eaf3ff}
+.tide-race-odds .party-d{color:#91c4ff}.tide-race-odds .party-r{color:#ff9fa0}
+.tide-line-note{font-size:10px;color:#a5bed7;line-height:1.5;margin:12px 0 0}
+@media(max-width:760px){.tide-races{grid-template-columns:repeat(2,minmax(0,1fr))}.tide-line-panel{padding:13px}}
+@media(max-width:480px){.tide-races{grid-template-columns:1fr}.tide-race{min-height:94px}.tide-race-head strong{font-size:14px}}
+
 /* Optional retrospective audit; no historical bias correction is silently applied. */
 .joint-audit{margin:12px 0 5px;border-top:1px solid #3c546c;padding-top:9px}
 .joint-audit summary{font-size:11px;color:#b9d9fa;cursor:pointer;font-weight:650}
@@ -406,6 +425,12 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <details class="joint-audit"><summary>Historical polling-error check · how reliable is this?</summary><p id="jointHomeAudit" class="joint-note">Reading existing historical Senate poll backtest…</p></details>
  <p class="joint-note">Blue Tsunami = Democrats win both chambers AND at least 18 of 20 fixed House/Senate/governor battleground races. Blue Wave = both chambers without that near-sweep. Shrug = split control. Red Dawn = Republicans retain both. These four outcomes are mutually exclusive. Model estimates are not calibrated forecasts.</p>
 </div>
+<div class="sectionhead"><h2>The Senate tide line</h2><span class="tiny" id="senateTideAsOf">Watching the races that could change control</span></div>
+<div class="tide-line-panel" aria-label="Key Senate races from the 2026 control forecast">
+ <p class="tide-line-intro">The path to Senate control runs through more than one race. Watch the battlegrounds, then the outer edge of a possible wave. All margins and odds below come from our own live polling and correlated model—not another forecaster's odds.</p>
+ <div id="senateTideRaces" class="tide-races"><p class="joint-note">Matching Senate polls and model probabilities…</p></div>
+ <p class="tide-line-note">SC, GA, FL and LA are wider-wave watches—not required conditions for a Blue Tsunami. Nebraska's Dan Osborn runs as an independent; a model victory for him is not necessarily a Democratic Senate seat.</p>
+ </div>
 <div class="sectionhead"><h2>What to watch</h2><span class="tiny">What deserves a closer look?</span></div>
 <div class="card radar-wrap"><div id="jackRadar" class="radar-grid"><div class="empty">Scanning close races, polling blind spots, and election developments…</div></div><p class="methodline">The closest margins, thin polling, and documented election-administration issues.</p></div>
 
@@ -736,6 +761,72 @@ if(!impactLedger){watch.append(elt('div','radar-empty','Checking evidence ledger
 else if(!cases.length){watch.append(elt('div','radar-empty','No scoped entries in this limited tracker yet.'))}
 else for(const x of cases)add(watch,KEY_STATES[x.state]||x.state,x.scope_label);
 }
+
+// Editorial Senate watchlist derived from the key 2026 races in the
+// user's Silver tipping-point comparison. Every number is from our OWN
+// current polling and internally correlated simulated election outcomes.
+const SENATE_TIDE_CODES=Object.freeze([
+ 'ME-SEN','TX-SEN','OH-SEN','IA-SEN','MI-SEN','AK-SEN','KS-SEN',
+ 'MN-SEN','NH-SEN','NE-SEN','NC-SEN','SC-SEN',
+ 'GA-SEN','FL-SEN','LA-SEN'
+]);
+const SENATE_TIDE_WIDER_WAVE=new Set(['SC-SEN','GA-SEN','FL-SEN','LA-SEN']);
+function renderSenateTideLine(){
+ const host=$('#senateTideRaces');if(!host)return;
+ host.replaceChildren();
+ const source=latestSenateEstimates;
+ const list=source?.senate_all||[];
+ const polls=new Map(list.filter(x=>x?.race_code).map(x=>[x.race_code,x]));
+ const snap=jointLastResult&&jointBasis&&
+  jointBasis.generated_from_sources.model_polling_at===source?.generated_at?
+  jointLastResult:null;
+ const modeled=new Map((snap?.race_probabilities||[]).filter(x=>x.office==='senate')
+  .map(x=>[x.race_code,x]));
+ const stamp=$('#senateTideAsOf');
+ if(stamp)stamp.textContent=source?.generated_at?
+  'Our '+new Date(source.generated_at).toLocaleDateString('en-US',{month:'short',day:'numeric'})+
+  ' polling snapshot · '+(snap?'linked election simulations':'model odds pending'):
+  'Waiting for a matching polling snapshot';
+ if(!list.length){host.append(elt('p','joint-note','Waiting for the latest Senate polling feed.'));return}
+ for(const code of SENATE_TIDE_CODES){
+  const poll=polls.get(code),odds=modeled.get(code),state=code.slice(0,2);
+  const race=elt('button','tide-race');race.type='button';race.dataset.senateTide=code;
+  race.setAttribute('aria-label','Explore '+(poll?.state_name||state)+' Senate race in JackStradamus');
+  const header=elt('div','tide-race-head');
+  header.append(elt('strong','',poll?.state_name||state),
+   elt('small','',SENATE_TIDE_WIDER_WAVE.has(code)?'Wider wave':'Control watch'));
+  race.append(header);
+  race.append(elt('div','tide-race-candidates',
+   poll?.dem_candidate&&poll?.rep_candidate?
+    poll.dem_candidate+' vs. '+poll.rep_candidate:'Candidate matchup pending'));
+  const values=elt('div','tide-race-readings');
+  const valid=Number.isFinite(poll?.dem_minus_rep)&&
+   ['single_poll','multi_poll'].includes(poll?.status);
+  values.append(elt('strong','tide-race-margin '+(valid?marginColor(poll.dem_minus_rep):'party-even'),
+   valid?marginText(poll.dem_minus_rep):'No poll'));
+  const forecast=elt('div','tide-race-odds');
+  if(odds&&Number.isFinite(odds.dem_beats_rep_pct)){
+   const winnerIsDem=odds.dem_beats_rep_pct>=50;
+   const winningPct=winnerIsDem?odds.dem_beats_rep_pct:odds.rep_beats_dem_pct;
+   const side=code==='NE-SEN'&&winnerIsDem?'Independent':winnerIsDem?'D':'R';
+   forecast.append(elt('b',winnerIsDem?'party-d':'party-r',
+    side+' '+winningPct.toFixed(1)+'%'));
+   forecast.append(elt('span','','model win chance'));
+  }else forecast.append(elt('span','','Odds pending'));
+  values.append(forecast);race.append(values);host.append(race);
+ }
+}
+$('#senateTideRaces').addEventListener('click',event=>{
+ const button=event.target.closest('[data-senate-tide]');if(!button)return;
+ const code=button.dataset.senateTide;
+ if(!SENATE_TIDE_CODES.includes(code))return;
+ modelMode='senate';selectedModelState=code;
+ modelPollMode='included';highlightedModelPoll=null;
+ const tab=document.querySelector('.tab[data-page="model"]');if(tab)tab.click();
+ if(window.history?.replaceState)window.history.replaceState(null,'','#model/senate/'+code);
+ if(latestSenateEstimates)renderModelOverview(latestSenateEstimates);
+ $('#modelDetail')?.scrollIntoView({behavior:'smooth',block:'start'});
+});
 
 let modelMode='senate';
 let selectedModelState='TX-SEN';
@@ -2362,6 +2453,7 @@ function jointRender(force=false){
    live:updates});
   jointLastResult=result;
   jointRenderCards(result);
+  renderSenateTideLine();
   renderEnForecastStrip();
   setModelRaceOddsData(jointBuildRaceOddsSnapshot(result,jointBasis));
   let shadow=null,presidentialShadow=null;
@@ -4074,7 +4166,7 @@ latestSenateEstimates=data;
 if(jointLastResult&&jointBasis&&!modelRaceOddsData)
  modelRaceOddsData=jointBuildRaceOddsSnapshot(jointLastResult,jointBasis);
 renderPollWire();
-const box=document.getElementById('senateEstimateCards');box.replaceChildren();renderRacePulse(data);
+const box=document.getElementById('senateEstimateCards');box.replaceChildren();renderRacePulse(data);renderSenateTideLine();
 const safeNumber=v=>typeof v==='number'&&Number.isFinite(v);
 const pos=margin=>Math.max(0,Math.min(100,50+margin*1.5));
 for(const x of data.states||[]){
