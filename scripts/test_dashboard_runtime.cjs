@@ -1391,7 +1391,7 @@ async function settle(){
  assert.equal(Object.values(jointBase.counts).reduce((sum,n)=>sum+n,0),3000);
  assert(w.eval('Object.keys(jointLiveObservations()).includes("NC-SEN")'),
   'The live joint model should integrate verified current NC Senate returns');
- assert.match(get('#jointRunStatus').textContent,/source-validated live-informed races/);
+ assert.match(get('#jointRunStatus').textContent,/source-validated races \(\d+ provider calls\)/);
  const housePrior=jointBase.means.house_dem_seats;
  get('#jointSwing').value='-3';
  get('#jointSwing').dispatchEvent(new w.Event('change',{bubbles:true}));
