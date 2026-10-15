@@ -3417,64 +3417,75 @@ function enAlertLabel(item){
 function enAlertSubscribed(office,key){
  return enWatched.some(x=>x.office===office&&x.key===key);
 }
-const enFishVoiceKey='bluewaves_fish_voice_v1';
-let enFishVoiceEnabled=(()=>{
- try{return localStorage.getItem(enFishVoiceKey)==='on'}catch{return false}
+const enFishAudioKey='bluewaves_fish_sound_enabled_v1';
+// This is the user-provided recording, not browser TTS or external YouTube.
+let enFishAudioEnabled=(()=>{
+ try{return localStorage.getItem(enFishAudioKey)!=='off'}catch{return true}
 })();
 let enFishTimeout=null,enFishReturnFocus=null;
-function enFishVoiceSupported(){
- return typeof window.speechSynthesis?.speak==='function'&&
-  typeof window.SpeechSynthesisUtterance==='function';
-}
+const EN_FISH_BREAKING_KINDS=new Set(['first','flip','call','withdrawn','revision']);
+const EN_FISH_BREAKING_SOURCES=new Set(['Open America','civicAPI']);
 function enFishRenderVoice(){
  const button=$('#enFishVoice');
  if(!button)return;
- button.disabled=!enFishVoiceSupported();
- button.setAttribute('aria-pressed',String(enFishVoiceEnabled&&enFishVoiceSupported()));
- button.textContent=!enFishVoiceSupported()?'Voice unavailable in this browser':
-   'Voice: '+(enFishVoiceEnabled?'on':'off');
+ button.setAttribute('aria-pressed',String(enFishAudioEnabled));
+ button.textContent='Breaking-news audio: '+(enFishAudioEnabled?'on':'off');
+}
+function enFishStopAudio(){
+ const audio=$('#enFishSound');
+ if(!audio)return;
+ try{audio.pause();audio.currentTime=0}catch{}
+}
+function enFishPlayAudio(){
+ if(!enFishAudioEnabled){
+  $('#enFishAudioStatus').textContent='Sound is muted in Fish Head settings.';
+  return;
+ }
+ const audio=$('#enFishSound');
+ if(!audio)return;
+ enFishStopAudio();
+ try{
+  const result=audio.play();
+  $('#enFishAudioStatus').textContent='Your Fish Head breaking-news recording.';
+  if(result&&typeof result.catch==='function')result.catch(()=>{
+   $('#enFishAudioStatus').textContent='Sound was blocked by your browser. Press Rehearse or enable playback using the Fish Head sound setting.';
+  });
+ }catch{
+  $('#enFishAudioStatus').textContent='Sound unavailable in this browser; breaking-news text still works.';
+ }
 }
 function enFishDismiss(){
  if(enFishTimeout){clearTimeout(enFishTimeout);enFishTimeout=null;}
  $('#enFishToast').hidden=true;
- $('#enFishOfficialFrame').removeAttribute('src');
- $('#enFishOfficialFrameWrap').hidden=true;
- if(enFishVoiceSupported())try{window.speechSynthesis.cancel()}catch{}
+ enFishStopAudio();
  if(enFishReturnFocus?.isConnected)enFishReturnFocus.focus();
  enFishReturnFocus=null;
 }
 function enFishShow(event,demo=false){
- // Only an explicit demo or newly validated source calls that have passed
- // the production alert guards should trigger the visual interruption.
- if(!demo&&(event?.kind!=='call'||event?.source!=='civicAPI'||
+ // Only verified-contract source changes in the pinned-race alert stream.
+ // Never treat a modeled probability as reporting or replay 2024 results.
+ if(!demo&&(!EN_FISH_BREAKING_KINDS.has(event?.kind)||
+   !EN_FISH_BREAKING_SOURCES.has(event?.source)||
    enModeYear!==2026||!enIsVisible()||
    Date.now()<Date.parse('2026-11-03T05:00:00Z')))return false;
  if(!event||typeof event.title!=='string'||typeof event.details!=='string')return false;
  const toast=$('#enFishToast');
  if(!toast)return false;
  if(enFishTimeout)clearTimeout(enFishTimeout);
- enFishReturnFocus=document.activeElement;
- // A prior original-news clip must never carry audio into a new election
- // bulletin or report a real result in a synthetic rehearsal.
- $('#enFishOfficialFrame').removeAttribute('src');
- $('#enFishOfficialFrameWrap').hidden=true;
+ if(toast.hidden)enFishReturnFocus=document.activeElement;
  toast.hidden=false;
  $('#enFishDismiss').focus();
  $('#enFishMode').textContent=demo?'REHEARSAL · NOT A REAL RACE CALL':
-   'civicAPI SOURCE CALL · NOT OFFICIAL CERTIFICATION';
+   event.source+' · '+(event.kind==='call'?'PROVIDER CALL · NOT CERTIFIED':
+     event.kind==='flip'?'REPORTED LEAD CHANGE · NOT A RACE CALL':
+     event.kind==='first'?'FIRST REPORTED VOTES · NOT A RACE CALL':
+     event.kind==='withdrawn'?'SOURCE WITHDRAWAL · AWAITING RECHECK':
+     'SOURCE CORRECTION · NOT A RACE CALL');
  $('#enFishHeadline').textContent=event.title+' — '+event.details;
  $('#enFishSource').textContent=demo?
    'Synthetic preview: no actual result has been reported.':
-   'Validated upstream civicAPI flag; inspect the race source for changes or corrections.';
- if(enFishVoiceEnabled&&enFishVoiceSupported()){
-  try{
-   window.speechSynthesis.cancel();
-   const utterance=new window.SpeechSynthesisUtterance(
-    'Breaking news! '+(demo?'This is only a test. ':'')+event.title+'. '+event.details);
-   utterance.lang='en-US';utterance.rate=.92;utterance.pitch=.9;
-   window.speechSynthesis.speak(utterance);
-  }catch{} // Some mobile browsers require a new user gesture for speech.
- }
+   'Source: '+event.source+' · unofficial result, not a certified election outcome.';
+ enFishPlayAudio(); // Always restart the supplied voice on every new bulletin.
  enFishTimeout=setTimeout(()=>{enFishDismiss()},20000);
  return true;
 }
@@ -3483,17 +3494,6 @@ $('#enFishPreview').addEventListener('click',()=>enFishShow({
  details:'Reporting feeds remain unchanged. This is not a real election-night event.'
 },true));
 $('#enFishDismiss').addEventListener('click',enFishDismiss);
-$('#enFishOfficialClip').addEventListener('click',()=>{
- if($('#enFishToast').hidden)return;
- // The ONLY use of the original TV performance is a user-initiated
- // licensed-platform stream from the verified SpongeBob Official channel.
- // It is not a voice clone nor a made-up spoken election result.
- if(enFishTimeout){clearTimeout(enFishTimeout);enFishTimeout=null;}
- if(enFishVoiceSupported())try{window.speechSynthesis.cancel()}catch{}
- $('#enFishOfficialFrameWrap').hidden=false;
- $('#enFishOfficialFrame').src=
-   'https://www.youtube-nocookie.com/embed/_VJKlSpTBu4?autoplay=1&rel=0';
-});
 document.addEventListener('keydown',event=>{
  if(event.key==='Escape'&&!$('#enFishToast').hidden)enFishDismiss();
  if(event.key==='Tab'&&!$('#enFishToast').hidden){
@@ -3507,10 +3507,10 @@ document.addEventListener('keydown',event=>{
  }
 });
 $('#enFishVoice').addEventListener('click',()=>{
- if(!enFishVoiceSupported())return;
- enFishVoiceEnabled=!enFishVoiceEnabled;
- try{localStorage.setItem(enFishVoiceKey,enFishVoiceEnabled?'on':'off')}catch{}
- if(!enFishVoiceEnabled)try{window.speechSynthesis.cancel()}catch{}
+ enFishAudioEnabled=!enFishAudioEnabled;
+ try{localStorage.setItem(enFishAudioKey,enFishAudioEnabled?'on':'off')}catch{}
+ if(!enFishAudioEnabled)enFishStopAudio();
+ else if(!$('#enFishToast').hidden)enFishPlayAudio();
  enFishRenderVoice();
 });
 enFishRenderVoice();
@@ -3534,7 +3534,9 @@ function enAlertRecord(item,source,kind,details,signature){
  // Recent event dedup survives browser reloads; memory stays bounded.
  if(enAlertSeen.size>180)enAlertSeen=new Set(enAlertRows.map(e=>e.id));
  enAlertSave();enRenderAlertInbox();
- if(kind==='call')enFishShow(event);
+ // Every uniquely identified breaking update in this watched-race stream
+ // gets the Fish Head bulletin and user-provided intro, not only winner calls.
+ enFishShow(event);
  if(enDesktopAlertsEnabled&&typeof window!=='undefined'&&
     window.Notification?.permission==='granted'){
   try{new window.Notification(event.title,{
