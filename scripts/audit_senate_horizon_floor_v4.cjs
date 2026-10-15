@@ -61,7 +61,7 @@ const source={seats:load('seat_universe'),history:load('house_history_2024_stagi
  presidential:load('presidential_2024_by_2026_district_staging')};
 const basis=model.prepare(source,{senatePriorMode:'current_2026'});
 assert.equal(basis.senate_current_context.model_revision,
- 'late_2026_horizon_error_budget_v4');
+ 'late_2026_depth_aware_special_v5');
 const shared=Math.hypot(basis.assumptions.common_national_sigma,
  basis.assumptions.senate_chamber_sigma,basis.assumptions.state_senate_sigma);
 const odds=new Map(source.odds.records.filter(x=>x.office==='senate')
