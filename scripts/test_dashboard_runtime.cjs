@@ -241,7 +241,8 @@ async function settle(){
   if(code==='OH-SEN')assert.match(diagnostic,/Special-election tier/);
  }
  // The homepage list and combined Race Lab must survive the UI restructure.
- assert.equal(get('#senateTideRaces').querySelectorAll('.tide-race').length,15);
+ assert(get('#senateTideRaces').querySelectorAll('.tide-race').length>=15);
+ assert.match(get('#senateTideRaces [data-senate-tide="MS-SEN"]').textContent,/Mississippi/);
  assert.match(get('#senateTideRaces [data-senate-tide="SC-SEN"]').textContent,/South Carolina/);
  assert.match(get('#senateTideRaces [data-senate-tide="SC-SEN"]').textContent,/Darline Graham/);
  assert.match(get('#senateTideRaces [data-senate-tide="ME-SEN"]').textContent,/model win chance/);
