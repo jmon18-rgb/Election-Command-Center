@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-10-15T01:43:53.213090+00:00",
+  "updated_at": "2026-10-15T02:46:05.010416+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 764,
+      "available_in_source": 765,
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1186,
+      "available_in_source": 1187,
       "records_examined": 200
     },
     "governor": {
@@ -18,9 +18,38 @@
     }
   },
   "matched_primary_observations": 276,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "MS-SEN",
+      "poll_id": "52497540-0f77-44ac-b540-57600d4994cc"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "MS-SEN",
+      "race_type": "senate",
+      "state": "MS",
+      "poll_id": "52497540-0f77-44ac-b540-57600d4994cc",
+      "question_id": "9fcedc55-7f4d-41b5-ba13-b7cae9cfd3cb",
+      "pollster": "Wedgewood Polls",
+      "dem_name": "Scott Colom",
+      "rep_name": "Cindy Hyde-Smith",
+      "dem": 48.0,
+      "rep": 52.0,
+      "margin": -4.0,
+      "field_end": "2026-10-14",
+      "field_start": "2026-10-12",
+      "posted_date": "2026-10-14",
+      "posted_source_datetime": "2026-10-14T22:02:00",
+      "posted_source_time": "10/14/26 22:02",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://x.com/WedgewoodPolls/status/2110541168874488272",
+      "sample_population": "lv",
+      "sample_size": 511,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "MN-SEN",
       "race_type": "senate",
