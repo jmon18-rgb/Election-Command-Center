@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-15T18:02:13.877058Z",
-  "source_snapshot": "2026-10-15T18:02:04.773092Z",
+  "generated_at": "2026-10-15T18:53:52.439821Z",
+  "source_snapshot": "2026-10-15T18:53:48.093684Z",
   "type": "descriptive_polling_estimates",
   "is_election_forecast": false,
   "method_version": "poll-mean-1.5",
@@ -1152,7 +1152,7 @@
           "largest_firm_weight_pct": 28.7,
           "independent_only_margin": 10.0,
           "equal_firms_margin": 8.48,
-          "faster_recency_margin": 9.12,
+          "faster_recency_margin": 9.13,
           "alternative_margin_min": 8.48,
           "alternative_margin_max": 10.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
@@ -1162,7 +1162,7 @@
           "quarantined_same_day_firms": []
         },
         "silver_2026_comparison": {
-          "dem_minus_rep": 8.99,
+          "dem_minus_rep": 9.0,
           "dem_pct": 52.53,
           "rep_pct": 43.54,
           "difference_from_live": -0.11,
@@ -1185,12 +1185,12 @@
           "sample_population": "lv",
           "dem": 55.4,
           "rep": 44.6,
-          "sample_size": 678,
+          "sample_size": 712,
           "partisan_lean": "R",
-          "weight_share": 9.959,
+          "weight_share": 10.047,
           "quality_rating": 1.1,
           "quality_multiplier": 0.955,
-          "sample_multiplier": 0.967
+          "sample_multiplier": 0.977
         },
         {
           "name": "InsiderAdvantage",
@@ -1202,7 +1202,7 @@
           "rep": 42.0,
           "sample_size": 1200,
           "partisan_lean": "R",
-          "weight_share": 11.689,
+          "weight_share": 11.678,
           "quality_rating": 2,
           "quality_multiplier": 1.0,
           "sample_multiplier": 1.084
@@ -1217,7 +1217,7 @@
           "rep": 44.9,
           "sample_size": 645,
           "partisan_lean": "R",
-          "weight_share": 8.194,
+          "weight_share": 8.186,
           "quality_rating": null,
           "quality_multiplier": 1.0,
           "sample_multiplier": 0.958
@@ -1232,7 +1232,7 @@
           "rep": 43.0,
           "sample_size": 1101,
           "partisan_lean": "R",
-          "weight_share": 13.151,
+          "weight_share": 13.138,
           "quality_rating": 0.7,
           "quality_multiplier": 0.675,
           "sample_multiplier": 1.066
@@ -1247,7 +1247,7 @@
           "rep": 45.0,
           "sample_size": 600,
           "partisan_lean": "",
-          "weight_share": 28.311,
+          "weight_share": 28.284,
           "quality_rating": null,
           "quality_multiplier": 1.0,
           "sample_multiplier": 0.944
@@ -1262,7 +1262,7 @@
           "rep": 42.0,
           "sample_size": 3301,
           "partisan_lean": "",
-          "weight_share": 28.695,
+          "weight_share": 28.667,
           "quality_rating": 3,
           "quality_multiplier": 1.25,
           "sample_multiplier": 1.256
@@ -3269,7 +3269,7 @@
           "largest_firm_weight_pct": 28.7,
           "independent_only_margin": 10.0,
           "equal_firms_margin": 8.48,
-          "faster_recency_margin": 9.12,
+          "faster_recency_margin": 9.13,
           "alternative_margin_min": 8.48,
           "alternative_margin_max": 10.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
@@ -3279,7 +3279,7 @@
           "quarantined_same_day_firms": []
         },
         "silver_2026_comparison": {
-          "dem_minus_rep": 8.99,
+          "dem_minus_rep": 9.0,
           "dem_pct": 52.53,
           "rep_pct": 43.54,
           "difference_from_live": -0.11,
@@ -3302,12 +3302,12 @@
           "sample_population": "lv",
           "dem": 55.4,
           "rep": 44.6,
-          "sample_size": 678,
+          "sample_size": 712,
           "partisan_lean": "R",
-          "weight_share": 9.959,
+          "weight_share": 10.047,
           "quality_rating": 1.1,
           "quality_multiplier": 0.955,
-          "sample_multiplier": 0.967
+          "sample_multiplier": 0.977
         },
         {
           "name": "InsiderAdvantage",
@@ -3319,7 +3319,7 @@
           "rep": 42.0,
           "sample_size": 1200,
           "partisan_lean": "R",
-          "weight_share": 11.689,
+          "weight_share": 11.678,
           "quality_rating": 2,
           "quality_multiplier": 1.0,
           "sample_multiplier": 1.084
@@ -3334,7 +3334,7 @@
           "rep": 44.9,
           "sample_size": 645,
           "partisan_lean": "R",
-          "weight_share": 8.194,
+          "weight_share": 8.186,
           "quality_rating": null,
           "quality_multiplier": 1.0,
           "sample_multiplier": 0.958
@@ -3349,7 +3349,7 @@
           "rep": 43.0,
           "sample_size": 1101,
           "partisan_lean": "R",
-          "weight_share": 13.151,
+          "weight_share": 13.138,
           "quality_rating": 0.7,
           "quality_multiplier": 0.675,
           "sample_multiplier": 1.066
@@ -3364,7 +3364,7 @@
           "rep": 45.0,
           "sample_size": 600,
           "partisan_lean": "",
-          "weight_share": 28.311,
+          "weight_share": 28.284,
           "quality_rating": null,
           "quality_multiplier": 1.0,
           "sample_multiplier": 0.944
@@ -3379,7 +3379,7 @@
           "rep": 42.0,
           "sample_size": 3301,
           "partisan_lean": "",
-          "weight_share": 28.695,
+          "weight_share": 28.667,
           "quality_rating": 3,
           "quality_multiplier": 1.25,
           "sample_multiplier": 1.256
@@ -14829,6 +14829,80 @@
           "quality_rating": 3,
           "quality_multiplier": 1.25,
           "sample_multiplier": 1.256
+        }
+      ],
+      "method": "Latest wave per firm; same-day tie prefers LV then larger sample; equal-priority conflicting questions quarantined. 21d recency, capped sample-size factor, 538 historical pollster quality and 0.5 sponsored-poll factor.",
+      "poll_source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
+    },
+    {
+      "race_code": "OK-GOV",
+      "state": "OK",
+      "state_name": "Oklahoma",
+      "race_type": "governor",
+      "label": "Oklahoma",
+      "status": "single_poll",
+      "dem_candidate": "Cyndi Munson",
+      "rep_candidate": "Mike Mazzei",
+      "dem_pct": 36.0,
+      "rep_pct": 39.0,
+      "dem_minus_rep": -3.0,
+      "independent_pollsters": 1,
+      "contributing_pollsters": 1,
+      "partisan_pollsters": 0,
+      "poll_diagnostics": {
+        "poll_count": 1,
+        "pollster_spread_points": null,
+        "observed_margin_min": -3.0,
+        "observed_margin_max": -3.0,
+        "latest_poll_age_days": 3,
+        "single_poll": true,
+        "thin_polling": true,
+        "stale_latest_poll": false,
+        "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": -3.0,
+          "equal_firms_margin": -3.0,
+          "faster_recency_margin": -3.0,
+          "alternative_margin_min": -3.0,
+          "alternative_margin_max": -3.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "firm_wave_selection": {
+          "resolved_same_day_ties": [],
+          "quarantined_same_day_firms": []
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -3.0,
+          "dem_pct": 36.0,
+          "rep_pct": 39.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 0,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
+        "different_matchups_excluded": 0,
+        "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
+      },
+      "latest_poll_end": "2026-10-12",
+      "oldest_included_poll_end": "2026-10-12",
+      "pollsters": [
+        {
+          "name": "Cross Timbers Poll",
+          "field_end": "2026-10-12",
+          "poll_id": "manual-OK-GOV-CTP-2026-10-12",
+          "question_id": null,
+          "sample_population": null,
+          "dem": 36.0,
+          "rep": 39.0,
+          "sample_size": 91,
+          "partisan_lean": "",
+          "weight_share": 100.0,
+          "quality_rating": null,
+          "quality_multiplier": 1.0,
+          "sample_multiplier": 0.822
         }
       ],
       "method": "Latest wave per firm; same-day tie prefers LV then larger sample; equal-priority conflicting questions quarantined. 21d recency, capped sample-size factor, 538 historical pollster quality and 0.5 sponsored-poll factor.",

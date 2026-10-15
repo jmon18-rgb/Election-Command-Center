@@ -1,9 +1,45 @@
 {
-  "updated_at": "2026-10-15T18:02:04.478495Z",
+  "updated_at": "2026-10-15T18:53:47.845079Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 2,
   "items": [
+    {
+      "id": "539d8e312da2aaf7472b",
+      "title": "US justice department sues California over alleged noncitizen voting - The Guardian",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOQUZuM19HYzlFSDg4dTF2bjhaeDlJdnM1YlJfMFd6UllqSWs1TGJRZ1otRC1hLXVKak9UZDZod2pfQmNaYVB5M1I3cUhaaHZrS0VPdWRta19fdUl2QUZtRi00Y1lwOUFIRUQ1TFE1dXFaWVpsV21qdm9adU9SRmNoQVVmY1NDYTI5aWdRMG1QNV9DR2ZGY0E?oc=5",
+      "publisher": "The Guardian",
+      "published_at": "2026-10-15T18:31:00Z",
+      "detected_at": "2026-10-15T18:53:47.845079Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "b922f73a16eec359d53f",
+      "title": "Wisconsin offers new guidance to local officials on emerging election threats - Democracy Docket",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPc0RTdWpTRXNKa3N1SDM1TENpQkdVNm9hUlRBdUJ3LTZoUE1rLXdGb2k4OERwRlNLLTFySlpnOFE5Z0t6X2R3Zkk3eGRyMGlINnA1MjVvMlBqZUgxemc4R1d5ZmsxMEtqSGdNemtLVW1sMWtvUUNfdEI4NUw3QW55M0tCZW5wSDh2WGw0QTR4eEFmVjJVSFVuRGhaMjZqX0ViSThqbzJJeWNsaTlWNHZsSGoxckFyd3NiUDN6bTVhMA?oc=5",
+      "publisher": "Democracy Docket",
+      "published_at": "2026-10-15T18:15:30Z",
+      "detected_at": "2026-10-15T18:53:47.845079Z",
+      "state_hints": [
+        "WI"
+      ],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "d68aad227814f70c8c4f",
       "title": "\u2018Ballotship\u2019 exercises prepare Arizona officials for mounting election-threat scenarios - Phoenix New Times",
