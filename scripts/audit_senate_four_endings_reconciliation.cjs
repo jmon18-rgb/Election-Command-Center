@@ -46,7 +46,8 @@ const outcomes=cases.map(([scenario,basis,flags])=>{
  return {scenario,
   house_dem_control_pct:result.house_dem_control_pct,
   senate_dem_control_pct:result.senate_dem_control_pct,
-  dem_both_pct:result.blue_both_including_tsunami,
+  wave_or_tsunami_pct:result.blue_both_including_tsunami,
+  dem_both_actual_control_pct:result.actual_dem_both_control_pct,
   blue_wave_pct:result.probabilities.blue_wave,
   blue_tsunami_pct:result.probabilities.blue_tsunami,
   shrug_pct:result.probabilities.shrug,
@@ -58,7 +59,7 @@ assert(outcomes.every(x=>x.house_dem_control_pct===outcomes[0].house_dem_control
 for(const x of outcomes){
  assert(Math.abs(x.blue_wave_pct+x.blue_tsunami_pct+
   x.shrug_pct+x.red_dawn_pct-100)<.03);
- assert(Math.abs(x.blue_wave_pct+x.blue_tsunami_pct-x.dem_both_pct)<.02);
+ assert(Math.abs(x.blue_wave_pct+x.blue_tsunami_pct-x.wave_or_tsunami_pct)<.02);
 }
 const solid=current.senate.filter(x=>x.public_solid_unpolled_party);
 const qualified=new Set(sources.odds.records.filter(x=>x.office==='senate').map(x=>x.race_code));
