@@ -193,7 +193,7 @@ async function settle(){
  assert.equal(fish.hidden,false);
  assert.match(get('#enFishMode').textContent,/REHEARSAL/);
  assert.match(get('#enFishHeadline').textContent,/Bikini Bottom election desk/);
- assert.match(get('#enFishSource').textContent,/no actual result/);
+ assert.match(get('#enFishSource').textContent,/no real election result/);
  assert.equal(w.document.activeElement,get('#enFishDismiss'),
   'Keyboard focus should move to the in-your-face breaking bulletin');
  assert.equal(fishAudioPlays,1,'Preview must play the original uploaded MP3 automatically');
