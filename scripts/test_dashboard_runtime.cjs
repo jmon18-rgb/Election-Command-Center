@@ -390,6 +390,9 @@ async function settle(){
  const posterCards=[...get('#enMilestoneGrid').querySelectorAll('.en-milestone-card')];
  assert.equal(posterCards.filter(el=>el.querySelector('img.en-milestone-thumb')).length,7,
   'Every milestone gets its own original illustrated thumbnail');
+ assert(posterCards[3].querySelector('img.en-milestone-thumb').getAttribute('src')
+  .includes('upload.wikimedia.org/wikipedia/commons/thumb/0/05/John_Brown_portrait'),
+  'Kansas thumbnail should be the actual John Brown rather than a generic ghost');
  assert(posterCards.every(el=>el.dataset.state==='waiting'),
   'Posters may be previewed before results, but must not claim earned status');
  posterCards[3].click(); // Kansas · John Brown-inspired art
