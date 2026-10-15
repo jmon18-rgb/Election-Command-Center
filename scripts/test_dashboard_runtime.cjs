@@ -129,10 +129,13 @@ async function settle(){
  assert.equal(get('#feedResults').dataset.status,'scheduled');
  assert.match(get('#feedModel').textContent,/^Model · /);
  assert.match(get('#feedPolls').textContent,/^Polls · /);
- // An error from the news collection cannot be hidden by cached headlines.
- w.eval('commandNewsSourceError=true;updateFeedGlance()');
- assert.equal(get('#feedNews').dataset.status,'unavailable');
- w.eval('commandNewsSourceError=false;updateFeedGlance()');
+ // A weeks-old cached headline must never be shown as a fresh feed.
+ const oldGlanceClock=w.Date.now;
+ w.Date.now=()=>Date.parse('2026-11-02T15:00:00Z');
+ w.eval('updateFeedGlance()');
+ assert.equal(get('#feedNews').dataset.status,'delayed');
+ w.Date.now=oldGlanceClock;
+ w.eval('updateFeedGlance()');
  assert.match(get('#privateContextStatus').textContent,/Repository fundamentals ACTIVE/,
   'Repository Senate+House CSV inputs must auto-load without device upload');
  assert.equal(w.eval('jointForecastResult()')?.samples,3000);
