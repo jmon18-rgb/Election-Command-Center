@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-15T23:45:24.942877Z",
+  "updated_at": "2026-10-15T23:50:30.797763Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
   "review_metrics": {
-    "total_leads": 145,
-    "awaiting_primary_source": 143,
+    "total_leads": 146,
+    "awaiting_primary_source": 144,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 10,
     "advisory_related_headlines": 23
@@ -127,6 +127,23 @@
     }
   ],
   "items": [
+    {
+      "id": "fa058197b999690de911",
+      "title": "Becerra pushes Latino voters despite ICE threats - CaloNews.com",
+      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQRjdkWmd5cm1OSFF3cFVrd2labEFiQ2ZETVVWQmxqNmloUEZ6V0RBbHY4ZDVNVElYRzBJUHpCTnZjU0JmY05CRmpZaUFZbmJDc2VBMExJNGdpZEhXckM2VzlMTVBvcEp0UGFGOUlieFJEWXoyZ2s5LUZYUU9rTUhkQmNHd0hSX1NSakM5YUJlNmxXbjlidG53bG1uQ3prUU85ODNHaXkwRnFyakU5N1lyVENDZ2NYYnE1U3F4dVIwRUJaSS1jYVJYeDhmQUlRZ2VOOXB5TWJvSU5ULUl4U2F6U195QmhZQQ?oc=5",
+      "publisher": "CaloNews.com",
+      "published_at": "2026-10-15T23:33:44Z",
+      "detected_at": "2026-10-15T23:50:30.797763Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "6581a62403649ba8ac0a",
       "title": "How to vote early in New York\u2019s 2026 General Election - NEWS10 ABC",
