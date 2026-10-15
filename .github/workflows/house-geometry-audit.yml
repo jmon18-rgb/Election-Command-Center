@@ -1,0 +1,37 @@
+name: Validate 2026 House Map Confidence
+on:
+  pull_request:
+    paths:
+      - 'scripts/chamber_control_model.js'
+      - 'scripts/audit_house_geography_risk.cjs'
+      - 'data/house_geography_bridge.json'
+      - 'data/house_history_2024_staging.json'
+      - 'data/seat_universe.json'
+      - 'data/presidential_2024_by_2026_district_staging.json'
+      - 'data/race_probabilities.json'
+      - 'data/polling_estimates.json'
+      - '.github/workflows/house-geometry-audit.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/chamber_control_model.js'
+      - 'scripts/audit_house_geography_risk.cjs'
+      - 'data/house_geography_bridge.json'
+      - 'data/house_history_2024_staging.json'
+      - 'data/seat_universe.json'
+      - 'data/presidential_2024_by_2026_district_staging.json'
+      - 'data/race_probabilities.json'
+      - 'data/polling_estimates.json'
+      - '.github/workflows/house-geometry-audit.yml'
+permissions:
+  contents: read
+jobs:
+  map-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify exact seat inventory and geographic-proxy segregation
+        run: |
+          node --check scripts/audit_house_geography_risk.cjs
+          node scripts/audit_house_geography_risk.cjs
