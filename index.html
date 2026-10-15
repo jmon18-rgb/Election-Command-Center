@@ -867,7 +867,7 @@ function renderSenateTideLine(){
  }
 }
 function renderMississippiSenateWatch(){
- const host=$('#mississippiHouseWatch'),stamp=$('#mississippiWatchAsOf');if(!host)return;
+ const host=$('#mississippiSenateWatch'),stamp=$('#mississippiWatchAsOf');if(!host)return;
  host.replaceChildren();
  const poll=latestSenateEstimates?.senate_all?.find(x=>x.race_code==='MS-SEN');
  const current=Boolean(jointLastResult&&jointBasis&&
@@ -888,7 +888,7 @@ function renderMississippiSenateWatch(){
  vals.append(elt('strong','tide-race-margin '+(eligible?marginColor(poll.dem_minus_rep):'party-even'),
   eligible?'Poll '+marginText(poll.dem_minus_rep):'No current qualified poll'));
  const odds=elt('div','tide-race-odds');
- odds.append(elt('b','',predicted?'D '+predicted.dem_beats_rep_pct.toFixed(1)+'%':
+ odds.append(elt('b','',predicted?(predicted.dem_beats_rep_pct>=50?'D ':'R ')+(predicted.dem_beats_rep_pct>=50?predicted.dem_beats_rep_pct:100-predicted.dem_beats_rep_pct).toFixed(1)+'%':
   'Odds pending'),elt('span','','correlated Senate win odds'));
  vals.append(odds);button.append(vals);
  button.append(elt('div','tide-race-candidates',eligible?
@@ -897,7 +897,7 @@ function renderMississippiSenateWatch(){
   'Awaiting a qualified survey'));
  host.append(button);
 }
-$('#mississippiHouseWatch').addEventListener('click',event=>{
+$('#mississippiSenateWatch').addEventListener('click',event=>{
  if(!event.target.closest('[data-senate-spotlight]'))return;
  modelMode='senate';selectedModelState='MS-SEN';
  modelPollMode='included';highlightedModelPoll=null;
