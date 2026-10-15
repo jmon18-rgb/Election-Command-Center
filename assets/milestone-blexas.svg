@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 620" role="img" aria-labelledby="t d">
+<title id="t">BLEXAS — EVERYTHING’S BIGGER IN BLUE</title><desc id="d">Dark blue Texas double statewide Democratic victory graphic with two large blue stars labelled Senate and Governor.</desc>
+<defs><linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071e3a"/><stop offset="1" stop-color="#0c60b4"/></linearGradient>
+<radialGradient id="light"><stop stop-color="#38bdff" stop-opacity=".5"/><stop offset="1" stop-color="#38bdff" stop-opacity="0"/></radialGradient>
+<filter id="glow"><feGaussianBlur stdDeviation="9"/></filter></defs>
+<rect width="980" height="620" rx="25" fill="url(#sky)"/>
+<circle cx="510" cy="300" r="320" fill="url(#light)"/>
+<g opacity=".22" stroke="#d3f3ff" stroke-width="2" fill="none"><path d="M0 168Q250 109 490 168T980 168"/><path d="M0 457Q250 409 490 457T980 457"/></g>
+<rect x="30" y="24" width="920" height="48" rx="12" fill="#031526" opacity=".83"/>
+<text x="490" y="56" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" letter-spacing="4" font-weight="800" fill="#addefc">TEXAS · SENATE + GOVERNOR</text>
+<path d="M311 115L650 117 650 220 731 221 692 284 639 281 606 352 549 425 466 396 419 346 329 346 329 257 311 257Z" fill="#056fcb" stroke="#bdeeff" stroke-width="12" stroke-linejoin="round"/><g fill="#e1f7ff" font-family="Arial,sans-serif" font-weight="900" text-anchor="middle"><path d="M433 183l17 41 44 3-35 28 12 43-38-24-37 24 12-43-35-28 44-3Z"/><path d="M564 183l17 41 44 3-35 28 12 43-38-24-37 24 12-43-35-28 44-3Z"/><text x="431" y="328" font-size="21">SENATE</text><text x="567" y="328" font-size="21">GOVERNOR</text></g>
+<rect x="24" y="452" width="932" height="150" rx="20" fill="#041a33" opacity=".91"/>
+<text x="490" y="505" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-size="53" font-weight="900" letter-spacing="1.5" fill="#e2f7ff">BLEXAS</text>
+<text x="490" y="545" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="25" font-weight="800" fill="#6cd2ff">EVERYTHING’S BIGGER IN BLUE</text>
+<text x="490" y="582" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="1.4" fill="#b2d6ed">TWO SEPARATE STATEWIDE CALLS REQUIRED</text>
+</svg>
