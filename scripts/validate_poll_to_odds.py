@@ -7,6 +7,7 @@ must not share the selection algorithm they are testing.
 from __future__ import annotations
 
 import json
+import math
 from datetime import date
 from pathlib import Path
 
@@ -44,6 +45,34 @@ def check(primary, model, odds, supplemental=None, *, today=None):
 
     source = {race["race_code"]: race for race in primary.get("races", [])}
     modeled = eligible_model_rows(model)
+    # Compare the ENTIRE raw race universe against the modeled universe,
+    # not only races already included by the estimator. Otherwise a new race
+    # can vanish from both model and odds while their counts still match.
+    excluded = {str(x).casefold() for x in model.get("excluded_pollsters", [])}
+    source_current = set()
+    for raw_race in primary.get("races", []):
+        office, code = raw_race.get("race_type"), raw_race.get("race_code")
+        if office not in OFFICES:
+            continue
+        for item in raw_race.get("polls", []):
+            demname = str(item.get("dem_name") or "").strip().casefold()
+            repname = str(item.get("rep_name") or "").strip().casefold()
+            pollster = str(item.get("pollster") or "").strip().casefold()
+            if (not demname or not repname or "generic" in demname
+                    or "generic" in repname or not pollster or pollster in excluded):
+                continue
+            try:
+                age = (today - date.fromisoformat(item["field_end"])).days
+                nums = [float(item[k]) for k in ("dem", "rep", "margin")]
+            except (KeyError, TypeError, ValueError):
+                continue
+            if 0 <= age <= MODEL_WINDOW_DAYS and all(math.isfinite(x) for x in nums):
+                source_current.add((office, code))
+                break
+    missing_races = source_current - set(modeled)
+    if missing_races:
+        raise ValueError("Qualifying 2026 source races absent from BOTH model and odds: "
+                         + repr(sorted(missing_races)[:10]))
     probabilities = {}
     for p in odds.get("records", []):
         key = (p.get("office"), p.get("race_code"))
@@ -60,7 +89,6 @@ def check(primary, model, odds, supplemental=None, *, today=None):
     referenced = 0
     freshest_primary_waves = 0
     ambiguous_primary_waves = 0
-    excluded = {str(x).casefold() for x in model.get("excluded_pollsters", [])}
     for key, race in modeled.items():
         raw = source.get(race["race_code"], {}).get("polls", [])
         # Don't merely verify the polls the estimator SAYS it used. Verify
@@ -186,7 +214,9 @@ def check(primary, model, odds, supplemental=None, *, today=None):
             )
     if len(modeled) < 30 or referenced < 30:
         raise ValueError("Missing broad source/model coverage")
-    return {"modeled_races": len(modeled), "linked_firm_waves": referenced,
+    return {"modeled_races": len(modeled),
+            "qualifying_source_races": len(source_current),
+            "linked_firm_waves": referenced,
             "freshest_primary_firm_waves": freshest_primary_waves,
             "ambiguous_same_day_primary_waves": ambiguous_primary_waves,
             "linked_probability_records": len(probabilities),
