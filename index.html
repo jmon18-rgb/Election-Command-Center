@@ -1027,7 +1027,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_early_signals.js?v=7691146833ec"></script>
 <script src="./scripts/election_night_signals.js?v=75bc99b105dd"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
-<script src="./scripts/chamber_control_model.js?v=fe9fa5295651"></script>
+<script src="./scripts/chamber_control_model.js?v=5d4e5c2d0732"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
 <script src="./scripts/chamber_poll_error_audit.js?v=9e73e0e9f9fe"></script>
 <script src="./scripts/senate_calibration_audit.js?v=cc0ab62269fb"></script>
@@ -2936,6 +2936,23 @@ function jointLiveObservations(){
     !window.RaceLiveNowcast||!jointBasis)return {};
  const observations={},now=Date.now();
  for(const r of [...jointBasis.house,...jointBasis.senate,...jointBasis.governors]){
+  // A provider-attributed winner call is stronger than a partial lead.
+  // The race must have passed the 2026 civicAPI identity/schema checks.
+  // Calls are not official certification and can be corrected or withdrawn.
+  const office=r.code.endsWith('-SEN')?'Senate':
+   r.code.endsWith('-GOV')?'Governor':'House';
+  const item=enLiveRaceItem({office:office.toLowerCase(),race_code:r.code});
+  const civic=item?enCivicByWatch[enWatchId(item)]:null;
+  const verified=window.ElectionNightSignals?.validatedCall(civic,now);
+  if(item&&civic?.office===item.office&&civic?.key===item.key&&
+     verified&&['D','R'].includes(verified.party)){
+   observations[r.code]={mode:'source_called',winnerParty:verified.party,
+    source:'civicAPI',asOf:verified.at};
+   jointPulseRows.push({race_code:r.code,office,provider:'civicAPI',
+    reporting:civic.percent_reporting,asOf:verified.at,
+    calledParty:verified.party});
+   continue;
+  }
   const x=jointSourceItem(r);
   if(!x||x.sourceStale||x.reporting<10||x.time< Date.parse('2026-11-03T05:00:00Z')||
       x.time>now+900000||now-x.time>180*60000)continue;
@@ -2974,7 +2991,7 @@ function jointRenderNeedles(result){
   // This expectation tracks the center of gravity, NOT a probability of a call.
   const position=(v[1]+2*v[2]+3*v[3])/(3*total)*100;
   const likely=v.indexOf(Math.max(...v));
-  const liveCount=Object.keys(jointLiveObservations()).length;
+  const liveCount=jointPulseRows.length;
   const startOfCounting=Date.parse('2026-11-03T05:00:00Z');
   const sourceMode=Date.now()<startOfCounting?'POLLING-ONLY · NO LIVE RETURNS':
    liveCount?'RESULTS-INFORMED · '+liveCount+' SOURCE-VALIDATED RACES':
@@ -3038,7 +3055,9 @@ function jointRenderNeedles(result){
   for(const d of movement.drivers){
    const row=elt('a','four-needle-driver');
    row.href='#electionNight';
-   row.textContent=d.race_code+(d.early?' · EARLY SIGNAL':'')+
+   row.textContent=d.race_code+
+    (d.calledParty?' · PROVIDER CALL '+d.calledParty:'')+
+    (d.early?' · EARLY SIGNAL':'')+
     ' · D win '+d.from.toFixed(1)+' → '+d.to.toFixed(1)+'% ('+
     (d.delta>=0?'+':'')+d.delta.toFixed(1)+' pp) · '+
     d.provider+' · '+d.reporting.toFixed(0)+'% precincts';
@@ -3202,7 +3221,9 @@ function jointCurrentSignature(){
   (enOfficeSnapshots[office]?.as_of||'')+'-'+
   (enOfficeErrors[office]||'')).join('|');
  const civic=Object.entries(enCivicByWatch).map(([key,data])=>
-  key+':'+data.last_updated+':'+Boolean(enCivicErrors[key])).sort().join('|');
+  key+':'+data.last_updated+':'+data.called+':'+
+   data.candidates?.map(x=>x.name+':'+x.party+':'+x.votes).join(',')+
+   ':'+Boolean(enCivicErrors[key])).sort().join('|');
  return (jointBasis?.generated_from_sources?.model_polling_at||'')+':'+
   snaps+':'+civic+':'+jointNationalShift+':'+jointErrorMultiplier+
   ':'+enModeYear+':'+(Date.now()>=Date.parse('2026-11-03T05:00:00Z'));
@@ -3259,7 +3280,9 @@ function jointRender(force=false){
   const note=$('#jointRunStatus');
   if(note)note.textContent=(jointUsesPrivateContext()?(jointPrivateSource==='repository'?'REPOSITORY SENATE/HOUSE FUNDAMENTALS · ':'LOCAL CSV CONTEXT · '):'')+
    Object.keys(updates).length+
-   ' source-validated live-informed races · swing '+
+   ' source-validated races ('+
+   Object.values(updates).filter(x=>x.mode==='source_called').length+
+   ' provider calls) · swing '+
    (jointNationalShift>=0?'+':'')+jointNationalShift.toFixed(1)+
    ' pts · '+(jointErrorMultiplier===1?'baseline error':
    jointErrorMultiplier>1?'wider error':'narrower error')+
