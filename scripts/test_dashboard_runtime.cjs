@@ -161,6 +161,11 @@ async function settle(){
   'Screenshot reference metadata is discovery context, not homepage filler');
  assert.equal(get('#smartBriefControls').querySelector('[data-smart-office="All"]')
   .getAttribute('aria-pressed'),'true','Full roster is the default');
+ const unchangedFirstRow=frontRows[0];
+ w.eval('renderSmartRaceDesks()');
+ assert.strictEqual(get('#smartBriefGrid').querySelector('a.smart-signal'),
+  unchangedFirstRow,
+  'No-op refreshes must preserve existing full-roster DOM and event handlers');
  assert.match(get('#smartBriefCount').textContent,/35\/35 Senate contests/);
  assert.equal(get('#smartNightDesk').hidden,true,
   '2024 archive should hide the live 2026 watchboard');
