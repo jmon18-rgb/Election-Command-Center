@@ -713,7 +713,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <details class="joint-audit" id="jointHomeCorrelationDetails"><summary>How much do Senate races move together? · probability sensitivity</summary><div id="jointHomeCorrelation" class="joint-note">Open to compare a conservative historical covariance sensitivity without changing the forecast.</div></details>
  <details class="joint-audit"><summary>Historical polling-error check · how reliable is this?</summary><p id="jointHomeAudit" class="joint-note">Reading existing historical Senate poll backtest…</p></details>
  <details class="forecast-details brief-model-key"><summary>What do the four endings mean?</summary></details>
- <p class="joint-note">Blue Wave: ≥218 D House and ≥49 D-aligned Senate seats. Blue Tsunami: ≥235 and ≥52. Shrug: one Wave threshold; Red Dawn: neither. <strong>49 Senate seats is not Senate control</strong>; control odds are shown separately.</p></details>
+ <p class="joint-note">Blue Wave: D wins BOTH chambers (≥218 House, ≥51 Democratic-aligned Senate). Blue Tsunami: ≥235 House and ≥52 Senate. Shrug: split control. Red Dawn: Republicans hold both. These categories are exclusive; stronger Tsunami draws are excluded from Wave.</p></details>
 </div>
 
 <section class="smart-race-desk" id="smartBriefDesk" aria-label="Automatically tracked 2026 Senate and House races">
@@ -1161,7 +1161,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_priority.js?v=763db866f53f"></script>
 <script src="./scripts/election_night_signals.js?v=75bc99b105dd"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
-<script src="./scripts/chamber_control_model.js?v=1ff46da0f9d8"></script>
+<script src="./scripts/chamber_control_model.js?v=aa102ced6a53"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
 <script src="./scripts/chamber_poll_error_audit.js?v=9e73e0e9f9fe"></script>
 <script src="./scripts/senate_calibration_audit.js?v=cc0ab62269fb"></script>
@@ -3310,9 +3310,9 @@ function jointPrivateActivate({deferRender=false}={}){
 }
 const jointLabels=[
  ['blue_tsunami','BLUE TSUNAMI','D ≥235 House · ≥52 Senate','d-tide'],
- ['blue_wave','BLUE WAVE','D ≥218 House · ≥49 Senate','d-wave'],
- ['shrug','SHRUG','One Wave threshold met','d-split'],
- ['red_dawn','RED DAWN','Neither threshold met','r-dawn']
+ ['blue_wave','BLUE WAVE','D controls House + Senate','d-wave'],
+ ['shrug','SHRUG','Democrats control one chamber','d-split'],
+ ['red_dawn','RED DAWN','Republicans control both','r-dawn']
 ];
 function jointSourceItem(item){
  const key=item.code,itemOffice=key.endsWith('-SEN')?'Senate':'House';
@@ -3447,7 +3447,7 @@ function jointRenderNeedles(result){
   context.append(elt('div','four-needle-change',(
    Math.abs(delta)<.05?'NEEDLE STEADY':delta>0?'NEEDLE MOVED BLUE':'NEEDLE MOVED RED')+
    ' · '+(delta>=0?'+':'')+delta.toFixed(1)+' track points vs pre-count baseline'+
-   ' · D Wave gate '+(movement.dBothChange>=0?'+':'')+
+   ' · D both chambers '+(movement.dBothChange>=0?'+':'')+
    movement.dBothChange.toFixed(1)+' pp'));
   context.append(elt('div','four-needle-signal-label',
    movement.earlyCount+' early-indicator race(s) with validated returns · '+
@@ -3497,7 +3497,7 @@ function jointRenderCards(result){
    host.append(cell);
   }
   const headline=$('#'+(id==='jointHomeCards'?'jointHomeHeadline':'jointNightHeadline'));
-  if(headline)headline.textContent='D ≥218H / ≥49S '+result.blue_both_including_tsunami.toFixed(1)+
+  if(headline)headline.textContent='D both chambers '+result.blue_both_including_tsunami.toFixed(1)+
    '% · Tsunami '+result.probabilities.blue_tsunami.toFixed(1)+
    '% · '+result.samples.toLocaleString('en-US')+' simulations';
   const info=jointBasis.generated_from_sources;
@@ -3507,8 +3507,7 @@ function jointRenderCards(result){
   // needs the same coherent probabilities without a wall of text.
   status.textContent='D House control '+result.house_dem_control_pct.toFixed(1)+
    '% · D Senate control '+result.senate_dem_control_pct.toFixed(1)+
-   '% · D both control '+result.actual_dem_both_control_pct.toFixed(1)+
-   '% · Wave threshold '+result.blue_both_including_tsunami.toFixed(1)+
+   '% · D both chambers '+result.actual_dem_both_control_pct.toFixed(1)+
    '% · Latest polls '+new Date(jointBasis.generated_from_sources.model_polling_at)
     .toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+
    (jointUsesPrivateContext()?' · SILVER CSV FUNDAMENTALS ACTIVE':'');
