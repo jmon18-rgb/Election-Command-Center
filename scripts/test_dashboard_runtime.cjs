@@ -1019,6 +1019,10 @@ async function settle(){
  // separately on the real site and this suite validates rendering/contracts.
  w.eval('enModeYear=2024;enOffice="House";enAcceptSource('+JSON.stringify(archival)+')');
  assert.match(get('#enStatus').textContent,/2024 ARCHIVE/);
+ assert(w.ElectionNightReconciliation?.reconcile,
+  'National coverage engine must load before the 2026 results app');
+ assert.match(get('#enCoverageReconciliation').textContent,/2024 historical archive/,
+  '2024 recorded vote totals must never masquerade as 2026 national coverage');
  assert.equal(get('#enDLeads').textContent,'1');
  assert.equal(get('#enRLeads').textContent,'0');
  assert.equal(get('#enCalls').textContent,'Not supplied');
