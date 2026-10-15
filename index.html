@@ -595,6 +595,72 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .smart-desk-open{font-size:10px;white-space:nowrap;color:#aad7ff}
 .smart-desk-open:focus-visible{outline-offset:2px}
 @media(max-width:690px){.smart-race-desk{padding:12px}.smart-desk-grid{grid-template-columns:1fr}.smart-desk-row{grid-template-columns:minmax(62px,.75fr) minmax(0,1.6fr) auto;gap:5px;padding:9px 3px}.smart-desk-identity strong{font-size:12px}.smart-desk-detail{font-size:10px}.smart-desk-state{font-size:9px;padding:4px}.smart-desk-head h2{font-size:19px}}
+
+/* Personal surf report: original aquatic styling, never an official hazard advisory. */
+#brief .brief-intro{margin-bottom:8px}
+#brief .brief-first-title{margin-top:10px}
+#jointHomePanel{padding:14px;border-color:#37667e;background:linear-gradient(160deg,#152f46,#0b1d32 80%)}
+.joint-headline{font-size:13px;line-height:1.5;font-weight:740;color:#b4e9ff;margin:10px 0 5px;font-variant-numeric:tabular-nums}
+.forecast-details{margin:8px 0 12px;color:#a1b9cf;font-size:11px}
+.forecast-details>summary{cursor:pointer;color:#87b9d5;font-size:11px}
+.forecast-details[open]{border-top:1px solid #31516a;padding-top:6px}
+.forecast-details .joint-summary{max-width:800px;font-size:11px}
+.brief-model-key{margin:10px 0 0}
+.forecast-lab{padding-top:8px;margin-top:9px;border-top:1px solid #2d455c}
+.forecast-lab>summary{color:#a2bdd4;font-size:11px;font-weight:750;cursor:pointer}
+.forecast-lab>.joint-audit{margin:9px 0}
+.four-needle{position:relative;isolation:isolate;overflow:hidden;border-color:#296c83;border-radius:13px;background:radial-gradient(ellipse 50% 35% at 50% 92%,rgba(4,149,221,.24),transparent),radial-gradient(ellipse 75% 65% at 75% 12%,rgba(20,96,141,.23),transparent),linear-gradient(160deg,#0d3048,#082238 78%);padding:12px 14px 9px}
+.four-needle:before{content:'';position:absolute;z-index:-1;left:-15%;right:-15%;height:100px;bottom:75px;opacity:.19;pointer-events:none;background:radial-gradient(ellipse 31px 10px at 35px 55px,transparent 74%,#5acdec 78%,transparent 87%) 0 0/75px 35px repeat-x;transform:skewY(-3deg)}
+.four-needle-top strong{color:#d2f8ff;font-size:12px;letter-spacing:.12em}
+.four-needle-top span{font-size:10px;color:#85aec2}
+.four-needle-arc{filter:drop-shadow(0 2px 9px rgba(49,176,239,.18));max-height:240px;margin:0 auto}
+.four-needle-arc .ocean-foam path{stroke-width:3px;opacity:.34;fill:none;stroke-linecap:round}
+.four-needle-arc .ocean-foam path:nth-child(2){opacity:.2}
+.four-needle-arc text{fill:#8ac5df;letter-spacing:1.3px}
+.four-needle-labels{font-size:10px;letter-spacing:.02em;margin-top:-6px;color:#badff0}
+.four-needle-labels span:last-child{color:#81ddff}
+.four-needle-footer{font-size:10px;gap:2px}
+.four-needle-footer span:first-child{color:#c7f4ff}
+.four-needle-change{font-size:10px;color:#9fc9df;font-weight:750}
+.four-needle-live-context{margin-top:7px;padding-top:7px}
+.joint-panel .joint-grid{gap:7px}
+.joint-cell{min-height:104px;padding:12px 12px 11px;border-radius:9px;background:#172c41}
+.joint-cell .joint-value{font-size:clamp(24px,3vw,32px);margin:5px 0}
+.joint-cell span{font-size:10px;line-height:1.35}
+.smart-race-desk{padding:15px 16px;border-color:#315e76;background:linear-gradient(135deg,#102a3e,#0d2032);margin-top:14px}
+.smart-desk-head{align-items:flex-start;margin-bottom:10px}
+.smart-desk-head h2{margin:4px 0;font-size:19px}
+.smart-desk-head p{font-size:11px;color:#94bdd2}
+.smart-desk-more{border-color:#487b96;border-radius:7px;background:rgba(18,74,101,.6);font-size:11px;min-height:34px;padding:7px 11px}
+.smart-desk-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.smart-signal{display:grid;grid-template-columns:minmax(62px,.75fr) minmax(0,1.55fr) auto;align-items:center;gap:8px;position:relative;text-decoration:none;border:1px solid #31526a;border-radius:9px;background:#152e43;color:#dfeeff;padding:11px 12px;min-width:0;transition:border-color .16s,background .16s}
+.smart-signal:hover,.smart-signal:focus-visible{border-color:#61b8e1;background:#1b3c52;outline-offset:2px}
+.smart-signal-info,.smart-signal-figures,.smart-signal-outcome{display:flex;min-width:0;flex-direction:column;gap:4px}
+.smart-signal-name{font-size:13px;letter-spacing:.02em;color:#d9f2ff;font-weight:880}
+.smart-signal-reason{font-size:9px;color:#85a9c4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.smart-signal-readings{font-size:11px;color:#d1e3f4;font-weight:760;line-height:1.3;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.smart-signal-sub{font-size:9px;color:#91b2c9;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.smart-signal-outcome{align-items:flex-end;white-space:nowrap;font-variant-numeric:tabular-nums}
+.smart-signal-outcome strong{font-size:17px;letter-spacing:-.04em;color:#dce7f6}
+.smart-signal-outcome small{font-size:9px;color:#91b1ca}
+.smart-signal-outcome[data-party="D"] strong,.smart-signal-outcome[data-party="O"] strong{color:#80cbff}
+.smart-signal-outcome[data-party="R"] strong{color:#ffa3a3}
+.smart-signal-arrow{position:absolute;right:4px;top:5px;color:#6b9cbd;font-size:12px;opacity:.55}
+.smart-selection-method{margin-top:10px;font-size:10px;color:#7fa9bf}
+.smart-selection-method>summary{cursor:pointer;width:max-content;color:#88b0c7}
+.smart-selection-method .smart-desk-note{font-size:10px;line-height:1.4;margin:5px 0 0}
+#briefPollLog{margin:19px 0;border:1px solid #294c67;border-radius:11px;background:#122437}
+#briefPollLog>summary{cursor:pointer;display:flex;align-items:center;gap:10px;padding:13px 15px;list-style:none}
+#briefPollLog>summary::-webkit-details-marker{display:none}
+#briefPollLog>summary strong{font-size:12px;color:#d4e6f5}
+#briefPollLog>summary span:not(.poll-log-chevron){font-size:10px;color:#86a9c2;margin-left:auto;text-align:right}
+#briefPollLog>summary .poll-log-chevron{color:#80d3f0;font-size:20px}
+#briefPollLog[open]>summary .poll-log-chevron{transform:rotate(180deg)}
+#briefPollLog>#newPolls,#briefPollLog>.textlink{display:block;margin:0 13px 12px}
+#brief .pulse-disclaimer{font-size:10px;line-height:1.35;color:#819fb9}
+#brief .brief-news-card{margin-top:8px}
+@media(max-width:760px){.smart-desk-grid{grid-template-columns:1fr}.smart-signal{grid-template-columns:minmax(68px,1fr) minmax(0,1.5fr) 66px;padding:9px 10px;gap:6px}.smart-signal-outcome strong{font-size:16px}.smart-signal-name{font-size:12px}.smart-signal-readings{font-size:10px}#jointHomePanel{padding:10px}.four-needle{padding:9px 8px}.four-needle-arc{max-height:225px}.joint-cell{min-height:92px;padding:10px}.joint-cell .joint-value{font-size:25px}.joint-cell strong{font-size:10px}.joint-cell span{font-size:10px}.four-needle-labels{font-size:9px}#briefPollLog>summary{flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){.smart-signal{transition:none}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -614,18 +680,20 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <details class="feed-strip-details"><summary>Details</summary><span id="healthText">Checking data feeds…</span> <span id="lastChecked" class="tiny"></span></details>
 </div><nav class="tabs" aria-label="Dashboard tabs"><button class="tab" data-page="brief" aria-selected="true">Daily briefing</button><button class="tab" data-page="wire" aria-selected="false">Poll Wire</button><button class="tab" data-page="model" aria-selected="false">JackStradamus</button><button class="tab" data-page="integrity" aria-selected="false">Bullshittery Index</button><button class="tab" data-page="electionNight" aria-selected="false">Election Night</button></nav>
 <section id="brief" class="page active">
-<div class="brief-intro"><div><span class="eyebrow">DAILY BRIEFING</span><h2>Today’s tide schedule</h2><p>Start with the numbers. Then see what's new and why it matters.</p></div><div class="brief-date compact-date"><span>Election Day · Nov 3</span><strong id="countdown">—</strong></div></div>
-<div class="sectionhead"><h2>The four endings</h2><span class="tiny">JackStradamus · one correlated model for races and chamber control</span></div>
+<div class="brief-intro"><div><span class="eyebrow">THE DAILY SURF REPORT</span><h2>Today’s tide schedule</h2><p>Four possible endings. One very interesting ocean.</p></div><div class="brief-date compact-date"><span>Election Day · Nov 3</span><strong id="countdown">—</strong></div></div>
+<div class="sectionhead brief-first-title"><h2>The four endings</h2><span class="tiny">JackStradamus · House + Senate</span></div>
 <div class="joint-panel" id="jointHomePanel" aria-label="JackStradamus four outcome probability model">
- <div class="joint-title"><div><span class="label">JACKSTRADAMUS · JOINT CHAMBER BETA</span><h3>Four endings. Our probabilities.</h3></div><span class="joint-tag">EXPERIMENTAL · ASSUMPTION-BASED</span></div>
- <p class="joint-summary" id="jointHomeSummary">Building the 435-House, 35-Senate model from published polling and election history…</p>
+ <div class="joint-title"><div><span class="label">JACKSTRADAMUS · COASTAL OUTLOOK</span><h3>Blue wave watch <span aria-hidden="true">🌊</span></h3></div><span class="joint-tag">EXPERIMENTAL MODEL</span></div>
+ <p class="joint-headline" id="jointHomeHeadline">Checking the surf forecast…</p>
+ <details class="forecast-details"><summary>Forecast details &amp; assumptions</summary><p class="joint-summary" id="jointHomeSummary">Preparing polling and fundamentals…</p></details>
  <div class="four-needle" id="jointHomeNeedle" role="img" aria-label="Four Endings needle awaiting model">
-  <div class="four-needle-top"><strong>FOUR ENDINGS NEEDLE</strong><span>Same correlated forecast · not a race call</span></div>
+  <div class="four-needle-top"><strong>🌊 THE TIDE-O-METER</strong><span>Not an official weather alert</span></div>
   <svg class="four-needle-arc" viewBox="0 0 460 260" aria-hidden="true">
    <path d="M50 218 A180 180 0 0 1 102.7 90.7" stroke="#a95a65"/>
    <path d="M102.7 90.7 A180 180 0 0 1 230 38" stroke="#b2a3c1"/>
    <path d="M230 38 A180 180 0 0 1 357.3 90.7" stroke="#61adf6"/>
    <path d="M357.3 90.7 A180 180 0 0 1 410 218" stroke="#045ec2"/>
+   <g class="ocean-foam" aria-hidden="true"><path d="M105 205 Q137 191 169 205 T233 205 T297 205 T361 205" stroke="#81dff3"/><path d="M126 226 Q165 213 204 226 T282 226 T360 226" stroke="#65b9eb"/><path d="M147 183 Q175 173 204 183 T262 183 T320 183" stroke="#b7f2ff"/></g>
    <line class="four-needle-arc-baseline" x1="230" y1="218" x2="230" y2="62" stroke="#d2dde9" stroke-width="3" stroke-dasharray="5 6" style="display:none"/>
    <line class="four-needle-arc-pointer" x1="230" y1="218" x2="230" y2="62" stroke="#fff0a4" stroke-width="5" stroke-linecap="round"/>
    <circle cx="230" cy="218" r="11" fill="#fff0a4" stroke="#18334f" stroke-width="4"/>
@@ -637,42 +705,30 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   <div class="four-needle-distribution" aria-hidden="true"></div>
  </div>
  <div class="joint-grid" id="jointHomeCards"><p class="joint-note">Waiting for complete model inputs…</p></div>
- <details class="joint-audit"><summary>Compare House fundamentals · historical vs presidential</summary><p id="jointHomeShadow" class="joint-note">Checking historically comparable House districts…</p></details>
+ <details class="forecast-lab"><summary>Model checks &amp; research</summary>
+<details class="joint-audit"><summary>Compare House fundamentals · historical vs presidential</summary><p id="jointHomeShadow" class="joint-note">Checking historically comparable House districts…</p></details>
  <details class="joint-audit" id="jointHomeCorrelationDetails"><summary>How much do Senate races move together? · probability sensitivity</summary><div id="jointHomeCorrelation" class="joint-note">Open to compare a conservative historical covariance sensitivity without changing the forecast.</div></details>
  <details class="joint-audit"><summary>Historical polling-error check · how reliable is this?</summary><p id="jointHomeAudit" class="joint-note">Reading existing historical Senate poll backtest…</p></details>
- <p class="joint-note">Blue Tsunami = Democrats win both chambers AND at least 18 of 20 fixed House/Senate/governor battleground races. Blue Wave = both chambers without that near-sweep. Shrug = split control. Red Dawn = Republicans retain both. These four outcomes are mutually exclusive. Model estimates are not calibrated forecasts.</p>
+ <details class="forecast-details brief-model-key"><summary>What do the four endings mean?</summary></details>
+ <p class="joint-note">Blue Tsunami: D wins both chambers and at least 18 of 20 fixed battlegrounds. Blue Wave: D wins both without the near-sweep. Shrug: split control. Red Dawn: R wins both. Four exclusive outcomes, one uncalibrated correlated model.</p></details>
 </div>
 
 <section class="smart-race-desk" id="smartBriefDesk" aria-label="Automatically tracked 2026 Senate and House races">
-<div class="smart-desk-head"><div><span class="label">AUTOMATIC RACE INTELLIGENCE · 2026</span>
-<h2>Races that could move the needle</h2><p>Preselected from the supplied tipping-point reference; reorders as verified votes and model uncertainty change. No pinning required.</p></div>
-<button type="button" id="smartBriefMore" class="smart-desk-more" aria-expanded="false">Show more races</button></div>
+<div class="smart-desk-head"><div><span class="label">THE PRESSURE POINTS · 2026</span>
+<h2>Where the wave breaks</h2><p>Actual model odds, polling, and races worth watching.</p></div>
+<button type="button" id="smartBriefMore" class="smart-desk-more" aria-expanded="false">All races ↓</button></div>
 <div class="smart-desk-grid" id="smartBriefGrid"><p class="empty">Preparing Senate, House and statewide races…</p></div>
-<p class="smart-desk-note" id="smartBriefNote">Before November 3: reference watch and current JackStradamus estimates only. On election night: validated source-reported votes and calls. Precinct share is not vote share counted.</p></section>
+<details class="smart-selection-method"><summary>Why these races?</summary><p class="smart-desk-note" id="smartBriefNote">Prioritized by competitive odds, current polls, and independently validated election-night reporting. Screenshot tipping-point rankings only seed the broader watchlist; they are not probability inputs.</p></details></section>
 <div class="grid" style="margin-top:16px">
 <div class="card eight featured"><div class="row"><span class="label">National generic ballot · recent polls</span><span class="tag teal">OBSERVED DATA</span></div><div class="featureline"><div><div class="big party-even" id="genericMargin">—</div><p class="detail" id="genericDetail">Awaiting verified polling observations.</p></div><div class="featuredelta"><span class="label">SINCE LAST REFRESH</span><strong id="genericDelta">—</strong></div></div><div class="barlabels"><span>DEMOCRATIC</span><span>REPUBLICAN</span></div><div class="ballotbar"><div id="ballotDem" class="ballotdem"></div><div id="ballotRep" class="ballotrep"></div></div><div class="barvalues"><span id="ballotDemLabel">—</span><span id="ballotRepLabel">—</span></div><div class="rule"></div><div class="row"><span class="tiny" id="genericFresh">Polling feed not yet loaded</span><button class="textlink" type="button" data-jump="races">Explore races →</button></div><p class="methodline">Descriptive polling average, not a prediction of House seats or win probabilities.</p></div>
 </div>
 <div class="sectionhead"><h2>What actually changed</h2><span class="tiny" id="pulseAsOf">Comparing recent model snapshots</span></div>
 <div id="racePulse" class="pulse-grid"><div class="empty">Checking for meaningful new polling evidence…</div></div>
 <p class="pulse-disclaimer">Changes in polling averages can reflect new surveys, weighting or timing—not necessarily a shift in voter opinion. Only current, qualifying observations are shown; older snapshots are compared only with identical candidate matchups.</p>
-<div class="sectionhead"><h2>What's new</h2><span class="tiny" id="freshness">Checking latest update</span></div>
-<div class="grid"><div class="card seven"><div class="row"><span class="label">New polls</span><span class="tiny" id="changesSince">Checking newly observed surveys</span></div><div id="newPolls" class="empty">Checking recent poll postings…</div><button class="textlink" type="button" data-jump="wire">Open full Poll Wire →</button></div>
-<div class="card five"><div class="row"><span class="label">Election developments</span><span class="tag">NEWS LEADS</span></div><p id="newsFeedStatus" class="tiny" role="status">Checking publication date…</p><div id="updates" class="empty">Loading recent election reporting.</div><button class="textlink" type="button" data-jump="integrity">Bullshittery Index →</button></div></div>
-<div class="sectionhead"><h2>The Senate tide line</h2><span class="tiny" id="senateTideAsOf">Watching the races that could change control</span></div>
-<div class="tide-line-panel" aria-label="Key Senate races from the 2026 control forecast">
- <p class="tide-line-intro">The path to Senate control runs through more than one race. Watch the battlegrounds, then the outer edge of a possible wave. All margins and odds below come from our own live polling and correlated model—not another forecaster's odds.</p>
- <div id="senateTideRaces" class="tide-races"><p class="joint-note">Matching Senate polls and model probabilities…</p></div>
- <p class="tide-line-note">SC, GA, FL, LA and MS are wider-wave watches—not required conditions for a Blue Tsunami. Nebraska's Dan Osborn runs as an independent; a model victory for him is not necessarily a Democratic Senate seat.</p>
- </div>
-<div class="sectionhead"><h2>Mississippi Senate watch</h2><span class="tiny" id="mississippiWatchAsOf">MS-SEN · linked Senate forecast</span></div>
- <div class="tide-line-panel" id="mississippiSenatePanel">
-  <p class="tide-line-intro">Scott Colom versus Cindy Hyde-Smith. Mississippi is an emerging wider-wave Senate race worth watching.</p>
-  <div id="mississippiSenateWatch" class="tide-races"><p class="joint-note">Checking Mississippi polling and the joint Senate forecast…</p></div>
-  <p class="tide-line-note">Only one recent independent survey is included. The observed margin and election win probability are different measures. Both are linked to the same Senate and Four Endings simulation.</p>
- </div>
- <div class="sectionhead"><h2>What to watch</h2><span class="tiny">What deserves a closer look?</span></div>
-<div class="card radar-wrap"><div id="jackRadar" class="radar-grid"><div class="empty">Scanning close races, polling blind spots, and election developments…</div></div><p class="methodline">The closest margins, thin polling, and documented election-administration issues.</p></div>
-
+<div class="sectionhead"><h2>On the radar</h2><span class="tiny" id="freshness">Checking latest update</span></div>
+<div class="card brief-news-card"><div class="row"><span class="label">Election developments</span><span class="tag">NEWS LEADS</span></div><p id="newsFeedStatus" class="tiny" role="status">Checking publication date…</p><div id="updates" class="empty">Loading recent election reporting.</div><button class="textlink" type="button" data-jump="integrity">Bullshittery Index →</button></div>
+<details class="brief-poll-log" id="briefPollLog"><summary><strong>The full poll log</strong><span id="changesSince">Checking recent surveys…</span><span class="poll-log-chevron" aria-hidden="true">⌄</span></summary>
+<div id="newPolls" class="empty">Checking recent poll postings…</div><button class="textlink" type="button" data-jump="wire">Open full Poll Wire →</button></details>
 </section>
 
 <section id="wire" class="page" aria-label="Poll Wire">
@@ -693,6 +749,25 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  </div>
 </section>
 <section id="model" class="page">
+<details class="race-workbench" id="senateDeepDive">
+ <summary><strong>Senate deep dive &amp; wider-wave watches</strong><span>Race-by-race polling and model diagnostics</span></summary>
+ <div class="race-workbench-body"><div class="sectionhead"><h2>The Senate tide line</h2><span class="tiny" id="senateTideAsOf">Watching the races that could change control</span></div>
+<div class="tide-line-panel" aria-label="Key Senate races from the 2026 control forecast">
+ <p class="tide-line-intro">The path to Senate control runs through more than one race. Watch the battlegrounds, then the outer edge of a possible wave. All margins and odds below come from our own live polling and correlated model—not another forecaster's odds.</p>
+ <div id="senateTideRaces" class="tide-races"><p class="joint-note">Matching Senate polls and model probabilities…</p></div>
+ <p class="tide-line-note">SC, GA, FL, LA and MS are wider-wave watches—not required conditions for a Blue Tsunami. Nebraska's Dan Osborn runs as an independent; a model victory for him is not necessarily a Democratic Senate seat.</p>
+ </div>
+<div class="sectionhead"><h2>Mississippi Senate watch</h2><span class="tiny" id="mississippiWatchAsOf">MS-SEN · linked Senate forecast</span></div>
+ <div class="tide-line-panel" id="mississippiSenatePanel">
+  <p class="tide-line-intro">Scott Colom versus Cindy Hyde-Smith. Mississippi is an emerging wider-wave Senate race worth watching.</p>
+  <div id="mississippiSenateWatch" class="tide-races"><p class="joint-note">Checking Mississippi polling and the joint Senate forecast…</p></div>
+  <p class="tide-line-note">Only one recent independent survey is included. The observed margin and election win probability are different measures. Both are linked to the same Senate and Four Endings simulation.</p>
+ </div>
+ <div class="sectionhead"><h2>What to watch</h2><span class="tiny">What deserves a closer look?</span></div>
+<div class="card radar-wrap"><div id="jackRadar" class="radar-grid"><div class="empty">Scanning close races, polling blind spots, and election developments…</div></div><p class="methodline">The closest margins, thin polling, and documented election-administration issues.</p></div>
+
+</div>
+</details>
 <details id="raceWorkbench" class="race-workbench">
  <summary><strong>Survey explorer</strong><span>Pollster-by-pollster evidence, sortable race lists and seat-lead tracker</span></summary>
  <div class="race-workbench-body"><div class="sectionhead"><h2>Race intelligence</h2><span class="tiny">Advanced analysis workspace</span></div><div class="grid"><div class="card twelve"><div class="row"><span class="label">Battleground tracker</span><span class="tag teal">POLLING DATA</span></div><div class="big">The races that matter.</div><p class="detail">Browse individual surveys, pollsters, sample sizes, and field dates.</p><div class="chips"><button class="chip active" data-race="Senate">Senate</button><button class="chip" data-race="House">House</button><button class="chip" data-race="Governors">Governors</button></div><div class="statbar"><div class="stat"><small>RACES WITH RECENT POLLS</small><b id="raceCount">—</b></div><div class="stat"><small>NEWEST POLL FIELD DATE</small><b id="raceNewest">—</b></div></div><div class="toolrow"><input id="raceSearch" type="search" placeholder="Filter by state, race, pollster"><select id="raceSort" aria-label="Sort races"><option value="recent">Most recent</option><option value="closest">Closest latest poll</option><option value="count">Most polls</option><option value="state">State A–Z</option></select></div><div class="statusline" id="raceStatus">Loading the latest Senate surveys…</div>
@@ -856,7 +931,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <button id="enRefresh" type="button" class="chip">Refresh now</button><span id="enConnection" class="en-connection" role="status">Connecting…</span>
 </div>
 <section class="joint-panel joint-night" id="jointNightPanel" aria-label="Live-informed four-ending election probabilities">
- <div class="joint-title"><div><span class="label">JACKSTRADAMUS · JOINT CONTROL</span><h3>Where the night is headed</h3></div><span class="joint-tag">EXPERIMENTAL · NO CALLS</span></div>
+ <div class="joint-title"><div><span class="label">JACKSTRADAMUS · LIVE COASTAL OUTLOOK</span><h3>Where the night is headed 🌊</h3></div><span class="joint-tag">EXPERIMENTAL MODEL</span></div>
  <div id="enArchiveOutcome" class="en-archive-outcome" hidden role="status">
   <div class="en-archive-outcome-top"><strong>2024 ACTUAL OUTCOME</strong><span>Retrospective, not a 2024 forecast</span></div>
   <div class="en-archive-outcome-main"><span>RED DAWN</span><b>Republicans won both chambers</b></div>
@@ -867,14 +942,15 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   <p>Historical election outcome and the resulting 119th Congress. The Four Endings percentages elsewhere are <strong>2026 projections</strong>, never retrospective 2024 odds. The 2024 race table below is from historical reported votes, not a live or time-progressive replay.</p>
   <small>Sources: <a href="https://www.thegreenpapers.com/G24/HouseVoteByParty.phtml" target="_blank" rel="noopener noreferrer">2024 House elected winners</a> · <a href="https://www.senate.gov/history/partydiv.htm" target="_blank" rel="noopener noreferrer">Senate party division, 119th Congress</a>.</small>
  </div>
- <p id="jointNightSummary" class="joint-summary">Preparing the joint House and Senate probability model…</p>
+ <p id="jointNightHeadline" class="joint-headline">Checking live outlook…</p><details class="forecast-details"><summary>Full forecast methodology</summary><p id="jointNightSummary" class="joint-summary">Preparing House and Senate probabilities…</p></details>
  <div class="four-needle" id="jointNightNeedle" role="img" aria-label="Four Endings needle awaiting 2026 forecast">
-  <div class="four-needle-top"><strong>FOUR ENDINGS NEEDLE</strong><span>Modeled House + Senate · one set of simulation draws</span></div>
+  <div class="four-needle-top"><strong>🌊 THE TIDE-O-METER</strong><span>2026 correlated model · not an official alert</span></div>
   <svg class="four-needle-arc" viewBox="0 0 460 260" aria-hidden="true">
    <path d="M50 218 A180 180 0 0 1 102.7 90.7" stroke="#a95a65"/>
    <path d="M102.7 90.7 A180 180 0 0 1 230 38" stroke="#b2a3c1"/>
    <path d="M230 38 A180 180 0 0 1 357.3 90.7" stroke="#61adf6"/>
    <path d="M357.3 90.7 A180 180 0 0 1 410 218" stroke="#045ec2"/>
+   <g class="ocean-foam" aria-hidden="true"><path d="M105 205 Q137 191 169 205 T233 205 T297 205 T361 205" stroke="#81dff3"/><path d="M126 226 Q165 213 204 226 T282 226 T360 226" stroke="#65b9eb"/><path d="M147 183 Q175 173 204 183 T262 183 T320 183" stroke="#b7f2ff"/></g>
    <line class="four-needle-arc-baseline" x1="230" y1="218" x2="230" y2="62" stroke="#d2dde9" stroke-width="3" stroke-dasharray="5 6" style="display:none"/>
    <line class="four-needle-arc-pointer" x1="230" y1="218" x2="230" y2="62" stroke="#fff0a4" stroke-width="5" stroke-linecap="round"/>
    <circle cx="230" cy="218" r="11" fill="#fff0a4" stroke="#18334f" stroke-width="4"/>
@@ -895,11 +971,11 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <p class="joint-note">Modeled joint probabilities, not independent House × Senate multiplication. Early partial returns use a noisy geographic signal; the source must meet the result-integrity gates. Missing and redrawn districts get wide uncertainty. Controls are sensitivity experiments, not confidence intervals.</p>
 </section>
 <section class="smart-race-desk smart-night" id="smartNightDesk" aria-label="Automatic election-night priority watch" hidden>
-<div class="smart-desk-head"><div><span class="label">LIVE ELECTION NIGHT · AUTOMATIC WATCH</span>
-<h2>Where the action is</h2><p>Source-reported counts and linked model uncertainty promote developing races; old calls settle out. Personal pins are not required.</p></div>
-<button type="button" id="smartNightMore" class="smart-desk-more" aria-expanded="false">Show more races</button></div>
+<div class="smart-desk-head"><div><span class="label">THE PRESSURE POINTS · LIVE</span>
+<h2>Where the wave breaks</h2><p>Live votes, winner calls, and linked model odds.</p></div>
+<button type="button" id="smartNightMore" class="smart-desk-more" aria-expanded="false">All races ↓</button></div>
 <div class="smart-desk-grid" id="smartNightGrid"><p class="empty">Building source-validated priority watch…</p></div>
-<p class="smart-desk-note" id="smartNightNote">Actual votes are attributed to their reporting provider. A vote lead is not a winner call or a national swing estimate.</p></section>
+<details class="smart-selection-method"><summary>Source notes</summary><p class="smart-desk-note" id="smartNightNote">Unofficial source-reported votes; a leader is not necessarily a projected winner. No inferred national swing from early precincts.</p></details></section>
 <div class="en-status" id="enStatus" role="status">Election Day is November 3. The 2024 archive is available for rehearsal before 2026 results begin.</div>
 <div class="en-archive-intro" id="enArchiveIntro">2024 House rehearsal uses MIT/MEDSL's historical recorded party-level votes across all 435 districts. It is <strong>not a minute-by-minute replay</strong> and does not identify individual candidates, certified winners, or precinct progress. A 2024 district number must not be treated as the same geographic seat in 2026 after redistricting.</div>
 
@@ -1084,6 +1160,8 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/senate_calibration_audit.js?v=cc0ab62269fb"></script>
 <script>
 const $=s=>document.querySelector(s);
+// Shared polling snapshot is read by the early Briefing renderer.
+let latestSenateEstimates=null;
 function activatePage(tab,updateUrl){
 if(!tab)return;
 document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',String(x===tab)));
@@ -2009,7 +2087,10 @@ function renderRacePulse(data){
       !Number.isFinite(old.dem_minus_rep))continue;
    if((r.contributing_pollsters||0)<2)continue;
    const delta=r.dem_minus_rep-old.dem_minus_rep;
-   if(Math.abs(delta)<0.75)continue;
+   // Ignore routine landslide changes on the main Briefing.
+   const competitive=Math.abs(r.dem_minus_rep)<=10;
+   const surprising=Math.abs(delta)>=3&&Math.abs(r.dem_minus_rep)<=15;
+   if(Math.abs(delta)<0.75||(!competitive&&!surprising))continue;
    movements.push({r,old,delta});
   }
   movements.sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta));
@@ -2840,92 +2921,145 @@ function smartReportedExtras(model,existing){
 function smartRaceRanked(){
  const api=window.AutomaticRaceDesk;
  if(!api)return [];
- // The reference seed is intentionally immutable; every render creates
- // mutable view records so simulation/source updates cannot mutate the
- // screenshots or silently fail assignment of current priority.
  const modeled=smartModelMap(),all=smartAutoWatch().map(item=>({...item}));
  all.push(...smartReportedExtras(modeled,all));
  const now=Date.now();
  const recentFlip=new Set(enMovements.filter(x=>x.leaderChanged&&
-   !x.withdrawn&&Number.isFinite(Date.parse(x.at))&&
-   now-Date.parse(x.at)<60*60000).map(x=>x.office+'|'+x.key));
+  !x.withdrawn&&Number.isFinite(Date.parse(x.at))&&
+  now-Date.parse(x.at)<60*60000).map(x=>x.office+'|'+x.key));
+ const polls=new Map([...(latestSenateEstimates?.senate_all||[]),
+  ...(latestSenateEstimates?.house||[]),...(latestSenateEstimates?.governor||[])]
+  .filter(x=>x?.race_code&&['single_poll','multi_poll'].includes(x.status)&&
+   Number.isFinite(x.dem_minus_rep)).map(x=>[x.race_code,x]));
  for(const item of all){
-  const m=modeled.get(item.code),live=smartRaceSource(item);
-  item.model=m;item.live=live;
-  item.priority=api.priority(item,{modelWinPct:m?.dem_beats_rep_pct,
-   live,flipped:recentFlip.has(enWatchId(item)),now});
+  item.model=modeled.get(item.code)||null;
+  item.poll=polls.get(item.code)||null;
+  item.live=smartRaceSource(item);
+  item.priority=api.priority(item,{modelWinPct:item.model?.dem_beats_rep_pct,
+   live:item.live,flipped:recentFlip.has(enWatchId(item)),now});
+  // Screenshot reference percentages only seed discovery. Once a race has
+  // actual linked-model odds or a qualified polling average, its current
+  // competitiveness and validated reporting drive editorial placement.
+  const m=item.model?.dem_beats_rep_pct,p=item.poll?.dem_minus_rep;
+  const closeOdds=Number.isFinite(m)?1-Math.abs(m-50)/50:0;
+  const closePoll=Number.isFinite(p)?Math.max(0,1-Math.abs(p)/12):0;
+  item.editorScore=item.priority.score+(Number.isFinite(m)?20*closeOdds:0)+
+    (Number.isFinite(p)?15*closePoll:0)+(item.live?15:0);
  }
  return all;
 }
-function smartRow(item){
- const row=elt('div','smart-desk-row'),id=elt('div','smart-desk-identity'),
-   stats=elt('div','smart-desk-detail'),tag=elt('span','smart-desk-state');
- const a=elt('a','smart-desk-open',item.code);
- a.href='#electionNight';a.title='Open the election-night results desk for '+item.code;
- id.append(a);
- if(item.tip!==null&&item.tip!==undefined)
-  id.append(elt('small','',item.tip+'% reference tipping-point share'));
- else id.append(elt('small','',item.added==='reported-source'?'Promoted by reported vote count':'Model-uncertainty discovery'));
- const prior=item.model,live=item.live,priority=item.priority;
- const modelMargin=Number.isFinite(prior?.model_dem_margin_points)?
-  'Model '+marginText(prior.model_dem_margin_points):'Model estimate pending';
- if(priority.reporting){
-  const reportedMargin=priority.rawMargin===null?'Two-party margin unavailable':
-   'Reported '+marginText(priority.rawMargin);
-  stats.append(elt('strong','',reportedMargin),
-   elt('small','',(Number.isFinite(priority.precincts)?
-    priority.precincts.toFixed(0)+'% precincts · ':'')+
-    live.votes.toLocaleString('en-US')+' votes · '+priority.source));
-  tag.dataset.state=priority.called?'called':'reporting';
-  tag.textContent=priority.called?'CALL · '+priority.called:
-   priority.why==='Reported vote leader changed'?'LEAD FLIP':'REPORTING';
-  if(priority.called)tag.title=live.callSource+' source reports '+live.calledName+
-   ' as winner; not official certification';
- }else{
-  stats.append(elt('strong','',modelMargin),elt('small','',priority.why));
-  tag.dataset.state='pending';tag.textContent='WATCH';
- }
- row.append(id,stats,tag);
- return row;
+function smartEligible(item){
+ return Boolean(item.live||Number.isFinite(item.model?.dem_beats_rep_pct)||
+  Number.isFinite(item.poll?.dem_minus_rep));
 }
-function smartRaceLane(label,items,expanded,limit){
- const lane=elt('div','smart-desk-lane'),head=elt('div','smart-desk-lane-head');
- head.append(elt('strong','',label),elt('span','',items.length+' tracked'));
- lane.append(head);
- for(const item of items.slice(0,expanded?items.length:limit))lane.append(smartRow(item));
- if(!items.length)lane.append(elt('p','empty','Waiting for model coverage or validated sources.'));
- return lane;
+function smartSort(rows){
+ return rows.sort((a,b)=>b.editorScore-a.editorScore||
+  a.code.localeCompare(b.code));
+}
+function smartFeatured(all,isNight,expanded){
+ const active=smartSort(all.filter(smartEligible));
+ if(expanded)return active;
+ const senate=active.filter(x=>x.office==='Senate').slice(0,isNight?4:4);
+ const house=active.filter(x=>x.office==='House').slice(0,isNight?4:3);
+ const governor=active.filter(x=>x.office==='Governor').slice(0,1);
+ const featured=[...senate,...house,...governor],used=new Set(featured.map(x=>x.code));
+ for(const x of active)if(featured.length<(isNight?10:8)&&!used.has(x.code)){
+  featured.push(x);used.add(x.code);
+ }
+ return smartSort(featured);
+}
+function smartRaceReason(item){
+ const p=item.priority;
+ if(p.called)return 'Provider call · unofficial';
+ if(p.reporting)return p.why;
+ if(item.office==='Senate')return 'Senate control watch';
+ if(item.office==='Governor')return 'Statewide battleground';
+ return 'House seat watch';
+}
+function smartRow(item){
+ const cell=elt('a','smart-signal');
+ cell.href=item.priority.reporting?'#electionNight':'#model';
+ cell.title='View '+item.code+' in '+(item.priority.reporting?'Election Night':'JackStradamus');
+ cell.dataset.race=item.code;
+ const info=elt('span','smart-signal-info');
+ const identity=elt('strong','smart-signal-name',item.code);
+ const reason=elt('span','smart-signal-reason',smartRaceReason(item));
+ info.append(identity,reason);
+ const figures=elt('span','smart-signal-figures');
+ const model=item.model,poll=item.poll;
+ const shortMargin=v=>(v>=0?'D+':'R+')+Math.abs(v).toFixed(1);
+ const margin=Number.isFinite(model?.model_dem_margin_points)?
+  'Model '+shortMargin(model.model_dem_margin_points):'';
+ const average=Number.isFinite(poll?.dem_minus_rep)?
+  'Poll '+shortMargin(poll.dem_minus_rep):'';
+ const evidence=[margin,average].filter(Boolean);
+ const readings=elt('span','smart-signal-readings',
+  evidence.length?evidence.join(' · '):item.priority.reporting?'Reported votes':'Polling pending');
+ const sub=elt('span','smart-signal-sub');
+ if(item.priority.reporting){
+  const live=item.live;
+  sub.textContent=(item.priority.rawMargin===null?'Votes in':
+   'Votes '+shortMargin(item.priority.rawMargin))+
+   (Number.isFinite(item.priority.precincts)?
+    ' · '+Math.round(item.priority.precincts)+'% precincts':'')+
+   ' · '+live.source;
+ }else if(model?.provider_called_party){
+  sub.textContent='Source-reported winner · '+model.provider_called_party;
+ }else if(item.poll?.contributing_pollsters){
+  sub.textContent=item.poll.contributing_pollsters+' qualifying pollster'+
+   (item.poll.contributing_pollsters===1?'':'s');
+ }else sub.textContent='';
+ figures.append(readings,sub);
+ const outcome=elt('span','smart-signal-outcome');
+ if(item.priority.called){
+  outcome.dataset.party=item.priority.called;
+  outcome.append(elt('strong','','CALLED '+item.priority.called),
+   elt('small','','source report'));
+ }else if(Number.isFinite(model?.dem_beats_rep_pct)){
+  const dem=model.dem_beats_rep_pct>=50;
+  const independent=item.code==='NE-SEN';
+  const favorite=dem?(independent?'OSBORN':'D'):'R';
+  outcome.dataset.party=independent&&dem?'O':dem?'D':'R';
+  outcome.append(elt('strong','',favorite+' '+(dem?model.dem_beats_rep_pct:
+   100-model.dem_beats_rep_pct).toFixed(0)+'%'),
+   elt('small','','win chance'));
+ }else{
+  outcome.append(elt('strong','','—'),elt('small','','odds pending'));
+ }
+ const arrow=elt('span','smart-signal-arrow','›');arrow.setAttribute('aria-hidden','true');
+ cell.append(info,figures,outcome,arrow);
+ cell.addEventListener('click',event=>{
+  event.preventDefault();
+  if(item.priority.reporting){
+   document.querySelector('.tab[data-page="electionNight"]')?.click();
+   enSwitch(2026,item.office,item.key);
+  }else{
+   navigateInsightToModel({office:item.office.toLowerCase(),race:{
+    race_code:item.code}});
+  }
+ });
+ return cell;
 }
 function renderSmartRaceDesks(){
- const api=window.AutomaticRaceDesk;
- if(!api)return;
+ const api=window.AutomaticRaceDesk;if(!api)return;
  const all=smartRaceRanked();
- for(const [hostId,expand,deskId] of [
+ for(const [hostId,expanded,deskId] of [
   ['smartBriefGrid',smartBriefExpanded,'smartBriefDesk'],
   ['smartNightGrid',smartNightExpanded,'smartNightDesk']]){
-  const host=$('#'+hostId),desk=$('#'+deskId);
-  if(!host||!desk)continue;
-  const isNight=deskId==='smartNightDesk';
-  if(isNight)desk.hidden=enModeYear!==2026;
-  if(isNight&&desk.hidden)continue;
-  const senate=api.sort(all,'Senate'),house=api.sort(all,'House'),
-   governors=api.sort(all,'Governor');
+  const host=$('#'+hostId),desk=$('#'+deskId);if(!host||!desk)continue;
+  const night=deskId==='smartNightDesk';
+  if(night)desk.hidden=enModeYear!==2026;
+  if(night&&desk.hidden)continue;
+  const eligible=all.filter(smartEligible),rows=smartFeatured(all,night,expanded);
   host.replaceChildren();
-  host.append(smartRaceLane('SENATE',senate,expand,isNight?7:6),
-    smartRaceLane('HOUSE',house,expand,isNight?9:6));
-  // Governors matter to milestone triggers even when absent from the
-  // screenshot House/Senate tipping-point tables.
-  const g=elt('div','smart-desk-lane smart-governors');
-  const gh=elt('div','smart-desk-lane-head');
-  gh.append(elt('strong','','GOVERNORS & STATEWIDE'),elt('span','',governors.length+' tracked'));
-  g.append(gh);
-  for(const row of governors.slice(0,expand?governors.length:3))g.append(smartRow(row));
-  host.append(g);
-  const note=$('#'+(isNight?'smartNightNote':'smartBriefNote'));
-  if(note)note.textContent=all.length+' automatically followed races (plus 2026 result-driven discoveries) · '+
-   all.filter(x=>x.priority.reporting).length+' current source-reporting races · '+
-   'source-specific 2026 updates only; no historic vote leakage · '+
-   'reference tipping-point percentages are from supplied screenshots, not live Silver or JackStradamus odds.';
+  if(!rows.length){
+   host.append(elt('p','empty','Race odds and polling are loading.'));continue;
+  }
+  for(const x of rows)host.append(smartRow(x));
+  const note=$('#'+(night?'smartNightNote':'smartBriefNote'));
+  if(note)note.textContent=eligible.length+' races with model odds, polls or verified returns · '+
+   eligible.filter(x=>x.priority.reporting).length+' reporting now. '+
+   'Modeled win probabilities are experimental; reference tipping-point shares are for finding races, not forecasting them.';
  }
 }
 for(const [buttonId,setter] of [
@@ -2935,7 +3069,7 @@ for(const [buttonId,setter] of [
  if(button)button.addEventListener('click',()=>{
   const next=button.getAttribute('aria-expanded')!=='true';
   button.setAttribute('aria-expanded',String(next));
-  button.textContent=next?'Show fewer races':'Show more races';
+  button.textContent=next?'Top races ↑':'All races ↓';
   setter(next);
  });
 }
@@ -3150,10 +3284,10 @@ function jointPrivateActivate({deferRender=false}={}){
  }
 }
 const jointLabels=[
- ['blue_tsunami','BLUE TSUNAMI','D both chambers · 18+ of 20 battlegrounds','d-tide'],
- ['blue_wave','BLUE WAVE','D both chambers · below tsunami threshold','d-wave'],
- ['shrug','SHRUG','One chamber per party','d-split'],
- ['red_dawn','RED DAWN','R controls both chambers','r-dawn']
+ ['blue_tsunami','BLUE TSUNAMI','Both chambers · 18/20 races','d-tide'],
+ ['blue_wave','BLUE WAVE','Both chambers · no sweep','d-wave'],
+ ['shrug','SHRUG','Split control','d-split'],
+ ['red_dawn','RED DAWN','Republicans hold both','r-dawn']
 ];
 function jointSourceItem(item){
  const key=item.code,itemOffice=key.endsWith('-SEN')?'Senate':'House';
@@ -3258,10 +3392,11 @@ function jointRenderNeedles(result){
    keys.map((k,i)=>labels[i]+' '+v[i].toFixed(1)+' percent').join(', ')+
    '. Expected scenario pointer '+position.toFixed(1)+' percent along spectrum. '+
    sourceMode+'. Not a certified election result.');
-  foot.firstElementChild.textContent='Needle tilts '+labels[likely]+
-   ' · '+v[likely].toFixed(1)+'% most likely individual ending';
-  foot.lastElementChild.textContent=sourceMode+' · '+
-   result.samples.toLocaleString('en-US')+' same-draw simulations';
+  const oceanName=['RED SKIES','CHOPPY SEAS','BLUE WAVE WATCH','TSUNAMI WATCH'];
+  foot.firstElementChild.textContent=oceanName[likely]+
+   ' · '+v[likely].toFixed(1)+'% most likely ending';
+  foot.lastElementChild.textContent=(liveCount?'LIVE RETURNS':'PRE-ELECTION FORECAST')+
+   ' · '+result.samples.toLocaleString('en-US')+' draws';
   bar.replaceChildren();
   for(let i=0;i<4;i++){
    const span=elt('span','');
@@ -3280,7 +3415,7 @@ function jointRenderNeedles(result){
   context.replaceChildren();
   if(!movement?.liveCount){
    context.append(elt('div','four-needle-change',
-    'No qualifying 2026 returns yet · polling + fundamentals baseline.'));
+    'CALM BEFORE THE COUNT · polling + fundamentals only'));
    continue;
   }
   const delta=movement.shift;
@@ -3336,6 +3471,10 @@ function jointRenderCards(result){
     elt('span','',detail));
    host.append(cell);
   }
+  const headline=$('#'+(id==='jointHomeCards'?'jointHomeHeadline':'jointNightHeadline'));
+  if(headline)headline.textContent='D both chambers '+result.blue_both_including_tsunami.toFixed(1)+
+   '% · Tsunami '+result.probabilities.blue_tsunami.toFixed(1)+
+   '% · '+result.samples.toLocaleString('en-US')+' simulations';
   const info=jointBasis.generated_from_sources;
   const h=result.seat_intervals_90_pct?.house_dem_seats;
   const sn=result.seat_intervals_90_pct?.senate_dem_seats;
@@ -5744,7 +5883,7 @@ function setModelHistoryData(snapshot){
  modelHistoryData=snapshot;
  if(latestSenateEstimates){renderRacePulse(latestSenateEstimates);renderModelRaceDetail()}
 }
-let latestSenateEstimates=null;
+
 function showSenateEstimates(data){
 if(latestSenateEstimates?.generated_at&&data?.generated_at&&
  Date.parse(latestSenateEstimates.generated_at)>Date.parse(data.generated_at))return;

@@ -138,12 +138,28 @@ async function settle(){
   'Automatic key races should appear before detailed polling deltas');
  assert(beforeOnPage(get('#smartBriefDesk'),get('#newPolls')),
   'Automatic key races should appear before scrolling through polls');
- assert(get('#smartBriefGrid').textContent.includes('ME-SEN'));
- assert(get('#smartBriefGrid').textContent.includes('PA-10'));
+ const frontRows=[...get('#smartBriefGrid').querySelectorAll('a.smart-signal')];
+ assert(frontRows.length>=6&&frontRows.length<=8,
+  'Curate a mixed-race forecast rather than repetitive watch-only rows');
+ assert(frontRows.some(x=>x.dataset.race.endsWith('-SEN'))&&
+  frontRows.some(x=>/^[A-Z]{2}-[0-9]{2}$/.test(x.dataset.race)),
+  'Show Senate and House together in one ranked list');
+ assert(frontRows.some(x=>/win chance/.test(x.textContent)),
+  'Each featured race should present real model win odds when available');
+ assert(frontRows.some(x=>/Poll (D|R)\+/.test(x.textContent)),
+  'Qualifying polling averages should be visible in the briefing');
+ assert(!get('#smartBriefGrid').textContent.includes('reference tipping-point share'),
+  'Screenshot reference metadata is discovery context, not homepage filler');
  assert.equal(get('#smartNightDesk').hidden,true,
-  'Historical archive view must hide the 2026 live-action watch');
- assert.equal(get('#smartBriefGrid').querySelectorAll('.smart-desk-lane').length,3,
-  'Automatic board must cover Senate, House and governors');
+  '2024 archive should hide the live 2026 watchboard');
+ assert.equal(get('#jointHomeSummary').closest('details').open,false,
+  'Collapse verbose forecast details instead of repeating them above the needle');
+ assert.match(get('#jointHomeHeadline').textContent,/Tsunami [0-9.]+%/);
+ assert.equal(get('#briefPollLog').open,false,'Raw poll list should be collapsed by default');
+ assert(beforeOnPage(get('#updates'),get('#briefPollLog')),
+  'New polls should follow the meaningful election developments');
+ assert.equal(get('#senateDeepDive').open,false,
+  'Duplicative Senate details should be moved into the model lab');
  const initialWatch=w.eval('smartAutoWatch()');
  assert(initialWatch.some(x=>x.code==='OH-SEN'&&x.key==='OH-special'));
  assert(initialWatch.some(x=>x.code==='AZ-06'&&x.office==='House'));
@@ -152,8 +168,11 @@ async function settle(){
   'Auto-watch must not overwrite the personal pinned list');
  get('#smartBriefMore').click();
  assert.equal(get('#smartBriefMore').getAttribute('aria-expanded'),'true');
- assert(get('#smartBriefGrid').textContent.includes('NM-02'),
-  'Expanded view should expose additional screenshot House districts');
+ assert(get('#smartBriefGrid').querySelectorAll('a.smart-signal').length>frontRows.length,
+  'Expanded view should reveal additional data-backed race signals');
+ assert(get('#smartBriefGrid').textContent.includes('NM-02')||
+  get('#smartBriefGrid').textContent.includes('PA-10'),
+  'Expanded view retains tracked competitive House seats');
  get('#smartBriefMore').click();
  assert.equal(get('#smartBriefMore').getAttribute('aria-expanded'),'false');
  // One cross-page heartbeat distinguishes five independent sources.
@@ -1422,14 +1441,14 @@ async function settle(){
   const needle=get(selector);
   assert.match(needle.getAttribute('aria-label'),/2026 correlated Four Endings forecast/);
   assert.equal(needle.querySelectorAll('.four-needle-distribution span').length,4);
-  assert.equal(needle.querySelectorAll('.four-needle-arc path').length,4,
+  assert.equal(needle.querySelectorAll('.four-needle-arc > path').length,4,
    'Semicircular dial must have four ordered outcome arcs');
   assert(needle.querySelector('.four-needle-arc-pointer')?.getAttribute('x2'),
    'Visible needle pointer must track correlated model');
   assert(needle.querySelector('.four-needle-arc-baseline'),
    'Baseline pointer must exist for later qualified vote returns');
   assert.match(needle.querySelector('.four-needle-footer').textContent,
-   /POLLING-ONLY|AWAITING LIVE RETURNS|RESULTS-INFORMED/,
+   /PRE-ELECTION FORECAST|LIVE RETURNS/,
    'Needle must attribute its source mode instead of implying certified results');
   assert.equal(needle.querySelector('.four-needle-arrow').style.left,
    expectedNeedlePosition.toFixed(2)+'%',
@@ -1441,7 +1460,7 @@ async function settle(){
  assert.match(get('#jointHomeAudit').textContent,/NOT calibration/);
  assert.match(get('#jointHomeAudit').textContent,/Held-out-cycle mean Brier score/);
  assert.match(get('#jointNightAudit').textContent,/90% coverage was/);
- assert(get('#jointNightCards').textContent.includes('18+ of 20 battlegrounds'));
+ assert(get('#jointNightCards').textContent.includes('18/20 races'),'Condensed card must still define tsunami threshold');
 
  assert.match(get('#jointNightCards').textContent,/BLUE TSUNAMI/);
  assert.match(get('#jointNightCards').textContent,/BLUE WAVE/);
