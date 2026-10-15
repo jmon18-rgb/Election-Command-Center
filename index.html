@@ -1160,6 +1160,8 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/senate_calibration_audit.js?v=cc0ab62269fb"></script>
 <script>
 const $=s=>document.querySelector(s);
+// Shared polling snapshot is read by the early Briefing renderer.
+let latestSenateEstimates=null;
 function activatePage(tab,updateUrl){
 if(!tab)return;
 document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',String(x===tab)));
@@ -5871,7 +5873,7 @@ function setModelHistoryData(snapshot){
  modelHistoryData=snapshot;
  if(latestSenateEstimates){renderRacePulse(latestSenateEstimates);renderModelRaceDetail()}
 }
-let latestSenateEstimates=null;
+
 function showSenateEstimates(data){
 if(latestSenateEstimates?.generated_at&&data?.generated_at&&
  Date.parse(latestSenateEstimates.generated_at)>Date.parse(data.generated_at))return;
