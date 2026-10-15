@@ -582,6 +582,9 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-milestone-poster{display:block;width:min(100%,720px);height:auto;aspect-ratio:980/620;object-fit:contain;border:1px solid #659fca;border-radius:13px;margin:12px auto;box-shadow:0 12px 36px #020d1e77}
 .en-milestone-poster.historic-john-brown{aspect-ratio:auto;width:auto;max-width:min(100%,430px);max-height:min(57vh,520px);background:#122b47;padding:5px;border:2px solid #90bfd9;filter:contrast(1.08)}
 .en-milestone-photo-credit{font-size:11px;color:#9bbfd6;display:inline-block;margin:9px 0 0}
+.en-brown-poster-title{margin:8px auto 0;max-width:550px;padding:14px 12px 4px;font-size:clamp(17px,4vw,33px);line-height:1.05;letter-spacing:.08em;text-align:center;font-weight:900;color:#d4eaf8;text-shadow:0 2px 2px #10283c}
+.en-brown-poster-title span{display:block;font-size:.52em;letter-spacing:.17em;color:#7ac9e9;margin:7px 0}
+.en-brown-poster-title[hidden]{display:none!important}
 .en-milestone-poster[hidden]{display:none!important}
 .en-milestone-card .en-milestone-thumb{width:50px;height:37px;flex-shrink:0;object-fit:cover;border-radius:6px;border:1px solid #3c718e}
 @media(max-width:600px){.en-milestone-card .en-milestone-thumb{width:39px;height:31px}}
@@ -1095,6 +1098,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div class="en-milestone-spotlight" id="enMilestoneSpotlight" hidden aria-live="polite">
   <div class="en-milestone-kicker" id="enMilestoneKicker">SOURCE-REPORTED CALL</div>
   <div class="en-milestone-art" id="enMilestoneArt" aria-hidden="true">🌊</div>
+  <div id="enJohnBrownPosterTitle" class="en-brown-poster-title" hidden>BLEEDING KANSAS.<span>1859 MEETS 2026</span>ONLY THIS TIME, BLUE.</div>
   <img id="enMilestonePoster" class="en-milestone-poster" alt="" hidden loading="lazy">
   <img id="enTsunamiMeme" class="en-tsunami-meme" src="./assets/blue-tsunami-meme.svg" alt="Original electric-blue wave meme poster: OMG, you're gonna make me… BLUE WAVE!" hidden loading="lazy">
   <h3 id="enMilestoneTitle"></h3>
@@ -4621,6 +4625,7 @@ function enMilestoneShow(item,demo=false){
  const poster=tsunami?null:enMilestonePosters[item.id];
  const posterNode=$('#enMilestonePoster');
  const realBrown=Boolean(poster?.historicalPortrait);
+ $('#enJohnBrownPosterTitle').hidden=!realBrown;
  posterNode.hidden=!poster;
  posterNode.classList.toggle('historic-john-brown',realBrown);
  posterNode.onerror=null;
