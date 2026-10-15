@@ -13,6 +13,17 @@ const primary=json('data/polls.json');
 const recent=json('data/pollresults_recent.json');
 const history=json('data/model_history.json');
 const html=read('index.html');
+const milestoneKeys=['graham','blexas','blue-corn','blansas','maine','nebraska','ohio'];
+for(const name of milestoneKeys){
+ const art=read('assets/milestone-'+name+'.svg');
+ assert(art.length>500&&art.length<20000,'Local milestone artwork must be lightweight: '+name);
+ assert.match(art,/<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg"/);
+ assert.match(art,/<title id="t">[\s\S]+<\/title>/);
+ assert.match(art,/<desc id="d">[\s\S]+<\/desc>/);
+ assert(!/<script|<foreignObject|https?:\/\/(?!www\.w3\.org\/2000\/svg)/i.test(art),
+  'Election night illustration may not depend on remote code or assets: '+name);
+}
+
 const mobileHeroCSS=html.match(/\/\* Preserve the full surfer photo on narrow screens\.[\s\S]*?\*\/\s*@media\(max-width:620px\)\{[\s\S]*?background-repeat:no-repeat;/)?.[0];
 assert(mobileHeroCSS,'Mobile portrait hero should explicitly preserve surfer-image framing');
 assert.match(mobileHeroCSS,/background-size:100% 100%,100% auto,cover;/,
