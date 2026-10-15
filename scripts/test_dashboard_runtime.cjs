@@ -1441,14 +1441,14 @@ async function settle(){
   const needle=get(selector);
   assert.match(needle.getAttribute('aria-label'),/2026 correlated Four Endings forecast/);
   assert.equal(needle.querySelectorAll('.four-needle-distribution span').length,4);
-  assert.equal(needle.querySelectorAll('.four-needle-arc path').length,4,
+  assert.equal(needle.querySelectorAll('.four-needle-arc > path').length,4,
    'Semicircular dial must have four ordered outcome arcs');
   assert(needle.querySelector('.four-needle-arc-pointer')?.getAttribute('x2'),
    'Visible needle pointer must track correlated model');
   assert(needle.querySelector('.four-needle-arc-baseline'),
    'Baseline pointer must exist for later qualified vote returns');
   assert.match(needle.querySelector('.four-needle-footer').textContent,
-   /POLLING-ONLY|AWAITING LIVE RETURNS|RESULTS-INFORMED/,
+   /PRE-ELECTION FORECAST|LIVE RETURNS/,
    'Needle must attribute its source mode instead of implying certified results');
   assert.equal(needle.querySelector('.four-needle-arrow').style.left,
    expectedNeedlePosition.toFixed(2)+'%',
