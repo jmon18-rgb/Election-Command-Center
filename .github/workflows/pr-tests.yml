@@ -192,6 +192,11 @@ jobs:
           node --check scripts/election_night_nowcast.js
           node --check scripts/test_election_night_nowcast.cjs
           node scripts/test_election_night_nowcast.cjs
+      - name: Verify automatic Silver-reference House/Senate watching and evidence-based priority
+        run: |
+          node --check scripts/election_night_priority.js
+          node --check scripts/test_election_night_priority.cjs
+          node scripts/test_election_night_priority.cjs
       - name: Verify source-called election-night milestones and needle movement
         run: |
           node --check scripts/election_night_signals.js
