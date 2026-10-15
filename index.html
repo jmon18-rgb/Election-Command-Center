@@ -3394,7 +3394,7 @@ const enFishVoiceKey='bluewaves_fish_voice_v1';
 let enFishVoiceEnabled=(()=>{
  try{return localStorage.getItem(enFishVoiceKey)==='on'}catch{return false}
 })();
-let enFishTimeout=null;
+let enFishTimeout=null,enFishReturnFocus=null;
 function enFishVoiceSupported(){
  return typeof window.speechSynthesis?.speak==='function'&&
   typeof window.SpeechSynthesisUtterance==='function';
@@ -3410,7 +3410,11 @@ function enFishRenderVoice(){
 function enFishDismiss(){
  if(enFishTimeout){clearTimeout(enFishTimeout);enFishTimeout=null;}
  $('#enFishToast').hidden=true;
+ $('#enFishOfficialFrame').removeAttribute('src');
+ $('#enFishOfficialFrameWrap').hidden=true;
  if(enFishVoiceSupported())try{window.speechSynthesis.cancel()}catch{}
+ if(enFishReturnFocus?.isConnected)enFishReturnFocus.focus();
+ enFishReturnFocus=null;
 }
 function enFishShow(event,demo=false){
  // Only an explicit demo or newly validated source calls that have passed
@@ -3422,7 +3426,13 @@ function enFishShow(event,demo=false){
  const toast=$('#enFishToast');
  if(!toast)return false;
  if(enFishTimeout)clearTimeout(enFishTimeout);
+ enFishReturnFocus=document.activeElement;
+ // A prior original-news clip must never carry audio into a new election
+ // bulletin or report a real result in a synthetic rehearsal.
+ $('#enFishOfficialFrame').removeAttribute('src');
+ $('#enFishOfficialFrameWrap').hidden=true;
  toast.hidden=false;
+ $('#enFishDismiss').focus();
  $('#enFishMode').textContent=demo?'REHEARSAL · NOT A REAL RACE CALL':
    'civicAPI SOURCE CALL · NOT OFFICIAL CERTIFICATION';
  $('#enFishHeadline').textContent=event.title+' — '+event.details;
@@ -3438,7 +3448,7 @@ function enFishShow(event,demo=false){
    window.speechSynthesis.speak(utterance);
   }catch{} // Some mobile browsers require a new user gesture for speech.
  }
- enFishTimeout=setTimeout(()=>{enFishDismiss()},13000);
+ enFishTimeout=setTimeout(()=>{enFishDismiss()},20000);
  return true;
 }
 $('#enFishPreview').addEventListener('click',()=>enFishShow({
@@ -3446,6 +3456,29 @@ $('#enFishPreview').addEventListener('click',()=>enFishShow({
  details:'Reporting feeds remain unchanged. This is not a real election-night event.'
 },true));
 $('#enFishDismiss').addEventListener('click',enFishDismiss);
+$('#enFishOfficialClip').addEventListener('click',()=>{
+ if($('#enFishToast').hidden)return;
+ // The ONLY use of the original TV performance is a user-initiated
+ // licensed-platform stream from the verified SpongeBob Official channel.
+ // It is not a voice clone nor a made-up spoken election result.
+ if(enFishTimeout){clearTimeout(enFishTimeout);enFishTimeout=null;}
+ if(enFishVoiceSupported())try{window.speechSynthesis.cancel()}catch{}
+ $('#enFishOfficialFrameWrap').hidden=false;
+ $('#enFishOfficialFrame').src=
+   'https://www.youtube-nocookie.com/embed/_VJKlSpTBu4?autoplay=1&rel=0';
+});
+document.addEventListener('keydown',event=>{
+ if(event.key==='Escape'&&!$('#enFishToast').hidden)enFishDismiss();
+ if(event.key==='Tab'&&!$('#enFishToast').hidden){
+  // Focus stays in the foreground news bulletin while the screen is dimmed.
+  const buttons=[...$('#enFishToast').querySelectorAll('button:not([disabled]),a[href]')]
+   .filter(el=>el.offsetParent!==null||el.getClientRects().length||el.tagName==='BUTTON');
+  if(!buttons.length)return;
+  const first=buttons[0],last=buttons[buttons.length-1];
+  if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
+  else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
+ }
+});
 $('#enFishVoice').addEventListener('click',()=>{
  if(!enFishVoiceSupported())return;
  enFishVoiceEnabled=!enFishVoiceEnabled;
