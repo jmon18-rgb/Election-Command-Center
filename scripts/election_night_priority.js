@@ -105,7 +105,7 @@
   // House inclusion is transparent: curated monitoring slate, qualifying
   // district polling, or model uncertainty. A district need not be close.
   for(const r of housePolls||[]){
-   if(!r||!/^[A-Z]{2}-\\d{2}$/.test(r.race_code||'')||
+   if(!r||!/^[A-Z]{2}-\d{2}$/.test(r.race_code||'')||
       !['single_poll','multi_poll'].includes(r.status)||
       !Number.isFinite(r.dem_minus_rep))continue;
    const code=r.race_code;
