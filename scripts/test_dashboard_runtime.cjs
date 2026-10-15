@@ -122,6 +122,14 @@ async function settle(){
  assert.equal(w.eval('jointForecastResult().senate_dem_control_pct')>=0,true);
  assert.match(get('#privateContextComparison').textContent,/28 Senate.*98 House/,
   'The CSV-augmented forecast must include both published input sets');
+ // Keep all existing baseline-model regressions applicable: after proving
+ // auto-activation, simulate an explicit user opt-out for the rest of the suite.
+ // This tests that the public fallback still works, not a hidden shortcut.
+ const repositoryResult=w.eval('jointForecastResult()');
+ get('#privateContextClear').click();
+ assert.match(get('#modelEngineTag').textContent,/2026 Senate model · poll-depth forecast v5/);
+ assert.notDeepEqual(w.eval('jointForecastResult()').probabilities,repositoryResult.probabilities,
+  'Removing repository fundamentals should restore independent live baseline');
  // Users should see actual provider-reported votes immediately after the
  // Four Endings forecast, before research, simulations, alert noise or feeds.
  const follows=(earlier,later)=>Boolean(
@@ -273,17 +281,14 @@ async function settle(){
  assert.equal(w.eval('jointForecastResult().senate_dem_control_pct'),beforeCorrelationSenate);
  assert.equal(w.eval('jointForecastResult().house_dem_control_pct'),beforeCorrelationHouse);
  get('#jointHomeCorrelationDetails').open=false;
- assert.match(get('#modelEngineTag').textContent,/REPOSITORY FUNDAMENTALS ACTIVE/);
+ assert.match(get('#modelEngineTag').textContent,/2026 Senate model · poll-depth forecast v5/);
  assert.equal(w.eval('jointRaceOddsResult()').senate_prior_mode,'current_2026');
- assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').poll_weight"),.75,
-  'Repository candidate fundamentals intentionally rebalance Senate poll weight without changing source polls');
+ assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').poll_weight"),.90);
  // Browser-only CSV ingestion must really update displayed model and restore it
  // without leaking Silver source rows or feeding completed forecast probabilities.
  assert(get('#privateContextFiles').type==='file');
  const baselineMN=w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').model_dem_margin_points");
  const baselineSenate=w.eval('jointForecastResult().senate_dem_control_pct');
- const baselinePublicSenate=w.eval('jointBaselineForecastResult().senate_dem_control_pct');
- const baselinePublicMN=w.eval("jointBaselineForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').model_dem_margin_points");
  const fakeFundamentals=['X.1,X.2,~~~Fundamentals~~~,X.3,X.4',
   'Race,Polls,Simple,Fancy,Blended',
   'MN,D +3@@3,D +10@@10,D +16@@16,D +20@@20',
@@ -297,7 +302,7 @@ async function settle(){
  assert.notEqual(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').model_dem_margin_points"),baselineMN);
  assert.match(get('#privateContextComparison').textContent,/published model/);
  assert(w.eval('jointBaselineForecastResult()'),'Private model must preserve baseline comparison');
- assert.equal(w.eval('jointBaselineForecastResult().senate_dem_control_pct'),baselinePublicSenate);
+ assert.equal(w.eval('jointBaselineForecastResult().senate_dem_control_pct'),baselineSenate);
  assert.equal(get('#privateContextRemember').checked,true);
  const savedKey=w.PrivateSenateFundamentals.STORAGE_KEY;
  assert(w.localStorage.getItem(savedKey),'Imported context should be saved automatically');
@@ -319,8 +324,8 @@ async function settle(){
  assert.equal(w.localStorage.getItem(savedKey),null,
   'Clear must remove ALL locally stored subscriber context');
  assert.match(get('#modelEngineTag').textContent,/2026 Senate model/);
- assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').model_dem_margin_points"),baselinePublicMN);
- assert.equal(w.eval('jointForecastResult().senate_dem_control_pct'),baselinePublicSenate);
+ assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').model_dem_margin_points"),baselineMN);
+ assert.equal(w.eval('jointForecastResult().senate_dem_control_pct'),baselineSenate);
  assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='NJ-SEN').source_method.includes('public_solid_no_poll_')"),true);
  // Reproduce the actual failure behind 62.2% Minnesota: an old cached
  // chamber_control_model.js silently ignores the new Senate options.
