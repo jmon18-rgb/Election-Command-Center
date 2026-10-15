@@ -1,0 +1,28 @@
+name: Verify deployed election dashboard
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types: [completed]
+  schedule:
+    # Main source refreshes hourly; independently exercise the public Pages
+    # deployment every two hours rather than merely trusting a green build.
+    - cron: '53 */2 * * *'
+permissions:
+  contents: read
+concurrency:
+  group: deployed-election-health
+  cancel-in-progress: true
+jobs:
+  live-site:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify the real Pages HTML, assets, source freshness and full forecast
+        env:
+          DASHBOARD_SITE_URL: ${{ vars.DASHBOARD_SITE_URL }}
+        run: |
+          node --check scripts/test_published_dashboard.cjs
+          node scripts/test_published_dashboard.cjs --remote

@@ -10,6 +10,10 @@ jobs:
     timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
+      - name: Production-readiness smoke of all deployed assets, linked inputs and four endings
+        run: |
+          node --check scripts/test_published_dashboard.cjs
+          node scripts/test_published_dashboard.cjs --local
       - name: Keep new polls in the actual polling and forecast inputs
         run: |
           python3 scripts/test_poll_source_reconciliation.py
