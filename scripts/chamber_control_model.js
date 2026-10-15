@@ -17,9 +17,11 @@
   'AZ-GOV','GA-GOV','MI-GOV','WI-GOV','NV-GOV','OH-GOV',
   'AZ-01','ME-02','NC-01','NE-02','NY-17','PA-10'
  ]);
- // Scenario thresholds are intentionally distinct from Senate control (51).
+ // Wave means actual Democratic control of BOTH chambers, matching the
+ // balance-of-power settlement criterion rather than Polymarket's separate
+ // 218/49 Blue Wave prop. Tsunami is our stricter >=235 House/>=52 Senate.
  const ENDING_THRESHOLDS=Object.freeze({
-  wave_house:218,wave_senate:49,tsunami_house:235,tsunami_senate:52
+  wave_house:218,wave_senate:51,tsunami_house:235,tsunami_senate:52
  });
  const BATTLEGROUND_SET=new Set(BATTLEGROUNDS);
  function classifyFourEndings(houseSeats,senateSeats){
@@ -793,8 +795,8 @@ function senatePollingErrorBudget(info){
    }
    houseSeatDraws.push(dHouse);senateSeatDraws.push(dSenate);
    // Exactly one four-way scenario per common-seed election draw.
-   // At 49 Senate seats the Wave gate is met but the Senate is NOT
-   // necessarily controlled by Democrats; control separately needs 51.
+   // Wave requires actual 218-House / 51-Senate control; Tsunami is a
+   // stronger mutually exclusive two-chamber result.
    outcomes[classifyFourEndings(dHouse,dSenate)]++;
    houseSeats+=dHouse;senateSeats+=dSenate;
    fullBattleground+=winBattleground;
@@ -805,8 +807,9 @@ function senatePollingErrorBudget(info){
   if(houseControl+senateWaveGate-2*bothCount!==outcomes.shrug||
      samples-houseControl-senateWaveGate+bothCount!==outcomes.red_dawn)
    throw Error('Four Endings thresholds inconsistent with simulated seats');
-  if(actualBothControl>bothCount||senateControl>senateWaveGate)
-   throw Error('Actual control cannot exceed relaxed Wave seat thresholds');
+  if(actualBothControl!==bothCount||senateControl!==senateWaveGate||
+     outcomes.shrug!==houseOnly+senateOnly)
+   throw Error('Four Endings must EXACTLY match actual chamber control');
   houseSeatDraws.sort((a,b)=>a-b);senateSeatDraws.sort((a,b)=>a-b);
   const quantile=(vals,f)=>vals[Math.floor((vals.length-1)*f)];
   const pct=x=>Math.round(10000*x/samples)/100;
@@ -931,14 +934,14 @@ function senatePollingErrorBudget(info){
    ...(independentCredit!=='dem_proxy'?{senate_independent_credit_mode:independentCredit}:{}),
    probabilities:probs,counts:outcomes,means,
    four_endings_thresholds:ENDING_THRESHOLDS,
-   senate_49_or_more_pct:pct(senateWaveGate),
+   senate_wave_gate_pct:pct(senateWaveGate),
    actual_dem_both_control_pct:pct(actualBothControl),
    race_probabilities,
    ...(explainControl?{control_explanation:controlExplanation}:{}),
    ...(voteSeatEnabled?{vote_seat_explanation:voteSeatExplanation}:{}),
    race_probability_method:'SAME_CORRELATED_DRAWS_AS_CHAMBER_CONTROL',
-   // Legacy key retained for existing visuals: now means meeting the
-   // explicit >=218 House AND >=49 Senate Wave gates, NOT actual control.
+   // Legacy key: Wave OR Tsunami now equals actual Democratic control
+   // of both chambers (>=218 House and >=51 Senate).
    blue_both_including_tsunami:pct(outcomes.blue_wave+outcomes.blue_tsunami),
    house_dem_control_pct:pct(houseControl),senate_dem_control_pct:pct(senateControl),
    seat_intervals_90_pct:{
