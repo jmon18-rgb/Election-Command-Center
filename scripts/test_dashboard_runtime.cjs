@@ -148,6 +148,15 @@ async function settle(){
  assert.equal(w.document.querySelector('#electionNight .en-fish-controls'),null,
   'Do not retain the old redundant full-width Fish Head control panel');
  const fish=get('#enFishToast');
+ assert.equal(fish.getAttribute('role'),'dialog',
+  'Fish bulletin must be an accessible foreground interruption');
+ assert.match(get('#enFishToast .en-fish-art img').src,
+  /upload\.wikimedia\.org\/wikipedia\/commons\/d\/d4\/Realistic_Fish_Head\.jpg/,
+  'Use the actual Commons-licensed Fish Head still, not a drawn knockoff');
+ assert.match(get('#enFishToast .en-fish-attribution').textContent,
+  /HandyGames.*CC BY 3\.0/);
+ assert.equal(get('#enFishOfficialFrame').hasAttribute('src'),false,
+  'Official copyrighted audio must not load or autoplay before an explicit click');
  assert(fish.hidden,'Breaking news panel must start dismissed');
  assert.match(get('#enFishVoice').textContent,/Voice/);
  get('#enFishPreview').click();
@@ -155,8 +164,17 @@ async function settle(){
  assert.match(get('#enFishMode').textContent,/REHEARSAL/);
  assert.match(get('#enFishHeadline').textContent,/Bikini Bottom election desk/);
  assert.match(get('#enFishSource').textContent,/no actual result/);
+ assert.equal(w.document.activeElement,get('#enFishDismiss'),
+  'Keyboard focus should move to the in-your-face breaking bulletin');
+ get('#enFishOfficialClip').click();
+ assert.equal(get('#enFishOfficialFrameWrap').hidden,false,
+  'Original SpongeBob clip should open only on user command');
+ assert.match(get('#enFishOfficialFrame').src,
+  /youtube-nocookie\.com\/embed\/_VJKlSpTBu4/);
  get('#enFishDismiss').click();
  assert(fish.hidden,'Dismiss control must close the fish-news overlay');
+ assert.equal(get('#enFishOfficialFrame').hasAttribute('src'),false,
+  'Closing news must immediately stop the original clip audio');
  const bogusCall={kind:'call',source:'civicAPI',title:'VA-02 provider call',
   details:'Preview only; no real returns exist'};
  assert.equal(w.eval('enFishShow('+JSON.stringify(bogusCall)+',false)'),false,
