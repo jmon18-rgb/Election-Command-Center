@@ -3224,7 +3224,10 @@ function enRenderAmbientDesk(){
      (x.anomalies.length?' · '+x.anomalies.length+' source alerts':'');
     coverage.title='Valid primary source slots: '+x.house.sourceSlots+'/435 House, '+
      x.senate.sourceSlots+'/35 Senate. Supplemental counted only outside primary coverage. '+
-     '65 Senate holdovers not yet reconciled to independent calls; missing is unknown, not zero.';
+     '65 Senate holdovers not yet reconciled to independent calls; missing is unknown, not zero.'+
+     (x.crossSourceDiscrepancies?.length?' Advisory source disagreements: '+
+      x.crossSourceDiscrepancies.slice(0,4).map(v=>v.id+
+       ' Open America '+v.primaryLead+' / civicAPI '+v.supplementalLead).join('; '):'');
    }catch(err){coverage.textContent='National reconciliation unavailable: '+
     String(err.message||err)+' · congressional control not called';}
   }
