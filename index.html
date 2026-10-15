@@ -595,6 +595,72 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .smart-desk-open{font-size:10px;white-space:nowrap;color:#aad7ff}
 .smart-desk-open:focus-visible{outline-offset:2px}
 @media(max-width:690px){.smart-race-desk{padding:12px}.smart-desk-grid{grid-template-columns:1fr}.smart-desk-row{grid-template-columns:minmax(62px,.75fr) minmax(0,1.6fr) auto;gap:5px;padding:9px 3px}.smart-desk-identity strong{font-size:12px}.smart-desk-detail{font-size:10px}.smart-desk-state{font-size:9px;padding:4px}.smart-desk-head h2{font-size:19px}}
+
+/* Personal surf report: original aquatic styling, never an official hazard advisory. */
+#brief .brief-intro{margin-bottom:8px}
+#brief .brief-first-title{margin-top:10px}
+#jointHomePanel{padding:14px;border-color:#37667e;background:linear-gradient(160deg,#152f46,#0b1d32 80%)}
+.joint-headline{font-size:13px;line-height:1.5;font-weight:740;color:#b4e9ff;margin:10px 0 5px;font-variant-numeric:tabular-nums}
+.forecast-details{margin:8px 0 12px;color:#a1b9cf;font-size:11px}
+.forecast-details>summary{cursor:pointer;color:#87b9d5;font-size:11px}
+.forecast-details[open]{border-top:1px solid #31516a;padding-top:6px}
+.forecast-details .joint-summary{max-width:800px;font-size:11px}
+.brief-model-key{margin:10px 0 0}
+.forecast-lab{padding-top:8px;margin-top:9px;border-top:1px solid #2d455c}
+.forecast-lab>summary{color:#a2bdd4;font-size:11px;font-weight:750;cursor:pointer}
+.forecast-lab>.joint-audit{margin:9px 0}
+.four-needle{position:relative;isolation:isolate;overflow:hidden;border-color:#296c83;border-radius:13px;background:radial-gradient(ellipse 50% 35% at 50% 92%,rgba(4,149,221,.24),transparent),radial-gradient(ellipse 75% 65% at 75% 12%,rgba(20,96,141,.23),transparent),linear-gradient(160deg,#0d3048,#082238 78%);padding:12px 14px 9px}
+.four-needle:before{content:'';position:absolute;z-index:-1;left:-15%;right:-15%;height:100px;bottom:75px;opacity:.19;pointer-events:none;background:radial-gradient(ellipse 31px 10px at 35px 55px,transparent 74%,#5acdec 78%,transparent 87%) 0 0/75px 35px repeat-x;transform:skewY(-3deg)}
+.four-needle-top strong{color:#d2f8ff;font-size:12px;letter-spacing:.12em}
+.four-needle-top span{font-size:10px;color:#85aec2}
+.four-needle-arc{filter:drop-shadow(0 2px 9px rgba(49,176,239,.18));max-height:240px;margin:0 auto}
+.four-needle-arc .ocean-foam path{stroke-width:3px;opacity:.34;fill:none;stroke-linecap:round}
+.four-needle-arc .ocean-foam path:nth-child(2){opacity:.2}
+.four-needle-arc text{fill:#8ac5df;letter-spacing:1.3px}
+.four-needle-labels{font-size:10px;letter-spacing:.02em;margin-top:-6px;color:#badff0}
+.four-needle-labels span:last-child{color:#81ddff}
+.four-needle-footer{font-size:10px;gap:2px}
+.four-needle-footer span:first-child{color:#c7f4ff}
+.four-needle-change{font-size:10px;color:#9fc9df;font-weight:750}
+.four-needle-live-context{margin-top:7px;padding-top:7px}
+.joint-panel .joint-grid{gap:7px}
+.joint-cell{min-height:104px;padding:12px 12px 11px;border-radius:9px;background:#172c41}
+.joint-cell .joint-value{font-size:clamp(24px,3vw,32px);margin:5px 0}
+.joint-cell span{font-size:10px;line-height:1.35}
+.smart-race-desk{padding:15px 16px;border-color:#315e76;background:linear-gradient(135deg,#102a3e,#0d2032);margin-top:14px}
+.smart-desk-head{align-items:flex-start;margin-bottom:10px}
+.smart-desk-head h2{margin:4px 0;font-size:19px}
+.smart-desk-head p{font-size:11px;color:#94bdd2}
+.smart-desk-more{border-color:#487b96;border-radius:7px;background:rgba(18,74,101,.6);font-size:11px;min-height:34px;padding:7px 11px}
+.smart-desk-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.smart-signal{display:grid;grid-template-columns:minmax(62px,.75fr) minmax(0,1.55fr) auto;align-items:center;gap:8px;position:relative;text-decoration:none;border:1px solid #31526a;border-radius:9px;background:#152e43;color:#dfeeff;padding:11px 12px;min-width:0;transition:border-color .16s,background .16s}
+.smart-signal:hover,.smart-signal:focus-visible{border-color:#61b8e1;background:#1b3c52;outline-offset:2px}
+.smart-signal-info,.smart-signal-figures,.smart-signal-outcome{display:flex;min-width:0;flex-direction:column;gap:4px}
+.smart-signal-name{font-size:13px;letter-spacing:.02em;color:#d9f2ff;font-weight:880}
+.smart-signal-reason{font-size:9px;color:#85a9c4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.smart-signal-readings{font-size:11px;color:#d1e3f4;font-weight:760;line-height:1.3;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.smart-signal-sub{font-size:9px;color:#91b2c9;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.smart-signal-outcome{align-items:flex-end;white-space:nowrap;font-variant-numeric:tabular-nums}
+.smart-signal-outcome strong{font-size:17px;letter-spacing:-.04em;color:#dce7f6}
+.smart-signal-outcome small{font-size:9px;color:#91b1ca}
+.smart-signal-outcome[data-party="D"] strong,.smart-signal-outcome[data-party="O"] strong{color:#80cbff}
+.smart-signal-outcome[data-party="R"] strong{color:#ffa3a3}
+.smart-signal-arrow{position:absolute;right:4px;top:5px;color:#6b9cbd;font-size:12px;opacity:.55}
+.smart-selection-method{margin-top:10px;font-size:10px;color:#7fa9bf}
+.smart-selection-method>summary{cursor:pointer;width:max-content;color:#88b0c7}
+.smart-selection-method .smart-desk-note{font-size:10px;line-height:1.4;margin:5px 0 0}
+#briefPollLog{margin:19px 0;border:1px solid #294c67;border-radius:11px;background:#122437}
+#briefPollLog>summary{cursor:pointer;display:flex;align-items:center;gap:10px;padding:13px 15px;list-style:none}
+#briefPollLog>summary::-webkit-details-marker{display:none}
+#briefPollLog>summary strong{font-size:12px;color:#d4e6f5}
+#briefPollLog>summary span:not(.poll-log-chevron){font-size:10px;color:#86a9c2;margin-left:auto;text-align:right}
+#briefPollLog>summary .poll-log-chevron{color:#80d3f0;font-size:20px}
+#briefPollLog[open]>summary .poll-log-chevron{transform:rotate(180deg)}
+#briefPollLog>#newPolls,#briefPollLog>.textlink{display:block;margin:0 13px 12px}
+#brief .pulse-disclaimer{font-size:10px;line-height:1.35;color:#819fb9}
+#brief .brief-news-card{margin-top:8px}
+@media(max-width:760px){.smart-desk-grid{grid-template-columns:1fr}.smart-signal{grid-template-columns:minmax(68px,1fr) minmax(0,1.5fr) 66px;padding:9px 10px;gap:6px}.smart-signal-outcome strong{font-size:16px}.smart-signal-name{font-size:12px}.smart-signal-readings{font-size:10px}#jointHomePanel{padding:10px}.four-needle{padding:9px 8px}.four-needle-arc{max-height:225px}.joint-cell{min-height:92px;padding:10px}.joint-cell .joint-value{font-size:25px}.joint-cell strong{font-size:10px}.joint-cell span{font-size:10px}.four-needle-labels{font-size:9px}#briefPollLog>summary{flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){.smart-signal{transition:none}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -639,10 +705,12 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   <div class="four-needle-distribution" aria-hidden="true"></div>
  </div>
  <div class="joint-grid" id="jointHomeCards"><p class="joint-note">Waiting for complete model inputs…</p></div>
- <details class="joint-audit"><summary>Compare House fundamentals · historical vs presidential</summary><p id="jointHomeShadow" class="joint-note">Checking historically comparable House districts…</p></details>
+ <details class="forecast-lab"><summary>Model checks &amp; research</summary>
+<details class="joint-audit"><summary>Compare House fundamentals · historical vs presidential</summary><p id="jointHomeShadow" class="joint-note">Checking historically comparable House districts…</p></details>
  <details class="joint-audit" id="jointHomeCorrelationDetails"><summary>How much do Senate races move together? · probability sensitivity</summary><div id="jointHomeCorrelation" class="joint-note">Open to compare a conservative historical covariance sensitivity without changing the forecast.</div></details>
  <details class="joint-audit"><summary>Historical polling-error check · how reliable is this?</summary><p id="jointHomeAudit" class="joint-note">Reading existing historical Senate poll backtest…</p></details>
- <details class="forecast-details brief-model-key"><summary>What do the four endings mean?</summary><p class="joint-note">Blue Tsunami: D wins both chambers and at least 18 of 20 fixed battlegrounds. Blue Wave: D wins both without the near-sweep. Shrug: split control. Red Dawn: R wins both. Four exclusive outcomes, one uncalibrated correlated model.</p></details>
+ <details class="forecast-details brief-model-key"><summary>What do the four endings mean?</summary></details>
+ <p class="joint-note">Blue Tsunami: D wins both chambers and at least 18 of 20 fixed battlegrounds. Blue Wave: D wins both without the near-sweep. Shrug: split control. Red Dawn: R wins both. Four exclusive outcomes, one uncalibrated correlated model.</p></details>
 </div>
 
 <section class="smart-race-desk" id="smartBriefDesk" aria-label="Automatically tracked 2026 Senate and House races">
@@ -3204,10 +3272,10 @@ function jointPrivateActivate({deferRender=false}={}){
  }
 }
 const jointLabels=[
- ['blue_tsunami','BLUE TSUNAMI','D both chambers · 18+ of 20 battlegrounds','d-tide'],
- ['blue_wave','BLUE WAVE','D both chambers · below tsunami threshold','d-wave'],
- ['shrug','SHRUG','One chamber per party','d-split'],
- ['red_dawn','RED DAWN','R controls both chambers','r-dawn']
+ ['blue_tsunami','BLUE TSUNAMI','Both chambers · 18/20 races','d-tide'],
+ ['blue_wave','BLUE WAVE','Both chambers · no sweep','d-wave'],
+ ['shrug','SHRUG','Split control','d-split'],
+ ['red_dawn','RED DAWN','Republicans hold both','r-dawn']
 ];
 function jointSourceItem(item){
  const key=item.code,itemOffice=key.endsWith('-SEN')?'Senate':'House';
