@@ -2289,7 +2289,7 @@ async function settle(){
   'A stronger Minnesota Democratic margin cannot reduce D Senate control odds with other inputs unchanged');
  assert.equal(w.eval('jointRaceOddsIntegrity()'),true,
   'New joint-model odds must still match every race and polling margin');
- assert.equal(w.eval('jointBasis.generated_from_sources.model_polling_at'),estimatesNext.generated_at);
+ assert.equal(w.eval('jointRaceOddsResult().polling_source_generated_at'),estimatesNext.generated_at);
  const nextFour=w.eval('jointForecastResult().probabilities');
  assert.notDeepEqual(nextFour,formerFour,
   'Fresh pivotal race polling must recalculate the Four Endings joint distribution');
