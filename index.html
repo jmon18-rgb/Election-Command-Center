@@ -2713,7 +2713,7 @@ function enNationalTracked(item){
  const id=enWatchId(item);
  return enWatched.some(x=>enWatchId(x)===id)||
    (enNationalEnabled&&enNationalSeats?.some(x=>enWatchId(x)===id))||
-   enNationalExpanded.has(id)||enMilestoneTracked(item)||enEarlySourceTracked(item);
+   enNationalExpanded.has(id)||enMilestoneTracked(item)||enEarlySourceTracked(item)||enAutoTracked(item);
 }
 function enNationalToggle(enabled){
  if(!enNationalSeats)return;
@@ -3468,6 +3468,7 @@ function jointRender(force=false){
    }else privateSummary.textContent='Public JackStradamus baseline active; import the CSVs to compare an experimental candidate-context variant.';
   }
   jointRenderCards(result);
+  renderSmartRaceDesks();
   renderSenateTideLine();
   renderMississippiSenateWatch();
   renderEnForecastStrip();
@@ -4578,11 +4579,11 @@ async function enCivicFetchOne(item,forceAfterPending=false){
   enProcessCivicAlert(item,old,next);
   enCivicRaceIds[id]=row;
   delete enCivicErrors[id];
-  enRenderWatchlist();enRenderNationalSenate();enRenderExportControls();enRenderLiveDesk();enRenderMilestones();
+  enRenderWatchlist();enRenderNationalSenate();enRenderExportControls();enRenderLiveDesk();enRenderMilestones();renderSmartRaceDesks();
  }catch(err){
   if(enIsVisible()&&enModeYear===2026){
    enCivicErrors[id]=String(err?.message||err);
-   enRenderWatchlist();enRenderNationalSenate();enRenderLiveDesk();
+   enRenderWatchlist();enRenderNationalSenate();enRenderLiveDesk();renderSmartRaceDesks();
   }
  }finally{
   enCivicPending.delete(id);
@@ -4622,7 +4623,9 @@ async function enRefreshCivicWatchlist(force=false){
   const earlyMonitored=now>=Date.parse('2026-11-03T05:00:00Z')?
    (window.ElectionNightEarlySignals?.records||[]).map(x=>enWatchParse(x.code))
     .filter(Boolean):[];
-  const all=[...new Map([...enWatched,...enNationalWatchItems(),...monitored,...earlyMonitored]
+  const autoMonitored=now>=Date.parse('2026-11-03T05:00:00Z')?
+    smartAutoWatch().map(x=>({office:x.office,key:x.key})):[];
+  const all=[...new Map([...enWatched,...enNationalWatchItems(),...monitored,...earlyMonitored,...autoMonitored]
     .filter(x=>!enSupportedStates.has(x.key.slice(0,2))||enMilestoneTracked(x))
     .map(x=>[enWatchId(x),x])).values()];
   if(!all.length)return;
@@ -4631,12 +4634,18 @@ async function enRefreshCivicWatchlist(force=false){
   const limit=Math.min(12,all.length);
   const rotation=Array.from({length:limit},(_,i)=>all[(start+i)%all.length]);
   enCivicSweepCursor=(start+limit)%all.length;
+  // Keep hot reference watches in the 12-race bounded cycle, leaving the
+  // remainder for round-robin discovery across supplemental source states.
+  const focus=smartAutoWatch().filter(x=>x.tip>=7&&
+   !enSupportedStates.has(x.key.slice(0,2))).slice(0,4);
+  const selected=[...new Map([...focus,...rotation]
+   .map(x=>[enWatchId(x),{office:x.office,key:x.key}])).values()].slice(0,12);
   // An explicit manual refresh prioritizes personally pinned races;
   // background cycles retain round-robin fairness across 35 Senate seats.
   const pinned=force?enWatched.filter(x=>
    !enSupportedStates.has(x.key.slice(0,2))||enMilestoneTracked(x)):[];
-  const batch=force?[...new Map([...pinned,...rotation]
-    .map(x=>[enWatchId(x),x])).values()]:rotation;
+  const batch=force?[...new Map([...pinned,...selected]
+    .map(x=>[enWatchId(x),x])).values()]:selected;
   // Manual refresh checks every saved personal pin (max 40), not only
   // the first twelve; four workers still bound external request load.
   // Four bounded workers allow independent seats to update while one
@@ -4794,7 +4803,12 @@ $('#enWatchForm').addEventListener('submit',event=>{
  enWatchToggle(item);field.value='';
 });
 
-function enIsVisible(){return typeof document!=='undefined'&&Boolean(document?.querySelector?.('#electionNight')?.classList.contains('active'))}
+function enIsVisible(){
+ if(typeof document==='undefined')return false;
+ return Boolean(document.querySelector?.('#electionNight')?.classList.contains('active')||
+  enModeYear===2026&&Date.now()>=Date.parse('2026-11-03T05:00:00Z')&&
+  document.querySelector?.('#brief')?.classList.contains('active'));
+}
 function enNum(n){return typeof n==='number'&&Number.isFinite(n)?n.toLocaleString('en-US'):'—'}
 function enFormattedTime(v){const d=v?new Date(v):null;return d&&!isNaN(+d)?d.toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}):'unknown'}
 
@@ -5027,7 +5041,7 @@ function enAcceptSource(o){
   delete enOfficeErrors[enOffice];
   enResumeSave();
  }
- enRender();enRenderMilestones();
+ enRender();enRenderMilestones();renderSmartRaceDesks();
 }
 /* CSV export operates only on source-validated, reported 2026 votes
  * and locally observed movement events. No polling estimates or inferred
@@ -5309,7 +5323,9 @@ function enFetchUrl(year,office){
 const enWatchRefreshPending=new Set();
 async function enRefreshWatchedOffices(exceptOffice){
  if(enModeYear!==2026||!enIsVisible())return;
+ const autoDate=Date.now()>=Date.parse('2026-11-03T05:00:00Z');
  const offices=[...new Set([...enWatched.map(x=>x.office),
+  ...(autoDate?['House','Senate','Governor']:[]),
   ...(enNationalEnabled&&enNationalSeats?['Senate']:[])])].filter(x=>x!==exceptOffice);
  await Promise.all(offices.map(async office=>{
   if(enWatchRefreshPending.has(office))return;
@@ -5336,6 +5352,7 @@ async function enRefreshWatchedOffices(exceptOffice){
    if(enOffice===office){
     enData=obj;enFetchError=null;enLastFetchAt=new Date();enRender();
    }else {enRenderWatchlist();enRenderNationalSenate();enRenderLiveDesk()}
+   renderSmartRaceDesks();
   }catch(err){
    if(enModeYear===2026&&enIsVisible()){enOfficeErrors[office]=String(err?.message||err);enOfficeCheckedAt[office]=Date.now();enRenderWatchlist();enRenderLiveDesk()}
   }finally{enWatchRefreshPending.delete(office)}
@@ -5356,7 +5373,7 @@ function enQueueRefresh(){
  });
  const preferred=watchingLive?{live:true}:enData;
  const civicActive=Date.now()>=Date.parse('2026-11-03T05:00:00Z')&&
-  [...enWatched,...enNationalWatchItems()].some(x=>!enSupportedStates.has(x.key.slice(0,2)));
+  [...enWatched,...enNationalWatchItems(),...smartAutoWatch()].some(x=>!enSupportedStates.has(x.key.slice(0,2)));
  const interval=enRefreshInterval(preferred,enFailures);
  enTimer=setTimeout(()=>{enTimer=null;enLoad(false)},
    civicActive?Math.min(interval,60000):interval);
@@ -5426,10 +5443,16 @@ $('#enOfficeGovernor').addEventListener('click',()=>enSwitch(enModeYear,'Governo
 $('#enRefresh').addEventListener('click',()=>enLoad(true));
 $('#enSearch').addEventListener('input',()=>{enVisibleLimit=120;enRender()});
 document.querySelector('.tab[data-page="electionNight"]').addEventListener('click',()=>{if(!enData||enModeYear===2026)enLoad(false)});
-document.querySelectorAll('.tab:not([data-page="electionNight"])').forEach(el=>el.addEventListener('click',()=>{if(enTimer){clearTimeout(enTimer);enTimer=null}}));
+document.querySelectorAll('.tab:not([data-page="electionNight"]):not([data-page="brief"])').forEach(el=>el.addEventListener('click',()=>{if(enTimer){clearTimeout(enTimer);enTimer=null}}));
+document.querySelector('.tab[data-page="brief"]').addEventListener('click',()=>{
+ if(enModeYear===2026&&Date.now()>=Date.parse('2026-11-03T05:00:00Z'))void enLoad(false);
+ renderSmartRaceDesks();
+});
 enResumeRestore();
-enRender();
+enRender();renderSmartRaceDesks();
 if(location.hash.split('/')[0]==='#electionNight')enLoad(true);
+else if(enModeYear===2026&&Date.now()>=Date.parse('2026-11-03T05:00:00Z')&&
+ document.querySelector('#brief')?.classList.contains('active'))void enLoad(false);
 
 function historicalHouseSwingSample(data){
  if(data?.status!=='two_cycle_historical_comparison_only'||data.is_forecast!==false||
