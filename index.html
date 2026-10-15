@@ -435,13 +435,13 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <div class="tide-line-panel" aria-label="Key Senate races from the 2026 control forecast">
  <p class="tide-line-intro">The path to Senate control runs through more than one race. Watch the battlegrounds, then the outer edge of a possible wave. All margins and odds below come from our own live polling and correlated model—not another forecaster's odds.</p>
  <div id="senateTideRaces" class="tide-races"><p class="joint-note">Matching Senate polls and model probabilities…</p></div>
- <p class="tide-line-note">SC, GA, FL and LA are wider-wave watches—not required conditions for a Blue Tsunami. Nebraska's Dan Osborn runs as an independent; a model victory for him is not necessarily a Democratic Senate seat.</p>
+ <p class="tide-line-note">SC, GA, FL, LA and MS are wider-wave watches—not required conditions for a Blue Tsunami. Nebraska's Dan Osborn runs as an independent; a model victory for him is not necessarily a Democratic Senate seat.</p>
  </div>
-<div class="sectionhead"><h2>Missouri House watch</h2><span class="tiny" id="missouriWatchAsOf">MO-02 · source-linked House forecast</span></div>
- <div class="tide-line-panel" id="missouriHousePanel">
-  <p class="tide-line-intro">Missouri's 2nd District is on the House battleground board. This is a House race, not a Senate contest; its odds feed directly into House control and Four Endings.</p>
-  <div id="missouriHouseWatch" class="tide-races"><p class="joint-note">Checking Missouri's published polling and joint forecast…</p></div>
-  <p class="tide-line-note">Polling is thin and sponsored. The polling result and the full correlated House forecast are separate measures, both shown with their source status.</p>
+<div class="sectionhead"><h2>Mississippi Senate watch</h2><span class="tiny" id="mississippiWatchAsOf">MS-SEN · linked Senate forecast</span></div>
+ <div class="tide-line-panel" id="mississippiSenatePanel">
+  <p class="tide-line-intro">Scott Colom versus Cindy Hyde-Smith. Mississippi is an emerging wider-wave Senate race worth watching.</p>
+  <div id="mississippiSenateWatch" class="tide-races"><p class="joint-note">Checking Mississippi polling and the joint Senate forecast…</p></div>
+  <p class="tide-line-note">Only one recent independent survey is included. The observed margin and election win probability are different measures. Both are linked to the same Senate and Four Endings simulation.</p>
  </div>
  <div class="sectionhead"><h2>What to watch</h2><span class="tiny">What deserves a closer look?</span></div>
 <div class="card radar-wrap"><div id="jackRadar" class="radar-grid"><div class="empty">Scanning close races, polling blind spots, and election developments…</div></div><p class="methodline">The closest margins, thin polling, and documented election-administration issues.</p></div>
@@ -798,9 +798,9 @@ else for(const x of cases)add(watch,KEY_STATES[x.state]||x.state,x.scope_label);
 const SENATE_TIDE_CODES=Object.freeze([
  'ME-SEN','TX-SEN','OH-SEN','IA-SEN','MI-SEN','AK-SEN','KS-SEN',
  'MN-SEN','NH-SEN','NE-SEN','NC-SEN','SC-SEN',
- 'GA-SEN','FL-SEN','LA-SEN'
+ 'GA-SEN','FL-SEN','LA-SEN','MS-SEN'
 ]);
-const SENATE_TIDE_WIDER_WAVE=new Set(['SC-SEN','GA-SEN','FL-SEN','LA-SEN']);
+const SENATE_TIDE_WIDER_WAVE=new Set(['SC-SEN','GA-SEN','FL-SEN','LA-SEN','MS-SEN']);
 function renderSenateTideLine(){
  const host=$('#senateTideRaces');if(!host)return;
  host.replaceChildren();
@@ -843,22 +843,42 @@ function renderSenateTideLine(){
     side+' '+winningPct.toFixed(1)+'%'));
    forecast.append(elt('span','','model win chance'));
   }else forecast.append(elt('span','','Odds pending'));
-  values.append(forecast);race.append(values);host.append(race);
+  values.append(forecast);race.append(values);
+   // Distinguish the actual latest Marist likely-voter question from RV
+   // questions indexed on the same release; only one wave per firm is weighted.
+   if(code==='IA-SEN'&&poll){
+    const firm=poll.pollsters?.find(x=>/marist/i.test(x.name));
+    const raw=pollingSnapshot?.races?.find(r=>r.race_code===code)
+     ?.polls?.find(p=>p.poll_id===firm?.poll_id&&p.field_end===firm?.field_end);
+    if(firm&&raw){
+     let description=firm.name+' '+firm.field_end+' · '+
+      String(raw.sample_population||'sample').toUpperCase()+' '+marginText(raw.margin)+
+      ' INCLUDED · '+Number(firm.weight_share).toFixed(1)+'% of average';
+     const other=postedPollingSnapshot?.observations?.find(x=>
+      x.poll_id===firm.poll_id&&x.race_code===code&&
+      x.sample_population!==raw.sample_population);
+     if(other)description+=' · '+String(other.sample_population).toUpperCase()+
+      ' '+marginText(other.margin)+' not double-counted';
+     race.append(elt('div','tide-race-candidates',description+
+      ' · combined mean '+marginText(poll.dem_minus_rep)));
+    }
+   }
+   host.append(race);
  }
 }
-function renderMissouriHouseWatch(){
- const host=$('#missouriHouseWatch'),stamp=$('#missouriWatchAsOf');if(!host)return;
+function renderMississippiSenateWatch(){
+ const host=$('#mississippiHouseWatch'),stamp=$('#mississippiWatchAsOf');if(!host)return;
  host.replaceChildren();
- const poll=latestSenateEstimates?.house?.find(x=>x.race_code==='MO-02');
+ const poll=latestSenateEstimates?.senate_all?.find(x=>x.race_code==='MS-SEN');
  const current=Boolean(jointLastResult&&jointBasis&&
   jointBasis.generated_from_sources.model_polling_at===latestSenateEstimates?.generated_at);
  const predicted=current?jointLastResult.race_probabilities.find(x=>
-  x.office==='house'&&x.race_code==='MO-02'):null;
- if(stamp)stamp.textContent='MO-02 · '+(current?'same joint model as Four Endings':'model odds pending');
- const button=elt('button','tide-race');button.type='button';button.dataset.houseSpotlight='MO-02';
- button.setAttribute('aria-label','Explore Missouri second congressional district');
+  x.office==='senate'&&x.race_code==='MS-SEN'):null;
+ if(stamp)stamp.textContent='MS-SEN · '+(current?'same joint model as Four Endings':'model odds pending');
+ const button=elt('button','tide-race');button.type='button';button.dataset.senateSpotlight='MS-SEN';
+ button.setAttribute('aria-label','Explore Mississippi U.S. Senate contest');
  const head=elt('div','tide-race-head');
- head.append(elt('strong','','Missouri · 2nd District'),elt('small','','House control'));
+ head.append(elt('strong','','Mississippi · U.S. Senate'),elt('small','','Senate wider-wave'));
  button.append(head,elt('div','tide-race-candidates',
   poll?.dem_candidate&&poll?.rep_candidate?poll.dem_candidate+' vs. '+poll.rep_candidate:
   'Candidate polling unavailable'));
@@ -869,7 +889,7 @@ function renderMissouriHouseWatch(){
   eligible?'Poll '+marginText(poll.dem_minus_rep):'No current qualified poll'));
  const odds=elt('div','tide-race-odds');
  odds.append(elt('b','',predicted?'D '+predicted.dem_beats_rep_pct.toFixed(1)+'%':
-  'Odds pending'),elt('span','','correlated House win odds'));
+  'Odds pending'),elt('span','','correlated Senate win odds'));
  vals.append(odds);button.append(vals);
  button.append(elt('div','tide-race-candidates',eligible?
   (poll.independent_pollsters||0)+' independent · '+
@@ -877,12 +897,12 @@ function renderMissouriHouseWatch(){
   'Awaiting a qualified survey'));
  host.append(button);
 }
-$('#missouriHouseWatch').addEventListener('click',event=>{
- if(!event.target.closest('[data-house-spotlight]'))return;
- modelMode='house';selectedModelState='MO-02';
+$('#mississippiHouseWatch').addEventListener('click',event=>{
+ if(!event.target.closest('[data-senate-spotlight]'))return;
+ modelMode='senate';selectedModelState='MS-SEN';
  modelPollMode='included';highlightedModelPoll=null;
  const tab=document.querySelector('.tab[data-page="model"]');if(tab)tab.click();
- if(window.history?.replaceState)window.history.replaceState(null,'','#model/house/MO-02');
+ if(window.history?.replaceState)window.history.replaceState(null,'','#model/senate/MS-SEN');
  if(latestSenateEstimates)renderModelOverview(latestSenateEstimates);
  $('#modelDetail')?.scrollIntoView({behavior:'smooth',block:'start'});
 });
@@ -2745,7 +2765,7 @@ function jointRender(force=false){
   }
   jointRenderCards(result);
   renderSenateTideLine();
-  renderMissouriHouseWatch();
+  renderMississippiSenateWatch();
   renderEnForecastStrip();
   setModelRaceOddsData(jointBuildRaceOddsSnapshot(result,jointBasis));
   let shadow=null,presidentialShadow=null;
@@ -2774,7 +2794,7 @@ function jointRender(force=false){
   jointErrorMessage='Model calculation unavailable: '+String(e.message||e);
   jointLastResult=null;setModelRaceOddsData(null);
   jointRenderCards(null);jointRenderHouseShadow(null,null,null);
-  renderMissouriHouseWatch();
+  renderMississippiSenateWatch();
   renderEnForecastStrip();
  }
 }
@@ -4632,7 +4652,7 @@ latestSenateEstimates=data;
 if(jointLastResult&&jointBasis&&!modelRaceOddsData)
  modelRaceOddsData=jointBuildRaceOddsSnapshot(jointLastResult,jointBasis);
 renderPollWire();
-const box=document.getElementById('senateEstimateCards');box.replaceChildren();renderRacePulse(data);renderSenateTideLine();renderMissouriHouseWatch();
+const box=document.getElementById('senateEstimateCards');box.replaceChildren();renderRacePulse(data);renderSenateTideLine();renderMississippiSenateWatch();
 const safeNumber=v=>typeof v==='number'&&Number.isFinite(v);
 const pos=margin=>Math.max(0,Math.min(100,50+margin*1.5));
 for(const x of data.states||[]){
