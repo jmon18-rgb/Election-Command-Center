@@ -41,6 +41,8 @@ def usable(p, today, allowed):
     code = p.get("race_code")
     if not isinstance(code, str) or code not in allowed[p["race_type"]]:
         return False
+    if p.get("state") and str(p["state"]).upper() != code[:2]:
+        return False
     demname, repname = matchup(p)
     if not demname or not repname or "generic" in demname or "generic" in repname:
         return False
