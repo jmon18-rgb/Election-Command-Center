@@ -223,10 +223,10 @@ async function settle(){
  assert.equal(w.eval('enFishShow('+JSON.stringify(thirdUpdate)+',false)'),true);
  assert.equal(fishAudioPlays,3,'Pending updates should not cut the first audio off');
  assert.equal(w.eval('enFishPending.length'),2);
- w.eval('clearTimeout(enFishTimeout);enFishTimeout=null;const next=enFishPending.shift();enFishPresent(next.event,next.demo)');
+ w.eval('clearTimeout(enFishTimeout);enFishTimeout=null;enFishPresent(enFishPending.shift().event,false)');
  assert.equal(fishAudioPlays,4,'Second alert must replay the MP3 once the first is done');
  assert.match(get('#enFishHeadline').textContent,/NC-SEN/);
- w.eval('clearTimeout(enFishTimeout);enFishTimeout=null;const next=enFishPending.shift();enFishPresent(next.event,next.demo)');
+ w.eval('clearTimeout(enFishTimeout);enFishTimeout=null;enFishPresent(enFishPending.shift().event,false)');
  assert.equal(fishAudioPlays,5,'Third alert must get its own original MP3 intro');
  assert.match(get('#enFishHeadline').textContent,/OH-SEN/);
  get('#enFishDismiss').click();
