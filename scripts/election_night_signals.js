@@ -81,16 +81,48 @@
    earlyCount:drivers.filter(d=>d.early).length,
    drivers:drivers.slice(0,5)};
  }
+ // Provider-reported winner signals are NOT independent professional
+ // election calls or certified results. Before using one in a milestone or
+ // the experimental joint model, validate the precise office, ballot seat,
+ // race identity, timestamp, candidate roster and arithmetical totals.
  function validatedCall(row,now=Date.now()){
-  if(!row||row.provider!=='civicAPI'||row.total<=0||
-    !Array.isArray(row.candidates)||!row.called||!number(now)||now<START)return null;
+  if(!row||row.provider!=='civicAPI'||!number(now)||now<START||
+    row.stale===true||row.sourceStale===true||
+    !Number.isSafeInteger(row.race_id)||row.race_id<=0||
+    !Number.isSafeInteger(row.total)||row.total<=0||
+    typeof row.called!=='string'||!fixed(row.called)||row.called.length>200||
+    !Array.isArray(row.candidates)||!row.candidates.length||
+    row.candidates.length>60)return null;
+  const patterns={Senate:/^[A-Z]{2}(?:-special)?$/,
+   House:/^[A-Z]{2}-\\d{2}$/,Governor:/^[A-Z]{2}$/};
+  if(!patterns[row.office]?.test(row.key||''))return null;
+  if(row.percent_reporting!==undefined&&row.percent_reporting!==null&&
+    (!number(row.percent_reporting)||row.percent_reporting<0||
+     row.percent_reporting>100))return null;
   const ts=Date.parse(row.last_updated||'');
-  if(!number(ts)||ts<START||ts>now+900000)return null;
-  const matched=row.candidates.filter(c=>fixed(c.name)===fixed(row.called)&&
-    c.votes>0&&['D','R','O'].includes(c.party));
-  return matched.length===1?{name:matched[0].name,party:matched[0].party,
-   opponents:row.candidates.filter(c=>c!==matched[0]),source:'civicAPI',
-   at:row.last_updated}:null;
+  // A provider flag that outlives its three-hour source freshness window
+  // must not lock an election-night forecast or award a celebration.
+  if(!number(ts)||ts<START||ts>now+900000||now-ts>180*60000)return null;
+  const names=new Set(),candidates=[];
+  let sum=0;
+  for(const c of row.candidates){
+   if(!c||typeof c.name!=='string'||!fixed(c.name)||c.name.length>200||
+     !['D','R','O'].includes(c.party)||
+     !Number.isSafeInteger(c.votes)||c.votes<0)return null;
+   const id=fixed(c.name).toLocaleLowerCase('en-US')+'|'+c.party;
+   if(names.has(id))return null;
+   names.add(id);
+   sum+=c.votes;
+   if(!Number.isSafeInteger(sum)||sum>row.total)return null;
+   candidates.push(c);
+  }
+  const matched=candidates.filter(c=>fixed(c.name)===fixed(row.called)&&
+    c.votes>0);
+  if(matched.length!==1)return null;
+  return {name:matched[0].name,party:matched[0].party,
+   opponents:candidates.filter(c=>c!==matched[0]),source:'civicAPI',
+   sourceClass:'provider_reported_unofficial',certified:false,
+   professionallyReviewed:false,at:row.last_updated};
  }
  function evaluateMilestones(rows,{year=2026,now=Date.now()}={}){
   const calls=year===2026&&now>=START?rows||{}:{};
