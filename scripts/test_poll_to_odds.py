@@ -21,7 +21,7 @@ def fixture():
             "poll_id": f"old-{number}", "pollster": "SurveyUSA",
             "field_end": "2026-10-07", "dem_name": "Peggy Flanagan" if number == 0 else "Candidate D",
             "rep_name": "Michele Tafoya" if number == 0 else "Candidate R",
-            "dem": 48, "rep": 48,
+            "dem": 48, "rep": 48, "margin": 0,
         }
         raw.append({"race_code": code, "race_type": office, "polls": [source_poll]})
         modeled.append({
@@ -51,7 +51,7 @@ def newer():
         "poll_id": "new-mn-surveyusa", "pollster": "SurveyUSA",
         "field_end": "2026-10-12",
         "dem_name": "Peggy Flanagan", "rep_name": "Michele Tafoya",
-        "dem": 45, "rep": 42
+        "dem": 45, "rep": 42, "margin": 3
     }
 
 
@@ -67,7 +67,7 @@ class PollChainTests(unittest.TestCase):
         poll = newer()
         primary["races"][0]["polls"].insert(0, poll)
         supplemental = {"observations": [poll]}
-        with self.assertRaisesRegex(ValueError, "NOT in weighted average"):
+        with self.assertRaisesRegex(ValueError, "Newest primary poll omitted|NOT in weighted average"):
             check(primary, model, odds, supplemental, today=__import__("datetime").date(2026, 10, 14))
         # A complete refresh selects the new SurveyUSA study, recomputes
         # the average, and delivers the same margin to probability inputs.
@@ -83,6 +83,23 @@ class PollChainTests(unittest.TestCase):
         self.assertEqual(result["verified_newest_indexed_waves"], 1)
         self.assertEqual(mn["dem_minus_rep"], 3.0)
         self.assertEqual(odds["records"][0]["dem_minus_rep"], 3.0)
+
+    def test_new_primary_only_poll_cannot_hide_from_model(self):
+        primary, model, odds = fixture()
+        p = newer()
+        primary["races"][0]["polls"].insert(0, p)
+        with self.assertRaisesRegex(ValueError, "Newest primary poll omitted"):
+            check(primary, model, odds, today=__import__("datetime").date(2026, 10, 14))
+
+    def test_intentionally_excluded_firm_does_not_block_forecast(self):
+        primary, model, odds = fixture()
+        p = newer()
+        p["pollster"] = "Explicitly Excluded Example"
+        primary["races"][0]["polls"].insert(0, p)
+        model["excluded_pollsters"] = ["explicitly excluded example"]
+        result = check(primary, model, odds,
+                       today=__import__("datetime").date(2026, 10, 14))
+        self.assertEqual(result["freshest_primary_firm_waves"], 32)
 
     def test_old_probability_snapshot_blocks_publication(self):
         primary, model, odds = fixture()

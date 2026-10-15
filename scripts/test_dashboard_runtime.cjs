@@ -2178,6 +2178,8 @@ async function settle(){
   'The unseen-count reference must not silently reset on each render');
  // A partial publication must not replace the complete previous forecast.
  const formerModelAt=w.eval('jointRaceOddsResult().polling_source_generated_at');
+ const formerMN=w.eval("jointRaceOddsResult().records.find(x=>x.race_code==='MN-SEN'&&x.office==='senate').dem_beats_rep_pct");
+ const formerSenateControl=w.eval('jointForecastResult().senate_dem_control_pct');
  const primaryNext=structuredClone(primary);
  primaryNext.updated_at=new Date(Date.parse(freshPosted.updated_at)+60000).toISOString();
  primaryNext.health={...primaryNext.health,status:'ok'};
@@ -2194,6 +2196,39 @@ async function settle(){
  const oddsNext=structuredClone(fixtures['race_probabilities.json']);
  oddsNext.polling_source_generated_at=estimatesNext.generated_at;
  oddsNext.polling_source_snapshot=estimatesNext.source_snapshot;
+ // Verify actual poll contents and the JOINT simulation change, not merely
+ // the last-updated timestamp on a still-open dashboard tab.
+ const mnPrimary=primaryNext.races.find(r=>r.race_code==='MN-SEN');
+ assert(mnPrimary,'Minnesota primary race must exist');
+ const mnNewPoll={...mnPrimary.polls[0],
+  poll_id:'mn-new-firm-live-refresh-regression',
+  pollster:'New Independent Minnesota Firm',
+  field_end:'2026-10-14',dem:55,rep:38,margin:17,
+  sample_size:720,partisan_lean:'',
+  dem_name:'Peggy Flanagan',rep_name:'Michele Tafoya'};
+ mnPrimary.polls.unshift(mnNewPoll);
+ mnPrimary.latest=mnNewPoll;
+ mnPrimary.latest_field_end=mnNewPoll.field_end;
+ mnPrimary.recent_poll_count=mnPrimary.polls.length;
+ const mnEstimate=estimatesNext.senate_all.find(r=>r.race_code==='MN-SEN');
+ assert(mnEstimate,'Minnesota model race must exist');
+ mnEstimate.dem_minus_rep=Number((mnEstimate.dem_minus_rep+6).toFixed(2));
+ mnEstimate.dem_pct=Number((mnEstimate.dem_pct+3).toFixed(2));
+ mnEstimate.rep_pct=Number((mnEstimate.rep_pct-3).toFixed(2));
+ mnEstimate.latest_poll_end=mnNewPoll.field_end;
+ mnEstimate.contributing_pollsters++;
+ mnEstimate.independent_pollsters++;
+ mnEstimate.pollsters.unshift({name:mnNewPoll.pollster,
+  field_end:mnNewPoll.field_end,poll_id:mnNewPoll.poll_id});
+ Object.assign(estimatesNext.states.find(r=>r.race_code==='MN-SEN'),mnEstimate);
+ const mnRefreshOdds=oddsNext.records.find(r=>r.office==='senate'&&r.race_code==='MN-SEN');
+ assert(mnRefreshOdds,'Minnesota probability input must exist');
+ Object.assign(mnRefreshOdds,{
+  dem_minus_rep:mnEstimate.dem_minus_rep,
+  latest_poll_end:mnNewPoll.field_end,
+  contributing_firms:mnEstimate.contributing_pollsters,
+  independent_firms:mnEstimate.independent_pollsters
+ });
  fixtures['polling_estimates.json']=estimatesNext;
  fixtures['race_probabilities.json']=oddsNext;
  await w.eval('refreshLivePollSnapshots()');
@@ -2201,6 +2236,16 @@ async function settle(){
   'Polling averages should update without reopening the dashboard');
  assert.equal(w.eval('jointRaceOddsResult().senate_prior_mode'),'current_2026');
  assert.equal(w.eval('jointRaceOddsResult().polling_source_generated_at'),estimatesNext.generated_at);
+ const currentMN=w.eval("jointRaceOddsResult().records.find(x=>x.race_code==='MN-SEN'&&x.office==='senate').dem_beats_rep_pct");
+ assert(currentMN>formerMN+1,
+  'New Minnesota survey must change the JOINT simulated race win probability');
+ assert(w.eval('jointForecastResult().senate_dem_control_pct')>=formerSenateControl,
+  'A stronger Minnesota Democratic margin cannot reduce D Senate control odds with other inputs unchanged');
+ assert.equal(w.eval('jointRaceOddsIntegrity()'),true,
+  'New joint-model odds must still match every race and polling margin');
+ w.eval("navigateInsightToModel({office:'senate',race:{race_code:'MN-SEN'}})");
+ assert.match(get('#modelOddsNumbers').textContent,new RegExp(Math.round(currentMN)+'%'),
+  'Visible Minnesota race odds must reflect the new correlated simulation');
  assert.match(get('#changesSince').textContent,/newly indexed since opening/,
   'Refreshing the full forecast should preserve newly indexed survey count');
 
