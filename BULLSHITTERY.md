@@ -57,6 +57,14 @@ Avoid the tempting but incorrect calculation `worst_case * P(worst-case scenario
 
 The index measures monitoring urgency; it is not a statement of any party's intent or voters' political preferences.
 
+## October 15: first new lead checked against an original election authority
+
+The automatically compiled news queue contained 125 unreviewed leads on October 15. An October 13 North Carolina notification story was checked against the [North Carolina State Board of Elections' own October 13 release](https://www.ncsbe.gov/news/press-releases/2026/10/13/ncsbe-send-letter-potential-non-citizens-voter-rolls). The Board announced plans to mail correspondence to **1,392 registered voters** flagged for additional citizenship verification. It explicitly confirms **no automatic removal** based solely on SAVE information, and that receiving the letter **does not cancel registration or bar eligible voting**. The Board's mailing intentions are documented; mailing delivery and any ultimately lost ballots are **not** independently established.
+
+This is now separately logged as `nc-save-citizenship-letters-20261013` (an **officially confirmed announcement**, not verified disenfranchisement). One related source lead is marked `primary_source_checked` and links to the official release; related headlines remain separate leads. The reported **1,392** is a registered-voter **notice cohort**, not evidence of 1,392 affected voters, ballots, or deliberate suppression. The adverse ballot-loss scenario has **no numerical probability** because relevant removal, challenge, corrections and countable-vote outcomes have not been established. This is an **unscored case type** in the 0–100 index and does not artificially increase North Carolina's priority beyond its separately documented voting-hours changes.
+
+**Verification workflow that still needs implementation:** cluster duplicate articles by underlying incident and primary source; open official records and court dockets; record verified action, scope, dates, affected units, remedies and contradictions; assign independent review status per incident; set a next-review date and surface unresolved items; promote only verified source-specific claims to the public ledger. Alerts require evidence thresholds and newly documented consequences, not article volume. Before adjusting a state election forecast, additionally establish geographically and partisan *differential* effects with defensible unique-voter counts and ballot dispositions, and test the adjustment as a sensitivity—not as a presumed election outcome.
+
 ## October 14 interface clarity — monitored does not mean assessed
 
 The personal dashboard's `Bullshittery Index` appears on all polled Senate race cards, but the underlying **sourced ledger is curated and non-exhaustive**. The previous generic `Not assessed` label did not distinguish an untouched state from a documented incident with unknown voter effects. The race cards now distinguish:
