@@ -1,9 +1,30 @@
 {
-  "updated_at": "2026-10-15T00:54:54.154391Z",
+  "updated_at": "2026-10-15T01:43:52.159541Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "items": [
+    {
+      "id": "3e142dc117d065768262",
+      "title": "Absentee Ballots for the 2026 State General Election Available for New Hampshire Voters - InDepthNH.org",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQSUFFZEZXSlo0RmRwTm5hUUhvbTB4LWlfNEJkV0dpaHNhS0EtM2Iwc2N1dFU2MndTQ0phcUU1NlFZMURjSXNpb0FJYWNfUEpCc1NSNTBsTTdaTXdlLXVXRmp0MTJhT3Z6MHEySzV4WFpXbzU3M1hLZmNBN0c5eFY5Z1lrb2stWG1WMDBTdjZ4S1d5X3hwM1FvRUIyZ2tqY2c0Y1BabE5mZlBpQjVjUFlkdU1GZWR3SXo4NTNpbEZn?oc=5",
+      "publisher": "InDepthNH.org",
+      "published_at": "2026-10-15T00:04:35Z",
+      "detected_at": "2026-10-15T01:43:52.159541Z",
+      "state_hints": [
+        "NH"
+      ],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "7d1609c93b3e7647a9d9",
       "title": "Voting Rights Groups Say Texas Failed to Process Voter Registrations - notus.org",
