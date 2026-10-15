@@ -391,7 +391,7 @@ async function settle(){
  assert.equal(posterCards.filter(el=>el.querySelector('img.en-milestone-thumb')).length,7,
   'Every milestone gets its own original illustrated thumbnail');
  assert(posterCards[3].querySelector('img.en-milestone-thumb').getAttribute('src')
-  .includes('upload.wikimedia.org/wikipedia/commons/thumb/0/05/John_Brown_portrait'),
+  .includes('cdn.loc.gov/service/pnp/ppmsca/23700/23764v.jpg'),
   'Kansas thumbnail should be the actual John Brown rather than a generic ghost');
  assert(posterCards.every(el=>el.dataset.state==='waiting'),
   'Posters may be previewed before results, but must not claim earned status');
@@ -402,6 +402,8 @@ async function settle(){
  assert(get('#enMilestonePoster').getAttribute('src').includes('upload.wikimedia.org/wikipedia/commons/thumb/0/05/John_Brown_portrait'),
   'Kansas achievement should feature an actual authenticated 1859 John Brown portrait');
  assert(get('#enMilestonePoster').classList.contains('historic-john-brown'));
+ assert.equal(get('#enJohnBrownPosterTitle').hidden,false);
+ assert.match(get('#enJohnBrownPosterTitle').textContent,/BLEEDING KANSAS/);
  assert.match(get('#enMilestoneSource').textContent,/Library of Congress/,
   'Verify the archival photographic source in the preview');
  assert.match(get('#enMilestonePoster').alt,/John Brown/i);
@@ -410,6 +412,7 @@ async function settle(){
  get('#enTsunamiPreview').click();
  assert.equal(get('#enMilestonePoster').hidden,true,
   'Switching to the Blue Tsunami preview must hide the previous state-specific poster');
+ assert.equal(get('#enJohnBrownPosterTitle').hidden,true);
  assert.match(get('#enMilestoneKicker').textContent,/PREVIEW/);
  assert.match(get('#enMilestoneTitle').textContent,/BLUE WAVE/);
  assert.match(get('#enMilestoneSource').textContent,/DEMO ONLY/);
