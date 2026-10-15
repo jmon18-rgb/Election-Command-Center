@@ -36,6 +36,12 @@ virtualConsole.on('jsdomError',(err)=>errors.push(String(err)));
 const dom=new JSDOM(html,{url:'https://election-command-center.local/',runScripts:'outside-only',
   pretendToBeVisual:true,virtualConsole});
 const w=dom.window;
+// This suite runs several minutes of simulated election-night activity.
+// Never let real-time background refresh intervals race against controlled,
+// deterministic fixture injections near the end of the test. Verify the
+// registrations themselves and explicitly invoke both refresh paths below.
+const registeredIntervals=[];
+w.setInterval=(fn,ms)=>{registeredIntervals.push({fn,ms});return registeredIntervals.length;};
 w.scrollTo=()=>{};
 w.Element.prototype.scrollIntoView=function(){};
 w.matchMedia=()=>({matches:false,addListener(){},removeListener(){}});
@@ -96,6 +102,10 @@ async function settle(){
  w.eval(read('scripts/private_senate_fundamentals.js'));
  assert(w.PrivateSenateFundamentals,'Private subscriber CSV parser must load before app');
  w.eval(scripts[0]);
+ assert(registeredIntervals.some(x=>x.ms===120000),
+  'Still-open tab must register polling refresh every two minutes');
+ assert(registeredIntervals.some(x=>x.ms===300000),
+  'Still-open tab must register reporting/security refresh every five minutes');
  await settle();
  // Election-night first-returns checklist must remain descriptive and
  // anchored to real provider statuses (never auto-call races).
@@ -110,6 +120,13 @@ async function settle(){
  assert.match(get('#enEarlySignals').textContent,/2026 preview/);
  assert.match(get('#enEarlySignals').textContent,/no live returns in archive/);
  assert.doesNotMatch(get('#enEarlySignals').textContent,/tsunami confirmed|Senate secured/i);
+ // Long checklist is collapsed by default; important information remains
+ // accessible without pushing the actual race results further down the page.
+ assert.equal(get('#enEarlySignalsDetails').open,false,
+  'Early signal reference list should not dominate initial Election Night view');
+ get('#enEarlySignalsDetails').open=true;
+ assert.equal(get('#enEarlySignalsDetails').open,true);
+ get('#enEarlySignalsDetails').open=false;
  // Pin/unpin is real shared watchlist state, not an inert decorative button.
  const first=get('#enEarlySignals .en-early-pin');
  const wasPinned=first.getAttribute('aria-pressed')==='true';
@@ -120,6 +137,16 @@ async function settle(){
  assert.equal(get('#enEarlySignals .en-early-pin').getAttribute('aria-pressed'),String(wasPinned));
  // The Fish Head interruptor must not confuse a pretend preview, an
  // early vote-leader swing, or pre-election data with a verified race call.
+ // A user arriving at Election Night must find the rehearsal immediately,
+ // before the big forecast/workspace, rather than below twelve more sections.
+ assert(get('#enFishPreview'),'Fish preview action must be present');
+ assert(get('#electionNight .en-quick-actions #enFishPreview'),
+  'Rehearsal belongs in top-of-page quick actions');
+ assert(get('#enFishPreview').compareDocumentPosition(get('#jointNightPanel'))&
+  w.Node.DOCUMENT_POSITION_FOLLOWING,
+  'Fish Head rehearsal action must precede the main panel');
+ assert.equal(w.document.querySelector('#electionNight .en-fish-controls'),null,
+  'Do not retain the old redundant full-width Fish Head control panel');
  const fish=get('#enFishToast');
  assert(fish.hidden,'Breaking news panel must start dismissed');
  assert.match(get('#enFishVoice').textContent,/Voice/);
