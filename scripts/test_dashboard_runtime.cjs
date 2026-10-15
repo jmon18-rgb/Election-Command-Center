@@ -273,7 +273,7 @@ async function settle(){
  assert.equal(w.eval('jointForecastResult().senate_dem_control_pct'),beforeCorrelationSenate);
  assert.equal(w.eval('jointForecastResult().house_dem_control_pct'),beforeCorrelationHouse);
  get('#jointHomeCorrelationDetails').open=false;
- assert.match(get('#modelEngineTag').textContent,/2026 Senate model · poll-depth forecast v5/);
+ assert.match(get('#modelEngineTag').textContent,/REPOSITORY FUNDAMENTALS ACTIVE/);
  assert.equal(w.eval('jointRaceOddsResult()').senate_prior_mode,'current_2026');
  assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').poll_weight"),.90);
  // Browser-only CSV ingestion must really update displayed model and restore it
@@ -281,6 +281,8 @@ async function settle(){
  assert(get('#privateContextFiles').type==='file');
  const baselineMN=w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').model_dem_margin_points");
  const baselineSenate=w.eval('jointForecastResult().senate_dem_control_pct');
+ const baselinePublicSenate=w.eval('jointBaselineForecastResult().senate_dem_control_pct');
+ const baselinePublicMN=w.eval("jointBaselineForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').model_dem_margin_points");
  const fakeFundamentals=['X.1,X.2,~~~Fundamentals~~~,X.3,X.4',
   'Race,Polls,Simple,Fancy,Blended',
   'MN,D +3@@3,D +10@@10,D +16@@16,D +20@@20',
@@ -289,12 +291,12 @@ async function settle(){
  const privateFile={name:'senate_fundamentals.csv',size:fakeFundamentals.length,
   text:async()=>fakeFundamentals};
  await w.eval('importPrivateContextFiles')([privateFile]);
- assert.match(get('#modelEngineTag').textContent,/PRIVATE CSV-AUGMENTED/);
+ assert.match(get('#modelEngineTag').textContent,/LOCAL CSV CONTEXT ACTIVE/);
  assert.match(get('#privateContextStatus').textContent,/senateFundamentals/);
  assert.notEqual(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').model_dem_margin_points"),baselineMN);
  assert.match(get('#privateContextComparison').textContent,/published model/);
  assert(w.eval('jointBaselineForecastResult()'),'Private model must preserve baseline comparison');
- assert.equal(w.eval('jointBaselineForecastResult().senate_dem_control_pct'),baselineSenate);
+ assert.equal(w.eval('jointBaselineForecastResult().senate_dem_control_pct'),baselinePublicSenate);
  assert.equal(get('#privateContextRemember').checked,true);
  const savedKey=w.PrivateSenateFundamentals.STORAGE_KEY;
  assert(w.localStorage.getItem(savedKey),'Imported context should be saved automatically');
@@ -307,7 +309,7 @@ async function settle(){
  get('#privateContextRemember').click();
  assert.equal(w.localStorage.getItem(savedKey),null,
   'Opting out must remove saved subscriber data');
- assert.match(get('#modelEngineTag').textContent,/PRIVATE CSV-AUGMENTED/,
+ assert.match(get('#modelEngineTag').textContent,/LOCAL CSV CONTEXT ACTIVE/,
   'Opting out of persistence must not disable active in-memory model');
  get('#privateContextRemember').click();
  assert(w.localStorage.getItem(savedKey),
@@ -316,8 +318,8 @@ async function settle(){
  assert.equal(w.localStorage.getItem(savedKey),null,
   'Clear must remove ALL locally stored subscriber context');
  assert.match(get('#modelEngineTag').textContent,/2026 Senate model/);
- assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').model_dem_margin_points"),baselineMN);
- assert.equal(w.eval('jointForecastResult().senate_dem_control_pct'),baselineSenate);
+ assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').model_dem_margin_points"),baselinePublicMN);
+ assert.equal(w.eval('jointForecastResult().senate_dem_control_pct'),baselinePublicSenate);
  assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='NJ-SEN').source_method.includes('public_solid_no_poll_')"),true);
  // Reproduce the actual failure behind 62.2% Minnesota: an old cached
  // chamber_control_model.js silently ignores the new Senate options.
