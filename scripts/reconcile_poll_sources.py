@@ -179,15 +179,16 @@ def carry_forward(previous, primary, today):
     carry = []
     by_race = {r["race_code"]:r for r in primary.get("races", [])}
     for old_race in previous.get("races", []):
-        race = by_race.get(old_race.get("race_code"))
-        if not race:
-            continue
+        # Preserve verified supplemental races even while ElectIndex has
+        # not indexed the race itself. discover() performs seat validation.
+        race = by_race.get(old_race.get("race_code")) or old_race
         for p in old_race.get("polls", []):
             if p.get("model_source") != FALLBACK_SOURCE:
                 continue
             item = copy.deepcopy(p)
             item["race_code"] = race["race_code"]
             item["race_type"] = race["race_type"]
+            item["state"] = race["state"]
             item["source_url"] = p.get("source_poll_url")
             if in_scope(item, race, today):
                 carry.append(item)
