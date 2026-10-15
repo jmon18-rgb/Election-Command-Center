@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T10:47:37.670788+00:00",
+  "updated_at": "2026-10-15T11:46:14.652607+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,22 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 279,
-  "newly_injected_into_model": 3,
-  "injected_poll_ids": [
-    {
-      "race_code": "CT-GOV",
-      "poll_id": "9563cb79-ba87-4f2f-b5f1-804b098ae88b"
-    },
-    {
-      "race_code": "TX-GOV",
-      "poll_id": "7dd88340-2b3d-4bc1-afbc-69f540b9f7fb"
-    },
-    {
-      "race_code": "TX-SEN",
-      "poll_id": "7dd88340-2b3d-4bc1-afbc-69f540b9f7fb"
-    }
-  ],
+  "matched_primary_observations": 282,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "CT-GOV",

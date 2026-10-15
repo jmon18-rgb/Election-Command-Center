@@ -1,9 +1,28 @@
 {
-  "updated_at": "2026-10-15T10:47:37.150457Z",
+  "updated_at": "2026-10-15T11:46:14.130714Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
   "items": [
+    {
+      "id": "8c5955b280488b9c7572",
+      "title": "Election 2026: In Pa. 187th, longtime incumbent faces challenger calling for new voice - The Morning Call",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNdlliRGpOVHRJbDVGVnBEQS1jT0NzSjRaX3RJQ2FwaDI5NG5td2VIZ214U280Y29zQk5rY1F3UjM3NkRFMGZuMW5tb1I1aWNET3YyVG4xcEc1VFUwblJETzBjcE85OE9qUm9QdlNtRVQ2LWlkXzFZSjlGV25sNVJNNndzX1Zjb1dMWFFPNnFobkJkeGRGb0lBdzhkTTFXS1h2UFpwUXVPUnpLVHdFVXBBOFY4MXRCZmxobWU4UTBZci1ja2NhdTJv?oc=5",
+      "publisher": "The Morning Call",
+      "published_at": "2026-10-15T11:02:42Z",
+      "detected_at": "2026-10-15T11:46:14.130714Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [
+        "2026"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "43064419b2b9c1246647",
       "title": "North Carolina early voting begins, with students targeted by suppression schemes - Democracy Docket",
