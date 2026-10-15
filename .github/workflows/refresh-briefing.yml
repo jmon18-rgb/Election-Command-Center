@@ -8,6 +8,7 @@ on:
       - 'scripts/update_polls.py'
       - 'scripts/update_pollresults_recent.py'
       - 'scripts/reconcile_poll_sources.py'
+      - 'scripts/race_poll_coverage.py'
       - 'scripts/test_poll_source_reconciliation.py'
       - 'scripts/test_polling_models.py'
       - 'scripts/build_polling_estimates.py'
