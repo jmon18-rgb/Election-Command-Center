@@ -147,17 +147,21 @@ async function settle(){
  assert(beforeOnPage(get('#smartBriefDesk'),get('#newPolls')),
   'Automatic key races should appear before scrolling through polls');
  const frontRows=[...get('#smartBriefGrid').querySelectorAll('a.smart-signal')];
- assert(frontRows.length>=6&&frontRows.length<=8,
-  'Curate a mixed-race forecast rather than repetitive watch-only rows');
- assert(frontRows.some(x=>x.dataset.race.endsWith('-SEN'))&&
-  frontRows.some(x=>/^[A-Z]{2}-[0-9]{2}$/.test(x.dataset.race)),
-  'Show Senate and House together in one ranked list');
+ const senateRows=frontRows.filter(x=>x.dataset.race.endsWith('-SEN'));
+ const houseRows=frontRows.filter(x=>/^[A-Z]{2}-[0-9]{2}$/.test(x.dataset.race));
+ assert.equal(senateRows.length,35,
+  'Where the wave breaks must include all 35 Senate ballot contests, not only close races');
+ assert(houseRows.length>=50,
+  'Broad House monitoring must include curated districts, not only closely modeled seats');
  assert(frontRows.some(x=>/win chance/.test(x.textContent)),
-  'Each featured race should present real model win odds when available');
+  'Available linked model odds remain visible without inventing missing probabilities');
  assert(frontRows.some(x=>/Poll (D|R)\+/.test(x.textContent)),
   'Qualifying polling averages should be visible in the briefing');
  assert(!get('#smartBriefGrid').textContent.includes('reference tipping-point share'),
   'Screenshot reference metadata is discovery context, not homepage filler');
+ assert.equal(get('#smartBriefControls').querySelector('[data-smart-office="All"]')
+  .getAttribute('aria-pressed'),'true','Full roster is the default');
+ assert.match(get('#smartBriefCount').textContent,/35\/35 Senate contests/);
  assert.equal(get('#smartNightDesk').hidden,true,
   '2024 archive should hide the live 2026 watchboard');
  assert.equal(get('#jointHomeSummary').closest('details').open,false,
@@ -174,15 +178,24 @@ async function settle(){
  assert(!(JSON.parse(w.localStorage.getItem('bluewaves_election_watch_2026_v1')||'[]'))
   .some(x=>x.key==='PA-10'),
   'Auto-watch must not overwrite the personal pinned list');
- get('#smartBriefMore').click();
- assert.equal(get('#smartBriefMore').getAttribute('aria-expanded'),'true');
- assert(get('#smartBriefGrid').querySelectorAll('a.smart-signal').length>frontRows.length,
-  'Expanded view should reveal additional data-backed race signals');
+ get('#smartBriefControls').querySelector('[data-smart-office="House"]').click();
+ assert.equal(get('#smartBriefControls').querySelector('[data-smart-office="House"]')
+  .getAttribute('aria-pressed'),'true');
+ assert.equal(get('#smartBriefGrid').querySelectorAll('a.smart-signal').length,houseRows.length,
+  'House filter shows every tracked House seat including non-close baseline races');
  assert(get('#smartBriefGrid').textContent.includes('NM-02')||
   get('#smartBriefGrid').textContent.includes('PA-10'),
-  'Expanded view retains tracked competitive House seats');
- get('#smartBriefMore').click();
- assert.equal(get('#smartBriefMore').getAttribute('aria-expanded'),'false');
+  'House filter retains previously tracked districts');
+ get('#smartBriefSearch').value='PA-10';
+ get('#smartBriefSearch').dispatchEvent(new w.Event('input',{bubbles:true}));
+ assert.equal(get('#smartBriefGrid').querySelectorAll('a.smart-signal').length,1,
+  'Race search should immediately narrow the roster to the exact district');
+ get('#smartBriefSearch').value='';
+ get('#smartBriefSearch').dispatchEvent(new w.Event('input',{bubbles:true}));
+ get('#smartBriefControls').querySelector('[data-smart-office="Senate"]').click();
+ assert.equal(get('#smartBriefGrid').querySelectorAll('a.smart-signal').length,35);
+ get('#smartBriefControls').querySelector('[data-smart-office="All"]').click();
+ assert.equal(get('#smartBriefGrid').querySelectorAll('a.smart-signal').length,frontRows.length);
  // One cross-page heartbeat distinguishes five independent sources.
  const glanceIds=['feedPolls','feedModel','feedNews','feedSecurity','feedResults'];
  for(const id of glanceIds){
@@ -326,6 +339,9 @@ async function settle(){
  get('#enMode2026').click();
  assert.equal(get('#smartNightDesk').hidden,false,
   '2026 results mode must show automatic key race watch');
+ assert.equal([...get('#smartNightGrid').querySelectorAll('a.smart-signal')]
+  .filter(x=>x.dataset.race.endsWith('-SEN')).length,35,
+  'Election-night desk must also show all 35 Senate contests');
  assert.equal(w.eval("enAutoTracked({office:'House',key:'PA-10'})"),true,
   'Reference House district is followed without custom user pins');
  assert.equal(w.eval("enAutoTracked({office:'Senate',key:'ME'})"),true);
