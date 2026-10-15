@@ -81,6 +81,9 @@ jobs:
           node --check scripts/private_senate_fundamentals.js
           node --check scripts/test_private_senate_fundamentals.cjs
           node scripts/test_private_senate_fundamentals.cjs
+          node --check scripts/audit_active_fundamentals_and_caucus.cjs
+          node scripts/audit_active_fundamentals_and_caucus.cjs --json > /tmp/active-private-context-coverage.json
+          node -e "const x=require('/tmp/active-private-context-coverage.json');if(x.status!=='COVERAGE_AND_SENSITIVITY_VERIFIED_NOT_PROSPECTIVE_CALIBRATION'||x.senate_rows_present!==28||x.house_rows_present!==98||x.calibration_proven!==false||x.proprietary_rows_exported!==false||x.no_credit_not_more_dem_favorable!==true)process.exit(1)"
       - name: Reconcile 2026 Senate four endings after poll-priority and unpolled-solid repairs
         run: |
           node --check scripts/audit_senate_four_endings_reconciliation.cjs
