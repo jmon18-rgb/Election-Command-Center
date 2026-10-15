@@ -3127,7 +3127,7 @@ async function jointLoadRepositoryFundamentals(){
   if(jointRepositorySignature===signature)return false;
   const senate=api.parse(texts[0]),house=api.parse(texts[1]);
   if(senate.kind!=='senateFundamentals'||house.kind!=='houseFundamentals'||
-     Object.keys(senate.states).length!==27||Object.keys(house.states).length!==98)
+     Object.keys(senate.states).length!==28||Object.keys(house.states).length!==98)
    throw Error('Unexpected repository fundamentals schema or coverage');
   const data=api.accept(api.accept(null,senate),house);
   jointPrivateData=data;jointPrivateSource='repository';
@@ -3136,7 +3136,7 @@ async function jointLoadRepositoryFundamentals(){
   jointRepositorySignature=signature;
   $('#privateContextEnabled').checked=true;
   $('#privateContextHouse').checked=true;
-  $('#privateContextStatus').textContent='Repository fundamentals ACTIVE · 27 Senate and 98 House races. '+
+  $('#privateContextStatus').textContent='Repository fundamentals ACTIVE · 28 Senate and 98 House races. '+
    'Automatically included on every device. Blended candidate fundamentals only; final Silver win odds excluded.';
   jointPrivateActivate();
   return true;
