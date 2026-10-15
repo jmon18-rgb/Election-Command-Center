@@ -36,6 +36,9 @@ virtualConsole.on('jsdomError',(err)=>errors.push(String(err)));
 const dom=new JSDOM(html,{url:'https://election-command-center.local/',runScripts:'outside-only',
   pretendToBeVisual:true,virtualConsole});
 const w=dom.window;
+let fishAudioPlays=0,fishAudioPauses=0;
+w.HTMLMediaElement.prototype.play=function(){fishAudioPlays++;return Promise.resolve()};
+w.HTMLMediaElement.prototype.pause=function(){fishAudioPauses++};
 // This suite runs several minutes of simulated election-night activity.
 // Never let real-time background refresh intervals race against controlled,
 // deterministic fixture injections near the end of the test. Verify the
@@ -177,26 +180,62 @@ async function settle(){
   'Use the actual Commons-licensed Fish Head still, not a drawn knockoff');
  assert.match(get('#enFishToast .en-fish-attribution').textContent,
   /HandyGames.*CC BY 3\.0/);
- assert.equal(get('#enFishOfficialFrame').hasAttribute('src'),false,
-  'Official copyrighted audio must not load or autoplay before an explicit click');
+ const soundtrack=get('#enFishAudio');
+ assert.match(soundtrack.getAttribute('src'),
+  /assets\/audio\/breaking-news-in-the-2026-midterm-elections\.mp3$/,
+  'Use the exact user-uploaded MP3 hosted as a local repository asset');
+ assert.equal(fishAudioPlays,0,'No audio before a breaking-news event');
+ assert.equal(w.document.querySelector('#enFishOfficialFrame'),null,
+  'The prior YouTube video embed must be removed');
  assert(fish.hidden,'Breaking news panel must start dismissed');
- assert.match(get('#enFishVoice').textContent,/Voice/);
+ assert.match(get('#enFishVoice').textContent,/Sound: on/);
  get('#enFishPreview').click();
  assert.equal(fish.hidden,false);
  assert.match(get('#enFishMode').textContent,/REHEARSAL/);
  assert.match(get('#enFishHeadline').textContent,/Bikini Bottom election desk/);
- assert.match(get('#enFishSource').textContent,/no actual result/);
+ assert.match(get('#enFishSource').textContent,/no real election result/);
  assert.equal(w.document.activeElement,get('#enFishDismiss'),
   'Keyboard focus should move to the in-your-face breaking bulletin');
- get('#enFishOfficialClip').click();
- assert.equal(get('#enFishOfficialFrameWrap').hidden,false,
-  'Original SpongeBob clip should open only on user command');
- assert.match(get('#enFishOfficialFrame').src,
-  /youtube-nocookie\.com\/embed\/_VJKlSpTBu4/);
+ assert.equal(fishAudioPlays,1,'Preview must play the original uploaded MP3 automatically');
+ get('#enFishPlayClip').click();
+ assert.equal(fishAudioPlays,2,'Replay control should replay the same uploaded MP3');
  get('#enFishDismiss').click();
  assert(fish.hidden,'Dismiss control must close the fish-news overlay');
- assert.equal(get('#enFishOfficialFrame').hasAttribute('src'),false,
-  'Closing news must immediately stop the original clip audio');
+ assert(fishAudioPauses>=2,'Dismissal stops audio rather than letting it continue');
+ // A new user-validated update receives its own announcement. When
+ // multiple independent alerts arrive, the same MP3 runs sequentially.
+ const fishOldClock=w.Date.now;
+ const priorNightMode2026=get('#enMode2026').getAttribute('aria-pressed')==='true';
+ const priorNightVisible=get('#electionNight').classList.contains('active');
+ w.Date.now=()=>Date.parse('2026-11-04T03:20:00Z');
+ get('#electionNight').classList.add('active');
+ get('#enMode2026').click();
+ const firstUpdate={kind:'first',source:'Open America',title:'VA-02 first votes',
+  details:'Source reports the first ballots; no candidate called'};
+ const nextUpdate={kind:'flip',source:'civicAPI',title:'NC-SEN leader changed',
+  details:'Reported vote leader changed; no winner called'};
+ const thirdUpdate={kind:'revision',source:'Open America',title:'OH-SEN revised',
+  details:'Candidate totals corrected'};
+ assert.equal(w.eval('enFishShow('+JSON.stringify(firstUpdate)+',false)'),true,
+  'First vote bulletin must qualify for Fish Head interruption');
+ assert.match(get('#enFishMode').textContent,/FIRST VOTES/);
+ assert.equal(fishAudioPlays,3);
+ assert.equal(w.eval('enFishShow('+JSON.stringify(nextUpdate)+',false)'),true);
+ assert.equal(w.eval('enFishShow('+JSON.stringify(thirdUpdate)+',false)'),true);
+ assert.equal(fishAudioPlays,3,'Pending updates should not cut the first audio off');
+ assert.equal(w.eval('enFishQueueState().pending'),2);
+ w.eval('enFishNextBulletin()');
+ assert.equal(fishAudioPlays,4,'Second alert must replay the MP3 once the first is done');
+ assert.match(get('#enFishHeadline').textContent,/NC-SEN/);
+ w.eval('enFishNextBulletin()');
+ assert.equal(fishAudioPlays,5,'Third alert must get its own original MP3 intro');
+ assert.match(get('#enFishHeadline').textContent,/OH-SEN/);
+ get('#enFishDismiss').click();
+ assert.equal(w.eval('enFishQueueState().pending'),0,'Dismiss clears pending popups');
+ if(!priorNightMode2026)get('#enMode2024').click();
+ w.Date.now=fishOldClock;
+ if(!priorNightVisible)get('#electionNight').classList.remove('active');
+
  const bogusCall={kind:'call',source:'civicAPI',title:'VA-02 provider call',
   details:'Preview only; no real returns exist'};
  assert.equal(w.eval('enFishShow('+JSON.stringify(bogusCall)+',false)'),false,
