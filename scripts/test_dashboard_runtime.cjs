@@ -107,6 +107,28 @@ async function settle(){
  assert(registeredIntervals.some(x=>x.ms===300000),
   'Still-open tab must register reporting/security refresh every five minutes');
  await settle();
+ // Users should see actual provider-reported votes immediately after the
+ // Four Endings forecast, before research, simulations, alert noise or feeds.
+ const follows=(earlier,later)=>Boolean(
+  earlier.compareDocumentPosition(later)&w.Node.DOCUMENT_POSITION_FOLLOWING);
+ assert(follows(get('#jointNightPanel'),get('#enRaceList')),
+  'Actual race counts should follow the four-outcome forecast');
+ assert(follows(get('#enRaceList'),get('#enNowcastRows')),
+  'Reported race results must appear before secondary probability research');
+ assert(follows(get('#enRaceList'),get('#enWatchItems')),
+  'Results must not be buried below expanded watchlist panels');
+ assert.equal(get('#enAdvancedLab').open,false,
+  'Forecast and rehearsal research should start collapsed');
+ assert(get('#enAdvancedLab').contains(get('#enNowcastRows')),
+  'Research remains available one expansion away');
+ assert.equal(get('#electionNight .en-sources-explainer').open,false,
+  'Lengthy source documentation should not dominate first view');
+ assert(get('#electionNight .en-sources-explainer').contains(
+  get('#electionNight .en-sources')),
+  'All original source links should remain accessible');
+ get('#enAdvancedLab').open=true;
+ assert.equal(get('#enAdvancedLab').open,true);
+ get('#enAdvancedLab').open=false;
  // Election-night first-returns checklist must remain descriptive and
  // anchored to real provider statuses (never auto-call races).
  w.eval('enRender()');
