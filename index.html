@@ -2847,6 +2847,11 @@ function jointRenderNeedles(result){
   // This expectation tracks the center of gravity, NOT a probability of a call.
   const position=(v[1]+2*v[2]+3*v[3])/(3*total)*100;
   const likely=v.indexOf(Math.max(...v));
+  const liveCount=Object.keys(jointLiveObservations()).length;
+  const startOfCounting=Date.parse('2026-11-03T05:00:00Z');
+  const sourceMode=Date.now()<startOfCounting?'POLLING-ONLY · NO LIVE RETURNS':
+   liveCount?'RESULTS-INFORMED · '+liveCount+' SOURCE-VALIDATED RACES':
+   'AWAITING LIVE RETURNS · POLLING PRIORS';
   marker.style.left=Math.max(0,Math.min(100,position)).toFixed(2)+'%';
   host.setAttribute('aria-label','2026 correlated Four Endings forecast. '+
    keys.map((k,i)=>labels[i]+' '+v[i].toFixed(1)+' percent').join(', ')+
@@ -2854,11 +2859,6 @@ function jointRenderNeedles(result){
    sourceMode+'. Not a certified election result.');
   foot.firstElementChild.textContent='Needle tilts '+labels[likely]+
    ' · '+v[likely].toFixed(1)+'% most likely individual ending';
-  const liveCount=Object.keys(jointLiveObservations()).length;
-  const startOfCounting=Date.parse('2026-11-03T05:00:00Z');
-  const sourceMode=Date.now()<startOfCounting?'POLLING-ONLY · NO LIVE RETURNS':
-   liveCount?'RESULTS-INFORMED · '+liveCount+' SOURCE-VALIDATED RACES':
-   'AWAITING LIVE RETURNS · POLLING PRIORS';
   foot.lastElementChild.textContent=sourceMode+' · '+
    result.samples.toLocaleString('en-US')+' same-draw simulations';
   bar.replaceChildren();
