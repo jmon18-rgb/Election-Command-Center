@@ -123,7 +123,7 @@ const sims=variants.map(v=>{
   individual_race_sigma_unchanged:true,
   senate_dem_control_pct:out.senate_dem_control_pct,
   house_dem_control_pct:out.house_dem_control_pct,
-  both_dem_control_pct:out.blue_both_including_tsunami,
+  both_dem_control_pct:out.actual_dem_both_control_pct,
   expected_senate_dem_seats:out.means.senate_dem_seats,
   max_individual_race_odds_change_pp:Math.max(...delta.map(x=>Math.abs(x.delta_d_win_pp))),
   selected_races:delta.filter(x=>['NC-SEN','GA-SEN','MN-SEN','ME-SEN','TX-SEN','MI-SEN','NE-SEN'].includes(x.race_code))};
