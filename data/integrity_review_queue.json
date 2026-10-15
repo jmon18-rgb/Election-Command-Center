@@ -1,9 +1,47 @@
 {
-  "updated_at": "2026-10-15T19:22:45.386Z",
+  "updated_at": "2026-10-15T19:29:47.698789Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 3,
   "items": [
+    {
+      "id": "0c4a15611ebc68df7640",
+      "title": "Justice Dept. sues California, asks court to force state to stop counting 20,000 ballots - Los Angeles Times",
+      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQMzlSWUJLNUJqMDViVnh3b3YwOGxxX3UteU5NaWNXbTNMRzBINjZBTWVla25oWFpwUGtLdEtFbmh5TzZpZ3Npb3VETjFFbThvUGc0NXdhQVUzb0JpcU5rcU1fRDFWeVc0b0h4R1hNUHBsczNwSjN1Z1p1Q19tcDRsRE1la280YWdkSDFpaWROdWE4OXFOdmRBX1VTWWFwYWJZaFJPSUhJcTJfb2NHVE5ybjl0UU9TVDVJMDk1ME5zWEFEQlBSYlg0cl9UenVRSjZHcFE?oc=5",
+      "publisher": "Los Angeles Times",
+      "published_at": "2026-10-15T19:04:44Z",
+      "detected_at": "2026-10-15T19:29:47.698789Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "litigation",
+        "security"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 ballots"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "180f40be335b1edf86d3",
+      "title": "NC officials express confidence in election integrity as early voting begins - NC Newsline",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQdjFRbnBSSUpsWVVGTjQ4V3lHdFg4Nk9hb2FCLW5uZTBlRDRXcGtoQ2tnZWRVcjh6M2d0VF8zXzYza0lwc3hSNjk3TmZOYXNKX0NwUVNnU2hDSlJsT1RBcndqaEw2b1Z1X01PWEhGel90YWl6cG5MNVhQbEs4alQzRGplaS0xSGhoeXZTNXp3R0Z4UC1SNkRFQ3BsM3ZxeEtDblZHbUowSlBGa0Utam4wag?oc=5",
+      "publisher": "NC Newsline",
+      "published_at": "2026-10-15T19:03:59Z",
+      "detected_at": "2026-10-15T19:29:47.698789Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "539d8e312da2aaf7472b",
       "title": "US justice department sues California over alleged noncitizen voting - The Guardian",
@@ -41,8 +79,26 @@
       "promoted_to_incident_id": null
     },
     {
+      "id": "29e368b3ae2649483ed6",
+      "title": "Federal Judge Finally Invalidates DOJ\u2019s Nationwide Voter Roll Crusade Just Weeks Out From the Midterms - Talking Points Memo",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOV2FtMmg1VnJqZmFDZjVRSkVsVjR3X3pybW83MVQwTEl4TTNhLXBqSXlyT01VSjh0TDQxbWl3R2ZiZ1pSOHh4TVJKUG43bjZLck1NTmloZVEtcU9HVE1YTl9CYnVDdENJYTBKbEJqNjJoZ0M3RlduWTBVV0czZkJSSW1LbFNLZXJxT2RSbDZFZ3ExZHFrTURvTjUwZ2JWcTgydGk5YjBRZlhycm5nQjY5UWlJM1hSV1BTR3lJbkNfNVZ2djJnTHhyVkx6ekpmbUR2eGJGZndmMjNTLVVqSWc?oc=5",
+      "publisher": "Talking Points Memo",
+      "published_at": "2026-10-15T18:05:00Z",
+      "detected_at": "2026-10-15T19:29:47.698789Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "d68aad227814f70c8c4f",
-      "title": "‘Ballotship’ exercises prepare Arizona officials for mounting election-threat scenarios - Phoenix New Times",
+      "title": "\u2018Ballotship\u2019 exercises prepare Arizona officials for mounting election-threat scenarios - Phoenix New Times",
       "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxORjNfeGpaTkpPZWN4R1JjMTZjUS15VEdNSEE5RnF2NWp3RmJ3b0pBaFRCVUZ4M2Fma1FKYVlWWHFoaWl0TDNGYnRZdzdpeV9aTHdqR0ZMQzZDNHlnMVdFQndJTHBXLUFwejlBeFVJNW9iMWJiUEUxTHZsY094VnpOLU41ZXRlcC1UckRaU1RVNGlPeEh6N1FkR0lscGJJT21xaHoyUTdkcG5Xc3NSc1FNTDB3?oc=5",
       "publisher": "Phoenix New Times",
       "published_at": "2026-10-15T17:59:15Z",
@@ -100,7 +156,7 @@
     },
     {
       "id": "cfb79dc4488cfff981bc",
-      "title": "Justin Levitt: Here’s why I expect a normal election this November instead of chaos - MinnPost",
+      "title": "Justin Levitt: Here\u2019s why I expect a normal election this November instead of chaos - MinnPost",
       "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNOUx5bWNNeG5oZEMtSVVfUFcxcmFTd2QwM2NybTQtYlB3Q3pmNUtfcE1qWkRTRnlmek1WUllFVmFteXZXb0YtTEROV1hZQ3ZRSjRIMGJ5MFpJd2w1bnRFZHN5SUlFTVRTXzZhUEZsZnFyRlNOSXFoSC10UDN2OEZ6TjZvdkNPR1FMSXl2V3lpVzRPcHNoZ0pVUU91d3gxZVMxdlMzMDc1NElVa1pyYWx3dG15SmFuS1NnOGhUZTlQTi1NUFVnWWF4el9WQQ?oc=5",
       "publisher": "MinnPost",
       "published_at": "2026-10-15T17:00:00Z",
@@ -172,7 +228,7 @@
     },
     {
       "id": "8043a89d5299d72d5c7d",
-      "title": "Federal appeals court won’t fully block student IDs for voting in New Hampshire - Democracy Docket",
+      "title": "Federal appeals court won\u2019t fully block student IDs for voting in New Hampshire - Democracy Docket",
       "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOUXNVMXhSQmhvUjQtRmJSZGJEOXExSUZxR3V4VEJLdUluY2todkIwWVFJX3pQamNOVllRSzVpNEZRdjA5WTdneDB1VGlBLTMzX0hoeWg0b3h0ZVBEaVl2U0U5bjlYWkt1eXZFZXpSODcxYzVNNTV2MDBSYXJOcks2aEVkd0ZibXZqLUdWOFo4aEFQR3ZhdnJIenZ5cFFQVmEwa0IwV0lLbFg1bnVZck1wY1BVMjNBM2tJemJfWXBIeVA?oc=5",
       "publisher": "Democracy Docket",
       "published_at": "2026-10-15T15:06:15Z",
@@ -208,7 +264,7 @@
     },
     {
       "id": "b79e276d27addf4422a7",
-      "title": "The Trump Administration’s Astonishing Losing Record on Voter Rolls - The Atlantic",
+      "title": "The Trump Administration\u2019s Astonishing Losing Record on Voter Rolls - The Atlantic",
       "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNTlRMdW50aHpTRnMwWHpqVVVQbjBCVXdKaE9pQmZRTG5lY0VmSHZiWGdJOF9wbF9ObWZkT0wtWGY3b3hScEtLYV9zekZyWXQ5eFdabGEtSWdVOUg0Y09RaXVwdmFseW1kS1pmTTlkcVNVV0JWX0M4SFdvaDByRXdEU21JdE5KR05P?oc=5",
       "publisher": "The Atlantic",
       "published_at": "2026-10-15T13:25:59Z",
@@ -225,7 +281,7 @@
     },
     {
       "id": "147ed8c3c0e88e4ae07d",
-      "title": "0 for 26: The Trump Administration’s Astonishing Losing Record - The Atlantic",
+      "title": "0 for 26: The Trump Administration\u2019s Astonishing Losing Record - The Atlantic",
       "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNTlRMdW50aHpTRnMwWHpqVVVQbjBCVXdKaE9pQmZRTG5lY0VmSHZiWGdJOF9wbF9ObWZkT0wtWGY3b3hScEtLYV9zekZyWXQ5eFdabGEtSWdVOUg0Y09RaXVwdmFseW1kS1pmTTlkcVNVV0JWX0M4SFdvaDByRXdEU21JdE5KR05P?oc=5",
       "publisher": "The Atlantic",
       "published_at": "2026-10-15T13:25:59Z",
@@ -281,9 +337,9 @@
     },
     {
       "id": "db558071030830fc2173",
-      "title": "No Kings movement calls marches to polling places this weekend to boost early voting - EL PAÍS English",
+      "title": "No Kings movement calls marches to polling places this weekend to boost early voting - EL PA\u00cdS English",
       "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOV0E3WXJ1UWw1bDlWZlNjNFVlcllhUWt0T0RQdFRfdmlvdjg2cWFkTTdiOXk1OFc5QnlVOU0yM2dwS0tJTi1MQ2dnWVBpUmNfZ1B6ZEFlZVJ3UnVRTkZhaXBTUVRoUFJ5alNiODFKcVlnRnM3Rmt5c0VrWjFHa1ctSFlLYWhTWGFrcjE4TUVWMzVEVWZCWmZfeG5ha01pVkowYlZJX2VyUU1GQWhtbUxBOFZ4TGxvRFBzVGJkYU5Na1ZLRUhGZDlvYmt4RdIB3wFBVV95cUxPSlRoLWxGYmZXRldBU2dyZ3ItUm1sU1gycjBSVlFZTTdybTVzaUhoMXRQVFAtWlF2Q3Z1Wjh3bW1sZF81LTNyMlM2dFBMWE4xVTdoVTNHTWVpV0pheEVTZDB3bFZ3eXl1aDdoWDVvcWFRaHN1Y0VvTFVKR2h5anRwWHI0RVFNeEVxQVJCRTJkN3FYRElDd2JNR1U5b1JOaHpDOGo5d0o0UEVuazJKVEloYXZlR0Flb29VUmJ6a21POFBVdFJEUC1wYTFXV3htczRnUUx0NWR5VVBNazNIOGpV?oc=5",
-      "publisher": "EL PAÍS English",
+      "publisher": "EL PA\u00cdS English",
       "published_at": "2026-10-15T11:00:58Z",
       "detected_at": "2026-10-15T13:12:52.364584Z",
       "state_hints": [],
@@ -567,7 +623,7 @@
     },
     {
       "id": "e68198dd445291d43e52",
-      "title": "With midterms underway, Justice Department presses California to withhold flagged voters’ ballots - Los Angeles Times",
+      "title": "With midterms underway, Justice Department presses California to withhold flagged voters\u2019 ballots - Los Angeles Times",
       "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQNm9EM3BaMC1UOFNjdHVDeGVibUttdGt6T1JwYmw3d0M0dGNmejFFUUFHMnNjTnAycnF6YkxEUkJDSWpUb1IzakJMSEtnVjZoM3c3ZUtyTmcwNFdnU1haZURTWWtuQkV1Njh3UU00THNxMXZlVlBfYjRXZ3l0R2lRa2x4VDAtY2psamtYMlRfbTYxbHBabGp6YnVZdk14SnZkbEFaTDVqaVYxeU81aGNMc3piX200SDRKOWV1Z1lSM1ZIZEtWbkJkQUtfWWpmSVA5cmJlb093?oc=5",
       "publisher": "Los Angeles Times",
       "published_at": "2026-10-14T20:16:00Z",
@@ -662,7 +718,7 @@
     },
     {
       "id": "2ed28067e580b2d1dc8e",
-      "title": "DOJ gave California a voter list, a 48-hour deadline — and a threat of court action - Axios",
+      "title": "DOJ gave California a voter list, a 48-hour deadline \u2014 and a threat of court action - Axios",
       "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNLXNFYjVhRTItaEJCcVhvT21hbk9zRWl6a3E1Ylp2ZS1sRlBlOVV5ekJ4OTdtTXdDbXloazZxNHh4eGpxdmw1TkdMbmxzMFQ3U0QtY0dXVlRZVlJVZFdRYTFIVWd1b1pMczFfc0dka05ZUVBfWGhmTGZhRUlRa0lJc2J3UDI?oc=5",
       "publisher": "Axios",
       "published_at": "2026-10-14T18:54:43Z",
@@ -788,7 +844,7 @@
     },
     {
       "id": "80696c5ead48d64268d4",
-      "title": "Presidents Cannot Distort Laws To Justify Deploying Federal Forces To ‘Repel Armed Enemies’ in Elections - Center for American Progress",
+      "title": "Presidents Cannot Distort Laws To Justify Deploying Federal Forces To \u2018Repel Armed Enemies\u2019 in Elections - Center for American Progress",
       "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxORHptNGlwRndjblh6aWdOU2gxNlo0ZWxXLTNwMWxnM1BDaUdhX2pORG82WGVHS1RGWGtxZDFWakkybksxNTRTX0dWSVhGVmY2dG1RNE1ZX3hMeWItYmhDR1RfSmR0SkNZZ1Q3b01QZGxmWVFfRXJjd2xPR0F3aDU2TTNwYTUtd2g3Q2x0cEQ0TVNFTTA3aFE4OEUycFYwdFBRV0hqTExfaFpURTdXczc5YXhxZGxmZWxWSm5adUl4ZTFSVE1qMGNEb1Bqc09vNzJyX0Q2a055TUl0d3lo?oc=5",
       "publisher": "Center for American Progress",
       "published_at": "2026-10-14T13:02:20Z",
@@ -889,7 +945,7 @@
     },
     {
       "id": "9564f5dfc3c40acb7d57",
-      "title": "Rutledge Says Maryland’s Attorney General Should Back Police and Stop Suing Washington Over Policy - Howl.link",
+      "title": "Rutledge Says Maryland\u2019s Attorney General Should Back Police and Stop Suing Washington Over Policy - Howl.link",
       "url": "https://news.google.com/rss/articles/CBMiO0FVX3lxTE40U1BGR09MaXZDc0FJMl9uRHFHaTc4eXJ0MURHTDludnRNZjFvVXdlRmNHM2xYeGFxbmlJ?oc=5",
       "publisher": "Howl.link",
       "published_at": "2026-10-14T11:17:24Z",
@@ -923,7 +979,7 @@
     },
     {
       "id": "bdb14e21cd5966548f05",
-      "title": "Trump pressed states for info on millions of voters in the midterms. It’s mostly failed. - Kiowa County Press",
+      "title": "Trump pressed states for info on millions of voters in the midterms. It\u2019s mostly failed. - Kiowa County Press",
       "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNbWRock9WcF9VanJkWnhMNzdibTNYeWdVVnEtaHpsMkh4WHl0aHdtVmlib1c3TFpQNEE0VUkzcEhnR1V2NEk5eDZjelV5TmU2ZlhGQ0tzaUlPZUMtWlZ4U3lXXzJ2WFJQZEJXdWNTUHJlQ1JDWUlWZzRfM1BTODh1UkJ3eTNzdlJWbUJqUkUwVWNKMUZmal83WnpHVHBrLWlNOHBLWDZBd1c?oc=5",
       "publisher": "Kiowa County Press",
       "published_at": "2026-10-14T11:00:00Z",
@@ -1129,7 +1185,7 @@
     },
     {
       "id": "ca130c1464b04aa06f44",
-      "title": "Trump pressed states for info on millions of voters in the midterms. It’s mostly failed. - Perryville Republic Monitor",
+      "title": "Trump pressed states for info on millions of voters in the midterms. It\u2019s mostly failed. - Perryville Republic Monitor",
       "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOU1hnVjJnQS0ycFlRLV9FcmRIM3RHNG1KaG9OSEhXUEFHaUVMdzlQU2dzZ3lwZ2laQ3NKWWRtY2pxa2hreTZKT0sxQWU3RlVSQWZiR09MeUljcXdfOXotb2F5a04wODVicFY2S0lNVFVtbjE4ZnozMzNjNFFzbUtnd1ZxTlU0NUNzcWF1c1Q0OEl5Z2JsR0NQQnVZcG50aFpxbEdldEIyRlhNbFE3VnZjcWhra2pqaERZY0VsS0w0WEhoSy1UQ19F?oc=5",
       "publisher": "Perryville Republic Monitor",
       "published_at": "2026-10-14T03:01:03Z",
@@ -1163,7 +1219,7 @@
     },
     {
       "id": "1b0e221bc9dd8cb0ff46",
-      "title": "South Dakota’s federal-only voter list grows to nearly 6,000, surprising some who are on it - South Dakota Searchlight",
+      "title": "South Dakota\u2019s federal-only voter list grows to nearly 6,000, surprising some who are on it - South Dakota Searchlight",
       "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPQzJpMlhKeDlhR2dzWlI2dTk3ekJpMDIwaXV4X3ctZG9lS2JnMk02QVd4bWVyUnpYZk03Vk1vWUp2cGJuSnc1SzFFYXR5LXZhQkhvOGNkVzdtNWRfbkNzMHk5TVhBcE04eFVVcHZEdDE3SXZDbmt0WngwMEJlek9mcHloZ29mSHBUXzFnQktENmtKZl96Q2NOUFpnM3FNNzFhdEY0X25VamEtYnZwQTQxVUxkUU1PZG4zcGJfdml2b2ZYY3l6UUpFSW5tX3hsaTFs?oc=5",
       "publisher": "South Dakota Searchlight",
       "published_at": "2026-10-14T01:28:12Z",
@@ -1336,7 +1392,7 @@
     },
     {
       "id": "e6c61a9ec632cc71f3a8",
-      "title": "Clean Elections Commission to high court: Green Party candidates’ harm is self-inflicted - Arizona Mirror",
+      "title": "Clean Elections Commission to high court: Green Party candidates\u2019 harm is self-inflicted - Arizona Mirror",
       "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPUVI1OUZ1MVVkMFFiVDRITHFTMldSdElnSWpiaUpsd1hKeDc5Q1lBVVIwckhnX00tY1lYc3c3R0I0NTNxOFpTYlBxWW9qRkxFdVVBWnBsMHlQSTdmNEh4eF9WbEZkaFhBM05aNUU5YkpuSmpIa29YQ281SUMxckcxV0tTYmJpOVlRMWxYNVJuNjE2SkdBYzl0ejhsYkEzci1iWnpwTWFzVW1YT3p5dVlFSE1nRUFMLVFmbXd3?oc=5",
       "publisher": "Arizona Mirror",
       "published_at": "2026-10-13T22:17:07Z",
@@ -1355,7 +1411,7 @@
     },
     {
       "id": "b6302e6eeee9c6ba474b",
-      "title": "CA Sec. of State: ‘Do Not Let Anyone Keep You From Voting’ - American Community Media",
+      "title": "CA Sec. of State: \u2018Do Not Let Anyone Keep You From Voting\u2019 - American Community Media",
       "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNV2RKLUZyWVNoR091LXEzaEZzZHgzZF9sVnhVdWFlLTNCQTFvazhmZUxGSFV3NHdhbFI3ZnZrQjRNOE1LMUI2WkVLNkU2eEE5QzRxTmZDLXNDS3RjLTViOUlFTTlCUnBNYnJ0cEVtT3h2V2M1amk5Z3o3Y3RpQkZwWWRHSGNkZThvYXVvYWVvVUtXeXV1azkyd0Z3ZEdBTWJp?oc=5",
       "publisher": "American Community Media",
       "published_at": "2026-10-13T22:12:12Z",
@@ -1478,7 +1534,7 @@
     },
     {
       "id": "70fab558f71b227525be",
-      "title": "Trump pressed states for info on millions of voters in the midterms. It’s mostly failed. - Juneau Independent",
+      "title": "Trump pressed states for info on millions of voters in the midterms. It\u2019s mostly failed. - Juneau Independent",
       "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNalFFWEppYkcwdmNqWkdPMDh6MXlLSlFXdVJGVWtQejlBTHVEdTBRWjlwOWYwRkZSd3VNLWF0aW5teEtFbjA2UDRQNHhoaWdfT3F4MjlGaXRJMThKUjNMV1daR05pREI4V0UyNTNhbVp4YzhsOHVaQmYydEd6Q19Tdk1BLVcxZUpuMkplMWtRQ05lTDlpSG5zMkZ1aTNvNkVJTE9vM3lMOGpvWmRfbElVaXZWMGZteE5TZ25oVC1zbko4MDg?oc=5",
       "publisher": "Juneau Independent",
       "published_at": "2026-10-13T21:07:53Z",
@@ -1493,7 +1549,7 @@
     },
     {
       "id": "76ae0a641076efb3b13d",
-      "title": "NC to send letters to 1,400 ‘potential non-citizens’ on voter rolls - Raleigh News & Observer",
+      "title": "NC to send letters to 1,400 \u2018potential non-citizens\u2019 on voter rolls - Raleigh News & Observer",
       "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNUENKUmpGT3pVRUtfM2l6Q3FEVXRFWFpjLUZwenp2WlB6dklDS2IwWFN6RXowbzYwbjEzZEh5SDA2bU8tR0t6ei1zMnU1V0l2dVhfb2dvWHEyVjJURzdlQjU0NTJ6d0U2NFpZdVRkaFhvWnhrTDMxN1JlaGZacDZyd0pJZHNlNFZJX3ZGWNIBjAFBVV95cUxOeGk3am4xZmh2bk9ydHBkcG9JTGFSS0lTRGtKeDRaS0FfcUlwYUFocFJPYkI4c0xPUDJPZ21LZzJJX0g5SEFuOURIQU1LbzkyZDJyYUNzWmp5cTZtc3loakFiWWxNM1ZrQzI1dnEtTFJmaHQwRWs1LTVYei1EaFB4R2hOVUpJbkIwUk1TWg?oc=5",
       "publisher": "Raleigh News & Observer",
       "published_at": "2026-10-13T21:04:35Z",
@@ -1548,7 +1604,7 @@
     },
     {
       "id": "422add14fd0c904674ec",
-      "title": "Campaign Legal Center Action and Partners Successfully Halt President Trump’s Illegal Taxpayer-Funded Ads Scheme - Campaign Legal Center",
+      "title": "Campaign Legal Center Action and Partners Successfully Halt President Trump\u2019s Illegal Taxpayer-Funded Ads Scheme - Campaign Legal Center",
       "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNZHMzN002ZGhPbE53bUEtclpRaXRERjR6M2RWV3NvNmxxcXQyRW1mMFloclZaRHlQb1BneXdvZ0xRblZvSU5PdWRnQkI2ekVhbldlaHZFcmhjY1BjU1ZMWi1IWjROYXN0LS16dVN2enk0alJuclZEN1lTRkNpakNFRWpINjFyUVJ6NkhoMEtSYXJkSGp0Sl85X18yUFRjOGdPandMd24zUVpfZEhRemZ3MmhCWHMzUlBB?oc=5",
       "publisher": "Campaign Legal Center",
       "published_at": "2026-10-13T20:57:55Z",
@@ -1631,7 +1687,7 @@
     },
     {
       "id": "37cbc916a2881ffe7d45",
-      "title": "Sounds “Desperate”: Secretary of State Shirley Weber Calls O... - LA Focus",
+      "title": "Sounds \u201cDesperate\u201d: Secretary of State Shirley Weber Calls O... - LA Focus",
       "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPWmI4bkE0dm5rOEhsVjBtQl9TMXgwMmd4M213SUxVSkRJMklYWTgwT0tOUHNUd1RVRkJkOVpKWGRsLTQwZWJpVGREZUNNNzVWTkhFR0ZHMWZDNjVyb2tGOWw3djZubm1XTHhJZ2NCTUFNZXJjbkZRLVU5YWY2SWdqRWkwX0dtZTdNb09tV3MtSXF6Wk1LUEd3LXktN1ZSODh1bkhGNTJlNTNRVkxRLTBXR28zek5rd0lfMmZLcFlISDRCZ080bGpPbTJzZkVnTGxpa2VyeDl6NmgwRWR4Q0thQWhzMA?oc=5",
       "publisher": "LA Focus",
       "published_at": "2026-10-13T19:00:36Z",
@@ -1646,7 +1702,7 @@
     },
     {
       "id": "80c2982de7d2ea7db3ea",
-      "title": "Texas’ backlog of voter registrations needs immediate fix, voting groups say in lawsuit - Democracy Docket",
+      "title": "Texas\u2019 backlog of voter registrations needs immediate fix, voting groups say in lawsuit - Democracy Docket",
       "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPNFdtYWxNclU5Zmd1UUdqclZaV2ozQjBQY3ZZRXNESi1LQjhuRmFObnpieVVYeUQ3THlZUkZabHhXQTZvLVBxR2J2ejJvZjllTjlpRUstTnV2MjA1QzQzYmdjN3FCaFQ3THV2N1NFN2Y1YkJpWDlPN01qcUo5UVJvYjc0RUJIVjhwcnd6S25Jcmt4WXItS0U0UlhfVldqeUFSWEp4SUkwY01xQnRQTDVzY2pPeEg3cE5RWkl3dkY2OXJfdUtOa09CbGt3?oc=5",
       "publisher": "Democracy Docket",
       "published_at": "2026-10-13T18:32:26Z",
@@ -1685,7 +1741,7 @@
     },
     {
       "id": "690a2cbe79dff4f54a57",
-      "title": "These 35 States Are Deciding Who’ll Run Their Elections - Bolts",
+      "title": "These 35 States Are Deciding Who\u2019ll Run Their Elections - Bolts",
       "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQVXBieUEySDlSX1N5M0FtU3RBODYyb0p5TFRvLUlMMnhqdEM0TjM5R0hZYXVvVG1RRllsWnpxU2YzMHYzUnkzMEdyWG9sMVFUYjZWcTFHdzVacTN2bHZxcFg2WWQ3MmdLbUJGQWJWalNodmM5MDZqSTRXbk5UNWhmY0dfUEZjd0FqZTZJNjU1bUU?oc=5",
       "publisher": "Bolts",
       "published_at": "2026-10-13T16:40:01Z",
@@ -1783,7 +1839,7 @@
     },
     {
       "id": "ef658fb27a0d48d41484",
-      "title": "In The Know: Oklahoma state board again rejects Jewish charter school | Oklahoma tribe’s prediction market app complicates gaming debate | Ballot proposal would impact Oklahoma judicial selection panel - Oklahoma Policy Institute",
+      "title": "In The Know: Oklahoma state board again rejects Jewish charter school | Oklahoma tribe\u2019s prediction market app complicates gaming debate | Ballot proposal would impact Oklahoma judicial selection panel - Oklahoma Policy Institute",
       "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5aVWxwVm9BQWFlSlFrNzZ5LUQ3SDFaVDFzWEpNMEFmNE01M2hoYWJWVTdMbEdsOS10b0dMeXdMLW5qYVZmdWQyUEJ2ZGlrQV9QZ3E1d3BsOA?oc=5",
       "publisher": "Oklahoma Policy Institute",
       "published_at": "2026-10-13T14:20:17Z",
@@ -1815,7 +1871,7 @@
     },
     {
       "id": "0f4a6464ff925f41424f",
-      "title": "Supreme Court turns away Kari Lake lawyer’s challenge to sanctions in Arizona voting machine lawsuit - The Hill",
+      "title": "Supreme Court turns away Kari Lake lawyer\u2019s challenge to sanctions in Arizona voting machine lawsuit - The Hill",
       "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNenhseW1HU2JaRExkZUJaWGlORHUwVmdvVEwtRjU0THpDRU43SHl2bEk5aG1jckVfTXJlMHB1eWdYN21zTGlXMTN4THI4c3l3S0czSks3ZkpJU2RGeU5kb2ZDN2FzNVBDbGZEV1FzdHdGYkFqZGs4TDBIS0NQNVJhM3RYVDBJcGcwWDFMWTFWdUNrc2JVdXYzVHZoWnVjcjFDejMtY1pDLUvSAa4BQVVfeXFMTlY0bTJPUkY1ajFiV2pXTUpwbHlYSm42OW12MFVscE1sQXN0WENDbzRjUE1nN0t2ajBKYl9MbndwT09NQ0RONkNMNjNjWnF2VXJmb0U0eGFhNkptZEpLd01HdEUtNDgwYm9CTEs0WGc3QVl4Y3IzQUZONU9LTlZwVUhmaVRxdFJpdGVNRkZuUmFjN0dzZ1ZkSkZwb3J5OFlzTFphVXprMlpvTTZZa3R3?oc=5",
       "publisher": "The Hill",
       "published_at": "2026-10-13T13:38:00Z",
@@ -1937,7 +1993,7 @@
     },
     {
       "id": "2df3b52a6708707a7876",
-      "title": "What’s on Missouri ballots? Explore our voter guide to Nov. 3 midterm election - Kansas City Star",
+      "title": "What\u2019s on Missouri ballots? Explore our voter guide to Nov. 3 midterm election - Kansas City Star",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9NRU1pbkx0aWNTcGxpeTk1bVFXY2N6UjJLc0lCZG1LOHJOSXh0UG5KZHlrNGVrVUc4bW1sUHA4MTZubi0zLUwxSzdRYlpiQnh5QXF0Ml9GbFYwSG1xUmdtUm4xWmhkQWg2WEEycg?oc=5",
       "publisher": "Kansas City Star",
       "published_at": "2026-10-13T09:45:00Z",
@@ -1977,7 +2033,7 @@
     },
     {
       "id": "b2b1f6f4be21fad89b32",
-      "title": "What’s on KC, Jackson County ballots? Explore our voter guide to Nov. 3 midterm election - Kansas City Star",
+      "title": "What\u2019s on KC, Jackson County ballots? Explore our voter guide to Nov. 3 midterm election - Kansas City Star",
       "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQbXJmNXhxczE2ekxZbnVNT3piTnBtbUpqRVNiQjFnYlVic3gtSkN6b0tNRG84Skh1QXlFa05BV3NOZW50LXppSThHNlNxYlVGYlBpMUNXYzJqaHpyUnctUHlEeTlrSmFFOHRkVzBtOFktMnBHMFlZWHU4TmNFUk1LMEdzNnRpLXlmZk9RZm5TdDNhcGg2b3VMNWV3?oc=5",
       "publisher": "Kansas City Star",
       "published_at": "2026-10-13T09:30:00Z",
@@ -2129,7 +2185,7 @@
     },
     {
       "id": "c562abef697cc2d368eb",
-      "title": "Many GOP states have imposed new voting rules this year, some mirroring Trump’s midterm proposals - Mississippi Today",
+      "title": "Many GOP states have imposed new voting rules this year, some mirroring Trump\u2019s midterm proposals - Mississippi Today",
       "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPcG41SS1OX21vZ0h0SWQyREs4STB0b2RlT0tIcHVhc3F5WnQ0bE5xOTA3TV9SYXV1LWdGZ280aExzMUhKMjFzOUI3MFN3Yko5VTJucXZyLTFreUNodlM2eDBrNHRKNDJfNE0xQ0hBb2FTVS1WbmRTYkxXMVZSWW0wMkpZRWQ?oc=5",
       "publisher": "Mississippi Today",
       "published_at": "2026-10-12T16:04:14Z",
@@ -2159,7 +2215,7 @@
     },
     {
       "id": "dded821af6884f16bad8",
-      "title": "Weekly Racial Justice Update: October 4–10, 2026 - Race, Racism and the Law",
+      "title": "Weekly Racial Justice Update: October 4\u201310, 2026 - Race, Racism and the Law",
       "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOTHhIVkhXeUtzcElwNnRzbVZ1VXUzWXptWVQwc3M1bnRFLXBIYWk4MnZfOHhYY2dKVU5fcF91cU9VbVFGUUliSlpWdWtxRnJlX1Z5LWdlVmduSVBTZnBQUGpJYzZjVm9kLVRCVWJOLS1OeWw0ejVuU2RISFl5MXJFekJWYWpNRkhTMVFNQWp5SE9tN3B0NFFIYlh3?oc=5",
       "publisher": "Race, Racism and the Law",
       "published_at": "2026-10-12T13:57:57Z",
@@ -2195,6 +2251,5 @@
       "impact_counts_verified": false,
       "promoted_to_incident_id": null
     }
-  ],
-  "reviewed_leads": 1
+  ]
 }
