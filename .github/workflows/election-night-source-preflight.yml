@@ -1,0 +1,60 @@
+name: Election Night External Source Preflight
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/election-night-source-preflight.yml'
+      - 'scripts/test_live_results_source.py'
+      - 'scripts/test_civicapi_live_source.py'
+  schedule:
+    # 4-hour live schema/CORS checks through Nov 4 UTC. The site still fetches
+    # results directly; this workflow does not relay or fabricate provider data.
+    - cron: '11 */4 * 10,11 *'
+permissions:
+  contents: read
+concurrency:
+  group: election-night-source-preflight
+  cancel-in-progress: true
+jobs:
+  external-api-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Resolve election-year preflight window
+        id: window
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$(date -u +'%Y%m%d')" -gt "20261104" ]; then
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "Automated 2026 preflight ended after November 4; manual checks remain available."
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Verify Open America source CORS, year, office and 2026 race schema
+        id: primary
+        if: steps.window.outputs.run == 'true'
+        continue-on-error: true
+        run: python3 scripts/test_live_results_source.py
+      - name: Verify independently identified civicAPI 2026 races and browser CORS
+        id: secondary
+        if: steps.window.outputs.run == 'true'
+        continue-on-error: true
+        run: python3 scripts/test_civicapi_live_source.py
+      - name: Record source health and fail if either provider contract is broken
+        if: always() && steps.window.outputs.run == 'true'
+        env:
+          PRIMARY: ${{ steps.primary.outcome }}
+          SECONDARY: ${{ steps.secondary.outcome }}
+        run: |
+          echo "## Direct-browser 2026 election source preflight" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Checked: $(date -u +'%Y-%m-%d %H:%M UTC')" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Open America (22-state primary source): $PRIMARY" >> "$GITHUB_STEP_SUMMARY"
+          echo "- civicAPI (individually verified supplementary races): $SECONDARY" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Checks test HTTP, browser CORS and strict year/race schema; **they do not guarantee all 435 House/35 Senate races or certify winner calls**." >> "$GITHUB_STEP_SUMMARY"
+          if [ "$PRIMARY" != "success" ] || [ "$SECONDARY" != "success" ]; then
+            echo "::error::Election-night API source contract failure. Investigate now; do not mark missing races as zero or fall back to 2024 results."
+            exit 1
+          fi
