@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T22:43:29.652598+00:00",
+  "updated_at": "2026-10-15T23:35:22.304107+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,14 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 287,
-  "newly_injected_into_model": 1,
-  "injected_poll_ids": [
-    {
-      "race_code": "SD-GOV",
-      "poll_id": "cabb19b7-c3b2-4065-8255-bcce2adeb67d"
-    }
-  ],
+  "matched_primary_observations": 288,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "MI-SEN",

@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-15T22:43:33.134371Z",
-  "source_snapshot": "2026-10-15T22:43:29.262665Z",
+  "generated_at": "2026-10-15T23:35:25.603329Z",
+  "source_snapshot": "2026-10-15T23:35:21.965246Z",
   "type": "descriptive_polling_estimates",
   "is_election_forecast": false,
   "method_version": "poll-mean-1.5",
@@ -1167,7 +1167,7 @@
           "largest_firm_weight_pct": 28.7,
           "independent_only_margin": 10.0,
           "equal_firms_margin": 8.48,
-          "faster_recency_margin": 9.13,
+          "faster_recency_margin": 9.12,
           "alternative_margin_min": 8.48,
           "alternative_margin_max": 10.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
@@ -1177,7 +1177,7 @@
           "quarantined_same_day_firms": []
         },
         "silver_2026_comparison": {
-          "dem_minus_rep": 9.0,
+          "dem_minus_rep": 8.99,
           "dem_pct": 52.53,
           "rep_pct": 43.54,
           "difference_from_live": -0.11,
@@ -1200,12 +1200,12 @@
           "sample_population": "lv",
           "dem": 55.4,
           "rep": 44.6,
-          "sample_size": 712,
+          "sample_size": 678,
           "partisan_lean": "R",
-          "weight_share": 10.047,
+          "weight_share": 9.959,
           "quality_rating": 1.1,
           "quality_multiplier": 0.955,
-          "sample_multiplier": 0.977
+          "sample_multiplier": 0.967
         },
         {
           "name": "InsiderAdvantage",
@@ -1217,7 +1217,7 @@
           "rep": 42.0,
           "sample_size": 1200,
           "partisan_lean": "R",
-          "weight_share": 11.678,
+          "weight_share": 11.689,
           "quality_rating": 2,
           "quality_multiplier": 1.0,
           "sample_multiplier": 1.084
@@ -1232,7 +1232,7 @@
           "rep": 44.9,
           "sample_size": 645,
           "partisan_lean": "R",
-          "weight_share": 8.186,
+          "weight_share": 8.194,
           "quality_rating": null,
           "quality_multiplier": 1.0,
           "sample_multiplier": 0.958
@@ -1247,7 +1247,7 @@
           "rep": 43.0,
           "sample_size": 1101,
           "partisan_lean": "R",
-          "weight_share": 13.138,
+          "weight_share": 13.151,
           "quality_rating": 0.7,
           "quality_multiplier": 0.675,
           "sample_multiplier": 1.066
@@ -1262,7 +1262,7 @@
           "rep": 45.0,
           "sample_size": 600,
           "partisan_lean": "",
-          "weight_share": 28.284,
+          "weight_share": 28.311,
           "quality_rating": null,
           "quality_multiplier": 1.0,
           "sample_multiplier": 0.944
@@ -1277,7 +1277,7 @@
           "rep": 42.0,
           "sample_size": 3301,
           "partisan_lean": "",
-          "weight_share": 28.667,
+          "weight_share": 28.695,
           "quality_rating": 3,
           "quality_multiplier": 1.25,
           "sample_multiplier": 1.256
@@ -3284,7 +3284,7 @@
           "largest_firm_weight_pct": 28.7,
           "independent_only_margin": 10.0,
           "equal_firms_margin": 8.48,
-          "faster_recency_margin": 9.13,
+          "faster_recency_margin": 9.12,
           "alternative_margin_min": 8.48,
           "alternative_margin_max": 10.0,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
@@ -3294,7 +3294,7 @@
           "quarantined_same_day_firms": []
         },
         "silver_2026_comparison": {
-          "dem_minus_rep": 9.0,
+          "dem_minus_rep": 8.99,
           "dem_pct": 52.53,
           "rep_pct": 43.54,
           "difference_from_live": -0.11,
@@ -3317,12 +3317,12 @@
           "sample_population": "lv",
           "dem": 55.4,
           "rep": 44.6,
-          "sample_size": 712,
+          "sample_size": 678,
           "partisan_lean": "R",
-          "weight_share": 10.047,
+          "weight_share": 9.959,
           "quality_rating": 1.1,
           "quality_multiplier": 0.955,
-          "sample_multiplier": 0.977
+          "sample_multiplier": 0.967
         },
         {
           "name": "InsiderAdvantage",
@@ -3334,7 +3334,7 @@
           "rep": 42.0,
           "sample_size": 1200,
           "partisan_lean": "R",
-          "weight_share": 11.678,
+          "weight_share": 11.689,
           "quality_rating": 2,
           "quality_multiplier": 1.0,
           "sample_multiplier": 1.084
@@ -3349,7 +3349,7 @@
           "rep": 44.9,
           "sample_size": 645,
           "partisan_lean": "R",
-          "weight_share": 8.186,
+          "weight_share": 8.194,
           "quality_rating": null,
           "quality_multiplier": 1.0,
           "sample_multiplier": 0.958
@@ -3364,7 +3364,7 @@
           "rep": 43.0,
           "sample_size": 1101,
           "partisan_lean": "R",
-          "weight_share": 13.138,
+          "weight_share": 13.151,
           "quality_rating": 0.7,
           "quality_multiplier": 0.675,
           "sample_multiplier": 1.066
@@ -3379,7 +3379,7 @@
           "rep": 45.0,
           "sample_size": 600,
           "partisan_lean": "",
-          "weight_share": 28.284,
+          "weight_share": 28.311,
           "quality_rating": null,
           "quality_multiplier": 1.0,
           "sample_multiplier": 0.944
@@ -3394,7 +3394,7 @@
           "rep": 42.0,
           "sample_size": 3301,
           "partisan_lean": "",
-          "weight_share": 28.667,
+          "weight_share": 28.695,
           "quality_rating": 3,
           "quality_multiplier": 1.25,
           "sample_multiplier": 1.256

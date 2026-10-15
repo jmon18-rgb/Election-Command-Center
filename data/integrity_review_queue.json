@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-15T22:43:29.060011Z",
+  "updated_at": "2026-10-15T23:35:21.670966Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
-    "total_leads": 141,
-    "awaiting_primary_source": 139,
+    "total_leads": 143,
+    "awaiting_primary_source": 141,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 9,
     "advisory_related_headlines": 21
@@ -115,6 +115,27 @@
   ],
   "items": [
     {
+      "id": "90ef797b2bc1e39f457f",
+      "title": "Noncitizens in North Carolina charged with voting in 2024 election, US Attorney confirms - ABC11 News",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPTlRxdFQ3dmF4V2dIaHBnT0xVS3VUZXRYYVVxaktNbHNNMGdKUEwtbVpVcm4tb0FzWHBZZ2p6aG0tWGdVVmxJOHJkZzk1R0hsZFQ1c21LOXgyYWQ4Y2hFdVJHUGV6aDNaellxdnJJanZWYTE0Ymp4YnJvbldiUmd3bXhrcjM3LTA5cnFXMkpIdHI5bWZ3SFo2R3JsM2U2X0szQ2NHbDlidDdiX1dTZVHSAbMBQVVfeXFMT0lhbUxxSkpBSnl6YnYyUEs3VThBeHB4WUIwWWQ5Y0NJU21kV1JEZUhhNmRocW5FVC14My1rN1VKM3JFZ1hzRmhOdnR0cFZyd05rT1dOdWF6X3hQbFNQXzE3SW1sOUR4RW1NVnJDMlJuTTlQQzNuc2ViaHBXQ2hqc3dFUFkxeDVza1lZNDFWMlZjNkVLYzNsMXFqY21JS1IwWVNaUjI3VmlxMTlvZ2N0OWtaUXM?oc=5",
+      "publisher": "ABC11 News",
+      "published_at": "2026-10-15T23:10:39Z",
+      "detected_at": "2026-10-15T23:35:21.670966Z",
+      "state_hints": [
+        "NC"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2024 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "b91c1685054abb4fde2b",
       "title": "Trump administration sues California over noncitizens on voter rolls - Al Jazeera",
       "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNTHlna081Y1lhRjRKam9fM0cwekdINzFGSHdlTThtMkxTOWJTRkN3b0gtbjl1TTFvYWs3dGtaUXVxaHRMWFpYaXY3d1Q1NHBra19UOG1MRG9Gazc2SS1RVTNtaWVmNWtwS3VmSm9Vbnprck5TdGxxLUhkYXlIY0ExNUM2VGxRTFZvbGVUbXV2UDVsMUotQm1XTjRLdWVhbk03RDdSbmk0N0tPWk54TjJB0gG0AUFVX3lxTE5mSS1FN3J1TEVKY3B6MWZBUms1dndEV0hNQVhuVXRmazFkRGg0MlpQMWREYW9lWmxXeFRMYmY1cjJxUzJucWs1bG5hcXV2d0VMbnM5ZWF5dGdsTmRVaHN4NUpFWmhxT1NRel95RDFzTjRaMkpOTTFxd1FmMEtrQlpMb25vS2hXZ1FJaVJjRmw0bERfNjRIMlNvVl9tZTVCSUtCaTNOVENuVzVZbWt2ZEFydFJ3Yw?oc=5",
@@ -183,6 +204,25 @@
       ],
       "topic_hints": [
         "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "e856db94b8bdb89e1bad",
+      "title": "Trump Administration Sues California After Demands to Prove Voters\u2019 Citizenship - KQED",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNb2Q3QTNCXy1kZDBFTDlodTEybnBUMTRzX2dpX2JTeV9XalZCV1M0ckREdlRQcG9nSjJvRU14cWc1LVZrTnh1QmJsTWl5Uno0eUw2QmdVY25PZk45T19YcTBSck5idVcwODRkSUY2ZUlEZzVvdTc4N0lvWUVtWTA3Y2hxbGtsc0hPcUNmTTRDZzI5MmpOWTJWdHNvOUNaQmU0Q1hWTWxMTmRyVjg1YjNabA?oc=5",
+      "publisher": "KQED",
+      "published_at": "2026-10-15T20:45:26Z",
+      "detected_at": "2026-10-15T23:35:21.670966Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "registration"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
