@@ -51,8 +51,8 @@ const output={status:'SENATE_DEPTH_CHANGE_SAME_DRAW_DIAGNOSTIC_NOT_EXTERNAL_ODDS
  house_and_governor_unchanged:true,
  chamber:{old_dem_senate_pct:oldSim.senate_dem_control_pct,
  new_dem_senate_pct:newSim.senate_dem_control_pct,
- old_both_dem_pct:oldSim.blue_both_including_tsunami,
- new_both_dem_pct:newSim.blue_both_including_tsunami},
+ old_both_dem_pct:oldSim.actual_dem_both_control_pct,
+ new_both_dem_pct:newSim.actual_dem_both_control_pct},
  races:['TX-SEN','OH-SEN','MN-SEN','NC-SEN','GA-SEN'].map(code=>{
   const old=oldSeats.find(x=>x.code===code),now=after.senate.find(x=>x.code===code);
   const p=pollByRace.get(code);
