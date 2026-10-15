@@ -469,6 +469,9 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .race-workbench-body.card{margin:0}
 .race-workbench-body .sectionhead{margin-top:6px}
 .joint-note{font-size:11px;color:#9fb7cf;line-height:1.65;margin:9px 0 0}
+.bull-daily{margin:14px 0;padding:12px 16px;border:1px solid #365a70;background:#102435}
+.bull-daily .row{align-items:center;justify-content:space-between;gap:10px}
+.bull-daily .detail{font-size:12px;margin:7px 0 0;color:#bed4e3;line-height:1.5}
 .joint-tools{display:flex;flex-wrap:wrap;gap:11px;align-items:center;margin:13px 0 0;font-size:11px;color:#b9cee4}
 .joint-tools label{display:inline-flex;gap:5px;align-items:center}
 .joint-tools select{font-size:11px;border:1px solid #58718d;color:#e6f3ff;background:#213850;border-radius:6px;padding:6px}
@@ -726,7 +729,11 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <div id="racePulse" class="pulse-grid"><div class="empty">Checking for meaningful new polling evidence…</div></div>
 <p class="pulse-disclaimer">Changes in polling averages can reflect new surveys, weighting or timing—not necessarily a shift in voter opinion. Only current, qualifying observations are shown; older snapshots are compared only with identical candidate matchups.</p>
 <div class="sectionhead"><h2>On the radar</h2><span class="tiny" id="freshness">Checking latest update</span></div>
-<div class="card brief-news-card"><div class="row"><span class="label">Election developments</span><span class="tag">NEWS LEADS</span></div><p id="newsFeedStatus" class="tiny" role="status">Checking publication date…</p><div id="updates" class="empty">Loading recent election reporting.</div><button class="textlink" type="button" data-jump="integrity">Bullshittery Index →</button></div>
+<div class="card bull-daily" aria-label="Bullshittery Index daily pulse">
+  <div class="row"><strong>Bullshittery Index</strong><a class="textlink" href="#integrity">View sourced cases →</a></div>
+  <p id="bullDailyPulse" class="detail" role="status">Checking documented incidents and outstanding verification leads…</p>
+ </div>
+ <div class="card brief-news-card"><div class="row"><span class="label">Election developments</span><span class="tag">NEWS LEADS</span></div><p id="newsFeedStatus" class="tiny" role="status">Checking publication date…</p><div id="updates" class="empty">Loading recent election reporting.</div><button class="textlink" type="button" data-jump="integrity">Bullshittery Index →</button></div>
 <details class="brief-poll-log" id="briefPollLog"><summary><strong>The full poll log</strong><span id="changesSince">Checking recent surveys…</span><span class="poll-log-chevron" aria-hidden="true">⌄</span></summary>
 <div id="newPolls" class="empty">Checking recent poll postings…</div><button class="textlink" type="button" data-jump="wire">Open full Poll Wire →</button></details>
 </section>
@@ -2611,6 +2618,24 @@ function bullStateScore(code){
  return eligible.length?Math.max(...eligible):null;
 }
 function renderBullStateScores(){
+ const daily=$('#bullDailyPulse');
+ if(daily&&impactLedger){
+  const verified=(impactLedger.incidents||[]).filter(x=>
+   x.verification_status!=='unverified_report');
+  const ranks=[...new Set(verified.map(x=>x.state))].map(state=>
+   ({state,score:bullStateScore(state)}))
+   .filter(x=>Number.isFinite(x.score))
+   .sort((a,b)=>b.score-a.score||a.state.localeCompare(b.state));
+  const pending=(integrityQueueData?.items||[]).filter(x=>
+   x.review_status==='needs_primary_source').length;
+  daily.textContent=(ranks.length?ranks.slice(0,3)
+   .map(x=>x.state+' '+x.score+'/100').join(' · '):'No assessed state')+
+   ' · '+verified.length+' sourced cases · '+pending+
+   ' leads awaiting primary-source checks · ledger reviewed '+
+   (impactLedger.updated_at||'date unknown')+'.';
+  daily.title='Monitoring score is priority, not probability of fraud or lost votes. '+
+   'A headline is never automatically treated as a confirmed election incident.';
+ }
  const host=$('#bullScoreStates');if(!host)return;host.replaceChildren();
  if(!impactLedger){host.append(elt('div','empty','Evidence unavailable.'));return}
  const tracked=(impactLedger.incidents||[]).filter(x=>x.verification_status!=='unverified_report');
