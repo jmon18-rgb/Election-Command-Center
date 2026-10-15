@@ -2017,7 +2017,10 @@ function renderRacePulse(data){
       !Number.isFinite(old.dem_minus_rep))continue;
    if((r.contributing_pollsters||0)<2)continue;
    const delta=r.dem_minus_rep-old.dem_minus_rep;
-   if(Math.abs(delta)<0.75)continue;
+   // Ignore routine landslide changes on the main Briefing.
+   const competitive=Math.abs(r.dem_minus_rep)<=10;
+   const surprising=Math.abs(delta)>=3&&Math.abs(r.dem_minus_rep)<=15;
+   if(Math.abs(delta)<0.75||(!competitive&&!surprising))continue;
    movements.push({r,old,delta});
   }
   movements.sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta));
@@ -3309,10 +3312,11 @@ function jointRenderNeedles(result){
    keys.map((k,i)=>labels[i]+' '+v[i].toFixed(1)+' percent').join(', ')+
    '. Expected scenario pointer '+position.toFixed(1)+' percent along spectrum. '+
    sourceMode+'. Not a certified election result.');
-  foot.firstElementChild.textContent='Needle tilts '+labels[likely]+
-   ' · '+v[likely].toFixed(1)+'% most likely individual ending';
-  foot.lastElementChild.textContent=sourceMode+' · '+
-   result.samples.toLocaleString('en-US')+' same-draw simulations';
+  const oceanName=['RED SKIES','CHOPPY SEAS','BLUE WAVE WATCH','TSUNAMI WATCH'];
+  foot.firstElementChild.textContent=oceanName[likely]+
+   ' · '+v[likely].toFixed(1)+'% most likely ending';
+  foot.lastElementChild.textContent=(liveCount?'LIVE RETURNS':'PRE-ELECTION FORECAST')+
+   ' · '+result.samples.toLocaleString('en-US')+' draws';
   bar.replaceChildren();
   for(let i=0;i<4;i++){
    const span=elt('span','');
@@ -3331,7 +3335,7 @@ function jointRenderNeedles(result){
   context.replaceChildren();
   if(!movement?.liveCount){
    context.append(elt('div','four-needle-change',
-    'No qualifying 2026 returns yet · polling + fundamentals baseline.'));
+    'CALM BEFORE THE COUNT · polling + fundamentals only'));
    continue;
   }
   const delta=movement.shift;
@@ -3387,6 +3391,10 @@ function jointRenderCards(result){
     elt('span','',detail));
    host.append(cell);
   }
+  const headline=$('#'+(id==='jointHomeCards'?'jointHomeHeadline':'jointNightHeadline'));
+  if(headline)headline.textContent='D both chambers '+result.blue_both_including_tsunami.toFixed(1)+
+   '% · Tsunami '+result.probabilities.blue_tsunami.toFixed(1)+
+   '% · '+result.samples.toLocaleString('en-US')+' simulations';
   const info=jointBasis.generated_from_sources;
   const h=result.seat_intervals_90_pct?.house_dem_seats;
   const sn=result.seat_intervals_90_pct?.senate_dem_seats;
