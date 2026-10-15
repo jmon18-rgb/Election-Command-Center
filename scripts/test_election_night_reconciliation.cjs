@@ -48,5 +48,5 @@ assert.equal(x.providerCalls,0);
 x=api.reconcile({...input,civic:{'Senate|ME':{...civic,key:'NH'}}});
 assert.equal(x.senate.supplemental,0,'Wrong race identity must fail closed');
 assert.throws(()=>api.houseIds({MA:9}),/435/);
-assert.throws(()=>api.senateIds(senate.slice(1)),/35/);
+assert.throws(()=>api.senateIds(senate.slice(1)),/Senate universe/);
 console.log('Election-night 435/35 coverage, data freshness, duplicate, stale and provider-call reconciliation PASS');
