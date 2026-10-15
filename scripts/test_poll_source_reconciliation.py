@@ -142,7 +142,7 @@ class PollToModelTests(unittest.TestCase):
                       field_end="2026-10-07",dem=66,rep=20,
                       sample_population="lv")
         self.assertEqual(recon.merge(p,[only_lv],TODAY)["lv_upgrades"],0)
-        self.assertEqual(p["races"][0]["polls"][-1]["dem"],47)
+        self.assertEqual(next(x["dem"] for x in p["races"][0]["polls"] if x["poll_id"]=="mason-oct07"),47)
 
     def test_rv_only_keeps_existing_primary_and_known_rv_can_be_upgraded(self):
         p=primary()
@@ -150,7 +150,7 @@ class PollToModelTests(unittest.TestCase):
                  field_end="2026-10-07",dem=47,rep=43,
                  sample_population="rv")
         self.assertEqual(recon.merge(p,[rv],TODAY)["lv_upgrades"],0)
-        self.assertEqual(p["races"][0]["polls"][-1]["sample_population"],"rv")
+        self.assertEqual(next(x["sample_population"] for x in p["races"][0]["polls"] if x["poll_id"]=="mason-oct07"),"rv")
         lv=newer(poll_id="mason-oct07",pollster="Mason-Dixon",
                  field_end="2026-10-07",dem=45,rep=44,
                  sample_population="lv")
@@ -165,7 +165,7 @@ class PollToModelTests(unittest.TestCase):
                  sample_size=718,question_id="lv-one")
         clash={**lv,"question_id":"lv-two","dem":49,"rep":42}
         self.assertEqual(recon.merge(p,[rv,lv,clash],TODAY)["lv_upgrades"],0)
-        self.assertEqual(p["races"][0]["polls"][-1]["dem"],47)
+        self.assertEqual(next(x["dem"] for x in p["races"][0]["polls"] if x["poll_id"]=="mason-oct07"),47)
 
     def test_equal_priority_conflicting_answers_are_quarantined(self):
         p=primary()
