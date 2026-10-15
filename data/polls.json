@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T13:12:52.628301Z",
+  "updated_at": "2026-10-15T13:19:18.491653Z",
   "generic_ballot": {
     "summary": {
       "dem": 48.1,
@@ -850,6 +850,7 @@
         "upstream_posted_date": "2026-10-13",
         "source_poll_url": "https://results.surveyusa.com/client/PollReport.aspx?g=3605b38b-d541-4db4-9d70-f6d4875faeb8",
         "sample_population": "lv",
+        "question_id": "819e8638-6f1a-419f-a796-0c2541db60f9",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -871,6 +872,7 @@
           "upstream_posted_date": "2026-10-13",
           "source_poll_url": "https://results.surveyusa.com/client/PollReport.aspx?g=3605b38b-d541-4db4-9d70-f6d4875faeb8",
           "sample_population": "lv",
+          "question_id": "819e8638-6f1a-419f-a796-0c2541db60f9",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -891,6 +893,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://x.com/cjwarnke/status/2102878578849484963",
           "sample_population": "lv",
+          "question_id": "b6e0656d-e9fe-4b3c-86d7-2729c554d5d8",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -966,6 +969,7 @@
           "upstream_posted_date": "2026-10-13",
           "source_poll_url": "https://quantusinsights.org/f/texas-senate-paxton-and-talarico-in-a-near-tie",
           "sample_population": "lv",
+          "question_id": "a3fa911e-37db-456e-85ca-f77ea6a43abc",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -986,6 +990,7 @@
           "upstream_posted_date": "2026-10-14",
           "source_poll_url": "https://maristpoll.marist.edu/polls/2026-midterm-elections-in-texas-october-2026/",
           "sample_population": "lv",
+          "question_id": "ca00a326-07ab-4b6d-a3bc-11101f190ae0",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -1006,6 +1011,7 @@
           "upstream_posted_date": "2026-10-10",
           "source_poll_url": "https://www.thetrafalgargroup.org/news/tx-senate-gen-1009/",
           "sample_population": "lv",
+          "question_id": "ff722faf-497f-47e6-994a-1d3b666bdff9",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -1026,6 +1032,7 @@
           "upstream_posted_date": "2026-10-13",
           "source_poll_url": "https://reconmr.com/wp-content/uploads/2026/10/TXP004-October-Press-Release.pdf",
           "sample_population": "lv",
+          "question_id": "6b73f7e3-7dc8-43f0-894a-9f496d2c8401",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -1046,6 +1053,7 @@
           "upstream_posted_date": "2026-10-14",
           "source_poll_url": "https://texaspolitics.utexas.edu/blog/latest-ut-texas-politics-poll-finds-historic-levels-of-competition-in-texas-midterm-elections",
           "sample_population": "lv",
+          "question_id": "986200cf-7a02-4e12-95ad-51be09affead",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -1066,6 +1074,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_tx_20260921_lv.pdf",
           "sample_population": "lv",
+          "question_id": "7382c84a-9f84-4c4e-8a56-46b0e8ea8ea4",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -1102,6 +1111,7 @@
           "upstream_posted_date": "2026-10-08",
           "source_poll_url": "https://www.uml.edu/news/press-releases/2026/10092026-texas-poll.aspx",
           "sample_population": "lv",
+          "question_id": "ef9253cb-1c3c-466f-bd2d-71af6acd8b81",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -1122,27 +1132,31 @@
           "upstream_posted_date": "2026-10-07",
           "source_poll_url": "https://static01.nyt.com/newsgraphics/documenttools/b31cf2744465b8b7/1a8b655b-full.pdf",
           "sample_population": "lv",
+          "question_id": "b79697a6-1d98-438a-bbc7-edae99563e1a",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
           "poll_id": "0f689fd7-56bb-475a-b53b-393375bac8de",
           "field_end": "2026-09-28",
           "pollster": "Beacon Research/Shaw & Company Research",
-          "dem": 53.0,
-          "rep": 46.0,
-          "margin": 7.0,
-          "sample_size": 1203,
+          "dem": 51.0,
+          "rep": 49.0,
+          "margin": 2.0,
+          "sample_size": 881,
           "partisan_lean": "",
           "dem_name": "James Talarico",
           "rep_name": "Ken Paxton",
           "other": null,
           "other_name": null,
-          "first_seen_at": null,
+          "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://www.foxnews.com/politics/fox-news-poll-its-lone-star-senate-showdown-between-talarico-paxton",
-          "sample_population": "rv",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "sample_population": "lv",
+          "question_id": "71f88138-7b13-4a67-a324-c88ff0029416",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback",
+          "lv_selected_over_rv": true
         },
         {
           "poll_id": "d755f479-59b4-43e0-b087-a9f5546d1e0c",
@@ -1162,6 +1176,7 @@
           "upstream_posted_date": "2026-09-29",
           "source_poll_url": "https://www.elpasotimes.com/story/news/politics/elections/2026/10/01/talarico-trails-paxton-in-conservative-texas-us-senate-race-poll/92022294007/",
           "sample_population": "lv",
+          "question_id": "65a710cf-ab58-4890-a76d-cd4a12529d82",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -1182,6 +1197,7 @@
           "upstream_posted_date": "2026-09-27",
           "source_poll_url": "https://www.bigdatapoll.com/blog/lone-star-state-poll-talarico-paxton-in-close-race-us-senate-in-texas/",
           "sample_population": "lv",
+          "question_id": "81840c07-0234-4a6f-9dd5-df7948e2c92f",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -1202,6 +1218,7 @@
           "upstream_posted_date": "2026-09-28",
           "source_poll_url": "https://www.politico.com/newsletters/playbook/2026/09/28/trumps-joes-exit-the-front-row-01094720",
           "sample_population": "lv",
+          "question_id": "8390f112-5802-4bb5-879f-5500996a6bf5",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -1222,6 +1239,7 @@
           "upstream_posted_date": "2026-09-25",
           "source_poll_url": "https://texaspublicopinionresearch.substack.com/p/new-poll-in-texas-general-election-662",
           "sample_population": "lv",
+          "question_id": "14fcda3f-0be4-4184-a05c-885b3670aa62",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -1505,6 +1523,7 @@
           "upstream_posted_date": "2026-10-14",
           "source_poll_url": "https://maristpoll.marist.edu/polls/2026-midterm-elections-in-texas-october-2026/",
           "sample_population": "lv",
+          "question_id": "7298943f-619a-4bfe-b9f4-c5b022e89f15",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -1525,6 +1544,7 @@
           "upstream_posted_date": "2026-10-13",
           "source_poll_url": "https://ginafortexas.com/wp-content/uploads/2026/10/TX-Gov-Poll-Memo-101226.pdf",
           "sample_population": "lv",
+          "question_id": "47d26b04-5314-4000-b2ae-5f656bf3e2a2",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -1545,6 +1565,7 @@
           "upstream_posted_date": "2026-10-13",
           "source_poll_url": "https://reconmr.com/wp-content/uploads/2026/10/TXP004-October-Press-Release.pdf",
           "sample_population": "lv",
+          "question_id": "9e72877b-0acb-4fb9-b001-fa0cdce14ff6",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -1565,6 +1586,7 @@
           "upstream_posted_date": "2026-10-14",
           "source_poll_url": "https://texaspolitics.utexas.edu/blog/latest-ut-texas-politics-poll-finds-historic-levels-of-competition-in-texas-midterm-elections",
           "sample_population": "lv",
+          "question_id": "6c475ada-575b-43dd-9571-c0dec90aea1c",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -1585,6 +1607,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_tx_20260921_lv.pdf",
           "sample_population": "lv",
+          "question_id": "b11aa93d-50d6-4750-90c4-10ba75f0c9b2",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -1621,6 +1644,7 @@
           "upstream_posted_date": "2026-10-08",
           "source_poll_url": "https://www.uml.edu/news/press-releases/2026/10092026-texas-poll.aspx",
           "sample_population": "lv",
+          "question_id": "f8e4326a-8dcc-4147-907c-c7ae72758be0",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -1641,47 +1665,54 @@
           "upstream_posted_date": "2026-10-07",
           "source_poll_url": "https://static01.nyt.com/newsgraphics/documenttools/b31cf2744465b8b7/1a8b655b-full.pdf",
           "sample_population": "lv",
+          "question_id": "73fa8a9b-18b3-4a00-8c2d-2a22f4abf890",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
           "poll_id": "0f689fd7-56bb-475a-b53b-393375bac8de",
           "field_end": "2026-09-28",
           "pollster": "Beacon Research/Shaw & Company Research",
-          "dem": 49.0,
-          "rep": 50.0,
-          "margin": -1.0,
-          "sample_size": 1203,
+          "dem": 47.0,
+          "rep": 52.0,
+          "margin": -5.0,
+          "sample_size": 881,
           "partisan_lean": "",
           "dem_name": "Gina Hinojosa",
           "rep_name": "Greg Abbott",
           "other": null,
           "other_name": null,
-          "first_seen_at": null,
+          "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://www.foxnews.com/politics/fox-news-poll-its-lone-star-senate-showdown-between-talarico-paxton",
-          "sample_population": "rv",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "sample_population": "lv",
+          "question_id": "9b1f36db-12bd-4398-8a63-46c17606597e",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback",
+          "lv_selected_over_rv": true
         },
         {
           "poll_id": "346e5096-282b-482c-a99b-757a119a62b0",
           "field_end": "2026-09-26",
           "pollster": "Big Data Poll",
-          "dem": 44.2,
-          "rep": 48.2,
-          "margin": -4.0,
-          "sample_size": 793,
+          "dem": 44.4,
+          "rep": 48.9,
+          "margin": -4.5,
+          "sample_size": 698,
           "partisan_lean": "R",
           "dem_name": "Gina Hinojosa",
           "rep_name": "Greg Abbott",
           "other": 7.6,
           "other_name": "Pat Dixon",
-          "first_seen_at": null,
+          "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
           "upstream_posted_date": "2026-09-27",
           "source_poll_url": "https://www.bigdatapoll.com/blog/lone-star-state-poll-talarico-paxton-in-close-race-us-senate-in-texas/",
-          "sample_population": "rv",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "sample_population": "lv",
+          "question_id": "b2e71671-8a2f-4e44-bcf2-c6d62d126b26",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback",
+          "lv_selected_over_rv": true
         },
         {
           "poll_id": "17be68ea-2c12-427d-b8f8-1d5f2a22b4aa",
@@ -1701,6 +1732,7 @@
           "upstream_posted_date": "2026-09-28",
           "source_poll_url": "https://www.politico.com/newsletters/playbook/2026/09/28/trumps-joes-exit-the-front-row-01094720",
           "sample_population": "lv",
+          "question_id": "04ca120d-498f-49c5-8ce5-0b7feade2775",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -1721,6 +1753,7 @@
           "upstream_posted_date": "2026-09-25",
           "source_poll_url": "https://texaspublicopinionresearch.substack.com/p/new-poll-in-texas-general-election-662",
           "sample_population": "lv",
+          "question_id": "a42c8fff-1edb-4277-9391-b4be9a324395",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -1927,6 +1960,7 @@
         "upstream_posted_date": "2026-10-14",
         "source_poll_url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/other-states#collapse-October-14-2026-Maine-US-Senate-and-Governor-Statewide-and-Bellwether",
         "sample_population": "lv",
+        "question_id": "92880d7d-9424-4174-992b-89b9e371f90c",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -1948,6 +1982,7 @@
           "upstream_posted_date": "2026-10-14",
           "source_poll_url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/other-states#collapse-October-14-2026-Maine-US-Senate-and-Governor-Statewide-and-Bellwether",
           "sample_population": "lv",
+          "question_id": "92880d7d-9424-4174-992b-89b9e371f90c",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -1968,6 +2003,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://www.washingtonpost.com/politics/2026/10/09/poll-democrat-troy-jackson-narrowly-leads-susan-collins-maine-senate-race/?pwapi_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyZWFzb24iOiJnaWZ0IiwibmJmIjoxNzkxNTE4NDAwLCJpc3MiOiJzdWJzY3JpcHRpb25zIiwiZXhwIjoxNzkyOTAwNzk5LCJpYXQiOjE3OTE1MTg0MDAsImp0aSI6IjE4NjJkMzQ0LWQ0ZmMtNGIyMy05NzAwLTgwNWU1YTNjMWZlNCIsInVybCI6Imh0dHBzOi8vd3d3Lndhc2hpbmd0b25wb3N0LmNvbS9wb2xpdGljcy8yMDI2LzEwLzA5L3BvbGwtZGVtb2NyYXQtdHJveS1qYWNrc29uLW5hcnJvd2x5LWxlYWRzLXN1c2FuLWNvbGxpbnMtbWFpbmUtc2VuYXRlLXJhY2UvIn0.2_6lAaaYMcbP0y7_Ioe4GYgRcQnYJkY6IAE55nzmhAs",
           "sample_population": "lv",
+          "question_id": "af612594-c904-4416-8528-c46abeecc093",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -1988,6 +2024,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://maristpoll.marist.edu/polls/midterm-elections-in-maine-october-2026/",
           "sample_population": "rv",
+          "question_id": "4c6d07ef-7f9b-4992-8a53-5ca36485f320",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2008,6 +2045,7 @@
           "upstream_posted_date": "2026-10-02",
           "source_poll_url": "https://www.thetrafalgargroup.org/news/me-senate-gen-1002/",
           "sample_population": "lv",
+          "question_id": "00f3e1e8-ee3d-400d-ba59-1658f7a758fd",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2028,6 +2066,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://drive.google.com/file/d/1sycfLKEWvUxaW7oNYTdih5DzlXlcmtXC/view",
           "sample_population": "lv",
+          "question_id": "b92c012c-d5a9-4527-add8-ae771aaa1536",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2048,6 +2087,7 @@
           "upstream_posted_date": "2026-10-02",
           "source_poll_url": "https://www.cbsnews.com/news/maine-senate-poll-2026-10-02/",
           "sample_population": "lv",
+          "question_id": "66958257-f11e-4202-9dcb-35ae34872b03",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2068,6 +2108,7 @@
           "upstream_posted_date": "2026-09-30",
           "source_poll_url": "https://battlegrounds.coefficient.org/me/",
           "sample_population": "lv",
+          "question_id": "0e9cf369-afd2-4271-8759-49f5e11f7bcd",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2088,6 +2129,7 @@
           "upstream_posted_date": "2026-09-30",
           "source_poll_url": "https://battlegrounds.coefficient.org/me/",
           "sample_population": "lv",
+          "question_id": "c1d36eea-e80f-4f75-a4a1-ba4a6a7c711e",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2108,6 +2150,7 @@
           "upstream_posted_date": "2026-10-05",
           "source_poll_url": "https://drive.google.com/file/d/1nVC9doKmSak5hQ8ajaaKftWiXSEZf-Us/view?link_id=0&can_id=43449815c7c9cdc13604b107d8c0a515&source=email-polling-jackson-leads-collins-mainers-demand-childcare-ai-regulation&email_referrer=email_3433131&email_subject=polling-jackson-leads-collins-mainers-demand-childcare-ai-regulation",
           "sample_population": "lv",
+          "question_id": "962fe805-0fe7-4d40-9055-d34ca7144cfc",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2128,6 +2171,7 @@
           "upstream_posted_date": "2026-09-26",
           "source_poll_url": "https://insideradvantage.com/me-top-line-tabs/",
           "sample_population": "lv",
+          "question_id": "d8d93f85-d404-4485-9cb3-f8e3ee7013a5",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2148,6 +2192,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://www.aarp.org/pri/topics/voter-research/politics/2026-midterm-election-poll-maine/",
           "sample_population": "lv",
+          "question_id": "c5c6a7d5-972b-4f2e-b531-3846a71b00b1",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2184,6 +2229,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://scholars.unh.edu/survey_center_polls/1007/",
           "sample_population": "lv",
+          "question_id": "5ccd46ea-0758-46ca-9fa6-3a66f45d8a04",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2220,6 +2266,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://www.uml.edu/news/press-releases/2026/09242026-maine-poll.aspx",
           "sample_population": "lv",
+          "question_id": "8d0624bd-531b-4988-bfa3-05d3cddf9445",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2298,6 +2345,7 @@
         "upstream_posted_date": "2026-10-13",
         "source_poll_url": "https://www.wral.com/news/nccapitol/wral-nc-us-senate-poll-cooper-whatley-tillis-trump-stein-approval-midterm-october-2026/",
         "sample_population": "lv",
+        "question_id": "73ca45dc-3f77-48b0-96fe-4e6cb2635965",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -2319,6 +2367,7 @@
           "upstream_posted_date": "2026-10-13",
           "source_poll_url": "https://www.wral.com/news/nccapitol/wral-nc-us-senate-poll-cooper-whatley-tillis-trump-stein-approval-midterm-october-2026/",
           "sample_population": "lv",
+          "question_id": "73ca45dc-3f77-48b0-96fe-4e6cb2635965",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2339,6 +2388,7 @@
           "upstream_posted_date": "2026-10-12",
           "source_poll_url": "https://www.thetrafalgargroup.org/news/nc-senate-gen-1011/",
           "sample_population": "lv",
+          "question_id": "8345076f-1440-4dd2-a40f-85ed51012c54",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2359,6 +2409,7 @@
           "upstream_posted_date": "2026-10-13",
           "source_poll_url": "https://docs.google.com/document/d/1nVWsUhnA6dAlqOgHS2j2K6kFoJLJFjQbkN8KAXhyK0s/edit?tab=t.0",
           "sample_population": "lv",
+          "question_id": "d505a4b4-4ecf-48b1-bfaa-c74341f586f4",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2379,6 +2430,7 @@
           "upstream_posted_date": "2026-10-08",
           "source_poll_url": "https://surveyresearch-ecu.reportablenews.com/pr/ecu-poll-cooper-s-lead-holds-at-7-points",
           "sample_population": "lv",
+          "question_id": "efa908d6-cb33-4ee1-bc51-9d9ed7d3a4f6",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2399,6 +2451,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://www.bigdatapoll.com/blog/tar-heel-state-poll-roy-cooper-holds-solid-lead-over-michael-whatley-for-us-senate-in-north-carolina/",
           "sample_population": "lv",
+          "question_id": "20c4780c-d3e0-4595-957f-4087ac2efcb3",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2435,6 +2488,7 @@
           "upstream_posted_date": "2026-09-25",
           "source_poll_url": "https://www.commoncause.org/north-carolina/press/2026_poll_1/",
           "sample_population": "lv",
+          "question_id": "9cf6ab50-ec7a-4b46-8274-84effc1c2c0d",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2455,6 +2509,7 @@
           "upstream_posted_date": "2026-09-28",
           "source_poll_url": "https://www.aarp.org/pri/topics/voter-research/politics/2026-midterm-election-poll-north-carolina/",
           "sample_population": "lv",
+          "question_id": "1520d6a8-aeab-4656-964f-959930d6d997",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2507,6 +2562,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://www.highpoint.edu/blog/2026/09/hpu-poll-127-north-carolina-likely-voters-weigh-in-on-u-s-senate-race-and-more/",
           "sample_population": "lv",
+          "question_id": "f2953182-6290-48b3-99ec-45a0389481ca",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2527,6 +2583,7 @@
           "upstream_posted_date": "2026-09-30",
           "source_poll_url": "https://www.catawba.edu/news/all-news/2026/yougov-39/",
           "sample_population": "lv",
+          "question_id": "9397086a-0f74-4db2-8ff8-d8dbfbf0390c",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2637,6 +2694,7 @@
         "upstream_posted_date": "2026-10-13",
         "source_poll_url": "https://floridapolitics.com/archives/824726-poll-byron-donalds-up-6-over-david-jolly-with-3-weeks-until-election-day/",
         "sample_population": "lv",
+        "question_id": "17ba8cf8-b5a5-43dc-bdc0-bae94347a3bd",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -2658,6 +2716,7 @@
           "upstream_posted_date": "2026-10-13",
           "source_poll_url": "https://floridapolitics.com/archives/824726-poll-byron-donalds-up-6-over-david-jolly-with-3-weeks-until-election-day/",
           "sample_population": "lv",
+          "question_id": "17ba8cf8-b5a5-43dc-bdc0-bae94347a3bd",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2700,6 +2759,7 @@
           "upstream_posted_date": "2026-10-12",
           "source_poll_url": "https://changeresearch.com/research/2026/2026-10-12-florida-aapor-methodology-statement",
           "sample_population": "lv",
+          "question_id": "b2c4b077-cd2a-4017-a56c-899b0bd24bbb",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2720,6 +2780,7 @@
           "upstream_posted_date": "2026-10-13",
           "source_poll_url": "https://www.stetson.edu/artsci/cpor/media/cpor-october-2026-pr.docx",
           "sample_population": "lv",
+          "question_id": "742098e3-0e62-4499-be7d-64d6ba373981",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2740,6 +2801,7 @@
           "upstream_posted_date": "2026-10-08",
           "source_poll_url": "https://www.stpetepolls.org/files/StPetePolls_2026_State_Gov_October7_K7ZU3GA.pdf",
           "sample_population": "lv",
+          "question_id": "83a63505-f206-4238-9053-dac9a296ff87",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2760,6 +2822,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_fl_20260921_lv.pdf",
           "sample_population": "lv",
+          "question_id": "80f64752-7af1-45e6-b2ea-307a751a477d",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2780,6 +2843,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://jamesmadison.org/new-jmi-poll-republicans-hold-double-digit-leads-in-key-statewide-races-florida-voters-focused-on-affordability/",
           "sample_population": "lv",
+          "question_id": "44aa8db1-cfa0-4b07-938c-a708f8567f1a",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2800,6 +2864,7 @@
           "upstream_posted_date": "2026-10-07",
           "source_poll_url": "https://floridapolitics.com/archives/823612-mason-dixon-poll-byron-donalds-leads-david-jolly-48-41-with-1-in-4-independents-still-undecided/",
           "sample_population": "lv",
+          "question_id": "ac303015-379d-4be1-a78a-38b785dfbc9a",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2820,6 +2885,7 @@
           "upstream_posted_date": "2026-09-28",
           "source_poll_url": "https://changeresearch.com/research/2026/2026-09-28-florida-aapor-methodology-statement",
           "sample_population": "lv",
+          "question_id": "d5d3c7b8-72d5-48d6-8a2a-a691e4ff7bb0",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2840,6 +2906,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://www.stetson.edu/artsci/cpor/media/cpor-sept.-2026-poll-final.pdf",
           "sample_population": "lv",
+          "question_id": "a18456d6-3072-447d-84e3-ae05c946f143",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2918,6 +2985,7 @@
         "upstream_posted_date": "2026-10-14",
         "source_poll_url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/other-states#collapse-October-14-2026-Maine-US-Senate-and-Governor-Statewide-and-Bellwether",
         "sample_population": "lv",
+        "question_id": "eac924e8-39aa-4218-acbf-e9811eb667b4",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -2939,6 +3007,7 @@
           "upstream_posted_date": "2026-10-14",
           "source_poll_url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/other-states#collapse-October-14-2026-Maine-US-Senate-and-Governor-Statewide-and-Bellwether",
           "sample_population": "lv",
+          "question_id": "eac924e8-39aa-4218-acbf-e9811eb667b4",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2959,6 +3028,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://www.washingtonpost.com/politics/2026/10/09/poll-democrat-troy-jackson-narrowly-leads-susan-collins-maine-senate-race/?pwapi_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyZWFzb24iOiJnaWZ0IiwibmJmIjoxNzkxNTE4NDAwLCJpc3MiOiJzdWJzY3JpcHRpb25zIiwiZXhwIjoxNzkyOTAwNzk5LCJpYXQiOjE3OTE1MTg0MDAsImp0aSI6IjE4NjJkMzQ0LWQ0ZmMtNGIyMy05NzAwLTgwNWU1YTNjMWZlNCIsInVybCI6Imh0dHBzOi8vd3d3Lndhc2hpbmd0b25wb3N0LmNvbS9wb2xpdGljcy8yMDI2LzEwLzA5L3BvbGwtZGVtb2NyYXQtdHJveS1qYWNrc29uLW5hcnJvd2x5LWxlYWRzLXN1c2FuLWNvbGxpbnMtbWFpbmUtc2VuYXRlLXJhY2UvIn0.2_6lAaaYMcbP0y7_Ioe4GYgRcQnYJkY6IAE55nzmhAs",
           "sample_population": "lv",
+          "question_id": "b57120d9-b08c-480a-95a9-f351f144f3b6",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2979,6 +3049,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://maristpoll.marist.edu/polls/midterm-elections-in-maine-october-2026/",
           "sample_population": "rv",
+          "question_id": "a33380e9-7e43-4907-aefd-74c1a35c3b48",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -2999,6 +3070,7 @@
           "upstream_posted_date": "2026-10-02",
           "source_poll_url": "https://www.cbsnews.com/news/maine-senate-poll-2026-10-02/",
           "sample_population": "lv",
+          "question_id": "7cc23939-7f00-4edf-8068-92bff5551e9f",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -3019,6 +3091,7 @@
           "upstream_posted_date": "2026-09-30",
           "source_poll_url": "https://battlegrounds.coefficient.org/me/",
           "sample_population": "lv",
+          "question_id": "9bc976bf-1c40-417b-927c-dfdb2a138417",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -3039,6 +3112,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://www.aarp.org/pri/topics/voter-research/politics/2026-midterm-election-poll-maine/",
           "sample_population": "lv",
+          "question_id": "960fad5e-a9e1-4a97-897b-c86b3eb19a28",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -3075,6 +3149,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://scholars.unh.edu/survey_center_polls/1007/",
           "sample_population": "lv",
+          "question_id": "9f1583a4-cfb8-4aee-8b0f-ac13811b5fdc",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -3095,6 +3170,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://www.uml.edu/news/press-releases/2026/09242026-maine-poll.aspx",
           "sample_population": "lv",
+          "question_id": "d2c6c2f4-6fdf-4279-af03-ff201f79391f",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -3190,6 +3266,7 @@
           "upstream_posted_date": "2026-09-29",
           "source_poll_url": "https://www.golocalprov.com/politics/new-blocks-campaign-poll-shows-he-leads-foulkes-head-to-head-in-race-for-gov-guckian-on-track-for-the-worst-gop-result-on-record",
           "sample_population": "lv",
+          "question_id": "dbe952b9-1786-4ba1-8c62-3349542e787c",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -3210,6 +3287,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://scholars.unh.edu/survey_center_polls/1009/",
           "sample_population": "lv",
+          "question_id": "bc833b36-6ec9-494e-89b9-00a61403c640",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -3369,6 +3447,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://scholars.unh.edu/survey_center_polls/1009/",
           "sample_population": "lv",
+          "question_id": "a8592b74-6c72-4233-bd03-74e8a738708f",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -3501,6 +3580,7 @@
         "upstream_posted_date": "2026-10-11",
         "source_poll_url": "https://insideradvantage.com/insideradvantage-u-s-senate-surveys-alaska-ranks-choice-peltola-50-sullivan-48-kansas-hamilton-48-marshall-47-michigan-el-sayed-48-rogers-46/",
         "sample_population": "lv",
+        "question_id": "a429eff9-57bf-4f48-a664-623ff857d22f",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -3522,6 +3602,7 @@
           "upstream_posted_date": "2026-10-11",
           "source_poll_url": "https://insideradvantage.com/insideradvantage-u-s-senate-surveys-alaska-ranks-choice-peltola-50-sullivan-48-kansas-hamilton-48-marshall-47-michigan-el-sayed-48-rogers-46/",
           "sample_population": "lv",
+          "question_id": "a429eff9-57bf-4f48-a664-623ff857d22f",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -3542,6 +3623,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://drive.google.com/file/d/1aJZLOtyfQnZtPDHogNEN2UATqMhrLgxc/view?usp=drivesdk",
           "sample_population": "lv",
+          "question_id": "85252946-f669-443b-a257-05d96703136c",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -3562,6 +3644,7 @@
           "upstream_posted_date": "2026-10-07",
           "source_poll_url": "https://quantusinsights.org/f/michigan-senate-el-sayed-48-rogers-47-at-four-weeks-out",
           "sample_population": "lv",
+          "question_id": "d76ac73d-e36c-41df-8520-ad75f223058e",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -3582,6 +3665,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_mi_20260921_lv.pdf",
           "sample_population": "lv",
+          "question_id": "6ef7b8c6-41c1-457b-89a2-fe1ed343f795",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -3602,6 +3686,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://x.com/rbrtraining/status/2108302504446337272",
           "sample_population": "lv",
+          "question_id": "945eeac0-0a07-4e9a-a371-5615b6530aba",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -3622,6 +3707,7 @@
           "upstream_posted_date": "2026-10-05",
           "source_poll_url": "https://www.cbsnews.com/detroit/news/michigan-voter-poll-abdul-el-sayed-mike-rogers/",
           "sample_population": "lv",
+          "question_id": "310f79f6-63ec-4002-9cd7-c425108f7b51",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -3642,27 +3728,31 @@
           "upstream_posted_date": "2026-10-02",
           "source_poll_url": "https://www.thetrafalgargroup.org/news/mi-senate-general-1001/",
           "sample_population": "lv",
+          "question_id": "e8a6ffa8-d33a-4ec3-8546-40cdc820954c",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
           "poll_id": "7f60d59d-6820-4372-bd51-1e43f71d8674",
           "field_end": "2026-09-28",
           "pollster": "Beacon Research/Shaw & Company Research",
-          "dem": 51.0,
-          "rep": 48.0,
-          "margin": 3.0,
-          "sample_size": 1203,
+          "dem": 50.0,
+          "rep": 49.0,
+          "margin": 1.0,
+          "sample_size": 1028,
           "partisan_lean": "",
           "dem_name": "Abdul El-Sayed",
           "rep_name": "Mike Rogers",
           "other": null,
           "other_name": null,
-          "first_seen_at": null,
+          "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
           "upstream_posted_date": "2026-09-30",
           "source_poll_url": "https://www.foxnews.com/politics/fox-news-poll-michigan-voters-split-between-el-sayed-rogers",
-          "sample_population": "rv",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "sample_population": "lv",
+          "question_id": "3c5a8820-c0cf-4016-bfbd-640ff7085496",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback",
+          "lv_selected_over_rv": true
         },
         {
           "poll_id": "6baacd72-4dcd-4aae-9584-f31921e4b22f",
@@ -3682,6 +3772,7 @@
           "upstream_posted_date": "2026-10-07",
           "source_poll_url": "https://static01.nyt.com/newsgraphics/documenttools/517739e11050c66b/43ffa3c2-full.pdf",
           "sample_population": "lv",
+          "question_id": "b20f09b6-7ed6-42a4-bfb5-1d3a5575626e",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -3702,27 +3793,31 @@
           "upstream_posted_date": "2026-09-30",
           "source_poll_url": "https://maristpoll.marist.edu/polls/midterm-elections-in-michigan-september-2026/",
           "sample_population": "rv",
+          "question_id": "4bf97b43-ec01-48eb-bb2a-1930f6405eff",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
           "poll_id": "e05c43ca-5439-4bac-8148-b5a35785ebbd",
           "field_end": "2026-09-24",
           "pollster": "Big Data Poll",
-          "dem": 45.4,
-          "rep": 41.0,
-          "margin": 4.4,
-          "sample_size": 725,
+          "dem": 46.7,
+          "rep": 42.1,
+          "margin": 4.6,
+          "sample_size": 678,
           "partisan_lean": "R",
           "dem_name": "Abdul El-Sayed",
           "rep_name": "Mike Rogers",
           "other": null,
           "other_name": null,
-          "first_seen_at": null,
+          "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
           "upstream_posted_date": "2026-09-25",
           "source_poll_url": "https://www.bigdatapoll.com/blog/wolverine-state-poll-el-sayed-leads-rogers-for-us-senate-in-michigan/",
-          "sample_population": "rv",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "sample_population": "lv",
+          "question_id": "bd20db7f-0151-4594-9a57-66c6f717e312",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback",
+          "lv_selected_over_rv": true
         },
         {
           "poll_id": "fdd3fa5f-0d00-4570-8595-206a2c44b1c5",
@@ -3774,6 +3869,7 @@
           "upstream_posted_date": "2026-09-28",
           "source_poll_url": "https://www.politico.com/newsletters/playbook/2026/09/28/trumps-joes-exit-the-front-row-01094720",
           "sample_population": "lv",
+          "question_id": "86437ffc-38eb-4d21-9233-207daf93047f",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -3810,6 +3906,7 @@
           "upstream_posted_date": "2026-09-29",
           "source_poll_url": "https://enjoyer.com/michigan-poll-fall-2026/",
           "sample_population": "lv",
+          "question_id": "3cbd3574-e2bd-4aa0-965d-31188500b8d9",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -3846,6 +3943,7 @@
           "upstream_posted_date": "2026-09-25",
           "source_poll_url": "https://washingtonreporter.news/exclusive-mike-rogers-leads-in-michigan-john-james-nearly-tied-poll-shows/",
           "sample_population": "lv",
+          "question_id": "878d8ab9-5a80-49ad-9e0c-f18738247d02",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4052,6 +4150,7 @@
         "upstream_posted_date": "2026-10-11",
         "source_poll_url": "https://insideradvantage.com/insideradvantage-u-s-senate-surveys-alaska-ranks-choice-peltola-50-sullivan-48-kansas-hamilton-48-marshall-47-michigan-el-sayed-48-rogers-46/",
         "sample_population": "lv",
+        "question_id": "674ac6cf-b8e6-407a-a19c-354466ca3ccd",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -4073,6 +4172,7 @@
           "upstream_posted_date": "2026-10-11",
           "source_poll_url": "https://insideradvantage.com/insideradvantage-u-s-senate-surveys-alaska-ranks-choice-peltola-50-sullivan-48-kansas-hamilton-48-marshall-47-michigan-el-sayed-48-rogers-46/",
           "sample_population": "lv",
+          "question_id": "674ac6cf-b8e6-407a-a19c-354466ca3ccd",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4093,6 +4193,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ks_20260921_lv.pdf",
           "sample_population": "lv",
+          "question_id": "8bde19c1-0c6a-406d-b961-f44c53d4a2da",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4113,6 +4214,7 @@
           "upstream_posted_date": "2026-10-07",
           "source_poll_url": "https://x.com/sambbenson/status/2107792740259914148",
           "sample_population": "lv",
+          "question_id": "a181753c-9a7d-4ca0-99a4-2d934fca03e1",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4133,6 +4235,7 @@
           "upstream_posted_date": "2026-10-02",
           "source_poll_url": "https://www.thetrafalgargroup.org/news/ks-senate-general-1001/",
           "sample_population": "lv",
+          "question_id": "889de9a4-3239-4fb6-b6bf-7a6004733535",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4169,6 +4272,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://drive.google.com/file/d/1MxCohCdxLl3Gy2iIUBnctm4oPipKwjSg/view",
           "sample_population": "lv",
+          "question_id": "e7847f5c-e8b1-4fe2-9690-3fcd828126e9",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4205,6 +4309,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://www.washingtonsun.com/newsletters/they-love-stonks",
           "sample_population": "lv",
+          "question_id": "9ae27d3b-f428-4463-9fae-e9f530c9d943",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4283,6 +4388,7 @@
         "upstream_posted_date": "2026-10-11",
         "source_poll_url": "https://insideradvantage.com/insideradvantage-u-s-senate-surveys-alaska-ranks-choice-peltola-50-sullivan-48-kansas-hamilton-48-marshall-47-michigan-el-sayed-48-rogers-46/",
         "sample_population": "lv",
+        "question_id": "089b6f42-2378-46e4-aff2-2d21ddec0110",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -4304,6 +4410,7 @@
           "upstream_posted_date": "2026-10-11",
           "source_poll_url": "https://insideradvantage.com/insideradvantage-u-s-senate-surveys-alaska-ranks-choice-peltola-50-sullivan-48-kansas-hamilton-48-marshall-47-michigan-el-sayed-48-rogers-46/",
           "sample_population": "lv",
+          "question_id": "089b6f42-2378-46e4-aff2-2d21ddec0110",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4324,6 +4431,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://x.com/The_Real_ASR/status/2107851752464884167",
           "sample_population": "lv",
+          "question_id": "2b14c8bc-39c4-41fb-9758-e6671b0a04b7",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4360,6 +4468,7 @@
           "upstream_posted_date": "2026-10-02",
           "source_poll_url": "https://quantusinsights.org/f/quantus-insights-survey-sullivan-peltola-deadlocked-in-alaska",
           "sample_population": "lv",
+          "question_id": "27d1cb63-25e8-41de-9784-38e2594b715b",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4380,6 +4489,7 @@
           "upstream_posted_date": "2026-09-26",
           "source_poll_url": "https://www.thetrafalgargroup.org/news/ak-sen-general-0925/",
           "sample_population": "lv",
+          "question_id": "30f6de21-1434-488f-8392-59bc4f99c91b",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4474,6 +4584,7 @@
         "upstream_posted_date": "2026-10-14",
         "source_poll_url": "https://cnu.edu/wason/surveys/archive/2026-10-14.html",
         "sample_population": "lv",
+        "question_id": "dbf13a13-4630-448b-b8a8-4b1ca3c1149f",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -4495,6 +4606,7 @@
           "upstream_posted_date": "2026-10-14",
           "source_poll_url": "https://cnu.edu/wason/surveys/archive/2026-10-14.html",
           "sample_population": "lv",
+          "question_id": "dbf13a13-4630-448b-b8a8-4b1ca3c1149f",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -4525,6 +4637,7 @@
         "upstream_posted_date": "2026-10-09",
         "source_poll_url": "https://drive.google.com/file/d/1aJZLOtyfQnZtPDHogNEN2UATqMhrLgxc/view?usp=drivesdk",
         "sample_population": "lv",
+        "question_id": "5d1f1c06-4dec-428d-a646-f3eaa5347930",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -4546,6 +4659,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://drive.google.com/file/d/1aJZLOtyfQnZtPDHogNEN2UATqMhrLgxc/view?usp=drivesdk",
           "sample_population": "lv",
+          "question_id": "5d1f1c06-4dec-428d-a646-f3eaa5347930",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4566,6 +4680,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_mi_20260921_lv.pdf",
           "sample_population": "lv",
+          "question_id": "f6077a4b-63bf-4979-b4b1-bfd7ef08672b",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4586,6 +4701,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://x.com/rbrtraining/status/2108302504446337272",
           "sample_population": "lv",
+          "question_id": "ad32693b-03c8-4766-ae9a-38a319560977",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4606,6 +4722,7 @@
           "upstream_posted_date": "2026-10-05",
           "source_poll_url": "https://www.cbsnews.com/detroit/news/michigan-voter-poll-abdul-el-sayed-mike-rogers/",
           "sample_population": "lv",
+          "question_id": "a6974d37-81d6-418f-ab6c-06c4dc20e6bb",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4626,6 +4743,7 @@
           "upstream_posted_date": "2026-09-30",
           "source_poll_url": "https://www.foxnews.com/politics/fox-news-poll-michigan-voters-split-between-el-sayed-rogers",
           "sample_population": "lv",
+          "question_id": "55adbcac-ad55-4011-8e50-2d049ede054b",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4646,6 +4764,7 @@
           "upstream_posted_date": "2026-10-07",
           "source_poll_url": "https://static01.nyt.com/newsgraphics/documenttools/517739e11050c66b/43ffa3c2-full.pdf",
           "sample_population": "lv",
+          "question_id": "ea21b661-768c-4539-9b9d-5b97f321009a",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4666,6 +4785,7 @@
           "upstream_posted_date": "2026-09-30",
           "source_poll_url": "https://maristpoll.marist.edu/polls/midterm-elections-in-michigan-september-2026/",
           "sample_population": "rv",
+          "question_id": "a2e8fc56-123b-4c74-82fe-6223174cc874",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4718,6 +4838,7 @@
           "upstream_posted_date": "2026-09-29",
           "source_poll_url": "https://enjoyer.com/michigan-poll-fall-2026/",
           "sample_population": "lv",
+          "question_id": "033f1fe1-7c56-44a0-b4b7-4d55d4e50c64",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4921,6 +5042,7 @@
           "upstream_posted_date": "2026-10-13",
           "source_poll_url": "https://www.stetson.edu/artsci/cpor/media/cpor-october-2026-pr.docx",
           "sample_population": "lv",
+          "question_id": "47258a6c-32ee-4fe9-815a-c6ca3ad4d230",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4941,6 +5063,7 @@
           "upstream_posted_date": "2026-10-08",
           "source_poll_url": "https://www.stpetepolls.org/files/StPetePolls_2026_State_Gov_October7_K7ZU3GA.pdf",
           "sample_population": "lv",
+          "question_id": "196ba81c-3b25-4748-ab61-134db9ba9851",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -4961,27 +5084,31 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_fl_20260921_lv.pdf",
           "sample_population": "lv",
+          "question_id": "e2bb179d-b3d5-4522-8562-d62b71b61989",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
           "poll_id": "d4838e04-358f-42db-a0ce-bb4e52d31c89",
           "field_end": "2026-10-04",
           "pollster": "Targoz Market Research",
-          "dem": 38.0,
-          "rep": 50.0,
-          "margin": -12.0,
-          "sample_size": 1171,
+          "dem": 42.0,
+          "rep": 52.0,
+          "margin": -10.0,
+          "sample_size": 847,
           "partisan_lean": "",
           "dem_name": "Angie Nixon",
           "rep_name": "Ashley Moody",
           "other": null,
           "other_name": null,
-          "first_seen_at": null,
+          "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://jamesmadison.org/new-jmi-poll-republicans-hold-double-digit-leads-in-key-statewide-races-florida-voters-focused-on-affordability/",
-          "sample_population": "rv",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "sample_population": "lv",
+          "question_id": "eb4ae581-25d7-43fd-9123-100333d1e19f",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback",
+          "lv_selected_over_rv": true
         },
         {
           "poll_id": "7f8493dd-4729-4532-a244-239a7481b877",
@@ -5001,6 +5128,7 @@
           "upstream_posted_date": "2026-10-07",
           "source_poll_url": "https://floridapolitics.com/archives/823612-mason-dixon-poll-byron-donalds-leads-david-jolly-48-41-with-1-in-4-independents-still-undecided/",
           "sample_population": "lv",
+          "question_id": "3d2b0ff7-fc00-4cc5-94ab-b8a73b92977b",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -5021,6 +5149,7 @@
           "upstream_posted_date": "2026-09-28",
           "source_poll_url": "https://changeresearch.com/research/2026/2026-09-28-florida-aapor-methodology-statement",
           "sample_population": "lv",
+          "question_id": "584921df-2c0c-4adf-a420-eb36986495d9",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -5041,6 +5170,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://www.stetson.edu/artsci/cpor/media/cpor-sept.-2026-poll-final.pdf",
           "sample_population": "lv",
+          "question_id": "90898ec8-a9d4-4e0b-acd1-aa2658f2dd7f",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -5135,6 +5265,7 @@
         "upstream_posted_date": "2026-10-10",
         "source_poll_url": "https://www.thetrafalgargroup.org/news/ga-senate-gen-1010/",
         "sample_population": "lv",
+        "question_id": "16b04151-4b9f-4feb-856c-6049c36d2427",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -5156,6 +5287,7 @@
           "upstream_posted_date": "2026-10-10",
           "source_poll_url": "https://www.thetrafalgargroup.org/news/ga-senate-gen-1010/",
           "sample_population": "lv",
+          "question_id": "16b04151-4b9f-4feb-856c-6049c36d2427",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -5176,6 +5308,7 @@
           "upstream_posted_date": "2026-10-04",
           "source_poll_url": "https://drive.google.com/file/d/1-Qoij2YeWwq-EFaTY_W0iTf1fotSrKHI/view",
           "sample_population": "lv",
+          "question_id": "8255a5dc-3d2d-4cc5-aa7e-c3e8c8951321",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -5196,6 +5329,7 @@
           "upstream_posted_date": "2026-09-25",
           "source_poll_url": "https://insideradvantage.com/insideradvantage-georgia-survey-jackson-leads-by-two-in-race-for-governor-ossoff-leads-by-eight-in-senate-contest/",
           "sample_population": "lv",
+          "question_id": "3a641086-116f-43a1-9f71-5ca586f98589",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -5205,14 +5339,21 @@
           "dem": 55.4,
           "rep": 44.6,
           "margin": 10.8,
-          "sample_size": 712,
+          "sample_size": 678,
           "partisan_lean": "R",
           "dem_name": "Jon Ossoff",
           "rep_name": "Mike Collins",
           "other": null,
           "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
+          "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
+          "release_date": null,
+          "question_id": "bcd4fddd-ab5f-4f28-9aa1-f898b74b34c7",
+          "sample_population": "lv",
+          "upstream_posted_date": "2026-09-25",
+          "source_poll_url": "https://www.bigdatapoll.com/blog/peach-state-poll-jon-ossoff-opens-up-lead-over-mike-collins-in-georgia/",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback",
+          "lv_selected_over_rv": true
         },
         {
           "poll_id": "0f4bc367-db9c-459a-a5ce-34b7b7b6e9b2",
@@ -5306,6 +5447,7 @@
         "upstream_posted_date": "2026-10-11",
         "source_poll_url": "https://www.abqjournal.com/news/journal-poll-haaland-maintains-lead-over-hull-as-new-mexicos-race-for-governor-nears-homestretch/3139307",
         "sample_population": "lv",
+        "question_id": "7fb6adaf-9474-403f-a346-78e881c7dac8",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -5327,6 +5469,7 @@
           "upstream_posted_date": "2026-10-11",
           "source_poll_url": "https://www.abqjournal.com/news/journal-poll-haaland-maintains-lead-over-hull-as-new-mexicos-race-for-governor-nears-homestretch/3139307",
           "sample_population": "lv",
+          "question_id": "7fb6adaf-9474-403f-a346-78e881c7dac8",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -5347,6 +5490,7 @@
           "upstream_posted_date": "2026-10-05",
           "source_poll_url": "https://www.kob.com/new-mexico/kob-poll-finds-haaland-leading-hull-by-6-points-in-head-to-head-race/",
           "sample_population": "lv",
+          "question_id": "04e67f6b-ff98-4f5f-8028-72b0c7ecdbd7",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -5393,6 +5537,7 @@
         "upstream_posted_date": "2026-10-11",
         "source_poll_url": "https://www.abqjournal.com/news/journal-poll-haaland-maintains-lead-over-hull-as-new-mexicos-race-for-governor-nears-homestretch/3139307",
         "sample_population": "lv",
+        "question_id": "b1ab46eb-f8ad-47cd-a9c2-dca4f0520c1d",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -5414,6 +5559,7 @@
           "upstream_posted_date": "2026-10-11",
           "source_poll_url": "https://www.abqjournal.com/news/journal-poll-haaland-maintains-lead-over-hull-as-new-mexicos-race-for-governor-nears-homestretch/3139307",
           "sample_population": "lv",
+          "question_id": "b1ab46eb-f8ad-47cd-a9c2-dca4f0520c1d",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -5434,6 +5580,7 @@
           "upstream_posted_date": "2026-10-05",
           "source_poll_url": "https://www.kob.com/new-mexico/kob-poll-finds-haaland-leading-hull-by-6-points-in-head-to-head-race/",
           "sample_population": "lv",
+          "question_id": "4490659f-bc7e-4165-8f5e-c9f57799d567",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -5480,6 +5627,7 @@
         "upstream_posted_date": "2026-10-12",
         "source_poll_url": "https://kozyckiforcongress.com/docs/releases/rel-255316a80123.pdf",
         "sample_population": "lv",
+        "question_id": "d23af6a4-2457-4379-9e86-b89b0d4e436c",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -5501,6 +5649,7 @@
           "upstream_posted_date": "2026-10-12",
           "source_poll_url": "https://kozyckiforcongress.com/docs/releases/rel-255316a80123.pdf",
           "sample_population": "lv",
+          "question_id": "d23af6a4-2457-4379-9e86-b89b0d4e436c",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -5547,6 +5696,7 @@
         "upstream_posted_date": "2026-10-11",
         "source_poll_url": "https://www.abqjournal.com/news/journal-poll-haaland-maintains-lead-over-hull-as-new-mexicos-race-for-governor-nears-homestretch/3139307",
         "sample_population": "lv",
+        "question_id": "7e89393e-43f4-4a8b-8fa1-700631d62534",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -5568,6 +5718,7 @@
           "upstream_posted_date": "2026-10-11",
           "source_poll_url": "https://www.abqjournal.com/news/journal-poll-haaland-maintains-lead-over-hull-as-new-mexicos-race-for-governor-nears-homestretch/3139307",
           "sample_population": "lv",
+          "question_id": "7e89393e-43f4-4a8b-8fa1-700631d62534",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -5614,6 +5765,7 @@
         "upstream_posted_date": "2026-10-13",
         "source_poll_url": "https://azhighground.com/hurricane-season-for-arizona-republicans/",
         "sample_population": "lv",
+        "question_id": "82f08d93-760b-4199-ad8d-b6a29908863f",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -5635,6 +5787,7 @@
           "upstream_posted_date": "2026-10-13",
           "source_poll_url": "https://azhighground.com/hurricane-season-for-arizona-republicans/",
           "sample_population": "lv",
+          "question_id": "82f08d93-760b-4199-ad8d-b6a29908863f",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -5655,6 +5808,7 @@
           "upstream_posted_date": "2026-10-10",
           "source_poll_url": "https://www.grayhouse.com/post/new-grayhouse-poll-norton-leads-for-arizona-treasurer",
           "sample_population": "lv",
+          "question_id": "4a3f643b-0764-4c4d-89a9-b254f3ce7130",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -5675,6 +5829,7 @@
           "upstream_posted_date": "2026-10-13",
           "source_poll_url": "https://wick.io/research-arizona-governor-survey-october-2026",
           "sample_population": "lv",
+          "question_id": "315d4f68-74f8-4cbd-97b9-7fb4ab180ed5",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -5817,6 +5972,7 @@
         "upstream_posted_date": "2026-10-09",
         "source_poll_url": "https://www.politico.com/newsletters/playbook-pm/2026/10/09/trumps-real-prize-01114521",
         "sample_population": "lv",
+        "question_id": "80364f7c-dbc6-481e-8153-e52e43462dde",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -5838,6 +5994,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://www.politico.com/newsletters/playbook-pm/2026/10/09/trumps-real-prize-01114521",
           "sample_population": "lv",
+          "question_id": "80364f7c-dbc6-481e-8153-e52e43462dde",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -5858,6 +6015,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://www.politico.com/newsletters/playbook-pm/2026/10/09/trumps-real-prize-01114521",
           "sample_population": "lv",
+          "question_id": "f956449b-7004-472e-ba17-01a8d71f03b6",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -5878,6 +6036,7 @@
           "upstream_posted_date": "2026-10-08",
           "source_poll_url": "https://x.com/Shaftan/status/2107772933322277266",
           "sample_population": "lv",
+          "question_id": "103e738f-9620-45cc-9442-80c720137c94",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -5898,6 +6057,7 @@
           "upstream_posted_date": "2026-10-08",
           "source_poll_url": "https://x.com/Shaftan/status/2107772933322277266",
           "sample_population": "lv",
+          "question_id": "20c1c423-af07-4932-8026-e95aa69cc249",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -5918,6 +6078,7 @@
           "upstream_posted_date": "2026-10-07",
           "source_poll_url": "https://drive.google.com/file/d/1Yt-bOVqBFd9cPU3A2R1_MuOpnluJwmJM/view",
           "sample_population": "lv",
+          "question_id": "a538ac92-ac7c-4307-a77f-8edac49d5b29",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -5964,6 +6125,7 @@
         "upstream_posted_date": "2026-10-11",
         "source_poll_url": "https://www.politico.com/newsletters/playbook/2026/10/11/oct-7-and-nov-3-01115941",
         "sample_population": "lv",
+        "question_id": "312dbdcd-8993-4240-b95c-31a0a3d0a969",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -5985,6 +6147,7 @@
           "upstream_posted_date": "2026-10-11",
           "source_poll_url": "https://www.politico.com/newsletters/playbook/2026/10/11/oct-7-and-nov-3-01115941",
           "sample_population": "lv",
+          "question_id": "312dbdcd-8993-4240-b95c-31a0a3d0a969",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -6092,6 +6255,7 @@
           "upstream_posted_date": "2026-10-12",
           "source_poll_url": "https://www.startribune.com/minnesota-poll-flanagan-tafoya-senate/601887443",
           "sample_population": "lv",
+          "question_id": "d8734a5d-f370-40bd-988b-b8daf3b2f5a9",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -6112,6 +6276,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://www.thedailyagenda.com/p/morning-take-the-daily-agenda-poll",
           "sample_population": "rv",
+          "question_id": "dd86ac0c-c537-4fb5-b001-3f7c5b2aecbe",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -6132,6 +6297,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://x.com/DrewSav/status/2108502733045334207",
           "sample_population": "lv",
+          "question_id": "00104b8c-ac19-4496-86c1-13753c15c6b0",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -6152,6 +6318,7 @@
           "upstream_posted_date": "2026-10-02",
           "source_poll_url": "https://www.bigdatapoll.com/blog/north-star-state-poll-peggy-flanagan-holds-slight-lead-over-michele-tafoya-for-us-senate-in-minnesota/",
           "sample_population": "lv",
+          "question_id": "e3233dab-765e-43ab-95be-d8df31f773df",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -6172,6 +6339,7 @@
           "upstream_posted_date": "2026-09-30",
           "source_poll_url": "https://insideradvantage.com/insideradvantage-survey-u-s-senate-minnesota-contest-a-one-point-race-flanagan-46-tafoya-45/",
           "sample_population": "lv",
+          "question_id": "a5287e7d-6ec6-4611-8496-809b7241c352",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -6343,6 +6511,7 @@
           "upstream_posted_date": "2026-10-12",
           "source_poll_url": "https://www.startribune.com/minnesota-poll-flanagan-tafoya-senate/601887443",
           "sample_population": "lv",
+          "question_id": "44d51f18-bf78-4a41-a81c-cb8f277b3f6f",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -6363,6 +6532,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://www.thedailyagenda.com/p/morning-take-the-daily-agenda-poll",
           "sample_population": "rv",
+          "question_id": "eba0d290-870a-4e16-bba1-2aec8416f4ff",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -6457,6 +6627,7 @@
         "upstream_posted_date": "2026-10-09",
         "source_poll_url": "https://results.surveyusa.com/client/PollReport.aspx?g=01471c0a-ab87-499e-8974-8526fea475d2",
         "sample_population": "lv",
+        "question_id": "71e98a33-6a34-4df8-92b9-15ac798e35a5",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -6478,6 +6649,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://results.surveyusa.com/client/PollReport.aspx?g=01471c0a-ab87-499e-8974-8526fea475d2",
           "sample_population": "lv",
+          "question_id": "71e98a33-6a34-4df8-92b9-15ac798e35a5",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -6524,6 +6696,7 @@
         "upstream_posted_date": "2026-10-14",
         "source_poll_url": "https://www.uh.edu/hobby/congress2026/cd9.pdf",
         "sample_population": "lv",
+        "question_id": "6f62b0b1-3115-4357-a53e-b11b992d386a",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -6545,6 +6718,7 @@
           "upstream_posted_date": "2026-10-14",
           "source_poll_url": "https://www.uh.edu/hobby/congress2026/cd9.pdf",
           "sample_population": "lv",
+          "question_id": "6f62b0b1-3115-4357-a53e-b11b992d386a",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -6565,6 +6739,7 @@
           "upstream_posted_date": "2026-09-30",
           "source_poll_url": "https://x.com/nicholaswu12/status/2105313931275481267",
           "sample_population": "rv",
+          "question_id": "566449a6-2935-44b4-9a7a-8a772d4265d5",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -6595,6 +6770,7 @@
         "upstream_posted_date": "2026-10-13",
         "source_poll_url": "https://maurakeller.com/news/maura-keller-poll-release",
         "sample_population": "lv",
+        "question_id": "015dbcf0-944e-4d1b-ae95-3eb000b06da8",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -6616,6 +6792,7 @@
           "upstream_posted_date": "2026-10-13",
           "source_poll_url": "https://maurakeller.com/news/maura-keller-poll-release",
           "sample_population": "lv",
+          "question_id": "015dbcf0-944e-4d1b-ae95-3eb000b06da8",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -6713,6 +6890,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://emersoncollegepolling.com/iowa-2026-poll-u-s-senate-race-tightens-sand-maintains-edge-for-governor/",
           "sample_population": "lv",
+          "question_id": "fc072182-5e11-4d7f-a9fc-a2c600820502",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -6733,6 +6911,7 @@
           "upstream_posted_date": "2026-10-08",
           "source_poll_url": "https://edition.cnn.com/2026/10/08/politics/cnn-polls-ohio-iowa-senate-governor-midterms",
           "sample_population": "lv",
+          "question_id": "1b020382-ae3c-4835-9bc5-600bc8a31fee",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -6753,6 +6932,7 @@
           "upstream_posted_date": "2026-10-07",
           "source_poll_url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/other-states#collapse-October-7-2026-Iowa-Governor-and-US-Senate-and-Bellwether",
           "sample_population": "lv",
+          "question_id": "941eb0b3-778d-4a79-a18a-c4a8938188f7",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -6789,6 +6969,7 @@
           "upstream_posted_date": "2026-09-30",
           "source_poll_url": "https://quantusinsights.org/f/quantus-insights-hinson-holds-narrow-edge-in-iowa-senate-race",
           "sample_population": "lv",
+          "question_id": "3f1506f4-c413-4231-8bac-55e24ae85d71",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -6809,6 +6990,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://www.foxnews.com/politics/fox-news-poll-turek-hinson-close-iowa-senate-race",
           "sample_population": "lv",
+          "question_id": "4e339ba4-9751-48fd-b341-340b6ccd9990",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -6829,6 +7011,7 @@
           "upstream_posted_date": "2026-09-26",
           "source_poll_url": "https://insideradvantage.com/ia-topline-tabs/",
           "sample_population": "lv",
+          "question_id": "95784b09-7945-45f9-8f07-9cef31c93714",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -7035,6 +7218,7 @@
         "upstream_posted_date": "2026-10-08",
         "source_poll_url": "https://battlegrounds.coefficient.org/oh/",
         "sample_population": "lv",
+        "question_id": "4227bf70-2be6-43c5-8a99-78e41122b959",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -7056,6 +7240,7 @@
           "upstream_posted_date": "2026-10-08",
           "source_poll_url": "https://battlegrounds.coefficient.org/oh/",
           "sample_population": "lv",
+          "question_id": "4227bf70-2be6-43c5-8a99-78e41122b959",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -7076,6 +7261,7 @@
           "upstream_posted_date": "2026-10-08",
           "source_poll_url": "https://battlegrounds.coefficient.org/oh/",
           "sample_population": "lv",
+          "question_id": "bc1ec931-11a4-4962-966a-b123d986002d",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -7096,6 +7282,7 @@
           "upstream_posted_date": "2026-10-08",
           "source_poll_url": "https://edition.cnn.com/2026/10/08/politics/cnn-polls-ohio-iowa-senate-governor-midterms",
           "sample_population": "lv",
+          "question_id": "006be988-bdf8-452f-9a4d-2e57fe41d983",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -7132,6 +7319,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_oh_20260921_lv.pdf",
           "sample_population": "lv",
+          "question_id": "076973f0-aa63-4d73-9330-ed394204e8d9",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -7152,6 +7340,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://insideradvantage.com/insideradvantage-ohio-senate-race-narrows-to-brown-up-by-one/",
           "sample_population": "lv",
+          "question_id": "217e39c2-fe21-43b0-b82d-3efc29d43434",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -7172,27 +7361,31 @@
           "upstream_posted_date": "2026-09-29",
           "source_poll_url": "https://maristpoll.marist.edu/polls/midterm-elections-in-ohio-september-2026/",
           "sample_population": "rv",
+          "question_id": "7eec8ca8-6f02-4e2f-8c78-3c84197683f1",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
           "poll_id": "79fe6351-f7cd-40a6-a841-dd4b064707a1",
           "field_end": "2026-09-27",
           "pollster": "Big Data Poll",
-          "dem": 45.2,
-          "rep": 41.2,
-          "margin": 4.0,
-          "sample_size": 735,
+          "dem": 46.3,
+          "rep": 42.6,
+          "margin": 3.7,
+          "sample_size": 680,
           "partisan_lean": "R",
           "dem_name": "Sherrod Brown",
           "rep_name": "Jon Husted",
           "other": null,
           "other_name": null,
-          "first_seen_at": null,
+          "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
           "upstream_posted_date": "2026-09-29",
           "source_poll_url": "https://www.bigdatapoll.com/blog/buckeye-state-poll-sherrod-brown-leads-jon-husted-for-us-senate-in-ohio/",
-          "sample_population": "rv",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "sample_population": "lv",
+          "question_id": "5108a9bc-eb1d-44fd-983b-c6b5f19986b5",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback",
+          "lv_selected_over_rv": true
         },
         {
           "poll_id": "3a34730a-dbc1-4dd4-9a8f-32b4d6cfd12f",
@@ -7212,6 +7405,7 @@
           "upstream_posted_date": "2026-09-29",
           "source_poll_url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/other-states#collapse-September-29-2026-Ohio-Governor-and-US-Senate-with-USA-TODAY-Network-Ohio",
           "sample_population": "lv",
+          "question_id": "9e01bbfd-04a8-45e2-8137-83ac6989a363",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -7232,6 +7426,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://quantusinsights.org/polling/f/brown-and-husted-deadlocked-in-ohio-senate-race",
           "sample_population": "lv",
+          "question_id": "01f67637-26fa-4037-acfe-0a978733e961",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -7409,6 +7604,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://emersoncollegepolling.com/iowa-2026-poll-u-s-senate-race-tightens-sand-maintains-edge-for-governor/",
           "sample_population": "lv",
+          "question_id": "e5a35ef5-9f24-4a30-8294-32bfa2df20ca",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -7429,6 +7625,7 @@
           "upstream_posted_date": "2026-10-08",
           "source_poll_url": "https://edition.cnn.com/2026/10/08/politics/cnn-polls-ohio-iowa-senate-governor-midterms",
           "sample_population": "lv",
+          "question_id": "023572e7-b360-4a2b-80c4-6e7271e40b13",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -7449,6 +7646,7 @@
           "upstream_posted_date": "2026-10-07",
           "source_poll_url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/other-states#collapse-October-7-2026-Iowa-Governor-and-US-Senate-and-Bellwether",
           "sample_population": "lv",
+          "question_id": "d692ef1c-c2dc-4db8-a4ae-ff4f6fae32cd",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -7485,6 +7683,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://www.foxnews.com/politics/fox-news-poll-turek-hinson-close-iowa-senate-race",
           "sample_population": "lv",
+          "question_id": "0f68de4a-c94b-43e5-89cf-8ab7fc0a1143",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -7627,6 +7826,7 @@
         "upstream_posted_date": "2026-10-08",
         "source_poll_url": "https://battlegrounds.coefficient.org/oh/",
         "sample_population": "lv",
+        "question_id": "985eb67f-dd3b-4e24-b213-bea966944408",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -7648,6 +7848,7 @@
           "upstream_posted_date": "2026-10-08",
           "source_poll_url": "https://battlegrounds.coefficient.org/oh/",
           "sample_population": "lv",
+          "question_id": "985eb67f-dd3b-4e24-b213-bea966944408",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -7668,6 +7869,7 @@
           "upstream_posted_date": "2026-10-08",
           "source_poll_url": "https://edition.cnn.com/2026/10/08/politics/cnn-polls-ohio-iowa-senate-governor-midterms",
           "sample_population": "lv",
+          "question_id": "a58ec25d-fbe7-4016-9664-ccb1dc9f5735",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -7704,6 +7906,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_oh_20260921_lv.pdf",
           "sample_population": "lv",
+          "question_id": "2dfd484f-8dd0-4baf-8d7a-8ae367f8b011",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -7724,6 +7927,7 @@
           "upstream_posted_date": "2026-09-29",
           "source_poll_url": "https://maristpoll.marist.edu/polls/midterm-elections-in-ohio-september-2026/",
           "sample_population": "rv",
+          "question_id": "2c3f8591-1e84-476c-8e65-bad043dffcdc",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -7744,6 +7948,7 @@
           "upstream_posted_date": "2026-09-29",
           "source_poll_url": "https://www.bigdatapoll.com/blog/buckeye-state-poll-sherrod-brown-leads-jon-husted-for-us-senate-in-ohio/",
           "sample_population": "lv",
+          "question_id": "dbd570a2-7608-4b26-b02e-10824ee2a62f",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -7764,6 +7969,7 @@
           "upstream_posted_date": "2026-09-29",
           "source_poll_url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/other-states#collapse-September-29-2026-Ohio-Governor-and-US-Senate-with-USA-TODAY-Network-Ohio",
           "sample_population": "lv",
+          "question_id": "f9c22d19-abe6-4cbe-8578-9935c89e8ca6",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -7826,6 +8032,7 @@
         "upstream_posted_date": "2026-10-09",
         "source_poll_url": "https://www.mynbc5.com/article/poll-new-york-21-constantino-gendebien/74082680",
         "sample_population": "lv",
+        "question_id": "bd5b910d-b9d0-40fb-9acc-cb9fbd16dc52",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -7847,6 +8054,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://www.mynbc5.com/article/poll-new-york-21-constantino-gendebien/74082680",
           "sample_population": "lv",
+          "question_id": "bd5b910d-b9d0-40fb-9acc-cb9fbd16dc52",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -7867,6 +8075,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://www.nny360.com/news/stlawrencecounty/latest-polls-show-gendebien-dem-for-ny-21-close-to-or-leading-republican-opponent-constantino/article_a292a635-2230-53bb-94e0-d80edc984973.html",
           "sample_population": "lv",
+          "question_id": "d00aec86-f4a7-43f0-afc3-961e1e854bdf",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -7961,6 +8170,7 @@
         "upstream_posted_date": "2026-10-06",
         "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_nh_20260921_lv.pdf",
         "sample_population": "lv",
+        "question_id": "583112e3-bbf9-4342-a6a3-44a46eeaf71c",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -7982,6 +8192,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_nh_20260921_lv.pdf",
           "sample_population": "lv",
+          "question_id": "583112e3-bbf9-4342-a6a3-44a46eeaf71c",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -8002,6 +8213,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://www.aarp.org/pri/topics/voter-research/politics/2026-midterm-election-poll-new-hampshire/",
           "sample_population": "lv",
+          "question_id": "903844c3-8b83-4446-8e68-03aa4da0c847",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -8022,6 +8234,7 @@
           "upstream_posted_date": "2026-09-28",
           "source_poll_url": "https://www.thetrafalgargroup.org/news/nh-gen-senate-0926/",
           "sample_population": "lv",
+          "question_id": "078645fe-eb48-4089-8bee-ecb0989fd623",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -8058,6 +8271,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://scholars.unh.edu/survey_center_polls/1005/",
           "sample_population": "lv",
+          "question_id": "e218d656-69f5-475c-bf9d-4fda9a20f4dc",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -8216,6 +8430,7 @@
         "upstream_posted_date": "2026-10-07",
         "source_poll_url": "https://poll.qu.edu/poll-release?releaseid=3970",
         "sample_population": "lv",
+        "question_id": "34f53453-8c31-4d42-bf51-2d153f0ecba9",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -8237,6 +8452,7 @@
           "upstream_posted_date": "2026-10-07",
           "source_poll_url": "https://poll.qu.edu/poll-release?releaseid=3970",
           "sample_population": "lv",
+          "question_id": "34f53453-8c31-4d42-bf51-2d153f0ecba9",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -8257,6 +8473,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://x.com/rbrtraining/status/2108302504446337272",
           "sample_population": "lv",
+          "question_id": "4e948d00-322c-402a-b658-3a26a7ce1b02",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -8277,6 +8494,7 @@
           "upstream_posted_date": "2026-10-07",
           "source_poll_url": "https://x.com/SusquehannaPR/status/2107848814992449714",
           "sample_population": "lv",
+          "question_id": "6e839e7c-25c6-4ae0-b0ba-341b2ba6131b",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -8387,6 +8605,7 @@
         "upstream_posted_date": "2026-10-06",
         "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_nh_20260921_lv.pdf",
         "sample_population": "lv",
+        "question_id": "8303f239-0eb6-4afb-ace9-28c13b40eebf",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -8408,6 +8627,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_nh_20260921_lv.pdf",
           "sample_population": "lv",
+          "question_id": "8303f239-0eb6-4afb-ace9-28c13b40eebf",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -8428,6 +8648,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://www.aarp.org/pri/topics/voter-research/politics/2026-midterm-election-poll-new-hampshire/",
           "sample_population": "lv",
+          "question_id": "b2955fa9-075d-4d2b-92e6-258b7565f581",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -8464,6 +8685,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://scholars.unh.edu/survey_center_polls/1005/",
           "sample_population": "lv",
+          "question_id": "beb20711-0dcd-4730-9739-24d90900bc35",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -8603,6 +8825,7 @@
           "upstream_posted_date": "2026-10-07",
           "source_poll_url": "https://maristpoll.marist.edu/polls/midterm-elections-in-new-york-october-2026/",
           "sample_population": "rv",
+          "question_id": "05337e3c-738d-4056-bb50-53f535abfc70",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -8623,6 +8846,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://nypost.com/2026/10/05/us-news/more-than-half-of-new-york-voters-concerned-about-rise-of-socialism-poll/",
           "sample_population": "lv",
+          "question_id": "b13c0962-885d-4ff9-96f3-8e0a515de433",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -8717,6 +8941,7 @@
         "upstream_posted_date": "2026-10-08",
         "source_poll_url": "https://fox56news.com/news/kentucky/new-poll-shows-democrats-with-9-point-lead-in-kentucky-6th-congressional-district-race/",
         "sample_population": "lv",
+        "question_id": "2f1a62c8-7c13-4d2d-ab84-6a5bd0a15f9e",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -8738,6 +8963,7 @@
           "upstream_posted_date": "2026-10-08",
           "source_poll_url": "https://fox56news.com/news/kentucky/new-poll-shows-democrats-with-9-point-lead-in-kentucky-6th-congressional-district-race/",
           "sample_population": "lv",
+          "question_id": "2f1a62c8-7c13-4d2d-ab84-6a5bd0a15f9e",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -8758,6 +8984,7 @@
           "upstream_posted_date": "2026-10-14",
           "source_poll_url": "https://dccc.org/dccc-polling-memo-zach-dembo-continues-to-lead-in-ky-06/",
           "sample_population": "lv",
+          "question_id": "6e02adae-6e35-4a73-aa8a-a51f0ece5f7d",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -8778,6 +9005,7 @@
           "upstream_posted_date": "2026-10-08",
           "source_poll_url": "https://x.com/cjwarnke/status/2108282466733818029",
           "sample_population": "lv",
+          "question_id": "9fe15e98-1732-4d6d-8e27-6852aec6ba1f",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -8798,6 +9026,7 @@
           "upstream_posted_date": "2026-10-02",
           "source_poll_url": "https://kentuckylantern.com/2026/10/02/internal-poll-shows-democrat-dembo-leads-gops-alvarado-in-central-kentucky-house-race/",
           "sample_population": "lv",
+          "question_id": "a353ef8f-eece-4c0a-96f3-eaefa03bb06c",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -8844,6 +9073,7 @@
         "upstream_posted_date": "2026-10-06",
         "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ks_20260921_lv.pdf",
         "sample_population": "lv",
+        "question_id": "43d39b99-87e0-48de-a294-23601c20deb8",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -8865,6 +9095,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ks_20260921_lv.pdf",
           "sample_population": "lv",
+          "question_id": "43d39b99-87e0-48de-a294-23601c20deb8",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -8901,6 +9132,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://drive.google.com/file/d/1MxCohCdxLl3Gy2iIUBnctm4oPipKwjSg/view",
           "sample_population": "lv",
+          "question_id": "39c8b306-aa61-4c8e-832f-065e20e1a3c5",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -8937,6 +9169,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://www.washingtonsun.com/newsletters/they-love-stonks",
           "sample_population": "lv",
+          "question_id": "34f7e7bb-00b3-4255-bc8a-6952364e87dc",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -8999,6 +9232,7 @@
         "upstream_posted_date": "2026-10-09",
         "source_poll_url": "https://www.opb.org/article/2026/10/08/new-polls-kotek-may-lead/",
         "sample_population": "lv",
+        "question_id": "933d5778-7d88-49bb-8c98-754884bb8c29",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -9020,6 +9254,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://www.opb.org/article/2026/10/08/new-polls-kotek-may-lead/",
           "sample_population": "lv",
+          "question_id": "933d5778-7d88-49bb-8c98-754884bb8c29",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -9040,6 +9275,7 @@
           "upstream_posted_date": "2026-10-08",
           "source_poll_url": "https://www.oregonlive.com/politics/2026/10/oregon-governors-race-may-be-shifting-new-poll-shows.html",
           "sample_population": "lv",
+          "question_id": "7dd4389a-fc1b-42c1-97b7-3f1aa38f2afb",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -9060,6 +9296,7 @@
           "upstream_posted_date": "2026-09-30",
           "source_poll_url": "https://www.opb.org/article/2026/09/30/opb-poll-shows-oregon-governors-race-virtually-deadlocked/",
           "sample_population": "lv",
+          "question_id": "b843b976-4ac7-4a30-b51e-5261def695ea",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -9106,6 +9343,7 @@
         "upstream_posted_date": "2026-10-09",
         "source_poll_url": "https://x.com/LandonWall_/status/2108601370580332749",
         "sample_population": "lv",
+        "question_id": "386d610d-c0df-48bb-8d98-99484cee4f95",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -9127,6 +9365,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://x.com/LandonWall_/status/2108601370580332749",
           "sample_population": "lv",
+          "question_id": "386d610d-c0df-48bb-8d98-99484cee4f95",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -9189,6 +9428,7 @@
         "upstream_posted_date": "2026-10-07",
         "source_poll_url": "https://articles.statenavigate.com/vt/phil-scott-has-a-3-point-lead-in-state-navigates-vermont-governor-poll/",
         "sample_population": "lv",
+        "question_id": "b8df5258-9861-4b86-a0a5-5b29187633bc",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -9210,6 +9450,7 @@
           "upstream_posted_date": "2026-10-07",
           "source_poll_url": "https://articles.statenavigate.com/vt/phil-scott-has-a-3-point-lead-in-state-navigates-vermont-governor-poll/",
           "sample_population": "lv",
+          "question_id": "b8df5258-9861-4b86-a0a5-5b29187633bc",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -9246,6 +9487,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://scholars.unh.edu/survey_center_polls/1006/",
           "sample_population": "lv",
+          "question_id": "338f0871-eed7-447e-b31e-4b8311d480cd",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -9276,6 +9518,7 @@
         "upstream_posted_date": "2026-10-08",
         "source_poll_url": "https://x.com/shaunfinnie/status/2107884628853801084",
         "sample_population": "lv",
+        "question_id": "7c736d37-f011-4b3d-9a54-575fb7dcd353",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -9297,6 +9540,7 @@
           "upstream_posted_date": "2026-10-08",
           "source_poll_url": "https://x.com/shaunfinnie/status/2107884628853801084",
           "sample_population": "lv",
+          "question_id": "7c736d37-f011-4b3d-9a54-575fb7dcd353",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -9327,6 +9571,7 @@
         "upstream_posted_date": "2026-10-06",
         "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ne_20260921_lv.pdf",
         "sample_population": "lv",
+        "question_id": "73f526cc-f258-4095-84f3-5366ada6c7db",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -9348,6 +9593,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ne_20260921_lv.pdf",
           "sample_population": "lv",
+          "question_id": "73f526cc-f258-4095-84f3-5366ada6c7db",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -9368,6 +9614,7 @@
           "upstream_posted_date": "2026-10-02",
           "source_poll_url": "https://battlegrounds.coefficient.org/ne/",
           "sample_population": "lv",
+          "question_id": "3649640a-4859-440b-8a65-0a91dee6efe7",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -9436,6 +9683,7 @@
           "upstream_posted_date": "2026-09-25",
           "source_poll_url": "https://www.washingtonsun.com/newsletters/panic-week",
           "sample_population": "lv",
+          "question_id": "01c36d81-2841-4ad6-a8d5-7e85d96f0539",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -9482,6 +9730,7 @@
         "upstream_posted_date": "2026-10-06",
         "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ne_20260921_lv.pdf",
         "sample_population": "lv",
+        "question_id": "15d717ab-c9e6-49ba-b2a8-f8a088fca546",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -9503,6 +9752,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ne_20260921_lv.pdf",
           "sample_population": "lv",
+          "question_id": "15d717ab-c9e6-49ba-b2a8-f8a088fca546",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -9523,6 +9773,7 @@
           "upstream_posted_date": "2026-10-02",
           "source_poll_url": "https://battlegrounds.coefficient.org/ne/",
           "sample_population": "lv",
+          "question_id": "460f26b4-d862-4ca6-a694-a7c06b269758",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -9559,6 +9810,7 @@
           "upstream_posted_date": "2026-09-29",
           "source_poll_url": "https://omaha.com/news/state-regional/government-politics/elections/article_7261e7ba-664d-4d70-8e0e-5655e663f593.html",
           "sample_population": "lv",
+          "question_id": "a3d94b9f-3576-4ce3-8813-0001da44f49e",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -9621,6 +9873,7 @@
         "upstream_posted_date": "2026-10-06",
         "source_poll_url": "https://x.com/The_Real_ASR/status/2107851752464884167",
         "sample_population": "lv",
+        "question_id": "c3d540b9-4726-49d3-8de0-608fa29b16ad",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -9642,6 +9895,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://x.com/The_Real_ASR/status/2107851752464884167",
           "sample_population": "lv",
+          "question_id": "c3d540b9-4726-49d3-8de0-608fa29b16ad",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -9694,6 +9948,7 @@
           "upstream_posted_date": "2026-10-02",
           "source_poll_url": "https://independentleadershipcouncil.com/press-alaska-at-large/",
           "sample_population": "lv",
+          "question_id": "2c149de6-669a-4ef9-9b95-499f86620427",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -9785,6 +10040,7 @@
           "upstream_posted_date": "2026-10-04",
           "source_poll_url": "https://drive.google.com/file/d/1-Qoij2YeWwq-EFaTY_W0iTf1fotSrKHI/view",
           "sample_population": "lv",
+          "question_id": "bc80b5e4-1bb6-48ea-a8f2-9d2c2fea83fe",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -9805,27 +10061,31 @@
           "upstream_posted_date": "2026-09-25",
           "source_poll_url": "https://insideradvantage.com/insideradvantage-georgia-survey-jackson-leads-by-two-in-race-for-governor-ossoff-leads-by-eight-in-senate-contest/",
           "sample_population": "lv",
+          "question_id": "aed28a3a-7900-403c-bf98-a2700a777be3",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
           "poll_id": "6aae867f-1a44-4fe5-8a66-b45166896358",
           "field_end": "2026-09-23",
           "pollster": "Big Data Poll",
-          "dem": 49.9,
-          "rep": 50.1,
-          "margin": -0.2,
-          "sample_size": 712,
+          "dem": 49.5,
+          "rep": 50.5,
+          "margin": -1.0,
+          "sample_size": 678,
           "partisan_lean": "R",
           "dem_name": "Keisha Lance Bottoms",
           "rep_name": "Rick Jackson",
           "other": null,
           "other_name": null,
-          "first_seen_at": null,
+          "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
           "upstream_posted_date": "2026-09-25",
           "source_poll_url": "https://www.bigdatapoll.com/blog/peach-state-poll-jon-ossoff-opens-up-lead-over-mike-collins-in-georgia/",
-          "sample_population": "rv",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "sample_population": "lv",
+          "question_id": "e8ee06b2-13fe-43a4-803e-5281c247c44f",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback",
+          "lv_selected_over_rv": true
         },
         {
           "poll_id": "0f4bc367-db9c-459a-a5ce-34b7b7b6e9b2",
@@ -9887,6 +10147,7 @@
         "upstream_posted_date": "2026-10-06",
         "source_poll_url": "https://x.com/The_Real_ASR/status/2107851752464884167",
         "sample_population": "lv",
+        "question_id": "c7340ffc-0e35-43ef-8728-d0233b55fa85",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -9908,6 +10169,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://x.com/The_Real_ASR/status/2107851752464884167",
           "sample_population": "lv",
+          "question_id": "c7340ffc-0e35-43ef-8728-d0233b55fa85",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -9986,6 +10248,7 @@
         "upstream_posted_date": "2026-10-06",
         "source_poll_url": "https://georgekruse.substack.com/p/informed-voters-trend-toward-kirschner",
         "sample_population": "rv",
+        "question_id": "ee1218a1-7b77-4ce1-be9e-6d0b82d5ce03",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -10007,6 +10270,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://georgekruse.substack.com/p/informed-voters-trend-toward-kirschner",
           "sample_population": "rv",
+          "question_id": "ee1218a1-7b77-4ce1-be9e-6d0b82d5ce03",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -10053,6 +10317,7 @@
         "upstream_posted_date": "2026-10-09",
         "source_poll_url": "https://manhattan.institute/article/californias-contradictions-survey-analysis-of-2026-voter-preferences-statewide-and-in-los-angeles",
         "sample_population": "lv",
+        "question_id": "2d372280-3711-475d-a937-22f2bfd4072f",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -10074,6 +10339,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://manhattan.institute/article/californias-contradictions-survey-analysis-of-2026-voter-preferences-statewide-and-in-los-angeles",
           "sample_population": "lv",
+          "question_id": "2d372280-3711-475d-a937-22f2bfd4072f",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -10094,6 +10360,7 @@
           "upstream_posted_date": "2026-10-05",
           "source_poll_url": "https://ivn.us/new-ca-poll-voter-id-measure-leads-today-its-undecided-voters-point-the-other-way/",
           "sample_population": "lv",
+          "question_id": "c0caf903-eea8-4366-9adb-9ff27a5621ea",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -10188,6 +10455,7 @@
         "upstream_posted_date": "2026-10-09",
         "source_poll_url": "https://x.com/rbrtraining/status/2108302504446337272",
         "sample_population": "lv",
+        "question_id": "9fa329b6-4e61-49b7-a88b-ac8b32a25d6c",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -10209,6 +10477,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://x.com/rbrtraining/status/2108302504446337272",
           "sample_population": "lv",
+          "question_id": "9fa329b6-4e61-49b7-a88b-ac8b32a25d6c",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -10229,6 +10498,7 @@
           "upstream_posted_date": "2026-09-30",
           "source_poll_url": "https://law.marquette.edu/poll/2026/09/30/mlsp91-press-release/",
           "sample_population": "lv",
+          "question_id": "4f336b1d-784e-42bf-877a-e0ef00b5afa2",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -10307,6 +10577,7 @@
         "upstream_posted_date": "2026-10-02",
         "source_poll_url": "https://coefficient.org/our-work/south-carolina-1st-congressional-district-oct-2026/",
         "sample_population": "lv",
+        "question_id": "baa93225-7cd0-4e16-83f6-6fd6b8ddb10f",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -10328,6 +10599,7 @@
           "upstream_posted_date": "2026-10-02",
           "source_poll_url": "https://coefficient.org/our-work/south-carolina-1st-congressional-district-oct-2026/",
           "sample_population": "lv",
+          "question_id": "baa93225-7cd0-4e16-83f6-6fd6b8ddb10f",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -10348,6 +10620,7 @@
           "upstream_posted_date": "2026-10-02",
           "source_poll_url": "https://coefficient.org/our-work/south-carolina-1st-congressional-district-oct-2026/",
           "sample_population": "lv",
+          "question_id": "f376d0ba-1148-4f3c-83af-2977d3800476",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -10410,6 +10683,7 @@
         "upstream_posted_date": "2026-10-04",
         "source_poll_url": "https://x.com/cjwarnke/status/2106473245562003751",
         "sample_population": "lv",
+        "question_id": "8af14387-cd1a-497d-81f6-906ff80c9508",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -10431,6 +10705,7 @@
           "upstream_posted_date": "2026-10-04",
           "source_poll_url": "https://x.com/cjwarnke/status/2106473245562003751",
           "sample_population": "lv",
+          "question_id": "8af14387-cd1a-497d-81f6-906ff80c9508",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -10451,6 +10726,7 @@
           "upstream_posted_date": "2026-10-04",
           "source_poll_url": "https://x.com/cjwarnke/status/2106473245562003751",
           "sample_population": "lv",
+          "question_id": "d69c285e-a61b-4f39-bfc0-51f0552100c9",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -10471,6 +10747,7 @@
           "upstream_posted_date": "2026-09-29",
           "source_poll_url": "https://hub.nationaljournal.com/dems-choosin-texas",
           "sample_population": "lv",
+          "question_id": "0c90235c-976b-4389-b19b-3a5f1ccfbec7",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -10501,6 +10778,7 @@
         "upstream_posted_date": "2026-10-07",
         "source_poll_url": "https://www.tennessean.com/story/news/politics/elections/2026/10/07/poll-molder-hatcher-congress-election/92135891007/",
         "sample_population": "lv",
+        "question_id": "d1489762-40cb-4a73-a361-4b2fc09522fc",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -10522,6 +10800,7 @@
           "upstream_posted_date": "2026-10-07",
           "source_poll_url": "https://www.tennessean.com/story/news/politics/elections/2026/10/07/poll-molder-hatcher-congress-election/92135891007/",
           "sample_population": "lv",
+          "question_id": "d1489762-40cb-4a73-a361-4b2fc09522fc",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -10568,6 +10847,7 @@
         "upstream_posted_date": "2026-10-06",
         "source_poll_url": "https://s3.documentcloud.org/documents/28722214/shahfeeley-poll-release.pdf",
         "sample_population": "rv",
+        "question_id": "b3503a2d-cbfc-4c66-946b-1867ad9b4798",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -10589,6 +10869,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://s3.documentcloud.org/documents/28722214/shahfeeley-poll-release.pdf",
           "sample_population": "rv",
+          "question_id": "b3503a2d-cbfc-4c66-946b-1867ad9b4798",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -10619,6 +10900,7 @@
         "upstream_posted_date": "2026-10-06",
         "source_poll_url": "https://www.cnwmedia.com/article/cnw-poll-pritzker-leads-bailey-by-20-points-democrats-ahead-in-four-other-statewide-races",
         "sample_population": "rv",
+        "question_id": "344f5130-415b-493d-aad8-90a3752adf49",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -10640,6 +10922,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://www.cnwmedia.com/article/cnw-poll-pritzker-leads-bailey-by-20-points-democrats-ahead-in-four-other-statewide-races",
           "sample_population": "rv",
+          "question_id": "344f5130-415b-493d-aad8-90a3752adf49",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -10670,6 +10953,7 @@
         "upstream_posted_date": "2026-10-06",
         "source_poll_url": "https://www.cnwmedia.com/article/cnw-poll-pritzker-leads-bailey-by-20-points-democrats-ahead-in-four-other-statewide-races",
         "sample_population": "rv",
+        "question_id": "81acd091-4a0d-411a-a596-67e5c5a6aa86",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -10691,6 +10975,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://www.cnwmedia.com/article/cnw-poll-pritzker-leads-bailey-by-20-points-democrats-ahead-in-four-other-statewide-races",
           "sample_population": "rv",
+          "question_id": "81acd091-4a0d-411a-a596-67e5c5a6aa86",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -10721,6 +11006,7 @@
         "upstream_posted_date": "2026-10-02",
         "source_poll_url": "https://static01.nyt.com/newsgraphics/documenttools/becbcf38fb98ac79/b81aab79-full.pdf",
         "sample_population": "lv",
+        "question_id": "fe35ff91-39fc-49ed-a8c3-34026ca63141",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -10742,6 +11028,7 @@
           "upstream_posted_date": "2026-10-02",
           "source_poll_url": "https://static01.nyt.com/newsgraphics/documenttools/becbcf38fb98ac79/b81aab79-full.pdf",
           "sample_population": "lv",
+          "question_id": "fe35ff91-39fc-49ed-a8c3-34026ca63141",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -10762,6 +11049,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://scholars.unh.edu/survey_center_polls/1007/",
           "sample_population": "lv",
+          "question_id": "62fc2a3e-a443-43c6-9b2d-14ceb4893309",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -10915,6 +11203,7 @@
         "upstream_posted_date": "2026-10-02",
         "source_poll_url": "https://nypost.com/2026/10/02/us-news/gop-rep-mike-lawler-leads-dem-cait-conley-in-battleground-ny-house-district-new-internal-poll/",
         "sample_population": "lv",
+        "question_id": "244420f6-9b0f-4d4c-8178-3a332ae590ef",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -10936,6 +11225,7 @@
           "upstream_posted_date": "2026-10-02",
           "source_poll_url": "https://nypost.com/2026/10/02/us-news/gop-rep-mike-lawler-leads-dem-cait-conley-in-battleground-ny-house-district-new-internal-poll/",
           "sample_population": "lv",
+          "question_id": "244420f6-9b0f-4d4c-8178-3a332ae590ef",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -10956,6 +11246,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://emersoncollegepolling.com/ny-17-2026-poll/",
           "sample_population": "lv",
+          "question_id": "78666ba1-8987-4f9b-97b2-ccb6e6a83995",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -10986,6 +11277,7 @@
         "upstream_posted_date": "2026-10-08",
         "source_poll_url": "https://x.com/TimmyFacciola_/status/2107831346185846874?s=20",
         "sample_population": "rv",
+        "question_id": "826823ae-df46-4b38-8dc8-defa76bbe24c",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -11007,6 +11299,7 @@
           "upstream_posted_date": "2026-10-08",
           "source_poll_url": "https://x.com/TimmyFacciola_/status/2107831346185846874?s=20",
           "sample_population": "rv",
+          "question_id": "826823ae-df46-4b38-8dc8-defa76bbe24c",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -11027,6 +11320,7 @@
           "upstream_posted_date": "2026-10-08",
           "source_poll_url": "https://x.com/TimmyFacciola_/status/2107831346185846874?s=20",
           "sample_population": "rv",
+          "question_id": "ec9c5650-f18a-4e4c-90d8-269ff29e5b2d",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -11057,6 +11351,7 @@
         "upstream_posted_date": "2026-10-02",
         "source_poll_url": "https://coefficient.org/our-work/virginia-6th-congressional-district-sep-2026/",
         "sample_population": "lv",
+        "question_id": "bb38bfb8-c784-4a29-98da-aead2eaf4b8b",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -11078,6 +11373,7 @@
           "upstream_posted_date": "2026-10-02",
           "source_poll_url": "https://coefficient.org/our-work/virginia-6th-congressional-district-sep-2026/",
           "sample_population": "lv",
+          "question_id": "bb38bfb8-c784-4a29-98da-aead2eaf4b8b",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -11108,6 +11404,7 @@
         "upstream_posted_date": "2026-10-02",
         "source_poll_url": "https://insideradvantage.com/insideradvantage-south-carolina-senate-graham-leads-by-one-point/",
         "sample_population": "lv",
+        "question_id": "6ea69d6a-177b-49b3-933d-8f762cc81a3f",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -11129,6 +11426,7 @@
           "upstream_posted_date": "2026-10-02",
           "source_poll_url": "https://insideradvantage.com/insideradvantage-south-carolina-senate-graham-leads-by-one-point/",
           "sample_population": "lv",
+          "question_id": "6ea69d6a-177b-49b3-933d-8f762cc81a3f",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -11149,6 +11447,7 @@
           "upstream_posted_date": "2026-09-26",
           "source_poll_url": "https://www.thetrafalgargroup.org/news/sc-sen-gen-0926/",
           "sample_population": "lv",
+          "question_id": "6f86a5e2-f626-4adc-bcbb-f9cc23de4137",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -11227,6 +11526,7 @@
         "upstream_posted_date": "2026-10-01",
         "source_poll_url": "https://x.com/cjwarnke/status/2105646969775403226?s=20",
         "sample_population": "lv",
+        "question_id": "7034099f-750f-438d-9a86-b157dc20513e",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -11248,6 +11548,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://x.com/cjwarnke/status/2105646969775403226?s=20",
           "sample_population": "lv",
+          "question_id": "7034099f-750f-438d-9a86-b157dc20513e",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -11268,6 +11569,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://x.com/cjwarnke/status/2105646969775403226?s=20",
           "sample_population": "lv",
+          "question_id": "7a32dbbe-ca77-44be-934b-ae83450a0f2b",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -11314,6 +11616,7 @@
         "upstream_posted_date": "2026-10-01",
         "source_poll_url": "https://www.washingtonpost.com/politics/2026/10/01/shannon-taylor-has-edge-over-rob-wittman-virginia-house-district-post-poll-finds/",
         "sample_population": "lv",
+        "question_id": "f5073f7b-8e5b-4b7a-baae-0b34a8da7ed9",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -11335,6 +11638,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://www.washingtonpost.com/politics/2026/10/01/shannon-taylor-has-edge-over-rob-wittman-virginia-house-district-post-poll-finds/",
           "sample_population": "lv",
+          "question_id": "f5073f7b-8e5b-4b7a-baae-0b34a8da7ed9",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -11355,6 +11659,7 @@
           "upstream_posted_date": "2026-10-02",
           "source_poll_url": "https://punchbowl.news/va05_polling_memo_vfin/",
           "sample_population": "lv",
+          "question_id": "d76ec283-5b72-4b98-94aa-58cf78fe7558",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -11375,6 +11680,7 @@
           "upstream_posted_date": "2026-10-02",
           "source_poll_url": "https://punchbowl.news/va05_polling_memo_vfin/",
           "sample_population": "lv",
+          "question_id": "d9328189-13ea-4ca2-b3a2-e0552fa44c61",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -11405,6 +11711,7 @@
         "upstream_posted_date": "2026-10-01",
         "source_poll_url": "https://www.washingtonpost.com/politics/2026/10/01/shannon-taylor-has-edge-over-rob-wittman-virginia-house-district-post-poll-finds/",
         "sample_population": "lv",
+        "question_id": "e8a45430-ab4d-45b5-b96d-b258c527d160",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -11426,6 +11733,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://www.washingtonpost.com/politics/2026/10/01/shannon-taylor-has-edge-over-rob-wittman-virginia-house-district-post-poll-finds/",
           "sample_population": "lv",
+          "question_id": "e8a45430-ab4d-45b5-b96d-b258c527d160",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -11547,6 +11855,7 @@
         "upstream_posted_date": "2026-10-06",
         "source_poll_url": "https://marylandmatters.org/wp-content/uploads/2026/10/UMBC-Poll-Tuesday-Oct-6.pdf",
         "sample_population": "lv",
+        "question_id": "f21fc47d-1f0a-4e09-94dd-c796958b8c8a",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -11568,6 +11877,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://marylandmatters.org/wp-content/uploads/2026/10/UMBC-Poll-Tuesday-Oct-6.pdf",
           "sample_population": "lv",
+          "question_id": "f21fc47d-1f0a-4e09-94dd-c796958b8c8a",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -11598,6 +11908,7 @@
         "upstream_posted_date": "2026-10-01",
         "source_poll_url": "https://www.opb.org/article/2026/10/01/gluesenkamp-perez-braun-southwest-washington-3rd-district/",
         "sample_population": "lv",
+        "question_id": "50536fa3-ce3a-4849-af29-efa37f03f706",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -11619,6 +11930,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://www.opb.org/article/2026/10/01/gluesenkamp-perez-braun-southwest-washington-3rd-district/",
           "sample_population": "lv",
+          "question_id": "50536fa3-ce3a-4849-af29-efa37f03f706",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -11649,6 +11961,7 @@
         "upstream_posted_date": "2026-10-06",
         "source_poll_url": "https://www.noblepredictiveinsights.com/post/lombardo-tries-to-escape-trump-s-orbit-up-2-over-ford",
         "sample_population": "lv",
+        "question_id": "3ba36cb9-20bb-4f3b-ad41-c904cc641383",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -11670,6 +11983,7 @@
           "upstream_posted_date": "2026-10-06",
           "source_poll_url": "https://www.noblepredictiveinsights.com/post/lombardo-tries-to-escape-trump-s-orbit-up-2-over-ford",
           "sample_population": "lv",
+          "question_id": "3ba36cb9-20bb-4f3b-ad41-c904cc641383",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -11716,6 +12030,7 @@
         "upstream_posted_date": "2026-10-01",
         "source_poll_url": "https://www.al.com/politics/2026/09/new-poll-offers-some-good-news-for-alabamas-republican-politicians.html",
         "sample_population": "rv",
+        "question_id": "7fe9928d-f7f2-4adb-ac7d-4c6308563c67",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -11737,6 +12052,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://www.al.com/politics/2026/09/new-poll-offers-some-good-news-for-alabamas-republican-politicians.html",
           "sample_population": "rv",
+          "question_id": "7fe9928d-f7f2-4adb-ac7d-4c6308563c67",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -11767,6 +12083,7 @@
         "upstream_posted_date": "2026-10-01",
         "source_poll_url": "https://www.al.com/politics/2026/09/new-poll-offers-some-good-news-for-alabamas-republican-politicians.html",
         "sample_population": "rv",
+        "question_id": "5d0de754-d698-49c4-976e-1ff9a47b6233",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -11788,6 +12105,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://www.al.com/politics/2026/09/new-poll-offers-some-good-news-for-alabamas-republican-politicians.html",
           "sample_population": "rv",
+          "question_id": "5d0de754-d698-49c4-976e-1ff9a47b6233",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -11818,6 +12136,7 @@
         "upstream_posted_date": "2026-09-28",
         "source_poll_url": "https://www.montanarightnow.com/elections/montana-senate-race-kurt-alme-tops-bodnar-and-bankhead-in-new-poll-findings/article_cd8401fb-0470-492c-a53a-c7dfe39552ff.html",
         "sample_population": "lv",
+        "question_id": "60d81e7a-92d1-48a6-a5f5-d90479ccb42d",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -11839,6 +12158,7 @@
           "upstream_posted_date": "2026-09-28",
           "source_poll_url": "https://www.montanarightnow.com/elections/montana-senate-race-kurt-alme-tops-bodnar-and-bankhead-in-new-poll-findings/article_cd8401fb-0470-492c-a53a-c7dfe39552ff.html",
           "sample_population": "lv",
+          "question_id": "60d81e7a-92d1-48a6-a5f5-d90479ccb42d",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -11859,6 +12179,7 @@
           "upstream_posted_date": "2026-09-28",
           "source_poll_url": "https://www.montanarightnow.com/elections/montana-senate-race-kurt-alme-tops-bodnar-and-bankhead-in-new-poll-findings/article_cd8401fb-0470-492c-a53a-c7dfe39552ff.html",
           "sample_population": "lv",
+          "question_id": "fca049e2-f331-475a-babb-9b42f601bf19",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -11879,6 +12200,7 @@
           "upstream_posted_date": "2026-09-30",
           "source_poll_url": "https://mcusercontent.com/c8d0fc607b9ebc333152f806f/files/c5866ca1-08c1-fb4a-effd-deb8bff0ea04/IMPACT_MT_01_PRESS_MEMO_SEPT_2026.01.pdf",
           "sample_population": "lv",
+          "question_id": "2398dac0-2e1e-4709-b38f-4b616e1f81ee",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -11957,6 +12279,7 @@
         "upstream_posted_date": "2026-09-28",
         "source_poll_url": "https://www.montanarightnow.com/elections/montana-senate-race-kurt-alme-tops-bodnar-and-bankhead-in-new-poll-findings/article_cd8401fb-0470-492c-a53a-c7dfe39552ff.html",
         "sample_population": "lv",
+        "question_id": "f389f82e-d11f-44a1-ba81-d2df85fcb87c",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -11978,6 +12301,7 @@
           "upstream_posted_date": "2026-09-28",
           "source_poll_url": "https://www.montanarightnow.com/elections/montana-senate-race-kurt-alme-tops-bodnar-and-bankhead-in-new-poll-findings/article_cd8401fb-0470-492c-a53a-c7dfe39552ff.html",
           "sample_population": "lv",
+          "question_id": "f389f82e-d11f-44a1-ba81-d2df85fcb87c",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -12014,6 +12338,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://x.com/burgessev/status/2102451722702442813",
           "sample_population": "lv",
+          "question_id": "82391d18-dd35-4acc-a3a8-9dab2c851cf0",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -12076,6 +12401,7 @@
         "upstream_posted_date": "2026-10-01",
         "source_poll_url": "https://utahdebatecommission.org/2026-polling/",
         "sample_population": "rv",
+        "question_id": "5fda22e3-ff3f-4a06-ace4-f0c1e2c96062",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -12097,6 +12423,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://utahdebatecommission.org/2026-polling/",
           "sample_population": "rv",
+          "question_id": "5fda22e3-ff3f-4a06-ace4-f0c1e2c96062",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -12159,6 +12486,7 @@
         "upstream_posted_date": "2026-09-28",
         "source_poll_url": "https://x.com/cjwarnke/status/2104619061556457603",
         "sample_population": "lv",
+        "question_id": "28f1b432-a224-4c32-a0ce-1807465c4172",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -12180,6 +12508,7 @@
           "upstream_posted_date": "2026-09-28",
           "source_poll_url": "https://x.com/cjwarnke/status/2104619061556457603",
           "sample_population": "lv",
+          "question_id": "28f1b432-a224-4c32-a0ce-1807465c4172",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -12200,6 +12529,7 @@
           "upstream_posted_date": "2026-09-28",
           "source_poll_url": "https://x.com/cjwarnke/status/2104619061556457603",
           "sample_population": "lv",
+          "question_id": "db12d999-9123-4a6f-a7cb-c1f7b3f9a2a8",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -12230,6 +12560,7 @@
         "upstream_posted_date": "2026-10-09",
         "source_poll_url": "https://www.the-downballot.com/p/morning-digest-why-democrats-think-561",
         "sample_population": "lv",
+        "question_id": "74292b9e-4f1b-4dd7-ae88-de7117714d4c",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -12251,6 +12582,7 @@
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://www.the-downballot.com/p/morning-digest-why-democrats-think-561",
           "sample_population": "lv",
+          "question_id": "74292b9e-4f1b-4dd7-ae88-de7117714d4c",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -12281,6 +12613,7 @@
         "upstream_posted_date": "2026-09-28",
         "source_poll_url": "https://www.politico.com/newsletters/new-york-playbook/2026/09/28/the-jacobs-challenge-01094565",
         "sample_population": "lv",
+        "question_id": "e2fea6d7-1e71-484d-9c49-5fca0138f031",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -12302,6 +12635,7 @@
           "upstream_posted_date": "2026-09-28",
           "source_poll_url": "https://www.politico.com/newsletters/new-york-playbook/2026/09/28/the-jacobs-challenge-01094565",
           "sample_population": "lv",
+          "question_id": "e2fea6d7-1e71-484d-9c49-5fca0138f031",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -12332,6 +12666,7 @@
         "upstream_posted_date": "2026-09-29",
         "source_poll_url": "https://dccc.org/dccc-polling-memo-oh-09-is-a-dead-heat/",
         "sample_population": "lv",
+        "question_id": "45944ad3-0e3f-47fa-b370-7c4946f231f3",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -12353,6 +12688,7 @@
           "upstream_posted_date": "2026-09-29",
           "source_poll_url": "https://dccc.org/dccc-polling-memo-oh-09-is-a-dead-heat/",
           "sample_population": "lv",
+          "question_id": "45944ad3-0e3f-47fa-b370-7c4946f231f3",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -12383,6 +12719,7 @@
         "upstream_posted_date": "2026-09-29",
         "source_poll_url": "https://commonwealthbeacon.org/politics/poll-healey-cruising-in-reelection-bid-with-trump-high-on-voters-mind/",
         "sample_population": "lv",
+        "question_id": "e3110ac6-230c-4303-bfe0-83d83005c172",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -12404,6 +12741,7 @@
           "upstream_posted_date": "2026-09-29",
           "source_poll_url": "https://commonwealthbeacon.org/politics/poll-healey-cruising-in-reelection-bid-with-trump-high-on-voters-mind/",
           "sample_population": "lv",
+          "question_id": "e3110ac6-230c-4303-bfe0-83d83005c172",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -12424,6 +12762,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://scholars.unh.edu/survey_center_polls/1008/",
           "sample_population": "lv",
+          "question_id": "e1769e50-c9df-473d-8222-2d7353d7885a",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -12518,6 +12857,7 @@
         "upstream_posted_date": "2026-09-29",
         "source_poll_url": "https://commonwealthbeacon.org/politics/poll-healey-cruising-in-reelection-bid-with-trump-high-on-voters-mind/",
         "sample_population": "lv",
+        "question_id": "b56c6da5-a75d-476b-8b27-bd2796ee4194",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -12539,6 +12879,7 @@
           "upstream_posted_date": "2026-09-29",
           "source_poll_url": "https://commonwealthbeacon.org/politics/poll-healey-cruising-in-reelection-bid-with-trump-high-on-voters-mind/",
           "sample_population": "lv",
+          "question_id": "b56c6da5-a75d-476b-8b27-bd2796ee4194",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -12559,6 +12900,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://scholars.unh.edu/survey_center_polls/1008/",
           "sample_population": "lv",
+          "question_id": "34d85126-ded1-49a3-847c-5705abde0aef",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -12653,6 +12995,7 @@
         "upstream_posted_date": "2026-10-01",
         "source_poll_url": "https://www.semafor.com/article/10/01/2026/democrats-hopes-rise-in-texas",
         "sample_population": "lv",
+        "question_id": "76c25f6a-475a-46fd-9871-7f906beada8f",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -12674,6 +13017,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://www.semafor.com/article/10/01/2026/democrats-hopes-rise-in-texas",
           "sample_population": "lv",
+          "question_id": "76c25f6a-475a-46fd-9871-7f906beada8f",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -12771,6 +13115,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://scholars.unh.edu/survey_center_polls/1010/",
           "sample_population": "lv",
+          "question_id": "37ac37c9-8150-4a70-b12a-0ca46d647eb1",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -12865,6 +13210,7 @@
         "upstream_posted_date": "2026-09-24",
         "source_poll_url": "https://scholars.unh.edu/survey_center_polls/1005/",
         "sample_population": "lv",
+        "question_id": "11f1f8fd-02b9-429b-902a-bc616e621038",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -12886,6 +13232,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://scholars.unh.edu/survey_center_polls/1005/",
           "sample_population": "lv",
+          "question_id": "11f1f8fd-02b9-429b-902a-bc616e621038",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -12965,6 +13312,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://scholars.unh.edu/survey_center_polls/1006/",
           "sample_population": "lv",
+          "question_id": "95e8b53a-f1d2-4618-a4d0-a192015e2505",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -12995,6 +13343,7 @@
         "upstream_posted_date": "2026-09-24",
         "source_poll_url": "https://scholars.unh.edu/survey_center_polls/1007/",
         "sample_population": "lv",
+        "question_id": "51fde33d-e0b6-4f77-a618-6ca8277d952e",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -13016,6 +13365,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://scholars.unh.edu/survey_center_polls/1007/",
           "sample_population": "lv",
+          "question_id": "51fde33d-e0b6-4f77-a618-6ca8277d952e",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -13046,6 +13396,7 @@
         "upstream_posted_date": "2026-09-24",
         "source_poll_url": "https://scholars.unh.edu/survey_center_polls/1005/",
         "sample_population": "lv",
+        "question_id": "6fc1a7d6-df4f-4c24-b36f-2bef24150921",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -13067,6 +13418,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://scholars.unh.edu/survey_center_polls/1005/",
           "sample_population": "lv",
+          "question_id": "6fc1a7d6-df4f-4c24-b36f-2bef24150921",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -13097,6 +13449,7 @@
         "upstream_posted_date": "2026-09-24",
         "source_poll_url": "https://eu.oklahoman.com/story/news/politics/elections/2026/09/23/oklahoma-elections-2026-5th-district-jena-nelson-national-democrat-support-race-stephanie-bice/91894158007/",
         "sample_population": "lv",
+        "question_id": "e44cdbc9-90c9-49a7-b467-5a8a7700c205",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -13118,6 +13471,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://eu.oklahoman.com/story/news/politics/elections/2026/09/23/oklahoma-elections-2026-5th-district-jena-nelson-national-democrat-support-race-stephanie-bice/91894158007/",
           "sample_population": "lv",
+          "question_id": "e44cdbc9-90c9-49a7-b467-5a8a7700c205",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -13148,6 +13502,7 @@
         "upstream_posted_date": "2026-09-24",
         "source_poll_url": "https://www.wgal.com/article/pa-election-stelson-perry-shapiro-trump-poll/73836465",
         "sample_population": "rv",
+        "question_id": "454b2bba-025c-48c1-93ba-83c7ab8b51e8",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -13169,6 +13524,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://www.wgal.com/article/pa-election-stelson-perry-shapiro-trump-poll/73836465",
           "sample_population": "rv",
+          "question_id": "454b2bba-025c-48c1-93ba-83c7ab8b51e8",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -13199,6 +13555,7 @@
         "upstream_posted_date": "2026-09-24",
         "source_poll_url": "https://www.wgal.com/article/pa-election-stelson-perry-shapiro-trump-poll/73836465",
         "sample_population": "rv",
+        "question_id": "abd4a96c-6967-45d2-afd6-a279da9a2b1e",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -13220,6 +13577,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://www.wgal.com/article/pa-election-stelson-perry-shapiro-trump-poll/73836465",
           "sample_population": "rv",
+          "question_id": "abd4a96c-6967-45d2-afd6-a279da9a2b1e",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -13352,6 +13710,7 @@
         "upstream_posted_date": "2026-10-01",
         "source_poll_url": "https://utahdebatecommission.org/2026-polling/",
         "sample_population": "rv",
+        "question_id": "6f049aa5-2048-4a9f-9741-784ca733e9e4",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -13373,6 +13732,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://utahdebatecommission.org/2026-polling/",
           "sample_population": "rv",
+          "question_id": "6f049aa5-2048-4a9f-9741-784ca733e9e4",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -13462,6 +13822,7 @@
         "upstream_posted_date": "2026-09-24",
         "source_poll_url": "https://drive.google.com/file/d/1iMSoZyUcOLrVLBbs1Fnq9IzgI7vRSQRJ/",
         "sample_population": "lv",
+        "question_id": "4b01b1f9-604a-4bf4-a2b5-c93fe31deee9",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -13483,6 +13844,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://drive.google.com/file/d/1iMSoZyUcOLrVLBbs1Fnq9IzgI7vRSQRJ/",
           "sample_population": "lv",
+          "question_id": "4b01b1f9-604a-4bf4-a2b5-c93fe31deee9",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -13513,6 +13875,7 @@
         "upstream_posted_date": "2026-09-25",
         "source_poll_url": "https://x.com/MarkMaxwellTV/status/2103501820840534440",
         "sample_population": "lv",
+        "question_id": "35fcf47d-2ee5-4210-87df-f2d52871500d",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -13534,6 +13897,7 @@
           "upstream_posted_date": "2026-09-25",
           "source_poll_url": "https://x.com/MarkMaxwellTV/status/2103501820840534440",
           "sample_population": "lv",
+          "question_id": "35fcf47d-2ee5-4210-87df-f2d52871500d",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
@@ -13554,6 +13918,7 @@
           "upstream_posted_date": "2026-09-25",
           "source_poll_url": "https://x.com/MarkMaxwellTV/status/2103501820840534440",
           "sample_population": "lv",
+          "question_id": "8ac157f5-bb52-495e-b2a2-4a83a63375a7",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -13584,6 +13949,7 @@
         "upstream_posted_date": "2026-10-01",
         "source_poll_url": "https://utahdebatecommission.org/2026-polling/",
         "sample_population": "rv",
+        "question_id": "5267ee2e-b496-4e0f-ba59-2633a324fc93",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -13605,6 +13971,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://utahdebatecommission.org/2026-polling/",
           "sample_population": "rv",
+          "question_id": "5267ee2e-b496-4e0f-ba59-2633a324fc93",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -13694,6 +14061,7 @@
         "upstream_posted_date": "2026-09-24",
         "source_poll_url": "https://x.com/LittleCongress/status/2103102085076066771",
         "sample_population": "lv",
+        "question_id": "0fcc3540-996f-4ec1-bc23-3b1978361b4a",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -13715,6 +14083,7 @@
           "upstream_posted_date": "2026-09-24",
           "source_poll_url": "https://x.com/LittleCongress/status/2103102085076066771",
           "sample_population": "lv",
+          "question_id": "0fcc3540-996f-4ec1-bc23-3b1978361b4a",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -14008,6 +14377,7 @@
         "upstream_posted_date": "2026-10-01",
         "source_poll_url": "https://utahdebatecommission.org/2026-polling/",
         "sample_population": "rv",
+        "question_id": "de657a57-b6a1-4905-a963-105ea0b670ac",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -14029,6 +14399,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://utahdebatecommission.org/2026-polling/",
           "sample_population": "rv",
+          "question_id": "de657a57-b6a1-4905-a963-105ea0b670ac",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -14494,6 +14865,7 @@
         "upstream_posted_date": "2026-10-01",
         "source_poll_url": "https://x.com/SoDakDems/status/2105413020264357970",
         "sample_population": "lv",
+        "question_id": "808d0a9d-de31-44fa-b4bc-d2ccd6a553f6",
         "date_provenance": "PollResults ingestion date, NOT public release date"
       },
       "polls": [
@@ -14515,6 +14887,7 @@
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://x.com/SoDakDems/status/2105413020264357970",
           "sample_population": "lv",
+          "question_id": "808d0a9d-de31-44fa-b4bc-d2ccd6a553f6",
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
@@ -15195,7 +15568,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-15T13:12:52.628301Z",
+    "last_attempt_at": "2026-10-15T13:19:18.491653Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15207,8 +15580,8 @@
     "new_polls": [],
     "new_poll_count": 0,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-15T13:12:52.628301Z",
-    "previous_snapshot_at": "2026-10-15T13:01:21.582216Z",
+    "comparison_at": "2026-10-15T13:19:18.491653Z",
+    "previous_snapshot_at": "2026-10-15T13:12:52.628301Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
