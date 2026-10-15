@@ -189,7 +189,7 @@ class PollToModelTests(unittest.TestCase):
 
     def test_bootstrapped_race_deduplicates_lv_rv_and_provider_catch_up(self):
         p = primary()
-        poll = newer(race_code="NH-SEN", race_type="senate",
+        poll = newer(race_code="NH-SEN", race_type="senate", state="NH",
                      dem_name="Candidate Alice", rep_name="Candidate Bob")
         rv = dict(poll, question_id="rv", sample_population="rv",
                   dem=46, rep=43, margin=3)
