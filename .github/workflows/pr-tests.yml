@@ -192,6 +192,11 @@ jobs:
           node --check scripts/election_night_nowcast.js
           node --check scripts/test_election_night_nowcast.cjs
           node scripts/test_election_night_nowcast.cjs
+      - name: Verify source-called election-night milestones and needle movement
+        run: |
+          node --check scripts/election_night_signals.js
+          node --check scripts/test_election_night_signals.cjs
+          node scripts/test_election_night_signals.cjs
       - name: Test isolated five-stage election-night probability rehearsal
         run: |
           node --check scripts/election_night_rehearsal.js

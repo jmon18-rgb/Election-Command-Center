@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 620" role="img" aria-labelledby="title desc">
+ <title id="title">OMG, YOU'RE GONNA MAKE ME… BLUE WAVE!</title>
+ <desc id="desc">Original illustrated election-night meme poster: an enormous electric-blue surf wave crashes over a tiny frightened red wave warning buoy.</desc>
+ <defs>
+  <linearGradient id="night" x2="0.1" y2="1"><stop stop-color="#04142d"/><stop offset="1" stop-color="#0d5098"/></linearGradient>
+  <linearGradient id="crest" x2="0.1" y2="1"><stop stop-color="#a5edff"/><stop offset=".43" stop-color="#30b4f3"/><stop offset="1" stop-color="#06489e"/></linearGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="13"/></filter>
+ </defs>
+ <rect width="980" height="620" rx="28" fill="url(#night)"/>
+ <circle cx="774" cy="163" r="88" fill="#bddbff" opacity=".18" filter="url(#glow)"/>
+ <circle cx="774" cy="163" r="53" fill="#d8eeff" opacity=".25"/>
+ <g fill="none" stroke="#6de1ff" stroke-width="3" opacity=".26"><path d="M60 374q110-23 220 0t220 0t220 0t220 0"/><path d="M20 399q90-23 200 0t220 0t220 0t220 0"/></g>
+ <path d="M0 468C93 394 163 438 244 410c77-26 110-82 169-165 37-54 102-79 156-70 82 14 126 102 126 175-13-40-48-65-93-65-55 0-100 44-119 89 66-36 148-2 189 47 74 89 167 59 308-3v202H0Z" fill="url(#crest)"/>
+ <path d="M393 279c73-120 194-133 275-32-46-39-125-34-162-14-39 22-67 51-113 91" fill="#c9f8ff" opacity=".77"/>
+ <path d="M445 310q106-85 190-19q-55-25-103 5q-36 25-66 64" fill="#e4ffff" opacity=".84"/>
+ <path d="M-30 542q208-52 352 5t333 14t355 21v75H-30" fill="#022f77" opacity=".7"/>
+ <path d="M0 576q230-48 417-3t563-18v65H0" fill="#021e53"/>
+ <g transform="translate(784 445)"><path d="M-15 0h30v90h-30Z" fill="#d0dbe8"/><path d="M-42-18q42-45 84 0l-8 39h-68Z" fill="#ff7278"/><circle cx="-11" cy="-2" r="5" fill="#15253c"/><circle cx="13" cy="-2" r="5" fill="#15253c"/><path d="M-6 12q5 6 12 0" stroke="#15253c" fill="none" stroke-width="3"/><path d="M-42 52h84" stroke="#f5a7ac" stroke-width="5"/></g>
+ <rect x="30" y="22" width="920" height="112" rx="18" fill="#020d23" opacity=".78"/>
+ <text x="490" y="63" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="33" letter-spacing="1.2" text-anchor="middle" fill="#eaf8ff">OMG, YOU’RE GONNA MAKE ME…</text>
+ <text x="490" y="115" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="61" letter-spacing="2.2" text-anchor="middle" fill="#58c8ff">BLUE WAVE!</text>
+ <rect x="28" y="563" width="378" height="34" rx="6" fill="#051f42" opacity=".9"/>
+ <text x="42" y="585" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="17" fill="#d2edff">JACKSTRADAMUS · DEMO ART</text>
+</svg>

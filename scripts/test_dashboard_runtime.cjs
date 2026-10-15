@@ -97,6 +97,8 @@ async function settle(){
  assert(w.RaceLiveNowcast,'Live race probability module must load before app');
  w.eval(read('scripts/election_night_early_signals.js'));
  assert(w.ElectionNightEarlySignals?.records?.length>=10,'Early signal registry must load');
+ w.eval(read('scripts/election_night_signals.js'));
+ assert.equal(w.ElectionNightSignals?.MILESTONES.length,7);
  w.eval(read('scripts/election_night_rehearsal.js'));
  assert(w.ElectionNightRehearsal,'Synthetic rehearsal library must load before app');
  w.eval(read('scripts/chamber_control_model.js'));
@@ -127,6 +129,7 @@ async function settle(){
  assert.match(get('#feedResults').textContent,/2024 archive/,
   'Before election day, default historical mode must not pretend to be live 2026 results');
  assert.equal(get('#feedResults').dataset.status,'scheduled');
+ assert.equal(get('#enMilestoneDesk').hidden,true,'2024 mode has no current milestones');
  assert.match(get('#feedModel').textContent,/^Model · /);
  assert.match(get('#feedPolls').textContent,/^Polls · /);
  // A weeks-old cached headline must never be shown as a fresh feed.
@@ -253,6 +256,17 @@ async function settle(){
  w.Date.now=()=>Date.parse('2026-11-04T03:20:00Z');
  get('#electionNight').classList.add('active');
  get('#enMode2026').click();
+ assert.equal(get('#enMilestoneDesk').hidden,false,'2026 mode reveals achievements');
+ assert.equal(get('#enMilestoneGrid').querySelectorAll('.en-milestone-card').length,7);
+ get('#enTsunamiPreview').click();
+ assert.match(get('#enMilestoneKicker').textContent,/PREVIEW/);
+ assert.match(get('#enMilestoneTitle').textContent,/BLUE WAVE/);
+ assert.match(get('#enMilestoneSource').textContent,/DEMO ONLY/);
+ assert.equal(get('#enTsunamiMeme').hidden,false);
+ assert.equal(get('#enTsunamiMeme').getAttribute('src'),'./assets/blue-tsunami-meme.svg');
+ assert.equal(get('#enMilestoneArt').hidden,true);
+ get('#enMilestoneClose').click();
+ assert.equal(get('#enMilestoneSpotlight').hidden,true);
  const firstUpdate={kind:'first',source:'Open America',title:'VA-02 first votes',
   details:'Source reports the first ballots; no candidate called'};
  const nextUpdate={kind:'flip',source:'civicAPI',title:'NC-SEN leader changed',
@@ -1293,6 +1307,12 @@ async function settle(){
   const needle=get(selector);
   assert.match(needle.getAttribute('aria-label'),/2026 correlated Four Endings forecast/);
   assert.equal(needle.querySelectorAll('.four-needle-distribution span').length,4);
+  assert.equal(needle.querySelectorAll('.four-needle-arc path').length,4,
+   'Semicircular dial must have four ordered outcome arcs');
+  assert(needle.querySelector('.four-needle-arc-pointer')?.getAttribute('x2'),
+   'Visible needle pointer must track correlated model');
+  assert(needle.querySelector('.four-needle-arc-baseline'),
+   'Baseline pointer must exist for later qualified vote returns');
   assert.match(needle.querySelector('.four-needle-footer').textContent,
    /POLLING-ONLY|AWAITING LIVE RETURNS|RESULTS-INFORMED/,
    'Needle must attribute its source mode instead of implying certified results');
