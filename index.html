@@ -2617,11 +2617,15 @@ function enNationalSetUniverse(doc){
 function enNationalWatchItems(){
  return enNationalEnabled&&enNationalSeats?enNationalSeats:[];
 }
+function enMilestoneTracked(item){
+ return enModeYear===2026&&Date.now()>=Date.parse('2026-11-03T05:00:00Z')&&
+  Boolean(window.ElectionNightSignals?.TRACKED.some(x=>x.office===item.office&&x.key===item.key));
+}
 function enNationalTracked(item){
  const id=enWatchId(item);
  return enWatched.some(x=>enWatchId(x)===id)||
    (enNationalEnabled&&enNationalSeats?.some(x=>enWatchId(x)===id))||
-   enNationalExpanded.has(id);
+   enNationalExpanded.has(id)||enMilestoneTracked(item);
 }
 function enNationalToggle(enabled){
  if(!enNationalSeats)return;
@@ -4181,7 +4185,7 @@ async function enCivicFetchOne(item,forceAfterPending=false){
   enProcessCivicAlert(item,old,next);
   enCivicRaceIds[id]=row;
   delete enCivicErrors[id];
-  enRenderWatchlist();enRenderNationalSenate();enRenderExportControls();enRenderLiveDesk();
+  enRenderWatchlist();enRenderNationalSenate();enRenderExportControls();enRenderLiveDesk();enRenderMilestones();
  }catch(err){
   if(enIsVisible()&&enModeYear===2026){
    enCivicErrors[id]=String(err?.message||err);
@@ -4220,8 +4224,10 @@ async function enRefreshCivicWatchlist(force=false){
  const sweepDone=new Promise(resolve=>{completeSweep=resolve});
  enCivicSweepTasks.add(sweepDone);
  try{
-  const all=[...new Map([...enWatched,...enNationalWatchItems()]
-    .filter(x=>!enSupportedStates.has(x.key.slice(0,2)))
+  const monitored=now>=Date.parse('2026-11-03T05:00:00Z')?
+    window.ElectionNightSignals?.TRACKED||[]:[];
+  const all=[...new Map([...enWatched,...enNationalWatchItems(),...monitored]
+    .filter(x=>!enSupportedStates.has(x.key.slice(0,2))||enMilestoneTracked(x))
     .map(x=>[enWatchId(x),x])).values()];
   if(!all.length)return;
   // Rotating sweep includes entries beyond the first twelve across cycles.
@@ -4231,7 +4237,8 @@ async function enRefreshCivicWatchlist(force=false){
   enCivicSweepCursor=(start+limit)%all.length;
   // An explicit manual refresh prioritizes personally pinned races;
   // background cycles retain round-robin fairness across 35 Senate seats.
-  const pinned=force?enWatched.filter(x=>!enSupportedStates.has(x.key.slice(0,2))):[];
+  const pinned=force?enWatched.filter(x=>
+   !enSupportedStates.has(x.key.slice(0,2))||enMilestoneTracked(x)):[];
   const batch=force?[...new Map([...pinned,...rotation]
     .map(x=>[enWatchId(x),x])).values()]:rotation;
   // Manual refresh checks every saved personal pin (max 40), not only
@@ -4624,7 +4631,7 @@ function enAcceptSource(o){
   delete enOfficeErrors[enOffice];
   enResumeSave();
  }
- enRender();
+ enRender();enRenderMilestones();
 }
 /* CSV export operates only on source-validated, reported 2026 votes
  * and locally observed movement events. No polling estimates or inferred
@@ -5009,7 +5016,7 @@ function enSwitch(year,office,preferredKey=null){
  if(year===2024&&office==='Governor')enArchiveSource='state';
  enModeYear=year;enOffice=office;
  enData=year===2026?(enOfficeSnapshots[office]||null):null;
- enFetchError=null;enFailures=0;enSelected=preferredKey;enVisibleLimit=120;$('#enSearch').value='';enRender();enLoad(true);
+ enFetchError=null;enFailures=0;enSelected=preferredKey;enVisibleLimit=120;$('#enSearch').value='';enRender();enRenderMilestones();enLoad(true);
 }
 $('#enMode2026').addEventListener('click',()=>enSwitch(2026,enOffice));
 $('#enMode2024').addEventListener('click',()=>enSwitch(2024,enOffice));
