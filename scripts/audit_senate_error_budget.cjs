@@ -23,7 +23,7 @@ const sourceSigma=new Map(source.odds.records.filter(x=>x.office==='senate')
 const oldTotal=new Map(b.senate.map(x=>
  [x.code,Math.hypot(x.sigma,sharedSigma)]));
 const pollCount=b.senate.filter(x=>x.polled).length;
-assert.equal(pollCount,24);
+assert.equal(pollCount,source.odds.records.filter(x=>x.office==='senate').length);
 function conservativeFullErrorBudget(fullErrorFloor){
  if(!Number.isFinite(fullErrorFloor)||fullErrorFloor<=sharedSigma+1)
   throw Error('Impossible or unsafe Senate forecast total-error floor');
