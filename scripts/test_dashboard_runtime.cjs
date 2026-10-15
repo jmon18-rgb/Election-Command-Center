@@ -47,7 +47,7 @@ const fixtures={
  'historical_senate_poll_backtest.json':json('data/historical_senate_poll_backtest.json'),
  'senate_history_2020_2022_2024.json':json('data/senate_history_2020_2022_2024.json')
 };
-for(const file of ['briefing.json','integrity_impact.json','seat_universe.json','house_geography_bridge.json','house_two_cycle_context.json','presidential_2024_by_2026_district_staging.json']){
+for(const file of ['briefing.json','integrity_impact.json','integrity_review_queue.json','seat_universe.json','house_geography_bridge.json','house_two_cycle_context.json','presidential_2024_by_2026_district_staging.json']){
  const name='data/'+file;
  if(fs.existsSync(path.join(ROOT,name)))fixtures[file]=json(name);
 }
@@ -300,8 +300,8 @@ async function settle(){
   'Missing source coverage cannot masquerade as an ambiguous risk score');
  assert.match(get('#senateEstimateCards').textContent,/No documented case in our limited ledger/,
   'A state with no matching source must display the coverage gap');
- assert.match(get('#bullCoverageSummary').textContent,/source-documented cases across/);
- assert.match(get('#bullCoverageSummary').textContent,/not cleared or comprehensively reviewed/);
+ assert.match(get('#bullCoverageSummary').textContent,/documented incidents in/);
+ assert.match(get('#bullCoverageSummary').textContent,/remaining states have unknown risk, not zero/);
  assert.match(get('#senateEstimateCards').textContent,/coverage gap, not a judgment/);
  assert(get('#bullScoreStates').querySelectorAll('.bs-state-row').length>0,
   'Verified source states keep their documented incident cards');
@@ -2412,6 +2412,52 @@ async function settle(){
  assert.deepEqual(w.eval('jointForecastResult().probabilities'),acceptedForecast,
   'Race and Four Endings probabilities must survive late older fetches');
  assert.equal(w.eval('livePollingRevisionStatus().primary_at'),acceptedRawAt);
+
+ // Product-level smoke: news + security sources must refresh while this
+ // browser remains open and must keep verified incidents distinct from leads.
+ const newsBefore=fixtures['briefing.json'];
+ const newsNext=structuredClone(newsBefore);
+ newsNext.updated_at=new Date(Date.parse(newsBefore.updated_at)+60000).toISOString();
+ const freshNewsTitle='New independently published election news test headline';
+ const freshSecurityTitle='New voter access lead test headline';
+ newsNext.updates.unshift({title:freshNewsTitle,source:'Test publication',
+  url:'https://example.com/election-news',published_at:newsNext.updated_at,
+  status:'reported_not_independently_verified'});
+ newsNext.security.unshift({title:freshSecurityTitle,source:'Test publication',
+  url:'https://example.com/security-news',published_at:newsNext.updated_at,
+  status:'reported_not_independently_verified'});
+ const leadNext=structuredClone(fixtures['integrity_review_queue.json']);
+ leadNext.updated_at=new Date(Date.parse(leadNext.updated_at)+60000).toISOString();
+ leadNext.items.unshift({id:'fresh-security-lead',title:freshSecurityTitle,
+  publisher:'Test publication',url:'https://example.com/security-news',
+  state_hints:['OH'],review_status:'needs_primary_source',
+  published_at:newsNext.updated_at});
+ fixtures['briefing.json']=newsNext;
+ fixtures['integrity_review_queue.json']=leadNext;
+ const ledgerNext=structuredClone(fixtures['integrity_impact.json']);
+ ledgerNext.updated_at='2026-10-15';
+ fixtures['integrity_impact.json']=ledgerNext;
+ assert(await w.eval('refreshCommandCenterFeeds')(),'New reporting must update without reloading the tab');
+ assert(get('#updates').textContent.includes(freshNewsTitle),
+  'Home news must display the newly collected article');
+ assert(get('#security').textContent.includes(freshSecurityTitle),
+  'Bullshittery security feed must update with new stories');
+ assert(get('#integrityQueue').textContent.includes(freshSecurityTitle),
+  'Verification queue must accept newly indexed lead');
+ assert(get('#bullScoreStates').textContent.includes('Ohio'),
+  'Key-race coverage must be shown on the integrity index');
+ assert(get('#bullScoreStates').textContent.includes('Not assessed'),
+  'Absent reviewed incidents must be UNKNOWN, not zero or cleared');
+ assert(get('#newsFeedStatus').textContent.includes('NEWS SYNCED'),
+  'News status must show the source collection state');
+ assert(get('#integrityFeedStatus').textContent.includes('unverified leads indexed'),
+  'Integrity status must distinguish unverified leads');
+ const previousNewsDisplay=get('#updates').textContent;
+ fixtures['briefing.json']=newsBefore;
+ assert.equal(await w.eval('refreshCommandCenterFeeds')(),false,
+  'An older news response must never roll back already accepted headlines');
+ assert.equal(get('#updates').textContent,previousNewsDisplay);
+ fixtures['briefing.json']=newsNext;
 
  assert.equal(errors.length,0,'Application emitted errors: '+errors.slice(0,4).join(' | '));
  console.log('Dashboard DOM integration passed: exact TX-SEN/TX-GOV poll drilldowns, race labels, linked joint-model race odds and DDHQ removal, dated news feed, and no script errors.');
