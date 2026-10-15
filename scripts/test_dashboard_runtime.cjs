@@ -187,15 +187,25 @@ async function settle(){
   governor:model.governor.filter(r=>['multi_poll','single_poll'].includes(r.status)).length
  });
  assert.equal(w.eval('jointRaceOddsIntegrity()'),true);
- const moPoll=model.house.find(x=>x.race_code==='MO-02');
- const moOdds=w.eval("jointForecastResult().race_probabilities.find(x=>x.office==='house'&&x.race_code==='MO-02')");
- assert(moPoll&&moOdds);
- assert.match(get('#missouriHouseWatch').textContent,/Missouri · 2nd District/);
- assert.match(get('#missouriHouseWatch').textContent,/Fred Wellman/);
- assert.match(get('#missouriHouseWatch').textContent,/Ann Wagner/);
- assert.match(get('#missouriHouseWatch').textContent,/sponsored/);
- assert(get('#missouriHouseWatch').textContent.includes('D '+moOdds.dem_beats_rep_pct.toFixed(1)+'%'));
- assert.match(get('#missouriWatchAsOf').textContent,/same joint model as Four Endings/);
+ const msPoll=model.senate_all.find(x=>x.race_code==='MS-SEN');
+ const msOdds=w.eval("jointForecastResult().race_probabilities.find(x=>x.office==='senate'&&x.race_code==='MS-SEN')");
+ assert(msPoll&&msOdds);
+ assert.match(get('#mississippiSenateWatch').textContent,/Mississippi · U.S. Senate/);
+ assert.match(get('#mississippiSenateWatch').textContent,/Scott Colom/);
+ assert.match(get('#mississippiSenateWatch').textContent,/Cindy Hyde-Smith/);
+ assert.match(get('#mississippiSenateWatch').textContent,/independent/);
+ assert(get('#mississippiSenateWatch').textContent.includes(
+  (msOdds.dem_beats_rep_pct>=50?'D ':'R ')+
+  (msOdds.dem_beats_rep_pct>=50?msOdds.dem_beats_rep_pct:
+   100-msOdds.dem_beats_rep_pct).toFixed(1)+'%'));
+ assert.match(get('#mississippiWatchAsOf').textContent,/same joint model as Four Endings/);
+ const iaTide=[...get('#senateTideRaces').querySelectorAll('[data-senate-tide]')].find(x=>
+  x.dataset.senateTide==='IA-SEN');
+ assert(iaTide,'Iowa must be in the live Senate tide line');
+ assert.match(iaTide.textContent,/Marist University/);
+ assert.match(iaTide.textContent,/LV D \+3\.0 INCLUDED/);
+ assert.match(iaTide.textContent,/RV D \+7\.0 not double-counted/);
+ assert.match(iaTide.textContent,/combined mean D \+0\.8/);
  const ohMarist=primary.races.find(x=>x.race_code==='OH-SEN').polls.filter(x=>
   x.pollster==='Marist University'&&x.field_end==='2026-09-27');
  assert(ohMarist.some(x=>x.dem===51&&x.rep===43));
@@ -2301,9 +2311,10 @@ async function settle(){
   assert.equal(get('#jointNightCards').querySelectorAll('.joint-value')[i].textContent,value);
  }
  assert.match(get('#jointHomeSummary').textContent,/2 min/);
- const currentMO=w.eval("jointForecastResult().race_probabilities.find(x=>x.office==='house'&&x.race_code==='MO-02').dem_beats_rep_pct");
- assert(get('#missouriHouseWatch').textContent.includes(currentMO.toFixed(1)+'%'),
-  'Missouri must use the same revised joint forecast as House and Four Endings');
+ const currentMS=w.eval("jointForecastResult().race_probabilities.find(x=>x.office==='senate'&&x.race_code==='MS-SEN').dem_beats_rep_pct");
+ assert(get('#mississippiSenateWatch').textContent.includes(
+  (currentMS>=50?currentMS:100-currentMS).toFixed(1)+'%'),
+  'Mississippi must share the revised Senate and Four Endings simulation');
  w.eval("navigateInsightToModel({office:'senate',race:{race_code:'MN-SEN'}})");
  assert.match(get('#modelOddsNumbers').textContent,new RegExp(Math.round(currentMN)+'%'),
   'Visible Minnesota race odds must reflect the new correlated simulation');
