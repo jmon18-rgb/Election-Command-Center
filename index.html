@@ -2749,6 +2749,185 @@ function enLiveRaceEstimate(item){
  const id=enWatchId(item),civic=enCivicErrors[id]?null:enCivicByWatch[id];
  return window.RaceLiveNowcast.estimate(modelRaceOddsData,item,safe,civic);
 }
+
+/* Briefing and election-night desks deliberately share one 2026 reference
+ * watchlist. Source updates may add surprising new races without asking the
+ * user to pin anything. 2024 archive totals NEVER enter this board. */
+let smartBriefExpanded=false,smartNightExpanded=false;
+function smartRaceCode(item){return item.code}
+function smartAutoWatch(){
+ return window.AutomaticRaceDesk?.watch(jointLastResult)||[];
+}
+function enAutoTracked(item){
+ return enModeYear===2026&&Date.now()>=Date.parse('2026-11-03T05:00:00Z')&&
+  smartAutoWatch().some(x=>x.office===item.office&&x.key===item.key);
+}
+function smartModelMap(){
+ return new Map((jointLastResult?.race_probabilities||[]).map(x=>[x.race_code,x]));
+}
+function smartRaceSource(item){
+ if(enModeYear!==2026||Date.now()<Date.parse('2026-11-03T05:00:00Z'))return null;
+ const now=Date.now(),start=Date.parse('2026-11-03T05:00:00Z');
+ const validAt=stamp=>{
+  const t=Date.parse(stamp||'');
+  return Number.isFinite(t)&&t>=start&&t<=now+900000&&now-t<=180*60000;
+ };
+ const id=enWatchId(item),state=item.key.slice(0,2);
+ const civic=!enCivicErrors[id]?enCivicByWatch[id]:null;
+ const civicOK=Boolean(civic&&civic.office===item.office&&civic.key===item.key&&
+  civic.provider==='civicAPI'&&validAt(civic.last_updated));
+ const called=civicOK?window.ElectionNightSignals?.validatedCall(civic,now):null;
+ // Primary Open America feed is state-derived but does NOT contain winner
+ // calls; a source-reported lead is never labeled a race call.
+ const snap=enSupportedStates.has(state)?enOfficeSnapshots[item.office]||
+  (enOffice===item.office?enData:null):null;
+ const primaryOK=Boolean(snap&&snap.year===2026&&!snap.stale&&
+  !enOfficeErrors[item.office]&&!enResumePendingOffices.has(item.office)&&
+  !(enOffice===item.office&&enFetchError)&&validAt(snap.as_of));
+ const race=primaryOK?snap.races?.[item.key]:null;
+ const source=race?.total>0?{
+  votes:race.total,precincts:race.pct_in,asOf:snap.as_of,source:'Open America',
+  d:(race.cands||[]).filter(c=>c.p==='D').reduce((n,c)=>n+c.v,0),
+  r:(race.cands||[]).filter(c=>c.p==='R').reduce((n,c)=>n+c.v,0)
+ }:civicOK&&civic.total>0?{
+  votes:civic.total,precincts:civic.percent_reporting,asOf:civic.last_updated,
+  source:'civicAPI',
+  d:civic.candidates.filter(c=>c.party==='D').reduce((n,c)=>n+c.votes,0),
+  r:civic.candidates.filter(c=>c.party==='R').reduce((n,c)=>n+c.votes,0)
+ }:null;
+ if(!source)return null;
+ const two=source.d+source.r;
+ if(two>0&&source.d>=0&&source.r>=0)source.rawMargin=100*(source.d-source.r)/two;
+ if(called&&['D','R','O'].includes(called.party)){
+  source.calledParty=called.party;
+  source.calledName=called.name;
+  source.callSource='civicAPI';
+  source.asOf=civic.last_updated;
+ }
+ return source;
+}
+function smartReportedExtras(model,existing){
+ if(enModeYear!==2026||Date.now()<Date.parse('2026-11-03T05:00:00Z'))return [];
+ const out=[],known=new Set(existing.map(x=>x.code));
+ for(const office of ['House','Senate','Governor']){
+  const snap=enOfficeSnapshots[office];
+  if(snap?.year!==2026||snap.stale||!snap.races||
+     enOfficeErrors[office]||enResumePendingOffices.has(office))continue;
+  for(const [key,record] of Object.entries(snap.races)){
+   if(!record||record.total<=0)continue;
+   const code=office==='Senate'?key.slice(0,2)+'-SEN':
+    office==='Governor'?key+'-GOV':key;
+   if(known.has(code))continue;
+   const row={office,code,key,tip:null,added:'reported-source'};
+   const live=smartRaceSource(row),m=model.get(code);
+   if(!live)continue;
+   const margin=Math.abs(live.rawMargin??100);
+   if(margin>10&&Math.abs((m?.model_dem_margin_points??0)-live.rawMargin)<8)continue;
+   known.add(code);out.push(row);
+  }
+ }
+ return out;
+}
+function smartRaceRanked(){
+ const api=window.AutomaticRaceDesk;
+ if(!api)return [];
+ const modeled=smartModelMap(),all=smartAutoWatch();
+ all.push(...smartReportedExtras(modeled,all));
+ const now=Date.now();
+ const recentFlip=new Set(enMovements.filter(x=>x.leaderChanged&&
+   !x.withdrawn&&Number.isFinite(Date.parse(x.at))&&
+   now-Date.parse(x.at)<60*60000).map(x=>x.office+'|'+x.key));
+ for(const item of all){
+  const m=modeled.get(item.code),live=smartRaceSource(item);
+  item.model=m;item.live=live;
+  item.priority=api.priority(item,{modelWinPct:m?.dem_beats_rep_pct,
+   live,flipped:recentFlip.has(enWatchId(item)),now});
+ }
+ return all;
+}
+function smartRow(item){
+ const row=elt('div','smart-desk-row'),id=elt('div','smart-desk-identity'),
+   stats=elt('div','smart-desk-detail'),tag=elt('span','smart-desk-state');
+ const a=elt('a','smart-desk-open',item.code);
+ a.href='#electionNight';a.title='Open the election-night results desk for '+item.code;
+ id.append(a);
+ if(item.tip!==null&&item.tip!==undefined)
+  id.append(elt('small','',item.tip+'% reference tipping-point share'));
+ else id.append(elt('small','',item.added==='reported-source'?'Promoted by reported vote count':'Model-uncertainty discovery'));
+ const prior=item.model,live=item.live,priority=item.priority;
+ const modelMargin=Number.isFinite(prior?.model_dem_margin_points)?
+  'Model '+marginText(prior.model_dem_margin_points):'Model estimate pending';
+ if(priority.reporting){
+  const reportedMargin=priority.rawMargin===null?'Two-party margin unavailable':
+   'Reported '+marginText(priority.rawMargin);
+  stats.append(elt('strong','',reportedMargin),
+   elt('small','',(Number.isFinite(priority.precincts)?
+    priority.precincts.toFixed(0)+'% precincts · ':'')+
+    live.votes.toLocaleString('en-US')+' votes · '+priority.source));
+  tag.dataset.state=priority.called?'called':'reporting';
+  tag.textContent=priority.called?'CALL · '+priority.called:
+   priority.why==='Reported vote leader changed'?'LEAD FLIP':'REPORTING';
+  if(priority.called)tag.title=live.callSource+' source reports '+live.calledName+
+   ' as winner; not official certification';
+ }else{
+  stats.append(elt('strong','',modelMargin),elt('small','',priority.why));
+  tag.dataset.state='pending';tag.textContent='WATCH';
+ }
+ row.append(id,stats,tag);
+ return row;
+}
+function smartRaceLane(label,items,expanded,limit){
+ const lane=elt('div','smart-desk-lane'),head=elt('div','smart-desk-lane-head');
+ head.append(elt('strong','',label),elt('span','',items.length+' tracked'));
+ lane.append(head);
+ for(const item of items.slice(0,expanded?items.length:limit))lane.append(smartRow(item));
+ if(!items.length)lane.append(elt('p','empty','Waiting for model coverage or validated sources.'));
+ return lane;
+}
+function renderSmartRaceDesks(){
+ const api=window.AutomaticRaceDesk;
+ if(!api)return;
+ const all=smartRaceRanked();
+ for(const [hostId,expand,deskId] of [
+  ['smartBriefGrid',smartBriefExpanded,'smartBriefDesk'],
+  ['smartNightGrid',smartNightExpanded,'smartNightDesk']]){
+  const host=$('#'+hostId),desk=$('#'+deskId);
+  if(!host||!desk)continue;
+  const isNight=deskId==='smartNightDesk';
+  if(isNight)desk.hidden=enModeYear!==2026;
+  if(isNight&&desk.hidden)continue;
+  const senate=api.sort(all,'Senate'),house=api.sort(all,'House'),
+   governors=api.sort(all,'Governor');
+  host.replaceChildren();
+  host.append(smartRaceLane('SENATE',senate,expand,isNight?7:6),
+    smartRaceLane('HOUSE',house,expand,isNight?9:6));
+  // Governors matter to milestone triggers even when absent from the
+  // screenshot House/Senate tipping-point tables.
+  const g=elt('div','smart-desk-lane smart-governors');
+  const gh=elt('div','smart-desk-lane-head');
+  gh.append(elt('strong','','GOVERNORS & STATEWIDE'),elt('span','',governors.length+' tracked'));
+  g.append(gh);
+  for(const row of governors.slice(0,expand?governors.length:3))g.append(smartRow(row));
+  host.append(g);
+  const note=$('#'+(isNight?'smartNightNote':'smartBriefNote'));
+  if(note)note.textContent=all.length+' automatically followed races (plus 2026 result-driven discoveries) · '+
+   all.filter(x=>x.priority.reporting).length+' current source-reporting races · '+
+   'source-specific 2026 updates only; no historic vote leakage · '+
+   'reference tipping-point percentages are from supplied screenshots, not live Silver or JackStradamus odds.';
+ }
+}
+for(const [buttonId,setter] of [
+ ['smartBriefMore',next=>{smartBriefExpanded=next;renderSmartRaceDesks()}],
+ ['smartNightMore',next=>{smartNightExpanded=next;renderSmartRaceDesks()}]]){
+ const button=$('#'+buttonId);
+ if(button)button.addEventListener('click',()=>{
+  const next=button.getAttribute('aria-expanded')!=='true';
+  button.setAttribute('aria-expanded',String(next));
+  button.textContent=next?'Show fewer races':'Show more races';
+  setter(next);
+ });
+}
+
 function enRenderSourceHealth(){
  const host=$('#enHealthRows'),headline=$('#enHealthHeadline');
  if(!host||!headline)return;
