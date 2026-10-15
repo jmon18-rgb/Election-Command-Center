@@ -614,13 +614,14 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <details class="feed-strip-details"><summary>Details</summary><span id="healthText">Checking data feeds…</span> <span id="lastChecked" class="tiny"></span></details>
 </div><nav class="tabs" aria-label="Dashboard tabs"><button class="tab" data-page="brief" aria-selected="true">Daily briefing</button><button class="tab" data-page="wire" aria-selected="false">Poll Wire</button><button class="tab" data-page="model" aria-selected="false">JackStradamus</button><button class="tab" data-page="integrity" aria-selected="false">Bullshittery Index</button><button class="tab" data-page="electionNight" aria-selected="false">Election Night</button></nav>
 <section id="brief" class="page active">
-<div class="brief-intro"><div><span class="eyebrow">DAILY BRIEFING</span><h2>Today’s tide schedule</h2><p>Start with the numbers. Then see what's new and why it matters.</p></div><div class="brief-date compact-date"><span>Election Day · Nov 3</span><strong id="countdown">—</strong></div></div>
-<div class="sectionhead"><h2>The four endings</h2><span class="tiny">JackStradamus · one correlated model for races and chamber control</span></div>
+<div class="brief-intro"><div><span class="eyebrow">THE DAILY SURF REPORT</span><h2>Today’s tide schedule</h2><p>Four possible endings. One very interesting ocean.</p></div><div class="brief-date compact-date"><span>Election Day · Nov 3</span><strong id="countdown">—</strong></div></div>
+<div class="sectionhead brief-first-title"><h2>The four endings</h2><span class="tiny">JackStradamus · House + Senate</span></div>
 <div class="joint-panel" id="jointHomePanel" aria-label="JackStradamus four outcome probability model">
- <div class="joint-title"><div><span class="label">JACKSTRADAMUS · JOINT CHAMBER BETA</span><h3>Four endings. Our probabilities.</h3></div><span class="joint-tag">EXPERIMENTAL · ASSUMPTION-BASED</span></div>
- <p class="joint-summary" id="jointHomeSummary">Building the 435-House, 35-Senate model from published polling and election history…</p>
+ <div class="joint-title"><div><span class="label">JACKSTRADAMUS · COASTAL OUTLOOK</span><h3>Blue wave watch <span aria-hidden="true">🌊</span></h3></div><span class="joint-tag">EXPERIMENTAL MODEL</span></div>
+ <p class="joint-headline" id="jointHomeHeadline">Checking the surf forecast…</p>
+ <details class="forecast-details"><summary>Forecast details &amp; assumptions</summary><p class="joint-summary" id="jointHomeSummary">Preparing polling and fundamentals…</p></details>
  <div class="four-needle" id="jointHomeNeedle" role="img" aria-label="Four Endings needle awaiting model">
-  <div class="four-needle-top"><strong>FOUR ENDINGS NEEDLE</strong><span>Same correlated forecast · not a race call</span></div>
+  <div class="four-needle-top"><strong>🌊 THE TIDE-O-METER</strong><span>Not an official weather alert</span></div>
   <svg class="four-needle-arc" viewBox="0 0 460 260" aria-hidden="true">
    <path d="M50 218 A180 180 0 0 1 102.7 90.7" stroke="#a95a65"/>
    <path d="M102.7 90.7 A180 180 0 0 1 230 38" stroke="#b2a3c1"/>
@@ -640,39 +641,25 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <details class="joint-audit"><summary>Compare House fundamentals · historical vs presidential</summary><p id="jointHomeShadow" class="joint-note">Checking historically comparable House districts…</p></details>
  <details class="joint-audit" id="jointHomeCorrelationDetails"><summary>How much do Senate races move together? · probability sensitivity</summary><div id="jointHomeCorrelation" class="joint-note">Open to compare a conservative historical covariance sensitivity without changing the forecast.</div></details>
  <details class="joint-audit"><summary>Historical polling-error check · how reliable is this?</summary><p id="jointHomeAudit" class="joint-note">Reading existing historical Senate poll backtest…</p></details>
- <p class="joint-note">Blue Tsunami = Democrats win both chambers AND at least 18 of 20 fixed House/Senate/governor battleground races. Blue Wave = both chambers without that near-sweep. Shrug = split control. Red Dawn = Republicans retain both. These four outcomes are mutually exclusive. Model estimates are not calibrated forecasts.</p>
+ <details class="forecast-details brief-model-key"><summary>What do the four endings mean?</summary><p class="joint-note">Blue Tsunami: D wins both chambers and at least 18 of 20 fixed battlegrounds. Blue Wave: D wins both without the near-sweep. Shrug: split control. Red Dawn: R wins both. Four exclusive outcomes, one uncalibrated correlated model.</p></details>
 </div>
 
 <section class="smart-race-desk" id="smartBriefDesk" aria-label="Automatically tracked 2026 Senate and House races">
-<div class="smart-desk-head"><div><span class="label">AUTOMATIC RACE INTELLIGENCE · 2026</span>
-<h2>Races that could move the needle</h2><p>Preselected from the supplied tipping-point reference; reorders as verified votes and model uncertainty change. No pinning required.</p></div>
-<button type="button" id="smartBriefMore" class="smart-desk-more" aria-expanded="false">Show more races</button></div>
+<div class="smart-desk-head"><div><span class="label">THE PRESSURE POINTS · 2026</span>
+<h2>Where the wave breaks</h2><p>Actual model odds, polling, and races worth watching.</p></div>
+<button type="button" id="smartBriefMore" class="smart-desk-more" aria-expanded="false">All races ↓</button></div>
 <div class="smart-desk-grid" id="smartBriefGrid"><p class="empty">Preparing Senate, House and statewide races…</p></div>
-<p class="smart-desk-note" id="smartBriefNote">Before November 3: reference watch and current JackStradamus estimates only. On election night: validated source-reported votes and calls. Precinct share is not vote share counted.</p></section>
+<details class="smart-selection-method"><summary>Why these races?</summary><p class="smart-desk-note" id="smartBriefNote">Prioritized by competitive odds, current polls, and independently validated election-night reporting. Screenshot tipping-point rankings only seed the broader watchlist; they are not probability inputs.</p></details></section>
 <div class="grid" style="margin-top:16px">
 <div class="card eight featured"><div class="row"><span class="label">National generic ballot · recent polls</span><span class="tag teal">OBSERVED DATA</span></div><div class="featureline"><div><div class="big party-even" id="genericMargin">—</div><p class="detail" id="genericDetail">Awaiting verified polling observations.</p></div><div class="featuredelta"><span class="label">SINCE LAST REFRESH</span><strong id="genericDelta">—</strong></div></div><div class="barlabels"><span>DEMOCRATIC</span><span>REPUBLICAN</span></div><div class="ballotbar"><div id="ballotDem" class="ballotdem"></div><div id="ballotRep" class="ballotrep"></div></div><div class="barvalues"><span id="ballotDemLabel">—</span><span id="ballotRepLabel">—</span></div><div class="rule"></div><div class="row"><span class="tiny" id="genericFresh">Polling feed not yet loaded</span><button class="textlink" type="button" data-jump="races">Explore races →</button></div><p class="methodline">Descriptive polling average, not a prediction of House seats or win probabilities.</p></div>
 </div>
 <div class="sectionhead"><h2>What actually changed</h2><span class="tiny" id="pulseAsOf">Comparing recent model snapshots</span></div>
 <div id="racePulse" class="pulse-grid"><div class="empty">Checking for meaningful new polling evidence…</div></div>
 <p class="pulse-disclaimer">Changes in polling averages can reflect new surveys, weighting or timing—not necessarily a shift in voter opinion. Only current, qualifying observations are shown; older snapshots are compared only with identical candidate matchups.</p>
-<div class="sectionhead"><h2>What's new</h2><span class="tiny" id="freshness">Checking latest update</span></div>
-<div class="grid"><div class="card seven"><div class="row"><span class="label">New polls</span><span class="tiny" id="changesSince">Checking newly observed surveys</span></div><div id="newPolls" class="empty">Checking recent poll postings…</div><button class="textlink" type="button" data-jump="wire">Open full Poll Wire →</button></div>
-<div class="card five"><div class="row"><span class="label">Election developments</span><span class="tag">NEWS LEADS</span></div><p id="newsFeedStatus" class="tiny" role="status">Checking publication date…</p><div id="updates" class="empty">Loading recent election reporting.</div><button class="textlink" type="button" data-jump="integrity">Bullshittery Index →</button></div></div>
-<div class="sectionhead"><h2>The Senate tide line</h2><span class="tiny" id="senateTideAsOf">Watching the races that could change control</span></div>
-<div class="tide-line-panel" aria-label="Key Senate races from the 2026 control forecast">
- <p class="tide-line-intro">The path to Senate control runs through more than one race. Watch the battlegrounds, then the outer edge of a possible wave. All margins and odds below come from our own live polling and correlated model—not another forecaster's odds.</p>
- <div id="senateTideRaces" class="tide-races"><p class="joint-note">Matching Senate polls and model probabilities…</p></div>
- <p class="tide-line-note">SC, GA, FL, LA and MS are wider-wave watches—not required conditions for a Blue Tsunami. Nebraska's Dan Osborn runs as an independent; a model victory for him is not necessarily a Democratic Senate seat.</p>
- </div>
-<div class="sectionhead"><h2>Mississippi Senate watch</h2><span class="tiny" id="mississippiWatchAsOf">MS-SEN · linked Senate forecast</span></div>
- <div class="tide-line-panel" id="mississippiSenatePanel">
-  <p class="tide-line-intro">Scott Colom versus Cindy Hyde-Smith. Mississippi is an emerging wider-wave Senate race worth watching.</p>
-  <div id="mississippiSenateWatch" class="tide-races"><p class="joint-note">Checking Mississippi polling and the joint Senate forecast…</p></div>
-  <p class="tide-line-note">Only one recent independent survey is included. The observed margin and election win probability are different measures. Both are linked to the same Senate and Four Endings simulation.</p>
- </div>
- <div class="sectionhead"><h2>What to watch</h2><span class="tiny">What deserves a closer look?</span></div>
-<div class="card radar-wrap"><div id="jackRadar" class="radar-grid"><div class="empty">Scanning close races, polling blind spots, and election developments…</div></div><p class="methodline">The closest margins, thin polling, and documented election-administration issues.</p></div>
-
+<div class="sectionhead"><h2>On the radar</h2><span class="tiny" id="freshness">Checking latest update</span></div>
+<div class="card brief-news-card"><div class="row"><span class="label">Election developments</span><span class="tag">NEWS LEADS</span></div><p id="newsFeedStatus" class="tiny" role="status">Checking publication date…</p><div id="updates" class="empty">Loading recent election reporting.</div><button class="textlink" type="button" data-jump="integrity">Bullshittery Index →</button></div>
+<details class="brief-poll-log" id="briefPollLog"><summary><strong>The full poll log</strong><span id="changesSince">Checking recent surveys…</span><span class="poll-log-chevron" aria-hidden="true">⌄</span></summary>
+<div id="newPolls" class="empty">Checking recent poll postings…</div><button class="textlink" type="button" data-jump="wire">Open full Poll Wire →</button></details>
 </section>
 
 <section id="wire" class="page" aria-label="Poll Wire">
@@ -693,6 +680,25 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  </div>
 </section>
 <section id="model" class="page">
+<details class="race-workbench" id="senateDeepDive">
+ <summary><strong>Senate deep dive &amp; wider-wave watches</strong><span>Race-by-race polling and model diagnostics</span></summary>
+ <div class="race-workbench-body"><div class="sectionhead"><h2>The Senate tide line</h2><span class="tiny" id="senateTideAsOf">Watching the races that could change control</span></div>
+<div class="tide-line-panel" aria-label="Key Senate races from the 2026 control forecast">
+ <p class="tide-line-intro">The path to Senate control runs through more than one race. Watch the battlegrounds, then the outer edge of a possible wave. All margins and odds below come from our own live polling and correlated model—not another forecaster's odds.</p>
+ <div id="senateTideRaces" class="tide-races"><p class="joint-note">Matching Senate polls and model probabilities…</p></div>
+ <p class="tide-line-note">SC, GA, FL, LA and MS are wider-wave watches—not required conditions for a Blue Tsunami. Nebraska's Dan Osborn runs as an independent; a model victory for him is not necessarily a Democratic Senate seat.</p>
+ </div>
+<div class="sectionhead"><h2>Mississippi Senate watch</h2><span class="tiny" id="mississippiWatchAsOf">MS-SEN · linked Senate forecast</span></div>
+ <div class="tide-line-panel" id="mississippiSenatePanel">
+  <p class="tide-line-intro">Scott Colom versus Cindy Hyde-Smith. Mississippi is an emerging wider-wave Senate race worth watching.</p>
+  <div id="mississippiSenateWatch" class="tide-races"><p class="joint-note">Checking Mississippi polling and the joint Senate forecast…</p></div>
+  <p class="tide-line-note">Only one recent independent survey is included. The observed margin and election win probability are different measures. Both are linked to the same Senate and Four Endings simulation.</p>
+ </div>
+ <div class="sectionhead"><h2>What to watch</h2><span class="tiny">What deserves a closer look?</span></div>
+<div class="card radar-wrap"><div id="jackRadar" class="radar-grid"><div class="empty">Scanning close races, polling blind spots, and election developments…</div></div><p class="methodline">The closest margins, thin polling, and documented election-administration issues.</p></div>
+
+</div>
+</details>
 <details id="raceWorkbench" class="race-workbench">
  <summary><strong>Survey explorer</strong><span>Pollster-by-pollster evidence, sortable race lists and seat-lead tracker</span></summary>
  <div class="race-workbench-body"><div class="sectionhead"><h2>Race intelligence</h2><span class="tiny">Advanced analysis workspace</span></div><div class="grid"><div class="card twelve"><div class="row"><span class="label">Battleground tracker</span><span class="tag teal">POLLING DATA</span></div><div class="big">The races that matter.</div><p class="detail">Browse individual surveys, pollsters, sample sizes, and field dates.</p><div class="chips"><button class="chip active" data-race="Senate">Senate</button><button class="chip" data-race="House">House</button><button class="chip" data-race="Governors">Governors</button></div><div class="statbar"><div class="stat"><small>RACES WITH RECENT POLLS</small><b id="raceCount">—</b></div><div class="stat"><small>NEWEST POLL FIELD DATE</small><b id="raceNewest">—</b></div></div><div class="toolrow"><input id="raceSearch" type="search" placeholder="Filter by state, race, pollster"><select id="raceSort" aria-label="Sort races"><option value="recent">Most recent</option><option value="closest">Closest latest poll</option><option value="count">Most polls</option><option value="state">State A–Z</option></select></div><div class="statusline" id="raceStatus">Loading the latest Senate surveys…</div>
