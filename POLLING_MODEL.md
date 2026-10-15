@@ -1,4 +1,4 @@
-# JackStradamus polling model · v1.4
+# JackStradamus polling model · v1.5
 
 As of October 13, 2026. **What the model currently produces:** poll averages for Senate, House, governor contests, and the national House generic ballot. These are **estimates of what polls are saying now**; they are not calibrated win probabilities or a forecast of seat control.
 
@@ -15,13 +15,13 @@ For an eligible survey, the published weight is:
 - **Partisan sponsorship:** `sponsor_factor=0.5` for either R or D sponsored polls (otherwise 1.0); applies symmetrically regardless of which party leads. A Republican-sponsored poll with a large Democratic lead is **included**, unless some separate professional-quality rule excludes it.
 - **Professional-quality eligibility:** The currently released data excludes ActiVote, which Silver Bulletin said did not meet the scientific-survey standards for its January 2026 database. This is a judgment call that should be revisited as methodological evidence changes. Other unrated firms are **not automatically excluded**.
 
-Within each contest, the model chooses the most widely polled named-candidate matchup (with a freshness tiebreak), then uses **one latest survey per polling firm** over the last 45 days. The upstream importer now retains up to **60 polls per race** (previously 12) over its 65-day source window to avoid arbitrarily dropping pollsters before weighting. That is still a rolling slice, not a historical record. It calculates weighted Democratic and Republican vote shares separately, then displays `D − R`.
+Within each contest, the model chooses the most widely polled named-candidate matchup (with a freshness tiebreak), then uses **one latest survey per polling firm** over the last 45 days. **v1.5 resolves independent same-day waves from one firm deterministically:** latest field-end date first; for ties, LV over RV over adult/unknown populations, then larger survey sample within the same population class. If equally ranked questions/studies disagree in candidate shares, quarantine that firm's wave rather than choose a party-favorable poll or the first input row. Exactly one survey per firm contributes. The excluded studies remain visible in Poll Wire, and each affected modeled race includes a `poll_diagnostics.firm_wave_selection` decision record. **This is a provisional selection rule, not a statistical claim that nominally bigger samples always mean better surveys.** The source does not reliably expose actual release dates; `upstream_posted_date` and `first_seen_at` are not used as substitutes. The upstream importer now retains up to **60 polls per race** (previously 12) over its 65-day source window to avoid arbitrarily dropping pollsters before weighting. That is still a rolling slice, not a historical record. It calculates weighted Democratic and Republican vote shares separately, then displays `D − R`.
 
 For generic ballot, the window is 14 days when multiple firms are available; otherwise up to 30. The observation source is the NYT-derived ElectIndex data, retained in `data/polls.json` and updated by GitHub Actions.
 
 ## How we checked the weights
 
-The live headline is still the v1.3 combination of recency, archived 538 quality, bounded sample size, and **symmetric 0.5 sponsored** weights. v1.4 expands input coverage and adds the following *nonprobabilistic* audit measures:
+The live headline retains the combination of recency, archived 538 quality, bounded sample size, and **symmetric 0.5 sponsored** weights. v1.4 expanded input coverage; v1.5 adds reproducible same-day firm-wave selection. The following *nonprobabilistic* audit measures remain:
 
 - **Effective pollsters** = `(sum of firm weights)^2 / sum(firm weight squared)`. It identifies weight concentration; it is NOT the number of respondents, the probability of a win, or a confidence estimate.
 - **Weight sensitivity** = compare the live model to an equal-firm mean, an independent-firms-only weighted mean, and a faster 14-day recency weighting. The resulting range is a *sensitivity analysis*, NOT a 90% error bar.
@@ -49,7 +49,7 @@ Read [How Silver Bulletin calculates polling averages](https://www.natesilver.ne
 
 **Not yet implemented (important):**
 1. **Estimated signed pollster house effects**, including shrinkage toward a sponsor-specific prior. Silver describes a roughly 1.7-point prior favoring the sponsor; simply reducing a poll's *weight* isn't an actual bias correction. Correctly fitting house effects requires repeat surveys across races and time, independent consensus, and unbiased training targets.
-2. **Likely-voter vs registered-voter correction** because the current source records do not retain reliable population flags.
+2. **Full LV-versus-RV house-effect calibration:** verified supplemental records now retain population flags, with one corroborated LV question preferred over RV for the same survey. However, unknown-population older records remain; there is no historically calibrated cross-population margin correction. Verified same-date LV priority is a selection rule, not a learned adjustment.
 3. **National timeline adjustment** for stale district/state polls as the generic ballot changes.
 4. **LOWESS trend curves**, demographic correlations and state/district baseline partisanship.
 5. **Fundamentals:** incumbency, candidate experience, fundraising, redistricting and quality; rigorously evaluated expert ratings.

@@ -11,6 +11,7 @@ import json
 import math
 import re
 from collections import defaultdict
+from poll_firm_wave_selection import select_latest_firm_waves
 from datetime import date, datetime, timezone
 from pathlib import Path
 
@@ -120,10 +121,10 @@ def estimate(race, today, generic=False):
         recent=[p for p in polls if (today-date.fromisoformat(p["field_end"])).days<=14]
         if len({p["pollster"].casefold() for p in recent})>=2:
             polls=recent
-    latest={}
-    for p in sorted(polls,key=lambda v:v["field_end"],reverse=True):
-        latest.setdefault(p["pollster"].casefold(),p)
-    chosen=list(latest.values())
+    chosen,wave_audit=select_latest_firm_waves(polls)
+    if not chosen:
+        return {"status":"no_recent_qualifying_polls",
+                "poll_diagnostics":{"firm_wave_selection":wave_audit}}
     weights=[weighted(p,today) for p in chosen]
     sw=sum(weights)
     dem=sum(w*p["dem"] for p,w in zip(chosen,weights))/sw
@@ -196,6 +197,7 @@ def estimate(race, today, generic=False):
             "stale_latest_poll":age>14,
             "high_poll_disagreement":spread is not None and spread>=6,
             "model_sensitivity":model_sensitivity,
+            "firm_wave_selection":wave_audit,
             "silver_2026_comparison":silver_alt,
             "different_matchups_excluded":sum(len(v) for k,v in grouped.items() if k!=matchup),
             "interpretation":"Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
@@ -215,7 +217,7 @@ def estimate(race, today, generic=False):
             "quality_multiplier":round(quality_multiplier(p),3),
             "sample_multiplier":round(size_multiplier(p),3),
         } for p in chosen],
-        "method":"Latest wave per firm; 21d recency, capped sample-size factor, 538 historical pollster quality and 0.5 sponsored-poll factor."
+        "method":"Latest wave per firm; same-day tie prefers LV then larger sample; equal-priority conflicting questions quarantined. 21d recency, capped sample-size factor, 538 historical pollster quality and 0.5 sponsored-poll factor."
     }
 
 def build(data):
@@ -257,7 +259,7 @@ def build(data):
         "source_snapshot":data.get("updated_at"),
         "type":"descriptive_polling_estimates",
         "is_election_forecast":False,
-        "method_version":"poll-mean-1.4",
+        "method_version":"poll-mean-1.5",
         "window_days":WINDOW,"half_life_days":HALF_LIFE,
         "sponsored_poll_weight_factor":PARTISAN_FACTOR,
         "pollster_quality_source":QUALITY_DATA["source_url"],
