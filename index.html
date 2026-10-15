@@ -423,6 +423,24 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-rehearsal-nav button:disabled{opacity:.42;cursor:not-allowed}
 .en-rehearsal-panel .en-live-race{background:#2a322f}
 /* Mutually exclusive four-endings probability dashboard. */
+.four-needle{max-width:100%;border:1px solid #39576b;border-radius:12px;background:#112a3b;padding:14px 16px;margin:12px 0 16px;min-width:0}
+.four-needle-top,.four-needle-footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.four-needle-top strong{color:#ebf7fc;font-size:.84rem;letter-spacing:.07em}
+.four-needle-top span,.four-needle-footer{font-size:.74rem;color:#aecad8}
+.four-needle-track{height:25px;position:relative;margin-top:16px;border-radius:16px;border:1px solid #67839a;background:linear-gradient(90deg,#8c3e4b 0 25%,#a0a4af 25% 50%,#3b7cba 50% 75%,#095dba 75% 100%);box-shadow:inset 0 3px 9px #061522}
+.four-needle-arrow{position:absolute;left:50%;top:-10px;width:5px;height:41px;border-radius:3px;background:#fff4b1;box-shadow:0 1px 9px #000c;transform:translateX(-50%);transition:left .65s ease;z-index:1}
+.four-needle-arrow:before{content:'';position:absolute;border-left:9px solid transparent;border-right:9px solid transparent;border-top:9px solid #fff4b1;top:-1px;left:-7px}
+.four-needle-labels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:9px 0 12px;font-weight:800;font-size:clamp(.52rem,.72vw,.7rem);letter-spacing:.025em;gap:3px;text-align:center;color:#dceaf4}
+.four-needle-footer{margin:6px 0 8px;line-height:1.4}
+.four-needle-footer span:first-child{font-weight:750;color:#eaf5ff}
+.four-needle-distribution{display:flex;height:7px;overflow:hidden;border-radius:5px;background:#2b4152}
+.four-needle-distribution span{display:block;min-width:0;transition:width .65s ease}
+.four-needle-distribution span:nth-child(1){background:#a95a65}
+.four-needle-distribution span:nth-child(2){background:#aeb0b7}
+.four-needle-distribution span:nth-child(3){background:#61adf6}
+.four-needle-distribution span:nth-child(4){background:#045ec2}
+@media(prefers-reduced-motion:reduce){.four-needle-arrow,.four-needle-distribution span{transition:none}}
+
 .joint-panel{padding:16px 18px;margin:13px 0 17px;border:1px solid #3e5979;border-radius:13px;background:linear-gradient(150deg,#172a41,#111e31)}
 .joint-title{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
 .joint-title h3{font-size:19px;letter-spacing:-.025em;margin:4px 0 0}
@@ -504,6 +522,13 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <div class="joint-panel" id="jointHomePanel" aria-label="JackStradamus four outcome probability model">
  <div class="joint-title"><div><span class="label">JACKSTRADAMUS · JOINT CHAMBER BETA</span><h3>Four endings. Our probabilities.</h3></div><span class="joint-tag">EXPERIMENTAL · ASSUMPTION-BASED</span></div>
  <p class="joint-summary" id="jointHomeSummary">Building the 435-House, 35-Senate model from published polling and election history…</p>
+ <div class="four-needle" id="jointHomeNeedle" role="img" aria-label="Four Endings needle awaiting model">
+  <div class="four-needle-top"><strong>FOUR ENDINGS NEEDLE</strong><span>Same correlated forecast · not a race call</span></div>
+  <div class="four-needle-track" aria-hidden="true"><div class="four-needle-arrow"></div></div>
+  <div class="four-needle-labels"><span>RED DAWN</span><span>SHRUG</span><span>BLUE WAVE</span><span>BLUE TSUNAMI</span></div>
+  <div class="four-needle-footer"><span>Calculating 2026 scenario probabilities…</span><span>Source pending</span></div>
+  <div class="four-needle-distribution" aria-hidden="true"></div>
+ </div>
  <div class="joint-grid" id="jointHomeCards"><p class="joint-note">Waiting for complete model inputs…</p></div>
  <details class="joint-audit"><summary>Compare House fundamentals · historical vs presidential</summary><p id="jointHomeShadow" class="joint-note">Checking historically comparable House districts…</p></details>
  <details class="joint-audit" id="jointHomeCorrelationDetails"><summary>How much do Senate races move together? · probability sensitivity</summary><div id="jointHomeCorrelation" class="joint-note">Open to compare a conservative historical covariance sensitivity without changing the forecast.</div></details>
@@ -720,6 +745,13 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   <small>Sources: <a href="https://www.thegreenpapers.com/G24/HouseVoteByParty.phtml" target="_blank" rel="noopener noreferrer">2024 House elected winners</a> · <a href="https://www.senate.gov/history/partydiv.htm" target="_blank" rel="noopener noreferrer">Senate party division, 119th Congress</a>.</small>
  </div>
  <p id="jointNightSummary" class="joint-summary">Preparing the joint House and Senate probability model…</p>
+ <div class="four-needle" id="jointNightNeedle" role="img" aria-label="Four Endings needle awaiting 2026 forecast">
+  <div class="four-needle-top"><strong>FOUR ENDINGS NEEDLE</strong><span>Modeled House + Senate · one set of simulation draws</span></div>
+  <div class="four-needle-track" aria-hidden="true"><div class="four-needle-arrow"></div></div>
+  <div class="four-needle-labels"><span>RED DAWN</span><span>SHRUG</span><span>BLUE WAVE</span><span>BLUE TSUNAMI</span></div>
+  <div class="four-needle-footer"><span>Waiting for a coherent joint forecast…</span><span>Source pending</span></div>
+  <div class="four-needle-distribution" aria-hidden="true"></div>
+ </div>
  <div id="jointNightCards" class="joint-grid"><p class="joint-note">Loading seat-level priors…</p></div>
  <details class="joint-audit"><summary>House fundamentals alternatives (research only)</summary><p id="jointNightShadow" class="joint-note">Checking historically comparable House districts…</p></details>
  <details class="joint-audit" id="jointNightCorrelationDetails"><summary>Senate race correlation · impact on control odds (research)</summary><div id="jointNightCorrelation" class="joint-note">Open to inspect shared-error sensitivity without changing published odds.</div></details>
@@ -2789,7 +2821,45 @@ function jointLiveObservations(){
  }
  return observations;
 }
+function jointRenderNeedles(result){
+ const keys=['red_dawn','shrug','blue_wave','blue_tsunami'];
+ const labels=['RED DAWN','SHRUG','BLUE WAVE','BLUE TSUNAMI'];
+ for(const id of ['jointHomeNeedle','jointNightNeedle']){
+  const host=$('#'+id);if(!host)continue;
+  const marker=host.querySelector('.four-needle-arrow');
+  const foot=host.querySelector('.four-needle-footer');
+  const bar=host.querySelector('.four-needle-distribution');
+  if(!result?.probabilities||keys.some(k=>!Number.isFinite(result.probabilities[k]))){
+   host.setAttribute('aria-label','Four Endings forecast is unavailable, no result inferred');
+   foot.firstElementChild.textContent='Awaiting validated probabilities';
+   foot.lastElementChild.textContent='No source forecast';
+   marker.style.left='50%';bar.replaceChildren();
+   continue;
+  }
+  const v=keys.map(k=>Math.max(0,result.probabilities[k]));
+  const total=v.reduce((a,b)=>a+b,0);
+  if(Math.abs(total-100)>.15)throw Error('Needle distribution does not sum to 100%');
+  // Four outcomes are ordinal from R/R to D/D + near-sweep.
+  // This expectation tracks the center of gravity, NOT a probability of a call.
+  const position=(v[1]+2*v[2]+3*v[3])/(3*total)*100;
+  const likely=v.indexOf(Math.max(...v));
+  marker.style.left=Math.max(0,Math.min(100,position)).toFixed(2)+'%';
+  host.setAttribute('aria-label','2026 correlated Four Endings forecast. '+
+   keys.map((k,i)=>labels[i]+' '+v[i].toFixed(1)+' percent').join(', ')+
+   '. Expected scenario pointer '+position.toFixed(1)+' percent along spectrum.');
+  foot.firstElementChild.textContent='Needle tilts '+labels[likely]+
+   ' · '+v[likely].toFixed(1)+'% most likely individual ending';
+  foot.lastElementChild.textContent=result.samples+' linked simulated elections';
+  bar.replaceChildren();
+  for(let i=0;i<4;i++){
+   const span=elt('span','');
+   span.style.width=(100*v[i]/total).toFixed(3)+'%';
+   bar.append(span);
+  }
+ }
+}
 function jointRenderCards(result){
+ jointRenderNeedles(result);
  for(const [id,statusId] of [['jointHomeCards','jointHomeSummary'],
                             ['jointNightCards','jointNightSummary']]){
   const host=$('#'+id),status=$('#'+statusId);
