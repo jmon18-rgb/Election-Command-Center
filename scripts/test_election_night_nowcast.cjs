@@ -81,4 +81,24 @@ const lostParties={...cv,candidates:[{party:'O',votes:120000},{party:'R',votes:8
 assert.equal(model.estimate(priors,ca,null,lostParties,now).mode,'polls_only');
 const civicNoStamp={...cv,last_updated:null};
 assert.equal(model.estimate(priors,ca,null,civicNoStamp,now).mode,'polls_only');
+const calledPriors=structuredClone(priors);
+calledPriors.records[0].provider_called_party='R';
+const calledR=model.estimate(calledPriors,az,validSource,null,now);
+assert.equal(calledR.mode,'source_called');
+assert.equal(calledR.demPct,0,'Provider-reported Republican winner must stay at 0% D');
+assert.equal(calledR.repPct,100);
+assert.equal(calledR.source,'civicAPI');
+assert.match(calledR.explanation,/not official certification/);
+calledPriors.records[0].provider_called_party='D';
+const calledD=model.estimate(calledPriors,az,validSource,null,now);
+assert.equal(calledD.demPct,100,'Provider-reported D winner must stay called');
+assert.equal(calledD.sensitivityLow,100);
+assert.equal(calledD.sensitivityHigh,100);
+calledPriors.records[0].provider_called_party=null;
+assert.equal(model.estimate(calledPriors,az,validSource,null,now).mode,'live_informed',
+ 'Withdrawing provider call must restore the cautious partial-return nowcast');
+assert.equal(model.estimate({...calledPriors,
+ records:calledPriors.records.map((r,i)=>i===0?{...r,provider_called_party:'O'}:r)},
+ az,validSource,null,now).mode,'live_informed',
+ 'Non-D/R independent candidates must not be forced into D/R outcome probabilities');
 console.log('Election Night odds: source provenance, prior/posterior, conservative early returns and uncertainty tests passed');
