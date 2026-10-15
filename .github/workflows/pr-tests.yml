@@ -14,6 +14,8 @@ jobs:
         run: |
           node --check scripts/test_published_dashboard.cjs
           node scripts/test_published_dashboard.cjs --local
+      - name: Test advisory integrity lead triage and no headline-to-incident promotion
+        run: python3 scripts/test_integrity_queue_triage.py
       - name: Keep new polls in the actual polling and forecast inputs
         run: |
           python3 scripts/test_poll_source_reconciliation.py
