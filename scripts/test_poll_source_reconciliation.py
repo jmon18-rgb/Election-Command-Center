@@ -99,6 +99,74 @@ class PollToModelTests(unittest.TestCase):
         self.assertEqual(recon.merge(p,[lv,rv],TODAY)["new_to_model"],0)
         self.assertEqual(len(p["races"][0]["polls"]),3)
 
+    def test_existing_primary_registered_voters_switches_to_likely_once(self):
+        # The first importer carries RV under the SAME poll ID as the LV
+        # question in the supplemental feed. Do not ignore LV or count two polls.
+        p=primary()
+        original=p["races"][0]["polls"][-1]
+        before=model.estimate(p["races"][0],TODAY)["dem_minus_rep"]
+        rv=newer(poll_id="mason-oct07",pollster="Mason-Dixon",
+                 field_end="2026-10-07",question_id="rv-question",
+                 sample_population="rv",dem=47,rep=43)
+        lv=newer(poll_id="mason-oct07",pollster="Mason-Dixon",
+                 field_end="2026-10-07",question_id="lv-question",
+                 sample_population="lv",dem=45,rep=44)
+        self.assertEqual(original["dem"],rv["dem"])
+        report=recon.merge(p,[rv,lv],TODAY,observed_at=AT)
+        self.assertEqual(report["new_to_model"],0)
+        self.assertEqual(report["lv_upgrades"],1)
+        selected=next(x for x in p["races"][0]["polls"]
+                      if x["poll_id"]=="mason-oct07")
+        self.assertEqual(selected["sample_population"],"lv")
+        self.assertEqual(selected["question_id"],"lv-question")
+        self.assertEqual((selected["dem"],selected["rep"]),(45,44))
+        self.assertEqual(len(p["races"][0]["polls"]),2)
+        after=model.estimate(p["races"][0],TODAY)
+        self.assertNotEqual(before,after["dem_minus_rep"])
+        self.assertEqual(after["contributing_pollsters"],2)
+        self.assertEqual(recon.merge(p,[lv,rv],TODAY)["lv_upgrades"],0)
+
+        # The ElectIndex refresh may keep serving RV after an LV update.
+        # The verified LV question must not disappear on the next refresh.
+        lagging=primary()
+        self.assertEqual(recon.carry_forward(p,lagging,TODAY)["lv_upgrades"],1)
+        carried=next(x for x in lagging["races"][0]["polls"]
+                     if x["poll_id"]=="mason-oct07")
+        self.assertEqual((carried["dem"],carried["rep"]),(45,44))
+        self.assertEqual(model.estimate(lagging["races"][0],TODAY)["dem_minus_rep"],
+                         after["dem_minus_rep"])
+
+    def test_unanchored_lv_cannot_overwrite_unrelated_primary_question(self):
+        p=primary()
+        only_lv=newer(poll_id="mason-oct07",pollster="Mason-Dixon",
+                      field_end="2026-10-07",dem=66,rep=20,
+                      sample_population="lv")
+        self.assertEqual(recon.merge(p,[only_lv],TODAY)["lv_upgrades"],0)
+        self.assertEqual(next(x["dem"] for x in p["races"][0]["polls"] if x["poll_id"]=="mason-oct07"),47)
+
+    def test_rv_only_keeps_existing_primary_and_known_rv_can_be_upgraded(self):
+        p=primary()
+        rv=newer(poll_id="mason-oct07",pollster="Mason-Dixon",
+                 field_end="2026-10-07",dem=47,rep=43,
+                 sample_population="rv")
+        self.assertEqual(recon.merge(p,[rv],TODAY)["lv_upgrades"],0)
+        self.assertEqual(next(x["sample_population"] for x in p["races"][0]["polls"] if x["poll_id"]=="mason-oct07"),"rv")
+        lv=newer(poll_id="mason-oct07",pollster="Mason-Dixon",
+                 field_end="2026-10-07",dem=45,rep=44,
+                 sample_population="lv")
+        self.assertEqual(recon.merge(p,[lv],TODAY)["lv_upgrades"],1)
+
+    def test_conflicting_lv_variants_cannot_cherry_pick(self):
+        p=primary()
+        rv=newer(poll_id="mason-oct07",pollster="Mason-Dixon",
+                 field_end="2026-10-07",sample_population="rv",dem=47,rep=43)
+        lv=newer(poll_id="mason-oct07",pollster="Mason-Dixon",
+                 field_end="2026-10-07",sample_population="lv",dem=45,rep=44,
+                 sample_size=718,question_id="lv-one")
+        clash={**lv,"question_id":"lv-two","dem":49,"rep":42}
+        self.assertEqual(recon.merge(p,[rv,lv,clash],TODAY)["lv_upgrades"],0)
+        self.assertEqual(next(x["dem"] for x in p["races"][0]["polls"] if x["poll_id"]=="mason-oct07"),47)
+
     def test_equal_priority_conflicting_answers_are_quarantined(self):
         p=primary()
         left=newer(question_id="one",dem=45,rep=42)
