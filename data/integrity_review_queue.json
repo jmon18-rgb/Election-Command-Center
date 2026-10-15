@@ -1,9 +1,28 @@
 {
-  "updated_at": "2026-10-15T16:38:13.708558Z",
+  "updated_at": "2026-10-15T16:47:04.178184Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "items": [
+    {
+      "id": "b19b9344bb8f2ef0684b",
+      "title": "North Carolina residents who received vague letter questioning eligibility can still vote, officials confirm - Democracy Docket",
+      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOZFdBRExDM1h4cU9uNnhINWNRMkVBRjI1NkUzVFBuYUltUVJ2eG9ybTdnSVVvclNKRXVhODZfVTBZa1RhbEdlUTY3NWJYN3RwbzVYUDZUdGdyYjVLcG9RUi0wVklTZlBRRHVhaHZlYk5aZV9JblF0N2FUUjVYaDJBVGhRZzJkX3drTEI4cV8xU3I5RHN2Zk1DX0lNZl8yQ3cxcXJ1NW1jVlBQOXdwb2N4REZ5eVE2NzJqSnlvalVSY0dydWZJamRvYTg1NGV5XzNKcFhpTE9CQnZqUm1ybTRxX0ZZaEhOUVk?oc=5",
+      "publisher": "Democracy Docket",
+      "published_at": "2026-10-15T16:44:52Z",
+      "detected_at": "2026-10-15T16:47:04.178184Z",
+      "state_hints": [
+        "NC"
+      ],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "3dc109832876092422c8",
       "title": "DOJ sues California over alleged non-citizens on voter rolls - ABC News - Breaking News, Latest News and Videos",

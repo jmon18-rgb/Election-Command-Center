@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T16:38:13.904527Z",
+  "updated_at": "2026-10-15T16:47:04.436111Z",
   "generic_ballot": {
     "summary": {
       "dem": 48.1,
@@ -5100,7 +5100,7 @@
           "rep_name": "Ashley Moody",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-15T16:38:13.904527Z",
+          "first_seen_at": "2026-10-15T16:47:04.436111Z",
           "release_date": null,
           "question_id": "eb4ae581-25d7-43fd-9123-100333d1e19f",
           "sample_population": "lv",
@@ -5339,7 +5339,7 @@
           "dem": 55.4,
           "rep": 44.6,
           "margin": 10.8,
-          "sample_size": 678,
+          "sample_size": 712,
           "partisan_lean": "R",
           "dem_name": "Jon Ossoff",
           "rep_name": "Mike Collins",
@@ -5347,13 +5347,11 @@
           "other_name": null,
           "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
-          "question_id": "bcd4fddd-ab5f-4f28-9aa1-f898b74b34c7",
-          "sample_population": "lv",
-          "upstream_posted_date": "2026-09-25",
+          "upstream_posted_date": null,
           "source_poll_url": "https://www.bigdatapoll.com/blog/peach-state-poll-jon-ossoff-opens-up-lead-over-mike-collins-in-georgia/",
-          "date_provenance": "PollResults ingestion date, NOT public release date",
-          "model_source": "pollresults_secondary_fallback",
-          "lv_selected_over_rv": true
+          "sample_population": "lv",
+          "question_id": "bcd4fddd-ab5f-4f28-9aa1-f898b74b34c7",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
           "poll_id": "0f4bc367-db9c-459a-a5ce-34b7b7b6e9b2",
@@ -15682,7 +15680,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-15T16:38:13.904527Z",
+    "last_attempt_at": "2026-10-15T16:47:04.436111Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15694,8 +15692,8 @@
     "new_polls": [],
     "new_poll_count": 0,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-15T16:38:13.904527Z",
-    "previous_snapshot_at": "2026-10-15T16:31:26.772772Z",
+    "comparison_at": "2026-10-15T16:47:04.436111Z",
+    "previous_snapshot_at": "2026-10-15T16:38:13.904527Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
