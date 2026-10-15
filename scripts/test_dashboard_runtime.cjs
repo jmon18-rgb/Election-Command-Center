@@ -147,11 +147,11 @@ async function settle(){
  assert(beforeOnPage(get('#smartBriefDesk'),get('#newPolls')),
   'Automatic key races should appear before scrolling through polls');
  const frontRows=[...get('#smartBriefGrid').querySelectorAll('a.smart-signal')];
- const senateRows=frontRows.filter(x=>x.dataset.race.endsWith('-SEN'));
- const houseRows=frontRows.filter(x=>/^[A-Z]{2}-[0-9]{2}$/.test(x.dataset.race));
- assert.equal(senateRows.length,35,
+ const frontSenateRows=frontRows.filter(x=>x.dataset.race.endsWith('-SEN'));
+ const frontHouseRows=frontRows.filter(x=>/^[A-Z]{2}-[0-9]{2}$/.test(x.dataset.race));
+ assert.equal(frontSenateRows.length,35,
   'Where the wave breaks must include all 35 Senate ballot contests, not only close races');
- assert(houseRows.length>=50,
+ assert(frontHouseRows.length>=50,
   'Broad House monitoring must include curated districts, not only closely modeled seats');
  assert(frontRows.some(x=>/win chance/.test(x.textContent)),
   'Available linked model odds remain visible without inventing missing probabilities');
@@ -181,7 +181,7 @@ async function settle(){
  get('#smartBriefControls').querySelector('[data-smart-office="House"]').click();
  assert.equal(get('#smartBriefControls').querySelector('[data-smart-office="House"]')
   .getAttribute('aria-pressed'),'true');
- assert.equal(get('#smartBriefGrid').querySelectorAll('a.smart-signal').length,houseRows.length,
+ assert.equal(get('#smartBriefGrid').querySelectorAll('a.smart-signal').length,frontHouseRows.length,
   'House filter shows every tracked House seat including non-close baseline races');
  assert(get('#smartBriefGrid').textContent.includes('NM-02')||
   get('#smartBriefGrid').textContent.includes('PA-10'),
