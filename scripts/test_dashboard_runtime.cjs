@@ -2228,6 +2228,7 @@ async function settle(){
  // A partial publication must not replace the complete previous forecast.
  const formerModelAt=w.eval('jointRaceOddsResult().polling_source_generated_at');
  const formerMN=w.eval("jointRaceOddsResult().records.find(x=>x.race_code==='MN-SEN'&&x.office==='senate').dem_beats_rep_pct");
+ const formerIA=w.eval("jointRaceOddsResult().records.find(x=>x.race_code==='IA-SEN'&&x.office==='senate').dem_beats_rep_pct");
  const formerSenateControl=w.eval('jointForecastResult().senate_dem_control_pct');
  const formerFour=w.eval('jointForecastResult().probabilities');
  const formerFourCards=get('#jointHomeCards').textContent;
@@ -2283,6 +2284,40 @@ async function settle(){
   contributing_firms:mnEstimate.contributing_pollsters,
   independent_firms:mnEstimate.independent_pollsters
  });
+ // Regression specific to Iowa: a new independent LV wave must replace
+ // the on-screen model odds and the same-draw Senate/Four Endings inputs.
+ // Do not special-case 55.3%, a legacy standalone poll-only diagnostic.
+ const iaPrimary=primaryNext.races.find(r=>r.race_code==='IA-SEN');
+ const iaEstimate=estimatesNext.senate_all.find(r=>r.race_code==='IA-SEN');
+ const iaSourceOdds=oddsNext.records.find(r=>r.office==='senate'&&r.race_code==='IA-SEN');
+ assert(iaPrimary&&iaEstimate&&iaSourceOdds,'Iowa must be in all source and forecast inputs');
+ const iaNewPoll={...iaPrimary.polls[0],
+  poll_id:'ia-new-firm-live-refresh-regression',
+  question_id:'ia-new-independent-lv-question',
+  pollster:'New Independent Iowa LV Firm',
+  field_end:'2026-10-14',dem:55,rep:40,margin:15,
+  sample_size:1200,sample_population:'lv',partisan_lean:'',
+  dem_name:iaEstimate.dem_candidate,rep_name:iaEstimate.rep_candidate};
+ iaPrimary.polls.unshift(iaNewPoll);
+ iaPrimary.latest=iaNewPoll;
+ iaPrimary.latest_field_end=iaNewPoll.field_end;
+ iaPrimary.recent_poll_count=iaPrimary.polls.length;
+ iaEstimate.dem_minus_rep=Number((iaEstimate.dem_minus_rep+6).toFixed(2));
+ iaEstimate.dem_pct=Number((iaEstimate.dem_pct+3).toFixed(2));
+ iaEstimate.rep_pct=Number((iaEstimate.rep_pct-3).toFixed(2));
+ iaEstimate.latest_poll_end=iaNewPoll.field_end;
+ iaEstimate.contributing_pollsters++;
+ iaEstimate.independent_pollsters++;
+ iaEstimate.pollsters.unshift({name:iaNewPoll.pollster,field_end:iaNewPoll.field_end,
+  poll_id:iaNewPoll.poll_id,question_id:iaNewPoll.question_id,
+  sample_population:'lv',dem:55,rep:40,sample_size:1200});
+ Object.assign(estimatesNext.states.find(r=>r.race_code==='IA-SEN'),iaEstimate);
+ Object.assign(iaSourceOdds,{
+  dem_minus_rep:iaEstimate.dem_minus_rep,
+  latest_poll_end:iaNewPoll.field_end,
+  contributing_firms:iaEstimate.contributing_pollsters,
+  independent_firms:iaEstimate.independent_pollsters
+ });
  const seatNext=structuredClone(fixtures['seat_universe.json']);
  seatNext.polling_source_snapshot=estimatesNext.generated_at;
  fixtures['seat_universe.json']=seatNext;
@@ -2294,6 +2329,18 @@ async function settle(){
  assert.equal(w.eval('jointRaceOddsResult().senate_prior_mode'),'current_2026');
  assert.equal(w.eval('jointRaceOddsResult().polling_source_generated_at'),estimatesNext.generated_at);
  const currentMN=w.eval("jointRaceOddsResult().records.find(x=>x.race_code==='MN-SEN'&&x.office==='senate').dem_beats_rep_pct");
+ const currentIA=w.eval("jointRaceOddsResult().records.find(x=>x.race_code==='IA-SEN'&&x.office==='senate').dem_beats_rep_pct");
+ assert(currentIA>formerIA+2,
+  'Fresh Iowa LV polling must change the actual JOINT modeled Iowa Senate win probability');
+ const newIowaCard=[...get('#senateTideRaces').querySelectorAll('[data-senate-tide]')]
+  .find(x=>x.dataset.senateTide==='IA-SEN');
+ assert(newIowaCard&&newIowaCard.dataset.forecastSource==='joint-correlated',
+  'Iowa tide card must identify its correlated model source');
+ assert.equal(newIowaCard.dataset.modelPollingAt,estimatesNext.generated_at,
+  'Iowa displayed probability must come from the newly published polling snapshot');
+ const currentIaWinning=currentIA>=50?currentIA:100-currentIA;
+ assert(newIowaCard.textContent.includes((currentIA>=50?'D ':'R ')+currentIaWinning.toFixed(1)+'%'),
+  'Iowa tide win odds must display the UPDATED joint simulation, not old poll-only odds');
  assert(currentMN>formerMN+1,
   'New Minnesota survey must change the JOINT simulated race win probability');
  assert(w.eval('jointForecastResult().senate_dem_control_pct')>=formerSenateControl,
@@ -2319,6 +2366,17 @@ async function settle(){
  w.eval("navigateInsightToModel({office:'senate',race:{race_code:'MN-SEN'}})");
  assert.match(get('#modelOddsNumbers').textContent,new RegExp(Math.round(currentMN)+'%'),
   'Visible Minnesota race odds must reflect the new correlated simulation');
+ w.eval("navigateInsightToModel({office:'senate',race:{race_code:'IA-SEN'}})");
+ assert.match(get('#modelOddsNumbers').textContent,
+  new RegExp(Math.round(currentIA)+'%'),
+  'Iowa detail page must show new correlated forecast odds');
+ const iaDiagnostic=get('#modelOddsReconciliation');
+ assert.match(iaDiagnostic.textContent,/LIVE JOINT FORECAST: D /);
+ const older=iaDiagnostic.querySelector('details.poll-only-diagnostic');
+ assert(older&&!older.open,
+  'Older standalone probability must be collapsed below the live Iowa forecast');
+ assert.match(older.textContent,/NOT the live forecast/,
+  'Do not mistake the standalone poll-only percentage for the current win chance');
  assert.match(get('#changesSince').textContent,/newly indexed since opening/,
   'Refreshing the full forecast should preserve newly indexed survey count');
 

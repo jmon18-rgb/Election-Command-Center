@@ -851,6 +851,12 @@ function renderSenateTideLine(){
     const raw=pollingSnapshot?.races?.find(r=>r.race_code===code)
      ?.polls?.find(p=>p.poll_id===firm?.poll_id&&p.field_end===firm?.field_end);
     if(firm&&raw){
+     // Source-linked Iowa explanation, explicitly distinguish a selected
+     // LV survey from the independently calculated live joint race chance.
+     if(odds&&Number.isFinite(odds.dem_beats_rep_pct)){
+      race.dataset.modelPollingAt=source.generated_at;
+      race.dataset.forecastSource='joint-correlated';
+     }
      let description=firm.name+' '+firm.field_end+' · '+
       String(raw.sample_population||'sample').toUpperCase()+' '+marginText(raw.margin)+
       ' INCLUDED · '+Number(firm.weight_share).toFixed(1)+'% of average';
@@ -1370,9 +1376,21 @@ function renderModelRaceOdds(estimate){
    x.race_code===item.race_code&&x.latest_poll_end===item.latest_poll_end&&
    Math.abs(x.dem_minus_rep-item.dem_minus_rep)<.011):null;
  if(pollOnly&&Number.isFinite(pollOnly.dem_beats_rep_pct)){
-  compare.append(elt('strong','',
+  // Keep historical poll-only research inspectable, but NEVER present
+  // its separately computed percentage as the current race forecast.
+  const forecastLine=elt('strong','',
+   'LIVE JOINT FORECAST: D '+item.dem_beats_rep_pct.toFixed(1)+'%'+
+   ' · polling '+marginText(item.dem_minus_rep)+
+   ' · source recalculated '+new Date(latestSenateEstimates.generated_at)
+    .toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}));
+  const comparison=elt('details','poll-only-diagnostic');
+  comparison.append(elt('summary','','Older standalone poll-only calculation (NOT the live forecast)'));
+  comparison.append(elt('div','source-explain',
    'Poll-only diagnostic: D '+pollOnly.dem_beats_rep_pct.toFixed(1)+'%'+
-   ' · Full joint forecast: D '+item.dem_beats_rep_pct.toFixed(1)+'%'));
+   ' · Full joint forecast: D '+item.dem_beats_rep_pct.toFixed(1)+'%.'+
+   ' This is a separate fixed-width research calculation and will not necessarily'+
+   ' change when the correlated race forecast changes.'));
+  compare.append(forecastLine,comparison);
   const basisRow=item.office==='senate'?
    jointBasis?.senate?.find(x=>x.code===item.race_code):null;
   if(basisRow&&Number.isFinite(basisRow.poll_weight)){
