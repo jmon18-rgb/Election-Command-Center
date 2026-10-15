@@ -2221,9 +2221,9 @@ async function settle(){
  mnEstimate.pollsters.unshift({name:mnNewPoll.pollster,
   field_end:mnNewPoll.field_end,poll_id:mnNewPoll.poll_id});
  Object.assign(estimatesNext.states.find(r=>r.race_code==='MN-SEN'),mnEstimate);
- const mnOdds=oddsNext.records.find(r=>r.office==='senate'&&r.race_code==='MN-SEN');
- assert(mnOdds,'Minnesota probability input must exist');
- Object.assign(mnOdds,{
+ const mnRefreshOdds=oddsNext.records.find(r=>r.office==='senate'&&r.race_code==='MN-SEN');
+ assert(mnRefreshOdds,'Minnesota probability input must exist');
+ Object.assign(mnRefreshOdds,{
   dem_minus_rep:mnEstimate.dem_minus_rep,
   latest_poll_end:mnNewPoll.field_end,
   contributing_firms:mnEstimate.contributing_pollsters,
