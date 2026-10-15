@@ -176,6 +176,17 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 #electionNight .en-fish-settings summary{cursor:pointer;padding:7px 4px}
 #electionNight .en-fish-settings button{padding:7px 10px;border:1px solid #6b98b0;border-radius:8px;background:#244e66;color:#f3f8fa;cursor:pointer}
 #electionNight .en-fish-settings p{max-width:240px;font-size:.75rem;line-height:1.4;margin:5px 0 0}
+#electionNight #jointNightPanel.en-archive-mode>:not(.joint-title):not(#enArchiveOutcome){display:none!important}
+#electionNight .en-archive-outcome{padding:15px 20px;background:linear-gradient(120deg,#351e2a,#1c2032);border-radius:12px;border:1px solid #7e5963}
+#electionNight .en-archive-outcome[hidden]{display:none}
+#electionNight .en-archive-outcome-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;color:#eddfe0;font-size:.76rem;letter-spacing:.07em}
+#electionNight .en-archive-outcome-main{display:flex;align-items:center;gap:15px;margin:14px 0;flex-wrap:wrap}
+#electionNight .en-archive-outcome-main span{font-size:1.35rem;font-weight:950;color:#ffd6da;letter-spacing:.06em}
+#electionNight .en-archive-outcome-main b{font-size:1.06rem}
+#electionNight .en-archive-outcome-seats{display:flex;flex-wrap:wrap;gap:14px;font-size:.94rem;color:#f2eeee}
+#electionNight .en-archive-outcome p{font-size:.8rem;line-height:1.5;color:#d9c9ce;max-width:780px}
+#electionNight .en-archive-outcome small{font-size:.74rem}
+#electionNight .en-archive-outcome a{color:#f3dca6}
 #electionNight .en-results-heading{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin:16px 0 9px;padding:5px 0}
 #electionNight .en-results-heading h3{font-size:clamp(18px,2.4vw,26px);letter-spacing:-.02em;margin:5px 0}
 #electionNight .en-results-heading .en-results-method{font-size:.76rem;color:#aecbda;max-width:240px;text-align:right}
@@ -698,6 +709,16 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 </div>
 <section class="joint-panel joint-night" id="jointNightPanel" aria-label="Live-informed four-ending election probabilities">
  <div class="joint-title"><div><span class="label">JACKSTRADAMUS · JOINT CONTROL</span><h3>Where the night is headed</h3></div><span class="joint-tag">EXPERIMENTAL · NO CALLS</span></div>
+ <div id="enArchiveOutcome" class="en-archive-outcome" hidden role="status">
+  <div class="en-archive-outcome-top"><strong>2024 ACTUAL OUTCOME</strong><span>Retrospective, not a 2024 forecast</span></div>
+  <div class="en-archive-outcome-main"><span>RED DAWN</span><b>Republicans won both chambers</b></div>
+  <div class="en-archive-outcome-seats">
+   <span>U.S. House · <strong>220 R / 215 D</strong></span>
+   <span>U.S. Senate · <strong>53 R / 47 D-caucus</strong></span>
+  </div>
+  <p>Historical election outcome and the resulting 119th Congress. The Four Endings percentages elsewhere are <strong>2026 projections</strong>, never retrospective 2024 odds. The 2024 race table below is from historical reported votes, not a live or time-progressive replay.</p>
+  <small>Sources: <a href="https://www.thegreenpapers.com/G24/HouseVoteByParty.phtml" target="_blank" rel="noopener noreferrer">2024 House elected winners</a> · <a href="https://www.senate.gov/history/partydiv.htm" target="_blank" rel="noopener noreferrer">Senate party division, 119th Congress</a>.</small>
+ </div>
  <p id="jointNightSummary" class="joint-summary">Preparing the joint House and Senate probability model…</p>
  <div id="jointNightCards" class="joint-grid"><p class="joint-note">Loading seat-level priors…</p></div>
  <details class="joint-audit"><summary>House fundamentals alternatives (research only)</summary><p id="jointNightShadow" class="joint-note">Checking historically comparable House districts…</p></details>
@@ -4470,6 +4491,13 @@ function enLeadInfo(r){
 function marginColor(v){return !Number.isFinite(v)||Math.abs(v)<.05?'party-even':v>0?'party-d':'party-r'}
 function enPartyColor(x){return x==='d'?'party-d':x==='r'?'party-r':'party-even'}
 function enRender(){
+ // 2024 recorded history is an outcome, not a historical pre-election model.
+ // Never re-label today's 2026 chamber probabilities as a 2024 forecast.
+ const archive=enModeYear===2024,nightPanel=$('#jointNightPanel');
+ nightPanel.classList.toggle('en-archive-mode',archive);
+ $('#enArchiveOutcome').hidden=!archive;
+ nightPanel.querySelector('.joint-title h3').textContent=archive?
+  '2024 · What actually happened':'Where the night is headed';
  document.querySelectorAll('#enMode2026,#enMode2024').forEach(el=>el.setAttribute('aria-pressed',String((el.id==='enMode2026'?2026:2024)===enModeYear)));
  document.querySelectorAll('#enOfficeHouse,#enOfficeSenate,#enOfficeGovernor').forEach(el=>el.setAttribute('aria-pressed',String((el.id==='enOfficeHouse'?'House':el.id==='enOfficeSenate'?'Senate':'Governor')===enOffice)));
  $('#enRaceHeading').textContent=enOffice+' races';
