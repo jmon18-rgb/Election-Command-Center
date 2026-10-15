@@ -846,7 +846,7 @@ function senatePollingErrorBudget(info){
   const means={house_dem_seats:Math.round(100*houseSeats/samples)/100,
    senate_dem_seats:Math.round(100*senateSeats/samples)/100,
    battleground_dem_wins:Math.round(100*fullBattleground/samples)/100};
-  const h=houseControl/samples,t=senateControl/samples,both=bothCount/samples;
+  const h=houseControl/samples,t=senateControl/samples,both=actualBothControl/samples;
   const binaryVariance=Math.sqrt(h*(1-h)*t*(1-t));
   const pivotRows=(items,tallies)=>items.map((item,i)=>({
    race_code:item.code,pivotal_draws:tallies[i],pivotal_pct:pct(tallies[i])
@@ -903,14 +903,15 @@ function senatePollingErrorBudget(info){
   }:null;
   const controlExplanation=explainControl?{
    house_only_pct:pct(houseOnly),senate_only_pct:pct(senateOnly),
-   both_dem_pct:pct(bothCount),neither_dem_pct:pct(outcomes.red_dawn),
+   both_dem_pct:pct(actualBothControl),
+   neither_dem_pct:pct(samples-houseControl-senateControl+actualBothControl),
    independent_chambers_reference_pct:Math.round(10000*h*t)/100,
    house_senate_control_phi:binaryVariance>0?
     Math.round(10000*(both-h*t)/binaryVariance)/10000:null,
    conditional_senate_given_house_pct:houseControl>0?
-    Math.round(10000*bothCount/houseControl)/100:null,
+    Math.round(10000*actualBothControl/houseControl)/100:null,
    conditional_house_given_senate_pct:senateControl>0?
-    Math.round(10000*bothCount/senateControl)/100:null,
+    Math.round(10000*actualBothControl/senateControl)/100:null,
    senate_pivotal_races:pivotRows(basis.senate,pivotalSenate),
    senate_control_bellwethers:bellwethers,
    top_house_control_bellwethers:houseBellwethers.slice(0,25),
