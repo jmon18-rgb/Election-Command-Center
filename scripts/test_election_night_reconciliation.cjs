@@ -45,8 +45,40 @@ assert.equal(x.senate.primary,0,'Unavailable source keeps historical records but
 x=api.reconcile({...input,now:Date.parse('2026-11-04T07:30:00Z')});
 assert.equal(x.house.reported,0,'Stale sources cannot claim live counts');
 assert.equal(x.providerCalls,0);
+// Cross-provider comparisons are advisory, constrained to near-synchronous
+// similar-completeness exact races. They never duplicate vote coverage/calls.
+const nearPrimary=snapshot('Senate',{'NC':{total:2400,called:false,winner:'',
+ cands:[{n:'D',p:'D',v:1000},{n:'R',p:'R',v:1400}]}});
+const nearCivic={...civic,key:'NC',total:2400,called:'Jane Democrat',
+ candidates:[{name:'Jane Democrat',party:'D',votes:1450},
+  {name:'Other',party:'R',votes:950}]};
+x=api.reconcile({...input,snapshots:{...input.snapshots,Senate:nearPrimary},
+ civic:{'Senate|NC':nearCivic}});
+assert.equal(x.senate.primary,1);
+assert.equal(x.senate.supplemental,0);
+assert.equal(x.providerCalls,0,'Overlapping civic winner never becomes a chamber call');
+assert.equal(x.crossSourceDiscrepancies.length,1);
+assert.equal(x.crossSourceDiscrepancies[0].id,'Senate|NC');
+assert.equal(x.crossSourceDiscrepancies[0].primaryLead,'R');
+assert.equal(x.crossSourceDiscrepancies[0].supplementalLead,'D');
+assert(x.anomalies.some(s=>s.includes('opposite major-party leads Senate|NC')));
+const later={...nearCivic,last_updated:'2026-11-04T01:00:00Z'};
+x=api.reconcile({...input,snapshots:{...input.snapshots,Senate:nearPrimary},
+ civic:{'Senate|NC':later}});
+assert.equal(x.crossSourceDiscrepancies.length,0,
+ 'Reporting timestamps too far apart are not directly comparable');
+const malformed={...civic,total:100,candidates:[{name:'Jane Democrat',party:'D',votes:700}]};
+x=api.reconcile({...input,civic:{'Senate|ME':malformed}});
+assert.equal(x.senate.supplemental,0);
+assert.equal(x.providerCalls,0);
+assert(x.anomalies.some(s=>s.includes('Rejected invalid supplemental Senate|ME')));
+const wrongPrimary=snapshot('Senate',{'NC':{total:100,called:false,winner:'',
+ cands:[{n:'D',p:'D',v:130}]}});
+x=api.reconcile({...input,snapshots:{...input.snapshots,Senate:wrongPrimary}});
+assert.equal(x.senate.primary,0);
+assert(x.anomalies.some(s=>s.includes('Rejected malformed primary Senate|NC')));
 x=api.reconcile({...input,civic:{'Senate|ME':{...civic,key:'NH'}}});
 assert.equal(x.senate.supplemental,0,'Wrong race identity must fail closed');
 assert.throws(()=>api.houseIds({MA:9}),/435/);
 assert.throws(()=>api.senateIds(senate.slice(1)),/Senate universe/);
-console.log('Election-night 435/35 coverage, data freshness, duplicate, stale and provider-call reconciliation PASS');
+console.log('Election-night 435/35 coverage, stale/outage, cross-source discrepancies, malformed votes and call isolation PASS');
