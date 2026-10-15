@@ -15,7 +15,7 @@ const sources={seats:load('seat_universe'),history:load('house_history_2024_stag
  presidential:load('presidential_2024_by_2026_district_staging')};
 const modern=engine.prepare(sources,{senatePriorMode:'current_2026'});
 const valid=new Map(sources.odds.records.map(x=>[x.office+'|'+x.race_code,x]));
-const geo=new Map(sources.geography.districts.map(x=>[x.race_code,x]));
+const geo=new Map(sources.geography.districts.map(x=>[x.race_code_2026,x]));
 const a=modern.assumptions;
 const shared=office=>office==='house'?
  Math.hypot(a.common_national_sigma,a.house_chamber_sigma,a.state_house_sigma):
