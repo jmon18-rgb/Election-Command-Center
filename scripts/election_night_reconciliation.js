@@ -11,6 +11,26 @@
  const THREE_HOURS=180*60000;
  const validTime=(s,now)=>{const n=Date.parse(s||'');
   return Number.isFinite(n)&&n>=START&&n<=now+15*60000&&now-n<=THREE_HOURS;};
+ // Independent, exact-race count validation. The totals may legitimately
+ // exceed listed D/R candidates because write-ins and other parties exist.
+ // They may never be smaller than the sum of listed candidate votes.
+ const votesByParty=(record,kind)=>{
+  const cands=kind==='primary'?record?.cands:record?.candidates;
+  if(!record||!Number.isSafeInteger(record.total)||record.total<0||
+    !Array.isArray(cands)||(record.total>0&&!cands.length))return null;
+  const out={D:0,R:0,O:0};let sum=0;
+  for(const c of cands){
+   const party=kind==='primary'?c?.p:c?.party;
+   const count=kind==='primary'?c?.v:c?.votes;
+   if(!['D','R','O'].includes(party)||!Number.isSafeInteger(count)||count<0)
+    return null;
+   sum+=count;
+   if(!Number.isSafeInteger(sum)||sum>record.total)return null;
+   out[party]+=count;
+  }
+  return out;
+ };
+ const majorLead=t=>t&&t.D!==t.R?(t.D>t.R?'D':'R'):null;
  const houseIds=counts=>{
   const out=[];
   for(const [st,n] of Object.entries(counts||{})){
@@ -34,7 +54,7 @@
     restored=[],supportedStates=[],now=Date.now()}={}){
   const house=houseIds(houseCounts),senate=senateIds(senateSeats);
   const supported=new Set(supportedStates),restore=new Set(restored);
-  const seen=new Set(),calls=[],anomalies=[],rows={};
+  const seen=new Set(),calls=[],anomalies=[],discrepancies=[],rows={};
   let validPrimaryOffices=0;
   for(const [office,ids] of [['House',house],['Senate',senate]]){
    const snap=snapshots[office];
@@ -50,24 +70,47 @@
    for(const key of ids){
     const id=office+'|'+key;
     const raw=acceptable?snap.races?.[key]:null;
-    const validPrimary=Boolean(raw&&Number.isSafeInteger(raw.total)&&raw.total>=0&&
-     raw.called===false&&!raw.winner);
+    const primaryParties=votesByParty(raw,'primary');
+    const validPrimary=Boolean(primaryParties&&raw.called===false&&!raw.winner);
     const primaryAvailable=validPrimary&&supported.has(key.slice(0,2));
+    if(raw&&!validPrimary)anomalies.push('Rejected malformed primary '+id);
     if(validPrimary&&!primaryAvailable)
      anomalies.push(office+': primary outside covered state '+key);
-    // Secondary is a verified individual race, not a national source.
-    // It MUST NEVER overwrite or double count a primary-covered state.
-    const secondary=!supported.has(key.slice(0,2))?civic[id]:null;
-    const civicOK=Boolean(secondary&&secondary.provider==='civicAPI'&&
+    // Evaluate a supplemental record independently so we can compare
+    // overlapping sources, while NEVER adding overlapping votes or calls.
+    const secondary=civic[id]||null;
+    const secondaryParties=votesByParty(secondary,'civic');
+    const civicOK=Boolean(secondary&&secondaryParties&&
+     secondary.provider==='civicAPI'&&
      secondary.office===office&&secondary.key===key&&
-     Number.isSafeInteger(secondary.total)&&secondary.total>=0&&
      validTime(secondary.last_updated,now)&&
      Number.isInteger(secondary.race_id)&&secondary.race_id>0&&
      !errors[id]&&!restore.has(id));
-    if(supported.has(key.slice(0,2))&&civic[id])
-     anomalies.push('Blocked overlapping secondary '+id);
-    const record=primaryAvailable?raw:civicOK?secondary:null;
-    const provider=primaryAvailable?'Open America':civicOK?'civicAPI':null;
+    if(secondary&&!civicOK&&!errors[id]&&!restore.has(id))
+     anomalies.push('Rejected invalid supplemental '+id);
+    const overlapping=supported.has(key.slice(0,2))&&Boolean(secondary);
+    if(overlapping)anomalies.push('Blocked overlapping secondary '+id);
+    if(primaryAvailable&&civicOK){
+     const gap=Math.abs(Date.parse(snap.as_of)-Date.parse(secondary.last_updated));
+     const primaryTwo=primaryParties.D+primaryParties.R;
+     const civicTwo=secondaryParties.D+secondaryParties.R;
+     const comparable=gap<=10*60000&&Math.min(primaryTwo,civicTwo)>=1000&&
+      Math.min(primaryTwo,civicTwo)/Math.max(primaryTwo,civicTwo)>=0.8;
+     const pLead=majorLead(primaryParties),cLead=majorLead(secondaryParties);
+     if(comparable&&pLead&&cLead&&pLead!==cLead){
+      discrepancies.push({id,kind:'OPPOSITE_LEAD_COMPARABLE_REPORTS',
+       primary:'Open America',supplemental:'civicAPI',
+       primaryAsOf:snap.as_of,supplementalAsOf:secondary.last_updated,
+       primaryLead:pLead,supplementalLead:cLead,
+       primaryTwoPartyVotes:primaryTwo,supplementalTwoPartyVotes:civicTwo});
+      anomalies.push('Cross-provider opposite major-party leads '+id);
+     }
+    }
+    // A covered state is exclusively primary-owned in this conservative
+    // version. An outage never silently promotes an untested fallback.
+    const supplementalAvailable=civicOK&&!supported.has(key.slice(0,2));
+    const record=primaryAvailable?raw:supplementalAvailable?secondary:null;
+    const provider=primaryAvailable?'Open America':supplementalAvailable?'civicAPI':null;
     if(record){
      if(seen.has(id))throw Error('Double-counted source race '+id);
      seen.add(id);
@@ -76,7 +119,7 @@
     }
     // civicAPI says "called" only when the candidate is unambiguously
     // present in a fresh exact-race record with positive votes.
-    const called=civicOK&&!primaryAvailable&&
+    const called=supplementalAvailable&&!primaryAvailable&&
      typeof secondary.called==='string'&&secondary.called.trim()&&
      secondary.total>0&&(secondary.candidates||[]).filter(c=>
       c.name===secondary.called&&['D','R','O'].includes(c.party)&&
@@ -98,7 +141,7 @@
    authoritativeCalls:0,
    chambersCalled:false,missingAuthoritativeCallSource:true,
    senateHoldoversInUniverse:65,senateHoldoversVerifiedByCalls:false,
-   anomalies,records:rows
+   anomalies,crossSourceDiscrepancies:discrepancies,records:rows
   });
  }
  return Object.freeze({START,THREE_HOURS,houseIds,senateIds,reconcile});
