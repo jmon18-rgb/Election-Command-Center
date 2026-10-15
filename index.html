@@ -552,6 +552,13 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-milestone-spotlight button{margin:6px 5px}
 @media(prefers-reduced-motion:no-preference){.en-milestone-spotlight:not([hidden]) .en-milestone-art{animation:enCelebration .65s ease-out both}@keyframes enCelebration{from{transform:scale(.7) rotate(-7deg);opacity:.2}to{transform:scale(1) rotate(0);opacity:1}}}
 @media(max-width:600px){.en-milestone-desk{padding:12px}.en-milestone-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.en-milestone-card{padding:8px}.en-milestone-icon{font-size:20px}}
+
+/* Original semicircular four-outcome election-night dial (not NYT artwork). */
+.four-needle-arc{display:block;width:min(100%,500px);max-height:280px;margin:4px auto 0;overflow:visible}
+.four-needle-arc path{fill:none;stroke-width:30;stroke-linecap:butt}
+.four-needle-arc text{font-size:11px;font-weight:850;letter-spacing:1px;fill:#abc7de}
+.four-needle-track{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.four-needle-labels{margin-top:0}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -587,6 +594,16 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <p class="joint-summary" id="jointHomeSummary">Building the 435-House, 35-Senate model from published polling and election history…</p>
  <div class="four-needle" id="jointHomeNeedle" role="img" aria-label="Four Endings needle awaiting model">
   <div class="four-needle-top"><strong>FOUR ENDINGS NEEDLE</strong><span>Same correlated forecast · not a race call</span></div>
+  <svg class="four-needle-arc" viewBox="0 0 460 260" aria-hidden="true">
+   <path d="M50 218 A180 180 0 0 1 102.7 90.7" stroke="#a95a65"/>
+   <path d="M102.7 90.7 A180 180 0 0 1 230 38" stroke="#b2a3c1"/>
+   <path d="M230 38 A180 180 0 0 1 357.3 90.7" stroke="#61adf6"/>
+   <path d="M357.3 90.7 A180 180 0 0 1 410 218" stroke="#045ec2"/>
+   <line class="four-needle-arc-baseline" x1="230" y1="218" x2="230" y2="62" stroke="#d2dde9" stroke-width="3" stroke-dasharray="5 6" style="display:none"/>
+   <line class="four-needle-arc-pointer" x1="230" y1="218" x2="230" y2="62" stroke="#fff0a4" stroke-width="5" stroke-linecap="round"/>
+   <circle cx="230" cy="218" r="11" fill="#fff0a4" stroke="#18334f" stroke-width="4"/>
+   <text x="230" y="253" text-anchor="middle">ELECTION NIGHT · LINKED MODEL</text>
+  </svg>
   <div class="four-needle-track" aria-hidden="true"><div class="four-needle-arrow"></div></div>
   <div class="four-needle-labels"><span>RED DAWN</span><span>SHRUG</span><span>BLUE WAVE</span><span>BLUE TSUNAMI</span></div>
   <div class="four-needle-footer"><span>Calculating 2026 scenario probabilities…</span><span>Source pending</span></div>
@@ -810,6 +827,16 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <p id="jointNightSummary" class="joint-summary">Preparing the joint House and Senate probability model…</p>
  <div class="four-needle" id="jointNightNeedle" role="img" aria-label="Four Endings needle awaiting 2026 forecast">
   <div class="four-needle-top"><strong>FOUR ENDINGS NEEDLE</strong><span>Modeled House + Senate · one set of simulation draws</span></div>
+  <svg class="four-needle-arc" viewBox="0 0 460 260" aria-hidden="true">
+   <path d="M50 218 A180 180 0 0 1 102.7 90.7" stroke="#a95a65"/>
+   <path d="M102.7 90.7 A180 180 0 0 1 230 38" stroke="#b2a3c1"/>
+   <path d="M230 38 A180 180 0 0 1 357.3 90.7" stroke="#61adf6"/>
+   <path d="M357.3 90.7 A180 180 0 0 1 410 218" stroke="#045ec2"/>
+   <line class="four-needle-arc-baseline" x1="230" y1="218" x2="230" y2="62" stroke="#d2dde9" stroke-width="3" stroke-dasharray="5 6" style="display:none"/>
+   <line class="four-needle-arc-pointer" x1="230" y1="218" x2="230" y2="62" stroke="#fff0a4" stroke-width="5" stroke-linecap="round"/>
+   <circle cx="230" cy="218" r="11" fill="#fff0a4" stroke="#18334f" stroke-width="4"/>
+   <text x="230" y="253" text-anchor="middle">ELECTION NIGHT · LINKED MODEL</text>
+  </svg>
   <div class="four-needle-track" aria-hidden="true"><div class="four-needle-arrow"></div></div>
   <div class="four-needle-labels"><span>RED DAWN</span><span>SHRUG</span><span>BLUE WAVE</span><span>BLUE TSUNAMI</span></div>
   <div class="four-needle-footer"><span>Waiting for a coherent joint forecast…</span><span>Source pending</span></div>
@@ -2953,6 +2980,21 @@ function jointRenderNeedles(result){
    liveCount?'RESULTS-INFORMED · '+liveCount+' SOURCE-VALIDATED RACES':
    'AWAITING LIVE RETURNS · POLLING PRIORS';
   marker.style.left=Math.max(0,Math.min(100,position)).toFixed(2)+'%';
+  const angle=Math.PI*(1-Math.max(0,Math.min(100,position))/100);
+  const pointer=host.querySelector('.four-needle-arc-pointer');
+  if(pointer){
+   pointer.setAttribute('x2',(230+151*Math.cos(angle)).toFixed(2));
+   pointer.setAttribute('y2',(218-151*Math.sin(angle)).toFixed(2));
+  }
+  const oldLine=host.querySelector('.four-needle-arc-baseline');
+  if(oldLine){
+   oldLine.style.display=movement?.liveCount?'':'none';
+   if(movement?.liveCount){
+    const oldAngle=Math.PI*(1-Math.max(0,Math.min(100,movement.baseline))/100);
+    oldLine.setAttribute('x2',(230+151*Math.cos(oldAngle)).toFixed(2));
+    oldLine.setAttribute('y2',(218-151*Math.sin(oldAngle)).toFixed(2));
+   }
+  }
   host.setAttribute('aria-label','2026 correlated Four Endings forecast. '+
    keys.map((k,i)=>labels[i]+' '+v[i].toFixed(1)+' percent').join(', ')+
    '. Expected scenario pointer '+position.toFixed(1)+' percent along spectrum. '+
