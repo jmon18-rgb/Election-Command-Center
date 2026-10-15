@@ -58,8 +58,55 @@ def check(primary, model, odds, supplemental=None, *, today=None):
         )
 
     referenced = 0
+    freshest_primary_waves = 0
+    ambiguous_primary_waves = 0
+    excluded = {str(x).casefold() for x in model.get("excluded_pollsters", [])}
     for key, race in modeled.items():
         raw = source.get(race["race_code"], {}).get("polls", [])
+        # Don't merely verify the polls the estimator SAYS it used. Verify
+        # that it didn't silently miss the newest qualifying wave from ANY
+        # primary polling source, including those absent from PollResults.
+        # The matchup/window rules mirror the published eligibility contract,
+        # but this source-to-output inventory is independent of aggregation.
+        latest_by_firm = {}
+        for item in raw:
+            if ((item.get("dem_name"), item.get("rep_name")) !=
+                    (race.get("dem_candidate"), race.get("rep_candidate"))):
+                continue
+            firm = str(item.get("pollster") or "").strip().casefold()
+            if not firm or firm in excluded:
+                continue
+            try:
+                age = (today - date.fromisoformat(item["field_end"])).days
+                if not 0 <= age <= MODEL_WINDOW_DAYS:
+                    continue
+                if not all(isinstance(item.get(x), (int, float)) and
+                           not isinstance(item.get(x), bool)
+                           for x in ("dem", "rep", "margin")):
+                    continue
+            except (TypeError, KeyError, ValueError):
+                continue
+            latest = latest_by_firm.get(firm, [])
+            if not latest or item["field_end"] > latest[0]["field_end"]:
+                latest_by_firm[firm] = [item]
+            elif item["field_end"] == latest[0]["field_end"]:
+                latest.append(item)
+        for firm, latest in latest_by_firm.items():
+            # Independent same-day questions are not necessarily independent
+            # fieldwork. Do not force the estimator to pick a particular one.
+            if len(latest) != 1:
+                ambiguous_primary_waves += 1
+                continue
+            p = latest[0]
+            freshest_primary_waves += 1
+            if not any(q.get("poll_id") == p.get("poll_id") and
+                       q.get("field_end") == p["field_end"] and
+                       str(q.get("name") or "").casefold() == firm
+                       for q in race.get("pollsters", [])):
+                raise ValueError(
+                    f"Newest primary poll omitted from model and joint odds: "
+                    f"{race['race_code']} / {p['pollster']} / {p.get('poll_id')}"
+                )
         for poll in race.get("pollsters", []):
             matching = [
                 p for p in raw
@@ -140,6 +187,8 @@ def check(primary, model, odds, supplemental=None, *, today=None):
     if len(modeled) < 30 or referenced < 30:
         raise ValueError("Missing broad source/model coverage")
     return {"modeled_races": len(modeled), "linked_firm_waves": referenced,
+            "freshest_primary_firm_waves": freshest_primary_waves,
+            "ambiguous_same_day_primary_waves": ambiguous_primary_waves,
             "linked_probability_records": len(probabilities),
             "verified_newest_indexed_waves": newest_indexed,
             "ambiguous_same_day_questions": ambiguous_waves}
