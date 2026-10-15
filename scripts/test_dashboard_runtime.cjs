@@ -112,6 +112,8 @@ async function settle(){
  assert(w.AutomaticRaceDesk?.SEED.length>75,'Automatic Silver-reference race registry must load');
  w.eval(read('scripts/election_night_signals.js'));
  assert.equal(w.ElectionNightSignals?.MILESTONES.length,7);
+ w.eval(read('scripts/election_night_reconciliation.js'));
+ assert(w.ElectionNightReconciliation?.reconcile,'National reconciliation script must load');
  w.eval(read('scripts/election_night_rehearsal.js'));
  assert(w.ElectionNightRehearsal,'Synthetic rehearsal library must load before app');
  w.eval(read('scripts/chamber_control_model.js'));
@@ -1019,6 +1021,10 @@ async function settle(){
  // separately on the real site and this suite validates rendering/contracts.
  w.eval('enModeYear=2024;enOffice="House";enAcceptSource('+JSON.stringify(archival)+')');
  assert.match(get('#enStatus').textContent,/2024 ARCHIVE/);
+ assert(w.ElectionNightReconciliation?.reconcile,
+  'National coverage engine must load before the 2026 results app');
+ assert.match(get('#enCoverageReconciliation').textContent,/2024 historical archive/,
+  '2024 recorded vote totals must never masquerade as 2026 national coverage');
  assert.equal(get('#enDLeads').textContent,'1');
  assert.equal(get('#enRLeads').textContent,'0');
  assert.equal(get('#enCalls').textContent,'Not supplied');

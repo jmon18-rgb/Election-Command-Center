@@ -202,6 +202,8 @@ jobs:
           node --check scripts/election_night_signals.js
           node --check scripts/test_election_night_signals.cjs
           node scripts/test_election_night_signals.cjs
+          node --check scripts/election_night_reconciliation.js
+          node scripts/test_election_night_reconciliation.cjs
       - name: Test isolated five-stage election-night probability rehearsal
         run: |
           node --check scripts/election_night_rehearsal.js
