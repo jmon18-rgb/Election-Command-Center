@@ -48,7 +48,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 12
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -117,7 +117,11 @@ jobs:
           node scripts/test_published_dashboard.cjs --local
       - name: Test new-poll notification filtering and deduplication
         run: python3 scripts/test_poll_alerts.py
+      # SMTP is optional. Transport/auth failure must never block fresh
+      # weighted polls, probability files and Four Endings from publishing.
+      # GitHub Actions logs retain the email failure for review.
       - name: Email newly indexed polls if SMTP credentials are configured
+        continue-on-error: true
         env:
           POLL_GMAIL_ADDRESS: ${{ secrets.POLL_GMAIL_ADDRESS }}
           POLL_GMAIL_APP_PASSWORD: ${{ secrets.POLL_GMAIL_APP_PASSWORD }}
@@ -130,6 +134,10 @@ jobs:
         run: python3 scripts/notify_new_polls.py
       - name: Validate generated polling snapshot still links to the new source
         run: python3 scripts/validate_fresh_poll_sources.py --generated
+      - name: Gate every publish on full model source and poll inclusion integrity
+        run: |
+          python3 scripts/check_publication_health.py
+          python3 scripts/validate_poll_to_odds.py
       - name: Commit updated briefing
         shell: bash
         run: |
