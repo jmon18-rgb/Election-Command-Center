@@ -66,7 +66,7 @@ const results=cases.map(c=>{
   return [code,{dem_side_wins_pct:row.dem_beats_rep_pct,
    conditional_total_margin_sigma_points:row.sigma_points}];
  }));
- const d=sim.blue_both_including_tsunami-baseline.blue_both_including_tsunami;
+ const d=sim.actual_dem_both_control_pct-baseline.actual_dem_both_control_pct;
  assert(Math.abs(sim.house_dem_control_pct-baseline.house_dem_control_pct)<.001,
   'Senate-only error and credit scenarios must not change House win odds');
  assert(sim.race_probabilities.filter(x=>x.office==='house').every((row,i)=>
@@ -83,7 +83,7 @@ const results=cases.map(c=>{
  }
  return {case:c.name,d_house_control_pct:sim.house_dem_control_pct,
   d_senate_control_pct:sim.senate_dem_control_pct,
-  d_both_control_pct:sim.blue_both_including_tsunami,
+  d_both_control_pct:sim.actual_dem_both_control_pct,
   delta_both_from_headline_pp:+d.toFixed(2),
   expected_dem_or_credit_seats:sim.means.senate_dem_seats,
   polled_senate_total_sigma_points: [...c.basis.senate.filter(x=>x.polled)]
