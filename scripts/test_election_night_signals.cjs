@@ -15,6 +15,10 @@ assert(signals.TRACKED.length>=9);
 assert.equal(signals.evaluateMilestones(r,{year:2024,now:at}).every(x=>x.state==='waiting'),true);
 r['Senate|TX']=mk('Senate','TX','Democrat Senate','D');
 assert.equal(find('blexas').state,'warming','Texas one race cannot activate Blexas');
+r['Governor|TX']=mk('Governor','IA','Iowa Governor','D');
+assert.equal(find('blexas').state,'warming',
+ 'A source record from another state cannot satisfy a Texas governor call');
+delete r['Governor|TX'];
 r['Governor|TX']=mk('Governor','TX','Democrat Governor','D');
 assert.equal(find('blexas').state,'earned');
 r['Governor|TX'].called=null;
