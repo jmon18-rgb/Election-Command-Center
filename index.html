@@ -3220,7 +3220,9 @@ async function importPrivateContextFiles(files){
  }
  if(!accepted)throw Error('None of these CSVs contains the Senate or House fundamentals / expert-ratings tables.');
  jointPrivateData=next;jointPrivateSource='manual';
- jointPrivateEnabled=$('#privateContextEnabled').checked;
+ // An explicit import activates the new context, even after Clear disabled
+ // the previous one; the user can still turn it off afterward.
+ jointPrivateEnabled=true;$('#privateContextEnabled').checked=true;
  jointPrivateImportedAt=new Date().toISOString();
  if(status)status.textContent='Imported locally: '+labels.join(', ')+
   (ignored?' · '+ignored+' unrelated Silver output tables ignored':'')+
