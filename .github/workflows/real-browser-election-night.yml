@@ -1,0 +1,26 @@
+name: Real Browser Election Night Smoke
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'scripts/test_real_browser_election_night.mjs'
+      - '.github/workflows/real-browser-election-night.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  chromium:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install pinned Chromium runner
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Exercise actual desktop + iPhone-sized website under simulated upstream source outage
+        run: node scripts/test_real_browser_election_night.mjs
