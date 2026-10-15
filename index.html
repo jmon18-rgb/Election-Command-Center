@@ -4585,6 +4585,7 @@ function enWatchToggle(item){
  * official certification. Keep identifier verification and source isolation. */
 const enCivicBase='https://civicapi.org/api/v2';
 
+const enJohnBrownPortraitUrl='https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/John_Brown_portrait%2C_1859.png/500px-John_Brown_portrait%2C_1859.png';
 const enMilestonePosters=Object.freeze({
  graham:{file:'graham',alt:'Graham cracker splitting over South Carolina under the words LOL, Lindsey’s Seat'},
  blexas:{file:'blexas',alt:'Blue outline of Texas with two stars labelled Senate and Governor'},
@@ -4620,7 +4621,6 @@ function enMilestoneShow(item,demo=false){
  const poster=tsunami?null:enMilestonePosters[item.id];
  const posterNode=$('#enMilestonePoster');
  const realBrown=Boolean(poster?.historicalPortrait);
- const brownSource='https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/John_Brown_portrait%2C_1859.png/500px-John_Brown_portrait%2C_1859.png';
  posterNode.hidden=!poster;
  posterNode.classList.toggle('historic-john-brown',realBrown);
  posterNode.onerror=null;
@@ -4631,7 +4631,7 @@ function enMilestoneShow(item,demo=false){
   posterNode.src='./assets/milestone-blansas.svg';
   posterNode.alt='Historical portrait temporarily unavailable; local Kansas achievement illustration';
  };
- posterNode.src=poster?(realBrown?brownSource:'./assets/milestone-'+poster.file+'.svg'):'';
+ posterNode.src=poster?(realBrown?enJohnBrownPortraitUrl:'./assets/milestone-'+poster.file+'.svg'):'';
  posterNode.alt=poster?.alt||'';
  $('#enMilestoneArt').hidden=Boolean(tsunami||poster);
  $('#enMilestoneArt').textContent=tsunami?'🌊 🌊 🌊':item.icon||'🎉';
@@ -4674,7 +4674,12 @@ function enRenderMilestones(){
   const art=enMilestonePosters[item.id];
   if(art){
    const thumbnail=elt('img','en-milestone-thumb');
-   thumbnail.src='./assets/milestone-'+art.file+'.svg';
+   thumbnail.src=art.historicalPortrait?enJohnBrownPortraitUrl:
+    './assets/milestone-'+art.file+'.svg';
+   if(art.historicalPortrait)thumbnail.onerror=()=>{
+    thumbnail.onerror=null;
+    thumbnail.src='./assets/milestone-blansas.svg';
+   };
    thumbnail.alt='';
    thumbnail.loading='lazy';
    card.append(thumbnail);
