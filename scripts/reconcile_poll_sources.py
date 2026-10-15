@@ -14,6 +14,7 @@ import math
 import re
 from collections import defaultdict
 from urllib.parse import urlparse
+import race_poll_coverage
 
 FALLBACK_SOURCE = "pollresults_secondary_fallback"
 VALID_OFFICES = {"senate", "house", "governor"}
@@ -73,6 +74,10 @@ def selection_key(item):
 def candidate_observations(primary, observations, today):
     """Pick one eligible missing observation per exact race/poll ID."""
     by_race = {r["race_code"]:r for r in primary.get("races", [])}
+    # The validation route must see newly eligible races even BEFORE merge,
+    # so a missing race cannot slip past an eligibility check.
+    for seed in race_poll_coverage.discover(primary, observations, today):
+        by_race[seed["race_code"]] = seed
     groups = defaultdict(list)
     for p in observations:
         if not isinstance(p, dict):
@@ -106,7 +111,13 @@ def merge(primary, observations, today, observed_at=None):
     if not isinstance(today, dt.date):
         raise ValueError("Explicit reconciliation date required")
     report = {"new_to_model":0, "enriched_existing":0,
-              "added_ids":[], "added_by_race":{}}
+              "added_ids":[], "added_by_race":{}, "created_races":[]}
+    # A new House/Senate/governor poll may reach PollResults first, before
+    # ElectIndex has any record of the RACE. Validate its district/seat and
+    # named matchup, then create a source-attributed race for this refresh.
+    for seed in race_poll_coverage.discover(primary, observations, today):
+        primary.setdefault("races", []).append(seed)
+        report["created_races"].append(seed["race_code"])
     by_race = {r["race_code"]:r for r in primary.get("races", [])}
     exact = defaultdict(list)
     for p in observations:
