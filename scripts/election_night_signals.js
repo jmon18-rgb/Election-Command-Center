@@ -94,7 +94,7 @@
     !Array.isArray(row.candidates)||!row.candidates.length||
     row.candidates.length>60)return null;
   const patterns={Senate:/^[A-Z]{2}(?:-special)?$/,
-   House:/^[A-Z]{2}-\\d{2}$/,Governor:/^[A-Z]{2}$/};
+   House:/^[A-Z]{2}-\d{2}$/,Governor:/^[A-Z]{2}$/};
   if(!patterns[row.office]?.test(row.key||''))return null;
   if(row.percent_reporting!==undefined&&row.percent_reporting!==null&&
     (!number(row.percent_reporting)||row.percent_reporting<0||
