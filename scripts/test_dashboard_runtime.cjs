@@ -130,6 +130,32 @@ async function settle(){
  assert(registeredIntervals.some(x=>x.ms===300000),
   'Still-open tab must register reporting/security refresh every five minutes');
  await settle();
+ // Early-election House performance is a narrowly sourced DISTRICT check,
+ // not an inferred county swing or an automatic national needle adjustment.
+ const checkEarly=w.eval(`(()=>{
+  const prevYear=enModeYear,prevOffice=enOffice,prevSnap=enOfficeSnapshots.House;
+  const prevErr=enOfficeErrors.House,prevFetch=enFetchError;
+  enModeYear=2026;enOffice='Senate';enOfficeErrors.House=null;enFetchError=null;
+  enOfficeSnapshots.House={year:2026,office:'House',stale:false,
+   as_of:'2026-11-04T02:55:00Z',races:{'VA-02':{
+    called:false,total:2500,pct_in:91,cands:[{p:'D',v:1400},{p:'R',v:1100}]}}};
+  const valid=enDistrictPerformance({office:'House',key:'VA-02'},
+   Date.parse('2026-11-04T03:10:00Z'));
+  enOfficeSnapshots.House.races['VA-02'].pct_in=12;
+  const partial=enDistrictPerformance({office:'House',key:'VA-02'},
+   Date.parse('2026-11-04T03:10:00Z'));
+  enOfficeSnapshots.House.races['VA-02'].pct_in=91;
+  const stale=enDistrictPerformance({office:'House',key:'VA-02'},
+   Date.parse('2026-11-04T09:10:00Z'));
+  enModeYear=prevYear;enOffice=prevOffice;enOfficeSnapshots.House=prevSnap;
+  enOfficeErrors.House=prevErr;enFetchError=prevFetch;
+  return {valid,partial,stale};
+ })()`);
+ assert(checkEarly.valid&&checkEarly.valid.code==='VA-02'&&
+  checkEarly.valid.actual>0&&Number.isFinite(checkEarly.valid.pollMargin),
+  'A dated, nearly-complete, two-party district should show a local vote-vs-poll check');
+ assert.equal(checkEarly.partial,null,'Early biased precinct mix must not earn a performance check');
+ assert.equal(checkEarly.stale,null,'Stale 2026 results cannot earn a new early vote signal');
  // Four Endings belongs above the polling/news feed and the automatic
  // election-night race desk—not buried after both.
  const beforeOnPage=(earlier,later)=>Boolean(
