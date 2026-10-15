@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-15T09:47:07.095254+00:00",
+  "updated_at": "2026-10-15T10:47:37.670788+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 766,
+      "available_in_source": 767,
       "records_examined": 300
     },
     "house": {
@@ -13,23 +13,99 @@
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 865,
+      "available_in_source": 867,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 277,
-  "newly_injected_into_model": 2,
+  "matched_primary_observations": 279,
+  "newly_injected_into_model": 3,
   "injected_poll_ids": [
     {
-      "race_code": "IA-GOV",
-      "poll_id": "c74bf5bc-f7c1-4c70-8c51-d954ded837fc"
+      "race_code": "CT-GOV",
+      "poll_id": "9563cb79-ba87-4f2f-b5f1-804b098ae88b"
     },
     {
-      "race_code": "IA-SEN",
-      "poll_id": "c74bf5bc-f7c1-4c70-8c51-d954ded837fc"
+      "race_code": "TX-GOV",
+      "poll_id": "7dd88340-2b3d-4bc1-afbc-69f540b9f7fb"
+    },
+    {
+      "race_code": "TX-SEN",
+      "poll_id": "7dd88340-2b3d-4bc1-afbc-69f540b9f7fb"
     }
   ],
   "observations": [
+    {
+      "race_code": "CT-GOV",
+      "race_type": "governor",
+      "state": "CT",
+      "poll_id": "9563cb79-ba87-4f2f-b5f1-804b098ae88b",
+      "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
+      "pollster": "Emerson College",
+      "dem_name": "Ned Lamont",
+      "rep_name": "Ryan Fazio",
+      "dem": 51.39,
+      "rep": 37.79,
+      "margin": 13.6,
+      "field_end": "2026-10-12",
+      "field_start": "2026-10-10",
+      "posted_date": "2026-10-15",
+      "posted_source_datetime": "2026-10-15T06:17:00",
+      "posted_source_time": "10/15/26 06:17",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://emersoncollegepolling.com/connecticut-2026-poll-ned-lamont-holds-13-point-lead-over-ryan-fazio/",
+      "sample_population": "lv",
+      "sample_size": 800,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "TX-SEN",
+      "race_type": "senate",
+      "state": "TX",
+      "poll_id": "7dd88340-2b3d-4bc1-afbc-69f540b9f7fb",
+      "question_id": "9024d7c4-6709-4e03-9a84-a5afdbb4c03f",
+      "pollster": "ActiVote",
+      "dem_name": "James Talarico",
+      "rep_name": "Ken Paxton",
+      "dem": 51.9,
+      "rep": 48.1,
+      "margin": 3.8,
+      "field_end": "2026-10-14",
+      "field_start": "2026-09-30",
+      "posted_date": "2026-10-15",
+      "posted_source_datetime": "2026-10-15T06:04:00",
+      "posted_source_time": "10/15/26 06:04",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.activote.net/polls/2026/tx-u-s-senate/2026-10-14/",
+      "sample_population": "lv",
+      "sample_size": 400,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "TX-GOV",
+      "race_type": "governor",
+      "state": "TX",
+      "poll_id": "7dd88340-2b3d-4bc1-afbc-69f540b9f7fb",
+      "question_id": "88069d28-10c8-4631-9e1e-c33aff7a66a9",
+      "pollster": "ActiVote",
+      "dem_name": "Gina Hinojosa",
+      "rep_name": "Greg Abbott",
+      "dem": 49.1,
+      "rep": 50.9,
+      "margin": -1.8,
+      "field_end": "2026-10-14",
+      "field_start": "2026-09-30",
+      "posted_date": "2026-10-15",
+      "posted_source_datetime": "2026-10-15T06:04:00",
+      "posted_source_time": "10/15/26 06:04",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.activote.net/polls/2026/tx-u-s-senate/2026-10-14/",
+      "sample_population": "lv",
+      "sample_size": 400,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "IA-SEN",
       "race_type": "senate",

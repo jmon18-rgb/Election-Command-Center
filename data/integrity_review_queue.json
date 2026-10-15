@@ -1,9 +1,28 @@
 {
-  "updated_at": "2026-10-15T09:47:06.495098Z",
+  "updated_at": "2026-10-15T10:47:37.150457Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "items": [
+    {
+      "id": "43064419b2b9c1246647",
+      "title": "North Carolina early voting begins, with students targeted by suppression schemes - Democracy Docket",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOV19MWjRJcFl6NnBjMlF4NE1JeUFhUUJtMF9LZ0JjeHVtVUxtanQtVkN6Q0xtS0V6UF9CMXY1bi1DQmRNUVRBcE1iZnNfakxuTHI2SDI2Y1paaTlQOS1ENHA3Y2VWZ1BlTm9YTXBRcEdOV1htS3VDb0JCaG1uTG9FVHF3eC1tbnI3NnJiZEQ3LUc0dFFvWVEzLU9tUDA3V2F5emRPWURleWFrMG1CR3g2Y1ZRaDlPQXgwQkl3cVRNNmVEdms?oc=5",
+      "publisher": "Democracy Docket",
+      "published_at": "2026-10-15T10:10:11Z",
+      "detected_at": "2026-10-15T10:47:37.150457Z",
+      "state_hints": [
+        "NC"
+      ],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "34754dfceb6fd5bddc3d",
       "title": "Three weeks ahead of midterms, New Hampshire ban on using student IDs to obtain a ballot is in limbo - The Dartmouth",
