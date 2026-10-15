@@ -2621,11 +2621,18 @@ function enMilestoneTracked(item){
  return enModeYear===2026&&Date.now()>=Date.parse('2026-11-03T05:00:00Z')&&
   Boolean(window.ElectionNightSignals?.TRACKED.some(x=>x.office===item.office&&x.key===item.key));
 }
+function enEarlySourceTracked(item){
+ return enModeYear===2026&&Date.now()>=Date.parse('2026-11-03T05:00:00Z')&&
+  Boolean(window.ElectionNightEarlySignals?.records.some(x=>{
+   const parsed=enWatchParse(x.code);
+   return parsed?.office===item.office&&parsed.key===item.key;
+  }));
+}
 function enNationalTracked(item){
  const id=enWatchId(item);
  return enWatched.some(x=>enWatchId(x)===id)||
    (enNationalEnabled&&enNationalSeats?.some(x=>enWatchId(x)===id))||
-   enNationalExpanded.has(id)||enMilestoneTracked(item);
+   enNationalExpanded.has(id)||enMilestoneTracked(item)||enEarlySourceTracked(item);
 }
 function enNationalToggle(enabled){
  if(!enNationalSeats)return;
@@ -4314,7 +4321,10 @@ async function enRefreshCivicWatchlist(force=false){
  try{
   const monitored=now>=Date.parse('2026-11-03T05:00:00Z')?
     window.ElectionNightSignals?.TRACKED||[]:[];
-  const all=[...new Map([...enWatched,...enNationalWatchItems(),...monitored]
+  const earlyMonitored=now>=Date.parse('2026-11-03T05:00:00Z')?
+   (window.ElectionNightEarlySignals?.records||[]).map(x=>enWatchParse(x.code))
+    .filter(Boolean):[];
+  const all=[...new Map([...enWatched,...enNationalWatchItems(),...monitored,...earlyMonitored]
     .filter(x=>!enSupportedStates.has(x.key.slice(0,2))||enMilestoneTracked(x))
     .map(x=>[enWatchId(x),x])).values()];
   if(!all.length)return;
