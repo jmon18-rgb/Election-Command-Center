@@ -1535,9 +1535,9 @@ function renderModelOverview(data){
   coverage.textContent=(modelMode==='generic'?
    'Generic ballot is a national polling measure, not a two-candidate win-probability model.':
    oddsReady?
-    covered+' of '+eligible+' currently polled '+modelMode+
+    covered+' of '+eligible+' current polled '+modelMode+
     ' races have experimental D/R win probabilities. Select a race to inspect assumptions.':
-    eligible+' polled races · odds awaiting a matching, validated polling snapshot.')+
+    eligible+' polled races · model odds pending a matching, validated probability snapshot (not 50/50).')+
     geographicCaution;
  }
  const surname=name=>(name||'').trim().split(/\s+/).at(-1)||'—';
