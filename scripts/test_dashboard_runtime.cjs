@@ -36,6 +36,12 @@ virtualConsole.on('jsdomError',(err)=>errors.push(String(err)));
 const dom=new JSDOM(html,{url:'https://election-command-center.local/',runScripts:'outside-only',
   pretendToBeVisual:true,virtualConsole});
 const w=dom.window;
+// This suite runs several minutes of simulated election-night activity.
+// Never let real-time background refresh intervals race against controlled,
+// deterministic fixture injections near the end of the test. Verify the
+// registrations themselves and explicitly invoke both refresh paths below.
+const registeredIntervals=[];
+w.setInterval=(fn,ms)=>{registeredIntervals.push({fn,ms});return registeredIntervals.length;};
 w.scrollTo=()=>{};
 w.Element.prototype.scrollIntoView=function(){};
 w.matchMedia=()=>({matches:false,addListener(){},removeListener(){}});
@@ -96,6 +102,10 @@ async function settle(){
  w.eval(read('scripts/private_senate_fundamentals.js'));
  assert(w.PrivateSenateFundamentals,'Private subscriber CSV parser must load before app');
  w.eval(scripts[0]);
+ assert(registeredIntervals.some(x=>x.ms===120000),
+  'Still-open tab must register polling refresh every two minutes');
+ assert(registeredIntervals.some(x=>x.ms===300000),
+  'Still-open tab must register reporting/security refresh every five minutes');
  await settle();
  // Election-night first-returns checklist must remain descriptive and
  // anchored to real provider statuses (never auto-call races).
