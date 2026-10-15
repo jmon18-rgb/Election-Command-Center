@@ -122,8 +122,10 @@ async function settle(){
   assert.match(node.getAttribute('href'),/^#(wire|model|brief|integrity|electionNight)$/,
    'Source status must link to relevant desk: '+id);
  }
- assert.match(get('#feedResults').textContent,/Nov 3/,
-  'Prior to counting, report that 2026 results are scheduled, not live');
+ // The default pre-election results tab opens 2024 archive for rehearsal.
+ // This is historical, never incorrectly described as a live 2026 feed.
+ assert.match(get('#feedResults').textContent,/2024 archive/,
+  'Before election day, default historical mode must not pretend to be live 2026 results');
  assert.equal(get('#feedResults').dataset.status,'scheduled');
  assert.match(get('#feedModel').textContent,/^Model · /);
  assert.match(get('#feedPolls').textContent,/^Polls · /);
@@ -795,6 +797,10 @@ async function settle(){
  w.fetch=async(url,options)=>{calls.push({url,options});
   return {ok:true,json:async()=>empty2026};};
  get('#enMode2026').click();
+ w.eval('updateFeedGlance()');
+ assert.match(get('#feedResults').textContent,/Nov 3/,
+  'Switching to 2026 before counting must show scheduled source status');
+ assert.equal(get('#feedResults').dataset.status,'scheduled');
  assert.equal(get('#enArchiveOutcome').hidden,true,
   'Returning to 2026 must restore active probability forecast and hide history');
  assert(!get('#jointNightPanel').classList.contains('en-archive-mode'));
