@@ -112,7 +112,7 @@ async function settle(){
  assert.equal(w.eval('jointForecastResult().senate_dem_control_pct'),beforeCorrelationSenate);
  assert.equal(w.eval('jointForecastResult().house_dem_control_pct'),beforeCorrelationHouse);
  get('#jointHomeCorrelationDetails').open=false;
- assert.match(get('#modelEngineTag').textContent,/2026 Senate model · multi-firm error budget v4/);
+ assert.match(get('#modelEngineTag').textContent,/2026 Senate model · poll-depth forecast v5/);
  assert.equal(w.eval('jointRaceOddsResult()').senate_prior_mode,'current_2026');
  assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').poll_weight"),.90);
  // Browser-only CSV ingestion must really update displayed model and restore it
@@ -172,7 +172,7 @@ async function settle(){
  w.ChamberControlModel=freshEngine;
  await w.eval('jointLoadSources()');
  assert.equal(w.eval('jointRaceOddsResult()').senate_prior_mode,'current_2026');
- assert.match(get('#modelEngineTag').textContent,/2026 Senate model · multi-firm error budget v4/);
+ assert.match(get('#modelEngineTag').textContent,/2026 Senate model · poll-depth forecast v5/);
  // Race odds and chamber control derive from ONE correlated Monte Carlo.
  const oddsData=w.eval('jointRaceOddsResult()');
  assert(oddsData,'Linked joint simulation must publish race odds');
