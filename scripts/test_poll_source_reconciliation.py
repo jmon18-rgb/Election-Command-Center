@@ -144,6 +144,67 @@ class PollToModelTests(unittest.TestCase):
         recon.merge(p,[newer()],TODAY,observed_at=AT)
         self.assertEqual(recon.candidate_observations(p,[newer()],TODAY),[])
 
+    def test_untracked_senate_house_and_governor_contests_are_created(self):
+        for code, office in [("NH-SEN", "senate"),
+                             ("MA-03", "house"),
+                             ("NH-GOV", "governor")]:
+            p = primary()
+            poll = newer(race_code=code, race_type=office, state=code[:2],
+                         dem_name="Candidate Alice", rep_name="Candidate Bob",
+                         poll_id="new-"+code, dem=47, rep=42, margin=5)
+            # These races are absent from the primary ElectIndex fixture.
+            self.assertNotIn(code, {r["race_code"] for r in p["races"]})
+            missing = recon.candidate_observations(p, [poll], TODAY)
+            self.assertEqual(len(missing), 1, code)
+            report = recon.merge(p, [poll], TODAY, observed_at=AT)
+            self.assertEqual(report["created_races"], [code])
+            self.assertEqual(report["new_to_model"], 1)
+            row = next(r for r in p["races"] if r["race_code"] == code)
+            self.assertEqual(row["latest"]["poll_id"], "new-"+code)
+            self.assertEqual(row["model_race_source"], "pollresults_bootstrap")
+            estimate = model.estimate(row, TODAY)
+            self.assertEqual(estimate["status"], "single_poll")
+            self.assertAlmostEqual(estimate["dem_minus_rep"], 5)
+            # Next primary refresh may still omit the whole race. No regression:
+            lagging = primary()
+            carried = recon.carry_forward(p, lagging, TODAY)
+            self.assertEqual(carried["created_races"], [code])
+            self.assertEqual(carried["new_to_model"], 1)
+            self.assertEqual(next(r for r in lagging["races"] if
+                r["race_code"] == code)["latest"]["poll_id"], "new-"+code)
+
+    def test_unknown_race_rejects_invalid_seat_and_conflicting_matchups(self):
+        p = primary()
+        wrong = newer(race_code="MA-99", race_type="house",
+                      dem_name="Candidate Alice", rep_name="Candidate Bob")
+        self.assertEqual(recon.merge(p, [wrong], TODAY)["created_races"], [])
+        self.assertFalse(recon.candidate_observations(p, [wrong], TODAY))
+        first = newer(race_code="MA-03", race_type="house",
+                      dem_name="Candidate Alice", rep_name="Candidate Bob")
+        competing = newer(race_code="MA-03", race_type="house",
+                          dem_name="Candidate Carol", rep_name="Candidate Dan",
+                          poll_id="second", question_id="different")
+        self.assertEqual(recon.merge(p, [first, competing], TODAY)["created_races"], [])
+        self.assertNotIn("MA-03", {r["race_code"] for r in p["races"]})
+
+    def test_bootstrapped_race_deduplicates_lv_rv_and_provider_catch_up(self):
+        p = primary()
+        poll = newer(race_code="NH-SEN", race_type="senate", state="NH",
+                     dem_name="Candidate Alice", rep_name="Candidate Bob")
+        rv = dict(poll, question_id="rv", sample_population="rv",
+                  dem=46, rep=43, margin=3)
+        report = recon.merge(p, [rv, poll], TODAY)
+        self.assertEqual(report["created_races"], ["NH-SEN"])
+        self.assertEqual(report["new_to_model"], 1)
+        item = next(r for r in p["races"] if r["race_code"] == "NH-SEN")
+        self.assertEqual(item["polls"][0]["sample_population"], "lv")
+        # The primary now catches up. Same poll ID cannot be double counted.
+        caught_up = primary()
+        caught_up["races"].append(copy.deepcopy(item))
+        self.assertEqual(recon.carry_forward(p, caught_up, TODAY)["new_to_model"], 0)
+        self.assertEqual(len(next(r for r in caught_up["races"]
+            if r["race_code"] == "NH-SEN")["polls"]), 1)
+
     def test_later_out_of_window_secondary_is_pruned(self):
         p=primary()
         recon.merge(p,[newer()],TODAY)

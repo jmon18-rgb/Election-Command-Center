@@ -101,6 +101,23 @@ class PollChainTests(unittest.TestCase):
                        today=__import__("datetime").date(2026, 10, 14))
         self.assertEqual(result["freshest_primary_firm_waves"], 32)
 
+    def test_whole_qualifying_race_cannot_disappear_from_both_model_and_odds(self):
+        primary, model, odds = fixture()
+        # This simulates an accidentally skipped NEW House race, when both
+        # generated tables omit it and thus seem mutually consistent.
+        model["house"] = [r for r in model["house"] if r["race_code"] != "TX-31"]
+        odds["records"] = [r for r in odds["records"] if r["race_code"] != "TX-31"]
+        with self.assertRaisesRegex(ValueError, "absent from BOTH model and odds"):
+            check(primary, model, odds, today=__import__("datetime").date(2026, 10, 14))
+
+    def test_unpolled_older_race_does_not_invent_a_probability(self):
+        primary, model, odds = fixture()
+        model["house"] = [r for r in model["house"] if r["race_code"] != "TX-31"]
+        odds["records"] = [r for r in odds["records"] if r["race_code"] != "TX-31"]
+        primary["races"][-1]["polls"][0]["field_end"] = "2026-07-01"
+        result = check(primary, model, odds, today=__import__("datetime").date(2026, 10, 14))
+        self.assertEqual(result["qualifying_source_races"], 31)
+
     def test_old_probability_snapshot_blocks_publication(self):
         primary, model, odds = fixture()
         odds["polling_source_generated_at"] = "2026-10-13T17:00:00Z"
