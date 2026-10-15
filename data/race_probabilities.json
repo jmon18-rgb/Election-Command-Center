@@ -1,9 +1,9 @@
 {
   "schema_version": "experimental-race-odds-v1",
   "status": "experimental_poll_margin_probability_not_chamber_forecast",
-  "generated_at": "2026-10-15T15:48:54.206772+00:00",
-  "polling_source_generated_at": "2026-10-15T15:48:54.041494Z",
-  "polling_source_snapshot": "2026-10-15T15:48:49.492541Z",
+  "generated_at": "2026-10-15T16:05:48.343696+00:00",
+  "polling_source_generated_at": "2026-10-15T16:05:48.219155Z",
+  "polling_source_snapshot": "2026-10-15T16:05:43.071357Z",
   "historical_senate_elections": 3,
   "historical_senate_races": 42,
   "senate_baseline_rmse_points": 5.633,
@@ -16,7 +16,7 @@
   "can_infer_blue_tsunami": false,
   "number_of_races_by_office": {
     "senate": 25,
-    "house": 61,
+    "house": 63,
     "governor": 29
   },
   "records": [
@@ -877,6 +877,21 @@
     },
     {
       "office": "house",
+      "race_code": "NM-01",
+      "label": "New Mexico 01",
+      "dem_minus_rep": 18.0,
+      "contributing_firms": 1,
+      "independent_firms": 1,
+      "latest_poll_end": "2026-10-09",
+      "sigma_points": 10.125,
+      "uncertainty_multiplier": 1.35,
+      "dem_beats_rep_pct": 96.23,
+      "rep_beats_dem_pct": 3.77,
+      "tight_error_dem_pct": 99.11,
+      "wide_error_dem_pct": 92.25
+    },
+    {
+      "office": "house",
       "race_code": "NM-02",
       "label": "New Mexico 02",
       "dem_minus_rep": 3.73,
@@ -889,6 +904,21 @@
       "rep_beats_dem_pct": 33.67,
       "tight_error_dem_pct": 71.29,
       "wide_error_dem_pct": 63.2
+    },
+    {
+      "office": "house",
+      "race_code": "NM-03",
+      "label": "New Mexico 03",
+      "dem_minus_rep": 14.0,
+      "contributing_firms": 1,
+      "independent_firms": 1,
+      "latest_poll_end": "2026-10-09",
+      "sigma_points": 10.125,
+      "uncertainty_multiplier": 1.35,
+      "dem_beats_rep_pct": 91.66,
+      "rep_beats_dem_pct": 8.34,
+      "tight_error_dem_pct": 96.74,
+      "wide_error_dem_pct": 86.57
     },
     {
       "office": "house",

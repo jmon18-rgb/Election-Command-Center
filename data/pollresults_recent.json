@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T15:48:49.776677+00:00",
+  "updated_at": "2026-10-15T16:05:43.852487+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -18,8 +18,17 @@
     }
   },
   "matched_primary_observations": 283,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 2,
+  "injected_poll_ids": [
+    {
+      "race_code": "NM-01",
+      "poll_id": "ec82f919-7670-441e-90f0-e9a83b39b77d"
+    },
+    {
+      "race_code": "NM-03",
+      "poll_id": "ec82f919-7670-441e-90f0-e9a83b39b77d"
+    }
+  ],
   "observations": [
     {
       "race_code": "NY-GOV",
@@ -1386,6 +1395,54 @@
       "source_url": "https://www.abqjournal.com/news/journal-poll-haaland-maintains-lead-over-hull-as-new-mexicos-race-for-governor-nears-homestretch/3139307",
       "sample_population": "lv",
       "sample_size": 1125,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "NM-03",
+      "race_type": "house",
+      "state": "NM",
+      "poll_id": "ec82f919-7670-441e-90f0-e9a83b39b77d",
+      "question_id": "2226a9ad-2977-4df1-8751-ef03743692ca",
+      "pollster": "Research & Polling Inc.",
+      "dem_name": "Teresa Leger Fernandez",
+      "rep_name": "Martin Ruben Zamora",
+      "dem": 53.0,
+      "rep": 39.0,
+      "margin": 14.0,
+      "field_end": "2026-10-09",
+      "field_start": "2026-10-01",
+      "posted_date": "2026-10-11",
+      "posted_source_datetime": "2026-10-11T10:45:00",
+      "posted_source_time": "10/11/26 10:45",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.abqjournal.com/news/journal-poll-haaland-maintains-lead-over-hull-as-new-mexicos-race-for-governor-nears-homestretch/3139307",
+      "sample_population": "lv",
+      "sample_size": 362,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "NM-01",
+      "race_type": "house",
+      "state": "NM",
+      "poll_id": "ec82f919-7670-441e-90f0-e9a83b39b77d",
+      "question_id": "76fea066-df4b-40c7-ae7d-30d5c8ce0dea",
+      "pollster": "Research & Polling Inc.",
+      "dem_name": "Melanie Ann Stansbury",
+      "rep_name": "Ndidiamaka Okpareke",
+      "dem": 53.0,
+      "rep": 35.0,
+      "margin": 18.0,
+      "field_end": "2026-10-09",
+      "field_start": "2026-10-01",
+      "posted_date": "2026-10-11",
+      "posted_source_datetime": "2026-10-11T10:45:00",
+      "posted_source_time": "10/11/26 10:45",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.abqjournal.com/news/journal-poll-haaland-maintains-lead-over-hull-as-new-mexicos-race-for-governor-nears-homestretch/3139307",
+      "sample_population": "lv",
+      "sample_size": 380,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
