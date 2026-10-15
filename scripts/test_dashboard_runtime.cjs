@@ -21,13 +21,13 @@ assert.match(mobileHeroCSS,/background-position:center,center top,center;/,
  'Keep the surfer image anchored at the top while copy remains at the bottom');
 
 const scripts=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(x=>x[1]);
-assert.match(html,/<script src="\.\/scripts\/civicapi_nh_adapter\.js"><\/script>/,
+assert.match(html,/<script src="\.\/scripts\/civicapi_nh_adapter\.js\?v=[0-9a-f]{12}"><\/script>/,
  'NH civicAPI adapter must load on GitHub Pages before the main application');
-assert.match(html,/<script src="\.\/scripts\/civicapi_nh_governor_adapter\.js"><\/script>/,
+assert.match(html,/<script src="\.\/scripts\/civicapi_nh_governor_adapter\.js\?v=[0-9a-f]{12}"><\/script>/,
  'NH governor adapter must load before the election-night application');
-assert.match(html,/<script src="\.\/scripts\/civicapi_state_batch\.js"><\/script>/,
+assert.match(html,/<script src="\.\/scripts\/civicapi_state_batch\.js\?v=[0-9a-f]{12}"><\/script>/,
  'Four-state supplemental provider module must load before the application');
-assert.match(html,/<script src="\.\/scripts\/chamber_control_model\.js\?model=senate-horizon-error-[a-zA-Z0-9-]+"><\/script>/,
+assert.match(html,/<script src="\.\/scripts\/chamber_control_model\.js\?v=[0-9a-f]{12}"><\/script>/,
  'Version-pin the Senate engine: uncached index must never reuse the obsolete 2020 candidate model');
 assert.equal(scripts.length,1,'Expected exactly one live inline application script');
 const errors=[];
