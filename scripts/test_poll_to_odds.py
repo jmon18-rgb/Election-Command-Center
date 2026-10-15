@@ -21,7 +21,7 @@ def fixture():
             "poll_id": f"old-{number}", "pollster": "SurveyUSA",
             "field_end": "2026-10-07", "dem_name": "Peggy Flanagan" if number == 0 else "Candidate D",
             "rep_name": "Michele Tafoya" if number == 0 else "Candidate R",
-            "dem": 48, "rep": 48,
+            "dem": 48, "rep": 48, "margin": 0,
         }
         raw.append({"race_code": code, "race_type": office, "polls": [source_poll]})
         modeled.append({
@@ -51,7 +51,7 @@ def newer():
         "poll_id": "new-mn-surveyusa", "pollster": "SurveyUSA",
         "field_end": "2026-10-12",
         "dem_name": "Peggy Flanagan", "rep_name": "Michele Tafoya",
-        "dem": 45, "rep": 42
+        "dem": 45, "rep": 42, "margin": 3
     }
 
 
