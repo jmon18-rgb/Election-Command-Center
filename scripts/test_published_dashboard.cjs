@@ -60,11 +60,14 @@ async function main(){
   });
  check('real index and live feature slots',()=>{
   for(const id of ['jointHomeCards','jointNightCards','modelBoard','mississippiSenateWatch',
-    'senateTideRaces','enRaceList','newPolls','wireResults']){
+    'senateTideRaces','enRaceList','newPolls','wireResults','newsFeedStatus',
+    'integrityFeedStatus','bullScoreStates','integrityQueue']){
    assert(html.includes('id="'+id+'"'),'Missing interactive site slot '+id);
   }
   assert(html.includes('function refreshLivePollSnapshots()'));
   assert(html.includes('renderMississippiSenateWatch()'));
+  assert(html.includes('function refreshCommandCenterFeeds()'));
+  assert(html.includes('setInterval(()=>{void refreshCommandCenterFeeds()},COMMAND_NEWS_REFRESH_MS)'));
   assert(html.includes('setInterval(()=>{void refreshLivePollSnapshots()},2*60*1000)'));
  });
  const refs=[...html.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["']/g)].map(x=>x[1]);
@@ -90,6 +93,36 @@ async function main(){
   [name,JSON.parse(await load('data/'+name+'.json'))])));
  const primary=docs.polls,polling=docs.polling_estimates,odds=docs.race_probabilities;
  const seats=docs.seat_universe;
+ const [briefing,queue,impact]=await Promise.all(
+  ['briefing','integrity_review_queue','integrity_impact'].map(async n=>
+   JSON.parse(await load('data/'+n+'.json'))));
+ check('news and election-integrity feeds are present, sourced, recent and distinct',()=>{
+  assert(Array.isArray(briefing.updates)&&briefing.updates.length>0,
+   'Election news missing (empty collector output)');
+  assert(Array.isArray(briefing.security)&&briefing.security.length>0,
+   'Election security news missing');
+  assert(briefing.pipeline?.successful_queries>0,
+   'No successful election news source searches');
+  assert(briefing.updates.every(x=>x.title&&x.url?.startsWith('https://')&&x.published_at));
+  assert(briefing.security.every(x=>x.title&&x.url?.startsWith('https://')&&x.published_at));
+  assert(Array.isArray(queue.items)&&queue.items.length>0,
+   'Election integrity news leads never reached review queue');
+  assert(queue.status==='leads_only_not_verified_incidents');
+  assert(Array.isArray(impact.incidents)&&impact.incidents.length>0,
+   'Curated voter-access evidence ledger is missing');
+  assert(impact.incidents.every(x=>x.id&&x.state&&x.verification_status&&
+   Array.isArray(x.sources)&&x.sources.some(src=>src.url?.startsWith('https://'))));
+  assert(impact.incidents.every(x=>x.verification_status!=='unverified_report'||
+   x.adverse_scenario?.probability_of_scenario==null),
+   'Unverified headline must never become a quantified impact forecast');
+  if(remote){
+   for(const [name,at] of [['news',briefing.updated_at],['integrity leads',queue.updated_at]]){
+    const age=Date.now()-Date.parse(at);
+    assert(Number.isFinite(age)&&age>=-15*60000&&age<8*3600000,
+      'Deployed '+name+' feed has stopped updating: '+at);
+   }
+  }
+ });
  check('hourly source health and complete matching publication',()=>{
   assert.equal(primary.health?.status,'ok',JSON.stringify(primary.health?.errors));
   assert(primary.health.successful_sections.includes('races'));
@@ -227,6 +260,10 @@ async function main(){
   checks,source_at:polling.generated_at,primary_races:primary.races.length,
   modeled_poll_races:byEstimate.size,simulated_total:result.race_probabilities.length,
   four_endings:result.probabilities,iowa_forecast_lineage:iaTrace,
+  news_at:briefing.updated_at,news_stories:briefing.updates.length,
+  integrity_news_stories:briefing.security.length,
+  security_leads_at:queue.updated_at,security_leads:queue.items.length,
+  curated_incident_review_at:impact.updated_at,curated_incidents:impact.incidents.length,
   site:remote?site:null},null,2));
 }
 main().catch(e=>{console.error('PRODUCTION DASHBOARD SMOKE FAILED',e.stack||e);process.exitCode=1});
