@@ -147,7 +147,8 @@ async function settle(){
  const initialWatch=w.eval('smartAutoWatch()');
  assert(initialWatch.some(x=>x.code==='OH-SEN'&&x.key==='OH-special'));
  assert(initialWatch.some(x=>x.code==='AZ-06'&&x.office==='House'));
- assert(!w.eval("enWatched.some(x=>x.key==='PA-10')"),
+ assert(!(JSON.parse(w.localStorage.getItem('bluewaves_election_watch_2026_v1')||'[]'))
+  .some(x=>x.key==='PA-10'),
   'Auto-watch must not overwrite the personal pinned list');
  get('#smartBriefMore').click();
  assert.equal(get('#smartBriefMore').getAttribute('aria-expanded'),'true');
