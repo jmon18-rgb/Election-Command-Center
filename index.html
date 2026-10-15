@@ -4843,20 +4843,22 @@ fetch('./data/polling_estimates.json',{cache:'no-store'}).then(r=>{if(!r.ok)thro
 // verification rules. None of the optional feeds may break model updates.
 const COMMAND_NEWS_REFRESH_MS=5*60*1000;
 let commandNewsRefreshInFlight=false;
+let commandNewsSourceError=false,commandIntegritySourceError=false;
 function commandNewsStatus(){
  const d=feedHealth.news,headlines=[...(d?.updates||[]),...(d?.security||[])];
  const published=Math.max(0,...headlines.map(x=>Date.parse(x.published_at)||0));
  const newest=published?new Date(published).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):'unknown';
  const age=Date.now()-Date.parse(d?.updated_at||'');
- const stalled=!Number.isFinite(age)||age>6*3600000||
+ const stalled=commandNewsSourceError||!Number.isFinite(age)||age>6*3600000||
   (d?.pipeline?.successful_queries??0)===0;
  $('#newsFeedStatus').textContent=d?
-  (stalled?'NEWS COLLECTION DELAYED · ':'NEWS SYNCED · ')+
+  (stalled?'NEWS COLLECTION DELAYED · last accepted: ':'NEWS SYNCED · ')+
   'newest story '+newest+' · '+headlines.length+' reports':
   'News unavailable · last fetch failed';
  const ledgerAt=impactLedger?.updated_at;
  const queueAt=integrityQueueData?.updated_at;
  $('#integrityFeedStatus').textContent=
+  (commandIntegritySourceError?'INCOMING SECURITY SYNC DELAYED · ':'')+
   (impactLedger?'Curated incidents reviewed '+ledgerAt:'Curated incidents unavailable')+
   ' · '+(integrityQueueData?
    integrityQueueData.items.length+' unverified leads indexed '+
@@ -4878,12 +4880,16 @@ async function refreshCommandCenterFeeds(){
    get('briefing'),get('integrity_review_queue'),get('integrity_impact')
   ]);
   const [news,queue,ledger]=settled;
+  commandNewsSourceError=news.status!=='fulfilled';
+  commandIntegritySourceError=queue.status!=='fulfilled'||ledger.status!=='fulfilled';
   if(news.status==='fulfilled'){
    const d=news.value,older=Date.parse(feedHealth.news?.updated_at||'');
    const incoming=Date.parse(d?.updated_at||'');
    if(!Array.isArray(d?.updates)||!Array.isArray(d?.security)||
-      !Number.isFinite(incoming))throw Error('Malformed news feed');
-   if(!Number.isFinite(older)||incoming>older){
+      !Number.isFinite(incoming)){
+    commandNewsSourceError=true;
+    console.warn('Malformed news feed; keeping last validated headlines');
+   }else if(!Number.isFinite(older)||incoming>older){
     feedHealth.news=d;updateHealth();
     renderItems('updates',d.updates);
     securityArticles=d.security;renderSecurity();
@@ -4898,12 +4904,20 @@ async function refreshCommandCenterFeeds(){
    if(Array.isArray(d?.items)&&Number.isFinite(next)&&
       (!Number.isFinite(old)||next>old)){
     renderIntegrityQueue(d);changed=true;
+   }else if(!Array.isArray(d?.items)||!Number.isFinite(next)){
+    commandIntegritySourceError=true;
+    console.warn('Malformed security lead queue; retaining previous reports');
    }
   }else console.warn('Integrity lead refresh deferred:',queue.reason);
   if(ledger.status==='fulfilled'){
-   const oldAt=impactLedger?.updated_at;
-   updateVerifiedIntegrityLedger(ledger.value);
-   if(impactLedger?.updated_at!==oldAt)changed=true;
+   if(!Array.isArray(ledger.value?.incidents)){
+    commandIntegritySourceError=true;
+    console.warn('Malformed verified incident ledger; retaining previous cases');
+   }else{
+    const oldAt=impactLedger?.updated_at;
+    updateVerifiedIntegrityLedger(ledger.value);
+    if(impactLedger?.updated_at!==oldAt)changed=true;
+   }
   }else console.warn('Curated integrity ledger refresh deferred:',ledger.reason);
   commandNewsStatus();
   return changed;
