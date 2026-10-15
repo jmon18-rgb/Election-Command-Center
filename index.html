@@ -1553,7 +1553,7 @@ function setPostedPollingSnapshot(snapshot){
  if(postedPollingSnapshot&&Date.parse(snapshot.updated_at)<=Date.parse(postedPollingSnapshot.updated_at))return;
  postedPollingSnapshot=snapshot;
  if(pollingSnapshot)renderFreshPolls(pollingSnapshot);
- if(latestSenateEstimates)renderRacePulse(latestSenateEstimates);
+ if(latestSenateEstimates){renderRacePulse(latestSenateEstimates);renderSenateTideLine();}
  renderPollWire();
 }
 let feedHealth={polls:null,news:null};
@@ -2036,6 +2036,7 @@ function renderModelGenericHeadline(){
 function renderPolls(d){
 pollingSnapshot=d;feedHealth.polls=d;updateHealth();
 renderFreshPolls(d);renderPollWire();
+if(latestSenateEstimates)renderSenateTideLine();
 const changes=d.changes||{},delta=changes.generic_margin_change;
 $('#genericDelta').textContent=typeof delta==='number'?(delta>0?'+':'')+delta.toFixed(1)+' pts':'—';
 const gb=d.generic_ballot;
