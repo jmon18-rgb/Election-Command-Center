@@ -113,6 +113,29 @@ async function settle(){
  assert(registeredIntervals.some(x=>x.ms===300000),
   'Still-open tab must register reporting/security refresh every five minutes');
  await settle();
+ // One cross-page heartbeat distinguishes five independent sources.
+ const glanceIds=['feedPolls','feedModel','feedNews','feedSecurity','feedResults'];
+ for(const id of glanceIds){
+  const node=get('#'+id);
+  assert(['fresh','delayed','unavailable','pending','scheduled'].includes(node.dataset.status),
+   'Each source must expose a distinct, truthful state: '+id);
+  assert.match(node.getAttribute('href'),/^#(wire|model|brief|integrity|electionNight)$/,
+   'Source status must link to relevant desk: '+id);
+ }
+ // The default pre-election results tab opens 2024 archive for rehearsal.
+ // This is historical, never incorrectly described as a live 2026 feed.
+ assert.match(get('#feedResults').textContent,/2024 archive/,
+  'Before election day, default historical mode must not pretend to be live 2026 results');
+ assert.equal(get('#feedResults').dataset.status,'scheduled');
+ assert.match(get('#feedModel').textContent,/^Model · /);
+ assert.match(get('#feedPolls').textContent,/^Polls · /);
+ // A weeks-old cached headline must never be shown as a fresh feed.
+ const oldGlanceClock=w.Date.now;
+ w.Date.now=()=>Date.parse('2026-11-02T15:00:00Z');
+ w.eval('updateFeedGlance()');
+ assert.equal(get('#feedNews').dataset.status,'delayed');
+ w.Date.now=oldGlanceClock;
+ w.eval('updateFeedGlance()');
  assert.match(get('#privateContextStatus').textContent,/Repository fundamentals ACTIVE/,
   'Repository Senate+House CSV inputs must auto-load without device upload');
  assert.equal(w.eval('jointForecastResult()')?.samples,3000);
@@ -777,6 +800,10 @@ async function settle(){
  w.fetch=async(url,options)=>{calls.push({url,options});
   return {ok:true,json:async()=>empty2026};};
  get('#enMode2026').click();
+ w.eval('updateFeedGlance()');
+ assert.match(get('#feedResults').textContent,/Nov 3/,
+  'Switching to 2026 before counting must show scheduled source status');
+ assert.equal(get('#feedResults').dataset.status,'scheduled');
  assert.equal(get('#enArchiveOutcome').hidden,true,
   'Returning to 2026 must restore active probability forecast and hide history');
  assert(!get('#jointNightPanel').classList.contains('en-archive-mode'));
@@ -794,6 +821,9 @@ async function settle(){
  assert.equal(get('#enCalls').textContent,'Not supplied');
  w.fetch=originalRemoteFetch;
  get('#enMode2024').click();
+ w.eval('updateFeedGlance()');
+ assert.match(get('#feedResults').textContent,/2024 archive/,
+  'Historical returns must not be shown as a live 2026 reporting source');
  await w.eval('enLoad(true)');
  assert.equal(get('#enArchiveOutcome').hidden,false,
   '2024 should show a retrospective historical control outcome');

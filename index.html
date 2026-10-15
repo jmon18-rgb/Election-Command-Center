@@ -498,6 +498,21 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .joint-audit{margin:12px 0 5px;border-top:1px solid #3c546c;padding-top:9px}
 .joint-audit summary{font-size:11px;color:#b9d9fa;cursor:pointer;font-weight:650}
 .joint-audit .joint-note{padding:0 2px}
+
+/* One shared source heartbeat, without five duplicate full-height status panels. */
+.feed-command-strip{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin:0 0 13px;padding:9px 10px;background:#101b2b;border:1px solid #2c4057;border-radius:10px}
+.feed-strip-title{display:inline-flex;align-items:center;gap:7px;margin-right:5px;font-size:10px;letter-spacing:.1em;color:#b7c9db;white-space:nowrap}
+.feed-glance{display:inline-flex;align-items:center;min-height:30px;padding:5px 9px;border:1px solid #354a60;background:#17283b;border-radius:7px;color:#c5d7eb;font-size:11px;font-weight:750;white-space:nowrap;font-variant-numeric:tabular-nums}
+.feed-glance:hover,.feed-glance:focus-visible{color:#f2f8ff;border-color:#86bfff;background:#1a3852;outline-offset:2px}
+.feed-glance[data-status="fresh"]{border-color:#386957;color:#b8edce}
+.feed-glance[data-status="delayed"]{border-color:#806247;color:#f3d1a5}
+.feed-glance[data-status="unavailable"]{border-color:#79464c;color:#f0b2b9}
+.feed-glance[data-status="scheduled"]{color:#a9c4dd}
+.feed-strip-details{margin-left:auto;position:relative;color:#97b6d1;font-size:10px;min-width:0}
+.feed-strip-details>summary{cursor:pointer;white-space:nowrap;padding:5px}
+.feed-strip-details[open]{flex-basis:100%;margin-left:0;padding-top:7px;border-top:1px solid #2c4259;line-height:1.5}
+.feed-strip-details .tiny{margin-left:9px}
+@media(max-width:650px){.feed-command-strip{gap:5px;padding:8px}.feed-strip-title{flex-basis:100%;margin:0 0 2px}.feed-glance{font-size:10px;padding:4px 7px;min-height:28px}.feed-strip-details{margin-left:0}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -507,7 +522,15 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   </div>
   
 </section>
-<div class="split" style="margin-bottom:8px"><div class="health"><span id="healthDot" class="healthdot"></span><span id="healthText">Checking data feeds…</span></div><span class="tiny" id="lastChecked"></span></div><nav class="tabs" aria-label="Dashboard tabs"><button class="tab" data-page="brief" aria-selected="true">Daily briefing</button><button class="tab" data-page="wire" aria-selected="false">Poll Wire</button><button class="tab" data-page="model" aria-selected="false">JackStradamus</button><button class="tab" data-page="integrity" aria-selected="false">Bullshittery Index</button><button class="tab" data-page="electionNight" aria-selected="false">Election Night</button></nav>
+<div class="feed-command-strip" role="group" aria-label="Source freshness across the command center">
+ <strong class="feed-strip-title"><span id="healthDot" class="healthdot"></span>DATA DESK</strong>
+ <a class="feed-glance" id="feedPolls" href="#wire" data-status="pending">Polls · checking</a>
+ <a class="feed-glance" id="feedModel" href="#model" data-status="pending">Model · checking</a>
+ <a class="feed-glance" id="feedNews" href="#brief" data-status="pending">News · checking</a>
+ <a class="feed-glance" id="feedSecurity" href="#integrity" data-status="pending">Security · checking</a>
+ <a class="feed-glance" id="feedResults" href="#electionNight" data-status="scheduled">Results · Nov 3</a>
+ <details class="feed-strip-details"><summary>Details</summary><span id="healthText">Checking data feeds…</span> <span id="lastChecked" class="tiny"></span></details>
+</div><nav class="tabs" aria-label="Dashboard tabs"><button class="tab" data-page="brief" aria-selected="true">Daily briefing</button><button class="tab" data-page="wire" aria-selected="false">Poll Wire</button><button class="tab" data-page="model" aria-selected="false">JackStradamus</button><button class="tab" data-page="integrity" aria-selected="false">Bullshittery Index</button><button class="tab" data-page="electionNight" aria-selected="false">Election Night</button></nav>
 <section id="brief" class="page active">
 <div class="brief-intro"><div><span class="eyebrow">DAILY BRIEFING</span><h2>Today’s tide schedule</h2><p>Start with the numbers. Then see what's new and why it matters.</p></div><div class="brief-date compact-date"><span>Election Day · Nov 3</span><strong id="countdown">—</strong></div></div>
 <div class="grid" style="margin-top:16px">
@@ -5370,9 +5393,73 @@ async function refreshCommandCenterFeeds(){
   console.error('Command-center reporting refresh failed:',e);
   commandNewsStatus();
   return false;
- }finally{commandNewsRefreshInFlight=false}
+ }finally{commandNewsRefreshInFlight=false;updateFeedGlance()}
 }
+
+/* Cross-feed freshness is observation-specific: model, reporting, security
+ * leads, and partial election results have different completion criteria.
+ * Never treat a scheduled November feed as broken or a stale cache as live. */
+function updateFeedGlance(){
+ const now=Date.now();
+ const ageHours=value=>{
+  const stamp=Date.parse(value||'');
+  return Number.isFinite(stamp)?(now-stamp)/3600000:null;
+ };
+ const ageText=h=>h===null?'unknown age':h<0?'clock mismatch':
+  h<1?Math.max(0,Math.round(h*60))+'m':Math.round(h)+'h';
+ const mark=(id,name,stamp,maxHours,valid=true)=>{
+  const node=$('#'+id),age=ageHours(stamp);
+  const state=!valid?'unavailable':age===null?'pending':
+    age<-.25?'delayed':age>maxHours?'delayed':'fresh';
+  const ageLabel=ageText(age);
+  node.dataset.status=state;
+  node.textContent=name+' · '+(state==='unavailable'?'unavailable':
+   state==='pending'?'pending':state==='delayed'?'delayed '+ageLabel:ageLabel);
+  node.title=stamp?'Source timestamp: '+new Date(stamp).toLocaleString()+
+   ' · '+(state==='fresh'?'Within freshness window':'Not confirmed current'):
+   'Source timestamp unavailable';
+ };
+ mark('feedPolls','Polls',feedHealth.polls?.updated_at,12,
+  Boolean(feedHealth.polls&&pollingSnapshot));
+ mark('feedModel','Model',latestSenateEstimates?.generated_at,12,
+  Boolean(jointLastResult&&!jointErrorMessage));
+ mark('feedNews','News',feedHealth.news?.updated_at,6,
+  Boolean(feedHealth.news&&!commandNewsSourceError&&
+   (feedHealth.news.pipeline?.successful_queries??0)>0));
+ // The incoming security lead queue refreshes regularly. Curated confirmed
+ // incidents are NOT deemed stale simply because no new cases were verified.
+ mark('feedSecurity','Security',integrityQueueData?.updated_at,12,
+  Boolean(integrityQueueData&&impactLedger&&!commandIntegritySourceError));
+ const results=$('#feedResults');
+ if(enModeYear===2024){
+  results.textContent='Results · 2024 archive';results.dataset.status='scheduled';
+  results.title='Historical 2024 result mode; not live 2026 vote reporting';
+ }else if(now<Date.parse('2026-11-03T05:00:00Z')){
+  results.textContent='Results · Nov 3';results.dataset.status='scheduled';
+  results.title='2026 voting has not started; 2024 archive is available for rehearsal';
+ }else{
+  // Only validated 2026 office snapshots. Partial geographic coverage does
+  // not establish national control or a complete set of winner calls.
+  const checked=Object.values(enOfficeSnapshots).filter(x=>
+   Number.isFinite(Date.parse(x?.as_of||'')));
+  const recent=checked.filter(x=>{
+   const h=ageHours(x.as_of);
+   return h!==null&&h>=-.25&&h<=3;
+  });
+  const err=Boolean(enFetchError||Object.values(enOfficeErrors).some(Boolean));
+  results.dataset.status=recent.length?'fresh':err?'delayed':'pending';
+  results.textContent=recent.length?
+   'Results · '+recent.length+' partial '+(recent.length===1?'feed':'feeds'):
+   err?'Results · source delayed':'Results · awaiting feeds';
+  results.title=recent.length?
+   'Source-validated partial office snapshots, not nationwide certified results':
+   'No current complete nationwide vote-count feed verified';
+ }
+}
+
 void refreshCommandCenterFeeds();
+updateFeedGlance();
+setInterval(updateFeedGlance,60000);
 setInterval(()=>{void refreshCommandCenterFeeds()},COMMAND_NEWS_REFRESH_MS);
 document.addEventListener('visibilitychange',()=>{
  if(document.visibilityState==='visible')void refreshCommandCenterFeeds();
