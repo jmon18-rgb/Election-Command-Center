@@ -1989,7 +1989,7 @@ fetch('./data/pollresults_recent.json',{cache:'no-store'}).then(r=>{if(!r.ok)thr
 fetch('./data/polls.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(renderPolls).catch(error=>{console.error('Polling feed error',error);$('#newPolls').textContent='Polling feed unavailable: '+error.message+'.';$('#genericDetail').textContent='Polling data could not be displayed.';updateHealth()});
 
 // GitHub Pages does not push new data into an already open browser tab.
-// Check the published snapshots every five minutes, without reloading the UI.
+// Check the published snapshots every two minutes, without reloading the UI.
 let pollRefreshInFlight=false;
 async function refreshLivePollSnapshots(){
  if(pollRefreshInFlight||document.visibilityState==='hidden')return false;
@@ -2016,7 +2016,7 @@ async function refreshLivePollSnapshots(){
     expectedModelAt:estimates.generated_at,expectedPollAt:primary.updated_at});
    if(!complete)return false;
    if(primaryNewer)renderPolls(primary);
-   if(modelNewer)showSenateEstimates(estimates);
+   // jointLoadSources has already installed this polling revision with its odds.
   }
   return primaryNewer||modelNewer;
  }catch(error){
@@ -2024,7 +2024,7 @@ async function refreshLivePollSnapshots(){
   return false;
  }finally{pollRefreshInFlight=false}
 }
-setInterval(()=>{void refreshLivePollSnapshots()},5*60*1000);
+setInterval(()=>{void refreshLivePollSnapshots()},2*60*1000);
 document.addEventListener('visibilitychange',()=>{
  if(document.visibilityState==='visible')void refreshLivePollSnapshots();
 });
@@ -2447,7 +2447,7 @@ let jointBasis=null,jointBasisPublic=null,jointBasisShadow=null,jointBasisPresid
 function jointUsesPrivateContext(){
  return Boolean(jointPrivateEnabled&&jointPrivateData&&jointBasis?.private_imported_context);
 }
-function jointPrivateActivate(){
+function jointPrivateActivate({deferRender=false}={}){
  if(!jointBasisPublic)return;
  const tag=$('#modelEngineTag');
  try{
@@ -2461,7 +2461,7 @@ function jointPrivateActivate(){
   jointCacheKey='';jointPublicResult=null;
   if(tag)tag.textContent=jointUsesPrivateContext()?
    'PRIVATE CSV-AUGMENTED · experimental · not FLIPR':'2026 Senate model · poll-depth forecast v5';
-  jointRender(true);
+  if(!deferRender)jointRender(true);
  }catch(e){
   jointBasis=jointBasisPublic;jointPrivateEnabled=false;
   const toggle=$('#privateContextEnabled');if(toggle)toggle.checked=false;
@@ -2469,7 +2469,7 @@ function jointPrivateActivate(){
   if(tag)tag.textContent='2026 Senate model · private import rejected';
   const status=$('#privateContextStatus');
   if(status)status.textContent='Private context not applied: '+String(e.message||e);
-  jointRender(true);
+  if(!deferRender)jointRender(true);
  }
 }
 const jointLabels=[
@@ -2657,7 +2657,8 @@ function jointCurrentSignature(){
   (enOfficeErrors[office]||'')).join('|');
  const civic=Object.entries(enCivicByWatch).map(([key,data])=>
   key+':'+data.last_updated+':'+Boolean(enCivicErrors[key])).sort().join('|');
- return snaps+':'+civic+':'+jointNationalShift+':'+jointErrorMultiplier+
+ return (jointBasis?.generated_from_sources?.model_polling_at||'')+':'+
+  snaps+':'+civic+':'+jointNationalShift+':'+jointErrorMultiplier+
   ':'+enModeYear+':'+(Date.now()>=Date.parse('2026-11-03T05:00:00Z'));
 }
 function jointRender(force=false){
@@ -2727,7 +2728,7 @@ function jointQueueRefresh(){
   jointRefreshTimer=null;jointRender();
  },1500);
 }
-function jointSetSources(sources){
+function jointSetSources(sources,{deferRender=false}={}){
  try{
   if(!window.ChamberControlModel)throw Error('Model script unavailable');
   // A missing research-only input must never disable baseline odds.
@@ -2756,7 +2757,7 @@ function jointSetSources(sources){
   })}catch(_){}
   jointErrorMessage=null;jointCacheKey='';
   jointPrivatePollData=sources.odds;
-  jointPrivateActivate();
+  jointPrivateActivate({deferRender});
  }catch(e){jointBasis=null;jointBasisPublic=null;jointBasisShadow=null;jointBasisPresidential=null;
   jointLastResult=null;jointCacheKey='';
   jointErrorMessage='No reliable joint odds: '+String(e.message||e);
@@ -2801,8 +2802,17 @@ async function jointLoadSources(options={}){
       candidate.senate_current_context?.model_revision!=='late_2026_depth_aware_special_v5')
     throw Error('New poll snapshot not compatible with the loaded 2026 engine');
   }
-  jointSetSources(context);
-  return Boolean(jointBasis?.senate_prior_mode==='current_2026');
+  // Source/odds must refer to one polling revision before touching UI.
+  if(context.seats?.polling_source_snapshot!==context.polls?.source_snapshot||
+     context.odds?.polling_source_snapshot!==context.polls?.source_snapshot||
+     context.odds?.polling_source_generated_at!==context.polls?.generated_at)
+   throw Error('Seat inventory, polling average and odds sources do not match');
+  // Defer the new simulation until the new polling UI snapshot is installed.
+  jointSetSources(context,{deferRender:true});
+  if(jointBasis?.senate_prior_mode!=='current_2026')return false;
+  showSenateEstimates(context.polls);
+  jointRender(true);
+  return jointRaceOddsIntegrity()&&jointLastResult!==null;
  }catch(e){
   if(options.preserveOnFailure){
    console.warn('Retaining last validated joint forecast:',e);
@@ -4557,6 +4567,8 @@ function setModelHistoryData(snapshot){
 }
 let latestSenateEstimates=null;
 function showSenateEstimates(data){
+if(latestSenateEstimates?.generated_at&&data?.generated_at&&
+ Date.parse(latestSenateEstimates.generated_at)>Date.parse(data.generated_at))return;
 latestSenateEstimates=data;
 // Polling and joint-model requests resolve independently. If the joint
 // simulation finished first, attach its race marginals when polling arrives;
