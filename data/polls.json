@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T13:19:18.491653Z",
+  "updated_at": "2026-10-15T13:34:47.506737Z",
   "generic_ballot": {
     "summary": {
       "dem": 48.1,
@@ -1150,10 +1150,10 @@
           "other_name": null,
           "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
+          "question_id": "71f88138-7b13-4a67-a324-c88ff0029416",
+          "sample_population": "lv",
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://www.foxnews.com/politics/fox-news-poll-its-lone-star-senate-showdown-between-talarico-paxton",
-          "sample_population": "lv",
-          "question_id": "71f88138-7b13-4a67-a324-c88ff0029416",
           "date_provenance": "PollResults ingestion date, NOT public release date",
           "model_source": "pollresults_secondary_fallback",
           "lv_selected_over_rv": true
@@ -1683,10 +1683,10 @@
           "other_name": null,
           "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
+          "question_id": "9b1f36db-12bd-4398-8a63-46c17606597e",
+          "sample_population": "lv",
           "upstream_posted_date": "2026-10-01",
           "source_poll_url": "https://www.foxnews.com/politics/fox-news-poll-its-lone-star-senate-showdown-between-talarico-paxton",
-          "sample_population": "lv",
-          "question_id": "9b1f36db-12bd-4398-8a63-46c17606597e",
           "date_provenance": "PollResults ingestion date, NOT public release date",
           "model_source": "pollresults_secondary_fallback",
           "lv_selected_over_rv": true
@@ -1706,10 +1706,10 @@
           "other_name": "Pat Dixon",
           "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
+          "question_id": "b2e71671-8a2f-4e44-bcf2-c6d62d126b26",
+          "sample_population": "lv",
           "upstream_posted_date": "2026-09-27",
           "source_poll_url": "https://www.bigdatapoll.com/blog/lone-star-state-poll-talarico-paxton-in-close-race-us-senate-in-texas/",
-          "sample_population": "lv",
-          "question_id": "b2e71671-8a2f-4e44-bcf2-c6d62d126b26",
           "date_provenance": "PollResults ingestion date, NOT public release date",
           "model_source": "pollresults_secondary_fallback",
           "lv_selected_over_rv": true
@@ -3746,10 +3746,10 @@
           "other_name": null,
           "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
+          "question_id": "3c5a8820-c0cf-4016-bfbd-640ff7085496",
+          "sample_population": "lv",
           "upstream_posted_date": "2026-09-30",
           "source_poll_url": "https://www.foxnews.com/politics/fox-news-poll-michigan-voters-split-between-el-sayed-rogers",
-          "sample_population": "lv",
-          "question_id": "3c5a8820-c0cf-4016-bfbd-640ff7085496",
           "date_provenance": "PollResults ingestion date, NOT public release date",
           "model_source": "pollresults_secondary_fallback",
           "lv_selected_over_rv": true
@@ -3811,10 +3811,10 @@
           "other_name": null,
           "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
+          "question_id": "bd20db7f-0151-4594-9a57-66c6f717e312",
+          "sample_population": "lv",
           "upstream_posted_date": "2026-09-25",
           "source_poll_url": "https://www.bigdatapoll.com/blog/wolverine-state-poll-el-sayed-leads-rogers-for-us-senate-in-michigan/",
-          "sample_population": "lv",
-          "question_id": "bd20db7f-0151-4594-9a57-66c6f717e312",
           "date_provenance": "PollResults ingestion date, NOT public release date",
           "model_source": "pollresults_secondary_fallback",
           "lv_selected_over_rv": true
@@ -5100,12 +5100,12 @@
           "rep_name": "Ashley Moody",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
+          "first_seen_at": "2026-10-15T13:34:47.506737Z",
           "release_date": null,
+          "question_id": "eb4ae581-25d7-43fd-9123-100333d1e19f",
+          "sample_population": "lv",
           "upstream_posted_date": "2026-10-09",
           "source_poll_url": "https://jamesmadison.org/new-jmi-poll-republicans-hold-double-digit-leads-in-key-statewide-races-florida-voters-focused-on-affordability/",
-          "sample_population": "lv",
-          "question_id": "eb4ae581-25d7-43fd-9123-100333d1e19f",
           "date_provenance": "PollResults ingestion date, NOT public release date",
           "model_source": "pollresults_secondary_fallback",
           "lv_selected_over_rv": true
@@ -5339,7 +5339,7 @@
           "dem": 55.4,
           "rep": 44.6,
           "margin": 10.8,
-          "sample_size": 678,
+          "sample_size": 712,
           "partisan_lean": "R",
           "dem_name": "Jon Ossoff",
           "rep_name": "Mike Collins",
@@ -5347,13 +5347,11 @@
           "other_name": null,
           "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
-          "question_id": "bcd4fddd-ab5f-4f28-9aa1-f898b74b34c7",
-          "sample_population": "lv",
-          "upstream_posted_date": "2026-09-25",
+          "upstream_posted_date": null,
           "source_poll_url": "https://www.bigdatapoll.com/blog/peach-state-poll-jon-ossoff-opens-up-lead-over-mike-collins-in-georgia/",
-          "date_provenance": "PollResults ingestion date, NOT public release date",
-          "model_source": "pollresults_secondary_fallback",
-          "lv_selected_over_rv": true
+          "sample_population": "lv",
+          "question_id": "bcd4fddd-ab5f-4f28-9aa1-f898b74b34c7",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
           "poll_id": "0f4bc367-db9c-459a-a5ce-34b7b7b6e9b2",
@@ -7379,10 +7377,10 @@
           "other_name": null,
           "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
+          "question_id": "5108a9bc-eb1d-44fd-983b-c6b5f19986b5",
+          "sample_population": "lv",
           "upstream_posted_date": "2026-09-29",
           "source_poll_url": "https://www.bigdatapoll.com/blog/buckeye-state-poll-sherrod-brown-leads-jon-husted-for-us-senate-in-ohio/",
-          "sample_population": "lv",
-          "question_id": "5108a9bc-eb1d-44fd-983b-c6b5f19986b5",
           "date_provenance": "PollResults ingestion date, NOT public release date",
           "model_source": "pollresults_secondary_fallback",
           "lv_selected_over_rv": true
@@ -10079,10 +10077,10 @@
           "other_name": null,
           "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
+          "question_id": "e8ee06b2-13fe-43a4-803e-5281c247c44f",
+          "sample_population": "lv",
           "upstream_posted_date": "2026-09-25",
           "source_poll_url": "https://www.bigdatapoll.com/blog/peach-state-poll-jon-ossoff-opens-up-lead-over-mike-collins-in-georgia/",
-          "sample_population": "lv",
-          "question_id": "e8ee06b2-13fe-43a4-803e-5281c247c44f",
           "date_provenance": "PollResults ingestion date, NOT public release date",
           "model_source": "pollresults_secondary_fallback",
           "lv_selected_over_rv": true
@@ -15568,7 +15566,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-15T13:19:18.491653Z",
+    "last_attempt_at": "2026-10-15T13:34:47.506737Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15580,8 +15578,8 @@
     "new_polls": [],
     "new_poll_count": 0,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-15T13:19:18.491653Z",
-    "previous_snapshot_at": "2026-10-15T13:12:52.628301Z",
+    "comparison_at": "2026-10-15T13:34:47.506737Z",
+    "previous_snapshot_at": "2026-10-15T13:19:18.491653Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15607,7 +15605,7 @@
       "pollsters": 10
     }
   ],
-  "newly_detected_count": 0,
+  "newly_detected_count": 1,
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
