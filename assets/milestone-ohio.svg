@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 620" role="img" aria-labelledby="t d">
+<title id="t">OH! HI, OHIO! — SHERROD'S COMEBACK SEASON</title><desc id="d">A victorious Ohio-themed illustration of a blue buckeye nut cracking open in a blue lightning bolt, celebrating a source-reported Democratic Senate win.</desc>
+<defs><linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#201e38"/><stop offset="1" stop-color="#68394f"/></linearGradient>
+<radialGradient id="light"><stop stop-color="#38bdff" stop-opacity=".5"/><stop offset="1" stop-color="#38bdff" stop-opacity="0"/></radialGradient>
+<filter id="glow"><feGaussianBlur stdDeviation="9"/></filter></defs>
+<rect width="980" height="620" rx="25" fill="url(#sky)"/>
+<circle cx="510" cy="300" r="320" fill="url(#light)"/>
+<g opacity=".22" stroke="#d3f3ff" stroke-width="2" fill="none"><path d="M0 168Q250 109 490 168T980 168"/><path d="M0 457Q250 409 490 457T980 457"/></g>
+<rect x="30" y="24" width="920" height="48" rx="12" fill="#031526" opacity=".83"/>
+<text x="490" y="56" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" letter-spacing="4" font-weight="800" fill="#addefc">OHIO · SPECIAL SENATE</text>
+<g transform="translate(490 275)"><ellipse cx="0" cy="0" rx="150" ry="142" fill="#573b2c" stroke="#d6b98c" stroke-width="15"/><ellipse cx="-3" cy="-18" rx="100" ry="98" fill="#d9b482"/><path d="M12-113L-16-11 26 6-24 117 92-25 42-41 83-106" fill="#268dde" stroke="#c6f2ff" stroke-width="8"/><path d="M-155 90q155 49 307-5" stroke="#0d436a" stroke-width="7" fill="none"/></g><g fill="#bce7ff"><path d="M256 147l10 21 24 1-19 15 5 24-20-13-20 13 5-24-19-15 24-1Z"/><path d="M705 173l9 21 23 1-18 15 5 23-19-12-20 12 5-23-18-15 23-1Z"/></g>
+<rect x="24" y="452" width="932" height="150" rx="20" fill="#041a33" opacity=".91"/>
+<text x="490" y="505" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-size="53" font-weight="900" letter-spacing="1.5" fill="#e2f7ff">OH! HI, OHIO!</text>
+<text x="490" y="545" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="25" font-weight="800" fill="#6cd2ff">SHERROD'S COMEBACK SEASON</text>
+<text x="490" y="582" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="1.4" fill="#b2d6ed">BROWN · SPECIAL SENATE · D CALLED</text>
+</svg>
