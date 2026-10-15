@@ -15,6 +15,12 @@ For every historical election day (November 3, 2020; November 8, 2022; November 
 
 Outputs show sample count, by-cycle signed errors, RMSE, absolute error, Brier score, log loss and 90% nominal margin-error coverage under fixed 6/7.5/8.5/10/12-point uncertainties. The study also reports a comparable panel restricted to races eligible seven days before Election Day, and a **leave-one-entire-election-year-out** candidate sigma estimate using only the other two election cycles (regularized toward 8.5 points). The year-heldout result is an exploratory sensitivity, not a production optimizer. Source digests make historical inputs auditable.
 
+## Confidence reliability table (October 15)
+
+Run `node scripts/test_senate_calibration_audit.cjs` to inspect the poll-only seven-day sample's 50–60%, 60–70%, 70–80%, 80–90%, and 90–100% favored-candidate probability bins. Each bucket reports the number of historical Senate contests, mean assigned confidence, expected versus observed wins, election years represented, and a 95% Wilson interval when nonempty. Empty bins explicitly remain empty; a bucket with only a handful of races is not treated as a model calibration finding. These are *favorite confidence* bins, not a certification that a specific 2026 candidate has a given chance.
+
+The 42 sampled races span **only three national elections** and the polling archive has fieldwork-end cutoffs rather than verified first-publication timestamps. Consequently, every reliability bin is explicitly marked `statistically_validated: false`, the test makes **no automatic change to 2026 race odds**, and proper out-of-cycle backtesting of the *full* House/Senate model remains open.
+
 ## Evidence gates: why the study is not a new 2026 model
 
 - **Source first-publication dates are missing.** A poll ending before a given cutoff might still have been published after it. The fieldwork cutoff alone is not proof that the public could have used it at that point.
