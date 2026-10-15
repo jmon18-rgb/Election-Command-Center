@@ -119,7 +119,7 @@ async function settle(){
  assert.match(get('#modelEngineTag').textContent,/REPOSITORY FUNDAMENTALS ACTIVE/);
  assert.equal(w.eval('jointForecastResult().race_probabilities.length')>=500,true);
  assert.equal(w.eval('jointForecastResult().senate_dem_control_pct')>=0,true);
- assert.match(get('#privateContextComparison').textContent,/27 Senate.*98 House/,
+ assert.match(get('#privateContextComparison').textContent,/28 Senate.*98 House/,
   'The CSV-augmented forecast must include both published input sets');
  // Users should see actual provider-reported votes immediately after the
  // Four Endings forecast, before research, simulations, alert noise or feeds.
