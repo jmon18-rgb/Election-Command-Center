@@ -2840,7 +2840,10 @@ function smartReportedExtras(model,existing){
 function smartRaceRanked(){
  const api=window.AutomaticRaceDesk;
  if(!api)return [];
- const modeled=smartModelMap(),all=smartAutoWatch();
+ // The reference seed is intentionally immutable; every render creates
+ // mutable view records so simulation/source updates cannot mutate the
+ // screenshots or silently fail assignment of current priority.
+ const modeled=smartModelMap(),all=smartAutoWatch().map(item=>({...item}));
  all.push(...smartReportedExtras(modeled,all));
  const now=Date.now();
  const recentFlip=new Set(enMovements.filter(x=>x.leaderChanged&&
@@ -5461,7 +5464,7 @@ function enSwitch(year,office,preferredKey=null){
  if(year===2024&&office==='Governor')enArchiveSource='state';
  enModeYear=year;enOffice=office;
  enData=year===2026?(enOfficeSnapshots[office]||null):null;
- enFetchError=null;enFailures=0;enSelected=preferredKey;enVisibleLimit=120;$('#enSearch').value='';enRender();enRenderMilestones();enLoad(true);
+ enFetchError=null;enFailures=0;enSelected=preferredKey;enVisibleLimit=120;$('#enSearch').value='';enRender();enRenderMilestones();renderSmartRaceDesks();enLoad(true);
 }
 $('#enMode2026').addEventListener('click',()=>enSwitch(2026,enOffice));
 $('#enMode2024').addEventListener('click',()=>enSwitch(2024,enOffice));
