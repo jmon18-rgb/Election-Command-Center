@@ -19,6 +19,7 @@ jobs:
           python3 scripts/test_poll_source_reconciliation.py
           python3 scripts/test_fresh_poll_sources.py
           python3 scripts/test_poll_to_odds.py
+          python3 scripts/test_polling_backtest_selection.py
           python3 scripts/validate_poll_to_odds.py
       - name: Smoke-test publication lineage for every polled race
         run: |
