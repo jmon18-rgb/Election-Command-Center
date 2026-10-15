@@ -1,0 +1,29 @@
+name: Audit Official NC 2024 County-by-Mode Baseline
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/nc-historical-mode-staging.yml'
+      - 'scripts/stage_nc_2024_county_mode.py'
+      - 'scripts/test_nc_2024_county_mode.py'
+permissions:
+  contents: read
+jobs:
+  official-nc-history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check parser syntax, identities and vote-conservation unit fixtures
+        run: |
+          python3 -m py_compile scripts/stage_nc_2024_county_mode.py
+          python3 scripts/test_nc_2024_county_mode.py
+      - name: Retrieve 2024 official results ZIP and reconcile to state 2024 certification
+        run: python3 scripts/stage_nc_2024_county_mode.py --fetch --output /tmp/nc_2024_mode_stage.json
+      - name: Archive research data for review without publishing to active needle
+        uses: actions/upload-artifact@v4
+        with:
+          name: verified-nc-2024-mode-stage-research-not-2026-votes
+          path: /tmp/nc_2024_mode_stage.json
+          retention-days: 10
