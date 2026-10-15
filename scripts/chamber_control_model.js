@@ -719,7 +719,11 @@ function senatePollingErrorBudget(info){
       Math.sqrt(sigma*sigma+senateNationalLocalVar+senateChamberLocalVar):sigma;
     const finalMargin=mean+effectiveNational+officeShock+stateShock+
       normal(rands)*effectiveSigma*errorMultiplier;
-    const dem=finalMargin>0;
+    // Only the independently validated source winner flag can lock a 2026
+    // race. A count lead is never a call; corrections restore uncertain draws.
+    const sourceCalled=scenario?.mode==='source_called'&&
+      (scenario.winnerParty==='D'||scenario.winnerParty==='R');
+    const dem=sourceCalled?scenario.winnerParty==='D':finalMargin>0;
     if(dem)raceDemWins[j]++;
     if(isHouse){
      if(voteSeatEnabled)
@@ -817,6 +821,9 @@ function senatePollingErrorBudget(info){
     polling_error_tier:item.polling_error_tier??null,
     polling_error_floor_points:item.polling_error_floor_points??null,
     source_method:item.method,sigma_points:Math.round(totalSigma*1000)/1000,
+    provider_called_party:live[item.code]?.mode==='source_called'&&
+      ['D','R'].includes(live[item.code].winnerParty)?
+      live[item.code].winnerParty:null,
     dem_beats_rep_pct:demPct,rep_beats_dem_pct:pct(samples-wins),
     simulated_dem_wins:wins,
     simulation_samples:samples};
