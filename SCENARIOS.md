@@ -1,82 +1,33 @@
-# The four endings — JackStradamus joint-control beta
+# The Four Endings — seat-based, linked 2026 simulations
 
-Updated October 14, 2026. **Experimental sensitivity model, not a historically calibrated forecast.** The data pipeline and live results are real; the probabilities depend on several unvalidated baseline assumptions. The joint probabilities are authored by this project and are **not** DDHQ numbers.
+Updated October 15, 2026. **Experimental, not historically calibrated probabilities.**
+All figures come from one correlated national simulation with the same source-validated race polling, fundamentals, state shocks, Senate holdovers and House geography. Race calls and eligible live returns are reflected in the same draws, not assigned arbitrary odds boosts.
 
-## Exactly four exclusive outcomes
+## Exactly four exclusive categories
 
-| Label | Operational classification in every Monte Carlo draw |
-|---|---|
-| **Blue Tsunami** | Democratic control of both chambers **and** Democratic wins in at least **18 of 20** fixed battleground races |
-| **Blue Wave** | Democratic control of both chambers, **but not** the Blue Tsunami threshold |
-| **Shrug** | Exactly one chamber controlled by Democrats |
-| **Red Dawn** | Republicans control both chambers |
+| Ending | House threshold (Democratic seats) | Senate threshold (Democratic-aligned seats) | Assignment |
+| --- | ---: | ---: | --- |
+| **Blue Tsunami** | **235+** | **52+** | Both higher thresholds reached |
+| **Blue Wave** | **218+** | **49+** | Both minimum thresholds reached, *excluding Tsunami* |
+| **Shrug** | One threshold only | One threshold only | Either House >=218 and Senate <49, **or** Senate >=49 and House <218 |
+| **Red Dawn** | <218 | <49 | Neither Wave threshold reached |
 
-These four categories exhaust the simulated chamber-control outcomes; the total is approximately 100%, subject only to display rounding. **Blue Wave excluding Tsunami** is deliberately distinct from the aggregate both-Democratic probability, reported separately for comparison. A Senate tie is treated as Republican control under the pre-election vice-presidential tie-breaking assumption. The Senate model assumes 34 Democrats or aligned independents and 31 Republicans in uncontested holdover seats based on the July 14, 2026 caucus reference, not a newly verified November 3 Senate roster.
+Tsunami is a **subset of the broader Wave-or-Tsunami threshold event**, but the displayed Blue Wave probability excludes Tsunami, preserving four mutually exclusive probabilities that sum to 100%. These labels are user-specified seat-outcome buckets, **not equivalent to actual chamber control**.
 
-## Frozen 20-race battleground slate (beta definition)
+**Essential Senate arithmetic:** A result of 49 Democratic-aligned Senate seats is not a tie, a Democratic majority, or Democratic Senate control. This model treats **51** Democratic-aligned Senate seats as outright Democratic control; 50 would leave the vice president breaking ties for Republicans under its pre-election assumption. The separate `senate_dem_control_pct` and `actual_dem_both_control_pct` fields use these actual-control rules. **Do not label the Blue Wave threshold probability as the chance of Democrats controlling both chambers.** The existing `blue_both_including_tsunami` API key is retained only for backward compatibility and now means **D >=218 House AND D >=49 Senate**.
 
-The slate is fixed in `scripts/chamber_control_model.js` before Election Day. It is a transparent **internal provisional selection**, including statewide and district contests with current model attention; it is **not represented as independently verified Cook/Sabato 2026 tossup/lean ratings**. A rigorous externally rated frozen slate is a future improvement.
+## Implementation and invariants
 
-**U.S. Senate (8):** NC-SEN, MI-SEN, ME-SEN, OH-SEN (special), TX-SEN, AK-SEN, NE-SEN, IA-SEN.
+- `scripts/chamber_control_model.js` exports `ENDING_THRESHOLDS` and `classifyFourEndings(houseSeats,senateSeats)`. Every simulated election is classified exactly once using final simulated Democratic seat totals.
+- House: 435 congressional seats (218 majority). Senate: 65 modeled holdovers plus 35 contested seats, with unusual independent-caucus uncertainties disclosed separately.
+- The 20-race fixed battleground slate remains a **monitoring / descriptive** statistic; it no longer determines any of the Four Endings outcomes. Governors affect neither House nor Senate seat counts. Independent Nebraska proxy caveats still apply.
+- The same Monte Carlo draws compute race probabilities, House control, Senate actual control (51 seats), both-chamber actual control, the Four Endings distribution, model seat intervals and qualified election-night source-call updates.
+- Separate tallies validate that `Wave + Tsunami = P(House >=218 AND Senate >=49)` and `Shrug = P(exactly one gate)`. Actual Senate-control and actual joint-control probabilities must be less than or equal to their relaxed seat-gate counterparts.
+- Early raw partial vote leads are **not** independent race calls. County, precinct and voting-mode turnout priors are not yet calibrated. Projection and provider-reported call labels remain distinct.
+- `scripts/test_chamber_control_model.cjs` exercises boundary cases such as 218/49, 235/52, 235/51 and 217/49, alongside exact draw reconciliation.
 
-**Governors (6):** AZ-GOV, GA-GOV, MI-GOV, WI-GOV, NV-GOV, OH-GOV.
+## Interpretation
 
-**U.S. House (6):** AZ-01, ME-02, NC-01, NE-02, NY-17, PA-10.
+These numbers are valuable for tracking how a changing poll/returns environment moves a *consistent* forecast, but are not validated win probabilities with demonstrated historical calibration. The headline model currently blends source-matched polling and 2026 fundamentals (when supplied), with shared national, state and chamber uncertainty. The model's alternative experiments and historical backtests do not certify the exact 2026 error covariance.
 
-At least 18 Democratic wins means **90%** of the full 20, including all three office types. Governors help describe the broad near-sweep, but **do not change congressional seat totals**. The slate is not rewritten after counting starts. A different defensible battleground selection or threshold could materially change the tsunami probability; this beta does not yet model slate-selection uncertainty.
-
-A separate *reach-race* example is South Carolina U.S. Senate (Cook rated Likely Republican in its [September 23 race listing](https://www.cookpolitical.com/senate/race/488671)). A reach race flipping is interesting, but not automatically a tsunami or evidence of a source's integrity.
-
-## Model inputs, how every race gets a prior
-
-`scripts/chamber_control_model.js` requires complete and source-consistent inputs:
-
-1. **435 voting House slots** from `data/seat_universe.json`, **2024 House recorded votes** from MIT's verified historical staging, and Census-audited **2024-to-2026 boundaries** from `data/house_geography_bridge.json`.
-2. **35 Senate contests** including two specials from the complete Senate ballot universe, with 2020 Senate historical results and 2024 state House results as optional, explicitly provisional missing-poll priors.
-3. Published `data/polling_estimates.json` 2026 generic ballot, plus 2026 `data/race_probabilities.json` with source-matched per-race two-party polling estimates and error widths. A mismatch refuses to calculate.
-4. All polled governor matchups are simulated in the shared draw, including the six predeclared governor battlegrounds relevant to Blue Tsunami. Governors do not contribute to either congressional chamber total.
-
-**House baseline:** A source-audited unchanged district with both parties' 2024 votes uses its recorded two-party margin. The national generic-ballot swing proxy is **0.68 × (current generic-ballot D margin − 2024 recorded national House D margin)**. This damping is a judgment call, *not* a proven statistical conversion. A seat with 2026 polling blends the poll margin with the historical proxy, emphasizing independent multi-poll coverage more heavily. Historically unopposed or missing-party races use a wide party/state proxy. For states with redrawn House boundaries, the model explicitly **does not attach old district X's votes to new district X**: it reuses only the state's 2024 distribution of House-seat margins as an unordered seat-count proxy and applies far greater error. This is a serious uncertainty source. **October 14 refinement:** the model no longer sorts those old margins and assigns each to a new district number. Instead, all unpolled 2026 districts in a fully redrawn state receive the same exchangeable historical baseline. On each simulated election, the state's historical district-margin distribution is freshly shuffled and allocated without replacement, preserving the prior statewide seat-margin spectrum but **not** inventing an old-to-new map. Any genuine 2026 district poll is still tied to its real district and blended with a smaller randomized prior component. Fully redrawn states AL, CA, FL, LA, NC, OH, TN, TX and UT are currently covered; a partially redrawn map must fail closed pending an explicit residual allocation. This remains a proxy, not geographically reaggregated votes.
-
-**Senate baseline:** Available 2026 polling gets strong weight. The remaining **11 of 35** races receive wide-uncertainty priors from 2020 Senate vote margins (where both major parties appeared) blended with 2024 statewide House vote context, or a state proxy when the 2020 race is unusable. It does not invent new polls, incumbents or verified third-party candidate alignment.
-
-## Correlated Monte Carlo and live voting
-
-Every simulation draw runs all **435 House + 35 Senate + 6 governor** races. The same nationally correlated Gaussian polling error enters *all* races. Additional House/Senate/governor chamber shocks and shared state shocks make outcomes correlated within chamber and region, rather than multiplying marginal win percentages. Seat-level residuals retain explicit uncertainty, widened when geography or party baseline is missing. Default correlated uncertainty: national SD 3.5 margin points, House 2.5, Senate 3, governor 3.5; state shocks 3–3.5 (redrawn House states add 6); plus per-race SD of at least 6 and commonly 11–25 for missing/historical cases. These are provisional **assumptions**, not calibrated empirical correlation parameters.
-
-The web app uses **3,000 seeded simulated elections** per run for reproducibility. Probabilities are the corresponding category frequencies; a 0.0% display is a sample-resolution result, not proof of impossibility. Sensitivity controls modify the national D margin by ±3 points and broaden/narrow all random election error by 1.3×/0.8×. The site also reports expected Democratic House and Senate seats, as useful model diagnostics—not actual seats won.
-
-Starting November 3, the model may *cautiously* use reported votes from **already separately verified** Open America or exact-ID civicAPI races. Eligibility requires at least 10% reported precincts, a recent source timestamp within 3 hours, both Democratic and Republican observed vote counts, and a healthy source. The observed two-party margin is blended with the seat prior under a noisy geographic-counting signal (noise floor **7 + 20 × (1 − precinct reporting fraction)^1.3** margin points). **Precinct percentage is not percent of votes counted.** Model probabilities are never winner calls or certified vote counts; source failures leave the live part of the forecast unsupported and preserved vote snapshots distinguish source staleness.
-
-### Especially important limitations
-
-- **Not backtested or calibrated.** No empirical coverage, proper score or reliability curve validates these exact joint-probability numbers, national swing conversion, redraw proxies, third-party vote treatment or 20-race tsunami slate.
-- **Large unknowns** include 173 redrawn House seats, districts without both 2024 major-party candidates, 11 unpolled Senate contests, candidate fundamentals, changing polling electorate, correlated political/geographic bias, and possible special caucus affiliations.
-- A change to the national generic-ballot model or Senate caucus composition can move chamber probabilities significantly. Do not interpret a displayed 73.4% as a verified frequency across comparable prior elections.
-- Coverage gaps **do not** mean no election or zero votes. These probabilities are independent from in-page reporting totals, source calls and election-administration alerts.
-
-## Unified race and chamber forecast (October 14 update)
-
-The standalone polling-only race percentages have been removed from the displayed race board. All current-model race win probabilities now come from the EXACT SAME correlated Monte Carlo draws as House/Senate control and the four mutually exclusive endings. The election-night control strip uses these JackStradamus results rather than any external forecast.
-
-For every simulated race, the model counts Democratic wins, providing an integer numerator and common number of simulations. House and Senate expected seat totals therefore equal the sum of those seat-level expected Democratic wins (plus documented uncontested Senate holdovers) to within the displayed rounding. The simulation treats common national, chamber, state and local errors as related—not independent 50/50 coin flips.
-
-All current polled governor races are now included, rather than only the six governor battlegrounds used to classify the Blue Tsunami scenario. Gubernatorial polling estimates still lack independently validated full candidate-specific fundamentals.
-
-Race-level margins and probabilities are **different quantities**. Minnesota's Senate poll average was D+3.28, with the OLD polling-only normal-error calculation giving ~72% for Flanagan. The same-draw joint model blended polls with its Senate historical prior to D+2.59 and allowed shared electoral shocks, yielding ~62% in a deterministic 3,000-draw diagnostic at baseline settings. These are assumption-dependent model percentages, not empirically calibrated frequency forecasts or claims about another forecasting outlet.
-
-The published `data/race_probabilities.json` remains a provenance-checked **poll-input sigma / source mapping file** for the joint simulator. Its standalone `dem_beats_rep_pct` values are **not displayed as current model predictions**. The old external forecast import no longer runs or appears on the website.
-
-The **Tighter / Baseline / Wider** controls now rerun the full joint simulation and apply the chosen error multiplier consistently to both chamber control and individual races, rather than recalculating the displayed race number in isolation.
-
-Source/test contracts: `scripts/test_chamber_control_model.cjs`, `scripts/test_dashboard_runtime.cjs` and GitHub PR CI. Election-night live-return posterior calculations still have experimental geographic-noise assumptions and require on-the-ground reliability validation.
-
-## Retrospective probability-scoring audit (October 14 update)
-
-The Election Command Center now scores the **42 existing source-attributed 2020/2022/2024 Senate polls** using Brier score and log loss for binary Democratic wins, and computes the empirical coverage of a deliberately fixed ±1.645 × 6-point historical margin-error interval. A *leave-one-election-year-out* experiment trains a partially shrunk retrospective bias and error width from the other two years and scores only the withheld year. The full score report is generated in-browser by `scripts/senate_calibration_audit.js` and reviewed in CI.
-
-This is a **retrospective diagnostic, not a fitted 2026 correction**. Poll fieldwork dates are not guaranteed publication dates, the 42 races are selective, and three election-year shocks are not enough to estimate national/chamber/state joint-error correlations. Nothing in the published four-outcome 2026 probabilities is automatically corrected in the Democratic or Republican direction based on this diagnostic.
-
-**Fixed model safety changes:** published-2026 Senate race error widths now have a minimum 7-point margin-error SD, in light of the historical 2020 Senate poll RMSE approaching seven points (this is a conservative floor, **not validated calibration**). The 2026 Ohio and Florida special Senate elections no longer incorrectly inherit the candidate fundamentals from a *different 2020 regular Senate seat election*; absent a current poll, they fall back to an explicitly broader, current-state historical context prior. They still need 2026 special-seat candidate verification.
-
-Silver Bulletin's [January 2026 pollster ratings](https://www.natesilver.net/p/pollster-ratings-silver-bulletin) and [polling-average methodology](https://www.natesilver.net/p/silver-bulletin-polling-average-methodology) publicly describe transparency, historical predictive ratings, mean-reverted partisan bias, poll recency, house effects and pollster-concentration controls. These are useful references for a **future independently attributed pollster-rating import** but this release does **not** automatically ingest those third-party workbook values, claim their live 2026 forecast inputs, or reproduce proprietary forecast code. We should only add identifiable firm ratings to polling weights once source names, use terms, matching and import tests are verified.
+For input data and caveats, see [POLLING_MODEL.md](POLLING_MODEL.md), [SEAT_MODEL.md](SEAT_MODEL.md), [PRIVATE_SILVER_CSV_MODEL.md](PRIVATE_SILVER_CSV_MODEL.md), [ELECTION_NIGHT_SOURCES.md](ELECTION_NIGHT_SOURCES.md) and [SILVER_FIRST_MODEL_POLICY.md](SILVER_FIRST_MODEL_POLICY.md).
