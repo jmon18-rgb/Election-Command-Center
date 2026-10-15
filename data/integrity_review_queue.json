@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T20:21:36.907188Z",
+  "updated_at": "2026-10-15T20:45:55.882865Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "items": [
     {
       "id": "059d351d0ace03b7e658",
@@ -43,6 +43,23 @@
       "promoted_to_incident_id": null
     },
     {
+      "id": "40d1e8df1839c9193396",
+      "title": "US Justice Dept sues California to block votes from alleged noncitizens - Reuters",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOa2l3Nl9uOTQ5Qm16OWFRT09Ta19PQW9JYVBZRmQxLTJGdTRiOEdrZERrX3JfS1hMODhGbEdaaU9DelJ3dEw1LUJGSXpFeDJvVmgwT18yOE01VTNpQjhIa1k5WFJ4S0oxbEtvQ2hSX3pyT0VwWENuaGc1MG9yZkFkc3hVeHM4R0xKdEVmd3ppRjB4aWt4S3FzMHRhSmpnUQ?oc=5",
+      "publisher": "Reuters",
+      "published_at": "2026-10-15T19:38:32Z",
+      "detected_at": "2026-10-15T20:45:55.882865Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "a2759ee841aa5a32bb26",
       "title": "Trump Administration Sues California Over Voter Rolls - The New York Times",
       "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQVXBxUzMxZUkyY0piNV9WUXpZbm9NTjZUVVhrd2hhNjc5a0ZoMmc4VjB1N2g3cFlGcE5uT0Y1bEdiQzc0dGVXUERaWDBJd2N2ZHhpY21ELUQza0FlbXdZN2ItRHQ4aEh0TW9tZkpYZXpGN242cWpuc0U3ekNHVmFUTmVhLXJuNEhzTDNkVW1CaTdkaDE3NGtaNmlydw?oc=5",
@@ -70,6 +87,26 @@
       "topic_hints": [
         "ballot_access",
         "litigation",
+        "security"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 ballots"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "898fb30d44aa3b84dac3",
+      "title": "Justice Dept. sues California, seeks to stop state from counting 20,000 ballots - Los Angeles Times",
+      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQMzlSWUJLNUJqMDViVnh3b3YwOGxxX3UteU5NaWNXbTNMRzBINjZBTWVla25oWFpwUGtLdEtFbmh5TzZpZ3Npb3VETjFFbThvUGc0NXdhQVUzb0JpcU5rcU1fRDFWeVc0b0h4R1hNUHBsczNwSjN1Z1p1Q19tcDRsRE1la280YWdkSDFpaWROdWE4OXFOdmRBX1VTWWFwYWJZaFJPSUhJcTJfb2NHVE5ybjl0UU9TVDVJMDk1ME5zWEFEQlBSYlg0cl9UenVRSjZHcFE?oc=5",
+      "publisher": "Los Angeles Times",
+      "published_at": "2026-10-15T19:04:44Z",
+      "detected_at": "2026-10-15T20:45:55.882865Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
         "security"
       ],
       "headline_numbers_unverified": [
