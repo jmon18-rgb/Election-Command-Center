@@ -126,6 +126,20 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-activity-item .en-revision{color:#f5c58a}
 .en-message{font-size:11px;line-height:1.6;color:#abc2d9;margin:10px 0}
 .en-status.stale{border-color:#91683d;background:#332719;color:#ffdbb2}
+.en-ambient-overview{margin:10px 0 16px;padding:14px;border-radius:12px;border:1px solid #325c78;background:#0d2032}
+.en-ambient-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-size:11px}
+.en-ambient-top strong{letter-spacing:.08em;color:#daeeff}
+.en-ambient-top span{color:#a9c9db}
+.en-ambient-offices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:11px}
+.en-ambient-offices button{cursor:pointer;text-align:left;padding:12px 13px;display:grid;gap:5px;background:#162f45;border:1px solid #345e7a;border-radius:8px;color:#e2f4ff}
+.en-ambient-offices button:hover,.en-ambient-offices button:focus-visible{border-color:#8bcbe9;background:#1c405d}
+.en-ambient-offices strong{font-size:11px;letter-spacing:.07em}
+.en-ambient-offices span{font-size:11px;color:#a6cce3}
+.en-race-drawer{border:1px solid #35556b;border-radius:11px;padding:12px 15px;margin:14px 0;background:#0e2133}
+.en-race-drawer>summary{cursor:pointer;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:13px;color:#e7f4ff}
+.en-race-drawer>summary span{color:#9fbdd1;font-size:11px}
+.en-race-drawer>.en-toggle{display:inline-flex;margin:14px 0 5px}
+@media(max-width:580px){.en-ambient-offices{gap:5px}.en-ambient-offices button{padding:9px 7px}.en-ambient-offices strong,.en-ambient-offices span{font-size:10px}}
 .en-status.fresh{border-color:#318476;background:#143831;color:#c0f3e4}
 .en-archive-intro{padding:12px 15px;border-radius:9px;background:#16283a;border:1px solid #354e67;line-height:1.65;font-size:12px;margin-bottom:11px}
 .en-model-blockers{margin-top:14px;background:#101e31;border:1px solid #32465d;border-radius:10px;padding:15px}
@@ -713,7 +727,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <details class="joint-audit" id="jointHomeCorrelationDetails"><summary>How much do Senate races move together? · probability sensitivity</summary><div id="jointHomeCorrelation" class="joint-note">Open to compare a conservative historical covariance sensitivity without changing the forecast.</div></details>
  <details class="joint-audit"><summary>Historical polling-error check · how reliable is this?</summary><p id="jointHomeAudit" class="joint-note">Reading existing historical Senate poll backtest…</p></details>
  <details class="forecast-details brief-model-key"><summary>What do the four endings mean?</summary></details>
- <p class="joint-note">Blue Wave: ≥218 D House and ≥49 D-aligned Senate seats. Blue Tsunami: ≥235 and ≥52. Shrug: one Wave threshold; Red Dawn: neither. <strong>49 Senate seats is not Senate control</strong>; control odds are shown separately.</p></details>
+ <p class="joint-note">Blue Wave: D wins BOTH chambers (≥218 House, ≥51 Democratic-aligned Senate). Blue Tsunami: ≥235 House and ≥52 Senate. Shrug: split control. Red Dawn: Republicans hold both. These categories are exclusive; stronger Tsunami draws are excluded from Wave.</p></details>
 </div>
 
 <section class="smart-race-desk" id="smartBriefDesk" aria-label="Automatically tracked 2026 Senate and House races">
@@ -925,10 +939,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <button id="enMode2026" type="button" aria-pressed="true">2026 · Results</button>
  <button id="enMode2024" type="button" aria-pressed="false">2024 · Archive</button>
  </div>
- <div class="en-toggle" aria-label="Chamber">
- <button id="enOfficeHouse" type="button" aria-pressed="true">House</button>
- <button id="enOfficeSenate" type="button" aria-pressed="false">Senate</button><button id="enOfficeGovernor" type="button" aria-pressed="false">Governors</button>
- </div>
+ 
  <label class="en-archive-option" id="enArchiveSourceLabel">Rehearsal source
  <select id="enArchiveSource" aria-label="2024 historical data provider">
   <option value="medsl">MIT · Full archive</option>
@@ -984,9 +995,23 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <div class="smart-desk-grid" id="smartNightGrid"><p class="empty">Building source-validated priority watch…</p></div>
 <details class="smart-selection-method"><summary>Source notes</summary><p class="smart-desk-note" id="smartNightNote">Unofficial source-reported votes; a leader is not necessarily a projected winner. No inferred national swing from early precincts.</p></details></section>
 <div class="en-status" id="enStatus" role="status">Election Day is November 3. The 2024 archive is available for rehearsal before 2026 results begin.</div>
+<section class="en-ambient-overview" aria-label="All-office election-night source status">
+ <div class="en-ambient-top"><strong>THE WHOLE ELECTION · SOURCE DESK</strong><span id="enAllOfficeSummary" role="status">2024 archived rehearsal · real 2026 vote counts begin November 3</span></div>
+ <div class="en-ambient-offices">
+  <button id="enJumpHouse" type="button"><strong>HOUSE</strong><span>Open race drilldown</span></button>
+  <button id="enJumpSenate" type="button"><strong>SENATE</strong><span>Open race drilldown</span></button>
+  <button id="enJumpGovernor" type="button"><strong>GOVERNORS</strong><span>Open race drilldown</span></button>
+ </div>
+</section>
 <div class="en-archive-intro" id="enArchiveIntro">2024 House rehearsal uses MIT/MEDSL's historical recorded party-level votes across all 435 districts. It is <strong>not a minute-by-minute replay</strong> and does not identify individual candidates, certified winners, or precinct progress. A 2024 district number must not be treated as the same geographic seat in 2026 after redistricting.</div>
 
-<div class="en-results-heading">
+<details id="enRaceDeskDetails" class="en-race-drawer">
+ <summary><strong>Race drilldown · House / Senate / Governors</strong><span>Open individual reported votes and candidate details</span></summary>
+ <div class="en-toggle" aria-label="Chamber">
+ <button id="enOfficeHouse" type="button" aria-pressed="true">House</button>
+ <button id="enOfficeSenate" type="button" aria-pressed="false">Senate</button><button id="enOfficeGovernor" type="button" aria-pressed="false">Governors</button>
+ </div>
+ <div class="en-results-heading">
  <div><span class="label">THE COUNT · REAL REPORTED VOTES</span>
  <h3>Race results desk</h3></div>
  <a href="#electionNight" class="en-results-method">Results remain unofficial and provider-attributed</a>
@@ -1013,6 +1038,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   <div class="en-callout">County-level reporting and an expectations-based comparison will be added only where an adequately sourced county feed and historical baseline are available.</div>
  </div>
 </div>
+</details>
 
 <details id="enAdvancedLab" class="en-advanced-layout">
  <summary><strong>Forecast research, live-probability monitor &amp; simulated rehearsal</strong><small>Optional analysis · expand when needed</small></summary>
@@ -1161,7 +1187,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_priority.js?v=763db866f53f"></script>
 <script src="./scripts/election_night_signals.js?v=75bc99b105dd"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
-<script src="./scripts/chamber_control_model.js?v=1ff46da0f9d8"></script>
+<script src="./scripts/chamber_control_model.js?v=aa102ced6a53"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
 <script src="./scripts/chamber_poll_error_audit.js?v=9e73e0e9f9fe"></script>
 <script src="./scripts/senate_calibration_audit.js?v=cc0ab62269fb"></script>
@@ -3099,6 +3125,36 @@ for(const [buttonId,setter] of [
  });
 }
 
+function enRenderAmbientDesk(){
+ const text=$('#enAllOfficeSummary');if(!text)return;
+ const offices=['House','Senate','Governor'];
+ if(enModeYear===2024){
+  text.textContent='2024 ARCHIVE · no 2026 vote-count feed yet';
+ }else{
+  const good=offices.filter(office=>{
+   const d=enOfficeSnapshots[office]||(office===enOffice?enData:null);
+   return d&&!enOfficeErrors[office]&&!enResumePendingOffices.has(office)&&
+    !d.stale&&!(d.live&&Date.now()-Date.parse(d.as_of)>180000);
+  }).length;
+  const failed=offices.filter(office=>enOfficeErrors[office]||
+   (office===enOffice&&enFetchError)).length;
+  text.textContent=good+'/3 primary office feeds validated'+
+   (failed?' · '+failed+' source failures':'')+
+   ' · Open America covers 22 states; other races require separate checks';
+ }
+ for(const office of offices){
+  const button=$('#enJump'+office);if(!button)continue;
+  const d=enOfficeSnapshots[office]||(office===enOffice&&enModeYear===2026?enData:null);
+  const err=enOfficeErrors[office]||(office===enOffice?enFetchError:null);
+  const label=enModeYear===2024?'2024 archived results':
+   err?'SOURCE RETRYING · last good saved':
+   enResumePendingOffices.has(office)?'RESTORED · rechecking':
+   d?.stale||d?.live&&Date.now()-Date.parse(d.as_of)>180000?'SOURCE STALE':
+   d?.live?'LIVE · unofficial':d?'VALIDATED · waiting':'AWAITING SOURCE';
+  button.querySelector('span').textContent=label;
+  button.setAttribute('aria-label','Open '+office+' race drilldown · '+label);
+ }
+}
 function enRenderSourceHealth(){
  const host=$('#enHealthRows'),headline=$('#enHealthHeadline');
  if(!host||!headline)return;
@@ -3141,6 +3197,7 @@ function enRenderSourceHealth(){
  host.append(secondary);
  headline.textContent=healthy+'/3 primary offices healthy · '+
   impaired+' delayed/retrying · '+failed+' civicAPI retrying';
+ enRenderAmbientDesk();
 }
 function enRenderLiveDesk(){
  jointQueueRefresh();
@@ -3310,9 +3367,9 @@ function jointPrivateActivate({deferRender=false}={}){
 }
 const jointLabels=[
  ['blue_tsunami','BLUE TSUNAMI','D ≥235 House · ≥52 Senate','d-tide'],
- ['blue_wave','BLUE WAVE','D ≥218 House · ≥49 Senate','d-wave'],
- ['shrug','SHRUG','One Wave threshold met','d-split'],
- ['red_dawn','RED DAWN','Neither threshold met','r-dawn']
+ ['blue_wave','BLUE WAVE','D controls House + Senate','d-wave'],
+ ['shrug','SHRUG','Democrats control one chamber','d-split'],
+ ['red_dawn','RED DAWN','Republicans control both','r-dawn']
 ];
 function jointSourceItem(item){
  const key=item.code,itemOffice=key.endsWith('-SEN')?'Senate':'House';
@@ -3447,7 +3504,7 @@ function jointRenderNeedles(result){
   context.append(elt('div','four-needle-change',(
    Math.abs(delta)<.05?'NEEDLE STEADY':delta>0?'NEEDLE MOVED BLUE':'NEEDLE MOVED RED')+
    ' · '+(delta>=0?'+':'')+delta.toFixed(1)+' track points vs pre-count baseline'+
-   ' · D Wave gate '+(movement.dBothChange>=0?'+':'')+
+   ' · D both chambers '+(movement.dBothChange>=0?'+':'')+
    movement.dBothChange.toFixed(1)+' pp'));
   context.append(elt('div','four-needle-signal-label',
    movement.earlyCount+' early-indicator race(s) with validated returns · '+
@@ -3497,7 +3554,7 @@ function jointRenderCards(result){
    host.append(cell);
   }
   const headline=$('#'+(id==='jointHomeCards'?'jointHomeHeadline':'jointNightHeadline'));
-  if(headline)headline.textContent='D ≥218H / ≥49S '+result.blue_both_including_tsunami.toFixed(1)+
+  if(headline)headline.textContent='D both chambers '+result.blue_both_including_tsunami.toFixed(1)+
    '% · Tsunami '+result.probabilities.blue_tsunami.toFixed(1)+
    '% · '+result.samples.toLocaleString('en-US')+' simulations';
   const info=jointBasis.generated_from_sources;
@@ -3507,8 +3564,7 @@ function jointRenderCards(result){
   // needs the same coherent probabilities without a wall of text.
   status.textContent='D House control '+result.house_dem_control_pct.toFixed(1)+
    '% · D Senate control '+result.senate_dem_control_pct.toFixed(1)+
-   '% · D both control '+result.actual_dem_both_control_pct.toFixed(1)+
-   '% · Wave threshold '+result.blue_both_including_tsunami.toFixed(1)+
+   '% · D both chambers '+result.actual_dem_both_control_pct.toFixed(1)+
    '% · Latest polls '+new Date(jointBasis.generated_from_sources.model_polling_at)
     .toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+
    (jointUsesPrivateContext()?' · SILVER CSV FUNDAMENTALS ACTIVE':'');
@@ -5410,6 +5466,7 @@ function enRender(){
  $('#enStatus').classList.toggle('fresh',Boolean(enData&&enModeYear===2026&&enData.live&&!sourceDelayed&&!enFetchError));
  $('#enStatus').textContent=info;
  $('#enChecked').textContent=enLastFetchAt?'Last checked '+enFormattedTime(enLastFetchAt.toISOString()):'Not checked yet';
+ enRenderAmbientDesk();
  $('#enArchiveIntro').hidden=enModeYear!==2024;
  if(enModeYear===2024)$('#enArchiveIntro').textContent=archivedState?
   'State-derived 2024 source rehearsal: named candidates and official-state reported precinct shares via Open America. Partial coverage, stored historical results, not a timed 2024 replay or a certified race call.':
@@ -5636,6 +5693,12 @@ $('#enArchiveSource').addEventListener('change',event=>{
  enArchiveSource=event.target.value==='state'?'state':'medsl';
  enSwitch(2024,enOffice);
 });
+for(const office of ['House','Senate','Governor']){
+ $('#enJump'+office).addEventListener('click',()=>{
+  $('#enRaceDeskDetails').open=true;
+  enSwitch(enModeYear,office);
+ });
+}
 $('#enOfficeHouse').addEventListener('click',()=>enSwitch(enModeYear,'House'));
 $('#enOfficeSenate').addEventListener('click',()=>enSwitch(enModeYear,'Senate'));
 $('#enOfficeGovernor').addEventListener('click',()=>enSwitch(enModeYear,'Governor'));
