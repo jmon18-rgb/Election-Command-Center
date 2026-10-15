@@ -1408,12 +1408,21 @@ async function settle(){
  assert.equal(w.eval('enWatchParse("NC-99")'),null);
  w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
  w.eval('enWatched=[];enRenderWatchlist()');
+ const drawer=get('#enWatchDrawer');
+ assert.equal(drawer.tagName,'DETAILS');
+ assert.equal(drawer.open,false,'Unpinned details must stay out of ambient default view');
+ assert(drawer.querySelector('summary').contains(get('#enWatchCount')),
+  'Saved watchlist race count must remain visible while secondary controls are collapsed');
+ drawer.open=true;
  const watchInput=get('#enWatchInput'),watchForm=get('#enWatchForm');
  for(const race of ['NC-SEN','AZ-01','NH-SEN']){
   watchInput.value=race;
   watchForm.dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
  }
  assert.equal(get('#enWatchCount').textContent,'3 races');
+ drawer.open=false;
+ assert.equal(get('#enWatchCount').textContent,'3 races',
+  'Watchlist count must stay visible while its contents are collapsed');
  const stored=JSON.parse(w.localStorage.getItem('bluewaves_election_watch_2026_v1'));
  assert.equal(stored.length,3);
  assert(stored.some(r=>r.office==='Senate'&&r.key==='NC'));
