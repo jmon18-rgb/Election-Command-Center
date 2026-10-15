@@ -396,7 +396,7 @@ async function settle(){
  assert.match(get('#enMilestoneKicker').textContent,/PREVIEW/,
   'A locked milestone is an explicit preview, not a called victory');
  assert.equal(get('#enMilestonePoster').hidden,false);
- assert.match(get('#enMilestonePoster').getAttribute('src'),/upload\\.wikimedia\\.org\\/wikipedia\\/commons\\/thumb\\/0\\/05\\/John_Brown_portrait/,
+ assert(get('#enMilestonePoster').getAttribute('src').includes('upload.wikimedia.org/wikipedia/commons/thumb/0/05/John_Brown_portrait'),
   'Kansas achievement should feature an actual authenticated 1859 John Brown portrait');
  assert(get('#enMilestonePoster').classList.contains('historic-john-brown'));
  assert.match(get('#enMilestoneSource').textContent,/Library of Congress/,
