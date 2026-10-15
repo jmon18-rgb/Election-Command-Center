@@ -98,6 +98,8 @@ async function settle(){
  assert(w.ElectionNightRehearsal,'Synthetic rehearsal library must load before app');
  w.eval(read('scripts/chamber_control_model.js'));
  assert(w.ChamberControlModel,'Joint Senate/House model must load before app');
+ w.eval(read('scripts/four_endings_needle.js'));
+ assert(w.FourEndingsNeedle,'Four Endings needle module must load before dashboard');
  w.eval(read('scripts/chamber_poll_error_audit.js'));
  assert(w.JackErrorAudit,'Retrospective Senate error audit must be loaded before app');
  w.eval(read('scripts/senate_calibration_audit.js'));
@@ -1218,6 +1220,20 @@ async function settle(){
  w.eval('jointRender(true)');
  assert.equal(get('#jointHomeCards').querySelectorAll('.joint-cell').length,4);
  assert.equal(get('#jointNightCards').querySelectorAll('.joint-cell').length,4);
+ assert.equal(get('#enNeedleArcs').querySelectorAll('path').length,4,
+  'Four outcome needle must show one arc per mutually exclusive ending');
+ assert.match(get('#enNeedleLead').textContent,
+  /RED DAWN|SHRUG|BLUE WAVE|BLUE TSUNAMI/);
+ const liveOutcome=w.eval('jointForecastResult()');
+ const expectedMode=w.FourEndingsNeedle.summarize(liveOutcome);
+ assert.match(get('#enNeedleLead').textContent,
+  new RegExp(expectedMode.winner.title+' \\u00b7 '+expectedMode.winner.percent.toFixed(1)));
+ assert.match(get('#enNeedleSource').textContent,/POLLING-ONLY|AWAITING VALIDATED RETURNS/);
+ assert.match(get('#enNeedleRunnerUp').textContent,/3,000 same-draw simulations/);
+ assert.equal(get('#enNeedlePointer').style.transform,
+  'rotate('+expectedMode.needleDegrees+'deg)',
+  'Needle pointer must derive from the same four-outcome sample counts');
+
  assert.match(get('#jointHomeSummary').textContent,/3,000 correlated simulated elections/);
  assert.match(get('#jointHomeAudit').textContent,/2020 poll minus result/);
  assert.match(get('#jointNightAudit').textContent,/NO automatic historic partisan correction/);
