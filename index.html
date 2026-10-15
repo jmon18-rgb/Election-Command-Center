@@ -1581,6 +1581,16 @@ function setPostedPollingSnapshot(snapshot){
  renderPollWire();
 }
 let feedHealth={polls:null,news:null};
+// Read-only source-lineage diagnostic for production QA and browser regressions.
+function livePollingRevisionStatus(){
+ return {
+  primary_at:pollingSnapshot?.updated_at||null,
+  model_at:latestSenateEstimates?.generated_at||null,
+  model_source_at:latestSenateEstimates?.source_snapshot||null,
+  health_source_at:feedHealth.polls?.updated_at||null,
+  iowa_margin:latestSenateEstimates?.senate_all?.find(r=>r.race_code==='IA-SEN')?.dem_minus_rep??null
+ };
+}
 function updateHealth(){const parts=[];let good=0;for(const [name,item] of Object.entries(feedHealth)){if(!item){parts.push(name+': unavailable');continue}const date=item.updated_at?new Date(item.updated_at):null;const age=date&&!isNaN(+date)?(Date.now()-date.getTime())/3600000:Infinity;const status=item.health?.status||(item.pipeline?.successful_queries?'available':'unknown');const label=!Number.isFinite(age)?'no timestamp':age<-.25?'clock mismatch':age<12?'fresh':age<48?'delayed':'stale';if(age>=-.25&&age<12&&status!=='error')good++;parts.push(name+': '+label+(Number.isFinite(age)?' ('+Math.max(0,Math.round(age))+'h old)':''))}$('#healthText').textContent=parts.join(' · ');$('#healthDot').className='healthdot '+(good===2?'ok':good===0?'bad':'');const diagnostics=$('#feedDiagnostics');if(diagnostics){diagnostics.replaceChildren();for(const p of parts)diagnostics.append(elt('div','item',p))}}
 
 function elt(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=txt;return e}
@@ -2057,6 +2067,17 @@ function renderModelGenericHeadline(){
  $('#genericDelta').textContent='—';
 }
 function renderPolls(d){
+// Initial requests and two-minute refreshes can resolve out of order.
+// Do not roll the raw Poll Wire / model drilldown back behind the latest
+// accepted source or the source revision powering the live joint forecast.
+const incomingAt=Date.parse(d?.updated_at||'');
+const revisions=[pollingSnapshot?.updated_at,latestSenateEstimates?.source_snapshot]
+ .map(v=>Date.parse(v||'')).filter(Number.isFinite);
+if(!Number.isFinite(incomingAt)||
+ (revisions.length&&incomingAt<Math.max(...revisions))){
+ console.warn('Ignoring out-of-order primary poll snapshot:',d?.updated_at);
+ return false;
+}
 pollingSnapshot=d;feedHealth.polls=d;updateHealth();
 renderFreshPolls(d);renderPollWire();
 if(latestSenateEstimates)renderSenateTideLine();
@@ -2901,6 +2922,15 @@ async function jointLoadSources(options={}){
    if(candidate?.senate_prior_mode!=='current_2026'||
       candidate.senate_current_context?.model_revision!=='late_2026_depth_aware_special_v5')
     throw Error('New poll snapshot not compatible with the loaded 2026 engine');
+  }
+  // An older independently fetched bundle can finish AFTER a newer
+  // validated refresh. Reject it before it resets the joint engine and odds.
+  const incomingModelAt=Date.parse(context.polls?.generated_at||'');
+  const acceptedModelAt=Date.parse(latestSenateEstimates?.generated_at||'');
+  if(Number.isFinite(acceptedModelAt)&&
+     (!Number.isFinite(incomingModelAt)||incomingModelAt<acceptedModelAt)){
+   console.warn('Ignoring out-of-order joint forecast bundle:',context.polls?.generated_at);
+   return false;
   }
   // Source/odds must refer to one polling revision before touching UI.
   if(context.seats?.polling_source_snapshot!==context.polls?.generated_at||
