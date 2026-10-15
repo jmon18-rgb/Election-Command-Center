@@ -61,7 +61,12 @@ for(const x of outcomes){
  assert(Math.abs(x.blue_wave_pct+x.blue_tsunami_pct-x.dem_both_pct)<.02);
 }
 const solid=current.senate.filter(x=>x.public_solid_unpolled_party);
-assert.equal(solid.length,11);
+const qualified=new Set(sources.odds.records.filter(x=>x.office==='senate').map(x=>x.race_code));
+const publicSolid=new Set(['CO-SEN','DE-SEN','NJ-SEN','OR-SEN','VA-SEN',
+ 'KY-SEN','MS-SEN','OK-SEN','TN-SEN','WV-SEN','WY-SEN']);
+const expectedUnpolled=[...publicSolid].filter(x=>!qualified.has(x));
+assert.deepEqual(solid.map(x=>x.code).sort(),expectedUnpolled.sort(),
+ 'Qualified fresh polling must replace—not coexist with—the no-poll Solid prior');
 const fullShared=Math.hypot(current.assumptions.common_national_sigma,
  current.assumptions.senate_chamber_sigma,current.assumptions.state_senate_sigma);
 assert(solid.every(x=>Math.abs(Math.hypot(x.sigma,fullShared)-7)<1e-9));
