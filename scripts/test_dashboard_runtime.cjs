@@ -260,30 +260,49 @@ async function settle(){
  // House/Senate simulation draws, not merely contribute a tiny partial lead.
  // NC has a state-derived primary results feed; a separately identity-checked
  // civicAPI call must still be honored by the joint model.
- const oldNcCall=w.eval('enCivicByWatch["Senate|NC"]')||null;
- const calledNC={provider:'civicAPI',office:'Senate',key:'NC',
-  race_id:8241,last_updated:'2026-11-04T03:05:00Z',total:190000,
-  percent_reporting:82,called:'Mock Republican',
-  candidates:[{name:'Mock Democrat',party:'D',votes:100100},
-    {name:'Mock Republican',party:'R',votes:89900}]};
- w.eval('enCivicByWatch["Senate|NC"]='+JSON.stringify(calledNC)+';jointRender(true)');
+ // Test through the actual provider lookup, identity validation and
+ // fetch/revision path. No injected global state or test-only production hook.
+ const beforeNcFetch=w.fetch;
+ const ncRow={id:8241,country:'US',province:'NC',municipality:null,
+  election_date:'2026-11-03',election_name:'NC US Senate General Election',
+  election_type:'General',type:'US Senate',district:null,candidates:[]};
+ let ncCalledParty='R';
+ const ncCandidateData=()=>[
+  {name:'Mock Democrat',party:'Democratic',votes:100100,percent:52.6842,
+   winner:ncCalledParty==='D'},
+  {name:'Mock Republican',party:'Republican',votes:89900,percent:47.3158,
+   winner:ncCalledParty==='R'}];
+ w.fetch=async(url,opts)=>{
+  if(String(url).startsWith('https://civicapi.org/api/v2/race/search?'))
+   return {ok:true,json:async()=>({races:[ncRow],count:1})};
+  if(String(url)==='https://civicapi.org/api/v2/race/8241?light=')
+   return {ok:true,json:async()=>({...ncRow,election_type:'US Senate',
+    last_updated:'2026-11-04T03:05:00Z',percent_reporting:82,
+    candidates:ncCandidateData()})};
+  return beforeNcFetch(url,opts);
+ };
+ w.eval('enWatchToggle({office:"Senate",key:"NC"})');
+ await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
+ w.eval('jointRender(true)');
  let calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
  assert.equal(calledRace.provider_called_party,'R');
  assert.equal(calledRace.dem_beats_rep_pct,0,
-  'Source-reported R call overrides even a temporary D vote lead');
+  'A vetted civicAPI Republican call constrains a primary-covered race');
  assert.equal(w.eval("Object.values(jointForecastResult().probabilities).reduce((a,b)=>a+b,0)").toFixed(1),'100.0');
- calledNC.called='Mock Democrat';
- w.eval('enCivicByWatch["Senate|NC"]='+JSON.stringify(calledNC)+';jointRender(false)');
+ ncCalledParty='D';
+ await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
+ w.eval('jointRender(false)');
  calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
  assert.equal(calledRace.dem_beats_rep_pct,100,
-  'Same-timestamp corrections must reverse the locked simulated winner');
- calledNC.called=null;
- w.eval('enCivicByWatch["Senate|NC"]='+JSON.stringify(calledNC)+';jointRender(false)');
+  'Same-timestamp corrected provider call must reverse simulated winner');
+ ncCalledParty=null;
+ await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
+ w.eval('jointRender(false)');
  calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
  assert.equal(calledRace.provider_called_party,null,
-  'Withdrawing source winner restores uncertain result-based nowcast');
- if(oldNcCall)w.eval('enCivicByWatch["Senate|NC"]='+JSON.stringify(oldNcCall));
- else w.eval('delete enCivicByWatch["Senate|NC"]');
+  'Withdrawing a winner call restores uncertain election-night simulation');
+ w.eval('enWatchToggle({office:"Senate",key:"NC"})');
+ w.fetch=beforeNcFetch;
  w.eval('jointRender(true)');
  assert.equal(get('#enMilestoneDesk').hidden,false,'2026 mode reveals achievements');
  assert.equal(get('#enMilestoneGrid').querySelectorAll('.en-milestone-card').length,7);
