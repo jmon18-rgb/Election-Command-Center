@@ -84,6 +84,23 @@ class PollChainTests(unittest.TestCase):
         self.assertEqual(mn["dem_minus_rep"], 3.0)
         self.assertEqual(odds["records"][0]["dem_minus_rep"], 3.0)
 
+    def test_new_primary_only_poll_cannot_hide_from_model(self):
+        primary, model, odds = fixture()
+        p = newer()
+        primary["races"][0]["polls"].insert(0, p)
+        with self.assertRaisesRegex(ValueError, "Newest primary poll omitted"):
+            check(primary, model, odds, today=__import__("datetime").date(2026, 10, 14))
+
+    def test_intentionally_excluded_firm_does_not_block_forecast(self):
+        primary, model, odds = fixture()
+        p = newer()
+        p["pollster"] = "Explicitly Excluded Example"
+        primary["races"][0]["polls"].insert(0, p)
+        model["excluded_pollsters"] = ["explicitly excluded example"]
+        result = check(primary, model, odds,
+                       today=__import__("datetime").date(2026, 10, 14))
+        self.assertEqual(result["freshest_primary_firm_waves"], 32)
+
     def test_old_probability_snapshot_blocks_publication(self):
         primary, model, odds = fixture()
         odds["polling_source_generated_at"] = "2026-10-13T17:00:00Z"
