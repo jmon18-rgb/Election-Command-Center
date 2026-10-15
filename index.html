@@ -565,6 +565,36 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-milestone-poster[hidden]{display:none!important}
 .en-milestone-card .en-milestone-thumb{width:50px;height:37px;flex-shrink:0;object-fit:cover;border-radius:6px;border:1px solid #3c718e}
 @media(max-width:600px){.en-milestone-card .en-milestone-thumb{width:39px;height:31px}}
+
+/* High-signal reading order: one shared Four Endings forecast above the news feed,
+ * followed by auto-ranked Senate/House action. No giant duplicate race tables. */
+#brief>#jointHomePanel{margin-top:12px}
+.smart-race-desk{background:linear-gradient(154deg,#132739,#0c1b2c);border:1px solid #38536c;border-radius:13px;margin:17px 0;padding:16px 18px}
+.smart-race-desk[hidden]{display:none}
+.smart-desk-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:12px}
+.smart-desk-head h2{font-size:21px;margin:5px 0 4px;letter-spacing:-.02em}
+.smart-desk-head p{font-size:11px;color:#adc6d8;line-height:1.5;max-width:650px;margin:0}
+.smart-desk-more{font-size:11px;font-weight:800;color:#d3eaff;background:#204565;border:1px solid #6d95b0;border-radius:7px;padding:10px 13px;cursor:pointer}
+.smart-desk-more:hover,.smart-desk-more:focus-visible{background:#286083;outline-offset:2px}
+.smart-desk-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.smart-desk-lane{background:#172a3f;border:1px solid #32495e;border-radius:10px;padding:10px;min-width:0}
+.smart-desk-lane-head{display:flex;justify-content:space-between;gap:7px;align-items:center;border-bottom:1px solid #40566c;padding:4px 2px 9px;margin-bottom:4px}
+.smart-desk-lane-head strong{font-size:12px;letter-spacing:.07em}
+.smart-desk-lane-head span{font-size:10px;color:#91b1cb}
+.smart-desk-row{display:grid;grid-template-columns:minmax(78px,1fr) minmax(0,1.4fr) auto;align-items:center;gap:8px;padding:10px 5px;border-bottom:1px solid #2b4359;min-width:0}
+.smart-desk-row:last-child{border-bottom:0}
+.smart-desk-identity strong{display:block;font-size:13px;font-weight:900;color:#e9f4ff}
+.smart-desk-identity small{font-size:10px;color:#a8c4d9;display:block;margin-top:3px}
+.smart-desk-detail{font-size:11px;color:#dae9f7;line-height:1.4;min-width:0}
+.smart-desk-detail small{display:block;color:#9bb8ce;font-size:10px;line-height:1.5;margin-top:3px}
+.smart-desk-state{font-size:10px;font-weight:900;border:1px solid #3c536a;border-radius:6px;padding:4px 7px;color:#b4c9db;white-space:nowrap}
+.smart-desk-state[data-state="reporting"]{color:#b4ecdc;border-color:#397b71}
+.smart-desk-state[data-state="called"]{color:#d2e9ff;border-color:#408ac2}
+.smart-desk-state[data-state="delayed"]{color:#f4d5a5;border-color:#977247}
+.smart-desk-note{font-size:10px;line-height:1.5;color:#91afc5;margin:10px 0 0}
+.smart-desk-open{font-size:10px;white-space:nowrap;color:#aad7ff}
+.smart-desk-open:focus-visible{outline-offset:2px}
+@media(max-width:690px){.smart-race-desk{padding:12px}.smart-desk-grid{grid-template-columns:1fr}.smart-desk-row{grid-template-columns:minmax(62px,.75fr) minmax(0,1.6fr) auto;gap:5px;padding:9px 3px}.smart-desk-identity strong{font-size:12px}.smart-desk-detail{font-size:10px}.smart-desk-state{font-size:9px;padding:4px}.smart-desk-head h2{font-size:19px}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -585,15 +615,6 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 </div><nav class="tabs" aria-label="Dashboard tabs"><button class="tab" data-page="brief" aria-selected="true">Daily briefing</button><button class="tab" data-page="wire" aria-selected="false">Poll Wire</button><button class="tab" data-page="model" aria-selected="false">JackStradamus</button><button class="tab" data-page="integrity" aria-selected="false">Bullshittery Index</button><button class="tab" data-page="electionNight" aria-selected="false">Election Night</button></nav>
 <section id="brief" class="page active">
 <div class="brief-intro"><div><span class="eyebrow">DAILY BRIEFING</span><h2>Today’s tide schedule</h2><p>Start with the numbers. Then see what's new and why it matters.</p></div><div class="brief-date compact-date"><span>Election Day · Nov 3</span><strong id="countdown">—</strong></div></div>
-<div class="grid" style="margin-top:16px">
-<div class="card eight featured"><div class="row"><span class="label">National generic ballot · recent polls</span><span class="tag teal">OBSERVED DATA</span></div><div class="featureline"><div><div class="big party-even" id="genericMargin">—</div><p class="detail" id="genericDetail">Awaiting verified polling observations.</p></div><div class="featuredelta"><span class="label">SINCE LAST REFRESH</span><strong id="genericDelta">—</strong></div></div><div class="barlabels"><span>DEMOCRATIC</span><span>REPUBLICAN</span></div><div class="ballotbar"><div id="ballotDem" class="ballotdem"></div><div id="ballotRep" class="ballotrep"></div></div><div class="barvalues"><span id="ballotDemLabel">—</span><span id="ballotRepLabel">—</span></div><div class="rule"></div><div class="row"><span class="tiny" id="genericFresh">Polling feed not yet loaded</span><button class="textlink" type="button" data-jump="races">Explore races →</button></div><p class="methodline">Descriptive polling average, not a prediction of House seats or win probabilities.</p></div>
-</div>
-<div class="sectionhead"><h2>What actually changed</h2><span class="tiny" id="pulseAsOf">Comparing recent model snapshots</span></div>
-<div id="racePulse" class="pulse-grid"><div class="empty">Checking for meaningful new polling evidence…</div></div>
-<p class="pulse-disclaimer">Changes in polling averages can reflect new surveys, weighting or timing—not necessarily a shift in voter opinion. Only current, qualifying observations are shown; older snapshots are compared only with identical candidate matchups.</p>
-<div class="sectionhead"><h2>What's new</h2><span class="tiny" id="freshness">Checking latest update</span></div>
-<div class="grid"><div class="card seven"><div class="row"><span class="label">New polls</span><span class="tiny" id="changesSince">Checking newly observed surveys</span></div><div id="newPolls" class="empty">Checking recent poll postings…</div><button class="textlink" type="button" data-jump="wire">Open full Poll Wire →</button></div>
-<div class="card five"><div class="row"><span class="label">Election developments</span><span class="tag">NEWS LEADS</span></div><p id="newsFeedStatus" class="tiny" role="status">Checking publication date…</p><div id="updates" class="empty">Loading recent election reporting.</div><button class="textlink" type="button" data-jump="integrity">Bullshittery Index →</button></div></div>
 <div class="sectionhead"><h2>The four endings</h2><span class="tiny">JackStradamus · one correlated model for races and chamber control</span></div>
 <div class="joint-panel" id="jointHomePanel" aria-label="JackStradamus four outcome probability model">
  <div class="joint-title"><div><span class="label">JACKSTRADAMUS · JOINT CHAMBER BETA</span><h3>Four endings. Our probabilities.</h3></div><span class="joint-tag">EXPERIMENTAL · ASSUMPTION-BASED</span></div>
@@ -621,6 +642,22 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <details class="joint-audit"><summary>Historical polling-error check · how reliable is this?</summary><p id="jointHomeAudit" class="joint-note">Reading existing historical Senate poll backtest…</p></details>
  <p class="joint-note">Blue Tsunami = Democrats win both chambers AND at least 18 of 20 fixed House/Senate/governor battleground races. Blue Wave = both chambers without that near-sweep. Shrug = split control. Red Dawn = Republicans retain both. These four outcomes are mutually exclusive. Model estimates are not calibrated forecasts.</p>
 </div>
+
+<section class="smart-race-desk" id="smartBriefDesk" aria-label="Automatically tracked 2026 Senate and House races">
+<div class="smart-desk-head"><div><span class="label">AUTOMATIC RACE INTELLIGENCE · 2026</span>
+<h2>Races that could move the needle</h2><p>Preselected from the supplied tipping-point reference; reorders as verified votes and model uncertainty change. No pinning required.</p></div>
+<button type="button" id="smartBriefMore" class="smart-desk-more" aria-expanded="false">Show more races</button></div>
+<div class="smart-desk-grid" id="smartBriefGrid"><p class="empty">Preparing Senate, House and statewide races…</p></div>
+<p class="smart-desk-note" id="smartBriefNote">Before November 3: reference watch and current JackStradamus estimates only. On election night: validated source-reported votes and calls. Precinct share is not vote share counted.</p></section>
+<div class="grid" style="margin-top:16px">
+<div class="card eight featured"><div class="row"><span class="label">National generic ballot · recent polls</span><span class="tag teal">OBSERVED DATA</span></div><div class="featureline"><div><div class="big party-even" id="genericMargin">—</div><p class="detail" id="genericDetail">Awaiting verified polling observations.</p></div><div class="featuredelta"><span class="label">SINCE LAST REFRESH</span><strong id="genericDelta">—</strong></div></div><div class="barlabels"><span>DEMOCRATIC</span><span>REPUBLICAN</span></div><div class="ballotbar"><div id="ballotDem" class="ballotdem"></div><div id="ballotRep" class="ballotrep"></div></div><div class="barvalues"><span id="ballotDemLabel">—</span><span id="ballotRepLabel">—</span></div><div class="rule"></div><div class="row"><span class="tiny" id="genericFresh">Polling feed not yet loaded</span><button class="textlink" type="button" data-jump="races">Explore races →</button></div><p class="methodline">Descriptive polling average, not a prediction of House seats or win probabilities.</p></div>
+</div>
+<div class="sectionhead"><h2>What actually changed</h2><span class="tiny" id="pulseAsOf">Comparing recent model snapshots</span></div>
+<div id="racePulse" class="pulse-grid"><div class="empty">Checking for meaningful new polling evidence…</div></div>
+<p class="pulse-disclaimer">Changes in polling averages can reflect new surveys, weighting or timing—not necessarily a shift in voter opinion. Only current, qualifying observations are shown; older snapshots are compared only with identical candidate matchups.</p>
+<div class="sectionhead"><h2>What's new</h2><span class="tiny" id="freshness">Checking latest update</span></div>
+<div class="grid"><div class="card seven"><div class="row"><span class="label">New polls</span><span class="tiny" id="changesSince">Checking newly observed surveys</span></div><div id="newPolls" class="empty">Checking recent poll postings…</div><button class="textlink" type="button" data-jump="wire">Open full Poll Wire →</button></div>
+<div class="card five"><div class="row"><span class="label">Election developments</span><span class="tag">NEWS LEADS</span></div><p id="newsFeedStatus" class="tiny" role="status">Checking publication date…</p><div id="updates" class="empty">Loading recent election reporting.</div><button class="textlink" type="button" data-jump="integrity">Bullshittery Index →</button></div></div>
 <div class="sectionhead"><h2>The Senate tide line</h2><span class="tiny" id="senateTideAsOf">Watching the races that could change control</span></div>
 <div class="tide-line-panel" aria-label="Key Senate races from the 2026 control forecast">
  <p class="tide-line-intro">The path to Senate control runs through more than one race. Watch the battlegrounds, then the outer edge of a possible wave. All margins and odds below come from our own live polling and correlated model—not another forecaster's odds.</p>
@@ -857,6 +894,12 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <span id="jointRunStatus">Polling priors only before actual November 3 results.</span></div>
  <p class="joint-note">Modeled joint probabilities, not independent House × Senate multiplication. Early partial returns use a noisy geographic signal; the source must meet the result-integrity gates. Missing and redrawn districts get wide uncertainty. Controls are sensitivity experiments, not confidence intervals.</p>
 </section>
+<section class="smart-race-desk smart-night" id="smartNightDesk" aria-label="Automatic election-night priority watch" hidden>
+<div class="smart-desk-head"><div><span class="label">LIVE ELECTION NIGHT · AUTOMATIC WATCH</span>
+<h2>Where the action is</h2><p>Source-reported counts and linked model uncertainty promote developing races; old calls settle out. Personal pins are not required.</p></div>
+<button type="button" id="smartNightMore" class="smart-desk-more" aria-expanded="false">Show more races</button></div>
+<div class="smart-desk-grid" id="smartNightGrid"><p class="empty">Building source-validated priority watch…</p></div>
+<p class="smart-desk-note" id="smartNightNote">Actual votes are attributed to their reporting provider. A vote lead is not a winner call or a national swing estimate.</p></section>
 <div class="en-status" id="enStatus" role="status">Election Day is November 3. The 2024 archive is available for rehearsal before 2026 results begin.</div>
 <div class="en-archive-intro" id="enArchiveIntro">2024 House rehearsal uses MIT/MEDSL's historical recorded party-level votes across all 435 districts. It is <strong>not a minute-by-minute replay</strong> and does not identify individual candidates, certified winners, or precinct progress. A 2024 district number must not be treated as the same geographic seat in 2026 after redistricting.</div>
 
@@ -1032,6 +1075,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/civicapi_state_batch.js?v=0a26f4f75956"></script>
 <script src="./scripts/election_night_nowcast.js?v=8ca79046baa4"></script>
 <script src="./scripts/election_night_early_signals.js?v=7691146833ec"></script>
+<script src="./scripts/election_night_priority.js?v=763db866f53f"></script>
 <script src="./scripts/election_night_signals.js?v=75bc99b105dd"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
 <script src="./scripts/chamber_control_model.js?v=fe9fa5295651"></script>
