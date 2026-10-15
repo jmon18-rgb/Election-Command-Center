@@ -20,7 +20,8 @@ STATES={"Maine":"ME","New Hampshire":"NH","North Carolina":"NC","Michigan":"MI",
 TOPICS={"registration":"registration|voter roll|voter list|purge|eligib|citizenship|save database",
 "ballot_access":"ballot|polling place|voting access|early voting|absentee",
 "litigation":"lawsuit|litigation|court|injunction|judge|appeal",
-"security":"threat|bomb|cyber|ice|intimidat|interferen"}
+"security":"threat|bomb|cyber|ice|intimidat|interferen",
+"election_admin":"election|midterm|vote count|recount|canvass|certif|precinct|voter fraud|vote suppress"}
 # Keep state classification symmetric for both parties and all states.
 # A missing state hint is NOT a claim about where a case did/did not happen.
 STATES.update({
@@ -107,6 +108,9 @@ def main():
         low=title.lower()
         states=[abbr for name,abbr in STATES.items() if re.search(r"\b"+re.escape(name.lower())+r"\b",low)]
         topics=[topic for topic,pattern in TOPICS.items() if re.search(pattern,low)]
+        # Security-news feeds sometimes contain unrelated local articles.
+        # Exclude from NEW triage leads, not from already-reviewed records.
+        if not topics:continue
         # Preserve numbers only as quoted leads; they are NOT verified voter impacts.
         numeric_mentions=re.findall(r"\b\d[\d,]*(?:\.\d+)?\s*(?:million|thousand|voters|ballots|registrations|records)?\b",title,re.I)[:5]
         old[ident]={"id":ident,"title":title,"url":url,"publisher":article.get("source"),
