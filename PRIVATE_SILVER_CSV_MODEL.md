@@ -1,4 +1,7 @@
-# Private Silver Bulletin CSV context in JackStradamus
+# Silver Bulletin fundamental CSV context in JackStradamus
+
+**October 15 owner update:** The repository now publicly contains `ZqBdM (1).csv` (27 Senate fundamentals rows) and `f3ome (1).csv` (98 House-district fundamentals rows). The dashboard automatically fetches and activates BOTH when they pass schema/coverage checks, on every device. An owner-published CSV is no longer private; the older below instructions describe manual and locally stored supplemental inputs, which still work as overrides. The source does NOT include Expert ratings, final Silver probabilities or all 435 House fundamentals. The site's headline becomes its own *experimentally CSV-augmented* correlated model, while the original model is separately computed for comparison. The original paid Silver data is publicly accessible in GitHub—the repository owner should only leave it there if they have the appropriate rights to publish it.
+
 
 **Status: personal candidate-fundamentals input to the user's active forecast, with an explicit unvalidated-parameter warning.** The public version has no rights to automatically fetch these private subscriber estimates. Once imported, they become part of that browser's active JackStradamus probabilities (using our own polling blends, race error budgets, and joint simulation), while the source-independent forecast remains available for comparison. Subscriber-provided files and per-race paid source estimates MUST NOT be checked into the public GitHub repository or published as site data.
 
