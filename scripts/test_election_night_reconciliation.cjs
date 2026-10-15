@@ -11,7 +11,7 @@ TX:38,UT:4,VT:1,VA:11,WA:10,WV:2,WI:8,WY:1};
 const house=api.houseIds(counts);
 assert.equal(house.length,435);
 assert(house.includes('AK-00')&&!house.includes('AK-01'));
-const senateStates='AL AK AR CO DE FL GA ID IA IL IN KS KY LA MA ME MI MN MS MT NC NE NH NJ NM OH OK OR RI SC SD TN TX VA WV WY'.split(' ');
+const senateStates='AL AK AR CO DE FL GA ID IA IL KS KY LA MA ME MI MN MS MT NC NE NH NJ NM OH OK OR RI SC SD TN TX VA WV WY'.split(' ');
 assert.equal(senateStates.length,35);
 const senate=senateStates.map(st=>({key:st+(st==='FL'||st==='OH'?'-special':'')}));
 assert.equal(api.senateIds(senate).length,35);
