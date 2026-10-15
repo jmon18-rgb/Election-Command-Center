@@ -3466,7 +3466,7 @@ function enWatchToggle(item){
   $('#enWatchError').textContent='40 saved races maximum. Remove an old one before adding more.';return;
  }else enWatched.push({office:item.office,key:item.key});
  $('#enWatchError').textContent='';
- enWatchSave();enRenderWatchlist();if(enModeYear===2026)enRender();
+ enWatchSave();enRenderWatchlist();enRenderEarlySignals();if(enModeYear===2026)enRender();
  if(enModeYear===2026&&enIsVisible()&&!enSupportedStates.has(item.key.slice(0,2)))
   void enRefreshCivicWatchlist(true);
 }
