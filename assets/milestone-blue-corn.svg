@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 620" role="img" aria-labelledby="t d">
+<title id="t">BLUE CORN — THAT’S ONE BLUE KERNEL OF TRUTH</title><desc id="d">Election-night poster showing a large cartoon ear of corn with saturated blue kernels and gold leaves for an Iowa Democratic statewide win.</desc>
+<defs><linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#153045"/><stop offset="1" stop-color="#16786f"/></linearGradient>
+<radialGradient id="light"><stop stop-color="#38bdff" stop-opacity=".5"/><stop offset="1" stop-color="#38bdff" stop-opacity="0"/></radialGradient>
+<filter id="glow"><feGaussianBlur stdDeviation="9"/></filter></defs>
+<rect width="980" height="620" rx="25" fill="url(#sky)"/>
+<circle cx="510" cy="300" r="320" fill="url(#light)"/>
+<g opacity=".22" stroke="#d3f3ff" stroke-width="2" fill="none"><path d="M0 168Q250 109 490 168T980 168"/><path d="M0 457Q250 409 490 457T980 457"/></g>
+<rect x="30" y="24" width="920" height="48" rx="12" fill="#031526" opacity=".83"/>
+<text x="490" y="56" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" letter-spacing="4" font-weight="800" fill="#addefc">IOWA · STATEWIDE VICTORY</text>
+<g transform="translate(490 252)"><path d="M-50 178C-171 110-171 25-109-105Q-104 18-24 30" fill="#77c6a2"/><path d="M48 173C171 91 171-6 118-112Q94 14 17 33" fill="#55c994"/><rect x="-63" y="-152" width="126" height="293" rx="63" fill="#2b77db" stroke="#9fd9ff" stroke-width="7"/><g fill="#80d8ff"><ellipse cx="-33" cy="-119" rx="17" ry="22"/><ellipse cx="0" cy="-119" rx="17" ry="22"/><ellipse cx="33" cy="-119" rx="17" ry="22"/><ellipse cx="-22" cy="-80" rx="17" ry="22"/><ellipse cx="11" cy="-80" rx="17" ry="22"/><ellipse cx="44" cy="-80" rx="17" ry="22"/><ellipse cx="-33" cy="-41" rx="17" ry="22"/><ellipse cx="0" cy="-41" rx="17" ry="22"/><ellipse cx="33" cy="-41" rx="17" ry="22"/><ellipse cx="-22" cy="-2" rx="17" ry="22"/><ellipse cx="11" cy="-2" rx="17" ry="22"/><ellipse cx="44" cy="-2" rx="17" ry="22"/><ellipse cx="-33" cy="37" rx="17" ry="22"/><ellipse cx="0" cy="37" rx="17" ry="22"/><ellipse cx="33" cy="37" rx="17" ry="22"/><ellipse cx="-22" cy="76" rx="17" ry="22"/><ellipse cx="11" cy="76" rx="17" ry="22"/><ellipse cx="44" cy="76" rx="17" ry="22"/><ellipse cx="-33" cy="115" rx="17" ry="22"/><ellipse cx="0" cy="115" rx="17" ry="22"/><ellipse cx="33" cy="115" rx="17" ry="22"/></g></g>
+<rect x="24" y="452" width="932" height="150" rx="20" fill="#041a33" opacity=".91"/>
+<text x="490" y="505" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-size="53" font-weight="900" letter-spacing="1.5" fill="#e2f7ff">BLUE CORN</text>
+<text x="490" y="545" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="25" font-weight="800" fill="#6cd2ff">THAT’S ONE BLUE KERNEL OF TRUTH</text>
+<text x="490" y="582" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="1.4" fill="#b2d6ed">IOWA SENATE OR GOVERNOR · D CALLED</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 620" role="img" aria-labelledby="t d">
+<title id="t">DING DONG! — THE WICKED WITCH OF THE EAST IS OUT</title><desc id="d">Original witch-themed Maine election parody: a cartoon witch with a purple hat bearing the label COLLINS, a broom and a sparkling blue sky. No film artwork is used.</desc>
+<defs><linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#18313b"/><stop offset="1" stop-color="#0c6d71"/></linearGradient>
+<radialGradient id="light"><stop stop-color="#38bdff" stop-opacity=".5"/><stop offset="1" stop-color="#38bdff" stop-opacity="0"/></radialGradient>
+<filter id="glow"><feGaussianBlur stdDeviation="9"/></filter></defs>
+<rect width="980" height="620" rx="25" fill="url(#sky)"/>
+<circle cx="510" cy="300" r="320" fill="url(#light)"/>
+<g opacity=".22" stroke="#d3f3ff" stroke-width="2" fill="none"><path d="M0 168Q250 109 490 168T980 168"/><path d="M0 457Q250 409 490 457T980 457"/></g>
+<rect x="30" y="24" width="920" height="48" rx="12" fill="#031526" opacity=".83"/>
+<text x="490" y="56" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" letter-spacing="4" font-weight="800" fill="#addefc">MAINE · SENATE</text>
+<g transform="translate(492 235) rotate(7)"><path d="M-145 11l80-145 86 14 53 131Z" fill="#2e2146" stroke="#c6a7f0" stroke-width="7"/><path d="M-144 8Q-66 58 93 10" stroke="#9c79e2" stroke-width="21" fill="none" stroke-linecap="round"/><ellipse cx="-12" cy="85" rx="65" ry="75" fill="#87b594"/><path d="M-78 94Q-9 153 48 113Q27 193-40 172Z" fill="#e4f6e6"/><circle cx="-31" cy="65" r="5" fill="#192e35"/><circle cx="17" cy="65" r="5" fill="#192e35"/><path d="M-15 82L42 88 4 100Z" fill="#608e68"/><text x="-28" y="-6" transform="rotate(0)" font-family="Arial,sans-serif" font-weight="900" font-size="21" fill="#f3e5ff">COLLINS</text></g><path d="M694 159l80 240" stroke="#b98040" stroke-width="10"/><path d="M769 383l-57 23 80 27 23-33Z" fill="#dfb16a"/><g fill="#a8f2ff" opacity=".9"><path d="M235 130l8 26 26 8-26 8-8 26-8-26-26-8 26-8Z"/><path d="M792 112l5 18 18 5-18 5-5 18-5-18-18-5 18-5Z"/></g>
+<rect x="24" y="452" width="932" height="150" rx="20" fill="#041a33" opacity=".91"/>
+<text x="490" y="505" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-size="53" font-weight="900" letter-spacing="1.5" fill="#e2f7ff">DING DONG!</text>
+<text x="490" y="545" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="25" font-weight="800" fill="#6cd2ff">THE WICKED WITCH OF THE EAST IS OUT</text>
+<text x="490" y="582" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="1.4" fill="#b2d6ed">SUSAN COLLINS · PROVIDER-REPORTED DEFEAT</text>
+</svg>
