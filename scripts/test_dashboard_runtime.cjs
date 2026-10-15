@@ -118,6 +118,26 @@ async function settle(){
  assert.equal(afterPin.getAttribute('aria-pressed'),String(!wasPinned));
  afterPin.click();
  assert.equal(get('#enEarlySignals .en-early-pin').getAttribute('aria-pressed'),String(wasPinned));
+ // The Fish Head interruptor must not confuse a pretend preview, an
+ // early vote-leader swing, or pre-election data with a verified race call.
+ const fish=get('#enFishToast');
+ assert(fish.hidden,'Breaking news panel must start dismissed');
+ assert.match(get('#enFishVoice').textContent,/Voice/);
+ get('#enFishPreview').click();
+ assert.equal(fish.hidden,false);
+ assert.match(get('#enFishMode').textContent,/REHEARSAL/);
+ assert.match(get('#enFishHeadline').textContent,/Bikini Bottom election desk/);
+ assert.match(get('#enFishSource').textContent,/no actual result/);
+ get('#enFishDismiss').click();
+ assert(fish.hidden,'Dismiss control must close the fish-news overlay');
+ const bogusCall={kind:'call',source:'civicAPI',title:'VA-02 provider call',
+  details:'Preview only; no real returns exist'};
+ assert.equal(w.eval('enFishShow('+JSON.stringify(bogusCall)+',false)'),false,
+  'Do not show Fish Head results interruptions prior to Election Day');
+ assert.equal(w.eval('enFishShow('+JSON.stringify({
+  ...bogusCall,kind:'flip'})+',false)'),false,
+  'Uncalled leader change cannot be promoted to breaking call');
+ assert.equal(fish.hidden,true,'No fake election outcomes may appear');
  // A deliberately NON-PRODUCTION shared-error sensitivity that preserves
  // the original baseline odds and does not read Silver paid CSV values.
  assert(get('#jointHomeCorrelationDetails'),'Senate covariance research must be discoverable');
