@@ -113,6 +113,24 @@ async function settle(){
  assert(registeredIntervals.some(x=>x.ms===300000),
   'Still-open tab must register reporting/security refresh every five minutes');
  await settle();
+ // One cross-page heartbeat distinguishes five independent sources.
+ const glanceIds=['feedPolls','feedModel','feedNews','feedSecurity','feedResults'];
+ for(const id of glanceIds){
+  const node=get('#'+id);
+  assert(['fresh','delayed','unavailable','pending','scheduled'].includes(node.dataset.status),
+   'Each source must expose a distinct, truthful state: '+id);
+  assert.match(node.getAttribute('href'),/^#(wire|model|brief|integrity|electionNight)$/,
+   'Source status must link to relevant desk: '+id);
+ }
+ assert.match(get('#feedResults').textContent,/Nov 3/,
+  'Prior to counting, report that 2026 results are scheduled, not live');
+ assert.equal(get('#feedResults').dataset.status,'scheduled');
+ assert.match(get('#feedModel').textContent,/^Model · /);
+ assert.match(get('#feedPolls').textContent,/^Polls · /);
+ // An error from the news collection cannot be hidden by cached headlines.
+ w.eval('commandNewsSourceError=true;updateFeedGlance()');
+ assert.equal(get('#feedNews').dataset.status,'unavailable');
+ w.eval('commandNewsSourceError=false;updateFeedGlance()');
  assert.match(get('#privateContextStatus').textContent,/Repository fundamentals ACTIVE/,
   'Repository Senate+House CSV inputs must auto-load without device upload');
  assert.equal(w.eval('jointForecastResult()')?.samples,3000);
@@ -794,6 +812,9 @@ async function settle(){
  assert.equal(get('#enCalls').textContent,'Not supplied');
  w.fetch=originalRemoteFetch;
  get('#enMode2024').click();
+ w.eval('updateFeedGlance()');
+ assert.match(get('#feedResults').textContent,/2024 archive/,
+  'Historical returns must not be shown as a live 2026 reporting source');
  await w.eval('enLoad(true)');
  assert.equal(get('#enArchiveOutcome').hidden,false,
   '2024 should show a retrospective historical control outcome');
