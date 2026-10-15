@@ -31,6 +31,29 @@ assert.equal(x.house.total,435);assert.equal(x.senate.total,35);
 assert.equal(x.house.reported,1);assert.equal(x.senate.reported,2);
 assert.equal(x.house.noVotes,1);assert.equal(x.house.noValidCount,433);
 assert.equal(x.senate.primary,1);assert.equal(x.senate.supplemental,1);
+// Office source health must be the same for UI labels and coverage arithmetic.
+const health=(snapshot,office='Senate',opts={})=>
+ api.officeHealth(snapshot,office,{now,...opts});
+assert.equal(health(input.snapshots.Senate).state,'reporting');
+assert.equal(health(input.snapshots.House,'House').state,'reporting');
+assert.equal(health(input.snapshots.Senate,'Governor').state,'invalid');
+assert.equal(health(input.snapshots.Senate,'Senate',{error:true}).state,'outage');
+assert.equal(health(input.snapshots.Senate,'Senate',{restored:true}).state,'rechecking');
+assert.equal(health(null).state,'missing');
+assert.equal(health({...input.snapshots.Senate,live:false,
+ as_of:'2026-11-03T23:00:00Z'}).state,'stale',
+ 'A non-live old snapshot is STILL stale; not a validated office feed');
+assert.equal(health({...input.snapshots.Senate,stale:true}).usable,false);
+assert.equal(health({...input.snapshots.Senate,as_of:'2026-11-04T05:00:00Z'}).state,'invalid');
+assert.equal(health({...input.snapshots.Senate,as_of:null}).state,'invalid',
+ 'Never count reported votes without a date');
+assert.equal(health({...input.snapshots.Senate,as_of:null,races:{},live:false,
+ counting:false}).state,'standby','Zero-vote startup is standby, not an outage');
+assert.equal(health({...input.snapshots.Senate,
+ as_of:'2026-10-15T18:00:00Z',races:{},live:false,counting:false}).state,'standby');
+assert.equal(health({...input.snapshots.Senate,as_of:null,races:{NC:votes(1)}}).usable,false);
+assert.equal(health({...input.snapshots.Senate,races:{}}).state,'current_no_votes');
+assert.equal(health(input.snapshots.Senate).usable,true);
 assert.equal(x.providerCalls,1);assert.equal(x.authoritativeCalls,0);
 assert.equal(x.chambersCalled,false);assert.equal(x.senateHoldoversInUniverse,65);
 const overlapping={...input,civic:{...input.civic,
