@@ -98,7 +98,10 @@
   for(const spec of MILESTONES){
    const evidence=spec.needs.map(req=>{
     const row=calls[idOf(req)];
-    const call=validatedCall(row,now);
+    // Reject a cross-race/cross-office record even if a caller supplied the
+    // right dictionary key. Production adapters also verify source identity.
+    const call=row?.office===req.office&&row?.key===req.key?
+     validatedCall(row,now):null;
     const opponentOk=!req.opponent||
      call?.opponents?.some(c=>c.party==='R'&&req.opponent.test(fixed(c.name)));
     const winnerOk=!req.winner||req.winner.test(fixed(call?.name));
