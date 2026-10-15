@@ -299,6 +299,11 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .model-odds-presets button{cursor:pointer;font-size:10px;font-weight:700;padding:6px 10px;background:#182e45;border:1px solid #38536e;border-radius:7px;color:#bacfe0}
 .model-odds-presets button[aria-pressed=true]{background:#295a7b;border-color:#7cb3de;color:white}
 .model-odds-context{font-size:10px;color:#9db5cb;line-height:1.6;margin:8px 0 0}
+.model-odds-reconciliation{font-size:11px;line-height:1.55;margin-top:12px;padding:11px 12px;border:1px solid #3b5268;background:#142338;border-radius:9px}
+.model-odds-reconciliation:empty{display:none}
+.model-odds-reconciliation strong{color:#e5f2ff}
+.model-odds-reconciliation .source-explain{margin-top:5px;color:#afc7dc}
+.model-odds-reconciliation .source-variant{margin-top:7px;color:#e5cfa4}
 @media(max-width:520px){.model-odds-col strong{font-size:23px}}
 /* Compact election-night model desk and source health, readable on laptop and mobile. */
 .en-live-desk{margin:14px 0 16px;padding:15px;border:1px solid #3b536d;background:#101f31;border-radius:12px}
@@ -563,6 +568,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div class="model-odds-heading"><strong>JACKSTRADAMUS · RACE ODDS</strong><span>Joint correlated model · not standalone poll odds</span></div>
  <div id="modelOddsNumbers" class="model-odds-numbers"><p>Loading probability model…</p></div>
  <div id="modelOddsBar" class="model-odds-bar" aria-hidden="true"></div>
+  <div id="modelOddsReconciliation" class="model-odds-reconciliation" role="note" aria-live="polite"></div>
  <div class="model-odds-presets" role="group" aria-label="Adjust polling error uncertainty">
   <button type="button" data-odds-width="tight" aria-pressed="false">Tighter error</button>
   <button type="button" data-odds-width="standard" aria-pressed="true">Baseline</button>
@@ -1264,9 +1270,10 @@ function jointBuildRaceOddsSnapshot(result,basis){
   records};
 }
 function renderModelRaceOdds(estimate){
- const host=$('#modelOddsNumbers'),bar=$('#modelOddsBar'),note=$('#modelOddsContext');
- if(!host||!bar||!note)return;
- host.replaceChildren();bar.replaceChildren();
+ const host=$('#modelOddsNumbers'),bar=$('#modelOddsBar'),note=$('#modelOddsContext'),
+  compare=$('#modelOddsReconciliation');
+ if(!host||!bar||!note||!compare)return;
+ host.replaceChildren();bar.replaceChildren();compare.replaceChildren();
  document.querySelectorAll('.model-odds-presets [data-odds-width]').forEach(b=>
   b.setAttribute('aria-pressed',String(b.dataset.oddsWidth===modelOddsErrorWidth)));
  const item=estimate&&modelRaceOddsData?.records.find(x=>
@@ -1280,6 +1287,40 @@ function renderModelRaceOdds(estimate){
   host.append(elt('span','','Waiting for the matching probability snapshot…'));
   note.textContent='Current race odds will appear after the probability model has been rebuilt from the same polling snapshot.';
   return;
+ }
+ // The poll-only diagnostic and same-draw correlated joint probabilities
+ // use different statistical assumptions; show BOTH, clearly labeled.
+ const pollOnly=jointPrivatePollData?.polling_source_generated_at===
+   latestSenateEstimates?.generated_at&&
+  jointPrivatePollData?.polling_source_snapshot===
+   latestSenateEstimates?.source_snapshot?
+  jointPrivatePollData.records?.find(x=>x.office===item.office&&
+   x.race_code===item.race_code&&x.latest_poll_end===item.latest_poll_end&&
+   Math.abs(x.dem_minus_rep-item.dem_minus_rep)<.011):null;
+ if(pollOnly&&Number.isFinite(pollOnly.dem_beats_rep_pct)){
+  compare.append(elt('strong','',
+   'Poll-only diagnostic: D '+pollOnly.dem_beats_rep_pct.toFixed(1)+'%'+
+   ' · Full joint forecast: D '+item.dem_beats_rep_pct.toFixed(1)+'%'));
+  const basisRow=item.office==='senate'?
+   jointBasis?.senate?.find(x=>x.code===item.race_code):null;
+  if(basisRow&&Number.isFinite(basisRow.poll_weight)){
+   const geo=basisRow.candidate_neutral_2026_environment_margin_points;
+   compare.append(elt('div','source-explain',
+    'Input polling '+marginText(item.dem_minus_rep)+
+    ' ('+item.independent_firms+' independent polling firms); '+
+    (Number.isFinite(geo)?'2024 geography + current national-environment baseline '+
+     marginText(geo)+'; ':'')+
+    'poll weight '+Math.round(100*basisRow.poll_weight)+'%; '+
+    'projected margin '+marginText(item.model_dem_margin_points)+'.'));
+   compare.append(elt('div','source-explain',
+    'Poll-only assumed whole-race error '+pollOnly.sigma_points.toFixed(1)+
+    ' pts; full joint model '+item.sigma_points.toFixed(1)+' pts.'+
+    (basisRow.special?' Special-election tier: '+
+     String(basisRow.polling_error_tier||'unknown').replaceAll('_',' ')+'.':'')));
+   compare.append(elt('div','source-variant',jointUsesPrivateContext()?
+    'Private fundamentals are active in this browser; the joint model includes your locally imported candidate context.':
+    'Private Silver fundamentals are NOT active on this device. To use the CSV inputs, import them in the private fundamentals section; files uploaded in ChatGPT are not automatically shared with the website.'));
+  }
  }
  const p=item.dem_beats_rep_pct;
  const format=n=>n>=99.5?'>99%':n<=.5?'<1%':Math.round(n)+'%';

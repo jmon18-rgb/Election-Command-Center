@@ -192,6 +192,27 @@ async function settle(){
  assert(!html.includes('enForecastSource'));
  assert.match(get('#modelOddsNumbers').textContent,/DEMOCRATIC/);
  assert.match(get('#modelOddsNumbers').textContent,/REPUBLICAN/);
+ // Full joint probabilities and the historical poll-only input must be
+ // simultaneously inspectable in any race, using exactly the same snapshot.
+ for(const code of ['TX-SEN','OH-SEN']){
+  w.eval('navigateInsightToModel({office:"senate",race:{race_code:"'+code+'"}})');
+  const diagnostic=get('#modelOddsReconciliation').textContent;
+  const fromSource=fixtures['race_probabilities.json'].records.find(r=>
+   r.office==='senate'&&r.race_code===code);
+  const joint=w.eval('jointRaceOddsResult()').records.find(r=>
+   r.office==='senate'&&r.race_code===code);
+  assert(fromSource&&joint);
+  assert(diagnostic.includes('Poll-only diagnostic: D '+fromSource.dem_beats_rep_pct.toFixed(1)+'%'),
+   'Poll-only percentage must come from the live source JSON for '+code);
+  assert(diagnostic.includes('Full joint forecast: D '+joint.dem_beats_rep_pct.toFixed(1)+'%'),
+   'Joint percentage must match the displayed correlated forecast for '+code);
+  assert(diagnostic.includes('poll weight '+Math.round(100*joint.poll_weight)+'%'),
+   'Every polled Senate race must explain its actual source weighting');
+  assert(diagnostic.includes('projected margin '+w.eval('marginText('+joint.model_dem_margin_points+')')),
+   'Displayed model margin must be traced to the live joint simulation');
+  assert.match(diagnostic,/NOT active on this device/);
+  if(code==='OH-SEN')assert.match(diagnostic,/Special-election tier/);
+ }
  // The homepage list and combined Race Lab must survive the UI restructure.
  assert.equal(get('#senateTideRaces').querySelectorAll('.tide-race').length,15);
  assert.match(get('#senateTideRaces [data-senate-tide="SC-SEN"]').textContent,/South Carolina/);
