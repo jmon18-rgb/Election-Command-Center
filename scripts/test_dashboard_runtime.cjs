@@ -196,6 +196,10 @@ async function settle(){
  assert.equal(get('#smartBriefGrid').querySelectorAll('a.smart-signal').length,35);
  get('#smartBriefControls').querySelector('[data-smart-office="All"]').click();
  assert.equal(get('#smartBriefGrid').querySelectorAll('a.smart-signal').length,frontRows.length);
+ // Full roster behavior is verified above. Keep later unrelated Monte Carlo,
+ // outage, and export regression phases on the smaller Senate office filter
+ // rather than constructing >100 visible cards on every synthetic update.
+ get('#smartBriefControls').querySelector('[data-smart-office="Senate"]').click();
  // One cross-page heartbeat distinguishes five independent sources.
  const glanceIds=['feedPolls','feedModel','feedNews','feedSecurity','feedResults'];
  for(const id of glanceIds){
@@ -342,6 +346,8 @@ async function settle(){
  assert.equal([...get('#smartNightGrid').querySelectorAll('a.smart-signal')]
   .filter(x=>x.dataset.race.endsWith('-SEN')).length,35,
   'Election-night desk must also show all 35 Senate contests');
+ get('#smartNightControls').querySelector('[data-smart-office="Senate"]').click();
+ assert.equal(get('#smartNightGrid').querySelectorAll('a.smart-signal').length,35);
  assert.equal(w.eval("enAutoTracked({office:'House',key:'PA-10'})"),true,
   'Reference House district is followed without custom user pins');
  assert.equal(w.eval("enAutoTracked({office:'Senate',key:'ME'})"),true);
