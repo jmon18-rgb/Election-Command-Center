@@ -3028,6 +3028,16 @@ function smartRow(item){
  }
  const arrow=elt('span','smart-signal-arrow','›');arrow.setAttribute('aria-hidden','true');
  cell.append(info,figures,outcome,arrow);
+ cell.addEventListener('click',event=>{
+  event.preventDefault();
+  if(item.priority.reporting){
+   document.querySelector('.tab[data-page="electionNight"]')?.click();
+   enSwitch(2026,item.office,item.key);
+  }else{
+   navigateInsightToModel({office:item.office.toLowerCase(),race:{
+    race_code:item.code}});
+  }
+ });
  return cell;
 }
 function renderSmartRaceDesks(){
