@@ -43,17 +43,43 @@
  }
  // Only consume the UI's existing validated source records. No scrape,
  // arbitrary party inference or synthetic "votes outstanding" calculation.
+ // Defense in depth: check source candidates independently, including ALL
+ // party totals, so an ill-formed supplemental record cannot move a needle.
+ const candidatesValid=(rows,total,kind)=>{
+  if(!Number.isSafeInteger(total)||total<=0||!Array.isArray(rows)||
+     rows.length<2||rows.length>60)return false;
+  let sum=0;const unique=new Set();
+  for(const c of rows){
+   const party=kind==='civic'?c?.party:c?.p;
+   const votes=kind==='civic'?c?.votes:c?.v;
+   if(typeof party!=='string'||!party.trim()||
+     !Number.isSafeInteger(votes)||votes<0)return false;
+   if(kind==='civic'){
+    if(!['D','R','O'].includes(party)||
+     typeof c.name!=='string'||!c.name.trim())return false;
+    const id=c.name.trim().toLowerCase()+'|'+party;
+    if(unique.has(id))return false;
+    unique.add(id);
+   }
+   sum+=votes;
+   if(!Number.isSafeInteger(sum)||sum>total)return false;
+  }
+  return true;
+ };
  function observed(item,primary,secondary){
   const source=primary&&primary.office===item.office&&primary.year===2026?
    primary.races?.[item.key]:null;
   let d,r,total,reporting,asOf,provider,sourceStale=false;
-  if(source&&Number.isSafeInteger(source.total)&&source.total>0){
+  if(source&&candidatesValid(source.cands,source.total,'primary')){
    d=(source.cands||[]).filter(c=>c.p==='D').reduce((n,c)=>n+c.v,0);
    r=(source.cands||[]).filter(c=>c.p==='R').reduce((n,c)=>n+c.v,0);
    total=source.total;reporting=source.pct_in;asOf=primary.as_of;
    provider='Open America';sourceStale=Boolean(primary.stale);
-  }else if(secondary&&secondary.key===item.key&&
-    secondary.office===item.office&&secondary.total>0){
+  }else if(secondary&&secondary.provider==='civicAPI'&&
+    Number.isSafeInteger(secondary.race_id)&&secondary.race_id>0&&
+    secondary.stale!==true&&secondary.sourceStale!==true&&
+    secondary.key===item.key&&secondary.office===item.office&&
+    candidatesValid(secondary.candidates,secondary.total,'civic')){
    d=secondary.candidates.filter(c=>c.party==='D').reduce((n,c)=>n+c.votes,0);
    r=secondary.candidates.filter(c=>c.party==='R').reduce((n,c)=>n+c.votes,0);
    total=secondary.total;reporting=secondary.percent_reporting;
