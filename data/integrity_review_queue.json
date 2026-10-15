@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-15T23:35:21.670966Z",
+  "updated_at": "2026-10-15T23:39:52.937300Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 143,
-    "awaiting_primary_source": 141,
+    "total_leads": 144,
+    "awaiting_primary_source": 142,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 9,
     "advisory_related_headlines": 21
@@ -114,6 +114,27 @@
     }
   ],
   "items": [
+    {
+      "id": "6581a62403649ba8ac0a",
+      "title": "How to vote early in New York\u2019s 2026 General Election - NEWS10 ABC",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE8yZm1BeVV1MnIzaGlsSkFYdHk4c21Db2xLdVhMelZHSmNVT1FKLWptQmRZWWVBa1RhSHE5YXktRXdWUDVLaS1JZFdzcTBNTFlaQy1fMTVwYXdWZHBNLWJReHlB0gFnQVVfeXFMTWxROGtiODhwbmFTeENJVUZDSTBWN0FlcWVOYzJESjlSbVgzZ3JRT0dmN20yeWdzNzFFWW85RHlTMWdIdEY5TlVsN2NfbFBKNmJveWlVZEpnaWxOS0NJOWkxWUxHdEZpcw?oc=5",
+      "publisher": "NEWS10 ABC",
+      "published_at": "2026-10-15T23:28:17Z",
+      "detected_at": "2026-10-15T23:39:52.937300Z",
+      "state_hints": [
+        "NY"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "90ef797b2bc1e39f457f",
       "title": "Noncitizens in North Carolina charged with voting in 2024 election, US Attorney confirms - ABC11 News",
