@@ -135,6 +135,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-ambient-offices button:hover,.en-ambient-offices button:focus-visible{border-color:#8bcbe9;background:#1c405d}
 .en-ambient-offices strong{font-size:11px;letter-spacing:.07em}
 .en-ambient-offices span{font-size:11px;color:#a6cce3}
+.en-coverage-line{font-size:11px;color:#b2d2e5;line-height:1.55;margin:10px 0 0}
 .en-race-drawer{border:1px solid #35556b;border-radius:11px;padding:12px 15px;margin:14px 0;background:#0e2133}
 .en-race-drawer>summary{cursor:pointer;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:13px;color:#e7f4ff}
 .en-race-drawer>summary span{color:#9fbdd1;font-size:11px}
@@ -1002,6 +1003,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   <button id="enJumpSenate" type="button"><strong>SENATE</strong><span>Open race drilldown</span></button>
   <button id="enJumpGovernor" type="button"><strong>GOVERNORS</strong><span>Open race drilldown</span></button>
  </div>
+ <p class="en-coverage-line" id="enCoverageReconciliation" role="status">Verifying national race inventory…</p>
 </section>
 <div class="en-archive-intro" id="enArchiveIntro">2024 House rehearsal uses MIT/MEDSL's historical recorded party-level votes across all 435 districts. It is <strong>not a minute-by-minute replay</strong> and does not identify individual candidates, certified winners, or precinct progress. A 2024 district number must not be treated as the same geographic seat in 2026 after redistricting.</div>
 
@@ -1186,6 +1188,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_early_signals.js?v=7691146833ec"></script>
 <script src="./scripts/election_night_priority.js?v=763db866f53f"></script>
 <script src="./scripts/election_night_signals.js?v=75bc99b105dd"></script>
+<script src="./scripts/election_night_reconciliation.js?v=64bb72a95035"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
 <script src="./scripts/chamber_control_model.js?v=aa102ced6a53"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
@@ -3127,6 +3130,34 @@ for(const [buttonId,setter] of [
 
 function enRenderAmbientDesk(){
  const text=$('#enAllOfficeSummary');if(!text)return;
+ const coverage=$('#enCoverageReconciliation');
+ if(coverage){
+  const api=window.ElectionNightReconciliation;
+  if(enModeYear!==2026)coverage.textContent='2024 historical archive · no live national calls';
+  else if(!enNationalSeats)coverage.textContent='Senate race inventory awaiting validation · no national control calls';
+  else if(!api)coverage.textContent='National reconciliation unavailable · control not called';
+  else{
+   const errors={};
+   for(const office of ['House','Senate'])
+    errors[office]=Boolean(enOfficeErrors[office]||(enOffice===office&&enFetchError));
+   for(const id of Object.keys(enCivicErrors))errors[id]=Boolean(enCivicErrors[id]);
+   const snapshots={...enOfficeSnapshots};
+   if(enData&&enModeYear===2026&&!snapshots[enOffice])snapshots[enOffice]=enData;
+   try{
+    const x=api.reconcile({houseCounts:enHouseSeatCounts,senateSeats:enNationalSeats,
+     snapshots,civic:enCivicByWatch,errors,restored:[...enResumePendingOffices],
+     supportedStates:[...enSupportedStates],now:Date.now()});
+    coverage.textContent='House '+x.house.reported+'/435 reporting · Senate '+
+     x.senate.reported+'/35 reporting · '+x.providerCalls+
+     ' civicAPI calls · No authoritative chamber calls'+
+     (x.anomalies.length?' · '+x.anomalies.length+' source alerts':'');
+    coverage.title='Valid primary source slots: '+x.house.sourceSlots+'/435 House, '+
+     x.senate.sourceSlots+'/35 Senate. Supplemental counted only outside primary coverage. '+
+     '65 Senate holdovers not yet reconciled to independent calls; missing is unknown, not zero.';
+   }catch(err){coverage.textContent='National reconciliation unavailable: '+
+    String(err.message||err)+' · congressional control not called';}
+  }
+ }
  const offices=['House','Senate','Governor'];
  if(enModeYear===2024){
   text.textContent='2024 ARCHIVE · no 2026 vote-count feed yet';
@@ -3134,7 +3165,7 @@ function enRenderAmbientDesk(){
   const good=offices.filter(office=>{
    const d=enOfficeSnapshots[office]||(office===enOffice?enData:null);
    return d&&!enOfficeErrors[office]&&!enResumePendingOffices.has(office)&&
-    !d.stale&&!(d.live&&Date.now()-Date.parse(d.as_of)>180000);
+    !d.stale&&!(d.live&&Date.now()-Date.parse(d.as_of)>180*60000);
   }).length;
   const failed=offices.filter(office=>enOfficeErrors[office]||
    (office===enOffice&&enFetchError)).length;
@@ -3149,7 +3180,7 @@ function enRenderAmbientDesk(){
   const label=enModeYear===2024?'2024 archived results':
    err?'SOURCE RETRYING · last good saved':
    enResumePendingOffices.has(office)?'RESTORED · rechecking':
-   d?.stale||d?.live&&Date.now()-Date.parse(d.as_of)>180000?'SOURCE STALE':
+   d?.stale||d?.live&&Date.now()-Date.parse(d.as_of)>180*60000?'SOURCE STALE':
    d?.live?'LIVE · unofficial':d?'VALIDATED · waiting':'AWAITING SOURCE';
   button.querySelector('span').textContent=label;
   button.setAttribute('aria-label','Open '+office+' race drilldown · '+label);
