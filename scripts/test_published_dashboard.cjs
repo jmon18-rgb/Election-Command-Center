@@ -36,6 +36,13 @@ async function load(file){
  }
  throw Error('Deployed asset unavailable '+target+': '+error.message);
 }
+async function loadMediaBytes(file){
+ if(!remote)return readFileSync(path.join(root,file.replace(/^\.\//,'')));
+ const target=new URL(file,site);
+ const response=await fetch(target,{cache:'no-store',signal:AbortSignal.timeout(12000)});
+ if(!response.ok)throw Error('Required Fish Head audio missing from deployed site: '+response.status);
+ return Buffer.from(await response.arrayBuffer());
+}
 function blobRevision(code){
  const body=Buffer.from(code,'utf8');
  return crypto.createHash('sha1').update(Buffer.from('blob '+body.length+'\0')).update(body)
@@ -69,6 +76,24 @@ async function main(){
   assert(html.includes('function refreshCommandCenterFeeds()'));
   assert(html.includes('setInterval(()=>{void refreshCommandCenterFeeds()},COMMAND_NEWS_REFRESH_MS)'));
   assert(html.includes('setInterval(()=>{void refreshLivePollSnapshots()},2*60*1000)'));
+ });
+ const recordedAudio=html.match(/<audio\s+id="enFishAudio"[^>]*\bsrc="([^"]+\.mp3)"/);
+ check('Fish Head uses local user recording, not a YouTube embed or TTS',()=>{
+  assert(recordedAudio,'Missing original user MP3 player');
+  assert.equal(recordedAudio[1],
+   './assets/audio/breaking-news-in-the-2026-midterm-elections.mp3');
+  assert(!html.includes('youtube-nocookie.com/embed/_VJKlSpTBu4'),
+   'Legacy video should not appear in current Fish Head implementation');
+  assert(html.includes('enFishShow(event);'),
+   'Every distinct breaking alert must reach the audio queue');
+ });
+ const soundBytes=await loadMediaBytes(recordedAudio[1]);
+ check('deployed Fish Head audio is the exact original MP3',()=>{
+  assert.equal(soundBytes.length,62708,'Original recording size changed');
+  assert.equal(soundBytes.subarray(0,3).toString('latin1'),'ID3');
+  assert.equal(crypto.createHash('sha256').update(soundBytes).digest('hex'),
+   '37245c9cba556e7ee3ed03bc97e8e54006bdefd0ffe80c846c478a5da6da223e',
+   'The deployed sound differs from the uploaded recording');
  });
  const refs=[...html.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["']/g)].map(x=>x[1]);
  check('all external scripts are repository-local and content-addressed',()=>{
