@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T19:46:01.799023Z",
+  "updated_at": "2026-10-15T20:06:28.208238Z",
   "generic_ballot": {
     "summary": {
       "dem": 47.7,
@@ -2139,7 +2139,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-15T19:46:01.799023Z",
+          "first_seen_at": "2026-10-15T20:06:28.208238Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -3030,7 +3030,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-15T19:46:01.799023Z",
+        "first_seen_at": "2026-10-15T20:06:28.208238Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -3054,7 +3054,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-15T19:46:01.799023Z",
+          "first_seen_at": "2026-10-15T20:06:28.208238Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -5808,7 +5808,7 @@
           "rep_name": "Ashley Moody",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-15T19:46:01.799023Z",
+          "first_seen_at": "2026-10-15T20:06:28.208238Z",
           "release_date": null,
           "question_id": "eb4ae581-25d7-43fd-9123-100333d1e19f",
           "sample_population": "lv",
@@ -6894,7 +6894,7 @@
           "dem": 55.4,
           "rep": 44.6,
           "margin": 10.8,
-          "sample_size": 712,
+          "sample_size": 678,
           "partisan_lean": "R",
           "dem_name": "Jon Ossoff",
           "rep_name": "Mike Collins",
@@ -6902,11 +6902,13 @@
           "other_name": null,
           "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
-          "upstream_posted_date": null,
-          "source_poll_url": "https://www.bigdatapoll.com/blog/peach-state-poll-jon-ossoff-opens-up-lead-over-mike-collins-in-georgia/",
-          "sample_population": "lv",
           "question_id": "bcd4fddd-ab5f-4f28-9aa1-f898b74b34c7",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "sample_population": "lv",
+          "upstream_posted_date": "2026-09-25",
+          "source_poll_url": "https://www.bigdatapoll.com/blog/peach-state-poll-jon-ossoff-opens-up-lead-over-mike-collins-in-georgia/",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback",
+          "lv_selected_over_rv": true
         },
         {
           "poll_id": "0f4bc367-db9c-459a-a5ce-34b7b7b6e9b2",
@@ -15755,7 +15757,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-15T19:46:01.799023Z",
+    "last_attempt_at": "2026-10-15T20:06:28.208238Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15767,8 +15769,8 @@
     "new_polls": [],
     "new_poll_count": 0,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-15T19:46:01.799023Z",
-    "previous_snapshot_at": "2026-10-15T19:42:44.469199Z",
+    "comparison_at": "2026-10-15T20:06:28.208238Z",
+    "previous_snapshot_at": "2026-10-15T19:46:01.799023Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [

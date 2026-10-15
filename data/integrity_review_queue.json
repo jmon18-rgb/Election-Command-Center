@@ -1,9 +1,44 @@
 {
-  "updated_at": "2026-10-15T19:46:01.547924Z",
+  "updated_at": "2026-10-15T20:06:27.954981Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "items": [
+    {
+      "id": "3a2c86e14fd5b47ca36e",
+      "title": "Feds File Lawsuit Seeking Citizenship Proof for Select LA, CA Voters - MyNewsLA.com",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOUkpfaURpSEtCNEtLVjRpUzNpcGFQbFhYR1JKWnVWY0t3MHBZM1M2dGZYa1E2ZXlTTXE3RGJkVUFjYXlmR0tyb04zZFA2OTFGdXllU0NNa0ZkU293U2tpUXY3bGI4NXh4djhpRUlJTkNSTkRTemFIdWtLcEhTMmluSVlSUjV2XzBlNldhVUtVcmFvbGM5bzJnZldKT2ZybS00aHo0a3ZKM0JlZw?oc=5",
+      "publisher": "MyNewsLA.com",
+      "published_at": "2026-10-15T19:42:42Z",
+      "detected_at": "2026-10-15T20:06:27.954981Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "a2759ee841aa5a32bb26",
+      "title": "Trump Administration Sues California Over Voter Rolls - The New York Times",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQVXBxUzMxZUkyY0piNV9WUXpZbm9NTjZUVVhrd2hhNjc5a0ZoMmc4VjB1N2g3cFlGcE5uT0Y1bEdiQzc0dGVXUERaWDBJd2N2ZHhpY21ELUQza0FlbXdZN2ItRHQ4aEh0TW9tZkpYZXpGN242cWpuc0U3ekNHVmFUTmVhLXJuNEhzTDNkVW1CaTdkaDE3NGtaNmlydw?oc=5",
+      "publisher": "The New York Times",
+      "published_at": "2026-10-15T19:21:11Z",
+      "detected_at": "2026-10-15T20:06:27.954981Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "0c4a15611ebc68df7640",
       "title": "Justice Dept. sues California, asks court to force state to stop counting 20,000 ballots - Los Angeles Times",
