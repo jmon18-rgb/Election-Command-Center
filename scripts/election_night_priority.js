@@ -79,10 +79,12 @@
       typeof item.key==='string'&&typeof item.code==='string')
     keys.set(item.office+'|'+item.key,item);
   };
-  for(const item of SEED.concat(extras(model,24,35)))add(item);
-  // Add the complete modeled Senate roster without filtering by probability
-  // or closeness. No odds are invented for races without a model estimate.
-  for(const r of model?.race_probabilities||[]){
+  // Full-screen roster expansion is intentionally separate from the
+  // smaller automatic provider-polling queue, to avoid pushing hundreds
+  // of additional races through one-minute civicAPI refreshes.
+  const fullRoster=Boolean(senateSeats?.length||housePolls?.length);
+  for(const item of SEED.concat(extras(model,fullRoster?24:12,fullRoster?35:6)))add(item);
+  if(fullRoster)for(const r of model?.race_probabilities||[]){
    if(r?.office!=='senate'||!/^[A-Z]{2}-SEN$/.test(r.race_code||''))continue;
    const code=r.race_code;
    if(!keys.has('Senate|'+keyOf('Senate',code)))
