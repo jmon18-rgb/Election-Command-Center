@@ -17,8 +17,23 @@
   'AZ-GOV','GA-GOV','MI-GOV','WI-GOV','NV-GOV','OH-GOV',
   'AZ-01','ME-02','NC-01','NE-02','NY-17','PA-10'
  ]);
- const REQUIRED_BATTLEGROUND_WINS=18;
+ // Scenario thresholds are intentionally distinct from Senate control (51).
+ const ENDING_THRESHOLDS=Object.freeze({
+  wave_house:218,wave_senate:49,tsunami_house:235,tsunami_senate:52
+ });
  const BATTLEGROUND_SET=new Set(BATTLEGROUNDS);
+ function classifyFourEndings(houseSeats,senateSeats){
+  if(!Number.isInteger(houseSeats)||houseSeats<0||houseSeats>435||
+     !Number.isInteger(senateSeats)||senateSeats<0||senateSeats>100)
+   throw Error('Invalid simulated congressional seat totals');
+  if(houseSeats>=ENDING_THRESHOLDS.tsunami_house&&
+     senateSeats>=ENDING_THRESHOLDS.tsunami_senate)return 'blue_tsunami';
+  const waveHouse=houseSeats>=ENDING_THRESHOLDS.wave_house;
+  const waveSenate=senateSeats>=ENDING_THRESHOLDS.wave_senate;
+  if(waveHouse&&waveSenate)return 'blue_wave';
+  if(waveHouse||waveSenate)return 'shrug';
+  return 'red_dawn';
+ }
  const HOUSE_SEATS=435,SENATE_CONTESTS=35;
  const SHARED_SIGMA=Object.freeze({national:3.5,senateChamber:3,senateState:3.5});
  // Source polling-error inputs estimate WHOLE-RACE margin error, not a
@@ -576,7 +591,7 @@ function senatePollingErrorBudget(info){
      state_house_sigma:3,state_senate_sigma:SHARED_SIGMA.senateState,
      state_governor_sigma:3,
      redrawn_state_additional_sigma:6,
-     fixed_battleground_required_dem_wins:REQUIRED_BATTLEGROUND_WINS,
+     four_endings_thresholds:ENDING_THRESHOLDS,
      disagreement_model:'experimental_poll_vs_informative_prior_sigma_only',
      disagreement_deadzone_points:6,
      disagreement_slope:0.35,
@@ -662,7 +677,7 @@ function senatePollingErrorBudget(info){
   const rands=seeded(seed),live=options.live||Object.create(null);
   const a=basis.assumptions;
   const redraws=basis.redrawn_state_distributions||{};
-  let houseSeats=0,senateSeats=0,fullBattleground=0,houseControl=0,senateControl=0;
+  let houseSeats=0,senateSeats=0,fullBattleground=0,houseControl=0,senateControl=0,senateWaveGate=0,actualBothControl=0;
   const houseSeatDraws=[],senateSeatDraws=[];
   const raceDemWins=new Uint32Array(polls.length);
   for(let k=0;k<samples;k++){
@@ -757,6 +772,8 @@ function senatePollingErrorBudget(info){
    const senateDem=dSenate>=a.senate_control_dem_seats;
    if(houseDem)houseControl++;
    if(senateDem)senateControl++;
+   if(dSenate>=ENDING_THRESHOLDS.wave_senate)senateWaveGate++;
+   if(houseDem&&senateDem)actualBothControl++;
    if(houseDem&&!senateDem)houseOnly++;
    if(senateDem&&!houseDem)senateOnly++;
    if(explainControl){
@@ -775,23 +792,21 @@ function senatePollingErrorBudget(info){
     }
    }
    houseSeatDraws.push(dHouse);senateSeatDraws.push(dSenate);
-   const both=houseDem&&senateDem;
-   if(both){
-    outcomes[winBattleground>=REQUIRED_BATTLEGROUND_WINS?
-     'blue_tsunami':'blue_wave']++;
-   }else if(dHouse<a.house_control_dem_seats&&
-            dSenate<a.senate_control_dem_seats){
-    outcomes.red_dawn++;
-   }else outcomes.shrug++;
+   // Exactly one four-way scenario per common-seed election draw.
+   // At 49 Senate seats the Wave gate is met but the Senate is NOT
+   // necessarily controlled by Democrats; control separately needs 51.
+   outcomes[classifyFourEndings(dHouse,dSenate)]++;
    houseSeats+=dHouse;senateSeats+=dSenate;
    fullBattleground+=winBattleground;
   }
   // Marginal chamber odds MUST be counted from these SAME correlated
   // draws. Multiplying isolated odds would erase cross-chamber covariance.
   const bothCount=outcomes.blue_wave+outcomes.blue_tsunami;
-  if(houseControl+senateControl-2*bothCount!==outcomes.shrug||
-     samples-houseControl-senateControl+bothCount!==outcomes.red_dawn)
-   throw Error('Joint probabilities are inconsistent with chamber marginals');
+  if(houseControl+senateWaveGate-2*bothCount!==outcomes.shrug||
+     samples-houseControl-senateWaveGate+bothCount!==outcomes.red_dawn)
+   throw Error('Four Endings thresholds inconsistent with simulated seats');
+  if(actualBothControl>bothCount||senateControl>senateWaveGate)
+   throw Error('Actual control cannot exceed relaxed Wave seat thresholds');
   houseSeatDraws.sort((a,b)=>a-b);senateSeatDraws.sort((a,b)=>a-b);
   const quantile=(vals,f)=>vals[Math.floor((vals.length-1)*f)];
   const pct=x=>Math.round(10000*x/samples)/100;
@@ -914,10 +929,15 @@ function senatePollingErrorBudget(info){
     house_governor_shared_shocks_unchanged:true}}:{}),
    ...(independentCredit!=='dem_proxy'?{senate_independent_credit_mode:independentCredit}:{}),
    probabilities:probs,counts:outcomes,means,
+   four_endings_thresholds:ENDING_THRESHOLDS,
+   senate_49_or_more_pct:pct(senateWaveGate),
+   actual_dem_both_control_pct:pct(actualBothControl),
    race_probabilities,
    ...(explainControl?{control_explanation:controlExplanation}:{}),
    ...(voteSeatEnabled?{vote_seat_explanation:voteSeatExplanation}:{}),
    race_probability_method:'SAME_CORRELATED_DRAWS_AS_CHAMBER_CONTROL',
+   // Legacy key retained for existing visuals: now means meeting the
+   // explicit >=218 House AND >=49 Senate Wave gates, NOT actual control.
    blue_both_including_tsunami:pct(outcomes.blue_wave+outcomes.blue_tsunami),
    house_dem_control_pct:pct(houseControl),senate_dem_control_pct:pct(senateControl),
    seat_intervals_90_pct:{
@@ -927,6 +947,7 @@ function senatePollingErrorBudget(info){
    total_pct:Object.values(probs).reduce((x,y)=>x+y,0),
    description:'A conditional Monte Carlo sensitivity experiment, not a calibrated election forecast.'};
  }
- return Object.freeze({VERSION,BATTLEGROUNDS,FUNDAMENTALS_MODES,prepare,simulate,seeded,
+ return Object.freeze({VERSION,BATTLEGROUNDS,FUNDAMENTALS_MODES,
+  ENDING_THRESHOLDS,classifyFourEndings,prepare,simulate,seeded,
   disagreementExtraSigma,senatePollingErrorBudget});
 });
