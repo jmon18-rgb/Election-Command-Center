@@ -181,6 +181,21 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 #electionNight .en-early-source{color:#f0dca6}
 #electionNight .en-early-pin{align-self:flex-start;white-space:nowrap;padding:6px 8px;border-radius:8px;border:1px solid #61849d;background:#18334a;color:#ecf5fd;cursor:pointer}
 #electionNight .en-early-pin[aria-pressed=true]{border-color:#85bed9;background:#264e65}
+#electionNight .en-fish-controls{margin:14px 0 16px;padding:12px 14px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;border:1px solid #46718c;border-radius:12px;background:#12334a}
+#electionNight .en-fish-controls>div:first-child{display:flex;flex-direction:column;gap:4px}
+#electionNight .en-fish-actions{display:flex;gap:8px;flex-wrap:wrap}
+#electionNight .en-fish-actions button{border:1px solid #6b98b0;border-radius:8px;background:#244e66;color:#f3f8fa;padding:9px 10px;cursor:pointer}
+#electionNight .en-fish-toast{position:fixed;right:14px;bottom:18px;width:min(375px,calc(100vw - 28px));z-index:90;display:flex;align-items:center;gap:10px;padding:10px 36px 10px 4px;background:#132a3c;border:3px solid #eec46c;border-radius:16px;box-shadow:0 12px 30px #000a;color:#fff;animation:fishNewsArrive .24s ease-out}
+#electionNight .en-fish-toast[hidden]{display:none}
+#electionNight .en-fish-art{flex:none;width:104px;overflow:hidden}
+#electionNight .en-fish-copy{flex:1;min-width:0}
+#electionNight .en-fish-copy>strong{font-size:.86rem;color:#ffe49e}
+#electionNight .en-fish-copy p{font-size:.98rem;font-weight:800;margin:7px 0;line-height:1.4;overflow-wrap:anywhere}
+#electionNight .en-fish-copy small{color:#b9d5e7;font-size:.75rem}
+#electionNight .en-fish-mode{font-size:.72rem;color:#e8d8ba;margin-top:4px}
+#electionNight .en-fish-dismiss{position:absolute;top:4px;right:7px;color:#fff;background:none;border:none;font-size:1.7rem;cursor:pointer}
+@keyframes fishNewsArrive{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){#electionNight .en-fish-toast{animation:none}}
 #electionNight .en-toolbar{position:sticky;top:0;z-index:8;padding:10px 0;background:#0c1928ed;backdrop-filter:blur(12px);border-bottom:1px solid #2a415a}
 @media(min-width:940px){#electionNight .en-race-panel,#electionNight .en-detail{max-height:70vh;overflow-y:auto}}
 .en-forecast-strip{display:flex;align-items:center;gap:13px;flex-wrap:wrap;padding:10px 13px;border:1px solid #344c65;border-radius:8px;background:#112238;margin:12px 0 10px;font-size:11px}
@@ -710,6 +725,29 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div id="enEarlySignals" class="en-early-grid"><p class="en-live-note">Preparing early race checklist…</p></div>
  <p class="en-live-note">Watch ideas: <a href="https://www.reddit.com/r/fivethirtyeight/comments/1x6l790/" target="_blank" rel="noopener noreferrer">October 15 r/fivethirtyeight discussion ↗</a>; poll-close times cross-checked against <a href="https://www.270towin.com/poll-closing-times/index.php" target="_blank" rel="noopener noreferrer">270toWin ↗</a>. Results, when present, remain labeled by actual provider.</p>
 </section>
+<section class="en-fish-controls" aria-label="Breaking Fish news controls">
+ <div><strong>🐟 BREAKING FISH NEWS</strong><span class="tiny">Optional TV-style interruptions when your watched races receive validated provider calls.</span></div>
+ <div class="en-fish-actions"><button id="enFishVoice" type="button" aria-pressed="false">Voice: off</button>
+ <button id="enFishPreview" type="button">Rehearse interruption</button></div>
+</section>
+<aside id="enFishToast" class="en-fish-toast" hidden role="status" aria-live="polite" aria-label="Breaking election results bulletin">
+ <div class="en-fish-art" aria-hidden="true">
+  <svg viewBox="0 0 120 130" width="108" height="116" xmlns="http://www.w3.org/2000/svg">
+   <path d="M38 74 L4 83 L42 93 M81 74 L117 83 L79 93" fill="#7d9899" stroke="#36525f" stroke-width="3"/>
+   <path d="M18 127 L20 80 L42 66 L76 68 L101 83 L102 127Z" fill="#726056" stroke="#403e3d" stroke-width="2"/>
+   <path d="M27 82 Q27 46 53 13 L70 3 L84 25 L92 80Z" fill="#a7b1a4" stroke="#4d625d" stroke-width="2"/>
+   <ellipse cx="69" cy="47" rx="8" ry="9" fill="#e3d1aa"/><ellipse cx="70" cy="47" rx="4" ry="5" fill="#222"/>
+   <path d="M25 81 L59 100 L92 81 L85 94 L59 106 L33 94Z" fill="#f3f6f6"/>
+   <path d="M56 100 L64 100 L69 108 L62 123 L56 113Z" fill="#d92d31" stroke="#862323" stroke-width="1"/>
+  </svg>
+ </div>
+ <div class="en-fish-copy"><strong>THIS JUST IN · FISH HEAD NEWS</strong>
+  <div id="enFishMode" class="en-fish-mode">SOURCE REPORTED · NOT CERTIFIED</div>
+  <p id="enFishHeadline">No interruption yet</p>
+  <small id="enFishSource">Unofficial source reporting, not a certified election result.</small>
+ </div>
+ <button id="enFishDismiss" type="button" class="en-fish-dismiss" aria-label="Dismiss breaking fish news">×</button>
+</aside>
 <section class="en-alert-desk" aria-label="Watchlist election alerts">
  <div class="en-alert-head"><div><strong>WATCHLIST ALERTS</strong><span>First votes · lead changes · verified provider calls</span></div>
   <div class="en-alert-actions"><button id="enAlertDesktop" type="button" aria-pressed="false">Desktop alerts: off</button>
@@ -3314,6 +3352,70 @@ function enAlertLabel(item){
 function enAlertSubscribed(office,key){
  return enWatched.some(x=>x.office===office&&x.key===key);
 }
+const enFishVoiceKey='bluewaves_fish_voice_v1';
+let enFishVoiceEnabled=(()=>{
+ try{return localStorage.getItem(enFishVoiceKey)==='on'}catch{return false}
+})();
+let enFishTimeout=null;
+function enFishVoiceSupported(){
+ return typeof window.speechSynthesis?.speak==='function'&&
+  typeof window.SpeechSynthesisUtterance==='function';
+}
+function enFishRenderVoice(){
+ const button=$('#enFishVoice');
+ if(!button)return;
+ button.disabled=!enFishVoiceSupported();
+ button.setAttribute('aria-pressed',String(enFishVoiceEnabled&&enFishVoiceSupported()));
+ button.textContent=!enFishVoiceSupported()?'Voice unavailable in this browser':
+   'Voice: '+(enFishVoiceEnabled?'on':'off');
+}
+function enFishDismiss(){
+ if(enFishTimeout){clearTimeout(enFishTimeout);enFishTimeout=null;}
+ $('#enFishToast').hidden=true;
+ if(enFishVoiceSupported())try{window.speechSynthesis.cancel()}catch{}
+}
+function enFishShow(event,demo=false){
+ // Only an explicit demo or newly validated source calls that have passed
+ // the production alert guards should trigger the visual interruption.
+ if(!demo&&(event?.kind!=='call'||event?.source!=='civicAPI'||
+   enModeYear!==2026||!enIsVisible()||
+   Date.now()<Date.parse('2026-11-03T05:00:00Z')))return false;
+ if(!event||typeof event.title!=='string'||typeof event.details!=='string')return false;
+ const toast=$('#enFishToast');
+ if(!toast)return false;
+ if(enFishTimeout)clearTimeout(enFishTimeout);
+ toast.hidden=false;
+ $('#enFishMode').textContent=demo?'REHEARSAL · NOT A REAL RACE CALL':
+   'civicAPI SOURCE CALL · NOT OFFICIAL CERTIFICATION';
+ $('#enFishHeadline').textContent=event.title+' — '+event.details;
+ $('#enFishSource').textContent=demo?
+   'Synthetic preview: no actual result has been reported.':
+   'Validated upstream civicAPI flag; inspect the race source for changes or corrections.';
+ if(enFishVoiceEnabled&&enFishVoiceSupported()){
+  try{
+   window.speechSynthesis.cancel();
+   const utterance=new window.SpeechSynthesisUtterance(
+    'Breaking news! '+(demo?'This is only a test. ':'')+event.title+'. '+event.details);
+   utterance.lang='en-US';utterance.rate=.92;utterance.pitch=.9;
+   window.speechSynthesis.speak(utterance);
+  }catch{} // Some mobile browsers require a new user gesture for speech.
+ }
+ enFishTimeout=setTimeout(()=>{enFishDismiss()},13000);
+ return true;
+}
+$('#enFishPreview').addEventListener('click',()=>enFishShow({
+ kind:'demo',source:'synthetic',title:'Bikini Bottom election desk demonstration',
+ details:'Reporting feeds remain unchanged. This is not a real election-night event.'
+},true));
+$('#enFishDismiss').addEventListener('click',enFishDismiss);
+$('#enFishVoice').addEventListener('click',()=>{
+ if(!enFishVoiceSupported())return;
+ enFishVoiceEnabled=!enFishVoiceEnabled;
+ try{localStorage.setItem(enFishVoiceKey,enFishVoiceEnabled?'on':'off')}catch{}
+ if(!enFishVoiceEnabled)try{window.speechSynthesis.cancel()}catch{}
+ enFishRenderVoice();
+});
+enFishRenderVoice();
 function enAlertRecord(item,source,kind,details,signature){
  if(enModeYear!==2026||Date.now()<Date.parse('2026-11-03T05:00:00Z')||
    !enAlertSubscribed(item.office,item.key))return false;
@@ -3334,6 +3436,7 @@ function enAlertRecord(item,source,kind,details,signature){
  // Recent event dedup survives browser reloads; memory stays bounded.
  if(enAlertSeen.size>180)enAlertSeen=new Set(enAlertRows.map(e=>e.id));
  enAlertSave();enRenderAlertInbox();
+ if(kind==='call')enFishShow(event);
  if(enDesktopAlertsEnabled&&typeof window!=='undefined'&&
     window.Notification?.permission==='granted'){
   try{new window.Notification(event.title,{
