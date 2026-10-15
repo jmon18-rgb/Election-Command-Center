@@ -101,6 +101,12 @@
       "name": "North Carolina",
       "records": 2,
       "unique_voters_affected": null
+    },
+    {
+      "state": "CA",
+      "name": "California",
+      "records": 1,
+      "unique_voters_affected": null
     }
   ],
   "incidents": [
@@ -546,6 +552,50 @@
           "unit": "registered voters selected for planned letters",
           "qualifier": "announced notification scope, NOT ballots lost",
           "notes": "Official Oct. 13 statement after additional state checks; no verified removal or ballot-prevention count. Do not conflate recipients with affected eligible voters."
+        }
+      }
+    },
+    {
+      "id": "ca-doj-voter-letter-review-demand-20261013",
+      "state": "CA",
+      "title": "California — federal 48-hour citizenship-review demand",
+      "mechanism": "Federal demand for state/local voting-record eligibility review shortly before the general election",
+      "verification_status": "documented_action",
+      "event_date": "2026-10-13",
+      "last_updated": "2026-10-15",
+      "summary": "In an October 14 statement, California's Secretary of State confirmed receiving a DOJ demand the previous day giving 48 hours to review an alleged list of possibly ineligible voters and take action. Her office stated it had not been provided that list; the Los Angeles registrar had received material on a protected USB device. This establishes that the intergovernmental demand occurred, NOT whether the federal citizenship allegations are correct, whether any eligible voter was challenged or removed, or whether any November ballot was prevented from being counted. Reported October 15 litigation requires its own primary court-filing review.",
+      "units": "voters",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "sources": [
+        {
+          "publisher": "California Secretary of State, press release PR26-127, October 14, 2026",
+          "url": "https://www.sos.ca.gov/administration/news-releases-and-advisories/2026-news-releases-and-advisories/california-secretary-state-shirley-n-weber-phd-issues-statement-response-us-department-justice-letter"
+        }
+      ],
+      "impact_assessment": "legal_demand_not_actual_ballot_loss",
+      "scope_label": "48-hour federal review demand; voter impact not established",
+      "scope_note": "The duration of the demand is an administrative deadline, not a count of registered voters, ineligible voters, removed voters or uncounted ballots. California SOS said its office was not given the referenced list.",
+      "case_type": "legal_dispute",
+      "process_status": "California SOS publicly disputed the demand; emergency court action reported separately, not independently verified here.",
+      "adverse_scenario": {
+        "definition": "At least 100 otherwise-eligible California residents ultimately cannot cast countable 2026 federal ballots solely due to this 48-hour eligibility demand or a resulting enforced action after ordinary correction and remedies.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "No independently verified eligible-voter population, removal records, ballot challenges or disposition outcomes.",
+        "probability_of_scenario": null,
+        "probability_interval": null,
+        "probability_basis": "No credible quantified exposure-to-ballot-loss linkage or implemented voter-list change established by the reviewed official statement.",
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-15",
+        "probability_method": "not-estimated-primary-source-confirmed-demand",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": null,
+          "unit": "unique otherwise-eligible registrants",
+          "qualifier": "not quantified",
+          "notes": "The 48-hour deadline is not an exposure count. Reported suspected-noncitizen figures have not been verified as unique ineligible people, and cannot proxy lost eligible ballots."
         }
       }
     }
