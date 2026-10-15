@@ -1,9 +1,26 @@
 {
-  "updated_at": "2026-10-15T05:44:57.649661Z",
+  "updated_at": "2026-10-15T06:58:43.504899Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
   "items": [
+    {
+      "id": "9fb0397b787a2220cb07",
+      "title": "U.S. House Representative - Alaska Beacon",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5ndEFNbUYxVV9GUWROSEpzR210aTlUZXYzekduQ2VCeHRGcXl2TFJQalFLVjJ6RlhOMkUzNzI2LU04MXdyaEhickVHMVdHallXaWRlTnItM0hqSnJON0xYcmFGNFVLSk82WU9uUDk5Zw?oc=5",
+      "publisher": "Alaska Beacon",
+      "published_at": "2026-10-15T04:48:13Z",
+      "detected_at": "2026-10-15T06:58:43.504899Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "53c2ed21752bd367c1be",
       "title": "In run-up to midterms, Trump steps up drive to rig the elections - World Socialist Web Site",
