@@ -275,7 +275,8 @@ async function settle(){
  get('#jointHomeCorrelationDetails').open=false;
  assert.match(get('#modelEngineTag').textContent,/REPOSITORY FUNDAMENTALS ACTIVE/);
  assert.equal(w.eval('jointRaceOddsResult()').senate_prior_mode,'current_2026');
- assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').poll_weight"),.90);
+ assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').poll_weight"),.75,
+  'Repository candidate fundamentals intentionally rebalance Senate poll weight without changing source polls');
  // Browser-only CSV ingestion must really update displayed model and restore it
  // without leaking Silver source rows or feeding completed forecast probabilities.
  assert(get('#privateContextFiles').type==='file');
