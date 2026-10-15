@@ -437,7 +437,13 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div id="senateTideRaces" class="tide-races"><p class="joint-note">Matching Senate polls and model probabilities…</p></div>
  <p class="tide-line-note">SC, GA, FL and LA are wider-wave watches—not required conditions for a Blue Tsunami. Nebraska's Dan Osborn runs as an independent; a model victory for him is not necessarily a Democratic Senate seat.</p>
  </div>
-<div class="sectionhead"><h2>What to watch</h2><span class="tiny">What deserves a closer look?</span></div>
+<div class="sectionhead"><h2>Missouri House watch</h2><span class="tiny" id="missouriWatchAsOf">MO-02 · source-linked House forecast</span></div>
+ <div class="tide-line-panel" id="missouriHousePanel">
+  <p class="tide-line-intro">Missouri's 2nd District is on the House battleground board. This is a House race, not a Senate contest; its odds feed directly into House control and Four Endings.</p>
+  <div id="missouriHouseWatch" class="tide-races"><p class="joint-note">Checking Missouri's published polling and joint forecast…</p></div>
+  <p class="tide-line-note">Polling is thin and sponsored. The polling result and the full correlated House forecast are separate measures, both shown with their source status.</p>
+ </div>
+ <div class="sectionhead"><h2>What to watch</h2><span class="tiny">What deserves a closer look?</span></div>
 <div class="card radar-wrap"><div id="jackRadar" class="radar-grid"><div class="empty">Scanning close races, polling blind spots, and election developments…</div></div><p class="methodline">The closest margins, thin polling, and documented election-administration issues.</p></div>
 
 </section>
@@ -840,6 +846,46 @@ function renderSenateTideLine(){
   values.append(forecast);race.append(values);host.append(race);
  }
 }
+function renderMissouriHouseWatch(){
+ const host=$('#missouriHouseWatch'),stamp=$('#missouriWatchAsOf');if(!host)return;
+ host.replaceChildren();
+ const poll=latestSenateEstimates?.house?.find(x=>x.race_code==='MO-02');
+ const current=Boolean(jointLastResult&&jointBasis&&
+  jointBasis.generated_from_sources.model_polling_at===latestSenateEstimates?.generated_at);
+ const predicted=current?jointLastResult.race_probabilities.find(x=>
+  x.office==='house'&&x.race_code==='MO-02'):null;
+ if(stamp)stamp.textContent='MO-02 · '+(current?'same joint model as Four Endings':'model odds pending');
+ const button=elt('button','tide-race');button.type='button';button.dataset.houseSpotlight='MO-02';
+ button.setAttribute('aria-label','Explore Missouri second congressional district');
+ const head=elt('div','tide-race-head');
+ head.append(elt('strong','','Missouri · 2nd District'),elt('small','','House control'));
+ button.append(head,elt('div','tide-race-candidates',
+  poll?.dem_candidate&&poll?.rep_candidate?poll.dem_candidate+' vs. '+poll.rep_candidate:
+  'Candidate polling unavailable'));
+ const vals=elt('div','tide-race-readings');
+ const eligible=Number.isFinite(poll?.dem_minus_rep)&&
+  ['single_poll','multi_poll'].includes(poll.status);
+ vals.append(elt('strong','tide-race-margin '+(eligible?marginColor(poll.dem_minus_rep):'party-even'),
+  eligible?'Poll '+marginText(poll.dem_minus_rep):'No current qualified poll'));
+ const odds=elt('div','tide-race-odds');
+ odds.append(elt('b','',predicted?'D '+predicted.dem_beats_rep_pct.toFixed(1)+'%':
+  'Odds pending'),elt('span','','correlated House win odds'));
+ vals.append(odds);button.append(vals);
+ button.append(elt('div','tide-race-candidates',eligible?
+  (poll.independent_pollsters||0)+' independent · '+
+  (poll.partisan_pollsters||0)+' sponsored · last field end '+poll.latest_poll_end:
+  'Awaiting a qualified survey'));
+ host.append(button);
+}
+$('#missouriHouseWatch').addEventListener('click',event=>{
+ if(!event.target.closest('[data-house-spotlight]'))return;
+ modelMode='house';selectedModelState='MO-02';
+ modelPollMode='included';highlightedModelPoll=null;
+ const tab=document.querySelector('.tab[data-page="model"]');if(tab)tab.click();
+ if(window.history?.replaceState)window.history.replaceState(null,'','#model/house/MO-02');
+ if(latestSenateEstimates)renderModelOverview(latestSenateEstimates);
+ $('#modelDetail')?.scrollIntoView({behavior:'smooth',block:'start'});
+});
 $('#senateTideRaces').addEventListener('click',event=>{
  const button=event.target.closest('[data-senate-tide]');if(!button)return;
  const code=button.dataset.senateTide;
@@ -2525,7 +2571,12 @@ function jointRenderCards(result){
    continue;
   }
   const count=Object.keys(result.counts).length;
-  if(count!==4){status.textContent='The four-ending model was incomplete.';continue}
+  const total=['blue_tsunami','blue_wave','shrug','red_dawn']
+   .reduce((n,k)=>n+(result.counts[k]||0),0);
+  if(count!==4||total!==result.samples||
+     Math.abs(Object.values(result.probabilities).reduce((n,x)=>n+x,0)-100)>.12){
+   status.textContent='Four Endings failed reconciliation against the joint forecast.';continue;
+  }
   for(const [key,label,detail,kind] of jointLabels){
    const cell=elt('div','joint-cell '+kind);
    cell.append(elt('strong','',label),
@@ -2546,7 +2597,10 @@ function jointRenderCards(result){
    (sn?sn.p05+'–'+sn.p95+' Senate':'Senate unavailable')+' · '+
    info.senate_poll_count+'/35 Senate and '+info.house_poll_count+
    '/435 House races polled · Senate: 2026 named-candidate model · '+info.house_geography_changed+
-   ' House districts redrawn (high uncertainty).'+
+   ' House districts redrawn (high uncertainty). Source snapshot '+
+   new Date(jointBasis.generated_from_sources.model_polling_at).toLocaleString(
+    'en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+
+   ' · checks for new polls every 2 minutes · same simulation as all race odds.'+
    (jointUsesPrivateContext()?' · PRIVATE IMPORTED CONTEXT; NOT THE PUBLIC MODEL.':'');
  }
 }
@@ -2691,6 +2745,7 @@ function jointRender(force=false){
   }
   jointRenderCards(result);
   renderSenateTideLine();
+  renderMissouriHouseWatch();
   renderEnForecastStrip();
   setModelRaceOddsData(jointBuildRaceOddsSnapshot(result,jointBasis));
   let shadow=null,presidentialShadow=null;
@@ -2719,6 +2774,7 @@ function jointRender(force=false){
   jointErrorMessage='Model calculation unavailable: '+String(e.message||e);
   jointLastResult=null;setModelRaceOddsData(null);
   jointRenderCards(null);jointRenderHouseShadow(null,null,null);
+  renderMissouriHouseWatch();
   renderEnForecastStrip();
  }
 }
@@ -4576,7 +4632,7 @@ latestSenateEstimates=data;
 if(jointLastResult&&jointBasis&&!modelRaceOddsData)
  modelRaceOddsData=jointBuildRaceOddsSnapshot(jointLastResult,jointBasis);
 renderPollWire();
-const box=document.getElementById('senateEstimateCards');box.replaceChildren();renderRacePulse(data);renderSenateTideLine();
+const box=document.getElementById('senateEstimateCards');box.replaceChildren();renderRacePulse(data);renderSenateTideLine();renderMissouriHouseWatch();
 const safeNumber=v=>typeof v==='number'&&Number.isFinite(v);
 const pos=margin=>Math.max(0,Math.min(100,50+margin*1.5));
 for(const x of data.states||[]){
