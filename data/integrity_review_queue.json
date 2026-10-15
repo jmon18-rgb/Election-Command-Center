@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-15T23:39:52.937300Z",
+  "updated_at": "2026-10-15T23:45:24.942877Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
   "review_metrics": {
-    "total_leads": 144,
-    "awaiting_primary_source": 142,
+    "total_leads": 145,
+    "awaiting_primary_source": 143,
     "primary_source_checked": 2,
-    "advisory_related_headline_buckets": 9,
-    "advisory_related_headlines": 21
+    "advisory_related_headline_buckets": 10,
+    "advisory_related_headlines": 23
   },
   "advisory_related_headlines": [
     {
@@ -111,6 +111,19 @@
         "registration"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "7d2c6bc7a1afc4ae6892",
+      "headline": "US Justice Dept sues California to block votes from alleged noncitizens - WTVB",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
@@ -151,6 +164,25 @@
       "headline_numbers_unverified": [
         "2024 "
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "7d2c6bc7a1afc4ae6892",
+      "title": "US Justice Dept sues California to block votes from alleged noncitizens - WTVB",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQNzgzeTVJd2NRRkN5T0gtdU5QcEhZS0FHYWhmODhtWkg2UGFwUzE5OHNYZm1xOF82RVJkNFhPQXd4QmhDeWZ5R3pRYkhySzljWl9WdFhPellJa0ZCamUwQzlYSlpRcHRWZW1hcVRKSWdjSTRmdERaRzU1amRoRy1OMFJkTjBCaHVpY2x4amx2enpaMGRheUE?oc=5",
+      "publisher": "WTVB",
+      "published_at": "2026-10-15T22:27:49Z",
+      "detected_at": "2026-10-15T23:45:24.942877Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
