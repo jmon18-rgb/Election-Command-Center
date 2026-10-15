@@ -11,6 +11,7 @@ import math
 import random
 import re
 from collections import defaultdict
+from poll_firm_wave_selection import select_latest_firm_waves
 from datetime import date
 from pathlib import Path
 
@@ -71,13 +72,11 @@ def predict(prior, asof, method):
     # All polls on the target field-end date are withheld, including
     # alternative releases from the same polling organization.
     assert all(date.fromisoformat(p["field_end"]) < asof for p in prior)
-    unique = {}
-    for p in sorted(prior, key=lambda x: x["field_end"], reverse=True):
-        firm = p["pollster"].strip().lower()
-        if firm not in unique:
-            unique[firm] = p
+    # Match the *production* poll-mean-v1.5 one-firm rule in retrospective
+    # windows. Source row order must not change held-out diagnostics.
+    chosen, _wave_audit = select_latest_firm_waves(prior)
     total = weighted = 0.0
-    for p in unique.values():
+    for p in chosen:
         age = (asof - date.fromisoformat(p["field_end"])).days
         half_life = 14 if method.endswith("_recency14") else 35 if method == "recency35_size" else 21
         weight = 1.0 if method == "equal" else 0.5 ** (age / half_life)
