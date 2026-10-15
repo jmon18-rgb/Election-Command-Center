@@ -300,8 +300,8 @@ async function settle(){
   'Missing source coverage cannot masquerade as an ambiguous risk score');
  assert.match(get('#senateEstimateCards').textContent,/No documented case in our limited ledger/,
   'A state with no matching source must display the coverage gap');
- assert.match(get('#bullCoverageSummary').textContent,/source-documented cases across/);
- assert.match(get('#bullCoverageSummary').textContent,/not cleared or comprehensively reviewed/);
+ assert.match(get('#bullCoverageSummary').textContent,/documented incidents in/);
+ assert.match(get('#bullCoverageSummary').textContent,/remaining states have unknown risk, not zero/);
  assert.match(get('#senateEstimateCards').textContent,/coverage gap, not a judgment/);
  assert(get('#bullScoreStates').querySelectorAll('.bs-state-row').length>0,
   'Verified source states keep their documented incident cards');
