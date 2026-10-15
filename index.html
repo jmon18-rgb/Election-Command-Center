@@ -770,7 +770,7 @@ document.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',(
 function renderItems(id,items){const node=$('#'+id);node.replaceChildren();if(!Array.isArray(items)||!items.length){node.append(elt('div','empty','No recent articles in the source feed; this is not proof there are no election developments.'));return;}for(const x of items){if(!x||typeof x.title!=='string')continue;const div=document.createElement('div');div.className='item';const title=document.createElement('strong');title.textContent=x.title;div.append(title);if(x.source||x.published_at){const meta=document.createElement('small');const date=x.published_at?new Date(x.published_at).toLocaleDateString('en-US',{month:'short',day:'numeric'}):'';meta.textContent=[x.source,date].filter(Boolean).join(' · ');div.append(meta)}if(typeof x.url==='string'&&x.url.startsWith('https://')){const link=document.createElement('a');link.href=x.url;link.target='_blank';link.rel='noopener';link.textContent='Read source ↗';const sm=document.createElement('small');sm.append(link);div.append(sm)}node.append(div)}}
 
 
-const KEY_STATES={"ME":"Maine","OH":"Ohio","NC":"North Carolina","MI":"Michigan","GA":"Georgia","NH":"New Hampshire","AK":"Alaska","IA":"Iowa","TX":"Texas","NE":"Nebraska","KS":"Kansas","MN":"Minnesota"};
+const KEY_STATES={"ME":"Maine","OH":"Ohio","NC":"North Carolina","MI":"Michigan","GA":"Georgia","NH":"New Hampshire","AK":"Alaska","IA":"Iowa","TX":"Texas","NE":"Nebraska","KS":"Kansas","MN":"Minnesota","SC":"South Carolina","MS":"Mississippi","MO":"Missouri"};
 const KEY_ORDER=['ME','OH','NC','MI','GA','NH','AK','IA','TX','NE','KS','MN'];
 function qualifiedPolls(race,days=35){const now=Date.now(),seen=new Set();return (race?.polls||[]).filter(p=>{const age=(now-Date.parse(p.field_end+'T12:00:00Z'))/86400000;if(!Number.isFinite(age)||age<0||age>days||p.partisan_lean||!Number.isFinite(p.dem)||!Number.isFinite(p.rep)||!p.dem_name||!p.rep_name||/generic/i.test(p.dem_name+' '+p.rep_name))return false;const k=p.pollster.toLowerCase()+'|'+p.dem_name+'|'+p.rep_name;if(seen.has(k))return false;seen.add(k);return true})}
 function renderJackRadar(){
@@ -2189,28 +2189,36 @@ function renderBullStateScores(){
  const numeric=tracked.filter(x=>Number.isFinite(x.confirmed_affected)||
    Number.isFinite(x.potentially_affected)).length;
  const summary=$('#bullCoverageSummary');
- if(summary)summary.textContent=tracked.length+' source-documented cases across '+
-  stateCount+' states in this curated ledger · '+numeric+
-  ' cases with numeric affected/exposed counts · other states not cleared or comprehensively reviewed. '+
-  'Verified actions and unknown voter effects are different facts.';
- const states=[...new Set((impactLedger.incidents||[]).map(x=>x.state).filter(Boolean))].map(s=>({s,score:bullStateScore(s)})).sort((a,b)=>(b.score??-1)-(a.score??-1)||a.s.localeCompare(b.s));
+ const priorityStates=['ME','TX','OH','IA','MI','NC','GA','NH','AK','NE','KS','MN','SC','MS','MO'];
+ const covered=priorityStates.filter(code=>tracked.some(x=>x.state===code)).length;
+ if(summary)summary.textContent=tracked.length+' documented incidents in '+stateCount+
+  ' states · '+covered+'/'+priorityStates.length+
+  ' priority states have documented cases (NOT comprehensive assessments) · '+
+  numeric+' numeric record/exposure counts · remaining states have unknown risk, not zero.';
+ const states=[...new Set([...priorityStates,
+  ...(impactLedger.incidents||[]).map(x=>x.state).filter(Boolean)])]
+  .map(s=>({s,score:bullStateScore(s),leads:bullEvidenceForState(s).leads}))
+  .sort((a,b)=>(b.score??-1)-(a.score??-1)||b.leads-a.leads||a.s.localeCompare(b.s));
  for(const {s,score} of states){
   const issues=(impactLedger.incidents||[]).filter(x=>x.state===s&&x.verification_status!=='unverified_report');
   const featured=issues.sort((a,b)=>(bullMonitoringPoints(b)||0)-(bullMonitoringPoints(a)||0))[0];
   const row=elt('div','bs-state-row');
   const head=elt('div','bs-state-header');
-  head.append(elt('strong','',KEY_STATES[s]||s),elt('strong','bs-state-number',score===null?'Impact not quantified':score+'/100'));
+  head.append(elt('strong','',KEY_STATES[s]||s),elt('strong','bs-state-number',score===null?'Not assessed':score+'/100'));
   row.append(head);
   const track=elt('div','bs-state-track'),fill=elt('div','bs-state-fill');fill.style.width=(score===null?0:score)+'%';track.append(fill);row.append(track);
-  const note=elt('div','bs-state-note',featured?.scope_label||featured?.title||'Sourced issue; impact not quantified');row.append(note);
+  const note=elt('div','bs-state-note',featured?.scope_label||featured?.title||(bullEvidenceForState(s).leads?bullEvidenceForState(s).leads+' unverified news lead(s) awaiting source review':'No assessed incident in the curated ledger'));row.append(note);
   const scenario=featured?.adverse_scenario||{},proxy=scenario.exposure_proxy;
   if(proxy?.value!==null&&typeof proxy?.value==='number'){
    row.append(elt('div','bs-state-detail','Reported exposure: '+(proxy.qualifier==='at least'?'≥':'')+proxy.value.toLocaleString()+' '+proxy.unit+' (not lost votes)'));
-  }else row.append(elt('div','bs-state-detail','Worst-case distinct voters: not established'));
+  }else row.append(elt('div','bs-state-detail',score===null?
+   'Coverage gap · no risk estimate; unknown is not zero':
+   'Worst-case distinct voters: not established'));
   const p=typeof scenario.probability_of_scenario==='number'?scenario.probability_of_scenario:null;
   const bounds=Array.isArray(scenario.probability_interval)?scenario.probability_interval:null;
   const fmt=v=>(v*100).toFixed(v<.01?1:0)+'%';
-  const pr=p===null?'No likelihood estimate':'Our rough P(≥100 voters affected): '+fmt(p)+(bounds?' ('+fmt(bounds[0])+'–'+fmt(bounds[1])+')':'');
+  const pr=p===null?(score===null?'Awaiting primary-source verification and review':'No likelihood estimate'):
+   'Our rough P(≥100 voters affected): '+fmt(p)+(bounds?' ('+fmt(bounds[0])+'–'+fmt(bounds[1])+')':'');
   row.append(elt('div','bs-state-detail',pr));
   const details=elt('details','bs-state-extra');details.append(elt('summary','','Scenario and assumptions'));
   details.append(elt('p','',scenario.definition||'Scenario not defined'));
