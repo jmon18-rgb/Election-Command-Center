@@ -7,6 +7,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from validate_poll_to_odds import check
+from poll_firm_wave_selection import select_latest_firm_waves
+import build_polling_estimates as live_average
+from datetime import date
 
 AT = "2026-10-14T20:00:00Z"
 BUILT = "2026-10-14T20:01:00Z"
@@ -140,6 +143,74 @@ class PollChainTests(unittest.TestCase):
         result = check(primary, model, odds, {"observations": [p]},
                        today=__import__("datetime").date(2026, 10, 14))
         self.assertEqual(result["ambiguous_same_day_questions"], 1)
+
+    def test_same_day_texas_style_lv_sample_selection_is_order_invariant(self):
+        common={
+            "pollster":"YouGov", "field_end":"2026-10-05",
+            "dem_name":"Democrat", "rep_name":"Republican", "partisan_lean":"",
+            "sample_population":"lv"
+        }
+        small={**common,"poll_id":"texas-861","sample_size":861,
+               "dem":50.0,"rep":47.0,"margin":3.0}
+        large={**common,"poll_id":"texas-3623","sample_size":3623,
+               "dem":50.0,"rep":44.0,"margin":6.0}
+        winners=[]
+        for order in ([small,large],[large,small]):
+            picked,audit=select_latest_firm_waves(order)
+            self.assertEqual(len(picked),1)
+            self.assertEqual(picked[0]["poll_id"],"texas-3623")
+            self.assertEqual(len(audit["resolved_same_day_ties"]),1)
+            estimate=live_average.estimate({"polls":order},date(2026,10,14))
+            self.assertEqual(estimate["contributing_pollsters"],1)
+            self.assertEqual(estimate["dem_minus_rep"],6)
+            self.assertEqual(estimate["pollsters"][0]["poll_id"],"texas-3623")
+            winners.append(estimate)
+        self.assertEqual(winners[0],winners[1])
+        self.assertEqual(live_average.estimate({"polls":[small]},date(2026,10,14))["dem_minus_rep"],3)
+
+    def test_lv_preferred_over_bigger_rv_from_same_firm_date(self):
+        base={"pollster":"Example Polls","field_end":"2026-10-05",
+              "dem_name":"Dem","rep_name":"Rep"}
+        likely={**base,"poll_id":"lv","sample_population":"lv",
+                "sample_size":718,"dem":47,"rep":44,"margin":3}
+        registered={**base,"poll_id":"rv","sample_population":"rv",
+                    "sample_size":1300,"dem":51,"rep":44,"margin":7}
+        chosen,_=select_latest_firm_waves([registered,likely])
+        self.assertEqual([p["poll_id"] for p in chosen],["lv"])
+
+    def test_equal_priority_contradictions_are_quarantined(self):
+        base={"pollster":"Example","field_end":"2026-10-05",
+              "sample_size":850,"sample_population":"lv",
+              "dem_name":"Dem","rep_name":"Rep"}
+        a={**base,"poll_id":"A","dem":51,"rep":45,"margin":6}
+        b={**base,"poll_id":"B","dem":46,"rep":48,"margin":-2}
+        for order in ([a,b],[b,a]):
+            selected,audit=select_latest_firm_waves(order)
+            self.assertEqual(selected,[])
+            self.assertEqual(len(audit["quarantined_same_day_firms"]),1)
+        # No arbitrary partisan tie break or synthetic probability.
+        self.assertEqual(live_average.estimate({"polls":[b,a]},date(2026,10,14))["status"],
+                         "no_recent_qualifying_polls")
+
+    def test_v15_validator_refuses_wrong_same_day_question_in_published_odds(self):
+        primary,model,odds=fixture()
+        model["method_version"]="poll-mean-1.5"
+        smaller=primary["races"][0]["polls"][0]
+        smaller.update({"sample_population":"lv","sample_size":861})
+        larger={**smaller,"poll_id":"better-sample","sample_size":3623,
+                "dem":50,"rep":44,"margin":6}
+        primary["races"][0]["polls"].append(larger)
+        with self.assertRaisesRegex(ValueError,"incorrect same-day selected poll"):
+            check(primary,model,odds,today=date(2026,10,14))
+        chosen=model["senate_all"][0]
+        chosen["pollsters"]=[{"poll_id":"better-sample","name":"SurveyUSA",
+                             "field_end":"2026-10-07","sample_population":"lv",
+                             "sample_size":3623,"dem":50,"rep":44}]
+        chosen["dem_minus_rep"]=6
+        odds["records"][0]["dem_minus_rep"]=6
+        result=check(primary,model,odds,today=date(2026,10,14))
+        self.assertEqual(result["freshest_primary_firm_waves"],32)
+        self.assertEqual(result["linked_probability_records"],32)
 
     def test_latest_firm_poll_does_not_force_historical_poll(self):
         primary, model, odds = fixture()
