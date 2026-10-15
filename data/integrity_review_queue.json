@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-15T21:27:18.110917Z",
+  "updated_at": "2026-10-15T21:45:44.524382Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 135,
-    "awaiting_primary_source": 133,
+    "total_leads": 136,
+    "awaiting_primary_source": 134,
     "primary_source_checked": 2,
-    "advisory_related_headline_buckets": 7,
-    "advisory_related_headlines": 16
+    "advisory_related_headline_buckets": 8,
+    "advisory_related_headlines": 18
   },
   "advisory_related_headlines": [
     {
@@ -85,6 +85,19 @@
         "registration"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "444a238fe9159b1ce81d",
+      "headline": "Could California lose ballots over DOJ non-citizen voter claims? - The Desert Sun",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
@@ -114,6 +127,25 @@
       "publisher": "The Desert Sun",
       "published_at": "2026-10-15T20:45:00Z",
       "detected_at": "2026-10-15T21:08:58.023147Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "c35097f1e1604b09a1c8",
+      "title": "Could California lose ballots over DOJ non-citizen voter claims? - Victorville Daily Press",
+      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOMm9nb25tMlVFcER3YU1VeUJxUXdfYmRnWUR5elpxalpRNkkxY3NEVlN2SlhsNm5WcDg2SUFwdUQxc3h0VGZNSS1ZYUQ1WUM3V2hycVdqbERzaXJPVjBwODFBZDFPMnFONDhOTV82U0pVOFkydmVrZnNZVmQ4cVIzVmF1NThGbzd1ZWpSazA2NnBQY1h2TV9YZVh4TFF1VGQ2NmZpWlM4MEM3YVF2clF3YVE2N0I1Vkh6Z2JNVF9LVGdHNjdHMzdvMUFNcl9qbVBIREtEMWI1SFBSdjVzS0lVemJ6Skpndw?oc=5",
+      "publisher": "Victorville Daily Press",
+      "published_at": "2026-10-15T20:45:00Z",
+      "detected_at": "2026-10-15T21:45:44.524382Z",
       "state_hints": [
         "CA"
       ],
