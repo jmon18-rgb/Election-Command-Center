@@ -1298,7 +1298,9 @@ function renderModelRaceOdds(estimate){
    (item.office==='senate'&&item.polling_error_tier?
      (item.polling_error_tier==='recent_multi_firm'?
       ' · recent multi-firm polling: 6.5-point floor':
-      ' · thin/stale/special polling: 8.5-point floor'):'')+'. '+
+      item.polling_error_tier==='recent_deep_special'?
+      ' · recent, deeply polled special election: 7.5-point floor':
+      ' · thin/stale polling: 8.5-point floor'):'')+'. '+
    'Same '+modelRaceOddsData.samples.toLocaleString('en-US')+
    ' correlated draws as House/Senate control. Error-width controls rerun the full model. '+
    'Two-party conditional estimate, not a calibrated race call; special ballot rules remain incomplete.';
