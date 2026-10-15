@@ -2,6 +2,29 @@
 
 **Direction:** A personal election site with the utility of a serious polling desk and occasional deadpan humor. No forced jokes, no repetitive methodology cards, no controls that exist just because they can.
 
+## October 15 owner priorities — current architecture overrides older historical notes below
+
+**The intended user experience:** Open one desktop browser window while watching TV. At a glance: both-chamber *actual* control probability, Four Endings (218/49 and 235/52 **seat gates**), fresh polling changes, source-confirmed calls, meaningful Bellwether alerts, time of last valid result and data-quality state. One click for office, state or race drilldown. Disclosures stay available under details rather than occupying the main desk. All odds must derive from the same correlated draw revision, with model-source timestamps.
+
+### Now (P0: electoral integrity and reliability)
+- [x] Four exclusive **seat-based** outcome buckets in the correlated model: Tsunami ≥235 House/≥52 Senate; Wave ≥218/≥49 excluding tsunami; Shrug one minimum; Red Dawn neither. Real Democratic Senate control (51) remains separate.
+- [x] Shared home/night definitions and test cases; dashboard copy trimmed, original recorded Fish Head clip retained with bottom-up arrival; concise curated Bullshittery pulse restored to Daily Brief.
+- [x] Oct 15 official North Carolina source review: 1,392 **planned citizenship-verification letters**, no automatic deregistration or observed lost ballots; linked one review lead to documented case without increasing its monitoring risk by guess.
+- [ ] **Polling parity audit:** verify Silver CSV row identities, actual active model coefficients and partial 28 Senate/98 House coverage; publish per-race blend diagnostics. Keep paid subscription export/license restrictions in view.
+- [ ] **Integrity review service:** cluster reports about same action; prioritize races/regions by actionable changes, require primary source for statuses/affected units, and surface overdue checks and re-review dates. 124 unverified leads remain after the first source check, not 124 verified voter impacts.
+- [ ] **Election-night feed stress test:** simulated 2024 election-clock replay, 2026 source identity/CORS and outage tests, regular result monotonicity and cross-source discrepancies, state-specific fallback, full 435-House/100-Senate holdover reconciliation. Current partial coverage cannot be presented as a guaranteed national election-night feed.
+- [ ] **Race-call hierarchy:** external professionally reviewed source calls under distinct attribution from *our own experimental win probabilities*; vendor/provider winner flags must pass schema, timestamp, candidate/race identity, and state scope checks. Never auto-call merely because odds exceed a fixed threshold.
+- [ ] **Needle methodology:** fit county/precinct early votes relative to geographically matching 2024 baselines, account for absentee/early vs Election Day votes and outstanding ballots, and backtest on historical reporting-order replays before promoting geographic signals into the live national swing.
+- [ ] **Ambient-first design:** election-wide main screen with top breaking changes and four-chamber status; House/Senate/Governor become drilldown filters, not three competing dashboards. Search/watchlist moved behind expandable controls; improve keyboard navigation and visible loading/error states.
+- [ ] **Authentic John Brown poster:** replace illustration with verified original public-domain historical portrait (Library of Congress record 2009633567). Use locally served credited image, not another generic stylized face.
+- [ ] **Fish Head audio:** current owner-supplied announcement MP3 is present. For a musical intro use owner-licensed audio or a new original news-bumper stinger; browser autoplay may need one explicit Preview click.
+
+### Model interaction rule for Bullshittery
+
+A monitoring-priority score or subjective event probability **never automatically shifts partisan vote margins**. Gate a sensitivity scenario on independently verified eligible-voter ballot effects (unit and dates), deduplicated statewide/counties, expected net effect on counted votes **including remedies and counterfactuals**, and uncertainty about any partisan skew. For credible impact only: report baseline and both-sided lower/upper bounds separately; require reviewer approval and robust backtest before allowing a default forecast revision.
+
+---
+
 ## Current experience
 - **Daily briefing:** Generic ballot, Senate polling overview, new surveys, race alerts, and the Bullshittery Index radar.
 - **JackStradamus v1.4:** Four office tabs: Senate, House, Governors and National Generic Ballot. Averages use 21-day recency weights, bounded sample-size influence, published 538 historical accuracy/transparency ratings, and a symmetric 0.5× sponsorship factor. Explicitly excluded pollsters are declared, and unrated firms receive neutral quality weights. Every included poll shows its published influence and historical rating; full source-to-model reconciliation runs after refreshes. See [POLLING_MODEL.md](POLLING_MODEL.md). House/Gov coverage is still limited to races with polling, not all contests.
