@@ -3000,13 +3000,30 @@ function enLiveRaceEstimate(item){
  * user to pin anything. 2024 archive totals NEVER enter this board. */
 const smartRosterFilters={smartBrief:'All',smartNight:'All'};
 function smartRaceCode(item){return item.code}
+let smartCompactCacheModel=null,smartCompactCache=null;
+let smartRosterCacheModel=null,smartRosterCacheSeats=null,
+ smartRosterCacheHouse=null,smartRosterCacheRows=null;
 function smartAutoWatch(){
- // This bounded list drives frequent source refreshes; not the full roster.
- return window.AutomaticRaceDesk?.watch(jointLastResult)||[];
+ // Bounded provider-refresh roster. Avoid sorting 435 model slots for
+ // every per-race visibility/source check; invalidate on a new model draw.
+ if(smartCompactCache&&smartCompactCacheModel===jointLastResult)return smartCompactCache;
+ smartCompactCacheModel=jointLastResult;
+ smartCompactCache=window.AutomaticRaceDesk?.watch(jointLastResult)||[];
+ return smartCompactCache;
 }
 function smartDisplayRoster(){
- return window.AutomaticRaceDesk?.watch(jointLastResult,enNationalSeats||[],
-  latestSenateEstimates?.house||[])||[];
+ // Display membership changes only with model, certified ballot inventory
+ // or polling snapshot. Live returns/odds still refresh per render.
+ const house=latestSenateEstimates?.house||null;
+ if(smartRosterCacheRows&&smartRosterCacheModel===jointLastResult&&
+   smartRosterCacheSeats===enNationalSeats&&smartRosterCacheHouse===house)
+  return smartRosterCacheRows;
+ smartRosterCacheModel=jointLastResult;
+ smartRosterCacheSeats=enNationalSeats;
+ smartRosterCacheHouse=house;
+ smartRosterCacheRows=window.AutomaticRaceDesk?.watch(jointLastResult,
+  enNationalSeats||[],house||[])||[];
+ return smartRosterCacheRows;
 }
 function enAutoTracked(item){
  return enModeYear===2026&&Date.now()>=Date.parse('2026-11-03T05:00:00Z')&&
