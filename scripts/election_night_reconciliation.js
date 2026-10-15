@@ -22,11 +22,11 @@
   for(const c of cands){
    const party=kind==='primary'?c?.p:c?.party;
    const count=kind==='primary'?c?.v:c?.votes;
-   if(!['D','R','O'].includes(party)||!Number.isSafeInteger(count)||count<0)
-    return null;
+   if(typeof party!=='string'||!party.trim()||party.length>30||
+      !Number.isSafeInteger(count)||count<0)return null;
    sum+=count;
    if(!Number.isSafeInteger(sum)||sum>record.total)return null;
-   out[party]+=count;
+   out[party==='D'||party==='R'?party:'O']+=count;
   }
   return out;
  };
