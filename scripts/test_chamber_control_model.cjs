@@ -286,23 +286,24 @@ assert.equal(JSON.stringify(basis),before,'Forecast must not modify source prior
 // Four Endings thresholds are classified from the EXACT simulated seat
 // totals, not a subjective subset of battleground race calls.
 assert.deepEqual({...model.ENDING_THRESHOLDS},
- {wave_house:218,wave_senate:49,tsunami_house:235,tsunami_senate:52});
+ {wave_house:218,wave_senate:51,tsunami_house:235,tsunami_senate:52});
 const endingCases=[
- [217,48,'red_dawn'],[217,49,'shrug'],[218,48,'shrug'],
- [218,49,'blue_wave'],[234,52,'blue_wave'],[235,51,'blue_wave'],
+ [217,50,'red_dawn'],[217,51,'shrug'],[218,48,'shrug'],
+ [218,49,'shrug'],[218,50,'shrug'],[218,51,'blue_wave'],
+ [234,52,'blue_wave'],[235,50,'shrug'],[235,51,'blue_wave'],
  [235,52,'blue_tsunami'],[250,60,'blue_tsunami'],
- [218,51,'blue_wave'],[219,47,'shrug']
+ [219,47,'shrug'],[217,52,'shrug']
 ];
 for(const [h,sen,expected] of endingCases)
  assert.equal(model.classifyFourEndings(h,sen),expected,
   'Bad exclusive Four Endings assignment for '+h+' House/'+sen+' Senate');
 assert.throws(()=>model.classifyFourEndings(-1,49),/Invalid/);
 assert.throws(()=>model.classifyFourEndings(218,NaN),/Invalid/);
-assert(first.actual_dem_both_control_pct<=first.blue_both_including_tsunami,
- 'Real 51-seat Senate control must be subset of relaxed 49-seat Wave gate');
-assert(first.senate_dem_control_pct<=first.senate_49_or_more_pct,
- 'Senate control threshold must remain distinct from relaxed Wave gate');
-assert.equal(first.four_endings_thresholds.wave_senate,49);
+assert.equal(first.actual_dem_both_control_pct,first.blue_both_including_tsunami,
+ 'Wave + Tsunami must equal REAL Democratic control of both chambers');
+assert.equal(first.senate_dem_control_pct,first.senate_wave_gate_pct,
+ 'Senate Wave threshold must require 51 seats');
+assert.equal(first.four_endings_thresholds.wave_senate,51);
 assert.equal(first.counts.blue_tsunami+first.counts.blue_wave+
  first.counts.shrug+first.counts.red_dawn,first.samples);
 assert(Math.abs(first.total_pct-100)<0.025);
@@ -344,13 +345,12 @@ assert(Math.abs(expectedSenateWins-first.means.senate_dem_seats)<.02,
 const wavePct=first.blue_both_including_tsunami;
 const bothPct=first.actual_dem_both_control_pct;
 const splitPct=first.probabilities.shrug,redPct=first.probabilities.red_dawn;
-assert(Math.abs(first.house_dem_control_pct+first.senate_49_or_more_pct-
- 2*wavePct-splitPct)<.045,'Four Endings must reconcile with the relaxed 49-seat Senate gate');
-assert(Math.abs(100-first.house_dem_control_pct-first.senate_49_or_more_pct+
- wavePct-redPct)<.045,'Red Dawn must mean neither minimum seat threshold');
+assert(Math.abs(first.house_dem_control_pct+first.senate_dem_control_pct-
+ 2*wavePct-splitPct)<.045,'Four Endings must reconcile with ACTUAL Senate control');
+assert(Math.abs(100-first.house_dem_control_pct-first.senate_dem_control_pct+
+ wavePct-redPct)<.045,'Red Dawn must mean Republican control of BOTH chambers');
 assert(first.house_dem_control_pct+0.01>=bothPct);
 assert(first.senate_dem_control_pct+0.01>=bothPct);
-assert(first.senate_49_or_more_pct+0.01>=wavePct);
 assert(Math.abs(explanation.both_dem_pct-explained.actual_dem_both_control_pct)<.03,
  'Control explanation must reconcile with actual 51-seat Senate control');
 for(const [key,total] of [['house_dem_seats',435],['senate_dem_seats',100]]){
