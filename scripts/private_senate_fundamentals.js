@@ -1,6 +1,6 @@
 /* Optional locally imported user-owned Silver Bulletin Senate CSV context.
- * Source CSVs (paid/proprietary) must NEVER be checked into this public repo.
- * This module has no network operations. It only processes user-selected files.
+ * Source CSVs can come from manually selected browser files or user-published
+ * repository assets. This model module itself has no network operations.
  * Polls, Silver's blended forecast and FLIPR win odds are NOT inputs.
  */
 (function(root,factory){
@@ -171,7 +171,7 @@
   if(count===0&&houseCount===0)throw Error('No private race inputs match 2026 races');
   return {...basis,senate,house,private_imported_context:{
    model:'unvalidated_candidate_context_sensitivity_not_flipr_replication',
-   source:'local_only_no_raw_csv_committed',
+   source:options.repositoryPublished===true?'public_repository_fundamentals_csv':'local_only_no_raw_csv_committed',
    matched_senate_races:count,matched_house_races:houseCount,
    include_house:options.includeHouse===true,
    input_types:['senateFundamentals','senateExperts','houseFundamentals','houseExperts']
