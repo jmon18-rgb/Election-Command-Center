@@ -21,6 +21,74 @@ TOPICS={"registration":"registration|voter roll|voter list|purge|eligib|citizens
 "ballot_access":"ballot|polling place|voting access|early voting|absentee",
 "litigation":"lawsuit|litigation|court|injunction|judge|appeal",
 "security":"threat|bomb|cyber|ice|intimidat|interferen"}
+# Keep state classification symmetric for both parties and all states.
+# A missing state hint is NOT a claim about where a case did/did not happen.
+STATES.update({
+ "Alabama":"AL","Arkansas":"AR","California":"CA","Colorado":"CO",
+ "Connecticut":"CT","Delaware":"DE","Florida":"FL","Hawaii":"HI",
+ "Idaho":"ID","Illinois":"IL","Indiana":"IN","Kentucky":"KY",
+ "Louisiana":"LA","Maryland":"MD","Mississippi":"MS","Missouri":"MO",
+ "Montana":"MT","New Jersey":"NJ","New Mexico":"NM","New York":"NY",
+ "North Dakota":"ND","Oklahoma":"OK","Oregon":"OR","Rhode Island":"RI",
+ "South Carolina":"SC","South Dakota":"SD","Tennessee":"TN",
+ "Utah":"UT","Vermont":"VT","Virginia":"VA","Washington":"WA",
+ "West Virginia":"WV","Wyoming":"WY"
+})
+STOPWORDS=set("the a an in on at to for of and or as it this those there are was were has have be from by with over into about officials official department administration election elections voter voters voting ballots ballot federal local new today state states us united says say alleges alleged reports report update latest county counties suit lawsuit court wins win trump".split())
+def title_words(title):
+    # News feeds often append a publisher after a hyphen. Keep the actual
+    # event title only; publisher identity never constitutes corroboration.
+    subject=title.rsplit(" - ",1)[0].lower()
+    return set(w for w in re.findall(r"[a-z]{3,}",subject) if w not in STOPWORDS)
+
+def triage(items):
+    """Advisory related-headline buckets, NEVER deduped verified incidents.
+
+    We do not change the status of a lead when a related article is checked.
+    Similarity is deliberately conservative: false negatives only waste review
+    time, while even a matched bucket remains unverified and source-separated.
+    """
+    groups=[]
+    for item in items:
+        if item.get("review_status")=="primary_source_checked":continue
+        words=title_words(item.get("title") or "")
+        if len(words)<3:continue
+        hints=set(item.get("state_hints") or [])
+        topics=set(item.get("topic_hints") or [])
+        matched=None
+        for g in groups:
+            if hints and g["_states"] and hints.isdisjoint(g["_states"]):continue
+            if topics and g["_topics"] and topics.isdisjoint(g["_topics"]):continue
+            common=len(words & g["_words"])
+            union=len(words | g["_words"])
+            score=common/union if union else 0
+            # If both headlines have no state hints, require stronger text
+            # evidence rather than merging every generic national story.
+            need=.77 if not hints and not g["_states"] else .58
+            if common>=3 and score>=need:
+                matched=g;break
+        if matched is None:
+            matched={"lead_id":item["id"],"headline":item.get("title",""),
+                "count":0,"_words":words,"_states":hints,"_topics":topics,
+                "_publishers":set(),"newest_published":item.get("published_at")}
+            groups.append(matched)
+        matched["count"]+=1
+        matched["_publishers"].add(item.get("publisher") or "Source not specified")
+        matched["_states"].update(hints)
+        matched["_topics"].update(topics)
+    ranked=sorted((g for g in groups if g["count"]>1),
+        key=lambda g:(-g["count"],g["newest_published"] or "",g["lead_id"]))
+    output=[{"lead_id":g["lead_id"],"headline":g["headline"],
+      "possibly_related_articles":g["count"],"distinct_publishers":len(g["_publishers"]),
+      "state_hints":sorted(g["_states"]),"topic_hints":sorted(g["_topics"]),
+      "review_status":"advisory_overlap_only_not_independently_verified"}
+      for g in ranked[:20]]
+    return {"total_leads":len(items),
+        "awaiting_primary_source":sum(x.get("review_status")=="needs_primary_source" for x in items),
+        "primary_source_checked":sum(x.get("review_status")=="primary_source_checked" for x in items),
+        "advisory_related_headline_buckets":len(ranked),
+        "advisory_related_headlines":sum(g["count"] for g in ranked)},output
+
 def read(path,default):
     try:return json.loads(path.read_text(encoding="utf-8"))
     except (OSError,ValueError):return default
@@ -48,9 +116,11 @@ def main():
             "impact_counts_verified":False,"promoted_to_incident_id":None}
         discovered+=1
     items=sorted(old.values(),key=lambda x:x.get("published_at") or "",reverse=True)[:250]
+    review_metrics,related=triage(items)
     out={"updated_at":now,"status":"leads_only_not_verified_incidents",
         "policy":"Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-        "new_leads":discovered,"items":items}
+        "new_leads":discovered,"review_metrics":review_metrics,
+        "advisory_related_headlines":related,"items":items}
     QUEUE.write_text(json.dumps(out,indent=2)+"\n",encoding="utf-8")
     print("Review queue:",len(items),"leads,",discovered,"new")
 if __name__=="__main__":main()
