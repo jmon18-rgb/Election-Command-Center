@@ -552,17 +552,17 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 </div>
 <p class="model-probability-coverage" id="modelProbabilityCoverage" role="status">Loading published race-level model estimates…</p>
 <details id="privateContextWorkbench" class="race-workbench">
- <summary><strong>My private Silver CSV fundamentals</strong><span>Import locally · compare model with / without candidate context</span></summary>
+ <summary><strong>2026 race fundamentals · Senate and House</strong><span>Repository CSVs auto-loaded · compare with baseline</span></summary>
  <div class="race-workbench-body card" style="display:grid;gap:10px">
-  <p class="detail">Use the Senate fundamentals (Simple / Fancy), expert-ratings (Unadjusted / Adjusted), and optional House fundamentals CSVs. Source CSVs stay in your browser, are not uploaded to this site's servers or committed to public GitHub. The Blended column inside Silver's Fundamentals section is used; polling averages, FLIPR Deluxe and final win probabilities are NOT fitted.</p>
+  <p class="detail">The Senate and House candidate fundamentals CSVs committed to this public repository load automatically on every device. We use only Blended fundamentals with our own polling and uncertainty, not Silver win probabilities. These repository copies are publicly accessible. Upload alternatives below only to override locally on this browser.</p>
   <label for="privateContextFiles" class="label">CHOOSE THE CSV FILES</label>
   <input type="file" id="privateContextFiles" accept=".csv,text/csv" multiple aria-describedby="privateContextStatus">
   <label class="detail"><input type="checkbox" id="privateContextEnabled" checked> Use imported fundamentals directly in my JackStradamus forecast</label>
   <label class="detail"><input type="checkbox" id="privateContextRemember" checked> Remember these inputs privately on this device for future visits</label>
-  <label class="detail"><input type="checkbox" id="privateContextHouse"> Also use imported House fundamentals (experimental, 2026 selected districts only)</label>
+  <label class="detail"><input type="checkbox" id="privateContextHouse" checked> Include repository House fundamentals (98 selected districts; experimental)</label>
   <button type="button" id="privateContextClear" class="model-back">Clear private CSV context</button>
-  <p class="detail" id="privateContextStatus" role="status">Import your own fundamentals once to power your personal forecast. They'll be retained on this device if Remember is checked.</p>
-  <p class="detail">Saved private fundamentals are stored in this browser's site storage, accessible to scripts from this site on this device. They are not uploaded by this feature or published to GitHub. Data more than 7 days old are flagged; data more than 35 days old are not applied automatically.</p>
+  <p class="detail" id="privateContextStatus" role="status">Loading repository Senate and House fundamentals…</p>
+  <p class="detail">Repository fundamentals are publicly served and reloaded with the website; no device upload needed. Manually imported alternatives can be stored locally. Expert ratings were not included in these two CSVs, and are not assumed.</p>
   <p class="detail" id="privateContextComparison">Your imported fundamentals will become an input to your active JackStradamus model, alongside its live polling, race uncertainty and correlated election simulations. The original model remains available for comparison. This is not Silver's proprietary FLIPR model.</p>
  </div>
 </details>
@@ -2698,8 +2698,9 @@ $('#enRehearsalReset').addEventListener('click',()=>{
 let jointBasis=null,jointBasisPublic=null,jointBasisShadow=null,jointBasisPresidential=null,
     jointErrorMessage=null,jointRefreshTimer=null,jointCacheKey='',
     jointLastResult=null,jointPublicResult=null,jointNationalShift=0,jointErrorMultiplier=1,
-    jointPrivateData=null,jointPrivateEnabled=true,jointPrivateHouse=false,
-    jointPrivateRemember=true,jointPrivateImportedAt=null,jointPrivatePollData=null;
+    jointPrivateData=null,jointPrivateEnabled=true,jointPrivateHouse=true,
+    jointPrivateRemember=true,jointPrivateImportedAt=null,jointPrivatePollData=null,
+    jointPrivateSource='none',jointRepositorySignature=null;
 function jointUsesPrivateContext(){
  return Boolean(jointPrivateEnabled&&jointPrivateData&&jointBasis?.private_imported_context);
 }
@@ -2712,11 +2713,13 @@ function jointPrivateActivate({deferRender=false}={}){
     .filter(r=>r.office==='house'&&Number.isFinite(r.dem_minus_rep))
     .map(r=>[r.race_code,r.dem_minus_rep]));
    jointBasis=window.PrivateSenateFundamentals.apply(jointBasisPublic,jointPrivateData,
-    {includeHouse:jointPrivateHouse,housePollMargins});
+    {includeHouse:jointPrivateHouse,housePollMargins,
+     repositoryPublished:jointPrivateSource==='repository'});
   }else jointBasis=jointBasisPublic;
   jointCacheKey='';jointPublicResult=null;
   if(tag)tag.textContent=jointUsesPrivateContext()?
-   'PRIVATE CSV-AUGMENTED · experimental · not FLIPR':'2026 Senate model · poll-depth forecast v5';
+   (jointPrivateSource==='repository'?'REPOSITORY FUNDAMENTALS ACTIVE':'LOCAL CSV CONTEXT ACTIVE')+
+   ' · experimental · not FLIPR':'2026 Senate model · poll-depth forecast v5';
   if(!deferRender)jointRender(true);
  }catch(e){
   jointBasis=jointBasisPublic;jointPrivateEnabled=false;
@@ -2811,7 +2814,8 @@ function jointRenderCards(result){
    new Date(jointBasis.generated_from_sources.model_polling_at).toLocaleString(
     'en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+
    ' · checks for new polls every 2 minutes · same simulation as all race odds.'+
-   (jointUsesPrivateContext()?' · PRIVATE IMPORTED CONTEXT; NOT THE PUBLIC MODEL.':'');
+   (jointUsesPrivateContext()?
+    (jointPrivateSource==='repository'?' · REPOSITORY FUNDAMENTALS ACTIVE.':' · LOCAL CSV CONTEXT ACTIVE.'):'');
  }
 }
 function jointRenderHouseShadow(base,shadow,presidentialShadow){
@@ -2973,7 +2977,7 @@ function jointRender(force=false){
   }
   jointRenderHouseShadow(result,shadow,presidentialShadow);
   const note=$('#jointRunStatus');
-  if(note)note.textContent=(jointUsesPrivateContext()?'PRIVATE CSV CONTEXT ACTIVE · ':'')+
+  if(note)note.textContent=(jointUsesPrivateContext()?(jointPrivateSource==='repository'?'REPOSITORY SENATE/HOUSE FUNDAMENTALS · ':'LOCAL CSV CONTEXT · '):'')+
    Object.keys(updates).length+
    ' source-validated live-informed races · swing '+
    (jointNationalShift>=0?'+':'')+jointNationalShift.toFixed(1)+
@@ -3103,12 +3107,53 @@ async function jointLoadSources(options={}){
   return false;
  }
 }
+// Files intentionally committed by repository owner; strict schema and
+// coverage gates protect the forecast if a CSV disappears or is malformed.
+// Manual imports in this tab take precedence, while the same published files
+// apply automatically on other devices without hidden localStorage dependence.
+async function jointLoadRepositoryFundamentals(){
+ const api=window.PrivateSenateFundamentals;
+ if(!api||jointPrivateSource==='manual'||jointPrivateSource==='cleared')return false;
+ try{
+  const texts=await Promise.all(['ZqBdM (1).csv','f3ome (1).csv'].map(async name=>{
+   const response=await fetch('./'+encodeURIComponent(name),{cache:'no-store'});
+   if(!response.ok)throw Error(name+' source HTTP '+response.status);
+   const raw=await response.text();
+   if(raw.length>250000)throw Error('Oversize fundamentals CSV');
+   return raw;
+  }));
+  if(jointPrivateSource==='manual'||jointPrivateSource==='cleared')return false;
+  const signature=texts.join('\u0000');
+  if(jointRepositorySignature===signature)return false;
+  const senate=api.parse(texts[0]),house=api.parse(texts[1]);
+  if(senate.kind!=='senateFundamentals'||house.kind!=='houseFundamentals'||
+     Object.keys(senate.states).length!==27||Object.keys(house.states).length!==98)
+   throw Error('Unexpected repository fundamentals schema or coverage');
+  const data=api.accept(api.accept(null,senate),house);
+  jointPrivateData=data;jointPrivateSource='repository';
+  jointPrivateEnabled=true;jointPrivateHouse=true;
+  jointPrivateImportedAt=new Date().toISOString();
+  jointRepositorySignature=signature;
+  $('#privateContextEnabled').checked=true;
+  $('#privateContextHouse').checked=true;
+  $('#privateContextStatus').textContent='Repository fundamentals ACTIVE · 27 Senate and 98 House races. '+
+   'Automatically included on every device. Blended candidate fundamentals only; final Silver win odds excluded.';
+  jointPrivateActivate();
+  return true;
+ }catch(e){
+  const status=$('#privateContextStatus');
+  if(status)status.textContent='Repository fundamentals unavailable: '+String(e.message||e)+
+   '. Last accepted forecast or public baseline retained.';
+  return false;
+ }
+}
 // The private-data import is a true candidate-fundamentals input to this
 // user's active joint simulation; the published server-side baseline is still
 // available for comparison. No subscription CSV is committed publicly.
 function jointPrivateRememberOnDevice(){
  const api=window.PrivateSenateFundamentals;
  if(!api)return;
+ if(jointPrivateSource==='repository')return;
  if(!jointPrivateRemember||!jointPrivateData){
   try{api.clearDevice(window.localStorage)}catch(_){}
   return;
@@ -3132,6 +3177,7 @@ function jointPrivateRestoreOnStart(){
   const stored=api.restoreDevice(window.localStorage);
   if(!stored)return;
   jointPrivateData=stored.data;
+  jointPrivateSource='device';
   jointPrivateImportedAt=stored.imported_at;
   jointPrivateHouse=stored.settings.includeHouse;
   jointPrivateEnabled=stored.settings.enabled&&!stored.expired;
@@ -3173,7 +3219,8 @@ async function importPrivateContextFiles(files){
   accepted++;labels.push(parsed.kind+' ('+Object.keys(parsed.states).length+')');
  }
  if(!accepted)throw Error('None of these CSVs contains the Senate or House fundamentals / expert-ratings tables.');
- jointPrivateData=next;jointPrivateEnabled=$('#privateContextEnabled').checked;
+ jointPrivateData=next;jointPrivateSource='manual';
+ jointPrivateEnabled=$('#privateContextEnabled').checked;
  jointPrivateImportedAt=new Date().toISOString();
  if(status)status.textContent='Imported locally: '+labels.join(', ')+
   (ignored?' · '+ignored+' unrelated Silver output tables ignored':'')+
@@ -3209,7 +3256,7 @@ $('#privateContextRemember').addEventListener('change',event=>{
  }
 });
 $('#privateContextClear').addEventListener('click',()=>{
- jointPrivateData=null;jointPrivateEnabled=false;jointPrivateHouse=false;
+ jointPrivateData=null;jointPrivateSource='cleared';jointPrivateEnabled=false;jointPrivateHouse=false;
  jointPrivateImportedAt=null;
  try{window.PrivateSenateFundamentals?.clearDevice(window.localStorage)}catch(_){} 
  $('#privateContextFiles').value='';
@@ -3263,6 +3310,7 @@ async function jointLoadPollErrorAudit(){
  }catch(_){jointRenderPollErrorAudit(null)}
 }
 jointPrivateRestoreOnStart();
+void jointLoadRepositoryFundamentals();
 void jointLoadPollErrorAudit();
 void jointLoadSources();
 
