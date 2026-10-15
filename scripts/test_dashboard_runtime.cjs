@@ -256,6 +256,35 @@ async function settle(){
  w.Date.now=()=>Date.parse('2026-11-04T03:20:00Z');
  get('#electionNight').classList.add('active');
  get('#enMode2026').click();
+ // A provider-reported winner call must constrain this race in ALL correlated
+ // House/Senate simulation draws, not merely contribute a tiny partial lead.
+ // NC has a state-derived primary results feed; a separately identity-checked
+ // civicAPI call must still be honored by the joint model.
+ const oldNcCall=w.eval('enCivicByWatch["Senate|NC"]')||null;
+ const calledNC={provider:'civicAPI',office:'Senate',key:'NC',
+  race_id:8241,last_updated:'2026-11-04T03:05:00Z',total:190000,
+  percent_reporting:82,called:'Mock Republican',
+  candidates:[{name:'Mock Democrat',party:'D',votes:100100},
+    {name:'Mock Republican',party:'R',votes:89900}]};
+ w.eval('enCivicByWatch["Senate|NC"]='+JSON.stringify(calledNC)+';jointRender(true)');
+ let calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
+ assert.equal(calledRace.provider_called_party,'R');
+ assert.equal(calledRace.dem_beats_rep_pct,0,
+  'Source-reported R call overrides even a temporary D vote lead');
+ assert.equal(w.eval("Object.values(jointForecastResult().probabilities).reduce((a,b)=>a+b,0)").toFixed(1),'100.0');
+ calledNC.called='Mock Democrat';
+ w.eval('enCivicByWatch["Senate|NC"]='+JSON.stringify(calledNC)+';jointRender(false)');
+ calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
+ assert.equal(calledRace.dem_beats_rep_pct,100,
+  'Same-timestamp corrections must reverse the locked simulated winner');
+ calledNC.called=null;
+ w.eval('enCivicByWatch["Senate|NC"]='+JSON.stringify(calledNC)+';jointRender(false)');
+ calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
+ assert.equal(calledRace.provider_called_party,null,
+  'Withdrawing source winner restores uncertain result-based nowcast');
+ if(oldNcCall)w.eval('enCivicByWatch["Senate|NC"]='+JSON.stringify(oldNcCall));
+ else w.eval('delete enCivicByWatch["Senate|NC"]');
+ w.eval('jointRender(true)');
  assert.equal(get('#enMilestoneDesk').hidden,false,'2026 mode reveals achievements');
  assert.equal(get('#enMilestoneGrid').querySelectorAll('.en-milestone-card').length,7);
  get('#enTsunamiPreview').click();
