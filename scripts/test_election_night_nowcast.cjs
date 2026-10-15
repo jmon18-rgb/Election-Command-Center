@@ -67,14 +67,29 @@ const other=structuredClone(validSource);other.races.AZ={total:100000,pct_in:65,
 assert.equal(model.estimate(priors,az,other,null,now).mode,'live_informed',
  'Two-party margin is computed from D and R only, while keeping source total');
 const ca={office:'Governor',key:'CA'};
-const cv={office:'Governor',key:'CA',total:200000,percent_reporting:80,
- last_updated:'2026-11-04T03:30:00Z',candidates:[
-  {party:'D',votes:120000},{party:'R',votes:80000}
+const cv={provider:'civicAPI',race_id:6402,office:'Governor',key:'CA',
+ total:200000,percent_reporting:80,last_updated:'2026-11-04T03:30:00Z',
+ candidates:[
+  {name:'Candidate One',party:'D',votes:120000},
+  {name:'Candidate Two',party:'R',votes:80000}
  ]};
 const secondary=model.estimate(priors,ca,null,cv,now);
 assert.equal(secondary.mode,'live_informed');
 assert.equal(secondary.source,'civicAPI');
 assert(secondary.demPct>38.75);
+for(const invalid of [
+ {...cv,provider:'unknown'},
+ {...cv,race_id:0},
+ {...cv,stale:true},
+ {...cv,sourceStale:true},
+ {...cv,total:1000},
+ {...cv,candidates:[...cv.candidates, {...cv.candidates[0]}]},
+ {...cv,candidates:[...cv.candidates,{name:'Other',party:'O',votes:5000}]},
+ {...cv,candidates:cv.candidates.map(c=>({...c,votes:-1}))}
+]){
+ assert.equal(model.estimate(priors,ca,null,invalid,now).mode,'polls_only',
+  'Malformed, stale or unverified civicAPI returns cannot shift probability');
+}
 const wrongCivic={...cv,key:'TX'};
 assert.equal(model.estimate(priors,ca,null,wrongCivic,now).mode,'polls_only');
 const lostParties={...cv,candidates:[{party:'O',votes:120000},{party:'R',votes:80000}]};
