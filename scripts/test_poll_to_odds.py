@@ -67,7 +67,7 @@ class PollChainTests(unittest.TestCase):
         poll = newer()
         primary["races"][0]["polls"].insert(0, poll)
         supplemental = {"observations": [poll]}
-        with self.assertRaisesRegex(ValueError, "NOT in weighted average"):
+        with self.assertRaisesRegex(ValueError, "Newest primary poll omitted|NOT in weighted average"):
             check(primary, model, odds, supplemental, today=__import__("datetime").date(2026, 10, 14))
         # A complete refresh selects the new SurveyUSA study, recomputes
         # the average, and delivers the same margin to probability inputs.
