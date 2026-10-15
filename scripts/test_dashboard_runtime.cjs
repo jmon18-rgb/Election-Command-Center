@@ -817,7 +817,7 @@ async function settle(){
  assert.match(get('#enArchiveOutcome').textContent,/215 D/);
  assert.match(get('#enArchiveOutcome').textContent,/53 R/);
  assert.match(get('#enArchiveOutcome').textContent,/47 D-caucus/);
- assert.match(get('#enArchiveOutcome').textContent,/not a probability forecast/);
+ assert.match(get('#enArchiveOutcome').textContent,/not be mistaken for a probability forecast/);
  assert(!get('#enArchiveOutcome').textContent.includes('Blue Wave probability'));
 
  assert.equal(get('#enDLeads').textContent,'1');
