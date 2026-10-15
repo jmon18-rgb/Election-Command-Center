@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T19:29:47.966871Z",
+  "updated_at": "2026-10-15T19:42:44.469199Z",
   "generic_ballot": {
     "summary": {
       "dem": 47.7,
@@ -2139,7 +2139,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-15T19:29:47.966871Z",
+          "first_seen_at": "2026-10-15T19:42:44.469199Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -3030,7 +3030,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-15T19:29:47.966871Z",
+        "first_seen_at": "2026-10-15T19:42:44.469199Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -3054,7 +3054,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-15T19:29:47.966871Z",
+          "first_seen_at": "2026-10-15T19:42:44.469199Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -5140,6 +5140,28 @@
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
+          "poll_id": "6791fae3-af46-4a7f-aef8-12f4e9e732c7",
+          "question_id": "489d0c79-0c73-4962-86fa-50d1ca61df81",
+          "field_end": "2026-10-08",
+          "pollster": "The Tyson Group",
+          "dem": 44.0,
+          "rep": 46.0,
+          "margin": -2.0,
+          "sample_size": 600,
+          "partisan_lean": "R",
+          "dem_name": "Abdul El-Sayed",
+          "rep_name": "Mike Rogers",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-15T19:42:44.808765+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-15",
+          "source_poll_url": "https://www.breitbart.com/politics/2026/10/15/exclusive-poll-shows-mike-rogers-edging-out-abdul-el-sayed-in-michigan-senate-race/",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
+        {
           "poll_id": "ee904e5a-0b44-496a-85ab-d8c215a658d6",
           "field_end": "2026-10-06",
           "pollster": "Quantus Insights",
@@ -5287,6 +5309,28 @@
           "sample_population": "lv",
           "question_id": "b20f09b6-7ed6-42a4-bfb5-1d3a5575626e",
           "date_provenance": "PollResults ingestion date, NOT public release date"
+        },
+        {
+          "poll_id": "32ba7df0-57e8-439c-94d9-ce6b91b53a57",
+          "question_id": "696649ff-e2a3-4131-b98f-9be32707299d",
+          "field_end": "2026-09-27",
+          "pollster": "The Tyson Group",
+          "dem": 44.0,
+          "rep": 43.0,
+          "margin": 1.0,
+          "sample_size": 600,
+          "partisan_lean": "R",
+          "dem_name": "Abdul El-Sayed",
+          "rep_name": "Mike Rogers",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-15T19:42:44.808765+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-15",
+          "source_poll_url": "https://www.breitbart.com/politics/2026/10/15/exclusive-poll-shows-mike-rogers-edging-out-abdul-el-sayed-in-michigan-senate-race/",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
         },
         {
           "poll_id": "25345253-7ec6-454f-a2e7-d87a38e5680e",
@@ -5636,7 +5680,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 29,
+      "recent_poll_count": 31,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -5764,7 +5808,7 @@
           "rep_name": "Ashley Moody",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-15T19:29:47.966871Z",
+          "first_seen_at": "2026-10-15T19:42:44.469199Z",
           "release_date": null,
           "question_id": "eb4ae581-25d7-43fd-9123-100333d1e19f",
           "sample_population": "lv",
@@ -6850,7 +6894,7 @@
           "dem": 55.4,
           "rep": 44.6,
           "margin": 10.8,
-          "sample_size": 712,
+          "sample_size": 678,
           "partisan_lean": "R",
           "dem_name": "Jon Ossoff",
           "rep_name": "Mike Collins",
@@ -6858,11 +6902,13 @@
           "other_name": null,
           "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
-          "upstream_posted_date": null,
-          "source_poll_url": "https://www.bigdatapoll.com/blog/peach-state-poll-jon-ossoff-opens-up-lead-over-mike-collins-in-georgia/",
-          "sample_population": "lv",
           "question_id": "bcd4fddd-ab5f-4f28-9aa1-f898b74b34c7",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "sample_population": "lv",
+          "upstream_posted_date": "2026-09-25",
+          "source_poll_url": "https://www.bigdatapoll.com/blog/peach-state-poll-jon-ossoff-opens-up-lead-over-mike-collins-in-georgia/",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback",
+          "lv_selected_over_rv": true
         },
         {
           "poll_id": "0f4bc367-db9c-459a-a5ce-34b7b7b6e9b2",
@@ -15711,7 +15757,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-15T19:29:47.966871Z",
+    "last_attempt_at": "2026-10-15T19:42:44.469199Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15720,11 +15766,46 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [],
-    "new_poll_count": 0,
+    "new_polls": [
+      {
+        "race_code": "MI-SEN",
+        "race_type": "senate",
+        "poll_id": "6791fae3-af46-4a7f-aef8-12f4e9e732c7",
+        "pollster": "The Tyson Group",
+        "field_end": "2026-10-08",
+        "dem": 44.0,
+        "rep": 46.0,
+        "margin": -2.0,
+        "dem_name": "Abdul El-Sayed",
+        "rep_name": "Mike Rogers",
+        "sample_size": 600,
+        "first_seen_at": "2026-10-15T19:42:44.808765+00:00",
+        "release_date": null,
+        "source_url": "https://www.breitbart.com/politics/2026/10/15/exclusive-poll-shows-mike-rogers-edging-out-abdul-el-sayed-in-michigan-senate-race/",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "MI-SEN",
+        "race_type": "senate",
+        "poll_id": "32ba7df0-57e8-439c-94d9-ce6b91b53a57",
+        "pollster": "The Tyson Group",
+        "field_end": "2026-09-27",
+        "dem": 44.0,
+        "rep": 43.0,
+        "margin": 1.0,
+        "dem_name": "Abdul El-Sayed",
+        "rep_name": "Mike Rogers",
+        "sample_size": 600,
+        "first_seen_at": "2026-10-15T19:42:44.808765+00:00",
+        "release_date": null,
+        "source_url": "https://www.breitbart.com/politics/2026/10/15/exclusive-poll-shows-mike-rogers-edging-out-abdul-el-sayed-in-michigan-senate-race/",
+        "source": "pollresults_secondary_fallback"
+      }
+    ],
+    "new_poll_count": 2,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-15T19:29:47.966871Z",
-    "previous_snapshot_at": "2026-10-15T18:54:13.012582Z",
+    "comparison_at": "2026-10-15T19:42:44.469199Z",
+    "previous_snapshot_at": "2026-10-15T19:29:47.966871Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15755,8 +15836,10 @@
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
     "matched_observations": 285,
-    "newly_injected_into_model": 0,
-    "newly_injected_by_race": {},
+    "newly_injected_into_model": 2,
+    "newly_injected_by_race": {
+      "MI-SEN": 2
+    },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
