@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-15T21:45:44.524382Z",
+  "updated_at": "2026-10-15T21:56:08.678818Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "review_metrics": {
-    "total_leads": 136,
-    "awaiting_primary_source": 134,
+    "total_leads": 138,
+    "awaiting_primary_source": 136,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 8,
-    "advisory_related_headlines": 18
+    "advisory_related_headlines": 19
   },
   "advisory_related_headlines": [
     {
@@ -27,6 +27,19 @@
       "distinct_publishers": 3,
       "state_hints": [],
       "topic_hints": [],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "444a238fe9159b1ce81d",
+      "headline": "Could California lose ballots over DOJ non-citizen voter claims? - The Desert Sun",
+      "possibly_related_articles": 3,
+      "distinct_publishers": 3,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access"
+      ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
@@ -83,19 +96,6 @@
       ],
       "topic_hints": [
         "registration"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "444a238fe9159b1ce81d",
-      "headline": "Could California lose ballots over DOJ non-citizen voter claims? - The Desert Sun",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     }
@@ -159,6 +159,25 @@
       "promoted_to_incident_id": null
     },
     {
+      "id": "673a87ab1950c7c7c7db",
+      "title": "Could California lose ballots over DOJ non-citizen voter claims? - Salinas Californian",
+      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPbThicmg0b3hpcGR4SnptUVp2Q1FSRmVpZU5hTWY3NzM3cGNTbkpya09aU0xfU055eVF3X1daVnB2REJ1cm5ROTZsTUZUQnRLX0l5ZEVHVFVxYXBwWVJKN2tnRHFSem5zell6eFZyTUx4Q3ZBSF84aUFrZlNTUlU4OWpZY3hKN2pSYzFQaUhFb2F0cS1yODhYVXBQeHlrdTBpdGpSWDRBZFZta3A4OGpSZnE2ZUVSZFBWYzlDU3gzZG1scDBuMW1wNUlTQ3JkWlJadkZaWU5fazhYbEoxRjFmcXdfSGF1UHot?oc=5",
+      "publisher": "Salinas Californian",
+      "published_at": "2026-10-15T20:45:00Z",
+      "detected_at": "2026-10-15T21:56:08.678818Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "059d351d0ace03b7e658",
       "title": "Court: Kansas Can Stop Third Parties From Sending Voters Pre-Filled Mail-In Ballot Forms - The Federalist",
       "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPRkx4THdlTXhuVzZBXzg5dDlzalZSMGFabW84OWg1bUhrUmd4d1dySkhsWk1qYXRCQ0loUVdRc00wQi1uMUUxdFdGcUlyX2ZKYlRzNDhzLXRJdk1SeWtHWXVBSm0wcC1TYkJkSmtEOXFGVHlqRUFDaTRIdUVwaW5EbDd1VGJsVkt5MlNTS3d4cG1CdnlvLU51bEtaYmJtUzQ0WG0tZmw4MHR4NUQ5VGdKTVJOazlVUGcyejlCek5wNTN3OEE?oc=5",
@@ -171,6 +190,25 @@
       "topic_hints": [
         "ballot_access",
         "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "1db37435260b8ef5a514",
+      "title": "Trump administration sues California to block counting of alleged noncitizen mail ballots - PBS",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPc1NPdm1TZE1LeUh4X0lZd01tM0FwWWpBbDNtNDR3YnVmWE9PblJoX2RnMXdGQXV0VHpxbGFyRldITHZvUlNnZUFucmdqamZlbnVyUWpISFljc0g5M0dWQVFQaTZld1YwNDVmRHhtbE9OdVZpeFFlYU5IbTV1bzJMRFFFeGFiZUlIeVQ1aXdlMksyT1FJemFBT3hFaVc5QlVKemllN2t0dkg2QldMRDlmMHU5cGx4bzVLR0dlQ1M0dUVlV0tOc0E?oc=5",
+      "publisher": "PBS",
+      "published_at": "2026-10-15T19:54:41Z",
+      "detected_at": "2026-10-15T21:56:08.678818Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
