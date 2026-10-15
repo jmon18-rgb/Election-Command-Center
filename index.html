@@ -2260,6 +2260,9 @@ list.append(card);
 }}
 function updateVerifiedIntegrityLedger(d){
  if(!Array.isArray(d?.incidents))throw Error('Incomplete sourced evidence ledger');
+ // Avoid recreating menus, cards and selected race panels on every
+ // five-minute check when a manually reviewed case ledger has not changed.
+ if(impactLedger&&JSON.stringify(d)===JSON.stringify(impactLedger))return;
  const oldAt=Date.parse(impactLedger?.updated_at||''),newAt=Date.parse(d.updated_at||'');
  if(Number.isFinite(oldAt)&&(!Number.isFinite(newAt)||newAt<oldAt))return;
  impactLedger=d;
