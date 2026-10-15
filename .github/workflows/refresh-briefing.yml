@@ -111,6 +111,10 @@ jobs:
         run: python3 scripts/test_house_two_cycle.py
       - name: Build safe 2022-2024 historical swing context
         run: python3 scripts/build_house_two_cycle.py
+      - name: Smoke-test the refreshed full model as the published site would load it
+        run: |
+          node --check scripts/test_published_dashboard.cjs
+          node scripts/test_published_dashboard.cjs --local
       - name: Test new-poll notification filtering and deduplication
         run: python3 scripts/test_poll_alerts.py
       - name: Email newly indexed polls if SMTP credentials are configured
