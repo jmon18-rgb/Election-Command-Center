@@ -2859,7 +2859,7 @@ async function jointLoadSources(options={}){
     throw Error('New poll snapshot not compatible with the loaded 2026 engine');
   }
   // Source/odds must refer to one polling revision before touching UI.
-  if(context.seats?.polling_source_snapshot!==context.polls?.source_snapshot||
+  if(context.seats?.polling_source_snapshot!==context.polls?.generated_at||
      context.odds?.polling_source_snapshot!==context.polls?.source_snapshot||
      context.odds?.polling_source_generated_at!==context.polls?.generated_at)
    throw Error('Seat inventory, polling average and odds sources do not match');
