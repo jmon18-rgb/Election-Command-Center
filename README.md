@@ -35,6 +35,8 @@ Use GitHub Settings → Pages → Deploy from branch `main`, directory `/ (root)
 
 **Real deployment checks:** [Production deployment health](.github/workflows/production-health.yml) periodically fetches the actual GitHub Pages site and verifies the published HTML, content-fingerprinted forecasting/election-night JavaScript, source freshness and consistency, every qualifying polled race, and a fresh Four Endings simulation. The same [production smoke script](scripts/test_published_dashboard.cjs) runs locally on every PR and hourly data refresh without relying on frozen named-poll fixtures. See [DEPLOYMENT.md](DEPLOYMENT.md) for deploy, monitoring, cache and failure-recovery instructions.
 
+**October 15 debug:** The homepage now spotlights **Mississippi Senate (Scott Colom vs Cindy Hyde-Smith)** rather than Missouri House, with source-linked odds. Iowa Marist's October 15 likely-voter D+3 is counted once and visibly labeled; its separate registered-voter D+7 question remains in Poll Wire, not counted as a second survey. The production health monitor triggers on successful Pages deployments and a two-hour schedule rather than a premature code push. It tests served data and assets while reporting normal Pages revision lag without false failures.
+
 **Model outputs depend on data availability**. A polling margin is not an election result, a chart of observed polls is not a historical model trend, and a verified incident is not evidence of a nationwide election outcome.
 
 ## Model QA (October 2026)
