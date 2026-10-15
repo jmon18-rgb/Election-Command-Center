@@ -292,8 +292,14 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-archive-option[hidden]{display:none}
 .en-watchlist{border:1px solid #335372;border-radius:12px;background:linear-gradient(135deg,#12283f,#101d30);padding:15px 16px;margin:12px 0 15px}
 .en-watch-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.en-watch-head>div{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.en-watch-head>.en-watch-summary{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .en-watch-head strong{font-size:12px;letter-spacing:.08em}
+.en-watchlist>summary{cursor:pointer;list-style:none}
+.en-watchlist>summary::-webkit-details-marker{display:none}
+.en-watchlist>summary:focus-visible{outline:2px solid #8bcbe9;outline-offset:5px;border-radius:5px}
+.en-watchlist>summary::before{content:'▸';color:#86c9e8;font-size:15px}
+.en-watchlist[open]>summary::before{content:'▾'}
+.en-watchlist[open]>.en-watch-form{margin-top:17px}
 .en-watch-head span{font-size:10px;color:#acc2d6}
 .en-watch-count{font-weight:850;background:#20394f;border-radius:25px;padding:5px 9px;white-space:nowrap}
 .en-watch-form{display:flex;gap:7px;margin:12px 0 5px}
@@ -1122,9 +1128,9 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  </details>
  <p class="en-national-source">State-derived counts: Open America (supported states) · Other states: individually validated civicAPI races. No mixing totals or assuming winner calls. <a href="https://civicapi.org" target="_blank" rel="noopener noreferrer">civicAPI ↗</a></p>
 </section>
-<section class="en-watchlist" aria-label="Your election night watchlist">
- <div class="en-watch-head"><div><strong>MY WATCHLIST</strong><span>Saved on this laptop · follows 2026 races across offices</span></div>
- <span id="enWatchCount" class="en-watch-count">0 races</span></div>
+<details id="enWatchDrawer" class="en-watchlist" aria-label="Your election night watchlist">
+ <summary class="en-watch-head"><span class="en-watch-summary"><strong>MY WATCHLIST</strong><span>Track the races you pin · click to expand</span></span>
+ <span id="enWatchCount" class="en-watch-count">0 races</span></summary>
  <form id="enWatchForm" class="en-watch-form">
   <label for="enWatchInput" class="sr-only">Add a 2026 race to your watchlist</label>
   <input id="enWatchInput" type="text" placeholder="AZ-01, NC-SEN, TX-GOV" autocomplete="off" aria-describedby="enWatchHelp" />
@@ -1133,7 +1139,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div id="enWatchHelp" class="en-watch-help">Use ST-01 for House · ST-SEN for Senate · ST-GOV for governor. Pin any 2026 race now, before votes begin.</div>
  <div id="enWatchError" class="en-watch-error" role="status"></div>
  <div id="enWatchItems" class="en-watch-items"><p class="empty">Add the races you want at your fingertips on election night.</p></div>
- </section>
+ </details>
 <details class="en-early-desk" id="enEarlySignalsDetails" aria-label="Early election night signals">
  <summary class="en-early-heading"><span><strong>Early Signals · 12 races to watch</strong>
  <small>KY, IN, Virginia, NC and more · expand checklist</small></span></summary>
