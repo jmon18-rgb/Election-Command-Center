@@ -262,6 +262,9 @@ async function settle(){
  assert.match(get('#enMilestoneKicker').textContent,/PREVIEW/);
  assert.match(get('#enMilestoneTitle').textContent,/BLUE WAVE/);
  assert.match(get('#enMilestoneSource').textContent,/DEMO ONLY/);
+ assert.equal(get('#enTsunamiMeme').hidden,false);
+ assert.equal(get('#enTsunamiMeme').getAttribute('src'),'./assets/blue-tsunami-meme.svg');
+ assert.equal(get('#enMilestoneArt').hidden,true);
  get('#enMilestoneClose').click();
  assert.equal(get('#enMilestoneSpotlight').hidden,true);
  const firstUpdate={kind:'first',source:'Open America',title:'VA-02 first votes',
