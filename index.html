@@ -169,6 +169,18 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-connection.live:before{background:#4fce97;box-shadow:0 0 8px #4fce9799}
 .en-connection.wait:before{background:#ebba70}
 .en-connection.error:before{background:#e8787c}
+#electionNight .en-early-desk{margin:16px 0 20px;padding:16px;border:1px solid #29445c;border-radius:16px;background:#101f30}
+#electionNight .en-early-heading{display:flex;justify-content:space-between;align-items:center;gap:12px}
+#electionNight .en-early-heading h3{margin:5px 0;font-size:1.15rem}
+#electionNight .en-early-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+#electionNight .en-early-group{padding:12px;border:1px solid #38516a;border-radius:12px;background:#14283b}
+#electionNight .en-early-title{display:block;margin-bottom:9px;color:#b7deef}
+#electionNight .en-early-row{display:flex;justify-content:space-between;gap:8px;padding:10px 0;border-top:1px solid #2d4960}
+#electionNight .en-early-main{display:flex;flex:1;flex-direction:column;gap:4px;min-width:0}
+#electionNight .en-early-why,#electionNight .en-early-source{font-size:.79rem;color:#b1c8d9;line-height:1.35}
+#electionNight .en-early-source{color:#f0dca6}
+#electionNight .en-early-pin{align-self:flex-start;white-space:nowrap;padding:6px 8px;border-radius:8px;border:1px solid #61849d;background:#18334a;color:#ecf5fd;cursor:pointer}
+#electionNight .en-early-pin[aria-pressed=true]{border-color:#85bed9;background:#264e65}
 #electionNight .en-toolbar{position:sticky;top:0;z-index:8;padding:10px 0;background:#0c1928ed;backdrop-filter:blur(12px);border-bottom:1px solid #2a415a}
 @media(min-width:940px){#electionNight .en-race-panel,#electionNight .en-detail{max-height:70vh;overflow-y:auto}}
 .en-forecast-strip{display:flex;align-items:center;gap:13px;flex-wrap:wrap;padding:10px 13px;border:1px solid #344c65;border-radius:8px;background:#112238;margin:12px 0 10px;font-size:11px}
@@ -691,6 +703,13 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div id="enWatchError" class="en-watch-error" role="status"></div>
  <div id="enWatchItems" class="en-watch-items"><p class="empty">Add the races you want at your fingertips on election night.</p></div>
  </section>
+<section class="en-early-desk" aria-label="Early election night signals">
+ <div class="en-early-heading"><div><span class="label">FIRST RETURNS · CONTEXT NOT A FORECAST</span><h3>Early Signals Desk</h3></div>
+  <span class="tiny">2026 · source-verified votes only</span></div>
+ <p class="en-live-note">A chronological watch guide to compare early districts, including the VA-01 / VA-02 / VA-05 community scenario. No single race determines the national outcome. Early precinct percentages are not percentages of ballots counted.</p>
+ <div id="enEarlySignals" class="en-early-grid"><p class="en-live-note">Preparing early race checklist…</p></div>
+ <p class="en-live-note">Watch ideas: <a href="https://www.reddit.com/r/fivethirtyeight/comments/1x6l790/" target="_blank" rel="noopener noreferrer">October 15 r/fivethirtyeight discussion ↗</a>; poll-close times cross-checked against <a href="https://www.270towin.com/poll-closing-times/index.php" target="_blank" rel="noopener noreferrer">270toWin ↗</a>. Results, when present, remain labeled by actual provider.</p>
+</section>
 <section class="en-alert-desk" aria-label="Watchlist election alerts">
  <div class="en-alert-head"><div><strong>WATCHLIST ALERTS</strong><span>First votes · lead changes · verified provider calls</span></div>
   <div class="en-alert-actions"><button id="enAlertDesktop" type="button" aria-pressed="false">Desktop alerts: off</button>
@@ -738,6 +757,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=4fd12233d233"></script>
 <script src="./scripts/civicapi_state_batch.js?v=0a26f4f75956"></script>
 <script src="./scripts/election_night_nowcast.js?v=8ca79046baa4"></script>
+<script src="./scripts/election_night_early_signals.js?v=7691146833ec"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
 <script src="./scripts/chamber_control_model.js?v=fe9fa5295651"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=fd895d69e22d"></script>
@@ -3446,7 +3466,7 @@ function enWatchToggle(item){
   $('#enWatchError').textContent='40 saved races maximum. Remove an old one before adding more.';return;
  }else enWatched.push({office:item.office,key:item.key});
  $('#enWatchError').textContent='';
- enWatchSave();enRenderWatchlist();if(enModeYear===2026)enRender();
+ enWatchSave();enRenderWatchlist();enRenderEarlySignals();if(enModeYear===2026)enRender();
  if(enModeYear===2026&&enIsVisible()&&!enSupportedStates.has(item.key.slice(0,2)))
   void enRefreshCivicWatchlist(true);
 }
@@ -3722,6 +3742,31 @@ async function enRefreshCivicWatchlist(force=false){
  }
 }
 
+function enRenderEarlySignals(){
+ const host=$('#enEarlySignals'),config=window.ElectionNightEarlySignals;
+ if(!host||!config)return;
+ host.replaceChildren();
+ for(const group of config.groups){
+  const panel=elt('div','en-early-group');
+  panel.append(elt('strong','en-early-title',group));
+  for(const info of config.records.filter(x=>x.group===group)){
+   const item=enWatchParse(info.code);
+   if(!item)continue;
+   const row=elt('div','en-early-row');
+   const label=elt('div','en-early-main');
+   label.append(elt('strong','',info.code+' · '+info.time+' ET'),
+    elt('span','en-early-why',info.why));
+   label.append(elt('small','en-early-source',enModeYear===2024?
+    '2026 preview · no live returns in archive':enWatchStatus(item)));
+   const pinned=enWatched.some(x=>enWatchId(x)===enWatchId(item));
+   const pin=elt('button','en-early-pin',pinned?'Unpin':'Pin race');
+   pin.type='button';pin.setAttribute('aria-pressed',String(pinned));
+   pin.addEventListener('click',()=>enWatchToggle(item));
+   row.append(label,pin);panel.append(row);
+  }
+  host.append(panel);
+ }
+}
 function enWatchStatus(item){
  const state=item.key.slice(0,2),data=enOfficeSnapshots[item.office]||
    (enModeYear===2026&&enOffice===item.office?enData:null);
@@ -4234,6 +4279,7 @@ function enRender(){
   'MIT/MEDSL 2024 House (435 districts) and Senate (35 contests) historical party aggregates. No candidate names or precinct progress. Select State feed to rehearse the same named-candidate format as 2026 live results.';
  enRenderMovement();
  enRenderWatchlist();
+ enRenderEarlySignals();
  enRenderExportControls();
  enRenderNationalSenate();
  enRenderAlertInbox();

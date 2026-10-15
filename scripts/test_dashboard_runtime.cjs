@@ -83,6 +83,8 @@ async function settle(){
  assert(w.StateBatchCivicAdapter,'Four-state adapter must load before the application');
  w.eval(read('scripts/election_night_nowcast.js'));
  assert(w.RaceLiveNowcast,'Live race probability module must load before app');
+ w.eval(read('scripts/election_night_early_signals.js'));
+ assert(w.ElectionNightEarlySignals?.records?.length>=10,'Early signal registry must load');
  w.eval(read('scripts/election_night_rehearsal.js'));
  assert(w.ElectionNightRehearsal,'Synthetic rehearsal library must load before app');
  w.eval(read('scripts/chamber_control_model.js'));
@@ -95,6 +97,27 @@ async function settle(){
  assert(w.PrivateSenateFundamentals,'Private subscriber CSV parser must load before app');
  w.eval(scripts[0]);
  await settle();
+ // Election-night first-returns checklist must remain descriptive and
+ // anchored to real provider statuses (never auto-call races).
+ w.eval('enRender()');
+ const signals=w.ElectionNightEarlySignals;
+ assert(signals.records.some(x=>x.code==='KY-06'&&x.time==='6:00 PM'));
+ assert(signals.records.some(x=>x.code==='IN-05'&&x.time==='6:00 PM'));
+ for(const code of ['VA-01','VA-02','VA-05','NC-01','NC-11']){
+  assert(signals.records.some(x=>x.code===code),'Missing early watch seat '+code);
+ }
+ assert.equal(get('#enEarlySignals').querySelectorAll('.en-early-row').length,signals.records.length);
+ assert.match(get('#enEarlySignals').textContent,/2026 preview/);
+ assert.match(get('#enEarlySignals').textContent,/no live returns in archive/);
+ assert.doesNotMatch(get('#enEarlySignals').textContent,/tsunami confirmed|Senate secured/i);
+ // Pin/unpin is real shared watchlist state, not an inert decorative button.
+ const first=get('#enEarlySignals .en-early-pin');
+ const wasPinned=first.getAttribute('aria-pressed')==='true';
+ first.click();
+ const afterPin=get('#enEarlySignals .en-early-pin');
+ assert.equal(afterPin.getAttribute('aria-pressed'),String(!wasPinned));
+ afterPin.click();
+ assert.equal(get('#enEarlySignals .en-early-pin').getAttribute('aria-pressed'),String(wasPinned));
  // A deliberately NON-PRODUCTION shared-error sensitivity that preserves
  // the original baseline odds and does not read Silver paid CSV values.
  assert(get('#jointHomeCorrelationDetails'),'Senate covariance research must be discoverable');
