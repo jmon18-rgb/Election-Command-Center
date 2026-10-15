@@ -74,6 +74,14 @@ async function main(){
   }
   assert(html.includes('function refreshLivePollSnapshots()'));
   assert(html.includes('renderMississippiSenateWatch()'));
+  for(const marker of ['id="jointHomeNeedle"','id="jointNightNeedle"',
+     'id="enArchiveOutcome"','function jointRenderNeedles(result)']){
+   assert(html.includes(marker),'Missing 2026 needle or 2024 archive capability '+marker);
+  }
+  assert(html.includes("nightPanel.classList.toggle('en-archive-mode',archive)"),
+   '2024 archive must hide 2026 probabilistic Four Endings and show hindsight');
+  assert(html.includes('2024 ACTUAL OUTCOME'),
+   '2024 mode must show a historical result, not fabricated archived odds');
   assert(html.includes('function refreshCommandCenterFeeds()'));
   assert(html.includes('setInterval(()=>{void refreshCommandCenterFeeds()},COMMAND_NEWS_REFRESH_MS)'));
   assert(html.includes('setInterval(()=>{void refreshLivePollSnapshots()},2*60*1000)'));
