@@ -47,7 +47,7 @@ const fixtures={
  'historical_senate_poll_backtest.json':json('data/historical_senate_poll_backtest.json'),
  'senate_history_2020_2022_2024.json':json('data/senate_history_2020_2022_2024.json')
 };
-for(const file of ['briefing.json','integrity_impact.json','seat_universe.json','house_geography_bridge.json','house_two_cycle_context.json','presidential_2024_by_2026_district_staging.json']){
+for(const file of ['briefing.json','integrity_impact.json','integrity_review_queue.json','seat_universe.json','house_geography_bridge.json','house_two_cycle_context.json','presidential_2024_by_2026_district_staging.json']){
  const name='data/'+file;
  if(fs.existsSync(path.join(ROOT,name)))fixtures[file]=json(name);
 }
