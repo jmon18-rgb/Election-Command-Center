@@ -23,7 +23,7 @@ const site=(process.env.DASHBOARD_SITE_URL||
 const checks=[];
 function check(name,fn){fn();checks.push(name)}
 async function load(file){
- if(!remote)return readFileSync(path.join(root,file.replace(/^\.\//,'')),'utf8');
+ if(!remote)return readFileSync(path.join(root,file.split('?')[0].replace(/^\.\//,'')),'utf8');
  const target=new URL(file,site).toString();
  let error;
  for(let attempt=0;attempt<3;attempt++){
