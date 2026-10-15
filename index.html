@@ -1530,12 +1530,15 @@ function renderModelOverview(data){
   const eligible=modelMode==='generic'?0:rows.length;
   const covered=oddsReady?rows.filter(r=>modelRaceOddsData.records.some(p=>
    p.office===modelMode&&p.race_code===r.race_code)).length:0;
-  coverage.textContent=modelMode==='generic'?
+  const geographicCaution=modelMode==='house'?
+   ' · 173 seats in nine redrawn states use provisional map-specific priors, not old district-number vote comparisons.':'';
+  coverage.textContent=(modelMode==='generic'?
    'Generic ballot is a national polling measure, not a two-candidate win-probability model.':
    oddsReady?
     covered+' of '+eligible+' current polled '+modelMode+
-    ' races have experimental D/R win probabilities. Select any race to inspect assumptions.':
-    eligible+' polled races · model odds pending a matching, validated probability snapshot (not 50/50).';
+    ' races have experimental D/R win probabilities. Select a race to inspect assumptions.':
+    eligible+' polled races · model odds pending a matching, validated probability snapshot (not 50/50).')+
+    geographicCaution;
  }
  const surname=name=>(name||'').trim().split(/\s+/).at(-1)||'—';
  const ordered=[...rows].sort((a,b)=>Math.abs(a.dem_minus_rep)-Math.abs(b.dem_minus_rep)||(a.race_code||'').localeCompare(b.race_code||''));
@@ -2426,9 +2429,15 @@ function renderPostedPolls(){
  const byOffice={senate:0,house:0,governor:0};
  for(const p of entries)byOffice[p.race_type]++;
  const unseen=countUnseenIndexPolls(entries);
- status.textContent=entries.length+' source postings · newest time first · S '+byOffice.senate+' / H '+byOffice.house+' / G '+byOffice.governor+
+ const collected=Date.parse(data?.updated_at||'');
+ const ageMinutes=Number.isFinite(collected)?Math.round((Date.now()-collected)/60000):null;
+ const feedDelay=ageMinutes!==null&&ageMinutes>360?
+  ' · INDEX CHECK DELAYED ('+Math.round(ageMinutes/60)+'h old)':'';
+ status.textContent=entries.length+' source postings · newest index time first · S '+byOffice.senate+' / H '+byOffice.house+' / G '+byOffice.governor+
    (unseen>0?' · '+unseen+' newly indexed since opening':'')+
-   (data.updated_at?' · collected '+new Date(data.updated_at).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}):'');
+   (Number.isFinite(collected)?' · index checked '+
+    new Date(collected).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}):
+    ' · index check time unknown')+feedDelay;
  if(!entries.length){box.append(elt('div','empty','No postings in the source from the past 14 days.'));return}
  const fmt=s=>new Date(s+'T12:00:00Z').toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'});
  const fmtSource=p=>{
@@ -2488,7 +2497,9 @@ function renderFreshPolls(d){
  entries.sort((a,b)=>b.sortTime-a.sortTime||b.ended-a.ended||a.race.race_code.localeCompare(b.race.race_code));
  const byOffice={senate:0,house:0,governor:0};
  for(const e of entries)byOffice[e.race.race_type]++;
- status.textContent=entries.length+' observations · S '+byOffice.senate+' / H '+byOffice.house+' / G '+byOffice.governor;
+ status.textContent='POLL INDEX NOT YET AVAILABLE · '+entries.length+
+  ' primary polling observations · S '+byOffice.senate+' / H '+byOffice.house+
+  ' / G '+byOffice.governor+' · dates may be first-seen or fieldwork, NOT release time';
  if(!entries.length){box.append(elt('div','empty','No recent newly detected or fielded surveys in the upstream snapshot. Explore older polling in the JackStradamus survey explorer.'));return}
  const makeRow=e=>{
   const {race,p,released,detected,ended}=e;

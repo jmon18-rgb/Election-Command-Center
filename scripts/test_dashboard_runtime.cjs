@@ -628,6 +628,8 @@ async function settle(){
  assert.match(senateRows[0].querySelector('.model-race-edge').textContent,/Poll [DR] [+-]/);
  get('[data-model-scope="house"]').click();
  assert.match(get('#modelProbabilityCoverage').textContent,/current polled house races/);
+ assert.match(get('#modelProbabilityCoverage').textContent,/173 seats in nine redrawn states/,
+  'Model must disclose redrawn map geometry rather than suggest precise old-district voting trends');
  assert.equal(get('#modelBoard').querySelectorAll('.model-race-win-probabilities').length,
   oddsData.records.filter(r=>r.office==='house').length);
  get('[data-model-scope="governor"]').click();
@@ -1342,6 +1344,8 @@ async function settle(){
  assert.equal(get('#newPolls').querySelectorAll('.item').length,2,
   'Two same-poll distinct ballot questions should both display');
  assert.match(get('#changesSince').textContent,/2 source postings/);
+ assert.match(get('#changesSince').textContent,/index checked/,
+  'New polls desk needs the real last index-check timestamp');
  // Nationwide 2026 Senate desk derives all 35 seat IDs from the
  // published ballot universe. Florida/Ohio must be special, no phantom
  // noncontested-state Senate entry and no fabricated source counting.
