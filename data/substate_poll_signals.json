@@ -1,0 +1,47 @@
+{
+  "schema_version": "substate-ballot-signals-v1",
+  "status": "CURATED_VERIFIED_LOCAL_ELECTORATE_NOT_STATEWIDE",
+  "reviewed_at": "2026-10-15",
+  "signals": [
+    {
+      "poll_id": "uh-hobby-tx09-2026-10-07",
+      "question_id": "tx-sen-voters-in-tx09",
+      "office": "senate",
+      "race_code": "TX-SEN",
+      "sample_scope": "congressional_district",
+      "sample_district": "TX-09",
+      "map_year": 2026,
+      "field_start": "2026-10-03",
+      "field_end": "2026-10-07",
+      "release_date": "2026-10-14",
+      "sample_population": "lv",
+      "sample_size": 677,
+      "dem_candidate": "James Talarico",
+      "rep_candidate": "Ken Paxton",
+      "dem_minus_rep_points": -1,
+      "source_url": "https://www.uh.edu/hobby/congress2026/",
+      "source_public_statement": "University of Houston reports Paxton leads Talarico by one point AMONG TX-09 LIKELY VOTERS; not a statewide sample.",
+      "model_eligible": false
+    },
+    {
+      "poll_id": "uh-hobby-tx09-2026-10-07",
+      "question_id": "tx-gov-voters-in-tx09",
+      "office": "governor",
+      "race_code": "TX-GOV",
+      "sample_scope": "congressional_district",
+      "sample_district": "TX-09",
+      "map_year": 2026,
+      "field_start": "2026-10-03",
+      "field_end": "2026-10-07",
+      "release_date": "2026-10-14",
+      "sample_population": "lv",
+      "sample_size": 677,
+      "dem_candidate": "Gina Hinojosa",
+      "rep_candidate": "Greg Abbott",
+      "dem_minus_rep_points": -4,
+      "source_url": "https://www.uh.edu/hobby/congress2026/",
+      "source_public_statement": "University of Houston reports Abbott leads Hinojosa by four points AMONG TX-09 LIKELY VOTERS; not a statewide sample.",
+      "model_eligible": false
+    }
+  ]
+}
