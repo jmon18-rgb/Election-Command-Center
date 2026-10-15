@@ -130,14 +130,13 @@ async function settle(){
  await settle();
  // Four Endings belongs above the polling/news feed and the automatic
  // election-night race desk—not buried after both.
- const brief=get('#brief');
- const follows=(earlier,later)=>Boolean(
+ const beforeOnPage=(earlier,later)=>Boolean(
   earlier.compareDocumentPosition(later)&w.Node.DOCUMENT_POSITION_FOLLOWING);
- assert(follows(get('#jointHomePanel'),get('#genericMargin')),
+ assert(beforeOnPage(get('#jointHomePanel'),get('#genericMargin')),
   'The four-outcome model should be visible above the generic-ballot chart');
- assert(follows(get('#smartBriefDesk'),get('#racePulse')),
+ assert(beforeOnPage(get('#smartBriefDesk'),get('#racePulse')),
   'Automatic key races should appear before detailed polling deltas');
- assert(follows(get('#smartBriefDesk'),get('#newPolls')),
+ assert(beforeOnPage(get('#smartBriefDesk'),get('#newPolls')),
   'Automatic key races should appear before scrolling through polls');
  assert(get('#smartBriefGrid').textContent.includes('ME-SEN'));
  assert(get('#smartBriefGrid').textContent.includes('PA-10'));
