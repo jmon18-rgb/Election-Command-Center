@@ -1,9 +1,29 @@
 {
-  "updated_at": "2026-10-15T20:06:27.954981Z",
+  "updated_at": "2026-10-15T20:21:36.907188Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "items": [
+    {
+      "id": "059d351d0ace03b7e658",
+      "title": "Court: Kansas Can Stop Third Parties From Sending Voters Pre-Filled Mail-In Ballot Forms - The Federalist",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPRkx4THdlTXhuVzZBXzg5dDlzalZSMGFabW84OWg1bUhrUmd4d1dySkhsWk1qYXRCQ0loUVdRc00wQi1uMUUxdFdGcUlyX2ZKYlRzNDhzLXRJdk1SeWtHWXVBSm0wcC1TYkJkSmtEOXFGVHlqRUFDaTRIdUVwaW5EbDd1VGJsVkt5MlNTS3d4cG1CdnlvLU51bEtaYmJtUzQ0WG0tZmw4MHR4NUQ5VGdKTVJOazlVUGcyejlCek5wNTN3OEE?oc=5",
+      "publisher": "The Federalist",
+      "published_at": "2026-10-15T20:15:23Z",
+      "detected_at": "2026-10-15T20:21:36.907188Z",
+      "state_hints": [
+        "KS"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "3a2c86e14fd5b47ca36e",
       "title": "Feds File Lawsuit Seeking Citizenship Proof for Select LA, CA Voters - MyNewsLA.com",
