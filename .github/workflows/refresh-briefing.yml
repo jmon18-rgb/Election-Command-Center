@@ -27,6 +27,7 @@ on:
       - 'scripts/update_integrity_queue.py'
       - 'scripts/validate_integrity_impact.py'
       - 'scripts/check_dashboard.py'
+      - 'scripts/test_published_dashboard.cjs'
       - 'scripts/test_dashboard_runtime.cjs'
       - 'scripts/notify_new_polls.py'
       - 'scripts/test_poll_alerts.py'
