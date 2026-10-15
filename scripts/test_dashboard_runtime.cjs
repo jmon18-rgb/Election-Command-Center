@@ -1460,7 +1460,7 @@ async function settle(){
  assert.match(get('#jointHomeAudit').textContent,/NOT calibration/);
  assert.match(get('#jointHomeAudit').textContent,/Held-out-cycle mean Brier score/);
  assert.match(get('#jointNightAudit').textContent,/90% coverage was/);
- assert(get('#jointNightCards').textContent.includes('18+ of 20 battlegrounds'));
+ assert(get('#jointNightCards').textContent.includes('18/20 races'),'Condensed card must still define tsunami threshold');
 
  assert.match(get('#jointNightCards').textContent,/BLUE TSUNAMI/);
  assert.match(get('#jointNightCards').textContent,/BLUE WAVE/);
