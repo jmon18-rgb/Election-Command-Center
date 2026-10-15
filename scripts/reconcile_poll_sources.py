@@ -71,6 +71,45 @@ def selection_key(item):
             str(item.get("question_id") or ""))
 
 
+def same_study_variant(old, incoming):
+    """A sample variant must be the same firm, fieldwork, poll ID and matchup."""
+    return (str(old.get("poll_id") or "") == str(incoming.get("poll_id") or "")
+            and identity(old.get("pollster")) == identity(incoming.get("pollster"))
+            and old.get("field_end") == incoming.get("field_end")
+            and identity(old.get("dem_name")) == identity(incoming.get("dem_name"))
+            and identity(old.get("rep_name")) == identity(incoming.get("rep_name")))
+
+
+def preferred_lv_variant(race, old, candidates, today):
+    """Replace a corroborated RV/adult wave with its LV question, never blend."""
+    if str(old.get("sample_population") or "").casefold() == "lv":
+        return None
+    same = [p for p in candidates if same_study_variant(old, p)
+            and in_scope(p, race, today)]
+    likely = [p for p in same if selection_key(p)[0] == 3]
+    if not likely:
+        return None
+    likely.sort(key=selection_key, reverse=True)
+    chosen = likely[0]
+    # Contradictory LV answers at equal sample priority are ambiguous.
+    if any(selection_key(p)[:2] == selection_key(chosen)[:2]
+           and (float(p["dem"]), float(p["rep"])) !=
+               (float(chosen["dem"]), float(chosen["rep"]))
+           for p in likely[1:]):
+        return None
+    old_population = str(old.get("sample_population") or "").casefold()
+    corroborated = (old_population in ("rv", "a", "registered", "adults")
+                    or any(selection_key(p)[0] in (1, 2)
+                           and float(p["dem"]) == float(old["dem"])
+                           and float(p["rep"]) == float(old["rep"])
+                           for p in same)
+                    # A prior, source-verified LV correction must survive when
+                    # the primary provider re-imports an unlabelled RV wave.
+                    or (chosen.get("model_source") == FALLBACK_SOURCE
+                        and chosen.get("sample_population") == "lv"))
+    return chosen if corroborated else None
+
+
 def candidate_observations(primary, observations, today):
     """Pick one eligible missing observation per exact race/poll ID."""
     by_race = {r["race_code"]:r for r in primary.get("races", [])}
@@ -110,7 +149,7 @@ def merge(primary, observations, today, observed_at=None):
     """Update primary snapshot and return an explicit attribution report."""
     if not isinstance(today, dt.date):
         raise ValueError("Explicit reconciliation date required")
-    report = {"new_to_model":0, "enriched_existing":0,
+    report = {"new_to_model":0, "enriched_existing":0, "lv_upgrades":0,
               "added_ids":[], "added_by_race":{}, "created_races":[]}
     # A new House/Senate/governor poll may reach PollResults first, before
     # ElectIndex has any record of the RACE. Validate its district/seat and
@@ -137,8 +176,33 @@ def merge(primary, observations, today, observed_at=None):
             old["upstream_posted_date"] = p.get("posted_date")
             old["source_poll_url"] = p.get("source_url") or p.get("source_poll_url")
             old["sample_population"] = p.get("sample_population")
+            old["question_id"] = p.get("question_id") or old.get("question_id")
             old["date_provenance"] = "PollResults ingestion date, NOT public release date"
             report["enriched_existing"] += 1
+    # A source survey can contain both RV and LV questions. The primary
+    # importer may already carry its RV version under the same poll_id.
+    # Prefer the corroborated LV answer in-place, without counting a new poll.
+    # RV remains in the supplemental Poll Wire, not the weighted average.
+    for race in primary.get("races", []):
+        for old in race.get("polls", []):
+            siblings = exact.get((race["race_code"], old.get("poll_id")), [])
+            chosen = preferred_lv_variant(race, old, siblings, today)
+            if chosen is None:
+                continue
+            old.update({
+                "question_id": chosen.get("question_id"),
+                "sample_population": "lv",
+                "dem": float(chosen["dem"]), "rep": float(chosen["rep"]),
+                "margin": round(float(chosen["dem"])-float(chosen["rep"]), 2),
+                "sample_size": int(float(chosen["sample_size"])),
+                "upstream_posted_date": chosen.get("posted_date"),
+                "source_poll_url": chosen.get("source_url") or chosen.get("source_poll_url"),
+                "date_provenance": "PollResults ingestion date, NOT public release date",
+                "model_source": FALLBACK_SOURCE,
+                "lv_selected_over_rv": True,
+                "first_seen_at": old.get("first_seen_at") or chosen.get("first_seen_at") or observed_at,
+            })
+            report["lv_upgrades"] += 1
     for p in candidate_observations(primary, observations, today):
         race = by_race[p["race_code"]]
         if any(x.get("poll_id") == p["poll_id"] for x in race["polls"]):
