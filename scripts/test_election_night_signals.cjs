@@ -58,6 +58,36 @@ r['Senate|OH-special'].provider='unverified';
 assert.equal(find('ohio').state,'waiting','Unverified provider name is not a winner call');
 r['Senate|OH-special'].provider='civicAPI';
 assert.equal(find('ohio').state,'earned');
+const evidence=r['Senate|OH-special'];
+const original=JSON.parse(JSON.stringify(evidence));
+function rejects(change,reason){
+ const attempt=JSON.parse(JSON.stringify(original));
+ change(attempt);
+ assert.equal(signals.validatedCall(attempt,at),null,reason);
+}
+rejects(row=>{row.last_updated='2026-11-03T18:00:00Z'},
+ 'Expired provider winner flag must not freeze the election model');
+rejects(row=>{row.stale=true},'A stale record cannot be a winner call');
+rejects(row=>{row.race_id=0},'A source call requires a positive provider race ID');
+rejects(row=>{row.key='MI'},'Wrong seat identity must not be accepted for this evidence');
+rejects(row=>{row.office='Unknown'},'Unknown office must be rejected');
+rejects(row=>{row.percent_reporting=102},'Invalid reporting percentage');
+rejects(row=>{row.total=300},'Listed candidate votes cannot exceed counted total');
+rejects(row=>{row.candidates[0].votes=-1},'Negative winner vote count is not valid');
+rejects(row=>{row.candidates.push({...row.candidates[0]})},
+ 'Duplicate normalized candidate identities cannot generate a call');
+rejects(row=>{row.called='Unknown candidate'},
+ 'The announced winner must match exactly one listed candidate');
+rejects(row=>{row.called=null},'A missing winner is not a call');
+rejects(row=>{row.candidates[0].party='???'},'Unknown normalized candidate party');
+rejects(row=>{row.candidates[0].votes=0},'Winner must have positive reported votes');
+const good=signals.validatedCall(original,at);
+assert.equal(good?.sourceClass,'provider_reported_unofficial');
+assert.equal(good?.certified,false);
+assert.equal(good?.professionallyReviewed,false);
+const staleTime=Date.parse('2026-11-04T06:00:01Z');
+assert.equal(signals.validatedCall(original,staleTime),null,
+ 'Provider calls cease to be valid when evidence becomes older than three hours');
 const one=signals.evaluateMilestones(r,{year:2026,now:at});
 const changes=signals.changingMilestones([],one);
 assert(changes.gained.includes('blexas')&&changes.gained.includes('ohio'));
