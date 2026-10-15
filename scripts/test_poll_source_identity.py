@@ -19,6 +19,16 @@ class IdentityTests(unittest.TestCase):
         self.assertEqual(len([p for p in [alternate,self.poll]
           if matches_source_poll(p,self.pick,self.race,False)]),1)
 
+    def test_marist_lv_rv_questions_same_poll_id_are_not_interchangeable(self):
+        lv={**self.poll,"question_id":"iowa-lv",
+            "sample_population":"lv","dem":48.0,"rep":45.0}
+        rv={**lv,"question_id":"iowa-rv",
+            "sample_population":"rv","dem":51.0,"rep":44.0}
+        selected={**self.pick,"question_id":"iowa-lv",
+                  "sample_population":"lv","dem":48.0,"rep":45.0}
+        self.assertTrue(matches_source_poll(lv,selected,self.race,False))
+        self.assertFalse(matches_source_poll(rv,selected,self.race,False))
+
     def test_candidate_mismatch_rejected(self):
         self.assertFalse(matches_source_poll({**self.poll,"dem_name":"Other"},
           self.pick,self.race,False))

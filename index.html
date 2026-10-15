@@ -1120,6 +1120,15 @@ function renderModelOverview(data){
  }
  renderModelRaceDetail();
 }
+// Source poll IDs may have two questions with different voter populations.
+function isModelPollWave(p,q,generic=false){
+ if(!q||!p||q.name!==p.pollster||q.field_end!==p.field_end)return false;
+ if(!generic&&(!q.poll_id||q.poll_id!==p.poll_id))return false;
+ for(const field of ['question_id','sample_population','dem','rep']){
+  if(q[field]!==undefined&&q[field]!==null&&q[field]!==p[field])return false;
+ }
+ return true;
+}
 function modelPollEntries(estimate){
  const generic=modelMode==='generic'||estimate.race_code==='US-GENERIC';
  const raw=generic?pollingSnapshot?.generic_ballot:pollingSnapshot?.races?.find(r=>r.race_code===(estimate.race_code||estimate.state+'-SEN'));
@@ -1127,12 +1136,9 @@ function modelPollEntries(estimate){
   typeof p.dem==='number'&&typeof p.rep==='number'&&p.field_end&&
   (generic||(p.dem_name===estimate.dem_candidate&&p.rep_name===estimate.rep_candidate))
  );
- const chosen=new Set((estimate.pollsters||[]).map(p=>p.poll_id?
-   'id:'+p.poll_id:'legacy:'+p.name.toLowerCase()+'|'+p.field_end));
- return observations.map(p=>({...p,included:chosen.has(p.poll_id?'id:'+p.poll_id:
-   'legacy:'+p.pollster.toLowerCase()+'|'+p.field_end)||
-   // Backward-compatible for an old model snapshot that predates poll IDs.
-   chosen.has('legacy:'+p.pollster.toLowerCase()+'|'+p.field_end)})).sort((a,b)=>b.field_end.localeCompare(a.field_end));
+ return observations.map(p=>({...p,
+  included:(estimate.pollsters||[]).some(q=>isModelPollWave(p,q,generic))
+ })).sort((a,b)=>b.field_end.localeCompare(a.field_end));
 }
 document.querySelectorAll('[data-model-scope]').forEach(b=>b.addEventListener('click',()=>{
  modelMode=b.dataset.modelScope;
@@ -1793,8 +1799,7 @@ function wireModelStatus(p){
    p.race_type==='house'?latestSenateEstimates.house:latestSenateEstimates.governor;
  const match=(entries||[]).find(r=>r.race_code===p.race_code&&
    r.dem_candidate===p.dem_name&&r.rep_candidate===p.rep_name);
- const used=match?.pollsters?.some(q=>q.poll_id===p.poll_id&&
-   q.field_end===p.field_end&&q.name===p.pollster);
+ const used=match?.pollsters?.some(q=>isModelPollWave(raw,q));
  return used?
    {kind:'included',description:'Included in current average',race:match}:
    {kind:'primary',description:'Primary feed · not in current average',race:match||null};
