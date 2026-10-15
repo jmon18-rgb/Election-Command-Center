@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T12:25:31.147736+00:00",
+  "updated_at": "2026-10-15T12:58:48.250101+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,18 +9,47 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1187,
+      "available_in_source": 1188,
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 867,
+      "available_in_source": 868,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 282,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "NY-GOV",
+      "poll_id": "2b0a89de-c06d-42ec-aba2-1dafb7e80713"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "NY-GOV",
+      "race_type": "governor",
+      "state": "NY",
+      "poll_id": "2b0a89de-c06d-42ec-aba2-1dafb7e80713",
+      "question_id": "376d4958-8783-42f9-8030-9ac64648f5f6",
+      "pollster": "Beacon Research",
+      "dem_name": "Kathy Hochul",
+      "rep_name": "Bruce Blakeman",
+      "dem": 53.0,
+      "rep": 31.0,
+      "margin": 22.0,
+      "field_end": "2026-10-06",
+      "field_start": "2026-10-01",
+      "posted_date": "2026-10-15",
+      "posted_source_datetime": "2026-10-15T08:39:00",
+      "posted_source_time": "10/15/26 08:39",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.politico.com/newsletters/new-york-playbook/2026/10/15/mamdanis-mia-from-gop-attack-ads-01119739",
+      "sample_population": "rv",
+      "sample_size": 820,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "CT-GOV",
       "race_type": "governor",

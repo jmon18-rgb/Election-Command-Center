@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T12:25:30.684142Z",
+  "updated_at": "2026-10-15T12:58:47.881058Z",
   "generic_ballot": {
     "summary": {
       "dem": 48.1,
@@ -8523,24 +8523,52 @@
       "race_type": "governor",
       "state": "NY",
       "district": "GOV",
-      "latest_field_end": "2026-10-05",
+      "latest_field_end": "2026-10-06",
       "latest": {
-        "poll_id": "9cecca7e-46e6-4bc7-9d85-6f95f09424e9",
-        "field_end": "2026-10-05",
-        "pollster": "Emerson College",
-        "dem": 52.4,
-        "rep": 39.7,
-        "margin": 12.7,
-        "sample_size": 900,
+        "poll_id": "2b0a89de-c06d-42ec-aba2-1dafb7e80713",
+        "question_id": "376d4958-8783-42f9-8030-9ac64648f5f6",
+        "field_end": "2026-10-06",
+        "pollster": "Beacon Research",
+        "dem": 53.0,
+        "rep": 31.0,
+        "margin": 22.0,
+        "sample_size": 820,
         "partisan_lean": "",
         "dem_name": "Kathy Hochul",
         "rep_name": "Bruce Blakeman",
         "other": null,
         "other_name": null,
-        "first_seen_at": null,
-        "release_date": null
+        "first_seen_at": "2026-10-15T12:58:48.250101+00:00",
+        "release_date": null,
+        "upstream_posted_date": "2026-10-15",
+        "source_poll_url": "https://www.politico.com/newsletters/new-york-playbook/2026/10/15/mamdanis-mia-from-gop-attack-ads-01119739",
+        "sample_population": "rv",
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "2b0a89de-c06d-42ec-aba2-1dafb7e80713",
+          "question_id": "376d4958-8783-42f9-8030-9ac64648f5f6",
+          "field_end": "2026-10-06",
+          "pollster": "Beacon Research",
+          "dem": 53.0,
+          "rep": 31.0,
+          "margin": 22.0,
+          "sample_size": 820,
+          "partisan_lean": "",
+          "dem_name": "Kathy Hochul",
+          "rep_name": "Bruce Blakeman",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-15T12:58:48.250101+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-15",
+          "source_poll_url": "https://www.politico.com/newsletters/new-york-playbook/2026/10/15/mamdanis-mia-from-gop-attack-ads-01119739",
+          "sample_population": "rv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "9cecca7e-46e6-4bc7-9d85-6f95f09424e9",
           "field_end": "2026-10-05",
@@ -8662,7 +8690,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 7,
+      "recent_poll_count": 8,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -15167,7 +15195,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-15T12:25:30.684142Z",
+    "last_attempt_at": "2026-10-15T12:58:47.881058Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15176,11 +15204,29 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [],
-    "new_poll_count": 0,
+    "new_polls": [
+      {
+        "race_code": "NY-GOV",
+        "race_type": "governor",
+        "poll_id": "2b0a89de-c06d-42ec-aba2-1dafb7e80713",
+        "pollster": "Beacon Research",
+        "field_end": "2026-10-06",
+        "dem": 53.0,
+        "rep": 31.0,
+        "margin": 22.0,
+        "dem_name": "Kathy Hochul",
+        "rep_name": "Bruce Blakeman",
+        "sample_size": 820,
+        "first_seen_at": "2026-10-15T12:58:48.250101+00:00",
+        "release_date": null,
+        "source_url": "https://www.politico.com/newsletters/new-york-playbook/2026/10/15/mamdanis-mia-from-gop-attack-ads-01119739",
+        "source": "pollresults_secondary_fallback"
+      }
+    ],
+    "new_poll_count": 1,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-15T12:25:30.684142Z",
-    "previous_snapshot_at": "2026-10-15T12:18:56.863994Z",
+    "comparison_at": "2026-10-15T12:58:47.881058Z",
+    "previous_snapshot_at": "2026-10-15T12:25:30.684142Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15211,8 +15257,10 @@
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
     "matched_observations": 282,
-    "newly_injected_into_model": 0,
-    "newly_injected_by_race": {},
+    "newly_injected_into_model": 1,
+    "newly_injected_by_race": {
+      "NY-GOV": 1
+    },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
