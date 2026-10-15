@@ -3213,6 +3213,7 @@ function smartRow(item){
  });
  return cell;
 }
+const smartRenderSignatures=Object.create(null);
 function renderSmartRaceDesks(){
  const api=window.AutomaticRaceDesk;if(!api)return;
  const all=smartRoster(smartRaceRanked());
@@ -3236,6 +3237,22 @@ function renderSmartRaceDesks(){
   }
   const rows=all.filter(row=>(chosen==='All'||row.office===chosen)&&
     (!search||row.code.includes(search)||row.key.includes(search)));
+  // A 35-Senate/large-House DOM need not be rebuilt for no-op provider
+  // polls. A signature captures every value used by smartRow, its order,
+  // current office/search and reporting counters. Real changes still render.
+  const reportingTotal=all.filter(x=>x.priority.reporting).length;
+  const fingerprint=JSON.stringify([chosen,search,counts,reportingTotal,
+   rows.map(x=>[
+    x.code,x.key,x.priority.score,x.priority.why,x.priority.reporting,
+    x.priority.called,x.priority.rawMargin,x.priority.precincts,
+    x.live?.votes,x.live?.source,x.model?.provider_called_party,
+    x.model?.dem_beats_rep_pct,x.model?.model_dem_margin_points,
+    x.poll?.dem_minus_rep,x.poll?.contributing_pollsters
+   ])
+  ]);
+  if(smartRenderSignatures[prefix]===fingerprint&&host.childElementCount>0)
+   continue;
+  smartRenderSignatures[prefix]=fingerprint;
   const previousScroll=host.scrollTop;
   host.replaceChildren();
   const sections=[['Senate','All 2026 Senate contests'],
@@ -3264,7 +3281,7 @@ function renderSmartRaceDesks(){
    'House includes the documented editorial watchlist, any qualifying district polls, '+
    'and additional model-identified districts; inclusion does not mean the race is close. '+
    'Missing polling or model estimates remain unavailable rather than invented. '+
-   all.filter(x=>x.priority.reporting).length+
+   reportingTotal+
    ' monitored races have qualifying live reporting. Modeled odds remain experimental.';
  }
 }
