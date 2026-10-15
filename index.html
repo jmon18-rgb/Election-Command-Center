@@ -2057,6 +2057,17 @@ function renderModelGenericHeadline(){
  $('#genericDelta').textContent='—';
 }
 function renderPolls(d){
+// Initial requests and two-minute refreshes can resolve out of order.
+// Do not roll the raw Poll Wire / model drilldown back behind the latest
+// accepted source or the source revision powering the live joint forecast.
+const incomingAt=Date.parse(d?.updated_at||'');
+const revisions=[pollingSnapshot?.updated_at,latestSenateEstimates?.source_snapshot]
+ .map(v=>Date.parse(v||'')).filter(Number.isFinite);
+if(!Number.isFinite(incomingAt)||
+ (revisions.length&&incomingAt<Math.max(...revisions))){
+ console.warn('Ignoring out-of-order primary poll snapshot:',d?.updated_at);
+ return false;
+}
 pollingSnapshot=d;feedHealth.polls=d;updateHealth();
 renderFreshPolls(d);renderPollWire();
 if(latestSenateEstimates)renderSenateTideLine();
@@ -2901,6 +2912,15 @@ async function jointLoadSources(options={}){
    if(candidate?.senate_prior_mode!=='current_2026'||
       candidate.senate_current_context?.model_revision!=='late_2026_depth_aware_special_v5')
     throw Error('New poll snapshot not compatible with the loaded 2026 engine');
+  }
+  // An older independently fetched bundle can finish AFTER a newer
+  // validated refresh. Reject it before it resets the joint engine and odds.
+  const incomingModelAt=Date.parse(context.polls?.generated_at||'');
+  const acceptedModelAt=Date.parse(latestSenateEstimates?.generated_at||'');
+  if(Number.isFinite(acceptedModelAt)&&
+     (!Number.isFinite(incomingModelAt)||incomingModelAt<acceptedModelAt)){
+   console.warn('Ignoring out-of-order joint forecast bundle:',context.polls?.generated_at);
+   return false;
   }
   // Source/odds must refer to one polling revision before touching UI.
   if(context.seats?.polling_source_snapshot!==context.polls?.generated_at||
