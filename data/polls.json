@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T08:49:46.879698Z",
+  "updated_at": "2026-10-15T09:47:06.642311Z",
   "generic_ballot": {
     "summary": {
       "dem": 48.1,
@@ -6626,6 +6626,28 @@
           "model_source": "pollresults_secondary_fallback"
         },
         {
+          "poll_id": "c74bf5bc-f7c1-4c70-8c51-d954ded837fc",
+          "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
+          "field_end": "2026-10-11",
+          "pollster": "Marist University",
+          "dem": 48.0,
+          "rep": 45.0,
+          "margin": 3.0,
+          "sample_size": 1100,
+          "partisan_lean": "",
+          "dem_name": "Josh Turek",
+          "rep_name": "Ashley Hinson",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-15T09:47:07.095254+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-15",
+          "source_poll_url": "https://maristpoll.marist.edu/polls/2026-midterm-elections-in-iowa-october-2026/",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
+        {
           "poll_id": "f4565aea-a1df-4f89-9dfa-75c19a146e7c",
           "field_end": "2026-10-06",
           "pollster": "Emerson College",
@@ -6938,7 +6960,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 19,
+      "recent_poll_count": 20,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -7300,6 +7322,28 @@
           "model_source": "pollresults_secondary_fallback"
         },
         {
+          "poll_id": "c74bf5bc-f7c1-4c70-8c51-d954ded837fc",
+          "question_id": "2cbe64b9-1956-43db-b50d-a00b8d5b61c3",
+          "field_end": "2026-10-11",
+          "pollster": "Marist University",
+          "dem": 52.0,
+          "rep": 45.0,
+          "margin": 7.0,
+          "sample_size": 1100,
+          "partisan_lean": "",
+          "dem_name": "Rob Sand",
+          "rep_name": "Zach Lahn",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-15T09:47:07.095254+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-15",
+          "source_poll_url": "https://maristpoll.marist.edu/polls/2026-midterm-elections-in-iowa-october-2026/",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
+        {
           "poll_id": "f4565aea-a1df-4f89-9dfa-75c19a146e7c",
           "field_end": "2026-10-06",
           "pollster": "Emerson College",
@@ -7508,7 +7552,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 13,
+      "recent_poll_count": 14,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -15053,7 +15097,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-15T08:49:46.879698Z",
+    "last_attempt_at": "2026-10-15T09:47:06.642311Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15062,11 +15106,46 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [],
-    "new_poll_count": 0,
+    "new_polls": [
+      {
+        "race_code": "IA-SEN",
+        "race_type": "senate",
+        "poll_id": "c74bf5bc-f7c1-4c70-8c51-d954ded837fc",
+        "pollster": "Marist University",
+        "field_end": "2026-10-11",
+        "dem": 48.0,
+        "rep": 45.0,
+        "margin": 3.0,
+        "dem_name": "Josh Turek",
+        "rep_name": "Ashley Hinson",
+        "sample_size": 1100,
+        "first_seen_at": "2026-10-15T09:47:07.095254+00:00",
+        "release_date": null,
+        "source_url": "https://maristpoll.marist.edu/polls/2026-midterm-elections-in-iowa-october-2026/",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "IA-GOV",
+        "race_type": "governor",
+        "poll_id": "c74bf5bc-f7c1-4c70-8c51-d954ded837fc",
+        "pollster": "Marist University",
+        "field_end": "2026-10-11",
+        "dem": 52.0,
+        "rep": 45.0,
+        "margin": 7.0,
+        "dem_name": "Rob Sand",
+        "rep_name": "Zach Lahn",
+        "sample_size": 1100,
+        "first_seen_at": "2026-10-15T09:47:07.095254+00:00",
+        "release_date": null,
+        "source_url": "https://maristpoll.marist.edu/polls/2026-midterm-elections-in-iowa-october-2026/",
+        "source": "pollresults_secondary_fallback"
+      }
+    ],
+    "new_poll_count": 2,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-15T08:49:46.879698Z",
-    "previous_snapshot_at": "2026-10-15T07:50:59.120936Z",
+    "comparison_at": "2026-10-15T09:47:06.642311Z",
+    "previous_snapshot_at": "2026-10-15T08:49:46.879698Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15097,8 +15176,11 @@
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
     "matched_observations": 277,
-    "newly_injected_into_model": 0,
-    "newly_injected_by_race": {},
+    "newly_injected_into_model": 2,
+    "newly_injected_by_race": {
+      "IA-GOV": 1,
+      "IA-SEN": 1
+    },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {

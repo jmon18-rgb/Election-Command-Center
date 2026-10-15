@@ -1,14 +1,14 @@
 {
   "schema_version": "bottom-up-2026-poll-environment-shadow-v1",
   "status": "SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE",
-  "polling_generated_at": "2026-10-15T08:49:50.254825Z",
+  "polling_generated_at": "2026-10-15T09:47:13.032406Z",
   "presidential_geography_year": 2026,
   "presidential_2024_national_two_party_margin_points": -1.705,
   "generic_ballot_2026_d_minus_r_points": 7.68,
   "generic_implied_vs_2024_presidential_swing_points": 9.385,
-  "independent_polling_estimated_presidential_to_race_swing_points": 8.302,
-  "bottom_up_implied_national_margin_points": 6.597,
-  "bottom_up_minus_generic_environment_points": -1.083,
+  "independent_polling_estimated_presidential_to_race_swing_points": 8.284,
+  "bottom_up_implied_national_margin_points": 6.579,
+  "bottom_up_minus_generic_environment_points": -1.101,
   "candidate_specific_effects_removed": false,
   "candidate_quality_calibration_available": false,
   "total_qualifying_races": 15,
@@ -71,7 +71,7 @@
     {
       "state": "IA",
       "number_qualifying_races": 1,
-      "swing_points": 14.416
+      "swing_points": 14.196
     },
     {
       "state": "OH",
