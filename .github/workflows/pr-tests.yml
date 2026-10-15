@@ -20,6 +20,10 @@ jobs:
         run: |
           python3 -m py_compile scripts/stage_nc_2024_county_mode.py
           python3 scripts/test_nc_2024_county_mode.py
+      - name: Verify non-forecast county and voting-method early signal evidence gates
+        run: |
+          node --check scripts/election_night_county_mode_signal.js
+          node scripts/test_election_night_county_mode_signal.cjs
       - name: Verify geographic polls cannot leak district samples into statewide odds
         run: |
           node --check scripts/validate_substate_poll_signals.cjs
