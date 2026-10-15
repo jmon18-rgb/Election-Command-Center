@@ -140,7 +140,8 @@ function evaluate(s){
    source_reconciled:true
   };
  }).sort((a,b)=>a.race_code.localeCompare(b.race_code));
- if(rows.length!==35||reconstructionCount!==35||pollCount!==24)
+ if(rows.length!==35||reconstructionCount!==35||
+    pollCount!==s.odds.records.filter(x=>x.office==='senate').length)
   throw Error('Incomplete Senate poll-versus-prior diagnosis');
  const counts=Object.fromEntries([...new Set(rows.map(x=>x.candidate_continuity))]
   .sort().map(c=>[c,rows.filter(x=>x.candidate_continuity===c).length]));

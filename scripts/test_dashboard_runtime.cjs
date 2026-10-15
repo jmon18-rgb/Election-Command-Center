@@ -187,6 +187,23 @@ async function settle(){
   governor:model.governor.filter(r=>['multi_poll','single_poll'].includes(r.status)).length
  });
  assert.equal(w.eval('jointRaceOddsIntegrity()'),true);
+ const moPoll=model.house.find(x=>x.race_code==='MO-02');
+ const moOdds=w.eval("jointForecastResult().race_probabilities.find(x=>x.office==='house'&&x.race_code==='MO-02')");
+ assert(moPoll&&moOdds);
+ assert.match(get('#missouriHouseWatch').textContent,/Missouri · 2nd District/);
+ assert.match(get('#missouriHouseWatch').textContent,/Fred Wellman/);
+ assert.match(get('#missouriHouseWatch').textContent,/Ann Wagner/);
+ assert.match(get('#missouriHouseWatch').textContent,/sponsored/);
+ assert(get('#missouriHouseWatch').textContent.includes('D '+moOdds.dem_beats_rep_pct.toFixed(1)+'%'));
+ assert.match(get('#missouriWatchAsOf').textContent,/same joint model as Four Endings/);
+ const ohMarist=primary.races.find(x=>x.race_code==='OH-SEN').polls.filter(x=>
+  x.pollster==='Marist University'&&x.field_end==='2026-09-27');
+ assert(ohMarist.some(x=>x.dem===51&&x.rep===43));
+ const iaMarist=primary.races.find(x=>x.race_code==='IA-SEN').polls.filter(x=>
+  x.pollster==='Marist University'&&x.field_end==='2026-10-11');
+ assert.equal(iaMarist.length,1);
+ assert.equal(iaMarist[0].sample_population,'lv');
+ assert.equal(iaMarist[0].margin,3);
  assert(!html.includes('DDHQ published forecast · comparison only'));
  assert(!html.includes('scenarioCenter'));
  assert(!html.includes('enForecastSource'));
@@ -2201,6 +2218,8 @@ async function settle(){
  const formerModelAt=w.eval('jointRaceOddsResult().polling_source_generated_at');
  const formerMN=w.eval("jointRaceOddsResult().records.find(x=>x.race_code==='MN-SEN'&&x.office==='senate').dem_beats_rep_pct");
  const formerSenateControl=w.eval('jointForecastResult().senate_dem_control_pct');
+ const formerFour=w.eval('jointForecastResult().probabilities');
+ const formerFourCards=get('#jointHomeCards').textContent;
  const primaryNext=structuredClone(primary);
  primaryNext.updated_at=new Date(Date.parse(freshPosted.updated_at)+60000).toISOString();
  primaryNext.health={...primaryNext.health,status:'ok'};
@@ -2209,6 +2228,9 @@ async function settle(){
  assert.equal(w.eval('jointRaceOddsResult().polling_source_generated_at'),formerModelAt);
  assert(w.eval('jointForecastResult()'),
   'Temporary mismatched polling/model data must not erase good race odds');
+ assert.deepEqual(w.eval('jointForecastResult().probabilities'),formerFour);
+ assert.equal(get('#jointHomeCards').textContent,formerFourCards,
+  'Four Endings cannot display a partially published polling revision');
  // Once the corresponding estimate and odds snapshot appear, the same
  // in-page check should refresh the model and its displayed metadata.
  const estimatesNext=structuredClone(model);
@@ -2250,6 +2272,9 @@ async function settle(){
   contributing_firms:mnEstimate.contributing_pollsters,
   independent_firms:mnEstimate.independent_pollsters
  });
+ const seatNext=structuredClone(fixtures['seat_universe.json']);
+ seatNext.polling_source_snapshot=estimatesNext.generated_at;
+ fixtures['seat_universe.json']=seatNext;
  fixtures['polling_estimates.json']=estimatesNext;
  fixtures['race_probabilities.json']=oddsNext;
  await w.eval('refreshLivePollSnapshots()');
@@ -2264,6 +2289,21 @@ async function settle(){
   'A stronger Minnesota Democratic margin cannot reduce D Senate control odds with other inputs unchanged');
  assert.equal(w.eval('jointRaceOddsIntegrity()'),true,
   'New joint-model odds must still match every race and polling margin');
+ assert.equal(w.eval('jointRaceOddsResult().polling_source_generated_at'),estimatesNext.generated_at);
+ const nextFour=w.eval('jointForecastResult().probabilities');
+ assert.notDeepEqual(nextFour,formerFour,
+  'Fresh pivotal race polling must recalculate the Four Endings joint distribution');
+ assert(Math.abs(Object.values(nextFour).reduce((n,x)=>n+x,0)-100)<.13);
+ const keys=['blue_tsunami','blue_wave','shrug','red_dawn'];
+ for(let i=0;i<4;i++){
+  const value=nextFour[keys[i]].toFixed(1)+'%';
+  assert.equal(get('#jointHomeCards').querySelectorAll('.joint-value')[i].textContent,value);
+  assert.equal(get('#jointNightCards').querySelectorAll('.joint-value')[i].textContent,value);
+ }
+ assert.match(get('#jointHomeSummary').textContent,/2 min/);
+ const currentMO=w.eval("jointForecastResult().race_probabilities.find(x=>x.office==='house'&&x.race_code==='MO-02').dem_beats_rep_pct");
+ assert(get('#missouriHouseWatch').textContent.includes(currentMO.toFixed(1)+'%'),
+  'Missouri must use the same revised joint forecast as House and Four Endings');
  w.eval("navigateInsightToModel({office:'senate',race:{race_code:'MN-SEN'}})");
  assert.match(get('#modelOddsNumbers').textContent,new RegExp(Math.round(currentMN)+'%'),
   'Visible Minnesota race odds must reflect the new correlated simulation');

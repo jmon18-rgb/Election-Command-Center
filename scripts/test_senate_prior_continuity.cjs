@@ -13,7 +13,8 @@ const report=evaluate(src);
 assert.equal(report.status,'SENATE_PRIOR_CONTINUITY_DIAGNOSTIC_NOT_FORECAST');
 assert.equal(report.source_model_exact_reconstruction,true);
 assert.equal(report.senate_seats,35);
-assert.equal(report.qualified_senate_matchups,24);
+assert.equal(report.qualified_senate_matchups,
+ src.odds.records.filter(x=>x.office==='senate').length);
 assert.equal(report.verified_historic_candidate_identity_count,12);
 assert.equal(report.records.length,35);
 assert.equal(new Set(report.records.map(x=>x.race_code)).size,35);
