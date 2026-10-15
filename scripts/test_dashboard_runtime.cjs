@@ -52,6 +52,8 @@ const fixtures={
  'polling_estimates.json':model,'polls.json':primary,
  'pollresults_recent.json':recent,'model_history.json':history,
  'race_probabilities.json':json('data/race_probabilities.json'),
+ 'ZqBdM (1).csv':read('ZqBdM (1).csv'),
+ 'f3ome (1).csv':read('f3ome (1).csv'),
  'house_history_2024_staging.json':json('data/house_history_2024_staging.json'),
  'historical_senate_poll_backtest.json':json('data/historical_senate_poll_backtest.json'),
  'senate_history_2020_2022_2024.json':json('data/senate_history_2020_2022_2024.json')
@@ -61,9 +63,10 @@ for(const file of ['briefing.json','integrity_impact.json','integrity_review_que
  if(fs.existsSync(path.join(ROOT,name)))fixtures[file]=json(name);
 }
 w.fetch=async (url)=>{
- const name=String(url).split('?')[0].split('/').pop();
+ const name=decodeURIComponent(String(url).split('?')[0].split('/').pop());
  if(!(name in fixtures))return {ok:false,status:404,json:async()=>({})};
- return {ok:true,status:200,json:async()=>fixtures[name]};
+ return {ok:true,status:200,json:async()=>fixtures[name],
+  text:async()=>String(fixtures[name])};
 };
 w.console.error=(...parts)=>errors.push(parts.map(String).join(' '));
 function get(selector){const el=w.document.querySelector(selector);assert(el,'Missing '+selector);return el}
@@ -110,6 +113,23 @@ async function settle(){
  assert(registeredIntervals.some(x=>x.ms===300000),
   'Still-open tab must register reporting/security refresh every five minutes');
  await settle();
+ assert.match(get('#privateContextStatus').textContent,/Repository fundamentals ACTIVE/,
+  'Repository Senate+House CSV inputs must auto-load without device upload');
+ assert.equal(w.eval('jointForecastResult()')?.samples,3000);
+ assert.match(get('#modelEngineTag').textContent,/REPOSITORY FUNDAMENTALS ACTIVE/);
+ assert.equal(w.eval("jointForecastResult().race_probabilities.filter(x=>x.office==='house').length"),435);
+ assert.equal(w.eval("jointForecastResult().race_probabilities.filter(x=>x.office==='senate').length"),35);
+ assert.equal(w.eval('jointForecastResult().senate_dem_control_pct')>=0,true);
+ assert.match(get('#privateContextComparison').textContent,/28 Senate.*98 House/,
+  'The CSV-augmented forecast must include both published input sets');
+ // Keep all existing baseline-model regressions applicable: after proving
+ // auto-activation, simulate an explicit user opt-out for the rest of the suite.
+ // This tests that the public fallback still works, not a hidden shortcut.
+ const repositoryResult=w.eval('jointForecastResult()');
+ get('#privateContextClear').click();
+ assert.match(get('#modelEngineTag').textContent,/2026 Senate model · poll-depth forecast v5/);
+ assert.notDeepEqual(w.eval('jointForecastResult()').probabilities,repositoryResult.probabilities,
+  'Removing repository fundamentals should restore independent live baseline');
  // Users should see actual provider-reported votes immediately after the
  // Four Endings forecast, before research, simulations, alert noise or feeds.
  const follows=(earlier,later)=>Boolean(
@@ -277,7 +297,7 @@ async function settle(){
  const privateFile={name:'senate_fundamentals.csv',size:fakeFundamentals.length,
   text:async()=>fakeFundamentals};
  await w.eval('importPrivateContextFiles')([privateFile]);
- assert.match(get('#modelEngineTag').textContent,/PRIVATE CSV-AUGMENTED/);
+ assert.match(get('#modelEngineTag').textContent,/LOCAL CSV CONTEXT ACTIVE/);
  assert.match(get('#privateContextStatus').textContent,/senateFundamentals/);
  assert.notEqual(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').model_dem_margin_points"),baselineMN);
  assert.match(get('#privateContextComparison').textContent,/published model/);
@@ -295,7 +315,7 @@ async function settle(){
  get('#privateContextRemember').click();
  assert.equal(w.localStorage.getItem(savedKey),null,
   'Opting out must remove saved subscriber data');
- assert.match(get('#modelEngineTag').textContent,/PRIVATE CSV-AUGMENTED/,
+ assert.match(get('#modelEngineTag').textContent,/LOCAL CSV CONTEXT ACTIVE/,
   'Opting out of persistence must not disable active in-memory model');
  get('#privateContextRemember').click();
  assert(w.localStorage.getItem(savedKey),

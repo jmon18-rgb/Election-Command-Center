@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T16:05:43.071357Z",
+  "updated_at": "2026-10-15T16:31:26.772772Z",
   "generic_ballot": {
     "summary": {
       "dem": 48.1,
@@ -5100,7 +5100,7 @@
           "rep_name": "Ashley Moody",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-15T16:05:43.071357Z",
+          "first_seen_at": "2026-10-15T16:31:26.772772Z",
           "release_date": null,
           "question_id": "eb4ae581-25d7-43fd-9123-100333d1e19f",
           "sample_population": "lv",
@@ -5339,7 +5339,7 @@
           "dem": 55.4,
           "rep": 44.6,
           "margin": 10.8,
-          "sample_size": 678,
+          "sample_size": 712,
           "partisan_lean": "R",
           "dem_name": "Jon Ossoff",
           "rep_name": "Mike Collins",
@@ -5347,13 +5347,11 @@
           "other_name": null,
           "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
-          "question_id": "bcd4fddd-ab5f-4f28-9aa1-f898b74b34c7",
-          "sample_population": "lv",
-          "upstream_posted_date": "2026-09-25",
+          "upstream_posted_date": null,
           "source_poll_url": "https://www.bigdatapoll.com/blog/peach-state-poll-jon-ossoff-opens-up-lead-over-mike-collins-in-georgia/",
-          "date_provenance": "PollResults ingestion date, NOT public release date",
-          "model_source": "pollresults_secondary_fallback",
-          "lv_selected_over_rv": true
+          "sample_population": "lv",
+          "question_id": "bcd4fddd-ab5f-4f28-9aa1-f898b74b34c7",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
           "poll_id": "0f4bc367-db9c-459a-a5ce-34b7b7b6e9b2",
@@ -15682,7 +15680,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-15T16:05:43.071357Z",
+    "last_attempt_at": "2026-10-15T16:31:26.772772Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15691,46 +15689,11 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [
-      {
-        "race_code": "NM-01",
-        "race_type": "house",
-        "poll_id": "ec82f919-7670-441e-90f0-e9a83b39b77d",
-        "pollster": "Research & Polling Inc.",
-        "field_end": "2026-10-09",
-        "dem": 53.0,
-        "rep": 35.0,
-        "margin": 18.0,
-        "dem_name": "Melanie Ann Stansbury",
-        "rep_name": "Ndidiamaka Okpareke",
-        "sample_size": 380,
-        "first_seen_at": "2026-10-15T16:05:43.852487+00:00",
-        "release_date": null,
-        "source_url": "https://www.abqjournal.com/news/journal-poll-haaland-maintains-lead-over-hull-as-new-mexicos-race-for-governor-nears-homestretch/3139307",
-        "source": "pollresults_secondary_fallback"
-      },
-      {
-        "race_code": "NM-03",
-        "race_type": "house",
-        "poll_id": "ec82f919-7670-441e-90f0-e9a83b39b77d",
-        "pollster": "Research & Polling Inc.",
-        "field_end": "2026-10-09",
-        "dem": 53.0,
-        "rep": 39.0,
-        "margin": 14.0,
-        "dem_name": "Teresa Leger Fernandez",
-        "rep_name": "Martin Ruben Zamora",
-        "sample_size": 362,
-        "first_seen_at": "2026-10-15T16:05:43.852487+00:00",
-        "release_date": null,
-        "source_url": "https://www.abqjournal.com/news/journal-poll-haaland-maintains-lead-over-hull-as-new-mexicos-race-for-governor-nears-homestretch/3139307",
-        "source": "pollresults_secondary_fallback"
-      }
-    ],
-    "new_poll_count": 2,
+    "new_polls": [],
+    "new_poll_count": 0,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-15T16:05:43.071357Z",
-    "previous_snapshot_at": "2026-10-15T15:48:49.492541Z",
+    "comparison_at": "2026-10-15T16:31:26.772772Z",
+    "previous_snapshot_at": "2026-10-15T16:05:43.071357Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15760,16 +15723,13 @@
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 283,
-    "newly_injected_into_model": 2,
-    "newly_injected_by_race": {
-      "NM-01": 1,
-      "NM-03": 1
-    },
+    "matched_observations": 285,
+    "newly_injected_into_model": 0,
+    "newly_injected_by_race": {},
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
-    "carried_forward_current_observations": 15,
+    "carried_forward_current_observations": 17,
     "provenance": "PollResults source-linked fallback; original first_seen_at retained"
   }
 }
