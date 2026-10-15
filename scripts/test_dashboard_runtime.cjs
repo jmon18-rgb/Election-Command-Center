@@ -130,6 +130,12 @@ async function settle(){
  assert(registeredIntervals.some(x=>x.ms===300000),
   'Still-open tab must register reporting/security refresh every five minutes');
  await settle();
+ // The local early-evening comparator must be installed on the actual
+ // browser page and must visibly disclose that it is not a national swing.
+ assert.equal(typeof w.eval('enDistrictPerformance'),'function',
+  'Browser should register the source-gated local House-district comparator');
+ assert.match(get('#enDistrictPulse').textContent,/Early House district checks|Early district checks/,
+  'Archived votes cannot be presented as 2026 local performance');
  // Four Endings belongs above the polling/news feed and the automatic
  // election-night race desk—not buried after both.
  const beforeOnPage=(earlier,later)=>Boolean(
