@@ -68,7 +68,9 @@ jobs:
       - name: Validate published integrity evidence
         run: python3 scripts/validate_integrity_impact.py
       - name: Queue integrity reports for source verification
-        run: python3 scripts/update_integrity_queue.py
+        run: |
+          python3 scripts/test_integrity_queue_triage.py
+          python3 scripts/update_integrity_queue.py
       - name: Test supplemental-to-model reconciliation before polling refresh
         run: python3 scripts/test_poll_source_reconciliation.py
       - name: Collect 2026 polling data
