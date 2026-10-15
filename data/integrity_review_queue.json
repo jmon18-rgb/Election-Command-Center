@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-15T21:56:08.678818Z",
+  "updated_at": "2026-10-15T22:08:05.403643Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 3,
   "review_metrics": {
-    "total_leads": 138,
-    "awaiting_primary_source": 136,
+    "total_leads": 141,
+    "awaiting_primary_source": 139,
     "primary_source_checked": 2,
-    "advisory_related_headline_buckets": 8,
-    "advisory_related_headlines": 19
+    "advisory_related_headline_buckets": 9,
+    "advisory_related_headlines": 21
   },
   "advisory_related_headlines": [
     {
@@ -98,9 +98,79 @@
         "registration"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "b91c1685054abb4fde2b",
+      "headline": "Trump administration sues California over noncitizens on voter rolls - Al Jazeera",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "registration"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "b91c1685054abb4fde2b",
+      "title": "Trump administration sues California over noncitizens on voter rolls - Al Jazeera",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNTHlna081Y1lhRjRKam9fM0cwekdINzFGSHdlTThtMkxTOWJTRkN3b0gtbjl1TTFvYWs3dGtaUXVxaHRMWFpYaXY3d1Q1NHBra19UOG1MRG9Gazc2SS1RVTNtaWVmNWtwS3VmSm9Vbnprck5TdGxxLUhkYXlIY0ExNUM2VGxRTFZvbGVUbXV2UDVsMUotQm1XTjRLdWVhbk03RDdSbmk0N0tPWk54TjJB0gG0AUFVX3lxTE5mSS1FN3J1TEVKY3B6MWZBUms1dndEV0hNQVhuVXRmazFkRGg0MlpQMWREYW9lWmxXeFRMYmY1cjJxUzJucWs1bG5hcXV2d0VMbnM5ZWF5dGdsTmRVaHN4NUpFWmhxT1NRel95RDFzTjRaMkpOTTFxd1FmMEtrQlpMb25vS2hXZ1FJaVJjRmw0bERfNjRIMlNvVl9tZTVCSUtCaTNOVENuVzVZbWt2ZEFydFJ3Yw?oc=5",
+      "publisher": "Al Jazeera",
+      "published_at": "2026-10-15T21:56:15Z",
+      "detected_at": "2026-10-15T22:08:05.403643Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "44e7848e63c870e84766",
+      "title": "Lawsuit alleges DHS effort to collect detailed state voter data violates federal law - Orlando Sentinel",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQNUZfRGVmaHlGQlRXUkUya2FJenVWeWtreVozNnRIXzh6b21XTW1Ha3FpLWY1SHowS1FtU2I3UXpMbS1wdXRpWjZwamFYUVUzTXRVdEpwc1NWbkNnU2JFUzM4TEZHczZwTGdxWktCVEdiUlJ2bktwcnBPVDdpbmpNMk9B?oc=5",
+      "publisher": "Orlando Sentinel",
+      "published_at": "2026-10-15T21:52:19Z",
+      "detected_at": "2026-10-15T22:08:05.403643Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "3a248eaa8bf51e46c190",
+      "title": "Trump sues California to prevent counting 20,000 voters' ballots - Axios",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNWGNhY25NcDRWSDBLSHBaMVBjczhISW5aQmZwWnBja0VhS2dMdkhwSkRmYlNLSmk5X0M4a3JwelFwV1A1eUNQSUVxOWYwVmRQMnhERW1jMExqVlBab3dIbWUyVU1iRHZLS0E0TUtlWnJLMl9LbGp6VXFaT0JxaXFwZkV3?oc=5",
+      "publisher": "Axios",
+      "published_at": "2026-10-15T21:06:33Z",
+      "detected_at": "2026-10-15T22:08:05.403643Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 voters"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "ad51ad8299020c39c7df",
       "title": "Get to know who\u2019s on your Nebraska ballot this November - KETV",
