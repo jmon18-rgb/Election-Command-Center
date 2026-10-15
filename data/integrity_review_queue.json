@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T13:01:21.304847Z",
+  "updated_at": "2026-10-15T13:12:52.364584Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "items": [
     {
       "id": "8c5955b280488b9c7572",
@@ -18,6 +18,23 @@
       "headline_numbers_unverified": [
         "2026"
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "db558071030830fc2173",
+      "title": "No Kings movement calls marches to polling places this weekend to boost early voting - EL PA\u00cdS English",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOV0E3WXJ1UWw1bDlWZlNjNFVlcllhUWt0T0RQdFRfdmlvdjg2cWFkTTdiOXk1OFc5QnlVOU0yM2dwS0tJTi1MQ2dnWVBpUmNfZ1B6ZEFlZVJ3UnVRTkZhaXBTUVRoUFJ5alNiODFKcVlnRnM3Rmt5c0VrWjFHa1ctSFlLYWhTWGFrcjE4TUVWMzVEVWZCWmZfeG5ha01pVkowYlZJX2VyUU1GQWhtbUxBOFZ4TGxvRFBzVGJkYU5Na1ZLRUhGZDlvYmt4RdIB3wFBVV95cUxPSlRoLWxGYmZXRldBU2dyZ3ItUm1sU1gycjBSVlFZTTdybTVzaUhoMXRQVFAtWlF2Q3Z1Wjh3bW1sZF81LTNyMlM2dFBMWE4xVTdoVTNHTWVpV0pheEVTZDB3bFZ3eXl1aDdoWDVvcWFRaHN1Y0VvTFVKR2h5anRwWHI0RVFNeEVxQVJCRTJkN3FYRElDd2JNR1U5b1JOaHpDOGo5d0o0UEVuazJKVEloYXZlR0Flb29VUmJ6a21POFBVdFJEUC1wYTFXV3htczRnUUx0NWR5VVBNazNIOGpV?oc=5",
+      "publisher": "EL PA\u00cdS English",
+      "published_at": "2026-10-15T11:00:58Z",
+      "detected_at": "2026-10-15T13:12:52.364584Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
