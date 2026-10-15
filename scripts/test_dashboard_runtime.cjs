@@ -780,6 +780,8 @@ async function settle(){
  assert.equal(get('#enArchiveOutcome').hidden,true,
   'Returning to 2026 must restore active probability forecast and hide history');
  assert(!get('#jointNightPanel').classList.contains('en-archive-mode'));
+ assert.equal(get('#enAdvancedLab').hidden,false,
+  '2026 forecast research should be restored when switching from archive');
  await w.eval('enLoad(true)');
  const requests=calls.filter(c=>String(c.url).startsWith('https://openamerica.io/elections/results.json'));
  assert(requests.length>=1,'2026 mode must fetch the live state-derived source');
@@ -801,6 +803,8 @@ async function settle(){
  assert.match(get('#enArchiveOutcome').textContent,/53 R \/ 47 D-caucus/);
  assert(get('#jointNightPanel').classList.contains('en-archive-mode'),
   '2026 simulated win percentages must not be visible during 2024 archive');
+ assert.equal(get('#enAdvancedLab').hidden,true,
+  '2024 must hide secondary 2026 model probabilities and rehearsal research');
  assert.equal(get('#jointNightPanel .joint-grid').getAttribute('id'),'jointNightCards');
  assert.match(get('#jointNightPanel .joint-title h3').textContent,/2024/);
  // Real provider-format 2024 rehearsal must use the 2024 endpoint, and
@@ -1259,6 +1263,9 @@ async function settle(){
   const needle=get(selector);
   assert.match(needle.getAttribute('aria-label'),/2026 correlated Four Endings forecast/);
   assert.equal(needle.querySelectorAll('.four-needle-distribution span').length,4);
+  assert.match(needle.querySelector('.four-needle-footer').textContent,
+   /POLLING-ONLY|AWAITING LIVE RETURNS|RESULTS-INFORMED/,
+   'Needle must attribute its source mode instead of implying certified results');
   assert.equal(needle.querySelector('.four-needle-arrow').style.left,
    expectedNeedlePosition.toFixed(2)+'%',
    'Needle must use the same Four Endings distribution as the rendered odds');

@@ -177,6 +177,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 #electionNight .en-fish-settings button{padding:7px 10px;border:1px solid #6b98b0;border-radius:8px;background:#244e66;color:#f3f8fa;cursor:pointer}
 #electionNight .en-fish-settings p{max-width:240px;font-size:.75rem;line-height:1.4;margin:5px 0 0}
 #electionNight #jointNightPanel.en-archive-mode>:not(.joint-title):not(#enArchiveOutcome){display:none!important}
+#electionNight #enAdvancedLab[hidden]{display:none!important}
 #electionNight .en-archive-outcome{padding:15px 20px;background:linear-gradient(120deg,#351e2a,#1c2032);border-radius:12px;border:1px solid #7e5963}
 #electionNight .en-archive-outcome[hidden]{display:none}
 #electionNight .en-archive-outcome-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;color:#eddfe0;font-size:.76rem;letter-spacing:.07em}
@@ -2846,13 +2847,20 @@ function jointRenderNeedles(result){
   // This expectation tracks the center of gravity, NOT a probability of a call.
   const position=(v[1]+2*v[2]+3*v[3])/(3*total)*100;
   const likely=v.indexOf(Math.max(...v));
+  const liveCount=Object.keys(jointLiveObservations()).length;
+  const startOfCounting=Date.parse('2026-11-03T05:00:00Z');
+  const sourceMode=Date.now()<startOfCounting?'POLLING-ONLY · NO LIVE RETURNS':
+   liveCount?'RESULTS-INFORMED · '+liveCount+' SOURCE-VALIDATED RACES':
+   'AWAITING LIVE RETURNS · POLLING PRIORS';
   marker.style.left=Math.max(0,Math.min(100,position)).toFixed(2)+'%';
   host.setAttribute('aria-label','2026 correlated Four Endings forecast. '+
    keys.map((k,i)=>labels[i]+' '+v[i].toFixed(1)+' percent').join(', ')+
-   '. Expected scenario pointer '+position.toFixed(1)+' percent along spectrum.');
+   '. Expected scenario pointer '+position.toFixed(1)+' percent along spectrum. '+
+   sourceMode+'. Not a certified election result.');
   foot.firstElementChild.textContent='Needle tilts '+labels[likely]+
    ' · '+v[likely].toFixed(1)+'% most likely individual ending';
-  foot.lastElementChild.textContent=result.samples+' linked simulated elections';
+  foot.lastElementChild.textContent=sourceMode+' · '+
+   result.samples.toLocaleString('en-US')+' same-draw simulations';
   bar.replaceChildren();
   for(let i=0;i<4;i++){
    const span=elt('span','');
@@ -4615,6 +4623,8 @@ function enRender(){
  // Never re-label today's 2026 chamber probabilities as a 2024 forecast.
  const archive=enModeYear===2024,nightPanel=$('#jointNightPanel');
  nightPanel.classList.toggle('en-archive-mode',archive);
+ // A 2026 forecast/rehearsal monitor must never masquerade as 2024 data.
+ $('#enAdvancedLab').hidden=archive;
  $('#enArchiveOutcome').hidden=!archive;
  nightPanel.querySelector('.joint-title h3').textContent=archive?
   '2024 · What actually happened':'Where the night is headed';
