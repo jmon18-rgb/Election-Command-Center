@@ -402,6 +402,8 @@ async function settle(){
  assert(get('#enMilestonePoster').getAttribute('src').includes('cdn.loc.gov/service/pnp/ppmsca/23700/23764v.jpg'),
   'Kansas achievement should feature an actual authenticated 1859 John Brown portrait');
  assert(get('#enMilestonePoster').classList.contains('historic-john-brown'));
+ assert.equal(get('#enJohnBrownPosterTitle').hidden,false);
+ assert.match(get('#enJohnBrownPosterTitle').textContent,/BLEEDING KANSAS/);
  assert.match(get('#enMilestoneSource').textContent,/Library of Congress/,
   'Verify the archival photographic source in the preview');
  assert.match(get('#enMilestonePoster').alt,/John Brown/i);
@@ -410,6 +412,8 @@ async function settle(){
  get('#enTsunamiPreview').click();
  assert.equal(get('#enMilestonePoster').hidden,true,
   'Switching to the Blue Tsunami preview must hide the previous state-specific poster');
+ assert.equal(get('#enJohnBrownPosterTitle').hidden,true,
+  'Switching away from Kansas must hide its historical photo banner');
  assert.match(get('#enMilestoneKicker').textContent,/PREVIEW/);
  assert.match(get('#enMilestoneTitle').textContent,/BLUE WAVE/);
  assert.match(get('#enMilestoneSource').textContent,/DEMO ONLY/);
