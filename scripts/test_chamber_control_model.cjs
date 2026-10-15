@@ -350,5 +350,32 @@ assert.throws(()=>model.simulate(basis,{samples:1000,senateDemHoldovers:45}),/ho
 const shock=model.simulate(basis,{samples:1200,seed:20261103,
  live:{'NC-SEN':{mode:'live_informed',posteriorMargin:-40,posteriorSigma:1}}});
 assert.notDeepEqual(shock,first,'Observed-result map should affect simulations');
+const calledD=model.simulate(basis,{samples:900,seed:20261103,
+ live:{'NC-SEN':{mode:'source_called',winnerParty:'D'},
+       'VA-02':{mode:'source_called',winnerParty:'R'}}});
+const ncD=calledD.race_probabilities.find(x=>x.race_code==='NC-SEN');
+const vaR=calledD.race_probabilities.find(x=>x.race_code==='VA-02');
+assert.equal(ncD.dem_beats_rep_pct,100,
+ 'A verified D provider call must fix that race across ALL simulated elections');
+assert.equal(ncD.simulated_dem_wins,900);
+assert.equal(ncD.provider_called_party,'D');
+assert.equal(vaR.dem_beats_rep_pct,0);
+assert.equal(vaR.provider_called_party,'R');
+assert.equal(calledD.race_probabilities.length,first.race_probabilities.length);
+assert(Math.abs(Object.values(calledD.probabilities).reduce((a,b)=>a+b,0)-100)<.12);
+const calledR=model.simulate(basis,{samples:900,seed:20261103,
+ live:{'NC-SEN':{mode:'source_called',winnerParty:'R'}}});
+assert.equal(calledR.race_probabilities.find(x=>x.race_code==='NC-SEN').dem_beats_rep_pct,0,
+ 'A corrected source winner may reverse the simulated outcome');
+const withdrawn=model.simulate(basis,{samples:900,seed:20261103,live:{}});
+assert.equal(withdrawn.race_probabilities.find(x=>x.race_code==='NC-SEN').provider_called_party,null,
+ 'Removing a source call restores the probabilistic forecast');
+assert(withdrawn.race_probabilities.find(x=>x.race_code==='NC-SEN').dem_beats_rep_pct>0,
+ 'A retracted D/R call cannot leave an artificial zero/one probability');
+assert.equal(model.simulate(basis,{samples:900,seed:20261103,
+ live:{'NC-SEN':{mode:'source_called',winnerParty:'O'}}})
+ .race_probabilities.find(x=>x.race_code==='NC-SEN').provider_called_party,null,
+ 'An independent-party field must never silently become a D/R source call');
+
 console.log('Joint congressional beta: all 470 contested seats, 6 gov battlegrounds, 4 exhaustive outcomes, geographically cautious assumptions, reproducible seeded draws');
 console.log('Model probabilities (diagnostic only):',JSON.stringify(first.probabilities));

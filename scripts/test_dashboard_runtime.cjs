@@ -267,6 +267,60 @@ async function settle(){
  w.Date.now=()=>Date.parse('2026-11-04T03:20:00Z');
  get('#electionNight').classList.add('active');
  get('#enMode2026').click();
+ // A provider-reported winner call must constrain this race in ALL correlated
+ // House/Senate simulation draws, not merely contribute a tiny partial lead.
+ // NC has a state-derived primary results feed; a separately identity-checked
+ // civicAPI call must still be honored by the joint model.
+ // Test through the actual provider lookup, identity validation and
+ // fetch/revision path. No injected global state or test-only production hook.
+ const beforeSourceCallFishPlays=fishAudioPlays;
+ const beforeNcFetch=w.fetch;
+ const ncRow={id:8241,country:'US',province:'NC',municipality:null,
+  election_date:'2026-11-03',election_name:'NC US Senate General Election',
+  election_type:'General',type:'US Senate',district:null,candidates:[]};
+ let ncCalledParty='R';
+ const ncCandidateData=()=>[
+  {name:'Mock Democrat',party:'Democratic',votes:100100,percent:52.6842,
+   winner:ncCalledParty==='D'},
+  {name:'Mock Republican',party:'Republican',votes:89900,percent:47.3158,
+   winner:ncCalledParty==='R'}];
+ w.fetch=async(url,opts)=>{
+  if(String(url).startsWith('https://civicapi.org/api/v2/race/search?'))
+   return {ok:true,json:async()=>({races:[ncRow],count:1})};
+  if(String(url)==='https://civicapi.org/api/v2/race/8241?light=')
+   return {ok:true,json:async()=>({...ncRow,election_type:'US Senate',
+    last_updated:'2026-11-04T03:05:00Z',percent_reporting:82,
+    candidates:ncCandidateData()})};
+  return beforeNcFetch(url,opts);
+ };
+ w.eval('enWatchToggle({office:"Senate",key:"NC"})');
+ await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
+ w.eval('jointRender(true)');
+ let calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
+ assert.equal(calledRace.provider_called_party,'R');
+ assert.equal(calledRace.dem_beats_rep_pct,0,
+  'A vetted civicAPI Republican call constrains a primary-covered race');
+ assert.equal(w.eval("Object.values(jointForecastResult().probabilities).reduce((a,b)=>a+b,0)").toFixed(1),'100.0');
+ ncCalledParty='D';
+ await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
+ w.eval('jointRender(false)');
+ calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
+ assert.equal(calledRace.dem_beats_rep_pct,100,
+  'Same-timestamp corrected provider call must reverse simulated winner');
+ ncCalledParty=null;
+ await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
+ w.eval('jointRender(false)');
+ calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
+ assert.equal(calledRace.provider_called_party,null,
+  'Withdrawing a winner call restores uncertain election-night simulation');
+ w.eval('enWatchToggle({office:"Senate",key:"NC"})');
+ w.fetch=beforeNcFetch;
+ w.eval('jointRender(true)');
+ // Synthetic provider-call regressions may legitimately queue the Fish Head
+ // broadcast. They must not contaminate the independent Fish Head test below.
+ w.eval('enFishDismiss()');
+ get('#enAlertClear').click();
+ fishAudioPlays=beforeSourceCallFishPlays;
  assert.equal(get('#enMilestoneDesk').hidden,false,'2026 mode reveals achievements');
  assert.equal(get('#enMilestoneGrid').querySelectorAll('.en-milestone-card').length,7);
  const posterCards=[...get('#enMilestoneGrid').querySelectorAll('.en-milestone-card')];
@@ -1363,7 +1417,7 @@ async function settle(){
  assert.equal(Object.values(jointBase.counts).reduce((sum,n)=>sum+n,0),3000);
  assert(w.eval('Object.keys(jointLiveObservations()).includes("NC-SEN")'),
   'The live joint model should integrate verified current NC Senate returns');
- assert.match(get('#jointRunStatus').textContent,/source-validated live-informed races/);
+ assert.match(get('#jointRunStatus').textContent,/source-validated races \(\d+ provider calls\)/);
  const housePrior=jointBase.means.house_dem_seats;
  get('#jointSwing').value='-3';
  get('#jointSwing').dispatchEvent(new w.Event('change',{bubbles:true}));
