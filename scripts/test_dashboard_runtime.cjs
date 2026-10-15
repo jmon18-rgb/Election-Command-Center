@@ -1231,6 +1231,18 @@ async function settle(){
  w.eval('jointRender(true)');
  assert.equal(get('#jointHomeCards').querySelectorAll('.joint-cell').length,4);
  assert.equal(get('#jointNightCards').querySelectorAll('.joint-cell').length,4);
+ const needleForecast=w.eval('jointForecastResult()');
+ const needleProb=needleForecast.probabilities;
+ const expectedNeedlePosition=(needleProb.shrug+2*needleProb.blue_wave+
+  3*needleProb.blue_tsunami)/300*100;
+ for(const selector of ['#jointHomeNeedle','#jointNightNeedle']){
+  const needle=get(selector);
+  assert.match(needle.getAttribute('aria-label'),/2026 correlated Four Endings forecast/);
+  assert.equal(needle.querySelectorAll('.four-needle-distribution span').length,4);
+  assert.equal(needle.querySelector('.four-needle-arrow').style.left,
+   expectedNeedlePosition.toFixed(2)+'%',
+   'Needle must use the same Four Endings distribution as the rendered odds');
+ }
  assert.match(get('#jointHomeSummary').textContent,/3,000 correlated simulated elections/);
  assert.match(get('#jointHomeAudit').textContent,/2020 poll minus result/);
  assert.match(get('#jointNightAudit').textContent,/NO automatic historic partisan correction/);
