@@ -2846,92 +2846,135 @@ function smartReportedExtras(model,existing){
 function smartRaceRanked(){
  const api=window.AutomaticRaceDesk;
  if(!api)return [];
- // The reference seed is intentionally immutable; every render creates
- // mutable view records so simulation/source updates cannot mutate the
- // screenshots or silently fail assignment of current priority.
  const modeled=smartModelMap(),all=smartAutoWatch().map(item=>({...item}));
  all.push(...smartReportedExtras(modeled,all));
  const now=Date.now();
  const recentFlip=new Set(enMovements.filter(x=>x.leaderChanged&&
-   !x.withdrawn&&Number.isFinite(Date.parse(x.at))&&
-   now-Date.parse(x.at)<60*60000).map(x=>x.office+'|'+x.key));
+  !x.withdrawn&&Number.isFinite(Date.parse(x.at))&&
+  now-Date.parse(x.at)<60*60000).map(x=>x.office+'|'+x.key));
+ const polls=new Map([...(latestSenateEstimates?.senate_all||[]),
+  ...(latestSenateEstimates?.house||[]),...(latestSenateEstimates?.governor||[])]
+  .filter(x=>x?.race_code&&['single_poll','multi_poll'].includes(x.status)&&
+   Number.isFinite(x.dem_minus_rep)).map(x=>[x.race_code,x]));
  for(const item of all){
-  const m=modeled.get(item.code),live=smartRaceSource(item);
-  item.model=m;item.live=live;
-  item.priority=api.priority(item,{modelWinPct:m?.dem_beats_rep_pct,
-   live,flipped:recentFlip.has(enWatchId(item)),now});
+  item.model=modeled.get(item.code)||null;
+  item.poll=polls.get(item.code)||null;
+  item.live=smartRaceSource(item);
+  item.priority=api.priority(item,{modelWinPct:item.model?.dem_beats_rep_pct,
+   live:item.live,flipped:recentFlip.has(enWatchId(item)),now});
+  // Screenshot reference percentages only seed discovery. Once a race has
+  // actual linked-model odds or a qualified polling average, its current
+  // competitiveness and validated reporting drive editorial placement.
+  const m=item.model?.dem_beats_rep_pct,p=item.poll?.dem_minus_rep;
+  const closeOdds=Number.isFinite(m)?1-Math.abs(m-50)/50:0;
+  const closePoll=Number.isFinite(p)?Math.max(0,1-Math.abs(p)/12):0;
+  item.editorScore=item.priority.score+(Number.isFinite(m)?20*closeOdds:0)+
+    (Number.isFinite(p)?15*closePoll:0)+(item.live?15:0);
  }
  return all;
 }
-function smartRow(item){
- const row=elt('div','smart-desk-row'),id=elt('div','smart-desk-identity'),
-   stats=elt('div','smart-desk-detail'),tag=elt('span','smart-desk-state');
- const a=elt('a','smart-desk-open',item.code);
- a.href='#electionNight';a.title='Open the election-night results desk for '+item.code;
- id.append(a);
- if(item.tip!==null&&item.tip!==undefined)
-  id.append(elt('small','',item.tip+'% reference tipping-point share'));
- else id.append(elt('small','',item.added==='reported-source'?'Promoted by reported vote count':'Model-uncertainty discovery'));
- const prior=item.model,live=item.live,priority=item.priority;
- const modelMargin=Number.isFinite(prior?.model_dem_margin_points)?
-  'Model '+marginText(prior.model_dem_margin_points):'Model estimate pending';
- if(priority.reporting){
-  const reportedMargin=priority.rawMargin===null?'Two-party margin unavailable':
-   'Reported '+marginText(priority.rawMargin);
-  stats.append(elt('strong','',reportedMargin),
-   elt('small','',(Number.isFinite(priority.precincts)?
-    priority.precincts.toFixed(0)+'% precincts · ':'')+
-    live.votes.toLocaleString('en-US')+' votes · '+priority.source));
-  tag.dataset.state=priority.called?'called':'reporting';
-  tag.textContent=priority.called?'CALL · '+priority.called:
-   priority.why==='Reported vote leader changed'?'LEAD FLIP':'REPORTING';
-  if(priority.called)tag.title=live.callSource+' source reports '+live.calledName+
-   ' as winner; not official certification';
- }else{
-  stats.append(elt('strong','',modelMargin),elt('small','',priority.why));
-  tag.dataset.state='pending';tag.textContent='WATCH';
- }
- row.append(id,stats,tag);
- return row;
+function smartEligible(item){
+ return Boolean(item.live||Number.isFinite(item.model?.dem_beats_rep_pct)||
+  Number.isFinite(item.poll?.dem_minus_rep));
 }
-function smartRaceLane(label,items,expanded,limit){
- const lane=elt('div','smart-desk-lane'),head=elt('div','smart-desk-lane-head');
- head.append(elt('strong','',label),elt('span','',items.length+' tracked'));
- lane.append(head);
- for(const item of items.slice(0,expanded?items.length:limit))lane.append(smartRow(item));
- if(!items.length)lane.append(elt('p','empty','Waiting for model coverage or validated sources.'));
- return lane;
+function smartSort(rows){
+ return rows.sort((a,b)=>b.editorScore-a.editorScore||
+  a.code.localeCompare(b.code));
+}
+function smartFeatured(all,isNight,expanded){
+ const active=smartSort(all.filter(smartEligible));
+ if(expanded)return active;
+ const senate=active.filter(x=>x.office==='Senate').slice(0,isNight?4:4);
+ const house=active.filter(x=>x.office==='House').slice(0,isNight?4:3);
+ const governor=active.filter(x=>x.office==='Governor').slice(0,1);
+ const featured=[...senate,...house,...governor],used=new Set(featured.map(x=>x.code));
+ for(const x of active)if(featured.length<(isNight?10:8)&&!used.has(x.code)){
+  featured.push(x);used.add(x.code);
+ }
+ return smartSort(featured);
+}
+function smartRaceReason(item){
+ const p=item.priority;
+ if(p.called)return 'Provider call · unofficial';
+ if(p.reporting)return p.why;
+ if(item.office==='Senate')return 'Senate control watch';
+ if(item.office==='Governor')return 'Statewide battleground';
+ return 'House seat watch';
+}
+function smartRow(item){
+ const cell=elt('a','smart-signal');
+ cell.href=item.priority.reporting?'#electionNight':'#model';
+ cell.title='View '+item.code+' in '+(item.priority.reporting?'Election Night':'JackStradamus');
+ cell.dataset.race=item.code;
+ const info=elt('span','smart-signal-info');
+ const identity=elt('strong','smart-signal-name',item.code);
+ const reason=elt('span','smart-signal-reason',smartRaceReason(item));
+ info.append(identity,reason);
+ const figures=elt('span','smart-signal-figures');
+ const model=item.model,poll=item.poll;
+ const shortMargin=v=>(v>=0?'D+':'R+')+Math.abs(v).toFixed(1);
+ const margin=Number.isFinite(model?.model_dem_margin_points)?
+  'Model '+shortMargin(model.model_dem_margin_points):'';
+ const average=Number.isFinite(poll?.dem_minus_rep)?
+  'Poll '+shortMargin(poll.dem_minus_rep):'';
+ const evidence=[margin,average].filter(Boolean);
+ const readings=elt('span','smart-signal-readings',
+  evidence.length?evidence.join(' · '):item.priority.reporting?'Reported votes':'Polling pending');
+ const sub=elt('span','smart-signal-sub');
+ if(item.priority.reporting){
+  const live=item.live;
+  sub.textContent=(item.priority.rawMargin===null?'Votes in':
+   'Votes '+shortMargin(item.priority.rawMargin))+
+   (Number.isFinite(item.priority.precincts)?
+    ' · '+Math.round(item.priority.precincts)+'% precincts':'')+
+   ' · '+live.source;
+ }else if(model?.provider_called_party){
+  sub.textContent='Source-reported winner · '+model.provider_called_party;
+ }else if(item.poll?.contributing_pollsters){
+  sub.textContent=item.poll.contributing_pollsters+' qualifying pollster'+
+   (item.poll.contributing_pollsters===1?'':'s');
+ }else sub.textContent='';
+ figures.append(readings,sub);
+ const outcome=elt('span','smart-signal-outcome');
+ if(item.priority.called){
+  outcome.dataset.party=item.priority.called;
+  outcome.append(elt('strong','','CALLED '+item.priority.called),
+   elt('small','','source report'));
+ }else if(Number.isFinite(model?.dem_beats_rep_pct)){
+  const dem=model.dem_beats_rep_pct>=50;
+  const independent=item.code==='NE-SEN';
+  const favorite=dem?(independent?'OSBORN':'D'):'R';
+  outcome.dataset.party=independent&&dem?'O':dem?'D':'R';
+  outcome.append(elt('strong','',favorite+' '+(dem?model.dem_beats_rep_pct:
+   100-model.dem_beats_rep_pct).toFixed(0)+'%'),
+   elt('small','','win chance'));
+ }else{
+  outcome.append(elt('strong','','—'),elt('small','','odds pending'));
+ }
+ const arrow=elt('span','smart-signal-arrow','›');arrow.setAttribute('aria-hidden','true');
+ cell.append(info,figures,outcome,arrow);
+ return cell;
 }
 function renderSmartRaceDesks(){
- const api=window.AutomaticRaceDesk;
- if(!api)return;
+ const api=window.AutomaticRaceDesk;if(!api)return;
  const all=smartRaceRanked();
- for(const [hostId,expand,deskId] of [
+ for(const [hostId,expanded,deskId] of [
   ['smartBriefGrid',smartBriefExpanded,'smartBriefDesk'],
   ['smartNightGrid',smartNightExpanded,'smartNightDesk']]){
-  const host=$('#'+hostId),desk=$('#'+deskId);
-  if(!host||!desk)continue;
-  const isNight=deskId==='smartNightDesk';
-  if(isNight)desk.hidden=enModeYear!==2026;
-  if(isNight&&desk.hidden)continue;
-  const senate=api.sort(all,'Senate'),house=api.sort(all,'House'),
-   governors=api.sort(all,'Governor');
+  const host=$('#'+hostId),desk=$('#'+deskId);if(!host||!desk)continue;
+  const night=deskId==='smartNightDesk';
+  if(night)desk.hidden=enModeYear!==2026;
+  if(night&&desk.hidden)continue;
+  const eligible=all.filter(smartEligible),rows=smartFeatured(all,night,expanded);
   host.replaceChildren();
-  host.append(smartRaceLane('SENATE',senate,expand,isNight?7:6),
-    smartRaceLane('HOUSE',house,expand,isNight?9:6));
-  // Governors matter to milestone triggers even when absent from the
-  // screenshot House/Senate tipping-point tables.
-  const g=elt('div','smart-desk-lane smart-governors');
-  const gh=elt('div','smart-desk-lane-head');
-  gh.append(elt('strong','','GOVERNORS & STATEWIDE'),elt('span','',governors.length+' tracked'));
-  g.append(gh);
-  for(const row of governors.slice(0,expand?governors.length:3))g.append(smartRow(row));
-  host.append(g);
-  const note=$('#'+(isNight?'smartNightNote':'smartBriefNote'));
-  if(note)note.textContent=all.length+' automatically followed races (plus 2026 result-driven discoveries) · '+
-   all.filter(x=>x.priority.reporting).length+' current source-reporting races · '+
-   'source-specific 2026 updates only; no historic vote leakage · '+
-   'reference tipping-point percentages are from supplied screenshots, not live Silver or JackStradamus odds.';
+  if(!rows.length){
+   host.append(elt('p','empty','Race odds and polling are loading.'));continue;
+  }
+  for(const x of rows)host.append(smartRow(x));
+  const note=$('#'+(night?'smartNightNote':'smartBriefNote'));
+  if(note)note.textContent=eligible.length+' races with model odds, polls or verified returns · '+
+   eligible.filter(x=>x.priority.reporting).length+' reporting now. '+
+   'Modeled win probabilities are experimental; reference tipping-point shares are for finding races, not forecasting them.';
  }
 }
 for(const [buttonId,setter] of [
@@ -2941,7 +2984,7 @@ for(const [buttonId,setter] of [
  if(button)button.addEventListener('click',()=>{
   const next=button.getAttribute('aria-expanded')!=='true';
   button.setAttribute('aria-expanded',String(next));
-  button.textContent=next?'Show fewer races':'Show more races';
+  button.textContent=next?'Top races ↑':'All races ↓';
   setter(next);
  });
 }
