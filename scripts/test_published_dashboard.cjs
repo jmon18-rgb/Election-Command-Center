@@ -15,6 +15,7 @@ const {readFileSync}=require('node:fs');
 const path=require('node:path');
 const crypto=require('node:crypto');
 const vm=require('node:vm');
+const csvFundamentals=require('./private_senate_fundamentals.js');
 const root=path.resolve(__dirname,'..');
 const remote=process.argv.includes('--remote');
 assert(!(remote&&process.argv.includes('--local')),'Select only one source mode');
@@ -94,6 +95,17 @@ async function main(){
   assert.equal(crypto.createHash('sha256').update(soundBytes).digest('hex'),
    '37245c9cba556e7ee3ed03bc97e8e54006bdefd0ffe80c846c478a5da6da223e',
    'The deployed sound differs from the uploaded recording');
+ });
+ const senateCsv=csvFundamentals.parse(await load('ZqBdM (1).csv'));
+ const houseCsv=csvFundamentals.parse(await load('f3ome (1).csv'));
+ check('published Senate+House candidate fundamentals CSVs are valid active sources',()=>{
+  assert.equal(senateCsv.kind,'senateFundamentals');
+  assert.equal(Object.keys(senateCsv.states).length,28);
+  assert.equal(houseCsv.kind,'houseFundamentals');
+  assert.equal(Object.keys(houseCsv.states).length,98);
+  assert(html.includes('jointLoadRepositoryFundamentals()'));
+  assert(html.includes("repositoryPublished:jointPrivateSource==='repository'"));
+  assert(html.includes('jointPrivateHouse=true'));
  });
  const refs=[...html.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["']/g)].map(x=>x[1]);
  check('all external scripts are repository-local and content-addressed',()=>{
