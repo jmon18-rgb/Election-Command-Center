@@ -262,6 +262,7 @@ async function settle(){
  // civicAPI call must still be honored by the joint model.
  // Test through the actual provider lookup, identity validation and
  // fetch/revision path. No injected global state or test-only production hook.
+ const beforeSourceCallFishPlays=fishAudioPlays;
  const beforeNcFetch=w.fetch;
  const ncRow={id:8241,country:'US',province:'NC',municipality:null,
   election_date:'2026-11-03',election_name:'NC US Senate General Election',
@@ -304,6 +305,11 @@ async function settle(){
  w.eval('enWatchToggle({office:"Senate",key:"NC"})');
  w.fetch=beforeNcFetch;
  w.eval('jointRender(true)');
+ // Synthetic provider-call regressions may legitimately queue the Fish Head
+ // broadcast. They must not contaminate the independent Fish Head test below.
+ w.eval('enFishDismiss()');
+ get('#enAlertClear').click();
+ fishAudioPlays=beforeSourceCallFishPlays;
  assert.equal(get('#enMilestoneDesk').hidden,false,'2026 mode reveals achievements');
  assert.equal(get('#enMilestoneGrid').querySelectorAll('.en-milestone-card').length,7);
  get('#enTsunamiPreview').click();
