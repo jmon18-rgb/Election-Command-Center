@@ -205,6 +205,9 @@ def estimate(race, today, generic=False):
         "pollsters":[{
             "name":p["pollster"],"field_end":p["field_end"],
             "poll_id":p.get("poll_id"),
+            "question_id":p.get("question_id"),
+            "sample_population":p.get("sample_population"),
+            "dem":p.get("dem"),"rep":p.get("rep"),
             "sample_size":p.get("sample_size"),
             "partisan_lean":p.get("partisan_lean") or "",
             "weight_share":round(100*weighted(p,today)/sw,3),
