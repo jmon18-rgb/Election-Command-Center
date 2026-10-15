@@ -1581,6 +1581,16 @@ function setPostedPollingSnapshot(snapshot){
  renderPollWire();
 }
 let feedHealth={polls:null,news:null};
+// Read-only source-lineage diagnostic for production QA and browser regressions.
+function livePollingRevisionStatus(){
+ return {
+  primary_at:pollingSnapshot?.updated_at||null,
+  model_at:latestSenateEstimates?.generated_at||null,
+  model_source_at:latestSenateEstimates?.source_snapshot||null,
+  health_source_at:feedHealth.polls?.updated_at||null,
+  iowa_margin:latestSenateEstimates?.senate_all?.find(r=>r.race_code==='IA-SEN')?.dem_minus_rep??null
+ };
+}
 function updateHealth(){const parts=[];let good=0;for(const [name,item] of Object.entries(feedHealth)){if(!item){parts.push(name+': unavailable');continue}const date=item.updated_at?new Date(item.updated_at):null;const age=date&&!isNaN(+date)?(Date.now()-date.getTime())/3600000:Infinity;const status=item.health?.status||(item.pipeline?.successful_queries?'available':'unknown');const label=!Number.isFinite(age)?'no timestamp':age<-.25?'clock mismatch':age<12?'fresh':age<48?'delayed':'stale';if(age>=-.25&&age<12&&status!=='error')good++;parts.push(name+': '+label+(Number.isFinite(age)?' ('+Math.max(0,Math.round(age))+'h old)':''))}$('#healthText').textContent=parts.join(' · ');$('#healthDot').className='healthdot '+(good===2?'ok':good===0?'bad':'');const diagnostics=$('#feedDiagnostics');if(diagnostics){diagnostics.replaceChildren();for(const p of parts)diagnostics.append(elt('div','item',p))}}
 
 function elt(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=txt;return e}
