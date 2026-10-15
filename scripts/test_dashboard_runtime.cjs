@@ -674,7 +674,7 @@ async function settle(){
  researchDrawer.open=false;
  assert.match(get('#jointHomeSummary').textContent,/D House control [0-9.]+%/);
  assert.match(get('#jointHomeSummary').textContent,/D Senate control [0-9.]+%/);
- assert.match(get('#jointHomeSummary').textContent,/central 90% of draws/);
+ assert.match(get('#jointHomeSummary').title,/central 90% D seats/);
  assert.match(get('#jointNightSummary').textContent,/D House control [0-9.]+%/);
  assert.match(get('#jointHomeShadow').textContent,/191\/435 House districts/);
  assert.match(get('#jointHomeShadow').textContent,/NOT independently backtested/);
@@ -1454,13 +1454,14 @@ async function settle(){
    expectedNeedlePosition.toFixed(2)+'%',
    'Needle must use the same Four Endings distribution as the rendered odds');
  }
- assert.match(get('#jointHomeSummary').textContent,/3,000 correlated simulated elections/);
+ assert.match(get('#jointHomeSummary').title,/3,000 correlated draws/);
  assert.match(get('#jointHomeAudit').textContent,/2020 poll minus result/);
  assert.match(get('#jointNightAudit').textContent,/NO automatic historic partisan correction/);
  assert.match(get('#jointHomeAudit').textContent,/NOT calibration/);
  assert.match(get('#jointHomeAudit').textContent,/Held-out-cycle mean Brier score/);
  assert.match(get('#jointNightAudit').textContent,/90% coverage was/);
- assert(get('#jointNightCards').textContent.includes('18/20 races'),'Condensed card must still define tsunami threshold');
+ assert(get('#jointNightCards').textContent.includes('≥235 House · ≥52 Senate'),
+ 'Condensed card must define the new seat-based tsunami threshold');
 
  assert.match(get('#jointNightCards').textContent,/BLUE TSUNAMI/);
  assert.match(get('#jointNightCards').textContent,/BLUE WAVE/);
@@ -2743,7 +2744,7 @@ async function settle(){
   assert.equal(get('#jointHomeCards').querySelectorAll('.joint-value')[i].textContent,value);
   assert.equal(get('#jointNightCards').querySelectorAll('.joint-value')[i].textContent,value);
  }
- assert.match(get('#jointHomeSummary').textContent,/2 min/);
+ assert.match(get('#jointHomeSummary').title,/central 90% D seats/);
  const currentMS=w.eval("jointForecastResult().race_probabilities.find(x=>x.office==='senate'&&x.race_code==='MS-SEN').dem_beats_rep_pct");
  assert(get('#mississippiSenateWatch').textContent.includes(
   (currentMS>=50?currentMS:100-currentMS).toFixed(1)+'%'),

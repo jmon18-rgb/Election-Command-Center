@@ -131,10 +131,10 @@ const output={
  shared_variance_unchanged:true,house_probabilities_unchanged:true,
  historical_scorecard:cohort,
  before:{senate_control_d_pct:original.senate_dem_control_pct,
-  both_control_d_pct:original.blue_both_including_tsunami,
+  both_control_d_pct:original.actual_dem_both_control_pct,
   expected_d_senate_seats:original.means.senate_dem_seats},
  after:{senate_control_d_pct:proposed.senate_dem_control_pct,
-  both_control_d_pct:proposed.blue_both_including_tsunami,
+  both_control_d_pct:proposed.actual_dem_both_control_pct,
   expected_d_senate_seats:proposed.means.senate_dem_seats},
  races};
 if(process.argv.includes('--json'))console.log(JSON.stringify(output,null,2));

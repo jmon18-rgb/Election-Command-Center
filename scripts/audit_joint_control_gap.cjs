@@ -65,9 +65,10 @@ const cases=[
 const result=cases.map(([name,basis])=>{
  const sim=model.simulate(basis,{samples,seed,explainControl:true});
  const c=sim.control_explanation;
- const joint=sim.blue_both_including_tsunami;
+ const joint=sim.actual_dem_both_control_pct;
  assert(Math.abs(c.both_dem_pct-joint)<.01);
- assert(Math.abs(c.house_only_pct+c.senate_only_pct-sim.probabilities.shrug)<.02);
+ assert(Math.abs(c.house_only_pct+c.senate_only_pct-
+  (sim.house_dem_control_pct+sim.senate_dem_control_pct-2*joint))<.03);
  assert(Math.abs(c.both_dem_pct+c.house_only_pct-
   sim.house_dem_control_pct)<.02);
  assert(Math.abs(c.both_dem_pct+c.senate_only_pct-

@@ -21,16 +21,17 @@ const cases=[
 ];
 const outputs=cases.map(c=>{
  const x=model.simulate(basis,{samples,seed,nationalShift:c.shift,errorMultiplier:c.error});
- const both=x.blue_both_including_tsunami;
- const houseOnlyOrSenateOnly=x.probabilities.shrug;
+ const both=x.actual_dem_both_control_pct;
+ const houseOnlyOrSenateOnly=x.house_dem_control_pct+x.senate_dem_control_pct-2*both;
  const p=x.probabilities;
  if(Math.abs(p.blue_wave+p.blue_tsunami+p.shrug+p.red_dawn-100)>.05)
   throw Error('Forecast buckets not exhaustive: '+c.id);
  return {case:c.id,national_margin_shift_points:c.shift,
   error_scale_multiplier:c.error,dem_both_chambers_pct:both,
   dem_exactly_one_chamber_pct:houseOnlyOrSenateOnly,
-  republican_both_chambers_pct:p.red_dawn,
-  dem_near_sweep_and_both_pct:p.blue_tsunami,
+  republican_both_chambers_pct:100-x.house_dem_control_pct-x.senate_dem_control_pct+both,
+  relaxed_wave_or_tsunami_pct:x.blue_both_including_tsunami,
+  dem_235_house_52_senate_tsunami_pct:p.blue_tsunami,
   dem_average_house_seats:x.means.house_dem_seats,
   dem_average_senate_seats:x.means.senate_dem_seats};
 });
@@ -53,7 +54,7 @@ const report={schema_version:'forecast-optimism-audit-v1',
   'House baseline extrapolates recorded 2024 House votes using the generic ballot; generic ballot and historical observed votes are not directly equivalent.',
   'Unpolled or redrawn districts depend heavily on inferred fundamentals and exchangeable statewide priors.',
   'Senate poll blending and national error variances are assumption-driven rather than fitted by 2026 holdout election outcomes.',
-  'The near-sweep slate is an arbitrary 20-race threshold, not a historically calibrated Blue Tsunami event.',
+  'The seat-based 235 House/52 Senate Tsunami is a user-defined outcome bucket, not a historically calibrated forecast.',
   'A 2-4 point shared election-day miss must be shown alongside any headline control odds; a single central estimate hides fragility.',
   'Silver FLIPR forecasts cannot be replicated by copying a topline probability; compare margins, fundamentals and correlations independently.'
  ],

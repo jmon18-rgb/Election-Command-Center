@@ -44,7 +44,7 @@ assert(Math.abs(result.bins.reduce((a,x)=>a+x.dem_house_control_pct*x.sample_cou
 assert(Math.abs(result.bins.reduce((a,x)=>a+x.dem_senate_control_pct*x.sample_count,0)/samples-
  weighed.senate_dem_control_pct)<.02);
 assert(Math.abs(result.bins.reduce((a,x)=>a+x.dem_both_control_pct*x.sample_count,0)/samples-
- weighed.blue_both_including_tsunami)<.02);
+ weighed.actual_dem_both_control_pct)<.02);
 assert(result.bins.every(x=>x.dem_margin_bin_from===x.dem_margin_bin_to-1&&
  x.sample_count>0&&x.sample_share_pct>0));
 assert.throws(()=>model.simulate(basis,{samples:300,voteSeatWeights:weights.slice(1)}),
@@ -65,7 +65,7 @@ const report={status:'EXPERIMENTAL_VOTE_SEAT_SAME_DRAW_REFERENCE_ONLY',
  samples,seed,headline:{
   house_dem_control_pct:weighed.house_dem_control_pct,
   senate_dem_control_pct:weighed.senate_dem_control_pct,
-  both_dem_control_pct:weighed.blue_both_including_tsunami,
+  both_dem_control_pct:weighed.actual_dem_both_control_pct,
   mean_dem_house_seats:weighed.means.house_dem_seats,
  },
  simulated_mean_weighted_house_margin:result.simulated_mean_weighted_dem_margin_points,

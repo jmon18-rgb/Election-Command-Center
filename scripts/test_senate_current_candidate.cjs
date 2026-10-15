@@ -150,8 +150,8 @@ const report={
   updated_house_dem_control_pct:updated.house_dem_control_pct,
   old_senate_dem_control_pct:baseline.senate_dem_control_pct,
   updated_senate_dem_control_pct:updated.senate_dem_control_pct,
-  old_both_dem_pct:baseline.blue_both_including_tsunami,
-  updated_both_dem_pct:updated.blue_both_including_tsunami,
+  old_both_dem_pct:baseline.actual_dem_both_control_pct,
+  updated_both_dem_pct:updated.actual_dem_both_control_pct,
   old_expected_senate_dem_seats:baseline.means.senate_dem_seats,
   new_expected_senate_dem_seats:updated.means.senate_dem_seats
  },

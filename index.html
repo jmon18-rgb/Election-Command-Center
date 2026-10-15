@@ -220,7 +220,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 #electionNight .en-early-pin[aria-pressed=true]{border-color:#85bed9;background:#264e65}
 #electionNight .en-fish-toast{position:fixed;inset:0;z-index:999;display:grid;place-items:center;padding:16px;background:#010913e9;color:#fff;overflow-y:auto;backdrop-filter:blur(12px)}
 #electionNight .en-fish-toast[hidden]{display:none}
-#electionNight .en-fish-stage{width:min(980px,100%);max-height:calc(100dvh - 32px);overflow:auto;border:4px solid #e3ba54;border-radius:19px;background:linear-gradient(160deg,#133b58,#071929 65%);box-shadow:0 10px 0 #d19d36,0 30px 120px #000e;animation:fishNewsArrive .35s cubic-bezier(.2,1.3,.45,1)}
+#electionNight .en-fish-stage{width:min(980px,100%);max-height:calc(100dvh - 32px);overflow:auto;border:4px solid #e3ba54;border-radius:19px;background:linear-gradient(160deg,#133b58,#071929 65%);box-shadow:0 10px 0 #d19d36,0 30px 120px #000e;animation:fishNewsArrive .95s cubic-bezier(.19,.9,.24,1)}
 #electionNight .en-fish-bumper{background:#b8202d;padding:12px 18px;font-size:clamp(12px,1.8vw,20px);font-weight:950;letter-spacing:.12em;display:flex;gap:10px;align-items:center;justify-content:center;text-align:center}
 #electionNight .en-fish-bumper-side{font-size:.58em;letter-spacing:.09em;color:#fff5d6;opacity:.9}
 #electionNight .en-fish-live-dot{height:12px;width:12px;flex:none;background:#fff5e5;border-radius:50%;box-shadow:0 0 13px #fff}
@@ -246,7 +246,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 #electionNight .en-fish-audio-status{font-size:.78rem;color:#c1d9e7;margin:2px 20px 13px;line-height:1.4}
 #electionNight .en-fish-attribution{font-size:.7rem;line-height:1.4;color:#a8c5d6;margin:0;padding:0 20px 12px}
 #electionNight .en-fish-attribution a{color:#e6d39d}
-@keyframes fishNewsArrive{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+@keyframes fishNewsArrive{from{opacity:.2;transform:translateY(102vh) scale(.96)}65%{opacity:1}to{opacity:1;transform:translateY(0) scale(1)}}
 @media(max-width:620px){#electionNight .en-fish-bumper-side{display:none}#electionNight .en-fish-broadcast{grid-template-columns:1fr}#electionNight .en-fish-art img{max-height:220px;min-height:150px;object-fit:cover;object-position:center 37%}#electionNight .en-fish-copy{gap:9px}#electionNight .en-fish-stage{max-height:calc(100dvh - 20px)}#electionNight .en-fish-toast{padding:10px}#electionNight .en-fish-screen-controls button{width:100%}}
 @media(prefers-reduced-motion:reduce){#electionNight .en-fish-stage{animation:none}}
 #electionNight .en-toolbar{position:sticky;top:0;z-index:8;padding:10px 0;background:#0c1928ed;backdrop-filter:blur(12px);border-bottom:1px solid #2a415a}
@@ -469,6 +469,9 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .race-workbench-body.card{margin:0}
 .race-workbench-body .sectionhead{margin-top:6px}
 .joint-note{font-size:11px;color:#9fb7cf;line-height:1.65;margin:9px 0 0}
+.bull-daily{margin:14px 0;padding:12px 16px;border:1px solid #365a70;background:#102435}
+.bull-daily .row{align-items:center;justify-content:space-between;gap:10px}
+.bull-daily .detail{font-size:12px;margin:7px 0 0;color:#bed4e3;line-height:1.5}
 .joint-tools{display:flex;flex-wrap:wrap;gap:11px;align-items:center;margin:13px 0 0;font-size:11px;color:#b9cee4}
 .joint-tools label{display:inline-flex;gap:5px;align-items:center}
 .joint-tools select{font-size:11px;border:1px solid #58718d;color:#e6f3ff;background:#213850;border-radius:6px;padding:6px}
@@ -710,7 +713,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <details class="joint-audit" id="jointHomeCorrelationDetails"><summary>How much do Senate races move together? · probability sensitivity</summary><div id="jointHomeCorrelation" class="joint-note">Open to compare a conservative historical covariance sensitivity without changing the forecast.</div></details>
  <details class="joint-audit"><summary>Historical polling-error check · how reliable is this?</summary><p id="jointHomeAudit" class="joint-note">Reading existing historical Senate poll backtest…</p></details>
  <details class="forecast-details brief-model-key"><summary>What do the four endings mean?</summary></details>
- <p class="joint-note">Blue Tsunami: D wins both chambers and at least 18 of 20 fixed battlegrounds. Blue Wave: D wins both without the near-sweep. Shrug: split control. Red Dawn: R wins both. Four exclusive outcomes, one uncalibrated correlated model.</p></details>
+ <p class="joint-note">Blue Wave: ≥218 D House and ≥49 D-aligned Senate seats. Blue Tsunami: ≥235 and ≥52. Shrug: one Wave threshold; Red Dawn: neither. <strong>49 Senate seats is not Senate control</strong>; control odds are shown separately.</p></details>
 </div>
 
 <section class="smart-race-desk" id="smartBriefDesk" aria-label="Automatically tracked 2026 Senate and House races">
@@ -726,7 +729,11 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <div id="racePulse" class="pulse-grid"><div class="empty">Checking for meaningful new polling evidence…</div></div>
 <p class="pulse-disclaimer">Changes in polling averages can reflect new surveys, weighting or timing—not necessarily a shift in voter opinion. Only current, qualifying observations are shown; older snapshots are compared only with identical candidate matchups.</p>
 <div class="sectionhead"><h2>On the radar</h2><span class="tiny" id="freshness">Checking latest update</span></div>
-<div class="card brief-news-card"><div class="row"><span class="label">Election developments</span><span class="tag">NEWS LEADS</span></div><p id="newsFeedStatus" class="tiny" role="status">Checking publication date…</p><div id="updates" class="empty">Loading recent election reporting.</div><button class="textlink" type="button" data-jump="integrity">Bullshittery Index →</button></div>
+<div class="card bull-daily" aria-label="Bullshittery Index daily pulse">
+  <div class="row"><strong>Bullshittery Index</strong><a class="textlink" href="#integrity">View sourced cases →</a></div>
+  <p id="bullDailyPulse" class="detail" role="status">Checking documented incidents and outstanding verification leads…</p>
+ </div>
+ <div class="card brief-news-card"><div class="row"><span class="label">Election developments</span><span class="tag">NEWS LEADS</span></div><p id="newsFeedStatus" class="tiny" role="status">Checking publication date…</p><div id="updates" class="empty">Loading recent election reporting.</div><button class="textlink" type="button" data-jump="integrity">Bullshittery Index →</button></div>
 <details class="brief-poll-log" id="briefPollLog"><summary><strong>The full poll log</strong><span id="changesSince">Checking recent surveys…</span><span class="poll-log-chevron" aria-hidden="true">⌄</span></summary>
 <div id="newPolls" class="empty">Checking recent poll postings…</div><button class="textlink" type="button" data-jump="wire">Open full Poll Wire →</button></details>
 </section>
@@ -1154,7 +1161,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_priority.js?v=763db866f53f"></script>
 <script src="./scripts/election_night_signals.js?v=75bc99b105dd"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
-<script src="./scripts/chamber_control_model.js?v=5d4e5c2d0732"></script>
+<script src="./scripts/chamber_control_model.js?v=1ff46da0f9d8"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
 <script src="./scripts/chamber_poll_error_audit.js?v=9e73e0e9f9fe"></script>
 <script src="./scripts/senate_calibration_audit.js?v=cc0ab62269fb"></script>
@@ -2611,6 +2618,24 @@ function bullStateScore(code){
  return eligible.length?Math.max(...eligible):null;
 }
 function renderBullStateScores(){
+ const daily=$('#bullDailyPulse');
+ if(daily&&impactLedger){
+  const verified=(impactLedger.incidents||[]).filter(x=>
+   x.verification_status!=='unverified_report');
+  const ranks=[...new Set(verified.map(x=>x.state))].map(state=>
+   ({state,score:bullStateScore(state)}))
+   .filter(x=>Number.isFinite(x.score))
+   .sort((a,b)=>b.score-a.score||a.state.localeCompare(b.state));
+  const pending=(integrityQueueData?.items||[]).filter(x=>
+   x.review_status==='needs_primary_source').length;
+  daily.textContent=(ranks.length?ranks.slice(0,3)
+   .map(x=>x.state+' '+x.score+'/100').join(' · '):'No assessed state')+
+   ' · '+verified.length+' sourced cases · '+pending+
+   ' leads awaiting primary-source checks · ledger reviewed '+
+   (impactLedger.updated_at||'date unknown')+'.';
+  daily.title='Monitoring score is priority, not probability of fraud or lost votes. '+
+   'A headline is never automatically treated as a confirmed election incident.';
+ }
  const host=$('#bullScoreStates');if(!host)return;host.replaceChildren();
  if(!impactLedger){host.append(elt('div','empty','Evidence unavailable.'));return}
  const tracked=(impactLedger.incidents||[]).filter(x=>x.verification_status!=='unverified_report');
@@ -2717,7 +2742,7 @@ function renderEnForecastStrip(){
  const box=$('#enForecastOdds');if(!box)return;
  const result=jointLastResult;
  box.textContent=result?
-  'Our model · D both '+result.blue_both_including_tsunami.toFixed(1)+'% · '+
+  'Our model · D both '+result.actual_dem_both_control_pct.toFixed(1)+'% · '+
   'Split '+result.probabilities.shrug.toFixed(1)+'% · R both '+
   result.probabilities.red_dawn.toFixed(1)+'% · '+
   result.samples.toLocaleString('en-US')+' linked simulations':
@@ -3284,10 +3309,10 @@ function jointPrivateActivate({deferRender=false}={}){
  }
 }
 const jointLabels=[
- ['blue_tsunami','BLUE TSUNAMI','Both chambers · 18/20 races','d-tide'],
- ['blue_wave','BLUE WAVE','Both chambers · no sweep','d-wave'],
- ['shrug','SHRUG','Split control','d-split'],
- ['red_dawn','RED DAWN','Republicans hold both','r-dawn']
+ ['blue_tsunami','BLUE TSUNAMI','D ≥235 House · ≥52 Senate','d-tide'],
+ ['blue_wave','BLUE WAVE','D ≥218 House · ≥49 Senate','d-wave'],
+ ['shrug','SHRUG','One Wave threshold met','d-split'],
+ ['red_dawn','RED DAWN','Neither threshold met','r-dawn']
 ];
 function jointSourceItem(item){
  const key=item.code,itemOffice=key.endsWith('-SEN')?'Senate':'House';
@@ -3363,7 +3388,7 @@ function jointRenderNeedles(result){
   const v=keys.map(k=>Math.max(0,result.probabilities[k]));
   const total=v.reduce((a,b)=>a+b,0);
   if(Math.abs(total-100)>.15)throw Error('Needle distribution does not sum to 100%');
-  // Four outcomes are ordinal from R/R to D/D + near-sweep.
+  // Four threshold outcomes ordered from neither gate to the larger two-seat gate.
   // This expectation tracks the center of gravity, NOT a probability of a call.
   const position=(v[1]+2*v[2]+3*v[3])/(3*total)*100;
   const likely=v.indexOf(Math.max(...v));
@@ -3422,7 +3447,7 @@ function jointRenderNeedles(result){
   context.append(elt('div','four-needle-change',(
    Math.abs(delta)<.05?'NEEDLE STEADY':delta>0?'NEEDLE MOVED BLUE':'NEEDLE MOVED RED')+
    ' · '+(delta>=0?'+':'')+delta.toFixed(1)+' track points vs pre-count baseline'+
-   ' · D both '+(movement.dBothChange>=0?'+':'')+
+   ' · D Wave gate '+(movement.dBothChange>=0?'+':'')+
    movement.dBothChange.toFixed(1)+' pp'));
   context.append(elt('div','four-needle-signal-label',
    movement.earlyCount+' early-indicator race(s) with validated returns · '+
@@ -3472,36 +3497,36 @@ function jointRenderCards(result){
    host.append(cell);
   }
   const headline=$('#'+(id==='jointHomeCards'?'jointHomeHeadline':'jointNightHeadline'));
-  if(headline)headline.textContent='D both chambers '+result.blue_both_including_tsunami.toFixed(1)+
+  if(headline)headline.textContent='D ≥218H / ≥49S '+result.blue_both_including_tsunami.toFixed(1)+
    '% · Tsunami '+result.probabilities.blue_tsunami.toFixed(1)+
    '% · '+result.samples.toLocaleString('en-US')+' simulations';
   const info=jointBasis.generated_from_sources;
   const h=result.seat_intervals_90_pct?.house_dem_seats;
   const sn=result.seat_intervals_90_pct?.senate_dem_seats;
-  status.textContent=result.samples.toLocaleString('en-US')+
-   ' correlated simulated elections · D House control '+
-   result.house_dem_control_pct.toFixed(1)+'% · D Senate control '+
-   result.senate_dem_control_pct.toFixed(1)+'% · D both '+
-   result.blue_both_including_tsunami.toFixed(1)+'% · '+
-   'modeled D seats (central 90% of draws): '+
-   (h?h.p05+'–'+h.p95+' House':'House unavailable')+' / '+
-   (sn?sn.p05+'–'+sn.p95+' Senate':'Senate unavailable')+' · '+
-   info.senate_poll_count+'/35 Senate and '+info.house_poll_count+
-   '/435 House races polled · Senate: 2026 named-candidate model · '+info.house_geography_changed+
-   ' House districts redrawn (high uncertainty). Source snapshot '+
-   new Date(jointBasis.generated_from_sources.model_polling_at).toLocaleString(
-    'en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+
-   ' · checks for new polls every 2 minutes · same simulation as all race odds.'+
-   (jointUsesPrivateContext()?
-    (jointPrivateSource==='repository'?' · REPOSITORY FUNDAMENTALS ACTIVE.':' · LOCAL CSV CONTEXT ACTIVE.'):'');
+  // The detailed provenance belongs in the drilldown; the TV-side desk
+  // needs the same coherent probabilities without a wall of text.
+  status.textContent='D House control '+result.house_dem_control_pct.toFixed(1)+
+   '% · D Senate control '+result.senate_dem_control_pct.toFixed(1)+
+   '% · D both control '+result.actual_dem_both_control_pct.toFixed(1)+
+   '% · Wave threshold '+result.blue_both_including_tsunami.toFixed(1)+
+   '% · Latest polls '+new Date(jointBasis.generated_from_sources.model_polling_at)
+    .toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+
+   (jointUsesPrivateContext()?' · SILVER CSV FUNDAMENTALS ACTIVE':'');
+  status.title=result.samples.toLocaleString('en-US')+' correlated draws; central 90% D seats: '+
+   result.seat_intervals_90_pct.house_dem_seats.p05+'–'+
+   result.seat_intervals_90_pct.house_dem_seats.p95+' House; '+
+   result.seat_intervals_90_pct.senate_dem_seats.p05+'–'+
+   result.seat_intervals_90_pct.senate_dem_seats.p95+' Senate. '+
+   jointBasis.generated_from_sources.senate_poll_count+'/35 Senate races and '+
+   jointBasis.generated_from_sources.house_poll_count+'/435 House races polled.';
  }
 }
 function jointRenderHouseShadow(base,shadow,presidentialShadow){
  const eligible=jointBasisShadow?.fundamentals_shadow?.paired_districts;
  const presCount=jointBasisPresidential?.presidential_fundamentals_shadow?.mapped_2026_house_districts;
- const pct=result=>result.blue_both_including_tsunami.toFixed(1)+'%';
- const delta=result=>(result.blue_both_including_tsunami-base.blue_both_including_tsunami>=0?'+':'')+
-  (result.blue_both_including_tsunami-base.blue_both_including_tsunami).toFixed(1)+' points';
+ const pct=result=>result.actual_dem_both_control_pct.toFixed(1)+'%';
+ const delta=result=>(result.actual_dem_both_control_pct-base.actual_dem_both_control_pct>=0?'+':'')+
+  (result.actual_dem_both_control_pct-base.actual_dem_both_control_pct).toFixed(1)+' points';
  let txt=base?'Research only — default Democrats both chambers: '+pct(base)+'. ':
   'Alternative House fundamentals unavailable; headline odds unchanged.';
  if(base&&shadow&&eligible)
@@ -3565,7 +3590,7 @@ function jointRenderSenateCorrelationResearch(reference,updates){
     (x.id==='production'?'':' ('+
       (x.out.senate_dem_control_pct-base.senate_dem_control_pct>=0?'+':'')+
       (x.out.senate_dem_control_pct-base.senate_dem_control_pct).toFixed(1)+
-      ' pp)')+', D both chambers '+x.out.blue_both_including_tsunami.toFixed(1)+
+      ' pp)')+', D both chambers '+x.out.actual_dem_both_control_pct.toFixed(1)+
       '%').join(' · ')+
    '. Historical 20-day polling-error means (D minus R): 2018 +2.83 D, '+
    '2020 +5.72 D, 2022 +0.25 D, 2024 +3.67 D. Four-cycle rough '+
@@ -3634,8 +3659,8 @@ function jointRender(force=false){
      ' races with private candidate context. D Senate control: published model '+
      jointPublicResult.senate_dem_control_pct.toFixed(1)+'% → CSV variant '+
      result.senate_dem_control_pct.toFixed(1)+'%. D both chambers: '+
-     jointPublicResult.blue_both_including_tsunami.toFixed(1)+'% → '+
-     result.blue_both_including_tsunami.toFixed(1)+
+     jointPublicResult.actual_dem_both_control_pct.toFixed(1)+'% → '+
+     result.actual_dem_both_control_pct.toFixed(1)+
      '%. Silver win odds were not fitted or used as model inputs.';
    }else privateSummary.textContent='Public JackStradamus baseline active; import the CSVs to compare an experimental candidate-context variant.';
   }
@@ -4493,7 +4518,7 @@ function enMilestoneShow(item,demo=false){
   'OMG, YOU’RE GONNA MAKE ME… BLUE WAVE!':item.title;
  $('#enMilestonePunch').textContent=item.tag||'BLUE TSUNAMI';
  $('#enMilestoneDescription').textContent=tsunami?
-  'Original meme-style preview, NOT an election result. Blue Tsunami requires Democrats to win both chambers and 18 of 20 frozen battleground races. Available provider-call coverage cannot yet safely verify that combined national condition.':
+  'Original meme-style preview, NOT an election result. Blue Tsunami requires at least 235 Democratic House and 52 Democratic-aligned Senate seats. Available provider-call coverage cannot yet safely verify that combined national condition.':
   item.description;
  const names=item.evidence?.filter(e=>e.matched).map(e=>
   e.key.replace('|',' ')+' · '+e.call.name)||[];

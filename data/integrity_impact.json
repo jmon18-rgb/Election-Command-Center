@@ -1,6 +1,6 @@
 {
   "schema_version": "1.2",
-  "updated_at": "2026-10-12",
+  "updated_at": "2026-10-15",
   "coverage": "Curated, non-exhaustive sourced litigation and administration developments; reported record volumes are not disenfranchised voter counts",
   "methodology": {
     "primary_metric": "Potentially affected voters or ballots, only when grounded in a cited primary source",
@@ -99,7 +99,7 @@
     {
       "state": "NC",
       "name": "North Carolina",
-      "records": 1,
+      "records": 2,
       "unique_voters_affected": null
     }
   ],
@@ -504,6 +504,50 @@
         "Union",
         "Wayne"
       ]
+    },
+    {
+      "id": "nc-save-citizenship-letters-20261013",
+      "state": "NC",
+      "title": "North Carolina — 1,392 planned SAVE citizenship-check letters",
+      "mechanism": "Official election-administration notice to voters flagged for additional citizenship verification",
+      "verification_status": "officially_confirmed",
+      "event_date": "2026-10-13",
+      "last_updated": "2026-10-15",
+      "summary": "On October 13 the State Board of Elections announced plans to send letters during the week to 1,392 registered voters flagged by federal SAVE data, after additional agency reviews. The board explicitly says a letter does not cancel registration or automatically bar voting, and no one is removed solely on SAVE information. Source does not establish that the mailings have been delivered, anyone is ineligible, or any eligible voter has lost a countable ballot.",
+      "units": "voters",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "sources": [
+        {
+          "publisher": "North Carolina State Board of Elections — Oct. 13, 2026 press release",
+          "url": "https://www.ncsbe.gov/news/press-releases/2026/10/13/ncsbe-send-letter-potential-non-citizens-voter-rolls"
+        }
+      ],
+      "impact_assessment": "administrative_notice_volume_not_ballots_lost",
+      "scope_label": "1,392 registrants slated for SAVE follow-up letters",
+      "scope_note": "Number of registered voter records selected for planned correspondence, from the Board's Oct. 13 announcement, not confirmed mailed letters or unique eligible voters denied voting.",
+      "case_type": "registration_notice",
+      "process_status": "Board announced notification and review; no automatic removal from notice alone",
+      "adverse_scenario": {
+        "definition": "At least 100 otherwise-eligible NC registrants become unable to cast countable November 2026 ballots solely because of this citizenship-notice process after ordinary review and remedies; receiving a letter alone does not meet the definition.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "Not quantified: requires verified removal/challenge outcomes, eligible-person identity, correction and provisional ballot disposition.",
+        "probability_of_scenario": null,
+        "probability_interval": null,
+        "probability_basis": "Insufficient evidence to estimate a probability of countable ballots lost; the official source explicitly rules out automatic removal or cancellation based solely on the notice.",
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-15",
+        "probability_method": "not-estimated-primary-source-verified",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": 1392,
+          "unit": "registered voters selected for planned letters",
+          "qualifier": "announced notification scope, NOT ballots lost",
+          "notes": "Official Oct. 13 statement after additional state checks; no verified removal or ballot-prevention count. Do not conflate recipients with affected eligible voters."
+        }
+      }
     }
   ]
 }
