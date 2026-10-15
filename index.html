@@ -1216,7 +1216,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_early_signals.js?v=7691146833ec"></script>
 <script src="./scripts/election_night_priority.js?v=763db866f53f"></script>
 <script src="./scripts/election_night_signals.js?v=75bc99b105dd"></script>
-<script src="./scripts/election_night_reconciliation.js?v=efff32f5d21f"></script>
+<script src="./scripts/election_night_reconciliation.js?v=c1a9d629ece3"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
 <script src="./scripts/chamber_control_model.js?v=aa102ced6a53"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
@@ -3224,7 +3224,10 @@ function enRenderAmbientDesk(){
      (x.anomalies.length?' · '+x.anomalies.length+' source alerts':'');
     coverage.title='Valid primary source slots: '+x.house.sourceSlots+'/435 House, '+
      x.senate.sourceSlots+'/35 Senate. Supplemental counted only outside primary coverage. '+
-     '65 Senate holdovers not yet reconciled to independent calls; missing is unknown, not zero.';
+     '65 Senate holdovers not yet reconciled to independent calls; missing is unknown, not zero.'+
+     (x.crossSourceDiscrepancies?.length?' Advisory source disagreements: '+
+      x.crossSourceDiscrepancies.slice(0,4).map(v=>v.id+
+       ' Open America '+v.primaryLead+' / civicAPI '+v.supplementalLead).join('; '):'');
    }catch(err){coverage.textContent='National reconciliation unavailable: '+
     String(err.message||err)+' · congressional control not called';}
   }
