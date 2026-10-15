@@ -83,6 +83,16 @@
    sensitivityLow:baseline,sensitivityHigh:baseline,
    explanation:'No eligible verified partial returns; using the pre-election race prior from our linked joint model.'
   };
+  // The joint simulation has already accepted a distinct, normalized
+  // source-reported D/R winner call. No partial early count may overwrite
+  // that outcome in the secondary race probability monitor.
+  if(now>=ELECTION_START&&['D','R'].includes(prior.provider_called_party)){
+   const dem=prior.provider_called_party==='D';
+   return {...defaultResult,mode:'source_called',demPct:dem?100:0,
+    repPct:dem?0:100,source:'civicAPI',reporting:null,
+    sensitivityLow:dem?100:0,sensitivityHigh:dem?100:0,
+    explanation:'Source-reported winner call (civicAPI), not official certification. The same correlated congressional simulations lock this D/R race while the call remains valid; a corrected or withdrawn call restores uncertainty.'};
+  }
   const actual=observed(item,primary,secondary);
   if(!actual||!Number.isFinite(now)||now<ELECTION_START||actual.time<ELECTION_START||
     actual.time>now+15*60000||now-actual.time>180*60000||
