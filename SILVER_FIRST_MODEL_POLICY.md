@@ -36,6 +36,14 @@ The margin **mean does not shift**. The rule is symmetric between Democrats and 
 
 These values are **provisional engineering assumptions**, not FLIPR coefficients, not historical estimates and not yet defensible probability calibration. Their purpose is to expose the consequences of conflicting indicators without hiding the conflict. The diagnostic fields are `poll_fundamentals_gap_points`, `poll_weight` and `disagreement_extra_sigma_points`.
 
+## October 15: active source-matching and independent-caucus sensitivity gate
+
+`scripts/audit_active_fundamentals_and_caucus.cjs` verifies that the repository's 28 Senate and 98 House fundamentals CSV rows parse under their proper schema, map onto the actual 2026 contest universes (not fabricated nearby states/districts), preserve existing 435 House + 35 Senate contest counts and whole-race uncertainty, and leave unmatched race means unchanged. It runs paired, same-seed 3,000-draw simulations to check four-outcome reconciliation in the baseline, CSV-augmented variant and a **no-credit for nonmajor-party Senate winners** sensitivity. That last stress case may reduce modeled Democratic Senate and both-chamber control; it is not the same thing as an independent winner's eventual caucus choice, which remains uncertain.
+
+The report emits **coverage/identity test results only**—not Silver row values, poll/fundamentals margins, private candidate estimates, or completed subscriber-based simulated odds. It does not validate Silver's proprietary coefficients or show that our provisional poll/fundamental blending improves held-out prediction accuracy. A potentially material modeling caveat remains: the default Senate model credits two nonmajor-party proxy contests to the Democratic side, and 34 Democratic-aligned/31 Republican holdover seats remain an assumption requiring election-specific verification.
+
+**Subscriber rights:** Source CSVs are presently included in the public repository. Passing source-matching tests does **not** establish redistribution permission. Move them out of public assets or obtain clear publishing rights; preserving easy multi-device access is not a license exemption.
+
 ## Work still needed before promotion
 
 - Calibrate the gap deadzone/slope, poll weights and pollster corrections with held-out historical elections instead of tuning toward FLIPR outputs.
