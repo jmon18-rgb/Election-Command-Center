@@ -117,7 +117,8 @@ async function settle(){
   'Repository Senate+House CSV inputs must auto-load without device upload');
  assert.equal(w.eval('jointForecastResult()')?.samples,3000);
  assert.match(get('#modelEngineTag').textContent,/REPOSITORY FUNDAMENTALS ACTIVE/);
- assert.equal(w.eval('jointForecastResult().race_probabilities.length')>=500,true);
+ assert.equal(w.eval("jointForecastResult().race_probabilities.filter(x=>x.office==='house').length"),435);
+ assert.equal(w.eval("jointForecastResult().race_probabilities.filter(x=>x.office==='senate').length"),35);
  assert.equal(w.eval('jointForecastResult().senate_dem_control_pct')>=0,true);
  assert.match(get('#privateContextComparison').textContent,/28 Senate.*98 House/,
   'The CSV-augmented forecast must include both published input sets');
