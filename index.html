@@ -3469,6 +3469,17 @@ function enFishDismiss(){
  if(enFishReturnFocus?.isConnected)enFishReturnFocus.focus();
  enFishReturnFocus=null;
 }
+function enFishQueueState(){
+ return {active:Boolean(enFishCurrent),pending:enFishPending.length,
+         kind:enFishCurrent?.event.kind||null};
+}
+function enFishNextBulletin(){
+ if(enFishTimeout){clearTimeout(enFishTimeout);enFishTimeout=null;}
+ if(enFishPending.length){
+  const next=enFishPending.shift();
+  enFishPresent(next.event,next.demo);
+ }else enFishDismiss();
+}
 function enFishPresent(event,demo){
  const toast=$('#enFishToast');
  if(toast.hidden)enFishReturnFocus=document.activeElement;
@@ -3488,13 +3499,7 @@ function enFishPresent(event,demo){
  enFishPlayAudio();
  if(enFishTimeout)clearTimeout(enFishTimeout);
  // A queued bulletin gets its own uninterrupted 3.7-second recording.
- enFishTimeout=setTimeout(()=>{
-  enFishTimeout=null;
-  if(enFishPending.length){
-   const next=enFishPending.shift();
-   enFishPresent(next.event,next.demo);
-  }else enFishDismiss();
- },8500);
+ enFishTimeout=setTimeout(enFishNextBulletin,8500);
 }
 function enFishShow(event,demo=false){
  // Same provenance and no-pre-election safeguards as the saved alerts.
