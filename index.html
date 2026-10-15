@@ -3991,6 +3991,94 @@ function enWatchToggle(item){
  * votes into the Open America national metrics or treat a winner flag as
  * official certification. Keep identifier verification and source isolation. */
 const enCivicBase='https://civicapi.org/api/v2';
+
+const enMilestoneSeenKey='bluewaves_milestones_seen_2026_v1';
+let enMilestoneShown=new Set();
+try{
+ const saved=JSON.parse(localStorage.getItem(enMilestoneSeenKey)||'[]');
+ if(Array.isArray(saved))enMilestoneShown=new Set(saved.filter(id=>
+  window.ElectionNightSignals?.MILESTONES.some(x=>x.id===id)).slice(0,10));
+}catch{}
+function enMilestonePersist(){
+ try{localStorage.setItem(enMilestoneSeenKey,JSON.stringify([...enMilestoneShown]))}catch{}
+}
+function enMilestoneEvidence(){
+ const rows=Object.create(null);
+ for(const item of window.ElectionNightSignals?.TRACKED||[]){
+  const key=enWatchId(item);
+  if(!enCivicErrors[key]&&enCivicByWatch[key])rows[key]=enCivicByWatch[key];
+ }
+ return rows;
+}
+function enMilestoneShow(item,demo=false){
+ if(enModeYear!==2026||!item)return false;
+ const tsunami=item.id==='tsunami';
+ $('#enMilestoneKicker').textContent=demo?'PREVIEW · FICTIONAL ACHIEVEMENT':
+  'SOURCE-REPORTED CALL · UNOFFICIAL';
+ $('#enMilestoneArt').textContent=tsunami?'🌊 🌊 🌊':item.icon||'🎉';
+ $('#enMilestoneTitle').textContent=tsunami?
+  'OMG, YOU’RE GONNA MAKE ME… BLUE WAVE!':item.title;
+ $('#enMilestonePunch').textContent=item.tag||'BLUE TSUNAMI';
+ $('#enMilestoneDescription').textContent=tsunami?
+  'Original meme-style preview, NOT an election result. Blue Tsunami requires Democrats to win both chambers and 18 of 20 frozen battleground races. Available provider-call coverage cannot yet safely verify that combined national condition.':
+  item.description;
+ const names=item.evidence?.filter(e=>e.matched).map(e=>
+  e.key.replace('|',' ')+' · '+e.call.name)||[];
+ $('#enMilestoneSource').textContent=demo?
+  'DEMO ONLY · No provider-reported or projected winner implied.':
+  'civicAPI source-reported winner(s): '+names.join(' · ')+
+  '. Unofficial provider calls, not certification.';
+ $('#enMilestoneSpotlight').hidden=false;
+ return true;
+}
+function enRenderMilestones(){
+ const api=window.ElectionNightSignals,desk=$('#enMilestoneDesk'),host=$('#enMilestoneGrid');
+ if(!api||!desk||!host)return;
+ desk.hidden=enModeYear!==2026;
+ if(desk.hidden){$('#enMilestoneSpotlight').hidden=true;return}
+ const records=api.evaluateMilestones(enMilestoneEvidence(),{year:enModeYear,now:Date.now()});
+ host.replaceChildren();
+ for(const item of records){
+  const card=elt('button','en-milestone-card');
+  card.type='button';card.dataset.state=item.state;
+  card.setAttribute('aria-label',item.title+' · '+item.state+
+   ' · '+item.completed+'/'+item.required+' confirmed conditions; open poster');
+  card.append(elt('span','en-milestone-icon',item.icon));
+  const body=elt('span','');
+  body.append(elt('b','',item.title),
+   elt('small','',item.state==='earned'?'UNLOCKED · REPLAY':
+    item.state==='warming'?'ALMOST · '+item.completed+'/'+item.required+' calls':
+    'LOCKED · '+item.required+' provider call'+(item.required!==1?'s':'')),
+   elt('small','',item.tag));
+  card.append(body);
+  card.addEventListener('click',()=>enMilestoneShow(item,item.state!=='earned'));
+  host.append(card);
+ }
+ // Persist dedup across reloads. A verified contradictory provider update can
+ // revoke the old achievement, but an unavailable source cannot fabricate one.
+ const hasNewSource=id=>api.TRACKED.some(x=>
+  enCivicByWatch[enWatchId(x)]&&!enCivicErrors[enWatchId(x)]&&
+  api.MILESTONES.find(m=>m.id===id)?.needs.some(req=>
+   req.office===x.office&&req.key===x.key));
+ let changed=false;
+ for(const item of records){
+  if(item.state==='earned'&&!enMilestoneShown.has(item.id)){
+   enMilestoneShown.add(item.id);changed=true;
+   enMilestoneShow(item,false);
+  }else if(item.state!=='earned'&&enMilestoneShown.has(item.id)&&hasNewSource(item.id)){
+   enMilestoneShown.delete(item.id);changed=true;
+   $('#enMilestoneSpotlight').hidden=true;
+  }
+ }
+ if(changed)enMilestonePersist();
+}
+$('#enTsunamiPreview').addEventListener('click',()=>enMilestoneShow({
+ id:'tsunami',icon:'🌊',tag:'FOUR ENDINGS · BLUE TSUNAMI'},true));
+$('#enMilestoneClose').addEventListener('click',()=>{
+ $('#enMilestoneSpotlight').hidden=true;
+ $('#enTsunamiPreview').focus();
+});
+
 let enCivicByWatch=Object.create(null),enCivicRaceIds=Object.create(null),
  enCivicErrors=Object.create(null),enCivicPending=new Set(),enCivicLastSweep=0,enCivicSweepCursor=0,
  enCivicExpanded=new Set(),enCivicSweepInFlight=false,enCivicActiveSweeps=0,
