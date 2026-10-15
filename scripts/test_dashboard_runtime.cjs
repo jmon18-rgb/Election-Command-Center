@@ -204,7 +204,7 @@ async function settle(){
  assert(fishAudioPauses>=2,'Dismissal stops audio rather than letting it continue');
  // A new user-validated update receives its own announcement. When
  // multiple independent alerts arrive, the same MP3 runs sequentially.
- const oldClock=w.Date.now,oldNightMode=w.eval('enModeYear');
+ const fishOldClock=w.Date.now,fishOldNightMode=w.eval('enModeYear');
  const priorNightVisible=get('#electionNight').classList.contains('active');
  w.Date.now=()=>Date.parse('2026-11-04T03:20:00Z');
  w.eval('enModeYear=2026');
@@ -231,7 +231,7 @@ async function settle(){
  assert.match(get('#enFishHeadline').textContent,/OH-SEN/);
  get('#enFishDismiss').click();
  assert.equal(w.eval('enFishPending.length'),0,'Dismiss clears pending popups');
- w.Date.now=oldClock;w.eval('enModeYear='+oldNightMode);
+ w.Date.now=fishOldClock;w.eval('enModeYear='+fishOldNightMode);
  if(!priorNightVisible)get('#electionNight').classList.remove('active');
 
  const bogusCall={kind:'call',source:'civicAPI',title:'VA-02 provider call',
