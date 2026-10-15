@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T02:46:04.435159Z",
+  "updated_at": "2026-10-15T03:46:43.514730Z",
   "generic_ballot": {
     "summary": {
       "dem": 48.1,
@@ -15053,7 +15053,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-15T02:46:04.435159Z",
+    "last_attempt_at": "2026-10-15T03:46:43.514730Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15062,29 +15062,11 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [
-      {
-        "race_code": "MS-SEN",
-        "race_type": "senate",
-        "poll_id": "52497540-0f77-44ac-b540-57600d4994cc",
-        "pollster": "Wedgewood Polls",
-        "field_end": "2026-10-14",
-        "dem": 48.0,
-        "rep": 52.0,
-        "margin": -4.0,
-        "dem_name": "Scott Colom",
-        "rep_name": "Cindy Hyde-Smith",
-        "sample_size": 511,
-        "first_seen_at": "2026-10-15T02:46:05.010416+00:00",
-        "release_date": null,
-        "source_url": "https://x.com/WedgewoodPolls/status/2110541168874488272",
-        "source": "pollresults_secondary_fallback"
-      }
-    ],
-    "new_poll_count": 1,
+    "new_polls": [],
+    "new_poll_count": 0,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-15T02:46:04.435159Z",
-    "previous_snapshot_at": "2026-10-15T01:43:52.642319Z",
+    "comparison_at": "2026-10-15T03:46:43.514730Z",
+    "previous_snapshot_at": "2026-10-15T02:46:04.435159Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15114,15 +15096,13 @@
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 276,
-    "newly_injected_into_model": 1,
-    "newly_injected_by_race": {
-      "MS-SEN": 1
-    },
+    "matched_observations": 277,
+    "newly_injected_into_model": 0,
+    "newly_injected_by_race": {},
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
-    "carried_forward_current_observations": 8,
+    "carried_forward_current_observations": 9,
     "provenance": "PollResults source-linked fallback; original first_seen_at retained"
   }
 }
