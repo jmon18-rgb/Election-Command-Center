@@ -110,6 +110,13 @@ async function settle(){
  assert.match(get('#enEarlySignals').textContent,/2026 preview/);
  assert.match(get('#enEarlySignals').textContent,/no live returns in archive/);
  assert.doesNotMatch(get('#enEarlySignals').textContent,/tsunami confirmed|Senate secured/i);
+ // Long checklist is collapsed by default; important information remains
+ // accessible without pushing the actual race results further down the page.
+ assert.equal(get('#enEarlySignalsDetails').open,false,
+  'Early signal reference list should not dominate initial Election Night view');
+ get('#enEarlySignalsDetails').open=true;
+ assert.equal(get('#enEarlySignalsDetails').open,true);
+ get('#enEarlySignalsDetails').open=false;
  // Pin/unpin is real shared watchlist state, not an inert decorative button.
  const first=get('#enEarlySignals .en-early-pin');
  const wasPinned=first.getAttribute('aria-pressed')==='true';
@@ -120,6 +127,16 @@ async function settle(){
  assert.equal(get('#enEarlySignals .en-early-pin').getAttribute('aria-pressed'),String(wasPinned));
  // The Fish Head interruptor must not confuse a pretend preview, an
  // early vote-leader swing, or pre-election data with a verified race call.
+ // A user arriving at Election Night must find the rehearsal immediately,
+ // before the big forecast/workspace, rather than below twelve more sections.
+ assert(get('#enFishPreview'),'Fish preview action must be present');
+ assert(get('#electionNight .en-quick-actions #enFishPreview'),
+  'Rehearsal belongs in top-of-page quick actions');
+ assert(get('#enFishPreview').compareDocumentPosition(get('#jointNightPanel'))&
+  w.Node.DOCUMENT_POSITION_FOLLOWING,
+  'Fish Head rehearsal action must precede the main panel');
+ assert(!get('#electionNight .en-fish-controls'),
+  'Do not retain the old redundant full-width Fish Head control panel');
  const fish=get('#enFishToast');
  assert(fish.hidden,'Breaking news panel must start dismissed');
  assert.match(get('#enFishVoice').textContent,/Voice/);
