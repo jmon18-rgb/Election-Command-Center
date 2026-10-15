@@ -1,6 +1,12 @@
 name: Verify deployed election dashboard
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'scripts/**'
+      - '.github/workflows/production-health.yml'
   workflow_run:
     workflows: ["pages build and deployment"]
     types: [completed]

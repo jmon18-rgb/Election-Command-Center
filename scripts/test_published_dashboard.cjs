@@ -46,7 +46,21 @@ function indexOffice(rows,office){
   .map(x=>[office+'|'+x.race_code,x]));
 }
 async function main(){
- const html=await load('index.html');
+ let html=await load('index.html');
+ if(remote){
+  // Pages builds run separately from pushes. Do not compare old deployed HTML
+  // with new code and claim a false failure while a deployment is in flight.
+  // Instead allow its actual CDN copy a bounded window to catch up, then fail.
+  const expected=readFileSync(path.join(root,'index.html'),'utf8');
+  for(let attempts=0;html!==expected&&attempts<10;attempts++){
+   await new Promise(resolve=>setTimeout(resolve,9000));
+   html=await load('index.html');
+  }
+  check('GitHub Pages is serving the committed HTML build',()=>{
+   assert.equal(blobRevision(html),blobRevision(expected),
+    'GitHub Pages still serves an old or modified dashboard build');
+  });
+ }
  check('real index and live feature slots',()=>{
   for(const id of ['jointHomeCards','jointNightCards','modelBoard','missouriHouseWatch',
     'senateTideRaces','enRaceList','newPolls','wireResults']){
