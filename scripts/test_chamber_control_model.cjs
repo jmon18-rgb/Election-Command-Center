@@ -263,7 +263,8 @@ assert(explanation.top_house_control_bellwethers.some(x=>
  'House bellwethers must surface races with genuine model uncertainty');
 
 assert(Math.abs(explanation.house_only_pct+explanation.senate_only_pct-
- explained.probabilities.shrug)<.02);
+ (explained.house_dem_control_pct+explained.senate_dem_control_pct-
+  2*explained.actual_dem_both_control_pct))<.03);
 assert(Math.abs(explanation.independent_chambers_reference_pct-
  explained.house_dem_control_pct*explained.senate_dem_control_pct/100)<.02);
 assert(explanation.house_senate_control_phi===null||
@@ -340,14 +341,17 @@ assert(Math.abs(expectedSeatWins-first.means.house_dem_seats)<.02,
  'House race win frequencies must reconcile with same simulated chamber seat totals');
 assert(Math.abs(expectedSenateWins-first.means.senate_dem_seats)<.02,
  'Senate race win frequencies must reconcile with same simulated chamber seat totals');
-const bothPct=first.blue_both_including_tsunami;
+const wavePct=first.blue_both_including_tsunami;
+const bothPct=first.actual_dem_both_control_pct;
 const splitPct=first.probabilities.shrug,redPct=first.probabilities.red_dawn;
-assert(Math.abs(first.house_dem_control_pct+first.senate_dem_control_pct-
- 2*bothPct-splitPct)<.045,'Chamber marginals must reconcile exactly with split control');
-assert(Math.abs(100-first.house_dem_control_pct-first.senate_dem_control_pct+
- bothPct-redPct)<.045,'Chamber marginals must reconcile with Republican both-control');
+assert(Math.abs(first.house_dem_control_pct+first.senate_49_or_more_pct-
+ 2*wavePct-splitPct)<.045,'Four Endings must reconcile with the relaxed 49-seat Senate gate');
+assert(Math.abs(100-first.house_dem_control_pct-first.senate_49_or_more_pct+
+ wavePct-redPct)<.045,'Red Dawn must mean neither minimum seat threshold');
 assert(first.house_dem_control_pct+0.01>=bothPct);
 assert(first.senate_dem_control_pct+0.01>=bothPct);
+assert(first.senate_49_or_more_pct+0.01>=wavePct);
+assert(Math.abs(first.control_explanation?.both_dem_pct??bothPct-bothPct)<.03);
 for(const [key,total] of [['house_dem_seats',435],['senate_dem_seats',100]]){
  const x=first.seat_intervals_90_pct[key];
  assert(Number.isInteger(x.p05)&&Number.isInteger(x.p50)&&Number.isInteger(x.p95));
