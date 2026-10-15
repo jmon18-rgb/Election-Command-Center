@@ -1234,7 +1234,7 @@ async function settle(){
  const needleForecast=w.eval('jointForecastResult()');
  const needleProb=needleForecast.probabilities;
  const expectedNeedlePosition=(needleProb.shrug+2*needleProb.blue_wave+
-  3*needleProb.blue_tsunami)/300*100;
+  3*needleProb.blue_tsunami)/(3*Object.values(needleProb).reduce((a,b)=>a+b,0))*100;
  for(const selector of ['#jointHomeNeedle','#jointNightNeedle']){
   const needle=get(selector);
   assert.match(needle.getAttribute('aria-label'),/2026 correlated Four Endings forecast/);
