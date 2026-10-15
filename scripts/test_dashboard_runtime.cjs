@@ -757,6 +757,9 @@ async function settle(){
  w.fetch=async(url,options)=>{calls.push({url,options});
   return {ok:true,json:async()=>empty2026};};
  get('#enMode2026').click();
+ assert.equal(get('#enArchiveOutcome').hidden,true,
+  'Returning to 2026 must restore active probability forecast and hide history');
+ assert(!get('#jointNightPanel').classList.contains('en-archive-mode'));
  await w.eval('enLoad(true)');
  const requests=calls.filter(c=>String(c.url).startsWith('https://openamerica.io/elections/results.json'));
  assert(requests.length>=1,'2026 mode must fetch the live state-derived source');
@@ -770,6 +773,16 @@ async function settle(){
  w.fetch=originalRemoteFetch;
  get('#enMode2024').click();
  await w.eval('enLoad(true)');
+ assert.equal(get('#enArchiveOutcome').hidden,false,
+  '2024 should show a retrospective historical control outcome');
+ assert.match(get('#enArchiveOutcome').textContent,/2024 ACTUAL OUTCOME/);
+ assert.match(get('#enArchiveOutcome').textContent,/Republicans won both chambers/);
+ assert.match(get('#enArchiveOutcome').textContent,/220 R \/ 215 D/);
+ assert.match(get('#enArchiveOutcome').textContent,/53 R \/ 47 D-caucus/);
+ assert(get('#jointNightPanel').classList.contains('en-archive-mode'),
+  '2026 simulated win percentages must not be visible during 2024 archive');
+ assert.equal(get('#jointNightPanel .joint-grid').getAttribute('id'),'jointNightCards');
+ assert.match(get('#jointNightPanel .joint-title h3').textContent,/2024/);
  // Real provider-format 2024 rehearsal must use the 2024 endpoint, and
  // display named candidates and precinct data from the unmodified source.
  const stateSelect=get('#enArchiveSource');
