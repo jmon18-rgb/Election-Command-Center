@@ -69,7 +69,7 @@ rejects(row=>{row.last_updated='2026-11-03T18:00:00Z'},
  'Expired provider winner flag must not freeze the election model');
 rejects(row=>{row.stale=true},'A stale record cannot be a winner call');
 rejects(row=>{row.race_id=0},'A source call requires a positive provider race ID');
-rejects(row=>{row.key='MI'},'Wrong seat identity must not be accepted for this evidence');
+rejects(row=>{row.key='MI-01'},'A House district cannot masquerade as a Senate seat');
 rejects(row=>{row.office='Unknown'},'Unknown office must be rejected');
 rejects(row=>{row.percent_reporting=102},'Invalid reporting percentage');
 rejects(row=>{row.total=300},'Listed candidate votes cannot exceed counted total');
