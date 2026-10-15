@@ -4063,16 +4063,16 @@ function enRenderMilestones(){
  }
  // Persist dedup across reloads. A verified contradictory provider update can
  // revoke the old achievement, but an unavailable source cannot fabricate one.
- const hasNewSource=id=>api.TRACKED.some(x=>
-  enCivicByWatch[enWatchId(x)]&&!enCivicErrors[enWatchId(x)]&&
-  api.MILESTONES.find(m=>m.id===id)?.needs.some(req=>
-   req.office===x.office&&req.key===x.key));
+ const hasCompleteSource=id=>api.MILESTONES.find(m=>m.id===id)?.needs.every(req=>{
+  const key=req.office+'|'+req.key;
+  return Boolean(enCivicByWatch[key]&&!enCivicErrors[key]);
+ });
  let changed=false;
  for(const item of records){
   if(item.state==='earned'&&!enMilestoneShown.has(item.id)){
    enMilestoneShown.add(item.id);changed=true;
    enMilestoneShow(item,false);
-  }else if(item.state!=='earned'&&enMilestoneShown.has(item.id)&&hasNewSource(item.id)){
+  }else if(item.state!=='earned'&&enMilestoneShown.has(item.id)&&hasCompleteSource(item.id)){
    enMilestoneShown.delete(item.id);changed=true;
    $('#enMilestoneSpotlight').hidden=true;
   }
