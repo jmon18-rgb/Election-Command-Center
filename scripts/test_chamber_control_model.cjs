@@ -351,7 +351,8 @@ assert(Math.abs(100-first.house_dem_control_pct-first.senate_49_or_more_pct+
 assert(first.house_dem_control_pct+0.01>=bothPct);
 assert(first.senate_dem_control_pct+0.01>=bothPct);
 assert(first.senate_49_or_more_pct+0.01>=wavePct);
-assert(Math.abs(first.control_explanation?.both_dem_pct??bothPct-bothPct)<.03);
+assert(Math.abs(explanation.both_dem_pct-explained.actual_dem_both_control_pct)<.03,
+ 'Control explanation must reconcile with actual 51-seat Senate control');
 for(const [key,total] of [['house_dem_seats',435],['senate_dem_seats',100]]){
  const x=first.seat_intervals_90_pct[key];
  assert(Number.isInteger(x.p05)&&Number.isInteger(x.p50)&&Number.isInteger(x.p95));
