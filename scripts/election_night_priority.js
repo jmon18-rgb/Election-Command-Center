@@ -69,10 +69,51 @@
    }));
   return add('senate',maxSenate).concat(add('house',maxHouse));
  }
- function watch(model){
+ // The editorial seed discovers House races; it does NOT limit the Senate
+ // ballot. The validated nationwide inventory must supply all 35 Senate
+ // contests, even where neither a qualifying poll nor forecast exists.
+ function watch(model,senateSeats=[],housePolls=[]){
   const keys=new Map();
-  for(const item of SEED.concat(extras(model)))
-   keys.set(item.office+'|'+item.key,item);
+  const add=item=>{
+   if(item&&['Senate','House','Governor'].includes(item.office)&&
+      typeof item.key==='string'&&typeof item.code==='string')
+    keys.set(item.office+'|'+item.key,item);
+  };
+  // Full-screen roster expansion is intentionally separate from the
+  // smaller automatic provider-polling queue, to avoid pushing hundreds
+  // of additional races through one-minute civicAPI refreshes.
+  const fullRoster=Boolean(senateSeats?.length||housePolls?.length);
+  for(const item of SEED.concat(extras(model,fullRoster?24:12,fullRoster?35:6)))add(item);
+  if(fullRoster)for(const r of model?.race_probabilities||[]){
+   if(r?.office!=='senate'||!/^[A-Z]{2}-SEN$/.test(r.race_code||''))continue;
+   const code=r.race_code;
+   if(!keys.has('Senate|'+keyOf('Senate',code)))
+    add({office:'Senate',code,key:keyOf('Senate',code),
+     tip:null,added:'modeled-senate-inventory'});
+  }
+  const validatedUniverse=Array.isArray(senateSeats)&&
+   senateSeats.length===35&&new Set(senateSeats.map(x=>x?.code)).size===35&&
+   senateSeats.filter(x=>x?.kind==='special').map(x=>x.state).sort().join(',')==='FL,OH'&&
+   senateSeats.every(x=>x?.office==='Senate'&&
+    x.code===x.state+'-SEN'&&
+    x.key===x.state+(x.kind==='special'?'-special':'')&&states.has(x.state));
+  if(validatedUniverse){
+   for(const seat of senateSeats){
+    const id='Senate|'+seat.key;
+    const seeded=keys.get(id);
+    add({...seat,tip:seeded?.tip??null,added:'verified-2026-senate-inventory'});
+   }
+  }
+  // House inclusion is transparent: curated monitoring slate, qualifying
+  // district polling, or model uncertainty. A district need not be close.
+  for(const r of housePolls||[]){
+   if(!r||!/^[A-Z]{2}-\d{2}$/.test(r.race_code||'')||
+      !['single_poll','multi_poll'].includes(r.status)||
+      !Number.isFinite(r.dem_minus_rep))continue;
+   const code=r.race_code;
+   if(!keys.has('House|'+code))add({office:'House',code,key:code,
+    tip:null,added:'qualifying-house-poll'});
+  }
   return [...keys.values()];
  }
  const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));

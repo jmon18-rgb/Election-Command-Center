@@ -13,6 +13,33 @@ assert.equal(ref.get('FL-SEN').key,'FL-special');
 assert.equal(x.SEED.filter(y=>y.office==='Senate').length,15);
 assert.equal(x.SEED.filter(y=>y.office==='House').length>=50,true);
 assert(x.watch({race_probabilities:[]}).some(z=>z.code==='ME-SEN'));
+// The complete official Senate universe, not 15 reference screenshots or
+// near-50 model probabilities, determines ballot coverage.
+const senateStates='AL AK AR CO DE FL GA ID IA IL KS KY LA MA ME MI MN MS MT NC NE NH NJ NM OH OK OR RI SC SD TN TX VA WV WY'.split(' ');
+assert.equal(senateStates.length,35);
+const senateSeats=senateStates.map(state=>({
+ office:'Senate',state,code:state+'-SEN',
+ kind:state==='FL'||state==='OH'?'special':'regular',
+ key:state+(state==='FL'||state==='OH'?'-special':'')
+}));
+const full=x.watch({race_probabilities:[{office:'house',race_code:'OR-03',
+ dem_beats_rep_pct:98.7}]},senateSeats,[
+ {race_code:'CT-01',status:'multi_poll',dem_minus_rep:22},
+ {race_code:'RI-01',status:'single_poll',dem_minus_rep:28}
+]);
+assert.equal(full.filter(z=>z.office==='Senate').length,35,
+ 'Every Senate ballot contest must remain visible even with no polling or odds');
+assert(full.some(z=>z.code==='FL-SEN'&&z.key==='FL-special'));
+assert(full.some(z=>z.code==='OH-SEN'&&z.key==='OH-special'));
+assert(full.some(z=>z.code==='CT-01'&&z.added==='qualifying-house-poll'),
+ 'Heavily leaning but actually polled House seats must not disappear');
+assert(full.some(z=>z.code==='RI-01'));
+assert(full.some(z=>z.code==='FL-27'),
+ 'Editorially tracked House races must remain even without a current poll');
+assert.equal(new Set(full.map(z=>z.office+'|'+z.key)).size,full.length);
+const badUniverse=senateSeats.slice(1);
+assert(x.watch({race_probabilities:[]},badUniverse).filter(z=>z.office==='Senate').length<35,
+ 'Never silently present an incomplete unverified roster as complete');
 const dynamic=x.extras({race_probabilities:[
  {race_code:'MO-02',office:'house',dem_beats_rep_pct:48},
  {race_code:'AL-02',office:'house',dem_beats_rep_pct:51},

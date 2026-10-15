@@ -336,9 +336,10 @@ jobs:
           node scripts/test_chamber_control_model.cjs
   browser:
     runs-on: ubuntu-latest
-    # The complete DOM/election-night Monte Carlo regression takes ~3 min;
-    # do not cancel a passing integration test during post-job cleanup.
-    timeout-minutes: 7
+    # Full Senate + broad House DOM checks now exercise a larger live roster.
+    # Preserve the complete Monte Carlo acceptance gate, with headroom for CI
+    # runner variance; real Chromium responsiveness is separately tested.
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
       - name: Install DOM test environment

@@ -698,6 +698,22 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 #brief .brief-news-card{margin-top:8px}
 @media(max-width:760px){.smart-desk-grid{grid-template-columns:1fr}.smart-signal{grid-template-columns:minmax(68px,1fr) minmax(0,1.5fr) 66px;padding:9px 10px;gap:6px}.smart-signal-outcome strong{font-size:16px}.smart-signal-name{font-size:12px}.smart-signal-readings{font-size:10px}#jointHomePanel{padding:10px}.four-needle{padding:9px 8px}.four-needle-arc{max-height:225px}.joint-cell{min-height:92px;padding:10px}.joint-cell .joint-value{font-size:25px}.joint-cell strong{font-size:10px}.joint-cell span{font-size:10px}.four-needle-labels{font-size:9px}#briefPollLog>summary{flex-wrap:wrap}}
 @media(prefers-reduced-motion:reduce){.smart-signal{transition:none}}
+/* Full Senate + consequential House roster, scannable on laptop and mobile. */
+.smart-roster-controls{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:8px 0}
+.smart-roster-controls button{font-size:11px;font-weight:750;border:1px solid #375d76;background:#142d41;color:#b8d2e5;padding:9px 12px;border-radius:7px;cursor:pointer}
+.smart-roster-controls button[aria-pressed="true"]{background:#215777;border-color:#91c4dd;color:#fff}
+.smart-roster-controls button:focus-visible,.smart-roster-controls input:focus-visible{outline:2px solid #9bdaff;outline-offset:2px}
+.smart-roster-controls input{margin-left:auto;background:#0c1d2d;color:#e3f3ff;border:1px solid #426480;border-radius:7px;padding:9px 11px;min-width:200px;flex:1 1 220px;max-width:340px;font-size:12px}
+.smart-roster-controls input::placeholder{color:#89a5ba}
+.smart-roster-summary{font-size:11px;color:#9dbbd0;margin:5px 0 11px}
+.smart-race-desk .smart-desk-grid{display:block;max-height:635px;overflow-y:auto;overscroll-behavior:contain;padding:0 5px 2px 0;scrollbar-color:#456b84 #112638}
+.smart-race-desk .smart-desk-grid:focus-visible{outline:2px solid #9bdaff;outline-offset:2px}
+.smart-roster-office{margin:0 0 18px}
+.smart-roster-office-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;border-bottom:1px solid #426078;padding:6px 3px 9px;margin:2px 0 9px}
+.smart-roster-office-head strong{font-size:12px;font-weight:850;letter-spacing:.015em;color:#d2f0ff}
+.smart-roster-office-head span{font-size:10px;color:#91afc6;white-space:nowrap}
+.smart-roster-rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+@media(max-width:760px){.smart-roster-rows{grid-template-columns:1fr}.smart-race-desk .smart-desk-grid{max-height:61vh}.smart-roster-controls input{margin-left:0;max-width:none;flex-basis:100%}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -752,9 +768,16 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 
 <section class="smart-race-desk" id="smartBriefDesk" aria-label="Automatically tracked 2026 Senate and House races">
 <div class="smart-desk-head"><div><span class="label">THE PRESSURE POINTS · 2026</span>
-<h2>Where the wave breaks</h2><p>Actual model odds, polling, and races worth watching.</p></div>
-<button type="button" id="smartBriefMore" class="smart-desk-more" aria-expanded="false">All races ↓</button></div>
-<div class="smart-desk-grid" id="smartBriefGrid"><p class="empty">Preparing Senate, House and statewide races…</p></div>
+<h2>Where the wave breaks</h2><p>Every 2026 Senate contest and a broad House watchlist. Not just close races.</p></div></div>
+<div class="smart-roster-controls" id="smartBriefControls" role="group" aria-label="Where the wave breaks office filters">
+ <button type="button" data-smart-office="All" aria-pressed="true">All</button>
+ <button type="button" data-smart-office="Senate" aria-pressed="false">Senate <span data-count="Senate">—</span></button>
+ <button type="button" data-smart-office="House" aria-pressed="false">House <span data-count="House">—</span></button>
+ <button type="button" data-smart-office="Governor" aria-pressed="false">Governors <span data-count="Governor">—</span></button>
+ <input id="smartBriefSearch" type="search" placeholder="Find state or district, e.g. PA-10" aria-label="Find race by state or district" autocomplete="off">
+</div>
+<p class="smart-roster-summary" id="smartBriefCount" role="status">Loading the 2026 race roster…</p>
+<div class="smart-desk-grid" id="smartBriefGrid" role="region" tabindex="0" aria-label="Scrollable Senate, House and governor race roster"><p class="empty">Preparing all Senate contests and House race coverage…</p></div>
 <details class="smart-selection-method"><summary>Why these races?</summary><p class="smart-desk-note" id="smartBriefNote">Prioritized by competitive odds, current polls, and independently validated election-night reporting. Screenshot tipping-point rankings only seed the broader watchlist; they are not probability inputs.</p></details></section>
 <div class="grid" style="margin-top:16px">
 <div class="card eight featured"><div class="row"><span class="label">National generic ballot · recent polls</span><span class="tag teal">OBSERVED DATA</span></div><div class="featureline"><div><div class="big party-even" id="genericMargin">—</div><p class="detail" id="genericDetail">Awaiting verified polling observations.</p></div><div class="featuredelta"><span class="label">SINCE LAST REFRESH</span><strong id="genericDelta">—</strong></div></div><div class="barlabels"><span>DEMOCRATIC</span><span>REPUBLICAN</span></div><div class="ballotbar"><div id="ballotDem" class="ballotdem"></div><div id="ballotRep" class="ballotrep"></div></div><div class="barvalues"><span id="ballotDemLabel">—</span><span id="ballotRepLabel">—</span></div><div class="rule"></div><div class="row"><span class="tiny" id="genericFresh">Polling feed not yet loaded</span><button class="textlink" type="button" data-jump="races">Explore races →</button></div><p class="methodline">Descriptive polling average, not a prediction of House seats or win probabilities.</p></div>
@@ -1017,9 +1040,16 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 </section>
 <section class="smart-race-desk smart-night" id="smartNightDesk" aria-label="Automatic election-night priority watch" hidden>
 <div class="smart-desk-head"><div><span class="label">THE PRESSURE POINTS · LIVE</span>
-<h2>Where the wave breaks</h2><p>Live votes, winner calls, and linked model odds.</p></div>
-<button type="button" id="smartNightMore" class="smart-desk-more" aria-expanded="false">All races ↓</button></div>
-<div class="smart-desk-grid" id="smartNightGrid"><p class="empty">Building source-validated priority watch…</p></div>
+<h2>Where the wave breaks</h2><p>All contested Senate races, monitored House districts, and source-checked election-night returns.</p></div></div>
+<div class="smart-roster-controls" id="smartNightControls" role="group" aria-label="Election-night race office filters">
+ <button type="button" data-smart-office="All" aria-pressed="true">All</button>
+ <button type="button" data-smart-office="Senate" aria-pressed="false">Senate <span data-count="Senate">—</span></button>
+ <button type="button" data-smart-office="House" aria-pressed="false">House <span data-count="House">—</span></button>
+ <button type="button" data-smart-office="Governor" aria-pressed="false">Governors <span data-count="Governor">—</span></button>
+ <input id="smartNightSearch" type="search" placeholder="Find state or district" aria-label="Find an election-night race by state or district" autocomplete="off">
+</div>
+<p class="smart-roster-summary" id="smartNightCount" role="status">Loading 2026 live race roster…</p>
+<div class="smart-desk-grid" id="smartNightGrid" role="region" tabindex="0" aria-label="Scrollable election-night race roster"><p class="empty">Building source-validated 2026 race roster…</p></div>
 <details class="smart-selection-method"><summary>Source notes</summary><p class="smart-desk-note" id="smartNightNote">Unofficial source-reported votes; a leader is not necessarily a projected winner. No inferred national swing from early precincts.</p></details></section>
 <div class="en-status" id="enStatus" role="status">Election Day is November 3. The 2024 archive is available for rehearsal before 2026 results begin.</div>
 <section class="en-ambient-overview" aria-label="All-office election-night source status">
@@ -1214,7 +1244,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/civicapi_state_batch.js?v=0a26f4f75956"></script>
 <script src="./scripts/election_night_nowcast.js?v=da7b1cff0c6f"></script>
 <script src="./scripts/election_night_early_signals.js?v=7691146833ec"></script>
-<script src="./scripts/election_night_priority.js?v=763db866f53f"></script>
+<script src="./scripts/election_night_priority.js?v=e1c697ce43d8"></script>
 <script src="./scripts/election_night_signals.js?v=75bc99b105dd"></script>
 <script src="./scripts/election_night_reconciliation.js?v=c1a9d629ece3"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
@@ -2908,6 +2938,7 @@ function enNationalSetUniverse(doc){
   if(changed){enWatched=[...new Map(enWatched.map(x=>[enWatchId(x),x])).values()];enWatchSave()}
  }
  enRenderNationalSenate();enRenderWatchlist();enRenderLiveDesk();
+ renderSmartRaceDesks();
 }
 function enNationalWatchItems(){
  return enNationalEnabled&&enNationalSeats?enNationalSeats:[];
@@ -2967,10 +2998,32 @@ function enLiveRaceEstimate(item){
 /* Briefing and election-night desks deliberately share one 2026 reference
  * watchlist. Source updates may add surprising new races without asking the
  * user to pin anything. 2024 archive totals NEVER enter this board. */
-let smartBriefExpanded=false,smartNightExpanded=false;
+const smartRosterFilters={smartBrief:'All',smartNight:'All'};
 function smartRaceCode(item){return item.code}
+let smartCompactCacheModel=null,smartCompactCache=null;
+let smartRosterCacheModel=null,smartRosterCacheSeats=null,
+ smartRosterCacheHouse=null,smartRosterCacheRows=null;
 function smartAutoWatch(){
- return window.AutomaticRaceDesk?.watch(jointLastResult)||[];
+ // Bounded provider-refresh roster. Avoid sorting 435 model slots for
+ // every per-race visibility/source check; invalidate on a new model draw.
+ if(smartCompactCache&&smartCompactCacheModel===jointLastResult)return smartCompactCache;
+ smartCompactCacheModel=jointLastResult;
+ smartCompactCache=window.AutomaticRaceDesk?.watch(jointLastResult)||[];
+ return smartCompactCache;
+}
+function smartDisplayRoster(){
+ // Display membership changes only with model, certified ballot inventory
+ // or polling snapshot. Live returns/odds still refresh per render.
+ const house=latestSenateEstimates?.house||null;
+ if(smartRosterCacheRows&&smartRosterCacheModel===jointLastResult&&
+   smartRosterCacheSeats===enNationalSeats&&smartRosterCacheHouse===house)
+  return smartRosterCacheRows;
+ smartRosterCacheModel=jointLastResult;
+ smartRosterCacheSeats=enNationalSeats;
+ smartRosterCacheHouse=house;
+ smartRosterCacheRows=window.AutomaticRaceDesk?.watch(jointLastResult,
+  enNationalSeats||[],house||[])||[];
+ return smartRosterCacheRows;
 }
 function enAutoTracked(item){
  return enModeYear===2026&&Date.now()>=Date.parse('2026-11-03T05:00:00Z')&&
@@ -3045,7 +3098,7 @@ function smartReportedExtras(model,existing){
 function smartRaceRanked(){
  const api=window.AutomaticRaceDesk;
  if(!api)return [];
- const modeled=smartModelMap(),all=smartAutoWatch().map(item=>({...item}));
+ const modeled=smartModelMap(),all=smartDisplayRoster().map(item=>({...item}));
  all.push(...smartReportedExtras(modeled,all));
  const now=Date.now();
  const recentFlip=new Set(enMovements.filter(x=>x.leaderChanged&&
@@ -3080,18 +3133,14 @@ function smartSort(rows){
  return rows.sort((a,b)=>b.editorScore-a.editorScore||
   a.code.localeCompare(b.code));
 }
-function smartFeatured(all,isNight,expanded){
- const active=smartSort(all.filter(smartEligible));
- if(expanded)return active;
- const senate=active.filter(x=>x.office==='Senate').slice(0,isNight?4:4);
- const house=active.filter(x=>x.office==='House').slice(0,isNight?4:3);
- const governor=active.filter(x=>x.office==='Governor').slice(0,1);
- const featured=[...senate,...house,...governor],used=new Set(featured.map(x=>x.code));
- for(const x of active)if(featured.length<(isNight?10:8)&&!used.has(x.code)){
-  featured.push(x);used.add(x.code);
+// Keep every validated Senate contest in view, regardless of polling,
+ // competitiveness, or whether the model has a usable probability. For
+ // House, include curated monitored seats, current qualifying polls and
+ // model-identified districts without relying on close odds alone.
+ function smartRoster(all){
+  return smartSort(all.filter(x=>x.office==='Senate'||x.office==='House'||
+   x.office==='Governor'&&smartEligible(x)));
  }
- return smartSort(featured);
-}
 function smartRaceReason(item){
  const p=item.priority;
  if(p.called)return 'Provider call · unofficial';
@@ -3166,35 +3215,74 @@ function smartRow(item){
 }
 function renderSmartRaceDesks(){
  const api=window.AutomaticRaceDesk;if(!api)return;
- const all=smartRaceRanked();
- for(const [hostId,expanded,deskId] of [
-  ['smartBriefGrid',smartBriefExpanded,'smartBriefDesk'],
-  ['smartNightGrid',smartNightExpanded,'smartNightDesk']]){
-  const host=$('#'+hostId),desk=$('#'+deskId);if(!host||!desk)continue;
-  const night=deskId==='smartNightDesk';
+ const all=smartRoster(smartRaceRanked());
+ for(const [prefix,deskId] of [
+  ['smartBrief','smartBriefDesk'],['smartNight','smartNightDesk']]){
+  const host=$('#'+prefix+'Grid'),desk=$('#'+deskId);
+  if(!host||!desk)continue;
+  const night=prefix==='smartNight';
   if(night)desk.hidden=enModeYear!==2026;
   if(night&&desk.hidden)continue;
-  const eligible=all.filter(smartEligible),rows=smartFeatured(all,night,expanded);
-  host.replaceChildren();
-  if(!rows.length){
-   host.append(elt('p','empty','Race odds and polling are loading.'));continue;
+  const search=$('#'+prefix+'Search')?.value.trim().toUpperCase()||'';
+  const chosen=smartRosterFilters[prefix];
+  const counts={Senate:0,House:0,Governor:0};
+  for(const row of all)counts[row.office]++;
+  const controls=$('#'+prefix+'Controls');
+  if(controls)for(const button of controls.querySelectorAll('button[data-smart-office]')){
+   const office=button.dataset.smartOffice;
+   button.setAttribute('aria-pressed',String(chosen===office));
+   const counter=button.querySelector('[data-count]');
+   if(counter)counter.textContent=counts[office];
   }
-  for(const x of rows)host.append(smartRow(x));
+  const rows=all.filter(row=>(chosen==='All'||row.office===chosen)&&
+    (!search||row.code.includes(search)||row.key.includes(search)));
+  const previousScroll=host.scrollTop;
+  host.replaceChildren();
+  const sections=[['Senate','All 2026 Senate contests'],
+   ['House','House monitoring slate and qualifying polls'],
+   ['Governor','Statewide governor watch']];
+  for(const [office,label] of sections){
+   const items=rows.filter(x=>x.office===office);
+   if(!items.length)continue;
+   const section=elt('section','smart-roster-office');
+   const head=elt('div','smart-roster-office-head');
+   head.append(elt('strong','',label),
+    elt('span','',items.length+' '+(items.length===1?'race':'races')));
+   const grid=elt('div','smart-roster-rows');
+   for(const item of items)grid.append(smartRow(item));
+   section.append(head,grid);host.append(section);
+  }
+  if(!rows.length)host.append(elt('p','empty','No matching races in this office. Try another filter or state code.'));
+  host.scrollTop=previousScroll;
+  const summary=$('#'+prefix+'Count');
+  if(summary)summary.textContent=counts.Senate+'/35 Senate contests · '+
+   counts.House+' tracked House seats · '+counts.Governor+
+   ' governors · '+rows.length+' shown'+
+   (search?' for “'+search+'”':'')+'.';
   const note=$('#'+(night?'smartNightNote':'smartBriefNote'));
-  if(note)note.textContent=eligible.length+' races with model odds, polls or verified returns · '+
-   eligible.filter(x=>x.priority.reporting).length+' reporting now. '+
-   'Modeled win probabilities are experimental; reference tipping-point shares are for finding races, not forecasting them.';
+  if(note)note.textContent='Every Senate ballot contest comes from the verified 2026 35-seat universe. '+
+   'House includes the documented editorial watchlist, any qualifying district polls, '+
+   'and additional model-identified districts; inclusion does not mean the race is close. '+
+   'Missing polling or model estimates remain unavailable rather than invented. '+
+   all.filter(x=>x.priority.reporting).length+
+   ' monitored races have qualifying live reporting. Modeled odds remain experimental.';
  }
 }
-for(const [buttonId,setter] of [
- ['smartBriefMore',next=>{smartBriefExpanded=next;renderSmartRaceDesks()}],
- ['smartNightMore',next=>{smartNightExpanded=next;renderSmartRaceDesks()}]]){
- const button=$('#'+buttonId);
- if(button)button.addEventListener('click',()=>{
-  const next=button.getAttribute('aria-expanded')!=='true';
-  button.setAttribute('aria-expanded',String(next));
-  button.textContent=next?'Top races ↑':'All races ↓';
-  setter(next);
+for(const prefix of ['smartBrief','smartNight']){
+ const controls=$('#'+prefix+'Controls');
+ if(controls)controls.addEventListener('click',event=>{
+  const button=event.target.closest('button[data-smart-office]');
+  if(!button||!controls.contains(button))return;
+  const selected=button.dataset.smartOffice;
+  if(!['All','Senate','House','Governor'].includes(selected))return;
+  smartRosterFilters[prefix]=selected;
+  const grid=$('#'+prefix+'Grid');if(grid)grid.scrollTop=0;
+  renderSmartRaceDesks();
+ });
+ const search=$('#'+prefix+'Search');
+ if(search)search.addEventListener('input',()=>{
+  const grid=$('#'+prefix+'Grid');if(grid)grid.scrollTop=0;
+  renderSmartRaceDesks();
  });
 }
 
