@@ -30,7 +30,7 @@
   'KY-SEN':'R','MS-SEN':'R','OK-SEN':'R','TN-SEN':'R','WV-SEN':'R','WY-SEN':'R'
  });
  const SOLID_NO_POLL_TOTAL_SIGMA=7;
- const CURRENT_SENATE_MODEL_REVISION='late_2026_horizon_error_budget_v4';
+ const CURRENT_SENATE_MODEL_REVISION='late_2026_depth_aware_special_v5';
 // At 20 days, the recent 2020/22/24 archival FIELDWORK-only cohort (41
 // Senate contests) has a 5.254-point margin RMSE. At seven days the 42-race
 // cohort has 5.633 RMSE. Proper winner scores improve modestly at a 6.5-pt
@@ -41,7 +41,15 @@
 // Archive lacks verified first-publication dates and 2026 fundamentals: the
 // 6.5-ppt choice is a PROVISIONAL conditional error budget, not a backtested
 // probability calibration or a result tuned to an external forecast.
-const SENATE_POLL_ERROR_FLOORS=Object.freeze({qualified:6.5,thin:8.5});
+const SENATE_POLL_ERROR_FLOORS=Object.freeze({qualified:6.5,deepSpecial:7.5,thin:8.5});
+// Deeply polled special elections have direct 2026 matchup evidence; keep
+// a 1-point uncertainty premium over equally well-polled regular contests.
+function senateCandidatePollWeight(independentFirms){
+ if(!Number.isInteger(independentFirms)||independentFirms<0)
+  throw Error('Invalid Senate independent pollster count');
+ return independentFirms>=8?.97:independentFirms>=5?.94:
+  independentFirms>=3?.90:independentFirms>=2?.83:.60;
+}
 function senatePollingErrorBudget(info){
  const {independentFirms,contributingFirms,daysSinceLatest,special,sourceSigma}=info||{};
  if(!Number.isInteger(independentFirms)||independentFirms<0||
@@ -49,11 +57,15 @@ function senatePollingErrorBudget(info){
     !finite(daysSinceLatest)||daysSinceLatest<0||
     !finite(sourceSigma)||sourceSigma<=0||typeof special!=='boolean')
   throw Error('Invalid Senate polling uncertainty provenance');
- const qualified=!special&&independentFirms>=2&&
-  contributingFirms>=3&&daysSinceLatest<=14;
- const floor=qualified?SENATE_POLL_ERROR_FLOORS.qualified:SENATE_POLL_ERROR_FLOORS.thin;
+ const recent=independentFirms>=2&&contributingFirms>=3&&daysSinceLatest<=14;
+ const deepSpecial=special&&independentFirms>=4&&
+  contributingFirms>=6&&daysSinceLatest<=14;
+ const qualified=recent&&!special;
+ const floor=deepSpecial?SENATE_POLL_ERROR_FLOORS.deepSpecial:
+  qualified?SENATE_POLL_ERROR_FLOORS.qualified:SENATE_POLL_ERROR_FLOORS.thin;
  return {floor,totalSigma:Math.max(floor,sourceSigma),
-  tier:qualified?'recent_multi_firm':'thin_stale_or_special'};
+  tier:deepSpecial?'recent_deep_special':
+   qualified?'recent_multi_firm':'thin_stale_or_special'};
 }
  // Two-party proxy names in source polling are NOT ballot party affiliations.
  const INDEPENDENT_SENATE_PROXY_CANDIDATES=Object.freeze({
@@ -408,7 +420,7 @@ function senatePollingErrorBudget(info){
     // polls, relative to the state-and-national candidate-neutral baseline.
     // Keep more weight on surveys than on conjectured candidate quality.
     const weight=senatePriorMode==='current_2026'?
-     (poll.independent_firms>=3?.90:poll.independent_firms>=2?.83:.60):
+     senateCandidatePollWeight(poll.independent_firms):
      (poll.independent_firms>=2?.90:.78);
     pollWeight=weight;
     candidatePollResidual=senatePriorMode==='current_2026'?
@@ -490,12 +502,14 @@ function senatePollingErrorBudget(info){
      national_swing_points:currentSenateNationalSwing,
      candidate_signal:'2026_named_matchup_poll_residual_vs_neutral_geography',
      model_revision:CURRENT_SENATE_MODEL_REVISION,
-     poll_weight_firms_3_plus:.90,poll_weight_firms_2:.83,
+     poll_weight_firms_3_plus:.90,poll_weight_firms_5_plus:.94,
+     poll_weight_firms_8_plus:.97,poll_weight_firms_2:.83,
      poll_weight_firms_1:.60,
      no_poll_solid_rating_source:'Inside Elections Senate ratings (2026-10-01)',
      no_poll_solid_rating_url:'https://insideelections.com/ratings/senate/',
      no_poll_solid_eligible_race_count:11,
      no_poll_solid_total_sigma:SOLID_NO_POLL_TOTAL_SIGMA,
+     deep_special_poll_total_sigma_floor:SENATE_POLL_ERROR_FLOORS.deepSpecial,
      historical_2020_senate_candidate_margin_used:false,
      statewide_2024_house_party_aggregate_used:false,
      polled_race_total_sigma_floor:6.5,

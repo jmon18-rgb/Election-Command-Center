@@ -89,7 +89,7 @@ const sources={seats:read('seat_universe'),history:read('house_history_2024_stag
  odds:read('race_probabilities'),polls:read('polling_estimates'),
  presidential:read('presidential_2024_by_2026_district_staging')};
 const basis=model.prepare(sources,{senatePriorMode:'current_2026'});
-assert.equal(basis.senate_current_context.model_revision,'late_2026_horizon_error_budget_v4');
+assert.equal(basis.senate_current_context.model_revision,'late_2026_depth_aware_special_v5');
 const samples=6000,opts={samples,seed:20261103};
 const original=model.simulate(basis,opts);
 const variants=[

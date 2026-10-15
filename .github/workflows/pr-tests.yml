@@ -16,6 +16,12 @@ jobs:
           python3 scripts/test_fresh_poll_sources.py
           python3 scripts/test_poll_to_odds.py
           python3 scripts/validate_poll_to_odds.py
+      - name: Audit depth-aware Texas Ohio Senate odds against last engine revision
+        run: |
+          node --check scripts/audit_senate_depth_v5.cjs
+          node scripts/audit_senate_depth_v5.cjs --json > /tmp/senate-depth-v5.json
+          node -e "const x=require('/tmp/senate-depth-v5.json');if(x.status!=='SENATE_DEPTH_CHANGE_SAME_DRAW_DIAGNOSTIC_NOT_EXTERNAL_ODDS_FIT'||!x.house_and_governor_unchanged||x.races.length!==5||x.private_silver_odds_fitted!==false)process.exit(1)"
+          node scripts/audit_senate_depth_v5.cjs
       - name: Verify published 2026 Senate current-candidate odds, variance and House invariance
         run: |
           node --check scripts/chamber_control_model.js

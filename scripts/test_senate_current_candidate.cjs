@@ -49,8 +49,10 @@ const mn=current.senate.find(x=>x.code==='MN-SEN'),old=legacy.senate.find(x=>x.c
 const input=source.odds.records.find(x=>x.race_code==='MN-SEN'&&x.office==='senate');
 assert(input);
 assert.equal(mn.poll_weight,.90);
-assert.equal(current.senate_current_context.model_revision,'late_2026_horizon_error_budget_v4');
+assert.equal(current.senate_current_context.model_revision,'late_2026_depth_aware_special_v5');
 assert.equal(current.senate_current_context.poll_weight_firms_3_plus,.90);
+assert.equal(current.senate_current_context.poll_weight_firms_5_plus,.94);
+assert.equal(current.senate_current_context.poll_weight_firms_8_plus,.97);
 assert.equal(current.senate_current_context.poll_weight_firms_2,.83);
 assert.equal(current.senate_current_context.poll_weight_firms_1,.60);
 const solidNoPoll=current.senate.filter(x=>x.public_solid_unpolled_party);
@@ -71,7 +73,8 @@ const a=current.assumptions,sigmaShared=Math.hypot(
 assert(solidNoPoll.every(x=>Math.abs(Math.hypot(x.sigma,sigmaShared)-7)<1e-9));
 assert(current.senate.filter(x=>x.polled&&
  source.odds.records.find(y=>y.race_code===x.code)?.independent_firms>=3)
- .every(x=>x.poll_weight===.90));
+ .every(x=>x.poll_weight===(source.odds.records.find(y=>y.office==='senate'&&y.race_code===x.code).independent_firms>=8?.97:
+   source.odds.records.find(y=>y.office==='senate'&&y.race_code===x.code).independent_firms>=5?.94:.90)));
 assert(mn.candidate_specific_2026_poll_residual_points<0,
  'Recent candidate matchup is LESS Democratic than geography+national mood');
 assert(Math.abs(mn.candidate_specific_2026_poll_residual_points-
@@ -82,9 +85,18 @@ const shared=current.assumptions,sharedSigma=Math.hypot(shared.common_national_s
  shared.senate_chamber_sigma,shared.state_senate_sigma);
 assert.equal(current.senate_current_context.polled_race_total_sigma_floor,6.5);
 assert.equal(current.senate_current_context.thin_stale_or_special_poll_total_sigma_floor,8.5);
+assert.equal(current.senate_current_context.deep_special_poll_total_sigma_floor,7.5);
+for(const [code,weight] of [['TX-SEN',.97],['OH-SEN',.94]]){
+ const r=current.senate.find(x=>x.code===code);
+ assert.equal(r.poll_weight,weight,'Deep independent polls should supersede the generic geographic prior: '+code);
+}
+const ohio=current.senate.find(x=>x.code==='OH-SEN');
+assert.equal(ohio.special,true);
+assert.equal(ohio.polling_error_tier,'recent_deep_special');
+assert.equal(ohio.polling_error_floor_points,7.5);
 assert(current.senate.filter(x=>x.polled&&x.polling_error_tier==='recent_multi_firm').length>=5);
 assert(current.senate.filter(x=>x.polled).every(x=>
- ['recent_multi_firm','thin_stale_or_special'].includes(x.polling_error_tier)));
+ ['recent_multi_firm','recent_deep_special','thin_stale_or_special'].includes(x.polling_error_tier)));
 for(const code of ['NC-SEN','GA-SEN','MN-SEN','ME-SEN']){
  assert.equal(current.senate.find(x=>x.code===code).polling_error_floor_points,6.5,
   'Representative well-polled races must follow shared depth/recency criterion: '+code);

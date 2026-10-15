@@ -1298,7 +1298,9 @@ function renderModelRaceOdds(estimate){
    (item.office==='senate'&&item.polling_error_tier?
      (item.polling_error_tier==='recent_multi_firm'?
       ' · recent multi-firm polling: 6.5-point floor':
-      ' · thin/stale/special polling: 8.5-point floor'):'')+'. '+
+      item.polling_error_tier==='recent_deep_special'?
+      ' · recent, deeply polled special election: 7.5-point floor':
+      ' · thin/stale polling: 8.5-point floor'):'')+'. '+
    'Same '+modelRaceOddsData.samples.toLocaleString('en-US')+
    ' correlated draws as House/Senate control. Error-width controls rerun the full model. '+
    'Two-party conditional estimate, not a calibrated race call; special ballot rules remain incomplete.';
@@ -2417,7 +2419,7 @@ function jointPrivateActivate(){
   }else jointBasis=jointBasisPublic;
   jointCacheKey='';jointPublicResult=null;
   if(tag)tag.textContent=jointUsesPrivateContext()?
-   'PRIVATE CSV-AUGMENTED · experimental · not FLIPR':'2026 Senate model · multi-firm error budget v4';
+   'PRIVATE CSV-AUGMENTED · experimental · not FLIPR':'2026 Senate model · poll-depth forecast v5';
   jointRender(true);
  }catch(e){
   jointBasis=jointBasisPublic;jointPrivateEnabled=false;
@@ -2698,12 +2700,12 @@ function jointSetSources(sources){
   if(jointBasis?.senate_prior_mode!=='current_2026'||
      jointBasis?.senate?.length!==35||
      jointBasis.senate_current_context?.model_revision!==
-      'late_2026_horizon_error_budget_v4'||
+      'late_2026_depth_aware_special_v5'||
      jointBasis.senate.find(x=>x.code==='MN-SEN')?.senate_prior_mode!=='current_2026'){
     throw Error('OUTDATED FORECAST ENGINE — reload the page to load the 2026 Senate model');
   }
   const tag=$('#modelEngineTag');
-  if(tag)tag.textContent='2026 Senate model · multi-firm error budget v4';
+  if(tag)tag.textContent='2026 Senate model · poll-depth forecast v5';
   jointBasisShadow=null;jointBasisPresidential=null;
   try{jointBasisShadow=window.ChamberControlModel.prepare(sources,{
    fundamentalsMode:'two_cycle_shadow',senatePriorMode:'current_2026'
@@ -2755,7 +2757,7 @@ async function jointLoadSources(options={}){
     throw Error('Polling and model JSON belong to different publication cycles');
    const candidate=window.ChamberControlModel?.prepare(context,{senatePriorMode:'current_2026'});
    if(candidate?.senate_prior_mode!=='current_2026'||
-      candidate.senate_current_context?.model_revision!=='late_2026_horizon_error_budget_v4')
+      candidate.senate_current_context?.model_revision!=='late_2026_depth_aware_special_v5')
     throw Error('New poll snapshot not compatible with the loaded 2026 engine');
   }
   jointSetSources(context);
