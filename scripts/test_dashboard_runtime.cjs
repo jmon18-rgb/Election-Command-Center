@@ -135,7 +135,7 @@ async function settle(){
  assert(get('#enFishPreview').compareDocumentPosition(get('#jointNightPanel'))&
   w.Node.DOCUMENT_POSITION_FOLLOWING,
   'Fish Head rehearsal action must precede the main panel');
- assert(!get('#electionNight .en-fish-controls'),
+ assert.equal(w.document.querySelector('#electionNight .en-fish-controls'),null,
   'Do not retain the old redundant full-width Fish Head control panel');
  const fish=get('#enFishToast');
  assert(fish.hidden,'Breaking news panel must start dismissed');
