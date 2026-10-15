@@ -108,6 +108,8 @@ async function settle(){
  assert(w.RaceLiveNowcast,'Live race probability module must load before app');
  w.eval(read('scripts/election_night_early_signals.js'));
  assert(w.ElectionNightEarlySignals?.records?.length>=10,'Early signal registry must load');
+ w.eval(read('scripts/election_night_priority.js'));
+ assert(w.AutomaticRaceDesk?.SEED.length>75,'Automatic Silver-reference race registry must load');
  w.eval(read('scripts/election_night_signals.js'));
  assert.equal(w.ElectionNightSignals?.MILESTONES.length,7);
  w.eval(read('scripts/election_night_rehearsal.js'));
@@ -126,6 +128,33 @@ async function settle(){
  assert(registeredIntervals.some(x=>x.ms===300000),
   'Still-open tab must register reporting/security refresh every five minutes');
  await settle();
+ // Four Endings belongs above the polling/news feed and the automatic
+ // election-night race desk—not buried after both.
+ const beforeOnPage=(earlier,later)=>Boolean(
+  earlier.compareDocumentPosition(later)&w.Node.DOCUMENT_POSITION_FOLLOWING);
+ assert(beforeOnPage(get('#jointHomePanel'),get('#genericMargin')),
+  'The four-outcome model should be visible above the generic-ballot chart');
+ assert(beforeOnPage(get('#smartBriefDesk'),get('#racePulse')),
+  'Automatic key races should appear before detailed polling deltas');
+ assert(beforeOnPage(get('#smartBriefDesk'),get('#newPolls')),
+  'Automatic key races should appear before scrolling through polls');
+ assert(get('#smartBriefGrid').textContent.includes('ME-SEN'));
+ assert(get('#smartBriefGrid').textContent.includes('PA-10'));
+ assert.equal(get('#smartNightDesk').hidden,true,
+  'Historical archive view must hide the 2026 live-action watch');
+ assert.equal(get('#smartBriefGrid').querySelectorAll('.smart-desk-lane').length,3,
+  'Automatic board must cover Senate, House and governors');
+ const initialWatch=w.eval('smartAutoWatch()');
+ assert(initialWatch.some(x=>x.code==='OH-SEN'&&x.key==='OH-special'));
+ assert(initialWatch.some(x=>x.code==='AZ-06'&&x.office==='House'));
+ assert(!w.eval("enWatched.some(x=>x.key==='PA-10')"),
+  'Auto-watch must not overwrite the personal pinned list');
+ get('#smartBriefMore').click();
+ assert.equal(get('#smartBriefMore').getAttribute('aria-expanded'),'true');
+ assert(get('#smartBriefGrid').textContent.includes('NM-02'),
+  'Expanded view should expose additional screenshot House districts');
+ get('#smartBriefMore').click();
+ assert.equal(get('#smartBriefMore').getAttribute('aria-expanded'),'false');
  // One cross-page heartbeat distinguishes five independent sources.
  const glanceIds=['feedPolls','feedModel','feedNews','feedSecurity','feedResults'];
  for(const id of glanceIds){
@@ -267,6 +296,11 @@ async function settle(){
  w.Date.now=()=>Date.parse('2026-11-04T03:20:00Z');
  get('#electionNight').classList.add('active');
  get('#enMode2026').click();
+ assert.equal(get('#smartNightDesk').hidden,false,
+  '2026 results mode must show automatic key race watch');
+ assert.equal(w.eval("enAutoTracked({office:'House',key:'PA-10'})"),true,
+  'Reference House district is followed without custom user pins');
+ assert.equal(w.eval("enAutoTracked({office:'Senate',key:'ME'})"),true);
  // A provider-reported winner call must constrain this race in ALL correlated
  // House/Senate simulation draws, not merely contribute a tiny partial lead.
  // NC has a state-derived primary results feed; a separately identity-checked
