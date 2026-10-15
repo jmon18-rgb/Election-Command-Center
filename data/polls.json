@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T12:58:47.881058Z",
+  "updated_at": "2026-10-15T13:01:21.582216Z",
   "generic_ballot": {
     "summary": {
       "dem": 48.1,
@@ -15195,7 +15195,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-15T12:58:47.881058Z",
+    "last_attempt_at": "2026-10-15T13:01:21.582216Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15204,29 +15204,11 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [
-      {
-        "race_code": "NY-GOV",
-        "race_type": "governor",
-        "poll_id": "2b0a89de-c06d-42ec-aba2-1dafb7e80713",
-        "pollster": "Beacon Research",
-        "field_end": "2026-10-06",
-        "dem": 53.0,
-        "rep": 31.0,
-        "margin": 22.0,
-        "dem_name": "Kathy Hochul",
-        "rep_name": "Bruce Blakeman",
-        "sample_size": 820,
-        "first_seen_at": "2026-10-15T12:58:48.250101+00:00",
-        "release_date": null,
-        "source_url": "https://www.politico.com/newsletters/new-york-playbook/2026/10/15/mamdanis-mia-from-gop-attack-ads-01119739",
-        "source": "pollresults_secondary_fallback"
-      }
-    ],
-    "new_poll_count": 1,
+    "new_polls": [],
+    "new_poll_count": 0,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-15T12:58:47.881058Z",
-    "previous_snapshot_at": "2026-10-15T12:25:30.684142Z",
+    "comparison_at": "2026-10-15T13:01:21.582216Z",
+    "previous_snapshot_at": "2026-10-15T12:58:47.881058Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15256,15 +15238,13 @@
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 282,
-    "newly_injected_into_model": 1,
-    "newly_injected_by_race": {
-      "NY-GOV": 1
-    },
+    "matched_observations": 283,
+    "newly_injected_into_model": 0,
+    "newly_injected_by_race": {},
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
-    "carried_forward_current_observations": 14,
+    "carried_forward_current_observations": 15,
     "provenance": "PollResults source-linked fallback; original first_seen_at retained"
   }
 }
