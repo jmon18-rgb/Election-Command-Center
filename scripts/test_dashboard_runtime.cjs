@@ -2273,7 +2273,7 @@ async function settle(){
   independent_firms:mnEstimate.independent_pollsters
  });
  const seatNext=structuredClone(fixtures['seat_universe.json']);
- seatNext.polling_source_snapshot=primaryNext.updated_at;
+ seatNext.polling_source_snapshot=estimatesNext.generated_at;
  fixtures['seat_universe.json']=seatNext;
  fixtures['polling_estimates.json']=estimatesNext;
  fixtures['race_probabilities.json']=oddsNext;
