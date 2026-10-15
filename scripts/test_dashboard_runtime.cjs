@@ -875,6 +875,13 @@ async function settle(){
  const wireWindow=get('#wireWindow');
  wireWindow.value='all';wireWindow.dispatchEvent(new w.Event('change',{bubbles:true}));
  assert(get('#wireCount').textContent.includes('available'));
+ const localQuestions=json('data/substate_poll_signals.json');
+ w.eval('renderSubstatePollSignals('+JSON.stringify(localQuestions)+')');
+ assert.equal(get('#wireSubstateCount').textContent,'2 source-verified local questions');
+ assert.equal(get('#wireSubstateSignals').querySelectorAll('.wire-local-row').length,2);
+ assert.match(get('#wireSubstateSignals').textContent,/TX-09 electorate/);
+ assert.match(get('#wireSubstateSignals').textContent,/NOT a statewide Texas margin/);
+ assert.match(get('#wireSubstateSignals').textContent,/1\\.0 pts/);
  let wireCards=[...get('#wireResults').querySelectorAll('.wire-entry')];
  assert.equal(wireCards.length,24,'Wire must paginate, not render the entire source archive');
  assert(!get('#wireMore').hidden,'Wire must show a working pagination control');
