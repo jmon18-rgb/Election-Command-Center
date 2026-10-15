@@ -10,6 +10,7 @@ import json
 import math
 from datetime import date
 from pathlib import Path
+from poll_firm_wave_selection import select_latest_firm_waves
 
 ROOT = Path(__file__).resolve().parents[1]
 OFFICES = {"senate": "senate_all", "house": "house", "governor": "governor"}
@@ -97,6 +98,7 @@ def check(primary, model, odds, supplemental=None, *, today=None):
         # The matchup/window rules mirror the published eligibility contract,
         # but this source-to-output inventory is independent of aggregation.
         latest_by_firm = {}
+        eligible_for_selection = []
         for item in raw:
             if ((item.get("dem_name"), item.get("rep_name")) !=
                     (race.get("dem_candidate"), race.get("rep_candidate"))):
@@ -114,27 +116,55 @@ def check(primary, model, odds, supplemental=None, *, today=None):
                     continue
             except (TypeError, KeyError, ValueError):
                 continue
+            eligible_for_selection.append(item)
             latest = latest_by_firm.get(firm, [])
             if not latest or item["field_end"] > latest[0]["field_end"]:
                 latest_by_firm[firm] = [item]
             elif item["field_end"] == latest[0]["field_end"]:
                 latest.append(item)
-        for firm, latest in latest_by_firm.items():
-            # Independent same-day questions are not necessarily independent
-            # fieldwork. Do not force the estimator to pick a particular one.
-            if len(latest) != 1:
-                ambiguous_primary_waves += 1
-                continue
-            p = latest[0]
-            freshest_primary_waves += 1
-            if not any(q.get("poll_id") == p.get("poll_id") and
-                       q.get("field_end") == p["field_end"] and
-                       str(q.get("name") or "").casefold() == firm
-                       for q in race.get("pollsters", [])):
+        if model.get("method_version") == "poll-mean-1.5":
+            selected, selection_audit = select_latest_firm_waves(eligible_for_selection)
+            ambiguous_primary_waves += len(selection_audit["quarantined_same_day_firms"])
+            expected = {x["pollster"].strip().casefold(): x for x in selected}
+            included_by_firm = {str(q.get("name") or "").strip().casefold(): q
+                                for q in race.get("pollsters", [])}
+            if set(expected) != set(included_by_firm):
                 raise ValueError(
-                    f"Newest primary poll omitted from model and joint odds: "
-                    f"{race['race_code']} / {p['pollster']} / {p.get('poll_id')}"
+                    f"{race['race_code']}: same-day selected firms differ from published model"
                 )
+            for firm, poll in expected.items():
+                chosen = included_by_firm[firm]
+                if (chosen.get("poll_id") != poll.get("poll_id") or
+                    chosen.get("field_end") != poll.get("field_end") or
+                    any(chosen.get(field) is not None and
+                        chosen.get(field) != poll.get(field)
+                        for field in ("question_id", "sample_population", "dem", "rep"))):
+                    raise ValueError(
+                        f"{race['race_code']}: incorrect same-day selected poll "
+                        f"for {firm}: expected {poll.get('poll_id')}"
+                    )
+                freshest_primary_waves += 1
+        else:
+            # Old checked-in models use the former same-day rule. Hourly
+            # regeneration upgrades their method version before strict gating.
+            # Keep historic PR snapshots buildable while the source transition
+            # is in progress; NEVER exempt new v1.5 publications.
+            for firm, latest in latest_by_firm.items():
+                # Independent same-day questions are not necessarily independent
+                # fieldwork. Do not force the estimator to pick a particular one.
+                if len(latest) != 1:
+                    ambiguous_primary_waves += 1
+                    continue
+                p = latest[0]
+                freshest_primary_waves += 1
+                if not any(q.get("poll_id") == p.get("poll_id") and
+                           q.get("field_end") == p["field_end"] and
+                           str(q.get("name") or "").casefold() == firm
+                           for q in race.get("pollsters", [])):
+                    raise ValueError(
+                        f"Newest primary poll omitted from model and joint odds: "
+                        f"{race['race_code']} / {p['pollster']} / {p.get('poll_id')}"
+                    )
         for poll in race.get("pollsters", []):
             matching = [
                 p for p in raw
@@ -197,10 +227,24 @@ def check(primary, model, odds, supplemental=None, *, today=None):
         ]
         if any(item.get("field_end") > p["field_end"] for item in waves):
             continue  # An older poll from the same firm is intentionally superseded.
-        unique_ids = {item.get("poll_id") for item in waves}
-        if len(unique_ids) != 1:
-            ambiguous_waves += 1
-            continue  # Same-day alternative studies cannot both be weighted.
+        if model.get("method_version") == "poll-mean-1.5":
+            chosen, audit = select_latest_firm_waves(waves)
+            if not chosen:
+                ambiguous_waves += 1
+                continue
+            selected = chosen[0]
+            if (selected.get("poll_id") != p.get("poll_id") or
+                selected.get("field_end") != p.get("field_end") or
+                selected.get("dem") != p.get("dem") or
+                selected.get("rep") != p.get("rep")):
+                # Another question/study was correctly prioritized for this
+                # firm and date. It remains in Poll Wire, not in model odds.
+                continue
+        else:
+            unique_ids = {item.get("poll_id") for item in waves}
+            if len(unique_ids) != 1:
+                ambiguous_waves += 1
+                continue
         newest_indexed += 1
         if not any(
             item.get("poll_id") == p.get("poll_id")
