@@ -37,6 +37,58 @@
    log_loss:round(avg(scored.map(x=>x.logLoss)),4),
    democratic_wins:scored.filter(x=>x.y===1).length};
  };
+ // Empirical win-frequency check for the probability assigned to the
+ // poll-only favorite. No parameter fitting and no independent-sample claim.
+ // Wilson ranges describe only these observed races, not correlated 2026
+ // national error or the missing unpolled contests.
+ function reliabilityBins(rows,sd=SIGMA){
+  if(!Array.isArray(rows)||!rows.length||!Number.isFinite(sd)||sd<=0)
+   throw Error('Invalid retrospective reliability sample');
+  const starts=[50,60,70,80,90];
+  const buckets=new Map(starts.map(n=>[n,{
+   lower_pct:n,upper_pct:n===90?100:n+10,
+   estimated_wins:0,observed_wins:0,sum_confidence:0,n:0,cycles:new Set()
+  }]));
+  for(const row of rows){
+   const margin=row.methods?.recency21?.predicted_two_party_margin;
+   const actual=row.actual_two_party_margin;
+   if(!Number.isFinite(margin)||!Number.isFinite(actual)||
+      !Number.isInteger(row.cycle))throw Error('Invalid retrospective probability row');
+   const p=Math.max(1e-8,Math.min(1-1e-8,cdf(margin/sd)));
+   const confidence=Math.max(p,1-p);
+   const bin=Math.min(90,Math.max(50,50+10*Math.floor((100*confidence-50)/10)));
+   const r=buckets.get(bin);
+   const predictedDem=p>=.5,actualDem=actual>0;
+   r.n++;r.estimated_wins+=confidence;
+   r.observed_wins+=predictedDem===actualDem?1:0;
+   r.sum_confidence+=confidence;r.cycles.add(row.cycle);
+  }
+  const wilson=(n,w)=>{
+   if(!n)return null;
+   const z=1.96,den=1+z*z/n;
+   const mid=(w/n+z*z/(2*n))/den;
+   const half=z*Math.sqrt((w/n)*(1-w/n)/n+z*z/(4*n*n))/den;
+   return {lower_pct:round(100*Math.max(0,mid-half),1),
+    upper_pct:round(100*Math.min(1,mid+half),1)};
+  };
+  return starts.map(i=>{
+   const b=buckets.get(i);
+   const interval=wilson(b.n,b.observed_wins);
+   return {bin_label:i+'–'+b.upper_pct+'% confidence',
+    lower_pct:i,upper_pct:b.upper_pct,n:b.n,
+    election_cycles:[...b.cycles].sort(),
+    expected_favorite_wins:round(b.estimated_wins,2),
+    observed_favorite_wins:b.observed_wins,
+    average_assigned_confidence_pct:b.n?round(100*b.sum_confidence/b.n,1):null,
+    observed_favorite_win_pct:b.n?round(100*b.observed_wins/b.n,1):null,
+    observed_minus_expected_pp:b.n?
+     round(100*(b.observed_wins-b.estimated_wins)/b.n,1):null,
+    wilson_95_pct:interval,
+    statistically_validated:false,
+    caution:b.n===0?'NO OBSERVATIONS':
+     b.n<10?'VERY SMALL SAMPLE':'THREE CYCLES MAX; CORRELATED ERRORS'};
+  });
+ }
  function evaluate(data){
   if(data?.schema_version!=='historical-poll-backtest-v1'||
      data.can_calibrate_2026_win_probabilities!==false||
@@ -92,6 +144,8 @@
   // stable directional correction for the 2026 electorate.
   return {schema:'senate_poll_audit_v1',
    status:'RETROSPECTIVE_VALIDATION_ONLY',
+   confidence_reliability_bins:reliabilityBins(records,SIGMA),
+   reliability_scope:'Poll-only favorite confidence at 7-day fieldwork cutoffs; public publication dates not independently verified',
    cutoff_description:'Seven days before election by fieldwork end; publication timing unknown',
    source:data.poll_source,source_attribution:data.poll_source_attribution,
    standard_sigma_points:SIGMA,overall:full,by_year:yearly,
@@ -108,5 +162,5 @@
     'No 2026 bias correction or joint probability calibration applied automatically'
    ]};
  }
- return Object.freeze({YEARS,SIGMA,evaluate});
+ return Object.freeze({YEARS,SIGMA,evaluate,reliabilityBins});
 });
