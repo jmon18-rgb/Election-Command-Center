@@ -2615,7 +2615,14 @@ const summary=document.getElementById('integrityQueueSummary'),box=document.getE
 if(!summary||!box)return;
 box.replaceChildren();
 const items=Array.isArray(d.items)?d.items:[];
-summary.textContent=items.length+' reports awaiting or undergoing review · last refreshed '+(d.updated_at?new Date(d.updated_at).toLocaleString():'unknown');
+const pending=items.filter(x=>x.review_status==='needs_primary_source').length;
+const checked=items.filter(x=>x.review_status==='primary_source_checked').length;
+const overlaps=Number.isInteger(d.review_metrics?.advisory_related_headline_buckets)?
+ d.review_metrics.advisory_related_headline_buckets:null;
+summary.textContent=pending+' news leads awaiting primary-source checks · '+checked+
+ ' lead(s) source-checked'+(overlaps===null?'': ' · '+overlaps+
+ ' possible related-headline groups (NOT verified incidents)')+
+ ' · updated '+(d.updated_at?new Date(d.updated_at).toLocaleString():'unknown');
 if(!items.length){box.append(elt('div','empty','No reports in the queue. This does not mean no incidents occurred.'));return}
 for(const x of items.slice(0,12)){
 const card=elt('div','racecard');card.append(elt('strong','',x.title||'Unspecified report'));
