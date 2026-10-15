@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T04:45:10.274184Z",
+  "updated_at": "2026-10-15T05:44:57.649661Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -30,6 +30,25 @@
       "topic_hints": [],
       "headline_numbers_unverified": [
         "17 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "255860be69baf3465e3f",
+      "title": "US DOJ Gives California 48-Hours to Review/Address List of Noncitizens Who Received Ballots - California Globe",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQd3h6LTJpdXlaRE1mbU9aUmRPNDhac1F3Q284VWlveTBJb0RqRHZ1b29IVEJyNEROc1BmNjE1cDFnakxpLVNuVkR1OUxZcXdkdFhHUlR1Y0NRcGdxdHpNSGJ0OXNIeUZTeDA3LTJhZF9SN2M0VE5BNHNQVmlIbUozYjNxUDVZVEUySjNFOTE4TzZYa2dENE5jOUU1dmk4UGdRNjlOajMzY1hqMGVXU29PWFZXSW1pYTRXVFhFYXNxVTU?oc=5",
+      "publisher": "California Globe",
+      "published_at": "2026-10-15T03:02:33Z",
+      "detected_at": "2026-10-15T05:44:57.649661Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [
+        "48"
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
