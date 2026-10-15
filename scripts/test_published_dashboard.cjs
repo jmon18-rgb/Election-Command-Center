@@ -159,7 +159,10 @@ async function main(){
   assert(prepared.senate.find(x=>x.code==='OH-SEN'));
   assert(prepared.senate.find(x=>x.code==='IA-SEN'));
  });
- const sampleCount=1200;
+ // Use the SAME number of draws and seed as the browser's headline
+ // forecast. A 1,200-draw smoke forecast can otherwise differ by ~1 pp
+ // purely from sampling and make a correct production number look stale.
+ const sampleCount=3000;
  const result=engine.simulate(prepared,{samples:sampleCount,seed:20261103});
  check('live same-draw race, chamber and Four Endings coherence',()=>{
   assert.equal(result.samples,sampleCount);
@@ -182,11 +185,48 @@ async function main(){
     'Missing same-draw probability '+key);
   }
  });
+ // Diagnostic lineage across BOTH odds engines: the fixed-width
+ // standalone poll-only calculation is an input, not the website headline.
+ // Never fail simply because two distinct estimates happen to agree.
+ const iaCode='IA-SEN';
+ const iaRaw=primary.races.find(r=>r.race_code===iaCode);
+ const iaPoll=polling.senate_all.find(r=>r.race_code===iaCode);
+ const iaStandalone=odds.records.find(r=>r.office==='senate'&&r.race_code===iaCode);
+ const iaJoint=result.race_probabilities.find(r=>r.office==='senate'&&r.race_code===iaCode);
+ const iaBasis=prepared.senate.find(r=>r.code===iaCode);
+ check('Iowa LV source to calibrated-input to same-draw forecast trace',()=>{
+  assert(iaRaw&&iaPoll&&iaStandalone&&iaJoint&&iaBasis);
+  assert.equal(iaStandalone.dem_minus_rep,iaPoll.dem_minus_rep);
+  assert.equal(iaStandalone.latest_poll_end,iaPoll.latest_poll_end);
+  assert(iaPoll.pollsters.some(p=>/marist/i.test(p.name)&&p.sample_population==='lv'),
+   'Marist likely-voter survey must appear as an included model wave');
+  assert(iaBasis.polled&&Number.isFinite(iaBasis.poll_weight));
+  assert(iaJoint.simulated_dem_wins>=0&&
+   iaJoint.simulated_dem_wins<=result.samples);
+  assert(Math.abs(iaJoint.dem_beats_rep_pct-
+    100*iaJoint.simulated_dem_wins/result.samples)<.011,
+   'Iowa current odds must derive from correlated simulation draws');
+  assert(html.includes('Older standalone poll-only calculation (NOT the live forecast)'),
+   'Deployed site must not present legacy standalone 55.3% as the main forecast');
+ });
+ const iaTrace={
+  race_code:iaCode,
+  latest_source_poll:iaPoll.latest_poll_end,
+  polling_snapshot:polling.generated_at,
+  weighted_polling_margin_points:iaPoll.dem_minus_rep,
+  selected_marist_population:iaPoll.pollsters.find(p=>/marist/i.test(p.name))?.sample_population,
+  standalone_poll_only_dem_pct:iaStandalone.dem_beats_rep_pct,
+  live_joint_correlated_dem_pct:iaJoint.dem_beats_rep_pct,
+  modeled_margin_points:iaJoint.model_dem_margin_points,
+  live_joint_sigma_points:iaJoint.sigma_points,
+  simulation_samples:result.samples
+ };
  console.log(JSON.stringify({status:'PRODUCTION_DASHBOARD_SMOKE_PASSED',
   mode:remote?'deployed_github_pages':'repository_files',
   deployed_index_matches_checkout:deployedIndexMatchesCurrentMain,
   checks,source_at:polling.generated_at,primary_races:primary.races.length,
   modeled_poll_races:byEstimate.size,simulated_total:result.race_probabilities.length,
-  four_endings:result.probabilities,site:remote?site:null},null,2));
+  four_endings:result.probabilities,iowa_forecast_lineage:iaTrace,
+  site:remote?site:null},null,2));
 }
 main().catch(e=>{console.error('PRODUCTION DASHBOARD SMOKE FAILED',e.stack||e);process.exitCode=1});
