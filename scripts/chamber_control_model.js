@@ -21,6 +21,20 @@
  const BATTLEGROUND_SET=new Set(BATTLEGROUNDS);
  const HOUSE_SEATS=435,SENATE_CONTESTS=35;
  const SHARED_SIGMA=Object.freeze({national:3.5,senateChamber:3,senateState:3.5});
+ // Source polling-error inputs estimate WHOLE-RACE margin error, not a
+ // purely local residual to stack with shared shocks a second time.
+ const HOUSE_POLL_WHOLE_SIGMA_MIN=7.5;
+ const GOVERNOR_POLL_WHOLE_SIGMA_MIN=7;
+ const HOUSE_POLL_REDRAW_SIGMA_MIN=16;
+ const HOUSE_POLL_REDRAW_PRES_SIGMA_MIN=15;
+ const HOUSE_SHARED_SIGMA=Math.hypot(SHARED_SIGMA.national,2.5,3);
+ const HOUSE_REDRAW_SHARED_SIGMA=Math.hypot(SHARED_SIGMA.national,2.5,3+6);
+ const GOVERNOR_SHARED_SIGMA=Math.hypot(SHARED_SIGMA.national,3.5,3);
+ function pollLocalFromWhole(wholeSigma,sharedSigma){
+  if(!Number.isFinite(wholeSigma)||!Number.isFinite(sharedSigma)||wholeSigma<=sharedSigma)
+   throw Error('Polling full-race error budget smaller than correlated shocks');
+  return Math.sqrt(wholeSigma**2-sharedSigma**2);
+ }
  // Independently classified Solid, October 1, 2026:
  // https://insideelections.com/ratings/senate/
  // ONLY the 11 unpolled Solid contests use this prior. A qualifying
@@ -344,8 +358,12 @@ function senatePollingErrorBudget(info){
       (poll.independent_firms>=2?.88:.76);
     pollWeight=w;
     mean=w*poll.dem_minus_rep+(1-w)*priorMean;
-    sigma=unchanged?Math.max(7,poll.sigma_points):
-      Math.max(usePresidential?15:16,poll.sigma_points);
+    const wholeSigma=unchanged?
+      Math.max(HOUSE_POLL_WHOLE_SIGMA_MIN,poll.sigma_points):
+      Math.max(usePresidential?HOUSE_POLL_REDRAW_PRES_SIGMA_MIN:
+       HOUSE_POLL_REDRAW_SIGMA_MIN,poll.sigma_points);
+    sigma=pollLocalFromWhole(wholeSigma,
+      unchanged?HOUSE_SHARED_SIGMA:HOUSE_REDRAW_SHARED_SIGMA);
     // A presidential margin genuinely calculated under the 2026 map can
     // be compared with polls even for redrawn seats. Exchangeable statewide
     // 2024 House priors (default mode) still cannot.
@@ -483,8 +501,8 @@ function senatePollingErrorBudget(info){
    const code=normalizeCode(poll.race_code);
    if(!/^[A-Z]{2}-GOV$/.test(code))throw Error('Invalid governor race ID '+code);
    gov.push({code,state:code.slice(0,2),mean:poll.dem_minus_rep,
-    sigma:Math.max(7,poll.sigma_points),polled:true,
-    poll_weight:1,method:'2026_governor_poll_only'});
+    sigma:pollLocalFromWhole(Math.max(GOVERNOR_POLL_WHOLE_SIGMA_MIN,poll.sigma_points),GOVERNOR_SHARED_SIGMA),
+    polled:true,poll_weight:1,method:'2026_governor_poll_only_variance_conserving'});
   }
   gov.sort((a,b)=>a.code.localeCompare(b.code));
   if(house.length!==HOUSE_SEATS||senate.length!==SENATE_CONTESTS)

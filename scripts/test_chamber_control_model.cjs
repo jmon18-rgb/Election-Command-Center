@@ -190,7 +190,17 @@ const known=new Set([...basis.house,...basis.senate,...basis.governors].map(x=>x
 assert.equal(known.size,basis.house.length+basis.senate.length+basis.governors.length);
 for(const seat of [...basis.house,...basis.senate,...basis.governors]){
  assert(seat.state.length===2);
- assert(seat.mean>=-60&&seat.mean<=60&&seat.sigma>=5);
+ // With variance conservation, local residuals can be below five points.
+ // Check FULL modeled risk after adding national/chamber/state shocks.
+ assert(seat.mean>=-60&&seat.mean<=60&&seat.sigma>0);
+ const isHouse=!seat.code.endsWith('-SEN')&&!seat.code.endsWith('-GOV');
+ const a=basis.assumptions;
+ const officeSigma=isHouse?a.house_chamber_sigma:
+  seat.code.endsWith('-SEN')?a.senate_chamber_sigma:a.governor_chamber_sigma;
+ const stateSigma=isHouse?a.state_house_sigma+
+  (seat.method.includes('redrawn_')?a.redrawn_state_additional_sigma:0):
+  seat.code.endsWith('-SEN')?a.state_senate_sigma:a.state_governor_sigma;
+ assert(Math.hypot(seat.sigma,a.common_national_sigma,officeSigma,stateSigma)>=5);
 }
 const before=JSON.stringify(basis);
 const opts={samples:1200,seed:20261103};

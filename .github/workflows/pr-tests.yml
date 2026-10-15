@@ -16,6 +16,12 @@ jobs:
           python3 scripts/test_fresh_poll_sources.py
           python3 scripts/test_poll_to_odds.py
           python3 scripts/validate_poll_to_odds.py
+      - name: Reconcile polling error budgets for every House governor and Senate race
+        run: |
+          node --check scripts/audit_all_race_polling_variance.cjs
+          node scripts/audit_all_race_polling_variance.cjs --json > /tmp/all-race-poll-variance.json
+          node -e "const x=require('/tmp/all-race-poll-variance.json');if(x.status!=='ALL_OFFICES_WHOLE_RACE_POLLING_VARIANCE_RECONCILED'||x.senate_races_unchanged!==35||x.governor_polled_checked<20||x.house_polled_checked<40||!x.original_source_sigma_is_whole_race||!x.no_silver_odds_or_party_targets)process.exit(1)"
+          node scripts/audit_all_race_polling_variance.cjs
       - name: Audit depth-aware Texas Ohio Senate odds against last engine revision
         run: |
           node --check scripts/audit_senate_depth_v5.cjs
