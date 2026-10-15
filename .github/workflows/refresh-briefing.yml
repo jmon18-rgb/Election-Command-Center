@@ -84,7 +84,9 @@ jobs:
       - name: Validate newly collected poll sources without frozen pollster fixtures
         run: python3 scripts/validate_fresh_poll_sources.py
       - name: Run model diagnostics
-        run: python3 scripts/test_polling_models.py
+        run: |
+          python3 scripts/test_polling_backtest_selection.py
+          python3 scripts/test_polling_models.py
       - name: Build Senate polling estimates
         run: python3 scripts/build_polling_estimates.py
       - name: Test live-polling-based race probabilities
