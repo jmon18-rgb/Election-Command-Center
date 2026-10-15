@@ -210,6 +210,10 @@ async function settle(){
  w.Date.now=()=>Date.parse('2026-11-04T03:20:00Z');
  get('#electionNight').classList.add('active');
  get('#enMode2026').click();
+ assert.equal(get('#enArchiveOutcome').hidden,true,
+  'Switch to 2026 must hide 2024 final-result summary');
+ assert.equal(get('#jointNightPanel').hidden,false,
+  'Switch to 2026 restores Four Endings probabilities and needle');
  const firstUpdate={kind:'first',source:'Open America',title:'VA-02 first votes',
   details:'Source reports the first ballots; no candidate called'};
  const nextUpdate={kind:'flip',source:'civicAPI',title:'NC-SEN leader changed',
@@ -804,6 +808,18 @@ async function settle(){
  // separately on the real site and this suite validates rendering/contracts.
  w.eval('enModeYear=2024;enOffice="House";enAcceptSource('+JSON.stringify(archival)+')');
  assert.match(get('#enStatus').textContent,/2024 ARCHIVE/);
+ assert.equal(get('#jointNightPanel').hidden,true,
+  '2024 historical archive must NEVER repeat 2026 Blue Wave probabilities');
+ assert.equal(get('#enAdvancedLab').hidden,true,
+  '2026 probability and sensitivity lab must be out of 2024 archive');
+ assert.equal(get('#enArchiveOutcome').hidden,false);
+ assert.match(get('#enArchiveOutcome').textContent,/220 R/);
+ assert.match(get('#enArchiveOutcome').textContent,/215 D/);
+ assert.match(get('#enArchiveOutcome').textContent,/53 R/);
+ assert.match(get('#enArchiveOutcome').textContent,/47 D-caucus/);
+ assert.match(get('#enArchiveOutcome').textContent,/not a probability forecast/);
+ assert(!get('#enArchiveOutcome').textContent.includes('Blue Wave probability'));
+
  assert.equal(get('#enDLeads').textContent,'1');
  assert.equal(get('#enRLeads').textContent,'0');
  assert.equal(get('#enCalls').textContent,'Not supplied');
