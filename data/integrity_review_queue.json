@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T03:46:43.244708Z",
+  "updated_at": "2026-10-15T04:45:10.274184Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "items": [
     {
       "id": "53c2ed21752bd367c1be",
@@ -14,6 +14,23 @@
       "state_hints": [],
       "topic_hints": [],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "80f978b747b5d60c5e2c",
+      "title": "Tracking the NY-17 Congressional Race - Nyack News & Views",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNUmgxOHg4azVCNFBmNnZtRndHb0lwUWFwV09BQUxhSkxpcWZYOXpnUndyZFZqdjQzWEQ5R0hOQU1HT1FSR1owZGZRcVRnM2Rya0tEUmw5d2VFQkU2U2F1UEZkbWloSVNMZkdoS3djanBGZVhPUkdrMjVHdjZuUjg3ZUwzUGpqNExR0gGOAUFVX3lxTFBGT1UxbzRUQXVhYWJGMzcxUktDTU5zcHVFeWl3dUZGR1hTNDNIRHVtc0tMZTNKUzRfT3AzbUNfdFdldEQ0Q19nV0NSUG0xZjFGal93VHdTMV9ZaVRoaXRQQmJ1LWp4ZnE1WkphWFVFVEVfNkdTYl9HMjBMem9lMmxQSjh3UjJEd0p5NGZjN2c?oc=5",
+      "publisher": "Nyack News & Views",
+      "published_at": "2026-10-15T03:35:14Z",
+      "detected_at": "2026-10-15T04:45:10.274184Z",
+      "state_hints": [],
+      "topic_hints": [],
+      "headline_numbers_unverified": [
+        "17 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
