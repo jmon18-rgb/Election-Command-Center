@@ -2384,18 +2384,18 @@ async function settle(){
  // after an atomic newer joint source/model bundle has been installed.
  // Regression is especially harmful: the old Poll Wire falsely marks new
  // surveys as unmatched and can make Iowa/Marist appear ignored.
- const acceptedRawAt=w.eval('pollingSnapshot.updated_at');
+ const acceptedRawAt=w.eval('livePollingRevisionStatus().primary_at');
  const acceptedModelAt=w.eval('jointRaceOddsResult().polling_source_generated_at');
- const acceptedIowaMargin=w.eval("latestSenateEstimates.senate_all.find(x=>x.race_code==='IA-SEN').dem_minus_rep");
+ const acceptedIowaMargin=w.eval('livePollingRevisionStatus().iowa_margin');
  assert.equal(acceptedRawAt,primaryNext.updated_at);
  assert.equal(acceptedModelAt,estimatesNext.generated_at);
  w.eval('renderPolls('+JSON.stringify(primary)+')');
- assert.equal(w.eval('pollingSnapshot.updated_at'),acceptedRawAt,
+ assert.equal(w.eval('livePollingRevisionStatus().primary_at'),acceptedRawAt,
   'A late initial polling response must never overwrite new source data');
- assert.equal(w.eval('feedHealth.polls.updated_at'),acceptedRawAt,
+ assert.equal(w.eval('livePollingRevisionStatus().health_source_at'),acceptedRawAt,
   'The feed health badge must not regress with an out-of-order response');
  assert.equal(w.eval('jointRaceOddsResult().polling_source_generated_at'),acceptedModelAt);
- assert.equal(w.eval("latestSenateEstimates.senate_all.find(x=>x.race_code==='IA-SEN').dem_minus_rep"),acceptedIowaMargin);
+ assert.equal(w.eval('livePollingRevisionStatus().iowa_margin'),acceptedIowaMargin);
 
  // A late OLD joint request must also be rejected *before* replacing
  // the valid engine and its same-draw election scenarios.
@@ -2411,7 +2411,7 @@ async function settle(){
   'Older complete joint bundle must never undo a newer forecast');
  assert.deepEqual(w.eval('jointForecastResult().probabilities'),acceptedForecast,
   'Race and Four Endings probabilities must survive late older fetches');
- assert.equal(w.eval('pollingSnapshot.updated_at'),acceptedRawAt);
+ assert.equal(w.eval('livePollingRevisionStatus().primary_at'),acceptedRawAt);
 
  assert.equal(errors.length,0,'Application emitted errors: '+errors.slice(0,4).join(' | '));
  console.log('Dashboard DOM integration passed: exact TX-SEN/TX-GOV poll drilldowns, race labels, linked joint-model race odds and DDHQ removal, dated news feed, and no script errors.');
