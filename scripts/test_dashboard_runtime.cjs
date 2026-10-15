@@ -810,7 +810,7 @@ async function settle(){
  const modelGate=get('#forecastGateList');
  assert(modelGate.querySelectorAll('.item').length>=4,'Show actual model-readiness blockers');
  assert.match(get('#forecastGateStatus').textContent,/NOT CALIBRATED/);
- const fakeSnap=(at,candidate,margin,method='poll-mean-1.4')=>({
+ const fakeSnap=(at,candidate,margin,method=model.method_version)=>({
    at,method_version:method,races:[{
       race_code:txSen.race_code,race_type:txSen.race_type,
       dem_candidate:candidate,rep_candidate:txSen.rep_candidate,
