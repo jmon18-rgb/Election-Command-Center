@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T15:07:27.637939Z",
+  "updated_at": "2026-10-15T15:26:21.639485Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 1,
   "items": [
     {
       "id": "8043a89d5299d72d5c7d",
@@ -69,6 +69,25 @@
       "headline_numbers_unverified": [
         "0 ",
         "26"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "a9e26005c0837c2ce7b8",
+      "title": "DOJ gives California 48 hours to review list of possible noncitizens on voter rolls - AOL.com",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBXV0UtbzVQM1hKRGlnYWRSNndlLWctSFVwODBKeDZBWjFFbEFzYV9uVHFzWVJ5bGJTYUE3MXY2VmE2TWdBVklXblpweEdOQTBHdXRESUFVOFFaNldpNlFlaVFWWHVxcjU5UGZEd2dUb1p3SWlDSDQ0eDctdmVlQQ?oc=5",
+      "publisher": "AOL.com",
+      "published_at": "2026-10-15T12:53:54Z",
+      "detected_at": "2026-10-15T15:26:21.639485Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [
+        "48 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
