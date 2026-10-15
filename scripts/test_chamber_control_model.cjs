@@ -282,6 +282,26 @@ const rigidPivots=new Map(rigidSim.control_explanation.senate_pivotal_races
 rigid.senate.forEach((x,i)=>assert.equal(rigidPivots.get(x.code),i<17?100:0));
 
 assert.equal(JSON.stringify(basis),before,'Forecast must not modify source priors');
+// Four Endings thresholds are classified from the EXACT simulated seat
+// totals, not a subjective subset of battleground race calls.
+assert.deepEqual({...model.ENDING_THRESHOLDS},
+ {wave_house:218,wave_senate:49,tsunami_house:235,tsunami_senate:52});
+const endingCases=[
+ [217,48,'red_dawn'],[217,49,'shrug'],[218,48,'shrug'],
+ [218,49,'blue_wave'],[234,52,'blue_wave'],[235,51,'blue_wave'],
+ [235,52,'blue_tsunami'],[250,60,'blue_tsunami'],
+ [218,51,'blue_wave'],[219,47,'shrug']
+];
+for(const [h,sen,expected] of endingCases)
+ assert.equal(model.classifyFourEndings(h,sen),expected,
+  'Bad exclusive Four Endings assignment for '+h+' House/'+sen+' Senate');
+assert.throws(()=>model.classifyFourEndings(-1,49),/Invalid/);
+assert.throws(()=>model.classifyFourEndings(218,NaN),/Invalid/);
+assert(first.actual_dem_both_control_pct<=first.blue_both_including_tsunami,
+ 'Real 51-seat Senate control must be subset of relaxed 49-seat Wave gate');
+assert(first.senate_dem_control_pct<=first.senate_49_or_more_pct,
+ 'Senate control threshold must remain distinct from relaxed Wave gate');
+assert.equal(first.four_endings_thresholds.wave_senate,49);
 assert.equal(first.counts.blue_tsunami+first.counts.blue_wave+
  first.counts.shrug+first.counts.red_dawn,first.samples);
 assert(Math.abs(first.total_pct-100)<0.025);
