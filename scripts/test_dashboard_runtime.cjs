@@ -13,6 +13,17 @@ const primary=json('data/polls.json');
 const recent=json('data/pollresults_recent.json');
 const history=json('data/model_history.json');
 const html=read('index.html');
+const milestoneKeys=['graham','blexas','blue-corn','blansas','maine','nebraska','ohio'];
+for(const name of milestoneKeys){
+ const art=read('assets/milestone-'+name+'.svg');
+ assert(art.length>500&&art.length<20000,'Local milestone artwork must be lightweight: '+name);
+ assert.match(art,/<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg"/);
+ assert.match(art,/<title id="t">[\s\S]+<\/title>/);
+ assert.match(art,/<desc id="d">[\s\S]+<\/desc>/);
+ assert(!/<script|<foreignObject|https?:\/\/(?!www\.w3\.org\/2000\/svg)/i.test(art),
+  'Election night illustration may not depend on remote code or assets: '+name);
+}
+
 const mobileHeroCSS=html.match(/\/\* Preserve the full surfer photo on narrow screens\.[\s\S]*?\*\/\s*@media\(max-width:620px\)\{[\s\S]*?background-repeat:no-repeat;/)?.[0];
 assert(mobileHeroCSS,'Mobile portrait hero should explicitly preserve surfer-image framing');
 assert.match(mobileHeroCSS,/background-size:100% 100%,100% auto,cover;/,
@@ -258,7 +269,22 @@ async function settle(){
  get('#enMode2026').click();
  assert.equal(get('#enMilestoneDesk').hidden,false,'2026 mode reveals achievements');
  assert.equal(get('#enMilestoneGrid').querySelectorAll('.en-milestone-card').length,7);
+ const posterCards=[...get('#enMilestoneGrid').querySelectorAll('.en-milestone-card')];
+ assert.equal(posterCards.filter(el=>el.querySelector('img.en-milestone-thumb')).length,7,
+  'Every milestone gets its own original illustrated thumbnail');
+ assert(posterCards.every(el=>el.dataset.state==='waiting'),
+  'Posters may be previewed before results, but must not claim earned status');
+ posterCards[3].click(); // Kansas · John Brown-inspired art
+ assert.match(get('#enMilestoneKicker').textContent,/PREVIEW/,
+  'A locked milestone is an explicit preview, not a called victory');
+ assert.equal(get('#enMilestonePoster').hidden,false);
+ assert.equal(get('#enMilestonePoster').getAttribute('src'),'./assets/milestone-blansas.svg');
+ assert.match(get('#enMilestonePoster').alt,/John Brown/i);
+ assert.equal(get('#enTsunamiMeme').hidden,true);
+ get('#enMilestoneClose').click();
  get('#enTsunamiPreview').click();
+ assert.equal(get('#enMilestonePoster').hidden,true,
+  'Switching to the Blue Tsunami preview must hide the previous state-specific poster');
  assert.match(get('#enMilestoneKicker').textContent,/PREVIEW/);
  assert.match(get('#enMilestoneTitle').textContent,/BLUE WAVE/);
  assert.match(get('#enMilestoneSource').textContent,/DEMO ONLY/);
