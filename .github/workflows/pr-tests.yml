@@ -14,6 +14,7 @@ jobs:
         run: |
           node --check scripts/test_published_dashboard.cjs
           node scripts/test_published_dashboard.cjs --local
+          node scripts/test_four_endings_needle.cjs
       - name: Keep new polls in the actual polling and forecast inputs
         run: |
           python3 scripts/test_poll_source_reconciliation.py
