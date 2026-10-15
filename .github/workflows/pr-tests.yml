@@ -16,6 +16,10 @@ jobs:
           node scripts/test_published_dashboard.cjs --local
       - name: Test verified-lead triage and nonpromotion invariants
         run: python3 scripts/test_integrity_queue_triage.py
+      - name: Test strict North Carolina 2024 precinct and vote-mode staging (synthetic fixtures)
+        run: |
+          python3 -m py_compile scripts/stage_nc_2024_county_mode.py
+          python3 scripts/test_nc_2024_county_mode.py
       - name: Keep new polls in the actual polling and forecast inputs
         run: |
           python3 scripts/test_poll_source_reconciliation.py
