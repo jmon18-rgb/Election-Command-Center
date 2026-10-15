@@ -385,16 +385,25 @@ async function settle(){
  fishAudioPlays=beforeSourceCallFishPlays;
  assert.equal(get('#enMilestoneDesk').hidden,false,'2026 mode reveals achievements');
  assert.equal(get('#enMilestoneGrid').querySelectorAll('.en-milestone-card').length,7);
+ assert.equal(get('#jointNightSensitivity').open,false,
+  'Keep optional probability-model switches off the ambient election-night screen');
  const posterCards=[...get('#enMilestoneGrid').querySelectorAll('.en-milestone-card')];
  assert.equal(posterCards.filter(el=>el.querySelector('img.en-milestone-thumb')).length,7,
   'Every milestone gets its own original illustrated thumbnail');
+ assert(posterCards[3].querySelector('img.en-milestone-thumb').getAttribute('src')
+  .includes('upload.wikimedia.org/wikipedia/commons/thumb/0/05/John_Brown_portrait'),
+  'Kansas thumbnail should be the actual John Brown rather than a generic ghost');
  assert(posterCards.every(el=>el.dataset.state==='waiting'),
   'Posters may be previewed before results, but must not claim earned status');
  posterCards[3].click(); // Kansas · John Brown-inspired art
  assert.match(get('#enMilestoneKicker').textContent,/PREVIEW/,
   'A locked milestone is an explicit preview, not a called victory');
  assert.equal(get('#enMilestonePoster').hidden,false);
- assert.equal(get('#enMilestonePoster').getAttribute('src'),'./assets/milestone-blansas.svg');
+ assert(get('#enMilestonePoster').getAttribute('src').includes('upload.wikimedia.org/wikipedia/commons/thumb/0/05/John_Brown_portrait'),
+  'Kansas achievement should feature an actual authenticated 1859 John Brown portrait');
+ assert(get('#enMilestonePoster').classList.contains('historic-john-brown'));
+ assert.match(get('#enMilestoneSource').textContent,/Library of Congress/,
+  'Verify the archival photographic source in the preview');
  assert.match(get('#enMilestonePoster').alt,/John Brown/i);
  assert.equal(get('#enTsunamiMeme').hidden,true);
  get('#enMilestoneClose').click();
