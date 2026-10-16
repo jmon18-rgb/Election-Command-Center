@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-16T00:15:57.097576Z",
+  "updated_at": "2026-10-16T00:54:21.289589Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 147,
-    "awaiting_primary_source": 145,
+    "total_leads": 148,
+    "awaiting_primary_source": 146,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 10,
     "advisory_related_headlines": 23
@@ -250,6 +250,25 @@
       "published_at": "2026-10-15T21:52:19Z",
       "detected_at": "2026-10-15T22:08:05.403643Z",
       "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "3271c62cc97585ee41f3",
+      "title": "Trump admin files \u2018long shot\u2019 lawsuit after California wouldn\u2019t open a thumb drive of alleged non-citizens - CNN",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPemIwY3Flc3VVYkdOU3Bod1JPcW5OY2hGSy1PU3poR0RNWlF4MjVwalhvaGpHZEZTZ3ctUGdKUnEwTGlhUFBxVDZrUUNoWEVYdFRuM3FKWG5HamlpeEdjNk9qZGI2eXcteWgwRFQ0ZkI2aXVnbnRacjIwcnFULTF2c000UVVMRjMzWTZnakdR?oc=5",
+      "publisher": "CNN",
+      "published_at": "2026-10-15T21:20:12Z",
+      "detected_at": "2026-10-16T00:54:21.289589Z",
+      "state_hints": [
+        "CA"
+      ],
       "topic_hints": [
         "litigation"
       ],
