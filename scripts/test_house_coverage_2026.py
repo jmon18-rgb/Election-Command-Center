@@ -3,11 +3,13 @@
 import unittest
 import json
 import tempfile
+import urllib.error
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
 from probe_house_coverage_2026 import (
     matches, detail_matches, probe, DISTRICTS, PRIMARY_STATES,
     ROTATING_PER_RUN, uncovered_house_universe, sampling_window,
+    run_batch, build_report,
 )
 
 
@@ -77,6 +79,26 @@ class HouseCoverageTests(unittest.TestCase):
         self.assertTrue(matches("AK-00", alaska))
         self.assertFalse(matches("AK-01", alaska))
 
+    def test_at_large_search_does_not_ask_provider_for_house_zero(self):
+        alaska = dict(self.row, province="AK", district="AK-00",
+                      election_name="Alaska US House At-Large")
+        detail = dict(alaska, election_type=alaska["type"],
+                      candidates=self.detail["candidates"])
+        searches = []
+        def request(path, params):
+            if path == "/race/search":
+                searches.append(params)
+                return {"races": [alaska]}
+            return detail
+        self.assertEqual(probe("AK-00", request)["status"],
+                         "INDEXED_EXACT_RACE")
+        self.assertEqual(searches[0]["query"], "US House")
+        self.assertEqual(searches[0]["province"], "AK")
+        searches.clear()
+        self.assertEqual(probe("NH-01", lambda path, params: (
+            searches.append(params) or {"races": []}))["status"], "NOT_INDEXED")
+        self.assertEqual(searches[0]["query"], "US House 1")
+
     def test_scope(self):
         self.assertEqual(len(DISTRICTS), 6)
         self.assertTrue(matches("NH-01", self.row))
@@ -119,7 +141,54 @@ class HouseCoverageTests(unittest.TestCase):
         self.assertEqual(row["reported_votes"], 0)
         outage = probe("NH-01", lambda path, params: (_ for _ in ()).throw(
             TimeoutError("simulated outage")))
-        self.assertEqual(outage["status"], "SOURCE_UNAVAILABLE_OR_INVALID")
+        self.assertEqual(outage["status"], "TEMPORARY_UPSTREAM_FAILURE")
+
+    def test_upstream_503_pauses_batch_and_preserves_unknowns(self):
+        now = datetime(2026, 10, 16, tzinfo=timezone.utc)
+        plan = sampling_window(now)
+        attempts = []
+        def unavailable(path, params):
+            attempts.append((path, params))
+            raise urllib.error.HTTPError("https://civicapi.org/api/v2",
+                                         503, "Service Unavailable", None, None)
+        results = run_batch(plan, unavailable, delay=0)
+        self.assertEqual(len(attempts), 1,
+                         "One shared 503 must not trigger 16 additional requests")
+        self.assertEqual(results[0]["status"], "TEMPORARY_UPSTREAM_FAILURE")
+        self.assertEqual(results[0]["reason"], "HTTP_503")
+        self.assertTrue(all(x["status"] == "NOT_CHECKED_UPSTREAM_PAUSED"
+                            for x in results[1:]))
+        report = build_report(plan, results)
+        self.assertEqual(report["sampled_districts"], 1)
+        self.assertEqual(report["planned_districts"], 16)
+        self.assertEqual(report["not_checked_upstream_paused"], 15)
+        self.assertTrue(report["upstream_paused"])
+        self.assertEqual(report["indexed_exact"], 0)
+        self.assertNotIn("NOT_INDEXED", report["status_counts"])
+        self.assertEqual(len(report["results"]), 16)
+        for code in (429, 502, 504):
+            result = probe("NH-01", lambda path, params: (_ for _ in ()).throw(
+                urllib.error.HTTPError("https://civicapi.org",code,"temporary",None,None)))
+            self.assertEqual(result["status"], "TEMPORARY_UPSTREAM_FAILURE")
+        nonretry = probe("NH-01", lambda path, params: (_ for _ in ()).throw(
+            urllib.error.HTTPError("https://civicapi.org", 404, "not found", None, None)))
+        self.assertEqual(nonretry["status"], "SOURCE_UNAVAILABLE_OR_INVALID")
+        self.assertEqual(nonretry["reason"], "HTTP_404")
+
+    def test_nonindexed_batch_does_not_invent_success_or_outage(self):
+        plan = sampling_window(datetime(2026, 10, 16, tzinfo=timezone.utc))
+        attempted = []
+        def not_indexed(path, params):
+            attempted.append(path)
+            return {"races": []}
+        rows = run_batch(plan, not_indexed, delay=0)
+        report = build_report(plan, rows)
+        self.assertFalse(report["upstream_paused"])
+        self.assertEqual(report["sampled_districts"], 16)
+        self.assertEqual(report["status_counts"], {"NOT_INDEXED": 16})
+        self.assertEqual(len(attempted), 16)
+        with self.assertRaisesRegex(ValueError, "missing or reordering"):
+            build_report(plan, rows[:-1])
 
 
 if __name__ == "__main__":
