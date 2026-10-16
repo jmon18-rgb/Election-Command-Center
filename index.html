@@ -3355,7 +3355,7 @@ function enRenderAmbientDesk(){
   else if(!api)coverage.textContent='National reconciliation unavailable · control not called';
   else{
    const errors={};
-   for(const office of ['House','Senate'])
+   for(const office of ['House','Senate','Governor'])
     errors[office]=Boolean(enOfficeErrors[office]||(enOffice===office&&enFetchError));
    for(const id of new Set([...Object.keys(enCivicErrors),
     ...Object.keys(enCivicByWatch)])){
@@ -3371,11 +3371,13 @@ function enRenderAmbientDesk(){
      snapshots,civic:enCivicByWatch,errors,restored:[...enResumePendingOffices],
      supportedStates:[...enSupportedStates],now:Date.now()});
     coverage.textContent='House '+x.house.reported+'/435 reporting · Senate '+
-     x.senate.reported+'/35 reporting · '+x.providerCalls+
+     x.senate.reported+'/35 reporting · Governors '+
+     x.governor.reported+'/36 reporting · '+x.providerCalls+
      ' civicAPI calls · No authoritative chamber calls'+
      (x.anomalies.length?' · '+x.anomalies.length+' source alerts':'');
     coverage.title='Valid primary source slots: '+x.house.sourceSlots+'/435 House, '+
-     x.senate.sourceSlots+'/35 Senate. Supplemental counted only outside primary coverage. '+
+     x.senate.sourceSlots+'/35 Senate, '+x.governor.sourceSlots+
+     '/36 state governors. Supplemental counted only outside primary coverage. '+
      '65 Senate holdovers not yet reconciled to independent calls; missing is unknown, not zero.'+
      (x.crossSourceDiscrepancies?.length?' Advisory provider mismatches (not fraud evidence): '+
       x.crossSourceDiscrepancies.slice(0,4).map(v=>
