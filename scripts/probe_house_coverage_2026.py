@@ -8,7 +8,7 @@ import json
 import os
 import re
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import urllib.error
 import urllib.parse
@@ -25,6 +25,21 @@ PRIMARY_STATES = frozenset(
     "AR AZ CO CT FL GA IA ID IN LA MI MN NC PA RI SC TX UT VA VT WA WV".split()
 )
 ROTATING_PER_RUN = 10
+GAP_AWARE_LIMIT = 16  # Total districts per scheduled run; no extra provider calls.
+COVERAGE_PATH = Path(__file__).resolve().parents[1] / "data" / "election_night_source_coverage.json"
+# Editorial urgency for source discovery, not a race-rating or odds adjustment.
+GAP_PRIORITY = (
+    "NH-01", "NH-02", "ME-01", "ME-02", "NE-02", "NV-03",
+    "NV-04", "NY-04", "NY-17", "NY-19", "NY-22", "WI-03",
+    "WI-01", "WI-07", "NJ-07", "OR-05", "CA-13", "CA-22",
+    "CA-41", "CA-45", "CA-47", "CA-49", "OH-01", "OH-09",
+    "OH-13", "AK-00", "ND-00", "SD-00", "WY-00",
+)
+PROBE_STATUSES = frozenset((
+    "INDEXED_EXACT_RACE", "NOT_INDEXED", "AMBIGUOUS_RACE",
+    "AMBIGUOUS_OR_TRUNCATED", "INVALID_DETAIL", "SOURCE_UNAVAILABLE_OR_INVALID",
+    "TEMPORARY_UPSTREAM_FAILURE", "NOT_CHECKED_UPSTREAM_PAUSED",
+))
 INVENTORY_PATH = Path(__file__).resolve().parents[1] / "data" / "seat_universe.json"
 
 
@@ -81,6 +96,104 @@ def sampling_window(now: datetime | None = None, *,
         "rotating_count": len(picks),
         "windows_per_rotation": (len(extras) + rotation - 1) // rotation,
         "districts": DISTRICTS + picks,
+    }
+
+
+def _utc(value: str) -> datetime:
+    if not isinstance(value, str):
+        raise ValueError("Coverage history timestamp missing")
+    try:
+        checked = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError as error:
+        raise ValueError("Malformed coverage history timestamp") from error
+    if checked.tzinfo is None:
+        raise ValueError("Coverage history requires UTC-aware timestamps")
+    return checked.astimezone(timezone.utc)
+
+
+def gap_aware_window(now: datetime, history: dict, *,
+                     inventory: tuple[str, ...] | None = None,
+                     limit: int = GAP_AWARE_LIMIT) -> dict:
+    """Spend at most 16 requests on unobserved gaps, then oldest due rechecks.
+
+    No fixed anchor tax. Every previously indexed race is eligible again after
+    72h; NOT_INDEXED after 24h; transient/invalid after 4h. Source outages are
+    handled by run_batch, not treated as proof of an absent race.
+    """
+    if now.tzinfo is None or not 1 <= limit <= GAP_AWARE_LIMIT:
+        raise ValueError("Invalid time or source request cap")
+    now = now.astimezone(timezone.utc)
+    seats = inventory if inventory is not None else uncovered_house_universe()
+    if len(seats) != 219 or len(set(seats)) != 219 or not set(DISTRICTS).issubset(seats):
+        raise ValueError("Expected 219 uncovered 2026 House districts")
+    if not set(GAP_PRIORITY).issubset(seats) or len(set(GAP_PRIORITY)) != len(GAP_PRIORITY):
+        raise ValueError("Editorial discovery priority contains an invalid seat")
+    if not isinstance(history, dict) or history.get("schema_version") != "1.0" or \
+       history.get("status") != "SOURCE_IDENTITY_AUDIT_NOT_LIVE_RESULTS_COVERAGE" or \
+       history.get("election") != DAY:
+        raise ValueError("Missing trusted 506-race source ledger")
+    generated = _utc(history.get("generated_at"))
+    if generated > now + timedelta(minutes=15):
+        raise ValueError("Future-dated House coverage history")
+    rows = history.get("races")
+    if not isinstance(rows, list) or len(rows) != 506:
+        raise ValueError("Incomplete 506-race source history")
+    ids = [r.get("id") if isinstance(r, dict) else None for r in rows]
+    if len(set(ids)) != 506:
+        raise ValueError("Duplicate source identities")
+    by_id = {r["id"]: r for r in rows}
+    if set("House|" + code for code in seats) - by_id.keys():
+        raise ValueError("Source history omits uncovered House identities")
+    priority = {code: index for index, code in enumerate(GAP_PRIORITY)}
+    candidates, fresh = [], 0
+    unobserved, due = 0, 0
+    for code in seats:
+        row = by_id["House|" + code]
+        if row.get("office") != "House" or row.get("key") != code or \
+           row.get("state") != code[:2] or row.get("provider_scope") != "outside primary":
+            raise ValueError("Source history House identity changed")
+        last = row.get("last_probe")
+        # A paused/unattempted check contains no observation of civicAPI.
+        if not last or last.get("status") == "NOT_CHECKED_UPSTREAM_PAUSED":
+            candidates.append((0, datetime.min.replace(tzinfo=timezone.utc),
+                               priority.get(code, 1000), code))
+            unobserved += 1
+            continue
+        if not isinstance(last, dict) or last.get("status") not in PROBE_STATUSES:
+            raise ValueError("Malformed previous provider probe")
+        last_at = _utc(last.get("checked_window_utc"))
+        if last_at > now + timedelta(minutes=15):
+            raise ValueError("Future provider probe in trusted history")
+        age = {"INDEXED_EXACT_RACE": timedelta(hours=72),
+               "NOT_INDEXED": timedelta(hours=24)}.get(
+                   last["status"], timedelta(hours=4))
+        eligible_at = last_at + age
+        if eligible_at > now:
+            fresh += 1
+            continue
+        candidates.append((1, eligible_at, priority.get(code, 1000), code))
+        due += 1
+    candidates.sort()
+    chosen = tuple(record[3] for record in candidates[:limit])
+    checked = sum(by_id["House|" + code].get("last_probe") is not None and
+                  by_id["House|" + code]["last_probe"].get("status") !=
+                  "NOT_CHECKED_UPSTREAM_PAUSED" for code in chosen)
+    return {
+        "window_utc": datetime.fromtimestamp(
+            int(now.timestamp() // (4 * 3600)) * 4 * 3600,
+            tz=timezone.utc).isoformat(),
+        "discovery_strategy": "GAP_FIRST_PREVIOUS_LEDGER",
+        "primary_states": len(PRIMARY_STATES),
+        "uncovered_house_districts": len(seats),
+        "anchor_count": 0,
+        "rotating_count": len(chosen),
+        "windows_per_rotation": (len(seats) + limit - 1) // limit,
+        "never_checked_eligible": unobserved,
+        "recheck_eligible": due,
+        "fresh_deferred": fresh,
+        "scheduled_rechecks": checked,
+        "request_cap": limit,
+        "districts": chosen,
     }
 
 
@@ -220,6 +333,12 @@ def build_report(plan: dict, results: list[dict]) -> dict:
     return {
         "status": "ROTATING_HOUSE_SOURCE_DISCOVERY_NOT_NATIONAL_AVAILABILITY",
         "window_utc": plan["window_utc"],
+        "discovery_strategy": plan.get("discovery_strategy", "FIXED_ANCHORS_ROTATION"),
+        "request_cap": plan.get("request_cap", len(results)),
+        "never_checked_eligible": plan.get("never_checked_eligible"),
+        "recheck_eligible": plan.get("recheck_eligible"),
+        "fresh_deferred": plan.get("fresh_deferred"),
+        "scheduled_rechecks": plan.get("scheduled_rechecks"),
         "primary_states": plan["primary_states"],
         "uncovered_house_districts": plan["uncovered_house_districts"],
         "anchor_count": plan["anchor_count"],
@@ -236,7 +355,10 @@ def build_report(plan: dict, results: list[dict]) -> dict:
 
 
 def main():
-    plan = sampling_window()
+    # Follow the ledger rather than paying six repeated anchor searches every
+    # four hours. Fail closed if the 506-race inventory is corrupted or absent.
+    history = json.loads(COVERAGE_PATH.read_text(encoding="utf-8"))
+    plan = gap_aware_window(datetime.now(timezone.utc), history)
     results = run_batch(plan)
     report = build_report(plan, results)
     print(json.dumps(report, indent=2))
@@ -249,9 +371,12 @@ def main():
         with open(summary, "a", encoding="utf-8") as f:
             f.write("\n### Rotating supplemental 2026 House discovery (not full coverage)\n\n")
             f.write(f"Sampling window: {plan['window_utc']} · "
-                    f"{plan['anchor_count']} anchor and "
-                    f"{plan['rotating_count']} rotating of "
+                    f"{plan['discovery_strategy']} · capped at "
+                    f"{plan['request_cap']} provider races among "
                     f"{plan['uncovered_house_districts']} uncovered slots.\n\n")
+            f.write(f"Never-observed eligible: {plan['never_checked_eligible']}; "
+                    f"due rechecks: {plan['recheck_eligible']}; "
+                    f"not yet due: {plan['fresh_deferred']}.\n\n")
             f.write(f"Attempted {report['sampled_districts']}/{report['planned_districts']}; "
                     f"upstream paused: {report['upstream_paused']}; "
                     f"skipped: {report['not_checked_upstream_paused']}. "
