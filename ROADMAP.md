@@ -2,6 +2,8 @@
 
 **Direction:** A personal election site with the utility of a serious polling desk and occasional deadpan humor. No forced jokes, no repetitive methodology cards, no controls that exist just because they can.
 
+- [x] **Free 30-second Election Night results fast lane (October 16):** keep Open America's recommended one-minute all-office JSON updates and civicAPI's existing 12-race/minute rotating discovery. During the main counting window, when the election page is visible, independently recheck up to four personally pinned or high-information *already-reporting* supplemental races every 30 seconds. Suppress duplicates checked in the past 26 seconds, never probe missing source identities in the fast lane, and share the same four-request global pool and civicAPI 429/5xx circuit breaker. No extra paid API, source-call inference, or national false-coverage claim. Deterministic and DOM tests guard source selection, timing, URL inclusion, and outage behavior; actual provider latency/sustained delivery on Nov. 3 remains unproven.
+
 ## October 15 owner priorities — current architecture overrides older historical notes below
 
 **The intended user experience:** Open one desktop browser window while watching TV. At a glance: both-chamber *actual* control probability, Four Endings (real Democratic control at 218/51; Tsunami 235/52), fresh polling changes, source-confirmed calls, meaningful Bellwether alerts, time of last valid result and data-quality state. One click for office, state or race drilldown. Disclosures stay available under details rather than occupying the main desk. All odds must derive from the same correlated draw revision, with model-source timestamps.
