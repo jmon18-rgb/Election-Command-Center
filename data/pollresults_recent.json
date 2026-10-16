@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-16T20:46:05.959256+00:00",
+  "updated_at": "2026-10-16T21:43:43.576609+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 777,
+      "available_in_source": 776,
       "records_examined": 300
     },
     "house": {
@@ -18,13 +18,8 @@
     }
   },
   "matched_primary_observations": 271,
-  "newly_injected_into_model": 1,
-  "injected_poll_ids": [
-    {
-      "race_code": "NE-GOV",
-      "poll_id": "49d85399-2bba-43ca-9da0-9b79b368270c"
-    }
-  ],
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "NE-GOV",
@@ -44,7 +39,7 @@
       "posted_source_datetime": "2026-10-16T16:35:00",
       "posted_source_time": "10/16/26 16:35",
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
-      "source_url": "https://drive.google.com/file/d/1xLsLQ9chU7IF2kZf52SjaV-zC2pBwizn/view",
+      "source_url": "https://omaha.com/news/state-regional/government-politics/elections/article_5a5e86fc-da5f-4953-89f7-7e199e7c607e.html",
       "sample_population": "lv",
       "sample_size": 571,
       "partisan_lean": "D",
@@ -264,30 +259,6 @@
       "sample_population": "lv",
       "sample_size": 400,
       "partisan_lean": "R",
-      "source": "PollResults.org / NYT CC BY 4.0"
-    },
-    {
-      "race_code": "MT-SEN",
-      "race_type": "senate",
-      "state": "MT",
-      "poll_id": "f5b9889e-ffc5-4ce2-babc-27f82664db2b",
-      "question_id": "7e5a4878-869d-4654-9512-92a32707376a",
-      "pollster": "Concord Public Opinion Partners",
-      "dem_name": "Alani Bankhead",
-      "rep_name": "Kurt Alme",
-      "dem": 13.0,
-      "rep": 35.0,
-      "margin": -22.0,
-      "field_end": "2026-10-08",
-      "field_start": "2026-10-06",
-      "posted_date": "2026-10-16",
-      "posted_source_datetime": "2026-10-16T07:58:00",
-      "posted_source_time": "10/16/26 07:58",
-      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
-      "source_url": "https://www.sethformontana.com/news/new-poll-independent-seth-bodnar-takes-the-lead-in-montanas-us-senate-race",
-      "sample_population": "lv",
-      "sample_size": 405,
-      "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
     {

@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-16T20:46:05.324790Z",
+  "updated_at": "2026-10-16T21:43:42.593624Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 169,
-    "awaiting_primary_source": 167,
+    "total_leads": 170,
+    "awaiting_primary_source": 168,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 13,
     "advisory_related_headlines": 30
@@ -169,6 +169,23 @@
     }
   ],
   "items": [
+    {
+      "id": "a45a90be3f57fb2e3412",
+      "title": "Early voting starts Monday: What to bring, where to go and how to get help - Click2Houston",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPV2FMRWpuZnAwU3E2cmJZTFpXY0FNUVdlSC1hTnpYVjJIZlFOZnM0cnhmOTZGb3VuM1FidThQbkdXczRHVVh1Tlh0SmNJNVRPRlItWE5hTkFGLW16Nm9VcmdIemVWYS10M1VQeUN0RHlPbHVjMWdUT0NtaVlSY2RzVEJqSVJybG9wckJUS0lPcmNZc0dXdmJVOEU1czMwazBFemJwRTlBcFJZcGtPVkQzbTBleTdCd25xa25zUTlHZnAwU2c?oc=5",
+      "publisher": "Click2Houston",
+      "published_at": "2026-10-16T20:58:29Z",
+      "detected_at": "2026-10-16T21:43:42.593624Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "13755eae2f7d7ab51351",
       "title": "Trump is building a national voter registry, threatening state control of elections - Democracy Docket",

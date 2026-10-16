@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-16T20:46:05.601517Z",
+  "updated_at": "2026-10-16T21:43:42.851361Z",
   "generic_ballot": {
     "summary": {
       "dem": 47.7,
@@ -2916,7 +2916,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-16T20:46:05.601517Z",
+          "first_seen_at": "2026-10-16T21:43:42.851361Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -3807,7 +3807,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-16T20:46:05.601517Z",
+        "first_seen_at": "2026-10-16T21:43:42.851361Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -3831,7 +3831,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-16T20:46:05.601517Z",
+          "first_seen_at": "2026-10-16T21:43:42.851361Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -6163,7 +6163,7 @@
           "rep_name": "Ashley Moody",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-16T20:46:05.601517Z",
+          "first_seen_at": "2026-10-16T21:43:42.851361Z",
           "release_date": null,
           "question_id": "eb4ae581-25d7-43fd-9123-100333d1e19f",
           "sample_population": "lv",
@@ -7552,7 +7552,7 @@
           "dem": 55.4,
           "rep": 44.6,
           "margin": 10.8,
-          "sample_size": 678,
+          "sample_size": 712,
           "partisan_lean": "R",
           "dem_name": "Jon Ossoff",
           "rep_name": "Mike Collins",
@@ -7560,13 +7560,11 @@
           "other_name": null,
           "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
-          "question_id": "bcd4fddd-ab5f-4f28-9aa1-f898b74b34c7",
-          "sample_population": "lv",
-          "upstream_posted_date": "2026-09-25",
+          "upstream_posted_date": null,
           "source_poll_url": "https://www.bigdatapoll.com/blog/peach-state-poll-jon-ossoff-opens-up-lead-over-mike-collins-in-georgia/",
-          "date_provenance": "PollResults ingestion date, NOT public release date",
-          "model_source": "pollresults_secondary_fallback",
-          "lv_selected_over_rv": true
+          "sample_population": "lv",
+          "question_id": "bcd4fddd-ab5f-4f28-9aa1-f898b74b34c7",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
           "poll_id": "0f4bc367-db9c-459a-a5ce-34b7b7b6e9b2",
@@ -8316,12 +8314,7 @@
           "other": 37.0,
           "other_name": "Seth Bodnar",
           "first_seen_at": "2026-10-16T15:54:07.764738Z",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-16",
-          "source_poll_url": "https://www.sethformontana.com/news/new-poll-independent-seth-bodnar-takes-the-lead-in-montanas-us-senate-race",
-          "sample_population": "lv",
-          "question_id": "7e5a4878-869d-4654-9512-92a32707376a",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "08b59de1-c77b-418d-b8ce-f313b38f3880",
@@ -10460,7 +10453,7 @@
         "first_seen_at": "2026-10-16T20:46:05.959256+00:00",
         "release_date": null,
         "upstream_posted_date": "2026-10-16",
-        "source_poll_url": "https://drive.google.com/file/d/1xLsLQ9chU7IF2kZf52SjaV-zC2pBwizn/view",
+        "source_poll_url": "https://omaha.com/news/state-regional/government-politics/elections/article_5a5e86fc-da5f-4953-89f7-7e199e7c607e.html",
         "sample_population": "lv",
         "date_provenance": "PollResults ingestion date, NOT public release date",
         "model_source": "pollresults_secondary_fallback"
@@ -10483,7 +10476,7 @@
           "first_seen_at": "2026-10-16T20:46:05.959256+00:00",
           "release_date": null,
           "upstream_posted_date": "2026-10-16",
-          "source_poll_url": "https://drive.google.com/file/d/1xLsLQ9chU7IF2kZf52SjaV-zC2pBwizn/view",
+          "source_poll_url": "https://omaha.com/news/state-regional/government-politics/elections/article_5a5e86fc-da5f-4953-89f7-7e199e7c607e.html",
           "sample_population": "lv",
           "date_provenance": "PollResults ingestion date, NOT public release date",
           "model_source": "pollresults_secondary_fallback"
@@ -15877,7 +15870,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-16T20:46:05.601517Z",
+    "last_attempt_at": "2026-10-16T21:43:42.851361Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15886,29 +15879,11 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [
-      {
-        "race_code": "NE-GOV",
-        "race_type": "governor",
-        "poll_id": "49d85399-2bba-43ca-9da0-9b79b368270c",
-        "pollster": "Public Policy Polling",
-        "field_end": "2026-10-14",
-        "dem": 43.0,
-        "rep": 44.0,
-        "margin": -1.0,
-        "dem_name": "Lynne Walz",
-        "rep_name": "Jim Pillen",
-        "sample_size": 571,
-        "first_seen_at": "2026-10-16T20:46:05.959256+00:00",
-        "release_date": null,
-        "source_url": "https://drive.google.com/file/d/1xLsLQ9chU7IF2kZf52SjaV-zC2pBwizn/view",
-        "source": "pollresults_secondary_fallback"
-      }
-    ],
-    "new_poll_count": 1,
+    "new_polls": [],
+    "new_poll_count": 0,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-16T20:46:05.601517Z",
-    "previous_snapshot_at": "2026-10-16T19:42:42.459856Z",
+    "comparison_at": "2026-10-16T21:43:42.851361Z",
+    "previous_snapshot_at": "2026-10-16T20:46:05.601517Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15946,14 +15921,12 @@
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
     "matched_observations": 271,
-    "newly_injected_into_model": 1,
-    "newly_injected_by_race": {
-      "NE-GOV": 1
-    },
+    "newly_injected_into_model": 0,
+    "newly_injected_by_race": {},
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
-    "carried_forward_current_observations": 3,
+    "carried_forward_current_observations": 4,
     "provenance": "PollResults source-linked fallback; original first_seen_at retained"
   }
 }
