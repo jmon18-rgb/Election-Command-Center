@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-16T01:43:11.361701Z",
+  "updated_at": "2026-10-16T02:45:35.209651Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 150,
-    "awaiting_primary_source": 148,
+    "total_leads": 151,
+    "awaiting_primary_source": 149,
     "primary_source_checked": 2,
-    "advisory_related_headline_buckets": 11,
-    "advisory_related_headlines": 25
+    "advisory_related_headline_buckets": 12,
+    "advisory_related_headlines": 27
   },
   "advisory_related_headlines": [
     {
@@ -138,6 +138,20 @@
         "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "14db32c5e8f9265cf302",
+      "headline": "Texas clears voter registration backlog days before early voting - Lubbock Avalanche-Journal",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "TX"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "registration"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
@@ -148,6 +162,26 @@
       "publisher": "Lubbock Avalanche-Journal",
       "published_at": "2026-10-16T01:37:00Z",
       "detected_at": "2026-10-16T01:43:11.361701Z",
+      "state_hints": [
+        "TX"
+      ],
+      "topic_hints": [
+        "registration",
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "4d36db2830d2d75b031c",
+      "title": "Texas clears voter registration backlog days before early voting - Amarillo Globe-News",
+      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxOMlBSb0Rmc3VwY19iRVA0cXlnLV9hSU16dkJBelc1SWJBM2JmZWZ0LVVsWW9nWXp6bXYxbWI5M29ObS1RVDJwLXZkQXFKempXYnlFbnhEYWNGRWtMS1JnWUFZcE5UMkdKNTlnZXVHbjFtUDJ4cFp3VFg5OW9uN0ZYY01iNDVlb1E5R2NxRF9lTW1BUktDNDRWdmRYM0tlQXZEYVQ4UEdNZ3FOWlhSdldQdkgyWXZKMWZmX2g2czI1V3dnOUF2cm9FTEkwQXdaM0lzdTUzX0h2YUNkUnJqbnhGVkRkYm93Y091?oc=5",
+      "publisher": "Amarillo Globe-News",
+      "published_at": "2026-10-16T01:37:00Z",
+      "detected_at": "2026-10-16T02:45:35.209651Z",
       "state_hints": [
         "TX"
       ],
