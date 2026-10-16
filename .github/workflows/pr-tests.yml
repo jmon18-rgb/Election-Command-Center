@@ -169,6 +169,10 @@ jobs:
         run: |
           python3 -m py_compile scripts/probe_house_coverage_2026.py
           python3 scripts/test_house_coverage_2026.py
+      - name: Audit complete 506-race source identity coverage snapshot
+        run: |
+          python3 -m py_compile scripts/build_election_night_source_coverage.py
+          python3 scripts/test_election_night_source_coverage.py
       - name: Test four-state supplemental civicAPI race adapters
         run: |
           node --check scripts/civicapi_state_batch.js
