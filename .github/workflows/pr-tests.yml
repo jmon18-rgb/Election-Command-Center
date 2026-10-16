@@ -238,6 +238,11 @@ jobs:
           node --check scripts/election_night_rehearsal.js
           node --check scripts/test_election_night_rehearsal.cjs
           node scripts/test_election_night_rehearsal.cjs
+      - name: Gate timestamped historical election-night replay data and source rights
+        run: |
+          node --check scripts/historical_election_clock_replay.js
+          node --check scripts/test_historical_election_clock_replay.cjs
+          node scripts/test_historical_election_clock_replay.cjs
       - name: Validate contemporary race-poll national environment shadow
         run: |
           node --check scripts/bottom_up_national_environment.js
