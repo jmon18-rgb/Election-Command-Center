@@ -1689,6 +1689,21 @@ async function settle(){
  assert.match(get('#enNationalSummary').textContent,/1 \/ 35 races with recorded votes/);
  assert.equal(get('#enNationalRows').querySelectorAll('.en-national-seat[data-reporting="true"]').length,1);
  assert.match(get('#enNationalRows').textContent,/NC-SEN/);
+ // National reporting must agree with the strict 3-hour office-health gate.
+ const currentSeat={office:'Senate',key:'NC',state:'NC'};
+ assert.equal(w.eval('enNationalSourceStatus('+JSON.stringify(currentSeat)+').reported'),true);
+ const originalNationalClock=w.Date.now;
+ w.Date.now=()=>Date.parse('2026-11-04T07:00:00Z');
+ assert.equal(w.eval('enNationalSourceStatus('+JSON.stringify(currentSeat)+').reported'),false,
+  'An old, non-flagged 2026 source must not count as actively reporting');
+ w.eval('enRenderNationalSenate()');
+ assert.equal(get('#enNationalRows').querySelectorAll('.en-national-seat[data-reporting="true"]').length,0,
+  'A stale source cannot inflate the number of reporting Senate contests');
+ assert.match(get('#enNationalRows').textContent,/previous votes retained for audit only/);
+ w.Date.now=originalNationalClock;
+ w.eval('enRenderNationalSenate()');
+ assert.equal(get('#enNationalRows').querySelectorAll('.en-national-seat[data-reporting="true"]').length,1,
+  'Fresh primary data may restore active reporting status');
  assert.match(get('#enPinArea').textContent,/Unpin from watchlist/);
  assert.match(get('#enWatchItems').textContent,/Outside the 22-state source/);
  const vanished=structuredClone(counted2026);vanished.races={};vanished.counts.races=0;

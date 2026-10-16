@@ -4362,6 +4362,29 @@ function enNationalSourceStatus(item){
    (enModeYear===2026&&enOffice==='Senate'?enData:null)):
    enCivicUsable(item);
  const row=isPrimary?data?.races?.[item.key]:data;
+ // The national Senate tally must obey the SAME office-health gate as
+ // national reconciliation. Cached primary votes after an outage, recovery
+ // check, schema failure or >3h staleness are audit evidence, NOT reporting.
+ if(isPrimary){
+  const health=window.ElectionNightReconciliation?.officeHealth(data,'Senate',{
+   now:Date.now(),
+   error:Boolean(enOfficeErrors.Senate||
+    enOffice==='Senate'&&enFetchError),
+   restored:enResumePendingOffices.has('Senate')
+  });
+  if(!health?.usable)return {reported:false,source:'Open America',
+   text:'Source '+(health?.state||'unavailable')+' · '+
+    (Number.isSafeInteger(row?.total)&&row.total>0?
+     enNum(row.total)+' previous votes retained for audit only':
+     'no current verified Senate count')};
+ }else if(row?.total>0){
+  const stamp=Date.parse(row.last_updated||''),
+   now=Date.now(),start=Date.parse('2026-11-03T05:00:00Z');
+  if(!Number.isFinite(stamp)||stamp<start||stamp>now+15*60000||
+     now-stamp>180*60000)return {reported:false,source:'civicAPI',
+    text:'Supplemental source stale · '+enNum(row.total)+
+     ' previous votes retained for audit only'};
+ }
  if(!row||!Number.isSafeInteger(row.total)||row.total===0)
   return {reported:false,source:isPrimary?'Open America':'civicAPI',
     text:!enNationalEnabled?'Not monitoring this source yet':
