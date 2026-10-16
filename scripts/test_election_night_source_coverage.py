@@ -94,8 +94,17 @@ class CoverageLedgerTests(unittest.TestCase):
                       self.nh_gov, previous=first,
                       now=self.now + timedelta(hours=26))
         self.assertEqual(self.rows(stale)["House|AK-00"]["gap_status"],
-                         "UNRESOLVED_SOURCE_GAP")
+                         "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED")
+        self.assertEqual(self.rows(stale)["House|AK-00"]["recent_probe_status"],
+                         "NOT_RECENTLY_CHECKED")
         self.assertEqual(self.rows(stale)["House|AK-00"]["last_probe"]["race_id"], 12510)
+        expired = build(self.universe, self.reconciler, self.batch,
+                        self.nh_sen, self.nh_gov, previous=stale,
+                        now=self.now + timedelta(days=11))
+        self.assertEqual(self.rows(expired)["House|AK-00"]["gap_status"],
+                         "UNRESOLVED_SOURCE_GAP")
+        self.assertEqual(expired["summary"]["house"]["unresolved_breakdown"][
+                         "expired_exact_identity"], 1)
 
     def test_newer_failure_does_not_promote_prior_indexing_as_current(self):
         old = self.ledger(probe=self.probe())
@@ -111,6 +120,38 @@ class CoverageLedgerTests(unittest.TestCase):
         self.assertEqual(ak["gap_status"], "UNRESOLVED_SOURCE_GAP")
         self.assertEqual(recent["preflight_checks"]["house_probe"], "failure")
         self.assertFalse(ak["live_votes_verified_by_audit"])
+
+    def test_source_backlog_reconciles_unchecked_vs_unavailable(self):
+        empty = self.ledger()["summary"]["house"]
+        self.assertEqual(empty["unresolved_breakdown"]["never_checked"], 219)
+        self.assertEqual(sum(empty["unresolved_breakdown"].values()),
+                         empty["unresolved_source_gaps"])
+        self.assertEqual(empty["verified_usable_id_hints"], 0)
+        notindexed = self.ledger(probe=self.probe("NOT_INDEXED"))["summary"]["house"]
+        self.assertEqual(notindexed["unresolved_breakdown"]["checked_not_indexed"], 1)
+        self.assertEqual(notindexed["unresolved_breakdown"]["never_checked"], 218)
+        indexed = self.ledger(probe=self.probe())["summary"]["house"]
+        self.assertEqual(indexed["verified_usable_id_hints"], 1)
+        self.assertEqual(indexed["unresolved_source_gaps"], 218)
+        self.assertEqual(sum(indexed["unresolved_breakdown"].values()), 218)
+
+    def test_skipped_probe_does_not_erase_prior_exact_id(self):
+        before = self.ledger(probe=self.probe())
+        stopped = self.probe("NOT_CHECKED_UPSTREAM_PAUSED")
+        stopped["window_utc"] = "2026-10-16T17:00:00+00:00"
+        after = build(self.universe, self.reconciler, self.batch,
+                      self.nh_sen, self.nh_gov, previous=before,
+                      probe=stopped, now=self.now + timedelta(hours=2))
+        row = self.rows(after)["House|AK-00"]
+        self.assertEqual(row["last_probe"]["status"], "INDEXED_EXACT_RACE")
+        self.assertEqual(row["last_probe"]["race_id"], 12510)
+        self.assertTrue(row["verified_identity_hint_usable"])
+        self.assertEqual(house_pins(after)["races"][0]["race_id"], 12510)
+        new_unobserved = self.ledger(probe=self.probe(
+            "NOT_CHECKED_UPSTREAM_PAUSED"))["summary"]["house"]
+        self.assertEqual(new_unobserved["unresolved_breakdown"][
+                         "skipped_due_to_upstream_pause"], 1)
+        self.assertEqual(new_unobserved["unresolved_breakdown"]["never_checked"], 218)
 
     def test_unprobed_district_not_mislabeled_unindexed(self):
         missing = self.rows(self.ledger())["House|NY-17"]
@@ -150,9 +191,12 @@ class CoverageLedgerTests(unittest.TestCase):
                 self.assertEqual(initial["summary"][office][key],
                                  expected["summary"][office][key])
         from build_election_night_source_coverage import timestamp
-        self.assertEqual(self.ledger(previous=initial,
-                         now=timestamp(initial["generated_at"]))["summary"],
-                         initial["summary"])
+        rebuilt = self.ledger(previous=initial,
+                              now=timestamp(initial["generated_at"]))["summary"]
+        for office, row in initial["summary"].items():
+            for key, value in row.items():
+                self.assertEqual(rebuilt[office][key], value,
+                                 "Committed source evidence must remain reproducible")
         self.assertTrue(all(not r["live_votes_verified_by_audit"] for r in initial["races"]))
 
     def test_house_manifest_only_contains_recent_exact_outside_primary_ids(self):
