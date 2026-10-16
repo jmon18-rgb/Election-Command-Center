@@ -148,7 +148,7 @@ def build(universe, reconciliation_js, batch_js, nh_senate_js, nh_governor_js,
         if previous.get("schema_version") != "1.0":
             raise ValueError("Unsupported previous ledger")
         prior = {row["id"]: row for row in previous["races"]}
-        if set(prior) != ids:
+        if len(prior) != len(previous["races"]) or set(prior) != ids:
             raise ValueError("Existing ledger missing or duplicating race identities")
     checks = checks or {"primary": "not_checked", "secondary": "not_checked",
                         "house_probe": "not_checked"}
