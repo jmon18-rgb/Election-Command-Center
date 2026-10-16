@@ -160,8 +160,8 @@ async function settle(){
   'An unrated Senate contest is unknown, not falsely classified safe');
  assert.equal(w.eval("smartFocusInteresting({office:'House',model:null})"),false,
   'Unrated House contests require current evidence to enter focus');
- assert(frontRows.every(x=>w.eval("smartFocusInteresting(smartRaceRanked().find(r=>r.code==="+
-  JSON.stringify(x.dataset.race)+"))")),
+ const focusedCodes=new Set(w.eval('smartRaceRanked().filter(smartFocusInteresting).map(r=>r.code)'));
+ assert(frontRows.every(x=>focusedCodes.has(x.dataset.race)),
   'Safe modeled races must not leak into the default focus');
  assert(frontRows.some(x=>/win chance/.test(x.textContent)),
   'Available linked model odds remain visible without inventing missing probabilities');
