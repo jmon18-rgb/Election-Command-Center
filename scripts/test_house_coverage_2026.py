@@ -1,7 +1,14 @@
 #!/usr/bin/env python3
 """Deterministic source-discovery contract tests; no real HTTP requests."""
 import unittest
-from probe_house_coverage_2026 import matches, detail_matches, probe, DISTRICTS
+import json
+import tempfile
+from pathlib import Path
+from datetime import datetime, timezone, timedelta
+from probe_house_coverage_2026 import (
+    matches, detail_matches, probe, DISTRICTS, PRIMARY_STATES,
+    ROTATING_PER_RUN, uncovered_house_universe, sampling_window,
+)
 
 
 class HouseCoverageTests(unittest.TestCase):
@@ -17,6 +24,58 @@ class HouseCoverageTests(unittest.TestCase):
                                dict(name="Example Republican", party="Republican",
                                     votes=0, winner=False),
                            ])
+
+    def test_full_435_apportionment_and_uncovered_states(self):
+        seats = uncovered_house_universe()
+        self.assertTrue(set(DISTRICTS).issubset(seats))
+        self.assertEqual(len(seats), len(set(seats)))
+        self.assertEqual(len(PRIMARY_STATES), 22)
+        self.assertIn("AK-00", seats)
+        self.assertIn("ND-00", seats)
+        self.assertIn("WY-00", seats)
+        self.assertNotIn("AZ-01", seats)
+        self.assertTrue(all(code[:2] not in PRIMARY_STATES for code in seats))
+        self.assertGreater(len(seats), 100)
+        self.assertLess(len(seats), 435)
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "bad.json"
+            path.write_text(json.dumps({"house": {"total_voting_seats": 435,
+                                                    "by_state": {"MA": 9}}}),
+                            encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "435-seat"):
+                uncovered_house_universe(path)
+
+    def test_rotating_coverage_is_deterministic_and_complete_across_windows(self):
+        seats = uncovered_house_universe()
+        unanchored = set(seats) - set(DISTRICTS)
+        t = datetime(2026, 10, 16, 0, 0, tzinfo=timezone.utc)
+        first = sampling_window(t, inventory=seats)
+        self.assertEqual(first["anchor_count"], 6)
+        self.assertEqual(first["rotating_count"], ROTATING_PER_RUN)
+        self.assertEqual(len(first["districts"]), 6 + ROTATING_PER_RUN)
+        self.assertEqual(len(first["districts"]), len(set(first["districts"])))
+        self.assertEqual(first, sampling_window(t + timedelta(minutes=59),
+                                                inventory=seats))
+        covered = set()
+        for window in range(first["windows_per_rotation"]):
+            info = sampling_window(t + timedelta(hours=4 * window),
+                                   inventory=seats)
+            self.assertEqual(info["districts"][:6], DISTRICTS)
+            self.assertEqual(len(info["districts"]), len(set(info["districts"])))
+            covered.update(info["districts"][6:])
+        self.assertEqual(covered, unanchored,
+                         "The rotation must reach every unanchored House seat")
+        self.assertEqual(first["uncovered_house_districts"], len(seats))
+        with self.assertRaisesRegex(ValueError, "timezone-aware"):
+            sampling_window(datetime(2026, 10, 16), inventory=seats)
+        with self.assertRaisesRegex(ValueError, "Invalid anchored"):
+            sampling_window(t, inventory=seats, rotation=0)
+
+    def test_at_large_2026_seats_can_be_discovered(self):
+        alaska = dict(self.row, province="AK", district="AK-00",
+                      election_name="Alaska US House At-Large")
+        self.assertTrue(matches("AK-00", alaska))
+        self.assertFalse(matches("AK-01", alaska))
 
     def test_scope(self):
         self.assertEqual(len(DISTRICTS), 6)
