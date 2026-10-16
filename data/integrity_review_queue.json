@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-16T16:46:21.633220Z",
+  "updated_at": "2026-10-16T17:43:19.909831Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 167,
-    "awaiting_primary_source": 165,
+    "total_leads": 168,
+    "awaiting_primary_source": 166,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 13,
     "advisory_related_headlines": 30
@@ -169,6 +169,23 @@
     }
   ],
   "items": [
+    {
+      "id": "fa95cc746fad7e3b0dff",
+      "title": "Republican officials brag about their voter purges - People's World",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQUlVaeVNqc3YtZjVwMlI1aEFEOHlPRVV1R1hXeGxoTnplZzNSMTRZaFFhNjRiN3hXNjZJOGl5YWh4TzNiVVNxYUN4UWlZTkticlhRaVpDWDVfYmM2YmRyT0JaX0RwdmlRMHdFRmVQdzRTazAxOTFCSlBBdWdxenlyMURwNXpsTERzakIzaHBvME1yQQ?oc=5",
+      "publisher": "People's World",
+      "published_at": "2026-10-16T16:50:18Z",
+      "detected_at": "2026-10-16T17:43:19.909831Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "5c99d47eac6835b2d611",
       "title": "DOJ's California lawsuit may violate court order against Trump's voter roll crusade, voting groups warn - Democracy Docket",

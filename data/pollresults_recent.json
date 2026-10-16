@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-16T16:46:22.104055+00:00",
+  "updated_at": "2026-10-16T17:43:20.636102+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -13,14 +13,43 @@
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 871,
+      "available_in_source": 872,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 269,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "WI-GOV",
+      "poll_id": "dad3c827-54ca-4d14-9328-ca1ea48887e0"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "WI-GOV",
+      "race_type": "governor",
+      "state": "WI",
+      "poll_id": "dad3c827-54ca-4d14-9328-ca1ea48887e0",
+      "question_id": "6fefdfc1-5ec4-42f3-add3-a78fcb8df439",
+      "pollster": "YouGov",
+      "dem_name": "David Crowley",
+      "rep_name": "Tom Tiffany",
+      "dem": 46.0,
+      "rep": 42.0,
+      "margin": 4.0,
+      "field_end": "2026-10-09",
+      "field_start": "2026-09-22",
+      "posted_date": "2026-10-16",
+      "posted_source_datetime": "2026-10-16T13:25:00",
+      "posted_source_time": "10/16/26 13:25",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://cityforwardcollective.org/new-wisconsin-poll-wisconsinites-back-public-school-options-and-equal-accountability/",
+      "sample_population": "rv",
+      "sample_size": 1715,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "ME-02",
       "race_type": "house",
