@@ -151,6 +151,15 @@ async function settle(){
   'Automatic key races should appear before detailed polling deltas');
  assert(beforeOnPage(get('#smartBriefDesk'),get('#newPolls')),
   'Automatic key races should appear before scrolling through polls');
+ assert.equal(w.eval('smartRawPartisanMargin(500,0)'),null,
+  'D versus independent must not show D+100');
+ assert.equal(w.eval('smartRawPartisanMargin(0,500)'),null,
+  'R versus independent must not show R+100');
+ assert.equal(w.eval('smartRawPartisanMargin(0,0)'),null);
+ assert.equal(w.eval('smartRawPartisanMargin(300,700)'),-40);
+ assert.equal(w.eval('smartRawPartisanMargin(700,300)'),40);
+ assert.equal(w.eval('smartRawPartisanMargin(-5,100)'),null);
+ assert.equal(w.eval('smartRawPartisanMargin(5.4,100)'),null);
  const frontRows=[...get('#smartBriefGrid').querySelectorAll('a.smart-signal')];
  const frontSenateRows=frontRows.filter(x=>x.dataset.race.endsWith('-SEN'));
  const frontHouseRows=frontRows.filter(x=>/^[A-Z]{2}-[0-9]{2}$/.test(x.dataset.race));
