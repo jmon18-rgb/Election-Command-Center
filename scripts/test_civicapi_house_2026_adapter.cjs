@@ -96,4 +96,39 @@ assert.equal(api.validate(itemAtLarge,alaska,{
  ...detail,...alaska,election_type:'House of Representatives',
  candidates:detail.candidates},now).key,'AK-00');
 assert.equal(new URL(api.query(itemAtLarge)).searchParams.get('query'),'US House');
+// The compact identity manifest is a lookup shortcut, not a valid result.
+const manifestNow=Date.parse('2026-11-03T20:00:00Z');
+const makeManifest=()=>({
+ schema_version:'1.0',status:'VERIFIED_HOUSE_IDENTITIES_NOT_LIVE_RESULTS',
+ election:'2026-11-03',generated_at:'2026-11-03T18:00:00Z',
+ races:[{district:'NH-01',race_id:88001,checked_window_utc:'2026-11-02T16:00:00Z'}]
+});
+assert.equal(api.pinnedId(item),null);
+assert.equal(api.setManifest({...makeManifest(),status:'LIVE_RESULTS'},manifestNow),false);
+assert.equal(api.setManifest({...makeManifest(),generated_at:'2024-11-03T20:00:00Z'},manifestNow),false);
+assert.equal(api.setManifest({...makeManifest(),races:[
+ {...makeManifest().races[0]},{...makeManifest().races[0]}]},manifestNow),false);
+assert.equal(api.setManifest({...makeManifest(),races:[
+ {district:'NH-99',race_id:88001,checked_window_utc:'2026-11-02T16:00:00Z'}]},manifestNow),false);
+assert.equal(api.setManifest({...makeManifest(),races:[
+ {district:'NH-01',race_id:88001,checked_window_utc:'2026-10-16T16:00:00Z'}]},manifestNow),false);
+assert.equal(api.setManifest(makeManifest(),manifestNow),true);
+assert.equal(api.pinnedId(item),88001);
+assert.equal(api.pinnedId({office:'House',key:'NH-02'}),null);
+assert.equal(api.validatePinned(item,88001,detail,now).total,1000);
+assert.equal(api.validatePinned(item,88002,detail,now),null);
+assert.equal(api.validatePinned(item,88001,{...detail,id:88002},now),null);
+assert.equal(api.validatePinned(item,88001,{...detail,election_type:'US Senate'},now),null);
+assert.equal(api.validatePinned(item,88001,{...detail,election_date:'2024-11-05T05:00:00Z'},now),null);
+assert.equal(api.validatePinned(item,88001,{...detail,district:'NH-02'},now),null);
+assert.equal(api.validatePinned(item,88001,{...detail,province:'ME'},now),null);
+assert.equal(api.validatePinned(item,88001,{...detail,candidates:[
+ {...detail.candidates[0],votes:900,percent:90},
+ {...detail.candidates[1],votes:500,percent:50}]},now),null);
+assert.equal(api.validatePinned(item,88001,detail,Date.parse('2026-10-16T19:00:00Z')),null);
+assert.equal(api.validatePinned(item,88001,{
+ ...pre,id:88001,election_type:'House of Representatives'},Date.parse('2026-10-16T19:00:00Z')).total,0,
+ 'Before polls close, a source-matched ID only carries zero-vote standby data');
+assert.equal(api.setManifest({...makeManifest(),races:[]},manifestNow),true);
+assert.equal(api.pinnedId(item),null,'A newer empty manifest revokes old shortcuts');
 console.log('2026 supplemental House district source identity, arithmetic, CORS-safe query and failure cases PASS');
