@@ -101,8 +101,8 @@ def matches(district: str, row: dict) -> bool:
         and type(row.get("id")) is int
         and row["id"] > 0
         and bool(re.search(
-            r"\\bUS House\\b" if number == "00"
-            else r"\\bUS House\\s+" + str(int(number)) + r"\\b",
+            r"\bUS House\b" if number == "00"
+            else r"\bUS House\s+" + str(int(number)) + r"\b",
             str(row.get("election_name") or ""), flags=re.I))
         and not re.search(r"primary|runoff", str(row.get("election_name") or ""), re.I)
     )
