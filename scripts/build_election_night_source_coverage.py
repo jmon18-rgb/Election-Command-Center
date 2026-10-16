@@ -194,6 +194,12 @@ def build(universe, reconciliation_js, batch_js, nh_senate_js, nh_governor_js,
             "source_registry": pin["registry"] if pin else
                 ("scoped NH adapter" if identity in nh else None),
             "last_probe": last, "recent_probe_status": active_evidence,
+            "preflight_scope": "primary_contract" if primary else
+                "supplemental_contract" if pin or identity in nh else
+                "sampled_house_probe" if new else "not_checked",
+            "latest_preflight_outcome": checks["primary"] if primary else
+                checks["secondary"] if pin or identity in nh else
+                checks["house_probe"] if new else "not_checked",
             "gap_status": gap,
             "live_votes_verified_by_audit": False,
             "professional_winner_call_verified_by_audit": False,
