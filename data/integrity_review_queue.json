@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-16T17:43:19.909831Z",
+  "updated_at": "2026-10-16T18:19:01.975638Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
   "review_metrics": {
-    "total_leads": 168,
-    "awaiting_primary_source": 166,
+    "total_leads": 169,
+    "awaiting_primary_source": 167,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 13,
     "advisory_related_headlines": 30
@@ -169,6 +169,24 @@
     }
   ],
   "items": [
+    {
+      "id": "13755eae2f7d7ab51351",
+      "title": "Trump is building a national voter registry, threatening state control of elections - Democracy Docket",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQZndzLWxDZjViZjBlVndmQXMtZFVMNTgwMmR4VGstbkFrcHNmZUFqVmNsZ2tqZk1yYWM4ZmR3OVRFelVMMFlfRlVVU2hVSUZPT0U0SmNCREF3TGp1azVCRGFKOG05Y2pOZmF3M253emFQN2JiTHFoSXAtd3RBc1lCVWR0VHZTV3IxY0MyVkF6dXE2ejYza1JZMzVMRXpYTTl1Qk0wdmxOcW5fd3I0Y0JvU1Bnb25wNVptZEZ1Z0NwVUNrV3N2WFE?oc=5",
+      "publisher": "Democracy Docket",
+      "published_at": "2026-10-16T18:01:00Z",
+      "detected_at": "2026-10-16T18:19:01.975638Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "fa95cc746fad7e3b0dff",
       "title": "Republican officials brag about their voter purges - People's World",
