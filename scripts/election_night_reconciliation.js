@@ -70,6 +70,10 @@
    throw Error('2026 House seat universe must contain 435 unique seats');
   return out;
  };
+ // 36 states hold 2026 gubernatorial elections; Guam, Puerto Rico and the
+ // U.S. Virgin Islands hold separate territorial elections (NGA).
+ const GOVERNOR_STATES=Object.freeze(["AK","AL","AR","AZ","CA","CO","CT","FL","GA","HI","IA","ID","IL","KS","MA","MD","ME","MI","MN","NE","NH","NM","NV","NY","OH","OK","OR","PA","RI","SC","SD","TN","TX","VT","WI","WY"]);
+ const governorIds=()=>[...GOVERNOR_STATES];
  const senateIds=seats=>{
   if(!Array.isArray(seats)||seats.length!==35)throw Error('Validated Senate universe missing');
   const out=seats.map(s=>s?.key);
@@ -80,11 +84,13 @@
  };
  function reconcile({houseCounts,senateSeats,snapshots={},civic={},errors={},
     restored=[],supportedStates=[],now=Date.now()}={}){
-  const house=houseIds(houseCounts),senate=senateIds(senateSeats);
+  const house=houseIds(houseCounts),senate=senateIds(senateSeats),
+   governors=governorIds();
   const supported=new Set(supportedStates),restore=new Set(restored);
   const seen=new Set(),calls=[],anomalies=[],discrepancies=[],rows={};
   let validPrimaryOffices=0;
-  for(const [office,ids] of [['House',house],['Senate',senate]]){
+  for(const [office,ids] of [['House',house],['Senate',senate],
+   ['Governor',governors]]){
    const snap=snapshots[office];
    const acceptable=officeHealth(snap,office,{now,
     error:errors[office]===true,restored:restore.has(office)}).usable;
@@ -184,7 +190,7 @@
   return Object.freeze({
    status:'PARTIAL_SOURCED_VOTE_COVERAGE_NO_AUTHORITATIVE_CONTROL_CALLS',
    asOf:new Date(now).toISOString(),primaryOfficesValidated:validPrimaryOffices,
-   house:rows.House,senate:rows.Senate,
+   house:rows.House,senate:rows.Senate,governor:rows.Governor,
    providerCalls:calls.length,providerCallRaces:calls,
    authoritativeCalls:0,
    chambersCalled:false,missingAuthoritativeCallSource:true,
@@ -192,5 +198,6 @@
    anomalies,crossSourceDiscrepancies:discrepancies,records:rows
   });
  }
- return Object.freeze({START,THREE_HOURS,houseIds,senateIds,officeHealth,reconcile});
+ return Object.freeze({START,THREE_HOURS,houseIds,senateIds,governorIds,
+  officeHealth,reconcile});
 });

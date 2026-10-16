@@ -1251,7 +1251,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_early_signals.js?v=7691146833ec"></script>
 <script src="./scripts/election_night_priority.js?v=e1c697ce43d8"></script>
 <script src="./scripts/election_night_signals.js?v=c00851de5109"></script>
-<script src="./scripts/election_night_reconciliation.js?v=5500a4f2cba5"></script>
+<script src="./scripts/election_night_reconciliation.js?v=ab854d43b198"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
 <script src="./scripts/chamber_control_model.js?v=aa102ced6a53"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
@@ -3361,7 +3361,7 @@ function enRenderAmbientDesk(){
   else if(!api)coverage.textContent='National reconciliation unavailable · control not called';
   else{
    const errors={};
-   for(const office of ['House','Senate'])
+   for(const office of ['House','Senate','Governor'])
     errors[office]=Boolean(enOfficeErrors[office]||(enOffice===office&&enFetchError));
    for(const id of new Set([...Object.keys(enCivicErrors),
     ...Object.keys(enCivicByWatch)])){
@@ -3377,11 +3377,13 @@ function enRenderAmbientDesk(){
      snapshots,civic:enCivicByWatch,errors,restored:[...enResumePendingOffices],
      supportedStates:[...enSupportedStates],now:Date.now()});
     coverage.textContent='House '+x.house.reported+'/435 reporting · Senate '+
-     x.senate.reported+'/35 reporting · '+x.providerCalls+
+     x.senate.reported+'/35 reporting · Governors '+
+     x.governor.reported+'/36 reporting · '+x.providerCalls+
      ' civicAPI calls · No authoritative chamber calls'+
      (x.anomalies.length?' · '+x.anomalies.length+' source alerts':'');
     coverage.title='Valid primary source slots: '+x.house.sourceSlots+'/435 House, '+
-     x.senate.sourceSlots+'/35 Senate. Supplemental counted only outside primary coverage. '+
+     x.senate.sourceSlots+'/35 Senate, '+x.governor.sourceSlots+
+     '/36 state governors. Supplemental counted only outside primary coverage. '+
      '65 Senate holdovers not yet reconciled to independent calls; missing is unknown, not zero.'+
      (x.crossSourceDiscrepancies?.length?' Advisory provider mismatches (not fraud evidence): '+
       x.crossSourceDiscrepancies.slice(0,4).map(v=>

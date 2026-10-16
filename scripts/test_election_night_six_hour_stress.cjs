@@ -13,10 +13,14 @@ const counts={AL:7,AK:1,AZ:9,AR:4,CA:52,CO:8,CT:5,DE:1,FL:28,
  TX:38,UT:4,VT:1,VA:11,WA:10,WV:2,WI:8,WY:1};
 const senateStates='AL AK AR CO DE FL GA ID IA IL KS KY LA MA ME MI MN MS MT NC NE NH NJ NM OH OK OR RI SC SD TN TX VA WV WY'.split(' ');
 const senateSeats=senateStates.map(st=>({key:st+(st==='FL'||st==='OH'?'-special':'')}));
-const houseIds=api.houseIds(counts),senateIds=api.senateIds(senateSeats);
+const houseIds=api.houseIds(counts),senateIds=api.senateIds(senateSeats),
+ governorIds=api.governorIds();
 const supported=['AZ','FL','GA','NC','TX'];
 const qualifying=id=>supported.includes(id.slice(0,2));
-const slots={House:houseIds.filter(qualifying),Senate:senateIds.filter(qualifying)};
+const slots={House:houseIds.filter(qualifying),Senate:senateIds.filter(qualifying),
+ Governor:governorIds.filter(qualifying)};
+assert.equal(governorIds.length,36);
+assert.equal(slots.Governor.length,4);
 assert(slots.House.length>100&&slots.Senate.length>=3);
 const clock=Date.parse('2026-11-03T21:00:00Z'); // 4pm ET; 6h through 10pm ET.
 const vote=(key,minute,idx)=>{
@@ -30,7 +34,7 @@ const vote=(key,minute,idx)=>{
 };
 const snapshotsAt=(minute,now)=>{
  const snapshots={};
- for(const office of ['House','Senate']){
+ for(const office of ['House','Senate','Governor']){
   const target=slots[office],n=Math.floor(target.length*minute/360);
   const races={};
   target.slice(0,n).forEach((key,idx)=>races[key]=vote(key,minute,idx));
@@ -63,13 +67,18 @@ for(let minute=0;minute<=360;minute++){
  const restoring=minute===92||minute===93;
  const delayed=minute>=180&&minute<=184||minute===250;
  const civicFailure=minute>=310&&minute<=318;
- const errors={House:outage,Senate:outage,'Senate|ME':civicFailure};
+ const errors={House:outage,Senate:outage,Governor:outage,
+  'Senate|ME':civicFailure};
  const result=api.reconcile({houseCounts:counts,senateSeats,snapshots,civic,
-  errors,restored:restoring?['House','Senate']:[],
+  errors,restored:restoring?['House','Senate','Governor']:[],
   supportedStates:supported,now});
  assertions.minutes++;
  assert.equal(result.house.total,435);
  assert.equal(result.senate.total,35);
+ assert.equal(result.governor.total,36);
+ assert.equal(result.governor.sourceSlots,slots.Governor.length);
+ assert.equal(result.governor.primary+result.governor.supplemental+
+  result.governor.noValidCount,36);
  assert.equal(result.senateHoldoversInUniverse,65);
  assert.equal(result.house.sourceSlots,slots.House.length);
  assert.equal(result.senate.sourceSlots,slots.Senate.length);
@@ -88,9 +97,11 @@ for(let minute=0;minute<=360;minute++){
   if(delayed)assertions.staleMinutes++;
   assert.equal(result.house.primary,0,'Outage/restored/stale House results cannot be live');
   assert.equal(result.senate.primary,0,'Outage/restored/stale Senate results cannot be live');
+  assert.equal(result.governor.primary,0,'Impaired governor source cannot count');
  }else{
   assert.equal(result.house.primary,Math.floor(slots.House.length*minute/360));
   assert.equal(result.senate.primary,Math.floor(slots.Senate.length*minute/360));
+  assert.equal(result.governor.primary,Math.floor(slots.Governor.length*minute/360));
   recoveredHouse=result.house.primary;recoveredSenate=result.senate.primary;
  }
  const expectedCivic=minute>=10&&!civicFailure?1:0;
@@ -107,6 +118,7 @@ for(let minute=0;minute<=360;minute++){
  if(minute===94){
   assert(result.house.primary>0,'Primary data must recover after outage/recheck');
   assert(result.senate.primary>0,'Senate source must recover after outage/recheck');
+  assert(result.governor.primary>0,'Governor source must recover after outage/recheck');
  }
  if(minute===251)assert(result.house.primary>0,'Old timestamps must not permanently poison recovery');
  if(minute===319)assert.equal(result.senate.supplemental,1,

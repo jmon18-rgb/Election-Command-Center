@@ -15,6 +15,11 @@ const senateStates='AL AK AR CO DE FL GA ID IA IL KS KY LA MA ME MI MN MS MT NC 
 assert.equal(senateStates.length,35);
 const senate=senateStates.map(st=>({key:st+(st==='FL'||st==='OH'?'-special':'')}));
 assert.equal(api.senateIds(senate).length,35);
+const gov=api.governorIds();
+assert.equal(gov.length,36);
+assert.equal(new Set(gov).size,36);
+assert(gov.includes('NH')&&gov.includes('VT')&&gov.includes('AK'));
+assert(!gov.includes('NJ')&&!gov.includes('VA')&&!gov.includes('GU'));
 const snapshot=(office,races)=>({year:2026,office,source:'state',stale:false,
  as_of:'2026-11-04T02:50:00Z',races});
 const votes=n=>({total:n,called:false,winner:'',cands:[{n:'D',p:'D',v:n}]});
@@ -24,18 +29,25 @@ const civic={provider:'civicAPI',office:'Senate',key:'ME',race_id:7421,
   {name:'Other',party:'R',votes:300}]};
 const input={houseCounts:counts,senateSeats:senate,
  snapshots:{House:snapshot('House',{'TX-01':votes(123),'AK-00':votes(0)}),
-  Senate:snapshot('Senate',{'NC':votes(900)})},
+  Senate:snapshot('Senate',{'NC':votes(900)}),
+  Governor:snapshot('Governor',{'TX':votes(1100),'AK':votes(200)})},
  civic:{'Senate|ME':civic},supportedStates:['TX','AK','NC'],now};
 let x=api.reconcile(input);
 assert.equal(x.house.total,435);assert.equal(x.senate.total,35);
 assert.equal(x.house.reported,1);assert.equal(x.senate.reported,2);
 assert.equal(x.house.noVotes,1);assert.equal(x.house.noValidCount,433);
 assert.equal(x.senate.primary,1);assert.equal(x.senate.supplemental,1);
+assert.equal(x.governor.total,36);
+assert.equal(x.governor.sourceSlots,2,'NC has no 2026 governor election');
+assert.equal(x.governor.primary,2);
+assert.equal(x.governor.reported,2);
+assert.equal(x.governor.noValidCount,34);
 // Office source health must be the same for UI labels and coverage arithmetic.
 const health=(snapshot,office='Senate',opts={})=>
  api.officeHealth(snapshot,office,{now,...opts});
 assert.equal(health(input.snapshots.Senate).state,'reporting');
 assert.equal(health(input.snapshots.House,'House').state,'reporting');
+assert.equal(health(input.snapshots.Governor,'Governor').state,'reporting');
 assert.equal(health(input.snapshots.Senate,'Governor').state,'invalid');
 assert.equal(health(input.snapshots.Senate,'Senate',{error:true}).state,'outage');
 assert.equal(health(input.snapshots.Senate,'Senate',{restored:true}).state,'rechecking');
@@ -56,6 +68,15 @@ assert.equal(health({...input.snapshots.Senate,races:{}}).state,'current_no_vote
 assert.equal(health(input.snapshots.Senate).usable,true);
 assert.equal(x.providerCalls,1);assert.equal(x.authoritativeCalls,0);
 assert.equal(x.chambersCalled,false);assert.equal(x.senateHoldoversInUniverse,65);
+const govCivic={...civic,office:'Governor',key:'ME',race_id:8491};
+x=api.reconcile({...input,civic:{...input.civic,'Governor|ME':govCivic}});
+assert.equal(x.governor.supplemental,1,
+ 'Verified uncovered governor source is counted, without fabricated primary coverage');
+assert.equal(x.governor.reported,3);
+x=api.reconcile({...input,civic:{...input.civic,
+ 'Governor|TX':{...govCivic,key:'TX'}}});
+assert.equal(x.governor.supplemental,0,'Primary-covered governor cannot double-count');
+assert(x.anomalies.some(s=>s.includes('Blocked overlapping secondary Governor|TX')));
 const overlapping={...input,civic:{...input.civic,
  'Senate|NC':{...civic,key:'NC'}}};
 x=api.reconcile(overlapping);
@@ -65,9 +86,14 @@ x=api.reconcile({...input,restored:['Senate']});
 assert.equal(x.senate.primary,0,'Restored unrefreshed snapshots are not current reporting');
 x=api.reconcile({...input,errors:{Senate:true}});
 assert.equal(x.senate.primary,0,'Unavailable source keeps historical records but not valid live coverage');
+x=api.reconcile({...input,errors:{Governor:true}});
+assert.equal(x.governor.primary,0,'Governor office outage must fail closed');
+x=api.reconcile({...input,restored:['Governor']});
+assert.equal(x.governor.primary,0,'Governor recovery requires fresh verification');
 x=api.reconcile({...input,now:Date.parse('2026-11-04T07:30:00Z')});
 assert.equal(x.house.reported,0,'Stale sources cannot claim live counts');
 assert.equal(x.providerCalls,0);
+assert.equal(x.governor.reported,0,'Stale governor snapshots are not current');
 // Cross-provider comparisons are advisory, constrained to near-synchronous
 // similar-completeness exact races. They never duplicate vote coverage/calls.
 const nearPrimary=snapshot('Senate',{'NC':{total:2400,called:false,winner:'',
