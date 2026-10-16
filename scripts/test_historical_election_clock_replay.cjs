@@ -66,7 +66,7 @@ denied(x=>{x.snapshots[3].as_of=x.snapshots[2].as_of},
  'nonchronological_or_wrong_cycle_snapshot');
 denied(x=>{x.snapshots[4].as_of='2026-11-04T01:00:00Z'},
  'nonchronological_or_wrong_cycle_snapshot');
-denied(x=>{x.snapshots[3].dem_votes=6100},
+denied(x=>{x.snapshots[3].dem_votes=7000},
  'snapshot_exceeds_verified_final_major_party_counts');
 denied(x=>{x.snapshots=x.snapshots.map((row,i)=>({
  ...row,dem_votes:5900,rep_votes:3900,
