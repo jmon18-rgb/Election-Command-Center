@@ -131,6 +131,27 @@
        primaryLead:pLead,supplementalLead:cLead,
        primaryTwoPartyVotes:primaryTwo,supplementalTwoPartyVotes:civicTwo});
       anomalies.push('Cross-provider opposite major-party leads '+id);
+     }else if(comparable&&gap<=3*60000&&
+       Math.min(primaryTwo,civicTwo)>=5000&&
+       Math.min(primaryTwo,civicTwo)/Math.max(primaryTwo,civicTwo)>=0.9&&
+       pLead&&pLead===cLead){
+      // Two overlapping, nearly simultaneous sources can agree about
+      // the leader yet still materially disagree about the partisan split.
+      // Advisory only: provider reporting geographies/timing can differ.
+      const firstShare=100*primaryParties.D/primaryTwo;
+      const secondShare=100*secondaryParties.D/civicTwo;
+      const gapPoints=Math.abs(firstShare-secondShare);
+      if(gapPoints>=10){
+       discrepancies.push({id,kind:'PARTISAN_SHARE_GAP_COMPARABLE_REPORTS',
+        primary:'Open America',supplemental:'civicAPI',
+        primaryAsOf:snap.as_of,supplementalAsOf:secondary.last_updated,
+        primaryLead:pLead,supplementalLead:cLead,
+        primaryDemSharePct:Math.round(firstShare*10)/10,
+        supplementalDemSharePct:Math.round(secondShare*10)/10,
+        shareGapPoints:Math.round(gapPoints*10)/10,
+        primaryTwoPartyVotes:primaryTwo,supplementalTwoPartyVotes:civicTwo});
+       anomalies.push('Cross-provider near-synchronous D/R vote-share disagreement '+id);
+      }
      }
     }
     // A covered state is exclusively primary-owned in this conservative

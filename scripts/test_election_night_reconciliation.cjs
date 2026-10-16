@@ -90,6 +90,46 @@ x=api.reconcile({...input,snapshots:{...input.snapshots,Senate:nearPrimary},
  civic:{'Senate|NC':later}});
 assert.equal(x.crossSourceDiscrepancies.length,0,
  'Reporting timestamps too far apart are not directly comparable');
+// A source-share discrepancy can exist without disagreement about which
+// party leads. Require >5,000 two-party votes, +/-3-minute timestamps,
+// similar completeness, and >=10 percentage points before raising advisory.
+const pSame=snapshot('Senate',{'NC':{total:24000,called:false,winner:'',
+ cands:[{n:'D',p:'D',v:12500},{n:'R',p:'R',v:11500}]}});
+const cSame={...nearCivic,total:24000,called:null,
+ candidates:[{name:'Jane Democrat',party:'D',votes:16500},
+  {name:'Other',party:'R',votes:7500}]};
+x=api.reconcile({...input,snapshots:{...input.snapshots,Senate:pSame},
+ civic:{'Senate|NC':cSame}});
+assert.equal(x.senate.primary,1);
+assert.equal(x.senate.supplemental,0);
+assert.equal(x.providerCalls,0);
+assert.equal(x.crossSourceDiscrepancies.length,1);
+assert.equal(x.crossSourceDiscrepancies[0].kind,
+ 'PARTISAN_SHARE_GAP_COMPARABLE_REPORTS');
+assert.equal(x.crossSourceDiscrepancies[0].primaryLead,'D');
+assert.equal(x.crossSourceDiscrepancies[0].supplementalLead,'D');
+assert(x.crossSourceDiscrepancies[0].shareGapPoints>=15);
+assert(x.anomalies.some(s=>s.includes('D/R vote-share disagreement Senate|NC')));
+const matchingShare={...cSame,candidates:[
+ {name:'Jane Democrat',party:'D',votes:12600},
+ {name:'Other',party:'R',votes:11400}]};
+x=api.reconcile({...input,snapshots:{...input.snapshots,Senate:pSame},
+ civic:{'Senate|NC':matchingShare}});
+assert.equal(x.crossSourceDiscrepancies.length,0,
+ 'A two-point share difference with the same leader is not a discrepancy');
+const laterShare={...cSame,last_updated:'2026-11-04T02:57:00Z'};
+x=api.reconcile({...input,snapshots:{...input.snapshots,Senate:pSame},
+ civic:{'Senate|NC':laterShare}});
+assert.equal(x.crossSourceDiscrepancies.length,0,
+ 'Different vote-share snapshots >3 minutes apart must not trigger this warning');
+const sparse=snapshot('Senate',{'NC':{total:2400,called:false,winner:'',
+ cands:[{n:'D',p:'D',v:1250},{n:'R',p:'R',v:1150}]}});
+x=api.reconcile({...input,snapshots:{...input.snapshots,Senate:sparse},
+ civic:{'Senate|NC':{...cSame,total:2400,candidates:[
+ {name:'Jane Democrat',party:'D',votes:1650},
+ {name:'Other',party:'R',votes:750}]}}});
+assert.equal(x.crossSourceDiscrepancies.length,0,
+ 'Under 5,000 counted votes each, ignore transient share gaps');
 const malformed={...civic,total:100,candidates:[{name:'Jane Democrat',party:'D',votes:700}]};
 x=api.reconcile({...input,civic:{'Senate|ME':malformed}});
 assert.equal(x.senate.supplemental,0);
