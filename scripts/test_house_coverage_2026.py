@@ -493,7 +493,9 @@ class HouseCoverageTests(unittest.TestCase):
         self.assertFalse(report["upstream_paused"])
         self.assertEqual(report["sampled_districts"], 16)
         self.assertEqual(report["status_counts"], {"NOT_INDEXED": 16})
-        self.assertEqual(len(attempted), 16)
+        self.assertEqual(len(attempted), 17,
+                         "One rejected same-state search plus 16 exact fallbacks")
+        self.assertEqual(attempted.count("/race/search"), 17)
         with self.assertRaisesRegex(ValueError, "missing or reordering"):
             build_report(plan, rows[:-1])
 
