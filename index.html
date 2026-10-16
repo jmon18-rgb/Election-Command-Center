@@ -1244,7 +1244,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/civicapi_nh_adapter.js?v=4ae9e6a8a957"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=4fd12233d233"></script>
 <script src="./scripts/civicapi_state_batch.js?v=0a26f4f75956"></script>
-<script src="./scripts/civicapi_house_2026_adapter.js?v=eaa2fe8e576a"></script>
+<script src="./scripts/civicapi_house_2026_adapter.js?v=e14dfadeda8a"></script>
 <script src="./scripts/house_at_large_bridge.js?v=f9e1399d5868"></script>
 <script src="./scripts/election_night_source_backoff.js?v=9d0c92796244"></script>
 <script src="./scripts/election_night_nowcast.js?v=fa5349790084"></script>
@@ -5170,6 +5170,27 @@ async function enCivicFetchJson(url,timeoutMs=12000){
   ]);
  }finally{clearTimeout(timer)}
 }
+// A small Pages-hosted index of *previously verified source IDs* avoids an
+// extra civicAPI search request for House races already discovered by CI.
+// It is not live results and never bypasses the detailed identity/vote gates.
+let enHousePinsPromise=null;
+function enHousePinsReady(){
+ if(enHousePinsPromise)return enHousePinsPromise;
+ enHousePinsPromise=(async()=>{
+  if(!window.CivicHouse2026Adapter?.setManifest)return false;
+  const controller=typeof AbortController==='function'?new AbortController():null;
+  const timeout=setTimeout(()=>{try{controller?.abort()}catch{}},4000);
+  try{
+   const response=await fetch('./data/election_night_house_pins.json',{
+    mode:'same-origin',cache:'no-store',credentials:'omit',
+    ...(controller?{signal:controller.signal}:{})
+   });
+   return response.ok&&window.CivicHouse2026Adapter.setManifest(await response.json());
+  }catch{return false}
+  finally{clearTimeout(timeout)}
+ })();
+ return enHousePinsPromise;
+}
 async function enCivicFetchOne(item,forceAfterPending=false){
  const id=enWatchId(item);
  if(enCivicPending.has(id)){
@@ -5191,13 +5212,30 @@ async function enCivicFetchOne(item,forceAfterPending=false){
    throw Error('NH governor race adapter is unavailable');
   if(enBatchPilot(item)&&!window.StateBatchCivicAdapter)
    throw Error('Four-state civicAPI race adapter is unavailable');
-  let row=enCivicRaceIds[id];
-  if(!row){
-   row=enCivicSelect(item,await enCivicFetchJson(enCivicQuery(item)));
-   if(!row)throw Error('No unique matching November 3 general-election race');
+  let row=enCivicRaceIds[id],next=null;
+  if(item.office==='House'&&!row){
+   await enHousePinsReady();
+   const pinned=window.CivicHouse2026Adapter.pinnedId(item);
+   if(pinned){
+    // Even an indexed ID must re-prove the exact 2026 general-election
+    // ballot identity and every candidate vote before it is usable.
+    try{
+     const detail=await enCivicFetchJson(enCivicBase+'/race/'+pinned+'?light=');
+     next=window.CivicHouse2026Adapter.validatePinned(item,pinned,detail);
+    }catch(err){
+     if(enCivicBreaker?.status().blocked)throw err;
+     // Inaccessible/obsolete indexed ID: allow a fresh bounded search.
+    }
+   }
   }
-  const next=enCivicValidate(item,row,
+  if(!next){
+   if(!row){
+    row=enCivicSelect(item,await enCivicFetchJson(enCivicQuery(item)));
+    if(!row)throw Error('No unique matching November 3 general-election race');
+   }
+   next=enCivicValidate(item,row,
     await enCivicFetchJson(enCivicBase+'/race/'+row.id+'?light='));
+  }
   if(!next)throw Error('Supplementary result integrity check failed');
   if(!enIsVisible()||enModeYear!==2026||!enNationalTracked(item))return;
   const old=enCivicByWatch[id],oldTime=Date.parse(old?.last_updated||''),
@@ -5210,7 +5248,7 @@ async function enCivicFetchOne(item,forceAfterPending=false){
   enCivicValidatedGenerations[id]=enCivicBreaker?.status().generation??0;
   enCivicBreaker?.success(); // only this exact source race was revalidated
   enProcessCivicAlert(item,old,next);
-  enCivicRaceIds[id]=row;
+  if(row)enCivicRaceIds[id]=row;
   delete enCivicErrors[id];
   enRenderWatchlist();enRenderNationalSenate();enRenderExportControls();enRenderLiveDesk();enRenderMilestones();renderSmartRaceDesks();
  }catch(err){

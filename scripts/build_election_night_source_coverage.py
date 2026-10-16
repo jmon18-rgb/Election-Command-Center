@@ -235,10 +235,37 @@ def build(universe, reconciliation_js, batch_js, nh_senate_js, nh_governor_js,
     }
 
 
+def house_pins(report, *, max_age_days=10):
+    """Identity-only shortcut; live browser revalidates every detailed result."""
+    when = timestamp(report["generated_at"])
+    pins = []
+    for row in report["races"]:
+        if row["office"] != "House" or row["provider_scope"] != "outside primary":
+            continue
+        last = row["last_probe"]
+        if not last or last["status"] != "INDEXED_EXACT_RACE":
+            continue
+        checked = timestamp(last["checked_window_utc"])
+        if checked > when or when - checked > timedelta(days=max_age_days):
+            continue
+        if type(last["race_id"]) is not int or last["race_id"] <= 0:
+            raise ValueError("Invalid exact House source identity")
+        pins.append({"district": row["key"], "race_id": last["race_id"],
+                     "checked_window_utc": last["checked_window_utc"]})
+    if len(pins) > 219 or len({x["race_id"] for x in pins}) != len(pins):
+        raise ValueError("Conflicting or duplicate source race IDs")
+    return {"schema_version": "1.0",
+            "status": "VERIFIED_HOUSE_IDENTITIES_NOT_LIVE_RESULTS",
+            "election": "2026-11-03", "generated_at": when.isoformat(),
+            "races": pins}
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--probe", type=Path)
     parser.add_argument("--output", type=Path, default=OUT)
+    parser.add_argument("--pins-output", type=Path,
+                        default=ROOT / "data/election_night_house_pins.json")
     parser.add_argument("--primary-check", default="not_checked")
     parser.add_argument("--secondary-check", default="not_checked")
     parser.add_argument("--house-check", default="not_checked")
@@ -257,7 +284,12 @@ def main():
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+    pins = house_pins(report)
+    args.pins_output.parent.mkdir(parents=True, exist_ok=True)
+    args.pins_output.write_text(json.dumps(pins, indent=2, sort_keys=True) + "\n")
     print("Source identity audit:", json.dumps(report["summary"], sort_keys=True))
+    print("House identity lookup hints:", len(pins["races"]),
+          "(NOT confirmed live returns)")
     if os.environ.get("GITHUB_STEP_SUMMARY"):
         with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as handle:
             handle.write("\n### Persistent 506-race source identity ledger (NOT live coverage)\n\n")

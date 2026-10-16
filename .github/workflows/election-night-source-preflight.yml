@@ -10,6 +10,8 @@ on:
       - 'scripts/probe_house_coverage_2026.py'
       - 'scripts/test_house_coverage_2026.py'
       - 'scripts/build_election_night_source_coverage.py'
+      - 'scripts/civicapi_house_2026_adapter.js'
+      - 'scripts/test_civicapi_house_2026_adapter.cjs'
       - 'scripts/test_election_night_source_coverage.py'
       - 'scripts/civicapi_state_batch.js'
       - 'scripts/election_night_reconciliation.js'
@@ -77,7 +79,7 @@ jobs:
         run: |
           git config user.name "election-briefing-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/election_night_source_coverage.json
+          git add data/election_night_source_coverage.json data/election_night_house_pins.json
           if ! git diff --cached --quiet; then
             git commit -m "Record 506-race source identity coverage and gap health"
             git pull --rebase origin main
@@ -96,7 +98,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: 2026-source-coverage-ledger-${{ github.run_id }}
-          path: data/election_night_source_coverage.json
+          path: |
+            data/election_night_source_coverage.json
+            data/election_night_house_pins.json
           if-no-files-found: warn
           retention-days: 90
       - name: Record source health and fail if either provider contract is broken
@@ -114,7 +118,7 @@ jobs:
           echo "- Open America (22-state primary source): $PRIMARY" >> "$GITHUB_STEP_SUMMARY"
           echo "- civicAPI (individually verified supplementary races): $SECONDARY" >> "$GITHUB_STEP_SUMMARY"
           echo "- Rotating House gap audit (source discovery only): $HOUSE_PROBE" >> "$GITHUB_STEP_SUMMARY"
-          echo "- 506-race source audit built / persisted: $COVERAGE / $PERSIST" >> "$GITHUB_STEP_SUMMARY"
+          echo "- 506-race source audit and House ID hint manifest built / persisted: $COVERAGE / $PERSIST" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "Checks test HTTP, browser CORS and strict year/race schema; the 506-race ledger is source identity **not live-result availability or winner calls**." >> "$GITHUB_STEP_SUMMARY"
           if [ "$PRIMARY" != "success" ] || [ "$SECONDARY" != "success" ] || [ "$HOUSE_PROBE" != "success" ] || [ "$COVERAGE" != "success" ] || [ "$PERSIST" != "success" ]; then
