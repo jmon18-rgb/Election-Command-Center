@@ -59,6 +59,9 @@ class CoverageLedgerTests(unittest.TestCase):
                          "SCOPED_ADAPTER_NO_PINNED_ID")
         self.assertEqual(rows["Governor|NH"]["source_identity_status"],
                          "SCOPED_ADAPTER_NO_PINNED_ID")
+        self.assertEqual(rows["Senate|AK"]["preflight_scope"], "supplemental_contract")
+        self.assertEqual(rows["Senate|AK"]["latest_preflight_outcome"], "not_checked")
+        self.assertEqual(rows["House|TX-01"]["preflight_scope"], "primary_contract")
         self.assertEqual(rows["Senate|MS"]["gap_status"], "UNRESOLVED_SOURCE_GAP")
         self.assertEqual(rows["Governor|HI"]["gap_status"], "UNRESOLVED_SOURCE_GAP")
         self.assertEqual(rows["Governor|OK"]["gap_status"], "UNRESOLVED_SOURCE_GAP")
