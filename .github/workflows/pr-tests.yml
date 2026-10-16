@@ -165,6 +165,10 @@ jobs:
           node --check scripts/civicapi_house_2026_adapter.js
           node --check scripts/test_civicapi_house_2026_adapter.cjs
           node scripts/test_civicapi_house_2026_adapter.cjs
+      - name: Check bounded sampled House source-discovery and no-data truthfulness
+        run: |
+          python3 -m py_compile scripts/probe_house_coverage_2026.py
+          python3 scripts/test_house_coverage_2026.py
       - name: Test four-state supplemental civicAPI race adapters
         run: |
           node --check scripts/civicapi_state_batch.js
