@@ -33,7 +33,7 @@ now+=600000;
 assert.equal(c.success().blocked,false);
 assert.equal(c.status().consecutive,0);
 assert.equal(c.status().last_http_status,null);
-assert.equal(c.status().generation,5,
+assert.equal(c.status().generation,6,
  'Successful source recovery does not erase the race-validation epoch');
 assert.equal(c.fail(429).seconds_remaining,60,
  'A recovered provider starts again with a short cooldown');
