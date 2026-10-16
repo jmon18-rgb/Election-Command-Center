@@ -140,8 +140,9 @@ async function settle(){
  w.eval(read('scripts/private_senate_fundamentals.js'));
  assert(w.PrivateSenateFundamentals,'Private subscriber CSV parser must load before app');
  w.eval(scripts[0]);
- assert.equal(w.eval('enCivicRequestPool.status().concurrency_limit'),4,
-  'All overlapping manual and automatic sweeps must use one 4-request cap');
+ assert.equal(w.ElectionNightTransport.createPool(4,64).status().concurrency_limit,4);
+ assert.match(w.eval('enCivicFetchJson.toString()'),/enCivicRequestPool\.run/,
+  'All overlapping manual and automatic sweeps must share bounded fetches');
  assert(registeredIntervals.some(x=>x.ms===120000),
   'Still-open tab must register polling refresh every two minutes');
  assert(registeredIntervals.some(x=>x.ms===300000),
