@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-16T10:46:30.571437Z",
+  "updated_at": "2026-10-16T11:45:42.271414Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 155,
-    "awaiting_primary_source": 153,
+    "total_leads": 156,
+    "awaiting_primary_source": 154,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 12,
     "advisory_related_headlines": 27
@@ -155,6 +155,26 @@
     }
   ],
   "items": [
+    {
+      "id": "ee72f6b0f5429439c603",
+      "title": "Election officials issue ICE guidance for polls - Wisconsin Law Journal",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxObVNmZnd4V29CbU5XZVNGeG1hWFU2bGgydUUzOHRaM0RCeVJzek1PQWVXcC1fNXNtZ2pZbmprMEFwa2FaRXRQZzBWTGlQcHY2NF9OSU1jemctSU1fV1BkS0JzRDlBeVBUX1JtczZ0NmVzLTFkaUhmYVJvTXVlbnpIa0VSV0JLWUp0MXROcFFn?oc=5",
+      "publisher": "Wisconsin Law Journal",
+      "published_at": "2026-10-16T11:40:14Z",
+      "detected_at": "2026-10-16T11:45:42.271414Z",
+      "state_hints": [
+        "WI"
+      ],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "3bfb838f97df4fcad457",
       "title": "DOJ Takes California to Court Over Potential Noncitizen Voting - Liberty Nation News",
