@@ -768,12 +768,13 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 
 <section class="smart-race-desk" id="smartBriefDesk" aria-label="Automatically tracked 2026 Senate and House races">
 <div class="smart-desk-head"><div><span class="label">THE PRESSURE POINTS · 2026</span>
-<h2>Where the wave breaks</h2><p>Every 2026 Senate contest and a broad House watchlist. Not just close races.</p></div></div>
+<h2>Where the wave breaks</h2><p>Races still up for grabs. Safe seats stay off the front page.</p></div></div>
 <div class="smart-roster-controls" id="smartBriefControls" role="group" aria-label="Where the wave breaks office filters">
  <button type="button" data-smart-office="All" aria-pressed="true">All</button>
  <button type="button" data-smart-office="Senate" aria-pressed="false">Senate <span data-count="Senate">—</span></button>
  <button type="button" data-smart-office="House" aria-pressed="false">House <span data-count="House">—</span></button>
  <button type="button" data-smart-office="Governor" aria-pressed="false">Governors <span data-count="Governor">—</span></button>
+ <button type="button" id="smartBriefShowAll" class="smart-roster-full" aria-pressed="false" title="Include races at 95% or more and all tracked seats">Show full roster</button>
  <input id="smartBriefSearch" type="search" placeholder="Find state or district, e.g. PA-10" aria-label="Find race by state or district" autocomplete="off">
 </div>
 <p class="smart-roster-summary" id="smartBriefCount" role="status">Loading the 2026 race roster…</p>
@@ -1040,12 +1041,13 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 </section>
 <section class="smart-race-desk smart-night" id="smartNightDesk" aria-label="Automatic election-night priority watch" hidden>
 <div class="smart-desk-head"><div><span class="label">THE PRESSURE POINTS · LIVE</span>
-<h2>Where the wave breaks</h2><p>All contested Senate races, monitored House districts, and source-checked election-night returns.</p></div></div>
+<h2>Where the wave breaks</h2><p>Competitive races, verified returns and the contests that could shift control.</p></div></div>
 <div class="smart-roster-controls" id="smartNightControls" role="group" aria-label="Election-night race office filters">
  <button type="button" data-smart-office="All" aria-pressed="true">All</button>
  <button type="button" data-smart-office="Senate" aria-pressed="false">Senate <span data-count="Senate">—</span></button>
  <button type="button" data-smart-office="House" aria-pressed="false">House <span data-count="House">—</span></button>
  <button type="button" data-smart-office="Governor" aria-pressed="false">Governors <span data-count="Governor">—</span></button>
+ <button type="button" id="smartNightShowAll" class="smart-roster-full" aria-pressed="false" title="Include races at 95% or more and all tracked seats">Show full roster</button>
  <input id="smartNightSearch" type="search" placeholder="Find state or district" aria-label="Find an election-night race by state or district" autocomplete="off">
 </div>
 <p class="smart-roster-summary" id="smartNightCount" role="status">Loading 2026 live race roster…</p>
@@ -3000,6 +3002,19 @@ function enLiveRaceEstimate(item){
  * watchlist. Source updates may add surprising new races without asking the
  * user to pin anything. 2024 archive totals NEVER enter this board. */
 const smartRosterFilters={smartBrief:'All',smartNight:'All'};
+const smartShowFullRoster={smartBrief:false,smartNight:false};
+const WAVE_SAFE_FAVORITE_CUTOFF=95;
+function smartFocusInteresting(item){
+ const p=item?.model?.dem_beats_rep_pct;
+ // Source-confirmed odds, never a made-up number. Safe D and safe R seats
+ // are equally omitted from the pressure-point default.
+ if(Number.isFinite(p))
+  return p>100-WAVE_SAFE_FAVORITE_CUTOFF&&p<WAVE_SAFE_FAVORITE_CUTOFF;
+ // Senate races without model odds stay discoverable until they can be
+ // assessed. Unrated House/Governor seats need some current evidence.
+ return item.office==='Senate'||
+  Number.isFinite(item?.poll?.dem_minus_rep)||Boolean(item?.live);
+}
 function smartRaceCode(item){return item.code}
 let smartCompactCacheModel=null,smartCompactCache=null;
 let smartRosterCacheModel=null,smartRosterCacheSeats=null,
@@ -3227,8 +3242,18 @@ function renderSmartRaceDesks(){
   if(night&&desk.hidden)continue;
   const search=$('#'+prefix+'Search')?.value.trim().toUpperCase()||'';
   const chosen=smartRosterFilters[prefix];
+  const showAll=smartShowFullRoster[prefix];
+  const interesting=all.filter(smartFocusInteresting);
+  const safeCount=all.filter(x=>Number.isFinite(x.model?.dem_beats_rep_pct)&&
+   !smartFocusInteresting(x)).length;
+  const source=(showAll||search)?all:interesting;
   const counts={Senate:0,House:0,Governor:0};
-  for(const row of all)counts[row.office]++;
+  for(const row of source)counts[row.office]++;
+  const fullToggle=$('#'+prefix+'ShowAll');
+  if(fullToggle){
+   fullToggle.setAttribute('aria-pressed',String(showAll));
+   fullToggle.textContent=showAll?'Show competitive only':'Show full roster';
+  }
   const controls=$('#'+prefix+'Controls');
   if(controls)for(const button of controls.querySelectorAll('button[data-smart-office]')){
    const office=button.dataset.smartOffice;
@@ -3236,13 +3261,13 @@ function renderSmartRaceDesks(){
    const counter=button.querySelector('[data-count]');
    if(counter)counter.textContent=counts[office];
   }
-  const rows=all.filter(row=>(chosen==='All'||row.office===chosen)&&
+  const rows=source.filter(row=>(chosen==='All'||row.office===chosen)&&
     (!search||row.code.includes(search)||row.key.includes(search)));
   // A 35-Senate/large-House DOM need not be rebuilt for no-op provider
   // polls. A signature captures every value used by smartRow, its order,
   // current office/search and reporting counters. Real changes still render.
   const reportingTotal=all.filter(x=>x.priority.reporting).length;
-  const fingerprint=JSON.stringify([chosen,search,counts,reportingTotal,
+  const fingerprint=JSON.stringify([chosen,search,showAll,counts,reportingTotal,
    rows.map(x=>[
     x.code,x.key,x.priority.score,x.priority.why,x.priority.reporting,
     x.priority.called,x.priority.rawMargin,x.priority.precincts,
@@ -3256,9 +3281,9 @@ function renderSmartRaceDesks(){
   smartRenderSignatures[prefix]=fingerprint;
   const previousScroll=host.scrollTop;
   host.replaceChildren();
-  const sections=[['Senate','All 2026 Senate contests'],
-   ['House','House monitoring slate and qualifying polls'],
-   ['Governor','Statewide governor watch']];
+  const sections=[['Senate','Senate races worth watching'],
+   ['House','House races worth watching'],
+   ['Governor','Governors worth watching']];
   for(const [office,label] of sections){
    const items=rows.filter(x=>x.office===office);
    if(!items.length)continue;
@@ -3270,20 +3295,21 @@ function renderSmartRaceDesks(){
    for(const item of items)grid.append(smartRow(item));
    section.append(head,grid);host.append(section);
   }
-  if(!rows.length)host.append(elt('p','empty','No matching races in this office. Try another filter or state code.'));
+  if(!rows.length)host.append(elt('p','empty','No matching races. Change the office, search for a district, or show the full roster.'));
   host.scrollTop=previousScroll;
   const summary=$('#'+prefix+'Count');
-  if(summary)summary.textContent=counts.Senate+'/35 Senate contests · '+
-   counts.House+' tracked House seats · '+counts.Governor+
-   ' governors · '+rows.length+' shown'+
-   (search?' for “'+search+'”':'')+'.';
+  if(summary)summary.textContent=rows.length+' shown · '+
+   (showAll?'full tracked roster':search?'searching full roster':'competitive focus')+
+   ' · '+counts.Senate+' Senate / '+counts.House+' House / '+
+   counts.Governor+' governors'+
+   (!showAll&&!search?' · '+safeCount+' races at ≥95% omitted':'')+
+   (search?' · search “'+search+'”':'')+'.';
   const note=$('#'+(night?'smartNightNote':'smartBriefNote'));
-  if(note)note.textContent='Every Senate ballot contest comes from the verified 2026 35-seat universe. '+
-   'House includes the documented editorial watchlist, any qualifying district polls, '+
-   'and additional model-identified districts; inclusion does not mean the race is close. '+
-   'Missing polling or model estimates remain unavailable rather than invented. '+
-   reportingTotal+
-   ' monitored races have qualifying live reporting. Modeled odds remain experimental.';
+  if(note)note.textContent='Competitive focus omits races with modeled win chances ≥95% for either party. '+
+   'Races without model odds remain visible if Senate-wide or supported by current polling/results. '+
+   'Search finds any tracked race, and Show full roster restores every tracked Senate, House and governor entry. '+
+   'This is a display filter, not a change to odds, provider polling or control forecasts. '+
+   reportingTotal+' monitored races have qualifying live reporting.';
  }
 }
 for(const prefix of ['smartBrief','smartNight']){
@@ -3294,6 +3320,12 @@ for(const prefix of ['smartBrief','smartNight']){
   const selected=button.dataset.smartOffice;
   if(!['All','Senate','House','Governor'].includes(selected))return;
   smartRosterFilters[prefix]=selected;
+  const grid=$('#'+prefix+'Grid');if(grid)grid.scrollTop=0;
+  renderSmartRaceDesks();
+ });
+ const toggle=$('#'+prefix+'ShowAll');
+ if(toggle)toggle.addEventListener('click',()=>{
+  smartShowFullRoster[prefix]=!smartShowFullRoster[prefix];
   const grid=$('#'+prefix+'Grid');if(grid)grid.scrollTop=0;
   renderSmartRaceDesks();
  });
