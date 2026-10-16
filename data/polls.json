@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-16T12:13:20.781236Z",
+  "updated_at": "2026-10-16T12:57:30.395300Z",
   "generic_ballot": {
     "summary": {
       "dem": 47.7,
@@ -2162,7 +2162,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-16T12:13:20.781236Z",
+          "first_seen_at": "2026-10-16T12:57:30.395300Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -3053,7 +3053,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-16T12:13:20.781236Z",
+        "first_seen_at": "2026-10-16T12:57:30.395300Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -3077,7 +3077,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-16T12:13:20.781236Z",
+          "first_seen_at": "2026-10-16T12:57:30.395300Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -5788,7 +5788,7 @@
           "rep_name": "Ashley Moody",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-16T12:13:20.781236Z",
+          "first_seen_at": "2026-10-16T12:57:30.395300Z",
           "release_date": null,
           "question_id": "eb4ae581-25d7-43fd-9123-100333d1e19f",
           "sample_population": "lv",
@@ -6871,7 +6871,7 @@
           "dem": 55.4,
           "rep": 44.6,
           "margin": 10.8,
-          "sample_size": 678,
+          "sample_size": 712,
           "partisan_lean": "R",
           "dem_name": "Jon Ossoff",
           "rep_name": "Mike Collins",
@@ -6879,13 +6879,11 @@
           "other_name": null,
           "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
-          "question_id": "bcd4fddd-ab5f-4f28-9aa1-f898b74b34c7",
-          "sample_population": "lv",
-          "upstream_posted_date": "2026-09-25",
+          "upstream_posted_date": null,
           "source_poll_url": "https://www.bigdatapoll.com/blog/peach-state-poll-jon-ossoff-opens-up-lead-over-mike-collins-in-georgia/",
-          "date_provenance": "PollResults ingestion date, NOT public release date",
-          "model_source": "pollresults_secondary_fallback",
-          "lv_selected_over_rv": true
+          "sample_population": "lv",
+          "question_id": "bcd4fddd-ab5f-4f28-9aa1-f898b74b34c7",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
           "poll_id": "0f4bc367-db9c-459a-a5ce-34b7b7b6e9b2",
@@ -15201,24 +15199,52 @@
       "race_type": "house",
       "state": "OH",
       "district": "01",
-      "latest_field_end": "2026-08-24",
+      "latest_field_end": "2026-10-02",
       "latest": {
-        "poll_id": "3276bf29-e206-4c37-a386-68cbc7a06081",
-        "field_end": "2026-08-24",
-        "pollster": "Quantus Insights",
-        "dem": 47.9,
-        "rep": 44.6,
-        "margin": 3.3,
-        "sample_size": 509,
+        "poll_id": "9d7e6df6-a64b-4a8a-8117-8261eb2af0db",
+        "question_id": "cfc9386d-2781-43d5-acdb-8df428992178",
+        "field_end": "2026-10-02",
+        "pollster": "Torchlight Strategies",
+        "dem": 45.8,
+        "rep": 44.2,
+        "margin": 1.6,
+        "sample_size": 400,
         "partisan_lean": "R",
         "dem_name": "Greg Landsman",
         "rep_name": "Eric Conroy",
         "other": null,
         "other_name": null,
-        "first_seen_at": null,
-        "release_date": null
+        "first_seen_at": "2026-10-16T12:57:30.821182+00:00",
+        "release_date": null,
+        "upstream_posted_date": "2026-10-16",
+        "source_poll_url": "https://x.com/EricConroyOH/status/2110896060302565557",
+        "sample_population": "lv",
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "9d7e6df6-a64b-4a8a-8117-8261eb2af0db",
+          "question_id": "cfc9386d-2781-43d5-acdb-8df428992178",
+          "field_end": "2026-10-02",
+          "pollster": "Torchlight Strategies",
+          "dem": 45.8,
+          "rep": 44.2,
+          "margin": 1.6,
+          "sample_size": 400,
+          "partisan_lean": "R",
+          "dem_name": "Greg Landsman",
+          "rep_name": "Eric Conroy",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-16T12:57:30.821182+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-16",
+          "source_poll_url": "https://x.com/EricConroyOH/status/2110896060302565557",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "3276bf29-e206-4c37-a386-68cbc7a06081",
           "field_end": "2026-08-24",
@@ -15236,7 +15262,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 1,
+      "recent_poll_count": 2,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -15668,7 +15694,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-16T12:13:20.781236Z",
+    "last_attempt_at": "2026-10-16T12:57:30.395300Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15679,78 +15705,27 @@
   "changes": {
     "new_polls": [
       {
-        "race_code": "TX-SEN",
-        "race_type": "senate",
-        "poll_id": "954b5426-3589-4d4f-bf0e-b2c2e5dd1e16",
-        "pollster": "InsiderAdvantage",
-        "field_end": "2026-10-14",
-        "dem": 48.0,
-        "rep": 49.0,
-        "margin": -1.0,
-        "dem_name": "James Talarico",
-        "rep_name": "Ken Paxton",
-        "sample_size": 1200,
-        "first_seen_at": "2026-10-16T12:13:21.000726+00:00",
+        "race_code": "OH-01",
+        "race_type": "house",
+        "poll_id": "9d7e6df6-a64b-4a8a-8117-8261eb2af0db",
+        "pollster": "Torchlight Strategies",
+        "field_end": "2026-10-02",
+        "dem": 45.8,
+        "rep": 44.2,
+        "margin": 1.6,
+        "dem_name": "Greg Landsman",
+        "rep_name": "Eric Conroy",
+        "sample_size": 400,
+        "first_seen_at": "2026-10-16T12:57:30.821182+00:00",
         "release_date": null,
-        "source_url": "https://insideradvantage.com/insideradvantage-senate-surveys-texas-paxton-49-talarico-48-kansas-marshall-48-hamilton-47-maine-jackson-49-collins-47/",
-        "source": "pollresults_secondary_fallback"
-      },
-      {
-        "race_code": "ME-SEN",
-        "race_type": "senate",
-        "poll_id": "c0ecc74f-857a-4e02-951c-fd42f1c018b1",
-        "pollster": "InsiderAdvantage",
-        "field_end": "2026-10-14",
-        "dem": 49.0,
-        "rep": 47.0,
-        "margin": 2.0,
-        "dem_name": "Troy Jackson",
-        "rep_name": "Susan Collins",
-        "sample_size": 1200,
-        "first_seen_at": "2026-10-16T12:13:21.000726+00:00",
-        "release_date": null,
-        "source_url": "https://insideradvantage.com/insideradvantage-senate-surveys-texas-paxton-49-talarico-48-kansas-marshall-48-hamilton-47-maine-jackson-49-collins-47/",
-        "source": "pollresults_secondary_fallback"
-      },
-      {
-        "race_code": "KS-SEN",
-        "race_type": "senate",
-        "poll_id": "25dc3468-add3-4d3e-969a-136fbc0cf6bd",
-        "pollster": "InsiderAdvantage",
-        "field_end": "2026-10-14",
-        "dem": 47.0,
-        "rep": 48.0,
-        "margin": -1.0,
-        "dem_name": "Adam Hamilton",
-        "rep_name": "Roger Marshall",
-        "sample_size": 1200,
-        "first_seen_at": "2026-10-16T12:13:21.000726+00:00",
-        "release_date": null,
-        "source_url": "https://insideradvantage.com/insideradvantage-senate-surveys-texas-paxton-49-talarico-48-kansas-marshall-48-hamilton-47-maine-jackson-49-collins-47/",
-        "source": "pollresults_secondary_fallback"
-      },
-      {
-        "race_code": "AR-SEN",
-        "race_type": "senate",
-        "poll_id": "2fe207af-8764-4bfe-bf8b-a2ba80e88d49",
-        "pollster": "Hendrix College",
-        "field_end": "2026-10-13",
-        "dem": 41.0,
-        "rep": 50.0,
-        "margin": -9.0,
-        "dem_name": "Hallie Shoffner",
-        "rep_name": "Tom Cotton",
-        "sample_size": 709,
-        "first_seen_at": "2026-10-16T12:13:21.000726+00:00",
-        "release_date": null,
-        "source_url": "https://talkbusiness.net/2026/10/poll-cotton-takes-lead-over-shoffner/",
+        "source_url": "https://x.com/EricConroyOH/status/2110896060302565557",
         "source": "pollresults_secondary_fallback"
       }
     ],
-    "new_poll_count": 4,
+    "new_poll_count": 1,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-16T12:13:20.781236Z",
-    "previous_snapshot_at": "2026-10-16T11:59:05.878644Z",
+    "comparison_at": "2026-10-16T12:57:30.395300Z",
+    "previous_snapshot_at": "2026-10-16T12:13:20.781236Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15787,18 +15762,15 @@
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 258,
-    "newly_injected_into_model": 4,
+    "matched_observations": 262,
+    "newly_injected_into_model": 1,
     "newly_injected_by_race": {
-      "AR-SEN": 1,
-      "KS-SEN": 1,
-      "ME-SEN": 1,
-      "TX-SEN": 1
+      "OH-01": 1
     },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
-    "carried_forward_current_observations": 3,
+    "carried_forward_current_observations": 7,
     "provenance": "PollResults source-linked fallback; original first_seen_at retained"
   }
 }

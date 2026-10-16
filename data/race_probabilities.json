@@ -1,9 +1,9 @@
 {
   "schema_version": "experimental-race-odds-v1",
   "status": "experimental_poll_margin_probability_not_chamber_forecast",
-  "generated_at": "2026-10-16T12:13:24.732016+00:00",
-  "polling_source_generated_at": "2026-10-16T12:13:24.573090Z",
-  "polling_source_snapshot": "2026-10-16T12:13:20.781236Z",
+  "generated_at": "2026-10-16T12:57:35.605222+00:00",
+  "polling_source_generated_at": "2026-10-16T12:57:35.455395Z",
+  "polling_source_snapshot": "2026-10-16T12:57:30.395300Z",
   "historical_senate_elections": 3,
   "historical_senate_races": 42,
   "senate_baseline_rmse_points": 5.633,
@@ -16,7 +16,7 @@
   "can_infer_blue_tsunami": false,
   "number_of_races_by_office": {
     "senate": 25,
-    "house": 60,
+    "house": 61,
     "governor": 30
   },
   "records": [
@@ -979,6 +979,21 @@
       "rep_beats_dem_pct": 90.96,
       "tight_error_dem_pct": 3.72,
       "wide_error_dem_pct": 14.21
+    },
+    {
+      "office": "house",
+      "race_code": "OH-01",
+      "label": "Ohio 01",
+      "dem_minus_rep": 1.6,
+      "contributing_firms": 1,
+      "independent_firms": 0,
+      "latest_poll_end": "2026-10-02",
+      "sigma_points": 11.34,
+      "uncertainty_multiplier": 1.512,
+      "dem_beats_rep_pct": 55.61,
+      "rep_beats_dem_pct": 44.39,
+      "tight_error_dem_pct": 57.46,
+      "wide_error_dem_pct": 54.49
     },
     {
       "office": "house",

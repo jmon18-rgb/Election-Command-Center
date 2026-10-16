@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-16T12:13:21.000726+00:00",
+  "updated_at": "2026-10-16T12:57:30.821182+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,7 +9,7 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1188,
+      "available_in_source": 1189,
       "records_examined": 200
     },
     "governor": {
@@ -17,27 +17,63 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 258,
-  "newly_injected_into_model": 4,
+  "matched_primary_observations": 262,
+  "newly_injected_into_model": 1,
   "injected_poll_ids": [
     {
-      "race_code": "AR-SEN",
-      "poll_id": "2fe207af-8764-4bfe-bf8b-a2ba80e88d49"
-    },
-    {
-      "race_code": "KS-SEN",
-      "poll_id": "25dc3468-add3-4d3e-969a-136fbc0cf6bd"
-    },
-    {
-      "race_code": "ME-SEN",
-      "poll_id": "c0ecc74f-857a-4e02-951c-fd42f1c018b1"
-    },
-    {
-      "race_code": "TX-SEN",
-      "poll_id": "954b5426-3589-4d4f-bf0e-b2c2e5dd1e16"
+      "race_code": "OH-01",
+      "poll_id": "9d7e6df6-a64b-4a8a-8117-8261eb2af0db"
     }
   ],
   "observations": [
+    {
+      "race_code": "OH-01",
+      "race_type": "house",
+      "state": "OH",
+      "poll_id": "9d7e6df6-a64b-4a8a-8117-8261eb2af0db",
+      "question_id": "f12fdfbe-1660-4a74-b7a7-682c789f191d",
+      "pollster": "Torchlight Strategies",
+      "dem_name": "Generic Democrat",
+      "rep_name": "Generic Republican",
+      "dem": 45.3,
+      "rep": 45.3,
+      "margin": 0.0,
+      "field_end": "2026-10-02",
+      "field_start": "2026-09-29",
+      "posted_date": "2026-10-16",
+      "posted_source_datetime": "2026-10-16T08:27:00",
+      "posted_source_time": "10/16/26 08:27",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://x.com/EricConroyOH/status/2110896060302565557",
+      "sample_population": "lv",
+      "sample_size": 400,
+      "partisan_lean": "R",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "OH-01",
+      "race_type": "house",
+      "state": "OH",
+      "poll_id": "9d7e6df6-a64b-4a8a-8117-8261eb2af0db",
+      "question_id": "cfc9386d-2781-43d5-acdb-8df428992178",
+      "pollster": "Torchlight Strategies",
+      "dem_name": "Greg Landsman",
+      "rep_name": "Eric Conroy",
+      "dem": 45.8,
+      "rep": 44.2,
+      "margin": 1.6,
+      "field_end": "2026-10-02",
+      "field_start": "2026-09-29",
+      "posted_date": "2026-10-16",
+      "posted_source_datetime": "2026-10-16T08:27:00",
+      "posted_source_time": "10/16/26 08:27",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://x.com/EricConroyOH/status/2110896060302565557",
+      "sample_population": "lv",
+      "sample_size": 400,
+      "partisan_lean": "R",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "MT-SEN",
       "race_type": "senate",
