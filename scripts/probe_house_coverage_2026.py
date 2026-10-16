@@ -265,26 +265,33 @@ def fetch(path: str, params: dict | None = None) -> dict:
     return json.loads(raw)
 
 
-def probe(district: str, request=fetch) -> dict:
+def probe(district: str, request=fetch, *, indexed_candidate: dict | None = None) -> dict:
     state, number = district.split("-")
     # 'US House 0' does not name the at-large ballot. Exact state/district,
     # election date, stage and source-detail checks still gate every match.
     search_query = "US House" if number == "00" else f"US House {int(number)}"
     try:
-        result = request("/race/search", {
-            "country": "US", "province": state,
-            "startDate": DAY, "endDate": DAY,
-            "query": search_query, "limit": "20",
-        })
-        rows = result.get("races")
-        if not isinstance(rows, list) or len(rows) > 20 or result.get("count", 0) > 20:
-            return {"district": district, "status": "AMBIGUOUS_OR_TRUNCATED"}
-        found = [r for r in rows if matches(district, r)]
-        if not found:
-            return {"district": district, "status": "NOT_INDEXED"}
-        if len(found) != 1:
-            return {"district": district, "status": "AMBIGUOUS_RACE"}
-        race = found[0]
+        if indexed_candidate is None:
+            result = request("/race/search", {
+                "country": "US", "province": state,
+                "startDate": DAY, "endDate": DAY,
+                "query": search_query, "limit": "20",
+            })
+            rows = result.get("races")
+            if not isinstance(rows, list) or len(rows) > 20 or result.get("count", 0) > 20:
+                return {"district": district, "status": "AMBIGUOUS_OR_TRUNCATED"}
+            found = [r for r in rows if matches(district, r)]
+            if not found:
+                return {"district": district, "status": "NOT_INDEXED"}
+            if len(found) != 1:
+                return {"district": district, "status": "AMBIGUOUS_RACE"}
+            race = found[0]
+        else:
+            # Batch search is merely a lookup optimization. Every accepted
+            # identity is independently checked against its detailed record.
+            if not matches(district, indexed_candidate):
+                return {"district": district, "status": "INVALID_DETAIL"}
+            race = indexed_candidate
         detail = request(f"/race/{race['id']}", {"light": ""})
         if not detail_matches(race, detail):
             return {"district": district, "status": "INVALID_DETAIL"}
@@ -310,26 +317,103 @@ def probe(district: str, request=fetch) -> dict:
                 "reason": type(error).__name__}
 
 
-def run_batch(plan: dict, request=fetch, *, delay: float = 0.2) -> list[dict]:
-    """Stop promptly after shared provider failures; keep untested rows unknown."""
+def run_batch(plan: dict, request=fetch, *, delay: float = 0.2,
+              stats: dict | None = None) -> list[dict]:
+    """Verify exact details; amortize safe, complete state-level source searches.
+
+    Only attempt one broad query for >=3 queued seats in the same state.
+    If the broad result count is unknown, truncated, ambiguous or unsupported,
+    revert to the existing exact-district query. A 429/5xx stops all further
+    provider calls. Never synthesize source IDs from district numbering.
+    """
     if delay < 0:
         raise ValueError("Delay must be nonnegative")
+    seats = tuple(plan["districts"])
+    if len(seats) > GAP_AWARE_LIMIT or len(seats) != len(set(seats)):
+        raise ValueError("Unbounded or duplicate House source worklist")
+    grouped = {}
+    for district in seats:
+        grouped.setdefault(district[:2], []).append(district)
+    counters = {"state_searches": 0, "exact_district_searches": 0,
+                "detail_requests": 0, "state_batch_identity_hits": 0,
+                "state_batch_rejected_or_incomplete": 0}
+    def counted(path, params):
+        if path == "/race/search":
+            if params.get("query") == "US House" and len(grouped.get(params.get("province"), [])) >= 3:
+                counters["state_searches"] += 1
+            else:
+                counters["exact_district_searches"] += 1
+        elif path.startswith("/race/"):
+            counters["detail_requests"] += 1
+        return request(path, params)
+
+    batch_cache = {}
+    attempted_states = set()
     results = []
     paused = False
-    for index, district in enumerate(plan["districts"]):
+    for index, district in enumerate(seats):
         if paused:
             results.append({"district": district,
                             "status": "NOT_CHECKED_UPSTREAM_PAUSED"})
             continue
-        row = probe(district, request)
+        state = district[:2]
+        if state not in attempted_states:
+            attempted_states.add(state)
+            if len(grouped[state]) >= 3:
+                try:
+                    broad = counted("/race/search", {
+                        "country": "US", "province": state,
+                        "startDate": DAY, "endDate": DAY,
+                        "query": "US House", "limit": "100",
+                    })
+                    rows = broad.get("races") if isinstance(broad, dict) else None
+                    total = broad.get("count") if isinstance(broad, dict) else None
+                    # No acceptance of partial/unknown cardinality result sets:
+                    # missing duplicate rows could make a search appear unique.
+                    if (isinstance(rows, list) and type(total) is int
+                            and 0 < len(rows) < 100 and total == len(rows)
+                            and all(isinstance(row, dict) and
+                                    type(row.get('id')) is int for row in rows)
+                            and len({row['id'] for row in rows}) == len(rows)):
+                        for key in grouped[state]:
+                            exact = [row for row in rows if matches(key, row)]
+                            if len(exact) == 1:
+                                batch_cache[key] = exact[0]
+                    else:
+                        counters["state_batch_rejected_or_incomplete"] += 1
+                except urllib.error.HTTPError as error:
+                    if error.code in (429, 502, 503, 504):
+                        results.append({"district": district,
+                                        "status": "TEMPORARY_UPSTREAM_FAILURE",
+                                        "reason": f"HTTP_{error.code}"})
+                        paused = True
+                        continue
+                    counters["state_batch_rejected_or_incomplete"] += 1
+                except (urllib.error.URLError, TimeoutError) as error:
+                    results.append({"district": district,
+                                    "status": "TEMPORARY_UPSTREAM_FAILURE",
+                                    "reason": type(error).__name__})
+                    paused = True
+                    continue
+                except (KeyError, ValueError, TypeError, json.JSONDecodeError):
+                    counters["state_batch_rejected_or_incomplete"] += 1
+        candidate = batch_cache.get(district)
+        if candidate is not None:
+            counters["state_batch_identity_hits"] += 1
+        row = probe(district, counted, indexed_candidate=candidate)
         results.append(row)
         paused = row["status"] == "TEMPORARY_UPSTREAM_FAILURE"
-        if not paused and delay and index + 1 < len(plan["districts"]):
+        if not paused and delay and index + 1 < len(seats):
             time.sleep(delay)
+    if stats is not None:
+        stats.update(counters)
+        stats["total_http_requests"] = (counters["state_searches"] +
+                                         counters["exact_district_searches"] +
+                                         counters["detail_requests"])
     return results
 
-
-def build_report(plan: dict, results: list[dict]) -> dict:
+def build_report(plan: dict, results: list[dict], *,
+                 request_stats: dict | None = None) -> dict:
     if len(results) != len(plan["districts"]) or [r.get("district") for r in results] != list(plan["districts"]):
         raise ValueError("Coverage report missing or reordering sampled seats")
     statuses = sorted({x["status"] for x in results})
@@ -354,6 +438,7 @@ def build_report(plan: dict, results: list[dict]) -> dict:
         "not_checked_upstream_paused": skipped,
         "upstream_paused": skipped > 0 or any(x["status"] == "TEMPORARY_UPSTREAM_FAILURE" for x in results),
         "indexed_exact": sum(x["status"] == "INDEXED_EXACT_RACE" for x in results),
+        "request_stats": dict(request_stats) if request_stats is not None else None,
         "status_counts": {st: sum(x["status"] == st for x in results) for st in statuses},
         "results": results,
     }
@@ -365,8 +450,9 @@ def main():
     history = json.loads(COVERAGE_PATH.read_text(encoding="utf-8"))
     plan = gap_aware_window(datetime.now(timezone.utc), history,
                             limit=HOURLY_DISCOVERY_LIMIT, window_hours=1)
-    results = run_batch(plan)
-    report = build_report(plan, results)
+    stats = {}
+    results = run_batch(plan, stats=stats)
+    report = build_report(plan, results, request_stats=stats)
     print(json.dumps(report, indent=2))
     out = os.environ.get("ELECTION_HOUSE_PROBE_OUTPUT")
     if out:
@@ -383,6 +469,10 @@ def main():
             f.write(f"Never-observed eligible: {plan['never_checked_eligible']}; "
                     f"due rechecks: {plan['recheck_eligible']}; "
                     f"not yet due: {plan['fresh_deferred']}.\n\n")
+            f.write(f"Provider HTTP requests: {stats['total_http_requests']}; "
+                    f"complete state searches: {stats['state_searches']}; "
+                    f"district search requests saved: {stats['state_batch_identity_hits']}; "
+                    f"incomplete state searches: {stats['state_batch_rejected_or_incomplete']}.\\n\\n")
             f.write(f"Attempted {report['sampled_districts']}/{report['planned_districts']}; "
                     f"upstream paused: {report['upstream_paused']}; "
                     f"skipped: {report['not_checked_upstream_paused']}. "
