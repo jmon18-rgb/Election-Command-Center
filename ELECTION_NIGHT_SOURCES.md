@@ -2,9 +2,11 @@
 
 Updated October 13, 2026. Goal: a useful, trustworthy watch-through-the-evening dashboard that **keeps actual vote counts separate from race calls, from projections, and from polling averages.**
 
-## October 15 — sampled uncovered-House availability checks
+## October 16 — rotating nationwide source-gap audit (not a full feed)
 
-`scripts/probe_house_coverage_2026.py` checks six important House districts **outside** the 22-state primary provider in the scheduled Election Night source preflight. It validates November 3 general-election district identity, browser CORS, unique source race IDs and matching candidate/detail schema. The GitHub Actions run summarizes each district as *INDEXED_EXACT_RACE*, *NOT_INDEXED*, *AMBIGUOUS* or *SOURCE_UNAVAILABLE*. This is **not** a 435-seat census, vote relay or professional race-call feed; missing records remain unknown.
+`scripts/probe_house_coverage_2026.py` reads the repository's validated **435-seat state apportionment** and separately identifies every House district outside Open America's 22 primary states. Each four-hour preflight checks six persistent high-interest districts (NH-01, ME-02, NV-03, NE-02, NY-17 and WI-03) **plus ten rotating districts**, keeping requests bounded. The rotation traverses all non-anchor districts if each scheduled run succeeds; missed or delayed runs mean no guarantee of complete coverage. The preflight retains source-identity details and missing/ambiguous/outage reasons in a short-lived JSON GitHub Actions artifact (15-day retention) and a human-readable step summary. No payload becomes a national vote feed, a source-derived polling average, or an independent professional call.
+
+The prior six-district direct-provider trial confirmed exact 2026 source records for five districts and *NH-01 not indexed* on October 15; this observation may change as the provider indexes more races. The script measures **indexability of audited samples**, not nationwide election results, candidate wins, or a verified fraction of all 435 races. All source probes check browser CORS, general-election race identity and candidate detail schema. Until independently verified election-night data arrive, zero reported votes remains unreported.
 
 ## October 15 — current source status (supersedes early integration notes below)
 
