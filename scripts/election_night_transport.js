@@ -17,13 +17,14 @@
   function start(job){
    active++;
    peak=Math.max(peak,active);
-   Promise.resolve().then(job.task).then(
-    value=>{completed++;job.resolve(value)},
-    error=>{failed++;job.reject(error)}
-   ).finally(()=>{
+   function finish(){
     active--;
     if(queue.length)start(queue.shift());
-   });
+   }
+   Promise.resolve().then(job.task).then(
+    value=>{completed++;finish();job.resolve(value)},
+    error=>{failed++;finish();job.reject(error)}
+   );
   }
   function run(task){
    if(typeof task!=='function')return Promise.reject(Error('Transport task required'));
