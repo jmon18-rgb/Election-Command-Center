@@ -1900,9 +1900,12 @@ async function settle(){
  providerGovDetail={...govDetail,id:87283,percent_reporting:75,
    last_updated:'2026-11-04T02:00:00Z'};
  await w.eval('enCivicFetchOne('+JSON.stringify(govItem)+')');
- assert.match(w.eval('enCivicStatus('+JSON.stringify(govItem)+')'),/1,000 reported votes/,
-   'Wrong ID must not erase the last verified New Hampshire governor vote count');
- assert.match(get('#enWatchItems').textContent,/SOURCE RETRYING/);
+ assert.match(w.eval('enCivicStatus('+JSON.stringify(govItem)+')'),/source recheck required/,
+   'Wrong ID must not remain an active verified Governor return');
+ assert.match(get('#enWatchItems .en-civic-detail').textContent,/PREVIOUS SNAPSHOT/,
+   'Retain the last valid candidate tally for audit while it is ineligible');
+ assert.match(get('#enWatchItems .en-civic-detail').textContent,/510/,
+   'Malformed response must not overwrite previously verified candidate votes');
  assert.equal(get('#enRaces').textContent,primaryRaceCountBeforeCivic);
  w.fetch=govFetch;w.Date.now=govClock;
  w.eval('enWatched=[];enRenderWatchlist()');
