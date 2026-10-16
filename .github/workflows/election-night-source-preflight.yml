@@ -7,6 +7,9 @@ on:
       - '.github/workflows/election-night-source-preflight.yml'
       - 'scripts/test_live_results_source.py'
       - 'scripts/test_civicapi_live_source.py'
+      - 'scripts/probe_house_coverage_2026.py'
+      - 'scripts/test_house_coverage_2026.py'
+      - 'data/seat_universe.json'
   schedule:
     # 4-hour live schema/CORS checks through Nov 4 UTC. The site still fetches
     # results directly; this workflow does not relay or fabricate provider data.
@@ -41,11 +44,21 @@ jobs:
         if: steps.window.outputs.run == 'true'
         continue-on-error: true
         run: python3 scripts/test_civicapi_live_source.py
-      - name: Probe sampled source coverage in six outside-primary House districts
+      - name: Probe bounded, rotating House source coverage outside primary states
         if: steps.window.outputs.run == 'true'
         continue-on-error: true
+        env:
+          ELECTION_HOUSE_PROBE_OUTPUT: /tmp/house_probe_2026.json
         run: |
           python3 scripts/probe_house_coverage_2026.py
+      - name: Preserve rotating House source inventory and missing-race evidence
+        if: always() && steps.window.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: 2026-house-source-probe-${{ github.run_id }}
+          path: /tmp/house_probe_2026.json
+          if-no-files-found: warn
+          retention-days: 15
       - name: Record source health and fail if either provider contract is broken
         if: always() && steps.window.outputs.run == 'true'
         env:
