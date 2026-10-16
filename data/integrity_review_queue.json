@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-16T04:46:38.707577Z",
+  "updated_at": "2026-10-16T05:44:28.890163Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
-    "total_leads": 151,
-    "awaiting_primary_source": 149,
+    "total_leads": 153,
+    "awaiting_primary_source": 151,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 12,
     "advisory_related_headlines": 27
@@ -156,6 +156,25 @@
   ],
   "items": [
     {
+      "id": "ce54e0fd0e050d0442db",
+      "title": "Missouri can keep using disputed federal database to review voter eligibility - Park Hills Daily Journal",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNOGhieWhhOEZNVzVFWjgxS0VsMDVVRFptUlJzYThmellhbGpsWnpLQmotMWktcS1RN1ZQUGZ0OEdzeU9jVFAyX0sxWUxCdXI0VzNUOFJIYlg1MVVlNGczcmM3b3R6WjFxZjlSczYtZlJMRUtZeWhfWlRrM1lTS1A2d0o4OXVlaF9adGxkWTFxclI4M2tOZnZsVjltbVlGNlJBRkpnM25jRWcwZkJHX2o0MkEyaEFWUUlWZG1SZXdGUE0zekhDTU1yX05WTXBQRjhl?oc=5",
+      "publisher": "Park Hills Daily Journal",
+      "published_at": "2026-10-16T05:02:53Z",
+      "detected_at": "2026-10-16T05:44:28.890163Z",
+      "state_hints": [
+        "MO"
+      ],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "14db32c5e8f9265cf302",
       "title": "Texas clears voter registration backlog days before early voting - Lubbock Avalanche-Journal",
       "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxOc2dRWEl1azl3V21kUVB0VXFFNVBEZk03S1hoMjd4c3dKdE91VFZ2Nm1vcTFMMFk0R0dlbjZpT0hQN3MxSExzWXF0blE3OFRaOEJ1Q0NXSjEyOGpNcjVIUmxVcVdHQnY1WU5LZVFCWnRFVDlWTlQwa0NRMkZyMUlONlRlTjcyVjcxWTEzNk1ielkzemxaQkNkZ2xDV2xJV2NmcWxBRUFRSFR0aGZRRUJnM0kzcml0eGpKQnhpVm1BdXVCcnN0czVvZjNWQ3Mwa2g0Yk5PUjdndjl4QU56SkFHZm11bGEwclFQMHN4ZjdZdw?oc=5",
@@ -206,6 +225,23 @@
         "CA",
         "WA"
       ],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "d189fa9d626b04afe815",
+      "title": "Becerra urges Latino voters despite ICE threats - CaloNews.com",
+      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQNHdWSmhrR0FuS09MZFZQYjZocVZ3Y01XbllwVXRVZGU3ZFR2SV9mRlVwc0pvMnl4YUZZbXRNS0xUWTBBRUlwQ2dMZWxFeFZNOHpiU1R2dVJsRkdtTzR2MFNZWTZDTkZ5RmtvWUJRRGFZaFMteG42R0pPOVhKZjkzMHZWTldXajF3enRBZGY1bjhvZXJaY2NkMEkzSFdPNVE1LUVvWEJiYmxsRFh4dkVtZ0pwV3RlSUZ5TXpvZHJuSFhuQ19Nc3ZZYU9CUDJHSlk0M1hCeHBjUlBxRFktSjkzZ1dqZUE?oc=5",
+      "publisher": "CaloNews.com",
+      "published_at": "2026-10-15T23:34:00Z",
+      "detected_at": "2026-10-16T05:44:28.890163Z",
+      "state_hints": [],
       "topic_hints": [
         "security"
       ],
