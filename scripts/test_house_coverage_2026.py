@@ -106,8 +106,10 @@ class HouseCoverageTests(unittest.TestCase):
             plan = gap_aware_window(current, ledger)
             self.assertLessEqual(len(plan["districts"]), 16)
             self.assertEqual(len(set(plan["districts"])), len(plan["districts"]))
-            self.assertTrue(all(code not in observed for code in plan["districts"]),
-                            "Never-observed races must win over due reruns")
+            remaining_unobserved = 219 - len(observed)
+            self.assertTrue(all(code not in observed for code in
+                                plan["districts"][:min(16, remaining_unobserved)]),
+                            "Never-observed races must precede any due reruns")
             for code in plan["districts"]:
                 record = next(r for r in ledger["races"] if r["id"] == "House|" + code)
                 record["last_probe"] = {
