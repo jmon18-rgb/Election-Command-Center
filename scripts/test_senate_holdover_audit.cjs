@@ -36,6 +36,6 @@ bad((l,u)=>{u.senate.contested_total=34;},'Every Senate seat must be accounted f
 bad((l,u)=>{u.senate.contested_seats=u.senate.contested_seats.slice(1);},'Missing general-election contest');
 bad((l,u)=>{u.senate.contested_seats=u.senate.contested_seats.map(s=>
   s.election_kind==='special'?{...s,seat_class:'I'}:s);},'Special Class III identity is mandatory');
-bad((l,u,a)=>{a.senate_dem_holdovers=35;},'Changing model's D holdovers fails reconciliation');
-bad((l,u,a)=>{a.senate_rep_holdovers=30;},'Changing model's R holdovers fails reconciliation');
+bad((l,u,a)=>{a.senate_dem_holdovers=35;},"Changing model's D holdovers fails reconciliation");
+bad((l,u,a)=>{a.senate_rep_holdovers=30;},"Changing model's R holdovers fails reconciliation");
 console.log('Official Class I/III Senate ledger PASS: 65 holdovers (32 D, 2 I caucusing D, 31 R), 35 contests, two Class III specials, zero invented 2026 winner calls');
