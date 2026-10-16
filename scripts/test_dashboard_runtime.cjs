@@ -395,7 +395,7 @@ async function settle(){
  const ncRow={id:8241,country:'US',province:'NC',municipality:null,
   election_date:'2026-11-03',election_name:'NC US Senate General Election',
   election_type:'General',type:'US Senate',district:null,candidates:[]};
- let ncCalledParty='R';
+ let ncCalledParty='R',ncHttpStatus=200;
  const ncCandidateData=()=>[
   {name:'Mock Democrat',party:'Democratic',votes:100100,percent:52.6842,
    winner:ncCalledParty==='D'},
@@ -404,10 +404,12 @@ async function settle(){
  w.fetch=async(url,opts)=>{
   if(String(url).startsWith('https://civicapi.org/api/v2/race/search?'))
    return {ok:true,json:async()=>({races:[ncRow],count:1})};
-  if(String(url)==='https://civicapi.org/api/v2/race/8241?light=')
+  if(String(url)==='https://civicapi.org/api/v2/race/8241?light='){
+   if(ncHttpStatus!==200)return {ok:false,status:ncHttpStatus};
    return {ok:true,json:async()=>({...ncRow,election_type:'US Senate',
     last_updated:'2026-11-04T03:05:00Z',percent_reporting:82,
     candidates:ncCandidateData()})};
+  }
   return beforeNcFetch(url,opts);
  };
  w.eval('enWatchToggle({office:"Senate",key:"NC"})');
@@ -419,8 +421,10 @@ async function settle(){
   'A vetted civicAPI Republican call constrains a primary-covered race');
  assert.equal(w.eval("Object.values(jointForecastResult().probabilities).reduce((a,b)=>a+b,0)").toFixed(1),'100.0');
  // A valid cached winner is no longer eligible if its exact race fails.
- w.eval("enCivicErrors['Senate|NC']='synthetic race-level source failure'");
+ ncHttpStatus=404;
+ await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
  assert.equal(w.eval("enCivicUsable({office:'Senate',key:'NC'})"),null);
+ ncHttpStatus=200;
  w.eval('jointRender(false)');
  calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
  assert.equal(calledRace.provider_called_party,null,
@@ -432,25 +436,27 @@ async function settle(){
  assert.equal(calledRace.provider_called_party,'R');
  // A single upstream 503 makes ALL civicAPI records ineligible. Advancing
  // past backoff alone must not resurrect a cached winner without rechecking.
- w.eval('enCivicBreaker.fail(503)');
+ ncHttpStatus=503;
+ await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
  assert.equal(w.eval("enCivicUsable({office:'Senate',key:'NC'})"),null);
+ ncHttpStatus=200;
  w.eval('jointRender(false)');
  calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
  assert.equal(calledRace.provider_called_party,null,
   'Shared upstream outage must not leave cached calls locking simulation draws');
  assert.match(get('#enHealthRows').textContent,/PAUSED · UPSTREAM HTTP 503/);
  w.Date.now=()=>Date.parse('2026-11-04T03:21:05Z');
- assert.equal(w.eval('enCivicBreaker.status().blocked'),false);
- assert(w.eval('enCivicBreaker.status().consecutive')>0);
+ assert.equal(w.eval('enCivicProviderVerified()'),false,
+  'Cooldown expiry alone cannot verify source recovery');
  assert.equal(w.eval("enCivicUsable({office:'Senate',key:'NC'})"),null,
   'Elapsed backoff is not proof of source recovery');
  w.eval('jointRender(false)');
  calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
  assert.equal(calledRace.provider_called_party,null);
  await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
- assert.equal(w.eval('enCivicBreaker.status().consecutive'),0);
- assert.equal(w.eval("enCivicValidatedGenerations['Senate|NC']"),
-  w.eval('enCivicBreaker.status().generation'));
+ assert.equal(w.eval('enCivicProviderVerified()'),true,
+  'Valid, post-outage candidate detail is required to restore source trust');
+ assert(w.eval("enCivicUsable({office:'Senate',key:'NC'})"));
  w.eval('jointRender(false)');
  calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
  assert.equal(calledRace.provider_called_party,'R',
