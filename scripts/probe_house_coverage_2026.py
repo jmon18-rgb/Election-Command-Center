@@ -371,7 +371,10 @@ def run_batch(plan: dict, request=fetch, *, delay: float = 0.2,
                     # No acceptance of partial/unknown cardinality result sets:
                     # missing duplicate rows could make a search appear unique.
                     if (isinstance(rows, list) and type(total) is int
-                            and 0 < len(rows) <= 100 and total == len(rows)):
+                            and 0 < len(rows) < 100 and total == len(rows)
+                            and all(isinstance(row, dict) and
+                                    type(row.get('id')) is int for row in rows)
+                            and len({row['id'] for row in rows}) == len(rows)):
                         for key in grouped[state]:
                             exact = [row for row in rows if matches(key, row)]
                             if len(exact) == 1:
