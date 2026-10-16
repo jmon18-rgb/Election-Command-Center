@@ -9,13 +9,17 @@ on:
       - 'scripts/test_civicapi_live_source.py'
       - 'scripts/probe_house_coverage_2026.py'
       - 'scripts/test_house_coverage_2026.py'
+      - 'scripts/build_election_night_source_coverage.py'
+      - 'scripts/test_election_night_source_coverage.py'
+      - 'scripts/civicapi_state_batch.js'
+      - 'scripts/election_night_reconciliation.js'
       - 'data/seat_universe.json'
   schedule:
     # 4-hour live schema/CORS checks through Nov 4 UTC. The site still fetches
     # results directly; this workflow does not relay or fabricate provider data.
     - cron: '11 */4 * 10,11 *'
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: election-night-source-preflight
   cancel-in-progress: true
@@ -52,6 +56,33 @@ jobs:
           ELECTION_HOUSE_PROBE_OUTPUT: /tmp/house_probe_2026.json
         run: |
           python3 scripts/probe_house_coverage_2026.py
+      - name: Build 506-race persistent source identity coverage snapshot
+        id: coverage
+        if: always() && steps.window.outputs.run == 'true'
+        continue-on-error: true
+        env:
+          PRIMARY: ${{ steps.primary.outcome }}
+          SECONDARY: ${{ steps.secondary.outcome }}
+          HOUSE_PROBE: ${{ steps.house_probe.outcome }}
+        run: |
+          python3 scripts/build_election_night_source_coverage.py \
+            --probe /tmp/house_probe_2026.json \
+            --primary-check "$PRIMARY" \
+            --secondary-check "$SECONDARY" \
+            --house-check "$HOUSE_PROBE"
+      - name: Preserve source gap snapshot in repository history
+        id: persist
+        if: always() && steps.window.outputs.run == 'true' && steps.coverage.outcome == 'success'
+        continue-on-error: true
+        run: |
+          git config user.name "election-briefing-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/election_night_source_coverage.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Record 506-race source identity coverage and gap health"
+            git pull --rebase origin main
+            git push origin main
+          fi
       - name: Preserve rotating House source inventory and missing-race evidence
         if: always() && steps.window.outputs.run == 'true'
         uses: actions/upload-artifact@v4
@@ -59,13 +90,23 @@ jobs:
           name: 2026-house-source-probe-${{ github.run_id }}
           path: /tmp/house_probe_2026.json
           if-no-files-found: warn
-          retention-days: 15
+          retention-days: 90
+      - name: Preserve 506-race report even after a source outage
+        if: always() && steps.window.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: 2026-source-coverage-ledger-${{ github.run_id }}
+          path: data/election_night_source_coverage.json
+          if-no-files-found: warn
+          retention-days: 90
       - name: Record source health and fail if either provider contract is broken
         if: always() && steps.window.outputs.run == 'true'
         env:
           PRIMARY: ${{ steps.primary.outcome }}
           SECONDARY: ${{ steps.secondary.outcome }}
           HOUSE_PROBE: ${{ steps.house_probe.outcome }}
+          COVERAGE: ${{ steps.coverage.outcome }}
+          PERSIST: ${{ steps.persist.outcome }}
         run: |
           echo "## Direct-browser 2026 election source preflight" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
@@ -73,9 +114,10 @@ jobs:
           echo "- Open America (22-state primary source): $PRIMARY" >> "$GITHUB_STEP_SUMMARY"
           echo "- civicAPI (individually verified supplementary races): $SECONDARY" >> "$GITHUB_STEP_SUMMARY"
           echo "- Rotating House gap audit (source discovery only): $HOUSE_PROBE" >> "$GITHUB_STEP_SUMMARY"
+          echo "- 506-race source audit built / persisted: $COVERAGE / $PERSIST" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
-          echo "Checks test HTTP, browser CORS and strict year/race schema; **they do not guarantee all 435 House/35 Senate races or certify winner calls**." >> "$GITHUB_STEP_SUMMARY"
-          if [ "$PRIMARY" != "success" ] || [ "$SECONDARY" != "success" ] || [ "$HOUSE_PROBE" != "success" ]; then
+          echo "Checks test HTTP, browser CORS and strict year/race schema; the 506-race ledger is source identity **not live-result availability or winner calls**." >> "$GITHUB_STEP_SUMMARY"
+          if [ "$PRIMARY" != "success" ] || [ "$SECONDARY" != "success" ] || [ "$HOUSE_PROBE" != "success" ] || [ "$COVERAGE" != "success" ] || [ "$PERSIST" != "success" ]; then
             echo "::error::Election-night source preflight failed (including rotating House audit). Investigate; missing and untested seats are unknown, never zero or historical fallback."
             exit 1
           fi
