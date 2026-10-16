@@ -339,7 +339,14 @@ def main():
                 handle.write(f"| {office.title()} | {row['primary_scope']} | "
                              f"{row['pinned_secondary']} | {row['scoped_secondary']} | "
                              f"{row['unresolved_source_gaps']} |\n")
-            handle.write("\nA provider ID or state scope is **not** proof of live returns or a race call.\n")
+            b = report["summary"]["house"]["unresolved_breakdown"]
+            handle.write("\n#### Why are some House source identities unresolved?\n\n")
+            handle.write("| Cause | Districts |\n|---|---:|\n")
+            for key, count in b.items():
+                handle.write(f"| {key.replace('_', ' ').title()} | {count} |\n")
+            handle.write(f"| **Total unresolved** | **{sum(b.values())}** |\n")
+            handle.write("\n**Never checked and paused are not confirmed unavailable.** "
+                         "Source identity only; no live returns, forecasts or professional calls.\n")
 
 
 if __name__ == "__main__":
