@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-16T15:45:32.075276Z",
+  "updated_at": "2026-10-16T15:54:07.499959Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 5,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 166,
-    "awaiting_primary_source": 164,
+    "total_leads": 167,
+    "awaiting_primary_source": 165,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 13,
-    "advisory_related_headlines": 29
+    "advisory_related_headlines": 30
   },
   "advisory_related_headlines": [
     {
@@ -39,6 +39,20 @@
       ],
       "topic_hints": [
         "ballot_access"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "cf7c8a069689d1e482b4",
+      "headline": "US midterms 2026: DOJ sues California, claims 20,000 suspected \u2018noncitizen voters\u2019; seeks to block mail b - The Times of India",
+      "possibly_related_articles": 3,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -152,20 +166,6 @@
         "registration"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "cf7c8a069689d1e482b4",
-      "headline": "US midterms 2026: DOJ sues California, claims 20,000 suspected \u2018noncitizen voters\u2019; seeks to block mail b - The Times of India",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
@@ -258,6 +258,28 @@
       ],
       "topic_hints": [
         "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026",
+        "20,000 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "ded1041233c757187ec8",
+      "title": "US midterms 2026: DOJ sues California, claims 20,000 suspected \u2018noncitizen voters\u2019; seeks to block mail b - The Times of India",
+      "url": "https://news.google.com/rss/articles/CBMisAJBVV95cUxPSGRwb0s4VDVsN1JqZVVpbktxUllzaVUxcE9WYUtVb2V4QnVUa1RabXFlZ1liQ3VzWnVJTTltMUFpLTVsUEJtd1FMb1h0a18tWnBQODZuYzgwMl93c05mb2hRUVRSMDc5Mng1R2JRQlZoaEFXN1ktVXhHVy1rY1dWUDhjMmlTWllJNUtDRG1haDBaREt6ZERGVWFxeTBtY01ZS1VXN0RzN2JHY3ZkMGZwLVpQdFZRRlZwRFliUkZqMHN1ck5zdjhkTlNabXlMNEZCNUluT3VkNW8wbm5XRllKZlRPcWtJdm1EVjhHel9hRlo1ckZpQi1xNDFvM1lER2NwaVFSVGtsM1RpQnd6WDBtUENJeUM0VkZpcDJyaFF2WERRRjFtX1VLRDJDVEVwRkRk0gGwAkFVX3lxTE9IZHBvSzhUNWw3UmplVWluS3FSWXNpVTFwT1ZhS1VvZXhCdVRrVFptcWVnWWJDdXNadUlNOW0xQWktNWxQQm13UUxvWHRrXy1acFA4Nm5jODAyX3dzTmZvaFFRVFIwNzkyeDVHYlFCVmhoQVc3WS1VeEdXLWtjV1ZQOGMyaVNaWUk1S0NEbWFoMFpES3pkREZVYXF5MG1jTVlLVVc3RHM3YkdjdmQwZnAtWlB0VlFGVnBEWWJSRmowc3VyTnN2OGROU1pteUw0RkI1SW5PdWQ1bzBubldGWUpmVE9xa0l2bURWOEd6X2FGWjVyRmlCLXE0MW8zWURHY3BpUVJUa2wzVGlCd3pYMG1QQ0l5QzRWRmlwMnJoUXZYRFFGMW1fVUtEMkNURXBGRGQ?oc=5",
+      "publisher": "The Times of India",
+      "published_at": "2026-10-16T14:36:00Z",
+      "detected_at": "2026-10-16T15:54:07.499959Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
         "election_admin"
       ],
       "headline_numbers_unverified": [

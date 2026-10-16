@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-16T15:45:32.667758+00:00",
+  "updated_at": "2026-10-16T15:54:08.114211+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,7 +9,7 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1191,
+      "available_in_source": 1192,
       "records_examined": 200
     },
     "governor": {
@@ -17,10 +17,39 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 266,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "matched_primary_observations": 268,
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "ME-02",
+      "poll_id": "a126058f-5842-4b2d-9251-ba3e0f2874bf"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "ME-02",
+      "race_type": "house",
+      "state": "ME",
+      "poll_id": "a126058f-5842-4b2d-9251-ba3e0f2874bf",
+      "question_id": "818d190f-5c21-41ef-a236-17618365416f",
+      "pollster": "Tulchin Research",
+      "dem_name": "Matt Dunlap",
+      "rep_name": "Paul LePage",
+      "dem": 50.0,
+      "rep": 46.0,
+      "margin": 4.0,
+      "field_end": "2026-10-14",
+      "field_start": "2026-10-12",
+      "posted_date": "2026-10-16",
+      "posted_source_datetime": "2026-10-16T11:39:00",
+      "posted_source_time": "10/16/26 11:39",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://static01.nyt.com/newsgraphics/documenttools/0cdb44a57dfd2687/fddf7303-full.pdf",
+      "sample_population": "lv",
+      "sample_size": 500,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "CT-GOV",
       "race_type": "governor",
