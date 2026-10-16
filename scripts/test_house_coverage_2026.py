@@ -15,6 +15,33 @@ from probe_house_coverage_2026 import (
 )
 
 
+def synthetic_initial_coverage():
+    """Fixed 16-probe baseline; scheduled CI must not make this fixture stale."""
+    ledger = json.loads(COVERAGE_PATH.read_text(encoding="utf-8"))
+    ledger["generated_at"] = "2026-10-16T16:00:00+00:00"
+    exact = (
+        "AL-01 AL-02 AL-03 AL-04 AL-05 AL-06 AL-07 CA-01 CA-02 CA-03 "
+        "ME-02 NE-02 NV-03 NY-17 WI-03"
+    ).split()
+    for row in ledger["races"]:
+        if row["office"] != "House" or row["provider_scope"] != "outside primary":
+            continue
+        if row["key"] == "NH-01":
+            row["last_probe"] = {
+                "status": "NOT_INDEXED",
+                "checked_window_utc": "2026-10-16T16:00:00+00:00",
+            }
+        elif row["key"] in exact:
+            row["last_probe"] = {
+                "status": "INDEXED_EXACT_RACE",
+                "race_id": 200000 + exact.index(row["key"]),
+                "checked_window_utc": "2026-10-16T16:00:00+00:00",
+            }
+        else:
+            row["last_probe"] = None
+    return ledger
+
+
 class HouseCoverageTests(unittest.TestCase):
     def setUp(self):
         self.row = dict(country="US", province="NH", municipality=None,
@@ -76,7 +103,7 @@ class HouseCoverageTests(unittest.TestCase):
             sampling_window(t, inventory=seats, rotation=0)
 
     def test_gap_first_scheduled_inventory_prioritizes_unseen_races(self):
-        ledger = json.loads(COVERAGE_PATH.read_text(encoding="utf-8"))
+        ledger = synthetic_initial_coverage()
         now = datetime(2026, 10, 16, 20, 11, tzinfo=timezone.utc)
         plan = gap_aware_window(now, ledger)
         self.assertEqual(plan["discovery_strategy"], "GAP_FIRST_PREVIOUS_LEDGER")
@@ -95,7 +122,7 @@ class HouseCoverageTests(unittest.TestCase):
         self.assertTrue(all(code in uncovered_house_universe() for code in plan["districts"]))
 
     def test_every_unobserved_source_reached_in_bounded_windows(self):
-        ledger = json.loads(COVERAGE_PATH.read_text(encoding="utf-8"))
+        ledger = synthetic_initial_coverage()
         start = datetime(2026, 10, 16, 20, 11, tzinfo=timezone.utc)
         observed = {r["key"] for r in ledger["races"]
                     if r["office"] == "House" and r["last_probe"]}
@@ -123,7 +150,7 @@ class HouseCoverageTests(unittest.TestCase):
         self.assertEqual(len(observed), 219)
 
     def test_adaptive_expiry_retries_missing_after_24h_and_indexed_after_72h(self):
-        ledger = json.loads(COVERAGE_PATH.read_text(encoding="utf-8"))
+        ledger = synthetic_initial_coverage()
         now = datetime(2026, 10, 20, 16, tzinfo=timezone.utc)
         for row in ledger["races"]:
             if row["office"] == "House" and row["provider_scope"] == "outside primary":
@@ -160,7 +187,7 @@ class HouseCoverageTests(unittest.TestCase):
 
     def test_adaptive_503_stops_and_skipped_races_remain_priority(self):
         now = datetime(2026, 10, 16, 20, 11, tzinfo=timezone.utc)
-        ledger = json.loads(COVERAGE_PATH.read_text(encoding="utf-8"))
+        ledger = synthetic_initial_coverage()
         plan = gap_aware_window(now, ledger)
         attempts = []
         def request(path, params):
@@ -189,7 +216,7 @@ class HouseCoverageTests(unittest.TestCase):
 
     def test_adaptive_history_is_fail_closed(self):
         now = datetime(2026, 10, 16, 20, 11, tzinfo=timezone.utc)
-        ledger = json.loads(COVERAGE_PATH.read_text(encoding="utf-8"))
+        ledger = synthetic_initial_coverage()
         with self.assertRaises(ValueError):
             gap_aware_window(now, ledger, limit=17)
         bad = copy.deepcopy(ledger)
