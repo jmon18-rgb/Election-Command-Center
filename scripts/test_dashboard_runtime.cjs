@@ -418,6 +418,41 @@ async function settle(){
  assert.equal(calledRace.dem_beats_rep_pct,0,
   'A vetted civicAPI Republican call constrains a primary-covered race');
  assert.equal(w.eval("Object.values(jointForecastResult().probabilities).reduce((a,b)=>a+b,0)").toFixed(1),'100.0');
+ // A valid cached winner is no longer eligible if its exact race fails.
+ w.eval("enCivicErrors['Senate|NC']='synthetic race-level source failure'");
+ assert.equal(w.eval("enCivicUsable({office:'Senate',key:'NC'})"),null);
+ w.eval('jointRender(false)');
+ calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
+ assert.equal(calledRace.provider_called_party,null,
+  'A race-specific source failure must release an earlier cached winner call');
+ // Only a new validated detail fetch should clear that race's error.
+ await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
+ w.eval('jointRender(false)');
+ calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
+ assert.equal(calledRace.provider_called_party,'R');
+ // A single upstream 503 makes ALL civicAPI records ineligible. Advancing
+ // past backoff alone must not resurrect a cached winner without rechecking.
+ w.eval('enCivicBreaker.fail(503)');
+ assert.equal(w.eval("enCivicUsable({office:'Senate',key:'NC'})"),null);
+ w.eval('jointRender(false)');
+ calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
+ assert.equal(calledRace.provider_called_party,null,
+  'Shared upstream outage must not leave cached calls locking simulation draws');
+ assert.match(get('#enHealthRows').textContent,/PAUSED · UPSTREAM HTTP 503/);
+ w.Date.now=()=>Date.parse('2026-11-04T03:21:05Z');
+ assert.equal(w.eval('enCivicBreaker.status().blocked'),false);
+ assert(w.eval('enCivicBreaker.status().consecutive')>0);
+ assert.equal(w.eval("enCivicUsable({office:'Senate',key:'NC'})"),null,
+  'Elapsed backoff is not proof of source recovery');
+ w.eval('jointRender(false)');
+ calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
+ assert.equal(calledRace.provider_called_party,null);
+ await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
+ assert.equal(w.eval('enCivicBreaker.status().consecutive'),0);
+ w.eval('jointRender(false)');
+ calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
+ assert.equal(calledRace.provider_called_party,'R',
+  'Only fresh verified detailed provider response may reactivate source calls');
  ncCalledParty='D';
  await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
  w.eval('jointRender(false)');
