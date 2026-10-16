@@ -17,9 +17,9 @@ on:
       - 'scripts/election_night_reconciliation.js'
       - 'data/seat_universe.json'
   schedule:
-    # 4-hour live schema/CORS checks through Nov 4 UTC. The site still fetches
-    # results directly; this workflow does not relay or fabricate provider data.
-    - cron: '11 */4 * 10,11 *'
+    # Hourly eight-seat House source discovery; expensive provider-contract
+    # probes remain every fourth hour. No vote relay or guessed source IDs.
+    - cron: '11 * * 10,11 *'
 permissions:
   contents: write
 concurrency:
@@ -40,17 +40,24 @@ jobs:
           else
             echo "run=true" >> "$GITHUB_OUTPUT"
           fi
+          # Full primary/secondary CORS and office checks every fourth hour;
+          # on other hours this job is only the bounded House discovery desk.
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$((10#$(date -u +'%H') % 4))" -ne 0 ]; then
+            echo "baseline=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "baseline=true" >> "$GITHUB_OUTPUT"
+          fi
       - name: Verify Open America source CORS, year, office and 2026 race schema
         id: primary
-        if: steps.window.outputs.run == 'true'
+        if: steps.window.outputs.run == 'true' && steps.window.outputs.baseline == 'true'
         continue-on-error: true
         run: python3 scripts/test_live_results_source.py
       - name: Verify independently identified civicAPI 2026 races and browser CORS
         id: secondary
-        if: steps.window.outputs.run == 'true'
+        if: steps.window.outputs.run == 'true' && steps.window.outputs.baseline == 'true'
         continue-on-error: true
         run: python3 scripts/test_civicapi_live_source.py
-      - name: Probe bounded, rotating House source coverage outside primary states
+      - name: Probe up to eight hourly House source identity gaps
         id: house_probe
         if: steps.window.outputs.run == 'true'
         continue-on-error: true
@@ -111,17 +118,20 @@ jobs:
           HOUSE_PROBE: ${{ steps.house_probe.outcome }}
           COVERAGE: ${{ steps.coverage.outcome }}
           PERSIST: ${{ steps.persist.outcome }}
+          BASELINE: ${{ steps.window.outputs.baseline }}
         run: |
           echo "## Direct-browser 2026 election source preflight" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "- Checked: $(date -u +'%Y-%m-%d %H:%M UTC')" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Open America (22-state primary source): $PRIMARY" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Open America (22-state primary source): $PRIMARY (intentionally skipped between four-hour windows)" >> "$GITHUB_STEP_SUMMARY"
           echo "- civicAPI (individually verified supplementary races): $SECONDARY" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Rotating House gap audit (source discovery only): $HOUSE_PROBE" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Hourly eight-district House identity checks: $HOUSE_PROBE" >> "$GITHUB_STEP_SUMMARY"
           echo "- 506-race source audit and House ID hint manifest built / persisted: $COVERAGE / $PERSIST" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "Checks test HTTP, browser CORS and strict year/race schema; the 506-race ledger is source identity **not live-result availability or winner calls**." >> "$GITHUB_STEP_SUMMARY"
-          if [ "$PRIMARY" != "success" ] || [ "$SECONDARY" != "success" ] || [ "$HOUSE_PROBE" != "success" ] || [ "$COVERAGE" != "success" ] || [ "$PERSIST" != "success" ]; then
+          if { [ "$BASELINE" = "true" ] && { [ "$PRIMARY" != "success" ] || [ "$SECONDARY" != "success" ]; }; } || \
+             { [ "$BASELINE" = "false" ] && { [ "$PRIMARY" != "skipped" ] || [ "$SECONDARY" != "skipped" ]; }; } || \
+             [ "$HOUSE_PROBE" != "success" ] || [ "$COVERAGE" != "success" ] || [ "$PERSIST" != "success" ]; then
             echo "::error::Election-night source preflight failed (including rotating House audit). Investigate; missing and untested seats are unknown, never zero or historical fallback."
             exit 1
           fi

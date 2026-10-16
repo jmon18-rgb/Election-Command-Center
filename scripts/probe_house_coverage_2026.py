@@ -25,7 +25,8 @@ PRIMARY_STATES = frozenset(
     "AR AZ CO CT FL GA IA ID IN LA MI MN NC PA RI SC TX UT VA VT WA WV".split()
 )
 ROTATING_PER_RUN = 10
-GAP_AWARE_LIMIT = 16  # Total districts per scheduled run; no extra provider calls.
+GAP_AWARE_LIMIT = 16  # Ceiling for manual and synthetic runs; provider cap enforced.
+HOURLY_DISCOVERY_LIMIT = 8  # Hourly low-pressure mode to clear untested sources.
 COVERAGE_PATH = Path(__file__).resolve().parents[1] / "data" / "election_night_source_coverage.json"
 # Editorial urgency for source discovery, not a race-rating or odds adjustment.
 GAP_PRIORITY = (
@@ -113,14 +114,18 @@ def _utc(value: str) -> datetime:
 
 def gap_aware_window(now: datetime, history: dict, *,
                      inventory: tuple[str, ...] | None = None,
-                     limit: int = GAP_AWARE_LIMIT) -> dict:
+                     limit: int = GAP_AWARE_LIMIT,
+                     window_hours: int = 4) -> dict:
     """Spend at most 16 requests on unobserved gaps, then oldest due rechecks.
+
+    Production uses eight per hour to limit load while accelerating the backlog.
 
     No fixed anchor tax. Every previously indexed race is eligible again after
     72h; NOT_INDEXED after 24h; transient/invalid after 4h. Source outages are
     handled by run_batch, not treated as proof of an absent race.
     """
-    if now.tzinfo is None or not 1 <= limit <= GAP_AWARE_LIMIT:
+    if now.tzinfo is None or not 1 <= limit <= GAP_AWARE_LIMIT or \
+       window_hours not in (1, 4):
         raise ValueError("Invalid time or source request cap")
     now = now.astimezone(timezone.utc)
     seats = inventory if inventory is not None else uncovered_house_universe()
@@ -180,7 +185,7 @@ def gap_aware_window(now: datetime, history: dict, *,
                   "NOT_CHECKED_UPSTREAM_PAUSED" for code in chosen)
     return {
         "window_utc": datetime.fromtimestamp(
-            int(now.timestamp() // (4 * 3600)) * 4 * 3600,
+            int(now.timestamp() // (window_hours * 3600)) * window_hours * 3600,
             tz=timezone.utc).isoformat(),
         "discovery_strategy": "GAP_FIRST_PREVIOUS_LEDGER",
         "primary_states": len(PRIMARY_STATES),
@@ -358,7 +363,8 @@ def main():
     # Follow the ledger rather than paying six repeated anchor searches every
     # four hours. Fail closed if the 506-race inventory is corrupted or absent.
     history = json.loads(COVERAGE_PATH.read_text(encoding="utf-8"))
-    plan = gap_aware_window(datetime.now(timezone.utc), history)
+    plan = gap_aware_window(datetime.now(timezone.utc), history,
+                            limit=HOURLY_DISCOVERY_LIMIT, window_hours=1)
     results = run_batch(plan)
     report = build_report(plan, results)
     print(json.dumps(report, indent=2))

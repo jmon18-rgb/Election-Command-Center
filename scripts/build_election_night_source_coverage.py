@@ -168,21 +168,30 @@ def build(universe, reconciliation_js, batch_js, nh_senate_js, nh_governor_js,
                   "NO_CURATED_PROVIDER_ID")
         last = prior.get(identity, {}).get("last_probe")
         new = probes.get(identity)
-        if new and (not last or timestamp(new["checked_window_utc"]) >=
-                    timestamp(last["checked_window_utc"])):
+        # An upstream-paused slot was never checked: preserve any previous
+        # actual observation, not a fabricated later negative source verdict.
+        if new and (new["status"] != "NOT_CHECKED_UPSTREAM_PAUSED" or not last) and (
+                not last or timestamp(new["checked_window_utc"]) >=
+                timestamp(last["checked_window_utc"])):
             last = new
         # Last probe is historical evidence, not a guarantee the provider
         # remains indexed or reachable now, much less has reported votes.
         recent = bool(last and timestamp(last["checked_window_utc"]) <= now and
                       now - timestamp(last["checked_window_utc"]) <= timedelta(hours=24))
         active_evidence = (last["status"] if recent else "NOT_RECENTLY_CHECKED") if last else "NEVER_CHECKED"
+        # A source identity that passed exact metadata+detail checks remains
+        # a lookup hint for up to ten days, independently of the 24h health
+        # freshness signal. It is still NOT evidence of live votes or calls.
+        exact_usable = bool(last and last["status"] == "INDEXED_EXACT_RACE" and
+                            timestamp(last["checked_window_utc"]) <= now and
+                            now - timestamp(last["checked_window_utc"]) <= timedelta(days=10))
         if primary:
             gap = "PRIMARY_SCOPE_NOT_LIVE_VERIFIED"
         elif pin:
             gap = "PINNED_ID_NOT_LIVE_VERIFIED"
         elif identity in nh:
             gap = "SCOPED_ADAPTER_NOT_LIVE_VERIFIED"
-        elif active_evidence == "INDEXED_EXACT_RACE":
+        elif exact_usable:
             gap = "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED"
         else:
             gap = "UNRESOLVED_SOURCE_GAP"
@@ -194,6 +203,7 @@ def build(universe, reconciliation_js, batch_js, nh_senate_js, nh_governor_js,
             "source_registry": pin["registry"] if pin else
                 ("scoped NH adapter" if identity in nh else None),
             "last_probe": last, "recent_probe_status": active_evidence,
+            "verified_identity_hint_usable": exact_usable if office == "House" else False,
             "preflight_scope": "primary_contract" if primary else
                 "supplemental_contract" if pin or identity in nh else
                 "sampled_house_probe" if new else "not_checked",
@@ -217,6 +227,35 @@ def build(universe, reconciliation_js, batch_js, nh_senate_js, nh_governor_js,
             "recent_exact_probes": sum(r["recent_probe_status"] == "INDEXED_EXACT_RACE" for r in rows),
             "unresolved_source_gaps": sum(r["gap_status"] == "UNRESOLVED_SOURCE_GAP" for r in rows),
         }
+    # The headline 186/219 style figure is not 'races unavailable'. Most
+    # rows are simply unattempted; spell that distinction out exhaustively.
+    house_gaps = [r for r in races if r["office"] == "House" and
+                  r["gap_status"] == "UNRESOLVED_SOURCE_GAP"]
+    def house_count(predicate):
+        return sum(predicate(r) for r in house_gaps)
+    breakdown = {
+        "never_checked": house_count(lambda r: r["last_probe"] is None),
+        "skipped_due_to_upstream_pause": house_count(lambda r:
+            r["last_probe"] is not None and
+            r["last_probe"]["status"] == "NOT_CHECKED_UPSTREAM_PAUSED"),
+        "checked_not_indexed": house_count(lambda r:
+            r["last_probe"] is not None and r["last_probe"]["status"] == "NOT_INDEXED"),
+        "temporary_upstream_failure": house_count(lambda r:
+            r["last_probe"] is not None and
+            r["last_probe"]["status"] == "TEMPORARY_UPSTREAM_FAILURE"),
+        "invalid_or_ambiguous": house_count(lambda r:
+            r["last_probe"] is not None and r["last_probe"]["status"] in (
+                "AMBIGUOUS_RACE", "AMBIGUOUS_OR_TRUNCATED", "INVALID_DETAIL",
+                "SOURCE_UNAVAILABLE_OR_INVALID")),
+        "expired_exact_identity": house_count(lambda r:
+            r["last_probe"] is not None and
+            r["last_probe"]["status"] == "INDEXED_EXACT_RACE"),
+    }
+    if sum(breakdown.values()) != summary["house"]["unresolved_source_gaps"]:
+        raise ValueError("House source backlog triage does not reconcile")
+    summary["house"]["unresolved_breakdown"] = breakdown
+    summary["house"]["verified_usable_id_hints"] = sum(
+        r["verified_identity_hint_usable"] for r in races if r["office"] == "House")
     assert [summary[k]["total"] for k in ("house", "senate", "governor")] == [435, 35, 36]
     return {
         "schema_version": "1.0", "generated_at": now.isoformat(),
@@ -229,6 +268,7 @@ def build(universe, reconciliation_js, batch_js, nh_senate_js, nh_governor_js,
             "scoped_secondary": "Exact NH office adapter without immutable pinned source race id",
             "house_probe": "Rotating sampled exact 2026 district discovery; 24-hour 'recent' does not guarantee Election Night data",
             "missing": "Unprobed, unindexed, interrupted or invalid is unknown, never zero votes",
+            "verified_identity_hint": "Ten-day exact search+detail discovery; independent of 24-hour last-probe freshness and NOT verified live returns",
             "calls": "No licensed professional call provider or verified control attribution in this ledger",
         },
         "races": races,
@@ -299,7 +339,14 @@ def main():
                 handle.write(f"| {office.title()} | {row['primary_scope']} | "
                              f"{row['pinned_secondary']} | {row['scoped_secondary']} | "
                              f"{row['unresolved_source_gaps']} |\n")
-            handle.write("\nA provider ID or state scope is **not** proof of live returns or a race call.\n")
+            b = report["summary"]["house"]["unresolved_breakdown"]
+            handle.write("\n#### Why are some House source identities unresolved?\n\n")
+            handle.write("| Cause | Districts |\n|---|---:|\n")
+            for key, count in b.items():
+                handle.write(f"| {key.replace('_', ' ').title()} | {count} |\n")
+            handle.write(f"| **Total unresolved** | **{sum(b.values())}** |\n")
+            handle.write("\n**Never checked and paused are not confirmed unavailable.** "
+                         "Source identity only; no live returns, forecasts or professional calls.\n")
 
 
 if __name__ == "__main__":

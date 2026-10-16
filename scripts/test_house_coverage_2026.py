@@ -11,7 +11,7 @@ from probe_house_coverage_2026 import (
     matches, detail_matches, probe, DISTRICTS, PRIMARY_STATES,
     ROTATING_PER_RUN, uncovered_house_universe, sampling_window,
     run_batch, build_report, gap_aware_window, GAP_AWARE_LIMIT,
-    GAP_PRIORITY, COVERAGE_PATH,
+    GAP_PRIORITY, COVERAGE_PATH, HOURLY_DISCOVERY_LIMIT,
 )
 
 
@@ -148,6 +148,48 @@ class HouseCoverageTests(unittest.TestCase):
             self.assertLessEqual(windows, 14,
                                  "All 219 supplemental House slots need coverage within 14 healthy runs")
         self.assertEqual(len(observed), 219)
+
+    def test_hourly_low_pressure_sweep_advances_across_remaining_gaps(self):
+        ledger = synthetic_initial_coverage()
+        start = datetime(2026, 10, 16, 20, 11, tzinfo=timezone.utc)
+        self.assertEqual(HOURLY_DISCOVERY_LIMIT, 8)
+        first = gap_aware_window(start, ledger, limit=HOURLY_DISCOVERY_LIMIT,
+                                 window_hours=1)
+        self.assertEqual(len(first["districts"]), 8)
+        self.assertEqual(first["window_utc"], "2026-10-16T20:00:00+00:00")
+        self.assertEqual(first["request_cap"], 8)
+        for key in first["districts"]:
+            row = next(x for x in ledger["races"] if x["id"] == "House|" + key)
+            row["last_probe"] = {
+                "status": "INDEXED_EXACT_RACE", "race_id": 250001,
+                "checked_window_utc": first["window_utc"]
+            }
+        second = gap_aware_window(start + timedelta(hours=1), ledger,
+                                  limit=HOURLY_DISCOVERY_LIMIT, window_hours=1)
+        self.assertEqual(second["window_utc"], "2026-10-16T21:00:00+00:00")
+        self.assertEqual(len(second["districts"]), 8)
+        self.assertFalse(set(first["districts"]) & set(second["districts"]),
+                         "Hourly discovery must not burn calls repeating indexed source IDs")
+        checked = 16
+        windows = 2
+        while checked < 203:
+            hour = start + timedelta(hours=windows)
+            plan = gap_aware_window(hour, ledger, limit=HOURLY_DISCOVERY_LIMIT,
+                                    window_hours=1)
+            self.assertEqual(len(plan["districts"]), 8)
+            self.assertEqual(len(set(plan["districts"])), 8)
+            checked += 8
+            for key in plan["districts"]:
+                row = next(x for x in ledger["races"] if x["id"] == "House|" + key)
+                row["last_probe"] = {
+                    "status": "NOT_INDEXED",
+                    "checked_window_utc": plan["window_utc"]
+                }
+            windows += 1
+            self.assertLessEqual(windows, 28)
+        self.assertLessEqual(windows, 28)
+        with self.assertRaisesRegex(ValueError, "Invalid time"):
+            gap_aware_window(start, ledger, limit=8, window_hours=2)
 
     def test_adaptive_expiry_retries_missing_after_24h_and_indexed_after_72h(self):
         ledger = synthetic_initial_coverage()
