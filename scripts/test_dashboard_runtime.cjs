@@ -32,6 +32,8 @@ assert.match(mobileHeroCSS,/background-position:center,center top,center;/,
  'Keep the surfer image anchored at the top while copy remains at the bottom');
 
 const scripts=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(x=>x[1]);
+assert.match(html,/scripts\/election_night_source_backoff\.js\?v=[0-9a-f]{12}/,
+ 'The deployed page must load the source-breaker module for 503 recovery');
 assert.match(html,/<script src="\.\/scripts\/civicapi_nh_adapter\.js\?v=[0-9a-f]{12}"><\/script>/,
  'NH civicAPI adapter must load on GitHub Pages before the main application');
 assert.match(html,/<script src="\.\/scripts\/civicapi_nh_governor_adapter\.js\?v=[0-9a-f]{12}"><\/script>/,
@@ -104,6 +106,9 @@ async function settle(){
  assert(w.NHGovernorCivicAdapter,'NH governor adapter must load before the application');
  w.eval(read('scripts/civicapi_state_batch.js'));
  assert(w.StateBatchCivicAdapter,'Four-state adapter must load before the application');
+ w.eval(read('scripts/election_night_source_backoff.js'));
+ assert(w.ElectionNightSourceBackoff?.create,
+  'Source breaker must load in test browser just as on real GitHub Pages');
  w.eval(read('scripts/election_night_nowcast.js'));
  assert(w.RaceLiveNowcast,'Live race probability module must load before app');
  w.eval(read('scripts/election_night_early_signals.js'));
