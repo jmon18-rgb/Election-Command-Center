@@ -1,0 +1,548 @@
+{
+  "schema_version": "official-senate-holdover-snapshot-2026-10-16-v1",
+  "description": "2026 Election Night baseline; static 119th Congress senator affiliation for 65 seats NOT contested November 3. Not calls, not predictions, not an authoritative 120th Congress outcome.",
+  "as_of": "2026-10-16",
+  "sources": {
+    "class_I": "https://www.senate.gov/senators/Class_I.htm",
+    "class_III": "https://www.senate.gov/senators/Class_III.htm",
+    "current_caucus": "https://www.dailypress.senate.gov/on-the-floor/senate-facts/"
+  },
+  "seats_excluded_because_special_2026": [
+    {
+      "state": "FL",
+      "class": "III",
+      "party": "R",
+      "senator": "Ashley Moody"
+    },
+    {
+      "state": "OH",
+      "class": "III",
+      "party": "R",
+      "senator": "Jon Husted"
+    }
+  ],
+  "assumed_party_caucus_of_independents": "D",
+  "note": "Angus King (ME) and Bernie Sanders (VT) are independents caucusing with the Democrats. Exclude Class II regular ballot (33 seats) and two Class III specials, rather than inferring any election winner.",
+  "holdovers": [
+    {
+      "seat": "I|MD",
+      "state": "MD",
+      "class": "I",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Angela Alsobrooks"
+    },
+    {
+      "seat": "I|WI",
+      "state": "WI",
+      "class": "I",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Tammy Baldwin"
+    },
+    {
+      "seat": "I|DE",
+      "state": "DE",
+      "class": "I",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Lisa Blunt Rochester"
+    },
+    {
+      "seat": "I|WA",
+      "state": "WA",
+      "class": "I",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Maria Cantwell"
+    },
+    {
+      "seat": "I|AZ",
+      "state": "AZ",
+      "class": "I",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Ruben Gallego"
+    },
+    {
+      "seat": "I|NY",
+      "state": "NY",
+      "class": "I",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Kirsten Gillibrand"
+    },
+    {
+      "seat": "I|NM",
+      "state": "NM",
+      "class": "I",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Martin Heinrich"
+    },
+    {
+      "seat": "I|HI",
+      "state": "HI",
+      "class": "I",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Mazie Hirono"
+    },
+    {
+      "seat": "I|VA",
+      "state": "VA",
+      "class": "I",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Tim Kaine"
+    },
+    {
+      "seat": "I|NJ",
+      "state": "NJ",
+      "class": "I",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Andy Kim"
+    },
+    {
+      "seat": "I|MN",
+      "state": "MN",
+      "class": "I",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Amy Klobuchar"
+    },
+    {
+      "seat": "I|CT",
+      "state": "CT",
+      "class": "I",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Chris Murphy"
+    },
+    {
+      "seat": "I|NV",
+      "state": "NV",
+      "class": "I",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Jacky Rosen"
+    },
+    {
+      "seat": "I|CA",
+      "state": "CA",
+      "class": "I",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Adam Schiff"
+    },
+    {
+      "seat": "I|MI",
+      "state": "MI",
+      "class": "I",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Elissa Slotkin"
+    },
+    {
+      "seat": "I|MA",
+      "state": "MA",
+      "class": "I",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Elizabeth Warren"
+    },
+    {
+      "seat": "I|RI",
+      "state": "RI",
+      "class": "I",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Sheldon Whitehouse"
+    },
+    {
+      "seat": "I|IN",
+      "state": "IN",
+      "class": "I",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Jim Banks"
+    },
+    {
+      "seat": "I|WY",
+      "state": "WY",
+      "class": "I",
+      "party": "R",
+      "caucus": "R",
+      "senator": "John Barrasso"
+    },
+    {
+      "seat": "I|TN",
+      "state": "TN",
+      "class": "I",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Marsha Blackburn"
+    },
+    {
+      "seat": "I|ND",
+      "state": "ND",
+      "class": "I",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Kevin Cramer"
+    },
+    {
+      "seat": "I|TX",
+      "state": "TX",
+      "class": "I",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Ted Cruz"
+    },
+    {
+      "seat": "I|UT",
+      "state": "UT",
+      "class": "I",
+      "party": "R",
+      "caucus": "R",
+      "senator": "John Curtis"
+    },
+    {
+      "seat": "I|NE",
+      "state": "NE",
+      "class": "I",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Deb Fischer"
+    },
+    {
+      "seat": "I|MO",
+      "state": "MO",
+      "class": "I",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Josh Hawley"
+    },
+    {
+      "seat": "I|WV",
+      "state": "WV",
+      "class": "I",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Jim Justice"
+    },
+    {
+      "seat": "I|PA",
+      "state": "PA",
+      "class": "I",
+      "party": "R",
+      "caucus": "R",
+      "senator": "David McCormick"
+    },
+    {
+      "seat": "I|OH",
+      "state": "OH",
+      "class": "I",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Bernie Moreno"
+    },
+    {
+      "seat": "I|FL",
+      "state": "FL",
+      "class": "I",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Rick Scott"
+    },
+    {
+      "seat": "I|MT",
+      "state": "MT",
+      "class": "I",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Tim Sheehy"
+    },
+    {
+      "seat": "I|MS",
+      "state": "MS",
+      "class": "I",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Roger Wicker"
+    },
+    {
+      "seat": "I|ME",
+      "state": "ME",
+      "class": "I",
+      "party": "I",
+      "caucus": "D",
+      "senator": "Angus King"
+    },
+    {
+      "seat": "I|VT",
+      "state": "VT",
+      "class": "I",
+      "party": "I",
+      "caucus": "D",
+      "senator": "Bernie Sanders"
+    },
+    {
+      "seat": "III|CO",
+      "state": "CO",
+      "class": "III",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Michael Bennet"
+    },
+    {
+      "seat": "III|CT",
+      "state": "CT",
+      "class": "III",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Richard Blumenthal"
+    },
+    {
+      "seat": "III|NV",
+      "state": "NV",
+      "class": "III",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Catherine Cortez Masto"
+    },
+    {
+      "seat": "III|IL",
+      "state": "IL",
+      "class": "III",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Tammy Duckworth"
+    },
+    {
+      "seat": "III|PA",
+      "state": "PA",
+      "class": "III",
+      "party": "D",
+      "caucus": "D",
+      "senator": "John Fetterman"
+    },
+    {
+      "seat": "III|NH",
+      "state": "NH",
+      "class": "III",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Maggie Hassan"
+    },
+    {
+      "seat": "III|AZ",
+      "state": "AZ",
+      "class": "III",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Mark Kelly"
+    },
+    {
+      "seat": "III|WA",
+      "state": "WA",
+      "class": "III",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Patty Murray"
+    },
+    {
+      "seat": "III|CA",
+      "state": "CA",
+      "class": "III",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Alex Padilla"
+    },
+    {
+      "seat": "III|HI",
+      "state": "HI",
+      "class": "III",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Brian Schatz"
+    },
+    {
+      "seat": "III|NY",
+      "state": "NY",
+      "class": "III",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Chuck Schumer"
+    },
+    {
+      "seat": "III|MD",
+      "state": "MD",
+      "class": "III",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Chris Van Hollen"
+    },
+    {
+      "seat": "III|GA",
+      "state": "GA",
+      "class": "III",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Raphael Warnock"
+    },
+    {
+      "seat": "III|VT",
+      "state": "VT",
+      "class": "III",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Peter Welch"
+    },
+    {
+      "seat": "III|OR",
+      "state": "OR",
+      "class": "III",
+      "party": "D",
+      "caucus": "D",
+      "senator": "Ron Wyden"
+    },
+    {
+      "seat": "III|AR",
+      "state": "AR",
+      "class": "III",
+      "party": "R",
+      "caucus": "R",
+      "senator": "John Boozman"
+    },
+    {
+      "seat": "III|AL",
+      "state": "AL",
+      "class": "III",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Katie Britt"
+    },
+    {
+      "seat": "III|NC",
+      "state": "NC",
+      "class": "III",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Ted Budd"
+    },
+    {
+      "seat": "III|ID",
+      "state": "ID",
+      "class": "III",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Mike Crapo"
+    },
+    {
+      "seat": "III|IA",
+      "state": "IA",
+      "class": "III",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Chuck Grassley"
+    },
+    {
+      "seat": "III|ND",
+      "state": "ND",
+      "class": "III",
+      "party": "R",
+      "caucus": "R",
+      "senator": "John Hoeven"
+    },
+    {
+      "seat": "III|WI",
+      "state": "WI",
+      "class": "III",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Ron Johnson"
+    },
+    {
+      "seat": "III|LA",
+      "state": "LA",
+      "class": "III",
+      "party": "R",
+      "caucus": "R",
+      "senator": "John Kennedy"
+    },
+    {
+      "seat": "III|OK",
+      "state": "OK",
+      "class": "III",
+      "party": "R",
+      "caucus": "R",
+      "senator": "James Lankford"
+    },
+    {
+      "seat": "III|UT",
+      "state": "UT",
+      "class": "III",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Mike Lee"
+    },
+    {
+      "seat": "III|KS",
+      "state": "KS",
+      "class": "III",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Jerry Moran"
+    },
+    {
+      "seat": "III|AK",
+      "state": "AK",
+      "class": "III",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Lisa Murkowski"
+    },
+    {
+      "seat": "III|KY",
+      "state": "KY",
+      "class": "III",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Rand Paul"
+    },
+    {
+      "seat": "III|MO",
+      "state": "MO",
+      "class": "III",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Eric Schmitt"
+    },
+    {
+      "seat": "III|SC",
+      "state": "SC",
+      "class": "III",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Tim Scott"
+    },
+    {
+      "seat": "III|SD",
+      "state": "SD",
+      "class": "III",
+      "party": "R",
+      "caucus": "R",
+      "senator": "John Thune"
+    },
+    {
+      "seat": "III|IN",
+      "state": "IN",
+      "class": "III",
+      "party": "R",
+      "caucus": "R",
+      "senator": "Todd Young"
+    }
+  ]
+}
