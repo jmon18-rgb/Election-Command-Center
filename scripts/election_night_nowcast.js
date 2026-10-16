@@ -12,6 +12,9 @@
  'use strict';
  const ELECTION_START=Date.parse('2026-11-03T05:00:00Z');
  const OFFICES={Senate:'senate',House:'house',Governor:'governor'};
+ const atLargeBridge=typeof window!=='undefined'?
+  window.HouseAtLargeBridge:
+  typeof require==='function'?require('./house_at_large_bridge.js'):null;
  const normalCdf=z=>{
   const x=Math.abs(z)/Math.sqrt(2),t=1/(1+0.3275911*x);
   const erf=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-
@@ -21,7 +24,10 @@
  const clamp=(n,min,max)=>Math.min(max,Math.max(min,n));
  function raceCode(item){
   if(!item||!OFFICES[item.office]||typeof item.key!=='string')return null;
-  if(item.office==='House')return /^[A-Z]{2}-\d{2}$/.test(item.key)?item.key:null;
+  if(item.office==='House'){
+   const key=atLargeBridge?.modelCode(item.key)||item.key;
+   return /^[A-Z]{2}-\d{2}$/.test(key)?key:null;
+  }
   if(item.office==='Senate')return /^[A-Z]{2}(?:-special)?$/.test(item.key)?
     item.key.slice(0,2)+'-SEN':null;
   return /^[A-Z]{2}$/.test(item.key)?item.key+'-GOV':null;
