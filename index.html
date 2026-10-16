@@ -5086,7 +5086,8 @@ function enCivicQuery(item){
 function enCivicStatus(item){
  const id=enWatchId(item),data=enCivicByWatch[id];
  if(data&&!enCivicUsable(item))
-  return 'civicAPI · source recheck required · previous source snapshot retained for audit only';
+  return 'civicAPI · SOURCE RETRYING · source recheck required · previous verified snapshot '+ 
+   enNum(data.total)+' reported votes (AUDIT ONLY · not an active result or call)';
  if(!data)return enCivicErrors[id]?'civicAPI source check unavailable · keeping watch':'civicAPI · checking November 3 race';
  const revision=data.last_updated?' · updated '+enFormattedTime(data.last_updated):'';
  const reporting=data.percent_reporting.toFixed(0)+'% precincts';
