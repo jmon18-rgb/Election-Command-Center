@@ -1246,7 +1246,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_early_signals.js?v=7691146833ec"></script>
 <script src="./scripts/election_night_priority.js?v=e1c697ce43d8"></script>
 <script src="./scripts/election_night_signals.js?v=c00851de5109"></script>
-<script src="./scripts/election_night_reconciliation.js?v=c1a9d629ece3"></script>
+<script src="./scripts/election_night_reconciliation.js?v=42f6b991486c"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
 <script src="./scripts/chamber_control_model.js?v=aa102ced6a53"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
@@ -3341,26 +3341,33 @@ function enRenderAmbientDesk(){
  if(enModeYear===2024){
   text.textContent='2024 ARCHIVE · no 2026 vote-count feed yet';
  }else{
-  const good=offices.filter(office=>{
-   const d=enOfficeSnapshots[office]||(office===enOffice?enData:null);
-   return d&&!enOfficeErrors[office]&&!enResumePendingOffices.has(office)&&
-    !d.stale&&!(d.live&&Date.now()-Date.parse(d.as_of)>180*60000);
-  }).length;
-  const failed=offices.filter(office=>enOfficeErrors[office]||
-   (office===enOffice&&enFetchError)).length;
-  text.textContent=good+'/3 primary office feeds validated'+
-   (failed?' · '+failed+' source failures':'')+
-   ' · Open America covers 22 states; other races require separate checks';
+  const health=offices.map(office=>window.ElectionNightReconciliation?.officeHealth(
+   enOfficeSnapshots[office]||(office===enOffice?enData:null),office,{
+    now:Date.now(),error:Boolean(enOfficeErrors[office]||
+     (office===enOffice&&enFetchError)),
+    restored:enResumePendingOffices.has(office)
+   })||{state:'missing',usable:false});
+  const fresh=health.filter(x=>x.usable).length;
+  const standby=health.filter(x=>x.state==='standby').length;
+  const impaired=health.filter(x=>['outage','stale','invalid','rechecking'].includes(x.state)).length;
+  text.textContent=fresh+'/3 primary office feeds fresh'+
+   (standby?' · '+standby+' standing by':'')+
+   (impaired?' · '+impaired+' stale/failing/rechecking':'')+
+   ' · Open America covers 22 states; uncovered races remain unknown';
  }
  for(const office of offices){
   const button=$('#enJump'+office);if(!button)continue;
   const d=enOfficeSnapshots[office]||(office===enOffice&&enModeYear===2026?enData:null);
   const err=enOfficeErrors[office]||(office===enOffice?enFetchError:null);
-  const label=enModeYear===2024?'2024 archived results':
-   err?'SOURCE RETRYING · last good saved':
-   enResumePendingOffices.has(office)?'RESTORED · rechecking':
-   d?.stale||d?.live&&Date.now()-Date.parse(d.as_of)>180*60000?'SOURCE STALE':
-   d?.live?'LIVE · unofficial':d?'VALIDATED · waiting':'AWAITING SOURCE';
+  const state=window.ElectionNightReconciliation?.officeHealth(d,office,{
+   now:Date.now(),error:Boolean(err),restored:enResumePendingOffices.has(office)
+  })?.state||'missing';
+  const names={outage:'SOURCE RETRYING · last valid result retained',
+   rechecking:'RESTORED · verifying',stale:'SOURCE STALE',
+   invalid:'SOURCE INVALID · not counted',standby:'STANDBY · no live votes',
+   missing:'AWAITING SOURCE',current_no_votes:'CURRENT · no votes',
+   reporting:'LIVE · unofficial'};
+  const label=enModeYear===2024?'2024 archived results':names[state];
   button.querySelector('span').textContent=label;
   button.setAttribute('aria-label','Open '+office+' race drilldown · '+label);
  }
@@ -3376,17 +3383,22 @@ function enRenderSourceHealth(){
   const failure=enOfficeErrors[office]||
    (enOffice===office&&enFetchError);
   const restored=enResumePendingOffices.has(office);
-  const sourceTime=Date.parse(snap?.as_of||'');
-  const delayed=Boolean(snap&&(snap.stale||snap.counting&&
-   (!Number.isFinite(sourceTime)||Date.now()-sourceTime>180*60000)));
-  const status=failure?'RETRYING':restored?'RESTORED · VERIFYING':
-   delayed?'SOURCE DELAYED':snap?.live?'CONNECTED':
-   snap?'VALIDATED · STANDBY':'AWAITING SOURCE';
-  if(failure||restored||delayed)impaired++;
-  if(snap&&!failure&&!restored&&!delayed)healthy++;
+  const statusCode=enModeYear===2024?'archive':
+   (window.ElectionNightReconciliation?.officeHealth(snap,office,{
+    now:Date.now(),error:Boolean(failure),restored
+   })?.state||'missing');
+  const statusNames={archive:'2024 ARCHIVE',outage:'RETRYING',
+   rechecking:'RESTORED · VERIFYING',stale:'SOURCE STALE',
+   invalid:'INVALID SOURCE',standby:'NO LIVE VOTES',missing:'AWAITING SOURCE',
+   current_no_votes:'CURRENT · ZERO REPORTED',reporting:'LIVE · UNOFFICIAL'};
+  const status=statusNames[statusCode];
+  const good=['reporting','current_no_votes'].includes(statusCode);
+  const bad=['outage','invalid'].includes(statusCode);
+  if(['outage','stale','invalid','rechecking'].includes(statusCode))impaired++;
+  if(good)healthy++;
   const row=elt('div','en-source-item');
   row.append(elt('strong','',office+' · Open America'),
-   elt('span','en-source-state '+(failure?'bad':restored||delayed?'wait':snap?'good':'wait'),status),
+   elt('span','en-source-state '+(bad?'bad':good?'good':'wait'),status),
    elt('span','','Source as of '+enFormattedTime(snap?.as_of)+
     (enOfficeCheckedAt[office]?' · Checked '+enFormattedTime(enOfficeCheckedAt[office]):'')+
     (failure?' · Last verified result retained':'')));

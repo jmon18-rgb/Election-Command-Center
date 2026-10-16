@@ -11,6 +11,34 @@
  const THREE_HOURS=180*60000;
  const validTime=(s,now)=>{const n=Date.parse(s||'');
   return Number.isFinite(n)&&n>=START&&n<=now+15*60000&&now-n<=THREE_HOURS;};
+ // One shared source-health definition powers coverage counts, the source
+ // health panel and the office buttons. An old feed is not "connected" merely
+ // because its live flag is false or because a cached snapshot exists.
+ function officeHealth(snapshot,office,{now=Date.now(),error=false,restored=false}={}){
+  if(error)return {state:'outage',usable:false};
+  if(restored)return {state:'rechecking',usable:false};
+  if(!snapshot)return {state:'missing',usable:false};
+  if(!['House','Senate','Governor'].includes(office)||
+     snapshot.year!==2026||snapshot.office!==office||
+     snapshot.source!=='state'||typeof snapshot.races!=='object'||
+     !snapshot.races||Array.isArray(snapshot.races))
+   return {state:'invalid',usable:false};
+  if(snapshot.stale===true)return {state:'stale',usable:false};
+  const ts=Date.parse(snapshot.as_of||'');
+  const hasVotes=Object.values(snapshot.races).some(r=>r&&
+   Number.isSafeInteger(r.total)&&r.total>0);
+  if(!Number.isFinite(ts)){
+   return !hasVotes&&!snapshot.live&&!snapshot.counting?
+    {state:'standby',usable:false}:{state:'invalid',usable:false};
+  }
+  if(!Number.isFinite(now)||ts>now+15*60000)
+   return {state:'invalid',usable:false};
+  if(ts<START)return !hasVotes&&!snapshot.live?
+   {state:'standby',usable:false}:{state:'invalid',usable:false};
+  if(now-ts>THREE_HOURS)return {state:'stale',usable:false};
+  return {state:hasVotes?'reporting':'current_no_votes',
+   usable:true,asOf:snapshot.as_of};
+ }
  // Independent, exact-race count validation. The totals may legitimately
  // exceed listed D/R candidates because write-ins and other parties exist.
  // They may never be smaller than the sum of listed candidate votes.
@@ -58,9 +86,8 @@
   let validPrimaryOffices=0;
   for(const [office,ids] of [['House',house],['Senate',senate]]){
    const snap=snapshots[office];
-   const acceptable=Boolean(snap&&snap.year===2026&&snap.office===office&&
-    snap.source==='state'&&snap.stale!==true&&errors[office]!==true&&
-    !restore.has(office)&&validTime(snap.as_of,now));
+   const acceptable=officeHealth(snap,office,{now,
+    error:errors[office]===true,restored:restore.has(office)}).usable;
    if(acceptable)validPrimaryOffices++;
    const keys=new Set(ids);
    const validSourceKeys=acceptable?Object.keys(snap.races||{}):[];
@@ -144,5 +171,5 @@
    anomalies,crossSourceDiscrepancies:discrepancies,records:rows
   });
  }
- return Object.freeze({START,THREE_HOURS,houseIds,senateIds,reconcile});
+ return Object.freeze({START,THREE_HOURS,houseIds,senateIds,officeHealth,reconcile});
 });
