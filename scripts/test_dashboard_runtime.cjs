@@ -34,6 +34,8 @@ assert.match(mobileHeroCSS,/background-position:center,center top,center;/,
 const scripts=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(x=>x[1]);
 assert.match(html,/scripts\/election_night_source_backoff\.js\?v=[0-9a-f]{12}/,
  'The deployed page must load the source-breaker module for 503 recovery');
+assert.match(html,/scripts\/election_night_transport\.js\?v=[0-9a-f]{12}/,
+ 'The deployed page must use globally bounded supplemental request transport');
 assert.match(html,/<script src="\.\/scripts\/civicapi_nh_adapter\.js\?v=[0-9a-f]{12}"><\/script>/,
  'NH civicAPI adapter must load on GitHub Pages before the main application');
 assert.match(html,/<script src="\.\/scripts\/civicapi_nh_governor_adapter\.js\?v=[0-9a-f]{12}"><\/script>/,
@@ -114,6 +116,9 @@ async function settle(){
  w.eval(read('scripts/election_night_source_backoff.js'));
  assert(w.ElectionNightSourceBackoff?.create,
   'Source breaker must load in test browser just as on real GitHub Pages');
+ w.eval(read('scripts/election_night_transport.js'));
+ assert(w.ElectionNightTransport?.createPool,
+  'One shared four-request source pool must load before the real dashboard');
  w.eval(read('scripts/election_night_nowcast.js'));
  assert(w.RaceLiveNowcast,'Live race probability module must load before app');
  w.eval(read('scripts/election_night_early_signals.js'));
@@ -135,6 +140,8 @@ async function settle(){
  w.eval(read('scripts/private_senate_fundamentals.js'));
  assert(w.PrivateSenateFundamentals,'Private subscriber CSV parser must load before app');
  w.eval(scripts[0]);
+ assert.equal(w.eval('enCivicRequestPool.status().concurrency_limit'),4,
+  'All overlapping manual and automatic sweeps must use one 4-request cap');
  assert(registeredIntervals.some(x=>x.ms===120000),
   'Still-open tab must register polling refresh every two minutes');
  assert(registeredIntervals.some(x=>x.ms===300000),
