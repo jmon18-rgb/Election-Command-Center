@@ -1,14 +1,14 @@
 {
   "schema_version": "bottom-up-2026-poll-environment-shadow-v1",
   "status": "SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE",
-  "polling_generated_at": "2026-10-16T11:59:09.821055Z",
+  "polling_generated_at": "2026-10-16T12:13:24.573090Z",
   "presidential_geography_year": 2026,
   "presidential_2024_national_two_party_margin_points": -1.705,
   "generic_ballot_2026_d_minus_r_points": 7.54,
   "generic_implied_vs_2024_presidential_swing_points": 9.245,
-  "independent_polling_estimated_presidential_to_race_swing_points": 9.465,
-  "bottom_up_implied_national_margin_points": 7.759,
-  "bottom_up_minus_generic_environment_points": 0.219,
+  "independent_polling_estimated_presidential_to_race_swing_points": 9.384,
+  "bottom_up_implied_national_margin_points": 7.678,
+  "bottom_up_minus_generic_environment_points": 0.138,
   "candidate_specific_effects_removed": false,
   "candidate_quality_calibration_available": false,
   "total_qualifying_races": 14,
@@ -26,7 +26,7 @@
     {
       "state": "ME",
       "number_qualifying_races": 1,
-      "swing_points": -4.899
+      "swing_points": -4.879
     },
     {
       "state": "MN",
@@ -76,12 +76,12 @@
     {
       "state": "TX",
       "number_qualifying_races": 1,
-      "swing_points": 16.678
+      "swing_points": 16.318
     },
     {
       "state": "KS",
       "number_qualifying_races": 1,
-      "swing_points": 18.141
+      "swing_points": 17.611
     },
     {
       "state": "NE",
@@ -108,13 +108,13 @@
       "race_code": "TX-SEN",
       "state": "TX",
       "presidential_2024_margin": -13.878,
-      "poll_margin": 2.8,
-      "raw_swing_points": 16.678,
-      "capped_swing_points": 16.678,
+      "poll_margin": 2.44,
+      "raw_swing_points": 16.318,
+      "capped_swing_points": 16.318,
       "capped_local_outlier": false,
-      "weight": 0.8888888888888888,
-      "independent_firms": 13,
-      "latest_age_days": 5
+      "weight": 0.9555555555555556,
+      "independent_firms": 14,
+      "latest_age_days": 2
     }
   ],
   "notes": [
