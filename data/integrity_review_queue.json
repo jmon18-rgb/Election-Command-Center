@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-16T09:45:59.614600Z",
+  "updated_at": "2026-10-16T10:46:30.571437Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
-    "total_leads": 153,
-    "awaiting_primary_source": 151,
+    "total_leads": 155,
+    "awaiting_primary_source": 153,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 12,
     "advisory_related_headlines": 27
@@ -156,6 +156,25 @@
   ],
   "items": [
     {
+      "id": "3bfb838f97df4fcad457",
+      "title": "DOJ Takes California to Court Over Potential Noncitizen Voting - Liberty Nation News",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNWml2NG9WenlBTEVDT2FwcncxU3NtYXhDeVBJd1pvYU9INERqODhCX2x1bkt6WDc0NndrYkJkMnBBZFNvV1RpNFRabll5MnBRQ0x2aXVZMXpMUHMtZnBZWEYzRzZFR0dFYmxhWUdGdldhY0VINEN4aDFMTXJSd21HbU5oUzV5UWRlaWlEMHV5Z0djMUZLVi1fQw?oc=5",
+      "publisher": "Liberty Nation News",
+      "published_at": "2026-10-16T09:55:03Z",
+      "detected_at": "2026-10-16T10:46:30.571437Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "ce54e0fd0e050d0442db",
       "title": "Missouri can keep using disputed federal database to review voter eligibility - Park Hills Daily Journal",
       "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNOGhieWhhOEZNVzVFWjgxS0VsMDVVRFptUlJzYThmellhbGpsWnpLQmotMWktcS1RN1ZQUGZ0OEdzeU9jVFAyX0sxWUxCdXI0VzNUOFJIYlg1MVVlNGczcmM3b3R6WjFxZjlSczYtZlJMRUtZeWhfWlRrM1lTS1A2d0o4OXVlaF9adGxkWTFxclI4M2tOZnZsVjltbVlGNlJBRkpnM25jRWcwZkJHX2o0MkEyaEFWUUlWZG1SZXdGUE0zekhDTU1yX05WTXBQRjhl?oc=5",
@@ -169,6 +188,27 @@
         "registration"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "749c7038548874796c2a",
+      "title": "Elon Musk settles fraud lawsuits over his $1 million giveaways to 2024 election voters - CNN",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPY3NaSElROHFDY0RYdkNaMmYxMFZTUE1VOUc5NzE2eGtlTWJaSS1nejFxWk9rVnhqcEx4cHdYcG1zVU9uSWRrQVVQZkFSSFYxOWxsM3F4Y1dISlZYb3M4aDI4ZHk3Q3hEQU1DRnBNQ0dRblktM3BBaXpIdzBmS285N3VHMmwzUjFVYl84Q1JjYmlBTk9LMGswdFAwSkQ?oc=5",
+      "publisher": "CNN",
+      "published_at": "2026-10-16T03:39:00Z",
+      "detected_at": "2026-10-16T10:46:30.571437Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "1 million",
+        "2024 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
