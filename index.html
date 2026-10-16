@@ -2995,7 +2995,7 @@ function enLiveRaceEstimate(item){
   enOffice===item.office&&enFetchError||
   enResumePendingOffices.has(item.office));
  const safe=snap&&error?{...snap,stale:true}:snap;
- const id=enWatchId(item),civic=enCivicErrors[id]?null:enCivicByWatch[id];
+ const civic=enCivicUsable(item);
  return window.RaceLiveNowcast.estimate(modelRaceOddsData,item,safe,civic);
 }
 
@@ -3057,7 +3057,7 @@ function smartRaceSource(item){
   return Number.isFinite(t)&&t>=start&&t<=now+900000&&now-t<=180*60000;
  };
  const id=enWatchId(item),state=item.key.slice(0,2);
- const civic=!enCivicErrors[id]?enCivicByWatch[id]:null;
+ const civic=enCivicUsable(item);
  const civicOK=Boolean(civic&&civic.office===item.office&&civic.key===item.key&&
   civic.provider==='civicAPI'&&validAt(civic.last_updated));
  const called=civicOK?window.ElectionNightSignals?.validatedCall(civic,now):null;
@@ -3350,7 +3350,9 @@ function enRenderAmbientDesk(){
    const errors={};
    for(const office of ['House','Senate'])
     errors[office]=Boolean(enOfficeErrors[office]||(enOffice===office&&enFetchError));
-   for(const id of Object.keys(enCivicErrors))errors[id]=Boolean(enCivicErrors[id]);
+   for(const id of new Set([...Object.keys(enCivicErrors),
+    ...Object.keys(enCivicByWatch)]))
+    errors[id]=Boolean(enCivicErrors[id]||!enCivicProviderVerified());
    const snapshots={...enOfficeSnapshots};
    if(enData&&enModeYear===2026&&!snapshots[enOffice])snapshots[enOffice]=enData;
    try{
@@ -3449,16 +3451,19 @@ function enRenderSourceHealth(){
   failed=items.filter(id=>enCivicErrors[id]).length;
  const cooldown=enCivicBreaker?.status();
  const paused=Boolean(cooldown?.blocked);
+ const recovering=Boolean(cooldown?.consecutive)&&!paused;
  const secondary=elt('div','en-source-item');
  secondary.append(elt('strong','','Supplemental · civicAPI'),
-  elt('span','en-source-state '+(paused||failed?'bad':ready?'good':'wait'),
+  elt('span','en-source-state '+(paused||recovering||failed?'bad':ready?'good':'wait'),
    paused?'PAUSED · UPSTREAM HTTP '+cooldown.last_http_status:
+   recovering?'RECHECK REQUIRED · HTTP '+cooldown.last_http_status:
    failed?'RETRYING '+failed+' RACES':ready?'VALIDATED SOURCES':'AWAITING SOURCE'),
   elt('span','',ready+'/'+items.length+
-   ' tracked races have verified details · '+failed+
+   ' cached verified source records · '+failed+
    ' failed most recent checks'+
-   (paused?' · next safe retry in '+cooldown.seconds_remaining+'s':'')+
-   ' · no missing race treated as zero'));
+   (paused?' · next safe retry in '+cooldown.seconds_remaining+'s':
+    recovering?' · no fresh validated response since outage':'')+
+   ' · source calls and odds held until verified recovery · no missing race treated as zero'));
  host.append(secondary);
  headline.textContent=healthy+'/3 primary offices healthy · '+
   impaired+' delayed/retrying · '+failed+' civicAPI retrying';
@@ -3650,7 +3655,7 @@ function jointSourceItem(item){
  const err=primary?enOfficeErrors[office]||
    (enModeYear===2026&&enOffice===office?enFetchError:null):enCivicErrors[id];
  const source=snapshot&&err?{...snapshot,stale:true}:snapshot;
- const secondary=!primary&&!err?enCivicByWatch[id]:null;
+ const secondary=!primary?enCivicUsable(watch):null;
  return window.RaceLiveNowcast?.observed(watch,source,secondary)||null;
 }
 function jointLiveObservations(){
@@ -3665,7 +3670,7 @@ function jointLiveObservations(){
   const office=r.code.endsWith('-SEN')?'Senate':
    r.code.endsWith('-GOV')?'Governor':'House';
   const item=enLiveRaceItem({office:office.toLowerCase(),race_code:r.code});
-  const civic=item?enCivicByWatch[enWatchId(item)]:null;
+  const civic=item?enCivicUsable(item):null;
   const verified=window.ElectionNightSignals?.validatedCall(civic,now);
   if(item&&civic?.office===item.office&&civic?.key===item.key&&
      verified&&['D','R'].includes(verified.party)){
@@ -4351,12 +4356,13 @@ function enNationalSourceStatus(item){
  const isPrimary=enSupportedStates.has(item.state);
  const data=isPrimary?(enOfficeSnapshots.Senate||
    (enModeYear===2026&&enOffice==='Senate'?enData:null)):
-   enCivicByWatch[enWatchId(item)];
+   enCivicUsable(item);
  const row=isPrimary?data?.races?.[item.key]:data;
  if(!row||!Number.isSafeInteger(row.total)||row.total===0)
   return {reported:false,source:isPrimary?'Open America':'civicAPI',
     text:!enNationalEnabled?'Not monitoring this source yet':
     row?'No reported votes yet':isPrimary&&data?'No record reported · not zero':
+    !isPrimary&&!enCivicProviderVerified()?'Supplemental source recovering; cached totals not counted':
     !isPrimary&&enCivicErrors[enWatchId(item)]?'Secondary source unavailable':
     'Awaiting verified source'};
  if(isPrimary){
@@ -4795,6 +4801,17 @@ function enWatchToggle(item){
  * official certification. Keep identifier verification and source isolation. */
 const enCivicBase='https://civicapi.org/api/v2';
 const enCivicBreaker=window.ElectionNightSourceBackoff?.create()||null;
+// A past successful fetch does not remain eligible evidence after any
+// unresolved upstream 429/502/503/504, including after the cooldown expires.
+// Only a freshly validated detail response releases the source-wide hold.
+function enCivicProviderVerified(){
+ return !enCivicBreaker||enCivicBreaker.status().consecutive===0;
+}
+function enCivicUsable(item){
+ const id=enWatchId(item);
+ return enCivicProviderVerified()&&!enCivicErrors[id]?
+  enCivicByWatch[id]||null:null;
+}
 
 const enJohnBrownPortraitUrl='https://cdn.loc.gov/service/pnp/ppmsca/23700/23764v.jpg';
 const enMilestonePosters=Object.freeze({
@@ -4820,7 +4837,8 @@ function enMilestoneEvidence(){
  const rows=Object.create(null);
  for(const item of window.ElectionNightSignals?.TRACKED||[]){
   const key=enWatchId(item);
-  if(!enCivicErrors[key]&&enCivicByWatch[key])rows[key]=enCivicByWatch[key];
+  const civic=enCivicUsable(item);
+  if(civic)rows[key]=civic;
  }
  return rows;
 }
@@ -5059,6 +5077,7 @@ function enCivicQuery(item){
 }
 function enCivicStatus(item){
  const id=enWatchId(item),data=enCivicByWatch[id];
+ if(!enCivicProviderVerified())return 'civicAPI · upstream recovering · last verified source retained for audit only';
  if(!data)return enCivicErrors[id]?'civicAPI source check unavailable · keeping watch':'civicAPI · checking November 3 race';
  const revision=data.last_updated?' · updated '+enFormattedTime(data.last_updated):'';
  const reporting=data.percent_reporting.toFixed(0)+'% precincts';
@@ -5090,9 +5109,9 @@ async function enCivicFetchJson(url,timeoutMs=12000){
      enCivicBreaker?.fail(response.status);
      throw Error('civicAPI HTTP '+response.status);
     }
-    const json=await response.json();
-    enCivicBreaker?.success();
-    return json;
+    // HTTP recovery alone cannot reactivate cached calls. A fully validated
+    // race detail is required before reauthorizing this source.
+    return response.json();
    })(),
    new Promise((_,reject)=>{
     timer=setTimeout(()=>{
@@ -5140,6 +5159,7 @@ async function enCivicFetchOne(item,forceAfterPending=false){
   if(old?.total>0&&next.total===0)
    throw Error('Supplementary source unexpectedly cleared a counted race');
   enCivicByWatch[id]=next;
+  enCivicBreaker?.success(); // eligible race source has been independently validated
   enProcessCivicAlert(item,old,next);
   enCivicRaceIds[id]=row;
   delete enCivicErrors[id];
