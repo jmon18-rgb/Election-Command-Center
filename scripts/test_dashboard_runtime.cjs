@@ -592,7 +592,12 @@ async function settle(){
  assert.match(iaTide.textContent,/Marist University/);
  assert.match(iaTide.textContent,/LV D \+3\.0 INCLUDED/);
  assert.match(iaTide.textContent,/RV D \+7\.0 not double-counted/);
- assert.match(iaTide.textContent,/combined mean D \+0\.8/);
+ const currentIowa=model.senate_all.find(x=>x.race_code==='IA-SEN');
+ assert(currentIowa&&Number.isFinite(currentIowa.dem_minus_rep));
+ const expectedIowa=(currentIowa.dem_minus_rep>=0?'D +':'R +')+
+  Math.abs(currentIowa.dem_minus_rep).toFixed(1);
+ assert(iaTide.textContent.includes('combined mean '+expectedIowa),
+  'Iowa tide must reflect current selected polling mean, not a frozen snapshot');
  const ohMarist=primary.races.find(x=>x.race_code==='OH-SEN').polls.filter(x=>
   x.pollster==='Marist University'&&x.field_end==='2026-09-27');
  assert(ohMarist.some(x=>x.dem===51&&x.rep===43));
