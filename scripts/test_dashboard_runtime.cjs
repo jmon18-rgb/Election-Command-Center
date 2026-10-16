@@ -149,10 +149,20 @@ async function settle(){
  const frontRows=[...get('#smartBriefGrid').querySelectorAll('a.smart-signal')];
  const frontSenateRows=frontRows.filter(x=>x.dataset.race.endsWith('-SEN'));
  const frontHouseRows=frontRows.filter(x=>/^[A-Z]{2}-[0-9]{2}$/.test(x.dataset.race));
- assert.equal(frontSenateRows.length,35,
-  'Where the wave breaks must include all 35 Senate ballot contests, not only close races');
- assert(frontHouseRows.length>=50,
-  'Broad House monitoring must include curated districts, not only closely modeled seats');
+ assert(frontSenateRows.length>0&&frontSenateRows.length<35,
+  'Competitive focus shows Senate battlegrounds without all the safe seats');
+ assert(frontHouseRows.length>0,
+  'Competitive focus retains meaningful House districts');
+ assert.equal(w.eval("smartFocusInteresting({office:'Senate',model:{dem_beats_rep_pct:95}})"),false);
+ assert.equal(w.eval("smartFocusInteresting({office:'House',model:{dem_beats_rep_pct:5}})"),false);
+ assert.equal(w.eval("smartFocusInteresting({office:'House',model:{dem_beats_rep_pct:94.9}})"),true);
+ assert.equal(w.eval("smartFocusInteresting({office:'Senate',model:null})"),true,
+  'An unrated Senate contest is unknown, not falsely classified safe');
+ assert.equal(w.eval("smartFocusInteresting({office:'House',model:null})"),false,
+  'Unrated House contests require current evidence to enter focus');
+ assert(frontRows.every(x=>w.eval("smartFocusInteresting(smartRaceRanked().find(r=>r.code==="+
+  JSON.stringify(x.dataset.race)+"))")),
+  'Safe modeled races must not leak into the default focus');
  assert(frontRows.some(x=>/win chance/.test(x.textContent)),
   'Available linked model odds remain visible without inventing missing probabilities');
  assert(frontRows.some(x=>/Poll (D|R)\+/.test(x.textContent)),
@@ -166,7 +176,19 @@ async function settle(){
  assert.strictEqual(get('#smartBriefGrid').querySelector('a.smart-signal'),
   unchangedFirstRow,
   'No-op refreshes must preserve existing full-roster DOM and event handlers');
- assert.match(get('#smartBriefCount').textContent,/35\/35 Senate contests/);
+ assert.match(get('#smartBriefCount').textContent,/competitive focus/);
+ assert.match(get('#smartBriefCount').textContent,/at ≥95% omitted/);
+ assert.equal(get('#smartBriefShowAll').getAttribute('aria-pressed'),'false');
+ get('#smartBriefShowAll').click();
+ const fullRows=[...get('#smartBriefGrid').querySelectorAll('a.smart-signal')];
+ assert.equal(fullRows.filter(x=>x.dataset.race.endsWith('-SEN')).length,35,
+  'The full 35-seat Senate universe remains accessible on demand');
+ assert(fullRows.length>frontRows.length,
+  'Full roster must restore safe modeled races and other tracked districts');
+ assert.equal(get('#smartBriefShowAll').getAttribute('aria-pressed'),'true');
+ get('#smartBriefShowAll').click();
+ assert.equal(get('#smartBriefGrid').querySelectorAll('a.smart-signal').length,frontRows.length,
+  'Switching back restores the competitive-only list');
  assert.equal(get('#smartNightDesk').hidden,true,
   '2024 archive should hide the live 2026 watchboard');
  assert.equal(get('#jointHomeSummary').closest('details').open,false,
@@ -187,7 +209,7 @@ async function settle(){
  assert.equal(get('#smartBriefControls').querySelector('[data-smart-office="House"]')
   .getAttribute('aria-pressed'),'true');
  assert.equal(get('#smartBriefGrid').querySelectorAll('a.smart-signal').length,frontHouseRows.length,
-  'House filter shows every tracked House seat including non-close baseline races');
+  'House office filter retains competitive-only House rows');
  assert(get('#smartBriefGrid').textContent.includes('NM-02')||
   get('#smartBriefGrid').textContent.includes('PA-10'),
   'House filter retains previously tracked districts');
@@ -198,7 +220,7 @@ async function settle(){
  get('#smartBriefSearch').value='';
  get('#smartBriefSearch').dispatchEvent(new w.Event('input',{bubbles:true}));
  get('#smartBriefControls').querySelector('[data-smart-office="Senate"]').click();
- assert.equal(get('#smartBriefGrid').querySelectorAll('a.smart-signal').length,35);
+ assert.equal(get('#smartBriefGrid').querySelectorAll('a.smart-signal').length,frontSenateRows.length);
  get('#smartBriefControls').querySelector('[data-smart-office="All"]').click();
  assert.equal(get('#smartBriefGrid').querySelectorAll('a.smart-signal').length,frontRows.length);
  // Full roster behavior is verified above. Keep later unrelated Monte Carlo,
@@ -348,11 +370,17 @@ async function settle(){
  get('#enMode2026').click();
  assert.equal(get('#smartNightDesk').hidden,false,
   '2026 results mode must show automatic key race watch');
+ const nightFocus=[...get('#smartNightGrid').querySelectorAll('a.smart-signal')]
+  .filter(x=>x.dataset.race.endsWith('-SEN'));
+ assert(nightFocus.length>0&&nightFocus.length<35,
+  'Election-night desk defaults to interesting Senate contests');
+ get('#smartNightShowAll').click();
  assert.equal([...get('#smartNightGrid').querySelectorAll('a.smart-signal')]
   .filter(x=>x.dataset.race.endsWith('-SEN')).length,35,
-  'Election-night desk must also show all 35 Senate contests');
+  'Election-night full roster still exposes every Senate seat');
+ get('#smartNightShowAll').click();
  get('#smartNightControls').querySelector('[data-smart-office="Senate"]').click();
- assert.equal(get('#smartNightGrid').querySelectorAll('a.smart-signal').length,35);
+ assert.equal(get('#smartNightGrid').querySelectorAll('a.smart-signal').length,nightFocus.length);
  assert.equal(w.eval("enAutoTracked({office:'House',key:'PA-10'})"),true,
   'Reference House district is followed without custom user pins');
  assert.equal(w.eval("enAutoTracked({office:'Senate',key:'ME'})"),true);
