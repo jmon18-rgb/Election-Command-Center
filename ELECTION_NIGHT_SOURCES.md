@@ -2,6 +2,10 @@
 
 Updated October 13, 2026. Goal: a useful, trustworthy watch-through-the-evening dashboard that **keeps actual vote counts separate from race calls, from projections, and from polling averages.**
 
+## October 16 — House source probe safety and completeness gate
+
+The four-hour supplemental House audit now queries at-large `-00` districts using a generic `US House` search scoped to their exact state, instead of the misleading `US House 0` string; an exact 2026 general-election, district and candidate-detail match is still mandatory. If civicAPI returns 429/502/503/504 or a transport failure, the audit stops further requests for that batch, emits explicit `NOT_CHECKED_UPSTREAM_PAUSED` records for every unattempted district, and reports planned versus actually attempted probes. These are **unknown**, not a failure to index a race and never zero votes. The GitHub source-preflight workflow checks its House probe outcome and fails if the probe script fails; a source discovery audit cannot silently disappear behind two passing office-source checks. This is bounded sampling, not 435-race live results certification.
+
 ## October 16 — rotating nationwide source-gap audit (not a full feed)
 
 `scripts/probe_house_coverage_2026.py` reads the repository's validated **435-seat state apportionment** and separately identifies every House district outside Open America's 22 primary states. Each four-hour preflight checks six persistent high-interest districts (NH-01, ME-02, NV-03, NE-02, NY-17 and WI-03) **plus ten rotating districts**, keeping requests bounded. The rotation traverses all non-anchor districts if each scheduled run succeeds; missed or delayed runs mean no guarantee of complete coverage. The preflight retains source-identity details and missing/ambiguous/outage reasons in a short-lived JSON GitHub Actions artifact (15-day retention) and a human-readable step summary. No payload becomes a national vote feed, a source-derived polling average, or an independent professional call.
