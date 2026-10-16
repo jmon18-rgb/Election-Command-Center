@@ -256,6 +256,106 @@ class HouseCoverageTests(unittest.TestCase):
         self.assertIn(plan["districts"][3], retry["districts"])
         self.assertNotIn(plan["districts"][0], retry["districts"])
 
+    def test_complete_state_search_saves_requests_and_revalidates_details(self):
+        codes = tuple(f"CA-{i:02}" for i in range(4, 12))
+        rows = [{
+            **self.row, "province": "CA", "district": code,
+            "election_name": f"California US House {int(code[3:])}",
+            "id": 86900 + int(code[3:])
+        } for code in codes]
+        details = {r["id"]: {
+            **r, "election_type": "House of Representatives",
+            "candidates": self.detail["candidates"]
+        } for r in rows}
+        requests = []
+        def provider(path, params):
+            requests.append((path, params))
+            if path == "/race/search":
+                self.assertEqual(params["query"], "US House")
+                return {"count": len(rows), "races": rows}
+            return details[int(path.rsplit("/", 1)[-1])]
+        stats = {}
+        got = run_batch({"districts": codes}, provider, delay=0, stats=stats)
+        report = build_report({"districts": codes, "window_utc": "2026-10-16T20:00:00Z",
+                               "primary_states": 22, "uncovered_house_districts": 219,
+                               "anchor_count": 0, "rotating_count": len(codes),
+                               "windows_per_rotation": 28}, got, request_stats=stats)
+        self.assertEqual([r["status"] for r in got], ["INDEXED_EXACT_RACE"] * 8)
+        self.assertEqual(stats["state_searches"], 1)
+        self.assertEqual(stats["exact_district_searches"], 0)
+        self.assertEqual(stats["detail_requests"], 8)
+        self.assertEqual(stats["total_http_requests"], 9)
+        self.assertEqual(stats["state_batch_identity_hits"], 8)
+        self.assertEqual(report["indexed_exact"], 8)
+        self.assertEqual(report["request_stats"]["total_http_requests"], 9)
+        self.assertEqual(len(requests), 9)
+
+    def test_incomplete_state_batch_falls_back_to_exact_seat_searches(self):
+        codes = ("CA-04", "CA-05", "CA-06")
+        hits = []
+        def provider(path, params):
+            hits.append((path, params))
+            if path == "/race/search" and params["query"] == "US House":
+                return {"races": [self.row], "count": 52}
+            if path == "/race/search":
+                return {"races": []}
+            raise AssertionError("Never request details from an incomplete search")
+        stats = {}
+        results = run_batch({"districts": codes}, provider, delay=0, stats=stats)
+        self.assertEqual([r["status"] for r in results], ["NOT_INDEXED"] * 3)
+        self.assertEqual(stats["state_batch_rejected_or_incomplete"], 1)
+        self.assertEqual(stats["state_searches"], 1)
+        self.assertEqual(stats["exact_district_searches"], 3)
+        self.assertEqual(stats["detail_requests"], 0)
+        self.assertEqual(len(hits), 4)
+        # Broad search with a seemingly unique match but unknown cardinality
+        # must NOT waive the exact search requirement.
+        hits.clear()
+        def no_count(path, params):
+            hits.append(params["query"])
+            if params["query"] == "US House":
+                return {"races": [self.row]}
+            return {"races": []}
+        results = run_batch({"districts": codes}, no_count, delay=0)
+        self.assertEqual([r["status"] for r in results], ["NOT_INDEXED"] * 3)
+        self.assertEqual(len(hits), 4)
+
+    def test_shared_503_on_state_search_stops_without_hammering(self):
+        codes = ("CA-04", "CA-05", "CA-06", "CA-07")
+        attempts = []
+        def provider(path, params):
+            attempts.append(path)
+            raise urllib.error.HTTPError("https://civicapi.org", 503,
+                                         "rate limit", None, None)
+        stats = {}
+        rows = run_batch({"districts": codes}, provider, delay=0, stats=stats)
+        self.assertEqual(len(attempts), 1)
+        self.assertEqual([r["status"] for r in rows],
+                         ["TEMPORARY_UPSTREAM_FAILURE"] +
+                         ["NOT_CHECKED_UPSTREAM_PAUSED"] * 3)
+        self.assertEqual(rows[0]["reason"], "HTTP_503")
+        self.assertEqual(stats["total_http_requests"], 1)
+
+    def test_batched_detail_failure_pauses_after_source_error(self):
+        codes = ("CA-04", "CA-05", "CA-06")
+        candidates = [{
+            **self.row, "province": "CA", "district": code,
+            "election_name": f"California US House {int(code[3:])}",
+            "id": 87000 + int(code[3:])
+        } for code in codes]
+        attempts = []
+        def provider(path, params):
+            attempts.append(path)
+            if path == "/race/search":
+                return {"count": 3, "races": candidates}
+            raise urllib.error.HTTPError("https://civicapi.org", 429,
+                                         "too many", None, None)
+        results = run_batch({"districts": codes}, provider, delay=0)
+        self.assertEqual([r["status"] for r in results],
+                         ["TEMPORARY_UPSTREAM_FAILURE"] +
+                         ["NOT_CHECKED_UPSTREAM_PAUSED"] * 2)
+        self.assertEqual(attempts, ["/race/search", "/race/87004"])
+
     def test_adaptive_history_is_fail_closed(self):
         now = datetime(2026, 10, 16, 20, 11, tzinfo=timezone.utc)
         ledger = synthetic_initial_coverage()
