@@ -1247,6 +1247,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/civicapi_house_2026_adapter.js?v=e14dfadeda8a"></script>
 <script src="./scripts/house_at_large_bridge.js?v=f9e1399d5868"></script>
 <script src="./scripts/election_night_source_backoff.js?v=9d0c92796244"></script>
+<script src="./scripts/election_night_transport.js?v=8ca9dd1008eb"></script>
 <script src="./scripts/election_night_nowcast.js?v=fa5349790084"></script>
 <script src="./scripts/election_night_early_signals.js?v=7691146833ec"></script>
 <script src="./scripts/election_night_priority.js?v=e1c697ce43d8"></script>
@@ -4843,6 +4844,7 @@ function enWatchToggle(item){
  * official certification. Keep identifier verification and source isolation. */
 const enCivicBase='https://civicapi.org/api/v2';
 const enCivicBreaker=window.ElectionNightSourceBackoff?.create()||null;
+const enCivicRequestPool=window.ElectionNightTransport?.createPool(4,64)||null;
 const enCivicValidatedGenerations=Object.create(null);
 // A past successful fetch does not remain eligible evidence after any
 // unresolved upstream 429/502/503/504, including after the cooldown expires.
@@ -5141,7 +5143,12 @@ function enCivicURL(item){return enCivicByWatch[enWatchId(item)]?.source_url||'h
 // Isolate stalled provider requests from the other watched races.
 // Abort where supported, and reject on time even if a fetch ignores abort.
 async function enCivicFetchJson(url,timeoutMs=12000){
+ if(!enCivicRequestPool)throw Error('Election Night bounded transport not loaded');
+ return enCivicRequestPool.run(()=>enCivicFetchUnpooled(url,timeoutMs));
+}
+async function enCivicFetchUnpooled(url,timeoutMs=12000){
  const cool=enCivicBreaker?.status();
+ const requestGeneration=window.ElectionNightTransport.generation(enCivicBreaker);
  if(cool?.blocked)throw Error('civicAPI upstream HTTP '+cool.last_http_status+
   ' · cooling down for '+cool.seconds_remaining+'s; verified data retained');
  const controller=typeof AbortController==='function'?new AbortController():null;
@@ -5157,9 +5164,12 @@ async function enCivicFetchJson(url,timeoutMs=12000){
      enCivicBreaker?.fail(response.status);
      throw Error('civicAPI HTTP '+response.status);
     }
-    // HTTP recovery alone cannot reactivate cached calls. A fully validated
-    // race detail is required before reauthorizing this source.
-    return response.json();
+    // A response that STARTED before an outage is not recovery evidence,
+    // even if it resolves after the first 503 or the retry cooldown.
+    const detail=await response.json();
+    if(!window.ElectionNightTransport.sameGeneration(enCivicBreaker,requestGeneration))
+     throw Error('civicAPI in-flight reply invalidated by provider outage');
+    return detail;
    })(),
    new Promise((_,reject)=>{
     timer=setTimeout(()=>{
