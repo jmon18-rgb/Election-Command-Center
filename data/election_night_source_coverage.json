@@ -1,16 +1,17 @@
 {
   "election": "2026-11-03",
-  "generated_at": "2026-10-16T19:19:39.414967+00:00",
+  "generated_at": "2026-10-16T19:36:18.655492+00:00",
   "methodology": {
     "calls": "No licensed professional call provider or verified control attribution in this ledger",
     "house_probe": "Rotating sampled exact 2026 district discovery; 24-hour 'recent' does not guarantee Election Night data",
     "missing": "Unprobed, unindexed, interrupted or invalid is unknown, never zero votes",
     "pinned_secondary": "Previously source-matched civicAPI race id in curated adapter; not a live health check",
     "primary_scope": "State present in documented Open America 22-state list; no per-race 2026 reporting assertion",
-    "scoped_secondary": "Exact NH office adapter without immutable pinned source race id"
+    "scoped_secondary": "Exact NH office adapter without immutable pinned source race id",
+    "verified_identity_hint": "Ten-day exact search+detail discovery; independent of 24-hour last-probe freshness and NOT verified live returns"
   },
   "preflight_checks": {
-    "house_probe": "failure",
+    "house_probe": "success",
     "primary": "success",
     "secondary": "success"
   },
@@ -25,17 +26,18 @@
         "reason": null,
         "status": "NOT_INDEXED"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "NOT_INDEXED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "AK"
+      "state": "AK",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -57,7 +59,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "AL"
+      "state": "AL",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -79,7 +82,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "AL"
+      "state": "AL",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -101,7 +105,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "AL"
+      "state": "AL",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -123,7 +128,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "AL"
+      "state": "AL",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -145,7 +151,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "AL"
+      "state": "AL",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -167,7 +174,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "AL"
+      "state": "AL",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -189,7 +197,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "AL"
+      "state": "AL",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -206,7 +215,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "AR"
+      "state": "AR",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -223,7 +233,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "AR"
+      "state": "AR",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -240,7 +251,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "AR"
+      "state": "AR",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -257,7 +269,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "AR"
+      "state": "AR",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -274,7 +287,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "AZ"
+      "state": "AZ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -291,7 +305,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "AZ"
+      "state": "AZ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -308,7 +323,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "AZ"
+      "state": "AZ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -325,7 +341,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "AZ"
+      "state": "AZ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -342,7 +359,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "AZ"
+      "state": "AZ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -359,7 +377,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "AZ"
+      "state": "AZ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -376,7 +395,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "AZ"
+      "state": "AZ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -393,7 +413,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "AZ"
+      "state": "AZ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -410,7 +431,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "AZ"
+      "state": "AZ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -432,7 +454,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -454,7 +477,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -476,183 +500,192 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "UNRESOLVED_SOURCE_GAP",
+      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
       "id": "House|CA-04",
       "key": "CA-04",
       "last_probe": {
-        "checked_window_utc": "2026-10-16T16:00:00+00:00",
-        "race_id": null,
+        "checked_window_utc": "2026-10-16T19:00:00+00:00",
+        "race_id": 87001,
         "reason": null,
-        "status": "NOT_CHECKED_UPSTREAM_PAUSED"
+        "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
       "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_CHECKED_UPSTREAM_PAUSED",
+      "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "UNRESOLVED_SOURCE_GAP",
+      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
       "id": "House|CA-05",
       "key": "CA-05",
       "last_probe": {
-        "checked_window_utc": "2026-10-16T16:00:00+00:00",
-        "race_id": null,
+        "checked_window_utc": "2026-10-16T19:00:00+00:00",
+        "race_id": 87005,
         "reason": null,
-        "status": "NOT_CHECKED_UPSTREAM_PAUSED"
+        "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
       "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_CHECKED_UPSTREAM_PAUSED",
+      "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "UNRESOLVED_SOURCE_GAP",
+      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
       "id": "House|CA-06",
       "key": "CA-06",
       "last_probe": {
-        "checked_window_utc": "2026-10-16T16:00:00+00:00",
-        "race_id": null,
+        "checked_window_utc": "2026-10-16T19:00:00+00:00",
+        "race_id": 87006,
         "reason": null,
-        "status": "NOT_CHECKED_UPSTREAM_PAUSED"
+        "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
       "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_CHECKED_UPSTREAM_PAUSED",
+      "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "UNRESOLVED_SOURCE_GAP",
+      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
       "id": "House|CA-07",
       "key": "CA-07",
       "last_probe": {
-        "checked_window_utc": "2026-10-16T16:00:00+00:00",
-        "race_id": null,
+        "checked_window_utc": "2026-10-16T19:00:00+00:00",
+        "race_id": 87007,
         "reason": null,
-        "status": "NOT_CHECKED_UPSTREAM_PAUSED"
+        "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
       "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_CHECKED_UPSTREAM_PAUSED",
+      "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "UNRESOLVED_SOURCE_GAP",
+      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
       "id": "House|CA-08",
       "key": "CA-08",
       "last_probe": {
-        "checked_window_utc": "2026-10-16T16:00:00+00:00",
-        "race_id": null,
+        "checked_window_utc": "2026-10-16T19:00:00+00:00",
+        "race_id": 87008,
         "reason": null,
-        "status": "NOT_CHECKED_UPSTREAM_PAUSED"
+        "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
       "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_CHECKED_UPSTREAM_PAUSED",
+      "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "UNRESOLVED_SOURCE_GAP",
+      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
       "id": "House|CA-09",
       "key": "CA-09",
       "last_probe": {
-        "checked_window_utc": "2026-10-16T16:00:00+00:00",
-        "race_id": null,
+        "checked_window_utc": "2026-10-16T19:00:00+00:00",
+        "race_id": 87009,
         "reason": null,
-        "status": "NOT_CHECKED_UPSTREAM_PAUSED"
+        "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
       "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_CHECKED_UPSTREAM_PAUSED",
+      "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "UNRESOLVED_SOURCE_GAP",
+      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
       "id": "House|CA-10",
       "key": "CA-10",
       "last_probe": {
-        "checked_window_utc": "2026-10-16T16:00:00+00:00",
-        "race_id": null,
+        "checked_window_utc": "2026-10-16T19:00:00+00:00",
+        "race_id": 86958,
         "reason": null,
-        "status": "NOT_CHECKED_UPSTREAM_PAUSED"
+        "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
       "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_CHECKED_UPSTREAM_PAUSED",
+      "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "UNRESOLVED_SOURCE_GAP",
+      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
       "id": "House|CA-11",
       "key": "CA-11",
       "last_probe": {
-        "checked_window_utc": "2026-10-16T16:00:00+00:00",
-        "race_id": null,
+        "checked_window_utc": "2026-10-16T19:00:00+00:00",
+        "race_id": 86959,
         "reason": null,
-        "status": "NOT_CHECKED_UPSTREAM_PAUSED"
+        "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
       "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_CHECKED_UPSTREAM_PAUSED",
+      "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -664,17 +697,18 @@
         "reason": null,
         "status": "NOT_CHECKED_UPSTREAM_PAUSED"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "NOT_CHECKED_UPSTREAM_PAUSED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -696,7 +730,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -713,7 +748,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -730,7 +766,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -747,7 +784,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -764,7 +802,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -781,7 +820,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -798,7 +838,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -815,7 +856,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -832,7 +874,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -854,7 +897,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -871,7 +915,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -888,7 +933,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -905,7 +951,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -922,7 +969,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -939,7 +987,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -956,7 +1005,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -973,7 +1023,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -990,7 +1041,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -1007,7 +1059,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -1024,7 +1077,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -1041,7 +1095,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -1058,7 +1113,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -1075,7 +1131,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -1092,7 +1149,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -1109,7 +1167,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -1126,7 +1185,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -1143,7 +1203,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -1160,7 +1221,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -1182,7 +1244,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -1199,7 +1262,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -1216,7 +1280,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -1233,7 +1298,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -1255,7 +1321,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -1272,7 +1339,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -1294,7 +1362,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -1311,7 +1380,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -1333,7 +1403,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -1350,7 +1421,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -1367,7 +1439,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -1384,7 +1457,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1401,7 +1475,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "CO"
+      "state": "CO",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1418,7 +1493,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "CO"
+      "state": "CO",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1435,7 +1511,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "CO"
+      "state": "CO",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1452,7 +1529,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "CO"
+      "state": "CO",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1469,7 +1547,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "CO"
+      "state": "CO",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1486,7 +1565,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "CO"
+      "state": "CO",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1503,7 +1583,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "CO"
+      "state": "CO",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1520,7 +1601,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "CO"
+      "state": "CO",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1537,7 +1619,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "CT"
+      "state": "CT",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1554,7 +1637,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "CT"
+      "state": "CT",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1571,7 +1655,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "CT"
+      "state": "CT",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1588,7 +1673,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "CT"
+      "state": "CT",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1605,7 +1691,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "CT"
+      "state": "CT",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -1622,7 +1709,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "DE"
+      "state": "DE",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1639,7 +1727,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1656,7 +1745,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1673,7 +1763,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1690,7 +1781,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1707,7 +1799,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1724,7 +1817,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1741,7 +1835,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1758,7 +1853,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1775,7 +1871,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1792,7 +1889,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1809,7 +1907,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1826,7 +1925,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1843,7 +1943,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1860,7 +1961,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1877,7 +1979,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1894,7 +1997,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1911,7 +2015,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1928,7 +2033,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1945,7 +2051,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1962,7 +2069,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1979,7 +2087,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -1996,7 +2105,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2013,7 +2123,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2030,7 +2141,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2047,7 +2159,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2064,7 +2177,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2081,7 +2195,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2098,7 +2213,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2115,7 +2231,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "GA"
+      "state": "GA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2132,7 +2249,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "GA"
+      "state": "GA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2149,7 +2267,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "GA"
+      "state": "GA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2166,7 +2285,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "GA"
+      "state": "GA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2183,7 +2303,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "GA"
+      "state": "GA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2200,7 +2321,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "GA"
+      "state": "GA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2217,7 +2339,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "GA"
+      "state": "GA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2234,7 +2357,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "GA"
+      "state": "GA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2251,7 +2375,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "GA"
+      "state": "GA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2268,7 +2393,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "GA"
+      "state": "GA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2285,7 +2411,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "GA"
+      "state": "GA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2302,7 +2429,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "GA"
+      "state": "GA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2319,7 +2447,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "GA"
+      "state": "GA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2336,7 +2465,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "GA"
+      "state": "GA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2353,7 +2483,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "HI"
+      "state": "HI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2370,7 +2501,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "HI"
+      "state": "HI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2387,7 +2519,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "IA"
+      "state": "IA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2404,7 +2537,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "IA"
+      "state": "IA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2421,7 +2555,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "IA"
+      "state": "IA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2438,7 +2573,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "IA"
+      "state": "IA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2455,7 +2591,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "ID"
+      "state": "ID",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2472,7 +2609,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "ID"
+      "state": "ID",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2489,7 +2627,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "IL"
+      "state": "IL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2506,7 +2645,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "IL"
+      "state": "IL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2523,7 +2663,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "IL"
+      "state": "IL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2540,7 +2681,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "IL"
+      "state": "IL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2557,7 +2699,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "IL"
+      "state": "IL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2574,7 +2717,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "IL"
+      "state": "IL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2591,7 +2735,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "IL"
+      "state": "IL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2608,7 +2753,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "IL"
+      "state": "IL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2625,7 +2771,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "IL"
+      "state": "IL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2642,7 +2789,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "IL"
+      "state": "IL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2659,7 +2807,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "IL"
+      "state": "IL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2676,7 +2825,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "IL"
+      "state": "IL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2693,7 +2843,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "IL"
+      "state": "IL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2710,7 +2861,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "IL"
+      "state": "IL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2727,7 +2879,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "IL"
+      "state": "IL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2744,7 +2897,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "IL"
+      "state": "IL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2761,7 +2915,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "IL"
+      "state": "IL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2778,7 +2933,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "IN"
+      "state": "IN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2795,7 +2951,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "IN"
+      "state": "IN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2812,7 +2969,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "IN"
+      "state": "IN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2829,7 +2987,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "IN"
+      "state": "IN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2846,7 +3005,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "IN"
+      "state": "IN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2863,7 +3023,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "IN"
+      "state": "IN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2880,7 +3041,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "IN"
+      "state": "IN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2897,7 +3059,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "IN"
+      "state": "IN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -2914,7 +3077,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "IN"
+      "state": "IN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2931,7 +3095,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "KS"
+      "state": "KS",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2948,7 +3113,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "KS"
+      "state": "KS",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2965,7 +3131,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "KS"
+      "state": "KS",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2982,7 +3149,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "KS"
+      "state": "KS",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -2999,7 +3167,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "KY"
+      "state": "KY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3016,7 +3185,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "KY"
+      "state": "KY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3033,7 +3203,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "KY"
+      "state": "KY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3050,7 +3221,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "KY"
+      "state": "KY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3067,7 +3239,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "KY"
+      "state": "KY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3084,7 +3257,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "KY"
+      "state": "KY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3101,7 +3275,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "LA"
+      "state": "LA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3118,7 +3293,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "LA"
+      "state": "LA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3135,7 +3311,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "LA"
+      "state": "LA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3152,7 +3329,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "LA"
+      "state": "LA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3169,7 +3347,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "LA"
+      "state": "LA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3186,7 +3365,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "LA"
+      "state": "LA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3203,7 +3383,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MA"
+      "state": "MA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3220,7 +3401,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MA"
+      "state": "MA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3237,7 +3419,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MA"
+      "state": "MA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3254,7 +3437,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MA"
+      "state": "MA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3271,7 +3455,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MA"
+      "state": "MA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3288,7 +3473,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MA"
+      "state": "MA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3305,7 +3491,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MA"
+      "state": "MA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3322,7 +3509,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MA"
+      "state": "MA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3339,7 +3527,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MA"
+      "state": "MA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3356,7 +3545,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MD"
+      "state": "MD",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3373,7 +3563,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MD"
+      "state": "MD",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3390,7 +3581,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MD"
+      "state": "MD",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3407,7 +3599,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MD"
+      "state": "MD",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3424,7 +3617,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MD"
+      "state": "MD",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3441,7 +3635,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MD"
+      "state": "MD",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3458,7 +3653,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MD"
+      "state": "MD",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3475,7 +3671,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MD"
+      "state": "MD",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -3497,7 +3694,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "ME"
+      "state": "ME",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -3519,7 +3717,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "ME"
+      "state": "ME",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3536,7 +3735,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MI"
+      "state": "MI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3553,7 +3753,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MI"
+      "state": "MI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3570,7 +3771,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MI"
+      "state": "MI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3587,7 +3789,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MI"
+      "state": "MI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3604,7 +3807,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MI"
+      "state": "MI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3621,7 +3825,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MI"
+      "state": "MI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3638,7 +3843,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MI"
+      "state": "MI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3655,7 +3861,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MI"
+      "state": "MI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3672,7 +3879,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MI"
+      "state": "MI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3689,7 +3897,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MI"
+      "state": "MI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3706,7 +3915,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MI"
+      "state": "MI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3723,7 +3933,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MI"
+      "state": "MI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3740,7 +3951,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MI"
+      "state": "MI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3757,7 +3969,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MN"
+      "state": "MN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3774,7 +3987,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MN"
+      "state": "MN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3791,7 +4005,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MN"
+      "state": "MN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3808,7 +4023,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MN"
+      "state": "MN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3825,7 +4041,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MN"
+      "state": "MN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3842,7 +4059,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MN"
+      "state": "MN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3859,7 +4077,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MN"
+      "state": "MN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -3876,7 +4095,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MN"
+      "state": "MN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3893,7 +4113,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MO"
+      "state": "MO",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3910,7 +4131,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MO"
+      "state": "MO",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3927,7 +4149,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MO"
+      "state": "MO",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3944,7 +4167,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MO"
+      "state": "MO",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3961,7 +4185,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MO"
+      "state": "MO",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3978,7 +4203,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MO"
+      "state": "MO",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -3995,7 +4221,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MO"
+      "state": "MO",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4012,7 +4239,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MO"
+      "state": "MO",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4029,7 +4257,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MS"
+      "state": "MS",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4046,7 +4275,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MS"
+      "state": "MS",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4063,7 +4293,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MS"
+      "state": "MS",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4080,7 +4311,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MS"
+      "state": "MS",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4097,7 +4329,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MT"
+      "state": "MT",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4114,7 +4347,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MT"
+      "state": "MT",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -4131,7 +4365,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "NC"
+      "state": "NC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -4148,7 +4383,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "NC"
+      "state": "NC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -4165,7 +4401,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "NC"
+      "state": "NC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -4182,7 +4419,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "NC"
+      "state": "NC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -4199,7 +4437,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "NC"
+      "state": "NC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -4216,7 +4455,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "NC"
+      "state": "NC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -4233,7 +4473,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "NC"
+      "state": "NC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -4250,7 +4491,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "NC"
+      "state": "NC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -4267,7 +4509,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "NC"
+      "state": "NC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -4284,7 +4527,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "NC"
+      "state": "NC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -4301,7 +4545,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "NC"
+      "state": "NC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -4318,7 +4563,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "NC"
+      "state": "NC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -4335,7 +4581,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "NC"
+      "state": "NC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -4352,7 +4599,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "NC"
+      "state": "NC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4364,17 +4612,18 @@
         "reason": null,
         "status": "NOT_INDEXED"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "NOT_INDEXED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "ND"
+      "state": "ND",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4391,7 +4640,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NE"
+      "state": "NE",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -4413,7 +4663,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NE"
+      "state": "NE",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4430,7 +4681,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NE"
+      "state": "NE",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4452,7 +4704,8 @@
       "recent_probe_status": "NOT_INDEXED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NH"
+      "state": "NH",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4474,7 +4727,8 @@
       "recent_probe_status": "NOT_INDEXED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NH"
+      "state": "NH",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4491,7 +4745,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NJ"
+      "state": "NJ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4508,7 +4763,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NJ"
+      "state": "NJ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4525,7 +4781,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NJ"
+      "state": "NJ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4542,7 +4799,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NJ"
+      "state": "NJ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4559,7 +4817,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NJ"
+      "state": "NJ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4576,7 +4835,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NJ"
+      "state": "NJ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -4598,7 +4858,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NJ"
+      "state": "NJ",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4615,7 +4876,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NJ"
+      "state": "NJ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4632,7 +4894,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NJ"
+      "state": "NJ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4649,7 +4912,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NJ"
+      "state": "NJ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4666,7 +4930,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NJ"
+      "state": "NJ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4683,7 +4948,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NJ"
+      "state": "NJ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4700,7 +4966,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NM"
+      "state": "NM",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4717,7 +4984,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NM"
+      "state": "NM",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4734,7 +5002,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NM"
+      "state": "NM",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4751,7 +5020,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NV"
+      "state": "NV",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4768,7 +5038,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NV"
+      "state": "NV",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -4790,7 +5061,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NV"
+      "state": "NV",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -4812,7 +5084,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NV"
+      "state": "NV",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4829,7 +5102,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4846,7 +5120,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4863,7 +5138,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -4885,7 +5161,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4902,7 +5179,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4919,7 +5197,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4936,7 +5215,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4953,7 +5233,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4970,7 +5251,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -4987,7 +5269,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5004,7 +5287,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5021,7 +5305,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5038,7 +5323,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5055,7 +5341,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5072,7 +5359,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5089,7 +5377,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -5111,7 +5400,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5128,7 +5418,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -5150,7 +5441,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5167,7 +5459,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5184,7 +5477,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -5206,7 +5500,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5223,7 +5518,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5240,7 +5536,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5257,7 +5554,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5274,7 +5572,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -5286,17 +5585,18 @@
         "reason": null,
         "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OH"
+      "state": "OH",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5313,7 +5613,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OH"
+      "state": "OH",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5330,7 +5631,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OH"
+      "state": "OH",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5347,7 +5649,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OH"
+      "state": "OH",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5364,7 +5667,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OH"
+      "state": "OH",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5381,7 +5685,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OH"
+      "state": "OH",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5398,7 +5703,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OH"
+      "state": "OH",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5415,7 +5721,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OH"
+      "state": "OH",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -5427,17 +5734,18 @@
         "reason": null,
         "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OH"
+      "state": "OH",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5454,7 +5762,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OH"
+      "state": "OH",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5471,7 +5780,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OH"
+      "state": "OH",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5488,7 +5798,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OH"
+      "state": "OH",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -5500,17 +5811,18 @@
         "reason": null,
         "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OH"
+      "state": "OH",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5527,7 +5839,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OH"
+      "state": "OH",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5544,7 +5857,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OH"
+      "state": "OH",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5561,7 +5875,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OK"
+      "state": "OK",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5578,7 +5893,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OK"
+      "state": "OK",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5595,7 +5911,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OK"
+      "state": "OK",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5612,7 +5929,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OK"
+      "state": "OK",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5629,7 +5947,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OK"
+      "state": "OK",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5646,7 +5965,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OR"
+      "state": "OR",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5663,7 +5983,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OR"
+      "state": "OR",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5680,7 +6001,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OR"
+      "state": "OR",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5697,7 +6019,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OR"
+      "state": "OR",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -5719,7 +6042,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OR"
+      "state": "OR",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -5736,7 +6060,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OR"
+      "state": "OR",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -5753,7 +6078,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "PA"
+      "state": "PA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -5770,7 +6096,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "PA"
+      "state": "PA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -5787,7 +6114,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "PA"
+      "state": "PA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -5804,7 +6132,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "PA"
+      "state": "PA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -5821,7 +6150,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "PA"
+      "state": "PA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -5838,7 +6168,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "PA"
+      "state": "PA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -5855,7 +6186,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "PA"
+      "state": "PA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -5872,7 +6204,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "PA"
+      "state": "PA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -5889,7 +6222,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "PA"
+      "state": "PA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -5906,7 +6240,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "PA"
+      "state": "PA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -5923,7 +6258,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "PA"
+      "state": "PA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -5940,7 +6276,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "PA"
+      "state": "PA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -5957,7 +6294,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "PA"
+      "state": "PA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -5974,7 +6312,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "PA"
+      "state": "PA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -5991,7 +6330,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "PA"
+      "state": "PA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6008,7 +6348,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "PA"
+      "state": "PA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6025,7 +6366,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "PA"
+      "state": "PA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6042,7 +6384,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "RI"
+      "state": "RI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6059,7 +6402,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "RI"
+      "state": "RI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6076,7 +6420,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "SC"
+      "state": "SC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6093,7 +6438,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "SC"
+      "state": "SC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6110,7 +6456,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "SC"
+      "state": "SC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6127,7 +6474,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "SC"
+      "state": "SC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6144,7 +6492,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "SC"
+      "state": "SC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6161,7 +6510,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "SC"
+      "state": "SC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6178,7 +6528,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "SC"
+      "state": "SC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -6190,17 +6541,18 @@
         "reason": null,
         "status": "NOT_INDEXED"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "NOT_INDEXED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "SD"
+      "state": "SD",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -6217,7 +6569,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "TN"
+      "state": "TN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -6234,7 +6587,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "TN"
+      "state": "TN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -6251,7 +6605,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "TN"
+      "state": "TN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -6268,7 +6623,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "TN"
+      "state": "TN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -6285,7 +6641,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "TN"
+      "state": "TN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -6302,7 +6659,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "TN"
+      "state": "TN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -6319,7 +6677,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "TN"
+      "state": "TN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -6336,7 +6695,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "TN"
+      "state": "TN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -6353,7 +6713,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "TN"
+      "state": "TN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6370,7 +6731,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6387,7 +6749,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6404,7 +6767,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6421,7 +6785,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6438,7 +6803,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6455,7 +6821,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6472,7 +6839,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6489,7 +6857,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6506,7 +6875,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6523,7 +6893,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6540,7 +6911,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6557,7 +6929,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6574,7 +6947,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6591,7 +6965,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6608,7 +6983,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6625,7 +7001,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6642,7 +7019,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6659,7 +7037,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6676,7 +7055,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6693,7 +7073,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6710,7 +7091,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6727,7 +7109,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6744,7 +7127,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6761,7 +7145,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6778,7 +7163,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6795,7 +7181,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6812,7 +7199,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6829,7 +7217,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6846,7 +7235,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6863,7 +7253,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6880,7 +7271,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6897,7 +7289,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6914,7 +7307,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6931,7 +7325,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6948,7 +7343,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6965,7 +7361,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6982,7 +7379,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -6999,7 +7397,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7016,7 +7415,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "UT"
+      "state": "UT",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7033,7 +7433,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "UT"
+      "state": "UT",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7050,7 +7451,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "UT"
+      "state": "UT",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7067,7 +7469,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "UT"
+      "state": "UT",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7084,7 +7487,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "VA"
+      "state": "VA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7101,7 +7505,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "VA"
+      "state": "VA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7118,7 +7523,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "VA"
+      "state": "VA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7135,7 +7541,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "VA"
+      "state": "VA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7152,7 +7559,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "VA"
+      "state": "VA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7169,7 +7577,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "VA"
+      "state": "VA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7186,7 +7595,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "VA"
+      "state": "VA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7203,7 +7613,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "VA"
+      "state": "VA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7220,7 +7631,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "VA"
+      "state": "VA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7237,7 +7649,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "VA"
+      "state": "VA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7254,7 +7667,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "VA"
+      "state": "VA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7271,7 +7685,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "VT"
+      "state": "VT",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7288,7 +7703,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "WA"
+      "state": "WA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7305,7 +7721,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "WA"
+      "state": "WA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7322,7 +7739,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "WA"
+      "state": "WA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7339,7 +7757,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "WA"
+      "state": "WA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7356,7 +7775,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "WA"
+      "state": "WA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7373,7 +7793,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "WA"
+      "state": "WA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7390,7 +7811,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "WA"
+      "state": "WA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7407,7 +7829,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "WA"
+      "state": "WA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7424,7 +7847,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "WA"
+      "state": "WA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7441,7 +7865,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "WA"
+      "state": "WA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -7463,7 +7888,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "WI"
+      "state": "WI",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -7480,7 +7906,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "WI"
+      "state": "WI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -7502,7 +7929,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "WI"
+      "state": "WI",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -7519,7 +7947,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "WI"
+      "state": "WI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -7536,7 +7965,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "WI"
+      "state": "WI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -7553,7 +7983,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "WI"
+      "state": "WI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -7575,7 +8006,8 @@
       "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "WI"
+      "state": "WI",
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -7592,7 +8024,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "WI"
+      "state": "WI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7609,7 +8042,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "WV"
+      "state": "WV",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7626,7 +8060,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "WV"
+      "state": "WV",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -7638,17 +8073,18 @@
         "reason": "HTTP_503",
         "status": "TEMPORARY_UPSTREAM_FAILURE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "TEMPORARY_UPSTREAM_FAILURE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "WY"
+      "state": "WY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -7665,7 +8101,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "AK"
+      "state": "AK",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -7682,7 +8119,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "AL"
+      "state": "AL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7699,7 +8137,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "AR"
+      "state": "AR",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7716,7 +8155,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "CO"
+      "state": "CO",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -7733,7 +8173,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "DE"
+      "state": "DE",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7750,7 +8191,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7767,7 +8209,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "GA"
+      "state": "GA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7784,7 +8227,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "IA"
+      "state": "IA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7801,7 +8245,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "ID"
+      "state": "ID",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -7818,7 +8263,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "IL"
+      "state": "IL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -7835,7 +8281,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "KS"
+      "state": "KS",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -7852,7 +8299,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "KY"
+      "state": "KY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7869,7 +8317,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "LA"
+      "state": "LA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -7886,7 +8335,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MA"
+      "state": "MA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -7903,7 +8353,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "ME"
+      "state": "ME",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7920,7 +8371,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MI"
+      "state": "MI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7937,7 +8389,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MN"
+      "state": "MN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -7954,7 +8407,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "MS"
+      "state": "MS",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -7971,7 +8425,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "MT"
+      "state": "MT",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -7988,7 +8443,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "NC"
+      "state": "NC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8005,7 +8461,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "NE"
+      "state": "NE",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "SCOPED_ADAPTER_NOT_LIVE_VERIFIED",
@@ -8022,7 +8479,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "SCOPED_ADAPTER_NO_PINNED_ID",
       "source_registry": "scoped NH adapter",
-      "state": "NH"
+      "state": "NH",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8039,7 +8497,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "NJ"
+      "state": "NJ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8056,7 +8515,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "NM"
+      "state": "NM",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8073,7 +8533,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "OH"
+      "state": "OH",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8090,7 +8551,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "OK"
+      "state": "OK",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8107,7 +8569,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "OR"
+      "state": "OR",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -8124,7 +8587,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "RI"
+      "state": "RI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -8141,7 +8605,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "SC"
+      "state": "SC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8158,7 +8623,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "SD"
+      "state": "SD",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8175,7 +8641,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "TN"
+      "state": "TN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -8192,7 +8659,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -8209,7 +8677,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "VA"
+      "state": "VA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -8226,7 +8695,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "WV"
+      "state": "WV",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8243,7 +8713,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "WY"
+      "state": "WY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8260,7 +8731,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "AK"
+      "state": "AK",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8277,7 +8749,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "AL"
+      "state": "AL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -8294,7 +8767,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "AR"
+      "state": "AR",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -8311,7 +8785,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "AZ"
+      "state": "AZ",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8328,7 +8803,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "CA"
+      "state": "CA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -8345,7 +8821,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "CO"
+      "state": "CO",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -8362,7 +8839,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "CT"
+      "state": "CT",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -8379,7 +8857,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "FL"
+      "state": "FL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -8396,7 +8875,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "GA"
+      "state": "GA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -8413,7 +8893,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "HI"
+      "state": "HI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -8430,7 +8911,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "IA"
+      "state": "IA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -8447,7 +8929,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "ID"
+      "state": "ID",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8464,7 +8947,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "IL"
+      "state": "IL",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8481,7 +8965,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "KS"
+      "state": "KS",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8498,7 +8983,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "MA"
+      "state": "MA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8515,7 +9001,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "MD"
+      "state": "MD",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8532,7 +9019,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "ME"
+      "state": "ME",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -8549,7 +9037,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MI"
+      "state": "MI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -8566,7 +9055,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "MN"
+      "state": "MN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8583,7 +9073,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "NE"
+      "state": "NE",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "SCOPED_ADAPTER_NOT_LIVE_VERIFIED",
@@ -8600,7 +9091,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "SCOPED_ADAPTER_NO_PINNED_ID",
       "source_registry": "scoped NH adapter",
-      "state": "NH"
+      "state": "NH",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8617,7 +9109,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "NM"
+      "state": "NM",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8634,7 +9127,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "NV"
+      "state": "NV",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8651,7 +9145,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "NY"
+      "state": "NY",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8668,7 +9163,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "OH"
+      "state": "OH",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -8685,7 +9181,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
-      "state": "OK"
+      "state": "OK",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8702,7 +9199,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "OR"
+      "state": "OR",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -8719,7 +9217,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "PA"
+      "state": "PA",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -8736,7 +9235,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "RI"
+      "state": "RI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -8753,7 +9253,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "SC"
+      "state": "SC",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8770,7 +9271,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "SD"
+      "state": "SD",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8787,7 +9289,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "TN"
+      "state": "TN",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -8804,7 +9307,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "TX"
+      "state": "TX",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -8821,7 +9325,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PRIMARY_PROVIDER_STATE_SCOPE",
       "source_registry": null,
-      "state": "VT"
+      "state": "VT",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8838,7 +9343,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "WI"
+      "state": "WI",
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "PINNED_ID_NOT_LIVE_VERIFIED",
@@ -8855,7 +9361,8 @@
       "recent_probe_status": "NEVER_CHECKED",
       "source_identity_status": "PINNED_PREVIOUSLY_VERIFIED_ID",
       "source_registry": "scripts/civicapi_state_batch.js",
-      "state": "WY"
+      "state": "WY",
+      "verified_identity_hint_usable": false
     }
   ],
   "schema_version": "1.0",
@@ -8872,10 +9379,19 @@
     "house": {
       "pinned_secondary": 0,
       "primary_scope": 216,
-      "recent_exact_probes": 33,
+      "recent_exact_probes": 41,
       "scoped_secondary": 0,
       "total": 435,
-      "unresolved_source_gaps": 186
+      "unresolved_breakdown": {
+        "checked_not_indexed": 5,
+        "expired_exact_identity": 0,
+        "invalid_or_ambiguous": 0,
+        "never_checked": 171,
+        "skipped_due_to_upstream_pause": 1,
+        "temporary_upstream_failure": 1
+      },
+      "unresolved_source_gaps": 178,
+      "verified_usable_id_hints": 41
     },
     "senate": {
       "pinned_secondary": 17,
