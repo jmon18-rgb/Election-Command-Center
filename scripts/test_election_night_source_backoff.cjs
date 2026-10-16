@@ -9,6 +9,7 @@ assert.equal(c.fail(404).blocked,false,'Missing race is not provider failure');
 assert.equal(c.fail(503).blocked,true);
 assert.equal(c.status().seconds_remaining,60);
 assert.equal(c.status().last_http_status,503);
+assert.equal(c.status().generation,1);
 assert.equal(c.status().consecutive,1);
 now+=30000;
 c.success();
@@ -18,6 +19,7 @@ now+=30000;
 assert.equal(c.status().blocked,false);
 assert.equal(c.fail(503).seconds_remaining,120);
 assert.equal(c.status().consecutive,2);
+assert.equal(c.status().generation,2);
 now+=120000;
 assert.equal(c.fail(429).seconds_remaining,300);
 now+=300000;
@@ -31,6 +33,8 @@ now+=600000;
 assert.equal(c.success().blocked,false);
 assert.equal(c.status().consecutive,0);
 assert.equal(c.status().last_http_status,null);
+assert.equal(c.status().generation,6,
+ 'Successful source recovery does not erase the race-validation epoch');
 assert.equal(c.fail(429).seconds_remaining,60,
  'A recovered provider starts again with a short cooldown');
 assert.equal(api.TRANSIENT.has(500),false,

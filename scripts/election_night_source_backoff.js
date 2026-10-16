@@ -12,16 +12,17 @@
  const TRANSIENT=new Set([429,502,503,504]);
  const DELAYS=Object.freeze([60000,120000,300000,600000]);
  function create(clock=()=>Date.now()){
-  let consecutive=0,blockedUntil=0,lastHttpStatus=null;
+  let consecutive=0,blockedUntil=0,lastHttpStatus=null,generation=0;
   function status(){
    const now=clock();
    return Object.freeze({blocked:now<blockedUntil,
     seconds_remaining:Math.max(0,Math.ceil((blockedUntil-now)/1000)),
-    consecutive,last_http_status:lastHttpStatus,until:blockedUntil});
+    consecutive,last_http_status:lastHttpStatus,until:blockedUntil,generation});
   }
   function fail(http){
    if(!TRANSIENT.has(http))return status();
    consecutive=Math.min(consecutive+1,DELAYS.length);
+   generation++; // invalidate all source snapshots older than this failure
    lastHttpStatus=http;
    blockedUntil=Math.max(blockedUntil,clock()+DELAYS[consecutive-1]);
    return status();
