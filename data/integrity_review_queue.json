@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-16T14:47:56.717861Z",
+  "updated_at": "2026-10-16T15:45:32.075276Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 5,
   "review_metrics": {
-    "total_leads": 161,
-    "awaiting_primary_source": 159,
+    "total_leads": 166,
+    "awaiting_primary_source": 164,
     "primary_source_checked": 2,
-    "advisory_related_headline_buckets": 12,
-    "advisory_related_headlines": 27
+    "advisory_related_headline_buckets": 13,
+    "advisory_related_headlines": 29
   },
   "advisory_related_headlines": [
     {
@@ -152,9 +152,78 @@
         "registration"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "cf7c8a069689d1e482b4",
+      "headline": "US midterms 2026: DOJ sues California, claims 20,000 suspected \u2018noncitizen voters\u2019; seeks to block mail b - The Times of India",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "5c99d47eac6835b2d611",
+      "title": "DOJ's California lawsuit may violate court order against Trump's voter roll crusade, voting groups warn - Democracy Docket",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQRXMybE8wN1BCb2tLX25NWTZfMmE2TTdMcWZ5T01zSk1mcFBoMTBOdk5waFhlWXBPd2RYZTBuTzVNSFJxQjFyNXh6Ri1MRll6RDFpbHktc1MxQTI5VEtsM0pnNWJoMWo2QVhZSVdpSTZtS2NQSWhVbE5vM1UxcE1pQ1RHS1A2bUFqQkwzNjN5QUU5a3c5eXZDYzNFTnNUc1V6N0MwZnRQZUttN1p4NEJqeHZnbjA1R1hzbVp0MHlCVFd2SFlKWG9YWXdnVXduSWZMQ3JFZzRCVmhCMjV2UVE?oc=5",
+      "publisher": "Democracy Docket",
+      "published_at": "2026-10-16T15:11:27Z",
+      "detected_at": "2026-10-16T15:45:32.075276Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "registration",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "54c7662fa7f71378e1ed",
+      "title": "State Elections Board Sending Letters to Potential Non-Citizens on Voter Rolls - The Pilot Newspaper",
+      "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxNMXZJeVZURTU4RVJwQkVoTkowVFBsTDBJYkI0QXBlNy16NmtDQnB6bHYzUzFyYWpoRWhqa0VfOENYcTZ2bC0tTTladUZrbEQ3R0Z3MUo3TzM5TElINmxZdnM4RzNHb2NFd1FJYkxBaG5rYUJJT1RHUFUtMnUwN3pocXJDWWFmODktSnhucnNZRlRoVU9jNjNadGxDYnhCakpTMVliMmZuV3ozTmp3VlBwa2hGcnRlekF3SERsMUVLRUZUYWxKeWdCVkVQT1pJX0NkZWJkRnE0b09FT1ZpMWVwT0xmeTlNSlg5bWVHT0dQWQ?oc=5",
+      "publisher": "The Pilot Newspaper",
+      "published_at": "2026-10-16T14:47:00Z",
+      "detected_at": "2026-10-16T15:45:32.075276Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "4f51f68b6cbeb0f656ea",
+      "title": "What If ICE Shows Up at the Polls? - The Bulwark",
+      "url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxNVFZmUFZMY2M0ZWxwc2FhWnlfb1lySUVraUpMOVNOMmxjUWQ1WTNaYjFuQlNUaDZqSU1EOXFWNHp2eXNWLUtWdnpNajM4bGdkNk1wOVhTeTZjUnl4bHNTLWx0UlhmUlBuSWtqaThJM3FNaXVKUHExaXBFZHJ6cmRDN2N1QXhWczRGRnBjRU5Ob0dmVmgteWdLY2VTX2Y5ZkJja01TRWhlRjkwaGtvNkp2OWh1bktmOUplYVFnM212bEdfSWJNcTVSZDl2V2pnSVRVM2luaW1UZExYcGJoU1VsYm1ob2NEYlVKc183MVhoX2pXRS1IUGJUNi1VaGJ4cFExZGdPMDVYR2Q?oc=5",
+      "publisher": "The Bulwark",
+      "published_at": "2026-10-16T14:45:26Z",
+      "detected_at": "2026-10-16T15:45:32.075276Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "cf7c8a069689d1e482b4",
       "title": "US midterms 2026: DOJ sues California, claims 20,000 suspected \u2018noncitizen voters\u2019; seeks to block mail b - The Times of India",
@@ -166,6 +235,29 @@
         "CA"
       ],
       "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026",
+        "20,000 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "00f2ed5e36b4823bd54e",
+      "title": "US midterms 2026: DOJ sues California, claims 20,000 suspected \u2018noncitizen voters\u2019; seeks to block mail ballots - inkl",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPUmlITGtLOVZhdHNoNDltc2MtUnJsQU5FYy1XNTVQSS0zQ3djMWJHcmx2aDVGV255OS1mTERUTmQxMkpkOTNUbEozRklHWUFGNXV2VnlJTjUzRzJWZU1Bd1VZelFGX3R0dzA3cFlIbTRsZ2JIMEdaMU5CUUVxWTNDV3RVTU8ySWFzOFFsQUVNTXhwOXBnTlN6TXVvQWVQS0w0QVNDYU5PVThrV0NBbG9JOGxyOWQ2UGVpZngzSllkQVloS0hUTmU5cDZsbHM?oc=5",
+      "publisher": "inkl",
+      "published_at": "2026-10-16T14:36:00Z",
+      "detected_at": "2026-10-16T15:45:32.075276Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
         "election_admin"
       ],
       "headline_numbers_unverified": [
@@ -193,6 +285,25 @@
       "headline_numbers_unverified": [
         "20,000 Voters"
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "d55c906ba8b5cd2b3734",
+      "title": "Tennessee resumes using federal SAVE tool for voter citizenship checks - nbc39.com",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPR2xXaVYzRlZPVkxPbjJaUy0tNnJKS0VFZlhmSmVGbnNjUFAwUVBhcFlfTVNBeFNkWFc2Y0dVVHVEUm9wWHEtT1FYRkNudGhLSVR6M0o5NXY2NmpwejA3eWJmeHM3YS1leDI0Z3BFdnZ1VnhkVm0ybGdXQkZiY3prUXlLdHlNSEh0ZDdRQUl3N3NmY21HbU5rY0ZFV2ZCZS00eFNfSmNra3JIZ1FvLWVieTZqbEtzZXdzNzdnUXRkbkpxd21zdFFCZ2NIcV9iWExqd2I1S1RHaktHdVY4TWFlZQ?oc=5",
+      "publisher": "nbc39.com",
+      "published_at": "2026-10-16T13:12:00Z",
+      "detected_at": "2026-10-16T15:45:32.075276Z",
+      "state_hints": [
+        "TN"
+      ],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
