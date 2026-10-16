@@ -2,6 +2,14 @@
 
 Updated October 13, 2026. Goal: a useful, trustworthy watch-through-the-evening dashboard that **keeps actual vote counts separate from race calls, from projections, and from polling averages.**
 
+## October 15 — current source status (supersedes early integration notes below)
+
+The Open America primary provides **22-state 2026 House/Senate/Governor coverage** where valid live data are available, not nationwide source coverage. The civicAPI integration is active for individually verified source records and supplemented by bounded source-probed Senate and governor state batches. A new dedicated **House general-election adapter** enforces exact 2026 district keys from the 435-seat apportionment, unique Nov. 3 House search results, candidate/party totals, provider race IDs, timestamps and same-race detail identity before results may appear in the dashboard or experimental nowcast. An unsupported/unindexed district remains **unknown**, not an inferred zero or a call.
+
+The House adapter improves the safety of existing curated/pinned House discovery, **not** the number of districts the external provider guarantees to cover. It does not make the site a nationwide results provider. There is still no professionally licensed call feed, 65 Senate holdovers are assumptions rather than independently reconciled calls, and no complete live 2024 chronology has been obtained for reporting-order backtests. Open America primary states remain primary-owned; a stale primary does not silently promote secondary records for those states.
+
+Provider winner indicators are always labeled **unofficial civicAPI calls** rather than AP calls, professional independently corroborated calls, or certified election results. More broad-based House/Governor identity probes and true nationwide source coverage remain open.
+
 ## Election Night rehearsal and reliability upgrade (October 13)
 
 **Live source update (October 13):** [Open America's election-specific API contract](https://openamerica.io/elections/api/) now explicitly specifies `Access-Control-Allow-Origin: *` on 200 and 304 responses. The dashboard is wired to request its 2026 House/Senate/Governor vote counts **directly from the user's browser**, never by repackaging or proxying the data. GitHub Actions must confirm actual provider HTTP CORS headers and response format on a real 2024 archive and 2026 endpoint before this change merges. Open America permits personal civic display with attribution and asks for permission only before creating a standalone republished results service. This is not one.
@@ -32,7 +40,7 @@ The Election Night tab has a working 2024 House archive (435 seats), a separatel
 
 - Docs: https://civicapi.org/api-documentation ; FAQ https://civicapi.org/faq
 - The provider advertises unauthenticated live-results and winner-call APIs, and says its own decision desk makes calls.
-- **Not integrated yet.** Before use, retrieve a concrete v2 races endpoint/schema, test previous certified general-election returns versus state totals, evaluate freshness, candidate/party key matching and missing/overcounted districts, and review its attribution requirement.
+- **Partially integrated as of October 15.** Multiple individually verified 2026 statewide race IDs and source-matched watchlist House districts use v2 search/detail checks with direct-browser CORS. The new House adapter requires exact 2026 general-election/district identity; full nationwide reach, same-race 2024 historical comparisons, independent professional-call validation and national coverage certification remain open.
 - Important: **a civicAPI call is a civicAPI call**, not an AP or official certification. Keep call origin, time and correction history visible; where it conflicts with another desk, show disagreement rather than deciding that a candidate is a winner.
 
 ### Official state-site downloads / HTML as a cross-check and gap-filler

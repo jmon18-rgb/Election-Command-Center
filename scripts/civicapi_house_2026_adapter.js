@@ -1,0 +1,114 @@
+/* Exact-district civicAPI House 2026 general-election reader.
+ * This is a scoped supplemental adapter, NOT a nationwide feed or a
+ * professional race-call source. No race is fabricated when search misses.
+ */
+(function(root,factory){
+ const api=factory();
+ if(typeof module!=='undefined'&&module.exports)module.exports=api;
+ if(root)root.CivicHouse2026Adapter=api;
+})(typeof window!=='undefined'?window:null,function(){
+ 'use strict';
+ const BASE='https://civicapi.org/api/v2';
+ const START=Date.parse('2026-11-03T05:00:00Z');
+ // Apportionment is an exact 435-seat ballot identity gate, including
+ // the seven at-large states. An arbitrary NH-03 or CA-53 must never be fetched.
+ const COUNTS=Object.freeze({AL:7,AK:1,AZ:9,AR:4,CA:52,CO:8,CT:5,DE:1,
+ FL:28,GA:14,HI:2,ID:2,IL:17,IN:9,IA:4,KS:4,KY:6,LA:6,ME:2,
+ MD:8,MA:9,MI:13,MN:8,MS:4,MO:8,MT:2,NE:3,NV:4,NH:2,NJ:12,
+ NM:3,NY:26,NC:14,ND:1,OH:15,OK:5,OR:6,PA:17,RI:2,SC:7,
+ SD:1,TN:9,TX:38,UT:4,VT:1,VA:11,WA:10,WV:2,WI:8,WY:1});
+ if(Object.values(COUNTS).reduce((n,c)=>n+c,0)!==435)
+  throw Error('Invalid 2026 House apportionment');
+ function supports(item){
+  if(!item||item.office!=='House'||typeof item.key!=='string'||
+    !/^[A-Z]{2}-\d{2}$/.test(item.key))return false;
+  const state=item.key.slice(0,2),count=COUNTS[state],n=Number(item.key.slice(3));
+  return Number.isInteger(count)&&(count===1?n===0:n>=1&&n<=count);
+ }
+ function electionDate(x){
+  return typeof x==='string'&&
+   /^2026-11-03(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2}))?$/.test(x)&&
+   Number.isFinite(Date.parse(x.length===10?x+'T00:00:00Z':x));
+ }
+ function query(item){
+  if(!supports(item))return null;
+  const state=item.key.slice(0,2),district=Number(item.key.slice(3));
+  return BASE+'/race/search?'+new URLSearchParams({
+   country:'US',province:state,startDate:'2026-11-03',endDate:'2026-11-03',
+   query:'US House'+(district?' '+district:''),limit:'20'
+  }).toString();
+ }
+ function match(item,row){
+  if(!supports(item)||!row||row.country!=='US'||
+    row.province!==item.key.slice(0,2)||row.municipality!=null||
+    row.district!==item.key||row.type!=='House of Representatives'||
+    row.election_type!=='General'||!electionDate(row.election_date)||
+    !Number.isSafeInteger(row.id)||row.id<=0||
+    typeof row.election_name!=='string'||
+    !(item.key.endsWith('-00')?
+      /\bUS House\b/i.test(row.election_name):
+      new RegExp('\\bUS House\\s+'+Number(item.key.slice(3))+'\\b','i')
+       .test(row.election_name))||
+    /primary|runoff/i.test(row.election_name)||
+    !Array.isArray(row.candidates)||row.candidates.length>60)return false;
+  return true;
+ }
+ function select(item,doc){
+  if(!supports(item)||!doc||!Array.isArray(doc.races)||
+    !doc.races.length||doc.races.length>20||
+    (Number.isSafeInteger(doc.count)&&doc.count>20))return null;
+  const matched=doc.races.filter(row=>match(item,row));
+  return matched.length===1?matched[0]:null;
+ }
+ function party(x){
+  const s=String(x).trim().toLowerCase();
+  return ['d','dem','democrat','democratic'].includes(s)?'D':
+   ['r','rep','gop','republican'].includes(s)?'R':'O';
+ }
+ function validate(item,row,detail,now=Date.now()){
+  if(!match(item,row)||!detail||!Number.isFinite(now)||
+    (detail.id!=null&&detail.id!==row.id)||
+    detail.country!==row.country||detail.province!==row.province||
+    detail.district!==row.district||
+    detail.election_date!==row.election_date||
+    detail.election_name!==row.election_name||
+    detail.election_type!==row.type||
+    !Number.isFinite(detail.percent_reporting)||
+    detail.percent_reporting<0||detail.percent_reporting>100||
+    !Array.isArray(detail.candidates)||!detail.candidates.length||
+    detail.candidates.length>60)return null;
+  let total=0,winners=0,called=null;
+  const seen=new Set(),candidates=[];
+  for(const c of detail.candidates){
+   if(!c||typeof c.name!=='string'||!c.name.trim()||
+     typeof c.party!=='string'||!c.party.trim()||
+     !Number.isSafeInteger(c.votes)||c.votes<0||
+     !Number.isFinite(c.percent)||c.percent<0||c.percent>100||
+     typeof c.winner!=='boolean')return null;
+   const identity=c.name.trim().toLowerCase()+'|'+c.party.trim().toLowerCase();
+   if(seen.has(identity))return null;
+   seen.add(identity);
+   total+=c.votes;
+   if(!Number.isSafeInteger(total))return null;
+   if(c.winner){called=c.name.trim();winners++;}
+   candidates.push({name:c.name.trim(),party:party(c.party),
+    votes:c.votes,percent:c.percent});
+  }
+  if(winners>1||(!total&&winners)||(now<START&&(total||winners)))return null;
+  if(total){
+   if(Math.abs(candidates.reduce((n,c)=>n+c.percent,0)-100)>2||
+     candidates.some(c=>Math.abs(100*c.votes/total-c.percent)>1.5))return null;
+   if(called&&!candidates.some(c=>c.name===called&&c.votes>0))return null;
+  }else if(candidates.some(c=>c.percent!==0))return null;
+  const updated=detail.last_updated||null;
+  if(updated){
+   const at=Date.parse(updated);
+   if(typeof updated!=='string'||!Number.isFinite(at)||
+    at>now+15*60000||(total>0&&at<START))return null;
+  }else if(total>0)return null;
+  return {provider:'civicAPI',office:'House',key:item.key,race_id:row.id,
+   last_updated:updated,percent_reporting:detail.percent_reporting,
+   total,candidates,called,source_url:BASE+'/race/'+row.id};
+ }
+ return Object.freeze({START,supports,query,match,select,validate});
+});
