@@ -41,6 +41,11 @@ jobs:
         if: steps.window.outputs.run == 'true'
         continue-on-error: true
         run: python3 scripts/test_civicapi_live_source.py
+      - name: Probe sampled source coverage in six outside-primary House districts
+        if: steps.window.outputs.run == 'true'
+        continue-on-error: true
+        run: |
+          python3 scripts/probe_house_coverage_2026.py
       - name: Record source health and fail if either provider contract is broken
         if: always() && steps.window.outputs.run == 'true'
         env:

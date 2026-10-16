@@ -2,6 +2,10 @@
 
 Updated October 13, 2026. Goal: a useful, trustworthy watch-through-the-evening dashboard that **keeps actual vote counts separate from race calls, from projections, and from polling averages.**
 
+## October 15 — sampled uncovered-House availability checks
+
+`scripts/probe_house_coverage_2026.py` checks six important House districts **outside** the 22-state primary provider in the scheduled Election Night source preflight. It validates November 3 general-election district identity, browser CORS, unique source race IDs and matching candidate/detail schema. The GitHub Actions run summarizes each district as *INDEXED_EXACT_RACE*, *NOT_INDEXED*, *AMBIGUOUS* or *SOURCE_UNAVAILABLE*. This is **not** a 435-seat census, vote relay or professional race-call feed; missing records remain unknown.
+
 ## October 15 — current source status (supersedes early integration notes below)
 
 The Open America primary provides **22-state 2026 House/Senate/Governor coverage** where valid live data are available, not nationwide source coverage. The civicAPI integration is active for individually verified source records and supplemented by bounded source-probed Senate and governor state batches. A new dedicated **House general-election adapter** enforces exact 2026 district keys from the 435-seat apportionment, unique Nov. 3 House search results, candidate/party totals, provider race IDs, timestamps and same-race detail identity before results may appear in the dashboard or experimental nowcast. An unsupported/unindexed district remains **unknown**, not an inferred zero or a call.
