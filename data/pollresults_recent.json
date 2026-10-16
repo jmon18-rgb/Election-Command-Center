@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-16T18:19:02.557765+00:00",
+  "updated_at": "2026-10-16T18:51:10.877668+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 776,
+      "available_in_source": 777,
       "records_examined": 300
     },
     "house": {
@@ -18,9 +18,38 @@
     }
   },
   "matched_primary_observations": 270,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "MT-SEN",
+      "poll_id": "2cefcb18-80ff-4334-84b2-c2e374e1f0a0"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "MT-SEN",
+      "race_type": "senate",
+      "state": "MT",
+      "poll_id": "2cefcb18-80ff-4334-84b2-c2e374e1f0a0",
+      "question_id": "35b4c7e5-e10b-42fe-ac47-79f9c9bd0b84",
+      "pollster": "Peak Insights",
+      "dem_name": "Alani Bankhead",
+      "rep_name": "Kurt Alme",
+      "dem": 12.0,
+      "rep": 44.0,
+      "margin": -32.0,
+      "field_end": "2026-10-12",
+      "field_start": "2026-10-07",
+      "posted_date": "2026-10-16",
+      "posted_source_datetime": "2026-10-16T14:17:00",
+      "posted_source_time": "10/16/26 14:17",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://x.com/burgessev/status/2111155739154882819",
+      "sample_population": "lv",
+      "sample_size": 500,
+      "partisan_lean": "R",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "WI-GOV",
       "race_type": "governor",
