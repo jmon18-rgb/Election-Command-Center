@@ -21,8 +21,11 @@ class CoverageLedgerTests(unittest.TestCase):
         cls.now = datetime(2026, 10, 16, 16, tzinfo=timezone.utc)
 
     def ledger(self, **kwargs):
-        return build(self.universe, self.reconciler, self.batch, self.nh_sen,
-                     self.nh_gov, now=self.now, **kwargs)
+        inputs = dict(universe=self.universe, reconciliation_js=self.reconciler,
+                      batch_js=self.batch, nh_senate_js=self.nh_sen,
+                      nh_governor_js=self.nh_gov, now=self.now)
+        inputs.update(kwargs)
+        return build(**inputs)
 
     @staticmethod
     def rows(ledger):
