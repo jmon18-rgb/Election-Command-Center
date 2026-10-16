@@ -113,7 +113,7 @@ async function tick(minute){
   if(minute===160&&info.district===selected[0].district){
    data.district='NH-99'; // correct race ID, malicious/wrong district detail
   }
-  if(minute===530&&info.district===eligible[0].district){
+  if(minute>=530&&info.district===eligible[0].district){
    correctedReports++;
   }
   const validated=houseAdapter.validatePinned(
@@ -157,9 +157,10 @@ async function tick(minute){
  if(stale)metrics.staleOfficeTicks++;
  if(minute===370){
   // Overlap is strictly excluded even if independently well formed.
-  out['House|TX-01']={...latest.values().next().value,office:'House',
-   key:'TX-01',race_id:999991,last_updated:new Date(now-20000).toISOString()};
-  delete errors['House|TX-01'];
+  const overlapKey=primary.House[0];
+  out['House|'+overlapKey]={...latest.values().next().value,office:'House',
+   key:overlapKey,race_id:999991,last_updated:new Date(now-20000).toISOString()};
+  delete errors['House|'+overlapKey];
  }
  const result=reconcile.reconcile({
   houseCounts:seatUniverse.house.by_state,
@@ -192,8 +193,8 @@ async function tick(minute){
  if(result.providerCalls)metrics.sourceCalls+=result.providerCalls;
  if(minute===370){
   metrics.overlapChecks++;
-  assert(result.anomalies.some(x=>x.includes('Blocked overlapping secondary House|TX-01')));
-  assert.equal(result.records['House|TX-01'].provider,'Open America');
+  assert(result.anomalies.some(x=>x.includes('Blocked overlapping secondary House|'+primary.House[0])));
+  assert.equal(result.records['House|'+primary.House[0]].provider,'Open America');
  }
  if(minute===219){
   assert(result.house.primary>0,'Fresh primary resumes after source recheck');
