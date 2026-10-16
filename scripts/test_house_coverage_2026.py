@@ -2,6 +2,7 @@
 """Deterministic source-discovery contract tests; no real HTTP requests."""
 import unittest
 import json
+import copy
 import tempfile
 import urllib.error
 from pathlib import Path
@@ -9,7 +10,8 @@ from datetime import datetime, timezone, timedelta
 from probe_house_coverage_2026 import (
     matches, detail_matches, probe, DISTRICTS, PRIMARY_STATES,
     ROTATING_PER_RUN, uncovered_house_universe, sampling_window,
-    run_batch, build_report,
+    run_batch, build_report, gap_aware_window, GAP_AWARE_LIMIT,
+    GAP_PRIORITY, COVERAGE_PATH,
 )
 
 
@@ -72,6 +74,140 @@ class HouseCoverageTests(unittest.TestCase):
             sampling_window(datetime(2026, 10, 16), inventory=seats)
         with self.assertRaisesRegex(ValueError, "Invalid anchored"):
             sampling_window(t, inventory=seats, rotation=0)
+
+    def test_gap_first_scheduled_inventory_prioritizes_unseen_races(self):
+        ledger = json.loads(COVERAGE_PATH.read_text(encoding="utf-8"))
+        now = datetime(2026, 10, 16, 20, 11, tzinfo=timezone.utc)
+        plan = gap_aware_window(now, ledger)
+        self.assertEqual(plan["discovery_strategy"], "GAP_FIRST_PREVIOUS_LEDGER")
+        self.assertEqual(plan["request_cap"], GAP_AWARE_LIMIT)
+        self.assertEqual(len(plan["districts"]), GAP_AWARE_LIMIT)
+        self.assertEqual(len(set(plan["districts"])), GAP_AWARE_LIMIT)
+        self.assertEqual(plan["never_checked_eligible"], 203)
+        self.assertEqual(plan["scheduled_rechecks"], 0)
+        self.assertIn("NH-02", plan["districts"])
+        self.assertIn("NY-19", plan["districts"])
+        self.assertIn("CA-13", plan["districts"])
+        self.assertNotIn("ME-02", plan["districts"])
+        self.assertNotIn("AL-01", plan["districts"])
+        self.assertNotIn("NH-01", plan["districts"],
+                         "A race missed 4h ago should not consume another probe yet")
+        self.assertTrue(all(code in uncovered_house_universe() for code in plan["districts"]))
+
+    def test_every_unobserved_source_reached_in_bounded_windows(self):
+        ledger = json.loads(COVERAGE_PATH.read_text(encoding="utf-8"))
+        start = datetime(2026, 10, 16, 20, 11, tzinfo=timezone.utc)
+        observed = {r["key"] for r in ledger["races"]
+                    if r["office"] == "House" and r["last_probe"]}
+        self.assertEqual(len(observed), 16)
+        windows = 0
+        while len(observed) < 219:
+            current = start + timedelta(hours=4 * windows)
+            plan = gap_aware_window(current, ledger)
+            self.assertLessEqual(len(plan["districts"]), 16)
+            self.assertEqual(len(set(plan["districts"])), len(plan["districts"]))
+            self.assertTrue(all(code not in observed for code in plan["districts"]),
+                            "Never-observed races must win over due reruns")
+            for code in plan["districts"]:
+                record = next(r for r in ledger["races"] if r["id"] == "House|" + code)
+                record["last_probe"] = {
+                    "status": "INDEXED_EXACT_RACE", "race_id": 200000 + len(observed),
+                    "checked_window_utc": plan["window_utc"],
+                }
+                observed.add(code)
+            windows += 1
+            self.assertLessEqual(windows, 14,
+                                 "All 219 supplemental House slots need coverage within 14 healthy runs")
+        self.assertEqual(len(observed), 219)
+
+    def test_adaptive_expiry_retries_missing_after_24h_and_indexed_after_72h(self):
+        ledger = json.loads(COVERAGE_PATH.read_text(encoding="utf-8"))
+        now = datetime(2026, 10, 20, 16, tzinfo=timezone.utc)
+        for row in ledger["races"]:
+            if row["office"] == "House" and row["provider_scope"] == "outside primary":
+                row["last_probe"] = {
+                    "status": "INDEXED_EXACT_RACE", "race_id": 250001,
+                    "checked_window_utc": (now - timedelta(hours=2)).isoformat(),
+                }
+        self.assertEqual(gap_aware_window(now, ledger)["districts"], ())
+        sample = next(r for r in ledger["races"] if r["id"] == "House|NH-01")
+        sample["last_probe"] = {
+            "status": "NOT_INDEXED", "checked_window_utc": (
+                now - timedelta(hours=25)).isoformat()
+        }
+        self.assertEqual(gap_aware_window(now, ledger)["districts"], ("NH-01",))
+        sample["last_probe"] = {
+            "status": "INDEXED_EXACT_RACE", "checked_window_utc": (
+                now - timedelta(hours=73)).isoformat(), "race_id": 251234
+        }
+        self.assertEqual(gap_aware_window(now, ledger)["districts"], ("NH-01",))
+        sample["last_probe"] = {
+            "status": "TEMPORARY_UPSTREAM_FAILURE", "checked_window_utc": (
+                now - timedelta(hours=5)).isoformat(), "reason": "HTTP_503"
+        }
+        self.assertEqual(gap_aware_window(now, ledger)["districts"], ("NH-01",))
+        sample["last_probe"]["checked_window_utc"] = (
+            now - timedelta(hours=2)).isoformat()
+        self.assertEqual(gap_aware_window(now, ledger)["districts"], ())
+        sample["last_probe"] = {
+            "status": "NOT_CHECKED_UPSTREAM_PAUSED",
+            "checked_window_utc": now.isoformat()
+        }
+        self.assertEqual(gap_aware_window(now, ledger)["districts"], ("NH-01",),
+                         "A paused probe is not evidence and must be retried")
+
+    def test_adaptive_503_stops_and_skipped_races_remain_priority(self):
+        now = datetime(2026, 10, 16, 20, 11, tzinfo=timezone.utc)
+        ledger = json.loads(COVERAGE_PATH.read_text(encoding="utf-8"))
+        plan = gap_aware_window(now, ledger)
+        attempts = []
+        def request(path, params):
+            attempts.append(path)
+            if len(attempts) == 3:
+                raise urllib.error.HTTPError("https://civicapi.org",
+                                             503, "upstream", None, None)
+            return {"races": []}
+        results = run_batch(plan, request=request, delay=0)
+        report = build_report(plan, results)
+        self.assertEqual(len(attempts), 3)
+        self.assertEqual(report["sampled_districts"], 3)
+        self.assertEqual(report["not_checked_upstream_paused"], 13)
+        self.assertEqual(report["request_cap"], 16)
+        self.assertEqual(report["discovery_strategy"], "GAP_FIRST_PREVIOUS_LEDGER")
+        self.assertTrue(report["upstream_paused"])
+        by_id = {r["id"]: r for r in ledger["races"]}
+        for result in results:
+            by_id["House|" + result["district"]]["last_probe"] = dict(
+                result, checked_window_utc=plan["window_utc"])
+        # Healthy unobserved seats and paused races outrank the two genuine
+        # NOT_INDEXED observations from the interrupted provider run.
+        retry = gap_aware_window(now + timedelta(hours=4), ledger)
+        self.assertIn(plan["districts"][3], retry["districts"])
+        self.assertNotIn(plan["districts"][0], retry["districts"])
+
+    def test_adaptive_history_is_fail_closed(self):
+        now = datetime(2026, 10, 16, 20, 11, tzinfo=timezone.utc)
+        ledger = json.loads(COVERAGE_PATH.read_text(encoding="utf-8"))
+        with self.assertRaises(ValueError):
+            gap_aware_window(now, ledger, limit=17)
+        bad = copy.deepcopy(ledger)
+        bad["races"] = bad["races"][:-1]
+        with self.assertRaisesRegex(ValueError, "Incomplete"):
+            gap_aware_window(now, bad)
+        bad = copy.deepcopy(ledger)
+        bad["races"].append(bad["races"][-1])
+        with self.assertRaises(ValueError):
+            gap_aware_window(now, bad)
+        bad = copy.deepcopy(ledger)
+        bad["generated_at"] = "2028-10-16T20:00:00+00:00"
+        with self.assertRaises(ValueError):
+            gap_aware_window(now, bad)
+        bad = copy.deepcopy(ledger)
+        index = next(i for i, r in enumerate(bad["races"]) if r["id"] == "House|CA-13")
+        bad["races"][index]["key"] = "CA-99"
+        with self.assertRaises(ValueError):
+            gap_aware_window(now, bad)
+
 
     def test_at_large_2026_seats_can_be_discovered(self):
         alaska = dict(self.row, province="AK", district="AK-00",
