@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-16T22:44:10.480029+00:00",
+  "updated_at": "2026-10-16T23:38:40.772802+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -21,6 +21,30 @@
   "newly_injected_into_model": 0,
   "injected_poll_ids": [],
   "observations": [
+    {
+      "race_code": "NE-GOV",
+      "race_type": "governor",
+      "state": "NE",
+      "poll_id": "49d85399-2bba-43ca-9da0-9b79b368270c",
+      "question_id": "b1be188a-ffc2-4b15-85eb-80a8261d4762",
+      "pollster": "Public Policy Polling",
+      "dem_name": "Lynne Walz",
+      "rep_name": "Jim Pillen",
+      "dem": 46.0,
+      "rep": 48.0,
+      "margin": -2.0,
+      "field_end": "2026-10-14",
+      "field_start": "2026-10-13",
+      "posted_date": "2026-10-16",
+      "posted_source_datetime": "2026-10-16T16:35:00",
+      "posted_source_time": "10/16/26 16:35",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://omaha.com/news/state-regional/government-politics/elections/article_5a5e86fc-da5f-4953-89f7-7e199e7c607e.html",
+      "sample_population": "lv",
+      "sample_size": 571,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "NE-GOV",
       "race_type": "governor",

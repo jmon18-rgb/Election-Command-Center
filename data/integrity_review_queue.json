@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-16T22:44:09.870197Z",
+  "updated_at": "2026-10-16T23:38:40.280290Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 170,
-    "awaiting_primary_source": 168,
+    "total_leads": 171,
+    "awaiting_primary_source": 169,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 13,
     "advisory_related_headlines": 30
@@ -169,6 +169,23 @@
     }
   ],
   "items": [
+    {
+      "id": "df69e27f4c4967ec8cc3",
+      "title": "Advocates prepare for the potential of ICE agents at polls in N.Y. - Spectrum News",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNLTJxOFk3T2xCZjl4VHZsTzNkNDlycWN0NnZ6MU1keFJNaVdzby1QX2xpeUVyekg5MmJmTDA1aXlaaDNSZ2FGQ0NtUnhqTDlONUpOMkFJVFBwVkxWSjBCSExjbHFfa05oWl96SEI5Z05wNFpDeWx5TWpoU2VieVV1RUpxY09DenVlWjJfVHdzS2h4Ymw3Y2lubFZB?oc=5",
+      "publisher": "Spectrum News",
+      "published_at": "2026-10-16T22:46:00Z",
+      "detected_at": "2026-10-16T23:38:40.280290Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "a45a90be3f57fb2e3412",
       "title": "Early voting starts Monday: What to bring, where to go and how to get help - Click2Houston",
