@@ -1,6 +1,6 @@
 {
   "election": "2026-11-03",
-  "generated_at": "2026-10-16T18:19:11.481180+00:00",
+  "generated_at": "2026-10-16T18:33:17.592309+00:00",
   "races": [
     {
       "checked_window_utc": "2026-10-16T16:00:00+00:00",
@@ -54,6 +54,41 @@
     },
     {
       "checked_window_utc": "2026-10-16T16:00:00+00:00",
+      "district": "CA-13",
+      "race_id": 86961
+    },
+    {
+      "checked_window_utc": "2026-10-16T16:00:00+00:00",
+      "district": "CA-22",
+      "race_id": 86971
+    },
+    {
+      "checked_window_utc": "2026-10-16T16:00:00+00:00",
+      "district": "CA-41",
+      "race_id": 86992
+    },
+    {
+      "checked_window_utc": "2026-10-16T16:00:00+00:00",
+      "district": "CA-45",
+      "race_id": 86996
+    },
+    {
+      "checked_window_utc": "2026-10-16T16:00:00+00:00",
+      "district": "CA-47",
+      "race_id": 86998
+    },
+    {
+      "checked_window_utc": "2026-10-16T16:00:00+00:00",
+      "district": "CA-49",
+      "race_id": 87000
+    },
+    {
+      "checked_window_utc": "2026-10-16T16:00:00+00:00",
+      "district": "ME-01",
+      "race_id": 87186
+    },
+    {
+      "checked_window_utc": "2026-10-16T16:00:00+00:00",
       "district": "ME-02",
       "race_id": 87187
     },
@@ -64,8 +99,23 @@
     },
     {
       "checked_window_utc": "2026-10-16T16:00:00+00:00",
+      "district": "NJ-07",
+      "race_id": 87296
+    },
+    {
+      "checked_window_utc": "2026-10-16T16:00:00+00:00",
       "district": "NV-03",
       "race_id": 87258
+    },
+    {
+      "checked_window_utc": "2026-10-16T16:00:00+00:00",
+      "district": "NV-04",
+      "race_id": 87259
+    },
+    {
+      "checked_window_utc": "2026-10-16T16:00:00+00:00",
+      "district": "NY-04",
+      "race_id": 87306
     },
     {
       "checked_window_utc": "2026-10-16T16:00:00+00:00",
@@ -74,8 +124,33 @@
     },
     {
       "checked_window_utc": "2026-10-16T16:00:00+00:00",
+      "district": "NY-19",
+      "race_id": 87321
+    },
+    {
+      "checked_window_utc": "2026-10-16T16:00:00+00:00",
+      "district": "NY-22",
+      "race_id": 87324
+    },
+    {
+      "checked_window_utc": "2026-10-16T16:00:00+00:00",
+      "district": "OR-05",
+      "race_id": 87372
+    },
+    {
+      "checked_window_utc": "2026-10-16T16:00:00+00:00",
+      "district": "WI-01",
+      "race_id": 87483
+    },
+    {
+      "checked_window_utc": "2026-10-16T16:00:00+00:00",
       "district": "WI-03",
       "race_id": 87485
+    },
+    {
+      "checked_window_utc": "2026-10-16T16:00:00+00:00",
+      "district": "WI-07",
+      "race_id": 87489
     }
   ],
   "schema_version": "1.0",
