@@ -2411,8 +2411,9 @@ async function settle(){
   get('#enWatchForm').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));
  };
  rehearsalClearPins();
+ // Independent 404 search misses may run concurrently; 503 is tested separately.
  const rehearsalPins=['AK-SEN','AK-GOV','ME-SEN','ME-GOV','NV-GOV','KY-SEN'];
- w.fetch=async()=>({ok:false,status:503,json:async()=>({})});
+ w.fetch=async()=>({ok:false,status:404,json:async()=>({})});
  for(const pin of rehearsalPins)rehearsalPin(pin);
  await w.eval('enCivicWaitUntilIdle()');
  assert.equal(get('#enWatchCount').textContent,'6 races');
@@ -2425,9 +2426,9 @@ async function settle(){
     rehearsalFirst=false;
     await new Promise(resolve=>{rehearsalUnblock=resolve});
    }
-   return {ok:false,status:503,json:async()=>({})};
+   return {ok:false,status:404,json:async()=>({})};
   }
-  return {ok:false,status:503,json:async()=>({})};
+  return {ok:false,status:404,json:async()=>({})};
  };
  const rehearsalSweep=w.eval('enRefreshCivicWatchlist(true)');
  await new Promise(resolve=>setTimeout(resolve,65));
