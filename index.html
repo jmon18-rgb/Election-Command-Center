@@ -1248,6 +1248,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/house_at_large_bridge.js?v=f9e1399d5868"></script>
 <script src="./scripts/election_night_source_backoff.js?v=9d0c92796244"></script>
 <script src="./scripts/election_night_transport.js?v=76a458acbece"></script>
+<script src="./scripts/election_night_fast_lane.js?v=19a51e15f8f6"></script>
 <script src="./scripts/election_night_nowcast.js?v=fa5349790084"></script>
 <script src="./scripts/election_night_early_signals.js?v=7691146833ec"></script>
 <script src="./scripts/election_night_priority.js?v=e1c697ce43d8"></script>
@@ -5000,7 +5001,8 @@ $('#enMilestoneClose').addEventListener('click',()=>{
 let enCivicByWatch=Object.create(null),enCivicRaceIds=Object.create(null),
  enCivicErrors=Object.create(null),enCivicPending=new Set(),enCivicLastSweep=0,enCivicSweepCursor=0,
  enCivicExpanded=new Set(),enCivicSweepInFlight=false,enCivicActiveSweeps=0,
- enCivicPendingTasks=Object.create(null),enCivicSweepTasks=new Set();
+ enCivicPendingTasks=Object.create(null),enCivicSweepTasks=new Set(),
+ enCivicLastAttemptAt=Object.create(null);
 // Only individually verified, source-ID-pinned 2026 contests use the
 // stricter shared adapter. An absent script must never fall back to the
 // looser generic source matcher.
@@ -5211,6 +5213,7 @@ async function enCivicFetchOne(item,forceAfterPending=false){
   return;
  }
  enCivicPending.add(id);
+ enCivicLastAttemptAt[id]=Date.now();
  let release;
  enCivicPendingTasks[id]=new Promise(resolve=>{release=resolve});
  try{
@@ -5272,6 +5275,38 @@ async function enCivicFetchOne(item,forceAfterPending=false){
   release();
  }
 }
+// Every 30 seconds on election night, recheck at most four personally watched
+// or high-information races that already have a validated positive vote tally.
+// This adds no paid dependencies, no blanket 435-seat polling, and no requests
+// for absent/not-indexed races. The shared pool and upstream circuit breaker
+// still govern these requests, including overlap with the national sweep.
+let enCivicFastLaneBusy=false;
+async function enCivicRefreshFastLane(){
+ const lane=window.ElectionNightFastLane;
+ if(!lane||enCivicFastLaneBusy||!lane.shouldRun({
+  year:enModeYear,visible:enIsVisible(),
+  tabVisible:document.visibilityState==='visible',
+  blocked:Boolean(enCivicBreaker?.status().blocked),
+  now:Date.now()
+ }))return;
+ const automatic=smartAutoWatch().filter(x=>Number(x.tip)>=7);
+ const selected=lane.pick({personal:enWatched,automatic,
+  reported:enCivicByWatch,lastAttempt:enCivicLastAttemptAt,
+  primaryStates:enSupportedStates,now:Date.now()});
+ if(!selected.length)return;
+ enCivicFastLaneBusy=true;
+ try{
+  await Promise.all(selected.map(async item=>{
+   // Never race a background update or hammer a newly blocked provider.
+   if(enCivicPending.has(enWatchId(item))||enCivicBreaker?.status().blocked)return;
+   await enCivicFetchOne(item);
+  }));
+ }finally{enCivicFastLaneBusy=false}
+}
+if(window.ElectionNightFastLane)
+ setInterval(()=>{void enCivicRefreshFastLane()},
+  window.ElectionNightFastLane.INTERVAL_MS);
+
 // Useful for deterministic Election Night rehearsals: settle every pending
 // per-race request and sweep before a new simulated network phase begins.
 async function enCivicWaitUntilIdle(){
