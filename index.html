@@ -5289,7 +5289,16 @@ async function enCivicRefreshFastLane(){
   blocked:Boolean(enCivicBreaker?.status().blocked),
   now:Date.now()
  }))return;
- const automatic=smartAutoWatch().filter(x=>Number(x.tip)>=7);
+ // Interleave high-signal Senate and House seats. Senate-first seed order
+ // would otherwise consume all four requests and strand key House races.
+ const seed=smartAutoWatch();
+ const senate=seed.filter(x=>x.office==='Senate'&&Number(x.tip)>=7);
+ const house=seed.filter(x=>x.office==='House'&&Number(x.tip)>=2);
+ const automatic=[];
+ for(let i=0;i<Math.max(senate.length,house.length);i++){
+  if(senate[i])automatic.push(senate[i]);
+  if(house[i])automatic.push(house[i]);
+ }
  const selected=lane.pick({personal:enWatched,automatic,
   reported:enCivicByWatch,lastAttempt:enCivicLastAttemptAt,
   primaryStates:enSupportedStates,now:Date.now()});
