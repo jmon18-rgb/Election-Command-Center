@@ -444,6 +444,9 @@ async function settle(){
  calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
  assert.equal(calledRace.provider_called_party,null,
   'Shared upstream outage must not leave cached calls locking simulation draws');
+ assert.equal(w.eval('enCivicProviderVerified()'),false,
+  'An upstream HTTP 503 must mark supplemental provider unverified');
+ w.eval('enRenderSourceHealth()');
  assert.match(get('#enHealthRows').textContent,/PAUSED · UPSTREAM HTTP 503/);
  w.Date.now=()=>Date.parse('2026-11-04T03:21:05Z');
  assert.equal(w.eval('enCivicProviderVerified()'),false,
