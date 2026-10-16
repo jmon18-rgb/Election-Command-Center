@@ -1245,6 +1245,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=4fd12233d233"></script>
 <script src="./scripts/civicapi_state_batch.js?v=0a26f4f75956"></script>
 <script src="./scripts/civicapi_house_2026_adapter.js?v=eaa2fe8e576a"></script>
+<script src="./scripts/election_night_source_backoff.js?v=2495602b0df6"></script>
 <script src="./scripts/election_night_nowcast.js?v=567a361d2077"></script>
 <script src="./scripts/election_night_early_signals.js?v=7691146833ec"></script>
 <script src="./scripts/election_night_priority.js?v=e1c697ce43d8"></script>
@@ -3446,13 +3447,18 @@ function enRenderSourceHealth(){
   .map(x=>[enWatchId(x),x])).keys()];
  const ready=items.filter(id=>enCivicByWatch[id]).length,
   failed=items.filter(id=>enCivicErrors[id]).length;
+ const cooldown=enCivicBreaker?.status();
+ const paused=Boolean(cooldown?.blocked);
  const secondary=elt('div','en-source-item');
  secondary.append(elt('strong','','Supplemental · civicAPI'),
-  elt('span','en-source-state '+(failed?'bad':ready?'good':'wait'),
+  elt('span','en-source-state '+(paused||failed?'bad':ready?'good':'wait'),
+   paused?'PAUSED · UPSTREAM HTTP '+cooldown.last_http_status:
    failed?'RETRYING '+failed+' RACES':ready?'VALIDATED SOURCES':'AWAITING SOURCE'),
   elt('span','',ready+'/'+items.length+
    ' tracked races have verified details · '+failed+
-   ' failed most recent checks · no missing race treated as zero'));
+   ' failed most recent checks'+
+   (paused?' · next safe retry in '+cooldown.seconds_remaining+'s':'')+
+   ' · no missing race treated as zero'));
  host.append(secondary);
  headline.textContent=healthy+'/3 primary offices healthy · '+
   impaired+' delayed/retrying · '+failed+' civicAPI retrying';
@@ -4788,6 +4794,7 @@ function enWatchToggle(item){
  * votes into the Open America national metrics or treat a winner flag as
  * official certification. Keep identifier verification and source isolation. */
 const enCivicBase='https://civicapi.org/api/v2';
+const enCivicBreaker=window.ElectionNightSourceBackoff?.create()||null;
 
 const enJohnBrownPortraitUrl='https://cdn.loc.gov/service/pnp/ppmsca/23700/23764v.jpg';
 const enMilestonePosters=Object.freeze({
@@ -5067,6 +5074,9 @@ function enCivicURL(item){return enCivicByWatch[enWatchId(item)]?.source_url||'h
 // Isolate stalled provider requests from the other watched races.
 // Abort where supported, and reject on time even if a fetch ignores abort.
 async function enCivicFetchJson(url,timeoutMs=12000){
+ const cool=enCivicBreaker?.status();
+ if(cool?.blocked)throw Error('civicAPI upstream HTTP '+cool.last_http_status+
+  ' · cooling down for '+cool.seconds_remaining+'s; verified data retained');
  const controller=typeof AbortController==='function'?new AbortController():null;
  let timer;
  try{
@@ -5076,8 +5086,13 @@ async function enCivicFetchJson(url,timeoutMs=12000){
       mode:'cors',credentials:'omit',cache:'no-store',
       headers:{Accept:'application/json'},...(controller?{signal:controller.signal}:{})
     });
-    if(!response.ok)throw Error('civicAPI HTTP '+response.status);
-    return response.json();
+    if(!response.ok){
+     enCivicBreaker?.fail(response.status);
+     throw Error('civicAPI HTTP '+response.status);
+    }
+    const json=await response.json();
+    enCivicBreaker?.success();
+    return json;
    })(),
    new Promise((_,reject)=>{
     timer=setTimeout(()=>{
@@ -5150,6 +5165,9 @@ async function enCivicWaitUntilIdle(){
  }
 }
 async function enRefreshCivicWatchlist(force=false){
+ // Respect the provider's temporary 429/5xx outage even on a forced
+ // refresh. No burst of requests from one laptop while civicAPI is down.
+ if(enCivicBreaker?.status().blocked)return;
  if(enModeYear!==2026||!enIsVisible()||
     (enCivicActiveSweeps>0&&!force))return;
  if(enCivicActiveSweeps>=2){

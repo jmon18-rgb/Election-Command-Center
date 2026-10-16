@@ -233,6 +233,10 @@ jobs:
           node scripts/test_election_night_six_hour_stress.cjs
           node --check scripts/county_mode_needle.js
           node scripts/test_county_mode_needle.cjs
+      - name: Test civicAPI 503 and 429 circuit breaker, cooldown and recovery
+        run: |
+          node --check scripts/election_night_source_backoff.js
+          node scripts/test_election_night_source_backoff.cjs
       - name: Test isolated five-stage election-night probability rehearsal
         run: |
           node --check scripts/election_night_rehearsal.js
