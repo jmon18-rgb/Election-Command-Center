@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-16T13:51:34.386742+00:00",
+  "updated_at": "2026-10-16T14:02:15.138291+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,22 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 263,
-  "newly_injected_into_model": 3,
-  "injected_poll_ids": [
-    {
-      "race_code": "CT-GOV",
-      "poll_id": "b52829fc-a8a8-44bd-930f-981755132f0b"
-    },
-    {
-      "race_code": "OH-GOV",
-      "poll_id": "9d64351d-7a56-4c00-bff7-581f0e49a5eb"
-    },
-    {
-      "race_code": "OH-SEN",
-      "poll_id": "9d64351d-7a56-4c00-bff7-581f0e49a5eb"
-    }
-  ],
+  "matched_primary_observations": 266,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "CT-GOV",
