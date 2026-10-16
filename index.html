@@ -1245,8 +1245,9 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=4fd12233d233"></script>
 <script src="./scripts/civicapi_state_batch.js?v=0a26f4f75956"></script>
 <script src="./scripts/civicapi_house_2026_adapter.js?v=eaa2fe8e576a"></script>
+<script src="./scripts/house_at_large_bridge.js?v=f9e1399d5868"></script>
 <script src="./scripts/election_night_source_backoff.js?v=9d0c92796244"></script>
-<script src="./scripts/election_night_nowcast.js?v=567a361d2077"></script>
+<script src="./scripts/election_night_nowcast.js?v=fa5349790084"></script>
 <script src="./scripts/election_night_early_signals.js?v=7691146833ec"></script>
 <script src="./scripts/election_night_priority.js?v=e1c697ce43d8"></script>
 <script src="./scripts/election_night_signals.js?v=c00851de5109"></script>
@@ -2976,9 +2977,12 @@ function enNationalToggle(enabled){
 }
 /* Election-night priors come from the same JackStradamus joint-chamber
  * simulations as the main House/Senate probabilities. */
+function enHouseSourceItem(item){
+ return window.HouseAtLargeBridge?.sourceItem(item)||item;
+}
 function enLiveRaceItem(record){
  const st=record.race_code.slice(0,2);
- if(record.office==='house')return {office:'House',key:record.race_code};
+ if(record.office==='house')return enHouseSourceItem({office:'House',key:record.race_code});
  if(record.office==='governor')return {office:'Governor',key:st};
  if(record.office==='senate'){
   const seat=enNationalSeats?.find(x=>x.state===st);
@@ -3025,7 +3029,8 @@ function smartAutoWatch(){
  // every per-race visibility/source check; invalidate on a new model draw.
  if(smartCompactCache&&smartCompactCacheModel===jointLastResult)return smartCompactCache;
  smartCompactCacheModel=jointLastResult;
- smartCompactCache=window.AutomaticRaceDesk?.watch(jointLastResult)||[];
+ smartCompactCache=(window.AutomaticRaceDesk?.watch(jointLastResult)||[])
+  .map(enHouseSourceItem);
  return smartCompactCache;
 }
 function smartDisplayRoster(){
@@ -3056,9 +3061,10 @@ function smartRaceSource(item){
   const t=Date.parse(stamp||'');
   return Number.isFinite(t)&&t>=start&&t<=now+900000&&now-t<=180*60000;
  };
- const id=enWatchId(item),state=item.key.slice(0,2);
- const civic=enCivicUsable(item);
- const civicOK=Boolean(civic&&civic.office===item.office&&civic.key===item.key&&
+ const sourceItem=enHouseSourceItem(item);
+ const id=enWatchId(sourceItem),state=sourceItem.key.slice(0,2);
+ const civic=enCivicUsable(sourceItem);
+ const civicOK=Boolean(civic&&civic.office===sourceItem.office&&civic.key===sourceItem.key&&
   civic.provider==='civicAPI'&&validAt(civic.last_updated));
  const called=civicOK?window.ElectionNightSignals?.validatedCall(civic,now):null;
  // Primary Open America feed is state-derived but does NOT contain winner
@@ -3068,7 +3074,7 @@ function smartRaceSource(item){
  const primaryOK=Boolean(snap&&snap.year===2026&&!snap.stale&&
   !enOfficeErrors[item.office]&&!enResumePendingOffices.has(item.office)&&
   !(enOffice===item.office&&enFetchError)&&validAt(snap.as_of));
- const race=primaryOK?snap.races?.[item.key]:null;
+ const race=primaryOK?snap.races?.[sourceItem.key]:null;
  const source=race?.total>0?{
   votes:race.total,precincts:race.pct_in,asOf:snap.as_of,source:'Open America',
   d:(race.cands||[]).filter(c=>c.p==='D').reduce((n,c)=>n+c.v,0),
@@ -3100,7 +3106,8 @@ function smartReportedExtras(model,existing){
   for(const [key,record] of Object.entries(snap.races)){
    if(!record||record.total<=0)continue;
    const code=office==='Senate'?key.slice(0,2)+'-SEN':
-    office==='Governor'?key+'-GOV':key;
+    office==='Governor'?key+'-GOV':
+    window.HouseAtLargeBridge?.modelCode(key)||key;
    if(known.has(code))continue;
    const row={office,code,key,tip:null,added:'reported-source'};
    const live=smartRaceSource(row),m=model.get(code);
@@ -3130,7 +3137,7 @@ function smartRaceRanked(){
   item.poll=polls.get(item.code)||null;
   item.live=smartRaceSource(item);
   item.priority=api.priority(item,{modelWinPct:item.model?.dem_beats_rep_pct,
-   live:item.live,flipped:recentFlip.has(enWatchId(item)),now});
+   live:item.live,flipped:recentFlip.has(enWatchId(enHouseSourceItem(item))),now});
   // Screenshot reference percentages only seed discovery. Once a race has
   // actual linked-model odds or a qualified polling average, its current
   // competitiveness and validated reporting drive editorial placement.
@@ -3222,7 +3229,7 @@ function smartRow(item){
   event.preventDefault();
   if(item.priority.reporting){
    document.querySelector('.tab[data-page="electionNight"]')?.click();
-   enSwitch(2026,item.office,item.key);
+   enSwitch(2026,item.office,enHouseSourceItem(item).key);
   }else{
    navigateInsightToModel({office:item.office.toLowerCase(),race:{
     race_code:item.code}});

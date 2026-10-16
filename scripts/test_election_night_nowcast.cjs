@@ -23,6 +23,10 @@ const validSource={api:1,year:2026,office:'Senate',source:'state',
 function sample(input={}){return model.estimate(priors,az,{...validSource,...input},null,now)}
 assert.equal(model.raceCode({office:'Senate',key:'OH-special'}),'OH-SEN');
 assert.equal(model.raceCode({office:'House',key:'AZ-03'}),'AZ-03');
+assert.equal(model.raceCode({office:'House',key:'AK-00'}),'AK-01');
+assert.equal(model.raceCode({office:'House',key:'WY-00'}),'WY-01');
+assert.equal(model.raceCode({office:'House',key:'AZ-00'}),'AZ-00',
+ 'Multi-district states cannot alias to at-large seats');
 assert.equal(model.raceCode({office:'Governor',key:'CA'}),'CA-GOV');
 assert.equal(model.raceCode({office:'House',key:'AZ-XX'}),null);
 assert.equal(model.priorFor(priors,{office:'Senate',key:'TX'}),null,
@@ -73,6 +77,20 @@ const cv={provider:'civicAPI',race_id:6402,office:'Governor',key:'CA',
   {name:'Candidate One',party:'D',votes:120000},
   {name:'Candidate Two',party:'R',votes:80000}
  ]};
+const akPrior={...priors,records:[...priors.records,
+ {office:'house',race_code:'AK-01',dem_minus_rep:2,sigma_points:7.5,
+ dem_beats_rep_pct:60}]};
+const akSource={...validSource,office:'House',races:{'AK-00':{
+ total:100000,pct_in:65,cands:[{p:'D',v:57000},{p:'R',v:43000}]
+}}};
+const akRace={office:'House',key:'AK-00'};
+const akLive=model.estimate(akPrior,akRace,akSource,null,now);
+assert.equal(akLive.mode,'live_informed',
+ 'At-large source 00 must pair with the existing 01 model prior');
+assert.equal(akLive.raceCode,'AK-01');
+assert(akLive.demPct>60,'Real at-large returns may inform the corresponding model prior');
+assert.equal(model.estimate(akPrior,{office:'House',key:'AK-01'},akSource,null,now).mode,
+ 'polls_only','Legacy model code cannot silently invent a 01 source record');
 const secondary=model.estimate(priors,ca,null,cv,now);
 assert.equal(secondary.mode,'live_informed');
 assert.equal(secondary.source,'civicAPI');
