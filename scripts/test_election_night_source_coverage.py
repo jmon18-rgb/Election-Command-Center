@@ -137,6 +137,15 @@ class CoverageLedgerTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.ledger(probe=dup)
 
+    def test_checked_in_ledger_is_full_and_nonreporting(self):
+        initial = json.loads((ROOT / "data/election_night_source_coverage.json").read_text())
+        self.assertEqual(initial["status"], "SOURCE_IDENTITY_AUDIT_NOT_LIVE_RESULTS_COVERAGE")
+        self.assertEqual(len(initial["races"]), 506)
+        self.assertEqual(len({r["id"] for r in initial["races"]}), 506)
+        self.assertEqual(initial["summary"], self.ledger()["summary"])
+        self.assertEqual(self.ledger(previous=initial)["summary"], initial["summary"])
+        self.assertTrue(all(not r["live_votes_verified_by_audit"] for r in initial["races"]))
+
     def test_invalid_previous_snapshot_is_rejected(self):
         prior = self.ledger()
         prior["races"] = prior["races"][:-1]
