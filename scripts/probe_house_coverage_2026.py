@@ -262,6 +262,12 @@ def main():
             f.write("\nA missing listing or provider outage is **unknown**, not zero votes, "
                     "not an inferred winner, and not proof of national reach. "
                     "Rotating coverage assumes scheduled runs complete.\n")
+    # Persist the artifact and step summary first, then flag an interrupted
+    # discovery as unhealthy. The workflow uses continue-on-error only so
+    # diagnostic artifacts are uploaded before its final fail-closed gate.
+    if report["upstream_paused"]:
+        raise SystemExit("House source gap audit interrupted by upstream failure; "
+                         "untested districts remain unknown (see saved JSON)")
 
 
 if __name__ == "__main__":
