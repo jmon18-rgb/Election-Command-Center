@@ -149,11 +149,14 @@ def fetch(path: str, params: dict | None = None) -> dict:
 
 def probe(district: str, request=fetch) -> dict:
     state, number = district.split("-")
+    # 'US House 0' does not name the at-large ballot. Exact state/district,
+    # election date, stage and source-detail checks still gate every match.
+    search_query = "US House" if number == "00" else f"US House {int(number)}"
     try:
         result = request("/race/search", {
             "country": "US", "province": state,
             "startDate": DAY, "endDate": DAY,
-            "query": f"US House {int(number)}", "limit": "20",
+            "query": search_query, "limit": "20",
         })
         rows = result.get("races")
         if not isinstance(rows, list) or len(rows) > 20 or result.get("count", 0) > 20:
@@ -173,21 +176,48 @@ def probe(district: str, request=fetch) -> dict:
             "candidate_count": len(detail["candidates"]),
             "reported_votes": sum(c["votes"] for c in detail["candidates"]),
         }
-    except (urllib.error.URLError, TimeoutError, ValueError, KeyError, TypeError,
-            json.JSONDecodeError) as error:
+    except urllib.error.HTTPError as error:
+        # A shared 429/502/503/504 means this provider should not receive
+        # another 15 requests in the same scheduled discovery run.
+        if error.code in (429, 502, 503, 504):
+            return {"district": district, "status": "TEMPORARY_UPSTREAM_FAILURE",
+                    "reason": f"HTTP_{error.code}"}
+        return {"district": district, "status": "SOURCE_UNAVAILABLE_OR_INVALID",
+                "reason": f"HTTP_{error.code}"}
+    except (urllib.error.URLError, TimeoutError) as error:
+        return {"district": district, "status": "TEMPORARY_UPSTREAM_FAILURE",
+                "reason": type(error).__name__}
+    except (ValueError, KeyError, TypeError, json.JSONDecodeError) as error:
         return {"district": district, "status": "SOURCE_UNAVAILABLE_OR_INVALID",
                 "reason": type(error).__name__}
 
 
-def main():
-    plan = sampling_window()
+def run_batch(plan: dict, request=fetch, *, delay: float = 0.2) -> list[dict]:
+    """Stop promptly after shared provider failures; keep untested rows unknown."""
+    if delay < 0:
+        raise ValueError("Delay must be nonnegative")
     results = []
+    paused = False
     for index, district in enumerate(plan["districts"]):
-        results.append(probe(district))
-        if index + 1 < len(plan["districts"]):
-            time.sleep(0.2)
-    statuses = sorted(set(x["status"] for x in results))
-    report = {
+        if paused:
+            results.append({"district": district,
+                            "status": "NOT_CHECKED_UPSTREAM_PAUSED"})
+            continue
+        row = probe(district, request)
+        results.append(row)
+        paused = row["status"] == "TEMPORARY_UPSTREAM_FAILURE"
+        if not paused and delay and index + 1 < len(plan["districts"]):
+            time.sleep(delay)
+    return results
+
+
+def build_report(plan: dict, results: list[dict]) -> dict:
+    if len(results) != len(plan["districts"]) or [r.get("district") for r in results] != list(plan["districts"]):
+        raise ValueError("Coverage report missing or reordering sampled seats")
+    statuses = sorted({x["status"] for x in results})
+    skipped = sum(x["status"] == "NOT_CHECKED_UPSTREAM_PAUSED" for x in results)
+    attempted = len(results) - skipped
+    return {
         "status": "ROTATING_HOUSE_SOURCE_DISCOVERY_NOT_NATIONAL_AVAILABILITY",
         "window_utc": plan["window_utc"],
         "primary_states": plan["primary_states"],
@@ -195,11 +225,20 @@ def main():
         "anchor_count": plan["anchor_count"],
         "rotating_count": plan["rotating_count"],
         "windows_per_rotation_if_every_run_succeeds": plan["windows_per_rotation"],
-        "sampled_districts": len(results),
+        "planned_districts": len(results),
+        "sampled_districts": attempted,
+        "not_checked_upstream_paused": skipped,
+        "upstream_paused": skipped > 0 or any(x["status"] == "TEMPORARY_UPSTREAM_FAILURE" for x in results),
         "indexed_exact": sum(x["status"] == "INDEXED_EXACT_RACE" for x in results),
         "status_counts": {st: sum(x["status"] == st for x in results) for st in statuses},
         "results": results,
     }
+
+
+def main():
+    plan = sampling_window()
+    results = run_batch(plan)
+    report = build_report(plan, results)
     print(json.dumps(report, indent=2))
     out = os.environ.get("ELECTION_HOUSE_PROBE_OUTPUT")
     if out:
@@ -213,12 +252,22 @@ def main():
                     f"{plan['anchor_count']} anchor and "
                     f"{plan['rotating_count']} rotating of "
                     f"{plan['uncovered_house_districts']} uncovered slots.\n\n")
+            f.write(f"Attempted {report['sampled_districts']}/{report['planned_districts']}; "
+                    f"upstream paused: {report['upstream_paused']}; "
+                    f"skipped: {report['not_checked_upstream_paused']}. "
+                    "Never classify skipped races as unindexed.\n\n")
             f.write("| District | Result | Exact race ID |\n|---|---|---|\n")
             for item in results:
                 f.write(f"| {item['district']} | {item['status']} | {item.get('race_id', '—')} |\n")
             f.write("\nA missing listing or provider outage is **unknown**, not zero votes, "
                     "not an inferred winner, and not proof of national reach. "
                     "Rotating coverage assumes scheduled runs complete.\n")
+    # Persist the artifact and step summary first, then flag an interrupted
+    # discovery as unhealthy. The workflow uses continue-on-error only so
+    # diagnostic artifacts are uploaded before its final fail-closed gate.
+    if report["upstream_paused"]:
+        raise SystemExit("House source gap audit interrupted by upstream failure; "
+                         "untested districts remain unknown (see saved JSON)")
 
 
 if __name__ == "__main__":

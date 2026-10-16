@@ -45,6 +45,7 @@ jobs:
         continue-on-error: true
         run: python3 scripts/test_civicapi_live_source.py
       - name: Probe bounded, rotating House source coverage outside primary states
+        id: house_probe
         if: steps.window.outputs.run == 'true'
         continue-on-error: true
         env:
@@ -64,15 +65,17 @@ jobs:
         env:
           PRIMARY: ${{ steps.primary.outcome }}
           SECONDARY: ${{ steps.secondary.outcome }}
+          HOUSE_PROBE: ${{ steps.house_probe.outcome }}
         run: |
           echo "## Direct-browser 2026 election source preflight" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "- Checked: $(date -u +'%Y-%m-%d %H:%M UTC')" >> "$GITHUB_STEP_SUMMARY"
           echo "- Open America (22-state primary source): $PRIMARY" >> "$GITHUB_STEP_SUMMARY"
           echo "- civicAPI (individually verified supplementary races): $SECONDARY" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Rotating House gap audit (source discovery only): $HOUSE_PROBE" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "Checks test HTTP, browser CORS and strict year/race schema; **they do not guarantee all 435 House/35 Senate races or certify winner calls**." >> "$GITHUB_STEP_SUMMARY"
-          if [ "$PRIMARY" != "success" ] || [ "$SECONDARY" != "success" ]; then
-            echo "::error::Election-night API source contract failure. Investigate now; do not mark missing races as zero or fall back to 2024 results."
+          if [ "$PRIMARY" != "success" ] || [ "$SECONDARY" != "success" ] || [ "$HOUSE_PROBE" != "success" ]; then
+            echo "::error::Election-night source preflight failed (including rotating House audit). Investigate; missing and untested seats are unknown, never zero or historical fallback."
             exit 1
           fi
