@@ -3351,8 +3351,12 @@ function enRenderAmbientDesk(){
    for(const office of ['House','Senate'])
     errors[office]=Boolean(enOfficeErrors[office]||(enOffice===office&&enFetchError));
    for(const id of new Set([...Object.keys(enCivicErrors),
-    ...Object.keys(enCivicByWatch)]))
-    errors[id]=Boolean(enCivicErrors[id]||!enCivicProviderVerified());
+    ...Object.keys(enCivicByWatch)])){
+    const pipe=id.indexOf('|');
+    const item={office:id.slice(0,pipe),key:id.slice(pipe+1)};
+    errors[id]=Boolean(enCivicErrors[id]||
+     enCivicByWatch[id]&&!enCivicUsable(item));
+   }
    const snapshots={...enOfficeSnapshots};
    if(enData&&enModeYear===2026&&!snapshots[enOffice])snapshots[enOffice]=enData;
    try{
@@ -5081,7 +5085,8 @@ function enCivicQuery(item){
 }
 function enCivicStatus(item){
  const id=enWatchId(item),data=enCivicByWatch[id];
- if(!enCivicProviderVerified())return 'civicAPI · upstream recovering · last verified source retained for audit only';
+ if(data&&!enCivicUsable(item))
+  return 'civicAPI · source recheck required · previous source snapshot retained for audit only';
  if(!data)return enCivicErrors[id]?'civicAPI source check unavailable · keeping watch':'civicAPI · checking November 3 race';
  const revision=data.last_updated?' · updated '+enFormattedTime(data.last_updated):'';
  const reporting=data.percent_reporting.toFixed(0)+'% precincts';
@@ -5353,6 +5358,10 @@ function enRenderCivicCandidateDetails(item){
    'Waiting for an exact civicAPI November 3, 2026 match. No vote total is inferred.'));
   return area;
  }
+ if(!enCivicUsable(item))
+  area.append(elt('p','en-civic-caveat',
+   'PREVIOUS SNAPSHOT · provider/race requires a verified source recheck. '+
+   'Shown for audit only, not an active winner call or input to odds.'));
  const head=elt('div','en-civic-detail-head');
  head.append(elt('strong','','CANDIDATE RESULTS · civicAPI'),
   elt('span','',data.percent_reporting.toFixed(1)+'% precincts reporting'));
@@ -5371,7 +5380,9 @@ function enRenderCivicCandidateDetails(item){
   track.append(bar);cell.append(identity,track);area.append(cell);
  }
  if(data.called){
-  const call=elt('p','en-civic-call','civicAPI SOURCE CALL: '+data.called+' · Not official certification');
+  const call=elt('p','en-civic-call',
+   (enCivicUsable(item)?'civicAPI SOURCE CALL: ':'PREVIOUS, UNVERIFIED CALL: ')+
+   data.called+' · Not official certification');
   area.append(call);
  }
  const foot=elt('p','en-civic-caveat',
