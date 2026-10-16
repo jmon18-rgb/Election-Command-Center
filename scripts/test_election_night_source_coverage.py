@@ -6,7 +6,7 @@ import unittest
 from datetime import datetime, timezone, timedelta
 
 from build_election_night_source_coverage import (
-    ROOT, build, observed_house, pinned_sources, timestamp,
+    ROOT, build, observed_house, pinned_sources, timestamp, house_pins,
 )
 
 
@@ -145,6 +145,28 @@ class CoverageLedgerTests(unittest.TestCase):
         self.assertEqual(initial["summary"], self.ledger()["summary"])
         self.assertEqual(self.ledger(previous=initial)["summary"], initial["summary"])
         self.assertTrue(all(not r["live_votes_verified_by_audit"] for r in initial["races"]))
+
+    def test_house_manifest_only_contains_recent_exact_outside_primary_ids(self):
+        report = self.ledger(probe=self.probe())
+        pins = house_pins(report)
+        self.assertEqual(pins["status"], "VERIFIED_HOUSE_IDENTITIES_NOT_LIVE_RESULTS")
+        self.assertEqual([r["district"] for r in pins["races"]], ["AK-00"])
+        self.assertEqual(pins["races"][0]["race_id"], 12510)
+        self.assertEqual(house_pins(self.ledger())["races"], [])
+        self.assertEqual(house_pins(
+            self.ledger(probe=self.probe("NOT_INDEXED")))["races"], [])
+        overdue = build(self.universe, self.reconciler, self.batch,
+                        self.nh_sen, self.nh_gov, previous=report,
+                        now=self.now + timedelta(days=12))
+        self.assertEqual(house_pins(overdue)["races"], [],
+                         "A stale provider identity must fall back to exact search")
+
+    def test_repository_manifest_matches_initial_persistent_ledger(self):
+        ledger = json.loads((ROOT / "data/election_night_source_coverage.json").read_text())
+        saved = json.loads((ROOT / "data/election_night_house_pins.json").read_text())
+        self.assertEqual(saved, house_pins(ledger))
+        self.assertEqual(len(saved["races"]), 15)
+        self.assertTrue(all(r["district"] != "NH-01" for r in saved["races"]))
 
     def test_invalid_previous_snapshot_is_rejected(self):
         prior = self.ledger()
