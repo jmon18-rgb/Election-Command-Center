@@ -1245,7 +1245,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=4fd12233d233"></script>
 <script src="./scripts/civicapi_state_batch.js?v=0a26f4f75956"></script>
 <script src="./scripts/civicapi_house_2026_adapter.js?v=eaa2fe8e576a"></script>
-<script src="./scripts/election_night_source_backoff.js?v=2495602b0df6"></script>
+<script src="./scripts/election_night_source_backoff.js?v=9d0c92796244"></script>
 <script src="./scripts/election_night_nowcast.js?v=567a361d2077"></script>
 <script src="./scripts/election_night_early_signals.js?v=7691146833ec"></script>
 <script src="./scripts/election_night_priority.js?v=e1c697ce43d8"></script>
@@ -4801,6 +4801,7 @@ function enWatchToggle(item){
  * official certification. Keep identifier verification and source isolation. */
 const enCivicBase='https://civicapi.org/api/v2';
 const enCivicBreaker=window.ElectionNightSourceBackoff?.create()||null;
+const enCivicValidatedGenerations=Object.create(null);
 // A past successful fetch does not remain eligible evidence after any
 // unresolved upstream 429/502/503/504, including after the cooldown expires.
 // Only a freshly validated detail response releases the source-wide hold.
@@ -4808,8 +4809,11 @@ function enCivicProviderVerified(){
  return !enCivicBreaker||enCivicBreaker.status().consecutive===0;
 }
 function enCivicUsable(item){
- const id=enWatchId(item);
- return enCivicProviderVerified()&&!enCivicErrors[id]?
+ const id=enWatchId(item),state=enCivicBreaker?.status();
+ // A successful check for *another* race does not reauthorize this
+ // cached winner from before the provider's latest transient error.
+ return enCivicProviderVerified()&&!enCivicErrors[id]&&
+  (!state||enCivicValidatedGenerations[id]===state.generation)?
   enCivicByWatch[id]||null:null;
 }
 
@@ -5159,7 +5163,8 @@ async function enCivicFetchOne(item,forceAfterPending=false){
   if(old?.total>0&&next.total===0)
    throw Error('Supplementary source unexpectedly cleared a counted race');
   enCivicByWatch[id]=next;
-  enCivicBreaker?.success(); // eligible race source has been independently validated
+  enCivicValidatedGenerations[id]=enCivicBreaker?.status().generation??0;
+  enCivicBreaker?.success(); // only this exact source race was revalidated
   enProcessCivicAlert(item,old,next);
   enCivicRaceIds[id]=row;
   delete enCivicErrors[id];
