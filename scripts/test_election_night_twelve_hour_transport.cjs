@@ -202,9 +202,13 @@ async function tick(minute){
  if(minute===290){
   assert(result.house.primary>0,'Stale primary must recheck to restore');
  }
- if(minute===106){
+ if(minute===105){
   assert.equal(result.house.supplemental,0,
    'Provider 503 cannot leave legacy source records counting while blocked');
+ }
+ if(minute===106){
+  assert(Object.keys(out).every(id=>errors[id]||validEpoch.get(id)===status.generation),
+   'One newly revalidated race must not revive other pre-outage records');
  }
  if(result.house.supplemental>0)metrics.partialHouseCoverageTicks++;
  metrics.ticks++;
