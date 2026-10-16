@@ -10,6 +10,14 @@ const sources={
  odds:load('race_probabilities'),polls:load('polling_estimates')
 };
 const basis=model.prepare(sources);
+// Source-backed 65-seat holdover count and independent caucuses must
+// reconcile with the actual live simulation's control thresholds.
+const holdoverAudit=require('./senate_holdover_audit.js');
+const holdoverLedger=load('senate_2026_holdovers');
+const holdovers=holdoverAudit.audit(holdoverLedger,sources.seats,basis.assumptions);
+assert.equal(holdovers.caucus.D,34);
+assert.equal(holdovers.caucus.R,31);
+assert.equal(holdovers.can_override_forecast_parameters,false);
 assert.equal(basis.status,'EXPERIMENTAL_UNCALIBRATED');
 assert.equal(basis.house.length,435);
 assert.equal(basis.senate.length,35);

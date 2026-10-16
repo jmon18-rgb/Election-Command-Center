@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const audit=require('./senate_holdover_audit.js');
+const load=name=>JSON.parse(fs.readFileSync('data/'+name+'.json','utf8'));
+const ledger=load('senate_2026_holdovers'),seats=load('seat_universe');
+const assumptions={senate_contested:35,senate_dem_holdovers:34,senate_rep_holdovers:31};
+const results=audit.audit(ledger,seats,assumptions);
+assert.equal(results.holdovers,65);
+assert.equal(results.contested,35);
+assert.deepEqual(results.caucus,{D:34,R:31});
+assert.deepEqual(results.party,{D:32,R:31,I:2});
+assert.deepEqual(results.classes,{I:33,III:32});
+assert.equal(results.independent_caucus_credit,2);
+assert.equal(results.callable_2026_race_winners,0);
+assert.equal(results.can_override_forecast_parameters,false);
+const bad=(mutate,why)=>{
+ const copy=structuredClone(ledger),universe=structuredClone(seats);
+ const base={...assumptions};
+ mutate(copy,universe,base);
+ assert.throws(()=>audit.audit(copy,universe,base),undefined,why);
+};
+bad(l=>l.holdovers.pop(),'Never silently lose a noncontested Senate seat');
+bad(l=>l.holdovers.push({...l.holdovers[0]}),'Duplicate seat not allowed');
+bad(l=>{l.holdovers[0].party='R';l.holdovers[0].caucus='R';},'Democrat flipped to R corrupts baseline');
+bad(l=>{l.holdovers[0].caucus='R';},'Caucus assignment cannot differ from party');
+bad(l=>{l.holdovers[0].class='II';l.holdovers[0].seat='II|MD';},'Class II is on the ballot');
+bad(l=>{l.holdovers[0].seat='I|VA';},'Mismatch/duplicate seat identity');
+bad(l=>{l.holdovers[0].state='XX';l.holdovers[0].seat='I|XX';},'Unknown state');
+bad(l=>{l.holdovers[0].senator='';},'Unidentified source seat');
+bad(l=>{l.holdovers.find(s=>s.party==='I').senator='Not King';},'Independents require explicit D-caucus proof');
+bad(l=>{l.sources.class_III='https://example.org';},'Official-source attribution is mandatory');
+bad(l=>{l.seats_excluded_because_special_2026[0].state='CA';},'Special seat exclusions must match');
+bad((l,u)=>{u.senate.contested_total=34;},'Every Senate seat must be accounted for');
+bad((l,u)=>{u.senate.contested_seats=u.senate.contested_seats.slice(1);},'Missing general-election contest');
+bad((l,u)=>{u.senate.contested_seats=u.senate.contested_seats.map(s=>
+  s.election_kind==='special'?{...s,seat_class:'I'}:s);},'Special Class III identity is mandatory');
+bad((l,u,a)=>{a.senate_dem_holdovers=35;},"Changing model's D holdovers fails reconciliation");
+bad((l,u,a)=>{a.senate_rep_holdovers=30;},"Changing model's R holdovers fails reconciliation");
+console.log('Official Class I/III Senate ledger PASS: 65 holdovers (32 D, 2 I caucusing D, 31 R), 35 contests, two Class III specials, zero invented 2026 winner calls');

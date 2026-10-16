@@ -255,6 +255,10 @@ jobs:
           node scripts/audit_bottom_up_national_environment.cjs --check --json > /tmp/bottom-up-modern.json
           node scripts/test_bottom_up_national_environment.cjs
           node -e "const x=require('/tmp/bottom-up-modern.json'); if(x.status!=='SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE'||x.total_qualifying_races<12||x.states_with_qualified_races<8||x.candidate_specific_effects_removed!==false)process.exit(1)"
+      - name: Audit all 65 official 2026 Senate holdovers and independent caucuses
+        run: |
+          node --check scripts/senate_holdover_audit.js
+          node scripts/test_senate_holdover_audit.cjs
       - name: Validate joint House and Senate outcome probabilities
         run: |
           node --check scripts/chamber_control_model.js
