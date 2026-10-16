@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-16T00:54:21.289589Z",
+  "updated_at": "2026-10-16T01:43:11.361701Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "review_metrics": {
-    "total_leads": 148,
-    "awaiting_primary_source": 146,
+    "total_leads": 150,
+    "awaiting_primary_source": 148,
     "primary_source_checked": 2,
-    "advisory_related_headline_buckets": 10,
-    "advisory_related_headlines": 23
+    "advisory_related_headline_buckets": 11,
+    "advisory_related_headlines": 25
   },
   "advisory_related_headlines": [
     {
@@ -124,9 +124,63 @@
         "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "2cb2a2423163d909d270",
+      "headline": "Justice Dept. sues California officials over 20K alleged noncitizen voters - The Washington Post",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "CA",
+        "WA"
+      ],
+      "topic_hints": [
+        "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "14db32c5e8f9265cf302",
+      "title": "Texas clears voter registration backlog days before early voting - Lubbock Avalanche-Journal",
+      "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxOc2dRWEl1azl3V21kUVB0VXFFNVBEZk03S1hoMjd4c3dKdE91VFZ2Nm1vcTFMMFk0R0dlbjZpT0hQN3MxSExzWXF0blE3OFRaOEJ1Q0NXSjEyOGpNcjVIUmxVcVdHQnY1WU5LZVFCWnRFVDlWTlQwa0NRMkZyMUlONlRlTjcyVjcxWTEzNk1ielkzemxaQkNkZ2xDV2xJV2NmcWxBRUFRSFR0aGZRRUJnM0kzcml0eGpKQnhpVm1BdXVCcnN0czVvZjNWQ3Mwa2g0Yk5PUjdndjl4QU56SkFHZm11bGEwclFQMHN4ZjdZdw?oc=5",
+      "publisher": "Lubbock Avalanche-Journal",
+      "published_at": "2026-10-16T01:37:00Z",
+      "detected_at": "2026-10-16T01:43:11.361701Z",
+      "state_hints": [
+        "TX"
+      ],
+      "topic_hints": [
+        "registration",
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "2cb2a2423163d909d270",
+      "title": "Justice Dept. sues California officials over 20K alleged noncitizen voters - The Washington Post",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPNGlWVGtNOVVmb0hpOTNYV2VERnpvWmNQSmhkc1Z2c1hRVktTMXNHVHI4QjE3VGdRcXVqaDMweDVjUzhmVlZPckF1ZjVGaWVJbDZQNlJhQV92RnJ5NXg1T0FRS2t3YU5tbkRKTjhyRjJVd2o4T21vdENyMVlQek80SmV6RlNVWUNqVHpCSVNDOWdEN09Ca051aGctWXFFV0pSbHVaUDJURDhtaFVkRERHT3VhUDJYSUFXR29lVXdYYWt4Mlk?oc=5",
+      "publisher": "The Washington Post",
+      "published_at": "2026-10-16T01:20:11Z",
+      "detected_at": "2026-10-16T01:43:11.361701Z",
+      "state_hints": [
+        "CA",
+        "WA"
+      ],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "fa058197b999690de911",
       "title": "Becerra pushes Latino voters despite ICE threats - CaloNews.com",
