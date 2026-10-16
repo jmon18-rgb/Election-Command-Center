@@ -3049,6 +3049,13 @@ function enAutoTracked(item){
 function smartModelMap(){
  return new Map((jointLastResult?.race_probabilities||[]).map(x=>[x.race_code,x]));
 }
+// A two-party D-minus-R margin requires actual reported votes for both
+// major parties. R versus independent (or D versus independent) is NOT R+100
+// or D+100 simply because the other major party has no candidate/votes.
+function smartRawPartisanMargin(d,r){
+ return Number.isSafeInteger(d)&&Number.isSafeInteger(r)&&d>0&&r>0?
+  100*(d-r)/(d+r):null;
+}
 function smartRaceSource(item){
  if(enModeYear!==2026||Date.now()<Date.parse('2026-11-03T05:00:00Z'))return null;
  const now=Date.now(),start=Date.parse('2026-11-03T05:00:00Z');
@@ -3080,8 +3087,8 @@ function smartRaceSource(item){
   r:civic.candidates.filter(c=>c.party==='R').reduce((n,c)=>n+c.votes,0)
  }:null;
  if(!source)return null;
- const two=source.d+source.r;
- if(two>0&&source.d>=0&&source.r>=0)source.rawMargin=100*(source.d-source.r)/two;
+ const twoPartyMargin=smartRawPartisanMargin(source.d,source.r);
+ if(twoPartyMargin!==null)source.rawMargin=twoPartyMargin;
  if(called&&['D','R','O'].includes(called.party)){
   source.calledParty=called.party;
   source.calledName=called.name;
