@@ -449,6 +449,8 @@ async function settle(){
  assert.equal(calledRace.provider_called_party,null);
  await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
  assert.equal(w.eval('enCivicBreaker.status().consecutive'),0);
+ assert.equal(w.eval("enCivicValidatedGenerations['Senate|NC']"),
+  w.eval('enCivicBreaker.status().generation'));
  w.eval('jointRender(false)');
  calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
  assert.equal(calledRace.provider_called_party,'R',
