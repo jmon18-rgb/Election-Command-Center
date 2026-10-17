@@ -1,6 +1,6 @@
 {
   "election": "2026-11-03",
-  "generated_at": "2026-10-17T02:32:17.284430+00:00",
+  "generated_at": "2026-10-17T03:31:58.334342+00:00",
   "methodology": {
     "calls": "No licensed professional call provider or verified control attribution in this ledger",
     "house_probe": "Rotating sampled exact 2026 district discovery; 24-hour 'recent' does not guarantee Election Night data",
@@ -11,7 +11,7 @@
     "verified_identity_hint": "Ten-day exact search+detail discovery; independent of 24-hour last-probe freshness and NOT verified live returns"
   },
   "preflight_checks": {
-    "house_probe": "failure",
+    "house_probe": "success",
     "primary": "skipped",
     "secondary": "skipped"
   },
@@ -3383,11 +3383,11 @@
         "reason": "HTTP_503",
         "status": "TEMPORARY_UPSTREAM_FAILURE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "TEMPORARY_UPSTREAM_FAILURE",
@@ -3397,183 +3397,188 @@
       "verified_identity_hint_usable": false
     },
     {
-      "gap_status": "UNRESOLVED_SOURCE_GAP",
+      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
       "id": "House|KS-03",
       "key": "KS-03",
       "last_probe": {
-        "checked_window_utc": "2026-10-17T02:00:00+00:00",
-        "race_id": null,
+        "checked_window_utc": "2026-10-17T03:00:00+00:00",
+        "race_id": 87160,
         "reason": null,
-        "status": "NOT_CHECKED_UPSTREAM_PAUSED"
+        "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
       "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_CHECKED_UPSTREAM_PAUSED",
+      "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
       "state": "KS",
-      "verified_identity_hint_usable": false
+      "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "UNRESOLVED_SOURCE_GAP",
+      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
       "id": "House|KS-04",
       "key": "KS-04",
       "last_probe": {
-        "checked_window_utc": "2026-10-17T02:00:00+00:00",
-        "race_id": null,
+        "checked_window_utc": "2026-10-17T03:00:00+00:00",
+        "race_id": 87161,
         "reason": null,
-        "status": "NOT_CHECKED_UPSTREAM_PAUSED"
+        "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
       "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_CHECKED_UPSTREAM_PAUSED",
+      "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
       "state": "KS",
-      "verified_identity_hint_usable": false
+      "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "UNRESOLVED_SOURCE_GAP",
+      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
       "id": "House|KY-01",
       "key": "KY-01",
       "last_probe": {
-        "checked_window_utc": "2026-10-17T02:00:00+00:00",
-        "race_id": null,
+        "checked_window_utc": "2026-10-17T03:00:00+00:00",
+        "race_id": 87168,
         "reason": null,
-        "status": "NOT_CHECKED_UPSTREAM_PAUSED"
+        "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
       "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_CHECKED_UPSTREAM_PAUSED",
+      "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
       "state": "KY",
-      "verified_identity_hint_usable": false
+      "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "UNRESOLVED_SOURCE_GAP",
+      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
       "id": "House|KY-02",
       "key": "KY-02",
       "last_probe": {
-        "checked_window_utc": "2026-10-17T02:00:00+00:00",
-        "race_id": null,
+        "checked_window_utc": "2026-10-17T03:00:00+00:00",
+        "race_id": 87169,
         "reason": null,
-        "status": "NOT_CHECKED_UPSTREAM_PAUSED"
+        "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
       "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_CHECKED_UPSTREAM_PAUSED",
+      "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
       "state": "KY",
-      "verified_identity_hint_usable": false
+      "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "UNRESOLVED_SOURCE_GAP",
+      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
       "id": "House|KY-03",
       "key": "KY-03",
       "last_probe": {
-        "checked_window_utc": "2026-10-17T02:00:00+00:00",
-        "race_id": null,
+        "checked_window_utc": "2026-10-17T03:00:00+00:00",
+        "race_id": 87170,
         "reason": null,
-        "status": "NOT_CHECKED_UPSTREAM_PAUSED"
+        "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
       "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_CHECKED_UPSTREAM_PAUSED",
+      "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
       "state": "KY",
-      "verified_identity_hint_usable": false
+      "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "UNRESOLVED_SOURCE_GAP",
+      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
       "id": "House|KY-04",
       "key": "KY-04",
       "last_probe": {
-        "checked_window_utc": "2026-10-17T02:00:00+00:00",
-        "race_id": null,
+        "checked_window_utc": "2026-10-17T03:00:00+00:00",
+        "race_id": 87171,
         "reason": null,
-        "status": "NOT_CHECKED_UPSTREAM_PAUSED"
+        "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
       "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_CHECKED_UPSTREAM_PAUSED",
+      "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
       "state": "KY",
-      "verified_identity_hint_usable": false
+      "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "UNRESOLVED_SOURCE_GAP",
+      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
       "id": "House|KY-05",
       "key": "KY-05",
       "last_probe": {
-        "checked_window_utc": "2026-10-17T02:00:00+00:00",
-        "race_id": null,
+        "checked_window_utc": "2026-10-17T03:00:00+00:00",
+        "race_id": 87172,
         "reason": null,
-        "status": "NOT_CHECKED_UPSTREAM_PAUSED"
+        "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
       "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_CHECKED_UPSTREAM_PAUSED",
+      "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
       "state": "KY",
-      "verified_identity_hint_usable": false
+      "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "UNRESOLVED_SOURCE_GAP",
+      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
       "id": "House|KY-06",
       "key": "KY-06",
-      "last_probe": null,
-      "latest_preflight_outcome": "not_checked",
+      "last_probe": {
+        "checked_window_utc": "2026-10-17T03:00:00+00:00",
+        "race_id": 87173,
+        "reason": null,
+        "status": "INDEXED_EXACT_RACE"
+      },
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "not_checked",
+      "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NEVER_CHECKED",
+      "recent_probe_status": "INDEXED_EXACT_RACE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
       "state": "KY",
-      "verified_identity_hint_usable": false
+      "verified_identity_hint_usable": true
     },
     {
       "gap_status": "PRIMARY_SCOPE_NOT_LIVE_VERIFIED",
@@ -9694,19 +9699,19 @@
     "house": {
       "pinned_secondary": 0,
       "primary_scope": 216,
-      "recent_exact_probes": 96,
+      "recent_exact_probes": 104,
       "scoped_secondary": 0,
       "total": 435,
       "unresolved_breakdown": {
         "checked_not_indexed": 6,
         "expired_exact_identity": 0,
         "invalid_or_ambiguous": 0,
-        "never_checked": 108,
-        "skipped_due_to_upstream_pause": 7,
+        "never_checked": 107,
+        "skipped_due_to_upstream_pause": 0,
         "temporary_upstream_failure": 2
       },
-      "unresolved_source_gaps": 123,
-      "verified_usable_id_hints": 96
+      "unresolved_source_gaps": 115,
+      "verified_usable_id_hints": 104
     },
     "senate": {
       "pinned_secondary": 17,
