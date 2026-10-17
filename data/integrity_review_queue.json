@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-17T22:39:13.860507Z",
+  "updated_at": "2026-10-17T23:34:56.254499Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 184,
-    "awaiting_primary_source": 182,
+    "total_leads": 185,
+    "awaiting_primary_source": 183,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 13,
     "advisory_related_headlines": 30
@@ -183,6 +183,25 @@
       "headline_numbers_unverified": [
         "2026 "
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "4d7896ed1a540b72576b",
+      "title": "Thousands of Utah Voters Stuck With Federal-Only Ballots Days Before Deadline - Hoodline",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNOTlSZ1pUb3A5LWZnUTE2cW1ucEU2cGN1YXRMUnNYb212UnJycjY4UnhNTUdtQl9lRWZib3ByRFdISXBrYmZacElvTlR3WHVLQUEtdGNLYjR5bnV5NWtFajhHRzd4VGdvZ2tuWHFTVTdudURkTFFxRF9HemVZS3JoSmVqdlZIS195XzJILW5TWnhQV05VTVhISDZob2ZsWDdBZlprY3B5YnZGOTA?oc=5",
+      "publisher": "Hoodline",
+      "published_at": "2026-10-17T17:17:58Z",
+      "detected_at": "2026-10-17T23:34:56.254499Z",
+      "state_hints": [
+        "UT"
+      ],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
