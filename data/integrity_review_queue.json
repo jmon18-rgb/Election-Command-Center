@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-16T23:38:40.280290Z",
+  "updated_at": "2026-10-17T00:55:52.413401Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "review_metrics": {
-    "total_leads": 171,
-    "awaiting_primary_source": 169,
+    "total_leads": 173,
+    "awaiting_primary_source": 171,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 13,
     "advisory_related_headlines": 30
@@ -169,6 +169,43 @@
     }
   ],
   "items": [
+    {
+      "id": "23f116be37f0191b1b61",
+      "title": "Coalition moves to intervene in DOJ lawsuit against California and LA County - Los Angeles Daily News",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOUDJwX3RmY0trelBCd3QyT292REtCTktpcElsYXJ4ZnYtRDlZVURabHg0em5NdjRETElfRDdSUXRoRzlwZjVjSjcwdkp3dC1PVll4SXVmWkdQOGplVDNtWWpHMnJNREZxbjhCX1RRdnhfMl9MU3NFLWhZVjB2ZkR1RTU3Q3BJS3RxZ3NDc1R4RjNwbmZieVFQeWRJTGFpSU1iXzB2R2xiUllNLWZfeGpmb0JCbDc?oc=5",
+      "publisher": "Los Angeles Daily News",
+      "published_at": "2026-10-17T00:17:56Z",
+      "detected_at": "2026-10-17T00:55:52.413401Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "f2b2cdc7d22a13de9f71",
+      "title": "Alexandria Police hold safety and security training ahead of election day - WUSA9",
+      "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxOaGFsRHlQb2dNdnRfMlRhdjVYdVVOMEZNeWh6Z1RiLXRBYlR6UGFGWUxzeTJaUlVqeUNnTFB0TlQ5RFpIR2xTZlZGM3EtY0p4eTVKOUZseUJBaF9GVDlfU3ZDTHhZT2tYcDk4ZzFKT0FXaGdGemVwaTQ1WEFsWlQyaC1RMHVGU1VxaUZCcVQ2eW9tal9vRHpvSmh3OXN3SmlMUE5lTnZHOElwbXdEWk5idTViS3hEdFROb0JXTUdMa2ZjcjU4WWc0dEhQZWMzOWtZakFsQmo0ajRCaWJzaWFpbkdhUmN5SzZFbG54Z0h6MlkxazNhY1E?oc=5",
+      "publisher": "WUSA9",
+      "published_at": "2026-10-17T00:17:00Z",
+      "detected_at": "2026-10-17T00:55:52.413401Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "df69e27f4c4967ec8cc3",
       "title": "Advocates prepare for the potential of ICE agents at polls in N.Y. - Spectrum News",

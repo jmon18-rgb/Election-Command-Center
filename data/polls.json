@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-16T23:38:40.536565Z",
+  "updated_at": "2026-10-17T00:55:52.678006Z",
   "generic_ballot": {
     "summary": {
       "dem": 47.7,
@@ -1180,12 +1180,7 @@
           "other": 3.0,
           "other_name": "Ted Brown",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-25",
-          "source_poll_url": "https://texaspublicopinionresearch.substack.com/p/new-poll-in-texas-general-election-662",
-          "sample_population": "lv",
-          "question_id": "14fcda3f-0be4-4184-a05c-885b3670aa62",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "05e63b49-71e2-463d-8bcf-7a3336bbc033",
@@ -1692,12 +1687,7 @@
           "other": 2.0,
           "other_name": "Pat Dixon",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-25",
-          "source_poll_url": "https://texaspublicopinionresearch.substack.com/p/new-poll-in-texas-general-election-662",
-          "sample_population": "lv",
-          "question_id": "a42c8fff-1edb-4277-9391-b4be9a324395",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "05e63b49-71e2-463d-8bcf-7a3336bbc033",
@@ -2682,12 +2672,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-25",
-          "source_poll_url": "https://insideradvantage.com/insideradvantage-georgia-survey-jackson-leads-by-two-in-race-for-governor-ossoff-leads-by-eight-in-senate-contest/",
-          "sample_population": "lv",
-          "question_id": "aed28a3a-7900-403c-bf98-a2700a777be3",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "6aae867f-1a44-4fe5-8a66-b45166896358",
@@ -2706,7 +2691,7 @@
           "release_date": null,
           "question_id": "e8ee06b2-13fe-43a4-803e-5281c247c44f",
           "sample_population": "lv",
-          "upstream_posted_date": "2026-09-25",
+          "upstream_posted_date": null,
           "source_poll_url": "https://www.bigdatapoll.com/blog/peach-state-poll-jon-ossoff-opens-up-lead-over-mike-collins-in-georgia/",
           "date_provenance": "PollResults ingestion date, NOT public release date",
           "model_source": "pollresults_secondary_fallback",
@@ -2833,25 +2818,9 @@
           "other_name": "Jeff Wadlin",
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "528d611e-0325-4931-8032-a2c7ece004a7",
-          "field_end": "2026-08-12",
-          "pollster": "Hendrix College",
-          "dem": 47.4,
-          "rep": 44.0,
-          "margin": 3.4,
-          "sample_size": 1217,
-          "partisan_lean": "",
-          "dem_name": "Hallie Shoffner",
-          "rep_name": "Tom Cotton",
-          "other": 3.0,
-          "other_name": "Jeff Wadlin",
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 4,
+      "recent_poll_count": 3,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -2916,7 +2885,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-16T23:38:40.536565Z",
+          "first_seen_at": "2026-10-17T00:55:52.678006Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -3807,7 +3776,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-16T23:38:40.536565Z",
+        "first_seen_at": "2026-10-17T00:55:52.678006Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -3831,7 +3800,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-16T23:38:40.536565Z",
+          "first_seen_at": "2026-10-17T00:55:52.678006Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -4401,12 +4370,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-25",
-          "source_poll_url": "https://www.commoncause.org/north-carolina/press/2026_poll_1/",
-          "sample_population": "lv",
-          "question_id": "9cf6ab50-ec7a-4b46-8274-84effc1c2c0d",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "1b31cf9e-f9c1-4902-9af0-2d83656d3e9a",
@@ -4561,25 +4525,9 @@
           "other_name": "Shannon Bray",
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "f6b07086-4cb6-46d6-9b3b-19e75f3c66d7",
-          "field_end": "2026-08-12",
-          "pollster": "High Point University",
-          "dem": 50.0,
-          "rep": 45.0,
-          "margin": 5.0,
-          "sample_size": 660,
-          "partisan_lean": "",
-          "dem_name": "Roy Cooper",
-          "rep_name": "Michael Whatley",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 17,
+      "recent_poll_count": 16,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -5741,7 +5689,7 @@
           "release_date": null,
           "question_id": "bd20db7f-0151-4594-9a57-66c6f717e312",
           "sample_population": "lv",
-          "upstream_posted_date": "2026-09-25",
+          "upstream_posted_date": null,
           "source_poll_url": "https://www.bigdatapoll.com/blog/wolverine-state-poll-el-sayed-leads-rogers-for-us-senate-in-michigan/",
           "date_provenance": "PollResults ingestion date, NOT public release date",
           "model_source": "pollresults_secondary_fallback",
@@ -5867,12 +5815,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-25",
-          "source_poll_url": "https://washingtonreporter.news/exclusive-mike-rogers-leads-in-michigan-john-james-nearly-tied-poll-shows/",
-          "sample_population": "lv",
-          "question_id": "878d8ab9-5a80-49ad-9e0c-f18738247d02",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "bb987f0d-aae5-46bd-9cd9-a37dc9ed0e83",
@@ -6163,7 +6106,7 @@
           "rep_name": "Ashley Moody",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-16T23:38:40.536565Z",
+          "first_seen_at": "2026-10-17T00:55:52.678006Z",
           "release_date": null,
           "question_id": "eb4ae581-25d7-43fd-9123-100333d1e19f",
           "sample_population": "lv",
@@ -7538,12 +7481,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-25",
-          "source_poll_url": "https://insideradvantage.com/insideradvantage-georgia-survey-jackson-leads-by-two-in-race-for-governor-ossoff-leads-by-eight-in-senate-contest/",
-          "sample_population": "lv",
-          "question_id": "3a641086-116f-43a1-9f71-5ca586f98589",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "6aae867f-1a44-4fe5-8a66-b45166896358",
@@ -7552,7 +7490,7 @@
           "dem": 55.4,
           "rep": 44.6,
           "margin": 10.8,
-          "sample_size": 678,
+          "sample_size": 712,
           "partisan_lean": "R",
           "dem_name": "Jon Ossoff",
           "rep_name": "Mike Collins",
@@ -7560,13 +7498,11 @@
           "other_name": null,
           "first_seen_at": "2026-10-15T13:19:19.152456+00:00",
           "release_date": null,
-          "question_id": "bcd4fddd-ab5f-4f28-9aa1-f898b74b34c7",
-          "sample_population": "lv",
-          "upstream_posted_date": "2026-09-25",
+          "upstream_posted_date": null,
           "source_poll_url": "https://www.bigdatapoll.com/blog/peach-state-poll-jon-ossoff-opens-up-lead-over-mike-collins-in-georgia/",
-          "date_provenance": "PollResults ingestion date, NOT public release date",
-          "model_source": "pollresults_secondary_fallback",
-          "lv_selected_over_rv": true
+          "sample_population": "lv",
+          "question_id": "bcd4fddd-ab5f-4f28-9aa1-f898b74b34c7",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
           "poll_id": "0f4bc367-db9c-459a-a5ce-34b7b7b6e9b2",
@@ -10405,12 +10341,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-25",
-          "source_poll_url": "https://www.washingtonsun.com/newsletters/panic-week",
-          "sample_population": "lv",
-          "question_id": "01c36d81-2841-4ad6-a8d5-7e85d96f0539",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "f057f5b3-bf14-4228-b266-cff675d04677",
@@ -13413,41 +13344,9 @@
           "other_name": null,
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "4b4746d6-4dad-447c-8659-d24dd5be4b13",
-          "field_end": "2026-08-12",
-          "pollster": "YouGov",
-          "dem": 53.0,
-          "rep": 33.0,
-          "margin": 20.0,
-          "sample_size": 800,
-          "partisan_lean": "",
-          "dem_name": "Maura Healey",
-          "rep_name": "Mike Minogue",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
-        },
-        {
-          "poll_id": "4b4746d6-4dad-447c-8659-d24dd5be4b13",
-          "field_end": "2026-08-12",
-          "pollster": "YouGov",
-          "dem": 51.0,
-          "rep": 32.0,
-          "margin": 19.0,
-          "sample_size": 800,
-          "partisan_lean": "",
-          "dem_name": "Maura Healey",
-          "rep_name": "Brian Shortsleeve",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 6,
+      "recent_poll_count": 4,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -13546,41 +13445,9 @@
           "other_name": "Joe Tache",
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "4b4746d6-4dad-447c-8659-d24dd5be4b13",
-          "field_end": "2026-08-12",
-          "pollster": "YouGov",
-          "dem": 49.0,
-          "rep": 25.0,
-          "margin": 24.0,
-          "sample_size": 800,
-          "partisan_lean": "",
-          "dem_name": "Seth Moulton",
-          "rep_name": "John Deaton",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
-        },
-        {
-          "poll_id": "4b4746d6-4dad-447c-8659-d24dd5be4b13",
-          "field_end": "2026-08-12",
-          "pollster": "YouGov",
-          "dem": 51.0,
-          "rep": 30.0,
-          "margin": 21.0,
-          "sample_size": 800,
-          "partisan_lean": "",
-          "dem_name": "Ed Markey",
-          "rep_name": "John Deaton",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 6,
+      "recent_poll_count": 4,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -14246,12 +14113,7 @@
         "other": null,
         "other_name": null,
         "first_seen_at": null,
-        "release_date": null,
-        "upstream_posted_date": "2026-09-25",
-        "source_poll_url": "https://x.com/MarkMaxwellTV/status/2103501820840534440",
-        "sample_population": "lv",
-        "question_id": "35fcf47d-2ee5-4210-87df-f2d52871500d",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -14268,12 +14130,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-25",
-          "source_poll_url": "https://x.com/MarkMaxwellTV/status/2103501820840534440",
-          "sample_population": "lv",
-          "question_id": "35fcf47d-2ee5-4210-87df-f2d52871500d",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "cea07761-3ae5-401c-8ccc-2b061d4d6785",
@@ -14289,12 +14146,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-25",
-          "source_poll_url": "https://x.com/MarkMaxwellTV/status/2103501820840534440",
-          "sample_population": "lv",
-          "question_id": "8ac157f5-bb52-495e-b2a2-4a83a63375a7",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 2,
@@ -15056,25 +14908,9 @@
           "other_name": null,
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "a1706cf9-840c-44ae-8011-bc0b7391776f",
-          "field_end": "2026-08-12",
-          "pollster": "Tavern Research",
-          "dem": 50.0,
-          "rep": 50.0,
-          "margin": 0.0,
-          "sample_size": 551,
-          "partisan_lean": "D",
-          "dem_name": "Pia Dandiya",
-          "rep_name": "Casey Askar",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 3,
+      "recent_poll_count": 2,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -15773,92 +15609,6 @@
       ],
       "recent_poll_count": 1,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-    },
-    {
-      "race_code": "AR-02",
-      "race_type": "house",
-      "state": "AR",
-      "district": "02",
-      "latest_field_end": "2026-08-12",
-      "latest": {
-        "poll_id": "528d611e-0325-4931-8032-a2c7ece004a7",
-        "field_end": "2026-08-12",
-        "pollster": "Hendrix College",
-        "dem": 48.0,
-        "rep": 44.0,
-        "margin": 4.0,
-        "sample_size": 1112,
-        "partisan_lean": "",
-        "dem_name": "Chris Jones",
-        "rep_name": "French Hill",
-        "other": null,
-        "other_name": null,
-        "first_seen_at": null,
-        "release_date": null
-      },
-      "polls": [
-        {
-          "poll_id": "528d611e-0325-4931-8032-a2c7ece004a7",
-          "field_end": "2026-08-12",
-          "pollster": "Hendrix College",
-          "dem": 48.0,
-          "rep": 44.0,
-          "margin": 4.0,
-          "sample_size": 1112,
-          "partisan_lean": "",
-          "dem_name": "Chris Jones",
-          "rep_name": "French Hill",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
-        }
-      ],
-      "recent_poll_count": 1,
-      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-    },
-    {
-      "race_code": "AR-GOV",
-      "race_type": "governor",
-      "state": "AR",
-      "district": "GOV",
-      "latest_field_end": "2026-08-12",
-      "latest": {
-        "poll_id": "528d611e-0325-4931-8032-a2c7ece004a7",
-        "field_end": "2026-08-12",
-        "pollster": "Hendrix College",
-        "dem": 40.0,
-        "rep": 45.0,
-        "margin": -5.0,
-        "sample_size": 1217,
-        "partisan_lean": "",
-        "dem_name": "Fred Love",
-        "rep_name": "Sarah Huckabee Sanders",
-        "other": 7.0,
-        "other_name": "Colt Shelby",
-        "first_seen_at": null,
-        "release_date": null
-      },
-      "polls": [
-        {
-          "poll_id": "528d611e-0325-4931-8032-a2c7ece004a7",
-          "field_end": "2026-08-12",
-          "pollster": "Hendrix College",
-          "dem": 40.0,
-          "rep": 45.0,
-          "margin": -5.0,
-          "sample_size": 1217,
-          "partisan_lean": "",
-          "dem_name": "Fred Love",
-          "rep_name": "Sarah Huckabee Sanders",
-          "other": 7.0,
-          "other_name": "Colt Shelby",
-          "first_seen_at": null,
-          "release_date": null
-        }
-      ],
-      "recent_poll_count": 1,
-      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     }
   ],
   "source": {
@@ -15872,7 +15622,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-16T23:38:40.536565Z",
+    "last_attempt_at": "2026-10-17T00:55:52.678006Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15884,8 +15634,8 @@
     "new_polls": [],
     "new_poll_count": 0,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-16T23:38:40.536565Z",
-    "previous_snapshot_at": "2026-10-16T22:44:10.034672Z",
+    "comparison_at": "2026-10-17T00:55:52.678006Z",
+    "previous_snapshot_at": "2026-10-16T23:38:40.536565Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15916,13 +15666,20 @@
       "dem": 47.7,
       "rep": 40.3,
       "pollsters": 12
+    },
+    {
+      "date": "2026-10-17",
+      "margin": 7.4,
+      "dem": 47.7,
+      "rep": 40.3,
+      "pollsters": 12
     }
   ],
   "newly_detected_count": 3,
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 271,
+    "matched_observations": 260,
     "newly_injected_into_model": 0,
     "newly_injected_by_race": {},
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
