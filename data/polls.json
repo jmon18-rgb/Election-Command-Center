@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-17T13:41:05.563158Z",
+  "updated_at": "2026-10-17T14:41:16.494019Z",
   "generic_ballot": {
     "summary": {
       "dem": 47.7,
@@ -2885,7 +2885,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-17T13:41:05.563158Z",
+          "first_seen_at": "2026-10-17T14:41:16.494019Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -3776,7 +3776,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-17T13:41:05.563158Z",
+        "first_seen_at": "2026-10-17T14:41:16.494019Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -3800,7 +3800,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-17T13:41:05.563158Z",
+          "first_seen_at": "2026-10-17T14:41:16.494019Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -6106,7 +6106,7 @@
           "rep_name": "Ashley Moody",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-17T13:41:05.563158Z",
+          "first_seen_at": "2026-10-17T14:41:16.494019Z",
           "release_date": null,
           "question_id": "eb4ae581-25d7-43fd-9123-100333d1e19f",
           "sample_population": "lv",
@@ -15640,7 +15640,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-17T13:41:05.563158Z",
+    "last_attempt_at": "2026-10-17T14:41:16.494019Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15649,29 +15649,11 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [
-      {
-        "race_code": "CA-GOV",
-        "race_type": "governor",
-        "poll_id": "e9813d2b-4478-4a66-b333-7054c714b05e",
-        "pollster": "ActiVote",
-        "field_end": "2026-10-16",
-        "dem": 62.8,
-        "rep": 37.2,
-        "margin": 25.6,
-        "dem_name": "Xavier Becerra",
-        "rep_name": "Steve Hilton",
-        "sample_size": 400,
-        "first_seen_at": "2026-10-17T13:41:05.799418+00:00",
-        "release_date": null,
-        "source_url": "https://www.activote.net/polls/2026/ca-governor/2026-10-16/",
-        "source": "pollresults_secondary_fallback"
-      }
-    ],
-    "new_poll_count": 1,
+    "new_polls": [],
+    "new_poll_count": 0,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-17T13:41:05.563158Z",
-    "previous_snapshot_at": "2026-10-17T12:49:34.200218Z",
+    "comparison_at": "2026-10-17T14:41:16.494019Z",
+    "previous_snapshot_at": "2026-10-17T13:41:05.563158Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15715,15 +15697,13 @@
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 260,
-    "newly_injected_into_model": 1,
-    "newly_injected_by_race": {
-      "CA-GOV": 1
-    },
+    "matched_observations": 261,
+    "newly_injected_into_model": 0,
+    "newly_injected_by_race": {},
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
-    "carried_forward_current_observations": 4,
+    "carried_forward_current_observations": 5,
     "provenance": "PollResults source-linked fallback; original first_seen_at retained"
   }
 }
