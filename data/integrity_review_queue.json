@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-17T16:42:26.776700Z",
+  "updated_at": "2026-10-17T17:39:58.370104Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
   "review_metrics": {
-    "total_leads": 178,
-    "awaiting_primary_source": 176,
+    "total_leads": 179,
+    "awaiting_primary_source": 177,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 13,
     "advisory_related_headlines": 30
@@ -169,6 +169,27 @@
     }
   ],
   "items": [
+    {
+      "id": "e0d1abd8dc05e6b6c90f",
+      "title": "Utah Voters Face Federal-Only Ballot Deadline Oct. 23 - Hoodline",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNOTlSZ1pUb3A5LWZnUTE2cW1ucEU2cGN1YXRMUnNYb212UnJycjY4UnhNTUdtQl9lRWZib3ByRFdISXBrYmZacElvTlR3WHVLQUEtdGNLYjR5bnV5NWtFajhHRzd4VGdvZ2tuWHFTVTdudURkTFFxRF9HemVZS3JoSmVqdlZIS195XzJILW5TWnhQV05VTVhISDZob2ZsWDdBZlprY3B5YnZGOTA?oc=5",
+      "publisher": "Hoodline",
+      "published_at": "2026-10-17T17:17:55Z",
+      "detected_at": "2026-10-17T17:39:58.370104Z",
+      "state_hints": [
+        "UT"
+      ],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [
+        "23"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "318b726bf8d7cfff85b7",
       "title": "Election security, or stripping citizens\u2019 voting rights? FAQs about the amendment on Kansans\u2019 ballots - The Lawrence Times",
