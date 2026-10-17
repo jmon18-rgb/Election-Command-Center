@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-17T11:40:37.543771Z",
+  "updated_at": "2026-10-17T12:49:33.919911Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 176,
-    "awaiting_primary_source": 174,
+    "total_leads": 177,
+    "awaiting_primary_source": 175,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 13,
     "advisory_related_headlines": 30
@@ -199,6 +199,27 @@
       "topic_hints": [
         "ballot_access",
         "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "01bc6569c5d80ec53ab2",
+      "title": "Trump DOJ threatens California election officials with criminal exposure if they count ballots from flagged voters - Democracy Docket",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPSTJPTjJZeHNYaW1ROVNDcmFKUDZ4TFpZVHE4SEk0MXZYUEYwaVJpMmZoZlExb09DaGNnMXNReTlWa0Y5Z2Z6Vkc4ZG1BZi1CQTFfeW1xaWJEanJYRU5ZdmxpY2ZYQnlINGticFZyTW1IejFJSWRoM2hUTmljUjlpVWQ1NjBqZFEzTmp3VzN5S2RCazBFWGRTeXljaGpWd3NwNGcwNGlseURhMTFHT2JqV05NeTBBS1Yy?oc=5",
+      "publisher": "Democracy Docket",
+      "published_at": "2026-10-17T00:28:05Z",
+      "detected_at": "2026-10-17T12:49:33.919911Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "security",
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
