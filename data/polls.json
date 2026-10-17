@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-17T12:49:34.200218Z",
+  "updated_at": "2026-10-17T13:41:05.563158Z",
   "generic_ballot": {
     "summary": {
       "dem": 47.7,
@@ -2885,7 +2885,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-17T12:49:34.200218Z",
+          "first_seen_at": "2026-10-17T13:41:05.563158Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -3776,7 +3776,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-17T12:49:34.200218Z",
+        "first_seen_at": "2026-10-17T13:41:05.563158Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -3800,7 +3800,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-17T12:49:34.200218Z",
+          "first_seen_at": "2026-10-17T13:41:05.563158Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -6106,7 +6106,7 @@
           "rep_name": "Ashley Moody",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-17T12:49:34.200218Z",
+          "first_seen_at": "2026-10-17T13:41:05.563158Z",
           "release_date": null,
           "question_id": "eb4ae581-25d7-43fd-9123-100333d1e19f",
           "sample_population": "lv",
@@ -10911,29 +10911,52 @@
       "race_type": "governor",
       "state": "CA",
       "district": "GOV",
-      "latest_field_end": "2026-10-01",
+      "latest_field_end": "2026-10-16",
       "latest": {
-        "poll_id": "12bc3fe9-bdd5-4376-8d6d-2f9ee799df60",
-        "field_end": "2026-10-01",
-        "pollster": "Manhattan Institute",
-        "dem": 57.0,
-        "rep": 39.0,
-        "margin": 18.0,
-        "sample_size": 1000,
-        "partisan_lean": "R",
+        "poll_id": "e9813d2b-4478-4a66-b333-7054c714b05e",
+        "question_id": "4ddd2341-0ea3-436a-bd34-782302796a05",
+        "field_end": "2026-10-16",
+        "pollster": "ActiVote",
+        "dem": 62.8,
+        "rep": 37.2,
+        "margin": 25.6,
+        "sample_size": 400,
+        "partisan_lean": "",
         "dem_name": "Xavier Becerra",
         "rep_name": "Steve Hilton",
         "other": null,
         "other_name": null,
-        "first_seen_at": null,
+        "first_seen_at": "2026-10-17T13:41:05.799418+00:00",
         "release_date": null,
-        "upstream_posted_date": "2026-10-09",
-        "source_poll_url": "https://manhattan.institute/article/californias-contradictions-survey-analysis-of-2026-voter-preferences-statewide-and-in-los-angeles",
+        "upstream_posted_date": "2026-10-17",
+        "source_poll_url": "https://www.activote.net/polls/2026/ca-governor/2026-10-16/",
         "sample_population": "lv",
-        "question_id": "2d372280-3711-475d-a937-22f2bfd4072f",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "e9813d2b-4478-4a66-b333-7054c714b05e",
+          "question_id": "4ddd2341-0ea3-436a-bd34-782302796a05",
+          "field_end": "2026-10-16",
+          "pollster": "ActiVote",
+          "dem": 62.8,
+          "rep": 37.2,
+          "margin": 25.6,
+          "sample_size": 400,
+          "partisan_lean": "",
+          "dem_name": "Xavier Becerra",
+          "rep_name": "Steve Hilton",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-17T13:41:05.799418+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-17",
+          "source_poll_url": "https://www.activote.net/polls/2026/ca-governor/2026-10-16/",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "12bc3fe9-bdd5-4376-8d6d-2f9ee799df60",
           "field_end": "2026-10-01",
@@ -11041,7 +11064,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 6,
+      "recent_poll_count": 7,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -15617,7 +15640,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-17T12:49:34.200218Z",
+    "last_attempt_at": "2026-10-17T13:41:05.563158Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15626,11 +15649,29 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [],
-    "new_poll_count": 0,
+    "new_polls": [
+      {
+        "race_code": "CA-GOV",
+        "race_type": "governor",
+        "poll_id": "e9813d2b-4478-4a66-b333-7054c714b05e",
+        "pollster": "ActiVote",
+        "field_end": "2026-10-16",
+        "dem": 62.8,
+        "rep": 37.2,
+        "margin": 25.6,
+        "dem_name": "Xavier Becerra",
+        "rep_name": "Steve Hilton",
+        "sample_size": 400,
+        "first_seen_at": "2026-10-17T13:41:05.799418+00:00",
+        "release_date": null,
+        "source_url": "https://www.activote.net/polls/2026/ca-governor/2026-10-16/",
+        "source": "pollresults_secondary_fallback"
+      }
+    ],
+    "new_poll_count": 1,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-17T12:49:34.200218Z",
-    "previous_snapshot_at": "2026-10-17T11:40:37.810977Z",
+    "comparison_at": "2026-10-17T13:41:05.563158Z",
+    "previous_snapshot_at": "2026-10-17T12:49:34.200218Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15675,8 +15716,10 @@
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
     "matched_observations": 260,
-    "newly_injected_into_model": 0,
-    "newly_injected_by_race": {},
+    "newly_injected_into_model": 1,
+    "newly_injected_by_race": {
+      "CA-GOV": 1
+    },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
