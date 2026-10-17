@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-17T00:55:52.413401Z",
+  "updated_at": "2026-10-17T01:41:59.085326Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 173,
-    "awaiting_primary_source": 171,
+    "total_leads": 174,
+    "awaiting_primary_source": 172,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 13,
     "advisory_related_headlines": 30
@@ -213,6 +213,23 @@
       "publisher": "Spectrum News",
       "published_at": "2026-10-16T22:46:00Z",
       "detected_at": "2026-10-16T23:38:40.280290Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "3339f1b1de1d08ad4fd4",
+      "title": "Little-known law sets ticking time bomb for Trump officials who send ICE to polls: report - Raw Story",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5KTlVLOVYtQ2Z6ZXNPOGtZejJHemMxaXgtcXZHd3lDS3dLaTZ6cDBVVTV0QmZJSFg3WEZoT3ZPWHlvSnlDRVNZeV9UbmhpWGt2VnBtNE1Ja9IBakFVX3lxTE8td2o2NTY1N0F4VmNGcEJYR3NmSDladHk3SG13b1g2aWx1dlBuQ2NDSUNJOU1LbUJZVllwYXdMb25jNXlmck5VZkdrV002UDFmM0xQQmlBZFJvcUU5bVZnTzl6R2RsdDloRnc?oc=5",
+      "publisher": "Raw Story",
+      "published_at": "2026-10-16T22:12:00Z",
+      "detected_at": "2026-10-17T01:41:59.085326Z",
       "state_hints": [],
       "topic_hints": [
         "security"
