@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-17T17:39:58.370104Z",
+  "updated_at": "2026-10-17T18:43:32.374309Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 4,
   "review_metrics": {
-    "total_leads": 179,
-    "awaiting_primary_source": 177,
+    "total_leads": 183,
+    "awaiting_primary_source": 181,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 13,
     "advisory_related_headlines": 30
@@ -170,6 +170,25 @@
   ],
   "items": [
     {
+      "id": "51790f9e29413df96048",
+      "title": "No Kings Four Turns Up Heat To Get Out The 2026 Midterm Vote - DCMediaGroup",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNdWZreFJHOWQzd3NXbVJvc1FWNG0zb0JVbllYc0VRTkRaMkY1NnZPQlBQdWZYY0ZEM3Y4SEpGSXFJV0hVMEFQb1FwaUwwQnZ6VVB2Rnd5N3FXd1dvV0h5bE1xVzkzclZqbXBGOGpFcExoeDB2MlZYUkN6LTNCSFJaeW1yVXE0TkNjZDAycTRQZDVUY0x6bENETjNEeHU?oc=5",
+      "publisher": "DCMediaGroup",
+      "published_at": "2026-10-17T18:25:20Z",
+      "detected_at": "2026-10-17T18:43:32.374309Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "e0d1abd8dc05e6b6c90f",
       "title": "Utah Voters Face Federal-Only Ballot Deadline Oct. 23 - Hoodline",
       "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNOTlSZ1pUb3A5LWZnUTE2cW1ucEU2cGN1YXRMUnNYb212UnJycjY4UnhNTUdtQl9lRWZib3ByRFdISXBrYmZacElvTlR3WHVLQUEtdGNLYjR5bnV5NWtFajhHRzd4VGdvZ2tuWHFTVTdudURkTFFxRF9HemVZS3JoSmVqdlZIS195XzJILW5TWnhQV05VTVhISDZob2ZsWDdBZlprY3B5YnZGOTA?oc=5",
@@ -209,6 +228,23 @@
       "promoted_to_incident_id": null
     },
     {
+      "id": "c01889f81a3f5c39508c",
+      "title": "Supreme Court allows Trump to implement parts of his mail-in voting executive order - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQLUpWVmxZNkVNNGxlamhNRjkteVhjUVJNMXhDQ3Vyc3V3UkdTVEcyeUM0ZnEzTUlJQXRYMUZsNkZ5LTN5Q0VzWDFrVmVFSVlpOFBSaEpwa19qd0Q4SExzankxMEpIQjMxT2k5R0Z3emE0cDFCNng3V3lwVjBQUDg1NNIBhgFBVV95cUxOWGtmd1BpZ1U2QlJOeTZIcXhKMTVTOVFEZDJKcDJPS1NzX2NsOG1RT2w2TkpUMDkwTWY1QzlZcGt4LVlmNV9NZlFVUG04S0Y1U2hUSUdFSk5sUlFId1VsZzlnd1JvOGlWQnY2LThiN1J6cjZDSjdSWHd3elNWS3FpYWJqMXFnUQ?oc=5",
+      "publisher": "ABC News - Breaking News, Latest News and Videos",
+      "published_at": "2026-10-17T13:10:06Z",
+      "detected_at": "2026-10-17T18:43:32.374309Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "ee984dc4438660907df1",
       "title": "Nevada begins early voting after DOJ\u2019s noncitizen voter crusade fizzled out - Democracy Docket",
       "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPR1Fyd291T1IwOFoyNDJueWQ3aG9KYzFoalJ0U2tHNXRkeUQ1VHFqd3ZfUGJjMWNueDNpX3ZDVGFyNU9PLW80ZjI5MVlPSzZRSDhYcmt1VDFHOTAzdXlNQ19RMmtNQnZwNzJMRzhxRUJhQmlzeWo3aVMxS19MYlZINDVfMzBHbnlUOWxJdER1U2dKeUFjZW9KQ0Jwa3VsMmhVcHdhNTZYSUtDMGU5Q18tZ0N0cjA4eUZVd1BV?oc=5",
@@ -235,6 +271,45 @@
       "published_at": "2026-10-17T05:49:03Z",
       "detected_at": "2026-10-17T07:42:37.076000Z",
       "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "bf3cb6274015cfa6c238",
+      "title": "GOP-led voting changes could affect close races in the 2026 midterms - Mezha.net",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOcnppZHViUEhOVDNKRGY0M21zMUZkbGdZRDVfOU1VMVEtVElrS2pJTnFFeDBndWdRSnNTQ3BpMlU5THBSamJMNVdKaDF6TElITlNQOXVIOE5yV042YzEzYzNYc1NITzdTRUtHc0xNanlwczEtQUZDemNrblNsVVNQT3JnV0FlMmlE?oc=5",
+      "publisher": "Mezha.net",
+      "published_at": "2026-10-17T02:59:07Z",
+      "detected_at": "2026-10-17T18:43:32.374309Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "119b35e1baf7c06c79c2",
+      "title": "Supreme Court clears hurdle for Trump\u2019s mail-ballot restrictions, but legal fight continues - Alaska Story",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQSHhXR1A3WDR5a0VxYzZZM3c4QUd4Z3FoTWdNdndpWnBBZWkzejhNTnhPTlAxdFgtZzlId0xVWHFBeUc2VmxSbzFqdUlvTEx1RVN5TExDQW1GRFZLT202c0xITDlsUjY3dnpJM3lYejRfYkw4MVBTWEwwalYzQjJBSnFDaWJQNkttbjU2OTZjSThZSWpqSTJqZkZCYnNqa2wwUy1aalZRZVBRNUo2RGVOdDVId1lET1BG?oc=5",
+      "publisher": "Alaska Story",
+      "published_at": "2026-10-17T01:57:53Z",
+      "detected_at": "2026-10-17T18:43:32.374309Z",
+      "state_hints": [
+        "AK"
+      ],
       "topic_hints": [
         "ballot_access",
         "litigation"
