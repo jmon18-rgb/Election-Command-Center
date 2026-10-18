@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-18T18:44:12.998730+00:00",
+  "updated_at": "2026-10-18T19:37:42.863056+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 780,
+      "available_in_source": 781,
       "records_examined": 300
     },
     "house": {
@@ -18,9 +18,38 @@
     }
   },
   "matched_primary_observations": 264,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "OH-SEN",
+      "poll_id": "c7adfed3-331d-435d-bcb8-8de570669f8b"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "OH-SEN",
+      "race_type": "senate",
+      "state": "OH",
+      "poll_id": "c7adfed3-331d-435d-bcb8-8de570669f8b",
+      "question_id": "74edcff2-4435-49bb-ad28-48fa282470db",
+      "pollster": "ActiVote",
+      "dem_name": "Sherrod Brown",
+      "rep_name": "Jon Husted",
+      "dem": 49.8,
+      "rep": 50.2,
+      "margin": -0.4,
+      "field_end": "2026-10-18",
+      "field_start": "2026-09-26",
+      "posted_date": "2026-10-18",
+      "posted_source_datetime": "2026-10-18T14:43:00",
+      "posted_source_time": "10/18/26 14:43",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.activote.net/polls/2026/oh-u-s-senate/2026-10-18/",
+      "sample_population": "lv",
+      "sample_size": 400,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "TX-SEN",
       "race_type": "senate",
