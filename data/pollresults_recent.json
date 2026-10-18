@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-18T12:49:13.196406+00:00",
+  "updated_at": "2026-10-18T13:41:05.854038+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 779,
+      "available_in_source": 780,
       "records_examined": 300
     },
     "house": {
@@ -13,14 +13,71 @@
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 874,
+      "available_in_source": 875,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 261,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 2,
+  "injected_poll_ids": [
+    {
+      "race_code": "TX-GOV",
+      "poll_id": "393edd18-28ac-4247-941b-c4cb665a1e91"
+    },
+    {
+      "race_code": "TX-SEN",
+      "poll_id": "393edd18-28ac-4247-941b-c4cb665a1e91"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "TX-SEN",
+      "race_type": "senate",
+      "state": "TX",
+      "poll_id": "393edd18-28ac-4247-941b-c4cb665a1e91",
+      "question_id": "44059dd8-e6da-4290-ae0c-76177c446d1c",
+      "pollster": "YouGov",
+      "dem_name": "James Talarico",
+      "rep_name": "Ken Paxton",
+      "dem": 51.0,
+      "rep": 49.0,
+      "margin": 2.0,
+      "field_end": "2026-10-16",
+      "field_start": "2026-10-08",
+      "posted_date": "2026-10-18",
+      "posted_source_datetime": "2026-10-18T09:24:00",
+      "posted_source_time": "10/18/26 09:24",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://polling-averages.newsdev.nyt.net/polls/add",
+      "sample_population": "lv",
+      "sample_size": 1458,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "TX-GOV",
+      "race_type": "governor",
+      "state": "TX",
+      "poll_id": "393edd18-28ac-4247-941b-c4cb665a1e91",
+      "question_id": "7861f78d-b03f-4fa3-ac16-b1cca518c989",
+      "pollster": "YouGov",
+      "dem_name": "Gina Hinojosa",
+      "rep_name": "Greg Abbott",
+      "dem": 48.0,
+      "rep": 52.0,
+      "margin": -4.0,
+      "field_end": "2026-10-16",
+      "field_start": "2026-10-08",
+      "posted_date": "2026-10-18",
+      "posted_source_datetime": "2026-10-18T09:24:00",
+      "posted_source_time": "10/18/26 09:24",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://polling-averages.newsdev.nyt.net/polls/add",
+      "sample_population": "lv",
+      "sample_size": 1460,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "MN-SEN",
       "race_type": "senate",

@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-18T12:49:12.468456Z",
+  "updated_at": "2026-10-18T13:41:05.228980Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 188,
-    "awaiting_primary_source": 186,
+    "total_leads": 189,
+    "awaiting_primary_source": 187,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 14,
     "advisory_related_headlines": 32
@@ -234,6 +234,25 @@
       ],
       "topic_hints": [
         "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "44273665bd84dc92be35",
+      "title": "Hundreds gather in downtown Minneapolis for \u2018No Kings\u2019 early voting day of action - Minnesota Reformer",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPQnIwc1RiUGd1LUJIX1JXcW9tTWVHbThTQ3l4MjJFb3ZGZXdZTmYyT1JkOGx6RVVDajVSZEh0TDdaNkFlRDFZMFd4OHFPblE1OXJCU3ZRc25qUUYzZk5NcHp2TVRreExkWlg0WlJ1eUxRMXdETm5uaFNtR1NEQjlSMHZhTWwyTUg5Q0FGcGExaVF2LVJzQi1yTFlJUnZWZzFpc0dVX2NjcDZHYV9VSHB3LUEyVDNPNk03MlB1U1NR?oc=5",
+      "publisher": "Minnesota Reformer",
+      "published_at": "2026-10-17T22:44:30Z",
+      "detected_at": "2026-10-18T13:41:05.228980Z",
+      "state_hints": [
+        "MN"
+      ],
+      "topic_hints": [
+        "ballot_access"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-18T12:49:12.742144Z",
+  "updated_at": "2026-10-18T13:41:05.411650Z",
   "generic_ballot": {
     "summary": {
       "dem": 47.7,
@@ -990,29 +990,52 @@
       "race_type": "senate",
       "state": "TX",
       "district": "SEN",
-      "latest_field_end": "2026-10-14",
+      "latest_field_end": "2026-10-16",
       "latest": {
-        "poll_id": "954b5426-3589-4d4f-bf0e-b2c2e5dd1e16",
-        "field_end": "2026-10-14",
-        "pollster": "InsiderAdvantage",
-        "dem": 48.0,
+        "poll_id": "393edd18-28ac-4247-941b-c4cb665a1e91",
+        "question_id": "44059dd8-e6da-4290-ae0c-76177c446d1c",
+        "field_end": "2026-10-16",
+        "pollster": "YouGov",
+        "dem": 51.0,
         "rep": 49.0,
-        "margin": -1.0,
-        "sample_size": 1200,
-        "partisan_lean": "R",
+        "margin": 2.0,
+        "sample_size": 1458,
+        "partisan_lean": "",
         "dem_name": "James Talarico",
         "rep_name": "Ken Paxton",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-16T12:13:21.000726+00:00",
+        "first_seen_at": "2026-10-18T13:41:05.854038+00:00",
         "release_date": null,
-        "upstream_posted_date": "2026-10-16",
-        "source_poll_url": "https://insideradvantage.com/insideradvantage-senate-surveys-texas-paxton-49-talarico-48-kansas-marshall-48-hamilton-47-maine-jackson-49-collins-47/",
+        "upstream_posted_date": "2026-10-18",
+        "source_poll_url": "https://polling-averages.newsdev.nyt.net/polls/add",
         "sample_population": "lv",
-        "question_id": "e4c3cf2b-df58-43ff-b472-6ea7d7489124",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "393edd18-28ac-4247-941b-c4cb665a1e91",
+          "question_id": "44059dd8-e6da-4290-ae0c-76177c446d1c",
+          "field_end": "2026-10-16",
+          "pollster": "YouGov",
+          "dem": 51.0,
+          "rep": 49.0,
+          "margin": 2.0,
+          "sample_size": 1458,
+          "partisan_lean": "",
+          "dem_name": "James Talarico",
+          "rep_name": "Ken Paxton",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-18T13:41:05.854038+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-18",
+          "source_poll_url": "https://polling-averages.newsdev.nyt.net/polls/add",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "954b5426-3589-4d4f-bf0e-b2c2e5dd1e16",
           "field_end": "2026-10-14",
@@ -1534,7 +1557,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 28,
+      "recent_poll_count": 29,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -1542,29 +1565,52 @@
       "race_type": "governor",
       "state": "TX",
       "district": "GOV",
-      "latest_field_end": "2026-10-14",
+      "latest_field_end": "2026-10-16",
       "latest": {
-        "poll_id": "7dd88340-2b3d-4bc1-afbc-69f540b9f7fb",
-        "field_end": "2026-10-14",
-        "pollster": "ActiVote",
-        "dem": 49.1,
-        "rep": 50.9,
-        "margin": -1.8,
-        "sample_size": 400,
+        "poll_id": "393edd18-28ac-4247-941b-c4cb665a1e91",
+        "question_id": "7861f78d-b03f-4fa3-ac16-b1cca518c989",
+        "field_end": "2026-10-16",
+        "pollster": "YouGov",
+        "dem": 48.0,
+        "rep": 52.0,
+        "margin": -4.0,
+        "sample_size": 1460,
         "partisan_lean": "",
         "dem_name": "Gina Hinojosa",
         "rep_name": "Greg Abbott",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-15T10:47:37.670788+00:00",
+        "first_seen_at": "2026-10-18T13:41:05.854038+00:00",
         "release_date": null,
-        "upstream_posted_date": "2026-10-15",
-        "source_poll_url": "https://www.activote.net/polls/2026/tx-u-s-senate/2026-10-14/",
+        "upstream_posted_date": "2026-10-18",
+        "source_poll_url": "https://polling-averages.newsdev.nyt.net/polls/add",
         "sample_population": "lv",
-        "question_id": "88069d28-10c8-4631-9e1e-c33aff7a66a9",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "393edd18-28ac-4247-941b-c4cb665a1e91",
+          "question_id": "7861f78d-b03f-4fa3-ac16-b1cca518c989",
+          "field_end": "2026-10-16",
+          "pollster": "YouGov",
+          "dem": 48.0,
+          "rep": 52.0,
+          "margin": -4.0,
+          "sample_size": 1460,
+          "partisan_lean": "",
+          "dem_name": "Gina Hinojosa",
+          "rep_name": "Greg Abbott",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-18T13:41:05.854038+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-18",
+          "source_poll_url": "https://polling-averages.newsdev.nyt.net/polls/add",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "7dd88340-2b3d-4bc1-afbc-69f540b9f7fb",
           "field_end": "2026-10-14",
@@ -1993,7 +2039,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 23,
+      "recent_poll_count": 24,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -2660,7 +2706,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-18T12:49:12.742144Z",
+        "first_seen_at": "2026-10-18T13:41:05.411650Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -2684,7 +2730,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-18T12:49:12.742144Z",
+          "first_seen_at": "2026-10-18T13:41:05.411650Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -3320,7 +3366,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-18T12:49:12.742144Z",
+          "first_seen_at": "2026-10-18T13:41:05.411650Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -4229,7 +4275,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-18T12:49:12.742144Z",
+        "first_seen_at": "2026-10-18T13:41:05.411650Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -4253,7 +4299,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-18T12:49:12.742144Z",
+          "first_seen_at": "2026-10-18T13:41:05.411650Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -6704,7 +6750,7 @@
           "rep_name": "Ashley Moody",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-18T12:49:12.742144Z",
+          "first_seen_at": "2026-10-18T13:41:05.411650Z",
           "release_date": null,
           "question_id": "eb4ae581-25d7-43fd-9123-100333d1e19f",
           "sample_population": "lv",
@@ -15433,7 +15479,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-18T12:49:12.742144Z",
+    "last_attempt_at": "2026-10-18T13:41:05.411650Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15442,11 +15488,46 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [],
-    "new_poll_count": 0,
+    "new_polls": [
+      {
+        "race_code": "TX-SEN",
+        "race_type": "senate",
+        "poll_id": "393edd18-28ac-4247-941b-c4cb665a1e91",
+        "pollster": "YouGov",
+        "field_end": "2026-10-16",
+        "dem": 51.0,
+        "rep": 49.0,
+        "margin": 2.0,
+        "dem_name": "James Talarico",
+        "rep_name": "Ken Paxton",
+        "sample_size": 1458,
+        "first_seen_at": "2026-10-18T13:41:05.854038+00:00",
+        "release_date": null,
+        "source_url": "https://polling-averages.newsdev.nyt.net/polls/add",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "TX-GOV",
+        "race_type": "governor",
+        "poll_id": "393edd18-28ac-4247-941b-c4cb665a1e91",
+        "pollster": "YouGov",
+        "field_end": "2026-10-16",
+        "dem": 48.0,
+        "rep": 52.0,
+        "margin": -4.0,
+        "dem_name": "Gina Hinojosa",
+        "rep_name": "Greg Abbott",
+        "sample_size": 1460,
+        "first_seen_at": "2026-10-18T13:41:05.854038+00:00",
+        "release_date": null,
+        "source_url": "https://polling-averages.newsdev.nyt.net/polls/add",
+        "source": "pollresults_secondary_fallback"
+      }
+    ],
+    "new_poll_count": 2,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-18T12:49:12.742144Z",
-    "previous_snapshot_at": "2026-10-18T11:40:16.778097Z",
+    "comparison_at": "2026-10-18T13:41:05.411650Z",
+    "previous_snapshot_at": "2026-10-18T12:49:12.742144Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15498,8 +15579,11 @@
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
     "matched_observations": 261,
-    "newly_injected_into_model": 0,
-    "newly_injected_by_race": {},
+    "newly_injected_into_model": 2,
+    "newly_injected_by_race": {
+      "TX-GOV": 1,
+      "TX-SEN": 1
+    },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {

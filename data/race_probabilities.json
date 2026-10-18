@@ -1,9 +1,9 @@
 {
   "schema_version": "experimental-race-odds-v1",
   "status": "experimental_poll_margin_probability_not_chamber_forecast",
-  "generated_at": "2026-10-18T12:49:16.846118+00:00",
-  "polling_source_generated_at": "2026-10-18T12:49:16.685503Z",
-  "polling_source_snapshot": "2026-10-18T12:49:12.742144Z",
+  "generated_at": "2026-10-18T13:41:08.900957+00:00",
+  "polling_source_generated_at": "2026-10-18T13:41:08.803101Z",
+  "polling_source_snapshot": "2026-10-18T13:41:05.411650Z",
   "historical_senate_elections": 3,
   "historical_senate_races": 42,
   "senate_baseline_rmse_points": 5.633,
@@ -429,16 +429,16 @@
       "office": "governor",
       "race_code": "TX-GOV",
       "label": "Texas",
-      "dem_minus_rep": -2.45,
+      "dem_minus_rep": -3.14,
       "contributing_firms": 15,
       "independent_firms": 12,
-      "latest_poll_end": "2026-10-11",
+      "latest_poll_end": "2026-10-16",
       "sigma_points": 7.0,
       "uncertainty_multiplier": 1.0,
-      "dem_beats_rep_pct": 36.32,
-      "rep_beats_dem_pct": 63.68,
-      "tight_error_dem_pct": 32.04,
-      "wide_error_dem_pct": 38.97
+      "dem_beats_rep_pct": 32.69,
+      "rep_beats_dem_pct": 67.31,
+      "tight_error_dem_pct": 27.49,
+      "wide_error_dem_pct": 35.99
     },
     {
       "office": "governor",
@@ -1749,16 +1749,16 @@
       "office": "senate",
       "race_code": "TX-SEN",
       "label": "Texas",
-      "dem_minus_rep": 2.59,
+      "dem_minus_rep": 2.13,
       "contributing_firms": 18,
       "independent_firms": 12,
-      "latest_poll_end": "2026-10-14",
+      "latest_poll_end": "2026-10-16",
       "sigma_points": 5.633,
       "uncertainty_multiplier": 1.0,
-      "dem_beats_rep_pct": 67.72,
-      "rep_beats_dem_pct": 32.28,
-      "tight_error_dem_pct": 73.01,
-      "wide_error_dem_pct": 64.35
+      "dem_beats_rep_pct": 64.73,
+      "rep_beats_dem_pct": 35.27,
+      "tight_error_dem_pct": 69.29,
+      "wide_error_dem_pct": 61.89
     }
   ],
   "limitations": [
