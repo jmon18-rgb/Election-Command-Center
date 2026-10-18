@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-18T13:41:05.854038+00:00",
+  "updated_at": "2026-10-18T14:42:04.334200+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,7 +9,7 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1194,
+      "available_in_source": 1196,
       "records_examined": 200
     },
     "governor": {
@@ -17,18 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 261,
-  "newly_injected_into_model": 2,
-  "injected_poll_ids": [
-    {
-      "race_code": "TX-GOV",
-      "poll_id": "393edd18-28ac-4247-941b-c4cb665a1e91"
-    },
-    {
-      "race_code": "TX-SEN",
-      "poll_id": "393edd18-28ac-4247-941b-c4cb665a1e91"
-    }
-  ],
+  "matched_primary_observations": 263,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "TX-SEN",
@@ -144,7 +135,7 @@
       "posted_source_datetime": "2026-10-17T20:26:00",
       "posted_source_time": "10/17/26 20:26",
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
-      "source_url": "https://x.com/SusquehannaPR/status/2111471509856309679/photo/1",
+      "source_url": "https://x.com/SusquehannaPR/status/2111471509856309679",
       "sample_population": "lv",
       "sample_size": 300,
       "partisan_lean": "",

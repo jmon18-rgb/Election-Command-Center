@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-18T13:41:05.411650Z",
+  "updated_at": "2026-10-18T14:42:03.862548Z",
   "generic_ballot": {
     "summary": {
       "dem": 47.7,
@@ -2706,7 +2706,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-18T13:41:05.411650Z",
+        "first_seen_at": "2026-10-18T14:42:03.862548Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -2730,7 +2730,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-18T13:41:05.411650Z",
+          "first_seen_at": "2026-10-18T14:42:03.862548Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -3366,7 +3366,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-18T13:41:05.411650Z",
+          "first_seen_at": "2026-10-18T14:42:03.862548Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -4275,7 +4275,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-18T13:41:05.411650Z",
+        "first_seen_at": "2026-10-18T14:42:03.862548Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -4299,7 +4299,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-18T13:41:05.411650Z",
+          "first_seen_at": "2026-10-18T14:42:03.862548Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -6750,7 +6750,7 @@
           "rep_name": "Ashley Moody",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-18T13:41:05.411650Z",
+          "first_seen_at": "2026-10-18T14:42:03.862548Z",
           "release_date": null,
           "question_id": "eb4ae581-25d7-43fd-9123-100333d1e19f",
           "sample_population": "lv",
@@ -13731,7 +13731,7 @@
         "first_seen_at": "2026-10-18T00:56:24.835502+00:00",
         "release_date": null,
         "upstream_posted_date": "2026-10-17",
-        "source_poll_url": "https://x.com/SusquehannaPR/status/2111471509856309679/photo/1",
+        "source_poll_url": "https://x.com/SusquehannaPR/status/2111471509856309679",
         "sample_population": "lv",
         "date_provenance": "PollResults ingestion date, NOT public release date",
         "model_source": "pollresults_secondary_fallback"
@@ -13754,7 +13754,7 @@
           "first_seen_at": "2026-10-18T00:56:24.835502+00:00",
           "release_date": null,
           "upstream_posted_date": "2026-10-17",
-          "source_poll_url": "https://x.com/SusquehannaPR/status/2111471509856309679/photo/1",
+          "source_poll_url": "https://x.com/SusquehannaPR/status/2111471509856309679",
           "sample_population": "lv",
           "date_provenance": "PollResults ingestion date, NOT public release date",
           "model_source": "pollresults_secondary_fallback"
@@ -15479,7 +15479,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-18T13:41:05.411650Z",
+    "last_attempt_at": "2026-10-18T14:42:03.862548Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15488,46 +15488,11 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [
-      {
-        "race_code": "TX-SEN",
-        "race_type": "senate",
-        "poll_id": "393edd18-28ac-4247-941b-c4cb665a1e91",
-        "pollster": "YouGov",
-        "field_end": "2026-10-16",
-        "dem": 51.0,
-        "rep": 49.0,
-        "margin": 2.0,
-        "dem_name": "James Talarico",
-        "rep_name": "Ken Paxton",
-        "sample_size": 1458,
-        "first_seen_at": "2026-10-18T13:41:05.854038+00:00",
-        "release_date": null,
-        "source_url": "https://polling-averages.newsdev.nyt.net/polls/add",
-        "source": "pollresults_secondary_fallback"
-      },
-      {
-        "race_code": "TX-GOV",
-        "race_type": "governor",
-        "poll_id": "393edd18-28ac-4247-941b-c4cb665a1e91",
-        "pollster": "YouGov",
-        "field_end": "2026-10-16",
-        "dem": 48.0,
-        "rep": 52.0,
-        "margin": -4.0,
-        "dem_name": "Gina Hinojosa",
-        "rep_name": "Greg Abbott",
-        "sample_size": 1460,
-        "first_seen_at": "2026-10-18T13:41:05.854038+00:00",
-        "release_date": null,
-        "source_url": "https://polling-averages.newsdev.nyt.net/polls/add",
-        "source": "pollresults_secondary_fallback"
-      }
-    ],
-    "new_poll_count": 2,
+    "new_polls": [],
+    "new_poll_count": 0,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-18T13:41:05.411650Z",
-    "previous_snapshot_at": "2026-10-18T12:49:12.742144Z",
+    "comparison_at": "2026-10-18T14:42:03.862548Z",
+    "previous_snapshot_at": "2026-10-18T13:41:05.411650Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15578,16 +15543,13 @@
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 261,
-    "newly_injected_into_model": 2,
-    "newly_injected_by_race": {
-      "TX-GOV": 1,
-      "TX-SEN": 1
-    },
+    "matched_observations": 263,
+    "newly_injected_into_model": 0,
+    "newly_injected_by_race": {},
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
-    "carried_forward_current_observations": 4,
+    "carried_forward_current_observations": 6,
     "provenance": "PollResults source-linked fallback; original first_seen_at retained"
   }
 }
