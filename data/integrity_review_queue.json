@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-18T21:41:31.178387Z",
+  "updated_at": "2026-10-18T22:40:00.910999Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
-    "total_leads": 190,
-    "awaiting_primary_source": 188,
+    "total_leads": 192,
+    "awaiting_primary_source": 190,
     "primary_source_checked": 2,
-    "advisory_related_headline_buckets": 14,
-    "advisory_related_headlines": 32
+    "advisory_related_headline_buckets": 15,
+    "advisory_related_headlines": 34
   },
   "advisory_related_headlines": [
     {
@@ -179,9 +179,38 @@
         "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "256dbf326364da4f0ce2",
+      "headline": "Weekly Racial Justice Update: October 11\u201317, 2026 - Race, Racism and the Law",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "23c2f47f5e6c0ab2109d",
+      "title": "Seton Hall students voice concerns about election integrity ahead of midterms - The Setonian",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPMmowYkU2RnNOMzdNbGFLN1lHcy12MlZsVkl4U3JySm5Mb08xbWpnS01qNDZsaEpkajF5cVc4YVhZaU9NSFRJT0tZMjFYbGV6SXRiQnpuQ05teXl6QmFIbGtrNG1UR2xLQTRhZnJFdGJLUGxoYlV3b0pBeEJiaHBZYWtzUktwVVlyUl9QSzZBSWtHNFNzU0pZenROZHYzRXhOT1Q5TGxGWXF2X2FfdWUzMDNUb2R2Um5KTHRQeWZR?oc=5",
+      "publisher": "The Setonian",
+      "published_at": "2026-10-18T19:00:00Z",
+      "detected_at": "2026-10-18T22:40:00.910999Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "7daf29b764a643b992ab",
       "title": "\u2018We didn\u2019t ask you to remove them\u2019: DOJ\u2019s California lawsuit aims to get around federal voter protections - Democracy Docket",
@@ -196,6 +225,27 @@
         "litigation"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "256dbf326364da4f0ce2",
+      "title": "Weekly Racial Justice Update: October 11\u201317, 2026 - Race, Racism and the Law",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOSmQ2V19QWlpvVU1tOENhZ3ZDdWFMYUdpT2EzOGpNY2pCUkh1VGN2UlpiaWV2Yko5ZGJKQ0pNdGgxOVZ4dm00cUpEeXZFVHRBbE5XVndQQTZaM2RrRmx6LUZjX2tIdDBFeDI2TUhVZWoyeEtNaXA4UjJubGlfYXNaUVZRM0JkRFh1YUI1cm9aME1kVF9XQms1aUM4SQ?oc=5",
+      "publisher": "Race, Racism and the Law",
+      "published_at": "2026-10-18T12:57:57Z",
+      "detected_at": "2026-10-18T22:40:00.910999Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [
+        "11",
+        "17, ",
+        "2026"
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
