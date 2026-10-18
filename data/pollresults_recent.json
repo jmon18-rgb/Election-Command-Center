@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-18T01:42:04.257567+00:00",
+  "updated_at": "2026-10-18T02:43:34.100769+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 777,
+      "available_in_source": 779,
       "records_examined": 300
     },
     "house": {
@@ -18,9 +18,66 @@
     }
   },
   "matched_primary_observations": 259,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 2,
+  "injected_poll_ids": [
+    {
+      "race_code": "IA-SEN",
+      "poll_id": "b47129f8-00ec-4579-a7f4-09b3d64dd41b"
+    },
+    {
+      "race_code": "MN-SEN",
+      "poll_id": "d5f8e9c0-d6c5-42f6-9c7b-66f77ea5e40c"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "MN-SEN",
+      "race_type": "senate",
+      "state": "MN",
+      "poll_id": "d5f8e9c0-d6c5-42f6-9c7b-66f77ea5e40c",
+      "question_id": "cb893ddc-9dcf-490b-b05d-62a8a531584f",
+      "pollster": "Trafalgar Group",
+      "dem_name": "Peggy Flanagan",
+      "rep_name": "Michele Tafoya",
+      "dem": 48.1,
+      "rep": 44.6,
+      "margin": 3.5,
+      "field_end": "2026-10-15",
+      "field_start": "2026-10-13",
+      "posted_date": "2026-10-17",
+      "posted_source_datetime": "2026-10-17T22:04:00",
+      "posted_source_time": "10/17/26 22:04",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.thetrafalgargroup.org/news/mn-senate-gen-1017/",
+      "sample_population": "lv",
+      "sample_size": 1079,
+      "partisan_lean": "R",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "IA-SEN",
+      "race_type": "senate",
+      "state": "IA",
+      "poll_id": "b47129f8-00ec-4579-a7f4-09b3d64dd41b",
+      "question_id": "6900d3cf-65c1-4fe7-8176-789612ef9fa4",
+      "pollster": "Trafalgar Group",
+      "dem_name": "Josh Turek",
+      "rep_name": "Ashley Hinson",
+      "dem": 44.2,
+      "rep": 45.9,
+      "margin": -1.7,
+      "field_end": "2026-10-15",
+      "field_start": "2026-10-13",
+      "posted_date": "2026-10-17",
+      "posted_source_datetime": "2026-10-17T21:54:00",
+      "posted_source_time": "10/17/26 21:54",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.thetrafalgargroup.org/news/ia-senate-gen-1017/",
+      "sample_population": "lv",
+      "sample_size": 1094,
+      "partisan_lean": "R",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "PA-10",
       "race_type": "house",
