@@ -1,6 +1,6 @@
 {
   "election": "2026-11-03",
-  "generated_at": "2026-10-18T22:28:57.047450+00:00",
+  "generated_at": "2026-10-18T23:27:27.845491+00:00",
   "methodology": {
     "calls": "No licensed professional call provider or verified control attribution in this ledger",
     "house_probe": "Rotating sampled exact 2026 district discovery; 24-hour 'recent' does not guarantee Election Night data",
@@ -1869,16 +1869,16 @@
       "id": "House|DE-00",
       "key": "DE-00",
       "last_probe": {
-        "checked_window_utc": "2026-10-17T23:00:00+00:00",
+        "checked_window_utc": "2026-10-18T23:00:00+00:00",
         "race_id": null,
         "reason": null,
         "status": "NOT_INDEXED"
       },
-      "latest_preflight_outcome": "not_checked",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "not_checked",
+      "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "NOT_INDEXED",
