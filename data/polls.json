@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-18T15:40:57.216348Z",
+  "updated_at": "2026-10-18T16:43:12.466506Z",
   "generic_ballot": {
     "summary": {
       "dem": 47.7,
@@ -2706,7 +2706,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-18T15:40:57.216348Z",
+        "first_seen_at": "2026-10-18T16:43:12.466506Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -2730,7 +2730,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-18T15:40:57.216348Z",
+          "first_seen_at": "2026-10-18T16:43:12.466506Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -3366,7 +3366,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-18T15:40:57.216348Z",
+          "first_seen_at": "2026-10-18T16:43:12.466506Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -4275,7 +4275,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-18T15:40:57.216348Z",
+        "first_seen_at": "2026-10-18T16:43:12.466506Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -4299,7 +4299,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-18T15:40:57.216348Z",
+          "first_seen_at": "2026-10-18T16:43:12.466506Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -6750,7 +6750,7 @@
           "rep_name": "Ashley Moody",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-18T15:40:57.216348Z",
+          "first_seen_at": "2026-10-18T16:43:12.466506Z",
           "release_date": null,
           "question_id": "eb4ae581-25d7-43fd-9123-100333d1e19f",
           "sample_population": "lv",
@@ -15536,7 +15536,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-18T15:40:57.216348Z",
+    "last_attempt_at": "2026-10-18T16:43:12.466506Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15545,29 +15545,11 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [
-      {
-        "race_code": "AR-GOV",
-        "race_type": "governor",
-        "poll_id": "2fe207af-8764-4bfe-bf8b-a2ba80e88d49",
-        "pollster": "Hendrix College",
-        "field_end": "2026-10-13",
-        "dem": 32.0,
-        "rep": 51.0,
-        "margin": -19.0,
-        "dem_name": "Fred Love",
-        "rep_name": "Sarah Huckabee Sanders",
-        "sample_size": 709,
-        "first_seen_at": "2026-10-18T15:40:57.518555+00:00",
-        "release_date": null,
-        "source_url": "https://talkbusiness.net/2026/10/poll-cotton-takes-lead-over-shoffner/",
-        "source": "pollresults_secondary_fallback"
-      }
-    ],
-    "new_poll_count": 1,
+    "new_polls": [],
+    "new_poll_count": 0,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-18T15:40:57.216348Z",
-    "previous_snapshot_at": "2026-10-18T14:42:03.862548Z",
+    "comparison_at": "2026-10-18T16:43:12.466506Z",
+    "previous_snapshot_at": "2026-10-18T15:40:57.216348Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15618,15 +15600,13 @@
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 263,
-    "newly_injected_into_model": 1,
-    "newly_injected_by_race": {
-      "AR-GOV": 1
-    },
+    "matched_observations": 264,
+    "newly_injected_into_model": 0,
+    "newly_injected_by_race": {},
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
-    "carried_forward_current_observations": 6,
+    "carried_forward_current_observations": 7,
     "provenance": "PollResults source-linked fallback; original first_seen_at retained"
   }
 }
