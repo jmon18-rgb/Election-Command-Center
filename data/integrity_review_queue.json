@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-18T16:43:12.273213Z",
+  "updated_at": "2026-10-18T17:39:40.360708Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 189,
-    "awaiting_primary_source": 187,
+    "total_leads": 190,
+    "awaiting_primary_source": 188,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 14,
     "advisory_related_headlines": 32
@@ -182,6 +182,25 @@
     }
   ],
   "items": [
+    {
+      "id": "7daf29b764a643b992ab",
+      "title": "\u2018We didn\u2019t ask you to remove them\u2019: DOJ\u2019s California lawsuit aims to get around federal voter protections - Democracy Docket",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOb2NyWTJTdS1hUWM0Q1BydmZBNGpiRTlJOUJSQ25aUjlYZFJMU2hkcDFreVQxb25Mdmlnd1dYeGcxYXc0bW5DRGlJQTcwNXdPbC1odHpSaDIwLTVXREsyLWpublRYS2x2UG90T0x1QWJNbHRESFpyUTlWeWh3UXZWejhCbjduMkNtTlpCNVg4LUE0NS1DVnFTT0YzS0UyeUdYVWl2eFo3TlF1OU9yNkgtMDk0SjVDeERZOG81ekVwbElOTUVBLWpwbjZvNk83U2tSVmtONFRHSVhrMnNxb0E?oc=5",
+      "publisher": "Democracy Docket",
+      "published_at": "2026-10-18T16:57:10Z",
+      "detected_at": "2026-10-18T17:39:40.360708Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "bc7fe3db2fe769140010",
       "title": "Justice Department Vows to Prosecute California Election Officials Who Tabulate Unlawful Ballots - PJ Media",

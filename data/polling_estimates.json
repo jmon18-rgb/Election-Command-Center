@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-18T16:43:16.521252Z",
-  "source_snapshot": "2026-10-18T16:43:12.466506Z",
+  "generated_at": "2026-10-18T17:39:45.095889Z",
+  "source_snapshot": "2026-10-18T17:39:40.600957Z",
   "type": "descriptive_polling_estimates",
   "is_election_forecast": false,
   "method_version": "poll-mean-1.5",
@@ -11991,7 +11991,7 @@
         }
       ],
       "method": "Latest wave per firm; same-day tie prefers LV then larger sample; equal-priority conflicting questions quarantined. 21d recency, capped sample-size factor, 538 historical pollster quality and 0.5 sponsored-poll factor.",
-      "poll_source_url": "https://pollresults.org/"
+      "poll_source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
       "race_code": "AZ-GOV",
@@ -15738,15 +15738,15 @@
     "status": "multi_poll",
     "dem_candidate": "Generic Democratic",
     "rep_candidate": "Generic Republican",
-    "dem_pct": 47.72,
-    "rep_pct": 40.08,
-    "dem_minus_rep": 7.64,
-    "independent_pollsters": 11,
-    "contributing_pollsters": 13,
+    "dem_pct": 49.27,
+    "rep_pct": 41.34,
+    "dem_minus_rep": 7.93,
+    "independent_pollsters": 12,
+    "contributing_pollsters": 14,
     "partisan_pollsters": 2,
     "poll_diagnostics": {
-      "poll_count": 13,
-      "pollster_spread_points": 2.08,
+      "poll_count": 14,
+      "pollster_spread_points": 2.07,
       "observed_margin_min": 3.5,
       "observed_margin_max": 11.5,
       "latest_poll_age_days": 5,
@@ -15755,13 +15755,13 @@
       "stale_latest_poll": false,
       "high_poll_disagreement": false,
       "model_sensitivity": {
-        "effective_firms": 12.39,
-        "largest_firm_weight_pct": 10.0,
-        "independent_only_margin": 7.47,
-        "equal_firms_margin": 7.74,
-        "faster_recency_margin": 7.67,
-        "alternative_margin_min": 7.47,
-        "alternative_margin_max": 7.74,
+        "effective_firms": 13.23,
+        "largest_firm_weight_pct": 10.2,
+        "independent_only_margin": 7.81,
+        "equal_firms_margin": 7.97,
+        "faster_recency_margin": 7.96,
+        "alternative_margin_min": 7.81,
+        "alternative_margin_max": 7.97,
         "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
       },
       "firm_wave_selection": {
@@ -15769,11 +15769,11 @@
         "quarantined_same_day_firms": []
       },
       "silver_2026_comparison": {
-        "dem_minus_rep": 7.62,
-        "dem_pct": 47.77,
-        "rep_pct": 40.14,
-        "difference_from_live": -0.01,
-        "rated_pollster_count": 9,
+        "dem_minus_rep": 7.89,
+        "dem_pct": 49.14,
+        "rep_pct": 41.26,
+        "difference_from_live": -0.04,
+        "rated_pollster_count": 10,
         "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
         "status": "experimental_not_used_for_headline",
         "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
@@ -15794,7 +15794,7 @@
         "rep": 36.0,
         "sample_size": 925,
         "partisan_lean": "",
-        "weight_share": 7.855,
+        "weight_share": 7.023,
         "quality_rating": null,
         "quality_multiplier": 1.0,
         "sample_multiplier": 1.029
@@ -15809,7 +15809,7 @@
         "rep": 45.0,
         "sample_size": 1202,
         "partisan_lean": "",
-        "weight_share": 9.933,
+        "weight_share": 8.88,
         "quality_rating": 2.8,
         "quality_multiplier": 1.2,
         "sample_multiplier": 1.085
@@ -15824,7 +15824,7 @@
         "rep": 42.0,
         "sample_size": 1500,
         "partisan_lean": "R",
-        "weight_share": 4.151,
+        "weight_share": 3.711,
         "quality_rating": 2.1,
         "quality_multiplier": 1.025,
         "sample_multiplier": 1.134
@@ -15839,25 +15839,25 @@
         "rep": 42.7,
         "sample_size": 2553,
         "partisan_lean": "",
-        "weight_share": 7.606,
+        "weight_share": 6.8,
         "quality_rating": null,
         "quality_multiplier": 1.0,
         "sample_multiplier": 1.256
       },
       {
         "name": "Ipsos",
-        "field_end": "2026-10-05",
+        "field_end": "2026-10-13",
         "poll_id": null,
         "question_id": null,
         "sample_population": null,
-        "dem": 40.5,
-        "rep": 33.5,
-        "sample_size": 3526,
+        "dem": 51.0,
+        "rep": 43.0,
+        "sample_size": 2032,
         "partisan_lean": "",
-        "weight_share": 9.128,
+        "weight_share": 10.194,
         "quality_rating": 2.8,
         "quality_multiplier": 1.2,
-        "sample_multiplier": 1.256
+        "sample_multiplier": 1.205
       },
       {
         "name": "Morning Consult",
@@ -15869,7 +15869,7 @@
         "rep": 43.1,
         "sample_size": 17654,
         "partisan_lean": "",
-        "weight_share": 9.041,
+        "weight_share": 8.082,
         "quality_rating": 1.9,
         "quality_multiplier": 0.975,
         "sample_multiplier": 1.256
@@ -15884,7 +15884,7 @@
         "rep": 42.0,
         "sample_size": 2527,
         "partisan_lean": "",
-        "weight_share": 8.694,
+        "weight_share": 7.773,
         "quality_rating": 2.4,
         "quality_multiplier": 1.07,
         "sample_multiplier": 1.256
@@ -15899,7 +15899,7 @@
         "rep": 36.0,
         "sample_size": 3917,
         "partisan_lean": "",
-        "weight_share": 8.279,
+        "weight_share": 7.402,
         "quality_rating": 2.5,
         "quality_multiplier": 1.125,
         "sample_multiplier": 1.256
@@ -15914,10 +15914,25 @@
         "rep": 43.0,
         "sample_size": 2000,
         "partisan_lean": "R",
-        "weight_share": 5.092,
+        "weight_share": 4.552,
         "quality_rating": 2.3,
         "quality_multiplier": 1.075,
         "sample_multiplier": 1.201
+      },
+      {
+        "name": "SurveyMonkey",
+        "field_end": "2026-10-12",
+        "poll_id": null,
+        "question_id": null,
+        "sample_population": null,
+        "dem": 55.0,
+        "rep": 45.0,
+        "sample_size": 17649,
+        "partisan_lean": "",
+        "weight_share": 8.567,
+        "quality_rating": null,
+        "quality_multiplier": 1.0,
+        "sample_multiplier": 1.256
       },
       {
         "name": "The Bullfinch Group",
@@ -15929,7 +15944,7 @@
         "rep": 35.5,
         "sample_size": 1200,
         "partisan_lean": "",
-        "weight_share": 6.788,
+        "weight_share": 6.069,
         "quality_rating": null,
         "quality_multiplier": 1.0,
         "sample_multiplier": 1.084
@@ -15944,7 +15959,7 @@
         "rep": 41.5,
         "sample_size": 780,
         "partisan_lean": "",
-        "weight_share": 6.228,
+        "weight_share": 5.568,
         "quality_rating": null,
         "quality_multiplier": 1.0,
         "sample_multiplier": 0.995
@@ -15959,7 +15974,7 @@
         "rep": 42.0,
         "sample_size": 974,
         "partisan_lean": "",
-        "weight_share": 7.189,
+        "weight_share": 6.426,
         "quality_rating": null,
         "quality_multiplier": 1.0,
         "sample_multiplier": 1.04
@@ -15974,7 +15989,7 @@
         "rep": 40.0,
         "sample_size": 1021,
         "partisan_lean": "",
-        "weight_share": 10.015,
+        "weight_share": 8.953,
         "quality_rating": 3,
         "quality_multiplier": 1.25,
         "sample_multiplier": 1.05
