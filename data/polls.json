@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-18T14:42:03.862548Z",
+  "updated_at": "2026-10-18T15:40:57.216348Z",
   "generic_ballot": {
     "summary": {
       "dem": 47.7,
@@ -2706,7 +2706,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-18T14:42:03.862548Z",
+        "first_seen_at": "2026-10-18T15:40:57.216348Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -2730,7 +2730,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-18T14:42:03.862548Z",
+          "first_seen_at": "2026-10-18T15:40:57.216348Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -3366,7 +3366,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-18T14:42:03.862548Z",
+          "first_seen_at": "2026-10-18T15:40:57.216348Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -4275,7 +4275,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-18T14:42:03.862548Z",
+        "first_seen_at": "2026-10-18T15:40:57.216348Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -4299,7 +4299,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-18T14:42:03.862548Z",
+          "first_seen_at": "2026-10-18T15:40:57.216348Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -6750,7 +6750,7 @@
           "rep_name": "Ashley Moody",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-18T14:42:03.862548Z",
+          "first_seen_at": "2026-10-18T15:40:57.216348Z",
           "release_date": null,
           "question_id": "eb4ae581-25d7-43fd-9123-100333d1e19f",
           "sample_population": "lv",
@@ -15466,6 +15466,63 @@
       ],
       "recent_poll_count": 1,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
+    },
+    {
+      "race_code": "AR-GOV",
+      "race_type": "governor",
+      "state": "AR",
+      "district": "GOV",
+      "polls": [
+        {
+          "poll_id": "2fe207af-8764-4bfe-bf8b-a2ba80e88d49",
+          "question_id": "1b9d62b7-84c1-4986-8cba-dff203cc33dc",
+          "field_end": "2026-10-13",
+          "pollster": "Hendrix College",
+          "dem": 32.0,
+          "rep": 51.0,
+          "margin": -19.0,
+          "sample_size": 709,
+          "partisan_lean": "",
+          "dem_name": "Fred Love",
+          "rep_name": "Sarah Huckabee Sanders",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-18T15:40:57.518555+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-16",
+          "source_poll_url": "https://talkbusiness.net/2026/10/poll-cotton-takes-lead-over-shoffner/",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        }
+      ],
+      "recent_poll_count": 1,
+      "latest_field_end": "2026-10-13",
+      "latest": {
+        "poll_id": "2fe207af-8764-4bfe-bf8b-a2ba80e88d49",
+        "question_id": "1b9d62b7-84c1-4986-8cba-dff203cc33dc",
+        "field_end": "2026-10-13",
+        "pollster": "Hendrix College",
+        "dem": 32.0,
+        "rep": 51.0,
+        "margin": -19.0,
+        "sample_size": 709,
+        "partisan_lean": "",
+        "dem_name": "Fred Love",
+        "rep_name": "Sarah Huckabee Sanders",
+        "other": null,
+        "other_name": null,
+        "first_seen_at": "2026-10-18T15:40:57.518555+00:00",
+        "release_date": null,
+        "upstream_posted_date": "2026-10-16",
+        "source_poll_url": "https://talkbusiness.net/2026/10/poll-cotton-takes-lead-over-shoffner/",
+        "sample_population": "lv",
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
+      },
+      "source_url": "https://pollresults.org/",
+      "model_race_source": "pollresults_bootstrap",
+      "matchup_provenance": "Latest unambiguous source-linked 2026 matchup; verify ballot independently"
     }
   ],
   "source": {
@@ -15479,7 +15536,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-18T14:42:03.862548Z",
+    "last_attempt_at": "2026-10-18T15:40:57.216348Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15488,11 +15545,29 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [],
-    "new_poll_count": 0,
+    "new_polls": [
+      {
+        "race_code": "AR-GOV",
+        "race_type": "governor",
+        "poll_id": "2fe207af-8764-4bfe-bf8b-a2ba80e88d49",
+        "pollster": "Hendrix College",
+        "field_end": "2026-10-13",
+        "dem": 32.0,
+        "rep": 51.0,
+        "margin": -19.0,
+        "dem_name": "Fred Love",
+        "rep_name": "Sarah Huckabee Sanders",
+        "sample_size": 709,
+        "first_seen_at": "2026-10-18T15:40:57.518555+00:00",
+        "release_date": null,
+        "source_url": "https://talkbusiness.net/2026/10/poll-cotton-takes-lead-over-shoffner/",
+        "source": "pollresults_secondary_fallback"
+      }
+    ],
+    "new_poll_count": 1,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-18T14:42:03.862548Z",
-    "previous_snapshot_at": "2026-10-18T13:41:05.411650Z",
+    "comparison_at": "2026-10-18T15:40:57.216348Z",
+    "previous_snapshot_at": "2026-10-18T14:42:03.862548Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15544,8 +15619,10 @@
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
     "matched_observations": 263,
-    "newly_injected_into_model": 0,
-    "newly_injected_by_race": {},
+    "newly_injected_into_model": 1,
+    "newly_injected_by_race": {
+      "AR-GOV": 1
+    },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {

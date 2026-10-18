@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-18T14:42:04.334200+00:00",
+  "updated_at": "2026-10-18T15:40:57.518555+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -13,13 +13,18 @@
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 875,
+      "available_in_source": 876,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 263,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "AR-GOV",
+      "poll_id": "2fe207af-8764-4bfe-bf8b-a2ba80e88d49"
+    }
+  ],
   "observations": [
     {
       "race_code": "TX-SEN",
@@ -465,6 +470,30 @@
       "dem": 41.0,
       "rep": 50.0,
       "margin": -9.0,
+      "field_end": "2026-10-13",
+      "field_start": "2026-10-08",
+      "posted_date": "2026-10-16",
+      "posted_source_datetime": "2026-10-16T07:56:00",
+      "posted_source_time": "10/16/26 07:56",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://talkbusiness.net/2026/10/poll-cotton-takes-lead-over-shoffner/",
+      "sample_population": "lv",
+      "sample_size": 709,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "AR-GOV",
+      "race_type": "governor",
+      "state": "AR",
+      "poll_id": "2fe207af-8764-4bfe-bf8b-a2ba80e88d49",
+      "question_id": "1b9d62b7-84c1-4986-8cba-dff203cc33dc",
+      "pollster": "Hendrix College",
+      "dem_name": "Fred Love",
+      "rep_name": "Sarah Huckabee Sanders",
+      "dem": 32.0,
+      "rep": 51.0,
+      "margin": -19.0,
       "field_end": "2026-10-13",
       "field_start": "2026-10-08",
       "posted_date": "2026-10-16",
