@@ -1,14 +1,14 @@
 {
   "schema_version": "bottom-up-2026-poll-environment-shadow-v1",
   "status": "SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE",
-  "polling_generated_at": "2026-10-18T23:37:04.733577Z",
+  "polling_generated_at": "2026-10-19T00:57:57.207799Z",
   "presidential_geography_year": 2026,
   "presidential_2024_national_two_party_margin_points": -1.705,
-  "generic_ballot_2026_d_minus_r_points": 7.93,
-  "generic_implied_vs_2024_presidential_swing_points": 9.635,
-  "independent_polling_estimated_presidential_to_race_swing_points": 8.227,
-  "bottom_up_implied_national_margin_points": 6.522,
-  "bottom_up_minus_generic_environment_points": -1.408,
+  "generic_ballot_2026_d_minus_r_points": 7.92,
+  "generic_implied_vs_2024_presidential_swing_points": 9.625,
+  "independent_polling_estimated_presidential_to_race_swing_points": 8.242,
+  "bottom_up_implied_national_margin_points": 6.537,
+  "bottom_up_minus_generic_environment_points": -1.383,
   "candidate_specific_effects_removed": false,
   "candidate_quality_calibration_available": false,
   "total_qualifying_races": 15,
@@ -17,7 +17,7 @@
   "qualifying_house_races": 1,
   "qualifying_senate_races": 14,
   "excluded": {
-    "inadequate_polling": 71,
+    "inadequate_polling": 67,
     "stale": 0,
     "not_competitive": 0,
     "missing_geography": 0
@@ -41,7 +41,7 @@
     {
       "state": "AK",
       "number_qualifying_races": 2,
-      "swing_points": 0.363
+      "swing_points": 0.425
     },
     {
       "state": "NH",
@@ -51,7 +51,7 @@
     {
       "state": "MI",
       "number_qualifying_races": 1,
-      "swing_points": 4.729
+      "swing_points": 4.849
     },
     {
       "state": "FL",
@@ -104,9 +104,9 @@
       "raw_swing_points": -0.763,
       "capped_swing_points": -0.763,
       "capped_local_outlier": false,
-      "weight": 0.7,
+      "weight": 0.6833333333333333,
       "independent_firms": 3,
-      "latest_age_days": 3
+      "latest_age_days": 4
     },
     {
       "office": "senate",
@@ -117,9 +117,9 @@
       "raw_swing_points": 16.008,
       "capped_swing_points": 16.008,
       "capped_local_outlier": false,
-      "weight": 0.9555555555555556,
+      "weight": 0.9333333333333333,
       "independent_firms": 12,
-      "latest_age_days": 2
+      "latest_age_days": 3
     }
   ],
   "notes": [
