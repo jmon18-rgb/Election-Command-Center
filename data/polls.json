@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T21:44:59.254413Z",
+  "updated_at": "2026-10-19T22:43:28.949954Z",
   "generic_ballot": {
     "summary": {
       "dem": 49.0,
@@ -930,7 +930,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T21:44:59.254413Z",
+          "first_seen_at": "2026-10-19T22:43:28.949954Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -5180,7 +5180,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-19T21:44:59.254413Z",
+        "first_seen_at": "2026-10-19T22:43:28.949954Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -5204,7 +5204,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T21:44:59.254413Z",
+          "first_seen_at": "2026-10-19T22:43:28.949954Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -5756,7 +5756,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-19T21:44:59.254413Z",
+        "first_seen_at": "2026-10-19T22:43:28.949954Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -5780,7 +5780,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T21:44:59.254413Z",
+          "first_seen_at": "2026-10-19T22:43:28.949954Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -15820,7 +15820,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-19T21:44:59.254413Z",
+    "last_attempt_at": "2026-10-19T22:43:28.949954Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15829,42 +15829,11 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [
-      {
-        "race_code": "FL-SEN",
-        "race_type": "senate",
-        "pollster": "YouGov",
-        "field_end": "2026-10-15",
-        "dem": 42.0,
-        "rep": 51.0,
-        "margin": -9.0,
-        "dem_name": "Generic Democrat",
-        "rep_name": "Generic Republican",
-        "sample_size": 825,
-        "first_seen_at": "2026-10-19T21:44:59.254413Z",
-        "release_date": null,
-        "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-      },
-      {
-        "race_code": "CT-GOV",
-        "race_type": "governor",
-        "pollster": "GreatBlue Research",
-        "field_end": "2026-10-12",
-        "dem": 61.5,
-        "rep": 34.3,
-        "margin": 27.2,
-        "dem_name": "Ned Lamont",
-        "rep_name": "Ryan Fazio",
-        "sample_size": null,
-        "first_seen_at": "2026-10-19T21:44:59.254413Z",
-        "release_date": null,
-        "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-      }
-    ],
-    "new_poll_count": 2,
-    "generic_margin_change": 0.4,
-    "comparison_at": "2026-10-19T21:44:59.254413Z",
-    "previous_snapshot_at": "2026-10-19T20:45:52.067874Z",
+    "new_polls": [],
+    "new_poll_count": 0,
+    "generic_margin_change": 0.0,
+    "comparison_at": "2026-10-19T22:43:28.949954Z",
+    "previous_snapshot_at": "2026-10-19T21:44:59.254413Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15918,7 +15887,7 @@
       "pollsters": 12
     }
   ],
-  "newly_detected_count": 5,
+  "newly_detected_count": 3,
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",

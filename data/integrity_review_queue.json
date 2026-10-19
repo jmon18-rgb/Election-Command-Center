@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-19T21:44:58.994667Z",
+  "updated_at": "2026-10-19T22:43:28.633011Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 207,
-    "awaiting_primary_source": 205,
+    "total_leads": 208,
+    "awaiting_primary_source": 206,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 17,
     "advisory_related_headlines": 39
@@ -219,6 +219,25 @@
     }
   ],
   "items": [
+    {
+      "id": "e6347eec68a45b0f1e15",
+      "title": "Feds arrest alleged noncitizen voters in California amid broader election fight with state - Los Angeles Times",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQMFpKeml2bGpJVXBOQnhMekxqOG1veUc2ZWx1Sk5Idk9mOS1nZFJZd0M1bkJGRmEzVnkyZ3N3UTkxWEVfbDBlOER3ak9yMEU4NW15dEZoRy1iRkhXZEtBbmN4MkdWN3FTVDRnT3RiUWVGN09oM1R4TXdJeFNHUFRid3lNcDFYYzFNSDRDQXJxV01Ld2lrUHVlSWFBWlczWi1POWNsVkppanU1aXBNbm11LXNMQ0pHcm5lbnZJSV9R?oc=5",
+      "publisher": "Los Angeles Times",
+      "published_at": "2026-10-19T20:56:00Z",
+      "detected_at": "2026-10-19T22:43:28.633011Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "296aede59b4e79642b1e",
       "title": "DOJ Charges 28 California Residents With Voting-Related Crimes Amid Trump\u2019s Voter Fraud Push - The New York Times",
