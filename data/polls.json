@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T17:43:59.631331Z",
+  "updated_at": "2026-10-19T18:55:35.393306Z",
   "generic_ballot": {
     "summary": {
       "dem": 49.5,
@@ -2558,29 +2558,52 @@
       "race_type": "senate",
       "state": "IA",
       "district": "SEN",
-      "latest_field_end": "2026-10-15",
+      "latest_field_end": "2026-10-19",
       "latest": {
-        "poll_id": "b47129f8-00ec-4579-a7f4-09b3d64dd41b",
-        "field_end": "2026-10-15",
-        "pollster": "Trafalgar Group",
-        "dem": 44.2,
-        "rep": 45.9,
-        "margin": -1.7,
-        "sample_size": 1094,
-        "partisan_lean": "R",
+        "poll_id": "714e6be6-64cd-419c-a163-9bd660f5c5f7",
+        "question_id": "06aac0e1-94c2-4b05-9bbb-9d820cdfadd4",
+        "field_end": "2026-10-19",
+        "pollster": "co/efficient",
+        "dem": 45.0,
+        "rep": 48.0,
+        "margin": -3.0,
+        "sample_size": 863,
+        "partisan_lean": "",
         "dem_name": "Josh Turek",
         "rep_name": "Ashley Hinson",
-        "other": 3.5,
-        "other_name": "Thomas Laehn",
-        "first_seen_at": "2026-10-18T02:43:34.100769+00:00",
+        "other": null,
+        "other_name": null,
+        "first_seen_at": "2026-10-19T18:55:35.682583+00:00",
         "release_date": null,
-        "upstream_posted_date": "2026-10-17",
-        "source_poll_url": "https://www.thetrafalgargroup.org/news/ia-senate-gen-1017/",
+        "upstream_posted_date": "2026-10-19",
+        "source_poll_url": "https://battlegrounds.coefficient.org/ia/",
         "sample_population": "lv",
-        "question_id": "6900d3cf-65c1-4fe7-8176-789612ef9fa4",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "714e6be6-64cd-419c-a163-9bd660f5c5f7",
+          "question_id": "06aac0e1-94c2-4b05-9bbb-9d820cdfadd4",
+          "field_end": "2026-10-19",
+          "pollster": "co/efficient",
+          "dem": 45.0,
+          "rep": 48.0,
+          "margin": -3.0,
+          "sample_size": 863,
+          "partisan_lean": "",
+          "dem_name": "Josh Turek",
+          "rep_name": "Ashley Hinson",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-19T18:55:35.682583+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-19",
+          "source_poll_url": "https://battlegrounds.coefficient.org/ia/",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "b47129f8-00ec-4579-a7f4-09b3d64dd41b",
           "field_end": "2026-10-15",
@@ -2636,7 +2659,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T17:43:59.631331Z",
+          "first_seen_at": "2026-10-19T18:55:35.393306Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -2960,7 +2983,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 21,
+      "recent_poll_count": 22,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -4184,7 +4207,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-19T17:43:59.631331Z",
+        "first_seen_at": "2026-10-19T18:55:35.393306Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -4208,7 +4231,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T17:43:59.631331Z",
+          "first_seen_at": "2026-10-19T18:55:35.393306Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -4914,29 +4937,52 @@
       "race_type": "governor",
       "state": "IA",
       "district": "GOV",
-      "latest_field_end": "2026-10-12",
+      "latest_field_end": "2026-10-19",
       "latest": {
-        "poll_id": "ed54f7fc-9dc3-4a6b-b04c-4653389d7c9b",
-        "field_end": "2026-10-12",
-        "pollster": "YouGov",
-        "dem": 50.0,
-        "rep": 44.0,
-        "margin": 6.0,
-        "sample_size": 2244,
+        "poll_id": "714e6be6-64cd-419c-a163-9bd660f5c5f7",
+        "question_id": "c88a33fd-ef9d-49b9-8597-f4856d27bbc2",
+        "field_end": "2026-10-19",
+        "pollster": "co/efficient",
+        "dem": 49.0,
+        "rep": 45.0,
+        "margin": 4.0,
+        "sample_size": 863,
         "partisan_lean": "",
         "dem_name": "Rob Sand",
         "rep_name": "Zach Lahn",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-14T23:48:06.473281+00:00",
+        "first_seen_at": "2026-10-19T18:55:35.682583+00:00",
         "release_date": null,
-        "upstream_posted_date": "2026-10-14",
-        "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ia_20261006_lv.pdf",
+        "upstream_posted_date": "2026-10-19",
+        "source_poll_url": "https://battlegrounds.coefficient.org/ia/",
         "sample_population": "lv",
-        "question_id": "db43f779-117c-49a5-80d3-89001657bf61",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "714e6be6-64cd-419c-a163-9bd660f5c5f7",
+          "question_id": "c88a33fd-ef9d-49b9-8597-f4856d27bbc2",
+          "field_end": "2026-10-19",
+          "pollster": "co/efficient",
+          "dem": 49.0,
+          "rep": 45.0,
+          "margin": 4.0,
+          "sample_size": 863,
+          "partisan_lean": "",
+          "dem_name": "Rob Sand",
+          "rep_name": "Zach Lahn",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-19T18:55:35.682583+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-19",
+          "source_poll_url": "https://battlegrounds.coefficient.org/ia/",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "ed54f7fc-9dc3-4a6b-b04c-4653389d7c9b",
           "field_end": "2026-10-12",
@@ -5192,7 +5238,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 14,
+      "recent_poll_count": 15,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -5214,7 +5260,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-19T17:43:59.631331Z",
+        "first_seen_at": "2026-10-19T18:55:35.393306Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -5238,7 +5284,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T17:43:59.631331Z",
+          "first_seen_at": "2026-10-19T18:55:35.393306Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -15767,7 +15813,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-19T17:43:59.631331Z",
+    "last_attempt_at": "2026-10-19T18:55:35.393306Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15778,27 +15824,44 @@
   "changes": {
     "new_polls": [
       {
-        "race_code": "FL-GOV",
-        "race_type": "governor",
-        "poll_id": "9d12cd34-fa83-4c73-a199-6ddf0a513808",
-        "pollster": "YouGov",
-        "field_end": "2026-10-15",
-        "dem": 42.0,
-        "rep": 50.0,
-        "margin": -8.0,
-        "dem_name": "David Jolly",
-        "rep_name": "Byron Donalds",
-        "sample_size": 825,
-        "first_seen_at": "2026-10-19T17:44:00.056984+00:00",
+        "race_code": "IA-SEN",
+        "race_type": "senate",
+        "poll_id": "714e6be6-64cd-419c-a163-9bd660f5c5f7",
+        "pollster": "co/efficient",
+        "field_end": "2026-10-19",
+        "dem": 45.0,
+        "rep": 48.0,
+        "margin": -3.0,
+        "dem_name": "Josh Turek",
+        "rep_name": "Ashley Hinson",
+        "sample_size": 863,
+        "first_seen_at": "2026-10-19T18:55:35.682583+00:00",
         "release_date": null,
-        "source_url": "https://www.univision.com/noticias/politica/republicans-lead-florida-as-most-latino-voters-say-immigration-enforcement-has-gone-too-far",
+        "source_url": "https://battlegrounds.coefficient.org/ia/",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "IA-GOV",
+        "race_type": "governor",
+        "poll_id": "714e6be6-64cd-419c-a163-9bd660f5c5f7",
+        "pollster": "co/efficient",
+        "field_end": "2026-10-19",
+        "dem": 49.0,
+        "rep": 45.0,
+        "margin": 4.0,
+        "dem_name": "Rob Sand",
+        "rep_name": "Zach Lahn",
+        "sample_size": 863,
+        "first_seen_at": "2026-10-19T18:55:35.682583+00:00",
+        "release_date": null,
+        "source_url": "https://battlegrounds.coefficient.org/ia/",
         "source": "pollresults_secondary_fallback"
       }
     ],
-    "new_poll_count": 1,
+    "new_poll_count": 2,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-19T17:43:59.631331Z",
-    "previous_snapshot_at": "2026-10-19T16:49:28.289690Z",
+    "comparison_at": "2026-10-19T18:55:35.393306Z",
+    "previous_snapshot_at": "2026-10-19T17:43:59.631331Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15856,15 +15919,16 @@
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 272,
-    "newly_injected_into_model": 1,
+    "matched_observations": 273,
+    "newly_injected_into_model": 2,
     "newly_injected_by_race": {
-      "FL-GOV": 1
+      "IA-GOV": 1,
+      "IA-SEN": 1
     },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
-    "carried_forward_current_observations": 4,
+    "carried_forward_current_observations": 5,
     "provenance": "PollResults source-linked fallback; original first_seen_at retained"
   }
 }

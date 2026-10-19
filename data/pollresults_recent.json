@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-19T17:44:00.056984+00:00",
+  "updated_at": "2026-10-19T18:55:35.682583+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 787,
+      "available_in_source": 788,
       "records_examined": 300
     },
     "house": {
@@ -13,19 +13,71 @@
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 883,
+      "available_in_source": 884,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 272,
-  "newly_injected_into_model": 1,
+  "matched_primary_observations": 273,
+  "newly_injected_into_model": 2,
   "injected_poll_ids": [
     {
-      "race_code": "FL-GOV",
-      "poll_id": "9d12cd34-fa83-4c73-a199-6ddf0a513808"
+      "race_code": "IA-GOV",
+      "poll_id": "714e6be6-64cd-419c-a163-9bd660f5c5f7"
+    },
+    {
+      "race_code": "IA-SEN",
+      "poll_id": "714e6be6-64cd-419c-a163-9bd660f5c5f7"
     }
   ],
   "observations": [
+    {
+      "race_code": "IA-SEN",
+      "race_type": "senate",
+      "state": "IA",
+      "poll_id": "714e6be6-64cd-419c-a163-9bd660f5c5f7",
+      "question_id": "06aac0e1-94c2-4b05-9bbb-9d820cdfadd4",
+      "pollster": "co/efficient",
+      "dem_name": "Josh Turek",
+      "rep_name": "Ashley Hinson",
+      "dem": 45.0,
+      "rep": 48.0,
+      "margin": -3.0,
+      "field_end": "2026-10-19",
+      "field_start": "2026-10-15",
+      "posted_date": "2026-10-19",
+      "posted_source_datetime": "2026-10-19T14:30:00",
+      "posted_source_time": "10/19/26 14:30",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://battlegrounds.coefficient.org/ia/",
+      "sample_population": "lv",
+      "sample_size": 863,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "IA-GOV",
+      "race_type": "governor",
+      "state": "IA",
+      "poll_id": "714e6be6-64cd-419c-a163-9bd660f5c5f7",
+      "question_id": "c88a33fd-ef9d-49b9-8597-f4856d27bbc2",
+      "pollster": "co/efficient",
+      "dem_name": "Rob Sand",
+      "rep_name": "Zach Lahn",
+      "dem": 49.0,
+      "rep": 45.0,
+      "margin": 4.0,
+      "field_end": "2026-10-19",
+      "field_start": "2026-10-15",
+      "posted_date": "2026-10-19",
+      "posted_source_datetime": "2026-10-19T14:30:00",
+      "posted_source_time": "10/19/26 14:30",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://battlegrounds.coefficient.org/ia/",
+      "sample_population": "lv",
+      "sample_size": 863,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "FL-SEN",
       "race_type": "senate",
