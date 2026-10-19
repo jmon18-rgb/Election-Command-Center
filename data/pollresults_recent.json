@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-19T01:45:16.382418+00:00",
+  "updated_at": "2026-10-19T02:45:16.975245+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 781,
+      "available_in_source": 782,
       "records_examined": 300
     },
     "house": {
@@ -18,9 +18,38 @@
     }
   },
   "matched_primary_observations": 263,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "SC-SEN",
+      "poll_id": "040d2334-8d1a-41e0-9814-6b64eff8c4d1"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "SC-SEN",
+      "race_type": "senate",
+      "state": "SC",
+      "poll_id": "040d2334-8d1a-41e0-9814-6b64eff8c4d1",
+      "question_id": "4300ffdc-464d-4ed4-ab7c-94d6cb922344",
+      "pollster": "Trafalgar Group",
+      "dem_name": "Annie Andrews",
+      "rep_name": "Darline Graham",
+      "dem": 45.6,
+      "rep": 48.6,
+      "margin": -3.0,
+      "field_end": "2026-10-18",
+      "field_start": "2026-10-16",
+      "posted_date": "2026-10-18",
+      "posted_source_datetime": "2026-10-18T22:11:00",
+      "posted_source_time": "10/18/26 22:11",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.thetrafalgargroup.org/news/sc-senate-gen-1018/",
+      "sample_population": "lv",
+      "sample_size": 1095,
+      "partisan_lean": "R",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "OH-SEN",
       "race_type": "senate",

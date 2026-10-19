@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T01:45:16.057128Z",
+  "updated_at": "2026-10-19T02:45:16.690671Z",
   "generic_ballot": {
     "summary": {
       "dem": 49.5,
@@ -2116,7 +2116,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T01:45:16.057128Z",
+          "first_seen_at": "2026-10-19T02:45:16.690671Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -3664,7 +3664,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-19T01:45:16.057128Z",
+        "first_seen_at": "2026-10-19T02:45:16.690671Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -3688,7 +3688,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T01:45:16.057128Z",
+          "first_seen_at": "2026-10-19T02:45:16.690671Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -4597,7 +4597,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-19T01:45:16.057128Z",
+        "first_seen_at": "2026-10-19T02:45:16.690671Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -4621,7 +4621,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T01:45:16.057128Z",
+          "first_seen_at": "2026-10-19T02:45:16.690671Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -12094,29 +12094,52 @@
       "race_type": "senate",
       "state": "SC",
       "district": "SEN",
-      "latest_field_end": "2026-09-29",
+      "latest_field_end": "2026-10-18",
       "latest": {
-        "poll_id": "c4cd7d22-a9be-4bb2-b532-b1f9f3bff5ae",
-        "field_end": "2026-09-29",
-        "pollster": "InsiderAdvantage",
-        "dem": 45.0,
-        "rep": 46.0,
-        "margin": -1.0,
-        "sample_size": 1200,
+        "poll_id": "040d2334-8d1a-41e0-9814-6b64eff8c4d1",
+        "question_id": "4300ffdc-464d-4ed4-ab7c-94d6cb922344",
+        "field_end": "2026-10-18",
+        "pollster": "Trafalgar Group",
+        "dem": 45.6,
+        "rep": 48.6,
+        "margin": -3.0,
+        "sample_size": 1095,
         "partisan_lean": "R",
         "dem_name": "Annie Andrews",
         "rep_name": "Darline Graham",
-        "other": 3.0,
-        "other_name": "Mark Hackett",
-        "first_seen_at": null,
+        "other": null,
+        "other_name": null,
+        "first_seen_at": "2026-10-19T02:45:16.975245+00:00",
         "release_date": null,
-        "upstream_posted_date": "2026-10-02",
-        "source_poll_url": "https://insideradvantage.com/insideradvantage-south-carolina-senate-graham-leads-by-one-point/",
+        "upstream_posted_date": "2026-10-18",
+        "source_poll_url": "https://www.thetrafalgargroup.org/news/sc-senate-gen-1018/",
         "sample_population": "lv",
-        "question_id": "6ea69d6a-177b-49b3-933d-8f762cc81a3f",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "040d2334-8d1a-41e0-9814-6b64eff8c4d1",
+          "question_id": "4300ffdc-464d-4ed4-ab7c-94d6cb922344",
+          "field_end": "2026-10-18",
+          "pollster": "Trafalgar Group",
+          "dem": 45.6,
+          "rep": 48.6,
+          "margin": -3.0,
+          "sample_size": 1095,
+          "partisan_lean": "R",
+          "dem_name": "Annie Andrews",
+          "rep_name": "Darline Graham",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-19T02:45:16.975245+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-18",
+          "source_poll_url": "https://www.thetrafalgargroup.org/news/sc-senate-gen-1018/",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "c4cd7d22-a9be-4bb2-b532-b1f9f3bff5ae",
           "field_end": "2026-09-29",
@@ -12203,7 +12226,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 5,
+      "recent_poll_count": 6,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -15538,7 +15561,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-19T01:45:16.057128Z",
+    "last_attempt_at": "2026-10-19T02:45:16.690671Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15547,11 +15570,29 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [],
-    "new_poll_count": 0,
+    "new_polls": [
+      {
+        "race_code": "SC-SEN",
+        "race_type": "senate",
+        "poll_id": "040d2334-8d1a-41e0-9814-6b64eff8c4d1",
+        "pollster": "Trafalgar Group",
+        "field_end": "2026-10-18",
+        "dem": 45.6,
+        "rep": 48.6,
+        "margin": -3.0,
+        "dem_name": "Annie Andrews",
+        "rep_name": "Darline Graham",
+        "sample_size": 1095,
+        "first_seen_at": "2026-10-19T02:45:16.975245+00:00",
+        "release_date": null,
+        "source_url": "https://www.thetrafalgargroup.org/news/sc-senate-gen-1018/",
+        "source": "pollresults_secondary_fallback"
+      }
+    ],
+    "new_poll_count": 1,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-19T01:45:16.057128Z",
-    "previous_snapshot_at": "2026-10-19T00:57:50.455942Z",
+    "comparison_at": "2026-10-19T02:45:16.690671Z",
+    "previous_snapshot_at": "2026-10-19T01:45:16.057128Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15610,8 +15651,10 @@
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
     "matched_observations": 263,
-    "newly_injected_into_model": 0,
-    "newly_injected_by_race": {},
+    "newly_injected_into_model": 1,
+    "newly_injected_by_race": {
+      "SC-SEN": 1
+    },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
