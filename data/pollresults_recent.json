@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-19T12:57:49.927808+00:00",
+  "updated_at": "2026-10-19T13:58:43.803185+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 784,
+      "available_in_source": 785,
       "records_examined": 300
     },
     "house": {
@@ -13,14 +13,71 @@
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 880,
+      "available_in_source": 881,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 268,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 2,
+  "injected_poll_ids": [
+    {
+      "race_code": "MA-GOV",
+      "poll_id": "c5000c5b-f88e-460a-9b37-9c068f09cd9c"
+    },
+    {
+      "race_code": "MA-SEN",
+      "poll_id": "c5000c5b-f88e-460a-9b37-9c068f09cd9c"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "MA-SEN",
+      "race_type": "senate",
+      "state": "MA",
+      "poll_id": "c5000c5b-f88e-460a-9b37-9c068f09cd9c",
+      "question_id": "8d58fb28-ffbe-4d5b-8b7d-6edbd4535dce",
+      "pollster": "YouGov",
+      "dem_name": "Ed Markey",
+      "rep_name": "John Deaton",
+      "dem": 56.0,
+      "rep": 29.0,
+      "margin": 27.0,
+      "field_end": "2026-10-12",
+      "field_start": "2026-10-05",
+      "posted_date": "2026-10-19",
+      "posted_source_datetime": "2026-10-19T08:54:00",
+      "posted_source_time": "10/19/26 08:54",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.umass.edu/poll/about/reports/2026-10-massachusetts-public-opinion-poll#toc-methodology",
+      "sample_population": "rv",
+      "sample_size": 800,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "MA-GOV",
+      "race_type": "governor",
+      "state": "MA",
+      "poll_id": "c5000c5b-f88e-460a-9b37-9c068f09cd9c",
+      "question_id": "87776c57-a0d7-49e8-9fc8-bf77509f8e91",
+      "pollster": "YouGov",
+      "dem_name": "Maura Healey",
+      "rep_name": "Mike Minogue",
+      "dem": 57.0,
+      "rep": 32.0,
+      "margin": 25.0,
+      "field_end": "2026-10-12",
+      "field_start": "2026-10-05",
+      "posted_date": "2026-10-19",
+      "posted_source_datetime": "2026-10-19T08:54:00",
+      "posted_source_time": "10/19/26 08:54",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.umass.edu/poll/about/reports/2026-10-massachusetts-public-opinion-poll#toc-methodology",
+      "sample_population": "rv",
+      "sample_size": 800,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "CT-GOV",
       "race_type": "governor",

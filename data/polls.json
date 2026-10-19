@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T12:57:49.511762Z",
+  "updated_at": "2026-10-19T13:58:43.278456Z",
   "generic_ballot": {
     "summary": {
       "dem": 49.5,
@@ -2636,7 +2636,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T12:57:49.511762Z",
+          "first_seen_at": "2026-10-19T13:58:43.278456Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -4184,7 +4184,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-19T12:57:49.511762Z",
+        "first_seen_at": "2026-10-19T13:58:43.278456Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -4208,7 +4208,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T12:57:49.511762Z",
+          "first_seen_at": "2026-10-19T13:58:43.278456Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -5191,7 +5191,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-19T12:57:49.511762Z",
+        "first_seen_at": "2026-10-19T13:58:43.278456Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -5215,7 +5215,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T12:57:49.511762Z",
+          "first_seen_at": "2026-10-19T13:58:43.278456Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -13465,29 +13465,52 @@
       "race_type": "governor",
       "state": "MA",
       "district": "GOV",
-      "latest_field_end": "2026-09-22",
+      "latest_field_end": "2026-10-12",
       "latest": {
-        "poll_id": "377b9e38-e1a9-484b-9bd4-ce02fcc2890b",
-        "field_end": "2026-09-22",
-        "pollster": "MassINC Polling Group",
-        "dem": 54.0,
+        "poll_id": "c5000c5b-f88e-460a-9b37-9c068f09cd9c",
+        "question_id": "87776c57-a0d7-49e8-9fc8-bf77509f8e91",
+        "field_end": "2026-10-12",
+        "pollster": "YouGov",
+        "dem": 57.0,
         "rep": 32.0,
-        "margin": 22.0,
+        "margin": 25.0,
         "sample_size": 800,
         "partisan_lean": "",
         "dem_name": "Maura Healey",
         "rep_name": "Mike Minogue",
-        "other": 4.0,
-        "other_name": "Andrea James",
-        "first_seen_at": null,
+        "other": null,
+        "other_name": null,
+        "first_seen_at": "2026-10-19T13:58:43.803185+00:00",
         "release_date": null,
-        "upstream_posted_date": "2026-09-29",
-        "source_poll_url": "https://commonwealthbeacon.org/politics/poll-healey-cruising-in-reelection-bid-with-trump-high-on-voters-mind/",
-        "sample_population": "lv",
-        "question_id": "e3110ac6-230c-4303-bfe0-83d83005c172",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "upstream_posted_date": "2026-10-19",
+        "source_poll_url": "https://www.umass.edu/poll/about/reports/2026-10-massachusetts-public-opinion-poll#toc-methodology",
+        "sample_population": "rv",
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "c5000c5b-f88e-460a-9b37-9c068f09cd9c",
+          "question_id": "87776c57-a0d7-49e8-9fc8-bf77509f8e91",
+          "field_end": "2026-10-12",
+          "pollster": "YouGov",
+          "dem": 57.0,
+          "rep": 32.0,
+          "margin": 25.0,
+          "sample_size": 800,
+          "partisan_lean": "",
+          "dem_name": "Maura Healey",
+          "rep_name": "Mike Minogue",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-19T13:58:43.803185+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-19",
+          "source_poll_url": "https://www.umass.edu/poll/about/reports/2026-10-massachusetts-public-opinion-poll#toc-methodology",
+          "sample_population": "rv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "377b9e38-e1a9-484b-9bd4-ce02fcc2890b",
           "field_end": "2026-09-22",
@@ -13558,7 +13581,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 4,
+      "recent_poll_count": 5,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -13566,29 +13589,52 @@
       "race_type": "senate",
       "state": "MA",
       "district": "SEN",
-      "latest_field_end": "2026-09-22",
+      "latest_field_end": "2026-10-12",
       "latest": {
-        "poll_id": "377b9e38-e1a9-484b-9bd4-ce02fcc2890b",
-        "field_end": "2026-09-22",
-        "pollster": "MassINC Polling Group",
-        "dem": 54.0,
-        "rep": 28.0,
-        "margin": 26.0,
+        "poll_id": "c5000c5b-f88e-460a-9b37-9c068f09cd9c",
+        "question_id": "8d58fb28-ffbe-4d5b-8b7d-6edbd4535dce",
+        "field_end": "2026-10-12",
+        "pollster": "YouGov",
+        "dem": 56.0,
+        "rep": 29.0,
+        "margin": 27.0,
         "sample_size": 800,
         "partisan_lean": "",
         "dem_name": "Ed Markey",
         "rep_name": "John Deaton",
-        "other": 3.0,
-        "other_name": "Shiva Ayyadurai",
-        "first_seen_at": null,
+        "other": null,
+        "other_name": null,
+        "first_seen_at": "2026-10-19T13:58:43.803185+00:00",
         "release_date": null,
-        "upstream_posted_date": "2026-09-29",
-        "source_poll_url": "https://commonwealthbeacon.org/politics/poll-healey-cruising-in-reelection-bid-with-trump-high-on-voters-mind/",
-        "sample_population": "lv",
-        "question_id": "b56c6da5-a75d-476b-8b27-bd2796ee4194",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "upstream_posted_date": "2026-10-19",
+        "source_poll_url": "https://www.umass.edu/poll/about/reports/2026-10-massachusetts-public-opinion-poll#toc-methodology",
+        "sample_population": "rv",
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "c5000c5b-f88e-460a-9b37-9c068f09cd9c",
+          "question_id": "8d58fb28-ffbe-4d5b-8b7d-6edbd4535dce",
+          "field_end": "2026-10-12",
+          "pollster": "YouGov",
+          "dem": 56.0,
+          "rep": 29.0,
+          "margin": 27.0,
+          "sample_size": 800,
+          "partisan_lean": "",
+          "dem_name": "Ed Markey",
+          "rep_name": "John Deaton",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-19T13:58:43.803185+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-19",
+          "source_poll_url": "https://www.umass.edu/poll/about/reports/2026-10-massachusetts-public-opinion-poll#toc-methodology",
+          "sample_population": "rv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "377b9e38-e1a9-484b-9bd4-ce02fcc2890b",
           "field_end": "2026-09-22",
@@ -13659,7 +13705,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 4,
+      "recent_poll_count": 5,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -15652,7 +15698,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-19T12:57:49.511762Z",
+    "last_attempt_at": "2026-10-19T13:58:43.278456Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15663,25 +15709,44 @@
   "changes": {
     "new_polls": [
       {
-        "race_code": "PA-GOV",
+        "race_code": "MA-GOV",
         "race_type": "governor",
-        "pollster": "Bravo Group",
-        "field_end": "2026-10-11",
-        "dem": 57.7,
-        "rep": 27.6,
-        "margin": 30.1,
-        "dem_name": "Josh Shapiro",
-        "rep_name": "Stacy Garrity",
-        "sample_size": 628,
-        "first_seen_at": "2026-10-19T12:57:49.511762Z",
+        "poll_id": "c5000c5b-f88e-460a-9b37-9c068f09cd9c",
+        "pollster": "YouGov",
+        "field_end": "2026-10-12",
+        "dem": 57.0,
+        "rep": 32.0,
+        "margin": 25.0,
+        "dem_name": "Maura Healey",
+        "rep_name": "Mike Minogue",
+        "sample_size": 800,
+        "first_seen_at": "2026-10-19T13:58:43.803185+00:00",
         "release_date": null,
-        "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
+        "source_url": "https://www.umass.edu/poll/about/reports/2026-10-massachusetts-public-opinion-poll#toc-methodology",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "MA-SEN",
+        "race_type": "senate",
+        "poll_id": "c5000c5b-f88e-460a-9b37-9c068f09cd9c",
+        "pollster": "YouGov",
+        "field_end": "2026-10-12",
+        "dem": 56.0,
+        "rep": 29.0,
+        "margin": 27.0,
+        "dem_name": "Ed Markey",
+        "rep_name": "John Deaton",
+        "sample_size": 800,
+        "first_seen_at": "2026-10-19T13:58:43.803185+00:00",
+        "release_date": null,
+        "source_url": "https://www.umass.edu/poll/about/reports/2026-10-massachusetts-public-opinion-poll#toc-methodology",
+        "source": "pollresults_secondary_fallback"
       }
     ],
-    "new_poll_count": 1,
+    "new_poll_count": 2,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-19T12:57:49.511762Z",
-    "previous_snapshot_at": "2026-10-19T11:47:27.263043Z",
+    "comparison_at": "2026-10-19T13:58:43.278456Z",
+    "previous_snapshot_at": "2026-10-19T12:57:49.511762Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15735,13 +15800,16 @@
       "pollsters": 12
     }
   ],
-  "newly_detected_count": 4,
+  "newly_detected_count": 3,
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
     "matched_observations": 268,
-    "newly_injected_into_model": 0,
-    "newly_injected_by_race": {},
+    "newly_injected_into_model": 2,
+    "newly_injected_by_race": {
+      "MA-GOV": 1,
+      "MA-SEN": 1
+    },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
