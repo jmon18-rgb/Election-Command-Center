@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-19T14:51:18.507151+00:00",
+  "updated_at": "2026-10-19T15:49:24.677974+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 785,
+      "available_in_source": 786,
       "records_examined": 300
     },
     "house": {
@@ -13,14 +13,71 @@
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 881,
+      "available_in_source": 882,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 270,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 2,
+  "injected_poll_ids": [
+    {
+      "race_code": "GA-GOV",
+      "poll_id": "ce18d5b0-de43-40b7-ac02-1fcba168d5d0"
+    },
+    {
+      "race_code": "GA-SEN",
+      "poll_id": "ce18d5b0-de43-40b7-ac02-1fcba168d5d0"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "GA-SEN",
+      "race_type": "senate",
+      "state": "GA",
+      "poll_id": "ce18d5b0-de43-40b7-ac02-1fcba168d5d0",
+      "question_id": "2087a4b1-7ea5-4fc6-a86b-de2b5ce86087",
+      "pollster": "Quantus Insights",
+      "dem_name": "Jon Ossoff",
+      "rep_name": "Mike Collins",
+      "dem": 52.7,
+      "rep": 45.4,
+      "margin": 7.3,
+      "field_end": "2026-10-17",
+      "field_start": "2026-10-15",
+      "posted_date": "2026-10-19",
+      "posted_source_datetime": "2026-10-19T11:12:00",
+      "posted_source_time": "10/19/26 11:12",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://quantusinsights.org/polling/f/georgia-two-weeks-out-ossoff-ahead-down-ballot-near-even",
+      "sample_population": "lv",
+      "sample_size": 755,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "GA-GOV",
+      "race_type": "governor",
+      "state": "GA",
+      "poll_id": "ce18d5b0-de43-40b7-ac02-1fcba168d5d0",
+      "question_id": "dade1cbd-4e20-4211-8919-4ea7970ec9a5",
+      "pollster": "Quantus Insights",
+      "dem_name": "Keisha Lance Bottoms",
+      "rep_name": "Rick Jackson",
+      "dem": 47.5,
+      "rep": 49.0,
+      "margin": -1.5,
+      "field_end": "2026-10-17",
+      "field_start": "2026-10-15",
+      "posted_date": "2026-10-19",
+      "posted_source_datetime": "2026-10-19T11:12:00",
+      "posted_source_time": "10/19/26 11:12",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://quantusinsights.org/polling/f/georgia-two-weeks-out-ossoff-ahead-down-ballot-near-even",
+      "sample_population": "lv",
+      "sample_size": 755,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "MA-SEN",
       "race_type": "senate",

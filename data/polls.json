@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T14:51:18.004366Z",
+  "updated_at": "2026-10-19T15:49:24.191209Z",
   "generic_ballot": {
     "summary": {
       "dem": 49.5,
@@ -2636,7 +2636,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T14:51:18.004366Z",
+          "first_seen_at": "2026-10-19T15:49:24.191209Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -4184,7 +4184,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-19T14:51:18.004366Z",
+        "first_seen_at": "2026-10-19T15:49:24.191209Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -4208,7 +4208,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T14:51:18.004366Z",
+          "first_seen_at": "2026-10-19T15:49:24.191209Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -4603,29 +4603,52 @@
       "race_type": "governor",
       "state": "GA",
       "district": "GOV",
-      "latest_field_end": "2026-10-13",
+      "latest_field_end": "2026-10-17",
       "latest": {
-        "poll_id": "50059893-b573-4d5e-a109-1d42b580bef6",
-        "field_end": "2026-10-13",
-        "pollster": "InsiderAdvantage",
-        "dem": 47.0,
+        "poll_id": "ce18d5b0-de43-40b7-ac02-1fcba168d5d0",
+        "question_id": "dade1cbd-4e20-4211-8919-4ea7970ec9a5",
+        "field_end": "2026-10-17",
+        "pollster": "Quantus Insights",
+        "dem": 47.5,
         "rep": 49.0,
-        "margin": -2.0,
-        "sample_size": 800,
-        "partisan_lean": "R",
+        "margin": -1.5,
+        "sample_size": 755,
+        "partisan_lean": "",
         "dem_name": "Keisha Lance Bottoms",
         "rep_name": "Rick Jackson",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-14T23:48:06.473281+00:00",
+        "first_seen_at": "2026-10-19T15:49:24.677974+00:00",
         "release_date": null,
-        "upstream_posted_date": "2026-10-14",
-        "source_poll_url": "https://jamesmagazinega.com/2026/10/14/georgia-governors-poll-from-insideradvantage-jackson-maintains-slight-edge/",
+        "upstream_posted_date": "2026-10-19",
+        "source_poll_url": "https://quantusinsights.org/polling/f/georgia-two-weeks-out-ossoff-ahead-down-ballot-near-even",
         "sample_population": "lv",
-        "question_id": "5cbb2d93-d374-42c9-a5f4-174ee83f4d9f",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "ce18d5b0-de43-40b7-ac02-1fcba168d5d0",
+          "question_id": "dade1cbd-4e20-4211-8919-4ea7970ec9a5",
+          "field_end": "2026-10-17",
+          "pollster": "Quantus Insights",
+          "dem": 47.5,
+          "rep": 49.0,
+          "margin": -1.5,
+          "sample_size": 755,
+          "partisan_lean": "",
+          "dem_name": "Keisha Lance Bottoms",
+          "rep_name": "Rick Jackson",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-19T15:49:24.677974+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-19",
+          "source_poll_url": "https://quantusinsights.org/polling/f/georgia-two-weeks-out-ossoff-ahead-down-ballot-near-even",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "50059893-b573-4d5e-a109-1d42b580bef6",
           "field_end": "2026-10-13",
@@ -4740,7 +4763,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 6,
+      "recent_poll_count": 7,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -5191,7 +5214,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-19T14:51:18.004366Z",
+        "first_seen_at": "2026-10-19T15:49:24.191209Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -5215,7 +5238,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T14:51:18.004366Z",
+          "first_seen_at": "2026-10-19T15:49:24.191209Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -8598,29 +8621,52 @@
       "race_type": "senate",
       "state": "GA",
       "district": "SEN",
-      "latest_field_end": "2026-10-09",
+      "latest_field_end": "2026-10-17",
       "latest": {
-        "poll_id": "7e60bd8f-c327-4ae6-822f-706061debcf6",
-        "field_end": "2026-10-09",
-        "pollster": "Trafalgar Group",
-        "dem": 51.0,
-        "rep": 43.0,
-        "margin": 8.0,
-        "sample_size": 1101,
-        "partisan_lean": "R",
+        "poll_id": "ce18d5b0-de43-40b7-ac02-1fcba168d5d0",
+        "question_id": "2087a4b1-7ea5-4fc6-a86b-de2b5ce86087",
+        "field_end": "2026-10-17",
+        "pollster": "Quantus Insights",
+        "dem": 52.7,
+        "rep": 45.4,
+        "margin": 7.3,
+        "sample_size": 755,
+        "partisan_lean": "",
         "dem_name": "Jon Ossoff",
         "rep_name": "Mike Collins",
         "other": null,
         "other_name": null,
-        "first_seen_at": null,
+        "first_seen_at": "2026-10-19T15:49:24.677974+00:00",
         "release_date": null,
-        "upstream_posted_date": "2026-10-10",
-        "source_poll_url": "https://www.thetrafalgargroup.org/news/ga-senate-gen-1010/",
+        "upstream_posted_date": "2026-10-19",
+        "source_poll_url": "https://quantusinsights.org/polling/f/georgia-two-weeks-out-ossoff-ahead-down-ballot-near-even",
         "sample_population": "lv",
-        "question_id": "16b04151-4b9f-4feb-856c-6049c36d2427",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "ce18d5b0-de43-40b7-ac02-1fcba168d5d0",
+          "question_id": "2087a4b1-7ea5-4fc6-a86b-de2b5ce86087",
+          "field_end": "2026-10-17",
+          "pollster": "Quantus Insights",
+          "dem": 52.7,
+          "rep": 45.4,
+          "margin": 7.3,
+          "sample_size": 755,
+          "partisan_lean": "",
+          "dem_name": "Jon Ossoff",
+          "rep_name": "Mike Collins",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-19T15:49:24.677974+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-19",
+          "source_poll_url": "https://quantusinsights.org/polling/f/georgia-two-weeks-out-ossoff-ahead-down-ballot-near-even",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "7e60bd8f-c327-4ae6-822f-706061debcf6",
           "field_end": "2026-10-09",
@@ -8760,7 +8806,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 8,
+      "recent_poll_count": 9,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -15698,7 +15744,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-19T14:51:18.004366Z",
+    "last_attempt_at": "2026-10-19T15:49:24.191209Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15707,11 +15753,46 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [],
-    "new_poll_count": 0,
+    "new_polls": [
+      {
+        "race_code": "GA-GOV",
+        "race_type": "governor",
+        "poll_id": "ce18d5b0-de43-40b7-ac02-1fcba168d5d0",
+        "pollster": "Quantus Insights",
+        "field_end": "2026-10-17",
+        "dem": 47.5,
+        "rep": 49.0,
+        "margin": -1.5,
+        "dem_name": "Keisha Lance Bottoms",
+        "rep_name": "Rick Jackson",
+        "sample_size": 755,
+        "first_seen_at": "2026-10-19T15:49:24.677974+00:00",
+        "release_date": null,
+        "source_url": "https://quantusinsights.org/polling/f/georgia-two-weeks-out-ossoff-ahead-down-ballot-near-even",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "GA-SEN",
+        "race_type": "senate",
+        "poll_id": "ce18d5b0-de43-40b7-ac02-1fcba168d5d0",
+        "pollster": "Quantus Insights",
+        "field_end": "2026-10-17",
+        "dem": 52.7,
+        "rep": 45.4,
+        "margin": 7.3,
+        "dem_name": "Jon Ossoff",
+        "rep_name": "Mike Collins",
+        "sample_size": 755,
+        "first_seen_at": "2026-10-19T15:49:24.677974+00:00",
+        "release_date": null,
+        "source_url": "https://quantusinsights.org/polling/f/georgia-two-weeks-out-ossoff-ahead-down-ballot-near-even",
+        "source": "pollresults_secondary_fallback"
+      }
+    ],
+    "new_poll_count": 2,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-19T14:51:18.004366Z",
-    "previous_snapshot_at": "2026-10-19T13:58:43.278456Z",
+    "comparison_at": "2026-10-19T15:49:24.191209Z",
+    "previous_snapshot_at": "2026-10-19T14:51:18.004366Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15770,8 +15851,11 @@
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
     "matched_observations": 270,
-    "newly_injected_into_model": 0,
-    "newly_injected_by_race": {},
+    "newly_injected_into_model": 2,
+    "newly_injected_by_race": {
+      "GA-GOV": 1,
+      "GA-SEN": 1
+    },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
