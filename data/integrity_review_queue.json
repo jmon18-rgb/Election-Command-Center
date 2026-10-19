@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-19T20:45:51.728879Z",
+  "updated_at": "2026-10-19T21:44:58.994667Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 3,
   "review_metrics": {
-    "total_leads": 204,
-    "awaiting_primary_source": 202,
+    "total_leads": 207,
+    "awaiting_primary_source": 205,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 17,
-    "advisory_related_headlines": 38
+    "advisory_related_headlines": 39
   },
   "advisory_related_headlines": [
     {
@@ -53,6 +53,19 @@
       "topic_hints": [
         "ballot_access",
         "election_admin"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "3b6154045883ef155c34",
+      "headline": "Justice Department charges more than 2 dozen in California sweep targeting alleged noncitizen voters - Scripps News",
+      "possibly_related_articles": 3,
+      "distinct_publishers": 3,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -203,22 +216,52 @@
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    }
+  ],
+  "items": [
+    {
+      "id": "296aede59b4e79642b1e",
+      "title": "DOJ Charges 28 California Residents With Voting-Related Crimes Amid Trump\u2019s Voter Fraud Push - The New York Times",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOUGFnd0pFQW12VHVoR204NnlmM1A4YzN5N1FqYXo5RC1NNEVUd0J5TUhfTTlVd0xYWWZoa0p6SU1lTmdGV181VjRlTllPbXNtai1wWXVxZWgtMW04U1F2aHlqakxPSjJMeGFWbjJ6ZW40T0VzS0YydkI3UEFKNVljS3JYNF9JQUg2Vl96RlNaOWsyc0JuUE13cjV1bw?oc=5",
+      "publisher": "The New York Times",
+      "published_at": "2026-10-19T20:25:34Z",
+      "detected_at": "2026-10-19T21:44:58.994667Z",
+      "state_hints": [
+        "CA",
+        "NY"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "28 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
     },
     {
-      "lead_id": "3b6154045883ef155c34",
-      "headline": "Justice Department charges more than 2 dozen in California sweep targeting alleged noncitizen voters - Scripps News",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
+      "id": "89feb44eebc76258be9d",
+      "title": "Prosecutors charge 28 foreign nationals in California for voter fraud - Cal Coast News",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQSFluUmdnUnlrb0lRcU4zZWh6VlhaTllQNDd0eHk1WGZiYWdSODVfMXdQQmtKbG92ZDVzQ2s0QWVTRGJZZHZ5SldhQkZ4N3pLZ0JMTjNRSmJuVkdEN2o4ZUFyV19UanB0SVJmOWVqXzlHWkFEcFVUcUpzN1lzS0hmMmg4ZDZ6SV9zNEZieENNNVVEbWt0VjU0UkpJRzRKdUltTUJRdzlR?oc=5",
+      "publisher": "Cal Coast News",
+      "published_at": "2026-10-19T19:49:49Z",
+      "detected_at": "2026-10-19T21:44:58.994667Z",
       "state_hints": [
         "CA"
       ],
       "topic_hints": [
-        "security"
+        "election_admin"
       ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    }
-  ],
-  "items": [
+      "headline_numbers_unverified": [
+        "28 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "3b6154045883ef155c34",
       "title": "Justice Department charges more than 2 dozen in California sweep targeting alleged noncitizen voters - Scripps News",
@@ -226,6 +269,27 @@
       "publisher": "Scripps News",
       "published_at": "2026-10-19T19:24:59Z",
       "detected_at": "2026-10-19T19:46:58.679097Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [
+        "2 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "54585422604e071b6c38",
+      "title": "Justice Department charges more than 2 dozen in California sweep targeting alleged noncitizen voters - NBC26",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOcE52dmRQR003MS1lVDdKUlJaS3BvTmRMNlVMQlJ0bTJEUl9mMUtreUZvOUxTRXE2cDZPV05EcnZMd0hjX1RnZXpKNDlNY2FNMHczcUk1YzFxNkJXaXktT2lqS2QzWloxOElWakZxV1VtajRxbE5XV2NNY0dXUFhxUms4UWFRckZjM05zbEVuNUFFSGEzNXh1aGQtaV9mbVZYbFkyMi1xOE1zTnRlOWNuelhpQ2dCaGxhTUlodmRMZGFrSHlTUlQyV2xfYw?oc=5",
+      "publisher": "NBC26",
+      "published_at": "2026-10-19T19:24:59Z",
+      "detected_at": "2026-10-19T21:44:58.994667Z",
       "state_hints": [
         "CA"
       ],
