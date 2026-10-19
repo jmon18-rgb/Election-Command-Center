@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-19T00:57:50.286810Z",
+  "updated_at": "2026-10-19T01:45:15.795954Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
   "review_metrics": {
-    "total_leads": 193,
-    "awaiting_primary_source": 191,
+    "total_leads": 194,
+    "awaiting_primary_source": 192,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 15,
     "advisory_related_headlines": 34
@@ -200,6 +200,25 @@
       "publisher": "CBS News",
       "published_at": "2026-10-18T23:38:57Z",
       "detected_at": "2026-10-19T00:57:50.286810Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "60 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "9e5f4870dfd13f2158ab",
+      "title": "60 Minutes Transcript: Election officials describe impacts of federal actions on voting - CBS News",
+      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNTUdXV0JzZ0NpT0ZXYWFpcWwxSDh2YVR6SFF6YkxJdGxZWVJPTWFLc0FidEVhaDE4Y1Y3N0hLdmhTVC04Y2s3NjliOGZ3WVJObERUb0RZMnBZdnR5UmVESW5GSG9GRFQ4Yk9VVkZxZElBVlNXZk9ldmJIbFhRWXVhUjdoVmhTLThBNGJxY3NZemtJcVR0ZXhkcjYyR1NoUHRp?oc=5",
+      "publisher": "CBS News",
+      "published_at": "2026-10-18T23:38:00Z",
+      "detected_at": "2026-10-19T01:45:15.795954Z",
       "state_hints": [],
       "topic_hints": [
         "election_admin"
