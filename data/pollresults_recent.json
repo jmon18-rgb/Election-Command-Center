@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T13:58:43.803185+00:00",
+  "updated_at": "2026-10-19T14:51:18.507151+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,18 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 268,
-  "newly_injected_into_model": 2,
-  "injected_poll_ids": [
-    {
-      "race_code": "MA-GOV",
-      "poll_id": "c5000c5b-f88e-460a-9b37-9c068f09cd9c"
-    },
-    {
-      "race_code": "MA-SEN",
-      "poll_id": "c5000c5b-f88e-460a-9b37-9c068f09cd9c"
-    }
-  ],
+  "matched_primary_observations": 270,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "MA-SEN",

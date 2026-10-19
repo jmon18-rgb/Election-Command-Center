@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-19T13:58:42.972743Z",
+  "updated_at": "2026-10-19T14:51:17.673123Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 3,
   "review_metrics": {
-    "total_leads": 198,
-    "awaiting_primary_source": 196,
+    "total_leads": 201,
+    "awaiting_primary_source": 199,
     "primary_source_checked": 2,
-    "advisory_related_headline_buckets": 15,
-    "advisory_related_headlines": 34
+    "advisory_related_headline_buckets": 16,
+    "advisory_related_headlines": 36
   },
   "advisory_related_headlines": [
     {
@@ -190,9 +190,41 @@
         "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "10037a360d2c902fcd7f",
+      "headline": "Michigan advocates work to ease election security anxieties as November 3 approaches - Michigan Advance",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [
+        "MI"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "db1807d0335a3cb2cb73",
+      "title": "Early voting in NC in 2026. Everything you need to know. - Carolina Public Press",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPcTB2b3lvUGVEWkQ4TEhwSThSSlBTRW9TbUZaZ3FxTWtpWkVyX25SRWxpNTV5bEttNU1Mc2txMm9fVXMzakNUUk1fMzgyRFFabW1rZGU0eU9VRGVfc3A4U0ZHWnBYWTZYUUx6ZEdicXZnQmhCR2M4elg3UVF0U3lCWk9YUDVHcWpUZnVzbXpuT01PZVRWeHNfSA?oc=5",
+      "publisher": "Carolina Public Press",
+      "published_at": "2026-10-19T14:40:54Z",
+      "detected_at": "2026-10-19T14:51:17.673123Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [
+        "2026"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "454f9be5d2a8db1bd78a",
       "title": "Foreign Interference and the Democratic Self-Defense Trap: A European Perspective Going into the 2026 Midterms - Just Security",
@@ -235,6 +267,27 @@
       "promoted_to_incident_id": null
     },
     {
+      "id": "8f3626794ff37fbfd674",
+      "title": "Michigan advocates work to ease election security anxieties as Nov. 3 approaches - Michigan Advance",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOazd2NGJSbHF6b0RXYTNWeVl3MUdDMV9faDRCekFLek5hVWpTQmtZOENoRU1MMkJjckpPS1VTOFd5S3RRcmFZbUhvQzZEX0VKc0FTSDY1UW5FdS1XNW91dHNrczliSnZJbmZwQldhM0hLWUFyYURnY05KRjYzUG13SW95Sll3M09obUF0QXMxbXpFMG5ZRm45WG4tOXN6dlQzb1VGeGFWeUxEcmpYYUlraTlSNzdWa29LYkhrTm1MTVgzZw?oc=5",
+      "publisher": "Michigan Advance",
+      "published_at": "2026-10-19T09:28:47Z",
+      "detected_at": "2026-10-19T14:51:17.673123Z",
+      "state_hints": [
+        "MI"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "3 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "4ad98c88ecb8fa8af392",
       "title": "What you need to know about the 2026 US midterm elections - Reuters",
       "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQb25zakJSUXdaWnMxY0VpS2s4X2tGOGdVNGZwdHYzUGpzUVVhZzNsNjc5SUZ2aFRLUFhPbGNLYWE5dEtDN3piWl9MS1RibnFGcFlnNm00OWlZeWxZeVh2WnFyWDhfdE9yWDJtTGdsWFFYSk1lVWtQNGRMOWFtaHV2WkthSExabUNLeFRHaThYRWYwUTRpd1l5YVhhbw?oc=5",
@@ -248,6 +301,26 @@
       "headline_numbers_unverified": [
         "2026 "
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "5a5ee1995a19adc8a673",
+      "title": "Trump director of election security sparked Georgia office raid, affidavit says - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQWFNyVlNGblFCd3ZfSEo5RGl2Z1htZGh0eGhxRkJBeGFGU2JKUG5haW5VYlM5RDBXTEV0Y2R0WVdzQTh3MU5lcFgyXzJ4aXJjcm1xcjE2Vzh0T3NzWVl6ck96eDF2MW1lREd1TFZ5Rl9MT2JVcFdyelFwOUJhbGMwWWg3VGZzSi1OYlRrQXUzaVk1YUJWelJjXzJfVmV1dFExRm1hYzNteDFwZ9IBrwFBVV95cUxNU0ljTjFlZmY5cExkci1ETmZKU2d5bm5lZ2NFVTBNUjM2RmdGVHhlNi1EMDFQYzl2Y2FtbXpGY3JDSlZmejZYWGpfenBlaHdQSFJqNENPNWhCWFVJTk0wUW15V3FwTjlFLWpUR3BacEF6U2theFBDdHUwNDZac0NzN3JyR1pEcG9pWU5WTVh6MmxDVHpzT2JJQ0FLNlR3Q25nWjhYcHdKT05mSk5xaDEw?oc=5",
+      "publisher": "ABC News - Breaking News, Latest News and Videos",
+      "published_at": "2026-10-19T08:02:48Z",
+      "detected_at": "2026-10-19T14:51:17.673123Z",
+      "state_hints": [
+        "GA"
+      ],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
