@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-19T11:47:26.978482Z",
+  "updated_at": "2026-10-19T12:57:49.244625Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 197,
-    "awaiting_primary_source": 195,
+    "total_leads": 198,
+    "awaiting_primary_source": 196,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 15,
     "advisory_related_headlines": 34
@@ -193,6 +193,26 @@
     }
   ],
   "items": [
+    {
+      "id": "454f9be5d2a8db1bd78a",
+      "title": "Foreign Interference and the Democratic Self-Defense Trap: A European Perspective Going into the 2026 Midterms - Just Security",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQeFpldDRIUEs1akNNQVZZMnpaOENqTUEtaDEyd2tnMlJpcUJXVWpGLUlySTFLWGlUMDNtUE1tckl1cHV5TTRhV0F0VFpJc1lmT1NaNlk4c09FdVBnempRd3prRzNORkVXWXp3dzdXSC0wQmNVbGI5RkFkUWZHTWpyY2hGQWc2RUh0bEJ6SE1yYUw?oc=5",
+      "publisher": "Just Security",
+      "published_at": "2026-10-19T12:50:45Z",
+      "detected_at": "2026-10-19T12:57:49.244625Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "10037a360d2c902fcd7f",
       "title": "Michigan advocates work to ease election security anxieties as November 3 approaches - Michigan Advance",

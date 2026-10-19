@@ -1,5 +1,5 @@
 {
-  "source_snapshot": "2026-10-19T11:47:27.263043Z",
+  "source_snapshot": "2026-10-19T12:57:49.511762Z",
   "test": "Strict walk-forward, held-out next poll, grouped by candidate matchup",
   "eligible_matchup_groups": 50,
   "methods": {
@@ -10,7 +10,7 @@
       "rmse_points": 3.538,
       "cluster_bootstrap_mae_95pct_range": [
         2.284,
-        3.154
+        3.153
       ]
     },
     "recency21": {
@@ -27,7 +27,7 @@
       "comparisons": 159,
       "independent_matchup_clusters": 32,
       "mae_points": 2.726,
-      "rmse_points": 3.627,
+      "rmse_points": 3.626,
       "cluster_bootstrap_mae_95pct_range": [
         2.312,
         3.195
@@ -37,7 +37,7 @@
       "comparisons": 159,
       "independent_matchup_clusters": 32,
       "mae_points": 2.707,
-      "rmse_points": 3.596,
+      "rmse_points": 3.595,
       "cluster_bootstrap_mae_95pct_range": [
         2.297,
         3.177
@@ -57,7 +57,7 @@
       "comparisons": 159,
       "independent_matchup_clusters": 32,
       "mae_points": 2.733,
-      "rmse_points": 3.598,
+      "rmse_points": 3.597,
       "cluster_bootstrap_mae_95pct_range": [
         2.299,
         3.178
@@ -77,16 +77,16 @@
       "comparisons": 159,
       "independent_matchup_clusters": 32,
       "mae_points": 2.798,
-      "rmse_points": 3.752,
+      "rmse_points": 3.751,
       "cluster_bootstrap_mae_95pct_range": [
         2.377,
-        3.241
+        3.24
       ]
     },
     "recency21_sponsored_50_quality": {
       "comparisons": 159,
       "independent_matchup_clusters": 32,
-      "mae_points": 2.738,
+      "mae_points": 2.737,
       "rmse_points": 3.606,
       "cluster_bootstrap_mae_95pct_range": [
         2.338,
@@ -100,7 +100,7 @@
       "rmse_points": 3.6,
       "cluster_bootstrap_mae_95pct_range": [
         2.335,
-        3.186
+        3.185
       ]
     },
     "recency21_sponsored_50_quality_size_bias17": {
@@ -109,7 +109,7 @@
       "mae_points": 2.698,
       "rmse_points": 3.541,
       "cluster_bootstrap_mae_95pct_range": [
-        2.274,
+        2.273,
         3.133
       ]
     },
@@ -139,7 +139,7 @@
       "mae_points": 2.766,
       "rmse_points": 3.652,
       "cluster_bootstrap_mae_95pct_range": [
-        2.352,
+        2.351,
         3.252
       ]
     },
@@ -147,7 +147,7 @@
       "comparisons": 159,
       "independent_matchup_clusters": 32,
       "mae_points": 2.81,
-      "rmse_points": 3.694,
+      "rmse_points": 3.693,
       "cluster_bootstrap_mae_95pct_range": [
         2.423,
         3.248

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T11:47:27.665344+00:00",
+  "updated_at": "2026-10-19T12:57:49.927808+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -18,14 +18,33 @@
     }
   },
   "matched_primary_observations": 268,
-  "newly_injected_into_model": 1,
-  "injected_poll_ids": [
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
+  "observations": [
     {
       "race_code": "CT-GOV",
-      "poll_id": "1a8f3044-4c6b-48d3-a5ac-d5f731291455"
-    }
-  ],
-  "observations": [
+      "race_type": "governor",
+      "state": "CT",
+      "poll_id": "1a8f3044-4c6b-48d3-a5ac-d5f731291455",
+      "question_id": "2b90cb8f-4d98-4b96-8eea-b2803f9dc096",
+      "pollster": "GreatBlue Research",
+      "dem_name": "Ned Lamont",
+      "rep_name": "Ryan Fazio",
+      "dem": 61.5,
+      "rep": 34.3,
+      "margin": 27.2,
+      "field_end": "2026-10-12",
+      "field_start": "2026-10-06",
+      "posted_date": "2026-10-19",
+      "posted_source_datetime": "2026-10-19T07:14:00",
+      "posted_source_time": "10/19/26 07:14",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.wfsb.com/2026/10/19/exclusive-poll-lamont-increases-advantage-over-fazio-final-leg-campaign/",
+      "sample_population": "lv",
+      "sample_size": null,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "CT-GOV",
       "race_type": "governor",
@@ -212,7 +231,7 @@
       "posted_source_datetime": "2026-10-18T09:24:00",
       "posted_source_time": "10/18/26 09:24",
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
-      "source_url": "https://polling-averages.newsdev.nyt.net/polls/add",
+      "source_url": "https://www.cbsnews.com/news/texas-senate-talarico-paxton-poll/",
       "sample_population": "lv",
       "sample_size": 1458,
       "partisan_lean": "",
@@ -236,7 +255,7 @@
       "posted_source_datetime": "2026-10-18T09:24:00",
       "posted_source_time": "10/18/26 09:24",
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
-      "source_url": "https://polling-averages.newsdev.nyt.net/polls/add",
+      "source_url": "https://www.cbsnews.com/news/texas-senate-talarico-paxton-poll/",
       "sample_population": "lv",
       "sample_size": 1460,
       "partisan_lean": "",
