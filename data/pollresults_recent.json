@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-19T03:49:14.403439+00:00",
+  "updated_at": "2026-10-19T04:47:41.216338+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 782,
+      "available_in_source": 783,
       "records_examined": 300
     },
     "house": {
@@ -13,14 +13,71 @@
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 876,
+      "available_in_source": 877,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 264,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 2,
+  "injected_poll_ids": [
+    {
+      "race_code": "TX-GOV",
+      "poll_id": "cec80170-8597-4cef-90ad-2ed9e6f2a4ed"
+    },
+    {
+      "race_code": "TX-SEN",
+      "poll_id": "cec80170-8597-4cef-90ad-2ed9e6f2a4ed"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "TX-SEN",
+      "race_type": "senate",
+      "state": "TX",
+      "poll_id": "cec80170-8597-4cef-90ad-2ed9e6f2a4ed",
+      "question_id": "afc559a0-0dd9-43b9-b838-e2633e3f7eea",
+      "pollster": "University of Houston Hobby School of Public Affairs",
+      "dem_name": "James Talarico",
+      "rep_name": "Ken Paxton",
+      "dem": 48.0,
+      "rep": 46.0,
+      "margin": 2.0,
+      "field_end": "2026-10-14",
+      "field_start": "2026-10-10",
+      "posted_date": "2026-10-19",
+      "posted_source_datetime": "2026-10-19T00:01:00",
+      "posted_source_time": "10/19/26 00:01",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.uh.edu/hobby/texas2026/statewide.pdf",
+      "sample_population": "lv",
+      "sample_size": 2000,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "TX-GOV",
+      "race_type": "governor",
+      "state": "TX",
+      "poll_id": "cec80170-8597-4cef-90ad-2ed9e6f2a4ed",
+      "question_id": "88895a1e-acd9-4d36-838b-c8f7554718f3",
+      "pollster": "University of Houston Hobby School of Public Affairs",
+      "dem_name": "Gina Hinojosa",
+      "rep_name": "Greg Abbott",
+      "dem": 46.0,
+      "rep": 49.0,
+      "margin": -3.0,
+      "field_end": "2026-10-14",
+      "field_start": "2026-10-10",
+      "posted_date": "2026-10-19",
+      "posted_source_datetime": "2026-10-19T00:01:00",
+      "posted_source_time": "10/19/26 00:01",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.uh.edu/hobby/texas2026/statewide.pdf",
+      "sample_population": "lv",
+      "sample_size": 2000,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "SC-SEN",
       "race_type": "senate",
