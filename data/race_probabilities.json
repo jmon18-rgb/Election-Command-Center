@@ -1,9 +1,9 @@
 {
   "schema_version": "experimental-race-odds-v1",
   "status": "experimental_poll_margin_probability_not_chamber_forecast",
-  "generated_at": "2026-10-19T09:50:40.151372+00:00",
-  "polling_source_generated_at": "2026-10-19T09:50:39.987265Z",
-  "polling_source_snapshot": "2026-10-19T09:50:36.110728Z",
+  "generated_at": "2026-10-19T10:46:46.792335+00:00",
+  "polling_source_generated_at": "2026-10-19T10:46:46.695997Z",
+  "polling_source_snapshot": "2026-10-19T10:46:39.436682Z",
   "historical_senate_elections": 3,
   "historical_senate_races": 42,
   "senate_baseline_rmse_points": 5.633,
@@ -17,7 +17,7 @@
   "number_of_races_by_office": {
     "senate": 25,
     "house": 57,
-    "governor": 31
+    "governor": 32
   },
   "records": [
     {
@@ -399,16 +399,16 @@
       "office": "governor",
       "race_code": "PA-GOV",
       "label": "Pennsylvania",
-      "dem_minus_rep": 23.04,
+      "dem_minus_rep": 24.26,
       "contributing_firms": 5,
       "independent_firms": 4,
-      "latest_poll_end": "2026-10-05",
+      "latest_poll_end": "2026-10-11",
       "sigma_points": 7.0,
       "uncertainty_multiplier": 1.0,
-      "dem_beats_rep_pct": 99.95,
-      "rep_beats_dem_pct": 0.05,
+      "dem_beats_rep_pct": 99.97,
+      "rep_beats_dem_pct": 0.03,
       "tight_error_dem_pct": 100.0,
-      "wide_error_dem_pct": 99.58
+      "wide_error_dem_pct": 99.72
     },
     {
       "office": "governor",
@@ -424,6 +424,21 @@
       "rep_beats_dem_pct": 0.0,
       "tight_error_dem_pct": 100.0,
       "wide_error_dem_pct": 99.93
+    },
+    {
+      "office": "governor",
+      "race_code": "SD-GOV",
+      "label": "South Dakota",
+      "dem_minus_rep": -20.0,
+      "contributing_firms": 1,
+      "independent_firms": 1,
+      "latest_poll_end": "2026-10-14",
+      "sigma_points": 9.45,
+      "uncertainty_multiplier": 1.35,
+      "dem_beats_rep_pct": 1.72,
+      "rep_beats_dem_pct": 98.28,
+      "tight_error_dem_pct": 0.24,
+      "wide_error_dem_pct": 4.52
     },
     {
       "office": "governor",

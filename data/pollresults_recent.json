@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-19T09:50:36.482812+00:00",
+  "updated_at": "2026-10-19T10:46:39.929163+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 783,
+      "available_in_source": 784,
       "records_examined": 300
     },
     "house": {
@@ -13,14 +13,71 @@
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 877,
+      "available_in_source": 879,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 266,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 2,
+  "injected_poll_ids": [
+    {
+      "race_code": "PA-GOV",
+      "poll_id": "64636577-1601-428c-bc14-cf4563abce5b"
+    },
+    {
+      "race_code": "SD-GOV",
+      "poll_id": "06cde9f9-1d19-466c-b7aa-42e4ec649862"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "SD-GOV",
+      "race_type": "governor",
+      "state": "SD",
+      "poll_id": "06cde9f9-1d19-466c-b7aa-42e4ec649862",
+      "question_id": "3342dcfb-d07e-4d36-bd32-1f387ff82314",
+      "pollster": "Mason-Dixon Polling & Research, Inc.",
+      "dem_name": "Daniel P. Ahlers",
+      "rep_name": "Larry Rhoden",
+      "dem": 36.0,
+      "rep": 56.0,
+      "margin": -20.0,
+      "field_end": "2026-10-14",
+      "field_start": "2026-10-12",
+      "posted_date": "2026-10-19",
+      "posted_source_datetime": "2026-10-19T05:57:00",
+      "posted_source_time": "10/19/26 05:57",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.sdnewswatch.org/south-dakota-poll-2026-governor-ahlers-rhoden/",
+      "sample_population": "rv",
+      "sample_size": 500,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "PA-GOV",
+      "race_type": "governor",
+      "state": "PA",
+      "poll_id": "64636577-1601-428c-bc14-cf4563abce5b",
+      "question_id": "a4df2851-4162-45c6-aa9c-72a8211378a8",
+      "pollster": "Bravo Group",
+      "dem_name": "Josh Shapiro",
+      "rep_name": "Stacy Garrity",
+      "dem": 57.68,
+      "rep": 27.55,
+      "margin": 30.13,
+      "field_end": "2026-10-11",
+      "field_start": "2026-10-05",
+      "posted_date": "2026-10-19",
+      "posted_source_datetime": "2026-10-19T05:53:00",
+      "posted_source_time": "10/19/26 05:53",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.pennlive.com/politics/2026/10/a-bad-sign-for-gop-midterm-hopes-pa-voters-glum-about-trump-country-morning-scrapple-poll.html",
+      "sample_population": "rv",
+      "sample_size": 628,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "TX-SEN",
       "race_type": "senate",

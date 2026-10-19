@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T09:50:36.110728Z",
+  "updated_at": "2026-10-19T10:46:39.436682Z",
   "generic_ballot": {
     "summary": {
       "dem": 49.5,
@@ -2160,7 +2160,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T09:50:36.110728Z",
+          "first_seen_at": "2026-10-19T10:46:39.436682Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -3708,7 +3708,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-19T09:50:36.110728Z",
+        "first_seen_at": "2026-10-19T10:46:39.436682Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -3732,7 +3732,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T09:50:36.110728Z",
+          "first_seen_at": "2026-10-19T10:46:39.436682Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -4641,7 +4641,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-19T09:50:36.110728Z",
+        "first_seen_at": "2026-10-19T10:46:39.436682Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -4665,7 +4665,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T09:50:36.110728Z",
+          "first_seen_at": "2026-10-19T10:46:39.436682Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -10065,29 +10065,52 @@
       "race_type": "governor",
       "state": "PA",
       "district": "GOV",
-      "latest_field_end": "2026-10-05",
+      "latest_field_end": "2026-10-11",
       "latest": {
-        "poll_id": "2375dcb4-56e5-4bbd-bcf5-41501ee017e3",
-        "field_end": "2026-10-05",
-        "pollster": "Quinnipiac University",
-        "dem": 59.0,
-        "rep": 34.0,
-        "margin": 25.0,
-        "sample_size": 1159,
+        "poll_id": "64636577-1601-428c-bc14-cf4563abce5b",
+        "question_id": "a4df2851-4162-45c6-aa9c-72a8211378a8",
+        "field_end": "2026-10-11",
+        "pollster": "Bravo Group",
+        "dem": 57.68,
+        "rep": 27.55,
+        "margin": 30.13,
+        "sample_size": 628,
         "partisan_lean": "",
         "dem_name": "Josh Shapiro",
         "rep_name": "Stacy Garrity",
-        "other": 2.0,
-        "other_name": "Ken Krawchuk",
-        "first_seen_at": null,
+        "other": null,
+        "other_name": null,
+        "first_seen_at": "2026-10-19T10:46:39.929163+00:00",
         "release_date": null,
-        "upstream_posted_date": "2026-10-07",
-        "source_poll_url": "https://poll.qu.edu/poll-release?releaseid=3970",
-        "sample_population": "lv",
-        "question_id": "34f53453-8c31-4d42-bf51-2d153f0ecba9",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "upstream_posted_date": "2026-10-19",
+        "source_poll_url": "https://www.pennlive.com/politics/2026/10/a-bad-sign-for-gop-midterm-hopes-pa-voters-glum-about-trump-country-morning-scrapple-poll.html",
+        "sample_population": "rv",
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "64636577-1601-428c-bc14-cf4563abce5b",
+          "question_id": "a4df2851-4162-45c6-aa9c-72a8211378a8",
+          "field_end": "2026-10-11",
+          "pollster": "Bravo Group",
+          "dem": 57.68,
+          "rep": 27.55,
+          "margin": 30.13,
+          "sample_size": 628,
+          "partisan_lean": "",
+          "dem_name": "Josh Shapiro",
+          "rep_name": "Stacy Garrity",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-19T10:46:39.929163+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-19",
+          "source_poll_url": "https://www.pennlive.com/politics/2026/10/a-bad-sign-for-gop-midterm-hopes-pa-voters-glum-about-trump-country-morning-scrapple-poll.html",
+          "sample_population": "rv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "2375dcb4-56e5-4bbd-bcf5-41501ee017e3",
           "field_end": "2026-10-05",
@@ -10232,7 +10255,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 8,
+      "recent_poll_count": 9,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -15169,29 +15192,52 @@
       "race_type": "governor",
       "state": "SD",
       "district": "GOV",
-      "latest_field_end": "2026-08-30",
+      "latest_field_end": "2026-10-14",
       "latest": {
-        "poll_id": "cabb19b7-c3b2-4065-8255-bcce2adeb67d",
-        "field_end": "2026-08-30",
-        "pollster": "Lake Research Partners",
-        "dem": 44.0,
-        "rep": 51.0,
-        "margin": -7.0,
+        "poll_id": "06cde9f9-1d19-466c-b7aa-42e4ec649862",
+        "question_id": "3342dcfb-d07e-4d36-bd32-1f387ff82314",
+        "field_end": "2026-10-14",
+        "pollster": "Mason-Dixon Polling & Research, Inc.",
+        "dem": 36.0,
+        "rep": 56.0,
+        "margin": -20.0,
         "sample_size": 500,
-        "partisan_lean": "D",
+        "partisan_lean": "",
         "dem_name": "Daniel P. Ahlers",
         "rep_name": "Larry Rhoden",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-15T22:43:29.652598+00:00",
+        "first_seen_at": "2026-10-19T10:46:39.929163+00:00",
         "release_date": null,
-        "upstream_posted_date": "2026-10-01",
-        "source_poll_url": "https://x.com/SoDakDems/status/2105413020264357970",
-        "sample_population": "lv",
-        "question_id": "f3be04f8-6741-4603-8b97-751f165ff973",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "upstream_posted_date": "2026-10-19",
+        "source_poll_url": "https://www.sdnewswatch.org/south-dakota-poll-2026-governor-ahlers-rhoden/",
+        "sample_population": "rv",
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "06cde9f9-1d19-466c-b7aa-42e4ec649862",
+          "question_id": "3342dcfb-d07e-4d36-bd32-1f387ff82314",
+          "field_end": "2026-10-14",
+          "pollster": "Mason-Dixon Polling & Research, Inc.",
+          "dem": 36.0,
+          "rep": 56.0,
+          "margin": -20.0,
+          "sample_size": 500,
+          "partisan_lean": "",
+          "dem_name": "Daniel P. Ahlers",
+          "rep_name": "Larry Rhoden",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-19T10:46:39.929163+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-19",
+          "source_poll_url": "https://www.sdnewswatch.org/south-dakota-poll-2026-governor-ahlers-rhoden/",
+          "sample_population": "rv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "cabb19b7-c3b2-4065-8255-bcce2adeb67d",
           "field_end": "2026-08-30",
@@ -15214,7 +15260,7 @@
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
-      "recent_poll_count": 1,
+      "recent_poll_count": 2,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -15605,7 +15651,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-19T09:50:36.110728Z",
+    "last_attempt_at": "2026-10-19T10:46:39.436682Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15614,11 +15660,46 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [],
-    "new_poll_count": 0,
+    "new_polls": [
+      {
+        "race_code": "SD-GOV",
+        "race_type": "governor",
+        "poll_id": "06cde9f9-1d19-466c-b7aa-42e4ec649862",
+        "pollster": "Mason-Dixon Polling & Research, Inc.",
+        "field_end": "2026-10-14",
+        "dem": 36.0,
+        "rep": 56.0,
+        "margin": -20.0,
+        "dem_name": "Daniel P. Ahlers",
+        "rep_name": "Larry Rhoden",
+        "sample_size": 500,
+        "first_seen_at": "2026-10-19T10:46:39.929163+00:00",
+        "release_date": null,
+        "source_url": "https://www.sdnewswatch.org/south-dakota-poll-2026-governor-ahlers-rhoden/",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "PA-GOV",
+        "race_type": "governor",
+        "poll_id": "64636577-1601-428c-bc14-cf4563abce5b",
+        "pollster": "Bravo Group",
+        "field_end": "2026-10-11",
+        "dem": 57.68,
+        "rep": 27.55,
+        "margin": 30.13,
+        "dem_name": "Josh Shapiro",
+        "rep_name": "Stacy Garrity",
+        "sample_size": 628,
+        "first_seen_at": "2026-10-19T10:46:39.929163+00:00",
+        "release_date": null,
+        "source_url": "https://www.pennlive.com/politics/2026/10/a-bad-sign-for-gop-midterm-hopes-pa-voters-glum-about-trump-country-morning-scrapple-poll.html",
+        "source": "pollresults_secondary_fallback"
+      }
+    ],
+    "new_poll_count": 2,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-19T09:50:36.110728Z",
-    "previous_snapshot_at": "2026-10-19T08:52:46.799691Z",
+    "comparison_at": "2026-10-19T10:46:39.436682Z",
+    "previous_snapshot_at": "2026-10-19T09:50:36.110728Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15677,8 +15758,11 @@
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
     "matched_observations": 266,
-    "newly_injected_into_model": 0,
-    "newly_injected_by_race": {},
+    "newly_injected_into_model": 2,
+    "newly_injected_by_race": {
+      "PA-GOV": 1,
+      "SD-GOV": 1
+    },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {

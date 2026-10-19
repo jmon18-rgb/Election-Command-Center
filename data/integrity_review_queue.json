@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-19T09:50:35.837918Z",
+  "updated_at": "2026-10-19T10:46:39.270395Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
   "review_metrics": {
-    "total_leads": 196,
-    "awaiting_primary_source": 194,
+    "total_leads": 197,
+    "awaiting_primary_source": 195,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 15,
     "advisory_related_headlines": 34
@@ -208,6 +208,25 @@
       ],
       "headline_numbers_unverified": [
         "3 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "4ad98c88ecb8fa8af392",
+      "title": "What you need to know about the 2026 US midterm elections - Reuters",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQb25zakJSUXdaWnMxY0VpS2s4X2tGOGdVNGZwdHYzUGpzUVVhZzNsNjc5SUZ2aFRLUFhPbGNLYWE5dEtDN3piWl9MS1RibnFGcFlnNm00OWlZeWxZeVh2WnFyWDhfdE9yWDJtTGdsWFFYSk1lVWtQNGRMOWFtaHV2WkthSExabUNLeFRHaThYRWYwUTRpd1l5YVhhbw?oc=5",
+      "publisher": "Reuters",
+      "published_at": "2026-10-19T09:03:55Z",
+      "detected_at": "2026-10-19T10:46:39.270395Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
