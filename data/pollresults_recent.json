@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T10:46:39.929163+00:00",
+  "updated_at": "2026-10-19T11:47:27.665344+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,27 +9,47 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1196,
+      "available_in_source": 1197,
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 879,
+      "available_in_source": 880,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 266,
-  "newly_injected_into_model": 2,
+  "matched_primary_observations": 268,
+  "newly_injected_into_model": 1,
   "injected_poll_ids": [
     {
-      "race_code": "PA-GOV",
-      "poll_id": "64636577-1601-428c-bc14-cf4563abce5b"
-    },
-    {
-      "race_code": "SD-GOV",
-      "poll_id": "06cde9f9-1d19-466c-b7aa-42e4ec649862"
+      "race_code": "CT-GOV",
+      "poll_id": "1a8f3044-4c6b-48d3-a5ac-d5f731291455"
     }
   ],
   "observations": [
+    {
+      "race_code": "CT-GOV",
+      "race_type": "governor",
+      "state": "CT",
+      "poll_id": "1a8f3044-4c6b-48d3-a5ac-d5f731291455",
+      "question_id": "690a69fc-5e4a-4c6c-9714-522fb3a9212d",
+      "pollster": "GreatBlue Research",
+      "dem_name": "Ned Lamont",
+      "rep_name": "Ryan Fazio",
+      "dem": 56.3,
+      "rep": 33.1,
+      "margin": 23.2,
+      "field_end": "2026-10-12",
+      "field_start": "2026-10-06",
+      "posted_date": "2026-10-19",
+      "posted_source_datetime": "2026-10-19T07:14:00",
+      "posted_source_time": "10/19/26 07:14",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.wfsb.com/2026/10/19/exclusive-poll-lamont-increases-advantage-over-fazio-final-leg-campaign/",
+      "sample_population": "rv",
+      "sample_size": 1000,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "SD-GOV",
       "race_type": "governor",

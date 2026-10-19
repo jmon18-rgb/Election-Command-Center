@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T10:46:39.436682Z",
+  "updated_at": "2026-10-19T11:47:27.263043Z",
   "generic_ballot": {
     "summary": {
       "dem": 49.5,
@@ -2160,7 +2160,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T10:46:39.436682Z",
+          "first_seen_at": "2026-10-19T11:47:27.263043Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -3708,7 +3708,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-19T10:46:39.436682Z",
+        "first_seen_at": "2026-10-19T11:47:27.263043Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -3732,7 +3732,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T10:46:39.436682Z",
+          "first_seen_at": "2026-10-19T11:47:27.263043Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -4641,7 +4641,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-19T10:46:39.436682Z",
+        "first_seen_at": "2026-10-19T11:47:27.263043Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -4665,7 +4665,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T10:46:39.436682Z",
+          "first_seen_at": "2026-10-19T11:47:27.263043Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -4695,6 +4695,28 @@
           "sample_population": "lv",
           "question_id": "036ccefb-ba3e-4418-b269-67e064d4650e",
           "date_provenance": "PollResults ingestion date, NOT public release date"
+        },
+        {
+          "poll_id": "1a8f3044-4c6b-48d3-a5ac-d5f731291455",
+          "question_id": "690a69fc-5e4a-4c6c-9714-522fb3a9212d",
+          "field_end": "2026-10-12",
+          "pollster": "GreatBlue Research",
+          "dem": 56.3,
+          "rep": 33.1,
+          "margin": 23.2,
+          "sample_size": 1000,
+          "partisan_lean": "",
+          "dem_name": "Ned Lamont",
+          "rep_name": "Ryan Fazio",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-19T11:47:27.665344+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-19",
+          "source_poll_url": "https://www.wfsb.com/2026/10/19/exclusive-poll-lamont-increases-advantage-over-fazio-final-leg-campaign/",
+          "sample_population": "rv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
         },
         {
           "poll_id": "b52829fc-a8a8-44bd-930f-981755132f0b",
@@ -4798,7 +4820,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 8,
+      "recent_poll_count": 9,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -15651,7 +15673,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-19T10:46:39.436682Z",
+    "last_attempt_at": "2026-10-19T11:47:27.263043Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15662,44 +15684,27 @@
   "changes": {
     "new_polls": [
       {
-        "race_code": "SD-GOV",
+        "race_code": "CT-GOV",
         "race_type": "governor",
-        "poll_id": "06cde9f9-1d19-466c-b7aa-42e4ec649862",
-        "pollster": "Mason-Dixon Polling & Research, Inc.",
-        "field_end": "2026-10-14",
-        "dem": 36.0,
-        "rep": 56.0,
-        "margin": -20.0,
-        "dem_name": "Daniel P. Ahlers",
-        "rep_name": "Larry Rhoden",
-        "sample_size": 500,
-        "first_seen_at": "2026-10-19T10:46:39.929163+00:00",
+        "poll_id": "1a8f3044-4c6b-48d3-a5ac-d5f731291455",
+        "pollster": "GreatBlue Research",
+        "field_end": "2026-10-12",
+        "dem": 56.3,
+        "rep": 33.1,
+        "margin": 23.2,
+        "dem_name": "Ned Lamont",
+        "rep_name": "Ryan Fazio",
+        "sample_size": 1000,
+        "first_seen_at": "2026-10-19T11:47:27.665344+00:00",
         "release_date": null,
-        "source_url": "https://www.sdnewswatch.org/south-dakota-poll-2026-governor-ahlers-rhoden/",
-        "source": "pollresults_secondary_fallback"
-      },
-      {
-        "race_code": "PA-GOV",
-        "race_type": "governor",
-        "poll_id": "64636577-1601-428c-bc14-cf4563abce5b",
-        "pollster": "Bravo Group",
-        "field_end": "2026-10-11",
-        "dem": 57.68,
-        "rep": 27.55,
-        "margin": 30.13,
-        "dem_name": "Josh Shapiro",
-        "rep_name": "Stacy Garrity",
-        "sample_size": 628,
-        "first_seen_at": "2026-10-19T10:46:39.929163+00:00",
-        "release_date": null,
-        "source_url": "https://www.pennlive.com/politics/2026/10/a-bad-sign-for-gop-midterm-hopes-pa-voters-glum-about-trump-country-morning-scrapple-poll.html",
+        "source_url": "https://www.wfsb.com/2026/10/19/exclusive-poll-lamont-increases-advantage-over-fazio-final-leg-campaign/",
         "source": "pollresults_secondary_fallback"
       }
     ],
-    "new_poll_count": 2,
+    "new_poll_count": 1,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-19T10:46:39.436682Z",
-    "previous_snapshot_at": "2026-10-19T09:50:36.110728Z",
+    "comparison_at": "2026-10-19T11:47:27.263043Z",
+    "previous_snapshot_at": "2026-10-19T10:46:39.436682Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15757,16 +15762,15 @@
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 266,
-    "newly_injected_into_model": 2,
+    "matched_observations": 268,
+    "newly_injected_into_model": 1,
     "newly_injected_by_race": {
-      "PA-GOV": 1,
-      "SD-GOV": 1
+      "CT-GOV": 1
     },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
-    "carried_forward_current_observations": 4,
+    "carried_forward_current_observations": 6,
     "provenance": "PollResults source-linked fallback; original first_seen_at retained"
   }
 }
