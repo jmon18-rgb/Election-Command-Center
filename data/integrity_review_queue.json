@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-19T18:55:35.088646Z",
+  "updated_at": "2026-10-19T19:46:58.679097Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 203,
-    "awaiting_primary_source": 201,
+    "total_leads": 204,
+    "awaiting_primary_source": 202,
     "primary_source_checked": 2,
-    "advisory_related_headline_buckets": 16,
-    "advisory_related_headlines": 36
+    "advisory_related_headline_buckets": 17,
+    "advisory_related_headlines": 38
   },
   "advisory_related_headlines": [
     {
@@ -203,9 +203,43 @@
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "3b6154045883ef155c34",
+      "headline": "Justice Department charges more than 2 dozen in California sweep targeting alleged noncitizen voters - Scripps News",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "3b6154045883ef155c34",
+      "title": "Justice Department charges more than 2 dozen in California sweep targeting alleged noncitizen voters - Scripps News",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQYUlxNGhHV3ZyM2NHakVza3pObUNnRlZRZ0l6VmVmd3NtRUF3dUVveW5fMkdGZEM2TGZFQ1NyR0I0TEIyUk0xeG1YOFc2bGVxcnZxTzJzSHRlNGdtZm1GQkxDVWp0aVRWMlQxZENLX0EyNTB5Y1V3QTlGZFVneURYMEpuV3dPTmRubFlCUUZVajd2X0hDb1hhdUhxUVFJaVMzaDdPc1ZaVDBKdHl6aTh0YVdBX0I4Y04xSDVNeklmOU1JX3U3SkxrWU53Njh6N3BmMHJN?oc=5",
+      "publisher": "Scripps News",
+      "published_at": "2026-10-19T19:24:59Z",
+      "detected_at": "2026-10-19T19:46:58.679097Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [
+        "2 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "0cb4f9a00a96955ec55b",
       "title": "Procrastinator\u2019s Guide to the November 2026 election in Philadelphia - Billy Penn at WHYY",

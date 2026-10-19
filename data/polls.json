@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T18:55:35.393306Z",
+  "updated_at": "2026-10-19T19:46:58.872170Z",
   "generic_ballot": {
     "summary": {
       "dem": 49.5,
@@ -2659,7 +2659,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T18:55:35.393306Z",
+          "first_seen_at": "2026-10-19T19:46:58.872170Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -4207,7 +4207,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-19T18:55:35.393306Z",
+        "first_seen_at": "2026-10-19T19:46:58.872170Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -4231,7 +4231,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T18:55:35.393306Z",
+          "first_seen_at": "2026-10-19T19:46:58.872170Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -5260,7 +5260,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-19T18:55:35.393306Z",
+        "first_seen_at": "2026-10-19T19:46:58.872170Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -5284,7 +5284,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T18:55:35.393306Z",
+          "first_seen_at": "2026-10-19T19:46:58.872170Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -15813,7 +15813,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-19T18:55:35.393306Z",
+    "last_attempt_at": "2026-10-19T19:46:58.872170Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15822,46 +15822,11 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [
-      {
-        "race_code": "IA-SEN",
-        "race_type": "senate",
-        "poll_id": "714e6be6-64cd-419c-a163-9bd660f5c5f7",
-        "pollster": "co/efficient",
-        "field_end": "2026-10-19",
-        "dem": 45.0,
-        "rep": 48.0,
-        "margin": -3.0,
-        "dem_name": "Josh Turek",
-        "rep_name": "Ashley Hinson",
-        "sample_size": 863,
-        "first_seen_at": "2026-10-19T18:55:35.682583+00:00",
-        "release_date": null,
-        "source_url": "https://battlegrounds.coefficient.org/ia/",
-        "source": "pollresults_secondary_fallback"
-      },
-      {
-        "race_code": "IA-GOV",
-        "race_type": "governor",
-        "poll_id": "714e6be6-64cd-419c-a163-9bd660f5c5f7",
-        "pollster": "co/efficient",
-        "field_end": "2026-10-19",
-        "dem": 49.0,
-        "rep": 45.0,
-        "margin": 4.0,
-        "dem_name": "Rob Sand",
-        "rep_name": "Zach Lahn",
-        "sample_size": 863,
-        "first_seen_at": "2026-10-19T18:55:35.682583+00:00",
-        "release_date": null,
-        "source_url": "https://battlegrounds.coefficient.org/ia/",
-        "source": "pollresults_secondary_fallback"
-      }
-    ],
-    "new_poll_count": 2,
+    "new_polls": [],
+    "new_poll_count": 0,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-19T18:55:35.393306Z",
-    "previous_snapshot_at": "2026-10-19T17:43:59.631331Z",
+    "comparison_at": "2026-10-19T19:46:58.872170Z",
+    "previous_snapshot_at": "2026-10-19T18:55:35.393306Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15919,16 +15884,13 @@
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 273,
-    "newly_injected_into_model": 2,
-    "newly_injected_by_race": {
-      "IA-GOV": 1,
-      "IA-SEN": 1
-    },
+    "matched_observations": 275,
+    "newly_injected_into_model": 0,
+    "newly_injected_by_race": {},
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
-    "carried_forward_current_observations": 5,
+    "carried_forward_current_observations": 7,
     "provenance": "PollResults source-linked fallback; original first_seen_at retained"
   }
 }
