@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-19T16:49:28.553842+00:00",
+  "updated_at": "2026-10-19T17:44:00.056984+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 786,
+      "available_in_source": 787,
       "records_examined": 300
     },
     "house": {
@@ -13,14 +13,67 @@
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 882,
+      "available_in_source": 883,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 272,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "FL-GOV",
+      "poll_id": "9d12cd34-fa83-4c73-a199-6ddf0a513808"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "FL-SEN",
+      "race_type": "senate",
+      "state": "FL",
+      "poll_id": "9d12cd34-fa83-4c73-a199-6ddf0a513808",
+      "question_id": "8e79d048-7288-47a9-8e02-bbc297987412",
+      "pollster": "YouGov",
+      "dem_name": "Generic Democrat",
+      "rep_name": "Generic Republican",
+      "dem": 42.0,
+      "rep": 51.0,
+      "margin": -9.0,
+      "field_end": "2026-10-15",
+      "field_start": "2026-10-02",
+      "posted_date": "2026-10-19",
+      "posted_source_datetime": "2026-10-19T12:45:00",
+      "posted_source_time": "10/19/26 12:45",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.univision.com/noticias/politica/republicans-lead-florida-as-most-latino-voters-say-immigration-enforcement-has-gone-too-far",
+      "sample_population": "rv",
+      "sample_size": 825,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "FL-GOV",
+      "race_type": "governor",
+      "state": "FL",
+      "poll_id": "9d12cd34-fa83-4c73-a199-6ddf0a513808",
+      "question_id": "e5ad2523-ec0f-4430-aea6-fdd42c578e47",
+      "pollster": "YouGov",
+      "dem_name": "David Jolly",
+      "rep_name": "Byron Donalds",
+      "dem": 42.0,
+      "rep": 50.0,
+      "margin": -8.0,
+      "field_end": "2026-10-15",
+      "field_start": "2026-10-02",
+      "posted_date": "2026-10-19",
+      "posted_source_datetime": "2026-10-19T12:45:00",
+      "posted_source_time": "10/19/26 12:45",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.univision.com/noticias/politica/republicans-lead-florida-as-most-latino-voters-say-immigration-enforcement-has-gone-too-far",
+      "sample_population": "rv",
+      "sample_size": 825,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "GA-SEN",
       "race_type": "senate",

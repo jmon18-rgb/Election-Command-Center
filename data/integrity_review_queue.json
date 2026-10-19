@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-19T16:49:27.992648Z",
+  "updated_at": "2026-10-19T17:43:59.359978Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
-    "total_leads": 201,
-    "awaiting_primary_source": 199,
+    "total_leads": 203,
+    "awaiting_primary_source": 201,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 16,
     "advisory_related_headlines": 36
@@ -206,6 +206,46 @@
     }
   ],
   "items": [
+    {
+      "id": "0cb4f9a00a96955ec55b",
+      "title": "Procrastinator\u2019s Guide to the November 2026 election in Philadelphia - Billy Penn at WHYY",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPOVFTYW9jQ2NsQUk4RE9LSkxwVmhHLVR4NURXZXkwdTM4dkVDQzEyVTR5amt2TllsaHNpSi1ia0JkYW9rZzJGTEx0MURPS1Y0dGhGRWx5Zl9Rc2RYYmVLVVNldmFpVVdZUmVWemgtVzhQNXUweTd5NC01aG1uQlljZmwySjhLd0FGSjl5dlNOYlUzYUVyQV9GX3drS2VKTVZqZXpn?oc=5",
+      "publisher": "Billy Penn at WHYY",
+      "published_at": "2026-10-19T17:30:00Z",
+      "detected_at": "2026-10-19T17:43:59.359978Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "6f920a0496d6221b67c8",
+      "title": "Justice Department charges more than 2 dozen in California sweep targeting alleged noncitizen voters - Rocky Mount Telegram",
+      "url": "https://news.google.com/rss/articles/CBMipgJBVV95cUxQVzB5MVRjQ1M1SnhJbGZZRnBqamNtY3R5cWVBdURIcE9NeVNmM0hwN3lvUVpCekg0ZlFDYmg2dzFMVzVGT2FqYThLcjM4T3RZOVd6cWExQVEtc2RwVkRmcGx5WllOUDNqQ1BKRkJJVVdTV2lOX2FGN2pNUUg2WlVTV1NRbW9BdWpXUS10c3M2M25adkEyRElLTGhCTVppa19iOXFROGREa2wwUXFxMWZvZ0tRSFhiODVfYTZZaUlNSEp3dXZDRjhKQTdOSE1YcDRUdTRmYS02U3lCN0ZwblNhelIxWXNTS0s5S1VLMDNkM09iMXVaZTN5SGFHRjhTTDQ2a0FSb2JockxuT1ZaWDhlWFh6eUQ5ektJUnY1YUl2QVZfNFJBZGc?oc=5",
+      "publisher": "Rocky Mount Telegram",
+      "published_at": "2026-10-19T17:28:45Z",
+      "detected_at": "2026-10-19T17:43:59.359978Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [
+        "2 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "db1807d0335a3cb2cb73",
       "title": "Early voting in NC in 2026. Everything you need to know. - Carolina Public Press",
