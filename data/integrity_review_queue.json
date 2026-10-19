@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-19T08:52:46.503167Z",
+  "updated_at": "2026-10-19T09:50:35.837918Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
   "review_metrics": {
-    "total_leads": 195,
-    "awaiting_primary_source": 193,
+    "total_leads": 196,
+    "awaiting_primary_source": 194,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 15,
     "advisory_related_headlines": 34
@@ -193,6 +193,27 @@
     }
   ],
   "items": [
+    {
+      "id": "10037a360d2c902fcd7f",
+      "title": "Michigan advocates work to ease election security anxieties as November 3 approaches - Michigan Advance",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOazd2NGJSbHF6b0RXYTNWeVl3MUdDMV9faDRCekFLek5hVWpTQmtZOENoRU1MMkJjckpPS1VTOFd5S3RRcmFZbUhvQzZEX0VKc0FTSDY1UW5FdS1XNW91dHNrczliSnZJbmZwQldhM0hLWUFyYURnY05KRjYzUG13SW95Sll3M09obUF0QXMxbXpFMG5ZRm45WG4tOXN6dlQzb1VGeGFWeUxEcmpYYUlraTlSNzdWa29LYkhrTm1MTVgzZw?oc=5",
+      "publisher": "Michigan Advance",
+      "published_at": "2026-10-19T09:28:47Z",
+      "detected_at": "2026-10-19T09:50:35.837918Z",
+      "state_hints": [
+        "MI"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "3 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "18945c53831cc2aae671",
       "title": "PA election 2026: Your guide to voting on Nov. 3 - Spotlight PA",
