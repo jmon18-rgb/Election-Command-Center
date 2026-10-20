@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T14:48:34.897159+00:00",
+  "updated_at": "2026-10-20T15:46:29.224298+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,26 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 282,
-  "newly_injected_into_model": 4,
-  "injected_poll_ids": [
-    {
-      "race_code": "IA-GOV",
-      "poll_id": "022946f1-22b5-4b48-9ccd-8ca5bde7ff14"
-    },
-    {
-      "race_code": "NE-02",
-      "poll_id": "85cb655e-59af-411e-8b66-96853337a024"
-    },
-    {
-      "race_code": "NE-GOV",
-      "poll_id": "85cb655e-59af-411e-8b66-96853337a024"
-    },
-    {
-      "race_code": "NH-GOV",
-      "poll_id": "22e1eaa2-8ba2-4c4b-b62c-c75eddf57007"
-    }
-  ],
+  "matched_primary_observations": 286,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "NE-SEN",

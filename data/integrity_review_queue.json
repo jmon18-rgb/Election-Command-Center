@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-20T14:48:34.161178Z",
+  "updated_at": "2026-10-20T15:46:28.708788Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
   "review_metrics": {
-    "total_leads": 219,
-    "awaiting_primary_source": 217,
+    "total_leads": 220,
+    "awaiting_primary_source": 218,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 19,
     "advisory_related_headlines": 43
@@ -243,6 +243,27 @@
     }
   ],
   "items": [
+    {
+      "id": "7dc1b0834743e23f4b9e",
+      "title": "DOJ Charges 28 California Green Card Holders with Election Voting Fraud Days Before Midterms - Latin Times",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNYTQ3MmdQWDlaV0hEbFpZbXp1V3JvSGVRMm5STE5xUlNhMFQwRjZpbG9vSmVtNXNnQkVYTHNNWjFVZE55ZDdISm44NkR3Nm01Q2lmR1YxMnYtdzk3b1I4VDlpMmNfd2ZUbnprMFNsZkVwSDBYMWlfNnB0ZXJYeU1vTE1TN0h4bzlTYkNlMkJQOExBeGxzUC1CUFpDWVBYaXZHWDFOaGRiVlliakU0dmk5VFdqQlJ6R0o0WkNnamVn?oc=5",
+      "publisher": "Latin Times",
+      "published_at": "2026-10-20T14:50:30Z",
+      "detected_at": "2026-10-20T15:46:28.708788Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "28 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "bd8fec64c12ae34380a2",
       "title": "Noncitizens don't vote in large numbers in US elections. Here's proof - Snopes",

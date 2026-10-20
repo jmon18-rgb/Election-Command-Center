@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T14:48:34.472378Z",
+  "updated_at": "2026-10-20T15:46:28.951663Z",
   "generic_ballot": {
     "summary": {
       "dem": 48.9,
@@ -930,7 +930,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T14:48:34.472378Z",
+          "first_seen_at": "2026-10-20T15:46:28.951663Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -2207,7 +2207,7 @@
           "rep_name": "Jon Husted",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T14:48:34.472378Z",
+          "first_seen_at": "2026-10-20T15:46:28.951663Z",
           "release_date": null,
           "question_id": "a101b63d-1983-4681-9db7-fa3a2dd3fc0a",
           "sample_population": "lv",
@@ -6003,7 +6003,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-20T14:48:34.472378Z",
+        "first_seen_at": "2026-10-20T15:46:28.951663Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -6027,7 +6027,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T14:48:34.472378Z",
+          "first_seen_at": "2026-10-20T15:46:28.951663Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -6585,7 +6585,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-20T14:48:34.472378Z",
+        "first_seen_at": "2026-10-20T15:46:28.951663Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -6609,7 +6609,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T14:48:34.472378Z",
+          "first_seen_at": "2026-10-20T15:46:28.951663Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -16227,7 +16227,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-20T14:48:34.472378Z",
+    "last_attempt_at": "2026-10-20T15:46:28.951663Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -16236,80 +16236,11 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [
-      {
-        "race_code": "IA-GOV",
-        "race_type": "governor",
-        "poll_id": "022946f1-22b5-4b48-9ccd-8ca5bde7ff14",
-        "pollster": "National Public Affairs",
-        "field_end": "2026-10-12",
-        "dem": 50.0,
-        "rep": 45.0,
-        "margin": 5.0,
-        "dem_name": "Rob Sand",
-        "rep_name": "Zach Lahn",
-        "sample_size": 678,
-        "first_seen_at": "2026-10-20T14:48:34.897159+00:00",
-        "release_date": null,
-        "source_url": "https://backend.natpublicaffairs.com/media/Iowa_General_Election_Memo_101526.3.pdf",
-        "source": "pollresults_secondary_fallback"
-      },
-      {
-        "race_code": "NH-GOV",
-        "race_type": "governor",
-        "poll_id": "22e1eaa2-8ba2-4c4b-b62c-c75eddf57007",
-        "pollster": "National Public Affairs",
-        "field_end": "2026-10-12",
-        "dem": 38.0,
-        "rep": 54.0,
-        "margin": -16.0,
-        "dem_name": "Cinde Warmington",
-        "rep_name": "Kelly Ayotte",
-        "sample_size": 600,
-        "first_seen_at": "2026-10-20T14:48:34.897159+00:00",
-        "release_date": null,
-        "source_url": "https://backend.natpublicaffairs.com/media/NH_General_Election_Memo_101526.2.pdf",
-        "source": "pollresults_secondary_fallback"
-      },
-      {
-        "race_code": "NE-GOV",
-        "race_type": "governor",
-        "poll_id": "85cb655e-59af-411e-8b66-96853337a024",
-        "pollster": "National Public Affairs",
-        "field_end": "2026-10-05",
-        "dem": 40.0,
-        "rep": 44.0,
-        "margin": -4.0,
-        "dem_name": "Lynne Walz",
-        "rep_name": "Jim Pillen",
-        "sample_size": 800,
-        "first_seen_at": "2026-10-20T14:48:34.897159+00:00",
-        "release_date": null,
-        "source_url": "https://backend.natpublicaffairs.com/media/Nebraska_General_Election_Memo_100926.pdf",
-        "source": "pollresults_secondary_fallback"
-      },
-      {
-        "race_code": "NE-02",
-        "race_type": "house",
-        "poll_id": "85cb655e-59af-411e-8b66-96853337a024",
-        "pollster": "National Public Affairs",
-        "field_end": "2026-10-05",
-        "dem": 50.0,
-        "rep": 38.0,
-        "margin": 12.0,
-        "dem_name": "Denise Powell",
-        "rep_name": "Brinker Harding",
-        "sample_size": 377,
-        "first_seen_at": "2026-10-20T14:48:34.897159+00:00",
-        "release_date": null,
-        "source_url": "https://backend.natpublicaffairs.com/media/Nebraska_General_Election_Memo_100926.pdf",
-        "source": "pollresults_secondary_fallback"
-      }
-    ],
-    "new_poll_count": 4,
+    "new_polls": [],
+    "new_poll_count": 0,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-20T14:48:34.472378Z",
-    "previous_snapshot_at": "2026-10-20T13:53:36.028987Z",
+    "comparison_at": "2026-10-20T15:46:28.951663Z",
+    "previous_snapshot_at": "2026-10-20T14:48:34.472378Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -16374,18 +16305,13 @@
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 282,
-    "newly_injected_into_model": 4,
-    "newly_injected_by_race": {
-      "IA-GOV": 1,
-      "NE-02": 1,
-      "NE-GOV": 1,
-      "NH-GOV": 1
-    },
+    "matched_observations": 286,
+    "newly_injected_into_model": 0,
+    "newly_injected_by_race": {},
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
-    "carried_forward_current_observations": 3,
+    "carried_forward_current_observations": 7,
     "provenance": "PollResults source-linked fallback; original first_seen_at retained"
   }
 }
