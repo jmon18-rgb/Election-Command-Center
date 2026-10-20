@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T21:45:41.373586Z",
+  "updated_at": "2026-10-20T22:43:38.559933Z",
   "generic_ballot": {
     "summary": {
       "dem": 48.9,
@@ -930,7 +930,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T21:45:41.373586Z",
+          "first_seen_at": "2026-10-20T22:43:38.559933Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -2207,7 +2207,7 @@
           "rep_name": "Jon Husted",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T21:45:41.373586Z",
+          "first_seen_at": "2026-10-20T22:43:38.559933Z",
           "release_date": null,
           "question_id": "a101b63d-1983-4681-9db7-fa3a2dd3fc0a",
           "sample_population": "lv",
@@ -6026,7 +6026,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-20T21:45:41.373586Z",
+        "first_seen_at": "2026-10-20T22:43:38.559933Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -6050,7 +6050,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T21:45:41.373586Z",
+          "first_seen_at": "2026-10-20T22:43:38.559933Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -6608,7 +6608,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-20T21:45:41.373586Z",
+        "first_seen_at": "2026-10-20T22:43:38.559933Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -6632,7 +6632,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T21:45:41.373586Z",
+          "first_seen_at": "2026-10-20T22:43:38.559933Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -16450,6 +16450,28 @@
       "district": "GOV",
       "polls": [
         {
+          "poll_id": "040d2334-8d1a-41e0-9814-6b64eff8c4d1",
+          "question_id": "4d2cbf5f-0829-4a25-94c3-d22a6dd117ca",
+          "field_end": "2026-10-18",
+          "pollster": "Trafalgar Group",
+          "dem": 36.5,
+          "rep": 52.5,
+          "margin": -16.0,
+          "sample_size": 1095,
+          "partisan_lean": "R",
+          "dem_name": "Jermaine Johnson",
+          "rep_name": "Alan Wilson",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-20T22:43:39.024345+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-18",
+          "source_poll_url": "https://www.thetrafalgargroup.org/news/sc-senate-gen-1018/",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
+        {
           "poll_id": "9555ad55-c7db-4d8b-a988-3a9465820547",
           "question_id": "8bbf36f8-8974-42ca-98e1-e420ffcfe73a",
           "field_end": "2026-10-16",
@@ -16472,26 +16494,26 @@
           "model_source": "pollresults_secondary_fallback"
         }
       ],
-      "recent_poll_count": 1,
-      "latest_field_end": "2026-10-16",
+      "recent_poll_count": 2,
+      "latest_field_end": "2026-10-18",
       "latest": {
-        "poll_id": "9555ad55-c7db-4d8b-a988-3a9465820547",
-        "question_id": "8bbf36f8-8974-42ca-98e1-e420ffcfe73a",
-        "field_end": "2026-10-16",
-        "pollster": "National Public Affairs",
-        "dem": 41.0,
-        "rep": 51.0,
-        "margin": -10.0,
-        "sample_size": 604,
+        "poll_id": "040d2334-8d1a-41e0-9814-6b64eff8c4d1",
+        "question_id": "4d2cbf5f-0829-4a25-94c3-d22a6dd117ca",
+        "field_end": "2026-10-18",
+        "pollster": "Trafalgar Group",
+        "dem": 36.5,
+        "rep": 52.5,
+        "margin": -16.0,
+        "sample_size": 1095,
         "partisan_lean": "R",
         "dem_name": "Jermaine Johnson",
         "rep_name": "Alan Wilson",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-20T20:47:47.820389+00:00",
+        "first_seen_at": "2026-10-20T22:43:39.024345+00:00",
         "release_date": null,
-        "upstream_posted_date": "2026-10-20",
-        "source_poll_url": "https://static01.nyt.com/newsgraphics/documenttools/291f5c62393ced9c/212eec4b-full.pdf",
+        "upstream_posted_date": "2026-10-18",
+        "source_poll_url": "https://www.thetrafalgargroup.org/news/sc-senate-gen-1018/",
         "sample_population": "lv",
         "date_provenance": "PollResults ingestion date, NOT public release date",
         "model_source": "pollresults_secondary_fallback"
@@ -16512,7 +16534,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-20T21:45:41.373586Z",
+    "last_attempt_at": "2026-10-20T22:43:38.559933Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -16521,11 +16543,29 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [],
-    "new_poll_count": 0,
+    "new_polls": [
+      {
+        "race_code": "SC-GOV",
+        "race_type": "governor",
+        "poll_id": "040d2334-8d1a-41e0-9814-6b64eff8c4d1",
+        "pollster": "Trafalgar Group",
+        "field_end": "2026-10-18",
+        "dem": 36.5,
+        "rep": 52.5,
+        "margin": -16.0,
+        "dem_name": "Jermaine Johnson",
+        "rep_name": "Alan Wilson",
+        "sample_size": 1095,
+        "first_seen_at": "2026-10-20T22:43:39.024345+00:00",
+        "release_date": null,
+        "source_url": "https://www.thetrafalgargroup.org/news/sc-senate-gen-1018/",
+        "source": "pollresults_secondary_fallback"
+      }
+    ],
+    "new_poll_count": 1,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-20T21:45:41.373586Z",
-    "previous_snapshot_at": "2026-10-20T20:47:47.418937Z",
+    "comparison_at": "2026-10-20T22:43:38.559933Z",
+    "previous_snapshot_at": "2026-10-20T21:45:41.373586Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -16591,8 +16631,10 @@
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
     "matched_observations": 295,
-    "newly_injected_into_model": 0,
-    "newly_injected_by_race": {},
+    "newly_injected_into_model": 1,
+    "newly_injected_by_race": {
+      "SC-GOV": 1
+    },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
