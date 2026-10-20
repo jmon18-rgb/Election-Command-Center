@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T13:53:36.028987Z",
+  "updated_at": "2026-10-20T14:48:34.472378Z",
   "generic_ballot": {
     "summary": {
       "dem": 48.9,
@@ -930,7 +930,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T13:53:36.028987Z",
+          "first_seen_at": "2026-10-20T14:48:34.472378Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -1328,6 +1328,28 @@
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
+          "poll_id": "022946f1-22b5-4b48-9ccd-8ca5bde7ff14",
+          "question_id": "703c601f-0441-4a62-9912-de45d08f7b0d",
+          "field_end": "2026-10-12",
+          "pollster": "National Public Affairs",
+          "dem": 50.0,
+          "rep": 45.0,
+          "margin": 5.0,
+          "sample_size": 678,
+          "partisan_lean": "R",
+          "dem_name": "Rob Sand",
+          "rep_name": "Zach Lahn",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-20T14:48:34.897159+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-20",
+          "source_poll_url": "https://backend.natpublicaffairs.com/media/Iowa_General_Election_Memo_101526.3.pdf",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
+        {
           "poll_id": "c74bf5bc-f7c1-4c70-8c51-d954ded837fc",
           "field_end": "2026-10-11",
           "pollster": "Marist University",
@@ -1561,7 +1583,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 15,
+      "recent_poll_count": 16,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -2185,7 +2207,7 @@
           "rep_name": "Jon Husted",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T13:53:36.028987Z",
+          "first_seen_at": "2026-10-20T14:48:34.472378Z",
           "release_date": null,
           "question_id": "a101b63d-1983-4681-9db7-fa3a2dd3fc0a",
           "sample_population": "lv",
@@ -5981,7 +6003,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-20T13:53:36.028987Z",
+        "first_seen_at": "2026-10-20T14:48:34.472378Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -6005,7 +6027,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T13:53:36.028987Z",
+          "first_seen_at": "2026-10-20T14:48:34.472378Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -6014,6 +6036,28 @@
           "date_provenance": "PollResults ingestion date, NOT public release date",
           "model_source": "pollresults_secondary_fallback",
           "lv_selected_over_rv": true
+        },
+        {
+          "poll_id": "85cb655e-59af-411e-8b66-96853337a024",
+          "question_id": "8dd18b37-de56-46cc-aea1-20284043aeaa",
+          "field_end": "2026-10-05",
+          "pollster": "National Public Affairs",
+          "dem": 40.0,
+          "rep": 44.0,
+          "margin": -4.0,
+          "sample_size": 800,
+          "partisan_lean": "R",
+          "dem_name": "Lynne Walz",
+          "rep_name": "Jim Pillen",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-20T14:48:34.897159+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-20",
+          "source_poll_url": "https://backend.natpublicaffairs.com/media/Nebraska_General_Election_Memo_100926.pdf",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
         },
         {
           "poll_id": "3b9ac4c6-eb6c-4323-b9c1-aa2e503ac01a",
@@ -6127,7 +6171,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 7,
+      "recent_poll_count": 8,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -6541,7 +6585,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-20T13:53:36.028987Z",
+        "first_seen_at": "2026-10-20T14:48:34.472378Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -6565,7 +6609,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T13:53:36.028987Z",
+          "first_seen_at": "2026-10-20T14:48:34.472378Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -6904,7 +6948,7 @@
         "first_seen_at": "2026-10-20T13:53:36.301313+00:00",
         "release_date": null,
         "upstream_posted_date": "2026-10-20",
-        "source_poll_url": "https://cdn.sanity.io/files/ifn0l6bs/production/5411204299c0e33a04daf941d2894b838c1bc82e.pdf?utm_source=semafor",
+        "source_poll_url": "https://quantusinsights.org/f/montana-senate-alme-leads-by-16-as-bodnar-consolidates",
         "sample_population": "lv",
         "date_provenance": "PollResults ingestion date, NOT public release date",
         "model_source": "pollresults_secondary_fallback"
@@ -6927,7 +6971,7 @@
           "first_seen_at": "2026-10-20T13:53:36.301313+00:00",
           "release_date": null,
           "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://cdn.sanity.io/files/ifn0l6bs/production/5411204299c0e33a04daf941d2894b838c1bc82e.pdf?utm_source=semafor",
+          "source_poll_url": "https://quantusinsights.org/f/montana-senate-alme-leads-by-16-as-bodnar-consolidates",
           "sample_population": "lv",
           "date_provenance": "PollResults ingestion date, NOT public release date",
           "model_source": "pollresults_secondary_fallback"
@@ -11337,29 +11381,52 @@
       "race_type": "governor",
       "state": "NH",
       "district": "GOV",
-      "latest_field_end": "2026-10-05",
+      "latest_field_end": "2026-10-12",
       "latest": {
-        "poll_id": "7e22772a-4e0b-4e0f-abbe-0afd9e57484f",
-        "field_end": "2026-10-05",
-        "pollster": "YouGov",
-        "dem": 40.0,
-        "rep": 49.0,
-        "margin": -9.0,
-        "sample_size": 1520,
-        "partisan_lean": "",
+        "poll_id": "22e1eaa2-8ba2-4c4b-b62c-c75eddf57007",
+        "question_id": "b72078dc-3891-4935-b31c-a34358838505",
+        "field_end": "2026-10-12",
+        "pollster": "National Public Affairs",
+        "dem": 38.0,
+        "rep": 54.0,
+        "margin": -16.0,
+        "sample_size": 600,
+        "partisan_lean": "R",
         "dem_name": "Cinde Warmington",
         "rep_name": "Kelly Ayotte",
         "other": null,
         "other_name": null,
-        "first_seen_at": null,
+        "first_seen_at": "2026-10-20T14:48:34.897159+00:00",
         "release_date": null,
-        "upstream_posted_date": "2026-10-06",
-        "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_nh_20260921_lv.pdf",
+        "upstream_posted_date": "2026-10-20",
+        "source_poll_url": "https://backend.natpublicaffairs.com/media/NH_General_Election_Memo_101526.2.pdf",
         "sample_population": "lv",
-        "question_id": "8303f239-0eb6-4afb-ace9-28c13b40eebf",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "22e1eaa2-8ba2-4c4b-b62c-c75eddf57007",
+          "question_id": "b72078dc-3891-4935-b31c-a34358838505",
+          "field_end": "2026-10-12",
+          "pollster": "National Public Affairs",
+          "dem": 38.0,
+          "rep": 54.0,
+          "margin": -16.0,
+          "sample_size": 600,
+          "partisan_lean": "R",
+          "dem_name": "Cinde Warmington",
+          "rep_name": "Kelly Ayotte",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-20T14:48:34.897159+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-20",
+          "source_poll_url": "https://backend.natpublicaffairs.com/media/NH_General_Election_Memo_101526.2.pdf",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "7e22772a-4e0b-4e0f-abbe-0afd9e57484f",
           "field_end": "2026-10-05",
@@ -11483,7 +11550,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 7,
+      "recent_poll_count": 8,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -14990,24 +15057,52 @@
       "race_type": "house",
       "state": "NE",
       "district": "02",
-      "latest_field_end": "2026-09-13",
+      "latest_field_end": "2026-10-05",
       "latest": {
-        "poll_id": "bb94417f-3a6e-4bd8-9e2d-29ba8c451b23",
-        "field_end": "2026-09-13",
-        "pollster": "SurveyUSA",
-        "dem": 46.0,
-        "rep": 42.0,
-        "margin": 4.0,
-        "sample_size": 182,
-        "partisan_lean": "",
+        "poll_id": "85cb655e-59af-411e-8b66-96853337a024",
+        "question_id": "8db7b444-619a-4679-8802-2ecd848c8e6e",
+        "field_end": "2026-10-05",
+        "pollster": "National Public Affairs",
+        "dem": 50.0,
+        "rep": 38.0,
+        "margin": 12.0,
+        "sample_size": 377,
+        "partisan_lean": "R",
         "dem_name": "Denise Powell",
         "rep_name": "Brinker Harding",
         "other": null,
         "other_name": null,
-        "first_seen_at": null,
-        "release_date": null
+        "first_seen_at": "2026-10-20T14:48:34.897159+00:00",
+        "release_date": null,
+        "upstream_posted_date": "2026-10-20",
+        "source_poll_url": "https://backend.natpublicaffairs.com/media/Nebraska_General_Election_Memo_100926.pdf",
+        "sample_population": "lv",
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "85cb655e-59af-411e-8b66-96853337a024",
+          "question_id": "8db7b444-619a-4679-8802-2ecd848c8e6e",
+          "field_end": "2026-10-05",
+          "pollster": "National Public Affairs",
+          "dem": 50.0,
+          "rep": 38.0,
+          "margin": 12.0,
+          "sample_size": 377,
+          "partisan_lean": "R",
+          "dem_name": "Denise Powell",
+          "rep_name": "Brinker Harding",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-20T14:48:34.897159+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-20",
+          "source_poll_url": "https://backend.natpublicaffairs.com/media/Nebraska_General_Election_Memo_100926.pdf",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "bb94417f-3a6e-4bd8-9e2d-29ba8c451b23",
           "field_end": "2026-09-13",
@@ -15025,7 +15120,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 1,
+      "recent_poll_count": 2,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -16132,7 +16227,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-20T13:53:36.028987Z",
+    "last_attempt_at": "2026-10-20T14:48:34.472378Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -16143,44 +16238,78 @@
   "changes": {
     "new_polls": [
       {
-        "race_code": "MT-SEN",
-        "race_type": "senate",
-        "poll_id": "e0e77acf-3b20-4b3d-83ea-f06a01c90e97",
-        "pollster": "Quantus Insights",
-        "field_end": "2026-10-18",
-        "dem": 21.2,
-        "rep": 45.6,
-        "margin": -24.4,
-        "dem_name": "Alani Bankhead",
-        "rep_name": "Kurt Alme",
-        "sample_size": 667,
-        "first_seen_at": "2026-10-20T13:53:36.301313+00:00",
+        "race_code": "IA-GOV",
+        "race_type": "governor",
+        "poll_id": "022946f1-22b5-4b48-9ccd-8ca5bde7ff14",
+        "pollster": "National Public Affairs",
+        "field_end": "2026-10-12",
+        "dem": 50.0,
+        "rep": 45.0,
+        "margin": 5.0,
+        "dem_name": "Rob Sand",
+        "rep_name": "Zach Lahn",
+        "sample_size": 678,
+        "first_seen_at": "2026-10-20T14:48:34.897159+00:00",
         "release_date": null,
-        "source_url": "https://cdn.sanity.io/files/ifn0l6bs/production/5411204299c0e33a04daf941d2894b838c1bc82e.pdf?utm_source=semafor",
+        "source_url": "https://backend.natpublicaffairs.com/media/Iowa_General_Election_Memo_101526.3.pdf",
         "source": "pollresults_secondary_fallback"
       },
       {
-        "race_code": "OH-10",
-        "race_type": "house",
-        "poll_id": "73249b3d-cd9b-46d5-afb6-dcfc1b11f13d",
-        "pollster": "DCCC Targeting Team",
-        "field_end": "2026-10-13",
-        "dem": 47.0,
-        "rep": 44.0,
-        "margin": 3.0,
-        "dem_name": "Kristina Knickerbocker",
-        "rep_name": "Mike Turner",
-        "sample_size": 535,
-        "first_seen_at": "2026-10-20T13:53:36.301313+00:00",
+        "race_code": "NH-GOV",
+        "race_type": "governor",
+        "poll_id": "22e1eaa2-8ba2-4c4b-b62c-c75eddf57007",
+        "pollster": "National Public Affairs",
+        "field_end": "2026-10-12",
+        "dem": 38.0,
+        "rep": 54.0,
+        "margin": -16.0,
+        "dem_name": "Cinde Warmington",
+        "rep_name": "Kelly Ayotte",
+        "sample_size": 600,
+        "first_seen_at": "2026-10-20T14:48:34.897159+00:00",
         "release_date": null,
-        "source_url": "https://dccc.org/dccc-polling-memo-knickerbocker-leads-turner-by-3-in-oh-10/",
+        "source_url": "https://backend.natpublicaffairs.com/media/NH_General_Election_Memo_101526.2.pdf",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "NE-GOV",
+        "race_type": "governor",
+        "poll_id": "85cb655e-59af-411e-8b66-96853337a024",
+        "pollster": "National Public Affairs",
+        "field_end": "2026-10-05",
+        "dem": 40.0,
+        "rep": 44.0,
+        "margin": -4.0,
+        "dem_name": "Lynne Walz",
+        "rep_name": "Jim Pillen",
+        "sample_size": 800,
+        "first_seen_at": "2026-10-20T14:48:34.897159+00:00",
+        "release_date": null,
+        "source_url": "https://backend.natpublicaffairs.com/media/Nebraska_General_Election_Memo_100926.pdf",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "NE-02",
+        "race_type": "house",
+        "poll_id": "85cb655e-59af-411e-8b66-96853337a024",
+        "pollster": "National Public Affairs",
+        "field_end": "2026-10-05",
+        "dem": 50.0,
+        "rep": 38.0,
+        "margin": 12.0,
+        "dem_name": "Denise Powell",
+        "rep_name": "Brinker Harding",
+        "sample_size": 377,
+        "first_seen_at": "2026-10-20T14:48:34.897159+00:00",
+        "release_date": null,
+        "source_url": "https://backend.natpublicaffairs.com/media/Nebraska_General_Election_Memo_100926.pdf",
         "source": "pollresults_secondary_fallback"
       }
     ],
-    "new_poll_count": 2,
+    "new_poll_count": 4,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-20T13:53:36.028987Z",
-    "previous_snapshot_at": "2026-10-20T12:57:41.465118Z",
+    "comparison_at": "2026-10-20T14:48:34.472378Z",
+    "previous_snapshot_at": "2026-10-20T13:53:36.028987Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -16245,16 +16374,18 @@
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 280,
-    "newly_injected_into_model": 2,
+    "matched_observations": 282,
+    "newly_injected_into_model": 4,
     "newly_injected_by_race": {
-      "MT-SEN": 1,
-      "OH-10": 1
+      "IA-GOV": 1,
+      "NE-02": 1,
+      "NE-GOV": 1,
+      "NH-GOV": 1
     },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
-    "carried_forward_current_observations": 1,
+    "carried_forward_current_observations": 3,
     "provenance": "PollResults source-linked fallback; original first_seen_at retained"
   }
 }

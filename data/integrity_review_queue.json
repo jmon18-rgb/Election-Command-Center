@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-20T13:53:35.761932Z",
+  "updated_at": "2026-10-20T14:48:34.161178Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
   "review_metrics": {
-    "total_leads": 218,
-    "awaiting_primary_source": 216,
+    "total_leads": 219,
+    "awaiting_primary_source": 217,
     "primary_source_checked": 2,
-    "advisory_related_headline_buckets": 18,
-    "advisory_related_headlines": 41
+    "advisory_related_headline_buckets": 19,
+    "advisory_related_headlines": 43
   },
   "advisory_related_headlines": [
     {
@@ -229,9 +229,37 @@
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "bd8fec64c12ae34380a2",
+      "headline": "Noncitizens don't vote in large numbers in US elections. Here's proof - Snopes",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "bd8fec64c12ae34380a2",
+      "title": "Noncitizens don't vote in large numbers in US elections. Here's proof - Snopes",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1hSW1xWEpCVUdtOW80ZEFFMFhadVNWdnhFcTVlN1Ewb2FrRGtyUThxVXBpVVNHWTlEZmRDSWczRkZEMmI4Yk1sUmUxQWFlVFpUNXNVbU9PbWY2bTJYNkJXWXVlUnJER01FZVdsUzRrN3JaV0ZzYXlnbWlmSDNuZw?oc=5",
+      "publisher": "Snopes",
+      "published_at": "2026-10-20T10:05:29Z",
+      "detected_at": "2026-10-20T14:48:34.161178Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "870223db7b27736d8a97",
       "title": "Noncitizens don't vote in large numbers in US elections. Here's proof - Snopes.com",
