@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-20T03:47:09.957678Z",
+  "updated_at": "2026-10-20T04:44:52.097789Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 211,
-    "awaiting_primary_source": 209,
+    "total_leads": 212,
+    "awaiting_primary_source": 210,
     "primary_source_checked": 2,
-    "advisory_related_headline_buckets": 17,
-    "advisory_related_headlines": 39
+    "advisory_related_headline_buckets": 18,
+    "advisory_related_headlines": 41
   },
   "advisory_related_headlines": [
     {
@@ -216,6 +216,19 @@
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "d132723b07829233f4fa",
+      "headline": "DOJ charges 28 in California with voting crimes as election tensions escalate - Houston Public Media",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
@@ -267,6 +280,27 @@
       "publisher": "Houston Public Media",
       "published_at": "2026-10-19T23:10:00Z",
       "detected_at": "2026-10-20T02:47:07.729521Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "28 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "6a4248b7e272e7ea9f39",
+      "title": "DOJ charges 28 in California with voting crimes as election tensions escalate - NPR",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQYW4zMDRzNTBxQ3NwZkVPUXlsUk1qWDFYbmZmd0VTZEFteV9YQmlYZUFDYkYyQ0dYSlkxZXY3Z2xxU2QtMFlIQk5Idm5FUmFTemticGx4WGl2VXMxUGQwTENKNndjSF9QVHF3UmZ1eVFNTldfbFpMS1U5TDh5TlR4UTh5amJncVVILWx3N3FpVWFXMVk2Qk14cWlkUHNGeF9PWUo3NmZzSm5NS1pLVEtaMDluV0FLMlRaYnhkRFppQ3JoNWkyWGJQeg?oc=5",
+      "publisher": "NPR",
+      "published_at": "2026-10-19T22:10:06Z",
+      "detected_at": "2026-10-20T04:44:52.097789Z",
       "state_hints": [
         "CA"
       ],
