@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T22:43:39.024345+00:00",
+  "updated_at": "2026-10-20T23:41:17.132891+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,14 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 295,
-  "newly_injected_into_model": 1,
-  "injected_poll_ids": [
-    {
-      "race_code": "SC-GOV",
-      "poll_id": "040d2334-8d1a-41e0-9814-6b64eff8c4d1"
-    }
-  ],
+  "matched_primary_observations": 296,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "AL-GOV",
