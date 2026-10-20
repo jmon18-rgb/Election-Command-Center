@@ -1,9 +1,9 @@
 {
   "schema_version": "experimental-race-odds-v1",
   "status": "experimental_poll_margin_probability_not_chamber_forecast",
-  "generated_at": "2026-10-20T12:57:49.813458+00:00",
-  "polling_source_generated_at": "2026-10-20T12:57:49.708292Z",
-  "polling_source_snapshot": "2026-10-20T12:57:41.465118Z",
+  "generated_at": "2026-10-20T13:53:40.452447+00:00",
+  "polling_source_generated_at": "2026-10-20T13:53:40.286989Z",
+  "polling_source_snapshot": "2026-10-20T13:53:36.028987Z",
   "historical_senate_elections": 3,
   "historical_senate_races": 42,
   "senate_baseline_rmse_points": 5.633,
@@ -16,7 +16,7 @@
   "can_infer_blue_tsunami": false,
   "number_of_races_by_office": {
     "senate": 25,
-    "house": 58,
+    "house": 59,
     "governor": 32
   },
   "records": [
@@ -1012,6 +1012,21 @@
     },
     {
       "office": "house",
+      "race_code": "OH-10",
+      "label": "Ohio 10",
+      "dem_minus_rep": 3.0,
+      "contributing_firms": 1,
+      "independent_firms": 0,
+      "latest_poll_end": "2026-10-13",
+      "sigma_points": 11.34,
+      "uncertainty_multiplier": 1.512,
+      "dem_beats_rep_pct": 60.43,
+      "rep_beats_dem_pct": 39.57,
+      "tight_error_dem_pct": 63.79,
+      "wide_error_dem_pct": 58.38
+    },
+    {
+      "office": "house",
       "race_code": "OH-15",
       "label": "Ohio 15",
       "dem_minus_rep": 1.0,
@@ -1599,10 +1614,10 @@
       "office": "senate",
       "race_code": "MT-SEN",
       "label": "Montana",
-      "dem_minus_rep": -27.22,
+      "dem_minus_rep": -26.43,
       "contributing_firms": 5,
-      "independent_firms": 2,
-      "latest_poll_end": "2026-10-12",
+      "independent_firms": 3,
+      "latest_poll_end": "2026-10-18",
       "sigma_points": 5.633,
       "uncertainty_multiplier": 1.0,
       "dem_beats_rep_pct": 0.0,

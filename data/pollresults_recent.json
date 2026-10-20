@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-10-20T12:57:42.359112+00:00",
+  "updated_at": "2026-10-20T13:53:36.301313+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 794,
+      "available_in_source": 795,
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1201,
+      "available_in_source": 1204,
       "records_examined": 200
     },
     "governor": {
@@ -17,15 +17,67 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 279,
-  "newly_injected_into_model": 1,
+  "matched_primary_observations": 280,
+  "newly_injected_into_model": 2,
   "injected_poll_ids": [
     {
-      "race_code": "OK-GOV",
-      "poll_id": "a13b26d9-4df7-4f5a-8349-9410b0a0d7b7"
+      "race_code": "MT-SEN",
+      "poll_id": "e0e77acf-3b20-4b3d-83ea-f06a01c90e97"
+    },
+    {
+      "race_code": "OH-10",
+      "poll_id": "73249b3d-cd9b-46d5-afb6-dcfc1b11f13d"
     }
   ],
   "observations": [
+    {
+      "race_code": "MT-SEN",
+      "race_type": "senate",
+      "state": "MT",
+      "poll_id": "e0e77acf-3b20-4b3d-83ea-f06a01c90e97",
+      "question_id": "3f6e523a-49b0-4e7d-b0f3-6899776bebd0",
+      "pollster": "Quantus Insights",
+      "dem_name": "Alani Bankhead",
+      "rep_name": "Kurt Alme",
+      "dem": 21.2,
+      "rep": 45.6,
+      "margin": -24.4,
+      "field_end": "2026-10-18",
+      "field_start": "2026-10-15",
+      "posted_date": "2026-10-20",
+      "posted_source_datetime": "2026-10-20T09:33:00",
+      "posted_source_time": "10/20/26 09:33",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://cdn.sanity.io/files/ifn0l6bs/production/5411204299c0e33a04daf941d2894b838c1bc82e.pdf?utm_source=semafor",
+      "sample_population": "lv",
+      "sample_size": 667,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "OH-10",
+      "race_type": "house",
+      "state": "OH",
+      "poll_id": "73249b3d-cd9b-46d5-afb6-dcfc1b11f13d",
+      "question_id": "d1aa67cd-6b0b-4c4f-8c4f-334b086608a4",
+      "pollster": "DCCC Targeting Team",
+      "dem_name": "Kristina Knickerbocker",
+      "rep_name": "Mike Turner",
+      "dem": 47.0,
+      "rep": 44.0,
+      "margin": 3.0,
+      "field_end": "2026-10-13",
+      "field_start": "2026-10-12",
+      "posted_date": "2026-10-20",
+      "posted_source_datetime": "2026-10-20T09:21:00",
+      "posted_source_time": "10/20/26 09:21",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://dccc.org/dccc-polling-memo-knickerbocker-leads-turner-by-3-in-oh-10/",
+      "sample_population": "lv",
+      "sample_size": 535,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "OK-GOV",
       "race_type": "governor",

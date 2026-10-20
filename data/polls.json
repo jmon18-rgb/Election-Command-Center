@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T12:57:41.465118Z",
+  "updated_at": "2026-10-20T13:53:36.028987Z",
   "generic_ballot": {
     "summary": {
       "dem": 48.9,
@@ -930,7 +930,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T12:57:41.465118Z",
+          "first_seen_at": "2026-10-20T13:53:36.028987Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -2185,7 +2185,7 @@
           "rep_name": "Jon Husted",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T12:57:41.465118Z",
+          "first_seen_at": "2026-10-20T13:53:36.028987Z",
           "release_date": null,
           "question_id": "a101b63d-1983-4681-9db7-fa3a2dd3fc0a",
           "sample_population": "lv",
@@ -5981,7 +5981,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-20T12:57:41.465118Z",
+        "first_seen_at": "2026-10-20T13:53:36.028987Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -6005,7 +6005,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T12:57:41.465118Z",
+          "first_seen_at": "2026-10-20T13:53:36.028987Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -6541,7 +6541,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-20T12:57:41.465118Z",
+        "first_seen_at": "2026-10-20T13:53:36.028987Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -6565,7 +6565,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T12:57:41.465118Z",
+          "first_seen_at": "2026-10-20T13:53:36.028987Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -6886,29 +6886,52 @@
       "race_type": "senate",
       "state": "MT",
       "district": "SEN",
-      "latest_field_end": "2026-10-12",
+      "latest_field_end": "2026-10-18",
       "latest": {
-        "poll_id": "2cefcb18-80ff-4334-84b2-c2e374e1f0a0",
-        "field_end": "2026-10-12",
-        "pollster": "Peak Insights",
-        "dem": 12.0,
-        "rep": 44.0,
-        "margin": -32.0,
-        "sample_size": 500,
-        "partisan_lean": "R",
+        "poll_id": "e0e77acf-3b20-4b3d-83ea-f06a01c90e97",
+        "question_id": "3f6e523a-49b0-4e7d-b0f3-6899776bebd0",
+        "field_end": "2026-10-18",
+        "pollster": "Quantus Insights",
+        "dem": 21.2,
+        "rep": 45.6,
+        "margin": -24.4,
+        "sample_size": 667,
+        "partisan_lean": "",
         "dem_name": "Alani Bankhead",
         "rep_name": "Kurt Alme",
-        "other": 29.0,
-        "other_name": "Seth Bodnar",
-        "first_seen_at": "2026-10-16T18:51:10.877668+00:00",
+        "other": null,
+        "other_name": null,
+        "first_seen_at": "2026-10-20T13:53:36.301313+00:00",
         "release_date": null,
-        "upstream_posted_date": "2026-10-16",
-        "source_poll_url": "https://x.com/burgessev/status/2111155739154882819",
+        "upstream_posted_date": "2026-10-20",
+        "source_poll_url": "https://cdn.sanity.io/files/ifn0l6bs/production/5411204299c0e33a04daf941d2894b838c1bc82e.pdf?utm_source=semafor",
         "sample_population": "lv",
-        "question_id": "35b4c7e5-e10b-42fe-ac47-79f9c9bd0b84",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "e0e77acf-3b20-4b3d-83ea-f06a01c90e97",
+          "question_id": "3f6e523a-49b0-4e7d-b0f3-6899776bebd0",
+          "field_end": "2026-10-18",
+          "pollster": "Quantus Insights",
+          "dem": 21.2,
+          "rep": 45.6,
+          "margin": -24.4,
+          "sample_size": 667,
+          "partisan_lean": "",
+          "dem_name": "Alani Bankhead",
+          "rep_name": "Kurt Alme",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-20T13:53:36.301313+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-20",
+          "source_poll_url": "https://cdn.sanity.io/files/ifn0l6bs/production/5411204299c0e33a04daf941d2894b838c1bc82e.pdf?utm_source=semafor",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "2cefcb18-80ff-4334-84b2-c2e374e1f0a0",
           "field_end": "2026-10-12",
@@ -7011,7 +7034,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 6,
+      "recent_poll_count": 7,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -16039,6 +16062,63 @@
       ],
       "recent_poll_count": 2,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
+    },
+    {
+      "race_code": "OH-10",
+      "race_type": "house",
+      "state": "OH",
+      "district": "10",
+      "polls": [
+        {
+          "poll_id": "73249b3d-cd9b-46d5-afb6-dcfc1b11f13d",
+          "question_id": "d1aa67cd-6b0b-4c4f-8c4f-334b086608a4",
+          "field_end": "2026-10-13",
+          "pollster": "DCCC Targeting Team",
+          "dem": 47.0,
+          "rep": 44.0,
+          "margin": 3.0,
+          "sample_size": 535,
+          "partisan_lean": "D",
+          "dem_name": "Kristina Knickerbocker",
+          "rep_name": "Mike Turner",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-20T13:53:36.301313+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-20",
+          "source_poll_url": "https://dccc.org/dccc-polling-memo-knickerbocker-leads-turner-by-3-in-oh-10/",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        }
+      ],
+      "recent_poll_count": 1,
+      "latest_field_end": "2026-10-13",
+      "latest": {
+        "poll_id": "73249b3d-cd9b-46d5-afb6-dcfc1b11f13d",
+        "question_id": "d1aa67cd-6b0b-4c4f-8c4f-334b086608a4",
+        "field_end": "2026-10-13",
+        "pollster": "DCCC Targeting Team",
+        "dem": 47.0,
+        "rep": 44.0,
+        "margin": 3.0,
+        "sample_size": 535,
+        "partisan_lean": "D",
+        "dem_name": "Kristina Knickerbocker",
+        "rep_name": "Mike Turner",
+        "other": null,
+        "other_name": null,
+        "first_seen_at": "2026-10-20T13:53:36.301313+00:00",
+        "release_date": null,
+        "upstream_posted_date": "2026-10-20",
+        "source_poll_url": "https://dccc.org/dccc-polling-memo-knickerbocker-leads-turner-by-3-in-oh-10/",
+        "sample_population": "lv",
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
+      },
+      "source_url": "https://pollresults.org/",
+      "model_race_source": "pollresults_bootstrap",
+      "matchup_provenance": "Latest unambiguous source-linked 2026 matchup; verify ballot independently"
     }
   ],
   "source": {
@@ -16052,7 +16132,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-20T12:57:41.465118Z",
+    "last_attempt_at": "2026-10-20T13:53:36.028987Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -16063,72 +16143,44 @@
   "changes": {
     "new_polls": [
       {
-        "race_code": "OK-GOV",
-        "race_type": "governor",
-        "poll_id": "a13b26d9-4df7-4f5a-8349-9410b0a0d7b7",
-        "pollster": "Workbench Strategy",
-        "field_end": "2026-10-13",
-        "dem": 45.0,
-        "rep": 49.0,
-        "margin": -4.0,
-        "dem_name": "Cyndi Munson",
-        "rep_name": "Mike Mazzei",
-        "sample_size": 600,
-        "first_seen_at": "2026-10-20T12:57:42.359112+00:00",
+        "race_code": "MT-SEN",
+        "race_type": "senate",
+        "poll_id": "e0e77acf-3b20-4b3d-83ea-f06a01c90e97",
+        "pollster": "Quantus Insights",
+        "field_end": "2026-10-18",
+        "dem": 21.2,
+        "rep": 45.6,
+        "margin": -24.4,
+        "dem_name": "Alani Bankhead",
+        "rep_name": "Kurt Alme",
+        "sample_size": 667,
+        "first_seen_at": "2026-10-20T13:53:36.301313+00:00",
         "release_date": null,
-        "source_url": "https://www.politico.com/news/2026/10/20/democrats-make-a-play-for-oklahoma-after-bitter-gop-gubernatorial-primary-01127523",
+        "source_url": "https://cdn.sanity.io/files/ifn0l6bs/production/5411204299c0e33a04daf941d2894b838c1bc82e.pdf?utm_source=semafor",
         "source": "pollresults_secondary_fallback"
       },
       {
-        "race_code": "FL-09",
+        "race_code": "OH-10",
         "race_type": "house",
-        "pollster": "SEA Polling",
-        "field_end": "2026-10-15",
-        "dem": 44.0,
+        "poll_id": "73249b3d-cd9b-46d5-afb6-dcfc1b11f13d",
+        "pollster": "DCCC Targeting Team",
+        "field_end": "2026-10-13",
+        "dem": 47.0,
         "rep": 44.0,
-        "margin": 0.0,
-        "dem_name": "Darren Soto",
-        "rep_name": "Dan Green",
-        "sample_size": null,
-        "first_seen_at": "2026-10-20T12:57:41.465118Z",
+        "margin": 3.0,
+        "dem_name": "Kristina Knickerbocker",
+        "rep_name": "Mike Turner",
+        "sample_size": 535,
+        "first_seen_at": "2026-10-20T13:53:36.301313+00:00",
         "release_date": null,
-        "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-      },
-      {
-        "race_code": "RI-01",
-        "race_type": "house",
-        "pollster": "Embold Research",
-        "field_end": "2026-10-08",
-        "dem": 52.0,
-        "rep": 33.0,
-        "margin": 19.0,
-        "dem_name": "Gabe Amo",
-        "rep_name": "Kellie Keenan",
-        "sample_size": null,
-        "first_seen_at": "2026-10-20T12:57:41.465118Z",
-        "release_date": null,
-        "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-      },
-      {
-        "race_code": "RI-02",
-        "race_type": "house",
-        "pollster": "Embold Research",
-        "field_end": "2026-10-08",
-        "dem": 52.0,
-        "rep": 39.0,
-        "margin": 13.0,
-        "dem_name": "Seth M. Magaziner",
-        "rep_name": "Victor Mellor",
-        "sample_size": null,
-        "first_seen_at": "2026-10-20T12:57:41.465118Z",
-        "release_date": null,
-        "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
+        "source_url": "https://dccc.org/dccc-polling-memo-knickerbocker-leads-turner-by-3-in-oh-10/",
+        "source": "pollresults_secondary_fallback"
       }
     ],
-    "new_poll_count": 4,
+    "new_poll_count": 2,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-20T12:57:41.465118Z",
-    "previous_snapshot_at": "2026-10-20T11:45:44.046734Z",
+    "comparison_at": "2026-10-20T13:53:36.028987Z",
+    "previous_snapshot_at": "2026-10-20T12:57:41.465118Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -16189,19 +16241,20 @@
       "pollsters": 11
     }
   ],
-  "newly_detected_count": 7,
+  "newly_detected_count": 4,
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 279,
-    "newly_injected_into_model": 1,
+    "matched_observations": 280,
+    "newly_injected_into_model": 2,
     "newly_injected_by_race": {
-      "OK-GOV": 1
+      "MT-SEN": 1,
+      "OH-10": 1
     },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
-    "carried_forward_current_observations": 0,
+    "carried_forward_current_observations": 1,
     "provenance": "PollResults source-linked fallback; original first_seen_at retained"
   }
 }

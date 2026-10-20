@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-20T12:57:41.234712Z",
+  "updated_at": "2026-10-20T13:53:35.761932Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
   "review_metrics": {
-    "total_leads": 217,
-    "awaiting_primary_source": 215,
+    "total_leads": 218,
+    "awaiting_primary_source": 216,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 18,
     "advisory_related_headlines": 41
@@ -259,6 +259,25 @@
       "state_hints": [],
       "topic_hints": [
         "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "9da73048c41c7480e65a",
+      "title": "New Jersey attorney general announces voter protections, election security measures ahead of November election - WRNJ Radio",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQMlp0UlBRTGd2TnVEcWktbFppNll3SmJYbnhzMnk1RmcxU0IxcEFwbklYdzZsX09oOXVSMGpHbVJ2V3VZdFlZM0NHWmdPV1UxS0xBd3BiRHBOS25LSVJJUU5wV2YxNTdabzlVNHN6RzhqMVE1UjZ1ZS0wWmZ1cDI5Z2l3bE1oeTdxTjV6ZndhM1ozRHlmQldrWEtHM3gzak9LS1ZCcENkVGdSUXhqWG1FcFBmdFBiam1DTV9KMThuYUVfYUxJUlUxTEx4Wkc?oc=5",
+      "publisher": "WRNJ Radio",
+      "published_at": "2026-10-20T09:39:44Z",
+      "detected_at": "2026-10-20T13:53:35.761932Z",
+      "state_hints": [
+        "NJ"
+      ],
+      "topic_hints": [
         "election_admin"
       ],
       "headline_numbers_unverified": [],
