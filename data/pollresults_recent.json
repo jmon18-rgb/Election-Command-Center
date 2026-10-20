@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T18:53:06.124967+00:00",
+  "updated_at": "2026-10-20T19:46:16.110276+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -13,35 +13,43 @@
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 899,
+      "available_in_source": 900,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 287,
-  "newly_injected_into_model": 5,
+  "matched_primary_observations": 292,
+  "newly_injected_into_model": 1,
   "injected_poll_ids": [
     {
-      "race_code": "AK-01",
-      "poll_id": "fa49898d-55a4-4393-962f-1cd6cfe135c3"
-    },
-    {
-      "race_code": "AK-GOV",
-      "poll_id": "fa49898d-55a4-4393-962f-1cd6cfe135c3"
-    },
-    {
-      "race_code": "AK-SEN",
-      "poll_id": "fa49898d-55a4-4393-962f-1cd6cfe135c3"
-    },
-    {
-      "race_code": "FL-07",
-      "poll_id": "a5cf5afe-43ef-4541-8940-8024ec60df3a"
-    },
-    {
-      "race_code": "TX-28",
-      "poll_id": "5de6f523-c1eb-4c15-8311-d2a180671b0c"
+      "race_code": "NY-GOV",
+      "poll_id": "386a6c1d-896c-4ce6-b17e-3818107aead0"
     }
   ],
   "observations": [
+    {
+      "race_code": "NY-GOV",
+      "race_type": "governor",
+      "state": "NY",
+      "poll_id": "386a6c1d-896c-4ce6-b17e-3818107aead0",
+      "question_id": "18905e76-614a-4559-93f1-82bdb8157bc0",
+      "pollster": "OnMessage Inc.",
+      "dem_name": "Kathy Hochul",
+      "rep_name": "Bruce Blakeman",
+      "dem": 50.3,
+      "rep": 45.9,
+      "margin": 4.4,
+      "field_end": "2026-10-14",
+      "field_start": "2026-10-12",
+      "posted_date": "2026-10-20",
+      "posted_source_datetime": "2026-10-20T15:36:00",
+      "posted_source_time": "10/20/26 15:36",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://nypost.com/2026/10/20/us-news/hochul-leads-blakeman-by-only-4-points-in-ny-governors-race-gop-internal-poll-claims/",
+      "sample_population": "lv",
+      "sample_size": 1000,
+      "partisan_lean": "R",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "TX-28",
       "race_type": "house",

@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-20T18:53:05.288966Z",
+  "updated_at": "2026-10-20T19:46:15.263027Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 2,
   "review_metrics": {
-    "total_leads": 224,
-    "awaiting_primary_source": 222,
+    "total_leads": 226,
+    "awaiting_primary_source": 224,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 20,
     "advisory_related_headlines": 45
@@ -266,6 +266,43 @@
         "litigation"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "de86ce095dbc8ff2cc13",
+      "title": "Calls to beef up security for Victorian election in wake of Haines attack - ABC News & Headlines \u2013 Australian Broadcasting Corporation",
+      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNOG5BRl9ZTUJxQ2tnU3dvc3FOUk9vWjBoVllPVFV2c1hUVmcxU1Q2ekhILW1PcFhMN1RneHN5RHZ2T1JuX213YlBHSHN6cmNyM2hKNlpRbklRd25YcWdSRmdfTGlvUXd5LW1EYlpueDZjTFQ5T0tXY1Y5eGZRN2ttU180eDB4dEEtNjFzaWg3enJaelJweXVRczItV2dwUF9E?oc=5",
+      "publisher": "ABC News & Headlines \u2013 Australian Broadcasting Corporation",
+      "published_at": "2026-10-20T18:06:45Z",
+      "detected_at": "2026-10-20T19:46:15.263027Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "4ec78fbbe58ee2638209",
+      "title": "Breaking Elections Lawsuit 2026: What All Voters Must Know - LawFold.com",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9seTQ3YnRsdTRGczF5RjhaOWtWVlI4TlZhZ05uYmEzN25HOVJJSVJFdjJGalpIQmFuVWI2RllBbTZMbkpMX0IzVFVuM2pkZTF0QmhDclBOUjJoa1FzVDk3czNB?oc=5",
+      "publisher": "LawFold.com",
+      "published_at": "2026-10-20T17:46:52Z",
+      "detected_at": "2026-10-20T19:46:15.263027Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026"
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
