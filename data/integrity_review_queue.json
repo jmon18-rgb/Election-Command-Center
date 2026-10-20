@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-20T20:47:47.148953Z",
+  "updated_at": "2026-10-20T21:45:41.070167Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
   "review_metrics": {
-    "total_leads": 227,
-    "awaiting_primary_source": 225,
+    "total_leads": 228,
+    "awaiting_primary_source": 226,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 21,
     "advisory_related_headlines": 47
@@ -254,6 +254,26 @@
     }
   ],
   "items": [
+    {
+      "id": "3784a9b75d341496f054",
+      "title": "Maryland election officials prepare for polling place disruptions - WBAL-TV",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQek50b2w2WkU3aEo5MXVvcHl0M3pnRE1JRGNoS2lxNWtyZzBsajBGQmNCQmpDZGdlV3FyWTBXNVZEOW9BSjFvX0RDN3lQa2RDRjhkTXR1QnVZZWRnaDRMal83NVBVbGdIZXdlQkg5cGNNdUt1QVFZSXk4OTRTeXctLUo5UVVmR2IzQlJueTh6SktMUQ?oc=5",
+      "publisher": "WBAL-TV",
+      "published_at": "2026-10-20T21:04:00Z",
+      "detected_at": "2026-10-20T21:45:41.070167Z",
+      "state_hints": [
+        "MD"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "a7d5aae73db0567fd22d",
       "title": "Trump Administration Bought Data Broker Info To Beef up Your Voter Record. A Lawsuit Calls It \u2018Sweeping Surveillance\u2019 - All About Cookies",

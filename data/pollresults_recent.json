@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T20:47:47.820389+00:00",
+  "updated_at": "2026-10-20T21:45:41.925134+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,7 +9,7 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1208,
+      "available_in_source": 1209,
       "records_examined": 200
     },
     "governor": {
@@ -17,18 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 293,
-  "newly_injected_into_model": 2,
-  "injected_poll_ids": [
-    {
-      "race_code": "AL-GOV",
-      "poll_id": "840876f8-96ce-40df-a6d9-3a06397c11e6"
-    },
-    {
-      "race_code": "SC-GOV",
-      "poll_id": "9555ad55-c7db-4d8b-a988-3a9465820547"
-    }
-  ],
+  "matched_primary_observations": 295,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "AL-GOV",
