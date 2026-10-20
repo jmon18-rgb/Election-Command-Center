@@ -1,14 +1,14 @@
 {
   "schema_version": "bottom-up-2026-poll-environment-shadow-v1",
   "status": "SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE",
-  "polling_generated_at": "2026-10-19T23:44:11.928295Z",
+  "polling_generated_at": "2026-10-20T00:59:10.290066Z",
   "presidential_geography_year": 2026,
   "presidential_2024_national_two_party_margin_points": -1.705,
-  "generic_ballot_2026_d_minus_r_points": 8.41,
-  "generic_implied_vs_2024_presidential_swing_points": 10.115,
-  "independent_polling_estimated_presidential_to_race_swing_points": 8.23,
-  "bottom_up_implied_national_margin_points": 6.525,
-  "bottom_up_minus_generic_environment_points": -1.885,
+  "generic_ballot_2026_d_minus_r_points": 8.52,
+  "generic_implied_vs_2024_presidential_swing_points": 10.225,
+  "independent_polling_estimated_presidential_to_race_swing_points": 8.235,
+  "bottom_up_implied_national_margin_points": 6.53,
+  "bottom_up_minus_generic_environment_points": -1.99,
   "candidate_specific_effects_removed": false,
   "candidate_quality_calibration_available": false,
   "total_qualifying_races": 15,
@@ -41,7 +41,7 @@
     {
       "state": "AK",
       "number_qualifying_races": 2,
-      "swing_points": 0.425
+      "swing_points": 0.492
     },
     {
       "state": "NH",
@@ -104,9 +104,9 @@
       "raw_swing_points": -0.763,
       "capped_swing_points": -0.763,
       "capped_local_outlier": false,
-      "weight": 0.6833333333333333,
+      "weight": 0.6666666666666666,
       "independent_firms": 3,
-      "latest_age_days": 4
+      "latest_age_days": 5
     },
     {
       "office": "senate",
@@ -117,9 +117,9 @@
       "raw_swing_points": 15.988,
       "capped_swing_points": 15.988,
       "capped_local_outlier": false,
-      "weight": 0.9333333333333333,
+      "weight": 0.9111111111111111,
       "independent_firms": 13,
-      "latest_age_days": 3
+      "latest_age_days": 4
     }
   ],
   "notes": [

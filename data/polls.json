@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-19T23:44:07.555980Z",
+  "updated_at": "2026-10-20T00:59:06.610898Z",
   "generic_ballot": {
     "summary": {
-      "dem": 49.0,
-      "rep": 41.0,
-      "margin": 8.0,
-      "pollsters": 12,
+      "dem": 48.9,
+      "rep": 40.8,
+      "margin": 8.1,
+      "pollsters": 11,
       "window_days": 14,
       "latest_field_end": "2026-10-19",
       "method": "Equal-weight mean of the latest nonpartisan wave per pollster within the stated field-end window; NOT a forecast or a statistical confidence interval."
@@ -930,7 +930,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T23:44:07.555980Z",
+          "first_seen_at": "2026-10-20T00:59:06.610898Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -2769,12 +2769,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-28",
-          "source_poll_url": "https://www.politico.com/newsletters/playbook/2026/09/28/trumps-joes-exit-the-front-row-01094720",
-          "sample_population": "lv",
-          "question_id": "8390f112-5802-4bb5-879f-5500996a6bf5",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "0b753876-a450-4658-aa67-645182cfbbf4",
@@ -3302,12 +3297,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-28",
-          "source_poll_url": "https://www.politico.com/newsletters/playbook/2026/09/28/trumps-joes-exit-the-front-row-01094720",
-          "sample_population": "lv",
-          "question_id": "04ca120d-498f-49c5-8ce5-0b7feade2775",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "0b753876-a450-4658-aa67-645182cfbbf4",
@@ -3860,12 +3850,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-28",
-          "source_poll_url": "https://changeresearch.com/research/2026/2026-09-28-florida-aapor-methodology-statement",
-          "sample_population": "lv",
-          "question_id": "584921df-2c0c-4adf-a420-eb36986495d9",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "e5366105-3d6b-41f9-8012-1ee8e307d77e",
@@ -4182,12 +4167,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-28",
-          "source_poll_url": "https://changeresearch.com/research/2026/2026-09-28-florida-aapor-methodology-statement",
-          "sample_population": "lv",
-          "question_id": "d5d3c7b8-72d5-48d6-8a2a-a691e4ff7bb0",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "e5366105-3d6b-41f9-8012-1ee8e307d77e",
@@ -5180,7 +5160,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-19T23:44:07.555980Z",
+        "first_seen_at": "2026-10-20T00:59:06.610898Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -5204,7 +5184,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T23:44:07.555980Z",
+          "first_seen_at": "2026-10-20T00:59:06.610898Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -5452,75 +5432,6 @@
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
-      "race_code": "MS-SEN",
-      "race_type": "senate",
-      "state": "MS",
-      "district": "SEN",
-      "latest_field_end": "2026-10-14",
-      "latest": {
-        "poll_id": "52497540-0f77-44ac-b540-57600d4994cc",
-        "field_end": "2026-10-14",
-        "pollster": "Wedgewood Polls",
-        "dem": 48.0,
-        "rep": 52.0,
-        "margin": -4.0,
-        "sample_size": 511,
-        "partisan_lean": "",
-        "dem_name": "Scott Colom",
-        "rep_name": "Cindy Hyde-Smith",
-        "other": null,
-        "other_name": null,
-        "first_seen_at": "2026-10-15T02:46:05.010416+00:00",
-        "release_date": null,
-        "upstream_posted_date": "2026-10-14",
-        "source_poll_url": "https://x.com/WedgewoodPolls/status/2110541168874488272",
-        "sample_population": "lv",
-        "question_id": "9fcedc55-7f4d-41b5-ba13-b7cae9cfd3cb",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
-      },
-      "polls": [
-        {
-          "poll_id": "52497540-0f77-44ac-b540-57600d4994cc",
-          "field_end": "2026-10-14",
-          "pollster": "Wedgewood Polls",
-          "dem": 48.0,
-          "rep": 52.0,
-          "margin": -4.0,
-          "sample_size": 511,
-          "partisan_lean": "",
-          "dem_name": "Scott Colom",
-          "rep_name": "Cindy Hyde-Smith",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": "2026-10-15T02:46:05.010416+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-14",
-          "source_poll_url": "https://x.com/WedgewoodPolls/status/2110541168874488272",
-          "sample_population": "lv",
-          "question_id": "9fcedc55-7f4d-41b5-ba13-b7cae9cfd3cb",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
-        },
-        {
-          "poll_id": "f1934772-c44e-47bc-8e72-4f1226f44b5f",
-          "field_end": "2026-08-15",
-          "pollster": "Data for Progress",
-          "dem": 41.0,
-          "rep": 47.0,
-          "margin": -6.0,
-          "sample_size": 1018,
-          "partisan_lean": "D",
-          "dem_name": "Scott Colom",
-          "rep_name": "Cindy Hyde-Smith",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
-        }
-      ],
-      "recent_poll_count": 2,
-      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-    },
-    {
       "race_code": "SD-GOV",
       "race_type": "governor",
       "state": "SD",
@@ -5592,6 +5503,59 @@
         }
       ],
       "recent_poll_count": 2,
+      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
+    },
+    {
+      "race_code": "MS-SEN",
+      "race_type": "senate",
+      "state": "MS",
+      "district": "SEN",
+      "latest_field_end": "2026-10-14",
+      "latest": {
+        "poll_id": "52497540-0f77-44ac-b540-57600d4994cc",
+        "field_end": "2026-10-14",
+        "pollster": "Wedgewood Polls",
+        "dem": 48.0,
+        "rep": 52.0,
+        "margin": -4.0,
+        "sample_size": 511,
+        "partisan_lean": "",
+        "dem_name": "Scott Colom",
+        "rep_name": "Cindy Hyde-Smith",
+        "other": null,
+        "other_name": null,
+        "first_seen_at": "2026-10-15T02:46:05.010416+00:00",
+        "release_date": null,
+        "upstream_posted_date": "2026-10-14",
+        "source_poll_url": "https://x.com/WedgewoodPolls/status/2110541168874488272",
+        "sample_population": "lv",
+        "question_id": "9fcedc55-7f4d-41b5-ba13-b7cae9cfd3cb",
+        "date_provenance": "PollResults ingestion date, NOT public release date"
+      },
+      "polls": [
+        {
+          "poll_id": "52497540-0f77-44ac-b540-57600d4994cc",
+          "field_end": "2026-10-14",
+          "pollster": "Wedgewood Polls",
+          "dem": 48.0,
+          "rep": 52.0,
+          "margin": -4.0,
+          "sample_size": 511,
+          "partisan_lean": "",
+          "dem_name": "Scott Colom",
+          "rep_name": "Cindy Hyde-Smith",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-15T02:46:05.010416+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-14",
+          "source_poll_url": "https://x.com/WedgewoodPolls/status/2110541168874488272",
+          "sample_population": "lv",
+          "question_id": "9fcedc55-7f4d-41b5-ba13-b7cae9cfd3cb",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
+        }
+      ],
+      "recent_poll_count": 1,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -5756,7 +5720,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-19T23:44:07.555980Z",
+        "first_seen_at": "2026-10-20T00:59:06.610898Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -5780,7 +5744,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-19T23:44:07.555980Z",
+          "first_seen_at": "2026-10-20T00:59:06.610898Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -6159,12 +6123,7 @@
           "other": 26.1,
           "other_name": "Seth Bodnar",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-28",
-          "source_poll_url": "https://www.montanarightnow.com/elections/montana-senate-race-kurt-alme-tops-bodnar-and-bankhead-in-new-poll-findings/article_cd8401fb-0470-492c-a53a-c7dfe39552ff.html",
-          "sample_population": "lv",
-          "question_id": "f389f82e-d11f-44a1-ba81-d2df85fcb87c",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "e0d850c2-a12e-48c5-ac86-e4ed1aafda05",
@@ -6769,12 +6728,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-28",
-          "source_poll_url": "https://www.aarp.org/pri/topics/voter-research/politics/2026-midterm-election-poll-north-carolina/",
-          "sample_population": "lv",
-          "question_id": "1520d6a8-aeab-4656-964f-959930d6d997",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "98ed8008-ca69-45b6-ae61-76fc48539cea",
@@ -8094,12 +8048,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-28",
-          "source_poll_url": "https://www.politico.com/newsletters/playbook/2026/09/28/trumps-joes-exit-the-front-row-01094720",
-          "sample_population": "lv",
-          "question_id": "86437ffc-38eb-4d21-9233-207daf93047f",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "4d0532bf-99b1-4496-b653-1afe23ce13f2",
@@ -9776,6 +9725,28 @@
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
+          "poll_id": "226bb5e4-14e1-48ca-9e8c-9d480e7c05ff",
+          "question_id": "469dcc91-5540-45c2-8d98-fe69a91b7eba",
+          "field_end": "2026-10-04",
+          "pollster": "BSP Research",
+          "dem": 47.0,
+          "rep": 34.0,
+          "margin": 13.0,
+          "sample_size": 1300,
+          "partisan_lean": "",
+          "dem_name": "Katie Hobbs",
+          "rep_name": "Andy Biggs",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-20T00:59:07.041746+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-19",
+          "source_poll_url": "https://www.dropbox.com/scl/fi/zw2q5gxws1dl59v9d9ivy/Crosstabs-full-sample-ASU-Svy-August-2026.pdf?rlkey=288kk2u0s27qzprjom3l32t16&st=dautaf2c&e=2&dl=0",
+          "sample_population": "rv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
+        {
           "poll_id": "e986092c-0518-46da-811c-5dc6931a4c82",
           "field_end": "2026-08-19",
           "pollster": "NextGenP",
@@ -9840,7 +9811,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 7,
+      "recent_poll_count": 8,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -10674,12 +10645,7 @@
           "other": 1.1,
           "other_name": "Edmond Laplante",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-28",
-          "source_poll_url": "https://www.thetrafalgargroup.org/news/nh-gen-senate-0926/",
-          "sample_population": "lv",
-          "question_id": "078645fe-eb48-4089-8bee-ecb0989fd623",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "36e4cd66-5680-44d1-b419-438727e79ac8",
@@ -13389,12 +13355,7 @@
         "other": 9.5,
         "other_name": "Generic Candidate",
         "first_seen_at": null,
-        "release_date": null,
-        "upstream_posted_date": "2026-09-28",
-        "source_poll_url": "https://www.montanarightnow.com/elections/montana-senate-race-kurt-alme-tops-bodnar-and-bankhead-in-new-poll-findings/article_cd8401fb-0470-492c-a53a-c7dfe39552ff.html",
-        "sample_population": "lv",
-        "question_id": "60d81e7a-92d1-48a6-a5f5-d90479ccb42d",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -13411,12 +13372,7 @@
           "other": 9.5,
           "other_name": "Generic Candidate",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-28",
-          "source_poll_url": "https://www.montanarightnow.com/elections/montana-senate-race-kurt-alme-tops-bodnar-and-bankhead-in-new-poll-findings/article_cd8401fb-0470-492c-a53a-c7dfe39552ff.html",
-          "sample_population": "lv",
-          "question_id": "60d81e7a-92d1-48a6-a5f5-d90479ccb42d",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "08b59de1-c77b-418d-b8ce-f313b38f3880",
@@ -13432,12 +13388,7 @@
           "other": 5.4,
           "other_name": "Nick Sheedy",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-28",
-          "source_poll_url": "https://www.montanarightnow.com/elections/montana-senate-race-kurt-alme-tops-bodnar-and-bankhead-in-new-poll-findings/article_cd8401fb-0470-492c-a53a-c7dfe39552ff.html",
-          "sample_population": "lv",
-          "question_id": "fca049e2-f331-475a-babb-9b42f601bf19",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "e6c11e5c-af3c-4df0-a274-4e1594b1f455",
@@ -13617,12 +13568,7 @@
         "other": null,
         "other_name": null,
         "first_seen_at": null,
-        "release_date": null,
-        "upstream_posted_date": "2026-09-28",
-        "source_poll_url": "https://x.com/cjwarnke/status/2104619061556457603",
-        "sample_population": "lv",
-        "question_id": "28f1b432-a224-4c32-a0ce-1807465c4172",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -13639,12 +13585,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-28",
-          "source_poll_url": "https://x.com/cjwarnke/status/2104619061556457603",
-          "sample_population": "lv",
-          "question_id": "28f1b432-a224-4c32-a0ce-1807465c4172",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "bc6a685b-1969-4851-922c-70fca1182327",
@@ -13660,12 +13601,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-28",
-          "source_poll_url": "https://x.com/cjwarnke/status/2104619061556457603",
-          "sample_population": "lv",
-          "question_id": "db12d999-9123-4a6f-a7cb-c1f7b3f9a2a8",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 2,
@@ -13744,12 +13680,7 @@
         "other": null,
         "other_name": null,
         "first_seen_at": null,
-        "release_date": null,
-        "upstream_posted_date": "2026-09-28",
-        "source_poll_url": "https://www.politico.com/newsletters/new-york-playbook/2026/09/28/the-jacobs-challenge-01094565",
-        "sample_population": "lv",
-        "question_id": "e2fea6d7-1e71-484d-9c49-5fca0138f031",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -13766,12 +13697,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-09-28",
-          "source_poll_url": "https://www.politico.com/newsletters/new-york-playbook/2026/09/28/the-jacobs-challenge-01094565",
-          "sample_population": "lv",
-          "question_id": "e2fea6d7-1e71-484d-9c49-5fca0138f031",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 1,
@@ -15764,49 +15690,6 @@
       ],
       "recent_poll_count": 2,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-    },
-    {
-      "race_code": "SC-GOV",
-      "race_type": "governor",
-      "state": "SC",
-      "district": "GOV",
-      "latest_field_end": "2026-08-15",
-      "latest": {
-        "poll_id": "7fcf792a-9dd5-4a48-b2da-fe1aecf7fa39",
-        "field_end": "2026-08-15",
-        "pollster": "Hart Research Associates",
-        "dem": 41.0,
-        "rep": 48.0,
-        "margin": -7.0,
-        "sample_size": 600,
-        "partisan_lean": "D",
-        "dem_name": "Jermaine Johnson",
-        "rep_name": "Alan Wilson",
-        "other": null,
-        "other_name": null,
-        "first_seen_at": null,
-        "release_date": null
-      },
-      "polls": [
-        {
-          "poll_id": "7fcf792a-9dd5-4a48-b2da-fe1aecf7fa39",
-          "field_end": "2026-08-15",
-          "pollster": "Hart Research Associates",
-          "dem": 41.0,
-          "rep": 48.0,
-          "margin": -7.0,
-          "sample_size": 600,
-          "partisan_lean": "D",
-          "dem_name": "Jermaine Johnson",
-          "rep_name": "Alan Wilson",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
-        }
-      ],
-      "recent_poll_count": 1,
-      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     }
   ],
   "source": {
@@ -15820,7 +15703,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-19T23:44:07.555980Z",
+    "last_attempt_at": "2026-10-20T00:59:06.610898Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15829,11 +15712,29 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [],
-    "new_poll_count": 0,
-    "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-19T23:44:07.555980Z",
-    "previous_snapshot_at": "2026-10-19T22:43:28.949954Z",
+    "new_polls": [
+      {
+        "race_code": "AZ-GOV",
+        "race_type": "governor",
+        "poll_id": "226bb5e4-14e1-48ca-9e8c-9d480e7c05ff",
+        "pollster": "BSP Research",
+        "field_end": "2026-10-04",
+        "dem": 47.0,
+        "rep": 34.0,
+        "margin": 13.0,
+        "dem_name": "Katie Hobbs",
+        "rep_name": "Andy Biggs",
+        "sample_size": 1300,
+        "first_seen_at": "2026-10-20T00:59:07.041746+00:00",
+        "release_date": null,
+        "source_url": "https://www.dropbox.com/scl/fi/zw2q5gxws1dl59v9d9ivy/Crosstabs-full-sample-ASU-Svy-August-2026.pdf?rlkey=288kk2u0s27qzprjom3l32t16&st=dautaf2c&e=2&dl=0",
+        "source": "pollresults_secondary_fallback"
+      }
+    ],
+    "new_poll_count": 1,
+    "generic_margin_change": 0.1,
+    "comparison_at": "2026-10-20T00:59:06.610898Z",
+    "previous_snapshot_at": "2026-10-19T23:44:07.555980Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15885,15 +15786,24 @@
       "dem": 49.0,
       "rep": 41.0,
       "pollsters": 12
+    },
+    {
+      "date": "2026-10-20",
+      "margin": 8.1,
+      "dem": 48.9,
+      "rep": 40.8,
+      "pollsters": 11
     }
   ],
   "newly_detected_count": 3,
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 276,
-    "newly_injected_into_model": 0,
-    "newly_injected_by_race": {},
+    "matched_observations": 263,
+    "newly_injected_into_model": 1,
+    "newly_injected_by_race": {
+      "AZ-GOV": 1
+    },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
