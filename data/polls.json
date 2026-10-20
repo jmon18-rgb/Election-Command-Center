@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T10:45:52.533841Z",
+  "updated_at": "2026-10-20T11:45:44.046734Z",
   "generic_ballot": {
     "summary": {
       "dem": 48.9,
@@ -930,7 +930,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T10:45:52.533841Z",
+          "first_seen_at": "2026-10-20T11:45:44.046734Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -5227,7 +5227,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-20T10:45:52.533841Z",
+        "first_seen_at": "2026-10-20T11:45:44.046734Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -5251,7 +5251,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T10:45:52.533841Z",
+          "first_seen_at": "2026-10-20T11:45:44.046734Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -5787,7 +5787,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-20T10:45:52.533841Z",
+        "first_seen_at": "2026-10-20T11:45:44.046734Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -5811,7 +5811,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T10:45:52.533841Z",
+          "first_seen_at": "2026-10-20T11:45:44.046734Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -15973,7 +15973,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-20T10:45:52.533841Z",
+    "last_attempt_at": "2026-10-20T11:45:44.046734Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15982,80 +15982,11 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [
-      {
-        "race_code": "AL-GOV",
-        "race_type": "governor",
-        "poll_id": "308785d0-efaa-45ee-8e64-c6f0526eea06",
-        "pollster": "The Alabama Poll",
-        "field_end": "2026-10-16",
-        "dem": 39.0,
-        "rep": 51.0,
-        "margin": -12.0,
-        "dem_name": "Doug Jones",
-        "rep_name": "Tommy Tuberville",
-        "sample_size": 600,
-        "first_seen_at": "2026-10-20T10:45:52.794566+00:00",
-        "release_date": null,
-        "source_url": "https://www.al.com/politics/2026/10/gop-faces-election-downturn-but-theres-no-blue-wave-for-alabama-democrats-poll-shows.html",
-        "source": "pollresults_secondary_fallback"
-      },
-      {
-        "race_code": "AL-SEN",
-        "race_type": "senate",
-        "poll_id": "308785d0-efaa-45ee-8e64-c6f0526eea06",
-        "pollster": "The Alabama Poll",
-        "field_end": "2026-10-16",
-        "dem": 35.0,
-        "rep": 56.0,
-        "margin": -21.0,
-        "dem_name": "Everett Wess",
-        "rep_name": "Barry Moore",
-        "sample_size": 600,
-        "first_seen_at": "2026-10-20T10:45:52.794566+00:00",
-        "release_date": null,
-        "source_url": "https://www.al.com/politics/2026/10/gop-faces-election-downturn-but-theres-no-blue-wave-for-alabama-democrats-poll-shows.html",
-        "source": "pollresults_secondary_fallback"
-      },
-      {
-        "race_code": "GA-GOV",
-        "race_type": "governor",
-        "poll_id": "7d62a66c-24e9-488e-b8a3-3abd834b7208",
-        "pollster": "University of Georgia",
-        "field_end": "2026-10-15",
-        "dem": 45.0,
-        "rep": 46.0,
-        "margin": -1.0,
-        "dem_name": "Keisha Lance Bottoms",
-        "rep_name": "Rick Jackson",
-        "sample_size": 1000,
-        "first_seen_at": "2026-10-20T10:45:52.794566+00:00",
-        "release_date": null,
-        "source_url": "https://www.ajc.com/politics/2026/10/rick-jackson-has-outspent-keisha-lance-bottoms-but-democratic-enthusiasm-has-the-race-knotted/",
-        "source": "pollresults_secondary_fallback"
-      },
-      {
-        "race_code": "NC-SEN",
-        "race_type": "senate",
-        "poll_id": "103c1a4d-03ff-4028-a49f-42de41c1d63d",
-        "pollster": "YouGov",
-        "field_end": "2026-10-08",
-        "dem": 54.0,
-        "rep": 43.0,
-        "margin": 11.0,
-        "dem_name": "Roy Cooper",
-        "rep_name": "Michael Whatley",
-        "sample_size": 561,
-        "first_seen_at": "2026-10-20T10:45:52.794566+00:00",
-        "release_date": null,
-        "source_url": "https://eloncdn.blob.core.windows.net/eu3/sites/819/2026/10/Elon-Poll-news-release-10-20-26.pdf",
-        "source": "pollresults_secondary_fallback"
-      }
-    ],
-    "new_poll_count": 4,
+    "new_polls": [],
+    "new_poll_count": 0,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-20T10:45:52.533841Z",
-    "previous_snapshot_at": "2026-10-20T09:45:26.815024Z",
+    "comparison_at": "2026-10-20T11:45:44.046734Z",
+    "previous_snapshot_at": "2026-10-20T10:45:52.533841Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -16120,18 +16051,13 @@
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 272,
-    "newly_injected_into_model": 4,
-    "newly_injected_by_race": {
-      "AL-GOV": 1,
-      "AL-SEN": 1,
-      "GA-GOV": 1,
-      "NC-SEN": 1
-    },
+    "matched_observations": 276,
+    "newly_injected_into_model": 0,
+    "newly_injected_by_race": {},
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
-    "carried_forward_current_observations": 9,
+    "carried_forward_current_observations": 13,
     "provenance": "PollResults source-linked fallback; original first_seen_at retained"
   }
 }
