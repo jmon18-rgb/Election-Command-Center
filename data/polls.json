@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T08:49:01.772297Z",
+  "updated_at": "2026-10-20T09:45:26.815024Z",
   "generic_ballot": {
     "summary": {
       "dem": 48.9,
@@ -930,7 +930,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T08:49:01.772297Z",
+          "first_seen_at": "2026-10-20T09:45:26.815024Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -1614,6 +1614,28 @@
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
+          "poll_id": "33c1ac04-cae6-451f-8aa6-f8848189ba80",
+          "question_id": "a101b63d-1983-4681-9db7-fa3a2dd3fc0a",
+          "field_end": "2026-10-18",
+          "pollster": "Marist University",
+          "dem": 48.0,
+          "rep": 44.0,
+          "margin": 4.0,
+          "sample_size": 1176,
+          "partisan_lean": "",
+          "dem_name": "Sherrod Brown",
+          "rep_name": "Jon Husted",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-20T09:45:27.264745+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-20",
+          "source_poll_url": "https://maristpoll.marist.edu/polls/midterm-elections-in-ohio-october-2026/",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
+        {
           "poll_id": "9d64351d-7a56-4c00-bff7-581f0e49a5eb",
           "field_end": "2026-10-09",
           "pollster": "Bowling Green State University Democracy and Public Policy Research Network/YouGov",
@@ -1901,7 +1923,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 16,
+      "recent_poll_count": 17,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -5183,7 +5205,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-20T08:49:01.772297Z",
+        "first_seen_at": "2026-10-20T09:45:26.815024Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -5207,7 +5229,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T08:49:01.772297Z",
+          "first_seen_at": "2026-10-20T09:45:26.815024Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -5743,7 +5765,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-20T08:49:01.772297Z",
+        "first_seen_at": "2026-10-20T09:45:26.815024Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -5767,7 +5789,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T08:49:01.772297Z",
+          "first_seen_at": "2026-10-20T09:45:26.815024Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -6221,29 +6243,52 @@
       "race_type": "governor",
       "state": "MA",
       "district": "GOV",
-      "latest_field_end": "2026-10-12",
+      "latest_field_end": "2026-10-18",
       "latest": {
-        "poll_id": "c5000c5b-f88e-460a-9b37-9c068f09cd9c",
-        "field_end": "2026-10-12",
-        "pollster": "YouGov",
-        "dem": 57.0,
-        "rep": 32.0,
-        "margin": 25.0,
-        "sample_size": 800,
+        "poll_id": "318ee917-8c6b-47f7-98c2-927bec92a5be",
+        "question_id": "2078df2a-9390-4beb-8d06-1dfbdac98cba",
+        "field_end": "2026-10-18",
+        "pollster": "Suffolk University",
+        "dem": 58.6,
+        "rep": 36.0,
+        "margin": 22.6,
+        "sample_size": 500,
         "partisan_lean": "",
         "dem_name": "Maura Healey",
         "rep_name": "Mike Minogue",
-        "other": 6.0,
-        "other_name": "Andrea James",
-        "first_seen_at": "2026-10-19T13:58:43.803185+00:00",
+        "other": null,
+        "other_name": null,
+        "first_seen_at": "2026-10-20T09:45:27.264745+00:00",
         "release_date": null,
-        "upstream_posted_date": "2026-10-19",
-        "source_poll_url": "https://www.umass.edu/poll/about/reports/2026-10-massachusetts-public-opinion-poll#toc-methodology",
-        "sample_population": "rv",
-        "question_id": "87776c57-a0d7-49e8-9fc8-bf77509f8e91",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "upstream_posted_date": "2026-10-20",
+        "source_poll_url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/massachusetts#collapse-October-20-2026-Massachusetts-Governor-and-US-Senate-Statewide-and-Bellwether-with-The-Boston-Globe",
+        "sample_population": "lv",
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "318ee917-8c6b-47f7-98c2-927bec92a5be",
+          "question_id": "2078df2a-9390-4beb-8d06-1dfbdac98cba",
+          "field_end": "2026-10-18",
+          "pollster": "Suffolk University",
+          "dem": 58.6,
+          "rep": 36.0,
+          "margin": 22.6,
+          "sample_size": 500,
+          "partisan_lean": "",
+          "dem_name": "Maura Healey",
+          "rep_name": "Mike Minogue",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-20T09:45:27.264745+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-20",
+          "source_poll_url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/massachusetts#collapse-October-20-2026-Massachusetts-Governor-and-US-Senate-Statewide-and-Bellwether-with-The-Boston-Globe",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "c5000c5b-f88e-460a-9b37-9c068f09cd9c",
           "field_end": "2026-10-12",
@@ -6335,7 +6380,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 5,
+      "recent_poll_count": 6,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -6343,29 +6388,52 @@
       "race_type": "senate",
       "state": "MA",
       "district": "SEN",
-      "latest_field_end": "2026-10-12",
+      "latest_field_end": "2026-10-18",
       "latest": {
-        "poll_id": "c5000c5b-f88e-460a-9b37-9c068f09cd9c",
-        "field_end": "2026-10-12",
-        "pollster": "YouGov",
-        "dem": 56.0,
-        "rep": 29.0,
-        "margin": 27.0,
-        "sample_size": 800,
+        "poll_id": "318ee917-8c6b-47f7-98c2-927bec92a5be",
+        "question_id": "6dab8989-4378-4f62-a5ed-a360f0c70d84",
+        "field_end": "2026-10-18",
+        "pollster": "Suffolk University",
+        "dem": 60.0,
+        "rep": 31.8,
+        "margin": 28.2,
+        "sample_size": 500,
         "partisan_lean": "",
         "dem_name": "Ed Markey",
         "rep_name": "John Deaton",
-        "other": 6.0,
-        "other_name": "Shiva Ayyadurai",
-        "first_seen_at": "2026-10-19T13:58:43.803185+00:00",
+        "other": null,
+        "other_name": null,
+        "first_seen_at": "2026-10-20T09:45:27.264745+00:00",
         "release_date": null,
-        "upstream_posted_date": "2026-10-19",
-        "source_poll_url": "https://www.umass.edu/poll/about/reports/2026-10-massachusetts-public-opinion-poll#toc-methodology",
-        "sample_population": "rv",
-        "question_id": "8d58fb28-ffbe-4d5b-8b7d-6edbd4535dce",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "upstream_posted_date": "2026-10-20",
+        "source_poll_url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/massachusetts#collapse-October-20-2026-Massachusetts-Governor-and-US-Senate-Statewide-and-Bellwether-with-The-Boston-Globe",
+        "sample_population": "lv",
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "318ee917-8c6b-47f7-98c2-927bec92a5be",
+          "question_id": "6dab8989-4378-4f62-a5ed-a360f0c70d84",
+          "field_end": "2026-10-18",
+          "pollster": "Suffolk University",
+          "dem": 60.0,
+          "rep": 31.8,
+          "margin": 28.2,
+          "sample_size": 500,
+          "partisan_lean": "",
+          "dem_name": "Ed Markey",
+          "rep_name": "John Deaton",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-20T09:45:27.264745+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-20",
+          "source_poll_url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/massachusetts#collapse-October-20-2026-Massachusetts-Governor-and-US-Senate-Statewide-and-Bellwether-with-The-Boston-Globe",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "c5000c5b-f88e-460a-9b37-9c068f09cd9c",
           "field_end": "2026-10-12",
@@ -6457,7 +6525,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 5,
+      "recent_poll_count": 6,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -7354,6 +7422,28 @@
           "release_date": null
         },
         {
+          "poll_id": "af05ce70-5668-4aa8-9677-13178bfb45bb",
+          "question_id": "e72f5ee5-ca28-4ff2-a4b7-48f82fdc7848",
+          "field_end": "2026-10-08",
+          "pollster": "Embold Research",
+          "dem": 39.0,
+          "rep": 17.0,
+          "margin": 22.0,
+          "sample_size": 815,
+          "partisan_lean": "",
+          "dem_name": "Helena Foulkes",
+          "rep_name": "Aaron Guckian",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-20T09:45:27.264745+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-20",
+          "source_poll_url": "https://salve.edu/news/news-listing/pell-center-survey-foulkes-leads-governors-race-11-points-lieutenant-governor-contest-deadlocked",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
+        {
           "poll_id": "d17445d2-fb31-4bb4-aa78-a394b2bb4a6e",
           "field_end": "2026-09-25",
           "pollster": "Opinion Diagnostics",
@@ -7487,7 +7577,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 9,
+      "recent_poll_count": 10,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -7530,6 +7620,28 @@
           "release_date": null
         },
         {
+          "poll_id": "af05ce70-5668-4aa8-9677-13178bfb45bb",
+          "question_id": "d10e6166-d130-442f-b105-2ef1ad15228a",
+          "field_end": "2026-10-08",
+          "pollster": "Embold Research",
+          "dem": 55.0,
+          "rep": 32.0,
+          "margin": 23.0,
+          "sample_size": 815,
+          "partisan_lean": "",
+          "dem_name": "Jack Reed",
+          "rep_name": "Raymond McKay",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-20T09:45:27.264745+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-20",
+          "source_poll_url": "https://salve.edu/news/news-listing/pell-center-survey-foulkes-leads-governors-race-11-points-lieutenant-governor-contest-deadlocked",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
+        {
           "poll_id": "f6bc7bf9-7761-4a66-8398-608a7a6dfbd1",
           "field_end": "2026-09-21",
           "pollster": "University of New Hampshire",
@@ -7562,7 +7674,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 3,
+      "recent_poll_count": 4,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -8946,6 +9058,28 @@
           "model_source": "pollresults_secondary_fallback"
         },
         {
+          "poll_id": "33c1ac04-cae6-451f-8aa6-f8848189ba80",
+          "question_id": "82144c36-7cd7-49be-96ad-30cddcba35ce",
+          "field_end": "2026-10-18",
+          "pollster": "Marist University",
+          "dem": 50.0,
+          "rep": 43.0,
+          "margin": 7.0,
+          "sample_size": 1176,
+          "partisan_lean": "",
+          "dem_name": "Amy Acton",
+          "rep_name": "Vivek Ramaswamy",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-20T09:45:27.264745+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-20",
+          "source_poll_url": "https://maristpoll.marist.edu/polls/midterm-elections-in-ohio-october-2026/",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
+        {
           "poll_id": "9d64351d-7a56-4c00-bff7-581f0e49a5eb",
           "field_end": "2026-10-09",
           "pollster": "Bowling Green State University Democracy and Public Policy Research Network/YouGov",
@@ -9125,7 +9259,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 10,
+      "recent_poll_count": 11,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -15749,7 +15883,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-20T08:49:01.772297Z",
+    "last_attempt_at": "2026-10-20T09:45:26.815024Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -15758,11 +15892,114 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [],
-    "new_poll_count": 0,
+    "new_polls": [
+      {
+        "race_code": "OH-SEN",
+        "race_type": "senate",
+        "poll_id": "33c1ac04-cae6-451f-8aa6-f8848189ba80",
+        "pollster": "Marist University",
+        "field_end": "2026-10-18",
+        "dem": 48.0,
+        "rep": 44.0,
+        "margin": 4.0,
+        "dem_name": "Sherrod Brown",
+        "rep_name": "Jon Husted",
+        "sample_size": 1176,
+        "first_seen_at": "2026-10-20T09:45:27.264745+00:00",
+        "release_date": null,
+        "source_url": "https://maristpoll.marist.edu/polls/midterm-elections-in-ohio-october-2026/",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "MA-GOV",
+        "race_type": "governor",
+        "poll_id": "318ee917-8c6b-47f7-98c2-927bec92a5be",
+        "pollster": "Suffolk University",
+        "field_end": "2026-10-18",
+        "dem": 58.6,
+        "rep": 36.0,
+        "margin": 22.6,
+        "dem_name": "Maura Healey",
+        "rep_name": "Mike Minogue",
+        "sample_size": 500,
+        "first_seen_at": "2026-10-20T09:45:27.264745+00:00",
+        "release_date": null,
+        "source_url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/massachusetts#collapse-October-20-2026-Massachusetts-Governor-and-US-Senate-Statewide-and-Bellwether-with-The-Boston-Globe",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "MA-SEN",
+        "race_type": "senate",
+        "poll_id": "318ee917-8c6b-47f7-98c2-927bec92a5be",
+        "pollster": "Suffolk University",
+        "field_end": "2026-10-18",
+        "dem": 60.0,
+        "rep": 31.8,
+        "margin": 28.2,
+        "dem_name": "Ed Markey",
+        "rep_name": "John Deaton",
+        "sample_size": 500,
+        "first_seen_at": "2026-10-20T09:45:27.264745+00:00",
+        "release_date": null,
+        "source_url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/massachusetts#collapse-October-20-2026-Massachusetts-Governor-and-US-Senate-Statewide-and-Bellwether-with-The-Boston-Globe",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "OH-GOV",
+        "race_type": "governor",
+        "poll_id": "33c1ac04-cae6-451f-8aa6-f8848189ba80",
+        "pollster": "Marist University",
+        "field_end": "2026-10-18",
+        "dem": 50.0,
+        "rep": 43.0,
+        "margin": 7.0,
+        "dem_name": "Amy Acton",
+        "rep_name": "Vivek Ramaswamy",
+        "sample_size": 1176,
+        "first_seen_at": "2026-10-20T09:45:27.264745+00:00",
+        "release_date": null,
+        "source_url": "https://maristpoll.marist.edu/polls/midterm-elections-in-ohio-october-2026/",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "RI-GOV",
+        "race_type": "governor",
+        "poll_id": "af05ce70-5668-4aa8-9677-13178bfb45bb",
+        "pollster": "Embold Research",
+        "field_end": "2026-10-08",
+        "dem": 39.0,
+        "rep": 17.0,
+        "margin": 22.0,
+        "dem_name": "Helena Foulkes",
+        "rep_name": "Aaron Guckian",
+        "sample_size": 815,
+        "first_seen_at": "2026-10-20T09:45:27.264745+00:00",
+        "release_date": null,
+        "source_url": "https://salve.edu/news/news-listing/pell-center-survey-foulkes-leads-governors-race-11-points-lieutenant-governor-contest-deadlocked",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "RI-SEN",
+        "race_type": "senate",
+        "poll_id": "af05ce70-5668-4aa8-9677-13178bfb45bb",
+        "pollster": "Embold Research",
+        "field_end": "2026-10-08",
+        "dem": 55.0,
+        "rep": 32.0,
+        "margin": 23.0,
+        "dem_name": "Jack Reed",
+        "rep_name": "Raymond McKay",
+        "sample_size": 815,
+        "first_seen_at": "2026-10-20T09:45:27.264745+00:00",
+        "release_date": null,
+        "source_url": "https://salve.edu/news/news-listing/pell-center-survey-foulkes-leads-governors-race-11-points-lieutenant-governor-contest-deadlocked",
+        "source": "pollresults_secondary_fallback"
+      }
+    ],
+    "new_poll_count": 6,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-20T08:49:01.772297Z",
-    "previous_snapshot_at": "2026-10-20T07:52:08.334635Z",
+    "comparison_at": "2026-10-20T09:45:26.815024Z",
+    "previous_snapshot_at": "2026-10-20T08:49:01.772297Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -15828,8 +16065,15 @@
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
     "matched_observations": 266,
-    "newly_injected_into_model": 0,
-    "newly_injected_by_race": {},
+    "newly_injected_into_model": 6,
+    "newly_injected_by_race": {
+      "MA-GOV": 1,
+      "MA-SEN": 1,
+      "OH-GOV": 1,
+      "OH-SEN": 1,
+      "RI-GOV": 1,
+      "RI-SEN": 1
+    },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
