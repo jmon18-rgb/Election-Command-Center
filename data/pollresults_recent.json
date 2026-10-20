@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T19:46:16.110276+00:00",
+  "updated_at": "2026-10-20T20:47:47.820389+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -13,19 +13,71 @@
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 900,
+      "available_in_source": 902,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 292,
-  "newly_injected_into_model": 1,
+  "matched_primary_observations": 293,
+  "newly_injected_into_model": 2,
   "injected_poll_ids": [
     {
-      "race_code": "NY-GOV",
-      "poll_id": "386a6c1d-896c-4ce6-b17e-3818107aead0"
+      "race_code": "AL-GOV",
+      "poll_id": "840876f8-96ce-40df-a6d9-3a06397c11e6"
+    },
+    {
+      "race_code": "SC-GOV",
+      "poll_id": "9555ad55-c7db-4d8b-a988-3a9465820547"
     }
   ],
   "observations": [
+    {
+      "race_code": "AL-GOV",
+      "race_type": "governor",
+      "state": "AL",
+      "poll_id": "840876f8-96ce-40df-a6d9-3a06397c11e6",
+      "question_id": "8560a912-1249-4368-8152-4549ce520300",
+      "pollster": "Cygnal Political",
+      "dem_name": "Doug Jones",
+      "rep_name": "Tommy Tuberville",
+      "dem": 40.0,
+      "rep": 51.2,
+      "margin": -11.2,
+      "field_end": "2026-10-17",
+      "field_start": "2026-10-16",
+      "posted_date": "2026-10-20",
+      "posted_source_datetime": "2026-10-20T16:20:00",
+      "posted_source_time": "10/20/26 16:20",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.wbrc.com/2026/10/20/tuberville-leads-jones-51-40-percent-exclusive-gray-alabama-daily-news-poll/",
+      "sample_population": "lv",
+      "sample_size": 500,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "SC-GOV",
+      "race_type": "governor",
+      "state": "SC",
+      "poll_id": "9555ad55-c7db-4d8b-a988-3a9465820547",
+      "question_id": "8bbf36f8-8974-42ca-98e1-e420ffcfe73a",
+      "pollster": "National Public Affairs",
+      "dem_name": "Jermaine Johnson",
+      "rep_name": "Alan Wilson",
+      "dem": 41.0,
+      "rep": 51.0,
+      "margin": -10.0,
+      "field_end": "2026-10-16",
+      "field_start": "2026-10-13",
+      "posted_date": "2026-10-20",
+      "posted_source_datetime": "2026-10-20T15:57:00",
+      "posted_source_time": "10/20/26 15:57",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://static01.nyt.com/newsgraphics/documenttools/291f5c62393ced9c/212eec4b-full.pdf",
+      "sample_population": "lv",
+      "sample_size": 604,
+      "partisan_lean": "R",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "NY-GOV",
       "race_type": "governor",

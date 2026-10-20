@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T19:46:15.484691Z",
+  "updated_at": "2026-10-20T20:47:47.418937Z",
   "generic_ballot": {
     "summary": {
       "dem": 48.9,
@@ -930,7 +930,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T19:46:15.484691Z",
+          "first_seen_at": "2026-10-20T20:47:47.418937Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -2207,7 +2207,7 @@
           "rep_name": "Jon Husted",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T19:46:15.484691Z",
+          "first_seen_at": "2026-10-20T20:47:47.418937Z",
           "release_date": null,
           "question_id": "a101b63d-1983-4681-9db7-fa3a2dd3fc0a",
           "sample_population": "lv",
@@ -4554,29 +4554,52 @@
       "race_type": "governor",
       "state": "AL",
       "district": "GOV",
-      "latest_field_end": "2026-10-16",
+      "latest_field_end": "2026-10-17",
       "latest": {
-        "poll_id": "308785d0-efaa-45ee-8e64-c6f0526eea06",
-        "field_end": "2026-10-16",
-        "pollster": "The Alabama Poll",
-        "dem": 39.0,
-        "rep": 51.0,
-        "margin": -12.0,
-        "sample_size": 600,
+        "poll_id": "840876f8-96ce-40df-a6d9-3a06397c11e6",
+        "question_id": "8560a912-1249-4368-8152-4549ce520300",
+        "field_end": "2026-10-17",
+        "pollster": "Cygnal Political",
+        "dem": 40.0,
+        "rep": 51.2,
+        "margin": -11.2,
+        "sample_size": 500,
         "partisan_lean": "",
         "dem_name": "Doug Jones",
         "rep_name": "Tommy Tuberville",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-20T10:45:52.794566+00:00",
+        "first_seen_at": "2026-10-20T20:47:47.820389+00:00",
         "release_date": null,
         "upstream_posted_date": "2026-10-20",
-        "source_poll_url": "https://www.al.com/politics/2026/10/gop-faces-election-downturn-but-theres-no-blue-wave-for-alabama-democrats-poll-shows.html",
+        "source_poll_url": "https://www.wbrc.com/2026/10/20/tuberville-leads-jones-51-40-percent-exclusive-gray-alabama-daily-news-poll/",
         "sample_population": "lv",
-        "question_id": "d1c1676e-6080-48f8-ac3f-08bb8db4929f",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "840876f8-96ce-40df-a6d9-3a06397c11e6",
+          "question_id": "8560a912-1249-4368-8152-4549ce520300",
+          "field_end": "2026-10-17",
+          "pollster": "Cygnal Political",
+          "dem": 40.0,
+          "rep": 51.2,
+          "margin": -11.2,
+          "sample_size": 500,
+          "partisan_lean": "",
+          "dem_name": "Doug Jones",
+          "rep_name": "Tommy Tuberville",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-20T20:47:47.820389+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-20",
+          "source_poll_url": "https://www.wbrc.com/2026/10/20/tuberville-leads-jones-51-40-percent-exclusive-gray-alabama-daily-news-poll/",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "308785d0-efaa-45ee-8e64-c6f0526eea06",
           "field_end": "2026-10-16",
@@ -4620,7 +4643,7 @@
           "date_provenance": "PollResults ingestion date, NOT public release date"
         }
       ],
-      "recent_poll_count": 2,
+      "recent_poll_count": 3,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -6003,7 +6026,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-20T19:46:15.484691Z",
+        "first_seen_at": "2026-10-20T20:47:47.418937Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -6027,7 +6050,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T19:46:15.484691Z",
+          "first_seen_at": "2026-10-20T20:47:47.418937Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -6585,7 +6608,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-20T19:46:15.484691Z",
+        "first_seen_at": "2026-10-20T20:47:47.418937Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -6609,7 +6632,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T19:46:15.484691Z",
+          "first_seen_at": "2026-10-20T20:47:47.418937Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -16419,6 +16442,63 @@
       "source_url": "https://pollresults.org/",
       "model_race_source": "pollresults_bootstrap",
       "matchup_provenance": "Latest unambiguous source-linked 2026 matchup; verify ballot independently"
+    },
+    {
+      "race_code": "SC-GOV",
+      "race_type": "governor",
+      "state": "SC",
+      "district": "GOV",
+      "polls": [
+        {
+          "poll_id": "9555ad55-c7db-4d8b-a988-3a9465820547",
+          "question_id": "8bbf36f8-8974-42ca-98e1-e420ffcfe73a",
+          "field_end": "2026-10-16",
+          "pollster": "National Public Affairs",
+          "dem": 41.0,
+          "rep": 51.0,
+          "margin": -10.0,
+          "sample_size": 604,
+          "partisan_lean": "R",
+          "dem_name": "Jermaine Johnson",
+          "rep_name": "Alan Wilson",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-20T20:47:47.820389+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-20",
+          "source_poll_url": "https://static01.nyt.com/newsgraphics/documenttools/291f5c62393ced9c/212eec4b-full.pdf",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        }
+      ],
+      "recent_poll_count": 1,
+      "latest_field_end": "2026-10-16",
+      "latest": {
+        "poll_id": "9555ad55-c7db-4d8b-a988-3a9465820547",
+        "question_id": "8bbf36f8-8974-42ca-98e1-e420ffcfe73a",
+        "field_end": "2026-10-16",
+        "pollster": "National Public Affairs",
+        "dem": 41.0,
+        "rep": 51.0,
+        "margin": -10.0,
+        "sample_size": 604,
+        "partisan_lean": "R",
+        "dem_name": "Jermaine Johnson",
+        "rep_name": "Alan Wilson",
+        "other": null,
+        "other_name": null,
+        "first_seen_at": "2026-10-20T20:47:47.820389+00:00",
+        "release_date": null,
+        "upstream_posted_date": "2026-10-20",
+        "source_poll_url": "https://static01.nyt.com/newsgraphics/documenttools/291f5c62393ced9c/212eec4b-full.pdf",
+        "sample_population": "lv",
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
+      },
+      "source_url": "https://pollresults.org/",
+      "model_race_source": "pollresults_bootstrap",
+      "matchup_provenance": "Latest unambiguous source-linked 2026 matchup; verify ballot independently"
     }
   ],
   "source": {
@@ -16432,7 +16512,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-20T19:46:15.484691Z",
+    "last_attempt_at": "2026-10-20T20:47:47.418937Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -16443,27 +16523,44 @@
   "changes": {
     "new_polls": [
       {
-        "race_code": "NY-GOV",
+        "race_code": "AL-GOV",
         "race_type": "governor",
-        "poll_id": "386a6c1d-896c-4ce6-b17e-3818107aead0",
-        "pollster": "OnMessage Inc.",
-        "field_end": "2026-10-14",
-        "dem": 50.3,
-        "rep": 45.9,
-        "margin": 4.4,
-        "dem_name": "Kathy Hochul",
-        "rep_name": "Bruce Blakeman",
-        "sample_size": 1000,
-        "first_seen_at": "2026-10-20T19:46:16.110276+00:00",
+        "poll_id": "840876f8-96ce-40df-a6d9-3a06397c11e6",
+        "pollster": "Cygnal Political",
+        "field_end": "2026-10-17",
+        "dem": 40.0,
+        "rep": 51.2,
+        "margin": -11.2,
+        "dem_name": "Doug Jones",
+        "rep_name": "Tommy Tuberville",
+        "sample_size": 500,
+        "first_seen_at": "2026-10-20T20:47:47.820389+00:00",
         "release_date": null,
-        "source_url": "https://nypost.com/2026/10/20/us-news/hochul-leads-blakeman-by-only-4-points-in-ny-governors-race-gop-internal-poll-claims/",
+        "source_url": "https://www.wbrc.com/2026/10/20/tuberville-leads-jones-51-40-percent-exclusive-gray-alabama-daily-news-poll/",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "SC-GOV",
+        "race_type": "governor",
+        "poll_id": "9555ad55-c7db-4d8b-a988-3a9465820547",
+        "pollster": "National Public Affairs",
+        "field_end": "2026-10-16",
+        "dem": 41.0,
+        "rep": 51.0,
+        "margin": -10.0,
+        "dem_name": "Jermaine Johnson",
+        "rep_name": "Alan Wilson",
+        "sample_size": 604,
+        "first_seen_at": "2026-10-20T20:47:47.820389+00:00",
+        "release_date": null,
+        "source_url": "https://static01.nyt.com/newsgraphics/documenttools/291f5c62393ced9c/212eec4b-full.pdf",
         "source": "pollresults_secondary_fallback"
       }
     ],
-    "new_poll_count": 1,
+    "new_poll_count": 2,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-20T19:46:15.484691Z",
-    "previous_snapshot_at": "2026-10-20T18:53:05.475039Z",
+    "comparison_at": "2026-10-20T20:47:47.418937Z",
+    "previous_snapshot_at": "2026-10-20T19:46:15.484691Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -16528,15 +16625,16 @@
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 292,
-    "newly_injected_into_model": 1,
+    "matched_observations": 293,
+    "newly_injected_into_model": 2,
     "newly_injected_by_race": {
-      "NY-GOV": 1
+      "AL-GOV": 1,
+      "SC-GOV": 1
     },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
-    "carried_forward_current_observations": 13,
+    "carried_forward_current_observations": 14,
     "provenance": "PollResults source-linked fallback; original first_seen_at retained"
   }
 }

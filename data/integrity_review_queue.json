@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-20T19:46:15.263027Z",
+  "updated_at": "2026-10-20T20:47:47.148953Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 226,
-    "awaiting_primary_source": 224,
+    "total_leads": 227,
+    "awaiting_primary_source": 225,
     "primary_source_checked": 2,
-    "advisory_related_headline_buckets": 20,
-    "advisory_related_headlines": 45
+    "advisory_related_headline_buckets": 21,
+    "advisory_related_headlines": 47
   },
   "advisory_related_headlines": [
     {
@@ -242,13 +242,13 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "59f13e02a04f01f36ecc",
-      "headline": "Why the 26 secretary of state races this November matter more than they did before Trump\u2019s drive to assert federal authority over elections - Cobb Courier",
+      "lead_id": "3d4dcbcc0e0c5a43a400",
+      "headline": "Early voting in NC in 2026. Everything you need to know. - News-Topic",
       "possibly_related_articles": 2,
       "distinct_publishers": 2,
       "state_hints": [],
       "topic_hints": [
-        "election_admin"
+        "ballot_access"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     }
@@ -382,6 +382,25 @@
       ],
       "headline_numbers_unverified": [
         "28 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "3d4dcbcc0e0c5a43a400",
+      "title": "Early voting in NC in 2026. Everything you need to know. - News-Topic",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQR29Qdk5mTE9nY0VYeHJqWGdsME9CZmw4X0dqMTR1aTVReHYtM1hBdHd5OEQwTmtYYnEzTXVXTkthRm8tb2h0amo4ZXR5QWlUdWg1bVVuRTF3a3NJX3RFUXVLTUtud2dVSFp3ZUFoZE5LM1FJQldnd0dsdEo1MWxUVGxWQ3ozWHo0aHhzd04tS3VtZnBHMHVBX2xscENFTFo0eG5kcGI1UVNULXJSTjBhSnI4eXpPNkZ6NmJsSnU3ZzhmWDhXZ1VQQ1N1alg4MUxWUEI2dTlrNWduODQ?oc=5",
+      "publisher": "News-Topic",
+      "published_at": "2026-10-20T14:03:00Z",
+      "detected_at": "2026-10-20T20:47:47.148953Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [
+        "2026"
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
