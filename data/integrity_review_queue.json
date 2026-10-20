@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-20T11:45:43.865148Z",
+  "updated_at": "2026-10-20T12:57:41.234712Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 216,
-    "awaiting_primary_source": 214,
+    "total_leads": 217,
+    "awaiting_primary_source": 215,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 18,
     "advisory_related_headlines": 41
@@ -323,6 +323,27 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "129ba5391a07821ed41a",
+      "title": "DOJ charges 28 with unlawful voting, other election-related offenses in California - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNNzVWRUJJYnB5bW5JZi11SmdUbmN5bnhhWFVGd0loaGJ3RE9HemVjRXlLNE1xYlcwdGh1ellXTW1jUTJpeGN6aENwTmVZODI4bjJHNndJRWFXWTlwMDJPTXlCNVBMcWR1Tjk4eFFSa0tmNFZJMEprLUlXWk5ZQ3JZbWxKQ09pWEFtZHhLeTU0Q1hWZnotSE1vWGdFVDVzdnPSAaQBQVVfeXFMUHZVRVdKREI5UUpKYThzUWlOQS0xQ0dXOGYtMDJvT1M3MDdRR01HeFg0cTk1V3BDQjl1di1td3R6Ql9hMkxHQjFPN044Tkl2akYyVnpWYlJHSjF4eTBZalNpX1dzNzc5NVlseDVBbmFIVW5VSnNjY2xxQ3RMR0stTWtfUUUzbWVpUXNOQVlsU2ZFMjV3VjQxaU1qcDBnS3JXUTRuUHg?oc=5",
+      "publisher": "ABC News - Breaking News, Latest News and Videos",
+      "published_at": "2026-10-19T23:25:47Z",
+      "detected_at": "2026-10-20T12:57:41.234712Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "28 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,

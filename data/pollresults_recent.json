@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-20T11:45:44.622610+00:00",
+  "updated_at": "2026-10-20T12:57:42.359112+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 793,
+      "available_in_source": 794,
       "records_examined": 300
     },
     "house": {
@@ -13,14 +13,91 @@
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 892,
+      "available_in_source": 894,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 276,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "matched_primary_observations": 279,
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "OK-GOV",
+      "poll_id": "a13b26d9-4df7-4f5a-8349-9410b0a0d7b7"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "OK-GOV",
+      "race_type": "governor",
+      "state": "OK",
+      "poll_id": "a13b26d9-4df7-4f5a-8349-9410b0a0d7b7",
+      "question_id": "01987447-b6f4-4beb-9b01-d88d9844e8c7",
+      "pollster": "Workbench Strategy",
+      "dem_name": "Cyndi Munson",
+      "rep_name": "Mike Mazzei",
+      "dem": 45.0,
+      "rep": 49.0,
+      "margin": -4.0,
+      "field_end": "2026-10-13",
+      "field_start": "2026-10-08",
+      "posted_date": "2026-10-20",
+      "posted_source_datetime": "2026-10-20T08:44:00",
+      "posted_source_time": "10/20/26 08:44",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.politico.com/news/2026/10/20/democrats-make-a-play-for-oklahoma-after-bitter-gop-gubernatorial-primary-01127523",
+      "sample_population": "lv",
+      "sample_size": 600,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "AK-GOV",
+      "race_type": "governor",
+      "state": "AK",
+      "poll_id": "97fd4cb1-f5c4-4c95-9f99-2a9725201a28",
+      "question_id": "8b14b64a-6415-43d7-8655-274add9fe1a7",
+      "pollster": "Alaska Survey Research",
+      "dem_name": "Jonathan Kreiss-Tomkins",
+      "rep_name": "Bernadette Wilson",
+      "dem": 55.0,
+      "rep": 45.0,
+      "margin": 10.0,
+      "field_end": "2026-10-18",
+      "field_start": "2026-10-15",
+      "posted_date": "2026-10-20",
+      "posted_source_datetime": "2026-10-20T08:39:00",
+      "posted_source_time": "10/20/26 08:39",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://x.com/The_Real_ASR/status/2112415183226429942",
+      "sample_population": "lv",
+      "sample_size": 1568,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "AK-GOV",
+      "race_type": "governor",
+      "state": "AK",
+      "poll_id": "97fd4cb1-f5c4-4c95-9f99-2a9725201a28",
+      "question_id": "424c0eb2-c482-421c-9919-80ba2b3715f8",
+      "pollster": "Alaska Survey Research",
+      "dem_name": "Jonathan Kreiss-Tomkins",
+      "rep_name": "Bernadette Wilson",
+      "dem": 50.0,
+      "rep": 30.0,
+      "margin": 20.0,
+      "field_end": "2026-10-18",
+      "field_start": "2026-10-15",
+      "posted_date": "2026-10-20",
+      "posted_source_datetime": "2026-10-20T08:39:00",
+      "posted_source_time": "10/20/26 08:39",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://x.com/The_Real_ASR/status/2112415183226429942",
+      "sample_population": "lv",
+      "sample_size": 1568,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "GA-GOV",
       "race_type": "governor",
@@ -65,7 +142,7 @@
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
       "source_url": "https://eloncdn.blob.core.windows.net/eu3/sites/819/2026/10/Elon-Poll-news-release-10-20-26.pdf",
       "sample_population": "a",
-      "sample_size": 800,
+      "sample_size": 747,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
@@ -89,7 +166,7 @@
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
       "source_url": "https://eloncdn.blob.core.windows.net/eu3/sites/819/2026/10/Elon-Poll-news-release-10-20-26.pdf",
       "sample_population": "rv",
-      "sample_size": 691,
+      "sample_size": 676,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
@@ -113,7 +190,7 @@
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
       "source_url": "https://eloncdn.blob.core.windows.net/eu3/sites/819/2026/10/Elon-Poll-news-release-10-20-26.pdf",
       "sample_population": "lv",
-      "sample_size": 561,
+      "sample_size": 560,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
