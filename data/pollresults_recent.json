@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T00:59:07.041746+00:00",
+  "updated_at": "2026-10-20T01:46:38.004592+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -13,19 +13,71 @@
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 885,
+      "available_in_source": 887,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 263,
-  "newly_injected_into_model": 1,
+  "matched_primary_observations": 264,
+  "newly_injected_into_model": 2,
   "injected_poll_ids": [
     {
-      "race_code": "AZ-GOV",
-      "poll_id": "226bb5e4-14e1-48ca-9e8c-9d480e7c05ff"
+      "race_code": "FL-GOV",
+      "poll_id": "d1861a0d-013a-443d-9ede-631023e7181a"
+    },
+    {
+      "race_code": "OH-GOV",
+      "poll_id": "29b6e1bc-1623-40b7-8265-f33d81d974e3"
     }
   ],
   "observations": [
+    {
+      "race_code": "FL-GOV",
+      "race_type": "governor",
+      "state": "FL",
+      "poll_id": "d1861a0d-013a-443d-9ede-631023e7181a",
+      "question_id": "bb2e7053-f8e4-4911-b48c-c995dfc08403",
+      "pollster": "ActiVote",
+      "dem_name": "David Jolly",
+      "rep_name": "Byron Donalds",
+      "dem": 48.3,
+      "rep": 51.7,
+      "margin": -3.4,
+      "field_end": "2026-10-19",
+      "field_start": "2026-10-01",
+      "posted_date": "2026-10-19",
+      "posted_source_datetime": "2026-10-19T21:02:00",
+      "posted_source_time": "10/19/26 21:02",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.activote.net/polls/2026/fl-governor/",
+      "sample_population": "lv",
+      "sample_size": 400,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "OH-GOV",
+      "race_type": "governor",
+      "state": "OH",
+      "poll_id": "29b6e1bc-1623-40b7-8265-f33d81d974e3",
+      "question_id": "c6ed6715-7fd5-47f2-99c3-41d30d2f59e4",
+      "pollster": "ActiVote",
+      "dem_name": "Amy Acton",
+      "rep_name": "Vivek Ramaswamy",
+      "dem": 48.6,
+      "rep": 51.4,
+      "margin": -2.8,
+      "field_end": "2026-10-19",
+      "field_start": "2026-09-27",
+      "posted_date": "2026-10-19",
+      "posted_source_datetime": "2026-10-19T21:01:00",
+      "posted_source_time": "10/19/26 21:01",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.activote.net/polls/2026/oh-governor/",
+      "sample_population": "lv",
+      "sample_size": 400,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "FL-09",
       "race_type": "house",
