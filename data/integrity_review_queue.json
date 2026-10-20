@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-20T17:43:17.661827Z",
+  "updated_at": "2026-10-20T18:53:05.288966Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 3,
   "review_metrics": {
-    "total_leads": 221,
-    "awaiting_primary_source": 219,
+    "total_leads": 224,
+    "awaiting_primary_source": 222,
     "primary_source_checked": 2,
-    "advisory_related_headline_buckets": 19,
-    "advisory_related_headlines": 43
+    "advisory_related_headline_buckets": 20,
+    "advisory_related_headlines": 45
   },
   "advisory_related_headlines": [
     {
@@ -240,9 +240,37 @@
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "59f13e02a04f01f36ecc",
+      "headline": "Why the 26 secretary of state races this November matter more than they did before Trump\u2019s drive to assert federal authority over elections - Cobb Courier",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "a7d5aae73db0567fd22d",
+      "title": "Trump Administration Bought Data Broker Info To Beef up Your Voter Record. A Lawsuit Calls It \u2018Sweeping Surveillance\u2019 - All About Cookies",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFB6MzRVeU9RTm9DWHR6ODZpdG5uenhTT01jcWRMd21kSlZpOGlPWXozcW1IOFhkTmE5cXBkeVQ1RlhTMTR6OElwWTBCc1RYVHNMMVE5ZW1QNU5qOEljTUV5bTRoeFpWMm9BbWN3RzRXdk1VQWkxX2c?oc=5",
+      "publisher": "All About Cookies",
+      "published_at": "2026-10-20T18:13:00Z",
+      "detected_at": "2026-10-20T18:53:05.288966Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "78ae1edeaa23b4c211ed",
       "title": "U.S. Officials Advise 10 States To Prepare For Trump Midterm Election Interference: 6 outlets compared - NewsCord",
@@ -258,6 +286,44 @@
       "headline_numbers_unverified": [
         "10 ",
         "6 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "f6559e19ee9671938400",
+      "title": "Are non-citizens legally permitted to vote in Kansas elections? - KLC Journal",
+      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPWDlsYkh4eWRHekt3aHRZVE1WTWdUQXYzZzNpYU1iNDViU2wtQzNFUkZLYzF5WWM4Q09tbmJjdU4xSXhvdTdsenNMeWlXMUJEWHk5RVdVd1d5eGFvQ0ViSlp3QnA0VkRtSUhDMWQzU0p3V1pDdU5ocjVidlZnUVdhNG1Xa19fWWczWnRwZlBJSQ?oc=5",
+      "publisher": "KLC Journal",
+      "published_at": "2026-10-20T16:46:39Z",
+      "detected_at": "2026-10-20T18:53:05.288966Z",
+      "state_hints": [
+        "KS"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "59f13e02a04f01f36ecc",
+      "title": "Why the 26 secretary of state races this November matter more than they did before Trump\u2019s drive to assert federal authority over elections - Cobb Courier",
+      "url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxPamZ2aGs3eHVQZ2UyQk5HQWVyVXBHYnZfeG1JMGFpblprTGpXNUtOS00td0tiRkMwQUowRmNwaTdGckwyLUR2bFdaT2QxQlVacHdTUm5ZOVJhWnpiN3pvN2JWR1paeFgtOFhJWVI1dTdEYnlNa3JYZVE3RkpyWXBMb2dkc0lSajZBZEJqTXlLSm95UXd5aUtHVDI4RHJDXzJHaWljeTNyYW5ldzVFbmV2ZkxCanNXclpReW1Tc1g5aXFfSVNYX0ZQRHFjM3IwXzlEdjhXYlZZVzZSNndZY2hGS3JnOGc5SHlPOTFLSHVYZExhTXFWRFl1TEtpWlJhcGxrVDBvREF0eUY?oc=5",
+      "publisher": "Cobb Courier",
+      "published_at": "2026-10-20T15:09:56Z",
+      "detected_at": "2026-10-20T18:53:05.288966Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "26 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
