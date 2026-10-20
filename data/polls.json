@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T16:46:24.109610Z",
+  "updated_at": "2026-10-20T17:43:17.859831Z",
   "generic_ballot": {
     "summary": {
       "dem": 48.9,
@@ -930,7 +930,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T16:46:24.109610Z",
+          "first_seen_at": "2026-10-20T17:43:17.859831Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -2207,7 +2207,7 @@
           "rep_name": "Jon Husted",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T16:46:24.109610Z",
+          "first_seen_at": "2026-10-20T17:43:17.859831Z",
           "release_date": null,
           "question_id": "a101b63d-1983-4681-9db7-fa3a2dd3fc0a",
           "sample_population": "lv",
@@ -6003,7 +6003,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-20T16:46:24.109610Z",
+        "first_seen_at": "2026-10-20T17:43:17.859831Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -6027,7 +6027,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T16:46:24.109610Z",
+          "first_seen_at": "2026-10-20T17:43:17.859831Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -6585,7 +6585,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-20T16:46:24.109610Z",
+        "first_seen_at": "2026-10-20T17:43:17.859831Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -6609,7 +6609,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-20T16:46:24.109610Z",
+          "first_seen_at": "2026-10-20T17:43:17.859831Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -15128,24 +15128,52 @@
       "race_type": "governor",
       "state": "TN",
       "district": "GOV",
-      "latest_field_end": "2026-09-12",
+      "latest_field_end": "2026-10-16",
       "latest": {
-        "poll_id": "86685846-3312-46a3-b60c-ad10e3055620",
-        "field_end": "2026-09-12",
-        "pollster": "TargetSmart",
-        "dem": 36.0,
-        "rep": 45.0,
-        "margin": -9.0,
-        "sample_size": 600,
-        "partisan_lean": "D",
+        "poll_id": "ab6bbf3e-1625-4cc4-b385-c84de5abc74f",
+        "question_id": "3911c448-145b-4e31-89e1-4249d96217af",
+        "field_end": "2026-10-16",
+        "pollster": "Spry Strategies",
+        "dem": 32.0,
+        "rep": 43.5,
+        "margin": -11.5,
+        "sample_size": 635,
+        "partisan_lean": "",
         "dem_name": "Jerri Green",
         "rep_name": "Marsha Blackburn",
-        "other": 10.0,
-        "other_name": "David Hatley",
-        "first_seen_at": null,
-        "release_date": null
+        "other": null,
+        "other_name": null,
+        "first_seen_at": "2026-10-20T17:43:18.288907+00:00",
+        "release_date": null,
+        "upstream_posted_date": "2026-10-20",
+        "source_poll_url": "https://www.spryresearch.com/post/tennessee-statewide-survey-october-2026",
+        "sample_population": "lv",
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "ab6bbf3e-1625-4cc4-b385-c84de5abc74f",
+          "question_id": "3911c448-145b-4e31-89e1-4249d96217af",
+          "field_end": "2026-10-16",
+          "pollster": "Spry Strategies",
+          "dem": 32.0,
+          "rep": 43.5,
+          "margin": -11.5,
+          "sample_size": 635,
+          "partisan_lean": "",
+          "dem_name": "Jerri Green",
+          "rep_name": "Marsha Blackburn",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-20T17:43:18.288907+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-20",
+          "source_poll_url": "https://www.spryresearch.com/post/tennessee-statewide-survey-october-2026",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "86685846-3312-46a3-b60c-ad10e3055620",
           "field_end": "2026-09-12",
@@ -15179,7 +15207,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 2,
+      "recent_poll_count": 3,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -16227,7 +16255,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-20T16:46:24.109610Z",
+    "last_attempt_at": "2026-10-20T17:43:17.859831Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -16236,11 +16264,29 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [],
-    "new_poll_count": 0,
+    "new_polls": [
+      {
+        "race_code": "TN-GOV",
+        "race_type": "governor",
+        "poll_id": "ab6bbf3e-1625-4cc4-b385-c84de5abc74f",
+        "pollster": "Spry Strategies",
+        "field_end": "2026-10-16",
+        "dem": 32.0,
+        "rep": 43.5,
+        "margin": -11.5,
+        "dem_name": "Jerri Green",
+        "rep_name": "Marsha Blackburn",
+        "sample_size": 635,
+        "first_seen_at": "2026-10-20T17:43:18.288907+00:00",
+        "release_date": null,
+        "source_url": "https://www.spryresearch.com/post/tennessee-statewide-survey-october-2026",
+        "source": "pollresults_secondary_fallback"
+      }
+    ],
+    "new_poll_count": 1,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-20T16:46:24.109610Z",
-    "previous_snapshot_at": "2026-10-20T15:46:28.951663Z",
+    "comparison_at": "2026-10-20T17:43:17.859831Z",
+    "previous_snapshot_at": "2026-10-20T16:46:24.109610Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -16306,8 +16352,10 @@
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
     "matched_observations": 286,
-    "newly_injected_into_model": 0,
-    "newly_injected_by_race": {},
+    "newly_injected_into_model": 1,
+    "newly_injected_by_race": {
+      "TN-GOV": 1
+    },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {

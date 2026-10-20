@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T16:46:24.465336+00:00",
+  "updated_at": "2026-10-20T17:43:18.288907+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -13,14 +13,43 @@
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 897,
+      "available_in_source": 898,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 286,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "TN-GOV",
+      "poll_id": "ab6bbf3e-1625-4cc4-b385-c84de5abc74f"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "TN-GOV",
+      "race_type": "governor",
+      "state": "TN",
+      "poll_id": "ab6bbf3e-1625-4cc4-b385-c84de5abc74f",
+      "question_id": "3911c448-145b-4e31-89e1-4249d96217af",
+      "pollster": "Spry Strategies",
+      "dem_name": "Jerri Green",
+      "rep_name": "Marsha Blackburn",
+      "dem": 32.0,
+      "rep": 43.5,
+      "margin": -11.5,
+      "field_end": "2026-10-16",
+      "field_start": "2026-10-10",
+      "posted_date": "2026-10-20",
+      "posted_source_datetime": "2026-10-20T12:40:00",
+      "posted_source_time": "10/20/26 12:40",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.spryresearch.com/post/tennessee-statewide-survey-october-2026",
+      "sample_population": "lv",
+      "sample_size": 635,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "NE-SEN",
       "race_type": "senate",

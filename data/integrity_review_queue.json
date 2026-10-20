@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-20T16:46:23.956648Z",
+  "updated_at": "2026-10-20T17:43:17.661827Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 220,
-    "awaiting_primary_source": 218,
+    "total_leads": 221,
+    "awaiting_primary_source": 219,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 19,
     "advisory_related_headlines": 43
@@ -243,6 +243,27 @@
     }
   ],
   "items": [
+    {
+      "id": "78ae1edeaa23b4c211ed",
+      "title": "U.S. Officials Advise 10 States To Prepare For Trump Midterm Election Interference: 6 outlets compared - NewsCord",
+      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPVHlfYnl2Q01kQkxiaEJmcm5aTFo1ZGs5QklYc1BFb1BoTUNKQy05UXUyQ1RhU1N3ZmhSMmNYazVNRXFWRWZYdGlvemZRWlhZa2xkSTB3YThSZGxxUnJiSlotV2x1OUtzbjd3NEVGM1p1SGhWand3cmVZY2JpRUx1ZUdUTWJ4WUNzZDVLdVk2cGE4QVJIakxfamdfUng1VmR1eWlYMHJMQjEzOG9VenI1Zl9peG96LVF6b3FQanVMQ3dmTDliZjhPdm52eTNIaDEtU0JYaXZDZWszbzJHS1doZVlYa3ZGMWZVMUE?oc=5",
+      "publisher": "NewsCord",
+      "published_at": "2026-10-20T16:49:31Z",
+      "detected_at": "2026-10-20T17:43:17.661827Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "10 ",
+        "6 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "7dc1b0834743e23f4b9e",
       "title": "DOJ Charges 28 California Green Card Holders with Election Voting Fraud Days Before Midterms - Latin Times",
