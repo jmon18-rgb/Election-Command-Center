@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-20T09:45:27.264745+00:00",
+  "updated_at": "2026-10-20T10:45:52.794566+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 791,
+      "available_in_source": 793,
       "records_examined": 300
     },
     "house": {
@@ -13,39 +13,175 @@
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 890,
+      "available_in_source": 892,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 266,
-  "newly_injected_into_model": 6,
+  "matched_primary_observations": 272,
+  "newly_injected_into_model": 4,
   "injected_poll_ids": [
     {
-      "race_code": "MA-GOV",
-      "poll_id": "318ee917-8c6b-47f7-98c2-927bec92a5be"
+      "race_code": "AL-GOV",
+      "poll_id": "308785d0-efaa-45ee-8e64-c6f0526eea06"
     },
     {
-      "race_code": "MA-SEN",
-      "poll_id": "318ee917-8c6b-47f7-98c2-927bec92a5be"
+      "race_code": "AL-SEN",
+      "poll_id": "308785d0-efaa-45ee-8e64-c6f0526eea06"
     },
     {
-      "race_code": "OH-GOV",
-      "poll_id": "33c1ac04-cae6-451f-8aa6-f8848189ba80"
+      "race_code": "GA-GOV",
+      "poll_id": "7d62a66c-24e9-488e-b8a3-3abd834b7208"
     },
     {
-      "race_code": "OH-SEN",
-      "poll_id": "33c1ac04-cae6-451f-8aa6-f8848189ba80"
-    },
-    {
-      "race_code": "RI-GOV",
-      "poll_id": "af05ce70-5668-4aa8-9677-13178bfb45bb"
-    },
-    {
-      "race_code": "RI-SEN",
-      "poll_id": "af05ce70-5668-4aa8-9677-13178bfb45bb"
+      "race_code": "NC-SEN",
+      "poll_id": "103c1a4d-03ff-4028-a49f-42de41c1d63d"
     }
   ],
   "observations": [
+    {
+      "race_code": "GA-GOV",
+      "race_type": "governor",
+      "state": "GA",
+      "poll_id": "7d62a66c-24e9-488e-b8a3-3abd834b7208",
+      "question_id": "0fdc2e33-1dc4-48b9-9bba-7e123c58e700",
+      "pollster": "University of Georgia",
+      "dem_name": "Keisha Lance Bottoms",
+      "rep_name": "Rick Jackson",
+      "dem": 45.0,
+      "rep": 46.0,
+      "margin": -1.0,
+      "field_end": "2026-10-15",
+      "field_start": "2026-10-07",
+      "posted_date": "2026-10-20",
+      "posted_source_datetime": "2026-10-20T06:10:00",
+      "posted_source_time": "10/20/26 06:10",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.ajc.com/politics/2026/10/rick-jackson-has-outspent-keisha-lance-bottoms-but-democratic-enthusiasm-has-the-race-knotted/",
+      "sample_population": "lv",
+      "sample_size": 1000,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "NC-SEN",
+      "race_type": "senate",
+      "state": "NC",
+      "poll_id": "103c1a4d-03ff-4028-a49f-42de41c1d63d",
+      "question_id": "e15792fd-4ca5-4f5a-9e6c-de45fcb1a1a8",
+      "pollster": "YouGov",
+      "dem_name": "Roy Cooper",
+      "rep_name": "Michael Whatley",
+      "dem": 53.0,
+      "rep": 38.0,
+      "margin": 15.0,
+      "field_end": "2026-10-08",
+      "field_start": "2026-09-29",
+      "posted_date": "2026-10-20",
+      "posted_source_datetime": "2026-10-20T05:52:00",
+      "posted_source_time": "10/20/26 05:52",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://eloncdn.blob.core.windows.net/eu3/sites/819/2026/10/Elon-Poll-news-release-10-20-26.pdf",
+      "sample_population": "a",
+      "sample_size": 800,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "NC-SEN",
+      "race_type": "senate",
+      "state": "NC",
+      "poll_id": "103c1a4d-03ff-4028-a49f-42de41c1d63d",
+      "question_id": "7785a66f-b0dc-4d11-9b23-fb7f042114db",
+      "pollster": "YouGov",
+      "dem_name": "Roy Cooper",
+      "rep_name": "Michael Whatley",
+      "dem": 51.0,
+      "rep": 42.0,
+      "margin": 9.0,
+      "field_end": "2026-10-08",
+      "field_start": "2026-09-29",
+      "posted_date": "2026-10-20",
+      "posted_source_datetime": "2026-10-20T05:52:00",
+      "posted_source_time": "10/20/26 05:52",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://eloncdn.blob.core.windows.net/eu3/sites/819/2026/10/Elon-Poll-news-release-10-20-26.pdf",
+      "sample_population": "rv",
+      "sample_size": 691,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "NC-SEN",
+      "race_type": "senate",
+      "state": "NC",
+      "poll_id": "103c1a4d-03ff-4028-a49f-42de41c1d63d",
+      "question_id": "4c9044a2-98ed-489e-9bd7-16663be9c77c",
+      "pollster": "YouGov",
+      "dem_name": "Roy Cooper",
+      "rep_name": "Michael Whatley",
+      "dem": 54.0,
+      "rep": 43.0,
+      "margin": 11.0,
+      "field_end": "2026-10-08",
+      "field_start": "2026-09-29",
+      "posted_date": "2026-10-20",
+      "posted_source_datetime": "2026-10-20T05:52:00",
+      "posted_source_time": "10/20/26 05:52",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://eloncdn.blob.core.windows.net/eu3/sites/819/2026/10/Elon-Poll-news-release-10-20-26.pdf",
+      "sample_population": "lv",
+      "sample_size": 561,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "AL-SEN",
+      "race_type": "senate",
+      "state": "AL",
+      "poll_id": "308785d0-efaa-45ee-8e64-c6f0526eea06",
+      "question_id": "d82624ce-880c-44cf-a7c7-b2173977ae10",
+      "pollster": "The Alabama Poll",
+      "dem_name": "Everett Wess",
+      "rep_name": "Barry Moore",
+      "dem": 35.0,
+      "rep": 56.0,
+      "margin": -21.0,
+      "field_end": "2026-10-16",
+      "field_start": "2026-10-15",
+      "posted_date": "2026-10-20",
+      "posted_source_datetime": "2026-10-20T05:42:00",
+      "posted_source_time": "10/20/26 05:42",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.al.com/politics/2026/10/gop-faces-election-downturn-but-theres-no-blue-wave-for-alabama-democrats-poll-shows.html",
+      "sample_population": "lv",
+      "sample_size": 600,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "AL-GOV",
+      "race_type": "governor",
+      "state": "AL",
+      "poll_id": "308785d0-efaa-45ee-8e64-c6f0526eea06",
+      "question_id": "d1c1676e-6080-48f8-ac3f-08bb8db4929f",
+      "pollster": "The Alabama Poll",
+      "dem_name": "Doug Jones",
+      "rep_name": "Tommy Tuberville",
+      "dem": 39.0,
+      "rep": 51.0,
+      "margin": -12.0,
+      "field_end": "2026-10-16",
+      "field_start": "2026-10-15",
+      "posted_date": "2026-10-20",
+      "posted_source_datetime": "2026-10-20T05:42:00",
+      "posted_source_time": "10/20/26 05:42",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.al.com/politics/2026/10/gop-faces-election-downturn-but-theres-no-blue-wave-for-alabama-democrats-poll-shows.html",
+      "sample_population": "lv",
+      "sample_size": 600,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "RI-SEN",
       "race_type": "senate",

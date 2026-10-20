@@ -1,14 +1,14 @@
 {
   "schema_version": "bottom-up-2026-poll-environment-shadow-v1",
   "status": "SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE",
-  "polling_generated_at": "2026-10-20T09:45:30.530043Z",
+  "polling_generated_at": "2026-10-20T10:45:55.935642Z",
   "presidential_geography_year": 2026,
   "presidential_2024_national_two_party_margin_points": -1.705,
   "generic_ballot_2026_d_minus_r_points": 8.52,
   "generic_implied_vs_2024_presidential_swing_points": 10.225,
-  "independent_polling_estimated_presidential_to_race_swing_points": 8.572,
-  "bottom_up_implied_national_margin_points": 6.867,
-  "bottom_up_minus_generic_environment_points": -1.653,
+  "independent_polling_estimated_presidential_to_race_swing_points": 8.557,
+  "bottom_up_implied_national_margin_points": 6.851,
+  "bottom_up_minus_generic_environment_points": -1.669,
   "candidate_specific_effects_removed": false,
   "candidate_quality_calibration_available": false,
   "total_qualifying_races": 16,
@@ -71,7 +71,7 @@
     {
       "state": "NC",
       "number_qualifying_races": 1,
-      "swing_points": 13.698
+      "swing_points": 13.498
     },
     {
       "state": "IA",
