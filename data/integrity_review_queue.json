@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-21T07:54:45.645898Z",
+  "updated_at": "2026-10-21T08:50:32.040777Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
-    "total_leads": 235,
-    "awaiting_primary_source": 233,
+    "total_leads": 237,
+    "awaiting_primary_source": 235,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 21,
     "advisory_related_headlines": 47
@@ -254,6 +254,45 @@
     }
   ],
   "items": [
+    {
+      "id": "d3f1768c1dc89bfdf5c7",
+      "title": "Faith Leaders Unite Across Religions to Counter Voter Intimidation on Election Day in Nine Battleground States, Including Pennsylvania - Bucks County Beacon",
+      "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxNbjJqSzluUnVrbFRzaVhQZkFpSEtJNGxXQTJLZ1BjOFdsZndkR0sxOG1aRmh5SXRhb3loWjREdXBteDRJeGJtU1IxcENRSi1ZMnpibnRZaC1JWXlUYjFmVnZwbG5oZHBGTTA4bmVGeVlEeWFpUGE4dmFIRUpoZU1aMWdTc2pBOE1Yai1rSzJMcW5xU3M2MW1vcFhKNkdodVpRb0gzTlhkSGhRRGQ0dGxOVW5RUkJnUE8wT2E5dXNPelhKQnJMYUVxWDZfeG1iTXZZOU5CQWRBMUU2aUZRWC1SS0xlSGVBS0FtbzU1NmVycVdfS1N5TmI3QWlSeUozcVZmQ3c?oc=5",
+      "publisher": "Bucks County Beacon",
+      "published_at": "2026-10-21T08:00:00Z",
+      "detected_at": "2026-10-21T08:50:32.040777Z",
+      "state_hints": [
+        "PA"
+      ],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "347955b209aaf4998a3e",
+      "title": "Ohio groups take measures to protect voting during November midterm election - Ohio Capital Journal",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNUmZ3bUIzUmtfZWlybWRDZEhhZlBZckRaYTJBOTdSUGU1WFBDRHE4d21EMVphUDBWRFJkVHRaOEFyVURiVjYwTlg4X0xkNGY3QzdfSU84U3c5LXdMTDViZG9Ccy1NMlNsTXdMcDhiUGY4aTA4aGdQR2x4NmhETGx0Y09idlZISFY2a0pMQkxTc1Z5dWxVNjVhR3A0bjlieDFBb1dibmNmblVOc2tCSGFQUk1VRnY5Vl9vbWNR?oc=5",
+      "publisher": "Ohio Capital Journal",
+      "published_at": "2026-10-21T07:58:57Z",
+      "detected_at": "2026-10-21T08:50:32.040777Z",
+      "state_hints": [
+        "OH"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "1e2f71b8422d0f8fcbf6",
       "title": "Court Cases - Federal Interference with State Election Officials Challenge (DSCC) - Democracy Docket",
