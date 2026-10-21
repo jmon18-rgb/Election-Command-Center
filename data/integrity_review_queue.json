@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-21T11:46:52.498028Z",
+  "updated_at": "2026-10-21T12:57:35.719763Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 240,
-    "awaiting_primary_source": 238,
+    "total_leads": 241,
+    "awaiting_primary_source": 239,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 21,
     "advisory_related_headlines": 47
@@ -254,6 +254,24 @@
     }
   ],
   "items": [
+    {
+      "id": "81d62f6b6bf0ec19d23d",
+      "title": "Monitoring the monitors: US states prepare for surge of Justice Dept election watchers - Reuters",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNMFZ3WWlOR2pqMnVMOGNNRkxxaTByN2dOcWRkcWw0d2FkbXJoRC1JR2ZKTVNGejdaT2l1dDhkQ1NBcjk3VGpteDc2WUhyWWRyeGE2RTdrLThVQkQtc0VoRHpfTG1QU0tHZ0NVMjNfZWYwY2dGM2t1cS1RQmNxNnl3VGdWQlU4UDZIVmV3Y1preE9CUXNMem1RMDZtWjRDZDNJdXJSM0VkZWE0Skg5LTRHUVlLV29abThYa1I5UVRLaUU2OV9DcVE?oc=5",
+      "publisher": "Reuters",
+      "published_at": "2026-10-21T10:34:09Z",
+      "detected_at": "2026-10-21T12:57:35.719763Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "d4e89d42c7bf52a3742e",
       "title": "RI election officials have a plan if federal agents come to polls - The Providence Journal",
