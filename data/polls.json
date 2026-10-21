@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-21T09:47:47.994850Z",
+  "updated_at": "2026-10-21T10:46:52.295448Z",
   "generic_ballot": {
     "summary": {
       "dem": 49.5,
@@ -951,7 +951,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-21T09:47:47.994850Z",
+          "first_seen_at": "2026-10-21T10:46:52.295448Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -1656,6 +1656,28 @@
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
+          "poll_id": "c4a25cad-66f7-4bdc-b678-8a2bb31191a6",
+          "question_id": "6d2326c3-9709-4ea4-8db4-7dd3cc8b41ac",
+          "field_end": "2026-10-19",
+          "pollster": "University of North Florida",
+          "dem": 47.0,
+          "rep": 49.0,
+          "margin": -2.0,
+          "sample_size": 1471,
+          "partisan_lean": "",
+          "dem_name": "David Jolly",
+          "rep_name": "Byron Donalds",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-21T10:46:52.681952+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-21",
+          "source_poll_url": "https://floridapolitics.com/archives/825948-unf-poll-governors-race-too-close-to-call-in-final-days/",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
+        {
           "poll_id": "9d12cd34-fa83-4c73-a199-6ddf0a513808",
           "field_end": "2026-10-15",
           "pollster": "YouGov",
@@ -1909,7 +1931,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 14,
+      "recent_poll_count": 15,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -2286,7 +2308,7 @@
           "rep_name": "Jon Husted",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-21T09:47:47.994850Z",
+          "first_seen_at": "2026-10-21T10:46:52.295448Z",
           "release_date": null,
           "question_id": "a101b63d-1983-4681-9db7-fa3a2dd3fc0a",
           "sample_population": "lv",
@@ -3435,6 +3457,28 @@
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
+          "poll_id": "7d62a66c-24e9-488e-b8a3-3abd834b7208",
+          "question_id": "f16bad60-868b-4139-890d-b89ef0bf2155",
+          "field_end": "2026-10-15",
+          "pollster": "University of Georgia",
+          "dem": 48.0,
+          "rep": 40.0,
+          "margin": 8.0,
+          "sample_size": 1000,
+          "partisan_lean": "",
+          "dem_name": "Jon Ossoff",
+          "rep_name": "Mike Collins",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-21T10:46:52.681952+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-20",
+          "source_poll_url": "https://www.ajc.com/politics/2026/10/rick-jackson-has-outspent-keisha-lance-bottoms-but-democratic-enthusiasm-has-the-race-knotted/",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
+        {
           "poll_id": "7e60bd8f-c327-4ae6-822f-706061debcf6",
           "field_end": "2026-10-09",
           "pollster": "Trafalgar Group",
@@ -3568,7 +3612,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 10,
+      "recent_poll_count": 11,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -5336,7 +5380,7 @@
         "rep_name": "Nick Begich",
         "other": 42.0,
         "other_name": "Bill Hill",
-        "first_seen_at": "2026-10-21T09:47:47.994850Z",
+        "first_seen_at": "2026-10-21T10:46:52.295448Z",
         "release_date": null,
         "question_id": "843ff988-f9ae-4553-8aa9-3b87af20e024",
         "sample_population": "lv",
@@ -5360,7 +5404,7 @@
           "rep_name": "Nick Begich",
           "other": 42.0,
           "other_name": "Bill Hill",
-          "first_seen_at": "2026-10-21T09:47:47.994850Z",
+          "first_seen_at": "2026-10-21T10:46:52.295448Z",
           "release_date": null,
           "question_id": "843ff988-f9ae-4553-8aa9-3b87af20e024",
           "sample_population": "lv",
@@ -7211,7 +7255,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-21T09:47:47.994850Z",
+        "first_seen_at": "2026-10-21T10:46:52.295448Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -7235,7 +7279,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-21T09:47:47.994850Z",
+          "first_seen_at": "2026-10-21T10:46:52.295448Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -8239,7 +8283,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-21T09:47:47.994850Z",
+        "first_seen_at": "2026-10-21T10:46:52.295448Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -8263,7 +8307,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-21T09:47:47.994850Z",
+          "first_seen_at": "2026-10-21T10:46:52.295448Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -16602,7 +16646,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-21T09:47:47.994850Z",
+    "last_attempt_at": "2026-10-21T10:46:52.295448Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -16613,44 +16657,44 @@
   "changes": {
     "new_polls": [
       {
-        "race_code": "MI-SEN",
-        "race_type": "senate",
-        "poll_id": "fcc4e329-5654-4b25-9327-d06c9677abdc",
-        "pollster": "Marist University",
-        "field_end": "2026-10-18",
-        "dem": 50.0,
-        "rep": 48.0,
-        "margin": 2.0,
-        "dem_name": "Abdul El-Sayed",
-        "rep_name": "Mike Rogers",
-        "sample_size": 1185,
-        "first_seen_at": "2026-10-21T09:47:48.316443+00:00",
+        "race_code": "FL-GOV",
+        "race_type": "governor",
+        "poll_id": "c4a25cad-66f7-4bdc-b678-8a2bb31191a6",
+        "pollster": "University of North Florida",
+        "field_end": "2026-10-19",
+        "dem": 47.0,
+        "rep": 49.0,
+        "margin": -2.0,
+        "dem_name": "David Jolly",
+        "rep_name": "Byron Donalds",
+        "sample_size": 1471,
+        "first_seen_at": "2026-10-21T10:46:52.681952+00:00",
         "release_date": null,
-        "source_url": "https://maristpoll.marist.edu/polls/midterm-elections-in-michigan-october-2026/",
+        "source_url": "https://floridapolitics.com/archives/825948-unf-poll-governors-race-too-close-to-call-in-final-days/",
         "source": "pollresults_secondary_fallback"
       },
       {
-        "race_code": "MI-GOV",
-        "race_type": "governor",
-        "poll_id": "fcc4e329-5654-4b25-9327-d06c9677abdc",
-        "pollster": "Marist University",
-        "field_end": "2026-10-18",
-        "dem": 51.0,
-        "rep": 45.0,
-        "margin": 6.0,
-        "dem_name": "Jocelyn Benson",
-        "rep_name": "John James",
-        "sample_size": 1185,
-        "first_seen_at": "2026-10-21T09:47:48.316443+00:00",
+        "race_code": "GA-SEN",
+        "race_type": "senate",
+        "poll_id": "7d62a66c-24e9-488e-b8a3-3abd834b7208",
+        "pollster": "University of Georgia",
+        "field_end": "2026-10-15",
+        "dem": 48.0,
+        "rep": 40.0,
+        "margin": 8.0,
+        "dem_name": "Jon Ossoff",
+        "rep_name": "Mike Collins",
+        "sample_size": 1000,
+        "first_seen_at": "2026-10-21T10:46:52.681952+00:00",
         "release_date": null,
-        "source_url": "https://maristpoll.marist.edu/polls/midterm-elections-in-michigan-october-2026/",
+        "source_url": "https://www.ajc.com/politics/2026/10/rick-jackson-has-outspent-keisha-lance-bottoms-but-democratic-enthusiasm-has-the-race-knotted/",
         "source": "pollresults_secondary_fallback"
       }
     ],
     "new_poll_count": 2,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-21T09:47:47.994850Z",
-    "previous_snapshot_at": "2026-10-21T08:50:32.233536Z",
+    "comparison_at": "2026-10-21T10:46:52.295448Z",
+    "previous_snapshot_at": "2026-10-21T09:47:47.994850Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -16722,16 +16766,16 @@
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 284,
+    "matched_observations": 286,
     "newly_injected_into_model": 2,
     "newly_injected_by_race": {
-      "MI-GOV": 1,
-      "MI-SEN": 1
+      "FL-GOV": 1,
+      "GA-SEN": 1
     },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
-    "carried_forward_current_observations": 4,
+    "carried_forward_current_observations": 6,
     "provenance": "PollResults source-linked fallback; original first_seen_at retained"
   }
 }

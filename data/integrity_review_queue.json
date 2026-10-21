@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-21T09:47:47.678335Z",
+  "updated_at": "2026-10-21T10:46:51.981755Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "review_metrics": {
-    "total_leads": 238,
-    "awaiting_primary_source": 236,
+    "total_leads": 240,
+    "awaiting_primary_source": 238,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 21,
     "advisory_related_headlines": 47
@@ -255,6 +255,23 @@
   ],
   "items": [
     {
+      "id": "d4e89d42c7bf52a3742e",
+      "title": "RI election officials have a plan if federal agents come to polls - The Providence Journal",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPeHZiY0NlNTlISlJ3S2d4Q1l6OUFEYXplb3F0Z0FtUGdCZko3bGtJRXRWRVhsWWRobl8ybExHVDduX0Y2bHhQWE95M1kwallQM2htblU2R041ZmhFMF9rdlotd0ZZa2NvWGVLeV8xV0Vwczd3UlNfQ0dEOWtjRE51ZE5ZSU1FaFo4aHdzdXBfN1k5bXBWcTAyRDBfb2F4cmxlUy1GbHdkYmFFUXFMRDc2d3lCUE1JMzdkbEI4NlQtaGdFTWlFTHN5ZVgteVlKel9kT1RQQkhjRUJmM2s?oc=5",
+      "publisher": "The Providence Journal",
+      "published_at": "2026-10-21T10:04:00Z",
+      "detected_at": "2026-10-21T10:46:51.981755Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "049faea71b94a44bdb4f",
       "title": "Amid election challenges, Mass. election officials reassure voters - WGBH",
       "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPNjdlbG9ZZ0lQcDQ4VHItcjFYVDhyVkRoWXBOMmsyeW01S2Y5Y2ZPalBHSTB1ZEJFYW5UZkdMQUVnWXBDWjNhZ1I4bFFOZ2ZDOGppblJXSzJXTFZsN3VEcXRKMUl6U29IWU15endnUzZPSVJWODJYUGtWNWxiYTZURldVMm02OXlkWDdobzlFT0hhRWFmYkY0ckZiRDZNYzVxNXBLSXZpMlJ3NTA?oc=5",
@@ -401,6 +418,25 @@
       ],
       "headline_numbers_unverified": [
         "2026"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "ea5bf057cb52b9bab8a2",
+      "title": "Explainer: Three issues defining the 2026 US midterm elections - Reuters",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQLWRpTF93cTF0cl9YYWU4bDBNcHRtSmlaR21FemFtZ3BFZkFOWng3NjhtTHhQNWhtSnRUbm5TZTNld3ZUTmxWSDFRVXRzQTNHUElfU0pibVAtQWxPc3NIcjNjWkVnNG5kb24tN0NvU0VCbDl4OFpxRjc3VC1pTlRXb2hrbkVpaGJjRTFSS1p3TTdSclhVX2NF?oc=5",
+      "publisher": "Reuters",
+      "published_at": "2026-10-20T21:23:43Z",
+      "detected_at": "2026-10-21T10:46:51.981755Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],

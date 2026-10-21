@@ -1,35 +1,83 @@
 {
-  "updated_at": "2026-10-21T09:47:48.316443+00:00",
+  "updated_at": "2026-10-21T10:46:52.681952+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 791,
+      "available_in_source": 793,
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1209,
+      "available_in_source": 1210,
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 895,
+      "available_in_source": 896,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 284,
+  "matched_primary_observations": 286,
   "newly_injected_into_model": 2,
   "injected_poll_ids": [
     {
-      "race_code": "MI-GOV",
-      "poll_id": "fcc4e329-5654-4b25-9327-d06c9677abdc"
+      "race_code": "FL-GOV",
+      "poll_id": "c4a25cad-66f7-4bdc-b678-8a2bb31191a6"
     },
     {
-      "race_code": "MI-SEN",
-      "poll_id": "fcc4e329-5654-4b25-9327-d06c9677abdc"
+      "race_code": "GA-SEN",
+      "poll_id": "7d62a66c-24e9-488e-b8a3-3abd834b7208"
     }
   ],
   "observations": [
+    {
+      "race_code": "FL-SEN",
+      "race_type": "senate",
+      "state": "FL",
+      "poll_id": "c4a25cad-66f7-4bdc-b678-8a2bb31191a6",
+      "question_id": "41cbc861-90e0-4471-87f4-921689304ff6",
+      "pollster": "University of North Florida",
+      "dem_name": "Angie Nixon",
+      "rep_name": "Ashley Moody",
+      "dem": 43.0,
+      "rep": 47.0,
+      "margin": -4.0,
+      "field_end": "2026-10-19",
+      "field_start": "2026-10-12",
+      "posted_date": "2026-10-21",
+      "posted_source_datetime": "2026-10-21T06:21:00",
+      "posted_source_time": "10/21/26 06:21",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://floridapolitics.com/archives/825948-unf-poll-governors-race-too-close-to-call-in-final-days/",
+      "sample_population": "lv",
+      "sample_size": 1471,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "FL-GOV",
+      "race_type": "governor",
+      "state": "FL",
+      "poll_id": "c4a25cad-66f7-4bdc-b678-8a2bb31191a6",
+      "question_id": "6d2326c3-9709-4ea4-8db4-7dd3cc8b41ac",
+      "pollster": "University of North Florida",
+      "dem_name": "David Jolly",
+      "rep_name": "Byron Donalds",
+      "dem": 47.0,
+      "rep": 49.0,
+      "margin": -2.0,
+      "field_end": "2026-10-19",
+      "field_start": "2026-10-12",
+      "posted_date": "2026-10-21",
+      "posted_source_datetime": "2026-10-21T06:21:00",
+      "posted_source_time": "10/21/26 06:21",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://floridapolitics.com/archives/825948-unf-poll-governors-race-too-close-to-call-in-final-days/",
+      "sample_population": "lv",
+      "sample_size": 1471,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "MI-SEN",
       "race_type": "senate",
@@ -915,6 +963,30 @@
       "source_url": "https://x.com/The_Real_ASR/status/2112415183226429942",
       "sample_population": "lv",
       "sample_size": 1568,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "GA-SEN",
+      "race_type": "senate",
+      "state": "GA",
+      "poll_id": "7d62a66c-24e9-488e-b8a3-3abd834b7208",
+      "question_id": "f16bad60-868b-4139-890d-b89ef0bf2155",
+      "pollster": "University of Georgia",
+      "dem_name": "Jon Ossoff",
+      "rep_name": "Mike Collins",
+      "dem": 48.0,
+      "rep": 40.0,
+      "margin": 8.0,
+      "field_end": "2026-10-15",
+      "field_start": "2026-10-07",
+      "posted_date": "2026-10-20",
+      "posted_source_datetime": "2026-10-20T06:10:00",
+      "posted_source_time": "10/20/26 06:10",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.ajc.com/politics/2026/10/rick-jackson-has-outspent-keisha-lance-bottoms-but-democratic-enthusiasm-has-the-race-knotted/",
+      "sample_population": "lv",
+      "sample_size": 1000,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
