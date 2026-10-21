@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-21T10:46:52.681952+00:00",
+  "updated_at": "2026-10-21T11:46:53.549162+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,7 +9,7 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1210,
+      "available_in_source": 1211,
       "records_examined": 200
     },
     "governor": {
@@ -17,18 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 286,
-  "newly_injected_into_model": 2,
-  "injected_poll_ids": [
-    {
-      "race_code": "FL-GOV",
-      "poll_id": "c4a25cad-66f7-4bdc-b678-8a2bb31191a6"
-    },
-    {
-      "race_code": "GA-SEN",
-      "poll_id": "7d62a66c-24e9-488e-b8a3-3abd834b7208"
-    }
-  ],
+  "matched_primary_observations": 288,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "FL-SEN",
