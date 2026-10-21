@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-21T13:52:55.266674+00:00",
+  "updated_at": "2026-10-21T14:48:11.337614+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,7 +9,7 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1226,
+      "available_in_source": 1227,
       "records_examined": 300
     },
     "governor": {
@@ -17,27 +17,39 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 288,
-  "newly_injected_into_model": 4,
+  "matched_primary_observations": 292,
+  "newly_injected_into_model": 1,
   "injected_poll_ids": [
     {
-      "race_code": "CA-GOV",
-      "poll_id": "7bcda6a1-bece-4691-8f91-c03c320dac61"
-    },
-    {
-      "race_code": "CA-GOV",
-      "poll_id": "ed8151a7-635e-4793-a572-e0f73b2eb3ae"
-    },
-    {
-      "race_code": "SD-01",
-      "poll_id": "06cde9f9-1d19-466c-b7aa-42e4ec649862"
-    },
-    {
-      "race_code": "SD-GOV",
-      "poll_id": "63c68bf6-de25-4b0a-959c-db140e6a0080"
+      "race_code": "FL-21",
+      "poll_id": "d8295b6d-380c-47b0-abec-98c91b8a9c1f"
     }
   ],
   "observations": [
+    {
+      "race_code": "FL-21",
+      "race_type": "house",
+      "state": "FL",
+      "poll_id": "d8295b6d-380c-47b0-abec-98c91b8a9c1f",
+      "question_id": "4d5dbbec-466e-4c3b-b80d-c3242475db05",
+      "pollster": "Upswing Research",
+      "dem_name": "James Martin",
+      "rep_name": "Brian Mast",
+      "dem": 38.0,
+      "rep": 49.0,
+      "margin": -11.0,
+      "field_end": "2026-09-25",
+      "field_start": "2026-09-21",
+      "posted_date": "2026-10-21",
+      "posted_source_datetime": "2026-10-21T09:48:00",
+      "posted_source_time": "10/21/26 09:48",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.tcpalm.com/story/news/politics/elections/2026/10/21/florida-election-poll-republican-brian-mast-democrat-james-martin-tied-house-district-21-upswing",
+      "sample_population": "lv",
+      "sample_size": 402,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "TX-15",
       "race_type": "house",

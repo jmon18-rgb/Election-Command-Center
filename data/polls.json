@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-21T13:52:54.725529Z",
+  "updated_at": "2026-10-21T14:48:10.515756Z",
   "generic_ballot": {
     "summary": {
       "dem": 49.5,
@@ -951,7 +951,7 @@
           "rep_name": "Ashley Hinson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-21T13:52:54.725529Z",
+          "first_seen_at": "2026-10-21T14:48:10.515756Z",
           "release_date": null,
           "question_id": "f98c9121-3e56-439d-9062-ddb5b96dfb05",
           "sample_population": "lv",
@@ -2308,7 +2308,7 @@
           "rep_name": "Jon Husted",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-21T13:52:54.725529Z",
+          "first_seen_at": "2026-10-21T14:48:10.515756Z",
           "release_date": null,
           "question_id": "a101b63d-1983-4681-9db7-fa3a2dd3fc0a",
           "sample_population": "lv",
@@ -5425,7 +5425,7 @@
         "rep_name": "Nick Begich",
         "other": 42.0,
         "other_name": "Bill Hill",
-        "first_seen_at": "2026-10-21T13:52:54.725529Z",
+        "first_seen_at": "2026-10-21T14:48:10.515756Z",
         "release_date": null,
         "question_id": "843ff988-f9ae-4553-8aa9-3b87af20e024",
         "sample_population": "lv",
@@ -5449,7 +5449,7 @@
           "rep_name": "Nick Begich",
           "other": 42.0,
           "other_name": "Bill Hill",
-          "first_seen_at": "2026-10-21T13:52:54.725529Z",
+          "first_seen_at": "2026-10-21T14:48:10.515756Z",
           "release_date": null,
           "question_id": "843ff988-f9ae-4553-8aa9-3b87af20e024",
           "sample_population": "lv",
@@ -7300,7 +7300,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-21T13:52:54.725529Z",
+        "first_seen_at": "2026-10-21T14:48:10.515756Z",
         "release_date": null,
         "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
         "sample_population": "lv",
@@ -7324,7 +7324,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-21T13:52:54.725529Z",
+          "first_seen_at": "2026-10-21T14:48:10.515756Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -8350,7 +8350,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-21T13:52:54.725529Z",
+        "first_seen_at": "2026-10-21T14:48:10.515756Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -8374,7 +8374,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-21T13:52:54.725529Z",
+          "first_seen_at": "2026-10-21T14:48:10.515756Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -16723,6 +16723,63 @@
       ],
       "recent_poll_count": 2,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
+    },
+    {
+      "race_code": "FL-21",
+      "race_type": "house",
+      "state": "FL",
+      "district": "21",
+      "polls": [
+        {
+          "poll_id": "d8295b6d-380c-47b0-abec-98c91b8a9c1f",
+          "question_id": "4d5dbbec-466e-4c3b-b80d-c3242475db05",
+          "field_end": "2026-09-25",
+          "pollster": "Upswing Research",
+          "dem": 38.0,
+          "rep": 49.0,
+          "margin": -11.0,
+          "sample_size": 402,
+          "partisan_lean": "D",
+          "dem_name": "James Martin",
+          "rep_name": "Brian Mast",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-21T14:48:11.337614+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-21",
+          "source_poll_url": "https://www.tcpalm.com/story/news/politics/elections/2026/10/21/florida-election-poll-republican-brian-mast-democrat-james-martin-tied-house-district-21-upswing",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        }
+      ],
+      "recent_poll_count": 1,
+      "latest_field_end": "2026-09-25",
+      "latest": {
+        "poll_id": "d8295b6d-380c-47b0-abec-98c91b8a9c1f",
+        "question_id": "4d5dbbec-466e-4c3b-b80d-c3242475db05",
+        "field_end": "2026-09-25",
+        "pollster": "Upswing Research",
+        "dem": 38.0,
+        "rep": 49.0,
+        "margin": -11.0,
+        "sample_size": 402,
+        "partisan_lean": "D",
+        "dem_name": "James Martin",
+        "rep_name": "Brian Mast",
+        "other": null,
+        "other_name": null,
+        "first_seen_at": "2026-10-21T14:48:11.337614+00:00",
+        "release_date": null,
+        "upstream_posted_date": "2026-10-21",
+        "source_poll_url": "https://www.tcpalm.com/story/news/politics/elections/2026/10/21/florida-election-poll-republican-brian-mast-democrat-james-martin-tied-house-district-21-upswing",
+        "sample_population": "lv",
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
+      },
+      "source_url": "https://pollresults.org/",
+      "model_race_source": "pollresults_bootstrap",
+      "matchup_provenance": "Latest unambiguous source-linked 2026 matchup; verify ballot independently"
     }
   ],
   "source": {
@@ -16736,7 +16793,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-21T13:52:54.725529Z",
+    "last_attempt_at": "2026-10-21T14:48:10.515756Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -16747,78 +16804,27 @@
   "changes": {
     "new_polls": [
       {
-        "race_code": "CA-GOV",
-        "race_type": "governor",
-        "poll_id": "ed8151a7-635e-4793-a572-e0f73b2eb3ae",
-        "pollster": "Emerson College",
-        "field_end": "2026-10-19",
-        "dem": 63.63,
-        "rep": 36.37,
-        "margin": 27.26,
-        "dem_name": "Xavier Becerra",
-        "rep_name": "Steve Hilton",
-        "sample_size": 1000,
-        "first_seen_at": "2026-10-21T13:52:55.266674+00:00",
-        "release_date": null,
-        "source_url": "https://emersoncollegepolling.com/california-2026-poll-xavier-becerra-holds-27-point-lead-over-steve-hilton/",
-        "source": "pollresults_secondary_fallback"
-      },
-      {
-        "race_code": "CA-GOV",
-        "race_type": "governor",
-        "poll_id": "7bcda6a1-bece-4691-8f91-c03c320dac61",
-        "pollster": "TrueDot",
-        "field_end": "2026-10-14",
-        "dem": 55.0,
-        "rep": 35.0,
-        "margin": 20.0,
-        "dem_name": "Xavier Becerra",
-        "rep_name": "Steve Hilton",
-        "sample_size": 909,
-        "first_seen_at": "2026-10-21T13:52:55.266674+00:00",
-        "release_date": null,
-        "source_url": "https://www.politico.com/newsletters/california-playbook/2026/10/19/the-billionaire-tax-isnt-breaking-through-01125880",
-        "source": "pollresults_secondary_fallback"
-      },
-      {
-        "race_code": "SD-01",
+        "race_code": "FL-21",
         "race_type": "house",
-        "poll_id": "06cde9f9-1d19-466c-b7aa-42e4ec649862",
-        "pollster": "Mason-Dixon Polling & Research, Inc.",
-        "field_end": "2026-10-14",
-        "dem": 32.0,
-        "rep": 60.0,
-        "margin": -28.0,
-        "dem_name": "Nikki Gronli",
-        "rep_name": "Marty Jackley",
-        "sample_size": 500,
-        "first_seen_at": "2026-10-21T13:52:55.266674+00:00",
-        "release_date": null,
-        "source_url": "https://www.sdnewswatch.org/south-dakota-poll-2026-governor-ahlers-rhoden/",
-        "source": "pollresults_secondary_fallback"
-      },
-      {
-        "race_code": "SD-GOV",
-        "race_type": "governor",
-        "poll_id": "63c68bf6-de25-4b0a-959c-db140e6a0080",
-        "pollster": "Concord Public Opinion Partners",
-        "field_end": "2026-10-08",
+        "poll_id": "d8295b6d-380c-47b0-abec-98c91b8a9c1f",
+        "pollster": "Upswing Research",
+        "field_end": "2026-09-25",
         "dem": 38.0,
-        "rep": 48.0,
-        "margin": -10.0,
-        "dem_name": "Daniel P. Ahlers",
-        "rep_name": "Larry Rhoden",
-        "sample_size": 400,
-        "first_seen_at": "2026-10-21T13:52:55.266674+00:00",
+        "rep": 49.0,
+        "margin": -11.0,
+        "dem_name": "James Martin",
+        "rep_name": "Brian Mast",
+        "sample_size": 402,
+        "first_seen_at": "2026-10-21T14:48:11.337614+00:00",
         "release_date": null,
-        "source_url": "https://www.documentcloud.org/documents/28817212-sd-sen-gov-concord-public-opinion-partners-oct-2026/",
+        "source_url": "https://www.tcpalm.com/story/news/politics/elections/2026/10/21/florida-election-poll-republican-brian-mast-democrat-james-martin-tied-house-district-21-upswing",
         "source": "pollresults_secondary_fallback"
       }
     ],
-    "new_poll_count": 4,
+    "new_poll_count": 1,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-21T13:52:54.725529Z",
-    "previous_snapshot_at": "2026-10-21T12:57:36.013052Z",
+    "comparison_at": "2026-10-21T14:48:10.515756Z",
+    "previous_snapshot_at": "2026-10-21T13:52:54.725529Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -16890,17 +16896,15 @@
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 288,
-    "newly_injected_into_model": 4,
+    "matched_observations": 292,
+    "newly_injected_into_model": 1,
     "newly_injected_by_race": {
-      "CA-GOV": 2,
-      "SD-01": 1,
-      "SD-GOV": 1
+      "FL-21": 1
     },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
-    "carried_forward_current_observations": 8,
+    "carried_forward_current_observations": 12,
     "provenance": "PollResults source-linked fallback; original first_seen_at retained"
   }
 }
