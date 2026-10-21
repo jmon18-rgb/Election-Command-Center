@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-21T03:47:01.754633Z",
+  "updated_at": "2026-10-21T04:45:39.077932Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 233,
-    "awaiting_primary_source": 231,
+    "total_leads": 234,
+    "awaiting_primary_source": 232,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 21,
     "advisory_related_headlines": 47
@@ -347,6 +347,28 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "297d9c03c742c179ce4e",
+      "title": "Georgia could have an automatic recount in 2026 under new law - Ballotpedia News",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxObnVFVGtfS0gtRW84U2dZMm5BUEVKRlpXbU9ORnBNMmxxYk55ZU12SUNucmZZZUE4VmRDNEI1ZHFoX3pialF2bGVyTmd3WE1SMmV1cndDMTRrVHlmblZWRlg0OUZWRkJHUGZiVUlDTUpoTXdXM194SXNnby1aOTMtR0NtdEFxa2FNV1NpYjlWSzByU2tIODVwUEw1Qnd2QlJ2SmQxVTM2bw?oc=5",
+      "publisher": "Ballotpedia News",
+      "published_at": "2026-10-20T20:41:17Z",
+      "detected_at": "2026-10-21T04:45:39.077932Z",
+      "state_hints": [
+        "GA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
