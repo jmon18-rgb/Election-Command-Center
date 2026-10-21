@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-20T23:41:16.474283Z",
+  "updated_at": "2026-10-21T00:58:21.300668Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
-    "total_leads": 228,
-    "awaiting_primary_source": 226,
+    "total_leads": 230,
+    "awaiting_primary_source": 228,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 21,
     "advisory_related_headlines": 47
@@ -254,6 +254,48 @@
     }
   ],
   "items": [
+    {
+      "id": "71bfe27c9db9259369f2",
+      "title": "\u2018Borders on the absurd.\u2019 California fights Trump lawsuit to set aside 20,000 ballots - CalMatters",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE14a3FwQnNPMHlDUkUyVGdiYkl2RlNmSWhsbHhWQnRFMHFOUEVTU1NtWXV5bjhybGZmenVQZ0dNa0lXOHFsQ3FLMjhtNTltaXRlR2tpd3U3YkxWNGwwcGVLX25NRTA0ZlUweWUwRG50ZmRQRG5sTU5WdXVzYmM3QQ?oc=5",
+      "publisher": "CalMatters",
+      "published_at": "2026-10-21T00:21:45Z",
+      "detected_at": "2026-10-21T00:58:21.300668Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 ballots"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "2dc1f495d8601588e605",
+      "title": "How to vote in NYC 2026: Dates, ballot proposals, rights - Epicenter NYC",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE94bkMxcmh0S0VWMkJuZEtxTVlFZGI2aUtPWFdueDFreEVVM2kzZWFnV2dCQjFmWjg1N0tUNEVDZF93SnktaE9sMXNiUHFVQ0xaUnJFQ1dmRFM5VnZWYlpYRmVkNEkyTU5JeDBmNlJFc3lEdw?oc=5",
+      "publisher": "Epicenter NYC",
+      "published_at": "2026-10-20T23:29:44Z",
+      "detected_at": "2026-10-21T00:58:21.300668Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "security"
+      ],
+      "headline_numbers_unverified": [
+        "2026"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "3784a9b75d341496f054",
       "title": "Maryland election officials prepare for polling place disruptions - WBAL-TV",
