@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-21T00:58:22.464799+00:00",
+  "updated_at": "2026-10-21T01:47:30.754636+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,26 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 280,
-  "newly_injected_into_model": 4,
-  "injected_poll_ids": [
-    {
-      "race_code": "GA-GOV",
-      "poll_id": "cdd3b098-9001-4148-9363-4b4bca2ca3d6"
-    },
-    {
-      "race_code": "GA-SEN",
-      "poll_id": "cdd3b098-9001-4148-9363-4b4bca2ca3d6"
-    },
-    {
-      "race_code": "IL-SEN",
-      "poll_id": "202cde3e-e29c-4102-b9e9-b80eed0b2752"
-    },
-    {
-      "race_code": "NC-SEN",
-      "poll_id": "cde4fbaa-f2f0-4516-8b3b-c7c9183424aa"
-    }
-  ],
+  "matched_primary_observations": 284,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "GA-SEN",

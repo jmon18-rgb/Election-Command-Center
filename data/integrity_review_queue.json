@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-21T00:58:21.300668Z",
+  "updated_at": "2026-10-21T01:47:30.294329Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 3,
   "review_metrics": {
-    "total_leads": 230,
-    "awaiting_primary_source": 228,
+    "total_leads": 233,
+    "awaiting_primary_source": 231,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 21,
     "advisory_related_headlines": 47
@@ -255,6 +255,24 @@
   ],
   "items": [
     {
+      "id": "97e31b4f51e964976527",
+      "title": "Democrats sue to block Trump admin from threatening the midterms - Democracy Docket",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOZEJOVHN0NmdUUG5kWGVqOFdiczdkV01nbW96N0tDUVJ3ZmZ0OGRLRWpRZmZZVDE0XzNES0R1NDQ4cXNaSDZCOE1YejM2dlFZeG5pNnlYdjE0QzhCSkprTUwzT3dXQWFXMjJoUGFWN013VUVhcHBmd2pHWU53Rm9NZGlDRXR4bmJUZzdCSVQtTERmQXZoUkkzZFhQRGU3ejYxVjhISGRXbmpDQ2NrYnc?oc=5",
+      "publisher": "Democracy Docket",
+      "published_at": "2026-10-21T01:44:22Z",
+      "detected_at": "2026-10-21T01:47:30.294329Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "71bfe27c9db9259369f2",
       "title": "\u2018Borders on the absurd.\u2019 California fights Trump lawsuit to set aside 20,000 ballots - CalMatters",
       "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE14a3FwQnNPMHlDUkUyVGdiYkl2RlNmSWhsbHhWQnRFMHFOUEVTU1NtWXV5bjhybGZmenVQZ0dNa0lXOHFsQ3FLMjhtNTltaXRlR2tpd3U3YkxWNGwwcGVLX25NRTA0ZlUweWUwRG50ZmRQRG5sTU5WdXVzYmM3QQ?oc=5",
@@ -271,6 +289,24 @@
       "headline_numbers_unverified": [
         "20,000 ballots"
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "ec3a7f9a1ebec12e6513",
+      "title": "Voters, election officials report scanner issues at early voting site in Leon Valley - KSAT",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOcl81dVBtTE1hV0pzM190YmltMlBUcEFoT2w2cVBBR3R2N1A5Mjhnakw1RFVjTUx0TmhxanhNcTAyaFBkd3dkS1pFcHdsVUQtbktfcVVIT19ORGtIQk55V0ZaUU9QUFI5blJMcE0xOFJkX3U3c1l1X3pzd3RXblJ1aV9HLTNPSnhRRzd2SkpiUzZVVk9ERy1Uc1dGLVNsUHRSNnhnMGFkSmMtV1VMMndlTTlTVHFPbmtwNVVHSXAwYjQzSnQySnc?oc=5",
+      "publisher": "KSAT",
+      "published_at": "2026-10-20T23:39:49Z",
+      "detected_at": "2026-10-21T01:47:30.294329Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -308,6 +344,23 @@
       ],
       "topic_hints": [
         "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "ec430b8d9b7a02f34aa9",
+      "title": "A Massive Voter Turnout on Election Day Could Deter Any Violence Being Planned by Feds - OB Rag",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQRTRObzdMOWlmdkgtZXJwUHNmZ3B4TmVvYWh3ZFRhTmtBa2tFT05nOVl0U2dYdXFHbDFhQUpSTHpYRkZ0RTE2bXkyaW1IdEYxVUlONkx2NG5lSDJlNXVWMVltQnp3N1BDSnVQZWp5TUx1bl9VRFdQOHVwZU5KdGl0R09VNjF0bGhReVJLbXduenR6amp0aFRLcDE2T2Z0T1VVZFEwRGZzVlZ4bl91a1M1NTkxVQ?oc=5",
+      "publisher": "OB Rag",
+      "published_at": "2026-10-20T20:18:20Z",
+      "detected_at": "2026-10-21T01:47:30.294329Z",
+      "state_hints": [],
+      "topic_hints": [
         "election_admin"
       ],
       "headline_numbers_unverified": [],
