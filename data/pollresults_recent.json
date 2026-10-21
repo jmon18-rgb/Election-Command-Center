@@ -1,26 +1,107 @@
 {
-  "updated_at": "2026-10-21T08:50:32.674836+00:00",
+  "updated_at": "2026-10-21T09:47:48.316443+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 790,
+      "available_in_source": 791,
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1208,
+      "available_in_source": 1209,
       "records_examined": 200
     },
     "governor": {
-      "available_in_source": 894,
+      "available_in_source": 895,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 284,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 2,
+  "injected_poll_ids": [
+    {
+      "race_code": "MI-GOV",
+      "poll_id": "fcc4e329-5654-4b25-9327-d06c9677abdc"
+    },
+    {
+      "race_code": "MI-SEN",
+      "poll_id": "fcc4e329-5654-4b25-9327-d06c9677abdc"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "MI-SEN",
+      "race_type": "senate",
+      "state": "MI",
+      "poll_id": "fcc4e329-5654-4b25-9327-d06c9677abdc",
+      "question_id": "b4b9f9a6-6e8b-49e7-b66f-8260c5856e3e",
+      "pollster": "Marist University",
+      "dem_name": "Abdul El-Sayed",
+      "rep_name": "Mike Rogers",
+      "dem": 52.0,
+      "rep": 45.0,
+      "margin": 7.0,
+      "field_end": "2026-10-18",
+      "field_start": "2026-10-15",
+      "posted_date": "2026-10-21",
+      "posted_source_datetime": "2026-10-21T05:29:00",
+      "posted_source_time": "10/21/26 05:29",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://maristpoll.marist.edu/polls/midterm-elections-in-michigan-october-2026/",
+      "sample_population": "rv",
+      "sample_size": 1185,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "MI-SEN",
+      "race_type": "senate",
+      "state": "MI",
+      "poll_id": "fcc4e329-5654-4b25-9327-d06c9677abdc",
+      "question_id": "78a2f4d9-d9f7-4dbb-8b02-2aacaeb5f69d",
+      "pollster": "Marist University",
+      "dem_name": "Abdul El-Sayed",
+      "rep_name": "Mike Rogers",
+      "dem": 50.0,
+      "rep": 48.0,
+      "margin": 2.0,
+      "field_end": "2026-10-18",
+      "field_start": "2026-10-15",
+      "posted_date": "2026-10-21",
+      "posted_source_datetime": "2026-10-21T05:29:00",
+      "posted_source_time": "10/21/26 05:29",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://maristpoll.marist.edu/polls/midterm-elections-in-michigan-october-2026/",
+      "sample_population": "lv",
+      "sample_size": 1185,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "MI-GOV",
+      "race_type": "governor",
+      "state": "MI",
+      "poll_id": "fcc4e329-5654-4b25-9327-d06c9677abdc",
+      "question_id": "35df2419-a275-471c-b3ac-b2ea8086d8ef",
+      "pollster": "Marist University",
+      "dem_name": "Jocelyn Benson",
+      "rep_name": "John James",
+      "dem": 51.0,
+      "rep": 45.0,
+      "margin": 6.0,
+      "field_end": "2026-10-18",
+      "field_start": "2026-10-15",
+      "posted_date": "2026-10-21",
+      "posted_source_datetime": "2026-10-21T05:29:00",
+      "posted_source_time": "10/21/26 05:29",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://maristpoll.marist.edu/polls/midterm-elections-in-michigan-october-2026/",
+      "sample_population": "lv",
+      "sample_size": 1185,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "GA-SEN",
       "race_type": "senate",

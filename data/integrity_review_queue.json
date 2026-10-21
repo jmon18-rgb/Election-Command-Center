@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-21T08:50:32.040777Z",
+  "updated_at": "2026-10-21T09:47:47.678335Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
-    "total_leads": 237,
-    "awaiting_primary_source": 235,
+    "total_leads": 238,
+    "awaiting_primary_source": 236,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 21,
     "advisory_related_headlines": 47
@@ -254,6 +254,23 @@
     }
   ],
   "items": [
+    {
+      "id": "049faea71b94a44bdb4f",
+      "title": "Amid election challenges, Mass. election officials reassure voters - WGBH",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPNjdlbG9ZZ0lQcDQ4VHItcjFYVDhyVkRoWXBOMmsyeW01S2Y5Y2ZPalBHSTB1ZEJFYW5UZkdMQUVnWXBDWjNhZ1I4bFFOZ2ZDOGppblJXSzJXTFZsN3VEcXRKMUl6U29IWU15endnUzZPSVJWODJYUGtWNWxiYTZURldVMm02OXlkWDdobzlFT0hhRWFmYkY0ckZiRDZNYzVxNXBLSXZpMlJ3NTA?oc=5",
+      "publisher": "WGBH",
+      "published_at": "2026-10-21T09:04:28Z",
+      "detected_at": "2026-10-21T09:47:47.678335Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "d3f1768c1dc89bfdf5c7",
       "title": "Faith Leaders Unite Across Religions to Counter Voter Intimidation on Election Day in Nine Battleground States, Including Pennsylvania - Bucks County Beacon",
