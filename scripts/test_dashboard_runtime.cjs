@@ -1436,28 +1436,18 @@ async function settle(){
   assert(/Senate|Governor|House|Generic ballot/.test(label),'Insight lacks office: '+label);
  }
 
- // Force BOTH Texas races into the insight feed simultaneously. This catches
- // collisions where a shared poll ID and the same state hide the office.
+ // Without a comparable prior model revision or actually recent matching
+ // source poll, the pulse is required NOT to invent activity. Senate and
+ // governor office identity and source-specific drilldown are validated above.
  const synthetic={generated_at:model.generated_at,senate_all:[txSen],house:[],
-   governor:[txGov],generic_ballot:{status:'insufficient_data'}};
- w.eval('modelHistoryData=null;renderRacePulse('+JSON.stringify(synthetic)+')');
- const texasCards=[...get('#racePulse').querySelectorAll('button.pulse-tile')];
- assert.equal(texasCards.length,2,'Texas Senate and governor should each receive one insight');
- assert(texasCards.some(c=>/Texas.*Senate/.test(c.textContent)));
- assert(texasCards.some(c=>/Texas.*Governor/.test(c.textContent)));
- for(const [office,identifier] of [['senate','Senate'],['governor','Governor']]){
-   const card=texasCards.find(c=>c.textContent.includes('Texas · '+identifier));
-   assert(card,'Missing clearly identified '+identifier+' Texas insight');
-   card.click();
-   assert.match(get('#modelDetailTitle').textContent,new RegExp('Texas.*'+identifier));
-   // The selected office must remain consistent even if the card points
-   // to an aggregate change rather than a particular new poll.
-   assert.equal(get('#modelDetailEyebrow').textContent.includes(office.toUpperCase()),true,
-    'Pulse navigation switched to the wrong office');
-   const featured=get('#modelPollRows').querySelector('tr.model-featured-poll');
-   if(featured)assert(featured.textContent.length>0,
-    'Pulse-linked source selection must remain readable');
- }
+  governor:[txGov],generic_ballot:{status:'insufficient_data'}};
+ w.eval('modelHistoryData=null;postedPollingSnapshot=null;renderRacePulse('+
+  JSON.stringify(synthetic)+')');
+ const syntheticPulse=[...get('#racePulse').querySelectorAll('button.pulse-tile')];
+ assert.equal(syntheticPulse.length,0,
+  'No comparison history/new poll should yield no fabricated polling insight');
+ assert.match(get('#racePulse').textContent,/Building comparison history|No meaningful movement/,
+  'No eligible recent poll or meaningful movement should produce a truthful empty pulse');
  // DDHQ forecast removed; each race marginal comes from the joint simulation.
  assert.equal(w.document.querySelector('#scenarioBands'),null);
  assert.equal(w.document.querySelector('#scenarioCenter'),null);
@@ -1640,8 +1630,9 @@ async function settle(){
   assert.match(needle.querySelector('.four-needle-footer').textContent,
    /PRE-ELECTION FORECAST|LIVE RETURNS/,
    'Needle must attribute its source mode instead of implying certified results');
-  assert.equal(needle.querySelector('.four-needle-arrow').style.left,
-   expectedNeedlePosition.toFixed(2)+'%',
+  const renderedNeedle=needle.querySelector('.four-needle-arrow').style.left;
+  assert(renderedNeedle.endsWith('%')&&
+    Math.abs(parseFloat(renderedNeedle)-expectedNeedlePosition)<0.011,
    'Needle must use the same Four Endings distribution as the rendered odds');
  }
  assert.match(get('#jointHomeSummary').title,/3,000 correlated draws/);

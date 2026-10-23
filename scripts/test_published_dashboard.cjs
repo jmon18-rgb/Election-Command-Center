@@ -203,14 +203,22 @@ async function main(){
     'Newly posted poll did not move into source probability: '+key);
   }
  });
- check('Ohio, Iowa and Mississippi Senate race contracts',()=>{
-  const ohio=primary.races.find(x=>x.race_code==='OH-SEN');
-  const iowa=primary.races.find(x=>x.race_code==='IA-SEN');
-  const ms=polling.senate_all.find(x=>x.race_code==='MS-SEN');
-  assert(ohio&&iowa&&ms,'Key 2026 state race missing');
-  assert(ohio.polls.some(x=>/Marist/i.test(x.pollster)&&x.dem_name==='Sherrod Brown'));
-  assert(iowa.polls.some(x=>/Marist/i.test(x.pollster)&&x.dem_name==='Josh Turek'));
-  assert(byOdds.has('senate|MS-SEN'),'Mississippi homepage Senate odds missing');
+ check('2026 Senate ballot is complete even when old named polls rotate out',()=>{
+  const senate=new Map(seats.senate.contested_seats.map(r=>[r.race_code,r]));
+  assert.equal(senate.size,35,'Missing Senate contests from validated election inventory');
+  for(const code of ['OH-SEN','IA-SEN','MS-SEN']){
+   assert(senate.has(code),'Missing 2026 Senate ballot seat '+code);
+   const source=primary.races.find(x=>x.race_code===code);
+   const mean=polling.senate_all.find(x=>x.race_code===code);
+   const modeled=byOdds.get('senate|'+code);
+   if(!source||!mean||!['single_poll','multi_poll'].includes(mean.status)){
+    assert(!modeled,'No standalone poll odds without a qualifying current poll: '+code);
+    continue;
+   }
+   assert(modeled,'Eligible Senate polling lost before probability model: '+code);
+   assert(Math.abs(mean.dem_minus_rep-modeled.dem_minus_rep)<.011);
+   assert.equal(modeled.latest_poll_end,mean.latest_poll_end);
+  }
  });
  const engineCode=codes.find(x=>x.url.startsWith('./scripts/chamber_control_model.js?'));
  assert(engineCode,'Missing JS chamber model');
@@ -263,40 +271,48 @@ async function main(){
     'Missing same-draw probability '+key);
   }
  });
- // Diagnostic lineage across BOTH odds engines: the fixed-width
- // standalone poll-only calculation is an input, not the website headline.
- // Never fail simply because two distinct estimates happen to agree.
- const iaCode='IA-SEN';
- const iaRaw=primary.races.find(r=>r.race_code===iaCode);
- const iaPoll=polling.senate_all.find(r=>r.race_code===iaCode);
- const iaStandalone=odds.records.find(r=>r.office==='senate'&&r.race_code===iaCode);
- const iaJoint=result.race_probabilities.find(r=>r.office==='senate'&&r.race_code===iaCode);
- const iaBasis=prepared.senate.find(r=>r.code===iaCode);
- check('Iowa LV source to calibrated-input to same-draw forecast trace',()=>{
-  assert(iaRaw&&iaPoll&&iaStandalone&&iaJoint&&iaBasis);
-  assert.equal(iaStandalone.dem_minus_rep,iaPoll.dem_minus_rep);
-  assert.equal(iaStandalone.latest_poll_end,iaPoll.latest_poll_end);
-  assert(iaPoll.pollsters.some(p=>/marist/i.test(p.name)&&p.sample_population==='lv'),
-   'Marist likely-voter survey must appear as an included model wave');
-  assert(iaBasis.polled&&Number.isFinite(iaBasis.poll_weight));
-  assert(iaJoint.simulated_dem_wins>=0&&
-   iaJoint.simulated_dem_wins<=result.samples);
-  assert(Math.abs(iaJoint.dem_beats_rep_pct-
-    100*iaJoint.simulated_dem_wins/result.samples)<.011,
-   'Iowa current odds must derive from correlated simulation draws');
+ // Diagnostic lineage across BOTH odds engines: select an eligible,
+ // currently published Senate poll. A particular named 2026 survey must
+ // NOT be required to survive the source's rolling results window.
+ const senateSourceByCode=new Map(primary.races.map(x=>[x.race_code,x]));
+ const traceCode=['IA-SEN',...polling.senate_all.map(x=>x.race_code)].find(code=>
+  Boolean(senateSourceByCode.has(code)&&byOdds.has('senate|'+code)&&
+   polling.senate_all.some(x=>x.race_code===code&&
+    ['single_poll','multi_poll'].includes(x.status))&&
+   prepared.senate.some(x=>x.code===code&&x.polled)));
+ assert(traceCode,'No qualifying current Senate source/mean/model race can be audited');
+ const traceRaw=senateSourceByCode.get(traceCode);
+ const tracePoll=polling.senate_all.find(x=>x.race_code===traceCode);
+ const traceStandalone=byOdds.get('senate|'+traceCode);
+ const traceJoint=result.race_probabilities.find(x=>
+  x.office==='senate'&&x.race_code===traceCode);
+ const traceBasis=prepared.senate.find(x=>x.code===traceCode);
+ check('current Senate poll-to-odds and same-draw provenance',()=>{
+  assert(traceRaw&&tracePoll&&traceStandalone&&traceJoint&&traceBasis);
+  assert(Array.isArray(traceRaw.polls)&&traceRaw.polls.length>0);
+  assert.equal(traceStandalone.dem_minus_rep,tracePoll.dem_minus_rep);
+  assert.equal(traceStandalone.latest_poll_end,tracePoll.latest_poll_end);
+  assert(Array.isArray(tracePoll.pollsters)&&tracePoll.pollsters.length>0,
+   'Included current pollster selection must have source identity');
+  assert(traceBasis.polled&&Number.isFinite(traceBasis.poll_weight));
+  assert(traceJoint.simulated_dem_wins>=0&&
+   traceJoint.simulated_dem_wins<=result.samples);
+  assert(Math.abs(traceJoint.dem_beats_rep_pct-
+    100*traceJoint.simulated_dem_wins/result.samples)<.011,
+   'Live race odds must derive from the correlated model, not a stale source');
   assert(html.includes('Older standalone poll-only calculation (NOT the live forecast)'),
-   'Deployed site must not present legacy standalone 55.3% as the main forecast');
+   'Dashboard must distinguish the standalone poll-only calculation from the forecast');
  });
  const iaTrace={
-  race_code:iaCode,
-  latest_source_poll:iaPoll.latest_poll_end,
+  race_code:traceCode,
+  latest_source_poll:tracePoll.latest_poll_end,
   polling_snapshot:polling.generated_at,
-  weighted_polling_margin_points:iaPoll.dem_minus_rep,
-  selected_marist_population:iaPoll.pollsters.find(p=>/marist/i.test(p.name))?.sample_population,
-  standalone_poll_only_dem_pct:iaStandalone.dem_beats_rep_pct,
-  live_joint_correlated_dem_pct:iaJoint.dem_beats_rep_pct,
-  modeled_margin_points:iaJoint.model_dem_margin_points,
-  live_joint_sigma_points:iaJoint.sigma_points,
+  weighted_polling_margin_points:tracePoll.dem_minus_rep,
+  source_pollster_count:tracePoll.pollsters.length,
+  standalone_poll_only_dem_pct:traceStandalone.dem_beats_rep_pct,
+  live_joint_correlated_dem_pct:traceJoint.dem_beats_rep_pct,
+  modeled_margin_points:traceJoint.model_dem_margin_points,
+  live_joint_sigma_points:traceJoint.sigma_points,
   simulation_samples:result.samples
  };
  console.log(JSON.stringify({status:'PRODUCTION_DASHBOARD_SMOKE_PASSED',
