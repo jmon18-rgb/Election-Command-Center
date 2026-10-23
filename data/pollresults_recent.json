@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-23T13:24:04.224583+00:00",
+  "updated_at": "2026-10-23T13:52:42.784085+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 813,
+      "available_in_source": 814,
       "records_examined": 300
     },
     "house": {
@@ -13,14 +13,99 @@
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 917,
+      "available_in_source": 919,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 298,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 3,
+  "injected_poll_ids": [
+    {
+      "race_code": "AZ-GOV",
+      "poll_id": "13360c74-2d6c-42d1-93c9-3edc3780940f"
+    },
+    {
+      "race_code": "TX-GOV",
+      "poll_id": "6afd8792-2ce0-46a6-b2e8-019dd5813772"
+    },
+    {
+      "race_code": "TX-SEN",
+      "poll_id": "6afd8792-2ce0-46a6-b2e8-019dd5813772"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "AZ-GOV",
+      "race_type": "governor",
+      "state": "AZ",
+      "poll_id": "13360c74-2d6c-42d1-93c9-3edc3780940f",
+      "question_id": "7101e53c-bd42-4212-8134-a5bfb9f6b2bf",
+      "pollster": "GrayHouse",
+      "dem_name": "Katie Hobbs",
+      "rep_name": "Andy Biggs",
+      "dem": 51.0,
+      "rep": 45.0,
+      "margin": 6.0,
+      "field_end": "2026-10-20",
+      "field_start": "2026-10-18",
+      "posted_date": "2026-10-23",
+      "posted_source_datetime": "2026-10-23T09:20:00",
+      "posted_source_time": "10/23/26 09:20",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://x.com/sambbenson/status/2113614478558572788",
+      "sample_population": "lv",
+      "sample_size": 550,
+      "partisan_lean": "R",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "TX-SEN",
+      "race_type": "senate",
+      "state": "TX",
+      "poll_id": "6afd8792-2ce0-46a6-b2e8-019dd5813772",
+      "question_id": "a22cf620-b793-4f9e-b87b-d3f3622fa7eb",
+      "pollster": "Slingshot Strategies",
+      "dem_name": "James Talarico",
+      "rep_name": "Ken Paxton",
+      "dem": 51.0,
+      "rep": 47.0,
+      "margin": 4.0,
+      "field_end": "2026-10-18",
+      "field_start": "2026-10-15",
+      "posted_date": "2026-10-23",
+      "posted_source_datetime": "2026-10-23T09:15:00",
+      "posted_source_time": "10/23/26 09:15",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://texaspublicopinionresearch.substack.com/p/october-poll-in-texas-general-election",
+      "sample_population": "lv",
+      "sample_size": 969,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "TX-GOV",
+      "race_type": "governor",
+      "state": "TX",
+      "poll_id": "6afd8792-2ce0-46a6-b2e8-019dd5813772",
+      "question_id": "28b65d52-194c-49da-ab5a-279a73ddd6d1",
+      "pollster": "Slingshot Strategies",
+      "dem_name": "Gina Hinojosa",
+      "rep_name": "Greg Abbott",
+      "dem": 48.0,
+      "rep": 51.0,
+      "margin": -3.0,
+      "field_end": "2026-10-18",
+      "field_start": "2026-10-15",
+      "posted_date": "2026-10-23",
+      "posted_source_datetime": "2026-10-23T09:15:00",
+      "posted_source_time": "10/23/26 09:15",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://texaspublicopinionresearch.substack.com/p/october-poll-in-texas-general-election",
+      "sample_population": "lv",
+      "sample_size": 969,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "TX-SEN",
       "race_type": "senate",

@@ -1,14 +1,14 @@
 {
   "schema_version": "bottom-up-2026-poll-environment-shadow-v1",
   "status": "SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE",
-  "polling_generated_at": "2026-10-23T13:24:08.231419Z",
+  "polling_generated_at": "2026-10-23T13:52:46.558923Z",
   "presidential_geography_year": 2026,
   "presidential_2024_national_two_party_margin_points": -1.705,
   "generic_ballot_2026_d_minus_r_points": 9.21,
   "generic_implied_vs_2024_presidential_swing_points": 10.915,
-  "independent_polling_estimated_presidential_to_race_swing_points": 9.535,
-  "bottom_up_implied_national_margin_points": 7.83,
-  "bottom_up_minus_generic_environment_points": -1.38,
+  "independent_polling_estimated_presidential_to_race_swing_points": 9.538,
+  "bottom_up_implied_national_margin_points": 7.833,
+  "bottom_up_minus_generic_environment_points": -1.377,
   "candidate_specific_effects_removed": false,
   "candidate_quality_calibration_available": false,
   "total_qualifying_races": 16,
@@ -76,7 +76,7 @@
     {
       "state": "TX",
       "number_qualifying_races": 2,
-      "swing_points": 14.707
+      "swing_points": 14.745
     },
     {
       "state": "OH",
@@ -113,9 +113,9 @@
       "race_code": "TX-SEN",
       "state": "TX",
       "presidential_2024_margin": -13.878,
-      "poll_margin": 2.03,
-      "raw_swing_points": 15.908,
-      "capped_swing_points": 15.908,
+      "poll_margin": 2.08,
+      "raw_swing_points": 15.958,
+      "capped_swing_points": 15.958,
       "capped_local_outlier": false,
       "weight": 0.9333333333333333,
       "independent_firms": 14,
