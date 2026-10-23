@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-23T15:50:37.547628Z",
+  "updated_at": "2026-10-23T16:49:02.985626Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
@@ -222,6 +222,43 @@
     }
   ],
   "items": [
+    {
+      "id": "9a48bab45b0218bf4ab4",
+      "title": "Fearing Trump interference, N.J. Democrats rushed an election bill. Then they pulled it. - NJ.com",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOX3UtSVZpMXY3WDNiV0VxazVGODRWQ0J2eXkyUG1RWGs1c0NkRXdaWlBYbzlxczNIb3RJSWhGTFkxcTZxTXVkM0FULVBnQXZSbmVuT1BwS2dhZ0VVTV9pdktyS0laa3FsUkFrV29OQ0E0bWNfczNwVjB3WjlmbElvWFNreDlzUzYxWWJqT01xQW02XzZINFpSdEZoWk91OTc0QlptMVFFSnVnck1MazJnQ3RLVUpYNnBlT2ROTlFZYTM0UQ?oc=5",
+      "publisher": "NJ.com",
+      "published_at": "2026-10-23T15:58:00Z",
+      "detected_at": "2026-10-23T16:49:02.985626Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "41414eb45ed02095147a",
+      "title": "How Texas law safeguards your vote: testing, security measures and post-election audits explained - WFAA",
+      "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxPY2tpTlpYWTk2eGxXWm0xOWsxb1FlVXFEeXpVUGZaaGhEdkl0c2d4NG9KdzVxQ0tScnh5NXVSWU1xMFlzVVhXUFN3QXVtRW43dThIcDN6cFJ2aGxJSXgzRlA5b2RjVjk1aW5UTHRHUTl6SkZ6eE00MVJuZXRxZWNNNV8wWmIwZDduVVg3WHI0bUhoaGxFc3lzcmM0d0lOUDVWQV91RlZDM3ZHa1d4QzhzWmo5bHc5cUVzdldiRlMzcTNZdkZiV0ZoSGJWRlFmRWM1VEhZQVJiV284NDdVTDI3ZF9EQXFMMTVDNWJNdGZkUVVyRXE2MEY2UGxn?oc=5",
+      "publisher": "WFAA",
+      "published_at": "2026-10-23T15:55:00Z",
+      "detected_at": "2026-10-23T16:49:02.985626Z",
+      "state_hints": [
+        "TX"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "15d4da14ec53783843ce",
       "title": "Two weeks before midterms, U.S. Supreme Court upholds N.H. ban on use of student IDs to register to vote or obtain ballot - The Dartmouth",
@@ -4828,38 +4865,6 @@
       "topic_hints": [
         "ballot_access"
       ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "9cb000f62ed7bc85e55c",
-      "title": "Cost of living, technology, and more worry Nashville voters - Nashville Banner",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQMFVDYVVId1Jralk0ZS0tZGE1Q08tdkxCRk5Od25NVzVSc0F1TzZVeGYyOWRrcE1zdER5M1A3RThtZ0xod3A0M2FReUVfWXFIUEdUOWF1ck1aRVZocjNjM25tSHNGOHgyVmdCeDJlZUExbjd5SWxhR2VjLUI5WnQ0TE54eUZlN1I5MXdUMWJ2VUYxZw?oc=5",
-      "publisher": "Nashville Banner",
-      "published_at": "2026-10-13T11:01:00Z",
-      "detected_at": "2026-10-13T12:46:53.774247Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "1f1c9baf95873496f970",
-      "title": "On the issues: A Q&A with U.S. Senate candidates James Talarico, Ken Paxton and Ted Brown - The Texas Tribune",
-      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPQl95VGhGNG8wdXJ3YVBhTng2MENRakJKcVlmaXFvM2EtbmhxZTl5QlYyZlFwdDBMMjY5bE9mOThJbVFfTGhJZkd3b2MtS0p5VFFWY3ZMWkFrNlZ2d0xtbGZURzdEZFNCQmwwRmtKdkR4M2tBdHZxdW0zbkpzejBOd3R6dFdFalBhVndlWjRNX2RlSnBZWERjWTlR?oc=5",
-      "publisher": "The Texas Tribune",
-      "published_at": "2026-10-13T10:06:11Z",
-      "detected_at": "2026-10-13T12:46:53.774247Z",
-      "state_hints": [
-        "TX"
-      ],
-      "topic_hints": [],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
