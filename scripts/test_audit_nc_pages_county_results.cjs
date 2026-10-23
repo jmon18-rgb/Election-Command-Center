@@ -29,6 +29,12 @@ assert.equal(valid.status,'VERIFIED_CANDIDATE_COUNTS_PUBLISHED');
 assert.equal(valid.published_counties,1);
 assert.equal(valid.votes_for_listed_candidates,275);
 assert.equal(valid.may_move_national_needle,false);
+const archived=api.inspectSource(approved,snapshot,Date.parse('2026-11-10T12:00:00Z'));
+assert.equal(archived.status,'ARCHIVED_SOURCE_VERIFIED_NOT_LIVE');
+assert.equal(archived.may_move_national_needle,false);
+assert.throws(()=>api.inspectSource(approved,
+ {...snapshot,archive_checked_at:'2026-11-08T01:00:00Z'},
+ Date.parse('2026-11-10T12:00:00Z')),/actual 2026 election window/);
 const fail=[
  [approved,{...snapshot,election_date:'2024-11-05'},when],
  [approved,{...snapshot,source:{...snapshot.source,sha256:'b'.repeat(64)}},when],
