@@ -5507,6 +5507,18 @@ async function enRefreshCivicWatchlist(force=false){
  }
 }
 
+// A failed primary feed may legitimately enter exponential backoff. Keep
+// supplemental exact-race discovery on its own minute cadence so a Senate
+// race doesn't wait ten minutes for the next failed primary HTTP request.
+// Requests still obey the four-worker pool, 12-seat batch cap and civicAPI
+// 429/5xx circuit breaker. Hidden/sleeping tabs do not make requests.
+setInterval(()=>{
+ if(enModeYear!==2026||!enIsVisible()||
+    document.visibilityState!=='visible'||
+    Date.now()<Date.parse('2026-11-03T23:00:00Z'))return;
+ void enRefreshCivicWatchlist();
+},60000);
+
 // Early geographic-unit check, NEVER a national/county-adjusted forecast.
 function enDistrictPerformance(item,now=Date.now()){
  if(enModeYear!==2026||item?.office!=='House'||
