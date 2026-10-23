@@ -15,7 +15,7 @@ import urllib.request
 import zipfile
 from pathlib import Path
 
-from aggregate_nc_official_precinct_votes import aggregate
+from aggregate_nc_official_precinct_votes import aggregate, REQUIRED
 from run_nc_official_zip_historical_replay import load_verified_crosswalk
 
 SOURCE="https://s3.amazonaws.com/dl.ncsbe.gov/ENRS/2020_11_03/results_pct_20201103.zip"
@@ -40,6 +40,37 @@ def identify(raw):
         raise ValueError("Missing or ambiguous 2020 federal Senate contest group")
     return next(iter(found))
 
+def normalize_2020_columns(raw):
+    """Map 2020 NCSBE One Stop -> current early-vote field, strictly.
+
+    2020 has a Real Precinct informational column and one trailing blank
+    header. Both are excluded only after ensuring no unexpected payload
+    appears under the unnamed column. Source ZIP bytes remain unchanged.
+    """
+    reader=csv.DictReader(io.StringIO(raw),delimiter="\\t")
+    expected=(REQUIRED-{"Early Voting"})|{"One Stop","Real Precinct",""}
+    if (not reader.fieldnames or len(reader.fieldnames)!=len(set(reader.fieldnames))
+        or set(reader.fieldnames)!=expected):
+        raise ValueError("Unrecognized official 2020 One Stop source columns")
+    export=[("Early Voting" if name=="One Stop" else name)
+            for name in reader.fieldnames if name not in ("Real Precinct","")]
+    if set(export)!=REQUIRED:
+        raise ValueError("2020 normalized source fields not exactly expected")
+    out=io.StringIO()
+    writer=csv.DictWriter(out,fieldnames=export,delimiter="\\t",lineterminator="\\n")
+    writer.writeheader()
+    for row in reader:
+        if row.get(None) or row.get("") not in ("",None):
+            raise ValueError("Unexpected unofficial data in unnamed 2020 TSV field")
+        cleaned={}
+        for old in reader.fieldnames:
+            if old in ("Real Precinct",""):
+                continue
+            cleaned["Early Voting" if old=="One Stop" else old]=row.get(old)
+        writer.writerow(cleaned)
+    return out.getvalue()
+
+
 def inspect(payload,crosswalk,expected_totals=CERTIFIED,expected_counties=100):
     if not isinstance(payload,bytes) or not payload or len(payload)>MAX_ZIP:
         raise ValueError("Missing or oversized official 2020 ZIP")
@@ -55,10 +86,10 @@ def inspect(payload,crosswalk,expected_totals=CERTIFIED,expected_counties=100):
     except (zipfile.BadZipFile,UnicodeError,RuntimeError) as exc:
         raise ValueError("Unreadable official 2020 precinct archive") from exc
     name,group=identify(raw)
-    # Older official files may not share the 2024 TSV column vocabulary.
-    # Inspect bounded public header evidence before any explicit normalization.
-    print("OFFICIAL_2020_TSV_HEADER",repr(raw.splitlines()[0][:650]),flush=True)
-    counties=aggregate(raw,date=OFFICIAL_DATE,contest=name,
+    # Historical source calls early in-person ballots "One Stop".
+    # Strictly convert that source field without reinterpreting vote methods.
+    normalized=normalize_2020_columns(raw)
+    counties=aggregate(normalized,date=OFFICIAL_DATE,contest=name,
                        contest_group_id=group,county_fips=crosswalk)
     if len(counties)!=expected_counties or len({c["county_id"] for c in counties})!=len(counties):
         raise ValueError("Incomplete or duplicate official 2020 Senate counties")
@@ -83,6 +114,7 @@ def inspect(payload,crosswalk,expected_totals=CERTIFIED,expected_counties=100):
       "archive_member":MEMBER,"contest_name_discovered":name,
       "contest_group_id_discovered":group,
       "county_count":len(counties),"certified_statewide_major_party_votes":observed,
+      "source_2020_schema_normalized":"One Stop to Early Voting; Real Precinct metadata dropped",
       "source_sha_pinned_for_model":False,
       "same_office_as_2026_senate":True,
       "same_candidates_as_2026_senate":False,
