@@ -9,7 +9,7 @@ const base={election_date:'2026-11-03',election_type:'General',is_test:false,
 const row=overrides=>({...base,...overrides});
 assert(validate(base));
 for(const changes of [{is_test:true},{verified_source:false},{election_date:'2024-11-05'},
- {county_id:'36107'},{race_key:'NC-SEN'},{ballots_reported:90,candidates:[{name:'Candidate D',party:'D',votes:45},{name:'Candidate R',party:'R',votes:40}]},
+ {county_id:'36107'},{race_key:'NC-SEN'},{ballots_reported:90},
  {updated_at:'2026-10-23T00:05:00Z'},{candidates:[]}]){
  assert.equal(validate(row(changes)),null,JSON.stringify(changes));
 }
