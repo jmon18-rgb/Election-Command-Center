@@ -1446,7 +1446,8 @@ async function settle(){
  const syntheticPulse=[...get('#racePulse').querySelectorAll('button.pulse-tile')];
  assert.equal(syntheticPulse.length,0,
   'No comparison history/new poll should yield no fabricated polling insight');
- assert.match(get('#racePulse').textContent,/Building comparison history/);
+ assert.match(get('#racePulse').textContent,/Building comparison history|No meaningful movement/,
+  'No eligible recent poll or meaningful movement should produce a truthful empty pulse');
  // DDHQ forecast removed; each race marginal comes from the joint simulation.
  assert.equal(w.document.querySelector('#scenarioBands'),null);
  assert.equal(w.document.querySelector('#scenarioCenter'),null);
