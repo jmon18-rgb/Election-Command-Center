@@ -129,4 +129,20 @@ for(const missing of [{office:'Senate',key:'NV'},
  assert.equal(adapter.supports(missing),false);
  assert.equal(adapter.query(missing),null);
 }
+// MA and MS Senate identities are not source-verified. Do not borrow the
+// Massachusetts governor ID or guess Senate IDs from adjacent source records.
+for(const state of ['MA','MS']){
+ const missing={office:'Senate',key:state};
+ assert.equal(adapter.supports(missing),false,state+' Senate source identity is unresolved');
+ assert.equal(adapter.query(missing),null);
+ assert.equal(adapter.select(missing,{races:[
+  row(state,'Senate',state==='MA'?'Massachusetts US Senate':'Mississippi US Senate',87275)
+ ]}),null,'Uncurated MA/MS Senate IDs must never be accepted from fixtures');
+ assert.equal(adapter.validate(missing,
+  row(state,'Senate','Unverified US Senate',87275),
+  detail(row(state,'Senate','Unverified US Senate',87275),true),election),
+  null,'Unverified Senate source cannot inject a vote');
+}
+assert(adapter.supports({office:'Governor',key:'MA'}),
+ 'Known MA Governor source must remain supported independently');
 console.log('Eight-state civicAPI pilot: 13 individually source-verified fixtures including Ohio special, identity and safety checks passed');
