@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-23T00:57:49.936382Z",
+  "updated_at": "2026-10-23T01:00:00.986227Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 8,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 248,
     "primary_source_checked": 2,
-    "advisory_related_headline_buckets": 21,
-    "advisory_related_headlines": 47
+    "advisory_related_headline_buckets": 20,
+    "advisory_related_headlines": 45
   },
   "advisory_related_headlines": [
     {
@@ -90,17 +90,6 @@
       ],
       "topic_hints": [
         "ballot_access"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "d0a395b1cb946cd1fccc",
-      "headline": "Black Church Leaders Broaden Voter Outreach Ahead of Midterm Elections - Word&Way",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [],
-      "topic_hints": [
-        "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -249,6 +238,17 @@
       "state_hints": [],
       "topic_hints": [
         "ballot_access"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "59f13e02a04f01f36ecc",
+      "headline": "Why the 26 secretary of state races this November matter more than they did before Trump\u2019s drive to assert federal authority over elections - Cobb Courier",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     }
@@ -401,6 +401,23 @@
       ],
       "topic_hints": [
         "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "7930d1a56c7c2621d166",
+      "title": "NC elections board faces complaint over duplicate voter records - Carolina Journal",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNREpYbFh2YTh1aXV5S24zQnl2dnNSSllrM1BVWFJ2eExad19vQkhZUE0tTno2UGdMRmZ0bHh2a3pCa2xHbTh2U2FGRnNPajRSY3FucEQ4ZjlzdUJuclJhWTdKRFpEMC0wcFdOSWVKanp0UE5GOFRfU19laWZLZ09lcjJBYjZIbndweTQzNm1FVDVtMVdYd09jMFVTNUQ?oc=5",
+      "publisher": "Carolina Journal",
+      "published_at": "2026-10-22T17:50:44Z",
+      "detected_at": "2026-10-23T01:00:00.986227Z",
+      "state_hints": [],
+      "topic_hints": [
         "election_admin"
       ],
       "headline_numbers_unverified": [],
@@ -4835,23 +4852,6 @@
         "10, ",
         "2026"
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "cc6760f5bb63a74e92e8",
-      "title": "Black church leaders broaden voter outreach ahead of midterm elections - Religion News Service",
-      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNaVVOQU5OWXQwb0xYeUdDbTdrczBETTlvNUMwWmxFaHllaEVHTmxWMDQxUFNaa2NrUFVvNWp6MzBpME94RFZkYlVQTUlDVEFpeXE0el84WXNwMjVSemdPbmI4c29IVGdEaVJIYkh3T0ZveVQwZklKdnU4TkxaMHlENGU0QTNFVTRpZDA3SktLeVQyQzZ0RF9fSWF4WTRYeTA3LWNLMmQyUE15eHlkbkZfZWs4SVM0M0dv?oc=5",
-      "publisher": "Religion News Service",
-      "published_at": "2026-10-12T13:29:32Z",
-      "detected_at": "2026-10-13T01:03:38.436117Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,

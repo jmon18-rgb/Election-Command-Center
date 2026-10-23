@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-23T00:57:50.492444+00:00",
+  "updated_at": "2026-10-23T01:00:01.610300+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,50 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 300,
-  "newly_injected_into_model": 10,
-  "injected_poll_ids": [
-    {
-      "race_code": "FL-25",
-      "poll_id": "77a55ff9-7bef-44ba-8c0b-04c4835acaa9"
-    },
-    {
-      "race_code": "IL-GOV",
-      "poll_id": "f2b450fd-d51a-4bf8-854c-5f95e3cc7aa9"
-    },
-    {
-      "race_code": "ME-GOV",
-      "poll_id": "d5cc3c87-4ce8-4d34-aa26-9420e7d5fdef"
-    },
-    {
-      "race_code": "ME-SEN",
-      "poll_id": "d5cc3c87-4ce8-4d34-aa26-9420e7d5fdef"
-    },
-    {
-      "race_code": "NE-GOV",
-      "poll_id": "185e2532-edd0-4c81-9527-3a3dcf8f228c"
-    },
-    {
-      "race_code": "NH-01",
-      "poll_id": "2e6c66e4-f4aa-418e-9126-6e237ed7459f"
-    },
-    {
-      "race_code": "NH-02",
-      "poll_id": "2e6c66e4-f4aa-418e-9126-6e237ed7459f"
-    },
-    {
-      "race_code": "NH-GOV",
-      "poll_id": "2e6c66e4-f4aa-418e-9126-6e237ed7459f"
-    },
-    {
-      "race_code": "NH-SEN",
-      "poll_id": "2e6c66e4-f4aa-418e-9126-6e237ed7459f"
-    },
-    {
-      "race_code": "SD-GOV",
-      "poll_id": "5f328a35-fe31-463a-9366-ee4844b660b5"
-    }
-  ],
+  "matched_primary_observations": 309,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "ME-SEN",
