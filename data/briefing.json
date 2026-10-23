@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-23T12:55:54.501446Z",
+  "updated_at": "2026-10-23T13:24:00.357677Z",
   "updates": [
     {
       "title": "Republican gerrymanders in Texas threaten to fall flat, poll finds - The Washington Post",
@@ -13,6 +13,13 @@
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE01dkVCZGVncXlQblhmYnY1RnJxSk81OTNSSzY4aEhudUt1c2ZtenE0UGp1aURBTXJucVFOZEZ6R0FrOHpWcmpxTGh2OEdQVDdFZzNLdGl0dUpXYlRUVVh5ajZ3bHRLU0pSUm9wOWo1Y0s?oc=5",
       "source": "NBC News",
       "published_at": "2026-10-23T10:30:21Z",
+      "status": "reported_not_independently_verified"
+    },
+    {
+      "title": "Ohio Midterm Elections 2026: Key Races, Candidates and Past Results - NBC News",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9aYnktTFVvVC14X2pyUEYwRzZGaU5IWDFFdUt2eXo1ZzVheDJGU2xmb185dVJzb1FqaXBWNy1XdHdtTnVuUnZUOVFPWGw5cnYza045eVAwQm5QLUdCbEtNTmh5eElITjFFRU0zXw?oc=5",
+      "source": "NBC News",
+      "published_at": "2026-10-23T10:00:21Z",
       "status": "reported_not_independently_verified"
     },
     {
@@ -34,13 +41,6 @@
       "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPMlBkeFVsVEVKY1hkRFVCdmxGWlpPUU1XX2NmQ0pfbzdaQ1pfZU9MalJIODJsLWotLVZUM1ZjbVFiMDlEcnZ2Q0ZUY3hhZGh6YXlSb3hVOVRIV203NVUyanZ5R3U2OWJHWkRwbUFudG4zZkZEWS1MZ1ZiMGRNR2tLM1M0NmY3VHhFNzEtTXVGTTc5YXZQdzRKc3pvSURhOHl1aENHWFZHd08xaHk0U01iN1JWZ2xHYlVQYzdMNTd6Zw?oc=5",
       "source": "The Times",
       "published_at": "2026-10-23T08:54:56Z",
-      "status": "reported_not_independently_verified"
-    },
-    {
-      "title": "Ohio Midterm Elections 2026: Key Races, Candidates and Past Results - NBC News",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9aYnktTFVvVC14X2pyUEYwRzZGaU5IWDFFdUt2eXo1ZzVheDJGU2xmb185dVJzb1FqaXBWNy1XdHdtTnVuUnZUOVFPWGw5cnYza045eVAwQm5QLUdCbEtNTmh5eElITjFFRU0zXw?oc=5",
-      "source": "NBC News",
-      "published_at": "2026-10-23T07:30:21Z",
       "status": "reported_not_independently_verified"
     },
     {
@@ -124,10 +124,11 @@
     }
   ],
   "pipeline": {
-    "last_attempt_at": "2026-10-23T12:55:54.501446Z",
+    "last_attempt_at": "2026-10-23T13:24:00.357677Z",
     "successful_queries": 6,
     "total_queries": 6,
     "kind": "automated_news_headlines_not_verified_facts",
+    "status": "ok",
     "errors": []
   }
 }

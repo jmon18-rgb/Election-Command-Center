@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-23T12:55:59.859181+00:00",
+  "updated_at": "2026-10-23T13:24:04.224583+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,30 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 293,
-  "newly_injected_into_model": 5,
-  "injected_poll_ids": [
-    {
-      "race_code": "TX-34",
-      "poll_id": "20c0e178-b502-4212-83df-9edb543c701a"
-    },
-    {
-      "race_code": "TX-35",
-      "poll_id": "20c0e178-b502-4212-83df-9edb543c701a"
-    },
-    {
-      "race_code": "TX-GOV",
-      "poll_id": "2afcb084-c194-4f98-8215-52a1ffedd3e6"
-    },
-    {
-      "race_code": "TX-SEN",
-      "poll_id": "2afcb084-c194-4f98-8215-52a1ffedd3e6"
-    },
-    {
-      "race_code": "WA-03",
-      "poll_id": "8b461944-09c7-4522-a439-995d6261acbf"
-    }
-  ],
+  "matched_primary_observations": 298,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "TX-SEN",
