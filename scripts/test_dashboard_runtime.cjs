@@ -3003,7 +3003,9 @@ async function settle(){
  // browser remains open and must keep verified incidents distinct from leads.
  const newsBefore=fixtures['briefing.json'];
  const newsNext=structuredClone(newsBefore);
- newsNext.updated_at=new Date(Date.parse(newsBefore.updated_at)+60000).toISOString();
+ // Use an actually current collector timestamp; adding one minute to a historical
+ // fixture can still be many hours stale and must correctly display DELAYED.
+ newsNext.updated_at=new Date().toISOString();
  const freshNewsTitle='New independently published election news test headline';
  const freshSecurityTitle='New voter access lead test headline';
  newsNext.updates.unshift({title:freshNewsTitle,source:'Test publication',
