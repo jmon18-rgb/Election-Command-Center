@@ -1,0 +1,35 @@
+name: Validate official NC ZIP county staging
+on:
+  pull_request:
+    paths:
+      - 'scripts/nc_official_zip_staging_bridge.py'
+      - 'scripts/test_nc_official_zip_staging_bridge.py'
+      - 'scripts/run_nc_official_zip_historical_replay.py'
+      - 'data/nc_2024_county_fips_reference.csv'
+      - 'scripts/aggregate_nc_official_precinct_votes.py'
+      - '.github/workflows/nc-official-zip-staging.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  historical-staging-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify official ZIP safety, contest identity and source lineage
+        run: |
+          python3 -m py_compile scripts/nc_official_zip_staging_bridge.py
+          python3 scripts/test_nc_official_zip_staging_bridge.py
+          python3 scripts/test_aggregate_nc_official_precinct_votes.py
+      - name: Replay actual 2024 official ZIP with pinned source-attributed NC county crosswalk
+        run: python3 scripts/run_nc_official_zip_historical_replay.py --output /tmp/nc_official_2024_county_replay.json
+      - name: Preserve historical research artifact (never a live result)
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-nc-2024-county-replay-research-only
+          path: /tmp/nc_official_2024_county_replay.json
+          retention-days: 7
