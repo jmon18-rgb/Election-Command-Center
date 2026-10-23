@@ -1,25 +1,16 @@
 {
-  "updated_at": "2026-10-23T04:45:48.844856Z",
+  "updated_at": "2026-10-23T05:45:22.957554Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
     "primary_source_checked": 5,
     "advisory_related_headline_buckets": 20,
-    "advisory_related_headlines": 45
+    "advisory_related_headlines": 44
   },
   "advisory_related_headlines": [
-    {
-      "lead_id": "bd715d3fabb4f1cfae60",
-      "headline": "Many GOP states have imposed voting rules mirroring Trump's midterm proposals - PBS",
-      "possibly_related_articles": 3,
-      "distinct_publishers": 2,
-      "state_hints": [],
-      "topic_hints": [],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
     {
       "lead_id": "bdb14e21cd5966548f05",
       "headline": "Trump pressed states for info on millions of voters in the midterms. It\u2019s mostly failed. - Kiowa County Press",
@@ -67,6 +58,15 @@
       "topic_hints": [
         "security"
       ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "bd715d3fabb4f1cfae60",
+      "headline": "Many GOP states have imposed voting rules mirroring Trump's midterm proposals - PBS",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
@@ -307,6 +307,23 @@
       ],
       "topic_hints": [
         "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "0d1264b7ab663f8487ab",
+      "title": "Judge curbs Trump administration's noncitizen voting probes - Axios",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOb0htbV9aYUVTZFJFc1lQT3JSTDhNTUFld3JHQ2hvWndyMmJwMWlnYUVGRENkUHg5bGlJeW11LVRSd01lcnRxY2NjZDJKRkJ6c0xyblg4bGNFVTU0Z2hKOWZHTVQ0ck1TT3lON3U0ZFluMWNiR1AxZGVsNmhIZTIyYm41UkJRenFYVjhHTjBveWk?oc=5",
+      "publisher": "Axios",
+      "published_at": "2026-10-22T19:51:38Z",
+      "detected_at": "2026-10-23T05:45:22.957554Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -4860,21 +4877,6 @@
       "publisher": "PBS",
       "published_at": "2026-10-12T17:27:25Z",
       "detected_at": "2026-10-13T01:07:18.387708Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "c562abef697cc2d368eb",
-      "title": "Many GOP states have imposed new voting rules this year, some mirroring Trump\u2019s midterm proposals - Mississippi Today",
-      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPcG41SS1OX21vZ0h0SWQyREs4STB0b2RlT0tIcHVhc3F5WnQ0bE5xOTA3TV9SYXV1LWdGZ280aExzMUhKMjFzOUI3MFN3Yko5VTJucXZyLTFreUNodlM2eDBrNHRKNDJfNE0xQ0hBb2FTVS1WbmRTYkxXMVZSWW0wMkpZRWQ?oc=5",
-      "publisher": "Mississippi Today",
-      "published_at": "2026-10-12T16:04:14Z",
-      "detected_at": "2026-10-13T01:03:38.436117Z",
       "state_hints": [],
       "topic_hints": [],
       "headline_numbers_unverified": [],
