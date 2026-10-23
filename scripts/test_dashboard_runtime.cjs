@@ -1440,7 +1440,19 @@ async function settle(){
  // collisions where a shared poll ID and the same state hide the office.
  const synthetic={generated_at:model.generated_at,senate_all:[txSen],house:[],
    governor:[txGov],generic_ballot:{status:'insufficient_data'}};
- w.eval('modelHistoryData=null;renderRacePulse('+JSON.stringify(synthetic)+')');
+ // The pulse intentionally does NOT manufacture insights when history is
+ // absent. Seed a comparable prior snapshot with two independently changed
+ // offices, so the cross-office collision contract is meaningful.
+ const syntheticPrior={
+  snapshots:[{at:new Date(Date.parse(model.generated_at)-26*3600000).toISOString(),
+   races:[txSen,txGov].map(r=>({
+    race_code:r.race_code,dem_candidate:r.dem_candidate,
+    rep_candidate:r.rep_candidate,contributing_pollsters:r.contributing_pollsters,
+    dem_minus_rep:-r.dem_minus_rep
+   }))}]
+ };
+ w.eval('modelHistoryData='+JSON.stringify(syntheticPrior)+
+  ';renderRacePulse('+JSON.stringify(synthetic)+')');
  const texasCards=[...get('#racePulse').querySelectorAll('button.pulse-tile')];
  assert.equal(texasCards.length,2,'Texas Senate and governor should each receive one insight');
  assert(texasCards.some(c=>/Texas.*Senate/.test(c.textContent)));
