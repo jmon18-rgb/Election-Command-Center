@@ -79,6 +79,10 @@ try{
    return route.fulfill({status:200,contentType:'application/json',
     body:JSON.stringify(valid)});
   });
+  await page.route('**/data/nc_2022_senate_county_verified.csv*',route=>{
+   if(scenario==='senate-baseline-outage')return route.abort('failed');
+   return route.continue();
+  });
   await page.goto(base,{waitUntil:'domcontentloaded',timeout:45000});
   await page.waitForFunction(()=>
    document.querySelector('#enVerifiedCountyResults')?.textContent?.includes('Fixture Alpha'),
@@ -106,6 +110,21 @@ try{
    await page.evaluate(()=>window.NcCountyDeskRefresh());
    return page.locator('#enVerifiedCountyResults').textContent();
   };
+  // Failure to load the historical source must not hide the current
+  // approved county vote totals or the independent 2024 reference.
+  scenario='senate-baseline-outage';
+  rendered=await refresh();
+  assert.match(rendered,/Fixture Alpha \\(DEM\\): 120/);
+  comparison=await page.locator('#enNcHistoricalComparison').textContent();
+  assert.match(comparison,/DESCRIPTIVE ONLY/);
+  senateCompare=await page.locator('#enNcSenateSameOfficeComparison').textContent();
+  assert.match(senateCompare,/2022 Senate comparison unavailable/);
+  assert(!senateCompare.includes('DESCRIPTIVE ONLY'));
+  scenario='verified';
+  rendered=await refresh();
+  senateCompare=await page.locator('#enNcSenateSameOfficeComparison').textContent();
+  assert.match(senateCompare,/DESCRIPTIVE ONLY/);
+
   scenario='bad-sha';
   rendered=await refresh();
   assert.match(rendered,/identity or missing-ballot safeguards failed/i);
