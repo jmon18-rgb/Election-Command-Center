@@ -1,0 +1,50 @@
+name: Backtest NC county uniform-swing historical error
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/audit_nc_historical_uniform_swing.py'
+      - 'scripts/test_audit_nc_historical_uniform_swing.py'
+      - 'data/nc_2022_senate_county_verified.csv'
+      - 'data/nc_2024_presidential_county_verified.csv'
+      - '.github/workflows/nc-county-uniform-swing-error.yml'
+permissions:
+  contents: read
+jobs:
+  historical-error:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 11
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check descriptive calibration audit and negative tests
+        run: |
+          python3 -m py_compile scripts/audit_nc_historical_uniform_swing.py
+          python3 scripts/test_audit_nc_historical_uniform_swing.py
+      - name: Re-download and verify both official historical ZIPs and all 100 county rows
+        run: |
+          python3 scripts/run_nc_2022_senate_historical_replay.py \
+            --output /tmp/nc_2022_senate_real_zip.json
+          python3 scripts/audit_nc_2022_senate_web_baseline.py \
+            --published-csv data/nc_2022_senate_county_verified.csv \
+            --replay /tmp/nc_2022_senate_real_zip.json
+          python3 scripts/run_nc_official_zip_historical_replay.py \
+            --output /tmp/nc_2024_president_real_zip.json
+          python3 scripts/build_nc_2024_presidential_county_baseline.py \
+            --staging /tmp/nc_2024_president_real_zip.json \
+            --output /tmp/nc_2024_verified_baseline.json
+          python3 scripts/audit_nc_web_presidential_baseline.py \
+            --published-csv data/nc_2024_presidential_county_verified.csv \
+            --replayed-baseline /tmp/nc_2024_verified_baseline.json
+      - name: Audit uniform-swing county uncertainty, research only
+        run: |
+          python3 scripts/audit_nc_historical_uniform_swing.py \
+            --output /tmp/nc_historical_uniform_swing_error.json
+      - name: Retain source-audited geographic heterogeneity evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: nc-two-elections-county-uniform-shift-error
+          path: /tmp/nc_historical_uniform_swing_error.json
+          retention-days: 60
