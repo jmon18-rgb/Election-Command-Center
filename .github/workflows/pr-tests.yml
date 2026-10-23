@@ -38,6 +38,7 @@ jobs:
         run: |
           python3 -m py_compile scripts/stage_nc_2024_county_mode.py
           python3 scripts/test_nc_2024_county_mode.py
+          python3 scripts/test_join_nc_2024_county_fips.py
       - name: Verify non-forecast county and voting-method early signal evidence gates
         run: |
           node --check scripts/election_night_county_mode_signal.js
