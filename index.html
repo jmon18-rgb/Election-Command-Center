@@ -5358,6 +5358,32 @@ async function enCivicFetchOne(item,forceAfterPending=false){
   release();
  }
 }
+// A state being in Open America's 22-state *coverage list* does NOT mean
+// the race's actual votes are arriving. Allow bounded civicAPI fallback only
+// after the first 6 PM ET poll close, if that specific primary race is absent,
+// still at zero, or the office feed is stale/unavailable. Preserve the separate
+// civicAPI winner-call checks for tracked milestones even with a healthy feed.
+function enShouldProbeSupplemental(item,now=Date.now()){
+ if(!item||!['House','Senate','Governor'].includes(item.office)||
+    typeof item.key!=='string'||!/^[A-Z]{2}(?:-\\d{2}|-special)?$/.test(item.key))
+  return false;
+ const state=item.key.slice(0,2);
+ if(!enSupportedStates.has(state)||enMilestoneTracked(item))return true;
+ if(now<Date.parse('2026-11-03T23:00:00Z'))return false;
+ const snap=enOfficeSnapshots[item.office]||
+  (enOffice===item.office?enData:null);
+ const asOf=Date.parse(snap?.as_of||'');
+ const healthy=Boolean(snap?.year===2026&&snap?.office===item.office&&
+  snap.stale!==true&&!enOfficeErrors[item.office]&&
+  !enResumePendingOffices.has(item.office)&&
+  !(enOffice===item.office&&enFetchError)&&
+  Number.isFinite(asOf)&&asOf>=Date.parse('2026-11-03T23:00:00Z')&&
+  asOf<=now+15*60000&&now-asOf<=180*60000);
+ if(!healthy)return true;
+ const sourceItem=enHouseSourceItem(item);
+ const total=snap.races?.[sourceItem.key]?.total;
+ return !Number.isSafeInteger(total)||total<=0;
+}
 // Every 30 seconds on election night, recheck at most four personally watched
 // or high-information races that already have a validated positive vote tally.
 // This adds no paid dependencies, no blanket 435-seat polling, and no requests
@@ -5375,14 +5401,17 @@ async function enCivicRefreshFastLane(){
  // Three Senate and one Silver-seeded House slot are prioritized once
  // real tallies arrive. If a race has no validated positive votes, the
  // fast-lane picker skips it and fills from lower-ranked active contests.
- const seed=smartAutoWatch();
+ const seed=smartAutoWatch().filter(x=>enShouldProbeSupplemental(x));
  const senate=seed.filter(x=>x.office==='Senate'&&Number(x.tip)>=7);
  const house=seed.filter(x=>x.office==='House'&&Number(x.tip)>=2);
  const automatic=[...senate.slice(0,3),...house.slice(0,1),
   ...senate.slice(3),...house.slice(1)];
- const selected=lane.pick({personal:enWatched,automatic,
+ const selected=lane.pick({
+  personal:enWatched.filter(x=>enShouldProbeSupplemental(x)),automatic,
   reported:enCivicByWatch,lastAttempt:enCivicLastAttemptAt,
-  primaryStates:enSupportedStates,now:Date.now()});
+  // A source state's primary feed can be down or omit THIS race.
+  // Candidate filtering above already proved need for each fallback.
+  primaryStates:[],now:Date.now()});
  if(!selected.length)return;
  enCivicFastLaneBusy=true;
  try{
@@ -5435,7 +5464,7 @@ async function enRefreshCivicWatchlist(force=false){
   const autoMonitored=now>=Date.parse('2026-11-03T05:00:00Z')?
     smartAutoWatch().map(x=>({office:x.office,key:x.key})):[];
   const all=[...new Map([...enWatched,...enNationalWatchItems(),...monitored,...earlyMonitored,...autoMonitored]
-    .filter(x=>!enSupportedStates.has(x.key.slice(0,2))||enMilestoneTracked(x))
+    .filter(x=>enShouldProbeSupplemental(x,now))
     .map(x=>[enWatchId(x),x])).values()];
   if(!all.length)return;
   // Reserve bounded slots for high-impact Senate races, the complete
@@ -5453,8 +5482,7 @@ async function enRefreshCivicWatchlist(force=false){
   const selected=scan.items.map(x=>({office:x.office,key:x.key}));
   // An explicit manual refresh prioritizes personally pinned races;
   // background cycles retain round-robin fairness across 35 Senate seats.
-  const pinned=force?enWatched.filter(x=>
-   !enSupportedStates.has(x.key.slice(0,2))||enMilestoneTracked(x)):[];
+  const pinned=force?enWatched.filter(x=>enShouldProbeSupplemental(x,now)):[];
   const batch=force?[...new Map([...pinned,...selected]
     .map(x=>[enWatchId(x),x])).values()]:selected;
   // Manual refresh checks every saved personal pin (max 40), not only
