@@ -42,7 +42,13 @@ jobs:
           fi
           # Full primary/secondary CORS and office checks every fourth hour;
           # on other hours this job is only the bounded House discovery desk.
-          if [ "${{ github.event_name }}" = "schedule" ] && [ "$((10#$(date -u +'%H') % 4))" -ne 0 ]; then
+          # Election Day + following canvass morning: run all three
+          # 2026 provider contract checks EVERY hour, not every fourth hour.
+          # Outside that window retain the economical four-hour baseline.
+          stamp="$(date -u +'%Y%m%d')"
+          if [ "${{ github.event_name }}" = "schedule" ] && \
+             [ "$stamp" != "20261103" ] && [ "$stamp" != "20261104" ] && \
+             [ "$((10#$(date -u +'%H') % 4))" -ne 0 ]; then
             echo "baseline=false" >> "$GITHUB_OUTPUT"
           else
             echo "baseline=true" >> "$GITHUB_OUTPUT"

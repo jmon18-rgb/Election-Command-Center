@@ -71,6 +71,8 @@ const fixtures={
  'polling_estimates.json':model,'polls.json':primary,
  'pollresults_recent.json':recent,'model_history.json':history,
  'race_probabilities.json':json('data/race_probabilities.json'),
+ 'election_night_source_coverage.json':json('data/election_night_source_coverage.json'),
+ 'election_night_official_backstops.json':json('data/election_night_official_backstops.json'),
  'ZqBdM (1).csv':read('ZqBdM (1).csv'),
  'f3ome (1).csv':read('f3ome (1).csv'),
  'house_history_2024_staging.json':json('data/house_history_2024_staging.json'),
@@ -153,6 +155,25 @@ async function settle(){
  assert(registeredIntervals.some(x=>x.ms===300000),
   'Still-open tab must register reporting/security refresh every five minutes');
  await settle();
+ // The 506-race discovery inventory must never masquerade as actual counts.
+ await w.eval('enRefreshSourceReadiness()');
+ const ledger=fixtures['election_night_source_coverage.json'];
+ const unresolved=ledger.races.filter(r=>r.gap_status==='UNRESOLVED_SOURCE_GAP').length;
+ const readiness=get('#enSourceReadiness').textContent;
+ assert(readiness.includes((506-unresolved)+'/506 races with source identity paths'));
+ assert(readiness.includes(unresolved+' unresolved'));
+ const links=fixtures['election_night_official_backstops.json'].links;
+ assert.equal(get('#enOfficialBackstopsList').querySelectorAll('a[href]').length,
+  links.filter(x=>x.race_ids.some(id=>
+   ledger.races.some(r=>r.id===id&&r.gap_status==='UNRESOLVED_SOURCE_GAP'))).length);
+ assert(get('#enOfficialBackstopsList').textContent.includes('State office does not publish unofficial Election Night results'),
+  'Massachusetts cannot be described as providing election-night provisional totals');
+
+ assert.match(readiness,/NOT confirmed November 3 returns coverage/);
+ const invalidLedger={...ledger,races:ledger.races.slice(1)};
+ assert.match(w.eval('enSourceReadinessMessage('+JSON.stringify(invalidLedger)+')'),
+  /incomplete or invalid/,'Lost race entries must invalidate readiness claim');
+
  // The local early-evening comparator must be installed on the actual
  // browser page and must visibly disclose that it is not a national swing.
  assert.equal(typeof w.eval('enDistrictPerformance'),'function',
