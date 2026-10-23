@@ -126,6 +126,9 @@ async function settle(){
  w.eval(read('scripts/election_night_openamerica_transport.js'));
  assert(w.ElectionNightOpenAmericaTransport?.create,
   'Primary Open America reader must load before inline Election Night script');
+ w.eval(read('scripts/election_night_live_coverage_506.js'));
+ assert(w.ElectionNightLiveCoverage?.audit,
+  'Nationwide reported-results desk must load before inline dashboard');
  w.eval(read('scripts/election_night_fast_lane.js'));
  assert.equal(w.ElectionNightFastLane?.MAX_RACES,4,
   'The fast lane must cap extra Election Night race checks to four per tick');
@@ -171,6 +174,10 @@ function __testSeedStaleOhioSenate(){
  const ledger=fixtures['election_night_source_coverage.json'];
  const unresolved=ledger.races.filter(r=>r.gap_status==='UNRESOLVED_SOURCE_GAP').length;
  const readiness=get('#enSourceReadiness').textContent;
+ assert(w.ElectionNightLiveCoverage?.audit(fixtures['election_night_source_coverage.json'],{},{}).ready,
+  'Actual 506-seat ledger must support accurate no-votes-yet reporting status');
+ assert(get('#enLiveCoverageStatus'),'Nationwide vote coverage must be visible beside source identity readiness');
+ assert(get('#enLiveSenateCoverage'),'All 35 Senate races need explicit observation statuses');
  assert(readiness.includes((506-unresolved)+'/506 races with source identity paths'));
  assert(readiness.includes(unresolved+' unresolved'));
  const links=fixtures['election_night_official_backstops.json'].links;

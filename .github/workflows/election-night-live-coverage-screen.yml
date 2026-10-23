@@ -1,0 +1,25 @@
+name: Audit 506-race Election Night reported-vote screen
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/election_night_live_coverage_506.js'
+      - 'scripts/test_election_night_live_coverage_506.cjs'
+      - 'scripts/test_dashboard_runtime.cjs'
+      - 'index.html'
+      - '.github/workflows/election-night-live-coverage-screen.yml'
+permissions:
+  contents: read
+jobs:
+  verify-national-reporting-status:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact 435 House, 35 Senate, 36 governors with missing versus actual votes
+        run: |
+          node --check scripts/election_night_live_coverage_506.js
+          node scripts/test_election_night_live_coverage_506.cjs
