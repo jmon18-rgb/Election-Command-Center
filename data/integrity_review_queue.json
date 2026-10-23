@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-23T02:14:41.268794Z",
+  "updated_at": "2026-10-23T02:46:24.277099Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
     "primary_source_checked": 5,
-    "advisory_related_headline_buckets": 20,
-    "advisory_related_headlines": 45
+    "advisory_related_headline_buckets": 19,
+    "advisory_related_headlines": 43
   },
   "advisory_related_headlines": [
     {
@@ -183,17 +183,6 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "256dbf326364da4f0ce2",
-      "headline": "Weekly Racial Justice Update: October 11\u201317, 2026 - Race, Racism and the Law",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
       "lead_id": "10037a360d2c902fcd7f",
       "headline": "Michigan advocates work to ease election security anxieties as November 3 approaches - Michigan Advance",
       "possibly_related_articles": 2,
@@ -254,6 +243,26 @@
     }
   ],
   "items": [
+    {
+      "id": "f4f611d5e6bea1425004",
+      "title": "Will ICE agents play a role in the 2026 US midterm elections? - Al Jazeera",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOYk00Wm5vd0dUVlFFRjJsNVZGQWxtaXNucUw5SzdrcXRhbXhEQUJaRE44Wjl4dXU4TE1FUU1TSHJDdmc3ZmlVbUhaNVl1VnMtZWF6dDRILUU4bUYweDRJYjVqRUZkSzFESG1kU0hKMHRJb0dBdE9xc0xjNV9rLXhQMTRvWEtDbnBQdVc0aTdsRUQ3ZkR2MHBCMmQwanlZeEpYTlZHXzNoYlRnd9IBqgFBVV95cUxOYk00Wm5vd0dUVlFFRjJsNVZGQWxtaXNucUw5SzdrcXRhbXhEQUJaRE44Wjl4dXU4TE1FUU1TSHJDdmc3ZmlVbUhaNVl1VnMtZWF6dDRILUU4bUYweDRJYjVqRUZkSzFESG1kU0hKMHRJb0dBdE9xc0xjNV9rLXhQMTRvWEtDbnBQdVc0aTdsRUQ3ZkR2MHBCMmQwanlZeEpYTlZHXzNoYlRndw?oc=5",
+      "publisher": "Al Jazeera",
+      "published_at": "2026-10-23T01:48:08Z",
+      "detected_at": "2026-10-23T02:46:24.277099Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "65f6c51ac13d0eecc7fa",
       "title": "Arizona Latino voters express concerns ahead of Election Day - Cronkite News",
@@ -4852,27 +4861,6 @@
       "state_hints": [],
       "topic_hints": [],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "dded821af6884f16bad8",
-      "title": "Weekly Racial Justice Update: October 4\u201310, 2026 - Race, Racism and the Law",
-      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOTHhIVkhXeUtzcElwNnRzbVZ1VXUzWXptWVQwc3M1bnRFLXBIYWk4MnZfOHhYY2dKVU5fcF91cU9VbVFGUUliSlpWdWtxRnJlX1Z5LWdlVmduSVBTZnBQUGpJYzZjVm9kLVRCVWJOLS1OeWw0ejVuU2RISFl5MXJFekJWYWpNRkhTMVFNQWp5SE9tN3B0NFFIYlh3?oc=5",
-      "publisher": "Race, Racism and the Law",
-      "published_at": "2026-10-12T13:57:57Z",
-      "detected_at": "2026-10-13T01:03:38.436117Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [
-        "4",
-        "10, ",
-        "2026"
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
