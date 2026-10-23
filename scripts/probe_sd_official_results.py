@@ -78,6 +78,9 @@ def main():
                 raise ValueError("HTTP " + str(res.status))
             page = res.read(500_000).decode("utf-8", errors="replace")
         result = assess(page)
+        result["export_link_count"] = len(result["candidate_export_links"])
+        # The source publishes a dynamic export interface; discovered links are
+        # diagnostic and cannot be promoted to ingestion without schema review.
     except Exception as exc:
         result = {"source": URL, "race": "SD-00",
                   "status": "SOURCE_UNAVAILABLE", "detail": str(exc)[:200],
