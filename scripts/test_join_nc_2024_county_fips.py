@@ -7,7 +7,7 @@ rows = [{"county_name": n, "mode": "election_day",
 staging = {"state":"NC", "status":"OFFICIAL_NC_2024_HISTORICAL_MODE_COUNTS_NOT_A_2026_NEEDLE",
            "observations":rows}
 ref = "statefp,countyfp,name\n" + "".join(
-    "37,%03d,%s\n" % (i,n) for i,n in enumerate(names))
+    "37,%03d,%s\n" % (2*i+1,n) for i,n in enumerate(names))
 
 class CrosswalkTests(unittest.TestCase):
     def test_exact_and_research_only(self):
