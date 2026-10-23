@@ -1,0 +1,28 @@
+name: Validate same-office NC 2022-to-2026 Senate county comparison
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/nc_same_office_senate_comparison.js'
+      - 'scripts/test_nc_same_office_senate_comparison.cjs'
+      - 'scripts/nc_county_results_desk_startup.js'
+      - 'scripts/test_nc_county_real_browser_election_night.mjs'
+      - 'index.html'
+      - '.github/workflows/nc-same-office-senate-compare.yml'
+permissions:
+  contents: read
+jobs:
+  nonforecast-comparison:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check same-office source fingerprint and fail-closed partial vote comparisons
+        run: |
+          node --check scripts/nc_same_office_senate_comparison.js
+          node --check scripts/nc_county_results_desk_startup.js
+          node scripts/test_nc_same_office_senate_comparison.cjs
+          node scripts/test_nc_historical_county_comparison.cjs

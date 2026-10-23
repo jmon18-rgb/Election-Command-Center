@@ -9,7 +9,9 @@
   const serial=++requestSerial;
   const host=root.document?.getElementById('enVerifiedCountyResults');
   const historicalHost=root.document?.getElementById('enNcHistoricalComparison');
+  const senateHistoryHost=root.document?.getElementById('enNcSenateSameOfficeComparison');
   if(historicalHost)historicalHost.replaceChildren();
+  if(senateHistoryHost)senateHistoryHost.replaceChildren();
   if(!host)return;
   const desk=root.ElectionNightCountyResultsDesk;
   if(!desk){host.textContent='County display verification unavailable';return;}
@@ -57,9 +59,28 @@
       historicalHost.textContent='Historical comparison unavailable: '+err.message;
     }
    }
+   // The SHA-pinned 2022 Senate reference is a separate, same-office
+   // historical comparison. Never convert these figures to 2026 ballots.
+   if(zipOnly&&prepared.ready&&senateHistoryHost){
+    const compare=root.NcSameOfficeSenateComparison;
+    if(!compare){senateHistoryHost.textContent='2022 Senate historical module unavailable';return;}
+    try{
+     const response2022=await root.fetch('./data/nc_2022_senate_county_verified.csv',
+      {cache:'no-cache'});
+     if(serial!==requestSerial)return;
+     if(!response2022.ok)throw Error('Pinned official 2022 Senate county baseline missing');
+     const csv2022=await response2022.text();
+     if(serial!==requestSerial)return;
+     compare.render(senateHistoryHost,compare.compare(prepared,csv2022),root.document);
+    }catch(err){
+     if(serial===requestSerial)
+      senateHistoryHost.textContent='2022 Senate comparison unavailable: '+err.message;
+    }
+   }
   }catch(e){
    if(serial!==requestSerial)return;
    if(historicalHost)historicalHost.replaceChildren();
+   if(senateHistoryHost)senateHistoryHost.replaceChildren();
    desk.render(host,{ready:false,reason:'County source not available: '+e.message},root.document);
   }
  }
