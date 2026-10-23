@@ -34,7 +34,7 @@ assert.equal(result.estimated_ballots_remaining,null);
 assert.equal(result.percent_reporting,null);
 assert.equal(result.rows[0].reported_two_party_votes,900);
 assert.equal(result.rows[0].reported_2026_senate_margin_points,11.11);
-assert.equal(result.rows[0].full_2024_presidential_margin_points,26);
+assert.equal(result.rows[0].full_2024_presidential_margin_points,25.99);
 assert.equal(result.rows[0].descriptive_difference_points,-14.88);
 assert.equal(result.rows[1].reported_2026_senate_margin_points,0);
 for(const wrong of [
