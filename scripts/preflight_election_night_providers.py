@@ -8,6 +8,8 @@ candidate votes or professional race calls. No provider credentials required.
 import argparse
 import datetime as dt
 import json
+from pathlib import Path
+from national_results_coverage_pulse import pulse
 import urllib.error
 import urllib.request
 
@@ -93,12 +95,14 @@ def fetch_json(url):
         return json.loads(body.decode("utf-8"))
 
 
-def run_probes(now):
+def run_probes(now, coverage_ledger=None):
     results=[]
+    primary_docs={}
     for office in ("Senate","House","Governor"):
         try:
             doc=fetch_json(PRIMARY.format(office=office))
             results.append({"provider":"Open America",**validate_primary(doc,office,now)})
+            primary_docs[office]=doc
         except (urllib.error.URLError,TimeoutError,ValueError,UnicodeError,
                 json.JSONDecodeError) as exc:
             results.append({"provider":"Open America","office":office,
@@ -117,22 +121,27 @@ def run_probes(now):
             results.append({"provider":"civicAPI","race":race,
                             "status":"FAILED_TRANSPORT_OR_SCHEMA",
                             "reason":str(exc)[:240]})
-    return {"schema":"election-night-transport-preflight-v1",
+    report={"schema":"election-night-transport-preflight-v1",
             "checked_at":now.isoformat().replace("+00:00","Z"),
             "provider_race_calls_verified":0,
             "source_votes_independently_verified":False,
             "probes":results}
+    if coverage_ledger is not None:
+        report["nationwide_506_observation_pulse"]=pulse(coverage_ledger,primary_docs,now)
+    return report
 
 
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument("--probe",action="store_true")
     parser.add_argument("--output",default="/tmp/election-night-source-preflight.json")
+    parser.add_argument("--coverage-ledger",type=Path,default=None)
     args=parser.parse_args()
     if not args.probe:
         parser.error("Use --probe (offline tests use the importable validators)")
     now=dt.datetime.now(dt.timezone.utc)
-    audit=run_probes(now)
+    ledger=json.loads(args.coverage_ledger.read_text()) if args.coverage_ledger else None
+    audit=run_probes(now,ledger)
     with open(args.output,"w",encoding="utf-8") as f:
         json.dump(audit,f,indent=2)
         f.write("\n")
