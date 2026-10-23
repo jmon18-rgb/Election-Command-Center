@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-21T16:47:13.888221Z",
+  "updated_at": "2026-10-23T00:57:49.936382Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 8,
   "review_metrics": {
-    "total_leads": 242,
-    "awaiting_primary_source": 240,
+    "total_leads": 250,
+    "awaiting_primary_source": 248,
     "primary_source_checked": 2,
     "advisory_related_headline_buckets": 21,
     "advisory_related_headlines": 47
@@ -254,6 +254,161 @@
     }
   ],
   "items": [
+    {
+      "id": "65f6c51ac13d0eecc7fa",
+      "title": "Arizona Latino voters express concerns ahead of Election Day - Cronkite News",
+      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNV0tzMnd1QnBwN2p5MkV3MnRyQXhiSVlHQXN3cEMzM2laVzRwaV9PMmswUXc2NlBzeTluSlpfVjRYdE85OTc2V0lmV19ndnlPWVBKYUNrN1I1TjRGeXk1UlcxU0F2a25jOW9oSU1qVVJmT0hSRHdiQjhKc00wT2xYRXFyVmVOV2J2STBPak5zSQ?oc=5",
+      "publisher": "Cronkite News",
+      "published_at": "2026-10-22T22:23:05Z",
+      "detected_at": "2026-10-23T00:57:49.936382Z",
+      "state_hints": [
+        "AZ"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "6344575d71330af87f17",
+      "title": "The midterm effect: What the 2026 election could mean for public policy - Brookings",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPbGxuc1JOXzBTaW84TG1MaU9GQ3FJTUtjU1c1WThHWFlERlZHWGJ1MzJtOFlLaWRaWk5DVTZQZjk2bEQ1bUxLUVJzZmVkYWNodldsQUVCdmoyc3kwRkpTNHB0RTVoT3NjVmI5azZ2cG1hWU45TTVaVlFHNjhLVkc2QVZseGVtaEk1TlZvYjhILTVpTHo3TDRFUERCOWNDcjhPNUNFaU1xc3Z6Zw?oc=5",
+      "publisher": "Brookings",
+      "published_at": "2026-10-22T19:50:04Z",
+      "detected_at": "2026-10-23T00:57:49.936382Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "14ab1f5f029f3840076d",
+      "title": "Nevada ready to resist federal election pressure | Aguilar - Reno Gazette Journal",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOb3FNVEs1Q0JTU3dGRGliSExraGthbG42YUZOeU13SGFrTGlNRHAzRnBWdkdta0hhYUhDVi1lSGdUMW03WHZRTF9fV2hMUmR6VE4xdU5tbGx0TmN3NXhCVXVLRVNQY2U3Y3p6UF8tejlfTkdlVmVCRmlYN2h2eHg0QUdYWWlza1hBMTZGTnZCZkU3VnphRTBDTkVCUC1tVFBxcHBmOFdFTzNaN0c0alZXQXgwanU?oc=5",
+      "publisher": "Reno Gazette Journal",
+      "published_at": "2026-10-22T19:30:00Z",
+      "detected_at": "2026-10-23T00:57:49.936382Z",
+      "state_hints": [
+        "NV"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "b42b72d21f635f8a0ed7",
+      "title": "Federal judge orders Trump administration to halt noncitizen voting investigation in 9 states - WTOP News",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNQjNpQV9ycFVCRGdLS3QwajUwUjFJSkVvOVpnTW9XdEcxQnJTOUs2ellDUTIyaFlfdmtpRlJDb2xmbUtlTzE0WjNOYWs4WjBvOEd1aWZ6Rmc3cE1DVU5XT3E5cVU5M1FSWGxtd3VwUnUzLXN6REVFak5ucW1TaThNdHRrQTZqVUlLd0dtTWNUdnFfRUFJYTV1cVpyaEJBYzZheUozT3dmaFZzOHVyODI2RHVDcEpacGZELUI3TS0zbVJQVVlaNmYw?oc=5",
+      "publisher": "WTOP News",
+      "published_at": "2026-10-22T19:16:51Z",
+      "detected_at": "2026-10-23T00:57:49.936382Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "9 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "1a80bdfd106547cf2702",
+      "title": "Federal judge restricts DHS field operations looking for noncitizen voters - NPR",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNQXN0am5OcXFwRmh4Qkh5NUs4Rlc2TVNzeDJXXzZ2a0JVcDRaeEpBM1ZqNG1iaGV5OFJzcFFFMWpCUzZ6X1h3YXRpMndyeHFGR0J0a1RkWmhBUW1GejF4Y3FoVzhueUJqMW1GX1JLZVVrc1VHVkxhb3hfQkxfV0gxWnptV3RZMDl3WHJ3?oc=5",
+      "publisher": "NPR",
+      "published_at": "2026-10-22T19:16:20Z",
+      "detected_at": "2026-10-23T00:57:49.936382Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "f06c787f385d1846b964",
+      "title": "Less than 2 weeks until Election Day: 920,000 ballots cast as clerks emphasize security - MLive.com",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPcU4tVVM0VFo5ZWlfTkZybHl6WG11NlJ5MHNqOE1FZGRHei14SldKRy1TVWpub0dDTmRBNklpNWJhOXdrZFdZbVJBbTNYcENIV0d5dFRkdWhxOWFDUnJiY2NxM0RhNEZoLUFIb1hPczQ0VVdfX2tQaWtnOTdrTEhRdlN4a3JxQ1VNQTY5YURzNXBMTmNHLVlzLWtfTG5XU1JWVktLSTdKbHdhVFZmYW5WLUszRDhLeGdLakhLeGZJOVZIM3VmTHVuUQ?oc=5",
+      "publisher": "MLive.com",
+      "published_at": "2026-10-22T18:54:00Z",
+      "detected_at": "2026-10-23T00:57:49.936382Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2 ",
+        "920,000 ballots"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "8ff03d9b00ba66c352e9",
+      "title": "Supreme Court amicus: Arizona SAVE database verification violates National Voter Registration Act - Citizens for Responsibility and Ethics in Washington",
+      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNWlF2QUVsWDJmRThVcGpZalNqaWlwVWozMUw1TmJFNnNYa2NzRG9wQ1g4LWFZaTNvd3BHM1FhdjhwcU01OWdGd05lNHZ6YWRVQ2JYaG9XYmdrOVlJODN2RnFyUEoxejJNaS1OS0U3NFZNc2dvWDhfeUxhcXh6clM4UUg1MEVlOEhvZzN3X1UyVENJcDZxNTFKOG13VzlkbXZDdkc2d1pGSGREaV9YRWlFNmR5RE02VDVIaTd3T0hiZnRXOXJ1S193c2VqdmNKUDlSVUhrVFl6N3FoaUZsb1R6cUsyQW41cVNH?oc=5",
+      "publisher": "Citizens for Responsibility and Ethics in Washington",
+      "published_at": "2026-10-22T18:47:26Z",
+      "detected_at": "2026-10-23T00:57:49.936382Z",
+      "state_hints": [
+        "AZ",
+        "WA"
+      ],
+      "topic_hints": [
+        "registration",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "4fa9b9a4af95f0679669",
+      "title": "Federal judge blocks voter investigation tactics in Missouri, eight other states ahead of midterms - Newstalk KZRG",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQLU94SjIyOWZjcVpucnB1Z3d6SGNjWURESHpta25WdUl4d1JyQlhjSkN6SDJkWHpMRkd6ZTE5RDRFTS1GU1JUdWM1T0dfbGIxd3pnWXVhX3UwTV85aThVVkIwSzNYOFpmbGdJd0lFd3ZBZFBmSk1FaDFtS0h4VXQweW5udDc0SjN0bEU4YVlBWHpJNlhXYWhTc1AtSGJWak1xcF9QOHpaME1BOTZTbWJKcGdhM3JkYVNkR2gzNU9qQzV6a2FfdXVQMWNkdWNKMmNFZVp2Sw?oc=5",
+      "publisher": "Newstalk KZRG",
+      "published_at": "2026-10-22T18:13:51Z",
+      "detected_at": "2026-10-23T00:57:49.936382Z",
+      "state_hints": [
+        "MO"
+      ],
+      "topic_hints": [
+        "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "81d62f6b6bf0ec19d23d",
       "title": "Monitoring the monitors: US states prepare for surge of Justice Dept election watchers - Reuters",

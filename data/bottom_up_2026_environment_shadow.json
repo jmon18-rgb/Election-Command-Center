@@ -1,42 +1,32 @@
 {
   "schema_version": "bottom-up-2026-poll-environment-shadow-v1",
   "status": "SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE",
-  "polling_generated_at": "2026-10-21T16:47:18.959246Z",
+  "polling_generated_at": "2026-10-23T00:57:52.998797Z",
   "presidential_geography_year": 2026,
   "presidential_2024_national_two_party_margin_points": -1.705,
-  "generic_ballot_2026_d_minus_r_points": 8.48,
-  "generic_implied_vs_2024_presidential_swing_points": 10.185,
-  "independent_polling_estimated_presidential_to_race_swing_points": 8.296,
-  "bottom_up_implied_national_margin_points": 6.59,
-  "bottom_up_minus_generic_environment_points": -1.89,
+  "generic_ballot_2026_d_minus_r_points": 9.21,
+  "generic_implied_vs_2024_presidential_swing_points": 10.915,
+  "independent_polling_estimated_presidential_to_race_swing_points": 9.639,
+  "bottom_up_implied_national_margin_points": 7.934,
+  "bottom_up_minus_generic_environment_points": -1.276,
   "candidate_specific_effects_removed": false,
   "candidate_quality_calibration_available": false,
-  "total_qualifying_races": 16,
-  "states_with_qualified_races": 15,
+  "total_qualifying_races": 15,
+  "states_with_qualified_races": 14,
   "trimmed_states_each_tail": 1,
   "qualifying_house_races": 1,
-  "qualifying_senate_races": 15,
+  "qualifying_senate_races": 14,
   "excluded": {
-    "inadequate_polling": 71,
+    "inadequate_polling": 86,
     "stale": 0,
     "not_competitive": 1,
     "missing_geography": 0
   },
   "state_swing_samples": [
     {
-      "state": "MT",
-      "number_qualifying_races": 1,
-      "swing_points": -6.432
-    },
-    {
       "state": "ME",
       "number_qualifying_races": 1,
-      "swing_points": -4.869
-    },
-    {
-      "state": "AK",
-      "number_qualifying_races": 2,
-      "swing_points": -1.721
+      "swing_points": -5.409
     },
     {
       "state": "MN",
@@ -44,24 +34,29 @@
       "swing_points": -0.763
     },
     {
+      "state": "AK",
+      "number_qualifying_races": 2,
+      "swing_points": 1.062
+    },
+    {
       "state": "NH",
       "number_qualifying_races": 1,
-      "swing_points": 3.889
+      "swing_points": 3.939
     },
     {
       "state": "MI",
       "number_qualifying_races": 1,
-      "swing_points": 4.389
+      "swing_points": 4.139
     },
     {
       "state": "FL",
       "number_qualifying_races": 1,
-      "swing_points": 6.662
+      "swing_points": 6.802
     },
     {
       "state": "GA",
       "number_qualifying_races": 1,
-      "swing_points": 10.989
+      "swing_points": 10.729
     },
     {
       "state": "RI",
@@ -76,27 +71,27 @@
     {
       "state": "IA",
       "number_qualifying_races": 1,
-      "swing_points": 13.776
+      "swing_points": 13.936
     },
     {
       "state": "OH",
       "number_qualifying_races": 1,
-      "swing_points": 15.033
+      "swing_points": 15.463
     },
     {
       "state": "TX",
       "number_qualifying_races": 1,
-      "swing_points": 15.988
+      "swing_points": 15.948
     },
     {
       "state": "KS",
       "number_qualifying_races": 1,
-      "swing_points": 17.891
+      "swing_points": 17.831
     },
     {
       "state": "NE",
       "number_qualifying_races": 1,
-      "swing_points": 20.591
+      "swing_points": 21.221
     }
   ],
   "examples": [
@@ -109,22 +104,22 @@
       "raw_swing_points": -0.763,
       "capped_swing_points": -0.763,
       "capped_local_outlier": false,
-      "weight": 0.65,
+      "weight": 0.6166666666666667,
       "independent_firms": 3,
-      "latest_age_days": 6
+      "latest_age_days": 8
     },
     {
       "office": "senate",
       "race_code": "TX-SEN",
       "state": "TX",
       "presidential_2024_margin": -13.878,
-      "poll_margin": 2.11,
-      "raw_swing_points": 15.988,
-      "capped_swing_points": 15.988,
+      "poll_margin": 2.07,
+      "raw_swing_points": 15.948,
+      "capped_swing_points": 15.948,
       "capped_local_outlier": false,
-      "weight": 0.8888888888888888,
-      "independent_firms": 13,
-      "latest_age_days": 5
+      "weight": 0.9111111111111111,
+      "independent_firms": 14,
+      "latest_age_days": 4
     }
   ],
   "notes": [
