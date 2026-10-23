@@ -1,39 +1,131 @@
 {
-  "updated_at": "2026-10-23T19:44:04.777310+00:00",
+  "updated_at": "2026-10-23T20:33:15.032734+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 819,
+      "available_in_source": 820,
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1252,
+      "available_in_source": 1254,
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 921,
+      "available_in_source": 922,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 311,
-  "newly_injected_into_model": 3,
+  "matched_primary_observations": 314,
+  "newly_injected_into_model": 2,
   "injected_poll_ids": [
     {
-      "race_code": "CO-03",
-      "poll_id": "d846e9d7-a378-47ec-849f-a5dbfa44b6f9"
+      "race_code": "ID-GOV",
+      "poll_id": "b26b343b-ffaa-401a-84c6-cf5b73894075"
     },
     {
-      "race_code": "KS-GOV",
-      "poll_id": "2777acf5-a35a-4458-8ae6-2e94d67246c3"
-    },
-    {
-      "race_code": "MS-SEN",
-      "poll_id": "0c60a604-8bbb-48d3-9785-388eb501e585"
+      "race_code": "KS-02",
+      "poll_id": "0e9cbb67-69cd-4407-9c98-b4e460b94d0d"
     }
   ],
   "observations": [
+    {
+      "race_code": "KS-02",
+      "race_type": "house",
+      "state": "KS",
+      "poll_id": "0e9cbb67-69cd-4407-9c98-b4e460b94d0d",
+      "question_id": "caad04ea-64bd-4148-900d-62031bdc3577",
+      "pollster": "DCCC Targeting Team",
+      "dem_name": "Don Coover",
+      "rep_name": "Derek Schmidt",
+      "dem": 46.0,
+      "rep": 49.0,
+      "margin": -3.0,
+      "field_end": "2026-10-20",
+      "field_start": "2026-10-19",
+      "posted_date": "2026-10-23",
+      "posted_source_datetime": "2026-10-23T16:22:00",
+      "posted_source_time": "10/23/26 16:22",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.semafor.com/article/10/23/2026/dems-make-a-kansas-play-as-gop-eyes-a-california-seat",
+      "sample_population": "lv",
+      "sample_size": 639,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "ID-02",
+      "race_type": "house",
+      "state": "ID",
+      "poll_id": "b26b343b-ffaa-401a-84c6-cf5b73894075",
+      "question_id": "0da77fdb-b147-47af-b15a-f10a249398b0",
+      "pollster": "VoteNexus",
+      "dem_name": "Ellie Gilbreath",
+      "rep_name": "Mike Simpson",
+      "dem": 31.0,
+      "rep": 46.0,
+      "margin": -15.0,
+      "field_end": "2026-10-22",
+      "field_start": "2026-10-21",
+      "posted_date": "2026-10-23",
+      "posted_source_datetime": "2026-10-23T15:34:00",
+      "posted_source_time": "10/23/26 15:34",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://drive.google.com/file/d/1ZWt7_rFQzMxjeueMCX4GoFyqIe9jRk8X/view",
+      "sample_population": "lv",
+      "sample_size": null,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "ID-01",
+      "race_type": "house",
+      "state": "ID",
+      "poll_id": "b26b343b-ffaa-401a-84c6-cf5b73894075",
+      "question_id": "0e51da21-85cc-4803-ad60-f98f5215bbb6",
+      "pollster": "VoteNexus",
+      "dem_name": "Kaylee Peterson",
+      "rep_name": "Russ Fulcher",
+      "dem": 26.0,
+      "rep": 52.0,
+      "margin": -26.0,
+      "field_end": "2026-10-22",
+      "field_start": "2026-10-21",
+      "posted_date": "2026-10-23",
+      "posted_source_datetime": "2026-10-23T15:34:00",
+      "posted_source_time": "10/23/26 15:34",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://drive.google.com/file/d/1ZWt7_rFQzMxjeueMCX4GoFyqIe9jRk8X/view",
+      "sample_population": "lv",
+      "sample_size": null,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "ID-GOV",
+      "race_type": "governor",
+      "state": "ID",
+      "poll_id": "b26b343b-ffaa-401a-84c6-cf5b73894075",
+      "question_id": "433675f5-1971-40f8-a147-588f60fa004c",
+      "pollster": "VoteNexus",
+      "dem_name": "Terri Pickens",
+      "rep_name": "Brad Little",
+      "dem": 30.0,
+      "rep": 49.0,
+      "margin": -19.0,
+      "field_end": "2026-10-22",
+      "field_start": "2026-10-21",
+      "posted_date": "2026-10-23",
+      "posted_source_datetime": "2026-10-23T15:34:00",
+      "posted_source_time": "10/23/26 15:34",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://drive.google.com/file/d/1ZWt7_rFQzMxjeueMCX4GoFyqIe9jRk8X/view",
+      "sample_population": "lv",
+      "sample_size": 700,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "CO-03",
       "race_type": "house",
