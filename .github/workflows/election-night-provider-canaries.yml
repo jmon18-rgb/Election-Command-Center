@@ -5,6 +5,8 @@ on:
     paths:
       - 'scripts/preflight_election_night_providers.py'
       - 'scripts/test_preflight_election_night_providers.py'
+      - 'scripts/national_results_coverage_pulse.py'
+      - 'scripts/test_national_results_coverage_pulse.py'
       - '.github/workflows/election-night-provider-canaries.yml'
   schedule:
     # Keep request volume small outside Election Night.
@@ -27,6 +29,7 @@ jobs:
         run: |
           python3 -m py_compile scripts/preflight_election_night_providers.py
           python3 scripts/test_preflight_election_night_providers.py
+          python3 scripts/test_national_results_coverage_pulse.py
   public-endpoint-probes:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: offline-contract
@@ -39,7 +42,9 @@ jobs:
           python-version: '3.12'
       - name: Probe actual Open America offices and pinned civicAPI race endpoints
         run: |
-          python3 scripts/preflight_election_night_providers.py --probe --output /tmp/provider-preflight.json
+          python3 scripts/preflight_election_night_providers.py --probe \
+            --coverage-ledger data/election_night_source_coverage.json \
+            --output /tmp/provider-preflight.json
       - name: Save source availability, CORS and response-schema evidence
         if: always()
         uses: actions/upload-artifact@v4
