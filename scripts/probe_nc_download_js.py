@@ -19,7 +19,9 @@ def inspect(html):
  hits=[]
  for pattern in (r'.{0,180}cboElection.{0,220}',r'.{0,180}downloads?\.html.{0,220}',r'.{0,220}(?:fetch\(|\.ajax\(|XMLHttpRequest|\.open\(|\.send\().{0,350}'):
   hits.extend(re.findall(pattern,js,re.I))
- return {"inline_js_snippets":list(dict.fromkeys(hits))[:25],
+ lines=js.splitlines()
+ request_lines=[{"line":i+1,"context":" ".join(lines[max(0,i-1):i+3])[:700]} for i,line in enumerate(lines) if "open(" in line or "send(" in line or "fileElection" in line]
+ return {"request_calls":request_lines[:30],"inline_js_snippets":list(dict.fromkeys(hits))[:25],
          "external_script_paths":p.sources,
          "endpoint_verified":False,"live_2026_county_votes_verified":False}
 def main():
