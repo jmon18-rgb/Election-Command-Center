@@ -1,0 +1,39 @@
+name: Observe official NC 2026 election ZIP publication
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/discover_nc_2026_official_zip.py'
+      - 'scripts/test_discover_nc_2026_official_zip.py'
+      - '.github/workflows/nc-2026-zip-publication-watch.yml'
+  schedule:
+    # Election Night 2026 (Eastern): Nov 3 ~4 PM to Nov 4 ~4 AM.
+    # GitHub cron can be delayed and is NOT a reliable 30-second live feed.
+    - cron: '*/10 21-23 3 11 *'
+    - cron: '*/10 0-8 4 11 *'
+permissions:
+  contents: read
+jobs:
+  source-observation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test read-only publication and unverified-result safety contract
+        run: |
+          python3 -m py_compile scripts/discover_nc_2026_official_zip.py
+          python3 scripts/test_discover_nc_2026_official_zip.py
+      - name: Inspect live official catalog and anticipated NC ZIP (no ingest)
+        if: github.event_name != 'pull_request'
+        run: |
+          python3 scripts/discover_nc_2026_official_zip.py --check-live --output /tmp/nc_2026_zip_observation.json
+      - name: Preserve read-only ZIP publication observation
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: nc-official-2026-zip-observation-not-live-approved
+          path: /tmp/nc_2026_zip_observation.json
+          retention-days: 7
