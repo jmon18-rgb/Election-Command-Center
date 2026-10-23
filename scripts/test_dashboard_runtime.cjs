@@ -386,6 +386,14 @@ async function settle(){
   assert.match(get('#enWakeStatus').textContent,/Wake Lock unsupported|Display wake lock|Wake lock/);
   get('#enScreenAwake').click();
   assert.equal(get('#enScreenAwake').getAttribute('aria-pressed'),'false');
+  assert.equal(w.eval('enReconnectGap(1000,121000)'),true,
+   'A paused browser must detect a two-minute gap in the result-check clock');
+  assert.equal(w.eval('enReconnectGap(1000,120999)'),false,
+   'Normal one-minute checks must not trigger overlapping reconnects');
+  assert.equal(w.eval('enReconnectGap(121000,1000)'),false,
+   'Backwards system-clock adjustments must not trigger a reconnect');
+  assert.equal(w.eval('enReconnectAfterInterruption(true)'),false,
+   'Before Election Day a resumed browser must not manufacture or request live votes');
 
  assert.match(get('#enEarlySignals').textContent,/2026 preview/);
  assert.match(get('#enEarlySignals').textContent,/no live returns in archive/);
