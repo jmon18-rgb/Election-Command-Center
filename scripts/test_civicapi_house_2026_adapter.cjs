@@ -131,4 +131,34 @@ assert.equal(api.validatePinned(item,88001,{
  'Before polls close, a source-matched ID only carries zero-vote standby data');
 assert.equal(api.setManifest({...makeManifest(),races:[]},manifestNow),true);
 assert.equal(api.pinnedId(item),null,'A newer empty manifest revokes old shortcuts');
+// KY-06 early-indicator regression: the pinned 87173 shortcut is only usable
+// with an independently validated Kentucky 6th District general-election detail.
+const kyItem={office:'House',key:'KY-06'};
+const kyRow={...search,id:87173,province:'KY',district:'KY-06',
+ election_name:'Kentucky US House 6'};
+const kyDetail={...detail,...kyRow,election_type:'House of Representatives'};
+const kyManifest={...makeManifest(),races:[
+ {district:'KY-06',race_id:87173,checked_window_utc:'2026-11-02T16:00:00Z'}]};
+assert.equal(api.supports(kyItem),true);
+assert.equal(api.match(kyItem,kyRow),true);
+assert.equal(api.select(kyItem,{races:[kyRow]}).id,87173);
+assert.equal(api.setManifest(kyManifest,manifestNow),true);
+assert.equal(api.pinnedId(kyItem),87173);
+assert.equal(api.validatePinned(kyItem,87173,kyDetail,now).total,1000);
+for(const wrong of [
+ {...kyDetail,id:87174},
+ {...kyDetail,district:'KY-05'},
+ {...kyDetail,province:'IN'},
+ {...kyDetail,election_name:'Kentucky US House 5'},
+ {...kyDetail,election_date:'2024-11-05T05:00:00Z'}
+]){
+ assert.equal(api.validatePinned(kyItem,87173,wrong,now),null,
+  'KY-06 must reject mismatched detail: '+JSON.stringify(wrong));
+}
+assert.equal(api.validatePinned(kyItem,87173,kyDetail,
+ Date.parse('2026-10-23T15:00:00Z')),null,
+ 'KY-06 cannot report any 2026 votes before Election Night');
+assert.equal(api.validatePinned(kyItem,87173,{
+ ...kyDetail,candidates:pre.candidates,percent_reporting:0,last_updated:null
+},Date.parse('2026-10-23T15:00:00Z')).total,0);
 console.log('2026 supplemental House district source identity, arithmetic, CORS-safe query and failure cases PASS');
