@@ -12,7 +12,7 @@ import {chromium} from 'playwright';
 const ROOT=resolve(import.meta.dirname,'..');
 const MIME={'.html':'text/html','.js':'text/javascript','.json':'application/json',
  '.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg',
- '.webp':'image/webp','.txt':'text/plain'};
+ '.webp':'image/webp','.txt':'text/plain','.csv':'text/csv'};
 const server=createServer((req,res)=>{
  const url=new URL(req.url||'/', 'http://127.0.0.1');
  const loc=resolve(ROOT,'.'+decodeURIComponent(url.pathname==='/'?'/index.html':url.pathname));
@@ -88,6 +88,13 @@ try{
   assert.match(rendered,/County FIPS 37183/);
   assert.match(rendered,/NOT available from this feed/);
   assert(!/percent reporting: [0-9]|projected winner/i.test(rendered));
+  await page.waitForFunction(()=>
+   document.querySelector('#enNcHistoricalComparison')?.textContent?.includes('DESCRIPTIVE ONLY'),
+   {timeout:25000});
+  let comparison=await page.locator('#enNcHistoricalComparison').textContent();
+  assert.match(comparison,/partial 2026 Senate vs\. full 2024 presidential/i);
+  assert.match(comparison,/No geographic needle or national forecast adjustment/);
+  assert.match(comparison,/37183/);
   const refresh=async()=>{
    await page.evaluate(()=>window.NcCountyDeskRefresh());
    return page.locator('#enVerifiedCountyResults').textContent();
@@ -96,6 +103,8 @@ try{
   rendered=await refresh();
   assert.match(rendered,/identity or missing-ballot safeguards failed/i);
   assert(!rendered.includes('Fixture Alpha'),'Bad ZIP fingerprint retained candidate totals');
+  comparison=await page.locator('#enNcHistoricalComparison').textContent();
+  assert(!comparison.includes('DESCRIPTIVE ONLY'),'Invalid ZIP retained historical comparison');
   scenario='stale';
   rendered=await refresh();
   assert.match(rendered,/stale or future-dated/i);
@@ -111,10 +120,14 @@ try{
   rendered=await refresh();
   assert.match(rendered,/No reviewed official ZIP/);
   assert(!rendered.includes('Fixture Alpha'),'Revoked approval leaked candidate totals');
+  comparison=await page.locator('#enNcHistoricalComparison').textContent();
+  assert(!comparison.includes('DESCRIPTIVE ONLY'),'Revoked approval retained historical comparison');
   scenario='verified';
   rendered=await refresh();
   assert.match(rendered,/Fixture Alpha \(DEM\): 120/);
   assert.match(rendered,/NC-SEN/);
+  comparison=await page.locator('#enNcHistoricalComparison').textContent();
+  assert.match(comparison,/DESCRIPTIVE ONLY/);
   assert.deepEqual(failures.filter(x=>/SyntaxError|ReferenceError|TypeError/.test(x)),[],
    device+': Unhandled exception during outage/recovery');
   console.log(device+': NC official county snapshot, invalid SHA, staleness, both outages, approval revocation and recovery PASS');
