@@ -1063,6 +1063,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  </div>
  <p class="en-coverage-line" id="enCoverageReconciliation" role="status">Verifying national race inventory…</p>
  <p class="en-coverage-line" id="enSourceReadiness" role="status">Checking verified election-night source identities…</p>
+ <details id="enOfficialBackstops" class="en-race-drawer"><summary>Official election-office pages for automated source gaps</summary><div id="enOfficialBackstopsList"><p class="en-coverage-line">Checking current gap list…</p></div></details>
  <p class="en-coverage-line" id="enDistrictPulse" role="status">Early district performance pending verified votes.</p>
 </section>
 <div class="en-archive-intro" id="enArchiveIntro">2024 House rehearsal uses MIT/MEDSL's historical recorded party-level votes across all 435 districts. It is <strong>not a minute-by-minute replay</strong> and does not identify individual candidates, certified winners, or precinct progress. A 2024 district number must not be treated as the same geographic seat in 2026 after redistricting.</div>
@@ -3383,6 +3384,33 @@ async function enRefreshSourceReadiness(){
   const ledger=await response.json();
   host.textContent=enSourceReadinessMessage(ledger);
   host.title='Published source identity evidence; actual votes require fresh, exact-race November 3 reporting. Unknown races never become zero votes.';
+  // Official human-check pages are an explicit fallback, NEVER automated totals.
+  const backstops=$('#enOfficialBackstopsList');
+  if(backstops){
+   backstops.replaceChildren();
+   const gaps=new Set(ledger.races.filter(r=>r.gap_status==='UNRESOLVED_SOURCE_GAP').map(r=>r.id));
+   const page=await fetch('./data/election_night_official_backstops.json?v='+Math.floor(Date.now()/300000));
+   if(!page.ok)throw Error('Official fallback links HTTP '+page.status);
+   const listing=await page.json();
+   if(listing?.status!=='OFFICIAL_HUMAN_FALLBACK_LINKS_NOT_AUTOMATED_RESULTS'||
+      !Array.isArray(listing.links))throw Error('Official links schema invalid');
+   let linked=0;
+   for(const link of listing.links){
+    if(!/^https:\/\//.test(link.url)||!Array.isArray(link.race_ids))continue;
+    const relevant=link.race_ids.filter(id=>gaps.has(id));
+    if(!relevant.length)continue;
+    const row=elt('p','en-coverage-line');
+    const anchor=elt('a','',link.name+' official results ↗');
+    anchor.href=link.url;anchor.target='_blank';anchor.rel='noopener noreferrer';
+    row.append(anchor,elt('span','',' · '+relevant.join(', ')+
+     (link.mode==='certified_only_not_election_night'?
+      ' · State office does not publish unofficial Election Night results':' · manual check only')));
+    backstops.append(row);linked+=relevant.length;
+   }
+   if(linked!==gaps.size)backstops.append(elt('p','en-coverage-line',
+    (gaps.size-linked)+' unresolved races do not yet have verified official human-fallback links'));
+   if(!gaps.size)backstops.append(elt('p','en-coverage-line','No unresolved source identity gaps remain in this audit.'));
+  }
  }catch(e){
   host.textContent='Election-night source identity audit unavailable · nationwide readiness NOT VERIFIED';
   host.title=String(e?.message||e);
