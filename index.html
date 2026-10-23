@@ -995,7 +995,10 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   <option value="state">State feed · Candidates and precincts</option>
  </select>
 </label>
-<button id="enRefresh" type="button" class="chip">Refresh now</button><span id="enConnection" class="en-connection" role="status">Connecting…</span>
+<button id="enRefresh" type="button" class="chip">Refresh now</button>
+<button id="enScreenAwake" type="button" class="chip" aria-pressed="false">Keep display awake</button>
+<span id="enWakeStatus" class="en-connection" role="status">Keep this tab visible; browser/OS may still sleep</span>
+<span id="enConnection" class="en-connection" role="status">Connecting…</span>
 </div>
 <section class="joint-panel joint-night" id="jointNightPanel" aria-label="Live-informed four-ending election probabilities">
  <div class="joint-title"><div><span class="label">JACKSTRADAMUS · LIVE COASTAL OUTLOOK</span><h3>Where the night is headed 🌊</h3></div><span class="joint-tag">EXPERIMENTAL MODEL</span></div>
@@ -6356,6 +6359,51 @@ function enSwitch(year,office,preferredKey=null){
  enData=year===2026?(enOfficeSnapshots[office]||null):null;
  enFetchError=null;enFailures=0;enSelected=preferredKey;enVisibleLimit=120;$('#enSearch').value='';enRender();enRenderMilestones();renderSmartRaceDesks();enLoad(true);
 }
+// Opt-in Screen Wake Lock reduces interruptions on supported laptop browsers.
+// Neither the API nor a foreground tab can override the operating system's
+// own power management. Never claim a lock was granted until it was.
+let enWakeWanted=false,enWakeToken=null;
+const enWakeButton=$('#enScreenAwake'),enWakeMessage=$('#enWakeStatus');
+async function enSyncWake(){
+ if(!enWakeWanted||document.visibilityState!=='visible')return;
+ if(enWakeToken)return;
+ if(typeof navigator==='undefined'||typeof navigator.wakeLock?.request!=='function'){
+  enWakeMessage.textContent='Wake Lock unsupported · change laptop sleep settings';
+  return;
+ }
+ try{
+  const lock=await navigator.wakeLock.request('screen');
+  if(!enWakeWanted||document.visibilityState!=='visible'){
+   await lock.release();return;
+  }
+  enWakeToken=lock;
+  enWakeMessage.textContent='Display wake lock active · keep this tab visible';
+  if(typeof lock.addEventListener==='function')lock.addEventListener('release',()=>{
+   if(enWakeToken===lock)enWakeToken=null;
+   if(enWakeWanted){
+    enWakeMessage.textContent='Wake lock released · rechecking when tab visible';
+    if(document.visibilityState==='visible')void enSyncWake();
+   }
+  });
+ }catch(e){
+  enWakeMessage.textContent='Display wake lock denied · adjust laptop power settings';
+ }
+}
+enWakeButton.addEventListener('click',()=>{
+ enWakeWanted=!enWakeWanted;
+ enWakeButton.setAttribute('aria-pressed',String(enWakeWanted));
+ enWakeButton.textContent=enWakeWanted?'Allow display to sleep':'Keep display awake';
+ if(enWakeWanted)void enSyncWake();
+ else{
+  const lock=enWakeToken;enWakeToken=null;
+  if(lock)void lock.release().catch(()=>{});
+  enWakeMessage.textContent='Wake lock off · laptop may sleep';
+ }
+});
+document.addEventListener('visibilitychange',()=>{
+ if(enWakeWanted&&document.visibilityState==='visible')void enSyncWake();
+});
+
 $('#enMode2026').addEventListener('click',()=>enSwitch(2026,enOffice));
 $('#enMode2024').addEventListener('click',()=>enSwitch(2024,enOffice));
 $('#enArchiveSource').addEventListener('change',event=>{
