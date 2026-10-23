@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-23T07:53:54.843386Z",
+  "updated_at": "2026-10-23T08:49:03.577914Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 2,
@@ -247,6 +247,23 @@
   ],
   "items": [
     {
+      "id": "3a442205fd8e315006f1",
+      "title": "Why Ice Agents At The Polls Is Mostly Political Theater - \u0418\u0424\u0417 \u0420\u0410\u041d",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5wQnRzbVNpd2kxazBnM1pDSGRNN1VnMGRCczV1QXdZOG56Z25UNVZ5eWNCZngtNDBfVXRaMmg1V2hVSmE3M1dhYXRVSWgxcjZoT0Q3VFJsZ3NDTWpIcnNQUWQzZUJTOVhnOFRuSGVEN3dPazVq?oc=5",
+      "publisher": "\u0418\u0424\u0417 \u0420\u0410\u041d",
+      "published_at": "2026-10-23T05:19:48Z",
+      "detected_at": "2026-10-23T08:49:03.577914Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "aa38e4e452516fd5af20",
       "title": "Will ICE agents play a role in the 2026 US midterm elections? - Al Jazeera",
       "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPUktCc2d1N1k1MFZYTW85TjVHejhTT2JlRUlZaUlZWEp4UGFJalFfYk5ld3k3SFI1Y1NyaUx2R3N2WUxWZDNQemZmVk82REY2TUhyTUJIU1lRUGk0X0MwX0RyUXFFR0dnOXRCaUJkR001c0kzRDNZZDFDTUpRSTVSbFpyN1ljRHA0RDBrUTBSZGx1TlEta0k4d3NzSnhDVC1Bb21SStIBqgFBVV95cUxOYk00Wm5vd0dUVlFFRjJsNVZGQWxtaXNucUw5SzdrcXRhbXhEQUJaRE44Wjl4dXU4TE1FUU1TSHJDdmc3ZmlVbUhaNVl1VnMtZWF6dDRILUU4bUYweDRJYjVqRUZkSzFESG1kU0hKMHRJb0dBdE9xc0xjNV9rLXhQMTRvWEtDbnBQdVc0aTdsRUQ3ZkR2MHBCMmQwanlZeEpYTlZHXzNoYlRndw?oc=5",
@@ -293,6 +310,25 @@
       "publisher": "Cronkite News",
       "published_at": "2026-10-22T22:23:05Z",
       "detected_at": "2026-10-23T00:57:49.936382Z",
+      "state_hints": [
+        "AZ"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "ef5dbddf5386c1b112d0",
+      "title": "As Election Day looms, Arizona officials and advocates address Latino voter concerns - Cronkite News",
+      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNV0tzMnd1QnBwN2p5MkV3MnRyQXhiSVlHQXN3cEMzM2laVzRwaV9PMmswUXc2NlBzeTluSlpfVjRYdE85OTc2V0lmV19ndnlPWVBKYUNrN1I1TjRGeXk1UlcxU0F2a25jOW9oSU1qVVJmT0hSRHdiQjhKc00wT2xYRXFyVmVOV2J2STBPak5zSQ?oc=5",
+      "publisher": "Cronkite News",
+      "published_at": "2026-10-22T22:23:05Z",
+      "detected_at": "2026-10-23T08:49:03.577914Z",
       "state_hints": [
         "AZ"
       ],
@@ -4843,39 +4879,6 @@
       "topic_hints": [
         "security"
       ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "f2264d05c0dbe323ec0d",
-      "title": "Federal Judge Strikes Down Trump DOJ's Voter Purge Policy as Unlawful - Law Commentary",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxORy03Z2VuTl9UOUdReUszMmJXRjRORWVxZS1KQ1VrVnBfMDBSMi1OMkQ4TlY4M2RzT0pWaDhwRnJwWE9iMVhCNG1wQVB0Rk1nS0FRYlMtdzI4WlozS0hzR1N4TVhKMDNmMWRlLUpURkh2OEdLazdDTmgxeXZZRmdoN3FuMUZHRXhxN25VWXlnMA?oc=5",
-      "publisher": "Law Commentary",
-      "published_at": "2026-10-12T20:10:49Z",
-      "detected_at": "2026-10-13T01:03:38.436117Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "db121a4631f770e3001d",
-      "title": "Markwayne \"Stand Your Butt Up\" Mullin: The Kratom Investor, Cage Fighter and Election Denier Who Runs Homeland Security - Global Project Against Hate and Extremism",
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBsLTRVdjlFa1drRjNmV2FHUHFNMU03Z0RIX1JkdE9zWFBzVFlabWdGblk5MDlKYWN2RzhUV0otalN3bVhIbTdDcmhuSU14aGxfOEFJVFlVTjh2a0FYUVow?oc=5",
-      "publisher": "Global Project Against Hate and Extremism",
-      "published_at": "2026-10-12T19:35:43Z",
-      "detected_at": "2026-10-13T04:38:15.396605Z",
-      "state_hints": [],
-      "topic_hints": [],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
