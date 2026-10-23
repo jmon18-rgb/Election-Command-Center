@@ -1,7 +1,7 @@
 import unittest
 from join_nc_2024_county_fips import join_nc_counties
 
-names = ["COUNTY%03d" % i for i in range(100)]
+names = ["COUNTY" + chr(65 + i // 26) + chr(65 + i % 26) for i in range(100)]
 rows = [{"county_name": n, "mode": "election_day",
          "dem_votes_2024": 1, "rep_votes_2024": 1} for n in names]
 staging = {"state":"NC", "status":"OFFICIAL_NC_2024_HISTORICAL_MODE_COUNTS_NOT_A_2026_NEEDLE",
@@ -13,7 +13,7 @@ class CrosswalkTests(unittest.TestCase):
     def test_exact_and_research_only(self):
         out = join_nc_counties(staging,ref)
         self.assertEqual(len(out["observations"]),100)
-        self.assertEqual(out["observations"][0]["county_fips"],"37000")
+        self.assertEqual(out["observations"][0]["county_fips"],"37001")
         self.assertFalse(out["may_update_live_model"])
         self.assertFalse(out["same_office_baseline_verified"])
 
