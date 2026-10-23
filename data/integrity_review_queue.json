@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-23T23:41:31.160237Z",
+  "updated_at": "2026-10-23T23:59:12.072648Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
     "primary_source_checked": 5,
-    "advisory_related_headline_buckets": 18,
-    "advisory_related_headlines": 40
+    "advisory_related_headline_buckets": 20,
+    "advisory_related_headlines": 44
   },
   "advisory_related_headlines": [
     {
@@ -233,9 +233,71 @@
         "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "21c2a841eca952910de2",
+      "headline": "Decision 2026: Federal judge orders Trump Administration to halt noncitizen voter investigation in New York - WHEC.com",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "NY"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "37bd4b2611f95b360ade",
+      "headline": "LA Hearing Set Tuesday in Government Push for Court Order in Voting Case - MyNewsLA.com",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "37bd4b2611f95b360ade",
+      "title": "LA Hearing Set Tuesday in Government Push for Court Order in Voting Case - MyNewsLA.com",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPeGdYaEVvM1ZNY2d4ajNES21ocmdNSF9KN2dPMDUzWkRMU3F4ZGRaTnM0cFBkSmxMSi10ZlhnYU9HV3E3d0dFWWpYd29jLXpWbmZYVkRhOWgtRFlZZWhuNFNtZ3NCOUFwQ3RvU3Y3cnpib0RMZkpZUTlXemRpLThBUk1teHhzeEVSR0NPN1MwRnBPQ1ViSEpwUXFWcUNjazF6YmtPTGZOMzFOUnFBNzJJaG1CNGpCZVJ2eXc?oc=5",
+      "publisher": "MyNewsLA.com",
+      "published_at": "2026-10-23T23:42:07Z",
+      "detected_at": "2026-10-23T23:59:12.072648Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "21c2a841eca952910de2",
+      "title": "Decision 2026: Federal judge orders Trump Administration to halt noncitizen voter investigation in New York - WHEC.com",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxONXJSSzFwcGR2WGVkMEgwbVhyTXNVdlNiMmRTQ1B4ODlIZEtJS3ppNXZYQjFqem9FRThVLTdqU29TRnlSNnkyQjBIMFFyNEpjdXVQQnU2RVp0RVAwNTZvc2JHdjNWajNFdTZVZW41VTdmTDdFNUpNek83TXE3WWJzbllzSW1lOFNkZDFLS0ZKZDJ3S0c4dW42Q2tnaUwwMGNTSGFBSjV2WmlacWdZdlR1Y0lZbEo2UEt0QXpqUFBuNU5Gd2ZCQ0FYVTY2eG1hYmZ5bGFz?oc=5",
+      "publisher": "WHEC.com",
+      "published_at": "2026-10-23T22:01:57Z",
+      "detected_at": "2026-10-23T23:59:12.072648Z",
+      "state_hints": [
+        "NY"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "2026"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "87d9d6f0bd668571bc6b",
       "title": "Justice Department Sues Alaska Over Certification of Senate Election Results - The Well News",
@@ -4866,38 +4928,6 @@
       "topic_hints": [
         "litigation"
       ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "690a2cbe79dff4f54a57",
-      "title": "These 35 States Are Deciding Who\u2019ll Run Their Elections - Bolts",
-      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQVXBieUEySDlSX1N5M0FtU3RBODYyb0p5TFRvLUlMMnhqdEM0TjM5R0hZYXVvVG1RRllsWnpxU2YzMHYzUnkzMEdyWG9sMVFUYjZWcTFHdzVacTN2bHZxcFg2WWQ3MmdLbUJGQWJWalNodmM5MDZqSTRXbk5UNWhmY0dfUEZjd0FqZTZJNjU1bUU?oc=5",
-      "publisher": "Bolts",
-      "published_at": "2026-10-13T16:40:01Z",
-      "detected_at": "2026-10-13T18:07:22.859789Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [
-        "35 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "688736ee1b7d314d7c5c",
-      "title": "Virginia AG launches voter protection unit ahead of midterm elections - Virginia Mercury",
-      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQMnhTcTdWM2QzMjFVZkduWVVNWFJNeDNjd2sxdTRSczV1aFN5UjVGTVVhSlVUamZZbHdYYXh3a2xqcnU4NjFGamtjamxRUF8xQzVaRFIxcjdTZGgtOENjN1BMVU1hRVczVzZldlc4QUcyRHJWUy1fVDN4TlN2TnR6bFViZW1nTDAzbEVEb1g5SzJ0R3FmcUdTX0h1dExsSGpscVBNVXJicm5kSVdyNGc?oc=5",
-      "publisher": "Virginia Mercury",
-      "published_at": "2026-10-13T16:03:47Z",
-      "detected_at": "2026-10-13T16:06:31.370736Z",
-      "state_hints": [],
-      "topic_hints": [],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
