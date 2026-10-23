@@ -17,7 +17,7 @@ def inspect(html):
  p=Scripts();p.feed(html)
  js="\n".join(p.inline)
  hits=[]
- for pattern in (r'.{0,180}cboElection.{0,220}',r'.{0,180}downloads?\.html.{0,220}',r'.{0,120}(?:fetch\(|\.ajax\(|XMLHttpRequest).{0,220}'):
+ for pattern in (r'.{0,180}cboElection.{0,220}',r'.{0,180}downloads?\.html.{0,220}',r'.{0,220}(?:fetch\(|\.ajax\(|XMLHttpRequest|\.open\(|\.send\().{0,350}'):
   hits.extend(re.findall(pattern,js,re.I))
  return {"inline_js_snippets":list(dict.fromkeys(hits))[:25],
          "external_script_paths":p.sources,
