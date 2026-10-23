@@ -1,0 +1,38 @@
+name: NC 2024 historical original-source audit
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/run_nc_2024_historical_baseline.py'
+      - '.github/workflows/nc-historical-source-audit.yml'
+permissions:
+  contents: read
+jobs:
+  source-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch Census 2024 and NCSBE official 2024 results, reconcile 100 counties
+        run: |
+          python3 scripts/run_nc_2024_historical_baseline.py --fetch --output /tmp/nc_2024_county_baseline.json
+          python3 - <<'PY'
+          import json
+          with open('/tmp/nc_2024_county_baseline.json') as f:
+              result=json.load(f)
+          assert result['county_count']==100
+          assert result['may_update_live_model'] is False
+          assert result['status']=='NC_2024_PRESIDENTIAL_COUNTY_BASELINE_RESEARCH_ONLY'
+          print('Source hashes:',result['source_provenance'])
+          print('Vote totals:',result['statewide_dem'],result['statewide_rep'])
+          PY
+      - name: Archive research-only audit for review
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nc-2024-original-source-research-only
+          path: /tmp/nc_2024_county_baseline.json
+          retention-days: 7
