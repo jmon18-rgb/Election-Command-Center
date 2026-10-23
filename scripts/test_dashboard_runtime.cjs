@@ -554,6 +554,14 @@ async function settle(){
  await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
  assert.equal(w.eval('enCivicProviderVerified()'),true,
   'Valid, post-outage candidate detail is required to restore source trust');
+ // Other races cannot piggyback on the recovered provider's trusted epoch.
+ // Supply an old, previously validated Ohio record and verify the actual
+ // browser dashboard rejects it until that race's detail is rechecked.
+ w.eval(`enCivicByWatch['Senate|OH-special']={total:1000,called:'Candidate B',provider:'civicAPI'};
+ enCivicValidatedGenerations['Senate|OH-special']=enCivicBreaker.status().generation-1;`);
+ assert.equal(w.eval("enCivicUsable({office:'Senate',key:'OH-special'})"),null,
+  'Revalidating North Carolina cannot revive stale Ohio Senate results');
+
  assert(w.eval("enCivicUsable({office:'Senate',key:'NC'})"));
  w.eval('jointRender(false)');
  calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
