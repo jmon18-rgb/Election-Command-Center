@@ -114,7 +114,7 @@ try{
   // approved county vote totals or the independent 2024 reference.
   scenario='senate-baseline-outage';
   rendered=await refresh();
-  assert.match(rendered,/Fixture Alpha \\(DEM\\): 120/);
+  assert(rendered.includes('Fixture Alpha (DEM): 120'));
   comparison=await page.locator('#enNcHistoricalComparison').textContent();
   assert.match(comparison,/DESCRIPTIVE ONLY/);
   senateCompare=await page.locator('#enNcSenateSameOfficeComparison').textContent();
