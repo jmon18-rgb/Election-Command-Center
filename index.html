@@ -3273,7 +3273,7 @@ function renderSmartRaceDesks(){
   const fullToggle=$('#'+prefix+'ShowAll');
   if(fullToggle){
    fullToggle.setAttribute('aria-pressed',String(showAll));
-   fullToggle.textContent=showAll?'Show competitive only':'Show full roster';
+   fullToggle.textContent=showAll?'Show Senate + competitive House':'Show full roster';
   }
   const controls=$('#'+prefix+'Controls');
   if(controls)for(const button of controls.querySelectorAll('button[data-smart-office]')){
@@ -3320,13 +3320,13 @@ function renderSmartRaceDesks(){
   host.scrollTop=previousScroll;
   const summary=$('#'+prefix+'Count');
   if(summary)summary.textContent=rows.length+' shown · '+
-   (showAll?'full tracked roster':search?'searching full roster':'competitive focus')+
+   (showAll?'full tracked roster':search?'searching full roster':'Senate + competitive focus')+
    ' · '+counts.Senate+' Senate / '+counts.House+' House / '+
    counts.Governor+' governors'+
-   (!showAll&&!search?' · '+safeCount+' races at ≥95% omitted':'')+
+   (!showAll&&!search?' · '+safeCount+' non-Senate races at ≥95% omitted':'')+
    (search?' · search “'+search+'”':'')+'.';
   const note=$('#'+(night?'smartNightNote':'smartBriefNote'));
-  if(note)note.textContent='Competitive focus omits races with modeled win chances ≥95% for either party. '+
+  if(note)note.textContent='All 35 Senate contests remain visible by default. The House and governor focus omits races with modeled win chances ≥95% for either party. '+
    'Races without model odds remain visible if Senate-wide or supported by current polling/results. '+
    'Search finds any tracked race, and Show full roster restores every tracked Senate, House and governor entry. '+
    'This is a display filter, not a change to odds, provider polling or control forecasts. '+
