@@ -1,0 +1,22 @@
+name: Inspect official NC election downloads
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/probe_nc_dashboard_downloads.py'
+      - '.github/workflows/nc-download-discovery.yml'
+permissions:
+  contents: read
+jobs:
+  official-discovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Inspect original North Carolina election dashboard HTML
+        run: |
+          python3 scripts/test_probe_nc_dashboard_downloads.py
+          python3 scripts/probe_nc_dashboard_downloads.py
