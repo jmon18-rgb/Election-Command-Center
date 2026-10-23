@@ -1,0 +1,20 @@
+name: Test official NC precinct county aggregation
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/aggregate_nc_official_precinct_votes.py'
+      - 'scripts/test_aggregate_nc_official_precinct_votes.py'
+      - '.github/workflows/nc-county-aggregation.yml'
+permissions:
+  contents: read
+jobs:
+  county-aggregation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 scripts/test_aggregate_nc_official_precinct_votes.py
