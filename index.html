@@ -3069,8 +3069,8 @@ function smartRawPartisanMargin(d,r){
   100*(d-r)/(d+r):null;
 }
 function smartRaceSource(item){
- if(enModeYear!==2026||Date.now()<Date.parse('2026-11-03T05:00:00Z'))return null;
- const now=Date.now(),start=Date.parse('2026-11-03T05:00:00Z');
+ if(enModeYear!==2026||Date.now()<Date.parse('2026-11-03T23:00:00Z'))return null;
+ const now=Date.now(),start=Date.parse('2026-11-03T23:00:00Z');
  const validAt=stamp=>{
   const t=Date.parse(stamp||'');
   return Number.isFinite(t)&&t>=start&&t<=now+900000&&now-t<=180*60000;
@@ -3752,7 +3752,7 @@ function jointSourceItem(item){
 }
 function jointLiveObservations(){
  jointPulseRows=[];
- if(enModeYear!==2026||Date.now()<Date.parse('2026-11-03T05:00:00Z')||
+ if(enModeYear!==2026||Date.now()<Date.parse('2026-11-03T23:00:00Z')||
     !window.RaceLiveNowcast||!jointBasis)return {};
  const observations={},now=Date.now();
  for(const r of [...jointBasis.house,...jointBasis.senate,...jointBasis.governors]){
@@ -3774,7 +3774,7 @@ function jointLiveObservations(){
    continue;
   }
   const x=jointSourceItem(r);
-  if(!x||x.sourceStale||x.reporting<10||x.time< Date.parse('2026-11-03T05:00:00Z')||
+  if(!x||x.sourceStale||x.reporting<10||x.time< Date.parse('2026-11-03T23:00:00Z')||
       x.time>now+900000||now-x.time>180*60000)continue;
   const priorVariance=r.sigma*r.sigma;
   const noise=7+20*Math.pow(1-x.reporting/100,1.3),variance=noise*noise;
@@ -5826,7 +5826,7 @@ function enSourceValid(o,year,office){
  if(o.source==='medsl_senate_2024_party_aggregates'&&
    (year!==2024||office!=='Senate'||Object.keys(o.races).length<30||
     Object.keys(o.races).length>40||!o.archive_source_url?.startsWith('https://dataverse.harvard.edu/')))return false;
- if(year===2026&&Date.now()<Date.parse('2026-11-03T00:00:00Z')&&
+ if(year===2026&&Date.now()<Date.parse('2026-11-03T23:00:00Z')&&
     Object.values(o.races).some(r=>Number(r?.total)>0))return false;
  if(o.as_of){
   const d=Date.parse(o.as_of);
