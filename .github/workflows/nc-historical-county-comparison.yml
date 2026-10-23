@@ -1,0 +1,42 @@
+name: Validate actual NC official ZIP descriptive county comparison
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'data/nc_2024_presidential_county_verified.csv'
+      - 'scripts/nc_historical_county_comparison.js'
+      - 'scripts/test_nc_historical_county_comparison.cjs'
+      - 'scripts/audit_nc_web_presidential_baseline.py'
+      - 'scripts/nc_county_results_desk_startup.js'
+      - 'scripts/test_nc_county_real_browser_election_night.mjs'
+      - 'index.html'
+      - '.github/workflows/nc-historical-county-comparison.yml'
+permissions:
+  contents: read
+jobs:
+  source-integrity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate real 100-county published CSV and negative JS checks
+        run: |
+          node --check scripts/nc_historical_county_comparison.js
+          node scripts/test_nc_historical_county_comparison.cjs
+          node --check scripts/nc_county_results_desk_startup.js
+          python3 -m py_compile scripts/audit_nc_web_presidential_baseline.py
+      - name: Replay actual SHA-pinned official 2024 ZIP and certified totals
+        run: |
+          python3 scripts/run_nc_official_zip_historical_replay.py --output /tmp/nc_historical_replay.json
+          python3 scripts/build_nc_2024_presidential_county_baseline.py \
+            --staging /tmp/nc_historical_replay.json \
+            --output /tmp/nc_historical_baseline.json
+          python3 scripts/audit_nc_web_presidential_baseline.py \
+            --published-csv data/nc_2024_presidential_county_verified.csv \
+            --replayed-baseline /tmp/nc_historical_baseline.json
