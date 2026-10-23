@@ -109,6 +109,26 @@ class CoverageLedgerTests(unittest.TestCase):
         self.assertEqual(len(pins), len(set(pins.values())),
                          "One provider race ID must not map to multiple districts")
 
+    def test_seven_unpinned_house_gaps_remain_unverified(self):
+        """Unknown results sources must not inherit neighboring district pins."""
+        saved = json.loads((ROOT / "data/election_night_source_coverage.json").read_text())
+        rows = self.rows(saved)
+        pinned = {r["district"] for r in house_pins(saved)["races"]}
+        unresolved = {"AK-00", "DE-00", "ND-00", "NH-01",
+                      "NH-02", "SD-00", "WY-00"}
+        outside = [r for r in saved["races"] if r["office"] == "House"
+                   and r["provider_scope"] == "outside primary"]
+        unpinned = {r["key"] for r in outside} - pinned
+        self.assertEqual(unpinned, unresolved)
+        self.assertEqual(len(outside), 219)
+        for code in unresolved:
+            row = rows["House|" + code]
+            self.assertEqual(row["source_identity_status"], "NO_CURATED_PROVIDER_ID")
+            self.assertEqual(row["gap_status"], "UNRESOLVED_SOURCE_GAP")
+            self.assertEqual(row["last_probe"]["status"], "NOT_INDEXED")
+            self.assertFalse(row["live_votes_verified_by_audit"])
+            self.assertIsNone(row["pinned_civicapi_id"])
+
     def test_curated_and_scoped_sources_not_live_claims(self):
         rows = self.rows(self.ledger())
         self.assertEqual(rows["Senate|AK"]["pinned_civicapi_id"], 86916)
