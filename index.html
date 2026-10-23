@@ -995,7 +995,10 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   <option value="state">State feed · Candidates and precincts</option>
  </select>
 </label>
-<button id="enRefresh" type="button" class="chip">Refresh now</button><span id="enConnection" class="en-connection" role="status">Connecting…</span>
+<button id="enRefresh" type="button" class="chip">Refresh now</button>
+<button id="enScreenAwake" type="button" class="chip" aria-pressed="false">Keep display awake</button>
+<span id="enWakeStatus" class="en-connection" role="status">Keep this tab visible; browser/OS may still sleep</span>
+<span id="enConnection" class="en-connection" role="status">Connecting…</span>
 </div>
 <section class="joint-panel joint-night" id="jointNightPanel" aria-label="Live-informed four-ending election probabilities">
  <div class="joint-title"><div><span class="label">JACKSTRADAMUS · LIVE COASTAL OUTLOOK</span><h3>Where the night is headed 🌊</h3></div><span class="joint-tag">EXPERIMENTAL MODEL</span></div>
@@ -1188,9 +1191,10 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div id="enWatchItems" class="en-watch-items"><p class="empty">Add the races you want at your fingertips on election night.</p></div>
  </details>
 <details class="en-early-desk" id="enEarlySignalsDetails" aria-label="Early election night signals">
- <summary class="en-early-heading"><span><strong>Early Signals · 12 races to watch</strong>
+ <summary class="en-early-heading"><span><strong>Early Signals · 15 races to watch</strong>
  <small>KY, IN, Virginia, NC and more · expand checklist</small></span></summary>
  <p class="en-live-note">A chronological watch guide to compare early districts, including the VA-01 / VA-02 / VA-05 community scenario. No single race determines the national outcome. Early precinct percentages are not percentages of ballots counted.</p>
+ <p id="enEarlyHealth" class="en-live-note" role="status">Waiting for source-validated early results…</p>
  <div id="enEarlySignals" class="en-early-grid"><p class="en-live-note">Preparing early race checklist…</p></div>
  <p class="en-live-note">Watch ideas: <a href="https://www.reddit.com/r/fivethirtyeight/comments/1x6l790/" target="_blank" rel="noopener noreferrer">October 15 r/fivethirtyeight discussion ↗</a>; poll-close times cross-checked against <a href="https://www.270towin.com/poll-closing-times/index.php" target="_blank" rel="noopener noreferrer">270toWin ↗</a>. Results, when present, remain labeled by actual provider.</p>
 </details>
@@ -1251,10 +1255,10 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_source_backoff.js?v=9d0c92796244"></script>
 <script src="./scripts/election_night_transport.js?v=76a458acbece"></script>
 <script src="./scripts/election_night_fast_lane.js?v=674907b614c3"></script>
-<script src="./scripts/election_night_nowcast.js?v=fa5349790084"></script>
-<script src="./scripts/election_night_early_signals.js?v=7691146833ec"></script>
+<script src="./scripts/election_night_nowcast.js?v=b3f1c7e9c4a6"></script>
+<script src="./scripts/election_night_early_signals.js?v=50bd71d923ae"></script>
 <script src="./scripts/election_night_priority.js?v=c339d5954c12"></script>
-<script src="./scripts/election_night_signals.js?v=c00851de5109"></script>
+<script src="./scripts/election_night_signals.js?v=4af522c57a53"></script>
 <script src="./scripts/election_night_reconciliation.js?v=ab854d43b198"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
 <script src="./scripts/chamber_control_model.js?v=aa102ced6a53"></script>
@@ -1282,7 +1286,7 @@ window.addEventListener('hashchange',()=>{
 });
 activatePage(tabFromHash(),false);
 if(location.hash.startsWith('#races'))$('#raceWorkbench').open=true;
-document.querySelectorAll('.chip').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x===t));window.selectedRaceType=t.dataset.race.toLowerCase();renderRaceList()}));
+document.querySelectorAll('.chip[data-race]').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.chip[data-race]').forEach(x=>x.classList.toggle('active',x===t));window.selectedRaceType=t.dataset.race.toLowerCase();renderRaceList()}));
 document.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>{const destination=b.dataset.jump==='races'?'model':b.dataset.jump;
  const tab=document.querySelector('.tab[data-page="'+destination+'"]');
  if(tab){tab.click();if(b.dataset.jump==='races')$('#raceWorkbench').open=true;
@@ -3068,8 +3072,8 @@ function smartRawPartisanMargin(d,r){
   100*(d-r)/(d+r):null;
 }
 function smartRaceSource(item){
- if(enModeYear!==2026||Date.now()<Date.parse('2026-11-03T05:00:00Z'))return null;
- const now=Date.now(),start=Date.parse('2026-11-03T05:00:00Z');
+ if(enModeYear!==2026||Date.now()<Date.parse('2026-11-03T23:00:00Z'))return null;
+ const now=Date.now(),start=Date.parse('2026-11-03T23:00:00Z');
  const validAt=stamp=>{
   const t=Date.parse(stamp||'');
   return Number.isFinite(t)&&t>=start&&t<=now+900000&&now-t<=180*60000;
@@ -3751,7 +3755,7 @@ function jointSourceItem(item){
 }
 function jointLiveObservations(){
  jointPulseRows=[];
- if(enModeYear!==2026||Date.now()<Date.parse('2026-11-03T05:00:00Z')||
+ if(enModeYear!==2026||Date.now()<Date.parse('2026-11-03T23:00:00Z')||
     !window.RaceLiveNowcast||!jointBasis)return {};
  const observations={},now=Date.now();
  for(const r of [...jointBasis.house,...jointBasis.senate,...jointBasis.governors]){
@@ -3761,10 +3765,16 @@ function jointLiveObservations(){
   const office=r.code.endsWith('-SEN')?'Senate':
    r.code.endsWith('-GOV')?'Governor':'House';
   const item=enLiveRaceItem({office:office.toLowerCase(),race_code:r.code});
+  // Critical Reddit watch races have independently checked local closings.
+  // Never let an early mock or premature provider update shift chamber odds.
+  const watch=window.ElectionNightEarlySignals?.records?.find(x=>x.code===r.code);
+  const localClose=watch?window.ElectionNightEarlySignals.closedAt(watch):null;
+  if(localClose!==null&&now<localClose)continue;
   const civic=item?enCivicUsable(item):null;
   const verified=window.ElectionNightSignals?.validatedCall(civic,now);
   if(item&&civic?.office===item.office&&civic?.key===item.key&&
      verified&&['D','R'].includes(verified.party)){
+   if(localClose!==null&&Date.parse(verified.at)<localClose)continue;
    observations[r.code]={mode:'source_called',winnerParty:verified.party,
     source:'civicAPI',asOf:verified.at};
    jointPulseRows.push({race_code:r.code,office,provider:'civicAPI',
@@ -3773,7 +3783,9 @@ function jointLiveObservations(){
    continue;
   }
   const x=jointSourceItem(r);
-  if(!x||x.sourceStale||x.reporting<10||x.time< Date.parse('2026-11-03T05:00:00Z')||
+  if(!x||x.sourceStale||x.reporting<10||
+      (localClose!==null&&x.time<localClose)||
+      x.time< Date.parse('2026-11-03T23:00:00Z')||
       x.time>now+900000||now-x.time>180*60000)continue;
   const priorVariance=r.sigma*r.sigma;
   const noise=7+20*Math.pow(1-x.reporting/100,1.3),variance=noise*noise;
@@ -5501,10 +5513,47 @@ function enRenderDistrictPulse(){
   ' · Not geography-adjusted or a national swing';
  host.title='Source-validated near-complete district votes vs pre-election polling margin only; no county/voting-mode adjustment or inferred national election-night forecast.';
 }
+// These URLs are independent official result pages. The county observations
+// named in Reddit watch discussions are editorial priorities, not live feeds.
+const enEarlyOfficialSources={
+ KY:{url:'https://elect.ky.gov/results/2020-2029/Pages/2026.aspx',label:'Kentucky election office'},
+ NC:{url:'https://www.ncsbe.gov/results-data/election-results',label:'NC county and voting-method results'},
+ OH:{url:'https://liveresults.ohiosos.gov/Home/Index',label:'Ohio election office (pre-election MOCK totals)'},
+ VA:{url:'https://www.elections.virginia.gov/results/',label:'Virginia election office'},
+ MI:{url:'https://www.michigan.gov/sos/elections/election-results-and-data/candidate-listings-and-election-results-by-county',label:'Michigan county results'}
+};
+function enEarlyLiveObservation(item){
+ const source=enOfficeSnapshots[item.office]||
+  (enModeYear===2026&&enOffice===item.office?enData:null);
+ const primary=source?.year===2026&&source?.source==='state'&&
+  source?.races?.[item.key];
+ const failed=Boolean(enOfficeErrors[item.office]||
+  enResumePendingOffices.has(item.office)||
+  (enOffice===item.office&&enFetchError));
+ if(enSupportedStates.has(item.key.slice(0,2))&&primary?.total>0){
+  const d=primary.cands.filter(x=>x.p==='D').reduce((n,x)=>n+x.v,0);
+  const r=primary.cands.filter(x=>x.p==='R').reduce((n,x)=>n+x.v,0);
+  return {source:{provider:'Open America',verified:true,asOf:source.as_of,
+   total:primary.total,d,r,precincts:primary.pct_in,
+   stale:source.stale||failed},error:failed};
+ }
+ const civic=enCivicUsable(item);
+ if(civic&&civic.total>0&&civic.key===item.key&&civic.office===item.office){
+  return {source:{provider:'civicAPI',verified:true,asOf:civic.last_updated,
+   total:civic.total,precincts:civic.percent_reporting,
+   d:civic.candidates.filter(x=>x.party==='D').reduce((n,x)=>n+x.votes,0),
+   r:civic.candidates.filter(x=>x.party==='R').reduce((n,x)=>n+x.votes,0),
+   stale:Boolean(civic.stale||civic.sourceStale)},error:false};
+ }
+ return {source:null,error:failed||Boolean(enCivicErrors[enWatchId(item)])};
+}
 function enRenderEarlySignals(){
  const host=$('#enEarlySignals'),config=window.ElectionNightEarlySignals;
  if(!host||!config)return;
  host.replaceChildren();
+ const totals={LATE_LOCAL_COMPARISON:0,COUNTING_PARTIAL:0,
+  COUNTING_UNKNOWN_PROGRESS:0,STALE:0,SOURCE_ERROR:0,
+  AWAITING_SOURCE:0,INVALID_SOURCE:0};
  for(const group of config.groups){
   const panel=elt('div','en-early-group');
   panel.append(elt('strong','en-early-title',group));
@@ -5515,14 +5564,39 @@ function enRenderEarlySignals(){
    const label=elt('div','en-early-main');
    label.append(elt('strong','',info.code+' · '+info.time+' ET'),
     elt('span','en-early-why',info.why));
-   label.append(elt('small','en-early-source',enModeYear===2024?
-    '2026 preview · no live returns in archive':enWatchStatus(item)));
-   const relative=enDistrictPerformance(item);
-   if(relative){
-    const fmt=n=>(n>=0?'D+':'R+')+Math.abs(n).toFixed(1);
-    label.append(elt('small','en-early-source','LOCAL CHECK: '+
-     fmt(relative.actual)+' reported vs '+fmt(relative.pollMargin)+
-     ' polled · '+relative.precincts.toFixed(0)+'% precincts · not national'));
+   const prior=modelRaceOddsData?.records?.find(x=>
+    x.race_code===info.code&&x.office===info.office.toLowerCase());
+   const observed=enEarlyLiveObservation(item);
+   const result=config.assess(info,observed.source,{
+    priorMargin:Number.isFinite(prior?.dem_minus_rep)?prior.dem_minus_rep:null,
+    error:observed.error});
+   if(Object.hasOwn(totals,result.status))totals[result.status]++;
+   const fmt=n=>(n>=0?'D+':'R+')+Math.abs(n).toFixed(1);
+   let status=enModeYear===2024?'2026 preview · no live returns in archive':
+    result.status.replaceAll('_',' ')+' · '+result.message;
+   if(enModeYear===2026&&result.hasVerifiedVotes)
+    status+=' · '+result.source+' · '+Number(result.reportedVotes).toLocaleString('en-US')+
+     ' reported votes · '+fmt(result.rawMargin)+' raw two-party margin'+
+     (result.precincts===null?' · precinct share unknown':
+      ' · '+result.precincts.toFixed(0)+'% precincts')+
+     ' · as of '+new Date(result.sourceTime).toLocaleTimeString('en-US',{
+       hour:'numeric',minute:'2-digit'});
+   label.append(elt('small','en-early-source',status));
+   if(enModeYear===2026&&result.comparative&&result.marginVsPrior!==null)
+    label.append(elt('small','en-early-source',
+     'LATE LOCAL COMPARISON · observed minus pre-election model '+
+      (result.marginVsPrior>=0?'+':'')+result.marginVsPrior.toFixed(1)+
+      ' pts · no national inference'));
+   if(info.counties?.length){
+    label.append(elt('small','en-early-source',
+     'COUNTY WATCH: '+info.counties.join(', ')+
+     ' · official county×voting-method feed NOT connected to the needle'));
+   }
+   const official=enEarlyOfficialSources[item.key.slice(0,2)];
+   if(official){
+    const link=elt('a','en-early-source',official.label+' ↗');
+    link.href=official.url;link.target='_blank';link.rel='noopener noreferrer';
+    label.append(link);
    }
    const pinned=enWatched.some(x=>enWatchId(x)===enWatchId(item));
    const pin=elt('button','en-early-pin',pinned?'Unpin':'Pin race');
@@ -5531,6 +5605,19 @@ function enRenderEarlySignals(){
    row.append(label,pin);panel.append(row);
   }
   host.append(panel);
+ }
+ const summary=$('#enEarlyHealth');
+ if(summary){
+  const valid=totals.LATE_LOCAL_COMPARISON+totals.COUNTING_PARTIAL+
+   totals.COUNTING_UNKNOWN_PROGRESS;
+  summary.textContent=enModeYear!==2026||
+   Date.now()<Date.parse('2026-11-03T05:00:00Z')?
+   'PRE-ELECTION READINESS · '+config.records.length+
+    ' early indicators queued · no actual November 3 vote totals yet':
+   'LIVE EARLY-INDICATOR CHECK · '+valid+' fresh races reporting · '+
+    totals.LATE_LOCAL_COMPARISON+' late local comparisons · '+
+    (totals.STALE+totals.SOURCE_ERROR+totals.INVALID_SOURCE)+
+    ' unavailable/stale/invalid · County and vote-method data NOT integrated into the national needle';
  }
 }
 function enWatchStatus(item){
@@ -5750,7 +5837,7 @@ function enSourceValid(o,year,office){
  if(o.source==='medsl_senate_2024_party_aggregates'&&
    (year!==2024||office!=='Senate'||Object.keys(o.races).length<30||
     Object.keys(o.races).length>40||!o.archive_source_url?.startsWith('https://dataverse.harvard.edu/')))return false;
- if(year===2026&&Date.now()<Date.parse('2026-11-03T00:00:00Z')&&
+ if(year===2026&&Date.now()<Date.parse('2026-11-03T23:00:00Z')&&
     Object.values(o.races).some(r=>Number(r?.total)>0))return false;
  if(o.as_of){
   const d=Date.parse(o.as_of);
@@ -6280,6 +6367,51 @@ function enSwitch(year,office,preferredKey=null){
  enData=year===2026?(enOfficeSnapshots[office]||null):null;
  enFetchError=null;enFailures=0;enSelected=preferredKey;enVisibleLimit=120;$('#enSearch').value='';enRender();enRenderMilestones();renderSmartRaceDesks();enLoad(true);
 }
+// Opt-in Screen Wake Lock reduces interruptions on supported laptop browsers.
+// Neither the API nor a foreground tab can override the operating system's
+// own power management. Never claim a lock was granted until it was.
+let enWakeWanted=false,enWakeToken=null;
+const enWakeButton=$('#enScreenAwake'),enWakeMessage=$('#enWakeStatus');
+async function enSyncWake(){
+ if(!enWakeWanted||document.visibilityState!=='visible')return;
+ if(enWakeToken)return;
+ if(typeof navigator==='undefined'||typeof navigator.wakeLock?.request!=='function'){
+  enWakeMessage.textContent='Wake Lock unsupported · change laptop sleep settings';
+  return;
+ }
+ try{
+  const lock=await navigator.wakeLock.request('screen');
+  if(!enWakeWanted||document.visibilityState!=='visible'){
+   await lock.release();return;
+  }
+  enWakeToken=lock;
+  enWakeMessage.textContent='Display wake lock active · keep this tab visible';
+  if(typeof lock.addEventListener==='function')lock.addEventListener('release',()=>{
+   if(enWakeToken===lock)enWakeToken=null;
+   if(enWakeWanted){
+    enWakeMessage.textContent='Wake lock released · rechecking when tab visible';
+    if(document.visibilityState==='visible')void enSyncWake();
+   }
+  });
+ }catch(e){
+  enWakeMessage.textContent='Display wake lock denied · adjust laptop power settings';
+ }
+}
+enWakeButton.addEventListener('click',()=>{
+ enWakeWanted=!enWakeWanted;
+ enWakeButton.setAttribute('aria-pressed',String(enWakeWanted));
+ enWakeButton.textContent=enWakeWanted?'Allow display to sleep':'Keep display awake';
+ if(enWakeWanted)void enSyncWake();
+ else{
+  const lock=enWakeToken;enWakeToken=null;
+  if(lock)void lock.release().catch(()=>{});
+  enWakeMessage.textContent='Wake lock off · laptop may sleep';
+ }
+});
+document.addEventListener('visibilitychange',()=>{
+ if(enWakeWanted&&document.visibilityState==='visible')void enSyncWake();
+});
+
 $('#enMode2026').addEventListener('click',()=>enSwitch(2026,enOffice));
 $('#enMode2024').addEventListener('click',()=>enSwitch(2024,enOffice));
 $('#enArchiveSource').addEventListener('change',event=>{

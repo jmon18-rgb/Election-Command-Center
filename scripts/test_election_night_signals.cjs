@@ -81,6 +81,9 @@ rejects(row=>{row.called='Unknown candidate'},
 rejects(row=>{row.called=null},'A missing winner is not a call');
 rejects(row=>{row.candidates[0].party='???'},'Unknown normalized candidate party');
 rejects(row=>{row.candidates[0].votes=0},'Winner must have positive reported votes');
+assert.equal(signals.validatedCall({...original,last_updated:'2026-11-03T20:00:00Z'},
+ Date.parse('2026-11-03T21:00:00Z')),null,
+ 'No pre-close provider call may lock the national needle');
 const good=signals.validatedCall(original,at);
 assert.equal(good?.sourceClass,'provider_reported_unofficial');
 assert.equal(good?.certified,false);

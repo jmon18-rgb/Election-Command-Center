@@ -9,7 +9,8 @@
  if(root)root.ElectionNightSignals=api;
 })(typeof window!=='undefined'?window:null,function(){
  'use strict';
- const START=Date.parse('2026-11-03T05:00:00Z');
+ // First possible election-night closing in Eastern time, not midnight.
+ const START=Date.parse('2026-11-03T23:00:00Z');
  const OUTCOMES=['red_dawn','shrug','blue_wave','blue_tsunami'];
  const EARLY=['KY-06','IN-05','VA-01','VA-02','VA-05','VA-07',
   'GA-SEN','NC-01','NC-11','NC-SEN','OH-SEN','PA-07'];
