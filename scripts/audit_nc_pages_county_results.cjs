@@ -59,18 +59,26 @@ function inspectSource(config,snapshot,now=Date.now()){
   'Deployed candidate-only feed points to unexpected snapshot path');
  assert(config.expected&&config.expected.mode==='nc-candidate-only',
   'Deployed official ZIP approval missing independent candidate-only identity');
- const gate=candidate.prepare(snapshot,config.expected,now);
+ const checked=Date.parse(snapshot?.archive_checked_at||'');
+ assert(Number.isFinite(checked)&&checked>=START&&
+  checked<=END+2*3600000&&checked<=now+15*60000,
+  'Official ZIP observation must belong to the actual 2026 election window');
+ const archived=now>=END+2*3600000;
+ // The browser live feed deliberately expires after two hours. The
+ // deployment auditor must still verify archived results after election
+ // night without treating them as fresh live counts.
+ const validationNow=archived?checked+60000:now;
+ const gate=candidate.prepare(snapshot,config.expected,validationNow);
  assert.equal(gate.ready,true,gate.reason||'County candidate snapshot rejected');
  assert.equal(gate.may_move_national_needle,false,'County snapshot incorrectly promotes model');
  const votes=gate.rows.reduce((count,row)=>count+row.total,0);
  assert(Number.isSafeInteger(votes)&&votes>0,'Invalid county candidate totals');
- const age=now-Date.parse(gate.checked_at);
- // During election night the source must be timely, but an archived final
- // observed result must not keep an all-year monitoring job in alarm.
- if(now>=START&&now<END+2*3600000)
+ const age=now-checked;
+ if(!archived&&now>=START)
   assert(age<=120*60000&&age>=-15*60000,
    'Election Night source snapshot has stopped refreshing');
- return {status:'VERIFIED_CANDIDATE_COUNTS_PUBLISHED',
+ return {status:archived?'ARCHIVED_SOURCE_VERIFIED_NOT_LIVE':
+  'VERIFIED_CANDIDATE_COUNTS_PUBLISHED',
   published_counties:gate.rows.length,
   votes_for_listed_candidates:votes,
   archive_retrieved_at:gate.checked_at,
