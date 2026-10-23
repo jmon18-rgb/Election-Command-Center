@@ -1,0 +1,29 @@
+name: NC election-night county outage recovery browser drill
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/test_nc_county_real_browser_election_night.mjs'
+      - 'scripts/nc_official_candidate_votes.js'
+      - 'scripts/nc_county_results_desk_startup.js'
+      - 'index.html'
+      - '.github/workflows/nc-county-browser-recovery.yml'
+permissions:
+  contents: read
+jobs:
+  chromium-recovery:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned supported Chromium for source outage drill
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Run desktop and mobile official county results recovery rehearsal
+        run: |
+          node --check scripts/test_nc_county_real_browser_election_night.mjs
+          node scripts/test_nc_county_real_browser_election_night.mjs
