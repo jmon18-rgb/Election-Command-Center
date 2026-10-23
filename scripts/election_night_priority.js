@@ -155,6 +155,67 @@
   return enriched.filter(x=>x.office===mode).sort((a,b)=>b.priority.score-a.priority.score||
    (b.tip??-1)-(a.tip??-1)||a.code.localeCompare(b.code));
  }
- return Object.freeze({ELECTION_START,SEED,watch,extras,priority,sort,keyOf,pad,
+ // Fair and bounded supplementary provider scan. Featured Senate and Silver-
+ // seeded House races get frequent checks while circular cursors ensure less
+ // prominent races are never permanently skipped by repeated featured items.
+ // This function schedules exact identity checks, never assumes valid votes.
+ function sourceBatch({personal=[],candidates=[],primaryStates=[],cursor={},
+                        limit=12}={}){
+  if(!Number.isInteger(limit)||limit<1||limit>12)throw Error('Unsafe provider request budget');
+  const covered=new Set(primaryStates), seen=new Set(), eligible=[];
+  for(const row of [...personal,...candidates]){
+   if(!row||!['Senate','House','Governor'].includes(row.office)||
+      typeof row.key!=='string'||row.key.length>16||
+      !states.has(row.key.slice(0,2))||covered.has(row.key.slice(0,2)))
+    continue;
+   const id=row.office+'|'+row.key;
+   if(seen.has(id))continue;
+   seen.add(id);eligible.push({...row});
+  }
+  const allowed=new Set(eligible.map(x=>x.office+'|'+x.key));
+  const saved=personal.filter(x=>x&&allowed.has(x.office+'|'+x.key));
+  const senators=eligible.filter(x=>x.office==='Senate');
+  const houses=eligible.filter(x=>x.office==='House');
+  const remaining=eligible.filter(x=>x.office==='Governor');
+  const strength=x=>Number.isFinite(x.tip)?x.tip:0;
+  const top=(pool,n)=>[...pool].sort((a,b)=>strength(b)-strength(a)||
+   a.key.localeCompare(b.key)).slice(0,n);
+  const selected=[],picked=new Set();
+  const push=x=>{
+   if(!x||selected.length>=limit)return false;
+   const id=x.office+'|'+x.key;
+   if(picked.has(id))return false;
+   picked.add(id);selected.push(x);return true;
+  };
+  for(const x of saved.slice(0,2))push(x);
+  // Persistent quick checks of genuinely consequential Senate contests.
+  const fastSen=top(senators.filter(x=>strength(x)>=7),3);
+  for(const x of fastSen)push(x);
+  // Silver screenshots are reference *seeds*, not current race probabilities.
+  const fastHouse=top(houses.filter(x=>strength(x)>=1),1);
+  for(const x of fastHouse)push(x);
+  const next={senate:cursor.senate||0,house:cursor.house||0,other:cursor.other||0};
+  function rotate(pool,number,field){
+   if(!pool.length)return;
+   let scanned=0,added=0,at=next[field]%pool.length;
+   while(scanned<pool.length&&added<number&&selected.length<limit){
+    const x=pool[at];at=(at+1)%pool.length;scanned++;
+    if(push(x))added++;
+   }
+   next[field]=at;
+  }
+  // These quotas reserve time for both chambers. When the House list is
+  // sparse, the spare capacity flows back to Senate before governors.
+  rotate(senators.filter(x=>!fastSen.some(y=>y.key===x.key)),4,'senate');
+  rotate(houses.filter(x=>!fastHouse.some(y=>y.key===x.key)),3,'house');
+  rotate(remaining,1,'other');
+  if(selected.length<limit){
+   rotate(senators,limit-selected.length,'senate');
+   rotate(houses,limit-selected.length,'house');
+   rotate(remaining,limit-selected.length,'other');
+  }
+  return {items:selected,next,candidates:eligible.length};
+ }
+ return Object.freeze({ELECTION_START,SEED,watch,extras,priority,sort,keyOf,pad,sourceBatch,
   provenance:'Selected October 2026 user-supplied Silver tipping-point screenshots, watchlist seed only. Not live Silver data, calibrated forecasts, or results.'});
 });
