@@ -10,7 +10,9 @@
  if(root)root.RaceLiveNowcast=result;
 })(typeof window!=='undefined'?window:null,function(){
  'use strict';
- const ELECTION_START=Date.parse('2026-11-03T05:00:00Z');
+ // No November 3 counts or provider flags can move odds before the FIRST
+ // Eastern polling places close. Individual local monitors gate later closings.
+ const ELECTION_START=Date.parse('2026-11-03T23:00:00Z');
  const OFFICES={Senate:'senate',House:'house',Governor:'governor'};
  const atLargeBridge=typeof window!=='undefined'?
   window.HouseAtLargeBridge:
