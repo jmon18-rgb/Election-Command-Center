@@ -1,6 +1,10 @@
 name: NC 2024 historical original-source audit
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/run_nc_2024_historical_baseline.py'
+      - '.github/workflows/nc-historical-source-audit.yml'
 permissions:
   contents: read
 jobs:
