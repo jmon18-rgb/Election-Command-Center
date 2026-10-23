@@ -64,6 +64,8 @@ jobs:
       # ingestion/publication when old source polls fall outside rolling feeds.
       # Scheduled refresh instead validates the source schema/freshness and
       # that the regenerated model derives from the new polling snapshot.
+      - name: Confirm RSS outage never blocks live polling model updates
+        run: python3 scripts/test_briefing_resilience.py
       - name: Collect election reporting
         continue-on-error: true
         run: python3 scripts/update_briefing.py
