@@ -3540,8 +3540,10 @@ function enRenderSourceHealth(){
   host.append(row);
  }
  const items=[...new Map([...enWatched,...enNationalWatchItems()]
-  .filter(x=>!enSupportedStates.has(x.key.slice(0,2)))
+  .filter(x=>enShouldProbeSupplemental(x))
   .map(x=>[enWatchId(x),x])).keys()];
+ const fallbackTargets=items.filter(id=>
+  enSupportedStates.has(id.split('|')[1]?.slice(0,2))).length;
  const ready=items.filter(id=>enCivicByWatch[id]).length,
   failed=items.filter(id=>enCivicErrors[id]).length;
  const cooldown=enCivicBreaker?.status();
@@ -3554,7 +3556,8 @@ function enRenderSourceHealth(){
    recovering?'RECHECK REQUIRED · HTTP '+cooldown.last_http_status:
    failed?'RETRYING '+failed+' RACES':ready?'VALIDATED SOURCES':'AWAITING SOURCE'),
   elt('span','',ready+'/'+items.length+
-   ' cached verified source records · '+failed+
+   ' cached verified source records · '+fallbackTargets+
+   ' primary-covered race(s) in failover checks · '+failed+
    ' failed most recent checks'+
    (paused?' · next safe retry in '+cooldown.seconds_remaining+'s':
     recovering?' · no fresh validated response since outage':'')+
