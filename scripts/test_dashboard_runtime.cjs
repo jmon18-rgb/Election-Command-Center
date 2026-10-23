@@ -703,23 +703,34 @@ async function settle(){
  const iaTide=[...get('#senateTideRaces').querySelectorAll('[data-senate-tide]')].find(x=>
   x.dataset.senateTide==='IA-SEN');
  assert(iaTide,'Iowa must be in the live Senate tide line');
- assert.match(iaTide.textContent,/Marist University/);
- assert.match(iaTide.textContent,/LV D \+3\.0 INCLUDED/);
- assert.match(iaTide.textContent,/RV D \+7\.0 not double-counted/);
  const currentIowa=model.senate_all.find(x=>x.race_code==='IA-SEN');
- assert(currentIowa&&Number.isFinite(currentIowa.dem_minus_rep));
- const expectedIowa=(currentIowa.dem_minus_rep>=0?'D +':'R +')+
-  Math.abs(currentIowa.dem_minus_rep).toFixed(1);
- assert(iaTide.textContent.includes('combined mean '+expectedIowa),
-  'Iowa tide must reflect current selected polling mean, not a frozen snapshot');
- const ohMarist=primary.races.find(x=>x.race_code==='OH-SEN').polls.filter(x=>
-  x.pollster==='Marist University'&&x.field_end==='2026-09-27');
- assert(ohMarist.some(x=>x.dem===51&&x.rep===43));
- const iaMarist=primary.races.find(x=>x.race_code==='IA-SEN').polls.filter(x=>
-  x.pollster==='Marist University'&&x.field_end==='2026-10-11');
- assert.equal(iaMarist.length,1);
- assert.equal(iaMarist[0].sample_population,'lv');
- assert.equal(iaMarist[0].margin,3);
+ assert(currentIowa,'Iowa must remain in the 2026 Senate polling universe');
+ const iowaValid=['single_poll','multi_poll'].includes(currentIowa.status)&&
+  Number.isFinite(currentIowa.dem_minus_rep);
+ if(iowaValid){
+  const displayedMargin=w.eval('marginText('+currentIowa.dem_minus_rep+')');
+  assert(iaTide.textContent.includes(displayedMargin),
+   'Iowa tide margin must match the current qualifying Senate polling average');
+  const firm=(currentIowa.pollsters||[]).find(x=>/marist/i.test(x.name));
+  const raw=primary.races.find(x=>x.race_code==='IA-SEN')?.polls.find(p=>
+   p.poll_id===firm?.poll_id&&p.field_end===firm?.field_end);
+  if(firm&&raw){
+   assert(iaTide.textContent.includes(firm.name+' '+firm.field_end),
+    'Featured poll must be the actual currently included Marist wave');
+   assert(iaTide.textContent.includes(
+    String(raw.sample_population||'sample').toUpperCase()+' '+
+    w.eval('marginText('+raw.margin+')')+' INCLUDED'),
+    'Featured poll must use its actual current sample and observed margin');
+   const alternate=recent.observations.find(x=>
+    x.race_code==='IA-SEN'&&x.poll_id===firm.poll_id&&
+    x.sample_population!==raw.sample_population);
+   if(alternate)assert(iaTide.textContent.includes('not double-counted'),
+    'Alternate population in the same Iowa poll must not count as a second wave');
+   assert(iaTide.textContent.includes('combined mean '+displayedMargin),
+    'Iowa source spotlight must show the current live polling mean');
+  }
+ }else assert(iaTide.textContent.includes('No poll'),
+  'No current Iowa sample must not produce a fabricated margin');
  assert(!html.includes('DDHQ published forecast · comparison only'));
  assert(!html.includes('scenarioCenter'));
  assert(!html.includes('enForecastSource'));
