@@ -75,7 +75,7 @@ def stage_zip(payload, *, manifest, county_fips):
     # Normalize ONLY this observed exact 2022 header: never relax validation
     # of the actual 2024/2026 results format or source bytes.
     if election == "2022-11-08" and "One Stop" in raw.splitlines()[0]:
-        legacy_header = raw.splitlines()[0].rstrip("\\r").split("\\t")
+        legacy_header = raw.splitlines()[0].rstrip("\r").split("\t")
         expected_legacy = [
             "County", "Election Date", "Precinct", "Contest Group ID",
             "Contest Type", "Contest Name", "Choice", "Choice Party",
@@ -84,7 +84,7 @@ def stage_zip(payload, *, manifest, county_fips):
         ]
         if legacy_header != expected_legacy:
             raise ValueError("Unrecognized official 2022 legacy precinct TSV header")
-        raw = raw.replace("\\tOne Stop\\t", "\\tEarly Voting\\t", 1)
+        raw = raw.replace("\tOne Stop\t", "\tEarly Voting\t", 1)
     counties = aggregate(
         raw, date=day.strftime("%m/%d/%Y"), contest=contest,
         contest_group_id=contest_group_id, county_fips=county_fips,
