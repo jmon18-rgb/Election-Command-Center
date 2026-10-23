@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-23T22:31:48.087757Z",
+  "updated_at": "2026-10-23T23:04:31.197874Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
     "primary_source_checked": 5,
-    "advisory_related_headline_buckets": 17,
-    "advisory_related_headlines": 38
+    "advisory_related_headline_buckets": 18,
+    "advisory_related_headlines": 40
   },
   "advisory_related_headlines": [
     {
@@ -219,6 +219,20 @@
         "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "87d9d6f0bd668571bc6b",
+      "headline": "Justice Department Sues Alaska Over Certification of Senate Election Results - The Well News",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "election_admin",
+        "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
@@ -234,6 +248,45 @@
       ],
       "topic_hints": [
         "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "be7e5758541da6de2527",
+      "title": "Justice Department Sues Alaska Over Certification of Senate Election Results - The Well News",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFB5SnYtQTU2SHVuTmV0NzIyV0NsZVVtYUU2R2g2UkJXYVJ0LVdYeS1rR0ZlckVyWnllWGUzUU8xZWkzMVI2Q194aEtGbS1qOFdNZEFKRFdwa0dfemx3WE9NdlV3?oc=5",
+      "publisher": "The Well News",
+      "published_at": "2026-10-23T21:27:05Z",
+      "detected_at": "2026-10-23T23:04:31.197874Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "29d11da975d4d0cf50e3",
+      "title": "Trump administration sues to block Alaska\u2019s US Senate election result if Peltola wins - Alaska Beacon",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQdk9GRExLZ2ZYOXAtcUxsekd5eWU4MS1BVG01Y2FNTEQxSXdMRGZGODRScFJSV25EeFNWMUNRS2dqNjhJaldSNVZQbG5mNjdNOTZwTF9YdWw2eGFXeEp3QVNyeThDTFBSU2xJZFFGVjE1SzlybnZ2Q3B4Qk12VmRFZ2hTRmlaQ0duajBkUl9GQXJxU1JpNXRmaDdLRFc0dGpQUzNZcFhObVBvSGdBOGc2NXNlYWMwV1FwSXJhUzBn?oc=5",
+      "publisher": "Alaska Beacon",
+      "published_at": "2026-10-23T20:31:19Z",
+      "detected_at": "2026-10-23T23:04:31.197874Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
         "election_admin"
       ],
       "headline_numbers_unverified": [],
@@ -4843,40 +4896,6 @@
       "publisher": "Virginia Mercury",
       "published_at": "2026-10-13T16:03:47Z",
       "detected_at": "2026-10-13T16:06:31.370736Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "df3009a199a8f541e86a",
-      "title": "A Guide to the People, Organizations, and Myths Threatening the 2026 Midterms - American Oversight",
-      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOWHViOGkzbjNRLVNOMUJrRktVMjJvcEFhU0ptTVRxYjJuenlmQ0xSWm5aNDB2VjRja1JsV2FhRVVkSlRzcUFNc0kxcUFpcGoxV29UcVhqOWhZajFreGNuVkNhTmlKWk56ejE1ZDQyNEl0NnR6TWZYTlVNWDNQcGlhWDBMaGVGZnhpdG16OGo2dEtObmtKQkVIUWlHLUxHOGNyTFFncUo3eVFkYVFyeGtfX2tyUkRVdw?oc=5",
-      "publisher": "American Oversight",
-      "published_at": "2026-10-13T15:10:18Z",
-      "detected_at": "2026-10-13T16:39:37.256996Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [
-        "2026 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "b4f36f72f38f3d52a2b5",
-      "title": "Election skeptics are pushing Trump to ban voting machines or even declare martial law as November election looms - Votebeat",
-      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPV0tBakZYUkpGd1ZhTnJxUlpSejVXZTdCeldOZ3hnQlFTclVCYmZSZmJnYVhBdDV5ZklFWnA3TnhZejliNGtxYlZUM2NseFB0UmVCS0FpeGVZSTdjRnlCcFk1QWdQcVZyS3gtdVZHb0lydXJtMTNYak5HeUZsbWZMazNXOG9Fazh6VjhlSGxlRHhjb3hTSFNvSDR6TVdBZw?oc=5",
-      "publisher": "Votebeat",
-      "published_at": "2026-10-13T15:08:00Z",
-      "detected_at": "2026-10-13T15:17:42.415407Z",
       "state_hints": [],
       "topic_hints": [],
       "headline_numbers_unverified": [],
