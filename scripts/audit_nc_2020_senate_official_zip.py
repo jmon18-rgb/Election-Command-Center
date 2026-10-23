@@ -47,7 +47,7 @@ def normalize_2020_columns(raw):
     header. Both are excluded only after ensuring no unexpected payload
     appears under the unnamed column. Source ZIP bytes remain unchanged.
     """
-    reader=csv.DictReader(io.StringIO(raw),delimiter="\\t")
+    reader=csv.DictReader(io.StringIO(raw),delimiter="\t")
     expected=(REQUIRED-{"Early Voting"})|{"One Stop","Real Precinct",""}
     if (not reader.fieldnames or len(reader.fieldnames)!=len(set(reader.fieldnames))
         or set(reader.fieldnames)!=expected):
@@ -57,7 +57,7 @@ def normalize_2020_columns(raw):
     if set(export)!=REQUIRED:
         raise ValueError("2020 normalized source fields not exactly expected")
     out=io.StringIO()
-    writer=csv.DictWriter(out,fieldnames=export,delimiter="\\t",lineterminator="\\n")
+    writer=csv.DictWriter(out,fieldnames=export,delimiter="\t",lineterminator="\n")
     writer.writeheader()
     for row in reader:
         if row.get(None) or row.get("") not in ("",None):
