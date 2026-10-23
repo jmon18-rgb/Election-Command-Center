@@ -18,6 +18,7 @@ from run_nc_official_zip_historical_replay import load_verified_crosswalk
 ORIGINAL_SHA="b388536c61930d03ed3b0fb8d1dae39a65665969f90eeb6578512de0d96c47c0"
 SENATE_GROUP="1374"
 SENATE_CONTEST="US SENATE"
+PINNED_CROSSWALK_SHA="de3e129ef1eb3a1c950260eab3b712bf76823a000347099a327539cfd6ff0fd0"
 CANDIDATES={"DEM":"Cal Cunningham","REP":"Thom Tillis"}
 
 def build(audit,crosswalk_csv):
@@ -34,6 +35,8 @@ def build(audit,crosswalk_csv):
         not isinstance(audit.get("historical_counties"),list) or
         len(audit["historical_counties"])!=100):
         raise ValueError("Unpinned or incomplete official 2020 Senate archive")
+    if hashlib.sha256(crosswalk_csv.encode()).hexdigest()!=PINNED_CROSSWALK_SHA:
+        raise ValueError("Historical county-FIPS crosswalk fingerprint changed")
     crosswalk=load_verified_crosswalk(crosswalk_csv)
     expected_fips=set(crosswalk.values())
     seen=set()
