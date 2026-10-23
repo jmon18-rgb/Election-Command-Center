@@ -176,6 +176,29 @@ async function settle(){
 
  // The local early-evening comparator must be installed on the actual
  // browser page and must visibly disclose that it is not a national swing.
+ // A working state-level provider must not prevent civicAPI from supplying
+ // a *missing* exact race, or an outage from depriving high-impact Senate/
+ // House seats of a secondary source. No fake votes or premature polling.
+ const fallbackStatus=w.eval(`(() => {
+  const now=Date.parse('2026-11-04T00:30:00Z');
+  const fresh={year:2026,office:'House',stale:false,
+   as_of:'2026-11-04T00:29:00Z',
+   races:{'VA-02':{total:2000},'VA-05':{total:0}}};
+  const healthy={snapshot:fresh,failed:false,pending:false};
+  const item={office:'House',key:'VA-02'};
+  return [
+   enShouldProbeSupplemental(item,now,healthy),
+   enShouldProbeSupplemental({office:'House',key:'VA-05'},now,healthy),
+   enShouldProbeSupplemental(item,now,{...healthy,failed:true}),
+   enShouldProbeSupplemental(item,now,{...healthy,pending:true}),
+   enShouldProbeSupplemental(item,now,{...healthy,snapshot:{...fresh,stale:true}}),
+   enShouldProbeSupplemental(item,now,{...healthy,snapshot:{...fresh,as_of:'2026-11-03T20:00:00Z'}}),
+   enShouldProbeSupplemental({office:'House',key:'KY-06'},now,healthy),
+   enShouldProbeSupplemental(item,Date.parse('2026-11-03T21:00:00Z'),healthy)
+  ].join(',');
+ })()`);
+ assert.equal(fallbackStatus,'false,true,true,true,true,true,true,false',
+  'Supplemental provider must cover missing/stale exact races, not duplicate healthy or pre-close primary feeds');
  assert.equal(typeof w.eval('enDistrictPerformance'),'function',
   'Browser should register the source-gated local House-district comparator');
  assert.match(get('#enDistrictPulse').textContent,/Early House district checks|Early district checks/,
