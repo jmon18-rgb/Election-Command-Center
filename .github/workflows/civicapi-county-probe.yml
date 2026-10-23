@@ -1,0 +1,22 @@
+name: Probe civicAPI 2026 county vote payload
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/probe_civicapi_county_payload.py'
+      - '.github/workflows/civicapi-county-probe.yml'
+permissions:
+  contents: read
+jobs:
+  county-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify no false county assumptions, then inspect original civicAPI
+        run: |
+          python3 scripts/test_probe_civicapi_county_payload.py
+          python3 scripts/probe_civicapi_county_payload.py
