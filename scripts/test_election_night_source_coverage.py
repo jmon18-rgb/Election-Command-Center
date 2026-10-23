@@ -84,6 +84,31 @@ class CoverageLedgerTests(unittest.TestCase):
             else:
                 self.assertIsNone(row["pinned_civicapi_id"])
 
+    def test_important_house_races_preserve_exact_source_status(self):
+        """Silver-watch-relevant races cannot inherit state-level live claims."""
+        report = self.ledger()
+        rows = self.rows(report)
+        primary = ("PA-07", "VA-02", "NC-01")
+        supplemental = ("ME-02", "NE-02", "NY-17", "WI-03", "CA-13")
+        pins = {r["district"]: r["race_id"] for r in house_pins(
+            json.loads((ROOT / "data/election_night_source_coverage.json").read_text())
+        )["races"]}
+        for code in primary:
+            row = rows["House|" + code]
+            self.assertEqual(row["source_identity_status"], "PRIMARY_PROVIDER_STATE_SCOPE")
+            self.assertIsNone(row["pinned_civicapi_id"])
+            self.assertFalse(row["live_votes_verified_by_audit"])
+            self.assertNotIn(code, pins)
+        for code in supplemental:
+            row = rows["House|" + code]
+            self.assertEqual(row["provider_scope"], "outside primary")
+            self.assertFalse(row["live_votes_verified_by_audit"])
+            self.assertIn(code, pins, "High-information House pin missing: " + code)
+            self.assertIsInstance(pins[code], int)
+            self.assertGreater(pins[code], 0)
+        self.assertEqual(len(pins), len(set(pins.values())),
+                         "One provider race ID must not map to multiple districts")
+
     def test_curated_and_scoped_sources_not_live_claims(self):
         rows = self.rows(self.ledger())
         self.assertEqual(rows["Senate|AK"]["pinned_civicapi_id"], 86916)
