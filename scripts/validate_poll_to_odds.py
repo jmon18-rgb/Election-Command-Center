@@ -36,7 +36,12 @@ def check(primary, model, odds, supplemental=None, *, today=None):
     Repeated same-day questions from one firm are ambiguous by construction:
     they must not be forced into an average or counted multiple times.
     """
-    today = today or date.today()
+    # Reconstruct the eligibility window AS OF this published model, not the
+    # runner's wall clock. A poll valid at build time can cross the 45-day
+    # boundary overnight; that does not retroactively corrupt the snapshot.
+    # The hourly refresh generates a new model today and remains strictly
+    # validated against its own new eligibility window.
+    today = today or date.fromisoformat(model["generated_at"][:10])
     if model.get("source_snapshot") != primary.get("updated_at"):
         raise ValueError("Polling average was generated from an outdated primary snapshot")
     if odds.get("polling_source_generated_at") != model.get("generated_at") or (
