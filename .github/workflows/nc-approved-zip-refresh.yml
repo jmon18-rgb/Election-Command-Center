@@ -1,0 +1,102 @@
+name: Refresh approved NC election-night candidate counts
+on:
+  workflow_dispatch:
+  schedule:
+    # 2026 election night; the Python gate rejects all other dates/years.
+    # UTC: November 3 4-6 PM Eastern and Nov 4 overnight.
+    - cron: '*/10 21-23 3 11 *'
+    - cron: '*/10 0-8 4 11 *'
+  pull_request:
+    paths:
+      - 'scripts/refresh_approved_nc_zip.py'
+      - 'scripts/test_refresh_approved_nc_zip.py'
+      - '.github/workflows/nc-approved-zip-refresh.yml'
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate official ZIP monotonicity, exact source and disabled safety
+        run: |
+          python3 -m py_compile scripts/refresh_approved_nc_zip.py
+          python3 scripts/test_refresh_approved_nc_zip.py
+          python3 scripts/test_build_nc_official_candidate_votes_2026.py
+          node scripts/test_nc_official_candidate_votes.cjs
+  publish:
+    # Only main and only after a separately approved source configuration.
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    permissions:
+      contents: write
+      pages: write
+    concurrency:
+      group: nc-approved-candidate-zip-publication
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Refresh approved exact-source ZIP (disabled before human verification)
+        run: python3 scripts/refresh_approved_nc_zip.py
+      - name: Commit both snapshot and new pinned archive fingerprint atomically
+        id: publish
+        run: |
+          git add data/nc_county_results_desk_config.json
+          if [ -f data/nc_candidate_votes_2026.json ]; then git add data/nc_candidate_votes_2026.json; fi
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Refresh source-attributed NC county candidate votes"
+            git push origin HEAD:main
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No reviewed official ZIP candidate vote changes to publish"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+      # GitHub documents that a GITHUB_TOKEN push does NOT launch a
+      # deploy-from-branch Pages build. Explicitly request one after commit.
+      - name: Ensure approved candidate snapshot reaches GitHub Pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          approved="$(python3 -c 'import json; c=json.load(open("data/nc_county_results_desk_config.json")); print(str(c.get("enabled") is True).lower())')"
+          if [ "$approved" != "true" ]; then
+            echo "No approved county feed; no Pages rebuild needed"
+            exit 0
+          fi
+          # Even if a prior run committed successfully but the Pages API
+          # failed, the next run retries publication of that HEAD.
+          git fetch origin main
+          head_sha="$(git rev-parse origin/main)"
+          latest_sha="$(gh api "repos/${{ github.repository }}/pages/builds/latest" --jq '.commit // ""' 2>/dev/null || true)"
+          latest_status="$(gh api "repos/${{ github.repository }}/pages/builds/latest" --jq '.status // ""' 2>/dev/null || true)"
+          if [ "$head_sha" = "$latest_sha" ] && [ "$latest_status" = "built" ]; then
+            echo "Latest reviewed source revision already deployed"
+            exit 0
+          fi
+          if [ "$head_sha" = "$latest_sha" ] && [ "$latest_status" = "building" -o "$latest_status" = "queued" ]; then
+            echo "Pages build for current revision already queued"
+            exit 0
+          fi
+          for attempt in 1 2 3; do
+            if gh api -X POST "repos/${{ github.repository }}/pages/builds" >/tmp/nc-pages-build.json; then
+              cat /tmp/nc-pages-build.json
+              exit 0
+            fi
+            echo "Pages build request failed or busy (attempt $attempt)"
+            sleep 10
+          done
+          echo "County snapshot may be committed but Pages rebuild could not be requested" >&2
+          exit 1
