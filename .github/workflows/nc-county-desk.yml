@@ -1,0 +1,25 @@
+name: Verify source-attributed NC county desk
+on:
+  pull_request:
+    paths:
+      - 'scripts/election_night_county_results_desk.js'
+      - 'scripts/test_election_night_county_results_desk.cjs'
+      - 'scripts/nc_county_results_desk_startup.js'
+      - 'data/nc_county_results_desk_config.json'
+      - '.github/workflows/nc-county-desk.yml'
+      - 'index.html'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-desk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JS and official source attribution gate
+        run: |
+          node --check scripts/election_night_county_results_desk.js
+          node --check scripts/nc_county_results_desk_startup.js
+          node scripts/test_election_night_county_results_desk.cjs
+          node -e "const c=require('./data/nc_county_results_desk_config.json');if(c.enabled!==false||c.snapshot_path!==null||c.expected!==null)process.exit(1)"
