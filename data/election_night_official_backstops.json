@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "event": "2026-11-03",
+  "last_verified": "2026-10-22",
+  "status": "OFFICIAL_HUMAN_FALLBACK_LINKS_NOT_AUTOMATED_RESULTS",
+  "links": [
+    {
+      "state": "AK",
+      "name": "Alaska",
+      "url": "https://www.elections.alaska.gov/election-results/",
+      "mode": "unofficial_results_landing",
+      "race_ids": [
+        "House|AK-00"
+      ]
+    },
+    {
+      "state": "DE",
+      "name": "Delaware",
+      "url": "https://elections.delaware.gov/results/",
+      "mode": "results_landing_timing_unconfirmed",
+      "race_ids": [
+        "House|DE-00"
+      ]
+    },
+    {
+      "state": "ND",
+      "name": "North Dakota",
+      "url": "https://www.sos.nd.gov/elections/election-results",
+      "mode": "unofficial_results_landing",
+      "race_ids": [
+        "House|ND-00"
+      ]
+    },
+    {
+      "state": "NH",
+      "name": "New Hampshire",
+      "url": "https://www.sos.nh.gov/2026-general-election-results",
+      "mode": "post_election_results_landing",
+      "race_ids": [
+        "House|NH-01",
+        "House|NH-02"
+      ]
+    },
+    {
+      "state": "SD",
+      "name": "South Dakota",
+      "url": "https://electionresults.sd.gov/ResultsMedia.aspx",
+      "mode": "unofficial_results_landing",
+      "race_ids": [
+        "House|SD-00"
+      ]
+    },
+    {
+      "state": "WY",
+      "name": "Wyoming",
+      "url": "https://sos.wyo.gov/Elections/ElectionResults.aspx",
+      "mode": "results_landing_timing_unconfirmed",
+      "race_ids": [
+        "House|WY-00"
+      ]
+    },
+    {
+      "state": "MA",
+      "name": "Massachusetts",
+      "url": "https://www.sec.state.ma.us/divisions/elections/voting-information/announcing-certifying.htm",
+      "mode": "certified_only_not_election_night",
+      "race_ids": [
+        "Senate|MA"
+      ]
+    },
+    {
+      "state": "MS",
+      "name": "Mississippi",
+      "url": "https://www.sos.ms.gov/elections-voting/election-results",
+      "mode": "results_landing_timing_unconfirmed",
+      "race_ids": [
+        "Senate|MS"
+      ]
+    },
+    {
+      "state": "HI",
+      "name": "Hawaii",
+      "url": "https://elections.hawaii.gov/election-results/",
+      "mode": "official_results_landing",
+      "race_ids": [
+        "Governor|HI"
+      ]
+    },
+    {
+      "state": "OK",
+      "name": "Oklahoma",
+      "url": "https://oklahoma.gov/elections/elections-results/election-results/2026-election-results.html",
+      "mode": "2026_results_landing",
+      "race_ids": [
+        "Governor|OK"
+      ]
+    }
+  ],
+  "limitations": "Links lead to official election-office pages for manually checking races with unresolved machine-readable identities. They do not prove live returns or professional winner calls, and do not fill automated source gaps. Massachusetts state office expressly does not publish unofficial results on election night."
+}
