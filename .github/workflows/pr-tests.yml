@@ -417,5 +417,7 @@ jobs:
         run: |
           node --check scripts/geographic_returns_2026.js
           node scripts/test_geographic_returns_2026.cjs
+          node --check scripts/geographic_swing_bridge_2026.js
+          node scripts/test_geographic_swing_bridge_2026.cjs
           node --check scripts/test_dashboard_runtime.cjs
           node scripts/test_dashboard_runtime.cjs
