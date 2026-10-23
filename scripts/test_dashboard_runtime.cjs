@@ -425,8 +425,8 @@ async function settle(){
   '2026 results mode must show automatic key race watch');
  const nightFocus=[...get('#smartNightGrid').querySelectorAll('a.smart-signal')]
   .filter(x=>x.dataset.race.endsWith('-SEN'));
- assert(nightFocus.length>0&&nightFocus.length<35,
-  'Election-night desk defaults to interesting Senate contests');
+ assert.equal(nightFocus.length,35,
+  'Election-night desk defaults to all 35 Senate contests');
  get('#smartNightShowAll').click();
  assert.equal([...get('#smartNightGrid').querySelectorAll('a.smart-signal')]
   .filter(x=>x.dataset.race.endsWith('-SEN')).length,35,
