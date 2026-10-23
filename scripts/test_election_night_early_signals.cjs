@@ -46,4 +46,22 @@ const beforeClose=Date.parse('2026-11-03T22:59:59Z');
 test(fresh,'WAITING_FOR_POLLS',{now:beforeClose});
 test(fresh,'PREVIEW',{now:Date.parse('2026-10-23T12:00:00Z')});
 assert.equal(api.closedAt(ky),Date.parse('2026-11-03T23:00:00Z'));
+// IN-05 is an automatic 6 PM watch item, not a race call or inferred wave.
+// Exact source results must be fresh, plausible, and post-closing.
+const indiana=api.records.find(x=>x.code==='IN-05');
+assert(indiana&&indiana.office==='House');
+assert.equal(api.closedAt(indiana),Date.parse('2026-11-03T23:00:00Z'));
+const inNow=Date.parse('2026-11-03T23:40:00Z');
+const inVotes={verified:true,provider:'Open America',
+ asOf:'2026-11-03T23:30:00Z',total:20000,d:11000,r:8500,precincts:12,stale:false};
+assert.equal(api.assess(indiana,inVotes,{now:inNow}).status,'COUNTING_PARTIAL');
+assert.equal(api.assess(indiana,inVotes,{now:inNow}).canMoveNationalNeedle,false);
+assert.equal(api.assess(indiana,inVotes,{now:Date.parse('2026-11-03T22:59:00Z')}).status,
+ 'WAITING_FOR_POLLS');
+assert.equal(api.assess(indiana,{...inVotes,asOf:'2026-11-03T22:30:00Z'},
+ {now:inNow}).status,'STALE');
+assert.equal(api.assess(indiana,{...inVotes,verified:false},{now:inNow}).status,
+ 'INVALID_SOURCE');
+assert.equal(api.assess(indiana,null,{now:inNow,error:'503'}).status,'SOURCE_ERROR');
+assert.equal(api.assess(indiana,null,{now:inNow}).status,'AWAITING_SOURCE');
 console.log('Source-validated early indicator timestamps, comparisons and county watch status PASS');
