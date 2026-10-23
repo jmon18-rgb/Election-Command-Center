@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-23T18:53:44.394135Z",
-  "source_snapshot": "2026-10-23T18:53:40.464986Z",
+  "generated_at": "2026-10-23T19:44:09.074291Z",
+  "source_snapshot": "2026-10-23T19:44:04.461453Z",
   "type": "descriptive_polling_estimates",
   "is_election_forecast": false,
   "method_version": "poll-mean-1.5",
@@ -5168,6 +5168,80 @@
       "poll_source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
+      "race_code": "MS-SEN",
+      "state": "MS",
+      "state_name": "Mississippi",
+      "race_type": "senate",
+      "label": "Mississippi",
+      "status": "single_poll",
+      "dem_candidate": "Scott Colom",
+      "rep_candidate": "Cindy Hyde-Smith",
+      "dem_pct": 40.0,
+      "rep_pct": 43.0,
+      "dem_minus_rep": -3.0,
+      "independent_pollsters": 0,
+      "contributing_pollsters": 1,
+      "partisan_pollsters": 1,
+      "poll_diagnostics": {
+        "poll_count": 1,
+        "pollster_spread_points": null,
+        "observed_margin_min": -3.0,
+        "observed_margin_max": -3.0,
+        "latest_poll_age_days": 1,
+        "single_poll": true,
+        "thin_polling": true,
+        "stale_latest_poll": false,
+        "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": -3.0,
+          "faster_recency_margin": -3.0,
+          "alternative_margin_min": -3.0,
+          "alternative_margin_max": -3.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "firm_wave_selection": {
+          "resolved_same_day_ties": [],
+          "quarantined_same_day_firms": []
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": -3.0,
+          "dem_pct": 40.0,
+          "rep_pct": 43.0,
+          "difference_from_live": 0.0,
+          "rated_pollster_count": 1,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
+        "different_matchups_excluded": 0,
+        "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
+      },
+      "latest_poll_end": "2026-10-22",
+      "oldest_included_poll_end": "2026-10-22",
+      "pollsters": [
+        {
+          "name": "Change Research",
+          "field_end": "2026-10-22",
+          "poll_id": "0c60a604-8bbb-48d3-9785-388eb501e585",
+          "question_id": "2d9a619f-dba1-483a-b842-31a1f68961af",
+          "sample_population": "lv",
+          "dem": 40.0,
+          "rep": 43.0,
+          "sample_size": 842,
+          "partisan_lean": "D",
+          "weight_share": 100.0,
+          "quality_rating": 1.4,
+          "quality_multiplier": 0.85,
+          "sample_multiplier": 1.01
+        }
+      ],
+      "method": "Latest wave per firm; same-day tie prefers LV then larger sample; equal-priority conflicting questions quarantined. 21d recency, capped sample-size factor, 538 historical pollster quality and 0.5 sponsored-poll factor.",
+      "poll_source_url": "https://pollresults.org/"
+    },
+    {
       "race_code": "MT-SEN",
       "state": "MT",
       "state_name": "Montana",
@@ -7376,6 +7450,80 @@
       ],
       "method": "Latest wave per firm; same-day tie prefers LV then larger sample; equal-priority conflicting questions quarantined. 21d recency, capped sample-size factor, 538 historical pollster quality and 0.5 sponsored-poll factor.",
       "poll_source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
+    },
+    {
+      "race_code": "CO-03",
+      "state": "CO",
+      "state_name": "Colorado",
+      "race_type": "house",
+      "label": "Colorado 03",
+      "status": "single_poll",
+      "dem_candidate": "Dwayne Romero",
+      "rep_candidate": "Jeff Hurd",
+      "dem_pct": 47.0,
+      "rep_pct": 46.0,
+      "dem_minus_rep": 1.0,
+      "independent_pollsters": 0,
+      "contributing_pollsters": 1,
+      "partisan_pollsters": 1,
+      "poll_diagnostics": {
+        "poll_count": 1,
+        "pollster_spread_points": null,
+        "observed_margin_min": 1.0,
+        "observed_margin_max": 1.0,
+        "latest_poll_age_days": 2,
+        "single_poll": true,
+        "thin_polling": true,
+        "stale_latest_poll": false,
+        "high_poll_disagreement": false,
+        "model_sensitivity": {
+          "effective_firms": 1.0,
+          "largest_firm_weight_pct": 100.0,
+          "independent_only_margin": null,
+          "equal_firms_margin": 1.0,
+          "faster_recency_margin": 1.0,
+          "alternative_margin_min": 1.0,
+          "alternative_margin_max": 1.0,
+          "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
+        },
+        "firm_wave_selection": {
+          "resolved_same_day_ties": [],
+          "quarantined_same_day_firms": []
+        },
+        "silver_2026_comparison": {
+          "dem_minus_rep": 1.0,
+          "dem_pct": 47.0,
+          "rep_pct": 46.0,
+          "difference_from_live": -0.0,
+          "rated_pollster_count": 0,
+          "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
+          "status": "experimental_not_used_for_headline",
+          "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
+        },
+        "different_matchups_excluded": 0,
+        "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
+      },
+      "latest_poll_end": "2026-10-21",
+      "oldest_included_poll_end": "2026-10-21",
+      "pollsters": [
+        {
+          "name": "DCCC Targeting Team",
+          "field_end": "2026-10-21",
+          "poll_id": "d846e9d7-a378-47ec-849f-a5dbfa44b6f9",
+          "question_id": "84f855ca-c10c-4d18-8787-6a594d7dc45d",
+          "sample_population": "lv",
+          "dem": 47.0,
+          "rep": 46.0,
+          "sample_size": 402,
+          "partisan_lean": "D",
+          "weight_share": 100.0,
+          "quality_rating": 1.1,
+          "quality_multiplier": 0.786,
+          "sample_multiplier": 0.871
+        }
+      ],
+      "method": "Latest wave per firm; same-day tie prefers LV then larger sample; equal-priority conflicting questions quarantined. 21d recency, capped sample-size factor, 538 historical pollster quality and 0.5 sponsored-poll factor.",
+      "poll_source_url": "https://pollresults.org/"
     },
     {
       "race_code": "CO-04",
@@ -15033,30 +15181,30 @@
       "status": "multi_poll",
       "dem_candidate": "Cindy Holscher",
       "rep_candidate": "Ty Masterson",
-      "dem_pct": 44.33,
-      "rep_pct": 48.24,
-      "dem_minus_rep": -3.91,
+      "dem_pct": 44.54,
+      "rep_pct": 48.14,
+      "dem_minus_rep": -3.61,
       "independent_pollsters": 3,
       "contributing_pollsters": 5,
       "partisan_pollsters": 2,
       "poll_diagnostics": {
         "poll_count": 5,
-        "pollster_spread_points": 4.38,
+        "pollster_spread_points": 3.27,
         "observed_margin_min": -8.0,
-        "observed_margin_max": 3.0,
-        "latest_poll_age_days": 19,
+        "observed_margin_max": 0.0,
+        "latest_poll_age_days": 2,
         "single_poll": false,
         "thin_polling": false,
-        "stale_latest_poll": true,
+        "stale_latest_poll": false,
         "high_poll_disagreement": false,
         "model_sensitivity": {
-          "effective_firms": 3.41,
-          "largest_firm_weight_pct": 41.7,
+          "effective_firms": 3.9,
+          "largest_firm_weight_pct": 36.5,
           "independent_only_margin": -4.24,
-          "equal_firms_margin": -3.88,
-          "faster_recency_margin": -3.79,
-          "alternative_margin_min": -4.24,
-          "alternative_margin_max": -3.79,
+          "equal_firms_margin": -4.48,
+          "faster_recency_margin": -3.16,
+          "alternative_margin_min": -4.48,
+          "alternative_margin_max": -3.16,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
         "firm_wave_selection": {
@@ -15064,10 +15212,10 @@
           "quarantined_same_day_firms": []
         },
         "silver_2026_comparison": {
-          "dem_minus_rep": -3.97,
-          "dem_pct": 44.36,
-          "rep_pct": 48.33,
-          "difference_from_live": -0.06,
+          "dem_minus_rep": -3.62,
+          "dem_pct": 44.59,
+          "rep_pct": 48.21,
+          "difference_from_live": -0.01,
           "rated_pollster_count": 5,
           "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
           "status": "experimental_not_used_for_headline",
@@ -15076,7 +15224,7 @@
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
-      "latest_poll_end": "2026-10-04",
+      "latest_poll_end": "2026-10-21",
       "oldest_included_poll_end": "2026-09-10",
       "pollsters": [
         {
@@ -15089,7 +15237,7 @@
           "rep": 51.0,
           "sample_size": 915,
           "partisan_lean": "R",
-          "weight_share": 4.894,
+          "weight_share": 4.285,
           "quality_rating": 1.1,
           "quality_multiplier": 0.775,
           "sample_multiplier": 1.027
@@ -15104,25 +15252,25 @@
           "rep": 50.8,
           "sample_size": 750,
           "partisan_lean": "",
-          "weight_share": 18.124,
+          "weight_share": 15.868,
           "quality_rating": 2.9,
           "quality_multiplier": 1.225,
           "sample_multiplier": 0.987
         },
         {
           "name": "Global Strategy Group",
-          "field_end": "2026-09-16",
-          "poll_id": "7a2a5a88-c265-4ab1-a1b3-80926e34f23b",
-          "question_id": null,
-          "sample_population": null,
-          "dem": 49.0,
-          "rep": 46.0,
-          "sample_size": 800,
+          "field_end": "2026-10-21",
+          "poll_id": "2777acf5-a35a-4458-8ae6-2e94d67246c3",
+          "question_id": "ed252ecd-d1e0-4188-891d-23a6acd4c7a4",
+          "sample_population": "lv",
+          "dem": 47.0,
+          "rep": 47.0,
+          "sample_size": 600,
           "partisan_lean": "D",
-          "weight_share": 7.119,
+          "weight_share": 18.681,
           "quality_rating": 1.8,
           "quality_multiplier": 0.95,
-          "sample_multiplier": 1.0
+          "sample_multiplier": 0.944
         },
         {
           "name": "The New York Times/Siena University",
@@ -15134,7 +15282,7 @@
           "rep": 48.5,
           "sample_size": 605,
           "partisan_lean": "",
-          "weight_share": 28.123,
+          "weight_share": 24.622,
           "quality_rating": 3,
           "quality_multiplier": 1.25,
           "sample_multiplier": 0.946
@@ -15149,7 +15297,7 @@
           "rep": 47.0,
           "sample_size": 2252,
           "partisan_lean": "",
-          "weight_share": 41.74,
+          "weight_share": 36.544,
           "quality_rating": 3,
           "quality_multiplier": 1.25,
           "sample_multiplier": 1.23

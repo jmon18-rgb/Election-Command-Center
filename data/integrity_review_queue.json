@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-23T18:53:40.169198Z",
+  "updated_at": "2026-10-23T19:44:04.089219Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 4,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
@@ -222,6 +222,83 @@
     }
   ],
   "items": [
+    {
+      "id": "c950646e46a9baa5688a",
+      "title": "State Elections Board issues letters to potential noncitizens on voter rolls - The North State Journal",
+      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNVmQwTV9OZXpxNDhTNWJ5ZllJTlRxT1Rnd2pNaWtSRE5hSzd5TWZLWGJRbm9XZ2xLQmpBUmRhTGRXellWNFkyWFdOWVA5SExZZXRMQ2NucXU1NXpSMlRGZktOdDV1cElHY0JSS3VYV0gxbVBNS2YwcTBYclJQX2w1Z1AtN3l1a3FEWXUtaA?oc=5",
+      "publisher": "The North State Journal",
+      "published_at": "2026-10-23T19:25:00Z",
+      "detected_at": "2026-10-23T19:44:04.089219Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "3ec3c02c227fd302dd6a",
+      "title": "\u2018Massive concession\u2019 or standard practice? How California checks citizenship - Sacramento Bee",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNaTIzTGdDYUh1YXp3bW82TkRfYXl3UDhsWUdRcC1hcDNBZEVLWkFwdkdldjFsUFREbWl2clJaOTRrMGYxMU93Y3pvT3ByTUR0VFZuWXREa3RWVEZ3OFl6VkR5bVZmQWVMV2sxTFNmSG9LS2RxdnpJaWtxck1VUGFIMXZhRHQ2Y2hITjFv?oc=5",
+      "publisher": "Sacramento Bee",
+      "published_at": "2026-10-23T19:07:13Z",
+      "detected_at": "2026-10-23T19:44:04.089219Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "registration",
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "bc43073dabc557f58698",
+      "title": "US Justice Dept sues to block possible Alaska election of Democrat to Senate - Reuters",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOdmhoNXZfaEZSVXU4cVh3dW9tMm54alE4THRoUWNBSzc4QTFvNHl6eE9mOElIeXE1S0pkQlV4Yld6U0t5RjZnbEpjSzVyMkMzQ01MM1hSclViSHVmRDZGTndKTm9GZHZaRUFIZnAxVnM2V0hDMGhUOHVKemxQcFdxc0hmLTJDTTFQWTFTRFhRalM1Y1I3Y0dRTEF6UldFdHg3OVVxd0hkdUFyNTdUN0dDZVRwbTFqbVVyT2FtSw?oc=5",
+      "publisher": "Reuters",
+      "published_at": "2026-10-23T19:04:23Z",
+      "detected_at": "2026-10-23T19:44:04.089219Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "af7c45f716ae76a539a5",
+      "title": "WATCH: Trump says he ordered DOJ lawsuit over Alaska Senate race - PBS",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQWVBnX0tZTndtd0lNVUpSaDJGT28yWG5LUVhyd1FkVHhZcVl1djVJOVBoSG01OER1bDJRdkY3OUlZR29SaFdjdlJIU2FnZ09CRExkUkktN2E4M3JpbUhuSHNzN1Nzb25Gck5iTHU5LXpydVNwYUFTUlM1UjJUN21PMnBHSlVYa0lhRjRYVUtQVG0yNHRCUlZpRjJrd2xUQy1xNW9wMktJTGs1ZzBUTlFJakJkcjNZbE5OWHZ2V0syWHBPaDVYUVHSAcsBQVVfeXFMT1hEZXAxZ0w1dFVORXprWnFaaEVxNXM1SUpMeU1iQS1mUEVZbG96djN3NlFwdzBQeGN2aGg3bjdGRVc3WFU3a1pUd1VtREMxRmtkc1NqclRmYTdOVDJIWUkzWXIxWkh1OVp4RllwRWlqczFCY2FPYWhPOHBhTkFzWVo0WDgyVklXLWRsZUF0M3B1X25QRzJySUVDQjNIWFJ0WnlEOGhTX3BhSkJYTWlyb1AyQmlRa2Z4TVhNV2liTTF6MnhtU0FnU094cjA?oc=5",
+      "publisher": "PBS",
+      "published_at": "2026-10-23T18:27:00Z",
+      "detected_at": "2026-10-23T19:44:04.089219Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "39e958b287c1bc7ca8c4",
       "title": "LA Hearing Set Tuesday in Government Push for Court Order in Voting Case - MyNewsLA.com",
@@ -4798,72 +4875,6 @@
       "state_hints": [],
       "topic_hints": [
         "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "b8501b867f5df61b121a",
-      "title": "NC elections board Democrats question noncitizen-voter findings - Carolina Journal",
-      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNM0taM05RNHBjcTdyTHB6bGUzZ0xuVkNudTBKT2JRdmFQRk9TcXZRYnh1LXFIcU4yRWVZRU82ejFMR1MteXpNVFZVS3VvSF9zdE9rV2x5aFE3UC1odHNXRHZsNGhsdmd5TkRHOU5aaXFKODIxVkQ4OEJ1em9uVjVwOFU3NzNKdS1tRHpPWmZEX1hCTXFLaElxcFRwNm4?oc=5",
-      "publisher": "Carolina Journal",
-      "published_at": "2026-10-13T14:25:49Z",
-      "detected_at": "2026-10-13T14:48:47.690739Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ef658fb27a0d48d41484",
-      "title": "In The Know: Oklahoma state board again rejects Jewish charter school | Oklahoma tribe\u2019s prediction market app complicates gaming debate | Ballot proposal would impact Oklahoma judicial selection panel - Oklahoma Policy Institute",
-      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5aVWxwVm9BQWFlSlFrNzZ5LUQ3SDFaVDFzWEpNMEFmNE01M2hoYWJWVTdMbEdsOS10b0dMeXdMLW5qYVZmdWQyUEJ2ZGlrQV9QZ3E1d3BsOA?oc=5",
-      "publisher": "Oklahoma Policy Institute",
-      "published_at": "2026-10-13T14:20:17Z",
-      "detected_at": "2026-10-13T15:30:00.149988Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "d0a395b1cb946cd1fccc",
-      "title": "Black Church Leaders Broaden Voter Outreach Ahead of Midterm Elections - Word&Way",
-      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPbXIwZjYzVEZUa0lTZTZ3WnRzTUszZFQ1c2dlMTVuZDVfU1Z0ZVpveTZ3N2FsTWxFazRBMTdsRnlIc1R6eU9NSmh1YkJLVTVGTU1JOUlGOTJNd2pKajMzWDF1ZktWbkU3Q29lT1NhNFRkWFEzNjUxRGdieS04V18zSkxBRXduVS13NEFzcTFKRjBCdzBndFVJNWc2UzBJbVJxTy1hN3pkaTc?oc=5",
-      "publisher": "Word&Way",
-      "published_at": "2026-10-13T14:16:42Z",
-      "detected_at": "2026-10-13T14:31:02.888556Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "0f4a6464ff925f41424f",
-      "title": "Supreme Court turns away Kari Lake lawyer\u2019s challenge to sanctions in Arizona voting machine lawsuit - The Hill",
-      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNenhseW1HU2JaRExkZUJaWGlORHUwVmdvVEwtRjU0THpDRU43SHl2bEk5aG1jckVfTXJlMHB1eWdYN21zTGlXMTN4THI4c3l3S0czSks3ZkpJU2RGeU5kb2ZDN2FzNVBDbGZEV1FzdHdGYkFqZGs4TDBIS0NQNVJhM3RYVDBJcGcwWDFMWTFWdUNrc2JVdXYzVHZoWnVjcjFDejMtY1pDLUvSAa4BQVVfeXFMTlY0bTJPUkY1ajFiV2pXTUpwbHlYSm42OW12MFVscE1sQXN0WENDbzRjUE1nN0t2ajBKYl9MbndwT09NQ0RONkNMNjNjWnF2VXJmb0U0eGFhNkptZEpLd01HdEUtNDgwYm9CTEs0WGc3QVl4Y3IzQUZONU9LTlZwVUhmaVRxdFJpdGVNRkZuUmFjN0dzZ1ZkSkZwb3J5OFlzTFphVXprMlpvTTZZa3R3?oc=5",
-      "publisher": "The Hill",
-      "published_at": "2026-10-13T13:38:00Z",
-      "detected_at": "2026-10-13T14:00:45.792365Z",
-      "state_hints": [
-        "AZ"
-      ],
-      "topic_hints": [
-        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",

@@ -1,9 +1,9 @@
 {
   "schema_version": "experimental-race-odds-v1",
   "status": "experimental_poll_margin_probability_not_chamber_forecast",
-  "generated_at": "2026-10-23T18:53:44.517163+00:00",
-  "polling_source_generated_at": "2026-10-23T18:53:44.394135Z",
-  "polling_source_snapshot": "2026-10-23T18:53:40.464986Z",
+  "generated_at": "2026-10-23T19:44:09.235450+00:00",
+  "polling_source_generated_at": "2026-10-23T19:44:09.074291Z",
+  "polling_source_snapshot": "2026-10-23T19:44:04.461453Z",
   "historical_senate_elections": 3,
   "historical_senate_races": 42,
   "senate_baseline_rmse_points": 5.633,
@@ -15,8 +15,8 @@
   "can_infer_chamber_control": false,
   "can_infer_blue_tsunami": false,
   "number_of_races_by_office": {
-    "senate": 24,
-    "house": 80,
+    "senate": 25,
+    "house": 81,
     "governor": 33
   },
   "records": [
@@ -189,16 +189,16 @@
       "office": "governor",
       "race_code": "KS-GOV",
       "label": "Kansas",
-      "dem_minus_rep": -3.91,
+      "dem_minus_rep": -3.61,
       "contributing_firms": 5,
       "independent_firms": 3,
-      "latest_poll_end": "2026-10-04",
-      "sigma_points": 7.42,
-      "uncertainty_multiplier": 1.06,
-      "dem_beats_rep_pct": 29.91,
-      "rep_beats_dem_pct": 70.09,
-      "tight_error_dem_pct": 24.12,
-      "wide_error_dem_pct": 33.67
+      "latest_poll_end": "2026-10-21",
+      "sigma_points": 7.0,
+      "uncertainty_multiplier": 1.0,
+      "dem_beats_rep_pct": 30.3,
+      "rep_beats_dem_pct": 69.7,
+      "tight_error_dem_pct": 24.58,
+      "wide_error_dem_pct": 34.0
     },
     {
       "office": "governor",
@@ -589,6 +589,21 @@
       "rep_beats_dem_pct": 20.09,
       "tight_error_dem_pct": 86.82,
       "wide_error_dem_pct": 74.88
+    },
+    {
+      "office": "house",
+      "race_code": "CO-03",
+      "label": "Colorado 03",
+      "dem_minus_rep": 1.0,
+      "contributing_firms": 1,
+      "independent_firms": 0,
+      "latest_poll_end": "2026-10-21",
+      "sigma_points": 11.34,
+      "uncertainty_multiplier": 1.512,
+      "dem_beats_rep_pct": 53.51,
+      "rep_beats_dem_pct": 46.49,
+      "tight_error_dem_pct": 54.68,
+      "wide_error_dem_pct": 52.81
     },
     {
       "office": "house",
@@ -1924,6 +1939,21 @@
       "rep_beats_dem_pct": 26.25,
       "tight_error_dem_pct": 80.16,
       "wide_error_dem_pct": 69.44
+    },
+    {
+      "office": "senate",
+      "race_code": "MS-SEN",
+      "label": "Mississippi",
+      "dem_minus_rep": -3.0,
+      "contributing_firms": 1,
+      "independent_firms": 0,
+      "latest_poll_end": "2026-10-22",
+      "sigma_points": 8.517,
+      "uncertainty_multiplier": 1.512,
+      "dem_beats_rep_pct": 36.23,
+      "rep_beats_dem_pct": 63.77,
+      "tight_error_dem_pct": 31.93,
+      "wide_error_dem_pct": 38.91
     },
     {
       "office": "senate",
