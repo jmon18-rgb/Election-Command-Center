@@ -1,26 +1,135 @@
 {
-  "updated_at": "2026-10-23T14:51:49.121624+00:00",
+  "updated_at": "2026-10-23T15:31:34.986001+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 814,
+      "available_in_source": 815,
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1249,
+      "available_in_source": 1251,
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 919,
+      "available_in_source": 920,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 301,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 3,
+  "injected_poll_ids": [
+    {
+      "race_code": "NE-GOV",
+      "poll_id": "561c2f6a-2f4e-426e-97cc-43a23bfc6f6c"
+    },
+    {
+      "race_code": "SC-SEN",
+      "poll_id": "29e89f16-9a50-475b-b548-6cfb19442c96"
+    },
+    {
+      "race_code": "VA-01",
+      "poll_id": "d41c2427-de22-4052-9258-67baf169072d"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "SC-SEN",
+      "race_type": "senate",
+      "state": "SC",
+      "poll_id": "29e89f16-9a50-475b-b548-6cfb19442c96",
+      "question_id": "2a996f3f-1f1b-4a29-97e3-f1545b612e9b",
+      "pollster": "Impact Research",
+      "dem_name": "Annie Andrews",
+      "rep_name": "Darline Graham",
+      "dem": 45.0,
+      "rep": 44.0,
+      "margin": 1.0,
+      "field_end": "2026-10-21",
+      "field_start": "2026-10-15",
+      "posted_date": "2026-10-23",
+      "posted_source_datetime": "2026-10-23T11:20:00",
+      "posted_source_time": "10/23/26 11:20",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://freshstartpac.org/wp-content/uploads/2026/10/SC-Senate-Track-Public-Memo.pdf",
+      "sample_population": "lv",
+      "sample_size": 800,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "SC-01",
+      "race_type": "house",
+      "state": "SC",
+      "poll_id": "56dddd62-4f83-4e3b-b421-2f788708beb2",
+      "question_id": "93489833-6bd5-41fd-a138-ac7d3aa6c579",
+      "pollster": "Public Policy Polling",
+      "dem_name": "Nancy Lacore",
+      "rep_name": "Jenny Costa Honeycutt",
+      "dem": 47.0,
+      "rep": 45.0,
+      "margin": 2.0,
+      "field_end": "2026-10-22",
+      "field_start": "2026-10-21",
+      "posted_date": "2026-10-23",
+      "posted_source_datetime": "2026-10-23T11:01:00",
+      "posted_source_time": "10/23/26 11:01",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://x.com/cjwarnke/status/2113636550357528714",
+      "sample_population": "lv",
+      "sample_size": 770,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "NE-GOV",
+      "race_type": "governor",
+      "state": "NE",
+      "poll_id": "561c2f6a-2f4e-426e-97cc-43a23bfc6f6c",
+      "question_id": "241fec48-f7d7-4b62-b6eb-288149ae0058",
+      "pollster": "Global Strategy Group",
+      "dem_name": "Lynne Walz",
+      "rep_name": "Jim Pillen",
+      "dem": 39.0,
+      "rep": 40.0,
+      "margin": -1.0,
+      "field_end": "2026-10-18",
+      "field_start": "2026-10-13",
+      "posted_date": "2026-10-23",
+      "posted_source_datetime": "2026-10-23T10:47:00",
+      "posted_source_time": "10/23/26 10:47",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://drive.google.com/file/d/1g4TU7GCq4qgQVhD3aLRfT430gg401LYo/view",
+      "sample_population": "lv",
+      "sample_size": 800,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "VA-01",
+      "race_type": "house",
+      "state": "VA",
+      "poll_id": "d41c2427-de22-4052-9258-67baf169072d",
+      "question_id": "fe5bd793-1173-4f78-8825-dc45514b44bb",
+      "pollster": "Public Policy Polling",
+      "dem_name": "Shannon Taylor",
+      "rep_name": "Robert Wittman",
+      "dem": 47.0,
+      "rep": 46.0,
+      "margin": 1.0,
+      "field_end": "2026-10-22",
+      "field_start": "2026-10-21",
+      "posted_date": "2026-10-23",
+      "posted_source_datetime": "2026-10-23T10:41:00",
+      "posted_source_time": "10/23/26 10:41",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://x.com/cjwarnke/status/2113633843999605102",
+      "sample_population": "lv",
+      "sample_size": 570,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "AZ-GOV",
       "race_type": "governor",

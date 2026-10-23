@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-23T14:51:48.472873Z",
+  "updated_at": "2026-10-23T15:31:33.642396Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
@@ -222,6 +222,23 @@
     }
   ],
   "items": [
+    {
+      "id": "ee31e3744456c9ae79e7",
+      "title": "Can unarmed ICE agents show up at the polls? Dane County, WEC have different answers - Civic Media",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNUVB6Qnp5OEEtX2pBYkFrVW1YaEdLbmJQbERmQWJlajlsMWRWVDBMWk5IcGdJYk9yS0RyblV3UVN5Y2J1a3lXRTNWb3dDa0cwRDQ4Y0RNY3FJRTYtWFZtSXNQUkJiWWhmMHJCdERnN2xNaXNTTlllUzVJSno2SldlT1NrR0Flb2tPSC1WLTNzbHZTUUVyVU1wbVpCQWJmV2ZIdms5RzdxYkVna0NvaWZGek14X3FSY3djR2Qwbw?oc=5",
+      "publisher": "Civic Media",
+      "published_at": "2026-10-23T15:17:00Z",
+      "detected_at": "2026-10-23T15:31:33.642396Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "8e8344dab3578e62667b",
       "title": "The DOJ will send election monitors to seven Michigan cities to observe polling places during the upcoming election. See link below \u2b07\ufe0f \ud83d\udcf8 Niraj Warikoo, Detroit Free Press - Facebook",
@@ -4840,27 +4857,6 @@
       "state_hints": [],
       "topic_hints": [],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "2df3b52a6708707a7876",
-      "title": "What\u2019s on Missouri ballots? Explore our voter guide to Nov. 3 midterm election - Kansas City Star",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9NRU1pbkx0aWNTcGxpeTk1bVFXY2N6UjJLc0lCZG1LOHJOSXh0UG5KZHlrNGVrVUc4bW1sUHA4MTZubi0zLUwxSzdRYlpiQnh5QXF0Ml9GbFYwSG1xUmdtUm4xWmhkQWg2WEEycg?oc=5",
-      "publisher": "Kansas City Star",
-      "published_at": "2026-10-13T09:45:00Z",
-      "detected_at": "2026-10-13T12:46:53.774247Z",
-      "state_hints": [
-        "KS"
-      ],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [
-        "3 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
