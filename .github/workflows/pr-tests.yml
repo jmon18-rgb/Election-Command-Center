@@ -41,6 +41,7 @@ jobs:
           python3 scripts/test_join_nc_2024_county_fips.py
           python3 scripts/test_fetch_nc_2024_county_reference.py
           python3 scripts/test_build_nc_2024_county_baseline.py
+          python3 scripts/test_run_nc_2024_historical_baseline.py
       - name: Verify non-forecast county and voting-method early signal evidence gates
         run: |
           node --check scripts/election_night_county_mode_signal.js
