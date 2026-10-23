@@ -36,6 +36,35 @@ class Historical2022Tests(unittest.TestCase):
         self.assertFalse(stage["may_move_national_needle"])
         self.assertFalse(stage["production"])
 
+    def test_actual_2022_one_stop_legacy_columns_are_normalized_only_for_2022(self):
+        rows=sample()
+        with zipfile.ZipFile(io.BytesIO(rows)) as z:
+            modern=z.read(MEMBER).decode()
+        lines=modern.splitlines()
+        old_header=lines[0].replace("Early Voting","One Stop")+"\tReal Precinct\t"
+        old_rows=["\t".join([line,"Y",""]) for line in lines[1:]]
+        tsv="\n".join([old_header,*old_rows])+"\n"
+        out=io.BytesIO()
+        with zipfile.ZipFile(out,"w",zipfile.ZIP_DEFLATED) as z:
+            z.writestr(MEMBER,tsv)
+        payload=out.getvalue()
+        manifest={
+            "election_date":"2022-11-08","source_url":OFFICIAL_URL,
+            "sha256":hashlib.sha256(payload).hexdigest(),
+            "contest_name":"US SENATE","contest_group_id":"17",
+        }
+        stage=stage_zip(payload,manifest=manifest,county_fips={"WAKE":"37183"})
+        self.assertEqual(stage["counties"][0]["candidates"][0]["votes"],20)
+        self.assertFalse(stage["may_move_national_needle"])
+        bad=tsv.replace("Real Precinct","Fake Column")
+        out=io.BytesIO()
+        with zipfile.ZipFile(out,"w",zipfile.ZIP_DEFLATED) as z:
+            z.writestr(MEMBER,bad)
+        with self.assertRaisesRegex(ValueError,"legacy precinct"):
+            stage_zip(out.getvalue(),manifest={**manifest,
+                "sha256":hashlib.sha256(out.getvalue()).hexdigest()},
+                county_fips={"WAKE":"37183"})
+
     def test_other_unreviewed_2022_date_and_bad_member_denied(self):
         payload=sample()
         for day in ("2022-11-01","2022-11-09","2020-11-03"):
