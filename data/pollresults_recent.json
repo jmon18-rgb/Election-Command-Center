@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-23T22:23:16.704821+00:00",
+  "updated_at": "2026-10-23T22:31:48.721655+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,7 +9,7 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1255,
+      "available_in_source": 1256,
       "records_examined": 300
     },
     "governor": {
@@ -18,9 +18,38 @@
     }
   },
   "matched_primary_observations": 316,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "CA-48",
+      "poll_id": "c8e9b2f8-61f8-4b9a-9262-c9515557a95a"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "CA-48",
+      "race_type": "house",
+      "state": "CA",
+      "poll_id": "c8e9b2f8-61f8-4b9a-9262-c9515557a95a",
+      "question_id": "58fcee35-5b3e-49da-ac65-5d318c65dfa8",
+      "pollster": "Tarrance Group",
+      "dem_name": "Marni von Wilpert",
+      "rep_name": "Jim Desmond",
+      "dem": 47.0,
+      "rep": 44.0,
+      "margin": 3.0,
+      "field_end": "2026-10-20",
+      "field_start": "2026-10-17",
+      "posted_date": "2026-10-23",
+      "posted_source_datetime": "2026-10-23T18:12:00",
+      "posted_source_time": "10/23/26 18:12",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://cdn.sanity.io/files/ifn0l6bs/production/378c5b63a7c295e975b77be00ddab8f97bddcf8b.pdf",
+      "sample_population": "lv",
+      "sample_size": 410,
+      "partisan_lean": "R",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "KS-02",
       "race_type": "house",
