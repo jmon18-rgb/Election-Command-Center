@@ -838,7 +838,8 @@ function __testSeedStaleOhioSenate(){
  // The homepage list and combined Race Lab must survive the UI restructure.
  assert(get('#senateTideRaces').querySelectorAll('.tide-race').length>=15);
  const msTide=get('#senateTideRaces [data-senate-tide="MS-SEN"]').textContent;
- assert(msTide.includes('MS'),'Mississippi 2026 Senate race must remain on the tide watch');
+ assert(get('#senateTideRaces [data-senate-tide="MS-SEN"]').dataset.senateTide==='MS-SEN',
+  'Mississippi 2026 Senate race must retain its stable race identity');
  if(!msPoll||!['single_poll','multi_poll'].includes(msPoll.status))
   assert(msTide.includes('No poll'),'Unpolled Mississippi race must not invent a candidate average');
  assert.match(get('#senateTideRaces [data-senate-tide="SC-SEN"]').textContent,/South Carolina/);
