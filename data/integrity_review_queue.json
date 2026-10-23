@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-23T06:57:54.674950Z",
+  "updated_at": "2026-10-23T07:53:54.843386Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
     "primary_source_checked": 5,
-    "advisory_related_headline_buckets": 20,
-    "advisory_related_headlines": 44
+    "advisory_related_headline_buckets": 19,
+    "advisory_related_headlines": 42
   },
   "advisory_related_headlines": [
     {
@@ -58,15 +58,6 @@
       "topic_hints": [
         "security"
       ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "bd715d3fabb4f1cfae60",
-      "headline": "Many GOP states have imposed voting rules mirroring Trump's midterm proposals - PBS",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
-      "state_hints": [],
-      "topic_hints": [],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
@@ -486,6 +477,42 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "4412f4ae0d4f80986e05",
+      "title": "Arlington Co. suing to keep federal agents away from polling places - WUSA9",
+      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOTjRSaDZVSjA3b2dsa29PSVBFX1hOd3AyWXR0M2NrazN5MUExZE5VU3lzQWxPekQ5U0wwZWE4YnhrOE1WdUlKNWR2elZpVXRHZlVDSmR6VGw3LWJuT2F2TUNWRzBseGl1SWFsZVYya1JxR2JOempUSVhfNWdyMV8yY05mWXBzN3htSXNtTENTcXQwZmVWN0JzMkM5WUxOLUlPZGFrTVQ3cVM4VEpVaDl2TnRnX2g4UWVLT08ySG8yd0JJd1NRMGtDUkNfTlA3NGNVRDJiNzdGSzI?oc=5",
+      "publisher": "WUSA9",
+      "published_at": "2026-10-22T13:54:00Z",
+      "detected_at": "2026-10-23T07:53:54.843386Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "86325d0168bd8bf797bc",
+      "title": "Oakland's $30 Minimum Wage Initiative Qualifies for Future Ballot - East Bay Insiders Newsletter",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBGXzdPR0VTeG1tZjJQN3E0OEh0OWlRM2hOOUNkWllPd25vcW1WWmkyZkJhRjY5ZGRxN3BYZkpmMVRHWmV3Z0VhYklvZE9NUWNmRlo4MGdNMHlFbEJfM1RERFZjcS0xT0ptZEtPeTFUdHFvYU5ldDU1dmZQMnZJMUU?oc=5",
+      "publisher": "East Bay Insiders Newsletter",
+      "published_at": "2026-10-22T13:01:24Z",
+      "detected_at": "2026-10-23T07:53:54.843386Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [
+        "30 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -4847,36 +4874,6 @@
       "publisher": "Global Project Against Hate and Extremism",
       "published_at": "2026-10-12T19:35:43Z",
       "detected_at": "2026-10-13T04:38:15.396605Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "bd715d3fabb4f1cfae60",
-      "title": "Many GOP states have imposed voting rules mirroring Trump's midterm proposals - PBS",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOM3VjQmp0LWdpanN0alZ1cDFUdVJBQ0ZBejRHWVNVR3YyZ3k4UjFlT2M3a251MWdZZFg3bWJRVml4X2trR3lSVFNJZjR2OVozTlZ6Ni1ReU9VSzlabTlRemJwQXdZdk5LRWQ2U0JoSnVWM21aTndmMkxLSVk2ZXFsOUVVUUVOTGxQcW5mZGVzZm1CLWdqRUxEcXRxcWVuVjY1RzQ2MHltRkRaYVVEYjM4RzdRVk_SAboBQVVfeXFMTWJ6SVB3ekRYZ0ZCaHlmRTdUQm9ydVJnWUkxTzNVQWNqSWVCUjRjTUtlN0NwY3pnQkVlYXhjYnY1TnhFN0NTZ3kyaFI1TjQ2OFZlZnkyV2hTQ05jblRSQWhnbHNDWlBjRVpTc1h4WDdQeVFkUjRLWDZHdVhBcE1qdS0wOTNNWEZZZ2p2bk9ldTBPNWt6bFFMck9PUWV4UXlhRDNJMFJsaG5Edm80ei1xSDRfVEJSX1RKUmFR?oc=5",
-      "publisher": "PBS",
-      "published_at": "2026-10-12T17:27:25Z",
-      "detected_at": "2026-10-13T01:03:38.436117Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "d15e82638a33bdaee303",
-      "title": "Many GOP states have imposed voting rules mirroring Trump's midterm proposals - PBS",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNYnpJUHd6RFhnRkJoeWZFN1RCb3J1UmdZSTFPM1VBY2pJZUJSNGNNS2U3Q3BjemdCRWVheGNidjVOeEU3Q1NneTJoUjVONDY4VmVmeTJXaFNDTmNuVFJBaGdsc0NaUGNFWlNzWHhYN1B5UWRSNEtYNkd1WEFwTWp1LTA5M01YRllnanZuT2V1ME81a3psUUxyT09RZXhReWFEM0kwUmxobkR2bzR6LXFINF9UQlJfVEpSYVHSAboBQVVfeXFMTWJ6SVB3ekRYZ0ZCaHlmRTdUQm9ydVJnWUkxTzNVQWNqSWVCUjRjTUtlN0NwY3pnQkVlYXhjYnY1TnhFN0NTZ3kyaFI1TjQ2OFZlZnkyV2hTQ05jblRSQWhnbHNDWlBjRVpTc1h4WDdQeVFkUjRLWDZHdVhBcE1qdS0wOTNNWEZZZ2p2bk9ldTBPNWt6bFFMck9PUWV4UXlhRDNJMFJsaG5Edm80ei1xSDRfVEJSX1RKUmFR?oc=5",
-      "publisher": "PBS",
-      "published_at": "2026-10-12T17:27:25Z",
-      "detected_at": "2026-10-13T01:07:18.387708Z",
       "state_hints": [],
       "topic_hints": [],
       "headline_numbers_unverified": [],
