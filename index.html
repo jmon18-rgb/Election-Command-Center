@@ -5365,7 +5365,7 @@ async function enCivicFetchOne(item,forceAfterPending=false){
 // civicAPI winner-call checks for tracked milestones even with a healthy feed.
 function enShouldProbeSupplemental(item,now=Date.now(),context=null){
  if(!item||!['House','Senate','Governor'].includes(item.office)||
-    typeof item.key!=='string'||!/^[A-Z]{2}(?:-\\d{2}|-special)?$/.test(item.key))
+    typeof item.key!=='string'||!/^[A-Z]{2}(?:-\d{2}|-special)?$/.test(item.key))
   return false;
  const state=item.key.slice(0,2);
  if(!enSupportedStates.has(state)||enMilestoneTracked(item))return true;
