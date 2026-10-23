@@ -54,7 +54,7 @@ class Historical2022Tests(unittest.TestCase):
             },county_fips={"WAKE":"37183"})
 
     def test_correct_source_does_not_accept_missing_99_counties(self):
-        with self.assertRaisesRegex(ValueError,"100"):
+        with self.assertRaisesRegex(ValueError,"NC counties"):
             inspect_original(sample(),{"WAKE":"37183"})
 
     def test_signed_hash_mismatch_blocks_historical_acceptance(self):
