@@ -105,6 +105,7 @@ def main():
         "successful_queries": success_count,
         "total_queries": sum(map(len, QUERIES.values())),
         "kind": "automated_news_headlines_not_verified_facts",
+        "status": "ok" if success_count else "degraded_upstream_news_unavailable",
         "errors": errors[:8],
     }
     if success_count:
@@ -114,9 +115,15 @@ def main():
     print(f"Fetched {success_count} queries; updates={len(out.get('updates', []))}; security={len(out.get('security', []))}")
     for err in errors:
         print(err, file=sys.stderr)
-    # Keep previous good data and do not make a failed fetch look like a fresh update.
+    # News is optional to the polling/model/results pipeline. A temporary
+    # upstream RSS 503 must NOT block publication of freshly validated odds.
+    # Preserve the prior news timestamp so the UI can disclose stale data.
+    # A cold start with no cached headlines is still rejected by the
+    # published-dashboard smoke test; it is never called fresh.
     if not success_count:
-        sys.exit("No feeds succeeded; retained prior briefing data.")
+        print("DEGRADED NEWS SOURCE: no queries succeeded; cached headlines retained; "
+              "news updated_at unchanged; polling/model pipeline may proceed.",
+              file=sys.stderr)
 
 if __name__ == "__main__":
     main()

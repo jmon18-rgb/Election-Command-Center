@@ -146,8 +146,18 @@ async function main(){
    'Election news missing (empty collector output)');
   assert(Array.isArray(briefing.security)&&briefing.security.length>0,
    'Election security news missing');
-  assert(briefing.pipeline?.successful_queries>0,
-   'No successful election news source searches');
+  // An upstream RSS outage must not veto newly validated polls/odds.
+  // The source collector retains old headlines with their true timestamps.
+  if(!(briefing.pipeline?.successful_queries>0)){
+   assert.equal(briefing.pipeline?.status,'degraded_upstream_news_unavailable',
+    'Failed news collection requires explicit degraded status');
+   assert(Array.isArray(briefing.pipeline?.errors)&&briefing.pipeline.errors.length>0,
+    'News outage must disclose underlying errors');
+   assert(Number.isFinite(Date.parse(briefing.pipeline?.last_attempt_at)),
+    'Degraded news must show the actual failed-attempt time');
+   assert(Number.isFinite(Date.parse(briefing.updated_at)),
+    'Retained sourced headlines need a historical timestamp');
+  }
   assert(briefing.updates.every(x=>x.title&&x.url?.startsWith('https://')&&x.published_at));
   assert(briefing.security.every(x=>x.title&&x.url?.startsWith('https://')&&x.published_at));
   assert(Array.isArray(queue.items)&&queue.items.length>0,
@@ -161,7 +171,9 @@ async function main(){
    x.adverse_scenario?.probability_of_scenario==null),
    'Unverified headline must never become a quantified impact forecast');
   if(remote){
-   for(const [name,at] of [['news',briefing.updated_at],['integrity leads',queue.updated_at]]){
+   const newsAt=briefing.pipeline?.successful_queries>0?
+    briefing.updated_at:briefing.pipeline?.last_attempt_at;
+   for(const [name,at] of [['news attempt',newsAt],['integrity leads',queue.updated_at]]){
     const age=Date.now()-Date.parse(at);
     assert(Number.isFinite(age)&&age>=-15*60000&&age<8*3600000,
       'Deployed '+name+' feed has stopped updating: '+at);
