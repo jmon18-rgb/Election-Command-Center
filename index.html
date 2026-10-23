@@ -5066,7 +5066,8 @@ $('#enMilestoneClose').addEventListener('click',()=>{
 });
 
 let enCivicByWatch=Object.create(null),enCivicRaceIds=Object.create(null),
- enCivicErrors=Object.create(null),enCivicPending=new Set(),enCivicLastSweep=0,enCivicSweepCursor=0,
+ enCivicErrors=Object.create(null),enCivicPending=new Set(),enCivicLastSweep=0,
+ enCivicSweepCursors={senate:0,house:0,other:0},
  enCivicExpanded=new Set(),enCivicSweepInFlight=false,enCivicActiveSweeps=0,
  enCivicPendingTasks=Object.create(null),enCivicSweepTasks=new Set(),
  enCivicLastAttemptAt=Object.create(null);
@@ -5424,17 +5425,19 @@ async function enRefreshCivicWatchlist(force=false){
     .filter(x=>!enSupportedStates.has(x.key.slice(0,2))||enMilestoneTracked(x))
     .map(x=>[enWatchId(x),x])).values()];
   if(!all.length)return;
-  // Rotating sweep includes entries beyond the first twelve across cycles.
-  const start=enCivicSweepCursor%all.length;
-  const limit=Math.min(12,all.length);
-  const rotation=Array.from({length:limit},(_,i)=>all[(start+i)%all.length]);
-  enCivicSweepCursor=(start+limit)%all.length;
-  // Keep hot reference watches in the 12-race bounded cycle, leaving the
-  // remainder for round-robin discovery across supplemental source states.
-  const focus=smartAutoWatch().filter(x=>x.tip>=7&&
-   !enSupportedStates.has(x.key.slice(0,2))).slice(0,4);
-  const selected=[...new Map([...focus,...rotation]
-   .map(x=>[enWatchId(x),{office:x.office,key:x.key}])).values()].slice(0,12);
+  // Reserve bounded slots for high-impact Senate races, the complete
+  // validated Senate inventory, and Silver-seeded / model-discovered House.
+  // Unlike the previous cursor (which advanced past omitted candidates),
+  // the independent cursors cannot permanently skip lower-priority races.
+  const reference=new Map(smartAutoWatch().map(x=>[enWatchId(x),x]));
+  const enriched=all.map(x=>({...x,tip:reference.get(enWatchId(x))?.tip??null}));
+  const scan=window.AutomaticRaceDesk?.sourceBatch({
+   personal:enWatched,candidates:enriched,primaryStates:[],
+   cursor:enCivicSweepCursors,limit:12
+  });
+  if(!scan)return;
+  enCivicSweepCursors=scan.next;
+  const selected=scan.items.map(x=>({office:x.office,key:x.key}));
   // An explicit manual refresh prioritizes personally pinned races;
   // background cycles retain round-robin fairness across 35 Senate seats.
   const pinned=force?enWatched.filter(x=>
