@@ -253,6 +253,8 @@ jobs:
           node --check scripts/election_night_signals.js
           node --check scripts/test_election_night_signals.cjs
           node scripts/test_election_night_signals.cjs
+          node --check scripts/test_election_night_early_signals.cjs
+          node scripts/test_election_night_early_signals.cjs
           node --check scripts/election_night_reconciliation.js
           node scripts/test_election_night_reconciliation.cjs
           node scripts/test_election_night_six_hour_stress.cjs
