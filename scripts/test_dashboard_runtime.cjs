@@ -72,6 +72,7 @@ const fixtures={
  'pollresults_recent.json':recent,'model_history.json':history,
  'race_probabilities.json':json('data/race_probabilities.json'),
  'election_night_source_coverage.json':json('data/election_night_source_coverage.json'),
+ 'election_night_official_backstops.json':json('data/election_night_official_backstops.json'),
  'ZqBdM (1).csv':read('ZqBdM (1).csv'),
  'f3ome (1).csv':read('f3ome (1).csv'),
  'house_history_2024_staging.json':json('data/house_history_2024_staging.json'),
@@ -161,6 +162,13 @@ async function settle(){
  const readiness=get('#enSourceReadiness').textContent;
  assert(readiness.includes((506-unresolved)+'/506 races with source identity paths'));
  assert(readiness.includes(unresolved+' unresolved'));
+ const links=fixtures['election_night_official_backstops.json'].links;
+ assert.equal(get('#enOfficialBackstopsList').querySelectorAll('a[href]').length,
+  links.filter(x=>x.race_ids.some(id=>
+   ledger.races.some(r=>r.id===id&&r.gap_status==='UNRESOLVED_SOURCE_GAP'))).length);
+ assert(get('#enOfficialBackstopsList').textContent.includes('State office does not publish unofficial Election Night results'),
+  'Massachusetts cannot be described as providing election-night provisional totals');
+
  assert.match(readiness,/NOT confirmed November 3 returns coverage/);
  const invalidLedger={...ledger,races:ledger.races.slice(1)};
  assert.match(w.eval('enSourceReadinessMessage('+JSON.stringify(invalidLedger)+')'),
