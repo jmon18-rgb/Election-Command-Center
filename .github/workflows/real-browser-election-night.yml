@@ -9,6 +9,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: real-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   chromium:
     runs-on: ubuntu-latest
