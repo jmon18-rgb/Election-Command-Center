@@ -1417,8 +1417,15 @@ async function settle(){
    'Different survey was selected for '+office+' '+p.poll_id);
   assert.match(get('#modelPollStatus').textContent,/Observations matched|All observations/);
   assert.equal(get('#modelDetailEyebrow').textContent.includes(office.toUpperCase()),true);
-  assert(highlighted.querySelector('a[href]'),
-   'Primary poll source should link in '+office+' drilldown');
+  // Source links are only shown for individually verified upstream URLs.
+  // Primary ElectIndex observations without a direct topline link must not
+  // pretend that a poll-specific source URL exists.
+  const rawMatched=raw.polls.find(x=>x.poll_id===p.poll_id&&
+   x.pollster===p.pollster&&x.field_end===p.field_end);
+  const hasDirectSource=typeof rawMatched?.source_poll_url==='string'&&
+   /^https?:\\/\\//.test(rawMatched.source_poll_url);
+  assert.equal(Boolean(highlighted.querySelector('a[href]')),hasDirectSource,
+   'Poll drilldown link must match actual available direct source: '+office);
  }
  // A governor question is never evidence for a Senate contest, even if an
  // upstream study reuses its poll ID for both offices.
