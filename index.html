@@ -6456,8 +6456,9 @@ enWakeButton.addEventListener('click',()=>{
 // Recover the full live source cycle promptly when a laptop wakes, Wi-Fi
 // returns, or a suspended foreground timer resumes. Timers are not guaranteed
 // to fire while Windows/macOS sleeps. Never infer new votes from the pause.
-const enReconnectGap=(last,now)=>Number.isFinite(last)&&Number.isFinite(now)&&
- now>=last&&now-last>=120000;
+function enReconnectGap(last,now){
+ return Number.isFinite(last)&&Number.isFinite(now)&&now>=last&&now-last>=120000;
+}
 let enLastLiveHeartbeat=Date.now(),enLastReconnect=0;
 function enReconnectAfterInterruption(force=false){
  const now=Date.now(),gap=enReconnectGap(enLastLiveHeartbeat,now);
