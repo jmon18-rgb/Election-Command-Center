@@ -1,0 +1,39 @@
+name: Verify certified NC 2024 presidential county baseline
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/build_nc_2024_presidential_county_baseline.py'
+      - 'scripts/test_build_nc_2024_presidential_county_baseline.py'
+      - '.github/workflows/nc-2024-county-presidential-baseline.yml'
+      - 'data/nc_2024_county_fips_reference.csv'
+permissions:
+  contents: read
+jobs:
+  real-source-baseline:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prove source provenance and rejection of false 2024/2026 comparability
+        run: |
+          python3 -m py_compile scripts/build_nc_2024_presidential_county_baseline.py
+          python3 scripts/test_build_nc_2024_presidential_county_baseline.py
+      - name: Verify real official 2024 ZIP fingerprint, TSV contents and certified source totals
+        run: |
+          python3 scripts/run_nc_official_zip_historical_replay.py --output /tmp/nc_2024_official_county_replay.json
+      - name: Convert verified precinct replay into 100-county descriptive baseline
+        run: |
+          python3 scripts/build_nc_2024_presidential_county_baseline.py \
+            --staging /tmp/nc_2024_official_county_replay.json \
+            --crosswalk data/nc_2024_county_fips_reference.csv \
+            --output /tmp/nc_2024_presidential_county_baseline.json
+      - name: Retain machine-readable verified historical baseline for future needle calibration
+        uses: actions/upload-artifact@v4
+        with:
+          name: nc-certified-2024-presidential-county-baseline
+          path: /tmp/nc_2024_presidential_county_baseline.json
+          retention-days: 90
