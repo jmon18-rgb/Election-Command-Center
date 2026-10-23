@@ -55,6 +55,9 @@ def inspect(payload,crosswalk,expected_totals=CERTIFIED,expected_counties=100):
     except (zipfile.BadZipFile,UnicodeError,RuntimeError) as exc:
         raise ValueError("Unreadable official 2020 precinct archive") from exc
     name,group=identify(raw)
+    # Older official files may not share the 2024 TSV column vocabulary.
+    # Inspect bounded public header evidence before any explicit normalization.
+    print("OFFICIAL_2020_TSV_HEADER",repr(raw.splitlines()[0][:650]),flush=True)
     counties=aggregate(raw,date=OFFICIAL_DATE,contest=name,
                        contest_group_id=group,county_fips=crosswalk)
     if len(counties)!=expected_counties or len({c["county_id"] for c in counties})!=len(counties):
