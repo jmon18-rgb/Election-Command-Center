@@ -31,8 +31,8 @@ def stage_zip(payload, *, manifest, county_fips):
         raise ValueError("Invalid exact election date") from exc
     if day.isoformat() != election:
         raise ValueError("Noncanonical election date")
-    if day.year not in (2024, 2026) or day.month != 11:
-        raise ValueError("Only explicit audited NC November election dates supported")
+    if election not in ('2022-11-08', '2024-11-05', '2026-11-03'):
+        raise ValueError('Only explicit audited NC November election dates supported')
     date_dir = day.strftime("%Y_%m_%d")
     date_stamp = day.strftime("%Y%m%d")
     member = "results_pct_" + date_stamp + ".txt"
@@ -70,6 +70,21 @@ def stage_zip(payload, *, manifest, county_fips):
             raw = archive.read(members[0]).decode("utf-8-sig")
     except (zipfile.BadZipFile, UnicodeError, RuntimeError) as exc:
         raise ValueError("Corrupt or improperly encoded results archive") from exc
+    # The original 2022 ZIP uses "One Stop" for early in-person votes,
+    # plus a trailing Real Precinct indicator and empty TSV header column.
+    # Normalize ONLY this observed exact 2022 header: never relax validation
+    # of the actual 2024/2026 results format or source bytes.
+    if election == "2022-11-08" and "One Stop" in raw.splitlines()[0]:
+        legacy_header = raw.splitlines()[0].rstrip("\r").split("\t")
+        expected_legacy = [
+            "County", "Election Date", "Precinct", "Contest Group ID",
+            "Contest Type", "Contest Name", "Choice", "Choice Party",
+            "Vote For", "Election Day", "One Stop", "Absentee by Mail",
+            "Provisional", "Total Votes", "Real Precinct", "",
+        ]
+        if legacy_header != expected_legacy:
+            raise ValueError("Unrecognized official 2022 legacy precinct TSV header")
+        raw = raw.replace("\tOne Stop\t", "\tEarly Voting\t", 1)
     counties = aggregate(
         raw, date=day.strftime("%m/%d/%Y"), contest=contest,
         contest_group_id=contest_group_id, county_fips=county_fips,
