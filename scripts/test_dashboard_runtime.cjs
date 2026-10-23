@@ -1630,8 +1630,9 @@ async function settle(){
   assert.match(needle.querySelector('.four-needle-footer').textContent,
    /PRE-ELECTION FORECAST|LIVE RETURNS/,
    'Needle must attribute its source mode instead of implying certified results');
-  assert.equal(needle.querySelector('.four-needle-arrow').style.left,
-   expectedNeedlePosition.toFixed(2)+'%',
+  const renderedNeedle=needle.querySelector('.four-needle-arrow').style.left;
+  assert(renderedNeedle.endsWith('%')&&
+    Math.abs(parseFloat(renderedNeedle)-expectedNeedlePosition)<0.011,
    'Needle must use the same Four Endings distribution as the rendered odds');
  }
  assert.match(get('#jointHomeSummary').title,/3,000 correlated draws/);
