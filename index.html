@@ -3765,10 +3765,16 @@ function jointLiveObservations(){
   const office=r.code.endsWith('-SEN')?'Senate':
    r.code.endsWith('-GOV')?'Governor':'House';
   const item=enLiveRaceItem({office:office.toLowerCase(),race_code:r.code});
+  // Critical Reddit watch races have independently checked local closings.
+  // Never let an early mock or premature provider update shift chamber odds.
+  const watch=window.ElectionNightEarlySignals?.records?.find(x=>x.code===r.code);
+  const localClose=watch?window.ElectionNightEarlySignals.closedAt(watch):null;
+  if(localClose!==null&&now<localClose)continue;
   const civic=item?enCivicUsable(item):null;
   const verified=window.ElectionNightSignals?.validatedCall(civic,now);
   if(item&&civic?.office===item.office&&civic?.key===item.key&&
      verified&&['D','R'].includes(verified.party)){
+   if(localClose!==null&&Date.parse(verified.at)<localClose)continue;
    observations[r.code]={mode:'source_called',winnerParty:verified.party,
     source:'civicAPI',asOf:verified.at};
    jointPulseRows.push({race_code:r.code,office,provider:'civicAPI',
@@ -3777,7 +3783,9 @@ function jointLiveObservations(){
    continue;
   }
   const x=jointSourceItem(r);
-  if(!x||x.sourceStale||x.reporting<10||x.time< Date.parse('2026-11-03T23:00:00Z')||
+  if(!x||x.sourceStale||x.reporting<10||
+      (localClose!==null&&x.time<localClose)||
+      x.time< Date.parse('2026-11-03T23:00:00Z')||
       x.time>now+900000||now-x.time>180*60000)continue;
   const priorVariance=r.sigma*r.sigma;
   const noise=7+20*Math.pow(1-x.reporting/100,1.3),variance=noise*noise;
