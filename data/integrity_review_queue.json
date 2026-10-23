@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-23T15:31:33.642396Z",
+  "updated_at": "2026-10-23T15:50:37.547628Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -222,6 +222,25 @@
     }
   ],
   "items": [
+    {
+      "id": "15d4da14ec53783843ce",
+      "title": "Two weeks before midterms, U.S. Supreme Court upholds N.H. ban on use of student IDs to register to vote or obtain ballot - The Dartmouth",
+      "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxOMXd3RDZOTkdVbVBsZlZMY1E1QWNGLUVrakRtSUFKd21mcTEzQlRFSDdMZzFHN3ZBRmtFbmlkc0pwSElpUmk4LXgxVEpVcmRmUzhYWkdTUGJsNGpubElUTWprWnBEaWE5S1JHLTVfclZRUUFYTUlGWjBQQndsZDNSS2VHM3NHbi1QbEpRc1lCQ0hhYXg1anlwV1lnMzZ5d0VCMXFjZ3ZEM1hWUlBxSzFZMU56NDRONUtYR21aTGptT282UUdSTXBxUWR3V3RwM0FsWmVKbTluMnNGd2tlWHA1eXlSVEhRMFE3MlFHSGZUOW9pa25Sd2Z1T1d5d3RGaGprRkJwLQ?oc=5",
+      "publisher": "The Dartmouth",
+      "published_at": "2026-10-23T15:45:30Z",
+      "detected_at": "2026-10-23T15:50:37.547628Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "ee31e3744456c9ae79e7",
       "title": "Can unarmed ICE agents show up at the polls? Dane County, WEC have different answers - Civic Media",
@@ -4840,21 +4859,6 @@
       "state_hints": [
         "TX"
       ],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "d549b337e9e9386260f7",
-      "title": "Bucks County sheriff pledges not to interfere with elections - Central Bucks Now",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNeWxvR2RSTG9vZVpoVWxlR2pFWXhBQkhaX0xVY2tsd0NLMjloTWhfX0YweEFOTVYzeTZxaTZTX1h1Z2lKS3cyaWFJTDE4Q0lBbU16Zi1kMTBEaENEUUFtNGhCR3Rwd3AxTnFsZEpheWNmNGZyQW1FdHEtaFh1VUltME5YYTlqMlRvZkQ1SDdSRGZBM3dVTENqY1YyYw?oc=5",
-      "publisher": "Central Bucks Now",
-      "published_at": "2026-10-13T09:59:00Z",
-      "detected_at": "2026-10-13T12:46:53.774247Z",
-      "state_hints": [],
       "topic_hints": [],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
