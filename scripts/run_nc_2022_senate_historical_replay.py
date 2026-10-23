@@ -47,7 +47,7 @@ def inspect_original(payload, fips, pinned_sha=None):
     possible=set()
     reader=csv.DictReader(io.StringIO(raw), delimiter="\t")
     print('NC2022_ORIGINAL_HEADER',json.dumps(reader.fieldnames),flush=True)
-    example=next(iter(csv.DictReader(io.StringIO(raw), delimiter="\\t")),None)
+    example=next(iter(csv.DictReader(io.StringIO(raw), delimiter="\t")),None)
     print('NC2022_FIRST_ROW',json.dumps(example)[:1400],flush=True)
     for row in reader:
         name=(row.get("Contest Name") or "").strip()
