@@ -1,0 +1,21 @@
+name: Inspect NC election selector JavaScript
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/probe_nc_download_js.py'
+      - '.github/workflows/nc-download-js-probe.yml'
+permissions:
+  contents: read
+jobs:
+  js-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          python3 scripts/test_probe_nc_download_js.py
+          python3 scripts/probe_nc_download_js.py
