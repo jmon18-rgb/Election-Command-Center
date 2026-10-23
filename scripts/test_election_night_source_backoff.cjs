@@ -39,4 +39,29 @@ assert.equal(c.fail(429).seconds_remaining,60,
  'A recovered provider starts again with a short cooldown');
 assert.equal(api.TRANSIENT.has(500),false,
  'Unexpected provider content/identity errors are not global HTTP outages');
+// Two independently validated Senate races must not share a recovery token.
+// Provider health may recover when one detail succeeds, but each cached race
+// still needs a detail validated in the current outage generation.
+let t=Date.parse('2026-11-04T04:00:00Z');
+const shared=api.create(()=>t);
+const validated={ME:shared.status().generation,OH:shared.status().generation};
+const usable=state=>shared.status().consecutive===0&&
+ validated[state]===shared.status().generation;
+assert(usable('ME')&&usable('OH'));
+shared.fail(503);
+assert.equal(usable('ME'),false);
+assert.equal(usable('OH'),false);
+t+=60000;
+shared.success(); // A healthy service alone is not per-race revalidation.
+assert.equal(usable('ME'),false);
+assert.equal(usable('OH'),false);
+validated.ME=shared.status().generation;
+assert.equal(usable('ME'),true);
+assert.equal(usable('OH'),false,
+ 'Refreshing Maine must not revive an older Ohio Senate source snapshot');
+validated.OH=shared.status().generation;
+assert.equal(usable('OH'),true);
+shared.fail(429);
+assert.equal(usable('ME'),false);
+assert.equal(usable('OH'),false);
 console.log('Source circuit breaker PASS: 503/429 backoff, bounded retries, recovery, local 404 exclusion, no source values changed');
