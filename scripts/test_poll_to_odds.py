@@ -65,6 +65,27 @@ class PollChainTests(unittest.TestCase):
         self.assertEqual(result["linked_probability_records"], 32)
         self.assertEqual(result["linked_firm_waves"], 32)
 
+    def test_saved_snapshot_does_not_expire_overnight_without_rebuilding(self):
+        primary, model, odds = fixture()
+        # Last valid 45-day poll on October 21 expires October 22. Checking
+        # the SAVED October 21 model on October 22 must use its snapshot day.
+        raw = primary["races"][0]["polls"][0]
+        raw["field_end"] = "2026-09-06"
+        modeled = model["senate_all"][0]
+        modeled["pollsters"][0]["field_end"] = "2026-09-06"
+        modeled["latest_poll_end"] = "2026-09-06"
+        odds["records"][0]["latest_poll_end"] = "2026-09-06"
+        primary["updated_at"] = "2026-10-21T16:47:14Z"
+        model["source_snapshot"] = primary["updated_at"]
+        model["generated_at"] = "2026-10-21T16:47:18Z"
+        model["method_version"] = "poll-mean-1.5"
+        odds["polling_source_snapshot"] = primary["updated_at"]
+        odds["polling_source_generated_at"] = model["generated_at"]
+        self.assertEqual(check(primary, model, odds)["linked_probability_records"], 32)
+        # A *new* model dated Oct 22 cannot keep a now-ineligible poll.
+        with self.assertRaisesRegex(ValueError, "same-day selected firms differ"):
+            check(primary, model, odds, today=date(2026, 10, 22))
+
     def test_minnesota_new_poll_cannot_silently_skip_average(self):
         primary, model, odds = fixture()
         poll = newer()
