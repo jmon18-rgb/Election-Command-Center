@@ -1,7 +1,7 @@
 {
   "schema_version": "1.2",
   "updated_at": "2026-10-22",
-  "coverage": "Curated, non-exhaustive primary-sourced litigation and election administration incidents, now reviewed October 22, 2026. Nine geographically indexed entries for the DHS injunction represent ONE federal case; the October 21 injunction is stayed through October 23 at 5 p.m. PT. Record counts, suspect lists, and allegations are not established voter or ballot impacts.",
+  "coverage": "Curated, non-exhaustive election-administration and legal incidents reviewed through October 22, 2026. Court actions and local administrative issues are separate mechanisms; newspaper leads without source confirmation are not verified incidents. Incident rows are not unique disenfranchised voters. Nine geographically indexed DHS injunction entries are ONE case; federal mail rule recorded at MA filing venue is NOT a Massachusetts-only voter-impact incident.",
   "methodology": {
     "primary_metric": "Potentially affected voters or ballots, only when grounded in a cited primary source",
     "count_rules": [
@@ -87,13 +87,13 @@
     {
       "state": "MA",
       "name": "Massachusetts",
-      "records": 1,
+      "records": 2,
       "unique_voters_affected": null
     },
     {
       "state": "TX",
       "name": "Texas",
-      "records": 2,
+      "records": 5,
       "unique_voters_affected": null
     },
     {
@@ -1206,6 +1206,187 @@
           "unit": "registration/update records",
           "qualifier": "approximate",
           "notes": "Retransmitted records, not distinct voters, not confirmed pending registrations or lost votes."
+        }
+      }
+    },
+    {
+      "id": "tx-bexar-leon-valley-scanner-jam-20261020",
+      "state": "TX",
+      "title": "Bexar County — Leon Valley early-voting ballot scanner jams",
+      "mechanism": "Voting equipment malfunction and temporary waiting-time disruption",
+      "verification_status": "officially_confirmed",
+      "event_date": "2026-10-20",
+      "last_updated": "2026-10-22",
+      "summary": "Bexar County Elections Administrator Michele Carew confirmed to KSAT that ballot scanners jammed at the Leon Valley Conference Center during early voting. Voters described waits of up to approximately two hours. Carew said technicians would be placed at locations and emergency ballot bins could be used; ballots deposited in emergency bins would be counted at headquarters. This is a confirmed operational disruption, NOT proof that accepted ballots were lost or that the outcome was altered.",
+      "units": "voters",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "impact_assessment": "confirmed_delay_eligible_voter_loss_not_established",
+      "scope_label": "One documented Leon Valley polling site; ballot loss unknown",
+      "scope_note": "The reported two-hour waits are an upper observed wait, not the number or share of voters who failed to vote. One reporter said at least one voter planned to return later.",
+      "case_type": "administrative_issue",
+      "process_status": "Scanner issue acknowledged by county official; emergency-bin remedy described. Follow-up repair status and eligible-voter outcomes not independently verified.",
+      "sources": [
+        {
+          "publisher": "KSAT interview with Bexar County Elections Administrator Michele Carew, October 20, 2026",
+          "url": "https://www.ksat.com/news/local/2026/10/20/voters-election-officials-report-scanner-issues-at-early-voting-site-in-leon-valley/"
+        }
+      ],
+      "adverse_scenario": {
+        "definition": "At least 100 eligible Bexar voters ultimately fail to cast countable 2026 general-election ballots specifically because of scanner jams at the Leon Valley early-voting location, despite emergency-bin and repeat-visit options.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "No independently established distinct eligible-voter count or recorded uncounted-ballot outcome.",
+        "probability_of_scenario": null,
+        "probability_interval": null,
+        "probability_basis": "No empirical count of eligible voters ultimately unable to cast countable ballots; administrative disruption does not establish voter disenfranchisement.",
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-22",
+        "probability_method": "not-estimated-observed-waiting-delays",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": null,
+          "unit": "unique otherwise-eligible voters",
+          "qualifier": "not established",
+          "notes": "Wait durations and scanner capacity are not observed counts of eligible voters prevented from voting."
+        }
+      }
+    },
+    {
+      "id": "tx-bexar-early-ballot-missing-measures-20261020",
+      "state": "TX",
+      "title": "Bexar County — missing local measures on some early-voting ballots",
+      "mechanism": "Ballot configuration error affecting local propositions",
+      "verification_status": "officially_confirmed",
+      "event_date": "2026-10-20",
+      "last_updated": "2026-10-22",
+      "summary": "Bexar County Elections Administrator Michele Carew confirmed to KSAT that some early-voting ballots omitted local measures including Northside and East Central school-district propositions, and that the issue was corrected within approximately one hour after discovery. She said voters should alert a judge before casting if any race or measure is missing and that cast ballots could not be changed. Number of voters who cast an incomplete ballot and eventual local-contest impacts are unverified. Do not conflate this local-proposition issue with statewide Senate vote integrity.",
+      "units": "ballots",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "impact_assessment": "confirmed_ballot_configuration_problem_cast_ballots_unknown",
+      "scope_label": "Some early ballots omitted local measures; number cast unknown",
+      "scope_note": "The estimated one-hour correction window is not a count of affected ballots, denied votes, voters, or election-changing errors.",
+      "case_type": "administrative_issue",
+      "process_status": "County official reports ballot-programming issue corrected; audit of already-cast ballots and scope of local propositions remains unverified.",
+      "sources": [
+        {
+          "publisher": "KSAT interview with Bexar County Elections Administrator Michele Carew, October 20, 2026",
+          "url": "https://www.ksat.com/news/local/2026/10/21/early-voting-issues-in-bexar-county-missing-propositions-voter-registration-cards-delayed/"
+        }
+      ],
+      "adverse_scenario": {
+        "definition": "At least 100 otherwise-eligible voters who tried to vote on impacted local propositions cannot cast countable votes for those specific measures because of the Bexar ballot configuration error, after authorized remedies.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "No independently established distinct eligible-voter count or recorded uncounted-ballot outcome.",
+        "probability_of_scenario": null,
+        "probability_interval": null,
+        "probability_basis": "No empirical count of eligible voters ultimately unable to cast countable ballots; administrative disruption does not establish voter disenfranchisement.",
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-22",
+        "probability_method": "not-estimated-local-measure-configuration",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": null,
+          "unit": "unique otherwise-eligible voters",
+          "qualifier": "not established",
+          "notes": "Affected local ballots have not been counted or classified in public evidence; do not treat this as a statewide Senate result problem."
+        }
+      }
+    },
+    {
+      "id": "tx-bexar-voter-registration-card-printing-delay-20261020",
+      "state": "TX",
+      "title": "Bexar County — delayed voter registration card printing and mailing",
+      "mechanism": "Voter-registration card printing and mailing backlog",
+      "verification_status": "officially_confirmed",
+      "event_date": "2026-10-20",
+      "last_updated": "2026-10-22",
+      "summary": "Bexar County Elections Administrator Michele Carew told KSAT the county had a registration-card printing bottleneck and about 45,000 cards ready to mail. A spring mass mailing reportedly involved more than 130,000 registered voters, but those quantities must not be treated as lost ballots or unique voters prevented from voting. Election officials said registration cards are not required when a voter has accepted alternative identification.",
+      "units": "records",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "impact_assessment": "registration_card_mail_delay_not_registration_or_ballot_loss",
+      "scope_label": "~45,000 cards awaiting mailing; registration not invalidated",
+      "scope_note": "Reported 45,000 card backlog and earlier 130,000-person mailing refer to different administrative scopes; do not combine or use as confirmed disenfranchisement.",
+      "case_type": "administrative_issue",
+      "process_status": "Printing/mailout backlog officially described; individual mailing delivery and any effect on ballot access remain unverified.",
+      "sources": [
+        {
+          "publisher": "KSAT interview with Bexar County Elections Administrator Michele Carew, October 20, 2026",
+          "url": "https://www.ksat.com/news/local/2026/10/21/early-voting-issues-in-bexar-county-missing-propositions-voter-registration-cards-delayed/"
+        }
+      ],
+      "adverse_scenario": {
+        "definition": "At least 100 otherwise-eligible voters fail to cast countable ballots solely because of delayed registration-card mailings after use of available voter-ID alternatives.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "No independently established distinct eligible-voter count or recorded uncounted-ballot outcome.",
+        "probability_of_scenario": null,
+        "probability_interval": null,
+        "probability_basis": "No empirical count of eligible voters ultimately unable to cast countable ballots; administrative disruption does not establish voter disenfranchisement.",
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-22",
+        "probability_method": "not-estimated-card-backlog",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": null,
+          "unit": "unique otherwise-eligible voters",
+          "qualifier": "not established",
+          "notes": "Printed-registration-card backlog is not a registration-processing backlog or a unique-voter failure count."
+        }
+      }
+    },
+    {
+      "id": "usps-ballot-mail-rule-injunction-ma-case-20260904",
+      "state": "MA",
+      "title": "Federal USPS mail-ballot portal and envelope rules enjoined before November election",
+      "mechanism": "Federal ballot-mail rule challenged in district court; protective preliminary injunction",
+      "verification_status": "court_finding",
+      "event_date": "2026-09-04",
+      "last_updated": "2026-10-22",
+      "summary": "On September 4, the U.S. District Court for the District of Massachusetts preliminarily blocked listed requirements of a new USPS federal ballot-mail rule for elections on or before November 3, including envelope approval requirements and mandatory portal enrollment. Massachusetts Attorney General confirmed the injunction as part of a multistate challenge. This court finding concerns a federal rule, NOT a Massachusetts-specific voting problem. Some executive-order provisions remain separately disputed; verify later appellate orders before treating the injunction as final.",
+      "units": "voters",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "impact_assessment": "federal_rule_litigation_order_prevents_requirements_unquantified",
+      "scope_label": "Federal USPS rule preliminarily enjoined; no ballot loss established",
+      "scope_note": "The case venue is Massachusetts but the affected rule concerned federal mail voting; this record must not be tallied as Massachusetts-specific affected voters.",
+      "case_type": "legal_dispute",
+      "process_status": "Preliminary injunction documented September 4 for elections through November 3; appellate posture after October 22 not independently verified.",
+      "sources": [
+        {
+          "publisher": "Massachusetts Attorney General, September 4, 2026",
+          "url": "https://www.mass.gov/news/ag-campbell-secures-court-order-blocking-postal-services-unlawful-mail-voting-rule-while-case-proceeds"
+        },
+        {
+          "publisher": "United States District Court for the District of Massachusetts, September 4 preliminary-injunction order",
+          "url": "https://app.midpage.ai/document/league-of-women-voters-of--98d3293e-f327-47cb-9be3-ef46d9b1d92e"
+        }
+      ],
+      "shared_case_note": "One federal rule case, filed in Massachusetts; not evidence of Massachusetts-only affected votes.",
+      "adverse_scenario": {
+        "definition": "At least 100 distinct eligible voters ultimately lose a countable federal ballot solely because of enforcement of the challenged mandatory USPS envelope or portal provisions despite the September preliminary injunction.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "No independently established distinct eligible-voter count or recorded uncounted-ballot outcome.",
+        "probability_of_scenario": null,
+        "probability_interval": null,
+        "probability_basis": "No empirical count of eligible voters ultimately unable to cast countable ballots; administrative disruption does not establish voter disenfranchisement.",
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-22",
+        "probability_method": "not-estimated-federal-rule-enjoined",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": null,
+          "unit": "unique otherwise-eligible voters",
+          "qualifier": "not established",
+          "notes": "The record establishes an injunction, not implementation causing ballot losses, and no number of adversely affected voters is available."
         }
       }
     }
