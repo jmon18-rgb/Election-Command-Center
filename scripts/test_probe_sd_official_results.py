@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import unittest
 from datetime import datetime, timezone
-from probe_sd_official_results import assess
+from probe_sd_official_results import assess, discover_export_links
 
 BEFORE = datetime(2026, 10, 23, tzinfo=timezone.utc)
 AFTER = datetime(2026, 11, 4, 2, tzinfo=timezone.utc)
@@ -24,6 +24,19 @@ class OfficialSouthDakotaSourceTests(unittest.TestCase):
         self.assertEqual(state["status"], "EXPORT_CONTRACT_NOT_VERIFIED")
         self.assertFalse(state["export_verified"])
         self.assertIsNone(state["votes"])
+
+    def test_discover_only_actual_safe_export_links(self):
+        html = HEADER + '<a href="/downloads/statewide.csv">CSV</a>' + (
+            '<a href="https://evil.test/exfil.csv">not official</a>'
+            '<a href="javascript:alert(1)">unsafe</a>'
+            '<a href="ResultsExport.aspx">self</a>')
+        self.assertEqual(discover_export_links(html),
+                         ["https://electionresults.sd.gov/downloads/statewide.csv"])
+        result = assess(html, AFTER)
+        self.assertEqual(result["candidate_export_links"],
+                         ["https://electionresults.sd.gov/downloads/statewide.csv"])
+        self.assertFalse(result["production_votes_usable"])
+        self.assertIsNone(result["votes"])
 
     def test_wrong_election_and_empty_response_fail_closed(self):
         self.assertEqual(assess("", AFTER)["status"], "WRONG_OR_UNKNOWN_ELECTION")
