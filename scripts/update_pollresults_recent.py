@@ -12,6 +12,7 @@ import urllib.parse
 import urllib.request
 from collections import Counter
 from pathlib import Path
+from poll_source_exclusions import is_excluded_pollster
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/"data/pollresults_recent.json"
@@ -48,6 +49,7 @@ def normalize_race(office,item,q):
 
 def convert(office,p):
     if str(p.get("cycle"))!="2026" or p.get("type")!=office:return []
+    if is_excluded_pollster(p.get("pollster") or p.get("displayName")):return []
     created=dtparse(p.get("createdAt"))
     end=dtparse(p.get("endDate"))
     if created is None or end is None:return []
