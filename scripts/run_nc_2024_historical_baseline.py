@@ -6,6 +6,7 @@ Explicit opt-in --fetch; refuse to publish a forecast or election-night votes.
 import argparse
 import hashlib
 import json
+import time
 import urllib.request
 from pathlib import Path
 from fetch_nc_2024_county_reference import URL as CENSUS_URL, transform
@@ -25,14 +26,32 @@ def generate(census_response, election_tsv, *, archive_sha256, member):
     report["may_update_live_model"] = False
     return report
 
+def fetch_census_reference():
+    request=urllib.request.Request(CENSUS_URL,headers={
+        "Accept":"application/json","User-Agent":"ElectionCommandCenter/1.0"})
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(request,timeout=30) as response:
+                payload=response.read(150_000).decode("utf-8")
+            # Validate before using downloaded state results or emitting an artifact.
+            transform(payload)
+            return payload
+        except (ValueError, json.JSONDecodeError) as exc:
+            if attempt==2:
+                raise ValueError("Census county response invalid; expected 100 counties. "
+                                 "Check provider response/content type (empty or HTML is rejected).") from exc
+        except (TimeoutError, OSError) as exc:
+            if attempt==2: raise
+        time.sleep(1+attempt)
+    raise ValueError("No valid Census county reference")
+
+
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--fetch",action="store_true",required=True)
     ap.add_argument("--output",type=Path,required=True)
     args=ap.parse_args()
-    request=urllib.request.Request(CENSUS_URL,headers={"Accept":"application/json","User-Agent":"ElectionCommandCenter/1.0"})
-    with urllib.request.urlopen(request,timeout=30) as response:
-        census=response.read(150_000).decode("utf-8")
+    census=fetch_census_reference()
     tsv,digest,member=fetch_official()
     out=generate(census,tsv,archive_sha256=digest,member=member)
     args.output.write_text(json.dumps(out,indent=2)+"\n")
