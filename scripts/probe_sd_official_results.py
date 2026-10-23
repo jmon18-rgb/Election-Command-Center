@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 from html import unescape
 
 URL = "https://electionresults.sd.gov/ResultsMedia.aspx"
-ELECTION_CLOSE_UTC = datetime(2026, 11, 4, 1, 0, tzinfo=timezone.utc)
+ELECTION_CLOSE_UTC = datetime(2026, 11, 4, 2, 0, tzinfo=timezone.utc)
 
 
 def assess(html, now=None):
