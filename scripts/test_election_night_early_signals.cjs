@@ -64,4 +64,25 @@ assert.equal(api.assess(indiana,{...inVotes,verified:false},{now:inNow}).status,
  'INVALID_SOURCE');
 assert.equal(api.assess(indiana,null,{now:inNow,error:'503'}).status,'SOURCE_ERROR');
 assert.equal(api.assess(indiana,null,{now:inNow}).status,'AWAITING_SOURCE');
+// Virginia's four early House bellwethers and Senate signal must remain
+// distinct races, subject to the 7 PM Eastern closing and source health.
+const virginiaCodes=['VA-01','VA-02','VA-05','VA-07','VA-SEN'];
+const vaNow=Date.parse('2026-11-04T00:15:00Z');
+const vaObservation={verified:true,provider:'Open America',
+ asOf:'2026-11-04T00:05:00Z',total:30000,d:15600,r:14000,
+ precincts:20,stale:false};
+for(const code of virginiaCodes){
+ const signal=api.records.find(x=>x.code===code);
+ assert(signal,'Missing Virginia early indicator '+code);
+ assert.equal(api.closedAt(signal),Date.parse('2026-11-04T00:00:00Z'),code);
+ const result=api.assess(signal,vaObservation,{now:vaNow});
+ assert.equal(result.status,'COUNTING_PARTIAL',code);
+ assert.equal(result.canMoveNationalNeedle,false,code);
+ assert.equal(api.assess(signal,vaObservation,{
+  now:Date.parse('2026-11-03T23:59:59Z')}).status,'WAITING_FOR_POLLS',code);
+ assert.equal(api.assess(signal,{...vaObservation,asOf:'2026-11-03T23:59:00Z'},
+  {now:vaNow}).status,'STALE',code);
+ assert.equal(api.assess(signal,null,{now:vaNow,error:'503'}).status,'SOURCE_ERROR',code);
+ assert.equal(api.assess(signal,null,{now:vaNow}).status,'AWAITING_SOURCE',code);
+}
 console.log('Source-validated early indicator timestamps, comparisons and county watch status PASS');
