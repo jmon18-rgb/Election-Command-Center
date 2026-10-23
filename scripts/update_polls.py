@@ -12,6 +12,7 @@ import sys
 import urllib.request
 from pathlib import Path
 import reconcile_poll_sources as reconciliation
+from poll_source_exclusions import is_excluded_pollster
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "data" / "polls.json"
@@ -67,7 +68,7 @@ def generic_ballot(rows):
         day = valid_date(r.get("end_date"))
         dem, rep = percentage(r.get("dem")), percentage(r.get("rep"))
         pollster = (r.get("pollster") or "").strip()
-        if not day or dem is None or rep is None or not pollster:
+        if not day or dem is None or rep is None or not pollster or is_excluded_pollster(pollster):
             continue
         observations.append({
             "field_end": day.isoformat(), "pollster": pollster,
@@ -111,7 +112,7 @@ def race_polls(rows):
         code = (r.get("race_code") or "").strip().upper()
         pollster = (r.get("pollster") or "").strip()
         dem, rep = percentage(r.get("dem")), percentage(r.get("rep"))
-        if not day or not code or not pollster or dem is None or rep is None:
+        if not day or not code or not pollster or dem is None or rep is None or is_excluded_pollster(pollster):
             continue
         if (TODAY - day).days > 65:
             continue

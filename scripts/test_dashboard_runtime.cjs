@@ -682,13 +682,21 @@ async function settle(){
  assert.equal(w.eval('jointRaceOddsIntegrity()'),true);
  const msPoll=model.senate_all.find(x=>x.race_code==='MS-SEN');
  const msOdds=w.eval("jointForecastResult().race_probabilities.find(x=>x.office==='senate'&&x.race_code==='MS-SEN')");
- assert(msPoll&&msOdds);
- assert.match(get('#mississippiSenateWatch').textContent,/Mississippi · U.S. Senate/);
- assert.match(get('#mississippiSenateWatch').textContent,/Scott Colom/);
- assert.match(get('#mississippiSenateWatch').textContent,/Cindy Hyde-Smith/);
- assert.match(get('#mississippiSenateWatch').textContent,/independent/);
- assert(get('#mississippiSenateWatch').textContent.includes(
-  (msOdds.dem_beats_rep_pct>=50?'D ':'R ')+
+ // Rolling data must never require a specific old poll (particularly after a
+ // documented fake pollster is removed). Every Senate race retains model odds;
+ // when no qualified Mississippi poll remains, the site must say that plainly.
+ assert(msOdds,'Mississippi must remain in all-35-race Senate model');
+ const msSpotlight=get('#mississippiSenateWatch').textContent;
+ assert.match(msSpotlight,/Mississippi · U.S. Senate/);
+ if(msPoll&&['single_poll','multi_poll'].includes(msPoll.status)){
+  assert(msSpotlight.includes(msPoll.dem_candidate));
+  assert(msSpotlight.includes(msPoll.rep_candidate));
+  assert.match(msSpotlight,/independent/);
+ }else{
+  assert.match(msSpotlight,/No current qualified poll/);
+  assert.match(msSpotlight,/Awaiting a qualified survey/);
+ }
+ assert(msSpotlight.includes((msOdds.dem_beats_rep_pct>=50?'D ':'R ')+
   (msOdds.dem_beats_rep_pct>=50?msOdds.dem_beats_rep_pct:
    100-msOdds.dem_beats_rep_pct).toFixed(1)+'%'));
  assert.match(get('#mississippiWatchAsOf').textContent,/same joint model as Four Endings/);
@@ -740,7 +748,10 @@ async function settle(){
  }
  // The homepage list and combined Race Lab must survive the UI restructure.
  assert(get('#senateTideRaces').querySelectorAll('.tide-race').length>=15);
- assert.match(get('#senateTideRaces [data-senate-tide="MS-SEN"]').textContent,/Mississippi/);
+ const msTide=get('#senateTideRaces [data-senate-tide="MS-SEN"]').textContent;
+ assert(msTide.includes('MS'),'Mississippi 2026 Senate race must remain on the tide watch');
+ if(!msPoll||!['single_poll','multi_poll'].includes(msPoll.status))
+  assert(msTide.includes('No poll'),'Unpolled Mississippi race must not invent a candidate average');
  assert.match(get('#senateTideRaces [data-senate-tide="SC-SEN"]').textContent,/South Carolina/);
  assert.match(get('#senateTideRaces [data-senate-tide="SC-SEN"]').textContent,/Darline Graham/);
  assert.match(get('#senateTideRaces [data-senate-tide="ME-SEN"]').textContent,/model win chance/);

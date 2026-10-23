@@ -10,6 +10,14 @@ jobs:
     timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
+      - name: Rebuild coherent polling and forecast bundle under current firm policy
+        run: |
+          python3 scripts/build_polling_estimates.py
+          python3 scripts/build_race_probabilities.py
+          python3 scripts/build_seat_universe.py
+          python3 scripts/build_map_bridge.py
+          python3 scripts/build_house_two_cycle.py
+          node scripts/audit_bottom_up_national_environment.cjs --write
       - name: Production-readiness smoke of all deployed assets, linked inputs and four endings
         run: |
           node --check scripts/test_published_dashboard.cjs
@@ -33,6 +41,8 @@ jobs:
         run: |
           node --check scripts/validate_substate_poll_signals.cjs
           node scripts/validate_substate_poll_signals.cjs
+      - name: Block fraudulent and unverified pollsters across all ingestion routes
+        run: python3 scripts/test_pollster_exclusions.py
       - name: Keep new polls in the actual polling and forecast inputs
         run: |
           python3 scripts/test_poll_source_reconciliation.py
@@ -382,6 +392,14 @@ jobs:
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
+      - name: Rebuild coherent polling and forecast bundle under current firm policy
+        run: |
+          python3 scripts/build_polling_estimates.py
+          python3 scripts/build_race_probabilities.py
+          python3 scripts/build_seat_universe.py
+          python3 scripts/build_map_bridge.py
+          python3 scripts/build_house_two_cycle.py
+          node scripts/audit_bottom_up_national_environment.cjs --write
       - name: Install DOM test environment
         run: npm install --no-save --no-package-lock --ignore-scripts jsdom@26.1.0
       - name: Check JavaScript syntax and exercise actual dashboard

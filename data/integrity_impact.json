@@ -1,7 +1,7 @@
 {
   "schema_version": "1.2",
-  "updated_at": "2026-10-15",
-  "coverage": "Curated, non-exhaustive sourced litigation and administration developments; reported record volumes are not disenfranchised voter counts",
+  "updated_at": "2026-10-22",
+  "coverage": "Curated, non-exhaustive primary-sourced litigation and election administration incidents, now reviewed October 22, 2026. Nine geographically indexed entries for the DHS injunction represent ONE federal case; the October 21 injunction is stayed through October 23 at 5 p.m. PT. Record counts, suspect lists, and allegations are not established voter or ballot impacts.",
   "methodology": {
     "primary_metric": "Potentially affected voters or ballots, only when grounded in a cited primary source",
     "count_rules": [
@@ -75,7 +75,7 @@
     {
       "state": "GA",
       "name": "Georgia",
-      "records": 1,
+      "records": 2,
       "unique_voters_affected": null
     },
     {
@@ -93,7 +93,7 @@
     {
       "state": "TX",
       "name": "Texas",
-      "records": 1,
+      "records": 2,
       "unique_voters_affected": null
     },
     {
@@ -105,6 +105,48 @@
     {
       "state": "CA",
       "name": "California",
+      "records": 2,
+      "unique_voters_affected": null
+    },
+    {
+      "state": "CT",
+      "name": "Connecticut",
+      "records": 1,
+      "unique_voters_affected": null
+    },
+    {
+      "state": "MO",
+      "name": "Missouri",
+      "records": 1,
+      "unique_voters_affected": null
+    },
+    {
+      "state": "NV",
+      "name": "Nevada",
+      "records": 1,
+      "unique_voters_affected": null
+    },
+    {
+      "state": "NY",
+      "name": "New York",
+      "records": 1,
+      "unique_voters_affected": null
+    },
+    {
+      "state": "PA",
+      "name": "Pennsylvania",
+      "records": 1,
+      "unique_voters_affected": null
+    },
+    {
+      "state": "WA",
+      "name": "Washington",
+      "records": 1,
+      "unique_voters_affected": null
+    },
+    {
+      "state": "WI",
+      "name": "Wisconsin",
       "records": 1,
       "unique_voters_affected": null
     }
@@ -386,9 +428,9 @@
       "title": "Texas registration-record transmission backlog",
       "mechanism": "Registration processing",
       "verification_status": "documented_action",
-      "last_updated": "2026-10-12",
+      "last_updated": "2026-10-22",
       "event_date": "2026-09-22",
-      "summary": "Texas DPS says the data-transfer defect was corrected September 13. At least 500,000 delayed registration/update records were subsequently delivered to counties; statewide processing completion and voter-level consequences are not established.",
+      "summary": "Texas Secretary of State spokesperson said on October 14 that county officials had cleared the previously delayed DPS voter-registration/update backlog of more than 500,000 records; no counties were known to still be processing that backlog. This confirms reported ADMINISTRATIVE CLEARANCE of the original backlog, not that every registration record was a distinct voter or that no individual was affected. A separate October 16 texas.gov address-validation error (about 15,000 records) is tracked separately.",
       "units": "records",
       "potentially_affected": 500000,
       "confirmed_affected": null,
@@ -417,26 +459,27 @@
         {
           "publisher": "Texas Tribune — system glitches slowing processing, Oct. 5",
           "url": "https://www.texastribune.org/2026/10/05/texas-voter-registration-backlog-county-frustration/"
+        },
+        {
+          "publisher": "Texas Secretary of State spokesperson quoted by Votebeat / Texas Tribune, Oct 14, 2026",
+          "url": "https://www.texastribune.org/2026/10/14/texas-voter-registration-drivers-license-error/"
         }
       ],
       "case_type": "administrative_issue",
-      "process_status": "Transfer defect fixed per Texas DPS; county processing completion not established statewide",
+      "process_status": "Original DPS transfer backlog reportedly fully cleared by Texas counties as of Oct 14; separate October address-validation issue tracked separately; ballot-level impact still unknown.",
       "scope_label": "500,000+ registration/update records delayed",
       "scope_note": "Records, not unique voters or lost votes",
       "adverse_scenario": {
         "definition": "At least 100 distinct otherwise-eligible Texans fail to cast countable ballots by conclusion of ordinary review because their timely DPS-related registrations or updates remained unprocessed despite available remedies.",
         "worst_case_unique_eligible_voters": null,
         "worst_case_source": "Not established; requires voter-level deduplication, affected voters and counterfactual access data.",
-        "probability_of_scenario": 0.12,
-        "probability_basis": "12% subjective central estimate (3–30% range) for >=100 distinct eligible voters unable to cast countable ballots because of this transfer backlog. Upward factors: 500,000+ delayed registration/update records, county processing difficulties ahead of the registration deadline. Downward factors: transfer defect reportedly fixed, state assistance to counties, and provisional-ballot remedies for timely applications. No count of unique affected people or calibrated failure rate exists.",
-        "probability_interval": [
-          0.03,
-          0.3
-        ],
+        "probability_of_scenario": null,
+        "probability_basis": "Earlier subjective 12% probability from October 13 withdrawn from current display after confirmed backlog clearance. Remaining individual voter effects are not quantified.",
+        "probability_interval": null,
         "confirmed_unique_voters_adversely_affected": null,
         "probability_threshold_unique_voters": 100,
-        "probability_as_of": "2026-10-13",
-        "probability_method": "judgmental-prior-v0",
+        "probability_as_of": "2026-10-22",
+        "probability_method": "not-estimated-after-backlog-clearance",
         "probability_empirically_calibrated": false,
         "exposure_proxy": {
           "value": 500000,
@@ -562,8 +605,8 @@
       "mechanism": "Federal demand for state/local voting-record eligibility review shortly before the general election",
       "verification_status": "documented_action",
       "event_date": "2026-10-13",
-      "last_updated": "2026-10-15",
-      "summary": "In an October 14 statement, California's Secretary of State confirmed receiving a DOJ demand the previous day giving 48 hours to review an alleged list of possibly ineligible voters and take action. Her office stated it had not been provided that list; the Los Angeles registrar had received material on a protected USB device. This establishes that the intergovernmental demand occurred, NOT whether the federal citizenship allegations are correct, whether any eligible voter was challenged or removed, or whether any November ballot was prevented from being counted. Reported October 15 litigation requires its own primary court-filing review.",
+      "last_updated": "2026-10-22",
+      "summary": "The October 13 DOJ demand for 48-hour state citizenship review was followed by an October 15 federal lawsuit seeking to set aside vote-by-mail ballots from a federal list of approximately 20,000 purported likely noncitizens until citizenship verification. The lawsuit, DOJ's allegation and California's opposition are DOCUMENTED; the accuracy of the 20,000-person identification and any consequential wrongful ballot rejections are unverified. DOJ acknowledged the list may include citizens. California contests the reliability and timing. No court-authorized segregation of these ballots has been verified as of October 22.",
       "units": "voters",
       "potentially_affected": null,
       "confirmed_affected": null,
@@ -573,13 +616,21 @@
         {
           "publisher": "California Secretary of State, press release PR26-127, October 14, 2026",
           "url": "https://www.sos.ca.gov/administration/news-releases-and-advisories/2026-news-releases-and-advisories/california-secretary-state-shirley-n-weber-phd-issues-statement-response-us-department-justice-letter"
+        },
+        {
+          "publisher": "U.S. Department of Justice complaint announcement, Oct 15, 2026",
+          "url": "https://www.justice.gov/usao-cdca/pr/united-states-sues-california-after-determining-more-20000-likely-noncitizens-are"
+        },
+        {
+          "publisher": "California Attorney General opposition filing, Oct 20, 2026",
+          "url": "https://www.documentcloud.org/documents/28825643-10-20-2026-pltfs-tro-opp/"
         }
       ],
       "impact_assessment": "legal_demand_not_actual_ballot_loss",
-      "scope_label": "48-hour federal review demand; voter impact not established",
-      "scope_note": "The duration of the demand is an administrative deadline, not a count of registered voters, ineligible voters, removed voters or uncounted ballots. California SOS said its office was not given the referenced list.",
+      "scope_label": "~20,000 flagged names alleged by DOJ; eligible voters and ballot impacts unverified",
+      "scope_note": "The federal government's asserted list size is not a count of noncitizens, eligible voters denied ballots, or voters whose ballots were actually set aside.",
       "case_type": "legal_dispute",
-      "process_status": "California SOS publicly disputed the demand; emergency court action reported separately, not independently verified here.",
+      "process_status": "Federal complaint filed Oct 15; motion to sequester questioned ballots pending judicial determination. Defendant state contests; no verified ballot outcomes.",
       "adverse_scenario": {
         "definition": "At least 100 otherwise-eligible California residents ultimately cannot cast countable 2026 federal ballots solely due to this 48-hour eligibility demand or a resulting enforced action after ordinary correction and remedies.",
         "worst_case_unique_eligible_voters": null,
@@ -596,6 +647,565 @@
           "unit": "unique otherwise-eligible registrants",
           "qualifier": "not quantified",
           "notes": "The 48-hour deadline is not an exposure count. Reported suspected-noncitizen figures have not been verified as unique ineligible people, and cannot proxy lost eligible ballots."
+        }
+      }
+    },
+    {
+      "id": "dhs-unlawful-voter-initiative-injunction-20261021-ca",
+      "state": "CA",
+      "title": "California — federal court order restricting DHS voter-investigation field operations",
+      "mechanism": "Unlawful Voter Initiative field-interview policy and election-related investigative operations",
+      "shared_case_id": "N.D.Cal. 4:26-cv-10680-AMO, Dkt. 87",
+      "shared_case_note": "ONE federal order covering nine states, represented once per jurisdiction for geographic discovery. Do not count as nine independent federal actions or sum overlapping case impacts.",
+      "jurisdiction_states": [
+        "CA",
+        "CT",
+        "GA",
+        "MO",
+        "NV",
+        "NY",
+        "PA",
+        "WA",
+        "WI"
+      ],
+      "verification_status": "court_finding",
+      "event_date": "2026-10-21",
+      "last_updated": "2026-10-22",
+      "summary": "On October 21, 2026, U.S. District Judge Araceli Martinez-Olguin issued a preliminary injunction restricting specified DHS election-related field operations and interviews involving people known or reasonably suspected to be U.S. citizens, and operations based solely on the cited TECS matching records, in nine named states. The court discussed unreliable source lists and chilling effects on voter-assistance activity. IMPORTANT: the injunction itself was stayed until 5 p.m. California time Friday, October 23 to permit appeal; it must not be shown as already in force on October 22. The order is not a finding that any specified number of eligible ballots was uncounted.",
+      "units": "voters",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "impact_assessment": "order_verified_access_effect_not_quantified",
+      "case_type": "legal_dispute",
+      "process_status": "Preliminary injunction ordered October 21 but stayed by its own terms until October 23 at 5 p.m. PT; appeal/bond status after that deadline not yet verified.",
+      "scope_label": "9-state judicial order; state-level eligible voter impacts unknown",
+      "scope_note": "The same court order appears in nine state views; no numerical count of disenfranchised voters is established.",
+      "sources": [
+        {
+          "publisher": "United States District Court for the Northern District of California, Document 87, October 21, 2026",
+          "url": "https://storage.courtlistener.com/recap/gov.uscourts.cand.479338/gov.uscourts.cand.479338.87.0.pdf"
+        }
+      ],
+      "adverse_scenario": {
+        "definition": "At least 100 distinct otherwise-eligible voters in this state ultimately fail to cast countable ballots because of the specified federal field-interview activities, despite normal correction and voting remedies.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "No unique-voter denominator, state-specific exposure totals, or established ballot-loss observations in the order.",
+        "probability_of_scenario": null,
+        "probability_interval": null,
+        "probability_basis": "Not estimated: court-identified intimidation of voter assistance cannot be responsibly mapped onto 100 lost countable ballots from this source.",
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-22",
+        "probability_method": "not-estimated-court-action-only",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": null,
+          "unit": "unique eligible voters",
+          "qualifier": "not established",
+          "notes": "Court document discusses source record counts and investigatory activities, not distinct eligible voters whose ballots went uncounted."
+        }
+      }
+    },
+    {
+      "id": "dhs-unlawful-voter-initiative-injunction-20261021-ct",
+      "state": "CT",
+      "title": "Connecticut — federal court order restricting DHS voter-investigation field operations",
+      "mechanism": "Unlawful Voter Initiative field-interview policy and election-related investigative operations",
+      "shared_case_id": "N.D.Cal. 4:26-cv-10680-AMO, Dkt. 87",
+      "shared_case_note": "ONE federal order covering nine states, represented once per jurisdiction for geographic discovery. Do not count as nine independent federal actions or sum overlapping case impacts.",
+      "jurisdiction_states": [
+        "CA",
+        "CT",
+        "GA",
+        "MO",
+        "NV",
+        "NY",
+        "PA",
+        "WA",
+        "WI"
+      ],
+      "verification_status": "court_finding",
+      "event_date": "2026-10-21",
+      "last_updated": "2026-10-22",
+      "summary": "On October 21, 2026, U.S. District Judge Araceli Martinez-Olguin issued a preliminary injunction restricting specified DHS election-related field operations and interviews involving people known or reasonably suspected to be U.S. citizens, and operations based solely on the cited TECS matching records, in nine named states. The court discussed unreliable source lists and chilling effects on voter-assistance activity. IMPORTANT: the injunction itself was stayed until 5 p.m. California time Friday, October 23 to permit appeal; it must not be shown as already in force on October 22. The order is not a finding that any specified number of eligible ballots was uncounted.",
+      "units": "voters",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "impact_assessment": "order_verified_access_effect_not_quantified",
+      "case_type": "legal_dispute",
+      "process_status": "Preliminary injunction ordered October 21 but stayed by its own terms until October 23 at 5 p.m. PT; appeal/bond status after that deadline not yet verified.",
+      "scope_label": "9-state judicial order; state-level eligible voter impacts unknown",
+      "scope_note": "The same court order appears in nine state views; no numerical count of disenfranchised voters is established.",
+      "sources": [
+        {
+          "publisher": "United States District Court for the Northern District of California, Document 87, October 21, 2026",
+          "url": "https://storage.courtlistener.com/recap/gov.uscourts.cand.479338/gov.uscourts.cand.479338.87.0.pdf"
+        }
+      ],
+      "adverse_scenario": {
+        "definition": "At least 100 distinct otherwise-eligible voters in this state ultimately fail to cast countable ballots because of the specified federal field-interview activities, despite normal correction and voting remedies.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "No unique-voter denominator, state-specific exposure totals, or established ballot-loss observations in the order.",
+        "probability_of_scenario": null,
+        "probability_interval": null,
+        "probability_basis": "Not estimated: court-identified intimidation of voter assistance cannot be responsibly mapped onto 100 lost countable ballots from this source.",
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-22",
+        "probability_method": "not-estimated-court-action-only",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": null,
+          "unit": "unique eligible voters",
+          "qualifier": "not established",
+          "notes": "Court document discusses source record counts and investigatory activities, not distinct eligible voters whose ballots went uncounted."
+        }
+      }
+    },
+    {
+      "id": "dhs-unlawful-voter-initiative-injunction-20261021-ga",
+      "state": "GA",
+      "title": "Georgia — federal court order restricting DHS voter-investigation field operations",
+      "mechanism": "Unlawful Voter Initiative field-interview policy and election-related investigative operations",
+      "shared_case_id": "N.D.Cal. 4:26-cv-10680-AMO, Dkt. 87",
+      "shared_case_note": "ONE federal order covering nine states, represented once per jurisdiction for geographic discovery. Do not count as nine independent federal actions or sum overlapping case impacts.",
+      "jurisdiction_states": [
+        "CA",
+        "CT",
+        "GA",
+        "MO",
+        "NV",
+        "NY",
+        "PA",
+        "WA",
+        "WI"
+      ],
+      "verification_status": "court_finding",
+      "event_date": "2026-10-21",
+      "last_updated": "2026-10-22",
+      "summary": "On October 21, 2026, U.S. District Judge Araceli Martinez-Olguin issued a preliminary injunction restricting specified DHS election-related field operations and interviews involving people known or reasonably suspected to be U.S. citizens, and operations based solely on the cited TECS matching records, in nine named states. The court discussed unreliable source lists and chilling effects on voter-assistance activity. IMPORTANT: the injunction itself was stayed until 5 p.m. California time Friday, October 23 to permit appeal; it must not be shown as already in force on October 22. The order is not a finding that any specified number of eligible ballots was uncounted.",
+      "units": "voters",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "impact_assessment": "order_verified_access_effect_not_quantified",
+      "case_type": "legal_dispute",
+      "process_status": "Preliminary injunction ordered October 21 but stayed by its own terms until October 23 at 5 p.m. PT; appeal/bond status after that deadline not yet verified.",
+      "scope_label": "9-state judicial order; state-level eligible voter impacts unknown",
+      "scope_note": "The same court order appears in nine state views; no numerical count of disenfranchised voters is established.",
+      "sources": [
+        {
+          "publisher": "United States District Court for the Northern District of California, Document 87, October 21, 2026",
+          "url": "https://storage.courtlistener.com/recap/gov.uscourts.cand.479338/gov.uscourts.cand.479338.87.0.pdf"
+        }
+      ],
+      "adverse_scenario": {
+        "definition": "At least 100 distinct otherwise-eligible voters in this state ultimately fail to cast countable ballots because of the specified federal field-interview activities, despite normal correction and voting remedies.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "No unique-voter denominator, state-specific exposure totals, or established ballot-loss observations in the order.",
+        "probability_of_scenario": null,
+        "probability_interval": null,
+        "probability_basis": "Not estimated: court-identified intimidation of voter assistance cannot be responsibly mapped onto 100 lost countable ballots from this source.",
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-22",
+        "probability_method": "not-estimated-court-action-only",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": null,
+          "unit": "unique eligible voters",
+          "qualifier": "not established",
+          "notes": "Court document discusses source record counts and investigatory activities, not distinct eligible voters whose ballots went uncounted."
+        }
+      }
+    },
+    {
+      "id": "dhs-unlawful-voter-initiative-injunction-20261021-mo",
+      "state": "MO",
+      "title": "Missouri — federal court order restricting DHS voter-investigation field operations",
+      "mechanism": "Unlawful Voter Initiative field-interview policy and election-related investigative operations",
+      "shared_case_id": "N.D.Cal. 4:26-cv-10680-AMO, Dkt. 87",
+      "shared_case_note": "ONE federal order covering nine states, represented once per jurisdiction for geographic discovery. Do not count as nine independent federal actions or sum overlapping case impacts.",
+      "jurisdiction_states": [
+        "CA",
+        "CT",
+        "GA",
+        "MO",
+        "NV",
+        "NY",
+        "PA",
+        "WA",
+        "WI"
+      ],
+      "verification_status": "court_finding",
+      "event_date": "2026-10-21",
+      "last_updated": "2026-10-22",
+      "summary": "On October 21, 2026, U.S. District Judge Araceli Martinez-Olguin issued a preliminary injunction restricting specified DHS election-related field operations and interviews involving people known or reasonably suspected to be U.S. citizens, and operations based solely on the cited TECS matching records, in nine named states. The court discussed unreliable source lists and chilling effects on voter-assistance activity. IMPORTANT: the injunction itself was stayed until 5 p.m. California time Friday, October 23 to permit appeal; it must not be shown as already in force on October 22. The order is not a finding that any specified number of eligible ballots was uncounted.",
+      "units": "voters",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "impact_assessment": "order_verified_access_effect_not_quantified",
+      "case_type": "legal_dispute",
+      "process_status": "Preliminary injunction ordered October 21 but stayed by its own terms until October 23 at 5 p.m. PT; appeal/bond status after that deadline not yet verified.",
+      "scope_label": "9-state judicial order; state-level eligible voter impacts unknown",
+      "scope_note": "The same court order appears in nine state views; no numerical count of disenfranchised voters is established.",
+      "sources": [
+        {
+          "publisher": "United States District Court for the Northern District of California, Document 87, October 21, 2026",
+          "url": "https://storage.courtlistener.com/recap/gov.uscourts.cand.479338/gov.uscourts.cand.479338.87.0.pdf"
+        }
+      ],
+      "adverse_scenario": {
+        "definition": "At least 100 distinct otherwise-eligible voters in this state ultimately fail to cast countable ballots because of the specified federal field-interview activities, despite normal correction and voting remedies.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "No unique-voter denominator, state-specific exposure totals, or established ballot-loss observations in the order.",
+        "probability_of_scenario": null,
+        "probability_interval": null,
+        "probability_basis": "Not estimated: court-identified intimidation of voter assistance cannot be responsibly mapped onto 100 lost countable ballots from this source.",
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-22",
+        "probability_method": "not-estimated-court-action-only",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": null,
+          "unit": "unique eligible voters",
+          "qualifier": "not established",
+          "notes": "Court document discusses source record counts and investigatory activities, not distinct eligible voters whose ballots went uncounted."
+        }
+      }
+    },
+    {
+      "id": "dhs-unlawful-voter-initiative-injunction-20261021-nv",
+      "state": "NV",
+      "title": "Nevada — federal court order restricting DHS voter-investigation field operations",
+      "mechanism": "Unlawful Voter Initiative field-interview policy and election-related investigative operations",
+      "shared_case_id": "N.D.Cal. 4:26-cv-10680-AMO, Dkt. 87",
+      "shared_case_note": "ONE federal order covering nine states, represented once per jurisdiction for geographic discovery. Do not count as nine independent federal actions or sum overlapping case impacts.",
+      "jurisdiction_states": [
+        "CA",
+        "CT",
+        "GA",
+        "MO",
+        "NV",
+        "NY",
+        "PA",
+        "WA",
+        "WI"
+      ],
+      "verification_status": "court_finding",
+      "event_date": "2026-10-21",
+      "last_updated": "2026-10-22",
+      "summary": "On October 21, 2026, U.S. District Judge Araceli Martinez-Olguin issued a preliminary injunction restricting specified DHS election-related field operations and interviews involving people known or reasonably suspected to be U.S. citizens, and operations based solely on the cited TECS matching records, in nine named states. The court discussed unreliable source lists and chilling effects on voter-assistance activity. IMPORTANT: the injunction itself was stayed until 5 p.m. California time Friday, October 23 to permit appeal; it must not be shown as already in force on October 22. The order is not a finding that any specified number of eligible ballots was uncounted.",
+      "units": "voters",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "impact_assessment": "order_verified_access_effect_not_quantified",
+      "case_type": "legal_dispute",
+      "process_status": "Preliminary injunction ordered October 21 but stayed by its own terms until October 23 at 5 p.m. PT; appeal/bond status after that deadline not yet verified.",
+      "scope_label": "9-state judicial order; state-level eligible voter impacts unknown",
+      "scope_note": "The same court order appears in nine state views; no numerical count of disenfranchised voters is established.",
+      "sources": [
+        {
+          "publisher": "United States District Court for the Northern District of California, Document 87, October 21, 2026",
+          "url": "https://storage.courtlistener.com/recap/gov.uscourts.cand.479338/gov.uscourts.cand.479338.87.0.pdf"
+        }
+      ],
+      "adverse_scenario": {
+        "definition": "At least 100 distinct otherwise-eligible voters in this state ultimately fail to cast countable ballots because of the specified federal field-interview activities, despite normal correction and voting remedies.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "No unique-voter denominator, state-specific exposure totals, or established ballot-loss observations in the order.",
+        "probability_of_scenario": null,
+        "probability_interval": null,
+        "probability_basis": "Not estimated: court-identified intimidation of voter assistance cannot be responsibly mapped onto 100 lost countable ballots from this source.",
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-22",
+        "probability_method": "not-estimated-court-action-only",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": null,
+          "unit": "unique eligible voters",
+          "qualifier": "not established",
+          "notes": "Court document discusses source record counts and investigatory activities, not distinct eligible voters whose ballots went uncounted."
+        }
+      }
+    },
+    {
+      "id": "dhs-unlawful-voter-initiative-injunction-20261021-ny",
+      "state": "NY",
+      "title": "New York — federal court order restricting DHS voter-investigation field operations",
+      "mechanism": "Unlawful Voter Initiative field-interview policy and election-related investigative operations",
+      "shared_case_id": "N.D.Cal. 4:26-cv-10680-AMO, Dkt. 87",
+      "shared_case_note": "ONE federal order covering nine states, represented once per jurisdiction for geographic discovery. Do not count as nine independent federal actions or sum overlapping case impacts.",
+      "jurisdiction_states": [
+        "CA",
+        "CT",
+        "GA",
+        "MO",
+        "NV",
+        "NY",
+        "PA",
+        "WA",
+        "WI"
+      ],
+      "verification_status": "court_finding",
+      "event_date": "2026-10-21",
+      "last_updated": "2026-10-22",
+      "summary": "On October 21, 2026, U.S. District Judge Araceli Martinez-Olguin issued a preliminary injunction restricting specified DHS election-related field operations and interviews involving people known or reasonably suspected to be U.S. citizens, and operations based solely on the cited TECS matching records, in nine named states. The court discussed unreliable source lists and chilling effects on voter-assistance activity. IMPORTANT: the injunction itself was stayed until 5 p.m. California time Friday, October 23 to permit appeal; it must not be shown as already in force on October 22. The order is not a finding that any specified number of eligible ballots was uncounted.",
+      "units": "voters",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "impact_assessment": "order_verified_access_effect_not_quantified",
+      "case_type": "legal_dispute",
+      "process_status": "Preliminary injunction ordered October 21 but stayed by its own terms until October 23 at 5 p.m. PT; appeal/bond status after that deadline not yet verified.",
+      "scope_label": "9-state judicial order; state-level eligible voter impacts unknown",
+      "scope_note": "The same court order appears in nine state views; no numerical count of disenfranchised voters is established.",
+      "sources": [
+        {
+          "publisher": "United States District Court for the Northern District of California, Document 87, October 21, 2026",
+          "url": "https://storage.courtlistener.com/recap/gov.uscourts.cand.479338/gov.uscourts.cand.479338.87.0.pdf"
+        }
+      ],
+      "adverse_scenario": {
+        "definition": "At least 100 distinct otherwise-eligible voters in this state ultimately fail to cast countable ballots because of the specified federal field-interview activities, despite normal correction and voting remedies.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "No unique-voter denominator, state-specific exposure totals, or established ballot-loss observations in the order.",
+        "probability_of_scenario": null,
+        "probability_interval": null,
+        "probability_basis": "Not estimated: court-identified intimidation of voter assistance cannot be responsibly mapped onto 100 lost countable ballots from this source.",
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-22",
+        "probability_method": "not-estimated-court-action-only",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": null,
+          "unit": "unique eligible voters",
+          "qualifier": "not established",
+          "notes": "Court document discusses source record counts and investigatory activities, not distinct eligible voters whose ballots went uncounted."
+        }
+      }
+    },
+    {
+      "id": "dhs-unlawful-voter-initiative-injunction-20261021-pa",
+      "state": "PA",
+      "title": "Pennsylvania — federal court order restricting DHS voter-investigation field operations",
+      "mechanism": "Unlawful Voter Initiative field-interview policy and election-related investigative operations",
+      "shared_case_id": "N.D.Cal. 4:26-cv-10680-AMO, Dkt. 87",
+      "shared_case_note": "ONE federal order covering nine states, represented once per jurisdiction for geographic discovery. Do not count as nine independent federal actions or sum overlapping case impacts.",
+      "jurisdiction_states": [
+        "CA",
+        "CT",
+        "GA",
+        "MO",
+        "NV",
+        "NY",
+        "PA",
+        "WA",
+        "WI"
+      ],
+      "verification_status": "court_finding",
+      "event_date": "2026-10-21",
+      "last_updated": "2026-10-22",
+      "summary": "On October 21, 2026, U.S. District Judge Araceli Martinez-Olguin issued a preliminary injunction restricting specified DHS election-related field operations and interviews involving people known or reasonably suspected to be U.S. citizens, and operations based solely on the cited TECS matching records, in nine named states. The court discussed unreliable source lists and chilling effects on voter-assistance activity. IMPORTANT: the injunction itself was stayed until 5 p.m. California time Friday, October 23 to permit appeal; it must not be shown as already in force on October 22. The order is not a finding that any specified number of eligible ballots was uncounted.",
+      "units": "voters",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "impact_assessment": "order_verified_access_effect_not_quantified",
+      "case_type": "legal_dispute",
+      "process_status": "Preliminary injunction ordered October 21 but stayed by its own terms until October 23 at 5 p.m. PT; appeal/bond status after that deadline not yet verified.",
+      "scope_label": "9-state judicial order; state-level eligible voter impacts unknown",
+      "scope_note": "The same court order appears in nine state views; no numerical count of disenfranchised voters is established.",
+      "sources": [
+        {
+          "publisher": "United States District Court for the Northern District of California, Document 87, October 21, 2026",
+          "url": "https://storage.courtlistener.com/recap/gov.uscourts.cand.479338/gov.uscourts.cand.479338.87.0.pdf"
+        }
+      ],
+      "adverse_scenario": {
+        "definition": "At least 100 distinct otherwise-eligible voters in this state ultimately fail to cast countable ballots because of the specified federal field-interview activities, despite normal correction and voting remedies.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "No unique-voter denominator, state-specific exposure totals, or established ballot-loss observations in the order.",
+        "probability_of_scenario": null,
+        "probability_interval": null,
+        "probability_basis": "Not estimated: court-identified intimidation of voter assistance cannot be responsibly mapped onto 100 lost countable ballots from this source.",
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-22",
+        "probability_method": "not-estimated-court-action-only",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": null,
+          "unit": "unique eligible voters",
+          "qualifier": "not established",
+          "notes": "Court document discusses source record counts and investigatory activities, not distinct eligible voters whose ballots went uncounted."
+        }
+      }
+    },
+    {
+      "id": "dhs-unlawful-voter-initiative-injunction-20261021-wa",
+      "state": "WA",
+      "title": "Washington — federal court order restricting DHS voter-investigation field operations",
+      "mechanism": "Unlawful Voter Initiative field-interview policy and election-related investigative operations",
+      "shared_case_id": "N.D.Cal. 4:26-cv-10680-AMO, Dkt. 87",
+      "shared_case_note": "ONE federal order covering nine states, represented once per jurisdiction for geographic discovery. Do not count as nine independent federal actions or sum overlapping case impacts.",
+      "jurisdiction_states": [
+        "CA",
+        "CT",
+        "GA",
+        "MO",
+        "NV",
+        "NY",
+        "PA",
+        "WA",
+        "WI"
+      ],
+      "verification_status": "court_finding",
+      "event_date": "2026-10-21",
+      "last_updated": "2026-10-22",
+      "summary": "On October 21, 2026, U.S. District Judge Araceli Martinez-Olguin issued a preliminary injunction restricting specified DHS election-related field operations and interviews involving people known or reasonably suspected to be U.S. citizens, and operations based solely on the cited TECS matching records, in nine named states. The court discussed unreliable source lists and chilling effects on voter-assistance activity. IMPORTANT: the injunction itself was stayed until 5 p.m. California time Friday, October 23 to permit appeal; it must not be shown as already in force on October 22. The order is not a finding that any specified number of eligible ballots was uncounted.",
+      "units": "voters",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "impact_assessment": "order_verified_access_effect_not_quantified",
+      "case_type": "legal_dispute",
+      "process_status": "Preliminary injunction ordered October 21 but stayed by its own terms until October 23 at 5 p.m. PT; appeal/bond status after that deadline not yet verified.",
+      "scope_label": "9-state judicial order; state-level eligible voter impacts unknown",
+      "scope_note": "The same court order appears in nine state views; no numerical count of disenfranchised voters is established.",
+      "sources": [
+        {
+          "publisher": "United States District Court for the Northern District of California, Document 87, October 21, 2026",
+          "url": "https://storage.courtlistener.com/recap/gov.uscourts.cand.479338/gov.uscourts.cand.479338.87.0.pdf"
+        }
+      ],
+      "adverse_scenario": {
+        "definition": "At least 100 distinct otherwise-eligible voters in this state ultimately fail to cast countable ballots because of the specified federal field-interview activities, despite normal correction and voting remedies.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "No unique-voter denominator, state-specific exposure totals, or established ballot-loss observations in the order.",
+        "probability_of_scenario": null,
+        "probability_interval": null,
+        "probability_basis": "Not estimated: court-identified intimidation of voter assistance cannot be responsibly mapped onto 100 lost countable ballots from this source.",
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-22",
+        "probability_method": "not-estimated-court-action-only",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": null,
+          "unit": "unique eligible voters",
+          "qualifier": "not established",
+          "notes": "Court document discusses source record counts and investigatory activities, not distinct eligible voters whose ballots went uncounted."
+        }
+      }
+    },
+    {
+      "id": "dhs-unlawful-voter-initiative-injunction-20261021-wi",
+      "state": "WI",
+      "title": "Wisconsin — federal court order restricting DHS voter-investigation field operations",
+      "mechanism": "Unlawful Voter Initiative field-interview policy and election-related investigative operations",
+      "shared_case_id": "N.D.Cal. 4:26-cv-10680-AMO, Dkt. 87",
+      "shared_case_note": "ONE federal order covering nine states, represented once per jurisdiction for geographic discovery. Do not count as nine independent federal actions or sum overlapping case impacts.",
+      "jurisdiction_states": [
+        "CA",
+        "CT",
+        "GA",
+        "MO",
+        "NV",
+        "NY",
+        "PA",
+        "WA",
+        "WI"
+      ],
+      "verification_status": "court_finding",
+      "event_date": "2026-10-21",
+      "last_updated": "2026-10-22",
+      "summary": "On October 21, 2026, U.S. District Judge Araceli Martinez-Olguin issued a preliminary injunction restricting specified DHS election-related field operations and interviews involving people known or reasonably suspected to be U.S. citizens, and operations based solely on the cited TECS matching records, in nine named states. The court discussed unreliable source lists and chilling effects on voter-assistance activity. IMPORTANT: the injunction itself was stayed until 5 p.m. California time Friday, October 23 to permit appeal; it must not be shown as already in force on October 22. The order is not a finding that any specified number of eligible ballots was uncounted.",
+      "units": "voters",
+      "potentially_affected": null,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "impact_assessment": "order_verified_access_effect_not_quantified",
+      "case_type": "legal_dispute",
+      "process_status": "Preliminary injunction ordered October 21 but stayed by its own terms until October 23 at 5 p.m. PT; appeal/bond status after that deadline not yet verified.",
+      "scope_label": "9-state judicial order; state-level eligible voter impacts unknown",
+      "scope_note": "The same court order appears in nine state views; no numerical count of disenfranchised voters is established.",
+      "sources": [
+        {
+          "publisher": "United States District Court for the Northern District of California, Document 87, October 21, 2026",
+          "url": "https://storage.courtlistener.com/recap/gov.uscourts.cand.479338/gov.uscourts.cand.479338.87.0.pdf"
+        }
+      ],
+      "adverse_scenario": {
+        "definition": "At least 100 distinct otherwise-eligible voters in this state ultimately fail to cast countable ballots because of the specified federal field-interview activities, despite normal correction and voting remedies.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "No unique-voter denominator, state-specific exposure totals, or established ballot-loss observations in the order.",
+        "probability_of_scenario": null,
+        "probability_interval": null,
+        "probability_basis": "Not estimated: court-identified intimidation of voter assistance cannot be responsibly mapped onto 100 lost countable ballots from this source.",
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-22",
+        "probability_method": "not-estimated-court-action-only",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": null,
+          "unit": "unique eligible voters",
+          "qualifier": "not established",
+          "notes": "Court document discusses source record counts and investigatory activities, not distinct eligible voters whose ballots went uncounted."
+        }
+      }
+    },
+    {
+      "id": "tx-new-address-validation-backlog-20261016",
+      "state": "TX",
+      "title": "Texas — separate October address-update validation glitch",
+      "mechanism": "State texas.gov address-validation software error delaying registration name/address changes",
+      "verification_status": "documented_action",
+      "event_date": "2026-10-15",
+      "last_updated": "2026-10-22",
+      "summary": "A separate address-validation problem affected updates made since September 1. A Texas Secretary of State spokesperson reported approximately 15,000 records were retransmitted to counties by October 16 and the software issue corrected. County-by-county completion of the resulting updates and individual ballot consequences remain unverified. This is distinct from the earlier 500,000+ DPS backlog; counts are not added as unique voters.",
+      "units": "records",
+      "potentially_affected": 15000,
+      "confirmed_affected": null,
+      "remedied": null,
+      "unresolved": null,
+      "count_as_of": "2026-10-16",
+      "count_source_notes": "Texas Secretary of State spokesperson reported sending approximately 15,000 affected records to counties. These are registration/update records, not 15,000 proven unique voters or ballots.",
+      "impact_assessment": "registration_update_records_not_unique_voters",
+      "scope_label": "Approximately 15,000 name/address-update records retransmitted",
+      "scope_note": "Record count, NOT measured disenfranchisement. Includes corrections and updates; overlap with earlier backlog and unique-voter coverage cannot be assumed.",
+      "case_type": "administrative_issue",
+      "process_status": "State reports technical defect corrected and records sent by October 16; final county processing and ballot outcomes unverified.",
+      "sources": [
+        {
+          "publisher": "Texas Secretary of State spokesperson, quoted by The Texas Newsroom / KUT October 16, 2026",
+          "url": "https://www.kut.org/politics/2026-10-16/another-texas-voter-registration-backlog-state-software-error"
+        }
+      ],
+      "adverse_scenario": {
+        "definition": "At least 100 otherwise-eligible Texans fail to cast countable ballots as a direct result of the separate address-update validation failure after ordinary correction and provisional-ballot review.",
+        "worst_case_unique_eligible_voters": null,
+        "worst_case_source": "No deduplicated voter universe or failure-to-vote data; registered addresses are not ballots.",
+        "probability_of_scenario": null,
+        "probability_interval": null,
+        "probability_basis": "No measured link from these retransmitted records to lost countable ballots.",
+        "probability_threshold_unique_voters": 100,
+        "probability_as_of": "2026-10-22",
+        "probability_method": "not-estimated-no-ballot-loss-evidence",
+        "probability_empirically_calibrated": false,
+        "exposure_proxy": {
+          "value": 15000,
+          "unit": "registration/update records",
+          "qualifier": "approximate",
+          "notes": "Retransmitted records, not distinct voters, not confirmed pending registrations or lost votes."
         }
       }
     }
