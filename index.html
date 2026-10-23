@@ -1286,7 +1286,7 @@ window.addEventListener('hashchange',()=>{
 });
 activatePage(tabFromHash(),false);
 if(location.hash.startsWith('#races'))$('#raceWorkbench').open=true;
-document.querySelectorAll('.chip').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x===t));window.selectedRaceType=t.dataset.race.toLowerCase();renderRaceList()}));
+document.querySelectorAll('.chip[data-race]').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.chip[data-race]').forEach(x=>x.classList.toggle('active',x===t));window.selectedRaceType=t.dataset.race.toLowerCase();renderRaceList()}));
 document.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>{const destination=b.dataset.jump==='races'?'model':b.dataset.jump;
  const tab=document.querySelector('.tab[data-page="'+destination+'"]');
  if(tab){tab.click();if(b.dataset.jump==='races')$('#raceWorkbench').open=true;
