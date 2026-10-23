@@ -26,7 +26,7 @@ def transform_adjacency(body):
     for row in reader:
         code=row['County GEOID']
         if not code.startswith('37'): continue
-        if not re.fullmatch(r'37\\d{3}',code):
+        if not re.fullmatch(r'37\d{3}',code):
             raise ValueError('Invalid 2024 county FIPS')
         label=row['County Name']
         if not label.endswith(' County, NC'):
@@ -38,7 +38,7 @@ def transform_adjacency(body):
     if len(counties)!=100 or len(set(counties.values()))!=100:
         raise ValueError('Incomplete Census 2024 NC county geography')
     out=io.StringIO()
-    writer=csv.writer(out,lineterminator='\\n')
+    writer=csv.writer(out,lineterminator='\n')
     writer.writerow(['statefp','countyfp','name'])
     for fips,name in sorted(counties.items()):
         writer.writerow(['37',fips[2:],name])
@@ -69,7 +69,7 @@ def fetch_census_reference():
             try:
                 transform(payload)
             except (ValueError, json.JSONDecodeError) as exc:
-                preview=repr(payload[:160].replace("\\n"," "))
+                preview=repr(payload[:160].replace("\n"," "))
                 raise ValueError("Unexpected Census API body prefix: "+preview) from exc
             return payload
         except (ValueError, json.JSONDecodeError) as exc:
