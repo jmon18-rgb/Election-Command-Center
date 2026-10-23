@@ -95,6 +95,13 @@ try{
   assert.match(comparison,/partial 2026 Senate vs\. full 2024 presidential/i);
   assert.match(comparison,/No geographic needle or national forecast adjustment/);
   assert.match(comparison,/37183/);
+  await page.waitForFunction(()=>
+   document.querySelector('#enNcSenateSameOfficeComparison')?.textContent?.includes('DESCRIPTIVE ONLY'),
+   {timeout:25000});
+  let senateCompare=await page.locator('#enNcSenateSameOfficeComparison').textContent();
+  assert.match(senateCompare,/same office/i);
+  assert.match(senateCompare,/2022 full Senate D−R/);
+  assert.match(senateCompare,/NOT statewide swings/);
   const refresh=async()=>{
    await page.evaluate(()=>window.NcCountyDeskRefresh());
    return page.locator('#enVerifiedCountyResults').textContent();
@@ -105,6 +112,8 @@ try{
   assert(!rendered.includes('Fixture Alpha'),'Bad ZIP fingerprint retained candidate totals');
   comparison=await page.locator('#enNcHistoricalComparison').textContent();
   assert(!comparison.includes('DESCRIPTIVE ONLY'),'Invalid ZIP retained historical comparison');
+  senateCompare=await page.locator('#enNcSenateSameOfficeComparison').textContent();
+  assert(!senateCompare.includes('DESCRIPTIVE ONLY'),'Invalid ZIP retained 2022 same-office comparison');
   scenario='stale';
   rendered=await refresh();
   assert.match(rendered,/stale or future-dated/i);
@@ -122,12 +131,16 @@ try{
   assert(!rendered.includes('Fixture Alpha'),'Revoked approval leaked candidate totals');
   comparison=await page.locator('#enNcHistoricalComparison').textContent();
   assert(!comparison.includes('DESCRIPTIVE ONLY'),'Revoked approval retained historical comparison');
+  senateCompare=await page.locator('#enNcSenateSameOfficeComparison').textContent();
+  assert(!senateCompare.includes('DESCRIPTIVE ONLY'),'Revoked approval retained 2022 same-office comparison');
   scenario='verified';
   rendered=await refresh();
   assert.match(rendered,/Fixture Alpha \(DEM\): 120/);
   assert.match(rendered,/NC-SEN/);
   comparison=await page.locator('#enNcHistoricalComparison').textContent();
   assert.match(comparison,/DESCRIPTIVE ONLY/);
+  senateCompare=await page.locator('#enNcSenateSameOfficeComparison').textContent();
+  assert.match(senateCompare,/DESCRIPTIVE ONLY/);
   assert.deepEqual(failures.filter(x=>/SyntaxError|ReferenceError|TypeError/.test(x)),[],
    device+': Unhandled exception during outage/recovery');
   console.log(device+': NC official county snapshot, invalid SHA, staleness, both outages, approval revocation and recovery PASS');
