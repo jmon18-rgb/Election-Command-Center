@@ -415,5 +415,7 @@ jobs:
         run: npm install --no-save --no-package-lock --ignore-scripts jsdom@26.1.0
       - name: Check JavaScript syntax and exercise actual dashboard
         run: |
+          node --check scripts/geographic_returns_2026.js
+          node scripts/test_geographic_returns_2026.cjs
           node --check scripts/test_dashboard_runtime.cjs
           node scripts/test_dashboard_runtime.cjs
