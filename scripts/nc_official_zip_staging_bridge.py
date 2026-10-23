@@ -31,8 +31,8 @@ def stage_zip(payload, *, manifest, county_fips):
         raise ValueError("Invalid exact election date") from exc
     if day.isoformat() != election:
         raise ValueError("Noncanonical election date")
-    if day.year not in (2024, 2026) or day.month != 11:
-        raise ValueError("Only explicit audited NC November election dates supported")
+    if election not in ('2022-11-08', '2024-11-05', '2026-11-03'):
+        raise ValueError('Only explicit audited NC November election dates supported')
     date_dir = day.strftime("%Y_%m_%d")
     date_stamp = day.strftime("%Y%m%d")
     member = "results_pct_" + date_stamp + ".txt"
