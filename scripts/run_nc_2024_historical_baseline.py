@@ -33,8 +33,12 @@ def fetch_census_reference():
         try:
             with urllib.request.urlopen(request,timeout=30) as response:
                 payload=response.read(150_000).decode("utf-8")
-            # Validate before using downloaded state results or emitting an artifact.
-            transform(payload)
+            # Fail closed, but provide a short sanitized public response preview.
+            try:
+                transform(payload)
+            except (ValueError, json.JSONDecodeError) as exc:
+                preview=repr(payload[:160].replace("\\n"," "))
+                raise ValueError("Unexpected Census API body prefix: "+preview) from exc
             return payload
         except (ValueError, json.JSONDecodeError) as exc:
             if attempt==2:
