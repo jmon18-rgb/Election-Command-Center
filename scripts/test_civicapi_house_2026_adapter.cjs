@@ -136,7 +136,8 @@ assert.equal(api.pinnedId(item),null,'A newer empty manifest revokes old shortcu
 const kyItem={office:'House',key:'KY-06'};
 const kyRow={...search,id:87173,province:'KY',district:'KY-06',
  election_name:'Kentucky US House 6'};
-const kyDetail={...detail,...kyRow,election_type:'House of Representatives'};
+const kyDetail={...detail,...kyRow,election_type:'House of Representatives',
+ candidates:detail.candidates};
 const kyManifest={...makeManifest(),races:[
  {district:'KY-06',race_id:87173,checked_window_utc:'2026-11-02T16:00:00Z'}]};
 assert.equal(api.supports(kyItem),true);
