@@ -40,6 +40,15 @@ const fail=[
  [{...approved,expected:{...approved.expected,reviewed:false}},snapshot,when]
 ];
 for(const [c,s,n] of fail)assert.throws(()=>api.inspectSource(c,s,n));
+const publication=api.compareApprovedHead(approved,snapshot,approved,snapshot,when);
+assert.equal(publication.status,'PUBLISHED_APPROVED_HEAD');
+assert.equal(api.compareApprovedHead(disabled,null,disabled,null,when).status,'APPROVAL_NOT_ENABLED');
+assert.equal(api.compareApprovedHead(approved,snapshot,disabled,null,when).status,'PAGES_CATCHING_UP');
+assert.throws(()=>api.compareApprovedHead(approved,snapshot,disabled,null,when+40*60000),
+ /has not deployed/);
+const older={...snapshot,archive_checked_at:'2026-11-04T00:10:00Z'};
+assert.throws(()=>api.compareApprovedHead(approved,snapshot,approved,older,when+50*60000),
+ /has not deployed/);
 const scripts=Object.fromEntries(api.INDEX_FILES.map((f,i)=>[f,'console.log("version'+i+'");']));
 const srcs=api.INDEX_FILES.map(f=>'<script src="./'+f+'?v='+api.gitRevision(scripts[f])+'"></script>').join('\n');
 const html='<div id="enVerifiedCountyResults"></div>'+srcs;
