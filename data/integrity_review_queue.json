@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-23T09:47:10.151479Z",
+  "updated_at": "2026-10-23T10:44:43.757041Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
@@ -511,6 +511,23 @@
       "state_hints": [],
       "topic_hints": [
         "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "a4642bfbc2e2e0804864",
+      "title": "US judge orders Trump administration to halt noncitizen voting investigation - The Guardian",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOcGlYYnJ2UzNYcC1RXzduUFR4Q0NSR21YRWh6b1k3NGtUdWZvdXlXUUpQZk96RFlBWjVmV01TY2FQbFJDUXEzV250dDltREt6MmoyNUF4TE1WS3Z1RjRwRlBjdHN6MXpnaEs5dXBCc1ZLMmczNFZOeXBwLUZHcHpjRENZbk1MU2JyV21EZk5OU2R4VjJ3ekMxSkM1c2ZYZkVIUWpXZWlsMUxRWlU?oc=5",
+      "publisher": "The Guardian",
+      "published_at": "2026-10-22T17:47:00Z",
+      "detected_at": "2026-10-23T10:44:43.757041Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -4862,23 +4879,6 @@
         "PA"
       ],
       "topic_hints": [],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "fa3f9dfc6ebbf4e0c4c5",
-      "title": "DHS: ICE is not planning operations targeting polling locations - The Center Square",
-      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNVnVUcHhQVldrSjNndDhBbWNoeUlfcWI1WjdCWG11WnpzTXpXSjR1cXZzMGt3UnNOWEdNdGRNY1RMOG11UDdnb2FoWDFheTIyT0NudVliMnJkYVRaVDBGWUl6V3BJNEVfUmQtbEdsaE9XZkl1NmJicVpTVEZ3dktEWEVfVlBRaGpfTVR4dlhmaGktZ01h0gGaAUFVX3lxTE4tTmtBTkpnQ0VaaWRSX01xSkhJZjUxVWxLblhkWHFwSHBXTVZ6MHExamlsc09KNG9ZSU0tYS1sQWpCa0Y0TmJVUW9BdGNUMGtKVXVxcmxCSUkzb0VvSlExdVVDU3AwbjhUazN4Mm0wS2xNUWd5bXAyNEFEc3NaRUVZS0ZuWFE0SF9sWWxGemRrdGRNUFQ4SnBneHc?oc=5",
-      "publisher": "The Center Square",
-      "published_at": "2026-10-12T20:48:00Z",
-      "detected_at": "2026-10-13T01:03:38.436117Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
