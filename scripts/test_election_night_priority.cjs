@@ -80,4 +80,43 @@ assert.equal(x.sort([
  {...ref.get('ME-SEN'),priority:pending},
  {...ref.get('TX-SEN'),priority:flip}
 ],'Senate')[0].code,'TX-SEN');
+// Simulate a crowded Election Night source: all 35 Senate contests and
+// Silver-tipping House references compete for only 12 civicAPI slots/minute.
+const allSeats=senateSeats.map(x=>({...x,tip:ref.get(x.code)?.tip??null}));
+const allHouse=x.SEED.filter(x=>x.office==='House');
+const allProvider=[...allSeats,...allHouse,
+ {office:'Governor',key:'MA',tip:null}];
+const primaryStates=['TX','MI','IA','NC','GA','PA','AZ','VA','FL'];
+let cursor={senate:0,house:0,other:0};
+const seenSen=new Set(),seenHouse=new Set();
+const uncoveredSen=allSeats.filter(x=>!primaryStates.includes(x.key.slice(0,2)));
+const uncoveredHouse=allHouse.filter(x=>!primaryStates.includes(x.key.slice(0,2)));
+const pins=[{office:'Senate',key:'NH'},{office:'House',key:'NY-17'}];
+for(let i=0;i<30;i++){
+ const pick=x.sourceBatch({candidates:allProvider,primaryStates,personal:pins,
+  cursor,limit:12});
+ assert(pick.items.length<=12,'Hourly supplemental bandwidth is bounded');
+ assert.equal(new Set(pick.items.map(v=>v.office+'|'+v.key)).size,pick.items.length,
+  'Duplicate exact-race checks waste provider requests');
+ assert(pick.items.every(v=>!primaryStates.includes(v.key.slice(0,2))),
+  'Do not spend supplemental requests on primary-owned states');
+ assert(pick.items.some(v=>v.office==='House'&&v.tip>=1),
+  'Silver-seeded House races keep dedicated refresh capacity');
+ assert(pick.items.some(v=>v.office==='Senate'&&v.tip>=7),
+  'Silver Senate high-impact races remain on the hot lane');
+ for(const v of pick.items){
+  if(v.office==='Senate')seenSen.add(v.key);
+  if(v.office==='House')seenHouse.add(v.key);
+ }
+ cursor=pick.next;
+}
+assert.deepEqual([...seenSen].sort(),uncoveredSen.map(v=>v.key).sort(),
+ 'Every uncovered Senate seat must receive an identity-checked turn');
+assert.deepEqual([...seenHouse].sort(),uncoveredHouse.map(v=>v.key).sort(),
+ 'Every eligible Silver House seed must eventually receive a turn');
+const small=x.sourceBatch({candidates:[{office:'Senate',key:'ME',tip:12}],
+ primaryStates:[],limit:12});
+assert.equal(small.items.length,1,'Never duplicate a race merely to fill the quota');
+assert.throws(()=>x.sourceBatch({limit:35}),/Unsafe provider request budget/);
+
 console.log('Automatic race desk seeds, near-50 discovery, dynamic ranking, archival isolation PASS');

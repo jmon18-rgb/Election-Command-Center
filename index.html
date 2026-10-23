@@ -1253,7 +1253,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_fast_lane.js?v=674907b614c3"></script>
 <script src="./scripts/election_night_nowcast.js?v=fa5349790084"></script>
 <script src="./scripts/election_night_early_signals.js?v=7691146833ec"></script>
-<script src="./scripts/election_night_priority.js?v=e1c697ce43d8"></script>
+<script src="./scripts/election_night_priority.js?v=c339d5954c12"></script>
 <script src="./scripts/election_night_signals.js?v=c00851de5109"></script>
 <script src="./scripts/election_night_reconciliation.js?v=ab854d43b198"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
@@ -3014,6 +3014,9 @@ const smartRosterFilters={smartBrief:'All',smartNight:'All'};
 const smartShowFullRoster={smartBrief:false,smartNight:false};
 const WAVE_SAFE_FAVORITE_CUTOFF=95;
 function smartFocusInteresting(item){
+ // Senate elections drive chamber control, even when their modeled odds
+ // clear 95%. Keep the complete validated Senate roster in the default desk.
+ if(item?.office==='Senate')return true;
  const p=item?.model?.dem_beats_rep_pct;
  // Source-confirmed odds, never a made-up number. Safe D and safe R seats
  // are equally omitted from the pressure-point default.
@@ -3270,7 +3273,7 @@ function renderSmartRaceDesks(){
   const fullToggle=$('#'+prefix+'ShowAll');
   if(fullToggle){
    fullToggle.setAttribute('aria-pressed',String(showAll));
-   fullToggle.textContent=showAll?'Show competitive only':'Show full roster';
+   fullToggle.textContent=showAll?'Show Senate + competitive House':'Show full roster';
   }
   const controls=$('#'+prefix+'Controls');
   if(controls)for(const button of controls.querySelectorAll('button[data-smart-office]')){
@@ -3317,13 +3320,13 @@ function renderSmartRaceDesks(){
   host.scrollTop=previousScroll;
   const summary=$('#'+prefix+'Count');
   if(summary)summary.textContent=rows.length+' shown · '+
-   (showAll?'full tracked roster':search?'searching full roster':'competitive focus')+
+   (showAll?'full tracked roster':search?'searching full roster':'Senate + competitive focus')+
    ' · '+counts.Senate+' Senate / '+counts.House+' House / '+
    counts.Governor+' governors'+
-   (!showAll&&!search?' · '+safeCount+' races at ≥95% omitted':'')+
+   (!showAll&&!search?' · '+safeCount+' non-Senate races at ≥95% omitted':'')+
    (search?' · search “'+search+'”':'')+'.';
   const note=$('#'+(night?'smartNightNote':'smartBriefNote'));
-  if(note)note.textContent='Competitive focus omits races with modeled win chances ≥95% for either party. '+
+  if(note)note.textContent='All 35 Senate contests remain visible by default. The House and governor focus omits races with modeled win chances ≥95% for either party. '+
    'Races without model odds remain visible if Senate-wide or supported by current polling/results. '+
    'Search finds any tracked race, and Show full roster restores every tracked Senate, House and governor entry. '+
    'This is a display filter, not a change to odds, provider polling or control forecasts. '+
@@ -5066,7 +5069,8 @@ $('#enMilestoneClose').addEventListener('click',()=>{
 });
 
 let enCivicByWatch=Object.create(null),enCivicRaceIds=Object.create(null),
- enCivicErrors=Object.create(null),enCivicPending=new Set(),enCivicLastSweep=0,enCivicSweepCursor=0,
+ enCivicErrors=Object.create(null),enCivicPending=new Set(),enCivicLastSweep=0,
+ enCivicSweepCursors={senate:0,house:0,other:0},
  enCivicExpanded=new Set(),enCivicSweepInFlight=false,enCivicActiveSweeps=0,
  enCivicPendingTasks=Object.create(null),enCivicSweepTasks=new Set(),
  enCivicLastAttemptAt=Object.create(null);
@@ -5356,16 +5360,14 @@ async function enCivicRefreshFastLane(){
   blocked:Boolean(enCivicBreaker?.status().blocked),
   now:Date.now()
  }))return;
- // Interleave high-signal Senate and House seats. Senate-first seed order
- // would otherwise consume all four requests and strand key House races.
+ // Three Senate and one Silver-seeded House slot are prioritized once
+ // real tallies arrive. If a race has no validated positive votes, the
+ // fast-lane picker skips it and fills from lower-ranked active contests.
  const seed=smartAutoWatch();
  const senate=seed.filter(x=>x.office==='Senate'&&Number(x.tip)>=7);
  const house=seed.filter(x=>x.office==='House'&&Number(x.tip)>=2);
- const automatic=[];
- for(let i=0;i<Math.max(senate.length,house.length);i++){
-  if(senate[i])automatic.push(senate[i]);
-  if(house[i])automatic.push(house[i]);
- }
+ const automatic=[...senate.slice(0,3),...house.slice(0,1),
+  ...senate.slice(3),...house.slice(1)];
  const selected=lane.pick({personal:enWatched,automatic,
   reported:enCivicByWatch,lastAttempt:enCivicLastAttemptAt,
   primaryStates:enSupportedStates,now:Date.now()});
@@ -5424,17 +5426,19 @@ async function enRefreshCivicWatchlist(force=false){
     .filter(x=>!enSupportedStates.has(x.key.slice(0,2))||enMilestoneTracked(x))
     .map(x=>[enWatchId(x),x])).values()];
   if(!all.length)return;
-  // Rotating sweep includes entries beyond the first twelve across cycles.
-  const start=enCivicSweepCursor%all.length;
-  const limit=Math.min(12,all.length);
-  const rotation=Array.from({length:limit},(_,i)=>all[(start+i)%all.length]);
-  enCivicSweepCursor=(start+limit)%all.length;
-  // Keep hot reference watches in the 12-race bounded cycle, leaving the
-  // remainder for round-robin discovery across supplemental source states.
-  const focus=smartAutoWatch().filter(x=>x.tip>=7&&
-   !enSupportedStates.has(x.key.slice(0,2))).slice(0,4);
-  const selected=[...new Map([...focus,...rotation]
-   .map(x=>[enWatchId(x),{office:x.office,key:x.key}])).values()].slice(0,12);
+  // Reserve bounded slots for high-impact Senate races, the complete
+  // validated Senate inventory, and Silver-seeded / model-discovered House.
+  // Unlike the previous cursor (which advanced past omitted candidates),
+  // the independent cursors cannot permanently skip lower-priority races.
+  const reference=new Map(smartAutoWatch().map(x=>[enWatchId(x),x]));
+  const enriched=all.map(x=>({...x,tip:reference.get(enWatchId(x))?.tip??null}));
+  const scan=window.AutomaticRaceDesk?.sourceBatch({
+   personal:enWatched,candidates:enriched,primaryStates:[],
+   cursor:enCivicSweepCursors,limit:12
+  });
+  if(!scan)return;
+  enCivicSweepCursors=scan.next;
+  const selected=scan.items.map(x=>({office:x.office,key:x.key}));
   // An explicit manual refresh prioritizes personally pinned races;
   // background cycles retain round-robin fairness across 35 Senate seats.
   const pinned=force?enWatched.filter(x=>
