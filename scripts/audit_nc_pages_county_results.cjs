@@ -78,6 +78,29 @@ function inspectSource(config,snapshot,now=Date.now()){
   archive_sha256:gate.sha256,
   may_move_national_needle:false};
 }
+/* Compare the deployed ZIP revision to the latest approved data on main.
+ * Static Pages may legitimately lag a new source commit for a few minutes;
+ * never silently accept a permanently stuck deployment.
+ */
+function compareApprovedHead(localConfig,localSnapshot,remoteConfig,remoteSnapshot,now=Date.now()){
+ if(localConfig?.enabled!==true)return {status:'APPROVAL_NOT_ENABLED'};
+ assert(localSnapshot&&localConfig.expected?.mode==='nc-candidate-only',
+  'Main has enabled NC county reporting without an approved candidate snapshot');
+ const localTime=Date.parse(localSnapshot.archive_checked_at||'');
+ assert(Number.isFinite(localTime),'Main approved snapshot timestamp absent');
+ const remoteTime=Date.parse(remoteSnapshot?.archive_checked_at||'');
+ const matching=remoteConfig?.enabled===true&&remoteSnapshot&&
+  remoteConfig.expected?.verified_archive_sha256===
+   localConfig.expected.verified_archive_sha256&&
+  remoteTime>=localTime;
+ if(matching)return {status:'PUBLISHED_APPROVED_HEAD',deployment_lag_minutes:0};
+ const age=now-localTime;
+ assert(age>=-15*60000,'Approved local source timestamp is in the future');
+ assert(age<20*60000,
+  'GitHub Pages has not deployed the approved county ZIP revision after 20 minutes');
+ return {status:'PAGES_CATCHING_UP',deployment_lag_minutes:Math.round(age/60000)};
+}
+
 async function networkLoad(url){
  let err;
  for(let attempt=0;attempt<3;attempt++){
@@ -111,8 +134,18 @@ async function auditDeployment(remote){
  await Promise.all(INDEX_FILES.map(async f=>{scripts[f]=await loadText(f,remote)}));
  const scriptChecks=inspectScripts(html,scripts);
  const results=inspectSource(config,snapshot);
+ let approvalRevision={status:'LOCAL_CHECKOUT_ONLY'};
+ if(remote){
+  const approvedConfig=JSON.parse(fs.readFileSync(path.join(root,
+   'data/nc_county_results_desk_config.json'),'utf8'));
+  const approvedSnapshot=approvedConfig.enabled===true?
+   JSON.parse(fs.readFileSync(path.join(root,
+    'data/nc_candidate_votes_2026.json'),'utf8')):null;
+  approvalRevision=compareApprovedHead(approvedConfig,approvedSnapshot,
+   config,snapshot);
+ }
  return {checked_at:new Date().toISOString(),scope:remote?'PUBLISHED_GITHUB_PAGES':'LOCAL_CHECKOUT',
-  ...results,script_checks:scriptChecks,
+  ...results,approved_head_comparison:approvalRevision,script_checks:scriptChecks,
   site:remote?SITE:undefined};
 }
 if(require.main===module){
@@ -123,4 +156,4 @@ if(require.main===module){
   process.exitCode=1;
  });
 }
-module.exports={inspectScripts,inspectSource,auditDeployment,gitRevision,INDEX_FILES};
+module.exports={inspectScripts,inspectSource,compareApprovedHead,auditDeployment,gitRevision,INDEX_FILES};
