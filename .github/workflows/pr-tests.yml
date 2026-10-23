@@ -33,6 +33,8 @@ jobs:
         run: |
           node --check scripts/validate_substate_poll_signals.cjs
           node scripts/validate_substate_poll_signals.cjs
+      - name: Block fraudulent and unverified pollsters across all ingestion routes
+        run: python3 scripts/test_pollster_exclusions.py
       - name: Keep new polls in the actual polling and forecast inputs
         run: |
           python3 scripts/test_poll_source_reconciliation.py
