@@ -1258,6 +1258,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_county_results_desk.js?v=020e1ab89c67"></script>
 <script src="./scripts/nc_official_candidate_votes.js?v=bbc20089c420"></script>
 <script src="./scripts/nc_county_results_desk_startup.js?v=6c82b042929d"></script>
+<script src="./scripts/election_night_openamerica_transport.js?v=622dae420e71"></script>
 <script src="./scripts/election_night_transport.js?v=76a458acbece"></script>
 <script src="./scripts/election_night_fast_lane.js?v=674907b614c3"></script>
 <script src="./scripts/election_night_nowcast.js?v=b3f1c7e9c4a6"></script>
@@ -2903,6 +2904,9 @@ let enOffice='House',enData=null,enSelected=null,enTimer=null,enRequestSerial=0,
 let enFetchError=null,enLastFetchAt=null,enMovements=[],enFailures=0,enArchiveSource='medsl';
 let enResumePendingOffices=new Set(),enRestoredAt=null;
 const enRemoteBase='https://openamerica.io/elections/results.json';
+// Reuse only IN-FLIGHT reads; never promote cached results after an outage.
+const enOpenAmericaReader=window.ElectionNightOpenAmericaTransport.create(
+ (url,options)=>fetch(url,options));
 /* A personal, browser-local 2026 viewing list. No account, server upload,
  * candidate inference, or old-district-to-new-district mapping. */
 const enWatchStorageKey='bluewaves_election_watch_2026_v1';
@@ -6317,12 +6321,7 @@ async function enRefreshWatchedOffices(exceptOffice){
   if(enWatchRefreshPending.has(office))return;
   enWatchRefreshPending.add(office);
   try{
-   const response=await fetch(enFetchUrl(2026,office),{
-      mode:'cors',credentials:'omit',cache:'no-store',
-      headers:{Accept:'application/json'}
-   });
-   if(!response.ok)throw Error('HTTP '+response.status);
-   const obj=await response.json();
+   const obj=await enOpenAmericaReader.load(enFetchUrl(2026,office));
    if(!enSourceValid(obj,2026,office))throw Error('Unrecognized vote source');
    if(enModeYear!==2026||!enIsVisible())return;
    const old=enOfficeSnapshots[office]||null;
@@ -6372,12 +6371,7 @@ async function enLoad(manual=false){
   let obj;
   if(year===2026||(year===2024&&enArchiveSource==='state')){
    // Fetch directly from the source, not a republished cache.
-   const response=await fetch(enFetchUrl(year,office),{
-      mode:'cors',credentials:'omit',cache:'no-store',
-      headers:{Accept:'application/json'}
-   });
-   if(!response.ok)throw Error('Open America results HTTP '+response.status);
-   obj=await response.json();
+   obj=await enOpenAmericaReader.load(enFetchUrl(year,office));
   }else if(year===2024&&['House','Senate'].includes(office)){
    const filename=office==='House'?'house_history_2024_staging.json':'senate_history_2020_2022_2024.json';
    const response=await fetch('./data/'+filename,{cache:'no-store'});

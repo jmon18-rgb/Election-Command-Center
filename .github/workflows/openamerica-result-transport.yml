@@ -1,0 +1,26 @@
+name: Verify primary election-night result transport
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'scripts/election_night_openamerica_transport.js'
+      - 'scripts/test_election_night_openamerica_transport.cjs'
+      - '.github/workflows/openamerica-result-transport.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-transport:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify HTTPS source identity, browser ETag cache and in-flight coalescing
+        run: |
+          node --check scripts/election_night_openamerica_transport.js
+          node scripts/test_election_night_openamerica_transport.cjs
+          node scripts/test_election_night_transport.cjs
+          node scripts/test_election_night_fast_lane.cjs

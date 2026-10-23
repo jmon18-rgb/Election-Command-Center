@@ -123,6 +123,9 @@ async function settle(){
  w.eval(read('scripts/election_night_transport.js'));
  assert(w.ElectionNightTransport?.createPool,
   'One shared four-request source pool must load before the real dashboard');
+ w.eval(read('scripts/election_night_openamerica_transport.js'));
+ assert(w.ElectionNightOpenAmericaTransport?.create,
+  'Primary Open America reader must load before inline Election Night script');
  w.eval(read('scripts/election_night_fast_lane.js'));
  assert.equal(w.ElectionNightFastLane?.MAX_RACES,4,
   'The fast lane must cap extra Election Night race checks to four per tick');
