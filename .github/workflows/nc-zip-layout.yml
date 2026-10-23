@@ -1,0 +1,21 @@
+name: Audit official NC results ZIP layout
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/audit_nc_official_zip_layout.py'
+      - '.github/workflows/nc-zip-layout.yml'
+permissions:
+  contents: read
+jobs:
+  zip-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          python3 scripts/test_audit_nc_official_zip_layout.py
+          python3 scripts/audit_nc_official_zip_layout.py
