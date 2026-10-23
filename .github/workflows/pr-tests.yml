@@ -417,7 +417,7 @@ jobs:
           node scripts/audit_bottom_up_national_environment.cjs --write
       - name: Install DOM test environment
         run: npm install --no-save --no-package-lock --ignore-scripts jsdom@26.1.0
-      - name: Check JavaScript syntax and exercise actual dashboard
+      - name: Verify NC official precinct-to-county aggregator\n        run: python3 scripts/test_aggregate_nc_official_precinct_votes.py\n      - name: Check JavaScript syntax and exercise actual dashboard
         run: |
           node --check scripts/geographic_returns_2026.js
           node scripts/test_geographic_returns_2026.cjs
