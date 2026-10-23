@@ -12,6 +12,7 @@ import math
 import re
 from collections import defaultdict
 from poll_firm_wave_selection import select_latest_firm_waves
+from poll_source_exclusions import is_excluded_pollster
 from datetime import date, datetime, timezone
 from pathlib import Path
 
@@ -97,7 +98,7 @@ def estimate(race, today, generic=False):
         try:
             day=date.fromisoformat(p["field_end"])
             age=(today-day).days
-            if not 0 <= age <= (30 if generic else WINDOW) or not numeric(p) or (p.get("pollster") or "").casefold() in EXCLUSIONS:
+            if not 0 <= age <= (30 if generic else WINDOW) or not numeric(p) or is_excluded_pollster(p.get("pollster")):
                 continue
             if generic:
                 key=("Generic Democratic","Generic Republican")
