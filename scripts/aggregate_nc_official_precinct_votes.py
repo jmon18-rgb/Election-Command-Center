@@ -6,7 +6,7 @@ Expected 2024 source schema was audited against real official ZIP in PR #213.
 """
 import csv,io
 REQUIRED={"County","Election Date","Precinct","Contest Group ID",
- "Contest Type","Contest Name","Choice","Choice Party","Total Votes"}
+ "Contest Type","Contest Name","Choice","Choice Party","Total Votes",\n "Election Day","Early Voting","Absentee by Mail","Provisional","Vote For"}
 def aggregate(tsv,*,date,contest,county_fips):
  if not isinstance(tsv,str) or not isinstance(county_fips,dict) or not contest:
   raise ValueError("invalid input")
