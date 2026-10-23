@@ -27,7 +27,7 @@ OFFICIAL_DATE = "2022-11-08"
 # results dashboard: https://er.ncsbe.gov/?election_dt=11%2F08%2F2022
 OFFICIAL_SENATE_TOTALS = {"DEM": 1_784_049, "REP": 1_905_786}
 # Must be reviewed against the publicly observed archive before activation.
-PINNED_SHA256 = None
+PINNED_SHA256 = "2024bf67243ef173f54e625c3bace4c8b6f80947fa7d67df26796c2c85d3e9f1"
 
 
 def inspect_original(payload, fips, pinned_sha=None):

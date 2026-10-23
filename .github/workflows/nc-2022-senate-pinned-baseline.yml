@@ -1,0 +1,43 @@
+name: Verify pinned official 2022 NC Senate 100-county baseline
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/run_nc_2022_senate_historical_replay.py'
+      - 'scripts/audit_nc_2022_senate_web_baseline.py'
+      - 'scripts/test_audit_nc_2022_senate_web_baseline.py'
+      - 'data/nc_2022_senate_county_verified.csv'
+      - '.github/workflows/nc-2022-senate-pinned-baseline.yml'
+permissions:
+  contents: read
+jobs:
+  replay-certified-history:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check source pins and county-by-county tampering guards
+        run: |
+          python3 -m py_compile scripts/run_nc_2022_senate_historical_replay.py
+          python3 -m py_compile scripts/audit_nc_2022_senate_web_baseline.py
+          python3 scripts/test_audit_nc_2022_senate_web_baseline.py
+          python3 scripts/test_nc_2022_senate_historical_replay.py
+      - name: Download original 2022 NCSBE ZIP and compare exact reviewed SHA
+        run: |
+          python3 scripts/run_nc_2022_senate_historical_replay.py \
+            --output /tmp/nc_2022_senate_pinned_original.json
+      - name: Reconcile all 100 published county rows to original ZIP
+        run: |
+          python3 scripts/audit_nc_2022_senate_web_baseline.py \
+            --published-csv data/nc_2022_senate_county_verified.csv \
+            --replay /tmp/nc_2022_senate_pinned_original.json
+      - name: Keep reviewed historical source evidence separate from live returns
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nc-2022-senate-100-county-pinned-source
+          path: /tmp/nc_2022_senate_pinned_original.json
+          retention-days: 45
