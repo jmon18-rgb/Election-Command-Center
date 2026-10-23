@@ -28,7 +28,7 @@ must_have = (
     'function pollPostedStamp(p)',
     "pollPostedStamp(b).localeCompare(pollPostedStamp(a))",
     "data/model_history.json",
-    "function renderRacePulse(data)",
+    "function renderRacePulse(data",
     "Polling leader changed",
     "Biggest polling movement",
     "No meaningful movement",

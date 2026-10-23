@@ -2164,13 +2164,13 @@ function navigateInsightToModel(item){
  if(target?.scrollIntoView)target.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
-function renderRacePulse(data){
+function renderRacePulse(data,{history=modelHistoryData,postedSource=postedPollingSnapshot}={}){
  const host=$('#racePulse');if(!host)return;host.replaceChildren();
  const stamp=data?.generated_at?new Date(data.generated_at):new Date();
  const current=[...(data?.senate_all||[]),...(data?.house||[]),...(data?.governor||[])];
  const usable=current.filter(r=>['multi_poll','single_poll'].includes(r.status)&&Number.isFinite(r.dem_minus_rep));
  const byCode=new Map(usable.map(r=>[r.race_code,r]));
- const historyRows=(modelHistoryData?.snapshots||[]).filter(h=>h?.races?.length&&Date.parse(h.at)<=+stamp);
+ const historyRows=(history?.snapshots||[]).filter(h=>h?.races?.length&&Date.parse(h.at)<=+stamp);
  // Prefer a 24-hour comparison; if history hasn't accumulated enough yet, use
  // a prior refresh only if it is at least three hours old, never invent one.
  const priorDay=historyRows.filter(h=>Date.parse(h.at)<=+stamp-24*3600000).at(-1);
@@ -2235,7 +2235,7 @@ function renderRacePulse(data){
  }
  // A recently posted poll in a closely polled race is a legitimate new
  // development, even while the history file is too young to show movement.
- const posted=(postedPollingSnapshot?.observations||[]).filter(p=>{
+ const posted=(postedSource?.observations||[]).filter(p=>{
     const age=Date.now()-Date.parse((p.posted_date||'')+'T12:00:00Z');
     const r=byCode.get(p.race_code);
     return age>=-12*3600000 && age<=48*3600000 &&
