@@ -1,0 +1,21 @@
+name: Inspect NC election index and download template
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/probe_nc_election_download_selection.py'
+      - '.github/workflows/nc-election-selection.yml'
+permissions:
+  contents: read
+jobs:
+  index-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          python3 scripts/test_probe_nc_election_download_selection.py
+          python3 scripts/probe_nc_election_download_selection.py
