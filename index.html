@@ -6453,9 +6453,42 @@ enWakeButton.addEventListener('click',()=>{
   enWakeMessage.textContent='Wake lock off · laptop may sleep';
  }
 });
+// Recover the full live source cycle promptly when a laptop wakes, Wi-Fi
+// returns, or a suspended foreground timer resumes. Timers are not guaranteed
+// to fire while Windows/macOS sleeps. Never infer new votes from the pause.
+function enReconnectGap(last,now){
+ return Number.isFinite(last)&&Number.isFinite(now)&&now>=last&&now-last>=120000;
+}
+let enLastLiveHeartbeat=Date.now(),enLastReconnect=0;
+function enReconnectAfterInterruption(force=false){
+ const now=Date.now(),gap=enReconnectGap(enLastLiveHeartbeat,now);
+ enLastLiveHeartbeat=now;
+ if(!force&&!gap)return false;
+ if(enModeYear!==2026||!enIsVisible()||
+    document.visibilityState!=='visible'||
+    now<Date.parse('2026-11-03T05:00:00Z')||
+    now-enLastReconnect<30000)return false;
+ enLastReconnect=now;
+ const status=$('#enStatus');
+ if(status)status.textContent='RECONNECTING · verifying fresh House, Senate and governor source results…';
+ // enLoad independently refreshes the other primary offices and the
+ // supplemental exact-race queue, including after its own request fails.
+ // A generation check discards older in-flight responses.
+ void enLoad(true);
+ return true;
+}
 document.addEventListener('visibilitychange',()=>{
- if(enWakeWanted&&document.visibilityState==='visible')void enSyncWake();
+ if(document.visibilityState==='visible'){
+  if(enWakeWanted)void enSyncWake();
+  enReconnectAfterInterruption(true);
+ }
 });
+window.addEventListener('online',()=>enReconnectAfterInterruption(true));
+window.addEventListener('pageshow',()=>enReconnectAfterInterruption(true));
+window.addEventListener('focus',()=>enReconnectAfterInterruption());
+// A monotonic-enough wall-clock gap flags timer suspension on wake even
+// when the operating system does not dispatch an online/focus event.
+setInterval(()=>{enReconnectAfterInterruption()},60000);
 
 $('#enMode2026').addEventListener('click',()=>enSwitch(2026,enOffice));
 $('#enMode2024').addEventListener('click',()=>enSwitch(2024,enOffice));
