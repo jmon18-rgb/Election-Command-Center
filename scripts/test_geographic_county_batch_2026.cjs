@@ -19,7 +19,8 @@ assert.equal(second.updates.length,1);
 assert.equal(second.rows[id].ballots_reported,150);
 assert.equal(initial.rows[id].ballots_reported,100);
 const other={...row,county_id:'37003',provider_race_id:'race-nc'};
-const mixed=process(second.rows,[other,{...update,ballots_reported:50,
+const mixed=process(second.rows,[other,{...update,ballots_reported:90,
+ candidates:[{name:'D person',party:'D',votes:45},{name:'R person',party:'R',votes:45}],
  updated_at:'2026-11-04T00:12:00Z'}]);
 assert.equal(mixed.updates.length,1);
 assert.equal(mixed.rejected[0].reason,'UNMARKED_DECREASE');
