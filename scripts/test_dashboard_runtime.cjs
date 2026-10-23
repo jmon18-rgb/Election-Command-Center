@@ -1471,8 +1471,11 @@ async function settle(){
  // governor office identity and source-specific drilldown are validated above.
  const synthetic={generated_at:model.generated_at,senate_all:[txSen],house:[],
   governor:[txGov],generic_ballot:{status:'insufficient_data'}};
- w.eval('modelHistoryData=null;postedPollingSnapshot=null;renderRacePulse('+
-  JSON.stringify(synthetic)+')');
+ // Supply an isolated empty evidence context. Do not reassign variables
+ // declared in the separately evaluated application script: that does not
+ // reliably mutate its lexical bindings and can create fake test failures.
+ w.eval('renderRacePulse('+JSON.stringify(synthetic)+
+  ',{history:null,postedSource:null})');
  const syntheticPulse=[...get('#racePulse').querySelectorAll('button.pulse-tile')];
  assert.equal(syntheticPulse.length,0,
   'No comparison history/new poll should yield no fabricated polling insight');
