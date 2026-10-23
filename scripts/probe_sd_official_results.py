@@ -11,9 +11,40 @@ import sys
 import urllib.request
 from datetime import datetime, timezone
 from html import unescape
+from html.parser import HTMLParser
+from urllib.parse import urljoin, urlsplit
 
-URL = "https://electionresults.sd.gov/ResultsMedia.aspx"
+URL = "https://electionresults.sd.gov/ResultsExport.aspx"
 ELECTION_CLOSE_UTC = datetime(2026, 11, 4, 2, 0, tzinfo=timezone.utc)
+
+
+class ExportLinks(HTMLParser):
+    """Discover actual export hrefs only; never synthesize file endpoints."""
+    def __init__(self):
+        super().__init__()
+        self.links = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag != "a":
+            return
+        attrs = dict(attrs)
+        href = attrs.get("href", "")
+        if not href:
+            return
+        absolute = urljoin(URL, unescape(href))
+        parts = urlsplit(absolute)
+        if (parts.scheme == "https"
+                and parts.hostname == "electionresults.sd.gov"
+                and (parts.path.lower().endswith((".csv", ".xlsx"))
+                     or "export" in parts.path.lower() and parts.path.lower() != "/resultsexport.aspx")
+                and absolute not in self.links):
+            self.links.append(absolute)
+
+
+def discover_export_links(html):
+    parser = ExportLinks()
+    parser.feed(html or "")
+    return parser.links[:20]
 
 
 def assess(html, now=None):
@@ -33,6 +64,7 @@ def assess(html, now=None):
     else:
         reason = "EXPORT_CONTRACT_NOT_VERIFIED"
     return {"source": URL, "race": "SD-00", "status": reason,
+            "candidate_export_links": discover_export_links(html),
             "production_votes_usable": False, "export_verified": False,
             "votes": None, "winner_call": None}
 
