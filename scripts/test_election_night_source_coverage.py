@@ -53,6 +53,37 @@ class CoverageLedgerTests(unittest.TestCase):
         self.assertNotIn("Governor|NJ", rows)
         self.assertIn("Governor|NH", rows)
 
+    def test_every_senate_race_source_identity_never_implies_live_votes(self):
+        """All 35 exact seats must retain honest readiness labels."""
+        report = self.ledger()
+        senate = [r for r in report["races"] if r["office"] == "Senate"]
+        self.assertEqual(len(senate), 35)
+        self.assertEqual(len({r["key"] for r in senate}), 35)
+        expected = {
+            "PRIMARY_PROVIDER_STATE_SCOPE": 15,
+            "PINNED_PREVIOUSLY_VERIFIED_ID": 17,
+            "SCOPED_ADAPTER_NO_PINNED_ID": 1,
+            "NO_CURATED_PROVIDER_ID": 2,
+        }
+        counts = {status: sum(r["source_identity_status"] == status for r in senate)
+                  for status in expected}
+        self.assertEqual(counts, expected)
+        self.assertEqual({r["key"] for r in senate
+                          if r["source_identity_status"] == "NO_CURATED_PROVIDER_ID"},
+                         {"MA", "MS"})
+        self.assertEqual([r["key"] for r in senate
+                          if r["source_identity_status"] == "SCOPED_ADAPTER_NO_PINNED_ID"],
+                         ["NH"])
+        for row in senate:
+            self.assertFalse(row["live_votes_verified_by_audit"], row["id"])
+            self.assertFalse(row["professional_winner_call_verified_by_audit"], row["id"])
+            self.assertNotEqual(row["gap_status"], "LIVE_RESULTS_VERIFIED", row["id"])
+            if row["source_identity_status"] == "PINNED_PREVIOUSLY_VERIFIED_ID":
+                self.assertIsInstance(row["pinned_civicapi_id"], int)
+                self.assertGreater(row["pinned_civicapi_id"], 0)
+            else:
+                self.assertIsNone(row["pinned_civicapi_id"])
+
     def test_curated_and_scoped_sources_not_live_claims(self):
         rows = self.rows(self.ledger())
         self.assertEqual(rows["Senate|AK"]["pinned_civicapi_id"], 86916)
