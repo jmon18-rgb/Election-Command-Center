@@ -4,6 +4,11 @@ on:
     branches: [main]
 permissions:
   contents: read
+# Superseded PR revisions should not continue expensive tests or send
+# duplicate failed-run alerts after newer code has replaced them.
+concurrency:
+  group: pr-validation-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   validation:
     runs-on: ubuntu-latest
