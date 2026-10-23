@@ -427,5 +427,9 @@ jobs:
           node scripts/test_geographic_swing_bridge_2026.cjs
           node --check scripts/geographic_county_batch_2026.js
           node scripts/test_geographic_county_batch_2026.cjs
+          node --check scripts/verified_county_source_contract_2026.js
+          node scripts/test_verified_county_source_contract_2026.cjs
+          node --check scripts/county_source_ingestion_2026.js
+          node scripts/test_county_source_ingestion_2026.cjs
           node --check scripts/test_dashboard_runtime.cjs
           node scripts/test_dashboard_runtime.cjs
