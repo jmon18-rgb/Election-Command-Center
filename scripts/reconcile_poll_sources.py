@@ -15,6 +15,7 @@ import re
 from collections import defaultdict
 from urllib.parse import urlparse
 import race_poll_coverage
+from poll_source_exclusions import is_excluded_pollster
 
 FALLBACK_SOURCE = "pollresults_secondary_fallback"
 VALID_OFFICES = {"senate", "house", "governor"}
@@ -40,7 +41,7 @@ def in_scope(poll, race, today):
             poll.get("race_type") != race.get("race_type") or
             race.get("race_type") not in VALID_OFFICES):
         return False
-    if not poll.get("poll_id") or not poll.get("pollster"):
+    if not poll.get("poll_id") or not poll.get("pollster") or is_excluded_pollster(poll.get("pollster")):
         return False
     if not direct_url(poll.get("source_url") or poll.get("source_poll_url")):
         return False
@@ -112,6 +113,7 @@ def preferred_lv_variant(race, old, candidates, today):
 
 def candidate_observations(primary, observations, today):
     """Pick one eligible missing observation per exact race/poll ID."""
+    observations = [p for p in observations if isinstance(p, dict) and not is_excluded_pollster(p.get("pollster"))]
     by_race = {r["race_code"]:r for r in primary.get("races", [])}
     # The validation route must see newly eligible races even BEFORE merge,
     # so a missing race cannot slip past an eligibility check.
@@ -149,6 +151,7 @@ def merge(primary, observations, today, observed_at=None):
     """Update primary snapshot and return an explicit attribution report."""
     if not isinstance(today, dt.date):
         raise ValueError("Explicit reconciliation date required")
+    observations = [p for p in observations if isinstance(p, dict) and not is_excluded_pollster(p.get("pollster"))]
     report = {"new_to_model":0, "enriched_existing":0, "lv_upgrades":0,
               "added_ids":[], "added_by_race":{}, "created_races":[]}
     # A new House/Senate/governor poll may reach PollResults first, before
