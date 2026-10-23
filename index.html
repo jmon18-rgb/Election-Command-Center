@@ -3014,6 +3014,9 @@ const smartRosterFilters={smartBrief:'All',smartNight:'All'};
 const smartShowFullRoster={smartBrief:false,smartNight:false};
 const WAVE_SAFE_FAVORITE_CUTOFF=95;
 function smartFocusInteresting(item){
+ // Senate elections drive chamber control, even when their modeled odds
+ // clear 95%. Keep the complete validated Senate roster in the default desk.
+ if(item?.office==='Senate')return true;
  const p=item?.model?.dem_beats_rep_pct;
  // Source-confirmed odds, never a made-up number. Safe D and safe R seats
  // are equally omitted from the pressure-point default.
@@ -5357,16 +5360,14 @@ async function enCivicRefreshFastLane(){
   blocked:Boolean(enCivicBreaker?.status().blocked),
   now:Date.now()
  }))return;
- // Interleave high-signal Senate and House seats. Senate-first seed order
- // would otherwise consume all four requests and strand key House races.
+ // Three Senate and one Silver-seeded House slot are prioritized once
+ // real tallies arrive. If a race has no validated positive votes, the
+ // fast-lane picker skips it and fills from lower-ranked active contests.
  const seed=smartAutoWatch();
  const senate=seed.filter(x=>x.office==='Senate'&&Number(x.tip)>=7);
  const house=seed.filter(x=>x.office==='House'&&Number(x.tip)>=2);
- const automatic=[];
- for(let i=0;i<Math.max(senate.length,house.length);i++){
-  if(senate[i])automatic.push(senate[i]);
-  if(house[i])automatic.push(house[i]);
- }
+ const automatic=[...senate.slice(0,3),...house.slice(0,1),
+  ...senate.slice(3),...house.slice(1)];
  const selected=lane.pick({personal:enWatched,automatic,
   reported:enCivicByWatch,lastAttempt:enCivicLastAttemptAt,
   primaryStates:enSupportedStates,now:Date.now()});
