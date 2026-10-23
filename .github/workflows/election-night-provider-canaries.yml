@@ -1,0 +1,50 @@
+name: Preflight election-night results providers
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/preflight_election_night_providers.py'
+      - 'scripts/test_preflight_election_night_providers.py'
+      - '.github/workflows/election-night-provider-canaries.yml'
+  schedule:
+    # Keep request volume small outside Election Night.
+    - cron: '25 14 * * *'
+    # Approaching the November 3 polls and during overnight counting.
+    - cron: '0,30 22-23 3 11 *'
+    - cron: '0,30 0-10 4 11 *'
+permissions:
+  contents: read
+jobs:
+  offline-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Source schema, CORS, date and unsupported race call tests
+        run: |
+          python3 -m py_compile scripts/preflight_election_night_providers.py
+          python3 scripts/test_preflight_election_night_providers.py
+  public-endpoint-probes:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: offline-contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Probe actual Open America offices and pinned civicAPI race endpoints
+        run: |
+          python3 scripts/preflight_election_night_providers.py --probe --output /tmp/provider-preflight.json
+      - name: Save source availability, CORS and response-schema evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: election-night-provider-preflight
+          path: /tmp/provider-preflight.json
+          retention-days: 14
+          if-no-files-found: ignore
