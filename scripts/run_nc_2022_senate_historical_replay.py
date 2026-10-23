@@ -34,6 +34,7 @@ def inspect_original(payload, fips, pinned_sha=None):
     if not isinstance(payload, bytes) or not 0 < len(payload) <= 95_000_000:
         raise ValueError("Missing or oversized real official 2022 ZIP")
     actual = hashlib.sha256(payload).hexdigest()
+    print('NC2022_OBSERVED_ZIP_SHA256',actual,flush=True)
     if pinned_sha is not None and actual != pinned_sha:
         raise ValueError("Actual 2022 ZIP differs from independently reviewed SHA")
     with zipfile.ZipFile(io.BytesIO(payload)) as archive:
@@ -45,6 +46,9 @@ def inspect_original(payload, fips, pinned_sha=None):
         raw = archive.read(MEMBER).decode("utf-8-sig")
     possible=set()
     reader=csv.DictReader(io.StringIO(raw), delimiter="\t")
+    print('NC2022_ORIGINAL_HEADER',json.dumps(reader.fieldnames),flush=True)
+    example=next(iter(csv.DictReader(io.StringIO(raw), delimiter="\\t")),None)
+    print('NC2022_FIRST_ROW',json.dumps(example)[:1400],flush=True)
     for row in reader:
         name=(row.get("Contest Name") or "").strip()
         if (row.get("Election Date")=="11/08/2022" and
