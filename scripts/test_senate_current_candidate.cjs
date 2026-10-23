@@ -86,9 +86,15 @@ const shared=current.assumptions,sharedSigma=Math.hypot(shared.common_national_s
 assert.equal(current.senate_current_context.polled_race_total_sigma_floor,6.5);
 assert.equal(current.senate_current_context.thin_stale_or_special_poll_total_sigma_floor,8.5);
 assert.equal(current.senate_current_context.deep_special_poll_total_sigma_floor,7.5);
-for(const [code,weight] of [['TX-SEN',.97],['OH-SEN',.94]]){
+// Poll coverage changes as actual firms publish new surveys. Determine the
+// expected depth weight from the CURRENT validated source, never an expired
+// historical Ohio fixture count.
+for(const code of ['TX-SEN','OH-SEN']){
  const r=current.senate.find(x=>x.code===code);
- assert.equal(r.poll_weight,weight,'Deep independent polls should supersede the generic geographic prior: '+code);
+ const firmCount=source.odds.records.find(x=>x.office==='senate'&&x.race_code===code)?.independent_firms;
+ assert(Number.isInteger(firmCount)&&firmCount>=0,'Missing firm-depth evidence: '+code);
+ const weight=firmCount>=8?.97:firmCount>=5?.94:firmCount>=3?.90:firmCount===2?.83:.60;
+ assert.equal(r.poll_weight,weight,'Poll depth and geographic prior weighting disagree: '+code);
 }
 const ohio=current.senate.find(x=>x.code==='OH-SEN');
 assert.equal(ohio.special,true);
