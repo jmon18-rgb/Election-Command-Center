@@ -25,7 +25,12 @@
    const snapshotResponse=await root.fetch(config.snapshot_path,{cache:'no-store'});
    if(!snapshotResponse.ok)throw Error('Approved county snapshot unavailable');
    const snapshot=await snapshotResponse.json();
-   desk.render(host,desk.prepare(snapshot,config.expected),root.document);
+   // Source-native ZIP candidate counts have no ballots denominator. They
+   // use a separate contract and renderer from verified ballots-processed feeds.
+   const zipOnly=config.expected.mode==='nc-candidate-only';
+   const selected=zipOnly?root.NcOfficialCandidateVotes:desk;
+   if(!selected)throw Error('Candidate-only source renderer not installed');
+   selected.render(host,selected.prepare(snapshot,config.expected),root.document);
   }catch(e){
    desk.render(host,{ready:false,reason:'County source not available: '+e.message},root.document);
   }
@@ -34,4 +39,16 @@
   root.document.addEventListener('DOMContentLoaded',refresh,{once:true});
  else refresh();
  root.NcCountyDeskRefresh=refresh;
+ // A static Pages tab must recheck freshly published snapshots; a GitHub
+ // Actions ZIP watcher is NOT a realtime push feed.
+ if(root.setInterval){
+  root.setInterval(()=>{
+   if(Date.now()>=Date.parse('2026-11-03T05:00:00Z')&&
+      Date.now()<Date.parse('2026-11-06T06:00:00Z')&&
+      root.document?.visibilityState!=='hidden')refresh();
+  },120000);
+ }
+ if(root.addEventListener)root.addEventListener('focus',()=>{
+  if(Date.now()>=Date.parse('2026-11-03T05:00:00Z'))refresh();
+ });
 })(typeof window!=='undefined'?window:{});
