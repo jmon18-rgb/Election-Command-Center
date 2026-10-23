@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-23T10:44:44.349169+00:00",
+  "updated_at": "2026-10-23T11:46:54.325173+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,7 +17,7 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 294,
+  "matched_primary_observations": 293,
   "newly_injected_into_model": 0,
   "injected_poll_ids": [],
   "observations": [
@@ -294,10 +294,10 @@
       "pollster": "Emerson College",
       "dem_name": "Daniel P. Ahlers",
       "rep_name": "Larry Rhoden",
-      "dem": 38.0,
-      "rep": 56.0,
-      "margin": -18.0,
-      "field_end": "2026-10-20",
+      "dem": 40.5,
+      "rep": 59.5,
+      "margin": -19.0,
+      "field_end": "2026-10-21",
       "field_start": "2026-10-19",
       "posted_date": "2026-10-22",
       "posted_source_datetime": "2026-10-22T13:21:00",
