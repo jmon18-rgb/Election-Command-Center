@@ -195,6 +195,7 @@ jobs:
         run: |
           python3 -m py_compile scripts/build_election_night_source_coverage.py
           python3 scripts/test_election_night_source_coverage.py
+          python3 scripts/test_probe_sd_official_results.py
           python3 scripts/test_election_night_official_backstops.py
       - name: Test four-state supplemental civicAPI race adapters
         run: |
