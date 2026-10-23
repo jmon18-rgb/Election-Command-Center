@@ -353,6 +353,17 @@ async function settle(){
   assert(signals.records.some(x=>x.code===code),'Missing early watch seat '+code);
  }
  assert.equal(get('#enEarlySignals').querySelectorAll('.en-early-row').length,signals.records.length);
+  assert.equal(get('#enEarlySignals').querySelectorAll('.en-early-row').length,15);
+  assert.match(get('#enEarlyHealth').textContent,/PRE-ELECTION READINESS/);
+  assert.match(get('#enEarlySignals').textContent,/Wake, Mecklenburg, Nash/);
+  assert.match(get('#enEarlySignals').textContent,/MOCK totals/);
+  assert.equal(get('#enScreenAwake').getAttribute('aria-pressed'),'false');
+  get('#enScreenAwake').click();
+  assert.equal(get('#enScreenAwake').getAttribute('aria-pressed'),'true');
+  assert.match(get('#enWakeStatus').textContent,/Wake Lock unsupported|Display wake lock|Wake lock/);
+  get('#enScreenAwake').click();
+  assert.equal(get('#enScreenAwake').getAttribute('aria-pressed'),'false');
+
  assert.match(get('#enEarlySignals').textContent,/2026 preview/);
  assert.match(get('#enEarlySignals').textContent,/no live returns in archive/);
  assert.doesNotMatch(get('#enEarlySignals').textContent,/tsunami confirmed|Senate secured/i);
