@@ -85,4 +85,33 @@ for(const code of virginiaCodes){
  assert.equal(api.assess(signal,null,{now:vaNow,error:'503'}).status,'SOURCE_ERROR',code);
  assert.equal(api.assess(signal,null,{now:vaNow}).status,'AWAITING_SOURCE',code);
 }
+// NC and OH early indicators: source health and local county references
+// remain observational, never a modeled county or national swing.
+const nextSignals=[
+ {code:'NC-01',close:'2026-11-04T00:30:00Z'},
+ {code:'NC-11',close:'2026-11-04T00:30:00Z'},
+ {code:'NC-SEN',close:'2026-11-04T00:30:00Z'},
+ {code:'OH-SEN',close:'2026-11-04T00:30:00Z'}
+];
+const nextNow=Date.parse('2026-11-04T01:10:00Z');
+const nextVotes={verified:true,provider:'Open America',
+ asOf:'2026-11-04T01:00:00Z',total:12000,d:6100,r:5700,
+ precincts:17,stale:false};
+for(const {code,close} of nextSignals){
+ const signal=api.records.find(x=>x.code===code);
+ assert(signal,'Missing NC/OH indicator '+code);
+ assert.equal(api.closedAt(signal),Date.parse(close),code);
+ assert.equal(api.assess(signal,nextVotes,{now:nextNow}).status,'COUNTING_PARTIAL',code);
+ assert.equal(api.assess(signal,nextVotes,{now:nextNow}).canMoveNationalNeedle,false,code);
+ assert.equal(api.assess(signal,nextVotes,{now:Date.parse(close)-1}).status,
+  'WAITING_FOR_POLLS',code);
+ assert.equal(api.assess(signal,{...nextVotes,asOf:'2026-11-04T00:20:00Z'},
+  {now:nextNow}).status,'STALE',code);
+ assert.equal(api.assess(signal,null,{now:nextNow,error:'503'}).status,'SOURCE_ERROR',code);
+ assert.equal(api.assess(signal,null,{now:nextNow}).status,'AWAITING_SOURCE',code);
+}
+assert.deepEqual(api.records.find(x=>x.code==='NC-SEN').counties,
+ ['Wake','Mecklenburg','Nash']);
+assert.deepEqual(api.records.find(x=>x.code==='OH-SEN').counties,
+ ['Hamilton','Stark']);
 console.log('Source-validated early indicator timestamps, comparisons and county watch status PASS');
