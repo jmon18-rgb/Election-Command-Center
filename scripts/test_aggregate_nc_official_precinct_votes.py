@@ -13,7 +13,7 @@ class Tests(unittest.TestCase):
  def test_wrong_contest_fails(self):
   with self.assertRaises(ValueError):aggregate(HEAD+line("WAKE","11/05/2024","01","X","A","D",1),date="11/05/2024",contest="Y",county_fips={"WAKE":"37183"})
  def test_method_mismatch_rejected(self):
-  txt=HEAD+line("WAKE","11/05/2024","01","X","A","D",10).replace("\\t10\\t0\\t0\\t0\\t10\\tY","\\t9\\t0\\t0\\t0\\t10\\tY")
+  txt=HEAD+line("WAKE","11/05/2024","01","X","A","D",10).replace("\t10\t0\t0\t0\t10\tY","\t9\t0\t0\t0\t10\tY")
   with self.assertRaises(ValueError):aggregate(txt,date="11/05/2024",contest="X",county_fips={"WAKE":"37183"})
  def test_unmapped_county_fails(self):
   with self.assertRaises(ValueError):aggregate(HEAD+line("WAKE","11/05/2024","01","X","A","D",1),date="11/05/2024",contest="X",county_fips={})
