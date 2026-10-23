@@ -2,12 +2,12 @@ import io
 import unittest
 import zipfile
 from audit_nc_2020_senate_official_zip import (
- identify,inspect,MEMBER,SOURCE,CERTIFIED
+ identify,inspect,normalize_2020_columns,MEMBER,SOURCE,CERTIFIED
 )
 
 HEADER=("County\tElection Date\tPrecinct\tContest Group ID\tContest Type\t"
  "Contest Name\tChoice\tChoice Party\tVote For\tElection Day\t"
- "Early Voting\tAbsentee by Mail\tProvisional\tTotal Votes\n")
+ "One Stop\tAbsentee by Mail\tProvisional\tTotal Votes\tReal Precinct\t\n")
 
 def entry(county,name,party,count,date="11/03/2020",contest="US SENATE",group="37"):
  return "\t".join([county,date,"01",group,"C",contest,
@@ -27,6 +27,15 @@ class OfficialSourceAuditTests(unittest.TestCase):
     entry("DURHAM","Cal Cunningham","DEM",20)+
     entry("DURHAM","Thom Tillis","REP",30))
   self.fips={"WAKE":"37183","DURHAM":"37063"}
+
+ def test_strict_one_stop_column_mapping(self):
+  clean=normalize_2020_columns(HEADER+self.verified)
+  self.assertIn("Early Voting",clean.splitlines()[0])
+  self.assertNotIn("One Stop",clean.splitlines()[0])
+  self.assertNotIn("Real Precinct",clean.splitlines()[0])
+  for before,after in (("One Stop","Fake Column"),("Real Precinct","Unrecognized")):
+   with self.assertRaises(ValueError):
+    normalize_2020_columns((HEADER+self.verified).replace(before,after))
 
  def test_exact_two_county_synthetic_structure_not_production(self):
   doc=inspect(archive(self.verified),self.fips,
