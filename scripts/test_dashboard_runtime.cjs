@@ -202,11 +202,11 @@ async function settle(){
  const frontRows=[...get('#smartBriefGrid').querySelectorAll('a.smart-signal')];
  const frontSenateRows=frontRows.filter(x=>x.dataset.race.endsWith('-SEN'));
  const frontHouseRows=frontRows.filter(x=>/^[A-Z]{2}-[0-9]{2}$/.test(x.dataset.race));
- assert(frontSenateRows.length>0&&frontSenateRows.length<35,
-  'Competitive focus shows Senate battlegrounds without all the safe seats');
+ assert.equal(frontSenateRows.length,35,
+  'Every Senate contest stays visible by default, including safe seats');
  assert(frontHouseRows.length>0,
   'Competitive focus retains meaningful House districts');
- assert.equal(w.eval("smartFocusInteresting({office:'Senate',model:{dem_beats_rep_pct:95}})"),false);
+ assert.equal(w.eval("smartFocusInteresting({office:'Senate',model:{dem_beats_rep_pct:95}})"),true);
  assert.equal(w.eval("smartFocusInteresting({office:'House',model:{dem_beats_rep_pct:5}})"),false);
  assert.equal(w.eval("smartFocusInteresting({office:'House',model:{dem_beats_rep_pct:94.9}})"),true);
  assert.equal(w.eval("smartFocusInteresting({office:'Senate',model:null})"),true,
