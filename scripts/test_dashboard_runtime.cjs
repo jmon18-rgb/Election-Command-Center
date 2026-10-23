@@ -1422,8 +1422,9 @@ async function settle(){
   // pretend that a poll-specific source URL exists.
   const rawMatched=raw.polls.find(x=>x.poll_id===p.poll_id&&
    x.pollster===p.pollster&&x.field_end===p.field_end);
-  const hasDirectSource=typeof rawMatched?.source_poll_url==='string'&&
-   /^https?:\\/\\//.test(rawMatched.source_poll_url);
+  const direct=rawMatched?.source_poll_url;
+  const hasDirectSource=typeof direct==='string'&&
+   (direct.startsWith('https://')||direct.startsWith('http://'));
   assert.equal(Boolean(highlighted.querySelector('a[href]')),hasDirectSource,
    'Poll drilldown link must match actual available direct source: '+office);
  }
