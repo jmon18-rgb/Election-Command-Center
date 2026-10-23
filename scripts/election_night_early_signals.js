@@ -47,7 +47,7 @@
  for(const x of records){
   if(!/^(?:[A-Z]{2}-\d{2}|[A-Z]{2}-(?:SEN|GOV))$/.test(x.code)||
      !['House','Senate','Governor'].includes(x.office)||
-     seen.has(x.code)||!/^([01]\\d|2[0-3]):[0-5]\\d$/.test(x.closeET||'')||!x.time||!x.why)
+     seen.has(x.code)||!/^([01][0-9]|2[0-3]):[0-5][0-9]$/.test(x.closeET||'')||!x.time||!x.why)
    throw Error('Bad early-signal specification: '+x.code);
   seen.add(x.code);Object.freeze(x);
  }
