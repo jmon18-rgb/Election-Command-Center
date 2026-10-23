@@ -1,0 +1,69 @@
+name: Verify published North Carolina county results
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types: [completed]
+  schedule:
+    # Higher-frequency checks while ballots might be arriving (Eastern Standard).
+    - cron: '*/15 21-23 3 11 *'
+    - cron: '*/15 0-10 4 11 *'
+    # Slower safety checks the rest of the year.
+    - cron: '37 12 * * *'
+  pull_request:
+    paths:
+      - 'scripts/audit_nc_pages_county_results.cjs'
+      - 'scripts/test_audit_nc_pages_county_results.cjs'
+      - '.github/workflows/nc-pages-county-health.yml'
+      - 'scripts/nc_county_results_desk_startup.js'
+      - 'data/nc_county_results_desk_config.json'
+      - 'index.html'
+permissions:
+  contents: read
+concurrency:
+  group: nc-pages-health-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  source-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Rehearse partial deployment, staleness and malicious source failures
+        run: |
+          node --check scripts/audit_nc_pages_county_results.cjs
+          node scripts/test_audit_nc_pages_county_results.cjs
+          node scripts/audit_nc_pages_county_results.cjs --local
+  deployed:
+    if: >-
+      github.event_name != 'pull_request' &&
+      (github.event_name != 'workflow_run' ||
+       (github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.head_branch == 'main'))
+    needs: source-contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Audit actual Pages HTML, exact JS blobs, approved SHA, counties and ZIP freshness
+        env:
+          DASHBOARD_SITE_URL: ${{ vars.DASHBOARD_SITE_URL }}
+        run: |
+          set -o pipefail
+          node scripts/audit_nc_pages_county_results.cjs --remote | tee /tmp/nc-county-pages-health.json
+      - name: Retain last source-deployment audit for diagnosis
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nc-county-published-health
+          path: /tmp/nc-county-pages-health.json
+          if-no-files-found: ignore
+          retention-days: 14
