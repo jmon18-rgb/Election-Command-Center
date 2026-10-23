@@ -5363,20 +5363,22 @@ async function enCivicFetchOne(item,forceAfterPending=false){
 // after the first 6 PM ET poll close, if that specific primary race is absent,
 // still at zero, or the office feed is stale/unavailable. Preserve the separate
 // civicAPI winner-call checks for tracked milestones even with a healthy feed.
-function enShouldProbeSupplemental(item,now=Date.now()){
+function enShouldProbeSupplemental(item,now=Date.now(),context=null){
  if(!item||!['House','Senate','Governor'].includes(item.office)||
     typeof item.key!=='string'||!/^[A-Z]{2}(?:-\\d{2}|-special)?$/.test(item.key))
   return false;
  const state=item.key.slice(0,2);
  if(!enSupportedStates.has(state)||enMilestoneTracked(item))return true;
  if(now<Date.parse('2026-11-03T23:00:00Z'))return false;
- const snap=enOfficeSnapshots[item.office]||
-  (enOffice===item.office?enData:null);
+ const snap=context!==null?context.snapshot:
+  enOfficeSnapshots[item.office]||(enOffice===item.office?enData:null);
+ const failed=context!==null?Boolean(context.failed):
+  Boolean(enOfficeErrors[item.office]||(enOffice===item.office&&enFetchError));
+ const pending=context!==null?Boolean(context.pending):
+  enResumePendingOffices.has(item.office);
  const asOf=Date.parse(snap?.as_of||'');
  const healthy=Boolean(snap?.year===2026&&snap?.office===item.office&&
-  snap.stale!==true&&!enOfficeErrors[item.office]&&
-  !enResumePendingOffices.has(item.office)&&
-  !(enOffice===item.office&&enFetchError)&&
+  snap.stale!==true&&!failed&&!pending&&
   Number.isFinite(asOf)&&asOf>=Date.parse('2026-11-03T23:00:00Z')&&
   asOf<=now+15*60000&&now-asOf<=180*60000);
  if(!healthy)return true;
