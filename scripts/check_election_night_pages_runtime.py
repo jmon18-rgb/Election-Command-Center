@@ -92,6 +92,26 @@ def audit(index: bytes, remote_pins: dict, remote_coverage: dict,
                 raise ValueError("Deployed needle missing local poll-close protections")
         if git_revision(blob) != version:
             raise ValueError("Deployed script blob/version mismatch: " + name)
+    # Checking blob fingerprints alone is not enough: an older HTML page
+    # and its matching older JS blob could both pass while the three newly
+    # approved statewide race IDs never reach the live laptop. Check the
+    # exact provider-verified pins AND the actual browser strict-adapter route.
+    statewide_adapter = assets["civicapi_state_batch.js"]
+    source_slots = re.search(r"const enBatchPilotSlots=new Set\\((\\[[\\s\\S]*?\\])\\);", html)
+    if not source_slots:
+        raise ValueError("Deployed statewide strict-source routing unavailable")
+    required_statewide = (
+        ("Senate|MS", "MS", "Mississippi US Senate", "Senate", 81004),
+        ("Governor|HI", "HI", "Hawaii Governor", "Governor", 87100),
+        ("Governor|OK", "OK", "Oklahoma Governor", "Governor", 87582),
+    )
+    for race, state, name, office, race_id in required_statewide:
+        exact_pin = (f"'{race}':{{state:'{state}',name:'{name}',"
+                     f"office:'{office}',id:{race_id}}}").encode("utf-8")
+        if exact_pin not in statewide_adapter:
+            raise ValueError("Deployed statewide source pin missing or changed: " + race)
+        if f"'{race}'" not in source_slots.group(1):
+            raise ValueError("Deployed statewide strict-source route missing: " + race)
     if remote_pins.get("status") != "VERIFIED_HOUSE_IDENTITIES_NOT_LIVE_RESULTS":
         raise ValueError("Deployed House manifest is not explicitly identity-only")
     when = timestamp(remote_pins.get("generated_at"))
@@ -115,6 +135,7 @@ def audit(index: bytes, remote_pins: dict, remote_coverage: dict,
     return {
         "status": "DEPLOYED_PAGES_ENTRYPOINT_VERIFIED",
         "script_versions_checked": len(REQUIRED),
+        "strict_statewide_2026_pins_verified": len(required_statewide),
         "script_dependencies_in_html": len(versions),
         "verified_house_id_hints": len(published),
         "races_in_deployed_source_ledger": len(rows),
