@@ -41,6 +41,19 @@ assert.equal(pulse.senate.find(x=>x.id==='Senate|TX').status,'PRIMARY_RACE_ABSEN
 assert.equal(pulse.senate.find(x=>x.id==='Senate|ME').status,'SECONDARY_NOT_QUERIED');
 assert.equal(pulse.senate.find(x=>x.id==='Senate|MA').status,'NO_MACHINE_SOURCE_ID');
 assert.equal(pulse.senate.find(x=>x.id==='Senate|NH').status,'SECONDARY_SCOPED');
+const secondary=api.build(ledger,res,state,now,{
+ 'Senate|ME':'failed',
+ 'Senate|OH-special':'stale',
+ 'Senate|NH':'pending',
+ 'Senate|NE':'attempted',
+});
+assert.equal(secondary.senate.find(x=>x.id==='Senate|ME').status,'SECONDARY_FAILED');
+assert.equal(secondary.senate.find(x=>x.id==='Senate|OH-special').status,'SECONDARY_STALE');
+assert.equal(secondary.senate.find(x=>x.id==='Senate|NH').status,'SECONDARY_CHECKING');
+assert.equal(secondary.senate.find(x=>x.id==='Senate|NE').status,'SECONDARY_ATTEMPTED');
+assert.equal(secondary.totals.Senate.reported,1,'Source outage must never create votes');
+assert.equal(secondary.senateMissing,34);
+assert.equal(secondary.may_update_model,false);
 assert.equal(pulse.may_update_model,false);
 assert.equal(pulse.professional_calls_verified,0);
 const degraded=api.build(ledger,results({errors:{Senate:true}}),
@@ -72,5 +85,11 @@ assert.match(t,/Senate source gaps · 34/);
 assert.match(t,/MA — No verified automated source ID/);
 assert.match(t,/ME — Supplemental source ID/);
 assert.match(t,/NC — Reported votes · unofficial/);
+const failureHost=node('div');
+assert(api.render(failureHost,secondary,{createElement:node}));
+const failures=flatten(failureHost);
+assert.match(failures,/ME — Supplemental source request FAILED/);
+assert.match(failures,/OH-special — Supplemental source stale/);
+assert.match(failures,/NH — Supplemental source request in progress/);
 assert.match(t,/not.*race calls/i);
 console.log('506-race on-screen triage: real provider source, unavailable, zero-not-ballots, all 35 Senate and failures PASS');

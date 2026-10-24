@@ -20,11 +20,15 @@
   PRIMARY_AWAITING:'Primary provider not yet reporting',
   PRIMARY_DEGRADED:'Primary provider unavailable / stale',
   SECONDARY_NOT_QUERIED:'Supplemental source ID · no current results',
+  SECONDARY_FAILED:'Supplemental source request FAILED · counts unverified',
+  SECONDARY_STALE:'Supplemental source stale / revalidation required',
+  SECONDARY_CHECKING:'Supplemental source request in progress',
+  SECONDARY_ATTEMPTED:'Supplemental race checked; no usable current count',
   SECONDARY_SCOPED:'Supplemental adapter · no verified source ID',
   NO_MACHINE_SOURCE_ID:'No verified automated source ID',
   PROVIDER_OTHER:'No verified vote source'
  });
- function build(ledger,reconciled,health={},now=Date.now()){
+ function build(ledger,reconciled,health={},now=Date.now(),supplementalHealth={}){
   if(!Number.isFinite(now)||!ledger||
      ledger.election!=='2026-11-03'||
      ledger.status!=='SOURCE_IDENTITY_AUDIT_NOT_LIVE_RESULTS_COVERAGE'||
@@ -57,10 +61,16 @@
     const sourceState=health[race.office];
     status=DEGRADED.has(sourceState)?'PRIMARY_DEGRADED':
       CHECKED.has(sourceState)?'PRIMARY_RACE_ABSENT':'PRIMARY_AWAITING';
-   }else if(race.source_identity_status==='PINNED_PREVIOUSLY_VERIFIED_ID')
-    status='SECONDARY_NOT_QUERIED';
-   else if(race.source_identity_status==='SCOPED_ADAPTER_NO_PINNED_ID')
-    status='SECONDARY_SCOPED';
+   }else if(race.source_identity_status==='PINNED_PREVIOUSLY_VERIFIED_ID'||
+             race.source_identity_status==='SCOPED_ADAPTER_NO_PINNED_ID'){
+    const extra=supplementalHealth[race.id];
+    status=extra==='failed'?'SECONDARY_FAILED':
+      extra==='stale'?'SECONDARY_STALE':
+      extra==='pending'?'SECONDARY_CHECKING':
+      extra==='attempted'?'SECONDARY_ATTEMPTED':
+      race.source_identity_status==='PINNED_PREVIOUSLY_VERIFIED_ID'?
+       'SECONDARY_NOT_QUERIED':'SECONDARY_SCOPED';
+   }
    else if(race.source_identity_status==='NO_CURATED_PROVIDER_ID')
     status='NO_MACHINE_SOURCE_ID';
    else status='PROVIDER_OTHER';
@@ -83,7 +93,9 @@
   }
   if(records.length!==35||seen.size!==506)
    throw Error('Nationwide 506 race reconciliation incomplete');
-  const order={PRIMARY_DEGRADED:0,NO_MACHINE_SOURCE_ID:1,
+  const order={PRIMARY_DEGRADED:0,SECONDARY_FAILED:0,
+   SECONDARY_STALE:0,SECONDARY_ATTEMPTED:1,
+   SECONDARY_CHECKING:2,NO_MACHINE_SOURCE_ID:1,
    PRIMARY_RACE_ABSENT:2,PRIMARY_AWAITING:3,
    SECONDARY_SCOPED:4,SECONDARY_NOT_QUERIED:5,
    ZERO_IN_FEED:6,OBSERVED_SOURCE_VOTES:7};
