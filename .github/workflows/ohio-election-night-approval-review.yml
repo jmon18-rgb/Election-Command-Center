@@ -1,0 +1,49 @@
+name: Stage official Ohio NIST source IDs for human Election Night approval
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/probe_ohio_official_approval_review_artifact.py'
+      - 'scripts/test_probe_ohio_official_approval_review_artifact.py'
+      - '.github/workflows/ohio-election-night-approval-review.yml'
+  schedule:
+    # November 3, 8:17 PM EST, after Ohio polls close at 7:30 PM.
+    - cron: '17 1 4 11 *'
+permissions:
+  contents: read
+jobs:
+  review-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prove raw Ohio XML votes cannot escape into reviewed ID artifacts
+        run: |
+          python3 -m py_compile scripts/probe_ohio_official_approval_review_artifact.py
+          python3 scripts/test_probe_ohio_official_approval_review_artifact.py
+          python3 scripts/test_prepare_ohio_nist_manual_review.py
+  reviewed-source-discovery:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: review-contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch original official Ohio XML and discard all numeric candidate vote totals
+        run: |
+          python3 scripts/probe_ohio_official_approval_review_artifact.py --probe \
+            --output /tmp/ohio-nist-unapproved-identity-review.json
+      - name: Keep operator county, party and contest approval review artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ohio-election-night-source-identity-review-NO-VOTES
+          path: /tmp/ohio-nist-unapproved-identity-review.json
+          if-no-files-found: ignore
+          retention-days: 7
