@@ -148,7 +148,9 @@ if(otherPending.length){
 }
 assert.match(t,/MA — No verified automated source ID/);
 assert.match(t,/certified results only; NOT live/);
-assert.match(t,/MS — No verified automated source ID/);
+assert.match(t,/MS — Supplemental source ID · no current results/);
+assert(!t.includes('MS — No verified automated source ID'),
+ 'New independently pinned Mississippi Senate source is not an unindexed gap');
 assert.equal((t.match(/certified results only; NOT live/g)||[]).length,2,
  'Both MA and MS official links must be labeled certified-only, not live');
 const ma=host.children.flatMap(x=>x.children||[]);
