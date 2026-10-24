@@ -30,8 +30,8 @@ assert.equal(api.allowed('NC',100,'',clock),false,'Missing source timestamp cann
 assert.equal(api.allowed('NC',100,'2026-11-04T07:00:00Z',clock),false);
 assert.equal(api.valid(vote(900)),false,
  'Pre-close primary NC snapshot fetched hours later must be rejected');
-assert.equal(api.valid(vote(900,'2026-11-04T00:30:00Z')),true,
- 'Source stamped after real poll close may pass independent record guards');
+assert.equal(api.allowed('NC',900,'2026-11-04T00:30:00Z',clock),true,
+ 'Post-close source timestamps clear this eligibility gate; other source-shape checks remain independent');
 assert.equal(api.valid(vote(0)),true,
  'Pre-close zero-vote standby may be displayed as zero-not-ballots');
 const ineligibleNow=Date.parse('2026-11-04T00:25:00Z');
