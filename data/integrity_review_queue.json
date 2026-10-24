@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-24T02:50:25.046304Z",
+  "updated_at": "2026-10-24T03:12:23.987437Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
@@ -260,6 +260,23 @@
     }
   ],
   "items": [
+    {
+      "id": "c4ada8484aeeaac4acf2",
+      "title": "The Trump Administration\u2019s Attempts to Get Sensitive Voter Data Threaten the Rule of Law - Campaign Legal Center",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQbWlwcWNQTXVidzFJS1NUcm9QZHRibTNZeDBXTURaT2JOMllQdEUtN2hpS1hYREQ3Umdubms2TUVxbkhVNGNYeTl6S0Q1RmJOdzJyRnFyVnFvdFY1UXViMkRSMzAtZGs3aW1nUG5QblJ2ZVh6SVFvSno2ZDlZYjM2dXdNTDN5ZnF4cVUwQUdIdGd3MFItRjlJclRRTTBKN3lWZzNMQTl6NjlaUQ?oc=5",
+      "publisher": "Campaign Legal Center",
+      "published_at": "2026-10-24T01:09:34Z",
+      "detected_at": "2026-10-24T03:12:23.987437Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "37bd4b2611f95b360ade",
       "title": "LA Hearing Set Tuesday in Government Push for Court Order in Voting Case - MyNewsLA.com",
@@ -4913,21 +4930,6 @@
       "headline_numbers_unverified": [
         "16"
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "37cbc916a2881ffe7d45",
-      "title": "Sounds \u201cDesperate\u201d: Secretary of State Shirley Weber Calls O... - LA Focus",
-      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPWmI4bkE0dm5rOEhsVjBtQl9TMXgwMmd4M213SUxVSkRJMklYWTgwT0tOUHNUd1RVRkJkOVpKWGRsLTQwZWJpVGREZUNNNzVWTkhFR0ZHMWZDNjVyb2tGOWw3djZubm1XTHhJZ2NCTUFNZXJjbkZRLVU5YWY2SWdqRWkwX0dtZTdNb09tV3MtSXF6Wk1LUEd3LXktN1ZSODh1bkhGNTJlNTNRVkxRLTBXR28zek5rd0lfMmZLcFlISDRCZ080bGpPbTJzZkVnTGxpa2VyeDl6NmgwRWR4Q0thQWhzMA?oc=5",
-      "publisher": "LA Focus",
-      "published_at": "2026-10-13T19:00:36Z",
-      "detected_at": "2026-10-13T19:22:10.306074Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
