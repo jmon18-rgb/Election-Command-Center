@@ -90,6 +90,61 @@ class HealthSoakTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 validate_primary(changed,"Senate")
 
+    def test_positive_election_votes_require_candidate_integrity_and_state_clock(self):
+        import datetime as dt
+        now=dt.datetime(2026,11,4,3,0,tzinfo=dt.timezone.utc)
+        row={"total":120,"called":False,"winner":"",
+             "cands":[{"n":"Dem","p":"D","v":70},
+                      {"n":"Rep","p":"R","v":50}]}
+        doc={**valid("Senate"),"live":True,"counting":True,
+             "as_of":"2026-11-04T02:50:00Z",
+             "counts":{"races":1},"races":{"NC":row}}
+        self.assertEqual(validate_primary(doc,"Senate",now)["reporting_contests"],1)
+        bad_docs=[
+          {**doc,"as_of":None},  # No publish time for positive votes.
+          {**doc,"as_of":"2026-11-04T00:29:59Z"}, # NC polls still open.
+          {**doc,"as_of":"2026-11-04T03:25:00Z"}, # Provider clock ahead.
+          {**doc,"as_of":"2026-11-03T23:45:00Z"}, # Still pre-close NC.
+          {**doc,"live":False,"counting":False}, # Source says not live.
+          {**doc,"stale":True,"live":False,"counting":False},
+          {**doc,"races":{"NC":{**row,"cands":[]}}},
+          {**doc,"races":{"NC":{**row,"cands":[
+            {"n":"Dem","p":"D","v":0},
+            {"n":"Rep","p":"R","v":0}]}}},
+          {**doc,"races":{"NC":{**row,"cands":[
+            {"n":"Duplicate","p":"D","v":70},
+            {"n":"duplicate","p":"R","v":50}]}}},
+          {**doc,"races":{"NC":{**row,"cands":[
+            {"n":"Dem","p":"D","v":110},
+            {"n":"Rep","p":"R","v":50}]}}},
+          {**doc,"races":{"ZZ":row}},
+          {**doc,"races":{"NC":{**row,"called":True}}},
+          {**doc,"year":2024},
+        ]
+        for candidate in bad_docs:
+            with self.subTest(reason=candidate):
+                with self.assertRaises(ValueError):
+                    validate_primary(candidate,"Senate",now)
+        stale={**doc,"as_of":"2026-11-04T02:50:00Z"}
+        with self.assertRaisesRegex(ValueError,"Stale"):
+            validate_primary(stale,"Senate",
+              dt.datetime(2026,11,4,6,0,tzinfo=dt.timezone.utc))
+        # A completed official-derived PRIMARY source is still useful after
+        # live counting ends. A two-D Washington top-two contest is real
+        # candidate-count data, NOT a Dem-vs-Republican modeled race.
+        final={**valid("House"),"as_of":"2026-11-04T05:00:00Z",
+               "live":False,"final":True,
+               "counts":{"races":1},"races":{"WA-01":{
+                 "total":100,"called":False,"winner":"",
+                 "cands":[{"n":"First Dem","p":"D","v":55},
+                          {"n":"Second Dem","p":"D","v":45}]}}}
+        self.assertEqual(validate_primary(final,"House",
+             dt.datetime(2026,11,4,5,20,tzinfo=dt.timezone.utc)
+            )["reporting_contests"],1)
+        # A pre-election empty source is a legitimate transport response,
+        # never evidence that zero ballots have been cast.
+        self.assertFalse(validate_primary(valid("House"),"House")["provider_reporting"])
+
     def test_provider_request_bounds_and_timestamps(self):
         c=FakeClock()
         def fetch(year,office):
