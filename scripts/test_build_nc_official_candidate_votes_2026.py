@@ -65,6 +65,14 @@ class ExportTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.export(review={**self.review, "verified_archive_sha256": "b" * 64})
 
+    def test_rejects_pre_poll_close_2026_archive_even_if_approved(self):
+        for checked in ("2026-11-03T05:00:00Z", "2026-11-03T23:59:59Z",
+                        "2026-11-04T00:29:59Z"):
+            with self.subTest(checked=checked):
+                with self.assertRaisesRegex(ValueError, "predate November 3 polls close"):
+                    self.export(checked_at=checked)
+        self.assertEqual(self.export(checked_at="2026-11-04T00:30:00Z")["election_date"], "2026-11-03")
+
     def test_rejects_2024_and_bad_identity(self):
         with self.assertRaises(ValueError):
             self.export(checked_at="2024-11-05T22:00:00Z")
