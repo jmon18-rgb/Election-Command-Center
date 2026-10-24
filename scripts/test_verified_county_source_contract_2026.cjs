@@ -34,4 +34,16 @@ for(const [why,stamp,seenAt] of [
 assert(normalize({...feed,counties:[{...county,
  updated_at:'2026-11-04T00:30:00Z'}]},expected,at).ok,
  'Exactly North Carolina close must be accepted');
+// In the real index, this adapter is evaluated BEFORE poll-closing.js.
+// First fail closed; then use the newly loaded contract without a reload.
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const mockWindow={};
+vm.runInNewContext(fs.readFileSync(path.join(__dirname,
+ 'verified_county_source_contract_2026.js'),'utf8'),{window:mockWindow});
+assert.equal(mockWindow.VerifiedCountySourceContract2026.normalize(
+ feed,expected,at).ok,false,'Missing browser poll-close dependency must fail closed');
+mockWindow.ElectionNightPollClosings2026=require('./election_night_poll_closings_2026.js');
+assert.equal(mockWindow.VerifiedCountySourceContract2026.normalize(
+ feed,expected,at).ok,true,
+ 'County updates must recover once the browser loads the closing module');
 console.log('Verified county source envelope gate passed');
