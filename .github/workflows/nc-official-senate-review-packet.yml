@@ -1,0 +1,49 @@
+name: Stage 2026 NC Senate official ZIP identity for manual approval
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/prepare_nc_official_senate_review.py'
+      - 'scripts/test_prepare_nc_official_senate_review.py'
+      - '.github/workflows/nc-official-senate-review-packet.yml'
+  schedule:
+    # After 7:30 PM EST poll close, at 8:47 PM and hourly into Nov 4.
+    # This never auto-enables a live feed or writes any result totals.
+    - cron: '47 1-5 4 11 *'
+permissions:
+  contents: read
+jobs:
+  review-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test review packet cannot leak totals or run before poll close
+        run: |
+          python3 -m py_compile scripts/prepare_nc_official_senate_review.py
+          python3 scripts/test_prepare_nc_official_senate_review.py
+  real-postpoll-review:
+    needs: review-contract
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read original NCSBE archive and discard candidate vote totals
+        run: |
+          python3 scripts/prepare_nc_official_senate_review.py \
+            --output /tmp/nc-2026-senate-unapproved-review.json
+      - name: Preserve exact source identity for independent human approval
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nc-2026-senate-identity-review-NO-VOTES
+          path: /tmp/nc-2026-senate-unapproved-review.json
+          retention-days: 7
+          if-no-files-found: ignore
