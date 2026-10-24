@@ -2554,7 +2554,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}
  // not stop an independently validated watched Senate office. Synthetic votes.
  const rehearsalClock=w.Date.now,rehearsalFetch=w.fetch;
  await w.eval('enCivicWaitUntilIdle()');
- w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ w.Date.now=()=>Date.parse('2026-11-04T03:20:00Z');
  assert.equal(w.eval('enIsVisible()'),true,'Election Night tab must be active');
  let rehearsalSignal;
  w.fetch=async(_url,options)=>{
@@ -2670,14 +2670,13 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}
  // Same-office out-of-order HTTP responses: a late old request may not
  // overwrite the newer snapshot or trigger a false rollback.
  const rehearsalHouseOld={
-  ...counted2026,office:'House',as_of:'2026-11-04T02:30:00Z',
+  ...counted2026,office:'House',as_of:'2026-11-04T03:05:00Z',
   races:{'AZ-01':{...counted2026.races.NC}}
  };
  const rehearsalHouseNew=structuredClone(rehearsalHouseOld);
- // Source clock is 03:00Z and previous House fixtures may already have
- // verified a 03:00Z empty snapshot. New nonempty votes must not travel
- // backward in source time relative to that validated snapshot.
- rehearsalHouseNew.as_of='2026-11-04T03:00:00Z';
+ // Both snapshots follow Arizona's 02:00Z poll-close floor and any earlier
+ // 03:00Z House test snapshot. The later one is a real-shaped correction.
+ rehearsalHouseNew.as_of='2026-11-04T03:10:00Z';
  rehearsalHouseNew.races['AZ-01'].total=500;
  rehearsalHouseNew.races['AZ-01'].cands[0].v=280;
  rehearsalHouseNew.races['AZ-01'].cands[0].pct=56;
@@ -2701,16 +2700,27 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}
  };
  const rehearsalOldLoad=w.eval('enLoad(true)');
  await new Promise(resolve=>setTimeout(resolve,15));
- assert(rehearsalReleaseOld,'Older source HTTP response must remain pending');
+ assert(rehearsalReleaseOld,'First House request must remain pending');
+ const rehearsalCoalescedLoad=w.eval('enLoad(true)');
+ await new Promise(resolve=>setTimeout(resolve,15));
+ // Production transport deliberately shares same-office in-flight requests,
+ // rather than opening another HTTP connection for a supposedly newer result.
+ assert.equal(rehearsalHouseCalls,1,
+  'Duplicate House loads must share the in-flight source request');
+ rehearsalReleaseOld();
+ await Promise.all([rehearsalOldLoad,rehearsalCoalescedLoad]);
+ assert.match(get('#enRaceList').textContent,/AZ-01/,
+  'A coalesced House response still reaches the latest requested view');
+ assert.equal(get('#enRaces').textContent,'1');
+ assert.equal(get('#enDLeads').textContent,'1');
+ // Once the shared request settles, an explicit refresh must independently
+ // fetch and accept a source-newer 500-vote House snapshot.
  await w.eval('enLoad(true)');
- assert.match(get('#enRaceList').textContent,/AZ-01/);
+ assert.equal(rehearsalHouseCalls,2,
+  'The source transport must release its in-flight slot after success');
+ assert.match(get('#enStatus').textContent,/Nov 4, 2026/);
  assert.equal(get('#enDLeads').textContent,'1');
  assert.equal(get('#enRaces').textContent,'1');
- rehearsalReleaseOld();
- await rehearsalOldLoad;
- assert.match(get('#enStatus').textContent,/Nov 4, 2026/,
-  'Late old request cannot undo the newer accepted snapshot');
- assert.equal(get('#enDLeads').textContent,'1');
  // Older snapshot arriving through a later request must be rejected while
  // retaining the last source-validated counts in the dashboard.
  w.fetch=async url=>{
