@@ -75,7 +75,29 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git commit -m "Refresh reviewed Ohio NIST candidate-only county counts"
-            git push origin HEAD:main
+# Other independent polling, source-identity and results refresh
+            # jobs can commit while this source download is being validated.
+            # Replay ONLY non-conflicting changes; an approval/source JSON
+            # conflict MUST fail for manual review, never force-push.
+            published=false
+            for attempt in 1 2 3; do
+              git fetch origin main
+              if ! git rebase origin/main; then
+                git rebase --abort || true
+                echo "::error::Election source approval/snapshot changed concurrently; manual review required"
+                exit 1
+              fi
+              if git push origin HEAD:main; then
+                published=true
+                break
+              fi
+              echo "Main changed during approved vote publication, retry $attempt/3"
+              sleep "$((attempt * 2))"
+            done
+            if [ "$published" != "true" ]; then
+              echo "::error::Reviewed election source could not reach main after three safe retries"
+              exit 1
+            fi
           else
             echo "Ohio candidate feed disabled or official NIST snapshot unchanged"
           fi
