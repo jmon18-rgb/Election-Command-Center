@@ -1,0 +1,72 @@
+name: Real-clock Election Night source health soak
+on:
+  pull_request:
+    paths:
+      - 'scripts/monitor_election_night_upstream_soak.py'
+      - 'scripts/test_monitor_election_night_upstream_soak.py'
+      - '.github/workflows/election-night-real-clock-source-soak.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/monitor_election_night_upstream_soak.py'
+      - 'scripts/test_monitor_election_night_upstream_soak.py'
+      - '.github/workflows/election-night-real-clock-source-soak.yml'
+  workflow_dispatch:
+  schedule:
+    # One rehearsal before Election Day, one during early returns, one late.
+    - cron: '17 17 2 11 *'
+    - cron: '17 23 3 11 *'
+    - cron: '17 3 4 11 *'
+permissions:
+  contents: read
+concurrency:
+  group: election-night-real-clock-health
+  cancel-in-progress: false
+jobs:
+  offline-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check isolated outages, recovery, genuine pacing and schema
+        run: |
+          python3 -m py_compile scripts/monitor_election_night_upstream_soak.py
+          python3 scripts/test_monitor_election_night_upstream_soak.py
+  actual-upstream-check:
+    if: github.event_name != 'pull_request'
+    needs: offline-tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 19
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check preflight schedule window
+        id: window
+        run: |
+          stamp="$(date -u +'%Y%m%d')"
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$stamp" -gt "20261104" ]; then
+            echo 'run=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'run=true' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Sample REAL Open America and public Pages transport for 12 minutes
+        if: steps.window.outputs.run == 'true'
+        env:
+          DASHBOARD_SITE_URL: ${{ vars.DASHBOARD_SITE_URL }}
+        run: |
+          python3 scripts/monitor_election_night_upstream_soak.py \
+            --duration-seconds 720 --interval-seconds 60 \
+            --output /tmp/election_night_actual_http_health.json
+      - name: Preserve pass or failure, never vote counts
+        if: always() && steps.window.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: election-night-upstream-real-clock-${{ github.run_id }}
+          path: /tmp/election_night_actual_http_health.json
+          if-no-files-found: warn
+          retention-days: 30
