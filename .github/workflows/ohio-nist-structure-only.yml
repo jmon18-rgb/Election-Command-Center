@@ -1,0 +1,37 @@
+name: Inspect only Ohio NIST XML element structure
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/probe_ohio_nist_xml_schema.py'
+      - 'scripts/test_probe_ohio_nist_xml_schema.py'
+      - '.github/workflows/ohio-nist-structure-only.yml'
+      - 'scripts/probe_ohio_nist_xml_prefix.py'
+permissions:
+  contents: read
+jobs:
+  bounded-structure:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify no candidate names or mock ballot counts escape in output
+        run: |
+          python3 -m py_compile scripts/probe_ohio_nist_xml_schema.py
+          python3 scripts/test_probe_ohio_nist_xml_schema.py
+          python3 scripts/test_probe_ohio_nist_xml_prefix.py
+      - name: Read only 192KiB and record structural paths, not actual mock candidate data
+        run: |
+          python3 scripts/probe_ohio_nist_xml_schema.py --probe \
+            --output /tmp/ohio-nist-structure-only.json
+      - name: Retain sanitized XML shape evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ohio-nist-xml-sanitized-structure
+          path: /tmp/ohio-nist-structure-only.json
+          retention-days: 14
+          if-no-files-found: ignore
