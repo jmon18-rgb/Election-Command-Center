@@ -69,6 +69,7 @@ def approve(review,now):
         raise ValueError("No post-poll-closing, independently reviewed Ohio source publication")
     required(review.get("expected_report_status"),"actual NIST source report status",50)
     unit_type=required(review.get("approved_county_unit_type"),"county GpUnit type",60)
+    required(review.get("approved_total_votes_type"),"exact reviewed VoteCounts Type",60)
     if len(unit_type)>60:raise ValueError("County unit type exceeds bound")
     units=review.get("county_gpunit_to_fips")
     if (not isinstance(units,dict) or len(units)!=88 or
