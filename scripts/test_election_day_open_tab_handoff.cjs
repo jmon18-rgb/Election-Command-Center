@@ -15,8 +15,8 @@ const realLogic=html.slice(begin,end);
 const context=vm.createContext({
  Date,Number,document:{visibilityState:'visible'},
  enModeYear:2024,enOffice:'Senate',visible:true,changes:[],
- enIsVisible(){return this.visible},
- enSwitch(year,office){this.changes.push([year,office]);this.enModeYear=year}
+ enIsVisible(){return context.visible},
+ enSwitch(year,office){context.changes.push([year,office]);context.enModeYear=year}
 });
 // Lexical-scoped script reads globalThis enIsVisible and enSwitch mocks.
 vm.runInContext(realLogic,context);
