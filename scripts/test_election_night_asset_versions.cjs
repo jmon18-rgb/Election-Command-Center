@@ -16,7 +16,7 @@ const fakeB=Buffer.from('window.b=true;');
 const a=revision(fakeA),b=revision(fakeB);
 const scriptA='./scripts/a.js?v='+a;
 const scriptB='./scripts/b.js?v='+b;
-const sample='<script src="'+scriptA+'"></script>\n'.repeat(8)+
+const sample=('<script src="'+scriptA+'"></script>\n').repeat(8)+
  '<script src="'+scriptB+'"></script>';
 const dup=inspect(sample,name=>name.includes('/a.js')?fakeA:fakeB);
 assert(!dup.ok);assert(dup.errors.some(x=>x.includes('Duplicate external script')));
