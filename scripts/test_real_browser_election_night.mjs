@@ -36,14 +36,49 @@ try{
   const page=await context.newPage();
   const failures=[];
   page.on('pageerror',err=>failures.push(err.message));
+  // Deterministic tall, bottom-marked image surrogate solely for layout QA.
+  // The actual on-site Fish Head still stays the licensed Wikimedia photo.
+  // Never rely on external image availability during browser CI.
+  const fishFixture='<svg xmlns="http://www.w3.org/2000/svg" width="360" height="700" viewBox="0 0 360 700"><rect width="360" height="700" fill="#1e4c69"/><circle cx="180" cy="260" r="115" fill="#8ac7e1"/><rect x="72" y="565" width="216" height="85" fill="#f2bf5b"/></svg>';
   await page.route('**/*', route=>{
    const u=new URL(route.request().url());
    if(u.hostname==='127.0.0.1')return route.continue();
+   if(u.hostname==='upload.wikimedia.org'&&
+      u.pathname==='/wikipedia/commons/d/d4/Realistic_Fish_Head.jpg')
+    return route.fulfill({status:200,contentType:'image/svg+xml',body:fishFixture});
    return route.abort('blockedbyclient');
   });
   await page.goto('http://127.0.0.1:'+port+'/',{waitUntil:'domcontentloaded',timeout:45000});
   await page.locator('[data-page="electionNight"]').click({timeout:45000});
   await page.locator('#electionNight.page.active').waitFor({timeout:15000});
+  // Actual desktop and mobile Chromium exercise the Fish Head rehearsal,
+  // rather than merely checking that the CSS rules exist as static text.
+  await page.locator('#enFishPreview').click();
+  await page.locator('#enFishToast').waitFor({state:'visible',timeout:10000});
+  assert.match(await page.locator('#enFishMode').innerText(),/REHEARSAL/,
+    name+': Mock Fish interruption must never masquerade as live results');
+  const fish=await page.locator('#enFishToast .en-fish-art img').evaluate(img=>{
+   const box=img.getBoundingClientRect(),style=getComputedStyle(img);
+   return {naturalWidth:img.naturalWidth,naturalHeight:img.naturalHeight,
+    width:box.width,height:box.height,fit:style.objectFit,
+    position:style.objectPosition};
+  });
+  assert.equal(fish.fit,'contain',name+': Fish must render full original frame');
+  assert.equal(fish.naturalHeight,700,name+': Tall fixture must load correctly');
+  assert(fish.width>100&&fish.height>0,name+': Fish portrait must occupy visible space');
+  if(name==='mobile'){
+   assert(fish.height<=260,name+': Fish must fit mobile viewport without covering controls');
+   const buttons=page.locator('#enFishToast .en-fish-screen-controls button');
+   assert.equal(await buttons.count(),2,name+': Replay and dismiss controls must be present');
+   assert(await page.locator('#enFishDismiss').isVisible(),
+    name+': Dismiss must remain visible below tall fish portrait');
+  }
+  assert.equal(await page.locator('#enFishToast .en-fish-stage').evaluate(
+   el=>getComputedStyle(el).animationName),'none',
+   name+': Reduced motion must suppress entrance animation');
+  await page.locator('#enFishDismiss').click();
+  assert.equal(await page.locator('#enFishToast').isHidden(),true,
+   name+': Dismissing the mock news bulletin restores the election screen');
   assert.equal(await page.locator('#enRaceDeskDetails').evaluate(el=>el.open),false,
     name+': Full race desk should not dominate initial election-night view');
   assert.equal(await page.locator('#jointNightSensitivity').evaluate(el=>el.open),false,
