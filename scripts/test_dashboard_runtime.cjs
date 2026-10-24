@@ -2197,7 +2197,9 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}
    ]
   };
   const detail={...row,election_type:row.type,
-   percent_reporting:47,last_updated:'2026-11-04T01:45:00Z',
+   // WI and NE close 02:00Z; an earlier timestamp is MOCK-only
+   // even after the clock advances to 03:00Z.
+   percent_reporting:47,last_updated:'2026-11-04T02:20:00Z',
    candidates:[
     {name:spec.state+' D',party:'Democratic',votes:620,percent:62,winner:false},
     {name:spec.state+' R',party:'Republican',votes:380,percent:38,winner:false}
