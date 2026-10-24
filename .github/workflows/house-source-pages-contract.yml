@@ -1,0 +1,24 @@
+name: Verify House source IDs reach Election Night Pages
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/election-night-source-preflight.yml'
+      - '.github/workflows/house-source-pages-contract.yml'
+      - 'scripts/check_house_pins_pages_publication.py'
+      - 'scripts/test_check_house_pins_pages_publication.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  deployment-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify exact pinned House IDs, missing Pages, duplicates and no periodic timestamp churn
+        run: |
+          python3 -m py_compile scripts/check_house_pins_pages_publication.py
+          python3 scripts/test_check_house_pins_pages_publication.py
