@@ -173,6 +173,12 @@ def probe_export_index():
     except Exception as exc:
         result = discover_export_index("", now, available=False)
         result["error_type"] = type(exc).__name__
+        # Only locally authored, fixed errors may be surfaced. Do not
+        # leak redirected URLs, response bodies, or any candidate counts.
+        if isinstance(exc, ValueError) and str(exc) in (
+                "Minnesota export index moved beyond reviewed host/path",
+                "Minnesota export index too large"):
+            result["error_reason"] = str(exc)
         return result
 
 
