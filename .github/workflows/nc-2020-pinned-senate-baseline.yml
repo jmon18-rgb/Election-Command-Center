@@ -1,0 +1,32 @@
+name: Verify pinned original 2020 NC Senate 100-county baseline
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/build_nc_2020_pinned_senate_county_baseline.py'
+      - 'scripts/test_build_nc_2020_pinned_senate_county_baseline.py'
+      - '.github/workflows/nc-2020-pinned-senate-baseline.yml'
+permissions:
+  contents: read
+jobs:
+  replay-pinned-official:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reject source/candidate/identity substitutions in historical Senate baseline
+        run: |
+          python3 -m py_compile scripts/build_nc_2020_pinned_senate_county_baseline.py
+          python3 scripts/test_build_nc_2020_pinned_senate_county_baseline.py
+      - name: Re-download SHA-pinned original 2020 NCSBE ZIP and reconcile all 100 Senate counties
+        run: |
+          python3 scripts/build_nc_2020_pinned_senate_county_baseline.py --output /tmp/nc_2020_pinned_senate_county_baseline.json
+      - name: Preserve reproducible historical Senate research baseline
+        uses: actions/upload-artifact@v4
+        with:
+          name: nc-2020-sha-pinned-senate-100-county-reference
+          path: /tmp/nc_2020_pinned_senate_county_baseline.json
+          retention-days: 90
