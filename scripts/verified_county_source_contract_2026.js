@@ -3,15 +3,19 @@
  * Never convert statewide totals into county vote observations.
  */
 (function(root,factory){
- const api=factory();
+ const closes=typeof module!=='undefined'&&module.exports?
+  require('./election_night_poll_closings_2026.js'):
+  root?.ElectionNightPollClosings2026;
+ const api=factory(closes);
  if(typeof module!=='undefined'&&module.exports)module.exports=api;
  if(root)root.VerifiedCountySourceContract2026=api;
-})(typeof window!=='undefined'?window:null,function(){
+})(typeof window!=='undefined'?window:null,function(closes){
  'use strict';
  const validInt=n=>Number.isSafeInteger(n)&&n>=0;
  const acceptedUrl=u=>typeof u==='string'&&/^https:\/\/[^\s/]+\//.test(u);
- function normalize(envelope,expected){
-  if(!envelope||envelope.schema!=='county-results-v1'||!expected||
+ function normalize(envelope,expected,now=Date.now()){
+  if(!closes||typeof closes.allowed!=='function'||!Number.isFinite(now)||
+     !envelope||envelope.schema!=='county-results-v1'||!expected||
     envelope.election_date!=='2026-11-03'||envelope.election_type!=='General'||
     envelope.production!==true||envelope.is_test!==false||
     envelope.provider!==expected.provider||
@@ -34,6 +38,16 @@
       !Number.isFinite(Date.parse(county.updated_at||''))||
       !/^2026-11-(?:0[3-9]|[12][0-9]|30)T/.test(county.updated_at||''))
       return {ok:false,reason:'INVALID_COUNTY_OBSERVATION'};
+   // Never accept future county snapshots or count a pre-close test archive
+   // as 2026 returns. The same 50-state poll-close contract is used by the
+   // state/office feed and race nowcast. Receipt time alone is insufficient:
+   // a pre-close source timestamp remains invalid AFTER the polls close.
+   const observedAt=Date.parse(county.updated_at);
+   if(observedAt>now+15*60000||
+      (county.ballots_reported>0&&
+       !closes.allowed(envelope.race_key,county.ballots_reported,
+                       county.updated_at,now)))
+      return {ok:false,reason:'SOURCE_TIME_BEFORE_LOCAL_CLOSE_OR_FUTURE'};
    let total=0;const names=new Set(),candidates=[];
    for(const c of county.candidates){
     if(!c||typeof c.name!=='string'||!c.name.trim()||
