@@ -75,7 +75,9 @@
    return unusable('PREVIEW','November 3 live results have not begun');
   if(now<close)
    return unusable('WAITING_FOR_POLLS','Polls not yet scheduled to close for this indicator');
-  if(error&&!observation)return unusable('SOURCE_ERROR','Provider unavailable · no inferred votes');
+  // Cached observations must not pass as current reporting while the
+  // originating source has an active error, even if their clock is recent.
+  if(error)return unusable('SOURCE_ERROR','Provider unavailable · no inferred votes');
   if(!observation)return unusable('AWAITING_SOURCE','No verified race votes from a live source');
   if(observation.verified!==true||!['Open America','civicAPI'].includes(observation.provider)||
    !Number.isSafeInteger(observation.d)||!Number.isSafeInteger(observation.r)||
