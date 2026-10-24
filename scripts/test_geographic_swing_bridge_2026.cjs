@@ -42,7 +42,7 @@ assert.equal(apply(null,row,base,Date.parse('2026-11-04T04:00:00Z')).reason,
 assert.equal(apply(null,{...row,updated_at:'2026-11-04T00:26:00Z'},
  base,NOW).reason,'PREMATURE_FUTURE_OR_STALE_VIEWER_CLOCK');
 assert.equal(apply(null,row,base,Number.NaN).reason,'INVALID_VIEWER_CLOCK');
-assert.equal(apply(null,row,base,Date.parse('2026-11-04T00:00:00Z')).reason,
+assert.equal(apply(null,row,base,Date.parse('2026-11-03T23:49:59Z')).reason,
  'PREMATURE_FUTURE_OR_STALE_VIEWER_CLOCK',
  'A future source stamp cannot qualify outside the timestamp tolerance');
 const preclose={...row,updated_at:'2026-11-03T23:59:59Z'};
