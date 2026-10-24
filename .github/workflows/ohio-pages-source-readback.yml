@@ -1,0 +1,64 @@
+name: Verify deployed Ohio official NIST candidate source
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types: [completed]
+  schedule:
+    - cron: '*/15 0-11 4 11 *'
+    - cron: '43 14 * * *'
+  pull_request:
+    paths:
+      - 'scripts/audit_ohio_pages_candidate_publication.cjs'
+      - 'scripts/test_audit_ohio_pages_candidate_publication.cjs'
+      - '.github/workflows/ohio-pages-source-readback.yml'
+      - 'scripts/ohio_official_county_startup.js'
+      - 'data/ohio_nist_source_approval_2026.json'
+      - 'index.html'
+permissions:
+  contents: read
+jobs:
+  data-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check approved Ohio snapshot, JS provenance, mock and publication-lag contracts
+        run: |
+          node --check scripts/audit_ohio_pages_candidate_publication.cjs
+          node scripts/test_audit_ohio_pages_candidate_publication.cjs
+          node scripts/audit_ohio_pages_candidate_publication.cjs --local
+  deployed-website:
+    if: >-
+      github.event_name != 'pull_request' &&
+      (github.event_name != 'workflow_run' ||
+       (github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.head_branch == 'main'))
+    needs: data-contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify Pages actually serves reviewed Ohio XML source and matching JS files
+        env:
+          DASHBOARD_SITE_URL: ${{ vars.DASHBOARD_SITE_URL }}
+        run: |
+          set -o pipefail
+          node scripts/audit_ohio_pages_candidate_publication.cjs --remote |
+            tee /tmp/ohio-pages-source-readback.json
+      - name: Preserve last real-site verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ohio-pages-approved-source-health
+          path: /tmp/ohio-pages-source-readback.json
+          retention-days: 14
+          if-no-files-found: ignore
