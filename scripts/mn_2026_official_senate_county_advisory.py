@@ -138,11 +138,15 @@ def parse_candidate_only(source_text, discovery, review, now):
             del item[k]
         counties.append(item)
     counties.sort(key=lambda row: row["county_fips"])
+    if not any(x["race_candidate_votes"] > 0 for x in counties):
+        return no("OFFICIAL_FILE_CURRENTLY_REPORTS_ZERO_NOT_BALLOTS_CAST")
     return {"ready": True,
             "status": "EXPLICITLY_REVIEWED_2026_COUNTY_CANDIDATE_ONLY",
             "race_key": "MN-SEN", "source": SOURCE,
             "source_reported_at": source_time.isoformat(),
             "counties": counties, "counties_seen": len(counties),
+            "counties_with_positive_candidate_votes": sum(
+                c["race_candidate_votes"] > 0 for c in counties),
             "candidate_votes": sum(c["votes"] for x in counties for c in x["candidates"]),
             "verified_live_2026_source": True,
             "statewide_coverage_verified": False,
