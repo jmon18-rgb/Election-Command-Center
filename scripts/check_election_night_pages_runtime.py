@@ -97,7 +97,7 @@ def audit(index: bytes, remote_pins: dict, remote_coverage: dict,
     # approved statewide race IDs never reach the live laptop. Check the
     # exact provider-verified pins AND the actual browser strict-adapter route.
     statewide_adapter = assets["civicapi_state_batch.js"]
-    source_slots = re.search(r"const enBatchPilotSlots=new Set\\((\\[[\\s\\S]*?\\])\\);", html)
+    source_slots = re.search(r"const enBatchPilotSlots=new Set\((\[[\s\S]*?\])\);", html)
     if not source_slots:
         raise ValueError("Deployed statewide strict-source routing unavailable")
     required_statewide = (
