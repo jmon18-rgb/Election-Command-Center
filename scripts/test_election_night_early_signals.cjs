@@ -41,6 +41,10 @@ test({...fresh,precincts:-1},'INVALID_SOURCE');
 test({...fresh,total:400},'INVALID_SOURCE');
 test({...fresh,d:0},'INVALID_SOURCE');
 test(null,'SOURCE_ERROR',{now,error:'429'});
+test(fresh,'SOURCE_ERROR',{now,error:'429'});
+assert.equal(api.assess(ky,{...fresh,precincts:95},
+ {now,error:'503',priorMargin:2}).comparative,false,
+ 'Cached evidence under an upstream outage is not a late-race comparison');
 test(null,'AWAITING_SOURCE');
 const beforeClose=Date.parse('2026-11-03T22:59:59Z');
 test(fresh,'WAITING_FOR_POLLS',{now:beforeClose});
