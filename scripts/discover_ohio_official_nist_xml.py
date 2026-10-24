@@ -62,7 +62,7 @@ def inspect(html):
         # Preserve only the inert, allowlisted action and object key; never
         # execute JavaScript, invent a direct XML URL or download mock votes.
         action=re.fullmatch(
-            r"javascript:downloadReport\\(['\\\"]([A-Za-z0-9]{1,80})['\\\"]\\);?",
+            r"""javascript:downloadReport\(['"]([A-Za-z0-9]{1,80})['"]\);?""",
             href.strip(),flags=re.I)
         if action:
             results.append({
