@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-24T20:25:58.310824+00:00",
+  "updated_at": "2026-10-24T20:40:49.546748+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -13,14 +13,43 @@
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 923,
+      "available_in_source": 924,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 305,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "CA-GOV",
+      "poll_id": "523813c4-0c7c-4357-92e5-f91741da44dc"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "CA-GOV",
+      "race_type": "governor",
+      "state": "CA",
+      "poll_id": "523813c4-0c7c-4357-92e5-f91741da44dc",
+      "question_id": "896d1dfa-ae21-4dd5-92d5-cd3f423ca8a0",
+      "pollster": "McLaughlin & Associates",
+      "dem_name": "Xavier Becerra",
+      "rep_name": "Steve Hilton",
+      "dem": 55.0,
+      "rep": 39.3,
+      "margin": 15.7,
+      "field_end": "2026-10-20",
+      "field_start": "2026-10-17",
+      "posted_date": "2026-10-24",
+      "posted_source_datetime": "2026-10-24T16:17:00",
+      "posted_source_time": "10/24/26 16:17",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://nypost.com/2026/10/23/us-news/california-voters-favor-aoc-in-new-democratic-presidential-primary-poll/",
+      "sample_population": "lv",
+      "sample_size": 800,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "OH-01",
       "race_type": "house",
