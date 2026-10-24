@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-24T12:53:01.420891+00:00",
+  "updated_at": "2026-10-24T13:42:21.468310+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,7 +9,7 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1257,
+      "available_in_source": 1258,
       "records_examined": 300
     },
     "governor": {
@@ -18,9 +18,38 @@
     }
   },
   "matched_primary_observations": 300,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "OH-01",
+      "poll_id": "cde135a8-f10c-4bc7-88a2-65c2463297c1"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "OH-01",
+      "race_type": "house",
+      "state": "OH",
+      "poll_id": "cde135a8-f10c-4bc7-88a2-65c2463297c1",
+      "question_id": "28db5382-8a6e-4210-96a5-1e168f3ceebb",
+      "pollster": "Quantus Insights",
+      "dem_name": "Greg Landsman",
+      "rep_name": "Eric Conroy",
+      "dem": 47.6,
+      "rep": 43.9,
+      "margin": 3.7,
+      "field_end": "2026-10-21",
+      "field_start": "2026-10-19",
+      "posted_date": "2026-10-24",
+      "posted_source_datetime": "2026-10-24T09:11:00",
+      "posted_source_time": "10/24/26 09:11",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://quantusinsights.org/f/ohio-1st-district-poll-landsman-brown-and-acton-all-lead",
+      "sample_population": "lv",
+      "sample_size": 561,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "CO-05",
       "race_type": "house",
