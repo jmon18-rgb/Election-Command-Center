@@ -38,6 +38,22 @@ class OfficialDEWYLinkDiscoveryTests(unittest.TestCase):
                      '<a href="/2024.pdf">General Election</a>',
                      "DE",T)["status"],"2026_GENERAL_RESULT_LINK_NOT_ON_PAGE")
 
+    def test_historical_year_in_url_cannot_borrow_current_heading(self):
+        for state,base in [("WY",WY),("DE",DE)]:
+            for label,url in [
+                ("General Election","/2024GeneralResults.pdf"),
+                ("General Election","/results/2025/general.pdf"),
+                ("Nov 3 2026 General Election","/2026/2024General.csv"),
+                ("General Election","/2023/old?report=2026&cycle=2023"),
+                ("2024 General Election","/2026/2026General.pdf"),
+                ("2025 General Election","/2026/2026General.pdf"),
+            ]:
+                html=base+'<a href="'+url+'">'+label+'</a>'
+                result=assess(html,state,T)
+                self.assertEqual(result["candidate_official_links"],[],
+                    (state,label,url))
+                self.assertEqual(result["status"],"2026_GENERAL_RESULT_LINK_NOT_ON_PAGE")
+
     def test_external_and_fake_links_fail_closed(self):
         for state,base in [("WY",WY),("DE",DE)]:
             x=assess(base+'<a href="https://evil.example/2026.pdf">2026 General Election</a>',
