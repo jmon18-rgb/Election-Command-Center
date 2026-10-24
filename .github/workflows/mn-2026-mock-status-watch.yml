@@ -42,8 +42,26 @@ jobs:
           assert x['validated_live_feed'] is False
           assert x['race_ids_verified'] is False
           PY
+      - name: Discover official MN 2026 export URL identities only — never download test vote files
+        run: |
+          python - <<'PY' | tee /tmp/mn-export-status.json
+          import json,sys
+          sys.path.insert(0, 'scripts')
+          from probe_mn_2026_official_results_status import probe_export_index
+          x=probe_export_index()
+          assert x['candidate_votes'] is None
+          assert x['ballots_reported'] is None
+          assert x['winner_calls'] is None
+          assert x['retrieved_vote_files'] == 0
+          assert x['validated_live_feed'] is False
+          assert x['may_update_model'] is False
+          assert x['geographic_needle_calibrated'] is False
+          print(json.dumps(x,indent=2,sort_keys=True))
+          PY
       - uses: actions/upload-artifact@v4
         with:
           name: minnesota-2026-official-status-no-votes
-          path: /tmp/mn-source-status.json
+          path: |
+            /tmp/mn-source-status.json
+            /tmp/mn-export-status.json
           retention-days: 30

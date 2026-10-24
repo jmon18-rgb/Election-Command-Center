@@ -2,6 +2,12 @@
 
 Updated October 13, 2026. Goal: a useful, trustworthy watch-through-the-evening dashboard that **keeps actual vote counts separate from race calls, from projections, and from polling averages.**
 
+## October 24 — Minnesota official export-file identities (mock data quarantined)
+
+Minnesota SOS offers machine-readable, **semicolon-delimited, 16-column candidate-area records** for the 2026 general election through its [official download index](https://electionresults.sos.mn.gov/Select/MediaFiles/Index?ersElectionId=201) and publishes the [field layout](https://electionresults.sos.mn.gov/Results/MediaFileLayout/Index?erselectionId=201). Independent review confirms specific Senate statewide and county files, U.S. House district and county files, governor statewide, and precinct reporting statistics on the official `electionresultsfiles.sos.mn.gov/20261103/` host. The SOS says the files can update every 15 minutes or less on Election Night, but precinct-level files are **not available until the next morning**. County IDs in those files must be independently joined to official FIPS before use in the county needle.
+
+**Critical:** The current page is marked **TEST RESULTS**, and source files contain positive synthetic-looking totals. These numbers are **NOT actual votes**. The scheduled `mn-2026-mock-status-watch` workflow now discovers the exact, allowlisted export URLs as metadata only and NEVER downloads or stores those candidate-vote files. The discovered paths are **not activated in browser results, source ledger coverage, forecasts, or county-mode projections**. A disappearance of the test banner is not enough: the production CSV schema, source timestamp, candidate/contest ID, mock exclusion, cross-origin browser delivery, legal source rights, audit/revision order and county FIPS must be explicitly validated before the first candidate vote can be used.
+
 ## October 24 — Massachusetts Senate needs a non-state election-night provider
 
 The Massachusetts Secretary of the Commonwealth explicitly states that it **does not publish unofficial Election Night results** or receive preliminary statewide totals from city/town election officials. Its election statistics database publishes results only after local certification and subsequent state review. Source: [Massachusetts Elections Division — Where Do I Find Election Results?](https://www.sec.state.ma.us/divisions/elections/voting-information/announcing-certifying.htm), checked October 24, 2026.
