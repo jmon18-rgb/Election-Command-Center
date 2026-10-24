@@ -137,6 +137,9 @@ async function settle(){
  assert(w.AutomaticRaceDesk?.SEED.length>75,'Automatic Silver-reference race registry must load');
  w.eval(read('scripts/election_night_signals.js'));
  assert.equal(w.ElectionNightSignals?.MILESTONES.length,7);
+ w.eval(read('scripts/election_night_poll_closings_2026.js'));
+ assert(w.ElectionNightPollClosings2026?.allowed,
+  'Actual 50-state poll-close contract must load before source reconciliation');
  w.eval(read('scripts/election_night_reconciliation.js'));
  assert(w.ElectionNightReconciliation?.reconcile,'National reconciliation script must load');
  w.eval(read('scripts/election_night_506_live_gap_desk.js'));
