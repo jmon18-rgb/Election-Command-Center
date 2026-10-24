@@ -56,6 +56,72 @@ def margin(d,r):
     return 100*(d-r)/(d+r)
 
 
+
+def reporting_selection_sensitivity(older, newer):
+    """Stress all-county geographic selection; never invent reporting order.
+
+    Since the original election-night publication sequence is unavailable,
+    explore intentionally non-chronological *county orderings*. All snapshots
+    here are final certified historical county totals, not live precinct data.
+    """
+    if len(older)!=100 or set(older)!=set(newer):
+        raise ValueError("Selection test needs identical complete NC counties")
+    weights={fips:sum(newer[fips]) for fips in older}
+    total=sum(weights.values())
+    shifts={fips:margin(*newer[fips])-margin(*older[fips])
+            for fips in older}
+    full=sum(weights[f]*shifts[f] for f in older)/total
+    prior_margin={fips:margin(*older[fips]) for fips in older}
+    orderings={
+        "largest_counties_first":sorted(older,key=lambda f:(-weights[f],f)),
+        "democratic_baseline_counties_first":sorted(
+            older,key=lambda f:(-prior_margin[f],f)),
+        "republican_baseline_counties_first":sorted(
+            older,key=lambda f:(prior_margin[f],f)),
+        "largest_positive_change_first_HINDSIGHT_STRESS":sorted(
+            older,key=lambda f:(-shifts[f],f)),
+        "largest_negative_change_first_HINDSIGHT_STRESS":sorted(
+            older,key=lambda f:(shifts[f],f)),
+    }
+    thresholds=(.10,.25,.50,.75,.90)
+    trials=[]
+    for order_name,order in orderings.items():
+        if len(order)!=100 or len(set(order))!=100:
+            raise ValueError("Repeated county in selection scenario")
+        for target in thresholds:
+            selected=[]
+            count=0
+            for fips in order:
+                selected.append(fips)
+                count+=weights[fips]
+                if count/total>=target:
+                    break
+            subset=sum(weights[f]*shifts[f] for f in selected)/count
+            trials.append({
+                "selection_order":order_name,
+                "selection_target_fraction":target,
+                "actual_final_ballot_fraction":round(count/total,4),
+                "selected_complete_counties":len(selected),
+                "selected_county_shift_points":round(subset,4),
+                "all_county_weighted_shift_points":round(full,4),
+                "selection_error_points":round(subset-full,4),
+                "posthoc_information_used":"HINDSIGHT" in order_name,
+                "original_reporting_order_observed":False,
+            })
+    return {
+        "method":"COUNTY_COHORT_SELECTION_NOT_CHRONOLOGICAL_REPLAY",
+        "target_fractions":list(thresholds),
+        "county_orderings":list(orderings),
+        "stress_cases":trials,
+        "max_absolute_selection_error_points":round(
+            max(abs(x["selection_error_points"]) for x in trials),4),
+        "total_verified_final_two_party_votes_2024":total,
+        "original_reporting_order_observed":False,
+        "valid_uncertainty_calibration":False,
+        "may_move_national_needle":False,
+    }
+
+
 def audit(csv2022,csv2024):
     older=extract(csv2022,2022,SHA2022,OFFICIAL2022)
     newer=extract(csv2024,2024,SHA2024,OFFICIAL2024)
@@ -88,6 +154,8 @@ def audit(csv2022,csv2024):
         "county_uniform_shift_weighted_rmse_points":round(wrmse,4),
         "county_absolute_residual_p95_points":round(abs_errors[94],4),
         "ten_largest_county_selection_residual_points":round(top_average,4),
+        "hypothetical_whole_county_reporting_selection":
+            reporting_selection_sensitivity(older,newer),
         "historical_sampling_order_observed":False,
         "same_office_comparison":False,
         "represents_2026_county_reporting_bias":False,
