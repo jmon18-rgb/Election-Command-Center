@@ -9,6 +9,7 @@ on:
       - 'scripts/election_night_506_live_gap_desk.js'
       - 'scripts/election_night_reconciliation.js'
       - 'scripts/test_election_night_preclose_browser.cjs'
+      - 'scripts/test_election_day_open_tab_handoff.cjs'
       - 'scripts/test_election_night_506_live_gap_desk.cjs'
       - 'scripts/test_election_night_results_export.cjs'
       - 'scripts/test_election_night_house_manifest_reload.cjs'
@@ -35,4 +36,5 @@ jobs:
           node scripts/test_election_night_reconciliation.cjs
           node scripts/test_election_night_results_export.cjs
           node scripts/test_election_night_preclose_browser.cjs
+          node scripts/test_election_day_open_tab_handoff.cjs
           node scripts/test_election_night_twelve_hour_transport.cjs
