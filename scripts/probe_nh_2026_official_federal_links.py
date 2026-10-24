@@ -15,6 +15,9 @@ import urllib.request
 
 URL = "https://www.sos.nh.gov/2026-general-election-results"
 EARLIEST_NH_UTC = "2026-11-04T01:00:00Z"
+EARLIEST_NH = datetime(2026,11,4,1,tzinfo=timezone.utc)
+HEADLINE = re.compile(r"\b2026\s+general\s+election\s+results\b",re.I)
+UNSAFE_PATH = re.compile(r"(?:202[0-5]|primary|mock|sample|test[-_]?results)",re.I)
 TARGETS = {
     "House|NH-01": re.compile(r"^representative in congress district (?:no\.?\s*)?1$", re.I),
     "House|NH-02": re.compile(r"^representative in congress district (?:no\.?\s*)?2$", re.I),
@@ -27,7 +30,7 @@ def official_link(url):
             and p.username is None and p.password is None and p.port in (None,443)
             and bool(p.path) and p.path != "/" and
             p.path.rstrip("/") != "/2026-general-election-results"
-            and chr(92) not in p.path)
+            and chr(92) not in p.path and not UNSAFE_PATH.search(p.path+" "+p.query))
 
 
 class Anchors(HTMLParser):
@@ -58,23 +61,40 @@ class Anchors(HTMLParser):
 def assess(page, *, checked_at, source_available=True):
     if checked_at.tzinfo is None:
         raise ValueError("Timezone-aware observation required")
+    body = " ".join(re.sub(r"<[^>]+>", " ", page or "").split())
+    page_ok = bool(HEADLINE.search(body))
+    preview = bool(re.search(r"\b(?:test results|sample results|mock results|testing in progress)\b",body,re.I))
+    closed = checked_at.astimezone(timezone.utc) >= EARLIEST_NH
     anchors = Anchors()
     anchors.feed(page or "")
     results = {}
     for race, pattern in TARGETS.items():
         matching = [a["url"] for a in anchors.links if pattern.fullmatch(a["label"])]
+        unique = len(matching)==1
+        allowed = source_available and page_ok and not preview and closed
+        status = ("SOURCE_UNAVAILABLE_NOT_ASSESSED" if not source_available else
+                  "WRONG_OR_UNKNOWN_2026_GENERAL_PAGE" if not page_ok else
+                  "OFFICIAL_PAGE_TEST_OR_PREVIEW_BLOCKED" if preview else
+                  "SOURCE_LINK_PRESENT_PRE_POLL_CLOSE" if matching and not closed else
+                  "DUPLICATED_AMBIGUOUS_LINK" if matching and not unique else
+                  "EXACT_OFFICIAL_LINK_FOUND_UNVERIFIED" if unique else
+                  "OFFICIAL_REPORT_LINK_NOT_YET_PUBLISHED")
         results[race] = {
-            "status": "SOURCE_UNAVAILABLE_NOT_ASSESSED" if not source_available else
-                "EXACT_OFFICIAL_LINK_FOUND_UNVERIFIED" if len(set(matching)) == 1
-                else "DUPLICATED_AMBIGUOUS_LINK" if matching else
-                "OFFICIAL_REPORT_LINK_NOT_YET_PUBLISHED",
-            "candidate_official_url": matching[0] if len(set(matching)) == 1 else None,
+            "status": status,
+            "candidate_official_url": matching[0] if unique and allowed else None,
             "vote_data_verified": False, "source_id_approved": False,
         }
     return {
         "schema": "nh-2026-official-federal-report-links-v1",
         "checked_at": checked_at.astimezone(timezone.utc).isoformat(),
-        "official_page": URL, "status": "OBSERVED" if source_available else "SOURCE_UNAVAILABLE",
+        "official_page": URL,
+        "status": "SOURCE_UNAVAILABLE" if not source_available else
+            "OFFICIAL_2026_GENERAL_PAGE" if page_ok and not preview else
+            "OFFICIAL_PAGE_TEST_OR_PREVIEW" if page_ok and preview else
+            "ELECTION_PAGE_IDENTITY_NOT_VERIFIED",
+        "page_2026_general_identity_verified": bool(source_available and page_ok),
+        "page_displays_test_or_mock": bool(source_available and preview),
+        "polls_closed_for_first_nh_reports": closed,
         "reports": results,
         "source_note": "Official reports are linked after the election; publication timing and browser-readable format unconfirmed.",
         "approved_live_feed": False, "candidate_votes": None,
