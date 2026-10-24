@@ -1,0 +1,37 @@
+name: Trace Ohio official XML export source action
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/trace_ohio_official_nist_download.py'
+      - 'scripts/test_trace_ohio_official_nist_download.py'
+      - '.github/workflows/ohio-nist-action-trace.yml'
+      - 'scripts/discover_ohio_official_nist_xml.py'
+permissions:
+  contents: read
+jobs:
+  source-identity-static-trace:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate safe action extraction and synthetic malicious script cases
+        run: |
+          python3 -m py_compile scripts/trace_ohio_official_nist_download.py
+          python3 scripts/test_trace_ohio_official_nist_download.py
+          python3 scripts/test_discover_ohio_official_nist_xml.py
+      - name: Trace only publicly served official Ohio first-party script contents
+        run: |
+          python3 scripts/trace_ohio_official_nist_download.py --probe \
+            --output /tmp/ohio-export-action-static-trace.json
+      - name: Retain bounded static action and source URL evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ohio-official-xml-action-static-trace
+          path: /tmp/ohio-export-action-static-trace.json
+          if-no-files-found: ignore
+          retention-days: 21
