@@ -7,16 +7,20 @@
  // at read-time rather than capturing an undefined global during startup.
  const api=factory(()=>typeof module!=='undefined'&&module.exports?
   require('./election_night_poll_closings_2026.js'):
-  root?.ElectionNightPollClosings2026);
+  root?.ElectionNightPollClosings2026,
+  ()=>typeof module!=='undefined'&&module.exports?
+  require('./election_night_state_county_fips_2026.js'):
+  root?.ElectionNightStateCountyFIPS2026);
  if(typeof module!=='undefined'&&module.exports)module.exports=api;
  if(root)root.VerifiedCountySourceContract2026=api;
-})(typeof window!=='undefined'?window:null,function(getCloses){
+})(typeof window!=='undefined'?window:null,function(getCloses,getFips){
  'use strict';
  const validInt=n=>Number.isSafeInteger(n)&&n>=0;
  const acceptedUrl=u=>typeof u==='string'&&/^https:\/\/[^\s/]+\//.test(u);
  function normalize(envelope,expected,now=Date.now()){
-  const closes=getCloses();
-  if(!closes||typeof closes.allowed!=='function'||!Number.isFinite(now)||
+  const closes=getCloses(),fips=getFips();
+  if(!closes||typeof closes.allowed!=='function'||
+     !fips||typeof fips.matches!=='function'||!Number.isFinite(now)||
      !envelope||envelope.schema!=='county-results-v1'||!expected||
     envelope.election_date!=='2026-11-03'||envelope.election_type!=='General'||
     envelope.production!==true||envelope.is_test!==false||
@@ -24,6 +28,9 @@
     envelope.provider_race_id!==expected.provider_race_id||
     envelope.race_key!==expected.race_key||
     envelope.state!==expected.state||
+    // A malicious/misconfigured "NC" envelope with 51/VA county IDs
+    // must not pass simply because its caller agrees with itself.
+    fips.PREFIX[expected.state]!==expected.state_fips||
     envelope.office!==expected.office||
     envelope.source_verified!==true||!acceptedUrl(envelope.source_url)||
     envelope.source_url!==expected.source_url||
@@ -32,7 +39,8 @@
   const rows=[],seen=new Set();
   for(const county of envelope.counties){
    if(!county||typeof county.fips!=='string'||!/^\d{5}$/.test(county.fips)||
-      county.fips.slice(0,2)!==expected.state_fips||seen.has(county.fips)||
+      !fips.matches(expected.state,expected.state_fips,county.fips)||
+      seen.has(county.fips)||
       !validInt(county.ballots_reported)||
       !Array.isArray(county.candidates)||county.candidates.length<2||
       county.candidates.length>20||
