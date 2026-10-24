@@ -17,18 +17,40 @@
      baseline.verified_source!==true)return null;
   const candidates=observation.candidates;
   if(!Array.isArray(candidates)||candidates.length<2)return null;
-  const n=candidates.reduce((a,c)=>{if(!c||!['D','R'].includes(c.party)||
-     !Number.isSafeInteger(c.votes)||c.votes<0||a[c.party]!==undefined)
-     return {...a,invalid:true};a[c.party]=c.votes;return a;},{});
+  // Third-party or write-in candidates are legitimate observations, not
+  // grounds to discard a verified county swing. Count ALL their votes for
+  // arithmetic validation but calculate the explicitly TWO-party D/R swing
+  // using only one uniquely identified D and one uniquely identified R.
+  if(!Number.isSafeInteger(observation.ballots_reported)||
+     observation.ballots_reported<0)return null;
+  const n={D:null,R:null},names=new Set();
+  let total=0,other=0;
+  for(const c of candidates){
+   if(!c||typeof c.name!=='string'||!c.name.trim()||
+      typeof c.party!=='string'||!c.party.trim()||
+      !Number.isSafeInteger(c.votes)||c.votes<0||
+      names.has(c.name.trim().toLowerCase()))return null;
+   names.add(c.name.trim().toLowerCase());
+   total+=c.votes;
+   if(!Number.isSafeInteger(total)||total>observation.ballots_reported)
+    return null;
+   if(c.party==='D'||c.party==='R'){
+    if(n[c.party]!==null)return null;
+    n[c.party]=c.votes;
+   }else other+=c.votes;
+  }
   const b=baseline.votes;
-  if(n.invalid||!Number.isSafeInteger(n.D)||!Number.isSafeInteger(n.R)||
+  if(!Number.isSafeInteger(n.D)||!Number.isSafeInteger(n.R)||
      !b||!Number.isSafeInteger(b.D)||!Number.isSafeInteger(b.R)||
-     b.D<0||b.R<0||b.D+b.R===0||n.D+n.R===0)return null;
+     b.D<0||b.R<0||!Number.isSafeInteger(b.D+b.R)||
+     b.D+b.R===0||!Number.isSafeInteger(n.D+n.R)||
+     n.D+n.R===0)return null;
   const currentMargin=(n.D-n.R)/(n.D+n.R);
   const baselineMargin=(b.D-b.R)/(b.D+b.R);
   return Object.freeze({county_id:observation.county_id,race_key:observation.race_key,
    current_margin:currentMargin,baseline_margin:baselineMargin,
    swing:currentMargin-baselineMargin,two_party_votes:n.D+n.R,
+   other_party_votes:other,reported_ballots:observation.ballots_reported,
    source_updated_at:observation.updated_at,mode:'VERIFIED_COUNTY_SWING_ONLY'});
  }
  return Object.freeze({calculate});
