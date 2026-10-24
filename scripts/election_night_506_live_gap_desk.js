@@ -39,6 +39,14 @@
   const ledgerTime=Date.parse(ledger.generated_at||'');
   if(!Number.isFinite(ledgerTime)||ledgerTime>now+15*60000)
    throw Error('Invalid future source identity audit');
+  // A historical identity lookup can remain syntactically correct for days
+  // while the upstream provider adds or changes exact race IDs. Warn rather
+  // than blocking separately verified live votes or treating gaps as zero.
+  const electionWindow=now>=Date.parse('2026-11-03T23:00:00Z')&&
+      now<=Date.parse('2026-11-04T12:00:00Z');
+  const maxIdentityAgeMs=(electionWindow?6:24)*60*60*1000;
+  const sourceIdentityAuditAgeMs=Math.max(0,now-ledgerTime);
+  const sourceIdentityAuditStale=sourceIdentityAuditAgeMs>maxIdentityAgeMs;
   const seen=new Set(),summary={};
   for(const name of Object.keys(EXPECTED))
    summary[name]={total:EXPECTED[name],reported:0,zero:0,missing:0,byStatus:{}};
@@ -120,6 +128,9 @@
    schema:'on-screen-election-night-506-source-triage-v1',
    checked_at:new Date(now).toISOString(),
    source_identity_audited_at:ledger.generated_at,
+   sourceIdentityAuditAgeMs,
+   sourceIdentityAuditStale,
+   sourceIdentityAuditMaxAgeHours:maxIdentityAgeMs/(60*60*1000),
    current_votes_provider_attributed_not_independently_certified:true,
    professional_calls_verified:0,may_update_model:false,
    totals:summary,senate:records,
@@ -142,6 +153,13 @@
    elt('p','Coverage triage awaiting a validated 506-race inventory.',host,'en-coverage-line');return false;
   }
   elt('strong','REAL-RESULT COVERAGE · 506 RACES · NOT SOURCE-ID COVERAGE',host);
+  if(pulse.sourceIdentityAuditStale){
+   elt('p','SOURCE-ID AUDIT OVERDUE · Registry last checked '+
+    pulse.source_identity_audited_at+' (target every '+
+    pulse.sourceIdentityAuditMaxAgeHours+
+    'h). Rerun Election Night External Source Preflight. Verified live-vote evidence remains separate.',
+    host,'en-coverage-line');
+  }
   const t=pulse.totals;
   elt('p','House '+t.House.reported+'/435 · Senate '+t.Senate.reported+
       '/35 · Governors '+t.Governor.reported+'/36 with source-reported votes.',host,'en-coverage-line');
