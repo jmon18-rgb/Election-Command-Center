@@ -77,12 +77,19 @@ function node(tag){
  replaceChildren(){this.children=[]}};
 }
 const host=node('div');
-assert.equal(api.render(host,pulse,{createElement:node}),true);
+const official=JSON.parse(fs.readFileSync(path.join(ROOT,
+ 'data/election_night_official_backstops.json')));
+assert.equal(api.render(host,pulse,{createElement:node},official.links),true);
 const flatten=x=>[x.textContent,...x.children.flatMap(flatten)].join(' ');
 const t=flatten(host);
 assert.match(t,/House 1\/435 · Senate 1\/35 · Governors 0\/36/);
 assert.match(t,/Senate source gaps · 34/);
 assert.match(t,/MA — No verified automated source ID/);
+assert.match(t,/certified results only; NOT live/);
+assert.match(t,/MS — No verified automated source ID/);
+assert.match(t,/Election Night timing unconfirmed/);
+const ma=host.children.flatMap(x=>x.children||[]);
+assert(!t.includes('source verified from manual check'));
 assert.match(t,/ME — Supplemental source ID/);
 assert.match(t,/NC — Reported votes · unofficial/);
 const failureHost=node('div');
@@ -92,4 +99,9 @@ assert.match(failures,/ME — Supplemental source request FAILED/);
 assert.match(failures,/OH-special — Supplemental source stale/);
 assert.match(failures,/NH — Supplemental source request in progress/);
 assert.match(t,/not.*race calls/i);
+const unsafe=node('div');
+assert(api.render(unsafe,pulse,{createElement:node},[{
+ race_ids:['Senate|MA'],url:'javascript:alert(1)',mode:'certified_only_not_election_night'
+}]));
+assert(!flatten(unsafe).includes('Official manual check'));
 console.log('506-race on-screen triage: real provider source, unavailable, zero-not-ballots, all 35 Senate and failures PASS');
