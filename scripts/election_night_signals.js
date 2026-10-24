@@ -82,6 +82,16 @@
    earlyCount:drivers.filter(d=>d.early).length,
    drivers:drivers.slice(0,5)};
  }
+ // A provider winner flag is not permission to award a milestone or
+ // lock a race before that contest's earliest *local* polling close.
+ // Resolve on demand for browsers that load these scripts out of order.
+ function localPollsClosed(key,total,asOf,now){
+  const closes=typeof window!=='undefined'?
+   window.ElectionNightPollClosings2026:
+   typeof require==='function'?require('./election_night_poll_closings_2026.js'):null;
+  return Boolean(closes&&typeof closes.allowed==='function'&&
+   closes.allowed(key,total,asOf,now));
+ }
  // Provider-reported winner signals are NOT independent professional
  // election calls or certified results. Before using one in a milestone or
  // the experimental joint model, validate the precise office, ballot seat,
@@ -103,7 +113,8 @@
   const ts=Date.parse(row.last_updated||'');
   // A provider flag that outlives its three-hour source freshness window
   // must not lock an election-night forecast or award a celebration.
-  if(!number(ts)||ts<START||ts>now+900000||now-ts>180*60000)return null;
+  if(!number(ts)||ts<START||ts>now+900000||now-ts>180*60000||
+     !localPollsClosed(row.key,row.total,row.last_updated,now))return null;
   const names=new Set(),candidates=[];
   let sum=0;
   for(const c of row.candidates){
