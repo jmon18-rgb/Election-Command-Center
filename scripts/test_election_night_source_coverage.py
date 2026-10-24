@@ -41,7 +41,7 @@ class CoverageLedgerTests(unittest.TestCase):
         self.assertEqual([report["summary"][o]["primary_scope"]
                           for o in ("house", "senate", "governor")], [216, 15, 15])
         self.assertEqual([report["summary"][o]["unresolved_source_gaps"]
-                          for o in ("house", "senate", "governor")], [219, 2, 2])
+                          for o in ("house", "senate", "governor")], [219, 1, 0])
         self.assertEqual(rows["House|AK-00"]["source_identity_status"],
                          "NO_CURATED_PROVIDER_ID")
         self.assertNotIn("House|AK-01", rows)
@@ -61,16 +61,16 @@ class CoverageLedgerTests(unittest.TestCase):
         self.assertEqual(len({r["key"] for r in senate}), 35)
         expected = {
             "PRIMARY_PROVIDER_STATE_SCOPE": 15,
-            "PINNED_PREVIOUSLY_VERIFIED_ID": 17,
+            "PINNED_PREVIOUSLY_VERIFIED_ID": 18,
             "SCOPED_ADAPTER_NO_PINNED_ID": 1,
-            "NO_CURATED_PROVIDER_ID": 2,
+            "NO_CURATED_PROVIDER_ID": 1,
         }
         counts = {status: sum(r["source_identity_status"] == status for r in senate)
                   for status in expected}
         self.assertEqual(counts, expected)
         self.assertEqual({r["key"] for r in senate
                           if r["source_identity_status"] == "NO_CURATED_PROVIDER_ID"},
-                         {"MA", "MS"})
+                         {"MA"})
         self.assertEqual([r["key"] for r in senate
                           if r["source_identity_status"] == "SCOPED_ADAPTER_NO_PINNED_ID"],
                          ["NH"])
@@ -141,11 +141,16 @@ class CoverageLedgerTests(unittest.TestCase):
         self.assertEqual(rows["Senate|AK"]["preflight_scope"], "supplemental_contract")
         self.assertEqual(rows["Senate|AK"]["latest_preflight_outcome"], "not_checked")
         self.assertEqual(rows["House|TX-01"]["preflight_scope"], "primary_contract")
-        self.assertEqual(rows["Senate|MS"]["gap_status"], "UNRESOLVED_SOURCE_GAP")
-        self.assertEqual(rows["Governor|HI"]["gap_status"], "UNRESOLVED_SOURCE_GAP")
-        self.assertEqual(rows["Governor|OK"]["gap_status"], "UNRESOLVED_SOURCE_GAP")
-        self.assertEqual(self.ledger()["summary"]["senate"]["pinned_secondary"], 17)
-        self.assertEqual(self.ledger()["summary"]["governor"]["pinned_secondary"], 18)
+        self.assertEqual(rows["Senate|MS"]["pinned_civicapi_id"], 81004)
+        self.assertEqual(rows["Senate|MA"]["gap_status"], "UNRESOLVED_SOURCE_GAP")
+        for code in ("Senate|MS", "Governor|HI", "Governor|OK"):
+            self.assertEqual(rows[code]["gap_status"], "PINNED_ID_NOT_LIVE_VERIFIED")
+            self.assertFalse(rows[code]["live_votes_verified_by_audit"])
+            self.assertFalse(rows[code]["professional_winner_call_verified_by_audit"])
+        self.assertEqual(rows["Governor|HI"]["pinned_civicapi_id"], 87100)
+        self.assertEqual(rows["Governor|OK"]["pinned_civicapi_id"], 87582)
+        self.assertEqual(self.ledger()["summary"]["senate"]["pinned_secondary"], 18)
+        self.assertEqual(self.ledger()["summary"]["governor"]["pinned_secondary"], 20)
         for row in rows.values():
             self.assertFalse(row["live_votes_verified_by_audit"])
             self.assertFalse(row["professional_winner_call_verified_by_audit"])
