@@ -29,14 +29,22 @@ jobs:
           python3 -m py_compile scripts/refresh_approved_ohio_nist.py
           python3 scripts/test_refresh_approved_ohio_nist.py
           python3 scripts/test_build_approved_ohio_nist_results.py
-      - name: Verify approval is still DISABLED before official Nov. 3 review
+      - name: Enforce post-poll source review before enabling any Ohio publication
         run: |
           python3 - <<'PY'
+          import datetime as dt
           import json
+          import sys
+          sys.path.insert(0, 'scripts')
+          from build_approved_ohio_nist_results import approve
           c=json.load(open('data/ohio_nist_source_approval_2026.json'))
-          assert c['enabled'] is False
-          assert c['real_results_publication_reviewed'] is False
-          print('No official Ohio MOCK vote counts may be published')
+          if c.get('enabled') is True:
+              approve(c, dt.datetime.now(dt.timezone.utc))
+              print('Post-poll Ohio official-source approval verified')
+          elif c.get('enabled') is False and c.get('real_results_publication_reviewed') is False:
+              print('Source disabled; no mock or 2026 votes may be published')
+          else:
+              raise ValueError('Ohio official source approval flags are inconsistent')
           PY
   approved-publish:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
