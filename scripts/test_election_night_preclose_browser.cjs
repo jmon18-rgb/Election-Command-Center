@@ -32,8 +32,8 @@ assert.equal(api.valid(vote(900)),false,
  'Pre-close primary NC snapshot fetched hours later must be rejected');
 assert.equal(api.allowed('NC',900,'2026-11-04T00:30:00Z',clock),true,
  'Post-close source timestamps clear this eligibility gate; other source-shape checks remain independent');
-assert.equal(api.valid(vote(0)),true,
- 'Pre-close zero-vote standby may be displayed as zero-not-ballots');
+assert.equal(api.allowed('NC',0,'',clock),true,
+ 'Zero votes remain zero-not-ballots, without establishing a reporting source');
 const ineligibleNow=Date.parse('2026-11-04T00:25:00Z');
 assert.equal(api.allowed('NC',100,'2026-11-04T00:30:00Z',ineligibleNow),false,
  'Future close timestamp must not enable pre-close results');
