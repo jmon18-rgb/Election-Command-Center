@@ -84,7 +84,7 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git commit -m "Refresh source-attributed NC county candidate votes"
-# Other independent polling, source-identity and results refresh
+            # Other independent polling, source-identity and results refresh
             # jobs can commit while this source download is being validated.
             # Replay ONLY non-conflicting changes; an approval/source JSON
             # conflict MUST fail for manual review, never force-push.
