@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "event": "2026-11-03",
-  "last_verified": "2026-10-22",
+  "last_verified": "2026-10-23",
   "status": "OFFICIAL_HUMAN_FALLBACK_LINKS_NOT_AUTOMATED_RESULTS",
   "links": [
     {
@@ -76,7 +76,7 @@
       "state": "MS",
       "name": "Mississippi",
       "url": "https://www.sos.ms.gov/elections-voting/election-results",
-      "mode": "results_landing_timing_unconfirmed",
+      "mode": "certified_only_not_election_night",
       "race_ids": [
         "Senate|MS"
       ]
@@ -135,5 +135,5 @@
       "state": "NE"
     }
   ],
-  "limitations": "Links lead to official election-office pages for manually checking races with unresolved machine-readable identities. They do not prove live returns or professional winner calls, and do not fill automated source gaps. Massachusetts state office expressly does not publish unofficial results on election night."
+  "limitations": "Links are human-check references, not verified live feeds, reported votes, or professional race calls. Massachusetts expressly does not publish unofficial statewide election-night results. Mississippi's Secretary of State stated in its 2024 election-day guidance that its office only announces and posts certified results; do not rely on that office as an unofficial live feed without a newly verified 2026 source."
 }
