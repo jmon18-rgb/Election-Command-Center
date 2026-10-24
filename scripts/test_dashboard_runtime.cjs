@@ -2622,11 +2622,22 @@ function __testSeedStaleOhioSenate(){
  };
  get('#enOfficeHouse').click();
  await w.eval('enLoad(true)');
- await new Promise(resolve=>setTimeout(resolve,80));
+ // Production starts independently scheduled watched-office fetches after a
+ // failed foreground load. The old 80ms sleep made this 6-minute integration
+ // test intermittently fail under loaded CI runners before its microtasks
+ // could complete. Wait for BOTH the request and rendered votes, with an
+ // explicit 2.5-second upper bound that still catches real starvation.
+ const watchedStart=Date.now();
+ while(Date.now()-watchedStart<2500&&
+       (!rehearsalOffices.some(v=>v.includes('office=Senate'))||
+        !/300 counted/.test(get('#enWatchItems').textContent))){
+  await new Promise(resolve=>setTimeout(resolve,25));
+ }
  assert.match(get('#enStatus').textContent,/Rehearsal House source disconnected/);
  assert.match(get('#enConnection').textContent,/SOURCE RETRYING/);
  assert(rehearsalOffices.some(v=>v.includes('office=Senate')),
-  'Watched Senate office must refresh during foreground House outage');
+  'Watched Senate office must refresh during foreground House outage; seen='+
+   JSON.stringify(rehearsalOffices.slice(-12)));
  assert.match(get('#enWatchItems').textContent,/300 counted/,
   'Independent Senate counts must remain available during House outage');
  assert.equal(get('#enRaces').textContent,'0','House may not borrow Senate votes');
