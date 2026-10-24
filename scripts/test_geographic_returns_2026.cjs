@@ -10,6 +10,9 @@ const row=overrides=>({...base,...overrides});
 assert(validate(base));
 for(const changes of [{is_test:true},{verified_source:false},{election_date:'2024-11-05'},
  {county_id:'36107'},{race_key:'NC-SEN'},{ballots_reported:90},
+ {state:'VA',state_fips:'37',county_id:'37183'},
+ {state:'NC',state_fips:'51',county_id:'51107',race_key:'NC-SEN'},
+ {county_id:'51000'},
  {updated_at:'2026-10-23T00:05:00Z'},
  {updated_at:'2026-11-03T23:59:59Z'},
  {candidates:[]}]){

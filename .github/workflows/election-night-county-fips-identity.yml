@@ -1,0 +1,47 @@
+name: Validate Election Night state-to-county FIPS identities
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'scripts/election_night_state_county_fips_2026.js'
+      - 'scripts/test_election_night_state_county_fips_2026.cjs'
+      - 'scripts/geographic_returns_2026.js'
+      - 'scripts/test_geographic_returns_2026.cjs'
+      - 'scripts/verified_county_source_contract_2026.js'
+      - 'scripts/test_verified_county_source_contract_2026.cjs'
+      - '.github/workflows/election-night-county-fips-identity.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/election_night_state_county_fips_2026.js'
+      - 'scripts/geographic_returns_2026.js'
+      - 'scripts/verified_county_source_contract_2026.js'
+      - '.github/workflows/election-night-county-fips-identity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  county-fips-identity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reject county returns from mismatched or fabricated state FIPS
+        run: |
+          node --check scripts/election_night_state_county_fips_2026.js
+          node --check scripts/geographic_returns_2026.js
+          node --check scripts/verified_county_source_contract_2026.js
+          node scripts/test_election_night_state_county_fips_2026.cjs
+          node scripts/test_geographic_returns_2026.cjs
+          node scripts/test_verified_county_source_contract_2026.cjs
+          node scripts/test_election_night_county_results_desk.cjs
+          node scripts/test_county_source_ingestion_2026.cjs
+      - name: Scope of identity verification
+        run: |
+          echo '### Canonical state/county FIPS' >> "$GITHUB_STEP_SUMMARY"
+          echo 'All 50 states and DC with distinct two-digit census prefixes.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Reject cross-state county IDs, impossible 000 pseudo-county and caller-supplied false state prefixes.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'This does not certify a source, actual 2026 vote count, race call or geographic forecast.' >> "$GITHUB_STEP_SUMMARY"
