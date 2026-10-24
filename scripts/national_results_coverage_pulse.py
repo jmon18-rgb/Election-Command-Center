@@ -8,10 +8,61 @@ never republishes candidate counts or becomes a forecast/race-call input.
 """
 import datetime as dt
 from collections import Counter
+from pathlib import Path
+import re
 
 PRIMARY_SCOPE = "Open America 22-state scope"
 EXPECTED = {"House":435, "Senate":35, "Governor":36}
-POST_CLOSE = dt.datetime(2026, 11, 3, 23, tzinfo=dt.timezone.utc)
+
+
+def state_poll_closings():
+    """Read the canonical 2026 state-local close schedule from the browser JS.
+
+    The audit must not keep a second, stale list of opening dates/time zones.
+    Only a strict 50-state literal map can be used. A missing/corrupt source
+    contract fails the check, not the closed-polls precondition.
+    """
+    source=(Path(__file__).resolve().parent /
+            "election_night_poll_closings_2026.js").read_text()
+    match=re.search(r"const TIMES=Object\.freeze\(\{(.*?)\}\);",source,re.S)
+    if not match:
+        raise ValueError("Shared state poll close contract missing")
+    pairs=re.findall(r"([A-Z]{2}):'([0-2]\d:[0-5]\d)'",match.group(1))
+    if len(pairs)!=50 or len({s for s,_ in pairs})!=50:
+        raise ValueError("Invalid or incomplete 50-state poll-close map")
+    closings={}
+    for state,clock in pairs:
+        day=3 if state in ("IN","KY") else 4
+        closings[state]=dt.datetime.fromisoformat(
+            f"2026-11-{day:02d}T{clock}:00+00:00")
+    if min(closings.values())!=dt.datetime(2026,11,3,23,tzinfo=dt.timezone.utc):
+        raise ValueError("Wrong earliest 2026 state poll close")
+    return closings
+
+
+def valid_candidates(details, total):
+    """Fail closed on source candidate arithmetic, never guess missing votes."""
+    cands=details.get("cands")
+    if not isinstance(cands,list) or (total>0 and not cands) or len(cands)>60:
+        return False
+    names=set()
+    summed=0
+    for row in cands:
+        if not isinstance(row,dict) or not isinstance(row.get("n"),str) or not row["n"].strip() or len(row["n"])>200:
+            return False
+        name=row["n"].strip().casefold()
+        if name in names:
+            return False
+        names.add(name)
+        if not isinstance(row.get("p"),str) or not row["p"].strip() or len(row["p"])>80:
+            return False
+        count=row.get("v")
+        if type(count) is not int or count<0:
+            return False
+        summed+=count
+        if summed>total:
+            return False
+    return True
 
 
 def _time(s):
@@ -33,6 +84,7 @@ def pulse(ledger, primary, now):
         ledger.get("election")!="2026-11-03" or
         not isinstance(ledger.get("races"),list) or len(ledger["races"])!=506):
         raise ValueError("Invalid nationwide 506-race source identity ledger")
+    poll_closes=state_poll_closings()
     identities=set()
     observed=Counter()
     sample_by_office={}
@@ -78,12 +130,18 @@ def pulse(ledger, primary, now):
             else:
                 details=races[key]
                 count=details.get("total") if isinstance(details,dict) else None
-                if type(count) is not int or count<0 or details.get("called") is not False:
+                if type(count) is not int or count<0 or details.get("called") is not False or details.get("winner"):
                     raise ValueError("Provider race unexpectedly invalid or called")
-                if count==0:
+                if not valid_candidates(details,count):
+                    status="PRIMARY_INVALID_CANDIDATE_ARITHMETIC"
+                elif count==0:
                     status="PRIMARY_ZERO_REPORTED_NOT_ZERO_VOTES_CAST"
-                elif office not in as_of or as_of[office]<POST_CLOSE:
+                elif office not in as_of:
                     status="PRIMARY_NO_RELIABLE_2026_UPDATE_TIME"
+                elif key[:2] not in poll_closes:
+                    raise ValueError("Unknown state in 506-race identity ledger")
+                elif as_of[office]<poll_closes[key[:2]] or now<poll_closes[key[:2]]:
+                    status="PRIMARY_SOURCE_BEFORE_STATE_POLL_CLOSE"
                 elif now-as_of[office]>dt.timedelta(hours=3):
                     status="PRIMARY_REPORTED_BUT_STALE"
                 else:
