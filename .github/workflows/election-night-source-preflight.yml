@@ -19,9 +19,9 @@ on:
       - 'scripts/election_night_reconciliation.js'
       - 'data/seat_universe.json'
   schedule:
-    # Hourly eight-seat House source discovery; expensive provider-contract
-    # probes remain every fourth hour. No vote relay or guessed source IDs.
-    - cron: '11 * * 10,11 *'
+    # Hourly discovery plus a second bounded scan during Election Night only.
+    # 41-minute scheduled runs OUTSIDE the counting window are skipped.
+    - cron: '11,41 * * 10,11 *'
 permissions:
   contents: write
   pages: write
@@ -43,15 +43,33 @@ jobs:
           else
             echo "run=true" >> "$GITHUB_OUTPUT"
           fi
+          # The extra :41 slot is a seven-gap fast recheck ONLY while
+          # states are reporting (Nov 3 23:00Z to Nov 4 12:00Z).
+          # Before/after that, skip instead of doubling provider API traffic.
+          stamp="$(date -u +'%Y%m%d')"
+          hour="$((10#$(date -u +'%H')))"
+          minute="$((10#$(date -u +'%M')))"
+          extra=false
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$minute" -ge 30 ]; then
+            extra=true
+            if { [ "$stamp" = "20261103" ] && [ "$hour" -ge 23 ]; } || \
+               { [ "$stamp" = "20261104" ] && [ "$hour" -lt 12 ]; }; then
+              echo 'Election Night additional 30-minute identity-only House gap check'
+            else
+              echo "run=false" >> "$GITHUB_OUTPUT"
+              echo 'Skipping extra half-hour source check outside active counting'
+            fi
+          fi
           # Full primary/secondary CORS and office checks every fourth hour;
+          # the :41 supplemental scans never rerun the expensive contracts.
           # on other hours this job is only the bounded House discovery desk.
           # Election Day + following canvass morning: run all three
           # 2026 provider contract checks EVERY hour, not every fourth hour.
           # Outside that window retain the economical four-hour baseline.
           stamp="$(date -u +'%Y%m%d')"
-          if [ "${{ github.event_name }}" = "schedule" ] && \
+          if [ "$extra" = true ] || { [ "${{ github.event_name }}" = "schedule" ] && \
              [ "$stamp" != "20261103" ] && [ "$stamp" != "20261104" ] && \
-             [ "$((10#$(date -u +'%H') % 4))" -ne 0 ]; then
+             [ "$((hour % 4))" -ne 0 ]; }; then
             echo "baseline=false" >> "$GITHUB_OUTPUT"
           else
             echo "baseline=true" >> "$GITHUB_OUTPUT"
@@ -66,7 +84,7 @@ jobs:
         if: steps.window.outputs.run == 'true' && steps.window.outputs.baseline == 'true'
         continue-on-error: true
         run: python3 scripts/test_civicapi_live_source.py
-      - name: Probe up to eight hourly House source identity gaps
+      - name: Probe up to eight House source identities (30-min during counting)
         id: house_probe
         if: steps.window.outputs.run == 'true'
         continue-on-error: true
