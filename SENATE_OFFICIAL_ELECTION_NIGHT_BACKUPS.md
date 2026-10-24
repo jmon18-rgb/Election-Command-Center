@@ -12,6 +12,7 @@ available without relying on a nonexistent machine-source identity gap.
 
 Verified office pages:
 
+- Minnesota: `https://electionresults.sos.mn.gov/201` — the official November 3, 2026 general-election page was independently probed on October 24 and still displays **TEST RESULTS**. This manual Senate|MN check is **MOCK/TEST source; DO NOT use as votes** until the state changes status and exact contest, production timestamps, machine source provenance and licensing are separately approved. The metadata-only monitor is `.github/workflows/mn-2026-mock-status-watch.yml`; no source votes flow from the page into the model.
 - Maine: `https://www.maine.gov/sos/elections-voting/election-results-data`
   — the general November 2026 returns were not published as of the source check.
 - Ohio: `https://liveresults.ohiosos.gov/Home/Index`
