@@ -35,4 +35,10 @@ const future=ingest({}, {...envelope,counties:[{...county,
  updated_at:'2026-11-04T01:16:00Z'}]},expected,{},at);
 assert.equal(future.accepted,false);
 assert.equal(future.reason,'SOURCE_TIME_BEFORE_LOCAL_CLOSE_OR_FUTURE');
+const late=ingest({},envelope,expected,{},Date.parse('2026-11-04T03:35:01Z'));
+assert.equal(late.accepted,false,
+ 'Stale source payload must never enter normalized county storage');
+assert.equal(late.reason,'STALE_COUNTY_SOURCE_TIMESTAMP');
+assert.equal(late.rows,undefined,'No stale county record should be published');
+
 console.log('Source contract to county ingestion passed');
