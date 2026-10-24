@@ -38,6 +38,7 @@ class Minnesota2026CandidateOnlyAdapterTests(unittest.TestCase):
   self.assertEqual(out["status"],"EXPLICITLY_REVIEWED_2026_COUNTY_CANDIDATE_ONLY")
   self.assertEqual(out["counties_seen"],2)
   self.assertEqual(out["candidate_votes"],2000)
+  self.assertEqual(out["counties_with_positive_candidate_votes"],2)
   self.assertEqual([c["county_fips"] for c in out["counties"]],["27001","27003"])
   self.assertEqual(out["counties"][0]["candidates"][0]["party"],"D")
   self.assertIsNone(out["percent_reporting"])
@@ -120,6 +121,15 @@ class Minnesota2026CandidateOnlyAdapterTests(unittest.TestCase):
               reason="DUPLICATE_COUNTY_CANDIDATE_IDENTITY")
   self.denied(text=GOOD.replace(";0304;Example Republican;",";0304;Example Democrat;"),
               reason="DUPLICATE_COUNTY_CANDIDATE_IDENTITY")
+
+ def test_zero_before_any_return_is_not_no_ballots_cast(self):
+  empty="\n".join([
+   row("03","0403","Example Democrat","DFL",0,total=0,reporting=0),
+   row("03","0304","Example Republican","R",0,total=0,reporting=0),
+   row("08","0403","Example Democrat","DFL",0,total=0,reporting=0),
+   row("08","0304","Example Republican","R",0,total=0,reporting=0)])
+  self.denied(text=empty,
+    reason="OFFICIAL_FILE_CURRENTLY_REPORTS_ZERO_NOT_BALLOTS_CAST")
 
  def test_unbounded_file_cannot_be_accepted(self):
   self.denied(text=GOOD+("X"*500_000),
