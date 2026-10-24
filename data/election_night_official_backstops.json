@@ -27,8 +27,10 @@
     {
       "state": "ND",
       "name": "North Dakota",
-      "url": "https://www.sos.nd.gov/elections/election-results",
-      "mode": "unofficial_results_landing",
+      "url": "https://resultsnd.sos.nd.gov/",
+      "mode": "2026_results_landing",
+      "verified_at": "2026-10-24",
+      "source_reference": "https://www.sos.nd.gov/elections/election-results",
       "race_ids": [
         "House|ND-00"
       ]
