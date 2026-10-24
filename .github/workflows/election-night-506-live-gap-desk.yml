@@ -11,6 +11,7 @@ on:
       - 'scripts/test_election_night_preclose_browser.cjs'
       - 'scripts/test_election_night_506_live_gap_desk.cjs'
       - 'scripts/test_election_night_results_export.cjs'
+      - 'scripts/test_election_night_house_manifest_reload.cjs'
       - 'scripts/test_dashboard_runtime.cjs'
       - '.github/workflows/election-night-506-live-gap-desk.yml'
       - 'data/election_night_source_coverage.json'
@@ -30,6 +31,7 @@ jobs:
           node --check scripts/election_night_506_live_gap_desk.js
           node scripts/test_election_night_poll_closings_2026.cjs
           node scripts/test_election_night_506_live_gap_desk.cjs
+          node scripts/test_election_night_house_manifest_reload.cjs
           node scripts/test_election_night_reconciliation.cjs
           node scripts/test_election_night_results_export.cjs
           node scripts/test_election_night_preclose_browser.cjs
