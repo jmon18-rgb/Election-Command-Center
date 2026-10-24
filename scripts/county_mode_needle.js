@@ -12,6 +12,16 @@
  const MODES=new Set(['election_day','early_in_person','mail']);
  const START=Date.parse('2026-11-03T05:00:00Z'),MAX_STALENESS=3*3600000;
  const numeric=n=>Number.isSafeInteger(n)&&n>=0;
+ // Resolve the shared 50-state election close schedule when auditing.
+ // An otherwise recent county/mode payload published BEFORE local close
+ // cannot become valid simply because the dashboard clock advanced.
+ function votesReleased(state,sourceStamp,total,now){
+  const closes=typeof window!=='undefined'?
+   window.ElectionNightPollClosings2026:
+   typeof require==='function'?require('./election_night_poll_closings_2026.js'):null;
+  return Boolean(closes&&typeof closes.allowed==='function'&&
+   closes.allowed(state+'-SEN',total,sourceStamp,now));
+ }
  function audit(record,now=Date.now()){
   if(!record||record.source_kind!=='official_state_elections'||
       !/^https:\/\/[^\s]+/.test(record.source_url||''))
@@ -33,6 +43,9 @@
   for(const obj of [old,newVotes])
    if(!numeric(obj.dem_votes)||!numeric(obj.rep_votes)||
       obj.dem_votes+obj.rep_votes<1)throw Error('Invalid reported vote total');
+  if(!votesReleased(record.state,newVotes.updated_at,
+     newVotes.dem_votes+newVotes.rep_votes,now))
+   throw Error('Pre-close or unverified 2026 local vote release');
   if(!Number.isFinite(newVotes.estimated_fraction_counted)||
       newVotes.estimated_fraction_counted<0||
       newVotes.estimated_fraction_counted>1||

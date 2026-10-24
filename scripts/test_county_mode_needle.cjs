@@ -43,6 +43,21 @@ const noSource=fixture('37077');noSource.source_kind='news_story';
 assert.throws(()=>api.audit(noSource,now),/official-source/);
 const stale=fixture('37079');stale.current.updated_at='2026-11-03T22:00:00Z';
 assert.throws(()=>api.audit(stale,now),/stale/);
+// Even a 'verified' postdated or cached local-method count cannot pass
+// until the state's actual earliest close (NC: Nov 4 at 00:30 UTC).
+const beforeClose=fixture('37086');
+beforeClose.current.updated_at='2026-11-04T00:29:59Z';
+assert.throws(()=>api.audit(beforeClose,Date.parse('2026-11-04T00:45:00Z')),
+ /Pre-close/,'Pre-close source stamp must stay invalid after polls close');
+const prematureClock=fixture('37087');
+prematureClock.current.updated_at='2026-11-04T00:30:15Z';
+assert.throws(()=>api.audit(prematureClock,Date.parse('2026-11-04T00:29:59Z')),
+ /Pre-close/,'Future stamped early vote cannot pass before current clock close');
+const afterClose=fixture('37088');
+afterClose.current.updated_at='2026-11-04T00:30:00Z';
+assert.equal(api.audit(afterClose,Date.parse('2026-11-04T00:30:01Z')).qualified,
+ true,'Documented post-close local mode returns remain eligible for advisory');
+
 const noProgress=fixture('37081');noProgress.current.reporting_basis='precincts_reporting';
 assert.throws(()=>api.audit(noProgress,now),/share of ballots counted/);
 const same=fixture('37083');
