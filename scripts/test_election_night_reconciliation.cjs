@@ -198,4 +198,40 @@ x=api.reconcile({...input,civic:{'Senate|ME':{...civic,key:'NH'}}});
 assert.equal(x.senate.supplemental,0,'Wrong race identity must fail closed');
 assert.throws(()=>api.houseIds({MA:9}),/435/);
 assert.throws(()=>api.senateIds(senate.slice(1)),/Senate universe/);
+// Split-time-zone provider calls must WAIT for final applicable closure.
+// The same legitimate partial candidate counts remain visible after EARLIEST
+// state closure; a stale premature winner flag is never revived by the clock.
+function sourceCall(office,key,sourceTime,nowTime){
+ return api.reconcile({...input,snapshots:{},supportedStates:[],
+  now:Date.parse(nowTime),civic:{[office+'|'+key]:{
+   ...civic,office,key,called:'Jane Democrat',last_updated:sourceTime
+  }}});
+}
+for(const [office,key,early,final] of [
+ ['Senate','KS','2026-11-04T01:20:00Z','2026-11-04T02:00:00Z'],
+ ['Governor','AK','2026-11-04T05:30:00Z','2026-11-04T06:00:00Z'],
+ ['House','SD-00','2026-11-04T01:30:00Z','2026-11-04T02:00:00Z'],
+ ['House','KY-01','2026-11-03T23:30:00Z','2026-11-04T00:00:00Z']
+]){
+ const earlyResult=sourceCall(office,key,early,early);
+ assert.equal(earlyResult.records[office+'|'+key].hasReportedVotes,true,
+  office+' '+key+' may legitimately report partial votes');
+ assert.equal(earlyResult.records[office+'|'+key].providerCall,false,
+  office+' '+key+' must not show a provider call while later polls remain open');
+ assert.equal(earlyResult.providerCalls,0);
+ const staleHint=sourceCall(office,key,early,final);
+ assert.equal(staleHint.providerCalls,0,
+  office+' '+key+' early winner hint may not revive after the last closure');
+ const accepted=sourceCall(office,key,final,final);
+ assert.equal(accepted.records[office+'|'+key].providerCall,true,
+  office+' '+key+' newly post-final-close provider hint can be displayed');
+ assert.equal(accepted.providerCalls,1);
+ assert.equal(accepted.authoritativeCalls,0,
+  'A valid provider hint is not an independently professional call');
+}
+const kansasEarlyHouse=sourceCall('House','KS-02',
+ '2026-11-04T01:20:00Z','2026-11-04T01:20:00Z');
+assert.equal(kansasEarlyHouse.providerCalls,1,
+ 'A House district wholly closed early should not be delayed statewide');
+
 console.log('Election-night 435/35 coverage, stale/outage, cross-source discrepancies, malformed votes and call isolation PASS');

@@ -188,7 +188,13 @@
     // present in a fresh exact-race record with positive votes.
     const called=supplementalAvailable&&!primaryAvailable&&
      typeof secondary.called==='string'&&secondary.called.trim()&&
-     secondary.total>0&&(secondary.candidates||[]).filter(c=>
+     // Valid partial counts start at the earliest local close. A provider
+     // WINNER hint must also pass the final applicable polling close.
+     // Neither passing clock alone means a professional/official call.
+     typeof closes.winnerAllowed==='function'&&
+     closes.winnerAllowed(office,key,secondary.total,
+                         secondary.last_updated,now)&&
+     (secondary.candidates||[]).filter(c=>
       c.name===secondary.called&&['D','R','O'].includes(c.party)&&
       Number.isSafeInteger(c.votes)&&c.votes>0).length===1;
     if(called)calls.push({id,provider:'civicAPI',candidate:secondary.called});

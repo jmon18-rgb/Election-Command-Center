@@ -1,0 +1,35 @@
+name: Guard nationwide provider calls at final state poll closure
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'scripts/election_night_reconciliation.js'
+      - 'scripts/election_night_poll_closings_2026.js'
+      - 'scripts/test_election_night_reconciliation.cjs'
+      - '.github/workflows/national-reconciliation-final-close-calls.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'scripts/election_night_reconciliation.js'
+      - 'scripts/election_night_poll_closings_2026.js'
+      - 'scripts/test_election_night_reconciliation.cjs'
+      - '.github/workflows/national-reconciliation-final-close-calls.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  split-state-source-calls:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Keep early counts while holding provider calls until final poll close
+        run: |
+          node --check scripts/election_night_reconciliation.js
+          node scripts/test_election_night_reconciliation.cjs
+          node scripts/test_election_night_poll_closings_2026.cjs
+          node scripts/check_election_night_asset_versions.cjs
