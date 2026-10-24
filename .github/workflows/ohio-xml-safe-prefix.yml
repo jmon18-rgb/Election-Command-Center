@@ -1,0 +1,37 @@
+name: Probe Ohio NIST XML export prefix without reading mock votes
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/probe_ohio_nist_xml_prefix.py'
+      - 'scripts/test_probe_ohio_nist_xml_prefix.py'
+      - '.github/workflows/ohio-xml-safe-prefix.yml'
+  schedule:
+    - cron: '44 14 * * *'
+permissions:
+  contents: read
+jobs:
+  xml-response-identity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reject malformed, deceptive, nonofficial or unsafe exports
+        run: |
+          python3 -m py_compile scripts/probe_ohio_nist_xml_prefix.py
+          python3 scripts/test_probe_ohio_nist_xml_prefix.py
+      - name: Observe no more than 8192 bytes from exact Ohio official XML candidate routes
+        run: |
+          python3 scripts/probe_ohio_nist_xml_prefix.py --probe \
+            --output /tmp/ohio-xml-bounded-prefix.json
+      - name: Preserve headers, XML-root flags and SHA-only prefix evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ohio-xml-prefix-probe-not-votes
+          path: /tmp/ohio-xml-bounded-prefix.json
+          retention-days: 14
+          if-no-files-found: ignore
