@@ -167,7 +167,12 @@ async function settle(){
 function __testSeedStaleOhioSenate(){
  enCivicByWatch['Senate|OH-special']={total:1000,called:'Candidate B',provider:'civicAPI'};
  enCivicValidatedGenerations['Senate|OH-special']=enCivicBreaker.status().generation-1;
-}`));
+}
+// Test-only functions share the application's lexical closure. Top-level
+// const/let source objects are not visible in subsequent window.eval calls.
+function __testOpenAmericaPending(){return enOpenAmericaReader.pending()}
+function __testWatchedOfficePending(){return enWatchRefreshPending.size}
+`));
  assert.equal(w.ElectionNightTransport.createPool(4,64).status().concurrency_limit,4);
  assert.match(w.eval('enCivicFetchJson.toString()'),/enCivicRequestPool\.run/,
   'All overlapping manual and automatic sweeps must share bounded fetches');
@@ -2616,12 +2621,12 @@ function __testSeedStaleOhioSenate(){
  // measures House-down / Senate-up behavior, not leftover test fixtures.
  const officeDrainStart=Date.now();
  while(Date.now()-officeDrainStart<15500&&w.eval(
-  'enOpenAmericaReader.pending()>0||enWatchRefreshPending.size>0')){
+  '__testOpenAmericaPending()>0||__testWatchedOfficePending()>0')){
   await new Promise(resolve=>setTimeout(resolve,35));
  }
- assert.equal(w.eval('enOpenAmericaReader.pending()'),0,
+ assert.equal(w.eval('__testOpenAmericaPending()'),0,
   'Prior source requests must settle or time out before the next outage test');
- assert.equal(w.eval('enWatchRefreshPending.size'),0,
+ assert.equal(w.eval('__testWatchedOfficePending()'),0,
   'No stale watched-office task may monopolize the Senate refresh');
  const rehearsalOffices=[];
  w.fetch=async url=>{
