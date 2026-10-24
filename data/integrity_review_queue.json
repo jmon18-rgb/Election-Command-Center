@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-24T04:03:33.153862Z",
+  "updated_at": "2026-10-24T04:44:36.812712Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
@@ -272,6 +272,26 @@
         "security"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "afea9ba37cf8c10df447",
+      "title": "Early Voting Begins Saturday in Union Ahead of Nov. 3 Election - TAPinto",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNV1ctbWZjS2NVLTVNbjQzcFBDNmJvZm1BY0FKcXo0clltY3IxV0ViUTVuWmF2V1hzRUJHNG5nbUlRR0Z3aU9EWGJ6ajlPWUtiRWhLUXhIeEFyTnJuX2ZrMTZtcTZyUkRaWF9wVzA2SXd3a0RsOGRoV1BSZjlTZUUtVVk1azZ3bXF3WnlLNjlkaHk1NG5PclVUamdSR193MVRIVTQ4QWNrVUl6RjJjZDZYcmNXVnBmNms3eXBrZnNhMzBleUk?oc=5",
+      "publisher": "TAPinto",
+      "published_at": "2026-10-24T00:10:45Z",
+      "detected_at": "2026-10-24T04:44:36.812712Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "3 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -4911,25 +4931,6 @@
       "state_hints": [],
       "topic_hints": [],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "9b996ccd71b4dd2e66c6",
-      "title": "This city will consider whether to allow 16-year-olds to vote - Ballotpedia News",
-      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQc0NhRmtEcC1UUUVzYjZGa2N5QXVFdnNmVXI5RFJmak5WaXRpaFdSS0FHWHI4SXNOZE9TUEVWLU9FZWk0M3dhNnQ4aEZFaGhvYkZObWZmejZJVlhfeVp4SFFrQmxEbW1LWERUQ1ZHWWkwTFhkYWFiS2c2TURjY1hxQkE1a2RxMjY0WGVHUlhPU01MWXhoaHQzdmFlYmRMTnp1MEVOXw?oc=5",
-      "publisher": "Ballotpedia News",
-      "published_at": "2026-10-13T20:00:00Z",
-      "detected_at": "2026-10-13T20:51:01.138904Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [
-        "16"
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
