@@ -54,10 +54,16 @@ def inspect(html):
             continue
         url=urllib.parse.urljoin(PAGE,href)
         parsed=urllib.parse.urlparse(url)
+        # NIST implementation PDFs explain the schema; they are not
+        # result-count XML endpoints even when linked near the feed label.
+        if parsed.path.lower().endswith((".pdf",".doc",".docx")):
+            continue
         allow=parsed.scheme=="https" and parsed.hostname in OFFICIAL_HOSTS
-        if url not in {r["href"] for r in results}:
+        if url not in {r["href"] or r["manual_review_candidate_url"] for r in results}:
             results.append({
                 "href":url if allow else None,
+                "manual_review_candidate_url":None if allow else url,
+                "manual_review_host":None if allow else parsed.hostname,
                 "link_label":label[:140],
                 "verified_official_host":allow,
                 "needs_manual_host_review":not allow,
@@ -68,6 +74,8 @@ def inspect(html):
         "official_landing":PAGE,
         "possible_feed_links":results[:12],
         "mock_or_test_banner_detected":mock,
+        "absence_of_mock_banner_does_not_prove_real_votes":True,
+        "pre_election_data_must_be_treated_as_mock_until_independent_review":True,
         "source_votes_ingested":False,
         "candidate_counts_certified":False,
         "may_move_national_needle":False,
