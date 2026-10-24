@@ -58,6 +58,12 @@
        !closes.allowed(envelope.race_key,county.ballots_reported,
                        county.updated_at,now)))
       return {ok:false,reason:'SOURCE_TIME_BEFORE_LOCAL_CLOSE_OR_FUTURE'};
+   // An old county record must not enter storage merely because the
+   // statewide provider is healthy. Retain last-good snapshots in the
+   // caller's audit history but require a new official source timestamp
+   // to make them eligible for any current geographic comparison.
+   if(now-observedAt>180*60000)
+      return {ok:false,reason:'STALE_COUNTY_SOURCE_TIMESTAMP'};
    let total=0;const names=new Set(),candidates=[];
    for(const c of county.candidates){
     if(!c||typeof c.name!=='string'||!c.name.trim()||
