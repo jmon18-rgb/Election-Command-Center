@@ -106,11 +106,11 @@ def discover_export_index(html, now, available=True):
     plain = VisibleText()
     plain.feed(html or "")
     text = " ".join(" ".join(plain.parts).lower().split())
-    exact_day = bool(re.search(r"\\bnovember\\s+3,?\\s+2026\\b", text))
+    exact_day = bool(re.search(r"\bnovember\s+3,?\s+2026\b", text))
     correct_index = ("downloadable text files" in text and
                      "election results files" in text and exact_day)
     test = bool(re.search(
-        r"\\btest\\s+results\\b|\\btesting\\s+in\\s+progress\\b|\\bmock\\s+results\\b",
+        r"\btest\s+results\b|\btesting\s+in\s+progress\b|\bmock\s+results\b",
         text))
     links = OfficialExportAnchors()
     links.feed(html or "")
