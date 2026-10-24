@@ -67,6 +67,42 @@ assert.equal(health({...input.snapshots.Senate,
 assert.equal(health({...input.snapshots.Senate,as_of:null,races:{NC:votes(1)}}).usable,false);
 assert.equal(health({...input.snapshots.Senate,races:{}}).state,'current_no_votes');
 assert.equal(health(input.snapshots.Senate).usable,true);
+// Explicit inactive sources may contain test-looking counts with fresh
+// timestamps. They cannot get reporting credit or create source calls.
+const inactive={...input.snapshots.Senate,live:false,final:false};
+assert.equal(health(inactive).state,'invalid');
+assert.equal(health(inactive).usable,false);
+let inactiveRes=api.reconcile({...input,snapshots:{
+ ...input.snapshots,Senate:inactive}});
+assert.equal(inactiveRes.records['Senate|NC'].hasReportedVotes,false);
+assert.equal(inactiveRes.senate.reported,1,
+ 'Only separately validated civicAPI Maine may report while primary is inactive');
+const standby={...input.snapshots.House,live:false,final:false,
+ races:{'AK-00':votes(0)}};
+assert.equal(health(standby,'House').state,'standby');
+assert.equal(api.reconcile({...input,snapshots:{
+ ...input.snapshots,House:standby}}).house.noVotes,0,
+ 'A non-live provider zero must not be counted as reported zero ballots');
+const completed={...input.snapshots.Senate,live:false,final:true};
+assert.equal(health(completed).usable,true,
+ 'Fresh finished primary result totals survive the end of counting');
+assert.equal(api.reconcile({...input,snapshots:{
+ ...input.snapshots,Senate:completed}}).records['Senate|NC'].hasReportedVotes,true);
+const unmatched=snapshot('Senate',{'NC':{total:950,called:false,
+ winner:'',cands:[{n:'Democrat',p:'D',v:0},{n:'Republican',p:'R',v:0}]}});
+assert.equal(api.reconcile({...input,snapshots:{
+ ...input.snapshots,Senate:unmatched}}).records['Senate|NC'].hasReportedVotes,false,
+ 'No candidate votes reported despite positive race-wide count is not observed results');
+// Distinct same-party candidates are a legal top-two election. Count their
+// source votes without pretending a D/R race margin has been observed.
+const topTwo=snapshot('House',{'CA-01':{total:1200,called:false,
+ winner:'',cands:[{n:'Candidate One',p:'D',v:700},
+                   {n:'Candidate Two',p:'D',v:500}]}});
+assert.equal(api.reconcile({...input,snapshots:{
+ ...input.snapshots,House:topTwo},supportedStates:['CA',...input.supportedStates]})
+ .records['House|CA-01'].hasReportedVotes,true,
+ 'The source-status desk must not discard valid same-party top-two results');
+
 /* 2026 pre-close MOCK payloads must not become live votes after the
  * computer clock passes close. NC/OH independently close at 7:30 PM ET.
  */
