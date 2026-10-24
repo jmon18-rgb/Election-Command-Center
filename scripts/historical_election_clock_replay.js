@@ -60,6 +60,9 @@
    // A source timestamp alone is insufficient: require one separately
    // documented original capture for every clock entry, with an explicit
    // offset and unique archive record ID. Caller review remains required.
+   const at=Date.parse(x.as_of||'');
+   if(!Number.isFinite(at)||at<START||at>END||at<=earlier)
+    return fail('nonchronological_or_wrong_cycle_snapshot');
    const capture=x.capture;
    if(!capture||typeof capture.id!=='string'||
       !/^[a-zA-Z0-9._:-]{8,120}$/.test(capture.id)||
@@ -67,9 +70,7 @@
       !WITH_OFFSET.test(x.as_of||'')||
       !WITH_OFFSET.test(capture.captured_at||''))
     return fail('missing_original_per_snapshot_capture_provenance');
-   const at=Date.parse(x.as_of),taken=Date.parse(capture.captured_at);
-   if(!Number.isFinite(at)||at<START||at>END||at<=earlier)
-    return fail('nonchronological_or_wrong_cycle_snapshot');
+   const taken=Date.parse(capture.captured_at);
    if(!Number.isFinite(taken)||taken<at-5*60000||
       taken>at+120*60000||taken>END)
     return fail('capture_not_contemporaneous_with_source_timestamp');
