@@ -27,6 +27,25 @@ function results(extra={}){
 const res=results();
 const state={House:'reporting',Senate:'reporting',Governor:'current_no_votes'};
 const pulse=api.build(ledger,res,state,now);
+// Election-night exact source-ID audits should be refreshed within six hours.
+// A stale registry must never invalidate independent 2026 vote evidence.
+const freshLedger={...ledger,generated_at:new Date(now-60*60000).toISOString()};
+const atSixHours={...ledger,generated_at:new Date(now-6*60*60000).toISOString()};
+const tooOld={...ledger,generated_at:new Date(now-(6*60+1)*60000).toISOString()};
+assert.equal(api.build(freshLedger,res,state,now).sourceIdentityAuditStale,false);
+assert.equal(api.build(atSixHours,res,state,now).sourceIdentityAuditStale,false);
+const stalePulse=api.build(tooOld,res,state,now);
+assert.equal(stalePulse.sourceIdentityAuditStale,true);
+assert.equal(stalePulse.sourceIdentityAuditMaxAgeHours,6);
+assert.equal(stalePulse.totals.House.reported,1);
+assert.equal(stalePulse.totals.Senate.reported,1);
+assert.equal(stalePulse.professional_calls_verified,0);
+const offNight=Date.parse('2026-11-02T12:00:00Z');
+const offRecent={...ledger,generated_at:new Date(offNight-7*60*60000).toISOString()};
+assert.equal(api.build(offRecent,res,state,offNight).sourceIdentityAuditStale,false);
+assert.equal(api.build({...ledger,generated_at:
+ new Date(offNight-25*60*60000).toISOString()},res,state,offNight)
+ .sourceIdentityAuditStale,true);
 assert.deepEqual(Object.keys(pulse.totals),['House','Senate','Governor']);
 assert.deepEqual([pulse.totals.House.total,pulse.totals.Senate.total,
  pulse.totals.Governor.total],[435,35,36]);
@@ -106,6 +125,13 @@ const official=JSON.parse(fs.readFileSync(path.join(ROOT,
 assert.equal(api.render(host,pulse,{createElement:node},official.links),true);
 const flatten=x=>[x.textContent,...x.children.flatMap(flatten)].join(' ');
 const t=flatten(host);
+const staleHost=node('div');
+assert.equal(api.render(staleHost,stalePulse,{createElement:node},official.links),true);
+assert.match(flatten(staleHost),/SOURCE-ID AUDIT OVERDUE/);
+assert.match(flatten(staleHost),/Election Night External Source Preflight/);
+assert(!t.includes('SOURCE-ID AUDIT OVERDUE')===false ||
+  pulse.sourceIdentityAuditStale===false);
+
 assert.match(t,/House 1\/435 · Senate 1\/35 · Governors 0\/36/);
 assert.match(t,/Senate source gaps · 34/);
 if(otherPending.length){
