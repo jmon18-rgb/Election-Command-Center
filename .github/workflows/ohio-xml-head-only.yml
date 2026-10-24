@@ -1,0 +1,37 @@
+name: Verify exact Ohio XML export path via metadata-only HEAD
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/probe_ohio_xml_export_headers.py'
+      - 'scripts/test_probe_ohio_xml_export_headers.py'
+      - '.github/workflows/ohio-xml-head-only.yml'
+  schedule:
+    - cron: '32 17 * * *'
+permissions:
+  contents: read
+jobs:
+  bounded-metadata-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Enforce HTTP HEAD only, exact export key and zero mock-vote ingestion
+        run: |
+          python3 -m py_compile scripts/probe_ohio_xml_export_headers.py
+          python3 scripts/test_probe_ohio_xml_export_headers.py
+      - name: Probe official Ohio source headers, never request the XML body
+        run: |
+          python3 scripts/probe_ohio_xml_export_headers.py --probe \
+            --output /tmp/ohio-export-head-only.json
+      - name: Save official endpoint response metadata for source review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ohio-official-nist-export-head-only
+          path: /tmp/ohio-export-head-only.json
+          if-no-files-found: ignore
+          retention-days: 14
