@@ -156,6 +156,14 @@ class NationalCoveragePulse(unittest.TestCase):
             zero=pulse(self.ledger,{"Senate":doc},NOW)
             self.assertNotIn("PRIMARY_ZERO_REPORTED_NOT_ZERO_VOTES_CAST",
                 zero["offices"]["Senate"]["status_counts"])
+        # The provider's completed FINAL results correctly set live=false
+        # after counting ends. They remain valid observations when the
+        # final timestamp is current; "not live" alone is not a mock flag.
+        finished=office_document("Senate","2026-11-04T00:55:00Z",source)
+        finished.update(live=False,counting=False,final=True)
+        published=pulse(self.ledger,{"Senate":finished},NOW)
+        self.assertEqual(published["offices"]["Senate"]["status_counts"][
+            "PRIMARY_OBSERVED_CANDIDATE_COUNTS_UNCALLED"],1)
         recovery=office_document("Senate","2026-11-04T00:55:00Z",source)
         live=pulse(self.ledger,{"Senate":recovery},NOW)
         self.assertEqual(live["offices"]["Senate"]["status_counts"][
