@@ -46,7 +46,6 @@ def valid_candidates(details, total):
     if not isinstance(cands,list) or (total>0 and not cands) or len(cands)>60:
         return False
     names=set()
-    major_parties=set()
     summed=0
     for row in cands:
         if not isinstance(row,dict) or not isinstance(row.get("n"),str) or not row["n"].strip() or len(row["n"])>200:
@@ -57,20 +56,16 @@ def valid_candidates(details, total):
         names.add(name)
         if not isinstance(row.get("p"),str) or not row["p"].strip() or len(row["p"])>80:
             return False
-        party=row["p"].strip()
-        if party in ("D","R"):
-            if party in major_parties:
-                return False
-            major_parties.add(party)
         count=row.get("v")
         if type(count) is not int or count<0:
             return False
         summed+=count
         if summed>total:
             return False
-    # A provider-wide positive race total with ZERO assigned candidate
-    # votes is not evidence of observed candidate counts; also protect
-    # the same D/R uniqueness required by the live nowcast pipeline.
+    # A positive race total with ZERO assigned candidate votes is not
+    # evidence of observed candidate counts. Same-party contests CAN be
+    # legitimate (CA/WA top-two); do not use party-code uniqueness to
+    # reject a valid source race here. The D/R nowcast has stricter rules.
     return total==0 or summed>0
 
 
