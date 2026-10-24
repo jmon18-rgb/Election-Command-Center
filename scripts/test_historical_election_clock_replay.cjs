@@ -92,7 +92,9 @@ denied(x=>{x.snapshots[3].dem_votes=7000},
  'snapshot_exceeds_verified_final_major_party_counts');
 denied(x=>{x.snapshots=x.snapshots.map((row,i)=>({
  ...row,dem_votes:5900,rep_votes:3900,
- as_of:new Date(Date.parse('2024-11-06T00:00:00Z')+i*60000).toISOString()
+ as_of:new Date(Date.parse('2024-11-06T00:00:00Z')+i*60000).toISOString(),
+ capture:{...row.capture,captured_at:
+  new Date(Date.parse('2024-11-06T00:00:00Z')+(i+1)*60000).toISOString()}
  }))},'not_a_useful_election_clock_reporting_sequence');
 denied(x=>{x.snapshots=x.snapshots.map((row,i)=>({
  ...row,dem_votes:100+i*10,rep_votes:200+i*10
