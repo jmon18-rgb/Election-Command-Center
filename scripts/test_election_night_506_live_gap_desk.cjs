@@ -129,8 +129,9 @@ const staleHost=node('div');
 assert.equal(api.render(staleHost,stalePulse,{createElement:node},official.links),true);
 assert.match(flatten(staleHost),/SOURCE-ID AUDIT OVERDUE/);
 assert.match(flatten(staleHost),/Election Night External Source Preflight/);
-assert(!t.includes('SOURCE-ID AUDIT OVERDUE')===false ||
-  pulse.sourceIdentityAuditStale===false);
+assert.equal(t.includes('SOURCE-ID AUDIT OVERDUE'),
+ pulse.sourceIdentityAuditStale,
+ 'The visible warning must reflect only the audit-age flag');
 
 assert.match(t,/House 1\/435 · Senate 1\/35 · Governors 0\/36/);
 assert.match(t,/Senate source gaps · 34/);
