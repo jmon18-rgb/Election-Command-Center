@@ -1,0 +1,108 @@
+name: Refresh independently approved Ohio official NIST county results
+on:
+  workflow_dispatch:
+  schedule:
+    # Every five minutes, November 3 after local evening and Nov 4 overnight.
+    # Python validates the 2026 date and actual 7:30 PM EST poll close.
+    - cron: '*/5 23 3 11 *'
+    - cron: '*/5 0-11 4 11 *'
+  pull_request:
+    paths:
+      - 'scripts/refresh_approved_ohio_nist.py'
+      - 'scripts/test_refresh_approved_ohio_nist.py'
+      - 'scripts/build_approved_ohio_nist_results.py'
+      - 'data/ohio_nist_source_approval_2026.json'
+      - '.github/workflows/ohio-approved-nist-refresh.yml'
+permissions:
+  contents: read
+jobs:
+  no-mock-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify default disabled gate, race source, 88 county and revision guards
+        run: |
+          python3 -m py_compile scripts/refresh_approved_ohio_nist.py
+          python3 scripts/test_refresh_approved_ohio_nist.py
+          python3 scripts/test_build_approved_ohio_nist_results.py
+      - name: Enforce post-poll source review before enabling any Ohio publication
+        run: |
+          python3 - <<'PY'
+          import datetime as dt
+          import json
+          import sys
+          sys.path.insert(0, 'scripts')
+          from build_approved_ohio_nist_results import approve
+          c=json.load(open('data/ohio_nist_source_approval_2026.json'))
+          if c.get('enabled') is True:
+              approve(c, dt.datetime.now(dt.timezone.utc))
+              print('Post-poll Ohio official-source approval verified')
+          elif c.get('enabled') is False and c.get('real_results_publication_reviewed') is False:
+              print('Source disabled; no mock or 2026 votes may be published')
+          else:
+              raise ValueError('Ohio official source approval flags are inconsistent')
+          PY
+  approved-publish:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: no-mock-contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    permissions:
+      contents: write
+      pages: write
+    concurrency:
+      group: ohio-approved-nist-candidate-publication
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch full official XML only if human-reviewed 2026 results are enabled
+        run: python3 scripts/refresh_approved_ohio_nist.py
+      - name: Commit only safe Ohio candidate snapshot revision
+        run: |
+          if [ -f data/ohio_nist_candidate_votes_2026.json ]; then
+            git add data/ohio_nist_candidate_votes_2026.json
+          fi
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Refresh reviewed Ohio NIST candidate-only county counts"
+            git push origin HEAD:main
+          else
+            echo "Ohio candidate feed disabled or official NIST snapshot unchanged"
+          fi
+      - name: Explicitly trigger GitHub Pages publication for approved Ohio returns
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          active="$(python3 -c 'import json; print(str(json.load(open("data/ohio_nist_source_approval_2026.json")).get("enabled") is True).lower())')"
+          if [ "$active" != "true" ]; then
+            echo "No reviewed Ohio source; no Pages build required"
+            exit 0
+          fi
+          git fetch origin main
+          head_sha="$(git rev-parse origin/main)"
+          last_sha="$(gh api "repos/${{ github.repository }}/pages/builds/latest" --jq '.commit // ""' 2>/dev/null || true)"
+          last_status="$(gh api "repos/${{ github.repository }}/pages/builds/latest" --jq '.status // ""' 2>/dev/null || true)"
+          if [ "$head_sha" = "$last_sha" ] && [ "$last_status" = "built" ]; then
+            echo "Reviewed Ohio source revision already live on Pages"
+            exit 0
+          fi
+          for n in 1 2 3; do
+            if gh api -X POST "repos/${{ github.repository }}/pages/builds"; then
+              echo "Ohio reviewed county snapshot Pages build requested"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "Ohio source committed but Pages build could not be requested" >&2
+          exit 1
