@@ -224,10 +224,13 @@ class HouseCoverageTests(unittest.TestCase):
             datetime(2026, 11, 3, 22, 59, tzinfo=timezone.utc),
             ledger, limit=8, window_hours=1)["districts"], (),
             "Do not accelerate source probes before counting begins")
-        self.assertEqual(gap_aware_window(
+        after = gap_aware_window(
             datetime(2026, 11, 4, 12, 1, tzinfo=timezone.utc),
-            ledger, limit=8, window_hours=1)["districts"], (),
-            "After the election-night window return to normal 24h/4h safety budgets")
+            ledger, limit=8, window_hours=1)["districts"]
+        self.assertNotIn("NH-01", after,
+            "Outside the counting window NOT_INDEXED returns to the 24-hour retry budget")
+        self.assertIn("AK-00", after,
+            "Outside the counting window 4-hour transient-failure retry is still due")
 
     def test_adaptive_expiry_retries_missing_after_24h_and_indexed_after_72h(self):
         ledger = synthetic_initial_coverage()
