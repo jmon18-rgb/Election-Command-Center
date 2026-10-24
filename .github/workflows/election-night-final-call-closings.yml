@@ -1,0 +1,39 @@
+name: Separate partial vote and final poll-close winner gates
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'scripts/election_night_poll_closings_2026.js'
+      - 'scripts/election_night_signals.js'
+      - 'scripts/election_night_nowcast.js'
+      - 'scripts/test_election_night_poll_closings_2026.cjs'
+      - 'scripts/test_election_night_signals.cjs'
+      - 'scripts/test_election_night_nowcast.cjs'
+      - '.github/workflows/election-night-final-call-closings.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/election_night_poll_closings_2026.js'
+      - 'scripts/election_night_signals.js'
+      - 'scripts/election_night_nowcast.js'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  final-state-winner-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reject calls before final split-state closure without delaying partial returns
+        run: |
+          node --check scripts/election_night_poll_closings_2026.js
+          node --check scripts/election_night_signals.js
+          node --check scripts/election_night_nowcast.js
+          node scripts/test_election_night_poll_closings_2026.cjs
+          node scripts/test_election_night_signals.cjs
+          node scripts/test_election_night_nowcast.cjs
+          node scripts/check_election_night_asset_versions.cjs
