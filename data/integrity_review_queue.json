@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-24T08:46:03.862965Z",
+  "updated_at": "2026-10-24T09:44:40.461643Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
@@ -260,6 +260,24 @@
     }
   ],
   "items": [
+    {
+      "id": "46950c3c9c5a190a5efb",
+      "title": "Undelivered mail ballots found in dumpster as Election Day nears - KMVT",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNaTNuazRZTTNEMjZrREtlaFc1YlNoaFV0VExUYVA4X1lQZEhxOGVtYzBheG03enVETDFqX3ZHQk96b09jcTg2TnR0b3lpZ2lVUUczMlFPMUY1WjFEcUFKbjhrUDU4UUd1OXgwb2o1eE5wLXRLVHl2Vl94SHhZQk1UcWw1TFdUbmlIS002dUtIU3RTZ1JiOFYwNVZOaG5LdzJCdjhxSXVXRDkzQdIBqgFBVV95cUxNaTNuazRZTTNEMjZrREtlaFc1YlNoaFV0VExUYVA4X1lQZEhxOGVtYzBheG03enVETDFqX3ZHQk96b09jcTg2TnR0b3lpZ2lVUUczMlFPMUY1WjFEcUFKbjhrUDU4UUd1OXgwb2o1eE5wLXRLVHl2Vl94SHhZQk1UcWw1TFdUbmlIS002dUtIU3RTZ1JiOFYwNVZOaG5LdzJCdjhxSXVXRDkzQQ?oc=5",
+      "publisher": "KMVT",
+      "published_at": "2026-10-24T06:23:00Z",
+      "detected_at": "2026-10-24T09:44:40.461643Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "c4ada8484aeeaac4acf2",
       "title": "The Trump Administration\u2019s Attempts to Get Sensitive Voter Data Threaten the Rule of Law - Campaign Legal Center",
@@ -4916,21 +4934,6 @@
       "headline_numbers_unverified": [
         "2026"
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "89d467a792cc732f19c6",
-      "title": "Civil rights group loses effort to block Ocean County voter residency probe - New Jersey Monitor",
-      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPUGpOa3FlN1VGNmgyeVhVMG53anV1VUMxZGV1SVJ4ZDhYVG9laHk0U3p4djlsQlVVVGE4a1JiR3RwajF2bER3aWhLMEJxUkFtSmV4eEM3TkVSeE1tSHQ0RkxsZzhkNWRTLTJVejFoYzdmMGNPSGIyaDRmMjlLWXdhVDFfbDVoRzBHUmptOVh3Sk9qSDZ4Wm5sTmd3WFhhTDJHUC1oMEpZLWNYMTN5VWFIdjRpUmFTNnM?oc=5",
-      "publisher": "New Jersey Monitor",
-      "published_at": "2026-10-13T20:20:46Z",
-      "detected_at": "2026-10-13T20:31:22.392811Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
