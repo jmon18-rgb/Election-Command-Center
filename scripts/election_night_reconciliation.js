@@ -9,6 +9,18 @@
  'use strict';
  const START=Date.parse('2026-11-03T05:00:00Z');
  const THREE_HOURS=180*60000;
+ // Provider source timestamps must be *post* the first nationwide close.
+ // NC/OH have independently verified 7:30 PM ET Nov 3 poll close times.
+ // An older MOCK payload fetched after close does not become live evidence.
+ const EARLIEST=Date.parse('2026-11-03T23:00:00Z');
+ const LATE_NC_OH=Date.parse('2026-11-04T00:30:00Z');
+ const voteReleased=(key,stamp,now)=>{
+  const at=Date.parse(stamp||'');
+  const floor=key?.slice(0,2)==='NC'||key?.slice(0,2)==='OH'?
+   LATE_NC_OH:EARLIEST;
+  return Number.isFinite(now)&&now>=floor&&Number.isFinite(at)&&
+   at>=floor&&at<=now+15*60000;
+ };
  const validTime=(s,now)=>{const n=Date.parse(s||'');
   return Number.isFinite(n)&&n>=START&&n<=now+15*60000&&now-n<=THREE_HOURS;};
  // One shared source-health definition powers coverage counts, the source
@@ -35,6 +47,7 @@
    return {state:'invalid',usable:false};
   if(ts<START)return !hasVotes&&!snapshot.live?
    {state:'standby',usable:false}:{state:'invalid',usable:false};
+  if(hasVotes&&ts<EARLIEST)return {state:'invalid',usable:false};
   if(now-ts>THREE_HOURS)return {state:'stale',usable:false};
   return {state:hasVotes?'reporting':'current_no_votes',
    usable:true,asOf:snapshot.as_of};
@@ -104,7 +117,8 @@
     const id=office+'|'+key;
     const raw=acceptable?snap.races?.[key]:null;
     const primaryParties=votesByParty(raw,'primary');
-    const validPrimary=Boolean(primaryParties&&raw.called===false&&!raw.winner);
+    const validPrimary=Boolean(primaryParties&&raw.called===false&&!raw.winner&&
+      (raw.total===0||voteReleased(key,snap.as_of,now)));
     const primaryAvailable=validPrimary&&supported.has(key.slice(0,2));
     if(raw&&!validPrimary)anomalies.push('Rejected malformed primary '+id);
     if(validPrimary&&!primaryAvailable)
@@ -117,6 +131,7 @@
      secondary.provider==='civicAPI'&&
      secondary.office===office&&secondary.key===key&&
      validTime(secondary.last_updated,now)&&
+     (secondary.total===0||voteReleased(key,secondary.last_updated,now))&&
      Number.isInteger(secondary.race_id)&&secondary.race_id>0&&
      !errors[id]&&!restore.has(id));
     if(secondary&&!civicOK&&!errors[id]&&!restore.has(id))
