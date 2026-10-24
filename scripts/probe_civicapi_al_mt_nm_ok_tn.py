@@ -7,8 +7,8 @@ from test_civicapi_live_source import source
 
 DAY="2026-11-03"
 # Identity lock from independent real-source CI discovery on Oct 13, 2026.
-# Oklahoma Governor did not have an exact statewide-contract match and is not
-# promoted into the 2026 supplemental feed.
+# Oklahoma Governor was independently revalidated October 24 after the
+# missing-redundant-detail-ID mismatch was corrected; pinned below.
 EXPECTED={
     ("AL","Senate"):(86907,"Alabama US Senate"),
     ("AL","Governor"):(86908,"Alabama Governor"),
@@ -16,6 +16,7 @@ EXPECTED={
     ("NM","Senate"):(87288,"New Mexico US Senate"),
     ("NM","Governor"):(87289,"New Mexico Governor"),
     ("OK","Senate"):(87526,"Oklahoma US Senate"),
+    ("OK","Governor"):(87582,"Oklahoma Governor"),
     ("TN","Senate"):(87475,"Tennessee US Senate"),
     ("TN","Governor"):(87476,"Tennessee Governor"),
 }
