@@ -6390,14 +6390,20 @@ function enFetchUrl(year,office){
  return enRemoteBase+'?year='+year+'&office='+encodeURIComponent(office);
 }
 const enWatchRefreshPending=new Set();
-async function enRefreshWatchedOffices(exceptOffice){
+function enBackgroundPrimaryDue(office,now=Date.now()){
+ const last=enOfficeCheckedAt[office];
+ return Number.isFinite(now)&&
+  (!Number.isFinite(last)||now-last>=55000);
+}
+async function enRefreshWatchedOffices(exceptOffice,cadenceOnly=false){
  if(enModeYear!==2026||!enIsVisible())return;
  const autoDate=Date.now()>=Date.parse('2026-11-03T05:00:00Z');
  const offices=[...new Set([...enWatched.map(x=>x.office),
   ...(autoDate?['House','Senate','Governor']:[]),
   ...(enNationalEnabled&&enNationalSeats?['Senate']:[])])].filter(x=>x!==exceptOffice);
  await Promise.all(offices.map(async office=>{
-  if(enWatchRefreshPending.has(office))return;
+  if(enWatchRefreshPending.has(office)||
+     (cadenceOnly&&!enBackgroundPrimaryDue(office)))return;
   enWatchRefreshPending.add(office);
   try{
    const obj=await enOpenAmericaReader.load(enFetchUrl(2026,office));
@@ -6421,8 +6427,20 @@ async function enRefreshWatchedOffices(exceptOffice){
    if(enModeYear===2026&&enIsVisible()){enOfficeErrors[office]=String(err?.message||err);enOfficeCheckedAt[office]=Date.now();enRenderWatchlist();enRenderLiveDesk()}
   }finally{enWatchRefreshPending.delete(office)}
  }));
- if(enModeYear===2026&&enIsVisible())enQueueRefresh();
+ if(!cadenceOnly&&enModeYear===2026&&enIsVisible())enQueueRefresh();
 }
+// The currently selected source may be in a ten-minute exponential outage
+// backoff. Refresh OTHER primary offices independently once a minute, so a
+// broken House URL cannot stall a watched Senate result for that duration.
+// Keep this separate from enQueueRefresh() to avoid repeatedly postponing
+// the foreground recovery timer on each healthy Senate update.
+setInterval(()=>{
+ const now=Date.now();
+ if(enModeYear!==2026||!enIsVisible()||
+    document.visibilityState!=='visible'||
+    now<Date.parse('2026-11-03T23:00:00Z'))return;
+ void enRefreshWatchedOffices(enOffice,true);
+},60000);
 function enRefreshInterval(data,failures=0){
  if(failures>0)return Math.min(600000,60000*Math.pow(2,Math.min(failures-1,4)));
  if(data?.live)return 60000;
