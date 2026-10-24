@@ -125,7 +125,7 @@ class NationalCoveragePulse(unittest.TestCase):
             {"n":"First Democrat","p":"D","v":23},
             {"n":"Second Democrat","p":"D","v":22}]}
         doc=pulse(self.ledger,{"House":office_document(
-            "House","2026-11-04T04:05:00Z",{"CA-01":row})},
+            "House","2026-11-04T04:05:00Z",{"WA-01":row})},
             dt.datetime(2026,11,4,4,10,tzinfo=dt.timezone.utc))
         self.assertEqual(doc["offices"]["House"]["status_counts"][
             "PRIMARY_OBSERVED_CANDIDATE_COUNTS_UNCALLED"],1)
