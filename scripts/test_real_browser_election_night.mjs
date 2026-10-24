@@ -57,6 +57,9 @@ try{
   await page.locator('#enFishToast').waitFor({state:'visible',timeout:10000});
   assert.match(await page.locator('#enFishMode').innerText(),/REHEARSAL/,
     name+': Mock Fish interruption must never masquerade as live results');
+  await page.waitForFunction(
+   ()=>document.querySelector('#enFishToast .en-fish-art img')?.naturalHeight===700,
+   {timeout:10000});
   const fish=await page.locator('#enFishToast .en-fish-art img').evaluate(img=>{
    const box=img.getBoundingClientRect(),style=getComputedStyle(img);
    return {naturalWidth:img.naturalWidth,naturalHeight:img.naturalHeight,
