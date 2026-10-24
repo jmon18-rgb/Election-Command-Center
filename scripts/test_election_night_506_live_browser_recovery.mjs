@@ -105,7 +105,7 @@ try{
   assert.match(await group.textContent(),/NC — Reported votes · unofficial/);
   assert.match(await group.textContent(),/ME — Supplemental source request FAILED/);
   assert.match(await group.textContent(),/MA — No verified automated source ID/);
-  assert.match(await group.textContent(),/MS — No verified automated source ID/);
+  assert.match(await group.textContent(),/MS — Supplemental source ID · no current results/);
   if(otherMachineGaps.length){
    const other=groups.nth(1);
    await other.locator('summary').click();

@@ -47,6 +47,10 @@
      !Array.isArray(prepared.rows))return fail('No approved 2026 NC Senate county candidate counts');
   let baseline;try{baseline=parse(csv)}catch(e){return fail(e.message)}
   const rows=[],seen=new Set();
+  // These are the 2022 *historical* county electorate weights, NOT a
+  // denominator for ballots reported or remaining in the 2026 election.
+  const pastStateTwoParty=1784049+1905786;
+  let matchedBaselineVotes=0,weightedGapNumerator=0;
   for(const row of prepared.rows){
    if(!row||!baseline.has(row.fips)||seen.has(row.fips)||!Array.isArray(row.candidates))
     return fail('Bad, missing, or duplicated NC county identity');
@@ -65,8 +69,12 @@
    const past=baseline.get(row.fips);
    const current=pct(major.get('DEM'),major.get('REP'));
    const previous=pct(past.dem,past.rep);
+   const weight=past.dem+past.rep;
+   matchedBaselineVotes+=weight;
+   weightedGapNumerator+=(current-previous)*weight;
    rows.push({fips:row.fips,
     partial_senate_2026_two_party_votes:major.get('DEM')+major.get('REP'),
+    historical_2022_senate_two_party_votes:weight,
     partial_senate_2026_dem_margin_points:+current.toFixed(2),
     full_senate_2022_dem_margin_points:+previous.toFixed(2),
     unadjusted_descriptive_difference_points:+(current-previous).toFixed(2)});
@@ -75,6 +83,16 @@
   rows.sort((a,b)=>b.partial_senate_2026_two_party_votes-a.partial_senate_2026_two_party_votes||a.fips.localeCompare(b.fips));
   return Object.freeze({ready:true,status:'2026_PARTIAL_VERSUS_2022_FULL_SENATE_DESCRIPTIVE_ONLY',
    source_url:SOURCE,historical_sha256:ZIP_SHA,county_count:rows.length,rows,
+   total_historical_2022_counties:100,
+   historical_2022_statewide_two_party_votes:pastStateTwoParty,
+   matched_historical_2022_two_party_votes:matchedBaselineVotes,
+   historical_electorate_covered_pct:
+    +(100*matchedBaselineVotes/pastStateTwoParty).toFixed(2),
+   historical_weighted_matched_county_difference_points:
+    +(weightedGapNumerator/matchedBaselineVotes).toFixed(2),
+   historical_exposure_is_not_current_ballot_reporting:true,
+   coverage_level:matchedBaselineVotes/pastStateTwoParty<0.2?
+    'THIN_HISTORICAL_GEOGRAPHY':'PARTIAL_HISTORICAL_GEOGRAPHY',
    statewide_senate_swing_estimate:null,estimated_ballots_remaining:null,
    percent_reporting:null,may_move_national_needle:false});
  }
@@ -85,6 +103,15 @@
   add(host,'h4','NC counties · partial 2026 Senate vs full 2022 Senate (same office)');
   add(host,'p','DESCRIPTIVE ONLY · '+prepared.county_count+' counties. The 2022 Senate election is a same-office comparison, but the 2026 county totals are incomplete or of unknown reporting completeness. Reported counties are not representative.');
   add(host,'p','The unadjusted differences are NOT statewide swings, ballot projections or probability updates. Senate nominees, voters, turnout and reporting order differ between cycles.');
+  add(host,'p',prepared.historical_electorate_covered_pct.toFixed(2)+
+   '% of the VERIFIED 2022 statewide Senate two-party vote came from these '+prepared.county_count+
+   ' counties. This is historical GEOGRAPHIC EXPOSURE, NOT the percent of 2026 ballots counted.');
+  add(host,'p','The 2022-electorate-weighted difference across the matched counties is '+
+   (prepared.historical_weighted_matched_county_difference_points>=0?'+':'')+
+   prepared.historical_weighted_matched_county_difference_points.toFixed(2)+
+   ' points, a biased DESCRIPTION of reported partial county returns, NOT a statewide swing or predictive needle.');
+  if(prepared.coverage_level==='THIN_HISTORICAL_GEOGRAPHY')
+   add(host,'p','LIMITED COVERAGE: these counties accounted for less than 20% of the full 2022 Senate two-party electorate.');
   const link=add(host,'a','Original 2022 NCSBE Senate archive ↗');
   link.href=prepared.source_url;link.target='_blank';link.rel='noopener noreferrer';
   add(host,'small','2022 official archive SHA-256: '+prepared.historical_sha256);
