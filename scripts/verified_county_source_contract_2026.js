@@ -3,17 +3,19 @@
  * Never convert statewide totals into county vote observations.
  */
 (function(root,factory){
- const closes=typeof module!=='undefined'&&module.exports?
+ // Browser scripts may load before the shared poll-close module. Resolve
+ // at read-time rather than capturing an undefined global during startup.
+ const api=factory(()=>typeof module!=='undefined'&&module.exports?
   require('./election_night_poll_closings_2026.js'):
-  root?.ElectionNightPollClosings2026;
- const api=factory(closes);
+  root?.ElectionNightPollClosings2026);
  if(typeof module!=='undefined'&&module.exports)module.exports=api;
  if(root)root.VerifiedCountySourceContract2026=api;
-})(typeof window!=='undefined'?window:null,function(closes){
+})(typeof window!=='undefined'?window:null,function(getCloses){
  'use strict';
  const validInt=n=>Number.isSafeInteger(n)&&n>=0;
  const acceptedUrl=u=>typeof u==='string'&&/^https:\/\/[^\s/]+\//.test(u);
  function normalize(envelope,expected,now=Date.now()){
+  const closes=getCloses();
   if(!closes||typeof closes.allowed!=='function'||!Number.isFinite(now)||
      !envelope||envelope.schema!=='county-results-v1'||!expected||
     envelope.election_date!=='2026-11-03'||envelope.election_type!=='General'||
