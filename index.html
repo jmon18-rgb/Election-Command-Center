@@ -5031,13 +5031,21 @@ function enCivicProviderVerified(){
 function enCivicUsable(item){
  const id=enWatchId(item),state=enCivicBreaker?.status();
  const cache=enCivicByWatch[id];
- if(cache?.total>0&&!enElectionVotesAllowed(item.key,cache.total,cache.last_updated))
+ if(!cache)return null;
+ // A dated provider response is not current evidence forever. After a
+ // laptop sleeps or a source stops publishing, keep the cached count only
+ // as an audit snapshot; never show its call/leader as a live source.
+ const now=Date.now(),stamp=Date.parse(cache.last_updated||'');
+ if(!Number.isFinite(stamp)||stamp>now+15*60000||
+    now-stamp>180*60000||cache.stale===true||
+    cache.sourceStale===true)return null;
+ if(cache.total>0&&!enElectionVotesAllowed(item.key,cache.total,cache.last_updated,now))
   return null;
  // A successful check for *another* race does not reauthorize this
  // cached winner from before the provider's latest transient error.
  return enCivicProviderVerified()&&!enCivicErrors[id]&&
   (!state||enCivicValidatedGenerations[id]===state.generation)?
-  enCivicByWatch[id]||null:null;
+  cache:null;
 }
 
 const enJohnBrownPortraitUrl='https://cdn.loc.gov/service/pnp/ppmsca/23700/23764v.jpg';
