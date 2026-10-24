@@ -1267,7 +1267,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/nc_county_results_desk_startup.js?v=7d99ce3885db"></script>
 <script src="./scripts/election_night_openamerica_transport.js?v=77a97a063dfd"></script>
 <script src="./scripts/election_night_transport.js?v=76a458acbece"></script>
-<script src="./scripts/election_night_fast_lane.js?v=674907b614c3"></script>
+<script src="./scripts/election_night_fast_lane.js?v=f2a0d35d0a8a"></script>
 <script src="./scripts/election_night_nowcast.js?v=b9842f1416dc"></script>
 <script src="./scripts/election_night_early_signals.js?v=50bd71d923ae"></script>
 <script src="./scripts/election_night_priority.js?v=52ebaede15e7"></script>
@@ -5531,9 +5531,16 @@ async function enCivicRefreshFastLane(){
  const house=seed.filter(x=>x.office==='House'&&Number(x.tip)>=2);
  const automatic=[...senate.slice(0,3),...house.slice(0,1),
   ...senate.slice(3),...house.slice(1)];
+ // Outage/recheck status is race-specific. A positive cached count that
+ // failed revalidation must not occupy a scarce 30-second request slot.
+ const approved=Object.create(null);
+ for(const item of [...enWatched,...automatic]){
+  const live=enCivicUsable(item);
+  if(live)approved[enWatchId(item)]=live;
+ }
  const selected=lane.pick({
   personal:enWatched.filter(x=>enShouldProbeSupplemental(x)),automatic,
-  reported:enCivicByWatch,lastAttempt:enCivicLastAttemptAt,
+  reported:approved,lastAttempt:enCivicLastAttemptAt,
   // A source state's primary feed can be down or omit THIS race.
   // Candidate filtering above already proved need for each fallback.
   primaryStates:[],now:Date.now()});

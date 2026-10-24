@@ -15,6 +15,20 @@
   return year===2026&&visible===true&&tabVisible===true&&blocked!==true&&
    Number.isFinite(now)&&now>=START&&now<END;
  }
+ // Preserve scarce 30-second requests for genuinely current, sourced votes.
+ // Resolve the shared poll-closing contract at read time: the browser can
+ // load this module before that contract without admitting early results.
+ function eligible(item,source,now){
+  const close=typeof window!=='undefined'?
+   window.ElectionNightPollClosings2026:
+   typeof require==='function'?require('./election_night_poll_closings_2026.js'):null;
+  const asOf=Date.parse(source?.last_updated||'');
+  return Boolean(close&&typeof close.allowed==='function'&&
+   source?.provider==='civicAPI'&&source.stale!==true&&
+   source.sourceStale!==true&&Number.isSafeInteger(source.total)&&
+   source.total>0&&Number.isFinite(asOf)&&asOf<=now+15*60000&&
+   now-asOf<=180*60000&&close.allowed(item.key,source.total,source.last_updated,now));
+ }
  function pick({personal=[],automatic=[],reported={},lastAttempt={},
                  primaryStates=[],now,max=MAX_RACES}={}){
   if(!Number.isFinite(now)||!Number.isInteger(max)||max<1||max>MAX_RACES)
@@ -30,8 +44,7 @@
    if(primary.has(item.key.slice(0,2)))continue;
    // Only recheck races already showing strictly validated positive returns.
    // Never spend 30-second requests repeatedly probing absent ballot records.
-   if(!reported[id]||!Number.isSafeInteger(reported[id].total)||
-      reported[id].total<=0)continue;
+   if(!eligible(item,reported[id],now))continue;
    const previous=lastAttempt[id];
    if(Number.isFinite(previous)&&now-previous<MIN_RACE_SPACING_MS)continue;
    picks.push({office:item.office,key:item.key});
