@@ -12,8 +12,9 @@ const units=counties.map((name,i)=>({
  reporting_fraction:25000/28000
 }));
 const valid={election:'2026-11-03',race_code:'NC-SEN',office:'senate',
- as_of:'2026-11-04T02:45:00Z',
- source:{validated:true,url:'https://www.ncsbe.gov/results-data/election-results'},
+ is_test:false,as_of:'2026-11-04T02:45:00Z',
+ source:{validated:true,is_test:false,
+  url:'https://www.ncsbe.gov/results-data/election-results'},
  baseline_source:{validated:true,url:'https://www.ncsbe.gov/results-data/election-results/historical-election-results-data'},
  expected_statewide_two_party_ballots:100000,units};
 const ok=evaluate(valid,now);
@@ -27,6 +28,17 @@ const bad=(modify,reason)=>{const clone=structuredClone(valid);modify(clone);
  const r=evaluate(clone,now);assert.equal(r.eligible,false);
  assert.equal(r.reason,reason);assert.equal(r.may_move_national_needle,false);};
 bad(x=>{x.as_of='2024-11-05T20:00:00Z'},'source_timestamp_not_current');
+bad(x=>{x.as_of='2026-11-04T00:29:59Z'},'state_poll_closure_not_satisfied');
+bad(x=>{x.is_test=true},'live_source_not_confirmed_nonmock');
+bad(x=>{delete x.source.is_test},'live_source_not_confirmed_nonmock');
+bad(x=>{x.source.is_test=true},'live_source_not_confirmed_nonmock');
+assert.equal(evaluate({...valid,as_of:'2026-11-04T00:30:00Z'},
+ Date.parse('2026-11-04T00:29:59Z')).reason,
+ 'state_poll_closure_not_satisfied',
+ 'Future-stamped county returns must not pass before NC local closure');
+assert.equal(evaluate({...valid,as_of:'2026-11-04T00:30:00Z'},
+ Date.parse('2026-11-04T00:30:01Z')).eligible,true,
+ 'Exact post-close county research data may pass only after the local poll close');
 bad(x=>{x.source.validated=false},'source_provenance_missing');
 bad(x=>{x.units[1].vote_mode='mail'},'historical_geography_or_vote_mode_mismatch');
 bad(x=>{x.units[1].baseline.geography_id='NC:OlderSeat@2024'},'historical_geography_or_vote_mode_mismatch');
