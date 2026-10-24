@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SITE = "https://jmon18-rgb.github.io/Election-Command-Center/"
 REQUIRED = (
     "civicapi_house_2026_adapter.js",
+    "civicapi_state_batch.js",
     "election_night_transport.js",
     "election_night_nowcast.js",
     "election_night_poll_closings_2026.js",
@@ -54,6 +55,9 @@ def audit(index: bytes, remote_pins: dict, remote_coverage: dict,
     html = index.decode("utf-8")
     for marker in (
         "let enHousePinsPromise=null,enHousePinsCheckedAt=-Infinity,enHousePinsCheckOK=false;",
+        "let enElectionNightManualArchive=false;",
+        "function enElectionNightAutoHandoff(now=Date.now()){",
+        "if(enElectionNightAutoHandoff(now))return true;",
         "function enHousePinsReady(){",
         "enHousePinsCheckOK?15*60000:2*60000",
         "cache:'no-store',credentials:'omit'",
