@@ -29,3 +29,13 @@ totals, so the actual source remains disabled.
 The Ohio desk keeps them visibly separate until the independent source
 and chamber-control accounting contracts are updated and verified.
 That integration is the next priority after this browser path is green.
+
+## Merge and browser release checks
+
+The reviewed Ohio results drawer is visible only in 2026 mode; 2024
+archive mode never displays partial 2026 Ohio candidate counts. The
+Chromium rehearsal runs on desktop and iPhone-size screens with purely
+synthetic intercepted results and verifies the initial disabled state,
+independently reviewed enablement, invalid SHA, stale source, network
+outage, approval revocation and recovery. The national control and
+forecast models are not updated by this separate candidate-only drawer.
