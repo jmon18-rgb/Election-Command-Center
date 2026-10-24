@@ -108,7 +108,8 @@
         "Governor|ME",
         "House|ME-01",
         "House|ME-02"
-      ]
+      ],
+      "state": "ME"
     },
     {
       "name": "Ohio",
@@ -117,7 +118,8 @@
       "race_ids": [
         "Senate|OH-special",
         "Governor|OH"
-      ]
+      ],
+      "state": "OH"
     },
     {
       "name": "Nebraska",
@@ -129,7 +131,8 @@
         "House|NE-01",
         "House|NE-02",
         "House|NE-03"
-      ]
+      ],
+      "state": "NE"
     }
   ],
   "limitations": "Links lead to official election-office pages for manually checking races with unresolved machine-readable identities. They do not prove live returns or professional winner calls, and do not fill automated source gaps. Massachusetts state office expressly does not publish unofficial results on election night."
