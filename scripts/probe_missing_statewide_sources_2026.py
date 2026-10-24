@@ -20,6 +20,14 @@ SPECS = (
     ("HI", "Governor", "Governor"),
     ("OK", "Governor", "Governor"),
 )
+# Must agree with the shared 50-state earliest local close contract.
+# A pre-close mock/winner flag cannot establish a real source's eligibility.
+CLOSE_UTC = {
+    "MA": datetime(2026, 11, 4, 1, 0, tzinfo=timezone.utc),
+    "MS": datetime(2026, 11, 4, 1, 0, tzinfo=timezone.utc),
+    "HI": datetime(2026, 11, 4, 5, 0, tzinfo=timezone.utc),
+    "OK": datetime(2026, 11, 4, 1, 0, tzinfo=timezone.utc),
+}
 DATE = re.compile(r"^2026-11-03(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2}))?$")
 
 
@@ -80,8 +88,11 @@ def detail_rejection(spec, row, detail, *, now=None):
         if ident in identities:
             return "DUPLICATE_CANDIDATE"
         identities.add(ident)
-    if now is not None and now.date() < __import__("datetime").date(2026, 11, 3) and counted:
-        return "PRE_ELECTION_COUNTED_OR_CALLED_NOT_LIVE"
+    if counted and now is not None:
+        if now.tzinfo is None:
+            return "UNVERIFIED_RECEIPT_CLOCK"
+        if now.astimezone(timezone.utc) < CLOSE_UTC[spec[0]]:
+            return "PRE_POLL_CLOSE_COUNTED_OR_CALLED_NOT_LIVE"
     return None
 
 
