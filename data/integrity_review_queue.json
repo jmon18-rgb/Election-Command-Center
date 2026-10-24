@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-24T14:08:10.169369Z",
+  "updated_at": "2026-10-24T14:40:27.289500Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -260,6 +260,24 @@
     }
   ],
   "items": [
+    {
+      "id": "9b2aa16305e598a043b3",
+      "title": "Join our election livestream; Jersey\u2019s on guard for Trump voting interference | Mikie\u2019s World - NJ.com",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOYTV6NkZURmZQRUZxV29rVXNiTVJlNzJucHctbnBxcXlieGgwZzBzN2tyajk4Ykd1TjQtT2o0bWRGZTgwNldBb0hTS3RoVHJDSGtFZ2hkWHhfWHNmRVB4R09jOVN1S2J4UndMdHAwb1UtSU5ZNzhBR2NhaXBkanI1d2V0eEg0Ni1GQmVVNWpCdWs1bEp5MHFGek5VY1ZBWGNRSVlobXd3S1RRa3E3b1NFMm1NcXp0X0xERm1jLXE2LW1VbGo0aWpJUA?oc=5",
+      "publisher": "NJ.com",
+      "published_at": "2026-10-24T14:30:00Z",
+      "detected_at": "2026-10-24T14:40:27.289500Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "d874765ba175d2d28f62",
       "title": "Congress seeks impartial probe into voter lists after errors appear in UP MLC polls; halt to SIR - The New Indian Express",
@@ -4921,25 +4939,6 @@
         "security"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "dfc9e8d887fca638ac8a",
-      "title": "Opinion | Are the Midterm Elections Safe? 8 Experts Weigh In on the Threats. - The New York Times",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOV3NoUjk1bWVENTRKbUt5ejVkRUhqUzl6a0taRExZc0N2aE1Tc3QxSG8yV19UMHRubWFpZTlVRmRmbXBxNVh6Z1dVR1J2WFNvcVVsbUg1Ny1Sb2dlYjVWaFF3b09xVlRDeUlYMkhvZWIwMWZBYThQMkE2dG9XZndCbTRvMmxqZC0zOXhMLXRwejBKRmcteF9EZg?oc=5",
-      "publisher": "The New York Times",
-      "published_at": "2026-10-13T21:01:19Z",
-      "detected_at": "2026-10-13T21:51:56.712815Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [
-        "8 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
