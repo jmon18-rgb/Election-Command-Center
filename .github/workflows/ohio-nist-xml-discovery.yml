@@ -1,0 +1,46 @@
+name: Discover official Ohio NIST XML Election Night source safely
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/discover_ohio_official_nist_xml.py'
+      - 'scripts/test_discover_ohio_official_nist_xml.py'
+      - '.github/workflows/ohio-nist-xml-discovery.yml'
+  schedule:
+    - cron: '10 15 * * *'
+permissions:
+  contents: read
+jobs:
+  no-mock-ingestion-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test Ohio official link discovery and pre-election mock feed isolation
+        run: |
+          python3 -m py_compile scripts/discover_ohio_official_nist_xml.py
+          python3 scripts/test_discover_ohio_official_nist_xml.py
+  official-html-discovery:
+    needs: no-mock-ingestion-contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Inspect official Ohio page for actual XML feed link, never ingest mock votes
+        run: |
+          python3 scripts/discover_ohio_official_nist_xml.py --probe \
+            --output /tmp/ohio-official-xml-discovery.json
+      - name: Preserve independently reviewed candidate official feed URL evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ohio-official-xml-discovery-not-live
+          path: /tmp/ohio-official-xml-discovery.json
+          if-no-files-found: ignore
+          retention-days: 14
