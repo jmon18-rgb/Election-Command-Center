@@ -66,6 +66,33 @@ assert.equal(health({...input.snapshots.Senate,
 assert.equal(health({...input.snapshots.Senate,as_of:null,races:{NC:votes(1)}}).usable,false);
 assert.equal(health({...input.snapshots.Senate,races:{}}).state,'current_no_votes');
 assert.equal(health(input.snapshots.Senate).usable,true);
+/* 2026 pre-close MOCK payloads must not become live votes after the
+ * computer clock passes close. NC/OH independently close at 7:30 PM ET.
+ */
+const preclosePrimary=snapshot('Senate',{'NC':votes(900)});
+preclosePrimary.as_of='2026-11-04T00:20:00Z';
+assert.equal(health(preclosePrimary).state,'reporting',
+ 'Other states could legitimately report by 00:20Z; race-specific filter applies');
+x=api.reconcile({...input,snapshots:{...input.snapshots,Senate:preclosePrimary}});
+assert.equal(x.senate.reported,1,'NC pre-close primary votes must not be counted');
+assert.equal(x.records['Senate|NC'].hasReportedVotes,false);
+assert(x.anomalies.some(s=>s.includes('Rejected malformed primary Senate|NC')));
+const precloseSupplemental={...civic,key:'OH-special',last_updated:'2026-11-04T00:20:00Z'};
+x=api.reconcile({...input,civic:{'Senate|OH-special':precloseSupplemental}});
+assert.equal(x.records['Senate|OH-special'].hasReportedVotes,false,
+ 'Pre-close Ohio civicAPI numbers cannot count after 7:30 PM EST');
+assert.equal(x.providerCalls,0,'No Ohio premature candidate winner call');
+const postcloseSupplemental={...precloseSupplemental,last_updated:'2026-11-04T00:35:00Z'};
+x=api.reconcile({...input,civic:{'Senate|OH-special':postcloseSupplemental}});
+assert.equal(x.records['Senate|OH-special'].hasReportedVotes,true,
+ 'Ohio source timestamp after actual close may count when otherwise valid');
+const precloseNational=snapshot('House',{'TX-01':votes(123)});
+precloseNational.as_of='2026-11-03T22:59:59Z';
+x=api.reconcile({...input,snapshots:{...input.snapshots,House:precloseNational}});
+assert.equal(x.house.reported,0,
+ 'Before first US poll close a stale mock snapshot is never live');
+assert.equal(api.officeHealth(precloseNational,'House',{now}).state,'invalid');
+
 assert.equal(x.providerCalls,1);assert.equal(x.authoritativeCalls,0);
 assert.equal(x.chambersCalled,false);assert.equal(x.senateHoldoversInUniverse,65);
 const govCivic={...civic,office:'Governor',key:'ME',race_id:8491};
