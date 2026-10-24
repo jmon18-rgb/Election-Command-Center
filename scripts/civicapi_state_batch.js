@@ -45,7 +45,11 @@
     'Governor|SD':{state:'SD',name:'South Dakota Governor',office:'Governor',id:87447},
     'Senate|WY':{state:'WY',name:'Wyoming US Senate',office:'Senate',id:87496},
     'Governor|WY':{state:'WY',name:'Wyoming Governor',office:'Governor',id:87497},
-    'Governor|MD':{state:'MD',name:'Maryland Governor',office:'Governor',id:87198}
+    'Governor|MD':{state:'MD',name:'Maryland Governor',office:'Governor',id:87198},
+    // Oct 24 actual CORS + exact search/detail canary; not proof of live votes.
+    'Senate|MS':{state:'MS',name:'Mississippi US Senate',office:'Senate',id:81004},
+    'Governor|HI':{state:'HI',name:'Hawaii Governor',office:'Governor',id:87100},
+    'Governor|OK':{state:'OK',name:'Oklahoma Governor',office:'Governor',id:87582}
   });
   const configuration=item=>item&&RACES[item.office+'|'+item.key]||null;
   const supports=item=>Boolean(configuration(item));
