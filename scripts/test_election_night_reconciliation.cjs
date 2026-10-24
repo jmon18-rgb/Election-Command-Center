@@ -211,6 +211,41 @@ const staleOverlap=api.reconcile({...input,civic:{'Senate|NC':{
 assert.equal(staleOverlap.crossSourceDiscrepancies.length,0,
  'An explicitly stale overlapping source cannot generate quality conclusions');
 
+// Reject double-counted D/R columns even if their combined arithmetic
+// remains <= source total. This also blocks bogus overlap diagnostics.
+for(const party of ['D','R']){
+ const source=snapshot('Senate',{'NC':{
+  total:3000,called:false,winner:'',
+  cands:[{n:'Dem',p:'D',v:1000},{n:'Rep',p:'R',v:1000},
+         {n:'Duplicate '+party,p:party,v:500}]
+ }});
+ const partial=api.reconcile({...input,snapshots:{...input.snapshots,
+  Senate:source},civic:{}});
+ assert.equal(partial.records['Senate|NC'].hasReportedVotes,false,
+  'Duplicate primary '+party+' rows must not qualify as votes');
+ assert(partial.anomalies.some(s=>s.includes('Rejected malformed primary Senate|NC')));
+ const secondary={...civic,total:2000,called:'Jane Democrat',
+  candidates:[...civic.candidates,
+  {name:'Another '+party,party,votes:200}]};
+ const suspect=api.reconcile({...input,civic:{'Senate|ME':secondary}});
+ assert.equal(suspect.records['Senate|ME'].hasReportedVotes,false);
+ assert.equal(suspect.providerCalls,0);
+ assert(suspect.anomalies.some(s=>s.includes('Rejected invalid supplemental Senate|ME')));
+}
+const duplicateName={...civic,total:1500,candidates:[
+ {name:'Jane Democrat',party:'D',votes:700},
+ {name:' jane democrat ',party:'O',votes:200},
+ {name:'Other',party:'R',votes:300}]};
+const rejectedName=api.reconcile({...input,civic:{'Senate|ME':duplicateName}});
+assert.equal(rejectedName.records['Senate|ME'].hasReportedVotes,false,
+ 'Duplicate candidate names cannot be counted as separate source people');
+const legitimateMinor={...civic,total:1200,candidates:[
+ ...civic.candidates,{name:'Independent',party:'O',votes:50},
+ {name:'Green',party:'O',votes:75}]};
+const acceptedMinor=api.reconcile({...input,civic:{'Senate|ME':legitimateMinor}});
+assert.equal(acceptedMinor.records['Senate|ME'].hasReportedVotes,true,
+ 'Distinct minor-party candidates remain eligible as actual source rows');
+
 const malformed={...civic,total:100,candidates:[{name:'Jane Democrat',party:'D',votes:700}]};
 x=api.reconcile({...input,civic:{'Senate|ME':malformed}});
 assert.equal(x.senate.supplemental,0);

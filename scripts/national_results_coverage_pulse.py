@@ -46,6 +46,7 @@ def valid_candidates(details, total):
     if not isinstance(cands,list) or (total>0 and not cands) or len(cands)>60:
         return False
     names=set()
+    major_parties=set()
     summed=0
     for row in cands:
         if not isinstance(row,dict) or not isinstance(row.get("n"),str) or not row["n"].strip() or len(row["n"])>200:
@@ -56,6 +57,13 @@ def valid_candidates(details, total):
         names.add(name)
         if not isinstance(row.get("p"),str) or not row["p"].strip() or len(row["p"])>80:
             return False
+        # Same source schema as browser reconciliation: one major-party
+        # candidate per D/R column. More than one distinct minor-party
+        # candidate is valid and must not be rejected.
+        if row["p"] in ("D","R"):
+            if row["p"] in major_parties:
+                return False
+            major_parties.add(row["p"])
         count=row.get("v")
         if type(count) is not int or count<0:
             return False

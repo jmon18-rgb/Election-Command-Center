@@ -96,6 +96,12 @@ class NationalCoveragePulse(unittest.TestCase):
             {**good,"cands":[]},
             {**good,"cands":[{"n":"D","p":"D","v":35},{"n":"R","p":"R","v":20}]},
             {**good,"cands":[good["cands"][0],good["cands"][0]]},
+            {**good,"cands":[{"n":"D1","p":"D","v":10},
+                                  {"n":"D2","p":"D","v":13},
+                                  {"n":"R","p":"R","v":22}]},
+            {**good,"cands":[{"n":"D","p":"D","v":23},
+                                  {"n":"R1","p":"R","v":10},
+                                  {"n":"R2","p":"R","v":12}]},
             {**good,"cands":[{"n":"D","p":"D","v":True}]},
             {**good,"cands":[{"n":"D","p":"D","v":-1}]},
             {**good,"cands":[{"n":"D","p":"D","v":"45"}]},
@@ -113,6 +119,15 @@ class NationalCoveragePulse(unittest.TestCase):
             dt.datetime(2026,11,4,1,10,tzinfo=dt.timezone.utc))
         self.assertEqual(good_result["offices"]["Senate"]["status_counts"][
             "PRIMARY_OBSERVED_CANDIDATE_COUNTS_UNCALLED"],1)
+        minor={**good,"total":55,"cands":good["cands"]+[
+            {"n":"Independent","p":"I","v":7},
+            {"n":"Green","p":"O","v":3}]}
+        minor_result=pulse(self.ledger,{"Senate":office_document(
+            "Senate","2026-11-04T01:05:00Z",{"GA":minor})},
+            dt.datetime(2026,11,4,1,10,tzinfo=dt.timezone.utc))
+        self.assertEqual(minor_result["offices"]["Senate"]["status_counts"][
+            "PRIMARY_OBSERVED_CANDIDATE_COUNTS_UNCALLED"],1)
+
 
     def test_identity_duplicate_call_and_future_data_fail(self):
         bad=json.loads(json.dumps(self.ledger))

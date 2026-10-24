@@ -58,11 +58,27 @@
   if(!record||!Number.isSafeInteger(record.total)||record.total<0||
     !Array.isArray(cands)||(record.total>0&&!cands.length))return null;
   const out={D:0,R:0,O:0};let sum=0;
+  const majorSeen=new Set(),names=new Set();
   for(const c of cands){
    const party=kind==='primary'?c?.p:c?.party;
    const count=kind==='primary'?c?.v:c?.votes;
+   const name=kind==='primary'?c?.n:c?.name;
    if(typeof party!=='string'||!party.trim()||party.length>30||
       !Number.isSafeInteger(count)||count<0)return null;
+   // A duplicated D or R column is ambiguous source arithmetic, not
+   // additional ballots. Third-party/write-in rows may legitimately repeat.
+   if(party==='D'||party==='R'){
+    if(majorSeen.has(party))return null;
+    majorSeen.add(party);
+   }
+   // Names are optional in certain legacy Open America test envelopes,
+   // but an actual supplied candidate identity must not be duplicated.
+   if(name!==undefined&&name!==null){
+    if(typeof name!=='string'||!name.trim()||name.length>200)return null;
+    const identity=name.trim().toLocaleLowerCase('en-US');
+    if(names.has(identity))return null;
+    names.add(identity);
+   }
    sum+=count;
    if(!Number.isSafeInteger(sum)||sum>record.total)return null;
    out[party==='D'||party==='R'?party:'O']+=count;
