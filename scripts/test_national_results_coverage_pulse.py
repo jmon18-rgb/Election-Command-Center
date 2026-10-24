@@ -72,8 +72,8 @@ class NationalCoveragePulse(unittest.TestCase):
                 {"n":"D Georgia","p":"D","v":25},{"n":"R Georgia","p":"R","v":15}]},
             "TX-01":{"total":30,"called":False,"cands":[
                 {"n":"D Texas","p":"D","v":13},{"n":"R Texas","p":"R","v":17}]},
-            "CA-13":{"total":20,"called":False,"cands":[
-                {"n":"D California","p":"D","v":11},{"n":"R California","p":"R","v":9}]}}
+            "AZ-01":{"total":20,"called":False,"cands":[
+                {"n":"D Arizona","p":"D","v":11},{"n":"R Arizona","p":"R","v":9}]}}
         h=office_document("House","2026-11-04T01:02:00Z",ballots)
         result=pulse(self.ledger,{"House":h},
                      dt.datetime(2026,11,4,1,10,tzinfo=dt.timezone.utc))
@@ -81,7 +81,7 @@ class NationalCoveragePulse(unittest.TestCase):
             "PRIMARY_OBSERVED_CANDIDATE_COUNTS_UNCALLED"],2)
         self.assertEqual(result["offices"]["House"]["status_counts"][
             "PRIMARY_SOURCE_BEFORE_STATE_POLL_CLOSE"],1,
-            "California mock cannot appear while its local polls remain open")
+            "Arizona mock cannot appear while its local polls remain open")
         # A source stamped BEFORE local closure is still invalid hours later.
         earlier=office_document("House","2026-11-04T00:59:59Z",{"TX-01":ballots["TX-01"]})
         result=pulse(self.ledger,{"House":earlier},
