@@ -52,6 +52,8 @@ class NH2026OfficialFederalLinksTests(unittest.TestCase):
     def test_unavailable_source_does_not_invent_results(self):
         x=assess("",checked_at=WHEN,source_available=False)
         self.assertEqual(x["status"],"SOURCE_UNAVAILABLE")
+        self.assertTrue(all(v["status"]=="SOURCE_UNAVAILABLE_NOT_ASSESSED"
+                            for v in x["reports"].values()))
         self.assertTrue(all(not v["source_id_approved"] for v in x["reports"].values()))
         with self.assertRaises(ValueError): assess(BASE,checked_at=datetime(2026,10,24))
 
