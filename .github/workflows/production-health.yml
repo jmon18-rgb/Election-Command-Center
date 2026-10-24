@@ -8,6 +8,11 @@ on:
     # A deployed Pages build (not the earlier main push) triggers validation.
     # Independent two-hour checks still detect lasting production outages.
     - cron: '53 */2 * * *'
+    # On Nov 3 after afternoon polls approach closing, and through Nov 4
+    # morning, reduce unattended deployed-site verification intervals.
+    # GitHub Actions scheduled starts are best-effort, not real-time alerts.
+    - cron: '*/15 21-23 3 11 *'
+    - cron: '*/15 0-12 4 11 *'
 permissions:
   contents: read
 concurrency:
