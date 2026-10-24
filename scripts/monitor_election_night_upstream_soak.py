@@ -8,13 +8,15 @@ No results or personal data are collected, cached, or redistributed.
 from __future__ import annotations
 
 import argparse
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
+import re
 import json
 import os
 from pathlib import Path
 import time
 
 from test_live_results_source import fetch as fetch_primary
+from national_results_coverage_pulse import state_poll_closings, valid_candidates, _time
 from check_election_night_pages_runtime import get_bytes, DEFAULT_SITE
 
 OFFICES = ("House", "Senate", "Governor")
@@ -30,27 +32,68 @@ def probe_site(site=DEFAULT_SITE):
     return True
 
 
-def validate_primary(doc, office):
-    # The existing shared source preflight verifies the full CORS,
-    # 2026 election-year, office, candidate and no-called-winner contract.
-    # Recheck the invariants that must stay true when caller is stubbed.
-    if not isinstance(doc, dict) or doc.get("api") != 1 or doc.get("year") != 2026:
-        raise ValueError("Not an independently validated 2026 source")
-    if doc.get("office") != office or not isinstance(doc.get("races"), dict):
-        raise ValueError("Mismatched source office or missing race list")
-    if not all(type(doc.get(k)) is bool for k in ("live", "stale", "counting", "final")):
-        raise ValueError("Missing primary source status flags")
-    if doc.get("counts", {}).get("races") != len(doc["races"]):
+def validate_primary(doc, office, now=None):
+    """Transport + integrity checkpoint, NOT nationwide vote coverage proof.
+
+    The upstream HTTPS fetch checks CORS; this local review must still reject
+    forged, premature or stale candidate totals even if the HTTP request
+    succeeded. The source may legitimately publish pre-election empty feeds.
+    """
+    now = datetime.now(timezone.utc) if now is None else now
+    if not isinstance(now, datetime) or now.tzinfo is None:
+        raise ValueError("Source audit clock must include timezone")
+    now = now.astimezone(timezone.utc)
+    if (not isinstance(doc, dict) or doc.get("api") != 1 or
+        doc.get("year") != 2026 or doc.get("office") != office or
+        doc.get("source") not in (None, "", "state") or
+        not isinstance(doc.get("races"), dict) or
+        len(doc["races"]) > 550):
+        raise ValueError("Not a bounded exact-office 2026 provider source")
+    flags = ("live", "stale", "counting", "final")
+    if any(type(doc.get(k)) is not bool for k in flags):
+        raise ValueError("Missing or invalid primary source state flags")
+    if doc["live"] and (doc["stale"] or doc["final"] or not doc["counting"]):
+        raise ValueError("Contradictory primary live/counting source flags")
+    if not isinstance(doc.get("counts"), dict) or (
+        type(doc["counts"].get("races")) is not int or
+        doc["counts"]["races"] != len(doc["races"])
+    ):
         raise ValueError("Source race inventory does not reconcile")
-    for row in doc["races"].values():
-        if (not isinstance(row, dict) or
+    stamp = doc.get("as_of")
+    at = _time(stamp) if stamp else None
+    if at is not None and at > now + timedelta(minutes=15):
+        raise ValueError("Future source-stamped provider office")
+    patterns = {"House":r"[A-Z]{2}-\d{2}",
+                "Senate":r"[A-Z]{2}(?:-special)?",
+                "Governor":r"[A-Z]{2}"}
+    if office not in patterns:
+        raise ValueError("Unknown provider office")
+    closes = state_poll_closings()
+    positive = 0
+    for seat,row in doc["races"].items():
+        if (not isinstance(seat,str) or
+            re.fullmatch(patterns[office], seat) is None or
+            not isinstance(row,dict) or
             type(row.get("total")) is not int or row["total"] < 0 or
             row.get("called") is not False or row.get("winner")):
-            raise ValueError("Unsafe provider result or winner-call field")
-    # Pre-election valid empty/non-counting feeds are NOT live vote coverage.
-    return {"status": "source_contract_ok", "provider_reporting": bool(
-        doc["races"] and any(r["total"] > 0 for r in doc["races"].values())
-        and doc["live"] and not doc["stale"]), "race_entries": len(doc["races"])}
+            raise ValueError("Invalid office/race identity, vote count or call")
+        if not valid_candidates(row,row["total"]):
+            raise ValueError("Invalid primary candidate-level vote arithmetic")
+        count=row["total"]
+        if count > 0:
+            state=seat[:2]
+            close=closes.get(state)
+            if not close or not at or now < close or at < close:
+                raise ValueError("Premature or unstamped 2026 positive vote record")
+            if now-at > timedelta(hours=3):
+                raise ValueError("Stale positive vote evidence")
+            if doc["stale"] or not (doc["live"] or doc["final"]):
+                raise ValueError("Positive result from inactive or stale provider")
+            positive += 1
+    return {"status":"source_contract_ok",
+            "provider_reporting": bool(positive),
+            "race_entries":len(doc["races"]),
+            "reporting_contests":positive}
 
 
 def measure(fetch_source, check_site, clock, sleep, *,
