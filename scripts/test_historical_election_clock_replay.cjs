@@ -22,12 +22,18 @@ const baseline={
   {as_of:'2024-11-06T01:30:00Z',dem_votes:900,rep_votes:800},
   {as_of:'2024-11-06T02:00:00Z',dem_votes:4000,rep_votes:3500},
   {as_of:'2024-11-06T04:00:00Z',dem_votes:5900,rep_votes:3900}
- ].map(x=>({...x,election_date:'2024-11-05',
-               race_code:'NC-GOV',office:'governor'}))
+ ].map((x,i)=>({...x,election_date:'2024-11-05',
+               race_code:'NC-GOV',office:'governor',
+               capture:{id:'nc-gov-clock-'+String(i).padStart(3,'0'),
+                archived_url:'https://example.org/permitted-2024-clock/capture/'+i,
+                captured_at:new Date(Date.parse(x.as_of)+60*1000).toISOString()}}))
 };
 const run=api.evaluate(baseline);
 assert.equal(run.eligible,true);
 assert.equal(run.snapshots,6);
+assert.equal(run.distinct_count_snapshots_for_stage_error,6);
+assert.equal(run.original_per_snapshot_capture_metadata_present,true);
+assert.equal(run.independently_verified_capture_payloads,false);
 assert.equal(run.downward_vote_corrections,1);
 assert.equal(run.observed_leader_changes,1);
 assert.equal(run.history_snapshot_errors.reduce((n,b)=>n+b.n,0),6);
@@ -62,6 +68,22 @@ denied(x=>{x.snapshots=x.snapshots.slice(0,3)},
 denied(x=>{x.snapshots[0].office='senate'},'archive_snapshot_race_or_vote_mismatch');
 denied(x=>{x.snapshots[0].race_code='VA-GOV'},'archive_snapshot_race_or_vote_mismatch');
 denied(x=>{x.snapshots[0].dem_votes=-5},'archive_snapshot_race_or_vote_mismatch');
+denied(x=>{delete x.snapshots[0].capture},
+ 'missing_original_per_snapshot_capture_provenance');
+denied(x=>{x.snapshots[1].capture.id=x.snapshots[0].capture.id},
+ 'missing_original_per_snapshot_capture_provenance');
+denied(x=>{x.snapshots[0].capture.archived_url='http://archive.invalid'},
+ 'missing_original_per_snapshot_capture_provenance');
+denied(x=>{x.snapshots[0].as_of='2024-11-06T00:00:00'},
+ 'missing_original_per_snapshot_capture_provenance');
+denied(x=>{x.snapshots[0].capture.captured_at='2024-11-05T23:59:59'},
+ 'missing_original_per_snapshot_capture_provenance');
+denied(x=>{x.snapshots[0].capture.captured_at='2024-11-06T05:00:00Z'},
+ 'capture_not_contemporaneous_with_source_timestamp');
+denied(x=>{x.snapshots[0].capture.captured_at='2024-11-05T23:40:00Z'},
+ 'capture_not_contemporaneous_with_source_timestamp');
+denied(x=>{x.snapshots[0].as_of='2024-11-05T22:59:59Z'},
+ 'nonchronological_or_wrong_cycle_snapshot');
 denied(x=>{x.snapshots[3].as_of=x.snapshots[2].as_of},
  'nonchronological_or_wrong_cycle_snapshot');
 denied(x=>{x.snapshots[4].as_of='2026-11-04T01:00:00Z'},
@@ -75,5 +97,20 @@ denied(x=>{x.snapshots=x.snapshots.map((row,i)=>({
 denied(x=>{x.snapshots=x.snapshots.map((row,i)=>({
  ...row,dem_votes:100+i*10,rep_votes:200+i*10
  }))},'not_a_useful_election_clock_reporting_sequence');
+const unchanged=structuredClone(baseline);
+const repeated=structuredClone(unchanged.snapshots[1]);
+repeated.capture.id='nc-gov-clock-unique-repeat';
+repeated.as_of='2024-11-06T00:31:00Z';
+repeated.capture.captured_at='2024-11-06T00:32:00Z';
+unchanged.snapshots.splice(2,0,repeated);
+const repeatRun=api.evaluate(unchanged);
+assert.equal(repeatRun.eligible,true);
+assert.equal(repeatRun.snapshots,7);
+assert.equal(repeatRun.unchanged_count_snapshots_excluded_from_stage_error,1);
+assert.equal(repeatRun.distinct_count_snapshots_for_stage_error,6);
+assert.equal(repeatRun.history_snapshot_errors.reduce((n,b)=>n+b.n,0),6,
+ 'Repeated unchanged response must not carry extra backtest weight');
+assert.equal(repeatRun.raw_replay_snapshots.length,7,
+ 'Still preserve full actual clock observation history');
 assert.equal(api.evaluate({}).eligible,false);
 console.log('Historical 2024 clock replay only: true-vintage metadata, source rights, timestamp sequence, progress, corrections and no national 2026 forecast coupling PASS');

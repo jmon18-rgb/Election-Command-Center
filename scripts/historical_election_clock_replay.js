@@ -8,8 +8,11 @@
  if(root)root.HistoricalElectionClockReplay=api;
 })(typeof window!=='undefined'?window:null,function(){
  'use strict';
- const START=Date.parse('2024-11-05T05:00:00Z');
+ // UTC midnight on November 5 is NOT an election results clock.
+ // First nationwide 2024 state polling places did not close until 23:00Z.
+ const START=Date.parse('2024-11-05T23:00:00Z');
  const END=Date.parse('2024-11-15T05:00:00Z');
+ const WITH_OFFSET=/^2024-11-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?(?:Z|[+-]\d{2}:\d{2})$/;
  const buckets=[
   {id:'under_10',min:0,max:.10},
   {id:'10_to_25',min:.10,max:.25},
@@ -45,16 +48,32 @@
   const certifiedTwo=final.dem_votes+final.rep_votes;
   const certifiedMargin=100*(final.dem_votes-final.rep_votes)/certifiedTwo;
   let earlier=0,priorTotal=0,corrections=0,changes=0,lastLeader=null,
-   earlyCount=0,lateCount=0;
+   earlyCount=0,lateCount=0,unchangedPolls=0;
   const rows=[],groups=new Map(buckets.map(b=>[b.id,[]]));
+  const captureIds=new Set();
+  let previousCounts=null;
   for(const x of records){
    if(!x||x.election_date!=='2024-11-05'||
       x.race_code!==input.race_code||x.office!==input.office||
       !safeVotes(x.dem_votes)||!safeVotes(x.rep_votes))
     return fail('archive_snapshot_race_or_vote_mismatch');
-   const at=Date.parse(x.as_of||'');
+   // A source timestamp alone is insufficient: require one separately
+   // documented original capture for every clock entry, with an explicit
+   // offset and unique archive record ID. Caller review remains required.
+   const capture=x.capture;
+   if(!capture||typeof capture.id!=='string'||
+      !/^[a-zA-Z0-9._:-]{8,120}$/.test(capture.id)||
+      captureIds.has(capture.id)||!https(capture.archived_url)||
+      !WITH_OFFSET.test(x.as_of||'')||
+      !WITH_OFFSET.test(capture.captured_at||''))
+    return fail('missing_original_per_snapshot_capture_provenance');
+   const at=Date.parse(x.as_of),taken=Date.parse(capture.captured_at);
    if(!Number.isFinite(at)||at<START||at>END||at<=earlier)
     return fail('nonchronological_or_wrong_cycle_snapshot');
+   if(!Number.isFinite(taken)||taken<at-5*60000||
+      taken>at+120*60000||taken>END)
+    return fail('capture_not_contemporaneous_with_source_timestamp');
+   captureIds.add(capture.id);
    earlier=at;
    const total=x.dem_votes+x.rep_votes;
    if(total<1||total>certifiedTwo*1.03||
@@ -83,7 +102,13 @@
    rows.push(entry);
    const bin=buckets.find(b=>fraction>=b.min&&fraction<b.max);
    if(!bin)return fail('snapshot_progress_unclassifiable');
-   groups.get(bin.id).push(entry);
+   // Consecutive unchanged 2024 count states are not independent
+   // reporting-order draws. Retain raw chronology, but give an unchanged
+   // GET no additional weight in stage-level historical error metrics.
+   const signature=x.dem_votes+'|'+x.rep_votes;
+   if(signature===previousCounts)unchangedPolls++;
+   else groups.get(bin.id).push(entry);
+   previousCounts=signature;
   }
   const distinctProgress=new Set(rows.map(x=>Math.floor(x.historical_final_fraction*20))).size;
   // A single final-result file stamped four different times is NOT an
@@ -106,7 +131,12 @@
    certified_reference_url:final.official_source_url,
    first_snapshot:rows[0].as_of,last_snapshot:rows[rows.length-1].as_of,
    elapsed_minutes:rounded(elapsed),
-   snapshots:rows.length,upward_or_equal_steps:rows.length-1-corrections,
+   snapshots:rows.length,
+   original_per_snapshot_capture_metadata_present:true,
+   independently_verified_capture_payloads:false,
+   unchanged_count_snapshots_excluded_from_stage_error:unchangedPolls,
+   distinct_count_snapshots_for_stage_error:rows.length-unchangedPolls,
+   upward_or_equal_steps:rows.length-1-corrections,
    downward_vote_corrections:corrections,observed_leader_changes:changes,
    history_snapshot_errors:perStage,
    raw_replay_snapshots:rows,
