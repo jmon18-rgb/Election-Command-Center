@@ -2101,7 +2101,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}
   };
   const detail={
    ...row,election_type:row.type,percent_reporting:41,
-   last_updated:'2026-11-04T01:45:00Z',
+   last_updated:'2026-11-04T05:10:00Z',
    candidates:[
     {name:spec.state+' Democrat',party:'Democratic',votes:610,percent:61,winner:false},
     {name:spec.state+' Republican',party:'Republican',votes:390,percent:39,winner:false}
@@ -2115,7 +2115,9 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}
  assert.equal(w.StateBatchCivicAdapter.supports({office:'Senate',key:'NV'}),false,
   'Nevada has no 2026 Senate race in this batch');
  const batchOriginalClock=w.Date.now,batchFetch=w.fetch;
- w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ // Alaska's polls close at 05:00Z; simulated four-state totals
+ // must be dated after that state's own close, not just the East.
+ w.Date.now=()=>Date.parse('2026-11-04T05:30:00Z');
  let wrongBatchDetail=false;
  const batchURLs=[];
  w.fetch=async url=>{
