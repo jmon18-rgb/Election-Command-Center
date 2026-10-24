@@ -90,18 +90,51 @@ function inspectSource(config,snapshot,now=Date.now()){
  * Static Pages may legitimately lag a new source commit for a few minutes;
  * never silently accept a permanently stuck deployment.
  */
+/* A published source must have the SAME independent approval on main,
+ * including race, contest, original URL, ZIP SHA and revisions policy.
+ * Key sorting prevents irrelevant JSON key order from hiding drift.
+ */
+function canonicalApproval(config){
+ const normalized=value=>Array.isArray(value)?value.map(normalized):
+  value&&typeof value==='object'?
+   Object.fromEntries(Object.keys(value).sort().map(k=>[k,normalized(value[k])])):value;
+ return JSON.stringify(normalized({
+  schema:config?.schema??null,enabled:config?.enabled??null,
+  snapshot_path:config?.snapshot_path??null,
+  expected:config?.expected??null
+ }));
+}
 function compareApprovedHead(localConfig,localSnapshot,remoteConfig,remoteSnapshot,now=Date.now()){
- if(localConfig?.enabled!==true)return {status:'APPROVAL_NOT_ENABLED'};
+ assert(localConfig?.schema==='county-desk-config-v1',
+  'Main county approval schema is invalid');
+ if(localConfig.enabled!==true){
+  assert.equal(localConfig.enabled,false,
+   'Main county source must be explicitly enabled or disabled');
+  assert.equal(localConfig.expected,null,
+   'Main disabled NC source cannot carry a reviewed contest');
+  assert.equal(localConfig.snapshot_path,null,
+   'Main disabled NC source cannot point to candidate data');
+  assert.equal(remoteConfig?.enabled,false,
+   'Pages unexpectedly activated NC county counts while main approval disabled');
+  assert.equal(canonicalApproval(remoteConfig),canonicalApproval(localConfig),
+   'Disabled NC approval on Pages differs from main');
+  return {status:'APPROVAL_NOT_ENABLED'};
+ }
  assert(localSnapshot&&localConfig.expected?.mode==='nc-candidate-only',
   'Main has enabled NC county reporting without an approved candidate snapshot');
  const localTime=Date.parse(localSnapshot.archive_checked_at||'');
  assert(Number.isFinite(localTime),'Main approved snapshot timestamp absent');
  const remoteTime=Date.parse(remoteSnapshot?.archive_checked_at||'');
+ const equalApproval=canonicalApproval(remoteConfig)===canonicalApproval(localConfig);
  const matching=remoteConfig?.enabled===true&&remoteSnapshot&&
-  remoteConfig.expected?.verified_archive_sha256===
-   localConfig.expected.verified_archive_sha256&&
-  remoteTime>=localTime;
+  equalApproval&&Number.isFinite(remoteTime)&&remoteTime>=localTime&&
+  remoteSnapshot.source?.sha256===localSnapshot.source?.sha256;
  if(matching)return {status:'PUBLISHED_APPROVED_HEAD',deployment_lag_minutes:0};
+ // A source with equally fresh/later counts but different contest or
+ // geographic approval cannot be explained by an ordinary Pages delay.
+ if(remoteConfig?.enabled===true&&Number.isFinite(remoteTime)&&remoteTime>=localTime)
+  assert(equalApproval,
+   'Pages published an NC contest/source approval that differs from reviewed main');
  const age=now-localTime;
  assert(age>=-15*60000,'Approved local source timestamp is in the future');
  assert(age<20*60000,

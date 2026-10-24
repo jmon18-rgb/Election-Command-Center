@@ -49,6 +49,34 @@ for(const [c,s,n] of fail)assert.throws(()=>api.inspectSource(c,s,n));
 const publication=api.compareApprovedHead(approved,snapshot,approved,snapshot,when);
 assert.equal(publication.status,'PUBLISHED_APPROVED_HEAD');
 assert.equal(api.compareApprovedHead(disabled,null,disabled,null,when).status,'APPROVAL_NOT_ENABLED');
+assert.throws(()=>api.compareApprovedHead(disabled,null,approved,snapshot,when),
+ /unexpectedly activated/);
+assert.throws(()=>api.compareApprovedHead(disabled,null,
+ {...disabled,snapshot_path:'./data/nc_candidate_votes_2026.json'},null,when),
+ /differs from main/);
+assert.throws(()=>api.compareApprovedHead({...disabled,enabled:null},null,
+ disabled,null,when),/explicitly enabled or disabled/);
+for(const edit of [
+ {verified_source_url:'https://elections.example.gov/fake.zip'},
+ {office:'House',race_key:'NC-01'},
+ {contest_group_id:'38'},
+ {contest_name:'US HOUSE'},
+ {allow_verified_revisions:true}
+]){
+ const changed={...approved,expected:{...approved.expected,...edit}};
+ assert.throws(()=>api.compareApprovedHead(approved,snapshot,changed,snapshot,when),
+  /differs from reviewed main/);
+}
+const keyReordered={expected:Object.fromEntries(
+ Object.entries(approved.expected).reverse()),enabled:true,
+ schema:'county-desk-config-v1',snapshot_path:'./data/nc_candidate_votes_2026.json'};
+assert.equal(api.compareApprovedHead(approved,snapshot,keyReordered,snapshot,when).status,
+ 'PUBLISHED_APPROVED_HEAD');
+const oldApproval={...approved,expected:{...approved.expected,contest_group_id:'OLD'}};
+assert.equal(api.compareApprovedHead(approved,snapshot,oldApproval,
+ {...snapshot,archive_checked_at:'2026-11-04T00:30:00Z'},when).status,
+ 'PAGES_CATCHING_UP');
+
 assert.equal(api.compareApprovedHead(approved,snapshot,disabled,null,when).status,'PAGES_CATCHING_UP');
 assert.throws(()=>api.compareApprovedHead(approved,snapshot,disabled,null,when+40*60000),
  /has not deployed/);
