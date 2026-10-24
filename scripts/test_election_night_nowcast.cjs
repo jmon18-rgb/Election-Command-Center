@@ -70,6 +70,23 @@ const other=structuredClone(validSource);other.races.AZ={total:100000,pct_in:65,
  cands:[{p:'D',v:40000},{p:'R',v:45000},{p:'O',v:15000}]};
 assert.equal(model.estimate(priors,az,other,null,now).mode,'live_informed',
  'Two-party margin is computed from D and R only, while keeping source total');
+// No source with duplicated major-party candidate rows may move the
+// election-night diagnostic, even if the arithmetic fits its reported total.
+for(const duplicated of ['D','R']){
+ const malformed=structuredClone(validSource);
+ malformed.races.AZ.total=160000;
+ malformed.races.AZ.cands.push({p:duplicated,v:5000});
+ assert.equal(model.estimate(priors,az,malformed,null,now).mode,'polls_only',
+  'Duplicate '+duplicated+' primary vote rows must not shift odds');
+}
+// An independent third-party column remains valid under the documented
+// provider contract and must not be mistaken for duplicate major votes.
+const thirdParty=structuredClone(validSource);
+thirdParty.races.AZ.total=120000;
+thirdParty.races.AZ.cands.push({p:'L',v:10000});
+assert.equal(model.estimate(priors,az,thirdParty,null,now).mode,
+ 'live_informed','Legitimate other-party source votes remain supported');
+
 const ca={office:'Governor',key:'CA'};
 const caNow=Date.parse('2026-11-04T04:30:00Z');
 const cv={provider:'civicAPI',race_id:6402,office:'Governor',key:'CA',
