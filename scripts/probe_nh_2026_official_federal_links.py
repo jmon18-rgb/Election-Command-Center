@@ -64,7 +64,8 @@ def assess(page, *, checked_at, source_available=True):
     for race, pattern in TARGETS.items():
         matching = [a["url"] for a in anchors.links if pattern.fullmatch(a["label"])]
         results[race] = {
-            "status": "EXACT_OFFICIAL_LINK_FOUND_UNVERIFIED" if len(set(matching)) == 1
+            "status": "SOURCE_UNAVAILABLE_NOT_ASSESSED" if not source_available else
+                "EXACT_OFFICIAL_LINK_FOUND_UNVERIFIED" if len(set(matching)) == 1
                 else "DUPLICATED_AMBIGUOUS_LINK" if matching else
                 "OFFICIAL_REPORT_LINK_NOT_YET_PUBLISHED",
             "candidate_official_url": matching[0] if len(set(matching)) == 1 else None,
