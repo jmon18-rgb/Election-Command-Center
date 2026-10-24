@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-24T09:56:01.107684Z",
+  "updated_at": "2026-10-24T10:44:08.532526Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
@@ -273,6 +273,27 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "98545b7f8ca2d0ec99a5",
+      "title": "Maricopa County recorder restores 25 voters wrongly flagged as noncitizens, ending lawsuit - Arizona Mirror",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNSThlazJ5QlBZVjFFWkZDNng0U1FlcFJCWHV1TlhSeGNPYXh3RW5uRHFnTWpoYmpGbEVXODZwWl9pczRKbHpKeXRtckh5bzhxdzNkQXVFN2xwdVVLYUctd3J5dVUwM3VsbGZmVy1NZVZQd01WdjdtNWVDTVQtckxjQk9UcTh5NWVKS1M3VXo5bmVBV0lVZnBCOGp3TUlValJwRTlZeEFRdDZ5OEJhOFNWbVdDRmpQc2M5ZjlTSmFCZw?oc=5",
+      "publisher": "Arizona Mirror",
+      "published_at": "2026-10-24T03:29:37Z",
+      "detected_at": "2026-10-24T10:44:08.532526Z",
+      "state_hints": [
+        "AZ"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "25 voters"
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -4916,23 +4937,6 @@
       "topic_hints": [],
       "headline_numbers_unverified": [
         "1,392 voters"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "463d7b06b9c8e958c6a9",
-      "title": "FL Senate Race 2026 - MundoNOW",
-      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPQlhQNzRIem9OMU5DMTdxczBLMkdaVXR0ZW00aUsxcy1ndEVFNVcwQkstWU1fdWNBN2xBVWVTY2MyYkpmMy1HUmZqc2NnLVFCSHFoXzY4eUx6WlpqVmp5Tk5ob3RHc3RQUVI2WlFFS3oxVGpFWUwzWkdNbzlRNDBpTkdreVg4c0Y2c1d1aENFWDh6UFhGQzVGcFVkbDNGRVVfVUE?oc=5",
-      "publisher": "MundoNOW",
-      "published_at": "2026-10-13T20:20:58Z",
-      "detected_at": "2026-10-13T20:31:22.392811Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [
-        "2026"
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
