@@ -2294,7 +2294,9 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}
    ]
   };
   const result={...searchRow,election_type:searchRow.type,
-   percent_reporting:50,last_updated:'2026-11-04T01:45:00Z',
+   // All batch fixtures represent post-close results, including Oregon (Pacific)
+   // and New York; do not bypass the per-state source-time guard.
+   percent_reporting:50,last_updated:'2026-11-04T05:10:00Z',
    candidates:[
     {name:'Candidate D',party:'Democratic',votes:540,percent:54,winner:false},
     {name:'Candidate R',party:'Republican',votes:460,percent:46,winner:false}
@@ -2309,7 +2311,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}
    'Uncontested Senate seat must not be invented');
  const fiveClock=w.Date.now,fiveFetch=w.fetch,fiveRequests=[];
  let fiveInvalidId=null;
- w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ w.Date.now=()=>Date.parse('2026-11-04T05:30:00Z');
  w.fetch=async(url)=>{
   const address=String(url);fiveRequests.push(address);
   if(address.startsWith('https://civicapi.org/api/v2/race/search')){
@@ -2390,7 +2392,9 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}
    ]
   };
   const detail={...row,election_type:row.type,percent_reporting:42,
-   last_updated:'2026-11-04T01:35:00Z',
+   // Montana and New Mexico have later polling close times than Alabama.
+   // This shared source fixture must be post-close for every state.
+   last_updated:'2026-11-04T05:10:00Z',
    candidates:[
     {name:'Election D',party:'Democratic',votes:520,percent:52,winner:false},
     {name:'Election R',party:'Republican',votes:480,percent:48,winner:false}
@@ -2405,7 +2409,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}
   'Oklahoma governor was unverified and must stay off the strict roster');
  const almtClock=w.Date.now,almtFetch=w.fetch,almtRequests=[];
  let almtBadId=null;
- w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ w.Date.now=()=>Date.parse('2026-11-04T05:30:00Z');
  w.fetch=async(url)=>{
   const u=String(url);almtRequests.push(u);
   if(u.startsWith('https://civicapi.org/api/v2/race/search')){
@@ -2480,7 +2484,8 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}
    ]
   };
   const detail={...search,election_type:search.type,percent_reporting:41,
-   last_updated:'2026-11-04T01:45:00Z',
+   // California and Wyoming results cannot be accepted before local close.
+   last_updated:'2026-11-04T05:10:00Z',
    candidates:[
     {name:'West D',party:'Democratic',votes:550,percent:55,winner:false},
     {name:'West R',party:'Republican',votes:450,percent:45,winner:false}
@@ -2494,7 +2499,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}
   'Mississippi Senate did not verify through source index; no pinned adapter');
  const westSourceClock=w.Date.now,westSourceFetch=w.fetch,westSourceRequests=[];
  let westSourceInvalidId=null;
- w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ w.Date.now=()=>Date.parse('2026-11-04T05:30:00Z');
  w.fetch=async(url)=>{
   const request=String(url);westSourceRequests.push(request);
   if(request.startsWith('https://civicapi.org/api/v2/race/search')){
