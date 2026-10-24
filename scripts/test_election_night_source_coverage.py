@@ -313,8 +313,10 @@ class CoverageLedgerTests(unittest.TestCase):
                              rebuilt[office]["unresolved_source_gaps"])
         for office, row in initial["summary"].items():
             for key, value in row.items():
-                if key in ("pinned_secondary", "unresolved_source_gaps"):
-                    self.assertEqual(rebuilt[office][key], expected["summary"][office][key])
+                if key == "pinned_secondary":
+                    self.assertEqual(rebuilt[office][key], value + transitioned[office])
+                elif key == "unresolved_source_gaps":
+                    self.assertEqual(rebuilt[office][key], value - transitioned[office])
                 else:
                     self.assertEqual(rebuilt[office][key], value,
                                      "Other saved evidence must remain reproducible")
