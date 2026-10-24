@@ -9,6 +9,7 @@ class OfficialOhioPreElectionSource(unittest.TestCase):
                of mock elections performed ahead of November 3, 2026.</p>
             <a href="/home/ExportXML">Election Results XML Feed</a>
             <a href="https://unverified.example.com/file.xml">download</a>
+            <a href="/Content/PDF/P1622Documentation.pdf">standardized NIST 1500-100</a>
             </body></html>'''
         result=inspect(html)
         self.assertTrue(result["mock_or_test_banner_detected"])
@@ -16,7 +17,12 @@ class OfficialOhioPreElectionSource(unittest.TestCase):
                          "https://liveresults.ohiosos.gov/home/ExportXML")
         self.assertTrue(result["possible_feed_links"][0]["verified_official_host"])
         self.assertIsNone(result["possible_feed_links"][1]["href"])
+        self.assertEqual(result["possible_feed_links"][1]["manual_review_candidate_url"],
+                         "https://unverified.example.com/file.xml")
+        self.assertEqual(len(result["possible_feed_links"]),2,
+                         "NIST documentation PDFs must not be treated as result feeds")
         self.assertTrue(result["possible_feed_links"][1]["needs_manual_host_review"])
+        self.assertTrue(result["pre_election_data_must_be_treated_as_mock_until_independent_review"])
         self.assertFalse(result["source_votes_ingested"])
         self.assertFalse(result["ready_for_automatic_2026_ingestion"])
         self.assertFalse(result["may_move_national_needle"])
