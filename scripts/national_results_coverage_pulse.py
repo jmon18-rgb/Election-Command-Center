@@ -62,7 +62,11 @@ def valid_candidates(details, total):
         summed+=count
         if summed>total:
             return False
-    return True
+    # A positive race total with ZERO assigned candidate votes is not
+    # evidence of observed candidate counts. Same-party contests CAN be
+    # legitimate (CA/WA top-two); do not use party-code uniqueness to
+    # reject a valid source race here. The D/R nowcast has stricter rules.
+    return total==0 or summed>0
 
 
 def _time(s):
@@ -89,6 +93,7 @@ def pulse(ledger, primary, now):
     observed=Counter()
     sample_by_office={}
     as_of={}
+    office_current={}
     for office in EXPECTED:
         doc=primary.get(office)
         if doc is None:
@@ -105,6 +110,10 @@ def pulse(ledger, primary, now):
             doc.get("live") is True and doc.get("stale") is True):
             raise ValueError("Office provider snapshot inconsistent")
         sample_by_office[office]=doc["races"]
+        # A reachable but explicitly non-live or stale snapshot is not
+        # evidence of currently reporting votes (or an observed zero).
+        office_current[office]=doc.get("stale") is False and (
+            doc.get("live") is True or doc.get("final") is True)
         if doc.get("as_of"):
             as_of[office]=_time(doc["as_of"])
             if as_of[office]>now+dt.timedelta(minutes=15):
@@ -125,6 +134,8 @@ def pulse(ledger, primary, now):
             races=sample_by_office.get(office)
             if races is None:
                 status="PRIMARY_PROVIDER_UNAVAILABLE"
+            elif not office_current.get(office,False):
+                status="PRIMARY_OFFICE_NOT_LIVE_OR_STALE"
             elif key not in races:
                 status="PRIMARY_RACE_ABSENT_NOT_ZERO"
             else:
