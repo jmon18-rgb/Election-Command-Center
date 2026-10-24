@@ -198,6 +198,28 @@ assert.equal(api.reconcile({...input,civic:{
  'Senate|ME':duplicateSupplemental}}).records['Senate|ME'].hasReportedVotes,
  false,'Duplicated normalized supplemental candidate names cannot count as separate people');
 
+// A provider can furnish correct exact-race identifiers and plausible
+// timestamps while explicitly marking its 2026 response as TEST/MOCK or
+// inactive. Such records must not count or publish winner flags.
+for(const flagged of [
+ {is_test:true},{test:true},{mock:true},{is_mock:true},
+ {live:false},{active:false}
+]){
+ const excluded=api.reconcile({...input,civic:{
+  'Senate|ME':{...civic,...flagged}
+ }});
+ assert.equal(excluded.records['Senate|ME'].hasReportedVotes,false,
+  'Explicit nonproduction supplemental flags disqualify vote evidence');
+ assert.equal(excluded.records['Senate|ME'].providerCall,false,
+  'Explicit nonproduction flag disqualifies winner hint');
+ assert.equal(excluded.senate.supplemental,0);
+ assert.equal(excluded.providerCalls,0);
+}
+const liveSupplemental=api.reconcile({...input,civic:{
+ 'Senate|ME':{...civic,is_test:false,mock:false,live:true,active:true}
+}});
+assert.equal(liveSupplemental.records['Senate|ME'].hasReportedVotes,true,
+ 'Independently validated live supplemental evidence remains admissible');
 // A source-share discrepancy can exist without disagreement about which
 // party leads. Require >5,000 two-party votes, +/-3-minute timestamps,
 // similar completeness, and >=10 percentage points before raising advisory.
