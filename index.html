@@ -3412,22 +3412,42 @@ async function enRefreshSourceReadiness(){
    const listing=await page.json();
    if(listing?.status!=='OFFICIAL_HUMAN_FALLBACK_LINKS_NOT_AUTOMATED_RESULTS'||
       !Array.isArray(listing.links))throw Error('Official links schema invalid');
-   let linked=0;
+   // Also surface independently verified human backup sites for essential
+   // out-of-primary Senate races EVEN IF their civicAPI IDs are already pinned:
+   // a pinned ID is not a guarantee of a working Election Night source.
+   const critical=new Set(['Senate|AK','Senate|ME','Senate|NE',
+     'Senate|NH','Senate|OH-special']);
+   const requested=new Set([...gaps,...critical]);
+   const matched=new Set();
    for(const link of listing.links){
     if(!/^https:\/\//.test(link.url)||!Array.isArray(link.race_ids))continue;
-    const relevant=link.race_ids.filter(id=>gaps.has(id));
+    const relevant=link.race_ids.filter(id=>requested.has(id));
     if(!relevant.length)continue;
     const row=elt('p','en-coverage-line');
     const anchor=elt('a','',link.name+' official results ↗');
     anchor.href=link.url;anchor.target='_blank';anchor.rel='noopener noreferrer';
-    row.append(anchor,elt('span','',' · '+relevant.join(', ')+
-     (link.mode==='certified_only_not_election_night'?
-      ' · State office does not publish unofficial Election Night results':' · manual check only')));
-    backstops.append(row);linked+=relevant.length;
+    let qualifier=' · official human-check alternative · NOT an automated feed';
+    if(link.mode==='certified_only_not_election_night')
+     qualifier=' · certification/results may come AFTER Election Night';
+    else if(link.mode==='pre_election_mock_results_only')
+     qualifier=' · WARNING: pre-election MOCK/TEST results, not real votes';
+    else if(link.mode==='november_2026_results_not_yet_published')
+     qualifier=' · 2026 November returns NOT YET published';
+    else if(link.mode==='post_election_results_landing')
+     qualifier=' · local returns may appear after reporting';
+    row.append(anchor,elt('span','',
+     ' · '+relevant.join(', ')+qualifier));
+    backstops.append(row);
+    relevant.forEach(id=>matched.add(id));
    }
-   if(linked!==gaps.size)backstops.append(elt('p','en-coverage-line',
-    (gaps.size-linked)+' unresolved races do not yet have verified official human-fallback links'));
-   if(!gaps.size)backstops.append(elt('p','en-coverage-line','No unresolved source identity gaps remain in this audit.'));
+   const unresolved=[...gaps].filter(id=>!matched.has(id));
+   if(unresolved.length)backstops.append(elt('p','en-coverage-line',
+    unresolved.join(', ')+' · no verified official human-fallback link yet'));
+   const missingCritical=[...critical].filter(id=>!matched.has(id));
+   if(missingCritical.length)backstops.append(elt('p','en-coverage-line',
+    'Critical official backup links unavailable: '+missingCritical.join(', ')));
+   if(!gaps.size)backstops.append(elt('p','en-coverage-line',
+    'No unresolved curated source identities in this audit; provider outages may still require these official links.'));
   }
  }catch(e){
   host.textContent='Election-night source identity audit unavailable · nationwide readiness NOT VERIFIED';
