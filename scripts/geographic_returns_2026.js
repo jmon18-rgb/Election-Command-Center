@@ -2,10 +2,13 @@
  * No forecasts, calls, or zero-vote substitutions for missing source data.
  */
 (function(root,factory){
- const api=factory();
+ const closes=typeof module!=='undefined'&&module.exports?
+  require('./election_night_poll_closings_2026.js'):
+  root?.ElectionNightPollClosings2026;
+ const api=factory(closes);
  if(typeof module!=='undefined'&&module.exports)module.exports=api;
  if(root)root.GeographicReturns2026=api;
-})(typeof window!=='undefined'?window:null,function(){
+})(typeof window!=='undefined'?window:null,function(closes){
  'use strict';
  const ELECTION='2026-11-03';
  const hasOwn=(x,k)=>Object.prototype.hasOwnProperty.call(x,k);
@@ -27,6 +30,12 @@
      (row.office==='Governor'&&!row.race_key.endsWith('-GOV')))return null;
   if(typeof row.updated_at!=='string'||!/^2026-11-(?:0[3-9]|[12][0-9]|30)T/.test(row.updated_at)||
      !Number.isFinite(Date.parse(row.updated_at)))return null;
+  // County replay/bridge must not silently accept a post-election fetch of
+  // a PRE-close result timestamp, even when the envelope is marked verified.
+  if(!closes||typeof closes.floorFor!=='function')return null;
+  const floor=closes.floorFor(row.race_key);
+  if(!Number.isFinite(floor)||
+     (row.ballots_reported>0&&Date.parse(row.updated_at)<floor))return null;
   if(!['partial','final'].includes(row.reporting_status)||
      !whole(row.ballots_reported)||!Array.isArray(row.candidates)||
      row.candidates.length<2||row.candidates.length>20)return null;
