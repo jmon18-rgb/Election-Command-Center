@@ -34,6 +34,12 @@
      !snapshot.races||Array.isArray(snapshot.races))
    return {state:'invalid',usable:false};
   if(snapshot.stale===true)return {state:'stale',usable:false};
+  // Explicit TEST/MOCK or disabled reporting flags override a superficially
+  // live and fresh office response, including valid-looking candidate totals.
+  if(snapshot.is_test===true||snapshot.test===true||
+     snapshot.mock===true||snapshot.is_mock===true||
+     snapshot.active===false)
+   return {state:'invalid',usable:false};
   const ts=Date.parse(snapshot.as_of||'');
   const hasVotes=Object.values(snapshot.races).some(r=>r&&
    Number.isSafeInteger(r.total)&&r.total>0);
