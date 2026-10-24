@@ -1,0 +1,36 @@
+name: Inspect complete Ohio NIST XML structure without vote contents
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/audit_ohio_nist_xml_full_structure.py'
+      - 'scripts/test_audit_ohio_nist_xml_full_structure.py'
+      - '.github/workflows/ohio-nist-full-schema-only.yml'
+permissions:
+  contents: read
+jobs:
+  stream-schema-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test hostile XML and sample-budget guards, without leaking text values
+        run: |
+          python3 -m py_compile scripts/audit_ohio_nist_xml_full_structure.py
+          python3 scripts/test_audit_ohio_nist_xml_full_structure.py
+          python3 scripts/test_probe_ohio_nist_xml_schema.py
+      - name: Collect only structural tags across official Ohio mock export
+        run: |
+          python3 scripts/audit_ohio_nist_xml_full_structure.py --probe \
+            --output /tmp/ohio-schema-tags-only.json
+      - name: Preserve sanitized NIST element hierarchy for guarded importer implementation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ohio-nist-full-export-structure-not-votes
+          path: /tmp/ohio-schema-tags-only.json
+          if-no-files-found: ignore
+          retention-days: 14
