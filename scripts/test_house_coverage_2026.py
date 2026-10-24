@@ -191,6 +191,44 @@ class HouseCoverageTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Invalid time"):
             gap_aware_window(start, ledger, limit=8, window_hours=2)
 
+    def test_election_night_rechecks_missing_and_failed_sources_hourly(self):
+        # 7 remaining unknown House identities should not wait 24 hours when
+        # civicAPI first publishes its November 3 general-election inventory.
+        ledger = synthetic_initial_coverage()
+        today = datetime(2026, 11, 3, 23, 15, tzinfo=timezone.utc)
+        for row in ledger["races"]:
+            if row["office"] == "House" and row["provider_scope"] == "outside primary":
+                row["last_probe"] = {
+                    "status": "INDEXED_EXACT_RACE", "race_id": 200001,
+                    "checked_window_utc": (today - timedelta(minutes=5)).isoformat()
+                }
+        unindexed = next(r for r in ledger["races"] if r["id"] == "House|NH-01")
+        unindexed["last_probe"] = {
+            "status": "NOT_INDEXED",
+            "checked_window_utc": (today - timedelta(minutes=65)).isoformat()
+        }
+        transient = next(r for r in ledger["races"] if r["id"] == "House|AK-00")
+        transient["last_probe"] = {
+            "status": "TEMPORARY_UPSTREAM_FAILURE", "reason": "HTTP_503",
+            "checked_window_utc": (today - timedelta(minutes=65)).isoformat()
+        }
+        plan = gap_aware_window(today, ledger, limit=8, window_hours=1)
+        self.assertEqual(set(plan["districts"]), {"NH-01", "AK-00"})
+        self.assertEqual(plan["scheduled_rechecks"], 2)
+        self.assertEqual(plan["request_cap"], 8)
+        self.assertEqual(gap_aware_window(
+            today - timedelta(minutes=15), ledger, limit=8,
+            window_hours=1)["districts"], (),
+            "Hourly retry must not repeat provider requests before one hour")
+        self.assertEqual(gap_aware_window(
+            datetime(2026, 11, 3, 22, 59, tzinfo=timezone.utc),
+            ledger, limit=8, window_hours=1)["districts"], (),
+            "Do not accelerate source probes before counting begins")
+        self.assertEqual(gap_aware_window(
+            datetime(2026, 11, 4, 12, 1, tzinfo=timezone.utc),
+            ledger, limit=8, window_hours=1)["districts"], (),
+            "After the election-night window return to normal 24h/4h safety budgets")
+
     def test_adaptive_expiry_retries_missing_after_24h_and_indexed_after_72h(self):
         ledger = synthetic_initial_coverage()
         now = datetime(2026, 10, 20, 16, tzinfo=timezone.utc)
