@@ -6,10 +6,13 @@
  // at read-time rather than capturing an undefined global during startup.
  const api=factory(()=>typeof module!=='undefined'&&module.exports?
   require('./election_night_poll_closings_2026.js'):
-  root?.ElectionNightPollClosings2026);
+  root?.ElectionNightPollClosings2026,
+  ()=>typeof module!=='undefined'&&module.exports?
+  require('./election_night_state_county_fips_2026.js'):
+  root?.ElectionNightStateCountyFIPS2026);
  if(typeof module!=='undefined'&&module.exports)module.exports=api;
  if(root)root.GeographicReturns2026=api;
-})(typeof window!=='undefined'?window:null,function(getCloses){
+})(typeof window!=='undefined'?window:null,function(getCloses,getFips){
  'use strict';
  const ELECTION='2026-11-03';
  const hasOwn=(x,k)=>Object.prototype.hasOwnProperty.call(x,k);
@@ -23,7 +26,7 @@
   if(!['House','Senate','Governor'].includes(row.office)||
      typeof row.state!=='string'||!/^[A-Z]{2}$/.test(row.state)||
      typeof row.county_id!=='string'||!/^[0-9]{5}$/.test(row.county_id)||
-     row.county_id.slice(0,2)!==row.state_fips)return null;
+     !getFips()?.matches(row.state,row.state_fips,row.county_id))return null;
   if(typeof row.race_key!=='string'||!/^[A-Z]{2}-(?:[0-9]{2}|SEN|GOV)$/.test(row.race_key)||
      row.race_key.slice(0,2)!==row.state)return null;
   if((row.office==='House'&&!/^[A-Z]{2}-[0-9]{2}$/.test(row.race_key))||
