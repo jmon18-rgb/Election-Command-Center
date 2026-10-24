@@ -108,20 +108,48 @@ akSource.as_of='2026-11-04T05:10:00Z';
  // but a source winner flag must not lock it before the FINAL state close.
 const alaskaCalled=structuredClone(akPrior);
 alaskaCalled.records.find(r=>r.race_code==='AK-01').provider_called_party='D';
-assert.equal(model.estimate(alaskaCalled,akRace,akSource,null,akNow).mode,
+const civicAK={provider:'civicAPI',race_id:6301,office:'House',key:'AK-00',
+ total:100000,percent_reporting:65,called:'Alaska Dem',
+ last_updated:'2026-11-04T05:10:00Z',
+ candidates:[{name:'Alaska Dem',party:'D',votes:57000},
+             {name:'Alaska Rep',party:'R',votes:43000}]};
+assert.equal(model.estimate(alaskaCalled,akRace,akSource,civicAK,akNow).mode,
  'live_informed','Alaska calls before final Aleutian close must not lock odds');
+assert.equal(model.estimate(alaskaCalled,akRace,akSource,civicAK,
+ Date.parse('2026-11-04T06:01:00Z')).mode,'live_informed',
+ 'A pre-final source call must NEVER revive when the viewer clock advances');
+const civicAKClosed={...civicAK,last_updated:'2026-11-04T06:00:00Z'};
+assert.equal(model.estimate(alaskaCalled,akRace,akSource,civicAKClosed,
+ Date.parse('2026-11-04T06:01:00Z')).mode,'source_called',
+ 'A fresh independently validated post-final winner may lock the race');
+const akRetracted={...civicAKClosed,called:null};
+assert.equal(model.estimate(alaskaCalled,akRace,akSource,akRetracted,
+ Date.parse('2026-11-04T06:01:00Z')).mode,'live_informed',
+ 'Withdrawal of civicAPI called name must restore uncertainty');
 assert.equal(model.estimate(alaskaCalled,akRace,akSource,null,
- Date.parse('2026-11-04T06:00:00Z')).mode,'source_called',
- 'After the final Alaska poll closes, validated provider call can lock odds');
+ Date.parse('2026-11-04T06:01:00Z')).mode,'live_informed',
+ 'Absent civicAPI proof, cached correlated flags cannot force a call');
 const texasCalled={...priors,records:[...priors.records,{
  office:'senate',race_code:'TX-SEN',dem_minus_rep:1,sigma_points:7,
  dem_beats_rep_pct:55,provider_called_party:'D'
 }]};
 const texasSeat={office:'Senate',key:'TX'};
+const civicTexas={provider:'civicAPI',race_id:7132,office:'Senate',key:'TX',
+ total:80000,percent_reporting:12,called:'Texas Dem',
+ last_updated:'2026-11-04T02:00:00Z',
+ candidates:[{name:'Texas Dem',party:'D',votes:45000},
+             {name:'Texas Rep',party:'R',votes:35000}]};
+assert.equal(model.estimate(texasCalled,texasSeat,null,civicTexas,
+ Date.parse('2026-11-04T01:59:59Z')).mode,'live_informed',
+ 'Earliest-zone partial votes may inform a race, but final-zone winner is barred');
 assert.equal(model.estimate(texasCalled,texasSeat,null,null,
- Date.parse('2026-11-04T01:59:59Z')).mode,'polls_only');
-assert.equal(model.estimate(texasCalled,texasSeat,null,null,
+ Date.parse('2026-11-04T02:00:00Z')).mode,'polls_only',
+ 'Naked cached D winner annotation cannot lock Texas without source');
+assert.equal(model.estimate(texasCalled,texasSeat,null,civicTexas,
  Date.parse('2026-11-04T02:00:00Z')).mode,'source_called');
+assert.equal(model.estimate(texasCalled,texasSeat,null,
+ {...civicTexas,key:'KS'},Date.parse('2026-11-04T02:01:00Z')).mode,
+ 'polls_only','A called name from another state is never source proof');
 
 const akLive=model.estimate(akPrior,akRace,akSource,null,akNow);
 assert.equal(akLive.mode,'live_informed',
@@ -170,25 +198,45 @@ const civicNoStamp={...cv,last_updated:null};
 assert.equal(model.estimate(priors,ca,null,civicNoStamp,caNow).mode,'polls_only');
 const calledPriors=structuredClone(priors);
 calledPriors.records[0].provider_called_party='R';
-const calledR=model.estimate(calledPriors,az,validSource,null,now);
+const civicAZ={provider:'civicAPI',race_id:6401,office:'Senate',key:'AZ',
+ total:100000,percent_reporting:65,called:'Arizona Rep',
+ last_updated:'2026-11-04T03:30:00Z',
+ candidates:[{name:'Arizona Dem',party:'D',votes:55000},
+             {name:'Arizona Rep',party:'R',votes:45000}]};
+const calledR=model.estimate(calledPriors,az,validSource,civicAZ,now);
 assert.equal(calledR.mode,'source_called');
-assert.equal(calledR.demPct,0,'Provider-reported Republican winner must stay at 0% D');
+assert.equal(calledR.demPct,0,'Fresh validated Republican call must stay at 0% D');
 assert.equal(calledR.repPct,100);
 assert.equal(calledR.source,'civicAPI');
-assert.equal(model.estimate(calledPriors,az,validSource,null,
+assert.equal(model.estimate(calledPriors,az,validSource,civicAZ,
  Date.parse('2026-11-04T01:59:00Z')).mode,'polls_only',
  'A provider-call flag cannot lock Arizona race odds before Arizona closes');
 assert.match(calledR.explanation,/not official certification/);
+assert.equal(model.estimate(calledPriors,az,validSource,null,now).mode,'live_informed',
+ 'Cached flag without a usable current civic source cannot lock D/R odds');
+assert.equal(model.estimate(calledPriors,az,validSource,
+ {...civicAZ,last_updated:'2026-11-04T01:59:00Z'},now).mode,'live_informed',
+ 'Preclose source flag cannot later resurrect when source time remains early');
+assert.equal(model.estimate(calledPriors,az,validSource,
+ {...civicAZ,last_updated:'2026-11-03T23:00:00Z'},now).mode,'live_informed',
+ 'Even older but formerly valid winner flags are not fresh sources');
+assert.equal(model.estimate(calledPriors,az,validSource,
+ {...civicAZ,called:'Not A Candidate'},now).mode,'live_informed',
+ 'Unknown winner name cannot force probability to 100 percent');
+assert.equal(model.estimate(calledPriors,az,validSource,
+ {...civicAZ,called:'Arizona Dem'},now).mode,'live_informed',
+ 'Disagreement between cached winner party and current source must fail closed');
 calledPriors.records[0].provider_called_party='D';
-const calledD=model.estimate(calledPriors,az,validSource,null,now);
-assert.equal(calledD.demPct,100,'Provider-reported D winner must stay called');
+const calledD=model.estimate(calledPriors,az,validSource,
+ {...civicAZ,called:'Arizona Dem'},now);
+assert.equal(calledD.demPct,100,'New independently revalidated D call can lock the race');
 assert.equal(calledD.sensitivityLow,100);
 assert.equal(calledD.sensitivityHigh,100);
 calledPriors.records[0].provider_called_party=null;
-assert.equal(model.estimate(calledPriors,az,validSource,null,now).mode,'live_informed',
+assert.equal(model.estimate(calledPriors,az,validSource,civicAZ,now).mode,'live_informed',
  'Withdrawing provider call must restore the cautious partial-return nowcast');
 assert.equal(model.estimate({...calledPriors,
  records:calledPriors.records.map((r,i)=>i===0?{...r,provider_called_party:'O'}:r)},
- az,validSource,null,now).mode,'live_informed',
+ az,validSource,civicAZ,now).mode,'live_informed',
  'Non-D/R independent candidates must not be forced into D/R outcome probabilities');
 console.log('Election Night odds: source provenance, prior/posterior, conservative early returns and uncertainty tests passed');

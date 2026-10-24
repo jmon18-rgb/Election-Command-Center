@@ -32,6 +32,22 @@
   return Boolean(contract&&typeof contract.winnerAllowed==='function'&&
    contract.winnerAllowed(item?.office,item?.key,1,new Date(now).toISOString(),now));
  }
+ // A prior's provider_called_party is ONLY an annotation of the earlier
+ // correlated draw. It is not durable source evidence. Require a currently
+ // usable exact-race civicAPI result with a fresh, post-final-close timestamp
+ // and a uniquely matched, positive-vote winner on EVERY recalculation.
+ // Otherwise a premature, withdrawn or expired flag could turn into 100%
+ // merely because the browser clock advanced or the prior stayed cached.
+ function currentProviderCall(item,prior,secondary,now){
+  if(!secondary||secondary.office!==item.office||
+     secondary.key!==item.key||!['D','R'].includes(prior.provider_called_party))
+   return null;
+  const signals=typeof window!=='undefined'?
+   window.ElectionNightSignals:
+   typeof require==='function'?require('./election_night_signals.js'):null;
+  const call=signals?.validatedCall?.(secondary,now);
+  return call&&call.party===prior.provider_called_party?call:null;
+ }
  const OFFICES={Senate:'senate',House:'house',Governor:'governor'};
  const atLargeBridge=typeof window!=='undefined'?
   window.HouseAtLargeBridge:
@@ -149,8 +165,9 @@
   // A provider-call flag is not permission to declare a winner in a
   // state whose polls are still open. The authoritative state-local floor
   // also protects the primary and supplemental partial-vote paths below.
-  if(now>=ELECTION_START&&winnerClosedFor(item,now)&&
-     ['D','R'].includes(prior.provider_called_party)){
+  if(Number.isFinite(now)&&now>=ELECTION_START&&
+     winnerClosedFor(item,now)&&
+     currentProviderCall(item,prior,secondary,now)){
    const dem=prior.provider_called_party==='D';
    return {...defaultResult,mode:'source_called',demPct:dem?100:0,
     repPct:dem?0:100,source:'civicAPI',reporting:null,
