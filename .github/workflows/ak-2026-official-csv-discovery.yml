@@ -1,0 +1,52 @@
+name: Alaska 2026 official precinct CSV source-discovery audit
+on:
+  pull_request:
+    paths:
+      - 'scripts/probe_ak_official_2026_csv.py'
+      - 'scripts/test_probe_ak_official_2026_csv.py'
+      - '.github/workflows/ak-2026-official-csv-discovery.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/probe_ak_official_2026_csv.py'
+      - 'scripts/test_probe_ak_official_2026_csv.py'
+      - '.github/workflows/ak-2026-official-csv-discovery.yml'
+  schedule:
+    - cron: '13 12 * * *'
+    - cron: '22 * 3-4 11 *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  official-alaska-csv-discovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate safe official-host and election/CSV link identity
+        run: |
+          python -m py_compile scripts/probe_ak_official_2026_csv.py
+          python scripts/test_probe_ak_official_2026_csv.py
+      - name: Advisory only — inspect authentic Alaska reporting HTML and linked scripts
+        run: |
+          python scripts/probe_ak_official_2026_csv.py --probe | tee /tmp/ak-csv-discovery.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('/tmp/ak-csv-discovery.json').read_text())
+          with open(__import__('os').environ['GITHUB_STEP_SUMMARY'],'a') as s:
+              s.write("## Alaska 2026 read-only official CSV investigation\n")
+              s.write("Probe: **"+x['status']+"** · official CSV links: "+
+                      str(len(x['official_csv_links']))+"\n\n")
+              s.write("No vote bodies ingested, no production source IDs approved, no calls or odds modified.\n")
+          assert x['may_ingest_votes'] is False and x['source_id_approved'] is False
+          assert x['candidate_votes'] is None and x['winner_call'] is None
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alaska-official-csv-metadata-only
+          path: /tmp/ak-csv-discovery.json
+          retention-days: 30
