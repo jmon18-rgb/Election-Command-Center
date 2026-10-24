@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-24T13:42:20.702979Z",
+  "updated_at": "2026-10-24T14:08:10.169369Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -270,6 +270,23 @@
       "state_hints": [],
       "topic_hints": [
         "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "f16da404d2f225b21f53",
+      "title": "Trump is trying to overturn an election that hasn\u2019t happened yet - Vox",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPa3NxcEd5SGVRY0FPcEhDdXRfYkc0OGlIOE5OR1psMEFYUjRxYkd6OGVsU3dMQmpIclpOVHZEZld2ZnkwcjB4d3lhdGRTYnZzU0dMUWNyUFk3SHh3T1NabXF4VzFsUFFNZFRkTXpZMUVoMTc0Z3FqekVNeVFjMjF1NlBB?oc=5",
+      "publisher": "Vox",
+      "published_at": "2026-10-24T10:00:00Z",
+      "detected_at": "2026-10-24T14:08:10.169369Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -4923,21 +4940,6 @@
       "headline_numbers_unverified": [
         "8 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "422add14fd0c904674ec",
-      "title": "Campaign Legal Center Action and Partners Successfully Halt President Trump\u2019s Illegal Taxpayer-Funded Ads Scheme - Campaign Legal Center",
-      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNZHMzN002ZGhPbE53bUEtclpRaXRERjR6M2RWV3NvNmxxcXQyRW1mMFloclZaRHlQb1BneXdvZ0xRblZvSU5PdWRnQkI2ekVhbldlaHZFcmhjY1BjU1ZMWi1IWjROYXN0LS16dVN2enk0alJuclZEN1lTRkNpakNFRWpINjFyUVJ6NkhoMEtSYXJkSGp0Sl85X18yUFRjOGdPandMd24zUVpfZEhRemZ3MmhCWHMzUlBB?oc=5",
-      "publisher": "Campaign Legal Center",
-      "published_at": "2026-10-13T20:57:55Z",
-      "detected_at": "2026-10-13T21:51:56.712815Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
