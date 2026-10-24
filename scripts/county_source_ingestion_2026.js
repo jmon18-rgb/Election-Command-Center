@@ -24,8 +24,25 @@
   // a sample of reported counties change national odds or imply statewide
   // turnout coverage. In a browser without the optional advisory module,
   // expose no synthetic geographic estimate.
-  const raceMatchedCountyPulse=processed.accepted&&pulse?.summarize?
-   pulse.summarize(processed.rows,baselines,expected.race_key,now):null;
+  // The county state store may retain independently valid rows when a
+  // *new* incoming row fails identity, revision or arithmetic validation.
+  // Do NOT publish a sample swing from those survivors while telling the
+  // operator this same input batch contained rejected unsafe geography.
+  // Harmless stale/duplicate polling retries can still reuse the latest
+  // independently valid sample; they introduce no new unreviewed votes.
+  const integrityRejected=processed.accepted&&
+   processed.rejected.some(x=>x.reason!=='STALE_OR_DUPLICATE');
+  const raceMatchedCountyPulse=integrityRejected?
+   {status:'REJECTED_UNSAFE_COUNTY_BATCH_NO_DESCRIPTIVE_SWING',
+    matched_county_swing_points:null,
+    matched_2026_margin_points:null,
+    matched_2024_margin_points:null,
+    reporting_percent:null,estimated_votes_remaining:null,
+    may_move_national_needle:false,
+    may_infer_statewide_swing:false,
+    may_call_races:false,calibrated_probability:false}:
+   processed.accepted&&pulse?.summarize?
+    pulse.summarize(processed.rows,baselines,expected.race_key,now):null;
   return {...processed,source_url:validated.source_url,
     raceMatchedCountyPulse,may_move_national_needle:false};
  }
