@@ -47,7 +47,7 @@ class Tests(unittest.TestCase):
     def test_fail_closed_early_wrong_source_and_invalid_county(self):
         with self.assertRaisesRegex(ValueError,"before polls close"):
             review(archive(self.rows),FIPS,T.replace(day=3,hour=23))
-        with self.assertRaisesRegex(ValueError,"wrong election"):
+        with self.assertRaisesRegex(ValueError,"wrong.election"):
             review(archive(self.rows[:-1]+[entry("WAKE","C","DEM",1,
                 election="11/05/2024")]),FIPS,T)
         with self.assertRaisesRegex(ValueError,"Unknown source county"):
