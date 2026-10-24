@@ -146,6 +146,12 @@ if(otherPending.length){
  assert.equal((t.match(/Check official election office/g)||[]).length,linkCount,
   'Only audited https official links can appear for unresolved House/governor rows');
 }
+assert.match(t,/House SD-00 — No verified automated source ID/);
+assert.match(t,/MOCK\/TEST source; DO NOT use as votes/,
+ 'Official South Dakota pre-election numbers must be labeled mock in House gap desk');
+assert.match(t,/House NH-01 — No verified automated source ID/);
+assert.match(t,/may publish only after reporting/,
+ 'NH official House report link is not a real-time source promise');
 assert.match(t,/MA — No verified automated source ID/);
 assert.match(t,/certified results only; NOT live/);
 assert.match(t,/MS — Supplemental source ID · no current results/);

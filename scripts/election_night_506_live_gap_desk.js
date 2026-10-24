@@ -166,6 +166,15 @@
   elt('p','No source evidence for '+t.House.missing+' House, '+t.Senate.missing+
       ' Senate and '+t.Governor.missing+
       ' governor contests. Provider-reported zero is tracked separately. Missing does not mean zero.',host,'en-coverage-line');
+  // Consistent source-eligibility warnings for EVERY linked federal race:
+  // the seven House gaps cannot quietly display mock totals as results.
+  const warnings={
+   certified_only_not_election_night:' · certified results only; NOT live',
+   pre_election_mock_results_only:' · MOCK/TEST source; DO NOT use as votes',
+   november_2026_results_not_yet_published:' · 2026 returns NOT YET published',
+   post_election_results_landing:' · may publish only after reporting',
+   results_landing_timing_unconfirmed:' · Election Night timing unconfirmed'
+  };
   const details=elt('details',undefined,host);
   elt('summary','Senate source gaps · '+pulse.senateMissing+
       ' awaiting verified reported votes · all 35 races',details);
@@ -183,13 +192,7 @@
    if(!link)continue;
    const a=elt('a',' · Official manual check ↗',line);
    a.href=link.url;a.target='_blank';a.rel='noopener noreferrer';
-   const warnings={
-    certified_only_not_election_night:' · certified results only; NOT live',
-    pre_election_mock_results_only:' · MOCK/TEST source; DO NOT use as votes',
-    november_2026_results_not_yet_published:' · 2026 returns NOT YET published',
-    post_election_results_landing:' · may publish only after reporting',
-    results_landing_timing_unconfirmed:' · Election Night timing unconfirmed'
-   };
+
    elt('span',warnings[link.mode]||
     ' · manual reference only, NOT a validated live feed',line);
   }
@@ -215,7 +218,9 @@
     }
     const a=elt('a',' · Check official election office ↗',line);
     a.href=link.url;a.target='_blank';a.rel='noopener noreferrer';
-    elt('span',' · Reference ONLY; not live machine results or a verified call',line);
+    elt('span',(warnings[link.mode]||
+     ' · Reference ONLY; not live machine results or a verified call')+
+     ' · Unverified automated results; manual verification required',line);
    }
   }
   elt('small','This source audit does not calculate chamber control, race calls, ballots remaining, or live win probabilities.',host);
