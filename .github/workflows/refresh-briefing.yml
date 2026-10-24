@@ -54,6 +54,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Fail early on stale Election Night asset revisions
+        run: node scripts/check_election_night_asset_versions.cjs
       - name: Check dashboard JavaScript and layout contracts
         run: python3 scripts/check_dashboard.py
       - name: Syntax-check full DOM regression script
