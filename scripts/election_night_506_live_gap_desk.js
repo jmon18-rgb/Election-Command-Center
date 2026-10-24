@@ -1,0 +1,135 @@
+/* Election Night 506-race on-screen coverage TRIAGE, not polling,
+ * forecasts, race calls, or estimated ballots. Never equate an indexed
+ * race ID with actual observed results. Only independently reconciled
+ * provider records may count as returned results.
+ */
+(function(root,factory){
+ const api=factory();
+ if(typeof module!=='undefined'&&module.exports)module.exports=api;
+ if(root)root.ElectionNightCoverageTriage=api;
+})(typeof window!=='undefined'?window:null,function(){
+ 'use strict';
+ const EXPECTED=Object.freeze({House:435,Senate:35,Governor:36});
+ const PRIMARY='Open America 22-state scope';
+ const CHECKED=new Set(['reporting','current_no_votes']);
+ const DEGRADED=new Set(['outage','invalid','stale','rechecking']);
+ const LABELS=Object.freeze({
+  OBSERVED_SOURCE_VOTES:'Reported votes · unofficial',
+  ZERO_IN_FEED:'Source currently reports zero (not zero ballots cast)',
+  PRIMARY_RACE_ABSENT:'Source connected; race absent (unknown)',
+  PRIMARY_AWAITING:'Primary provider not yet reporting',
+  PRIMARY_DEGRADED:'Primary provider unavailable / stale',
+  SECONDARY_NOT_QUERIED:'Supplemental source ID · no current results',
+  SECONDARY_SCOPED:'Supplemental adapter · no verified source ID',
+  NO_MACHINE_SOURCE_ID:'No verified automated source ID',
+  PROVIDER_OTHER:'No verified vote source'
+ });
+ function build(ledger,reconciled,health={},now=Date.now()){
+  if(!Number.isFinite(now)||!ledger||
+     ledger.election!=='2026-11-03'||
+     ledger.status!=='SOURCE_IDENTITY_AUDIT_NOT_LIVE_RESULTS_COVERAGE'||
+     !Array.isArray(ledger.races)||ledger.races.length!==506||
+     !reconciled||reconciled.status!=='PARTIAL_SOURCED_VOTE_COVERAGE_NO_AUTHORITATIVE_CONTROL_CALLS'||
+     !reconciled.records||reconciled.authoritativeCalls!==0)
+   throw Error('Unverified national race inventory or source reconciliation');
+  const ledgerTime=Date.parse(ledger.generated_at||'');
+  if(!Number.isFinite(ledgerTime)||ledgerTime>now+15*60000)
+   throw Error('Invalid future source identity audit');
+  const seen=new Set(),summary={};
+  for(const name of Object.keys(EXPECTED))
+   summary[name]={total:EXPECTED[name],reported:0,zero:0,missing:0,byStatus:{}};
+  const records=[];
+  for(const race of ledger.races){
+   if(!race||!EXPECTED[race.office]||typeof race.key!=='string'||
+      race.id!==race.office+'|'+race.key||seen.has(race.id))
+    throw Error('Invalid or duplicated national race identity');
+   seen.add(race.id);
+   const reconciledRecord=reconciled.records[race.id];
+   if(!reconciledRecord||
+      typeof reconciledRecord.inValidatedFeed!=='boolean'||
+      typeof reconciledRecord.hasReportedVotes!=='boolean'||
+      reconciledRecord.hasReportedVotes&&!reconciledRecord.inValidatedFeed)
+    throw Error('Missing independently reconciled exact-race source state');
+   let status;
+   if(reconciledRecord.hasReportedVotes)status='OBSERVED_SOURCE_VOTES';
+   else if(reconciledRecord.inValidatedFeed)status='ZERO_IN_FEED';
+   else if(race.provider_scope===PRIMARY){
+    const sourceState=health[race.office];
+    status=DEGRADED.has(sourceState)?'PRIMARY_DEGRADED':
+      CHECKED.has(sourceState)?'PRIMARY_RACE_ABSENT':'PRIMARY_AWAITING';
+   }else if(race.source_identity_status==='PINNED_PREVIOUSLY_VERIFIED_ID')
+    status='SECONDARY_NOT_QUERIED';
+   else if(race.source_identity_status==='SCOPED_ADAPTER_NO_PINNED_ID')
+    status='SECONDARY_SCOPED';
+   else if(race.source_identity_status==='NO_CURATED_PROVIDER_ID')
+    status='NO_MACHINE_SOURCE_ID';
+   else status='PROVIDER_OTHER';
+   const obj=summary[race.office];
+   obj.byStatus[status]=(obj.byStatus[status]||0)+1;
+   if(status==='OBSERVED_SOURCE_VOTES')obj.reported++;
+   else if(status==='ZERO_IN_FEED')obj.zero++;
+   else obj.missing++;
+   if(race.office==='Senate')records.push({
+    id:race.id,status,provider:reconciledRecord.provider||null,
+    sourceIdentityStatus:race.source_identity_status
+   });
+  }
+  for(const [office,wanted] of Object.entries(EXPECTED)){
+   if(summary[office].reported+summary[office].zero+summary[office].missing!==wanted)
+    throw Error('Incomplete '+office+' source coverage inventory');
+   if(reconciled[office.toLowerCase()]?.total!==wanted||
+      reconciled[office.toLowerCase()]?.reported!==summary[office].reported)
+    throw Error('On-screen coverage count disagrees with validated reconciliation');
+  }
+  if(records.length!==35||seen.size!==506)
+   throw Error('Nationwide 506 race reconciliation incomplete');
+  const order={PRIMARY_DEGRADED:0,NO_MACHINE_SOURCE_ID:1,
+   PRIMARY_RACE_ABSENT:2,PRIMARY_AWAITING:3,
+   SECONDARY_SCOPED:4,SECONDARY_NOT_QUERIED:5,
+   ZERO_IN_FEED:6,OBSERVED_SOURCE_VOTES:7};
+  records.sort((a,b)=>(order[a.status]??9)-(order[b.status]??9)||
+    a.id.localeCompare(b.id));
+  return Object.freeze({
+   schema:'on-screen-election-night-506-source-triage-v1',
+   checked_at:new Date(now).toISOString(),
+   source_identity_audited_at:ledger.generated_at,
+   current_votes_provider_attributed_not_independently_certified:true,
+   professional_calls_verified:0,may_update_model:false,
+   totals:summary,senate:records,
+   senateMissing:summary.Senate.missing,
+   message:'Reported votes are unofficial. Known provider IDs and missing or stale results are NOT votes, zeros or race calls.'
+  });
+ }
+ function render(host,pulse,doc){
+  if(!host||!doc)return false;
+  host.replaceChildren();
+  const elt=(tag,text,parent,cls)=>{
+   const el=doc.createElement(tag);
+   if(cls)el.className=cls;
+   if(text!==undefined)el.textContent=text;
+   if(parent)parent.appendChild(el);
+   return el;
+  };
+  if(!pulse){
+   elt('p','Coverage triage awaiting a validated 506-race inventory.',host,'en-coverage-line');return false;
+  }
+  elt('strong','REAL-RESULT COVERAGE · 506 RACES · NOT SOURCE-ID COVERAGE',host);
+  const t=pulse.totals;
+  elt('p','House '+t.House.reported+'/435 · Senate '+t.Senate.reported+
+      '/35 · Governors '+t.Governor.reported+'/36 with source-reported votes.',host,'en-coverage-line');
+  elt('p','No source evidence for '+t.House.missing+' House, '+t.Senate.missing+
+      ' Senate and '+t.Governor.missing+
+      ' governor contests. Provider-reported zero is tracked separately. Missing does not mean zero.',host,'en-coverage-line');
+  const details=elt('details',undefined,host);
+  elt('summary','Senate source gaps · '+pulse.senateMissing+
+      ' awaiting verified reported votes · all 35 races',details);
+  const list=elt('div',undefined,details,'en-coverage-senate-gaps');
+  for(const row of pulse.senate){
+   elt('p',row.id.replace('Senate|','')+' — '+LABELS[row.status]+
+       (row.provider?' ('+row.provider+')':''),list,'en-coverage-line');
+  }
+  elt('small','This source audit does not calculate chamber control, race calls, ballots remaining, or live win probabilities.',host);
+  return true;
+ }
+ return Object.freeze({build,render,LABELS});
+});

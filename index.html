@@ -1065,6 +1065,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   <button id="enJumpGovernor" type="button"><strong>GOVERNORS</strong><span>Open race drilldown</span></button>
  </div>
  <p class="en-coverage-line" id="enCoverageReconciliation" role="status">Verifying national race inventory…</p>
+ <div id="enLiveCoverageTriage" class="en-race-drawer" role="region" aria-label="Actual 2026 reported race coverage and Senate source gaps"><p class="en-coverage-line">Awaiting exact-race source reconciliation; provider identities are not results.</p></div>
  <p class="en-coverage-line" id="enSourceReadiness" role="status">Checking verified election-night source identities…</p>
  <details class="en-race-drawer"><summary>Verified county-level results · official-source detail</summary><div id="enVerifiedCountyResults" aria-live="polite"><p>Awaiting a verified November 3 county source snapshot. No historical or simulated votes are displayed as live returns.</p></div><div id="enNcHistoricalComparison" aria-live="polite"><p>2024 NC county presidential comparisons appear only alongside an approved 2026 Senate source. No simulated or predicted county votes.</p></div><div id="enNcSenateSameOfficeComparison" aria-live="polite"><p>2022 Senate same-office historical comparisons require approved 2026 Senate source data. No implied ballots remaining or model adjustment.</p></div></details>
  <details id="enOfficialBackstops" class="en-race-drawer"><summary>Official election-office pages for automated source gaps</summary><div id="enOfficialBackstopsList"><p class="en-coverage-line">Checking current gap list…</p></div></details>
@@ -1268,6 +1269,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_priority.js?v=c339d5954c12"></script>
 <script src="./scripts/election_night_signals.js?v=4af522c57a53"></script>
 <script src="./scripts/election_night_reconciliation.js?v=ab854d43b198"></script>
+<script src="./scripts/election_night_506_live_gap_desk.js?v=0a0ad0e23ba5"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
 <script src="./scripts/chamber_control_model.js?v=aa102ced6a53"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
@@ -3394,6 +3396,7 @@ function enSourceReadinessMessage(ledger,now=Date.now()){
   professional.length+' professional calls verified. '+
   'This is preparation, NOT confirmed November 3 returns coverage.';
 }
+let enPublishedCoverageLedger=null;
 async function enRefreshSourceReadiness(){
  const host=$('#enSourceReadiness');if(!host)return;
  try{
@@ -3401,6 +3404,11 @@ async function enRefreshSourceReadiness(){
   if(!response.ok)throw Error('Source inventory HTTP '+response.status);
   const ledger=await response.json();
   host.textContent=enSourceReadinessMessage(ledger);
+  if(ledger?.status==='SOURCE_IDENTITY_AUDIT_NOT_LIVE_RESULTS_COVERAGE'&&
+     ledger.election==='2026-11-03'&&Array.isArray(ledger.races)&&ledger.races.length===506){
+   enPublishedCoverageLedger=ledger;
+   enRenderAmbientDesk();
+  }else enPublishedCoverageLedger=null;
   host.title='Published source identity evidence; actual votes require fresh, exact-race November 3 reporting. Unknown races never become zero votes.';
   // Official human-check pages are an explicit fallback, NEVER automated totals.
   const backstops=$('#enOfficialBackstopsList');
@@ -3439,6 +3447,12 @@ setInterval(()=>{if(!document.hidden)void enRefreshSourceReadiness()},300000);
 
 function enRenderAmbientDesk(){
  const text=$('#enAllOfficeSummary');if(!text)return;
+ // A 2024 archive switch must never retain 2026 live-source statuses.
+ const liveTriage=$('#enLiveCoverageTriage');
+ if(liveTriage&&enModeYear!==2026)
+  liveTriage.textContent='2024 historical archive · no 2026 results reporting shown.';
+ else if(liveTriage&&!enPublishedCoverageLedger)
+  liveTriage.textContent='Awaiting current 506-race source identity audit · no votes inferred.';
  enRenderDistrictPulse();
  const coverage=$('#enCoverageReconciliation');
  if(coverage){
@@ -3463,6 +3477,24 @@ function enRenderAmbientDesk(){
     const x=api.reconcile({houseCounts:enHouseSeatCounts,senateSeats:enNationalSeats,
      snapshots,civic:enCivicByWatch,errors,restored:[...enResumePendingOffices],
      supportedStates:[...enSupportedStates],now:Date.now()});
+    const triageHost=$('#enLiveCoverageTriage');
+    if(triageHost&&window.ElectionNightCoverageTriage&&enPublishedCoverageLedger&&
+       enModeYear===2026){
+     const sourceHealth={};
+     for(const name of ['House','Senate','Governor'])
+      sourceHealth[name]=api.officeHealth(snapshots[name],name,{
+       now:Date.now(),error:errors[name],
+       restored:enResumePendingOffices.has(name)
+      }).state;
+     try{
+      const audit=window.ElectionNightCoverageTriage.build(
+       enPublishedCoverageLedger,x,sourceHealth,Date.now());
+      window.ElectionNightCoverageTriage.render(triageHost,audit,document);
+     }catch(auditError){
+      triageHost.textContent='Coverage audit unavailable: '+
+       String(auditError?.message||auditError)+' · no results inferred';
+     }
+    }
     coverage.textContent='House '+x.house.reported+'/435 reporting · Senate '+
      x.senate.reported+'/35 reporting · Governors '+
      x.governor.reported+'/36 reporting · '+x.providerCalls+
