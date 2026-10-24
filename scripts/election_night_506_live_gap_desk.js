@@ -42,7 +42,7 @@
   const seen=new Set(),summary={};
   for(const name of Object.keys(EXPECTED))
    summary[name]={total:EXPECTED[name],reported:0,zero:0,missing:0,byStatus:{}};
-  const records=[];
+  const records=[],unverifiedMachineIds=[];
   for(const race of ledger.races){
    if(!race||!EXPECTED[race.office]||typeof race.key!=='string'||
       race.id!==race.office+'|'+race.key||seen.has(race.id))
@@ -71,6 +71,19 @@
       race.source_identity_status==='PINNED_PREVIOUSLY_VERIFIED_ID'?
        'SECONDARY_NOT_QUERIED':'SECONDARY_SCOPED';
    }
+   // House discovery can verify an exact 2026 identity without adding a
+   // permanent curated registry ID. Such a 10-day valid hint is NOT votes,
+   // but it also is not an unidentified race. Do not mislabel the 212
+   // independently identity-checked House districts as machine-source gaps.
+   else if(race.source_identity_status==='NO_CURATED_PROVIDER_ID'&&
+           race.verified_identity_hint_usable===true&&
+           race.gap_status==='RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED'){
+    const extra=supplementalHealth[race.id];
+    status=extra==='failed'?'SECONDARY_FAILED':
+      extra==='stale'?'SECONDARY_STALE':
+      extra==='pending'?'SECONDARY_CHECKING':
+      extra==='attempted'?'SECONDARY_ATTEMPTED':'SECONDARY_NOT_QUERIED';
+   }
    else if(race.source_identity_status==='NO_CURATED_PROVIDER_ID')
     status='NO_MACHINE_SOURCE_ID';
    else status='PROVIDER_OTHER';
@@ -79,6 +92,7 @@
    if(status==='OBSERVED_SOURCE_VOTES')obj.reported++;
    else if(status==='ZERO_IN_FEED')obj.zero++;
    else obj.missing++;
+   if(status==='NO_MACHINE_SOURCE_ID')unverifiedMachineIds.push({id:race.id,office:race.office});
    if(race.office==='Senate')records.push({
     id:race.id,status,provider:reconciledRecord.provider||null,
     sourceIdentityStatus:race.source_identity_status
@@ -101,6 +115,7 @@
    ZERO_IN_FEED:6,OBSERVED_SOURCE_VOTES:7};
   records.sort((a,b)=>(order[a.status]??9)-(order[b.status]??9)||
     a.id.localeCompare(b.id));
+  unverifiedMachineIds.sort((a,b)=>a.id.localeCompare(b.id));
   return Object.freeze({
    schema:'on-screen-election-night-506-source-triage-v1',
    checked_at:new Date(now).toISOString(),
@@ -108,6 +123,7 @@
    current_votes_provider_attributed_not_independently_certified:true,
    professional_calls_verified:0,may_update_model:false,
    totals:summary,senate:records,
+   unverifiedMachineIds,
    senateMissing:summary.Senate.missing,
    message:'Reported votes are unofficial. Known provider IDs and missing or stale results are NOT votes, zeros or race calls.'
   });
@@ -158,6 +174,31 @@
    };
    elt('span',warnings[link.mode]||
     ' · manual reference only, NOT a validated live feed',line);
+  }
+  // House and governor gaps must be actionable on the same laptop screen.
+  // These are verified identity GAPS only, not all races awaiting returned
+  // votes. Senate gaps remain in the independently sorted 35-seat desk above.
+  const otherGaps=(pulse.unverifiedMachineIds||[]).filter(x=>
+   x.office==='House'||x.office==='Governor');
+  if(otherGaps.length){
+   const others=elt('details',undefined,host);
+   elt('summary','Unpinned House / governor source IDs · '+otherGaps.length+
+    ' · official manual references only',others);
+   const rows=elt('div',undefined,others,'en-coverage-other-gaps');
+   for(const race of otherGaps){
+    const line=elt('p',race.id.replace('|',' ')+' — No verified automated source ID',
+     rows,'en-coverage-line');
+    const link=Array.isArray(officialBackstops)?officialBackstops.find(x=>
+     x&&Array.isArray(x.race_ids)&&x.race_ids.includes(race.id)&&
+     typeof x.url==='string'&&/^https:\/\//.test(x.url)):null;
+    if(!link){
+     elt('span',' · No curated official manual link; counts unknown',line);
+     continue;
+    }
+    const a=elt('a',' · Check official election office ↗',line);
+    a.href=link.url;a.target='_blank';a.rel='noopener noreferrer';
+    elt('span',' · Reference ONLY; not live machine results or a verified call',line);
+   }
   }
   elt('small','This source audit does not calculate chamber control, race calls, ballots remaining, or live win probabilities.',host);
   return true;
