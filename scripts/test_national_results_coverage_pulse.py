@@ -54,12 +54,13 @@ class NationalCoveragePulse(unittest.TestCase):
         doc=pulse(self.ledger,{"Senate":office_document(
             "Senate","2026-11-03T21:00:00Z",source)},NOW)
         assert doc["offices"]["Senate"]["status_counts"][
-            "PRIMARY_NO_RELIABLE_2026_UPDATE_TIME"]==1
+            "PRIMARY_SOURCE_BEFORE_STATE_POLL_CLOSE"]==1
         stale=pulse(self.ledger,{"Senate":office_document(
             "Senate","2026-11-04T00:01:00Z",source)},
             dt.datetime(2026,11,4,5,tzinfo=dt.timezone.utc))
         assert stale["offices"]["Senate"]["status_counts"]["PRIMARY_REPORTED_BUT_STALE"]==1
         source["GA"]["total"]=0
+        source["GA"]["cands"]=[]
         zero=pulse(self.ledger,{"Senate":office_document(
             "Senate","2026-11-04T00:55:00Z",source)},NOW)
         assert zero["offices"]["Senate"]["status_counts"][
