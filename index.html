@@ -3447,6 +3447,12 @@ setInterval(()=>{if(!document.hidden)void enRefreshSourceReadiness()},300000);
 
 function enRenderAmbientDesk(){
  const text=$('#enAllOfficeSummary');if(!text)return;
+ // A 2024 archive switch must never retain 2026 live-source statuses.
+ const liveTriage=$('#enLiveCoverageTriage');
+ if(liveTriage&&enModeYear!==2026)
+  liveTriage.textContent='2024 historical archive · no 2026 results reporting shown.';
+ else if(liveTriage&&!enPublishedCoverageLedger)
+  liveTriage.textContent='Awaiting current 506-race source identity audit · no votes inferred.';
  enRenderDistrictPulse();
  const coverage=$('#enCoverageReconciliation');
  if(coverage){
