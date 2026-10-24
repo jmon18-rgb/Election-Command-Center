@@ -82,7 +82,10 @@
   // candidate identities. Never blend their totals into a fabricated swing.
   const mixed=providers.size>0;
   const liveTotal=liveD+liveR,oldTotal=oldD+oldR;
-  const safe=!mixed&&matched>=2&&liveTotal>0&&oldTotal>0&&
+  // One invalid county row means the reported batch was not consistently
+  // audited. A 'REJECTED' status must never carry a seemingly usable
+  // swing computed from cherry-picked, remaining valid counties.
+  const safe=!mixed&&rejected===0&&matched>=2&&liveTotal>0&&oldTotal>0&&
    [liveTotal,oldTotal,other].every(Number.isSafeInteger);
   const margin=total=>total===0?null:100*(liveD-liveR)/total;
   const oldMargin=oldTotal?100*(oldD-oldR)/oldTotal:null;
