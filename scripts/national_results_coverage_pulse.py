@@ -24,10 +24,10 @@ def state_poll_closings():
     """
     source=(Path(__file__).resolve().parent /
             "election_night_poll_closings_2026.js").read_text()
-    match=re.search(r"const TIMES=Object\\.freeze\\(\\{(.*?)\\}\\);",source,re.S)
+    match=re.search(r"const TIMES=Object\.freeze\(\{(.*?)\}\);",source,re.S)
     if not match:
         raise ValueError("Shared state poll close contract missing")
-    pairs=re.findall(r"([A-Z]{2}):'([0-2]\\d:[0-5]\\d)'",match.group(1))
+    pairs=re.findall(r"([A-Z]{2}):'([0-2]\d:[0-5]\d)'",match.group(1))
     if len(pairs)!=50 or len({s for s,_ in pairs})!=50:
         raise ValueError("Invalid or incomplete 50-state poll-close map")
     closings={}
