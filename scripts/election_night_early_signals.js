@@ -57,14 +57,23 @@
  // statewide estimate, county adjustment or a national wave indicator.
  const electionStart=Date.parse('2026-11-03T05:00:00Z');
  const CLOSE_DAY='2026-11-03T';
- const closedAt=x=>Date.parse(CLOSE_DAY+x.closeET+':00-05:00');
+ // Caller-supplied presentation objects must not override the independently
+ // curated closure time for an exact early-signal race.
+ const canonical=new Map(records.map(row=>[row.code,row]));
+ const closedAt=x=>{
+  const known=canonical.get(x?.code);
+  return known?Date.parse(CLOSE_DAY+known.closeET+':00-05:00'):NaN;
+ };
  const unusable=(status,message)=>Object.freeze({status,message,hasVerifiedVotes:false,
   comparative:false,canMoveNationalNeedle:false,rawMargin:null,marginVsPrior:null});
  function assess(info,observation=null,{now=Date.now(),priorMargin=null,error=null}={}){
-  if(!records.some(x=>x.code===info?.code))return unusable('INVALID','Unrecognized indicator identity');
+  const known=canonical.get(info?.code);
+  if(!known)return unusable('INVALID','Unrecognized indicator identity');
+  const close=closedAt(known);
+  if(!Number.isFinite(close))return unusable('INVALID','Unverified indicator closing time');
   if(!Number.isFinite(now)||now<electionStart)
    return unusable('PREVIEW','November 3 live results have not begun');
-  if(now<closedAt(info))
+  if(now<close)
    return unusable('WAITING_FOR_POLLS','Polls not yet scheduled to close for this indicator');
   if(error&&!observation)return unusable('SOURCE_ERROR','Provider unavailable · no inferred votes');
   if(!observation)return unusable('AWAITING_SOURCE','No verified race votes from a live source');
@@ -75,7 +84,7 @@
    return unusable('INVALID_SOURCE','Unverified, incomplete or invalid party totals');
   const when=Date.parse(observation.asOf||'');
   if(observation.stale===true||!Number.isFinite(when)||
-     when<closedAt(info)||when>now+15*60000||now-when>180*60000)
+     when<close||when>now+15*60000||now-when>180*60000)
    return unusable('STALE','Source timestamp stale or outside this election');
   const precincts=observation.precincts;
   if(precincts!==null&&precincts!==undefined&&
