@@ -54,6 +54,16 @@ class OfficialDEWYLinkDiscoveryTests(unittest.TestCase):
                     (state,label,url))
                 self.assertEqual(result["status"],"2026_GENERAL_RESULT_LINK_NOT_ON_PAGE")
 
+    def test_2026_primary_or_mock_url_cannot_be_general_by_link_label(self):
+        for state,base in [("WY",WY),("DE",DE)]:
+            for url in ["/Elections/2026PrimaryResults.pdf",
+                        "/2026/GeneralElection-TEST.pdf",
+                        "/2026/general-results.pdf?mode=sample"]:
+                result=assess(base+'<a href="'+url+'">General Election</a>',
+                              state,T)
+                self.assertEqual(result["candidate_official_links"],[],
+                                 (state,url))
+
     def test_external_and_fake_links_fail_closed(self):
         for state,base in [("WY",WY),("DE",DE)]:
             x=assess(base+'<a href="https://evil.example/2026.pdf">2026 General Election</a>',
