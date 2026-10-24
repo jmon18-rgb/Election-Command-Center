@@ -56,7 +56,10 @@
  });
  function winnerFloorFor(office,key){
   const earliest=floorFor(key);
-  if(!Number.isFinite(earliest)||!['Senate','House','Governor'].includes(office))
+  if(!Number.isFinite(earliest)||!['Senate','House','Governor'].includes(office)||
+     !(office==='House'?/^[A-Z]{2}-\\d{2}$/.test(key):
+       office==='Senate'?/^[A-Z]{2}(?:-special)?$/.test(key):
+       /^[A-Z]{2}$/.test(key)))
    return NaN;
   const state=String(key).slice(0,2);
   const latest=FINAL_STATE[state];
