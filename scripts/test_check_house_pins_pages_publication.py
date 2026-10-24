@@ -1,4 +1,5 @@
 import unittest
+from datetime import datetime, timezone
 from check_house_pins_pages_publication import identities, needs_publication
 
 def report(ids, at="2026-10-24T03:00:00Z"):
@@ -18,8 +19,28 @@ class Checks(unittest.TestCase):
     def test_timestamps_do_not_trigger_hourly_pages_build(self):
         previous=report({"NY-17": 41201,"ME-02":41202})
         current=report({"ME-02":41202,"NY-17":41201},"2026-10-24T04:00:00Z")
-        self.assertFalse(needs_publication(previous,current))
-        self.assertFalse(needs_publication(current,current))
+        now=datetime(2026,10,24,4,15,tzinfo=timezone.utc)
+        self.assertFalse(needs_publication(previous,current,now=now))
+        self.assertFalse(needs_publication(current,current,now=now))
+
+    def test_refresh_unchanged_ids_before_48_hour_browser_expiry(self):
+        old=report({"NY-17":41201},"2026-10-24T03:00:00Z")
+        new=report({"NY-17":41201},"2026-10-25T11:00:00Z")
+        early=datetime(2026,10,25,8,0,tzinfo=timezone.utc)
+        due=datetime(2026,10,25,11,30,tzinfo=timezone.utc)
+        self.assertFalse(needs_publication(old,new,now=early),
+                         "No hourly Pages rebuild for unchanged pin IDs")
+        self.assertTrue(needs_publication(old,new,now=due),
+                        "Force a Pages build before the browser's 48h TTL")
+        self.assertFalse(needs_publication(old,old,now=due),
+                         "A non-newer local manifest cannot silently fix expiry")
+        future=datetime(2026,10,24,2,0,tzinfo=timezone.utc)
+        self.assertTrue(needs_publication(old,new,now=future),
+                        "Future-dated Pages manifest cannot be trusted")
+        malformed={**old,"generated_at":"not-a-date"}
+        self.assertTrue(needs_publication(malformed,new,now=due))
+        self.assertTrue(needs_publication({**old,"generated_at":"2026-10-24T03:00:00"},
+                                          new,now=due))
 
     def test_new_removed_or_reassigned_exact_source_requires_build(self):
         original=report({"NY-17":41201})
