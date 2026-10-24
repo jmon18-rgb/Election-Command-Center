@@ -32,6 +32,19 @@ class OfficialOhioPreElectionSource(unittest.TestCase):
         self.assertEqual(doc["possible_feed_links"],[])
         self.assertFalse(doc["ready_for_automatic_2026_ingestion"])
 
+    def test_real_ohio_xml_anchor_is_script_action_never_direct_url(self):
+        html="""<html><a href="javascript:downloadReport('VSSC1622XmlFileBlob')">
+                Election Results XML Feed</a></html>"""
+        result=inspect(html)
+        self.assertEqual(len(result["possible_feed_links"]),1)
+        row=result["possible_feed_links"][0]
+        self.assertIsNone(row["href"])
+        self.assertIsNone(row["manual_review_candidate_url"])
+        self.assertEqual(row["official_download_action"],"downloadReport")
+        self.assertEqual(row["official_download_object_key"],"VSSC1622XmlFileBlob")
+        self.assertTrue(row["requires_page_script_resolution"])
+        self.assertFalse(result["ready_for_automatic_2026_ingestion"])
+
     def test_https_and_domain_boundary(self):
         doc=inspect('<a href="http://liveresults.ohiosos.gov/Results.xml">XML Feed</a>'
                     '<a href="https://liveresults.ohiosos.gov.evil.example/results.xml">'
