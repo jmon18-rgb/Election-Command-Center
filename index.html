@@ -6142,13 +6142,34 @@ function enCsvCell(value){
  return '"'+text.replace(/"/g,'""')+'"';
 }
 function enCsv(rows){return '\uFEFF'+rows.map(row=>row.map(enCsvCell).join(',')).join('\r\n')+'\r\n'}
+// CSV is another public-facing Election Night output. It may not bypass
+// source freshness, pre-close mock checks, provider outage/recheck state or
+// the independent reconciliation gates used by the visible result desk.
+function enExportPrimaryUsable(office,snapshot,now=Date.now()){
+ if(!enSourceValid(snapshot,2026,office)||
+    enOfficeErrors[office]||
+    (enOffice===office&&enFetchError)||
+    enResumePendingOffices.has(office))return false;
+ return window.ElectionNightReconciliation?.officeHealth(snapshot,office,{now})?.usable===true;
+}
+function enExportCivicUsable(data,now=Date.now()){
+ if(!data||!['House','Senate','Governor'].includes(data.office)||
+    typeof data.key!=='string'||!Number.isSafeInteger(data.total)||
+    data.total<=0)return false;
+ const at=Date.parse(data.last_updated||'');
+ if(!Number.isFinite(at)||at>now+15*60000||now-at>180*60000||
+    !enElectionVotesAllowed(data.key,data.total,data.last_updated,now))return false;
+ // An unverified historical object in browser storage is NOT equivalent
+ // to today's successful generation-specific provider check.
+ return enCivicUsable({office:data.office,key:data.key})===data;
+}
 function enBuildResultsCsv(primary=enOfficeSnapshots,secondary=enCivicByWatch){
  const records=[['source','election_year','office','race','source_updated_at',
    'candidate','party','candidate_votes','race_total_votes','candidate_share_pct',
    'precincts_reporting_pct','provider_call','source_url']];
  for(const office of ['House','Senate','Governor']){
   const snapshot=primary?.[office];
-  if(!enSourceValid(snapshot,2026,office))continue;
+  if(!enExportPrimaryUsable(office,snapshot))continue;
   for(const [key,r] of Object.entries(snapshot.races)){
    if(r.total<=0)continue;
    for(const c of r.cands)records.push([
@@ -6160,7 +6181,7 @@ function enBuildResultsCsv(primary=enOfficeSnapshots,secondary=enCivicByWatch){
  for(const data of Object.values(secondary||{})){
   if(data?.provider!=='civicAPI'||!['House','Senate','Governor'].includes(data.office)||
     !enResumeMovementValid({office:data.office,key:data.key,at:null,prior:0,current:0,delta:0})||
-    !Number.isSafeInteger(data.total)||data.total<=0||
+    !enExportCivicUsable(data)||
     !Array.isArray(data.candidates)||!data.source_url?.startsWith('https://civicapi.org/api/v2/race/'))continue;
   for(const c of data.candidates){
    if(!c||!Number.isSafeInteger(c.votes)||c.votes<0||typeof c.name!=='string')continue;
@@ -6191,9 +6212,9 @@ function enBuildActivityCsv(events=enMovements){
 function enRenderExportControls(){
  const counts=$('#enExportResults'),movements=$('#enExportChanges');
  if(!counts||!movements)return;
- const sources=Object.values(enOfficeSnapshots).some(o=>
-  o?.year===2026&&Object.values(o.races||{}).some(r=>r.total>0));
- const extra=Object.values(enCivicByWatch).some(o=>o?.total>0);
+ const sources=Object.entries(enOfficeSnapshots).some(([office,o])=>
+  enExportPrimaryUsable(office,o)&&Object.values(o.races||{}).some(r=>r.total>0));
+ const extra=Object.values(enCivicByWatch).some(o=>enExportCivicUsable(o));
  counts.disabled=enModeYear!==2026||!(sources||extra);
  movements.disabled=enModeYear!==2026||!enMovements.some(enResumeMovementValid);
 }
