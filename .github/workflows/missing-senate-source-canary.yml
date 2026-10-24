@@ -1,0 +1,50 @@
+name: Check missing MA MS Senate results identities
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/probe_missing_senate_sources.py'
+      - 'scripts/test_probe_missing_senate_sources.py'
+      - '.github/workflows/missing-senate-source-canary.yml'
+  schedule:
+    # Two targeted source searches/day only during Oct 24-Nov 4.
+    - cron: '43 14 * 10,11 *'
+    # During election-night counting check both states hourly, no bulk crawl.
+    - cron: '09 22-23 3 11 *'
+    - cron: '09 0-10 4 11 *'
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check exact Senate race identity and negative scenarios offline
+        run: |
+          python3 -m py_compile scripts/probe_missing_senate_sources.py
+          python3 scripts/test_probe_missing_senate_sources.py
+  live-canary:
+    needs: contract
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check two exact 2026 Senate races with browser-CORS source policy
+        if: github.event_name != 'schedule' || (github.event.schedule != '43 14 * 10,11 *' || github.ref == 'refs/heads/main')
+        run: python3 scripts/probe_missing_senate_sources.py --output /tmp/missing-senate-source-canary.json
+      - name: Save advisory source IDs, outages and mismatch evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: missing-ma-ms-senate-source-review
+          path: /tmp/missing-senate-source-canary.json
+          retention-days: 15
+          if-no-files-found: warn
