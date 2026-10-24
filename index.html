@@ -6602,9 +6602,14 @@ let enLastLiveHeartbeat=Date.now(),enLastReconnect=0;
 // handoff once; an operator who explicitly selected the archive keeps it.
 let enElectionNightManualArchive=false;
 function enElectionNightAutoHandoff(now=Date.now()){
+ // Before the switch, enIsVisible() deliberately treats the pre-election
+ // HOME briefing as archive-only. Check the active view directly, otherwise
+ // the usual homepage could never make the overnight handoff.
+ const activeView=Boolean(document.querySelector?.('#brief')?.classList.contains('active')||
+  document.querySelector?.('#electionNight')?.classList.contains('active'));
  if(enModeYear!==2024||enElectionNightManualArchive||
     !Number.isFinite(now)||now<Date.parse('2026-11-03T05:00:00Z')||
-    document.visibilityState!=='visible'||!enIsVisible())return false;
+    document.visibilityState!=='visible'||!activeView)return false;
  enSwitch(2026,enOffice);
  return true;
 }
