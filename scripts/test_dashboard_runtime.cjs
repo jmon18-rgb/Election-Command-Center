@@ -3196,6 +3196,11 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}
  // Use an actually current collector timestamp; adding one minute to a historical
  // fixture can still be many hours stale and must correctly display DELAYED.
  newsNext.updated_at=new Date().toISOString();
+ // This fixture represents a successfully completed new news collection,
+ // not merely new-looking article timestamps atop a failed collector.
+ // Production deliberately labels zero-success pipelines DELAYED.
+ newsNext.pipeline={...(newsNext.pipeline||{}),
+  successful_queries:Math.max(1,newsNext.pipeline?.successful_queries||0)};
  const freshNewsTitle='New independently published election news test headline';
  const freshSecurityTitle='New voter access lead test headline';
  newsNext.updates.unshift({title:freshNewsTitle,source:'Test publication',
