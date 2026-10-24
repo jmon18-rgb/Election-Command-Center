@@ -117,6 +117,16 @@
   return [...keys.values()];
  }
  const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+ // Extra source-time defense: a cached or malformed pre-close count must
+ // never make a race appear to be reporting or called in the priority desk.
+ // Resolve at use time, since the browser may load this script first.
+ function locallyClosed(row,asOf,now){
+  const closes=typeof window!=='undefined'?
+   window.ElectionNightPollClosings2026:
+   typeof require==='function'?require('./election_night_poll_closings_2026.js'):null;
+  return Boolean(closes&&typeof closes.allowed==='function'&&
+   closes.allowed(row?.key,1,asOf,now));
+ }
  function priority(row,{modelWinPct=null,live=null,flipped=false,now=Date.now()}={}){
   const validModel=Number.isFinite(modelWinPct)&&modelWinPct>=0&&modelWinPct<=100;
   const uncertain=validModel?1-Math.abs(modelWinPct-50)/50:0;
@@ -125,7 +135,7 @@
   const since=Date.parse(live?.asOf||'');
   const eligible=now>=ELECTION_START&&Number.isFinite(since)&&
    since>=ELECTION_START&&since<=now+15*60000&&now-since<=180*60000&&
-   live?.sourceStale!==true;
+   live?.sourceStale!==true&&locallyClosed(row,live?.asOf,now);
   const reported=eligible&&Number.isSafeInteger(live?.votes)&&live.votes>0;
   const called=reported&&['D','R','O'].includes(live?.calledParty);
   const reporting=reported&&Number.isFinite(live?.precincts)&&
