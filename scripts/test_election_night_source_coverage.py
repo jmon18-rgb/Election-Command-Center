@@ -302,11 +302,15 @@ class CoverageLedgerTests(unittest.TestCase):
             self.assertEqual(initial["summary"][office]["pinned_secondary"]+
                              transitioned[office],
                              expected["summary"][office]["pinned_secondary"])
-            self.assertEqual(initial["summary"][office]["unresolved_source_gaps"]-
-                             transitioned[office],
-                             expected["summary"][office]["unresolved_source_gaps"])
+        # The saved House ledger includes 212 actually probed identities.
+        # A zero-probe synthetic rebuild intentionally omits that history
+        # (219 unresolved), so compare the persistent-history rebuild instead.
         rebuilt = self.ledger(previous=initial,
                               now=timestamp(initial["generated_at"]))["summary"]
+        for office in ("house", "senate", "governor"):
+            self.assertEqual(initial["summary"][office]["unresolved_source_gaps"]-
+                             transitioned[office],
+                             rebuilt[office]["unresolved_source_gaps"])
         for office, row in initial["summary"].items():
             for key, value in row.items():
                 if key in ("pinned_secondary", "unresolved_source_gaps"):
