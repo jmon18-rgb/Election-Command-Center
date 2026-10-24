@@ -79,4 +79,13 @@ assert(harmlessRepeat.rejected.every(x=>x.reason==='STALE_OR_DUPLICATE'));
 assert.equal(harmlessRepeat.raceMatchedCountyPulse.status,
  'MATCHED_COUNTIES_DESCRIPTIVE_ONLY',
  'A repeated unchanged pull is not evidence the earlier verified sample was tainted');
+const conflictingSameStamp=ingest(validTwo.rows,{...envelope,counties:[{
+ ...county,candidates:[{name:'A',party:'D',votes:80},
+                       {name:'B',party:'R',votes:20}]
+}]},expected,baselines,at);
+assert.equal(conflictingSameStamp.rejected[0].reason,'STALE_OR_DUPLICATE');
+assert.equal(conflictingSameStamp.raceMatchedCountyPulse.status,
+ 'REJECTED_UNSAFE_COUNTY_BATCH_NO_DESCRIPTIVE_SWING',
+ 'Same timestamp with changed votes is an unverified correction, not a repeat');
+assert.equal(conflictingSameStamp.raceMatchedCountyPulse.matched_county_swing_points,null);
 console.log('Source contract to county ingestion passed');
