@@ -60,8 +60,8 @@ class ResultAnchors(HTMLParser):
     def handle_endtag(self,tag):
         if self.heading is not None and tag==self.heading[0]:
             title=" ".join(" ".join(self.heading[1]).split()).lower()
-            if re.search(r"\\b20(?:2[0-9]|3[0-9])\\b.*\\belection\\b",title):
-                self.section="2026" if re.search(r"\\b2026\\b",title) else "other"
+            if re.search(r"\b20(?:2[0-9]|3[0-9])\b.*\belection\b",title):
+                self.section="2026" if re.search(r"\b2026\b",title) else "other"
             elif self.state=="DE" and title in ("current year elections","previous elections"):
                 self.section="2026" if title=="current year elections" else "other"
             self.heading=None
@@ -70,9 +70,9 @@ class ResultAnchors(HTMLParser):
             label=" ".join(" ".join(raw).split())
             self.anchor=None
             if (official_url(self.state,url) and
-                re.search(r"\\bgeneral\\s+election\\b",label,re.I) and
-                not re.search(r"\\b(primary|special primary|2024|2022|2020)\\b",label,re.I) and
-                (year=="2026" or re.search(r"\\b2026\\b",label))):
+                re.search(r"\bgeneral\s+election\b",label,re.I) and
+                not re.search(r"\b(primary|special primary|2024|2022|2020)\b",label,re.I) and
+                (year=="2026" or re.search(r"\b2026\b",label))):
                 self.matches.append({"label":label[:140],"url":url})
 
 
