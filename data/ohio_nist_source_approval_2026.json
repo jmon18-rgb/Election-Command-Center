@@ -1,0 +1,14 @@
+{
+  "schema": "ohio-nist-2026-live-approval-v1",
+  "enabled": false,
+  "real_results_publication_reviewed": false,
+  "source_url": "https://liveresults.ohiosos.gov/Api/v1/download?filename=VSSC1622XmlFileBlob",
+  "source_reviewed_at": null,
+  "expected_report_status": null,
+  "approved_county_unit_type": null,
+  "approved_total_votes_type": null,
+  "county_gpunit_to_fips": {},
+  "party_object_id_to_party": {},
+  "approved_contests": [],
+  "disabled_reason": "OHIO SOURCE CURRENTLY MOCK: real November 3 publication, 88 real county IDs, candidate IDs, contest IDs, source status and vote type require independent review."
+}
