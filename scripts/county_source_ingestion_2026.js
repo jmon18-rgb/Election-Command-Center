@@ -30,8 +30,21 @@
   // operator this same input batch contained rejected unsafe geography.
   // Harmless stale/duplicate polling retries can still reuse the latest
   // independently valid sample; they introduce no new unreviewed votes.
-  const integrityRejected=processed.accepted&&
-   processed.rejected.some(x=>x.reason!=='STALE_OR_DUPLICATE');
+  const sameSnapshot=id=>{
+   const old=Object.prototype.hasOwnProperty.call(previous,id)?previous[id]:null;
+   const candidate=validated.rows.find(x=>x.race_key+'|'+x.county_id===id);
+   if(!old||!candidate)return false;
+   // 'STALE_OR_DUPLICATE' also covers a same-timestamp but CHANGED
+   // candidate count. That is an unreviewed conflicting revision, not
+   // a harmless duplicate HTTP retry; it cannot preserve a numeric swing.
+   const fields=['provider','provider_race_id','race_key','county_id',
+    'updated_at','ballots_reported','reporting_status'];
+   return fields.every(k=>old[k]===candidate[k])&&
+    Array.isArray(old.candidates)&&Array.isArray(candidate.candidates)&&
+    JSON.stringify(old.candidates)===JSON.stringify(candidate.candidates);
+  };
+  const integrityRejected=processed.accepted&&processed.rejected.some(x=>
+   x.reason!=='STALE_OR_DUPLICATE'||!sameSnapshot(x.id));
   const raceMatchedCountyPulse=integrityRejected?
    {status:'REJECTED_UNSAFE_COUNTY_BATCH_NO_DESCRIPTIVE_SWING',
     matched_county_swing_points:null,
