@@ -79,6 +79,8 @@ class ResultAnchors(HTMLParser):
             if (official_url(self.state,url) and
                 re.search(r"\bgeneral\s+election\b",label,re.I) and
                 not re.search(r"\bprimary\b",label,re.I) and
+                not re.search(r"primary|mock|test|sample",
+                              target.path+" "+target.query,re.I) and
                 all(y=="2026" for y in cited_years) and
                 (year=="2026" or re.search(r"\b2026\b",label))):
                 self.matches.append({"label":label[:140],"url":url})
