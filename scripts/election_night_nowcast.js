@@ -81,6 +81,13 @@
    const votes=kind==='civic'?c?.votes:c?.v;
    if(typeof party!=='string'||!party.trim()||
      !Number.isSafeInteger(votes)||votes<0)return false;
+   // For general-election two-party inference, multiple D or R rows
+   // are ambiguous and may double-count the same party's source votes.
+   // Keep other-party source codes compatible with the primary provider.
+   if(kind==='primary'&&(party==='D'||party==='R')){
+    if(unique.has(party))return false;
+    unique.add(party);
+   }
    if(kind==='civic'){
     if(!['D','R','O'].includes(party)||
      typeof c.name!=='string'||!c.name.trim())return false;
