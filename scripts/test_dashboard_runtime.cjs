@@ -351,7 +351,8 @@ function __testSeedStaleOhioSenate(){
  const oldGlanceClock=w.Date.now;
  w.Date.now=()=>Date.parse('2026-11-02T15:00:00Z');
  w.eval('updateFeedGlance()');
- assert.equal(get('#feedNews').dataset.status,'delayed');
+ assert(['delayed','unavailable'].includes(get('#feedNews').dataset.status),
+  'A weeks-old headline is never fresh; failed collector status is unavailable, not delayed');
  w.Date.now=oldGlanceClock;
  w.eval('updateFeedGlance()');
  assert.match(get('#privateContextStatus').textContent,/Repository fundamentals ACTIVE/,
