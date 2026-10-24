@@ -32,6 +32,7 @@ class PagesDeploymentTests(unittest.TestCase):
         result = self.verify()
         self.assertEqual(result["status"], "DEPLOYED_PAGES_ENTRYPOINT_VERIFIED")
         self.assertEqual(result["script_versions_checked"], 6)
+        self.assertEqual(result["strict_statewide_2026_pins_verified"], 3)
         self.assertEqual(result["races_in_deployed_source_ledger"], 506)
         self.assertGreater(result["verified_house_id_hints"], 100)
         self.assertFalse(result["votes_or_winner_calls_queried"])
@@ -52,6 +53,31 @@ class PagesDeploymentTests(unittest.TestCase):
             b"function enElectionNightAutoHandoffDISABLED(now=Date.now()){")
         self.assertNotEqual(stale, self.index)
         with self.assertRaisesRegex(ValueError, "open-tab Election Night contract"):
+            self.verify(index=stale)
+
+    def test_deployed_statewide_adapter_rejects_missing_source_pin(self):
+        old = self.assets["civicapi_state_batch.js"]
+        before = b"'Senate|MS':{state:'MS',name:'Mississippi US Senate',office:'Senate',id:81004}"
+        after = b"'Senate|MS':{state:'MS',name:'Mississippi US Senate',office:'Senate',id:88888}"
+        self.assertIn(before, old)
+        bad = old.replace(before, after)
+        index = self.index.replace(
+            ("civicapi_state_batch.js?v=" + git_revision(old)).encode(),
+            ("civicapi_state_batch.js?v=" + git_revision(bad)).encode())
+        self.assertNotEqual(index, self.index)
+        corrupted = self.assets.copy()
+        corrupted["civicapi_state_batch.js"] = bad
+        with self.assertRaisesRegex(ValueError, "source pin missing or changed: Senate\\|MS"):
+            self.verify(index=index, assets=corrupted)
+
+    def test_strict_browser_source_route_is_not_optional(self):
+        marker = b"const enBatchPilotSlots=new Set("
+        i = self.index.index(marker)
+        before = b"'Governor|HI'"
+        self.assertIn(before, self.index[i:])
+        stale = self.index[:i] + self.index[i:].replace(
+            before, b"'Governor|XX'", 1)
+        with self.assertRaisesRegex(ValueError, "strict-source route missing: Governor\\|HI"):
             self.verify(index=stale)
 
     def test_supplemental_statewide_js_deployment_stays_fingerprinted(self):
