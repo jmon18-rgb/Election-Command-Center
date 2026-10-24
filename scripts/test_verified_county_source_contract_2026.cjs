@@ -21,6 +21,15 @@ for(const altered of [
  {...feed,counties:[{...county,ballots_reported:20}]}
 ])assert.equal(normalize(altered,expected,at).ok,false);
 assert.equal(normalize({...feed,counties:[]},expected,at).ok,false);
+for(const [falsified,claimed] of [
+ [{...feed,state:'VA',counties:[{...county,fips:'51107'}]},
+  {...expected,state:'VA',race_key:'NC-SEN',state_fips:'37'}],
+ [{...feed,state:'NC',counties:[{...county,fips:'51059'}]},
+  {...expected,state_fips:'51'}]
+])assert.equal(normalize(falsified,claimed,at).ok,false,
+ 'Agreement between caller and source cannot substitute for canonical state FIPS');
+assert.equal(normalize({...feed,counties:[{...county,fips:'37000'}]},expected,at).ok,false,
+ 'Fake statewide 000 county must not be accepted');
 for(const [why,stamp,seenAt] of [
  ['pre-close','2026-11-04T00:29:59Z',at],
  ['future','2026-11-04T01:16:00Z',at],
@@ -44,6 +53,10 @@ assert.equal(mockWindow.VerifiedCountySourceContract2026.normalize(
  feed,expected,at).ok,false,'Missing browser poll-close dependency must fail closed');
 mockWindow.ElectionNightPollClosings2026=require('./election_night_poll_closings_2026.js');
 assert.equal(mockWindow.VerifiedCountySourceContract2026.normalize(
+ feed,expected,at).ok,false,
+ 'Missing canonical state-FIPS module must fail closed');
+mockWindow.ElectionNightStateCountyFIPS2026=require('./election_night_state_county_fips_2026.js');
+assert.equal(mockWindow.VerifiedCountySourceContract2026.normalize(
  feed,expected,at).ok,true,
- 'County updates must recover once the browser loads the closing module');
+ 'County updates must recover once the poll-close and canonical FIPS modules load');
 console.log('Verified county source envelope gate passed');
