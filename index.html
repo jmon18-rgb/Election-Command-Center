@@ -5702,13 +5702,30 @@ function enEarlyLiveObservation(item){
  const failed=Boolean(enOfficeErrors[item.office]||
   enResumePendingOffices.has(item.office)||
   (enOffice===item.office&&enFetchError));
- if(enSupportedStates.has(item.key.slice(0,2))&&primary?.total>0){
+ const inPrimary=enSupportedStates.has(item.key.slice(0,2));
+ // An office snapshot being present or positive is NOT validated live
+ // results. Require the exact same full source contract, source clock,
+ // active/final flags and candidate evidence as the results desk.
+ const when=Date.parse(source?.as_of||'');
+ const now=Date.now();
+ const usablePrimary=inPrimary&&!failed&&source?.year===2026&&
+  source?.office===item.office&&source?.source==='state'&&
+  source?.stale===false&&(source.live===true||source.final===true)&&
+  Number.isFinite(when)&&when<=now+15*60000&&now-when<=180*60000&&
+  enSourceValid(source,2026,item.office);
+ if(usablePrimary&&Number.isSafeInteger(primary?.total)&&primary.total>0&&
+    Array.isArray(primary.cands)&&primary.cands.some(x=>x.v>0)&&
+    enElectionVotesAllowed(item.key,primary.total,source.as_of,now)){
   const d=primary.cands.filter(x=>x.p==='D').reduce((n,x)=>n+x.v,0);
   const r=primary.cands.filter(x=>x.p==='R').reduce((n,x)=>n+x.v,0);
   return {source:{provider:'Open America',verified:true,asOf:source.as_of,
    total:primary.total,d,r,precincts:primary.pct_in,
-   stale:source.stale||failed},error:failed};
+   stale:false},error:false};
  }
+ // The national reconciliation reserves primary-scope states for the
+ // primary provider; an inactive primary source cannot silently switch to
+ // unverified supplemental totals on this one early-indicator panel.
+ if(inPrimary)return {source:null,error:failed};
  const civic=enCivicUsable(item);
  if(civic&&civic.total>0&&civic.key===item.key&&civic.office===item.office){
   return {source:{provider:'civicAPI',verified:true,asOf:civic.last_updated,
