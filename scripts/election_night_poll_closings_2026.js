@@ -57,7 +57,7 @@
  function winnerFloorFor(office,key){
   const earliest=floorFor(key);
   if(!Number.isFinite(earliest)||!['Senate','House','Governor'].includes(office)||
-     !(office==='House'?/^[A-Z]{2}-\\d{2}$/.test(key):
+     !(office==='House'?/^[A-Z]{2}-\d{2}$/.test(key):
        office==='Senate'?/^[A-Z]{2}(?:-special)?$/.test(key):
        /^[A-Z]{2}$/.test(key)))
    return NaN;
@@ -68,7 +68,7 @@
   // districts whose polls span the late time zone on the later clock.
   // All remaining districts continue accepting legitimate early calls.
   if(office==='House'&&EARLY_HOUSE[state]){
-   const district=/^[A-Z]{2}-(\\d{2})$/.exec(key)?.[1];
+   const district=/^[A-Z]{2}-(\d{2})$/.exec(key)?.[1];
    if(!district)return NaN;
    if(!EARLY_HOUSE[state].has(district))return earliest;
   }
