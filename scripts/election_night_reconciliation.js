@@ -131,6 +131,10 @@
      validTime(secondary.last_updated,now)&&
      (secondary.total===0||voteReleased(key,secondary.last_updated,now))&&
      Number.isInteger(secondary.race_id)&&secondary.race_id>0&&
+     // A response can carry a recent timestamp but be explicitly marked
+     // stale by the verified adapter or the post-outage browser cache.
+     // Such records must NEVER count as live votes or winner hints.
+     secondary.stale!==true&&secondary.sourceStale!==true&&
      !errors[id]&&!restore.has(id));
     if(secondary&&!civicOK&&!errors[id]&&!restore.has(id))
      anomalies.push('Rejected invalid supplemental '+id);
