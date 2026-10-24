@@ -180,10 +180,20 @@ async function tick(minute){
   if(primaryOutage||restoring||stale)assert.equal(row.primary,0,
    'Primary outage, restore and stale periods cannot count live results');
  }
+ // The virtual 12-hour soak begins at 4 PM Eastern, hours before
+ // real polls close. An exact verified civicAPI ID can be fetched early
+ // but pre-close MOCK counts may not contribute to a live seat tally.
+ const sourceEligible=(id,record)=>{
+  const st=id.slice(6,8);
+  const threshold=Date.parse(st==='NC'||st==='OH'?
+   '2026-11-04T00:30:00Z':'2026-11-03T23:00:00Z');
+  const stamp=Date.parse(record?.last_updated||'');
+  return now>=threshold&&Number.isFinite(stamp)&&stamp>=threshold;
+ };
  assert.equal(result.house.supplemental,
-  Object.keys(out).filter(id=>id.startsWith('House|')&&
-   !isSupported(id.slice(6))&&!errors[id]).length,
-  'Only fresh 2026 exact House detail may count outside primary states');
+  Object.entries(out).filter(([id,record])=>id.startsWith('House|')&&
+   !isSupported(id.slice(6))&&!errors[id]&&sourceEligible(id,record)).length,
+  'Only post-poll-close source-validated House detail may count; pre-close source IDs remain non-votes');
  assert.equal(result.senate.supplemental,0);
  assert.equal(result.governor.supplemental,0);
  assert.equal(result.authoritativeCalls,0);
