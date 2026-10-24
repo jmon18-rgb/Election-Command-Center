@@ -13,8 +13,10 @@ assert(start>0&&end>start,'Exact production export source gates missing');
 const now=Date.parse('2026-11-04T03:00:00Z');
 const officeErrors=Object.create(null),pending=new Set(),cache=Object.create(null);
 let foregroundError=null,valid=true,providerHealthy=true;
+const primaryCache=Object.create(null);
 const ctx={
- Date,window:{ElectionNightReconciliation:reconciliation},
+ Date,enOfficeSnapshots:primaryCache,
+ window:{ElectionNightReconciliation:reconciliation},
  enSourceValid:()=>valid,enOfficeErrors:officeErrors,
  enOffice:'House',enResumePendingOffices:pending,
  enElectionVotesAllowed:(key,total,stamp,clock)=>
@@ -27,7 +29,10 @@ const api=vm.runInNewContext(html.slice(start,end)+
 const primary={source:'state',year:2026,office:'House',stale:false,
  live:true,counting:true,final:false,as_of:'2026-11-04T02:50:00Z',
  races:{'AZ-01':{total:100}}};
+primaryCache.House=primary;
 assert(api.primary('House',primary,now),'Current reviewed primary may be exported');
+assert(!api.primary('House',{...primary},now),
+ 'Detached source lookalikes cannot bypass current browser approval');
 officeErrors.House='HTTP 503';
 assert(!api.primary('House',primary,now),'Failed primary must not export cached counts');
 delete officeErrors.House;
