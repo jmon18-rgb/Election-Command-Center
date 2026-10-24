@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-24T20:40:49.546748+00:00",
+  "updated_at": "2026-10-24T20:57:36.174168+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,7 +9,7 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1258,
+      "available_in_source": 1259,
       "records_examined": 300
     },
     "governor": {
@@ -17,15 +17,39 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 305,
+  "matched_primary_observations": 306,
   "newly_injected_into_model": 1,
   "injected_poll_ids": [
     {
-      "race_code": "CA-GOV",
-      "poll_id": "523813c4-0c7c-4357-92e5-f91741da44dc"
+      "race_code": "CT-05",
+      "poll_id": "ec8d9aec-09ee-423d-a2f4-00271534d780"
     }
   ],
   "observations": [
+    {
+      "race_code": "CT-05",
+      "race_type": "house",
+      "state": "CT",
+      "poll_id": "ec8d9aec-09ee-423d-a2f4-00271534d780",
+      "question_id": "3b0e16d9-2e43-4bfc-ad8a-82afe41d8b1a",
+      "pollster": "OnMessage Inc.",
+      "dem_name": "Jahana Hayes",
+      "rep_name": "Chris Shea",
+      "dem": 51.0,
+      "rep": 45.0,
+      "margin": 6.0,
+      "field_end": "2026-10-01",
+      "field_start": "2026-09-29",
+      "posted_date": "2026-10-24",
+      "posted_source_datetime": "2026-10-24T16:48:00",
+      "posted_source_time": "10/24/26 16:48",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://x.com/SheaforCongress/status/2112915268317921680",
+      "sample_population": "lv",
+      "sample_size": 400,
+      "partisan_lean": "R",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "CA-GOV",
       "race_type": "governor",
