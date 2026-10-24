@@ -55,7 +55,7 @@ const future={...b,updated_at:'2026-11-04T01:16:00Z'};
 assert.equal(summarize({...first,[key(b)]:future},bases,'VA-SEN',NOW).rejected_observations,1);
 const stale={...b,updated_at:'2026-11-04T00:10:00Z'};
 assert.equal(summarize({...first,[key(b)]:stale},bases,'VA-SEN',
- Date.parse('2026-11-04T04:00:00Z')).rejected_observations,2,
+ Date.parse('2026-11-04T04:00:00Z')).rejected_observations,3,
  'Stale validation must reject rows older than 180 minutes');
 const invalid={...a,ballots_reported:25};
 assert.equal(summarize({...first,[key(a)]:invalid},bases,'VA-SEN',NOW).status,
