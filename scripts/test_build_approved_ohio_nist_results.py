@@ -84,6 +84,7 @@ class OhioApprovedNistCandidateBridge(unittest.TestCase):
         self.assertEqual(len(result["races"]),1)
         row=result["races"][0]
         self.assertEqual(row["race_key"],"OH-SEN-special")
+        self.assertEqual(row["dashboard_race_id"],"Senate|OH-special")
         self.assertEqual(row["office"],"Senate")
         self.assertEqual(row["reported_county_count"],1)
         self.assertEqual(row["counties"][0]["county_fips"],"39001")
