@@ -90,13 +90,22 @@ try{
   assert.match(rendered,/House 1\/435 · Senate 1\/35 · Governors 0\/36/);
   assert.match(rendered,/No source evidence for 433 House, 34 Senate and 35 governor contests/);
   assert.match(rendered,/Provider-reported zero is tracked separately/);
-  const group=page.locator('#enLiveCoverageTriage details');
-  assert.equal(await group.count(),1,device+': Collapsible all-35 Senate status needed');
+  const groups=page.locator('#enLiveCoverageTriage details');
+  assert.equal(await groups.count(),2,
+   device+': Expect separate Senate and unresolved House/governor desks');
+  const group=groups.nth(0);
   await group.locator('summary').click();
   assert.match(await group.textContent(),/NC — Reported votes · unofficial/);
   assert.match(await group.textContent(),/ME — Supplemental source request FAILED/);
   assert.match(await group.textContent(),/MA — No verified automated source ID/);
   assert.match(await group.textContent(),/MS — No verified automated source ID/);
+  const other=groups.nth(1);
+  await other.locator('summary').click();
+  assert.match(await other.textContent(),/Unpinned House \/ governor source IDs · 9/);
+  assert.match(await other.textContent(),/House NH-01 — No verified automated source ID/);
+  assert.match(await other.textContent(),/Governor HI — No verified automated source ID/);
+  assert.equal(await other.locator('a[href^="https://"]').count(),9,
+   device+': Each known unpinned House/governor needs an official manual fallback');
   assert(['House','Senate','Governor'].every(x=>providers.includes(x)),
    device+': All three office sources should have been attempted');
   scenario='outage';
