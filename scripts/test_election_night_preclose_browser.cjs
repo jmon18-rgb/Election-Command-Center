@@ -16,7 +16,7 @@ const vote=(total,as_of='2026-11-04T00:20:00Z')=>({
  api:1,year:2026,office:'Senate',source:'state',live:true,stale:false,
  counting:true,final:false,counts:{races:1},as_of,
  races:{NC:{total,called:false,winner:'',pct_in:40,
- cands:[{n:'Test Democrat',p:'D',v:total,pct:100}]}}
+ cands:[{n:'Test Democrat',p:'D',v:total,pct:total>0?100:0}]}}
 });
 assert.equal(api.allowed('NC',100,'2026-11-04T00:20:00Z',clock),false);
 assert.equal(api.allowed('OH-special',100,'2026-11-04T00:20:00Z',clock),false);
