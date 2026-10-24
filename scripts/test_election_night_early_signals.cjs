@@ -110,6 +110,24 @@ for(const {code,close} of nextSignals){
  assert.equal(api.assess(signal,null,{now:nextNow,error:'503'}).status,'SOURCE_ERROR',code);
  assert.equal(api.assess(signal,null,{now:nextNow}).status,'AWAITING_SOURCE',code);
 }
+// Incoming UI metadata must not be able to rewrite the 7:30 PM Eastern
+// NC source-close gate, omit it entirely, or create a phantom indicator.
+const fakeEarly={code:'NC-SEN',closeET:'00:00',office:'Senate'};
+const noClose={code:'NC-SEN'};
+assert.equal(api.closedAt(fakeEarly),Date.parse('2026-11-04T00:30:00Z'));
+assert.equal(api.closedAt(noClose),Date.parse('2026-11-04T00:30:00Z'));
+assert(Number.isNaN(api.closedAt({code:'XX-SEN',closeET:'00:00'})));
+const ncBefore=Date.parse('2026-11-04T00:15:00Z');
+assert.equal(api.assess(fakeEarly,nextVotes,{now:ncBefore}).status,
+ 'WAITING_FOR_POLLS');
+assert.equal(api.assess(noClose,nextVotes,{now:ncBefore}).status,
+ 'WAITING_FOR_POLLS');
+assert.equal(api.assess(fakeEarly,{...nextVotes,asOf:'2026-11-04T00:00:00Z'},
+ {now:nextNow}).status,'STALE',
+ 'A forged UI close must never validate a pre-close source stamp');
+assert.equal(api.assess(noClose,nextVotes,{now:nextNow}).status,'COUNTING_PARTIAL');
+assert.equal(api.assess({code:'XX-SEN',closeET:'00:00'},nextVotes,
+ {now:nextNow}).status,'INVALID');
 assert.deepEqual(api.records.find(x=>x.code==='NC-SEN').counties,
  ['Wake','Mecklenburg','Nash']);
 assert.deepEqual(api.records.find(x=>x.code==='OH-SEN').counties,
