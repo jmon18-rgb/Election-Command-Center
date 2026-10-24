@@ -41,4 +41,9 @@ assert.equal(late.accepted,false,
 assert.equal(late.reason,'STALE_COUNTY_SOURCE_TIMESTAMP');
 assert.equal(late.rows,undefined,'No stale county record should be published');
 
+const beforeClose=ingest({},envelope,expected,{},
+ Date.parse('2026-11-04T00:29:59Z'));
+assert.equal(beforeClose.accepted,false);
+assert.equal(beforeClose.reason,'SOURCE_TIME_BEFORE_LOCAL_CLOSE_OR_FUTURE',
+ 'County ingestion must reject positive source votes on an open-polls viewer clock');
 console.log('Source contract to county ingestion passed');
