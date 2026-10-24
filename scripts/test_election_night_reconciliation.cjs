@@ -182,6 +182,22 @@ x=api.reconcile({...input,snapshots:{...input.snapshots,Senate:nearPrimary},
  civic:{'Senate|NC':later}});
 assert.equal(x.crossSourceDiscrepancies.length,0,
  'Reporting timestamps too far apart are not directly comparable');
+// Repeated candidate IDENTITIES are invalid even if totals fit.
+// Same-party but differently named candidates stay valid in top-two states.
+const duplicatePrimary=snapshot('Senate',{'NC':{
+ total:1000,called:false,winner:'',
+ cands:[{n:'Candidate A',p:'D',v:400},
+        {n:' candidate a ',p:'R',v:200},
+        {n:'Candidate B',p:'O',v:150}]}});
+assert.equal(api.reconcile({...input,snapshots:{
+ ...input.snapshots,Senate:duplicatePrimary}}).records['Senate|NC'].hasReportedVotes,
+ false,'Duplicated normalized primary candidate names cannot count as separate votes');
+const duplicateSupplemental={...civic,total:1200,candidates:[
+ ...civic.candidates,{name:' jane democrat ',party:'O',votes:100}]};
+assert.equal(api.reconcile({...input,civic:{
+ 'Senate|ME':duplicateSupplemental}}).records['Senate|ME'].hasReportedVotes,
+ false,'Duplicated normalized supplemental candidate names cannot count as separate people');
+
 // A source-share discrepancy can exist without disagreement about which
 // party leads. Require >5,000 two-party votes, +/-3-minute timestamps,
 // similar completeness, and >=10 percentage points before raising advisory.
