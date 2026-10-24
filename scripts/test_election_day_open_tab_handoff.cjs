@@ -13,9 +13,12 @@ assert(begin>0&&end>begin,'Actual unattended-tab handoff must exist in index');
 assert.equal(html.indexOf('let enElectionNightManualArchive=false;',begin+1),-1);
 const realLogic=html.slice(begin,end);
 const context=vm.createContext({
- Date,Number,document:{visibilityState:'visible'},
- enModeYear:2024,enOffice:'Senate',visible:true,changes:[],
- enIsVisible(){return context.visible},
+ Date,Number,document:{visibilityState:'visible',
+  querySelector(selector){return {classList:{contains(name){
+   return name==='active'&&selector===context.activeView
+  }}}},
+ },
+ enModeYear:2024,enOffice:'Senate',activeView:'#brief',changes:[],
  enSwitch(year,office){context.changes.push([year,office]);context.enModeYear=year}
 });
 // Lexical-scoped script reads globalThis enIsVisible and enSwitch mocks.
@@ -37,14 +40,18 @@ context.document.visibilityState='hidden';
 assert.equal(check(boundary+60000),false,'Hidden tabs must not fetch in background');
 assert.equal(context.changes.length,1);
 context.document.visibilityState='visible';
-context.visible=false;
-assert.equal(check(boundary+60000),false,'Inactive pages must stay idle');
-context.visible=true;
+context.activeView='#wire';
+assert.equal(check(boundary+60000),false,'Inactive election desk and homepage stay idle');
+context.activeView='#electionNight';
+assert.equal(check(boundary+60000),true,
+ 'Returning to the election desk also triggers the pending handoff');
+assert.deepEqual(Array.from(context.changes[1]),[2026,'Senate']);
+context.enModeYear=2024;
 assert.equal(check(Number.NaN),false);
 vm.runInContext('enElectionNightManualArchive=true',context);
 assert.equal(check(boundary+60000),false,
  'Manually chosen 2024 archive may not be overridden by an automatic timer');
-assert.equal(context.changes.length,1);
+assert.equal(context.changes.length,2);
 assert.match(html,/function enReconnectAfterInterruption\(force=false\)\{[\s\S]*?if\(enElectionNightAutoHandoff\(now\)\)return true;/,
  'Normal 60-second laptop wake checks must invoke Election Day handoff');
 assert.match(html,/setInterval\(\(\)=>\{enReconnectAfterInterruption\(\)\},60000\)/,
