@@ -10,6 +10,8 @@ on:
     paths:
       - 'scripts/refresh_approved_nc_zip.py'
       - 'scripts/test_refresh_approved_nc_zip.py'
+      - 'data/nc_county_results_desk_config.json'
+      - 'data/nc_candidate_votes_2026.json'
       - '.github/workflows/nc-approved-zip-refresh.yml'
 permissions:
   contents: read
@@ -22,6 +24,30 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Refuse unapproved or pre-close published North Carolina county ZIP
+        run: |
+          python3 - <<'PY'
+          import datetime as dt
+          import json
+          import sys
+          sys.path.insert(0, 'scripts')
+          from build_nc_official_candidate_votes_2026 import validate_review
+          from refresh_approved_nc_zip import POLL_CLOSE, OUTPUT_PATH
+          c=json.load(open('data/nc_county_results_desk_config.json'))
+          if c.get('schema')!='county-desk-config-v1':
+              raise ValueError('NC official ZIP source approval schema invalid')
+          if c.get('enabled') is True:
+              if dt.datetime.now(dt.timezone.utc)<POLL_CLOSE:
+                  raise ValueError('Cannot approve candidate vote publication before NC polls close')
+              if c.get('snapshot_path')!=OUTPUT_PATH:
+                  raise ValueError('Approved county ZIP output path incorrect')
+              validate_review(c.get('expected'))
+              print('Reviewed NC ZIP source and post-poll activation contract confirmed')
+          elif c.get('enabled') is False and c.get('expected') is None and c.get('snapshot_path') is None:
+              print('NC source disabled, no 2026 vote publication allowed')
+          else:
+              raise ValueError('NC source config inconsistent; possible premature approval')
+          PY
       - name: Validate official ZIP monotonicity, exact source and disabled safety
         run: |
           python3 -m py_compile scripts/refresh_approved_nc_zip.py
