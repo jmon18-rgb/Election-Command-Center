@@ -1,7 +1,7 @@
 {
-  "source_snapshot": "2026-10-24T15:30:31.998468Z",
+  "source_snapshot": "2026-10-24T15:36:09.957440Z",
   "test": "Strict walk-forward, held-out next poll, grouped by candidate matchup",
-  "eligible_matchup_groups": 62,
+  "eligible_matchup_groups": 63,
   "methods": {
     "equal": {
       "comparisons": 183,
@@ -56,7 +56,7 @@
     "recency21_sponsored_25": {
       "comparisons": 183,
       "independent_matchup_clusters": 32,
-      "mae_points": 2.59,
+      "mae_points": 2.591,
       "rmse_points": 3.437,
       "cluster_bootstrap_mae_95pct_range": [
         2.174,
@@ -66,11 +66,11 @@
     "recency21_sponsored_50": {
       "comparisons": 183,
       "independent_matchup_clusters": 32,
-      "mae_points": 2.619,
+      "mae_points": 2.62,
       "rmse_points": 3.477,
       "cluster_bootstrap_mae_95pct_range": [
         2.211,
-        3.054
+        3.055
       ]
     },
     "recency21_sponsored_100": {
@@ -99,15 +99,15 @@
       "mae_points": 2.598,
       "rmse_points": 3.442,
       "cluster_bootstrap_mae_95pct_range": [
-        2.208,
+        2.209,
         3.091
       ]
     },
     "recency21_sponsored_50_quality_size_bias17": {
       "comparisons": 183,
       "independent_matchup_clusters": 32,
-      "mae_points": 2.567,
-      "rmse_points": 3.41,
+      "mae_points": 2.568,
+      "rmse_points": 3.411,
       "cluster_bootstrap_mae_95pct_range": [
         2.186,
         2.986
@@ -116,21 +116,21 @@
     "recency21_sponsored_50_quality_size_recency14": {
       "comparisons": 183,
       "independent_matchup_clusters": 32,
-      "mae_points": 2.621,
+      "mae_points": 2.622,
       "rmse_points": 3.471,
       "cluster_bootstrap_mae_95pct_range": [
         2.25,
-        3.054
+        3.055
       ]
     },
     "recency21_silver_quality_size": {
       "comparisons": 183,
       "independent_matchup_clusters": 32,
-      "mae_points": 2.613,
+      "mae_points": 2.614,
       "rmse_points": 3.468,
       "cluster_bootstrap_mae_95pct_range": [
         2.203,
-        3.102
+        3.103
       ]
     },
     "recency21_silver_quality_size_bias50": {
@@ -150,7 +150,7 @@
       "rmse_points": 3.574,
       "cluster_bootstrap_mae_95pct_range": [
         2.316,
-        3.159
+        3.16
       ]
     }
   },

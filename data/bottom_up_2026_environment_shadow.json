@@ -1,14 +1,14 @@
 {
   "schema_version": "bottom-up-2026-poll-environment-shadow-v1",
   "status": "SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE",
-  "polling_generated_at": "2026-10-24T15:30:34.689029Z",
+  "polling_generated_at": "2026-10-24T15:36:13.911454Z",
   "presidential_geography_year": 2026,
   "presidential_2024_national_two_party_margin_points": -1.705,
   "generic_ballot_2026_d_minus_r_points": 9.14,
   "generic_implied_vs_2024_presidential_swing_points": 10.845,
-  "independent_polling_estimated_presidential_to_race_swing_points": 9.508,
-  "bottom_up_implied_national_margin_points": 7.803,
-  "bottom_up_minus_generic_environment_points": -1.337,
+  "independent_polling_estimated_presidential_to_race_swing_points": 9.481,
+  "bottom_up_implied_national_margin_points": 7.776,
+  "bottom_up_minus_generic_environment_points": -1.364,
   "candidate_specific_effects_removed": false,
   "candidate_quality_calibration_available": false,
   "total_qualifying_races": 16,
@@ -17,7 +17,7 @@
   "qualifying_house_races": 2,
   "qualifying_senate_races": 14,
   "excluded": {
-    "inadequate_polling": 90,
+    "inadequate_polling": 92,
     "stale": 0,
     "not_competitive": 1,
     "missing_geography": 0
@@ -26,7 +26,7 @@
     {
       "state": "ME",
       "number_qualifying_races": 1,
-      "swing_points": -5.409
+      "swing_points": -5.379
     },
     {
       "state": "MN",
@@ -71,7 +71,7 @@
     {
       "state": "IA",
       "number_qualifying_races": 1,
-      "swing_points": 14.046
+      "swing_points": 13.726
     },
     {
       "state": "TX",
@@ -91,7 +91,7 @@
     {
       "state": "NE",
       "number_qualifying_races": 1,
-      "swing_points": 20.541
+      "swing_points": 20.751
     }
   ],
   "examples": [

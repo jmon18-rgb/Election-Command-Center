@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-24T15:30:31.671428Z",
+  "updated_at": "2026-10-24T15:36:09.649801Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
@@ -322,6 +322,27 @@
       "state_hints": [],
       "topic_hints": [
         "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "4d6e9ce7b08bad8594bf",
+      "title": "Utah\u2019s elections chief doesn\u2019t have to give full voter rolls to Trump\u2019s DOJ, judge decides - The Salt Lake Tribune",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNUTNEZjR3VFpiZ3dRMDY0RklxaERvOVpubENSUW42VWZHenVYUnNlQmlmOTdNMEgybWhYSlI5dlUyX0xxVnE1bmdRN1ItM2ZtV2p2NjNYcGRvMVVfa1FVSkd1cVBkSmkwbkZtVE4zc3h6OEwzaFVFbzRlT3hhbTJuN2drcw?oc=5",
+      "publisher": "The Salt Lake Tribune",
+      "published_at": "2026-10-24T05:15:07Z",
+      "detected_at": "2026-10-24T15:36:09.649801Z",
+      "state_hints": [
+        "UT"
+      ],
+      "topic_hints": [
+        "registration",
+        "litigation",
         "election_admin"
       ],
       "headline_numbers_unverified": [],
@@ -4922,23 +4943,6 @@
       "headline_numbers_unverified": [
         "1,400"
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "3e85b1acce95671935af",
-      "title": "Can ICE Be at Voting Centers? What DHS and Federal Law Say - MundoNOW",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFB6SUF3eHkwWFNRblJleS13dDVKc1pWMXpqQklWeGZxZnN2U1h1bHFudVBWTURQZDRNTjltemZ2VWVEaTNWQ2ZLSkhCYWtUcEtrOUJodURzdnVVX3hSSmdmSnNidTZ2RURM?oc=5",
-      "publisher": "MundoNOW",
-      "published_at": "2026-10-13T21:03:51Z",
-      "detected_at": "2026-10-13T21:51:56.712815Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
