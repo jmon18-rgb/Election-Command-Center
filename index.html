@@ -5523,9 +5523,16 @@ async function enCivicRefreshFastLane(){
  const house=seed.filter(x=>x.office==='House'&&Number(x.tip)>=2);
  const automatic=[...senate.slice(0,3),...house.slice(0,1),
   ...senate.slice(3),...house.slice(1)];
+ // Outage/recheck status is race-specific. A positive cached count that
+ // failed revalidation must not occupy a scarce 30-second request slot.
+ const approved=Object.create(null);
+ for(const item of [...enWatched,...automatic]){
+  const live=enCivicUsable(item);
+  if(live)approved[enWatchId(item)]=live;
+ }
  const selected=lane.pick({
   personal:enWatched.filter(x=>enShouldProbeSupplemental(x)),automatic,
-  reported:enCivicByWatch,lastAttempt:enCivicLastAttemptAt,
+  reported:approved,lastAttempt:enCivicLastAttemptAt,
   // A source state's primary feed can be down or omit THIS race.
   // Candidate filtering above already proved need for each fallback.
   primaryStates:[],now:Date.now()});
