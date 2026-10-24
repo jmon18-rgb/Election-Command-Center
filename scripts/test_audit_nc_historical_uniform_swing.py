@@ -20,6 +20,34 @@ class UniformCountySwingErrorAudit(unittest.TestCase):
         self.assertFalse(a["valid_2026_ballots_remaining_denominator"])
         self.assertFalse(a["valid_2026_probability_error_calibration"])
         self.assertFalse(a["may_move_national_needle"])
+        samples=a["hypothetical_whole_county_reporting_selection"]
+        self.assertEqual(samples["method"],
+                         "COUNTY_COHORT_SELECTION_NOT_CHRONOLOGICAL_REPLAY")
+        self.assertEqual(len(samples["county_orderings"]),5)
+        self.assertEqual(len(samples["stress_cases"]),25)
+        self.assertEqual(samples["total_verified_final_two_party_votes_2024"],
+                         2715375+2898423)
+        self.assertGreater(samples["max_absolute_selection_error_points"],0.5)
+        self.assertFalse(samples["original_reporting_order_observed"])
+        self.assertFalse(samples["valid_uncertainty_calibration"])
+        self.assertFalse(samples["may_move_national_needle"])
+        for case in samples["stress_cases"]:
+            self.assertGreaterEqual(case["actual_final_ballot_fraction"],
+                                    case["selection_target_fraction"]-0.0001)
+            self.assertLessEqual(case["actual_final_ballot_fraction"],1)
+            self.assertGreater(case["selected_complete_counties"],0)
+            self.assertLessEqual(case["selected_complete_counties"],100)
+            self.assertFalse(case["original_reporting_order_observed"])
+            self.assertAlmostEqual(
+                case["selected_county_shift_points"]-
+                case["all_county_weighted_shift_points"],
+                case["selection_error_points"],places=3)
+        self.assertTrue(any(x["posthoc_information_used"] for x in
+                            samples["stress_cases"]))
+        self.assertTrue(any(not x["posthoc_information_used"] for x in
+                            samples["stress_cases"]))
+        self.assertEqual(audit(PAST,PRES),audit(PAST,PRES),
+                         "Do not randomize synthetic reporting order")
 
     def test_rejects_fabricated_county_votes_even_when_state_totals_match(self):
         # Moves one Democratic ballot from one real county to another.
