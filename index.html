@@ -5363,20 +5363,33 @@ async function enCivicFetchUnpooled(url,timeoutMs=12000){
 // A small Pages-hosted index of *previously verified source IDs* avoids an
 // extra civicAPI search request for House races already discovered by CI.
 // It is not live results and never bypasses the detailed identity/vote gates.
-let enHousePinsPromise=null;
+// The preflight can publish new exact 2026 House IDs while this laptop tab
+// remains open. A forever-cached promise would hide those discoveries until
+// a hard refresh. Share concurrent requests, but periodically refetch the
+// deployed manifest; each RESULT still requires independent exact-race checks.
+let enHousePinsPromise=null,enHousePinsCheckedAt=-Infinity,enHousePinsCheckOK=false;
 function enHousePinsReady(){
- if(enHousePinsPromise)return enHousePinsPromise;
+ const now=Date.now();
+ const retryMs=enHousePinsCheckOK?15*60000:2*60000;
+ if(enHousePinsPromise&&now>=enHousePinsCheckedAt&&
+    now-enHousePinsCheckedAt<retryMs)return enHousePinsPromise;
+ enHousePinsCheckedAt=now;
  enHousePinsPromise=(async()=>{
-  if(!window.CivicHouse2026Adapter?.setManifest)return false;
+  if(!window.CivicHouse2026Adapter?.setManifest){
+   enHousePinsCheckOK=false;return false;
+  }
   const controller=typeof AbortController==='function'?new AbortController():null;
   const timeout=setTimeout(()=>{try{controller?.abort()}catch{}},4000);
   try{
-   const response=await fetch('./data/election_night_house_pins.json',{
+   const response=await fetch('./data/election_night_house_pins.json?v='+
+    Math.floor(now/900000),{
     mode:'same-origin',cache:'no-store',credentials:'omit',
     ...(controller?{signal:controller.signal}:{})
    });
-   return response.ok&&window.CivicHouse2026Adapter.setManifest(await response.json());
-  }catch{return false}
+   enHousePinsCheckOK=Boolean(response.ok&&
+    window.CivicHouse2026Adapter.setManifest(await response.json()));
+   return enHousePinsCheckOK;
+  }catch{enHousePinsCheckOK=false;return false}
   finally{clearTimeout(timeout)}
  })();
  return enHousePinsPromise;
