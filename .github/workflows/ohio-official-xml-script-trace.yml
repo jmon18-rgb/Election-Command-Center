@@ -1,0 +1,47 @@
+name: Verify official Ohio NIST XML export JavaScript action
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/trace_ohio_official_download_action.py'
+      - 'scripts/test_trace_ohio_official_download_action.py'
+      - '.github/workflows/ohio-official-xml-script-trace.yml'
+  schedule:
+    - cron: '45 16 * * *'
+permissions:
+  contents: read
+jobs:
+  offline-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Guard Ohio export script metadata, HTTPS allowlist and mock data isolation
+        run: |
+          python3 -m py_compile scripts/trace_ohio_official_download_action.py
+          python3 scripts/test_trace_ohio_official_download_action.py
+          python3 scripts/test_discover_ohio_official_nist_xml.py
+  real-official-script:
+    needs: offline-contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Trace official Ohio page scripts for downloadReport and XML object key
+        run: |
+          python3 scripts/trace_ohio_official_download_action.py --probe \
+            --output /tmp/ohio-xml-script-trace.json
+      - name: Preserve zero-vote-inclusion script discovery for human review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ohio-nist-xml-action-trace-research-only
+          path: /tmp/ohio-xml-script-trace.json
+          if-no-files-found: ignore
+          retention-days: 14
