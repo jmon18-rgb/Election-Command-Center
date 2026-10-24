@@ -43,6 +43,22 @@ for(const [why,stamp,seenAt] of [
 assert(normalize({...feed,counties:[{...county,
  updated_at:'2026-11-04T00:30:00Z'}]},expected,at).ok,
  'Exactly North Carolina close must be accepted');
+const agedNow=Date.parse('2026-11-04T03:35:00Z');
+assert.equal(normalize(feed,expected,agedNow).ok,true,
+ 'Exactly 180-minute-old county result remains eligible');
+const oldCounty=normalize(feed,expected,agedNow+1000);
+assert.equal(oldCounty.ok,false,
+ 'Old county result must not be accepted after 180 minutes');
+assert.equal(oldCounty.reason,'STALE_COUNTY_SOURCE_TIMESTAMP');
+const noFreshClock=normalize({...feed,counties:[{...county,ballots_reported:0,
+ candidates:[{name:'A',party:'D',votes:0},{name:'B',party:'R',votes:0}]}]},
+ expected,agedNow+1000);
+assert.equal(noFreshClock.reason,'STALE_COUNTY_SOURCE_TIMESTAMP',
+ 'Old zero-vote placeholder must not make county data look current');
+assert.equal(normalize({...feed,counties:[{...county,
+ updated_at:'2026-11-04T03:35:01Z'}]},expected,agedNow+1000).ok,true,
+ 'Newly timestamped official county result restores eligibility');
+
 // In the real index, this adapter is evaluated BEFORE poll-closing.js.
 // First fail closed; then use the newly loaded contract without a reload.
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
