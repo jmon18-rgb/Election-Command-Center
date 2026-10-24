@@ -13,6 +13,17 @@
  const goodInt=n=>Number.isSafeInteger(n)&&n>=0;
  const goodLink=u=>typeof u==='string'&&/^https:\/\//.test(u);
  const fail=why=>Object.freeze({eligible:false,reason:why,may_move_national_needle:false});
+ // A valid election-cycle date is not evidence that precincts in THIS
+ // state have finished voting. Require both publication and viewer clock
+ // to clear the canonical state earliest-close rule, never just a
+ // plausible 2026 result envelope downloaded after the fact.
+ function actualPollsClosed(raceCode,sourceTime,now){
+  const closes=typeof window!=='undefined'?
+   window.ElectionNightPollClosings2026:
+   typeof require==='function'?require('./election_night_poll_closings_2026.js'):null;
+  return Boolean(closes&&typeof closes.allowed==='function'&&
+   closes.allowed(raceCode,1,sourceTime,now));
+ }
  function evaluate(input,now=Date.now()){
   if(input?.election!=='2026-11-03'||!['senate','house','governor'].includes(input.office)||
     !/^[A-Z]{2}-(?:SEN|GOV|\d{2})$/.test(input.race_code||''))
@@ -20,6 +31,10 @@
   const t=Date.parse(input.as_of||'');
   if(!Number.isFinite(t)||t<start||t>now+15*60000||now-t>180*60000)
    return fail('source_timestamp_not_current');
+  if(!actualPollsClosed(input.race_code,input.as_of,now))
+   return fail('state_poll_closure_not_satisfied');
+  if(input.is_test!==false||input.source?.is_test!==false)
+   return fail('live_source_not_confirmed_nonmock');
   if(input.source?.validated!==true||input.baseline_source?.validated!==true||
     !goodLink(input.source.url)||!goodLink(input.baseline_source.url))
    return fail('source_provenance_missing');
