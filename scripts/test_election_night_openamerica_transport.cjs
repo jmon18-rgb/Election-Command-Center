@@ -14,8 +14,11 @@ async function main(){
  assert.strictEqual(one,two,'Concurrently requested office must share a single promise');
  await Promise.resolve();await Promise.resolve();
  assert.equal(calls.length,1,'Duplicate primary source fetch');
- assert.deepEqual(calls[0].opts,{mode:'cors',credentials:'omit',
-  cache:'no-cache',headers:{Accept:'application/json'}});
+ assert.equal(calls[0].opts.mode,'cors');
+ assert.equal(calls[0].opts.credentials,'omit');
+ assert.equal(calls[0].opts.cache,'no-cache');
+ assert.deepEqual(calls[0].opts.headers,{Accept:'application/json'});
+ assert.equal(calls[0].opts.signal?.aborted,false);
  assert(!('If-None-Match' in calls[0].opts.headers),
   'Custom conditional header triggers unnecessary cross-origin preflight');
  assert.equal(transport.pending(),1);
@@ -43,6 +46,22 @@ async function main(){
  assert.equal(parallel,2,'Different offices must remain independent');
  const notJson=create(async()=>({ok:true,status:200,json:async()=>['bad']}));
  await assert.rejects(notJson.load(H),/not a JSON object/);
- console.log('Open America conditional-cache, coalescing, rejection, outage and independent-office tests passed');
+ // Hung Senate request must fail and release the office even when its
+ // custom mock ignores the abort signal. A subsequent request is fresh.
+ let hungSignal=null,started=0;
+ const hanging=create((_url,options)=>{
+  started++;hungSignal=options.signal;
+  return new Promise(()=>{});
+ },{timeoutMs:25});
+ await assert.rejects(hanging.load(S),/timed out/);
+ assert.equal(started,1);
+ assert.equal(hungSignal.aborted,true);
+ assert.equal(hanging.pending(),0,'Timeout must free the watched Senate slot');
+ const recovering=create(async()=>({ok:true,status:200,
+  json:async()=>({year:2026,office:'Senate',races:{}})}),{timeoutMs:25});
+ assert.equal((await recovering.load(S)).office,'Senate');
+ assert.equal(recovering.pending(),0);
+ assert.throws(()=>create(fetch,{timeoutMs:0}),/Bounded/);
+ console.log('Open America conditional-cache, coalescing, timeout recovery and independent-office tests passed');
 }
 main().catch(e=>{console.error(e);process.exitCode=1});
