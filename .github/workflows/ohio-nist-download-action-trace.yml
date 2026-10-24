@@ -1,0 +1,35 @@
+name: Trace Ohio official NIST XML download action
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/trace_ohio_nist_download_action.py'
+      - 'scripts/test_trace_ohio_nist_download_action.py'
+      - '.github/workflows/ohio-nist-download-action-trace.yml'
+permissions:
+  contents: read
+jobs:
+  official-script-trace:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate official domain restriction and inert source evidence
+        run: |
+          python3 -m py_compile scripts/trace_ohio_nist_download_action.py
+          python3 scripts/test_trace_ohio_nist_download_action.py
+      - name: Trace current official Ohio landing-page JS without downloading XML
+        run: |
+          python3 scripts/trace_ohio_nist_download_action.py --probe \
+            --output /tmp/ohio-official-download-action-trace.json
+      - name: Save source evidence for manual endpoint review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ohio-official-nist-script-evidence-not-live
+          path: /tmp/ohio-official-download-action-trace.json
+          if-no-files-found: ignore
+          retention-days: 14
