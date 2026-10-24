@@ -3,7 +3,7 @@
 import unittest
 from datetime import datetime, timezone
 
-from probe_missing_statewide_sources_2026 import SPECS, exact, validate_detail, probe
+from probe_missing_statewide_sources_2026 import SPECS, CLOSE_UTC, exact, validate_detail, detail_rejection, probe
 
 def row(state, office, race_id):
     kind = "US Senate" if office == "Senate" else "Governor"
@@ -83,6 +83,55 @@ class GapProbeTests(unittest.TestCase):
         self.assertIsNone(states["Governor|HI"]["race_id"])
         self.assertEqual(result["exact_matches"], 1)
         self.assertFalse(result["may_publish_live_votes"])
+
+    def test_provider_detail_may_omit_repeat_id_but_mismatch_is_fatal(self):
+        # civicAPI search ID + URL + all six independent identity fields
+        # identify the race. Historical verified Senate preflight already
+        # allows detail responses that omit the duplicate id property.
+        for spec in SPECS:
+            state, _, _ = spec
+            original = self.rows[state]
+            raw = detail(original)
+            raw.pop("id")
+            self.assertTrue(validate_detail(spec, original, raw))
+            self.assertIsNone(detail_rejection(spec, original, raw))
+            self.assertEqual(detail_rejection(spec, original,
+                {**raw, "id": original["id"]+100}),
+                "DETAIL_EXPLICIT_ID_MISMATCH")
+            self.assertEqual(detail_rejection(spec, original,
+                {**raw, "election_type": "wrong type"}),
+                "DETAIL_OFFICE_CLASS_MISMATCH")
+
+    def test_exact_missing_id_can_be_discovered_without_auto_approval(self):
+        def omit_repeated_ids(path, params):
+            answer=self.fetch(path, params)
+            if path.startswith("/race/") and path!="/race/search":
+                answer.pop("id", None)
+            return answer
+        result=probe(omit_repeated_ids,datetime(2026,10,24,tzinfo=timezone.utc))
+        self.assertEqual(result["exact_matches"],4)
+        self.assertFalse(result["may_publish_live_votes"])
+        self.assertFalse(result["may_update_model_or_source_pins"])
+        self.assertTrue(all(r["status"]=="INDEXED_EXACT_RACE_IDENTITY_ONLY"
+                            for r in result["records"]))
+
+    def test_precise_rejection_reason_and_preclose_sample_safety(self):
+        self.malformed.add("OK")
+        result=probe(self.fetch,datetime(2026,10,24,tzinfo=timezone.utc))
+        ok=next(r for r in result["records"] if r["race"]=="Governor|OK")
+        self.assertEqual(ok["reason"],"DETAIL_DISTRICT_MISMATCH")
+        self.assertIsNone(ok["race_id"])
+        for spec in SPECS:
+            state, _, _ = spec
+            self.assertEqual(CLOSE_UTC[state].tzinfo,timezone.utc)
+            raw=detail(self.rows[state])
+            raw["candidates"][0]["votes"]=1
+            before=CLOSE_UTC[state].replace(microsecond=0)
+            from datetime import timedelta
+            self.assertEqual(detail_rejection(spec,self.rows[state],raw,
+                                               now=before-timedelta(seconds=1)),
+                             "PRE_POLL_CLOSE_COUNTED_OR_CALLED_NOT_LIVE")
+            self.assertIsNone(detail_rejection(spec,self.rows[state],raw,now=before))
 
     def test_absent_election_is_unknown_not_a_negative_vote(self):
         def absent_fetch(path, params):
