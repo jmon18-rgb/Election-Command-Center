@@ -22,7 +22,19 @@ const slots={House:houseIds.filter(qualifying),Senate:senateIds.filter(qualifyin
 assert.equal(governorIds.length,36);
 assert.equal(slots.Governor.length,4);
 assert(slots.House.length>100&&slots.Senate.length>=3);
-const clock=Date.parse('2026-11-03T21:00:00Z'); // 4pm ET; 6h through 10pm ET.
+const clock=Date.parse('2026-11-03T21:00:00Z'); // 4pm EST; 6h through 10pm EST.
+// The simulation begins before polls close. Nonzero 2026 source totals
+// cannot be accepted merely because a fixture labels them as 'live'.
+// First nationwide release gate: 23:00Z (minute 120), source timestamp
+// is now -20s, so the first acceptable minute is 121. NC / OH release
+// at 00:30Z Nov 4 (minute 210), first acceptable snapshot minute 211.
+const EARLIEST_REAL=121,LATE_NC_OH=211;
+const eligiblePrimary=(office,minute)=>{
+ if(minute<EARLIEST_REAL)return 0;
+ const n=Math.floor(slots[office].length*minute/360);
+ return slots[office].slice(0,n).filter(key=>
+  !['NC','OH'].includes(key.slice(0,2))||minute>=LATE_NC_OH).length;
+};
 const vote=(key,minute,idx)=>{
  const dem=1000+idx*9+minute*11;
  const rep=1100+idx*8+minute*9;
@@ -58,7 +70,8 @@ function civicFor(minute,now){
 }
 
 const assertions={minutes:0,outageMinutes:0,restoredMinutes:0,
- staleMinutes:0,overlapMinutes:0,providerCallMinutes:0};
+ staleMinutes:0,overlapMinutes:0,providerCallMinutes:0,
+ precloseBlockedMinutes:0,postCloseObservedMinutes:0};
 let recoveredHouse=0,recoveredSenate=0;
 for(let minute=0;minute<=360;minute++){
  const now=clock+minute*60000;
@@ -73,6 +86,8 @@ for(let minute=0;minute<=360;minute++){
   errors,restored:restoring?['House','Senate','Governor']:[],
   supportedStates:supported,now});
  assertions.minutes++;
+ if(minute<EARLIEST_REAL&&result.house.primary===0)assertions.precloseBlockedMinutes++;
+ if(minute>=LATE_NC_OH&&result.house.primary>0)assertions.postCloseObservedMinutes++;
  assert.equal(result.house.total,435);
  assert.equal(result.senate.total,35);
  assert.equal(result.governor.total,36);
@@ -99,12 +114,15 @@ for(let minute=0;minute<=360;minute++){
   assert.equal(result.senate.primary,0,'Outage/restored/stale Senate results cannot be live');
   assert.equal(result.governor.primary,0,'Impaired governor source cannot count');
  }else{
-  assert.equal(result.house.primary,Math.floor(slots.House.length*minute/360));
-  assert.equal(result.senate.primary,Math.floor(slots.Senate.length*minute/360));
-  assert.equal(result.governor.primary,Math.floor(slots.Governor.length*minute/360));
+  assert.equal(result.house.primary,eligiblePrimary('House',minute),
+   'House primary votes must respect the exact source poll-close gate');
+  assert.equal(result.senate.primary,eligiblePrimary('Senate',minute),
+   'Senate primary votes must respect the exact source poll-close gate');
+  assert.equal(result.governor.primary,eligiblePrimary('Governor',minute),
+   'Governor primary votes must respect the exact source poll-close gate');
   recoveredHouse=result.house.primary;recoveredSenate=result.senate.primary;
  }
- const expectedCivic=minute>=10&&!civicFailure?1:0;
+ const expectedCivic=minute>=EARLIEST_REAL&&!civicFailure?1:0;
  assert.equal(result.senate.supplemental,expectedCivic,
   'Validated uncovered supplemental race must remain available independently');
  assert.equal(result.providerCalls,minute>=200&&!civicFailure?1:0,
@@ -116,9 +134,23 @@ for(let minute=0;minute<=360;minute++){
   assert.equal(result.senate.supplemental,1,'Overlapping race cannot be double-counted');
  }
  if(minute===94){
-  assert(result.house.primary>0,'Primary data must recover after outage/recheck');
-  assert(result.senate.primary>0,'Senate source must recover after outage/recheck');
-  assert(result.governor.primary>0,'Governor source must recover after outage/recheck');
+  assert.equal(result.house.primary,0,
+   'Early fabricated House recovery must stay blocked before nationwide close');
+  assert.equal(result.senate.primary,0,
+   'Early fabricated Senate recovery must stay blocked before nationwide close');
+ }
+ if(minute===124){
+  assert(result.house.primary>0,'House source must recover after poll close');
+  assert(result.senate.primary>0,'Senate source must recover after poll close');
+  assert(result.governor.primary>0,'Governor source must recover after poll close');
+ }
+ if(minute===210){
+  assert.equal(result.records['Senate|NC'].hasReportedVotes,false,
+   'NC Senate mock/pre-close snapshot cannot turn into votes at 00:30Z');
+ }
+ if(minute===211){
+  // A new, independently sourced timestamp after 7:30 PM EST may report.
+  assert(result.house.primary>=eligiblePrimary('House',211));
  }
  if(minute===251)assert(result.house.primary>0,'Old timestamps must not permanently poison recovery');
  if(minute===319)assert.equal(result.senate.supplemental,1,
@@ -129,6 +161,9 @@ assert.equal(assertions.outageMinutes,22);
 assert.equal(assertions.restoredMinutes,2);
 assert.equal(assertions.staleMinutes,6);
 assert.equal(assertions.overlapMinutes,1);
+assert.equal(assertions.precloseBlockedMinutes,EARLIEST_REAL);
+assert(assertions.postCloseObservedMinutes>100,
+ 'Six-hour simulation must verify sustained post-close county coverage');
 assert(recoveredHouse===slots.House.length&&recoveredSenate===slots.Senate.length);
 console.log('6h/361 synthetic minute-steps PASS',JSON.stringify(assertions));
 console.log('Outages and stale/restored responses are not calls or counted live votes; recovery restores validated coverage.');
