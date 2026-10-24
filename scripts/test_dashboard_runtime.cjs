@@ -2100,7 +2100,7 @@ function __testSeedStaleOhioSenate(){
   };
   const detail={
    ...row,election_type:row.type,percent_reporting:41,
-   last_updated:'2026-11-04T01:45:00Z',
+   last_updated:'2026-11-04T05:10:00Z',
    candidates:[
     {name:spec.state+' Democrat',party:'Democratic',votes:610,percent:61,winner:false},
     {name:spec.state+' Republican',party:'Republican',votes:390,percent:39,winner:false}
@@ -2114,7 +2114,7 @@ function __testSeedStaleOhioSenate(){
  assert.equal(w.StateBatchCivicAdapter.supports({office:'Senate',key:'NV'}),false,
   'Nevada has no 2026 Senate race in this batch');
  const batchOriginalClock=w.Date.now,batchFetch=w.fetch;
- w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ w.Date.now=()=>Date.parse('2026-11-04T05:30:00Z');
  let wrongBatchDetail=false;
  const batchURLs=[];
  w.fetch=async url=>{
@@ -2194,7 +2194,7 @@ function __testSeedStaleOhioSenate(){
    ]
   };
   const detail={...row,election_type:row.type,
-   percent_reporting:47,last_updated:'2026-11-04T01:45:00Z',
+   percent_reporting:47,last_updated:'2026-11-04T03:10:00Z',
    candidates:[
     {name:spec.state+' D',party:'Democratic',votes:620,percent:62,winner:false},
     {name:spec.state+' R',party:'Republican',votes:380,percent:38,winner:false}
@@ -2209,7 +2209,7 @@ function __testSeedStaleOhioSenate(){
   'Ohio regular Senate result must not masquerade as the 2026 special election');
  const nextClock=w.Date.now,nextFetch=w.fetch;
  const seenNext=[],badUpdates=new Set();
- w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ w.Date.now=()=>Date.parse('2026-11-04T03:20:00Z');
  w.fetch=async url=>{
   const address=String(url);seenNext.push(address);
   if(address.startsWith('https://civicapi.org/api/v2/race/search')){
@@ -2289,7 +2289,7 @@ function __testSeedStaleOhioSenate(){
    ]
   };
   const result={...searchRow,election_type:searchRow.type,
-   percent_reporting:50,last_updated:'2026-11-04T01:45:00Z',
+   percent_reporting:50,last_updated:'2026-11-04T03:10:00Z',
    candidates:[
     {name:'Candidate D',party:'Democratic',votes:540,percent:54,winner:false},
     {name:'Candidate R',party:'Republican',votes:460,percent:46,winner:false}
@@ -2304,7 +2304,7 @@ function __testSeedStaleOhioSenate(){
    'Uncontested Senate seat must not be invented');
  const fiveClock=w.Date.now,fiveFetch=w.fetch,fiveRequests=[];
  let fiveInvalidId=null;
- w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ w.Date.now=()=>Date.parse('2026-11-04T03:20:00Z');
  w.fetch=async(url)=>{
   const address=String(url);fiveRequests.push(address);
   if(address.startsWith('https://civicapi.org/api/v2/race/search')){
@@ -2385,7 +2385,7 @@ function __testSeedStaleOhioSenate(){
    ]
   };
   const detail={...row,election_type:row.type,percent_reporting:42,
-   last_updated:'2026-11-04T01:35:00Z',
+   last_updated:'2026-11-04T03:10:00Z',
    candidates:[
     {name:'Election D',party:'Democratic',votes:520,percent:52,winner:false},
     {name:'Election R',party:'Republican',votes:480,percent:48,winner:false}
@@ -2400,7 +2400,7 @@ function __testSeedStaleOhioSenate(){
   'Oklahoma governor was unverified and must stay off the strict roster');
  const almtClock=w.Date.now,almtFetch=w.fetch,almtRequests=[];
  let almtBadId=null;
- w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ w.Date.now=()=>Date.parse('2026-11-04T03:20:00Z');
  w.fetch=async(url)=>{
   const u=String(url);almtRequests.push(u);
   if(u.startsWith('https://civicapi.org/api/v2/race/search')){
@@ -2475,7 +2475,7 @@ function __testSeedStaleOhioSenate(){
    ]
   };
   const detail={...search,election_type:search.type,percent_reporting:41,
-   last_updated:'2026-11-04T01:45:00Z',
+   last_updated:'2026-11-04T04:10:00Z',
    candidates:[
     {name:'West D',party:'Democratic',votes:550,percent:55,winner:false},
     {name:'West R',party:'Republican',votes:450,percent:45,winner:false}
@@ -2489,7 +2489,7 @@ function __testSeedStaleOhioSenate(){
   'Mississippi Senate did not verify through source index; no pinned adapter');
  const westSourceClock=w.Date.now,westSourceFetch=w.fetch,westSourceRequests=[];
  let westSourceInvalidId=null;
- w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ w.Date.now=()=>Date.parse('2026-11-04T04:20:00Z');
  w.fetch=async(url)=>{
   const request=String(url);westSourceRequests.push(request);
   if(request.startsWith('https://civicapi.org/api/v2/race/search')){
