@@ -21,6 +21,8 @@ MAX_PER_PROBE = 7
 ROWS_PER_SHARD = 5
 
 def parse_pins(ledger, adapter_text):
+    if not isinstance(adapter_text, str):
+        raise ValueError("Curated 2026 statewide source adapter text is unavailable")
     if (not isinstance(ledger, dict) or ledger.get("election")!="2026-11-03" or
         ledger.get("status")!="SOURCE_IDENTITY_AUDIT_NOT_LIVE_RESULTS_COVERAGE" or
         not isinstance(ledger.get("races"), list) or len(ledger["races"])!=506):
