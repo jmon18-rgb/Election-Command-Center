@@ -1,0 +1,36 @@
+name: Election Night county source freshness
+on:
+  pull_request:
+    paths:
+      - 'scripts/verified_county_source_contract_2026.js'
+      - 'scripts/test_verified_county_source_contract_2026.cjs'
+      - 'scripts/county_source_ingestion_2026.js'
+      - 'scripts/test_county_source_ingestion_2026.cjs'
+      - '.github/workflows/election-night-county-freshness.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/verified_county_source_contract_2026.js'
+      - 'scripts/test_verified_county_source_contract_2026.cjs'
+      - 'scripts/county_source_ingestion_2026.js'
+      - 'scripts/test_county_source_ingestion_2026.cjs'
+      - '.github/workflows/election-night-county-freshness.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verified-county-timestamps:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reject expired and preclose county source snapshots
+        run: |
+          node --check scripts/verified_county_source_contract_2026.js
+          node scripts/test_verified_county_source_contract_2026.cjs
+          node scripts/test_county_source_ingestion_2026.cjs
+          node scripts/test_geographic_matched_county_pulse_2026.cjs
+          node scripts/check_election_night_asset_versions.cjs
