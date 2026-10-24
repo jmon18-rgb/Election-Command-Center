@@ -2665,7 +2665,10 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}
   races:{'AZ-01':{...counted2026.races.NC}}
  };
  const rehearsalHouseNew=structuredClone(rehearsalHouseOld);
- rehearsalHouseNew.as_of='2026-11-04T02:50:00Z';
+ // Source clock is 03:00Z and previous House fixtures may already have
+ // verified a 03:00Z empty snapshot. New nonempty votes must not travel
+ // backward in source time relative to that validated snapshot.
+ rehearsalHouseNew.as_of='2026-11-04T03:00:00Z';
  rehearsalHouseNew.races['AZ-01'].total=500;
  rehearsalHouseNew.races['AZ-01'].cands[0].v=280;
  rehearsalHouseNew.races['AZ-01'].cands[0].pct=56;
