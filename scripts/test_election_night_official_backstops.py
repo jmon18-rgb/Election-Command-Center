@@ -45,6 +45,9 @@ class OfficialBackstopsTests(unittest.TestCase):
         mass=next(x for x in self.links["links"] if x["state"]=="MA")
         self.assertEqual(mass["mode"],"certified_only_not_election_night")
         self.assertEqual(mass["race_ids"],["Senate|MA"])
+        miss=next(x for x in self.links["links"] if x["state"]=="MS")
+        self.assertEqual(miss["mode"],"certified_only_not_election_night")
+        self.assertEqual(miss["race_ids"],["Senate|MS"])
 
 if __name__=="__main__":
     unittest.main()
