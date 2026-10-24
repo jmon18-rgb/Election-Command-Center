@@ -112,7 +112,7 @@
    message:'Reported votes are unofficial. Known provider IDs and missing or stale results are NOT votes, zeros or race calls.'
   });
  }
- function render(host,pulse,doc){
+ function render(host,pulse,doc,officialBackstops=[]){
   if(!host||!doc)return false;
   host.replaceChildren();
   const elt=(tag,text,parent,cls)=>{
@@ -137,8 +137,27 @@
       ' awaiting verified reported votes · all 35 races',details);
   const list=elt('div',undefined,details,'en-coverage-senate-gaps');
   for(const row of pulse.senate){
-   elt('p',row.id.replace('Senate|','')+' — '+LABELS[row.status]+
+   const line=elt('p',row.id.replace('Senate|','')+' — '+LABELS[row.status]+
        (row.provider?' ('+row.provider+')':''),list,'en-coverage-line');
+   // Provide an explicit operator-only fallback for every gap with an
+   // independently curated official election-office link. An official
+   // landing page is not a verified live vote feed or a winner call.
+   if(row.status==='OBSERVED_SOURCE_VOTES')continue;
+   const link=Array.isArray(officialBackstops)?officialBackstops.find(x=>
+    x&&Array.isArray(x.race_ids)&&x.race_ids.includes(row.id)&&
+    typeof x.url==='string'&&/^https:\/\//.test(x.url)):null;
+   if(!link)continue;
+   const a=elt('a',' · Official manual check ↗',line);
+   a.href=link.url;a.target='_blank';a.rel='noopener noreferrer';
+   const warnings={
+    certified_only_not_election_night:' · certified results only; NOT live',
+    pre_election_mock_results_only:' · MOCK/TEST source; DO NOT use as votes',
+    november_2026_results_not_yet_published:' · 2026 returns NOT YET published',
+    post_election_results_landing:' · may publish only after reporting',
+    results_landing_timing_unconfirmed:' · Election Night timing unconfirmed'
+   };
+   elt('span',warnings[link.mode]||
+    ' · manual reference only, NOT a validated live feed',line);
   }
   elt('small','This source audit does not calculate chamber control, race calls, ballots remaining, or live win probabilities.',host);
   return true;
