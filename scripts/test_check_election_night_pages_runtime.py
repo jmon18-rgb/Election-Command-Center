@@ -31,7 +31,7 @@ class PagesDeploymentTests(unittest.TestCase):
     def test_real_checked_in_assets_and_identity_inventory(self):
         result = self.verify()
         self.assertEqual(result["status"], "DEPLOYED_PAGES_ENTRYPOINT_VERIFIED")
-        self.assertEqual(result["script_versions_checked"], 4)
+        self.assertEqual(result["script_versions_checked"], 5)
         self.assertEqual(result["races_in_deployed_source_ledger"], 506)
         self.assertGreater(result["verified_house_id_hints"], 100)
         self.assertFalse(result["votes_or_winner_calls_queried"])
@@ -49,6 +49,23 @@ class PagesDeploymentTests(unittest.TestCase):
     def test_stale_manifest_rejected_by_real_browser_after_48_hours(self):
         with self.assertRaisesRegex(ValueError, "expire in the real browser"):
             self.verify(now=self.now+timedelta(hours=49))
+
+    def test_needle_missing_local_poll_close_guard_cannot_be_approved(self):
+        needle=self.assets["election_night_nowcast.js"]
+        self.assertIn(b"pollsClosedFor(item,actual.asOf,now)", needle)
+        self.assertIn(b"pollsClosedFor(item,new Date(now).toISOString(),now)",needle)
+        bad=self.assets.copy()
+        bad["election_night_nowcast.js"]=needle.replace(
+            b"pollsClosedFor(item,actual.asOf,now)",
+            b"true")
+        with self.assertRaisesRegex(ValueError, "local poll-close protections"):
+            self.verify(assets=bad)
+        bad2=self.assets.copy()
+        bad2["election_night_nowcast.js"]=needle.replace(
+            b"pollsClosedFor(item,new Date(now).toISOString(),now)",
+            b"true")
+        with self.assertRaisesRegex(ValueError, "local poll-close protections"):
+            self.verify(assets=bad2)
 
     def test_modified_deployed_js_rejected_despite_valid_html(self):
         bad = self.assets.copy()
