@@ -7,8 +7,8 @@
 })(typeof window!=='undefined'?window:null,function(bridge){
  'use strict';
  const own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
- function process(previous,observations,baselines={}){
-  if(!bridge||!Array.isArray(observations)||!observations.length||
+ function process(previous,observations,baselines={},now=Date.now()){
+  if(!bridge||!Number.isFinite(now)||!Array.isArray(observations)||!observations.length||
      observations.length>10000||!previous||typeof previous!=='object'||
      Array.isArray(previous)||!baselines||typeof baselines!=='object')
    return {accepted:false,reason:'INVALID_BATCH'};
@@ -24,7 +24,7 @@
    }
    const old=own(next,id)?next[id]:null;
    const base=own(baselines,id)?baselines[id]:null;
-   const outcome=bridge.apply(old,incoming,base);
+   const outcome=bridge.apply(old,incoming,base,now);
    if(!outcome.accepted){
     rejected.push({id,reason:outcome.reason});continue;
    }
