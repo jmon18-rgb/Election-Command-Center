@@ -7,11 +7,12 @@ from test_civicapi_live_source import source
 
 DAY="2026-11-03"
 # Independently verified exact browser-CORS source IDs in GitHub Actions.
-# MS Senate did not pass the same search/detail identity gate, so it is not
-# included as a production adapter.
+# Mississippi Senate was independently revalidated October 24 after the
+# missing-redundant-detail-ID mismatch was corrected; pinned below.
 REQUIRED={
     ("CA","Governor"):(86952,"California Governor"),
     ("DE","Senate"):(87036,"Delaware US Senate"),
+    ("MS","Senate"):(81004,"Mississippi US Senate"),
     ("MD","Governor"):(87198,"Maryland Governor"),
     ("SD","Senate"):(87446,"South Dakota US Senate"),
     ("SD","Governor"):(87447,"South Dakota Governor"),
