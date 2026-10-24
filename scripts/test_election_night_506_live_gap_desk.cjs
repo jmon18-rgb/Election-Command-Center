@@ -87,7 +87,8 @@ assert.match(t,/Senate source gaps · 34/);
 assert.match(t,/MA — No verified automated source ID/);
 assert.match(t,/certified results only; NOT live/);
 assert.match(t,/MS — No verified automated source ID/);
-assert.match(t,/Election Night timing unconfirmed/);
+assert.equal((t.match(/certified results only; NOT live/g)||[]).length,2,
+ 'Both MA and MS official links must be labeled certified-only, not live');
 const ma=host.children.flatMap(x=>x.children||[]);
 assert(!t.includes('source verified from manual check'));
 assert.match(t,/ME — Supplemental source ID/);
