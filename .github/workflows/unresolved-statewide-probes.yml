@@ -1,0 +1,79 @@
+name: Recheck four unresolved statewide Election Night sources
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/probe_missing_statewide_sources_2026.py'
+      - 'scripts/test_probe_missing_statewide_sources_2026.py'
+      - '.github/workflows/unresolved-statewide-probes.yml'
+  schedule:
+    # Advisory bounded discovery until Election Day, then hourly.
+    # Independent of the more expensive 506-race primary/House preflight.
+    - cron: '23 3,11,19 * 10 *'
+    - cron: '23 2,6,10,14,18,22 1-2 11 *'
+    - cron: '23 * 3-4 11 *'
+permissions:
+  contents: read
+concurrency:
+  group: advisory-statewide-source-gaps
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reject mismatched election, state, office, candidate, or duplicate identities
+        run: |
+          python3 -m py_compile scripts/probe_missing_statewide_sources_2026.py
+          python3 scripts/test_probe_missing_statewide_sources_2026.py
+  source-check:
+    if: github.event_name != 'pull_request'
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check date window
+        id: window
+        shell: bash
+        run: |
+          stamp="$(date -u +'%Y%m%d')"
+          if [ "${{ github.event_name }}" = "schedule" ] && { [ "$stamp" -lt "20261001" ] || [ "$stamp" -gt "20261104" ]; }; then
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Query exact statewide identities, never vote totals
+        if: steps.window.outputs.run == 'true'
+        run: |
+          python3 scripts/probe_missing_statewide_sources_2026.py --output /tmp/statewide-gap-identity-2026.json
+      - name: Preserve advisory evidence separately from published source registry
+        if: steps.window.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: 2026-statewide-source-gap-advisory-${{ github.run_id }}
+          path: /tmp/statewide-gap-identity-2026.json
+          if-no-files-found: error
+          retention-days: 30
+      - name: State clearly what is and is not verified
+        if: steps.window.outputs.run == 'true'
+        run: |
+          echo '### Four outstanding statewide source identities' >> "$GITHUB_STEP_SUMMARY"
+          echo '' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Senate MA/MS; governor HI/OK. Advisory source discovery only.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Even an exact search+detail match cannot authorize 2026 votes or winner calls.' >> "$GITHUB_STEP_SUMMARY"
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          d=json.load(open('/tmp/statewide-gap-identity-2026.json'))
+          print('| Race | Discovery result | Identity ID (NOT votes) |')
+          print('|---|---|---|')
+          for row in d['records']:
+              print('|',row['race'],'|',row['status'],'|',row['race_id'] or 'unknown','|')
+          PY
