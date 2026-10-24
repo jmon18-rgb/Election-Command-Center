@@ -130,7 +130,8 @@ class NationalCoveragePulse(unittest.TestCase):
         for flags in [{"live":False,"stale":False},
                       {"live":False,"stale":True},
                       {"live":True,"stale":True}]:
-            doc=office_document("Senate","2026-11-04T00:55:00Z",source)
+            doc=office_document("Senate","2026-11-04T00:55:00Z",
+                                {"GA":dict(source["GA"])})
             doc.update(flags)
             # Contradictory live/stale flags are rejected by the provider
             # snapshot contract rather than trusted as real 2026 votes.
