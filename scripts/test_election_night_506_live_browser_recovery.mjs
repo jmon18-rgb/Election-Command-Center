@@ -92,7 +92,7 @@ try{
   assert.equal(await group.count(),1,device+': Collapsible all-35 Senate status needed');
   await group.locator('summary').click();
   assert.match(await group.textContent(),/NC — Reported votes · unofficial/);
-  assert.match(await group.textContent(),/ME — Supplemental source ID/);
+  assert.match(await group.textContent(),/ME — Supplemental source request FAILED/);
   assert.match(await group.textContent(),/MA — No verified automated source ID/);
   assert.match(await group.textContent(),/MS — No verified automated source ID/);
   assert(['House','Senate','Governor'].every(x=>providers.includes(x)),

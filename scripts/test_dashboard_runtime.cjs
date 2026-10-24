@@ -152,6 +152,13 @@ async function settle(){
  assert(w.SenateCalibrationAudit,'Retrospective probability-score module must be loaded before app');
  w.eval(read('scripts/private_senate_fundamentals.js'));
  assert(w.PrivateSenateFundamentals,'Private subscriber CSV parser must load before app');
+ w.eval(read('scripts/ohio_official_candidate_votes.js'));
+ assert(w.OhioOfficialCandidateVotes?.prepare,
+  'Ohio county candidate source guard must load before Election Night app');
+ w.eval(read('scripts/ohio_official_county_startup.js'));
+ assert(w.OhioOfficialDeskRefresh,
+  'Ohio approved-source browser refresh must be installed');
+
  // Test-only fixture injector shares the app's lexical scope without
  // exposing private source caches in the production dashboard.
  w.eval(scripts[0].replace(
