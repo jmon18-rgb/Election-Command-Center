@@ -52,14 +52,22 @@ assert(!api.civic({...civic},now),'Detached unverified lookalike cannot bypass c
 providerHealthy=false;
 assert(!api.civic(civic,now),'Provider outage blocks cached supplemental export');
 providerHealthy=true;
-assert(!api.civic({...civic,last_updated:'2026-11-04T01:50:00Z'},now),
- 'Pre-AZ-close votes must remain excluded even if retrieved later');
-assert(!api.civic({...civic,last_updated:'2026-11-03T23:59:00Z',key:'NH-01'},now),
- 'Other race pre-close data cannot be exported');
-assert(!api.civic({...civic,last_updated:'2026-11-03T23:00:00Z'},now),
- 'Long-stale provider data cannot be exported');
-assert(!api.civic({...civic,last_updated:'2026-11-04T03:20:00Z'},now),
- 'Future-dated provider data cannot be exported');
+// Make every malformed or old record the ACTIVE verified cache entry
+// so these checks exercise timestamp/poll-close safety, not merely
+// the detached-object identity exclusion tested above.
+for(const [updated,key,reason] of [
+ ['2026-11-04T01:50:00Z','AZ-01','Pre-AZ-close totals'],
+ ['2026-11-03T23:59:00Z','NH-01','Pre-NH-close totals'],
+ ['2026-11-03T23:00:00Z','AZ-01','Long-stale detail'],
+ ['2026-11-04T03:20:00Z','AZ-01','Future-dated detail']
+]){
+ const record={...civic,last_updated:updated,key};
+ cache['House|'+key]=record;
+ assert(!api.civic(record,now),reason+' must not export even if cached');
+ delete cache['House|'+key];
+}
+cache['House|AZ-01']=civic;
+assert(api.civic(civic,now),'Latest healthy verified candidate tally remains exportable');
 assert(!api.civic({...civic,total:0},now),'Zero is not counted as reported votes');
 const csv=html.slice(end,html.indexOf('function enBuildActivityCsv(',end));
 assert.match(csv,/enExportPrimaryUsable\(office,snapshot\)/,
