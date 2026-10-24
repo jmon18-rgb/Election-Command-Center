@@ -77,6 +77,20 @@ let inactiveRes=api.reconcile({...input,snapshots:{
 assert.equal(inactiveRes.records['Senate|NC'].hasReportedVotes,false);
 assert.equal(inactiveRes.senate.reported,1,
  'Only separately validated civicAPI Maine may report while primary is inactive');
+// A test-labeled national office is never verified live vote coverage.
+for(const flag of [
+ {is_test:true},{test:true},{mock:true},{is_mock:true},{active:false}
+]){
+ const badPrimary={...input.snapshots.Senate,...flag};
+ assert.equal(health(badPrimary).usable,false);
+ assert.equal(health(badPrimary).state,'invalid');
+ const rejected=api.reconcile({...input,snapshots:{
+  ...input.snapshots,Senate:badPrimary}});
+ assert.equal(rejected.records['Senate|NC'].hasReportedVotes,false);
+ assert.equal(rejected.senate.primary,0);
+ assert.equal(rejected.providerCalls,1,
+  'Independently validated Maine supplemental call is unaffected');
+}
 const standby={...input.snapshots.House,live:false,final:false,
  races:{'AK-00':votes(0)}};
 assert.equal(health(standby,'House').state,'standby');
