@@ -3,7 +3,7 @@ import io
 import unittest
 import zipfile
 
-from refresh_approved_nc_zip import refresh, SOURCE
+from refresh_approved_nc_zip import refresh, SOURCE, POLL_CLOSE
 
 HEADER = ("County\tElection Date\tPrecinct\tContest Group ID\tContest Type\t"
           "Contest Name\tChoice\tChoice Party\tVote For\tElection Day\t"
@@ -41,7 +41,7 @@ class RefreshTests(unittest.TestCase):
             },
         }
         self.counties = {"WAKE": "37183"}
-        self.when = "2026-11-04T00:00:00Z"
+        self.when = "2026-11-04T00:45:00Z"
 
     def check(self, payload=None, previous=None, config=None, now=None):
         return refresh(self.config if config is None else config,
@@ -89,10 +89,23 @@ class RefreshTests(unittest.TestCase):
 
     def test_unchanged_archive_does_not_redeploy_every_ten_minutes(self):
         previous = self.check()["snapshot"]
-        recent = self.check(previous=previous, now="2026-11-04T00:20:00Z")
+        recent = self.check(previous=previous, now="2026-11-04T01:05:00Z")
         self.assertEqual(recent["status"], "UNCHANGED")
-        updated = self.check(previous=previous, now="2026-11-04T01:10:00Z")
+        updated = self.check(previous=previous, now="2026-11-04T02:00:00Z")
         self.assertEqual(updated["status"], "UPDATED")
+
+    def test_no_candidate_votes_before_nov3_730pm_est_poll_close(self):
+        self.assertEqual(POLL_CLOSE.isoformat(), "2026-11-04T00:30:00+00:00")
+        for early in ("2026-11-03T05:00:00Z",
+                      "2026-11-03T23:59:59Z",
+                      "2026-11-04T00:29:59Z"):
+            with self.subTest(early=early):
+                with self.assertRaisesRegex(ValueError, "before polls close"):
+                    self.check(now=early)
+        self.assertEqual(self.check(now="2026-11-04T00:30:00Z")["status"], "UPDATED")
+        # Even an accidentally enabled source cannot publish mock candidate votes early.
+        self.assertEqual(self.check(config={**self.config, "enabled": False},
+                                    now="2026-11-04T00:29:59Z")["status"], "DISABLED")
 
     def test_blocks_unreviewed_and_off_window(self):
         config = {**self.config, "expected": {**self.config["expected"], "reviewed": False}}
