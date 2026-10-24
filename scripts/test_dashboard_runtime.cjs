@@ -2918,21 +2918,14 @@ function __testSeedStaleOhioSenate(){
  w.Date.now=()=>Date.parse('2026-11-04T03:40:00Z');
  const emptyExport=w.eval('enBuildResultsCsv({},{})');
  assert.equal(emptyExport,'','No actual votes should yield a blank export');
+ // A detached synthetic primary/supplemental pair is deliberately NOT a
+ // verified source in the browser's current caches. Even if its JSON looks
+ // well formed, a CSV must not permit a caller to bypass current rechecks.
  const sourceCsv=w.eval('enBuildResultsCsv('+
     JSON.stringify({Senate:counted2026})+','+
     JSON.stringify({'Senate|NH':rawCivic})+')');
- assert(sourceCsv.startsWith('\uFEFF'),'CSV should have a real UTF-8 Excel BOM');
- assert.match(sourceCsv,/Open America/);
- assert.match(sourceCsv,/civicAPI/);
- assert.match(sourceCsv,/NC/);
- assert.match(sourceCsv,/NH/);
- assert.match(sourceCsv,/Democratic candidate/);
- assert.match(sourceCsv,/First candidate/);
- assert.match(sourceCsv,/\"NO CALL\"/,'Primary provider never invents a call');
- assert.match(sourceCsv,/openamerica.io\/elections\/api/);
- assert.match(sourceCsv,/civicapi.org\/api\/v2\/race\/87283/);
- assert.equal(sourceCsv.trim().split('\r\n').length,5,
-    'CSV must contain header and two primary plus two supplementary candidate rows');
+ assert.equal(sourceCsv,'',
+  'CSV must refuse synthetic snapshots not identical to current validated browser sources');
  const eventCsv=w.eval('enBuildActivityCsv('+JSON.stringify([
    firstNC,correction,flip,{...firstNC,office:'InvalidProvider'},
  ])+')');
