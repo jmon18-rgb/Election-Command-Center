@@ -68,6 +68,13 @@ class OfficialBackstopsTests(unittest.TestCase):
         mass=next(x for x in self.links["links"] if x["state"]=="MA")
         self.assertEqual(mass["mode"],"certified_only_not_election_night")
         self.assertEqual(mass["race_ids"],["Senate|MA"])
+        self.assertEqual(mass["verified_at"],"2026-10-24")
+        self.assertEqual(mass["source_reference"],
+          "https://www.sec.state.ma.us/divisions/elections/voting-information/announcing-certifying.htm")
+        self.assertFalse(any(token in mass.get("mode","") for token in
+          ("unofficial_results_landing","2026_results_landing")),
+          "Massachusetts does not provide statewide unofficial election-night returns")
+
         miss=next(x for x in self.links["links"] if x["state"]=="MS")
         self.assertEqual(miss["mode"],"certified_only_not_election_night")
         self.assertEqual(miss["race_ids"],["Senate|MS"])
