@@ -28,3 +28,8 @@ Ohio is actually covered on Election Night.
 This is neither an authoritative Ohio race call, nor a certification
 of votes remaining, voter-mode reporting, chamber control or 2026
 national needle movement.
+
+The archive monitor also accepts a valid reviewed source when the human
+approval timestamp was later than the source XML generation timestamp.
+That distinction matters during post-election archival readbacks; it
+does **not** relax the active Election Night freshness checks.
