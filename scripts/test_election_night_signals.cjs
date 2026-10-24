@@ -58,6 +58,39 @@ r['Senate|OH-special'].provider='unverified';
 assert.equal(find('ohio').state,'waiting','Unverified provider name is not a winner call');
 r['Senate|OH-special'].provider='civicAPI';
 assert.equal(find('ohio').state,'earned');
+// A "winner" cannot be honored merely because the first US polls
+// have closed. Iowa, California and Alaska have later local closes.
+for(const [office,key,pre,closed] of [
+ ['Senate','IA','2026-11-04T01:59:00Z','2026-11-04T02:00:00Z'],
+ ['Governor','CA','2026-11-04T03:59:00Z','2026-11-04T04:00:00Z'],
+ ['Senate','AK','2026-11-04T04:59:00Z','2026-11-04T05:00:00Z']
+]){
+ const row=mk(office,key,'Democrat Candidate','D');
+ row.last_updated=pre;
+ assert.equal(signals.validatedCall(row,Date.parse(pre)),null,
+  key+' preclose source call must fail');
+ row.last_updated=closed;
+ assert.equal(signals.validatedCall(row,Date.parse(closed))?.party,'D',
+  key+' valid postclose source can recover');
+}
+const iowaPremature=mk('Senate','IA','Iowa candidate','D');
+iowaPremature.last_updated='2026-11-04T01:59:00Z';
+const earlyAwards=signals.evaluateMilestones(
+ {'Senate|IA':iowaPremature},{now:Date.parse(iowaPremature.last_updated)});
+assert.equal(earlyAwards.find(z=>z.id==='blue_corn').state,'waiting',
+ 'Iowa Blue Corn cannot celebrate a future/local preclose flag');
+// Browser script initialization can precede the common closing-time module.
+const fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
+const win={};
+vm.runInNewContext(fs.readFileSync(path.join(__dirname,
+ 'election_night_signals.js'),'utf8'),{window:win});
+const ma=mk('Senate','ME','Democrat','D','Susan Collins');
+assert.equal(win.ElectionNightSignals.validatedCall(ma,at),null,
+ 'Missing poll-close module must fail closed');
+win.ElectionNightPollClosings2026=require('./election_night_poll_closings_2026.js');
+assert.equal(win.ElectionNightSignals.validatedCall(ma,at)?.party,'D',
+ 'Once shared module loads, genuinely postclose calls recover');
+
 const evidence=r['Senate|OH-special'];
 const original=JSON.parse(JSON.stringify(evidence));
 function rejects(change,reason){
