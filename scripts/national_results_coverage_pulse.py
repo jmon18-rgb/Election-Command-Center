@@ -112,7 +112,8 @@ def pulse(ledger, primary, now):
         sample_by_office[office]=doc["races"]
         # A reachable but explicitly non-live or stale snapshot is not
         # evidence of currently reporting votes (or an observed zero).
-        office_current[office]=doc.get("live") is True and doc.get("stale") is False
+        office_current[office]=doc.get("stale") is False and (
+            doc.get("live") is True or doc.get("final") is True)
         if doc.get("as_of"):
             as_of[office]=_time(doc["as_of"])
             if as_of[office]>now+dt.timedelta(minutes=15):
