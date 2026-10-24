@@ -35,6 +35,10 @@ assert.deepEqual([pulse.totals.House.reported,pulse.totals.Senate.reported,
 assert.deepEqual([pulse.totals.House.zero,pulse.totals.Senate.zero,
  pulse.totals.Governor.zero],[1,0,1]);
 assert.equal(pulse.senate.length,35);
+assert.equal(pulse.unverifiedMachineIds.length,11,'Source-unpinned identity list must match current review ledger');
+assert.equal(pulse.unverifiedMachineIds.filter(x=>x.office==='House').length,7);
+assert.equal(pulse.unverifiedMachineIds.filter(x=>x.office==='Governor').length,2);
+assert.equal(pulse.unverifiedMachineIds.filter(x=>x.office==='Senate').length,2);
 assert.equal(pulse.senateMissing,34);
 assert.equal(pulse.senate.find(x=>x.id==='Senate|NC').status,'OBSERVED_SOURCE_VOTES');
 assert.equal(pulse.senate.find(x=>x.id==='Senate|TX').status,'PRIMARY_RACE_ABSENT');
@@ -84,6 +88,14 @@ const flatten=x=>[x.textContent,...x.children.flatMap(flatten)].join(' ');
 const t=flatten(host);
 assert.match(t,/House 1\/435 · Senate 1\/35 · Governors 0\/36/);
 assert.match(t,/Senate source gaps · 34/);
+assert.match(t,/Unpinned House \/ governor source IDs · 9/);
+assert.match(t,/House NH-01 — No verified automated source ID/);
+assert.match(t,/House NH-02 — No verified automated source ID/);
+assert.match(t,/House AK-00 — No verified automated source ID/);
+assert.match(t,/Governor HI — No verified automated source ID/);
+assert.match(t,/Governor OK — No verified automated source ID/);
+assert.equal((t.match(/Check official election office/g)||[]).length,9,
+ 'Seven House and two governor missing source IDs require operator fallback links');
 assert.match(t,/MA — No verified automated source ID/);
 assert.match(t,/certified results only; NOT live/);
 assert.match(t,/MS — No verified automated source ID/);
@@ -105,4 +117,10 @@ assert(api.render(unsafe,pulse,{createElement:node},[{
  race_ids:['Senate|MA'],url:'javascript:alert(1)',mode:'certified_only_not_election_night'
 }]));
 assert(!flatten(unsafe).includes('Official manual check'));
+const blocked=node('div');
+const noOtherLinks=official.links.filter(x=>x.state!=='NH').map(x=>x.state==='AK'?{
+ ...x,url:'javascript:invalid()'}:x);
+api.render(blocked,pulse,{createElement:node},noOtherLinks);
+assert(!flatten(blocked).includes('House AK-00 — No verified automated source ID  · Check official election office'),
+ 'An unsafe manual link must never be rendered as a clickable fallback');
 console.log('506-race on-screen triage: real provider source, unavailable, zero-not-ballots, all 35 Senate and failures PASS');
