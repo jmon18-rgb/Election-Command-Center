@@ -23,6 +23,15 @@
   return Boolean(contract&&typeof contract.allowed==='function'&&
    contract.allowed(item?.key,1,sourceTime,now));
  }
+ // A winner flag has a stricter FINAL poll-closing requirement than
+ // descriptive partial returns, especially for split-time-zone states.
+ function winnerClosedFor(item,now){
+  const contract=typeof window!=='undefined'?
+   window.ElectionNightPollClosings2026:
+   typeof require==='function'?require('./election_night_poll_closings_2026.js'):null;
+  return Boolean(contract&&typeof contract.winnerAllowed==='function'&&
+   contract.winnerAllowed(item?.office,item?.key,1,new Date(now).toISOString(),now));
+ }
  const OFFICES={Senate:'senate',House:'house',Governor:'governor'};
  const atLargeBridge=typeof window!=='undefined'?
   window.HouseAtLargeBridge:
@@ -133,7 +142,7 @@
   // A provider-call flag is not permission to declare a winner in a
   // state whose polls are still open. The authoritative state-local floor
   // also protects the primary and supplemental partial-vote paths below.
-  if(now>=ELECTION_START&&pollsClosedFor(item,new Date(now).toISOString(),now)&&
+  if(now>=ELECTION_START&&winnerClosedFor(item,now)&&
      ['D','R'].includes(prior.provider_called_party)){
    const dem=prior.provider_called_party==='D';
    return {...defaultResult,mode:'source_called',demPct:dem?100:0,

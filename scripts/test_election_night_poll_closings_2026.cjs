@@ -33,4 +33,41 @@ assert.equal(c.allowed('ZZ',100,'2026-11-04T10:00:00Z',Date.parse('2026-11-04T10
 assert.equal(c.allowed('AZ',100,'',Date.parse('2026-11-04T03:00:00Z')),false);
 assert.equal(c.allowed('AZ',-1,'',Date.parse('2026-11-04T03:00:00Z')),false);
 assert.equal(c.allowed('AZ',0.5,'',Date.parse('2026-11-04T03:00:00Z')),false);
+// Split-time-zone races may report partial votes before a legitimate winner
+// can be called. Never back-date a pre-final-close source winner flag.
+for(const [office,key,partial,final] of [
+ ['Senate','TX','2026-11-04T01:00:00Z','2026-11-04T02:00:00Z'],
+ ['Governor','FL','2026-11-04T00:00:00Z','2026-11-04T01:00:00Z'],
+ ['Governor','AK','2026-11-04T05:00:00Z','2026-11-04T06:00:00Z'],
+ ['House','AK-00','2026-11-04T05:00:00Z','2026-11-04T06:00:00Z'],
+ ['House','SD-00','2026-11-04T01:00:00Z','2026-11-04T02:00:00Z'],
+ ['House','TX-23','2026-11-04T01:00:00Z','2026-11-04T02:00:00Z'],
+ ['House','MI-01','2026-11-04T01:00:00Z','2026-11-04T02:00:00Z'],
+ ['House','FL-02','2026-11-04T00:00:00Z','2026-11-04T01:00:00Z'],
+ ['House','IN-01','2026-11-03T23:00:00Z','2026-11-04T00:00:00Z'],
+ ['House','ID-01','2026-11-04T03:00:00Z','2026-11-04T04:00:00Z']
+]){
+ const first=Date.parse(partial),last=Date.parse(final);
+ assert.equal(c.allowed(key,1,partial,first),true,key+' partial counts may begin');
+ assert.equal(c.winnerAllowed(office,key,1,partial,last+3600000),false,
+  key+' source-stamped pre-final winner cannot revive later');
+ assert.equal(c.winnerAllowed(office,key,1,final,last-1),false);
+ assert.equal(c.winnerAllowed(office,key,1,final,last),true);
+ assert.equal(c.winnerFloorFor(office,key),last);
+}
+for(const [key,at] of [
+ ['IN-05','2026-11-03T23:00:00Z'],
+ ['KY-06','2026-11-03T23:00:00Z'],
+ ['FL-22','2026-11-04T00:00:00Z'],
+ ['TX-34','2026-11-04T01:00:00Z'],
+ ['MI-07','2026-11-04T01:00:00Z']
+])assert.equal(c.winnerAllowed('House',key,1,at,Date.parse(at)),true,
+ 'House district entirely in the early time zone should not be delayed: '+key);
+for(const bad of [
+ ['Senate','ZZ'],['President','TX'],['House','AK-bad']
+])assert.equal(c.winnerAllowed(bad[0],bad[1],1,
+ '2026-11-04T07:00:00Z',Date.parse('2026-11-04T07:00:00Z')),false);
+assert.equal(c.winnerAllowed('Senate','TX',0,'2026-11-04T02:00:00Z',
+ Date.parse('2026-11-04T02:00:00Z')),false,'No winner on a zero-vote source');
+
 console.log('All 50 state 2026 earliest poll close gates: 14 key boundary cases and mock exclusions PASS');

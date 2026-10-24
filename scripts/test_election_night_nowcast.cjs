@@ -87,6 +87,25 @@ const akSource={...validSource,office:'House',races:{'AK-00':{
 const akRace={office:'House',key:'AK-00'};
 const akNow=Date.parse('2026-11-04T05:30:00Z');
 akSource.as_of='2026-11-04T05:10:00Z';
+// A split-time-zone state's partial votes may adjust a research diagnostic,
+ // but a source winner flag must not lock it before the FINAL state close.
+const alaskaCalled=structuredClone(akPrior);
+alaskaCalled.records.find(r=>r.race_code==='AK-01').provider_called_party='D';
+assert.equal(model.estimate(alaskaCalled,akRace,akSource,null,akNow).mode,
+ 'live_informed','Alaska calls before final Aleutian close must not lock odds');
+assert.equal(model.estimate(alaskaCalled,akRace,akSource,null,
+ Date.parse('2026-11-04T06:00:00Z')).mode,'source_called',
+ 'After the final Alaska poll closes, validated provider call can lock odds');
+const texasCalled={...priors,records:[...priors.records,{
+ office:'senate',race_code:'TX-SEN',dem_minus_rep:1,sigma_points:7,
+ dem_beats_rep_pct:55,provider_called_party:'D'
+}]};
+const texasSeat={office:'Senate',key:'TX'};
+assert.equal(model.estimate(texasCalled,texasSeat,null,null,
+ Date.parse('2026-11-04T01:59:59Z')).mode,'polls_only');
+assert.equal(model.estimate(texasCalled,texasSeat,null,null,
+ Date.parse('2026-11-04T02:00:00Z')).mode,'source_called');
+
 const akLive=model.estimate(akPrior,akRace,akSource,null,akNow);
 assert.equal(akLive.mode,'live_informed',
  'At-large source 00 must pair with the existing 01 model prior');
