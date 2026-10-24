@@ -31,7 +31,7 @@ class PagesDeploymentTests(unittest.TestCase):
     def test_real_checked_in_assets_and_identity_inventory(self):
         result = self.verify()
         self.assertEqual(result["status"], "DEPLOYED_PAGES_ENTRYPOINT_VERIFIED")
-        self.assertEqual(result["script_versions_checked"], 5)
+        self.assertEqual(result["script_versions_checked"], 6)
         self.assertEqual(result["races_in_deployed_source_ledger"], 506)
         self.assertGreater(result["verified_house_id_hints"], 100)
         self.assertFalse(result["votes_or_winner_calls_queried"])
@@ -45,6 +45,21 @@ class PagesDeploymentTests(unittest.TestCase):
         self.assertNotEqual(old, self.index)
         with self.assertRaisesRegex(ValueError, "open-tab Election Night"):
             self.verify(index=old)
+
+    def test_deployed_old_tab_cannot_omit_election_day_handoff(self):
+        stale = self.index.replace(
+            b"function enElectionNightAutoHandoff(now=Date.now()){",
+            b"function enElectionNightAutoHandoffDISABLED(now=Date.now()){")
+        self.assertNotEqual(stale, self.index)
+        with self.assertRaisesRegex(ValueError, "open-tab Election Night contract"):
+            self.verify(index=stale)
+
+    def test_supplemental_statewide_js_deployment_stays_fingerprinted(self):
+        self.assertIn("civicapi_state_batch.js", self.assets)
+        bad = self.assets.copy()
+        bad["civicapi_state_batch.js"] += b"\n// outdated supplemental source adapter\n"
+        with self.assertRaisesRegex(ValueError, "blob/version mismatch"):
+            self.verify(assets=bad)
 
     def test_stale_manifest_rejected_by_real_browser_after_48_hours(self):
         with self.assertRaisesRegex(ValueError, "expire in the real browser"):
