@@ -1,0 +1,39 @@
+name: Simulate two hours of Election Night source coverage
+on:
+  pull_request:
+    paths:
+      - 'scripts/test_election_night_120_minute_source_soak.cjs'
+      - 'scripts/election_night_reconciliation.js'
+      - 'scripts/election_night_506_live_gap_desk.js'
+      - 'data/seat_universe.json'
+      - 'data/election_night_source_coverage.json'
+      - '.github/workflows/election-night-two-hour-source-soak.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/test_election_night_120_minute_source_soak.cjs'
+      - 'scripts/election_night_reconciliation.js'
+      - 'scripts/election_night_506_live_gap_desk.js'
+      - '.github/workflows/election-night-two-hour-source-soak.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  simulated-minute-drill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run 121 deterministic minute-scale source reconciliations
+        run: |
+          node --check scripts/test_election_night_120_minute_source_soak.cjs
+          node scripts/test_election_night_120_minute_source_soak.cjs
+      - name: Scope of simulation
+        run: |
+          echo '### 120-minute Election Night source simulation' >> "$GITHUB_STEP_SUMMARY"
+          echo '121 compressed virtual minutes, not a real two-hour browser/network endurance test.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Checks 506-race accounting, provider outages, recovery, duplicate providers, and stale source audit warnings.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'No actual 2026 votes, live feed throughput, ballots-remaining forecast or licensed race calls are established.' >> "$GITHUB_STEP_SUMMARY"
