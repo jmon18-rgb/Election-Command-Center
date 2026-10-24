@@ -84,6 +84,20 @@ class GapProbeTests(unittest.TestCase):
         self.assertEqual(result["exact_matches"], 1)
         self.assertFalse(result["may_publish_live_votes"])
 
+    def test_absent_election_is_unknown_not_a_negative_vote(self):
+        def absent_fetch(path, params):
+            self.assertEqual(path, "/race/search",
+                             "No detail request is allowed for missing races")
+            return {"races": [], "count": 0}
+        result = probe(absent_fetch)
+        self.assertEqual(result["checked"], 4)
+        self.assertEqual(result["exact_matches"], 0)
+        self.assertEqual([r["status"] for r in result["records"]],
+                         ["NOT_INDEXED"] * 4)
+        self.assertTrue(all(r["race_id"] is None for r in result["records"]))
+        self.assertFalse(result["may_publish_live_votes"])
+        self.assertFalse(result["may_update_model_or_source_pins"])
+
     def test_strict_identity_and_candidate_checks(self):
         original = self.rows["MA"]
         spec = SPECS[0]
