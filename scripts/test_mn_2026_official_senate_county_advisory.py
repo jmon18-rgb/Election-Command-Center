@@ -2,7 +2,9 @@
 """Mock quarantine and contract tests; fixtures are SYNTHETIC, never votes."""
 import datetime as dt
 import unittest
-from mn_2026_official_senate_county_advisory import parse_candidate_only, SOURCE, INDEX
+from copy import deepcopy
+from mn_2026_official_senate_county_advisory import (
+ parse_candidate_only, pinned_county_map, SOURCE, INDEX)
 
 NOW = dt.datetime(2026,11,4,3,tzinfo=dt.timezone.utc)
 DISCOVERY = {
@@ -16,11 +18,13 @@ REVIEW = {
  "source_timestamp_independently_verified":True,
  "rights_and_attribution_reviewed":True,
  "county_fips_join_reviewed":True,
+ "election_day_official_county_table_rechecked":True,
  "source_url":SOURCE,"election":"2026-11-03",
  "race_key":"MN-SEN","source_office_code":"0102",
  "source_reported_at":"2026-11-04T02:40:00Z",
- # THIS FIPS mapping is test-only invented to exercise the parser.
- "verified_county_id_to_fips":{"03":"27001","08":"27003"}
+ # Source-reviewed 87-county SOS election ID → Census FIPS map.
+ # Vote records in GOOD below remain entirely synthetic.
+ "verified_county_id_to_fips":pinned_county_map()
 }
 def row(county,number,name,party,votes,total=1000,precincts=10,reporting=5):
  pct=f"{votes/total*100:.2f}" if total else "0.00"
@@ -38,8 +42,10 @@ class Minnesota2026CandidateOnlyAdapterTests(unittest.TestCase):
   self.assertEqual(out["status"],"EXPLICITLY_REVIEWED_2026_COUNTY_CANDIDATE_ONLY")
   self.assertEqual(out["counties_seen"],2)
   self.assertEqual(out["candidate_votes"],2000)
+  self.assertEqual(out["counties"][0]["county_id"],"03")
+  self.assertEqual(out["counties"][0]["county_fips"],"27005")
   self.assertEqual(out["counties_with_positive_candidate_votes"],2)
-  self.assertEqual([c["county_fips"] for c in out["counties"]],["27001","27003"])
+  self.assertEqual([c["county_fips"] for c in out["counties"]],["27005","27015"])
   self.assertEqual(out["counties"][0]["candidates"][0]["party"],"D")
   self.assertIsNone(out["percent_reporting"])
   self.assertIsNone(out["ballots_remaining"])
@@ -91,14 +97,30 @@ class Minnesota2026CandidateOnlyAdapterTests(unittest.TestCase):
               reason="VERIFIED_SOURCE_TIME_MISSING_PRE_CLOSE_OR_STALE")
 
  def test_fips_source_ids_not_wishful_county_fips(self):
-  self.denied(review={**REVIEW,"verified_county_id_to_fips":{}},
+  pinned=pinned_county_map()
+  self.assertEqual(len(pinned),87)
+  self.assertEqual(pinned["03"],"27005")
+  self.assertEqual(pinned["08"],"27015")
+  self.assertEqual(pinned["27"],"27053")
+  self.assertEqual(pinned["62"],"27123")
+  self.denied(review={**REVIEW,"verified_county_id_to_fips":None},
               reason="VERIFIED_MINNESOTA_COUNTY_FIPS_MAPPING_MISSING")
-  self.denied(review={**REVIEW,"verified_county_id_to_fips":{"03":"37001","08":"37003"}},
-              reason="VERIFIED_MINNESOTA_COUNTY_FIPS_MAPPING_INVALID")
-  self.denied(review={**REVIEW,"verified_county_id_to_fips":{"03":"27001","08":"27001"}},
-              reason="VERIFIED_MINNESOTA_COUNTY_FIPS_MAPPING_INVALID")
-  self.denied(review={**REVIEW,"verified_county_id_to_fips":{"03":"27001"}},
-              reason="MISMATCHED_MINNESOTA_CONTEST_CANDIDATE_OR_COUNTY")
+  self.denied(review={**REVIEW,"verified_county_id_to_fips":{}},
+              reason="UNVERIFIED_OR_MISMATCHED_87_COUNTY_FIPS_MAPPING")
+  self.denied(review={**REVIEW,"verified_county_id_to_fips":{
+                        "03":"27005","08":"27015"}},
+              reason="UNVERIFIED_OR_MISMATCHED_87_COUNTY_FIPS_MAPPING")
+  swapped=deepcopy(pinned)
+  swapped["03"],swapped["08"]=swapped["08"],swapped["03"]
+  self.denied(review={**REVIEW,"verified_county_id_to_fips":swapped},
+              reason="UNVERIFIED_OR_MISMATCHED_87_COUNTY_FIPS_MAPPING")
+  mismatched=deepcopy(pinned)
+  mismatched["27"]="27055"  # Plausible Minnesota FIPS, WRONG Hennepin.
+  self.denied(review={**REVIEW,"verified_county_id_to_fips":mismatched},
+              reason="UNVERIFIED_OR_MISMATCHED_87_COUNTY_FIPS_MAPPING")
+  self.denied(review={**REVIEW,
+                      "election_day_official_county_table_rechecked":False},
+              reason="ELECTION_DAY_COUNTY_SOURCE_NOT_RECHECKED")
 
  def test_candidate_office_arithmetic_and_layout(self):
   self.denied(text=GOOD.replace("0102","0109"),

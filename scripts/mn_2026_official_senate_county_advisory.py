@@ -7,6 +7,8 @@ or supply ballots-counted denominators. The official October 2026 site
 currently says TEST RESULTS; callers must prove external source approval.
 """
 import datetime as dt
+import json
+from pathlib import Path
 import re
 
 SOURCE = "https://electionresultsfiles.sos.mn.gov/20261103/ussenatecty.txt"
@@ -14,6 +16,8 @@ INDEX = "https://electionresults.sos.mn.gov/Select/MediaFiles/Index?ersElectionI
 CLOSE = dt.datetime(2026, 11, 4, 2, tzinfo=dt.timezone.utc)
 MAX_SOURCE_BYTES = 500_000
 MAX_CANDIDATE_ROWS = 2500
+CROSSWALK_FILE = (Path(__file__).resolve().parents[1] /
+                  "data" / "mn_2026_official_county_fips_crosswalk.json")
 APPROVED_STATUS = "EXPORT_LINKS_NOT_APPROVED_FOR_INGESTION"
 # Despite the name, this source-discovery status is NOT authorization.
 REVIEW_REQUIRED = ("reviewed", "production_not_test_independently_verified",
@@ -43,6 +47,47 @@ def instant(value):
         return None
 
 
+def pinned_county_map():
+    """Read the reviewed 87-county 2026 SOS×Census mapping, fail closed.
+
+    This checks identity and structural provenance, not publication of
+    production votes or real election-night authorization.
+    """
+    try:
+        source = json.loads(CROSSWALK_FILE.read_text(encoding="utf-8"))
+    except (OSError, ValueError, TypeError):
+        return None
+    if not isinstance(source, dict) or (
+        source.get("schema") != "mn-official-2026-election-county-census-fips-crosswalk-v1"
+        or source.get("status") != "OFFICIAL_COUNTY_IDENTITY_CROSSWALK_NOT_LIVE_RESULTS"
+        or source.get("election_date") != "2026-11-03"
+        or source.get("state") != "MN"
+        or source.get("county_count") != 87
+        or source.get("independent_source_name_join_reviewed") is not True
+        or source.get("requires_election_night_source_revalidation") is not True
+    ):
+        return None
+    mapping = source.get("county_id_to_fips")
+    names = source.get("county_metadata")
+    keys = {f"{i:02d}" for i in range(1, 88)}
+    if not isinstance(mapping, dict) or not isinstance(names, dict) or (
+        set(mapping) != keys or set(names) != keys or
+        len(set(mapping.values())) != 87
+    ):
+        return None
+    for key in keys:
+        geoid = mapping[key]
+        record = names[key]
+        if not isinstance(geoid, str) or not re.fullmatch(r"27\d{3}", geoid):
+            return None
+        if not isinstance(record, dict) or record.get("fips") != geoid or (
+            not isinstance(record.get("county_name"), str)
+            or not record["county_name"].strip()
+        ):
+            return None
+    return mapping
+
+
 def parse_candidate_only(source_text, discovery, review, now):
     if not isinstance(now, dt.datetime) or now.tzinfo is None:
         return no("INVALID_OBSERVER_CLOCK")
@@ -66,14 +111,19 @@ def parse_candidate_only(source_text, discovery, review, now):
         or now - source_time > dt.timedelta(hours=2)
     ):
         return no("VERIFIED_SOURCE_TIME_MISSING_PRE_CLOSE_OR_STALE")
-    mapping = review.get("verified_county_id_to_fips")
-    if not isinstance(mapping, dict) or not mapping or len(mapping) > 87:
+    # A plausible FIPS prefix or caller-provided map is not evidence that
+    # official MN election county "03" is the county the caller claims.
+    # Require all 87 immutable reviewed source identities, not a subset.
+    mapping = pinned_county_map()
+    if mapping is None:
+        return no("PINNED_MINNESOTA_87_COUNTY_CROSSWALK_UNAVAILABLE")
+    if review.get("election_day_official_county_table_rechecked") is not True:
+        return no("ELECTION_DAY_COUNTY_SOURCE_NOT_RECHECKED")
+    supplied = review.get("verified_county_id_to_fips")
+    if supplied is None:
         return no("VERIFIED_MINNESOTA_COUNTY_FIPS_MAPPING_MISSING")
-    if any(not re.fullmatch(r"\d{2}", k) or not isinstance(v, str) or
-           not re.fullmatch(r"27\d{3}", v) for k, v in mapping.items()) or (
-            len(set(mapping.values())) != len(mapping)
-    ):
-        return no("VERIFIED_MINNESOTA_COUNTY_FIPS_MAPPING_INVALID")
+    if not isinstance(supplied, dict) or supplied != mapping:
+        return no("UNVERIFIED_OR_MISMATCHED_87_COUNTY_FIPS_MAPPING")
     if not isinstance(source_text, str) or len(source_text.encode("utf-8")) > MAX_SOURCE_BYTES:
         return no("UNBOUNDED_OR_NON_TEXT_CANDIDATE_SOURCE")
     lines = source_text.splitlines()
