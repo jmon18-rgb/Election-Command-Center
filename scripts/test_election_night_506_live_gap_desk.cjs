@@ -37,6 +37,10 @@ assert.deepEqual([pulse.totals.House.zero,pulse.totals.Senate.zero,
 assert.equal(pulse.senate.length,35);
 assert.equal(pulse.unverifiedMachineIds.length,11,'Source-unpinned identity list must match current review ledger');
 assert.equal(pulse.unverifiedMachineIds.filter(x=>x.office==='House').length,7);
+assert(!pulse.unverifiedMachineIds.some(x=>x.id==='House|CA-13'),
+ 'Independently verified exact 2026 House ID hints cannot be labeled unknown');
+assert.equal(pulse.totals.House.byStatus.SECONDARY_NOT_QUERIED,212,
+ 'Exact House discovery IDs remain unreported votes, not 212 missing machine IDs');
 assert.equal(pulse.unverifiedMachineIds.filter(x=>x.office==='Governor').length,2);
 assert.equal(pulse.unverifiedMachineIds.filter(x=>x.office==='Senate').length,2);
 assert.equal(pulse.senateMissing,34);
