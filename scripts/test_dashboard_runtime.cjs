@@ -2611,6 +2611,18 @@ function __testSeedStaleOhioSenate(){
  // real-shaped *simulated* votes without overwriting foreground state.
  rehearsalClearPins();
  rehearsalPin('NC-SEN');
+ // Previous synthetic provider interruptions can leave a background office
+ // still in-flight. Drain its now-bounded transport first so this rehearsal
+ // measures House-down / Senate-up behavior, not leftover test fixtures.
+ const officeDrainStart=Date.now();
+ while(Date.now()-officeDrainStart<15500&&w.eval(
+  'enOpenAmericaReader.pending()>0||enWatchRefreshPending.size>0')){
+  await new Promise(resolve=>setTimeout(resolve,35));
+ }
+ assert.equal(w.eval('enOpenAmericaReader.pending()'),0,
+  'Prior source requests must settle or time out before the next outage test');
+ assert.equal(w.eval('enWatchRefreshPending.size'),0,
+  'No stale watched-office task may monopolize the Senate refresh');
  const rehearsalOffices=[];
  w.fetch=async url=>{
   const address=String(url);rehearsalOffices.push(address);
