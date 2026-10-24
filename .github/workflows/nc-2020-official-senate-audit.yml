@@ -1,0 +1,32 @@
+name: Audit original 2020 NC Senate precinct ZIP
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/audit_nc_2020_senate_official_zip.py'
+      - 'scripts/test_audit_nc_2020_senate_official_zip.py'
+      - '.github/workflows/nc-2020-official-senate-audit.yml'
+permissions:
+  contents: read
+jobs:
+  official-source-discovery:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test exact 2020 contest, source structure and vote arithmetic
+        run: |
+          python3 -m py_compile scripts/audit_nc_2020_senate_official_zip.py
+          python3 scripts/test_audit_nc_2020_senate_official_zip.py
+      - name: Audit real official 2020 NCSBE November 3 precinct archive
+        run: |
+          python3 scripts/audit_nc_2020_senate_official_zip.py --output /tmp/nc_2020_senate_discovery.json
+      - name: Preserve SHA and 100-county research artifact awaiting review
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-ncsbe-2020-senate-archive-not-model-approved
+          path: /tmp/nc_2020_senate_discovery.json
+          retention-days: 30
