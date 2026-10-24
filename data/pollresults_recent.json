@@ -1,26 +1,55 @@
 {
-  "updated_at": "2026-10-24T00:20:44.269394+00:00",
+  "updated_at": "2026-10-24T01:02:54.295047+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 821,
+      "available_in_source": 822,
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1256,
+      "available_in_source": 1257,
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 922,
+      "available_in_source": 923,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 299,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "CO-05",
+      "poll_id": "ecd9aa59-51ae-4518-9304-9c2f58d0baf8"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "CO-05",
+      "race_type": "house",
+      "state": "CO",
+      "poll_id": "ecd9aa59-51ae-4518-9304-9c2f58d0baf8",
+      "question_id": "922b79dc-0c73-4f92-ba59-5bc8e32ed2bb",
+      "pollster": "Public Policy Polling",
+      "dem_name": "Jessica Killin",
+      "rep_name": "Jeff Crank",
+      "dem": 47.0,
+      "rep": 47.0,
+      "margin": 0.0,
+      "field_end": "2026-10-20",
+      "field_start": "2026-10-19",
+      "posted_date": "2026-10-23",
+      "posted_source_datetime": "2026-10-23T20:50:00",
+      "posted_source_time": "10/23/26 20:50",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://x.com/cjwarnke/status/2113764039218397211?s=20",
+      "sample_population": "lv",
+      "sample_size": 577,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "CA-48",
       "race_type": "house",
