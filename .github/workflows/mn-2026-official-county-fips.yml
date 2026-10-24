@@ -1,0 +1,26 @@
+name: Verify all 87 Minnesota 2026 election county FIPS IDs
+on:
+  pull_request:
+    paths:
+      - 'data/mn_2026_official_county_fips_crosswalk.json'
+      - 'scripts/test_mn_2026_official_county_fips_crosswalk.py'
+      - '.github/workflows/mn-2026-official-county-fips.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/mn_2026_official_county_fips_crosswalk.json'
+      - 'scripts/test_mn_2026_official_county_fips_crosswalk.py'
+      - '.github/workflows/mn-2026-official-county-fips.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  county-geography-identity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/test_mn_2026_official_county_fips_crosswalk.py
