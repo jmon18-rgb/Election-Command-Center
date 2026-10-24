@@ -34,7 +34,7 @@
     !Array.isArray(input.counties)||input.counties.length<1||input.counties.length>100)
    return fail('Candidate-only results identity or missing-ballot safeguards failed');
   const observed=Date.parse(input.archive_checked_at||'');
-  const first=Date.parse('2026-11-03T05:00:00Z');
+  const first=Date.parse('2026-11-04T00:30:00Z');
   if(!Number.isFinite(observed)||observed<first||observed>now+15*60000||
     now-observed>120*60000)return fail('Official ZIP observation is stale or future-dated');
   const seen=new Set(),rows=[];

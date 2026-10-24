@@ -47,9 +47,9 @@ def build(payload, review, county_fips, *, checked_at):
     review = validate_review(review)
     observed = dt.datetime.fromisoformat(checked_at.replace("Z", "+00:00"))
     if observed.tzinfo is None or observed.utcoffset() != dt.timedelta(0) or (
-        observed < dt.datetime(2026, 11, 3, 5, tzinfo=dt.timezone.utc)
+        observed < dt.datetime(2026, 11, 4, 0, 30, tzinfo=dt.timezone.utc)
     ):
-        raise ValueError("Archive retrieval time is outside 2026 election window")
+        raise ValueError("Official NC ZIP retrieval cannot predate November 3 polls close")
     stage = stage_zip(payload, manifest={
         "election_date": "2026-11-03",
         "source_url": SOURCE,

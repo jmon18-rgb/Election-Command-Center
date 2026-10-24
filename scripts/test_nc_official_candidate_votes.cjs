@@ -11,11 +11,12 @@ const data={schema:'nc-official-candidate-votes-v1',election_date:'2026-11-03',
  state:'NC',race_key:'NC-SEN',office:'Senate',
  source:{url:FILE,sha256:sha,archive_member:'results_pct_20261103.txt',
  contest_name:'US SENATE',contest_group_id:'37'},
- archive_checked_at:'2026-11-04T00:15:00Z',ballots_reported:null,
+ archive_checked_at:'2026-11-04T00:45:00Z',ballots_reported:null,
  reporting_fraction:null,may_move_national_needle:false,counties:[county]};
-const now=Date.parse('2026-11-04T00:20:00Z');
+const now=Date.parse('2026-11-04T00:50:00Z');
 let good=api.prepare(data,exp,now);
 assert.equal(good.ready,true);
+assert.equal(api.prepare({...data,archive_checked_at:'2026-11-04T00:30:00Z'},exp,now).ready,true);
 assert.equal(good.rows[0].total,100);
 assert.equal(good.ballots_reported,null);
 assert.equal(good.may_move_national_needle,false);
@@ -26,6 +27,7 @@ const bad=[
  [{...data,reporting_fraction:0.9},exp],
  [{...data,source:{...data.source,sha256:'b'.repeat(64)}},exp],
  [{...data,archive_checked_at:'2026-11-03T12:00:00Z'},exp],
+ [{...data,archive_checked_at:'2026-11-04T00:29:59Z'},exp],
  [{...data,archive_checked_at:'2026-11-04T05:00:00Z'},exp],
  [{...data,source:{...data.source,url:'https://unverified.example.com/zip'}},exp],
  [{...data,counties:[county,county]},exp],

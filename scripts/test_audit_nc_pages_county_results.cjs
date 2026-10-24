@@ -41,6 +41,7 @@ const fail=[
  [approved,{...snapshot,ballots_reported:300},when],
  [approved,{...snapshot,reporting_fraction:0.75},when],
  [approved,{...snapshot,archive_checked_at:'2026-11-03T20:00:00Z'},when],
+ [approved,{...snapshot,archive_checked_at:'2026-11-04T00:29:59Z'},when],
  [approved,{...snapshot,counties:[]},when],
  [{...approved,snapshot_path:'./data/fake.json'},snapshot,when],
  [{...approved,expected:{...approved.expected,reviewed:false}},snapshot,when]

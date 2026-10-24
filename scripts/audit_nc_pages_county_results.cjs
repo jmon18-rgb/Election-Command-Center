@@ -19,7 +19,7 @@ const INDEX_FILES=[
  'scripts/nc_official_candidate_votes.js',
  'scripts/nc_county_results_desk_startup.js'
 ];
-const START=Date.parse('2026-11-03T05:00:00Z');
+const START=Date.parse('2026-11-04T00:30:00Z');
 const END=Date.parse('2026-11-06T06:00:00Z');
 
 function gitRevision(code){
