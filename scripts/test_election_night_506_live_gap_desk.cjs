@@ -40,11 +40,17 @@ assert.equal(stalePulse.sourceIdentityAuditMaxAgeHours,6);
 assert.equal(stalePulse.totals.House.reported,1);
 assert.equal(stalePulse.totals.Senate.reported,1);
 assert.equal(stalePulse.professional_calls_verified,0);
+assert.equal(stalePulse.lastValidVoteSourceAt,'2026-11-04T02:54:00.000Z');
+assert.equal(stalePulse.lastValidVoteAgeMinutes,6);
+assert.equal(stalePulse.lastValidVoteRace,'House|TX-01');
 const offNight=Date.parse('2026-11-02T12:00:00Z');
 const offRecent={...ledger,generated_at:new Date(offNight-7*60*60000).toISOString()};
-assert.equal(api.build(offRecent,res,state,offNight).sourceIdentityAuditStale,false);
+// There cannot be any real 2026 vote evidence on November 2. Exercise
+// the identity-registry age rule with a zero-observation reconciliation.
+const offNightNoVotes=results({snapshots:{}});
+assert.equal(api.build(offRecent,offNightNoVotes,state,offNight).sourceIdentityAuditStale,false);
 assert.equal(api.build({...ledger,generated_at:
- new Date(offNight-25*60*60000).toISOString()},res,state,offNight)
+ new Date(offNight-25*60*60000).toISOString()},offNightNoVotes,state,offNight)
  .sourceIdentityAuditStale,true);
 assert.deepEqual(Object.keys(pulse.totals),['House','Senate','Governor']);
 assert.deepEqual([pulse.totals.House.total,pulse.totals.Senate.total,
@@ -106,6 +112,9 @@ assert.equal(degraded.senate.find(x=>x.id==='Senate|NC').status,'PRIMARY_DEGRADE
 const noData=api.build(ledger,results({snapshots:{}}),
  {House:'missing',Senate:'missing',Governor:'missing'},now);
 assert.equal(noData.totals.House.reported,0);
+assert.equal(noData.lastValidVoteSourceAt,null);
+assert.equal(noData.lastValidVoteAgeMinutes,null);
+assert.equal(noData.lastValidVoteRace,null);
 assert.equal(noData.senate.find(x=>x.id==='Senate|NC').status,'PRIMARY_AWAITING');
 for(const corrupt of [
  {...ledger,races:ledger.races.slice(1)},
@@ -113,6 +122,20 @@ for(const corrupt of [
  {...ledger,generated_at:'2026-11-05T00:00:00Z'},
  {...ledger,status:'VERIFIED_ALL_LIVE_RESULTS'}
 ])assert.throws(()=>api.build(corrupt,res,state,now));
+const staleVoteStamp={...res,records:{...res.records,
+ 'House|TX-01':{...res.records['House|TX-01'],
+ sourceAsOf:'2026-11-03T23:00:00Z'}}};
+assert.throws(()=>api.build(ledger,staleVoteStamp,state,now),
+ /Missing\/stale\/future provider timestamp/);
+const absentVoteStamp={...res,records:{...res.records,
+ 'Senate|NC':{...res.records['Senate|NC'],sourceAsOf:null}}};
+assert.throws(()=>api.build(ledger,absentVoteStamp,state,now),
+ /Missing\/stale\/future provider timestamp/);
+const futureVoteStamp={...res,records:{...res.records,
+ 'Senate|NC':{...res.records['Senate|NC'],
+ sourceAsOf:'2026-11-04T03:15:01Z'}}};
+assert.throws(()=>api.build(ledger,futureVoteStamp,state,now),
+ /Missing\/stale\/future provider timestamp/);
 const badResults={...res,authoritativeCalls:1};
 assert.throws(()=>api.build(ledger,badResults,state,now));
 function node(tag){
@@ -134,6 +157,11 @@ assert.equal(t.includes('SOURCE-ID AUDIT OVERDUE'),
  'The visible warning must reflect only the audit-age flag');
 
 assert.match(t,/House 1\/435 · Senate 1\/35 · Governors 0\/36/);
+assert.match(t,/LATEST VALID SOURCE-PUBLISHED VOTES · 2026-11-04T02:54:00.000Z/);
+assert.match(t,/6m old · House\|TX-01/);
+const noVotesHost=node('div');
+api.render(noVotesHost,noData,{createElement:node});
+assert.match(flatten(noVotesHost),/NO CURRENT VALIDATED 2026 VOTE TIMESTAMP/);
 assert.match(t,/Senate source gaps · 34/);
 if(otherPending.length){
  assert(t.includes('Unpinned House / governor source IDs · '+otherPending.length));

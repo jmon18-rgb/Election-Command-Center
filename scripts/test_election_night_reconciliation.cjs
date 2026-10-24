@@ -310,6 +310,14 @@ for(const [office,key,early,final] of [
  assert.equal(accepted.authoritativeCalls,0,
   'A valid provider hint is not an independently professional call');
 }
+const directClock=api.reconcile({...input,civic:{}});
+assert.equal(directClock.records['Senate|NC'].sourceAsOf,
+ input.snapshots.Senate.as_of);
+assert.equal(directClock.records['Senate|ME'].sourceAsOf,null,
+ 'An unqueried supplemental race never invents a source timestamp');
+const civicClock=api.reconcile({...input,civic:{'Senate|ME':civic}});
+assert.equal(civicClock.records['Senate|ME'].sourceAsOf,
+ civic.last_updated,'Supplemental clock belongs to the exact source');
 const kansasEarlyHouse=sourceCall('House','KS-02',
  '2026-11-04T01:20:00Z','2026-11-04T01:20:00Z');
 assert.equal(kansasEarlyHouse.providerCalls,1,
