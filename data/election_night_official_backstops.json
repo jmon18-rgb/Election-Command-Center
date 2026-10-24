@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "event": "2026-11-03",
-  "last_verified": "2026-10-23",
+  "last_verified": "2026-10-24",
   "status": "OFFICIAL_HUMAN_FALLBACK_LINKS_NOT_AUTOMATED_RESULTS",
   "links": [
     {
@@ -78,7 +78,9 @@
       "mode": "certified_only_not_election_night",
       "race_ids": [
         "Senate|MA"
-      ]
+      ],
+      "verified_at": "2026-10-24",
+      "source_reference": "https://www.sec.state.ma.us/divisions/elections/voting-information/announcing-certifying.htm"
     },
     {
       "state": "MS",
