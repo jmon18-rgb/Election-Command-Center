@@ -48,13 +48,15 @@ class NationalCoveragePulse(unittest.TestCase):
         self.assertEqual(by_race["Senate|ME"],"SECONDARY_PIN_ONLY_NOT_QUERIED")
 
     def test_source_timing_stale_and_zero_are_separate_states(self):
-        source={"GA":{"total":50,"called":False}}
+        source={"GA":{"total":50,"called":False,"cands":[
+            {"n":"Candidate D","p":"D","v":25},
+            {"n":"Candidate R","p":"R","v":25}]}}
         doc=pulse(self.ledger,{"Senate":office_document(
             "Senate","2026-11-03T21:00:00Z",source)},NOW)
         assert doc["offices"]["Senate"]["status_counts"][
             "PRIMARY_NO_RELIABLE_2026_UPDATE_TIME"]==1
         stale=pulse(self.ledger,{"Senate":office_document(
-            "Senate","2026-11-03T23:01:00Z",source)},
+            "Senate","2026-11-04T00:01:00Z",source)},
             dt.datetime(2026,11,4,5,tzinfo=dt.timezone.utc))
         assert stale["offices"]["Senate"]["status_counts"]["PRIMARY_REPORTED_BUT_STALE"]==1
         source["GA"]["total"]=0
@@ -62,6 +64,54 @@ class NationalCoveragePulse(unittest.TestCase):
             "Senate","2026-11-04T00:55:00Z",source)},NOW)
         assert zero["offices"]["Senate"]["status_counts"][
             "PRIMARY_ZERO_REPORTED_NOT_ZERO_VOTES_CAST"]==1
+
+    def test_per_state_poll_close_both_source_and_receipt_times(self):
+        ballots={
+            "GA-01":{"total":40,"called":False,"cands":[
+                {"n":"D Georgia","p":"D","v":25},{"n":"R Georgia","p":"R","v":15}]},
+            "TX-01":{"total":30,"called":False,"cands":[
+                {"n":"D Texas","p":"D","v":13},{"n":"R Texas","p":"R","v":17}]},
+            "CA-13":{"total":20,"called":False,"cands":[
+                {"n":"D California","p":"D","v":11},{"n":"R California","p":"R","v":9}]}}
+        h=office_document("House","2026-11-04T01:02:00Z",ballots)
+        result=pulse(self.ledger,{"House":h},
+                     dt.datetime(2026,11,4,1,10,tzinfo=dt.timezone.utc))
+        self.assertEqual(result["offices"]["House"]["status_counts"][
+            "PRIMARY_OBSERVED_CANDIDATE_COUNTS_UNCALLED"],2)
+        self.assertEqual(result["offices"]["House"]["status_counts"][
+            "PRIMARY_SOURCE_BEFORE_STATE_POLL_CLOSE"],1,
+            "California mock cannot appear while its local polls remain open")
+        # A source stamped BEFORE local closure is still invalid hours later.
+        earlier=office_document("House","2026-11-04T00:59:59Z",{"TX-01":ballots["TX-01"]})
+        result=pulse(self.ledger,{"House":earlier},
+                     dt.datetime(2026,11,4,3,tzinfo=dt.timezone.utc))
+        self.assertEqual(result["offices"]["House"]["status_counts"][
+            "PRIMARY_SOURCE_BEFORE_STATE_POLL_CLOSE"],1)
+
+    def test_candidate_arithmetic_must_be_real_before_coverage_credit(self):
+        good={"total":45,"called":False,"cands":[
+            {"n":"D","p":"D","v":23},{"n":"R","p":"R","v":22}]}
+        for bad in [
+            {**good,"cands":[]},
+            {**good,"cands":[{"n":"D","p":"D","v":35},{"n":"R","p":"R","v":20}]},
+            {**good,"cands":[good["cands"][0],good["cands"][0]]},
+            {**good,"cands":[{"n":"D","p":"D","v":True}]},
+            {**good,"cands":[{"n":"D","p":"D","v":-1}]},
+            {**good,"cands":[{"n":"D","p":"D","v":"45"}]},
+            {**good,"cands":None},
+        ]:
+            result=pulse(self.ledger,{"Senate":office_document(
+                "Senate","2026-11-04T01:05:00Z",{"GA":bad})},
+                dt.datetime(2026,11,4,1,10,tzinfo=dt.timezone.utc))
+            self.assertEqual(result["offices"]["Senate"]["status_counts"][
+                "PRIMARY_INVALID_CANDIDATE_ARITHMETIC"],1)
+            self.assertNotIn("PRIMARY_OBSERVED_CANDIDATE_COUNTS_UNCALLED",
+                             result["offices"]["Senate"]["status_counts"])
+        good_result=pulse(self.ledger,{"Senate":office_document(
+            "Senate","2026-11-04T01:05:00Z",{"GA":good})},
+            dt.datetime(2026,11,4,1,10,tzinfo=dt.timezone.utc))
+        self.assertEqual(good_result["offices"]["Senate"]["status_counts"][
+            "PRIMARY_OBSERVED_CANDIDATE_COUNTS_UNCALLED"],1)
 
     def test_identity_duplicate_call_and_future_data_fail(self):
         bad=json.loads(json.dumps(self.ledger))
