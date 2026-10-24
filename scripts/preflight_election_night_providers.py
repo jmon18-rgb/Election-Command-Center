@@ -9,7 +9,9 @@ import argparse
 import datetime as dt
 import json
 from pathlib import Path
-from national_results_coverage_pulse import pulse
+from national_results_coverage_pulse import (
+    pulse, valid_candidates, state_poll_closings, _time
+)
 import urllib.error
 import urllib.request
 
@@ -24,6 +26,9 @@ END = dt.datetime(2026, 11, 5, 6, tzinfo=dt.timezone.utc)
 
 
 def validate_primary(doc, office, now):
+    if not isinstance(now,dt.datetime) or now.tzinfo is None:
+        raise ValueError("Source preflight must use timezone-aware observer clock")
+    now=now.astimezone(dt.timezone.utc)
     if (not isinstance(doc, dict) or doc.get("api") != 1 or
             doc.get("year") != 2026 or doc.get("office") != office or
             doc.get("source") not in ("", "state") or
@@ -34,13 +39,10 @@ def validate_primary(doc, office, now):
             not isinstance(doc.get("counts"), dict) or
             doc["counts"].get("races") != len(doc["races"])):
         raise ValueError("Open America 2026 office schema mismatch")
-    if doc.get("as_of"):
-        try:
-            at = dt.datetime.fromisoformat(doc["as_of"].replace("Z", "+00:00"))
-        except (ValueError, TypeError) as exc:
-            raise ValueError("Invalid Open America as_of timestamp") from exc
-        if at.tzinfo is None or at > now+dt.timedelta(minutes=15):
-            raise ValueError("Future/naive provider timestamp")
+    at=_time(doc["as_of"]) if doc.get("as_of") else None
+    if at is not None and at>now+dt.timedelta(minutes=15):
+        raise ValueError("Future provider source timestamp")
+    close_map=state_poll_closings()
     import re
     pattern = {
         "House": r"[A-Z]{2}-\d{2}",
@@ -69,11 +71,19 @@ def validate_primary(doc, office, now):
                      not 0<=cand["pct"]<=100)):
                 raise ValueError("Invalid candidate vote arithmetic")
             total+=cand["v"]
-        if total>row["total"] or row["total"]>0 and not row["cands"]:
-            raise ValueError("Candidate votes exceed source contest totals")
-        positive+=int(row["total"]>0)
-    if positive and now<START:
-        raise ValueError("Pre-election provider unexpectedly reports candidate votes")
+        if (total>row["total"] or not valid_candidates(row,row["total"])):
+            raise ValueError("Candidate source arithmetic or identity invalid")
+        if row["total"]>0:
+            if now<START:
+                raise ValueError("Pre-election provider unexpectedly reports candidate votes")
+            close=close_map.get(key[:2])
+            if not close or not at or now<close or at<close:
+                raise ValueError("State-local poll closure or source timestamp not satisfied")
+            if now-at>dt.timedelta(hours=3):
+                raise ValueError("Stale source result cannot count as a live preflight sample")
+            if doc["stale"] or not (doc["live"] or doc["final"]):
+                raise ValueError("Inactive source snapshot is not reporting candidate votes")
+            positive+=1
     return {"status": "SOURCE_TRANSPORT_AND_SCHEMA_VALID_NOT_LIVE_VERIFIED",
             "office": office, "listed_races": len(doc["races"]),
             "positive_vote_races": positive, "winner_calls_verified": 0}
