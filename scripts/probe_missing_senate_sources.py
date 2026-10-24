@@ -7,6 +7,7 @@ are published. Provider HTTP/CORS errors remain errors, never missing votes.
 import argparse
 import datetime as dt
 import json
+import re
 from pathlib import Path
 from test_civicapi_live_source import source
 
@@ -27,7 +28,8 @@ def same_race(row, state, name):
         and row.get("province") == state
         and row.get("municipality") is None
         and row.get("district") is None
-        and row.get("election_date") == ELECTION
+        and isinstance(row.get("election_date"), str)
+        and re.fullmatch(r"2026-11-03(?:T[0-9:.+Z-]+)?", row["election_date"]) is not None
         and row.get("election_name") == name
         and row.get("type") == "US Senate"
         and row.get("election_type") == "General"
