@@ -42,6 +42,13 @@ class OfficialBackstopsTests(unittest.TestCase):
                          "pre_election_mock_results_only")
         self.assertEqual(next(x for x in self.links["links"] if x["state"]=="OH")["mode"],
                          "pre_election_mock_results_only")
+        north_dakota=next(x for x in self.links["links"] if x["state"]=="ND")
+        self.assertEqual(north_dakota["url"],"https://resultsnd.sos.nd.gov/")
+        self.assertEqual(north_dakota["race_ids"],["House|ND-00"])
+        self.assertEqual(north_dakota["mode"],"2026_results_landing")
+        self.assertEqual(north_dakota["verified_at"],"2026-10-24")
+        self.assertEqual(north_dakota["source_reference"],
+                         "https://www.sos.nd.gov/elections/election-results")
         mass=next(x for x in self.links["links"] if x["state"]=="MA")
         self.assertEqual(mass["mode"],"certified_only_not_election_night")
         self.assertEqual(mass["race_ids"],["Senate|MA"])
