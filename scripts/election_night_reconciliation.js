@@ -47,6 +47,11 @@
    {state:'standby',usable:false}:{state:'invalid',usable:false};
   if(hasVotes&&ts<EARLIEST)return {state:'invalid',usable:false};
   if(now-ts>THREE_HOURS)return {state:'stale',usable:false};
+  // Reachable data is not necessarily an active count: the primary source
+  // can carry test/placeholder numbers while it explicitly says live=false.
+  // Keep genuine finished snapshots (final=true) when freshly timestamped.
+  if(snapshot.live===false&&snapshot.final!==true)
+   return {state:hasVotes?'invalid':'standby',usable:false};
   return {state:hasVotes?'reporting':'current_no_votes',
    usable:true,asOf:snapshot.as_of};
  }
@@ -67,6 +72,10 @@
    if(!Number.isSafeInteger(sum)||sum>record.total)return null;
    out[party==='D'||party==='R'?party:'O']+=count;
   }
+  // A race-level total can include ballots not attributed to a listed
+  // candidate. Do not call that "observed candidate votes" if every listed
+  // candidate count is still zero. Never infer missing major parties.
+  if(record.total>0&&sum===0)return null;
   return out;
  };
  const majorLead=t=>t&&t.D!==t.R?(t.D>t.R?'D':'R'):null;
