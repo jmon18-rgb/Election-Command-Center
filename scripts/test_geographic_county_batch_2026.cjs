@@ -6,14 +6,15 @@ const row={election_date:'2026-11-03',election_type:'General',is_test:false,
  updated_at:'2026-11-04T00:35:00Z',reporting_status:'partial',ballots_reported:100,
  candidates:[{name:'D person',party:'D',votes:55},{name:'R person',party:'R',votes:45}]};
 const id='NC-SEN|37001';
-const initial=process({},[row]);
+const NOW=Date.parse('2026-11-04T00:45:00Z');
+const initial=process({},[row],{},NOW);
 assert.equal(initial.updates.length,1);
 assert.equal(initial.updates[0].mode,'NO_COMPARABLE_BASELINE');
 assert.equal(initial.rows[id].ballots_reported,100);
 assert.equal(initial.may_move_national_needle,false);
 const update={...row,updated_at:'2026-11-04T00:40:00Z',ballots_reported:150,
  candidates:[{name:'D person',party:'D',votes:80},{name:'R person',party:'R',votes:70}]};
-const second=process(initial.rows,[row,{...row,is_test:true},update]);
+const second=process(initial.rows,[row,{...row,is_test:true},update],{},NOW);
 assert.equal(second.rejected.length,2);
 assert.equal(second.updates.length,1);
 assert.equal(second.rows[id].ballots_reported,150);
@@ -21,14 +22,22 @@ assert.equal(initial.rows[id].ballots_reported,100);
 const other={...row,county_id:'37003',provider_race_id:'race-nc'};
 const mixed=process(second.rows,[other,{...update,ballots_reported:90,
  candidates:[{name:'D person',party:'D',votes:45},{name:'R person',party:'R',votes:45}],
- updated_at:'2026-11-04T00:42:00Z'}]);
+ updated_at:'2026-11-04T00:42:00Z'}],{},NOW);
 assert.equal(mixed.updates.length,1);
 assert.equal(mixed.rejected[0].reason,'UNMARKED_DECREASE');
 assert.equal(mixed.rows['NC-SEN|37003'].ballots_reported,100);
 assert.equal(mixed.rows[id].ballots_reported,150);
-assert.equal(process({},[]).accepted,false);
+assert.equal(process({},[],{},NOW).accepted,false);
 const preclose={...row,updated_at:'2026-11-04T00:20:00Z'};
-const rejectedEarly=process({},[preclose]);
+const rejectedEarly=process({},[preclose],{},NOW);
 assert.equal(rejectedEarly.updates.length,0);
 assert.equal(rejectedEarly.rejected[0].reason,'INVALID_OR_UNVERIFIED');
+const preViewer=process({},[row],{},Date.parse('2026-11-04T00:29:59Z'));
+assert.equal(preViewer.updates.length,0,
+ 'A future-stamped county record cannot be applied before local polls close');
+assert.equal(preViewer.rejected[0].reason,'LOCAL_POLLS_OPEN_OR_SOURCE_PREMATURE');
+const staleViewer=process({},[row],{},Date.parse('2026-11-04T04:00:00Z'));
+assert.equal(staleViewer.rejected[0].reason,'PREMATURE_FUTURE_OR_STALE_VIEWER_CLOCK');
+assert.equal(staleViewer.updates.length,0);
+assert.equal(process({},[row],{},NaN).accepted,false);
 console.log('County batch snapshot integration passed');

@@ -15,7 +15,10 @@
   if(!contract||!batch)return {accepted:false,reason:'DEPENDENCIES_UNAVAILABLE'};
   const validated=contract.normalize(envelope,expected,now);
   if(!validated.ok)return {accepted:false,reason:validated.reason};
-  const processed=batch.process(previous,validated.rows,baselines);
+  // Pass the same validated viewer clock across source-contract,
+  // county-batch and geographic-bridge checks. Otherwise downstream
+  // Date.now() can disagree with a replay/loaded laptop snapshot.
+  const processed=batch.process(previous,validated.rows,baselines,now);
   // A partial geographic comparison is descriptive ONLY: same verified
   // source/race, same counties, valid 2024 two-party baseline. Never let
   // a sample of reported counties change national odds or imply statewide
