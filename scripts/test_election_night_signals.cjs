@@ -63,7 +63,7 @@ assert.equal(find('ohio').state,'earned');
 for(const [office,key,pre,closed] of [
  ['Senate','IA','2026-11-04T01:59:00Z','2026-11-04T02:00:00Z'],
  ['Governor','CA','2026-11-04T03:59:00Z','2026-11-04T04:00:00Z'],
- ['Senate','AK','2026-11-04T04:59:00Z','2026-11-04T05:00:00Z']
+ ['Senate','AK','2026-11-04T05:59:00Z','2026-11-04T06:00:00Z']
 ]){
  const row=mk(office,key,'Democrat Candidate','D');
  row.last_updated=pre;
@@ -73,6 +73,22 @@ for(const [office,key,pre,closed] of [
  assert.equal(signals.validatedCall(row,Date.parse(closed))?.party,'D',
   key+' valid postclose source can recover');
 }
+// Legitimate early source totals can precede the LAST polling closure,
+ // but cannot award a statewide race call or trigger a celebratory milestone.
+for(const [office,key,early,last] of [
+ ['Senate','TX','2026-11-04T01:00:00Z','2026-11-04T02:00:00Z'],
+ ['Governor','FL','2026-11-04T00:00:00Z','2026-11-04T01:00:00Z'],
+ ['Governor','AK','2026-11-04T05:00:00Z','2026-11-04T06:00:00Z']
+]){
+ const row=mk(office,key,'Candidate D','D');
+ row.last_updated=early;
+ assert.equal(signals.validatedCall(row,Date.parse(last)+3600000),null,
+  key+' cannot revive a source-stamped pre-final statewide winner');
+ row.last_updated=last;
+ assert.equal(signals.validatedCall(row,Date.parse(last))?.party,'D',
+  key+' can accept a new post-final-close verified provider call');
+}
+
 const iowaPremature=mk('Senate','IA','Iowa candidate','D');
 iowaPremature.last_updated='2026-11-04T01:59:00Z';
 const earlyAwards=signals.evaluateMilestones(
