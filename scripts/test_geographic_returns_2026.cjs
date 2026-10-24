@@ -10,9 +10,15 @@ const row=overrides=>({...base,...overrides});
 assert(validate(base));
 for(const changes of [{is_test:true},{verified_source:false},{election_date:'2024-11-05'},
  {county_id:'36107'},{race_key:'NC-SEN'},{ballots_reported:90},
- {updated_at:'2026-10-23T00:05:00Z'},{candidates:[]}]){
+ {updated_at:'2026-10-23T00:05:00Z'},
+ {updated_at:'2026-11-03T23:59:59Z'},
+ {candidates:[]}]){
  assert.equal(validate(row(changes)),null,JSON.stringify(changes));
 }
+// VA's local polls close at 2026-11-04T00:00Z; valid source
+// provenance alone cannot promote an older positive-vote timestamp.
+assert.equal(validate(row({updated_at:'2026-11-03T23:59:59Z'})),null);
+assert(validate(row({updated_at:'2026-11-04T00:00:00Z'})));
 assert.equal(reconcile(base,base).reason,'STALE_OR_DUPLICATE');
 assert.equal(reconcile(base,row({updated_at:'2026-11-04T00:06:00Z',ballots_reported:90,candidates:[{name:'Candidate D',party:'D',votes:45},{name:'Candidate R',party:'R',votes:40}]})).reason,
  'UNMARKED_DECREASE');

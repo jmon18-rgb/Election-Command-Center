@@ -9,9 +9,9 @@
  if(root)root.CountySourceIngestion2026=api;
 })(typeof window!=='undefined'?window:null,function(contract,batch){
  'use strict';
- function ingest(previous,envelope,expected,baselines={}){
+ function ingest(previous,envelope,expected,baselines={},now=Date.now()){
   if(!contract||!batch)return {accepted:false,reason:'DEPENDENCIES_UNAVAILABLE'};
-  const validated=contract.normalize(envelope,expected);
+  const validated=contract.normalize(envelope,expected,now);
   if(!validated.ok)return {accepted:false,reason:validated.reason};
   const processed=batch.process(previous,validated.rows,baselines);
   return {...processed,source_url:validated.source_url,

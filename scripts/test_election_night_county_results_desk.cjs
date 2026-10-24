@@ -16,6 +16,15 @@ const valid=prepare(snapshot,expected,now);
 assert(valid.ready);assert.equal(valid.rows[0].fips,'37183');
 assert.equal(valid.may_move_national_needle,false);
 assert.equal(prepare(snapshot,expected,now+3*3600000).ready,false);
+assert.equal(prepare({...snapshot,counties:[{...row,
+ updated_at:'2026-11-04T00:29:59Z'}]},expected,now).ready,false,
+ 'County desk must never show pre-NC-close synthetic counts');
+assert.equal(prepare({...snapshot,counties:[{...row,
+ updated_at:'2026-11-04T00:51:00Z'}]},expected,now).ready,false,
+ 'County desk must reject county snapshots more than 15 minutes in future');
+assert.equal(prepare({...snapshot,counties:[{...row,
+ updated_at:'2026-11-04T00:30:00Z'}]},expected,now).ready,true,
+ 'Exactly at North Carolina poll-close boundary is eligible');
 assert.equal(prepare({...snapshot,source_verified:false},expected,now).ready,false);
 assert.equal(prepare({...snapshot,production:false},expected,now).ready,false);
 assert.equal(prepare({...snapshot,counties:[{...row,fips:'36061'}]},expected,now).ready,false);
