@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-24T19:00:38.623720Z",
+  "updated_at": "2026-10-24T19:13:58.781216Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
     "primary_source_checked": 5,
-    "advisory_related_headline_buckets": 20,
-    "advisory_related_headlines": 44
+    "advisory_related_headline_buckets": 21,
+    "advisory_related_headlines": 46
   },
   "advisory_related_headlines": [
     {
@@ -267,6 +267,24 @@
       "publisher": "NJ.com",
       "published_at": "2026-10-24T14:30:00Z",
       "detected_at": "2026-10-24T14:40:27.289500Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "1a48f7168c41e11cfeaa",
+      "title": "Join our election livestream; Jersey Dems on guard for Trump voting \u2018interference\u2019 | Mikie\u2019s World - NJ.com",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOYTV6NkZURmZQRUZxV29rVXNiTVJlNzJucHctbnBxcXlieGgwZzBzN2tyajk4Ykd1TjQtT2o0bWRGZTgwNldBb0hTS3RoVHJDSGtFZ2hkWHhfWHNmRVB4R09jOVN1S2J4UndMdHAwb1UtSU5ZNzhBR2NhaXBkanI1d2V0eEg0Ni1GQmVVNWpCdWs1bEp5MHFGek5VY1ZBWGNRSVlobXd3S1RRa3E3b1NFMm1NcXp0X0xERm1jLXE2LW1VbGo0aWpJUA?oc=5",
+      "publisher": "NJ.com",
+      "published_at": "2026-10-24T14:30:00Z",
+      "detected_at": "2026-10-24T19:13:58.781216Z",
       "state_hints": [],
       "topic_hints": [
         "security",
@@ -4924,25 +4942,6 @@
       "state_hints": [],
       "topic_hints": [],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "76ae0a641076efb3b13d",
-      "title": "NC to send letters to 1,400 \u2018potential non-citizens\u2019 on voter rolls - Raleigh News & Observer",
-      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNUENKUmpGT3pVRUtfM2l6Q3FEVXRFWFpjLUZwenp2WlB6dklDS2IwWFN6RXowbzYwbjEzZEh5SDA2bU8tR0t6ei1zMnU1V0l2dVhfb2dvWHEyVjJURzdlQjU0NTJ6d0U2NFpZdVRkaFhvWnhrTDMxN1JlaGZacDZyd0pJZHNlNFZJX3ZGWNIBjAFBVV95cUxOeGk3am4xZmh2bk9ydHBkcG9JTGFSS0lTRGtKeDRaS0FfcUlwYUFocFJPYkI4c0xPUDJPZ21LZzJJX0g5SEFuOURIQU1LbzkyZDJyYUNzWmp5cTZtc3loakFiWWxNM1ZrQzI1dnEtTFJmaHQwRWs1LTVYei1EaFB4R2hOVUpJbkIwUk1TWg?oc=5",
-      "publisher": "Raleigh News & Observer",
-      "published_at": "2026-10-13T21:04:35Z",
-      "detected_at": "2026-10-13T21:51:56.712815Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [
-        "1,400"
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
