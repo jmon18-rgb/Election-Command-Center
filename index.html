@@ -6597,9 +6597,26 @@ function enReconnectGap(last,now){
  return Number.isFinite(last)&&Number.isFinite(now)&&now>=last&&now-last>=120000;
 }
 let enLastLiveHeartbeat=Date.now(),enLastReconnect=0;
+// A tab opened before November 3 remains in 2024 archival mode unless it
+// crosses the Election Day boundary while still running. Make the default
+// handoff once; an operator who explicitly selected the archive keeps it.
+let enElectionNightManualArchive=false;
+function enElectionNightAutoHandoff(now=Date.now()){
+ // Before the switch, enIsVisible() deliberately treats the pre-election
+ // HOME briefing as archive-only. Check the active view directly, otherwise
+ // the usual homepage could never make the overnight handoff.
+ const activeView=Boolean(document.querySelector?.('#brief')?.classList.contains('active')||
+  document.querySelector?.('#electionNight')?.classList.contains('active'));
+ if(enModeYear!==2024||enElectionNightManualArchive||
+    !Number.isFinite(now)||now<Date.parse('2026-11-03T05:00:00Z')||
+    document.visibilityState!=='visible'||!activeView)return false;
+ enSwitch(2026,enOffice);
+ return true;
+}
 function enReconnectAfterInterruption(force=false){
  const now=Date.now(),gap=enReconnectGap(enLastLiveHeartbeat,now);
  enLastLiveHeartbeat=now;
+ if(enElectionNightAutoHandoff(now))return true;
  if(!force&&!gap)return false;
  if(enModeYear!==2026||!enIsVisible()||
     document.visibilityState!=='visible'||
@@ -6628,8 +6645,12 @@ window.addEventListener('focus',()=>enReconnectAfterInterruption());
 setInterval(()=>{enReconnectAfterInterruption()},60000);
 
 $('#enMode2026').addEventListener('click',()=>enSwitch(2026,enOffice));
-$('#enMode2024').addEventListener('click',()=>enSwitch(2024,enOffice));
+$('#enMode2024').addEventListener('click',()=>{
+ enElectionNightManualArchive=true;
+ enSwitch(2024,enOffice);
+});
 $('#enArchiveSource').addEventListener('change',event=>{
+ enElectionNightManualArchive=true;
  enArchiveSource=event.target.value==='state'?'state':'medsl';
  enSwitch(2024,enOffice);
 });

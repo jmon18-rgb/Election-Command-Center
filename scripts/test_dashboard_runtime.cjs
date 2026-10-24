@@ -170,7 +170,10 @@ async function settle(){
 function __testSeedStaleOhioSenate(){
  enCivicByWatch['Senate|OH-special']={total:1000,called:'Candidate B',provider:'civicAPI'};
  enCivicValidatedGenerations['Senate|OH-special']=enCivicBreaker.status().generation-1;
-}`));
+}
+// Test-only access to lexical source state, never exposed by production.
+function __testOpenAmericaPending(){return enOpenAmericaReader.pending()}
+function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  assert.equal(w.ElectionNightTransport.createPool(4,64).status().concurrency_limit,4);
  assert.match(w.eval('enCivicFetchJson.toString()'),/enCivicRequestPool\.run/,
   'All overlapping manual and automatic sweeps must share bounded fetches');
@@ -351,7 +354,8 @@ function __testSeedStaleOhioSenate(){
  const oldGlanceClock=w.Date.now;
  w.Date.now=()=>Date.parse('2026-11-02T15:00:00Z');
  w.eval('updateFeedGlance()');
- assert.equal(get('#feedNews').dataset.status,'delayed');
+ assert(['delayed','unavailable'].includes(get('#feedNews').dataset.status),
+  'A weeks-old headline is never fresh; failed collector status is unavailable, not delayed');
  w.Date.now=oldGlanceClock;
  w.eval('updateFeedGlance()');
  assert.match(get('#privateContextStatus').textContent,/Repository fundamentals ACTIVE/,
@@ -2099,7 +2103,7 @@ function __testSeedStaleOhioSenate(){
   };
   const detail={
    ...row,election_type:row.type,percent_reporting:41,
-   last_updated:'2026-11-04T01:45:00Z',
+   last_updated:'2026-11-04T05:10:00Z',
    candidates:[
     {name:spec.state+' Democrat',party:'Democratic',votes:610,percent:61,winner:false},
     {name:spec.state+' Republican',party:'Republican',votes:390,percent:39,winner:false}
@@ -2113,7 +2117,7 @@ function __testSeedStaleOhioSenate(){
  assert.equal(w.StateBatchCivicAdapter.supports({office:'Senate',key:'NV'}),false,
   'Nevada has no 2026 Senate race in this batch');
  const batchOriginalClock=w.Date.now,batchFetch=w.fetch;
- w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ w.Date.now=()=>Date.parse('2026-11-04T05:30:00Z');
  let wrongBatchDetail=false;
  const batchURLs=[];
  w.fetch=async url=>{
@@ -2193,7 +2197,7 @@ function __testSeedStaleOhioSenate(){
    ]
   };
   const detail={...row,election_type:row.type,
-   percent_reporting:47,last_updated:'2026-11-04T01:45:00Z',
+   percent_reporting:47,last_updated:'2026-11-04T03:10:00Z',
    candidates:[
     {name:spec.state+' D',party:'Democratic',votes:620,percent:62,winner:false},
     {name:spec.state+' R',party:'Republican',votes:380,percent:38,winner:false}
@@ -2208,7 +2212,7 @@ function __testSeedStaleOhioSenate(){
   'Ohio regular Senate result must not masquerade as the 2026 special election');
  const nextClock=w.Date.now,nextFetch=w.fetch;
  const seenNext=[],badUpdates=new Set();
- w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ w.Date.now=()=>Date.parse('2026-11-04T03:20:00Z');
  w.fetch=async url=>{
   const address=String(url);seenNext.push(address);
   if(address.startsWith('https://civicapi.org/api/v2/race/search')){
@@ -2288,7 +2292,7 @@ function __testSeedStaleOhioSenate(){
    ]
   };
   const result={...searchRow,election_type:searchRow.type,
-   percent_reporting:50,last_updated:'2026-11-04T01:45:00Z',
+   percent_reporting:50,last_updated:'2026-11-04T03:10:00Z',
    candidates:[
     {name:'Candidate D',party:'Democratic',votes:540,percent:54,winner:false},
     {name:'Candidate R',party:'Republican',votes:460,percent:46,winner:false}
@@ -2303,7 +2307,7 @@ function __testSeedStaleOhioSenate(){
    'Uncontested Senate seat must not be invented');
  const fiveClock=w.Date.now,fiveFetch=w.fetch,fiveRequests=[];
  let fiveInvalidId=null;
- w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ w.Date.now=()=>Date.parse('2026-11-04T03:20:00Z');
  w.fetch=async(url)=>{
   const address=String(url);fiveRequests.push(address);
   if(address.startsWith('https://civicapi.org/api/v2/race/search')){
@@ -2384,7 +2388,7 @@ function __testSeedStaleOhioSenate(){
    ]
   };
   const detail={...row,election_type:row.type,percent_reporting:42,
-   last_updated:'2026-11-04T01:35:00Z',
+   last_updated:'2026-11-04T03:10:00Z',
    candidates:[
     {name:'Election D',party:'Democratic',votes:520,percent:52,winner:false},
     {name:'Election R',party:'Republican',votes:480,percent:48,winner:false}
@@ -2399,7 +2403,7 @@ function __testSeedStaleOhioSenate(){
   'Oklahoma governor was unverified and must stay off the strict roster');
  const almtClock=w.Date.now,almtFetch=w.fetch,almtRequests=[];
  let almtBadId=null;
- w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ w.Date.now=()=>Date.parse('2026-11-04T03:20:00Z');
  w.fetch=async(url)=>{
   const u=String(url);almtRequests.push(u);
   if(u.startsWith('https://civicapi.org/api/v2/race/search')){
@@ -2474,7 +2478,7 @@ function __testSeedStaleOhioSenate(){
    ]
   };
   const detail={...search,election_type:search.type,percent_reporting:41,
-   last_updated:'2026-11-04T01:45:00Z',
+   last_updated:'2026-11-04T04:10:00Z',
    candidates:[
     {name:'West D',party:'Democratic',votes:550,percent:55,winner:false},
     {name:'West R',party:'Republican',votes:450,percent:45,winner:false}
@@ -2488,7 +2492,7 @@ function __testSeedStaleOhioSenate(){
   'Mississippi Senate did not verify through source index; no pinned adapter');
  const westSourceClock=w.Date.now,westSourceFetch=w.fetch,westSourceRequests=[];
  let westSourceInvalidId=null;
- w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ w.Date.now=()=>Date.parse('2026-11-04T04:20:00Z');
  w.fetch=async(url)=>{
   const request=String(url);westSourceRequests.push(request);
   if(request.startsWith('https://civicapi.org/api/v2/race/search')){
@@ -2543,7 +2547,7 @@ function __testSeedStaleOhioSenate(){
  // not stop an independently validated watched Senate office. Synthetic votes.
  const rehearsalClock=w.Date.now,rehearsalFetch=w.fetch;
  await w.eval('enCivicWaitUntilIdle()');
- w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ w.Date.now=()=>Date.parse('2026-11-04T03:20:00Z');
  assert.equal(w.eval('enIsVisible()'),true,'Election Night tab must be active');
  let rehearsalSignal;
  w.fetch=async(_url,options)=>{
@@ -2619,12 +2623,12 @@ function __testSeedStaleOhioSenate(){
  // measures House-down / Senate-up behavior, not leftover test fixtures.
  const officeDrainStart=Date.now();
  while(Date.now()-officeDrainStart<15500&&w.eval(
-  'enOpenAmericaReader.pending()>0||enWatchRefreshPending.size>0')){
+  '__testOpenAmericaPending()>0||__testWatchedOfficePending()>0')){
   await new Promise(resolve=>setTimeout(resolve,35));
  }
- assert.equal(w.eval('enOpenAmericaReader.pending()'),0,
+ assert.equal(w.eval('__testOpenAmericaPending()'),0,
   'Prior source requests must settle or time out before the next outage test');
- assert.equal(w.eval('enWatchRefreshPending.size'),0,
+ assert.equal(w.eval('__testWatchedOfficePending()'),0,
   'No stale watched-office task may monopolize the Senate refresh');
  const rehearsalOffices=[];
  w.fetch=async url=>{
@@ -2659,11 +2663,13 @@ function __testSeedStaleOhioSenate(){
  // Same-office out-of-order HTTP responses: a late old request may not
  // overwrite the newer snapshot or trigger a false rollback.
  const rehearsalHouseOld={
-  ...counted2026,office:'House',as_of:'2026-11-04T02:30:00Z',
+  ...counted2026,office:'House',as_of:'2026-11-04T03:05:00Z',
   races:{'AZ-01':{...counted2026.races.NC}}
  };
  const rehearsalHouseNew=structuredClone(rehearsalHouseOld);
- rehearsalHouseNew.as_of='2026-11-04T02:50:00Z';
+ // Both snapshots follow Arizona's 02:00Z poll-close floor and any earlier
+ // 03:00Z House test snapshot. The later one is a real-shaped correction.
+ rehearsalHouseNew.as_of='2026-11-04T03:10:00Z';
  rehearsalHouseNew.races['AZ-01'].total=500;
  rehearsalHouseNew.races['AZ-01'].cands[0].v=280;
  rehearsalHouseNew.races['AZ-01'].cands[0].pct=56;
@@ -2687,16 +2693,27 @@ function __testSeedStaleOhioSenate(){
  };
  const rehearsalOldLoad=w.eval('enLoad(true)');
  await new Promise(resolve=>setTimeout(resolve,15));
- assert(rehearsalReleaseOld,'Older source HTTP response must remain pending');
+ assert(rehearsalReleaseOld,'First House request must remain pending');
+ const rehearsalCoalescedLoad=w.eval('enLoad(true)');
+ await new Promise(resolve=>setTimeout(resolve,15));
+ // Production transport deliberately shares same-office in-flight requests,
+ // rather than opening another HTTP connection for a supposedly newer result.
+ assert.equal(rehearsalHouseCalls,1,
+  'Duplicate House loads must share the in-flight source request');
+ rehearsalReleaseOld();
+ await Promise.all([rehearsalOldLoad,rehearsalCoalescedLoad]);
+ assert.match(get('#enRaceList').textContent,/AZ-01/,
+  'A coalesced House response still reaches the latest requested view');
+ assert.equal(get('#enRaces').textContent,'1');
+ assert.equal(get('#enDLeads').textContent,'1');
+ // Once the shared request settles, an explicit refresh must independently
+ // fetch and accept a source-newer 500-vote House snapshot.
  await w.eval('enLoad(true)');
- assert.match(get('#enRaceList').textContent,/AZ-01/);
+ assert.equal(rehearsalHouseCalls,2,
+  'The source transport must release its in-flight slot after success');
+ assert.match(get('#enStatus').textContent,/Nov 4, 2026/);
  assert.equal(get('#enDLeads').textContent,'1');
  assert.equal(get('#enRaces').textContent,'1');
- rehearsalReleaseOld();
- await rehearsalOldLoad;
- assert.match(get('#enStatus').textContent,/Nov 4, 2026/,
-  'Late old request cannot undo the newer accepted snapshot');
- assert.equal(get('#enDLeads').textContent,'1');
  // Older snapshot arriving through a later request must be rejected while
  // retaining the last source-validated counts in the dashboard.
  w.fetch=async url=>{
@@ -2856,6 +2873,17 @@ function __testSeedStaleOhioSenate(){
    if(name in fixtures)return {ok:true,json:async()=>fixtures[name]};
    throw Error('Simulated remote outage after browser reload');
  };
+ // Simulate a REAL reload: GitHub Pages loads first-party <script src>
+ // assets before the inline application. A bare inline eval would throw at
+ // ElectionNightOpenAmericaTransport.create() before resume validation runs,
+ // and an unclosed jsdom instance could hold the CI runner until timeout.
+ // Discover actual linked modules from index in their browser load order.
+ rw.setInterval=()=>0;
+ const resumeModulePattern=new RegExp(
+  '<script src="[.]/(scripts/[a-z0-9_-]+[.]js)[?]v=[0-9a-f]{12}"></script>','g');
+ const resumeModules=[...html.matchAll(resumeModulePattern)].map(match=>match[1]);
+ assert(resumeModules.length>=25,'Reload must include every linked election runtime dependency');
+ for(const module of resumeModules)rw.eval(read(module));
  rw.eval(scripts[0]);
  const rg=selector=>{const el=rw.document.querySelector(selector);
     assert(el,'Missing resume UI element '+selector);return el};
@@ -3197,4 +3225,4 @@ function __testSeedStaleOhioSenate(){
  assert.equal(errors.length,0,'Application emitted errors: '+errors.slice(0,4).join(' | '));
  console.log('Dashboard DOM integration passed: exact TX-SEN/TX-GOV poll drilldowns, race labels, linked joint-model race odds and DDHQ removal, dated news feed, and no script errors.');
  dom.window.close();
-})().catch(e=>{console.error(e.stack||e);dom.window.close();process.exitCode=1});
+})().catch(e=>{console.error(e.stack||e);dom.window.close();process.exit(1)});
