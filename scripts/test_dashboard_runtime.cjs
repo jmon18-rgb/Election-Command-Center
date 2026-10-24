@@ -2881,6 +2881,17 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}
    if(name in fixtures)return {ok:true,json:async()=>fixtures[name]};
    throw Error('Simulated remote outage after browser reload');
  };
+ // Simulate a REAL reload: GitHub Pages loads first-party <script src>
+ // assets before the inline application. A bare inline eval would throw at
+ // ElectionNightOpenAmericaTransport.create() before resume validation runs,
+ // and an unclosed jsdom instance could hold the CI runner until timeout.
+ // Discover actual linked modules from index in their browser load order.
+ rw.setInterval=()=>0;
+ const resumeModules=[...html.matchAll(
+  /<script src="\\.\\/(scripts\\/[a-z0-9_-]+\\.js)\\?v=[0-9a-f]{12}"><\\/script>/g
+ )].map(match=>match[1]);
+ assert(resumeModules.length>=25,'Reload must include every linked election runtime dependency');
+ for(const module of resumeModules)rw.eval(read(module));
  rw.eval(scripts[0]);
  const rg=selector=>{const el=rw.document.querySelector(selector);
     assert(el,'Missing resume UI element '+selector);return el};
