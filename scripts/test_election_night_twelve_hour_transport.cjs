@@ -185,10 +185,17 @@ async function tick(minute){
  // real polls close. An exact verified civicAPI ID can be fetched early
  // but pre-close MOCK counts may not contribute to a live seat tally.
  const sourceEligible=(id,record)=>{
-  // Do NOT treat 6 PM Eastern as an early vote-release time for 9 PM
-  // Arizona, midnight Alaska, or any other later-closing state.
-  return close.allowed(id.slice(6),record?.total,
-   record?.last_updated,now);
+  // Expected totals must obey the SAME 3-hour freshness, exact race and
+  // source attribution contracts as reconcile(). Merely passing the poll
+  // close timestamp doesn't authorize a long-abandoned cached observation.
+  // Do NOT treat 6 PM Eastern as early vote release for AZ, AK or others.
+  const at=Date.parse(record?.last_updated||'');
+  return record?.provider==='civicAPI'&&record?.office==='House'&&
+   record?.key===id.slice(6)&&Number.isSafeInteger(record?.race_id)&&
+   record.race_id>0&&Number.isFinite(at)&&
+   at>=Date.parse('2026-11-03T05:00:00Z')&&at<=now+15*60000&&
+   now-at<=180*60000&&
+   close.allowed(id.slice(6),record?.total,record?.last_updated,now);
  };
  assert.equal(result.house.supplemental,
   Object.entries(out).filter(([id,record])=>id.startsWith('House|')&&
