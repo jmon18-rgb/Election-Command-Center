@@ -184,6 +184,33 @@ x=api.reconcile({...input,snapshots:{...input.snapshots,Senate:sparse},
  {name:'Other',party:'R',votes:750}]}}});
 assert.equal(x.crossSourceDiscrepancies.length,0,
  'Under 5,000 counted votes each, ignore transient share gaps');
+// Explicit source staleness flags override otherwise fresh publication times.
+// The national count/quality desk must not accept an adapter-rejected snapshot,
+// or revive a previously called result solely because its clock still looks new.
+for(const flag of ['stale','sourceStale']){
+ const rejected={...civic,[flag]:true};
+ const bad=api.reconcile({...input,civic:{'Senate|ME':rejected}});
+ assert.equal(bad.records['Senate|ME'].hasReportedVotes,false,
+  flag+' civic snapshot must not count as verified reported votes');
+ assert.equal(bad.records['Senate|ME'].inValidatedFeed,false);
+ assert.equal(bad.records['Senate|ME'].providerCall,false);
+ assert.equal(bad.senate.reported,1,
+  'Primary NC reports, but flagged Maine civic record does not');
+ assert.equal(bad.senate.supplemental,0);
+ assert.equal(bad.providerCalls,0);
+ assert(bad.anomalies.some(s=>s.includes('Rejected invalid supplemental Senate|ME')));
+ const restored=api.reconcile({...input,civic:{'Senate|ME':{...rejected,[flag]:false}}});
+ assert.equal(restored.records['Senate|ME'].hasReportedVotes,true,
+  'Fresh revalidated adapter evidence restores a previously excluded race');
+ assert.equal(restored.records['Senate|ME'].providerCall,true);
+}
+// Even overlapping stale records must not create partisan share alerts.
+const staleOverlap=api.reconcile({...input,civic:{'Senate|NC':{
+ ...civic,key:'NC',sourceStale:true
+}}});
+assert.equal(staleOverlap.crossSourceDiscrepancies.length,0,
+ 'An explicitly stale overlapping source cannot generate quality conclusions');
+
 const malformed={...civic,total:100,candidates:[{name:'Jane Democrat',party:'D',votes:700}]};
 x=api.reconcile({...input,civic:{'Senate|ME':malformed}});
 assert.equal(x.senate.supplemental,0);
