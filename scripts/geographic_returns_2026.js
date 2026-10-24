@@ -2,13 +2,14 @@
  * No forecasts, calls, or zero-vote substitutions for missing source data.
  */
 (function(root,factory){
- const closes=typeof module!=='undefined'&&module.exports?
+ // Browser scripts may load before the shared poll-close module. Resolve
+ // at read-time rather than capturing an undefined global during startup.
+ const api=factory(()=>typeof module!=='undefined'&&module.exports?
   require('./election_night_poll_closings_2026.js'):
-  root?.ElectionNightPollClosings2026;
- const api=factory(closes);
+  root?.ElectionNightPollClosings2026);
  if(typeof module!=='undefined'&&module.exports)module.exports=api;
  if(root)root.GeographicReturns2026=api;
-})(typeof window!=='undefined'?window:null,function(closes){
+})(typeof window!=='undefined'?window:null,function(getCloses){
  'use strict';
  const ELECTION='2026-11-03';
  const hasOwn=(x,k)=>Object.prototype.hasOwnProperty.call(x,k);
@@ -32,6 +33,7 @@
      !Number.isFinite(Date.parse(row.updated_at)))return null;
   // County replay/bridge must not silently accept a post-election fetch of
   // a PRE-close result timestamp, even when the envelope is marked verified.
+  const closes=getCloses();
   if(!closes||typeof closes.floorFor!=='function')return null;
   const floor=closes.floorFor(row.race_key);
   if(!Number.isFinite(floor)||
