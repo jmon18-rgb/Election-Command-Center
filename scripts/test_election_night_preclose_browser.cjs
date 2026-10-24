@@ -50,6 +50,6 @@ assert.equal(api.allowed('NC',100,'2026-11-04T00:30:00Z',ineligibleNow),false,
  'Future close timestamp must not enable pre-close results');
 assert.match(html,/if\(!enElectionVotesAllowed\(item\.key,next\.total,next\.last_updated\)/,
  'All supplemental adapters must share the same final vote gate');
-assert.match(html,/cache\?\.total>0&&!enElectionVotesAllowed/,
+assert.match(html,/cache\.total>0&&!enElectionVotesAllowed/,
  'Resume/cache must never reauthorize pre-close votes');
 console.log('Browser source timestamp gate: NC/OH exact poll close, late fetch and civic recovery PASS');
