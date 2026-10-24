@@ -77,8 +77,13 @@
    // independently identity-checked House districts as machine-source gaps.
    else if(race.source_identity_status==='NO_CURATED_PROVIDER_ID'&&
            race.verified_identity_hint_usable===true&&
-           race.gap_status==='RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED')
-    status='SECONDARY_NOT_QUERIED';
+           race.gap_status==='RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED'){
+    const extra=supplementalHealth[race.id];
+    status=extra==='failed'?'SECONDARY_FAILED':
+      extra==='stale'?'SECONDARY_STALE':
+      extra==='pending'?'SECONDARY_CHECKING':
+      extra==='attempted'?'SECONDARY_ATTEMPTED':'SECONDARY_NOT_QUERIED';
+   }
    else if(race.source_identity_status==='NO_CURATED_PROVIDER_ID')
     status='NO_MACHINE_SOURCE_ID';
    else status='PROVIDER_OTHER';
