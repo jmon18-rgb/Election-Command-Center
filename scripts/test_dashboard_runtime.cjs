@@ -139,6 +139,9 @@ async function settle(){
  assert.equal(w.ElectionNightSignals?.MILESTONES.length,7);
  w.eval(read('scripts/election_night_reconciliation.js'));
  assert(w.ElectionNightReconciliation?.reconcile,'National reconciliation script must load');
+ w.eval(read('scripts/election_night_506_live_gap_desk.js'));
+ assert(w.ElectionNightCoverageTriage?.build,
+  'Source-attributed 506-race gap triage must load before Election Night dashboard');
  w.eval(read('scripts/election_night_rehearsal.js'));
  assert(w.ElectionNightRehearsal,'Synthetic rehearsal library must load before app');
  w.eval(read('scripts/chamber_control_model.js'));
