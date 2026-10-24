@@ -1,0 +1,45 @@
+name: Verify approved Ohio official candidate desk in laptop browser
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'scripts/ohio_official_candidate_votes.js'
+      - 'scripts/ohio_official_county_startup.js'
+      - 'scripts/test_ohio_official_candidate_votes.cjs'
+      - 'scripts/test_ohio_official_browser_recovery.mjs'
+      - 'scripts/test_dashboard_runtime.cjs'
+      - '.github/workflows/ohio-approved-candidate-browser.yml'
+permissions:
+  contents: read
+jobs:
+  approval-ui-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate 88-county exact Ohio IDs and source/mock/stale rejection
+        run: |
+          node --check scripts/ohio_official_candidate_votes.js
+          node --check scripts/ohio_official_county_startup.js
+          node scripts/test_ohio_official_candidate_votes.cjs
+  browser-approval-recovery:
+    needs: approval-ui-contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install supported pinned Chromium
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Rehearse approved Ohio source on desktop and iPhone-size browser
+        run: |
+          node --check scripts/test_ohio_official_browser_recovery.mjs
+          node scripts/test_ohio_official_browser_recovery.mjs
