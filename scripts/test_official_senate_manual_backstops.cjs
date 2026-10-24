@@ -31,6 +31,8 @@ assert.match(links.get('Senate|OH-special').url,/ohiosos\.gov/);
 assert.equal(links.get('Senate|OH-special').mode,'pre_election_mock_results_only');
 assert.equal(links.get('Senate|NE').mode,'pre_election_mock_results_only');
 assert.equal(links.get('Senate|ME').mode,'november_2026_results_not_yet_published');
+assert.equal(links.get('Senate|MA').mode,'certified_only_not_election_night');
+assert.equal(links.get('Senate|MS').mode,'certified_only_not_election_night');
 assert.equal(links.get('Senate|NH').mode,'post_election_results_landing');
 assert.match(html,/const critical=new Set\(\['Senate\|AK'/);
 assert.match(html,/WARNING: pre-election MOCK\/TEST results, not real votes/);
