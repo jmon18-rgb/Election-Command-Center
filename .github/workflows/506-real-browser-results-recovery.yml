@@ -1,0 +1,27 @@
+name: Real browser 506-race live-results outage/recovery drill
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'scripts/election_night_506_live_gap_desk.js'
+      - 'scripts/election_night_reconciliation.js'
+      - 'scripts/test_election_night_506_live_browser_recovery.mjs'
+      - '.github/workflows/506-real-browser-results-recovery.yml'
+permissions:
+  contents: read
+jobs:
+  chromium:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned Playwright and Chromium runner
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Real desktop and mobile national return and provider failure cycle
+        run: node scripts/test_election_night_506_live_browser_recovery.mjs
