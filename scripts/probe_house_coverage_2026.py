@@ -169,9 +169,18 @@ def gap_aware_window(now: datetime, history: dict, *,
         last_at = _utc(last.get("checked_window_utc"))
         if last_at > now + timedelta(minutes=15):
             raise ValueError("Future provider probe in trusted history")
+        # Until Election Night, avoid repeat provider traffic: missing races
+        # wait 24h, transient/invalid returns 4h, indexed IDs 72h.
+        # Starting at the first national poll close and through next morning,
+        # an hour is the maximum useful wait to DISCOVER a previously absent
+        # candidate source. Identity discovery is never live-vote approval.
+        count_window = (datetime(2026, 11, 3, 23, tzinfo=timezone.utc)
+                        <= now <= datetime(2026, 11, 4, 12, tzinfo=timezone.utc))
         age = {"INDEXED_EXACT_RACE": timedelta(hours=72),
                "NOT_INDEXED": timedelta(hours=24)}.get(
                    last["status"], timedelta(hours=4))
+        if count_window and last["status"] != "INDEXED_EXACT_RACE":
+            age = timedelta(hours=1)
         eligible_at = last_at + age
         if eligible_at > now:
             fresh += 1
