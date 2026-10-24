@@ -75,8 +75,31 @@ function checkApproved(config,snapshot,now=Date.now()){
   source_xml_sha256:snapshot.source.xml_sha256,
   may_move_national_needle:false};
 }
+/* A Pages publish is only equivalent to the reviewed source if the whole
+ * identity manifest agrees, not merely its approval timestamp. In particular
+ * county/party/contest mappings must never drift behind unchanged totals.
+ */
+function canonicalApproval(config){
+ const fields=['schema','enabled','real_results_publication_reviewed',
+  'source_url','source_reviewed_at','expected_report_status',
+  'approved_county_unit_type','approved_total_votes_type',
+  'county_gpunit_to_fips','party_object_id_to_party','approved_contests'];
+ const normalized=value=>Array.isArray(value)?value.map(normalized):
+  value&&typeof value==='object'?
+   Object.fromEntries(Object.keys(value).sort().map(k=>[k,normalized(value[k])])):value;
+ return JSON.stringify(normalized(Object.fromEntries(fields.map(
+  key=>[key,config?.[key]??null]))));
+}
 function compareHead(localConfig,localSnapshot,remoteConfig,remoteSnapshot,now=Date.now()){
- if(localConfig?.enabled!==true)return 'SOURCE_NOT_APPROVED';
+ if(localConfig?.enabled!==true){
+  assert.equal(remoteConfig?.enabled,false,
+   'Pages unexpectedly activated Ohio without local independent approval');
+  assert.equal(remoteConfig?.real_results_publication_reviewed,false,
+   'Pages claims reviewed Ohio votes while local source is disabled');
+  assert.equal(canonicalApproval(remoteConfig),canonicalApproval(localConfig),
+   'Disabled Ohio source manifest on Pages differs from reviewed main');
+  return 'SOURCE_NOT_APPROVED';
+ }
  const approvalTime=Date.parse(localConfig.source_reviewed_at);
  assert(Number.isFinite(approvalTime)&&approvalTime>=LIVE);
  const localObserved=Date.parse(localSnapshot?.source?.generated_at);
@@ -84,6 +107,7 @@ function compareHead(localConfig,localSnapshot,remoteConfig,remoteSnapshot,now=D
  const agreement=remoteConfig?.enabled===true&&
   remoteConfig.real_results_publication_reviewed===true&&
   remoteConfig.source_reviewed_at===localConfig.source_reviewed_at&&
+  canonicalApproval(remoteConfig)===canonicalApproval(localConfig)&&
   !!localSnapshot&&!!remoteSnapshot&&
   remoteSnapshot.source.xml_sha256===localSnapshot.source.xml_sha256&&
   remoteObserved>=localObserved;

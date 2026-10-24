@@ -51,6 +51,24 @@ for(const change of [
 assert.throws(()=>api.checkApproved(approved,snap,Date.parse('2026-11-04T01:40:00Z')),
  /stale|stopped updating/);
 assert.equal(api.compareHead(disabled,null,disabled,null,NOW),'SOURCE_NOT_APPROVED');
+assert.throws(()=>api.compareHead(disabled,null,
+ {...disabled,enabled:true,real_results_publication_reviewed:true},snap,NOW),
+ /unexpectedly activated Ohio/);
+assert.throws(()=>api.compareHead(disabled,null,
+ {...disabled,source_url:'https://other.example/changed'},null,NOW),
+ /differs from reviewed main/);
+const alteredCounty={...approved,county_gpunit_to_fips:{
+ ...approved.county_gpunit_to_fips,county0:'39999'}};
+assert.equal(api.compareHead(approved,snap,alteredCounty,snap,NOW),
+ 'APPROVED_OHIO_REVISION_WAITING_FOR_PAGES');
+assert.throws(()=>api.compareHead(approved,snap,alteredCounty,snap,
+ Date.parse('2026-11-04T01:20:00Z')),/failed to publish/);
+const alteredContests={...approved,approved_contests:[{race_key:'OH-GOV'}]};
+assert.equal(api.compareHead(approved,snap,alteredContests,snap,NOW),
+ 'APPROVED_OHIO_REVISION_WAITING_FOR_PAGES');
+assert.equal(api.compareHead(approved,snap,
+ {...approved,approved_contests:[{race_key:'OH-SEN-special'}]},snap,NOW),
+ 'PUBLISHED_APPROVED_SOURCE_REVISION');
 assert.equal(api.compareHead(approved,snap,approved,snap,NOW),'PUBLISHED_APPROVED_SOURCE_REVISION');
 assert.equal(api.compareHead(approved,snap,disabled,null,NOW),
  'APPROVED_OHIO_REVISION_WAITING_FOR_PAGES');
