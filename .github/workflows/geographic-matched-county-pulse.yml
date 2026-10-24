@@ -1,0 +1,41 @@
+name: Validate matched-county Election Night swing diagnostics
+on:
+  pull_request:
+    paths:
+      - 'scripts/geographic_matched_county_pulse_2026.js'
+      - 'scripts/test_geographic_matched_county_pulse_2026.cjs'
+      - 'scripts/county_source_ingestion_2026.js'
+      - 'scripts/test_county_source_ingestion_2026.cjs'
+      - 'scripts/geographic_returns_2026.js'
+      - 'scripts/county_swing_2026.js'
+      - '.github/workflows/geographic-matched-county-pulse.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/geographic_matched_county_pulse_2026.js'
+      - 'scripts/county_source_ingestion_2026.js'
+      - '.github/workflows/geographic-matched-county-pulse.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  geographic-descriptive-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Confirm only matched geographic evidence informs descriptive county comparison
+        run: |
+          node --check scripts/geographic_matched_county_pulse_2026.js
+          node --check scripts/county_source_ingestion_2026.js
+          node scripts/test_geographic_matched_county_pulse_2026.cjs
+          node scripts/test_county_source_ingestion_2026.cjs
+          node scripts/test_geographic_swing_bridge_2026.cjs
+      - name: Geographic sample is not a national needle
+        run: |
+          echo '### Race-local matched-county diagnostic' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Verified same-race, same-boundary 2024/2026 county margin comparison.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'This is NOT a statewide estimate, ballot coverage percentage, official call, calibrated probability, or national needle input.' >> "$GITHUB_STEP_SUMMARY"
