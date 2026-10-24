@@ -163,6 +163,91 @@ class CoverageLedgerTests(unittest.TestCase):
                 "window_utc": "2026-10-16T16:00:00+00:00",
                 "planned_districts": 1, "results": [row]}
 
+    def statewide(self, at="2026-10-16T16:00:00+00:00"):
+        return {
+            "schema": "advisory-2026-four-statewide-gaps-v1",
+            "checked_at": at, "provider": "civicAPI",
+            "source_origin": "https://civicapi.org/api/v2",
+            "identity_only_not_voting_results": True,
+            "may_publish_live_votes": False,
+            "may_update_model_or_source_pins": False,
+            "checked": 4, "exact_matches": 3,
+            "records": [
+                {"race": "Senate|MA", "status": "NOT_INDEXED", "race_id": None},
+                {"race": "Senate|MS", "status": "INDEXED_EXACT_RACE_IDENTITY_ONLY",
+                 "race_id": 81004, "candidate_count": 3},
+                {"race": "Governor|HI", "status": "INDEXED_EXACT_RACE_IDENTITY_ONLY",
+                 "race_id": 87100, "candidate_count": 2},
+                {"race": "Governor|OK", "status": "INDEXED_EXACT_RACE_IDENTITY_ONLY",
+                 "race_id": 87582, "candidate_count": 2},
+            ],
+        }
+
+    def test_statewide_advisory_persists_without_promoting_ma_senate(self):
+        observed = self.ledger(statewide_probe=self.statewide())
+        rows = self.rows(observed)
+        self.assertEqual(rows["Senate|MA"]["statewide_probe_advisory"]["status"], "NOT_INDEXED")
+        self.assertEqual(rows["Senate|MS"]["statewide_probe_advisory"]["race_id"], 81004)
+        self.assertEqual(rows["Governor|HI"]["statewide_probe_advisory"]["candidate_count"], 2)
+        self.assertEqual(rows["Senate|MA"]["source_identity_status"], "NO_CURATED_PROVIDER_ID")
+        self.assertEqual(rows["Senate|MA"]["gap_status"], "UNRESOLVED_SOURCE_GAP")
+        self.assertIsNone(rows["Senate|MA"]["pinned_civicapi_id"])
+        self.assertEqual(observed["summary"]["senate"]["unresolved_source_gaps"], 1)
+        self.assertFalse(any(r["live_votes_verified_by_audit"] for r in rows.values()))
+        self.assertFalse(any(r["professional_winner_call_verified_by_audit"] for r in rows.values()))
+        next_run = self.ledger(previous=observed, now=self.now + timedelta(hours=1))
+        self.assertEqual(self.rows(next_run)["Senate|MA"]["statewide_probe_advisory"],
+                         rows["Senate|MA"]["statewide_probe_advisory"])
+        updated = self.statewide("2026-10-16T18:00:00+00:00")
+        updated["records"][0] = {
+            "race": "Senate|MA", "status": "INDEXED_EXACT_RACE_IDENTITY_ONLY",
+            "race_id": 99014, "candidate_count": 2,
+        }
+        updated["exact_matches"] = 4
+        new = self.ledger(previous=observed, statewide_probe=updated,
+                          now=self.now + timedelta(hours=3))
+        ma = self.rows(new)["Senate|MA"]
+        self.assertEqual(ma["statewide_probe_advisory"]["race_id"], 99014)
+        self.assertEqual(ma["gap_status"], "UNRESOLVED_SOURCE_GAP",
+                         "Advisory ID must NEVER be promoted into live results")
+        self.assertIsNone(ma["pinned_civicapi_id"])
+        older = self.ledger(previous=new, statewide_probe=self.statewide(),
+                            now=self.now + timedelta(hours=4))
+        self.assertEqual(self.rows(older)["Senate|MA"]["statewide_probe_advisory"]["race_id"],
+                         99014, "Late asynchronous probes cannot overwrite newer evidence")
+
+    def test_bad_or_forged_statewide_advisory_fails_closed(self):
+        import copy
+        seed = self.statewide()
+        wrong = []
+        for change in (
+            lambda x: x.update(provider="Other"),
+            lambda x: x.update(may_publish_live_votes=True),
+            lambda x: x.update(may_update_model_or_source_pins=True),
+            lambda x: x.update(checked=3),
+            lambda x: x.update(exact_matches=4),
+            lambda x: x.update(checked_at="2026-12-01T00:00:00Z"),
+            lambda x: x["records"].append(dict(x["records"][0])),
+            lambda x: x["records"][0].update(race="Senate|NY"),
+            lambda x: x["records"][0].update(race_id=77001),
+            lambda x: x["records"][1].update(candidate_count=1),
+            lambda x: x["records"][1].update(race_id=True),
+        ):
+            altered = copy.deepcopy(seed)
+            change(altered)
+            wrong.append(altered)
+        for evidence in wrong:
+            with self.subTest(evidence=evidence):
+                with self.assertRaises(ValueError):
+                    self.ledger(statewide_probe=evidence)
+        # A temporary failure must be honestly distinguished from no index.
+        failure = self.statewide()
+        failure["records"][0]["status"] = "PROVIDER_UNAVAILABLE"
+        observed = self.ledger(statewide_probe=failure)
+        self.assertEqual(self.rows(observed)["Senate|MA"]["statewide_probe_advisory"]["status"],
+                         "PROVIDER_UNAVAILABLE")
+        self.assertEqual(observed["summary"]["senate"]["unresolved_source_gaps"], 1)
+
     def test_indexed_house_probe_is_recent_identity_not_results(self):
         first = self.ledger(probe=self.probe())
         ak = self.rows(first)["House|AK-00"]
