@@ -177,11 +177,14 @@ function __testSeedStaleOhioSenate(){
  assert(readiness.includes((506-unresolved)+'/506 races with source identity paths'));
  assert(readiness.includes(unresolved+' unresolved'));
  const links=fixtures['election_night_official_backstops.json'].links;
+ const manualPriority=new Set(['Senate|AK','Senate|ME','Senate|NE','Senate|NH','Senate|OH-special']);
  assert.equal(get('#enOfficialBackstopsList').querySelectorAll('a[href]').length,
-  links.filter(x=>x.race_ids.some(id=>
+  links.filter(x=>x.race_ids.some(id=>manualPriority.has(id)||
    ledger.races.some(r=>r.id===id&&r.gap_status==='UNRESOLVED_SOURCE_GAP'))).length);
- assert(get('#enOfficialBackstopsList').textContent.includes('State office does not publish unofficial Election Night results'),
+ assert(get('#enOfficialBackstopsList').textContent.includes('certification/results may come AFTER Election Night'),
   'Massachusetts cannot be described as providing election-night provisional totals');
+ assert(get('#enOfficialBackstopsList').textContent.includes('WARNING: pre-election MOCK/TEST results, not real votes'),
+  'Ohio and Nebraska official pre-election practice pages must not look like real counts');
 
  assert.match(readiness,/NOT confirmed November 3 returns coverage/);
  const invalidLedger={...ledger,races:ledger.races.slice(1)};

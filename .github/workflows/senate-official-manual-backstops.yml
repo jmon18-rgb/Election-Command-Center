@@ -1,0 +1,24 @@
+name: Validate high-priority official Election Night backup links
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'data/election_night_official_backstops.json'
+      - 'index.html'
+      - 'scripts/test_official_senate_manual_backstops.cjs'
+      - '.github/workflows/senate-official-manual-backstops.yml'
+permissions:
+  contents: read
+jobs:
+  official-links:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify official hostnames, Senate identities and pre-election mock warnings
+        run: |
+          node scripts/test_official_senate_manual_backstops.cjs
+          node scripts/test_election_night_reconciliation.cjs

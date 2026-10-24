@@ -32,7 +32,16 @@ class OfficialBackstopsTests(unittest.TestCase):
             self.assertIn(item["mode"],{
              "unofficial_results_landing","results_landing_timing_unconfirmed",
              "post_election_results_landing","certified_only_not_election_night",
-             "official_results_landing","2026_results_landing"})
+             "official_results_landing","2026_results_landing",
+             "pre_election_mock_results_only",
+             "november_2026_results_not_yet_published"})
+        for state in ("ME","NE","OH"):
+            row=next(x for x in self.links["links"] if x["state"]==state)
+            self.assertIn("Senate|"+("OH-special" if state=="OH" else state),row["race_ids"])
+        self.assertEqual(next(x for x in self.links["links"] if x["state"]=="NE")["mode"],
+                         "pre_election_mock_results_only")
+        self.assertEqual(next(x for x in self.links["links"] if x["state"]=="OH")["mode"],
+                         "pre_election_mock_results_only")
         mass=next(x for x in self.links["links"] if x["state"]=="MA")
         self.assertEqual(mass["mode"],"certified_only_not_election_night")
         self.assertEqual(mass["race_ids"],["Senate|MA"])

@@ -10,7 +10,9 @@
       "url": "https://www.elections.alaska.gov/election-results/",
       "mode": "unofficial_results_landing",
       "race_ids": [
-        "House|AK-00"
+        "House|AK-00",
+        "Senate|AK",
+        "Governor|AK"
       ]
     },
     {
@@ -38,7 +40,9 @@
       "mode": "post_election_results_landing",
       "race_ids": [
         "House|NH-01",
-        "House|NH-02"
+        "House|NH-02",
+        "Senate|NH",
+        "Governor|NH"
       ]
     },
     {
@@ -94,6 +98,41 @@
       "race_ids": [
         "Governor|OK"
       ]
+    },
+    {
+      "name": "Maine",
+      "url": "https://www.maine.gov/sos/elections-voting/election-results-data",
+      "mode": "november_2026_results_not_yet_published",
+      "race_ids": [
+        "Senate|ME",
+        "Governor|ME",
+        "House|ME-01",
+        "House|ME-02"
+      ],
+      "state": "ME"
+    },
+    {
+      "name": "Ohio",
+      "url": "https://liveresults.ohiosos.gov/Home/Index",
+      "mode": "pre_election_mock_results_only",
+      "race_ids": [
+        "Senate|OH-special",
+        "Governor|OH"
+      ],
+      "state": "OH"
+    },
+    {
+      "name": "Nebraska",
+      "url": "https://electionresults.nebraska.gov/",
+      "mode": "pre_election_mock_results_only",
+      "race_ids": [
+        "Senate|NE",
+        "Governor|NE",
+        "House|NE-01",
+        "House|NE-02",
+        "House|NE-03"
+      ],
+      "state": "NE"
     }
   ],
   "limitations": "Links lead to official election-office pages for manually checking races with unresolved machine-readable identities. They do not prove live returns or professional winner calls, and do not fill automated source gaps. Massachusetts state office expressly does not publish unofficial results on election night."
