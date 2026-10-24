@@ -1,0 +1,69 @@
+name: Probe possible NC 2026 election-night media ZIP publication
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/probe_nc_2026_media_file_candidate.py'
+      - 'scripts/test_probe_nc_2026_media_file_candidate.py'
+      - '.github/workflows/nc-2026-media-file-probe.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/probe_nc_2026_media_file_candidate.py'
+      - 'scripts/test_probe_nc_2026_media_file_candidate.py'
+      - '.github/workflows/nc-2026-media-file-probe.yml'
+  schedule:
+    # Two brief discovery checks per October day; hourly near Election Day.
+    - cron: '41 12,21 * 10 *'
+    - cron: '41 12,17,22 1-2 11 *'
+    - cron: '41 * 3-4 11 *'
+permissions:
+  contents: read
+concurrency:
+  group: advisory-nc-2026-media-file-candidate
+  cancel-in-progress: false
+jobs:
+  offline-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prevent inferred NCSBE path from authorizing 2026 vote counts
+        run: |
+          python3 -m py_compile scripts/probe_nc_2026_media_file_candidate.py
+          python3 scripts/test_probe_nc_2026_media_file_candidate.py
+  candidate-url-probe:
+    if: github.event_name != 'pull_request'
+    needs: offline-tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Only run during the election preflight period
+        id: window
+        run: |
+          stamp="$(date -u +'%Y%m%d')"
+          if [ "${{ github.event_name }}" = "schedule" ] && { [ "$stamp" -lt "20261024" ] || [ "$stamp" -gt "20261104" ]; }; then
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Advisory HEAD and capped archive layout check, no votes published
+        if: steps.window.outputs.run == 'true'
+        run: |
+          python3 scripts/probe_nc_2026_media_file_candidate.py \
+            --output /tmp/ncsbe-2026-media-file-candidate.json
+      - name: Save source discovery evidence for operator review
+        if: always() && steps.window.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ncsbe-2026-possible-media-file-${{ github.run_id }}
+          path: /tmp/ncsbe-2026-media-file-candidate.json
+          if-no-files-found: warn
+          retention-days: 30
