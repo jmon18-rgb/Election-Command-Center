@@ -9,7 +9,7 @@
  const empty=reason=>Object.freeze({ready:false,reason,rows:[],may_move_national_needle:false});
  function prepare(envelope,expected,now=Date.now()){
   if(!contract||!expected||!envelope)return empty('No independently verified county snapshot available');
-  const verified=contract.normalize(envelope,expected);
+  const verified=contract.normalize(envelope,expected,now);
   if(!verified.ok)return empty('County source verification rejected: '+verified.reason);
   const rows=verified.rows||[];
   if(!rows.length)return empty('Verified county source has no rows');
