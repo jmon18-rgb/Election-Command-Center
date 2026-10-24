@@ -13,6 +13,16 @@
  // No November 3 counts or provider flags can move odds before the FIRST
  // Eastern polling places close. Individual local monitors gate later closings.
  const ELECTION_START=Date.parse('2026-11-03T23:00:00Z');
+ // The shared 50-state source-time contract is loaded before the live UI,
+ // although it is linked after this module in index.html. Resolve it at
+ // estimate time; Node offline tests use the same real implementation.
+ function pollsClosedFor(item,sourceTime,now){
+  const contract=typeof window!=='undefined'?
+   window.ElectionNightPollClosings2026:
+   typeof require==='function'?require('./election_night_poll_closings_2026.js'):null;
+  return Boolean(contract&&typeof contract.allowed==='function'&&
+   contract.allowed(item?.key,1,sourceTime,now));
+ }
  const OFFICES={Senate:'senate',House:'house',Governor:'governor'};
  const atLargeBridge=typeof window!=='undefined'?
   window.HouseAtLargeBridge:
@@ -120,7 +130,11 @@
   // The joint simulation has already accepted a distinct, normalized
   // source-reported D/R winner call. No partial early count may overwrite
   // that outcome in the secondary race probability monitor.
-  if(now>=ELECTION_START&&['D','R'].includes(prior.provider_called_party)){
+  // A provider-call flag is not permission to declare a winner in a
+  // state whose polls are still open. The authoritative state-local floor
+  // also protects the primary and supplemental partial-vote paths below.
+  if(now>=ELECTION_START&&pollsClosedFor(item,new Date(now).toISOString(),now)&&
+     ['D','R'].includes(prior.provider_called_party)){
    const dem=prior.provider_called_party==='D';
    return {...defaultResult,mode:'source_called',demPct:dem?100:0,
     repPct:dem?0:100,source:'civicAPI',reporting:null,
@@ -130,7 +144,8 @@
   const actual=observed(item,primary,secondary);
   if(!actual||!Number.isFinite(now)||now<ELECTION_START||actual.time<ELECTION_START||
     actual.time>now+15*60000||now-actual.time>180*60000||
-    actual.sourceStale||actual.reporting<10)return defaultResult;
+    actual.sourceStale||actual.reporting<10||
+    !pollsClosedFor(item,actual.asOf,now))return defaultResult;
   // "Precincts reporting" is NOT equal to vote share counted. Treat the
   // observed statewide margin as a noisy signal, not a random sample.
   // The noise floor models unobserved geographic and ballot-method mix;
