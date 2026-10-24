@@ -1,0 +1,65 @@
+name: Verify served Election Night GitHub Pages
+on:
+  pull_request:
+    paths:
+      - 'scripts/check_election_night_pages_runtime.py'
+      - 'scripts/test_check_election_night_pages_runtime.py'
+      - 'scripts/check_house_pins_pages_publication.py'
+      - 'scripts/test_check_house_pins_pages_publication.py'
+      - '.github/workflows/verify-election-night-pages.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'scripts/check_election_night_pages_runtime.py'
+      - 'scripts/test_check_election_night_pages_runtime.py'
+      - 'scripts/check_house_pins_pages_publication.py'
+      - '.github/workflows/verify-election-night-pages.yml'
+  workflow_dispatch:
+  schedule:
+    # Check the public entrypoint twice daily before and on Election Night.
+    - cron: '37 13,19 * 10,11 *'
+permissions:
+  contents: read
+concurrency:
+  group: deployed-election-night-browser-check
+  cancel-in-progress: true
+jobs:
+  offline-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify real checked-in JS cache fingerprints and source contracts
+        run: |
+          python3 scripts/test_check_election_night_pages_runtime.py
+          python3 scripts/test_check_house_pins_pages_publication.py
+          python3 -m py_compile scripts/check_election_night_pages_runtime.py
+  deployed-pages:
+    needs: offline-contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check election-night public deployment window
+        id: window
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$(date -u +'%Y%m%d')" -gt "20261104" ]; then
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "Election Night ended; manual Pages checks remain available."
+          else
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Inspect ACTUALLY SERVED index, four JS blobs and 506-race manifests
+        if: steps.window.outputs.enabled == 'true'
+        env:
+          DASHBOARD_SITE_URL: ${{ vars.DASHBOARD_SITE_URL }}
+        run: |
+          site="${DASHBOARD_SITE_URL:-https://jmon18-rgb.github.io/Election-Command-Center/}"
+          python3 scripts/check_election_night_pages_runtime.py --site "$site"
