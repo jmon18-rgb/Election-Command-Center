@@ -2879,9 +2879,9 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  // and an unclosed jsdom instance could hold the CI runner until timeout.
  // Discover actual linked modules from index in their browser load order.
  rw.setInterval=()=>0;
- const resumeModules=[...html.matchAll(
-  /<script src="\\.\\/(scripts\\/[a-z0-9_-]+\\.js)\\?v=[0-9a-f]{12}"><\\/script>/g
- )].map(match=>match[1]);
+ const resumeModulePattern=new RegExp(
+  '<script src="[.]/(scripts/[a-z0-9_-]+[.]js)[?]v=[0-9a-f]{12}"></script>','g');
+ const resumeModules=[...html.matchAll(resumeModulePattern)].map(match=>match[1]);
  assert(resumeModules.length>=25,'Reload must include every linked election runtime dependency');
  for(const module of resumeModules)rw.eval(read(module));
  rw.eval(scripts[0]);
