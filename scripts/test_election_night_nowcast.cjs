@@ -71,8 +71,9 @@ const other=structuredClone(validSource);other.races.AZ={total:100000,pct_in:65,
 assert.equal(model.estimate(priors,az,other,null,now).mode,'live_informed',
  'Two-party margin is computed from D and R only, while keeping source total');
 const ca={office:'Governor',key:'CA'};
+const caNow=Date.parse('2026-11-04T04:30:00Z');
 const cv={provider:'civicAPI',race_id:6402,office:'Governor',key:'CA',
- total:200000,percent_reporting:80,last_updated:'2026-11-04T03:30:00Z',
+ total:200000,percent_reporting:80,last_updated:'2026-11-04T04:10:00Z',
  candidates:[
   {name:'Candidate One',party:'D',votes:120000},
   {name:'Candidate Two',party:'R',votes:80000}
@@ -84,14 +85,31 @@ const akSource={...validSource,office:'House',races:{'AK-00':{
  total:100000,pct_in:65,cands:[{p:'D',v:57000},{p:'R',v:43000}]
 }}};
 const akRace={office:'House',key:'AK-00'};
-const akLive=model.estimate(akPrior,akRace,akSource,null,now);
+const akNow=Date.parse('2026-11-04T05:30:00Z');
+akSource.as_of='2026-11-04T05:10:00Z';
+const akLive=model.estimate(akPrior,akRace,akSource,null,akNow);
 assert.equal(akLive.mode,'live_informed',
  'At-large source 00 must pair with the existing 01 model prior');
 assert.equal(akLive.raceCode,'AK-01');
 assert(akLive.demPct>60,'Real at-large returns may inform the corresponding model prior');
-assert.equal(model.estimate(akPrior,{office:'House',key:'AK-01'},akSource,null,now).mode,
+// Do NOT infer Alaska House votes at 04:00Z: polls close at 05:00Z.
+// Nor may a 04:59Z source stamp be retroactively accepted at 05:30Z.
+assert.equal(model.estimate(akPrior,akRace,akSource,null,now).mode,'polls_only',
+ 'Alaska 2026 returns must not affect odds before local polls close');
+const akPreclose=structuredClone(akSource);
+akPreclose.as_of='2026-11-04T04:59:00Z';
+assert.equal(model.estimate(akPrior,akRace,akPreclose,null,akNow).mode,'polls_only',
+ 'Source timestamp predating local close must remain ineligible forever');
+const caPreclose={...cv,last_updated:'2026-11-04T03:59:00Z'};
+assert.equal(model.estimate(priors,ca,null,caPreclose,caNow).mode,'polls_only',
+ 'California supplemental votes must obey the West Coast close timestamp');
+assert.equal(model.estimate(priors,ca,null,cv,
+ Date.parse('2026-11-04T03:59:00Z')).mode,'polls_only',
+ 'Future California source cannot be accepted before local poll close');
+
+assert.equal(model.estimate(akPrior,{office:'House',key:'AK-01'},akSource,null,akNow).mode,
  'polls_only','Legacy model code cannot silently invent a 01 source record');
-const secondary=model.estimate(priors,ca,null,cv,now);
+const secondary=model.estimate(priors,ca,null,cv,caNow);
 assert.equal(secondary.mode,'live_informed');
 assert.equal(secondary.source,'civicAPI');
 assert(secondary.demPct>38.75);
@@ -105,15 +123,15 @@ for(const invalid of [
  {...cv,candidates:[...cv.candidates,{name:'Other',party:'O',votes:5000}]},
  {...cv,candidates:cv.candidates.map(c=>({...c,votes:-1}))}
 ]){
- assert.equal(model.estimate(priors,ca,null,invalid,now).mode,'polls_only',
+ assert.equal(model.estimate(priors,ca,null,invalid,caNow).mode,'polls_only',
   'Malformed, stale or unverified civicAPI returns cannot shift probability');
 }
 const wrongCivic={...cv,key:'TX'};
-assert.equal(model.estimate(priors,ca,null,wrongCivic,now).mode,'polls_only');
+assert.equal(model.estimate(priors,ca,null,wrongCivic,caNow).mode,'polls_only');
 const lostParties={...cv,candidates:[{party:'O',votes:120000},{party:'R',votes:80000}]};
-assert.equal(model.estimate(priors,ca,null,lostParties,now).mode,'polls_only');
+assert.equal(model.estimate(priors,ca,null,lostParties,caNow).mode,'polls_only');
 const civicNoStamp={...cv,last_updated:null};
-assert.equal(model.estimate(priors,ca,null,civicNoStamp,now).mode,'polls_only');
+assert.equal(model.estimate(priors,ca,null,civicNoStamp,caNow).mode,'polls_only');
 const calledPriors=structuredClone(priors);
 calledPriors.records[0].provider_called_party='R';
 const calledR=model.estimate(calledPriors,az,validSource,null,now);
@@ -121,6 +139,9 @@ assert.equal(calledR.mode,'source_called');
 assert.equal(calledR.demPct,0,'Provider-reported Republican winner must stay at 0% D');
 assert.equal(calledR.repPct,100);
 assert.equal(calledR.source,'civicAPI');
+assert.equal(model.estimate(calledPriors,az,validSource,null,
+ Date.parse('2026-11-04T01:59:00Z')).mode,'polls_only',
+ 'A provider-call flag cannot lock Arizona race odds before Arizona closes');
 assert.match(calledR.explanation,/not official certification/);
 calledPriors.records[0].provider_called_party='D';
 const calledD=model.estimate(calledPriors,az,validSource,null,now);
