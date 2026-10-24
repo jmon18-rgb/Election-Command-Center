@@ -1,0 +1,34 @@
+name: 506-race national source pulse integrity
+on:
+  pull_request:
+    paths:
+      - 'scripts/national_results_coverage_pulse.py'
+      - 'scripts/test_national_results_coverage_pulse.py'
+      - 'scripts/election_night_poll_closings_2026.js'
+      - 'data/election_night_source_coverage.json'
+      - '.github/workflows/national-source-pulse-integrity.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/national_results_coverage_pulse.py'
+      - 'scripts/test_national_results_coverage_pulse.py'
+      - 'scripts/election_night_poll_closings_2026.js'
+      - 'data/election_night_source_coverage.json'
+      - '.github/workflows/national-source-pulse-integrity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  canonical-local-closings-and-candidates:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Match state-local 2026 poll closings and reject invalid candidate totals
+        run: |
+          python -m py_compile scripts/national_results_coverage_pulse.py
+          python scripts/test_national_results_coverage_pulse.py
+          python scripts/test_election_night_source_coverage.py
