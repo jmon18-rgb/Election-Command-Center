@@ -27,7 +27,7 @@ def official_link(url):
             and p.username is None and p.password is None and p.port in (None,443)
             and bool(p.path) and p.path != "/" and
             p.path.rstrip("/") != "/2026-general-election-results"
-            and "\\\" not in p.path)
+            and chr(92) not in p.path)
 
 
 class Anchors(HTMLParser):
