@@ -143,6 +143,17 @@
         "House|NE-03"
       ],
       "state": "NE"
+    },
+    {
+      "state": "MN",
+      "name": "Minnesota",
+      "url": "https://electionresults.sos.mn.gov/201",
+      "mode": "pre_election_mock_results_only",
+      "verified_at": "2026-10-24",
+      "source_reference": "https://electionresults.sos.mn.gov/201",
+      "race_ids": [
+        "Senate|MN"
+      ]
     }
   ],
   "limitations": "Links are human-check references, not verified live feeds, reported votes, or professional race calls. Massachusetts expressly does not publish unofficial statewide election-night results. Mississippi's Secretary of State stated in its 2024 election-day guidance that its office only announces and posts certified results; do not rely on that office as an unofficial live feed without a newly verified 2026 source."
