@@ -19,7 +19,9 @@
       "state": "DE",
       "name": "Delaware",
       "url": "https://elections.delaware.gov/results/",
-      "mode": "results_landing_timing_unconfirmed",
+      "mode": "november_2026_results_not_yet_published",
+      "verified_at": "2026-10-24",
+      "source_reference": "https://elections.delaware.gov/results/",
       "race_ids": [
         "House|DE-00"
       ]
@@ -60,7 +62,9 @@
       "state": "WY",
       "name": "Wyoming",
       "url": "https://sos.wyo.gov/Elections/ElectionResults.aspx",
-      "mode": "results_landing_timing_unconfirmed",
+      "mode": "november_2026_results_not_yet_published",
+      "verified_at": "2026-10-24",
+      "source_reference": "https://sos.wyo.gov/Elections/ElectionResults.aspx",
       "race_ids": [
         "House|WY-00"
       ]
