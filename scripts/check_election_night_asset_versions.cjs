@@ -10,12 +10,12 @@ const fs=require('node:fs');
 const path=require('node:path');
 const ROOT=path.resolve(__dirname,'..');
 const INDEX=path.join(ROOT,'index.html');
-const SRC=/(<script\\b[^>]*\\bsrc=["'])([^"']+)(["'][^>]*>)/g;
-const VALID=/^\\.\\/scripts\\/[a-z0-9_-]+\\.js\\?v=([a-f0-9]{12})$/;
-const UNVERSIONED=/^\\.\\/scripts\\/[a-z0-9_-]+\\.js$/;
+const SRC=/(<script\b[^>]*\bsrc=["'])([^"']+)(["'][^>]*>)/g;
+const VALID=/^\.\/scripts\/[a-z0-9_-]+\.js\?v=([a-f0-9]{12})$/;
+const UNVERSIONED=/^\.\/scripts\/[a-z0-9_-]+\.js$/;
 function revision(bytes){
  const buf=Buffer.isBuffer(bytes)?bytes:Buffer.from(bytes);
- return crypto.createHash('sha1').update(Buffer.from('blob '+buf.length+'\\0'))
+ return crypto.createHash('sha1').update(Buffer.from('blob '+buf.length+'\0'))
   .update(buf).digest('hex').slice(0,12);
 }
 function inspect(html,readScript,{fix=false}={}){
