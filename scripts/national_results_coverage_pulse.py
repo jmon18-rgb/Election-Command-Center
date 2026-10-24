@@ -46,6 +46,7 @@ def valid_candidates(details, total):
     if not isinstance(cands,list) or (total>0 and not cands) or len(cands)>60:
         return False
     names=set()
+    major_parties=set()
     summed=0
     for row in cands:
         if not isinstance(row,dict) or not isinstance(row.get("n"),str) or not row["n"].strip() or len(row["n"])>200:
@@ -56,13 +57,21 @@ def valid_candidates(details, total):
         names.add(name)
         if not isinstance(row.get("p"),str) or not row["p"].strip() or len(row["p"])>80:
             return False
+        party=row["p"].strip()
+        if party in ("D","R"):
+            if party in major_parties:
+                return False
+            major_parties.add(party)
         count=row.get("v")
         if type(count) is not int or count<0:
             return False
         summed+=count
         if summed>total:
             return False
-    return True
+    # A provider-wide positive race total with ZERO assigned candidate
+    # votes is not evidence of observed candidate counts; also protect
+    # the same D/R uniqueness required by the live nowcast pipeline.
+    return total==0 or summed>0
 
 
 def _time(s):
@@ -89,6 +98,7 @@ def pulse(ledger, primary, now):
     observed=Counter()
     sample_by_office={}
     as_of={}
+    office_current={}
     for office in EXPECTED:
         doc=primary.get(office)
         if doc is None:
@@ -105,6 +115,9 @@ def pulse(ledger, primary, now):
             doc.get("live") is True and doc.get("stale") is True):
             raise ValueError("Office provider snapshot inconsistent")
         sample_by_office[office]=doc["races"]
+        # A reachable but explicitly non-live or stale snapshot is not
+        # evidence of currently reporting votes (or an observed zero).
+        office_current[office]=doc.get("live") is True and doc.get("stale") is False
         if doc.get("as_of"):
             as_of[office]=_time(doc["as_of"])
             if as_of[office]>now+dt.timedelta(minutes=15):
@@ -125,6 +138,8 @@ def pulse(ledger, primary, now):
             races=sample_by_office.get(office)
             if races is None:
                 status="PRIMARY_PROVIDER_UNAVAILABLE"
+            elif not office_current.get(office,False):
+                status="PRIMARY_OFFICE_NOT_LIVE_OR_STALE"
             elif key not in races:
                 status="PRIMARY_RACE_ABSENT_NOT_ZERO"
             else:
