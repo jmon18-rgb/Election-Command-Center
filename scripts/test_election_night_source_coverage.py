@@ -265,19 +265,55 @@ class CoverageLedgerTests(unittest.TestCase):
         self.assertEqual(len(initial["races"]), 506)
         self.assertEqual(len({r["id"] for r in initial["races"]}), 506)
         expected = self.ledger()
-        self.assertEqual(set(self.rows(initial)), set(self.rows(expected)),
+        before, after = self.rows(initial), self.rows(expected)
+        self.assertEqual(set(before), set(after),
                          "The auditable census cannot change with source activity")
+        # A source-ID PR changes the adapter BEFORE the hourly bot republishes
+        # its 506-race snapshot. Permit only these three independently
+        # reviewed add-only pins during that brief old-manifest transition.
+        reviewed = {
+            "Senate|MS": 81004,
+            "Governor|HI": 87100,
+            "Governor|OK": 87582,
+        }
+        transitioned = {"senate": 0, "governor": 0, "house": 0}
+        for key, previous in before.items():
+            current = after[key]
+            if key in reviewed:
+                self.assertEqual(current["source_identity_status"],
+                                 "PINNED_PREVIOUSLY_VERIFIED_ID")
+                self.assertEqual(current["pinned_civicapi_id"], reviewed[key])
+                self.assertIn(previous["source_identity_status"],
+                              ("NO_CURATED_PROVIDER_ID",
+                               "PINNED_PREVIOUSLY_VERIFIED_ID"))
+                if previous["source_identity_status"] == "NO_CURATED_PROVIDER_ID":
+                    self.assertEqual(previous["gap_status"], "UNRESOLVED_SOURCE_GAP")
+                    transitioned["senate" if key.startswith("Senate") else "governor"] += 1
+            else:
+                self.assertEqual(current["source_identity_status"],
+                                 previous["source_identity_status"],
+                                 "Only three independently reviewed source pins may change")
+            self.assertFalse(previous["live_votes_verified_by_audit"])
+            self.assertFalse(current["live_votes_verified_by_audit"])
         for office in ("house", "senate", "governor"):
-            for key in ("total", "primary_scope", "pinned_secondary", "scoped_secondary"):
+            for key in ("total", "primary_scope", "scoped_secondary"):
                 self.assertEqual(initial["summary"][office][key],
                                  expected["summary"][office][key])
-        from build_election_night_source_coverage import timestamp
+            self.assertEqual(initial["summary"][office]["pinned_secondary"]+
+                             transitioned[office],
+                             expected["summary"][office]["pinned_secondary"])
+            self.assertEqual(initial["summary"][office]["unresolved_source_gaps"]-
+                             transitioned[office],
+                             expected["summary"][office]["unresolved_source_gaps"])
         rebuilt = self.ledger(previous=initial,
                               now=timestamp(initial["generated_at"]))["summary"]
         for office, row in initial["summary"].items():
             for key, value in row.items():
-                self.assertEqual(rebuilt[office][key], value,
-                                 "Committed source evidence must remain reproducible")
+                if key in ("pinned_secondary", "unresolved_source_gaps"):
+                    self.assertEqual(rebuilt[office][key], expected["summary"][office][key])
+                else:
+                    self.assertEqual(rebuilt[office][key], value,
+                                     "Other saved evidence must remain reproducible")
         self.assertTrue(all(not r["live_votes_verified_by_audit"] for r in initial["races"]))
 
     def test_house_manifest_only_contains_recent_exact_outside_primary_ids(self):
