@@ -32,7 +32,8 @@
   if((row.office==='House'&&!/^[A-Z]{2}-[0-9]{2}$/.test(row.race_key))||
      (row.office==='Senate'&&!row.race_key.endsWith('-SEN'))||
      (row.office==='Governor'&&!row.race_key.endsWith('-GOV')))return null;
-  if(typeof row.updated_at!=='string'||!/^2026-11-(?:0[3-9]|[12][0-9]|30)T/.test(row.updated_at)||
+  if(typeof row.updated_at!=='string'||
+     !/^2026-11-(?:0[3-9]|[12][0-9]|30)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d{1,3})?(?:Z|[+-](?:0\d|1[0-4]):[0-5]\d)$/.test(row.updated_at)||
      !Number.isFinite(Date.parse(row.updated_at)))return null;
   // County replay/bridge must not silently accept a post-election fetch of
   // a PRE-close result timestamp, even when the envelope is marked verified.
@@ -48,11 +49,14 @@
   for(const c of row.candidates){
    if(!c||typeof c.name!=='string'||!c.name.trim()||
       typeof c.party!=='string'||!c.party.trim()||!whole(c.votes)||
-      seen.has(c.name.toLowerCase()))return null;
-   seen.add(c.name.toLowerCase());sum+=c.votes;
+      seen.has(c.name.trim().toLocaleLowerCase('en-US')))return null;
+   seen.add(c.name.trim().toLocaleLowerCase('en-US'));sum+=c.votes;
    if(!Number.isSafeInteger(sum))return null;
   }
-  if(sum>row.ballots_reported)return null;
+  // Provider ballots without a single attributable candidate vote are NOT
+  // verified county vote counts; otherwise downstream county swing could
+  // appear from an empty or partially populated candidate array.
+  if(sum>row.ballots_reported||(row.ballots_reported>0&&sum===0))return null;
   return Object.freeze({...row,candidates:row.candidates.map(c=>Object.freeze({...c}))});
  }
  function reconcile(previous,incoming){
@@ -71,6 +75,22 @@
   // be assumed monotonic, but they must be explicitly identified as revisions.
   if(next.ballots_reported<prev.ballots_reported&&next.revision!==true)
    return {accepted:false,reason:'UNMARKED_DECREASE'};
+  // Growing aggregate totals do not rule out a silent reallocation,
+  // disappearance or party-switch of a previously counted candidate.
+  // Require a provenance-marked correction before updating comparisons.
+  if(next.revision!==true){
+   const n=new Map(next.candidates.map(c=>[
+    c.name.trim().toLocaleLowerCase('en-US'),c]));
+   for(const c of prev.candidates){
+    const later=n.get(c.name.trim().toLocaleLowerCase('en-US'));
+    if(!later&&c.votes>0)
+     return {accepted:false,reason:'UNMARKED_CANDIDATE_REMOVAL'};
+    if(later&&later.party!==c.party)
+     return {accepted:false,reason:'UNMARKED_CANDIDATE_PARTY_CHANGE'};
+    if(later&&later.votes<c.votes)
+     return {accepted:false,reason:'UNMARKED_CANDIDATE_DECREASE'};
+   }
+  }
   return {accepted:true,row:next};
  }
  return Object.freeze({validate,reconcile});

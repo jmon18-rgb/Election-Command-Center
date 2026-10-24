@@ -15,7 +15,11 @@ for(const changes of [{is_test:true},{verified_source:false},{election_date:'202
  {county_id:'51000'},
  {updated_at:'2026-10-23T00:05:00Z'},
  {updated_at:'2026-11-03T23:59:59Z'},
- {candidates:[]}]){
+ {candidates:[]},
+ {updated_at:'2026-11-04T00:05:00'},
+ {updated_at:'2026-11-04T00:05:00+25:00'},
+ {candidates:[{name:'Candidate D',party:'D',votes:0},{name:'Candidate R',party:'R',votes:0}]},
+ {candidates:[{name:'Candidate D',party:'D',votes:55},{name:' Candidate D ',party:'R',votes:40}]}]){
  assert.equal(validate(row(changes)),null,JSON.stringify(changes));
 }
 // VA's local polls close at 2026-11-04T00:00Z; valid source
@@ -28,4 +32,28 @@ assert.equal(reconcile(base,row({updated_at:'2026-11-04T00:06:00Z',ballots_repor
 assert(reconcile(base,row({updated_at:'2026-11-04T00:06:00Z',ballots_reported:90,revision:true,candidates:[{name:'Candidate D',party:'D',votes:45},{name:'Candidate R',party:'R',votes:40}]})).accepted);
 assert.equal(reconcile(base,row({updated_at:'2026-11-04T00:06:00Z',county_id:'51059'})).reason,
  'IDENTITY_MISMATCH');
+
+const next=(candidates,extra={})=>row({updated_at:'2026-11-04T00:06:00Z',
+ ballots_reported:120,candidates,...extra});
+assert.equal(reconcile(base,next([
+ {name:'Candidate D',party:'D',votes:54},
+ {name:'Candidate R',party:'R',votes:61}
+])).reason,'UNMARKED_CANDIDATE_DECREASE',
+ 'Increasing county totals cannot hide a reduced individual candidate count');
+assert(reconcile(base,next([
+ {name:'Candidate D',party:'D',votes:54},
+ {name:'Candidate R',party:'R',votes:61}
+],{revision:true})).accepted);
+assert.equal(reconcile(base,next([
+ {name:'Candidate D',party:'D',votes:100},
+ {name:'New candidate',party:'O',votes:15}
+])).reason,'UNMARKED_CANDIDATE_REMOVAL');
+assert.equal(reconcile(base,next([
+ {name:'Candidate D',party:'R',votes:60},
+ {name:'Candidate R',party:'R',votes:55}
+])).reason,'UNMARKED_CANDIDATE_PARTY_CHANGE');
+assert(reconcile(base,next([
+ {name:'Candidate D',party:'D',votes:60},
+ {name:'Candidate R',party:'R',votes:55}
+])).accepted);
 console.log('Geographic source validation passed');
