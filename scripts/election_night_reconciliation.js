@@ -155,6 +155,12 @@
      // stale by the verified adapter or the post-outage browser cache.
      // Such records must NEVER count as live votes or winner hints.
      secondary.stale!==true&&secondary.sourceStale!==true&&
+     // Even a direct civicAPI result with a valid 2026 race ID and fresh
+     // timestamp cannot supply votes or winner hints if its envelope
+     // explicitly says TEST, MOCK, inactive or not live.
+     secondary.is_test!==true&&secondary.test!==true&&
+     secondary.mock!==true&&secondary.is_mock!==true&&
+     secondary.live!==false&&secondary.active!==false&&
      !errors[id]&&!restore.has(id));
     if(secondary&&!civicOK&&!errors[id]&&!restore.has(id))
      anomalies.push('Rejected invalid supplemental '+id);
