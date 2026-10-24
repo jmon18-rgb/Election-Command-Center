@@ -1,0 +1,36 @@
+name: Validate reviewed Ohio NIST 2026 candidate source adapter
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/build_approved_ohio_nist_results.py'
+      - 'scripts/test_build_approved_ohio_nist_results.py'
+      - 'data/ohio_nist_source_approval_2026.json'
+      - '.github/workflows/ohio-nist-approval-bridge.yml'
+permissions:
+  contents: read
+jobs:
+  release-fail-closed:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate true 88-county NIST candidate source mapping and source-release guards
+        run: |
+          python3 -m py_compile scripts/build_approved_ohio_nist_results.py
+          python3 scripts/test_build_approved_ohio_nist_results.py
+      - name: Verify actual committed preelection source approval is DISABLED
+        run: |
+          python3 - <<'PY'
+          import json
+          c=json.load(open('data/ohio_nist_source_approval_2026.json'))
+          assert c['schema']=='ohio-nist-2026-live-approval-v1'
+          assert c['enabled'] is False
+          assert c['real_results_publication_reviewed'] is False
+          assert c['approved_contests']==[]
+          assert c['county_gpunit_to_fips']=={}
+          print('Verified: pre-election Ohio MOCK XML cannot enter 2026 candidate feeds')
+          PY
