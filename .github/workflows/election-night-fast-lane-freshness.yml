@@ -1,0 +1,32 @@
+name: Election Night 30-second source freshness gate
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'scripts/election_night_fast_lane.js'
+      - 'scripts/test_election_night_fast_lane.cjs'
+      - '.github/workflows/election-night-fast-lane-freshness.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'scripts/election_night_fast_lane.js'
+      - 'scripts/test_election_night_fast_lane.cjs'
+      - '.github/workflows/election-night-fast-lane-freshness.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-fast-lane:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reject outdated, misdated and pre-close expedited source checks
+        run: |
+          node --check scripts/election_night_fast_lane.js
+          node scripts/test_election_night_fast_lane.cjs
+          node scripts/check_election_night_asset_versions.cjs
