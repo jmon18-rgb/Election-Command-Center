@@ -68,6 +68,48 @@ const before=x.priority(ref.get('ME-SEN'),{now:Date.parse('2026-10-15T15:00:00Z'
  asOf:'2026-11-04T02:55:00Z',votes:250000,precincts:65,rawMargin:3,source:'civicAPI',calledParty:'D'
 }});
 assert.equal(before.reporting,false,'Future/2024/pre-election returns never leak');
+// A positive provider count or call must never outrank races before the
+// state's actual local floor, even when the apparent source stamp is recent.
+const snapshot=(asOf)=>({
+ asOf,votes:12000,precincts:50,rawMargin:2,source:'civicAPI',calledParty:'D'
+});
+for(const [code,clock] of [
+ ['AK-SEN','2026-11-04T04:59:00Z'],
+ ['CA-48','2026-11-04T03:59:00Z'],
+ ['IN-05','2026-11-03T22:59:00Z']
+]){
+ const item={office:code.endsWith('SEN')?'Senate':'House',
+  key:code.endsWith('SEN')?code.slice(0,2):code,code,tip:2};
+ const now=Date.parse(clock);
+ const result=x.priority(item,{now,live:snapshot(clock),flipped:true});
+ assert.equal(result.reporting,false,code+' cannot be live before local close');
+ assert.equal(result.called,null,code+' cannot have a promoted winner flag');
+ assert.equal(result.source,null,code+' cannot be promoted from cached votes');
+}
+for(const [code,clock] of [
+ ['IN-05','2026-11-03T23:00:00Z'],
+ ['AK-00','2026-11-04T05:00:00Z'],
+ ['CA-48','2026-11-04T04:00:00Z']
+]){
+ const item={office:'House',key:code,code,tip:2};
+ assert.equal(x.priority(item,{now:Date.parse(clock),
+  live:snapshot(clock)}).reporting,true,
+  code+' must recover precisely at local close when source is valid');
+}
+// Actual browser script may arrive ahead of the shared poll-close module.
+const fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
+const win={};
+vm.runInNewContext(fs.readFileSync(path.join(__dirname,
+ 'election_night_priority.js'),'utf8'),{window:win});
+const me=win.AutomaticRaceDesk.SEED.find(row=>row.code==='ME-SEN');
+assert.equal(win.AutomaticRaceDesk.priority(me,{now:at,
+ live:snapshot('2026-11-04T02:55:00Z')}).reporting,false,
+ 'Missing browser poll-close module fails safely');
+win.ElectionNightPollClosings2026=require('./election_night_poll_closings_2026.js');
+assert.equal(win.AutomaticRaceDesk.priority(me,{now:at,
+ live:snapshot('2026-11-04T02:55:00Z')}).reporting,true,
+ 'Loading the shared contract restores valid live race priority');
+
 const archive=x.priority(ref.get('ME-SEN'),{now:at,live:{
  asOf:'2024-11-04T02:55:00Z',votes:250000,precincts:65,rawMargin:3,source:'civicAPI',calledParty:'D'
 }});
