@@ -42,9 +42,9 @@ def assess(html, now, available=True):
     parser = VisibleText()
     parser.feed(html or "")
     text = " ".join(" ".join(parser.parts).lower().split())
-    general = bool(re.search(r"\\b(?:state\\s+)?general\\s+election\\b", text)
-                   and re.search(r"\\bnovember\\s+3,?\\s+2026\\b", text))
-    test = bool(re.search(r"\\btest\\s+results\\b|\\btesting\\s+in\\s+progress\\b|\\bmock\\s+results\\b", text))
+    general = bool(re.search(r"\b(?:state\s+)?general\s+election\b", text)
+                   and re.search(r"\bnovember\s+3,?\s+2026\b", text))
+    test = bool(re.search(r"\btest\s+results\b|\btesting\s+in\s+progress\b|\bmock\s+results\b", text))
     status = ("SOURCE_UNAVAILABLE_NOT_ASSESSED" if not available else
               "WRONG_OR_UNKNOWN_2026_GENERAL_PAGE" if not general else
               "MOCK_TEST_RESULTS_BLOCKED" if test else
