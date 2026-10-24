@@ -1,0 +1,56 @@
+name: Preflight all 17 supplemental Senate source IDs in rotating batches
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/preflight_pinned_senate_sources.py'
+      - 'scripts/test_preflight_pinned_senate_sources.py'
+      - '.github/workflows/senate-supplemental-source-canaries.yml'
+      - 'scripts/civicapi_state_batch.js'
+      - 'data/election_night_source_coverage.json'
+  schedule:
+    # Seven safe endpoint checks per day; cover all 17 pinned Senate IDs
+    # over a repeating three-day window without a bulk provider crawl.
+    - cron: '40 15 * * *'
+    # Rotate the same small cohort hourly across the Nov 3–4 count.
+    - cron: '13 23 3 11 *'
+    - cron: '13 0-10 4 11 *'
+permissions:
+  contents: read
+jobs:
+  identity-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Confirm all 17 pinned Senate source IDs, rotation and failure behavior
+        run: |
+          python3 -m py_compile scripts/preflight_pinned_senate_sources.py
+          python3 scripts/test_preflight_pinned_senate_sources.py
+  live-transport-check:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: identity-contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check bounded real civicAPI Senate detail HTTP, CORS and exact ballot identity
+        run: |
+          python3 scripts/preflight_pinned_senate_sources.py \
+            --ledger data/election_night_source_coverage.json \
+            --adapter scripts/civicapi_state_batch.js \
+            --output /tmp/pinned-senate-canary.json
+      - name: Retain exact result-source canary evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pinned-senate-source-preflight
+          path: /tmp/pinned-senate-canary.json
+          retention-days: 14
+          if-no-files-found: ignore
