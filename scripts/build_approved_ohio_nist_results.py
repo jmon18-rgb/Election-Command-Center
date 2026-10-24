@@ -214,8 +214,12 @@ def parse(xml_bytes,review,now):
         if (not any(x["party"]=="DEM" for row in counties for x in row["candidates"]) or
             not any(x["party"]=="REP" for row in counties for x in row["candidates"])):
             raise ValueError("Both major parties require observed source candidate totals")
-        out.append({"race_key":race,"office":("Senate" if race.startswith("OH-SEN") else
-                   "Governor" if race=="OH-GOV" else "House"),"counties":counties,
+        dashboard_id=("Senate|OH-special" if race=="OH-SEN-special" else
+                      "Governor|OH" if race=="OH-GOV" else "House|"+race)
+        out.append({"race_key":race,"dashboard_race_id":dashboard_id,
+                    "office":("Senate" if race.startswith("OH-SEN") else
+                    "Governor" if race=="OH-GOV" else "House"),
+                    "counties":counties,
                     "reported_county_count":len(counties)})
     return {
         "schema":"ohio-nist-candidate-county-2026-v1",
