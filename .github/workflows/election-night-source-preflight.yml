@@ -9,7 +9,10 @@ on:
       - 'scripts/test_civicapi_live_source.py'
       - 'scripts/probe_house_coverage_2026.py'
       - 'scripts/test_house_coverage_2026.py'
+      - 'scripts/probe_missing_statewide_sources_2026.py'
+      - 'scripts/test_probe_missing_statewide_sources_2026.py'
       - 'scripts/build_election_night_source_coverage.py'
+      - 'scripts/test_election_night_source_coverage.py'
       - 'scripts/check_house_pins_pages_publication.py'
       - 'scripts/test_check_house_pins_pages_publication.py'
       - 'scripts/civicapi_house_2026_adapter.js'
@@ -92,6 +95,17 @@ jobs:
           ELECTION_HOUSE_PROBE_OUTPUT: /tmp/house_probe_2026.json
         run: |
           python3 scripts/probe_house_coverage_2026.py
+      # Four statewide advisory identity checks run at the same bounded
+      # cadence as the general provider contract (hourly on Election Day).
+      # Provider failure is recorded as UNKNOWN, never as zero votes.
+      # No ID found here is inserted into the approved adapter.
+      - name: Probe MA/MS Senate and HI/OK governor identity evidence
+        id: statewide_probe
+        if: steps.window.outputs.run == 'true' && steps.window.outputs.baseline == 'true'
+        continue-on-error: true
+        run: |
+          python3 scripts/probe_missing_statewide_sources_2026.py \
+            --output /tmp/statewide_source_probe_2026.json
       - name: Build 506-race persistent source identity coverage snapshot
         id: coverage
         if: always() && steps.window.outputs.run == 'true'
@@ -103,6 +117,7 @@ jobs:
         run: |
           python3 scripts/build_election_night_source_coverage.py \
             --probe /tmp/house_probe_2026.json \
+            --statewide-probe /tmp/statewide_source_probe_2026.json \
             --primary-check "$PRIMARY" \
             --secondary-check "$SECONDARY" \
             --house-check "$HOUSE_PROBE"
