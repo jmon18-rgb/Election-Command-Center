@@ -10,6 +10,8 @@ on:
       - 'scripts/probe_house_coverage_2026.py'
       - 'scripts/test_house_coverage_2026.py'
       - 'scripts/build_election_night_source_coverage.py'
+      - 'scripts/check_house_pins_pages_publication.py'
+      - 'scripts/test_check_house_pins_pages_publication.py'
       - 'scripts/civicapi_house_2026_adapter.js'
       - 'scripts/test_civicapi_house_2026_adapter.cjs'
       - 'scripts/test_election_night_source_coverage.py'
@@ -22,6 +24,7 @@ on:
     - cron: '11 * * 10,11 *'
 permissions:
   contents: write
+  pages: write
 concurrency:
   group: election-night-source-preflight
   cancel-in-progress: true
@@ -119,6 +122,41 @@ jobs:
               exit 1
             fi
           fi
+      # GITHUB_TOKEN pushes do not launch a normal Pages branch build. Check
+      # the actually served identity hints, ignoring generated_at churn, and
+      # publish only when real district/provider IDs differ or remote access
+      # is broken. An outage cannot silently become "no new source".
+      - name: Verify deployed House IDs and publish newly verified source pins
+        id: pages_pins
+        if: always() && steps.window.outputs.run == 'true' && steps.persist.outcome == 'success'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DASHBOARD_SITE_URL: ${{ vars.DASHBOARD_SITE_URL }}
+        run: |
+          set -euo pipefail
+          site="${DASHBOARD_SITE_URL:-https://jmon18-rgb.github.io/Election-Command-Center/}"
+          case "$site" in https://*) ;; *) echo "::error::Expected HTTPS Pages site"; exit 1;; esac
+          url="${site%/}/data/election_night_house_pins.json"
+          if ! curl --fail --silent --show-error --max-time 20                -H 'Cache-Control: no-cache' "$url" -o /tmp/served-house-pins.json; then
+            echo 'No verified published House pin manifest; rebuilding Pages'
+            printf '{}' >/tmp/served-house-pins.json
+          fi
+          python3 scripts/check_house_pins_pages_publication.py             --remote /tmp/served-house-pins.json             --local data/election_night_house_pins.json             --output-env "$GITHUB_OUTPUT"
+          if ! grep -qx 'pins_need_pages_build=true' "$GITHUB_OUTPUT"; then
+            echo 'House race ID pins already present on deployed Pages'
+            exit 0
+          fi
+          for attempt in 1 2 3; do
+            if gh api -X POST "repos/${{ github.repository }}/pages/builds"; then
+              echo 'Requested Pages rebuild for newly verified 2026 House source IDs'
+              exit 0
+            fi
+            echo "Pages build busy or rejected ($attempt/3)"
+            sleep "$((attempt * 3))"
+          done
+          echo "::error::New verified House source IDs could not be requested for Pages deployment"
+          exit 1
       - name: Preserve rotating House source inventory and missing-race evidence
         if: always() && steps.window.outputs.run == 'true'
         uses: actions/upload-artifact@v4
@@ -145,6 +183,7 @@ jobs:
           HOUSE_PROBE: ${{ steps.house_probe.outcome }}
           COVERAGE: ${{ steps.coverage.outcome }}
           PERSIST: ${{ steps.persist.outcome }}
+          PAGES_PINS: ${{ steps.pages_pins.outcome }}
           BASELINE: ${{ steps.window.outputs.baseline }}
         run: |
           echo "## Direct-browser 2026 election source preflight" >> "$GITHUB_STEP_SUMMARY"
@@ -154,11 +193,12 @@ jobs:
           echo "- civicAPI (individually verified supplementary races): $SECONDARY" >> "$GITHUB_STEP_SUMMARY"
           echo "- Hourly eight-district House identity checks: $HOUSE_PROBE" >> "$GITHUB_STEP_SUMMARY"
           echo "- 506-race source audit and House ID hint manifest built / persisted: $COVERAGE / $PERSIST" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Verified House source IDs checked against live GitHub Pages: $PAGES_PINS" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "Checks test HTTP, browser CORS and strict year/race schema; the 506-race ledger is source identity **not live-result availability or winner calls**." >> "$GITHUB_STEP_SUMMARY"
           if { [ "$BASELINE" = "true" ] && { [ "$PRIMARY" != "success" ] || [ "$SECONDARY" != "success" ]; }; } || \
              { [ "$BASELINE" = "false" ] && { [ "$PRIMARY" != "skipped" ] || [ "$SECONDARY" != "skipped" ]; }; } || \
-             [ "$HOUSE_PROBE" != "success" ] || [ "$COVERAGE" != "success" ] || [ "$PERSIST" != "success" ]; then
+             [ "$HOUSE_PROBE" != "success" ] || [ "$COVERAGE" != "success" ] || [ "$PERSIST" != "success" ] || [ "$PAGES_PINS" != "success" ]; then
             echo "::error::Election-night source preflight failed (including rotating House audit). Investigate; missing and untested seats are unknown, never zero or historical fallback."
             exit 1
           fi
