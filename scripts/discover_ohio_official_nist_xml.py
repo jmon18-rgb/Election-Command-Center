@@ -58,8 +58,25 @@ def inspect(html):
         # result-count XML endpoints even when linked near the feed label.
         if parsed.path.lower().endswith((".pdf",".doc",".docx")):
             continue
+        # Ohio's actual 2026 feed anchor is a SCRIPT ACTION, NOT a URL.
+        # Preserve only the inert, allowlisted action and object key; never
+        # execute JavaScript, invent a direct XML URL or download mock votes.
+        action=re.fullmatch(
+            r"javascript:downloadReport\\(['\\\"]([A-Za-z0-9]{1,80})['\\\"]\\);?",
+            href.strip(),flags=re.I)
+        if action:
+            results.append({
+              "href":None,"manual_review_candidate_url":None,
+              "official_download_action":"downloadReport",
+              "official_download_object_key":action.group(1),
+              "link_label":label[:140],
+              "verified_official_host":False,
+              "needs_manual_host_review":True,
+              "requires_page_script_resolution":True,
+            })
+            continue
         allow=parsed.scheme=="https" and parsed.hostname in OFFICIAL_HOSTS
-        if url not in {r["href"] or r["manual_review_candidate_url"] for r in results}:
+        if url not in {r.get("href") or r.get("manual_review_candidate_url") for r in results}:
             results.append({
                 "href":url if allow else None,
                 "manual_review_candidate_url":None if allow else url,
