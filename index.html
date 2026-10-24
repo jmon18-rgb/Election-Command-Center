@@ -6146,7 +6146,8 @@ function enCsv(rows){return '\uFEFF'+rows.map(row=>row.map(enCsvCell).join(','))
 // source freshness, pre-close mock checks, provider outage/recheck state or
 // the independent reconciliation gates used by the visible result desk.
 function enExportPrimaryUsable(office,snapshot,now=Date.now()){
- if(!enSourceValid(snapshot,2026,office)||
+ if(!snapshot||enOfficeSnapshots[office]!==snapshot||
+    !enSourceValid(snapshot,2026,office)||
     enOfficeErrors[office]||
     (enOffice===office&&enFetchError)||
     enResumePendingOffices.has(office))return false;
