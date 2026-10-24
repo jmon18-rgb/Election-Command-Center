@@ -2215,7 +2215,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}
   'Ohio regular Senate result must not masquerade as the 2026 special election');
  const nextClock=w.Date.now,nextFetch=w.fetch;
  const seenNext=[],badUpdates=new Set();
- w.Date.now=()=>Date.parse('2026-11-04T03:00:00Z');
+ w.Date.now=()=>Date.parse('2026-11-04T03:20:00Z');
  w.fetch=async url=>{
   const address=String(url);seenNext.push(address);
   if(address.startsWith('https://civicapi.org/api/v2/race/search')){
