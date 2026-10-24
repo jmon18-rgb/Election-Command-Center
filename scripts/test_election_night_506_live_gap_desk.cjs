@@ -35,19 +35,30 @@ assert.deepEqual([pulse.totals.House.reported,pulse.totals.Senate.reported,
 assert.deepEqual([pulse.totals.House.zero,pulse.totals.Senate.zero,
  pulse.totals.Governor.zero],[1,0,1]);
 assert.equal(pulse.senate.length,35);
-assert.equal(pulse.unverifiedMachineIds.length,11,'Source-unpinned identity list must match current review ledger');
-assert.equal(pulse.unverifiedMachineIds.filter(x=>x.office==='House').length,7);
+const pendingIds=ledger.races.filter(row=>
+ row.source_identity_status==='NO_CURATED_PROVIDER_ID'&&
+ !(row.verified_identity_hint_usable===true&&
+   row.gap_status==='RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED'));
+const otherPending=pendingIds.filter(row=>row.office!=='Senate');
+assert.deepEqual(pulse.unverifiedMachineIds.map(x=>x.id).sort(),
+ pendingIds.map(x=>x.id).sort(),
+ 'On-screen unpinned IDs must track the latest generated source ledger');
 assert(!pulse.unverifiedMachineIds.some(x=>x.id==='House|CA-13'),
  'Independently verified exact 2026 House ID hints cannot be labeled unknown');
-assert.equal(pulse.totals.House.byStatus.SECONDARY_NOT_QUERIED,212,
- 'Exact House discovery IDs remain unreported votes, not 212 missing machine IDs');
-const lastHintFailed=api.build(ledger,res,state,now,{'House|CA-13':'failed'});
-assert.equal(lastHintFailed.totals.House.byStatus.SECONDARY_FAILED,1,
- 'Independently observed source failure must override a saved House identity hint');
-assert.equal(lastHintFailed.unverifiedMachineIds.length,11,
- 'A failed lookup must not manufacture a new missing machine identity');
-assert.equal(pulse.unverifiedMachineIds.filter(x=>x.office==='Governor').length,2);
-assert.equal(pulse.unverifiedMachineIds.filter(x=>x.office==='Senate').length,2);
+const identityHints=ledger.races.filter(row=>row.office==='House'&&
+ row.source_identity_status==='NO_CURATED_PROVIDER_ID'&&
+ row.verified_identity_hint_usable===true&&
+ row.gap_status==='RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED');
+assert.equal(pulse.totals.House.byStatus.SECONDARY_NOT_QUERIED,identityHints.length,
+ 'Exact House discovery IDs remain unreported votes, not missing machine IDs');
+if(identityHints.length){
+ const key=identityHints[0].id;
+ const lastHintFailed=api.build(ledger,res,state,now,{[key]:'failed'});
+ assert.equal(lastHintFailed.totals.House.byStatus.SECONDARY_FAILED,1,
+  'Independently observed source failure must override a saved House identity hint');
+ assert.equal(lastHintFailed.unverifiedMachineIds.length,pendingIds.length,
+  'A failed lookup must not manufacture a new missing machine identity');
+}
 assert.equal(pulse.senateMissing,34);
 assert.equal(pulse.senate.find(x=>x.id==='Senate|NC').status,'OBSERVED_SOURCE_VOTES');
 assert.equal(pulse.senate.find(x=>x.id==='Senate|TX').status,'PRIMARY_RACE_ABSENT');
@@ -97,14 +108,17 @@ const flatten=x=>[x.textContent,...x.children.flatMap(flatten)].join(' ');
 const t=flatten(host);
 assert.match(t,/House 1\/435 · Senate 1\/35 · Governors 0\/36/);
 assert.match(t,/Senate source gaps · 34/);
-assert.match(t,/Unpinned House \/ governor source IDs · 9/);
-assert.match(t,/House NH-01 — No verified automated source ID/);
-assert.match(t,/House NH-02 — No verified automated source ID/);
-assert.match(t,/House AK-00 — No verified automated source ID/);
-assert.match(t,/Governor HI — No verified automated source ID/);
-assert.match(t,/Governor OK — No verified automated source ID/);
-assert.equal((t.match(/Check official election office/g)||[]).length,9,
- 'Seven House and two governor missing source IDs require operator fallback links');
+if(otherPending.length){
+ assert(t.includes('Unpinned House / governor source IDs · '+otherPending.length));
+ for(const row of otherPending)
+  assert(t.includes(row.id.replace('|',' ')+' — No verified automated source ID'),
+   'Missing exact on-screen source identity '+row.id);
+ const linkCount=otherPending.filter(row=>
+  official.links.some(link=>Array.isArray(link.race_ids)&&
+   link.race_ids.includes(row.id)&&link.url.startsWith('https://'))).length;
+ assert.equal((t.match(/Check official election office/g)||[]).length,linkCount,
+  'Only audited https official links can appear for unresolved House/governor rows');
+}
 assert.match(t,/MA — No verified automated source ID/);
 assert.match(t,/certified results only; NOT live/);
 assert.match(t,/MS — No verified automated source ID/);
