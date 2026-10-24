@@ -124,7 +124,8 @@ for(let m=0;m<=120;m++){
   assert.equal(res.records['Senate|NH'].provider,
    nhSourceOutage?null:'civicAPI');
   if(nhSourceOutage){
-   assert.equal(pulse.totals.Senate.byStatus.SECONDARY_FAILED>=1);
+   assert(pulse.totals.Senate.byStatus.SECONDARY_FAILED>=1,
+    'Failed NH source must remain missing, not a zero-vote race');
   }else{
    assert(civic['Senate|NH'].total>=lastValidNH);
    lastValidNH=civic['Senate|NH'].total;
