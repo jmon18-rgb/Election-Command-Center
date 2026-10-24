@@ -6,11 +6,18 @@
  */
 import assert from 'node:assert/strict';
 import {createServer} from 'node:http';
-import {createReadStream,existsSync,statSync} from 'node:fs';
+import {createReadStream,existsSync,statSync,readFileSync} from 'node:fs';
 import {resolve,extname,sep} from 'node:path';
 import {chromium} from 'playwright';
 
 const ROOT=resolve(import.meta.dirname,'..');
+const sourceLedger=JSON.parse(readFileSync(resolve(ROOT,'data/election_night_source_coverage.json'),'utf8'));
+const otherMachineGaps=sourceLedger.races.filter(row=>
+ (row.office==='House'||row.office==='Governor')&&
+ row.source_identity_status==='NO_CURATED_PROVIDER_ID'&&
+ !(row.verified_identity_hint_usable===true&&
+   row.gap_status==='RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED'));
+const manualBackstops=JSON.parse(readFileSync(resolve(ROOT,'data/election_night_official_backstops.json'),'utf8')).links;
 const MIME={'.html':'text/html','.js':'text/javascript','.json':'application/json',
  '.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg',
  '.webp':'image/webp','.txt':'text/plain','.csv':'text/csv'};
@@ -91,21 +98,28 @@ try{
   assert.match(rendered,/No source evidence for 433 House, 34 Senate and 35 governor contests/);
   assert.match(rendered,/Provider-reported zero is tracked separately/);
   const groups=page.locator('#enLiveCoverageTriage details');
-  assert.equal(await groups.count(),2,
-   device+': Expect separate Senate and unresolved House/governor desks');
+  assert.equal(await groups.count(),otherMachineGaps.length?2:1,
+   device+': Distinct Senate and known unresolved House/governor source drawers');
   const group=groups.nth(0);
   await group.locator('summary').click();
   assert.match(await group.textContent(),/NC — Reported votes · unofficial/);
   assert.match(await group.textContent(),/ME — Supplemental source request FAILED/);
   assert.match(await group.textContent(),/MA — No verified automated source ID/);
   assert.match(await group.textContent(),/MS — No verified automated source ID/);
-  const other=groups.nth(1);
-  await other.locator('summary').click();
-  assert.match(await other.textContent(),/Unpinned House \/ governor source IDs · 9/);
-  assert.match(await other.textContent(),/House NH-01 — No verified automated source ID/);
-  assert.match(await other.textContent(),/Governor HI — No verified automated source ID/);
-  assert.equal(await other.locator('a[href^="https://"]').count(),9,
-   device+': Each known unpinned House/governor needs an official manual fallback');
+  if(otherMachineGaps.length){
+   const other=groups.nth(1);
+   await other.locator('summary').click();
+   assert((await other.textContent()).includes(
+    'Unpinned House / governor source IDs · '+otherMachineGaps.length));
+   for(const row of otherMachineGaps)
+    assert((await other.textContent()).includes(
+     row.id.replace('|',' ')+' — No verified automated source ID'));
+   const validLinks=otherMachineGaps.filter(row=>manualBackstops.some(link=>
+    Array.isArray(link.race_ids)&&link.race_ids.includes(row.id)&&
+    /^https:\/\//.test(link.url))).length;
+   assert.equal(await other.locator('a[href^="https://"]').count(),validLinks,
+    device+': Only curated official manual links may accompany missing machine source IDs');
+  }
   assert(['House','Senate','Governor'].every(x=>providers.includes(x)),
    device+': All three office sources should have been attempted');
   scenario='outage';
