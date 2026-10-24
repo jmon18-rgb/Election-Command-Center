@@ -1,0 +1,60 @@
+name: Verify three newly pinned statewide 2026 source races
+on:
+  pull_request:
+    paths:
+      - 'scripts/civicapi_state_batch.js'
+      - 'scripts/test_civicapi_state_batch.cjs'
+      - 'scripts/verify_new_statewide_civicapi_pins_2026.py'
+      - 'scripts/test_verify_new_statewide_civicapi_pins_2026.py'
+      - '.github/workflows/verify-new-statewide-pins.yml'
+      - 'scripts/probe_civicapi_ca_de_ms_sd_wy.py'
+      - 'scripts/probe_civicapi_al_mt_nm_ok_tn.py'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/civicapi_state_batch.js'
+      - 'scripts/verify_new_statewide_civicapi_pins_2026.py'
+      - '.github/workflows/verify-new-statewide-pins.yml'
+  workflow_dispatch:
+  schedule:
+    # Low traffic before election; 3 states x search+detail each probe.
+    - cron: '49 14 * 10,11 *'
+    - cron: '49 22-23 3 11 *'
+    - cron: '49 0-9 4 11 *'
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prove exact pins, preclose rejection and 506-race ledger invariants
+        run: |
+          python3 scripts/test_verify_new_statewide_civicapi_pins_2026.py
+          python3 scripts/test_election_night_source_coverage.py
+          node scripts/test_civicapi_state_batch.cjs
+          node scripts/check_election_night_asset_versions.cjs
+  real-provider:
+    needs: offline
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read actual November 3 civicAPI source identities and browser-compatible candidate schema
+        run: python3 scripts/verify_new_statewide_civicapi_pins_2026.py
+      - name: Explain evidence scope
+        run: |
+          echo '### Three pinned statewide race source checks' >> "$GITHUB_STEP_SUMMARY"
+          echo 'MS Senate; HI Governor; OK Governor. Independent exact IDs and candidate-schema checks, via browser-CORS-enabled civicAPI.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'May fetch verified vote counts after polls close, but the source alone supplies no guaranteed live votes, national provider fallback, or professional race calls.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Massachusetts Senate remains NOT_INDEXED in this provider.' >> "$GITHUB_STEP_SUMMARY"
