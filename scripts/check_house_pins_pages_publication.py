@@ -6,6 +6,7 @@ when the exact district->verified provider race ID mapping differs. NEVER
 inspect candidate votes, calls, percent reporting or model probabilities.
 """
 import argparse
+from datetime import datetime, timedelta, timezone
 import json
 from pathlib import Path
 import re
@@ -34,14 +35,34 @@ def identities(document, *, allow_unavailable=False):
         ids.add(race)
     return found
 
-def needs_publication(published, latest):
+def needs_publication(published, latest, *, now=None):
     reviewed = identities(latest)
     try:
         previous = identities(published, allow_unavailable=True)
     except ValueError:
         # Remote malformed/stale manifest must never be treated as approved.
         previous = None
-    return previous != reviewed
+    if previous != reviewed:
+        return True
+    # The actual browser's source-ID adapter refuses manifests >48h old.
+    # Avoid rebuilding Pages on every hourly timestamp update, but publish
+    # an unchanged ID mapping before the 48h hard-expiry gate.
+    moment = now or datetime.now(timezone.utc)
+    if moment.tzinfo is None:
+        raise ValueError("Clock must be timezone-aware")
+    try:
+        remote_at = datetime.fromisoformat(published["generated_at"].replace("Z", "+00:00"))
+        current_at = datetime.fromisoformat(latest["generated_at"].replace("Z", "+00:00"))
+        if remote_at.tzinfo is None or current_at.tzinfo is None:
+            return True
+        remote_at = remote_at.astimezone(timezone.utc)
+        current_at = current_at.astimezone(timezone.utc)
+    except (TypeError, KeyError, ValueError, AttributeError):
+        return True
+    moment = moment.astimezone(timezone.utc)
+    return (remote_at > moment + timedelta(minutes=15) or
+            (moment - remote_at > timedelta(hours=30) and
+             current_at > remote_at + timedelta(minutes=1)))
 
 def main():
     parser = argparse.ArgumentParser()
