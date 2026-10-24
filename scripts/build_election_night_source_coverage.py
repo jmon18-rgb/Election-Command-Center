@@ -29,6 +29,16 @@ PROBE_STATUSES = frozenset((
     "TEMPORARY_UPSTREAM_FAILURE", "NOT_CHECKED_UPSTREAM_PAUSED",
 ))
 OUT = ROOT / "data" / "election_night_source_coverage.json"
+# These four race IDs are checked in the independent advisory probe. Do not
+# let the result create an approved live-results pin or a winning call.
+STATEWIDE_ADVISORY_IDS = frozenset((
+    "Senate|MA", "Senate|MS", "Governor|HI", "Governor|OK"
+))
+STATEWIDE_ADVISORY_STATUSES = frozenset((
+    "INDEXED_EXACT_RACE_IDENTITY_ONLY", "NOT_INDEXED",
+    "AMBIGUOUS_EXACT_RACE", "INVALID_OR_MISMATCHED_DETAIL",
+    "INVALID_OR_TRUNCATED_SEARCH", "PROVIDER_UNAVAILABLE",
+))
 
 
 def timestamp(value):
@@ -132,8 +142,61 @@ def observed_house(probe, valid_ids):
     return result
 
 
+def observed_statewide_advisory(probe, valid_ids, now):
+    """Validate READ-ONLY statewide search evidence, never source approval."""
+    if probe is None:
+        return {}
+    if (not isinstance(probe, dict) or
+            probe.get("schema") != "advisory-2026-four-statewide-gaps-v1" or
+            probe.get("provider") != "civicAPI" or
+            probe.get("source_origin") != "https://civicapi.org/api/v2" or
+            probe.get("identity_only_not_voting_results") is not True or
+            probe.get("may_publish_live_votes") is not False or
+            probe.get("may_update_model_or_source_pins") is not False):
+        raise ValueError("Unsupported or unsafe statewide advisory source")
+    checked = timestamp(probe.get("checked_at"))
+    if checked < datetime(2026, 10, 1, tzinfo=timezone.utc) or (
+            checked > now + timedelta(minutes=15)):
+        raise ValueError("Invalid statewide source discovery timestamp")
+    rows = probe.get("records")
+    if (not isinstance(rows, list) or len(rows) > len(STATEWIDE_ADVISORY_IDS) or
+            type(probe.get("checked")) is not int or
+            probe["checked"] != len(rows) or
+            type(probe.get("exact_matches")) is not int):
+        raise ValueError("Invalid statewide source probe bounds")
+    found = {}
+    for row in rows:
+        if not isinstance(row, dict):
+            raise ValueError("Malformed statewide source probe record")
+        identity = row.get("race")
+        status = row.get("status")
+        if (identity not in STATEWIDE_ADVISORY_IDS or
+                identity not in valid_ids or identity in found or
+                status not in STATEWIDE_ADVISORY_STATUSES):
+            raise ValueError("Invalid statewide election identity/status")
+        ident_id = row.get("race_id")
+        count = row.get("candidate_count")
+        if status == "INDEXED_EXACT_RACE_IDENTITY_ONLY":
+            if (type(ident_id) is not int or ident_id <= 0 or
+                    type(count) is not int or not 2 <= count <= 60):
+                raise ValueError("Exact statewide identity missing detail evidence")
+        elif ident_id is not None or count is not None:
+            raise ValueError("Nonexact statewide source cannot supply an approved ID")
+        found[identity] = {
+            "status": status, "checked_window_utc": checked.isoformat(),
+            "race_id": ident_id if status == "INDEXED_EXACT_RACE_IDENTITY_ONLY" else None,
+            "candidate_count": count if status == "INDEXED_EXACT_RACE_IDENTITY_ONLY" else None,
+            "advisory_only_not_approved": True,
+        }
+    if probe["exact_matches"] != sum(
+            r["status"] == "INDEXED_EXACT_RACE_IDENTITY_ONLY" for r in found.values()):
+        raise ValueError("Statewide probe count inconsistent with evidence")
+    return found
+
+
 def build(universe, reconciliation_js, batch_js, nh_senate_js, nh_governor_js,
-          probe=None, previous=None, *, now=None, checks=None):
+          probe=None, previous=None, *, now=None, checks=None,
+          statewide_probe=None):
     now = now or datetime.now(timezone.utc)
     if now.tzinfo is None:
         raise ValueError("Now must include timezone")
@@ -143,6 +206,7 @@ def build(universe, reconciliation_js, batch_js, nh_senate_js, nh_governor_js,
     pins = pinned_sources(batch_js, ids)
     nh = nh_support(nh_senate_js, nh_governor_js)
     probes = observed_house(probe, ids)
+    statewide_advisories = observed_statewide_advisory(statewide_probe, ids, now)
     prior = {}
     if previous:
         if previous.get("schema_version") != "1.0":
@@ -195,7 +259,7 @@ def build(universe, reconciliation_js, batch_js, nh_senate_js, nh_governor_js,
             gap = "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED"
         else:
             gap = "UNRESOLVED_SOURCE_GAP"
-        races.append({
+        entry = {
             "id": identity, "office": office, "key": key, "state": state,
             "provider_scope": "Open America 22-state scope" if primary else "outside primary",
             "source_identity_status": source,
@@ -213,7 +277,19 @@ def build(universe, reconciliation_js, batch_js, nh_senate_js, nh_governor_js,
             "gap_status": gap,
             "live_votes_verified_by_audit": False,
             "professional_winner_call_verified_by_audit": False,
-        })
+        }
+        if identity in STATEWIDE_ADVISORY_IDS:
+            old_advisory = prior.get(identity, {}).get("statewide_probe_advisory")
+            new_advisory = statewide_advisories.get(identity)
+            if new_advisory and (not old_advisory or
+                    timestamp(new_advisory["checked_window_utc"]) >=
+                    timestamp(old_advisory["checked_window_utc"])):
+                old_advisory = new_advisory
+            entry["statewide_probe_advisory"] = old_advisory
+            # A verified search+detail ID is an operator clue, not a
+            # production-approved 2026 ballot, source, vote count or call.
+            # In particular, Senate|MA remains an unresolved source gap.
+        races.append(entry)
     summary = {}
     for office in ("House", "Senate", "Governor"):
         rows = [row for row in races if row["office"] == office]
@@ -269,6 +345,7 @@ def build(universe, reconciliation_js, batch_js, nh_senate_js, nh_governor_js,
             "house_probe": "Rotating sampled exact 2026 district discovery; 24-hour 'recent' does not guarantee Election Night data",
             "missing": "Unprobed, unindexed, interrupted or invalid is unknown, never zero votes",
             "verified_identity_hint": "Ten-day exact search+detail discovery; independent of 24-hour last-probe freshness and NOT verified live returns",
+            "statewide_advisory": "Four read-only civicAPI statewide discovery records. Operator evidence only; NEVER auto-pins race IDs or authorizes votes.",
             "calls": "No licensed professional call provider or verified control attribution in this ledger",
         },
         "races": races,
@@ -303,6 +380,7 @@ def house_pins(report, *, max_age_days=10):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--probe", type=Path)
+    parser.add_argument("--statewide-probe", type=Path)
     parser.add_argument("--output", type=Path, default=OUT)
     parser.add_argument("--pins-output", type=Path,
                         default=ROOT / "data/election_night_house_pins.json")
@@ -312,13 +390,15 @@ def main():
     args = parser.parse_args()
     prior = json.loads(args.output.read_text()) if args.output.exists() else None
     probe = json.loads(args.probe.read_text()) if args.probe and args.probe.exists() else None
+    statewide_probe = (json.loads(args.statewide_probe.read_text())
+                       if args.statewide_probe and args.statewide_probe.exists() else None)
     report = build(
         json.loads((ROOT / "data/seat_universe.json").read_text()),
         (ROOT / "scripts/election_night_reconciliation.js").read_text(),
         (ROOT / "scripts/civicapi_state_batch.js").read_text(),
         (ROOT / "scripts/civicapi_nh_adapter.js").read_text(),
         (ROOT / "scripts/civicapi_nh_governor_adapter.js").read_text(),
-        probe=probe, previous=prior,
+        probe=probe, previous=prior, statewide_probe=statewide_probe,
         checks={"primary": args.primary_check, "secondary": args.secondary_check,
                 "house_probe": args.house_check}
     )
