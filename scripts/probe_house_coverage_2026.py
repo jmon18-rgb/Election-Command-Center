@@ -125,9 +125,14 @@ def gap_aware_window(now: datetime, history: dict, *,
     handled by run_batch, not treated as proof of an absent race.
     """
     if now.tzinfo is None or not 1 <= limit <= GAP_AWARE_LIMIT or \
-       window_hours not in (1, 4):
+       window_hours not in (0.5, 1, 4):
         raise ValueError("Invalid time or source request cap")
     now = now.astimezone(timezone.utc)
+    election_counting = (
+        datetime(2026, 11, 3, 23, tzinfo=timezone.utc) <= now <=
+        datetime(2026, 11, 4, 12, tzinfo=timezone.utc))
+    if window_hours == 0.5 and not election_counting:
+        raise ValueError("Half-hour provider probes allowed only during counting")
     seats = inventory if inventory is not None else uncovered_house_universe()
     if len(seats) != 219 or len(set(seats)) != 219 or not set(DISTRICTS).issubset(seats):
         raise ValueError("Expected 219 uncovered 2026 House districts")
@@ -174,13 +179,12 @@ def gap_aware_window(now: datetime, history: dict, *,
         # Starting at the first national poll close and through next morning,
         # an hour is the maximum useful wait to DISCOVER a previously absent
         # candidate source. Identity discovery is never live-vote approval.
-        count_window = (datetime(2026, 11, 3, 23, tzinfo=timezone.utc)
-                        <= now <= datetime(2026, 11, 4, 12, tzinfo=timezone.utc))
+        count_window = election_counting
         age = {"INDEXED_EXACT_RACE": timedelta(hours=72),
                "NOT_INDEXED": timedelta(hours=24)}.get(
                    last["status"], timedelta(hours=4))
         if count_window and last["status"] != "INDEXED_EXACT_RACE":
-            age = timedelta(hours=1)
+            age = timedelta(minutes=30 if window_hours == 0.5 else 60)
         eligible_at = last_at + age
         if eligible_at > now:
             fresh += 1
@@ -457,8 +461,14 @@ def main():
     # Follow the ledger rather than paying six repeated anchor searches every
     # four hours. Fail closed if the 506-race inventory is corrupted or absent.
     history = json.loads(COVERAGE_PATH.read_text(encoding="utf-8"))
-    plan = gap_aware_window(datetime.now(timezone.utc), history,
-                            limit=HOURLY_DISCOVERY_LIMIT, window_hours=1)
+    now = datetime.now(timezone.utc)
+    # Only when returns start on Nov 3, scan missing source identities at
+    # most twice per hour. Outside that narrow window keep the affordable
+    # hourly provider budget; an ID is never equivalent to reported votes.
+    counting = (datetime(2026, 11, 3, 23, tzinfo=timezone.utc) <= now <=
+                datetime(2026, 11, 4, 12, tzinfo=timezone.utc))
+    plan = gap_aware_window(now, history, limit=HOURLY_DISCOVERY_LIMIT,
+                            window_hours=0.5 if counting else 1)
     stats = {}
     results = run_batch(plan, stats=stats)
     report = build_report(plan, results, request_stats=stats)
