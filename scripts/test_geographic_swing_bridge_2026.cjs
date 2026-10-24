@@ -19,4 +19,15 @@ const fresh=apply(first.row,{...row,updated_at:'2026-11-04T00:06:00Z',
  ballots_reported:120,candidates:[{name:'Candidate D',party:'D',votes:65},
  {name:'Candidate R',party:'R',votes:50}]},base);
 assert(fresh.accepted);assert(fresh.swing);
+const multiparty={...row,ballots_reported:150,candidates:[
+ ...row.candidates,{name:'Green candidate',party:'G',votes:20},
+ {name:'Independent candidate',party:'O',votes:15},
+ {name:'Write-in candidate',party:'O',votes:5}
+]};
+const multi=apply(null,multiparty,base);
+assert(multi.accepted);
+assert.equal(multi.mode,'VERIFIED_GEOGRAPHIC_COMPARISON');
+assert.equal(multi.swing.swing,0.2);
+assert.equal(multi.swing.other_party_votes,40);
+assert.equal(multi.swing.two_party_votes,100);
 console.log('Geographic bridge integration passed');
