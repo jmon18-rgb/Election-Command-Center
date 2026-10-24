@@ -51,6 +51,9 @@ const preclose={...b,updated_at:'2026-11-03T23:59:59Z'};
 const early=summarize({...first,[key(b)]:preclose},bases,'VA-SEN',NOW);
 assert.notEqual(early.status,'MATCHED_COUNTIES_DESCRIPTIVE_ONLY');
 assert.equal(early.rejected_observations,1);
+assert.equal(early.matched_county_swing_points,null,
+ 'A rejected pre-close county must not leave an actionable-looking swing');
+assert.equal(early.matched_2026_margin_points,null);
 // A source timestamp after poll closure is not itself proof votes could
 // have been observed by a dashboard clock still BEFORE poll closure.
 const preViewerClock=summarize(first,bases,'VA-SEN',
@@ -63,16 +66,31 @@ assert.equal(summarize(first,bases,'VA-SEN',
  'MATCHED_COUNTIES_DESCRIPTIVE_ONLY',
  'Legitimate source-stamped postclose votes recover after viewer clock closes');
 const future={...b,updated_at:'2026-11-04T01:16:00Z'};
-assert.equal(summarize({...first,[key(b)]:future},bases,'VA-SEN',NOW).rejected_observations,1);
+const futurePulse=summarize({...first,[key(b)]:future},bases,'VA-SEN',NOW);
+assert.equal(futurePulse.rejected_observations,1);
+assert.equal(futurePulse.matched_county_swing_points,null,
+ 'Future-dated source data must invalidate the whole advisory pulse');
 const stale={...b,updated_at:'2026-11-04T00:10:00Z'};
 assert.equal(summarize({...first,[key(b)]:stale},bases,'VA-SEN',
  Date.parse('2026-11-04T04:00:00Z')).rejected_observations,3,
  'Stale validation must reject rows older than 180 minutes');
 const invalid={...a,ballots_reported:25};
-assert.equal(summarize({...first,[key(a)]:invalid},bases,'VA-SEN',NOW).status,
- 'REJECTED_INVALID_COUNTY_OBSERVATIONS');
+const contaminated=summarize({...first,[key(a)]:invalid},bases,'VA-SEN',NOW);
+assert.equal(contaminated.status,'REJECTED_INVALID_COUNTY_OBSERVATIONS');
+assert.equal(contaminated.matched_counties,1);
+assert.equal(contaminated.matched_county_swing_points,null);
+const invalidThird={...c,is_test:true};
+const partial=summarize({...first,[key(c)]:invalidThird},bases,'VA-SEN',NOW);
+assert.equal(partial.matched_counties,2,
+ 'Two otherwise valid counties cannot rescue a poisoned source batch');
+assert.equal(partial.rejected_observations,1);
+assert.equal(partial.status,'REJECTED_INVALID_COUNTY_OBSERVATIONS');
+assert.equal(partial.matched_county_swing_points,null);
+assert.equal(partial.matched_2024_margin_points,null);
+assert.equal(partial.matched_2026_two_party_votes,null);
 const changedKey=summarize({'VA-SEN|wrong':a,[key(b)]:b},bases,'VA-SEN',NOW);
 assert.equal(changedKey.status,'REJECTED_INVALID_COUNTY_OBSERVATIONS');
+assert.equal(changedKey.matched_county_swing_points,null);
 const incompatibleHistory={...bases,[key(b)]:{
  ...bases[key(b)],election_date:'2020-11-03'}};
 assert.equal(summarize(first,incompatibleHistory,'VA-SEN',NOW).status,
