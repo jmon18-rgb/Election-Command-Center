@@ -45,9 +45,12 @@ assert.equal(stalePulse.lastValidVoteAgeMinutes,6);
 assert.equal(stalePulse.lastValidVoteRace,'House|TX-01');
 const offNight=Date.parse('2026-11-02T12:00:00Z');
 const offRecent={...ledger,generated_at:new Date(offNight-7*60*60000).toISOString()};
-assert.equal(api.build(offRecent,res,state,offNight).sourceIdentityAuditStale,false);
+// There cannot be any real 2026 vote evidence on November 2. Exercise
+// the identity-registry age rule with a zero-observation reconciliation.
+const offNightNoVotes=results({snapshots:{}});
+assert.equal(api.build(offRecent,offNightNoVotes,state,offNight).sourceIdentityAuditStale,false);
 assert.equal(api.build({...ledger,generated_at:
- new Date(offNight-25*60*60000).toISOString()},res,state,offNight)
+ new Date(offNight-25*60*60000).toISOString()},offNightNoVotes,state,offNight)
  .sourceIdentityAuditStale,true);
 assert.deepEqual(Object.keys(pulse.totals),['House','Senate','Governor']);
 assert.deepEqual([pulse.totals.House.total,pulse.totals.Senate.total,
