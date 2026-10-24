@@ -3507,8 +3507,23 @@ function enRenderAmbientDesk(){
        restored:enResumePendingOffices.has(name)
       }).state;
      try{
+      const supplementalHealth=Object.create(null);
+      const blocked=Boolean(enCivicBreaker?.status().blocked||
+       enCivicBreaker?.status().consecutive>0);
+      for(const item of enPublishedCoverageLedger.races){
+       if(item.provider_scope==='Open America 22-state scope')continue;
+       const id=item.id;
+       if(enCivicErrors[id])supplementalHealth[id]='failed';
+       else if(enCivicByWatch[id]&&!enCivicUsable({
+        office:item.office,key:item.key
+       }))supplementalHealth[id]='stale';
+       else if(enCivicPending.has(id))supplementalHealth[id]='pending';
+       else if(enCivicLastAttemptAt[id])supplementalHealth[id]='attempted';
+       else if(blocked&&item.source_identity_status!=='NO_CURATED_PROVIDER_ID')
+        supplementalHealth[id]='failed';
+      }
       const audit=window.ElectionNightCoverageTriage.build(
-       enPublishedCoverageLedger,x,sourceHealth,Date.now());
+       enPublishedCoverageLedger,x,sourceHealth,Date.now(),supplementalHealth);
       window.ElectionNightCoverageTriage.render(triageHost,audit,document);
      }catch(auditError){
       triageHost.textContent='Coverage audit unavailable: '+
