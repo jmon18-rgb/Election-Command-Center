@@ -1,0 +1,57 @@
+name: NH 2026 federal results links discovery
+on:
+  pull_request:
+    paths:
+      - 'scripts/probe_nh_2026_official_federal_links.py'
+      - 'scripts/test_probe_nh_2026_official_federal_links.py'
+      - '.github/workflows/nh-2026-official-report-discovery.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/probe_nh_2026_official_federal_links.py'
+      - 'scripts/test_probe_nh_2026_official_federal_links.py'
+      - '.github/workflows/nh-2026-official-report-discovery.yml'
+  schedule:
+    - cron: '31 12 * * *'
+    - cron: '37 * 3-4 11 *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  nh-reports:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify exact official result links, not ballots
+        run: |
+          python -m py_compile scripts/probe_nh_2026_official_federal_links.py
+          python scripts/test_probe_nh_2026_official_federal_links.py
+      - name: Advisory only official report link discovery
+        run: |
+          python scripts/probe_nh_2026_official_federal_links.py --probe > /tmp/nh-result-links.json
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          x=json.loads(Path('/tmp/nh-result-links.json').read_text())
+          races=x['reports']
+          print('Official NH source:',x['status'])
+          for seat,row in races.items():
+              print(seat,row['status'],row['candidate_official_url'])
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as summary:
+              summary.write('## NH 2026 official federal report-link discovery\n')
+              summary.write('Source: '+x['status']+'\n\n')
+              for seat,row in races.items():
+                  summary.write('- '+seat+': '+row['status']+'\n')
+              summary.write('No live votes, calls, or source IDs approved.\n')
+          assert x['approved_live_feed'] is False and x['candidate_votes'] is None
+          assert all(not row['source_id_approved'] for row in races.values())
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nh-official-federal-links-metadata
+          path: /tmp/nh-result-links.json
+          retention-days: 30
