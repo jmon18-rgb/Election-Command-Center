@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-24T01:02:53.689764Z",
+  "updated_at": "2026-10-24T01:50:44.214183Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
@@ -270,6 +270,27 @@
       "state_hints": [],
       "topic_hints": [
         "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "6cd1003eafad98854168",
+      "title": "Why Legal Experts See the Justice Dept.\u2019s Alaska Election Challenge as Dubious - The New York Times",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE01dG94MVA5d1JiLWZnZC1oTTQ1a1pCZ2xJeEdId2FNb05wNE0yVXltelJraERqb1hlaDhQRXZtYVg4WTdualpxYzRhV2xTVmJtRzVHLUhrZ1Q2NVF3WGpEYk9KbnFpdzFKN3Y5dWpaWkZ1OWt6MTN5T2l4MlppWTQ?oc=5",
+      "publisher": "The New York Times",
+      "published_at": "2026-10-23T23:22:41Z",
+      "detected_at": "2026-10-24T01:50:44.214183Z",
+      "state_hints": [
+        "AK",
+        "NY"
+      ],
+      "topic_hints": [
+        "security",
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -4907,25 +4928,6 @@
       ],
       "topic_hints": [
         "registration",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "13e75b802b9e6a9ab8d0",
-      "title": "Michigan Court of Claims to decide fusion voting case as League of Women Voters weighs in - Michigan Advance",
-      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPWHYycFpldmxwM1pORUpVZ05BR3o2Y2gwQkxIcUxZbG5LTHRmT1Z0SGZuMjhFUVRKckRsN202VjlNRGYwbi1na2pNd2tfTmYzVDNKY0IyVjZOelJOSmZ0Z2R6WFZqR0JJT2FNV3lUNmpreGluMGRmUFc5dU1LMmZoTXB4YV9XeWJOZzcwc3lZSi1QNHlUa1AtQXdpOWVERkc2NFhDVEJHNnJGM3lwaVk0alVFaW96UkZXa2RCdWFVSWZNOGRxN2JybQ?oc=5",
-      "publisher": "Michigan Advance",
-      "published_at": "2026-10-13T17:55:16Z",
-      "detected_at": "2026-10-13T17:57:24.802704Z",
-      "state_hints": [
-        "MI"
-      ],
-      "topic_hints": [
         "litigation"
       ],
       "headline_numbers_unverified": [],
