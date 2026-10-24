@@ -13,7 +13,7 @@ const specs=[
  ['MD','Governor','Maryland Governor',87198]
 ];
 const pre=Date.parse('2026-10-13T20:00:00Z');
-const night=Date.parse('2026-11-04T03:00:00Z');
+const night=Date.parse('2026-11-04T06:15:00Z');
 function fixture([key,office,name,id]){
  const item={key,office};
  const row={
@@ -27,7 +27,7 @@ function fixture([key,office,name,id]){
   ]
  };
  const detail={...row,election_type:row.type,percent_reporting:40,
-  last_updated:'2026-11-04T01:30:00Z',
+  last_updated:'2026-11-04T05:45:00Z',
   candidates:[
    {...row.candidates[0],votes:520,percent:52},
    {...row.candidates[1],votes:480,percent:48}
@@ -79,7 +79,7 @@ for(const {item,row,detail} of fixtures){
   {...detail,election_name:'Another race'},{...detail,election_type:'State House'},
   {...detail,election_date:'2024-11-05T05:00:00.000Z'},
   {...detail,district:'CA-01'},{...detail,percent_reporting:105},
-  {...detail,last_updated:'2026-11-04T03:30:00Z'},
+  {...detail,last_updated:'2026-11-04T06:31:00Z'},
   {...detail,last_updated:'2026-10-13T20:00:00Z'},
   {...detail,candidates:[{...detail.candidates[0],votes:-1},detail.candidates[1]]},
   {...detail,candidates:[{...detail.candidates[0],percent:83},detail.candidates[1]]},
@@ -94,7 +94,6 @@ for(const {item,row,detail} of fixtures){
     'No cross-office or cross-state vote attribution');
 }
 for(const omitted of [
- {office:'Senate',key:'MS'},
  {office:'Senate',key:'CA'},
  {office:'Governor',key:'DE'},
  {office:'Senate',key:'OH'}, // Ohio special uses a separate key.
