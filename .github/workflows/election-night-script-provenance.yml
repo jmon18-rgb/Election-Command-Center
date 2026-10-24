@@ -1,0 +1,22 @@
+name: Guard Election Night JavaScript cache versions
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  asset-identity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check every external JS asset uses its exact immutable revision
+        run: |
+          node scripts/check_election_night_asset_versions.cjs
+          node scripts/test_election_night_asset_versions.cjs
