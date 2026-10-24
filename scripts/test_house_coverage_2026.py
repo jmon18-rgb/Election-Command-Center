@@ -232,6 +232,49 @@ class HouseCoverageTests(unittest.TestCase):
         self.assertIn("AK-00", after,
             "Outside the counting window 4-hour transient-failure retry is still due")
 
+    def test_half_hour_gap_scan_only_during_actual_november_counting(self):
+        # In the last 13 hours of the first counting night, a missing ID
+        # must not hide until the next hourly preflight. Indexed IDs are
+        # already live-readable and never consume these additional probes.
+        source = synthetic_initial_coverage()
+        state_time = datetime(2026, 11, 3, 23, tzinfo=timezone.utc)
+        outstanding = ("AK-00", "DE-00", "ND-00", "NH-01", "NH-02",
+                       "SD-00", "WY-00")
+        for row in source["races"]:
+            if row["office"] == "House" and row["provider_scope"] == "outside primary":
+                row["last_probe"] = {
+                    "status": "NOT_INDEXED" if row["key"] in outstanding
+                              else "INDEXED_EXACT_RACE",
+                    "race_id": None if row["key"] in outstanding else 1234,
+                    "checked_window_utc": state_time.isoformat()
+                }
+        source["generated_at"] = state_time.isoformat()
+        early = gap_aware_window(state_time + timedelta(minutes=15),
+                                 source, limit=8, window_hours=0.5)
+        self.assertEqual(early["districts"], ())
+        ready = gap_aware_window(state_time + timedelta(minutes=41),
+                                 source, limit=8, window_hours=0.5)
+        self.assertEqual(ready["window_utc"], "2026-11-03T23:30:00+00:00")
+        self.assertEqual(set(ready["districts"]), set(outstanding))
+        self.assertEqual(ready["scheduled_rechecks"], 7)
+        self.assertEqual(ready["request_cap"], 8)
+        # The report records its true half-hour UTC slot so the next
+        # scheduled check does not immediately double-probe the same IDs.
+        for row in source["races"]:
+            if row["id"] in ("House|" + k for k in outstanding):
+                row["last_probe"]["checked_window_utc"] = ready["window_utc"]
+        at_next = gap_aware_window(datetime(2026, 11, 4, 0, 11,
+                                             tzinfo=timezone.utc),
+                                   source, limit=8, window_hours=0.5)
+        self.assertEqual(set(at_next["districts"]), set(outstanding))
+        self.assertEqual(at_next["window_utc"], "2026-11-04T00:00:00+00:00")
+        for date in (
+            datetime(2026, 11, 3, 22, 59, tzinfo=timezone.utc),
+            datetime(2026, 11, 4, 12, 30, tzinfo=timezone.utc),
+            datetime(2026, 10, 24, 17, 41, tzinfo=timezone.utc)):
+            with self.assertRaisesRegex(ValueError, "only during counting"):
+                gap_aware_window(date, source, limit=8, window_hours=0.5)
+
     def test_adaptive_expiry_retries_missing_after_24h_and_indexed_after_72h(self):
         ledger = synthetic_initial_coverage()
         now = datetime(2026, 10, 20, 16, tzinfo=timezone.utc)
