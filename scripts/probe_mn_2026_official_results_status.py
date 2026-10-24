@@ -164,8 +164,20 @@ def probe_export_index():
             "User-Agent": "ElectionCommandCenterMN2026ExportIdentity/1.0",
             "Accept": "text/html"})
         with urllib.request.urlopen(req, timeout=12) as response:
-            if response.status != 200 or not accepted_export_index(response.geturl()):
-                raise ValueError("Minnesota export index moved beyond reviewed host/path")
+            if response.status != 200:
+                raise ValueError("Minnesota export index non-200 response")
+            if not accepted_export_index(response.geturl()):
+                dest = urlsplit(response.geturl())
+                # Public official-host routing diagnostic only. Never log an
+                # unapproved external URL or leak query payloads.
+                result = discover_export_index("", now, available=False)
+                result["error_type"] = "UNAPPROVED_REDIRECT"
+                if dest.hostname == "electionresults.sos.mn.gov":
+                    result["official_redirect_path"] = dest.path[:120]
+                    result["official_redirect_query_keys"] = sorted(set(
+                        k.split("=", 1)[0][:50] for k in dest.query.split("&")
+                        if k))[:8]
+                return result
             raw = response.read(MAX_BYTES + 1)
         if len(raw) > MAX_BYTES:
             raise ValueError("Minnesota export index too large")
