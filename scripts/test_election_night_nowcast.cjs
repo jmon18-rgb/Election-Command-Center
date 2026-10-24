@@ -140,7 +140,8 @@ const civicTexas={provider:'civicAPI',race_id:7132,office:'Senate',key:'TX',
  candidates:[{name:'Texas Dem',party:'D',votes:45000},
              {name:'Texas Rep',party:'R',votes:35000}]};
 assert.equal(model.estimate(texasCalled,texasSeat,null,civicTexas,
- Date.parse('2026-11-04T01:59:59Z')).mode,'polls_only');
+ Date.parse('2026-11-04T01:59:59Z')).mode,'live_informed',
+ 'Earliest-zone partial votes may inform a race, but final-zone winner is barred');
 assert.equal(model.estimate(texasCalled,texasSeat,null,null,
  Date.parse('2026-11-04T02:00:00Z')).mode,'polls_only',
  'Naked cached D winner annotation cannot lock Texas without source');
