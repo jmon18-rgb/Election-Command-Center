@@ -61,11 +61,12 @@ def inspect_zip(blob):
                 return {"status":"FOUND_UNCONFIRMED_ELECTION_MEMBER"}
             with archive.open(choices[0]) as stream:
                 header=stream.readline(20000).decode("utf-8-sig",errors="replace").strip().lower()
-            columns=set(re.split(r"[\t,;]",header))
-            expected={"county","contest","choice"}
+            columns={c.strip() for c in re.split(r"[\t,;]",header)}
+            fields_ok=all(any(fragment in c for c in columns) for fragment in
+                          ("county","contest","choice"))
             has_count=any("total" in c and ("vote" in c or c=="total")
                           for c in columns)
-            if not expected.issubset(columns) or not has_count:
+            if len(columns)<6 or not fields_ok or not has_count:
                 return {"status":"FOUND_UNVERIFIED_TABULAR_SCHEMA",
                         "member_count":len(infos)}
             return {"status":"CANDIDATE_ZIP_LAYOUT_PLAUSIBLE_MANUAL_REVIEW_REQUIRED",
