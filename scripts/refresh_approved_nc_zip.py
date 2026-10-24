@@ -19,7 +19,10 @@ from build_nc_official_candidate_votes_2026 import (
 from run_nc_official_zip_historical_replay import load_verified_crosswalk
 
 OUTPUT_PATH = "./data/nc_candidate_votes_2026.json"
-START = dt.datetime(2026, 11, 3, 5, tzinfo=dt.timezone.utc)
+# NCSBE closes polls at 7:30 PM ET, November 3 (EST on this date).
+# NEVER accept or fetch an official 2026 ZIP for publication before then.
+POLL_CLOSE = dt.datetime(2026, 11, 4, 0, 30, tzinfo=dt.timezone.utc)
+START = POLL_CLOSE
 END = dt.datetime(2026, 11, 6, 6, tzinfo=dt.timezone.utc)
 
 
@@ -71,8 +74,8 @@ def refresh(config, previous, payload, fips, now):
     if config.get("enabled") is not True:
         return {"status": "DISABLED", "config": config, "snapshot": None}
     observed = parse_time(now)
-    if not START <= observed <= END:
-        raise ValueError("Automatic county ZIP refresh outside November 2026 window")
+    if not POLL_CLOSE <= observed <= END:
+        raise ValueError("Official NC candidate votes cannot publish before polls close or after 2026 window")
     if config.get("snapshot_path") != OUTPUT_PATH or not isinstance(config.get("expected"), dict):
         raise ValueError("Unapproved source or output configuration")
     review = validate_review(config["expected"])
