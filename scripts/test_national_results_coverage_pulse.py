@@ -96,6 +96,16 @@ class NationalCoveragePulse(unittest.TestCase):
             {**good,"cands":[]},
             {**good,"cands":[{"n":"D","p":"D","v":35},{"n":"R","p":"R","v":20}]},
             {**good,"cands":[good["cands"][0],good["cands"][0]]},
+            {**good,"cands":[
+                {"n":"D first","p":"D","v":18},
+                {"n":"D second","p":"D","v":5},
+                {"n":"R","p":"R","v":22}]},
+            {**good,"cands":[
+                {"n":"D","p":"D","v":23},
+                {"n":"R first","p":"R","v":12},
+                {"n":"R second","p":"R","v":10}]},
+            {**good,"cands":[{"n":"D","p":"D","v":0},
+                              {"n":"R","p":"R","v":0}]},
             {**good,"cands":[{"n":"D","p":"D","v":True}]},
             {**good,"cands":[{"n":"D","p":"D","v":-1}]},
             {**good,"cands":[{"n":"D","p":"D","v":"45"}]},
@@ -112,6 +122,34 @@ class NationalCoveragePulse(unittest.TestCase):
             "Senate","2026-11-04T01:05:00Z",{"GA":good})},
             dt.datetime(2026,11,4,1,10,tzinfo=dt.timezone.utc))
         self.assertEqual(good_result["offices"]["Senate"]["status_counts"][
+            "PRIMARY_OBSERVED_CANDIDATE_COUNTS_UNCALLED"],1)
+
+    def test_explicitly_nonlive_or_stale_office_cannot_report_votes_or_zero(self):
+        source={"GA":{"total":45,"called":False,"cands":[
+            {"n":"D","p":"D","v":23},{"n":"R","p":"R","v":22}]}}
+        for flags in [{"live":False,"stale":False},
+                      {"live":False,"stale":True},
+                      {"live":True,"stale":True}]:
+            doc=office_document("Senate","2026-11-04T00:55:00Z",source)
+            doc.update(flags)
+            # Contradictory live/stale flags are rejected by the provider
+            # snapshot contract rather than trusted as real 2026 votes.
+            if flags["live"] and flags["stale"]:
+                with self.assertRaises(ValueError):
+                    pulse(self.ledger,{"Senate":doc},NOW)
+                continue
+            result=pulse(self.ledger,{"Senate":doc},NOW)
+            self.assertEqual(result["offices"]["Senate"]["status_counts"][
+                "PRIMARY_OFFICE_NOT_LIVE_OR_STALE"],15)
+            self.assertNotIn("PRIMARY_OBSERVED_CANDIDATE_COUNTS_UNCALLED",
+                result["offices"]["Senate"]["status_counts"])
+            doc["races"]["GA"]={"total":0,"called":False,"cands":[]}
+            zero=pulse(self.ledger,{"Senate":doc},NOW)
+            self.assertNotIn("PRIMARY_ZERO_REPORTED_NOT_ZERO_VOTES_CAST",
+                zero["offices"]["Senate"]["status_counts"])
+        recovery=office_document("Senate","2026-11-04T00:55:00Z",source)
+        live=pulse(self.ledger,{"Senate":recovery},NOW)
+        self.assertEqual(live["offices"]["Senate"]["status_counts"][
             "PRIMARY_OBSERVED_CANDIDATE_COUNTS_UNCALLED"],1)
 
     def test_identity_duplicate_call_and_future_data_fail(self):
