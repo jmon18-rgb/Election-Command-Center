@@ -95,8 +95,29 @@ jobs:
           git add data/election_night_source_coverage.json data/election_night_house_pins.json
           if ! git diff --cached --quiet; then
             git commit -m "Record 506-race source identity coverage and gap health"
-            git pull --rebase origin main
-            git push origin main
+            # Concurrent hourly briefing/approved NC-OH publication can
+            # advance main between the source preflight checkout and push.
+            # Never force-push or accept an unresolved conflict in identity
+            # hints. Only non-conflicting latest-base updates are replayed.
+            pushed=false
+            for attempt in 1 2 3; do
+              git fetch origin main
+              if ! git rebase origin/main; then
+                git rebase --abort || true
+                echo "::error::Source identity manifest changed concurrently; manual review required"
+                exit 1
+              fi
+              if git push origin HEAD:main; then
+                pushed=true
+                break
+              fi
+              echo "Another publisher advanced main (attempt $attempt/3)"
+              sleep "$((attempt * 2))"
+            done
+            if [ "$pushed" != "true" ]; then
+              echo "::error::Could not publish 506-race source ledger to main after three safe retries"
+              exit 1
+            fi
           fi
       - name: Preserve rotating House source inventory and missing-race evidence
         if: always() && steps.window.outputs.run == 'true'
