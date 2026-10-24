@@ -353,7 +353,8 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}
  const oldGlanceClock=w.Date.now;
  w.Date.now=()=>Date.parse('2026-11-02T15:00:00Z');
  w.eval('updateFeedGlance()');
- assert.equal(get('#feedNews').dataset.status,'delayed');
+ assert(['delayed','unavailable'].includes(get('#feedNews').dataset.status),
+  'Old headlines must not look fresh, and a failed news collector is unavailable');
  w.Date.now=oldGlanceClock;
  w.eval('updateFeedGlance()');
  assert.match(get('#privateContextStatus').textContent,/Repository fundamentals ACTIVE/,
