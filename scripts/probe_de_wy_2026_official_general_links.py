@@ -69,9 +69,17 @@ class ResultAnchors(HTMLParser):
             url,raw,year=self.anchor
             label=" ".join(" ".join(raw).split())
             self.anchor=None
+            # A 2026 heading is not enough if the target URL or link label
+            # contains a contradictory year (including 2025/2023, not just 2024).
+            # Historical filenames on official sites often survive under a
+            # current-year index during publication transitions.
+            target=urlsplit(url)
+            cited_years=re.findall(r"(?<!\d)20\d{2}(?!\d)",
+                                    label+" "+target.path+" "+target.query)
             if (official_url(self.state,url) and
                 re.search(r"\bgeneral\s+election\b",label,re.I) and
-                not re.search(r"\b(primary|special primary|2024|2022|2020)\b",label,re.I) and
+                not re.search(r"\bprimary\b",label,re.I) and
+                all(y=="2026" for y in cited_years) and
                 (year=="2026" or re.search(r"\b2026\b",label))):
                 self.matches.append({"label":label[:140],"url":url})
 
