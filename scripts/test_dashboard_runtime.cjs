@@ -2399,8 +2399,8 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
    JSON.stringify({races:[row],count:1})+')').id,spec.id,
     'Only the correct provider race ID can enter '+spec.pin);
  }
- assert.equal(w.StateBatchCivicAdapter.supports({office:'Governor',key:'OK'}),false,
-  'Oklahoma governor was unverified and must stay off the strict roster');
+ assert.equal(w.StateBatchCivicAdapter.supports({office:'Governor',key:'OK'}),true,
+  'Newly verified Oklahoma governor source must use the strict ID adapter');
  const almtClock=w.Date.now,almtFetch=w.fetch,almtRequests=[];
  let almtBadId=null;
  w.Date.now=()=>Date.parse('2026-11-04T03:20:00Z');
@@ -2488,8 +2488,8 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
   assert.equal(w.eval('enCivicSelect('+JSON.stringify(item)+','+
    JSON.stringify({races:[search],count:1})+')').id,spec.id);
  }
- assert.equal(w.StateBatchCivicAdapter.supports({office:'Senate',key:'MS'}),false,
-  'Mississippi Senate did not verify through source index; no pinned adapter');
+ assert.equal(w.StateBatchCivicAdapter.supports({office:'Senate',key:'MS'}),true,
+  'Newly verified Mississippi Senate source must use the strict ID adapter');
  const westSourceClock=w.Date.now,westSourceFetch=w.fetch,westSourceRequests=[];
  let westSourceInvalidId=null;
  w.Date.now=()=>Date.parse('2026-11-04T04:20:00Z');

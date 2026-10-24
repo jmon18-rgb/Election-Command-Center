@@ -2,7 +2,7 @@
 'use strict';
 const assert=require('node:assert/strict');
 const adapter=require('./civicapi_state_batch.js');
-const election=Date.parse('2026-11-04T03:15:00Z');
+const election=Date.parse('2026-11-04T06:15:00Z');
 const pre=Date.parse('2026-10-13T19:00:00Z');
 const cases=[
   ['AK','Senate','Alaska US Senate',86916],
@@ -17,7 +17,11 @@ const cases=[
   ['NE','Senate','Nebraska US Senate',87254],
   ['NE','Governor','Nebraska Governor',87255],
   ['KS','Senate','Kansas US Senate',87162],
-  ['KS','Governor','Kansas Governor',87163]
+  ['KS','Governor','Kansas Governor',87163],
+  // Oct 24 real exact search+detail and direct browser-CORS matches.
+  ['MS','Senate','Mississippi US Senate',81004],
+  ['HI','Governor','Hawaii Governor',87100],
+  ['OK','Governor','Oklahoma Governor',87582]
 ];
 function row(state,office,name,id){
  return {country:'US',province:state,municipality:null,district:null,
@@ -29,7 +33,7 @@ function row(state,office,name,id){
 }
 function detail(search,counted=false){
  return {...search,election_type:search.type,percent_reporting:counted?40:0,
-  last_updated:counted?'2026-11-04T01:45:00Z':null,
+  last_updated:counted?'2026-11-04T05:45:00Z':null,
   candidates:[
     {name:'Candidate A',party:'Democratic',votes:counted?510:0,
        percent:counted?51:0,winner:false},
@@ -67,6 +71,13 @@ for(const {item,search} of fixtureRaces){
    'Zero pre-election source counts are unreported, not made-up results');
  assert.equal(adapter.validate(item,search,detail(search,true),pre),null,
    'Never accept pre-election counted votes');
+ const closing=require('./election_night_poll_closings_2026.js').floorFor(item.key);
+ const premature=detail(search,true);
+ premature.last_updated=new Date(closing-1000).toISOString();
+ assert.equal(adapter.validate(item,search,premature,election),null,
+   'Pre-local-close candidate count must remain forbidden AFTER closing');
+ assert.equal(adapter.validate(item,search,premature,closing-500),null,
+   'Pre-local-close candidate count must remain forbidden while voting');
  const counted=detail(search,true);
  const good=adapter.validate(item,search,counted,election);
  assert(good,'Legitimate candidate votes for '+item.key+' '+item.office);
@@ -112,7 +123,7 @@ for(const {item,search} of fixtureRaces){
   {...counted,district:'NH-01'},
   {...counted,election_type:'State House'},
   {...counted,percent_reporting:101},
-  {...counted,last_updated:'2026-11-04T04:00:00Z'},
+  {...counted,last_updated:'2026-11-04T06:31:00Z'},
   {...counted,last_updated:'2026-10-15T12:00:00Z'}
  ])assert.equal(adapter.validate(item,search,invalid,election),null,
   'Bad detail must retain last valid source');
@@ -129,9 +140,8 @@ for(const missing of [{office:'Senate',key:'NV'},
  assert.equal(adapter.supports(missing),false);
  assert.equal(adapter.query(missing),null);
 }
-// MA and MS Senate identities are not source-verified. Do not borrow the
-// Massachusetts governor ID or guess Senate IDs from adjacent source records.
-for(const state of ['MA','MS']){
+// Massachusetts Senate remains unindexed; do not borrow its governor ID.
+for(const state of ['MA']){
  const missing={office:'Senate',key:state};
  assert.equal(adapter.supports(missing),false,state+' Senate source identity is unresolved');
  assert.equal(adapter.query(missing),null);
@@ -145,4 +155,26 @@ for(const state of ['MA','MS']){
 }
 assert(adapter.supports({office:'Governor',key:'MA'}),
  'Known MA Governor source must remain supported independently');
-console.log('Eight-state civicAPI pilot: 13 individually source-verified fixtures including Ohio special, identity and safety checks passed');
+// The browser has a deliberate strict-adapter allowlist: if a newly pinned
+// source isn't added there, it silently falls into the looser generic matcher.
+// The two inventories MUST be exactly equal, never merely overlap.
+const fs=require('node:fs'),path=require('node:path');
+const html=fs.readFileSync(path.join(__dirname,'..','index.html'),'utf8');
+const js=fs.readFileSync(path.join(__dirname,'civicapi_state_batch.js'),'utf8');
+const match=html.match(/const enBatchPilotSlots=new Set\((\[[\s\S]*?\])\);/);
+assert(match,'The public Election Night page must retain the strict source allowlist');
+const browserPins=[...match[1].matchAll(/'((?:Senate|Governor)\|[A-Z]{2}(?:-special)?)'/g)]
+ .map(x=>x[1]).sort();
+const adapterPins=[...js.matchAll(/'((?:Senate|Governor)\|[A-Z]{2}(?:-special)?)':\{state:/g)]
+ .map(x=>x[1]).sort();
+assert.equal(new Set(browserPins).size,browserPins.length,
+ 'The real browser source allowlist cannot duplicate an office');
+assert.equal(new Set(adapterPins).size,adapterPins.length,
+ 'Each independently pinned race needs exactly one adapter configuration');
+assert.deepEqual(browserPins,adapterPins,
+ 'Every source pin must use the strict adapter in the ACTUAL laptop page');
+for(const race of browserPins){
+ const [office,key]=race.split('|');
+ assert(adapter.supports({office,key}),race+' must resolve through strict source adapter');
+}
+console.log('civicAPI statewide pilot: 16 pinned Senate/governor fixtures, exact identity, state-local close, and vote-shape safety passed');

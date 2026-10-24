@@ -15,7 +15,7 @@ const specs=[
  ['TN','Governor','Tennessee Governor',87476]
 ];
 const pre=Date.parse('2026-10-13T20:00:00Z');
-const live=Date.parse('2026-11-04T03:00:00Z');
+const live=Date.parse('2026-11-04T06:15:00Z');
 function fixture([key,office,election_name,id]){
  const item={office,key};
  const row={country:'US',province:key,municipality:null,district:null,
@@ -29,7 +29,7 @@ function fixture([key,office,election_name,id]){
    ]
  };
  const detail={...row,election_type:row.type,percent_reporting:45,
-   last_updated:'2026-11-04T01:30:00Z',
+   last_updated:'2026-11-04T05:45:00Z',
    candidates:[
     {...row.candidates[0],votes:510,percent:51},
     {...row.candidates[1],votes:470,percent:47},
@@ -83,7 +83,7 @@ for(const {item,row,detail} of cases){
   {...detail,election_name:'Wrong race'}, {...detail,election_type:'State House'},
   {...detail,election_date:'2024-11-05T05:00:00Z'},
   {...detail,percent_reporting:101}, {...detail,district:'NM-01'},
-  {...detail,last_updated:'2026-11-04T03:30:00Z'},
+  {...detail,last_updated:'2026-11-04T06:31:00Z'},
   {...detail,last_updated:'2026-10-13T20:00:00Z'},
   {...detail,candidates:[{...detail.candidates[0],votes:-2},...detail.candidates.slice(1)]},
   {...detail,candidates:[{...detail.candidates[0],percent:88},...detail.candidates.slice(1)]},
@@ -97,7 +97,6 @@ for(const {item,row,detail} of cases){
   assert.equal(adapter.match(other.item,row),false,'No cross-state/office results');
 }
 for(const omitted of [
- {office:'Governor',key:'OK'}, // Not an exact Statewide contract in source discovery
  {office:'Governor',key:'MT'}, // No 2026 Montana governor contest
  {office:'Senate',key:'NV'}, {office:'House',key:'AL-01'},
  {office:'Senate',key:'OH'} // Keep special election isolated

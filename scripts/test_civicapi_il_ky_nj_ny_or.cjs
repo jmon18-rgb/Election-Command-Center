@@ -5,7 +5,7 @@
 const assert=require('node:assert/strict');
 const adapter=require('./civicapi_state_batch.js');
 const pre=Date.parse('2026-10-13T20:00:00Z');
-const live=Date.parse('2026-11-04T03:15:00Z');
+const live=Date.parse('2026-11-04T06:15:00Z');
 const specs=[
  ['IL','Senate',87129,'Illinois US Senate'],
  ['IL','Governor',87130,'Illinois Governor'],
@@ -30,7 +30,7 @@ function build([state,office,id,name]){
  };
  const detail={
   ...row,election_type:row.type,
-  last_updated:'2026-11-04T01:45:00Z',percent_reporting:48,
+  last_updated:'2026-11-04T05:45:00Z',percent_reporting:48,
   candidates:[
    {...row.candidates[0],votes:500,percent:50},
    {...row.candidates[1],votes:400,percent:40},
@@ -88,7 +88,7 @@ for(const {item,row,detail} of records){
   {...detail,election_type:'State House'},
   {...detail,election_date:'2024-11-05T05:00:00.000Z'},
   {...detail,district:'IL-01'}, {...detail,percent_reporting:101},
-  {...detail,last_updated:'2026-11-04T03:32:00Z'},
+  {...detail,last_updated:'2026-11-04T06:31:00Z'},
   {...detail,last_updated:'2026-10-13T20:00:00Z'},
   {...detail,candidates:[{...detail.candidates[0],votes:-1},...detail.candidates.slice(1)]},
   {...detail,candidates:[{...detail.candidates[0],percent:80},...detail.candidates.slice(1)]},

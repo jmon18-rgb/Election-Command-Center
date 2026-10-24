@@ -4,7 +4,7 @@
 // real November 2026 vote totals. Every vote count below is test-only.
 const assert=require('node:assert/strict');
 const adapter=require('./civicapi_state_batch.js');
-const now=Date.parse('2026-11-04T03:15:00Z');
+const now=Date.parse('2026-11-04T06:15:00Z');
 const pre=Date.parse('2026-10-13T20:00:00Z');
 const cases=[
  ['OH','Senate','OH-special','Ohio US Senate Special',87527],
@@ -28,7 +28,7 @@ function make(spec){
  };
  const detail={
    ...search,election_type:search.type,
-   last_updated:'2026-11-04T01:45:00Z',percent_reporting:43,
+   last_updated:'2026-11-04T05:45:00Z',percent_reporting:43,
    candidates:[
     {name:state+' Democrat',party:'Democratic',votes:610,percent:61,winner:false},
     {name:state+' Republican',party:'Republican',votes:390,percent:39,winner:false}]
@@ -85,7 +85,7 @@ for(const {item,search,detail} of fixtures){
   {...detail,election_type:'State House'},
   {...detail,province:'NH'},
   {...detail,last_updated:'2026-10-13T12:00:00Z'},
-  {...detail,last_updated:'2026-11-04T03:31:00Z'},
+  {...detail,last_updated:'2026-11-04T06:31:00Z'},
   {...detail,percent_reporting:101},
   {...detail,candidates:[{...detail.candidates[0],percent:99},detail.candidates[1]]},
   {...detail,candidates:[{...detail.candidates[0],votes:-1},detail.candidates[1]]},

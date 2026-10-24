@@ -45,7 +45,11 @@
     'Governor|SD':{state:'SD',name:'South Dakota Governor',office:'Governor',id:87447},
     'Senate|WY':{state:'WY',name:'Wyoming US Senate',office:'Senate',id:87496},
     'Governor|WY':{state:'WY',name:'Wyoming Governor',office:'Governor',id:87497},
-    'Governor|MD':{state:'MD',name:'Maryland Governor',office:'Governor',id:87198}
+    'Governor|MD':{state:'MD',name:'Maryland Governor',office:'Governor',id:87198},
+    // Oct 24 actual CORS + exact search/detail canary; not proof of live votes.
+    'Senate|MS':{state:'MS',name:'Mississippi US Senate',office:'Senate',id:81004},
+    'Governor|HI':{state:'HI',name:'Hawaii Governor',office:'Governor',id:87100},
+    'Governor|OK':{state:'OK',name:'Oklahoma Governor',office:'Governor',id:87582}
   });
   const configuration=item=>item&&RACES[item.office+'|'+item.key]||null;
   const supports=item=>Boolean(configuration(item));
@@ -80,6 +84,14 @@
     if(['d','dem','democratic','democrat'].includes(x))return 'D';
     if(['r','rep','gop','republican'].includes(x))return 'R';
     return 'O';
+  }
+  // Browser loads the shared poll-close contract after this script, so
+  // resolve it only when vote data arrives; Node tests use the same contract.
+  function localVotesAllowed(item,total,sourceStamp,now){
+    const gate=typeof module!=='undefined'&&module.exports?
+      require('./election_night_poll_closings_2026.js'):
+      root?.ElectionNightPollClosings2026;
+    return gate?.allowed?.(item?.key,total,sourceStamp,now)===true;
   }
   function validate(item,row,detail,now=Date.now()){
     const cfg=configuration(item);
@@ -119,6 +131,7 @@
     if(updated&&(typeof updated!=='string'||!Number.isFinite(Date.parse(updated))||
       Date.parse(updated)>now+15*60000||
       (total>0&&Date.parse(updated)<START)))return null;
+    if(!localVotesAllowed(item,total,updated,now))return null;
     return {provider:'civicAPI',office:cfg.office,key:item.key,
       race_id:row.id,last_updated:updated,percent_reporting:detail.percent_reporting,
       total,candidates,called,source_url:BASE+'/race/'+row.id};

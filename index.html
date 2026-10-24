@@ -1252,7 +1252,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <footer class="footer"><span>2026 ELECTION COMMAND CENTER · CLARITY OVER NOISE</span><span><a href="https://github.com/jmon18-rgb/Election-Command-Center">Source code ↗</a> · <span id="updated">Briefing pending</span></span></footer></main>
 <script src="./scripts/civicapi_nh_adapter.js?v=4ae9e6a8a957"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=4fd12233d233"></script>
-<script src="./scripts/civicapi_state_batch.js?v=0a26f4f75956"></script>
+<script src="./scripts/civicapi_state_batch.js?v=c2f29d62f61d"></script>
 <script src="./scripts/civicapi_house_2026_adapter.js?v=e14dfadeda8a"></script>
 <script src="./scripts/house_at_large_bridge.js?v=f9e1399d5868"></script>
 <script src="./scripts/election_night_source_backoff.js?v=9d0c92796244"></script>
@@ -5191,7 +5191,7 @@ const enBatchPilotSlots=new Set(['Senate|AK','Governor|AK','Senate|ME',
  'Senate|OR','Governor|OR','Senate|AL','Governor|AL','Senate|MT',
  'Senate|NM','Governor|NM','Senate|OK','Senate|TN','Governor|TN',
  'Governor|CA','Senate|DE','Senate|SD','Governor|SD','Senate|WY','Governor|WY',
- 'Governor|MD']);
+ 'Governor|MD','Senate|MS','Governor|HI','Governor|OK']);
 function enBatchPilot(item){return Boolean(item&&enBatchPilotSlots.has(enWatchId(item)))}
 function enCivicMatch(item,row){
  if(item?.office==='House')
