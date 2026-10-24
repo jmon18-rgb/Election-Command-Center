@@ -155,4 +155,26 @@ for(const state of ['MA']){
 }
 assert(adapter.supports({office:'Governor',key:'MA'}),
  'Known MA Governor source must remain supported independently');
+// The browser has a deliberate strict-adapter allowlist: if a newly pinned
+// source isn't added there, it silently falls into the looser generic matcher.
+// The two inventories MUST be exactly equal, never merely overlap.
+const fs=require('node:fs'),path=require('node:path');
+const html=fs.readFileSync(path.join(__dirname,'..','index.html'),'utf8');
+const js=fs.readFileSync(path.join(__dirname,'civicapi_state_batch.js'),'utf8');
+const match=html.match(/const enBatchPilotSlots=new Set\((\[[\s\S]*?\])\);/);
+assert(match,'The public Election Night page must retain the strict source allowlist');
+const browserPins=[...match[1].matchAll(/'((?:Senate|Governor)\|[A-Z]{2}(?:-special)?)'/g)]
+ .map(x=>x[1]).sort();
+const adapterPins=[...js.matchAll(/'((?:Senate|Governor)\|[A-Z]{2}(?:-special)?)':\{state:/g)]
+ .map(x=>x[1]).sort();
+assert.equal(new Set(browserPins).size,browserPins.length,
+ 'The real browser source allowlist cannot duplicate an office');
+assert.equal(new Set(adapterPins).size,adapterPins.length,
+ 'Each independently pinned race needs exactly one adapter configuration');
+assert.deepEqual(browserPins,adapterPins,
+ 'Every source pin must use the strict adapter in the ACTUAL laptop page');
+for(const race of browserPins){
+ const [office,key]=race.split('|');
+ assert(adapter.supports({office,key}),race+' must resolve through strict source adapter');
+}
 console.log('civicAPI statewide pilot: 16 pinned Senate/governor fixtures, exact identity, state-local close, and vote-shape safety passed');
