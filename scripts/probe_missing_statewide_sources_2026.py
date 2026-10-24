@@ -45,31 +45,48 @@ def exact(spec, row):
         re.search(r"\bGovernor\b", name, re.I))
 
 
-def validate_detail(spec, row, detail):
-    if not exact(spec, row) or not isinstance(detail, dict):
-        return False
-    for field in ("id", "country", "province", "district", "municipality",
+def detail_rejection(spec, row, detail, *, now=None):
+    """Reason-only diagnostic. Never return candidate votes or raw source data."""
+    if not exact(spec, row):
+        return "UNVERIFIED_SEARCH_IDENTITY"
+    if not isinstance(detail, dict):
+        return "DETAIL_NOT_OBJECT"
+    # civicAPI detail URLs identify the exact requested search ID. Some
+    # valid detail responses omit a duplicate id property. Explicitly
+    # conflicting IDs remain fatal. This matches the existing Senate
+    # canary contract (probe_missing_senate_sources.py).
+    if "id" in detail and detail["id"] != row["id"]:
+        return "DETAIL_EXPLICIT_ID_MISMATCH"
+    for field in ("country", "province", "district", "municipality",
                   "election_date", "election_name"):
         if detail.get(field) != row.get(field):
-            return False
+            return "DETAIL_" + field.upper() + "_MISMATCH"
     if detail.get("election_type") != row["type"]:
-        return False
+        return "DETAIL_OFFICE_CLASS_MISMATCH"
     candidates = detail.get("candidates")
     if not isinstance(candidates, list) or not 2 <= len(candidates) <= 60:
-        return False
+        return "INVALID_CANDIDATE_SET"
     identities = set()
+    counted = False
     for c in candidates:
         if not isinstance(c, dict) or not isinstance(c.get("name"), str) or not c["name"].strip():
-            return False
+            return "INVALID_CANDIDATE_NAME"
         if not isinstance(c.get("party"), str) or not c["party"].strip():
-            return False
+            return "INVALID_CANDIDATE_PARTY"
         if type(c.get("votes")) is not int or c["votes"] < 0 or type(c.get("winner")) is not bool:
-            return False
+            return "INVALID_CANDIDATE_VOTE_OR_WINNER_SHAPE"
+        counted = counted or c["votes"] > 0 or c["winner"]
         ident = (c["name"].strip().casefold(), c["party"].strip().casefold())
         if ident in identities:
-            return False
+            return "DUPLICATE_CANDIDATE"
         identities.add(ident)
-    return True
+    if now is not None and now.date() < __import__("datetime").date(2026, 11, 3) and counted:
+        return "PRE_ELECTION_COUNTED_OR_CALLED_NOT_LIVE"
+    return None
+
+
+def validate_detail(spec, row, detail):
+    return detail_rejection(spec, row, detail) is None
 
 
 def probe(fetch=source, now=None):
@@ -102,12 +119,14 @@ def probe(fetch=source, now=None):
                 else:
                     row = matches[0]
                     detail = fetch("/race/" + str(row["id"]), {"light": ""})
-                    if validate_detail(spec, row, detail):
+                    reason = detail_rejection(spec, row, detail, now=now)
+                    if reason is None:
                         entry["status"] = "INDEXED_EXACT_RACE_IDENTITY_ONLY"
                         entry["race_id"] = row["id"]
                         entry["candidate_count"] = len(detail["candidates"])
                     else:
                         entry["status"] = "INVALID_OR_MISMATCHED_DETAIL"
+                        entry["reason"] = reason
         except Exception as e:
             # Provider failures are unknown, not proof that a contest is absent.
             entry["status"] = "PROVIDER_UNAVAILABLE"
