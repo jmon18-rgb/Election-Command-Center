@@ -2,25 +2,23 @@
  * election call or an estimate of party control. Never impute missing votes.
  * Immutable, provider-attributed 2026 source records only. */
 (function(root,factory){
- const api=factory();
+ const closes=typeof module!=='undefined'&&module.exports?
+  require('./election_night_poll_closings_2026.js'):
+  root?.ElectionNightPollClosings2026;
+ const api=factory(closes);
  if(typeof module!=='undefined'&&module.exports)module.exports=api;
  if(root)root.ElectionNightReconciliation=api;
-})(typeof window!=='undefined'?window:null,function(){
+})(typeof window!=='undefined'?window:null,function(closes){
  'use strict';
+ if(!closes||typeof closes.allowed!=='function')
+  throw Error('Missing verified 2026 state poll-close source contract');
  const START=Date.parse('2026-11-03T05:00:00Z');
  const THREE_HOURS=180*60000;
  // Provider source timestamps must be *post* the first nationwide close.
  // NC/OH have independently verified 7:30 PM ET Nov 3 poll close times.
  // An older MOCK payload fetched after close does not become live evidence.
  const EARLIEST=Date.parse('2026-11-03T23:00:00Z');
- const LATE_NC_OH=Date.parse('2026-11-04T00:30:00Z');
- const voteReleased=(key,stamp,now)=>{
-  const at=Date.parse(stamp||'');
-  const floor=key?.slice(0,2)==='NC'||key?.slice(0,2)==='OH'?
-   LATE_NC_OH:EARLIEST;
-  return Number.isFinite(now)&&now>=floor&&Number.isFinite(at)&&
-   at>=floor&&at<=now+15*60000;
- };
+ const voteReleased=(key,stamp,now)=>closes.allowed(key,1,stamp,now);
  const validTime=(s,now)=>{const n=Date.parse(s||'');
   return Number.isFinite(n)&&n>=START&&n<=now+15*60000&&now-n<=THREE_HOURS;};
  // One shared source-health definition powers coverage counts, the source

@@ -39,9 +39,10 @@ assert.equal(x.house.noVotes,1);assert.equal(x.house.noValidCount,433);
 assert.equal(x.senate.primary,1);assert.equal(x.senate.supplemental,1);
 assert.equal(x.governor.total,36);
 assert.equal(x.governor.sourceSlots,2,'NC has no 2026 governor election');
-assert.equal(x.governor.primary,2);
-assert.equal(x.governor.reported,2);
-assert.equal(x.governor.noValidCount,34);
+assert.equal(x.governor.primary,1,
+ 'Alaska source timestamp before its own 8 PM AKST poll close cannot count');
+assert.equal(x.governor.reported,1);
+assert.equal(x.governor.noValidCount,35);
 // Office source health must be the same for UI labels and coverage arithmetic.
 const health=(snapshot,office='Senate',opts={})=>
  api.officeHealth(snapshot,office,{now,...opts});
@@ -99,7 +100,7 @@ const govCivic={...civic,office:'Governor',key:'ME',race_id:8491};
 x=api.reconcile({...input,civic:{...input.civic,'Governor|ME':govCivic}});
 assert.equal(x.governor.supplemental,1,
  'Verified uncovered governor source is counted, without fabricated primary coverage');
-assert.equal(x.governor.reported,3);
+assert.equal(x.governor.reported,2);
 x=api.reconcile({...input,civic:{...input.civic,
  'Governor|TX':{...govCivic,key:'TX'}}});
 assert.equal(x.governor.supplemental,0,'Primary-covered governor cannot double-count');

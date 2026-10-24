@@ -4,6 +4,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const vm=require('node:vm');
+const close=require('./election_night_poll_closings_2026.js');
 const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
 const begin=html.indexOf('function enElectionVotesAllowed(');
 const end=html.indexOf('function enCompareSnapshots(',begin);
@@ -11,7 +12,9 @@ assert(begin>0&&end>begin,'Actual browser gate and source validator missing');
 const clock=Date.parse('2026-11-04T03:15:00Z');
 class Clock extends Date{static now(){return clock}}
 const api=vm.runInNewContext(html.slice(begin,end)+
- '\n({allowed:enElectionVotesAllowed,valid:enSourceValid})',{Date:Clock});
+ '\n({allowed:enElectionVotesAllowed,valid:enSourceValid})',{
+ Date:Clock,window:{ElectionNightPollClosings2026:close}
+});
 const vote=(total,as_of='2026-11-04T00:20:00Z')=>({
  api:1,year:2026,office:'Senate',source:'state',live:true,stale:false,
  counting:true,final:false,counts:{races:1},as_of,
@@ -24,7 +27,15 @@ assert.equal(api.allowed('NC-01',100,'2026-11-04T00:20:00Z',clock),false);
 assert.equal(api.allowed('NC',100,'2026-11-04T00:30:00Z',clock),true);
 assert.equal(api.allowed('OH',100,'2026-11-04T00:30:00Z',clock),true);
 assert.equal(api.allowed('ME',100,'2026-11-03T22:00:00Z',clock),false);
-assert.equal(api.allowed('ME',100,'2026-11-03T23:00:00Z',clock),true);
+assert.equal(api.allowed('ME',100,'2026-11-03T23:00:00Z',clock),false,
+ 'Maine cannot publish Senate votes before its 8 PM Eastern poll close');
+assert.equal(api.allowed('ME',100,'2026-11-04T01:00:00Z',clock),true);
+assert.equal(api.allowed('GA',100,'2026-11-03T23:59:59Z',clock),false);
+assert.equal(api.allowed('GA',100,'2026-11-04T00:00:00Z',clock),true);
+assert.equal(api.allowed('TX',100,'2026-11-04T00:59:59Z',clock),false);
+assert.equal(api.allowed('TX',100,'2026-11-04T01:00:00Z',clock),true);
+assert.equal(api.allowed('AZ',100,'2026-11-04T01:59:59Z',clock),false);
+assert.equal(api.allowed('AZ',100,'2026-11-04T02:00:00Z',clock),true);
 assert.equal(api.allowed('NC',0,'',clock),true,'Zero is standby, not reported votes');
 assert.equal(api.allowed('NC',100,'',clock),false,'Missing source timestamp cannot count');
 assert.equal(api.allowed('NC',100,'2026-11-04T07:00:00Z',clock),false);

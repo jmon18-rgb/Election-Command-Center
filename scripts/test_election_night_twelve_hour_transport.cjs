@@ -6,6 +6,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const reconcile=require('./election_night_reconciliation.js');
+const close=require('./election_night_poll_closings_2026.js');
 const houseAdapter=require('./civicapi_house_2026_adapter.js');
 const transport=require('./election_night_transport.js');
 const backoff=require('./election_night_source_backoff.js');
@@ -184,11 +185,17 @@ async function tick(minute){
  // real polls close. An exact verified civicAPI ID can be fetched early
  // but pre-close MOCK counts may not contribute to a live seat tally.
  const sourceEligible=(id,record)=>{
-  const st=id.slice(6,8);
-  const threshold=Date.parse(st==='NC'||st==='OH'?
-   '2026-11-04T00:30:00Z':'2026-11-03T23:00:00Z');
-  const stamp=Date.parse(record?.last_updated||'');
-  return now>=threshold&&Number.isFinite(stamp)&&stamp>=threshold;
+  // Expected totals must obey the SAME 3-hour freshness, exact race and
+  // source attribution contracts as reconcile(). Merely passing the poll
+  // close timestamp doesn't authorize a long-abandoned cached observation.
+  // Do NOT treat 6 PM Eastern as early vote release for AZ, AK or others.
+  const at=Date.parse(record?.last_updated||'');
+  return record?.provider==='civicAPI'&&record?.office==='House'&&
+   record?.key===id.slice(6)&&Number.isSafeInteger(record?.race_id)&&
+   record.race_id>0&&Number.isFinite(at)&&
+   at>=Date.parse('2026-11-03T05:00:00Z')&&at<=now+15*60000&&
+   now-at<=180*60000&&
+   close.allowed(id.slice(6),record?.total,record?.last_updated,now);
  };
  assert.equal(result.house.supplemental,
   Object.entries(out).filter(([id,record])=>id.startsWith('House|')&&

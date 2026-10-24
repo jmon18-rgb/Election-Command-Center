@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - 'index.html'
+      - 'scripts/election_night_poll_closings_2026.js'
+      - 'scripts/test_election_night_poll_closings_2026.cjs'
       - 'scripts/election_night_506_live_gap_desk.js'
       - 'scripts/election_night_reconciliation.js'
       - 'scripts/test_election_night_preclose_browser.cjs'
@@ -25,6 +27,7 @@ jobs:
       - name: Validate 506 race identities, zero source counts and provider failures
         run: |
           node --check scripts/election_night_506_live_gap_desk.js
+          node scripts/test_election_night_poll_closings_2026.cjs
           node scripts/test_election_night_506_live_gap_desk.cjs
           node scripts/test_election_night_reconciliation.cjs
           node scripts/test_election_night_preclose_browser.cjs

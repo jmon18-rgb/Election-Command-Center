@@ -27,8 +27,10 @@ const server=createServer((req,res)=>{
 });
 await new Promise((ok,err)=>{server.once('error',err);server.listen(0,'127.0.0.1',ok)});
 const url='http://127.0.0.1:'+server.address().port+'/';
-const clock='2026-11-04T00:55:00Z';
-const asOf='2026-11-04T00:47:00Z';
+// Texas closes at 8 PM Eastern for its earliest reporting counties.
+// The previous 7:47 PM mock would now correctly be rejected by the real gate.
+const clock='2026-11-04T01:55:00Z';
+const asOf='2026-11-04T01:47:00Z';
 const vote=(dem,rep)=>({
  total:dem+rep,called:false,winner:'',pct_in:null,
  cands:[{n:'Fixture Democrat',p:'D',v:dem,pct:null},

@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - 'scripts/election_night_reconciliation.js'
+      - 'scripts/election_night_poll_closings_2026.js'
+      - 'scripts/test_election_night_poll_closings_2026.cjs'
       - 'scripts/test_election_night_six_hour_stress.cjs'
       - '.github/workflows/election-night-six-hour-stress.yml'
   workflow_dispatch:
@@ -20,5 +22,6 @@ jobs:
       - name: Prove no pre-close mock votes and safe source recovery over 361 simulated minutes
         run: |
           node --check scripts/election_night_reconciliation.js
+          node scripts/test_election_night_poll_closings_2026.cjs
           node --check scripts/test_election_night_six_hour_stress.cjs
           node scripts/test_election_night_six_hour_stress.cjs

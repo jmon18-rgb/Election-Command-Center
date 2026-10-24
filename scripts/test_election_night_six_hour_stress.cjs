@@ -5,6 +5,7 @@
 // precinct reporting order. Safe to run before November 3, 2026.
 const assert=require('node:assert/strict');
 const api=require('./election_night_reconciliation.js');
+const closing=require('./election_night_poll_closings_2026.js');
 
 const counts={AL:7,AK:1,AZ:9,AR:4,CA:52,CO:8,CT:5,DE:1,FL:28,
  GA:14,HI:2,ID:2,IL:17,IN:9,IA:4,KS:4,KY:6,LA:6,ME:2,MD:8,
@@ -25,10 +26,8 @@ assert(slots.House.length>100&&slots.Senate.length>=3);
 const clock=Date.parse('2026-11-03T21:00:00Z'); // 4pm ET; 6h through 10pm ET.
 // An old pre-close MOCK response cannot turn into genuine votes when the
 // wall clock later passes poll close. Source-reported timestamps matter.
-const FIRST_CLOSE=Date.parse('2026-11-03T23:00:00Z');
-const NC_OH_CLOSE=Date.parse('2026-11-04T00:30:00Z');
-const sourceEligible=(key,sourceTime)=>sourceTime>=
- (key.slice(0,2)==='NC'||key.slice(0,2)==='OH'?NC_OH_CLOSE:FIRST_CLOSE);
+const NC_OH_CLOSE=closing.floorFor('NC');
+const sourceEligible=(key,sourceTime)=>sourceTime>=closing.floorFor(key);
 const vote=(key,minute,idx)=>{
  const dem=1000+idx*9+minute*11;
  const rep=1100+idx*8+minute*9;
@@ -55,14 +54,14 @@ const snapshotsAt=(minute,now)=>{
  return snapshots;
 };
 function civicFor(minute,now){
- if(now-25000<FIRST_CLOSE)return {};
+ if(now-25000<closing.floorFor('ME'))return {};
  const called=minute>=200?'Test Democrat':'';
  const race={provider:'civicAPI',office:'Senate',key:'ME',race_id:7421,
   total:2000+minute*20,called,last_updated:new Date(now-25000).toISOString(),
   candidates:[{name:'Test Democrat',party:'D',votes:1200+minute*12},
    {name:'Test Republican',party:'R',votes:800+minute*8}]};
  const entries={'Senate|ME':race};
- if(minute===240)entries['Senate|NC']={...race,key:'NC',race_id:7718};
+ if(minute===241)entries['Senate|NC']={...race,key:'NC',race_id:7718};
  return entries;
 }
 
@@ -126,13 +125,13 @@ for(let minute=0;minute<=360;minute++){
   assert.equal(result.governor.primary,fixtureCount('Governor'));
   recoveredHouse=result.house.primary;recoveredSenate=result.senate.primary;
  }
- const expectedCivic=now-25000>=FIRST_CLOSE&&!civicFailure?1:0;
+ const expectedCivic=now-25000>=closing.floorFor('ME')&&!civicFailure?1:0;
  assert.equal(result.senate.supplemental,expectedCivic,
   'Validated uncovered supplemental race must remain available independently');
- assert.equal(result.providerCalls,minute>=200&&!civicFailure?1:0,
+ assert.equal(result.providerCalls,minute>=241&&!civicFailure?1:0,
   'A source call must remain source-attributed and never become an official chamber call');
  if(result.providerCalls)assertions.providerCallMinutes++;
- if(minute===240){
+ if(minute===241){
   assertions.overlapMinutes++;
   assert(result.anomalies.some(x=>x.includes('Blocked overlapping secondary Senate|NC')));
   assert.equal(result.senate.supplemental,1,'Overlapping race cannot be double-counted');

@@ -1271,7 +1271,8 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_early_signals.js?v=50bd71d923ae"></script>
 <script src="./scripts/election_night_priority.js?v=c339d5954c12"></script>
 <script src="./scripts/election_night_signals.js?v=4af522c57a53"></script>
-<script src="./scripts/election_night_reconciliation.js?v=0e552a870a46"></script>
+<script src="./scripts/election_night_poll_closings_2026.js?v=3dd91d8611ce"></script>
+<script src="./scripts/election_night_reconciliation.js?v=6946e13a7f7b"></script>
 <script src="./scripts/election_night_506_live_gap_desk.js?v=ee0c4f815f2a"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
 <script src="./scripts/chamber_control_model.js?v=aa102ced6a53"></script>
@@ -5970,12 +5971,8 @@ function enBuildSenateArchive(raw){
 // NC and OH official polls close Nov 3 at 7:30 PM EST = Nov 4 00:30 UTC.
 function enElectionVotesAllowed(key,total,sourceStamp,now=Date.now()){
  if(!(total>0))return true; // Source zero remains unreported/unknown.
- const state=String(key||'').slice(0,2);
- const floor=Date.parse(state==='NC'||state==='OH'?
-  '2026-11-04T00:30:00Z':'2026-11-03T23:00:00Z');
- const observed=Date.parse(sourceStamp||'');
- return Number.isFinite(now)&&now>=floor&&Number.isFinite(observed)&&
-  observed>=floor&&observed<=now+15*60000;
+ return window.ElectionNightPollClosings2026?.allowed(
+  key,total,sourceStamp,now)===true;
 }
 function enSourceValid(o,year,office){
  if(!o||o.api!==1||o.year!==year||o.office!==office||
