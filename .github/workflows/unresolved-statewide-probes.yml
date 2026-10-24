@@ -1,6 +1,12 @@
 name: Recheck four unresolved statewide Election Night sources
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/probe_missing_statewide_sources_2026.py'
+      - 'scripts/test_probe_missing_statewide_sources_2026.py'
+      - '.github/workflows/unresolved-statewide-probes.yml'
   pull_request:
     paths:
       - 'scripts/probe_missing_statewide_sources_2026.py'
@@ -72,8 +78,10 @@ jobs:
           python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import json
           d=json.load(open('/tmp/statewide-gap-identity-2026.json'))
-          print('| Race | Discovery result | Identity ID (NOT votes) |')
-          print('|---|---|---|')
+          print('| Race | Discovery result | Exact rejection reason | Identity ID (NOT votes) |')
+          print('|---|---|---|---|')
           for row in d['records']:
-              print('|',row['race'],'|',row['status'],'|',row['race_id'] or 'unknown','|')
+              detail=row.get('reason','-')
+              print('|',row['race'],'|',row['status'],'|',detail,'|',
+                    row['race_id'] or 'unknown','|')
           PY
