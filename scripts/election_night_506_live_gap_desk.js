@@ -51,6 +51,7 @@
   for(const name of Object.keys(EXPECTED))
    summary[name]={total:EXPECTED[name],reported:0,zero:0,missing:0,byStatus:{}};
   const records=[],unverifiedMachineIds=[];
+  let latestValidVoteTime=-Infinity,latestValidVoteRace=null;
   for(const race of ledger.races){
    if(!race||!EXPECTED[race.office]||typeof race.key!=='string'||
       race.id!==race.office+'|'+race.key||seen.has(race.id))
@@ -63,7 +64,16 @@
       reconciledRecord.hasReportedVotes&&!reconciledRecord.inValidatedFeed)
     throw Error('Missing independently reconciled exact-race source state');
    let status;
-   if(reconciledRecord.hasReportedVotes)status='OBSERVED_SOURCE_VOTES';
+   if(reconciledRecord.hasReportedVotes){
+    status='OBSERVED_SOURCE_VOTES';
+    const when=Date.parse(reconciledRecord.sourceAsOf||'');
+    // A redraw and source ID audit cannot impersonate provider publication.
+    if(!Number.isFinite(when)||when>now+15*60000||now-when>180*60000)
+     throw Error('Missing/stale/future provider timestamp for sourced votes '+race.id);
+    if(when>latestValidVoteTime){
+     latestValidVoteTime=when;latestValidVoteRace=race.id;
+    }
+   }
    else if(reconciledRecord.inValidatedFeed)status='ZERO_IN_FEED';
    else if(race.provider_scope===PRIMARY){
     const sourceState=health[race.office];
@@ -131,6 +141,11 @@
    sourceIdentityAuditAgeMs,
    sourceIdentityAuditStale,
    sourceIdentityAuditMaxAgeHours:maxIdentityAgeMs/(60*60*1000),
+   lastValidVoteSourceAt:Number.isFinite(latestValidVoteTime)?
+    new Date(latestValidVoteTime).toISOString():null,
+   lastValidVoteRace:latestValidVoteRace,
+   lastValidVoteAgeMinutes:Number.isFinite(latestValidVoteTime)?
+    Math.max(0,Math.floor((now-latestValidVoteTime)/60000)):null,
    current_votes_provider_attributed_not_independently_certified:true,
    professional_calls_verified:0,may_update_model:false,
    totals:summary,senate:records,
@@ -163,6 +178,14 @@
   const t=pulse.totals;
   elt('p','House '+t.House.reported+'/435 · Senate '+t.Senate.reported+
       '/35 · Governors '+t.Governor.reported+'/36 with source-reported votes.',host,'en-coverage-line');
+  if(pulse.lastValidVoteSourceAt)
+   elt('p','LATEST VALID SOURCE-PUBLISHED VOTES · '+
+     pulse.lastValidVoteSourceAt+' · '+pulse.lastValidVoteAgeMinutes+
+     'm old · '+pulse.lastValidVoteRace+
+     ' · source reported, NOT independently certified',host,'en-coverage-line');
+  else
+   elt('p','NO CURRENT VALIDATED 2026 VOTE TIMESTAMP · a refreshed page, '+
+    'available source ID or zero-valued feed is NOT observed ballots',host,'en-coverage-line');
   elt('p','No source evidence for '+t.House.missing+' House, '+t.Senate.missing+
       ' Senate and '+t.Governor.missing+
       ' governor contests. Provider-reported zero is tracked separately. Missing does not mean zero.',host,'en-coverage-line');

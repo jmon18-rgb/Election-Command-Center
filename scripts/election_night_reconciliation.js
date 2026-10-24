@@ -223,7 +223,8 @@
       Number.isSafeInteger(c.votes)&&c.votes>0).length===1;
     if(called)calls.push({id,provider:'civicAPI',candidate:secondary.called});
     rows[id]={provider,hasReportedVotes:Boolean(record&&record.total>0),
-     inValidatedFeed:Boolean(record),providerCall:Boolean(called)};
+     inValidatedFeed:Boolean(record),providerCall:Boolean(called),
+     sourceAsOf:record?(primaryAvailable?snap.as_of:secondary.last_updated):null};
    }
    const sourceSlots=ids.filter(k=>supported.has(k.slice(0,2))).length;
    rows[office]={total:ids.length,sourceSlots,primary,
