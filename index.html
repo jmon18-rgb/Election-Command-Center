@@ -5814,6 +5814,26 @@ function enWatchStatus(item){
    (enModeYear===2026&&enOffice===item.office?enData:null);
  const race=data?.races?.[item.key];
  if(!enSupportedStates.has(state))return 'Outside the 22-state source · '+enCivicStatus(item);
+ if(enModeYear===2026){
+  // Watchlist text is seen at a glance alongside the rigorous results desk.
+  // It must never show stored TEST, stale or outage totals as "counted".
+  const failed=Boolean(enOfficeErrors[item.office]||
+   enResumePendingOffices.has(item.office)||
+   (enOffice===item.office&&enFetchError));
+  if(failed)return 'SOURCE UNAVAILABLE · previous vote totals withheld until recheck';
+  if(race?.total>0){
+   const now=Date.now(),when=Date.parse(data?.as_of||'');
+   const valid=source=>source?.year===2026&&source.office===item.office&&
+    source.source==='state'&&source.stale===false&&
+    (source.live===true||source.final===true)&&
+    Number.isFinite(when)&&when<=now+15*60000&&now-when<=180*60000&&
+    enSourceValid(source,2026,item.office)&&
+    Array.isArray(race.cands)&&race.cands.some(c=>c.v>0)&&
+    enElectionVotesAllowed(item.key,race.total,source.as_of,now);
+   if(!valid(data))
+    return 'SOURCE NOT VERIFIED · stored positive count withheld, not zero';
+  }
+ }
  if(race&&race.total>0){
   const lead=enLeadInfo(race),leader=enCurrentLeader(race);
   return (leader?lead.short+' · '+enNum(lead.votes)+' votes ahead':'Even')+
