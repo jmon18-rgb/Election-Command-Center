@@ -95,11 +95,13 @@ assert.equal(api.reconcile({...input,snapshots:{
  'No candidate votes reported despite positive race-wide count is not observed results');
 // Distinct same-party candidates are a legal top-two election. Count their
 // source votes without pretending a D/R race margin has been observed.
-const topTwo=snapshot('House',{'CA-01':{total:1200,called:false,
+const topTwo={...snapshot('House',{'CA-01':{total:1200,called:false,
  winner:'',cands:[{n:'Candidate One',p:'D',v:700},
-                   {n:'Candidate Two',p:'D',v:500}]}});
+                   {n:'Candidate Two',p:'D',v:500}]}}),
+ as_of:'2026-11-04T04:05:00Z'};
 assert.equal(api.reconcile({...input,snapshots:{
- ...input.snapshots,House:topTwo},supportedStates:['CA',...input.supportedStates]})
+ ...input.snapshots,House:topTwo},supportedStates:['CA',...input.supportedStates],
+ now:Date.parse('2026-11-04T04:30:00Z')})
  .records['House|CA-01'].hasReportedVotes,true,
  'The source-status desk must not discard valid same-party top-two results');
 
