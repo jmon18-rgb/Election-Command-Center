@@ -3225,4 +3225,4 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  assert.equal(errors.length,0,'Application emitted errors: '+errors.slice(0,4).join(' | '));
  console.log('Dashboard DOM integration passed: exact TX-SEN/TX-GOV poll drilldowns, race labels, linked joint-model race odds and DDHQ removal, dated news feed, and no script errors.');
  dom.window.close();
-})().catch(e=>{console.error(e.stack||e);dom.window.close();process.exitCode=1});
+})().catch(e=>{console.error(e.stack||e);dom.window.close();process.exit(1)});
