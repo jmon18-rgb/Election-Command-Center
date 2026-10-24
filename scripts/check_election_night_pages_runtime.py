@@ -22,6 +22,7 @@ DEFAULT_SITE = "https://jmon18-rgb.github.io/Election-Command-Center/"
 REQUIRED = (
     "civicapi_house_2026_adapter.js",
     "election_night_transport.js",
+    "election_night_nowcast.js",
     "election_night_poll_closings_2026.js",
     "election_night_506_live_gap_desk.js",
 )
@@ -78,6 +79,13 @@ def audit(index: bytes, remote_pins: dict, remote_coverage: dict,
         blob = assets.get(name)
         if not isinstance(blob, bytes) or len(blob) < 100:
             raise ValueError("Missing JS bytes from live GitHub Pages: " + name)
+        # The probabilistic needle must not run the prior national-only
+        # poll-close guard after we deployed the local-state fix. Compare
+        # BOTH the referenced blob and the safety-critical source branches.
+        if name == "election_night_nowcast.js":
+            if (b"pollsClosedFor(item,actual.asOf,now)" not in blob or
+                b"pollsClosedFor(item,new Date(now).toISOString(),now)" not in blob):
+                raise ValueError("Deployed needle missing local poll-close protections")
         if git_revision(blob) != version:
             raise ValueError("Deployed script blob/version mismatch: " + name)
     if remote_pins.get("status") != "VERIFIED_HOUSE_IDENTITIES_NOT_LIVE_RESULTS":
