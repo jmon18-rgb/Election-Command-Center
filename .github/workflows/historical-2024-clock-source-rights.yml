@@ -1,0 +1,25 @@
+name: Guard 2024 archived source rights boundary
+on:
+  pull_request:
+    paths:
+      - 'data/historical_2024_clock_source_candidates.json'
+      - 'scripts/test_historical_2024_clock_source_candidates.py'
+      - '.github/workflows/historical-2024-clock-source-rights.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/historical_2024_clock_source_candidates.json'
+      - 'scripts/test_historical_2024_clock_source_candidates.py'
+      - '.github/workflows/historical-2024-clock-source-rights.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-rights-boundary:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/test_historical_2024_clock_source_candidates.py

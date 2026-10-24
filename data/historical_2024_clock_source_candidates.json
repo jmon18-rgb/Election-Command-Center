@@ -1,0 +1,43 @@
+{
+  "schema": "2024-election-clock-source-candidate-metadata-v1",
+  "status": "REAL_2024_CAPTURE_TIMESTAMPS_FOUND_RIGHTS_NOT_CLEARED",
+  "election_date": "2024-11-05",
+  "candidate": {
+    "repository": "cuihaoleo/2024-us-election-result-snapshots",
+    "repository_url": "https://github.com/cuihaoleo/2024-us-election-result-snapshots",
+    "description": "Independent public Git capture of AP-derived 2024 election-night national progress/metadata once per minute on best-effort basis",
+    "metadata_files_reported": [
+      "progress.json",
+      "metadata.json"
+    ],
+    "copyright_claim_by_upstream": "AP source likely copyrighted; repository author explicitly unsure about reuse license",
+    "permission_for_data_ingestion": false,
+    "permission_for_redistribution": false,
+    "professionally_reviewed_rights": false,
+    "source_capture_provenance_verified_independently": false,
+    "samples": [
+      {
+        "git_sha": "e64377d7f5e0c519a3a962b901e19953e27c61e2",
+        "commit_time_utc": "2024-11-05T23:59:31Z",
+        "url": "https://github.com/cuihaoleo/2024-us-election-result-snapshots/commit/e64377d7f5e0c519a3a962b901e19953e27c61e2"
+      },
+      {
+        "git_sha": "454cfd8e6dc3a2474ff5eb7cc97aab3dc0f5f5ab",
+        "commit_time_utc": "2024-11-06T02:59:45Z",
+        "url": "https://github.com/cuihaoleo/2024-us-election-result-snapshots/commit/454cfd8e6dc3a2474ff5eb7cc97aab3dc0f5f5ab"
+      }
+    ]
+  },
+  "what_is_verified": "Public Git commit metadata reveals original 2024-11-05/06 capture timestamps; no underlying AP-derived vote payload inspected, copied, licensed or rehosted.",
+  "what_is_not_verified": [
+    "Right to use underlying AP data for model calibration",
+    "County-level and ballot-mode fields",
+    "Certified-outcome race normalization and precinct geographies",
+    "Completeness, provenance, timestamp clocks or data quality of individual AP-derived payloads",
+    "Transferability of 2024 reporting-order bias to 2026"
+  ],
+  "permitted_next_action": "Review underlying rights with rights holder, then independently audit representative contemporaneous 2024 snapshots; until then do not ingest AP-derived vote files.",
+  "may_update_2026_model": false,
+  "geographic_needle_calibrated": false,
+  "approved_backtest_inputs": 0
+}
