@@ -15,6 +15,17 @@
  'use strict';
  const own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
  const whole=x=>Number.isSafeInteger(x)&&x>=0;
+ // The county source validator blocks pre-close timestamps but is not
+ // clock-aware. Positive reports must ALSO wait until the viewer clock
+ // passes local poll closing; a future-stamped result is not live evidence.
+ function localVoteClockAllowed(row,now){
+  if(!row||row.ballots_reported===0)return true;
+  const closes=typeof window!=='undefined'?
+   window.ElectionNightPollClosings2026:
+   typeof require==='function'?require('./election_night_poll_closings_2026.js'):null;
+  return Boolean(closes&&typeof closes.allowed==='function'&&
+   closes.allowed(row.race_key,row.ballots_reported,row.updated_at,now));
+ }
  const NOMODEL=Object.freeze({may_move_national_needle:false,
   may_infer_statewide_swing:false,may_call_races:false,
   calibrated_probability:false});
@@ -36,9 +47,13 @@
     rejected++;continue;
    }
    const when=Date.parse(row.updated_at||'');
-   // Source stale/future data cannot influence a current dashboard snapshot.
+   // Enforce both local poll closure and source publication clock.
+   // A trusted source carrying a plausible future time is not a real
+   // observed vote before this race's first polls have closed.
    if(!Number.isFinite(when)||when>now+15*60000||
-      now-when>180*60000){rejected++;continue;}
+      now-when>180*60000||!localVoteClockAllowed(row,now)){
+    rejected++;continue;
+   }
    observed++;
    const baseline=own(baselines,id)?baselines[id]:null;
    const comparison=swing.calculate(row,baseline);

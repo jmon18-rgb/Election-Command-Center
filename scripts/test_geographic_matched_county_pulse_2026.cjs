@@ -51,6 +51,17 @@ const preclose={...b,updated_at:'2026-11-03T23:59:59Z'};
 const early=summarize({...first,[key(b)]:preclose},bases,'VA-SEN',NOW);
 assert.notEqual(early.status,'MATCHED_COUNTIES_DESCRIPTIVE_ONLY');
 assert.equal(early.rejected_observations,1);
+// A source timestamp after poll closure is not itself proof votes could
+// have been observed by a dashboard clock still BEFORE poll closure.
+const preViewerClock=summarize(first,bases,'VA-SEN',
+ Date.parse('2026-11-03T23:59:59Z'));
+assert.equal(preViewerClock.matched_county_swing_points,null,
+ 'No matched county vote may inform the pulse while local polls are open');
+assert.equal(preViewerClock.rejected_observations,3);
+assert.equal(summarize(first,bases,'VA-SEN',
+ Date.parse('2026-11-04T00:05:01Z')).status,
+ 'MATCHED_COUNTIES_DESCRIPTIVE_ONLY',
+ 'Legitimate source-stamped postclose votes recover after viewer clock closes');
 const future={...b,updated_at:'2026-11-04T01:16:00Z'};
 assert.equal(summarize({...first,[key(b)]:future},bases,'VA-SEN',NOW).rejected_observations,1);
 const stale={...b,updated_at:'2026-11-04T00:10:00Z'};
