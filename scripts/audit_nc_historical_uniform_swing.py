@@ -109,8 +109,7 @@ def reporting_selection_sensitivity(older, newer):
                 "original_reporting_order_observed":False,
             })
     return {
-        "method":"COUNTRY_COHORT_SELECTION_NOT_CHRONOLOGICAL_REPLAY".replace(
-            "COUNTRY","COUNTY"),
+        "method":"COUNTY_COHORT_SELECTION_NOT_CHRONOLOGICAL_REPLAY",
         "target_fractions":list(thresholds),
         "county_orderings":list(orderings),
         "stress_cases":trials,
