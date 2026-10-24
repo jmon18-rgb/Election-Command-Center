@@ -51,7 +51,9 @@
       "state": "SD",
       "name": "South Dakota",
       "url": "https://electionresults.sd.gov/ResultsMedia.aspx",
-      "mode": "unofficial_results_landing",
+      "mode": "pre_election_mock_results_only",
+      "verified_at": "2026-10-24",
+      "source_reference": "https://electionresults.sd.gov/ResultsMedia.aspx",
       "race_ids": [
         "House|SD-00"
       ]
