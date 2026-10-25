@@ -31,6 +31,20 @@ if(opts.has('check-config')){
 }else{
  const {chromium}=await import('playwright');
  const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+ // Playwright waitForFunction polls *inside* the target tab; real background
+ // Chrome tabs may freeze that timer/RAF entirely. Observe visibility using
+ // the controlling Node clock and one-shot CDP page evaluations instead.
+ const awaitRealVisibility=async(page,wantHidden,timeoutMs=15000)=>{
+  const deadline=performance.now()+timeoutMs;
+  let last=null;
+  while(performance.now()<deadline){
+   last=await page.evaluate(()=>document.hidden);
+   if(last===wantHidden)return;
+   await sleep(250);
+  }
+  throw Error('Real Chromium document.hidden remained '+String(last)+
+   ' rather than '+String(wantHidden)+' after OS/tab focus change');
+ };
  const report={
   schema:'real-election-browser-tab-v1',status:'NOT_FINISHED',
   opened_at:new Date().toISOString(),site:URL_SITE,
@@ -165,11 +179,10 @@ if(opts.has('check-config')){
     }else{
      report.physical_background_method='REAL_CHROMIUM_TAB_SWITCH';
     }
-    // Genuine minimized windows and hidden tabs may throttle RAF.
+    // Genuine minimized Chrome tabs can stop their own timers;
+    // host-side elapsed polling still observes real document visibility.
     mark('BACKGROUND_WAIT_FOR_TRUE_DOCUMENT_HIDDEN');
-    await tab.waitForFunction(()=>document.hidden,undefined,{
-     timeout:15000,polling:250
-    });
+    await awaitRealVisibility(tab,true);
     report.background_visibility_confirmed=
       await tab.evaluate(()=>document.hidden);
     mark('BACKGROUND_TRUE_DOCUMENT_HIDDEN_CONFIRMED');
@@ -189,9 +202,7 @@ if(opts.has('check-config')){
     }
     await tab.bringToFront();await secondary.close();secondary=null;
     mark('FOREGROUND_WAIT_FOR_TRUE_VISIBLE');
-    await tab.waitForFunction(()=>!document.hidden,undefined,{
-     timeout:10000,polling:250
-    });
+    await awaitRealVisibility(tab,false);
     report.resumed_tab_visible=await tab.evaluate(()=>{
      document.getElementById('enSoakOpenBlankTab')?.remove();
      return !document.hidden;
