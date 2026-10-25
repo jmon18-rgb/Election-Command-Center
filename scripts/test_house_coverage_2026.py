@@ -584,6 +584,30 @@ class HouseCoverageTests(unittest.TestCase):
         self.assertEqual(probe("NH-01", lambda path, params: {"races": [
             self.row, self.row]})["status"], "AMBIGUOUS_RACE")
 
+    def test_exact_district_search_count_must_not_conceal_partial_results(self):
+        # One returned row with an upstream total of two or a malformed
+        # count is a truncated provider search, never a unique source ID.
+        for count in (0,2,21,-1,"1",True,1.5):
+            with self.subTest(count=count):
+                def search(path,params):
+                    return ({"races":[self.row],"count":count} if
+                            path=="/race/search" else self.detail)
+                outcome=probe("NH-01",search)
+                self.assertEqual(outcome["status"],"AMBIGUOUS_OR_TRUNCATED")
+                self.assertNotIn("race_id",outcome)
+        def exact(path,params):
+            return ({"races":[self.row],"count":1} if
+                    path=="/race/search" else self.detail)
+        verified=probe("NH-01",exact)
+        self.assertEqual(verified["status"],"INDEXED_EXACT_RACE")
+        self.assertEqual(verified["race_id"],88001)
+        self.assertEqual(probe("NH-01",
+             lambda path,params:{"races":[],"count":2})["status"],
+             "AMBIGUOUS_OR_TRUNCATED")
+        self.assertEqual(probe("NH-01",
+             lambda path,params:{"races":[],"count":0})["status"],
+             "NOT_INDEXED")
+
     def test_verified_record_and_outage(self):
         def fetch(path, params):
             return {"races": [self.row]} if path == "/race/search" else self.detail
