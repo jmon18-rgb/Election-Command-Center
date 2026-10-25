@@ -91,6 +91,13 @@ const ledger=JSON.parse(fs.readFileSync(path.join(__dirname,
 assert.equal(ledger.races.length,506);
 let approved=0;
 for(const r of ledger.races){
+ assert.equal(api.validBallotRace(r.office,r.key),true,
+  'Actual 2026 ballot race must be covered: '+r.id);
+ const kind=r.office==='Senate'&&r.key.endsWith('-special')?'special':'regular';
+ const countyCode=r.office==='House'?r.key:
+  r.state+(r.office==='Senate'?'-SEN':'-GOV');
+ assert.equal(api.validCountyBallotRace(r.office,countyCode,kind),true,
+  'County gate must recognize the same 506 underlying contests: '+r.id);
  const expected=r.source_identity_status==='PRIMARY_PROVIDER_STATE_SCOPE';
  assert.equal(api.validPrimaryScope(r.office,r.key),expected,
   'Exact 2026 primary scope does not match ledger: '+r.id);
