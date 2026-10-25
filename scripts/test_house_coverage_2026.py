@@ -603,7 +603,10 @@ class HouseCoverageTests(unittest.TestCase):
         early=probe("NH-01",fetch,now=datetime(
             2026,11,4,0,59,tzinfo=timezone.utc))
         self.assertEqual(early["status"],"INVALID_DETAIL")
+        self.assertEqual(early["reason"],"PRE_POLL_CLOSE_POSITIVE_VOTES")
         self.assertNotIn("race_id",early)
+        self.assertNotIn("reported_votes",early,
+                         "Diagnostic evidence must not publish rejected mock vote counts")
         late=probe("NH-01",fetch,now=datetime(
             2026,11,4,1,1,tzinfo=timezone.utc))
         self.assertEqual(late["status"],"INDEXED_EXACT_RACE")
@@ -613,6 +616,23 @@ class HouseCoverageTests(unittest.TestCase):
         rejected=probe("NH-01",fetch,now=datetime(
             2026,11,4,3,tzinfo=timezone.utc))
         self.assertEqual(rejected["status"],"INVALID_DETAIL")
+        self.assertEqual(rejected["reason"],"DETAIL_CONTRACT_REJECTED")
+        self.assertNotIn("race_id",rejected)
+
+    def test_diagnostic_reasons_preserve_wrong_identity_and_contract_rejections(self):
+        wrong_index={**self.row,"district":"NH-02"}
+        result=probe("NH-01",lambda *_:self.fail("Invalid batch identity must not fetch"),
+                     indexed_candidate=wrong_index)
+        self.assertEqual(result["status"],"INVALID_DETAIL")
+        self.assertEqual(result["reason"],"INDEX_CANDIDATE_IDENTITY_REJECTED")
+        invalid=copy.deepcopy(self.detail)
+        invalid["candidates"][0]["votes"]=True
+        for detail in (invalid, [], None, "not an object"):
+            with self.subTest(detail=detail):
+                result=probe("NH-01",lambda path,params:
+                    {"races":[self.row]} if path=="/race/search" else detail)
+                self.assertEqual(result["reason"],"DETAIL_CONTRACT_REJECTED")
+                self.assertNotIn("race_id",result)
 
     def test_explicit_missing_and_ambiguity(self):
         self.assertEqual(probe("NH-01", lambda path, params: {"races": []})

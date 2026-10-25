@@ -28,6 +28,10 @@ PROBE_STATUSES = frozenset((
     "AMBIGUOUS_OR_TRUNCATED", "INVALID_DETAIL", "SOURCE_UNAVAILABLE_OR_INVALID",
     "TEMPORARY_UPSTREAM_FAILURE", "NOT_CHECKED_UPSTREAM_PAUSED",
 ))
+INVALID_DETAIL_REASONS = frozenset((
+    "INDEX_CANDIDATE_IDENTITY_REJECTED", "DETAIL_CONTRACT_REJECTED",
+    "PRE_POLL_CLOSE_POSITIVE_VOTES",
+))
 OUT = ROOT / "data" / "election_night_source_coverage.json"
 # These four race IDs are checked in the independent advisory probe. Do not
 # let the result create an approved live-results pin or a winning call.
@@ -137,7 +141,9 @@ def observed_house(probe, valid_ids):
             "race_id": race_id if status == "INDEXED_EXACT_RACE" else None,
             "reason": row.get("reason") if status in (
                 "SOURCE_UNAVAILABLE_OR_INVALID", "TEMPORARY_UPSTREAM_FAILURE"
-            ) else None,
+            ) or (status == "INVALID_DETAIL" and
+                  isinstance(row.get("reason"), str) and
+                  row.get("reason") in INVALID_DETAIL_REASONS) else None,
         }
     return result
 
