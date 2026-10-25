@@ -38,6 +38,12 @@ GAP_PRIORITY = (
     "CA-41", "CA-45", "CA-47", "CA-49", "OH-01", "OH-09",
     "OH-13", "AK-00", "ND-00", "SD-00", "WY-00",
 )
+# The only seven House seats without a verified machine identity in the
+# Oct 25 ledger. Extra alias searches are never run for the other 212 seats.
+ALIAS_GAP_DISTRICTS = frozenset((
+    "AK-00", "DE-00", "ND-00", "NH-01", "NH-02", "SD-00", "WY-00"
+))
+ALIAS_QUERIES = ("Representative in Congress", "U.S. Representative")
 PROBE_STATUSES = frozenset((
     "INDEXED_EXACT_RACE", "NOT_INDEXED", "AMBIGUOUS_RACE",
     "AMBIGUOUS_OR_TRUNCATED", "INVALID_DETAIL", "SOURCE_UNAVAILABLE_OR_INVALID",
@@ -245,6 +251,17 @@ def matches(district: str, row: dict) -> bool:
         return False
     state, number = district.split("-")
     day = row.get("election_date")
+    title = str(row.get("election_name") or "")
+    if district in ALIAS_GAP_DISTRICTS:
+        office_title = r"(?:US House|Representative in Congress|U\.?S\.? Representative)"
+        suffix = (r"(?:\s+At[ -]Large)?\b(?!\s+(?:District\s+)?[0-9])"
+                  if number == "00" else
+                  r"(?:\s+District)?\s+" + str(int(number)) + r"\b")
+        correct_title = bool(re.search(r"\b" + office_title + suffix, title, re.I))
+    else:
+        correct_title = bool(re.search(
+            r"\bUS House\b" if number == "00"
+            else r"\bUS House\s+" + str(int(number)) + r"\b", title, re.I))
     return (
         row.get("country") == "US"
         and row.get("province") == state
@@ -255,11 +272,8 @@ def matches(district: str, row: dict) -> bool:
         and exact_2026_general_date(day)
         and type(row.get("id")) is int
         and row["id"] > 0
-        and bool(re.search(
-            r"\bUS House\b" if number == "00"
-            else r"\bUS House\s+" + str(int(number)) + r"\b",
-            str(row.get("election_name") or ""), flags=re.I))
-        and not re.search(r"primary|runoff", str(row.get("election_name") or ""), re.I)
+        and correct_title
+        and not re.search(r"primary|runoff", title, re.I)
     )
 
 
@@ -342,12 +356,40 @@ def probe(district: str, request=fetch, *,
                 # A unique row in a partially returned result page is not
                 # a verified unique 2026 district. Do not publish its ID.
                 return {"district": district, "status": "AMBIGUOUS_OR_TRUNCATED"}
-            found = [r for r in rows if matches(district, r)]
+            candidates = [r for r in rows if matches(district, r)]
+            # Even two duplicate rows with the same ID are an ambiguous
+            # source search, not evidence for a uniquely indexed race.
+            if len(candidates) > 1:
+                return {"district": district, "status": "AMBIGUOUS_RACE"}
+            found = {r["id"]: r for r in candidates}
+            if not found and district in ALIAS_GAP_DISTRICTS:
+                # These are the ONLY two additional office-title searches.
+                # Every query is bounded and a truncated/ambiguous response
+                # fails closed. An upstream outage stops the entire batch.
+                for alias in ALIAS_QUERIES:
+                    alternate = request("/race/search", {
+                        "country": "US", "province": state,
+                        "startDate": DAY, "endDate": DAY,
+                        "query": alias, "limit": "20",
+                    })
+                    alt_rows = (alternate.get("races")
+                                if isinstance(alternate, dict) else None)
+                    alt_count = (alternate.get("count")
+                                 if isinstance(alternate, dict) else None)
+                    if not isinstance(alt_rows, list) or len(alt_rows) > 20 or (
+                        alt_count is not None and (
+                            type(alt_count) is not int or
+                            alt_count != len(alt_rows))):
+                        return {"district": district,
+                                "status": "AMBIGUOUS_OR_TRUNCATED"}
+                    for candidate in alt_rows:
+                        if matches(district, candidate):
+                            found[candidate["id"]] = candidate
             if not found:
                 return {"district": district, "status": "NOT_INDEXED"}
             if len(found) != 1:
                 return {"district": district, "status": "AMBIGUOUS_RACE"}
-            race = found[0]
+            race = next(iter(found.values()))
         else:
             # Batch search is merely a lookup optimization. Every accepted
             # identity is independently checked against its detailed record.
