@@ -6804,7 +6804,13 @@ for(const office of ['House','Senate','Governor']){
 $('#enOfficeHouse').addEventListener('click',()=>enSwitch(enModeYear,'House'));
 $('#enOfficeSenate').addEventListener('click',()=>enSwitch(enModeYear,'Senate'));
 $('#enOfficeGovernor').addEventListener('click',()=>enSwitch(enModeYear,'Governor'));
-$('#enRefresh').addEventListener('click',()=>enLoad(true));
+$('#enRefresh').addEventListener('click',()=>{
+ // The owner's "Refresh now" control must refresh BOTH provider families,
+ // rather than leaving watched supplemental Senate/House races on the
+ // normal ten-minute pre-election cadence after a laptop resumes.
+ void enLoad(true);
+ if(enModeYear===2026)void enRefreshCivicWatchlist(true);
+});
 $('#enSearch').addEventListener('input',()=>{enVisibleLimit=120;enRender()});
 document.querySelector('.tab[data-page="electionNight"]').addEventListener('click',()=>{if(!enData||enModeYear===2026)enLoad(false)});
 document.querySelectorAll('.tab:not([data-page="electionNight"]):not([data-page="brief"])').forEach(el=>el.addEventListener('click',()=>{if(enTimer){clearTimeout(enTimer);enTimer=null}}));
