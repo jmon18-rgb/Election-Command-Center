@@ -54,7 +54,11 @@ class LinkIndex(HTMLParser):
                 self.text.append(data)
 
 
-def safe_link(url, host, path):
+OFFICIAL_GENERAL_UI_ROUTE = "election=348"
+# Exact official November 3 2026 General Election front-end route.
+# This is NOT an API race ID or validated election-night source.
+
+def safe_link(url, host, path, allow_general_route=False):
     if not isinstance(url, str):
         return False
     try:
@@ -62,7 +66,9 @@ def safe_link(url, host, path):
         return (parsed.scheme == "https" and parsed.hostname == host
                 and parsed.port in (None, 443) and parsed.username is None
                 and parsed.password is None and parsed.path.rstrip("/") == path.rstrip("/")
-                and not parsed.query and not parsed.fragment
+                and not parsed.query
+                and (parsed.fragment == OFFICIAL_GENERAL_UI_ROUTE if
+                     allow_general_route else not parsed.fragment)
                 and not re.search(r"[\x00-\x20\\]", url))
     except ValueError:
         return False
@@ -98,7 +104,8 @@ def evaluate(office_html, portal_html, now, *, office_available=True,
     # Fail closed on duplicate / ambiguous results links, including one
     # malicious link alongside a valid government portal address.
     confirmed = (office_available and len(matches) == 1
-                 and safe_link(matches[0], "resultsnd.sos.nd.gov", "/"))
+                 and safe_link(matches[0], "resultsnd.sos.nd.gov", "/",
+                               allow_general_route=True))
     portal_text = LinkIndex()
     portal_text.feed(portal_html or "")
     preview = bool(re.search(r"\b(?:testing in progress|test results|mock results|sample results)\b",
@@ -117,6 +124,8 @@ def evaluate(office_html, portal_html, now, *, office_available=True,
         "review_type": STATUS,
         "checked_at": now.isoformat(),
         "official_election_page": OFFICIAL, "official_results_portal": PORTAL,
+        "official_2026_general_ui_route": PORTAL+"#"+OFFICIAL_GENERAL_UI_ROUTE,
+        "ui_route_is_machine_api": False,
         "official_2026_general_link_confirmed": confirmed,
         "ambiguous_2026_general_links": len(matches) > 1,
         "candidate_2026_general_links": len(matches),
