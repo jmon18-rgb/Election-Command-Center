@@ -38,8 +38,10 @@
    query:'US House'+(district?' '+district:''),limit:'20'
   }).toString();
  }
+ const disabled=x=>Boolean(x&&(x.is_test===true||x.test===true||
+  x.mock===true||x.is_mock===true||x.active===false||x.live===false));
  function match(item,row){
-  if(!supports(item)||!row||row.country!=='US'||
+  if(!supports(item)||!row||disabled(row)||row.country!=='US'||
     row.province!==item.key.slice(0,2)||row.municipality!=null||
     row.district!==item.key||row.type!=='House of Representatives'||
     row.election_type!=='General'||!electionDate(row.election_date)||
@@ -54,7 +56,7 @@
   return true;
  }
  function select(item,doc){
-  if(!supports(item)||!doc||!Array.isArray(doc.races)||
+  if(!supports(item)||!doc||disabled(doc)||!Array.isArray(doc.races)||
     !doc.races.length||doc.races.length>20||
     (Number.isSafeInteger(doc.count)&&doc.count>20))return null;
   const matched=doc.races.filter(row=>match(item,row));
@@ -65,8 +67,17 @@
   return ['d','dem','democrat','democratic'].includes(s)?'D':
    ['r','rep','gop','republican'].includes(s)?'R':'O';
  }
+ // Resolve the shared poll-close module after startup; the browser may
+ // load this House adapter before registering the poll-close contract.
+ function localVotesAllowed(item,total,updated,now,called){
+  const closes=typeof module!=='undefined'&&module.exports?
+   require('./election_night_poll_closings_2026.js'):
+   typeof window!=='undefined'?window.ElectionNightPollClosings2026:null;
+  return closes?.allowed?.(item?.key,total,updated,now)===true&&
+   (!called||closes?.winnerAllowed?.('House',item.key,total,updated,now)===true);
+ }
  function validate(item,row,detail,now=Date.now()){
-  if(!match(item,row)||!detail||!Number.isFinite(now)||
+  if(!match(item,row)||!detail||disabled(detail)||!Number.isFinite(now)||
     (detail.id!=null&&detail.id!==row.id)||
     detail.country!==row.country||detail.province!==row.province||
     detail.district!==row.district||
@@ -85,7 +96,7 @@
      !Number.isSafeInteger(c.votes)||c.votes<0||
      !Number.isFinite(c.percent)||c.percent<0||c.percent>100||
      typeof c.winner!=='boolean')return null;
-   const identity=c.name.trim().toLowerCase()+'|'+c.party.trim().toLowerCase();
+   const identity=c.name.trim().toLocaleLowerCase('en-US');
    if(seen.has(identity))return null;
    seen.add(identity);
    total+=c.votes;
@@ -106,6 +117,9 @@
    if(typeof updated!=='string'||!Number.isFinite(at)||
     at>now+15*60000||(total>0&&at<START))return null;
   }else if(total>0)return null;
+  // No source-provided timestamp, candidate total or winner hint from
+  // before the district's local poll close can be treated as actual 2026 votes.
+  if(!localVotesAllowed(item,total,updated,now,called))return null;
   return {provider:'civicAPI',office:'House',key:item.key,race_id:row.id,
    last_updated:updated,percent_reporting:detail.percent_reporting,
    total,candidates,called,source_url:BASE+'/race/'+row.id};
