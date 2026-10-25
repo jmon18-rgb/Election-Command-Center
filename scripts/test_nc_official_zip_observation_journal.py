@@ -112,6 +112,16 @@ class HistoryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Duplicate or unordered"):
             append(wrong, before, sample(B, T2, counties=rows))
 
+    def test_hourly_recheck_is_not_a_new_vote_release(self):
+        original = sample(A, T)
+        recorded = append(None, None, original)["journal"]
+        rechecked = sample(A, T2)
+        later = append(recorded, rechecked, sample(B, T3, 66, 43))
+        self.assertEqual(later["status"], "APPENDED")
+        self.assertEqual(len(later["journal"]["observations"]), 2)
+        self.assertEqual(later["journal"]["observations"][0]["archive_retrieved_at"], T,
+                         "Earlier retrieval observations must never be rewritten")
+
     def test_backfill_previous_and_reject_nonfactual_clock(self):
         first = sample(A, T)
         second = sample(B, T2, 61, 42)
