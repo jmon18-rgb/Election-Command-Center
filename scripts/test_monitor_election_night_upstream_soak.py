@@ -2,11 +2,12 @@
 """Offline adversarial exercises; real wall-clock work runs only after merge."""
 import unittest
 
-from monitor_election_night_upstream_soak import measure, validate_primary, OFFICES
+from monitor_election_night_upstream_soak import (measure, validate_primary, OFFICES,
+                                                 approved_primary_contests)
 
 
 def valid(office):
-    return {"api":1,"year":2026,"office":office,
+    return {"api":1,"year":2026,"office":office,"source":"state",
         "live":False,"stale":False,"counting":False,"final":False,
         "counts":{"races":0},"races":{}}
 
@@ -89,6 +90,70 @@ class HealthSoakTests(unittest.TestCase):
         ):
             with self.assertRaises(ValueError):
                 validate_primary(changed,"Senate")
+
+    def test_primary_scope_uses_exact_2026_506_contest_roster(self):
+        allowed = approved_primary_contests()
+        self.assertEqual(set(allowed), set(OFFICES))
+        self.assertIn("TX-01", allowed["House"])
+        self.assertIn("VT-00", allowed["House"],
+                      "At-large primary state uses -00, not made-up -01")
+        self.assertIn("NC", allowed["Senate"])
+        self.assertIn("TX", allowed["Governor"])
+        for office, invalid in (
+            ("House", "NH-01"),        # Not one of Open America's 22 states.
+            ("House", "TX-99"),        # Supported state, nonexistent district.
+            ("House", "TX-00"),        # Large state cannot be at-large.
+            ("House", "VT-01"),        # At-large uses exactly VT-00.
+            ("Senate", "MA"),          # Outside verified primary scope.
+            ("Senate", "AZ"),          # In 22-state scope, no 2026 Senate race.
+            ("Governor", "NC"),        # In primary scope, not a 2026 Gov seat.
+            ("Governor", "NH"),        # Governor race exists, source not scoped.
+        ):
+            self.assertNotIn(invalid, allowed[office])
+        self.assertEqual(sum(len(v) for v in allowed.values()),
+                         216 + 15 + 15)
+
+    def test_invalid_race_keys_never_count_as_valid_transport_or_votes(self):
+        import datetime as dt
+        now=dt.datetime(2026,11,4,3,tzinfo=dt.timezone.utc)
+        positive={"total":120,"called":False,"winner":"",
+                  "cands":[{"n":"A","p":"D","v":70},
+                           {"n":"B","p":"R","v":50}]}
+        zero={"total":0,"called":False,"winner":"","cands":[]}
+        for office, key in (
+            ("House","NH-01"),("House","TX-99"),("House","TX-00"),
+            ("House","VT-01"),("Senate","MA"),("Senate","AZ"),
+            ("Governor","NC"),("Governor","NH"),
+        ):
+            for candidate in (positive,zero):
+                with self.subTest(office=office,key=key,positive=candidate is positive):
+                    doc={**valid(office),
+                         "as_of":"2026-11-04T02:50:00Z",
+                         "live":True,"counting":True,
+                         "counts":{"races":1},
+                         "races":{key:candidate}}
+                    with self.assertRaisesRegex(ValueError,"identity"):
+                        validate_primary(doc,office,now)
+        # Legitimate sources still pass, including a zero-return entry.
+        valid_row={**valid("House"),"as_of":"2026-11-04T02:50:00Z",
+                   "live":True,"counting":True,"counts":{"races":1},
+                   "races":{"TX-01":positive}}
+        self.assertEqual(validate_primary(valid_row,"House",now)["reporting_contests"],1)
+        valid_row["races"]={"TX-01":zero}
+        self.assertFalse(validate_primary(valid_row,"House",now)["provider_reporting"])
+        # A positive result without the precise state source label is not
+        # verified primary-office provenance; empty standby remains allowed.
+        for missing in ({}, {"source":None}, {"source":""}, {"source":"civicAPI"}):
+            altered=dict(valid_row)
+            altered.update(missing)
+            if not missing:
+                altered.pop("source")
+            altered["races"]={"TX-01":positive}
+            with self.assertRaisesRegex(ValueError,"state source identity"):
+                validate_primary(altered,"House",now)
+        empty=valid("House")
+        empty.pop("source")
+        self.assertFalse(validate_primary(empty,"House",now)["provider_reporting"])
 
     def test_explicit_test_or_inactive_envelopes_never_pass_monitor(self):
         # Empty and positive-count responses must both be excluded from a
