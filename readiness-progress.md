@@ -41,7 +41,7 @@ and Kansas John Brown. Fish Head announcement precedes animation/music.
 4. Keep competitive source gaps, genuine chronological replay, source rights,
    live November 3 delivery and calibration explicitly open until proved.
 
-Last daily report date: none (initial setup report only).
+Last daily report date: 2026-10-25 (evening continuation report).
 
 ## October 25 — first continuation: shared celebration player
 
@@ -62,6 +62,10 @@ Last daily report date: none (initial setup report only).
 - All 12 consolidated core checks and the source-call milestone rules passed.
   Full DOM integration rerun is tracked separately; do not assume it passed merely
   because targeted browser checks passed.
+- Player review: https://github.com/jmon18-rgb/Election-Command-Center/pull/425
+  Full local DOM test is still running in tool session 51298. Inspect that result
+  and all current-head GitHub checks before merging this player. Do not describe
+  the new celebration player as live until its merge/deployment is verified.
 - This is the PLAYER FOUNDATION, not the completed custom scene/art roster.
   Next: separate candidate-verified Talarico and Abbott events, Mississippi, richer
   blue-horns/coach/nightclub/John-Brown artwork and event-specific musical polish.
