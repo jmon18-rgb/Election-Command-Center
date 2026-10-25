@@ -54,7 +54,8 @@
   const configuration=item=>item&&RACES[item.office+'|'+item.key]||null;
   const supports=item=>Boolean(configuration(item));
   const validDate=value=>typeof value==='string'&&
-    /^2026-11-03(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2}))?$/.test(value);
+    /^2026-11-03(?:T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d+)?(?:Z|[+-](?:0\d|1[0-4]):[0-5]\d))?$/.test(value)&&
+    Number.isFinite(Date.parse(value.length===10?value+'T00:00:00Z':value));
   function query(item){
     const cfg=configuration(item);if(!cfg)return null;
     return BASE+'/race/search?'+new URLSearchParams({
@@ -79,7 +80,10 @@
   function select(item,doc){
     if(!configuration(item)||!doc||disabled(doc)||!Array.isArray(doc.races)||
        doc.races.length>20||doc.races.length===0||
-       (Number.isSafeInteger(doc.count)&&doc.count>20))return null;
+       // An incomplete search page is not proof of a unique race. A
+       // malformed cardinality field cannot be silently ignored either.
+       (doc.count!=null&&
+        (!Number.isSafeInteger(doc.count)||doc.count!==doc.races.length)))return null;
     const exact=doc.races.filter(row=>match(item,row));
     return exact.length===1?exact[0]:null;
   }

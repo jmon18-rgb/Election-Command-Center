@@ -56,6 +56,14 @@ for(const {item,search} of fixtureRaces){
  assert.equal(request.searchParams.get('startDate'),'2026-11-03');
  assert.equal(request.searchParams.get('endDate'),'2026-11-03');
  assert.equal(adapter.select(item,{races:[search]}).id,search.id);
+ assert.equal(adapter.select(item,{races:[search],count:1}).id,search.id,
+  'Complete declared search page keeps exact pinned race usable');
+ for(const invalidCount of [2,0,-1,1.5,'1',true,false,NaN,Infinity]){
+  assert.equal(adapter.select(item,{races:[search],count:invalidCount}),null,
+   'Truncated or malformed statewide discovery cardinality cannot prove a unique race');
+ }
+ assert.equal(adapter.select(item,{races:[search,{...search,id:search.id+999}],
+  count:2}).id,search.id,'Complete unrelated search row is not mistaken for duplicate');
  assert.equal(adapter.select(item,{races:[search,search]}),null,'Two exact matches are unsafe');
  if(item.key==='OH-special'){
   assert.equal(adapter.supports({office:'Senate',key:'OH'}),false,
@@ -128,6 +136,10 @@ for(const {item,search} of fixtureRaces){
   {...search,district:item.key+'-01'},
   {...search,province:'NH'},
   {...search,election_date:'2026-11-03junk'},
+  {...search,election_date:'2026-11-03T99:99:99Z'},
+  {...search,election_date:'2026-11-03T24:00:00Z'},
+  {...search,election_date:'2026-11-03T21:66:00Z'},
+  {...search,election_date:'2026-11-03T12:00:00+19:00'},
   {...search,election_date:'2026-09-08T05:00:00Z'},
   {...search,election_name:search.election_name+' Primary'},
   {...search,election_name:search.election_name+' Special'},
