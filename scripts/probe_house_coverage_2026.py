@@ -10,6 +10,7 @@ import re
 import time
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
+from national_results_coverage_pulse import state_poll_closings
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -215,8 +216,31 @@ def gap_aware_window(now: datetime, history: dict, *,
     }
 
 
+def exact_2026_general_date(value):
+    """Reject a plausible prefix with an impossible or unzoned source clock."""
+    if value == DAY:
+        return True
+    if not isinstance(value, str) or not re.fullmatch(
+        r"2026-11-03T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:[.][0-9]+)?"
+        r"(?:Z|[+-][0-9]{2}:[0-9]{2})", value
+    ):
+        return False
+    try:
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        return parsed.tzinfo is not None
+    except ValueError:
+        return False
+
+
+def explicitly_mock(doc):
+    return (not isinstance(doc, dict) or
+            any(doc.get(flag) is True for flag in
+                ("is_test", "test", "mock", "is_mock")) or
+            doc.get("active") is False)
+
+
 def matches(district: str, row: dict) -> bool:
-    if not isinstance(row, dict) or not re.fullmatch(r"[A-Z]{2}-\d{2}", district):
+    if explicitly_mock(row) or not re.fullmatch(r"[A-Z]{2}-\d{2}", district):
         return False
     state, number = district.split("-")
     day = row.get("election_date")
@@ -227,8 +251,7 @@ def matches(district: str, row: dict) -> bool:
         and row.get("district") == district
         and row.get("type") == "House of Representatives"
         and row.get("election_type") == "General"
-        and isinstance(day, str)
-        and bool(re.fullmatch(r"2026-11-03(?:T[0-9:.+-]+Z?)?", day))
+        and exact_2026_general_date(day)
         and type(row.get("id")) is int
         and row["id"] > 0
         and bool(re.search(
@@ -240,7 +263,10 @@ def matches(district: str, row: dict) -> bool:
 
 
 def detail_matches(row: dict, detail: dict) -> bool:
-    if not isinstance(detail, dict) or detail.get("id", row["id"]) != row["id"]:
+    if explicitly_mock(row) or explicitly_mock(detail) or (
+        type(detail.get("id", row["id"])) is not int or
+        detail.get("id", row["id"]) != row["id"]
+    ):
         return False
     for k in ("country", "province", "district", "election_date", "election_name"):
         if detail.get(k) != row.get(k):
@@ -250,11 +276,25 @@ def detail_matches(row: dict, detail: dict) -> bool:
     candidates = detail.get("candidates")
     if not isinstance(candidates, list) or not 1 <= len(candidates) <= 60:
         return False
-    return all(isinstance(c, dict) and isinstance(c.get("name"), str)
-               and c["name"].strip() and
-               isinstance(c.get("party"), str) and c["party"].strip()
-               and type(c.get("votes")) is int and c["votes"] >= 0
-               and type(c.get("winner")) is bool for c in candidates)
+    seen = set()
+    total = 0
+    for c in candidates:
+        if (not isinstance(c, dict) or
+            not isinstance(c.get("name"), str) or not c["name"].strip() or
+            not isinstance(c.get("party"), str) or not c["party"].strip() or
+            type(c.get("votes")) is not int or not 0 <= c["votes"] <= 2**53-1 or
+            type(c.get("winner")) is not bool):
+            return False
+        # A person's name may not appear twice under party aliases. Two
+        # different same-party candidates remain valid (e.g. top-two).
+        name = c["name"].strip().casefold()
+        if name in seen:
+            return False
+        seen.add(name)
+        total += c["votes"]
+        if total > 2**53-1:
+            return False
+    return True
 
 
 def fetch(path: str, params: dict | None = None) -> dict:
@@ -278,7 +318,9 @@ def fetch(path: str, params: dict | None = None) -> dict:
     return json.loads(raw)
 
 
-def probe(district: str, request=fetch, *, indexed_candidate: dict | None = None) -> dict:
+def probe(district: str, request=fetch, *,
+          indexed_candidate: dict | None = None,
+          now: datetime | None = None) -> dict:
     state, number = district.split("-")
     # 'US House 0' does not name the at-large ballot. Exact state/district,
     # election date, stage and source-detail checks still gate every match.
@@ -308,11 +350,21 @@ def probe(district: str, request=fetch, *, indexed_candidate: dict | None = None
         detail = request(f"/race/{race['id']}", {"light": ""})
         if not detail_matches(race, detail):
             return {"district": district, "status": "INVALID_DETAIL"}
+        # A positive pre-close count is most likely mock/test or a source
+        # integrity error. An index ID must not be approved on that basis.
+        received_at = now or datetime.now(timezone.utc)
+        if received_at.tzinfo is None:
+            raise ValueError("Source observation needs an aware clock")
+        close = state_poll_closings().get(state)
+        reported = sum(c["votes"] for c in detail["candidates"])
+        if reported and (close is None or
+                         received_at.astimezone(timezone.utc) < close):
+            return {"district": district, "status": "INVALID_DETAIL"}
         return {
             "district": district, "status": "INDEXED_EXACT_RACE",
             "race_id": race["id"],
             "candidate_count": len(detail["candidates"]),
-            "reported_votes": sum(c["votes"] for c in detail["candidates"]),
+            "reported_votes": reported,
         }
     except urllib.error.HTTPError as error:
         # A shared 429/502/503/504 means this provider should not receive
