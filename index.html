@@ -6048,7 +6048,7 @@ function enSourceValid(o,year,office){
  // This gate is used by live race cards, exports and early indicators,
  // not only the reconciliation health panel. Explicit mock/test and
  // disabled 2026 sources must never be displayed as reported returns.
- if(year===2026&&(o.is_test===true||o.test===true||
+ if(year===2026&&(o.source!=='state'||o.is_test===true||o.test===true||
    o.mock===true||o.is_mock===true||o.active===false))return false;
  if(o.live&&(o.stale||o.final||!o.counting))return false;
  if(!o.counts||o.counts.races!==Object.keys(o.races).length)return false;
@@ -6059,8 +6059,16 @@ function enSourceValid(o,year,office){
  if(o.source==='medsl_senate_2024_party_aggregates'&&
    (year!==2024||office!=='Senate'||Object.keys(o.races).length<30||
     Object.keys(o.races).length>40||!o.archive_source_url?.startsWith('https://dataverse.harvard.edu/')))return false;
+ // The 22-state primary feed never covers a race in Massachusetts,
+ // New Hampshire or any other state outside its published scope. A malformed
+ // provider response must not turn a missing source into fake coverage.
+ // An explicitly non-live, non-final or stale office also cannot offer
+ // current positive counts to the main race list or watched-race cards.
  if(year===2026&&Object.entries(o.races).some(([key,r])=>
-    Number(r?.total)>0&&!enElectionVotesAllowed(key,r.total,o.as_of)))
+    !enSupportedStates.has(key.slice(0,2))||
+    Number(r?.total)>0&&
+     ((!o.live&&!o.final)||o.stale||
+      !enElectionVotesAllowed(key,r.total,o.as_of))))
   return false;
  if(o.as_of){
   const d=Date.parse(o.as_of);
