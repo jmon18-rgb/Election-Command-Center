@@ -26,4 +26,48 @@ for(const args of [
  assert.notEqual(result.status,0,
   'Runner must reject malformed or unsafe args '+JSON.stringify(args));
 }
-console.log('Real-clock deployed Chromium soak CLI: no fictional votes, validated configuration PASS');
+const {assess}=require('./election_night_browser_soak_acceptance.cjs');
+const sample={
+ actual_elapsed_seconds:301,checkpoints:6,healthy_checkpoints:6,
+ background_visibility_confirmed:true,background_resume_observed:true,
+ resumed_tab_visible:true,post_resume_primary_requests:2,
+ post_resume_primary_healthy_responses:2,
+ source_requests:{primary:6,supplemental:0},primary_healthy_responses:6,
+ source_request_failures:0,source_http_errors:0,
+ page_script_errors:0,audit_errors:0,errors:[]
+};
+const ok=assess(sample,5,60);
+assert.equal(ok.passed,true);
+assert.equal(Object.keys(ok.checks).length,11);
+for(const bad of [
+ {actual_elapsed_seconds:250},
+ {healthy_checkpoints:5},
+ {background_visibility_confirmed:false},
+ {background_resume_observed:false},
+ {resumed_tab_visible:false},
+ {post_resume_primary_requests:0},
+ {post_resume_primary_healthy_responses:0},
+ {source_requests:{primary:0}},
+ {primary_healthy_responses:0},
+ {source_request_failures:1},
+ {source_http_errors:429},
+ {page_script_errors:1},
+ {audit_errors:1},
+ {errors:['recovery failed']},
+]){
+ const report={...sample,...bad};
+ const proof=assess(report,5,60);
+ assert.equal(proof.passed,false,
+  'Missing post-resume refresh or degraded transport cannot pass '+JSON.stringify(bad));
+ assert(Object.values(proof.checks).includes(false));
+}
+const reset={...sample,post_resume_primary_requests:1,
+ post_resume_primary_healthy_responses:1};
+assert.equal(assess(reset,5,60).passed,true,
+ 'One independently completed refresh after focus restoration is sufficient');
+assert.equal(assess({...sample,actual_elapsed_seconds:7199},120,60).passed,false,
+ 'The full two-hour tab-duration requirement cannot be shortened');
+assert.throws(()=>assess(sample,0,60));
+assert.throws(()=>assess(sample,5,0));
+
+console.log('Real-clock deployed Chromium soak CLI: no fictional votes, validated configuration and real post-resume source refresh gate PASS');
