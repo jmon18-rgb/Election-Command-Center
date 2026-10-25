@@ -125,8 +125,21 @@
     observed_votes:live?.total??null,
     difference:live?live.margin-margin:null};
   });
+  const historicalStateVotes=rows.reduce((n,x)=>n+x.historical_d+x.historical_r,0);
+  const historicalStateMargin=100*rows.reduce((n,x)=>n+x.historical_d-x.historical_r,0)/historicalStateVotes;
+  const reporting=rows.filter(x=>x.observed_votes!==null);
+  const priorReportingVotes=reporting.reduce((n,x)=>n+x.historical_d+x.historical_r,0);
+  const priorReportingMargin=priorReportingVotes?
+   100*reporting.reduce((n,x)=>n+x.historical_d-x.historical_r,0)/priorReportingVotes:null;
+  // These are HISTORICAL electorate weights, never 2026 fraction counted.
+  const historicalExposurePct=priorReportingVotes?
+   +(100*priorReportingVotes/historicalStateVotes).toFixed(2):null;
+  const reportingSetBiasPoints=priorReportingMargin===null?null:
+   +(priorReportingMargin-historicalStateMargin).toFixed(2);
   return {ready:true,rows,liveReady:Boolean(current),
-   countiesWithVotes:rows.filter(x=>x.observed_votes!==null).length,
+   countiesWithVotes:reporting.length,
+   historicalStateVotes,historicalStateMargin,
+   historicalExposurePct,reportingSetBiasPoints,
    lastChecked:current?.checked_at||null,may_move_national_needle:false,
    source_geometry:shapes.geometry_source,source_history:'2022 NC Senate NCSBE original ZIP',
    candidate_only:true,reported_ballot_fraction:null,
@@ -189,6 +202,7 @@
    svg.appendChild(shape);countyNodes.set(row.fips,shape);
   }
   host.appendChild(svg);
+  const bias=add('p',host,undefined,'nc-map-bias');
   const legend=add('div',host,undefined,'nc-map-legend');
   add('span',legend,'R+25+');
   const scale=add('div',legend,undefined,'nc-map-scale');
@@ -224,6 +238,15 @@
     (mode==='live'?'2026 Senate candidate-only counts':
      'Observed partial 2026 vs final 2022 Senate D−R margin difference')+
     ' · '+model.countiesWithVotes+'/100 counties have D/R candidate counts · NOT percent of ballots reporting';
+   bias.textContent=!model.liveReady||!model.countiesWithVotes?
+    '2022 baseline: all 100 counties · verified official statewide Senate D/R votes. '+
+    'No approved 2026 county observations yet.':
+    'REPORTING-SET BIAS CHECK · Counties with observed 2026 D/R candidates '+
+    'represented '+model.historicalExposurePct.toFixed(2)+
+    '% of the final 2022 Senate two-party electorate and leaned '+
+    (model.reportingSetBiasPoints>=0?'D+':'R+')+
+    Math.abs(model.reportingSetBiasPoints).toFixed(2)+
+    ' pts relative to statewide 2022. HISTORICAL composition, not 2026 share counted or a statewide forecast.';
    inspector.replaceChildren();
    const r=byId.get(selected);
    if(!r)return;
