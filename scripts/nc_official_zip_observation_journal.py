@@ -123,7 +123,13 @@ def append(history, previous_snapshot, replacement):
                 raise ValueError("Duplicate or unordered journal county identity")
             found.add(sha)
             prev_stamp = t
-        if previous_snapshot is None or record(previous_snapshot) != observations[-1]:
+        if previous_snapshot is None:
+            raise ValueError("Journal and published previous snapshot disagree")
+        previous_event = record(previous_snapshot)
+        if (previous_event["archive_sha256"] != observations[-1]["archive_sha256"] or
+            previous_event["counties"] != observations[-1]["counties"] or
+            clock(previous_event["archive_retrieved_at"]) <
+            clock(observations[-1]["archive_retrieved_at"])):
             raise ValueError("Journal and published previous snapshot disagree")
     if observations:
         prior = observations[-1]
