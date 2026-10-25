@@ -1252,8 +1252,8 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div class="en-milestone-head">
   <div><span class="label">ELECTION NIGHT · ACHIEVEMENTS</span>
    <h3>Absolutely normal election night</h3>
-   <p>Source-reported winner calls unlock the posters. Polling odds and partial leads do not.</p></div>
-  <button type="button" id="enTsunamiPreview">Preview Blue Tsunami poster ↗</button>
+   <p>Source-reported winner calls unlock celebrations. Preview any card; polling odds and partial leads do not earn a win.</p></div>
+  <button type="button" id="enTsunamiPreview">Preview Blue Tsunami celebration ↗</button>
  </div>
  <div class="en-milestone-grid" id="enMilestoneGrid"></div>
  <div class="en-milestone-spotlight" id="enMilestoneSpotlight" hidden aria-live="polite">
@@ -5459,7 +5459,7 @@ let enCelebrationAudioContext=null,enCelebrationNotes=[];
 function enCelebrationStopMedia(){
  const audio=$('#enCelebrationAnnouncement');
  audio.onended=null;audio.onerror=null;
- try{audio.pause();audio.currentTime=0}catch{}
+ try{if(!audio.paused)audio.pause();if(audio.currentTime)audio.currentTime=0}catch{}
  for(const note of enCelebrationNotes){try{note.stop()}catch{}}
  enCelebrationNotes=[];
 }
@@ -5559,7 +5559,7 @@ function enRenderMilestones(){
   const card=elt('button','en-milestone-card');
   card.type='button';card.dataset.state=item.state;
   card.setAttribute('aria-label',item.title+' · '+item.state+
-   ' · '+item.completed+'/'+item.required+' confirmed conditions; open poster');
+   ' · '+item.completed+'/'+item.required+' confirmed conditions; play celebration');
   const art=enMilestonePosters[item.id];
   if(art){
    const thumbnail=elt('img','en-milestone-thumb');
