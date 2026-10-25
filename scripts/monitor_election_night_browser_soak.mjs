@@ -7,6 +7,8 @@
 import {writeFile,mkdir} from 'node:fs/promises';
 import {dirname} from 'node:path';
 import {performance} from 'node:perf_hooks';
+import {createRequire} from 'node:module';
+const {assess}=createRequire(import.meta.url)('./election_night_browser_soak_acceptance.cjs');
 const URL_SITE='https://jmon18-rgb.github.io/Election-Command-Center/';
 const opts=new Map();
 for(const arg of process.argv.slice(2)){
@@ -29,7 +31,7 @@ if(opts.has('check-config')){
 }else{
  const {chromium}=await import('playwright');
  const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
- const start=performance.now(),report={
+ const report={
   schema:'real-election-browser-tab-v1',status:'NOT_FINISHED',
   opened_at:new Date().toISOString(),site:URL_SITE,
   requested_minutes:minutes,interval_seconds:interval,
@@ -38,12 +40,14 @@ if(opts.has('check-config')){
   geographic_needle_calibrated:false,
   checkpoints:0,healthy_checkpoints:0,
   background_visibility_confirmed:false,background_resume_observed:false,
+  resumed_tab_visible:false,post_resume_primary_requests:0,
+  post_resume_primary_healthy_responses:0,
   source_requests:{primary:0,supplemental:0},
   primary_healthy_responses:0,
   source_request_failures:0,source_http_errors:0,page_script_errors:0,
   audit_errors:0,probes:[],errors:[]
  };
- let browser;
+ let browser,soakStart=null,resumed=false;
  try{
   browser=await chromium.launch({headless:true,args:['--no-sandbox']});
   const ctx=await browser.newContext({viewport:{width:1440,height:900},
@@ -52,8 +56,10 @@ if(opts.has('check-config')){
   tab.on('pageerror',()=>{report.page_script_errors++});
   tab.on('request',req=>{
    const u=req.url();
-   if(u.startsWith('https://openamerica.io/elections/results.json'))
+   if(u.startsWith('https://openamerica.io/elections/results.json')){
     report.source_requests.primary++;
+    if(resumed)report.post_resume_primary_requests++;
+   }
    if(u.startsWith('https://civicapi.org/api/v2/'))
     report.source_requests.supplemental++;
   });
@@ -63,8 +69,10 @@ if(opts.has('check-config')){
   });
   tab.on('response',res=>{
    if(res.url().startsWith('https://openamerica.io/elections/results.json')&&
-      [200,304].includes(res.status()))
+      [200,304].includes(res.status())){
     report.primary_healthy_responses++;
+    if(resumed)report.post_resume_primary_healthy_responses++;
+   }
    if(res.status()>=400&&
       /^https:\/\/(?:openamerica\.io|civicapi\.org)\//.test(res.url()))
     report.source_http_errors++;
@@ -75,11 +83,14 @@ if(opts.has('check-config')){
   await tab.waitForFunction(()=>
    document.querySelector('#enSourceReadiness')?.textContent?.includes('506 races'),
    undefined,{timeout:45000});
+  // Start after the actual 506-race dashboard is rendered: browser launch
+  // and network navigation cannot count toward the measured active-tab soak.
+  soakStart=performance.now();
   let secondary=null;
   const total=minutes*60000,period=interval*1000;
   const steps=Math.floor(total/period);
   for(let step=0;step<=steps;step++){
-   const until=start+step*period-performance.now();
+   const until=soakStart+step*period-performance.now();
    if(until>0)await sleep(until);
    // A separate tab briefly backgrounds and then reactivates the dashboard.
    // This is NOT claimed to simulate OS sleep or a source outage.
@@ -89,7 +100,10 @@ if(opts.has('check-config')){
       await tab.evaluate(()=>document.hidden);
    }else if(step===Math.floor(steps/3)+2&&secondary){
     await tab.bringToFront();await secondary.close();secondary=null;
+    await tab.waitForFunction(()=>!document.hidden,undefined,{timeout:10000});
+    report.resumed_tab_visible=await tab.evaluate(()=>!document.hidden);
     report.background_resume_observed=true;
+    resumed=true;
    }
    const state=await tab.evaluate(()=>{
     const text=document.querySelector('#enLiveCoverageTriage')?.textContent||'';
@@ -104,7 +118,7 @@ if(opts.has('check-config')){
    if(state.coverageError)report.audit_errors++;
    if(!good)report.errors.push('Unhealthy national desk checkpoint '+step);
    if(step%Math.max(1,Math.floor(300/interval))===0||step===steps)
-    report.probes.push({step,elapsed_s:Math.round((performance.now()-start)/1000),
+    report.probes.push({step,elapsed_s:Math.round((performance.now()-soakStart)/1000),
      ui_healthy:good,primary_attempts:report.source_requests.primary,
      primary_healthy_responses:report.primary_healthy_responses,
      supplementary_attempts:report.source_requests.supplemental});
@@ -115,14 +129,11 @@ if(opts.has('check-config')){
  }finally{
   await browser?.close();
   report.finished_at=new Date().toISOString();
-  report.actual_elapsed_seconds=Math.round((performance.now()-start)/1000);
-  const minRequests=Math.max(2,Math.floor(minutes/10));
-  const success=report.checkpoints>=Math.floor(minutes*60/interval)&&
-   report.healthy_checkpoints===report.checkpoints&&
-   report.background_resume_observed&&report.background_visibility_confirmed&&
-   report.source_requests.primary>=minRequests&&
-   report.primary_healthy_responses>=minRequests&&
-   report.page_script_errors===0&&report.audit_errors===0&&report.errors.length===0;
+  report.actual_elapsed_seconds=soakStart===null?0:
+   Math.round((performance.now()-soakStart)/1000);
+  const acceptance=assess(report,minutes,interval);
+  report.acceptance_checks=acceptance.checks;
+  const success=acceptance.passed;
   report.status=success?'PASS_REAL_BROWSER_TRANSPORT_ONLY':'FAIL_BROWSER_TAB_OR_REFRESH';
   await mkdir(dirname(output),{recursive:true});
   await writeFile(output,JSON.stringify(report,null,2)+'\n','utf8');
