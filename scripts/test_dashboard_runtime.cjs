@@ -182,6 +182,29 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  assert(registeredIntervals.some(x=>x.ms===300000),
   'Still-open tab must register reporting/security refresh every five minutes');
  await settle();
+ // Browser-side supplemental transport must reject foreign/redirected JSON
+ // BEFORE any civicAPI race records are eligible for source attribution.
+ const beforeOriginFetch=w.fetch;
+ const approvedCivic='https://civicapi.org/api/v2/race/87188?light=';
+ let civicCalls=0;
+ w.fetch=async(url,options)=>{
+  civicCalls++;
+  assert.equal(String(url),approvedCivic);
+  assert.equal(options.redirect,'error');
+  return {ok:true,status:200,url:'https://evil.example/api/v2/race/87188?light=',
+   redirected:false,json:async()=>{throw Error('Unsafe response JSON parsed')}};
+ };
+ await assert.rejects(w.eval('enCivicFetchJson('+JSON.stringify(approvedCivic)+')'),
+  /approved source URL/);
+ assert.equal(civicCalls,1);
+ await assert.rejects(w.eval('enCivicFetchJson("https://evil.example/race/1?light=")'),
+  /Unapproved civicAPI/);
+ assert.equal(civicCalls,1,'Unapproved fetch must fail before network request');
+ w.fetch=async(url)=>({ok:true,status:200,url:String(url),redirected:false,
+  json:async()=>({races:[],count:0})});
+ const genuine=await w.eval('enCivicFetchJson('+JSON.stringify(approvedCivic)+')');
+ assert.equal(genuine.count,0,'Exact civicAPI final URL can still be parsed');
+ w.fetch=beforeOriginFetch;
  // The 506-race discovery inventory must never masquerade as actual counts.
  await w.eval('enRefreshSourceReadiness()');
  const ledger=fixtures['election_night_source_coverage.json'];
