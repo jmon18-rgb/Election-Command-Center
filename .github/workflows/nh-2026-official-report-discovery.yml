@@ -40,13 +40,13 @@ jobs:
           races=x['reports']
           print('Official NH source:',x['status'])
           for seat,row in races.items():
-              print(seat,row['status'],row['candidate_official_url'])
+              print(seat,row['status'],row['candidate_official_url'],'HEAD:',row['official_link_head_status'])
           with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as summary:
               summary.write('## NH 2026 official federal report-link discovery\n')
               summary.write('Source: '+x['status']+'\n\n')
               for seat,row in races.items():
-                  summary.write('- '+seat+': '+row['status']+'\n')
-              summary.write('No live votes, calls, or source IDs approved.\n')
+                  summary.write('- '+seat+': '+row['status']+' · HEAD: '+row['official_link_head_status']+'\n')
+              summary.write('HEAD 200 proves only link reachability, not a vote feed, results, race calls, or approval. HEAD 403/405/429/5xx is inconclusive.\n\nNo live votes, calls, or source IDs approved.\n')
           assert x['approved_live_feed'] is False and x['candidate_votes'] is None
           assert all(not row['source_id_approved'] for row in races.values())
           PY
