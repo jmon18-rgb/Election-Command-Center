@@ -4664,12 +4664,15 @@ function enWatchParse(input){
  if(match&&enHouseSeatCounts[match[1]]){
   const seat=enNationalSeats?.find(x=>x.state===match[1]);
   if(enNationalSeats&&!seat)return null;
-  if(seat&&match[2]==='SEN-SPECIAL'&&seat.kind!=='special')return null;
-  return {office:'Senate',key:seat?.key||
-    match[1]+(match[2]==='SEN-SPECIAL'?'-special':'')};
+  const key=seat?.key||match[1]+
+    (['FL','OH'].includes(match[1])?'-special':'');
+  if(!window.ElectionNightReconciliation?.validBallotRace('Senate',key)||
+     (match[2]==='SEN-SPECIAL'&&!key.endsWith('-special')))return null;
+  return {office:'Senate',key};
  }
  match=value.match(/^([A-Z]{2})-(GOV|GOVERNOR)$/);
- if(match&&enHouseSeatCounts[match[1]])
+ if(match&&enHouseSeatCounts[match[1]]&&
+    window.ElectionNightReconciliation?.validBallotRace('Governor',match[1]))
   return {office:'Governor',key:match[1]};
  return null;
 }
@@ -5203,6 +5206,8 @@ const enBatchPilotSlots=new Set(['Senate|AK','Governor|AK','Senate|ME',
  'Governor|MD','Senate|MS','Governor|HI','Governor|OK']);
 function enBatchPilot(item){return Boolean(item&&enBatchPilotSlots.has(enWatchId(item)))}
 function enCivicMatch(item,row){
+ if(!window.ElectionNightReconciliation?.validBallotRace(item?.office,item?.key))
+  return false;
  if(item?.office==='House')
   return Boolean(window.CivicHouse2026Adapter?.match(item,row));
  if(enBatchPilot(item))
@@ -5230,6 +5235,8 @@ function enCivicMatch(item,row){
  return false;
 }
 function enCivicSelect(item,doc){
+ if(!window.ElectionNightReconciliation?.validBallotRace(item?.office,item?.key))
+  return null;
  if(item?.office==='House')
   return window.CivicHouse2026Adapter?.select(item,doc)||null;
  if(enBatchPilot(item))
@@ -5248,6 +5255,8 @@ function enCivicParty(name){
    ['republican','r','gop'].includes(v)?'R':'O';
 }
 function enCivicValidate(item,row,detail){
+ if(!window.ElectionNightReconciliation?.validBallotRace(item?.office,item?.key))
+  return null;
  if(item?.office==='House')
   return window.CivicHouse2026Adapter?.validate(item,row,detail)||null;
  if(enBatchPilot(item))

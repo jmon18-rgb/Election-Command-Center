@@ -1701,6 +1701,12 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  assert.equal(w.eval('enWatchParse("AK-00").key'),'AK-00','At-large House uses 00');
  assert.equal(w.eval('enWatchParse(" NC-SEN ").office'),'Senate');
  assert.equal(w.eval('enWatchParse("TX-GOV").office'),'Governor');
+ for(const impossible of ['WA-GOV','DE-GOV','CA-SEN','NY-SEN','OH-SENATE-SPECIAL']){
+  assert.equal(w.eval('enWatchParse('+JSON.stringify(impossible)+')'),null,
+   'The 2026 watchlist cannot invent a governor or Senate seat '+impossible);
+ }
+ assert.equal(w.eval('enWatchParse("FL-SEN").key'),'FL-special',
+  '2026 Florida special Senate cannot silently become a regular seat');
  assert.equal(w.eval('enWatchParse("OH-SEN-SPECIAL").key'),'OH-special');
  assert.equal(w.eval('enWatchParse("NC-99")'),null);
  w.localStorage.removeItem('bluewaves_election_watch_2026_v1');
@@ -2050,6 +2056,18 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
      {name:'Governor I',party:'Independent',votes:0,percent:0,winner:false}
    ]
  };
+ // An apparently well-formed provider record for a state without a 2026
+ // gubernatorial ballot must never become a real tracked result or search hit.
+ const phantomGovernor={...govSearch,province:'WA',id:999009,
+  election_name:'Washington Governor'};
+ const phantomItem={office:'Governor',key:'WA'};
+ assert.equal(w.eval('enCivicMatch('+JSON.stringify(phantomItem)+','+
+   JSON.stringify(phantomGovernor)+')'),false);
+ assert.equal(w.eval('enCivicSelect('+JSON.stringify(phantomItem)+','+
+   JSON.stringify({count:1,races:[phantomGovernor]})+')'),null);
+ assert.equal(w.eval('enCivicValidate('+JSON.stringify(phantomItem)+','+
+   JSON.stringify(phantomGovernor)+','+
+   JSON.stringify({...govDetail,...phantomGovernor})+')'),null);
  assert(w.NHGovernorCivicAdapter.supports(govItem));
  assert(!w.NHGovernorCivicAdapter.supports(nhSenateItem));
  assert.equal(w.eval('enCivicSelect('+JSON.stringify(govItem)+','+
