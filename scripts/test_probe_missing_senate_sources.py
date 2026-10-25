@@ -64,6 +64,55 @@ class Tests(unittest.TestCase):
         self.assertEqual(discover_one("MA",provider(rows=[row(province="MS")]),NOW)["status"],
                          "NOT_INDEXED_EXACT_RACE_AT_CHECK_TIME")
 
+    def test_both_senate_canaries_reject_partial_source_and_mock(self):
+        from probe_missing_senate_sources import POLL_CLOSE_UTC
+        self.assertEqual(POLL_CLOSE_UTC["MA"],"2026-11-04T01:00:00+00:00",
+            "MA 8 PM EST must close at 01:00 UTC, not midnight UTC")
+        for state in TARGETS:
+            for count in (0,2,20,-1,True,1.5,"1"):
+                def truncated(endpoint,params):
+                    self.assertEqual(endpoint,"/race/search")
+                    return {"races":[row(state)],"count":count}
+                with self.subTest(state=state,count=count):
+                    self.assertEqual(discover_one(state,truncated,NOW)["status"],
+                                     "INVALID_OR_PARTIAL_SOURCE_SEARCH")
+            for flag in ("is_test","test","mock","is_mock"):
+                with self.subTest(state=state,flag=flag):
+                    self.assertEqual(discover_one(state,
+                        provider(state,rows=[row(state,**{flag:True})]),NOW)["status"],
+                        "NOT_INDEXED_EXACT_RACE_AT_CHECK_TIME")
+                    self.assertEqual(discover_one(state,
+                        provider(state,candidate=detail(state,**{flag:True})),NOW)["status"],
+                        "INVALID_SOURCE_DETAIL")
+            for corruptDate in (
+                "2026-11-03T99:00:00Z","2026-11-03T04:00:00",
+                "2026-11-03T04:00:00Zextra","2026-11-03T04:00:00+99:00"
+            ):
+                self.assertEqual(discover_one(state,provider(state,
+                    rows=[row(state,election_date=corruptDate)]),NOW)["status"],
+                    "NOT_INDEXED_EXACT_RACE_AT_CHECK_TIME")
+            self.assertEqual(discover_one(state,provider(state,
+                candidate=detail(state,candidates=[
+                    {"name":" Same Person ","party":"D","votes":0},
+                    {"name":"same person","party":"R","votes":0}
+                ])),NOW)["status"],"DUPLICATE_CANDIDATE")
+            self.assertEqual(discover_one(state,provider(state,
+                candidate=detail(state,candidates=[
+                    {"name":"First","party":"D","votes":2**53-1},
+                    {"name":"Second","party":"R","votes":1}
+                ])),AFTER)["status"],"INVALID_CANDIDATE_STRUCTURE")
+        from datetime import timedelta
+        at=dt.datetime(2026,11,4,0,30,tzinfo=dt.timezone.utc)
+        self.assertEqual(discover_one("MA",
+            provider(candidate=detail(votes=9)),at)["status"],
+            "PRE_POLL_CLOSE_VOTES_UNSAFE_MOCK_OR_ERROR")
+        self.assertEqual(discover_one("MA",
+            provider(candidate=detail(candidates=[
+                {"name":"A","party":"D","votes":0,"winner":True},
+                {"name":"B","party":"R","votes":0,"winner":False}
+            ])),at)["status"],
+            "PRE_POLL_CLOSE_VOTES_UNSAFE_MOCK_OR_ERROR")
+
     def test_fail_closed(self):
         self.assertEqual(discover_one("MA",provider(fail=True),NOW)["status"],
                          "SOURCE_UNAVAILABLE_OR_ERROR")
