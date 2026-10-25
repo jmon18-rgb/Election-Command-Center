@@ -1,6 +1,6 @@
 {
   "election": "2026-11-03",
-  "generated_at": "2026-10-25T20:29:34.277025+00:00",
+  "generated_at": "2026-10-25T20:59:26.505916+00:00",
   "methodology": {
     "calls": "No licensed professional call provider or verified control attribution in this ledger",
     "house_probe": "Rotating sampled exact 2026 district discovery; 24-hour 'recent' does not guarantee Election Night data",
@@ -188,11 +188,11 @@
         "reason": null,
         "status": "INVALID_DETAIL"
       },
-      "latest_preflight_outcome": "success",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "INVALID_DETAIL",
@@ -445,11 +445,11 @@
         "reason": null,
         "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "success",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "INDEXED_EXACT_RACE",
@@ -468,11 +468,11 @@
         "reason": null,
         "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "success",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "INDEXED_EXACT_RACE",
@@ -491,11 +491,11 @@
         "reason": null,
         "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "success",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "INDEXED_EXACT_RACE",
@@ -514,11 +514,11 @@
         "reason": null,
         "status": "INDEXED_EXACT_RACE"
       },
-      "latest_preflight_outcome": "success",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "INDEXED_EXACT_RACE",
@@ -5180,11 +5180,11 @@
         "reason": null,
         "status": "NOT_INDEXED"
       },
-      "latest_preflight_outcome": "success",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "NOT_INDEXED",
@@ -9195,7 +9195,7 @@
       "statewide_probe_advisory": {
         "advisory_only_not_approved": true,
         "candidate_count": null,
-        "checked_window_utc": "2026-10-25T20:29:32.635577+00:00",
+        "checked_window_utc": "2026-10-25T20:59:25.113047+00:00",
         "race_id": null,
         "status": "NOT_INDEXED"
       },
@@ -9274,7 +9274,7 @@
       "statewide_probe_advisory": {
         "advisory_only_not_approved": true,
         "candidate_count": null,
-        "checked_window_utc": "2026-10-25T20:29:32.635577+00:00",
+        "checked_window_utc": "2026-10-25T20:59:25.113047+00:00",
         "race_id": null,
         "status": "INVALID_OR_MISMATCHED_DETAIL"
       },
@@ -9767,7 +9767,7 @@
       "statewide_probe_advisory": {
         "advisory_only_not_approved": true,
         "candidate_count": 2,
-        "checked_window_utc": "2026-10-25T20:29:32.635577+00:00",
+        "checked_window_utc": "2026-10-25T20:59:25.113047+00:00",
         "race_id": 87100,
         "status": "INDEXED_EXACT_RACE_IDENTITY_ONLY"
       },
@@ -10062,7 +10062,7 @@
       "statewide_probe_advisory": {
         "advisory_only_not_approved": true,
         "candidate_count": null,
-        "checked_window_utc": "2026-10-25T20:29:32.635577+00:00",
+        "checked_window_utc": "2026-10-25T20:59:25.113047+00:00",
         "race_id": null,
         "status": "INVALID_OR_MISMATCHED_DETAIL"
       },
