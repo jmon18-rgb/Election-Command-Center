@@ -32,6 +32,8 @@ const sample={
  background_visibility_confirmed:true,background_resume_observed:true,
  resumed_tab_visible:true,post_resume_primary_requests:2,
  post_resume_primary_healthy_responses:2,
+ page_validated_primary_snapshots:6,
+ post_resume_page_validated_primary_snapshots:2,
  post_resume_refresh_trigger:'MANUAL_OWNER_CONTROL_PRE_ELECTION',
  source_requests:{primary:6,supplemental:0},primary_healthy_responses:6,
  source_request_failures:0,source_http_errors:0,
@@ -39,7 +41,7 @@ const sample={
 };
 const ok=assess(sample,5,60);
 assert.equal(ok.passed,true);
-assert.equal(Object.keys(ok.checks).length,12);
+assert.equal(Object.keys(ok.checks).length,14);
 assert.equal(assess({...sample,post_resume_refresh_trigger:'AUTONOMOUS_ELECTION_DAY_FOCUS'},5,60).passed,true,
  'Election Day autonomous recovery is a distinct recorded pathway');
 for(const bad of [
@@ -52,6 +54,8 @@ for(const bad of [
  {post_resume_refresh_trigger:'FICTIONAL_ALWAYS_ON'},
  {post_resume_primary_requests:0},
  {post_resume_primary_healthy_responses:0},
+ {page_validated_primary_snapshots:0},
+ {post_resume_page_validated_primary_snapshots:0},
  {source_requests:{primary:0}},
  {primary_healthy_responses:0},
  {source_request_failures:1},
@@ -67,7 +71,15 @@ for(const bad of [
  assert(Object.values(proof.checks).includes(false));
 }
 const reset={...sample,post_resume_primary_requests:1,
- post_resume_primary_healthy_responses:1};
+ post_resume_primary_healthy_responses:1,
+ post_resume_page_validated_primary_snapshots:1};
+assert.equal(assess({...sample,
+ page_validated_primary_snapshots:0,
+ post_resume_page_validated_primary_snapshots:0},5,60).passed,false,
+ 'HTTP 200 without accepted dashboard snapshots must never pass');
+assert.equal(assess({...sample,
+ post_resume_page_validated_primary_snapshots:0},5,60).passed,false,
+ 'Accepted pre-background records do not prove resumed source revalidation');
 assert.equal(assess(reset,5,60).passed,true,
  'One independently completed refresh after focus restoration is sufficient');
 assert.equal(assess({...sample,actual_elapsed_seconds:7199},120,60).passed,false,
