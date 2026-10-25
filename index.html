@@ -5209,7 +5209,7 @@ function enCivicSourceDisabled(x){return Boolean(x&&(x.is_test===true||x.test===
  x.mock===true||x.is_mock===true||x.active===false||x.live===false))}
 function enCivicElectionDateValid(x){
  return typeof x==='string'&&
-  /^2026-11-03(?:T(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|[+-](?:0\\d|1[0-4]):[0-5]\\d))?$/.test(x)&&
+  /^2026-11-03(?:T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d+)?(?:Z|[+-](?:0\d|1[0-4]):[0-5]\d))?$/.test(x)&&
   Number.isFinite(Date.parse(x.length===10?x+'T00:00:00Z':x));
 }
 function enCivicMatch(item,row){
