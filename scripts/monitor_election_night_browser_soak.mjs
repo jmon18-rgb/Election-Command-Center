@@ -111,7 +111,22 @@ if(opts.has('check-config')){
    // A separate tab briefly backgrounds and then reactivates the dashboard.
    // This is NOT claimed to simulate OS sleep or a source outage.
    if(step===Math.floor(steps/3)){
-    secondary=await ctx.newPage();await secondary.goto('about:blank');
+    // context.newPage() creates an independently focus-emulated Playwright
+    // page, NOT necessarily a browser tab the person actually switched to.
+    // Click a genuine target=_blank link inside the existing Chrome window:
+    // this creates a real user-initiated browser tab and activation change.
+    await tab.evaluate(()=>{
+     const a=document.createElement('a');
+     a.id='enSoakOpenBlankTab';a.href='about:blank';a.target='_blank';
+     a.rel='noopener';a.textContent='Open blank tab (real-tab test)';
+     a.style.cssText='position:fixed;left:8px;top:8px;z-index:2147483646;'+
+      'background:#fff;color:#000;padding:12px;font:16px sans-serif';
+     document.body.appendChild(a);
+    });
+    const popupPromise=tab.waitForEvent('popup',{timeout:10000});
+    await tab.locator('#enSoakOpenBlankTab').click({timeout:10000});
+    secondary=await popupPromise;
+    await secondary.waitForLoadState('domcontentloaded');
     const backgroundCDP=await ctx.newCDPSession(secondary);
     await backgroundCDP.send('Emulation.setFocusEmulationEnabled',{enabled:false});
     await secondary.bringToFront();
@@ -130,8 +145,13 @@ if(opts.has('check-config')){
     // having happened "before resume".
     resumed=true;
     await tab.bringToFront();await secondary.close();secondary=null;
-    await tab.waitForFunction(()=>!document.hidden,undefined,{timeout:10000});
-    report.resumed_tab_visible=await tab.evaluate(()=>!document.hidden);
+    await tab.waitForFunction(()=>!document.hidden,undefined,{
+     timeout:10000,polling:250
+    });
+    report.resumed_tab_visible=await tab.evaluate(()=>{
+     document.getElementById('enSoakOpenBlankTab')?.remove();
+     return !document.hidden;
+    });
     report.background_resume_observed=true;
     // Before Election Day, the standby feed intentionally uses a slower
     // ten-minute cadence. In a five-minute PR rehearsal, explicitly click
