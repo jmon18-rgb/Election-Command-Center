@@ -33,7 +33,7 @@ class AliasProbe(unittest.TestCase):
   calls=[]
   def fetch(path,params):
    calls.append((path,params))
-   return detail(row) if path.startswith('/race/') else {'count':1,'races':[row]}
+   return detail(row) if path.startswith('/race/') and path!='/race/search' else {'count':1,'races':[row]}
   out=find_one('House|NH-01',fetch,NOW)
   self.assertEqual(out['status'],'EXACT_2026_CANDIDATE_IDENTITY_VERIFIED')
   self.assertEqual(out['race_id'],87201)
