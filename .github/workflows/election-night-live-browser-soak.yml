@@ -1,0 +1,76 @@
+name: Real-clock deployed Election Night Chromium tab soak
+on:
+  pull_request:
+    paths:
+      - 'scripts/monitor_election_night_browser_soak.mjs'
+      - 'scripts/test_monitor_election_night_browser_soak.cjs'
+      - '.github/workflows/election-night-live-browser-soak.yml'
+  workflow_dispatch:
+    inputs:
+      minutes:
+        description: 'Actual browser minutes (5-180)'
+        required: false
+        default: '30'
+  schedule:
+    # 2026 preflight Nov 2, then live Nov 3 8:10 PM ET (Nov 4 UTC).
+    - cron: '10 16 2 11 *'
+    - cron: '10 1 4 11 *'
+permissions:
+  contents: read
+concurrency:
+  group: actual-election-night-browser-soak
+  cancel-in-progress: false
+jobs:
+  offline-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check real-clock runner arguments and JavaScript syntax
+        run: |
+          node --check scripts/monitor_election_night_browser_soak.mjs
+          node scripts/test_monitor_election_night_browser_soak.cjs
+  actual-browser:
+    if: github.event_name != 'pull_request'
+    needs: offline-contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 195
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned Playwright Chromium
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Monitor real deployed tab for an actual elapsed duration
+        env:
+          MANUAL_MINUTES: ${{ inputs.minutes }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          stamp="$(date -u +'%Y%m%d')"
+          if [ "$EVENT_NAME" = schedule ] && [ "$stamp" != 20261102 ] && [ "$stamp" != 20261104 ]; then
+            echo 'Scheduled rehearsal is outside the 2026 general-election window'; exit 0
+          fi
+          if [ "$EVENT_NAME" = schedule ] && [ "$stamp" = 20261104 ]; then
+            minutes=120
+          elif [ "$EVENT_NAME" = schedule ]; then
+            minutes=15
+          else
+            minutes="${MANUAL_MINUTES:-30}"
+          fi
+          node scripts/monitor_election_night_browser_soak.mjs \
+            --duration-minutes="$minutes" --interval-seconds=60 \
+            --output=/tmp/real_election_browser_tab_soak.json
+      - name: Preserve observed browser health including failed checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: actual-election-night-browser-tab-${{ github.run_id }}
+          path: /tmp/real_election_browser_tab_soak.json
+          if-no-files-found: warn
+          retention-days: 30
