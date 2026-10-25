@@ -3,6 +3,7 @@
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
+const vm=require('node:vm');
 const api=require('./election_night_506_live_gap_desk.js');
 const reconcile=require('./election_night_reconciliation.js');
 const ROOT=path.resolve(__dirname,'..');
@@ -80,6 +81,36 @@ assert.equal(threshold.lightChecks,1);
 assert.equal(threshold.active,1);
 assert.equal(policy.unverifiedMachineIds.length,noModel.unverifiedMachineIds.length,
  'Editorial deprioritization is NEVER deleting a live-results gap');
+// Test the REAL browser's gap discovery helper, including linked model
+// generation validity. Close House races outside screenshot top-N must be
+// placed in the civicAPI source-check queue, never merely displayed as text.
+const html=fs.readFileSync(path.join(ROOT,'index.html'),'utf8');
+const helperStart=html.indexOf('function enActiveGapItems(){');
+const helperEnd=html.indexOf('function smartModelMap(){',helperStart);
+assert(helperStart>0&&helperEnd>helperStart);
+assert.match(html,/\.\.\.enActiveGapItems\(\),\.\.\.enNationalWatchItems\(\)/,
+ 'Real source polling queue must include close missing identity gaps');
+assert.match(html,/enAutoTracked\(item\)\|\|enActiveGapItems\(\)/,
+ 'The exact supplemental source validation must consider those gaps tracked');
+const context={enModeYear:2026,enPublishedCoverageLedger:ledger,
+ jointLastResult:{race_probabilities:modelForAttention},
+ jointBasis:{generated_from_sources:{model_polling_at:'2026-10-25T18:00:00Z'}},
+ latestSenateEstimates:{generated_at:'2026-10-25T18:00:00Z'},
+ window:{ElectionNightCoverageTriage:api}};
+const liveGapItems=vm.runInNewContext(
+ html.slice(helperStart,helperEnd)+'\nenActiveGapItems',context);
+assert.equal(JSON.stringify(liveGapItems()),JSON.stringify([
+ {office:'House',key:'AK-00'},{office:'House',key:'NH-01'},
+ {office:'House',key:'NH-02'}]));
+context.jointBasis.generated_from_sources.model_polling_at='2026-10-24T00:00:00Z';
+assert.equal(liveGapItems().length,0,
+ 'Outdated joint model cannot allocate live-source capacity');
+context.jointBasis.generated_from_sources.model_polling_at='2026-10-25T18:00:00Z';
+context.jointLastResult={race_probabilities:[]};
+assert.equal(liveGapItems().length,0,'No trusted odds means no false active ranking');
+context.enPublishedCoverageLedger=null;
+assert.equal(liveGapItems().length,0,'Missing source ledger cannot invent race work');
+
 
 // Election-night exact source-ID audits should be refreshed within six hours.
 // A stale registry must never invalidate independent 2026 vote evidence.
