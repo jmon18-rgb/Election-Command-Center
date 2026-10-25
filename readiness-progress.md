@@ -99,4 +99,13 @@ Last daily report date: 2026-10-25 (evening continuation report).
   switching to reduced motion stops the active CSS beat. Both viewport checks
   and all 12 core checks pass. This is not a listening-quality claim.
 - All 26 current-head workflows for player PR #425 passed before merge was
-  requested. Verify its deployed page and new asset bytes before reporting live.
+  requested. It merged as 0f4bd960. At 2026-10-25T23:13:11Z an actual Edge browser
+  loaded the published Pages site, opened a clearly labeled celebration preview,
+  advanced from announcement to scene with a simulated media-ended event, and
+  verified skip plus no browser exceptions. Screenshot inspected. External source
+  requests were blocked for this browser drill; it is not a live-results test.
+- The production smoke then passed against actual Pages HTML, all versioned JS
+  bytes, original MP3 and source/model consistency (polling snapshot 23:11:37Z).
+  Its checkout-index comparison was false as expected because this local branch
+  already contains the not-yet-deployed three-event expansion. Do not describe
+  Talarico/Abbott/Mississippi additions as live until PR #426 passes and deploys.
