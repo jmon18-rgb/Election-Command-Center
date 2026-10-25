@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-25T15:07:57.907998Z",
+  "updated_at": "2026-10-25T15:20:41.072672Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
@@ -270,6 +270,26 @@
       "state_hints": [],
       "topic_hints": [
         "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "867f1754291cdd2d7138",
+      "title": "Obama\u2019s Ohio, Michigan speeches: Key takeaways on Trump, Iran war, midterms - Al Jazeera",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQNmpMTzVMV0M5WU04b2s2LW1QeWlLWVVSdnRJQ2xQeW9WeVdXVjZYVkVwVFgzWTd5U25HZHJ4VFFIb0xfZDBrOVNJYzVsWndCcmhfdEkycExMaVoxelNzcWtuTWhxdjFKWVZxeVhGemVZdi0wNjBaX1pwdWE0aTBOS1gtUlNUcjRwRXNzcXNkdnF6ZDlrTFBJejVCQ1kwUGRjQWQ2MTNHai10OUlhQ29TdFNn0gG3AUFVX3lxTE9zVTVQVDdCLWlial92eERzejVzYnlMSnRwdTRiOFd5WTZCcFE2VnVabkJYOFNwV0NQRl90a0R1ZllSc2NDUDdPLVd3bXBUV0dLcU01a0MzbVhNVUlHczgzUTlYOW95YkZFVVdFOW8zVmROUUN0alc1aTZzRnNuTUxZcHg1a1VTQktVYkNhSTBNMzZiampRSUFtbjBFaDBSZURlVDBiYnh4MjBBRDNuYlVNTnpPcVdJaw?oc=5",
+      "publisher": "Al Jazeera",
+      "published_at": "2026-10-25T08:51:07Z",
+      "detected_at": "2026-10-25T15:20:41.072672Z",
+      "state_hints": [
+        "MI",
+        "OH"
+      ],
+      "topic_hints": [
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -4938,21 +4958,6 @@
       "topic_hints": [
         "litigation"
       ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "b6302e6eeee9c6ba474b",
-      "title": "CA Sec. of State: \u2018Do Not Let Anyone Keep You From Voting\u2019 - American Community Media",
-      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNV2RKLUZyWVNoR091LXEzaEZzZHgzZF9sVnhVdWFlLTNCQTFvazhmZUxGSFV3NHdhbFI3ZnZrQjRNOE1LMUI2WkVLNkU2eEE5QzRxTmZDLXNDS3RjLTViOUlFTTlCUnBNYnJ0cEVtT3h2V2M1amk5Z3o3Y3RpQkZwWWRHSGNkZThvYXVvYWVvVUtXeXV1azkyd0Z3ZEdBTWJp?oc=5",
-      "publisher": "American Community Media",
-      "published_at": "2026-10-13T22:12:12Z",
-      "detected_at": "2026-10-13T23:02:52.465730Z",
-      "state_hints": [],
-      "topic_hints": [],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],

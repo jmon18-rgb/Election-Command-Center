@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-25T15:07:58.448384+00:00",
+  "updated_at": "2026-10-25T15:20:41.647020+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,7 +17,7 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 312,
+  "matched_primary_observations": 310,
   "newly_injected_into_model": 0,
   "injected_poll_ids": [],
   "observations": [
@@ -486,9 +486,9 @@
       "pollster": "InsiderAdvantage",
       "dem_name": "Josh Turek",
       "rep_name": "Ashley Hinson",
-      "dem": 45.0,
+      "dem": 45.5,
       "rep": 47.0,
-      "margin": -2.0,
+      "margin": -1.5,
       "field_end": "2026-10-22",
       "field_start": "2026-10-21",
       "posted_date": "2026-10-23",
@@ -510,9 +510,9 @@
       "pollster": "InsiderAdvantage",
       "dem_name": "Abdul El-Sayed",
       "rep_name": "Mike Rogers",
-      "dem": 47.0,
+      "dem": 47.2,
       "rep": 46.0,
-      "margin": 1.0,
+      "margin": 1.2,
       "field_end": "2026-10-22",
       "field_start": "2026-10-21",
       "posted_date": "2026-10-23",
