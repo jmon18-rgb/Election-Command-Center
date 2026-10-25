@@ -23,3 +23,11 @@ The Florida House 9 landing page identified the correct election, but its Result
 tab could not be retrieved during this check; no new FL-09 fallback was added.
 California's general public-results portal redirected to a prior-elections
 archive, so it was not promoted as a verified 2026 live-results endpoint.
+
+The subsequent source-ledger update identified invalid details for CA-20, CA-21,
+CA-23, CA-24 and CA-25. Their exact November 3 DDHQ race pages were separately
+opened and added to the catalog; most are currently forecast landings, not
+actual result claims. The [official California 2026 results guidance](https://voterguide.sos.ca.gov/voter-info/election-results.htm)
+was also inspected. It describes the planned post-close public portal and is
+linked as human guidance only, with a not-yet-published warning. All five
+automated-source gaps remain unresolved in the ledger.

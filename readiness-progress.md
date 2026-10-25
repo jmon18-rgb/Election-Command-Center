@@ -73,28 +73,29 @@ Last daily report date: 2026-10-25 (evening continuation report).
   than assuming exactly two details elements, and the blocked civicAPI fixture
   accepts MS as either unqueried or failed (never reporting) as polling rotates.
 - Windows timezone-independent source-time assertion included; full local DOM
-  integration passed in session 1232. Current-head CI must pass before merge.
+  integration is running in session 1232. Current-head CI must pass before merge.
 - PR #426 is deliberately preserved, not deployed. Its latest readiness run
   40243854438 failed a brittle MS-unqueried expectation (fixed in this core
   branch's recovery drill) and a poster decode check. Further celebration work
   remains paused; the decode failure is not being bypassed. Production #425
   remains the already-verified deployed baseline.
 
-## October 25 — competitive human fallbacks while core CI completes
+## October 25 — newly changed California ledger caught by broad CI
 
-- Directly opened DDHQ's exact Nov 3 2026 Results tabs for CA-13, CO-05 and Iowa
-  Senate. Added these three human-viewing links to the curated catalog and the
-  operational recovery panel, not just missing-ID rows. These pages currently
-  show pre-election zero placeholders; no votes or professional calls are added.
-- COMPETITIVE_SOURCE_MANUAL_FALLBACKS.md records source URLs, scope and limits.
-  FL-09's landing page was identifiable but its Results tab could not be fetched;
-  no new FL-09 fallback was invented. California's general public-results portal
-  redirected to an archive, so it was not promoted to a 2026 live endpoint.
-- Recovery module, official-backstop invariants and actual 1440px/390px browser
-  tests pass, including the curated CA-13 link and unchanged zero-reporting/call
-  counts under a blocked-source fixture. Current-head CI still required.
-- Review dependency: core recovery PR #427 first, then this follow-up branch
-  readiness/competitive-manual-fallbacks. Celebration PR #426 remains paused.
+- PR #427's broad validation caught five additional current-main invalid House
+  details: CA-20, CA-21, CA-23, CA-24 and CA-25. The source ledger now has 14
+  unresolved identities rather than the previous nine. Do not hide or reset them.
+- The failure was the existing requirement that each current identity gap has
+  independently checked human references. Added exact DDHQ Nov 3 race pages for
+  the five districts and the official California 2026 voter-guide results chapter.
+  The chapter describes the post-close public portal; it is not a live vote feed.
+  Publisher landing pages are forecasts before an explicit actual race call.
+- Merged current-main source data into the recovery branch and reran the original
+  safeguards unchanged: all current gaps are mapped, exact district routes are
+  checked, and no votes/coverage/call flags are promoted. All 12 core checks and
+  the Python manual-reference tests pass. Full local DOM run 1232 also passed.
+- Publication remains gated on new current-head CI. Follow-up #428 needs these
+  source-reference additions merged from #427 before its own final validation.
 
 ## October 25 — first continuation: shared celebration player
 
@@ -125,3 +126,19 @@ Last daily report date: 2026-10-25 (evening continuation report).
   Preserve independent candidate/race triggers and explicit Nebraska caucus status.
 - Needle data/calibration decision remains targeted for October 27; no new
   geographic predictive calibration or live 2026 vote delivery is claimed.
+
+## October 25 — competitive human fallbacks while core CI completes
+
+- Directly opened DDHQ's exact Nov 3 2026 Results tabs for CA-13, CO-05 and Iowa
+  Senate. Added these three human-viewing links to the curated catalog and the
+  operational recovery panel, not just missing-ID rows. These pages currently
+  show pre-election zero placeholders; no votes or professional calls are added.
+- COMPETITIVE_SOURCE_MANUAL_FALLBACKS.md records source URLs, scope and limits.
+  FL-09's landing page was identifiable but its Results tab could not be fetched;
+  no new FL-09 fallback was invented. California's general public-results portal
+  redirected to an archive, so it was not promoted to a 2026 live endpoint.
+- Recovery module, official-backstop invariants and actual 1440px/390px browser
+  tests pass, including the curated CA-13 link and unchanged zero-reporting/call
+  counts under a blocked-source fixture. Current-head CI still required.
+- Review dependency: core recovery PR #427 first, then this follow-up branch
+  readiness/competitive-manual-fallbacks. Celebration PR #426 remains paused.
