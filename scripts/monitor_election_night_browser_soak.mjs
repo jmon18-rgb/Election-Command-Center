@@ -45,6 +45,8 @@ if(args.has('check-config')){
   background_visibility_confirmed:false,background_resume_observed:false,
   resumed_tab_visible:false,physical_background_method:null,
   post_resume_primary_requests:0,post_resume_primary_healthy_responses:0,
+  post_resume_supplemental_requests:0,
+  post_resume_supplemental_exact_identity_validated:false,
   // Raw HTTP 200/304 is not proof that the dashboard actually accepted a
   // source-validated 2026 office response rather than HTML, a mock or stale data.
   page_validated_primary_snapshots:0,
@@ -211,8 +213,10 @@ if(args.has('check-config')){
     report.source_requests.primary++;
     if(resumed)report.post_resume_primary_requests++;
    }
-   if(url.startsWith('https://civicapi.org/api/v2/'))
+   if(url.startsWith('https://civicapi.org/api/v2/')){
     report.source_requests.supplemental++;
+    if(resumed)report.post_resume_supplemental_requests++;
+   }
   });
   cdp.on('Network.responseReceived',(row,session)=>{
    if(session!==tabSession)return;
@@ -285,12 +289,13 @@ if(args.has('check-config')){
     mark('NATIVE_ORIGINAL_TAB_GENUINELY_HIDDEN');
    }else if(step===Math.floor(totalSteps/3)+2){
     resumed=true;
+    // Begin observing before Chrome dispatches focus/visibilitychange events.
+    resumedAtWallClock=Date.now();
     mark('REACTIVATE_REAL_ORIGINAL_BROWSER_TAB');
     await cdp.send('Target.activateTarget',{targetId:tabTarget});
     await waitHidden(false);
     report.resumed_tab_visible=true;
     report.background_resume_observed=true;
-    resumedAtWallClock=Date.now();
     mark('NATIVE_ORIGINAL_TAB_GENUINELY_VISIBLE');
     if(Date.now()<Date.parse('2026-11-03T05:00:00Z')){
      report.post_resume_refresh_trigger='MANUAL_OWNER_CONTROL_PRE_ELECTION';
@@ -299,6 +304,22 @@ if(args.has('check-config')){
     }else{
      report.post_resume_refresh_trigger='AUTONOMOUS_ELECTION_DAY_FOCUS';
     }
+    mark('AWAIT_REAL_POST_RESUME_SUPPLEMENTAL_SOURCE_REVALIDATION');
+    // The same source-verified race must be fetched AGAIN after true browser
+    // focus restoration. A cached, valid pre-background record is insufficient.
+    // Test mode-specific behavior: owner's Refresh now control before Nov 3,
+    // automatic visibility/focus recovery on Election Day.
+    await waitFor('(()=>{const id="Senate|ME",row=enCivicByWatch[id];'+
+     'if(!row||enCivicErrors[id]||enCivicPending.has(id)||'+
+     '!Number.isSafeInteger(enCivicLastAttemptAt[id])||'+
+     'enCivicLastAttemptAt[id]<'+String(resumedAtWallClock)+'||'+
+     'enCivicRaceIds[id]?.id!==87188||row.race_id!==87188||'+
+     'row.provider!=="civicAPI"||row.office!=="Senate"||row.key!=="ME"||'+
+     'row.source_url!=="https://civicapi.org/api/v2/race/87188")return false;'+
+     'if(row.total===0)return row.called==null;'+
+     'return enCivicUsable({office:"Senate",key:"ME"})===row})()',45000);
+    report.post_resume_supplemental_exact_identity_validated=true;
+    mark('POST_RESUME_REAL_SUPPLEMENTAL_IDENTITY_REVALIDATED');
    }
    const state=await evaluate('(()=>{const text=document.querySelector("#enLiveCoverageTriage")?.textContent||"";'+
     'return {active:!!document.querySelector("#electionNight.page.active"),'+
@@ -335,7 +356,9 @@ if(args.has('check-config')){
      primary_healthy_responses:report.primary_healthy_responses,
      page_validated_primary_snapshots:report.page_validated_primary_snapshots,
      supplementary_attempts:report.source_requests.supplemental,
-     supplementary_exact_identity:report.supplemental_exact_identity_validated
+     supplementary_exact_identity:report.supplemental_exact_identity_validated,
+     post_resume_supplemental_requests:report.post_resume_supplemental_requests,
+     post_resume_supplemental_identity:report.post_resume_supplemental_exact_identity_validated
     });
   }
  }catch(error){
