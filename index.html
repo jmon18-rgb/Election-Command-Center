@@ -1265,7 +1265,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/ohio_official_candidate_votes.js?v=ed88660a3b59"></script>
 <script src="./scripts/ohio_official_county_startup.js?v=d545da9c5eef"></script>
 <script src="./scripts/nc_county_results_desk_startup.js?v=7d99ce3885db"></script>
-<script src="./scripts/election_night_openamerica_transport.js?v=77a97a063dfd"></script>
+<script src="./scripts/election_night_openamerica_transport.js?v=17218440f2e8"></script>
 <script src="./scripts/election_night_transport.js?v=76a458acbece"></script>
 <script src="./scripts/election_night_fast_lane.js?v=f2a0d35d0a8a"></script>
 <script src="./scripts/election_night_nowcast.js?v=c2396a2d8e7a"></script>
@@ -5336,6 +5336,11 @@ async function enCivicFetchJson(url,timeoutMs=12000){
  return enCivicRequestPool.run(()=>enCivicFetchUnpooled(url,timeoutMs));
 }
 async function enCivicFetchUnpooled(url,timeoutMs=12000){
+ // Search and light-detail requests are the only independently approved
+ // live civicAPI routes; block arbitrary fallback URLs before any fetch.
+ if(typeof url!=='string'||
+    !/^https:\/\/civicapi\.org\/api\/v2\/race\/(?:search\?[^#]+|[1-9]\d*\?light=)$/.test(url))
+  throw Error('Unapproved civicAPI 2026 result source URL');
  const cool=enCivicBreaker?.status();
  const requestGeneration=window.ElectionNightTransport.generation(enCivicBreaker);
  if(cool?.blocked)throw Error('civicAPI upstream HTTP '+cool.last_http_status+
@@ -5346,13 +5351,23 @@ async function enCivicFetchUnpooled(url,timeoutMs=12000){
   return await Promise.race([
    (async()=>{
     const response=await fetch(url,{
-      mode:'cors',credentials:'omit',cache:'no-store',
+      mode:'cors',credentials:'omit',cache:'no-store',redirect:'error',
       headers:{Accept:'application/json'},...(controller?{signal:controller.signal}:{})
     });
     if(!response.ok){
      enCivicBreaker?.fail(response.status);
      throw Error('civicAPI HTTP '+response.status);
     }
+    // A redirected 200+CORS document is not civicAPI evidence. The browser
+    // refuses 30x responses and checks the final URL before parsing votes.
+    // Non-native plain-object fixture responses may omit URL metadata;
+    // native browser Response objects never get that exemption.
+    const finalURL=response.url;
+    const hasURL=typeof finalURL==='string'&&finalURL.length>0;
+    const isNative=typeof Response==='function'&&response instanceof Response;
+    if(response.redirected===true||(hasURL&&finalURL!==url)||
+       (isNative&&!hasURL))
+     throw Error('civicAPI response did not originate at approved source URL');
     // A response that STARTED before an outage is not recovery evidence,
     // even if it resolves after the first 503 or the retry cooldown.
     const detail=await response.json();

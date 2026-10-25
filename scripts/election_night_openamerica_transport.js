@@ -30,10 +30,22 @@
    const controller=new AbortController();
    let timeout=null;
    const work=Promise.resolve().then(()=>fetchJson(url,{
-    mode:'cors',credentials:'omit',cache:'no-cache',
+    mode:'cors',credentials:'omit',cache:'no-cache',redirect:'error',
     headers:{Accept:'application/json'},signal:controller.signal
    })).then(async response=>{
-    if(!response||response.ok!==true)throw Error(
+    // Browser fetch may follow 30x responses to an attacker/alternate feed.
+    // 200 + CORS + plausible votes is NOT evidence that the approved
+    // Open America endpoint actually authored the returned document.
+    // Native browser Response always exposes its final URL. Some offline
+    // unit/browser-harness stubs are plain objects without that property;
+    // accept those only as untrusted test shims, never a native response.
+    const finalURL=response?.url;
+    const hasURL=typeof finalURL==='string'&&finalURL.length>0;
+    const isNative=typeof Response==='function'&&response instanceof Response;
+    if(!response||response.redirected===true||
+       (hasURL&&finalURL!==url)||(isNative&&!hasURL))
+     throw Error('Open America response did not originate at approved source URL');
+    if(response.ok!==true)throw Error(
      'Open America results HTTP '+(response?.status??'unavailable'));
     const doc=await response.json();
     if(!doc||typeof doc!=='object'||Array.isArray(doc))
