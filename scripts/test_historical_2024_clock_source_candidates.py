@@ -56,6 +56,53 @@ class ArchivedElection2024ResearchLeadTests(unittest.TestCase):
             self.assertIs(x[field],False,
                           "Unverified alternative archive cannot unlock the needle")
 
+    def test_fairfax_original_county_report_clock_lead_never_unlocks_needle(self):
+        x=json.loads(PATH.read_text())
+        lead=x["county_official_pdf_replay_lead"]
+        self.assertEqual(lead["authority"],"Fairfax County Office of Elections")
+        self.assertEqual(lead["state"],"VA")
+        self.assertEqual(lead["election_date"],"2024-11-05")
+        self.assertEqual(lead["scope"],"FAIRFAX_COUNTY_ONLY_NOT_VIRGINIA_STATEWIDE")
+        self.assertEqual(urlsplit(lead["official_results_index"]).hostname,
+                         "www.fairfaxcounty.gov")
+        self.assertEqual(lead["original_pdf_snapshots_verified"],1)
+        self.assertTrue(lead["contains_heterogeneous_section_generation_timestamps"])
+        self.assertFalse(lead["reported_section_clock_is_publication_or_capture_clock"])
+        for flag in (
+            "independent_archived_capture_times_verified","vote_count_sequence_verified",
+            "same_race_consistency_checked",
+            "complete_certified_final_geography_matched",
+            "rights_cleared_for_internal_research","redistribution_permission_cleared",
+            "eligible_for_2026_needle_calibration","may_move_2026_forecast"
+        ):
+            self.assertIs(lead[flag],False)
+        self.assertEqual(lead["approved_backtest_inputs"],0)
+        self.assertEqual(len(lead["reports"]),4)
+        snapshots=[]
+        for row in lead["reports"]:
+            self.assertRegex(row["file"],r"^2024November_results_unofficial-0(?:04|08|11|12)\\.pdf$")
+            url=urlsplit(row["url"])
+            self.assertEqual(url.scheme,"https")
+            self.assertEqual(url.hostname,"www.fairfaxcounty.gov")
+            self.assertTrue(url.path.endswith("/"+row["file"]))
+            self.assertFalse(url.query or url.fragment)
+            self.assertIn(row["evidence_level"],(
+                "SEARCH_INDEX_ELECTION_SUMMARY_EXCERPT_ORIGINAL_PDF_UNCHECKED",
+                "ORIGINAL_PDF_FIRST_ELECTION_SUMMARY_PAGE_VISUALLY_VERIFIED"
+            ))
+            stamp=dt.datetime.fromisoformat(row["reported_section_clock_local"])
+            self.assertEqual(stamp.utcoffset(),dt.timedelta(hours=-5))
+            snapshots.append(stamp.astimezone(dt.timezone.utc))
+        self.assertEqual(snapshots,sorted(set(snapshots)),
+                         "Original report section clocks must be chronological and unique")
+        self.assertEqual(snapshots[0],dt.datetime(2024,11,6,1,38,tzinfo=dt.timezone.utc))
+        self.assertEqual(snapshots[-1],dt.datetime(2024,11,6,5,13,tzinfo=dt.timezone.utc))
+        self.assertEqual(sum(x["evidence_level"].startswith("ORIGINAL_PDF")
+                             for x in lead["reports"]),1)
+        # A report-generation timestamp is not an original archived HTTP
+        # retrieval time or permission to reuse an election vendor's output.
+        self.assertEqual(x["approved_backtest_inputs"],0)
+
     def test_independent_git_timestamp_evidence_only(self):
         x=json.loads(PATH.read_text())
         self.assertEqual(x["candidate"]["repository"],
