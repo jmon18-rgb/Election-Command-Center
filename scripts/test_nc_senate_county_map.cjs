@@ -16,6 +16,10 @@ assert(baseline.ready,baseline.reason);
 assert.equal(baseline.rows.length,100);
 assert.equal(baseline.liveReady,false);
 assert.equal(baseline.countiesWithVotes,0);
+assert.equal(baseline.historicalStateVotes,3689835,
+ 'The map must agree with the separately SHA-pinned official Senate statewide totals');
+assert.equal(baseline.historicalExposurePct,null);
+assert.equal(baseline.reportingSetBiasPoints,null);
 assert.equal(baseline.may_move_national_needle,false);
 assert.equal(baseline.modeled_votes_outstanding,null);
 assert.equal(baseline.reported_ballot_fraction,null);
@@ -88,6 +92,13 @@ const approved={
 const live=map.build(geo,csv,approved,T);
 assert(live.ready&&live.liveReady);
 assert.equal(live.countiesWithVotes,1);
+const wakeHistory=baseline.rows.find(r=>r.fips==='37183');
+const expectedExposure=100*(wakeHistory.historical_d+wakeHistory.historical_r)/3689835;
+assert.equal(live.historicalExposurePct,+expectedExposure.toFixed(2));
+assert.equal(live.reportingSetBiasPoints,
+ +(wakeHistory.historical_margin-live.historicalStateMargin).toFixed(2));
+assert.equal(live.reported_ballot_fraction,null,
+ 'Historical reporting-set exposure must never stand in for 2026 ballots counted');
 assert.equal(live.rows.find(x=>x.fips==='37183').observed_votes,25000);
 assert.equal(live.rows.find(x=>x.fips==='37001').observed_margin,null,
  'No reported county cannot be treated as 0% or 2022 winner');
@@ -97,6 +108,8 @@ map.render(liveHost,live,document);
 const toggles=findAll(liveHost,x=>x.tag==='button');
 assert.equal(toggles[1].disabled,false);
 toggles[1].listeners.click();
+assert.match(findAll(liveHost,x=>x.className==='nc-map-bias')[0].textContent,
+ /HISTORICAL composition, not 2026 share counted/);
 assert.match(findAll(liveHost,x=>x.className==='nc-map-status')[0].textContent,
  /1\/100 counties have D\/R candidate counts/);
 const countyShapes=findAll(liveHost,x=>x.tag==='path');
