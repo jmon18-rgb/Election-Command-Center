@@ -12,6 +12,7 @@ from pathlib import Path
 from national_results_coverage_pulse import (
     pulse, valid_candidates, state_poll_closings, _time
 )
+from monitor_election_night_upstream_soak import approved_primary_contests
 import urllib.error
 import urllib.request
 
@@ -39,19 +40,22 @@ def validate_primary(doc, office, now):
             not isinstance(doc.get("counts"), dict) or
             doc["counts"].get("races") != len(doc["races"])):
         raise ValueError("Open America 2026 office schema mismatch")
+    # The same production-vs-mock contract governs the real-clock source
+    # soak, 506-race reconciliation and scheduled provider canary.
+    if any(doc.get(k) is True for k in ("is_test", "test", "mock", "is_mock")) or \
+       doc.get("active") is False:
+        raise ValueError("Explicit mock, test or inactive 2026 source")
     at=_time(doc["as_of"]) if doc.get("as_of") else None
     if at is not None and at>now+dt.timedelta(minutes=15):
         raise ValueError("Future provider source timestamp")
     close_map=state_poll_closings()
-    import re
-    pattern = {
-        "House": r"[A-Z]{2}-\d{2}",
-        "Senate": r"[A-Z]{2}(?:-special)?",
-        "Governor": r"[A-Z]{2}",
-    }[office]
+    # Provider source coverage is just 22 states. A race being a plausible
+    # NH-01, TX-99 or AZ Senate string is not identity evidence; refuse both
+    # positive and placeholder records outside the exact 506 ballot universe.
+    authorized = approved_primary_contests()[office]
     positive = 0
     for key, row in doc["races"].items():
-        if (re.fullmatch(pattern, key) is None or not isinstance(row, dict) or
+        if (key not in authorized or not isinstance(row, dict) or
                 type(row.get("total")) is not int or row["total"] < 0 or
                 row.get("called") is not False or bool(row.get("winner")) or
                 not isinstance(row.get("cands"), list) or len(row["cands"]) > 60):
@@ -74,6 +78,8 @@ def validate_primary(doc, office, now):
         if (total>row["total"] or not valid_candidates(row,row["total"])):
             raise ValueError("Candidate source arithmetic or identity invalid")
         if row["total"]>0:
+            if doc.get("source") != "state":
+                raise ValueError("Positive source not attributable to Open America state feed")
             if now<START:
                 raise ValueError("Pre-election provider unexpectedly reports candidate votes")
             close=close_map.get(key[:2])
