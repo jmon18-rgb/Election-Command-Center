@@ -164,6 +164,11 @@ const safeOfficeSource={...freshForValidation};
 assert.equal(api.valid(safeOfficeSource,2026,'Senate'),true);
 assert.equal(api.valid({...safeOfficeSource,source:''},2026,'Senate'),false,
  'A missing 2026 primary source identity is not verified state returns');
+const standbySource={...safeOfficeSource,source:'',live:false,
+ counting:false,final:false,as_of:null,counts:{races:0},races:{}};
+assert.equal(api.valid(standbySource,2026,'Senate'),true,
+ 'An empty pre-election office may legitimately have no source label');
+
 assert.equal(api.valid({...safeOfficeSource,live:false,counting:false},
  2026,'Senate'),false,
  'Inactive positive office cannot populate the raw live race list');
