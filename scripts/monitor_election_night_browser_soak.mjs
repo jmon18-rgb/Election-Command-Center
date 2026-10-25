@@ -118,7 +118,7 @@ if(opts.has('check-config')){
     await tab.evaluate(()=>{
      const a=document.createElement('a');
      a.id='enSoakOpenBlankTab';a.href='about:blank';a.target='_blank';
-     a.rel='noopener';a.textContent='Open blank tab (real-tab test)';
+     a.textContent='Open blank tab (real-tab test)';
      a.style.cssText='position:fixed;left:8px;top:8px;z-index:2147483646;'+
       'background:#fff;color:#000;padding:12px;font:16px sans-serif';
      document.body.appendChild(a);
