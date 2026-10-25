@@ -87,11 +87,12 @@ class SourcePreflightTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"Stale"):
             validate_primary(doc,"Senate",
              dt.datetime(2026,11,4,4,0,tzinfo=dt.timezone.utc))
-        # Never exclude a genuine California/WA same-party top-two general
-        # election merely because both candidates have a D preference.
+        # Washington is within the 22-state primary feed and can have a
+        # legitimate same-party top-two House race. California is outside
+        # this feed and requires a separately verified supplemental adapter.
         top={**self.doc,"office":"House","live":False,"final":True,
              "as_of":"2026-11-04T04:15:00Z",
-             "races":{"CA-01":{"total":100,"called":False,"winner":"",
+             "races":{"WA-01":{"total":100,"called":False,"winner":"",
                 "cands":[{"n":"Candidate 1","p":"D","v":60},
                          {"n":"Candidate 2","p":"D","v":40}]}},
              "counts":{"races":1}}
@@ -117,6 +118,92 @@ class SourcePreflightTests(unittest.TestCase):
         changed["counts"]["races"]=3
         with self.assertRaises(ValueError):
             validate_primary(changed,"Senate",self.now)
+
+    def test_exact_2026_primary_race_scope_blocks_false_preflight_green(self):
+        now=dt.datetime(2026,11,4,3,0,tzinfo=dt.timezone.utc)
+        positive={"total":120,"called":False,"winner":None,
+                  "cands":[{"n":"Candidate A","p":"D","v":70},
+                           {"n":"Candidate B","p":"R","v":50}]}
+        zero={"total":0,"called":False,"winner":None,"cands":[]}
+        # Every office uses actual contested-race inventory, not merely
+        # a two-letter state + district regex and plausible vote arithmetic.
+        for office,seat in (
+            ("House","NH-01"),("House","TX-99"),("House","TX-00"),
+            ("House","VT-01"),("Senate","MA"),("Senate","AZ"),
+            ("Governor","NC"),("Governor","NH")
+        ):
+            for row in (positive, zero):
+                bad={**self.doc,"office":office,"live":True,"counting":True,
+                     "as_of":"2026-11-04T02:50:00Z",
+                     "counts":{"races":1},"races":{seat:row}}
+                with self.subTest(office=office,seat=seat,total=row["total"]):
+                    with self.assertRaisesRegex(ValueError,"exact-race"):
+                        validate_primary(bad,office,now)
+        valid={**self.doc,"office":"House","live":True,"counting":True,
+               "as_of":"2026-11-04T02:50:00Z",
+               "counts":{"races":1},"races":{"TX-01":positive}}
+        self.assertEqual(validate_primary(valid,"House",now)["positive_vote_races"],1)
+        valid["races"]={"TX-01":zero}
+        self.assertEqual(validate_primary(valid,"House",now)["positive_vote_races"],0)
+
+    def test_test_mock_or_inactive_sources_cannot_pass_canary(self):
+        for bad_flag in ({"is_test":True},{"test":True},
+                         {"mock":True},{"is_mock":True},{"active":False}):
+            for positive in (False,True):
+                bad=copy.deepcopy(self.doc)
+                bad.update(bad_flag)
+                if positive:
+                    bad["races"]["NC"].update({"total":120,"cands":[
+                        {"n":"A","p":"D","v":70},
+                        {"n":"B","p":"R","v":50}]})
+                    bad.update({"live":True,"counting":True,
+                                "as_of":"2026-11-04T02:50:00Z"})
+                with self.subTest(flags=bad_flag,positive=positive):
+                    with self.assertRaisesRegex(ValueError,"mock, test or inactive"):
+                        validate_primary(bad,"Senate",
+                             dt.datetime(2026,11,4,3,tzinfo=dt.timezone.utc))
+        good={**self.doc,"is_test":False,"mock":False,"active":True}
+        self.assertEqual(validate_primary(good,"Senate",self.now)["positive_vote_races"],0)
+
+    def test_positive_votes_need_exact_state_source_provenance(self):
+        doc=copy.deepcopy(self.doc)
+        doc["races"]["NC"].update({"total":120,"cands":[
+            {"n":"A","p":"D","v":70},{"n":"B","p":"R","v":50}]})
+        doc.update({"live":True,"counting":True,
+                    "as_of":"2026-11-04T02:50:00Z"})
+        now=dt.datetime(2026,11,4,3,tzinfo=dt.timezone.utc)
+        for s in ("",):
+            with self.assertRaisesRegex(ValueError,"state feed"):
+                validate_primary({**doc,"source":s},"Senate",now)
+        self.assertEqual(validate_primary(doc,"Senate",now)["positive_vote_races"],1)
+
+    def test_hourly_openamerica_smoke_reuses_strict_2026_canary_gate(self):
+        import test_live_results_source
+        empty={**self.doc,"races":{},"counts":{"races":0}}
+        def all_valid(year,office):
+            if year==2024:
+                return {"races": {str(i):{} for i in range(10)}}
+            return {**empty,"office":office}
+        with patch("test_live_results_source.fetch",side_effect=all_valid):
+            self.assertIsNone(test_live_results_source.main())
+        def unscoped(year,office):
+            doc=all_valid(year,office)
+            if year==2026 and office=="House":
+                return {**doc,"counts":{"races":1},
+                        "races":{"NH-01":{"total":0,"called":False,
+                                         "winner":None,"cands":[]}}}
+            return doc
+        with patch("test_live_results_source.fetch",side_effect=unscoped):
+            with self.assertRaisesRegex(ValueError,"exact-race"):
+                test_live_results_source.main()
+        def mocked(year,office):
+            doc=all_valid(year,office)
+            if year==2026 and office=="Senate":
+                return {**doc,"mock":True}
+            return doc
+        with patch("test_live_results_source.fetch",side_effect=mocked):
+            with self.assertRaisesRegex(ValueError,"mock, test or inactive"):
+                test_live_results_source.main()
 
     def test_bounded_cors_response_protection(self):
         body=json.dumps(self.doc).encode()
