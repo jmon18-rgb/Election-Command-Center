@@ -40,6 +40,7 @@ if(opts.has('check-config')){
   geographic_needle_calibrated:false,
   checkpoints:0,healthy_checkpoints:0,
   background_visibility_confirmed:false,background_resume_observed:false,
+  physical_background_method:null,
   resumed_tab_visible:false,post_resume_primary_requests:0,
   post_resume_primary_healthy_responses:0,
   post_resume_refresh_trigger:null,
@@ -56,7 +57,7 @@ if(opts.has('check-config')){
     Math.round((performance.now()-soakStart)/1000)
   });
  };
- let browser,soakStart=null,resumed=false;
+ let browser,soakStart=null,resumed=false,originalWindowMinimized=null;
  try{
   // Chromium's headless shell leaves document.hidden=false for background
   // tabs. Use real headed Chromium under CI Xvfb so visibilitychange can be
@@ -145,12 +146,29 @@ if(opts.has('check-config')){
     await backgroundCDP.send('Emulation.setFocusEmulationEnabled',{enabled:false});
     mark('BACKGROUND_SWITCH_TO_SECONDARY');
     await secondary.bringToFront();
-    // Hidden Chromium tabs throttle/suspend requestAnimationFrame. Use
-    // time-based polling; the default Playwright waitForFunction raf poll
-    // can time out even when document.hidden has actually become true.
+    // A Chromium "popup" may be a *second OS window*, not a second tab.
+    // Merely bringing it forward does not hide a still-visible first
+    // window. In that case minimize the original real Chromium window
+    // through Chrome's Browser window manager, NOT DOM/visibility
+    // emulation, timers, synthetic visibilitychange or Page lifecycle.
+    // Document.hidden must still independently become true.
+    if(!await tab.evaluate(()=>document.hidden)){
+     mark('BACKGROUND_MINIMIZE_ORIGINAL_OS_CHROME_WINDOW');
+     const {windowId}=await pageCDP.send('Browser.getWindowForTarget');
+     if(!Number.isSafeInteger(windowId)||windowId<0)
+      throw Error('No actual Chromium window associated with original tab');
+     await pageCDP.send('Browser.setWindowBounds',{
+      windowId,bounds:{windowState:'minimized'}
+     });
+     originalWindowMinimized=windowId;
+     report.physical_background_method='REAL_CHROMIUM_OS_WINDOW_MINIMIZED';
+    }else{
+     report.physical_background_method='REAL_CHROMIUM_TAB_SWITCH';
+    }
+    // Genuine minimized windows and hidden tabs may throttle RAF.
     mark('BACKGROUND_WAIT_FOR_TRUE_DOCUMENT_HIDDEN');
     await tab.waitForFunction(()=>document.hidden,undefined,{
-     timeout:10000,polling:250
+     timeout:15000,polling:250
     });
     report.background_visibility_confirmed=
       await tab.evaluate(()=>document.hidden);
@@ -162,6 +180,13 @@ if(opts.has('check-config')){
     // having happened "before resume".
     resumed=true;
     mark('FOREGROUND_ACTIVATE_ORIGINAL_TAB');
+    if(originalWindowMinimized!==null){
+     mark('FOREGROUND_RESTORE_ORIGINAL_OS_CHROME_WINDOW');
+     await pageCDP.send('Browser.setWindowBounds',{
+      windowId:originalWindowMinimized,bounds:{windowState:'normal'}
+     });
+     originalWindowMinimized=null;
+    }
     await tab.bringToFront();await secondary.close();secondary=null;
     mark('FOREGROUND_WAIT_FOR_TRUE_VISIBLE');
     await tab.waitForFunction(()=>!document.hidden,undefined,{
