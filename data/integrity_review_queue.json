@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-25T05:18:55.783519Z",
+  "updated_at": "2026-10-25T05:43:23.748527Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
@@ -260,6 +260,28 @@
     }
   ],
   "items": [
+    {
+      "id": "826ea8f460980a8f831d",
+      "title": "Indiana midterm elections 2026: When early voting ends, Election Day and how to find your polling place - The Economic Times",
+      "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQbGREV2FybTRDendYUm1rSmdLeEQ2OXpzamlad1cwcnZoME1UYkN1eHkzOUg3bE4ybE9xRkdORFB6XzhYZktZTkdkaW4xbWpMY0M1OXY3bEF5Z2tJcFVHbTM5V3NzZkUwS1Vnc1JaaGJBVDVWcEhRX3Nid2xuajBkWXNaQmFTdExLUE9QU1ppVWFydzdBVW5KVU9FMDhScVd4dmJ6cjgwTG9BbFQwTnZiZmtDT0t0UHdtRE1mbnd2bXFzb1lrYjRJTUJKZDF2bUp2U3dwQ1Q1LU1Uc2VaeFVBVFExUllKcDZiamVSYzdWMC05aDJ3ZUFV0gH8AUFVX3lxTFB2b1hOeHZGMTByWkVtcm83M3dBREM2OU9Lb29YbVVtdU9WTTlVeUNBUm8zYkJsalZIcWU1aGhlUElQb1FLNGJPbFdEWDhpZUEtZUhqRXJTaDBqWUVaZGVYMEpncERJZkZqN24tWS02WkNQWk9LbHEweGQyVUJNVzVEVmJfbHIxZ25FTTVBWEE3a2xVbHV5Zk5SdFNmSHd2bGtLdkczV2lsNGNTN0lMcEoxcmdfdlJUdkR3d0d5cU5zV1ctdE9kdFlIeFoyMl9aa3kwYXlBcU9SSF9fNHNmXzUyVHpQUGtsblpPQXN4TjFacDVGaDFMWHV1bzRvYg?oc=5",
+      "publisher": "The Economic Times",
+      "published_at": "2026-10-25T05:16:34Z",
+      "detected_at": "2026-10-25T05:43:23.748527Z",
+      "state_hints": [
+        "IN"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "ffb589b8af1120224225",
       "title": "\u2018This is not normal\u2019: Feds demand California counties set aside \u2018likely\u2019 noncitizen ballots - Los Angeles Times",
@@ -4930,23 +4952,6 @@
       "headline_numbers_unverified": [
         "2026 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "fd5af57478116b73dffb",
-      "title": "Granbury Officials Sue To Stop Recall Election - Texas Scorecard",
-      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOWVF0LWpJRk01amJQLS1XU2tmdDljNnpEWlF4Q1lfeGJNeDBtSFhRVXdaa3pMV1BxTVlIRFVpQXg0NWhtLXhWVmNycDVkZzhmeS1qRi1iY2tyRURjSG5QeEwzNEt0Tm1DSllfR0F1R0RJQi04VjZvZi01TW04REN6eV95M2dxYmM?oc=5",
-      "publisher": "Texas Scorecard",
-      "published_at": "2026-10-13T21:41:14Z",
-      "detected_at": "2026-10-13T23:02:52.465730Z",
-      "state_hints": [
-        "TX"
-      ],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
