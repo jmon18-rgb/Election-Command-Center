@@ -40,8 +40,13 @@ pass/fail, evidence URLs, unresolved acceptance gates and the next concrete task
 Do not call a skipped, stale, failed or unrun check a pass. Mock tests never prove
 actual November 3 vote delivery, source rights, or forecast calibration.
 
-Scheduled continuation is every two hours in this chat, subject to local app and
+Scheduled continuation is every 15 minutes in this chat, subject to local app and
 computer availability. One daily report on the first run after 9 a.m. Eastern:
 completed changes, test evidence, open risks and next priority. Record the last
 daily report date. Notify sooner for failures needing human action or a material
 readiness milestone; keep unchanged monitoring quiet.
+
+The interval is a continuation opportunity, not a time limit on active work.
+Continue implementing, testing and repairing the next useful readiness task
+within each run. Avoid overlapping edits. Triage the remaining roadmap by
+November 3 operational acceptance and explicitly defer optional features.

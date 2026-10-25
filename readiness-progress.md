@@ -18,7 +18,7 @@
 - Local browser drills not run: npm is unavailable on this machine. The new CI
   browser job uses the existing pinned Playwright installation commands. Await CI
   before claiming browser acceptance for this change.
-- Continuation automation active every two hours, with one daily report after
+- Continuation automation updated to every 15 minutes, with one daily report after
   9 a.m. Eastern. Local runs need the app/computer available.
 
 ## Next concrete work
