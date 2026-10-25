@@ -3779,7 +3779,8 @@ function enRenderLiveDesk(){
   const header=elt('div','en-live-race-head');
   header.append(elt('strong','',record.race_code+
    (item.key.endsWith('-special')?' · SPECIAL':'')),
-   elt('span','',result.mode==='live_informed'?'RETURNS INFORMED':'MODEL PRIOR'));
+   elt('span','',result.mode==='live_informed'?'RAW-RETURN EXPERIMENT':
+    result.mode==='source_called'?'PROVIDER WINNER FLAG':'MODEL PRIOR'));
   const odds=elt('div','en-live-prob');
   odds.append(elt('strong','party-d','D '+fmt(result.demPct)),
     elt('strong','party-r','R '+fmt(result.repPct)));
@@ -3794,9 +3795,12 @@ function enRenderLiveDesk(){
     record.sigma_points.toFixed(1)+' pts · no eligible partial count'));
   host.append(card);
  }
- summary.textContent=selected.slice(0,8).length+' joint-model race probabilities · '+
-  live+' adjusted with verified returns. The update assumes additional geographic error; '+
-  'not calibrated to 2026 precinct sequences or a substitute for race calls.';
+ summary.textContent=selected.slice(0,8).length+' race-level experimental diagnostics · '+
+  live+' show uncalibrated raw-return sensitivity; these values DO NOT drive '+
+  'the correlated national Four Endings needle. Partial precinct counts are '+
+  'not representative vote share. Only validated winner flags currently '+
+  'alter chamber simulations; a geographic-return estimator still needs '+
+  'chronological historical replay and held-out calibration.';
  enRenderRehearsal();
 }
 
