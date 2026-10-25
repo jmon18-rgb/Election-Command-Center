@@ -64,6 +64,36 @@ const called=x.priority(ref.get('ME-SEN'),{now:at,live:{
  asOf:'2026-11-04T02:55:00Z',votes:250000,precincts:65,rawMargin:3,source:'civicAPI',calledParty:'D'
 }});
 assert.equal(called.called,'D');
+assert.equal(called.called,'D');
+// During split time-zone poll closings, a legitimate early vote lead may be
+// prioritized, but the same provider winner flag MUST NOT show as a call.
+for(const [office,key,early,final] of [
+ ['Senate','TX','2026-11-04T01:00:00Z','2026-11-04T02:00:00Z'],
+ ['House','TX-23','2026-11-04T01:00:00Z','2026-11-04T02:00:00Z'],
+ ['House','IN-01','2026-11-03T23:00:00Z','2026-11-04T00:00:00Z'],
+ ['Governor','AK','2026-11-04T05:00:00Z','2026-11-04T06:00:00Z']
+]){
+ const code=office==='Senate'?key+'-SEN':office==='Governor'?key+'-GOV':key;
+ const row={office,key,code,tip:2};
+ const clock=Date.parse(early);
+ const earlyLive={asOf:early,votes:8000,precincts:9,rawMargin:1.7,
+                   source:'civicAPI',calledParty:'D'};
+ const partial=x.priority(row,{now:clock,live:earlyLive});
+ assert.equal(partial.reporting,true,code+' early valid vote counts remain visible');
+ assert.equal(partial.called,null,code+' early provider call must be suppressed');
+ assert.notEqual(partial.why,'Provider-reported call');
+ assert.equal(x.priority(row,{now:Date.parse(final),live:earlyLive}).called,null,
+  code+' old early source clock cannot become a winner call just because viewer time advanced');
+ const settled=x.priority(row,{now:Date.parse(final),live:{...earlyLive,asOf:final}});
+ assert.equal(settled.called,'D',
+  code+' may surface source-reported winner only after FINAL local-close stamp');
+}
+const earlyHouse={office:'House',key:'TX-01',code:'TX-01',tip:2};
+const earlyHouseCall=x.priority(earlyHouse,{now:Date.parse('2026-11-04T01:00:00Z'),
+ live:{asOf:'2026-11-04T01:00:00Z',votes:5000,source:'civicAPI',calledParty:'R'}});
+assert.equal(earlyHouseCall.called,'R',
+ 'House district wholly in earlier time zone need not wait for unrelated late districts');
+
 const before=x.priority(ref.get('ME-SEN'),{now:Date.parse('2026-10-15T15:00:00Z'),live:{
  asOf:'2026-11-04T02:55:00Z',votes:250000,precincts:65,rawMargin:3,source:'civicAPI',calledParty:'D'
 }});

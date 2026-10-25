@@ -120,12 +120,20 @@
  // Extra source-time defense: a cached or malformed pre-close count must
  // never make a race appear to be reporting or called in the priority desk.
  // Resolve at use time, since the browser may load this script first.
- function locallyClosed(row,asOf,now){
-  const closes=typeof window!=='undefined'?
+ function localClosings(){
+  return typeof window!=='undefined'?
    window.ElectionNightPollClosings2026:
    typeof require==='function'?require('./election_night_poll_closings_2026.js'):null;
+ }
+ function locallyClosed(row,asOf,now){
+  const closes=localClosings();
   return Boolean(closes&&typeof closes.allowed==='function'&&
    closes.allowed(row?.key,1,asOf,now));
+ }
+ function winnerLocallyClosed(row,live,now){
+  const closes=localClosings();
+  return Boolean(closes&&typeof closes.winnerAllowed==='function'&&
+   closes.winnerAllowed(row?.office,row?.key,live?.votes,live?.asOf,now));
  }
  function priority(row,{modelWinPct=null,live=null,flipped=false,now=Date.now()}={}){
   const validModel=Number.isFinite(modelWinPct)&&modelWinPct>=0&&modelWinPct<=100;
@@ -137,7 +145,12 @@
    since>=ELECTION_START&&since<=now+15*60000&&now-since<=180*60000&&
    live?.sourceStale!==true&&locallyClosed(row,live?.asOf,now);
   const reported=eligible&&Number.isSafeInteger(live?.votes)&&live.votes>0;
-  const called=reported&&['D','R','O'].includes(live?.calledParty);
+  // Display provider-reported winners only AFTER the final applicable
+  // local polls have closed, including late-zone districts. Legitimate
+  // partial source-reported votes can still appear after first closure.
+  // This is NOT an independently adjudicated/professional election call.
+  const called=reported&&['D','R','O'].includes(live?.calledParty)&&
+   winnerLocallyClosed(row,live,now);
   const reporting=reported&&Number.isFinite(live?.precincts)&&
    live.precincts>=0&&live.precincts<=100?live.precincts:null;
   const observed=reported&&Number.isFinite(live?.rawMargin)&&
