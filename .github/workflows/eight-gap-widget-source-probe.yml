@@ -19,6 +19,7 @@ jobs:
       - name: Check exact 2026 race identities and CORS from public provider
         run: |
           node --check scripts/probe_eight_gap_watchvote_2026.cjs
+          set -o pipefail
           node scripts/probe_eight_gap_watchvote_2026.cjs | tee widget-source-probe.json
       - name: Preserve explicit source identity evidence
         if: always()
