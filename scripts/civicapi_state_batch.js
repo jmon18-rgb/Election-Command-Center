@@ -101,6 +101,12 @@
       root?.ElectionNightPollClosings2026;
     return gate?.allowed?.(item?.key,total,sourceStamp,now)===true;
   }
+  function localWinnerFlagAllowed(item,total,sourceStamp,now){
+    const gate=typeof module!=='undefined'&&module.exports?
+      require('./election_night_poll_closings_2026.js'):
+      root?.ElectionNightPollClosings2026;
+    return gate?.winnerAllowed?.(item?.office,item?.key,total,sourceStamp,now)===true;
+  }
   function validate(item,row,detail,now=Date.now()){
     const cfg=configuration(item);
     if(!cfg||!match(item,row)||!detail||disabled(detail)||!Number.isFinite(now)||
@@ -144,7 +150,11 @@
     if(!localVotesAllowed(item,total,updated,now))return null;
     return {provider:'civicAPI',office:cfg.office,key:item.key,
       race_id:row.id,last_updated:updated,percent_reporting:detail.percent_reporting,
-      total,candidates,called,source_url:BASE+'/race/'+row.id};
+      total,candidates,
+      // Keep validated partial totals, but never show a source-declared
+      // winner before the latest applicable 2026 state poll close.
+      called:called&&localWinnerFlagAllowed(item,total,updated,now)?called:null,
+      source_url:BASE+'/race/'+row.id};
   }
   const adapter=Object.freeze({supports,match,select,query,validate});
   if(typeof module!=='undefined'&&module.exports)module.exports=adapter;

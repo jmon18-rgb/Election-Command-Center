@@ -96,7 +96,26 @@ for(const {item,search} of fixtureRaces){
  assert.equal(good.called,null);
  assert.equal(good.source_url,'https://civicapi.org/api/v2/race/'+search.id);
  const called={...counted,candidates:[{...counted.candidates[0],winner:true},counted.candidates[1]]};
- assert.equal(adapter.validate(item,search,called,election).called,'Candidate A');
+ const winnerGate=require('./election_night_poll_closings_2026.js');
+ assert.equal(adapter.validate(item,search,called,election).called,
+  winnerGate.winnerAllowed(item.office,item.key,1000,called.last_updated,election)?
+   'Candidate A':null,
+  'A real partial count must not automatically authorize a winner flag');
+ if(item.office==='Senate'&&item.key==='AK'){
+  assert.equal(adapter.validate(item,search,called,election).total,1000,
+   'Alaska partial votes remain visible before its latest poll closes');
+  assert.equal(adapter.validate(item,search,called,election).called,null,
+   'Alaska statewide winner call may not precede 06:00Z final poll close');
+  const later={...called,last_updated:'2026-11-04T06:05:00Z'};
+  assert.equal(adapter.validate(item,search,later,election).called,'Candidate A',
+   'After 06:00Z source and viewer clocks, exact Alaska call metadata is eligible');
+  const preFinalClock=adapter.validate(item,search,later,
+   Date.parse('2026-11-04T05:59:59Z'));
+  assert.equal(preFinalClock?.called,null,
+   'Even within the 15-minute source-clock tolerance, a future winner flag cannot cross final poll close');
+  assert.equal(preFinalClock?.total,1000,
+   'Validated partial counts still pass the earlier vote-readiness gate');
+ }
  // A pinned 2026 exact race and plausible candidate votes are still not
  // live evidence when its search response, detail or search envelope says TEST.
  for(const flag of [
