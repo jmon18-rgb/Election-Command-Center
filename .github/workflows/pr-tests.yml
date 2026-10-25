@@ -306,6 +306,8 @@ jobs:
         run: |
           node --check scripts/chamber_control_model.js
           node scripts/test_chamber_control_model.cjs
+          node --check scripts/electorate_what_if_2026.js
+          node scripts/test_electorate_what_if_2026.cjs
       - name: Audit single-source joint race odds and Minnesota probability
         run: |
           node --check scripts/audit_joint_race_odds.cjs
