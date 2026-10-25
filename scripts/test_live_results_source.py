@@ -57,6 +57,7 @@ def main():
         raise AssertionError("Historical Open America rehearsal too sparse to verify client")
     fetch(2024,"Senate")
     # The old CORS/schema smoke could be green for a mock or invented
+    # race; check the returned 2026 ballot identity before a green canary.
     # 2026 seat. Reuse the independent canary's exact 506-race and state
     # scope checks after the network call; no candidate vote data retained.
     # Lazy import avoids a circular import with the real-clock soak which
