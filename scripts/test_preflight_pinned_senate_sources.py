@@ -60,6 +60,28 @@ class PinnedSenateCanaries(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,"mismatched"):
                 validate_detail(one,{**good,**changes})
 
+    def test_reject_mock_and_malformed_same_day_date(self):
+        one=PINS["Senate|ME"]
+        good={"id":87188,"country":"US","province":"ME","municipality":None,
+              "district":None,"election_date":"2026-11-03T05:00:00Z",
+              "election_name":"Maine US Senate","election_type":"US Senate",
+              "candidates":[]}
+        self.assertFalse(validate_detail(one,good)["positive_count_coverage_verified"])
+        for text in (
+            "2026-11-03wrong","2026-11-0305:00:00Z",
+            "2026-11-03T05:00:00","2026-11-03T05:00:00Ztrailing",
+            "2024-11-05T05:00:00Z",
+        ):
+            with self.subTest(date=text),self.assertRaisesRegex(ValueError,"mismatched"):
+                validate_detail(one,{**good,"election_date":text})
+        for flag in ("is_test","test","mock","is_mock"):
+            with self.subTest(flag=flag),self.assertRaisesRegex(ValueError,"mismatched"):
+                validate_detail(one,{**good,flag:True})
+        with self.assertRaisesRegex(ValueError,"mismatched"):
+            validate_detail(one,{**good,"active":False})
+        self.assertFalse(validate_detail(one,{**good,"mock":False,"active":True})
+                         ["winner_call_verified"])
+
     def test_heartbeat_tracks_real_endpoint_failures_without_fabricating_votes(self):
         def fake(url):
             race_id=int(url.rsplit("/",1)[1])
