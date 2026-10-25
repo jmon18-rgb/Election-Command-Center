@@ -5336,6 +5336,11 @@ async function enCivicFetchJson(url,timeoutMs=12000){
  return enCivicRequestPool.run(()=>enCivicFetchUnpooled(url,timeoutMs));
 }
 async function enCivicFetchUnpooled(url,timeoutMs=12000){
+ // Search and light-detail requests are the only independently approved
+ // live civicAPI routes; block arbitrary fallback URLs before any fetch.
+ if(typeof url!=='string'||
+    !/^https:\/\/civicapi\.org\/api\/v2\/race\/(?:search\?[^#]+|[1-9]\d*\?light=)$/.test(url))
+  throw Error('Unapproved civicAPI 2026 result source URL');
  const cool=enCivicBreaker?.status();
  const requestGeneration=window.ElectionNightTransport.generation(enCivicBreaker);
  if(cool?.blocked)throw Error('civicAPI upstream HTTP '+cool.last_http_status+
@@ -5346,13 +5351,23 @@ async function enCivicFetchUnpooled(url,timeoutMs=12000){
   return await Promise.race([
    (async()=>{
     const response=await fetch(url,{
-      mode:'cors',credentials:'omit',cache:'no-store',
+      mode:'cors',credentials:'omit',cache:'no-store',redirect:'error',
       headers:{Accept:'application/json'},...(controller?{signal:controller.signal}:{})
     });
     if(!response.ok){
      enCivicBreaker?.fail(response.status);
      throw Error('civicAPI HTTP '+response.status);
     }
+    // A redirected 200+CORS document is not civicAPI evidence. The browser
+    // refuses 30x responses and checks the final URL before parsing votes.
+    // Non-native plain-object fixture responses may omit URL metadata;
+    // native browser Response objects never get that exemption.
+    const finalURL=response.url;
+    const hasURL=typeof finalURL==='string'&&finalURL.length>0;
+    const isNative=typeof Response==='function'&&response instanceof Response;
+    if(response.redirected===true||(hasURL&&finalURL!==url)||
+       (isNative&&!hasURL))
+     throw Error('civicAPI response did not originate at approved source URL');
     // A response that STARTED before an outage is not recovery evidence,
     // even if it resolves after the first 503 or the retry cooldown.
     const detail=await response.json();
