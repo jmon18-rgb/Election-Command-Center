@@ -1,0 +1,48 @@
+name: Alaska 2026 November general election official result page discovery
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 13,22 * 10 *'
+    - cron: '23 * 3-5 11 *'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/probe_ak_2026_general_official_status.py'
+      - 'scripts/test_probe_ak_2026_general_official_status.py'
+      - '.github/workflows/ak-2026-general-official-result-watch.yml'
+  pull_request:
+    paths:
+      - 'scripts/probe_ak_2026_general_official_status.py'
+      - 'scripts/test_probe_ak_2026_general_official_status.py'
+      - '.github/workflows/ak-2026-general-official-result-watch.yml'
+permissions:
+  contents: read
+jobs:
+  metadata-only-general-vs-primary-reaa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prevent 2026 primary and REAA totals being mistaken for general
+        run: python scripts/test_probe_ak_2026_general_official_status.py
+      - name: Watch official 2026 general results page metadata; never fetch votes
+        run: |
+          python scripts/probe_ak_2026_general_official_status.py | tee ak-general-2026-meta.json
+          python - <<'PY'
+          import json
+          x=json.load(open('ak-general-2026-meta.json'))
+          assert x["candidate_votes"] is None
+          assert x["voting_results_downloaded"]==0
+          assert not x["machine_house_ak_00_verified"]
+          assert not x["machine_senate_ak_verified"]
+          assert not x["may_update_forecast"]
+          print("Alaska official general vs REAA/primary metadata quarantine PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ak-2026-general-result-page-discovery
+          path: ak-general-2026-meta.json
+          retention-days: 15
