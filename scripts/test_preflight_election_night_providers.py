@@ -8,12 +8,17 @@ from unittest.mock import patch
 from preflight_election_night_providers import (
     ORIGIN, START, validate_primary, fetch_json,
 )
+from test_live_results_source import fetch as fetch_original_primary
 
 class FakeResponse:
-    def __init__(self,payload,cors=ORIGIN):
+    def __init__(self,payload,cors=ORIGIN,url="https://openamerica.io/example"):
         self.payload=payload
         self.status=200
-        self.headers={"Access-Control-Allow-Origin":cors}
+        self.url=url
+        self.headers={"Access-Control-Allow-Origin":cors,
+                      "Content-Type":"application/json"}
+    def geturl(self):
+        return self.url
     def __enter__(self):
         return self
     def __exit__(self,*args):
@@ -273,6 +278,39 @@ class SourcePreflightTests(unittest.TestCase):
                 fetch_json("https://openamerica.io/example")
         with patch("urllib.request.urlopen",return_value=FakeResponse(b"{"*2_000_001)):
             with self.assertRaisesRegex(ValueError,"bounded"):
+                fetch_json("https://openamerica.io/example")
+        # A cross-origin HTTP 200+CORS+valid JSON is NOT proof that the
+        # approved provider's election results URL delivered that JSON.
+        for bad_url in ("https://evil.example/elections/results.json",
+                        "http://openamerica.io/example",
+                        "https://openamerica.io/not-the-approved-path",
+                        "https://openamerica.io/example?unexpected=yes"):
+            with self.subTest(url=bad_url):
+                with patch("urllib.request.urlopen",return_value=FakeResponse(
+                    body,url=bad_url)):
+                    with self.assertRaisesRegex(ValueError,"redirected"):
+                        fetch_json("https://openamerica.io/example")
+        with patch("urllib.request.urlopen",return_value=FakeResponse(body,
+          url="https://openamerica.io/example")):
+            self.assertEqual(fetch_json("https://openamerica.io/example")["year"],2026)
+        primary_url="https://openamerica.io/elections/results.json?year=2026&office=Senate"
+        primary={**self.doc,"races":{},"counts":{"races":0}}
+        primary_body=json.dumps(primary).encode()
+        def reader(final_url):
+            return lambda req,timeout: FakeResponse(primary_body,url=final_url)
+        self.assertEqual(fetch_original_primary(2026,"Senate",
+          opener=reader(primary_url))["counts"]["races"],0)
+        for bad_url in ("https://evil.example/elections/results.json?year=2026&office=Senate",
+                        "http://openamerica.io/elections/results.json?year=2026&office=Senate",
+                        "https://openamerica.io/elections/results.json?year=2024&office=Senate"):
+            with self.subTest(primary_final_url=bad_url):
+                with self.assertRaisesRegex(ValueError,"redirected"):
+                    fetch_original_primary(2026,"Senate",opener=reader(bad_url))
+        class NoSourceURL(FakeResponse):
+            geturl=None
+        with patch("urllib.request.urlopen",
+                   return_value=NoSourceURL(body)):
+            with self.assertRaisesRegex(ValueError,"cannot be verified"):
                 fetch_json("https://openamerica.io/example")
 
 if __name__=="__main__":
