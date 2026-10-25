@@ -154,7 +154,9 @@ def main():
     print(json.dumps({
         "status": "EIGHT_GAP_ALTERNATE_PROVIDER_METADATA_ONLY",
         "states_checked": result["states_probed"],
-        "provider_http_checks": {k: v["status"] for k, v in result["results"].items()},
+        "provider_http_checks": {k: {"status": v["status"],
+                                        "json_keys": v.get("row_keys", [])}
+                                 for k, v in result["results"].items()},
         "still_unverified": result["unverified_gap_count"],
         "output": str(args.output),
     }))
