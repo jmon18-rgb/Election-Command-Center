@@ -13,6 +13,51 @@
  const PRIMARY='Open America 22-state scope';
  const CHECKED=new Set(['reporting','current_no_votes']);
  const DEGRADED=new Set(['outage','invalid','stale','rechecking']);
+ // The 2026 at-large ballot is 00 but the model's legacy seat code is 01.
+ // Never apply this mapping to multi-district states such as New Hampshire.
+ const AT_LARGE=new Set(['AK','DE','ND','SD','VT','WY']);
+ const MIN_CONFIDENCE_FOR_LIGHT_CHECK=90;
+ function priorityGaps(unverifiedMachineIds,probabilities=[]){
+  const odds=new Map();
+  if(Array.isArray(probabilities)){
+   for(const p of probabilities){
+    if(!p||!['house','senate','governor'].includes(p.office)||
+       typeof p.race_code!=='string'||odds.has(p.office+'|'+p.race_code))continue;
+    odds.set(p.office+'|'+p.race_code,p);
+   }
+  }
+  const values=unverifiedMachineIds.map(race=>{
+   const state=race.id.split('|')[1]?.slice(0,2);
+   const code=race.office==='House'&&race.id.endsWith('-00')&&AT_LARGE.has(state)?
+    state+'-01':race.office==='Senate'?
+    state+'-SEN':race.office==='Governor'?
+    state+'-GOV':race.id.split('|')[1];
+   const p=odds.get(race.office.toLowerCase()+'|'+code);
+   const d=p?.dem_beats_rep_pct,rep=p?.rep_beats_dem_pct;
+   // A third-party/independent seat, missing probability or inconsistent
+   // model draw is UNKNOWN, not a phantom safe R/D race.
+   const valid=Number.isFinite(d)&&Number.isFinite(rep)&&d>=0&&d<=100&&
+    rep>=0&&rep<=100&&Math.abs(d+rep-100)<0.25;
+   const maximum=valid?Math.max(d,rep):null;
+   const mode=!valid?'ODDS_UNVERIFIED':
+    maximum>=MIN_CONFIDENCE_FOR_LIGHT_CHECK?'LIGHT_MANUAL_CHECK':
+    'ACTIVE_LIVE_SOURCE';
+   return {id:race.id,office:race.office,mode,maximum};
+  });
+  const order={ACTIVE_LIVE_SOURCE:0,ODDS_UNVERIFIED:1,LIGHT_MANUAL_CHECK:2};
+  values.sort((a,b)=>order[a.mode]-order[b.mode]||
+   (a.mode==='ACTIVE_LIVE_SOURCE'?
+     (a.maximum??100)-(b.maximum??100):0)||
+   (a.office==='Senate'?-1:0)-(b.office==='Senate'?-1:0)||
+   a.id.localeCompare(b.id));
+  return Object.freeze({
+   cutoff_pct:MIN_CONFIDENCE_FOR_LIGHT_CHECK,
+   active:values.filter(x=>x.mode==='ACTIVE_LIVE_SOURCE').length,
+   needsOdds:values.filter(x=>x.mode==='ODDS_UNVERIFIED').length,
+   lightChecks:values.filter(x=>x.mode==='LIGHT_MANUAL_CHECK').length,
+   races:Object.freeze(values.map(x=>Object.freeze(x)))
+  });
+ }
  const LABELS=Object.freeze({
   OBSERVED_SOURCE_VOTES:'Reported votes · unofficial',
   ZERO_IN_FEED:'Source currently reports zero (not zero ballots cast)',
@@ -28,7 +73,8 @@
   NO_MACHINE_SOURCE_ID:'No verified automated source ID',
   PROVIDER_OTHER:'No verified vote source'
  });
- function build(ledger,reconciled,health={},now=Date.now(),supplementalHealth={}){
+ function build(ledger,reconciled,health={},now=Date.now(),supplementalHealth={},
+                linkedModelProbabilities=[]){
   if(!Number.isFinite(now)||!ledger||
      ledger.election!=='2026-11-03'||
      ledger.status!=='SOURCE_IDENTITY_AUDIT_NOT_LIVE_RESULTS_COVERAGE'||
@@ -167,6 +213,7 @@
    professional_calls_verified:0,may_update_model:false,
    totals:summary,senate:records,
    unverifiedMachineIds,
+   gapAttention:priorityGaps(unverifiedMachineIds,linkedModelProbabilities),
    senateMissing:summary.Senate.missing,
    message:'Reported votes are unofficial. Known provider IDs and missing or stale results are NOT votes, zeros or race calls.'
   });
@@ -218,6 +265,40 @@
   elt('p','No source evidence for '+t.House.missing+' House, '+t.Senate.missing+
       ' Senate and '+t.Governor.missing+
       ' governor contests. Provider-reported zero is tracked separately. Missing does not mean zero.',host,'en-coverage-line');
+  // Treat missing-source work as an editorial/resource queue, NOT as
+  // a forecast call or a replacement for provider-reported votes.
+  const attention=pulse.gapAttention;
+  if(attention?.races?.length){
+   const triage=elt('div',undefined,host,'en-coverage-priority');
+   elt('strong','SOURCE-GAP PRIORITIES · close races before safe seats',triage);
+   elt('p','Active live-source search: '+attention.active+
+    ' · Model odds need review: '+attention.needsOdds+
+    ' · Lightweight manual check: '+attention.lightChecks+
+    ' · '+attention.cutoff_pct+'% linked-model threshold (either side).',
+    triage,'en-coverage-line');
+   const manual=new Set(['LIGHT_MANUAL_CHECK']);
+   for(const race of attention.races){
+    const description=race.mode==='ACTIVE_LIVE_SOURCE'?
+     'LIVE SOURCE PRIORITY · model below 90% for both sides':
+     race.mode==='LIGHT_MANUAL_CHECK'?
+     'LIGHT CHECK · model ≥90% for one side':
+     'REVIEW ODDS · no verified current D/R probability';
+    const line=elt('p',race.id.replace('|',' ')+' — '+description,
+     triage,'en-coverage-line');
+    const link=Array.isArray(officialBackstops)?officialBackstops.find(x=>
+     x&&Array.isArray(x.race_ids)&&x.race_ids.includes(race.id)&&
+     typeof x.url==='string'&&/^https:\/\//.test(x.url)):null;
+    if(link){
+     const a=elt('a',' · Manual official page ↗',line);
+     a.href=link.url;a.target='_blank';a.rel='noopener noreferrer';
+    }
+    if(manual.has(race.mode))
+     elt('span',' · forecast only; no verified votes or race call',line);
+   }
+   elt('small','This is an attention queue using linked JackStradamus odds, not an election result. '+
+    'Missing races remain missing until independently verified; no assumed winners or votes.',
+    triage);
+  }
   // Consistent source-eligibility warnings for EVERY linked federal race:
   // the seven House gaps cannot quietly display mock totals as results.
   const warnings={
@@ -307,5 +388,5 @@
   elt('small','This source audit does not calculate chamber control, race calls, ballots remaining, or live win probabilities.',host);
   return true;
  }
- return Object.freeze({build,render,LABELS});
+ return Object.freeze({build,render,priorityGaps,LABELS});
 });
