@@ -3787,9 +3787,15 @@ function enRenderLiveDesk(){
   card.append(header,odds);
   if(result.mode==='live_informed')
    card.append(elt('small','',result.source+' · '+result.reporting.toFixed(0)+
-    '% precincts · current D'+(result.reportedMargin>=0?'+':'')+
-    result.reportedMargin.toFixed(1)+' two-party margin · D '+fmt(result.sensitivityLow)+
-    '–'+fmt(result.sensitivityHigh)+' across error assumptions'));
+    '% precincts, not ballots · current observed D'+
+    (result.reportedMargin>=0?'+':'')+
+    result.reportedMargin.toFixed(1)+' two-party margin · experimental D '+
+    fmt(result.sensitivityLow)+'–'+fmt(result.sensitivityHigh)+
+    ' across UNCALIBRATED reporting-order error assumptions. Not used by the national needle.'));
+  else if(result.mode==='source_called')
+   card.append(elt('small','',
+    'Fresh exact-race civicAPI provider winner flag; unofficial, not independently certified. '+
+    'The call may be revised or withdrawn.'));
   else card.append(elt('small','','Polling D'+(record.dem_minus_rep>=0?'+':'')+
     record.dem_minus_rep.toFixed(1)+' · modeled total error σ '+
     record.sigma_points.toFixed(1)+' pts · no eligible partial count'));
