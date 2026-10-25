@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-10-25T20:32:17.412748Z",
+  "updated_at": "2026-10-25T20:41:45.747859Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
-    "awaiting_primary_source": 245,
-    "primary_source_checked": 5,
+    "awaiting_primary_source": 246,
+    "primary_source_checked": 4,
     "advisory_related_headline_buckets": 21,
     "advisory_related_headlines": 45
   },
@@ -369,6 +369,23 @@
       "headline_numbers_unverified": [
         "2026"
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "243985ea3f13bd843d09",
+      "title": "Here\u2019s why to expect a normal midterm election in November instead of chaos - Japan Today",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQVHBtTDJybHpjTl9ZWUZSREs4bGVEWHo0TDNvSEJGYWlQd0E1UDNwVW1GSTJPbkxWXzJ0UFY1TXlaaHMtakItYndBME9BWGp5c1JrRmk1YlRSVGppeTBqdnB2dE11TjVFaDlqMHpsWHZoamJIRjJvY01qR04xTG1pOURSMzJmdjRuamZSWDlOamd5ODBzYkFjWVgxYk9YbHpnNTJ6Rlp4Vzd6azdWUXdaTEhtZ3J0bkFkRVR5UjlNWDBiWFU3T0Z4V1QyWW5LUQ?oc=5",
+      "publisher": "Japan Today",
+      "published_at": "2026-10-24T20:10:00Z",
+      "detected_at": "2026-10-25T20:41:45.747859Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -4938,31 +4955,6 @@
       "primary_sources": [],
       "impact_counts_verified": false,
       "promoted_to_incident_id": null
-    },
-    {
-      "id": "def31835052d6a1343ee",
-      "title": "NC elections board to notify 1,392 voters flagged as potential noncitizens - NC Newsline",
-      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPS3JzQTl5dW9LcXRBMy1QY1dnLUw4QklpT09PcVBpS1FOSjRfZHZlLUtNd29yV0RHOE1WOHNEYnYzSEljTDlSdG9sT0ZVdGdSajBNbnJuYUVUNVV0ZTNIdm44RzJEMExiZGtMb2pRdjhsVloycF9xbkNRbU01RTRJejR2WTN6WkpseEtnUTk5RGxWTDBXeDlSVUhrbHVlcG82dmdlRk5HcWJRQ19Z?oc=5",
-      "publisher": "NC Newsline",
-      "published_at": "2026-10-13T22:43:43Z",
-      "detected_at": "2026-10-13T23:02:52.465730Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [
-        "1,392 voters"
-      ],
-      "review_status": "primary_source_checked",
-      "primary_sources": [
-        {
-          "publisher": "North Carolina State Board of Elections",
-          "url": "https://www.ncsbe.gov/news/press-releases/2026/10/13/ncsbe-send-letter-potential-non-citizens-voter-rolls",
-          "published_at": "2026-10-13"
-        }
-      ],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": "nc-save-citizenship-letters-20261013",
-      "reviewed_at": "2026-10-15",
-      "review_note": "Original Board announcement confirms 1,392 registered voters were selected for planned mailing; NO automatic deregistration or loss of voting eligibility solely because of a letter. Mail delivery, challenges, countable ballots lost and unique eligible people adversely affected remain unverified. This review covers this specific event, not every related article."
     }
   ]
 }
