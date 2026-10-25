@@ -89,6 +89,26 @@ for(const {item,search} of fixtureRaces){
  assert.equal(good.source_url,'https://civicapi.org/api/v2/race/'+search.id);
  const called={...counted,candidates:[{...counted.candidates[0],winner:true},counted.candidates[1]]};
  assert.equal(adapter.validate(item,search,called,election).called,'Candidate A');
+ // A pinned 2026 exact race and plausible candidate votes are still not
+ // live evidence when its search response, detail or search envelope says TEST.
+ for(const flag of [
+  {is_test:true},{test:true},{mock:true},{is_mock:true},
+  {active:false},{live:false}
+ ]){
+  assert.equal(adapter.match(item,{...search,...flag}),false,
+   'An explicitly nonproduction race must never pass the search match');
+  assert.equal(adapter.select(item,{races:[search],...flag}),null,
+   'An explicitly nonproduction response cannot approve a search race');
+  assert.equal(adapter.validate(item,search,{...counted,...flag},election),null,
+   'An explicitly inactive detail cannot create votes or winner hints');
+ }
+ assert(adapter.validate(item,search,{...counted,is_test:false,
+  active:true,live:true},election),'Explicitly healthy source flags stay valid');
+ const duplicateNameAcrossParties={...counted,candidates:[
+  {...counted.candidates[0],name:'Same Person'},
+  {...counted.candidates[1],name:' same person '}]};
+ assert.equal(adapter.validate(item,search,duplicateNameAcrossParties,election),
+  null,'Duplicate normalized candidate names cannot be double-counted');
  const negative={...counted,candidates:[{...counted.candidates[0],votes:-1},counted.candidates[1]]};
  assert.equal(adapter.validate(item,search,negative,election),null);
  const inconsistent={...counted,candidates:[{...counted.candidates[0],percent:90},counted.candidates[1]]};
