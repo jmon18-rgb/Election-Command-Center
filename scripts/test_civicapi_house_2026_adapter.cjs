@@ -267,7 +267,7 @@ for(const [key,name] of aliases){
  assert.equal(api.select(candidate,{count:2,races:[row,row]}),null,
   'Duplicate exact alias identities remain ambiguous');
  if(!key.endsWith('-00'))
-  assert.equal(api.match(candidate,{...row,election_name:name.replace(/\\b[12]$/, '99')}),false);
+  assert.equal(api.match(candidate,{...row,election_name:name.replace(/[12]$/, '99')}),false);
 }
 assert.equal(api.queries({office:'House',key:'KY-06'}).length,1,
  'Previously identified House districts must not add provider traffic');
