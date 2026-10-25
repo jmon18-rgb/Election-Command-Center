@@ -1,0 +1,49 @@
+name: Validate official South Dakota 2026 House results reader
+on:
+  pull_request:
+    paths:
+      - 'scripts/sd_2026_house_official_source.py'
+      - 'scripts/test_sd_2026_house_official_source.py'
+      - '.github/workflows/sd-2026-official-house-reader.yml'
+  workflow_dispatch:
+  schedule:
+    # Source status checks are sparse until the election.
+    - cron: '19 17 * 10 *'
+    - cron: '9,29,49 * 3-4 11 *'
+permissions:
+  contents: read
+jobs:
+  exact-sd-house-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test mocked pre-election vote exclusion and post-close valid arithmetic
+        run: |
+          python3 -m py_compile scripts/sd_2026_house_official_source.py
+          python3 scripts/test_sd_2026_house_official_source.py
+      - name: Check the real 2026 South Dakota official result page
+        run: |
+          python3 scripts/sd_2026_house_official_source.py | tee /tmp/sd2026house.json
+          python3 - <<'PY'
+          import json
+          from datetime import datetime,timezone
+          d=json.load(open('/tmp/sd2026house.json'))
+          assert d['race']=='House|SD-00'
+          assert d['source_url']=='https://electionresults.sd.gov/resultsSW.aspx?map=CTY&type=SWR'
+          assert d['professional_call'] is None
+          if datetime.now(timezone.utc).isoformat()<'2026-11-04T02:00:00+00:00':
+              assert d['approved_for_live_vote_reconciliation'] is False
+              assert d['total'] is None
+          print('Actual official SD source:', d['status'], '| no vote claims from tests')
+          PY
+      - name: Preserve exact source observation without staging votes on Pages
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-sd-house-2026-source-state
+          path: /tmp/sd2026house.json
+          retention-days: 15
