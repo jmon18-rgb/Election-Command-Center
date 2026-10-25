@@ -2004,6 +2004,15 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  assert.match(get('#enWatchItems').textContent,/civicAPI · 1,000 reported votes/);
  assert.match(get('#enWatchItems').textContent,/Outside the 22-state source/);
  assert.match(get('#enWatchItems').textContent,/civicAPI race source/);
+ // Clicking the actual owner Refresh now control must re-fetch a pinned
+ // out-of-primary state Senate race independently of the primary provider.
+ // The normal one-minute sweep would skip this recently checked source.
+ const nhSourceCalls=()=>civicRequests.filter(x=>x.includes('/race/87283?light=')).length;
+ const beforeManualNhRefresh=nhSourceCalls();
+ get('#enRefresh').click();
+ await w.eval('enCivicWaitUntilIdle()');
+ assert(nhSourceCalls()>beforeManualNhRefresh,
+  'Refresh now must revalidate a verified supplemental Senate race, not only the Open America office');
  assert.equal(w.eval('enCivicStatus({office:"Senate",key:"NH"})').includes('1,000 reported votes'),true,
     'Validated supplemental vote totals must reach rendered source status');
  const nhWatchEntry=get('#enWatchItems .en-watch-open[aria-label="Open NH-SEN Senate 2026 results"]');

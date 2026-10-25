@@ -6775,10 +6775,11 @@ function enReconnectAfterInterruption(force=false){
  enLastReconnect=now;
  const status=$('#enStatus');
  if(status)status.textContent='RECONNECTING · verifying fresh House, Senate and governor source results…';
- // enLoad independently refreshes the other primary offices and the
- // supplemental exact-race queue, including after its own request fails.
- // A generation check discards older in-flight responses.
+ // Force both provider families to revalidate upon actual Election Night
+ // focus/visibility recovery. Normal civicAPI cadence must not delay a
+ // time-sensitive Senate result on a reactivated laptop tab.
  void enLoad(true);
+ void enRefreshCivicWatchlist(true);
  return true;
 }
 document.addEventListener('visibilitychange',()=>{
@@ -6813,7 +6814,12 @@ for(const office of ['House','Senate','Governor']){
 $('#enOfficeHouse').addEventListener('click',()=>enSwitch(enModeYear,'House'));
 $('#enOfficeSenate').addEventListener('click',()=>enSwitch(enModeYear,'Senate'));
 $('#enOfficeGovernor').addEventListener('click',()=>enSwitch(enModeYear,'Governor'));
-$('#enRefresh').addEventListener('click',()=>enLoad(true));
+$('#enRefresh').addEventListener('click',()=>{
+ // Refresh now means ALL available providers, not only the 22-state feed.
+ // Independent request pooling and circuit-breaker still bound civicAPI.
+ void enLoad(true);
+ if(enModeYear===2026)void enRefreshCivicWatchlist(true);
+});
 $('#enSearch').addEventListener('input',()=>{enVisibleLimit=120;enRender()});
 document.querySelector('.tab[data-page="electionNight"]').addEventListener('click',()=>{if(!enData||enModeYear===2026)enLoad(false)});
 document.querySelectorAll('.tab:not([data-page="electionNight"]):not([data-page="brief"])').forEach(el=>el.addEventListener('click',()=>{if(enTimer){clearTimeout(enTimer);enTimer=null}}));
