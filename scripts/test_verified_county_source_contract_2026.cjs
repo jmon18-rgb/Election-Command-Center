@@ -15,6 +15,55 @@ assert(out.ok);assert.equal(out.rows[0].county_id,'37001');
 assert.equal(out.rows[0].election_kind,'regular',
  'The official normalized 2026 NC Class II Senate contest is regular');
 assert.equal(out.may_move_national_needle,false);
+// County identity/provenance is not permission to invent a 2026 contested
+// office. Require the same 506-race ballot registry as local needle research.
+for(const [office,state,race_key] of [
+ ['Governor','NC','NC-GOV'], // NC has no governor election this cycle
+ ['Senate','AZ','AZ-SEN'],  // no Arizona Senate ballot in 2026
+ ['House','NC','NC-99'],   // fabricated congressional district
+ ['House','AK','AK-01'],  // at-large House seat is AK-00
+ ['House','VT','VT-01'],  // at-large House seat is VT-00
+]){
+ const claim={...expected,office,state,race_key,
+  state_fips:office==='House'&&state==='AK'?'02':state==='VT'?'50':
+   state==='AZ'?'04':'37'};
+ const falseReport={...feed,office,state,race_key,
+  counties:[{...county,fips:state==='AZ'?'04013':
+   state==='AK'?'02020':state==='VT'?'50007':'37001'}]};
+ assert.equal(normalize(falseReport,claim,at).reason,'SOURCE_CONTRACT_UNVERIFIED',
+  'A valid-looking county cannot authorize an imaginary 2026 race: '+race_key);
+}
+for(const change of [
+ {election_kind:'special'}, {election_kind:'PRIMARY'},
+ {election_kind:'regular-but-mock'}
+]){
+ assert.equal(normalize({...feed,...change},expected,at).reason,
+  'SOURCE_CONTRACT_UNVERIFIED',
+  'A provider may not change the election kind independently of the ballot');
+}
+assert.equal(normalize(feed,{...expected,election_kind:'special'},at).reason,
+ 'SOURCE_CONTRACT_UNVERIFIED');
+// A legitimate supplemental-state House race can be recognized even when
+// Open America's primary source does not cover the state. This is only
+// ballot eligibility, not live vote delivery.
+const nhExpected={...expected,office:'House',state:'NH',state_fips:'33',
+ race_key:'NH-01',provider_race_id:'nh-1'};
+const nhFeed={...feed,office:'House',state:'NH',race_key:'NH-01',
+ provider_race_id:'nh-1',counties:[{...county,fips:'33011',
+ updated_at:'2026-11-04T01:05:00Z'}]};
+assert.equal(normalize(nhFeed,nhExpected,Date.parse('2026-11-04T01:10:00Z')).ok,
+ true,'Exact NH House ballot passes identity gating without claiming source status');
+const flExpected={...expected,office:'Senate',state:'FL',state_fips:'12',
+ race_key:'FL-SEN',provider_race_id:'fl-special'};
+const flFeed={...feed,office:'Senate',state:'FL',race_key:'FL-SEN',
+ provider_race_id:'fl-special',election_kind:'special',
+ counties:[{...county,fips:'12086',updated_at:'2026-11-04T00:05:00Z'}]};
+const flResult=normalize(flFeed,flExpected,Date.parse('2026-11-04T00:10:00Z'));
+assert.equal(flResult.ok,true);
+assert.equal(flResult.rows[0].election_kind,'special');
+assert.equal(normalize({...flFeed,election_kind:'regular'},flExpected,
+ Date.parse('2026-11-04T00:10:00Z')).reason,'SOURCE_CONTRACT_UNVERIFIED');
+
 for(const altered of [
  {...feed,is_test:true},{...feed,source_verified:false},
  {...feed,source_url:'https://unknown.com/counties'},
@@ -105,6 +154,10 @@ assert.equal(mockWindow.VerifiedCountySourceContract2026.normalize(
  'Missing canonical state-FIPS module must fail closed');
 mockWindow.ElectionNightStateCountyFIPS2026=require('./election_night_state_county_fips_2026.js');
 assert.equal(mockWindow.VerifiedCountySourceContract2026.normalize(
+ feed,expected,at).ok,false,
+ 'Without the 506-contest 2026 ballot contract, county returns fail closed');
+mockWindow.ElectionNightCountySignal=require('./election_night_county_mode_signal.js');
+assert.equal(mockWindow.VerifiedCountySourceContract2026.normalize(
  feed,expected,at).ok,true,
- 'County updates must recover once the poll-close and canonical FIPS modules load');
+ 'County updates recover only when poll-close, county FIPS and ballot identities load');
 console.log('Verified county source envelope gate passed');
