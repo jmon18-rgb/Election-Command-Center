@@ -13,7 +13,8 @@ const clock=Date.parse('2026-11-04T03:15:00Z');
 class Clock extends Date{static now(){return clock}}
 const api=vm.runInNewContext(html.slice(begin,end)+
  '\n({allowed:enElectionVotesAllowed,valid:enSourceValid})',{
- Date:Clock,window:{ElectionNightPollClosings2026:close}
+ Date:Clock,window:{ElectionNightPollClosings2026:close},
+ enSupportedStates:new Set('AR AZ CO CT FL GA IA ID IN LA MI MN NC PA RI SC TX UT VA VT WA WV'.split(' '))
 });
 const vote=(total,as_of='2026-11-04T00:20:00Z')=>({
  api:1,year:2026,office:'Senate',source:'state',live:true,stale:false,
@@ -159,6 +160,27 @@ assert.match(html,/if\(!enSnapshotCompatible\(previous,o\)\)/,
 assert.match(html,/if\(!enSnapshotCompatible\(old,obj\)\)/,
  'Background office refresh must share the vote-progress gate');
 const freshForValidation=vote(100,'2026-11-04T00:40:00Z');
+const safeOfficeSource={...freshForValidation};
+assert.equal(api.valid(safeOfficeSource,2026,'Senate'),true);
+assert.equal(api.valid({...safeOfficeSource,source:''},2026,'Senate'),false,
+ 'A missing 2026 primary source identity is not verified state returns');
+assert.equal(api.valid({...safeOfficeSource,live:false,counting:false},
+ 2026,'Senate'),false,
+ 'Inactive positive office cannot populate the raw live race list');
+assert.equal(api.valid({...safeOfficeSource,live:false,counting:false,
+ final:true},2026,'Senate'),true,
+ 'Genuine source-finished 2026 returns remain available while freshly stamped');
+assert.equal(api.valid({...safeOfficeSource,live:false,counting:false,
+ stale:true},2026,'Senate'),false,
+ 'Explicit stale-positive source must not be accepted on the main desk');
+const outOfScope={...safeOfficeSource,as_of:'2026-11-04T01:05:00Z',
+ races:{MA:safeOfficeSource.races.NC}};
+assert.equal(api.valid(outOfScope,2026,'Senate'),false,
+ 'MA is not in the provider 22-state scope: do not manufacture Senate coverage');
+const outOfScopeHouse={...safeOfficeSource,office:'House',
+ races:{'NH-01':safeOfficeSource.races.NC}};
+assert.equal(api.valid(outOfScopeHouse,2026,'House'),false,
+ 'NH House cannot become primary-sourced by a malformed payload');
 assert.equal(api.valid(freshForValidation,2026,'Senate'),true);
 for(const flag of [{is_test:true},{test:true},{mock:true},
                    {is_mock:true},{active:false}]){
