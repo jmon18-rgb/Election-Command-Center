@@ -32,6 +32,14 @@ function assess(report, minutes, interval) {
       report.source_requests?.primary)&&report.source_requests.primary>=minRequests,
     primary_source_successful_replies: Number.isSafeInteger(
       report.primary_healthy_responses)&&report.primary_healthy_responses>=minRequests,
+    // A 200/304 status is transport, not confirmed accepted JSON. Demand
+    // genuinely new, source-validated 2026 snapshots in the real dashboard.
+    real_page_validated_primary_source_repeatedly: Number.isSafeInteger(
+      report.page_validated_primary_snapshots)&&
+      report.page_validated_primary_snapshots>=minRequests,
+    real_page_revalidated_after_tab_resume: Number.isSafeInteger(
+      report.post_resume_page_validated_primary_snapshots)&&
+      report.post_resume_page_validated_primary_snapshots>=1,
     no_transport_or_http_source_failures:
       report.source_request_failures===0&&report.source_http_errors===0,
     no_browser_or_identity_audit_errors:

@@ -45,6 +45,10 @@ if(args.has('check-config')){
   background_visibility_confirmed:false,background_resume_observed:false,
   resumed_tab_visible:false,physical_background_method:null,
   post_resume_primary_requests:0,post_resume_primary_healthy_responses:0,
+  // Raw HTTP 200/304 is not proof that the dashboard actually accepted a
+  // source-validated 2026 office response rather than HTML, a mock or stale data.
+  page_validated_primary_snapshots:0,
+  post_resume_page_validated_primary_snapshots:0,
   post_resume_refresh_trigger:null,
   source_requests:{primary:0,supplemental:0},primary_healthy_responses:0,
   source_request_failures:0,source_http_errors:0,
@@ -52,7 +56,8 @@ if(args.has('check-config')){
   browser_operation_trace:[],last_browser_operation:'NOT_STARTED'
  };
  let proc=null,profile=null,cdp=null,tabSession=null,tabTarget=null,
-  start=null,resumed=false;
+  start=null,resumed=false,resumedAtWallClock=null;
+ const lastAcceptedOfficeCheck=new Map();
  const mark=step=>{
   report.last_browser_operation=step;
   report.browser_operation_trace.push({
@@ -224,8 +229,17 @@ if(args.has('check-config')){
   });
   mark('LOAD_REAL_DEPLOYED_DASHBOARD');
   await cdp.send('Page.navigate',{url:SITE},tabSession);
-  await waitFor('!!document.querySelector("[data-page=\\"electionNight\\"]")',60000);
+  // Static HTML arrives before the inline app installs its tab handlers.
+  // A CDP mouse click during that gap is a no-op: previously the runner
+  // then called the 2026 mode button while its section was still hidden.
+  await waitFor('typeof activatePage==="function"&&'+
+   '!!document.querySelector("[data-page=\\"electionNight\\"]")&&'+
+   '!!document.querySelector("#enMode2026")',60000);
   await click('[data-page="electionNight"]');
+  await waitFor('document.querySelector("#electionNight")?.classList.contains("active")',15000);
+  await waitFor('(()=>{const mode=document.querySelector("#enMode2026");'+
+   'if(!mode)return false;const rect=mode.getBoundingClientRect();'+
+   'return rect.width>0&&rect.height>0})()',15000);
   await click('#enMode2026');
   await waitFor('document.querySelector("#enSourceReadiness")?.textContent?.includes("506 races")',45000);
   start=performance.now();
@@ -250,6 +264,7 @@ if(args.has('check-config')){
     await waitHidden(false);
     report.resumed_tab_visible=true;
     report.background_resume_observed=true;
+    resumedAtWallClock=Date.now();
     mark('NATIVE_ORIGINAL_TAB_GENUINELY_VISIBLE');
     if(Date.now()<Date.parse('2026-11-03T05:00:00Z')){
      report.post_resume_refresh_trigger='MANUAL_OWNER_CONTROL_PRE_ELECTION';
@@ -263,18 +278,36 @@ if(args.has('check-config')){
     'return {active:!!document.querySelector("#electionNight.page.active"),'+
     'sourceReadiness:!!document.querySelector("#enSourceReadiness")?.textContent?.includes("506 races"),'+
     'deskPresent:text.includes("506 RACES"),'+
-    'coverageError:text.includes("Coverage audit unavailable")}})()');
+    'coverageError:text.includes("Coverage audit unavailable"),'+
+    'acceptedOffices:[\"House\",\"Senate\",\"Governor\"].flatMap(office=>{'+
+    'try{const snap=enOfficeSnapshots[office],checked=enOfficeCheckedAt[office];'+
+    'if(!snap||!Number.isSafeInteger(checked)||checked>Date.now()||'+
+    'Date.now()-checked>180000||enOfficeErrors[office]||'+
+    'enResumePendingOffices.has(office)||'+
+    '!enSourceValid(snap,2026,office))return [];'+
+    'return [[office,checked]]}catch{return []}})}})()');
    report.checkpoints++;
    const good=state?.active&&state.sourceReadiness&&
     state.deskPresent&&!state.coverageError;
    if(good)report.healthy_checkpoints++;
    if(state?.coverageError)report.audit_errors++;
    if(!good)report.errors.push('Unhealthy 506-race source desk checkpoint '+step);
+   // Evaluate the real dashboard's validated office state, not mere provider
+   // HTTP completion. Failed/invalid responses cannot advance this counter.
+   for(const [office,checked] of state?.acceptedOffices||[]){
+    const previous=lastAcceptedOfficeCheck.get(office)||0;
+    if(checked<=previous)continue;
+    lastAcceptedOfficeCheck.set(office,checked);
+    report.page_validated_primary_snapshots++;
+    if(resumedAtWallClock!==null&&checked>=resumedAtWallClock)
+     report.post_resume_page_validated_primary_snapshots++;
+   }
    if(step%Math.max(1,Math.floor(300/interval))===0||step===totalSteps)
     report.probes.push({
      step,elapsed_s:Math.round((performance.now()-start)/1000),
      ui_healthy:good,primary_attempts:report.source_requests.primary,
      primary_healthy_responses:report.primary_healthy_responses,
+     page_validated_primary_snapshots:report.page_validated_primary_snapshots,
      supplementary_attempts:report.source_requests.supplemental
     });
   }
