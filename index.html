@@ -1296,7 +1296,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_fast_lane.js?v=f2a0d35d0a8a"></script>
 <script src="./scripts/election_night_nowcast.js?v=c2396a2d8e7a"></script>
 <script src="./scripts/election_night_early_signals.js?v=36958b325016"></script>
-<script src="./scripts/election_night_priority.js?v=9525d695ed6d"></script>
+<script src="./scripts/election_night_priority.js?v=67317c95ade2"></script>
 <script src="./scripts/election_night_signals.js?v=df31e0cc9e64"></script>
 <script src="./scripts/election_night_poll_closings_2026.js?v=39c725fe013b"></script>
 <script src="./scripts/election_night_reconciliation.js?v=99a6b5420984"></script>
@@ -5830,7 +5830,22 @@ async function enRefreshCivicWatchlist(force=false){
   // Unlike the previous cursor (which advanced past omitted candidates),
   // the independent cursors cannot permanently skip lower-priority races.
   const reference=new Map(smartAutoWatch().map(x=>[enWatchId(x),x]));
-  const enriched=all.map(x=>({...x,tip:reference.get(enWatchId(x))?.tip??null}));
+  const linkedModel=Boolean(jointLastResult&&jointBasis&&
+   latestSenateEstimates?.generated_at&&
+   jointBasis.generated_from_sources?.model_polling_at===
+    latestSenateEstimates.generated_at&&
+   Array.isArray(jointLastResult.race_probabilities));
+  const sourceOdds=new Map(linkedModel?jointLastResult.race_probabilities
+   .filter(x=>['house','senate','governor'].includes(x?.office))
+   .map(x=>[x.office+'|'+x.race_code,x.dem_beats_rep_pct]):[]);
+  const enriched=all.map(x=>{
+   const raceCode=x.office==='House'?
+    (window.HouseAtLargeBridge?.modelCode(x.key)||x.key):
+    x.office==='Senate'?x.key.slice(0,2)+'-SEN':x.key+'-GOV';
+   const odds=sourceOdds.get(x.office.toLowerCase()+'|'+raceCode);
+   return {...x,tip:reference.get(enWatchId(x))?.tip??null,
+    modelWinPct:Number.isFinite(odds)?odds:null};
+  });
   const scan=window.AutomaticRaceDesk?.sourceBatch({
    personal:enWatched,candidates:enriched,primaryStates:[],
    cursor:enCivicSweepCursors,limit:12
