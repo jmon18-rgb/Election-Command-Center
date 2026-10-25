@@ -362,8 +362,9 @@ class HouseCoverageTests(unittest.TestCase):
         results = run_batch(plan, request=request, delay=0)
         report = build_report(plan, results)
         self.assertEqual(len(attempts), 3)
-        self.assertEqual(report["sampled_districts"], 3)
-        self.assertEqual(report["not_checked_upstream_paused"], 13)
+        self.assertEqual(report["sampled_districts"], 1,
+                         "Third HTTP call is now an NH alias; the first 503 stops the batch")
+        self.assertEqual(report["not_checked_upstream_paused"], 15)
         self.assertEqual(report["request_cap"], 16)
         self.assertEqual(report["discovery_strategy"], "GAP_FIRST_PREVIOUS_LEDGER")
         self.assertTrue(report["upstream_paused"])
@@ -371,11 +372,12 @@ class HouseCoverageTests(unittest.TestCase):
         for result in results:
             by_id["House|" + result["district"]]["last_probe"] = dict(
                 result, checked_window_utc=plan["window_utc"])
-        # Healthy unobserved seats and paused races outrank the two genuine
-        # NOT_INDEXED observations from the interrupted provider run.
+        # A failed NH alias is UNKNOWN, not a definitive NOT_INDEXED.
+        # Other planned slots were paused and remain eligible next run.
         retry = gap_aware_window(now + timedelta(hours=4), ledger)
-        self.assertIn(plan["districts"][3], retry["districts"])
-        self.assertNotIn(plan["districts"][0], retry["districts"])
+        self.assertIn(plan["districts"][1], retry["districts"])
+        self.assertNotIn("INDEXED_EXACT_RACE",
+                         [item["status"] for item in results])
 
     def test_complete_state_search_saves_requests_and_revalidates_details(self):
         codes = tuple(f"CA-{i:02}" for i in range(4, 12))
