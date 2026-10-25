@@ -52,6 +52,9 @@
    summary[name]={total:EXPECTED[name],reported:0,zero:0,missing:0,byStatus:{}};
   const records=[],unverifiedMachineIds=[];
   let latestValidVoteTime=-Infinity,latestValidVoteRace=null;
+  const lastByOffice={House:{time:-Infinity,race:null},
+   Senate:{time:-Infinity,race:null},
+   Governor:{time:-Infinity,race:null}};
   for(const race of ledger.races){
    if(!race||!EXPECTED[race.office]||typeof race.key!=='string'||
       race.id!==race.office+'|'+race.key||seen.has(race.id))
@@ -72,6 +75,9 @@
      throw Error('Missing/stale/future provider timestamp for sourced votes '+race.id);
     if(when>latestValidVoteTime){
      latestValidVoteTime=when;latestValidVoteRace=race.id;
+    }
+    if(when>lastByOffice[race.office].time){
+     lastByOffice[race.office]={time:when,race:race.id};
     }
    }
    else if(reconciledRecord.inValidatedFeed)status='ZERO_IN_FEED';
@@ -134,6 +140,16 @@
   records.sort((a,b)=>(order[a.status]??9)-(order[b.status]??9)||
     a.id.localeCompare(b.id));
   unverifiedMachineIds.sort((a,b)=>a.id.localeCompare(b.id));
+  const perOffice={};
+  for(const office of Object.keys(EXPECTED)){
+   const x=lastByOffice[office],has=Number.isFinite(x.time);
+   perOffice[office]=Object.freeze({
+    source_at:has?new Date(x.time).toISOString():null,
+    age_minutes:has?Math.max(0,Math.floor((now-x.time)/60000)):null,
+    race:has?x.race:null,
+    has_current_sourced_votes:has
+   });
+  }
   return Object.freeze({
    schema:'on-screen-election-night-506-source-triage-v1',
    checked_at:new Date(now).toISOString(),
@@ -144,6 +160,7 @@
    lastValidVoteSourceAt:Number.isFinite(latestValidVoteTime)?
     new Date(latestValidVoteTime).toISOString():null,
    lastValidVoteRace:latestValidVoteRace,
+   lastValidVoteByOffice:Object.freeze(perOffice),
    lastValidVoteAgeMinutes:Number.isFinite(latestValidVoteTime)?
     Math.max(0,Math.floor((now-latestValidVoteTime)/60000)):null,
    current_votes_provider_attributed_not_independently_certified:true,
@@ -186,6 +203,18 @@
   else
    elt('p','NO CURRENT VALIDATED 2026 VOTE TIMESTAMP · a refreshed page, '+
     'available source ID or zero-valued feed is NOT observed ballots',host,'en-coverage-line');
+  // Don't let a fresh House result hide a stuck Senate feed. Each office
+  // clock comes from that office's OWN last validated provider timestamp.
+  if(pulse.lastValidVoteByOffice){
+   const summary=['Senate','House','Governor'].map(office=>{
+    const entry=pulse.lastValidVoteByOffice[office];
+    return office+' '+(entry?.source_at?
+     entry.age_minutes+'m old ('+entry.source_at+')':
+     'NO CURRENT VALIDATED VOTE');
+   });
+   elt('p','SOURCE PUBLICATION BY OFFICE · '+summary.join(' · '),
+       host,'en-coverage-line');
+  }
   elt('p','No source evidence for '+t.House.missing+' House, '+t.Senate.missing+
       ' Senate and '+t.Governor.missing+
       ' governor contests. Provider-reported zero is tracked separately. Missing does not mean zero.',host,'en-coverage-line');

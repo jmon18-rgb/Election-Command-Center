@@ -43,6 +43,18 @@ assert.equal(stalePulse.professional_calls_verified,0);
 assert.equal(stalePulse.lastValidVoteSourceAt,'2026-11-04T02:54:00.000Z');
 assert.equal(stalePulse.lastValidVoteAgeMinutes,6);
 assert.equal(stalePulse.lastValidVoteRace,'House|TX-01');
+assert.equal(stalePulse.lastValidVoteByOffice.Senate.source_at,'2026-11-04T02:54:00.000Z');
+assert.equal(stalePulse.lastValidVoteByOffice.House.age_minutes,6);
+assert.equal(stalePulse.lastValidVoteByOffice.Governor.source_at,null);
+assert.equal(stalePulse.lastValidVoteByOffice.Governor.has_current_sourced_votes,false);
+const slowerSenate={...res,records:{...res.records,
+ 'Senate|NC':{...res.records['Senate|NC'],
+ sourceAsOf:'2026-11-04T02:35:00Z'}}};
+const separate=api.build(ledger,slowerSenate,state,now);
+assert.equal(separate.lastValidVoteByOffice.Senate.age_minutes,25);
+assert.equal(separate.lastValidVoteByOffice.House.age_minutes,6);
+assert.equal(separate.lastValidVoteAgeMinutes,6);
+
 const offNight=Date.parse('2026-11-02T12:00:00Z');
 const offRecent={...ledger,generated_at:new Date(offNight-7*60*60000).toISOString()};
 // There cannot be any real 2026 vote evidence on November 2. Exercise
@@ -115,6 +127,9 @@ assert.equal(noData.totals.House.reported,0);
 assert.equal(noData.lastValidVoteSourceAt,null);
 assert.equal(noData.lastValidVoteAgeMinutes,null);
 assert.equal(noData.lastValidVoteRace,null);
+assert.equal(noData.lastValidVoteByOffice.Senate.source_at,null);
+assert.equal(noData.lastValidVoteByOffice.House.source_at,null);
+assert.equal(noData.lastValidVoteByOffice.Governor.source_at,null);
 assert.equal(noData.senate.find(x=>x.id==='Senate|NC').status,'PRIMARY_AWAITING');
 for(const corrupt of [
  {...ledger,races:ledger.races.slice(1)},
@@ -158,6 +173,13 @@ assert.equal(t.includes('SOURCE-ID AUDIT OVERDUE'),
 
 assert.match(t,/House 1\/435 · Senate 1\/35 · Governors 0\/36/);
 assert.match(t,/LATEST VALID SOURCE-PUBLISHED VOTES · 2026-11-04T02:54:00.000Z/);
+assert.match(t,/SOURCE PUBLICATION BY OFFICE · Senate 6m old/);
+assert.match(t,/House 6m old/);
+assert.match(t,/Governor NO CURRENT VALIDATED VOTE/);
+const separateHost=node('div');
+api.render(separateHost,separate,{createElement:node});
+assert.match(flatten(separateHost),/Senate 25m old/);
+assert.match(flatten(separateHost),/House 6m old/);
 assert.match(t,/6m old · House\|TX-01/);
 const noVotesHost=node('div');
 api.render(noVotesHost,noData,{createElement:node});
