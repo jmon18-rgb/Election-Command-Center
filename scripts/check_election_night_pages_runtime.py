@@ -26,6 +26,10 @@ REQUIRED = (
     "election_night_nowcast.js",
     "election_night_poll_closings_2026.js",
     "election_night_506_live_gap_desk.js",
+    "election_night_reconciliation.js",
+    "verified_county_source_contract_2026.js",
+    "election_night_state_county_fips_2026.js",
+    "election_night_early_signals.js",
 )
 SRC = re.compile(r'<script\s+src="(\./scripts/[a-z0-9_-]+\.js\?v=([0-9a-f]{12}))"></script>')
 MAX_BODY = 2_000_000
@@ -45,7 +49,9 @@ def timestamp(value: str) -> datetime:
 
 
 def audit(index: bytes, remote_pins: dict, remote_coverage: dict,
-          assets: dict[str, bytes], local_pins: dict, now: datetime) -> dict:
+          assets: dict[str, bytes], local_pins: dict, now: datetime,
+          local_assets: dict[str, bytes] | None = None,
+          local_index: bytes | None = None) -> dict:
     """Check all entrypoints without interpreting candidate votes or odds."""
     if now.tzinfo is None:
         raise ValueError("Audit time must be timezone aware")
@@ -112,6 +118,17 @@ def audit(index: bytes, remote_pins: dict, remote_coverage: dict,
             raise ValueError("Deployed statewide source pin missing or changed: " + race)
         if f"'{race}'" not in source_slots.group(1):
             raise ValueError("Deployed statewide strict-source route missing: " + race)
+    # A stale deployed page and its stale versioned JavaScript blobs can
+    # agree with each other. Require the checked-out release itself.
+    if local_assets is not None:
+        for name in REQUIRED:
+            expected_asset = local_assets.get(name)
+            if not isinstance(expected_asset, bytes) or len(expected_asset) < 100:
+                raise ValueError("Missing checked-out release asset: " + name)
+            if git_revision(assets[name]) != git_revision(expected_asset):
+                raise ValueError("Deployed asset differs from checked-out main: " + name)
+    if local_index is not None and index != local_index:
+        raise ValueError("Deployed dashboard HTML differs from checked-out main")
     if remote_pins.get("status") != "VERIFIED_HOUSE_IDENTITIES_NOT_LIVE_RESULTS":
         raise ValueError("Deployed House manifest is not explicitly identity-only")
     when = timestamp(remote_pins.get("generated_at"))
@@ -135,6 +152,8 @@ def audit(index: bytes, remote_pins: dict, remote_coverage: dict,
     return {
         "status": "DEPLOYED_PAGES_ENTRYPOINT_VERIFIED",
         "script_versions_checked": len(REQUIRED),
+        "checked_out_release_asset_parity": local_assets is not None,
+        "checked_out_release_html_parity": local_index is not None,
         "strict_statewide_2026_pins_verified": len(required_statewide),
         "script_dependencies_in_html": len(versions),
         "verified_house_id_hints": len(published),
@@ -194,7 +213,10 @@ def main():
         for name in REQUIRED if name in versioned
     }
     local = json.loads((ROOT / "data/election_night_house_pins.json").read_text())
-    report = audit(index, pins, coverage, assets, local, datetime.now(timezone.utc))
+    report = audit(index, pins, coverage, assets, local, datetime.now(timezone.utc),
+                   local_assets={
+                       name: (ROOT / "scripts" / name).read_bytes() for name in REQUIRED
+                   }, local_index=(ROOT / "index.html").read_bytes())
     report["site"] = site
     print(json.dumps(report, indent=2))
     if __import__("os").environ.get("GITHUB_STEP_SUMMARY"):
