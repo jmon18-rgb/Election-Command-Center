@@ -30,13 +30,33 @@
    /^2026-11-03(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2}))?$/.test(x)&&
    Number.isFinite(Date.parse(x.length===10?x+'T00:00:00Z':x));
  }
- function query(item){
-  if(!supports(item))return null;
+ // This is the actual seven-seat 2026 source-ID gap list. No nationwide
+ // extra requests: alternate queries are scoped to those missing identities.
+ const ALIAS_GAPS=new Set(['AK-00','DE-00','ND-00','NH-01','NH-02','SD-00','WY-00']);
+ function queries(item){
+  if(!supports(item))return [];
   const state=item.key.slice(0,2),district=Number(item.key.slice(3));
-  return BASE+'/race/search?'+new URLSearchParams({
+  const phrases=['US House'+(district?' '+district:'')];
+  if(ALIAS_GAPS.has(item.key))
+   phrases.push('Representative in Congress','U.S. Representative');
+  return phrases.map(phrase=>BASE+'/race/search?'+new URLSearchParams({
    country:'US',province:state,startDate:'2026-11-03',endDate:'2026-11-03',
-   query:'US House'+(district?' '+district:''),limit:'20'
-  }).toString();
+   query:phrase,limit:'20'
+  }).toString());
+ }
+ function query(item){return queries(item)[0]||null}
+ function officeTitle(item,name){
+  if(typeof name!=='string'||/primary|runoff/i.test(name))return false;
+  const alternates=ALIAS_GAPS.has(item.key);
+  const office=alternates?
+   '(?:US House|Representative in Congress|U\\.?S\\.? Representative)':'US House';
+  const n=Number(item.key.slice(3));
+  // Never translate a differently numbered congressional race into this
+  // district. Provider district/state/date must also match exactly.
+  const suffix=n?
+   '(?:\\s+District)?\\s+'+n+'\\b':
+   '(?:\\s+At[ -]Large)?\\b(?!\\s+(?:District\\s+)?[0-9])';
+  return new RegExp('\\b'+office+suffix,'i').test(name);
  }
  const disabled=x=>Boolean(x&&(x.is_test===true||x.test===true||
   x.mock===true||x.is_mock===true||x.active===false||x.live===false));
@@ -46,12 +66,7 @@
     row.district!==item.key||row.type!=='House of Representatives'||
     row.election_type!=='General'||!electionDate(row.election_date)||
     !Number.isSafeInteger(row.id)||row.id<=0||
-    typeof row.election_name!=='string'||
-    !(item.key.endsWith('-00')?
-      /\bUS House\b/i.test(row.election_name):
-      new RegExp('\\bUS House\\s+'+Number(item.key.slice(3))+'\\b','i')
-       .test(row.election_name))||
-    /primary|runoff/i.test(row.election_name)||
+    !officeTitle(item,row.election_name)||
     !Array.isArray(row.candidates)||row.candidates.length>60)return false;
   return true;
  }
@@ -184,6 +199,6 @@
     candidates:detail.candidates};
   return validate(item,row,detail,now);
  }
- return Object.freeze({START,supports,query,match,select,validate,
+ return Object.freeze({START,supports,query,queries,match,select,validate,
   setManifest,pinnedId,validatePinned});
 });

@@ -1279,7 +1279,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/civicapi_nh_adapter.js?v=5a8fe76b84ad"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=a25274c4b441"></script>
 <script src="./scripts/civicapi_state_batch.js?v=41cd9a933a83"></script>
-<script src="./scripts/civicapi_house_2026_adapter.js?v=50d9162c21c1"></script>
+<script src="./scripts/civicapi_house_2026_adapter.js?v=b152c2cdccc1"></script>
 <script src="./scripts/house_at_large_bridge.js?v=f9e1399d5868"></script>
 <script src="./scripts/election_night_source_backoff.js?v=9d0c92796244"></script>
 <script src="./scripts/election_night_state_county_fips_2026.js?v=c2ee17ae959c"></script>
@@ -5642,7 +5642,26 @@ async function enCivicFetchOne(item,forceAfterPending=false){
   }
   if(!next){
    if(!row){
-    row=enCivicSelect(item,await enCivicFetchJson(enCivicQuery(item)));
+    // Seven House districts are still missing an automated source identity.
+    // Query alternative civicAPI office titles only for those seven. Each
+    // response must be complete and unambiguous before a detail fetch; a
+    // truncated/ambiguous search is NOT permission to try weaker matching.
+    const queries=item.office==='House'?
+     window.CivicHouse2026Adapter.queries(item):[enCivicQuery(item)];
+    for(const url of queries){
+     const result=await enCivicFetchJson(url);
+     if(item.office==='House'){
+      if(!result||!Array.isArray(result.races)||
+         result.races.length>20||
+         (result.count!=null&&
+          (!Number.isSafeInteger(result.count)||result.count!==result.races.length)))
+       throw Error('Incomplete civicAPI 2026 House race search');
+      if(result.races.filter(x=>window.CivicHouse2026Adapter.match(item,x)).length>1)
+       throw Error('Ambiguous exact 2026 House source identity');
+     }
+     row=enCivicSelect(item,result);
+     if(row)break;
+    }
     if(!row)throw Error('No unique matching November 3 general-election race');
    }
    next=enCivicValidate(item,row,
