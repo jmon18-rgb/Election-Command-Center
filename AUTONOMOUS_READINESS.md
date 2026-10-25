@@ -33,6 +33,8 @@ Do not defer them behind unrelated roadmap research or optional polishing.
   and held-out evaluation. If missing, report the exact gap and supported fallback;
   do not spend every subsequent run rediscovering the same blocked archive.
 - Celebrations: reuse the existing event roster, posters and validated call gates.
+  Follow CELEBRATION_CREATIVE_BRIEF.md for the owner's specific scenes, Fish Head
+  announcement-before-music sequence, candidate distinctions and audio direction.
   Build a shared timed animation player with distinct event storyboards, local
   assets, skip/replay, sound controls and reduced-motion behavior. Preview mode
   must exercise the same player while staying isolated from earned live events.

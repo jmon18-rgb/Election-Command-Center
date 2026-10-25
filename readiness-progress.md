@@ -29,6 +29,11 @@ behind unrelated research. Target a scoped needle data/calibration decision by
 October 27 and the complete celebration preview roster by October 29, followed
 by correction/retraction, mobile and endurance checks before feature freeze.
 
+Celebration creative direction is recorded in CELEBRATION_CREATIVE_BRIEF.md:
+Talarico/blue horns, Abbott concession parade, Graham theatrical nightclub
+farewell, Nebraska football-coach satire, Mississippi retired-mascot removal,
+and Kansas John Brown. Fish Head announcement precedes animation/music.
+
 1. Inspect PR CI, including desktop/mobile and 506-race recovery drills; fix failures.
 2. Review the single-screen competitive-race desk against operator acceptance;
    address the highest-impact actual defect before adding features.
