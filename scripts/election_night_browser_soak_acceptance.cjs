@@ -40,6 +40,12 @@ function assess(report, minutes, interval) {
     real_page_revalidated_after_tab_resume: Number.isSafeInteger(
       report.post_resume_page_validated_primary_snapshots)&&
       report.post_resume_page_validated_primary_snapshots>=1,
+    supplemental_senate_search_and_detail_requested:
+      Number.isSafeInteger(report.source_requests?.supplemental)&&
+      report.source_requests.supplemental>=2,
+    supplemental_exact_2026_identity_validated_in_real_page:
+      report.supplemental_probe_race==='Senate|ME'&&
+      report.supplemental_exact_identity_validated===true,
     no_transport_or_http_source_failures:
       report.source_request_failures===0&&report.source_http_errors===0,
     no_browser_or_identity_audit_errors:
