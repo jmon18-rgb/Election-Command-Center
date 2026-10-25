@@ -1,0 +1,33 @@
+name: Probe unresolved 2026 civicAPI office-name aliases
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/probe_eight_gap_civicapi_aliases.py'
+      - 'scripts/test_probe_eight_gap_civicapi_aliases.py'
+      - '.github/workflows/eight-gap-civicapi-alias-lookup.yml'
+permissions:
+  contents: read
+jobs:
+  alias-lookup:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify alternative office title must preserve exact ballot and detail identity
+        run: |
+          python3 -m py_compile scripts/probe_eight_gap_civicapi_aliases.py
+          python3 scripts/test_probe_eight_gap_civicapi_aliases.py
+      - name: Probe new exact 2026 source records without promoting unsupported votes
+        run: |
+          python3 scripts/probe_eight_gap_civicapi_aliases.py | tee /tmp/eight_gap_aliases.json
+      - name: Preserve source discovery report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eight-gap-civicapi-alias-discovery
+          path: /tmp/eight_gap_aliases.json
+          retention-days: 21
