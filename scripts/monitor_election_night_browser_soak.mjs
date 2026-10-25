@@ -51,6 +51,10 @@ if(args.has('check-config')){
   post_resume_page_validated_primary_snapshots:0,
   post_resume_refresh_trigger:null,
   source_requests:{primary:0,supplemental:0},primary_healthy_responses:0,
+  // This is only source-identity/transport proof until candidate votes appear.
+  // A primary-only test cannot claim nationwide supplementary reliability.
+  supplemental_probe_race:'Senate|ME',
+  supplemental_exact_identity_validated:false,
   source_request_failures:0,source_http_errors:0,
   page_script_errors:0,audit_errors:0,probes:[],errors:[],
   browser_operation_trace:[],last_browser_operation:'NOT_STARTED'
@@ -242,6 +246,28 @@ if(args.has('check-config')){
    'return rect.width>0&&rect.height>0})()',15000);
   await click('#enMode2026');
   await waitFor('document.querySelector("#enSourceReadiness")?.textContent?.includes("506 races")',45000);
+  mark('PIN_REAL_SUPPLEMENTAL_MAINE_SENATE_RACE_IN_BROWSER');
+  // New, throwaway Chrome profile. Submit a real watchlist form; do not
+  // inject source fixtures, cached race records or a fictional election clock.
+  const watchPinned=await evaluate('(()=>{const input=document.querySelector("#enWatchInput");'+
+   'const form=document.querySelector("#enWatchForm");'+
+   'if(!input||!form||typeof form.requestSubmit!=="function")return false;'+
+   'input.value="ME-SEN";form.requestSubmit();'+
+   'return enWatched.some(x=>x.office==="Senate"&&x.key==="ME")})()');
+  if(!watchPinned)throw Error('Could not pin Maine Senate in real browser watchlist');
+  mark('WAIT_FOR_REAL_CIVICAPI_2026_MAINE_SENATE_SEARCH_AND_DETAIL');
+  // An exact provider race ID is not evidence of live vote availability.
+  // Verify only the *actual page's* source-validated record and its pinned
+  // November 2026 office identity, including pre-election zero-vote records.
+  await waitFor('(()=>{const id="Senate|ME",row=enCivicByWatch[id];'+
+   'if(!row||enCivicErrors[id]||enCivicRaceIds[id]?.id!==87188||'+
+   'row.provider!=="civicAPI"||row.office!=="Senate"||'+
+   'row.key!=="ME"||row.race_id!==87188||'+
+   'row.source_url!=="https://civicapi.org/api/v2/race/87188")return false;'+
+   'if(row.total===0)return row.called==null;'+
+   'return enCivicUsable({office:"Senate",key:"ME"})===row})()',60000);
+  report.supplemental_exact_identity_validated=true;
+  mark('ACTUAL_SUPPLEMENTAL_2026_SOURCE_IDENTITY_ACCEPTED_NOT_LIVE_VOTES');
   start=performance.now();
   mark('LIVE_506_RACE_DOM_RENDERED_START_REAL_CLOCK');
   const totalSteps=Math.floor(minutes*60000/(interval*1000));
@@ -308,7 +334,8 @@ if(args.has('check-config')){
      ui_healthy:good,primary_attempts:report.source_requests.primary,
      primary_healthy_responses:report.primary_healthy_responses,
      page_validated_primary_snapshots:report.page_validated_primary_snapshots,
-     supplementary_attempts:report.source_requests.supplemental
+     supplementary_attempts:report.source_requests.supplemental,
+     supplementary_exact_identity:report.supplemental_exact_identity_validated
     });
   }
  }catch(error){
