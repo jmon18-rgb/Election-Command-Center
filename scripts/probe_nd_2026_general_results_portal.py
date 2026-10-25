@@ -91,7 +91,10 @@ def evaluate(office_html, portal_html, now, *, office_available=True,
                              "other" if parsed.fragment else "none",
                            "port": parsed.port,
                            "has_credentials": parsed.username is not None,
-                           "has_unsafe_whitespace": bool(re.search(r"[\\x00-\\x20\\\\]",href or ""))})
+                           "has_unsafe_whitespace": bool(re.search(r"[\x00-\x20\\]",href or "")),
+                           "fragment_public_prefix": parsed.fragment[:80] if
+                             re.fullmatch(r"[a-zA-Z0-9_/\-!.?=&%+]{1,120}",
+                                          parsed.fragment or "") else "unreviewed"})
     # Fail closed on duplicate / ambiguous results links, including one
     # malicious link alongside a valid government portal address.
     confirmed = (office_available and len(matches) == 1
