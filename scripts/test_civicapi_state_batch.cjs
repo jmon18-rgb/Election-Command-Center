@@ -109,8 +109,12 @@ for(const {item,search} of fixtureRaces){
   const later={...called,last_updated:'2026-11-04T06:05:00Z'};
   assert.equal(adapter.validate(item,search,later,election).called,'Candidate A',
    'After 06:00Z source and viewer clocks, exact Alaska call metadata is eligible');
-  assert.equal(adapter.validate(item,search,later,Date.parse('2026-11-04T05:59:59Z')),null,
-   'Future-dated returns cannot cross the final poll-close barrier');
+  const preFinalClock=adapter.validate(item,search,later,
+   Date.parse('2026-11-04T05:59:59Z'));
+  assert.equal(preFinalClock?.called,null,
+   'Even within the 15-minute source-clock tolerance, a future winner flag cannot cross final poll close');
+  assert.equal(preFinalClock?.total,1000,
+   'Validated partial counts still pass the earlier vote-readiness gate');
  }
  // A pinned 2026 exact race and plausible candidate votes are still not
  // live evidence when its search response, detail or search envelope says TEST.
