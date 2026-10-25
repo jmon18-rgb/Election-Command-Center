@@ -149,6 +149,8 @@ async function settle(){
  assert(w.ElectionNightRehearsal,'Synthetic rehearsal library must load before app');
  w.eval(read('scripts/chamber_control_model.js'));
  assert(w.ChamberControlModel,'Joint Senate/House model must load before app');
+ w.eval(read('scripts/electorate_what_if_2026.js'));
+ assert(w.ElectorateWhatIf2026,'What-if electorate scenario module must load before app');
  w.eval(read('scripts/chamber_poll_error_audit.js'));
  assert(w.JackErrorAudit,'Retrospective Senate error audit must be loaded before app');
  w.eval(read('scripts/senate_calibration_audit.js'));
