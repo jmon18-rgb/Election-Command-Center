@@ -125,7 +125,7 @@ def validate(doc):
             },
             "visual_original_pdf_verified": status.startswith("ORIGINAL_PDF"),
         })
-    if verified_original != 2:
+    if verified_original != 3:
         raise ValueError("Original-PDF inspection status must not be inflated")
     final = doc.get("terminal_benchmark")
     if (not isinstance(final, dict) or final.get("source") != (
