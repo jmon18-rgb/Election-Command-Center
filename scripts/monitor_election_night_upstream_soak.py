@@ -52,6 +52,12 @@ def validate_primary(doc, office, now=None):
     flags = ("live", "stale", "counting", "final")
     if any(type(doc.get(k)) is not bool for k in flags):
         raise ValueError("Missing or invalid primary source state flags")
+    # Match the browser's officeHealth() gate: a superficially fresh,
+    # positive provider response may still explicitly be TEST/MOCK/inactive.
+    # Reject even empty mock offices as production transport evidence.
+    if (any(doc.get(k) is True for k in ("is_test", "test", "mock", "is_mock")) or
+            doc.get("active") is False):
+        raise ValueError("Provider office explicitly mock, test or inactive")
     if doc["live"] and (doc["stale"] or doc["final"] or not doc["counting"]):
         raise ValueError("Contradictory primary live/counting source flags")
     if not isinstance(doc.get("counts"), dict) or (
