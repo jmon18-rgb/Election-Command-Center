@@ -108,4 +108,72 @@ realSource.office='House';
 assert.equal(early(nc).source,null,'Wrong-office primary is rejected');
 realSource.office='Senate';
 assert.equal(early(nc).source?.total,100);
+
+// The real browser's source-acceptance path must reject source mock
+// metadata AND vote-history reversals; otherwise a working provider fetch
+// can redraw a previously counted House/Senate/Governor race incorrectly.
+const progressStart=html.indexOf('function enSnapshotCompatible(');
+const progressEnd=html.indexOf('function enAcceptSource(',progressStart);
+assert(progressStart>0&&progressEnd>progressStart);
+const snapshotCompatible=vm.runInNewContext(
+ html.slice(progressStart,progressEnd)+'\nenSnapshotCompatible',{Date});
+const base=vote(100,'2026-11-04T00:40:00Z');
+base.races.NC.cands=[
+ {n:'Candidate D',p:'D',v:60,pct:null},
+ {n:'Candidate R',p:'R',v:40,pct:null}
+];
+const after={...base,as_of:'2026-11-04T00:45:00Z',
+ races:{NC:{...base.races.NC,total:130,cands:[
+  {n:'Candidate D',p:'D',v:75,pct:null},
+  {n:'Candidate R',p:'R',v:55,pct:null}]}}};
+assert.equal(snapshotCompatible(base,after),true,
+ 'New legitimate counted candidate votes remain eligible');
+const change=patch=>({...after,races:{NC:{...after.races.NC,...patch}}});
+assert.equal(snapshotCompatible(base,change({total:95})),false,
+ 'Aggregate vote regression cannot silently become a new count');
+assert.equal(snapshotCompatible(base,change({cands:[
+ {n:'Candidate D',p:'D',v:59,pct:null},
+ {n:'Candidate R',p:'R',v:71,pct:null}]})),false,
+ 'One candidate cannot lose votes without provenance even if the race grows');
+assert.equal(snapshotCompatible(base,change({cands:[
+ {n:'Candidate D',p:'R',v:75,pct:null},
+ {n:'Candidate R',p:'R',v:55,pct:null}]})),false,
+ 'Previously reported candidates cannot silently change affiliation');
+assert.equal(snapshotCompatible(base,change({cands:[
+ {n:'Candidate D',p:'D',v:130,pct:null}]})),false,
+ 'Previously counted candidate cannot disappear from a refresh');
+assert.equal(snapshotCompatible(base,{...after,races:{}}),false,
+ 'A partial missing-race response must not silently erase ballots');
+assert.equal(snapshotCompatible(base,{...after,as_of:base.as_of}),false,
+ 'Changed vote totals require a newly published source timestamp');
+assert.equal(snapshotCompatible(base,base),true,
+ 'Idempotent unchanged provider refreshes are safe');
+const empty=vote(0,base.as_of);
+assert.equal(snapshotCompatible(empty,after),true,
+ 'Standby zero-count response can transition to observed live results');
+const archive={...base,year:2024};
+assert.equal(snapshotCompatible(archive,{...after,year:2024}),true,
+ '2024 archive view must not inherit new 2026 progression rules');
+assert.match(html,/if\(!enSnapshotCompatible\(previous,o\)\)/,
+ 'Foreground live results must share the vote-progress gate');
+assert.match(html,/if\(!enSnapshotCompatible\(old,obj\)\)/,
+ 'Background office refresh must share the vote-progress gate');
+const freshForValidation=vote(100,'2026-11-04T00:40:00Z');
+assert.equal(api.valid(freshForValidation,2026,'Senate'),true);
+for(const flag of [{is_test:true},{test:true},{mock:true},
+                   {is_mock:true},{active:false}]){
+ assert.equal(api.valid({...freshForValidation,...flag},2026,'Senate'),false,
+  'Explicit test or inactive office cannot be displayed as live votes');
+}
+assert.equal(api.valid({...freshForValidation,races:{NC:{
+ ...freshForValidation.races.NC,cands:[
+  {n:'Candidate D',p:'D',v:0,pct:0},
+  {n:'Candidate R',p:'R',v:0,pct:0}]}}},2026,'Senate'),false,
+ 'Positive aggregate with no attributable candidates is not live returns');
+assert.equal(api.valid({...freshForValidation,races:{NC:{
+ ...freshForValidation.races.NC,cands:[
+  {n:'Candidate D',p:'D',v:60,pct:null},
+  {n:' candidate d ',p:'R',v:40,pct:null}]}}},2026,'Senate'),false,
+ 'Duplicate candidate identities in 2026 source must fail');
+
 console.log('Browser source timestamp gate: NC/OH exact poll close, late fetch and civic recovery PASS');

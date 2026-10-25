@@ -6045,6 +6045,11 @@ function enSourceValid(o,year,office){
   (o.source!==''&&o.source!=='state'&&!(year===2024&&office==='House'&&o.source==='medsl_house_2024_party_aggregates')&&!(year===2024&&office==='Senate'&&o.source==='medsl_senate_2024_party_aggregates'))||!o.races||Array.isArray(o.races)||
   typeof o.races!=='object'||Object.keys(o.races).length>550)return false;
  if(['live','stale','counting','final'].some(k=>typeof o[k]!=='boolean'))return false;
+ // This gate is used by live race cards, exports and early indicators,
+ // not only the reconciliation health panel. Explicit mock/test and
+ // disabled 2026 sources must never be displayed as reported returns.
+ if(year===2026&&(o.is_test===true||o.test===true||
+   o.mock===true||o.is_mock===true||o.active===false))return false;
  if(o.live&&(o.stale||o.final||!o.counting))return false;
  if(!o.counts||o.counts.races!==Object.keys(o.races).length)return false;
  if(o.source==='medsl_house_2024_party_aggregates'&&
@@ -6070,7 +6075,19 @@ function enSourceValid(o,year,office){
   if(!r.cands.every(c=>c&&typeof c.n==='string'&&c.n.trim()&&typeof c.p==='string'&&
      Number.isSafeInteger(c.v)&&c.v>=0&&
      (c.pct===null||Number.isFinite(c.pct)&&c.pct>=0&&c.pct<=100)))return false;
-  if(r.cands.reduce((acc,c)=>acc+c.v,0)>r.total)return false;
+  const reported=r.cands.reduce((acc,c)=>acc+c.v,0);
+  if(!Number.isSafeInteger(reported)||reported>r.total)return false;
+  if(year===2026){
+   // All-candidate-zero positive provider totals are unverified placeholders;
+   // repeated candidate identities can silently inflate a live margin.
+   if(r.total>0&&reported===0)return false;
+   const seen=new Set();
+   for(const c of r.cands){
+    const id=c.n.trim().toLocaleLowerCase('en-US');
+    if(seen.has(id))return false;
+    seen.add(id);
+   }
+  }
   if(r.total>0&&!r.cands.length)return false;
  }
  return true;
@@ -6175,6 +6192,41 @@ function enSnapshotCompatible(previous,next){
     !next.counting&&!Object.keys(next.races).length)return false;
  const oldTime=Date.parse(previous.as_of||''),newTime=Date.parse(next.as_of||'');
  if(Number.isFinite(oldTime)&&Number.isFinite(newTime)&&newTime<oldTime-1000)return false;
+ // A newer, superficially valid source response cannot silently delete or
+ // reassign previously counted votes. This protects BOTH foreground and
+ // background refresh, including a provider outage/reconnect on a laptop.
+ // Corrections need independent provenance review, not an unmarked rewrite.
+ if(previous.year===2026&&next.year===2026){
+  const counted=Object.entries(previous.races||{}).filter(([,r])=>r?.total>0);
+  if(counted.length){
+   if(!Number.isFinite(oldTime)||!Number.isFinite(newTime)||
+      newTime<oldTime)return false;
+   for(const [key,old] of counted){
+    const current=next.races?.[key];
+    if(!current||current.total<old.total)return false;
+    const byName=new Map();
+    for(const c of current.cands||[]){
+     const name=c.n.trim().toLocaleLowerCase('en-US');
+     if(byName.has(name))return false;
+     byName.set(name,c);
+    }
+    for(const c of old.cands||[]){
+     if(c.v<=0)continue;
+     const currentCandidate=byName.get(c.n.trim().toLocaleLowerCase('en-US'));
+     if(!currentCandidate||currentCandidate.p!==c.p||
+        currentCandidate.v<c.v)return false;
+    }
+    // A provider that changes counted data without advancing publication
+    // time has not established a fresh, auditable result revision.
+    if(newTime===oldTime&&
+       (current.total!==old.total||
+        (old.cands||[]).some(c=>{
+         const later=byName.get(c.n.trim().toLocaleLowerCase('en-US'));
+         return !later||later.v!==c.v||later.p!==c.p;
+        })))return false;
+   }
+  }
+ }
  return true;
 }
 function enAcceptSource(o){
