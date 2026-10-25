@@ -18,3 +18,36 @@ Neither observation verifies contents, county votes, professional calls, source 
 4. Only after multiple independent chronological holdouts and county-reporting-order calibration should geographic evidence affect 2026 model probabilities. **No shortcuts from final-only precinct data.**
 
 See `data/historical_2024_clock_source_candidates.json`; `scripts/historical_election_clock_replay.js` rejects unverified research rights and now requires original per-snapshot capture metadata. All public candidate rights flags remain false.
+
+## Independent Fairfax County primary-source PDF chronology lead (October 24, 2026)
+
+A potentially more usable **original election-authority** chronology exists in
+[Fairfax County's public election results archive](https://www.fairfaxcounty.gov/elections/node/175).
+Search-index evidence identifies county-issued 2024 **unofficial Election Night
+Results** PDFs from multiple clock times. These are **Fairfax County only**,
+not Virginia statewide or a representative sample of national precincts:
+
+- [004](https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/Documents/PDF/2024November_results_unofficial-004.pdf): November 5, 8:38 PM Eastern (search-index Election Summary excerpt; original document still needs inspection)
+- [008](https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/Documents/PDF/2024November_results_unofficial-008.pdf): November 5, 9:44 PM Eastern (search-index Election Summary excerpt; original document still needs inspection)
+- [011](https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/Documents/PDF/2024November_results_unofficial-011.pdf): November 5, 11:27 PM Eastern (search-index Election Summary excerpt; original document still needs inspection)
+- [012](https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/Documents/PDF/2024November_results_unofficial-012.pdf): November 6, 12:13 AM Eastern (**original PDF first Election Summary page visually inspected**)
+
+**Important source clock trap:** the 012 document contains sections printed at
+different times: the front Election Summary is 12:13 AM, while embedded
+early-voting-location tables display an earlier 7:12 PM generation time.
+Never assign a single PDF filename timestamp to every section, or confuse
+an Electionware report-generation time with verified independent HTTP
+capture/publication time. Likewise, an indexed text excerpt is not an
+independently verified original PDF vote record.
+
+The new `county_official_pdf_replay_lead` manifest records section timestamps,
+evidence levels and the original county URLs **without any vote data**.
+Its corresponding regression test requires unique chronological local section
+clocks and checks that all calibration/permission gates remain closed.
+
+Next: inspect the complete original numbered PDFs and per-section reports;
+validate same-contest sequential 2024 candidate arithmetic, use the official
+certified 2024 county outcome as an exact-race terminal benchmark, document
+original capture/publication timing and reuse rights, then quantify genuine
+reporting-order error. Even a clean **single-county** replay is only the
+beginning of multi-region calibration. It cannot yet change 2026 needle odds.
