@@ -8,6 +8,7 @@ No results or personal data are collected, cached, or redistributed.
 from __future__ import annotations
 
 import argparse
+from functools import lru_cache
 from datetime import datetime, timezone, timedelta
 import re
 import json
@@ -17,10 +18,41 @@ import time
 
 from test_live_results_source import fetch as fetch_primary
 from national_results_coverage_pulse import state_poll_closings, valid_candidates, _time
+from build_election_night_source_coverage import (
+    ROOT, PRIMARY_STATES, inventory as canonical_506_inventory
+)
 from check_election_night_pages_runtime import get_bytes, DEFAULT_SITE
 
 OFFICES = ("House", "Senate", "Governor")
 INDEX_MARKER = b"function enHousePinsReady()"
+
+
+@lru_cache(maxsize=1)
+def approved_primary_contests():
+    """Use the same 506-race ballot universe as the national coverage desk.
+
+    The primary results provider supports only 22 verified states. Do not
+    accept a numerically plausible district outside those states or a race
+    outside this year's contested Senate/governor or 435-House inventory.
+    Re-read the checked-in canonical source contracts rather than duplicating
+    a manual office list, then cache for a single 12-minute monitoring run.
+    """
+    universe = json.loads((ROOT / "data/seat_universe.json").read_text(encoding="utf-8"))
+    source = (ROOT / "scripts/election_night_reconciliation.js").read_text(
+        encoding="utf-8"
+    )
+    contests = canonical_506_inventory(universe, source)
+    if len(contests) != 506 or len(PRIMARY_STATES) != 22:
+        raise ValueError("Incomplete canonical 2026 primary result inventory")
+    result = {office: set() for office in OFFICES}
+    for office, key in contests:
+        if office not in result or not isinstance(key, str):
+            raise ValueError("Invalid canonical 506-race office or key")
+        if key[:2] in PRIMARY_STATES:
+            result[office].add(key)
+    if not all(result.values()):
+        raise ValueError("Missing exact races in primary result source scope")
+    return {office: frozenset(keys) for office, keys in result.items()}
 
 
 def probe_site(site=DEFAULT_SITE):
@@ -69,16 +101,16 @@ def validate_primary(doc, office, now=None):
     at = _time(stamp) if stamp else None
     if at is not None and at > now + timedelta(minutes=15):
         raise ValueError("Future source-stamped provider office")
-    patterns = {"House":r"[A-Z]{2}-\d{2}",
-                "Senate":r"[A-Z]{2}(?:-special)?",
-                "Governor":r"[A-Z]{2}"}
-    if office not in patterns:
+    if office not in OFFICES:
         raise ValueError("Unknown provider office")
+    # Exact office + ballot identity + supported 22-state scope, not merely
+    # a syntactically plausible TX-99, NC governor or out-of-scope NH House.
+    authorized = approved_primary_contests()[office]
     closes = state_poll_closings()
     positive = 0
     for seat,row in doc["races"].items():
         if (not isinstance(seat,str) or
-            re.fullmatch(patterns[office], seat) is None or
+            seat not in authorized or
             not isinstance(row,dict) or
             type(row.get("total")) is not int or row["total"] < 0 or
             row.get("called") is not False or row.get("winner")):
@@ -87,6 +119,8 @@ def validate_primary(doc, office, now=None):
             raise ValueError("Invalid primary candidate-level vote arithmetic")
         count=row["total"]
         if count > 0:
+            if doc.get("source") != "state":
+                raise ValueError("Positive primary provider result lacks state source identity")
             state=seat[:2]
             close=closes.get(state)
             if not close or not at or now < close or at < close:
