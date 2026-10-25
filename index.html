@@ -778,9 +778,10 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 
 <details class="joint-audit electorate-lab" id="electorateLabDetails">
  <summary><strong>🧪 Electorate Lab · What if the voter coalitions shift?</strong> <span class="tiny">Real JackStradamus model · hypothetical state shifts</span></summary>
- <p class="joint-note">Try a different electorate for one state. Specify the <strong>share of two-party voters</strong> in each group and how many points its Democratic-minus-Republican margin changes. The shares are <strong>your assumptions, not measured Census or turnout percentages</strong>. Groups must not overlap. Only that state's race priors change; the shared national model, candidates and covariance remain unchanged.</p>
+ <p class="joint-note">Try a different electorate for one state. Specify the <strong>share of two-party voters</strong> in each group and how many points its Democratic-minus-Republican margin changes. The shares are <strong>your assumptions, not measured Census or turnout percentages</strong>. Groups must not overlap. A regional scope applies the same hypothetical percentages to each selected state, not state-specific measured demographic shares. Only the selected states' race priors change; the shared national model, candidates and covariance remain unchanged.</p>
  <div class="electorate-lab-controls">
-  <label>State <select id="labState" aria-label="State for hypothetical voter shifts"><option value="MI">Michigan · MI</option></select></label>
+  <label>Scope <select id="labScope" aria-label="Apply hypothetical swing to selected state or state cluster"><option value="single">One state</option><option value="blue-wall">Blue Wall · MI, PA, WI</option><option value="sun-belt">Sun Belt · AZ, NV, TX</option></select></label>
+  <label>Individual state (one-state scope) <select id="labState" aria-label="State for hypothetical voter shifts"><option value="MI">Michigan · MI</option></select></label>
   <label>Non-college white voters · assumed share (%) <input id="labNoncollegeShare" type="number" min="0" max="100" step="1" value="0" inputmode="decimal"></label>
   <label>Non-college white voters · D−R margin change (pts) <input id="labNoncollegeShift" type="number" min="-40" max="40" step="1" value="5" inputmode="decimal"></label>
   <label>Hispanic voters · assumed share (%) <input id="labHispanicShare" type="number" min="0" max="100" step="1" value="0" inputmode="decimal"></label>
@@ -4557,7 +4558,10 @@ function labRender(){
  }
  labPopulateStates();
  const val=id=>$('#'+id)?.valueAsNumber;
- const assumptions={state:$('#labState').value,groups:[
+ const bundle=$('#labScope')?.value;
+ const states=bundle==='blue-wall'?['MI','PA','WI']:
+  bundle==='sun-belt'?['AZ','NV','TX']:[$('#labState').value];
+ const assumptions={state:states[0],states,groups:[
   {share_pct:val('labNoncollegeShare'),margin_change_points:val('labNoncollegeShift')},
   {share_pct:val('labHispanicShare'),margin_change_points:val('labHispanicShift')}
  ]};
@@ -4572,7 +4576,8 @@ function labRender(){
  }
  const swing=(result.state_margin_shift_points>=0?'+':'')+
   result.state_margin_shift_points.toFixed(2);
- status.textContent='Conditional '+result.state+' D−R shift '+swing+
+ const scope=result.states.join(' / ');
+ status.textContent='Conditional '+scope+' D−R shift '+swing+
   ' pts · 2,000 matched correlated simulation draws · headline forecast unchanged';
  const wrap=document.createElement('div');
  wrap.className='electorate-lab-result-grid';
@@ -4596,7 +4601,7 @@ function labRender(){
  }
  host.append(wrap);
  const caption=document.createElement('p');caption.className='joint-note';
- caption.textContent='All '+result.affected_races.length+' '+result.state+
+ caption.textContent='All '+result.affected_races.length+' '+scope+
   ' 2026 ballot races · hypothetical Democratic win odds (same random draws)';
  host.append(caption);
  const table=document.createElement('table');
@@ -4623,6 +4628,7 @@ $('#electorateLabDetails')?.addEventListener('toggle',event=>{
 $('#labRun')?.addEventListener('click',labRender);
 $('#labDemo')?.addEventListener('click',()=>{
  // Explicitly fictional example, never stored as verified state turnout.
+ $('#labScope').value='blue-wall';
  $('#labState').value='MI';
  $('#labNoncollegeShare').value='30';
  $('#labNoncollegeShift').value='6';
@@ -4631,6 +4637,7 @@ $('#labDemo')?.addEventListener('click',()=>{
  labRender();
 });
 $('#labReset')?.addEventListener('click',()=>{
+ $('#labScope').value='single';
  for(const id of ['labNoncollegeShare','labHispanicShare'])$('#'+id).value='0';
  for(const id of ['labNoncollegeShift','labHispanicShift'])$('#'+id).value='5';
  const status=$('#labStatus');
