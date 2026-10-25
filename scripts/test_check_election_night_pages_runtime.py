@@ -26,12 +26,15 @@ class PagesDeploymentTests(unittest.TestCase):
             self.pins if pins is None else pins,
             self.coverage if coverage is None else coverage,
             self.assets if assets is None else assets,
-            self.pins, self.now if now is None else now)
+            self.pins, self.now if now is None else now,
+            local_assets=self.assets, local_index=self.index)
 
     def test_real_checked_in_assets_and_identity_inventory(self):
         result = self.verify()
         self.assertEqual(result["status"], "DEPLOYED_PAGES_ENTRYPOINT_VERIFIED")
-        self.assertEqual(result["script_versions_checked"], 6)
+        self.assertEqual(result["script_versions_checked"], 10)
+        self.assertTrue(result["checked_out_release_asset_parity"])
+        self.assertTrue(result["checked_out_release_html_parity"])
         self.assertEqual(result["strict_statewide_2026_pins_verified"], 3)
         self.assertEqual(result["races_in_deployed_source_ledger"], 506)
         self.assertGreater(result["verified_house_id_hints"], 100)
@@ -86,6 +89,25 @@ class PagesDeploymentTests(unittest.TestCase):
         bad["civicapi_state_batch.js"] += b"\n// outdated supplemental source adapter\n"
         with self.assertRaisesRegex(ValueError, "blob/version mismatch"):
             self.verify(assets=bad)
+
+    def test_self_consistent_old_page_and_old_js_cannot_appear_current(self):
+        name="election_night_reconciliation.js"
+        current=self.assets[name]
+        old=current+b"\n// stale but internally version-matched\n"
+        old_index=self.index.replace(
+            (name+"?v="+git_revision(current)).encode(),
+            (name+"?v="+git_revision(old)).encode())
+        self.assertNotEqual(old_index,self.index)
+        with self.assertRaisesRegex(
+            ValueError,"Deployed asset differs from checked-out main"):
+            self.verify(index=old_index,assets=dict(self.assets,**{name:old}))
+
+    def test_stale_inline_only_html_fails_release_parity(self):
+        old=self.index.replace(b"</title>",b" OUTDATED</title>",1)
+        self.assertNotEqual(old,self.index)
+        with self.assertRaisesRegex(
+            ValueError,"Deployed dashboard HTML differs from checked-out main"):
+            self.verify(index=old)
 
     def test_stale_manifest_rejected_by_real_browser_after_48_hours(self):
         with self.assertRaisesRegex(ValueError, "expire in the real browser"):
