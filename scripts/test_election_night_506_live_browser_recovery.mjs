@@ -117,8 +117,16 @@ try{
    const validLinks=otherMachineGaps.filter(row=>manualBackstops.some(link=>
     Array.isArray(link.race_ids)&&link.race_ids.includes(row.id)&&
     /^https:\/\//.test(link.url))).length;
-   assert.equal(await other.locator('a[href^="https://"]').count(),validLinks,
-    device+': Only curated official manual links may accompany missing machine source IDs');
+   const community=manualBackstops.find(x=>x.state==='NH')?.community_unofficial_check;
+   const expectedNHCommunity=community?.url==='https://nhelectionresults.org/results'&&
+     community.scope==='NH_LOCAL_VOLUNTEER_UNOFFICIAL_NOT_STATE_CERTIFIED'?
+     otherMachineGaps.filter(x=>['House|NH-01','House|NH-02'].includes(x.id)).length:0;
+   assert.equal(await other.locator('a[href^="https://"]').count(),
+    validLinks+expectedNHCommunity,
+    device+': Audited NH volunteer links must remain distinct from official machine source IDs');
+   assert.equal(await other.locator('a[href="https://nhelectionresults.org/results"]').count(),
+    expectedNHCommunity,
+    device+': NH congressional town-report viewer is a visible human-only fallback');
   }
   assert(['House','Senate','Governor'].every(x=>providers.includes(x)),
    device+': All three office sources should have been attempted');
