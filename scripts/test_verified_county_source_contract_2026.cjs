@@ -59,6 +59,36 @@ assert.equal(normalize({...feed,counties:[{...county,
  updated_at:'2026-11-04T03:35:01Z'}]},expected,agedNow+1000).ok,true,
  'Newly timestamped official county result restores eligibility');
 
+// Source-contract must enforce its own race/office combination, even
+// when a caller provides a mutually agreeing but nonsensical expectation.
+for(const wrong of [
+ [{...feed,office:'Governor'}, {...expected,office:'Governor'}],
+ [{...feed,race_key:'NC-GOV'}, {...expected,race_key:'NC-GOV'}],
+ [{...feed,race_key:'VA-SEN'}, {...expected,race_key:'VA-SEN'}]
+])assert.equal(normalize(wrong[0],wrong[1],at).reason,
+ 'SOURCE_CONTRACT_UNVERIFIED');
+const blankPositive={...feed,counties:[{...county,candidates:[
+ {name:'A',party:'D',votes:0},{name:'B',party:'R',votes:0}]}]};
+assert.equal(normalize(blankPositive,expected,at).reason,
+ 'NO_ATTRIBUTABLE_CANDIDATE_VOTES',
+ 'A positive aggregate with no candidate votes must fail at ingestion');
+for(const names of [
+ [{name:' Candidate A ',party:'D',votes:60},
+  {name:'candidate a',party:'R',votes:40}],
+ [{name:'Candidate A',party:'D',votes:60},
+  {name:'CANDIDATE A ',party:'R',votes:40}]
+]){
+ assert.equal(normalize({...feed,counties:[{...county,candidates:names}]},
+ expected,at).reason,'INVALID_CANDIDATE_TOTALS',
+ 'Candidate identities must be trimmed before duplicate comparison');
+}
+for(const updated_at of [
+ '2026-11-04T00:35:00','2026-11-04 00:35:00Z',
+ '2026-11-04T00:35:00Z-untrusted'
+]){
+ assert.equal(normalize({...feed,counties:[{...county,updated_at}]},
+ expected,at).ok,false,'Reject ambiguous provider timestamp encoding');
+}
 // In the real index, this adapter is evaluated BEFORE poll-closing.js.
 // First fail closed; then use the newly loaded contract without a reload.
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');

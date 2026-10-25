@@ -32,6 +32,13 @@
     // must not pass simply because its caller agrees with itself.
     fips.PREFIX[expected.state]!==expected.state_fips||
     envelope.office!==expected.office||
+    // Caller and source cannot mutually claim a nonsensical state/race/office.
+    typeof expected.race_key!=='string'||
+    expected.race_key.slice(0,2)!==expected.state||
+    !((expected.office==='Senate'&&expected.race_key===expected.state+'-SEN')||
+      (expected.office==='Governor'&&expected.race_key===expected.state+'-GOV')||
+      (expected.office==='House'&&
+       /^[A-Z]{2}-\d{2}$/.test(expected.race_key)))||
     envelope.source_verified!==true||!acceptedUrl(envelope.source_url)||
     envelope.source_url!==expected.source_url||
     !Array.isArray(envelope.counties)||!envelope.counties.length||
@@ -45,8 +52,9 @@
       !Array.isArray(county.candidates)||county.candidates.length<2||
       county.candidates.length>20||
       !['partial','final'].includes(county.reporting_status)||
-      !Number.isFinite(Date.parse(county.updated_at||''))||
-      !/^2026-11-(?:0[3-9]|[12][0-9]|30)T/.test(county.updated_at||''))
+      typeof county.updated_at!=='string'||
+      !/^2026-11-(?:0[3-9]|[12][0-9]|30)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d{1,3})?(?:Z|[+-](?:0\d|1[0-4]):[0-5]\d)$/.test(county.updated_at)||
+      !Number.isFinite(Date.parse(county.updated_at)))
       return {ok:false,reason:'INVALID_COUNTY_OBSERVATION'};
    // Never accept future county snapshots or count a pre-close test archive
    // as 2026 returns. The same 50-state poll-close contract is used by the
@@ -68,13 +76,17 @@
    for(const c of county.candidates){
     if(!c||typeof c.name!=='string'||!c.name.trim()||
        typeof c.party!=='string'||!c.party.trim()||
-       !validInt(c.votes)||names.has(c.name.toLowerCase()))
+       !validInt(c.votes)||
+       names.has(c.name.trim().toLocaleLowerCase('en-US')))
       return {ok:false,reason:'INVALID_CANDIDATE_TOTALS'};
-    names.add(c.name.toLowerCase());total+=c.votes;
+    names.add(c.name.trim().toLocaleLowerCase('en-US'));total+=c.votes;
     candidates.push({name:c.name,party:c.party,votes:c.votes});
    }
    if(!Number.isSafeInteger(total)||total>county.ballots_reported)
     return {ok:false,reason:'VOTES_EXCEED_BALLOTS'};
+   // No county returns are observed when every listed candidate has zero.
+   if(county.ballots_reported>0&&total===0)
+    return {ok:false,reason:'NO_ATTRIBUTABLE_CANDIDATE_VOTES'};
    seen.add(county.fips);
    rows.push({election_date:'2026-11-03',election_type:'General',
     verified_source:true,is_test:false,provider:envelope.provider,
