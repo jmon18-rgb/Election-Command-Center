@@ -36,7 +36,8 @@ jobs:
           node --check scripts/election_night_browser_soak_acceptance.cjs
           node scripts/test_monitor_election_night_browser_soak.cjs
   actual-browser:
-    if: github.event_name != 'pull_request'
+    # A short real public-site test on every soak-runner PR catches refresh
+    # regressions before the scheduled 15/120-minute November rehearsals.
     needs: offline-contract
     runs-on: ubuntu-24.04
     timeout-minutes: 195
@@ -58,7 +59,9 @@ jobs:
           if [ "$EVENT_NAME" = schedule ] && [ "$stamp" != 20261102 ] && [ "$stamp" != 20261104 ]; then
             echo 'Scheduled rehearsal is outside the 2026 general-election window'; exit 0
           fi
-          if [ "$EVENT_NAME" = schedule ] && [ "$stamp" = 20261104 ]; then
+          if [ "$EVENT_NAME" = pull_request ]; then
+            minutes=5
+          elif [ "$EVENT_NAME" = schedule ] && [ "$stamp" = 20261104 ]; then
             minutes=120
           elif [ "$EVENT_NAME" = schedule ]; then
             minutes=15
