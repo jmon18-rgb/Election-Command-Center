@@ -49,6 +49,23 @@ def shape(payload, state: str, *, now: dt.datetime | None = None) -> dict:
         raise ValueError("Probe time must have timezone")
     if not isinstance(payload, (dict, list)):
         return {"status": "UNSUPPORTED_RESPONSE_SHAPE", "row_count": 0, "row_keys": []}
+    # Real Oct 25 runner observations showed a state/results/resultsFrom
+    # response instead of an array. This is a published future start marker,
+    # not 2026 returns, an approved result provider, or a live vote record.
+    if isinstance(payload, dict) and payload.get("state") == state and (
+            payload.get("results") is None or payload.get("results") == {}):
+        expected = payload.get("resultsFrom")
+        if isinstance(expected, str):
+            try:
+                begins = dt.datetime.fromisoformat(expected.replace("Z", "+00:00"))
+                if (begins.tzinfo is not None and
+                        begins >= dt.datetime(2026, 11, 3, 21, tzinfo=dt.timezone.utc)
+                        and begins > now):
+                    return {"status": "PROVIDER_PUBLISHED_FUTURE_2026_START_NO_RESULTS",
+                            "row_count": 0, "row_keys": ["state", "results", "resultsFrom"],
+                            "results_from": expected}
+            except ValueError:
+                pass
     # Provider documentation describes an empty list before Nov 3, but does
     # not warrant the outer wrapper's JSON field name or raceId structure.
     rows = payload if isinstance(payload, list) else None
