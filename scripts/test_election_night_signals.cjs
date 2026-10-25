@@ -11,6 +11,30 @@ const mk=(office,key,winner,party,opponent='Republican Candidate',oppParty='R')=
 });
 const r={};
 const find=(id,year=2026,now=at)=>signals.evaluateMilestones(r,{year,now}).find(x=>x.id===id);
+// Independent owner-requested celebrations must never borrow another race's
+// call, candidate identity, or cached winner after withdrawal.
+const candidateRows={};
+const earned=id=>signals.evaluateMilestones(candidateRows,{now:at}).find(x=>x.id===id).state;
+candidateRows['Senate|TX']=mk('Senate','TX','James Talarico','D','Ken Paxton');
+assert.equal(earned('talarico'),'earned');
+assert.equal(earned('abbott'),'waiting','A Senate win cannot defeat the governor');
+assert.equal(earned('blexas'),'warming','Two-race bonus still needs both calls');
+candidateRows['Senate|TX'].called='Another Democrat';
+candidateRows['Senate|TX'].candidates[0].name='Another Democrat';
+assert.equal(earned('talarico'),'waiting','Named Talarico scene needs Talarico himself');
+delete candidateRows['Senate|TX'];
+candidateRows['Governor|TX']=mk('Governor','TX','Gina Hinojosa','D','Greg Abbott');
+assert.equal(earned('abbott'),'earned','Governor celebration does not need Senate');
+assert.equal(earned('talarico'),'waiting');
+candidateRows['Governor|TX'].candidates[1].name='Another Republican';
+assert.equal(earned('abbott'),'waiting','Abbott defeat needs the matching opponent');
+candidateRows['Governor|TX'].candidates[1].name='Greg Abbott';
+candidateRows['Governor|TX'].called=null;
+assert.equal(earned('abbott'),'waiting','Retracted governor call revokes earned scene');
+candidateRows['Senate|MS']=mk('Senate','MS','Scott Colom','D','Cindy Hyde-Smith');
+assert.equal(earned('mississippi'),'earned');
+candidateRows['Senate|MS'].last_updated='2024-11-04T02:00:00Z';
+assert.equal(earned('mississippi'),'waiting','Historical Mississippi results cannot earn a 2026 scene');
 assert(signals.TRACKED.length>=9);
 assert.equal(signals.evaluateMilestones(r,{year:2024,now:at}).every(x=>x.state==='waiting'),true);
 r['Senate|TX']=mk('Senate','TX','Democrat Senate','D');

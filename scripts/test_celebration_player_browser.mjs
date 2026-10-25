@@ -27,7 +27,7 @@ try{
   await page.locator('#enMilestoneGrid .en-milestone-card').first().waitFor();
   // Keep media pending so the test can explicitly exercise ended/error/rejection.
   await page.evaluate(()=>{document.querySelector('#enCelebrationAnnouncement').play=()=>Promise.resolve();});
-  for(const id of ['graham','blexas','blue_corn','blansas','maine','nebraska','ohio','tsunami']){
+  for(const id of ['graham','blexas','blue_corn','blansas','maine','nebraska','ohio','talarico','abbott','mississippi','tsunami']){
    await page.evaluate(id=>enMilestoneShow({id,title:id,tag:id,description:'Synthetic preview'},true),id);
    assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'announcement');
    assert.equal(await page.locator('#enCelebrationFish').isHidden(),false);
@@ -37,6 +37,12 @@ try{
    assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'complete');
    assert.equal(await page.evaluate(()=>enCelebrationPlayer.state().active),null);
    assert.match(await page.locator('#enMilestoneKicker').innerText(),/PREVIEW/);
+   if(['talarico','abbott','mississippi'].includes(id)){
+    await page.locator('#enMilestonePoster').scrollIntoViewIfNeeded();
+    await page.locator('#enMilestonePoster').evaluate(img=>img.decode());
+    mkdirSync(resolve(root,'artifacts/readiness'),{recursive:true});
+    await page.locator('#enMilestonePoster').screenshot({path:resolve(root,`artifacts/readiness/celebration-${id}-${width}.png`)});
+   }
   }
   await page.evaluate(()=>{document.querySelector('#enCelebrationAnnouncement').play=()=>Promise.reject(new Error('Synthetic autoplay rejection'));enMilestoneShow({id:'blansas',title:'Kansas'},true)});
   await page.waitForFunction(()=>document.querySelector('#enCelebrationStage').dataset.phase==='scene');

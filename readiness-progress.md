@@ -72,3 +72,24 @@ Last daily report date: 2026-10-25 (evening continuation report).
   Preserve independent candidate/race triggers and explicit Nebraska caucus status.
 - Needle data/calibration decision remains targeted for October 27; no new
   geographic predictive calibration or live 2026 vote delivery is claimed.
+
+## October 25 — second continuation: independent candidate celebrations
+
+- Added separate James Talarico Senate and Abbott-defeat governor conditions;
+  neither depends on the other. Existing two-call BLEXAS remains a separate bonus.
+  Added Mississippi Senate to the tracked celebration roster. Candidate/opponent,
+  race, stale-year and call-withdrawal unit tests pass.
+- Added original local SVG blue-horns, concession-parade and retired-mascot/crate
+  artwork, with 11 total preview stories including preview-only Tsunami.
+  Actual Edge 1440px/390px preview checks pass; all three new mobile poster
+  screenshots were visually inspected. All 12 core readiness checks pass.
+- The previous full local DOM run failed on a test assuming Nov 4 UTC while the
+  browser displayed Nov 3 Eastern for the same instant. Replaced the hardcoded
+  calendar-day assertion with the expected source timestamp formatted in the
+  actual browser timezone. Full rerun is in session 15416; inspect its outcome
+  before calling the local full suite green. This changes the test, not source
+  timestamp handling in production.
+- NEEDLE_DELIVERY_DECISION.md records the scoped NC path and concrete data gaps.
+  Existing Fairfax paired-office research audit passed with three shared verified
+  section checkpoints, but zero approved predictive inputs. No new PDF inspection
+  or predictive calibration is claimed; web retrieval attempts were inaccessible.
