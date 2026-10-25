@@ -80,7 +80,7 @@ class ArchivedElection2024ResearchLeadTests(unittest.TestCase):
         self.assertEqual(len(lead["reports"]),4)
         snapshots=[]
         for row in lead["reports"]:
-            self.assertRegex(row["file"],r"^2024November_results_unofficial-0(?:04|08|11|12)\\.pdf$")
+            self.assertRegex(row["file"],r"^2024November_results_unofficial-0(?:04|08|11|12)\.pdf$")
             url=urlsplit(row["url"])
             self.assertEqual(url.scheme,"https")
             self.assertEqual(url.hostname,"www.fairfaxcounty.gov")
