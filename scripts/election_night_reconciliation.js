@@ -21,19 +21,40 @@
  const PRIMARY_STATES=new Set(["AR","AZ","CO","CT","FL","GA","IA","ID","IN","LA","MI","MN","NC","PA","RI","SC","TX","UT","VA","VT","WA","WV"]);
  const HOUSE_SEATS=Object.freeze({"AK":1,"AL":7,"AR":4,"AZ":9,"CA":52,"CO":8,"CT":5,"DE":1,"FL":28,"GA":14,"HI":2,"IA":4,"ID":2,"IL":17,"IN":9,"KS":4,"KY":6,"LA":6,"MA":9,"MD":8,"ME":2,"MI":13,"MN":8,"MO":8,"MS":4,"MT":2,"NC":14,"ND":1,"NE":3,"NH":2,"NJ":12,"NM":3,"NV":4,"NY":26,"OH":15,"OK":5,"OR":6,"PA":17,"RI":2,"SC":7,"SD":1,"TN":9,"TX":38,"UT":4,"VA":11,"VT":1,"WA":10,"WI":8,"WV":2,"WY":1});
  const SENATE_BALLOTS=new Set(["AK","AL","AR","CO","DE","FL-special","GA","IA","ID","IL","KS","KY","LA","MA","ME","MI","MN","MS","MT","NC","NE","NH","NJ","NM","OH-special","OK","OR","RI","SC","SD","TN","TX","VA","WV","WY"]);
- const validPrimaryScope=(office,key)=>{
-  if(typeof key!=='string'||!PRIMARY_STATES.has(key.slice(0,2)))return false;
+ const validBallotRace=(office,key)=>{
+  if(typeof key!=='string')return false;
   if(office==='House'){
-   const count=HOUSE_SEATS[key.slice(0,2)];
-   const n=key.slice(3);
-   return Number.isInteger(count)&&
-    /^[A-Z]{2}-\d{2}$/.test(key)&&
-    (count===1?n==='00':Number(n)>=1&&Number(n)<=count&&n!=='00');
+   const n=HOUSE_SEATS[key.slice(0,2)],district=key.slice(3);
+   return Number.isInteger(n)&&/^[A-Z]{2}-\d{2}$/.test(key)&&
+    (n===1?district==='00':district!=='00'&&
+      Number(district)>=1&&Number(district)<=n);
   }
   if(office==='Senate')return SENATE_BALLOTS.has(key);
   if(office==='Governor')return GOVERNOR_STATES.includes(key);
   return false;
  };
+ // County source race codes name the OFFICE ("NC-SEN", "TX-GOV")
+ // rather than the national 506-coverage composite key ("NC", "TX").
+ // Special Senate races are still independently their exact ballot seats.
+ const validCountyBallotRace=(office,raceCode,electionKind=null)=>{
+  if(typeof raceCode!=='string'||
+     !/^[A-Z]{2}-(?:SEN|GOV|\d{2})$/.test(raceCode))return false;
+  const state=raceCode.slice(0,2);
+  let key,kind='regular';
+  if(office==='House'&&/^[A-Z]{2}-\d{2}$/.test(raceCode))
+   key=raceCode;
+  else if(office==='Governor'&&raceCode===state+'-GOV')
+   key=state;
+  else if(office==='Senate'&&raceCode===state+'-SEN'){
+   kind=['FL','OH'].includes(state)?'special':'regular';
+   key=state+(kind==='special'?'-special':'');
+  }else return false;
+  return (electionKind===null||electionKind===kind)&&
+   validBallotRace(office,key);
+ };
+ const validPrimaryScope=(office,key)=>
+  typeof key==='string'&&PRIMARY_STATES.has(key.slice(0,2))&&
+  validBallotRace(office,key);
 
  // Provider source timestamps must be *post* the first nationwide close.
  // NC/OH have independently verified 7:30 PM ET Nov 3 poll close times.
@@ -292,5 +313,6 @@
   });
  }
  return Object.freeze({START,THREE_HOURS,houseIds,senateIds,governorIds,validPrimaryScope,
+  validBallotRace,validCountyBallotRace,
   officeHealth,reconcile});
 });
