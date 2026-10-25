@@ -5521,12 +5521,11 @@ const enCelebrationPlayer=window.ElectionNightCelebrationPlayer?.create({
   $('#enCelebrationLine').textContent=scene?.[1]||'BREAKING NEWS';
   $('#enCelebrationCaption').textContent=scene?.[2]||
    (enFishSoundEnabled?'Fish Head announcement · animation follows':'Sound off · animation follows');
-  if(phase==='scene'&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  if(phase==='scene'){
    const icon=$('#enCelebrationIcon');
-   for(const animation of icon.getAnimations?.()||[])animation.cancel();
-   icon.animate?.([{transform:'translateY(30px) scale(.7)',opacity:0},
-    {transform:'translateY(0) scale(1.08)',opacity:1},{transform:'rotate(-4deg) scale(1)',opacity:1}],
-    {duration:2000,easing:'ease-out',fill:'both'});
+   // Restart the CSS beat for each scene; the media query also stops an
+   // in-flight beat if the viewer enables reduced motion during playback.
+   icon.style.animation='none';void icon.offsetWidth;icon.style.animation='';
   }
  },
  onIdle:()=>{if(enFishPending.length&&!enFishCurrent)enFishNextBulletin()}

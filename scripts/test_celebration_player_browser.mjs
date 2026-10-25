@@ -44,6 +44,12 @@ try{
     await page.locator('#enMilestonePoster').screenshot({path:resolve(root,`artifacts/readiness/celebration-${id}-${width}.png`)});
    }
   }
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  await page.evaluate(()=>{enMilestoneShow({id:'graham',title:'Motion preview'},true);document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended'))});
+  assert(await page.locator('#enCelebrationIcon').evaluate(el=>el.getAnimations().length>0),'A scene actually animates when motion is enabled');
+  assert(await page.evaluate(()=>enCelebrationNotes.length>0),'Original musical notes are scheduled after announcement completion');
+  await page.emulateMedia({reducedMotion:'reduce'});
+  assert.equal(await page.locator('#enCelebrationIcon').evaluate(el=>el.getAnimations().length),0,'Changing reduced-motion preference stops the current beat');
   await page.evaluate(()=>{document.querySelector('#enCelebrationAnnouncement').play=()=>Promise.reject(new Error('Synthetic autoplay rejection'));enMilestoneShow({id:'blansas',title:'Kansas'},true)});
   await page.waitForFunction(()=>document.querySelector('#enCelebrationStage').dataset.phase==='scene');
   await page.locator('#enCelebrationSound').click();
