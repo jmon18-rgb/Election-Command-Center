@@ -59,3 +59,13 @@ jobs:
       - name: National results failure and recovery
         if: ${{ !cancelled() }}
         run: node scripts/test_election_night_506_live_browser_recovery.mjs
+      - name: Celebration announcement and animation mechanics on desktop and mobile
+        if: ${{ !cancelled() }}
+        run: node scripts/test_celebration_player_browser.mjs
+      - name: Upload celebration browser screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: celebration-browser-previews
+          path: artifacts/readiness/celebration-*.png
+          if-no-files-found: warn

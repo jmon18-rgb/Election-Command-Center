@@ -136,6 +136,7 @@ async function settle(){
  w.eval(read('scripts/election_night_priority.js'));
  assert(w.AutomaticRaceDesk?.SEED.length>75,'Automatic Silver-reference race registry must load');
  w.eval(read('scripts/election_night_signals.js'));
+ w.eval(read('scripts/election_night_celebration_player.js'));
  assert.equal(w.ElectionNightSignals?.MILESTONES.length,7);
  w.eval(read('scripts/election_night_poll_closings_2026.js'));
  assert(w.ElectionNightPollClosings2026?.allowed,
@@ -692,19 +693,20 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
   details:'Reported vote leader changed; no winner called'};
  const thirdUpdate={kind:'revision',source:'Open America',title:'OH-SEN revised',
   details:'Candidate totals corrected'};
+ const beforeBulletinPlays=fishAudioPlays;
  assert.equal(w.eval('enFishShow('+JSON.stringify(firstUpdate)+',false)'),true,
   'First vote bulletin must qualify for Fish Head interruption');
  assert.match(get('#enFishMode').textContent,/FIRST VOTES/);
- assert.equal(fishAudioPlays,3);
+ assert.equal(fishAudioPlays,beforeBulletinPlays+1);
  assert.equal(w.eval('enFishShow('+JSON.stringify(nextUpdate)+',false)'),true);
  assert.equal(w.eval('enFishShow('+JSON.stringify(thirdUpdate)+',false)'),true);
- assert.equal(fishAudioPlays,3,'Pending updates should not cut the first audio off');
+ assert.equal(fishAudioPlays,beforeBulletinPlays+1,'Pending updates should not cut the first audio off');
  assert.equal(w.eval('enFishQueueState().pending'),2);
  w.eval('enFishNextBulletin()');
- assert.equal(fishAudioPlays,4,'Second alert must replay the MP3 once the first is done');
+ assert.equal(fishAudioPlays,beforeBulletinPlays+2,'Second alert must replay the MP3 once the first is done');
  assert.match(get('#enFishHeadline').textContent,/NC-SEN/);
  w.eval('enFishNextBulletin()');
- assert.equal(fishAudioPlays,5,'Third alert must get its own original MP3 intro');
+ assert.equal(fishAudioPlays,beforeBulletinPlays+3,'Third alert must get its own original MP3 intro');
  assert.match(get('#enFishHeadline').textContent,/OH-SEN/);
  get('#enFishDismiss').click();
  assert.equal(w.eval('enFishQueueState().pending'),0,'Dismiss clears pending popups');
