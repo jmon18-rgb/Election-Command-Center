@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-25T13:43:26.146227+00:00",
+  "updated_at": "2026-10-25T14:10:33.793377+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 822,
+      "available_in_source": 823,
       "records_examined": 300
     },
     "house": {
@@ -18,9 +18,38 @@
     }
   },
   "matched_primary_observations": 312,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "ME-SEN",
+      "poll_id": "d5992a57-6957-4dd3-931e-75be420bd943"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "ME-SEN",
+      "race_type": "senate",
+      "state": "ME",
+      "poll_id": "d5992a57-6957-4dd3-931e-75be420bd943",
+      "question_id": "0d156514-e62f-4616-8a22-f23d59463ac4",
+      "pollster": "Trafalgar Group",
+      "dem_name": "Troy Jackson",
+      "rep_name": "Susan Collins",
+      "dem": 46.5,
+      "rep": 47.0,
+      "margin": -0.5,
+      "field_end": "2026-10-23",
+      "field_start": "2026-10-21",
+      "posted_date": "2026-10-25",
+      "posted_source_datetime": "2026-10-25T09:43:00",
+      "posted_source_time": "10/25/26 09:43",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.thetrafalgargroup.org/news/me-senate-gen-1025/",
+      "sample_population": "lv",
+      "sample_size": 1077,
+      "partisan_lean": "R",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "PA-10",
       "race_type": "house",
