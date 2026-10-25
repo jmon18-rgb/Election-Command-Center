@@ -27,6 +27,60 @@ function results(extra={}){
 const res=results();
 const state={House:'reporting',Senate:'reporting',Governor:'current_no_votes'};
 const pulse=api.build(ledger,res,state,now);
+// Allocate source-research effort from the EXISTING linked joint model,
+// never by assuming party winners or turning a forecast into a vote.
+const modelForAttention=[
+ {office:'house',race_code:'AK-01',dem_beats_rep_pct:48,rep_beats_dem_pct:52},
+ {office:'house',race_code:'NH-01',dem_beats_rep_pct:61,rep_beats_dem_pct:39},
+ {office:'house',race_code:'NH-02',dem_beats_rep_pct:88,rep_beats_dem_pct:12},
+ {office:'house',race_code:'DE-01',dem_beats_rep_pct:98,rep_beats_dem_pct:2},
+ {office:'house',race_code:'ND-01',dem_beats_rep_pct:1,rep_beats_dem_pct:99},
+ {office:'house',race_code:'SD-01',dem_beats_rep_pct:7,rep_beats_dem_pct:93},
+ {office:'house',race_code:'WY-01',dem_beats_rep_pct:0.1,rep_beats_dem_pct:99.9},
+ {office:'senate',race_code:'MA-SEN',dem_beats_rep_pct:96,rep_beats_dem_pct:4},
+];
+const policy=api.build(ledger,res,state,now,{},modelForAttention);
+assert.equal(policy.gapAttention.races.length,8);
+assert.equal(policy.gapAttention.active,3,
+ 'Missing NH House districts and AK ballot remain active at sub-90 odds in fixture');
+assert.equal(policy.gapAttention.lightChecks,5);
+assert.equal(policy.gapAttention.needsOdds,0);
+assert.deepEqual(policy.gapAttention.races.slice(0,3).map(x=>x.id),
+ ['House|AK-00','House|NH-01','House|NH-02']);
+assert.equal(policy.gapAttention.races.find(x=>x.id==='House|DE-00').mode,
+ 'LIGHT_MANUAL_CHECK','Only a LINKED model can permit the manual-check category');
+assert.equal(policy.gapAttention.races.find(x=>x.id==='Senate|MA').mode,
+ 'LIGHT_MANUAL_CHECK');
+assert.equal(policy.totals.House.reported,1);
+assert.equal(policy.professional_calls_verified,0);
+assert.equal(policy.may_update_model,false);
+const noModel=api.build(ledger,res,state,now,{},[]);
+assert.equal(noModel.gapAttention.needsOdds,8,
+ 'No linked probabilities means unknown, not eight allegedly safe seats');
+assert.equal(noModel.gapAttention.lightChecks,0);
+const onlyDem=api.priorityGaps([{office:'House',id:'House|DE-00'}],[
+ {office:'house',race_code:'DE-01',dem_beats_rep_pct:99}]);
+assert.equal(onlyDem.needsOdds,1,
+ 'Missing other-party probability cannot identify a safe source gap');
+const badDraw=api.priorityGaps([{office:'Senate',id:'Senate|MA'}],[
+ {office:'senate',race_code:'MA-SEN',dem_beats_rep_pct:99,
+  rep_beats_dem_pct:16}]);
+assert.equal(badDraw.needsOdds,1,
+ 'Inconsistent model draw cannot turn uncertain evidence into safe outcome');
+const independent=api.priorityGaps([{office:'Senate',id:'Senate|NE'}],[
+ {office:'senate',race_code:'NE-SEN',dem_beats_rep_pct:92,
+  rep_beats_dem_pct:3}]);
+assert.equal(independent.needsOdds,1,
+ 'Independent/third party outcomes cannot be mislabeled two-party safe');
+const threshold=api.priorityGaps([
+ {office:'House',id:'House|DE-00'},{office:'House',id:'House|AK-00'}],[
+ {office:'house',race_code:'DE-01',dem_beats_rep_pct:90,rep_beats_dem_pct:10},
+ {office:'house',race_code:'AK-01',dem_beats_rep_pct:89.9,rep_beats_dem_pct:10.1}]);
+assert.equal(threshold.lightChecks,1);
+assert.equal(threshold.active,1);
+assert.equal(policy.unverifiedMachineIds.length,noModel.unverifiedMachineIds.length,
+ 'Editorial deprioritization is NEVER deleting a live-results gap');
+
 // Election-night exact source-ID audits should be refreshed within six hours.
 // A stale registry must never invalidate independent 2026 vote evidence.
 const freshLedger={...ledger,generated_at:new Date(now-60*60000).toISOString()};
@@ -161,7 +215,17 @@ const host=node('div');
 const official=JSON.parse(fs.readFileSync(path.join(ROOT,
  'data/election_night_official_backstops.json')));
 assert.equal(api.render(host,pulse,{createElement:node},official.links),true);
+const expectedHost=node('div');
+assert.equal(api.render(expectedHost,policy,{createElement:node},official.links),true);
 const flatten=x=>[x.textContent,...x.children.flatMap(flatten)].join(' ');
+const riskText=flatten(expectedHost);
+assert.match(riskText,/Active live-source search: 3/);
+assert.match(riskText,/Lightweight manual check: 5/);
+assert.match(riskText,/House AK-00 — LIVE SOURCE PRIORITY/);
+assert.match(riskText,/Senate MA — LIGHT CHECK/);
+assert.match(riskText,/forecast only; no verified votes or race call/);
+assert.match(riskText,/Manual official page/);
+
 const t=flatten(host);
 const staleHost=node('div');
 assert.equal(api.render(staleHost,stalePulse,{createElement:node},official.links),true);
