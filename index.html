@@ -453,6 +453,16 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-rehearsal-nav button:disabled{opacity:.42;cursor:not-allowed}
 .en-rehearsal-panel .en-live-race{background:#2a322f}
 /* Mutually exclusive four-endings probability dashboard. */
+.electorate-lab{margin:12px 0 18px;padding:14px;border:1px solid #355878;border-radius:12px;background:#10283a}
+.electorate-lab summary{cursor:pointer;font-size:.92rem;color:#d9f0ff}
+.electorate-lab-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:10px;margin:12px 0}
+.electorate-lab-controls label{display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:#b5d5ed}
+.electorate-lab-controls input,.electorate-lab-controls select{width:100%;min-height:40px;border:1px solid #4a6980;background:#112033;color:#fff;border-radius:7px;padding:7px 9px;font:inherit}
+.electorate-lab-result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px;margin-top:12px}
+.electorate-lab-result-grid .scenario-tile{min-width:0}
+.electorate-lab table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:10px}
+.electorate-lab th,.electorate-lab td{padding:7px 8px;border-bottom:1px solid #35536a;text-align:right}
+.electorate-lab th:first-child,.electorate-lab td:first-child{text-align:left}
 .four-needle{max-width:100%;border:1px solid #39576b;border-radius:12px;background:#112a3b;padding:14px 16px;margin:12px 0 16px;min-width:0}
 .four-needle-top,.four-needle-footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 .four-needle-top strong{color:#ebf7fc;font-size:.84rem;letter-spacing:.07em}
@@ -765,6 +775,21 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <details class="forecast-details brief-model-key"><summary>What do the four endings mean?</summary></details>
  <p class="joint-note">Blue Wave: D wins BOTH chambers (≥218 House, ≥51 Democratic-aligned Senate). Blue Tsunami: ≥235 House and ≥52 Senate. Shrug: split control. Red Dawn: Republicans hold both. These categories are exclusive; stronger Tsunami draws are excluded from Wave.</p></details>
 </div>
+
+<details class="joint-audit electorate-lab" id="electorateLabDetails">
+ <summary><strong>🧪 Electorate Lab · What if the voter coalitions shift?</strong> <span class="tiny">Real JackStradamus model · hypothetical state shifts</span></summary>
+ <p class="joint-note">Try a different electorate for one state. Specify the <strong>share of two-party voters</strong> in each group and how many points its Democratic-minus-Republican margin changes. The shares are <strong>your assumptions, not measured Census or turnout percentages</strong>. Groups must not overlap. Only that state's race priors change; the shared national model, candidates and covariance remain unchanged.</p>
+ <div class="electorate-lab-controls">
+  <label>State <select id="labState" aria-label="State for hypothetical voter shifts"><option value="MI">Michigan · MI</option></select></label>
+  <label>Non-college white voters · assumed share (%) <input id="labNoncollegeShare" type="number" min="0" max="100" step="1" value="0" inputmode="decimal"></label>
+  <label>Non-college white voters · D−R margin change (pts) <input id="labNoncollegeShift" type="number" min="-40" max="40" step="1" value="5" inputmode="decimal"></label>
+  <label>Hispanic voters · assumed share (%) <input id="labHispanicShare" type="number" min="0" max="100" step="1" value="0" inputmode="decimal"></label>
+  <label>Hispanic voters · D−R margin change (pts) <input id="labHispanicShift" type="number" min="-40" max="40" step="1" value="5" inputmode="decimal"></label>
+ </div>
+ <div class="joint-tools"><button type="button" id="labRun">Run hypothetical election</button><button type="button" id="labReset">Reset assumptions</button><span class="joint-note" id="labStatus" role="status">Select voter-share assumptions and run a conditional scenario.</span></div>
+ <div id="labResults" aria-live="polite"><p class="joint-note">This uses the real House + Senate + governor correlated simulation. No scenario changes the headline odds, actual election returns or saved model.</p></div>
+ <p class="joint-note">Math: state margin shift = Σ (cohort's assumed fraction of two-party voters × D−R margin change). Fixed cohort turnout shares are assumed. This is a local sensitivity, not a prediction of actual demographic behavior, polling accuracy, precinct reporting or an Election Night needle.</p>
+</details>
 
 <section class="smart-race-desk" id="smartBriefDesk" aria-label="Automatically tracked 2026 Senate and House races">
 <div class="smart-desk-head"><div><span class="label">THE PRESSURE POINTS · 2026</span>
@@ -1277,6 +1302,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_506_live_gap_desk.js?v=9bd49a772486"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
 <script src="./scripts/chamber_control_model.js?v=aa102ced6a53"></script>
+<script src="./scripts/electorate_what_if_2026.js?v=eb473466b03c"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
 <script src="./scripts/chamber_poll_error_audit.js?v=9e73e0e9f9fe"></script>
 <script src="./scripts/senate_calibration_audit.js?v=2aab89368b2d"></script>
