@@ -9,7 +9,7 @@ from probe_nd_2026_general_results_portal import (
 EARLY = dt.datetime(2026,10,24,23,tzinfo=dt.timezone.utc)
 JUST_BEFORE = dt.datetime(2026,11,4,2,59,59,tzinfo=dt.timezone.utc)
 AFTER = dt.datetime(2026,11,4,3,tzinfo=dt.timezone.utc)
-LINK = '<a href="https://resultsnd.sos.nd.gov/">General Election Results - November 3, 2026</a>'
+LINK = '<a href="https://resultsnd.sos.nd.gov/#election=348">General Election Results - November 3, 2026</a>'
 PAGE = '<h1>Current Election Cycle Results — 2026</h1>'+LINK
 PORTAL_PAGE = '<h1>Election Night Reporting</h1><div>Results Download Menu</div>'
 
@@ -38,7 +38,10 @@ class NorthDakota2026PortalMetadata(unittest.TestCase):
 
     def test_primary_archive_and_duplicate_links_fail_closed(self):
         bad = [
-          '<a href="https://results.sos.nd.gov/">General Election Results - November 3, 2026</a>',
+          '<a href="https://results.sos.nd.gov/#election=348">General Election Results - November 3, 2026</a>',
+          '<a href="https://resultsnd.sos.nd.gov/">General Election Results - November 3, 2026</a>',
+          '<a href="https://resultsnd.sos.nd.gov/#election=347">General Election Results - November 3, 2026</a>',
+          '<a href="https://resultsnd.sos.nd.gov/#election=2024">General Election Results - November 3, 2026</a>',
           '<a href="https://resultsnd.sos.nd.gov/?cycle=2024">General Election Results - November 3, 2026</a>',
           '<a href="https://resultsnd.sos.nd.gov.evil.example/">General Election Results - November 3, 2026</a>',
           '<a href="http://resultsnd.sos.nd.gov/">General Election Results - November 3, 2026</a>',
@@ -70,6 +73,11 @@ class NorthDakota2026PortalMetadata(unittest.TestCase):
     def test_exact_official_https_hosts_and_no_unsupported_url(self):
         self.assertTrue(safe_link(OFFICIAL,"www.sos.nd.gov","/elections/election-results"))
         self.assertTrue(safe_link(PORTAL,"resultsnd.sos.nd.gov","/"))
+        self.assertTrue(safe_link(PORTAL+"#election=348","resultsnd.sos.nd.gov","/",
+                                  allow_general_route=True))
+        self.assertFalse(safe_link(PORTAL+"#election=348","resultsnd.sos.nd.gov","/"))
+        self.assertFalse(safe_link(PORTAL+"#election=347","resultsnd.sos.nd.gov","/",
+                                   allow_general_route=True))
         for bad in ("https://resultsnd.sos.nd.gov:444/",
                     "https://resultsnd.sos.nd.gov.invalid/",
                     "http://resultsnd.sos.nd.gov/",
