@@ -218,7 +218,7 @@
    message:'Reported votes are unofficial. Known provider IDs and missing or stale results are NOT votes, zeros or race calls.'
   });
  }
- function render(host,pulse,doc,officialBackstops=[]){
+ function render(host,pulse,doc,officialBackstops=[],editorialChecks=null){
   if(!host||!doc)return false;
   host.replaceChildren();
   const elt=(tag,text,parent,cls)=>{
@@ -268,6 +268,19 @@
   // Treat missing-source work as an editorial/resource queue, NOT as
   // a forecast call or a replacement for provider-reported votes.
   const attention=pulse.gapAttention;
+  // Public DDHQ Votes Free race pages are human verification options, not a
+  // substitute for the verified civicAPI/Open America source contracts.
+  // Never run automated scraping or treat a FORECAST as a newsroom CALL.
+  const callLink=id=>{
+   const pages=editorialChecks?.status===
+     'PUBLIC_MANUAL_NEWSROOM_CHECKS_NOT_VOTE_FEEDS_OR_AUTOMATED_CALLS'?
+     editorialChecks.race_pages:null;
+   if(!Array.isArray(pages))return null;
+   const matches=pages.filter(x=>x?.id===id&&
+    typeof x.url==='string'&&
+    /^https:\/\/votes\.decisiondeskhq\.com\/races\/2026-11-03\/[a-z0-9-]+-general-election$/.test(x.url));
+   return matches.length===1?matches[0].url:null;
+  };
   if(attention?.races?.length){
    const triage=elt('div',undefined,host,'en-coverage-priority');
    elt('strong','SOURCE-GAP PRIORITIES · close races before safe seats',triage);
@@ -292,11 +305,24 @@
      const a=elt('a',' · Manual official page ↗',line);
      a.href=link.url;a.target='_blank';a.rel='noopener noreferrer';
     }
+    const newsroom=callLink(race.id);
+    if(newsroom){
+     const a=elt('a',' · DDHQ free race results / call ↗',line);
+     a.href=newsroom;a.target='_blank';a.rel='noopener noreferrer';
+    }
     if(manual.has(race.mode))
      elt('span',' · forecast only; no verified votes or race call',line);
    }
-   elt('small','This is an attention queue using linked JackStradamus odds, not an election result. '+
-    'Missing races remain missing until independently verified; no assumed winners or votes.',
+   const social=editorialChecks?.newsroom_social;
+   if(editorialChecks?.status===
+       'PUBLIC_MANUAL_NEWSROOM_CHECKS_NOT_VOTE_FEEDS_OR_AUTOMATED_CALLS'&&
+      social==='https://x.com/DecisionDeskHQ'){
+    const link=elt('a','DDHQ public X race-call feed ↗',triage);
+    link.href=social;link.target='_blank';link.rel='noopener noreferrer';
+   }
+   elt('small','DDHQ pages show pre-election forecasts until an explicit 2026 race call is published. '+
+    'Check the correct race, date and named winner; media calls are unofficial, '+
+    'not machine-validated vote totals. Missing source IDs stay missing.',
     triage);
   }
   // Consistent source-eligibility warnings for EVERY linked federal race:
