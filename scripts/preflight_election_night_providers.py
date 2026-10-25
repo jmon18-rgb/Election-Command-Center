@@ -17,10 +17,11 @@ import urllib.error
 import urllib.request
 
 PRIMARY = "https://openamerica.io/elections/results.json?year=2026&office={office}"
-SECONDARY = (
-    "https://civicapi.org/api/v2/race/87188",  # Maine Senate curated 2026 id
-    "https://civicapi.org/api/v2/race/87527",  # Ohio special Senate curated id
-)
+# Supplemental source URLs must come from the verified 506-race registry,
+# never from a separate hard-coded copy of a civicAPI numeric ID.
+SECONDARY_BASE = "https://civicapi.org/api/v2/race/"
+PINNED_PRIORITY = ("Senate|ME", "Senate|OH-special")
+ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = "https://jmon18-rgb.github.io"
 START = dt.datetime(2026, 11, 3, 23, tzinfo=dt.timezone.utc)
 END = dt.datetime(2026, 11, 5, 6, tzinfo=dt.timezone.utc)
@@ -112,6 +113,13 @@ def fetch_json(url):
 
 
 def run_probes(now, coverage_ledger=None):
+    # Import lazily: the rotating source preflight imports fetch_json from
+    # this module. Pinned Senate identity checks are shared by both canaries.
+    from preflight_pinned_senate_sources import parse_pins, validate_detail
+    pinned_ledger = coverage_ledger if coverage_ledger is not None else json.loads(
+        (ROOT / "data/election_night_source_coverage.json").read_text(encoding="utf-8"))
+    pinned_adapter = (ROOT / "scripts/civicapi_state_batch.js").read_text(encoding="utf-8")
+    pins = parse_pins(pinned_ledger, pinned_adapter)
     results=[]
     primary_docs={}
     for office in ("Senate","House","Governor"):
@@ -124,17 +132,17 @@ def run_probes(now, coverage_ledger=None):
             results.append({"provider":"Open America","office":office,
                             "status":"FAILED_TRANSPORT_OR_SCHEMA",
                             "reason":str(exc)[:240]})
-    for race,url in (("Senate|ME",SECONDARY[0]),("Senate|OH-special",SECONDARY[1])):
+    for race in PINNED_PRIORITY:
+        item = pins[race]
         try:
-            doc=fetch_json(url)
-            if not isinstance(doc,dict):
-                raise ValueError("civicAPI detail response is not an object")
-            results.append({"provider":"civicAPI","race":race,
-                            "status":"DETAIL_HTTP_AND_BROWSER_CORS_REACHABLE_NOT_LIVE_VERIFIED",
-                            "field_count":len(doc)})
+            # HTTP 200 / JSON-object alone can be a 2024, wrong office,
+            # neighboring state, or even an explicit mock response.
+            detail = fetch_json(SECONDARY_BASE+str(item["id"]))
+            identity = validate_detail(item,detail)
+            results.append({"provider":"civicAPI",**identity})
         except (urllib.error.URLError,TimeoutError,ValueError,UnicodeError,
                 json.JSONDecodeError) as exc:
-            results.append({"provider":"civicAPI","race":race,
+            results.append({"provider":"civicAPI","race":race,"id":item["id"],
                             "status":"FAILED_TRANSPORT_OR_SCHEMA",
                             "reason":str(exc)[:240]})
     report={"schema":"election-night-transport-preflight-v1",
