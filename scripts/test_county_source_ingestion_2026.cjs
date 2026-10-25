@@ -51,7 +51,8 @@ assert.equal(beforeClose.reason,'SOURCE_TIME_BEFORE_LOCAL_CLOSE_OR_FUTURE',
 const second={...county,fips:'37003',ballots_reported:200,
  candidates:[{name:'A',party:'D',votes:120},
              {name:'B',party:'R',votes:80}]};
-const old=(fips,d,r)=>({verified_source:true,election_date:'2024-11-05',
+const old=(fips,d,r)=>({verified_source:true,election_date:'2020-11-03',
+ election_year:2020,office:'Senate',
  boundary_version:'2026',county_id:fips,race_key:'NC-SEN',votes:{D:d,R:r}});
 const baselines={'NC-SEN|37001':old('37001',50,50),
  'NC-SEN|37003':old('37003',100,100)};
@@ -59,6 +60,9 @@ const validTwo=ingest({}, {...envelope,counties:[county,second]},
  expected,baselines,at);
 assert.equal(validTwo.updates.length,2);
 assert.equal(validTwo.raceMatchedCountyPulse.status,'MATCHED_COUNTIES_DESCRIPTIVE_ONLY');
+assert.equal(validTwo.rows['NC-SEN|37001'].election_kind,'regular');
+assert.equal(validTwo.raceMatchedCountyPulse.previous_same_seat_election_year,2020);
+assert.equal(validTwo.raceMatchedCountyPulse.matched_2024_margin_points,null);
 assert.notEqual(validTwo.raceMatchedCountyPulse.matched_county_swing_points,null);
 const impossibleCorrection=ingest(validTwo.rows,{...envelope,counties:[{
  ...county,updated_at:'2026-11-04T00:37:00Z',ballots_reported:90,
