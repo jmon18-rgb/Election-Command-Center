@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-25T09:44:37.779648Z",
+  "updated_at": "2026-10-25T10:43:50.027096Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
@@ -260,6 +260,23 @@
     }
   ],
   "items": [
+    {
+      "id": "7f7c0df03372fe0557b2",
+      "title": "Voting groups urge high turnout amid fears of interference - The Tennessean",
+      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPbHJISmZ3UDA5SllzVVpXc25zUXQxcEFqOTRsZU5mS2pIXzByZUFON0hHSFVUbV9HR0ZtdmQ1eVdhQVFGOGZkeG1kNXVFYWRib183dV9kV1huaDA0c1JhLWFrRFpBQlAxWUZ3N1dHT3UybVZ6NldFcHkyZHd5ZEZ2UnlEV1hjUjJ2dHlyNVZZTlBuU2VCNUl6NVdwNW9Ma1U1UzVYLVl4eDJfTS0wMXFOYXFYX2dFblA2bnBQcEU1QV9kaURHdW1nNmxkaC1WRWtnX1o5NHNycF9DemZlc1d4OTJja1lGQQ?oc=5",
+      "publisher": "The Tennessean",
+      "published_at": "2026-10-25T10:03:18Z",
+      "detected_at": "2026-10-25T10:43:50.027096Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "826ea8f460980a8f831d",
       "title": "Indiana midterm elections 2026: When early voting ends, Election Day and how to find your polling place - The Economic Times",
@@ -4935,23 +4952,6 @@
         "litigation"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "18783e20ed863557e3f5",
-      "title": "What to know about mail-in voting in WA for the 2026 midterms - RANGE Media",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFA3VDV0T1laa21CYUhnSUY3ZlFHZTZCOWVxYjctSG12X045dXlDUnUwandiR3RDWlZTYUV2TnVBUUJ2ZjBZaXFXdUljR1h0SzZQdEpvVHUyVE5iMWZVZERnbzFIUzVIVk1nVXctSzJpUC1pRVFLN0E?oc=5",
-      "publisher": "RANGE Media",
-      "published_at": "2026-10-13T21:54:57Z",
-      "detected_at": "2026-10-13T21:59:58.134931Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [
-        "2026 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
