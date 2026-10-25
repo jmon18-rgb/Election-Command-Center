@@ -46,13 +46,22 @@ if(opts.has('check-config')){
   source_requests:{primary:0,supplemental:0},
   primary_healthy_responses:0,
   source_request_failures:0,source_http_errors:0,page_script_errors:0,
-  audit_errors:0,probes:[],errors:[]
+  audit_errors:0,probes:[],errors:[],
+  browser_operation_trace:[],last_browser_operation:'BROWSER_NOT_LAUNCHED'
+ };
+ const mark=step=>{
+  report.last_browser_operation=step;
+  report.browser_operation_trace.push({
+   step,elapsed_s:soakStart===null?null:
+    Math.round((performance.now()-soakStart)/1000)
+  });
  };
  let browser,soakStart=null,resumed=false;
  try{
   // Chromium's headless shell leaves document.hidden=false for background
   // tabs. Use real headed Chromium under CI Xvfb so visibilitychange can be
   // observed rather than faking it with injected document properties.
+  mark('LAUNCH_HEADED_CHROMIUM');
   browser=await chromium.launch({
    headless:false,args:['--no-sandbox'],
    // Keep actual Chromium background/visibility behavior rather than
@@ -93,6 +102,7 @@ if(opts.has('check-config')){
       /^https:\/\/(?:openamerica\.io|civicapi\.org)\//.test(res.url()))
     report.source_http_errors++;
   });
+  mark('LOAD_DEPLOYED_DASHBOARD');
   await tab.goto(URL_SITE,{waitUntil:'domcontentloaded',timeout:60000});
   await tab.locator('[data-page="electionNight"]').click({timeout:30000});
   await tab.locator('#enMode2026').click({timeout:30000});
@@ -102,6 +112,7 @@ if(opts.has('check-config')){
   // Start after the actual 506-race dashboard is rendered: browser launch
   // and network navigation cannot count toward the measured active-tab soak.
   soakStart=performance.now();
+  mark('DASHBOARD_RENDERED_REAL_CLOCK_STARTED');
   let secondary=null;
   const total=minutes*60000,period=interval*1000;
   const steps=Math.floor(total/period);
@@ -111,6 +122,7 @@ if(opts.has('check-config')){
    // A separate tab briefly backgrounds and then reactivates the dashboard.
    // This is NOT claimed to simulate OS sleep or a source outage.
    if(step===Math.floor(steps/3)){
+    mark('BACKGROUND_BEGIN_USER_OPEN_NEW_TAB');
     // context.newPage() creates an independently focus-emulated Playwright
     // page, NOT necessarily a browser tab the person actually switched to.
     // Click a genuine target=_blank link inside the existing Chrome window:
@@ -123,28 +135,35 @@ if(opts.has('check-config')){
       'background:#fff;color:#000;padding:12px;font:16px sans-serif';
      document.body.appendChild(a);
     });
+    mark('BACKGROUND_WAIT_FOR_POPUP');
     const popupPromise=tab.waitForEvent('popup',{timeout:10000});
     await tab.locator('#enSoakOpenBlankTab').click({timeout:10000});
     secondary=await popupPromise;
+    mark('BACKGROUND_POPUP_OBSERVED');
     await secondary.waitForLoadState('domcontentloaded');
     const backgroundCDP=await ctx.newCDPSession(secondary);
     await backgroundCDP.send('Emulation.setFocusEmulationEnabled',{enabled:false});
+    mark('BACKGROUND_SWITCH_TO_SECONDARY');
     await secondary.bringToFront();
     // Hidden Chromium tabs throttle/suspend requestAnimationFrame. Use
     // time-based polling; the default Playwright waitForFunction raf poll
     // can time out even when document.hidden has actually become true.
+    mark('BACKGROUND_WAIT_FOR_TRUE_DOCUMENT_HIDDEN');
     await tab.waitForFunction(()=>document.hidden,undefined,{
      timeout:10000,polling:250
     });
     report.background_visibility_confirmed=
       await tab.evaluate(()=>document.hidden);
+    mark('BACKGROUND_TRUE_DOCUMENT_HIDDEN_CONFIRMED');
    }else if(step===Math.floor(steps/3)+2&&secondary){
     // Network requests may fire synchronously from visibilitychange/focus.
     // Arm attribution BEFORE bringing the original tab to the foreground,
     // or an actual successful autonomous refresh could be misclassified as
     // having happened "before resume".
     resumed=true;
+    mark('FOREGROUND_ACTIVATE_ORIGINAL_TAB');
     await tab.bringToFront();await secondary.close();secondary=null;
+    mark('FOREGROUND_WAIT_FOR_TRUE_VISIBLE');
     await tab.waitForFunction(()=>!document.hidden,undefined,{
      timeout:10000,polling:250
     });
@@ -153,6 +172,7 @@ if(opts.has('check-config')){
      return !document.hidden;
     });
     report.background_resume_observed=true;
+    mark('FOREGROUND_TRUE_VISIBILITY_CONFIRMED');
     // Before Election Day, the standby feed intentionally uses a slower
     // ten-minute cadence. In a five-minute PR rehearsal, explicitly click
     // the owner-facing 2026 refresh control after resume. Never report this
@@ -185,7 +205,13 @@ if(opts.has('check-config')){
   }
   await secondary?.close();await ctx.close();
  }catch(error){
-  report.errors.push('Browser runtime failed: '+String(error?.name||'UnknownError'));
+  const detail=String(error?.message||'').slice(0,450)
+   .replace(/https?:\/\/[^\s]+/g,'[url redacted]');
+  report.errors.push('Browser runtime failed at '+
+   report.last_browser_operation+': '+String(error?.name||'UnknownError')+
+   (detail?' — '+detail:''));
+  // Preserve only bounded stage names/times; never serialize page data,
+  // API body, cookies, tokens, screenshot, candidate votes or private URLs.
  }finally{
   await browser?.close();
   report.finished_at=new Date().toISOString();
