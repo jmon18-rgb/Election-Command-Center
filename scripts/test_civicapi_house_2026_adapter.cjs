@@ -37,6 +37,14 @@ assert.equal(api.select(item,{races:[]}),null);
 assert.equal(api.select(item,{races:[search,search]}),null,
  'Duplicate exact district results are unsafe');
 assert.equal(api.select(item,{count:30,races:[search]}),null);
+assert.equal(api.select(item,{count:1,races:[search]}).id,88001);
+assert.equal(api.select(item,{count:2,races:[search]}),null,
+ 'Incomplete provider result page cannot establish a unique 2026 House ID');
+for(const wrongCount of [-1,0,1.5,'1',true,NaN,Infinity]){
+ assert.equal(api.select(item,{count:wrongCount,races:[search]}),null,
+  'Malformed source cardinality must not authorize an exact House ID');
+}
+assert.equal(api.select(item,{count:0,races:[]}),null);
 const good=api.validate(item,search,detail,now);
 assert(good);
 assert.equal(good.key,'NH-01');
