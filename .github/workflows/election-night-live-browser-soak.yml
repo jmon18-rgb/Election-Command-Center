@@ -68,7 +68,10 @@ jobs:
           else
             minutes="${MANUAL_MINUTES:-30}"
           fi
-          node scripts/monitor_election_night_browser_soak.mjs \
+          # Headed Chromium under Xvfb is necessary for real background
+          # document.hidden visibility transitions; headless shell does not
+          # verify this capability even if other source checks pass.
+          xvfb-run -a node scripts/monitor_election_night_browser_soak.mjs \
             --duration-minutes="$minutes" --interval-seconds=60 \
             --output=/tmp/real_election_browser_tab_soak.json
       - name: Preserve observed browser health including failed checks
