@@ -426,7 +426,8 @@ assert.equal(operational.totals.House.reported,pulse.totals.House.reported);
 assert.equal(operational.professional_calls_verified,0);
 const operationalHost=node('div');
 api.render(operationalHost,operational,{createElement:node},official.links);
-assert.match(flatten(operationalHost),/SOURCE RECOVERY · 2 competitive races affected/);
+assert.match(flatten(operationalHost),/SOURCE RECOVERY · 2 affected feeds/);
+assert.match(flatten(operationalHost),/2 competitive races · 0 affected races need model review/);
 assert.match(flatten(operationalHost),/House CA-13 — COMPETITIVE/);
 assert.match(flatten(operationalHost),/Senate ME — COMPETITIVE/);
 assert.match(flatten(operationalHost),/reference only; not verified live votes or a race call/);
@@ -437,6 +438,10 @@ assert.equal(api.build(ledger,res,state,now,{'House|CA-13':'pending'},operationa
 const noOddsFailure=api.build(ledger,res,state,now,{'House|CA-13':'failed'});
 assert.equal(noOddsFailure.operationalAttention.needsOdds,1,
  'A failed feed with missing model odds is unknown, never a safe seat');
+const unknownHost=node('div');
+api.render(unknownHost,noOddsFailure,{createElement:node});
+assert.match(flatten(unknownHost),/SOURCE RECOVERY · 1 affected feeds/,
+ 'Unknown model odds must not make a failed feed look like zero issues');
 assert.match(html,/ElectionNightCoverageTriage\.supplementalState\(item,/,
  'The actual browser must use the same tested recovery classifier');
 console.log('Competitive source recovery: exact-ID hints, prior attempts, failure priority and recovery PASS');

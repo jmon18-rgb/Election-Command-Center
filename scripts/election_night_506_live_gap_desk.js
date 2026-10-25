@@ -306,8 +306,9 @@
   const recovery=pulse.operationalAttention;
   if(recovery?.races?.length){
    const panel=elt('div',undefined,host,'en-coverage-recovery');
-   elt('strong','SOURCE RECOVERY · '+recovery.active+' competitive races affected',panel);
-   elt('p',recovery.needsOdds+' affected races need model review · '+
+   elt('strong','SOURCE RECOVERY · '+recovery.races.length+' affected feeds',panel);
+   elt('p',recovery.active+' competitive races · '+recovery.needsOdds+
+    ' affected races need model review · '+
     recovery.lightChecks+' high-confidence races still require outcome verification. '+
     'Known source IDs do not prove working feeds.',panel,'en-coverage-line');
    const display=(race,parent)=>{
