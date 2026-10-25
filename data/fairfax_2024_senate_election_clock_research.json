@@ -1,0 +1,113 @@
+{
+  "schema": "official-fairfax-2024-senate-clock-research-v1",
+  "status": "DESCRIPTIVE_SINGLE_COUNTY_ACTUAL_REPORT_SEQUENCE_NOT_CALIBRATED",
+  "election": "2024-11-05",
+  "authority": "Fairfax County Office of Elections",
+  "location": {
+    "state": "VA",
+    "county": "Fairfax",
+    "fips": "51059"
+  },
+  "contest": "2024 Virginia United States Senate",
+  "candidate_a": "Timothy M. Kaine",
+  "candidate_b": "Hung Cao",
+  "candidate_a_party": "D",
+  "candidate_b_party": "R",
+  "source_section": "Countywide Election Summary: Member United States Senate",
+  "source_page_number": 3,
+  "clocks_are_electionware_section_generation_not_archived_capture": true,
+  "source_publication_clocks_independently_verified": false,
+  "vote_mode_names": [
+    "early_voting",
+    "election_day",
+    "election_night_mail"
+  ],
+  "sequential_snapshots": [
+    {
+      "section_generated_local": "2024-11-05T19:08:00-05:00",
+      "url": "https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/Documents/PDF/2024November_results_unofficial.pdf",
+      "evidence_level": "SEARCH_INDEX_ORIGINAL_PDF_NOT_VISUALLY_CHECKED",
+      "dem_votes_by_mode": [
+        159688,
+        0,
+        25257
+      ],
+      "rep_votes_by_mode": [
+        76822,
+        0,
+        5517
+      ],
+      "write_in_votes": 462,
+      "votes_cast_total": 267746
+    },
+    {
+      "section_generated_local": "2024-11-05T22:50:00-05:00",
+      "url": "https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/Documents/PDF/2024November_results_unofficial-010.pdf",
+      "evidence_level": "ORIGINAL_PDF_ELECTION_SUMMARY_PAGE_VISUALLY_CHECKED",
+      "dem_votes_by_mode": [
+        159688,
+        150439,
+        52276
+      ],
+      "rep_votes_by_mode": [
+        76822,
+        85652,
+        12371
+      ],
+      "write_in_votes": 1735,
+      "votes_cast_total": 538983
+    },
+    {
+      "section_generated_local": "2024-11-05T23:27:00-05:00",
+      "url": "https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/Documents/PDF/2024November_results_unofficial-011.pdf",
+      "evidence_level": "SEARCH_INDEX_ORIGINAL_PDF_NOT_VISUALLY_CHECKED",
+      "dem_votes_by_mode": [
+        159688,
+        150729,
+        61911
+      ],
+      "rep_votes_by_mode": [
+        76822,
+        85855,
+        15210
+      ],
+      "write_in_votes": 1779,
+      "votes_cast_total": 551994
+    },
+    {
+      "section_generated_local": "2024-11-06T00:13:00-05:00",
+      "url": "https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/Documents/PDF/2024November_results_unofficial-012.pdf",
+      "evidence_level": "ORIGINAL_PDF_ELECTION_SUMMARY_PAGE_VISUALLY_CHECKED",
+      "dem_votes_by_mode": [
+        159688,
+        151086,
+        61911
+      ],
+      "rep_votes_by_mode": [
+        76822,
+        85991,
+        15210
+      ],
+      "write_in_votes": 1780,
+      "votes_cast_total": 552488
+    }
+  ],
+  "terminal_benchmark": {
+    "source": "Virginia Department of Elections official Fairfax County 2024 election results",
+    "url": "https://enr.elections.virginia.gov/results/public/fairfax-county/elections/2024NovemberGeneral",
+    "dem_votes": 393906,
+    "rep_votes": 186266,
+    "is_a_county_final_not_a_near_midnight_election_night_snapshot": true,
+    "final_vote_method_denominators_not_loaded": true
+  },
+  "source_rights_reviewed": false,
+  "original_report_pdfs_redistributed": false,
+  "independent_timestamp_archive_verified": false,
+  "precinct_or_multicounty_clock_replay": false,
+  "voting_method_bias_generalizable": false,
+  "synthetic_vote_data_present": false,
+  "may_modify_2026_geographic_needle": false,
+  "may_update_2026_forecast": false,
+  "approved_calibration_inputs": 0,
+  "next_gate": "Verify remaining original PDFs visually, independently reconcile the official final county reporting geography and rights, obtain real ordered snapshots for multiple other county/state contests, then out-of-sample replay and uncertainty calibration."
+}

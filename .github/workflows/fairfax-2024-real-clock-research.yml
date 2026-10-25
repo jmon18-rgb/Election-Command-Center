@@ -1,0 +1,39 @@
+name: Verify Fairfax 2024 real Senate reporting-clock replay
+on:
+  pull_request:
+    paths:
+      - 'data/fairfax_2024_senate_election_clock_research.json'
+      - 'scripts/audit_fairfax_2024_senate_clock_replay.py'
+      - 'scripts/test_fairfax_2024_senate_clock_replay.py'
+      - '.github/workflows/fairfax-2024-real-clock-research.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/fairfax_2024_senate_election_clock_research.json'
+      - 'scripts/audit_fairfax_2024_senate_clock_replay.py'
+      - 'scripts/test_fairfax_2024_senate_clock_replay.py'
+      - '.github/workflows/fairfax-2024-real-clock-research.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  descriptive-replay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check genuine official county snapshots and no model promotion
+        run: |
+          python3 -m py_compile scripts/audit_fairfax_2024_senate_clock_replay.py
+          python3 scripts/test_fairfax_2024_senate_clock_replay.py
+          python3 scripts/audit_fairfax_2024_senate_clock_replay.py > /tmp/fairfax_replay_descriptive.json
+      - name: Preserve source-limited count and reporting-order audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: fairfax-2024-official-county-clock-research
+          path: /tmp/fairfax_replay_descriptive.json
+          retention-days: 90
+          if-no-files-found: error
