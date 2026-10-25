@@ -6766,10 +6766,13 @@ function enReconnectAfterInterruption(force=false){
  enLastReconnect=now;
  const status=$('#enStatus');
  if(status)status.textContent='RECONNECTING · verifying fresh House, Senate and governor source results…';
- // enLoad independently refreshes the other primary offices and the
- // supplemental exact-race queue, including after its own request fails.
- // A generation check discards older in-flight responses.
+ // On actual visibility/focus recovery request *both* provider families
+ // immediately. The normal 60-second civicAPI sweep interval must not make
+ // recovered Senate/House records appear freshly verified when they aren't.
+ // CivicAPI's breaker, bounded request pool and per-race pending gates still
+ // protect against 429 storms and duplicate concurrent fetches.
  void enLoad(true);
+ void enRefreshCivicWatchlist(true);
  return true;
 }
 document.addEventListener('visibilitychange',()=>{
