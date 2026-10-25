@@ -46,6 +46,11 @@ function assess(report, minutes, interval) {
     supplemental_exact_2026_identity_validated_in_real_page:
       report.supplemental_probe_race==='Senate|ME'&&
       report.supplemental_exact_identity_validated===true,
+    resumed_tab_started_fresh_supplemental_provider_request:
+      Number.isSafeInteger(report.post_resume_supplemental_requests)&&
+      report.post_resume_supplemental_requests>=1,
+    resumed_tab_accepted_new_same_seat_supplemental_identity:
+      report.post_resume_supplemental_exact_identity_validated===true,
     no_transport_or_http_source_failures:
       report.source_request_failures===0&&report.source_http_errors===0,
     no_browser_or_identity_audit_errors:
