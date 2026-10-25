@@ -9,8 +9,7 @@ import re
 import urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
-from probe_house_coverage_2026 import fetch, detail_matches, explicitly_mock, exact_2026_general_date
-from probe_missing_statewide_sources_2026 import CLOSE_UTC
+from probe_house_coverage_2026 import fetch, detail_matches, explicitly_mock, exact_2026_general_date, state_poll_closings
 
 GAPS = ("House|AK-00", "House|DE-00", "House|ND-00",
         "House|NH-01", "House|NH-02", "House|SD-00",
@@ -77,24 +76,14 @@ def find_one(key, request=fetch, now=None):
     row=next(iter(found.values()))
     try:
         detail=request(f"/race/{row['id']}",{"light":""})
-        if office == "House":
-            okay=detail_matches(row,detail)
-        else:
-            okay=(isinstance(detail,dict) and not explicitly_mock(detail) and
-                detail.get("country")==row["country"] and
-                detail.get("province")==row["province"] and
-                detail.get("election_date")==row["election_date"] and
-                detail.get("election_name")==row["election_name"] and
-                detail.get("election_type")==row["type"] and
-                detail.get("district")==row["district"] and
-                detail.get("id",row["id"])==row["id"] and
-                isinstance(detail.get("candidates"),list) and
-                len(detail["candidates"])>=2)
+        okay=detail_matches(row,detail) and (
+            office != "Senate" or len(detail.get("candidates",[]))>=2)
         if not okay:
             return {"key":key,"status":"DETAIL_IDENTITY_REJECTED"}
         count_votes=sum(c.get("votes",0) for c in detail["candidates"])
+        close=state_poll_closings().get(state)
         if not isinstance(count_votes,int) or count_votes<0 or (
-            count_votes and now<CLOSE_UTC[state]):
+            count_votes and (close is None or now.astimezone(timezone.utc)<close)):
             return {"key":key,"status":"PRE_CLOSE_VOTES_REJECTED"}
         return {"key":key,"status":"EXACT_2026_CANDIDATE_IDENTITY_VERIFIED",
                 "race_id":row["id"],"candidate_count":len(detail["candidates"]),
