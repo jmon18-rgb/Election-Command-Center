@@ -14,6 +14,27 @@
   throw Error('Missing verified 2026 state poll-close source contract');
  const START=Date.parse('2026-11-03T05:00:00Z');
  const THREE_HOURS=180*60000;
+ // Pinned 2026 ballot/scope identities for browser source-health labeling.
+ // The independent CI canonical-inventory regression compares these arrays
+ // against data/seat_universe.json and the provider's 22-state coverage list.
+ // They are NOT 2026 counted votes or proof of professional race calls.
+ const PRIMARY_STATES=new Set(["AR","AZ","CO","CT","FL","GA","IA","ID","IN","LA","MI","MN","NC","PA","RI","SC","TX","UT","VA","VT","WA","WV"]);
+ const HOUSE_SEATS=Object.freeze({"AK":1,"AL":7,"AR":4,"AZ":9,"CA":52,"CO":8,"CT":5,"DE":1,"FL":28,"GA":14,"HI":2,"IA":4,"ID":2,"IL":17,"IN":9,"KS":4,"KY":6,"LA":6,"MA":9,"MD":8,"ME":2,"MI":13,"MN":8,"MO":8,"MS":4,"MT":2,"NC":14,"ND":1,"NE":3,"NH":2,"NJ":12,"NM":3,"NV":4,"NY":26,"OH":15,"OK":5,"OR":6,"PA":17,"RI":2,"SC":7,"SD":1,"TN":9,"TX":38,"UT":4,"VA":11,"VT":1,"WA":10,"WI":8,"WV":2,"WY":1});
+ const SENATE_BALLOTS=new Set(["AK","AL","AR","CO","DE","FL-special","GA","IA","ID","IL","KS","KY","LA","MA","ME","MI","MN","MS","MT","NC","NE","NH","NJ","NM","OH-special","OK","OR","RI","SC","SD","TN","TX","VA","WV","WY"]);
+ const validPrimaryScope=(office,key)=>{
+  if(typeof key!=='string'||!PRIMARY_STATES.has(key.slice(0,2)))return false;
+  if(office==='House'){
+   const count=HOUSE_SEATS[key.slice(0,2)];
+   const n=key.slice(3);
+   return Number.isInteger(count)&&
+    /^[A-Z]{2}-\\d{2}$/.test(key)&&
+    (count===1?n==='00':Number(n)>=1&&Number(n)<=count&&n!=='00');
+  }
+  if(office==='Senate')return SENATE_BALLOTS.has(key);
+  if(office==='Governor')return GOVERNOR_STATES.includes(key);
+  return false;
+ };
+
  // Provider source timestamps must be *post* the first nationwide close.
  // NC/OH have independently verified 7:30 PM ET Nov 3 poll close times.
  // An older MOCK payload fetched after close does not become live evidence.
@@ -47,10 +68,10 @@
   // rows. The national reconciler already rejects those exact races.
   const hasVotes=Object.values(snapshot.races).some(r=>r&&
    Number.isSafeInteger(r.total)&&r.total>0);
-  const validOfficeKey=key=>typeof key==='string'&&(
-   office==='House'?/^[A-Z]{2}-\d{2}$/.test(key):
-   office==='Senate'?/^[A-Z]{2}(?:-special)?$/.test(key):
-   /^[A-Z]{2}$/.test(key));
+  // A syntactically plausible NH-01, TX-99 or AZ Senate record is not
+  // an independently scoped primary result. Exact 2026 ballot identity
+  // AND the Open America 22-state contract must match.
+  const validOfficeKey=key=>validPrimaryScope(office,key);
   const hasValidatedVotes=Object.entries(snapshot.races).some(([key,row])=>
    validOfficeKey(key)&&row?.total>0&&row.called===false&&!row.winner&&
    votesByParty(row,'primary')!==null&&
@@ -270,6 +291,6 @@
    anomalies,crossSourceDiscrepancies:discrepancies,records:rows
   });
  }
- return Object.freeze({START,THREE_HOURS,houseIds,senateIds,governorIds,
+ return Object.freeze({START,THREE_HOURS,houseIds,senateIds,governorIds,validPrimaryScope,
   officeHealth,reconcile});
 });
