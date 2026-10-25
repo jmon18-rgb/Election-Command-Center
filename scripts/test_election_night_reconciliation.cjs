@@ -67,6 +67,49 @@ assert.equal(health({...input.snapshots.Senate,
 assert.equal(health({...input.snapshots.Senate,as_of:null,races:{NC:votes(1)}}).usable,false);
 assert.equal(health({...input.snapshots.Senate,races:{}}).state,'current_no_votes');
 assert.equal(health(input.snapshots.Senate).usable,true);
+// Full independent 506-race source-identity ledger controls which ballot
+// keys and provider states are permitted to create a "reporting" signal.
+// This independently guards the static fast browser contract against
+// accidental drift in the House apportionment or 35-race Senate slate.
+const fs=require('node:fs'),path=require('node:path');
+const ledger=JSON.parse(fs.readFileSync(path.join(__dirname,
+ '../data/election_night_source_coverage.json'),'utf8'));
+assert.equal(ledger.races.length,506);
+let approved=0;
+for(const r of ledger.races){
+ const expected=r.source_identity_status==='PRIMARY_PROVIDER_STATE_SCOPE';
+ assert.equal(api.validPrimaryScope(r.office,r.key),expected,
+  'Exact 2026 primary scope does not match ledger: '+r.id);
+ if(expected)approved++;
+}
+assert.equal(approved,216+15+15,
+ 'Primary should cover 216 House, 15 Senate and 15 governor contests');
+for(const [office,key] of [
+ ['House','NH-01'],['House','NH-02'],['House','CA-01'],['House','TX-99'],
+ ['House','TX-00'],['House','VT-01'],['House','AK-00'],
+ ['Senate','MA'],['Senate','AZ'],['Senate','FL'],['Senate','NH'],
+ ['Governor','NC'],['Governor','NH'],['Governor','AK']
+]){
+ const forged=snapshot(office,{[key]:votes(400)});
+ assert.equal(api.validPrimaryScope(office,key),false,
+  'Unapproved source must never be classified as in-scope: '+office+' '+key);
+ assert.equal(health(forged,office).state,'current_no_votes',
+  'A syntactically plausible but unapproved race may not light reporting');
+}
+for(const [office,key] of [
+ ['House','TX-01'],['House','VT-00'],['Senate','NC'],
+ ['Senate','FL-special'],['Governor','TX']
+]){
+ const valid=snapshot(office,{[key]:votes(400)});
+ assert.equal(api.validPrimaryScope(office,key),true);
+ assert.equal(health(valid,office).state,'reporting',
+  'An actual source-scoped post-close race must remain reportable');
+}
+assert.equal(health(snapshot('House',{
+ 'NH-01':votes(450),'TX-01':votes(220)
+}),'House').state,'reporting',
+ 'Forged out-of-provider districts cannot poison legitimate Texas votes');
+
 // Explicit inactive sources may contain test-looking counts with fresh
 // timestamps. They cannot get reporting credit or create source calls.
 const inactive={...input.snapshots.Senate,live:false,final:false};
