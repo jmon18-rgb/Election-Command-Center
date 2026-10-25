@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-25T15:04:52.167189+00:00",
+  "updated_at": "2026-10-25T15:07:58.448384+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,7 +17,7 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 313,
+  "matched_primary_observations": 312,
   "newly_injected_into_model": 0,
   "injected_poll_ids": [],
   "observations": [
@@ -462,9 +462,9 @@
       "pollster": "InsiderAdvantage",
       "dem_name": "Sherrod Brown",
       "rep_name": "Jon Husted",
-      "dem": 47.0,
-      "rep": 44.0,
-      "margin": 3.0,
+      "dem": 46.7,
+      "rep": 44.4,
+      "margin": 2.3,
       "field_end": "2026-10-22",
       "field_start": "2026-10-21",
       "posted_date": "2026-10-23",
