@@ -750,6 +750,38 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .nc-map-bias{padding:9px 12px;border:1px solid #3b5875;background:#13293d;color:#dbedf5;font-size:11px;line-height:1.6;border-radius:8px;margin:10px 0}
 .nc-map-disclosure{color:#a9c5de;font-size:11px;line-height:1.65;margin:10px 0 0}
 @media(max-width:650px){.en-nc-map-panel{padding:11px}.en-nc-map-head h3{font-size:17px}.nc-map-toggle{font-size:11px;padding:7px 9px}.nc-senate-svg{min-height:155px}}
+
+/* National cartogram is geographic navigation of forecast races, not live votes. */
+.en-national-map-panel{border:1px solid #385269;background:linear-gradient(160deg,#132b40,#0e1c30);border-radius:15px;padding:18px;margin:18px 0 20px}
+.en-national-map-panel[hidden]{display:none}
+.en-national-map-panel h3{margin:3px 0;font-size:1.18rem}
+.en-nmap-intro{font-size:.83rem;line-height:1.6;color:#b4cad9;margin:9px 0 13px}
+.en-nmap-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 12px}
+.en-nmap-mode,.en-nmap-open{border:1px solid #68899d;background:#152f43;color:#d5eaff;border-radius:8px;padding:8px 12px;cursor:pointer;font-size:.79rem;font-weight:750}
+.en-nmap-mode[aria-pressed=true]{background:#2d5c85;color:#fff;border-color:#a5c7e2}
+.en-nmap-mode:focus-visible,.en-nmap-state:focus-visible,.en-nmap-open:focus-visible{outline:3px solid #ffdf86;outline-offset:2px}
+.en-nmap-count{font-size:.76rem;color:#a9c8d9;margin-left:auto}
+.en-nmap-scroll{overflow-x:auto;overflow-y:hidden;padding:10px 5px 14px;border-radius:10px;border:1px solid #344b60;background:#091a2e}
+.en-nmap-grid{display:grid;grid-template-columns:repeat(13,44px);grid-template-rows:repeat(8,46px);gap:5px;min-width:max-content;justify-content:center;margin:auto;width:max-content}
+.en-nmap-state{position:relative;color:white;border:1px solid #7691a3;border-radius:7px;font-size:.78rem;font-weight:850;cursor:pointer;line-height:1.1;padding:5px 2px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;box-shadow:inset 0 -3px 6px #0002}
+.en-nmap-state small{font-size:.6rem;font-weight:650;letter-spacing:-.03em;opacity:.94}
+.en-nmap-state[aria-pressed=true]{outline:3px solid #ffdf86;outline-offset:1px;z-index:1}
+.en-nmap-state.strong-d,.en-nmap-dot.strong-d{background:#1553b5}
+.en-nmap-state.lean-d,.en-nmap-dot.lean-d{background:#598ecf}
+.en-nmap-state.toss-up,.en-nmap-dot.toss-up{background:#87669b}
+.en-nmap-state.lean-r,.en-nmap-dot.lean-r{background:#c16c76}
+.en-nmap-state.strong-r,.en-nmap-dot.strong-r{background:#8a3549}
+.en-nmap-state.missing,.en-nmap-dot.missing{background:#435367}
+.en-nmap-call{position:absolute;right:1px;top:0;font-size:10px;color:#ffe0a1;font-style:normal}
+.en-nmap-legend{display:flex;flex-wrap:wrap;gap:7px 13px;margin:10px 0;font-size:.72rem;color:#c5d7e5}
+.en-nmap-legend-item{display:inline-flex;align-items:center;gap:5px}
+.en-nmap-dot{width:10px;height:10px;display:inline-block;border-radius:2px}
+.en-nmap-detail{background:#152c3c;border:1px solid #365367;border-radius:9px;padding:12px;color:#ebf5ff;font-size:.83rem;line-height:1.5}
+.en-nmap-detail p{margin:5px 0}
+.en-nmap-more{color:#bed1e1}
+.en-nmap-open{margin-top:6px}
+.en-nmap-method{font-size:.72rem;line-height:1.6;color:#9eb8ca;margin:10px 0 0}
+@media(max-width:600px){.en-national-map-panel{padding:12px}.en-nmap-count{flex-basis:100%;margin-left:0}.en-nmap-grid{margin-left:5px;margin-right:5px}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -1119,7 +1151,12 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <p class="en-coverage-line" id="enCoverageReconciliation" role="status">Verifying national race inventory…</p>
  <div id="enLiveCoverageTriage" class="en-race-drawer" role="region" aria-label="Actual 2026 reported race coverage and Senate source gaps"><p class="en-coverage-line">Awaiting exact-race source reconciliation; provider identities are not results.</p></div>
  <p class="en-coverage-line" id="enSourceReadiness" role="status">Checking verified election-night source identities…</p>
- <section class="en-nc-map-panel" aria-label="North Carolina county election results map">
+ <section class="en-national-map-panel" aria-label="2026 nationwide election needle cartogram">
+ <div class="en-nc-map-head"><div><span class="tiny">ELECTION NIGHT · LINKED FORECAST</span><h3>Where the needle is moving</h3></div><span class="en-nc-map-mark">50-STATE RACE MAP</span></div>
+ <p class="en-nmap-intro">Explore 2026 Senate contests or the most competitive House district in each state. Colors show model win probabilities, <em>not current vote leaders</em>. Explicit source-reported calls are marked separately. Select a state for details.</p>
+ <div id="enNationalNeedleMap" aria-live="polite"><p>Loading linked nationwide forecast map…</p></div>
+</section>
+<section class="en-nc-map-panel" aria-label="North Carolina county election results map">
   <div class="en-nc-map-head"><div><span class="tiny">GEOGRAPHIC NEEDLE LAB · NORTH CAROLINA</span><h3>County-by-county Senate map</h3></div><span class="en-nc-map-mark">100 COUNTIES · 2022 BASELINE</span></div>
   <p class="en-nc-map-lead">Verified 2022 Senate results on real county boundaries. Switch to observed 2026 county counts only after an approved official ZIP snapshot exists. No inferred winner, turnout or national needle movement.</p>
   <div id="enNcSenateCountyMap" aria-live="polite"><p>Loading the verified North Carolina Senate county reference map…</p></div>
@@ -1319,6 +1356,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/nc_official_candidate_votes.js?v=ecdb01c17298"></script>
 <script src="./scripts/nc_historical_county_comparison.js?v=4932049c0026"></script>
 <script src="./scripts/nc_same_office_senate_comparison.js?v=ec183b5491cb"></script>
+<script src="./scripts/national_needle_cartogram.js?v=04878e0304a6"></script>
 <script src="./scripts/nc_senate_county_map.js?v=0c7818aba055"></script>
 <script src="./scripts/nc_senate_county_map_startup.js?v=84d83fd63392"></script>
 <script src="./scripts/ohio_official_candidate_votes.js?v=ed88660a3b59"></script>
@@ -4311,7 +4349,7 @@ function jointCurrentSignature(){
   ':'+enModeYear+':'+(Date.now()>=Date.parse('2026-11-03T05:00:00Z'));
 }
 function jointRender(force=false){
- if(!jointBasis||!window.ChamberControlModel){jointRenderCards(null);return}
+ if(!jointBasis||!window.ChamberControlModel){jointRenderCards(null);enRenderNeedleCartogram();return}
  const key=jointCurrentSignature();
  if(!force&&jointLastResult&&jointCacheKey===key)return;
  jointCacheKey=key;
@@ -4341,6 +4379,7 @@ function jointRender(force=false){
    }else privateSummary.textContent='Public JackStradamus baseline active; import the CSVs to compare an experimental candidate-context variant.';
   }
   jointRenderCards(result);
+  enRenderNeedleCartogram();
   renderSmartRaceDesks();
   renderSenateTideLine();
   renderMississippiSenateWatch();
@@ -4373,7 +4412,7 @@ function jointRender(force=false){
  }catch(e){
   jointErrorMessage='Model calculation unavailable: '+String(e.message||e);
   jointLastResult=null;jointPulseBaseline=null;jointPulseRows=[];setModelRaceOddsData(null);
-  jointRenderCards(null);jointRenderHouseShadow(null,null,null);
+  jointRenderCards(null);enRenderNeedleCartogram();jointRenderHouseShadow(null,null,null);
   renderMississippiSenateWatch();
   renderEnForecastStrip();
  }
@@ -6744,6 +6783,24 @@ function enLeadInfo(r){
 }
 function marginColor(v){return !Number.isFinite(v)||Math.abs(v)<.05?'party-even':v>0?'party-d':'party-r'}
 function enPartyColor(x){return x==='d'?'party-d':x==='r'?'party-r':'party-even'}
+/* Geography tiles reuse the SAME snapshot as joint House/Senate odds.
+ * Raw geographic partials remain descriptive and cannot update the model. */
+function enRenderNeedleCartogram(){
+ const host=$('#enNationalNeedleMap');
+ if(!host||!window.NationalNeedleCartogram)return;
+ const panel=host.closest('.en-national-map-panel');
+ if(panel)panel.hidden=enModeYear!==2026;
+ if(enModeYear!==2026)return;
+ const current=Boolean(jointLastResult&&jointBasis&&
+  latestSenateEstimates?.generated_at&&
+  jointBasis.generated_from_sources?.model_polling_at===
+   latestSenateEstimates.generated_at&&
+  Array.isArray(jointLastResult.race_probabilities));
+ window.NationalNeedleCartogram.render(host,
+  current?jointLastResult.race_probabilities:[],document,{
+   available:current,modelAsOf:current?latestSenateEstimates.generated_at:null,
+   onOpen:r=>navigateInsightToModel({office:r.office,race:{race_code:r.race_code}})});
+}
 function enRender(){
  // 2024 recorded history is an outcome, not a historical pre-election model.
  // Never re-label today's 2026 chamber probabilities as a 2024 forecast.
@@ -6805,6 +6862,7 @@ function enRender(){
  enRenderEarlySignals();
  enRenderExportControls();
  enRenderNationalSenate();
+ enRenderNeedleCartogram();
  enRenderAlertInbox();
  enRenderLiveDesk();
  enUpdateSelection();
