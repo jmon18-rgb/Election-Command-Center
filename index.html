@@ -3016,7 +3016,8 @@ function enNationalTracked(item){
  const id=enWatchId(item);
  return enWatched.some(x=>enWatchId(x)===id)||
    (enNationalEnabled&&enNationalSeats?.some(x=>enWatchId(x)===id))||
-   enNationalExpanded.has(id)||enMilestoneTracked(item)||enEarlySourceTracked(item)||enAutoTracked(item);
+   enNationalExpanded.has(id)||enMilestoneTracked(item)||enEarlySourceTracked(item)||
+   enAutoTracked(item)||enActiveGapItems().some(x=>enWatchId(x)===id);
 }
 function enNationalToggle(enabled){
  if(!enNationalSeats)return;
@@ -3106,6 +3107,25 @@ function smartDisplayRoster(){
 function enAutoTracked(item){
  return enModeYear===2026&&Date.now()>=Date.parse('2026-11-03T05:00:00Z')&&
   smartAutoWatch().some(x=>x.office===item.office&&x.key===item.key);
+}
+// Source gaps outside the ordinary screenshot/model top-N are automatically
+// included if the CURRENT linked joint model says the race remains
+// competitive. High-confidence seats keep manual backstops instead.
+function enActiveGapItems(){
+ if(enModeYear!==2026||!enPublishedCoverageLedger||
+    !window.ElectionNightCoverageTriage?.priorityGaps||
+    !jointLastResult||!jointBasis||!latestSenateEstimates?.generated_at||
+    jointBasis.generated_from_sources?.model_polling_at!==
+     latestSenateEstimates.generated_at||
+    !Array.isArray(jointLastResult.race_probabilities))return [];
+ const pending=enPublishedCoverageLedger.races.filter(r=>
+  r?.gap_status==='UNRESOLVED_SOURCE_GAP').map(r=>({
+   id:r.id,office:r.office
+  }));
+ const attention=window.ElectionNightCoverageTriage.priorityGaps(
+  pending,jointLastResult.race_probabilities);
+ return attention.races.filter(r=>r.mode==='ACTIVE_LIVE_SOURCE')
+  .map(r=>({office:r.office,key:r.id.slice(r.id.indexOf('|')+1)}));
 }
 function smartModelMap(){
  return new Map((jointLastResult?.race_probabilities||[]).map(x=>[x.race_code,x]));
@@ -5821,7 +5841,7 @@ async function enRefreshCivicWatchlist(force=false){
     .filter(Boolean):[];
   const autoMonitored=now>=Date.parse('2026-11-03T05:00:00Z')?
     smartAutoWatch().map(x=>({office:x.office,key:x.key})):[];
-  const all=[...new Map([...enWatched,...enNationalWatchItems(),...monitored,...earlyMonitored,...autoMonitored]
+  const all=[...new Map([...enWatched,...enActiveGapItems(),...enNationalWatchItems(),...monitored,...earlyMonitored,...autoMonitored]
     .filter(x=>enShouldProbeSupplemental(x,now))
     .map(x=>[enWatchId(x),x])).values()];
   if(!all.length)return;
