@@ -42,6 +42,7 @@ if(opts.has('check-config')){
   background_visibility_confirmed:false,background_resume_observed:false,
   resumed_tab_visible:false,post_resume_primary_requests:0,
   post_resume_primary_healthy_responses:0,
+  post_resume_refresh_trigger:null,
   source_requests:{primary:0,supplemental:0},
   primary_healthy_responses:0,
   source_request_failures:0,source_http_errors:0,page_script_errors:0,
@@ -104,6 +105,17 @@ if(opts.has('check-config')){
     report.resumed_tab_visible=await tab.evaluate(()=>!document.hidden);
     report.background_resume_observed=true;
     resumed=true;
+    // Before Election Day, the standby feed intentionally uses a slower
+    // ten-minute cadence. In a five-minute PR rehearsal, explicitly click
+    // the owner-facing 2026 refresh control after resume. Never report this
+    // as autonomous Election Night recovery. Once the election-day window
+    // begins, do NOT intervene; require the real visibility/focus handler.
+    if(Date.now()<Date.parse('2026-11-03T05:00:00Z')){
+     report.post_resume_refresh_trigger='MANUAL_OWNER_CONTROL_PRE_ELECTION';
+     await tab.locator('#enMode2026').click({timeout:30000});
+    }else{
+     report.post_resume_refresh_trigger='AUTONOMOUS_ELECTION_DAY_FOCUS';
+    }
    }
    const state=await tab.evaluate(()=>{
     const text=document.querySelector('#enLiveCoverageTriage')?.textContent||'';
