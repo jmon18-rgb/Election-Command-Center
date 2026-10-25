@@ -221,4 +221,60 @@ assert.equal(api.validatePinned(kyItem,87173,kyDetail,
 assert.equal(api.validatePinned(kyItem,87173,{
  ...kyDetail,candidates:pre.candidates,percent_reporting:0,last_updated:null
 },Date.parse('2026-10-23T15:00:00Z')).total,0);
+// The seven remaining missing 2026 House source identities might be indexed
+// under alternative congressional office names. The browser may search only
+// those seven with a bounded request list, while validation remains exact.
+const aliases=[
+ ['AK-00','Alaska Representative in Congress At-Large'],
+ ['DE-00','Delaware U.S. Representative At-Large'],
+ ['ND-00','North Dakota Representative in Congress'],
+ ['NH-01','New Hampshire Representative in Congress District 1'],
+ ['NH-02','New Hampshire U.S. Representative 2'],
+ ['SD-00','South Dakota Representative in Congress'],
+ ['WY-00','Wyoming U.S. Representative At Large']
+];
+for(const [key,name] of aliases){
+ const candidate={office:'House',key};
+ const urls=api.queries(candidate);
+ assert.equal(urls.length,3,key+' gets exactly two extra source searches');
+ assert.equal(new URL(urls[0]).searchParams.get('query'),
+  'US House'+(key.endsWith('-00')?'':' '+Number(key.slice(3))));
+ assert.equal(new URL(urls[1]).searchParams.get('query'),'Representative in Congress');
+ assert.equal(new URL(urls[2]).searchParams.get('query'),'U.S. Representative');
+ assert(urls.every(url=>{
+  const u=new URL(url);
+  return u.origin==='https://civicapi.org'&&
+   u.searchParams.get('province')===key.slice(0,2)&&
+   u.searchParams.get('startDate')==='2026-11-03'&&
+   u.searchParams.get('endDate')==='2026-11-03'&&u.searchParams.get('limit')==='20';
+ }));
+ const row={...search,province:key.slice(0,2),district:key,
+  election_name:name,id:88500+aliases.findIndex(x=>x[0]===key)};
+ assert(api.match(candidate,row),key+' must accept exact alternative office name');
+ assert.equal(api.select(candidate,{count:1,races:[row]})?.id,row.id);
+ const zeroDetail={...detail,...row,election_type:'House of Representatives',
+  candidates:pre.candidates,percent_reporting:0,last_updated:null};
+ const parsed=api.validate(candidate,row,zeroDetail,Date.parse('2026-10-25T13:00:00Z'));
+ assert.equal(parsed?.total,0,key+' source identity must not create votes before election');
+ assert.equal(api.match(candidate,{...row,district:'NH-99'}),false);
+ assert.equal(api.match(candidate,{...row,province:'CA'}),false);
+ assert.equal(api.match(candidate,{...row,election_date:'2024-11-05'}),false);
+ assert.equal(api.match(candidate,{...row,election_type:'Primary'}),false);
+ assert.equal(api.match(candidate,{...row,election_name:name+' Primary'}),false);
+ assert.equal(api.match(candidate,{...row,election_name:'Representative for Congress'}),false);
+ assert.equal(api.select(candidate,{count:2,races:[row]}),null,
+  'An incomplete alias search cannot establish a unique identity');
+ assert.equal(api.select(candidate,{count:2,races:[row,row]}),null,
+  'Duplicate exact alias identities remain ambiguous');
+ if(!key.endsWith('-00'))
+  assert.equal(api.match(candidate,{...row,election_name:name.replace(/\\b[12]$/, '99')}),false);
+}
+assert.equal(api.queries({office:'House',key:'KY-06'}).length,1,
+ 'Previously identified House districts must not add provider traffic');
+assert.deepEqual(api.queries({office:'House',key:'NH-03'}),[]);
+assert.equal(api.queries(null).length,0);
+assert.equal(api.match({office:'House',key:'KY-06'},
+ {...kyRow,election_name:'Kentucky Representative in Congress District 6'}),false,
+ 'Alternate title expansion is restricted to seven source gaps');
+
 console.log('2026 supplemental House district source identity, arithmetic, CORS-safe query and failure cases PASS');
