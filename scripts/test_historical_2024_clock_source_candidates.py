@@ -31,6 +31,31 @@ class ArchivedElection2024ResearchLeadTests(unittest.TestCase):
         for key in forbidden:
             self.assertNotIn('"'+key+'":',text)
 
+    def test_virginia_state_enr_research_lead_is_nonproduction(self):
+        x=json.loads(PATH.read_text())["alternative_state_source_lead"]
+        self.assertEqual(x["state"],"VA")
+        self.assertEqual(x["offices"],["president","senate"])
+        self.assertEqual(x["election_date"],"2024-11-05")
+        self.assertEqual(len(x["published_evidence"]),2)
+        for entry in x["published_evidence"]:
+            uri=urlsplit(entry["url"])
+            self.assertEqual(uri.scheme,"https")
+            self.assertEqual(uri.hostname,"digitalpollwatchers.org")
+        self.assertEqual(
+            urlsplit(x["original_state_results_page"]).hostname,
+            "enr.elections.virginia.gov")
+        for field in (
+            "original_archived_json_files_obtained",
+            "contemporaneous_snapshot_timestamps_independently_verified",
+            "permission_for_data_ingestion","permission_for_redistribution",
+            "source_rights_reviewed",
+            "county_level_observations_independently_verified",
+            "geographic_boundary_crosswalk_verified",
+            "eligible_for_2026_needle_calibration"
+        ):
+            self.assertIs(x[field],False,
+                          "Unverified alternative archive cannot unlock the needle")
+
     def test_independent_git_timestamp_evidence_only(self):
         x=json.loads(PATH.read_text())
         self.assertEqual(x["candidate"]["repository"],
