@@ -205,6 +205,65 @@ class SourcePreflightTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,"mock, test or inactive"):
                 test_live_results_source.main()
 
+    def test_supplemental_preflight_rejects_wrong_election_despite_valid_json(self):
+        from pathlib import Path
+        from preflight_election_night_providers import run_probes
+        from preflight_pinned_senate_sources import parse_pins
+        root=Path(__file__).resolve().parents[1]
+        ledger=json.loads((root/"data/election_night_source_coverage.json").read_text())
+        adapter=(root/"scripts/civicapi_state_batch.js").read_text()
+        pins=parse_pins(ledger,adapter)
+        id_to_race={pin["id"]:pin for pin in pins.values()}
+        def fetch(url):
+            if "openamerica.io" in url:
+                office=url.rsplit("office=",1)[1]
+                return {**self.doc,"office":office,"races":{},"counts":{"races":0}}
+            source_id=int(url.rsplit("/",1)[1])
+            pin=id_to_race[source_id]
+            return {"id":source_id,"country":"US","province":pin["state"],
+                    "municipality":None,"district":None,
+                    "election_date":"2026-11-03T05:00:00Z",
+                    "election_name":pin["name"],"election_type":"US Senate",
+                    "candidates":[]}
+        with patch("preflight_election_night_providers.fetch_json",side_effect=fetch):
+            report=run_probes(self.now,coverage_ledger=ledger)
+        secondary=[x for x in report["probes"] if x["provider"]=="civicAPI"]
+        self.assertEqual(len(secondary),2)
+        self.assertEqual({x["race"] for x in secondary},
+                         {"Senate|ME","Senate|OH-special"})
+        for item in secondary:
+            self.assertEqual(item["status"],
+                             "HTTP_CORS_AND_EXACT_RACE_IDENTITY_VALID_NOT_LIVE_VERIFIED")
+            self.assertFalse(item["positive_count_coverage_verified"])
+            self.assertFalse(item["winner_call_verified"])
+            self.assertEqual(item["id"],pins[item["race"]]["id"])
+            self.assertNotIn("field_count",item)
+        self.assertFalse(report["source_votes_independently_verified"])
+        self.assertEqual(report["provider_race_calls_verified"],0)
+        for override in (
+            {"id":999999},{"election_date":"2024-11-05T05:00:00Z"},
+            {"province":"NH"},{"election_type":"Governor"},
+            {"mock":True},{"active":False},
+            {"election_date":"2026-11-03garbage"},
+        ):
+            def spoof(url):
+                doc=fetch(url)
+                if "civicapi.org" in url and url.endswith(str(pins["Senate|ME"]["id"])):
+                    return {**doc,**override}
+                return doc
+            with self.subTest(override=override):
+                with patch("preflight_election_night_providers.fetch_json",
+                           side_effect=spoof):
+                    bad=run_probes(self.now,coverage_ledger=ledger)
+                mismatches=[x for x in bad["probes"] if x.get("race")=="Senate|ME"]
+                self.assertEqual(len(mismatches),1)
+                self.assertEqual(mismatches[0]["status"],"FAILED_TRANSPORT_OR_SCHEMA")
+                self.assertEqual(mismatches[0]["id"],pins["Senate|ME"]["id"])
+                self.assertNotIn("field_count",mismatches[0])
+                self.assertEqual(next(x for x in bad["probes"]
+                   if x.get("race")=="Senate|OH-special")["status"],
+                   "HTTP_CORS_AND_EXACT_RACE_IDENTITY_VALID_NOT_LIVE_VERIFIED")
+
     def test_bounded_cors_response_protection(self):
         body=json.dumps(self.doc).encode()
         with patch("urllib.request.urlopen",return_value=FakeResponse(body)):
