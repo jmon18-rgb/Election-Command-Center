@@ -59,7 +59,11 @@ class OfficialBackstopsTests(unittest.TestCase):
         self.assertEqual(south_dakota["race_ids"],["House|SD-00"])
         self.assertEqual(south_dakota["verified_at"],"2026-10-24")
         north_dakota=next(x for x in self.links["links"] if x["state"]=="ND")
-        self.assertEqual(north_dakota["url"],"https://resultsnd.sos.nd.gov/")
+        self.assertEqual(north_dakota["url"],
+                         "https://resultsnd.sos.nd.gov/#election=348")
+        self.assertFalse(urlparse(north_dakota["url"]).query)
+        self.assertEqual(urlparse(north_dakota["url"]).fragment,"election=348",
+                         "This is the official 2026 general UI route, NOT a machine source ID")
         self.assertEqual(north_dakota["race_ids"],["House|ND-00"])
         self.assertEqual(north_dakota["mode"],"2026_results_landing")
         self.assertEqual(north_dakota["verified_at"],"2026-10-24")
