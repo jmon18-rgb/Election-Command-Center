@@ -50,7 +50,10 @@ if(opts.has('check-config')){
  };
  let browser,soakStart=null,resumed=false;
  try{
-  browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+  // Chromium's headless shell leaves document.hidden=false for background
+  // tabs. Use real headed Chromium under CI Xvfb so visibilitychange can be
+  // observed rather than faking it with injected document properties.
+  browser=await chromium.launch({headless:false,args:['--no-sandbox']});
   const ctx=await browser.newContext({viewport:{width:1440,height:900},
    serviceWorkers:'block',reducedMotion:'reduce'});
   const tab=await ctx.newPage();
@@ -97,6 +100,8 @@ if(opts.has('check-config')){
    // This is NOT claimed to simulate OS sleep or a source outage.
    if(step===Math.floor(steps/3)){
     secondary=await ctx.newPage();await secondary.goto('about:blank');
+    await secondary.bringToFront();
+    await tab.waitForFunction(()=>document.hidden,undefined,{timeout:10000});
     report.background_visibility_confirmed=
       await tab.evaluate(()=>document.hidden);
    }else if(step===Math.floor(steps/3)+2&&secondary){
