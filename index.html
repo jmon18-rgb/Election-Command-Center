@@ -3869,7 +3869,7 @@ let jointBasis=null,jointBasisPublic=null,jointBasisShadow=null,jointBasisPresid
     jointPrivateData=null,jointPrivateEnabled=true,jointPrivateHouse=true,
     jointPrivateRemember=true,jointPrivateImportedAt=null,jointPrivatePollData=null,
     jointPrivateSource='none',jointRepositorySignature=null,
-    jointPulseRows=[],jointPulseBaseline=null;
+    jointPulseRows=[],jointDescriptiveReturns=[],jointPulseBaseline=null;
 function jointUsesPrivateContext(){
  return Boolean(jointPrivateEnabled&&jointPrivateData&&jointBasis?.private_imported_context);
 }
@@ -3909,7 +3909,8 @@ const jointLabels=[
 function jointSourceItem(item){
  const key=item.code,itemOffice=key.endsWith('-SEN')?'Senate':'House';
  const state=key.slice(0,2),office=key.endsWith('-GOV')?'Governor':itemOffice;
- const watchKey=office==='House'?key:
+ const watchKey=office==='House'?
+   (window.HouseAtLargeBridge?.sourceKey(key)||key):
    office==='Governor'?state:
    state+(office==='Senate'&&['OH','FL'].includes(state)?'-special':'');
  const watch={office,key:watchKey};
@@ -3925,6 +3926,7 @@ function jointSourceItem(item){
 }
 function jointLiveObservations(){
  jointPulseRows=[];
+ jointDescriptiveReturns=[];
  if(enModeYear!==2026||Date.now()<Date.parse('2026-11-03T23:00:00Z')||
     !window.RaceLiveNowcast||!jointBasis)return {};
  const observations={},now=Date.now();
@@ -3957,15 +3959,19 @@ function jointLiveObservations(){
       (localClose!==null&&x.time<localClose)||
       x.time< Date.parse('2026-11-03T23:00:00Z')||
       x.time>now+900000||now-x.time>180*60000)continue;
-  const priorVariance=r.sigma*r.sigma;
-  const noise=7+20*Math.pow(1-x.reporting/100,1.3),variance=noise*noise;
-  const posteriorVariance=1/(1/priorVariance+1/variance);
-  jointPulseRows.push({race_code:r.code,office:r.code.endsWith('-SEN')?'Senate':
-   r.code.endsWith('-GOV')?'Governor':'House',provider:x.provider,
-   reporting:x.reporting,asOf:x.asOf});
-  observations[r.code]={mode:'live_informed',
-   posteriorMargin:posteriorVariance*(r.mean/priorVariance+x.margin/variance),
-   posteriorSigma:Math.sqrt(posteriorVariance)};
+  // The statewide partial margin is observable, but its reporting fraction
+  // is PRECINCTS, not ballots. Reporting order, county vote composition
+  // and method mix remain uncalibrated. Never use this raw margin to
+  // reweight House/Senate correlated chamber probabilities or announce
+  // nationally "results-informed" odds. Preserve the reading for a
+  // separately labeled, source-attributed observational desk.
+  jointDescriptiveReturns.push({race_code:r.code,office,provider:x.provider,
+   reporting:x.reporting,asOf:x.asOf,margin:x.margin,
+   total_two_party_votes:x.d+x.r});
+  // A county/precinct-adjusted provider signal will need a separately
+  // reviewed model contract, chronological replay and held-out coverage
+  // before it can be admitted to observations. A raw precinct pct NEVER
+  // implicitly satisfies that contract.
  }
  return observations;
 }
@@ -3993,9 +3999,11 @@ function jointRenderNeedles(result){
   const position=(v[1]+2*v[2]+3*v[3])/(3*total)*100;
   const likely=v.indexOf(Math.max(...v));
   const liveCount=jointPulseRows.length;
+  const rawCount=jointDescriptiveReturns.length;
   const startOfCounting=Date.parse('2026-11-03T05:00:00Z');
   const sourceMode=Date.now()<startOfCounting?'POLLING-ONLY · NO LIVE RETURNS':
    liveCount?'RESULTS-INFORMED · '+liveCount+' SOURCE-VALIDATED RACES':
+   rawCount?'UNADJUSTED RETURNS OBSERVED · NO GEOGRAPHIC NOWCAST':
    'AWAITING LIVE RETURNS · POLLING PRIORS';
   marker.style.left=Math.max(0,Math.min(100,position)).toFixed(2)+'%';
   const angle=Math.PI*(1-Math.max(0,Math.min(100,position))/100);
@@ -4020,7 +4028,8 @@ function jointRenderNeedles(result){
   const oceanName=['RED SKIES','CHOPPY SEAS','BLUE WAVE WATCH','TSUNAMI WATCH'];
   foot.firstElementChild.textContent=oceanName[likely]+
    ' · '+v[likely].toFixed(1)+'% most likely ending';
-  foot.lastElementChild.textContent=(liveCount?'LIVE RETURNS':'PRE-ELECTION FORECAST')+
+  foot.lastElementChild.textContent=(liveCount?'VERIFIED SOURCE CALLS':
+   rawCount?'UNADJUSTED RETURNS · MODEL PRIOR':'PRE-ELECTION FORECAST')+
    ' · '+result.samples.toLocaleString('en-US')+' draws';
   bar.replaceChildren();
   for(let i=0;i<4;i++){
@@ -4039,8 +4048,26 @@ function jointRenderNeedles(result){
   if(!context){context=elt('div','four-needle-live-context');host.append(context)}
   context.replaceChildren();
   if(!movement?.liveCount){
-   context.append(elt('div','four-needle-change',
+   context.append(elt('div','four-needle-change',rawCount?
+    'RAW RETURNS OBSERVED · '+rawCount+
+    ' race(s); awaiting a geography-adjusted, replay-validated signal':
     'CALM BEFORE THE COUNT · polling + fundamentals only'));
+   if(rawCount){
+    const sample=jointDescriptiveReturns
+     .slice().sort((a,b)=>Date.parse(b.asOf)-Date.parse(a.asOf)).slice(0,3);
+    const list=elt('div','four-needle-drivers');
+    for(const x of sample){
+     const row=elt('div','four-needle-driver');
+     row.textContent=x.race_code+' · '+x.provider+
+      ' · observed D'+(x.margin>=0?'+':'')+x.margin.toFixed(1)+
+      ' · '+x.reporting.toFixed(0)+'% PRECINCTS (not ballots) · '+
+      x.total_two_party_votes.toLocaleString('en-US')+' counted D/R votes';
+     list.append(row);
+    }
+    context.append(list,elt('p','four-needle-disclosure',
+     'Unadjusted county/reporting-order and ballot-method mix can reverse an early lead. '+
+     'These returns are descriptive and DO NOT change control probabilities.'));
+   }
    continue;
   }
   const delta=movement.shift;
