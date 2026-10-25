@@ -67,7 +67,13 @@ def assess(html,now,available=True):
     matched={}
     ambiguous=[]
     for name in FILES:
-        links=[href for label,href in doc.links if name.lower() in label.lower()]
+        # Official CA media HTML names the API catalog as "api endpoints
+        # .csv file" rather than spelling its download filename in text.
+        # Resolve the LINK PATH as well as the label before exact-host
+        # verification; never infer any file not in the official HTML.
+        links=[href for label,href in doc.links
+               if name.lower() in label.lower() or
+               urlsplit(urljoin(INDEX,href or "")).path.endswith("/"+name)]
         if len(links)>1:
             ambiguous.append(name)
         if len(links)==1:
