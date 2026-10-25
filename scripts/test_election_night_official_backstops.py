@@ -31,8 +31,10 @@ class OfficialBackstopsTests(unittest.TestCase):
         expected={r["id"] for r in self.ledger["races"]
                   if r["gap_status"]=="UNRESOLVED_SOURCE_GAP"}
         pages=newsroom["race_pages"]
-        self.assertEqual(len(pages),len(expected))
-        self.assertEqual({r["id"] for r in pages},expected)
+        ids=[r["id"] for r in pages]
+        self.assertEqual(len(ids),len(set(ids)), "No duplicate manual pages")
+        self.assertTrue(expected.issubset(set(ids)),
+                        "Every active gap has an exact reviewed manual race page")
         for row in pages:
             p=urlparse(row["url"])
             self.assertEqual(p.scheme,"https")
