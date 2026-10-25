@@ -6,14 +6,34 @@
  if(root)root.CountySwing2026=api;
 })(typeof window!=='undefined'?window:null,function(){
  'use strict';
+ // A 2024 county presidential or Senate result is NOT the immediately
+ // previous election for a 2026 Class II Senate seat (2020). Follow the
+ // independently tested full 506-contest previous-same-seat registry.
+ const YEAR_DATE=Object.freeze({2020:'2020-11-03',
+  2022:'2022-11-08',2024:'2024-11-05'});
+ function previousSeatYear(observation){
+  const registry=typeof module!=='undefined'&&module.exports?
+   require('./election_night_county_mode_signal.js'):
+   typeof window!=='undefined'?window.ElectionNightCountySignal:null;
+  return registry?.baselineYear?.({
+   office:observation?.office?.toLowerCase(),
+   race_code:observation?.race_key,
+   election_kind:observation?.election_kind
+  })??null;
+ }
  function calculate(observation,baseline){
-  if(!observation||!baseline||observation.verified_source!==true||
+  const previous=previousSeatYear(observation);
+  if(previous===null||!observation||!baseline||
+     !['House','Senate','Governor'].includes(observation.office)||
+     observation.verified_source!==true||
      observation.is_test!==false||observation.election_date!=='2026-11-03'||
      typeof observation.county_id!=='string'||
      observation.county_id!==baseline.county_id||
      observation.race_key!==baseline.race_key||
+     baseline.office!==observation.office||
      baseline.boundary_version!=='2026'||
-     baseline.election_date!=='2024-11-05'||
+     baseline.election_year!==previous||
+     baseline.election_date!==YEAR_DATE[previous]||
      baseline.verified_source!==true)return null;
   const candidates=observation.candidates;
   if(!Array.isArray(candidates)||candidates.length<2)return null;
@@ -51,7 +71,10 @@
    current_margin:currentMargin,baseline_margin:baselineMargin,
    swing:currentMargin-baselineMargin,two_party_votes:n.D+n.R,
    other_party_votes:other,reported_ballots:observation.ballots_reported,
-   source_updated_at:observation.updated_at,mode:'VERIFIED_COUNTY_SWING_ONLY'});
+   source_updated_at:observation.updated_at,
+   previous_same_seat_election_year:previous,
+   previous_same_seat_election_date:YEAR_DATE[previous],
+   mode:'VERIFIED_COUNTY_SWING_ONLY'});
  }
- return Object.freeze({calculate});
+ return Object.freeze({calculate,previousSeatYear});
 });

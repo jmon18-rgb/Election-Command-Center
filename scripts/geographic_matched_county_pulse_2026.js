@@ -39,7 +39,7 @@
   if(ids.length>2000)return {status:'OVERSIZED_COUNTY_SAMPLE',...NOMODEL};
   let observed=0,matched=0,missingBaseline=0,rejected=0;
   let liveD=0,liveR=0,oldD=0,oldR=0,other=0;
-  let reference=null,latest=-Infinity,providers=new Set();
+  let reference=null,latest=-Infinity,providers=new Set(),previousYear=null;
   for(const id of ids){
    const row=rows[id];
    if(!row||id!==row.race_key+'|'+row.county_id||
@@ -56,8 +56,16 @@
    }
    observed++;
    const baseline=own(baselines,id)?baselines[id]:null;
+   if(!baseline){missingBaseline++;continue;}
    const comparison=swing.calculate(row,baseline);
-   if(!comparison){missingBaseline++;continue;}
+   // A present but incorrectly dated/identified "prior" election is a
+   // contaminated historical record, not merely a missing county. Other
+   // good counties must not rescue a cherry-picked misleading swing.
+   if(!comparison){rejected++;continue;}
+   if(previousYear!==null&&
+      comparison.previous_same_seat_election_year!==previousYear){
+    rejected++;continue;
+   }
    const major={D:null,R:null};
    for(const c of row.candidates){
     if(c.party==='D'||c.party==='R')major[c.party]=c.votes;
@@ -74,6 +82,7 @@
     providers.add(origin);
    if(reference===null)reference=origin;
    matched++;
+   previousYear=comparison.previous_same_seat_election_year;
    latest=Math.max(latest,when);
    liveD+=major.D;liveR+=major.R;
    oldD+=old.D;oldR+=old.R;other+=comparison.other_party_votes;
@@ -85,7 +94,8 @@
   // One invalid county row means the reported batch was not consistently
   // audited. A 'REJECTED' status must never carry a seemingly usable
   // swing computed from cherry-picked, remaining valid counties.
-  const safe=!mixed&&rejected===0&&matched>=2&&liveTotal>0&&oldTotal>0&&
+  const safe=!mixed&&rejected===0&&previousYear!==null&&
+   matched>=2&&liveTotal>0&&oldTotal>0&&
    [liveTotal,oldTotal,other].every(Number.isSafeInteger);
   const margin=total=>total===0?null:100*(liveD-liveR)/total;
   const oldMargin=oldTotal?100*(oldD-oldR)/oldTotal:null;
@@ -102,10 +112,17 @@
    // This is NEVER claimed to measure percent statewide vote reporting.
    reporting_percent:null,estimated_votes_remaining:null,
    matched_2026_two_party_votes:safe?liveTotal:null,
-   matched_2024_two_party_votes:safe?oldTotal:null,
+   // Previous election depends on office and seat; do not mislabel 2020
+   // Senate or 2022 governor results as 2024.
+   previous_same_seat_election_year:safe?previousYear:null,
+   matched_previous_same_seat_two_party_votes:safe?oldTotal:null,
+   matched_previous_same_seat_margin_points:safe?oldMargin:null,
+   // Compatibility fields are populated only where 2024 truly was the
+   // previous SAME-SEAT ballot (House, biennial NH/VT governors).
+   matched_2024_two_party_votes:safe&&previousYear===2024?oldTotal:null,
    matched_2026_other_party_votes:safe?other:null,
    matched_2026_margin_points:liveMargin,
-   matched_2024_margin_points:safe?oldMargin:null,
+   matched_2024_margin_points:safe&&previousYear===2024?oldMargin:null,
    matched_county_swing_points:safe?liveMargin-oldMargin:null,
    most_recent_source_at:safe?new Date(latest).toISOString():null,
    ...NOMODEL
