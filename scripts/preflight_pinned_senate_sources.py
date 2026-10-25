@@ -3,7 +3,7 @@
 outside-primary 2026 U.S. Senate race endpoints. Not a result or call feed.
 
 Daily default: always ME/Ohio special + five rotating other pinned 2026
-Senate identities (all 17 checked over three days). On Nov 3 the workflow
+Senate identities (all 18 checked over four days). On Nov 3 the workflow
 checks a small rotating group hourly. This avoids a sudden bulk crawl of
 the free external service.
 """
@@ -44,16 +44,20 @@ def parse_pins(ledger, adapter_text):
             row.get("state")!=declared[name]["state"] or name in records):
             raise ValueError("Pinned Senate race identity differs from exact 2026 curated adapter")
         records[name]={"race":name,**declared[name]}
-    if len(records)!=17 or any(name not in records for name in PRIORITY):
-        raise ValueError("Expected 17 exact 2026 Senate supplemental IDs and two priority races")
+    if len(records)!=18 or any(name not in records for name in PRIORITY):
+        raise ValueError("Expected 18 exact 2026 Senate supplemental IDs and two priority races")
     return records
 
 def select(pins,now):
     if now.tzinfo is None:raise ValueError("UTC-aware clock required")
     rest=sorted(set(pins)-set(PRIORITY))
-    if len(rest)!=15:raise ValueError("Expected 15 non-priority curations")
-    slot=now.date().toordinal()%3
-    return [pins[x] for x in PRIORITY]+[pins[x] for x in rest[slot*5:(slot+1)*5]]
+    if len(rest)!=16:raise ValueError("Expected 16 non-priority curations")
+    # Bound free-provider calls to seven; the fourth day checks the final
+    # race rather than silently dropping it or making extra requests.
+    pages=(len(rest)+ROWS_PER_SHARD-1)//ROWS_PER_SHARD
+    slot=now.date().toordinal()%pages
+    return [pins[x] for x in PRIORITY]+[
+        pins[x] for x in rest[slot*ROWS_PER_SHARD:(slot+1)*ROWS_PER_SHARD]]
 
 def validate_detail(item, doc):
     if (not isinstance(doc,dict) or type(doc.get("id")) is not int or
@@ -86,10 +90,11 @@ def probe(pins,now,read=fetch_json):
             results.append({"race":item["race"],"id":item["id"],
                "status":"FAILED_TRANSPORT_CORS_OR_EXACT_IDENTITY",
                "reason":str(err)[:200]})
-    assert len(results)==MAX_PER_PROBE
+    assert len(PRIORITY)<=len(results)<=MAX_PER_PROBE
     return {"schema":"pinned-2026-senate-rotation-preflight-v1",
-      "checked_at":now.isoformat(),"civicapi_sources_total":17,
-      "checked_this_run":len(results),"not_probed_this_run":10,
+      "checked_at":now.isoformat(),"civicapi_sources_total":len(pins),
+      "checked_this_run":len(results),
+      "not_probed_this_run":len(pins)-len(results),
       "not_a_live_vote_feed":True,"authoritative_calls_verified":0,
       "results":results}
 
