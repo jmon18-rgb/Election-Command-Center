@@ -15,6 +15,19 @@ assert(out.ok);assert.equal(out.rows[0].county_id,'37001');
 assert.equal(out.rows[0].election_kind,'regular',
  'The official normalized 2026 NC Class II Senate contest is regular');
 assert.equal(out.may_move_national_needle,false);
+for(const [office,race_key] of [
+ ['Governor','NC-GOV'],['Senate','AZ-SEN'],
+ ['House','NC-99'],['House','NC-00']
+]){
+ const source={...feed,office,race_key};
+ const claimed={...expected,office,race_key};
+ assert.equal(normalize(source,claimed,at).reason,'SOURCE_CONTRACT_UNVERIFIED',
+  'Mutually agreeing source and caller cannot create a fake 2026 '+race_key);
+}
+assert.equal(normalize({...feed,office:'House',race_key:'NC-01'},
+ {...expected,office:'House',race_key:'NC-01'},at).ok,true,
+ 'Exact 2026 House races preserve independently verified county results');
+
 for(const altered of [
  {...feed,is_test:true},{...feed,source_verified:false},
  {...feed,source_url:'https://unknown.com/counties'},
@@ -105,6 +118,10 @@ assert.equal(mockWindow.VerifiedCountySourceContract2026.normalize(
  'Missing canonical state-FIPS module must fail closed');
 mockWindow.ElectionNightStateCountyFIPS2026=require('./election_night_state_county_fips_2026.js');
 assert.equal(mockWindow.VerifiedCountySourceContract2026.normalize(
+ feed,expected,at).ok,false,
+ 'Missing canonical 506-race ballot inventory must fail closed');
+mockWindow.ElectionNightReconciliation=require('./election_night_reconciliation.js');
+assert.equal(mockWindow.VerifiedCountySourceContract2026.normalize(
  feed,expected,at).ok,true,
- 'County updates must recover once the poll-close and canonical FIPS modules load');
+ 'County updates recover only with poll-closes, FIPS and exact 506-race ballot');
 console.log('Verified county source envelope gate passed');

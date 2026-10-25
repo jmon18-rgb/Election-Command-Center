@@ -16,6 +16,17 @@
 })(typeof window!=='undefined'?window:null,function(getCloses,getFips){
  'use strict';
  const validInt=n=>Number.isSafeInteger(n)&&n>=0;
+ // The original 2026 source envelope and the adapter caller must also
+ // match a legally contested race in the canonical 506-ballot inventory.
+ const valid2026Ballot=expected=>{
+  const ballot=typeof module!=='undefined'&&module.exports?
+   require('./election_night_reconciliation.js'):
+   typeof window!=='undefined'?window.ElectionNightReconciliation:null;
+  return ballot?.validCountyBallotRace?.(
+   expected.office,expected.race_key,
+   expected.office==='Senate'&&['FL','OH'].includes(expected.state)?
+    'special':'regular')===true;
+ };
  const acceptedUrl=u=>typeof u==='string'&&/^https:\/\/[^\s/]+\//.test(u);
  function normalize(envelope,expected,now=Date.now()){
   const closes=getCloses(),fips=getFips();
@@ -39,6 +50,7 @@
       (expected.office==='Governor'&&expected.race_key===expected.state+'-GOV')||
       (expected.office==='House'&&
        /^[A-Z]{2}-\d{2}$/.test(expected.race_key)))||
+    !valid2026Ballot(expected)||
     envelope.source_verified!==true||!acceptedUrl(envelope.source_url)||
     envelope.source_url!==expected.source_url||
     !Array.isArray(envelope.counties)||!envelope.counties.length||

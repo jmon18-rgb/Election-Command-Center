@@ -15,6 +15,20 @@ const senateStates='AL AK AR CO DE FL GA ID IA IL KS KY LA MA ME MI MN MS MT NC 
 assert.equal(senateStates.length,35);
 const senate=senateStates.map(st=>({key:st+(st==='FL'||st==='OH'?'-special':'')}));
 assert.equal(api.senateIds(senate).length,35);
+for(const [office,key,kind,approved] of [
+ ['House','TX-01','regular',true],['House','AK-00','regular',true],
+ ['House','TX-99','regular',false],['House','TX-00','regular',false],
+ ['House','NH-01','regular',true],['House','AK-01','regular',false],
+ ['Senate','NC-SEN','regular',true],['Senate','FL-SEN','special',true],
+ ['Senate','FL-SEN','regular',false],['Senate','OH-SEN','special',true],
+ ['Senate','AZ-SEN','regular',false],['Senate','NC-SEN','special',false],
+ ['Governor','NC-GOV','regular',false],['Governor','VA-GOV','regular',false],
+ ['Governor','TX-GOV','regular',true],['Governor','NH-GOV','regular',true],
+]){
+ assert.equal(api.validCountyBallotRace(office,key,kind),approved,
+  'Wrong exact county election gate for '+office+' '+key);
+}
+
 const gov=api.governorIds();
 assert.equal(gov.length,36);
 assert.equal(new Set(gov).size,36);
@@ -77,6 +91,13 @@ const ledger=JSON.parse(fs.readFileSync(path.join(__dirname,
 assert.equal(ledger.races.length,506);
 let approved=0;
 for(const r of ledger.races){
+ assert.equal(api.validBallotRace(r.office,r.key),true,
+  'Actual 2026 ballot race must be covered: '+r.id);
+ const kind=r.office==='Senate'&&r.key.endsWith('-special')?'special':'regular';
+ const countyCode=r.office==='House'?r.key:
+  r.state+(r.office==='Senate'?'-SEN':'-GOV');
+ assert.equal(api.validCountyBallotRace(r.office,countyCode,kind),true,
+  'County gate must recognize the same 506 underlying contests: '+r.id);
  const expected=r.source_identity_status==='PRIMARY_PROVIDER_STATE_SCOPE';
  assert.equal(api.validPrimaryScope(r.office,r.key),expected,
   'Exact 2026 primary scope does not match ledger: '+r.id);

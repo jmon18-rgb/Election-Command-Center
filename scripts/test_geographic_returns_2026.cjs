@@ -8,6 +8,22 @@ const base={election_date:'2026-11-03',election_type:'General',is_test:false,
  {name:'Candidate R',party:'R',votes:40}]};
 const row=overrides=>({...base,...overrides});
 assert(validate(base));
+for(const invalid of [
+ {office:'Governor',race_key:'VA-GOV'},
+ {office:'House',race_key:'VA-99'},
+ {office:'House',race_key:'VA-00'},
+ {office:'Senate',race_key:'VA-SEN',election_kind:'special'},
+]){
+ assert.equal(validate(row(invalid)),null,
+  'Real FIPS and source identity do not create an unballoted 2026 contest');
+}
+assert(validate(row({office:'House',race_key:'VA-01',
+ election_kind:'regular'})),
+ 'A real 2026 House seat remains eligible for exact county returns');
+assert.equal(validate(row({office:'House',race_key:'VA-01',
+ election_kind:'special'})),null,
+ 'Fictional special House race cannot enter county observation storage');
+
 for(const changes of [{is_test:true},{verified_source:false},{election_date:'2024-11-05'},
  {county_id:'36107'},{race_key:'NC-SEN'},{ballots_reported:90},
  {state:'VA',state_fips:'37',county_id:'37183'},

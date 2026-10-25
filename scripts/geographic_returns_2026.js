@@ -17,6 +17,16 @@
  const ELECTION='2026-11-03';
  const hasOwn=(x,k)=>Object.prototype.hasOwnProperty.call(x,k);
  const whole=x=>Number.isSafeInteger(x)&&x>=0;
+ // Verify the 2026 contest actually exists before a county vote enters
+ // local storage. Source IDs and five-digit county FIPS alone are not a
+ // 2026 ballot identity (e.g. NC governor and AZ Senate do not run).
+ const valid2026Ballot=row=>{
+  const ballot=typeof module!=='undefined'&&module.exports?
+   require('./election_night_reconciliation.js'):
+   typeof window!=='undefined'?window.ElectionNightReconciliation:null;
+  return ballot?.validCountyBallotRace?.(
+   row.office,row.race_key,row.election_kind??null)===true;
+ };
  function validate(row){
   if(!row||typeof row!=='object'||Array.isArray(row))return null;
   if(row.election_date!==ELECTION||row.election_type!=='General'||
@@ -27,6 +37,7 @@
      typeof row.state!=='string'||!/^[A-Z]{2}$/.test(row.state)||
      typeof row.county_id!=='string'||!/^[0-9]{5}$/.test(row.county_id)||
      !getFips()?.matches(row.state,row.state_fips,row.county_id))return null;
+  if(!valid2026Ballot(row))return null;
   if(typeof row.race_key!=='string'||!/^[A-Z]{2}-(?:[0-9]{2}|SEN|GOV)$/.test(row.race_key)||
      row.race_key.slice(0,2)!==row.state)return null;
   if((row.office==='House'&&!/^[A-Z]{2}-[0-9]{2}$/.test(row.race_key))||
