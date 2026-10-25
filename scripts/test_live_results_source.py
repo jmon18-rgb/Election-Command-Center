@@ -7,6 +7,7 @@ No collection, repackaging, or proxying of this third-party feed is performed.
 """
 import json
 import urllib.request
+from election_night_source_origin_guard import require_exact_response_url
 
 SOURCE="https://openamerica.io/elections/results.json"
 ORIGIN="https://jmon18-rgb.github.io"
@@ -20,6 +21,7 @@ def fetch(year,office,opener=urllib.request.urlopen):
         "User-Agent":"InSearchOfBlueWaves/1.0 (+https://jmon18-rgb.github.io/Election-Command-Center/)"
     })
     with opener(request,timeout=25) as response:
+        require_exact_response_url(url,response)
         status=response.status
         acao=response.headers.get("Access-Control-Allow-Origin","")
         content_type=response.headers.get("Content-Type","")

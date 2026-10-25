@@ -5,9 +5,11 @@ import json
 import copy
 import tempfile
 import urllib.error
+from unittest.mock import patch
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
 from probe_house_coverage_2026 import (
+    fetch as fetch_real_house_source, BASE as HOUSE_PROVIDER_BASE,
     matches, detail_matches, probe, DISTRICTS, PRIMARY_STATES,
     ROTATING_PER_RUN, uncovered_house_universe, sampling_window,
     run_batch, build_report, gap_aware_window, GAP_AWARE_LIMIT,
@@ -55,6 +57,41 @@ class HouseCoverageTests(unittest.TestCase):
                                dict(name="Example Republican", party="Republican",
                                     votes=0, winner=False),
                            ])
+
+    def test_supplemental_house_http_cannot_redirect_to_fake_vote_provider(self):
+        # Exactly one approved civicAPI endpoint owns the response. An
+        # upstream 301 to any alternate host/path (even same-host) is
+        # not authoritative race-ID evidence.
+        approved = HOUSE_PROVIDER_BASE + "/race/search"
+        class FakeHTTP:
+            status=200
+            headers={"Access-Control-Allow-Origin":"https://jmon18-rgb.github.io",
+                     "Content-Type":"application/json"}
+            def __init__(self,location):
+                self.location=location
+            def __enter__(self):return self
+            def __exit__(self,*args):return False
+            def read(self,limit):return b'{"races":[],"count":0}'[:limit]
+            def geturl(self):return self.location
+        with patch("urllib.request.urlopen",return_value=FakeHTTP(approved)):
+            self.assertEqual(fetch_real_house_source("/race/search")["count"],0)
+        for redirected in (
+            "https://evil.example/api/v2/race/search",
+            "http://civicapi.org/api/v2/race/search",
+            HOUSE_PROVIDER_BASE+"/race/999",
+            HOUSE_PROVIDER_BASE+"/race/search?wrong=2024",
+        ):
+            with self.subTest(redirect=redirected):
+                with patch("urllib.request.urlopen",
+                           return_value=FakeHTTP(redirected)):
+                    with self.assertRaisesRegex(ValueError,"redirected"):
+                        fetch_real_house_source("/race/search")
+        class MissingLocation(FakeHTTP):
+            geturl=None
+        with patch("urllib.request.urlopen",
+                   return_value=MissingLocation(approved)):
+            with self.assertRaisesRegex(ValueError,"cannot be verified"):
+                fetch_real_house_source("/race/search")
 
     def test_full_435_apportionment_and_uncovered_states(self):
         seats = uncovered_house_universe()

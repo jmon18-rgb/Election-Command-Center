@@ -15,6 +15,7 @@ from national_results_coverage_pulse import (
 from monitor_election_night_upstream_soak import approved_primary_contests
 import urllib.error
 import urllib.request
+from election_night_source_origin_guard import require_exact_response_url
 
 PRIMARY = "https://openamerica.io/elections/results.json?year=2026&office={office}"
 # Supplemental source URLs must come from the verified 506-race registry,
@@ -101,6 +102,7 @@ def fetch_json(url):
         "Accept":"application/json", "Accept-Encoding":"identity",
         "Origin":ORIGIN,"User-Agent":"ElectionCommandCenter/1.0 source-preflight"})
     with urllib.request.urlopen(req,timeout=16) as response:
+        require_exact_response_url(url,response)
         if response.status!=200:
             raise ValueError("HTTP "+str(response.status))
         cors=response.headers.get("Access-Control-Allow-Origin","").strip()

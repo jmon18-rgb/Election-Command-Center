@@ -14,6 +14,7 @@ from national_results_coverage_pulse import state_poll_closings
 import urllib.error
 import urllib.parse
 import urllib.request
+from election_night_source_origin_guard import require_exact_response_url
 
 BASE = "https://civicapi.org/api/v2"
 ORIGIN = "https://jmon18-rgb.github.io"
@@ -307,6 +308,7 @@ def fetch(path: str, params: dict | None = None) -> dict:
         "User-Agent": "BlueWavesElectionNightHouseProbe/1.0",
     })
     with urllib.request.urlopen(request, timeout=10) as response:
+        require_exact_response_url(url, response)
         if response.status != 200 or response.headers.get(
                 "Access-Control-Allow-Origin") not in ("*", ORIGIN):
             raise ValueError("No verified direct-browser CORS contract")
