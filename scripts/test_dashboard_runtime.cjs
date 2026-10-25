@@ -2577,12 +2577,12 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
   // Other asynchronous watchlist refreshes may also call the fake fetch.
   // Capture only the specific request under timeout test, not the last
   // unrelated fetch to arrive while that timer is pending.
-  if(String(_url)==='https://civicapi.org/api/v2/race/86916')
+  if(String(_url)==='https://civicapi.org/api/v2/race/86916?light=')
    rehearsalSignal=options?.signal;
   return new Promise(()=>{}); // deliberate hung browser request
  };
  await assert.rejects(
-  w.eval('enCivicFetchJson("https://civicapi.org/api/v2/race/86916",25)'),
+  w.eval('enCivicFetchJson("https://civicapi.org/api/v2/race/86916?light=",25)'),
   /timed out; last verified result retained/,
   'An unresponsive race fetch must terminate independently');
  assert.equal(rehearsalSignal?.aborted,true,
