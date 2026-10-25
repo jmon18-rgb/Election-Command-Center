@@ -12,13 +12,15 @@ NOW=dt.datetime(2026,10,23,15,0,tzinfo=dt.timezone.utc)
 PINS=parse_pins(SOURCE,ADAPTER)
 
 class PinnedSenateCanaries(unittest.TestCase):
-    def test_complete_exact_pinned_senate_universe_rotates_in_three_days(self):
-        self.assertEqual(len(PINS),17)
+    def test_complete_exact_pinned_senate_universe_rotates_in_four_days(self):
+        self.assertEqual(len(PINS),18)
+        self.assertEqual(PINS["Senate|MS"]["id"],81004)
         self.assertEqual(PINS["Senate|ME"]["id"],87188)
         self.assertEqual(PINS["Senate|OH-special"]["id"],87527)
-        runs=[select(PINS,NOW+dt.timedelta(days=d)) for d in range(3)]
+        runs=[select(PINS,NOW+dt.timedelta(days=d)) for d in range(4)]
+        self.assertEqual(sorted(len(group) for group in runs),[3,7,7,7])
         for group in runs:
-            self.assertEqual(len(group),7)
+            self.assertLessEqual(len(group),7)
             self.assertEqual({x["race"] for x in group[:2]},
                              {"Senate|ME","Senate|OH-special"})
         self.assertEqual({x["race"] for group in runs for x in group},set(PINS))
@@ -48,8 +50,9 @@ class PinnedSenateCanaries(unittest.TestCase):
                     "election_name":item["name"],"election_type":"US Senate",
                     "candidates":[]}
         a=probe(PINS,NOW,fake)
-        self.assertEqual(a["checked_this_run"],7)
-        self.assertEqual(a["civicapi_sources_total"],17)
+        self.assertEqual(a["checked_this_run"],len(select(PINS,NOW)))
+        self.assertEqual(a["civicapi_sources_total"],18)
+        self.assertEqual(a["not_probed_this_run"],18-a["checked_this_run"])
         self.assertEqual(a["authoritative_calls_verified"],0)
         self.assertTrue(a["not_a_live_vote_feed"])
         self.assertEqual(sum(x["status"].startswith("FAILED") for x in a["results"]),1)
