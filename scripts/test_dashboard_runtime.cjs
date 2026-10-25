@@ -1777,6 +1777,28 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  w.eval('jointRender(true)');
  assert.equal(get('#jointHomeCards').querySelectorAll('.joint-cell').length,4);
  assert.equal(get('#jointNightCards').querySelectorAll('.joint-cell').length,4);
+ // Pre-election What-if must run the actual correlated model on a COPY of
+ // the 506-race priors, not replace the default Tide-o-Meter probabilities.
+ const defaultJointBeforeLab=w.eval('jointForecastResult()');
+ assert(get('#electorateLabDetails')&&get('#labRun'),
+  'Briefing must expose a runnable, interactive state electorate what-if');
+ get('#labNoncollegeShare').value='45';
+ get('#labNoncollegeShift').value='6';
+ get('#labHispanicShare').value='8';
+ get('#labHispanicShift').value='4';
+ get('#labRun').click();
+ assert.match(get('#labStatus').textContent,/MI D−R shift \+3\.02 pts/);
+ assert(get('#labResults').querySelectorAll('tbody tr').length>=10,
+  'State what-if must render real affected race probabilities, not a static label');
+ assert.match(get('#labResults').textContent,/MI-SEN/);
+ assert.equal(w.eval('jointForecastResult()'),defaultJointBeforeLab,
+  'Pre-election coalition experiment must never overwrite headline probabilities');
+ get('#labNoncollegeShare').value='90';
+ get('#labHispanicShare').value='90';
+ get('#labRun').click();
+ assert.match(get('#labStatus').textContent,/cannot exceed 100%/);
+ get('#labReset').click();
+ assert.equal(get('#labNoncollegeShare').value,'0');
  const needleForecast=w.eval('jointForecastResult()');
  const needleProb=needleForecast.probabilities;
  const expectedNeedlePosition=(needleProb.shrug+2*needleProb.blue_wave+
