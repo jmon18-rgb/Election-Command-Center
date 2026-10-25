@@ -332,8 +332,13 @@ def probe(district: str, request=fetch, *,
                 "startDate": DAY, "endDate": DAY,
                 "query": search_query, "limit": "20",
             })
-            rows = result.get("races")
-            if not isinstance(rows, list) or len(rows) > 20 or result.get("count", 0) > 20:
+            rows = result.get("races") if isinstance(result, dict) else None
+            count = result.get("count") if isinstance(result, dict) else None
+            if (not isinstance(rows, list) or len(rows) > 20 or
+                (count is not None and
+                 (type(count) is not int or count != len(rows)))):
+                # A unique row in a partially returned result page is not
+                # a verified unique 2026 district. Do not publish its ID.
                 return {"district": district, "status": "AMBIGUOUS_OR_TRUNCATED"}
             found = [r for r in rows if matches(district, r)]
             if not found:
