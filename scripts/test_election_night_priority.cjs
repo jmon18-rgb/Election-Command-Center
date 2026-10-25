@@ -186,6 +186,40 @@ assert.deepEqual([...seenSen].sort(),uncoveredSen.map(v=>v.key).sort(),
  'Every uncovered Senate seat must receive an identity-checked turn');
 assert.deepEqual([...seenHouse].sort(),uncoveredHouse.map(v=>v.key).sort(),
  'Every eligible Silver House seed must eventually receive a turn');
+// The live 12-seat/minute refresh now follows linked model uncertainty,
+// not frozen screenshot tips. Safe seeded seats stay eligible for rotation
+// but must not consume the always-refreshed competitive slots.
+const riskFocused=x.sourceBatch({personal:[],primaryStates:[],cursor:{},limit:6,
+ candidates:[
+  {office:'Senate',key:'ME',tip:12,modelWinPct:97},
+  {office:'Senate',key:'NH',tip:5,modelWinPct:51},
+  {office:'Senate',key:'MA',tip:0,modelWinPct:61},
+  {office:'Senate',key:'TX',tip:12,modelWinPct:95},
+  {office:'House',key:'NH-01',tip:1,modelWinPct:53},
+  {office:'House',key:'CA-48',tip:2,modelWinPct:98},
+  {office:'House',key:'SD-00',tip:0,modelWinPct:49},
+ ]});
+assert(riskFocused.items.some(v=>v.office==='Senate'&&v.key==='NH'),
+ 'Sub-90 NH Senate should receive a fast slot despite lower screenshot tip');
+assert(riskFocused.items.some(v=>v.office==='Senate'&&v.key==='MA'),
+ 'Unseeded sub-90 Senate should be dynamically discovered');
+assert(riskFocused.items.some(v=>v.office==='House'&&v.key==='SD-00'),
+ 'Unseeded sub-90 House should take House fast slot');
+assert.equal(riskFocused.items[0].office,'Senate');
+assert.equal(riskFocused.items[0].key,'NH',
+ 'The closest validated Senate race should lead this restricted provider queue');
+assert(riskFocused.items.length<=6);
+const safeOnly=x.sourceBatch({personal:[],primaryStates:[],cursor:{},
+ candidates:[{office:'Senate',key:'ME',tip:12,modelWinPct:98},
+             {office:'House',key:'CA-48',tip:2,modelWinPct:97}],limit:2});
+assert.equal(safeOnly.items.length,2,
+ 'Safe contests are permitted in spare rotating slots, never deleted');
+const personalWins=x.sourceBatch({personal:[{office:'House',key:'CA-48'}],
+ candidates:[{office:'House',key:'CA-48',tip:2,modelWinPct:97},
+             {office:'House',key:'NH-01',tip:1,modelWinPct:53}],limit:2});
+assert.equal(personalWins.items[0].key,'CA-48',
+ 'Owner pins are always respected even for high-confidence model seats');
+
 const small=x.sourceBatch({candidates:[{office:'Senate',key:'ME',tip:12}],
  primaryStates:[],limit:12});
 assert.equal(small.items.length,1,'Never duplicate a race merely to fill the quota');
