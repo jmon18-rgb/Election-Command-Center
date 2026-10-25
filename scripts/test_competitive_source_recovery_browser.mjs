@@ -24,7 +24,8 @@ try{
   await page.route('**/*',route=>new URL(route.request().url()).hostname==='127.0.0.1'?route.continue():route.abort());
   await page.goto(`http://127.0.0.1:${server.address().port}/`,{waitUntil:'domcontentloaded'});
   await page.locator('[data-page="electionNight"]').click();
-  await page.waitForFunction(()=>Boolean(enPublishedCoverageLedger&&jointLastResult&&jointBasis&&latestSenateEstimates));
+  await page.waitForFunction(()=>Boolean(enPublishedCoverageLedger&&jointLastResult&&jointBasis&&latestSenateEstimates&&
+   enEditorialCallChecks?.race_pages?.some(r=>r.id==='House|CA-13')));
   await page.evaluate(()=>{
    const existing=jointLastResult.race_probabilities.filter(r=>!['CA-13','ME-SEN'].includes(r.race_code));
    jointLastResult={...jointLastResult,race_probabilities:[...existing,
@@ -39,6 +40,8 @@ try{
   const text=await panel.textContent();
   assert.match(text,/House CA-13 — COMPETITIVE · Supplemental source request FAILED/);
   assert.match(text,/Senate ME — COMPETITIVE/);
+  assert.equal(await panel.locator('a[href="https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-13-general-election/results"]').count(),1,
+   'Known-ID feed outage has its independently checked human newsroom fallback');
   assert.match(await page.locator('#enCoverageReconciliation').innerText(),/House 0\/435 reporting/);
   assert.match(await page.locator('#enCoverageReconciliation').innerText(),/0 civicAPI calls/);
   await page.clock.setSystemTime(new Date('2026-11-04T03:11:00Z'));

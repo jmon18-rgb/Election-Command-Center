@@ -431,6 +431,18 @@ assert.match(flatten(operationalHost),/2 competitive races · 0 affected races n
 assert.match(flatten(operationalHost),/House CA-13 — COMPETITIVE/);
 assert.match(flatten(operationalHost),/Senate ME — COMPETITIVE/);
 assert.match(flatten(operationalHost),/reference only; not verified live votes or a race call/);
+const manualRecoveryHost=node('div');
+api.render(manualRecoveryHost,operational,{createElement:node},official.links,editorial);
+const manualRecoveryLinks=allEls(manualRecoveryHost).filter(el=>el.tag==='a'&&el.textContent.includes('Manual DDHQ race page'));
+assert.equal(manualRecoveryLinks.length,1,
+ 'Verified CA-13 editorial fallback must work for a failed known-ID feed');
+assert.equal(manualRecoveryLinks[0].href,
+ 'https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-13-general-election/results');
+assert.equal(manualRecoveryLinks[0].rel,'noopener noreferrer');
+assert.match(flatten(manualRecoveryHost),/verify an explicit race call, not a forecast/);
+assert.equal(operational.professional_calls_verified,0);
+assert.equal(operational.totals.House.reported,pulse.totals.House.reported,
+ 'Adding a human fallback does not promote a provider outage into live coverage');
 assert.equal(api.build(ledger,res,state,now,{},operationalModel).operationalAttention.races.length,0,
  'Resolved source errors leave the recovery queue without creating votes');
 assert.equal(api.build(ledger,res,state,now,{'House|CA-13':'pending'},operationalModel)

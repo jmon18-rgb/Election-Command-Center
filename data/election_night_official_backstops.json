@@ -191,7 +191,7 @@
     "status": "PUBLIC_MANUAL_NEWSROOM_CHECKS_NOT_VOTE_FEEDS_OR_AUTOMATED_CALLS",
     "provider": "Decision Desk HQ Votes Free",
     "free_access_verified": "2026-10-25",
-    "information": "Nine directly reviewed Nov 3 2026 U.S. House/Senate race pages, accessible for manual viewing. Pre-election pages show FORECASTS rather than calls. On/after Election Day, an explicit race call may be verified there; a forecast or social rumor is not a reported call. Never scrape, infer votes or feed these links into automatic 506-race source coverage.",
+    "information": "Twelve directly reviewed Nov 3 2026 U.S. House/Senate race pages, accessible for manual viewing. Added CA-13, CO-05 and Iowa Senate results tabs for operational feed recovery as well as identity gaps. Pre-election pages show FORECASTS and zero-vote placeholders rather than counted ballots or calls. On/after Election Day, an explicit race call may be verified there; a forecast or social rumor is not a reported call. Never scrape, infer votes or feed these links into automatic 506-race source coverage.",
     "newsroom_social": "https://x.com/DecisionDeskHQ",
     "race_pages": [
       {
@@ -229,6 +229,24 @@
       {
         "id": "Senate|MA",
         "url": "https://votes.decisiondeskhq.com/races/2026-11-03/massachusetts-us-senate-general-election"
+      },
+      {
+        "id": "House|CA-13",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-13-general-election/results",
+        "verified_at": "2026-10-25",
+        "verification": "Correct Nov 3 2026 House district header and results tab inspected; pre-election zero placeholders, no winner call verified"
+      },
+      {
+        "id": "House|CO-05",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/colorado-us-house-5-general-election/results",
+        "verified_at": "2026-10-25",
+        "verification": "Correct Nov 3 2026 House district header and results tab inspected; pre-election zero placeholders, no winner call verified"
+      },
+      {
+        "id": "Senate|IA",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/iowa-us-senate-general-election/results",
+        "verified_at": "2026-10-25",
+        "verification": "Correct Nov 3 2026 Senate header and results tab inspected; pre-election zero placeholders, no winner call verified"
       }
     ]
   }

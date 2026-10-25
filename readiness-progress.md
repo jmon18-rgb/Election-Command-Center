@@ -73,12 +73,28 @@ Last daily report date: 2026-10-25 (evening continuation report).
   than assuming exactly two details elements, and the blocked civicAPI fixture
   accepts MS as either unqueried or failed (never reporting) as polling rotates.
 - Windows timezone-independent source-time assertion included; full local DOM
-  integration is running in session 1232. Current-head CI must pass before merge.
+  integration passed in session 1232. Current-head CI must pass before merge.
 - PR #426 is deliberately preserved, not deployed. Its latest readiness run
   40243854438 failed a brittle MS-unqueried expectation (fixed in this core
   branch's recovery drill) and a poster decode check. Further celebration work
   remains paused; the decode failure is not being bypassed. Production #425
   remains the already-verified deployed baseline.
+
+## October 25 — competitive human fallbacks while core CI completes
+
+- Directly opened DDHQ's exact Nov 3 2026 Results tabs for CA-13, CO-05 and Iowa
+  Senate. Added these three human-viewing links to the curated catalog and the
+  operational recovery panel, not just missing-ID rows. These pages currently
+  show pre-election zero placeholders; no votes or professional calls are added.
+- COMPETITIVE_SOURCE_MANUAL_FALLBACKS.md records source URLs, scope and limits.
+  FL-09's landing page was identifiable but its Results tab could not be fetched;
+  no new FL-09 fallback was invented. California's general public-results portal
+  redirected to an archive, so it was not promoted to a 2026 live endpoint.
+- Recovery module, official-backstop invariants and actual 1440px/390px browser
+  tests pass, including the curated CA-13 link and unchanged zero-reporting/call
+  counts under a blocked-source fixture. Current-head CI still required.
+- Review dependency: core recovery PR #427 first, then this follow-up branch
+  readiness/competitive-manual-fallbacks. Celebration PR #426 remains paused.
 
 ## October 25 — first continuation: shared celebration player
 

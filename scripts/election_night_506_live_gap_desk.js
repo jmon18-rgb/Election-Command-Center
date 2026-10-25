@@ -324,6 +324,12 @@
      a.href=link.url;a.target='_blank';a.rel='noopener noreferrer';
      elt('span',' · reference only; not verified live votes or a race call',line);
     }else elt('span',' · no curated official fallback for this race',line);
+    const newsroom=callLink(race.id);
+    if(newsroom){
+     const a=elt('a',' · Manual DDHQ race page ↗',line);
+     a.href=newsroom;a.target='_blank';a.rel='noopener noreferrer';
+     elt('span',' · editorial reference only; verify an explicit race call, not a forecast',line);
+    }
    };
    recovery.races.slice(0,4).forEach(r=>display(r,panel));
    if(recovery.races.length>4){
