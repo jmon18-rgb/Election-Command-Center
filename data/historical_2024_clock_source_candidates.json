@@ -39,5 +39,34 @@
   "permitted_next_action": "Review underlying rights with rights holder, then independently audit representative contemporaneous 2024 snapshots; until then do not ingest AP-derived vote files.",
   "may_update_2026_model": false,
   "geographic_needle_calibrated": false,
-  "approved_backtest_inputs": 0
+  "approved_backtest_inputs": 0,
+  "alternative_state_source_lead": {
+    "state": "VA",
+    "offices": [
+      "president",
+      "senate"
+    ],
+    "election_date": "2024-11-05",
+    "published_evidence": [
+      {
+        "title": "2024 Virginia election-night reporting over time — U.S. Senate",
+        "url": "https://digitalpollwatchers.org/2024-va-election-night-reporting-over-time-united-states-senate/"
+      },
+      {
+        "title": "2024 Virginia election-night reporting over time — President and Vice President",
+        "url": "https://digitalpollwatchers.org/2024-va-election-night-reporting-over-time-president-and-vice-president/"
+      }
+    ],
+    "original_state_results_page": "https://enr.elections.virginia.gov/",
+    "observed_public_evidence": "The publisher describes collecting periodic state election-night media-export JSON and publishing locality-level time-series figures for Virginia 2024.",
+    "original_archived_json_files_obtained": false,
+    "contemporaneous_snapshot_timestamps_independently_verified": false,
+    "permission_for_data_ingestion": false,
+    "permission_for_redistribution": false,
+    "source_rights_reviewed": false,
+    "county_level_observations_independently_verified": false,
+    "geographic_boundary_crosswalk_verified": false,
+    "eligible_for_2026_needle_calibration": false,
+    "action_required": "Request permission/access to original dated JSON captures; independently review capture clocks, official vote counts, county or locality identities, and corrected-data anomalies. Do not digitize published charts or promote to model inputs without review."
+  }
 }
