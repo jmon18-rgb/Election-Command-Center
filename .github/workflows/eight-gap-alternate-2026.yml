@@ -1,0 +1,58 @@
+name: Probe eight unresolved 2026 races through independent results provider
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/probe_eight_gap_alternate_2026.py'
+      - 'scripts/test_probe_eight_gap_alternate_2026.py'
+      - '.github/workflows/eight-gap-alternate-2026.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/probe_eight_gap_alternate_2026.py'
+      - 'scripts/test_probe_eight_gap_alternate_2026.py'
+      - '.github/workflows/eight-gap-alternate-2026.yml'
+  schedule:
+    # Daily pre-election. More frequent 2026 general-election counting checks.
+    # GitHub cron is best-effort, not a live results push channel.
+    - cron: '27 14 * 10 *'
+    - cron: '17 * 3-5 11 *'
+permissions:
+  contents: read
+jobs:
+  gap-alternate-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate exact gaps, source-origin, 2026 election quarantine
+        run: |
+          python3 -m py_compile scripts/probe_eight_gap_alternate_2026.py
+          python3 scripts/test_probe_eight_gap_alternate_2026.py
+      - name: Probe server-only public 2026 results endpoint for 7 relevant states
+        run: |
+          python3 scripts/probe_eight_gap_alternate_2026.py --output /tmp/eight-gap-alternate-2026.json
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          x=json.loads(Path('/tmp/eight-gap-alternate-2026.json').read_text())
+          assert x['unverified_gap_count']==8 and not x['approved_for_live_2026_votes']
+          assert x['approved_source_race_ids']==[]
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+              f.write('## Eight 2026 source gaps: independent alternate-provider discovery\n\n')
+              f.write('**This is source reconnaissance, not eight newly verified live feeds.**\n\n')
+              for state,row in x['results'].items():
+                  f.write('- '+state+' ('+', '.join(row['races'])+'): **'+row['status']+'**\n')
+              f.write('\nLive results from this provider require separate exact-race/source permissions and identity review.\n')
+          PY
+      - name: Preserve candidate source identity evidence (never vote totals)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eight-gap-independent-2026-alternate-source-observation
+          path: /tmp/eight-gap-alternate-2026.json
+          if-no-files-found: warn
+          retention-days: 30
