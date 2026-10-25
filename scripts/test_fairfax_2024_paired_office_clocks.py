@@ -81,7 +81,7 @@ class PairedFairfaxOriginalClockTests(unittest.TestCase):
          lambda x: x["chronological_presidential_snapshots"][1].update(
                D_by_mode=[158887,0,0]),
          lambda x: x["chronological_presidential_snapshots"][2].update(
-               R_by_mode=[75109,83964,14247]),
+               R_by_mode=[75109,83964,1]),
          lambda x: x["official_final"].update(D_votes=386439),
          lambda x: x.update(state="MA"),
         )
