@@ -250,6 +250,10 @@ jobs:
           node --check scripts/election_night_nowcast.js
           node --check scripts/test_election_night_nowcast.cjs
           node scripts/test_election_night_nowcast.cjs
+      - name: Verify national needle never treats raw precinct fraction as a calibrated geographic signal
+        run: |
+          node --check scripts/test_joint_needle_raw_returns_gate.cjs
+          node scripts/test_joint_needle_raw_returns_gate.cjs
       - name: Verify automatic Silver-reference House/Senate watching and evidence-based priority
         run: |
           node --check scripts/election_night_priority.js
