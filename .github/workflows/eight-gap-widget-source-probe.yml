@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'scripts/probe_eight_gap_watchvote_2026.cjs'
+      - 'scripts/probe_eight_gap_widget_real_browser.mjs'
       - '.github/workflows/eight-gap-widget-source-probe.yml'
   workflow_dispatch:
 permissions:
@@ -28,3 +29,18 @@ jobs:
           name: eight-race-public-widget-provider-audit
           path: widget-source-probe.json
           retention-days: 30
+
+  browser-cors:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 13
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install real Chromium
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Probe actual cross-origin browser access for all eight race widgets
+        run: node scripts/probe_eight_gap_widget_real_browser.mjs
