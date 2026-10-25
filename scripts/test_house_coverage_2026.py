@@ -514,6 +514,67 @@ class HouseCoverageTests(unittest.TestCase):
                                                                      "votes": -1,
                                                                      "winner": False}])))
 
+    def test_fake_same_day_house_dates_and_test_rows_not_indexed(self):
+        for stamp in (
+            "2026-11-03T99:99:99Z","2026-11-03T05:00:00",
+            "2026-11-03T05:00:00Zextra","2026-11-0305:00Z",
+            "2026-11-03T05:00:00+99:00",
+            "2026-11-03T05:00:00.123garbage",
+            "2026-11-03Z","2026-11-03T22",
+        ):
+            with self.subTest(date=stamp):
+                self.assertFalse(matches("NH-01",dict(self.row,election_date=stamp)))
+        for flag in ("is_test","test","mock","is_mock"):
+            with self.subTest(flag=flag):
+                self.assertFalse(matches("NH-01",dict(self.row,**{flag:True})))
+                self.assertFalse(detail_matches(self.row,
+                                                dict(self.detail,**{flag:True})))
+        self.assertFalse(matches("NH-01",dict(self.row,active=False)))
+        self.assertFalse(detail_matches(self.row,dict(self.detail,active=False)))
+        self.assertTrue(matches("NH-01",dict(self.row,election_date="2026-11-03")))
+        self.assertTrue(matches("NH-01",dict(self.row,
+                          election_date="2026-11-03T05:00:00-04:00")))
+
+    def test_house_details_reject_duplicate_names_and_unsafe_vote_arithmetic(self):
+        original=copy.deepcopy(self.detail)
+        for invalid_candidates in (
+            [original["candidates"][0],{**original["candidates"][1],
+                                      "name":" example democrat "}],
+            [original["candidates"][0],{**original["candidates"][1],
+                                      "votes":True}],
+            [original["candidates"][0],{**original["candidates"][1],
+                                      "votes":2**53}],
+        ):
+            with self.subTest(candidates=invalid_candidates):
+                self.assertFalse(detail_matches(self.row,
+                                  {**self.detail,"candidates":invalid_candidates}))
+        # Legitimate same-party top-two election candidates are distinct
+        # humans and must remain allowed for source identity discovery.
+        top_two=copy.deepcopy(self.detail)
+        top_two["candidates"][0]["party"]="Democratic"
+        top_two["candidates"][1]["party"]="Democratic"
+        self.assertTrue(detail_matches(self.row,top_two))
+
+    def test_positive_preclose_house_detail_cannot_create_source_id_hint(self):
+        positive=copy.deepcopy(self.detail)
+        positive["candidates"][0]["votes"]=100
+        positive["candidates"][1]["votes"]=75
+        def fetch(path,params):
+            return {"races":[self.row]} if path=="/race/search" else positive
+        early=probe("NH-01",fetch,now=datetime(
+            2026,11,4,0,59,tzinfo=timezone.utc))
+        self.assertEqual(early["status"],"INVALID_DETAIL")
+        self.assertNotIn("race_id",early)
+        late=probe("NH-01",fetch,now=datetime(
+            2026,11,4,1,1,tzinfo=timezone.utc))
+        self.assertEqual(late["status"],"INDEXED_EXACT_RACE")
+        self.assertEqual(late["reported_votes"],175)
+        # An explicit mock source remains invalid even after polls close.
+        positive["mock"]=True
+        rejected=probe("NH-01",fetch,now=datetime(
+            2026,11,4,3,tzinfo=timezone.utc))
+        self.assertEqual(rejected["status"],"INVALID_DETAIL")
+
     def test_explicit_missing_and_ambiguity(self):
         self.assertEqual(probe("NH-01", lambda path, params: {"races": []})
                          ["status"], "NOT_INDEXED")
