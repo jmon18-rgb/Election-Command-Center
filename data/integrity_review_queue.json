@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-25T22:40:27.327831Z",
+  "updated_at": "2026-10-25T23:11:33.687234Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
@@ -260,6 +260,26 @@
     }
   ],
   "items": [
+    {
+      "id": "17e44cbc4f80df55a463",
+      "title": "US appeals court appears skeptical of Trump DOJ's lawsuit over California voter rolls - Reuters",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPU25wRVhKZUxxMGJKMjRLWVptYXNHRVZ1UjYtM1VDUGFDOFRlSkY4eERuQm90RUV4a1R6NE1ia1FHZzItRTRVSHJOS3dvMXc4VURHTmxuMzBMWUZDOFI1SGhrVjdQMkJXM1ByRFRsNEVDUFkzX1huMWl1SEZqaWhYUERUNWxPWGlaMThLU2RjaUxUSTc4V3hRWWtyaVN3aENiSnZOMGRrZUlsQ3AtMHQ5WFVURTBrN1BW?oc=5",
+      "publisher": "Reuters",
+      "published_at": "2026-10-25T22:28:34Z",
+      "detected_at": "2026-10-25T23:11:33.687234Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "registration",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "851f561d3c7c1cf1a6fd",
       "title": "Thousands of Ineligible Voters Discovered in Ohio - The Daily Signal",
@@ -4932,25 +4952,6 @@
         "registration"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "24eaae113963af5cec8d",
-      "title": "Why are NC registered voters getting letters questioning citizenship in 2026? - Carolina Public Press",
-      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPMEplcm9XQ0t1ZTlOTnI4ckFHOHNaYWoyMTNQNjd6NC1HOTRMWUkyUkgxWXBTaElMYVRSRllmRENmQnBSa0NjcnUwaGpfWUh6dklZUTZONkgwckFjT2F4MlFMa0drb3V3SDJNaEFQY3pMcF93OTM3T3dvOXUwY1lVdWxWeDFLbTFpS3dybFJHT0h0VU5udlJnUVRVejJxQ3BLNXBmZG1XNUZFZFlrMjBnZmo4a0UxQQ?oc=5",
-      "publisher": "Carolina Public Press",
-      "published_at": "2026-10-13T23:15:27Z",
-      "detected_at": "2026-10-13T23:34:58.290710Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [
-        "2026"
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
