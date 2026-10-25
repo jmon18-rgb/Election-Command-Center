@@ -6048,7 +6048,7 @@ function enSourceValid(o,year,office){
  // This gate is used by live race cards, exports and early indicators,
  // not only the reconciliation health panel. Explicit mock/test and
  // disabled 2026 sources must never be displayed as reported returns.
- if(year===2026&&(o.source!=='state'||o.is_test===true||o.test===true||
+ if(year===2026&&(o.is_test===true||o.test===true||
    o.mock===true||o.is_mock===true||o.active===false))return false;
  if(o.live&&(o.stale||o.final||!o.counting))return false;
  if(!o.counts||o.counts.races!==Object.keys(o.races).length)return false;
@@ -6067,7 +6067,7 @@ function enSourceValid(o,year,office){
  if(year===2026&&Object.entries(o.races).some(([key,r])=>
     !enSupportedStates.has(key.slice(0,2))||
     Number(r?.total)>0&&
-     ((!o.live&&!o.final)||o.stale||
+     (o.source!=='state'||(!o.live&&!o.final)||o.stale||
       !enElectionVotesAllowed(key,r.total,o.as_of))))
   return false;
  if(o.as_of){
