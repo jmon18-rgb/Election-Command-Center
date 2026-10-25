@@ -25,6 +25,27 @@ class PinnedSenateCanaries(unittest.TestCase):
                              {"Senate|ME","Senate|OH-special"})
         self.assertEqual({x["race"] for group in runs for x in group},set(PINS))
 
+    def test_election_night_hourly_runs_cover_all_eighteen_pins(self):
+        first=dt.datetime(2026,11,3,23,13,tzinfo=dt.timezone.utc)
+        runs=[select(PINS,first+dt.timedelta(hours=h)) for h in range(4)]
+        self.assertEqual(sorted(len(group) for group in runs),[3,7,7,7])
+        for group in runs:
+            self.assertEqual({x["race"] for x in group[:2]},
+                             {"Senate|ME","Senate|OH-special"})
+            self.assertLessEqual(len(group),7)
+        self.assertEqual({x["race"] for group in runs for x in group},
+                         set(PINS),
+                         "Four hourly checks must cover all 18 Senate pins")
+        for h in range(4):
+            at=first+dt.timedelta(hours=h)
+            expected={x["race"] for x in runs[h]}
+            same={x["race"] for x in select(
+                PINS,at.astimezone(dt.timezone(dt.timedelta(hours=-4))))}
+            self.assertEqual(expected,same,
+                             "Hourly rotation is UTC-anchored, not server local")
+        self.assertNotEqual({x["race"] for x in runs[0]},
+                            {x["race"] for x in runs[1]})
+
     def test_race_identity_cannot_be_borrowed_from_another_state_or_date(self):
         one=PINS["Senate|ME"]
         good={"id":87188,"country":"US","province":"ME","municipality":None,

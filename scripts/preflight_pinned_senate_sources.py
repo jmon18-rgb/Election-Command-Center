@@ -55,7 +55,16 @@ def select(pins,now):
     # Bound free-provider calls to seven; the fourth day checks the final
     # race rather than silently dropping it or making extra requests.
     pages=(len(rest)+ROWS_PER_SHARD-1)//ROWS_PER_SHARD
-    slot=now.date().toordinal()%pages
+    # The scheduled Election Night check runs HOURLY. A date-only rotation
+    # would check the same seven sources every hour and leave most races
+    # unchecked for the duration of the election.
+    utc=now.astimezone(dt.timezone.utc)
+    start=dt.datetime(2026,11,3,23,tzinfo=dt.timezone.utc)
+    end=dt.datetime(2026,11,5,6,tzinfo=dt.timezone.utc)
+    if start<=utc<end:
+        slot=int((utc-start).total_seconds()//3600)%pages
+    else:
+        slot=utc.date().toordinal()%pages
     return [pins[x] for x in PRIORITY]+[
         pins[x] for x in rest[slot*ROWS_PER_SHARD:(slot+1)*ROWS_PER_SHARD]]
 
