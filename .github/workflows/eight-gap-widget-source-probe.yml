@@ -1,0 +1,29 @@
+name: Verify eight missing 2026 race widgets
+on:
+  pull_request:
+    paths:
+      - 'scripts/probe_eight_gap_watchvote_2026.cjs'
+      - '.github/workflows/eight-gap-widget-source-probe.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check exact 2026 race identities and CORS from public provider
+        run: |
+          node --check scripts/probe_eight_gap_watchvote_2026.cjs
+          node scripts/probe_eight_gap_watchvote_2026.cjs | tee widget-source-probe.json
+      - name: Preserve explicit source identity evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eight-race-public-widget-provider-audit
+          path: widget-source-probe.json
+          retention-days: 30
