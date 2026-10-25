@@ -36,8 +36,10 @@ if(opts.has('check-config')){
   fixture_votes:false,simulated_clock:false,
   authoritative_calls_verified:false,live_results_availability_proven:false,
   geographic_needle_calibrated:false,
-  checkpoints:0,healthy_checkpoints:0,background_resume_observed:false,
+  checkpoints:0,healthy_checkpoints:0,
+  background_visibility_confirmed:false,background_resume_observed:false,
   source_requests:{primary:0,supplemental:0},
+  primary_healthy_responses:0,
   source_request_failures:0,source_http_errors:0,page_script_errors:0,
   audit_errors:0,probes:[],errors:[]
  };
@@ -60,6 +62,9 @@ if(opts.has('check-config')){
     report.source_request_failures++;
   });
   tab.on('response',res=>{
+   if(res.url().startsWith('https://openamerica.io/elections/results.json')&&
+      [200,304].includes(res.status()))
+    report.primary_healthy_responses++;
    if(res.status()>=400&&
       /^https:\/\/(?:openamerica\.io|civicapi\.org)\//.test(res.url()))
     report.source_http_errors++;
@@ -80,6 +85,8 @@ if(opts.has('check-config')){
    // This is NOT claimed to simulate OS sleep or a source outage.
    if(step===Math.floor(steps/3)){
     secondary=await ctx.newPage();await secondary.goto('about:blank');
+    report.background_visibility_confirmed=
+      await tab.evaluate(()=>document.hidden);
    }else if(step===Math.floor(steps/3)+2&&secondary){
     await tab.bringToFront();await secondary.close();secondary=null;
     report.background_resume_observed=true;
@@ -99,6 +106,7 @@ if(opts.has('check-config')){
    if(step%Math.max(1,Math.floor(300/interval))===0||step===steps)
     report.probes.push({step,elapsed_s:Math.round((performance.now()-start)/1000),
      ui_healthy:good,primary_attempts:report.source_requests.primary,
+     primary_healthy_responses:report.primary_healthy_responses,
      supplementary_attempts:report.source_requests.supplemental});
   }
   await secondary?.close();await ctx.close();
@@ -111,7 +119,9 @@ if(opts.has('check-config')){
   const minRequests=Math.max(2,Math.floor(minutes/10));
   const success=report.checkpoints>=Math.floor(minutes*60/interval)&&
    report.healthy_checkpoints===report.checkpoints&&
-   report.background_resume_observed&&report.source_requests.primary>=minRequests&&
+   report.background_resume_observed&&report.background_visibility_confirmed&&
+   report.source_requests.primary>=minRequests&&
+   report.primary_healthy_responses>=minRequests&&
    report.page_script_errors===0&&report.audit_errors===0&&report.errors.length===0;
   report.status=success?'PASS_REAL_BROWSER_TRANSPORT_ONLY':'FAIL_BROWSER_TAB_OR_REFRESH';
   await mkdir(dirname(output),{recursive:true});
