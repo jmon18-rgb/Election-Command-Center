@@ -62,9 +62,13 @@
       query:cfg.office==='Senate'?'US Senate':'Governor',limit:'20'
     }).toString();
   }
+  // Source-supplied nonproduction markers must be honored before the
+  // search/detail adapter creates a provider-attributed vote record.
+  const disabled=x=>Boolean(x&&(x.is_test===true||x.test===true||
+    x.mock===true||x.is_mock===true||x.active===false||x.live===false));
   function match(item,row){
     const cfg=configuration(item);
-    return Boolean(cfg&&row&&row.country==='US'&&row.province===cfg.state&&
+    return Boolean(cfg&&row&&!disabled(row)&&row.country==='US'&&row.province===cfg.state&&
       row.municipality==null&&row.district==null&&validDate(row.election_date)&&
       Number.isSafeInteger(row.id)&&row.id===cfg.id&&
       row.type===(cfg.office==='Senate'?'US Senate':'Governor')&&
@@ -73,7 +77,7 @@
       Array.isArray(row.candidates)&&row.candidates.length<=60);
   }
   function select(item,doc){
-    if(!configuration(item)||!doc||!Array.isArray(doc.races)||
+    if(!configuration(item)||!doc||disabled(doc)||!Array.isArray(doc.races)||
        doc.races.length>20||doc.races.length===0||
        (Number.isSafeInteger(doc.count)&&doc.count>20))return null;
     const exact=doc.races.filter(row=>match(item,row));
@@ -95,7 +99,7 @@
   }
   function validate(item,row,detail,now=Date.now()){
     const cfg=configuration(item);
-    if(!cfg||!match(item,row)||!detail||!Number.isFinite(now)||
+    if(!cfg||!match(item,row)||!detail||disabled(detail)||!Number.isFinite(now)||
        (detail.id!=null&&detail.id!==row.id)||
        detail.country!==row.country||detail.province!==row.province||
        detail.election_date!==row.election_date||
@@ -113,7 +117,9 @@
          !Number.isSafeInteger(c.votes)||c.votes<0||
          !Number.isFinite(c.percent)||c.percent<0||c.percent>100||
          typeof c.winner!=='boolean')return null;
-      const id=c.name.trim().toLowerCase()+'|'+c.party.trim().toLowerCase();
+      // Two different parties cannot report the same named candidate as
+      // separate vote totals without a verified fusion-vote mapping.
+      const id=c.name.trim().toLocaleLowerCase('en-US');
       if(seen.has(id))return null;
       seen.add(id);
       total+=c.votes;
