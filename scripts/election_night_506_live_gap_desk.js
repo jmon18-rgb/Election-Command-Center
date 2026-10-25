@@ -287,6 +287,21 @@
     elt('span',(warnings[link.mode]||
      ' · Reference ONLY; not live machine results or a verified call')+
      ' · Unverified automated results; manual verification required',line);
+    // Separate volunteer-run NH Election Night viewer, currently zero
+    // polling places reporting. Never present as the official source,
+    // machine-readable votes or a professional race call.
+    const local=link.state==='NH'&&
+     ['House|NH-01','House|NH-02'].includes(race.id)?
+      link.community_unofficial_check:null;
+    if(local?.scope==='NH_LOCAL_VOLUNTEER_UNOFFICIAL_NOT_STATE_CERTIFIED'&&
+       local.election_date==='2026-11-03'&&
+       local.automated_vote_ingestion_authorized===false&&
+       local.official_race_call===false&&
+       local.url==='https://nhelectionresults.org/results'){
+     const alt=elt('a',' · NH local unofficial returns ↗',line);
+     alt.href=local.url;alt.target='_blank';alt.rel='noopener noreferrer';
+     elt('span',' · volunteer town reports, not official returns or automated vote coverage',line);
+    }
    }
   }
   elt('small','This source audit does not calculate chamber control, race calls, ballots remaining, or live win probabilities.',host);

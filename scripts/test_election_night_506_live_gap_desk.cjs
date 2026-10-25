@@ -202,6 +202,16 @@ assert.match(t,/MOCK\/TEST source; DO NOT use as votes/,
 assert.match(t,/House NH-01 — No verified automated source ID/);
 assert.match(t,/may publish only after reporting/,
  'NH official House report link is not a real-time source promise');
+assert.equal((t.match(/NH local unofficial returns/g)||[]).length,2,
+ 'Provide an additional NH town-return viewer for both congressional districts');
+assert.match(t,/volunteer town reports, not official returns or automated vote coverage/);
+const nhNoCommunity=official.links.map(x=>x.state==='NH'?{...x,
+ community_unofficial_check:{...x.community_unofficial_check,
+ url:'javascript:forged()'}}:x);
+const unsafeNH=node('div');
+api.render(unsafeNH,pulse,{createElement:node},nhNoCommunity);
+assert(!flatten(unsafeNH).includes('NH local unofficial returns'),
+ 'A volunteer link must use its audited exact HTTPS URL');
 assert.match(t,/MA — No verified automated source ID/);
 assert.match(t,/Boston unofficial municipal results/);
 assert.match(t,/BOSTON ONLY, not statewide/);

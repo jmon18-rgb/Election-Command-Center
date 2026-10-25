@@ -218,7 +218,12 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  const manualPriority=new Set(['Senate|AK','Senate|ME','Senate|NE','Senate|NH','Senate|OH-special']);
  assert.equal(get('#enOfficialBackstopsList').querySelectorAll('a[href]').length,
   links.filter(x=>x.race_ids.some(id=>manualPriority.has(id)||
-   ledger.races.some(r=>r.id===id&&r.gap_status==='UNRESOLVED_SOURCE_GAP'))).length);
+   ledger.races.some(r=>r.id===id&&r.gap_status==='UNRESOLVED_SOURCE_GAP'))).length+1,
+  'The verified NH community viewer is an additional manual site, NOT a vote source');
+ assert(get('#enOfficialBackstopsList').textContent.includes('NH town-by-town unofficial results'),
+  'NH-01 and NH-02 must have a genuinely usable unofficial Election Night fallback');
+ assert.equal(ledger.races.filter(r=>r.gap_status==='UNRESOLVED_SOURCE_GAP').length,8,
+  'A human fallback cannot artificially increase automated source coverage');
  assert(get('#enOfficialBackstopsList').textContent.includes('certification/results may come AFTER Election Night'),
   'Massachusetts cannot be described as providing election-night provisional totals');
  assert(get('#enOfficialBackstopsList').textContent.includes('WARNING: pre-election MOCK/TEST results, not real votes'),

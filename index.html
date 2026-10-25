@@ -1300,7 +1300,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_signals.js?v=df31e0cc9e64"></script>
 <script src="./scripts/election_night_poll_closings_2026.js?v=39c725fe013b"></script>
 <script src="./scripts/election_night_reconciliation.js?v=99a6b5420984"></script>
-<script src="./scripts/election_night_506_live_gap_desk.js?v=9bd49a772486"></script>
+<script src="./scripts/election_night_506_live_gap_desk.js?v=7036260443cb"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
 <script src="./scripts/chamber_control_model.js?v=aa102ced6a53"></script>
 <script src="./scripts/electorate_what_if_2026.js?v=1a5fe3701694"></script>
@@ -3482,6 +3482,22 @@ async function enRefreshSourceReadiness(){
     row.append(anchor,elt('span','',
      ' · '+relevant.join(', ')+qualifier));
     backstops.append(row);
+    // When NH's official 2026 general tally is still unpublished, offer
+    // the already-live *viewer* for volunteer town-return reporting as an
+    // unmistakably unofficial second browser tab. It is not a vote feed.
+    const local=link.state==='NH'?link.community_unofficial_check:null;
+    if(local?.scope==='NH_LOCAL_VOLUNTEER_UNOFFICIAL_NOT_STATE_CERTIFIED'&&
+       local.election_date==='2026-11-03'&&
+       local.automated_vote_ingestion_authorized===false&&
+       local.official_race_call===false&&
+       local.url==='https://nhelectionresults.org/results'){
+     const alt=elt('p','en-coverage-line');
+     const a=elt('a','','NH town-by-town unofficial results ↗');
+     a.href=local.url;a.target='_blank';a.rel='noopener noreferrer';
+     alt.append(a,elt('span','',
+      ' · NH-01 / NH-02 / Senate · local volunteers; no official calls, automated data or pre-election votes'));
+     backstops.append(alt);
+    }
     relevant.forEach(id=>matched.add(id));
    }
    const unresolved=[...gaps].filter(id=>!matched.has(id));
