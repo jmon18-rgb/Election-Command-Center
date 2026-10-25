@@ -1,23 +1,23 @@
 {
   "schema_version": "bottom-up-2026-poll-environment-shadow-v1",
   "status": "SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE",
-  "polling_generated_at": "2026-10-25T08:45:45.525738Z",
+  "polling_generated_at": "2026-10-25T09:44:41.489751Z",
   "presidential_geography_year": 2026,
   "presidential_2024_national_two_party_margin_points": -1.705,
   "generic_ballot_2026_d_minus_r_points": 9.14,
   "generic_implied_vs_2024_presidential_swing_points": 10.845,
-  "independent_polling_estimated_presidential_to_race_swing_points": 9.481,
-  "bottom_up_implied_national_margin_points": 7.776,
-  "bottom_up_minus_generic_environment_points": -1.364,
+  "independent_polling_estimated_presidential_to_race_swing_points": 9.25,
+  "bottom_up_implied_national_margin_points": 7.545,
+  "bottom_up_minus_generic_environment_points": -1.595,
   "candidate_specific_effects_removed": false,
   "candidate_quality_calibration_available": false,
-  "total_qualifying_races": 16,
-  "states_with_qualified_races": 14,
+  "total_qualifying_races": 17,
+  "states_with_qualified_races": 15,
   "trimmed_states_each_tail": 1,
-  "qualifying_house_races": 2,
+  "qualifying_house_races": 3,
   "qualifying_senate_races": 14,
   "excluded": {
-    "inadequate_polling": 93,
+    "inadequate_polling": 92,
     "stale": 0,
     "not_competitive": 1,
     "missing_geography": 0
@@ -47,6 +47,11 @@
       "state": "MI",
       "number_qualifying_races": 1,
       "swing_points": 4.039
+    },
+    {
+      "state": "PA",
+      "number_qualifying_races": 1,
+      "swing_points": 6.478
     },
     {
       "state": "FL",
@@ -95,6 +100,19 @@
     }
   ],
   "examples": [
+    {
+      "office": "house",
+      "race_code": "PA-10",
+      "state": "PA",
+      "presidential_2024_margin": -5.288,
+      "poll_margin": 1.19,
+      "raw_swing_points": 6.478,
+      "capped_swing_points": 6.478,
+      "capped_local_outlier": false,
+      "weight": 0.48999999999999994,
+      "independent_firms": 3,
+      "latest_age_days": 3
+    },
     {
       "office": "senate",
       "race_code": "MN-SEN",
