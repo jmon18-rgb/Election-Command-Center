@@ -1853,9 +1853,9 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  assert.equal(Object.values(jointBase.counts).reduce((sum,n)=>sum+n,0),3000);
  assert(!w.eval('Object.keys(jointLiveObservations()).includes("NC-SEN")'),
   'The correlated chamber needle must NOT use raw NC precinct percentages as a calibrated geographic signal');
- // The browser bundle holds descriptive evidence in a lexical scope,
- // not a global debug variable. Assert it via its actual public needle UI.
- w.eval('jointRender(true)');
+ // The browser bundle holds descriptive evidence in a lexical scope.
+ // The needle was ALREADY rendered from this same NC snapshot above:
+ // re-running thousands of joint simulations here is redundant and slow.
  assert.match(get('#jointNightNeedle').textContent,/RAW RETURNS OBSERVED/,
   'Actual NC votes remain visible as descriptive source data when national odds are withheld');
  assert.match(get('#jointRunStatus').textContent,/source-validated races \(\d+ provider calls\)/);
