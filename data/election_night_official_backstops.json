@@ -175,5 +175,46 @@
       ]
     }
   ],
-  "limitations": "Links are human-check references, not verified live feeds, reported votes, or professional race calls. Massachusetts expressly does not publish unofficial statewide election-night results. Mississippi's Secretary of State stated in its 2024 election-day guidance that its office only announces and posts certified results; do not rely on that office as an unofficial live feed without a newly verified 2026 source."
+  "limitations": "Links are human-check references, not verified live feeds, reported votes, or professional race calls. Massachusetts expressly does not publish unofficial statewide election-night results. Mississippi's Secretary of State stated in its 2024 election-day guidance that its office only announces and posts certified results; do not rely on that office as an unofficial live feed without a newly verified 2026 source.",
+  "public_editorial_calls": {
+    "status": "PUBLIC_MANUAL_NEWSROOM_CHECKS_NOT_VOTE_FEEDS_OR_AUTOMATED_CALLS",
+    "provider": "Decision Desk HQ Votes Free",
+    "free_access_verified": "2026-10-25",
+    "information": "Eight directly reviewed Nov 3 2026 U.S. House/Senate race pages, accessible for manual viewing. Pre-election pages show FORECASTS rather than calls. On/after Election Day, an explicit race call may be verified there; a forecast or social rumor is not a reported call. Never scrape, infer votes or feed these links into automatic 506-race source coverage.",
+    "newsroom_social": "https://x.com/DecisionDeskHQ",
+    "race_pages": [
+      {
+        "id": "House|AK-00",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/alaska-us-house-at-large-general-election"
+      },
+      {
+        "id": "House|DE-00",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/delaware-us-house-at-large-general-election"
+      },
+      {
+        "id": "House|ND-00",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/north-dakota-us-house-at-large-general-election"
+      },
+      {
+        "id": "House|NH-01",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/new-hampshire-us-house-1-general-election"
+      },
+      {
+        "id": "House|NH-02",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/new-hampshire-us-house-2-general-election"
+      },
+      {
+        "id": "House|SD-00",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/south-dakota-us-house-at-large-general-election"
+      },
+      {
+        "id": "House|WY-00",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/wyoming-us-house-at-large-general-election"
+      },
+      {
+        "id": "Senate|MA",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/massachusetts-us-senate-general-election"
+      }
+    ]
+  }
 }

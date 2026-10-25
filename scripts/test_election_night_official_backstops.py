@@ -22,6 +22,29 @@ class OfficialBackstopsTests(unittest.TestCase):
         self.assertEqual(self.links["status"],
                          "OFFICIAL_HUMAN_FALLBACK_LINKS_NOT_AUTOMATED_RESULTS")
 
+    def test_each_machine_identity_gap_has_a_free_exact_2026_media_race_page(self):
+        newsroom=self.links["public_editorial_calls"]
+        self.assertEqual(newsroom["status"],
+         "PUBLIC_MANUAL_NEWSROOM_CHECKS_NOT_VOTE_FEEDS_OR_AUTOMATED_CALLS")
+        self.assertEqual(newsroom["provider"],"Decision Desk HQ Votes Free")
+        self.assertEqual(newsroom["newsroom_social"],"https://x.com/DecisionDeskHQ")
+        expected={r["id"] for r in self.ledger["races"]
+                  if r["gap_status"]=="UNRESOLVED_SOURCE_GAP"}
+        pages=newsroom["race_pages"]
+        self.assertEqual(len(pages),len(expected))
+        self.assertEqual({r["id"] for r in pages},expected)
+        for row in pages:
+            p=urlparse(row["url"])
+            self.assertEqual(p.scheme,"https")
+            self.assertEqual(p.hostname,"votes.decisiondeskhq.com")
+            self.assertTrue(p.path.startswith("/races/2026-11-03/"))
+            self.assertTrue(p.path.endswith("-general-election"))
+            self.assertFalse(p.query or p.fragment or p.username or p.password)
+            self.assertFalse(any(k in row for k in (
+             "winner","winner_call","reported_votes","result","forecast_probability")))
+        self.assertIn("FORECASTS",newsroom["information"])
+        self.assertIn("not",newsroom["information"].lower())
+
     def test_links_cannot_masquerade_as_live_results(self):
         for item in self.links["links"]:
             parsed=urlparse(item["url"])
