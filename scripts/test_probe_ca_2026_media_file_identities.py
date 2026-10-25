@@ -55,6 +55,17 @@ class CaliforniaMediaIdentityTests(unittest.TestCase):
         dup=assess(good+'<a href="'+official+'">V26GG.txt</a>',CLOSE)
         self.assertIn("V26GG.txt",dup["unsafe_or_ambiguous"])
         self.assertEqual(dup["exact_file_identities"],0)
+    def test_real_official_descriptive_api_catalog_labels(self):
+        actual=mock_page().replace(
+          ">json-endpoints.csv</a>",">json endpoints .csv file</a>").replace(
+          ">api-endpoints.csv</a>",">api endpoints .csv file</a>")
+        result=assess(actual,BEFORE)
+        self.assertEqual(result["exact_file_identities"],8,
+          "Identify approved source CSV URLs from exact path even if labels are prose")
+        self.assertEqual(result["missing_file_identities"],[])
+        self.assertEqual(result["result_files_downloaded"],0)
+        self.assertFalse(result["machine_house_feed_verified"])
+
     def test_partial_listing_cannot_fill_missing(self):
         doc=assess(mock_page(["C26GG.txt","R26GG.txt"]),CLOSE)
         self.assertEqual(doc["exact_file_identities"],2)
