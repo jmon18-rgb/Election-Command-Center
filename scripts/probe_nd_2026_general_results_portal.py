@@ -78,6 +78,14 @@ def evaluate(office_html, portal_html, now, *, office_available=True,
     matches = [href for label, href in page.links if
                re.search(r"\bgeneral election results\b", label, re.I)
                and re.search(r"\bnovember\s+3,?\s+2026\b", label, re.I)]
+    # Host/path-only debug is safe public metadata. Do not emit query
+    # strings or raw HTML. It helps distinguish a changed 2026 results
+    # navigation URL from a wrong label or a malformed landing page.
+    discovered = []
+    for href in matches[:5]:
+        parsed = urlsplit(href or "")
+        discovered.append({"scheme": parsed.scheme, "host": parsed.hostname,
+                           "path": parsed.path[:120], "has_query": bool(parsed.query)})
     # Fail closed on duplicate / ambiguous results links, including one
     # malicious link alongside a valid government portal address.
     confirmed = (office_available and len(matches) == 1
@@ -102,6 +110,8 @@ def evaluate(office_html, portal_html, now, *, office_available=True,
         "official_election_page": OFFICIAL, "official_results_portal": PORTAL,
         "official_2026_general_link_confirmed": confirmed,
         "ambiguous_2026_general_links": len(matches) > 1,
+        "candidate_2026_general_links": len(matches),
+        "official_anchor_locations_safe": discovered,
         "portal_metadata_reachable": portal_reachable,
         "portal_test_mode_seen": bool(preview and portal_reachable),
         "canonical_nd_close_passed": after_close,
