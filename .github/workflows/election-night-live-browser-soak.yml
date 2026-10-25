@@ -13,7 +13,9 @@ on:
         required: false
         default: '30'
   schedule:
-    # 2026 preflight Nov 2, then live Nov 3 8:10 PM ET (Nov 4 UTC).
+    # Real 120-min laptop rehearsal Oct 27, ahead of the election.
+    # Keep the 15-min Nov 2 preflight and live Nov 3 8:10 PM ET soak.
+    - cron: '17 14 27 10 *'
     - cron: '10 16 2 11 *'
     - cron: '10 1 4 11 *'
 permissions:
@@ -39,7 +41,8 @@ jobs:
           node scripts/test_monitor_election_night_browser_soak.cjs
   actual-browser:
     # A short real public-site test on every soak-runner PR catches refresh
-    # regressions before the scheduled 15/120-minute November rehearsals.
+    # regressions before the Oct 27 120-min rehearsal, Nov 2 preflight,
+    # and real Election Night 120-minute live browser run.
     needs: offline-contract
     runs-on: ubuntu-24.04
     timeout-minutes: 195
@@ -66,12 +69,12 @@ jobs:
           EVENT_NAME: ${{ github.event_name }}
         run: |
           stamp="$(date -u +'%Y%m%d')"
-          if [ "$EVENT_NAME" = schedule ] && [ "$stamp" != 20261102 ] && [ "$stamp" != 20261104 ]; then
+          if [ "$EVENT_NAME" = schedule ] && [ "$stamp" != 20261027 ] && [ "$stamp" != 20261102 ] && [ "$stamp" != 20261104 ]; then
             echo 'Scheduled rehearsal is outside the 2026 general-election window'; exit 0
           fi
           if [ "$EVENT_NAME" = pull_request ]; then
             minutes=5
-          elif [ "$EVENT_NAME" = schedule ] && [ "$stamp" = 20261104 ]; then
+          elif [ "$EVENT_NAME" = schedule ] && { [ "$stamp" = 20261027 ] || [ "$stamp" = 20261104 ]; }; then
             minutes=120
           elif [ "$EVENT_NAME" = schedule ]; then
             minutes=15
