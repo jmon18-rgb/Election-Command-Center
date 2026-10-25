@@ -79,7 +79,10 @@
   function select(item,doc){
     if(!configuration(item)||!doc||disabled(doc)||!Array.isArray(doc.races)||
        doc.races.length>20||doc.races.length===0||
-       (Number.isSafeInteger(doc.count)&&doc.count>20))return null;
+       // An incomplete search page is not proof of a unique race. A
+       // malformed cardinality field cannot be silently ignored either.
+       (doc.count!=null&&
+        (!Number.isSafeInteger(doc.count)||doc.count!==doc.races.length)))return null;
     const exact=doc.races.filter(row=>match(item,row));
     return exact.length===1?exact[0]:null;
   }
