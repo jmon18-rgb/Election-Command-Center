@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'scripts/monitor_election_night_browser_soak.mjs'
+      - 'scripts/election_night_browser_soak_acceptance.cjs'
       - 'scripts/test_monitor_election_night_browser_soak.cjs'
       - '.github/workflows/election-night-live-browser-soak.yml'
   workflow_dispatch:
@@ -32,6 +33,7 @@ jobs:
       - name: Check real-clock runner arguments and JavaScript syntax
         run: |
           node --check scripts/monitor_election_night_browser_soak.mjs
+          node --check scripts/election_night_browser_soak_acceptance.cjs
           node scripts/test_monitor_election_night_browser_soak.cjs
   actual-browser:
     if: github.event_name != 'pull_request'
