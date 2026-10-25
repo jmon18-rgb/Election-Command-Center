@@ -1,0 +1,91 @@
+{
+  "schema": "fairfax-2024-official-paired-president-senate-clock-v1",
+  "status": "SAME_COUNTY_CROSS_OFFICE_DESCRIPTIVE_RESEARCH_NOT_NATIONAL_CALIBRATION",
+  "state": "VA",
+  "county": "Fairfax",
+  "fips": "51059",
+  "election_date": "2024-11-05",
+  "contest": "2024 President and Vice President",
+  "candidate_D": "Kamala D. Harris",
+  "candidate_R": "Donald J. Trump",
+  "local_clock_kind": "Electionware Election Summary section generation time, not independent archived capture",
+  "modes": [
+    "early_voting",
+    "election_day",
+    "election_night_mail"
+  ],
+  "chronological_presidential_snapshots": [
+    {
+      "section_clock": "2024-11-05T19:08:00-05:00",
+      "file": "2024November_results_unofficial.pdf",
+      "source_url": "https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/Documents/PDF/2024November_results_unofficial.pdf",
+      "original_pdf_page": 2,
+      "source_status": "ORIGINAL_ELECTION_SUMMARY_VISUALLY_VERIFIED",
+      "D_by_mode": [
+        158887,
+        0,
+        25247
+      ],
+      "R_by_mode": [
+        75109,
+        0,
+        5183
+      ],
+      "all_candidates_votes_cast": 269637
+    },
+    {
+      "section_clock": "2024-11-05T22:50:00-05:00",
+      "file": "2024November_results_unofficial-010.pdf",
+      "source_url": "https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/Documents/PDF/2024November_results_unofficial-010.pdf",
+      "original_pdf_page": 2,
+      "source_status": "ORIGINAL_ELECTION_SUMMARY_VISUALLY_VERIFIED",
+      "D_by_mode": [
+        158887,
+        144347,
+        52248
+      ],
+      "R_by_mode": [
+        75109,
+        83603,
+        11567
+      ],
+      "all_candidates_votes_cast": 544976
+    },
+    {
+      "section_clock": "2024-11-06T00:13:00-05:00",
+      "file": "2024November_results_unofficial-012.pdf",
+      "source_url": "https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/Documents/PDF/2024November_results_unofficial-012.pdf",
+      "original_pdf_page": 2,
+      "source_status": "ORIGINAL_ELECTION_SUMMARY_VISUALLY_VERIFIED",
+      "D_by_mode": [
+        158887,
+        144950,
+        61817
+      ],
+      "R_by_mode": [
+        75109,
+        83964,
+        14247
+      ],
+      "all_candidates_votes_cast": 558657
+    }
+  ],
+  "official_final": {
+    "source": "Virginia Department of Elections Fairfax County official 2024 General Election",
+    "url": "https://enr.elections.virginia.gov/results/public/fairfax-county/elections/2024NovemberGeneral",
+    "D_votes": 386438,
+    "R_votes": 181895,
+    "independently_staged_final_is_not_nighttime_vote_snapshot": true
+  },
+  "paired_senate_data_path": "data/fairfax_2024_senate_election_clock_research.json",
+  "original_pdfs_not_redistributed": true,
+  "publication_capture_clocks_verified": false,
+  "rights_for_original_data_republication_reviewed": false,
+  "full_precinct_geography_matched": false,
+  "out_of_sample_multi_county_backtest_completed": false,
+  "transferable_reporting_order_bias_established": false,
+  "may_update_2026_model": false,
+  "may_update_2026_live_needle": false,
+  "approved_calibration_inputs": 0,
+  "note": "Three original Fairfax County PDF Senate and Presidential Election Summary pages independently reviewed at matching section-generation clocks. Descriptive local reporting mode comparison only; not national or 2026 reporting bias."
+}
