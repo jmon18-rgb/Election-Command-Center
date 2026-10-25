@@ -88,8 +88,14 @@
    if(county.ballots_reported>0&&total===0)
     return {ok:false,reason:'NO_ATTRIBUTABLE_CANDIDATE_VOTES'};
    seen.add(county.fips);
+   // The 2026 Class III Florida/Ohio US Senate contests are specials;
+   // all other 2026 county-source seats are regular elections. The source
+   // schema does not supply this flag, so derive the exact ballot kind
+   // rather than letting an upstream JSON payload invent the seat class.
+   const election_kind=envelope.office==='Senate'&&
+    ['FL','OH'].includes(envelope.state)?'special':'regular';
    rows.push({election_date:'2026-11-03',election_type:'General',
-    verified_source:true,is_test:false,provider:envelope.provider,
+    election_kind,verified_source:true,is_test:false,provider:envelope.provider,
     provider_race_id:envelope.provider_race_id,office:envelope.office,
     state:envelope.state,state_fips:expected.state_fips,
     race_key:envelope.race_key,county_id:county.fips,
