@@ -27,7 +27,7 @@
    const count=HOUSE_SEATS[key.slice(0,2)];
    const n=key.slice(3);
    return Number.isInteger(count)&&
-    /^[A-Z]{2}-\\d{2}$/.test(key)&&
+    /^[A-Z]{2}-\d{2}$/.test(key)&&
     (count===1?n==='00':Number(n)>=1&&Number(n)<=count&&n!=='00');
   }
   if(office==='Senate')return SENATE_BALLOTS.has(key);
