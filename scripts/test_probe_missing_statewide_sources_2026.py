@@ -133,6 +133,76 @@ class GapProbeTests(unittest.TestCase):
                              "PRE_POLL_CLOSE_COUNTED_OR_CALLED_NOT_LIVE")
             self.assertIsNone(detail_rejection(spec,self.rows[state],raw,now=before))
 
+    def test_incomplete_search_page_cannot_authorize_statewide_source_id(self):
+        # A total of two with only one returned page is NOT uniqueness.
+        # Candidate details must not be requested at all for a truncated
+        # search, even when the visible row matches precisely.
+        for bad_count in (0, 2, 20, 21, -1, True, 1.5, "1"):
+            with self.subTest(count=bad_count):
+                calls=[]
+                def truncated(path, params):
+                    calls.append(path)
+                    if path=="/race/search":
+                        return {"races":[self.rows[params["province"]]],
+                                "count":bad_count}
+                    raise AssertionError("Detail called for incomplete search")
+                response=probe(truncated,datetime(2026,10,24,tzinfo=timezone.utc))
+                self.assertEqual(response["exact_matches"],0)
+                self.assertEqual(len(calls),4)
+                self.assertTrue(all(v["status"]=="INVALID_OR_TRUNCATED_SEARCH"
+                                    and v["race_id"] is None for v in response["records"]))
+                self.assertFalse(response["may_update_model_or_source_pins"])
+        no_count=probe(lambda path,params:
+                       {"races":[self.rows[params["province"]]]}
+                       if path=="/race/search" else detail(
+                           self.rows[next(s for s in self.rows
+                             if self.rows[s]["id"] == int(path.split("/")[-1]))]),
+                       datetime(2026,10,24,tzinfo=timezone.utc))
+        self.assertEqual(no_count["exact_matches"],4,
+                         "Missing optional count keeps exact search/detail verification")
+
+    def test_forged_statewide_detail_and_mock_rows_fail_closed(self):
+        one=SPECS[0]
+        original=self.rows["MA"]
+        valid=detail(original)
+        for flag in ("is_test","test","mock","is_mock"):
+            with self.subTest(flag=flag):
+                self.assertFalse(exact(one,{**original,flag:True}))
+                self.assertEqual(detail_rejection(one,original,
+                                  {**valid,flag:True}),"MOCK_OR_INACTIVE_DETAIL")
+        self.assertFalse(exact(one,{**original,"active":False}))
+        self.assertEqual(detail_rejection(one,original,{**valid,"active":False}),
+                         "MOCK_OR_INACTIVE_DETAIL")
+        self.assertTrue(exact(one,{**original,"mock":False,"active":True}))
+        self.assertIsNone(detail_rejection(one,original,
+                          {**valid,"mock":False,"active":True}))
+        for corrupt in (
+            "2026-11-03T99:99:99Z","2026-11-03T05:99:00Z",
+            "2026-11-03T05:00:00+99:00",
+            "2026-11-03T05:00:00","2026-11-03T05:00:00Zextra",
+            "2026-11-03T05:00:00.123garbage",
+        ):
+            with self.subTest(date=corrupt):
+                self.assertFalse(exact(one,{**original,"election_date":corrupt}))
+        for candidate_mod in (
+            [{**valid["candidates"][0],"votes":2**53},
+             valid["candidates"][1]],
+            [{**valid["candidates"][0],"votes":2**53-1},
+             {**valid["candidates"][1],"votes":1}],
+            [{**valid["candidates"][0],"name":" SAME HUMAN ","party":"D"},
+             {**valid["candidates"][1],"name":"same human","party":"R"}],
+            [{**valid["candidates"][0],"mock":True},
+             valid["candidates"][1]],
+        ):
+            with self.subTest(candidates=candidate_mod):
+                self.assertIsNotNone(detail_rejection(one,original,
+                                     {**valid,"candidates":candidate_mod}))
+        # Different people in a top-two same-party general race are valid;
+        # source identity does not presume the party determines uniqueness.
+        top_two=detail(original)
+        top_two["candidates"][1]["party"]="Democratic"
+        self.assertIsNone(detail_rejection(one,original,top_two))
+
     def test_absent_election_is_unknown_not_a_negative_vote(self):
         def absent_fetch(path, params):
             self.assertEqual(path, "/race/search",
