@@ -100,11 +100,15 @@ if(opts.has('check-config')){
     report.background_visibility_confirmed=
       await tab.evaluate(()=>document.hidden);
    }else if(step===Math.floor(steps/3)+2&&secondary){
+    // Network requests may fire synchronously from visibilitychange/focus.
+    // Arm attribution BEFORE bringing the original tab to the foreground,
+    // or an actual successful autonomous refresh could be misclassified as
+    // having happened "before resume".
+    resumed=true;
     await tab.bringToFront();await secondary.close();secondary=null;
     await tab.waitForFunction(()=>!document.hidden,undefined,{timeout:10000});
     report.resumed_tab_visible=await tab.evaluate(()=>!document.hidden);
     report.background_resume_observed=true;
-    resumed=true;
     // Before Election Day, the standby feed intentionally uses a slower
     // ten-minute cadence. In a five-minute PR rehearsal, explicitly click
     // the owner-facing 2026 refresh control after resume. Never report this
