@@ -263,13 +263,27 @@ if(args.has('check-config')){
   // An exact provider race ID is not evidence of live vote availability.
   // Verify only the *actual page's* source-validated record and its pinned
   // November 2026 office identity, including pre-election zero-vote records.
-  await waitFor('(()=>{const id="Senate|ME",row=enCivicByWatch[id];'+
-   'if(!row||enCivicErrors[id]||enCivicRaceIds[id]?.id!==87188||'+
-   'row.provider!=="civicAPI"||row.office!=="Senate"||'+
-   'row.key!=="ME"||row.race_id!==87188||'+
-   'row.source_url!=="https://civicapi.org/api/v2/race/87188")return false;'+
-   'if(row.total===0)return row.called==null;'+
-   'return enCivicUsable({office:"Senate",key:"ME"})===row})()',60000);
+  try{
+   await waitFor('(()=>{const id="Senate|ME",row=enCivicByWatch[id];'+
+    'if(!row||enCivicErrors[id]||enCivicRaceIds[id]?.id!==87188||'+
+    'row.provider!=="civicAPI"||row.office!=="Senate"||'+
+    'row.key!=="ME"||row.race_id!==87188||'+
+    'row.source_url!=="https://civicapi.org/api/v2/race/87188")return false;'+
+    'if(row.total===0)return row.called==null;'+
+    'return enCivicUsable({office:"Senate",key:"ME"})===row})()',60000);
+  }catch(error){
+   // Distinguish a real upstream source miss from identity rejection and
+   // transport stalls without publishing provider payloads or fake votes.
+   try{
+    report.supplemental_probe_diagnostic=await evaluate('(()=>{const id="Senate|ME";'+
+     'const row=enCivicByWatch[id],pin=enCivicRaceIds[id];'+
+     'return {error:String(enCivicErrors[id]||"").slice(0,180),'+
+     'pending:enCivicPending.has(id),last_attempt:enCivicLastAttemptAt[id]||null,'+
+     'selected_source_id:pin?.id||null,accepted_source_id:row?.race_id||null,'+
+     'backoff_status:enCivicBreaker?.status()?.last_http_status||null}})()');
+   }catch{report.supplemental_probe_diagnostic={error:'Browser diagnostic unavailable'}}
+   throw error;
+  }
   report.supplemental_exact_identity_validated=true;
   mark('ACTUAL_SUPPLEMENTAL_2026_SOURCE_IDENTITY_ACCEPTED_NOT_LIVE_VOTES');
   start=performance.now();
