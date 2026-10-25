@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'scripts/monitor_election_night_browser_soak.mjs'
+      - 'scripts/election_night_browser_soak_acceptance.cjs'
       - 'scripts/test_monitor_election_night_browser_soak.cjs'
       - '.github/workflows/election-night-live-browser-soak.yml'
   workflow_dispatch:
@@ -18,8 +19,10 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: actual-election-night-browser-soak
-  cancel-in-progress: false
+  # Superseded PR smoke runs must not queue behind obsolete five-minute
+  # revisions. Never cancel the full live/scheduled two-hour evidence run.
+  group: actual-election-night-browser-soak-${{ github.event_name == 'pull_request' && github.event.pull_request.number || 'scheduled' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   offline-contract:
     runs-on: ubuntu-24.04
@@ -32,9 +35,11 @@ jobs:
       - name: Check real-clock runner arguments and JavaScript syntax
         run: |
           node --check scripts/monitor_election_night_browser_soak.mjs
+          node --check scripts/election_night_browser_soak_acceptance.cjs
           node scripts/test_monitor_election_night_browser_soak.cjs
   actual-browser:
-    if: github.event_name != 'pull_request'
+    # A short real public-site test on every soak-runner PR catches refresh
+    # regressions before the scheduled 15/120-minute November rehearsals.
     needs: offline-contract
     runs-on: ubuntu-24.04
     timeout-minutes: 195
@@ -47,6 +52,14 @@ jobs:
         run: |
           npm install --no-save --no-package-lock playwright@1.57.0
           npx playwright install --with-deps chromium
+      - name: Install virtual display window manager
+        run: |
+          # Xvfb alone has no window manager. Chromium cannot reliably
+          # background real OS tabs/windows without X11 focus management.
+          if ! command -v openbox >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq --no-install-recommends openbox
+          fi
       - name: Monitor real deployed tab for an actual elapsed duration
         env:
           MANUAL_MINUTES: ${{ inputs.minutes }}
@@ -56,16 +69,27 @@ jobs:
           if [ "$EVENT_NAME" = schedule ] && [ "$stamp" != 20261102 ] && [ "$stamp" != 20261104 ]; then
             echo 'Scheduled rehearsal is outside the 2026 general-election window'; exit 0
           fi
-          if [ "$EVENT_NAME" = schedule ] && [ "$stamp" = 20261104 ]; then
+          if [ "$EVENT_NAME" = pull_request ]; then
+            minutes=5
+          elif [ "$EVENT_NAME" = schedule ] && [ "$stamp" = 20261104 ]; then
             minutes=120
           elif [ "$EVENT_NAME" = schedule ]; then
             minutes=15
           else
             minutes="${MANUAL_MINUTES:-30}"
           fi
-          node scripts/monitor_election_night_browser_soak.mjs \
-            --duration-minutes="$minutes" --interval-seconds=60 \
-            --output=/tmp/real_election_browser_tab_soak.json
+          # Headed Chromium under Xvfb is necessary for real background
+          # document.hidden visibility transitions; headless shell does not
+          # verify this capability even if other source checks pass.
+          xvfb-run -a -s '-screen 0 1920x1080x24 -ac' bash -c '
+            openbox --sm-disable >/tmp/election-night-wm.log 2>&1 &
+            wm_pid=$!
+            trap "kill $wm_pid 2>/dev/null || true" EXIT
+            sleep 1
+            node scripts/monitor_election_night_browser_soak.mjs \
+              --duration-minutes="$1" --interval-seconds=60 \
+              --output=/tmp/real_election_browser_tab_soak.json
+          ' -- "$minutes"
       - name: Preserve observed browser health including failed checks
         if: always()
         uses: actions/upload-artifact@v4
