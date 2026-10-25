@@ -1,0 +1,29 @@
+name: National Election Needle Cartogram
+on:
+  push:
+    paths:
+      - 'scripts/national_needle_cartogram.js'
+      - 'scripts/test_national_needle_cartogram.cjs'
+      - 'index.html'
+      - '.github/workflows/national-needle-cartogram.yml'
+  pull_request:
+    paths:
+      - 'scripts/national_needle_cartogram.js'
+      - 'scripts/test_national_needle_cartogram.cjs'
+      - 'index.html'
+      - '.github/workflows/national-needle-cartogram.yml'
+  workflow_dispatch:
+jobs:
+  cartogram:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate standalone map module and click-through safeguards
+        run: |
+          node --check scripts/national_needle_cartogram.js
+          node --check scripts/test_national_needle_cartogram.cjs
+          node scripts/test_national_needle_cartogram.cjs
+      - name: Ensure main dashboard mounts the guarded map
+        run: |
+          node -e "const fs=require('fs');const s=fs.readFileSync('index.html','utf8');for(const x of ['id=\"enNationalNeedleMap\"','national_needle_cartogram.js','function enRenderNeedleCartogram()','enRenderNeedleCartogram();'])if(!s.includes(x))throw Error('Missing map wiring: '+x)"
