@@ -82,6 +82,14 @@ class OfficialBackstopsTests(unittest.TestCase):
         self.assertEqual(mass["verified_at"],"2026-10-24")
         self.assertEqual(mass["source_reference"],
           "https://www.sec.state.ma.us/divisions/elections/voting-information/announcing-certifying.htm")
+        local=mass.get("municipal_unofficial_check")
+        self.assertEqual(local["scope"],"BOSTON_CITY_ONLY_NOT_MASSACHUSETTS_STATEWIDE")
+        self.assertEqual(local["url"],
+          "https://content.boston.gov/departments/elections/unofficial-election-results")
+        self.assertEqual(local["current_page_cycle"],"2026-09-01_state_primary")
+        self.assertFalse(local["general_2026_live_returns_verified"])
+        self.assertFalse(local["auto_vote_ingestion_authorized"])
+        self.assertEqual(local["verified_at"],"2026-10-24")
         self.assertFalse(any(token in mass.get("mode","") for token in
           ("unofficial_results_landing","2026_results_landing")),
           "Massachusetts does not provide statewide unofficial election-night returns")
