@@ -1769,9 +1769,9 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  // Validated probabilistic source bridge, actual 2026 dashboard controls.
  w.eval('enRenderLiveDesk()');
  assert.equal(get('.en-live-desk').hidden,false);
- assert.match(get('#enNowcastSummary').textContent,/race probabilities/);
+ assert.match(get('#enNowcastSummary').textContent,/race-level experimental diagnostics/);
  assert.match(get('#enNowcastRows').textContent,/NC-SEN/);
- assert.match(get('#enNowcastRows').textContent,/RETURNS INFORMED/);
+ assert.match(get('#enNowcastRows').textContent,/RAW-RETURN EXPERIMENT/);
  const ncNowcast=w.eval('enLiveRaceEstimate({office:"Senate",key:"NC"})');
  assert(ncNowcast&&ncNowcast.mode==='live_informed',
   'Only the current source-validated partial Senate count may update NC odds');
@@ -1828,7 +1828,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
   assert(needle.querySelector('.four-needle-arc-baseline'),
    'Baseline pointer must exist for later qualified vote returns');
   assert.match(needle.querySelector('.four-needle-footer').textContent,
-   /PRE-ELECTION FORECAST|LIVE RETURNS/,
+   /PRE-ELECTION FORECAST|VERIFIED SOURCE CALLS|UNADJUSTED RETURNS/,
    'Needle must attribute its source mode instead of implying certified results');
   const renderedNeedle=needle.querySelector('.four-needle-arrow').style.left;
   assert(renderedNeedle.endsWith('%')&&
@@ -1851,8 +1851,13 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  const jointBase=w.eval('jointForecastResult()');
  assert(jointBase?.probabilities?.blue_tsunami>=0&&jointBase.total_pct>99.9);
  assert.equal(Object.values(jointBase.counts).reduce((sum,n)=>sum+n,0),3000);
- assert(w.eval('Object.keys(jointLiveObservations()).includes("NC-SEN")'),
-  'The live joint model should integrate verified current NC Senate returns');
+ assert(!w.eval('Object.keys(jointLiveObservations()).includes("NC-SEN")'),
+  'The correlated chamber needle must NOT use raw NC precinct percentages as a calibrated geographic signal');
+ // The browser bundle holds descriptive evidence in a lexical scope.
+ // The needle was ALREADY rendered from this same NC snapshot above:
+ // re-running thousands of joint simulations here is redundant and slow.
+ assert.match(get('#jointNightNeedle').textContent,/RAW RETURNS OBSERVED/,
+  'Actual NC votes remain visible as descriptive source data when national odds are withheld');
  assert.match(get('#jointRunStatus').textContent,/source-validated races \(\d+ provider calls\)/);
  const housePrior=jointBase.means.house_dem_seats;
  get('#jointSwing').value='-3';
