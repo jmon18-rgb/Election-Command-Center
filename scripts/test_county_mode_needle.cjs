@@ -15,6 +15,17 @@ function fixture(fips,mode='election_day',d=6000,r=4000){
    updated_at:'2026-11-04T03:20:00Z'}};
 }
 const a=api.audit(fixture('37063'),now);
+// Prefix-only acceptance is not enough: state and county must agree and
+// not identify a statewide pseudo-county, regardless of caller trust.
+for(const [state,fips] of [
+ ['NC','51107'],['VA','37063'],['NC','37000'],
+ ['ZZ','37063'],['NC','00000']
+]){
+ const candidate=fixture(fips);candidate.state=state;
+ assert.throws(()=>api.audit(candidate,now),
+   /Invalid county or voting-method identity/,
+   'Cross-state/fabricated county may not influence local method research');
+}
 assert(a.qualified);assert.equal(a.observed_2024_d_minus_r_points,-4);
 assert.equal(a.observed_2026_d_minus_r_points,20);
 assert.equal(a.unadjusted_two_year_change_points,24);
