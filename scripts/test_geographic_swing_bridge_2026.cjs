@@ -2,15 +2,23 @@ const assert=require('node:assert/strict');
 const {apply}=require('./geographic_swing_bridge_2026');
 const row={election_date:'2026-11-03',election_type:'General',is_test:false,
  verified_source:true,provider:'civicAPI',provider_race_id:'verified-123',
- office:'Senate',state:'VA',state_fips:'51',county_id:'51107',race_key:'VA-SEN',
+ office:'Senate',election_kind:'regular',state:'VA',state_fips:'51',
+ county_id:'51107',race_key:'VA-SEN',
  updated_at:'2026-11-04T00:05:00Z',reporting_status:'partial',ballots_reported:100,
  candidates:[{name:'Candidate D',party:'D',votes:60},{name:'Candidate R',party:'R',votes:40}]};
-const base={verified_source:true,election_date:'2024-11-05',boundary_version:'2026',
+const base={verified_source:true,election_date:'2020-11-03',
+ election_year:2020,office:'Senate',boundary_version:'2026',
  county_id:'51107',race_key:'VA-SEN',votes:{D:50,R:50}};
 const NOW=Date.parse('2026-11-04T00:10:00Z');
 const first=apply(null,row,base,NOW);
 assert(first.accepted);assert.equal(first.mode,'VERIFIED_GEOGRAPHIC_COMPARISON');
 assert.equal(first.swing.swing,0.2);
+assert.equal(first.swing.previous_same_seat_election_year,2020);
+const wrongPrior=apply(null,row,{...base,election_year:2024,
+ election_date:'2024-11-05'},NOW);
+assert.equal(wrongPrior.accepted,true);
+assert.equal(wrongPrior.mode,'NO_COMPARABLE_BASELINE');
+assert.equal(wrongPrior.swing,null);
 assert.equal(apply(first.row,row,base,NOW).reason,'STALE_OR_DUPLICATE');
 assert.equal(apply(null,{...row,is_test:true},base,NOW).reason,'INVALID_OR_UNVERIFIED');
 const missing=apply(null,row,{...base,boundary_version:'2024'},NOW);
