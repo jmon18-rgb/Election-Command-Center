@@ -17,12 +17,13 @@ async function main(){
  assert.equal(calls[0].opts.mode,'cors');
  assert.equal(calls[0].opts.credentials,'omit');
  assert.equal(calls[0].opts.cache,'no-cache');
+ assert.equal(calls[0].opts.redirect,'error');
  assert.deepEqual(calls[0].opts.headers,{Accept:'application/json'});
  assert.equal(calls[0].opts.signal?.aborted,false);
  assert(!('If-None-Match' in calls[0].opts.headers),
   'Custom conditional header triggers unnecessary cross-origin preflight');
  assert.equal(transport.pending(),1);
- complete({ok:true,status:200,json:async()=>({api:1,year:2026,office:'House'})});
+ complete({ok:true,status:200,url:H,redirected:false,json:async()=>({api:1,year:2026,office:'House'})});
  assert.deepEqual(await one,{api:1,year:2026,office:'House'});
  assert.equal(transport.pending(),0);
  const another=transport.load(H);
@@ -41,11 +42,29 @@ async function main(){
  await assert.rejects(transport.load(S.replace('openamerica.io','example.org')),/Unapproved/);
  await assert.rejects(transport.load(S+'%26race=FAKE'),/Unapproved/);
  let parallel=0;
- const separate=create(async(_url)=>{parallel++;return {ok:true,status:200,json:async()=>({})}});
+ const separate=create(async(url)=>{parallel++;return {ok:true,status:200,url,redirected:false,json:async()=>({})}});
  await Promise.all([separate.load(H),separate.load(S)]);
  assert.equal(parallel,2,'Different offices must remain independent');
- const notJson=create(async()=>({ok:true,status:200,json:async()=>['bad']}));
+ const notJson=create(async(url)=>({ok:true,status:200,url,redirected:false,json:async()=>['bad']}));
  await assert.rejects(notJson.load(H),/not a JSON object/);
+ // Only the exact approved final response URL is trusted. Browser-native
+ // redirect:'error' rejects the 30x even before Response is made available;
+ // the explicit final-URL gate also catches adapter or mock misbehavior.
+ for(const actual of [
+  'https://evil.example/elections/results.json?year=2026&office=House',
+  'http://openamerica.io/elections/results.json?year=2026&office=House',
+  'https://openamerica.io/elections/results.json?year=2024&office=House',
+  'https://openamerica.io/elections/results.json?year=2026&office=Senate',
+  undefined
+ ]){
+  const origin=create(async()=>({ok:true,status:200,url:actual,
+   redirected:false,json:async()=>({year:2026,office:'House',races:{}})}));
+  await assert.rejects(origin.load(H),/approved source URL/);
+  assert.equal(origin.pending(),0,'Unapproved response cannot strand retry');
+ }
+ const redirected=create(async()=>({ok:true,status:200,url:H,
+  redirected:true,json:async()=>({year:2026,office:'House',races:{}})}));
+ await assert.rejects(redirected.load(H),/approved source URL/);
  // Hung Senate request must fail and release the office even when its
  // custom mock ignores the abort signal. A subsequent request is fresh.
  let hungSignal=null,started=0;
@@ -57,7 +76,7 @@ async function main(){
  assert.equal(started,1);
  assert.equal(hungSignal.aborted,true);
  assert.equal(hanging.pending(),0,'Timeout must free the watched Senate slot');
- const recovering=create(async()=>({ok:true,status:200,
+ const recovering=create(async(url)=>({ok:true,status:200,url,redirected:false,
   json:async()=>({year:2026,office:'Senate',races:{}})}),{timeoutMs:25});
  assert.equal((await recovering.load(S)).office,'Senate');
  assert.equal(recovering.pending(),0);
