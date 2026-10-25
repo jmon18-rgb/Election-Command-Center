@@ -12,6 +12,23 @@ class OfficialBackstopsTests(unittest.TestCase):
         self.ledger=json.loads((ROOT/"data/election_night_source_coverage.json").read_text())
         self.links=json.loads((ROOT/"data/election_night_official_backstops.json").read_text())
 
+    def test_new_california_invalid_details_keep_exact_human_references(self):
+        ca=next(row for row in self.links["links"] if row["state"]=="CA")
+        self.assertEqual(ca["url"],
+            "https://voterguide.sos.ca.gov/voter-info/election-results.htm")
+        self.assertEqual(ca["mode"],"november_2026_results_not_yet_published")
+        self.assertIn("not itself a live race feed",ca["scope_note"])
+        pages={row["id"]:row for row in self.links["public_editorial_calls"]["race_pages"]}
+        for district in (20,21,23,24,25):
+            identity=f"House|CA-{district:02d}"
+            self.assertIn(identity,ca["race_ids"])
+            page=pages[identity]
+            path=urlparse(page["url"]).path.removesuffix("/results")
+            self.assertEqual(path,
+                f"/races/2026-11-03/california-us-house-{district}-general-election")
+            self.assertEqual(page["verified_at"],"2026-10-25")
+            self.assertIn("no actual result or winner call verified",page["verification"])
+
     def test_all_current_machine_readable_gaps_have_a_grounded_official_link(self):
         self.assertEqual(len(self.ledger["races"]),506)
         gaps={r["id"] for r in self.ledger["races"]

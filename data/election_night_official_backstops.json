@@ -5,6 +5,16 @@
   "status": "OFFICIAL_HUMAN_FALLBACK_LINKS_NOT_AUTOMATED_RESULTS",
   "links": [
     {
+      "state": "CA",
+      "name": "California official 2026 results guidance",
+      "url": "https://voterguide.sos.ca.gov/voter-info/election-results.htm",
+      "mode": "november_2026_results_not_yet_published",
+      "verified_at": "2026-10-25",
+      "source_reference": "https://www.sos.ca.gov/elections/upcoming-elections/general-election-november-3-2026",
+      "scope_note": "Official November 3 voter guide identifies the public results portal and post-close reporting plan; guide is not itself a live race feed. Public results portal currently redirects to prior elections.",
+      "race_ids": ["House|CA-13", "House|CA-20", "House|CA-21", "House|CA-23", "House|CA-24", "House|CA-25"]
+    },
+    {
       "state": "AK",
       "name": "Alaska",
       "url": "https://www.elections.alaska.gov/election-results/",
@@ -191,7 +201,7 @@
     "status": "PUBLIC_MANUAL_NEWSROOM_CHECKS_NOT_VOTE_FEEDS_OR_AUTOMATED_CALLS",
     "provider": "Decision Desk HQ Votes Free",
     "free_access_verified": "2026-10-25",
-    "information": "Nine directly reviewed Nov 3 2026 U.S. House/Senate race pages, accessible for manual viewing. Pre-election pages show FORECASTS rather than calls. On/after Election Day, an explicit race call may be verified there; a forecast or social rumor is not a reported call. Never scrape, infer votes or feed these links into automatic 506-race source coverage.",
+    "information": "Directly reviewed Nov 3 2026 U.S. House/Senate race pages, accessible for manual viewing. Added exact CA-20, CA-21, CA-23, CA-24 and CA-25 pages after their provider details became invalid. Pre-election pages show FORECASTS rather than calls. On/after Election Day, an explicit race call may be verified there; a forecast or social rumor is not a reported call. Never scrape, infer votes or feed these links into automatic 506-race source coverage.",
     "newsroom_social": "https://x.com/DecisionDeskHQ",
     "race_pages": [
       {
@@ -229,6 +239,36 @@
       {
         "id": "Senate|MA",
         "url": "https://votes.decisiondeskhq.com/races/2026-11-03/massachusetts-us-senate-general-election"
+      },
+      {
+        "id": "House|CA-20",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-20-general-election",
+        "verified_at": "2026-10-25",
+        "verification": "Exact Nov 3 2026 House 20 header and forecast landing inspected; no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-21",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-21-general-election/results",
+        "verified_at": "2026-10-25",
+        "verification": "Exact Nov 3 2026 House 21 results-page header inspected; no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-23",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-23-general-election",
+        "verified_at": "2026-10-25",
+        "verification": "Exact Nov 3 2026 House 23 header and forecast landing inspected; no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-24",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-24-general-election",
+        "verified_at": "2026-10-25",
+        "verification": "Exact Nov 3 2026 House 24 header and forecast landing inspected; no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-25",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-25-general-election",
+        "verified_at": "2026-10-25",
+        "verification": "Exact Nov 3 2026 House 25 header and forecast landing inspected; no actual result or winner call verified"
       }
     ]
   }

@@ -1,5 +1,13 @@
 # Readiness progress
 
+## Current owner steering — core reliability first
+
+Pause further celebration art, music and expansion. Preserve deployed player
+and open PR #426; do not merge that review while its checks are failing.
+Prioritize competitive sources/fallbacks, correct calls/control accounting,
+outage/retraction recovery and the laptop dashboard. The scoped needle remains
+an evidence task, not a reason to fabricate predictive updates.
+
 ## October 25, 2026 — initial autonomous handoff
 
 - Baseline examined: main revision 3a0c21ed.
@@ -42,6 +50,52 @@ and Kansas John Brown. Fish Head announcement precedes animation/music.
    live November 3 delivery and calibration explicitly open until proved.
 
 Last daily report date: 2026-10-25 (evening continuation report).
+
+## October 25 — core source-recovery correction
+
+- Found two actual browser-classification gaps: a verified House discovery ID
+  was excluded from provider-wide failure labeling, and a previous lookup attempt
+  could mask a later global outage as merely "attempted". Cached call eligibility
+  was already fail-closed; this fix makes the visible source state agree.
+- Shared tested classification now gives an active provider quarantine precedence
+  over pending/attempted states, including exact-ID House hints. Completely
+  unverified IDs remain identity gaps; no source identities or votes are invented.
+- Added a separate operational recovery list for degraded primary feeds and
+  failed/stale supplemental feeds, ranked by the currently linked joint model.
+  Existing source-ID gap inventory remains independent. Top four issues appear
+  immediately; the rest stay in a drawer. References remain manual, not calls.
+- All 12 core checks plus reconciliation/backoff and asset-fingerprint checks
+  pass. Actual Edge 1440px/390px tests pass for prior-attempt + exact-House-ID
+  outage, cooldown expiry without recovery, source recovery without inventing
+  votes/calls, and no horizontal overflow. Mobile screenshot inspected.
+- Existing national positive/zero/missing/outage/archive real-browser drill also
+  passes on both viewports. Its drawer selection now uses semantic labels rather
+  than assuming exactly two details elements, and the blocked civicAPI fixture
+  accepts MS as either unqueried or failed (never reporting) as polling rotates.
+- Windows timezone-independent source-time assertion included; full local DOM
+  integration is running in session 1232. Current-head CI must pass before merge.
+- PR #426 is deliberately preserved, not deployed. Its latest readiness run
+  40243854438 failed a brittle MS-unqueried expectation (fixed in this core
+  branch's recovery drill) and a poster decode check. Further celebration work
+  remains paused; the decode failure is not being bypassed. Production #425
+  remains the already-verified deployed baseline.
+
+## October 25 — newly changed California ledger caught by broad CI
+
+- PR #427's broad validation caught five additional current-main invalid House
+  details: CA-20, CA-21, CA-23, CA-24 and CA-25. The source ledger now has 14
+  unresolved identities rather than the previous nine. Do not hide or reset them.
+- The failure was the existing requirement that each current identity gap has
+  independently checked human references. Added exact DDHQ Nov 3 race pages for
+  the five districts and the official California 2026 voter-guide results chapter.
+  The chapter describes the post-close public portal; it is not a live vote feed.
+  Publisher landing pages are forecasts before an explicit actual race call.
+- Merged current-main source data into the recovery branch and reran the original
+  safeguards unchanged: all current gaps are mapped, exact district routes are
+  checked, and no votes/coverage/call flags are promoted. All 12 core checks and
+  the Python manual-reference tests pass. Full local DOM run 1232 also passed.
+- Publication remains gated on new current-head CI. Follow-up #428 needs these
+  source-reference additions merged from #427 before its own final validation.
 
 ## October 25 — first continuation: shared celebration player
 

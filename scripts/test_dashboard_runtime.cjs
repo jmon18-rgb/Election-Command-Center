@@ -2856,7 +2856,10 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  await w.eval('enLoad(true)');
  assert.equal(rehearsalHouseCalls,2,
   'The source transport must release its in-flight slot after success');
- assert.match(get('#enStatus').textContent,/Nov 4, 2026/);
+ const expectedHouseSourceTime=new w.Date(rehearsalHouseNew.as_of).toLocaleString('en-US',{
+  month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'});
+ assert(get('#enStatus').textContent.includes(expectedHouseSourceTime),
+  'Accepted House correction must show its source time in the browser timezone');
  assert.equal(get('#enDLeads').textContent,'1');
  assert.equal(get('#enRaces').textContent,'1');
  // Older snapshot arriving through a later request must be rejected while

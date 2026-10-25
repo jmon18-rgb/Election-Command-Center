@@ -62,6 +62,16 @@ jobs:
       - name: Celebration announcement and animation mechanics on desktop and mobile
         if: ${{ !cancelled() }}
         run: node scripts/test_celebration_player_browser.mjs
+      - name: Competitive House and Senate source recovery on desktop and mobile
+        if: ${{ !cancelled() }}
+        run: node scripts/test_competitive_source_recovery_browser.mjs
+      - name: Upload source recovery browser screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-recovery-browser
+          path: artifacts/readiness/source-recovery-*.png
+          if-no-files-found: warn
       - name: Upload celebration browser screenshots
         if: always()
         uses: actions/upload-artifact@v4

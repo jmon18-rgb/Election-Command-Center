@@ -8,7 +8,7 @@ import assert from 'node:assert/strict';
 import {createServer} from 'node:http';
 import {createReadStream,existsSync,statSync,readFileSync} from 'node:fs';
 import {resolve,extname,sep} from 'node:path';
-import {chromium} from 'playwright';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright');
 
 const ROOT=resolve(import.meta.dirname,'..');
 const sourceLedger=JSON.parse(readFileSync(resolve(ROOT,'data/election_night_source_coverage.json'),'utf8'));
@@ -56,7 +56,8 @@ function packet(office){
 }
 let browser;
 try{
- browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+ browser=await chromium.launch({headless:true,args:['--no-sandbox'],
+  ...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
  for(const [device,viewport] of [['desktop',{width:1440,height:900}],
                                  ['mobile',{width:390,height:844}]]){
   const context=await browser.newContext({viewport,serviceWorkers:'block',
@@ -98,16 +99,21 @@ try{
   assert.match(rendered,/No source evidence for 433 House, 34 Senate and 35 governor contests/);
   assert.match(rendered,/Provider-reported zero is tracked separately/);
   const groups=page.locator('#enLiveCoverageTriage details');
-  assert.equal(await groups.count(),otherMachineGaps.length?2:1,
-   device+': Distinct Senate and known unresolved House/governor source drawers');
-  const group=groups.nth(0);
+  const group=groups.filter({has:page.locator('summary').filter({hasText:/^Senate source gaps/})});
+  const other=groups.filter({has:page.locator('summary').filter({hasText:/^Unpinned House \/ governor source IDs/})});
+  assert.equal(await group.count(),1,'One separate Senate source drawer');
+  assert.equal(await other.count(),otherMachineGaps.length?1:0,
+   device+': Identity-gap drawers remain separate from operational recovery drawers');
   await group.locator('summary').click();
   assert.match(await group.textContent(),/NC — Reported votes · unofficial/);
   assert.match(await group.textContent(),/ME — Supplemental source request FAILED/);
   assert.match(await group.textContent(),/MA — No verified automated source ID/);
-  assert.match(await group.textContent(),/MS — Supplemental source ID · no current results/);
+  // All civicAPI network requests are blocked in this fixture. Depending on
+  // the bounded rotating queue, MS is either unqueried or already failed;
+  // neither state supplies votes or a call. Candidate watchlist expansion
+  // must not make this test require a request to remain forever unattempted.
+  assert.match(await group.textContent(),/MS — Supplemental source (?:ID · no current results|request FAILED · counts unverified)/);
   if(otherMachineGaps.length){
-   const other=groups.nth(1);
    await other.locator('summary').click();
    assert((await other.textContent()).includes(
     'Unpinned House / governor source IDs · '+otherMachineGaps.length));
