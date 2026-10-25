@@ -5836,7 +5836,12 @@ async function enRefreshCivicWatchlist(force=false){
     latestSenateEstimates.generated_at&&
    Array.isArray(jointLastResult.race_probabilities));
   const sourceOdds=new Map(linkedModel?jointLastResult.race_probabilities
-   .filter(x=>['house','senate','governor'].includes(x?.office))
+   .filter(x=>['house','senate','governor'].includes(x?.office)&&
+    Number.isFinite(x.dem_beats_rep_pct)&&
+    Number.isFinite(x.rep_beats_dem_pct)&&
+    x.dem_beats_rep_pct>=0&&x.dem_beats_rep_pct<=100&&
+    x.rep_beats_dem_pct>=0&&x.rep_beats_dem_pct<=100&&
+    Math.abs(x.dem_beats_rep_pct+x.rep_beats_dem_pct-100)<0.25)
    .map(x=>[x.office+'|'+x.race_code,x.dem_beats_rep_pct]):[]);
   const enriched=all.map(x=>{
    const raceCode=x.office==='House'?
