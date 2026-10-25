@@ -7,9 +7,12 @@ function fixture(fips,mode='election_day',d=6000,r=4000){
  return {source_kind:'official_state_elections',
   source_url:'https://www.ncsbe.gov/results-data/election-results',
   state:'NC',county_fips:fips,mode,
+  office:'senate',race_code:'NC-SEN',election_kind:'regular',
   same_geography_verified:true,same_vote_method_definition_verified:true,
-  historical:{year:2024,county_fips:fips,mode,dem_votes:4800,rep_votes:5200},
-  current:{year:2026,county_fips:fips,mode,dem_votes:d,rep_votes:r,
+  historical:{year:2020,office:'senate',race_code:'NC-SEN',
+   county_fips:fips,mode,dem_votes:4800,rep_votes:5200},
+  current:{year:2026,office:'senate',race_code:'NC-SEN',
+   county_fips:fips,mode,dem_votes:d,rep_votes:r,
    reporting_basis:'official_ballots_counted',
    estimated_fraction_counted:.92,
    updated_at:'2026-11-04T03:20:00Z'}};
@@ -26,9 +29,11 @@ for(const [state,fips] of [
    /Invalid county or voting-method identity/,
    'Cross-state/fabricated county may not influence local method research');
 }
-assert(a.qualified);assert.equal(a.observed_2024_d_minus_r_points,-4);
+assert(a.qualified);
+assert.equal(a.previous_same_seat_election_year,2020);
+assert.equal(a.observed_previous_election_d_minus_r_points,-4);
 assert.equal(a.observed_2026_d_minus_r_points,20);
-assert.equal(a.unadjusted_two_year_change_points,24);
+assert.equal(a.unadjusted_previous_election_change_points,24);
 const complete=api.compare({records:[fixture('37063'),fixture('37065'),
  fixture('37067')],now});
 assert.equal(complete.exact_counties,3);
@@ -43,6 +48,9 @@ assert.deepEqual(complete.state_scope,['NC']);
 // Cross-state county/method returns are individually legitimate but cannot
 // be pooled into a single state-local swing just to clear the threshold.
 const va=fixture('51107');va.state='VA';
+va.race_code='VA-SEN';
+va.historical.race_code='VA-SEN';
+va.current.race_code='VA-SEN';
 va.source_url='https://www.elections.virginia.gov/results/';
 const mixed=api.compare({records:[fixture('37063'),fixture('37065'),
  fixture('37067'),va],now});
@@ -95,5 +103,28 @@ const noProgress=fixture('37081');noProgress.current.reporting_basis='precincts_
 assert.throws(()=>api.audit(noProgress,now),/share of ballots counted/);
 const same=fixture('37083');
 assert.throws(()=>api.compare({records:[same,same],now}),/Duplicate/);
-assert.equal(fixture('37085').historical.year,2024);
+assert.equal(fixture('37085').historical.year,2020);
+const bogusHistory=fixture('37091');
+bogusHistory.historical.year=2024;
+assert.throws(()=>api.audit(bogusHistory,now),/Unverified/,
+ 'Recent presidential-cycle data is not the prior NC Class II Senate result');
+const wrongOffice=fixture('37093');
+wrongOffice.historical.office='president';
+assert.throws(()=>api.audit(wrongOffice,now),/Unverified/);
+const wrongRace=fixture('37095');
+wrongRace.current.race_code='NC-GOV';
+assert.throws(()=>api.audit(wrongRace,now),/Unverified/);
+const wrongContest=fixture('37097');
+wrongContest.election_kind='special';
+assert.throws(()=>api.audit(wrongContest,now),/Unverified/);
+const florida=fixture('12086');
+florida.state='FL';florida.race_code='FL-SEN';
+florida.election_kind='special';
+florida.historical.race_code='FL-SEN';
+florida.current.race_code='FL-SEN';
+florida.historical.year=2022;
+florida.source_url='https://dos.fl.gov/elections/data-statistics/';
+assert.equal(api.audit(florida,now).previous_same_seat_election_year,2022);
+florida.historical.year=2024;
+assert.throws(()=>api.audit(florida,now),/Unverified/);
 console.log('County voting-mode early-signal gates PASS; no raw residual enters national forecasting');

@@ -11,6 +11,15 @@
  'use strict';
  const MODES=new Set(['election_day','early_in_person','mail']);
  const START=Date.parse('2026-11-03T05:00:00Z'),MAX_STALENESS=3*3600000;
+ // Share previous SAME-SEAT election cycle with the 2026 county-mode
+ // research gate. A 2024 presidential baseline cannot be mislabeled as
+ // the prior North Carolina Class II Senate election (2020).
+ function previousSeatYear(record){
+  const research=typeof module!=='undefined'&&module.exports?
+   require('./election_night_county_mode_signal.js'):
+   typeof window!=='undefined'?window.ElectionNightCountySignal:null;
+  return research?.baselineYear?.(record)??null;
+ }
  const numeric=n=>Number.isSafeInteger(n)&&n>=0;
  // Resolve the canonical 50-state county FIPS checker at evaluation time:
  // the browser may load this research adapter before its source module.
@@ -38,7 +47,14 @@
      !/^\d{5}$/.test(record.county_fips||'')||
      !canonicalCounty(record.state,record.county_fips)||
      !MODES.has(record.mode))throw Error('Invalid county or voting-method identity');
-  if(record.historical?.year!==2024||record.current?.year!==2026||
+  const historicalYear=previousSeatYear(record);
+  if(historicalYear===null||
+     record.historical?.year!==historicalYear||
+     record.historical?.office!==record.office||
+     record.historical?.race_code!==record.race_code||
+     record.current?.year!==2026||
+     record.current.office!==record.office||
+     record.current.race_code!==record.race_code||
      record.same_geography_verified!==true||
      record.same_vote_method_definition_verified!==true||
      record.historical.county_fips!==record.county_fips||
@@ -75,8 +91,10 @@
   return {qualified:true,key:record.county_fips+'|'+record.mode,
    state:record.state,county_fips:record.county_fips,mode:record.mode,
    observed_2026_d_minus_r_points:+actual.toFixed(2),
-   observed_2024_d_minus_r_points:+prior.toFixed(2),
-   unadjusted_two_year_change_points:+(actual-prior).toFixed(2),
+   previous_same_seat_election_year:historicalYear,
+   previous_same_seat_office:record.office,
+   observed_previous_election_d_minus_r_points:+prior.toFixed(2),
+   unadjusted_previous_election_change_points:+(actual-prior).toFixed(2),
    votes_recorded:newVotes.dem_votes+newVotes.rep_votes,
    documented_fraction_counted:newVotes.estimated_fraction_counted,
    reviewed_source_url:record.source_url,source_time:record.current.updated_at};
@@ -106,7 +124,7 @@
   const sumW=qualified.reduce((a,x)=>a+Math.min(x.votes_recorded,20000),0);
   const descriptive=localSufficient&&sumW>0?
    qualified.reduce((a,x)=>a+Math.min(x.votes_recorded,20000)*
-      x.unadjusted_two_year_change_points,0)/sumW:null;
+      x.unadjusted_previous_election_change_points,0)/sumW:null;
   return Object.freeze({
    status:mixedStates?'MIXED_STATES_NO_LOCAL_MODE_SUMMARY':
     localSufficient?'OBSERVED_LOCAL_COUNTY_MODE_CHANGES_ONLY':
@@ -120,7 +138,8 @@
    shared_model_update_allowed:false,source_calls:0,
    ballots_remaining_forecast:null,
    limitations:'Selected completed counties/modes are not a representative US/state sample. '+
-    'Voter turnout, candidate/presidential election difference and reporting order remain unmodeled.'
+    'Comparisons require matching office, seat and 2026 geographic boundaries; '+
+    'candidate, turnout, electorate composition and reporting order remain unmodeled.'
   });
  }
  return Object.freeze({MODES,START,MAX_STALENESS,audit,compare});
