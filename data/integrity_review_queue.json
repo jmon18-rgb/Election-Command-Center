@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-25T14:29:05.026724Z",
+  "updated_at": "2026-10-25T14:31:54.098997Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
@@ -272,6 +272,25 @@
         "security"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "6afda8243b2aa5e2a0b7",
+      "title": "8 things to know ahead of Ottawa\u2019s municipal election on Monday - CTV News",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOcXM1VWVZclltal96Ukx5Nll0aERDN3dydDNiekJ0WnRmUlVlamE1RlBRaEJGR0hhN1QzMV9VU0RuQTVFemdfamZLZE9nckkwUk1mS3liYWJZbVdKQnlRMFBEbk1nVnJTamFBSFVxdVdjdk8wYWJKSGN5MVUwMk9fWGFia3E2cndhTWprRG1nWVNnUDRXM0pDenlHQ2t3TkpQdzBN?oc=5",
+      "publisher": "CTV News",
+      "published_at": "2026-10-25T08:00:00Z",
+      "detected_at": "2026-10-25T14:31:54.098997Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "8 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -4934,23 +4953,6 @@
       "detected_at": "2026-10-13T23:02:52.465730Z",
       "state_hints": [],
       "topic_hints": [],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "b5771f41492df51ebd5b",
-      "title": "Court dismisses Wahl residency lawsuit after plaintiffs seek dismissal - Alabama Political Reporter",
-      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOM0I5LV9TWHg1bFdFMlpBRGt3U3IwaF9STGNYRnVwTjcyaFBycjZwZW5JQXc4dzh6YmloY2d6U21maHdtMlhaejc3aUNXV1NsT1FGbXhhQVV1dkJwOGRkZ1NyZ2VHR3JLcWlCRXF6enZJOGx5aFVYQ3BISjE1R3drX3lZVWEya3hNdmVXb293RXlBWXdlenVhRDJZWnRCaGJkMmNmMUtqUVdhbDJHQ0E?oc=5",
-      "publisher": "Alabama Political Reporter",
-      "published_at": "2026-10-13T22:01:00Z",
-      "detected_at": "2026-10-13T23:02:52.465730Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
