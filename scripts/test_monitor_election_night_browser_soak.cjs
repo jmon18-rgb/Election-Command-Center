@@ -32,6 +32,8 @@ const sample={
  background_visibility_confirmed:true,background_resume_observed:true,
  resumed_tab_visible:true,post_resume_primary_requests:2,
  post_resume_primary_healthy_responses:2,
+ post_resume_supplemental_requests:1,
+ post_resume_supplemental_exact_identity_validated:true,
  page_validated_primary_snapshots:6,
  post_resume_page_validated_primary_snapshots:2,
  post_resume_refresh_trigger:'MANUAL_OWNER_CONTROL_PRE_ELECTION',
@@ -42,7 +44,7 @@ const sample={
 };
 const ok=assess(sample,5,60);
 assert.equal(ok.passed,true);
-assert.equal(Object.keys(ok.checks).length,16);
+assert.equal(Object.keys(ok.checks).length,18);
 assert.equal(assess({...sample,post_resume_refresh_trigger:'AUTONOMOUS_ELECTION_DAY_FOCUS'},5,60).passed,true,
  'Election Day autonomous recovery is a distinct recorded pathway');
 for(const bad of [
@@ -60,6 +62,8 @@ for(const bad of [
  {source_requests:{primary:6,supplemental:0}},
  {supplemental_exact_identity_validated:false},
  {supplemental_probe_race:'House|ME-02'},
+ {post_resume_supplemental_requests:0},
+ {post_resume_supplemental_exact_identity_validated:false},
  {source_requests:{primary:0}},
  {primary_healthy_responses:0},
  {source_request_failures:1},
