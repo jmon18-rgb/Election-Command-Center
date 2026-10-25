@@ -20,6 +20,9 @@ function assess(report, minutes, interval) {
     background_tab_was_actually_hidden: report.background_visibility_confirmed===true,
     foreground_visibility_recovered: report.background_resume_observed===true&&
       report.resumed_tab_visible===true,
+    refresh_trigger_honestly_attributed: [
+      'MANUAL_OWNER_CONTROL_PRE_ELECTION','AUTONOMOUS_ELECTION_DAY_FOCUS'
+    ].includes(report.post_resume_refresh_trigger),
     background_resume_triggered_new_primary_fetch: Number.isSafeInteger(
       report.post_resume_primary_requests)&&report.post_resume_primary_requests>=1,
     post_resume_primary_response_was_healthy: Number.isSafeInteger(
