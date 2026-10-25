@@ -7,29 +7,30 @@ are published. Provider HTTP/CORS errors remain errors, never missing votes.
 import argparse
 import datetime as dt
 import json
-import re
 from pathlib import Path
 from test_civicapi_live_source import source
+from probe_missing_statewide_sources_2026 import (
+    CLOSE_UTC, MAX_SAFE_VOTES, exact_general_date, explicitly_mock
+)
 
 ELECTION = "2026-11-03"
 BASE = "https://civicapi.org/api/v2"
 TARGETS = {"MA": "Massachusetts US Senate", "MS": "Mississippi US Senate"}
-POLL_CLOSE_UTC = {"MA": "2026-11-04T00:00:00+00:00",
-                  "MS": "2026-11-04T01:00:00+00:00"}
+POLL_CLOSE_UTC = {state: CLOSE_UTC[state].isoformat()
+                  for state in TARGETS}
 
 def utcnow():
     return dt.datetime.now(dt.timezone.utc)
 
 def same_race(row, state, name):
-    if not isinstance(row, dict):
+    if explicitly_mock(row):
         return False
     return (
         row.get("country") == "US"
         and row.get("province") == state
         and row.get("municipality") is None
         and row.get("district") is None
-        and isinstance(row.get("election_date"), str)
-        and re.fullmatch(r"2026-11-03(?:T[0-9:.+Z-]+)?", row["election_date"]) is not None
+        and exact_general_date(row.get("election_date"))
         and row.get("election_name") == name
         and row.get("type") == "US Senate"
         and row.get("election_type") == "General"
@@ -54,7 +55,7 @@ def discover_one(state, request, now=None):
         count = search.get("count") if isinstance(search, dict) else None
         if not isinstance(rows, list) or len(rows) > 20 or (
                 count is not None and
-                (type(count) is not int or count < len(rows) or count > 20)):
+                (type(count) is not int or count != len(rows))):
             output["status"] = "INVALID_OR_PARTIAL_SOURCE_SEARCH"
             return output
         matches = [r for r in rows if same_race(r, state, name)]
@@ -65,13 +66,14 @@ def discover_one(state, request, now=None):
             return output
         row = matches[0]
         detail = request("/race/" + str(row["id"]), {"light": ""})
-        if not isinstance(detail, dict):
+        if explicitly_mock(detail):
             output["status"] = "INVALID_SOURCE_DETAIL"
             return output
         fields = ("country", "province", "district", "municipality",
                   "election_date", "election_name")
         if any(detail.get(k) != row.get(k) for k in fields) or (
                 detail.get("election_type") != "US Senate") or (
+                type(detail.get("id", row["id"])) is not int or
                 detail.get("id", row["id"]) != row["id"]):
             output["status"] = "MISMATCHED_SOURCE_DETAIL"
             return output
@@ -82,21 +84,26 @@ def discover_one(state, request, now=None):
         ids = set()
         vote_total = 0
         for candidate in candidates:
-            if not isinstance(candidate, dict) or not isinstance(
+            if explicitly_mock(candidate) or not isinstance(
                     candidate.get("name"), str) or not candidate["name"].strip() or not isinstance(
                     candidate.get("party"), str) or not candidate["party"].strip() or (
-                    type(candidate.get("votes")) is not int) or candidate["votes"] < 0:
+                    type(candidate.get("votes")) is not int) or not (
+                    0 <= candidate["votes"] <= MAX_SAFE_VOTES) or (
+                    "winner" in candidate and type(candidate["winner"]) is not bool):
                 output["status"] = "INVALID_CANDIDATE_STRUCTURE"
                 return output
-            ident = (candidate["name"].strip().casefold(),
-                     candidate["party"].strip().casefold())
+            ident = candidate["name"].strip().casefold()
             if ident in ids:
                 output["status"] = "DUPLICATE_CANDIDATE"
                 return output
             ids.add(ident)
             vote_total += candidate["votes"]
-        polls_close = dt.datetime.fromisoformat(POLL_CLOSE_UTC[state])
-        if now < polls_close and vote_total > 0:
+            if vote_total > MAX_SAFE_VOTES:
+                output["status"] = "INVALID_CANDIDATE_STRUCTURE"
+                return output
+        polls_close = CLOSE_UTC[state]
+        if now < polls_close and (vote_total > 0 or
+                                  any(c.get("winner") is True for c in candidates)):
             output["status"] = "PRE_POLL_CLOSE_VOTES_UNSAFE_MOCK_OR_ERROR"
             return output
         output.update({"status": "EXACT_IDENTITY_CANDIDATE_NEEDS_MANUAL_REVIEW",
