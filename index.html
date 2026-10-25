@@ -5205,6 +5205,13 @@ const enBatchPilotSlots=new Set(['Senate|AK','Governor|AK','Senate|ME',
  'Governor|CA','Senate|DE','Senate|SD','Governor|SD','Senate|WY','Governor|WY',
  'Governor|MD','Senate|MS','Governor|HI','Governor|OK']);
 function enBatchPilot(item){return Boolean(item&&enBatchPilotSlots.has(enWatchId(item)))}
+function enCivicSourceDisabled(x){return Boolean(x&&(x.is_test===true||x.test===true||
+ x.mock===true||x.is_mock===true||x.active===false||x.live===false))}
+function enCivicElectionDateValid(x){
+ return typeof x==='string'&&
+  /^2026-11-03(?:T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d+)?(?:Z|[+-](?:0\d|1[0-4]):[0-5]\d))?$/.test(x)&&
+  Number.isFinite(Date.parse(x.length===10?x+'T00:00:00Z':x));
+}
 function enCivicMatch(item,row){
  if(!window.ElectionNightReconciliation?.validBallotRace(item?.office,item?.key))
   return false;
@@ -5216,8 +5223,9 @@ function enCivicMatch(item,row){
   return Boolean(window.NHGovernorCivicAdapter?.match(item,row));
  if(item?.office==='Senate'&&item?.key==='NH')
   return Boolean(window.NHCivicRaceAdapter?.match(item,row));
- if(!item||!row||row.country!=='US'||row.province!==item.key.slice(0,2)||
-    typeof row.election_date!=='string'||!row.election_date.startsWith('2026-11-03')||
+ if(!item||!row||enCivicSourceDisabled(row)||row.country!=='US'||
+    row.province!==item.key.slice(0,2)||
+    !enCivicElectionDateValid(row.election_date)||
     !Number.isSafeInteger(row.id)||row.id<=0||row.municipality||
     !Array.isArray(row.candidates)||row.candidates.length>60||
     !['General','Statewide'].includes(row.election_type)||
@@ -5245,7 +5253,10 @@ function enCivicSelect(item,doc){
   return window.NHGovernorCivicAdapter?.select(item,doc)||null;
  if(item?.office==='Senate'&&item?.key==='NH')
   return window.NHCivicRaceAdapter?.select(item,doc)||null;
- if(!doc||!Array.isArray(doc.races)||doc.races.length>25||doc.races.length<1)return null;
+ if(!doc||enCivicSourceDisabled(doc)||!Array.isArray(doc.races)||
+    doc.races.length>25||doc.races.length<1||
+    (doc.count!=null&&(!Number.isSafeInteger(doc.count)||
+      doc.count!==doc.races.length)))return null;
  const matches=doc.races.filter(row=>enCivicMatch(item,row));
  return matches.length===1?matches[0]:null;
 }
@@ -5265,7 +5276,8 @@ function enCivicValidate(item,row,detail){
   return window.NHGovernorCivicAdapter?.validate(item,row,detail)||null;
  if(item?.office==='Senate'&&item?.key==='NH')
   return window.NHCivicRaceAdapter?.validate(item,row,detail)||null;
- if(!enCivicMatch(item,row)||!detail||
+ if(!enCivicMatch(item,row)||!detail||enCivicSourceDisabled(detail)||
+    (detail.id!=null&&detail.id!==row.id)||
     detail.country!==row.country||detail.province!==row.province||
     detail.election_date!==row.election_date||
     detail.election_name!==row.election_name||
@@ -5282,7 +5294,7 @@ function enCivicValidate(item,row,detail){
       typeof c.party!=='string'||!Number.isSafeInteger(c.votes)||
       c.votes<0||!Number.isFinite(c.percent)||c.percent<0||c.percent>100||
       typeof c.winner!=='boolean')return null;
-  const key=c.name+'|'+c.party;
+  const key=c.name.trim().toLocaleLowerCase('en-US');
   if(candidateKeys.has(key))return null;
   candidateKeys.add(key);
   total+=c.votes;
@@ -5293,15 +5305,24 @@ function enCivicValidate(item,row,detail){
  }
  // No pre-election votes or winner calls can be accepted.
  if(Date.now()<Date.parse('2026-11-03T05:00:00Z')&&(total>0||called.length))return null;
- if(called.length>1)return null;
- if(total>0&&Math.abs(candidates.reduce((sum,c)=>sum+c.percent,0)-100)>2)return null;
+ if(called.length>1||(!total&&called.length))return null;
+ if(total>0&&(Math.abs(candidates.reduce((sum,c)=>sum+c.percent,0)-100)>2||
+   candidates.some(c=>Math.abs(c.votes/total*100-c.percent)>1.5)||
+   (called.length&&!candidates.some(c=>c.name===called[0]&&c.votes>0))))
+  return null;
  if(total===0&&candidates.some(c=>c.percent>0))return null;
  const stamp=detail.last_updated||null;
  if(stamp&&(typeof stamp!=='string'||!Number.isFinite(Date.parse(stamp))||
      Date.parse(stamp)>Date.now()+15*60000))return null;
+ if(!window.ElectionNightPollClosings2026?.allowed(item.key,total,stamp,Date.now()))
+  return null;
+ // Keep independently validated partial votes even when a provider
+ // erroneously sends a winner flag before the state's final poll closure.
+ const safeCall=called[0]&&window.ElectionNightPollClosings2026?.winnerAllowed(
+   item.office,item.key,total,stamp,Date.now())?called[0]:null;
  return {provider:'civicAPI',office:item.office,key:item.key,race_id:row.id,
   last_updated:stamp,percent_reporting:detail.percent_reporting,
-  total,candidates,called:called[0]||null,
+  total,candidates,called:safeCall,
   source_url:enCivicBase+'/race/'+row.id};
 }
 function enCivicQuery(item){

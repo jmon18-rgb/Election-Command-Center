@@ -2077,6 +2077,57 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  assert.equal(w.eval('enCivicValidate('+JSON.stringify(phantomItem)+','+
    JSON.stringify(phantomGovernor)+','+
    JSON.stringify({...govDetail,...phantomGovernor})+')'),null);
+ // Generic 2026 statewide fallback: Florida Governor is NOT a pinned
+ // adapter slot. It must pass complete metadata/provenance and distinguish
+ // partial Florida vote counts from premature split-time-zone winner flags.
+ const flFallbackItem={office:'Governor',key:'FL'};
+ const flFallbackRow={...govSearch,province:'FL',id:88991,
+   election_name:'Florida Governor'};
+ const flFallbackDetail={...govDetail,...flFallbackRow,
+   election_type:'Governor',percent_reporting:42,
+   last_updated:'2026-11-04T00:15:00Z',
+   candidates:govDetail.candidates.map((x,i)=>({...x,winner:i===0}))};
+ const flCall=(row,detail)=>w.eval('enCivicValidate('+
+   JSON.stringify(flFallbackItem)+','+JSON.stringify(row)+','+
+   JSON.stringify(detail)+')');
+ assert.equal(w.eval('enCivicMatch('+JSON.stringify(flFallbackItem)+','+
+   JSON.stringify(flFallbackRow)+')'),true);
+ assert.equal(w.eval('enCivicSelect('+JSON.stringify(flFallbackItem)+','+
+   JSON.stringify({count:1,races:[flFallbackRow]})+')')?.id,88991);
+ for(const count of [0,2,-1,'1',true,1.5]){
+   assert.equal(w.eval('enCivicSelect('+JSON.stringify(flFallbackItem)+','+
+     JSON.stringify({count,races:[flFallbackRow]})+')'),null,
+     'Truncated/malformed generic discovery cannot prove unique FL 2026 race');
+ }
+ for(const marker of [{is_test:true},{test:true},{mock:true},
+   {is_mock:true},{active:false},{live:false}]){
+  assert.equal(w.eval('enCivicMatch('+JSON.stringify(flFallbackItem)+','+
+    JSON.stringify({...flFallbackRow,...marker})+')'),false);
+  assert.equal(w.eval('enCivicSelect('+JSON.stringify(flFallbackItem)+','+
+    JSON.stringify({count:1,races:[flFallbackRow],...marker})+')'),null);
+  assert.equal(flCall(flFallbackRow,{...flFallbackDetail,...marker}),null);
+ }
+ assert.equal(w.eval('enCivicMatch('+JSON.stringify(flFallbackItem)+','+
+   JSON.stringify({...flFallbackRow,election_date:'2026-11-03T24:30:00Z'})+')'),false);
+ const flClock=w.Date.now;
+ w.Date.now=()=>Date.parse('2026-11-04T00:30:00Z');
+ const partialFl=flCall(flFallbackRow,flFallbackDetail);
+ assert.equal(partialFl?.total,1000,'Valid Florida early results must remain visible');
+ assert.equal(partialFl?.called,null,'Florida winner cannot appear before final poll close');
+ assert.equal(flCall(flFallbackRow,{...flFallbackDetail,
+   last_updated:'2026-11-03T23:59:59Z'}),null,
+   'Votes timestamped before first Florida close cannot be accepted');
+ assert.equal(flCall(flFallbackRow,{...flFallbackDetail,id:90001}),null);
+ assert.equal(flCall(flFallbackRow,{...flFallbackDetail,last_updated:null}),null);
+ assert.equal(flCall(flFallbackRow,{...flFallbackDetail,candidates:[
+   {...flFallbackDetail.candidates[0],name:'Same Name'},
+   {...flFallbackDetail.candidates[1],name:' same name '},
+   flFallbackDetail.candidates[2]]}),null);
+ w.Date.now=()=>Date.parse('2026-11-04T01:15:00Z');
+ assert.equal(flCall(flFallbackRow,{...flFallbackDetail,
+   last_updated:'2026-11-04T01:05:00Z'})?.called,'Governor D',
+   'A source winner flag is eligible only after Florida final close');
+ w.Date.now=flClock;
  assert(w.NHGovernorCivicAdapter.supports(govItem));
  assert(!w.NHGovernorCivicAdapter.supports(nhSenateItem));
  assert.equal(w.eval('enCivicSelect('+JSON.stringify(govItem)+','+
