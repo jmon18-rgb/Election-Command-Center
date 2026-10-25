@@ -10,17 +10,35 @@
   root?.ElectionNightPollClosings2026,
   ()=>typeof module!=='undefined'&&module.exports?
   require('./election_night_state_county_fips_2026.js'):
-  root?.ElectionNightStateCountyFIPS2026);
+  root?.ElectionNightStateCountyFIPS2026,
+  ()=>typeof module!=='undefined'&&module.exports?
+   require('./election_night_county_mode_signal.js'):
+   root?.ElectionNightCountySignal);
  if(typeof module!=='undefined'&&module.exports)module.exports=api;
  if(root)root.VerifiedCountySourceContract2026=api;
-})(typeof window!=='undefined'?window:null,function(getCloses,getFips){
+})(typeof window!=='undefined'?window:null,function(getCloses,getFips,getBallot){
  'use strict';
  const validInt=n=>Number.isSafeInteger(n)&&n>=0;
  const acceptedUrl=u=>typeof u==='string'&&/^https:\/\/[^\s/]+\//.test(u);
  function normalize(envelope,expected,now=Date.now()){
-  const closes=getCloses(),fips=getFips();
+  const closes=getCloses(),fips=getFips(),ballot=getBallot();
+  // The county FIPS alone does not prove that an office/district is on
+  // the 2026 ballot. Reuse the same canonical 506-contest registry as
+  // geographically comparable historical research (without granting
+  // 2026 vote-source authority or forecasting permission).
+  const election_kind=expected?.office==='Senate'&&
+   ['FL','OH'].includes(expected?.state)?'special':'regular';
+  const ballotYear=ballot?.baselineYear?.({
+   office:expected?.office?.toLowerCase(),race_code:expected?.race_key,
+   election_kind
+  });
   if(!closes||typeof closes.allowed!=='function'||
      !fips||typeof fips.matches!=='function'||!Number.isFinite(now)||
+     ![2020,2022,2024].includes(ballotYear)||
+     (envelope?.election_kind!==undefined&&
+      envelope.election_kind!==election_kind)||
+     (expected?.election_kind!==undefined&&
+      expected.election_kind!==election_kind)||
      !envelope||envelope.schema!=='county-results-v1'||!expected||
     envelope.election_date!=='2026-11-03'||envelope.election_type!=='General'||
     envelope.production!==true||envelope.is_test!==false||
@@ -88,12 +106,8 @@
    if(county.ballots_reported>0&&total===0)
     return {ok:false,reason:'NO_ATTRIBUTABLE_CANDIDATE_VOTES'};
    seen.add(county.fips);
-   // The 2026 Class III Florida/Ohio US Senate contests are specials;
-   // all other 2026 county-source seats are regular elections. The source
-   // schema does not supply this flag, so derive the exact ballot kind
-   // rather than letting an upstream JSON payload invent the seat class.
-   const election_kind=envelope.office==='Senate'&&
-    ['FL','OH'].includes(envelope.state)?'special':'regular';
+   // Preserve already validated ballot kind; do not infer it again from
+   // an untrusted provider-provided office or spoofed election-kind flag.
    rows.push({election_date:'2026-11-03',election_type:'General',
     election_kind,verified_source:true,is_test:false,provider:envelope.provider,
     provider_race_id:envelope.provider_race_id,office:envelope.office,
