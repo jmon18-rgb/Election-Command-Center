@@ -688,6 +688,92 @@ class HouseCoverageTests(unittest.TestCase):
         self.assertEqual(nonretry["status"], "SOURCE_UNAVAILABLE_OR_INVALID")
         self.assertEqual(nonretry["reason"], "HTTP_404")
 
+    def test_hourly_alias_search_closes_a_source_identity_only_after_exact_detail(self):
+        # This is the scheduled probe(), not a standalone manual advisory.
+        # Its INDEXED_EXACT_RACE status is consumed by the existing 506
+        # coverage ledger and House pin manifest after a real provider hit.
+        for key, name in (
+            ("AK-00", "Alaska Representative in Congress At-Large"),
+            ("DE-00", "Delaware U.S. Representative"),
+            ("ND-00", "North Dakota Representative in Congress"),
+            ("NH-01", "New Hampshire Representative in Congress District 1"),
+            ("NH-02", "New Hampshire U.S. Representative 2"),
+            ("SD-00", "South Dakota Representative in Congress"),
+            ("WY-00", "Wyoming U.S. Representative"),
+        ):
+            with self.subTest(key=key):
+                row = dict(self.row, id=98001, province=key[:2],
+                           district=key, election_name=name)
+                calls = []
+                def provider(path, params):
+                    calls.append((path, params))
+                    if path == "/race/search":
+                        if params["query"] == "Representative in Congress":
+                            return {"count": 1, "races": [row]}
+                        return {"count": 0, "races": []}
+                    return dict(row, election_type="House of Representatives",
+                                candidates=self.detail["candidates"])
+                self.assertTrue(matches(key, row))
+                result = probe(key, provider,
+                               now=datetime(2026, 10, 25, tzinfo=timezone.utc))
+                self.assertEqual(result["status"], "INDEXED_EXACT_RACE")
+                self.assertEqual(result["race_id"], 98001)
+                self.assertEqual(result["reported_votes"], 0,
+                                 "Metadata is never counted as live votes")
+                self.assertEqual([c[1]["query"] for c in calls
+                                  if c[0] == "/race/search"],
+                                 ["US House" if key.endswith("-00") else
+                                  "US House " + str(int(key[3:])),
+                                  "Representative in Congress",
+                                  "U.S. Representative"])
+                self.assertEqual(sum(c[0].startswith("/race/") and
+                                     c[0] != "/race/search" for c in calls), 1)
+                self.assertFalse(matches(key, dict(row, province="CA")))
+                self.assertFalse(matches(key, dict(row, district="NH-99")))
+                self.assertFalse(matches(key, dict(row, election_type="Primary")))
+                self.assertFalse(matches(key, dict(row,
+                                         election_date="2024-11-05")))
+                self.assertFalse(matches(key, dict(row,
+                                         election_name=name + " Primary")))
+
+    def test_alias_search_refuses_conflicting_or_truncated_2026_source_ids(self):
+        for key in ("NH-01", "NH-02", "AK-00"):
+            row = dict(self.row, province=key[:2], district=key,
+                       election_name="Representative in Congress" + (
+                          " " + str(int(key[3:])) if key.startswith("NH") else ""))
+            def conflicting(path, params):
+                term = params.get("query")
+                return {"count": 1, "races": [dict(
+                    row, id=1001 if term=="Representative in Congress" else 1002
+                )]} if term in ("Representative in Congress",
+                               "U.S. Representative") else {"count": 0, "races": []}
+            result = probe(key, conflicting)
+            self.assertEqual(result["status"], "AMBIGUOUS_RACE", key)
+            def truncated(path, params):
+                return ({"count": 2, "races": [row]}
+                        if params.get("query")=="Representative in Congress"
+                        else {"count": 0, "races": []})
+            self.assertEqual(probe(key, truncated)["status"],
+                             "AMBIGUOUS_OR_TRUNCATED", key)
+            def outage(path, params):
+                if params.get("query") == "Representative in Congress":
+                    raise urllib.error.HTTPError("https://civicapi.org", 503,
+                                                 "unavailable", None, None)
+                return {"count": 0, "races": []}
+            self.assertEqual(probe(key, outage)["status"],
+                             "TEMPORARY_UPSTREAM_FAILURE", key)
+
+    def test_alias_probe_never_expands_212_covered_house_district_requests(self):
+        attempted = []
+        def none(path, params):
+            attempted.append(params.get("query"))
+            return {"count": 0, "races": []}
+        self.assertEqual(probe("KY-06", none)["status"], "NOT_INDEXED")
+        self.assertEqual(attempted, ["US House 6"])
+        self.assertFalse(matches("KY-06", dict(self.row, province="KY",
+              district="KY-06",
+              election_name="Kentucky Representative in Congress 6")))
+
     def test_nonindexed_batch_does_not_invent_success_or_outage(self):
         plan = sampling_window(datetime(2026, 10, 16, tzinfo=timezone.utc))
         attempted = []
@@ -699,9 +785,9 @@ class HouseCoverageTests(unittest.TestCase):
         self.assertFalse(report["upstream_paused"])
         self.assertEqual(report["sampled_districts"], 16)
         self.assertEqual(report["status_counts"], {"NOT_INDEXED": 16})
-        self.assertEqual(len(attempted), 17,
-                         "One rejected same-state search plus 16 exact fallbacks")
-        self.assertEqual(attempted.count("/race/search"), 17)
+        self.assertEqual(len(attempted), 19,
+                         "One broad search, 16 exact searches and two NH-01 aliases")
+        self.assertEqual(attempted.count("/race/search"), 19)
         with self.assertRaisesRegex(ValueError, "missing or reordering"):
             build_report(plan, rows[:-1])
 
