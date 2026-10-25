@@ -6,6 +6,13 @@ acceptance testing and recovery only. Stop unattended changes November 4 at noon
 
 ## Work order
 
+Latest owner steering (October 25 evening): pause further celebration artwork,
+music and expansion. Preserve deployed work and open reviews. Prioritize
+competitive-race source gaps/fallbacks, verified calls/control accounting,
+outage/correction recovery and the dependable single-screen laptop experience.
+Continue scoped needle evidence work where it resolves a real data gap. This
+overrides the celebration production targets below until the owner changes it.
+
 1. Run the consolidated readiness checks immediately; fix failures before features.
 2. Verify a single-screen laptop experience: model, observed results, decisive races,
    attributed calls, source health and supported geographic comparisons.

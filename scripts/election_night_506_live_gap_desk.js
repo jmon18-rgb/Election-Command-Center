@@ -17,6 +17,19 @@
  // Never apply this mapping to multi-district states such as New Hampshire.
  const AT_LARGE=new Set(['AK','DE','ND','SD','VT','WY']);
  const MIN_CONFIDENCE_FOR_LIGHT_CHECK=90;
+ function supplementalState(race,{error=false,providerBlocked=false,
+   cached=false,usable=false,pending=false,attempted=false}={}){
+  const known=race?.source_identity_status==='PINNED_PREVIOUSLY_VERIFIED_ID'||
+   race?.source_identity_status==='SCOPED_ADAPTER_NO_PINNED_ID'||
+   race?.source_identity_status==='NO_CURATED_PROVIDER_ID'&&
+    race.verified_identity_hint_usable===true&&
+    race.gap_status==='RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED';
+  if(error||providerBlocked&&known)return 'failed';
+  if(cached&&!usable)return 'stale';
+  if(pending)return 'pending';
+  if(attempted)return 'attempted';
+  return null;
+ }
  function priorityGaps(unverifiedMachineIds,probabilities=[]){
   const odds=new Map();
   if(Array.isArray(probabilities)){
@@ -96,7 +109,7 @@
   const seen=new Set(),summary={};
   for(const name of Object.keys(EXPECTED))
    summary[name]={total:EXPECTED[name],reported:0,zero:0,missing:0,byStatus:{}};
-  const records=[],unverifiedMachineIds=[];
+  const records=[],unverifiedMachineIds=[],sourceFailures=[];
   let latestValidVoteTime=-Infinity,latestValidVoteRace=null;
   const lastByOffice={House:{time:-Infinity,race:null},
    Senate:{time:-Infinity,race:null},
@@ -163,6 +176,8 @@
    else if(status==='ZERO_IN_FEED')obj.zero++;
    else obj.missing++;
    if(status==='NO_MACHINE_SOURCE_ID')unverifiedMachineIds.push({id:race.id,office:race.office});
+   if(['PRIMARY_DEGRADED','SECONDARY_FAILED','SECONDARY_STALE'].includes(status))
+    sourceFailures.push({id:race.id,office:race.office,status});
    if(race.office==='Senate')records.push({
     id:race.id,status,provider:reconciledRecord.provider||null,
     sourceIdentityStatus:race.source_identity_status
@@ -196,6 +211,12 @@
     has_current_sourced_votes:has
    });
   }
+  const failurePriorities=priorityGaps(sourceFailures,linkedModelProbabilities);
+  const failureStatuses=new Map(sourceFailures.map(r=>[r.id,r.status]));
+  const operationalAttention=Object.freeze({...failurePriorities,
+   races:Object.freeze(failurePriorities.races.map(r=>Object.freeze({
+    ...r,sourceStatus:failureStatuses.get(r.id)
+   })))});
   return Object.freeze({
    schema:'on-screen-election-night-506-source-triage-v1',
    checked_at:new Date(now).toISOString(),
@@ -214,6 +235,7 @@
    totals:summary,senate:records,
    unverifiedMachineIds,
    gapAttention:priorityGaps(unverifiedMachineIds,linkedModelProbabilities),
+   operationalAttention,
    senateMissing:summary.Senate.missing,
    message:'Reported votes are unofficial. Known provider IDs and missing or stale results are NOT votes, zeros or race calls.'
   });
@@ -281,6 +303,34 @@
     /^https:\/\/votes\.decisiondeskhq\.com\/races\/2026-11-03\/[a-z0-9-]+-general-election(?:\/results)?$/.test(x.url));
    return matches.length===1?matches[0].url:null;
   };
+  const recovery=pulse.operationalAttention;
+  if(recovery?.races?.length){
+   const panel=elt('div',undefined,host,'en-coverage-recovery');
+   elt('strong','SOURCE RECOVERY · '+recovery.active+' competitive races affected',panel);
+   elt('p',recovery.needsOdds+' affected races need model review · '+
+    recovery.lightChecks+' high-confidence races still require outcome verification. '+
+    'Known source IDs do not prove working feeds.',panel,'en-coverage-line');
+   const display=(race,parent)=>{
+    const priority=race.mode==='ACTIVE_LIVE_SOURCE'?'COMPETITIVE':
+     race.mode==='ODDS_UNVERIFIED'?'ODDS UNVERIFIED':'HIGH-CONFIDENCE · OUTCOME UNVERIFIED';
+    const line=elt('p',race.id.replace('|',' ')+' — '+priority+' · '+
+     LABELS[race.sourceStatus],parent,'en-coverage-line');
+    const link=Array.isArray(officialBackstops)?officialBackstops.find(x=>
+     x&&Array.isArray(x.race_ids)&&x.race_ids.includes(race.id)&&
+     typeof x.url==='string'&&/^https:\/\//.test(x.url)):null;
+    if(link){
+     const a=elt('a',' · Manual official reference ↗',line);
+     a.href=link.url;a.target='_blank';a.rel='noopener noreferrer';
+     elt('span',' · reference only; not verified live votes or a race call',line);
+    }else elt('span',' · no curated official fallback for this race',line);
+   };
+   recovery.races.slice(0,4).forEach(r=>display(r,panel));
+   if(recovery.races.length>4){
+    const more=elt('details',undefined,panel);
+    elt('summary','All affected source feeds · '+recovery.races.length,more);
+    recovery.races.slice(4).forEach(r=>display(r,more));
+   }
+  }
   if(attention?.races?.length){
    const triage=elt('div',undefined,host,'en-coverage-priority');
    elt('strong','SOURCE-GAP PRIORITIES · close races before safe seats',triage);
@@ -414,5 +464,5 @@
   elt('small','This source audit does not calculate chamber control, race calls, ballots remaining, or live win probabilities.',host);
   return true;
  }
- return Object.freeze({build,render,priorityGaps,LABELS});
+ return Object.freeze({build,render,priorityGaps,supplementalState,LABELS});
 });

@@ -397,3 +397,46 @@ api.render(blocked,pulse,{createElement:node},noOtherLinks);
 assert(!flatten(blocked).includes('House AK-00 — No verified automated source ID  · Check official election office'),
  'An unsafe manual link must never be rendered as a clickable fallback');
 console.log('506-race on-screen triage: real provider source, unavailable, zero-not-ballots, all 35 Senate and failures PASS');
+
+// A discovered exact House ID can fail just like a permanently pinned Senate
+// ID. Neither an earlier attempt nor an in-flight request may hide a breaker.
+const knownHouse=ledger.races.find(r=>r.id==='House|CA-13');
+assert(knownHouse?.verified_identity_hint_usable);
+for(const fields of [{attempted:true},{pending:true},{cached:true,usable:false},{}]){
+ assert.equal(api.supplementalState(knownHouse,{...fields,providerBlocked:true}),'failed');
+}
+assert.equal(api.supplementalState(knownHouse,{cached:true,usable:false}),'stale');
+assert.equal(api.supplementalState(knownHouse,{pending:true}),'pending');
+assert.equal(api.supplementalState(knownHouse,{attempted:true}),'attempted');
+const unknownHouse=ledger.races.find(r=>r.id==='House|NH-01');
+assert.equal(api.supplementalState(unknownHouse,{providerBlocked:true}),null,
+ 'A provider outage cannot manufacture a verified identity for an unknown race');
+const operationalModel=[
+ {office:'house',race_code:'CA-13',dem_beats_rep_pct:50,rep_beats_dem_pct:50},
+ {office:'senate',race_code:'ME-SEN',dem_beats_rep_pct:53,rep_beats_dem_pct:47}
+];
+const operational=api.build(ledger,res,state,now,{
+ 'House|CA-13':'failed','Senate|ME':'stale'
+},operationalModel);
+assert.equal(operational.operationalAttention.active,2);
+assert.deepEqual(operational.operationalAttention.races.map(r=>r.id),['House|CA-13','Senate|ME']);
+assert(!operational.unverifiedMachineIds.some(r=>r.id==='House|CA-13'),
+ 'Source recovery and source identity are independent worklists');
+assert.equal(operational.totals.House.reported,pulse.totals.House.reported);
+assert.equal(operational.professional_calls_verified,0);
+const operationalHost=node('div');
+api.render(operationalHost,operational,{createElement:node},official.links);
+assert.match(flatten(operationalHost),/SOURCE RECOVERY · 2 competitive races affected/);
+assert.match(flatten(operationalHost),/House CA-13 — COMPETITIVE/);
+assert.match(flatten(operationalHost),/Senate ME — COMPETITIVE/);
+assert.match(flatten(operationalHost),/reference only; not verified live votes or a race call/);
+assert.equal(api.build(ledger,res,state,now,{},operationalModel).operationalAttention.races.length,0,
+ 'Resolved source errors leave the recovery queue without creating votes');
+assert.equal(api.build(ledger,res,state,now,{'House|CA-13':'pending'},operationalModel)
+ .operationalAttention.races.length,0,'Routine pending checks are not declared failures');
+const noOddsFailure=api.build(ledger,res,state,now,{'House|CA-13':'failed'});
+assert.equal(noOddsFailure.operationalAttention.needsOdds,1,
+ 'A failed feed with missing model odds is unknown, never a safe seat');
+assert.match(html,/ElectionNightCoverageTriage\.supplementalState\(item,/,
+ 'The actual browser must use the same tested recovery classifier');
+console.log('Competitive source recovery: exact-ID hints, prior attempts, failure priority and recovery PASS');

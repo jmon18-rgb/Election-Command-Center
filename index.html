@@ -584,6 +584,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-milestone-spotlight{margin-top:14px;border:2px solid #8ec8f1;border-radius:12px;background:radial-gradient(ellipse at top,#1c72bb,#10263e 75%);padding:15px;text-align:center}
 .en-milestone-spotlight[hidden]{display:none}
 .en-celebration-stage{margin:16px auto;padding:22px 12px;min-height:170px;border-radius:12px;background:radial-gradient(ellipse at center,#195e99,#081b35);overflow:hidden}
+.en-coverage-recovery{margin:12px 0;padding:12px;border-left:3px solid #e3b45a;background:#392e182e;border-radius:5px}
 .en-celebration-stage[hidden]{display:none}
 .en-celebration-icon{font-size:clamp(48px,11vw,94px);line-height:1.2;color:#60c9ff}
 .en-celebration-line{font-weight:950;font-size:clamp(22px,5vw,40px);margin:10px 0;overflow-wrap:anywhere}
@@ -1388,7 +1389,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_signals.js?v=df31e0cc9e64"></script>
 <script src="./scripts/election_night_poll_closings_2026.js?v=39c725fe013b"></script>
 <script src="./scripts/election_night_reconciliation.js?v=99a6b5420984"></script>
-<script src="./scripts/election_night_506_live_gap_desk.js?v=af27d8efb1ab"></script>
+<script src="./scripts/election_night_506_live_gap_desk.js?v=e891ce41064f"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
 <script src="./scripts/chamber_control_model.js?v=aa102ced6a53"></script>
 <script src="./scripts/electorate_what_if_2026.js?v=1a5fe3701694"></script>
@@ -3681,14 +3682,13 @@ function enRenderAmbientDesk(){
       for(const item of enPublishedCoverageLedger.races){
        if(item.provider_scope==='Open America 22-state scope')continue;
        const id=item.id;
-       if(enCivicErrors[id])supplementalHealth[id]='failed';
-       else if(enCivicByWatch[id]&&!enCivicUsable({
-        office:item.office,key:item.key
-       }))supplementalHealth[id]='stale';
-       else if(enCivicPending.has(id))supplementalHealth[id]='pending';
-       else if(enCivicLastAttemptAt[id])supplementalHealth[id]='attempted';
-       else if(blocked&&item.source_identity_status!=='NO_CURATED_PROVIDER_ID')
-        supplementalHealth[id]='failed';
+       const state=window.ElectionNightCoverageTriage.supplementalState(item,{
+        error:Boolean(enCivicErrors[id]),providerBlocked:blocked,
+        cached:Boolean(enCivicByWatch[id]),
+        usable:Boolean(enCivicByWatch[id]&&enCivicUsable({office:item.office,key:item.key})),
+        pending:enCivicPending.has(id),attempted:Boolean(enCivicLastAttemptAt[id])
+       });
+       if(state)supplementalHealth[id]=state;
       }
       // Only the currently linked 2026 joint forecast may allocate
       // scarce live-source work. Never invent 90% from missing/stale odds.
