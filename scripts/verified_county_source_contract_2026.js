@@ -30,6 +30,10 @@
  const acceptedUrl=u=>typeof u==='string'&&/^https:\/\/[^\s/]+\//.test(u);
  function normalize(envelope,expected,now=Date.now()){
   const closes=getCloses(),fips=getFips();
+  // The 2026 ballot determines the election kind; neither the caller nor
+  // a source envelope may override regular/special status.
+  const election_kind=expected?.office==='Senate'&&
+   ['FL','OH'].includes(expected?.state)?'special':'regular';
   if(!closes||typeof closes.allowed!=='function'||
      !fips||typeof fips.matches!=='function'||!Number.isFinite(now)||
      !envelope||envelope.schema!=='county-results-v1'||!expected||
@@ -43,6 +47,10 @@
     // must not pass simply because its caller agrees with itself.
     fips.PREFIX[expected.state]!==expected.state_fips||
     envelope.office!==expected.office||
+    (envelope.election_kind!==undefined&&
+     envelope.election_kind!==election_kind)||
+    (expected.election_kind!==undefined&&
+     expected.election_kind!==election_kind)||
     // Caller and source cannot mutually claim a nonsensical state/race/office.
     typeof expected.race_key!=='string'||
     expected.race_key.slice(0,2)!==expected.state||
@@ -100,12 +108,7 @@
    if(county.ballots_reported>0&&total===0)
     return {ok:false,reason:'NO_ATTRIBUTABLE_CANDIDATE_VOTES'};
    seen.add(county.fips);
-   // The 2026 Class III Florida/Ohio US Senate contests are specials;
-   // all other 2026 county-source seats are regular elections. The source
-   // schema does not supply this flag, so derive the exact ballot kind
-   // rather than letting an upstream JSON payload invent the seat class.
-   const election_kind=envelope.office==='Senate'&&
-    ['FL','OH'].includes(envelope.state)?'special':'regular';
+   // Persist only the election kind derived from the canonical ballot.
    rows.push({election_date:'2026-11-03',election_type:'General',
     election_kind,verified_source:true,is_test:false,provider:envelope.provider,
     provider_race_id:envelope.provider_race_id,office:envelope.office,
