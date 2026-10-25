@@ -12,6 +12,14 @@
  const MODES=new Set(['election_day','early_in_person','mail']);
  const START=Date.parse('2026-11-03T05:00:00Z'),MAX_STALENESS=3*3600000;
  const numeric=n=>Number.isSafeInteger(n)&&n>=0;
+ // Resolve the canonical 50-state county FIPS checker at evaluation time:
+ // the browser may load this research adapter before its source module.
+ function canonicalCounty(state,fips){
+  const identity=typeof module!=='undefined'&&module.exports?
+   require('./election_night_state_county_fips_2026.js'):
+   typeof window!=='undefined'?window.ElectionNightStateCountyFIPS2026:null;
+  return identity?.matches?.(state,identity.PREFIX?.[state],fips)===true;
+ }
  // Resolve the shared 50-state election close schedule when auditing.
  // An otherwise recent county/mode payload published BEFORE local close
  // cannot become valid simply because the dashboard clock advanced.
@@ -28,6 +36,7 @@
    throw Error('Missing original official-source provenance');
   if(!/^[A-Z]{2}$/.test(record.state||'')||
      !/^\d{5}$/.test(record.county_fips||'')||
+     !canonicalCounty(record.state,record.county_fips)||
      !MODES.has(record.mode))throw Error('Invalid county or voting-method identity');
   if(record.historical?.year!==2024||record.current?.year!==2026||
      record.same_geography_verified!==true||
