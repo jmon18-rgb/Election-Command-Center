@@ -253,15 +253,15 @@ def matches(district: str, row: dict) -> bool:
     day = row.get("election_date")
     title = str(row.get("election_name") or "")
     if district in ALIAS_GAP_DISTRICTS:
-        office_title = r"(?:US House|Representative in Congress|U\\.?S\\.? Representative)"
-        suffix = (r"(?:\\s+At[ -]Large)?\\b(?!\\s+(?:District\\s+)?[0-9])"
+        office_title = r"(?:US House|Representative in Congress|U\.?S\.? Representative)"
+        suffix = (r"(?:\s+At[ -]Large)?\b(?!\s+(?:District\s+)?[0-9])"
                   if number == "00" else
-                  r"(?:\\s+District)?\\s+" + str(int(number)) + r"\\b")
-        correct_title = bool(re.search(r"\\b" + office_title + suffix, title, re.I))
+                  r"(?:\s+District)?\s+" + str(int(number)) + r"\b")
+        correct_title = bool(re.search(r"\b" + office_title + suffix, title, re.I))
     else:
         correct_title = bool(re.search(
-            r"\\bUS House\\b" if number == "00"
-            else r"\\bUS House\\s+" + str(int(number)) + r"\\b", title, re.I))
+            r"\bUS House\b" if number == "00"
+            else r"\bUS House\s+" + str(int(number)) + r"\b", title, re.I))
     return (
         row.get("country") == "US"
         and row.get("province") == state
