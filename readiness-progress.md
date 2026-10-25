@@ -23,6 +23,12 @@
 
 ## Next concrete work
 
+Owner priority update: needle and celebrations are high importance alongside
+reliability. Follow AUTONOMOUS_READINESS.md delivery targets; do not defer them
+behind unrelated research. Target a scoped needle data/calibration decision by
+October 27 and the complete celebration preview roster by October 29, followed
+by correction/retraction, mobile and endurance checks before feature freeze.
+
 1. Inspect PR CI, including desktop/mobile and 506-race recovery drills; fix failures.
 2. Review the single-screen competitive-race desk against operator acceptance;
    address the highest-impact actual defect before adding features.

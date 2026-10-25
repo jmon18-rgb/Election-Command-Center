@@ -17,8 +17,29 @@ acceptance testing and recovery only. Stop unattended changes November 4 at noon
    exist. Preserve explicit gaps; final totals are not a reporting-order archive.
 
 Use ELECTION_NIGHT_ACCEPTANCE.md as the acceptance authority and the current
-competitive-race-first priorities in ROADMAP.md. Do not expand model experiments,
-celebrations or speculative geography while operational defects remain.
+competitive-race-first priorities in ROADMAP.md. Owner clarification: the needle
+and celebrations are high-priority deliverables alongside core reliability.
+Do not defer them behind unrelated roadmap research or optional polishing.
+
+## Needle and celebration delivery targets
+
+- Needle: start with one supported race/state and an end-to-end source-to-display
+  update, including freshness, comparison baseline and an uncertainty explanation.
+  Keep the existing national joint model separate unless geographic updates have
+  validated calibration. A descriptive comparison does not satisfy the predictive
+  needle request; record the distinction and any remaining data blocker plainly.
+- By October 27, target an evidence-based decision on a scoped predictive version:
+  identify usable chronological historical returns, comparable live source data
+  and held-out evaluation. If missing, report the exact gap and supported fallback;
+  do not spend every subsequent run rediscovering the same blocked archive.
+- Celebrations: reuse the existing event roster, posters and validated call gates.
+  Build a shared timed animation player with distinct event storyboards, local
+  assets, skip/replay, sound controls and reduced-motion behavior. Preview mode
+  must exercise the same player while staying isolated from earned live events.
+- Target a complete celebration preview roster by October 29; use October 30–31
+  for desktop/mobile, duplicate-event, queue and call-retraction verification.
+  Begin with local SVG/CSS animation and existing audio; optional art/audio upgrades
+  must not block working sequences. These dates are targets, not proven delivery.
 
 ## Execution and evidence
 
@@ -26,7 +47,9 @@ Inspect working changes and open PRs before starting; never overwrite another ru
 Choose a bounded task, implement it, run relevant checks, repair failures, and make
 small coherent commits on a development branch. Open/update a reviewable PR.
 Routine engineering decisions do not require approval. Preserve branch protections;
-do not merge or deploy without authorization. Never publish private source material.
+The owner authorized merging and deploying routine tested readiness improvements
+after applicable checks pass. Verify the deployed result and preserve required
+protections. Never publish private source material.
 
 Run `node scripts/run_election_readiness.cjs` for the dependency-free core suite.
 Add `--remote` to include the existing deployed-site smoke. Reports go to
