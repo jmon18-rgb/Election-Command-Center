@@ -85,7 +85,13 @@ def evaluate(office_html, portal_html, now, *, office_available=True,
     for href in matches[:5]:
         parsed = urlsplit(href or "")
         discovered.append({"scheme": parsed.scheme, "host": parsed.hostname,
-                           "path": parsed.path[:120], "has_query": bool(parsed.query)})
+                           "path": parsed.path[:120], "has_query": bool(parsed.query),
+                           "has_fragment": bool(parsed.fragment),
+                           "fragment_kind": "general_2026" if "2026" in parsed.fragment else
+                             "other" if parsed.fragment else "none",
+                           "port": parsed.port,
+                           "has_credentials": parsed.username is not None,
+                           "has_unsafe_whitespace": bool(re.search(r"[\\x00-\\x20\\\\]",href or ""))})
     # Fail closed on duplicate / ambiguous results links, including one
     # malicious link alongside a valid government portal address.
     confirmed = (office_available and len(matches) == 1
