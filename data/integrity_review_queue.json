@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-25T19:27:20.479692Z",
+  "updated_at": "2026-10-25T19:39:23.559493Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
@@ -260,6 +260,25 @@
     }
   ],
   "items": [
+    {
+      "id": "851f561d3c7c1cf1a6fd",
+      "title": "Thousands of Ineligible Voters Discovered in Ohio - The Daily Signal",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPVjRZaXNJMWdjTk9mV3ZUdmRndG1HR1o3S3NVNEFMZzlHRFNCTTN5YkszdnpNeWFoME1BbHB6Rkx2bVdWS3JFaFVVLUVkTFctUkliOTlES2c2Rjc3YlhWNTRFRzkxdFRxSGlWd3J2ZjFULWplOFJMekV1UFRrc0ZwTTZGVldoYTRvUDVmbWYzX2JaSi10eHNZdVdRUGpISUNjTzRoLU9kbGlOV2txbFlTR1d3?oc=5",
+      "publisher": "The Daily Signal",
+      "published_at": "2026-10-25T18:00:00Z",
+      "detected_at": "2026-10-25T19:39:23.559493Z",
+      "state_hints": [
+        "OH"
+      ],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "7f7c0df03372fe0557b2",
       "title": "Voting groups urge high turnout amid fears of interference - The Tennessean",
@@ -4944,23 +4963,6 @@
       "promoted_to_incident_id": "nc-save-citizenship-letters-20261013",
       "reviewed_at": "2026-10-15",
       "review_note": "Original Board announcement confirms 1,392 registered voters were selected for planned mailing; NO automatic deregistration or loss of voting eligibility solely because of a letter. Mail delivery, challenges, countable ballots lost and unique eligible people adversely affected remain unverified. This review covers this specific event, not every related article."
-    },
-    {
-      "id": "310e7d931c0669407c84",
-      "title": "State attorney general defends security for mail-in ballots - The Center Square",
-      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQT2dYTHgxYUtMV2J4bGlzRTFiRzN4VnZkUnVQaVpXSmFqVDJpN0lqQnh2MzBfUklwYXd1ZVBoNVdwYmtXVXJTUjE2bGtYUTYwZC0teE5EaWpmZVo3RWI1c3ItdzFTYVc5VjJQLWJob1V1NGQ2RDZISUc3TUtiRmtib2lUZU5sWXpRaHpYOWViMXNCSGI0aG9j0gGcAUFVX3lxTE50bVJ6U0xJeUc0YmtYdkg4Qlo3cHg3MDNraUprU3gyTHYwMzN0b1pwbkh6ZllHcjl0MEo0NkxhMHRFTnR2cmNyVGtMd0pBWEJfb2xNZ3ZlTlNDOG1wejlUOGhOUnBqQktWVTRwa3dkQ1R4T3BiTFJPMTB3LU04UHV2d0kyd1lFOUItaWZnYW1COGhFZENMUVd0SFEwQw?oc=5",
-      "publisher": "The Center Square",
-      "published_at": "2026-10-13T22:30:00Z",
-      "detected_at": "2026-10-13T23:12:01.004151Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
     }
   ]
 }
