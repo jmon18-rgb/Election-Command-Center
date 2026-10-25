@@ -27,7 +27,7 @@
   if(office==='house'){
    const n=HOUSE_SEATS[state],number=code.slice(3);
    if(kind!=='regular'||!Number.isInteger(n)||
-      !/^[A-Z]{2}-\\d{2}$/.test(code)||
+      !/^[A-Z]{2}-\d{2}$/.test(code)||
       !(n===1?number==='00':number!=='00'&&Number(number)>=1&&Number(number)<=n))
     return null;
    return 2024;
