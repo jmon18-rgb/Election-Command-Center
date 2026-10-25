@@ -3,6 +3,9 @@ on:
   pull_request:
     paths:
       - 'data/fairfax_2024_senate_election_clock_research.json'
+      - 'data/fairfax_2024_paired_office_clock_research.json'
+      - 'scripts/audit_fairfax_2024_paired_office_clocks.py'
+      - 'scripts/test_fairfax_2024_paired_office_clocks.py'
       - 'scripts/audit_fairfax_2024_senate_clock_replay.py'
       - 'scripts/test_fairfax_2024_senate_clock_replay.py'
       - '.github/workflows/fairfax-2024-real-clock-research.yml'
@@ -10,6 +13,9 @@ on:
     branches: [main]
     paths:
       - 'data/fairfax_2024_senate_election_clock_research.json'
+      - 'data/fairfax_2024_paired_office_clock_research.json'
+      - 'scripts/audit_fairfax_2024_paired_office_clocks.py'
+      - 'scripts/test_fairfax_2024_paired_office_clocks.py'
       - 'scripts/audit_fairfax_2024_senate_clock_replay.py'
       - 'scripts/test_fairfax_2024_senate_clock_replay.py'
       - '.github/workflows/fairfax-2024-real-clock-research.yml'
@@ -30,10 +36,15 @@ jobs:
           python3 -m py_compile scripts/audit_fairfax_2024_senate_clock_replay.py
           python3 scripts/test_fairfax_2024_senate_clock_replay.py
           python3 scripts/audit_fairfax_2024_senate_clock_replay.py > /tmp/fairfax_replay_descriptive.json
+          python3 -m py_compile scripts/audit_fairfax_2024_paired_office_clocks.py
+          python3 scripts/test_fairfax_2024_paired_office_clocks.py
+          python3 scripts/audit_fairfax_2024_paired_office_clocks.py > /tmp/fairfax_paired_office_descriptive.json
       - name: Preserve source-limited count and reporting-order audit
         uses: actions/upload-artifact@v4
         with:
           name: fairfax-2024-official-county-clock-research
-          path: /tmp/fairfax_replay_descriptive.json
+          path: |
+            /tmp/fairfax_replay_descriptive.json
+            /tmp/fairfax_paired_office_descriptive.json
           retention-days: 90
           if-no-files-found: error
