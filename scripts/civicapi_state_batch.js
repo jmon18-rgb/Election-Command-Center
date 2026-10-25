@@ -54,7 +54,8 @@
   const configuration=item=>item&&RACES[item.office+'|'+item.key]||null;
   const supports=item=>Boolean(configuration(item));
   const validDate=value=>typeof value==='string'&&
-    /^2026-11-03(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2}))?$/.test(value);
+    /^2026-11-03(?:T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d+)?(?:Z|[+-](?:0\d|1[0-4]):[0-5]\d))?$/.test(value)&&
+    Number.isFinite(Date.parse(value.length===10?value+'T00:00:00Z':value));
   function query(item){
     const cfg=configuration(item);if(!cfg)return null;
     return BASE+'/race/search?'+new URLSearchParams({
