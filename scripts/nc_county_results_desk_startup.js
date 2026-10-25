@@ -21,6 +21,7 @@
    const config=await response.json();
    if(serial!==requestSerial)return;
    if(config?.schema!=='county-desk-config-v1'||config.enabled!==true){
+    root.NcSenateCountyMapView?.setLive(null);
     desk.render(host,{ready:false,reason:config?.reason||
      'No approved live county source'},root.document);return;
    }
@@ -40,6 +41,9 @@
    const prepared=selected.prepare(snapshot,config.expected);
    if(serial!==requestSerial)return;
    selected.render(host,prepared,root.document);
+   // 2026 geographic shading is *only* admitted through the approved
+   // exact-candidate source contract, never a forecast or a mock return.
+   root.NcSenateCountyMapView?.setLive(zipOnly&&prepared.ready?prepared:null);
    // The 2024 presidential baseline is a separate verified HISTORICAL source.
    // Never load it as 2026 counts and never feed it into the live model.
    if(zipOnly&&prepared.ready&&historicalHost){
@@ -81,6 +85,7 @@
    if(serial!==requestSerial)return;
    if(historicalHost)historicalHost.replaceChildren();
    if(senateHistoryHost)senateHistoryHost.replaceChildren();
+   root.NcSenateCountyMapView?.setLive(null);
    desk.render(host,{ready:false,reason:'County source not available: '+e.message},root.document);
   }
  }

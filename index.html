@@ -724,6 +724,32 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .smart-roster-office-head span{font-size:10px;color:#91afc6;white-space:nowrap}
 .smart-roster-rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
 @media(max-width:760px){.smart-roster-rows{grid-template-columns:1fr}.smart-race-desk .smart-desk-grid{max-height:61vh}.smart-roster-controls input{margin-left:0;max-width:none;flex-basis:100%}}
+
+/* North Carolina source-attributed geographic pilot; no forecast colors are
+   promoted as calls. Historical means 2022 certified *Senate* votes. */
+.en-nc-map-panel{margin:16px 0;padding:17px;border:1px solid #355877;background:linear-gradient(135deg,#132a43,#0b1b31);border-radius:14px}
+.en-nc-map-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.en-nc-map-head h3{font-size:19px;color:#e7f3ff;margin:4px 0 0}
+.en-nc-map-head .tiny{color:#7dc7ea;font-weight:700;letter-spacing:.09em;font-size:10px}
+.en-nc-map-mark{font-size:10px;letter-spacing:.08em;color:#b5d1e8;border:1px solid #3b5875;padding:6px 9px;border-radius:99px}
+.en-nc-map-lead{color:#c5d6e7;font-size:12px;line-height:1.55;margin:12px 0}
+.nc-map-controls{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0 8px}
+.nc-map-toggle{border:1px solid #456482;background:#1b334d;color:#dae7f6;padding:8px 11px;border-radius:8px;font-size:12px;cursor:pointer}
+.nc-map-toggle[aria-pressed="true"]{background:#d7eafe;color:#122940;border-color:#d7eafe;font-weight:700}
+.nc-map-toggle:disabled{opacity:.43;cursor:not-allowed}
+.nc-map-status{color:#c9e0ef;font-size:12px;margin:10px 0}
+.nc-senate-svg{width:100%;height:auto;display:block;max-height:410px;background:rgba(4,16,31,.28);border-radius:10px}
+.nc-senate-svg path{cursor:pointer;transition:fill .13s,stroke-width .13s;outline:none}
+.nc-senate-svg path:hover,.nc-senate-svg path:focus-visible{stroke:#fff;stroke-width:2.4;filter:brightness(1.1)}
+.nc-map-legend{display:flex;align-items:center;gap:10px;color:#c4d6e8;font-size:11px;margin:9px 0}
+.nc-map-scale{display:flex;flex:1;max-width:360px;height:10px;border-radius:4px;overflow:hidden}
+.nc-map-scale span{flex:1}
+.nc-map-inspector{padding:12px 14px;background:#1a3048;border:1px solid #365471;border-radius:9px;color:#d5e5f5;font-size:12px;line-height:1.65}
+.nc-map-inspector strong{font-size:14px;color:#fff}
+.nc-map-inspector p{margin:5px 0 0}
+.nc-map-bias{padding:9px 12px;border:1px solid #3b5875;background:#13293d;color:#dbedf5;font-size:11px;line-height:1.6;border-radius:8px;margin:10px 0}
+.nc-map-disclosure{color:#a9c5de;font-size:11px;line-height:1.65;margin:10px 0 0}
+@media(max-width:650px){.en-nc-map-panel{padding:11px}.en-nc-map-head h3{font-size:17px}.nc-map-toggle{font-size:11px;padding:7px 9px}.nc-senate-svg{min-height:155px}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -1093,6 +1119,11 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <p class="en-coverage-line" id="enCoverageReconciliation" role="status">Verifying national race inventory…</p>
  <div id="enLiveCoverageTriage" class="en-race-drawer" role="region" aria-label="Actual 2026 reported race coverage and Senate source gaps"><p class="en-coverage-line">Awaiting exact-race source reconciliation; provider identities are not results.</p></div>
  <p class="en-coverage-line" id="enSourceReadiness" role="status">Checking verified election-night source identities…</p>
+ <section class="en-nc-map-panel" aria-label="North Carolina county election results map">
+  <div class="en-nc-map-head"><div><span class="tiny">GEOGRAPHIC NEEDLE LAB · NORTH CAROLINA</span><h3>County-by-county Senate map</h3></div><span class="en-nc-map-mark">100 COUNTIES · 2022 BASELINE</span></div>
+  <p class="en-nc-map-lead">Verified 2022 Senate results on real county boundaries. Switch to observed 2026 county counts only after an approved official ZIP snapshot exists. No inferred winner, turnout or national needle movement.</p>
+  <div id="enNcSenateCountyMap" aria-live="polite"><p>Loading the verified North Carolina Senate county reference map…</p></div>
+ </section>
  <details class="en-race-drawer"><summary>Verified county-level results · official-source detail</summary><div id="enVerifiedCountyResults" aria-live="polite"><p>Awaiting a verified November 3 county source snapshot. No historical or simulated votes are displayed as live returns.</p></div><div id="enNcHistoricalComparison" aria-live="polite"><p>2024 NC county presidential comparisons appear only alongside an approved 2026 Senate source. No simulated or predicted county votes.</p></div><div id="enNcSenateSameOfficeComparison" aria-live="polite"><p>2022 Senate same-office historical comparisons require approved 2026 Senate source data. No implied ballots remaining or model adjustment.</p></div></details>
  <details id="enOhioOfficialCountyDesk" class="en-race-drawer" hidden><summary>Ohio · official candidate returns (source-reviewed only)</summary><div id="enOhioOfficialCountyResults" aria-live="polite"><p>Ohio election-night source currently disabled: mock results are not live votes.</p></div></details>
  <details id="enOfficialBackstops" class="en-race-drawer"><summary>Official election-office pages for automated source gaps</summary><div id="enOfficialBackstopsList"><p class="en-coverage-line">Checking current gap list…</p></div></details>
@@ -1288,9 +1319,11 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/nc_official_candidate_votes.js?v=ecdb01c17298"></script>
 <script src="./scripts/nc_historical_county_comparison.js?v=4932049c0026"></script>
 <script src="./scripts/nc_same_office_senate_comparison.js?v=ec183b5491cb"></script>
+<script src="./scripts/nc_senate_county_map.js?v=0c7818aba055"></script>
+<script src="./scripts/nc_senate_county_map_startup.js?v=84d83fd63392"></script>
 <script src="./scripts/ohio_official_candidate_votes.js?v=ed88660a3b59"></script>
 <script src="./scripts/ohio_official_county_startup.js?v=d545da9c5eef"></script>
-<script src="./scripts/nc_county_results_desk_startup.js?v=7d99ce3885db"></script>
+<script src="./scripts/nc_county_results_desk_startup.js?v=e34a7f75a72d"></script>
 <script src="./scripts/election_night_openamerica_transport.js?v=17218440f2e8"></script>
 <script src="./scripts/election_night_transport.js?v=76a458acbece"></script>
 <script src="./scripts/election_night_fast_lane.js?v=f2a0d35d0a8a"></script>
