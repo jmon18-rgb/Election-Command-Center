@@ -1,0 +1,38 @@
+name: Validate North Carolina Senate county map
+on:
+  pull_request:
+    paths:
+      - 'data/nc_county_shapes_fips.json'
+      - 'data/nc_2022_senate_county_verified.csv'
+      - 'scripts/nc_senate_county_map.js'
+      - 'scripts/nc_senate_county_map_startup.js'
+      - 'scripts/nc_county_results_desk_startup.js'
+      - 'scripts/test_nc_senate_county_map.cjs'
+      - 'index.html'
+      - '.github/workflows/nc-senate-county-map.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verified-map:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check static map sources and interactive renderer
+        run: |
+          node --check scripts/nc_senate_county_map.js
+          node --check scripts/nc_senate_county_map_startup.js
+          node --check scripts/nc_county_results_desk_startup.js
+          node scripts/test_nc_senate_county_map.cjs
+      - name: Check HTML map embedding and offline availability
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          html=Path('index.html').read_text()
+          assert 'id="enNcSenateCountyMap"' in html
+          for filename in ('nc_senate_county_map.js','nc_senate_county_map_startup.js'):
+              assert re.search(r'scripts/'+re.escape(filename)+r'\?v=[0-9a-f]{12}',html)
+          assert 'data/nc_county_shapes_fips.json' in Path('scripts/nc_senate_county_map_startup.js').read_text()
+          PY
