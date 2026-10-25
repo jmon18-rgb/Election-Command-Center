@@ -583,6 +583,14 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-milestone-icon{font-size:24px}
 .en-milestone-spotlight{margin-top:14px;border:2px solid #8ec8f1;border-radius:12px;background:radial-gradient(ellipse at top,#1c72bb,#10263e 75%);padding:15px;text-align:center}
 .en-milestone-spotlight[hidden]{display:none}
+.en-celebration-stage{margin:16px auto;padding:22px 12px;min-height:170px;border-radius:12px;background:radial-gradient(ellipse at center,#195e99,#081b35);overflow:hidden}
+.en-celebration-stage[hidden]{display:none}
+.en-celebration-icon{font-size:clamp(48px,11vw,94px);line-height:1.2;color:#60c9ff}
+.en-celebration-line{font-weight:950;font-size:clamp(22px,5vw,40px);margin:10px 0;overflow-wrap:anywhere}
+.en-celebration-caption{font-size:13px;color:#cae5ff}
+.en-celebration-fish{width:min(100%,300px);max-height:220px;object-fit:contain}
+.en-celebration-fish[hidden]{display:none}
+@media(prefers-reduced-motion:no-preference){.en-celebration-stage[data-phase="scene"] .en-celebration-icon{animation:enVictoryBeat 2.4s ease-in-out both}@keyframes enVictoryBeat{0%{transform:translateY(35px) scale(.7);opacity:0}25%{transform:translateY(0) scale(1.1);opacity:1}75%{transform:rotate(-5deg) scale(1)}100%{transform:translateY(-8px) scale(1.04)}}}
 .en-milestone-kicker{font-size:10px;font-weight:900;letter-spacing:.17em;color:#cfedff}
 .en-milestone-art{font-size:clamp(45px,8vw,95px);line-height:1.25;margin:8px 0;filter:drop-shadow(0 10px 9px #030c19a6)}
 .en-tsunami-meme{display:block;width:min(100%,620px);margin:12px auto;aspect-ratio:980/620;object-fit:contain;border-radius:12px}
@@ -1258,6 +1266,14 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   <div class="en-milestone-giant" id="enMilestonePunch"></div>
   <p id="enMilestoneDescription"></p>
   <div class="en-milestone-source" id="enMilestoneSource"></div>
+  <div class="en-celebration-stage" id="enCelebrationStage" hidden>
+   <img class="en-celebration-fish" id="enCelebrationFish" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Realistic_Fish_Head.jpg" alt="Fish Head announcing the celebration; image credited in the breaking-news panel" hidden>
+   <div class="en-celebration-icon" id="enCelebrationIcon" aria-hidden="true"></div>
+   <div class="en-celebration-line" id="enCelebrationLine"></div>
+   <div class="en-celebration-caption" id="enCelebrationCaption"></div>
+  </div>
+  <audio id="enCelebrationAnnouncement" preload="none" src="./assets/audio/breaking-news-in-the-2026-midterm-elections.mp3"></audio>
+  <button class="en-milestone-close" id="enCelebrationSound" type="button" aria-pressed="true">Sound: on</button>
   <button class="en-milestone-close" id="enMilestoneClose" type="button">Back to results</button>
  </div>
 </section>
@@ -1344,6 +1360,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 </details>
 </section>
 <footer class="footer"><span>2026 ELECTION COMMAND CENTER · CLARITY OVER NOISE</span><span><a href="https://github.com/jmon18-rgb/Election-Command-Center">Source code ↗</a> · <span id="updated">Briefing pending</span></span></footer></main>
+<script src="./scripts/election_night_celebration_player.js?v=69018f4c64f9"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=5a8fe76b84ad"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=a25274c4b441"></script>
 <script src="./scripts/civicapi_state_batch.js?v=41cd9a933a83"></script>
@@ -5088,6 +5105,9 @@ function enFishQueueState(){
 }
 function enFishNextBulletin(){
  if(enFishTimeout){clearTimeout(enFishTimeout);enFishTimeout=null;}
+ if(window.enCelebrationPlayer?.state().active){
+  enFishCurrent=null;enFishAudioStop();$('#enFishToast').hidden=true;return;
+ }
  if(enFishPending.length){
   const next=enFishPending.shift();
   enFishPresent(next.event,next.demo);
@@ -5123,6 +5143,9 @@ function enFishShow(event,demo=false){
  if(!event||typeof event.title!=='string'||typeof event.details!=='string')return false;
  if(!$('#enFishToast'))return false;
  if(demo){enFishDismiss();enFishPresent(event,true);return true}
+ if(window.enCelebrationPlayer?.state().active){
+  enFishPending.push({event,demo:false});return true;
+ }
  if(enFishCurrent){
   // Don't cut off the announcement when several races report at once.
   // Each distinct enAlertRecord is already deduplicated by source/race/id.
@@ -5158,7 +5181,8 @@ document.addEventListener('keydown',event=>{
 $('#enFishVoice').addEventListener('click',()=>{
  enFishSoundEnabled=!enFishSoundEnabled;
  try{localStorage.setItem(enFishSoundKey,enFishSoundEnabled?'on':'off')}catch{}
- if(!enFishSoundEnabled)enFishAudioStop();
+ if(!enFishSoundEnabled){enFishAudioStop();enCelebrationStopMedia()}
+ enCelebrationRenderSound();
  enFishRenderVoice();
 });
 enFishRenderVoice();
@@ -5384,7 +5408,7 @@ function enMilestoneEvidence(){
  }
  return rows;
 }
-function enMilestoneShow(item,demo=false){
+function enMilestoneRender(item,demo=false){
  if(enModeYear!==2026||!item)return false;
  const tsunami=item.id==='tsunami';
  $('#enMilestoneKicker').textContent=demo?'PREVIEW · FICTIONAL ACHIEVEMENT':
@@ -5431,14 +5455,107 @@ function enMilestoneShow(item,demo=false){
  $('#enMilestoneSpotlight').hidden=false;
  return true;
 }
+let enCelebrationAudioContext=null,enCelebrationNotes=[];
+function enCelebrationStopMedia(){
+ const audio=$('#enCelebrationAnnouncement');
+ audio.onended=null;audio.onerror=null;
+ try{audio.pause();audio.currentTime=0}catch{}
+ for(const note of enCelebrationNotes){try{note.stop()}catch{}}
+ enCelebrationNotes=[];
+}
+function enCelebrationRenderSound(){
+ const button=$('#enCelebrationSound');
+ button.textContent='Sound: '+(enFishSoundEnabled?'on':'off');
+ button.setAttribute('aria-pressed',String(enFishSoundEnabled));
+}
+function enCelebrationMusic(id){
+ enCelebrationStopMedia();
+ if(!id||!enFishSoundEnabled)return;
+ // Original short synthesized cue; no commercial song/recording is bundled.
+ try{
+  const Context=window.AudioContext||window.webkitAudioContext;
+  if(!Context)return;
+  enCelebrationAudioContext??=new Context();
+  const ctx=enCelebrationAudioContext;
+  if(ctx.state==='suspended')ctx.resume().catch(()=>{});
+  const offset=Object.keys(window.ElectionNightCelebrationPlayer.STORIES).indexOf(id);
+  const notes=offset%2?[0,7,12,10,7,3,7,12]:[0,4,7,12,7,9,11,12];
+  [...notes,...notes,...notes].forEach((step,i)=>{
+   const oscillator=ctx.createOscillator(),gain=ctx.createGain();
+   const at=ctx.currentTime+i*.27;
+   oscillator.type=id==='nebraska'?'triangle':'sine';
+   oscillator.frequency.value=220*Math.pow(2,(step+(offset%3)*2)/12);
+   gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime(.055,at+.025);
+   gain.gain.exponentialRampToValueAtTime(.001,at+.23);
+   oscillator.connect(gain);gain.connect(ctx.destination);
+   oscillator.onended=()=>{oscillator.disconnect();gain.disconnect()};
+   oscillator.start(at);oscillator.stop(at+.25);enCelebrationNotes.push(oscillator);
+  });
+ }catch{/* Sound is optional; results and animation remain available. */}
+}
+function enCelebrationEligible(item){
+ return enModeYear===2026&&window.ElectionNightSignals.evaluateMilestones(
+  enMilestoneEvidence(),{year:enModeYear,now:Date.now()}).some(x=>x.id===item.id&&x.state==='earned');
+}
+const enCelebrationPlayer=window.ElectionNightCelebrationPlayer?.create({
+ valid:enCelebrationEligible,
+ announce:done=>{
+  enFishAudioStop();enCelebrationRenderSound();
+  if(enFishTimeout){clearTimeout(enFishTimeout);enFishTimeout=null;}
+  enFishCurrent=null;$('#enFishToast').hidden=true;
+  const audio=$('#enCelebrationAnnouncement');
+  if(!enFishSoundEnabled){done();return;}
+  audio.onended=done;audio.onerror=done;
+  try{const p=audio.play();if(p?.catch)p.catch(done)}catch{done()}
+ },
+ music:enCelebrationMusic,
+ render:(item,demo,phase,scene)=>{
+  if(phase==='revoked'){$('#enMilestoneSpotlight').hidden=true;return;}
+  if(phase==='announcement')enMilestoneRender(item,demo);
+  const stage=$('#enCelebrationStage');stage.hidden=false;stage.dataset.phase=phase;
+  $('#enCelebrationFish').hidden=phase!=='announcement';
+  $('#enCelebrationIcon').textContent=scene?.[0]||'📣';
+  $('#enCelebrationLine').textContent=scene?.[1]||'BREAKING NEWS';
+  $('#enCelebrationCaption').textContent=scene?.[2]||
+   (enFishSoundEnabled?'Fish Head announcement · animation follows':'Sound off · animation follows');
+  if(phase==='scene'&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+   const icon=$('#enCelebrationIcon');
+   for(const animation of icon.getAnimations?.()||[])animation.cancel();
+   icon.animate?.([{transform:'translateY(30px) scale(.7)',opacity:0},
+    {transform:'translateY(0) scale(1.08)',opacity:1},{transform:'rotate(-4deg) scale(1)',opacity:1}],
+    {duration:2000,easing:'ease-out',fill:'both'});
+  }
+ },
+ onIdle:()=>{if(enFishPending.length&&!enFishCurrent)enFishNextBulletin()}
+})||Object.freeze({
+ enqueue:(item,demo)=>Boolean(item&&(demo||enCelebrationEligible(item))&&enMilestoneRender(item,demo)),
+ stop:enCelebrationStopMedia,revoke:()=>{},state:()=>({active:null,pending:0})
+});
+window.enCelebrationPlayer=enCelebrationPlayer;
+function enMilestoneShow(item,demo=false){
+ if(enModeYear!==2026)return false;
+ if(demo)enFishDismiss();
+ if(enFishSoundEnabled&&(window.AudioContext||window.webkitAudioContext)){
+  try{enCelebrationAudioContext??=new (window.AudioContext||window.webkitAudioContext)();
+   enCelebrationAudioContext.resume().catch(()=>{});}catch{}
+ }
+ return enCelebrationPlayer.enqueue(item,demo);
+}
+$('#enCelebrationSound').addEventListener('click',()=>{
+ enFishSoundEnabled=!enFishSoundEnabled;
+ try{localStorage.setItem(enFishSoundKey,enFishSoundEnabled?'on':'off')}catch{}
+ if(!enFishSoundEnabled){enFishAudioStop();enCelebrationStopMedia()}
+ enFishRenderVoice();enCelebrationRenderSound();
+});
 function enRenderMilestones(){
  const api=window.ElectionNightSignals,desk=$('#enMilestoneDesk'),host=$('#enMilestoneGrid');
  if(!api||!desk||!host)return;
  desk.hidden=enModeYear!==2026;
- if(desk.hidden){$('#enMilestoneSpotlight').hidden=true;return}
+ if(desk.hidden){enCelebrationPlayer.stop();$('#enMilestoneSpotlight').hidden=true;return}
  const records=api.evaluateMilestones(enMilestoneEvidence(),{year:enModeYear,now:Date.now()});
  host.replaceChildren();
  for(const item of records){
+  if(item.state!=='earned')enCelebrationPlayer.revoke(item.id);
   const card=elt('button','en-milestone-card');
   card.type='button';card.dataset.state=item.state;
   card.setAttribute('aria-label',item.title+' · '+item.state+
@@ -5478,6 +5595,7 @@ function enRenderMilestones(){
    enMilestoneShown.add(item.id);changed=true;
    enMilestoneShow(item,false);
   }else if(item.state!=='earned'&&enMilestoneShown.has(item.id)&&hasCompleteSource(item.id)){
+   enCelebrationPlayer.revoke(item.id);
    enMilestoneShown.delete(item.id);changed=true;
    $('#enMilestoneSpotlight').hidden=true;
   }
@@ -5487,6 +5605,8 @@ function enRenderMilestones(){
 $('#enTsunamiPreview').addEventListener('click',()=>enMilestoneShow({
  id:'tsunami',icon:'🌊',tag:'FOUR ENDINGS · BLUE TSUNAMI'},true));
 $('#enMilestoneClose').addEventListener('click',()=>{
+ enCelebrationPlayer.stop();
+ if(enFishPending.length&&!enFishCurrent)enFishNextBulletin();
  $('#enMilestoneSpotlight').hidden=true;
  $('#enTsunamiPreview').focus();
 });

@@ -7,6 +7,7 @@ const root = path.resolve(__dirname, '..');
 const out = path.join(root, 'artifacts', 'readiness');
 fs.mkdirSync(out, {recursive: true});
 const checks = [
+  ['Celebration playback and revoked-call queue', 'test_election_night_celebration_player.cjs'],
   ['Published bundle and forecast consistency', 'test_published_dashboard.cjs', '--local'],
   ['Race and source reconciliation', 'test_election_night_reconciliation.cjs'],
   ['Poll closing safeguards', 'test_election_night_poll_closings_2026.cjs'],
