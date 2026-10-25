@@ -1,4 +1,4 @@
-name: Preflight all 17 supplemental Senate source IDs in rotating batches
+name: Preflight all 18 supplemental Senate source IDs in rotating batches
 on:
   workflow_dispatch:
   pull_request:
@@ -9,10 +9,10 @@ on:
       - 'scripts/civicapi_state_batch.js'
       - 'data/election_night_source_coverage.json'
   schedule:
-    # Seven safe endpoint checks per day; cover all 17 pinned Senate IDs
-    # over a repeating three-day window without a bulk provider crawl.
+    # At most seven endpoint checks daily; cover 18 pinned Senate IDs
+    # across four days (or four hourly election-night windows).
     - cron: '40 15 * * *'
-    # Rotate the same small cohort hourly across the Nov 3–4 count.
+    # Rotate across all 18 Senate pins in four consecutive hourly checks.
     - cron: '13 23 3 11 *'
     - cron: '13 0-10 4 11 *'
 permissions:
@@ -26,7 +26,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Confirm all 17 pinned Senate source IDs, rotation and failure behavior
+      - name: Confirm all 18 pinned Senate IDs and four-hour Election Night rotation
         run: |
           python3 -m py_compile scripts/preflight_pinned_senate_sources.py
           python3 scripts/test_preflight_pinned_senate_sources.py
