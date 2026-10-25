@@ -124,9 +124,9 @@ assert.equal(api.validate(itemAtLarge,alaska,akDetail,
 assert.equal(new URL(api.query(itemAtLarge)).searchParams.get('query'),'US House');
 // Texas has staggered closings. Count partial votes after the earliest
 // close but reject statewide/district winner flags before the final close.
-const txItem={office:'House',key:'TX-01'};
-const txRow={...search,province:'TX',district:'TX-01',
- election_name:'Texas US House 1'};
+const txItem={office:'House',key:'TX-16'};
+const txRow={...search,province:'TX',district:'TX-16',
+ election_name:'Texas US House 16'};
 const txSource={...detail,...txRow,election_type:'House of Representatives',
  last_updated:'2026-11-04T01:10:00Z',candidates:detail.candidates};
 assert(api.validate(txItem,txRow,txSource,now),
