@@ -201,7 +201,18 @@
   const houses=eligible.filter(x=>x.office==='House');
   const remaining=eligible.filter(x=>x.office==='Governor');
   const strength=x=>Number.isFinite(x.tip)?x.tip:0;
-  const top=(pool,n)=>[...pool].sort((a,b)=>strength(b)-strength(a)||
+  const validModel=x=>Number.isFinite(x.modelWinPct)&&
+   x.modelWinPct>=0&&x.modelWinPct<=100;
+  // A linked-model sub-90% contest gets the scarce fast slot. A safe
+  // screenshot seed must NOT outrank current uncertainty merely because
+  // it was once editorially interesting. Unrated seats retain the seed
+  // fallback; user-pinned races always take their own first two slots.
+  const competitive=x=>validModel(x)&&x.modelWinPct>10&&x.modelWinPct<90;
+  const sourceOrder=x=>competitive(x)?
+    1000+50-Math.abs(x.modelWinPct-50):
+    validModel(x)?-100+strength(x):
+    strength(x);
+  const top=(pool,n)=>[...pool].sort((a,b)=>sourceOrder(b)-sourceOrder(a)||
    a.key.localeCompare(b.key)).slice(0,n);
   const selected=[],picked=new Set();
   const push=x=>{
@@ -212,10 +223,12 @@
   };
   for(const x of saved.slice(0,2))push(x);
   // Persistent quick checks of genuinely consequential Senate contests.
-  const fastSen=top(senators.filter(x=>strength(x)>=7),3);
+  const fastSen=top(senators.filter(x=>competitive(x)||
+   !validModel(x)&&strength(x)>=7),3);
   for(const x of fastSen)push(x);
   // Silver screenshots are reference *seeds*, not current race probabilities.
-  const fastHouse=top(houses.filter(x=>strength(x)>=1),1);
+  const fastHouse=top(houses.filter(x=>competitive(x)||
+   !validModel(x)&&strength(x)>=1),1);
   for(const x of fastHouse)push(x);
   const next={senate:cursor.senate||0,house:cursor.house||0,other:cursor.other||0};
   function rotate(pool,number,field){
