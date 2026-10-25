@@ -29,17 +29,38 @@ CLOSE_UTC = {
     "OK": datetime(2026, 11, 4, 1, 0, tzinfo=timezone.utc),
 }
 DATE = re.compile(r"^2026-11-03(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2}))?$")
+MOCK_FLAGS = ("is_test", "test", "mock", "is_mock")
+MAX_SAFE_VOTES = 2**53 - 1
+
+
+def explicitly_mock(row):
+    return (not isinstance(row, dict) or
+            any(row.get(key) is True for key in MOCK_FLAGS) or
+            row.get("active") is False)
+
+
+def exact_general_date(value):
+    if not isinstance(value, str) or DATE.fullmatch(value) is None:
+        return False
+    if value == "2026-11-03":
+        return True
+    try:
+        stamp = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        return stamp.tzinfo is not None
+    except ValueError:
+        return False
+
 
 
 def exact(spec, row):
     state, office, _ = spec
-    if not isinstance(row, dict) or row.get("country") != "US" or row.get("province") != state:
+    if explicitly_mock(row) or row.get("country") != "US" or row.get("province") != state:
         return False
     if row.get("municipality") is not None or row.get("district") is not None:
         return False
     if type(row.get("id")) is not int or row["id"] <= 0:
         return False
-    if not isinstance(row.get("election_date"), str) or not DATE.fullmatch(row["election_date"]):
+    if not exact_general_date(row.get("election_date")):
         return False
     if not isinstance(row.get("election_name"), str):
         return False
@@ -59,11 +80,13 @@ def detail_rejection(spec, row, detail, *, now=None):
         return "UNVERIFIED_SEARCH_IDENTITY"
     if not isinstance(detail, dict):
         return "DETAIL_NOT_OBJECT"
+    if explicitly_mock(detail):
+        return "MOCK_OR_INACTIVE_DETAIL"
     # civicAPI detail URLs identify the exact requested search ID. Some
     # valid detail responses omit a duplicate id property. Explicitly
     # conflicting IDs remain fatal. This matches the existing Senate
     # canary contract (probe_missing_senate_sources.py).
-    if "id" in detail and detail["id"] != row["id"]:
+    if "id" in detail and (type(detail["id"]) is not int or detail["id"] != row["id"]):
         return "DETAIL_EXPLICIT_ID_MISMATCH"
     for field in ("country", "province", "district", "municipality",
                   "election_date", "election_name"):
@@ -76,15 +99,23 @@ def detail_rejection(spec, row, detail, *, now=None):
         return "INVALID_CANDIDATE_SET"
     identities = set()
     counted = False
+    total = 0
     for c in candidates:
         if not isinstance(c, dict) or not isinstance(c.get("name"), str) or not c["name"].strip():
             return "INVALID_CANDIDATE_NAME"
         if not isinstance(c.get("party"), str) or not c["party"].strip():
             return "INVALID_CANDIDATE_PARTY"
-        if type(c.get("votes")) is not int or c["votes"] < 0 or type(c.get("winner")) is not bool:
+        if (explicitly_mock(c) or type(c.get("votes")) is not int or
+            not 0 <= c["votes"] <= MAX_SAFE_VOTES or type(c.get("winner")) is not bool):
+            return "INVALID_CANDIDATE_VOTE_OR_WINNER_SHAPE"
+        total += c["votes"]
+        if total > MAX_SAFE_VOTES:
             return "INVALID_CANDIDATE_VOTE_OR_WINNER_SHAPE"
         counted = counted or c["votes"] > 0 or c["winner"]
-        ident = (c["name"].strip().casefold(), c["party"].strip().casefold())
+        # Same person reappearing under another party label is not an
+        # additional voter or candidate. Legitimate top-two candidates
+        # of the same party remain independently identifiable by name.
+        ident = c["name"].strip().casefold()
         if ident in identities:
             return "DUPLICATE_CANDIDATE"
         identities.add(ident)
@@ -118,7 +149,7 @@ def probe(fetch=source, now=None):
             if not isinstance(search, dict) or not isinstance(search.get("races"), list) or (
                 len(search["races"]) > 20 or
                 type(search.get("count", len(search["races"]))) is not int or
-                search.get("count", len(search["races"])) > 20
+                search.get("count", len(search["races"])) != len(search["races"])
             ):
                 entry["status"] = "INVALID_OR_TRUNCATED_SEARCH"
             else:
