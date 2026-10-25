@@ -229,8 +229,17 @@ if(args.has('check-config')){
   });
   mark('LOAD_REAL_DEPLOYED_DASHBOARD');
   await cdp.send('Page.navigate',{url:SITE},tabSession);
-  await waitFor('!!document.querySelector("[data-page=\\"electionNight\\"]")',60000);
+  // Static HTML arrives before the inline app installs its tab handlers.
+  // A CDP mouse click during that gap is a no-op: previously the runner
+  // then called the 2026 mode button while its section was still hidden.
+  await waitFor('typeof activatePage==="function"&&'+
+   '!!document.querySelector("[data-page=\\"electionNight\\"]")&&'+
+   '!!document.querySelector("#enMode2026")',60000);
   await click('[data-page="electionNight"]');
+  await waitFor('document.querySelector("#electionNight")?.classList.contains("active")',15000);
+  await waitFor('(()=>{const mode=document.querySelector("#enMode2026");'+
+   'if(!mode)return false;const rect=mode.getBoundingClientRect();'+
+   'return rect.width>0&&rect.height>0})()',15000);
   await click('#enMode2026');
   await waitFor('document.querySelector("#enSourceReadiness")?.textContent?.includes("506 races")',45000);
   start=performance.now();
