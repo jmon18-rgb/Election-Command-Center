@@ -176,6 +176,34 @@ class SourcePreflightTests(unittest.TestCase):
                 validate_primary({**doc,"source":s},"Senate",now)
         self.assertEqual(validate_primary(doc,"Senate",now)["positive_vote_races"],1)
 
+    def test_hourly_openamerica_smoke_reuses_strict_2026_canary_gate(self):
+        import test_live_results_source
+        empty={**self.doc,"races":{},"counts":{"races":0}}
+        def all_valid(year,office):
+            if year==2024:
+                return {"races": {str(i):{} for i in range(10)}}
+            return {**empty,"office":office}
+        with patch("test_live_results_source.fetch",side_effect=all_valid):
+            self.assertIsNone(test_live_results_source.main())
+        def unscoped(year,office):
+            doc=all_valid(year,office)
+            if year==2026 and office=="House":
+                return {**doc,"counts":{"races":1},
+                        "races":{"NH-01":{"total":0,"called":False,
+                                         "winner":None,"cands":[]}}}
+            return doc
+        with patch("test_live_results_source.fetch",side_effect=unscoped):
+            with self.assertRaisesRegex(ValueError,"exact-race"):
+                test_live_results_source.main()
+        def mocked(year,office):
+            doc=all_valid(year,office)
+            if year==2026 and office=="Senate":
+                return {**doc,"mock":True}
+            return doc
+        with patch("test_live_results_source.fetch",side_effect=mocked):
+            with self.assertRaisesRegex(ValueError,"mock, test or inactive"):
+                test_live_results_source.main()
+
     def test_bounded_cors_response_protection(self):
         body=json.dumps(self.doc).encode()
         with patch("urllib.request.urlopen",return_value=FakeResponse(body)):
