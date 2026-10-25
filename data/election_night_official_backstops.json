@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "event": "2026-11-03",
-  "last_verified": "2026-10-24",
+  "last_verified": "2026-10-25",
   "status": "OFFICIAL_HUMAN_FALLBACK_LINKS_NOT_AUTOMATED_RESULTS",
   "links": [
     {
@@ -47,7 +47,17 @@
         "House|NH-02",
         "Senate|NH",
         "Governor|NH"
-      ]
+      ],
+      "community_unofficial_check": {
+        "name": "NH town-level unofficial results",
+        "url": "https://nhelectionresults.org/results",
+        "scope": "NH_LOCAL_VOLUNTEER_UNOFFICIAL_NOT_STATE_CERTIFIED",
+        "election_date": "2026-11-03",
+        "verified_page_at": "2026-10-25",
+        "zero_polling_places_reported_before_election": true,
+        "automated_vote_ingestion_authorized": false,
+        "official_race_call": false
+      }
     },
     {
       "state": "SD",
