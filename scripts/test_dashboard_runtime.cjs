@@ -1793,6 +1793,13 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  assert(get('#labResults').querySelectorAll('tbody tr').length>=10,
   'State what-if must render real affected race probabilities, not a static label');
  assert.match(get('#labResults').textContent,/MI-SEN/);
+ get('#labScope').value='blue-wall';
+ get('#labRun').click();
+ assert.match(get('#labStatus').textContent,/MI \/ PA \/ WI D−R shift \+3\.02 pts/);
+ assert.match(get('#labResults').textContent,/WI-GOV/);
+ assert.match(get('#labResults').textContent,/PA-01/);
+ assert(get('#labResults').querySelectorAll('tbody tr').length>=40,
+  'A multi-state scenario must expose all affected actual races together');
  assert.equal(w.eval('jointForecastResult()'),defaultJointBeforeLab,
   'Pre-election coalition experiment must never overwrite headline probabilities');
  get('#labNoncollegeShare').value='90';

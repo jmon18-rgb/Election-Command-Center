@@ -13,10 +13,14 @@
  function validate(input,basis){
   if(!input||!basis||!Array.isArray(basis.house)||basis.house.length!==435||
     !Array.isArray(basis.senate)||basis.senate.length!==35||
-    !Array.isArray(basis.governors)||basis.governors.length<6||
-    typeof input.state!=='string'||!/^[A-Z]{2}$/.test(input.state))
+    !Array.isArray(basis.governors)||basis.governors.length<6)
    return {ok:false,reason:'Incomplete 2026 model or unknown state'};
-  const state=input.state,groups=input.groups;
+  const states=Array.isArray(input.states)?input.states:[input.state];
+  if(states.length<1||states.length>8||
+     states.some(state=>typeof state!=='string'||!/^[A-Z]{2}$/.test(state))||
+     new Set(states).size!==states.length)
+   return {ok:false,reason:'Choose 1–8 distinct valid 2026 states'};
+  const scope=new Set(states),state=states[0],groups=input.groups;
   if(!Array.isArray(groups)||groups.length!==2)return {ok:false,reason:'Exactly two cohort assumptions required'};
   if(!groups.every(g=>g&&n(g.share_pct)&&g.share_pct>=0&&g.share_pct<=100&&
     n(g.margin_change_points)&&Math.abs(g.margin_change_points)<=40))
@@ -25,11 +29,12 @@
   if(share>100.0000001)return {ok:false,reason:'Two non-overlapping cohorts cannot exceed 100% of voters'};
   const shift=groups.reduce((x,g)=>x+g.share_pct*g.margin_change_points/100,0);
   if(!n(shift)||Math.abs(shift)>12)return {ok:false,reason:'Combined state swing exceeds the ±12-point sensitivity limit'};
-  const entries=[...basis.house,...basis.senate,...basis.governors].filter(r=>r.state===state);
-  if(!entries.length)return {ok:false,reason:'State absent from complete 2026 model'};
+  const entries=[...basis.house,...basis.senate,...basis.governors].filter(r=>scope.has(r.state));
+  if(new Set(entries.map(r=>r.state)).size!==states.length)
+   return {ok:false,reason:'A selected state is missing from the 2026 model'};
   if(entries.some(r=>!n(r.mean)||typeof r.code!=='string'))
    return {ok:false,reason:'Race-level model priors unavailable'};
-  return {ok:true,state,shift,groups,affected:entries.length};
+  return {ok:true,state,states,shift,groups,affected:entries.length};
  }
  function evaluate(basis,input,simulator,{samples=2000,seed=20261103}={}){
   const gate=validate(input,basis);
@@ -38,11 +43,11 @@
     !Number.isSafeInteger(seed))return {ok:false,reason:'Simulation method or sample size invalid'};
   // Unmodified baseline and hypothetical state scenario receive precisely
   // the same random seed, error assumptions, candidate context and priors.
-  // Change only the mean D-R margin of ballot races in this state.
-  const shifted={...basis};
+  // Change only the mean D-R margins of the selected state ballots.
+  const shifted={...basis},scope=new Set(gate.states);
   for(const office of ['house','senate','governors'])
    shifted[office]=basis[office].map(r=>
-    r.state===gate.state?{...r,mean:r.mean+gate.shift}:r);
+    scope.has(r.state)?{...r,mean:r.mean+gate.shift}:r);
   const opts={samples,seed,nationalShift:0,errorMultiplier:1,live:{}};
   let before,after;
   try{
@@ -53,7 +58,7 @@
     !Array.isArray(after.race_probabilities))return {ok:false,reason:'Incomplete model race probabilities'};
   const base=Object.fromEntries(before.race_probabilities.map(r=>[r.race_code,r]));
   const now=Object.fromEntries(after.race_probabilities.map(r=>[r.race_code,r]));
-  const affected=[...basis.senate,...basis.governors,...basis.house].filter(r=>r.state===gate.state)
+  const affected=[...basis.senate,...basis.governors,...basis.house].filter(r=>scope.has(r.state))
    .map(r=>{
     const a=base[r.code],b=now[r.code];
     if(!a||!b||!n(a.dem_beats_rep_pct)||!n(b.dem_beats_rep_pct))return null;
@@ -65,7 +70,7 @@
    .sort((x,y)=>Math.abs(y.change)-Math.abs(x.change)||x.race_code.localeCompare(y.race_code));
   if(affected.length!==gate.affected)return {ok:false,reason:'Incomplete affected-race results'};
   return {ok:true,status:'HYPOTHETICAL_PRE_ELECTION_SENSITIVITY_NOT_HEADLINE_FORECAST',
-   state:gate.state,groups:gate.groups.map(g=>({...g})),
+   state:gate.state,states:[...gate.states],groups:gate.groups.map(g=>({...g})),
    state_margin_shift_points:gate.shift,affected_races:affected,
    baseline:{house_control:before.house_dem_control_pct,
     senate_control:before.senate_dem_control_pct,

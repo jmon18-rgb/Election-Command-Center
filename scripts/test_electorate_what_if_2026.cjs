@@ -39,6 +39,21 @@ assert(scenario.affected_races.every(x=>x.after>=x.before));
 assert(scenario.scenario.both_control>=scenario.baseline.both_control);
 assert.deepEqual([...basis.house,...basis.senate,...basis.governors].map(r=>r.mean),baselineMeans,
  'Research scenario must never mutate published race priors');
+const bundleInput={...input(30,6,8,4),states:['MI','PA','WI']};
+const bundle=lab.evaluate(basis,bundleInput,model.simulate,
+ {samples:400,seed:20261103});
+assert.equal(bundle.ok,true,bundle.reason);
+assert.deepEqual(bundle.states,['MI','PA','WI']);
+assert(bundle.affected_races.some(x=>x.race_code==='MI-SEN'));
+assert(bundle.affected_races.some(x=>x.race_code.startsWith('PA-')));
+assert(bundle.affected_races.some(x=>x.race_code.startsWith('WI-')));
+assert(bundle.affected_races.every(x=>['MI','PA','WI'].includes(x.race_code.slice(0,2))));
+assert(bundle.affected_races.every(x=>x.change>=0));
+assert(bundle.scenario.both_control>=bundle.baseline.both_control);
+assert.equal(lab.evaluate(basis,{...bundleInput,states:['MI','MI']},model.simulate).ok,false);
+assert.equal(lab.evaluate(basis,{...bundleInput,states:['MI','ZZ']},model.simulate).ok,false);
+assert.deepEqual([...basis.house,...basis.senate,...basis.governors].map(r=>r.mean),
+ baselineMeans,'Bundled sensitivity cannot change real model inputs');
 const noChange=lab.evaluate(basis,input(0,0,0,0),model.simulate,{samples:300});
 assert.equal(noChange.ok,true);
 assert.deepEqual(noChange.baseline,noChange.scenario);
