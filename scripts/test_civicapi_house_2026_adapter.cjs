@@ -48,6 +48,29 @@ assert.equal(good.candidates[0].party,'D');
 assert.equal(good.source_url,'https://civicapi.org/api/v2/race/88001');
 const called={...detail,candidates:detail.candidates.map((c,i)=>({...c,winner:i===0}))};
 assert.equal(api.validate(item,search,called,now).called,'Example Democrat');
+// Genuine 2026 House returns must be stamped after their local earliest
+// polling close, even if the nationwide 05:00Z Nov 3 floor has passed.
+const pollCloses=require('./election_night_poll_closings_2026.js');
+const close=pollCloses.floorFor(item.key);
+const premature={...detail,last_updated:new Date(close-1000).toISOString()};
+assert.equal(api.validate(item,search,premature,now),null,
+ 'Before-poll-close House totals must never be validated after close');
+assert.equal(api.validate(item,search,detail,close-1000),null,
+ 'Viewer clock cannot accept House votes while district polls remain open');
+for(const flag of [
+ {is_test:true},{test:true},{mock:true},{is_mock:true},
+ {active:false},{live:false}
+]){
+ assert.equal(api.match(item,{...search,...flag}),false);
+ assert.equal(api.select(item,{races:[search],...flag}),null);
+ assert.equal(api.validate(item,search,{...detail,...flag},now),null);
+ assert.equal(api.validatePinned(item,88001,{...detail,...flag},now),null);
+}
+assert(api.validate(item,search,{...detail,is_test:false,active:true},now));
+assert.equal(api.validate(item,search,{...detail,candidates:[
+ {...detail.candidates[0],name:'Same Candidate'},
+ {...detail.candidates[1],name:' same candidate '}]},now),null,
+ 'Same candidate duplicated under another party is not two people');
 assert.equal(api.validate(item,search,detail,Date.parse('2026-10-15T20:00:00Z')),null,
  'Pre-election vote totals must be rejected');
 const pre={...detail,candidates:detail.candidates.map(c=>({...c,votes:0,percent:0})),
@@ -92,10 +115,28 @@ assert(api.supports(itemAtLarge));
 const alaska={...search,province:'AK',district:'AK-00',
  election_name:'Alaska US House At-Large'};
 assert(api.match(itemAtLarge,alaska));
-assert.equal(api.validate(itemAtLarge,alaska,{
- ...detail,...alaska,election_type:'House of Representatives',
- candidates:detail.candidates},now).key,'AK-00');
+const akDetail={...detail,...alaska,election_type:'House of Representatives',
+ last_updated:'2026-11-04T06:05:00Z',candidates:detail.candidates};
+assert.equal(api.validate(itemAtLarge,alaska,akDetail,now),null,
+ 'AK at-large votes stamped after polls close cannot be seen before 8 PM local');
+assert.equal(api.validate(itemAtLarge,alaska,akDetail,
+ Date.parse('2026-11-04T06:15:00Z')).key,'AK-00');
 assert.equal(new URL(api.query(itemAtLarge)).searchParams.get('query'),'US House');
+// Texas has staggered closings. Count partial votes after the earliest
+// close but reject statewide/district winner flags before the final close.
+const txItem={office:'House',key:'TX-01'};
+const txRow={...search,province:'TX',district:'TX-01',
+ election_name:'Texas US House 1'};
+const txSource={...detail,...txRow,election_type:'House of Representatives',
+ last_updated:'2026-11-04T01:10:00Z',candidates:detail.candidates};
+assert(api.validate(txItem,txRow,txSource,now),
+ 'Partially counted House votes may report after earliest local close');
+assert.equal(api.validate(txItem,txRow,{...txSource,candidates:
+ txSource.candidates.map((c,i)=>({...c,winner:i===0}))},now),null,
+ 'Do not publish House winner hints before the final applicable close');
+const txAfterFinal={...txSource,last_updated:'2026-11-04T02:10:00Z',
+ candidates:txSource.candidates.map((c,i)=>({...c,winner:i===0}))};
+assert.equal(api.validate(txItem,txRow,txAfterFinal,now).called,'Example Democrat');
 // The compact identity manifest is a lookup shortcut, not a valid result.
 const manifestNow=Date.parse('2026-11-03T20:00:00Z');
 const makeManifest=()=>({
