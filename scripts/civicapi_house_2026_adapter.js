@@ -58,7 +58,12 @@
  function select(item,doc){
   if(!supports(item)||!doc||disabled(doc)||!Array.isArray(doc.races)||
     !doc.races.length||doc.races.length>20||
-    (Number.isSafeInteger(doc.count)&&doc.count>20))return null;
+    // An API that reports 2 matches but delivers 1 is not evidence of a
+    // unique exact district source. Reject incomplete/malformed cardinality
+    // whenever the provider supplies it; missing count stays unverified by
+    // cardinality and remains governed by exact row/detail identity checks.
+    (doc.count!=null&&
+     (!Number.isSafeInteger(doc.count)||doc.count!==doc.races.length)))return null;
   const matched=doc.races.filter(row=>match(item,row));
   return matched.length===1?matched[0]:null;
  }
