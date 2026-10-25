@@ -22,6 +22,15 @@ class TestGapAlternative(unittest.TestCase):
                          "BEFORE_DOCUMENTED_GENERAL_RESULT_START")
         self.assertEqual(shape({"results": []}, "NH", now=AFTER)["status"],
                          "NO_2026_RESULTS_YET")
+        standby={"state":"NH","results":None,
+                 "resultsFrom":"2026-11-03T17:00:00-05:00"}
+        self.assertEqual(shape(standby, "NH", now=BEFORE)["status"],
+                         "PROVIDER_PUBLISHED_FUTURE_2026_START_NO_RESULTS")
+        self.assertEqual(shape({**standby,"state":"MA"}, "NH", now=BEFORE)["status"],
+                         "UNRECOGNIZED_ENVELOPE_NO_SOURCE_APPROVAL")
+        self.assertEqual(shape({**standby,"results":{"raceId":"2026-nh-house"}},
+                               "NH", now=BEFORE)["status"],
+                         "UNRECOGNIZED_ENVELOPE_NO_SOURCE_APPROVAL")
         self.assertEqual(shape({"results": [{"raceId": "x"}]}, "NH", now=BEFORE)["status"],
                          "BEFORE_DOCUMENTED_GENERAL_RESULT_START")
         self.assertEqual(shape({"foo": []}, "NH", now=AFTER)["status"],
