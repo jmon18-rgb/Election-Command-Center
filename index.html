@@ -3921,8 +3921,13 @@ function jointSourceItem(item){
  const err=primary?enOfficeErrors[office]||
    (enModeYear===2026&&enOffice===office?enFetchError:null):enCivicErrors[id];
  const source=snapshot&&err?{...snapshot,stale:true}:snapshot;
+ // Source-level "live" transport validation must pass before even
+ // DESCRIPTIVE county-uncorrected margins are displayed. A mock primary
+ // envelope is not actual reported votes.
+ const healthy=source&&window.ElectionNightReconciliation?.officeHealth(
+  source,office,{now:Date.now(),error:Boolean(err)}).usable===true;
  const secondary=!primary?enCivicUsable(watch):null;
- return window.RaceLiveNowcast?.observed(watch,source,secondary)||null;
+ return window.RaceLiveNowcast?.observed(watch,healthy?source:null,secondary)||null;
 }
 function jointLiveObservations(){
  jointPulseRows=[];
@@ -3956,6 +3961,8 @@ function jointLiveObservations(){
   }
   const x=jointSourceItem(r);
   if(!x||x.sourceStale||x.reporting<10||
+      !window.ElectionNightPollClosings2026?.allowed?.(
+       item?.key,x.total,x.asOf,now)||
       (localClose!==null&&x.time<localClose)||
       x.time< Date.parse('2026-11-03T23:00:00Z')||
       x.time>now+900000||now-x.time>180*60000)continue;
