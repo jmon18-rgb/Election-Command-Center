@@ -38,7 +38,8 @@ class OfficialBackstopsTests(unittest.TestCase):
             self.assertEqual(p.scheme,"https")
             self.assertEqual(p.hostname,"votes.decisiondeskhq.com")
             self.assertTrue(p.path.startswith("/races/2026-11-03/"))
-            self.assertTrue(p.path.endswith("-general-election"))
+            self.assertTrue(p.path.endswith(("-general-election", "-general-election/results")),
+                            "Exact public DDHQ result routes are allowed; forecast-only routes are not")
             self.assertFalse(p.query or p.fragment or p.username or p.password)
             self.assertFalse(any(k in row for k in (
              "winner","winner_call","reported_votes","result","forecast_probability")))
