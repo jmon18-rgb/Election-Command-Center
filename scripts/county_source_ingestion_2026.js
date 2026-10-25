@@ -20,7 +20,7 @@
   // Date.now() can disagree with a replay/loaded laptop snapshot.
   const processed=batch.process(previous,validated.rows,baselines,now);
   // A partial geographic comparison is descriptive ONLY: same verified
-  // source/race, same counties, valid 2024 two-party baseline. Never let
+  // source/race, same counties, same-seat previous-election baseline. Never let
   // a sample of reported counties change national odds or imply statewide
   // turnout coverage. In a browser without the optional advisory module,
   // expose no synthetic geographic estimate.
@@ -49,6 +49,9 @@
    {status:'REJECTED_UNSAFE_COUNTY_BATCH_NO_DESCRIPTIVE_SWING',
     matched_county_swing_points:null,
     matched_2026_margin_points:null,
+    previous_same_seat_election_year:null,
+    matched_previous_same_seat_two_party_votes:null,
+    matched_previous_same_seat_margin_points:null,
     matched_2024_margin_points:null,
     reporting_percent:null,estimated_votes_remaining:null,
     may_move_national_needle:false,
