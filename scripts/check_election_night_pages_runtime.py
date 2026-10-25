@@ -94,7 +94,7 @@ def audit(index: bytes, remote_pins: dict, remote_coverage: dict,
         # BOTH the referenced blob and the safety-critical source branches.
         if name == "election_night_nowcast.js":
             if (b"pollsClosedFor(item,actual.asOf,now)" not in blob or
-                b"pollsClosedFor(item,new Date(now).toISOString(),now)" not in blob):
+                b"winnerClosedFor(item,now)" not in blob):
                 raise ValueError("Deployed needle missing local poll-close protections")
         if git_revision(blob) != version:
             raise ValueError("Deployed script blob/version mismatch: " + name)
