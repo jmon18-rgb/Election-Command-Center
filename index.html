@@ -3482,6 +3482,22 @@ async function enRefreshSourceReadiness(){
     row.append(anchor,elt('span','',
      ' · '+relevant.join(', ')+qualifier));
     backstops.append(row);
+    // When NH's official 2026 general tally is still unpublished, offer
+    // the already-live *viewer* for volunteer town-return reporting as an
+    // unmistakably unofficial second browser tab. It is not a vote feed.
+    const local=link.state==='NH'?link.community_unofficial_check:null;
+    if(local?.scope==='NH_LOCAL_VOLUNTEER_UNOFFICIAL_NOT_STATE_CERTIFIED'&&
+       local.election_date==='2026-11-03'&&
+       local.automated_vote_ingestion_authorized===false&&
+       local.official_race_call===false&&
+       local.url==='https://nhelectionresults.org/results'){
+     const alt=elt('p','en-coverage-line');
+     const a=elt('a','','NH town-by-town unofficial results ↗');
+     a.href=local.url;a.target='_blank';a.rel='noopener noreferrer';
+     alt.append(a,elt('span','',
+      ' · NH-01 / NH-02 / Senate · local volunteers; no official calls, automated data or pre-election votes'));
+     backstops.append(alt);
+    }
     relevant.forEach(id=>matched.add(id));
    }
    const unresolved=[...gaps].filter(id=>!matched.has(id));
