@@ -38,13 +38,13 @@ def title_matches(key, row):
             return False
         dist = int(seat[3:])
         if dist == 0:
-            return bool(re.search(r"(?i)\\b(?:representative in congress|u\\.?s\\.? representative|house of representatives)\\b",name))
+            return bool(re.search(r"(?i)\b(?:representative in congress|u\.?s\.? representative|house of representatives)\b",name))
         return bool(re.search(
-           rf"(?i)\\b(?:representative in congress|u\\.?s\\.? representative|house of representatives)\\s+(?:district\\s+)?{dist}\\b",
+           rf"(?i)\b(?:representative in congress|u\.?s\.? representative|house of representatives)\s+(?:district\s+)?{dist}\b",
            name))
     return office == "Senate" and row.get("district") is None and (
         row.get("type") == "US Senate" and
-        bool(re.search(r"(?i)\\b(?:united states senator|u\\.?s\\.? senate|u\\.?s\\.? senator)\\b",name)))
+        bool(re.search(r"(?i)\b(?:united states senator|u\.?s\.? senate|u\.?s\.? senator)\b",name)))
 
 def find_one(key, request=fetch, now=None):
     office, seat = key.split("|")
