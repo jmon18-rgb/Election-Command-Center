@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-25T04:28:50.321057Z",
+  "updated_at": "2026-10-25T04:45:43.730466Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
@@ -261,6 +261,25 @@
   ],
   "items": [
     {
+      "id": "ffb589b8af1120224225",
+      "title": "\u2018This is not normal\u2019: Feds demand California counties set aside \u2018likely\u2019 noncitizen ballots - Los Angeles Times",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQaFBSdEwxdndVSWV2c0Q2dFk0Y2ZVcHpzZmFCbVoxQmdNNGpoZU9xcWhMelR1SncxWUJ3ZC1xWnFzZjVWZ3BMRmZHbmhxTjdzbHpEc1FTdlhIclZ2Q0JVU2Y5bmtfU0hPYWhtS1dkWEcwODkyZ3BlWExpT05jaVNwVGZESzlpdzg5cllKdUd4VVhQX19PRzVrV05fZVBuNm05MXJiX3ktMFhXU05jSnc?oc=5",
+      "publisher": "Los Angeles Times",
+      "published_at": "2026-10-24T19:24:00Z",
+      "detected_at": "2026-10-25T04:45:43.730466Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "bea78f36d536a8dd3fb2",
       "title": "Virginia election officials take steps to address interference concerns - Daily Press",
       "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOSnZBMU5KR21tTThaQW0tbjNGTlhmU185RXdrcVgyN3hOdHM0MkFLcldjLUpmSVNfMklXcjdqZlpfb240eTlSR0h3YVotNVo5QmJLc0Z1Q2pscGpydDAtYzY4aGJBZm1yNkZrcUhFa3AwMndvLUZ2QWhvRlNxMWF2WFpXX00?oc=5",
@@ -273,6 +292,25 @@
       "topic_hints": [
         "security",
         "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "ee869c7560bd8b0e5fd6",
+      "title": "What's going on with Dan Sullivan and Dan Sullivan? The Alaska Senate litigation, explained - PBS",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNSFVIc3JwcXdJMHBwQ2duVVp4ODBDWUs0TUNmYm5JazhWelV6Zy1kcF9YTmVSNlAtbFgzakNhenRJNS1YT2otQzVJd1dGV2N4ZEJaMExSLTlpcHpveFlXOHctR0JUWUtCNjZDN0tva3FHYTc1aXZxMHhHQ2cyUUE4ME1abHd3cTgzUEx1UVFiMFNGRDY3NUFPOU9GYlpDdkEwNWFNVm5wV3ZGeTg4SmtDRHFQeUtvVHNDZGtmaENOWDFqT2130gHKAUFVX3lxTE5hWDFtRS1JSTdyOXBLc09EZkNlVnhHenhsTE5HenU0MHJGVVpuNHg5TUJuY3dSdDkxcnAyaXk1WFpsR2J1T0lVS0ZKSkVNM2R5WEFSTkwwNDBoRGJxTlJ4UmswRk9mZzFUMlB2dzdlM3RpV0hQUzZMazR0Z3dWYUVRN1BTVWpyTFg4QnRYQU5FWXVkWkRwVFNyM3FXUXNHUVNickFXdFQyS0FURFc1VjZUaHBwd0pTeG9hc1lPNGlWRkhzM1VoYm5Gb0E?oc=5",
+      "publisher": "PBS",
+      "published_at": "2026-10-24T16:36:58Z",
+      "detected_at": "2026-10-25T04:45:43.730466Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -4909,44 +4947,6 @@
       ],
       "topic_hints": [],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "f4bbb3bc84dd4b9d1bae",
-      "title": "Portland city council Districts 3 and 4 face reelection after just 2 years - KATU",
-      "url": "https://news.google.com/rss/articles/CBMikwJBVV95cUxOYU14RlVWbTRmWWZ3R0MtTmJTVlZGSXVKRVE4UUFIYXlnUWpRN2toYnE0NXpHd1AtNXRNSXUxb2U0VnhySE85R0VQdWljeVhwcTdxRnRYOFFPNnk3T01xMUVuSHNfNTZjZHhqUXpSLVFLLThlbFlSZ3FlRDVpZFgweWc1a1pSSGNWNVFTaEk0WEdROHJ3SGhPX3JxaWNVaHhVT19uRFRGZF9Xdjl5YlU0dExuazBRcjBOaFZ0c0NyMlE3V0lLWHhKaURzNW15bVZ4d3dvV3ZZZzVrdlJfZVRCZVZpVDhSVEZqZkRNSVJMd1YzWGxwZlhqQmV2N0R2eHVVeEozNHZsdTRLSklGZnhRNEhGQQ?oc=5",
-      "publisher": "KATU",
-      "published_at": "2026-10-13T21:30:44Z",
-      "detected_at": "2026-10-13T21:51:56.712815Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [
-        "3 ",
-        "4 ",
-        "2 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "3482fe530527e24ce7c5",
-      "title": "Judge denies request to reopen 92 closed Tarrant County voting locations - WFAA",
-      "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxPcWVwVTFfM2x0cTY1T3lCSTI1bDdUc1ZTdXJrTC1XdlE2RnRqR2ZJRTdYX0xOajRsVGRpNE1BMUJQWVkwMmQ4d0dVekFMdVBKaExIdUJDcW5sZ2VjM3FPbWZ5WWxSNnhEUU5iU1U1Rkt0bHFtZHZiOE5ITFNTZFB0ZU5URUlRLWhsYUZEX3RhT0NuMlFFYkpvZU9BWnF4WXVoQWo2UVEwOXlxakhQWkEwU24wcG40SmdXS0hSOVp4VWRDNkRZNGZLWDd3RWszRzJwUnFSeTk0dGp1a08tOVRjaWdGbEVyUFhtbnVwaTAzQldxak1aSlR6WmpWVHdaY29BSjV2Y2w4eGo4TzlFQUE?oc=5",
-      "publisher": "WFAA",
-      "published_at": "2026-10-13T21:24:00Z",
-      "detected_at": "2026-10-13T21:51:56.712815Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [
-        "92 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
