@@ -19,7 +19,7 @@ class FairfaxRealClockReplayTests(unittest.TestCase):
         x = validate(self.sample)
         self.assertEqual(x["status"],"SOURCE_MATCHED_REAL_COUNTS_NOT_CALIBRATED")
         self.assertEqual(x["geography"],"VA Fairfax County only")
-        self.assertEqual(x["first_page_originals_visually_verified"],2)
+        self.assertEqual(x["first_page_originals_visually_verified"],3)
         self.assertEqual(x["approved_needle_calibration_inputs"],0)
         self.assertFalse(x["may_modify_2026_odds"])
         self.assertTrue(x["source_generation_clock_not_capture_time"])
