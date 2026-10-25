@@ -203,6 +203,16 @@ assert.match(t,/House NH-01 — No verified automated source ID/);
 assert.match(t,/may publish only after reporting/,
  'NH official House report link is not a real-time source promise');
 assert.match(t,/MA — No verified automated source ID/);
+assert.match(t,/Boston unofficial municipal results/);
+assert.match(t,/BOSTON ONLY, not statewide/);
+assert.match(t,/currently September primary/);
+const maUnsafe=official.links.map(x=>x.state==='MA'?{...x,
+ municipal_unofficial_check:{...x.municipal_unofficial_check,
+ url:'javascript:alert(1)'}}:x);
+const maUnsafeHost=node('div');
+api.render(maUnsafeHost,pulse,{createElement:node},maUnsafe);
+assert(!flatten(maUnsafeHost).includes('Boston unofficial municipal results'),
+ 'The municipal fallback must require the exact independently checked HTTPS page');
 assert.match(t,/certified results only; NOT live/);
 assert.match(t,/MS — Supplemental source ID · no current results/);
 assert(!t.includes('MS — No verified automated source ID'),

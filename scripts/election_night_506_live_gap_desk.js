@@ -247,6 +247,20 @@
 
    elt('span',warnings[link.mode]||
     ' · manual reference only, NOT a validated live feed',line);
+   // Massachusetts does not publish statewide unofficial Election Night
+   // counts. Boston's municipal results page is a human-only PARTIAL
+   // reference and currently features the September 2026 primary;
+   // never turn this link into 2026 Senate reporting/coverage.
+   const local=row.id==='Senate|MA'?link.municipal_unofficial_check:null;
+   if(local?.scope==='BOSTON_CITY_ONLY_NOT_MASSACHUSETTS_STATEWIDE'&&
+      local.general_2026_live_returns_verified===false&&
+      local.auto_vote_ingestion_authorized===false&&
+      local.url==='https://content.boston.gov/departments/elections/unofficial-election-results'){
+    const localLink=elt('a',' · Boston unofficial municipal results ↗',line);
+    localLink.href=local.url;localLink.target='_blank';
+    localLink.rel='noopener noreferrer';
+    elt('span',' · BOSTON ONLY, not statewide · currently September primary; check for November general returns',line);
+   }
   }
   // House and governor gaps must be actionable on the same laptop screen.
   // These are verified identity GAPS only, not all races awaiting returned
