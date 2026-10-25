@@ -18,6 +18,9 @@ from preflight_election_night_providers import fetch_json
 BASE = "https://civicapi.org/api/v2/race/"
 PRIORITY = ("Senate|ME", "Senate|OH-special")
 MAX_PER_PROBE = 7
+EXACT_2026_GENERAL_DATE = re.compile(
+    r"2026-11-03(?:T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\.[0-9]+)?(?:Z|[+-][0-9]{2}:[0-9]{2}))?"
+)
 ROWS_PER_SHARD = 5
 
 def parse_pins(ledger, adapter_text):
@@ -75,9 +78,11 @@ def validate_detail(item, doc):
         doc.get("municipality") not in (None,"") or
         doc.get("district") not in (None,"") or
         not isinstance(doc.get("election_date"),str) or
-        not doc["election_date"].startswith("2026-11-03") or
+        EXACT_2026_GENERAL_DATE.fullmatch(doc["election_date"]) is None or
         doc.get("election_name")!=item["name"] or
         doc.get("election_type")!="US Senate" or
+        any(doc.get(flag) is True for flag in ("is_test","test","mock","is_mock")) or
+        doc.get("active") is False or
         not isinstance(doc.get("candidates"),list) or
         len(doc["candidates"])>60):
         raise ValueError("Pinned civicAPI detail returned mismatched 2026 Senate contest")
