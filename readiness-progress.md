@@ -80,6 +80,23 @@ Last daily report date: 2026-10-25 (evening continuation report).
   remains paused; the decode failure is not being bypassed. Production #425
   remains the already-verified deployed baseline.
 
+## October 25 — newly changed California ledger caught by broad CI
+
+- PR #427's broad validation caught five additional current-main invalid House
+  details: CA-20, CA-21, CA-23, CA-24 and CA-25. The source ledger now has 14
+  unresolved identities rather than the previous nine. Do not hide or reset them.
+- The failure was the existing requirement that each current identity gap has
+  independently checked human references. Added exact DDHQ Nov 3 race pages for
+  the five districts and the official California 2026 voter-guide results chapter.
+  The chapter describes the post-close public portal; it is not a live vote feed.
+  Publisher landing pages are forecasts before an explicit actual race call.
+- Merged current-main source data into the recovery branch and reran the original
+  safeguards unchanged: all current gaps are mapped, exact district routes are
+  checked, and no votes/coverage/call flags are promoted. All 12 core checks and
+  the Python manual-reference tests pass. Full local DOM run 1232 also passed.
+- Publication remains gated on new current-head CI. Follow-up #428 needs these
+  source-reference additions merged from #427 before its own final validation.
+
 ## October 25 — first continuation: shared celebration player
 
 - PR #424 merged as 44bd3731 after all three workflows passed, including broad
