@@ -4534,6 +4534,102 @@ $('#jointError').addEventListener('change',event=>{
  modelOddsErrorWidth=jointErrorMultiplier<1?'tight':jointErrorMultiplier>1?'wide':'standard';
  jointRender(true);
 });
+/* The Electorate Lab reruns the actual correlated model against a copied
+ * one-state set of race means. Never writes live model state or vote sources. */
+function labPopulateStates(){
+ const select=$('#labState');
+ if(!select||!jointBasis||select.options.length>1)return;
+ const states=[...new Set(jointBasis.house.map(r=>r.state))].sort();
+ const preferred=select.value;
+ select.replaceChildren(...states.map(state=>{
+  const opt=document.createElement('option');
+  opt.value=state;opt.textContent=state;
+  return opt;
+ }));
+ if(states.includes(preferred))select.value=preferred;
+}
+function labRender(){
+ const status=$('#labStatus'),host=$('#labResults');
+ if(!status||!host)return;
+ if(!jointBasis||!window.ElectorateWhatIf2026||!window.ChamberControlModel){
+  status.textContent='Forecast inputs are still loading; retry when the model is ready.';
+  return;
+ }
+ labPopulateStates();
+ const val=id=>$('#'+id)?.valueAsNumber;
+ const assumptions={state:$('#labState').value,groups:[
+  {share_pct:val('labNoncollegeShare'),margin_change_points:val('labNoncollegeShift')},
+  {share_pct:val('labHispanicShare'),margin_change_points:val('labHispanicShift')}
+ ]};
+ status.textContent='Running matched-draw state sensitivity…';
+ const result=window.ElectorateWhatIf2026.evaluate(
+  jointBasis,assumptions,window.ChamberControlModel.simulate,
+  {samples:2000,seed:20261103});
+ host.replaceChildren();
+ if(!result.ok){
+  status.textContent='Scenario not run · '+result.reason;
+  return;
+ }
+ const swing=(result.state_margin_shift_points>=0?'+':'')+
+  result.state_margin_shift_points.toFixed(2);
+ status.textContent='Conditional '+result.state+' D−R shift '+swing+
+  ' pts · 2,000 matched correlated simulation draws · headline forecast unchanged';
+ const wrap=document.createElement('div');
+ wrap.className='electorate-lab-result-grid';
+ for(const [title,prop,suffix] of [
+  ['Democrats hold House','house_control','%'],
+  ['Democrats hold Senate','senate_control','%'],
+  ['Democrats hold both','both_control','%'],
+  ['Expected D House seats','house_seats','']
+ ]){
+  const b=result.baseline[prop],a=result.scenario[prop];
+  if(!Number.isFinite(b)||!Number.isFinite(a))continue;
+  const tile=document.createElement('div');
+  tile.className='scenario-tile';
+  const header=document.createElement('strong');header.textContent=title;
+  const line=document.createElement('p');line.className='scenario-top';
+  line.textContent=b.toFixed(1)+suffix+' → '+a.toFixed(1)+suffix;
+  const difference=document.createElement('p');difference.className='joint-note';
+  const delta=a-b;
+  difference.textContent='Change '+(delta>=0?'+':'')+delta.toFixed(1)+(suffix||' seats');
+  tile.append(header,line,difference);wrap.append(tile);
+ }
+ host.append(wrap);
+ const caption=document.createElement('p');caption.className='joint-note';
+ caption.textContent='All '+result.affected_races.length+' '+result.state+
+  ' 2026 ballot races · hypothetical Democratic win odds (same random draws)';
+ host.append(caption);
+ const table=document.createElement('table');
+ const head=document.createElement('thead'),hr=document.createElement('tr');
+ for(const heading of ['Race','Before D wins','Scenario D wins','Change']){
+  const cell=document.createElement('th');cell.textContent=heading;hr.append(cell);
+ }
+ head.append(hr);table.append(head);
+ const body=document.createElement('tbody');
+ for(const race of result.affected_races){
+  const tr=document.createElement('tr');
+  const change=race.change;
+  for(const value of [race.race_code,race.before.toFixed(1)+'%',
+   race.after.toFixed(1)+'%',(change>=0?'+':'')+change.toFixed(1)+' pp']){
+   const td=document.createElement('td');td.textContent=value;tr.append(td);
+  }
+  body.append(tr);
+ }
+ table.append(body);host.append(table);
+}
+$('#electorateLabDetails')?.addEventListener('toggle',event=>{
+ if(event.target.open)labPopulateStates();
+});
+$('#labRun')?.addEventListener('click',labRender);
+$('#labReset')?.addEventListener('click',()=>{
+ for(const id of ['labNoncollegeShare','labHispanicShare'])$('#'+id).value='0';
+ for(const id of ['labNoncollegeShift','labHispanicShift'])$('#'+id).value='5';
+ const status=$('#labStatus');
+ if(status)status.textContent='Assumptions reset. Choose voter shares to run a new scenario.';
+ const host=$('#labResults');
+ if(host)host.textContent='No hypothetical electorate currently applied. Published forecast unchanged.';
+});
+
 function jointRenderPollErrorAudit(report,proper){
  const summary=report?
   '2020 poll minus result '+report.cycles[0].bias_points.toFixed(1)+' pts D; '+
