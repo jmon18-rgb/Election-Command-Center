@@ -7,6 +7,12 @@ on:
       - 'scripts/check_house_pins_pages_publication.py'
       - 'scripts/test_check_house_pins_pages_publication.py'
       - '.github/workflows/verify-election-night-pages.yml'
+      - 'scripts/election_night_reconciliation.js'
+      - 'scripts/verified_county_source_contract_2026.js'
+      - 'scripts/election_night_state_county_fips_2026.js'
+      - 'scripts/election_night_early_signals.js'
+      - 'scripts/civicapi_house_2026_adapter.js'
+      - 'scripts/civicapi_state_batch.js'
   push:
     branches: [main]
     paths:
@@ -15,6 +21,12 @@ on:
       - 'scripts/test_check_election_night_pages_runtime.py'
       - 'scripts/check_house_pins_pages_publication.py'
       - '.github/workflows/verify-election-night-pages.yml'
+      - 'scripts/election_night_reconciliation.js'
+      - 'scripts/verified_county_source_contract_2026.js'
+      - 'scripts/election_night_state_county_fips_2026.js'
+      - 'scripts/election_night_early_signals.js'
+      - 'scripts/civicapi_house_2026_adapter.js'
+      - 'scripts/civicapi_state_batch.js'
   workflow_dispatch:
   schedule:
     # Check the public entrypoint twice daily before and on Election Night.
@@ -56,7 +68,7 @@ jobs:
           else
             echo "enabled=true" >> "$GITHUB_OUTPUT"
           fi
-      - name: Inspect ACTUALLY SERVED index, four JS blobs and 506-race manifests
+      - name: Inspect ACTUALLY SERVED index, ten JS blobs and 506-race manifests
         if: steps.window.outputs.enabled == 'true'
         env:
           DASHBOARD_SITE_URL: ${{ vars.DASHBOARD_SITE_URL }}
