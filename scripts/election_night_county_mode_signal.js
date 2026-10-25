@@ -13,6 +13,12 @@
  const goodInt=n=>Number.isSafeInteger(n)&&n>=0;
  const goodLink=u=>typeof u==='string'&&/^https:\/\//.test(u);
  const fail=why=>Object.freeze({eligible:false,reason:why,may_move_national_needle:false});
+ function isCanonicalCounty(state,fips){
+  const canonical=typeof module!=='undefined'&&module.exports?
+   require('./election_night_state_county_fips_2026.js'):
+   typeof window!=='undefined'?window.ElectionNightStateCountyFIPS2026:null;
+  return canonical?.matches?.(state,canonical.PREFIX?.[state],fips)===true;
+ }
  // A valid election-cycle date is not evidence that precincts in THIS
  // state have finished voting. Require both publication and viewer clock
  // to clear the canonical state earliest-close rule, never just a
@@ -26,7 +32,10 @@
  }
  function evaluate(input,now=Date.now()){
   if(input?.election!=='2026-11-03'||!['senate','house','governor'].includes(input.office)||
-    !/^[A-Z]{2}-(?:SEN|GOV|\d{2})$/.test(input.race_code||''))
+    !/^[A-Z]{2}-(?:SEN|GOV|\d{2})$/.test(input.race_code||'')||
+    (input.office==='senate'&&!input.race_code.endsWith('-SEN'))||
+    (input.office==='governor'&&!input.race_code.endsWith('-GOV'))||
+    (input.office==='house'&&!/^[A-Z]{2}-\d{2}$/.test(input.race_code)))
    return fail('race_identity_unverified');
   const t=Date.parse(input.as_of||'');
   if(!Number.isFinite(t)||t<start||t>now+15*60000||now-t>180*60000)
@@ -38,15 +47,17 @@
   if(input.source?.validated!==true||input.baseline_source?.validated!==true||
     !goodLink(input.source.url)||!goodLink(input.baseline_source.url))
    return fail('source_provenance_missing');
-  if(!Array.isArray(input.units)||!input.units.length||
+  if(!Array.isArray(input.units)||!input.units.length||input.units.length>5000||
     !goodInt(input.expected_statewide_two_party_ballots)||
     input.expected_statewide_two_party_ballots<10000)
    return fail('unverified_total_ballot_denominator');
   const seen=new Set(),counties=new Set();
   let observed=0,coveredExpected=0,localWeightedResidual=0;
   for(const x of input.units){
-   if(!x||!/^\w{2}:\w[\w-]{1,70}@2026$/.test(x.geography_id||'')||
-      x.geography_id.slice(0,2)!==input.race_code.slice(0,2)||
+   const county=typeof x?.geography_id==='string'?
+    /^([A-Z]{2}):([0-9]{5})@2026$/.exec(x.geography_id):null;
+   if(!x||!county||county[1]!==input.race_code.slice(0,2)||
+      !isCanonicalCounty(county[1],county[2])||
       !['early','election_day','mail'].includes(x.vote_mode))
     return fail('invalid_unit_geometry_or_mode');
    const id=x.geography_id+'|'+x.vote_mode;
@@ -71,6 +82,9 @@
    const bShare=b.dem/(b.dem+b.rep),share=o.dem/ballots;
    localWeightedResidual+=ballots*(share-bShare);
    observed+=ballots;coveredExpected+=x.expected_final_two_party_ballots;
+   if(!Number.isSafeInteger(observed)||!Number.isSafeInteger(coveredExpected)||
+      !Number.isFinite(localWeightedResidual))
+    return fail('inconsistent_reported_or_expected_votes');
   }
   const stateDen=input.expected_statewide_two_party_ballots;
   if(coveredExpected>stateDen*1.05)return fail('local_ballot_universe_exceeds_state');

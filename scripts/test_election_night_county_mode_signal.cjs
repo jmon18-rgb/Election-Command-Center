@@ -3,7 +3,7 @@
 const assert=require('node:assert/strict');
 const {evaluate}=require('./election_night_county_mode_signal.js');
 const now=Date.parse('2026-11-04T03:00:00Z');
-const counties=['Wake','Durham','Mecklenburg'];
+const counties=['37183','37063','37119'];
 const units=counties.map((name,i)=>({
  geography_id:'NC:'+name+'@2026',vote_mode:'early',
  baseline:{year:2024,geography_id:'NC:'+name+'@2026',vote_mode:'early',
@@ -46,7 +46,14 @@ bad(x=>{x.units[2]=structuredClone(x.units[0])},'duplicate_county_mode');
 bad(x=>{x.units[0].reporting_fraction=.20},'precinct_count_confused_with_ballots');
 bad(x=>{x.expected_statewide_two_party_ballots=250000},'reporting_geography_insufficient');
 bad(x=>{x.units[0].observed.dem=50000},'inconsistent_reported_or_expected_votes');
-bad(x=>{x.units[0].geography_id='VA:Wake@2026'},'invalid_unit_geometry_or_mode');
+bad(x=>{x.units[0].geography_id='VA:51107@2026'},'invalid_unit_geometry_or_mode');
+bad(x=>{x.units[0].geography_id='NC:51107@2026'},'invalid_unit_geometry_or_mode');
+bad(x=>{x.units[0].geography_id='NC:37000@2026'},'invalid_unit_geometry_or_mode');
+bad(x=>{x.units[0].geography_id='NC:Wake@2026'},'invalid_unit_geometry_or_mode');
+bad(x=>{x.office='house'},'race_identity_unverified');
+bad(x=>{x.office='governor'},'race_identity_unverified');
+bad(x=>{x.units=Array.from({length:5001},()=>structuredClone(x.units[0]))},
+ 'unverified_total_ballot_denominator');
 bad(x=>{x.source.url='http://insecure.example.org'},'source_provenance_missing');
 bad(x=>{x.units[2].expected_final_two_party_ballots=35000},'precinct_count_confused_with_ballots');
 assert.equal(evaluate({},now).eligible,false);
