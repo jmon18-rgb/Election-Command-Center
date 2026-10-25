@@ -30,10 +30,15 @@
    const controller=new AbortController();
    let timeout=null;
    const work=Promise.resolve().then(()=>fetchJson(url,{
-    mode:'cors',credentials:'omit',cache:'no-cache',
+    mode:'cors',credentials:'omit',cache:'no-cache',redirect:'error',
     headers:{Accept:'application/json'},signal:controller.signal
    })).then(async response=>{
-    if(!response||response.ok!==true)throw Error(
+    // Browser fetch may follow 30x responses to an attacker/alternate feed.
+    // 200 + CORS + plausible votes is NOT evidence that the approved
+    // Open America endpoint actually authored the returned document.
+    if(!response||response.redirected===true||response.url!==url)
+     throw Error('Open America response did not originate at approved source URL');
+    if(response.ok!==true)throw Error(
      'Open America results HTTP '+(response?.status??'unavailable'));
     const doc=await response.json();
     if(!doc||typeof doc!=='object'||Array.isArray(doc))
