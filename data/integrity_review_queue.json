@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-25T15:44:21.365550Z",
+  "updated_at": "2026-10-25T16:07:16.283903Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 245,
@@ -270,6 +270,23 @@
       "state_hints": [],
       "topic_hints": [
         "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "a0c3d8adb526a2bf163a",
+      "title": "The State Officials Defending the Midterms from the President - The New Yorker",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPbWFKOS1yS2tIa1JCdHJKMTk3M2lJSktFQld3MExFVF9LaWY0TFhibGlUazV5OWpaNlc2RVpmbWJDM0djTzk2Z0t5QTNPWmlvOU9pR2tTaFg5SnpPaThNRGtIWlZOOWFRVGl0SEJyVkU2cHFNdWllWjkzeHhNVF8zTmo5NndZUXFiQTcwZlVuemZGdUVpZldXZU9xQUFQQmpQZHBUaXJwWGdjWXc?oc=5",
+      "publisher": "The New Yorker",
+      "published_at": "2026-10-25T10:00:00Z",
+      "detected_at": "2026-10-25T16:07:16.283903Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -4938,25 +4955,6 @@
       "state_hints": [],
       "topic_hints": [
         "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "e6c61a9ec632cc71f3a8",
-      "title": "Clean Elections Commission to high court: Green Party candidates\u2019 harm is self-inflicted - Arizona Mirror",
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPUVI1OUZ1MVVkMFFiVDRITHFTMldSdElnSWpiaUpsd1hKeDc5Q1lBVVIwckhnX00tY1lYc3c3R0I0NTNxOFpTYlBxWW9qRkxFdVVBWnBsMHlQSTdmNEh4eF9WbEZkaFhBM05aNUU5YkpuSmpIa29YQ281SUMxckcxV0tTYmJpOVlRMWxYNVJuNjE2SkdBYzl0ejhsYkEzci1iWnpwTWFzVW1YT3p5dVlFSE1nRUFMLVFmbXd3?oc=5",
-      "publisher": "Arizona Mirror",
-      "published_at": "2026-10-13T22:17:07Z",
-      "detected_at": "2026-10-13T23:02:52.465730Z",
-      "state_hints": [
-        "AZ"
-      ],
-      "topic_hints": [
-        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
