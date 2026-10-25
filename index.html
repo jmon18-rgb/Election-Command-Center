@@ -1296,11 +1296,11 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_fast_lane.js?v=f2a0d35d0a8a"></script>
 <script src="./scripts/election_night_nowcast.js?v=c2396a2d8e7a"></script>
 <script src="./scripts/election_night_early_signals.js?v=36958b325016"></script>
-<script src="./scripts/election_night_priority.js?v=9525d695ed6d"></script>
+<script src="./scripts/election_night_priority.js?v=67317c95ade2"></script>
 <script src="./scripts/election_night_signals.js?v=df31e0cc9e64"></script>
 <script src="./scripts/election_night_poll_closings_2026.js?v=39c725fe013b"></script>
 <script src="./scripts/election_night_reconciliation.js?v=99a6b5420984"></script>
-<script src="./scripts/election_night_506_live_gap_desk.js?v=7036260443cb"></script>
+<script src="./scripts/election_night_506_live_gap_desk.js?v=4cc9efa28294"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
 <script src="./scripts/chamber_control_model.js?v=aa102ced6a53"></script>
 <script src="./scripts/electorate_what_if_2026.js?v=1a5fe3701694"></script>
@@ -3016,7 +3016,8 @@ function enNationalTracked(item){
  const id=enWatchId(item);
  return enWatched.some(x=>enWatchId(x)===id)||
    (enNationalEnabled&&enNationalSeats?.some(x=>enWatchId(x)===id))||
-   enNationalExpanded.has(id)||enMilestoneTracked(item)||enEarlySourceTracked(item)||enAutoTracked(item);
+   enNationalExpanded.has(id)||enMilestoneTracked(item)||enEarlySourceTracked(item)||
+   enAutoTracked(item)||enActiveGapItems().some(x=>enWatchId(x)===id);
 }
 function enNationalToggle(enabled){
  if(!enNationalSeats)return;
@@ -3106,6 +3107,25 @@ function smartDisplayRoster(){
 function enAutoTracked(item){
  return enModeYear===2026&&Date.now()>=Date.parse('2026-11-03T05:00:00Z')&&
   smartAutoWatch().some(x=>x.office===item.office&&x.key===item.key);
+}
+// Source gaps outside the ordinary screenshot/model top-N are automatically
+// included if the CURRENT linked joint model says the race remains
+// competitive. High-confidence seats keep manual backstops instead.
+function enActiveGapItems(){
+ if(enModeYear!==2026||!enPublishedCoverageLedger||
+    !window.ElectionNightCoverageTriage?.priorityGaps||
+    !jointLastResult||!jointBasis||!latestSenateEstimates?.generated_at||
+    jointBasis.generated_from_sources?.model_polling_at!==
+     latestSenateEstimates.generated_at||
+    !Array.isArray(jointLastResult.race_probabilities))return [];
+ const pending=enPublishedCoverageLedger.races.filter(r=>
+  r?.gap_status==='UNRESOLVED_SOURCE_GAP').map(r=>({
+   id:r.id,office:r.office
+  }));
+ const attention=window.ElectionNightCoverageTriage.priorityGaps(
+  pending,jointLastResult.race_probabilities);
+ return attention.races.filter(r=>r.mode==='ACTIVE_LIVE_SOURCE')
+  .map(r=>({office:r.office,key:r.id.slice(r.id.indexOf('|')+1)}));
 }
 function smartModelMap(){
  return new Map((jointLastResult?.race_probabilities||[]).map(x=>[x.race_code,x]));
@@ -3576,8 +3596,16 @@ function enRenderAmbientDesk(){
        else if(blocked&&item.source_identity_status!=='NO_CURATED_PROVIDER_ID')
         supplementalHealth[id]='failed';
       }
+      // Only the currently linked 2026 joint forecast may allocate
+      // scarce live-source work. Never invent 90% from missing/stale odds.
+      const linkedForSourceTriage=Boolean(jointLastResult&&jointBasis&&
+       latestSenateEstimates?.generated_at&&
+       jointBasis.generated_from_sources?.model_polling_at===
+        latestSenateEstimates.generated_at&&
+       Array.isArray(jointLastResult.race_probabilities));
       const audit=window.ElectionNightCoverageTriage.build(
-       enPublishedCoverageLedger,x,sourceHealth,Date.now(),supplementalHealth);
+       enPublishedCoverageLedger,x,sourceHealth,Date.now(),supplementalHealth,
+       linkedForSourceTriage?jointLastResult.race_probabilities:[]);
       window.ElectionNightCoverageTriage.render(
        triageHost,audit,document,enOfficialFallbackLinks);
      }catch(auditError){
@@ -5813,7 +5841,7 @@ async function enRefreshCivicWatchlist(force=false){
     .filter(Boolean):[];
   const autoMonitored=now>=Date.parse('2026-11-03T05:00:00Z')?
     smartAutoWatch().map(x=>({office:x.office,key:x.key})):[];
-  const all=[...new Map([...enWatched,...enNationalWatchItems(),...monitored,...earlyMonitored,...autoMonitored]
+  const all=[...new Map([...enWatched,...enActiveGapItems(),...enNationalWatchItems(),...monitored,...earlyMonitored,...autoMonitored]
     .filter(x=>enShouldProbeSupplemental(x,now))
     .map(x=>[enWatchId(x),x])).values()];
   if(!all.length)return;
@@ -5822,7 +5850,27 @@ async function enRefreshCivicWatchlist(force=false){
   // Unlike the previous cursor (which advanced past omitted candidates),
   // the independent cursors cannot permanently skip lower-priority races.
   const reference=new Map(smartAutoWatch().map(x=>[enWatchId(x),x]));
-  const enriched=all.map(x=>({...x,tip:reference.get(enWatchId(x))?.tip??null}));
+  const linkedModel=Boolean(jointLastResult&&jointBasis&&
+   latestSenateEstimates?.generated_at&&
+   jointBasis.generated_from_sources?.model_polling_at===
+    latestSenateEstimates.generated_at&&
+   Array.isArray(jointLastResult.race_probabilities));
+  const sourceOdds=new Map(linkedModel?jointLastResult.race_probabilities
+   .filter(x=>['house','senate','governor'].includes(x?.office)&&
+    Number.isFinite(x.dem_beats_rep_pct)&&
+    Number.isFinite(x.rep_beats_dem_pct)&&
+    x.dem_beats_rep_pct>=0&&x.dem_beats_rep_pct<=100&&
+    x.rep_beats_dem_pct>=0&&x.rep_beats_dem_pct<=100&&
+    Math.abs(x.dem_beats_rep_pct+x.rep_beats_dem_pct-100)<0.25)
+   .map(x=>[x.office+'|'+x.race_code,x.dem_beats_rep_pct]):[]);
+  const enriched=all.map(x=>{
+   const raceCode=x.office==='House'?
+    (window.HouseAtLargeBridge?.modelCode(x.key)||x.key):
+    x.office==='Senate'?x.key.slice(0,2)+'-SEN':x.key+'-GOV';
+   const odds=sourceOdds.get(x.office.toLowerCase()+'|'+raceCode);
+   return {...x,tip:reference.get(enWatchId(x))?.tip??null,
+    modelWinPct:Number.isFinite(odds)?odds:null};
+  });
   const scan=window.AutomaticRaceDesk?.sourceBatch({
    personal:enWatched,candidates:enriched,primaryStates:[],
    cursor:enCivicSweepCursors,limit:12
