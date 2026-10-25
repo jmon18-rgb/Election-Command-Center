@@ -116,7 +116,7 @@ class PagesDeploymentTests(unittest.TestCase):
     def test_needle_missing_local_poll_close_guard_cannot_be_approved(self):
         needle=self.assets["election_night_nowcast.js"]
         self.assertIn(b"pollsClosedFor(item,actual.asOf,now)", needle)
-        self.assertIn(b"pollsClosedFor(item,new Date(now).toISOString(),now)",needle)
+        self.assertIn(b"winnerClosedFor(item,now)",needle)
         bad=self.assets.copy()
         bad["election_night_nowcast.js"]=needle.replace(
             b"pollsClosedFor(item,actual.asOf,now)",
@@ -125,7 +125,7 @@ class PagesDeploymentTests(unittest.TestCase):
             self.verify(assets=bad)
         bad2=self.assets.copy()
         bad2["election_night_nowcast.js"]=needle.replace(
-            b"pollsClosedFor(item,new Date(now).toISOString(),now)",
+            b"winnerClosedFor(item,now)",
             b"true")
         with self.assertRaisesRegex(ValueError, "local poll-close protections"):
             self.verify(assets=bad2)
