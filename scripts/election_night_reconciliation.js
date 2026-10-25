@@ -41,8 +41,20 @@
      snapshot.active===false)
    return {state:'invalid',usable:false};
   const ts=Date.parse(snapshot.as_of||'');
+  // Raw provider totals guard against pre-election mock snapshots, but
+  // they do NOT establish a source that is "reporting". Some upstream
+  // office payloads contain premature, malformed or wrong-office positive
+  // rows. The national reconciler already rejects those exact races.
   const hasVotes=Object.values(snapshot.races).some(r=>r&&
    Number.isSafeInteger(r.total)&&r.total>0);
+  const validOfficeKey=key=>typeof key==='string'&&(
+   office==='House'?/^[A-Z]{2}-\d{2}$/.test(key):
+   office==='Senate'?/^[A-Z]{2}(?:-special)?$/.test(key):
+   /^[A-Z]{2}$/.test(key));
+  const hasValidatedVotes=Object.entries(snapshot.races).some(([key,row])=>
+   validOfficeKey(key)&&row?.total>0&&row.called===false&&!row.winner&&
+   votesByParty(row,'primary')!==null&&
+   voteReleased(key,snapshot.as_of,now));
   if(!Number.isFinite(ts)){
    return !hasVotes&&!snapshot.live&&!snapshot.counting?
     {state:'standby',usable:false}:{state:'invalid',usable:false};
@@ -58,7 +70,11 @@
   // Keep genuine finished snapshots (final=true) when freshly timestamped.
   if(snapshot.live===false&&snapshot.final!==true)
    return {state:hasVotes?'invalid':'standby',usable:false};
-  return {state:hasVotes?'reporting':'current_no_votes',
+  // Transport can be usable even when the only positive count is unsafe.
+  // Do not show "reporting" until at least one office-shaped local-post-close
+  // candidate-count record passes the SAME primary arithmetic as reconciliation.
+  // Invalid individual races stay isolated; valid races are still usable.
+  return {state:hasValidatedVotes?'reporting':'current_no_votes',
    usable:true,asOf:snapshot.as_of};
  }
  // Independent, exact-race count validation. The totals may legitimately

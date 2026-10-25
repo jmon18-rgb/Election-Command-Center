@@ -124,8 +124,37 @@ assert.equal(api.reconcile({...input,snapshots:{
  */
 const preclosePrimary=snapshot('Senate',{'NC':votes(900)});
 preclosePrimary.as_of='2026-11-04T00:20:00Z';
-assert.equal(health(preclosePrimary).state,'reporting',
- 'Other states could legitimately report by 00:20Z; race-specific filter applies');
+assert.equal(health(preclosePrimary).state,'current_no_votes',
+ 'One prematurely positive NC Senate record must not label the office reporting');
+const invalidHealthRows=[
+ {'NC':{total:500,called:true,winner:'Someone',cands:[{n:'D',p:'D',v:500}]}},
+ {'NC':{total:500,called:false,winner:'',cands:[]}},
+ {'NC':{total:500,called:false,winner:'',cands:[{n:'D',p:'D',v:600}]}},
+ {'NC':{total:500,called:false,winner:'',cands:[
+  {n:'Same Person',p:'D',v:250},{n:' same person ',p:'R',v:250}]}},
+ {'WRONG_STATE_SEAT':votes(500)},
+];
+for(const [i,races] of invalidHealthRows.entries()){
+ const damaged=snapshot('Senate',races);
+ assert.equal(health(damaged).state,'current_no_votes',
+  'Malformed positive row '+i+' must never label a 2026 Senate source reporting');
+ assert.equal(health(damaged).usable,true,
+  'Other independently valid zero-vote races still need usable transport');
+ const res=api.reconcile({...input,snapshots:{...input.snapshots,Senate:damaged}});
+ assert.equal(res.records['Senate|NC'].hasReportedVotes,false);
+}
+// A malformed record cannot poison other independently validated
+// post-close races on the same provider transport.
+const mixed=snapshot('Senate',{
+ 'NC':{total:500,called:false,winner:'',cands:[]},
+ 'GA':votes(1000),
+});
+assert.equal(health(mixed).state,'reporting');
+const mixedReconciled=api.reconcile({...input,
+ snapshots:{...input.snapshots,Senate:mixed},
+ supportedStates:[...input.supportedStates,'GA']});
+assert.equal(mixedReconciled.records['Senate|NC'].hasReportedVotes,false);
+assert.equal(mixedReconciled.records['Senate|GA'].hasReportedVotes,true);
 x=api.reconcile({...input,snapshots:{...input.snapshots,Senate:preclosePrimary}});
 assert.equal(x.senate.reported,1,'NC pre-close primary votes must not be counted');
 assert.equal(x.records['Senate|NC'].hasReportedVotes,false);
