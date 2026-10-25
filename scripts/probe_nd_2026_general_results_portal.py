@@ -18,7 +18,7 @@ from national_results_coverage_pulse import state_poll_closings
 OFFICIAL = "https://www.sos.nd.gov/elections/election-results"
 PORTAL = "https://resultsnd.sos.nd.gov/"
 NEWS = "https://www.sos.nd.gov/news/secretary-state-launches-new-election-night-results-website"
-MAX_BYTES = 250_000
+MAX_BYTES = 1_000_000
 STATUS = "ND_2026_OFFICIAL_RESULTS_PORTAL_METADATA_ONLY_NOT_VOTES"
 SCHEDULE_EXPECTED = "Nov 3, 2026; ND SOS says unofficial county returns available beginning 8 PM local"
 
@@ -155,9 +155,15 @@ def probe(now=None):
             else:
                 portal, found_portal = body, True
         except (ValueError, TimeoutError, urllib.error.URLError, UnicodeError) as exc:
-            # Log only class name. Never expose redirected destinations,
-            # downloaded portal contents or candidate vote records.
-            errors.append({"endpoint": name, "error_type": type(exc).__name__})
+            # Emit ONLY fixed local diagnostic strings, not remote response
+            # bodies, redirected URL parameters or source vote content.
+            error = {"endpoint": name, "error_type": type(exc).__name__}
+            if isinstance(exc, ValueError) and str(exc) in (
+                "Unapproved official metadata URL",
+                "Official URL changed identity",
+                "Official landing HTML oversized"):
+                error["safe_failure_reason"] = str(exc)
+            errors.append(error)
     report = evaluate(office, portal, now, office_available=found_office,
                       portal_available=found_portal)
     report["fetch_errors"] = errors
