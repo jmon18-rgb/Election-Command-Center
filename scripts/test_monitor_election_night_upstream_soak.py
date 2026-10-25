@@ -149,7 +149,12 @@ class HealthSoakTests(unittest.TestCase):
             if not missing:
                 altered.pop("source")
             altered["races"]={"TX-01":positive}
-            with self.assertRaisesRegex(ValueError,"state source identity"):
+            # An explicitly foreign source is already rejected by the
+            # envelope parser; missing/blank is rejected by positive-vote
+            # primary provenance below it.
+            reason=("bounded exact-office" if missing.get("source")=="civicAPI"
+                    else "state source identity")
+            with self.assertRaisesRegex(ValueError,reason):
                 validate_primary(altered,"House",now)
         empty=valid("House")
         empty.pop("source")
