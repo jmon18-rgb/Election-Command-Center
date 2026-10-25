@@ -139,9 +139,19 @@ const txSource={...detail,...txRow,election_type:'House of Representatives',
  last_updated:'2026-11-04T01:10:00Z',candidates:detail.candidates};
 assert(api.validate(txItem,txRow,txSource,now),
  'Partially counted House votes may report after earliest local close');
-assert.equal(api.validate(txItem,txRow,{...txSource,candidates:
- txSource.candidates.map((c,i)=>({...c,winner:i===0}))},now),null,
+const txPrematureCall=api.validate(txItem,txRow,{...txSource,candidates:
+ txSource.candidates.map((c,i)=>({...c,winner:i===0}))},now);
+assert.equal(txPrematureCall?.total,1000,
+ 'An early winner flag must not discard legitimate counted House votes');
+assert.equal(txPrematureCall?.called,null,
  'Do not publish House winner hints before the final applicable close');
+const prematurelyTimestampedFinal={...txSource,last_updated:'2026-11-04T02:10:00Z',
+ candidates:txSource.candidates.map((c,i)=>({...c,winner:i===0}))};
+const preFinalObserver=api.validate(txItem,txRow,prematurelyTimestampedFinal,
+ Date.parse('2026-11-04T01:59:59Z'));
+assert.equal(preFinalObserver?.called,null,
+ 'Future-skew tolerance may preserve partial votes but never permit a call before final closure');
+assert.equal(preFinalObserver?.total,1000);
 const txAfterFinal={...txSource,last_updated:'2026-11-04T02:10:00Z',
  candidates:txSource.candidates.map((c,i)=>({...c,winner:i===0}))};
 assert.equal(api.validate(txItem,txRow,txAfterFinal,now).called,'Example Democrat');
