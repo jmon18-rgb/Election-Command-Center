@@ -90,6 +90,21 @@ class HealthSoakTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 validate_primary(changed,"Senate")
 
+    def test_explicit_test_or_inactive_envelopes_never_pass_monitor(self):
+        # Empty and positive-count responses must both be excluded from a
+        # clean production-source audit when provider marks them non-live.
+        base=valid("Senate")
+        for override in ({"is_test":True}, {"test":True}, {"mock":True},
+                         {"is_mock":True}, {"active":False}):
+            with self.subTest(flag=override):
+                with self.assertRaisesRegex(ValueError, "mock, test or inactive"):
+                    validate_primary({**base, **override}, "Senate")
+        # Flags explicitly false (or absent) do not interfere with
+        # a normally healthy pre-election zero-return source.
+        self.assertEqual(validate_primary({
+            **base, "is_test":False, "mock":False, "active":True
+        }, "Senate")["race_entries"], 0)
+
     def test_positive_election_votes_require_candidate_integrity_and_state_clock(self):
         import datetime as dt
         now=dt.datetime(2026,11,4,3,0,tzinfo=dt.timezone.utc)
