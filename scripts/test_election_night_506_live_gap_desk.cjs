@@ -41,11 +41,20 @@ const modelForAttention=[
  {office:'senate',race_code:'MA-SEN',dem_beats_rep_pct:96,rep_beats_dem_pct:4},
 ];
 const policy=api.build(ledger,res,state,now,{},modelForAttention);
-assert.equal(policy.gapAttention.races.length,8);
+// Discovery is a LIVE generated 506-race ledger: a newly invalidated race
+// (for example AL-07's Oct 25 INVALID_DETAIL) must become a ninth gap,
+// rather than failing tests or silently retaining stale provider assurance.
+const actualGapIds=ledger.races.filter(r=>
+ r.gap_status==='UNRESOLVED_SOURCE_GAP').map(r=>r.id);
+const modelFixtureIds=new Set(['House|AK-00','House|NH-01','House|NH-02',
+ 'House|DE-00','House|ND-00','House|SD-00','House|WY-00','Senate|MA']);
+const newlyInvalid=actualGapIds.filter(id=>!modelFixtureIds.has(id));
+assert.equal(policy.gapAttention.races.length,actualGapIds.length);
 assert.equal(policy.gapAttention.active,3,
  'Missing NH House districts and AK ballot remain active at sub-90 odds in fixture');
 assert.equal(policy.gapAttention.lightChecks,5);
-assert.equal(policy.gapAttention.needsOdds,0);
+assert.equal(policy.gapAttention.needsOdds,newlyInvalid.length,
+ 'New source gaps without linked odds must stay under odds review');
 assert.deepEqual(policy.gapAttention.races.slice(0,3).map(x=>x.id),
  ['House|AK-00','House|NH-01','House|NH-02']);
 assert.equal(policy.gapAttention.races.find(x=>x.id==='House|DE-00').mode,
@@ -56,8 +65,8 @@ assert.equal(policy.totals.House.reported,1);
 assert.equal(policy.professional_calls_verified,0);
 assert.equal(policy.may_update_model,false);
 const noModel=api.build(ledger,res,state,now,{},[]);
-assert.equal(noModel.gapAttention.needsOdds,8,
- 'No linked probabilities means unknown, not eight allegedly safe seats');
+assert.equal(noModel.gapAttention.needsOdds,actualGapIds.length,
+ 'No linked probabilities means unknown, not falsely safe seats');
 assert.equal(noModel.gapAttention.lightChecks,0);
 const onlyDem=api.priorityGaps([{office:'House',id:'House|DE-00'}],[
  {office:'house',race_code:'DE-01',dem_beats_rep_pct:99}]);
@@ -267,8 +276,8 @@ assert.match(flatten(editorialHost),/DDHQ public X race-call feed/);
 assert.match(flatten(editorialHost),/media calls are unofficial/);
 assert.equal(policy.professional_calls_verified,0,
  'Manual-check links cannot invent verified provider race calls');
-assert.equal(policy.unverifiedMachineIds.length,8,
- 'A DDHQ web page is not an approved machine-readable race-ID source');
+assert.equal(policy.unverifiedMachineIds.length,pendingIds.length,
+ 'DDHQ web pages cannot erase dynamically unresolved machine race IDs');
 const forged={...editorial,race_pages:[...editorial.race_pages.slice(1),
  {id:'House|AK-00',url:'javascript:alert(1)'}],
  newsroom_social:'javascript:alert(2)'};
