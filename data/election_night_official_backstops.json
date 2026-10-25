@@ -80,7 +80,16 @@
         "Senate|MA"
       ],
       "verified_at": "2026-10-24",
-      "source_reference": "https://www.sec.state.ma.us/divisions/elections/voting-information/announcing-certifying.htm"
+      "source_reference": "https://www.sec.state.ma.us/divisions/elections/voting-information/announcing-certifying.htm",
+      "municipal_unofficial_check": {
+        "name": "Boston Election Department",
+        "url": "https://content.boston.gov/departments/elections/unofficial-election-results",
+        "scope": "BOSTON_CITY_ONLY_NOT_MASSACHUSETTS_STATEWIDE",
+        "current_page_cycle": "2026-09-01_state_primary",
+        "general_2026_live_returns_verified": false,
+        "auto_vote_ingestion_authorized": false,
+        "verified_at": "2026-10-24"
+      }
     },
     {
       "state": "MS",
