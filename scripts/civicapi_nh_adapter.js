@@ -6,11 +6,21 @@
   const BASE='https://civicapi.org/api/v2';
   const DAY='2026-11-03';
   const COUNTING_START=Date.parse('2026-11-03T05:00:00Z');
+  const disabled=x=>Boolean(x&&(x.is_test===true||x.test===true||
+    x.mock===true||x.is_mock===true||x.active===false||x.live===false));
+  function pollGate(){
+    return typeof module!=='undefined'&&module.exports?
+      require('./election_night_poll_closings_2026.js'):
+      root?.ElectionNightPollClosings2026;
+  }
+  const votesAllowed=(total,updated,now)=>pollGate()?.allowed?.('NH',total,updated,now)===true;
+  const callAllowed=(total,updated,now)=>pollGate()?.winnerAllowed?.('Senate','NH',total,updated,now)===true;
   const supports=item=>item?.office==='Senate'&&item?.key==='NH';
   const validDate=value=>typeof value==='string'&&
-    /^2026-11-03(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2}))?$/.test(value);
+    /^2026-11-03(?:T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d+)?(?:Z|[+-](?:0\d|1[0-4]):[0-5]\d))?$/.test(value)&&
+    Number.isFinite(Date.parse(value.length===10?value+'T00:00:00Z':value));
   function match(item,row){
-    return supports(item)&&row&&row.country==='US'&&row.province==='NH'&&
+    return supports(item)&&row&&!disabled(row)&&row.country==='US'&&row.province==='NH'&&
       row.municipality==null&&row.district==null&&
       Number.isSafeInteger(row.id)&&row.id>0&&validDate(row.election_date)&&
       row.type==='US Senate'&&row.election_type==='General'&&
@@ -19,8 +29,9 @@
       Array.isArray(row.candidates)&&row.candidates.length<=60;
   }
   function select(item,doc){
-    if(!supports(item)||!doc||!Array.isArray(doc.races)||
-      doc.races.length>20)return null;
+    if(!supports(item)||!doc||disabled(doc)||!Array.isArray(doc.races)||
+      doc.races.length===0||doc.races.length>20||
+      (doc.count!=null&&(!Number.isSafeInteger(doc.count)||doc.count!==doc.races.length)))return null;
     const exact=doc.races.filter(row=>match(item,row));
     return exact.length===1?exact[0]:null;
   }
@@ -38,7 +49,7 @@
     return 'O';
   }
   function validate(item,row,detail,now=Date.now()){
-    if(!match(item,row)||!detail||
+    if(!match(item,row)||!detail||disabled(detail)||
       (detail.id!=null&&detail.id!==row.id)||
       detail.country!==row.country||detail.province!==row.province||
       detail.election_date!==row.election_date||
@@ -74,9 +85,11 @@
     if(updated&&(typeof updated!=='string'||!Number.isFinite(Date.parse(updated))||
       Date.parse(updated)>now+15*60000||
       (total>0&&Date.parse(updated)<COUNTING_START)))return null;
+    if(!votesAllowed(total,updated,now))return null;
     return {provider:'civicAPI',office:'Senate',key:'NH',race_id:row.id,
       last_updated:updated,percent_reporting:detail.percent_reporting,
-      total,candidates,called,source_url:BASE+'/race/'+row.id};
+      total,candidates,called:called&&callAllowed(total,updated,now)?called:null,
+      source_url:BASE+'/race/'+row.id};
   }
   const adapter=Object.freeze({supports,match,select,query,validate});
   if(typeof module!=='undefined'&&module.exports)module.exports=adapter;

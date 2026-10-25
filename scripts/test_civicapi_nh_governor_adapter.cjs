@@ -47,12 +47,30 @@ const invalidSearch=[
   mutate(search,'election_name','New Hampshire Lieutenant Governor'),
   mutate(search,'election_date','2026-09-08T05:00:00.000Z'),
   mutate(search,'election_date','2026-11-03BAD'),
+  mutate(search,'election_date','2026-11-03T25:00:00Z'),
+  mutate(search,'election_date','2026-11-03T12:65:00Z'),
+  mutate(search,'election_date','2026-11-03T23:59:00+18:00'),
   mutate(search,'id','87284'),mutate(search,'id',-1),
   mutate(search,'candidates',null)
 ];
 for(const bad of invalidSearch)assert.equal(adapter.match(item,bad),false,
  'Wrong race must never match: '+JSON.stringify(bad).slice(0,120));
 assert.equal(adapter.select(item,{races:[search]}).id,87284);
+assert.equal(adapter.select(item,{races:[search],count:1}).id,87284,
+ 'Complete provider search cardinality remains usable');
+for(const count of [0,2,-1,1.5,'1',true,NaN]){
+ assert.equal(adapter.select(item,{races:[search],count}),null,
+  'Truncated, inconsistent or malformed provider search count is not unique-race proof');
+}
+for(const marker of [{is_test:true},{test:true},{mock:true},{is_mock:true},
+ {active:false},{live:false}]){
+ assert.equal(adapter.match(item,{...search,...marker}),false,
+  'Explicitly nonproduction source race must be rejected');
+ assert.equal(adapter.select(item,{races:[search],...marker}),null,
+  'Nonproduction search envelope is not source evidence');
+ assert.equal(adapter.validate(item,search,{...counting,...marker},electionNight),null,
+  'Nonproduction detail cannot create 2026 votes');
+}
 assert.equal(adapter.select(item,{races:[search,search]}),null,
  'Multiple exact matches must fail closed');
 assert.equal(adapter.select(item,{races:[mutate(search,'province','NV')]}),null);
@@ -74,6 +92,23 @@ const called={...counting,candidates:[
   {...counting.candidates[0],winner:true},...counting.candidates.slice(1)]};
 assert.equal(adapter.validate(item,search,called,electionNight).called,'Candidate D',
  'Provider calls must remain distinguishable from certifications');
+// NH polls close at 01:00Z November 4: the midnight hour is NOT live votes.
+const beforeClose=Date.parse('2026-11-04T00:59:59Z');
+assert.equal(adapter.validate(item,search,counting,beforeClose),null,
+ 'No NH votes may be reported before 8 PM local poll close');
+const tooEarly={...counting,last_updated:'2026-11-04T00:59:59Z'};
+assert.equal(adapter.validate(item,search,tooEarly,electionNight),null,
+ 'A pre-close source timestamp must not become live after polls close');
+const justClosed={...counting,last_updated:'2026-11-04T01:00:00Z'};
+assert.equal(adapter.validate(item,search,justClosed,Date.parse('2026-11-04T01:00:00Z'))?.total,1000,
+ 'Exactly at NH poll closing, genuine matching source counts become eligible');
+const noClock={...counting,last_updated:null};
+assert.equal(adapter.validate(item,search,noClock,electionNight),null,
+ 'Positive votes without a provider source publication timestamp are unverified');
+const prematureCall={...called,last_updated:'2026-11-04T00:59:59Z'};
+assert.equal(adapter.validate(item,search,prematureCall,electionNight),null,
+ 'Pre-close publication cannot authorize a winner flag');
+
 const invalidDetails=[
   mutate(counting,'id',87283),mutate(counting,'province','NV'),
   mutate(counting,'election_name','New Hampshire Governor Primary'),
