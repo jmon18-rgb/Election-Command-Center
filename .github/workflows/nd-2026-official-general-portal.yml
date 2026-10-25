@@ -1,0 +1,48 @@
+name: North Dakota 2026 official general-election portal discovery
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '12 12,20 * 10 *'
+    - cron: '12 * 3-5 11 *'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/probe_nd_2026_general_results_portal.py'
+      - 'scripts/test_probe_nd_2026_general_results_portal.py'
+      - '.github/workflows/nd-2026-official-general-portal.yml'
+  pull_request:
+    paths:
+      - 'scripts/probe_nd_2026_general_results_portal.py'
+      - 'scripts/test_probe_nd_2026_general_results_portal.py'
+      - '.github/workflows/nd-2026-official-general-portal.yml'
+permissions:
+  contents: read
+jobs:
+  official-2026-link-metadata-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Guard ND 2026 official page, poll close and unapproved vote exclusion
+        run: python scripts/test_probe_nd_2026_general_results_portal.py
+      - name: Audit only official HTML landing links and transport, no result exports
+        run: |
+          python scripts/probe_nd_2026_general_results_portal.py | tee nd-2026-portal-status.json
+          python - <<'PY'
+          import json
+          x=json.load(open('nd-2026-portal-status.json'))
+          assert x["verified_2026_votes"] is None
+          assert x["winner_calls"] is None
+          assert not x["house_nd_00_machine_source_verified"]
+          assert not x["may_update_forecast"]
+          assert not x["may_move_geographic_needle"]
+          print("ND 2026 portal metadata-only probe passed; no votes/calls admitted")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nd-2026-official-portal-link-audit
+          path: nd-2026-portal-status.json
+          retention-days: 15

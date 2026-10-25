@@ -1,0 +1,11 @@
+# North Dakota — Election Night 2026 official portal handoff
+
+**2026-10-24: official state results portal exists; `House|ND-00` machine source remains unresolved.**
+
+The [North Dakota Secretary of State](https://www.sos.nd.gov/elections/election-results) has a **2026 November 3 general election** link to the [official results portal](https://resultsnd.sos.nd.gov/) and says the first unofficial county counts should appear **from 8 p.m. North Dakota time** on Election Night. The [June 5 official announcement](https://www.sos.nd.gov/news/secretary-state-launches-new-election-night-results-website) says the new portal refreshes approximately every ten minutes, supports downloadable election results in several formats, a county map and export controls. That is a promising **real state source** for the previously unresolved at-large U.S. House race; it is not an actual observed live feed or permission for browser ingestion.
+
+The scheduled `nd-2026-official-general-portal` job checks only the state government's exact 2026 general-election **HTML anchor** and the designated HTTPS portal page (without redirects) and publishes **metadata only**. It neither downloads results exports nor reads/counts candidates, winner calls, reported precincts or counties. The app's current official manual backup link remains useful if automated sources fail.
+
+**Required before any vote or needle use:** identify the exact 2026 General Election download/API URL and proper race ID, prove original publication timestamps are after the shared ND local-close rule (2026-11-04 03:00 UTC in the current canonical contract), exclude primary/history/mock/demo views, obtain/document access and licensing conditions, verify full candidate arithmetic and actual browser CORS, run outage/transport recovery trials, and prove county FIPS join for a descriptive county display. A link to an export menu does NOT establish a machine source, future vote freshness, county outstanding ballots or professional calls. Preserve the source ledger gap until all these checks pass.
+
+The SOS's current official 2026 General Election hyperlink selects the exact front-end route https://resultsnd.sos.nd.gov/#election=348. The source monitor strictly checks this fragment as navigation metadata, rejecting historical/primary alternatives. It does not confer machine API access or count any votes.
