@@ -50,6 +50,14 @@ jobs:
         run: |
           npm install --no-save --no-package-lock playwright@1.57.0
           npx playwright install --with-deps chromium
+      - name: Install virtual display window manager
+        run: |
+          # Xvfb alone has no window manager. Chromium cannot reliably
+          # background real OS tabs/windows without X11 focus management.
+          if ! command -v openbox >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq --no-install-recommends openbox
+          fi
       - name: Monitor real deployed tab for an actual elapsed duration
         env:
           MANUAL_MINUTES: ${{ inputs.minutes }}
@@ -71,9 +79,15 @@ jobs:
           # Headed Chromium under Xvfb is necessary for real background
           # document.hidden visibility transitions; headless shell does not
           # verify this capability even if other source checks pass.
-          xvfb-run -a node scripts/monitor_election_night_browser_soak.mjs \
-            --duration-minutes="$minutes" --interval-seconds=60 \
-            --output=/tmp/real_election_browser_tab_soak.json
+          xvfb-run -a -s '-screen 0 1920x1080x24 -ac' bash -c '
+            openbox --sm-disable >/tmp/election-night-wm.log 2>&1 &
+            wm_pid=$!
+            trap "kill $wm_pid 2>/dev/null || true" EXIT
+            sleep 1
+            node scripts/monitor_election_night_browser_soak.mjs \
+              --duration-minutes="$1" --interval-seconds=60 \
+              --output=/tmp/real_election_browser_tab_soak.json
+          ' -- "$minutes"
       - name: Preserve observed browser health including failed checks
         if: always()
         uses: actions/upload-artifact@v4
