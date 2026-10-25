@@ -53,10 +53,22 @@ if(opts.has('check-config')){
   // Chromium's headless shell leaves document.hidden=false for background
   // tabs. Use real headed Chromium under CI Xvfb so visibilitychange can be
   // observed rather than faking it with injected document properties.
-  browser=await chromium.launch({headless:false,args:['--no-sandbox']});
+  browser=await chromium.launch({
+   headless:false,args:['--no-sandbox'],
+   // Keep actual Chromium background/visibility behavior rather than
+   // Playwright's fast, unthrottled background-tab testing defaults.
+   ignoreDefaultArgs:['--disable-background-timer-throttling',
+    '--disable-renderer-backgrounding',
+    '--disable-backgrounding-occluded-windows']
+  });
   const ctx=await browser.newContext({viewport:{width:1440,height:900},
    serviceWorkers:'block',reducedMotion:'reduce'});
   const tab=await ctx.newPage();
+  // Playwright forces every controlled page to look focused using CDP,
+  // including tabs the human could no longer see. Disable this emulation
+  // on both tabs before attempting to measure real visibility changes.
+  const pageCDP=await ctx.newCDPSession(tab);
+  await pageCDP.send('Emulation.setFocusEmulationEnabled',{enabled:false});
   tab.on('pageerror',()=>{report.page_script_errors++});
   tab.on('request',req=>{
    const u=req.url();
@@ -100,8 +112,15 @@ if(opts.has('check-config')){
    // This is NOT claimed to simulate OS sleep or a source outage.
    if(step===Math.floor(steps/3)){
     secondary=await ctx.newPage();await secondary.goto('about:blank');
+    const backgroundCDP=await ctx.newCDPSession(secondary);
+    await backgroundCDP.send('Emulation.setFocusEmulationEnabled',{enabled:false});
     await secondary.bringToFront();
-    await tab.waitForFunction(()=>document.hidden,undefined,{timeout:10000});
+    // Hidden Chromium tabs throttle/suspend requestAnimationFrame. Use
+    // time-based polling; the default Playwright waitForFunction raf poll
+    // can time out even when document.hidden has actually become true.
+    await tab.waitForFunction(()=>document.hidden,undefined,{
+     timeout:10000,polling:250
+    });
     report.background_visibility_confirmed=
       await tab.evaluate(()=>document.hidden);
    }else if(step===Math.floor(steps/3)+2&&secondary){
