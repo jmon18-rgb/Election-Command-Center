@@ -1,0 +1,46 @@
+name: California official November 2026 media result-file identity watch
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 12,22 * 10 *'
+    - cron: '17 * 3-5 11 *'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/probe_ca_2026_media_file_identities.py'
+      - 'scripts/test_probe_ca_2026_media_file_identities.py'
+      - '.github/workflows/ca-2026-official-media-link-watch.yml'
+  pull_request:
+    paths:
+      - 'scripts/probe_ca_2026_media_file_identities.py'
+      - 'scripts/test_probe_ca_2026_media_file_identities.py'
+      - '.github/workflows/ca-2026-official-media-link-watch.yml'
+permissions:
+  contents: read
+jobs:
+  official-media-source-link-check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/test_probe_ca_2026_media_file_identities.py
+      - name: Inspect ONLY official 2026 index HTML, never download result files
+        run: |
+          python scripts/probe_ca_2026_media_file_identities.py | tee ca-2026-media-status.json
+          python - <<'PY'
+          import json
+          x=json.load(open('ca-2026-media-status.json'))
+          assert x["result_files_downloaded"]==0
+          assert x["verified_candidate_votes"] is None
+          assert not x["machine_house_feed_verified"]
+          assert not x["may_update_model"]
+          print("CA 2026 official media link audit passed; zero votes imported")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ca-2026-media-source-link-status
+          path: ca-2026-media-status.json
+          retention-days: 15
