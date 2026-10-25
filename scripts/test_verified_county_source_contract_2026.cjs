@@ -12,6 +12,8 @@ const feed={schema:'county-results-v1',election_date:'2026-11-03',
 const at=Date.parse('2026-11-04T01:00:00Z');
 let out=normalize(feed,expected,at);
 assert(out.ok);assert.equal(out.rows[0].county_id,'37001');
+assert.equal(out.rows[0].election_kind,'regular',
+ 'The official normalized 2026 NC Class II Senate contest is regular');
 assert.equal(out.may_move_national_needle,false);
 for(const altered of [
  {...feed,is_test:true},{...feed,source_verified:false},
