@@ -13,7 +13,7 @@ const primary=json('data/polls.json');
 const recent=json('data/pollresults_recent.json');
 const history=json('data/model_history.json');
 const html=read('index.html');
-const milestoneKeys=['graham','blexas','blue-corn','blansas','maine','nebraska','ohio'];
+const milestoneKeys=['graham','blexas','blue-corn','blansas','maine','nebraska','ohio','talarico','abbott','mississippi'];
 for(const name of milestoneKeys){
  const art=read('assets/milestone-'+name+'.svg');
  assert(art.length>500&&art.length<20000,'Local milestone artwork must be lightweight: '+name);
@@ -137,7 +137,7 @@ async function settle(){
  assert(w.AutomaticRaceDesk?.SEED.length>75,'Automatic Silver-reference race registry must load');
  w.eval(read('scripts/election_night_signals.js'));
  w.eval(read('scripts/election_night_celebration_player.js'));
- assert.equal(w.ElectionNightSignals?.MILESTONES.length,7);
+ assert.equal(w.ElectionNightSignals?.MILESTONES.length,10);
  w.eval(read('scripts/election_night_poll_closings_2026.js'));
  assert(w.ElectionNightPollClosings2026?.allowed,
   'Actual 50-state poll-close contract must load before source reconciliation');
@@ -650,11 +650,11 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  get('#enAlertClear').click();
  fishAudioPlays=beforeSourceCallFishPlays;
  assert.equal(get('#enMilestoneDesk').hidden,false,'2026 mode reveals achievements');
- assert.equal(get('#enMilestoneGrid').querySelectorAll('.en-milestone-card').length,7);
+ assert.equal(get('#enMilestoneGrid').querySelectorAll('.en-milestone-card').length,10);
  assert.equal(get('#jointNightSensitivity').open,false,
   'Keep optional probability-model switches off the ambient election-night screen');
  const posterCards=[...get('#enMilestoneGrid').querySelectorAll('.en-milestone-card')];
- assert.equal(posterCards.filter(el=>el.querySelector('img.en-milestone-thumb')).length,7,
+ assert.equal(posterCards.filter(el=>el.querySelector('img.en-milestone-thumb')).length,10,
   'Every milestone gets its own original illustrated thumbnail');
  assert(posterCards[3].querySelector('img.en-milestone-thumb').getAttribute('src')
   .includes('cdn.loc.gov/service/pnp/ppmsca/23700/23764v.jpg'),
@@ -2856,7 +2856,10 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  await w.eval('enLoad(true)');
  assert.equal(rehearsalHouseCalls,2,
   'The source transport must release its in-flight slot after success');
- assert.match(get('#enStatus').textContent,/Nov 4, 2026/);
+ const expectedHouseSourceTime=new w.Date(rehearsalHouseNew.as_of).toLocaleString('en-US',{
+  month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'});
+ assert(get('#enStatus').textContent.includes(expectedHouseSourceTime),
+  'Accepted House correction must show its source time in the browser timezone');
  assert.equal(get('#enDLeads').textContent,'1');
  assert.equal(get('#enRaces').textContent,'1');
  // Older snapshot arriving through a later request must be rejected while

@@ -13,6 +13,9 @@
   maine:[['🧹','A BROOM WITH A VIEW','Maine prepares a sendoff.'],['🌬️','CHANGE IN THE AIR','Please secure all pointy hats.'],['💙','DING-DONG IN MAINE','The next chapter starts here.']],
   nebraska:[['🏈','UPSET ON THE PRAIRIE','The scoreboard needs a moment.'],['🌽','CORN-FED REBELLION','The establishment calls a timeout.'],['🎉','OSBORN WINS','Independent winner. No assumed caucus.']],
   ohio:[['🌰','A BUCKEYE UNDER PRESSURE','Something is about to crack.'],['⚡','BLUE-SHOCK','The comeback gets a thunderclap.'],['💙','OH! THAT HAPPENED','Ohio takes its victory lap.']],
+  talarico:[['🤘','HOOK ’EM BLUE','Raise the blue horns, Texas.'],['⭐','TALARICO TAKES THE STAGE','One Senate call. One enormous victory lap.'],['💙','TEXAS SENATE: TALARICO','The governor race has its own story.']],
+  abbott:[['🎺','MAKE WAY FOR THE PARADE','The concession podium looks unusually quiet.'],['💙','THE BACKDROP IS LEAVING','Blue confetti has the right of way.'],['🎉','TEXAS GOVERNOR FLIPS','An election defeat. A new chapter.']],
+  mississippi:[['🌊','A CHANGE IN THE CURRENT','Mississippi turns the page.'],['📦','STRAIGHT INTO STORAGE','The retired mascot gets a very blue sendoff.'],['💙','MISSISSIPPI SENATE FLIPS','Leave the old symbols behind.']],
   tsunami:[['🌊','A VERY LARGE WAVE','Preview the grand finale.'],['🌊 🌊','PLEASE SECURE YOUR LAWN SIGNS','The tide has theatrical ambitions.'],['💙','BLUE TSUNAMI','Preview only until national conditions can be verified.']]
  });
  function create({render=()=>{},announce=done=>done(),music=()=>{},valid=()=>true,

@@ -72,3 +72,40 @@ Last daily report date: 2026-10-25 (evening continuation report).
   Preserve independent candidate/race triggers and explicit Nebraska caucus status.
 - Needle data/calibration decision remains targeted for October 27; no new
   geographic predictive calibration or live 2026 vote delivery is claimed.
+
+## October 25 — second continuation: independent candidate celebrations
+
+- Added separate James Talarico Senate and Abbott-defeat governor conditions;
+  neither depends on the other. Existing two-call BLEXAS remains a separate bonus.
+  Added Mississippi Senate to the tracked celebration roster. Candidate/opponent,
+  race, stale-year and call-withdrawal unit tests pass.
+- Added original local SVG blue-horns, concession-parade and retired-mascot/crate
+  artwork, with 11 total preview stories including preview-only Tsunami.
+  Actual Edge 1440px/390px preview checks pass; all three new mobile poster
+  screenshots were visually inspected. All 12 core readiness checks pass.
+- The previous full local DOM run failed on a test assuming Nov 4 UTC while the
+  browser displayed Nov 3 Eastern for the same instant. Replaced the hardcoded
+  calendar-day assertion with the expected source timestamp formatted in the
+  actual browser timezone. That full rerun (session 15416) passed, exercising the
+  player foundation; the expanded roster also needs current-head CI. This changes the test, not source
+  timestamp handling in production.
+- NEEDLE_DELIVERY_DECISION.md records the scoped NC path and concrete data gaps.
+  Existing Fairfax paired-office research audit passed with three shared verified
+  section checkpoints, but zero approved predictive inputs. No new PDF inspection
+  or predictive calibration is claimed; web retrieval attempts were inaccessible.
+- Candidate/artwork review: https://github.com/jmon18-rgb/Election-Command-Center/pull/426
+  A further actual browser check proves that scene animation runs when enabled,
+  that original musical notes are scheduled after the announcement, and that
+  switching to reduced motion stops the active CSS beat. Both viewport checks
+  and all 12 core checks pass. This is not a listening-quality claim.
+- All 26 current-head workflows for player PR #425 passed before merge was
+  requested. It merged as 0f4bd960. At 2026-10-25T23:13:11Z an actual Edge browser
+  loaded the published Pages site, opened a clearly labeled celebration preview,
+  advanced from announcement to scene with a simulated media-ended event, and
+  verified skip plus no browser exceptions. Screenshot inspected. External source
+  requests were blocked for this browser drill; it is not a live-results test.
+- The production smoke then passed against actual Pages HTML, all versioned JS
+  bytes, original MP3 and source/model consistency (polling snapshot 23:11:37Z).
+  Its checkout-index comparison was false as expected because this local branch
+  already contains the not-yet-deployed three-event expansion. Do not describe
+  Talarico/Abbott/Mississippi additions as live until PR #426 passes and deploys.

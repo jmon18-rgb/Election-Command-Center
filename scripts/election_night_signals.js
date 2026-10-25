@@ -37,13 +37,22 @@
    description:'An independent Dan Osborn provider call; never counted as a Democratic Senate win.'},
   {id:'ohio',title:'BUCKEYE BLUE-SHOCK',tag:'OH! That actually happened.',
    icon:'🌰',type:'all',needs:[{office:'Senate',key:'OH-special',party:'D'}],
-   description:'A Democratic provider call in the Ohio special Senate election.'}
+   description:'A Democratic provider call in the Ohio special Senate election.'},
+  {id:'talarico',title:'HOOK ’EM BLUE',tag:'Texas Senate takes a blue victory lap.',
+   icon:'🤘',type:'all',needs:[{office:'Senate',key:'TX',party:'D',winner:/\bjames\s+talarico\b/i}],
+   description:'A source-reported Texas Senate call for James Talarico. No governor result is required.'},
+  {id:'abbott',title:'THE BLUE TEXAS PARADE',tag:'The governor’s concession backdrop has wheels.',
+   icon:'🎺',type:'all',needs:[{office:'Governor',key:'TX',party:'D',opponent:/\bgreg\s+abbott\b/i}],
+   description:'A Democratic Texas governor call against Greg Abbott. No Senate result is required.'},
+  {id:'mississippi',title:'MISSISSIPPI TURNS THE PAGE',tag:'An outdated mascot meets the retirement crate.',
+   icon:'🌊',type:'all',needs:[{office:'Senate',key:'MS',party:'D'}],
+   description:'A Democratic provider call in Mississippi Senate, independently verified for that exact contest.'}
  ]);
  const TRACKED=Object.freeze([
   {office:'Senate',key:'SC'},{office:'Senate',key:'TX'},{office:'Governor',key:'TX'},
   {office:'Senate',key:'IA'},{office:'Governor',key:'IA'},
   {office:'Senate',key:'KS'},{office:'Senate',key:'ME'},{office:'Senate',key:'NE'},
-  {office:'Senate',key:'OH-special'}
+  {office:'Senate',key:'OH-special'},{office:'Senate',key:'MS'}
  ]);
  const fixed=id=>String(id||'').normalize('NFKC').trim().replace(/\s+/g,' ');
  const idOf=x=>x.office+'|'+x.key;
