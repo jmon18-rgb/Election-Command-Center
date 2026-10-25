@@ -32,19 +32,24 @@ const sample={
  background_visibility_confirmed:true,background_resume_observed:true,
  resumed_tab_visible:true,post_resume_primary_requests:2,
  post_resume_primary_healthy_responses:2,
+ post_resume_refresh_trigger:'MANUAL_OWNER_CONTROL_PRE_ELECTION',
  source_requests:{primary:6,supplemental:0},primary_healthy_responses:6,
  source_request_failures:0,source_http_errors:0,
  page_script_errors:0,audit_errors:0,errors:[]
 };
 const ok=assess(sample,5,60);
 assert.equal(ok.passed,true);
-assert.equal(Object.keys(ok.checks).length,11);
+assert.equal(Object.keys(ok.checks).length,12);
+assert.equal(assess({...sample,post_resume_refresh_trigger:'AUTONOMOUS_ELECTION_DAY_FOCUS'},5,60).passed,true,
+ 'Election Day autonomous recovery is a distinct recorded pathway');
 for(const bad of [
  {actual_elapsed_seconds:250},
  {healthy_checkpoints:5},
  {background_visibility_confirmed:false},
  {background_resume_observed:false},
  {resumed_tab_visible:false},
+ {post_resume_refresh_trigger:null},
+ {post_resume_refresh_trigger:'FICTIONAL_ALWAYS_ON'},
  {post_resume_primary_requests:0},
  {post_resume_primary_healthy_responses:0},
  {source_requests:{primary:0}},
