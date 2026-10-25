@@ -7,6 +7,12 @@ on:
       - 'scripts/check_house_pins_pages_publication.py'
       - 'scripts/test_check_house_pins_pages_publication.py'
       - '.github/workflows/verify-election-night-pages.yml'
+      - 'scripts/election_night_reconciliation.js'
+      - 'scripts/verified_county_source_contract_2026.js'
+      - 'scripts/election_night_state_county_fips_2026.js'
+      - 'scripts/election_night_early_signals.js'
+      - 'scripts/civicapi_house_2026_adapter.js'
+      - 'scripts/civicapi_state_batch.js'
   push:
     branches: [main]
     paths:
@@ -15,6 +21,12 @@ on:
       - 'scripts/test_check_election_night_pages_runtime.py'
       - 'scripts/check_house_pins_pages_publication.py'
       - '.github/workflows/verify-election-night-pages.yml'
+      - 'scripts/election_night_reconciliation.js'
+      - 'scripts/verified_county_source_contract_2026.js'
+      - 'scripts/election_night_state_county_fips_2026.js'
+      - 'scripts/election_night_early_signals.js'
+      - 'scripts/civicapi_house_2026_adapter.js'
+      - 'scripts/civicapi_state_batch.js'
   workflow_dispatch:
   schedule:
     # Check the public entrypoint twice daily before and on Election Night.
@@ -39,9 +51,10 @@ jobs:
           python3 scripts/test_check_house_pins_pages_publication.py
           python3 -m py_compile scripts/check_election_night_pages_runtime.py
   deployed-pages:
+    if: github.event_name != 'pull_request'
     needs: offline-contract
     runs-on: ubuntu-latest
-    timeout-minutes: 4
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -56,10 +69,21 @@ jobs:
           else
             echo "enabled=true" >> "$GITHUB_OUTPUT"
           fi
-      - name: Inspect ACTUALLY SERVED index, four JS blobs and 506-race manifests
+      - name: Inspect ACTUALLY SERVED index, ten JS blobs and 506-race manifests
         if: steps.window.outputs.enabled == 'true'
         env:
           DASHBOARD_SITE_URL: ${{ vars.DASHBOARD_SITE_URL }}
         run: |
           site="${DASHBOARD_SITE_URL:-https://jmon18-rgb.github.io/Election-Command-Center/}"
-          python3 scripts/check_election_night_pages_runtime.py --site "$site"
+          # GitHub Pages deployment may trail the main push; never call an
+          # older, self-consistent deployment good. Retry until it catches up.
+          for attempt in 1 2 3 4 5 6; do
+            if python3 scripts/check_election_night_pages_runtime.py --site "$site"; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 6 ]; then
+              echo "Election Night Pages did not match main after retries" >&2
+              exit 1
+            fi
+            sleep 30
+          done
