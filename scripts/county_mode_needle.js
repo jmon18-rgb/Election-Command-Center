@@ -45,12 +45,18 @@
      record.current.county_fips!==record.county_fips||
      record.historical.mode!==record.mode||record.current.mode!==record.mode)
    throw Error('Unverified exact county×mode historical comparison');
+  // Require an explicit source timezone; Date.parse otherwise treats a
+  // naive local-clock string as a plausible reported election result.
+  if(typeof record.current.updated_at!=='string'||
+     !/^2026-11-(?:0[3-9]|[12][0-9]|30)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d{1,3})?(?:Z|[+-](?:0\d|1[0-4]):[0-5]\d)$/.test(record.current.updated_at))
+   throw Error('Unavailable/stale/future 2026 local vote timestamp');
   const t=Date.parse(record.current.updated_at||'');
   if(!Number.isFinite(t)||t<START||t>now+15*60000||now-t>MAX_STALENESS)
    throw Error('Unavailable/stale/future 2026 local vote timestamp');
   const old=record.historical,newVotes=record.current;
   for(const obj of [old,newVotes])
    if(!numeric(obj.dem_votes)||!numeric(obj.rep_votes)||
+      !Number.isSafeInteger(obj.dem_votes+obj.rep_votes)||
       obj.dem_votes+obj.rep_votes<1)throw Error('Invalid reported vote total');
   if(!votesReleased(record.state,newVotes.updated_at,
      newVotes.dem_votes+newVotes.rep_votes,now))
@@ -76,7 +82,8 @@
    reviewed_source_url:record.source_url,source_time:record.current.updated_at};
  }
  function compare({records=[],now=Date.now()}={}){
-  if(!Array.isArray(records))throw Error('County-mode feed must be a list');
+  if(!Array.isArray(records)||records.length>5000)
+   throw Error('County-mode feed must be a bounded list');
   const keys=new Set(),qualified=[],notReady=[];
   for(const rec of records){
    const result=audit(rec,now);
@@ -89,14 +96,22 @@
   const count=qualified.reduce((a,x)=>a+x.votes_recorded,0);
   // Useful only as a summary of OBSERVED eligible units. The same voter
   // can appear in exactly one county×mode. No statewide completion claims.
-  const localSufficient=distinct>=3&&count>=10000;
+  // A simple average of modes from two different states has no defined
+  // election-level reference population. Preserve eligible county detail
+  // but withhold the combined residual until a state-specific model exists.
+  const states=[...new Set(qualified.map(x=>x.state))].sort();
+  const mixedStates=states.length>1;
+  const localSufficient=!mixedStates&&distinct>=3&&count>=10000&&
+   Number.isSafeInteger(count);
   const sumW=qualified.reduce((a,x)=>a+Math.min(x.votes_recorded,20000),0);
   const descriptive=localSufficient&&sumW>0?
    qualified.reduce((a,x)=>a+Math.min(x.votes_recorded,20000)*
       x.unadjusted_two_year_change_points,0)/sumW:null;
   return Object.freeze({
-   status:localSufficient?'OBSERVED_LOCAL_COUNTY_MODE_CHANGES_ONLY':
+   status:mixedStates?'MIXED_STATES_NO_LOCAL_MODE_SUMMARY':
+    localSufficient?'OBSERVED_LOCAL_COUNTY_MODE_CHANGES_ONLY':
     'INSUFFICIENT_COMPLETED_LOCAL_COUNTY_MODE_UNITS',
+   state_scope:states,
    exact_counties:distinct,completed_mode_units:qualified.length,
    qualifying_two_party_votes:count,unready_mode_units:notReady.length,
    county_mode_results:qualified,unready:notReady,

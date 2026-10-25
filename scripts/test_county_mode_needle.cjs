@@ -39,6 +39,19 @@ assert.equal(complete.geography_calibrated_national_swing,false);
 assert.equal(complete.shared_model_update_allowed,false);
 assert.equal(complete.source_calls,0);
 assert.equal(complete.ballots_remaining_forecast,null);
+assert.deepEqual(complete.state_scope,['NC']);
+// Cross-state county/method returns are individually legitimate but cannot
+// be pooled into a single state-local swing just to clear the threshold.
+const va=fixture('51107');va.state='VA';
+va.source_url='https://www.elections.virginia.gov/results/';
+const mixed=api.compare({records:[fixture('37063'),fixture('37065'),
+ fixture('37067'),va],now});
+assert.equal(mixed.status,'MIXED_STATES_NO_LOCAL_MODE_SUMMARY');
+assert.deepEqual(mixed.state_scope,['NC','VA']);
+assert.equal(mixed.sampled_units_unadjusted_change_points,null);
+assert.equal(mixed.shared_model_update_allowed,false);
+assert.throws(()=>api.compare({records:Array(5001).fill(fixture('37063')),now}),
+ /bounded list/);
 const scant=api.compare({records:[fixture('37063')],now});
 assert.match(scant.status,/INSUFFICIENT/);
 assert.equal(scant.sampled_units_unadjusted_change_points,null);
@@ -52,6 +65,15 @@ const unverifiable=fixture('37075');unverifiable.same_geography_verified=false;
 assert.throws(()=>api.audit(unverifiable,now),/Unverified/);
 const noSource=fixture('37077');noSource.source_kind='news_story';
 assert.throws(()=>api.audit(noSource,now),/official-source/);
+for(const stamp of ['2026-11-04T03:20:00',
+ '2026-11-04 03:20:00Z','2026-11-04T03:20:00Z-untrusted']){
+ const malformed=fixture('37079');malformed.current.updated_at=stamp;
+ assert.throws(()=>api.audit(malformed,now),/timestamp/,
+ 'County voting method observation requires timezone-aware ISO publication');
+}
+const unsafe=fixture('37080');
+unsafe.historical.dem_votes=Number.MAX_SAFE_INTEGER;
+assert.throws(()=>api.audit(unsafe,now),/Invalid reported vote total/);
 const stale=fixture('37079');stale.current.updated_at='2026-11-03T22:00:00Z';
 assert.throws(()=>api.audit(stale,now),/stale/);
 // Even a 'verified' postdated or cached local-method count cannot pass
