@@ -15,6 +15,30 @@ assert(out.ok);assert.equal(out.rows[0].county_id,'37001');
 assert.equal(out.rows[0].election_kind,'regular',
  'The official normalized 2026 NC Class II Senate contest is regular');
 assert.equal(out.may_move_national_needle,false);
+// Even legitimate district/office records must not inherit spoofed regular
+// versus special classifications from either the provider or the caller.
+assert.equal(normalize({...feed,election_kind:'regular'},
+ {...expected,election_kind:'regular'},at).ok,true);
+for(const kind of ['special','PRIMARY','regular-test',null]){
+ assert.equal(normalize({...feed,election_kind:kind},expected,at).reason,
+  'SOURCE_CONTRACT_UNVERIFIED','Reject false NC Senate provider kind');
+ assert.equal(normalize(feed,{...expected,election_kind:kind},at).reason,
+  'SOURCE_CONTRACT_UNVERIFIED','Reject false NC Senate caller kind');
+}
+const flExpected={...expected,office:'Senate',state:'FL',state_fips:'12',
+ race_key:'FL-SEN',provider_race_id:'fl-special',election_kind:'special'};
+const flFeed={...feed,office:'Senate',state:'FL',race_key:'FL-SEN',
+ provider_race_id:'fl-special',election_kind:'special',
+ counties:[{...county,fips:'12086',updated_at:'2026-11-04T00:05:00Z'}]};
+const flAt=Date.parse('2026-11-04T00:10:00Z');
+const flNormalized=normalize(flFeed,flExpected,flAt);
+assert.equal(flNormalized.ok,true,
+ 'Genuine 2026 Florida Senate special ballot remains usable');
+assert.equal(flNormalized.rows[0].election_kind,'special');
+assert.equal(normalize({...flFeed,election_kind:'regular'},flExpected,flAt).reason,
+ 'SOURCE_CONTRACT_UNVERIFIED');
+assert.equal(normalize(flFeed,{...flExpected,election_kind:'regular'},flAt).reason,
+ 'SOURCE_CONTRACT_UNVERIFIED');
 for(const [office,race_key] of [
  ['Governor','NC-GOV'],['Senate','AZ-SEN'],
  ['House','NC-99'],['House','NC-00']
