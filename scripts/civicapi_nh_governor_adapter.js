@@ -5,13 +5,23 @@
   const BASE='https://civicapi.org/api/v2';
   const DAY='2026-11-03';
   const POLLS_DAY_START=Date.parse('2026-11-03T05:00:00Z');
+  const disabled=x=>Boolean(x&&(x.is_test===true||x.test===true||
+    x.mock===true||x.is_mock===true||x.active===false||x.live===false));
+  function pollGate(){
+    return typeof module!=='undefined'&&module.exports?
+      require('./election_night_poll_closings_2026.js'):
+      root?.ElectionNightPollClosings2026;
+  }
+  const votesAllowed=(total,updated,now)=>pollGate()?.allowed?.('NH',total,updated,now)===true;
+  const callAllowed=(total,updated,now)=>pollGate()?.winnerAllowed?.('Governor','NH',total,updated,now)===true;
   const supports=item=>item?.office==='Governor'&&item?.key==='NH';
   function validDate(value){
     return typeof value==='string'&&
-      /^2026-11-03(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2}))?$/.test(value);
+      /^2026-11-03(?:T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d+)?(?:Z|[+-](?:0\d|1[0-4]):[0-5]\d))?$/.test(value)&&
+    Number.isFinite(Date.parse(value.length===10?value+'T00:00:00Z':value));
   }
   function match(item,row){
-    return Boolean(supports(item)&&row&&row.country==='US'&&row.province==='NH'&&
+    return Boolean(supports(item)&&row&&!disabled(row)&&row.country==='US'&&row.province==='NH'&&
       row.municipality==null&&row.district==null&&
       Number.isSafeInteger(row.id)&&row.id>0&&validDate(row.election_date)&&
       row.type==='Governor'&&row.election_type==='Statewide'&&
@@ -20,7 +30,9 @@
       Array.isArray(row.candidates)&&row.candidates.length<=60);
   }
   function select(item,doc){
-    if(!supports(item)||!doc||!Array.isArray(doc.races)||doc.races.length>20)return null;
+    if(!supports(item)||!doc||disabled(doc)||!Array.isArray(doc.races)||
+      doc.races.length===0||doc.races.length>20||
+      (doc.count!=null&&(!Number.isSafeInteger(doc.count)||doc.count!==doc.races.length)))return null;
     const matches=doc.races.filter(row=>match(item,row));
     return matches.length===1?matches[0]:null;
   }
@@ -38,7 +50,7 @@
     }
   }
   function validate(item,row,detail,now=Date.now()){
-    if(!match(item,row)||!detail||!Number.isFinite(now)||
+    if(!match(item,row)||!detail||disabled(detail)||!Number.isFinite(now)||
       (detail.id!=null&&detail.id!==row.id)||
       detail.country!==row.country||detail.province!==row.province||
       detail.district!==row.district||detail.election_date!==row.election_date||
@@ -74,9 +86,11 @@
     if(timestamp&&(typeof timestamp!=='string'||!Number.isFinite(Date.parse(timestamp))||
         Date.parse(timestamp)>now+15*60000||
         (total>0&&Date.parse(timestamp)<POLLS_DAY_START)))return null;
+    if(!votesAllowed(total,timestamp,now))return null;
     return {provider:'civicAPI',office:'Governor',key:'NH',race_id:row.id,
       last_updated:timestamp,percent_reporting:detail.percent_reporting,
-      total,candidates,called,source_url:BASE+'/race/'+row.id};
+      total,candidates,called:called&&callAllowed(total,timestamp,now)?called:null,
+      source_url:BASE+'/race/'+row.id};
   }
   const adapter=Object.freeze({supports,match,select,query,validate});
   if(typeof module!=='undefined'&&module.exports)module.exports=adapter;
