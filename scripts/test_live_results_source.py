@@ -56,11 +56,22 @@ def main():
     if len(archived["races"])<10:
         raise AssertionError("Historical Open America rehearsal too sparse to verify client")
     fetch(2024,"Senate")
-    # Pre-election zero-vote JSON may be empty; do not assert invented 2026 races.
+    # The old CORS/schema smoke could be green for a mock or invented
+    # 2026 seat. Reuse the independent canary's exact 506-race and state
+    # scope checks after the network call; no candidate vote data retained.
+    # Lazy import avoids a circular import with the real-clock soak which
+    # imports this module's standalone fetch().
+    from datetime import datetime, timezone
+    from preflight_election_night_providers import validate_primary
     for office in ("House","Senate","Governor"):
         obj=fetch(2026,office)
         if obj.get("counting") and not obj.get("as_of"):
             raise AssertionError("2026 counting without source timestamp")
+        verified=validate_primary(obj,office,datetime.now(timezone.utc))
+        print(f"2026 {office} verified exact-scope source transport; "
+              f"{verified['listed_races']} rows, "
+              f"{verified['positive_vote_races']} current-source positive rows "
+              "(NOT full nationwide coverage or professional calls)")
 
 if __name__=="__main__":
     main()
