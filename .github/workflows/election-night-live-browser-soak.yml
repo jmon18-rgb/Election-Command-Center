@@ -19,8 +19,10 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: actual-election-night-browser-soak
-  cancel-in-progress: false
+  # Superseded PR smoke runs must not queue behind obsolete five-minute
+  # revisions. Never cancel the full live/scheduled two-hour evidence run.
+  group: actual-election-night-browser-soak-${{ github.event_name == 'pull_request' && github.event.pull_request.number || 'scheduled' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   offline-contract:
     runs-on: ubuntu-24.04
