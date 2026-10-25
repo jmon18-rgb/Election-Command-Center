@@ -9,9 +9,12 @@ on:
   pull_request:
     paths:
       - 'scripts/refresh_approved_nc_zip.py'
+      - 'scripts/nc_official_zip_observation_journal.py'
+      - 'scripts/test_nc_official_zip_observation_journal.py'
       - 'scripts/test_refresh_approved_nc_zip.py'
       - 'data/nc_county_results_desk_config.json'
       - 'data/nc_candidate_votes_2026.json'
+      - 'data/nc_senate_zip_observations_2026.json'
       - '.github/workflows/nc-approved-zip-refresh.yml'
 permissions:
   contents: read
@@ -52,6 +55,7 @@ jobs:
         run: |
           python3 -m py_compile scripts/refresh_approved_nc_zip.py
           python3 scripts/test_refresh_approved_nc_zip.py
+          python3 scripts/test_nc_official_zip_observation_journal.py
           python3 scripts/test_build_nc_official_candidate_votes_2026.py
           node scripts/test_nc_official_candidate_votes.cjs
   publish:
@@ -75,11 +79,12 @@ jobs:
           python-version: '3.12'
       - name: Refresh approved exact-source ZIP (disabled before human verification)
         run: python3 scripts/refresh_approved_nc_zip.py
-      - name: Commit both snapshot and new pinned archive fingerprint atomically
+      - name: Commit snapshot, reviewed fingerprint and observation journal atomically
         id: publish
         run: |
           git add data/nc_county_results_desk_config.json
           if [ -f data/nc_candidate_votes_2026.json ]; then git add data/nc_candidate_votes_2026.json; fi
+          if [ -f data/nc_senate_zip_observations_2026.json ]; then git add data/nc_senate_zip_observations_2026.json; fi
           if ! git diff --cached --quiet; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

@@ -16,6 +16,17 @@
       ]
     },
     {
+      "state": "AL",
+      "name": "Alabama",
+      "url": "https://www.sos.alabama.gov/alabama-votes/voter/enr-current-list",
+      "mode": "results_landing_timing_unconfirmed",
+      "verified_at": "2026-10-25",
+      "source_reference": "https://www.sos.alabama.gov/alabama-votes/voter/election-information/2026",
+      "race_ids": [
+        "House|AL-07"
+      ]
+    },
+    {
       "state": "DE",
       "name": "Delaware",
       "url": "https://elections.delaware.gov/results/",
@@ -175,17 +186,21 @@
       ]
     }
   ],
-  "limitations": "Links are human-check references, not verified live feeds, reported votes, or professional race calls. Massachusetts expressly does not publish unofficial statewide election-night results. Mississippi's Secretary of State stated in its 2024 election-day guidance that its office only announces and posts certified results; do not rely on that office as an unofficial live feed without a newly verified 2026 source.",
+  "limitations": "Links are human-check references, not verified live feeds, reported votes, or professional race calls. Massachusetts expressly does not publish unofficial statewide election-night results. Mississippi's Secretary of State stated in its 2024 election-day guidance that its office only announces and posts certified results; do not rely on that office as an unofficial live feed without a newly verified 2026 source. Alabama's current unofficial election-night results landing page does not yet show a 2026 general-election result, and the DDHQ AL-07 results view had 0 votes before Nov 3. A browser page is not an automated source.",
   "public_editorial_calls": {
     "status": "PUBLIC_MANUAL_NEWSROOM_CHECKS_NOT_VOTE_FEEDS_OR_AUTOMATED_CALLS",
     "provider": "Decision Desk HQ Votes Free",
     "free_access_verified": "2026-10-25",
-    "information": "Eight directly reviewed Nov 3 2026 U.S. House/Senate race pages, accessible for manual viewing. Pre-election pages show FORECASTS rather than calls. On/after Election Day, an explicit race call may be verified there; a forecast or social rumor is not a reported call. Never scrape, infer votes or feed these links into automatic 506-race source coverage.",
+    "information": "Nine directly reviewed Nov 3 2026 U.S. House/Senate race pages, accessible for manual viewing. Pre-election pages show FORECASTS rather than calls. On/after Election Day, an explicit race call may be verified there; a forecast or social rumor is not a reported call. Never scrape, infer votes or feed these links into automatic 506-race source coverage.",
     "newsroom_social": "https://x.com/DecisionDeskHQ",
     "race_pages": [
       {
         "id": "House|AK-00",
         "url": "https://votes.decisiondeskhq.com/races/2026-11-03/alaska-us-house-at-large-general-election"
+      },
+      {
+        "id": "House|AL-07",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/alabama-us-house-7-general-election/results"
       },
       {
         "id": "House|DE-00",

@@ -278,7 +278,7 @@
    if(!Array.isArray(pages))return null;
    const matches=pages.filter(x=>x?.id===id&&
     typeof x.url==='string'&&
-    /^https:\/\/votes\.decisiondeskhq\.com\/races\/2026-11-03\/[a-z0-9-]+-general-election$/.test(x.url));
+    /^https:\/\/votes\.decisiondeskhq\.com\/races\/2026-11-03\/[a-z0-9-]+-general-election(?:\/results)?$/.test(x.url));
    return matches.length===1?matches[0].url:null;
   };
   if(attention?.races?.length){

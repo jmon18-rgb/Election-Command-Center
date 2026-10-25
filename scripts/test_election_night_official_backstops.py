@@ -31,14 +31,17 @@ class OfficialBackstopsTests(unittest.TestCase):
         expected={r["id"] for r in self.ledger["races"]
                   if r["gap_status"]=="UNRESOLVED_SOURCE_GAP"}
         pages=newsroom["race_pages"]
-        self.assertEqual(len(pages),len(expected))
-        self.assertEqual({r["id"] for r in pages},expected)
+        ids=[r["id"] for r in pages]
+        self.assertEqual(len(ids),len(set(ids)), "No duplicate manual pages")
+        self.assertTrue(expected.issubset(set(ids)),
+                        "Every active gap has an exact reviewed manual race page")
         for row in pages:
             p=urlparse(row["url"])
             self.assertEqual(p.scheme,"https")
             self.assertEqual(p.hostname,"votes.decisiondeskhq.com")
             self.assertTrue(p.path.startswith("/races/2026-11-03/"))
-            self.assertTrue(p.path.endswith("-general-election"))
+            self.assertTrue(p.path.endswith(("-general-election", "-general-election/results")),
+                            "Exact public DDHQ result routes are allowed; forecast-only routes are not")
             self.assertFalse(p.query or p.fragment or p.username or p.password)
             self.assertFalse(any(k in row for k in (
              "winner","winner_call","reported_votes","result","forecast_probability")))

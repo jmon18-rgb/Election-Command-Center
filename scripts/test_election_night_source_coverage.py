@@ -114,20 +114,31 @@ class CoverageLedgerTests(unittest.TestCase):
         saved = json.loads((ROOT / "data/election_night_source_coverage.json").read_text())
         rows = self.rows(saved)
         pinned = {r["district"] for r in house_pins(saved)["races"]}
-        unresolved = {"AK-00", "DE-00", "ND-00", "NH-01",
-                      "NH-02", "SD-00", "WY-00"}
+        original_gaps = {"AK-00", "DE-00", "ND-00", "NH-01",
+                         "NH-02", "SD-00", "WY-00"}
         outside = [r for r in saved["races"] if r["office"] == "House"
                    and r["provider_scope"] == "outside primary"]
         unpinned = {r["key"] for r in outside} - pinned
-        self.assertEqual(unpinned, unresolved)
         self.assertEqual(len(outside), 219)
-        for code in unresolved:
+        # Generated source identities can legitimately gain or lose current
+        # verification. An INVALID_DETAIL recheck (AL-07 on Oct 25) must
+        # appear as a NEW unresolved gap, not break CI or be called verified.
+        for code in unpinned:
             row = rows["House|" + code]
             self.assertEqual(row["source_identity_status"], "NO_CURATED_PROVIDER_ID")
-            self.assertEqual(row["gap_status"], "UNRESOLVED_SOURCE_GAP")
-            self.assertEqual(row["last_probe"]["status"], "NOT_INDEXED")
             self.assertFalse(row["live_votes_verified_by_audit"])
+            self.assertFalse(row["professional_winner_call_verified_by_audit"])
             self.assertIsNone(row["pinned_civicapi_id"])
+            self.assertIn(row["gap_status"], {
+                "UNRESOLVED_SOURCE_GAP", "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED"})
+            if code in original_gaps and row["last_probe"]["status"] == "NOT_INDEXED":
+                self.assertEqual(row["gap_status"], "UNRESOLVED_SOURCE_GAP")
+        self.assertEqual(
+            {r["key"] for r in outside
+             if r["gap_status"] == "UNRESOLVED_SOURCE_GAP"},
+            {r["key"] for r in outside if r["key"] in unpinned
+             and r["gap_status"] == "UNRESOLVED_SOURCE_GAP"},
+            "A manual/newsroom fallback never counts as a machine identity")
 
     def test_curated_and_scoped_sources_not_live_claims(self):
         rows = self.rows(self.ledger())

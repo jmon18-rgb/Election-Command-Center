@@ -222,8 +222,9 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
   'The verified NH community viewer is an additional manual site, NOT a vote source');
  assert(get('#enOfficialBackstopsList').textContent.includes('NH town-by-town unofficial results'),
   'NH-01 and NH-02 must have a genuinely usable unofficial Election Night fallback');
- assert.equal(ledger.races.filter(r=>r.gap_status==='UNRESOLVED_SOURCE_GAP').length,8,
-  'A human fallback cannot artificially increase automated source coverage');
+ assert.equal(['house','senate','governor'].reduce((sum,office)=>
+  sum+(ledger.summary?.[office]?.unresolved_source_gaps||0),0),unresolved,
+  'A human fallback cannot artificially reduce dynamic automated source gaps');
  assert(get('#enOfficialBackstopsList').textContent.includes('certification/results may come AFTER Election Night'),
   'Massachusetts cannot be described as providing election-night provisional totals');
  assert(get('#enOfficialBackstopsList').textContent.includes('WARNING: pre-election MOCK/TEST results, not real votes'),

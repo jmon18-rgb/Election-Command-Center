@@ -17,8 +17,10 @@ from build_nc_official_candidate_votes_2026 import (
     SOURCE, build, fetch_zip, validate_review,
 )
 from run_nc_official_zip_historical_replay import load_verified_crosswalk
+from nc_official_zip_observation_journal import append as append_observation
 
 OUTPUT_PATH = "./data/nc_candidate_votes_2026.json"
+JOURNAL_PATH = "./data/nc_senate_zip_observations_2026.json"
 # NCSBE closes polls at 7:30 PM ET, November 3 (EST on this date).
 # NEVER accept or fetch an official 2026 ZIP for publication before then.
 POLL_CLOSE = dt.datetime(2026, 11, 4, 0, 30, tzinfo=dt.timezone.utc)
@@ -130,9 +132,22 @@ def main():
     now = dt.datetime.now(dt.timezone.utc).isoformat().replace("+00:00", "Z")
     result = refresh(original, previous, data, fips, now)
     if result["status"] == "UPDATED":
-        # GitHub Actions commits both modified JSON files in a single commit.
+        # Prepare the complete chronology BEFORE writing any files. Only the
+        # exact approved NC Senate source may add replay data; it does not
+        # turn ZIP retrieval time into a state-reported precinct timestamp.
+        journal_path = Path(JOURNAL_PATH.removeprefix("./"))
+        updated_journal = None
+        if result["snapshot"]["race_key"] == "NC-SEN":
+            previous_journal = (json.loads(journal_path.read_text(encoding="utf-8"))
+                                if journal_path.is_file() else None)
+            updated_journal = append_observation(
+                previous_journal, previous, result["snapshot"])["journal"]
+        # GitHub Actions commits all three JSON files in one Git commit. A
+        # broken audit/history validation fails the run without publication.
         out_path.write_text(json.dumps(result["snapshot"], indent=2) + "\n")
         args.config.write_text(json.dumps(result["config"], indent=2) + "\n")
+        if updated_journal is not None:
+            journal_path.write_text(json.dumps(updated_journal, indent=2) + "\n")
     print(json.dumps({"status": result["status"],
                       "source_sha256": hashlib.sha256(data).hexdigest(),
                       "pushed_to_git": False,
