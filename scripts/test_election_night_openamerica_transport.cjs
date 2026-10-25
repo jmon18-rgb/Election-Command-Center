@@ -54,8 +54,7 @@ async function main(){
   'https://evil.example/elections/results.json?year=2026&office=House',
   'http://openamerica.io/elections/results.json?year=2026&office=House',
   'https://openamerica.io/elections/results.json?year=2024&office=House',
-  'https://openamerica.io/elections/results.json?year=2026&office=Senate',
-  undefined
+  'https://openamerica.io/elections/results.json?year=2026&office=Senate'
  ]){
   const origin=create(async()=>({ok:true,status:200,url:actual,
    redirected:false,json:async()=>({year:2026,office:'House',races:{}})}));
@@ -65,6 +64,11 @@ async function main(){
  const redirected=create(async()=>({ok:true,status:200,url:H,
   redirected:true,json:async()=>({year:2026,office:'House',races:{}})}));
  await assert.rejects(redirected.load(H),/approved source URL/);
+ // A genuine Response without observable provenance must fail closed.
+ if(typeof Response==='function'){
+  const unproven=create(async()=>new Response('{}',{status:200}));
+  await assert.rejects(unproven.load(H),/approved source URL/);
+ }
  // Hung Senate request must fail and release the office even when its
  // custom mock ignores the abort signal. A subsequent request is fresh.
  let hungSignal=null,started=0;
