@@ -356,7 +356,12 @@ def probe(district: str, request=fetch, *,
                 # A unique row in a partially returned result page is not
                 # a verified unique 2026 district. Do not publish its ID.
                 return {"district": district, "status": "AMBIGUOUS_OR_TRUNCATED"}
-            found = {r["id"]: r for r in rows if matches(district, r)}
+            candidates = [r for r in rows if matches(district, r)]
+            # Even two duplicate rows with the same ID are an ambiguous
+            # source search, not evidence for a uniquely indexed race.
+            if len(candidates) > 1:
+                return {"district": district, "status": "AMBIGUOUS_RACE"}
+            found = {r["id"]: r for r in candidates}
             if not found and district in ALIAS_GAP_DISTRICTS:
                 # These are the ONLY two additional office-title searches.
                 # Every query is bounded and a truncated/ambiguous response
