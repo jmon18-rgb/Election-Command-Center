@@ -87,11 +87,12 @@ class SourcePreflightTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"Stale"):
             validate_primary(doc,"Senate",
              dt.datetime(2026,11,4,4,0,tzinfo=dt.timezone.utc))
-        # Never exclude a genuine California/WA same-party top-two general
-        # election merely because both candidates have a D preference.
+        # Washington is within the 22-state primary feed and can have a
+        # legitimate same-party top-two House race. California is outside
+        # this feed and requires a separately verified supplemental adapter.
         top={**self.doc,"office":"House","live":False,"final":True,
              "as_of":"2026-11-04T04:15:00Z",
-             "races":{"CA-01":{"total":100,"called":False,"winner":"",
+             "races":{"WA-01":{"total":100,"called":False,"winner":"",
                 "cands":[{"n":"Candidate 1","p":"D","v":60},
                          {"n":"Candidate 2","p":"D","v":40}]}},
              "counts":{"races":1}}
