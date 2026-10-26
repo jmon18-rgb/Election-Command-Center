@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-26T13:31:25.671572Z",
+  "updated_at": "2026-10-26T13:57:15.684737Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -8,9 +8,21 @@
     "awaiting_primary_source": 246,
     "primary_source_checked": 4,
     "advisory_related_headline_buckets": 22,
-    "advisory_related_headlines": 48
+    "advisory_related_headlines": 49
   },
   "advisory_related_headlines": [
+    {
+      "lead_id": "6dbf45936645e0181be8",
+      "headline": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - ABC News - Breaking News, Latest News and Videos",
+      "possibly_related_articles": 4,
+      "distinct_publishers": 4,
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
     {
       "lead_id": "444a238fe9159b1ce81d",
       "headline": "Could California lose ballots over DOJ non-citizen voter claims? - The Desert Sun",
@@ -48,18 +60,6 @@
       ],
       "topic_hints": [
         "security"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "6dbf45936645e0181be8",
-      "headline": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - ABC News - Breaking News, Latest News and Videos",
-      "possibly_related_articles": 3,
-      "distinct_publishers": 3,
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -306,6 +306,24 @@
       "publisher": "WSLS",
       "published_at": "2026-10-26T11:08:38Z",
       "detected_at": "2026-10-26T12:06:28.054554Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "cde3526c19f30354d9dc",
+      "title": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - News4JAX",
+      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPWkw3NkJ2V2VGN0hqdGMybVNCUUpDSFpHRE85QXJ3c1VWYlJWSHJtTXZXN0p3LThfVzFOZ09fQUFqOU8wa1ZtUjFRTFNlRFlIVDFkN1NBbGs0QTRhMi1mRFAwenkyTGRwRUFpc3NHcXRSWWlTVzF2X3pvWmF0QVBfbEtnREZBTG1za3ZlczRad3pOb0o4clB2c0VjRzlIM2dZa0FPZVFQVzhUTXBVTzRCTkhzNW1HeWE3S2dldFFQN3pJMDZ3MTlnX2lEdG9vaUtHZUU4aGtiMC03dUcyZzB6akk3ZzZIZw?oc=5",
+      "publisher": "News4JAX",
+      "published_at": "2026-10-26T11:08:38Z",
+      "detected_at": "2026-10-26T13:57:15.684737Z",
       "state_hints": [],
       "topic_hints": [
         "ballot_access",
@@ -4946,23 +4964,6 @@
         "litigation"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "f90776106a1899b48fc1",
-      "title": "2026 General Election Voter's Guide: Judicial retention - Lincoln Journal Star",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNeE5rWnd3RzBpREJZTWQwdmliYktRX1gyaHA5TkNlSF85UE50WHFpSDdrZFlZOVlVZG5QckZ2QXYxYVpCLUpFQmUxVjkyT0x5U2lWQlUzSVZOMHFYU1NKYXlvWlBXU2Q3MmhQdG5JekdpU2NSU2wtOWhsRDU3NFFNbklsZi13QTJtbWF1QXNVb0NDM0MxaUw0ZGpMZ0dzZ0VRVlpMazFRTkdPVjR4MzA4eFlSX2Y?oc=5",
-      "publisher": "Lincoln Journal Star",
-      "published_at": "2026-10-14T04:00:00Z",
-      "detected_at": "2026-10-14T04:51:11.877550Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [
-        "2026 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
