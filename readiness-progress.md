@@ -1,5 +1,27 @@
 # Readiness progress
 
+## October 26 - source-safety repair deployed; Kansas input contract ready
+
+- #439 passed all33 applicable workflows at06a40514 and merged as d917ded7.
+  At04:28:36Z all41 published files match current main555a92be, including the
+  source test-data guard and grounded fallback catalog. Actual published Edge
+  at04:28:38Z receives the real Iowa full response and excludes TEST DATA, with
+  no live probability; explicit historical preview still works. No live 2026
+  delivery claim. #438 must incorporate this new main and pass current-head CI.
+- Kansas: original official 2020/2022 workbook bytes/hashes, Census105-county
+  reference and observed real-provider metadata are now preserved for review.
+  A dependency-free reader reproduces all105 county D/R/L sums and independent
+  state totals. Redacted and blank precinct cells are not invented as zeros;
+  actual published county footers supply their legitimate aggregate totals.
+- Implement a full Kansas county input parser with exact race/date/candidates,
+  independent FIPS/name matching, strict test rejection, provider publication
+  clocks and county/state arithmetic. Tests pass for all105 synthetic fixture
+  rows and wrong identity/time/total exclusions. Real observed source is still
+  TEST DATA; accepted actual live rows0. No Kansas route or needle is activated.
+- Current polling still supports prioritizing KS-SEN: D+1.64, seven firms / three
+  independent, latest Oct14. Next: merge/deploy the queued Iowa forecasting work
+  with all checks, then connect this close-race input to the scoped estimator.
+
 ## October 26 - grounded fallback repair clears the local merge blocker
 
 - At04:14:17Z an ordinary in-app browser loads the public DDHQ directory after

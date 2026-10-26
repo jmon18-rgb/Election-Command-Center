@@ -1,0 +1,19 @@
+{
+  "source_index": "https://sos.ks.gov/elections/election-results.html",
+  "sources": {
+    "2020": {
+      "path": "data/kansas_historical_sources/2020-senate.xlsx",
+      "url": "https://sos.ks.gov/elections/20elec/2020_General_Election_US_Senate_results_by_precinct.xlsx",
+      "sha256": "0498716f50453ff30b4efcf47a14ccf8e9041bf04ba54ec5f3e432c8678be8f8",
+      "statewide_check_url": "https://sos.ks.gov/elections/20elec/2020_General_Official_Vote_Totals.pdf",
+      "expected_statewide": {"D": 571530, "R": 727962, "L": 68263}
+    },
+    "2022": {
+      "path": "data/kansas_historical_sources/2022-senate.xlsx",
+      "url": "https://sos.ks.gov/elections/22elec/2022-General-Election-US-Senate-Results-By-Precinct.xlsx",
+      "sha256": "6925d00e370bd7a063e9cae4b13ab83784af8bc3fa37dd256ac1cfe516336885",
+      "statewide_check_url": "https://sos.ks.gov/elections/22elec/2022-General-Official-Vote-Totals.pdf",
+      "expected_statewide": {"D": 372214, "R": 602976, "L": 29766}
+    }
+  }
+}
