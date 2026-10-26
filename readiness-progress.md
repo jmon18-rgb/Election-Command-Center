@@ -1,5 +1,26 @@
 # Readiness progress
 
+## October 26 07:31Z - correction repair deployed and scoped delivery decision
+
+- PR448 merged b88fa72a after all28 applicable current-head workflows passed
+  at1184f6d6. Actual Pages comparison at07:30:08Z matches all44 checked files.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/448
+- The published Edge1366/390 Iowa and Kansas fixture suites pass the newer
+  zero-count withdrawal -> reject older positive replay -> genuinely newer
+  positive recovery sequence and existing source/model-isolation guards.
+  These deliberately intercepted returns and virtual clocks are not live data.
+- COMPETITIVE_NEEDLE_DELIVERY_DECISION.md records the October27 scoped decision
+  early: keep deployed guarded experimental race needles; calibrated probability
+  and genuine live-delivery acceptance remain open. The Iowa close cohort's
+  margin error exceeds the prior; the Kansas close cohort improves it. Neither
+  is independently timestamped competitive Senate calibration. No parameters
+  changed, national updates enabled or acceptance requirements waived.
+- Correct outdated implementation docs that still called deployed work queued.
+  Next meaningful source work must resolve actual non-test delivery/capture
+  availability or supply usable independent historical clocks. Do not repeat
+  unchanged pre-election test-data checks as development milestones. Genuine
+  election-night candidate votes cannot be manufactured before polls close.
+
 ## October 26 07:05Z - genuine-feed capture merged; zero-count correction repair
 
 - PR447 merged552b27c5 after all four applicable current-head workflows passed
