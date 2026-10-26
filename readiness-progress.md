@@ -1,5 +1,21 @@
 # Readiness progress
 
+## October26 05:01Z - required full DOM check exhausted job budget
+
+-440 at06b25369 passes26 workflows; broad validation assertions pass, but
+ its full DOM job is cancelled at the12-minute budget. The log reports
+ all DOM integration assertions passed at05:00:58Z,12m22s after the step
+ began. This is NOT a successful workflow and does not permit merge.
+- Increase that job budget to18min, preserving every assertion and Monte Carlo
+ draw. This directly unblocks queued source-to-needle deployment. Rerun all
+ current-head checks; never bypass the cancelled gate.
+- Competitive House normal-browser inspection at05:00:45Z reads full sources
+ FL09/87048(7county rows),CO05/87014(1),TX23/87428(27). All explicit test_data
+ true; accepted live votes0. Direct urllib returned403, normal browser access
+ works. No county/district membership or current-map historical baseline is
+ independently verified, so these are not forecast-ready sources.
+
+
 ## October 26 - deployed source exclusion and forecast evidence
 
 - PR439 merged at d917ded7 after all33 current-head workflows passed.
