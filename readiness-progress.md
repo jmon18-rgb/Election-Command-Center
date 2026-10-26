@@ -8,6 +8,25 @@ Prioritize competitive sources/fallbacks, correct calls/control accounting,
 outage/retraction recovery and the laptop dashboard. The scoped needle remains
 an evidence task, not a reason to fabricate predictive updates.
 
+## October 25 - verified release and next laptop task
+
+- PR #430 passed all 27 workflows at 771303e8 before merging as 7aae8c39.
+  Evidence: https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40249872325
+- PR #431 passed all 27 workflows at 04ae0e9d before merging as e8752c48.
+  Evidence: https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40250103481
+  Automatic merge review initially rejected truncated check evidence. A complete,
+  compact current-head inventory resolved that review without bypassing it.
+- Deployment verified at 2026-10-26T00:44:19Z: published HTML exactly matches
+  main e8752c48. Actual Edge preserves Senate drawer expansion/focus through
+  redraws and renders all seven new manual references plus the CA-13 fallback.
+  House reported counts/civicAPI calls remain zero under an isolated 503 fixture.
+  Local evidence: artifacts/readiness/live-core-recovery-verification.json.
+  The initial check preceded publication and timed out; the post-deploy rerun
+  passed. This is runtime evidence, not genuine live-provider acceptance.
+- Next: complete PR #432 compact priorities after fresh CI, verify its deployed
+  laptop rendering, then investigate consequential remaining source gaps. The 21
+  machine gaps, live delivery, source rights and geographic calibration stay open.
+
 ## October 25 — source drawer and keyboard continuity
 
 - A separate laptop follow-up reproduced another layout problem: all 21 source
