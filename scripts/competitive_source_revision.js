@@ -6,11 +6,11 @@
  if(root)root.CompetitiveSourceRevision=api;
 })(typeof window!=='undefined'?window:globalThis,function(root,closes){
  'use strict';
- const scopes={'IA-SEN':{n:99,prefix:'19',id:87151},'KS-SEN':{n:105,prefix:'20',id:87162},'TX-SEN':{n:254,prefix:'48',id:87438},'WI-01':{n:5,prefix:'55',id:87483},'WI-03':{n:19,prefix:'55',id:87485},'MI-04':{n:6,prefix:'26',id:87204},'PA-10':{n:3,prefix:'42',id:87385},'NY-17':{n:4,prefix:'36',id:87319}};
+ const scopes={'IA-SEN':{n:99,prefix:'19',id:87151},'KS-SEN':{n:105,prefix:'20',id:87162},'TX-SEN':{n:254,prefix:'48',id:87438},'WI-01':{n:5,prefix:'55',id:87483},'WI-03':{n:19,prefix:'55',id:87485},'MI-04':{n:6,prefix:'26',id:87204},'PA-10':{n:3,prefix:'42',id:87385},'NY-17':{n:4,prefix:'36',id:87319},'WA-03':{n:7,prefix:'53',url:'https://results.votewa.gov/results/public/api/elections/washington/20261103/data/ballot-item/54c40000-9064-bbec-4779-08df15c0a82a'}};
  const schema='competitive-county-source-revision-2026-v1';
  function create(code,{storage,now=()=>Date.now()}={}){
   const scope=Object.hasOwn(scopes,code)?scopes[code]:null;if(!scope)throw Error('Unsupported competitive revision scope');
-  const url='https://civicapi.org/api/v2/race/'+scope.id,key='ecc:county-source-revision:2026:'+code+':v1';
+  const url=scope.url||'https://civicapi.org/api/v2/race/'+scope.id,key='ecc:county-source-revision:2026:'+code+':v1';
   if(storage===undefined){try{storage=root.localStorage;}catch{storage=null;}}
   let memory=null,durable=false;
   function read(){

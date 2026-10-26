@@ -1,0 +1,66 @@
+// Synthetic browser fixtures only; no raw returns are archived as live evidence.
+import assert from 'node:assert/strict';import {createServer} from 'node:http';
+import {readFileSync,existsSync,statSync,mkdirSync} from 'node:fs';import {resolve,extname,sep} from 'node:path';import {createRequire} from 'node:module';
+const require=createRequire(import.meta.url),{fixture}=require('./washington_test_fixture.cjs'),cache=require('./washington_official_cache.js');
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright');
+const root=resolve(import.meta.dirname,'..'),types={'.html':'text/html','.js':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.mp3':'audio/mpeg'};
+const server=createServer((req,res)=>{const f=resolve(root,'.'+(new URL(req.url,'http://localhost').pathname==='/'?'/index.html':new URL(req.url,'http://localhost').pathname));
+ if(!f.startsWith(root+sep)||!existsSync(f)||!statSync(f).isFile()){res.writeHead(404).end();return;}res.writeHead(200,{'content-type':types[extname(f)]||'application/octet-stream'}).end(readFileSync(f));});
+await new Promise(ok=>server.listen(0,'127.0.0.1',ok));let browser;
+try{
+ browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
+ for(const width of [1366,390]){
+  const context=await browser.newContext({viewport:{width,height:width===1366?768:844}}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+  let stamp='2026-11-04T04:05:00Z',mode='health',requests=0;
+  await page.clock.install({time:new Date('2026-11-04T04:05:05Z')});
+  await page.route('**/*',async route=>{const u=new URL(route.request().url());if(u.hostname==='127.0.0.1')return route.continue();
+   if(u.origin+u.pathname!==cache.URL)return route.abort();requests++;
+   if(mode==='outage')return route.fulfill({status:503,body:'unavailable'});
+   let record=await fixture({stamp,margin:mode==='red'?-12:12,zero:mode==='zero',correction:mode==='correction'?200:0});
+   if(mode==='health'){record.status='SOURCE_UNAVAILABLE';record.payload=null;record.error='Official source not yet reporting';}
+   if(mode==='corrupt')record.payload.ballotItemWithBreakdown.voteTotal++;
+   return route.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify(record)});
+  });
+  await page.goto('http://127.0.0.1:'+server.address().port+'/',{waitUntil:'domcontentloaded'});
+  await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();
+  await page.waitForFunction(()=>window.enWashingtonHouse03Controller&&!enWashingtonHouse03Controller.status().busy&&jointLastResult?.probabilities&&!/Waiting|Checking/.test(enWashingtonHouse03Controller.status().phase));
+  const baseline=await page.evaluate(()=>JSON.stringify(jointPulseBaseline.probabilities));
+  mode='blue';await page.clock.runFor(61000);
+  await page.waitForFunction(()=>jointLastResult?.county_results_update?.used.some(e=>e.code==='WA-03'));
+  const blue=await page.evaluate(()=>({p:jointLastResult.probabilities,base:JSON.stringify(jointPulseBaseline.probabilities),used:jointLastResult.county_results_update.used,calls:jointLastResult.race_probabilities.filter(r=>r.provider_called_party).length}));
+  assert.notEqual(JSON.stringify(blue.p),baseline);assert.equal(blue.base,baseline);assert.equal(blue.calls,0);assert.equal(blue.used.length,1);
+  assert.match(await page.locator('#enNationalWashingtonHouseSource').textContent(),/several minutes/);
+  assert.match(await page.locator('#jointNightNeedle').textContent(),/Washington official · collected copy/);
+  assert.match(await page.locator('#jointNightNeedle').textContent(),/1 House district in Washington, not national House coverage/);
+  mkdirSync(resolve(root,'artifacts/readiness'),{recursive:true});
+  await page.locator('#jointNightNeedle').scrollIntoViewIfNeeded();
+  await page.screenshot({path:resolve(root,'artifacts/readiness/synthetic-washington-national-'+width+'.png'),fullPage:false});
+  assert.equal(await page.evaluate(()=>enWashingtonHouse03Controller.status().automatic_poll_interval_ms),60000);
+  const before=requests;await page.evaluate(()=>enWashingtonHouse03Controller.tick(true));assert.equal(requests,before,'Manual refresh cannot bypass the one-minute owned-cache floor');
+  async function update(next,minute,sourceMinute=minute){mode=next;stamp='2026-11-04T04:'+sourceMinute+':00Z';await page.clock.setSystemTime(new Date('2026-11-04T04:'+minute+':05Z'));
+   await page.evaluate(async()=>{await enWashingtonHouse03Controller.tick(true);jointRender(true);});}
+  await update('correction','08');const corrected=await page.evaluate(()=>jointLastResult.county_results_update.used[0].counted_two_party_votes);
+  assert.equal(corrected,blue.used[0].counted_two_party_votes-200);
+  await update('red','10');assert.notDeepEqual(await page.evaluate(()=>jointLastResult.probabilities),blue.p);
+  await update('blue','12','05');assert.equal(await page.evaluate(()=>enWashingtonHouse03Controller.status().evidence),null,'Older source cannot resurrect after a newer correction');
+  await update('zero','14');assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),baseline);
+  await update('red','16','10');assert.equal(await page.evaluate(()=>enWashingtonHouse03Controller.status().evidence),null,'Durable zero revision blocks replay of old positive counts');
+  await update('blue','18');await update('outage','20');assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),baseline);
+  await update('corrupt','22');assert.equal(await page.evaluate(()=>enWashingtonHouse03Controller.status().evidence),null);
+  await page.evaluate(()=>Object.defineProperty(document,'hidden',{configurable:true,value:true}));await page.clock.setSystemTime(new Date('2026-11-04T04:24:05Z'));
+  const paused=requests;await page.evaluate(()=>enWashingtonHouse03Controller.tick(true));assert.equal(requests,paused);
+  await page.evaluate(()=>Object.defineProperty(document,'hidden',{configurable:true,value:false}));
+  await update('blue','26');await page.locator('#enMode2024').click();await page.evaluate(()=>enWashingtonHouse03Controller.tick());
+  assert.equal(await page.evaluate(()=>enWashingtonHouse03Controller.status().evidence),null);assert.deepEqual(errors,[]);
+  console.log(width+'px official WA03 NATIONAL: independent of civic outage; automatic before-call movement, corrections, rollback/zero replay, outage/integrity exclusion, hidden-tab pause and archive isolation PASS (SYNTHETIC)');
+  await context.close();
+ }
+ const fallback=await browser.newContext(),safePage=await fallback.newPage(),fallbackErrors=[];safePage.on('pageerror',e=>fallbackErrors.push(e.message));
+ await safePage.clock.install({time:new Date('2026-11-04T04:05:05Z')});
+ await safePage.route('**/*',route=>{const u=new URL(route.request().url());return u.hostname==='127.0.0.1'&&!u.pathname.endsWith('/washington_official_cache.js')?route.continue():route.abort();});
+ await safePage.goto('http://127.0.0.1:'+server.address().port+'/',{waitUntil:'domcontentloaded'});
+ await safePage.locator('[data-page="electionNight"]').click();await safePage.locator('#enMode2026').click();
+ await safePage.waitForFunction(()=>jointLastResult?.probabilities&&window.enNewYorkHouse17Controller&&window.enTexasPilotController);
+ assert.equal(await safePage.evaluate(()=>window.enWashingtonHouse03Controller),undefined);assert.deepEqual(fallbackErrors,[]);
+ await fallback.close();console.log('Missing optional official cache helper preserves the national baseline and existing county controllers PASS');
+}finally{if(browser)await browser.close();await new Promise(ok=>server.close(ok));}

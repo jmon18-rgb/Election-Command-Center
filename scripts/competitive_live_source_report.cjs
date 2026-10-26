@@ -10,7 +10,8 @@ const races=Object.freeze([
  {code:'WI-01',state:'WI',office:'House',key:'WI-01',forecast_scope:'national_joint_draws',counties:5,url:'https://civicapi.org/api/v2/race/87483',reference:'data/wisconsin_house_01_county_fips_reference.json',parser:'WisconsinHouseCountySource',controller:'enWisconsinHouseController'}, {code:'WI-03',state:'WI',office:'House',key:'WI-03',forecast_scope:'national_joint_draws',counties:19,url:'https://civicapi.org/api/v2/race/87485',reference:'data/wisconsin_house_03_county_fips_reference.json',parser:'WisconsinHouseCountySource',parser_scope:'WI-03',controller:'enWisconsinHouse03Controller'},
  {code:'MI-04',state:'MI',office:'House',key:'MI-04',forecast_scope:'national_joint_draws',counties:6,url:'https://civicapi.org/api/v2/race/87204',reference:'data/michigan_house_04_county_fips_reference.json',parser:'WisconsinHouseCountySource',parser_scope:'MI-04',controller:'enMichiganHouse04Controller'},
  {code:'PA-10',state:'PA',office:'House',key:'PA-10',forecast_scope:'national_joint_draws',counties:3,url:'https://civicapi.org/api/v2/race/87385',reference:'data/pennsylvania_house_10_county_fips_reference.json',parser:'WisconsinHouseCountySource',parser_scope:'PA-10',controller:'enPennsylvaniaHouse10Controller'},
- {code:'NY-17',state:'NY',office:'House',key:'NY-17',forecast_scope:'national_joint_draws',counties:4,url:'https://civicapi.org/api/v2/race/87319',reference:'data/new_york_house_17_county_fips_reference.json',parser:'WisconsinHouseCountySource',parser_scope:'NY-17',controller:'enNewYorkHouse17Controller'}]);
+ {code:'NY-17',state:'NY',office:'House',key:'NY-17',forecast_scope:'national_joint_draws',counties:4,url:'https://civicapi.org/api/v2/race/87319',reference:'data/new_york_house_17_county_fips_reference.json',parser:'WisconsinHouseCountySource',parser_scope:'NY-17',controller:'enNewYorkHouse17Controller'},
+ {code:'WA-03',state:'WA',office:'House',key:'WA-03',forecast_scope:'national_joint_draws',counties:7,url:'https://results.votewa.gov/results/public/api/elections/washington/20261103/data/ballot-item/54c40000-9064-bbec-4779-08df15c0a82a',transport_url:'https://raw.githubusercontent.com/jmon18-rgb/Election-Command-Center/official-results-cache/data/washington_house_03_official_latest.json',reference:'data/washington_house_03_county_fips_reference.json',parser:'WashingtonOfficialCache',controller:'enWashingtonHouse03Controller'}]);
 const inWindow=now=>Number.isFinite(now)&&now>=Date.parse('2026-10-26T00:00:00Z')&&now<=Date.parse('2026-11-04T17:00:00Z');
 function assess(row,now=Date.now()){
  const expected=races.find(r=>r.code===row?.code);if(!expected)throw Error('Unknown competitive source scope');
@@ -71,7 +72,7 @@ function summarize(rows,now=Date.now()){
   sources.some(r=>r.prolonged_delivery_gap)?'SOURCE_AVAILABILITY_REVIEW_REQUIRED':
   sources.every(r=>r.actual_live_input_forecast_observed)?'LIVE_INPUT_FORECAST_OBSERVED_NOT_CALIBRATED':'LIVE_DELIVERY_UNPROVEN',
   scope:'Actual deployed browser and real provider responses only; no source fixtures or virtual election clock',
-  attribution:'Public election counts via civicAPI (https://civicapi.org); use permitted with attribution at https://civicapi.org/api-documentation',
+  attribution:'Public election counts via attributed civicAPI (https://civicapi.org/api-documentation) and Washington Secretary of State (https://results.votewa.gov), the latter via an owned cache with additional delay; no publication-speed guarantee',
   interval_calibrated:false,sources};
 }
 module.exports=Object.freeze({races,inWindow,assess,summarize,nationalProof});

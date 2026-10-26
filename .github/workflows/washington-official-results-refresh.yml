@@ -1,0 +1,70 @@
+name: Collect official WA03 results into an owned data-only cache
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/publish_washington_official_cache.cjs'
+      - '.github/workflows/washington-official-results-refresh.yml'
+  workflow_dispatch:
+    inputs:
+      health_only:
+        description: Pre-election transport check with no published vote payload
+        type: boolean
+        default: true
+  schedule:
+    # Data-only collection continues through Washington's certification period;
+    # the owner's Nov4 code-change stop does not terminate result updates.
+    - cron: '*/5 4-23 4 11 *'
+    - cron: '*/5 * 5-24 11 *'
+    - cron: '*/5 0-7 25 11 *'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/*washington*'
+      - 'data/washington_*'
+      - '.github/workflows/washington-official-results-refresh.yml'
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node scripts/test_collect_washington_official_results.cjs
+          node scripts/test_washington_official_cache.cjs
+  publish-data:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    permissions:
+      contents: write
+    concurrency:
+      group: official-washington-data-cache
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Bounded official collection; never writes the code branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HEALTH_ONLY: ${{ github.event_name == 'workflow_dispatch' && inputs.health_only && 'true' || 'false' }}
+          EVENT_KIND: ${{ github.event_name }}
+        shell: bash
+        run: |
+          if [ "$EVENT_KIND" = "push" ]; then
+            node scripts/publish_washington_official_cache.cjs --publish --bootstrap
+          elif [ "$HEALTH_ONLY" = "true" ]; then
+            node scripts/publish_washington_official_cache.cjs --publish --health-only
+          else
+            node scripts/publish_washington_official_cache.cjs --publish --loop
+          fi

@@ -1,9 +1,9 @@
 
 'use strict';
 const assert=require('node:assert/strict'),{races,inWindow,assess,summarize,nationalProof}=require('./competitive_live_source_report.cjs');
-const now=Date.parse('2026-11-04T03:10:00Z');
+const now=Date.parse('2026-11-04T04:10:00Z');
 // Synthetic classifier records, never actual source evidence or archived votes.
-const row=code=>({code,source_url:races.find(r=>r.code===code).url,http:200,source_test_data:false,source_identity_validated:true,live_votes_accepted:true,parsed_counties:races.find(r=>r.code===code).counties,source_stamp:'2026-11-04T03:00:00Z',counted_dem_votes:10000,counted_rep_votes:11000,preview:false,national_unchanged:false,national_contract_validated:true,national_evidence_validated:true,
+const row=code=>({code,source_url:races.find(r=>r.code===code).url,http:200,source_test_data:false,source_identity_validated:true,live_votes_accepted:true,parsed_counties:races.find(r=>r.code===code).counties,source_stamp:'2026-11-04T04:00:00Z',counted_dem_votes:10000,counted_rep_votes:11000,preview:false,national_unchanged:false,national_contract_validated:true,national_evidence_validated:true,
  projection:{dem_win_probability:.45,counted_dem_votes:10000,counted_rep_votes:11000,interval_calibrated:false,may_move_national_needle:races.find(r=>r.code===code).forecast_scope==='national_joint_draws',modeled_remaining_two_party_votes:30000,modeled_remaining_two_party_votes_band:[2000,60000]}});
 assert(inWindow(now));assert(!inWindow(Date.parse('2026-11-04T17:01:00Z')));
 const all=()=>races.map(r=>row(r.code));assert.equal(summarize(all(),now).status,'LIVE_INPUT_FORECAST_OBSERVED_NOT_CALIBRATED');
@@ -22,7 +22,7 @@ wi.projection=null;assert.equal(assess(wi,now).status,'VALIDATED_COUNTS_AWAITING
 const blocked=test('KS-SEN');blocked.http=403;assert(!assess(blocked,Date.parse('2026-11-04T03:20:00Z')).prolonged_delivery_gap);assert(assess(blocked,Date.parse('2026-11-04T03:31:00Z')).prolonged_delivery_gap);
 assert.throws(()=>summarize(all().slice(0,3),now),'Missing House source cannot pass complete coverage');
 assert.throws(()=>summarize([row('IA-SEN'),row('IA-SEN'),row('TX-SEN'),row('WI-01'),row('WI-03')],now));
-console.log('Eight-source synthetic classifier: legitimate national conditioning accepted; test/unmatched changes rejected; House posterior must come from admitted joint draws; no live-delivery claim');
+console.log('Nine-source synthetic classifier: legitimate national conditioning accepted; test/unmatched changes rejected; House posterior must come from admitted joint draws; no live-delivery claim');
 
 assert.equal(assess({...test('IA-SEN'),national_unchanged:false,national_contract_validated:false},now).status,'SAFETY_OR_FORECAST_FAILURE','Changed national model without any matched real source evidence is rejected');
 

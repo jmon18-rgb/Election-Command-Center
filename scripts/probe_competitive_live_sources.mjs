@@ -36,20 +36,21 @@ if(!inWindow(Date.now())){
  try{
   browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
   const context=await browser.newContext({viewport:{width:1366,height:768},serviceWorkers:'block'}),page=await context.newPage();
-  const approved=new Set(races.map(r=>r.url)),siteOrigin=new URL(target).origin;
+  const canonical=url=>{const u=new URL(url);return u.origin+u.pathname;};
+  const approved=new Set(races.map(r=>r.transport_url||r.url)),siteOrigin=new URL(target).origin;
   page.on('pageerror',e=>pageErrors.push(e.message));
-  page.on('requestfailed',request=>{if(approved.has(request.url()))requestErrors.set(request.url(),request.failure()?.errorText||'Request failed');});
+  page.on('requestfailed',request=>{if(approved.has(canonical(request.url())))requestErrors.set(canonical(request.url()),request.failure()?.errorText||'Request failed');});
   const requestStarts=new WeakMap();
-  page.on('request',request=>{if(approved.has(request.url()))requestStarts.set(request,new Date().toISOString());});
+  page.on('request',request=>{if(approved.has(canonical(request.url())))requestStarts.set(request,new Date().toISOString());});
   page.on('response',response=>{
-   if(approved.has(response.url())){
+   if(approved.has(canonical(response.url()))){
     const body=response.body().then(bytes=>({bytes,raw:JSON.parse(bytes.toString('utf8')),received_at:new Date().toISOString()})).catch(error=>({error:error.message}));
-    observed.set(response.url(),{url:response.url(),http:response.status(),request_started_at:requestStarts.get(response.request())||null,body,response_cache:{age:response.headers()['age']??null,cache_control:response.headers()['cache-control']??null,date:response.headers()['date']??null,etag:response.headers()['etag']??null},headers_received_at:new Date().toISOString()});
+    observed.set(canonical(response.url()),{url:response.url(),http:response.status(),request_started_at:requestStarts.get(response.request())||null,body,response_cache:{age:response.headers()['age']??null,cache_control:response.headers()['cache-control']??null,date:response.headers()['date']??null,etag:response.headers()['etag']??null},headers_received_at:new Date().toISOString()});
    }
   });
   await page.route('**/*',route=>{
    const url=route.request().url();
-   return new URL(url).origin===siteOrigin||approved.has(url)?route.continue():route.abort();
+   return new URL(url).origin===siteOrigin||approved.has(canonical(url))?route.continue():route.abort();
   });
   const navigation=await page.goto(target,{waitUntil:'domcontentloaded',timeout:30000});
   if(navigation?.status()!==200)throw Error('Production page did not return HTTP200');
@@ -65,7 +66,7 @@ if(!inWindow(Date.now())){
   const admitted=await page.evaluate(()=>jointLastResult?.county_results_update?.used||[]);
   const rows=[],rawBodies=new Map();
   for(const race of races){
-   const network=observed.get(race.url),body=network?await bounded(network.body).catch(e=>({error:e.message})):null;
+   const network=observed.get(race.transport_url||race.url),body=network?await bounded(network.body).catch(e=>({error:e.message})):null;
    const raw=body?.raw;
    const ui=await page.evaluate(async({race,raw,nationalBefore})=>{
     const controller=window[race.controller],state=controller.status();let parsed=null,parse_error=null;
@@ -74,7 +75,7 @@ if(!inWindow(Date.now())){
      const response=await fetch(new URL(race.reference,location.href),{cache:'no-store',credentials:'omit'});
      if(!response.ok)throw Error('Independent county reference HTTP '+response.status);
      const parser=race.parser_scope?window[race.parser].forRace(race.parser_scope):window[race.parser];
-     parsed=parser.parse(raw,await response.json(),{source_url:race.url,now:Date.now()});
+     parsed=await parser.parse(raw,await response.json(),{source_url:race.transport_url||race.url,now:Date.now()});
     }catch(error){parse_error=error.message;}
     const jointEvidence=jointLastResult?.county_results_update?.used.find(e=>e.code===race.code);
     const jointRace=jointLastResult?.race_probabilities.find(e=>e.race_code===race.code);
@@ -97,13 +98,15 @@ if(!inWindow(Date.now())){
      projection,preview:state.preview===true,phase:state.phase,automatic_poll_interval_ms:state.automatic_poll_interval_ms??null,
      national_unchanged:JSON.stringify(jointLastResult.probabilities)===nationalBefore};
    },{race,raw:raw||null,nationalBefore});
-   rows.push({code:race.code,source_url:network?.url||race.url,http:network?.http||null,
+   rows.push({code:race.code,source_url:race.transport_url?race.url:network?.url||race.url,transport_url:race.transport_url?network?.url||race.transport_url:null,http:network?.http||null,
     response_cache:network?.response_cache||null,request_started_at:network?.request_started_at||null,
     http_request_to_body_ms:body?.received_at&&network?.request_started_at?Date.parse(body.received_at)-Date.parse(network.request_started_at):null,
     captured_at:body?.received_at||null,headers_received_at:network?.headers_received_at||null,
-    source_stamp:raw?.last_updated||null,source_test_data:raw?.test_data??null,
-    raw_positive_candidate_counts_present:raw?.test_data===false&&Array.isArray(raw?.candidates)?raw.candidates.some(c=>Number.isSafeInteger(c?.votes)&&c.votes>0):null,
-    transport_error:requestErrors.get(race.url)||body?.error||(!network?'No provider response':null),...ui});
+    source_stamp:race.transport_url?(raw?.snapshot_updated_at||raw?.observed_source_stamp||null):raw?.last_updated||null,source_test_data:race.transport_url?raw?.source_test_data??null:raw?.test_data??null,
+    upstream_http_status:race.transport_url?raw?.http_status??null:null,upstream_cache_control:race.transport_url?raw?.cache_control??null:null,
+    raw_positive_candidate_counts_present:race.transport_url?(raw?.payload?.ballotItemWithBreakdown?.summaryResults?.ballotOptions?.some(c=>Number.isSafeInteger(c.voteCount)&&c.voteCount>0)??raw?.observed_positive_candidate_counts??null):raw?.test_data===false&&Array.isArray(raw?.candidates)?raw.candidates.some(c=>Number.isSafeInteger(c?.votes)&&c.votes>0):null,
+    upstream_observation_via_collector:!!race.transport_url,
+    transport_error:requestErrors.get(race.transport_url||race.url)||body?.error||(!network?'No provider response':null),...ui});
    if(body?.bytes)rawBodies.set(race.code,body.bytes);
   }
   const proof=nationalProof(rows,admitted);
@@ -120,14 +123,17 @@ if(!inWindow(Date.now())){
    if(!row.live_input_validated)continue;
    const bytes=rawBodies.get(row.code);if(!bytes)throw Error('Accepted actual source body unavailable');
    const raw=JSON.parse(bytes.toString('utf8'));
-   const vector=Object.values(raw.region_results).sort((a,b)=>a.fips.localeCompare(b.fips)).map(c=>[
+   const reference=JSON.parse(readFileSync(resolve(import.meta.dirname,'../data/washington_house_03_county_fips_reference.json'),'utf8'));
+   const waNames=new Map(reference.counties.map(c=>[c.county+' County',c.fips]));
+   const vector=row.code==='WA-03'?raw.payload.ballotItemWithBreakdown.breakdownResults.map(c=>[waNames.get(c.locality.name[0].text),...['1601892','1601893','9910'].map(id=>c.ballotOptions.find(o=>o.nativeId===id).voteCount)]).sort((a,b)=>a[0].localeCompare(b[0])):Object.values(raw.region_results).sort((a,b)=>a.fips.localeCompare(b.fips)).map(c=>[
     c.fips,...['Democratic','Republican','Libertarian'].map(p=>c.candidates.filter(v=>v.party===p).reduce((n,v)=>n+v.votes,0))]);
    const file=row.code+'-'+new Date().toISOString().replace(/[:.]/g,'-')+'.json';
    const dir=resolve(out,'raw');mkdirSync(dir,{recursive:true});writeFileSync(resolve(dir,file),bytes);
    report.raw_archives.push({race:row.code,path:'raw/'+file,source_url:row.source_url,captured_at:row.captured_at,
     provider_snapshot_at:row.source_stamp,decoded_http_body_sha256:createHash('sha256').update(bytes).digest('hex'),
     county_vote_vector_sha256:createHash('sha256').update(JSON.stringify(vector)).digest('hex'),
-    county_update_times_independently_observed:false,authoritative_race_call:false});
+    transport_kind:row.code==='WA-03'?'OWNED_CACHE_OF_ORIGINAL_OFFICIAL_CONTEST_OBJECTS':'DIRECT_PROVIDER_RESPONSE',
+    upstream_body_digest_reported_by_collector:row.code==='WA-03'?raw.original_response_sha256:null,county_update_times_independently_observed:false,authoritative_race_call:false});
   }
  }catch(error){
   report={generated_at:new Date().toISOString(),status:'ACTION_REQUIRED',site:target,
@@ -141,7 +147,7 @@ if(!inWindow(Date.now())){
   '',`Target scope: ${report.site_scope||'no page observed'}`, '', 'Real provider responses; no fixtures or virtual clock. Test mode never proves live delivery. No calibration claim.',
   '', '| Race | HTTP | Actual source status | Accepted live two-party votes | Forecast observed |', '| --- | --- | --- | ---: | --- |',
   ...(report.sources||[]).map(r=>`| ${r.code} | ${r.http??'unavailable'} | ${r.status} | ${r.counted_dem_votes+r.counted_rep_votes} | ${r.actual_live_input_forecast_observed} |`),
-  '', 'Source: civicAPI (https://civicapi.org), permitted public API with attribution. Raw test payloads are never archived.',
+  '', 'Sources: attributed civicAPI and Washington Secretary of State through an owned cache. Raw test payloads are never archived; cached transport captures are labeled separately.',
   ...(report.error?['',report.error]:[])].join('\n')+'\n';
  writeFileSync(resolve(out,'report.md'),summary);
  if(process.env.GITHUB_STEP_SUMMARY)appendFileSync(process.env.GITHUB_STEP_SUMMARY,summary);

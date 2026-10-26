@@ -8,6 +8,9 @@ const root = path.resolve(__dirname, '..');
 const out = path.join(root, 'artifacts', 'readiness');
 fs.mkdirSync(out, {recursive: true});
 const checks = [
+  ['Official Washington exact source and county counts', 'test_washington_official_house_source.cjs'],
+  ['Owned official source integrity and publication isolation', 'test_washington_official_cache.cjs'],
+  ['Official Washington national counts-only updating', 'test_washington_national_bridge.cjs'],
   ['Atomic historical source provenance and independent candidate facts', 'test_house_history_migration.cjs'],
   ['New York competitive House county identity, fusion baseline and rejection gates', 'test_new_york_house_17_county_source.cjs'],
   ['Second competitive House district-part source contract', 'test_wisconsin_house_03_county_source.cjs'],
