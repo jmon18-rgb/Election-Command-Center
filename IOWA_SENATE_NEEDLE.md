@@ -72,7 +72,53 @@ It preserves the fact that these are **combined county counts with no voting
 method split or verified ballot-completion flag**. A race snapshot timestamp
 does not become an independently observed update time for each county.
 
-## Remaining input-to-estimator bridge
+## Implemented combined-county source-to-visible-needle bridge
+
+`iowa_county_needle.js` consumes combined county D/R counts without inventing
+observed method allocations. It conditions a historical turnout distribution on
+the counted lower bound, models three unseen method-order scenarios, learns a
+shared swing while retaining correlated batch-selection uncertainty, and fixes
+already counted votes when estimating future candidate totals. Scenario weights
+come from marginal evidence under the stated assumptions, not empirical calibration.
+It never interprets precinct reporting percentages as ballot completion.
+
+`iowa_needle_view.js` connects the exact approved full Iowa endpoint to this model
+and a visible race probability, projected margin, estimated two-party votes
+remaining and scenario uncertainty band. It uses the current Iowa polling input
+normalized to a two-party margin, with a minimum six-point prior uncertainty.
+Unavailable, stale, test or same-clock conflicting source updates hide the
+probability. Fresh corrections may update it. National odds and counted totals
+remain separate. No provider winner flag drives a predictive estimate.
+
+The explicit historical preview stages real 2022 votes under an assumed release
+order. Its final step is labeled the certified historical outcome, not a successful
+model prediction. It cannot alter live results. Actual Edge checks at 1366x768
+and 390px exercise source validation, probability movement, same-clock rejection,
+late-response isolation, outage recovery and unchanged national odds, using
+temporary synthetic 2026 provider fixtures. These do not prove live delivery.
+
+The combined-county model's development experiment averages **9.20 points** of
+margin error across 16 partial 2022 scenarios versus 19.89 for counted share.
+Its scenario envelope includes the final margin in 15/16 cases. The model was
+tuned using this election; these are **not independent evaluation or calibration**.
+This weaker combined-input result must not be replaced with the earlier
+completed-method model's 4.56-point result. Run
+`node scripts/evaluate_iowa_county_needle.cjs` to reproduce it.
+
+A subsequent frozen-model test uses newly obtained official 2014 baseline and
+2016 outcome tables, with all 99 counties and candidate/method/state totals
+reconciled. Model blob `c097eafd3c12` was unchanged before seeing this outcome.
+With the same neutral stress prior, margin MAE is **14.62 points**, worse than
+raw counted share's 12.12. Its envelope includes the final margin in only 6/16
+partial scenarios. This is a real failed stress test, not evidence of readiness.
+It crosses Senate classes and midterm-to-presidential turnout and uses a badly
+wrong prior; these limits do not erase the failure. The predictor under-adjusts
+to large unexpected swings and uncertain turnout. Run the evaluator with
+`--independent` to reproduce. Do not describe this experimental predictor as
+validated for live election-night use. Its transport/UI implementation is ready
+for review while forecasting acceptance remains open.
+
+## Remaining production evidence
 
 The existing Open America contract supplies Iowa statewide race totals, not the
 county/method inputs this estimator needs. Its precinct reporting percentage is
@@ -82,11 +128,8 @@ result API calls exposed. No verification challenge was bypassed. The official
 2026 index has absentee-return statistics but no general-election count export
 published yet. Returned absentee ballots are not counted candidate votes.
 
-The public full civicAPI endpoint provides a usable transport alternative to that
-blocked official portal. Next: adapt the estimator to **combined county counts**
-with explicit uncertainty over the unseen absentee/Election Day mix. Do not split
-observed votes into invented method counts, infer completion from 100% precincts,
-or activate current provider test data. Extend independent historical evaluation
-and turnout scenarios, then attach the source-to-model bridge and visible race
-needle. The model is not yet connected to accepted live counts or loaded into the
-production dashboard. Kansas Senate remains the next competitive source target.
+The public full civicAPI endpoint supplies an alternative transport, but its actual
+current payload remains test data. Real post-close source delivery has not been
+demonstrated. The bridge and visible needle are implemented for review, not yet
+verified as deployed. Independent historical evaluation, updated turnout evidence
+and calibration remain open. Kansas Senate is the next competitive source target.

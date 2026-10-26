@@ -7,6 +7,9 @@ on:
       - 'data/iowa_*'
       - 'scripts/*iowa_senate*'
       - 'scripts/*iowa_civic*'
+      - 'scripts/*iowa_county*'
+      - 'scripts/*iowa_needle*'
+      - 'index.html'
       - '.github/workflows/iowa-senate-needle.yml'
 permissions:
   contents: read
@@ -20,15 +23,40 @@ jobs:
         with:
           node-version: '22'
       - name: Reproduce actual official county and voting-method totals
-        run: python3 scripts/build_iowa_senate_county_modes.py --check
+        run: |
+          python3 scripts/build_iowa_senate_county_modes.py --check
+          python3 scripts/build_iowa_senate_county_modes.py --independent --check
       - name: Forecast remaining vote and evaluate explicit release-order scenarios
         run: |
           node scripts/test_iowa_senate_partial_forecast.cjs
           node scripts/test_iowa_civic_county_source.cjs
+          node scripts/test_iowa_county_needle.cjs
           node scripts/evaluate_iowa_senate_partial_forecast.cjs
+          node scripts/evaluate_iowa_county_needle.cjs
+          node scripts/evaluate_iowa_county_needle.cjs --independent
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: iowa-historical-vote-scenarios-not-live-calibration
-          path: artifacts/readiness/iowa/historical-scenario-evaluation.json
+          path: artifacts/readiness/iowa/*evaluation.json
           if-no-files-found: error
+  browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned Chromium runtime
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Exercise the actual county-source to visible needle path
+        run: node scripts/test_iowa_needle_browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: iowa-needle-desktop-mobile
+          path: artifacts/readiness/iowa-needle-*.png
+          if-no-files-found: warn
