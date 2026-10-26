@@ -1413,9 +1413,10 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/senate_calibration_audit.js?v=2aab89368b2d"></script>
 <script src="./scripts/iowa_civic_county_source.js?v=6e755e60e8de"></script>
 <script src="./scripts/iowa_county_needle.js?v=41ec65dd7f17"></script>
-<script src="./scripts/iowa_needle_view.js?v=7a74dec89efa"></script>
+<script src="./scripts/competitive_needle_prior.js?v=c2c9dd5bc40a"></script>
+<script src="./scripts/iowa_needle_view.js?v=cb88531c819b"></script>
 <script src="./scripts/kansas_civic_county_source.js?v=ef4809fc9108"></script>
-<script src="./scripts/kansas_needle_view.js?v=cde9917593c9"></script>
+<script src="./scripts/kansas_needle_view.js?v=87a6191edf07"></script>
 <script>
 const $=s=>document.querySelector(s);
 // Shared polling snapshot is read by the early Briefing renderer.
@@ -3661,10 +3662,7 @@ function enRenderAmbientDesk(){
    fetchJSON:async path=>{const response=await fetch('./'+path,{cache:'no-store',credentials:'omit'});
     if(!response.ok)throw Error('Input HTTP '+response.status);return response.json();},
    fetchSource:url=>enCivicFetchJson(url),
-   readPrior:()=>{const row=latestSenateEstimates?.senate_all?.find(r=>r.race_code==='KS-SEN');
-    const sum=Number(row?.dem_pct)+Number(row?.rep_pct);
-    if(!row||!Number.isFinite(sum)||sum<=0)return null;
-    return {margin:100*(row.dem_pct-row.rep_pct)/sum,sigma:Math.max(6,5.633*100/sum)};},
+   readPrior:()=>window.CompetitiveNeedlePrior?.read(jointPulseBaseline,'KS-SEN')||null,
    isActive:()=>enModeYear===2026&&enIsVisible(),
    sourceGeneration:()=>window.ElectionNightTransport.generation(enCivicBreaker),
    onValidated:()=>enCivicBreaker?.success()
@@ -3677,10 +3675,7 @@ function enRenderAmbientDesk(){
    fetchJSON:async path=>{const response=await fetch('./'+path,{cache:'no-store',credentials:'omit'});
     if(!response.ok)throw Error('Input HTTP '+response.status);return response.json();},
    fetchSource:url=>enCivicFetchJson(url),
-   readPrior:()=>{const row=latestSenateEstimates?.senate_all?.find(r=>r.race_code==='IA-SEN');
-    const sum=Number(row?.dem_pct)+Number(row?.rep_pct);
-    if(!row||!Number.isFinite(sum)||sum<=0)return null;
-    return {margin:100*(row.dem_pct-row.rep_pct)/sum,sigma:Math.max(6,5.633*100/sum)};},
+   readPrior:()=>window.CompetitiveNeedlePrior?.read(jointPulseBaseline,'IA-SEN')||null,
    isActive:()=>enModeYear===2026&&enIsVisible(),
    sourceGeneration:()=>window.ElectionNightTransport.generation(enCivicBreaker),
    onValidated:()=>enCivicBreaker?.success()

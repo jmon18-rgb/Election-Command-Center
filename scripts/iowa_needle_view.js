@@ -103,7 +103,7 @@
      if(lastAccepted&&(time<lastAccepted.time||(time===lastAccepted.time&&signature!==lastAccepted.signature)))
       throw Error('County vote revision requires a newer provider publication time');
      const prior=readPrior();
-     if(!prior||!Number.isFinite(prior.margin)||!Number.isFinite(prior.sigma))throw Error('Current Iowa polling prior unavailable');
+     if(!prior||!Number.isFinite(prior.margin)||!Number.isFinite(prior.sigma))throw Error('Current Iowa linked-model prior unavailable');
      projection=model.forecast({baseline:history.years['2022'],observations:parsed.counties,
       prior_margin_points:prior.margin,prior_sigma_points:prior.sigma});
      lastSourceTime=time;lastAccepted={time,signature};

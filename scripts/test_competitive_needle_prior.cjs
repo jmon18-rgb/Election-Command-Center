@@ -1,0 +1,30 @@
+'use strict';
+const assert=require('node:assert/strict'),{read}=require('./competitive_needle_prior.js');
+const fixture={schema_version:'joint-control-beta-v1',race_probability_method:'SAME_CORRELATED_DRAWS_AS_CHAMBER_CONTROL',
+ error_multiplier:1,national_shift_points:0,race_probabilities:[{race_code:'KS-SEN',office:'senate',polled:true,
+  model_dem_margin_points:-.009170325,sigma_points:6.531,source_method:'2026_poll_blend_test',
+  dem_beats_rep_pct:50.4,provider_called_party:null}]};
+const before=JSON.stringify(fixture),prior=read(fixture,'KS-SEN');
+assert.equal(prior.margin,-.009170325);assert.equal(prior.sigma,6.531);
+assert.equal(JSON.stringify(fixture),before,'Reading a race prior never updates national simulation state');
+assert(Object.isFrozen(prior));
+const whatIf=structuredClone(fixture);whatIf.national_shift_points=20;whatIf.error_multiplier=2;
+whatIf.race_probabilities[0].sigma_points*=2;
+assert.deepEqual(read(whatIf,'KS-SEN'),prior,'Research swing/error controls do not become live forecast priors');
+for(const winner of ['D','R']){
+ const flagged=structuredClone(fixture);flagged.race_probabilities[0].provider_called_party=winner;
+ flagged.race_probabilities[0].dem_beats_rep_pct=winner==='D'?100:0;
+ assert.deepEqual(read(flagged,'KS-SEN'),prior,'Winner flags/conditional win percentages cannot substitute for latent prior parameters');
+}
+for(const change of [x=>x.schema_version='wrong',x=>x.race_probability_method='raw_returns',
+ x=>x.error_multiplier=0,x=>x.error_multiplier=NaN,x=>x.race_probabilities=null,
+ x=>x.race_probabilities.push({...x.race_probabilities[0]}),
+ x=>x.race_probabilities[0].polled=false,x=>x.race_probabilities[0].office='house',
+ x=>x.race_probabilities[0].source_method='2024_history',
+ x=>x.race_probabilities[0].model_dem_margin_points=NaN,
+ x=>x.race_probabilities[0].sigma_points='6.531',x=>x.race_probabilities[0].sigma_points=0]){
+ const bad=structuredClone(fixture);change(bad);assert.equal(read(bad,'KS-SEN'),null);
+}
+assert.equal(read(null,'KS-SEN'),null);assert.equal(read(fixture,'TX-SEN'),null);
+assert.equal(read(fixture,'IA-SEN'),null);
+console.log('Competitive needle starting margins use strict unconditioned linked-model inputs; research controls, winner flags and national mutation excluded PASS');
