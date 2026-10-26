@@ -1,5 +1,66 @@
 # Readiness progress
 
+## October 26 10:27Z - Texas official baseline and exact county source obtained
+
+- The newer Council archive repeats the same blocked2020 totals; its2024 VTD
+  sums also differ from the original official results. Do not use either as the
+  certified baseline. No missing votes or county allocations are invented.
+- Ordinary in-app browsing reaches the actual Texas historical results site
+  despite web-reader403. Reports -> County by County Canvass -> Excel supplies
+  the original2024 workbook (336,675 bytes, SHA2567b1e1a75...). The export completed
+  after an unexpectedly long browser download wait; no security challenge was
+  bypassed. The exact generated static report URL is preserved with the source.
+- All254 official county names join to independent Census2024 identifiers. All
+  five Senate candidate sums match the separately observed OFFICIAL RESULTS page:
+  Cruz5,990,741; Allred5,031,249; Brown267,039; Andrus919; Roche1,906;
+  total11,291,854. Commit original workbook/Census ZIP hashes and a stdlib
+  reproducible baseline/reference importer. Generation and --check pass locally.
+- Exact public2026 Civic search finds Texas Senate87438. Actual full HTTPS200
+  has254 unique county identities matching Census, James Talarico/Ken Paxton
+  and Ted Brown in the roster, CORS* and TEST DATA true. Local Python access
+  does not prove browser CORS or election-night delivery. Actual adapter execution
+  returns TEST_DATA_NOT_LIVE with accepted rows0. Preserve metadata, not test votes.
+- New strict source adapter and synthetic post-close contract checks pass: exact
+  source/date/candidate identity, complete FIPS join, county/state reconciliation,
+  test exclusion and poll-closing gates. Texas adapter is not yet loaded by the
+  site, and the runtime estimator remains limited to Iowa/Kansas. No third
+  predictive needle, actual live count or calibration is claimed yet.
+- PR450's original-source audit passed in actual GitHub CI. Required DOM test
+  failed at the House coalescing assertion after the outage fixture. Add bounded
+  draining of both office transports/watched tasks before replacing fetch, plus
+  diagnostic context; local full DOM verification and new current-head CI remain
+  pending. Never merge with this required failure unresolved.
+- Next: finish required checks, then connect the reconciled2024 baseline and
+  strict254-county source to the scoped Texas estimator and visible needle with
+  linked starting inputs and national isolation. Preserve the earlier rejected
+  audit rather than overwriting its evidence. Actual post-close delivery and
+  independent chronological calibration remain open for all pilots.
+
+## October 26 07:50Z - scoped decision merged; Texas baseline reconciliation blocker
+
+- PR449 merged70cc813d after all three current-head workflows passed at5e0fadf2.
+  Pages integrity at07:45:44Z matches all44 loaded assets/catalogs. This records
+  the scoped experimental-delivery decision; no forecast parameters changed.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/449
+- Investigate another genuinely competitive Senate race, Texas: current stored
+  polling D+2.08,19 contributing/13 independent firms, latestOctober20. Retrieve
+  the actual official Texas Legislative Council2020 VTD archive (54,629,265 bytes,
+  SHA2564ad668ba...) and independent FEC certified2020 workbook (5073b6d2...).
+- Strict original-byte audit finds254 county codes,9,157 VTDs,36,628 candidate cells,
+  but Council sums are short of FEC certified totals: Cornyn1,340; Hegar1,455;
+  McKennon99; Collins140. Certified678 write-ins are absent from the Council
+  roster. README explicitly describes redistricting VTDs rather than exact
+  precincts. The county-level cause is not established; no counts are allocated.
+- Preserve actual county aggregates/hashes in a production-ineligible research
+  audit, with a stdlib reproducible importer/check against both original files.
+  Local generation and independent --check reproduce the blocked result exactly.
+  PR/manual CI retrieves the originals; no recurring large download is added.
+  No Texas source, geography, calibrated model or extra live race is claimed.
+- Next Texas step: obtain a complete official county canvass that reconciles or
+  identify the differences with county-level evidence. Do not rescale counties
+  or repeatedly fetch the unchanged archive. Iowa/Kansas runtime is unchanged;
+  actual non-test delivery and independent chronological calibration remain open.
+
 ## October 26 07:31Z - correction repair deployed and scoped delivery decision
 
 - PR448 merged b88fa72a after all28 applicable current-head workflows passed

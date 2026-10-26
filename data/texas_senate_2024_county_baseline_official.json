@@ -1,0 +1,3590 @@
+{
+  "status": "OFFICIAL_2024_COUNTY_BASELINE_NOT_LIVE_OR_CALIBRATION",
+  "election_date": "2024-11-05",
+  "office": "U.S. Senate",
+  "state": "TX",
+  "county_count": 254,
+  "method_split_reported": false,
+  "historical_release_times": false,
+  "may_move_national_needle": false,
+  "interval_calibrated": false,
+  "statewide_candidate_votes": {
+    "TED CRUZ": 5990741,
+    "COLIN ALLRED": 5031249,
+    "TED BROWN": 267039,
+    "TRACY ANDRUS": 919,
+    "ANALISA ROCHE": 1906
+  },
+  "source_sha256": {
+    "2024-official-county-canvass.xlsx": "7b1e1a75b367c37006dd39d637681bad40070e23829297d50bc9c1f29b9e1ab4",
+    "2024-census-counties.zip": "3c337402b5c6e8d5aa26b4278ccf4edc8989f2683765b3ffbf22296cdb2df3a0"
+  },
+  "official_workbook_url": "https://results.texas-election.com/static/data/Reports/49664/CountybyCountyCanvassReport.xlsx",
+  "independent_statewide_observation": {
+    "url": "https://results.texas-election.com/races",
+    "election_label": "2024 NOVEMBER 5TH GENERAL ELECTION",
+    "status": "OFFICIAL RESULTS",
+    "provider_last_updated_display": "Nov 26, 2024 12:57:43",
+    "race_total": 11291854,
+    "scope": "Normalized visible facts observed separately from workbook; not original HTML bytes"
+  },
+  "county_reference_url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_counties_national.zip",
+  "counties": [
+    {
+      "county": "Anderson",
+      "county_fips": "48001",
+      "dem_votes": 3872,
+      "rep_votes": 15022,
+      "other_votes": 322,
+      "candidate_votes": {
+        "COLIN ALLRED": 3872,
+        "TRACY ANDRUS": 4,
+        "TED BROWN": 317,
+        "TED CRUZ": 15022,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Andrews",
+      "county_fips": "48003",
+      "dem_votes": 873,
+      "rep_votes": 4976,
+      "other_votes": 123,
+      "candidate_votes": {
+        "COLIN ALLRED": 873,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 123,
+        "TED CRUZ": 4976,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Angelina",
+      "county_fips": "48005",
+      "dem_votes": 8382,
+      "rep_votes": 24994,
+      "other_votes": 690,
+      "candidate_votes": {
+        "COLIN ALLRED": 8382,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 687,
+        "TED CRUZ": 24994,
+        "ANALISA ROCHE": 3
+      }
+    },
+    {
+      "county": "Aransas",
+      "county_fips": "48007",
+      "dem_votes": 3069,
+      "rep_votes": 9605,
+      "other_votes": 282,
+      "candidate_votes": {
+        "COLIN ALLRED": 3069,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 280,
+        "TED CRUZ": 9605,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Archer",
+      "county_fips": "48009",
+      "dem_votes": 562,
+      "rep_votes": 4483,
+      "other_votes": 64,
+      "candidate_votes": {
+        "COLIN ALLRED": 562,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 64,
+        "TED CRUZ": 4483,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Armstrong",
+      "county_fips": "48011",
+      "dem_votes": 97,
+      "rep_votes": 1001,
+      "other_votes": 14,
+      "candidate_votes": {
+        "COLIN ALLRED": 97,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 14,
+        "TED CRUZ": 1001,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Atascosa",
+      "county_fips": "48013",
+      "dem_votes": 5739,
+      "rep_votes": 11973,
+      "other_votes": 446,
+      "candidate_votes": {
+        "COLIN ALLRED": 5739,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 445,
+        "TED CRUZ": 11973,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Austin",
+      "county_fips": "48015",
+      "dem_votes": 2998,
+      "rep_votes": 11981,
+      "other_votes": 310,
+      "candidate_votes": {
+        "COLIN ALLRED": 2998,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 308,
+        "TED CRUZ": 11981,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Bailey",
+      "county_fips": "48017",
+      "dem_votes": 325,
+      "rep_votes": 1352,
+      "other_votes": 36,
+      "candidate_votes": {
+        "COLIN ALLRED": 325,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 36,
+        "TED CRUZ": 1352,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Bandera",
+      "county_fips": "48019",
+      "dem_votes": 2735,
+      "rep_votes": 10472,
+      "other_votes": 323,
+      "candidate_votes": {
+        "COLIN ALLRED": 2735,
+        "TRACY ANDRUS": 3,
+        "TED BROWN": 319,
+        "TED CRUZ": 10472,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Bastrop",
+      "county_fips": "48021",
+      "dem_votes": 16445,
+      "rep_votes": 21835,
+      "other_votes": 1166,
+      "candidate_votes": {
+        "COLIN ALLRED": 16445,
+        "TRACY ANDRUS": 3,
+        "TED BROWN": 1156,
+        "TED CRUZ": 21835,
+        "ANALISA ROCHE": 7
+      }
+    },
+    {
+      "county": "Baylor",
+      "county_fips": "48023",
+      "dem_votes": 199,
+      "rep_votes": 1433,
+      "other_votes": 40,
+      "candidate_votes": {
+        "COLIN ALLRED": 199,
+        "TRACY ANDRUS": 4,
+        "TED BROWN": 36,
+        "TED CRUZ": 1433,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Bee",
+      "county_fips": "48025",
+      "dem_votes": 2845,
+      "rep_votes": 5639,
+      "other_votes": 188,
+      "candidate_votes": {
+        "COLIN ALLRED": 2845,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 188,
+        "TED CRUZ": 5639,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Bell",
+      "county_fips": "48027",
+      "dem_votes": 55441,
+      "rep_votes": 70468,
+      "other_votes": 3463,
+      "candidate_votes": {
+        "COLIN ALLRED": 55441,
+        "TRACY ANDRUS": 9,
+        "TED BROWN": 3431,
+        "TED CRUZ": 70468,
+        "ANALISA ROCHE": 23
+      }
+    },
+    {
+      "county": "Bexar",
+      "county_fips": "48029",
+      "dem_votes": 422903,
+      "rep_votes": 303262,
+      "other_votes": 17925,
+      "candidate_votes": {
+        "COLIN ALLRED": 422903,
+        "TRACY ANDRUS": 64,
+        "TED BROWN": 17710,
+        "TED CRUZ": 303262,
+        "ANALISA ROCHE": 151
+      }
+    },
+    {
+      "county": "Blanco",
+      "county_fips": "48031",
+      "dem_votes": 2071,
+      "rep_votes": 6243,
+      "other_votes": 183,
+      "candidate_votes": {
+        "COLIN ALLRED": 2071,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 180,
+        "TED CRUZ": 6243,
+        "ANALISA ROCHE": 3
+      }
+    },
+    {
+      "county": "Borden",
+      "county_fips": "48033",
+      "dem_votes": 13,
+      "rep_votes": 366,
+      "other_votes": 4,
+      "candidate_votes": {
+        "COLIN ALLRED": 13,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 4,
+        "TED CRUZ": 366,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Bosque",
+      "county_fips": "48035",
+      "dem_votes": 1712,
+      "rep_votes": 7643,
+      "other_votes": 198,
+      "candidate_votes": {
+        "COLIN ALLRED": 1712,
+        "TRACY ANDRUS": 6,
+        "TED BROWN": 186,
+        "TED CRUZ": 7643,
+        "ANALISA ROCHE": 6
+      }
+    },
+    {
+      "county": "Bowie",
+      "county_fips": "48037",
+      "dem_votes": 9405,
+      "rep_votes": 26219,
+      "other_votes": 573,
+      "candidate_votes": {
+        "COLIN ALLRED": 9405,
+        "TRACY ANDRUS": 2,
+        "TED BROWN": 567,
+        "TED CRUZ": 26219,
+        "ANALISA ROCHE": 4
+      }
+    },
+    {
+      "county": "Brazoria",
+      "county_fips": "48039",
+      "dem_votes": 67075,
+      "rep_votes": 90208,
+      "other_votes": 4163,
+      "candidate_votes": {
+        "COLIN ALLRED": 67075,
+        "TRACY ANDRUS": 12,
+        "TED BROWN": 4133,
+        "TED CRUZ": 90208,
+        "ANALISA ROCHE": 18
+      }
+    },
+    {
+      "county": "Brazos",
+      "county_fips": "48041",
+      "dem_votes": 34849,
+      "rep_votes": 54153,
+      "other_votes": 2743,
+      "candidate_votes": {
+        "COLIN ALLRED": 34849,
+        "TRACY ANDRUS": 4,
+        "TED BROWN": 2707,
+        "TED CRUZ": 54153,
+        "ANALISA ROCHE": 32
+      }
+    },
+    {
+      "county": "Brewster",
+      "county_fips": "48043",
+      "dem_votes": 1998,
+      "rep_votes": 2422,
+      "other_votes": 124,
+      "candidate_votes": {
+        "COLIN ALLRED": 1998,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 124,
+        "TED CRUZ": 2422,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Briscoe",
+      "county_fips": "48045",
+      "dem_votes": 79,
+      "rep_votes": 649,
+      "other_votes": 16,
+      "candidate_votes": {
+        "COLIN ALLRED": 79,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 15,
+        "TED CRUZ": 649,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Brooks",
+      "county_fips": "48047",
+      "dem_votes": 1379,
+      "rep_votes": 874,
+      "other_votes": 49,
+      "candidate_votes": {
+        "COLIN ALLRED": 1379,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 48,
+        "TED CRUZ": 874,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Brown",
+      "county_fips": "48049",
+      "dem_votes": 2359,
+      "rep_votes": 14108,
+      "other_votes": 313,
+      "candidate_votes": {
+        "COLIN ALLRED": 2359,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 313,
+        "TED CRUZ": 14108,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Burleson",
+      "county_fips": "48051",
+      "dem_votes": 1805,
+      "rep_votes": 7327,
+      "other_votes": 189,
+      "candidate_votes": {
+        "COLIN ALLRED": 1805,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 187,
+        "TED CRUZ": 7327,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Burnet",
+      "county_fips": "48053",
+      "dem_votes": 6401,
+      "rep_votes": 21056,
+      "other_votes": 629,
+      "candidate_votes": {
+        "COLIN ALLRED": 6401,
+        "TRACY ANDRUS": 3,
+        "TED BROWN": 624,
+        "TED CRUZ": 21056,
+        "ANALISA ROCHE": 2
+      }
+    },
+    {
+      "county": "Caldwell",
+      "county_fips": "48055",
+      "dem_votes": 6851,
+      "rep_votes": 8227,
+      "other_votes": 463,
+      "candidate_votes": {
+        "COLIN ALLRED": 6851,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 462,
+        "TED CRUZ": 8227,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Calhoun",
+      "county_fips": "48057",
+      "dem_votes": 2018,
+      "rep_votes": 5603,
+      "other_votes": 137,
+      "candidate_votes": {
+        "COLIN ALLRED": 2018,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 137,
+        "TED CRUZ": 5603,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Callahan",
+      "county_fips": "48059",
+      "dem_votes": 863,
+      "rep_votes": 5973,
+      "other_votes": 140,
+      "candidate_votes": {
+        "COLIN ALLRED": 863,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 140,
+        "TED CRUZ": 5973,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Cameron",
+      "county_fips": "48061",
+      "dem_votes": 58330,
+      "rep_votes": 53391,
+      "other_votes": 2789,
+      "candidate_votes": {
+        "COLIN ALLRED": 58330,
+        "TRACY ANDRUS": 5,
+        "TED BROWN": 2778,
+        "TED CRUZ": 53391,
+        "ANALISA ROCHE": 6
+      }
+    },
+    {
+      "county": "Camp",
+      "county_fips": "48063",
+      "dem_votes": 1257,
+      "rep_votes": 3894,
+      "other_votes": 75,
+      "candidate_votes": {
+        "COLIN ALLRED": 1257,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 75,
+        "TED CRUZ": 3894,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Carson",
+      "county_fips": "48065",
+      "dem_votes": 328,
+      "rep_votes": 2755,
+      "other_votes": 68,
+      "candidate_votes": {
+        "COLIN ALLRED": 328,
+        "TRACY ANDRUS": 2,
+        "TED BROWN": 64,
+        "TED CRUZ": 2755,
+        "ANALISA ROCHE": 2
+      }
+    },
+    {
+      "county": "Cass",
+      "county_fips": "48067",
+      "dem_votes": 2457,
+      "rep_votes": 11477,
+      "other_votes": 183,
+      "candidate_votes": {
+        "COLIN ALLRED": 2457,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 183,
+        "TED CRUZ": 11477,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Castro",
+      "county_fips": "48069",
+      "dem_votes": 408,
+      "rep_votes": 1530,
+      "other_votes": 46,
+      "candidate_votes": {
+        "COLIN ALLRED": 408,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 45,
+        "TED CRUZ": 1530,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Chambers",
+      "county_fips": "48071",
+      "dem_votes": 4617,
+      "rep_votes": 19746,
+      "other_votes": 514,
+      "candidate_votes": {
+        "COLIN ALLRED": 4617,
+        "TRACY ANDRUS": 6,
+        "TED BROWN": 508,
+        "TED CRUZ": 19746,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Cherokee",
+      "county_fips": "48073",
+      "dem_votes": 3915,
+      "rep_votes": 16065,
+      "other_votes": 413,
+      "candidate_votes": {
+        "COLIN ALLRED": 3915,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 411,
+        "TED CRUZ": 16065,
+        "ANALISA ROCHE": 2
+      }
+    },
+    {
+      "county": "Childress",
+      "county_fips": "48075",
+      "dem_votes": 285,
+      "rep_votes": 1919,
+      "other_votes": 40,
+      "candidate_votes": {
+        "COLIN ALLRED": 285,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 40,
+        "TED CRUZ": 1919,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Clay",
+      "county_fips": "48077",
+      "dem_votes": 663,
+      "rep_votes": 5128,
+      "other_votes": 88,
+      "candidate_votes": {
+        "COLIN ALLRED": 663,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 88,
+        "TED CRUZ": 5128,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Cochran",
+      "county_fips": "48079",
+      "dem_votes": 149,
+      "rep_votes": 706,
+      "other_votes": 25,
+      "candidate_votes": {
+        "COLIN ALLRED": 149,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 24,
+        "TED CRUZ": 706,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Coke",
+      "county_fips": "48081",
+      "dem_votes": 218,
+      "rep_votes": 1567,
+      "other_votes": 19,
+      "candidate_votes": {
+        "COLIN ALLRED": 218,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 19,
+        "TED CRUZ": 1567,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Coleman",
+      "county_fips": "48083",
+      "dem_votes": 470,
+      "rep_votes": 3585,
+      "other_votes": 67,
+      "candidate_votes": {
+        "COLIN ALLRED": 470,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 67,
+        "TED CRUZ": 3585,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Collin",
+      "county_fips": "48085",
+      "dem_votes": 236579,
+      "rep_votes": 263381,
+      "other_votes": 11313,
+      "candidate_votes": {
+        "COLIN ALLRED": 236579,
+        "TRACY ANDRUS": 36,
+        "TED BROWN": 11173,
+        "TED CRUZ": 263381,
+        "ANALISA ROCHE": 104
+      }
+    },
+    {
+      "county": "Collingsworth",
+      "county_fips": "48087",
+      "dem_votes": 141,
+      "rep_votes": 1039,
+      "other_votes": 1,
+      "candidate_votes": {
+        "COLIN ALLRED": 141,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 1,
+        "TED CRUZ": 1039,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Colorado",
+      "county_fips": "48089",
+      "dem_votes": 2207,
+      "rep_votes": 7554,
+      "other_votes": 158,
+      "candidate_votes": {
+        "COLIN ALLRED": 2207,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 158,
+        "TED CRUZ": 7554,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Comal",
+      "county_fips": "48091",
+      "dem_votes": 29149,
+      "rep_votes": 71757,
+      "other_votes": 2418,
+      "candidate_votes": {
+        "COLIN ALLRED": 29149,
+        "TRACY ANDRUS": 8,
+        "TED BROWN": 2404,
+        "TED CRUZ": 71757,
+        "ANALISA ROCHE": 6
+      }
+    },
+    {
+      "county": "Comanche",
+      "county_fips": "48093",
+      "dem_votes": 962,
+      "rep_votes": 5435,
+      "other_votes": 109,
+      "candidate_votes": {
+        "COLIN ALLRED": 962,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 109,
+        "TED CRUZ": 5435,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Concho",
+      "county_fips": "48095",
+      "dem_votes": 176,
+      "rep_votes": 989,
+      "other_votes": 19,
+      "candidate_votes": {
+        "COLIN ALLRED": 176,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 19,
+        "TED CRUZ": 989,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Cooke",
+      "county_fips": "48097",
+      "dem_votes": 3620,
+      "rep_votes": 16284,
+      "other_votes": 395,
+      "candidate_votes": {
+        "COLIN ALLRED": 3620,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 388,
+        "TED CRUZ": 16284,
+        "ANALISA ROCHE": 6
+      }
+    },
+    {
+      "county": "Coryell",
+      "county_fips": "48099",
+      "dem_votes": 7276,
+      "rep_votes": 15775,
+      "other_votes": 726,
+      "candidate_votes": {
+        "COLIN ALLRED": 7276,
+        "TRACY ANDRUS": 3,
+        "TED BROWN": 720,
+        "TED CRUZ": 15775,
+        "ANALISA ROCHE": 3
+      }
+    },
+    {
+      "county": "Cottle",
+      "county_fips": "48101",
+      "dem_votes": 90,
+      "rep_votes": 544,
+      "other_votes": 9,
+      "candidate_votes": {
+        "COLIN ALLRED": 90,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 9,
+        "TED CRUZ": 544,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Crane",
+      "county_fips": "48103",
+      "dem_votes": 196,
+      "rep_votes": 1115,
+      "other_votes": 27,
+      "candidate_votes": {
+        "COLIN ALLRED": 196,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 24,
+        "TED CRUZ": 1115,
+        "ANALISA ROCHE": 3
+      }
+    },
+    {
+      "county": "Crockett",
+      "county_fips": "48105",
+      "dem_votes": 328,
+      "rep_votes": 1008,
+      "other_votes": 37,
+      "candidate_votes": {
+        "COLIN ALLRED": 328,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 36,
+        "TED CRUZ": 1008,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Crosby",
+      "county_fips": "48107",
+      "dem_votes": 438,
+      "rep_votes": 1370,
+      "other_votes": 52,
+      "candidate_votes": {
+        "COLIN ALLRED": 438,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 52,
+        "TED CRUZ": 1370,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Culberson",
+      "county_fips": "48109",
+      "dem_votes": 340,
+      "rep_votes": 394,
+      "other_votes": 11,
+      "candidate_votes": {
+        "COLIN ALLRED": 340,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 11,
+        "TED CRUZ": 394,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Dallam",
+      "county_fips": "48111",
+      "dem_votes": 158,
+      "rep_votes": 1229,
+      "other_votes": 38,
+      "candidate_votes": {
+        "COLIN ALLRED": 158,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 38,
+        "TED CRUZ": 1229,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Dallas",
+      "county_fips": "48113",
+      "dem_votes": 531153,
+      "rep_votes": 291528,
+      "other_votes": 19744,
+      "candidate_votes": {
+        "COLIN ALLRED": 531153,
+        "TRACY ANDRUS": 52,
+        "TED BROWN": 19522,
+        "TED CRUZ": 291528,
+        "ANALISA ROCHE": 170
+      }
+    },
+    {
+      "county": "Dawson",
+      "county_fips": "48115",
+      "dem_votes": 688,
+      "rep_votes": 2686,
+      "other_votes": 81,
+      "candidate_votes": {
+        "COLIN ALLRED": 688,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 81,
+        "TED CRUZ": 2686,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Deaf Smith",
+      "county_fips": "48117",
+      "dem_votes": 1025,
+      "rep_votes": 3113,
+      "other_votes": 87,
+      "candidate_votes": {
+        "COLIN ALLRED": 1025,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 87,
+        "TED CRUZ": 3113,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Delta",
+      "county_fips": "48119",
+      "dem_votes": 453,
+      "rep_votes": 2158,
+      "other_votes": 44,
+      "candidate_votes": {
+        "COLIN ALLRED": 453,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 44,
+        "TED CRUZ": 2158,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Denton",
+      "county_fips": "48121",
+      "dem_votes": 200676,
+      "rep_votes": 237978,
+      "other_votes": 9805,
+      "candidate_votes": {
+        "COLIN ALLRED": 200676,
+        "TRACY ANDRUS": 48,
+        "TED BROWN": 9660,
+        "TED CRUZ": 237978,
+        "ANALISA ROCHE": 97
+      }
+    },
+    {
+      "county": "DeWitt",
+      "county_fips": "48123",
+      "dem_votes": 1392,
+      "rep_votes": 6240,
+      "other_votes": 118,
+      "candidate_votes": {
+        "COLIN ALLRED": 1392,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 118,
+        "TED CRUZ": 6240,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Dickens",
+      "county_fips": "48125",
+      "dem_votes": 148,
+      "rep_votes": 817,
+      "other_votes": 18,
+      "candidate_votes": {
+        "COLIN ALLRED": 148,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 16,
+        "TED CRUZ": 817,
+        "ANALISA ROCHE": 2
+      }
+    },
+    {
+      "county": "Dimmit",
+      "county_fips": "48127",
+      "dem_votes": 1849,
+      "rep_votes": 1305,
+      "other_votes": 89,
+      "candidate_votes": {
+        "COLIN ALLRED": 1849,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 89,
+        "TED CRUZ": 1305,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Donley",
+      "county_fips": "48129",
+      "dem_votes": 192,
+      "rep_votes": 1453,
+      "other_votes": 25,
+      "candidate_votes": {
+        "COLIN ALLRED": 192,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 25,
+        "TED CRUZ": 1453,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Duval",
+      "county_fips": "48131",
+      "dem_votes": 2190,
+      "rep_votes": 1872,
+      "other_votes": 115,
+      "candidate_votes": {
+        "COLIN ALLRED": 2190,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 115,
+        "TED CRUZ": 1872,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Eastland",
+      "county_fips": "48133",
+      "dem_votes": 1026,
+      "rep_votes": 7132,
+      "other_votes": 146,
+      "candidate_votes": {
+        "COLIN ALLRED": 1026,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 145,
+        "TED CRUZ": 7132,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Ector",
+      "county_fips": "48135",
+      "dem_votes": 10620,
+      "rep_votes": 30729,
+      "other_votes": 919,
+      "candidate_votes": {
+        "COLIN ALLRED": 10620,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 919,
+        "TED CRUZ": 30729,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Edwards",
+      "county_fips": "48137",
+      "dem_votes": 152,
+      "rep_votes": 800,
+      "other_votes": 22,
+      "candidate_votes": {
+        "COLIN ALLRED": 152,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 22,
+        "TED CRUZ": 800,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Ellis",
+      "county_fips": "48139",
+      "dem_votes": 35685,
+      "rep_votes": 61020,
+      "other_votes": 2070,
+      "candidate_votes": {
+        "COLIN ALLRED": 35685,
+        "TRACY ANDRUS": 4,
+        "TED BROWN": 2049,
+        "TED CRUZ": 61020,
+        "ANALISA ROCHE": 17
+      }
+    },
+    {
+      "county": "El Paso",
+      "county_fips": "48141",
+      "dem_votes": 141826,
+      "rep_votes": 92997,
+      "other_votes": 10164,
+      "candidate_votes": {
+        "COLIN ALLRED": 141826,
+        "TRACY ANDRUS": 32,
+        "TED BROWN": 10074,
+        "TED CRUZ": 92997,
+        "ANALISA ROCHE": 58
+      }
+    },
+    {
+      "county": "Erath",
+      "county_fips": "48143",
+      "dem_votes": 3126,
+      "rep_votes": 14672,
+      "other_votes": 380,
+      "candidate_votes": {
+        "COLIN ALLRED": 3126,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 380,
+        "TED CRUZ": 14672,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Falls",
+      "county_fips": "48145",
+      "dem_votes": 1782,
+      "rep_votes": 4351,
+      "other_votes": 133,
+      "candidate_votes": {
+        "COLIN ALLRED": 1782,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 133,
+        "TED CRUZ": 4351,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Fannin",
+      "county_fips": "48147",
+      "dem_votes": 2927,
+      "rep_votes": 13084,
+      "other_votes": 327,
+      "candidate_votes": {
+        "COLIN ALLRED": 2927,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 325,
+        "TED CRUZ": 13084,
+        "ANALISA ROCHE": 2
+      }
+    },
+    {
+      "county": "Fayette",
+      "county_fips": "48149",
+      "dem_votes": 2649,
+      "rep_votes": 10408,
+      "other_votes": 228,
+      "candidate_votes": {
+        "COLIN ALLRED": 2649,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 225,
+        "TED CRUZ": 10408,
+        "ANALISA ROCHE": 3
+      }
+    },
+    {
+      "county": "Fisher",
+      "county_fips": "48151",
+      "dem_votes": 358,
+      "rep_votes": 1420,
+      "other_votes": 34,
+      "candidate_votes": {
+        "COLIN ALLRED": 358,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 33,
+        "TED CRUZ": 1420,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Floyd",
+      "county_fips": "48153",
+      "dem_votes": 406,
+      "rep_votes": 1617,
+      "other_votes": 47,
+      "candidate_votes": {
+        "COLIN ALLRED": 406,
+        "TRACY ANDRUS": 2,
+        "TED BROWN": 42,
+        "TED CRUZ": 1617,
+        "ANALISA ROCHE": 3
+      }
+    },
+    {
+      "county": "Foard",
+      "county_fips": "48155",
+      "dem_votes": 94,
+      "rep_votes": 438,
+      "other_votes": 6,
+      "candidate_votes": {
+        "COLIN ALLRED": 94,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 6,
+        "TED CRUZ": 438,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Fort Bend",
+      "county_fips": "48157",
+      "dem_votes": 186710,
+      "rep_votes": 159691,
+      "other_votes": 9740,
+      "candidate_votes": {
+        "COLIN ALLRED": 186710,
+        "TRACY ANDRUS": 26,
+        "TED BROWN": 9638,
+        "TED CRUZ": 159691,
+        "ANALISA ROCHE": 76
+      }
+    },
+    {
+      "county": "Franklin",
+      "county_fips": "48159",
+      "dem_votes": 859,
+      "rep_votes": 4349,
+      "other_votes": 68,
+      "candidate_votes": {
+        "COLIN ALLRED": 859,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 68,
+        "TED CRUZ": 4349,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Freestone",
+      "county_fips": "48161",
+      "dem_votes": 1601,
+      "rep_votes": 7197,
+      "other_votes": 159,
+      "candidate_votes": {
+        "COLIN ALLRED": 1601,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 159,
+        "TED CRUZ": 7197,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Frio",
+      "county_fips": "48163",
+      "dem_votes": 2039,
+      "rep_votes": 2557,
+      "other_votes": 230,
+      "candidate_votes": {
+        "COLIN ALLRED": 2039,
+        "TRACY ANDRUS": 8,
+        "TED BROWN": 214,
+        "TED CRUZ": 2557,
+        "ANALISA ROCHE": 8
+      }
+    },
+    {
+      "county": "Gaines",
+      "county_fips": "48165",
+      "dem_votes": 561,
+      "rep_votes": 5700,
+      "other_votes": 106,
+      "candidate_votes": {
+        "COLIN ALLRED": 561,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 103,
+        "TED CRUZ": 5700,
+        "ANALISA ROCHE": 2
+      }
+    },
+    {
+      "county": "Galveston",
+      "county_fips": "48167",
+      "dem_votes": 59316,
+      "rep_votes": 95114,
+      "other_votes": 3962,
+      "candidate_votes": {
+        "COLIN ALLRED": 59316,
+        "TRACY ANDRUS": 20,
+        "TED BROWN": 3935,
+        "TED CRUZ": 95114,
+        "ANALISA ROCHE": 7
+      }
+    },
+    {
+      "county": "Garza",
+      "county_fips": "48169",
+      "dem_votes": 223,
+      "rep_votes": 1318,
+      "other_votes": 28,
+      "candidate_votes": {
+        "COLIN ALLRED": 223,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 27,
+        "TED CRUZ": 1318,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Gillespie",
+      "county_fips": "48171",
+      "dem_votes": 3296,
+      "rep_votes": 12881,
+      "other_votes": 334,
+      "candidate_votes": {
+        "COLIN ALLRED": 3296,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 329,
+        "TED CRUZ": 12881,
+        "ANALISA ROCHE": 4
+      }
+    },
+    {
+      "county": "Glasscock",
+      "county_fips": "48173",
+      "dem_votes": 37,
+      "rep_votes": 616,
+      "other_votes": 7,
+      "candidate_votes": {
+        "COLIN ALLRED": 37,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 7,
+        "TED CRUZ": 616,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Goliad",
+      "county_fips": "48175",
+      "dem_votes": 853,
+      "rep_votes": 3016,
+      "other_votes": 73,
+      "candidate_votes": {
+        "COLIN ALLRED": 853,
+        "TRACY ANDRUS": 4,
+        "TED BROWN": 67,
+        "TED CRUZ": 3016,
+        "ANALISA ROCHE": 2
+      }
+    },
+    {
+      "county": "Gonzales",
+      "county_fips": "48177",
+      "dem_votes": 1849,
+      "rep_votes": 5607,
+      "other_votes": 179,
+      "candidate_votes": {
+        "COLIN ALLRED": 1849,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 178,
+        "TED CRUZ": 5607,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Gray",
+      "county_fips": "48179",
+      "dem_votes": 878,
+      "rep_votes": 6489,
+      "other_votes": 153,
+      "candidate_votes": {
+        "COLIN ALLRED": 878,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 153,
+        "TED CRUZ": 6489,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Grayson",
+      "county_fips": "48181",
+      "dem_votes": 15453,
+      "rep_votes": 48504,
+      "other_votes": 1319,
+      "candidate_votes": {
+        "COLIN ALLRED": 15453,
+        "TRACY ANDRUS": 2,
+        "TED BROWN": 1311,
+        "TED CRUZ": 48504,
+        "ANALISA ROCHE": 6
+      }
+    },
+    {
+      "county": "Gregg",
+      "county_fips": "48183",
+      "dem_votes": 13660,
+      "rep_votes": 31862,
+      "other_votes": 983,
+      "candidate_votes": {
+        "COLIN ALLRED": 13660,
+        "TRACY ANDRUS": 6,
+        "TED BROWN": 967,
+        "TED CRUZ": 31862,
+        "ANALISA ROCHE": 10
+      }
+    },
+    {
+      "county": "Grimes",
+      "county_fips": "48185",
+      "dem_votes": 2900,
+      "rep_votes": 10830,
+      "other_votes": 261,
+      "candidate_votes": {
+        "COLIN ALLRED": 2900,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 261,
+        "TED CRUZ": 10830,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Guadalupe",
+      "county_fips": "48187",
+      "dem_votes": 30981,
+      "rep_votes": 50972,
+      "other_votes": 2159,
+      "candidate_votes": {
+        "COLIN ALLRED": 30981,
+        "TRACY ANDRUS": 9,
+        "TED BROWN": 2134,
+        "TED CRUZ": 50972,
+        "ANALISA ROCHE": 16
+      }
+    },
+    {
+      "county": "Hale",
+      "county_fips": "48189",
+      "dem_votes": 2013,
+      "rep_votes": 6941,
+      "other_votes": 241,
+      "candidate_votes": {
+        "COLIN ALLRED": 2013,
+        "TRACY ANDRUS": 2,
+        "TED BROWN": 238,
+        "TED CRUZ": 6941,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Hall",
+      "county_fips": "48191",
+      "dem_votes": 155,
+      "rep_votes": 957,
+      "other_votes": 19,
+      "candidate_votes": {
+        "COLIN ALLRED": 155,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 19,
+        "TED CRUZ": 957,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Hamilton",
+      "county_fips": "48193",
+      "dem_votes": 679,
+      "rep_votes": 3699,
+      "other_votes": 96,
+      "candidate_votes": {
+        "COLIN ALLRED": 679,
+        "TRACY ANDRUS": 4,
+        "TED BROWN": 91,
+        "TED CRUZ": 3699,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Hansford",
+      "county_fips": "48195",
+      "dem_votes": 147,
+      "rep_votes": 1802,
+      "other_votes": 30,
+      "candidate_votes": {
+        "COLIN ALLRED": 147,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 30,
+        "TED CRUZ": 1802,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Hardeman",
+      "county_fips": "48197",
+      "dem_votes": 217,
+      "rep_votes": 1163,
+      "other_votes": 18,
+      "candidate_votes": {
+        "COLIN ALLRED": 217,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 18,
+        "TED CRUZ": 1163,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Hardin",
+      "county_fips": "48199",
+      "dem_votes": 3603,
+      "rep_votes": 23992,
+      "other_votes": 473,
+      "candidate_votes": {
+        "COLIN ALLRED": 3603,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 473,
+        "TED CRUZ": 23992,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Harris",
+      "county_fips": "48201",
+      "dem_votes": 841784,
+      "rep_votes": 666027,
+      "other_votes": 41103,
+      "candidate_votes": {
+        "COLIN ALLRED": 841784,
+        "TRACY ANDRUS": 74,
+        "TED BROWN": 40807,
+        "TED CRUZ": 666027,
+        "ANALISA ROCHE": 222
+      }
+    },
+    {
+      "county": "Harrison",
+      "county_fips": "48203",
+      "dem_votes": 7408,
+      "rep_votes": 22137,
+      "other_votes": 534,
+      "candidate_votes": {
+        "COLIN ALLRED": 7408,
+        "TRACY ANDRUS": 59,
+        "TED BROWN": 473,
+        "TED CRUZ": 22137,
+        "ANALISA ROCHE": 2
+      }
+    },
+    {
+      "county": "Hartley",
+      "county_fips": "48205",
+      "dem_votes": 172,
+      "rep_votes": 1817,
+      "other_votes": 16,
+      "candidate_votes": {
+        "COLIN ALLRED": 172,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 16,
+        "TED CRUZ": 1817,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Haskell",
+      "county_fips": "48207",
+      "dem_votes": 363,
+      "rep_votes": 1826,
+      "other_votes": 45,
+      "candidate_votes": {
+        "COLIN ALLRED": 363,
+        "TRACY ANDRUS": 4,
+        "TED BROWN": 39,
+        "TED CRUZ": 1826,
+        "ANALISA ROCHE": 2
+      }
+    },
+    {
+      "county": "Hays",
+      "county_fips": "48209",
+      "dem_votes": 67475,
+      "rep_votes": 54436,
+      "other_votes": 3665,
+      "candidate_votes": {
+        "COLIN ALLRED": 67475,
+        "TRACY ANDRUS": 13,
+        "TED BROWN": 3631,
+        "TED CRUZ": 54436,
+        "ANALISA ROCHE": 21
+      }
+    },
+    {
+      "county": "Hemphill",
+      "county_fips": "48211",
+      "dem_votes": 195,
+      "rep_votes": 1380,
+      "other_votes": 24,
+      "candidate_votes": {
+        "COLIN ALLRED": 195,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 24,
+        "TED CRUZ": 1380,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Henderson",
+      "county_fips": "48213",
+      "dem_votes": 7453,
+      "rep_votes": 30047,
+      "other_votes": 726,
+      "candidate_votes": {
+        "COLIN ALLRED": 7453,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 718,
+        "TED CRUZ": 30047,
+        "ANALISA ROCHE": 7
+      }
+    },
+    {
+      "county": "Hidalgo",
+      "county_fips": "48215",
+      "dem_votes": 110139,
+      "rep_votes": 96208,
+      "other_votes": 5275,
+      "candidate_votes": {
+        "COLIN ALLRED": 110139,
+        "TRACY ANDRUS": 10,
+        "TED BROWN": 5250,
+        "TED CRUZ": 96208,
+        "ANALISA ROCHE": 15
+      }
+    },
+    {
+      "county": "Hill",
+      "county_fips": "48217",
+      "dem_votes": 3223,
+      "rep_votes": 13104,
+      "other_votes": 331,
+      "candidate_votes": {
+        "COLIN ALLRED": 3223,
+        "TRACY ANDRUS": 3,
+        "TED BROWN": 327,
+        "TED CRUZ": 13104,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Hockley",
+      "county_fips": "48219",
+      "dem_votes": 1355,
+      "rep_votes": 6437,
+      "other_votes": 163,
+      "candidate_votes": {
+        "COLIN ALLRED": 1355,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 163,
+        "TED CRUZ": 6437,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Hood",
+      "county_fips": "48221",
+      "dem_votes": 6604,
+      "rep_votes": 29112,
+      "other_votes": 747,
+      "candidate_votes": {
+        "COLIN ALLRED": 6604,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 741,
+        "TED CRUZ": 29112,
+        "ANALISA ROCHE": 5
+      }
+    },
+    {
+      "county": "Hopkins",
+      "county_fips": "48223",
+      "dem_votes": 3142,
+      "rep_votes": 13269,
+      "other_votes": 294,
+      "candidate_votes": {
+        "COLIN ALLRED": 3142,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 294,
+        "TED CRUZ": 13269,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Houston",
+      "county_fips": "48225",
+      "dem_votes": 2104,
+      "rep_votes": 7033,
+      "other_votes": 148,
+      "candidate_votes": {
+        "COLIN ALLRED": 2104,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 148,
+        "TED CRUZ": 7033,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Howard",
+      "county_fips": "48227",
+      "dem_votes": 1895,
+      "rep_votes": 7388,
+      "other_votes": 229,
+      "candidate_votes": {
+        "COLIN ALLRED": 1895,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 228,
+        "TED CRUZ": 7388,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Hudspeth",
+      "county_fips": "48229",
+      "dem_votes": 285,
+      "rep_votes": 702,
+      "other_votes": 33,
+      "candidate_votes": {
+        "COLIN ALLRED": 285,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 33,
+        "TED CRUZ": 702,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Hunt",
+      "county_fips": "48231",
+      "dem_votes": 11067,
+      "rep_votes": 34351,
+      "other_votes": 991,
+      "candidate_votes": {
+        "COLIN ALLRED": 11067,
+        "TRACY ANDRUS": 3,
+        "TED BROWN": 975,
+        "TED CRUZ": 34351,
+        "ANALISA ROCHE": 13
+      }
+    },
+    {
+      "county": "Hutchinson",
+      "county_fips": "48233",
+      "dem_votes": 946,
+      "rep_votes": 7047,
+      "other_votes": 175,
+      "candidate_votes": {
+        "COLIN ALLRED": 946,
+        "TRACY ANDRUS": 9,
+        "TED BROWN": 160,
+        "TED CRUZ": 7047,
+        "ANALISA ROCHE": 6
+      }
+    },
+    {
+      "county": "Irion",
+      "county_fips": "48235",
+      "dem_votes": 118,
+      "rep_votes": 732,
+      "other_votes": 17,
+      "candidate_votes": {
+        "COLIN ALLRED": 118,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 17,
+        "TED CRUZ": 732,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Jack",
+      "county_fips": "48237",
+      "dem_votes": 427,
+      "rep_votes": 3689,
+      "other_votes": 65,
+      "candidate_votes": {
+        "COLIN ALLRED": 427,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 65,
+        "TED CRUZ": 3689,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Jackson",
+      "county_fips": "48239",
+      "dem_votes": 998,
+      "rep_votes": 5222,
+      "other_votes": 80,
+      "candidate_votes": {
+        "COLIN ALLRED": 998,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 80,
+        "TED CRUZ": 5222,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Jasper",
+      "county_fips": "48241",
+      "dem_votes": 2702,
+      "rep_votes": 12842,
+      "other_votes": 201,
+      "candidate_votes": {
+        "COLIN ALLRED": 2702,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 201,
+        "TED CRUZ": 12842,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Jeff Davis",
+      "county_fips": "48243",
+      "dem_votes": 447,
+      "rep_votes": 671,
+      "other_votes": 37,
+      "candidate_votes": {
+        "COLIN ALLRED": 447,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 37,
+        "TED CRUZ": 671,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Jefferson",
+      "county_fips": "48245",
+      "dem_votes": 39643,
+      "rep_votes": 43888,
+      "other_votes": 1425,
+      "candidate_votes": {
+        "COLIN ALLRED": 39643,
+        "TRACY ANDRUS": 13,
+        "TED BROWN": 1400,
+        "TED CRUZ": 43888,
+        "ANALISA ROCHE": 12
+      }
+    },
+    {
+      "county": "Jim Hogg",
+      "county_fips": "48247",
+      "dem_votes": 917,
+      "rep_votes": 586,
+      "other_votes": 16,
+      "candidate_votes": {
+        "COLIN ALLRED": 917,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 15,
+        "TED CRUZ": 586,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Jim Wells",
+      "county_fips": "48249",
+      "dem_votes": 5895,
+      "rep_votes": 6773,
+      "other_votes": 292,
+      "candidate_votes": {
+        "COLIN ALLRED": 5895,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 292,
+        "TED CRUZ": 6773,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Johnson",
+      "county_fips": "48251",
+      "dem_votes": 20935,
+      "rep_votes": 57382,
+      "other_votes": 2006,
+      "candidate_votes": {
+        "COLIN ALLRED": 20935,
+        "TRACY ANDRUS": 4,
+        "TED BROWN": 1993,
+        "TED CRUZ": 57382,
+        "ANALISA ROCHE": 9
+      }
+    },
+    {
+      "county": "Jones",
+      "county_fips": "48253",
+      "dem_votes": 1039,
+      "rep_votes": 5729,
+      "other_votes": 133,
+      "candidate_votes": {
+        "COLIN ALLRED": 1039,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 133,
+        "TED CRUZ": 5729,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Karnes",
+      "county_fips": "48255",
+      "dem_votes": 1175,
+      "rep_votes": 3743,
+      "other_votes": 92,
+      "candidate_votes": {
+        "COLIN ALLRED": 1175,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 92,
+        "TED CRUZ": 3743,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Kaufman",
+      "county_fips": "48257",
+      "dem_votes": 26235,
+      "rep_votes": 41177,
+      "other_votes": 1414,
+      "candidate_votes": {
+        "COLIN ALLRED": 26235,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 1405,
+        "TED CRUZ": 41177,
+        "ANALISA ROCHE": 8
+      }
+    },
+    {
+      "county": "Kendall",
+      "county_fips": "48259",
+      "dem_votes": 6666,
+      "rep_votes": 22068,
+      "other_votes": 546,
+      "candidate_votes": {
+        "COLIN ALLRED": 6666,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 543,
+        "TED CRUZ": 22068,
+        "ANALISA ROCHE": 3
+      }
+    },
+    {
+      "county": "Kenedy",
+      "county_fips": "48261",
+      "dem_votes": 48,
+      "rep_votes": 92,
+      "other_votes": 4,
+      "candidate_votes": {
+        "COLIN ALLRED": 48,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 4,
+        "TED CRUZ": 92,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Kent",
+      "county_fips": "48263",
+      "dem_votes": 58,
+      "rep_votes": 383,
+      "other_votes": 7,
+      "candidate_votes": {
+        "COLIN ALLRED": 58,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 7,
+        "TED CRUZ": 383,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Kerr",
+      "county_fips": "48265",
+      "dem_votes": 6672,
+      "rep_votes": 20840,
+      "other_votes": 610,
+      "candidate_votes": {
+        "COLIN ALLRED": 6672,
+        "TRACY ANDRUS": 6,
+        "TED BROWN": 600,
+        "TED CRUZ": 20840,
+        "ANALISA ROCHE": 4
+      }
+    },
+    {
+      "county": "Kimble",
+      "county_fips": "48267",
+      "dem_votes": 298,
+      "rep_votes": 2039,
+      "other_votes": 42,
+      "candidate_votes": {
+        "COLIN ALLRED": 298,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 42,
+        "TED CRUZ": 2039,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "King",
+      "county_fips": "48269",
+      "dem_votes": 5,
+      "rep_votes": 129,
+      "other_votes": 0,
+      "candidate_votes": {
+        "COLIN ALLRED": 5,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 0,
+        "TED CRUZ": 129,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Kinney",
+      "county_fips": "48271",
+      "dem_votes": 390,
+      "rep_votes": 970,
+      "other_votes": 27,
+      "candidate_votes": {
+        "COLIN ALLRED": 390,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 27,
+        "TED CRUZ": 970,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Kleberg",
+      "county_fips": "48273",
+      "dem_votes": 4614,
+      "rep_votes": 5047,
+      "other_votes": 232,
+      "candidate_votes": {
+        "COLIN ALLRED": 4614,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 225,
+        "TED CRUZ": 5047,
+        "ANALISA ROCHE": 6
+      }
+    },
+    {
+      "county": "Knox",
+      "county_fips": "48275",
+      "dem_votes": 249,
+      "rep_votes": 1096,
+      "other_votes": 19,
+      "candidate_votes": {
+        "COLIN ALLRED": 249,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 19,
+        "TED CRUZ": 1096,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Lamar",
+      "county_fips": "48277",
+      "dem_votes": 4344,
+      "rep_votes": 16454,
+      "other_votes": 308,
+      "candidate_votes": {
+        "COLIN ALLRED": 4344,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 308,
+        "TED CRUZ": 16454,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Lamb",
+      "county_fips": "48279",
+      "dem_votes": 729,
+      "rep_votes": 3285,
+      "other_votes": 97,
+      "candidate_votes": {
+        "COLIN ALLRED": 729,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 97,
+        "TED CRUZ": 3285,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Lampasas",
+      "county_fips": "48281",
+      "dem_votes": 2314,
+      "rep_votes": 8606,
+      "other_votes": 268,
+      "candidate_votes": {
+        "COLIN ALLRED": 2314,
+        "TRACY ANDRUS": 4,
+        "TED BROWN": 263,
+        "TED CRUZ": 8606,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "La Salle",
+      "county_fips": "48283",
+      "dem_votes": 956,
+      "rep_votes": 1088,
+      "other_votes": 68,
+      "candidate_votes": {
+        "COLIN ALLRED": 956,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 67,
+        "TED CRUZ": 1088,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Lavaca",
+      "county_fips": "48285",
+      "dem_votes": 1378,
+      "rep_votes": 8915,
+      "other_votes": 126,
+      "candidate_votes": {
+        "COLIN ALLRED": 1378,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 125,
+        "TED CRUZ": 8915,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Lee",
+      "county_fips": "48287",
+      "dem_votes": 1719,
+      "rep_votes": 6505,
+      "other_votes": 138,
+      "candidate_votes": {
+        "COLIN ALLRED": 1719,
+        "TRACY ANDRUS": 2,
+        "TED BROWN": 136,
+        "TED CRUZ": 6505,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Leon",
+      "county_fips": "48289",
+      "dem_votes": 1115,
+      "rep_votes": 7734,
+      "other_votes": 161,
+      "candidate_votes": {
+        "COLIN ALLRED": 1115,
+        "TRACY ANDRUS": 2,
+        "TED BROWN": 159,
+        "TED CRUZ": 7734,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Liberty",
+      "county_fips": "48291",
+      "dem_votes": 6429,
+      "rep_votes": 23983,
+      "other_votes": 651,
+      "candidate_votes": {
+        "COLIN ALLRED": 6429,
+        "TRACY ANDRUS": 10,
+        "TED BROWN": 636,
+        "TED CRUZ": 23983,
+        "ANALISA ROCHE": 5
+      }
+    },
+    {
+      "county": "Limestone",
+      "county_fips": "48293",
+      "dem_votes": 2045,
+      "rep_votes": 6821,
+      "other_votes": 145,
+      "candidate_votes": {
+        "COLIN ALLRED": 2045,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 143,
+        "TED CRUZ": 6821,
+        "ANALISA ROCHE": 2
+      }
+    },
+    {
+      "county": "Lipscomb",
+      "county_fips": "48295",
+      "dem_votes": 131,
+      "rep_votes": 1094,
+      "other_votes": 23,
+      "candidate_votes": {
+        "COLIN ALLRED": 131,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 21,
+        "TED CRUZ": 1094,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Live Oak",
+      "county_fips": "48297",
+      "dem_votes": 822,
+      "rep_votes": 4165,
+      "other_votes": 75,
+      "candidate_votes": {
+        "COLIN ALLRED": 822,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 75,
+        "TED CRUZ": 4165,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Llano",
+      "county_fips": "48299",
+      "dem_votes": 2677,
+      "rep_votes": 10698,
+      "other_votes": 248,
+      "candidate_votes": {
+        "COLIN ALLRED": 2677,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 247,
+        "TED CRUZ": 10698,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Loving",
+      "county_fips": "48301",
+      "dem_votes": 17,
+      "rep_votes": 75,
+      "other_votes": 3,
+      "candidate_votes": {
+        "COLIN ALLRED": 17,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 3,
+        "TED CRUZ": 75,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Lubbock",
+      "county_fips": "48303",
+      "dem_votes": 37560,
+      "rep_votes": 83643,
+      "other_votes": 3266,
+      "candidate_votes": {
+        "COLIN ALLRED": 37560,
+        "TRACY ANDRUS": 2,
+        "TED BROWN": 3250,
+        "TED CRUZ": 83643,
+        "ANALISA ROCHE": 14
+      }
+    },
+    {
+      "county": "Lynn",
+      "county_fips": "48305",
+      "dem_votes": 367,
+      "rep_votes": 2118,
+      "other_votes": 43,
+      "candidate_votes": {
+        "COLIN ALLRED": 367,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 43,
+        "TED CRUZ": 2118,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "McCulloch",
+      "county_fips": "48307",
+      "dem_votes": 497,
+      "rep_votes": 2938,
+      "other_votes": 63,
+      "candidate_votes": {
+        "COLIN ALLRED": 497,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 63,
+        "TED CRUZ": 2938,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "McLennan",
+      "county_fips": "48309",
+      "dem_votes": 35632,
+      "rep_votes": 62054,
+      "other_votes": 2091,
+      "candidate_votes": {
+        "COLIN ALLRED": 35632,
+        "TRACY ANDRUS": 12,
+        "TED BROWN": 2036,
+        "TED CRUZ": 62054,
+        "ANALISA ROCHE": 43
+      }
+    },
+    {
+      "county": "McMullen",
+      "county_fips": "48311",
+      "dem_votes": 48,
+      "rep_votes": 423,
+      "other_votes": 5,
+      "candidate_votes": {
+        "COLIN ALLRED": 48,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 5,
+        "TED CRUZ": 423,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Madison",
+      "county_fips": "48313",
+      "dem_votes": 1012,
+      "rep_votes": 4336,
+      "other_votes": 95,
+      "candidate_votes": {
+        "COLIN ALLRED": 1012,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 95,
+        "TED CRUZ": 4336,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Marion",
+      "county_fips": "48315",
+      "dem_votes": 1101,
+      "rep_votes": 3509,
+      "other_votes": 84,
+      "candidate_votes": {
+        "COLIN ALLRED": 1101,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 83,
+        "TED CRUZ": 3509,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Martin",
+      "county_fips": "48317",
+      "dem_votes": 264,
+      "rep_votes": 1756,
+      "other_votes": 47,
+      "candidate_votes": {
+        "COLIN ALLRED": 264,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 47,
+        "TED CRUZ": 1756,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Mason",
+      "county_fips": "48319",
+      "dem_votes": 441,
+      "rep_votes": 2027,
+      "other_votes": 39,
+      "candidate_votes": {
+        "COLIN ALLRED": 441,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 39,
+        "TED CRUZ": 2027,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Matagorda",
+      "county_fips": "48321",
+      "dem_votes": 3486,
+      "rep_votes": 9482,
+      "other_votes": 241,
+      "candidate_votes": {
+        "COLIN ALLRED": 3486,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 241,
+        "TED CRUZ": 9482,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Maverick",
+      "county_fips": "48323",
+      "dem_votes": 6859,
+      "rep_votes": 7287,
+      "other_votes": 586,
+      "candidate_votes": {
+        "COLIN ALLRED": 6859,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 585,
+        "TED CRUZ": 7287,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Medina",
+      "county_fips": "48325",
+      "dem_votes": 7416,
+      "rep_votes": 16508,
+      "other_votes": 533,
+      "candidate_votes": {
+        "COLIN ALLRED": 7416,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 524,
+        "TED CRUZ": 16508,
+        "ANALISA ROCHE": 9
+      }
+    },
+    {
+      "county": "Menard",
+      "county_fips": "48327",
+      "dem_votes": 194,
+      "rep_votes": 824,
+      "other_votes": 18,
+      "candidate_votes": {
+        "COLIN ALLRED": 194,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 18,
+        "TED CRUZ": 824,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Midland",
+      "county_fips": "48329",
+      "dem_votes": 11866,
+      "rep_votes": 45032,
+      "other_votes": 1284,
+      "candidate_votes": {
+        "COLIN ALLRED": 11866,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 1283,
+        "TED CRUZ": 45032,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Milam",
+      "county_fips": "48331",
+      "dem_votes": 2462,
+      "rep_votes": 8347,
+      "other_votes": 227,
+      "candidate_votes": {
+        "COLIN ALLRED": 2462,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 227,
+        "TED CRUZ": 8347,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Mills",
+      "county_fips": "48333",
+      "dem_votes": 344,
+      "rep_votes": 2343,
+      "other_votes": 43,
+      "candidate_votes": {
+        "COLIN ALLRED": 344,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 43,
+        "TED CRUZ": 2343,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Mitchell",
+      "county_fips": "48335",
+      "dem_votes": 374,
+      "rep_votes": 2059,
+      "other_votes": 40,
+      "candidate_votes": {
+        "COLIN ALLRED": 374,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 40,
+        "TED CRUZ": 2059,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Montague",
+      "county_fips": "48337",
+      "dem_votes": 1353,
+      "rep_votes": 9489,
+      "other_votes": 172,
+      "candidate_votes": {
+        "COLIN ALLRED": 1353,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 171,
+        "TED CRUZ": 9489,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Montgomery",
+      "county_fips": "48339",
+      "dem_votes": 86879,
+      "rep_votes": 213797,
+      "other_votes": 5841,
+      "candidate_votes": {
+        "COLIN ALLRED": 86879,
+        "TRACY ANDRUS": 19,
+        "TED BROWN": 5778,
+        "TED CRUZ": 213797,
+        "ANALISA ROCHE": 44
+      }
+    },
+    {
+      "county": "Moore",
+      "county_fips": "48341",
+      "dem_votes": 954,
+      "rep_votes": 4186,
+      "other_votes": 108,
+      "candidate_votes": {
+        "COLIN ALLRED": 954,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 108,
+        "TED CRUZ": 4186,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Morris",
+      "county_fips": "48343",
+      "dem_votes": 1353,
+      "rep_votes": 3958,
+      "other_votes": 80,
+      "candidate_votes": {
+        "COLIN ALLRED": 1353,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 79,
+        "TED CRUZ": 3958,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Motley",
+      "county_fips": "48345",
+      "dem_votes": 41,
+      "rep_votes": 592,
+      "other_votes": 9,
+      "candidate_votes": {
+        "COLIN ALLRED": 41,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 9,
+        "TED CRUZ": 592,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Nacogdoches",
+      "county_fips": "48347",
+      "dem_votes": 7927,
+      "rep_votes": 17072,
+      "other_votes": 478,
+      "candidate_votes": {
+        "COLIN ALLRED": 7927,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 468,
+        "TED CRUZ": 17072,
+        "ANALISA ROCHE": 9
+      }
+    },
+    {
+      "county": "Navarro",
+      "county_fips": "48349",
+      "dem_votes": 5120,
+      "rep_votes": 14327,
+      "other_votes": 351,
+      "candidate_votes": {
+        "COLIN ALLRED": 5120,
+        "TRACY ANDRUS": 6,
+        "TED BROWN": 345,
+        "TED CRUZ": 14327,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Newton",
+      "county_fips": "48351",
+      "dem_votes": 972,
+      "rep_votes": 4650,
+      "other_votes": 69,
+      "candidate_votes": {
+        "COLIN ALLRED": 972,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 68,
+        "TED CRUZ": 4650,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Nolan",
+      "county_fips": "48353",
+      "dem_votes": 1123,
+      "rep_votes": 3808,
+      "other_votes": 109,
+      "candidate_votes": {
+        "COLIN ALLRED": 1123,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 108,
+        "TED CRUZ": 3808,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Nueces",
+      "county_fips": "48355",
+      "dem_votes": 55433,
+      "rep_votes": 62062,
+      "other_votes": 2964,
+      "candidate_votes": {
+        "COLIN ALLRED": 55433,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 2964,
+        "TED CRUZ": 62062,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Ochiltree",
+      "county_fips": "48357",
+      "dem_votes": 280,
+      "rep_votes": 2669,
+      "other_votes": 47,
+      "candidate_votes": {
+        "COLIN ALLRED": 280,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 47,
+        "TED CRUZ": 2669,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Oldham",
+      "county_fips": "48359",
+      "dem_votes": 91,
+      "rep_votes": 862,
+      "other_votes": 8,
+      "candidate_votes": {
+        "COLIN ALLRED": 91,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 8,
+        "TED CRUZ": 862,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Orange",
+      "county_fips": "48361",
+      "dem_votes": 6285,
+      "rep_votes": 29050,
+      "other_votes": 626,
+      "candidate_votes": {
+        "COLIN ALLRED": 6285,
+        "TRACY ANDRUS": 5,
+        "TED BROWN": 618,
+        "TED CRUZ": 29050,
+        "ANALISA ROCHE": 3
+      }
+    },
+    {
+      "county": "Palo Pinto",
+      "county_fips": "48363",
+      "dem_votes": 2355,
+      "rep_votes": 10611,
+      "other_votes": 277,
+      "candidate_votes": {
+        "COLIN ALLRED": 2355,
+        "TRACY ANDRUS": 2,
+        "TED BROWN": 275,
+        "TED CRUZ": 10611,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Panola",
+      "county_fips": "48365",
+      "dem_votes": 1935,
+      "rep_votes": 9281,
+      "other_votes": 145,
+      "candidate_votes": {
+        "COLIN ALLRED": 1935,
+        "TRACY ANDRUS": 2,
+        "TED BROWN": 143,
+        "TED CRUZ": 9281,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Parker",
+      "county_fips": "48367",
+      "dem_votes": 16349,
+      "rep_votes": 72477,
+      "other_votes": 1900,
+      "candidate_votes": {
+        "COLIN ALLRED": 16349,
+        "TRACY ANDRUS": 2,
+        "TED BROWN": 1886,
+        "TED CRUZ": 72477,
+        "ANALISA ROCHE": 12
+      }
+    },
+    {
+      "county": "Parmer",
+      "county_fips": "48369",
+      "dem_votes": 374,
+      "rep_votes": 2060,
+      "other_votes": 40,
+      "candidate_votes": {
+        "COLIN ALLRED": 374,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 40,
+        "TED CRUZ": 2060,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Pecos",
+      "county_fips": "48371",
+      "dem_votes": 1206,
+      "rep_votes": 2817,
+      "other_votes": 119,
+      "candidate_votes": {
+        "COLIN ALLRED": 1206,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 119,
+        "TED CRUZ": 2817,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Polk",
+      "county_fips": "48373",
+      "dem_votes": 5106,
+      "rep_votes": 18596,
+      "other_votes": 441,
+      "candidate_votes": {
+        "COLIN ALLRED": 5106,
+        "TRACY ANDRUS": 4,
+        "TED BROWN": 436,
+        "TED CRUZ": 18596,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Potter",
+      "county_fips": "48375",
+      "dem_votes": 8933,
+      "rep_votes": 22109,
+      "other_votes": 848,
+      "candidate_votes": {
+        "COLIN ALLRED": 8933,
+        "TRACY ANDRUS": 4,
+        "TED BROWN": 836,
+        "TED CRUZ": 22109,
+        "ANALISA ROCHE": 8
+      }
+    },
+    {
+      "county": "Presidio",
+      "county_fips": "48377",
+      "dem_votes": 1249,
+      "rep_votes": 651,
+      "other_votes": 40,
+      "candidate_votes": {
+        "COLIN ALLRED": 1249,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 40,
+        "TED CRUZ": 651,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Rains",
+      "county_fips": "48379",
+      "dem_votes": 951,
+      "rep_votes": 5450,
+      "other_votes": 127,
+      "candidate_votes": {
+        "COLIN ALLRED": 951,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 125,
+        "TED CRUZ": 5450,
+        "ANALISA ROCHE": 2
+      }
+    },
+    {
+      "county": "Randall",
+      "county_fips": "48381",
+      "dem_votes": 13596,
+      "rep_votes": 51991,
+      "other_votes": 1302,
+      "candidate_votes": {
+        "COLIN ALLRED": 13596,
+        "TRACY ANDRUS": 4,
+        "TED BROWN": 1286,
+        "TED CRUZ": 51991,
+        "ANALISA ROCHE": 12
+      }
+    },
+    {
+      "county": "Reagan",
+      "county_fips": "48383",
+      "dem_votes": 156,
+      "rep_votes": 764,
+      "other_votes": 16,
+      "candidate_votes": {
+        "COLIN ALLRED": 156,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 16,
+        "TED CRUZ": 764,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Real",
+      "county_fips": "48385",
+      "dem_votes": 336,
+      "rep_votes": 1574,
+      "other_votes": 39,
+      "candidate_votes": {
+        "COLIN ALLRED": 336,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 39,
+        "TED CRUZ": 1574,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Red River",
+      "county_fips": "48387",
+      "dem_votes": 1148,
+      "rep_votes": 4498,
+      "other_votes": 91,
+      "candidate_votes": {
+        "COLIN ALLRED": 1148,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 91,
+        "TED CRUZ": 4498,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Reeves",
+      "county_fips": "48389",
+      "dem_votes": 1142,
+      "rep_votes": 2034,
+      "other_votes": 112,
+      "candidate_votes": {
+        "COLIN ALLRED": 1142,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 112,
+        "TED CRUZ": 2034,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Refugio",
+      "county_fips": "48391",
+      "dem_votes": 958,
+      "rep_votes": 2004,
+      "other_votes": 69,
+      "candidate_votes": {
+        "COLIN ALLRED": 958,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 67,
+        "TED CRUZ": 2004,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Roberts",
+      "county_fips": "48393",
+      "dem_votes": 20,
+      "rep_votes": 542,
+      "other_votes": 9,
+      "candidate_votes": {
+        "COLIN ALLRED": 20,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 5,
+        "TED CRUZ": 542,
+        "ANALISA ROCHE": 3
+      }
+    },
+    {
+      "county": "Robertson",
+      "county_fips": "48395",
+      "dem_votes": 2006,
+      "rep_votes": 5982,
+      "other_votes": 137,
+      "candidate_votes": {
+        "COLIN ALLRED": 2006,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 136,
+        "TED CRUZ": 5982,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Rockwall",
+      "county_fips": "48397",
+      "dem_votes": 19466,
+      "rep_votes": 41726,
+      "other_votes": 1127,
+      "candidate_votes": {
+        "COLIN ALLRED": 19466,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 1127,
+        "TED CRUZ": 41726,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Runnels",
+      "county_fips": "48399",
+      "dem_votes": 525,
+      "rep_votes": 3430,
+      "other_votes": 72,
+      "candidate_votes": {
+        "COLIN ALLRED": 525,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 72,
+        "TED CRUZ": 3430,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Rusk",
+      "county_fips": "48401",
+      "dem_votes": 4500,
+      "rep_votes": 16665,
+      "other_votes": 357,
+      "candidate_votes": {
+        "COLIN ALLRED": 4500,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 356,
+        "TED CRUZ": 16665,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Sabine",
+      "county_fips": "48403",
+      "dem_votes": 612,
+      "rep_votes": 4864,
+      "other_votes": 64,
+      "candidate_votes": {
+        "COLIN ALLRED": 612,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 64,
+        "TED CRUZ": 4864,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "San Augustine",
+      "county_fips": "48405",
+      "dem_votes": 808,
+      "rep_votes": 2834,
+      "other_votes": 65,
+      "candidate_votes": {
+        "COLIN ALLRED": 808,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 65,
+        "TED CRUZ": 2834,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "San Jacinto",
+      "county_fips": "48407",
+      "dem_votes": 2338,
+      "rep_votes": 10118,
+      "other_votes": 254,
+      "candidate_votes": {
+        "COLIN ALLRED": 2338,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 254,
+        "TED CRUZ": 10118,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "San Patricio",
+      "county_fips": "48409",
+      "dem_votes": 8578,
+      "rep_votes": 16116,
+      "other_votes": 627,
+      "candidate_votes": {
+        "COLIN ALLRED": 8578,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 624,
+        "TED CRUZ": 16116,
+        "ANALISA ROCHE": 2
+      }
+    },
+    {
+      "county": "San Saba",
+      "county_fips": "48411",
+      "dem_votes": 333,
+      "rep_votes": 2314,
+      "other_votes": 43,
+      "candidate_votes": {
+        "COLIN ALLRED": 333,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 42,
+        "TED CRUZ": 2314,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Schleicher",
+      "county_fips": "48413",
+      "dem_votes": 205,
+      "rep_votes": 872,
+      "other_votes": 21,
+      "candidate_votes": {
+        "COLIN ALLRED": 205,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 21,
+        "TED CRUZ": 872,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Scurry",
+      "county_fips": "48415",
+      "dem_votes": 811,
+      "rep_votes": 4683,
+      "other_votes": 137,
+      "candidate_votes": {
+        "COLIN ALLRED": 811,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 137,
+        "TED CRUZ": 4683,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Shackelford",
+      "county_fips": "48417",
+      "dem_votes": 173,
+      "rep_votes": 1520,
+      "other_votes": 20,
+      "candidate_votes": {
+        "COLIN ALLRED": 173,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 17,
+        "TED CRUZ": 1520,
+        "ANALISA ROCHE": 2
+      }
+    },
+    {
+      "county": "Shelby",
+      "county_fips": "48419",
+      "dem_votes": 1756,
+      "rep_votes": 8022,
+      "other_votes": 98,
+      "candidate_votes": {
+        "COLIN ALLRED": 1756,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 97,
+        "TED CRUZ": 8022,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Sherman",
+      "county_fips": "48421",
+      "dem_votes": 82,
+      "rep_votes": 791,
+      "other_votes": 14,
+      "candidate_votes": {
+        "COLIN ALLRED": 82,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 14,
+        "TED CRUZ": 791,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Smith",
+      "county_fips": "48423",
+      "dem_votes": 28971,
+      "rep_votes": 72205,
+      "other_votes": 2052,
+      "candidate_votes": {
+        "COLIN ALLRED": 28971,
+        "TRACY ANDRUS": 6,
+        "TED BROWN": 2033,
+        "TED CRUZ": 72205,
+        "ANALISA ROCHE": 13
+      }
+    },
+    {
+      "county": "Somervell",
+      "county_fips": "48425",
+      "dem_votes": 859,
+      "rep_votes": 4298,
+      "other_votes": 119,
+      "candidate_votes": {
+        "COLIN ALLRED": 859,
+        "TRACY ANDRUS": 3,
+        "TED BROWN": 114,
+        "TED CRUZ": 4298,
+        "ANALISA ROCHE": 2
+      }
+    },
+    {
+      "county": "Starr",
+      "county_fips": "48427",
+      "dem_votes": 6745,
+      "rep_votes": 7081,
+      "other_votes": 356,
+      "candidate_votes": {
+        "COLIN ALLRED": 6745,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 356,
+        "TED CRUZ": 7081,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Stephens",
+      "county_fips": "48429",
+      "dem_votes": 450,
+      "rep_votes": 3216,
+      "other_votes": 61,
+      "candidate_votes": {
+        "COLIN ALLRED": 450,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 61,
+        "TED CRUZ": 3216,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Sterling",
+      "county_fips": "48431",
+      "dem_votes": 56,
+      "rep_votes": 553,
+      "other_votes": 15,
+      "candidate_votes": {
+        "COLIN ALLRED": 56,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 15,
+        "TED CRUZ": 553,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Stonewall",
+      "county_fips": "48433",
+      "dem_votes": 120,
+      "rep_votes": 581,
+      "other_votes": 11,
+      "candidate_votes": {
+        "COLIN ALLRED": 120,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 11,
+        "TED CRUZ": 581,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Sutton",
+      "county_fips": "48435",
+      "dem_votes": 239,
+      "rep_votes": 1129,
+      "other_votes": 21,
+      "candidate_votes": {
+        "COLIN ALLRED": 239,
+        "TRACY ANDRUS": 2,
+        "TED BROWN": 19,
+        "TED CRUZ": 1129,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Swisher",
+      "county_fips": "48437",
+      "dem_votes": 440,
+      "rep_votes": 1744,
+      "other_votes": 49,
+      "candidate_votes": {
+        "COLIN ALLRED": 440,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 49,
+        "TED CRUZ": 1744,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Tarrant",
+      "county_fips": "48439",
+      "dem_votes": 401742,
+      "rep_votes": 399927,
+      "other_votes": 19804,
+      "candidate_votes": {
+        "COLIN ALLRED": 401742,
+        "TRACY ANDRUS": 48,
+        "TED BROWN": 19586,
+        "TED CRUZ": 399927,
+        "ANALISA ROCHE": 170
+      }
+    },
+    {
+      "county": "Taylor",
+      "county_fips": "48441",
+      "dem_votes": 14479,
+      "rep_votes": 39509,
+      "other_votes": 1264,
+      "candidate_votes": {
+        "COLIN ALLRED": 14479,
+        "TRACY ANDRUS": 4,
+        "TED BROWN": 1250,
+        "TED CRUZ": 39509,
+        "ANALISA ROCHE": 10
+      }
+    },
+    {
+      "county": "Terrell",
+      "county_fips": "48443",
+      "dem_votes": 92,
+      "rep_votes": 301,
+      "other_votes": 7,
+      "candidate_votes": {
+        "COLIN ALLRED": 92,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 7,
+        "TED CRUZ": 301,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Terry",
+      "county_fips": "48445",
+      "dem_votes": 609,
+      "rep_votes": 2663,
+      "other_votes": 75,
+      "candidate_votes": {
+        "COLIN ALLRED": 609,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 75,
+        "TED CRUZ": 2663,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Throckmorton",
+      "county_fips": "48447",
+      "dem_votes": 80,
+      "rep_votes": 801,
+      "other_votes": 9,
+      "candidate_votes": {
+        "COLIN ALLRED": 80,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 8,
+        "TED CRUZ": 801,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Titus",
+      "county_fips": "48449",
+      "dem_votes": 2386,
+      "rep_votes": 7545,
+      "other_votes": 197,
+      "candidate_votes": {
+        "COLIN ALLRED": 2386,
+        "TRACY ANDRUS": 1,
+        "TED BROWN": 196,
+        "TED CRUZ": 7545,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Tom Green",
+      "county_fips": "48451",
+      "dem_votes": 12332,
+      "rep_votes": 31686,
+      "other_votes": 1152,
+      "candidate_votes": {
+        "COLIN ALLRED": 12332,
+        "TRACY ANDRUS": 2,
+        "TED BROWN": 1147,
+        "TED CRUZ": 31686,
+        "ANALISA ROCHE": 3
+      }
+    },
+    {
+      "county": "Travis",
+      "county_fips": "48453",
+      "dem_votes": 407210,
+      "rep_votes": 157203,
+      "other_votes": 14128,
+      "candidate_votes": {
+        "COLIN ALLRED": 407210,
+        "TRACY ANDRUS": 78,
+        "TED BROWN": 13889,
+        "TED CRUZ": 157203,
+        "ANALISA ROCHE": 161
+      }
+    },
+    {
+      "county": "Trinity",
+      "county_fips": "48455",
+      "dem_votes": 1298,
+      "rep_votes": 5910,
+      "other_votes": 128,
+      "candidate_votes": {
+        "COLIN ALLRED": 1298,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 128,
+        "TED CRUZ": 5910,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Tyler",
+      "county_fips": "48457",
+      "dem_votes": 1337,
+      "rep_votes": 8001,
+      "other_votes": 169,
+      "candidate_votes": {
+        "COLIN ALLRED": 1337,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 169,
+        "TED CRUZ": 8001,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Upshur",
+      "county_fips": "48459",
+      "dem_votes": 2994,
+      "rep_votes": 16451,
+      "other_votes": 394,
+      "candidate_votes": {
+        "COLIN ALLRED": 2994,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 391,
+        "TED CRUZ": 16451,
+        "ANALISA ROCHE": 3
+      }
+    },
+    {
+      "county": "Upton",
+      "county_fips": "48461",
+      "dem_votes": 164,
+      "rep_votes": 1069,
+      "other_votes": 32,
+      "candidate_votes": {
+        "COLIN ALLRED": 164,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 31,
+        "TED CRUZ": 1069,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Uvalde",
+      "county_fips": "48463",
+      "dem_votes": 3493,
+      "rep_votes": 5848,
+      "other_votes": 278,
+      "candidate_votes": {
+        "COLIN ALLRED": 3493,
+        "TRACY ANDRUS": 5,
+        "TED BROWN": 260,
+        "TED CRUZ": 5848,
+        "ANALISA ROCHE": 13
+      }
+    },
+    {
+      "county": "Val Verde",
+      "county_fips": "48465",
+      "dem_votes": 5782,
+      "rep_votes": 8071,
+      "other_votes": 440,
+      "candidate_votes": {
+        "COLIN ALLRED": 5782,
+        "TRACY ANDRUS": 4,
+        "TED BROWN": 430,
+        "TED CRUZ": 8071,
+        "ANALISA ROCHE": 6
+      }
+    },
+    {
+      "county": "Van Zandt",
+      "county_fips": "48467",
+      "dem_votes": 3838,
+      "rep_votes": 23626,
+      "other_votes": 463,
+      "candidate_votes": {
+        "COLIN ALLRED": 3838,
+        "TRACY ANDRUS": 2,
+        "TED BROWN": 456,
+        "TED CRUZ": 23626,
+        "ANALISA ROCHE": 5
+      }
+    },
+    {
+      "county": "Victoria",
+      "county_fips": "48469",
+      "dem_votes": 10176,
+      "rep_votes": 24002,
+      "other_votes": 657,
+      "candidate_votes": {
+        "COLIN ALLRED": 10176,
+        "TRACY ANDRUS": 2,
+        "TED BROWN": 650,
+        "TED CRUZ": 24002,
+        "ANALISA ROCHE": 5
+      }
+    },
+    {
+      "county": "Walker",
+      "county_fips": "48471",
+      "dem_votes": 7728,
+      "rep_votes": 16775,
+      "other_votes": 475,
+      "candidate_votes": {
+        "COLIN ALLRED": 7728,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 474,
+        "TED CRUZ": 16775,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Waller",
+      "county_fips": "48473",
+      "dem_votes": 10432,
+      "rep_votes": 16385,
+      "other_votes": 625,
+      "candidate_votes": {
+        "COLIN ALLRED": 10432,
+        "TRACY ANDRUS": 2,
+        "TED BROWN": 620,
+        "TED CRUZ": 16385,
+        "ANALISA ROCHE": 3
+      }
+    },
+    {
+      "county": "Ward",
+      "county_fips": "48475",
+      "dem_votes": 710,
+      "rep_votes": 2931,
+      "other_votes": 86,
+      "candidate_votes": {
+        "COLIN ALLRED": 710,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 86,
+        "TED CRUZ": 2931,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Washington",
+      "county_fips": "48477",
+      "dem_votes": 4240,
+      "rep_votes": 13586,
+      "other_votes": 323,
+      "candidate_votes": {
+        "COLIN ALLRED": 4240,
+        "TRACY ANDRUS": 3,
+        "TED BROWN": 314,
+        "TED CRUZ": 13586,
+        "ANALISA ROCHE": 6
+      }
+    },
+    {
+      "county": "Webb",
+      "county_fips": "48479",
+      "dem_votes": 33758,
+      "rep_votes": 28121,
+      "other_votes": 1820,
+      "candidate_votes": {
+        "COLIN ALLRED": 33758,
+        "TRACY ANDRUS": 6,
+        "TED BROWN": 1805,
+        "TED CRUZ": 28121,
+        "ANALISA ROCHE": 9
+      }
+    },
+    {
+      "county": "Wharton",
+      "county_fips": "48481",
+      "dem_votes": 4150,
+      "rep_votes": 11915,
+      "other_votes": 258,
+      "candidate_votes": {
+        "COLIN ALLRED": 4150,
+        "TRACY ANDRUS": 3,
+        "TED BROWN": 255,
+        "TED CRUZ": 11915,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Wheeler",
+      "county_fips": "48483",
+      "dem_votes": 192,
+      "rep_votes": 2025,
+      "other_votes": 36,
+      "candidate_votes": {
+        "COLIN ALLRED": 192,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 36,
+        "TED CRUZ": 2025,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Wichita",
+      "county_fips": "48485",
+      "dem_votes": 12545,
+      "rep_votes": 30711,
+      "other_votes": 1001,
+      "candidate_votes": {
+        "COLIN ALLRED": 12545,
+        "TRACY ANDRUS": 3,
+        "TED BROWN": 987,
+        "TED CRUZ": 30711,
+        "ANALISA ROCHE": 11
+      }
+    },
+    {
+      "county": "Wilbarger",
+      "county_fips": "48487",
+      "dem_votes": 926,
+      "rep_votes": 3419,
+      "other_votes": 88,
+      "candidate_votes": {
+        "COLIN ALLRED": 926,
+        "TRACY ANDRUS": 2,
+        "TED BROWN": 86,
+        "TED CRUZ": 3419,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Willacy",
+      "county_fips": "48489",
+      "dem_votes": 2892,
+      "rep_votes": 2365,
+      "other_votes": 158,
+      "candidate_votes": {
+        "COLIN ALLRED": 2892,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 158,
+        "TED CRUZ": 2365,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Williamson",
+      "county_fips": "48491",
+      "dem_votes": 151076,
+      "rep_votes": 146451,
+      "other_votes": 8518,
+      "candidate_votes": {
+        "COLIN ALLRED": 151076,
+        "TRACY ANDRUS": 31,
+        "TED BROWN": 8409,
+        "TED CRUZ": 146451,
+        "ANALISA ROCHE": 78
+      }
+    },
+    {
+      "county": "Wilson",
+      "county_fips": "48493",
+      "dem_votes": 6802,
+      "rep_votes": 19783,
+      "other_votes": 548,
+      "candidate_votes": {
+        "COLIN ALLRED": 6802,
+        "TRACY ANDRUS": 4,
+        "TED BROWN": 544,
+        "TED CRUZ": 19783,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Winkler",
+      "county_fips": "48495",
+      "dem_votes": 303,
+      "rep_votes": 1560,
+      "other_votes": 31,
+      "candidate_votes": {
+        "COLIN ALLRED": 303,
+        "TRACY ANDRUS": 3,
+        "TED BROWN": 28,
+        "TED CRUZ": 1560,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Wise",
+      "county_fips": "48497",
+      "dem_votes": 6350,
+      "rep_votes": 31060,
+      "other_votes": 730,
+      "candidate_votes": {
+        "COLIN ALLRED": 6350,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 728,
+        "TED CRUZ": 31060,
+        "ANALISA ROCHE": 2
+      }
+    },
+    {
+      "county": "Wood",
+      "county_fips": "48499",
+      "dem_votes": 3757,
+      "rep_votes": 20129,
+      "other_votes": 438,
+      "candidate_votes": {
+        "COLIN ALLRED": 3757,
+        "TRACY ANDRUS": 2,
+        "TED BROWN": 432,
+        "TED CRUZ": 20129,
+        "ANALISA ROCHE": 4
+      }
+    },
+    {
+      "county": "Yoakum",
+      "county_fips": "48501",
+      "dem_votes": 357,
+      "rep_votes": 1928,
+      "other_votes": 56,
+      "candidate_votes": {
+        "COLIN ALLRED": 357,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 56,
+        "TED CRUZ": 1928,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Young",
+      "county_fips": "48503",
+      "dem_votes": 1063,
+      "rep_votes": 7088,
+      "other_votes": 120,
+      "candidate_votes": {
+        "COLIN ALLRED": 1063,
+        "TRACY ANDRUS": 2,
+        "TED BROWN": 117,
+        "TED CRUZ": 7088,
+        "ANALISA ROCHE": 1
+      }
+    },
+    {
+      "county": "Zapata",
+      "county_fips": "48505",
+      "dem_votes": 1957,
+      "rep_votes": 2197,
+      "other_votes": 111,
+      "candidate_votes": {
+        "COLIN ALLRED": 1957,
+        "TRACY ANDRUS": 0,
+        "TED BROWN": 111,
+        "TED CRUZ": 2197,
+        "ANALISA ROCHE": 0
+      }
+    },
+    {
+      "county": "Zavala",
+      "county_fips": "48507",
+      "dem_votes": 1994,
+      "rep_votes": 1167,
+      "other_votes": 112,
+      "candidate_votes": {
+        "COLIN ALLRED": 1994,
+        "TRACY ANDRUS": 2,
+        "TED BROWN": 108,
+        "TED CRUZ": 1167,
+        "ANALISA ROCHE": 2
+      }
+    }
+  ]
+}

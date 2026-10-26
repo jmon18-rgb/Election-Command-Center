@@ -1,0 +1,1310 @@
+{
+  "observed_at": "2026-10-26T10:23:12.896428+00:00",
+  "source_url": "https://civicapi.org/api/v2/race/87438",
+  "http": 200,
+  "cors_header": "*",
+  "origin": "https://jmon18-rgb.github.io",
+  "request_environment": "local Python HTTPS, not browser CORS acceptance",
+  "source_test_data": true,
+  "accepted_live_vote_rows": 0,
+  "region_count": 254,
+  "regions": [
+    {
+      "name": "Anderson",
+      "fips": "48001",
+      "type": "County"
+    },
+    {
+      "name": "Andrews",
+      "fips": "48003",
+      "type": "County"
+    },
+    {
+      "name": "Angelina",
+      "fips": "48005",
+      "type": "County"
+    },
+    {
+      "name": "Aransas",
+      "fips": "48007",
+      "type": "County"
+    },
+    {
+      "name": "Archer",
+      "fips": "48009",
+      "type": "County"
+    },
+    {
+      "name": "Armstrong",
+      "fips": "48011",
+      "type": "County"
+    },
+    {
+      "name": "Atascosa",
+      "fips": "48013",
+      "type": "County"
+    },
+    {
+      "name": "Austin",
+      "fips": "48015",
+      "type": "County"
+    },
+    {
+      "name": "Bailey",
+      "fips": "48017",
+      "type": "County"
+    },
+    {
+      "name": "Bandera",
+      "fips": "48019",
+      "type": "County"
+    },
+    {
+      "name": "Bastrop",
+      "fips": "48021",
+      "type": "County"
+    },
+    {
+      "name": "Baylor",
+      "fips": "48023",
+      "type": "County"
+    },
+    {
+      "name": "Bee",
+      "fips": "48025",
+      "type": "County"
+    },
+    {
+      "name": "Bell",
+      "fips": "48027",
+      "type": "County"
+    },
+    {
+      "name": "Bexar",
+      "fips": "48029",
+      "type": "County"
+    },
+    {
+      "name": "Blanco",
+      "fips": "48031",
+      "type": "County"
+    },
+    {
+      "name": "Borden",
+      "fips": "48033",
+      "type": "County"
+    },
+    {
+      "name": "Bosque",
+      "fips": "48035",
+      "type": "County"
+    },
+    {
+      "name": "Bowie",
+      "fips": "48037",
+      "type": "County"
+    },
+    {
+      "name": "Brazoria",
+      "fips": "48039",
+      "type": "County"
+    },
+    {
+      "name": "Brazos",
+      "fips": "48041",
+      "type": "County"
+    },
+    {
+      "name": "Brewster",
+      "fips": "48043",
+      "type": "County"
+    },
+    {
+      "name": "Briscoe",
+      "fips": "48045",
+      "type": "County"
+    },
+    {
+      "name": "Brooks",
+      "fips": "48047",
+      "type": "County"
+    },
+    {
+      "name": "Brown",
+      "fips": "48049",
+      "type": "County"
+    },
+    {
+      "name": "Burleson",
+      "fips": "48051",
+      "type": "County"
+    },
+    {
+      "name": "Burnet",
+      "fips": "48053",
+      "type": "County"
+    },
+    {
+      "name": "Caldwell",
+      "fips": "48055",
+      "type": "County"
+    },
+    {
+      "name": "Calhoun",
+      "fips": "48057",
+      "type": "County"
+    },
+    {
+      "name": "Callahan",
+      "fips": "48059",
+      "type": "County"
+    },
+    {
+      "name": "Cameron",
+      "fips": "48061",
+      "type": "County"
+    },
+    {
+      "name": "Camp",
+      "fips": "48063",
+      "type": "County"
+    },
+    {
+      "name": "Carson",
+      "fips": "48065",
+      "type": "County"
+    },
+    {
+      "name": "Cass",
+      "fips": "48067",
+      "type": "County"
+    },
+    {
+      "name": "Castro",
+      "fips": "48069",
+      "type": "County"
+    },
+    {
+      "name": "Chambers",
+      "fips": "48071",
+      "type": "County"
+    },
+    {
+      "name": "Cherokee",
+      "fips": "48073",
+      "type": "County"
+    },
+    {
+      "name": "Childress",
+      "fips": "48075",
+      "type": "County"
+    },
+    {
+      "name": "Clay",
+      "fips": "48077",
+      "type": "County"
+    },
+    {
+      "name": "Cochran",
+      "fips": "48079",
+      "type": "County"
+    },
+    {
+      "name": "Coke",
+      "fips": "48081",
+      "type": "County"
+    },
+    {
+      "name": "Coleman",
+      "fips": "48083",
+      "type": "County"
+    },
+    {
+      "name": "Collin",
+      "fips": "48085",
+      "type": "County"
+    },
+    {
+      "name": "Collingsworth",
+      "fips": "48087",
+      "type": "County"
+    },
+    {
+      "name": "Colorado",
+      "fips": "48089",
+      "type": "County"
+    },
+    {
+      "name": "Comal",
+      "fips": "48091",
+      "type": "County"
+    },
+    {
+      "name": "Comanche",
+      "fips": "48093",
+      "type": "County"
+    },
+    {
+      "name": "Concho",
+      "fips": "48095",
+      "type": "County"
+    },
+    {
+      "name": "Cooke",
+      "fips": "48097",
+      "type": "County"
+    },
+    {
+      "name": "Coryell",
+      "fips": "48099",
+      "type": "County"
+    },
+    {
+      "name": "Cottle",
+      "fips": "48101",
+      "type": "County"
+    },
+    {
+      "name": "Crane",
+      "fips": "48103",
+      "type": "County"
+    },
+    {
+      "name": "Crockett",
+      "fips": "48105",
+      "type": "County"
+    },
+    {
+      "name": "Crosby",
+      "fips": "48107",
+      "type": "County"
+    },
+    {
+      "name": "Culberson",
+      "fips": "48109",
+      "type": "County"
+    },
+    {
+      "name": "Dallam",
+      "fips": "48111",
+      "type": "County"
+    },
+    {
+      "name": "Dallas",
+      "fips": "48113",
+      "type": "County"
+    },
+    {
+      "name": "Dawson",
+      "fips": "48115",
+      "type": "County"
+    },
+    {
+      "name": "Deaf Smith",
+      "fips": "48117",
+      "type": "County"
+    },
+    {
+      "name": "Delta",
+      "fips": "48119",
+      "type": "County"
+    },
+    {
+      "name": "Denton",
+      "fips": "48121",
+      "type": "County"
+    },
+    {
+      "name": "DeWitt",
+      "fips": "48123",
+      "type": "County"
+    },
+    {
+      "name": "Dickens",
+      "fips": "48125",
+      "type": "County"
+    },
+    {
+      "name": "Dimmit",
+      "fips": "48127",
+      "type": "County"
+    },
+    {
+      "name": "Donley",
+      "fips": "48129",
+      "type": "County"
+    },
+    {
+      "name": "Duval",
+      "fips": "48131",
+      "type": "County"
+    },
+    {
+      "name": "Eastland",
+      "fips": "48133",
+      "type": "County"
+    },
+    {
+      "name": "Ector",
+      "fips": "48135",
+      "type": "County"
+    },
+    {
+      "name": "Edwards",
+      "fips": "48137",
+      "type": "County"
+    },
+    {
+      "name": "El Paso",
+      "fips": "48141",
+      "type": "County"
+    },
+    {
+      "name": "Ellis",
+      "fips": "48139",
+      "type": "County"
+    },
+    {
+      "name": "Erath",
+      "fips": "48143",
+      "type": "County"
+    },
+    {
+      "name": "Falls",
+      "fips": "48145",
+      "type": "County"
+    },
+    {
+      "name": "Fannin",
+      "fips": "48147",
+      "type": "County"
+    },
+    {
+      "name": "Fayette",
+      "fips": "48149",
+      "type": "County"
+    },
+    {
+      "name": "Fisher",
+      "fips": "48151",
+      "type": "County"
+    },
+    {
+      "name": "Floyd",
+      "fips": "48153",
+      "type": "County"
+    },
+    {
+      "name": "Foard",
+      "fips": "48155",
+      "type": "County"
+    },
+    {
+      "name": "Fort Bend",
+      "fips": "48157",
+      "type": "County"
+    },
+    {
+      "name": "Franklin",
+      "fips": "48159",
+      "type": "County"
+    },
+    {
+      "name": "Freestone",
+      "fips": "48161",
+      "type": "County"
+    },
+    {
+      "name": "Frio",
+      "fips": "48163",
+      "type": "County"
+    },
+    {
+      "name": "Gaines",
+      "fips": "48165",
+      "type": "County"
+    },
+    {
+      "name": "Galveston",
+      "fips": "48167",
+      "type": "County"
+    },
+    {
+      "name": "Garza",
+      "fips": "48169",
+      "type": "County"
+    },
+    {
+      "name": "Gillespie",
+      "fips": "48171",
+      "type": "County"
+    },
+    {
+      "name": "Glasscock",
+      "fips": "48173",
+      "type": "County"
+    },
+    {
+      "name": "Goliad",
+      "fips": "48175",
+      "type": "County"
+    },
+    {
+      "name": "Gonzales",
+      "fips": "48177",
+      "type": "County"
+    },
+    {
+      "name": "Gray",
+      "fips": "48179",
+      "type": "County"
+    },
+    {
+      "name": "Grayson",
+      "fips": "48181",
+      "type": "County"
+    },
+    {
+      "name": "Gregg",
+      "fips": "48183",
+      "type": "County"
+    },
+    {
+      "name": "Grimes",
+      "fips": "48185",
+      "type": "County"
+    },
+    {
+      "name": "Guadalupe",
+      "fips": "48187",
+      "type": "County"
+    },
+    {
+      "name": "Hale",
+      "fips": "48189",
+      "type": "County"
+    },
+    {
+      "name": "Hall",
+      "fips": "48191",
+      "type": "County"
+    },
+    {
+      "name": "Hamilton",
+      "fips": "48193",
+      "type": "County"
+    },
+    {
+      "name": "Hansford",
+      "fips": "48195",
+      "type": "County"
+    },
+    {
+      "name": "Hardeman",
+      "fips": "48197",
+      "type": "County"
+    },
+    {
+      "name": "Hardin",
+      "fips": "48199",
+      "type": "County"
+    },
+    {
+      "name": "Harris",
+      "fips": "48201",
+      "type": "County"
+    },
+    {
+      "name": "Harrison",
+      "fips": "48203",
+      "type": "County"
+    },
+    {
+      "name": "Hartley",
+      "fips": "48205",
+      "type": "County"
+    },
+    {
+      "name": "Haskell",
+      "fips": "48207",
+      "type": "County"
+    },
+    {
+      "name": "Hays",
+      "fips": "48209",
+      "type": "County"
+    },
+    {
+      "name": "Hemphill",
+      "fips": "48211",
+      "type": "County"
+    },
+    {
+      "name": "Henderson",
+      "fips": "48213",
+      "type": "County"
+    },
+    {
+      "name": "Hidalgo",
+      "fips": "48215",
+      "type": "County"
+    },
+    {
+      "name": "Hill",
+      "fips": "48217",
+      "type": "County"
+    },
+    {
+      "name": "Hockley",
+      "fips": "48219",
+      "type": "County"
+    },
+    {
+      "name": "Hood",
+      "fips": "48221",
+      "type": "County"
+    },
+    {
+      "name": "Hopkins",
+      "fips": "48223",
+      "type": "County"
+    },
+    {
+      "name": "Houston",
+      "fips": "48225",
+      "type": "County"
+    },
+    {
+      "name": "Howard",
+      "fips": "48227",
+      "type": "County"
+    },
+    {
+      "name": "Hudspeth",
+      "fips": "48229",
+      "type": "County"
+    },
+    {
+      "name": "Hunt",
+      "fips": "48231",
+      "type": "County"
+    },
+    {
+      "name": "Hutchinson",
+      "fips": "48233",
+      "type": "County"
+    },
+    {
+      "name": "Irion",
+      "fips": "48235",
+      "type": "County"
+    },
+    {
+      "name": "Jack",
+      "fips": "48237",
+      "type": "County"
+    },
+    {
+      "name": "Jackson",
+      "fips": "48239",
+      "type": "County"
+    },
+    {
+      "name": "Jasper",
+      "fips": "48241",
+      "type": "County"
+    },
+    {
+      "name": "Jeff Davis",
+      "fips": "48243",
+      "type": "County"
+    },
+    {
+      "name": "Jefferson",
+      "fips": "48245",
+      "type": "County"
+    },
+    {
+      "name": "Jim Hogg",
+      "fips": "48247",
+      "type": "County"
+    },
+    {
+      "name": "Jim Wells",
+      "fips": "48249",
+      "type": "County"
+    },
+    {
+      "name": "Johnson",
+      "fips": "48251",
+      "type": "County"
+    },
+    {
+      "name": "Jones",
+      "fips": "48253",
+      "type": "County"
+    },
+    {
+      "name": "Karnes",
+      "fips": "48255",
+      "type": "County"
+    },
+    {
+      "name": "Kaufman",
+      "fips": "48257",
+      "type": "County"
+    },
+    {
+      "name": "Kendall",
+      "fips": "48259",
+      "type": "County"
+    },
+    {
+      "name": "Kenedy",
+      "fips": "48261",
+      "type": "County"
+    },
+    {
+      "name": "Kent",
+      "fips": "48263",
+      "type": "County"
+    },
+    {
+      "name": "Kerr",
+      "fips": "48265",
+      "type": "County"
+    },
+    {
+      "name": "Kimble",
+      "fips": "48267",
+      "type": "County"
+    },
+    {
+      "name": "King",
+      "fips": "48269",
+      "type": "County"
+    },
+    {
+      "name": "Kinney",
+      "fips": "48271",
+      "type": "County"
+    },
+    {
+      "name": "Kleberg",
+      "fips": "48273",
+      "type": "County"
+    },
+    {
+      "name": "Knox",
+      "fips": "48275",
+      "type": "County"
+    },
+    {
+      "name": "Lamar",
+      "fips": "48277",
+      "type": "County"
+    },
+    {
+      "name": "Lamb",
+      "fips": "48279",
+      "type": "County"
+    },
+    {
+      "name": "Lampasas",
+      "fips": "48281",
+      "type": "County"
+    },
+    {
+      "name": "La Salle",
+      "fips": "48283",
+      "type": "County"
+    },
+    {
+      "name": "Lavaca",
+      "fips": "48285",
+      "type": "County"
+    },
+    {
+      "name": "Lee",
+      "fips": "48287",
+      "type": "County"
+    },
+    {
+      "name": "Leon",
+      "fips": "48289",
+      "type": "County"
+    },
+    {
+      "name": "Liberty",
+      "fips": "48291",
+      "type": "County"
+    },
+    {
+      "name": "Limestone",
+      "fips": "48293",
+      "type": "County"
+    },
+    {
+      "name": "Lipscomb",
+      "fips": "48295",
+      "type": "County"
+    },
+    {
+      "name": "Live Oak",
+      "fips": "48297",
+      "type": "County"
+    },
+    {
+      "name": "Llano",
+      "fips": "48299",
+      "type": "County"
+    },
+    {
+      "name": "Loving",
+      "fips": "48301",
+      "type": "County"
+    },
+    {
+      "name": "Lubbock",
+      "fips": "48303",
+      "type": "County"
+    },
+    {
+      "name": "Lynn",
+      "fips": "48305",
+      "type": "County"
+    },
+    {
+      "name": "Madison",
+      "fips": "48313",
+      "type": "County"
+    },
+    {
+      "name": "Marion",
+      "fips": "48315",
+      "type": "County"
+    },
+    {
+      "name": "Martin",
+      "fips": "48317",
+      "type": "County"
+    },
+    {
+      "name": "Mason",
+      "fips": "48319",
+      "type": "County"
+    },
+    {
+      "name": "Matagorda",
+      "fips": "48321",
+      "type": "County"
+    },
+    {
+      "name": "Maverick",
+      "fips": "48323",
+      "type": "County"
+    },
+    {
+      "name": "McCulloch",
+      "fips": "48307",
+      "type": "County"
+    },
+    {
+      "name": "McLennan",
+      "fips": "48309",
+      "type": "County"
+    },
+    {
+      "name": "McMullen",
+      "fips": "48311",
+      "type": "County"
+    },
+    {
+      "name": "Medina",
+      "fips": "48325",
+      "type": "County"
+    },
+    {
+      "name": "Menard",
+      "fips": "48327",
+      "type": "County"
+    },
+    {
+      "name": "Midland",
+      "fips": "48329",
+      "type": "County"
+    },
+    {
+      "name": "Milam",
+      "fips": "48331",
+      "type": "County"
+    },
+    {
+      "name": "Mills",
+      "fips": "48333",
+      "type": "County"
+    },
+    {
+      "name": "Mitchell",
+      "fips": "48335",
+      "type": "County"
+    },
+    {
+      "name": "Montague",
+      "fips": "48337",
+      "type": "County"
+    },
+    {
+      "name": "Montgomery",
+      "fips": "48339",
+      "type": "County"
+    },
+    {
+      "name": "Moore",
+      "fips": "48341",
+      "type": "County"
+    },
+    {
+      "name": "Morris",
+      "fips": "48343",
+      "type": "County"
+    },
+    {
+      "name": "Motley",
+      "fips": "48345",
+      "type": "County"
+    },
+    {
+      "name": "Nacogdoches",
+      "fips": "48347",
+      "type": "County"
+    },
+    {
+      "name": "Navarro",
+      "fips": "48349",
+      "type": "County"
+    },
+    {
+      "name": "Newton",
+      "fips": "48351",
+      "type": "County"
+    },
+    {
+      "name": "Nolan",
+      "fips": "48353",
+      "type": "County"
+    },
+    {
+      "name": "Nueces",
+      "fips": "48355",
+      "type": "County"
+    },
+    {
+      "name": "Ochiltree",
+      "fips": "48357",
+      "type": "County"
+    },
+    {
+      "name": "Oldham",
+      "fips": "48359",
+      "type": "County"
+    },
+    {
+      "name": "Orange",
+      "fips": "48361",
+      "type": "County"
+    },
+    {
+      "name": "Palo Pinto",
+      "fips": "48363",
+      "type": "County"
+    },
+    {
+      "name": "Panola",
+      "fips": "48365",
+      "type": "County"
+    },
+    {
+      "name": "Parker",
+      "fips": "48367",
+      "type": "County"
+    },
+    {
+      "name": "Parmer",
+      "fips": "48369",
+      "type": "County"
+    },
+    {
+      "name": "Pecos",
+      "fips": "48371",
+      "type": "County"
+    },
+    {
+      "name": "Polk",
+      "fips": "48373",
+      "type": "County"
+    },
+    {
+      "name": "Potter",
+      "fips": "48375",
+      "type": "County"
+    },
+    {
+      "name": "Presidio",
+      "fips": "48377",
+      "type": "County"
+    },
+    {
+      "name": "Rains",
+      "fips": "48379",
+      "type": "County"
+    },
+    {
+      "name": "Randall",
+      "fips": "48381",
+      "type": "County"
+    },
+    {
+      "name": "Reagan",
+      "fips": "48383",
+      "type": "County"
+    },
+    {
+      "name": "Real",
+      "fips": "48385",
+      "type": "County"
+    },
+    {
+      "name": "Red River",
+      "fips": "48387",
+      "type": "County"
+    },
+    {
+      "name": "Reeves",
+      "fips": "48389",
+      "type": "County"
+    },
+    {
+      "name": "Refugio",
+      "fips": "48391",
+      "type": "County"
+    },
+    {
+      "name": "Roberts",
+      "fips": "48393",
+      "type": "County"
+    },
+    {
+      "name": "Robertson",
+      "fips": "48395",
+      "type": "County"
+    },
+    {
+      "name": "Rockwall",
+      "fips": "48397",
+      "type": "County"
+    },
+    {
+      "name": "Runnels",
+      "fips": "48399",
+      "type": "County"
+    },
+    {
+      "name": "Rusk",
+      "fips": "48401",
+      "type": "County"
+    },
+    {
+      "name": "Sabine",
+      "fips": "48403",
+      "type": "County"
+    },
+    {
+      "name": "San Augustine",
+      "fips": "48405",
+      "type": "County"
+    },
+    {
+      "name": "San Jacinto",
+      "fips": "48407",
+      "type": "County"
+    },
+    {
+      "name": "San Patricio",
+      "fips": "48409",
+      "type": "County"
+    },
+    {
+      "name": "San Saba",
+      "fips": "48411",
+      "type": "County"
+    },
+    {
+      "name": "Schleicher",
+      "fips": "48413",
+      "type": "County"
+    },
+    {
+      "name": "Scurry",
+      "fips": "48415",
+      "type": "County"
+    },
+    {
+      "name": "Shackelford",
+      "fips": "48417",
+      "type": "County"
+    },
+    {
+      "name": "Shelby",
+      "fips": "48419",
+      "type": "County"
+    },
+    {
+      "name": "Sherman",
+      "fips": "48421",
+      "type": "County"
+    },
+    {
+      "name": "Smith",
+      "fips": "48423",
+      "type": "County"
+    },
+    {
+      "name": "Somervell",
+      "fips": "48425",
+      "type": "County"
+    },
+    {
+      "name": "Starr",
+      "fips": "48427",
+      "type": "County"
+    },
+    {
+      "name": "Stephens",
+      "fips": "48429",
+      "type": "County"
+    },
+    {
+      "name": "Sterling",
+      "fips": "48431",
+      "type": "County"
+    },
+    {
+      "name": "Stonewall",
+      "fips": "48433",
+      "type": "County"
+    },
+    {
+      "name": "Sutton",
+      "fips": "48435",
+      "type": "County"
+    },
+    {
+      "name": "Swisher",
+      "fips": "48437",
+      "type": "County"
+    },
+    {
+      "name": "Tarrant",
+      "fips": "48439",
+      "type": "County"
+    },
+    {
+      "name": "Taylor",
+      "fips": "48441",
+      "type": "County"
+    },
+    {
+      "name": "Terrell",
+      "fips": "48443",
+      "type": "County"
+    },
+    {
+      "name": "Terry",
+      "fips": "48445",
+      "type": "County"
+    },
+    {
+      "name": "Throckmorton",
+      "fips": "48447",
+      "type": "County"
+    },
+    {
+      "name": "Titus",
+      "fips": "48449",
+      "type": "County"
+    },
+    {
+      "name": "Tom Green",
+      "fips": "48451",
+      "type": "County"
+    },
+    {
+      "name": "Travis",
+      "fips": "48453",
+      "type": "County"
+    },
+    {
+      "name": "Trinity",
+      "fips": "48455",
+      "type": "County"
+    },
+    {
+      "name": "Tyler",
+      "fips": "48457",
+      "type": "County"
+    },
+    {
+      "name": "Upshur",
+      "fips": "48459",
+      "type": "County"
+    },
+    {
+      "name": "Upton",
+      "fips": "48461",
+      "type": "County"
+    },
+    {
+      "name": "Uvalde",
+      "fips": "48463",
+      "type": "County"
+    },
+    {
+      "name": "Val Verde",
+      "fips": "48465",
+      "type": "County"
+    },
+    {
+      "name": "Van Zandt",
+      "fips": "48467",
+      "type": "County"
+    },
+    {
+      "name": "Victoria",
+      "fips": "48469",
+      "type": "County"
+    },
+    {
+      "name": "Walker",
+      "fips": "48471",
+      "type": "County"
+    },
+    {
+      "name": "Waller",
+      "fips": "48473",
+      "type": "County"
+    },
+    {
+      "name": "Ward",
+      "fips": "48475",
+      "type": "County"
+    },
+    {
+      "name": "Washington",
+      "fips": "48477",
+      "type": "County"
+    },
+    {
+      "name": "Webb",
+      "fips": "48479",
+      "type": "County"
+    },
+    {
+      "name": "Wharton",
+      "fips": "48481",
+      "type": "County"
+    },
+    {
+      "name": "Wheeler",
+      "fips": "48483",
+      "type": "County"
+    },
+    {
+      "name": "Wichita",
+      "fips": "48485",
+      "type": "County"
+    },
+    {
+      "name": "Wilbarger",
+      "fips": "48487",
+      "type": "County"
+    },
+    {
+      "name": "Willacy",
+      "fips": "48489",
+      "type": "County"
+    },
+    {
+      "name": "Williamson",
+      "fips": "48491",
+      "type": "County"
+    },
+    {
+      "name": "Wilson",
+      "fips": "48493",
+      "type": "County"
+    },
+    {
+      "name": "Winkler",
+      "fips": "48495",
+      "type": "County"
+    },
+    {
+      "name": "Wise",
+      "fips": "48497",
+      "type": "County"
+    },
+    {
+      "name": "Wood",
+      "fips": "48499",
+      "type": "County"
+    },
+    {
+      "name": "Yoakum",
+      "fips": "48501",
+      "type": "County"
+    },
+    {
+      "name": "Young",
+      "fips": "48503",
+      "type": "County"
+    },
+    {
+      "name": "Zapata",
+      "fips": "48505",
+      "type": "County"
+    },
+    {
+      "name": "Zavala",
+      "fips": "48507",
+      "type": "County"
+    }
+  ],
+  "candidate_roster": [
+    {
+      "name": "James Talarico",
+      "party": "Democratic"
+    },
+    {
+      "name": "Ken Paxton",
+      "party": "Republican"
+    },
+    {
+      "name": "Ted Brown",
+      "party": "Libertarian"
+    }
+  ],
+  "source_identity": {
+    "election_name": "Texas US Senate",
+    "election_type": "US Senate",
+    "election_scope": "General",
+    "election_date": "2026-11-03T05:00:00.000Z",
+    "country": "US",
+    "province": "TX",
+    "district": null,
+    "municipality": null
+  },
+  "scope": "Actual county identities and test flag only; no provider test votes retained, no live acceptance or calibration claim",
+  "adapter_status": "TEST_DATA_NOT_LIVE",
+  "live_votes_accepted": false
+}
