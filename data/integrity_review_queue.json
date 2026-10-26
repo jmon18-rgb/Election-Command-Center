@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-26T08:57:16.720389Z",
+  "updated_at": "2026-10-26T09:57:15.618253Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
@@ -260,6 +260,25 @@
     }
   ],
   "items": [
+    {
+      "id": "fa7391d9b81927805e1d",
+      "title": "Election officials in NH say they\u2019re ready for a big day at the polls, with little drama - New Hampshire Public Radio",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQZlpPV2d1ZGptUFdCbUg1X05hS01QYmkycXJsZUNHWkoyOHEtb3pOYmEwSW5rTFFfYUpDeGdwVUJMLTNTUEZkeVJySnRSWm1YU3dhXzNGNWNNRnVUN3E2TGJvSmUyOF9lUW9oeC1ZRjJLT2JZem1sZ3pRNVczaUVxN2RrVDd5TnFxbzRVUzdqbWhjM1pCM3ZiMnZGMVAyY0xrQUdaQXMzV2JJdw?oc=5",
+      "publisher": "New Hampshire Public Radio",
+      "published_at": "2026-10-26T09:05:00Z",
+      "detected_at": "2026-10-26T09:57:15.618253Z",
+      "state_hints": [
+        "NH"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "bb433647d5ba3c9c7ed1",
       "title": "9th Circuit panel questions basis for feds\u2019 request to block 20,000 California ballots - Los Angeles Times",
@@ -4936,25 +4955,6 @@
       ],
       "headline_numbers_unverified": [
         "185,000 ballots"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "e10c3d3bbdb416e1ee79",
-      "title": "Fort Worth judge denies request to reinstate 92 polling sites for Tarrant County midterms - www.kera.org",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPSk1GYUFIdGN2RjJQNUQ3NGNYSkNEY0MwLVZWWTBDeVB2RHFsdjFJMjlMU0w4WU5scWlyMWlEc2xDUWltQnJqZ1IyVG9QM2JCR0ltVTg3NW11MmFydTZhYkhPQjFVeE54MWx4VmpYcHZrRWRBVVh3QkNxSDd4UU16TGJGajBjNW1yNWpCZVpPNjQ3c3lGSDVMc3EzcU1BZG5RYUJTZ2l3TXJZMlA3WV9rYjYta25DSGNSc18zVzFXYw?oc=5",
-      "publisher": "www.kera.org",
-      "published_at": "2026-10-13T23:46:29Z",
-      "detected_at": "2026-10-13T23:51:12.636833Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [
-        "92 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
