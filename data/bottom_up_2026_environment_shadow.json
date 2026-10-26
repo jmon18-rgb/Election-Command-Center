@@ -1,14 +1,14 @@
 {
   "schema_version": "bottom-up-2026-poll-environment-shadow-v1",
   "status": "SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE",
-  "polling_generated_at": "2026-10-26T19:51:44.455816Z",
+  "polling_generated_at": "2026-10-26T20:48:43.710747Z",
   "presidential_geography_year": 2026,
   "presidential_2024_national_two_party_margin_points": -1.705,
   "generic_ballot_2026_d_minus_r_points": 9.23,
   "generic_implied_vs_2024_presidential_swing_points": 10.935,
-  "independent_polling_estimated_presidential_to_race_swing_points": 9.27,
-  "bottom_up_implied_national_margin_points": 7.565,
-  "bottom_up_minus_generic_environment_points": -1.665,
+  "independent_polling_estimated_presidential_to_race_swing_points": 9.269,
+  "bottom_up_implied_national_margin_points": 7.564,
+  "bottom_up_minus_generic_environment_points": -1.666,
   "candidate_specific_effects_removed": false,
   "candidate_quality_calibration_available": false,
   "total_qualifying_races": 17,
@@ -46,7 +46,7 @@
     {
       "state": "MI",
       "number_qualifying_races": 1,
-      "swing_points": 4.049
+      "swing_points": 4.039
     },
     {
       "state": "PA",

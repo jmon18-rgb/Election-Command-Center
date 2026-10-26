@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-26T19:51:41.760212+00:00",
+  "updated_at": "2026-10-26T20:48:40.431374+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 820,
+      "available_in_source": 821,
       "records_examined": 300
     },
     "house": {
@@ -13,14 +13,119 @@
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 921,
+      "available_in_source": 922,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 313,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 2,
+  "injected_poll_ids": [
+    {
+      "race_code": "MI-GOV",
+      "poll_id": "d2be96f5-7278-4294-92a5-7e0e4fa03dd4"
+    },
+    {
+      "race_code": "MI-SEN",
+      "poll_id": "d2be96f5-7278-4294-92a5-7e0e4fa03dd4"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "MI-SEN",
+      "race_type": "senate",
+      "state": "MI",
+      "poll_id": "d2be96f5-7278-4294-92a5-7e0e4fa03dd4",
+      "question_id": "2b93d302-b2ae-40dc-a6b4-fbc9102a2477",
+      "pollster": "Michigan State University Institute for Public Policy and Social Research/YouGov",
+      "dem_name": "Abdul El-Sayed",
+      "rep_name": "Mike Rogers",
+      "dem": 48.0,
+      "rep": 45.5,
+      "margin": 2.5,
+      "field_end": "2026-10-19",
+      "field_start": "2026-10-02",
+      "posted_date": "2026-10-26",
+      "posted_source_datetime": "2026-10-26T16:09:00",
+      "posted_source_time": "10/26/26 16:09",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://ippsr.msu.edu/news/msu-poll-shows-benson-large-lead-while-el-sayed-roger-race-tight",
+      "sample_population": "lv",
+      "sample_size": 836,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "MI-SEN",
+      "race_type": "senate",
+      "state": "MI",
+      "poll_id": "d2be96f5-7278-4294-92a5-7e0e4fa03dd4",
+      "question_id": "5814b21b-8b6e-4143-a226-50613f9ba5a2",
+      "pollster": "Michigan State University Institute for Public Policy and Social Research/YouGov",
+      "dem_name": "Abdul El-Sayed",
+      "rep_name": "Mike Rogers",
+      "dem": 44.8,
+      "rep": 41.0,
+      "margin": 3.8,
+      "field_end": "2026-10-19",
+      "field_start": "2026-10-02",
+      "posted_date": "2026-10-26",
+      "posted_source_datetime": "2026-10-26T16:09:00",
+      "posted_source_time": "10/26/26 16:09",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://ippsr.msu.edu/news/msu-poll-shows-benson-large-lead-while-el-sayed-roger-race-tight",
+      "sample_population": "a",
+      "sample_size": 1000,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "MI-GOV",
+      "race_type": "governor",
+      "state": "MI",
+      "poll_id": "d2be96f5-7278-4294-92a5-7e0e4fa03dd4",
+      "question_id": "6766a66f-e226-45f7-91de-d905dfa94d16",
+      "pollster": "Michigan State University Institute for Public Policy and Social Research/YouGov",
+      "dem_name": "Jocelyn Benson",
+      "rep_name": "John James",
+      "dem": 53.3,
+      "rep": 40.9,
+      "margin": 12.4,
+      "field_end": "2026-10-19",
+      "field_start": "2026-10-02",
+      "posted_date": "2026-10-26",
+      "posted_source_datetime": "2026-10-26T16:09:00",
+      "posted_source_time": "10/26/26 16:09",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://ippsr.msu.edu/news/msu-poll-shows-benson-large-lead-while-el-sayed-roger-race-tight",
+      "sample_population": "lv",
+      "sample_size": 836,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "MI-GOV",
+      "race_type": "governor",
+      "state": "MI",
+      "poll_id": "d2be96f5-7278-4294-92a5-7e0e4fa03dd4",
+      "question_id": "6fcd88cc-3739-4255-854f-5dca566226d3",
+      "pollster": "Michigan State University Institute for Public Policy and Social Research/YouGov",
+      "dem_name": "Jocelyn Benson",
+      "rep_name": "John James",
+      "dem": 45.7,
+      "rep": 36.6,
+      "margin": 9.1,
+      "field_end": "2026-10-19",
+      "field_start": "2026-10-02",
+      "posted_date": "2026-10-26",
+      "posted_source_datetime": "2026-10-26T16:09:00",
+      "posted_source_time": "10/26/26 16:09",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://ippsr.msu.edu/news/msu-poll-shows-benson-large-lead-while-el-sayed-roger-race-tight",
+      "sample_population": "a",
+      "sample_size": 1000,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "NV-GOV",
       "race_type": "governor",
