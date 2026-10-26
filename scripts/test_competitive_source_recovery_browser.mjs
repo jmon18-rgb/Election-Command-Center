@@ -37,6 +37,11 @@ try{
    enCivicBreaker.fail(503);enRenderAmbientDesk();
   });
   const panel=page.locator('.en-coverage-recovery');
+  const texas=panel.locator('[data-source-race="House|TX-23"]');
+  assert.equal(await texas.locator('a[href="https://electionresults.sos.state.tx.us/results.html"]').count(),1);
+  assert.match(await texas.textContent(),/2026 returns NOT YET published/);
+  assert.match(await page.locator('.en-coverage-priority [data-source-race="House|NJ-07"]').textContent(),
+   /county links ONLY; NO statewide Election Night results/);
   assert(await page.locator('.en-coverage-priority > p[data-source-race]').count() <= 4,
    'A growing identity-gap inventory must not expand every manual task on the main desk');
   const expectedGapIds=await page.evaluate(()=>enPublishedCoverageLedger.races

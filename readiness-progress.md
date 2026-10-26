@@ -8,6 +8,33 @@ Prioritize competitive sources/fallbacks, correct calls/control accounting,
 outage/retraction recovery and the laptop dashboard. The scoped needle remains
 an evidence task, not a reason to fabricate predictive updates.
 
+## October 25 - competitive government references and scope warnings
+
+- Opened the exact Texas November 2026 page and verified TX-23, TX-33, Senate
+  and governor rosters. Added four human references, explicitly not-yet-published:
+  candidate rosters/blank ballots are not counted votes or calls.
+- New Jersey's actual Election Night directory says the state publishes neither
+  official nor unofficial returns that night. Link NJ-07 to its county directory,
+  with a county-only warning instead of implying future statewide night results.
+  No county sums or vote ingestion are introduced.
+- Shared source-scope warnings now accompany government links in the short
+  priority/recovery lists as well as full drawers. Mock/certified-only sources
+  must retain their limitations wherever the operator opens them.
+- Five official-reference tests, source-triage rules and actual Edge 1440px,
+  1366x768 and 390px checks pass. Broader current-head CI remains required.
+- PR #432 passed all 27 workflows at ef6e30ce and merged as 40f83711. Verify
+  its published compact layout before claiming deployment complete.
+- Deployment now verified at 00:58:06Z against main 23c66bf5: HTML, all 35
+  loaded scripts and both source catalogs match (38 files, zero differences).
+  At 00:58:09Z actual Edge at 1366x768 shows exactly four immediate priority
+  rows with the complete gap inventory in the collapsed remainder drawer;
+  source-drawer focus and all seven manual references still pass. Local evidence:
+  artifacts/readiness/published-main-integrity.json and
+  artifacts/readiness/live-core-recovery-verification.json.
+- Next: PR #433 government references/scope warnings must pass current-head CI,
+  then verify actual publication. Preserve the separate source identity, live
+  delivery, rights and calibration acceptance gaps; these human links clear none.
+
 ## October 25 - verified release and next laptop task
 
 - PR #430 passed all 27 workflows at 771303e8 before merging as 7aae8c39.

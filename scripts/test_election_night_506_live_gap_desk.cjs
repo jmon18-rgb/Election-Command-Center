@@ -372,7 +372,8 @@ assert.match(t,/certified results only; NOT live/);
 assert.match(t,/MS — Supplemental source ID · no current results/);
 assert(!t.includes('MS — No verified automated source ID'),
  'New independently pinned Mississippi Senate source is not an unindexed gap');
-assert.equal((t.match(/certified results only; NOT live/g)||[]).length,2,
+const senateScopeList=allEls(host).find(el=>el.className==='en-coverage-senate-gaps');
+assert.equal((flatten(senateScopeList).match(/certified results only; NOT live/g)||[]).length,2,
  'Both MA and MS official links must be labeled certified-only, not live');
 const ma=host.children.flatMap(x=>x.children||[]);
 assert(!t.includes('source verified from manual check'));
@@ -457,3 +458,25 @@ assert.match(flatten(unknownHost),/SOURCE RECOVERY · 1 affected feeds/,
 assert.match(html,/ElectionNightCoverageTriage\.supplementalState\(item,/,
  'The actual browser must use the same tested recovery classifier');
 console.log('Competitive source recovery: exact-ID hints, prior attempts, failure priority and recovery PASS');
+
+for(const [mode,warning] of [
+ ['county_results_directory_only','county links ONLY; NO statewide Election Night results'],
+ ['pre_election_mock_results_only','MOCK/TEST source; DO NOT use as votes'],
+ ['certified_only_not_election_night','certified results only; NOT live'],
+ ['november_2026_results_not_yet_published','2026 returns NOT YET published']
+]){
+ const scopePulse={...operational,
+  gapAttention:{...operational.gapAttention,races:[{id:'House|NJ-07',mode:'ACTIVE_LIVE_SOURCE'}]},
+  operationalAttention:{...operational.operationalAttention,
+   races:[{id:'House|NJ-07',mode:'ACTIVE_LIVE_SOURCE',sourceStatus:'SECONDARY_FAILED'}]}};
+ const host=node('div');
+ api.render(host,scopePulse,{createElement:node},[
+  {race_ids:['House|NJ-07'],url:'https://www.nj.gov/state/elections/election-night-results.shtml',mode}]);
+ for(const cls of ['en-coverage-recovery','en-coverage-priority']){
+  const section=allEls(host).find(el=>el.className===cls);
+  assert.match(flatten(section),new RegExp(warning),
+   cls+' must keep the official reference limitation beside its link');
+ }
+ assert.equal(scopePulse.professional_calls_verified,0);
+}
+console.log('Official reference scope warnings remain visible in recovery and priority rows PASS');

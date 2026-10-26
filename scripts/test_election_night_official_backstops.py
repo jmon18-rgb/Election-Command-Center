@@ -65,6 +65,19 @@ class OfficialBackstopsTests(unittest.TestCase):
         self.assertIn("FORECASTS",newsroom["information"])
         self.assertIn("not",newsroom["information"].lower())
 
+    def test_texas_roster_and_new_jersey_county_directory_are_not_live_feeds(self):
+        tx=next(x for x in self.links["links"] if x["state"]=="TX")
+        self.assertEqual(tx["url"],"https://electionresults.sos.state.tx.us/results.html")
+        self.assertEqual(set(tx["race_ids"]),
+                         {"House|TX-23","House|TX-33","Senate|TX","Governor|TX"})
+        self.assertEqual(tx["mode"],"november_2026_results_not_yet_published")
+        self.assertIn("blank ballot fields",tx["scope_note"])
+        nj=next(x for x in self.links["links"] if x["state"]=="NJ")
+        self.assertEqual(nj["url"],"https://www.nj.gov/state/elections/election-night-results.shtml")
+        self.assertEqual(nj["mode"],"county_results_directory_only")
+        self.assertIn("neither official nor unofficial",nj["scope_note"])
+        self.assertIn("not an independently reconciled",nj["scope_note"])
+
     def test_links_cannot_masquerade_as_live_results(self):
         for item in self.links["links"]:
             parsed=urlparse(item["url"])
@@ -77,10 +90,12 @@ class OfficialBackstopsTests(unittest.TestCase):
              "post_election_results_landing","certified_only_not_election_night",
              "official_results_landing","2026_results_landing",
              "pre_election_mock_results_only",
-             "november_2026_results_not_yet_published"})
+             "november_2026_results_not_yet_published",
+             "county_results_directory_only"})
         for state in ("ME","NE","OH"):
             row=next(x for x in self.links["links"] if x["state"]==state)
             self.assertIn("Senate|"+("OH-special" if state=="OH" else state),row["race_ids"])
+
         self.assertEqual(next(x for x in self.links["links"] if x["state"]=="NE")["mode"],
                          "pre_election_mock_results_only")
         self.assertEqual(next(x for x in self.links["links"] if x["state"]=="OH")["mode"],

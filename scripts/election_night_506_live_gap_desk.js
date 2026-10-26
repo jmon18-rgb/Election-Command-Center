@@ -305,6 +305,15 @@
       ' governor contests. Provider-reported zero is tracked separately. Missing does not mean zero.',host,'en-coverage-line');
   // Treat missing-source work as an editorial/resource queue, NOT as
   // a forecast call or a replacement for provider-reported votes.
+  // Keep the same scope warning beside each use of a government reference.
+  const warnings={
+   certified_only_not_election_night:' · certified results only; NOT live',
+   pre_election_mock_results_only:' · MOCK/TEST source; DO NOT use as votes',
+   november_2026_results_not_yet_published:' · 2026 returns NOT YET published',
+   county_results_directory_only:' · county links ONLY; NO statewide Election Night results',
+   post_election_results_landing:' · may publish only after reporting',
+   results_landing_timing_unconfirmed:' · Election Night timing unconfirmed'
+  };
   const attention=pulse.gapAttention;
   // Public DDHQ Votes Free race pages are human verification options, not a
   // substitute for the verified civicAPI/Open America source contracts.
@@ -339,7 +348,8 @@
     if(link){
      const a=elt('a',' · Manual official reference ↗',line);
      a.href=link.url;a.target='_blank';a.rel='noopener noreferrer';
-     elt('span',' · reference only; not verified live votes or a race call',line);
+     elt('span',(warnings[link.mode]||'')+
+      ' · reference only; not verified live votes or a race call',line);
     }else elt('span',' · no curated official fallback for this race',line);
     const newsroom=callLink(race.id);
     if(newsroom){
@@ -379,6 +389,7 @@
     if(link){
      const a=elt('a',' · Manual official page ↗',line);
      a.href=link.url;a.target='_blank';a.rel='noopener noreferrer';
+     if(warnings[link.mode])elt('span',warnings[link.mode],line);
     }
     const newsroom=callLink(race.id);
     if(newsroom){
@@ -409,13 +420,6 @@
   }
   // Consistent source-eligibility warnings for EVERY linked federal race:
   // the seven House gaps cannot quietly display mock totals as results.
-  const warnings={
-   certified_only_not_election_night:' · certified results only; NOT live',
-   pre_election_mock_results_only:' · MOCK/TEST source; DO NOT use as votes',
-   november_2026_results_not_yet_published:' · 2026 returns NOT YET published',
-   post_election_results_landing:' · may publish only after reporting',
-   results_landing_timing_unconfirmed:' · Election Night timing unconfirmed'
-  };
   const details=drawer('senate',host);
   elt('summary','Senate source gaps · '+pulse.senateMissing+
       ' awaiting verified reported votes · all 35 races',details);

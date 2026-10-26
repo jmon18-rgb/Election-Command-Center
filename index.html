@@ -1389,7 +1389,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_signals.js?v=df31e0cc9e64"></script>
 <script src="./scripts/election_night_poll_closings_2026.js?v=39c725fe013b"></script>
 <script src="./scripts/election_night_reconciliation.js?v=99a6b5420984"></script>
-<script src="./scripts/election_night_506_live_gap_desk.js?v=573e6342c3c0"></script>
+<script src="./scripts/election_night_506_live_gap_desk.js?v=b3d6fc8c94e4"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
 <script src="./scripts/chamber_control_model.js?v=aa102ced6a53"></script>
 <script src="./scripts/electorate_what_if_2026.js?v=1a5fe3701694"></script>
@@ -3592,6 +3592,8 @@ async function enRefreshSourceReadiness(){
      qualifier=' · WARNING: pre-election MOCK/TEST results, not real votes';
     else if(link.mode==='november_2026_results_not_yet_published')
      qualifier=' · 2026 November returns NOT YET published';
+    else if(link.mode==='county_results_directory_only')
+     qualifier=' · county links ONLY; NO statewide Election Night results';
     else if(link.mode==='post_election_results_landing')
      qualifier=' · local returns may appear after reporting';
     row.append(anchor,elt('span','',
