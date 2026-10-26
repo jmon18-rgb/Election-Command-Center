@@ -8,6 +8,23 @@ Prioritize competitive sources/fallbacks, correct calls/control accounting,
 outage/retraction recovery and the laptop dashboard. The scoped needle remains
 an evidence task, not a reason to fabricate predictive updates.
 
+## October 25 - competitive government references and scope warnings
+
+- Opened the exact Texas November 2026 page and verified TX-23, TX-33, Senate
+  and governor rosters. Added four human references, explicitly not-yet-published:
+  candidate rosters/blank ballots are not counted votes or calls.
+- New Jersey's actual Election Night directory says the state publishes neither
+  official nor unofficial returns that night. Link NJ-07 to its county directory,
+  with a county-only warning instead of implying future statewide night results.
+  No county sums or vote ingestion are introduced.
+- Shared source-scope warnings now accompany government links in the short
+  priority/recovery lists as well as full drawers. Mock/certified-only sources
+  must retain their limitations wherever the operator opens them.
+- Five official-reference tests, source-triage rules and actual Edge 1440px,
+  1366x768 and 390px checks pass. Broader current-head CI remains required.
+- PR #432 passed all 27 workflows at ef6e30ce and merged as 40f83711. Verify
+  its published compact layout before claiming deployment complete.
+
 ## October 25 - verified release and next laptop task
 
 - PR #430 passed all 27 workflows at 771303e8 before merging as 7aae8c39.

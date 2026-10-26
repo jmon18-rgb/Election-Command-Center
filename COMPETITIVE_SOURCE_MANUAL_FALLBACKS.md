@@ -40,3 +40,23 @@ to these districts. The [New Jersey 2026 election information page](https://www.
 has general-election candidates and earlier primary/special results, with no
 November general-election returns verified. It is labeled not yet published.
 All seven automated gaps remain unresolved; no rejected values enter results.
+
+Additional government references inspected October 25:
+
+- [Texas November 2026 page](https://electionresults.sos.state.tx.us/results.html):
+  exact Nov 3 heading and TX-23/TX-33/Senate/governor candidate rosters, updated
+  October 14, with blank ballot fields and zero reporting locations. Added for
+  those four recovery rows with an explicit not-yet-published warning. Blank
+  fields do not become zero counted votes, calls or an automated results feed.
+- [New Jersey Election Night directory](https://www.nj.gov/state/elections/election-night-results.shtml):
+  the state explicitly publishes neither official nor unofficial Election Night
+  results. It directs readers to county websites. Replaced the generic candidate
+  information link with this more useful directory for NJ-07, clearly labeled
+  county-only. A county's partial returns do not establish the district total.
+
+Colorado's statewide results page currently points to archives, and Florida's
+current official results link also leads to an archive. Neither was promoted to
+a verified November live-results fallback. Existing CO-05 newsroom reference
+remains. Government scope warnings now appear beside priority and recovery links,
+as well as in the full source drawers, so mock/certified/county-only restrictions
+remain visible at the point of use.

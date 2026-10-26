@@ -210,13 +210,29 @@
     },
     {
       "state": "NJ",
-      "name": "New Jersey official 2026 election information",
-      "url": "https://www.nj.gov/state/elections/election-information-2026.shtml",
-      "mode": "november_2026_results_not_yet_published",
+      "name": "New Jersey official county-results directory",
+      "url": "https://www.nj.gov/state/elections/election-night-results.shtml",
+      "mode": "county_results_directory_only",
       "verified_at": "2026-10-25",
-      "scope_note": "2026 general-election candidate information and earlier primary/special results only at verification; no November general-election returns published or live feed verified.",
+      "scope_note": "NJ explicitly posts neither official nor unofficial Election Night results statewide; use the listed county sites. County results are partial, not an independently reconciled NJ-07 district total.",
       "race_ids": [
         "House|NJ-07"
+      ],
+      "source_reference": "https://www.nj.gov/state/elections/election-night-results.shtml"
+    },
+    {
+      "state": "TX",
+      "name": "Texas official November 2026 results roster",
+      "url": "https://electionresults.sos.state.tx.us/results.html",
+      "mode": "november_2026_results_not_yet_published",
+      "verified_at": "2026-10-25",
+      "source_reference": "https://electionresults.sos.state.tx.us/results.html",
+      "scope_note": "Nov 3 2026 page, updated Oct 14, has candidate rosters and 0 percent reporting with blank ballot fields. No counted votes or winner call verified; manual reference only.",
+      "race_ids": [
+        "House|TX-23",
+        "House|TX-33",
+        "Senate|TX",
+        "Governor|TX"
       ]
     }
   ],
