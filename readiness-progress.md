@@ -17,6 +17,13 @@ an evidence task, not a reason to fabricate predictive updates.
   1366×768 laptop size and 390px, including exact inventory preservation and focus
   inside the added drawer. All 12 core checks pass; review/current-head CI pending.
 
+- Follow-up readiness report now includes the actual source-audit timestamp/age,
+  row-derived unresolved identities by office and bounded rejection-reason counts.
+  It explicitly separates identity discovery from live delivery/rights/calls.
+  Missing, incomplete, duplicate, unknown-status or future-clock audit data fails
+  the report instead of silently presenting zero gaps. All 13 consolidated checks
+  pass locally, including the new reporting safeguards. Review/CI still required.
+
 - Reproduced a laptop usability failure in the actual browser: opening the Senate
   source drawer and refreshing source state closed it immediately. Keyboard focus
   was also lost because the source panel replaces its rows on every redraw.
@@ -68,16 +75,10 @@ an evidence task, not a reason to fabricate predictive updates.
 
 ## Next concrete work
 
-Owner priority update: needle and celebrations are high importance alongside
-reliability. Follow AUTONOMOUS_READINESS.md delivery targets; do not defer them
-behind unrelated research. Target a scoped needle data/calibration decision by
-October 27 and the complete celebration preview roster by October 29, followed
-by correction/retraction, mobile and endurance checks before feature freeze.
-
-Celebration creative direction is recorded in CELEBRATION_CREATIVE_BRIEF.md:
-Talarico/blue horns, Abbott concession parade, Graham theatrical nightclub
-farewell, Nebraska football-coach satire, Mississippi retired-mascot removal,
-and Kansas John Brown. Fish Head announcement precedes animation/music.
+Latest owner steering pauses celebration expansion. Complete core source/call,
+recovery and laptop operation work first. Preserve PR #426 without merging its
+failed checks. Keep the October 27 needle evidence decision scoped to actual
+usable chronological data, without claiming a descriptive map is predictive.
 
 1. Inspect PR CI, including desktop/mobile and 506-race recovery drills; fix failures.
 2. Review the single-screen competitive-race desk against operator acceptance;

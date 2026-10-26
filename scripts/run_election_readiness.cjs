@@ -3,10 +3,12 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const {spawnSync} = require('node:child_process');
+const {summarizeSourceAudit} = require('./election_readiness_source_snapshot.cjs');
 const root = path.resolve(__dirname, '..');
 const out = path.join(root, 'artifacts', 'readiness');
 fs.mkdirSync(out, {recursive: true});
 const checks = [
+  ['Source audit reporting safeguards', 'test_election_readiness_source_snapshot.cjs'],
   ['Celebration playback and revoked-call queue', 'test_election_night_celebration_player.cjs'],
   ['Published bundle and forecast consistency', 'test_published_dashboard.cjs', '--local'],
   ['Race and source reconciliation', 'test_election_night_reconciliation.cjs'],
@@ -39,12 +41,27 @@ for (const [name, script, ...args] of checks) {
     elapsed_ms: Date.now() - start, exit_code: result.status, signal: result.signal, log});
   console.log(`${status}: ${name}`);
 }
-report.status = report.checks.every(x => x.status === 'PASS') ? 'CORE_CHECKS_PASS_ACCEPTANCE_OPEN' : 'CHECKS_FAILED';
+try {
+  report.source_audit = summarizeSourceAudit(JSON.parse(fs.readFileSync(
+    path.join(root, 'data', 'election_night_source_coverage.json'), 'utf8')));
+} catch (error) {
+  report.source_audit = {status: 'UNAVAILABLE', error: error.message};
+}
+report.status = report.checks.every(x => x.status === 'PASS') && report.source_audit.status !== 'UNAVAILABLE' ?
+  'CORE_CHECKS_PASS_ACCEPTANCE_OPEN' : 'CHECKS_FAILED';
 fs.writeFileSync(path.join(out, 'report.json'), JSON.stringify(report, null, 2) + '\n');
 const markdown = ['# Election readiness report', '', `Revision: ${report.revision || 'unknown'}`,
   `Generated: ${report.generated_at}`, `Status: ${report.status}`, '', report.scope, '',
   '| Check | Result | Seconds |', '| --- | --- | --- |',
   ...report.checks.map(x => `| ${x.name} | ${x.status} | ${(x.elapsed_ms / 1000).toFixed(1)} |`),
+  '', 'Source identity audit:',
+  ...(report.source_audit.status === 'UNAVAILABLE' ? [`Unavailable: ${report.source_audit.error}`] : [
+    `Audited: ${report.source_audit.audited_at} (${report.source_audit.age_minutes} minutes before this report)`,
+    report.source_audit.interpretation,
+    ...Object.entries(report.source_audit.unresolved_by_office).map(([office, ids]) =>
+      `- ${office}: ${ids.length} unresolved source identities${ids.length ? ' — ' + ids.join(', ') : ''}`),
+    ...Object.entries(report.source_audit.rejected_detail_reasons).map(([reason, count]) =>
+      `- Rejected details: ${reason} (${count})`)]),
   '', 'Acceptance still open:', ...report.unproven_gates.map(x => `- ${x}`),
   '', 'See ELECTION_NIGHT_ACCEPTANCE.md. Browser jobs have separate logs and artifacts.', ''].join('\n');
 fs.writeFileSync(path.join(out, 'report.md'), markdown);
