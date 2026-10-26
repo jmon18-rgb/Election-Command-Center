@@ -1,5 +1,25 @@
 # Election Night production-readiness assignment
 
+## October26 23:41Z — Maine independent ballot contract verified
+
+- OfficialWestbrookElections&Voting page actually links sampleballot6376. Original
+  PDF downloaded200,SHA668442884edfa5d196d0013dc3a185028d7a668874eac630bbc7f27cdbaa33dc.
+  ReadonlyPDFskill render/visualQA bothpages confirmsNov3,2026/style287/WestbrookW1.
+  Senatepage2:Collins,SusanM.Republican/Jackson,TroyD.Democratic pluswrite-in,
+  three rankcolumns. This independently matches currentprovider namedcandidateIDs
+ 220470/220471; no reliance on conflicting searchsnippets or primarycandidate lists.
+- data/close_senate_source_assessment.json now pins exactofficiallink/hash/page/
+  aliases. OriginalPDF and renderedpages saved maine-source-research. Candidate
+  identity blocker resolved; ranked-choice/write-in semantics remain explicit.
+- NEXT implement16countyfirstchoice baseline/strictmixedgeography adapter using
+  independentCensuscountyIDs and actualofficial2020Senatecountyexport. Official
+  previous-election landing indexed countyXLS exports; retrieve actualpublished
+  link via independently linked state/municipalarchive, no inventedURL. Firstchoice
+  remaining-vote likelihood can inform experimentalnationaloutlook under owner's
+  assumption; never declare finalRCVwinner from initialround alone.
+- MainCI/openPRshealthy/unchanged; no additional nationalinput enabled yet.
+
+
 ## October26 23:26Z — actual close-Senate feasibility separates MEmunicipal from AKstate-only
 
 - Existing approved civic routesME87188/AK86916 inspected in ordinary deployed-site

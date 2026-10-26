@@ -32,10 +32,37 @@
       "positive_counts": false,
       "may_move_national_needle": false,
       "blockers": [
-        "Official sample-ballot link page returns403 in both web and ordinary Edge; exact independent candidate contract missing.",
+        "Named candidate identity now independently matches official municipal sample ballot. Generic write-in votes/round semantics still need explicit provider handling; no silent omission from totals.",
         "Mixed geography contains518Township and16County rows. Independently match16county aggregates and historical first-choice county counts; never sum counties plus nested towns.",
         "round1 observations cannot be assumed final RCV outcomes; RCV semantics and remaining-vote uncertainty need explicit handling."
-      ]
+      ],
+      "independent_ballot_contract": {
+        "municipal_official_landing": "https://www.westbrookmaine.gov/181/Elections-Voting",
+        "actual_link": "https://www.westbrookmaine.gov/DocumentCenter/View/6376",
+        "date_printed": "November 3, 2026",
+        "sample_ballot_style": "287 Westbrook W1 SS26 SR126 CC4",
+        "sha256": "668442884edfa5d196d0013dc3a185028d7a668874eac630bbc7f27cdbaa33dc",
+        "pages": 2,
+        "senate_page": 2,
+        "visually_verified": true,
+        "named_candidates": [
+          {
+            "printed_name": "Collins, Susan M.",
+            "party": "Republican",
+            "provider_name": "Susan Collins",
+            "provider_id": 220470
+          },
+          {
+            "printed_name": "Jackson, Troy D.",
+            "party": "Democratic",
+            "provider_name": "Troy Jackson",
+            "provider_id": 220471
+          }
+        ],
+        "write_in_slot": true,
+        "rank_columns": 3,
+        "semantics": "Ranked-choice first/second/third choices; two named candidates plus write-in. This proves named ballot identities, not final transfer outcomes or live delivery."
+      }
     },
     {
       "race_code": "AK-SEN",
