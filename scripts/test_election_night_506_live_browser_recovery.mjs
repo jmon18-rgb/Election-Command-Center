@@ -76,12 +76,18 @@ try{
    if(req.hostname==='openamerica.io'&&req.pathname==='/elections/results.json'){
     const office=req.searchParams.get('office');
     providers.push(office);
-    if(scenario!=='verified')return route.abort('failed');
+    if(scenario==='outage')return route.abort('failed');
     if(!Object.prototype.hasOwnProperty.call(SAMPLE,office))
      return route.abort('blockedbyclient');
+    const body=packet(office);
+    if(office==='House'&&['same-clock-race','fresh-race'].includes(scenario)){
+     body.races={...body.races,'TX-03':vote(20,30)};
+     body.counts={races:Object.keys(body.races).length};
+     if(scenario==='fresh-race')body.as_of='2026-11-04T01:48:00Z';
+    }
     return route.fulfill({status:200,contentType:'application/json',
                           headers:{'access-control-allow-origin':'*','cache-control':'no-store'},
-                          body:JSON.stringify(packet(office))});
+                          body:JSON.stringify(body)});
    }
    return route.abort('blockedbyclient');
   });
@@ -152,6 +158,20 @@ try{
     {timeout:30000});
   assert.match(await page.locator('#enLiveCoverageTriage').textContent(),
     /NC — Reported votes · unofficial/);
+  scenario='same-clock-race';
+  await page.evaluate(()=>enRefreshWatchedOffices(''));
+  await page.waitForFunction(()=>Boolean(enOfficeErrors.House),{timeout:30000});
+  assert.equal(await page.evaluate(()=>Boolean(enOfficeSnapshots.House.races['TX-03'])),false,
+   device+': Same-clock extra counted race cannot enter the accepted snapshot');
+  assert.match(await page.locator('#enLiveCoverageTriage').textContent(),
+   /House 0\/435 · Senate 1\/35 · Governors 0\/36/,
+   device+': Reject the changed House source while the independent Senate remains usable');
+  scenario='fresh-race';
+  await page.evaluate(()=>enRefreshWatchedOffices(''));
+  await page.waitForFunction(()=>document.querySelector('#enLiveCoverageTriage')?.
+   textContent?.includes('House 2/435 · Senate 1/35 · Governors 0/36'),{timeout:30000});
+  assert.equal(await page.evaluate(()=>enOfficeSnapshots.House.races['TX-03'].total),50,
+   device+': A fresh timestamp allows the additive source update to recover');
   await page.locator('#enMode2024').click();
   await page.waitForFunction(()=>document.querySelector('#enLiveCoverageTriage')?.
     textContent?.includes('2024 historical archive'),{timeout:30000});
@@ -160,7 +180,7 @@ try{
     device+': Archived view cannot retain live 2026 Senate coverage status');
   assert.deepEqual(errors.filter(e=>/SyntaxError|ReferenceError|TypeError/.test(e)),[],
     device+': No runtime JS exceptions');
-  console.log(device+': actual browser 506-race positive+zero+missing, 35 Senate states, outage/recovery and archive safety PASS');
+  console.log(device+': actual browser 506-race counts, outage, same-clock rejection/fresh recovery and archive safety PASS');
   await context.close();
  }
 }finally{
