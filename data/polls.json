@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-26T12:06:28.359038Z",
+  "updated_at": "2026-10-26T12:37:57.817015Z",
   "generic_ballot": {
     "summary": {
       "dem": 50.6,
@@ -22,20 +22,20 @@
       },
       {
         "field_end": "2026-10-20",
+        "pollster": "Focaldata",
+        "dem": 51.0,
+        "rep": 41.8,
+        "margin": 9.2,
+        "sample_size": 1549,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-10-20",
         "pollster": "YouGov",
         "dem": 49.0,
         "rep": 42.0,
         "margin": 7.0,
         "sample_size": 1312,
-        "partisan_lean": ""
-      },
-      {
-        "field_end": "2026-10-20",
-        "pollster": "Focaldata",
-        "dem": 51.0,
-        "rep": 41.7,
-        "margin": 9.3,
-        "sample_size": 1549,
         "partisan_lean": ""
       },
       {
@@ -85,20 +85,20 @@
       },
       {
         "field_end": "2026-10-18",
-        "pollster": "Hart Research Associates/Public Opinion Strategies",
-        "dem": 52.0,
-        "rep": 45.0,
-        "margin": 7.0,
-        "sample_size": 1000,
-        "partisan_lean": ""
-      },
-      {
-        "field_end": "2026-10-18",
         "pollster": "Morning Consult",
         "dem": 50.4,
         "rep": 43.1,
         "margin": 7.3,
         "sample_size": 17706,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-10-18",
+        "pollster": "Hart Research Associates/Public Opinion Strategies",
+        "dem": 52.0,
+        "rep": 45.0,
+        "margin": 7.0,
+        "sample_size": 1000,
         "partisan_lean": ""
       },
       {
@@ -121,24 +121,6 @@
       },
       {
         "field_end": "2026-10-12",
-        "pollster": "YouGov",
-        "dem": 48.7,
-        "rep": 40.0,
-        "margin": 8.7,
-        "sample_size": 1021,
-        "partisan_lean": ""
-      },
-      {
-        "field_end": "2026-10-12",
-        "pollster": "SurveyMonkey",
-        "dem": 55.0,
-        "rep": 45.0,
-        "margin": 10.0,
-        "sample_size": 17649,
-        "partisan_lean": ""
-      },
-      {
-        "field_end": "2026-10-12",
         "pollster": "Beacon Research/Shaw & Company Research",
         "dem": 54.0,
         "rep": 45.0,
@@ -153,6 +135,24 @@
         "rep": 36.0,
         "margin": 9.0,
         "sample_size": 925,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-10-12",
+        "pollster": "SurveyMonkey",
+        "dem": 55.0,
+        "rep": 45.0,
+        "margin": 10.0,
+        "sample_size": 17649,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-10-12",
+        "pollster": "YouGov",
+        "dem": 48.7,
+        "rep": 40.0,
+        "margin": 8.7,
+        "sample_size": 1021,
         "partisan_lean": ""
       },
       {
@@ -193,15 +193,6 @@
       },
       {
         "field_end": "2026-10-06",
-        "pollster": "The Bullfinch Group",
-        "dem": 39.0,
-        "rep": 35.5,
-        "margin": 3.5,
-        "sample_size": 1200,
-        "partisan_lean": ""
-      },
-      {
-        "field_end": "2026-10-06",
         "pollster": "The Honest Poll",
         "dem": 53.0,
         "rep": 41.5,
@@ -210,12 +201,21 @@
         "partisan_lean": ""
       },
       {
+        "field_end": "2026-10-06",
+        "pollster": "The Bullfinch Group",
+        "dem": 39.0,
+        "rep": 35.5,
+        "margin": 3.5,
+        "sample_size": 1200,
+        "partisan_lean": ""
+      },
+      {
         "field_end": "2026-10-05",
-        "pollster": "YouGov",
-        "dem": 50.0,
-        "rep": 39.3,
-        "margin": 10.7,
-        "sample_size": 1173,
+        "pollster": "Focaldata",
+        "dem": 49.6,
+        "rep": 42.7,
+        "margin": 6.9,
+        "sample_size": 2553,
         "partisan_lean": ""
       },
       {
@@ -229,20 +229,11 @@
       },
       {
         "field_end": "2026-10-05",
-        "pollster": "Focaldata",
-        "dem": 49.6,
-        "rep": 42.7,
-        "margin": 6.9,
-        "sample_size": 2553,
-        "partisan_lean": ""
-      },
-      {
-        "field_end": "2026-10-04",
-        "pollster": "Pew Research Center",
-        "dem": 44.0,
-        "rep": 36.0,
-        "margin": 8.0,
-        "sample_size": 3917,
+        "pollster": "YouGov",
+        "dem": 50.0,
+        "rep": 39.3,
+        "margin": 10.7,
+        "sample_size": 1173,
         "partisan_lean": ""
       },
       {
@@ -264,13 +255,13 @@
         "partisan_lean": ""
       },
       {
-        "field_end": "2026-10-02",
-        "pollster": "Cygnal Political",
-        "dem": 51.6,
-        "rep": 42.5,
-        "margin": 9.1,
-        "sample_size": 1500,
-        "partisan_lean": "R"
+        "field_end": "2026-10-04",
+        "pollster": "Pew Research Center",
+        "dem": 44.0,
+        "rep": 36.0,
+        "margin": 8.0,
+        "sample_size": 3917,
+        "partisan_lean": ""
       },
       {
         "field_end": "2026-10-02",
@@ -282,13 +273,13 @@
         "partisan_lean": ""
       },
       {
-        "field_end": "2026-10-01",
-        "pollster": "Centerline Research & Strategy",
-        "dem": 47.3,
-        "rep": 38.0,
-        "margin": 9.3,
-        "sample_size": 930,
-        "partisan_lean": ""
+        "field_end": "2026-10-02",
+        "pollster": "Cygnal Political",
+        "dem": 51.6,
+        "rep": 42.5,
+        "margin": 9.1,
+        "sample_size": 1500,
+        "partisan_lean": "R"
       },
       {
         "field_end": "2026-10-01",
@@ -297,6 +288,15 @@
         "rep": 42.0,
         "margin": 4.0,
         "sample_size": 1328,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-10-01",
+        "pollster": "Centerline Research & Strategy",
+        "dem": 47.3,
+        "rep": 38.0,
+        "margin": 9.3,
+        "sample_size": 930,
         "partisan_lean": ""
       },
       {
@@ -346,20 +346,20 @@
       },
       {
         "field_end": "2026-09-25",
-        "pollster": "SSRS",
-        "dem": 44.0,
-        "rep": 37.0,
-        "margin": 7.0,
-        "sample_size": 1273,
-        "partisan_lean": ""
-      },
-      {
-        "field_end": "2026-09-25",
         "pollster": "Angus Reid Global",
         "dem": 45.0,
         "rep": 34.0,
         "margin": 11.0,
         "sample_size": null,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-25",
+        "pollster": "SSRS",
+        "dem": 44.0,
+        "rep": 37.0,
+        "margin": 7.0,
+        "sample_size": 1273,
         "partisan_lean": ""
       },
       {
@@ -391,15 +391,6 @@
       },
       {
         "field_end": "2026-09-22",
-        "pollster": "Emerson College",
-        "dem": 53.2,
-        "rep": 41.9,
-        "margin": 11.3,
-        "sample_size": 1000,
-        "partisan_lean": ""
-      },
-      {
-        "field_end": "2026-09-22",
         "pollster": "The Argument/Verasight",
         "dem": 53.8,
         "rep": 46.2,
@@ -408,21 +399,12 @@
         "partisan_lean": ""
       },
       {
-        "field_end": "2026-09-21",
-        "pollster": "Impact Research/National Research Inc.",
-        "dem": 50.0,
-        "rep": 42.0,
-        "margin": 8.0,
-        "sample_size": 1500,
-        "partisan_lean": ""
-      },
-      {
-        "field_end": "2026-09-21",
-        "pollster": "KFF",
-        "dem": 45.0,
-        "rep": 35.0,
-        "margin": 10.0,
-        "sample_size": 1013,
+        "field_end": "2026-09-22",
+        "pollster": "Emerson College",
+        "dem": 53.2,
+        "rep": 41.9,
+        "margin": 11.3,
+        "sample_size": 1000,
         "partisan_lean": ""
       },
       {
@@ -432,6 +414,15 @@
         "rep": 41.7,
         "margin": 8.6,
         "sample_size": 1374,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-21",
+        "pollster": "KFF",
+        "dem": 45.0,
+        "rep": 35.0,
+        "margin": 10.0,
+        "sample_size": 1013,
         "partisan_lean": ""
       },
       {
@@ -450,6 +441,15 @@
         "rep": 37.0,
         "margin": 11.5,
         "sample_size": 975,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-21",
+        "pollster": "Impact Research/National Research Inc.",
+        "dem": 50.0,
+        "rep": 42.0,
+        "margin": 8.0,
+        "sample_size": 1500,
         "partisan_lean": ""
       },
       {
@@ -481,20 +481,20 @@
       },
       {
         "field_end": "2026-09-17",
-        "pollster": "CNN/SSRS",
-        "dem": 49.0,
-        "rep": 41.0,
-        "margin": 8.0,
-        "sample_size": 867,
-        "partisan_lean": ""
-      },
-      {
-        "field_end": "2026-09-17",
         "pollster": "John Zogby Strategies",
         "dem": 48.0,
         "rep": 42.0,
         "margin": 6.0,
         "sample_size": 1007,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-17",
+        "pollster": "CNN/SSRS",
+        "dem": 49.0,
+        "rep": 41.0,
+        "margin": 8.0,
+        "sample_size": 867,
         "partisan_lean": ""
       },
       {
@@ -505,15 +505,6 @@
         "margin": 7.0,
         "sample_size": 1046,
         "partisan_lean": ""
-      },
-      {
-        "field_end": "2026-09-15",
-        "pollster": "Big Data Poll",
-        "dem": 49.1,
-        "rep": 38.7,
-        "margin": 10.4,
-        "sample_size": 2633,
-        "partisan_lean": "R"
       },
       {
         "field_end": "2026-09-15",
@@ -535,12 +526,12 @@
       },
       {
         "field_end": "2026-09-15",
-        "pollster": "Hart Research Associates/Public Opinion Strategies",
-        "dem": 50.0,
-        "rep": 45.0,
-        "margin": 5.0,
-        "sample_size": 1000,
-        "partisan_lean": ""
+        "pollster": "RMG Research",
+        "dem": 51.5,
+        "rep": 44.5,
+        "margin": 7.0,
+        "sample_size": 2000,
+        "partisan_lean": "R"
       },
       {
         "field_end": "2026-09-15",
@@ -553,21 +544,21 @@
       },
       {
         "field_end": "2026-09-15",
-        "pollster": "RMG Research",
-        "dem": 51.5,
-        "rep": 44.5,
-        "margin": 7.0,
-        "sample_size": 2000,
-        "partisan_lean": "R"
+        "pollster": "Hart Research Associates/Public Opinion Strategies",
+        "dem": 50.0,
+        "rep": 45.0,
+        "margin": 5.0,
+        "sample_size": 1000,
+        "partisan_lean": ""
       },
       {
-        "field_end": "2026-09-14",
-        "pollster": "Bedrock Polling",
-        "dem": 48.0,
-        "rep": 42.0,
-        "margin": 6.0,
-        "sample_size": 1004,
-        "partisan_lean": ""
+        "field_end": "2026-09-15",
+        "pollster": "Big Data Poll",
+        "dem": 49.1,
+        "rep": 38.7,
+        "margin": 10.4,
+        "sample_size": 2633,
+        "partisan_lean": "R"
       },
       {
         "field_end": "2026-09-14",
@@ -580,11 +571,11 @@
       },
       {
         "field_end": "2026-09-14",
-        "pollster": "YouGov",
-        "dem": 47.5,
-        "rep": 39.0,
-        "margin": 8.5,
-        "sample_size": 1051,
+        "pollster": "Bedrock Polling",
+        "dem": 48.0,
+        "rep": 42.0,
+        "margin": 6.0,
+        "sample_size": 1004,
         "partisan_lean": ""
       },
       {
@@ -594,6 +585,15 @@
         "rep": 44.0,
         "margin": 7.0,
         "sample_size": 1211,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-14",
+        "pollster": "YouGov",
+        "dem": 47.5,
+        "rep": 39.0,
+        "margin": 8.5,
+        "sample_size": 1051,
         "partisan_lean": ""
       },
       {
@@ -634,20 +634,20 @@
       },
       {
         "field_end": "2026-09-09",
-        "pollster": "Marquette University Law School",
-        "dem": 50.7,
-        "rep": 40.7,
-        "margin": 10.0,
-        "sample_size": 583,
-        "partisan_lean": ""
-      },
-      {
-        "field_end": "2026-09-09",
         "pollster": "YouGov",
         "dem": 43.5,
         "rep": 33.0,
         "margin": 10.5,
         "sample_size": 1200,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-09",
+        "pollster": "Marquette University Law School",
+        "dem": 50.7,
+        "rep": 40.7,
+        "margin": 10.0,
+        "sample_size": 583,
         "partisan_lean": ""
       },
       {
@@ -670,6 +670,15 @@
       },
       {
         "field_end": "2026-09-06",
+        "pollster": "Quinnipiac University",
+        "dem": 49.0,
+        "rep": 38.0,
+        "margin": 11.0,
+        "sample_size": 970,
+        "partisan_lean": ""
+      },
+      {
+        "field_end": "2026-09-06",
         "pollster": "Morning Consult",
         "dem": 47.8,
         "rep": 42.6,
@@ -678,12 +687,12 @@
         "partisan_lean": ""
       },
       {
-        "field_end": "2026-09-06",
-        "pollster": "Quinnipiac University",
+        "field_end": "2026-09-02",
+        "pollster": "Focaldata",
         "dem": 49.0,
-        "rep": 38.0,
-        "margin": 11.0,
-        "sample_size": 970,
+        "rep": 42.6,
+        "margin": 6.4,
+        "sample_size": 1837,
         "partisan_lean": ""
       },
       {
@@ -694,15 +703,6 @@
         "margin": 8.6,
         "sample_size": 1500,
         "partisan_lean": "R"
-      },
-      {
-        "field_end": "2026-09-02",
-        "pollster": "Focaldata",
-        "dem": 49.0,
-        "rep": 42.6,
-        "margin": 6.4,
-        "sample_size": 1837,
-        "partisan_lean": ""
       },
       {
         "field_end": "2026-09-01",
@@ -778,11 +778,11 @@
       },
       {
         "field_end": "2026-08-24",
-        "pollster": "Ipsos",
-        "dem": 38.0,
-        "rep": 32.0,
+        "pollster": "YouGov",
+        "dem": 41.5,
+        "rep": 35.5,
         "margin": 6.0,
-        "sample_size": 951,
+        "sample_size": 1377,
         "partisan_lean": ""
       },
       {
@@ -796,11 +796,11 @@
       },
       {
         "field_end": "2026-08-24",
-        "pollster": "YouGov",
-        "dem": 41.5,
-        "rep": 35.5,
+        "pollster": "Ipsos",
+        "dem": 38.0,
+        "rep": 32.0,
         "margin": 6.0,
-        "sample_size": 1377,
+        "sample_size": 951,
         "partisan_lean": ""
       },
       {
@@ -888,7 +888,7 @@
           "rep_name": "Susan Collins",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-26T12:06:28.359038Z",
+          "first_seen_at": "2026-10-26T12:37:57.817015Z",
           "release_date": null,
           "question_id": "c3f69e5a-d0fc-4e59-8b8d-47e08e73ca3f",
           "sample_population": "lv",
@@ -2347,7 +2347,7 @@
           "rep_name": "Jon Husted",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-26T12:06:28.359038Z",
+          "first_seen_at": "2026-10-26T12:37:57.817015Z",
           "release_date": null,
           "question_id": "a101b63d-1983-4681-9db7-fa3a2dd3fc0a",
           "sample_population": "lv",
@@ -3052,7 +3052,7 @@
         "rep_name": "Brian Fitzpatrick",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-26T12:06:28.359038Z",
+        "first_seen_at": "2026-10-26T12:37:57.817015Z",
         "release_date": null,
         "question_id": "647d6f76-0bba-4caf-9086-af309c58f784",
         "sample_population": "lv",
@@ -3076,7 +3076,7 @@
           "rep_name": "Brian Fitzpatrick",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-26T12:06:28.359038Z",
+          "first_seen_at": "2026-10-26T12:37:57.817015Z",
           "release_date": null,
           "question_id": "647d6f76-0bba-4caf-9086-af309c58f784",
           "sample_population": "lv",
@@ -3162,7 +3162,7 @@
         "rep_name": "Scott Perry",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-26T12:06:28.359038Z",
+        "first_seen_at": "2026-10-26T12:37:57.817015Z",
         "release_date": null,
         "question_id": "840ae67f-bfb6-423e-81ea-a4b12e61dde7",
         "sample_population": "lv",
@@ -3186,7 +3186,7 @@
           "rep_name": "Scott Perry",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-26T12:06:28.359038Z",
+          "first_seen_at": "2026-10-26T12:37:57.817015Z",
           "release_date": null,
           "question_id": "840ae67f-bfb6-423e-81ea-a4b12e61dde7",
           "sample_population": "lv",
@@ -3574,7 +3574,7 @@
         "rep_name": "Ryan E. Mackenzie",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-26T12:06:28.359038Z",
+        "first_seen_at": "2026-10-26T12:37:57.817015Z",
         "release_date": null,
         "question_id": "96cf897e-1fae-4ca2-89d6-94973d7d04f3",
         "sample_population": "lv",
@@ -3598,7 +3598,7 @@
           "rep_name": "Ryan E. Mackenzie",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-26T12:06:28.359038Z",
+          "first_seen_at": "2026-10-26T12:37:57.817015Z",
           "release_date": null,
           "question_id": "96cf897e-1fae-4ca2-89d6-94973d7d04f3",
           "sample_population": "lv",
@@ -3647,7 +3647,7 @@
         "rep_name": "Rob Bresnahan Jr.",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-26T12:06:28.359038Z",
+        "first_seen_at": "2026-10-26T12:37:57.817015Z",
         "release_date": null,
         "question_id": "9a4f7766-8cd4-4f69-9c2a-9b5f7937815b",
         "sample_population": "lv",
@@ -3671,7 +3671,7 @@
           "rep_name": "Rob Bresnahan Jr.",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-26T12:06:28.359038Z",
+          "first_seen_at": "2026-10-26T12:37:57.817015Z",
           "release_date": null,
           "question_id": "9a4f7766-8cd4-4f69-9c2a-9b5f7937815b",
           "sample_population": "lv",
@@ -4734,7 +4734,7 @@
           "rep_name": "Ken Paxton",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-26T12:06:28.359038Z",
+          "first_seen_at": "2026-10-26T12:37:57.817015Z",
           "release_date": null,
           "question_id": "3614ff38-afab-41f9-b54f-179c6f7aec16",
           "sample_population": "lv",
@@ -5319,7 +5319,7 @@
         "rep_name": "Greg Abbott",
         "other": 0.9,
         "other_name": "Pat Dixon",
-        "first_seen_at": "2026-10-26T12:06:28.359038Z",
+        "first_seen_at": "2026-10-26T12:37:57.817015Z",
         "release_date": null,
         "question_id": "d1c17272-a2aa-47a0-b3dc-9562ce074fff",
         "sample_population": "lv",
@@ -5343,7 +5343,7 @@
           "rep_name": "Greg Abbott",
           "other": 0.9,
           "other_name": "Pat Dixon",
-          "first_seen_at": "2026-10-26T12:06:28.359038Z",
+          "first_seen_at": "2026-10-26T12:37:57.817015Z",
           "release_date": null,
           "question_id": "d1c17272-a2aa-47a0-b3dc-9562ce074fff",
           "sample_population": "lv",
@@ -5382,7 +5382,7 @@
           "rep_name": "Greg Abbott",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-26T12:06:28.359038Z",
+          "first_seen_at": "2026-10-26T12:37:57.817015Z",
           "release_date": null,
           "question_id": "4c5ec262-3c41-4a96-a86e-7d2f16c5b5b0",
           "sample_population": "lv",
@@ -7180,7 +7180,7 @@
         "rep_name": "Vivek Ramaswamy",
         "other": 2.1,
         "other_name": "Donald Kissick",
-        "first_seen_at": "2026-10-26T12:06:28.359038Z",
+        "first_seen_at": "2026-10-26T12:37:57.817015Z",
         "release_date": null,
         "question_id": "33054139-a1b1-46a2-b9a6-5eb6eaa06757",
         "sample_population": "lv",
@@ -7204,7 +7204,7 @@
           "rep_name": "Vivek Ramaswamy",
           "other": 2.1,
           "other_name": "Donald Kissick",
-          "first_seen_at": "2026-10-26T12:06:28.359038Z",
+          "first_seen_at": "2026-10-26T12:37:57.817015Z",
           "release_date": null,
           "question_id": "33054139-a1b1-46a2-b9a6-5eb6eaa06757",
           "sample_population": "lv",
@@ -7227,7 +7227,7 @@
           "rep_name": "Vivek Ramaswamy",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-26T12:06:28.359038Z",
+          "first_seen_at": "2026-10-26T12:37:57.817015Z",
           "release_date": null,
           "question_id": "723e97d1-6029-4b0d-95dc-7f8ee78290ae",
           "sample_population": "lv",
@@ -7468,11 +7468,13 @@
         "other_name": "Rick Bennett",
         "first_seen_at": "2026-10-23T00:57:50.492444+00:00",
         "release_date": null,
-        "upstream_posted_date": null,
-        "source_poll_url": "https://www.foxnews.com/politics/fox-news-poll-nail-biter-maine-senate-race",
-        "sample_population": "lv",
         "question_id": "0323398c-c289-44ef-9237-6a32d93b3b1f",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "sample_population": "lv",
+        "upstream_posted_date": "2026-10-22",
+        "source_poll_url": "https://www.foxnews.com/politics/fox-news-poll-nail-biter-maine-senate-race",
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback",
+        "lv_selected_over_rv": true
       },
       "polls": [
         {
@@ -7490,11 +7492,13 @@
           "other_name": "Rick Bennett",
           "first_seen_at": "2026-10-23T00:57:50.492444+00:00",
           "release_date": null,
-          "upstream_posted_date": null,
-          "source_poll_url": "https://www.foxnews.com/politics/fox-news-poll-nail-biter-maine-senate-race",
-          "sample_population": "lv",
           "question_id": "0323398c-c289-44ef-9237-6a32d93b3b1f",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "sample_population": "lv",
+          "upstream_posted_date": "2026-10-22",
+          "source_poll_url": "https://www.foxnews.com/politics/fox-news-poll-nail-biter-maine-senate-race",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback",
+          "lv_selected_over_rv": true
         },
         {
           "poll_id": "b2cf5601-98ad-4a7f-acd3-1be546e39bc3",
@@ -7753,7 +7757,7 @@
           "rep_name": "Steve Hilton",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-26T12:06:28.359038Z",
+          "first_seen_at": "2026-10-26T12:37:57.817015Z",
           "release_date": null,
           "question_id": "bd11cead-5447-4b9c-aba5-55eb077a2ef4",
           "sample_population": "lv",
@@ -10125,6 +10129,28 @@
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
+          "poll_id": "2ecb9952-292c-4d6d-9c7c-c5a75219c5b3",
+          "question_id": "76b2a066-9a9d-4f1b-ac33-7da8030b9972",
+          "field_end": "2026-10-18",
+          "pollster": "Concord Public Opinion Partners",
+          "dem": 43.0,
+          "rep": 40.0,
+          "margin": 3.0,
+          "sample_size": 500,
+          "partisan_lean": "D",
+          "dem_name": "Lynne Walz",
+          "rep_name": "Jim Pillen",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-26T12:37:58.400531+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-26",
+          "source_poll_url": "https://concordpublicopinionpartners.org/polls/nebraska-ge-2026",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
+        {
           "poll_id": "185e2532-edd0-4c81-9527-3a3dcf8f228c",
           "field_end": "2026-10-18",
           "pollster": "National Public Affairs",
@@ -10158,7 +10184,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-26T12:06:28.359038Z",
+          "first_seen_at": "2026-10-26T12:37:57.817015Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -10275,7 +10301,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 9,
+      "recent_poll_count": 10,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -11873,7 +11899,7 @@
         "rep_name": "Nick Begich",
         "other": 42.0,
         "other_name": "Bill Hill",
-        "first_seen_at": "2026-10-26T12:06:28.359038Z",
+        "first_seen_at": "2026-10-26T12:37:57.817015Z",
         "release_date": null,
         "question_id": "843ff988-f9ae-4553-8aa9-3b87af20e024",
         "sample_population": "lv",
@@ -11897,7 +11923,7 @@
           "rep_name": "Nick Begich",
           "other": 42.0,
           "other_name": "Bill Hill",
-          "first_seen_at": "2026-10-26T12:06:28.359038Z",
+          "first_seen_at": "2026-10-26T12:37:57.817015Z",
           "release_date": null,
           "question_id": "843ff988-f9ae-4553-8aa9-3b87af20e024",
           "sample_population": "lv",
@@ -14174,7 +14200,7 @@
         "rep_name": "Ryan Fazio",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-26T12:06:28.359038Z",
+        "first_seen_at": "2026-10-26T12:37:57.817015Z",
         "release_date": null,
         "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
         "sample_population": "lv",
@@ -14198,7 +14224,7 @@
           "rep_name": "Ryan Fazio",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-26T12:06:28.359038Z",
+          "first_seen_at": "2026-10-26T12:37:57.817015Z",
           "release_date": null,
           "question_id": "bdcd4fb6-f733-4de1-aea7-bdd587054b4e",
           "sample_population": "lv",
@@ -16978,29 +17004,52 @@
       "race_type": "governor",
       "state": "NV",
       "district": "GOV",
-      "latest_field_end": "2026-09-26",
+      "latest_field_end": "2026-09-30",
       "latest": {
-        "poll_id": "96bc61d2-3404-4165-9625-9c7980cb187b",
-        "field_end": "2026-09-26",
-        "pollster": "Noble Predictive Insights",
-        "dem": 40.0,
-        "rep": 42.0,
-        "margin": -2.0,
-        "sample_size": 708,
-        "partisan_lean": "",
+        "poll_id": "deb0f415-0a91-407a-b27f-2b91ab07c581",
+        "question_id": "28cc3c3d-5769-40df-a1a2-e22978f2f79c",
+        "field_end": "2026-09-30",
+        "pollster": "Concord Public Opinion Partners",
+        "dem": 42.0,
+        "rep": 43.0,
+        "margin": -1.0,
+        "sample_size": 565,
+        "partisan_lean": "D",
         "dem_name": "Aaron Ford",
         "rep_name": "Joe Lombardo",
-        "other": 7.0,
-        "other_name": "Danielle Ford",
-        "first_seen_at": null,
+        "other": null,
+        "other_name": null,
+        "first_seen_at": "2026-10-26T12:37:58.400531+00:00",
         "release_date": null,
-        "upstream_posted_date": "2026-10-06",
-        "source_poll_url": "https://www.noblepredictiveinsights.com/post/lombardo-tries-to-escape-trump-s-orbit-up-2-over-ford",
+        "upstream_posted_date": "2026-10-26",
+        "source_poll_url": "https://concordpublicopinionpartners.org/polls/nevada-ge-2026",
         "sample_population": "lv",
-        "question_id": "3ba36cb9-20bb-4f3b-ad41-c904cc641383",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "deb0f415-0a91-407a-b27f-2b91ab07c581",
+          "question_id": "28cc3c3d-5769-40df-a1a2-e22978f2f79c",
+          "field_end": "2026-09-30",
+          "pollster": "Concord Public Opinion Partners",
+          "dem": 42.0,
+          "rep": 43.0,
+          "margin": -1.0,
+          "sample_size": 565,
+          "partisan_lean": "D",
+          "dem_name": "Aaron Ford",
+          "rep_name": "Joe Lombardo",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-26T12:37:58.400531+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-26",
+          "source_poll_url": "https://concordpublicopinionpartners.org/polls/nevada-ge-2026",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "96bc61d2-3404-4165-9625-9c7980cb187b",
           "field_end": "2026-09-26",
@@ -17039,7 +17088,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 2,
+      "recent_poll_count": 3,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -18277,7 +18326,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-26T12:06:28.359038Z",
+    "last_attempt_at": "2026-10-26T12:37:57.817015Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -18286,11 +18335,46 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [],
-    "new_poll_count": 0,
+    "new_polls": [
+      {
+        "race_code": "NE-GOV",
+        "race_type": "governor",
+        "poll_id": "2ecb9952-292c-4d6d-9c7c-c5a75219c5b3",
+        "pollster": "Concord Public Opinion Partners",
+        "field_end": "2026-10-18",
+        "dem": 43.0,
+        "rep": 40.0,
+        "margin": 3.0,
+        "dem_name": "Lynne Walz",
+        "rep_name": "Jim Pillen",
+        "sample_size": 500,
+        "first_seen_at": "2026-10-26T12:37:58.400531+00:00",
+        "release_date": null,
+        "source_url": "https://concordpublicopinionpartners.org/polls/nebraska-ge-2026",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "NV-GOV",
+        "race_type": "governor",
+        "poll_id": "deb0f415-0a91-407a-b27f-2b91ab07c581",
+        "pollster": "Concord Public Opinion Partners",
+        "field_end": "2026-09-30",
+        "dem": 42.0,
+        "rep": 43.0,
+        "margin": -1.0,
+        "dem_name": "Aaron Ford",
+        "rep_name": "Joe Lombardo",
+        "sample_size": 565,
+        "first_seen_at": "2026-10-26T12:37:58.400531+00:00",
+        "release_date": null,
+        "source_url": "https://concordpublicopinionpartners.org/polls/nevada-ge-2026",
+        "source": "pollresults_secondary_fallback"
+      }
+    ],
+    "new_poll_count": 2,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-26T12:06:28.359038Z",
-    "previous_snapshot_at": "2026-10-26T10:53:01.605247Z",
+    "comparison_at": "2026-10-26T12:37:57.817015Z",
+    "previous_snapshot_at": "2026-10-26T12:06:28.359038Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -18391,8 +18475,11 @@
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
     "matched_observations": 311,
-    "newly_injected_into_model": 0,
-    "newly_injected_by_race": {},
+    "newly_injected_into_model": 2,
+    "newly_injected_by_race": {
+      "NE-GOV": 1,
+      "NV-GOV": 1
+    },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {

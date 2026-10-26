@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-26T12:06:29.120176+00:00",
+  "updated_at": "2026-10-26T12:37:58.400531+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 819,
+      "available_in_source": 820,
       "records_examined": 300
     },
     "house": {
@@ -13,14 +13,71 @@
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 919,
+      "available_in_source": 921,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 311,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 2,
+  "injected_poll_ids": [
+    {
+      "race_code": "NE-GOV",
+      "poll_id": "2ecb9952-292c-4d6d-9c7c-c5a75219c5b3"
+    },
+    {
+      "race_code": "NV-GOV",
+      "poll_id": "deb0f415-0a91-407a-b27f-2b91ab07c581"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "NV-GOV",
+      "race_type": "governor",
+      "state": "NV",
+      "poll_id": "deb0f415-0a91-407a-b27f-2b91ab07c581",
+      "question_id": "28cc3c3d-5769-40df-a1a2-e22978f2f79c",
+      "pollster": "Concord Public Opinion Partners",
+      "dem_name": "Aaron Ford",
+      "rep_name": "Joe Lombardo",
+      "dem": 42.0,
+      "rep": 43.0,
+      "margin": -1.0,
+      "field_end": "2026-09-30",
+      "field_start": "2026-09-26",
+      "posted_date": "2026-10-26",
+      "posted_source_datetime": "2026-10-26T08:24:00",
+      "posted_source_time": "10/26/26 08:24",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://concordpublicopinionpartners.org/polls/nevada-ge-2026",
+      "sample_population": "lv",
+      "sample_size": 565,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "NE-GOV",
+      "race_type": "governor",
+      "state": "NE",
+      "poll_id": "2ecb9952-292c-4d6d-9c7c-c5a75219c5b3",
+      "question_id": "76b2a066-9a9d-4f1b-ac33-7da8030b9972",
+      "pollster": "Concord Public Opinion Partners",
+      "dem_name": "Lynne Walz",
+      "rep_name": "Jim Pillen",
+      "dem": 43.0,
+      "rep": 40.0,
+      "margin": 3.0,
+      "field_end": "2026-10-18",
+      "field_start": "2026-10-15",
+      "posted_date": "2026-10-26",
+      "posted_source_datetime": "2026-10-26T08:24:00",
+      "posted_source_time": "10/26/26 08:24",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://concordpublicopinionpartners.org/polls/nebraska-ge-2026",
+      "sample_population": "lv",
+      "sample_size": 500,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "ME-SEN",
       "race_type": "senate",
