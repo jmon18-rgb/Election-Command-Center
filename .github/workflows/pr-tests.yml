@@ -345,7 +345,7 @@ jobs:
           node scripts/test_incumbent_persistence_backtest.cjs
           node scripts/audit_historical_strength_shadow.cjs --json > /tmp/historic-strength-shadow.json
           node -e "const x=require('/tmp/historic-strength-shadow.json');if(x.training_sample!==148 || x.house2024_baseline_prior_changes!==0 || x.senate_prior_changes!==0 || x.presidential_house_shadow_prior_changes<55)process.exit(1)"
-          node -e "const d=require('/tmp/incumbent-relative-margin.json'); if(d.eligible_house_incumbents!==149 || d.eligible_senate_incumbents!==12 || d.independent_election_year_validation!==false) process.exit(1)"
+          node -e "const d=require('/tmp/incumbent-relative-margin.json'); if(d.eligible_house_incumbents!==169 || d.eligible_senate_incumbents!==12 || d.independent_election_year_validation!==false) process.exit(1)"
       - name: Enforce modern-only incumbency robustness and era cutoff
         run: |
           node --check scripts/audit_modern_incumbency_robustness.cjs
@@ -375,19 +375,19 @@ jobs:
         run: |
           node --check scripts/audit_house_seat_vote_reference.cjs
           node scripts/audit_house_seat_vote_reference.cjs --json > /tmp/house-seat-vote-reference.json
-          node -e "const x=require('/tmp/house-seat-vote-reference.json');if(x.status!=='HOUSE_NATIONAL_REFERENCE_AND_SEAT_RESPONSE_RESEARCH_ONLY'||x['2024_missing_two_party_vote_count']!==44||x['2026_redrawn_districts']!==173||x.presidential_mapped_districts!==435||x.model_scenarios.length!==4||x.house_margin_shift_response.curve.length!==7||x.model_scenarios[0].house_top_same_draw_control_bellwethers.length!==25)process.exit(1)"
+          node -e "const x=require('/tmp/house-seat-vote-reference.json');if(x.status!=='HOUSE_NATIONAL_REFERENCE_AND_SEAT_RESPONSE_RESEARCH_ONLY'||x['2024_missing_two_party_vote_count']!==require('./data/house_history_2024_staging.json').districts_missing_major_party_votes||x['2026_redrawn_districts']!==173||x.presidential_mapped_districts!==435||x.model_scenarios.length!==4||x.house_margin_shift_response.curve.length!==7||x.model_scenarios[0].house_top_same_draw_control_bellwethers.length!==25)process.exit(1)"
           node scripts/audit_house_seat_vote_reference.cjs
       - name: Audit alternate two-cycle House fundamentals without promotion
         run: |
           node --check scripts/audit_two_cycle_fundamentals.cjs
           node scripts/audit_two_cycle_fundamentals.cjs --json > /tmp/house-fundamentals-shadow.json
-          node -e "const r=require('/tmp/house-fundamentals-shadow.json'); if(r.status!=='EXPERIMENTAL_SHADOW_NOT_PROMOTED' || r.paired_eligible_districts!==191 || r.excluded_districts!==244) process.exit(1)"
+          node -e "const r=require('/tmp/house-fundamentals-shadow.json'); if(r.status!=='EXPERIMENTAL_SHADOW_NOT_PROMOTED' || r.paired_eligible_districts!==197 || r.excluded_districts!==238) process.exit(1)"
           node scripts/audit_two_cycle_fundamentals.cjs
       - name: Audit 2026-map presidential gap-fill preserving valid House returns
         run: |
           node --check scripts/audit_house_geography_gapfill.cjs
           node scripts/audit_house_geography_gapfill.cjs --json > /tmp/house-geography-gapfill.json
-          node -e "const r=require('/tmp/house-geography-gapfill.json');if(r.status!=='RESEARCH_GEOGRAPHY_GAP_FILL_PENDING_HELD_OUT_VALIDATION'||r.candidate_blind_presidential_prior_used_in!==197||r.candidate_2024_vote_exact_reused_in!==238||r.models.length!==3)process.exit(1)"
+          node -e "const r=require('/tmp/house-geography-gapfill.json');if(r.status!=='RESEARCH_GEOGRAPHY_GAP_FILL_PENDING_HELD_OUT_VALIDATION'||r.candidate_blind_presidential_prior_used_in!==190||r.candidate_2024_vote_exact_reused_in!==245||r.models.length!==3)process.exit(1)"
           node scripts/audit_house_geography_gapfill.cjs
       - name: Validate presidential 2026-map House fundamentals shadow
         run: |

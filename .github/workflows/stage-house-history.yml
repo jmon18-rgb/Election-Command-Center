@@ -1,6 +1,20 @@
-name: Stage 2022 and 2024 House returns
+name: Verify coherent 2022 and 2024 House history
 on:
   workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/*house*history*'
+      - 'scripts/reconcile_house_historical_context.cjs'
+      - 'scripts/historical_candidate_strength.js'
+      - 'data/house_historical_sources/**'
+      - 'data/house_history_*'
+      - 'data/house_geography_bridge.json'
+      - 'data/house_two_cycle_context.json'
+      - 'data/house_2024_candidate_results_staging.json'
+      - 'data/historical_candidate_overperformance_2026.json'
+      - 'data/candidate_fundamentals_staging.json'
+      - '.github/workflows/stage-house-history.yml'
   push:
     branches: [main]
     paths:
@@ -8,27 +22,26 @@ on:
       - scripts/test_house_history.py
       - .github/workflows/stage-house-history.yml
 permissions:
-  contents: write
+  contents: read
 concurrency:
   group: stage-house-history
   cancel-in-progress: false
 jobs:
   stage:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - name: Unit-test source parser and geography firewall
         run: python3 scripts/test_house_history.py
-      - name: Download and stage attributed 2022 and 2024 House raw returns
-        run: python3 scripts/stage_house_history_2024.py
-      - name: Commit historic staging file only
+      - name: Verify pinned originals and every historical descendant together
         run: |
-          git config user.name "election-briefing-bot"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/house_history_2022_staging.json data/house_history_2024_staging.json
-          if ! git diff --cached --quiet; then
-            git commit -m "Stage 2022 and 2024 House historical returns, research only"
-            git pull --rebase origin main
-            git push
-          fi
+          python3 scripts/rebuild_house_history_bundle.py
+          python3 scripts/test_house_history_migration.py
+          node scripts/test_house_history_migration.cjs
+          node scripts/audit_house_history_repair.cjs --check
+      - name: Require a reviewed coherent commit rather than source-only publication
+        run: git diff --exit-code

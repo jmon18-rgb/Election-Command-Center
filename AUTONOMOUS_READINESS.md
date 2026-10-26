@@ -6,6 +6,26 @@ acceptance testing and recovery only. Stop unattended changes November 4 at noon
 
 ## Work order
 
+HOUSE HISTORICAL SOURCE MIGRATION IN PROGRESS (October26 after17:56Z): branch
+readiness/house-history-atomic ports the factual repair from queued PR59 into
+the current data/model chain, preserving that branch. Pinned original mirror
+CSV SHA25676eec42483ee9f0fc5cf6e377442c783d1ae6eefa929729fd6561a69bab47f2a;
+official Minnesota3 page and existing official NY17 export corroborate the
+DFL/fusion fixes. Exactly matching names AND publisher-marked fusion tickets
+are required for endorsed minor lines; separate candidates/write-ins never
+transfer. No probabilities or partisan coefficients fitted. All870 district
+source totals are conserved, and the same raw CSV reproduces old published
+classification before applying the repair.2024 independent candidate agreement
+improves403->433, with AK01/AZ02 still blocked; historical matched House
+incumbents149->169, comparable2024 districts238->245, paired2022/24 districts
+191->197. Senate/governor assumptions and same-seed Senate control stay unchanged.
+The controlled public-baseline diagnostic uses the SAME17:49 polling snapshot:
+House control91.57->90.87%, Blue Tsunami48.47->47.83%; not calibration/live results.
+The staging-only publishing bot is replaced by read-only coherent-bundle checks;
+do not promote incomplete descendants. Original-source, provenance, geography,
+candidate-history,32 existing core plus one new safety check pass locally;
+desktop/mobile eight-source national fixtures pass. Full DOM/CI/deploy pending.
+
 NY17 NATIONAL INTEGRATION DEPLOYED (October26 17:51Z): PR462 extends the existing headless shared House source,
 revision/cadence/correlated-draw likelihood/rehearsal/canary path to NY17. No
 separate needle panel. Use the full official Lawler fusion baseline197845,

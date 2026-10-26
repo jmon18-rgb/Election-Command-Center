@@ -1,5 +1,46 @@
 # Readiness progress
 
+## October26 after17:56Z - coherent House source classification migration implemented
+
+- Isolated readiness/house-history-atomic branch; open PRs/CI inspected, paused
+  celebration426 and queued fusion59 preserved. Pin the original4,156,562-byte
+  MIT-mirror CSV (SHA25676eec42483ee9f0fc5cf6e377442c783d1ae6eefa929729fd6561a69bab47f2a),
+  exact pre-repair published Git blobs and original Minnesota3 government HTML.
+  Minnesota official-site totals240209/170427/504 corroborate DFL attribution;
+  existing official NY17 source corroborates same-candidate Conservative votes.
+- Parser uses explicit major-party aliases and same-race exact candidate name
+  plus publisher fusion_ticket=true. Genuine minor candidates, ambiguous major
+  identities, write-ins, blank/void rows and cross-district names do not transfer.
+  Wrong office/method and fractional truncation are rejected. Ten parser tests,
+  three original-source/conservation/lineage tests and Node provenance guards pass.
+  All870 district totals stay unchanged; the exact pinned raw source also
+  reproduces the pre-fix published classifier in both years before correction.
+- Rebuild2022/24 history, geography, two-cycle context, independent candidate
+  agreement flags, historical relative margins, explicitly derived candidate
+  enrichment, NY17 reconciliation and bottom-up environment diagnostic together.
+  Independent names/votes/roster/fundraising facts are preserved. House derived
+  fields can refresh only when their old provenance reproduces; Senate/governor
+  context changes are refused. Default bundle command is read-only. The old
+  staging-only auto-push workflow now verifies the complete chain with read-only
+  permissions and requires a coherent reviewed commit for changes.
+- Actual resulting source coverage:2024 corrected30 district classifications,
+ 35 fusion rows/515687 fusion votes attributed; missing major-party districts
+ 44->37. Independent candidate vote agreement403->433; AK01/AZ02 remain explicit
+  disagreements. Historical incumbent House matches149->169; Senate12 unchanged.
+  Comparable2024 House districts238->245; paired2022/24 districts191->197;
+ 173 redrawn2026 districts still require reaggregation. No geography gate relaxed.
+- Same-poll SAME-SEED public current-2026 baseline audit (poll snapshot17:49:19Z,
+ 3000 draws): House control91.57->90.87%, Blue Tsunami48.47->47.83%, Senate
+ control63.70% unchanged. Senate/governor prepared assumptions deep-equal.
+  This isolates source classification; it is not new polling, live results,
+  an independent historical holdout or a calibration claim. No target fitted.
+- Local33 core readiness checks, current shadow/geography/seat-vote audits,
+  reproducible historical candidate tests, model tests and NY official baseline
+  tests pass. Actual local Edge1366/390 synthetic national rehearsal passes
+  eight-source before-call movement, correction/retraction/outage/test/stale
+  exclusion and fallback. Full DOM is running; exact-head CI, tested merge and
+  actual deployment verification remain required. No production migration claimed.
+
 ## October26 17:51Z - NY17 reaches the NATIONAL needle on the active site
 
 - Parent PR461 exact head815fa1662955c05c550afda4c40205e92bdff634 passes all6

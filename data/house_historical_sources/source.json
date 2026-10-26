@@ -1,0 +1,24 @@
+{
+  "source_url": "https://crproject.org/data/jsoncsv/mit-1976-2024-house.csv",
+  "original_dataset": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/IG0UN2",
+  "sha256": "76eec42483ee9f0fc5cf6e377442c783d1ae6eefa929729fd6561a69bab47f2a",
+  "bytes": 4156562,
+  "captured_at": "2026-10-26T17:57:46.907010+00:00",
+  "license": "CC0 per existing mirror attribution; original dataset citation retained",
+  "scope": "Pinned original full mirror CSV; extract only2022/2024 general nonspecial voting House TOTAL records",
+  "before_repair_reference": {
+    "published_revision": "7ad3d4d41182ef5019fa63e1d00e82a38d251a2e",
+    "scope": "Original pre-repair public inputs preserved for same-poll same-seed diagnostic only; never production facts",
+    "sha256": {
+      "house_history_2024_staging": "cdc0306802238316d528c464740462cc06d6eabadadce168ca47a730a7f8ad57",
+      "house_geography_bridge": "042d34d316f00d3228c7771465da19414d685bf4088c92950be0ed9f8990b0c3",
+      "house_history_2022_staging": "d6329f1e1f0b1c715b30fb2cd601903aad8b2b066ef7f82d9c4af0398770f8cf"
+    },
+    "format": "Exact Git blob bytes from the verified published revision"
+  },
+  "independent_official_mn03_sample": {
+    "source_url": "https://electionresults.sos.mn.gov/Results/Index?districtId=558&ersElectionId=170&scenario=USRepresentative",
+    "sha256": "4bb6b965a0b88965a2c9332d223e50f8d968d6f2e6cc704f9b1aa137469a5b91",
+    "scope": "Original official-site historical page, labeled unofficial; final totals cross-check, not chronological release data"
+  }
+}

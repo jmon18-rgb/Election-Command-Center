@@ -61,11 +61,11 @@ const report={
  warnings:[
   'No 2026 electoral outcomes exist. This is NOT a validation or improvement in proven forecast accuracy.',
   '2022 and 2024 district election outcomes have different candidates, turnout and national environments.',
-  'Only 191 geography-matched, two-party-complete districts are eligible; all redrawn and missing-party seats remain at baseline.',
+  'Only 197 geography-matched, two-party-complete districts are eligible; all redrawn and missing-party seats remain at baseline.',
   'The median paired national shift, 25% weight and 12-point winsorization are provisional; evaluate on past elections before promotion.',
   'This shadow never changes main dashboard headline odds unless intentionally promoted following backtesting.'
  ]};
-if(report.paired_eligible_districts!==191||changes.length<100)
+if(report.paired_eligible_districts!==197||changes.length<100)
  throw Error('Unexpected two-cycle district eligibility');
 if(process.argv.includes('--json'))console.log(JSON.stringify(report,null,2));
 else{

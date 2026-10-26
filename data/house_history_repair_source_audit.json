@@ -1,0 +1,52 @@
+{
+  "status": "SOURCE_CLASSIFICATION_CORRECTION_NOT_NEW_VOTES_OR_CALIBRATION",
+  "source_sha256": "76eec42483ee9f0fc5cf6e377442c783d1ae6eefa929729fd6561a69bab47f2a",
+  "historical_year": 2024,
+  "districts": 435,
+  "changed_districts": [
+    "MN-01",
+    "MN-03",
+    "MN-06",
+    "MN-07",
+    "MN-08",
+    "ND-01",
+    "NY-01",
+    "NY-02",
+    "NY-03",
+    "NY-04",
+    "NY-06",
+    "NY-07",
+    "NY-08",
+    "NY-09",
+    "NY-11",
+    "NY-12",
+    "NY-13",
+    "NY-14",
+    "NY-15",
+    "NY-17",
+    "NY-18",
+    "NY-19",
+    "NY-20",
+    "NY-21",
+    "NY-22",
+    "NY-23",
+    "NY-24",
+    "NY-25",
+    "NY-26",
+    "VT-01"
+  ],
+  "before": {
+    "dem": 69618087,
+    "rep": 74390865,
+    "other": 5142875
+  },
+  "after": {
+    "dem": 70768411,
+    "rep": 74814033,
+    "other": 3569383
+  },
+  "before_missing_major_party": 44,
+  "after_missing_major_party": 37,
+  "fusion_rows": 35,
+  "fusion_votes": 515687
+}

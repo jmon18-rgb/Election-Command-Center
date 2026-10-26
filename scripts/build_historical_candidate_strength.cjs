@@ -24,8 +24,8 @@ if(process.argv.includes('--check')){
   throw Error('Historical candidate residual staging is stale or changed');
  if(JSON.stringify(enriched)!==JSON.stringify(context))
   throw Error('Candidate context differs from calculated historical winner evidence');
- if(doc.coverage.house_eligible!==149||doc.coverage.senate_eligible!==12||
-    doc.methodology.house_reference_districts!==213||
+ if(doc.coverage.house_eligible!==169||doc.coverage.senate_eligible!==12||
+    doc.methodology.house_reference_districts!==243||
     doc.methodology.senate_reference_states!==31)
   throw Error('Unexpected 2024 House or 2020 Senate validation coverage');
 }

@@ -18,9 +18,9 @@ assert.deepEqual(computed,load('historical_candidate_overperformance_2026'),
  'Committed incumbent margins must be reproducible, not hand-entered');
 assert.deepEqual(hist.enrichCandidateContext(ctx,computed),ctx,
  'Candidate provenance is reproducible and stable across reruns');
-assert.equal(computed.coverage.house_eligible,149);
+assert.equal(computed.coverage.house_eligible,169);
 assert.equal(computed.coverage.senate_eligible,12);
-assert.equal(computed.methodology.house_reference_districts,213);
+assert.equal(computed.methodology.house_reference_districts,243);
 assert.equal(computed.methodology.senate_reference_states,31);
 assert.equal(computed.records.length,506);
 const byCode=new Map(computed.records.map(x=>[x.race_code,x]));
@@ -104,4 +104,4 @@ assert.deepEqual(model.prepare(sources),basis,'Scenario must not mutate headline
 assert.deepEqual(feat.scenarioBasis(model,basis,ctx,sources.polls,{}).house,basis.house);
 const sim=model.simulate(s0,{samples:350,seed:20261103});
 assert.equal(sim.status,'EXPERIMENTAL_UNCALIBRATED');
-console.log('Reproduced 149 House and 12 Senate prior-election candidate residuals; same-year national offset, old-name and map guards, no-double-count and scenario tests PASS.');
+console.log('Reproduced 169 House and 12 Senate prior-election candidate residuals; same-year national offset, old-name and map guards, no-double-count and scenario tests PASS.');

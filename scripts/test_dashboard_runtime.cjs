@@ -979,7 +979,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
   'Invalid candidate-matched model probability input fails closed');
 
  // Distinguish observed historical election variation from a calibrated
- // outcome forecast. Audit exactly the 191 map-comparable party-vote seats.
+ // outcome forecast. Audit exactly the 197 map-comparable party-vote seats.
  const researchDrawer=get('.model-research-drawer');
  assert(!researchDrawer.open,'Historical research must be collapsed by default');
  assert(researchDrawer.querySelector('#senateBacktestSummary'),
@@ -993,7 +993,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  assert.match(get('#jointHomeSummary').textContent,/D Senate control [0-9.]+%/);
  assert.match(get('#jointHomeSummary').title,/central 90% D seats/);
  assert.match(get('#jointNightSummary').textContent,/D House control [0-9.]+%/);
- assert.match(get('#jointHomeShadow').textContent,/191\/435 House districts/);
+ assert.match(get('#jointHomeShadow').textContent,/197\/435 House districts/);
  assert.match(get('#jointHomeShadow').textContent,/NOT independently backtested/);
  assert.match(get('#jointNightShadow').textContent,/research only|Research only/i);
  const shadowDisclosure=get('#jointHomeShadow').parentElement;
@@ -1004,19 +1004,19 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  assert.match(get('#jointHomeShadow').textContent,/do not replace headline odds/);
  shadowDisclosure.open=false;
  const twoCycle=json('data/house_two_cycle_context.json');
- assert.equal(twoCycle.coverage.districts_with_two_historical_major_party_shares,191);
+ assert.equal(twoCycle.coverage.districts_with_two_historical_major_party_shares,197);
  const points=w.eval('historicalHouseSwingSample('+JSON.stringify(twoCycle)+')');
- assert.equal(points.length,191,'Only directly comparable 2022/24 House races');
+ assert.equal(points.length,197,'Only directly comparable 2022/24 House races');
  assert(points.every(Number.isFinite));
  assert.equal(points[0]<=points.at(-1),true,'Sorted historical shifts');
  assert(twoCycle.rows.some(x=>x.race_code_2026==='TX-01'&&!x.can_compare_historic_two_party_votes),
   'Changed-map Texas seat must be excluded');
  w.eval('renderHouseHistoricalSwing('+JSON.stringify(twoCycle)+')');
- assert.match(get('#houseSwingSummary').textContent,/191 \/ 435/);
+ assert.match(get('#houseSwingSummary').textContent,/197 \/ 435/);
  assert.match(get('#houseSwingNote').textContent,/NOT a calibrated polling-error distribution/);
  const bins=[...get('#houseSwingDistribution').querySelectorAll('.house-history-bin')];
  assert.equal(bins.length,8);
- assert.equal(bins.reduce((n,x)=>n+Number(x.querySelector('strong').textContent),0),191,
+ assert.equal(bins.reduce((n,x)=>n+Number(x.querySelector('strong').textContent),0),197,
   'Every eligible district must appear exactly once in the historical distribution');
  const corruptTwoCycle=structuredClone(twoCycle);
  const eligible=corruptTwoCycle.rows.find(x=>x.can_compare_historic_two_party_votes);
@@ -1358,7 +1358,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  await w.eval('enLoad(true)');
  assert.equal(get('#enRaces').textContent,'435','2024 House should have nationwide coverage');
  assert.match(get('#enStatus').textContent,/2024 HOUSE ARCHIVE/);
- assert.match(get('#enStatus').textContent,/44 districts missing one major party/);
+ assert.match(get('#enStatus').textContent,/37 districts missing one major party/);
  assert.equal(get('#enRaceList').querySelectorAll('button.en-race-entry').length,121,
   'Archive begins with 120 districts and a Show more button');
  get('#enRaceList button.en-race-entry:last-child').click();

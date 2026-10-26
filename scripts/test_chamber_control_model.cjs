@@ -68,7 +68,7 @@ const pairedSources={...sources,twoCycle:pairedContext};
 const shadow=model.prepare(pairedSources,{fundamentalsMode:'two_cycle_shadow'});
 assert.equal(basis.fundamentals_mode,'2024_only');
 assert.equal(shadow.fundamentals_mode,'two_cycle_shadow');
-assert.equal(shadow.fundamentals_shadow.paired_districts,191);
+assert.equal(shadow.fundamentals_shadow.paired_districts,197);
 assert.equal(shadow.fundamentals_shadow.status,
  'NOT_BACKTESTED_DO_NOT_PROMOTE_AUTOMATICALLY');
 assert(Math.abs(shadow.fundamentals_shadow.median_paired_2022_to_2024_swing_points)<5);
@@ -76,7 +76,7 @@ const baseHouse=new Map(basis.house.map(r=>[r.code,r]));
 const shadowHouse=new Map(shadow.house.map(r=>[r.code,r]));
 const comparable=new Set(pairedContext.rows.filter(r=>
  r.can_compare_historic_two_party_votes).map(r=>r.race_code_2026));
-assert.equal(comparable.size,191);
+assert.equal(comparable.size,197);
 let modified=0;
 for(const [code,item] of shadowHouse){
  const original=baseHouse.get(code);

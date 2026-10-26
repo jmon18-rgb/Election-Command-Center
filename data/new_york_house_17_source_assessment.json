@@ -56,7 +56,7 @@
   "limitations": [
     "civicAPI actual response is stale with zero counts; no post-close delivery evidence",
     "Independent official election-night page access challenge prevents claiming a usable fallback",
-    "Official historical export fixes same-candidate fusion for this baseline only; global staging and queued PR59 preserved",
+    "Global staging now reproduces the official NY17 full-candidate fusion total; the old queued PR59 branch is preserved",
     "National input is programmed but current stale/zero source cannot move it; real post-close delivery and calibration remain unproven"
   ]
 }
