@@ -59,7 +59,14 @@
     // Do not let cached positive counts undo a newer validated withdrawal.
     lastAccepted={time,signature};
     if(!parsed.live_votes_accepted){phase='No genuine post-close Texas votes reported yet';return true;}
-    const prior=readPrior();if(!prior||!Number.isFinite(prior.margin)||!Number.isFinite(prior.sigma))throw Error('Current Texas linked-model prior unavailable');
+    let prior=readPrior();
+    if(!prior){
+     phase='Waiting for linked race model';render();
+     prior=await root.CompetitiveNeedlePrior?.waitFor(readPrior,{isCurrent:()=>isActive()&&generation===sourceGeneration()});
+     if(!isActive()||generation!==sourceGeneration())throw Error('Source reply invalidated while waiting for the model');
+     revision.accept(parsed);
+    }
+    if(!prior||!Number.isFinite(prior.margin)||!Number.isFinite(prior.sigma))throw Error('Current Texas linked-model prior unavailable');
     projection=model.forecast({baseline:inputs.baseline,observations:parsed.counties,expected_county_count:254,
      prior_margin_points:prior.margin,prior_sigma_points:prior.sigma});
     phase='2026 source-validated returns · experimental Texas forecast';onValidated();return true;

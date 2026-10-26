@@ -18,5 +18,14 @@
   // shifts; remove the research error multiplier from the reported sigma.
   return Object.freeze({margin,sigma,source:'unconditioned_linked_race_marginal',source_method:row.source_method});
  }
- return Object.freeze({read});
+ async function waitFor(readPrior,{isCurrent=()=>true,pause=ms=>new Promise(ok=>setTimeout(ok,ms))}={}){
+  if(typeof readPrior!=='function')throw Error('Linked prior reader unavailable');
+  for(let attempt=0;attempt<=20;attempt++){
+   if(!isCurrent())return null;
+   const prior=readPrior();if(prior)return prior;
+   if(attempt<20)await pause(250);
+  }
+  return null;
+ }
+ return Object.freeze({read,waitFor});
 });

@@ -43,3 +43,16 @@ for(const code of ['IA-SEN','KS-SEN','TX-SEN']){
  assert(Math.abs(a.sigma-b.sigma)<=.001,'Base uncertainty survives exporter rounding and research error scaling');
 }
 console.log('Competitive needle starting margins use strict unconditioned linked-model inputs; research controls, winner flags and national mutation excluded PASS');
+
+(async()=>{
+ const {waitFor}=require('./competitive_needle_prior.js');let reads=0,pauses=0;
+ assert.equal(await waitFor(()=>++reads===3?prior:null,{pause:async()=>{pauses++;}}),prior);
+ assert.equal(reads,3);assert.equal(pauses,2);
+ reads=0;pauses=0;
+ assert.equal(await waitFor(()=>{reads++;return null;},{pause:async()=>{pauses++;}}),null);
+ assert.equal(reads,21);assert.equal(pauses,20,'Missing model cannot cause an unbounded wait');
+ let active=true;
+ assert.equal(await waitFor(()=>null,{isCurrent:()=>active,pause:async()=>{active=false;}}),null);
+ await assert.rejects(()=>waitFor(null),/unavailable/);
+ console.log('Bounded linked-model startup wait, cancellation and unavailable-prior exhaustion PASS');
+})().catch(e=>{console.error(e);process.exitCode=1;});

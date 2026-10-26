@@ -107,7 +107,14 @@
      // A validated zero-count withdrawal is also a publication watermark.
      lastSourceTime=time;lastAccepted={time,signature};
      if(!parsed.live_votes_accepted){phase='No genuine post-close votes reported yet';return true;}
-     const prior=readPrior();
+     let prior=readPrior();
+     if(!prior){
+      phase='Waiting for linked race model';render();
+      prior=await root.CompetitiveNeedlePrior?.waitFor(readPrior,{isCurrent:()=>version===modeVersion&&!preview&&isActive()&&generation===sourceGeneration()});
+      if(version!==modeVersion||preview)return false;
+      if(!isActive()||generation!==sourceGeneration())throw Error('Source reply invalidated while waiting for the model');
+      revision.accept(parsed);
+     }
      if(!prior||!Number.isFinite(prior.margin)||!Number.isFinite(prior.sigma))throw Error('Current Iowa linked-model prior unavailable');
      projection=model.forecast({baseline:history.years['2022'],observations:parsed.counties,
       prior_margin_points:prior.margin,prior_sigma_points:prior.sigma});

@@ -109,6 +109,45 @@ try{
   await page.waitForFunction(()=>!window.enTexasPilotController?.status().projection);
   assert.equal(await host.locator('[data-tx="chance"]').textContent(),'—','Archive mode removes the live probability');
   assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),national,'Corrections and recovery cannot write national odds');
+  // Exercise the actual view with a delayed linked-prior callback. Source
+  // data is synthetic, but neither the shared model nor national odds is edited.
+  await page.waitForFunction(()=>Boolean(CompetitiveNeedlePrior.read(jointPulseBaseline,'TX-SEN')));
+  await page.evaluate(async raw=>{
+   const host=document.createElement('section');host.hidden=true;document.body.append(host);
+   window.__startup={ready:false,active:true,requests:0,host};
+   __startup.controller=TexasNeedleView.create(host,{
+    fetchJSON:async path=>(await fetch('./'+path)).json(),
+    fetchSource:async()=>{__startup.requests++;return raw;},
+    readPrior:()=>__startup.ready?CompetitiveNeedlePrior.read(jointPulseBaseline,'TX-SEN'):null,
+    isActive:()=>__startup.active
+   });
+   __startup.pending=__startup.controller.tick(true);
+  },packet(.6,blueStamp));
+  await page.waitForFunction(()=>__startup.controller.status().phase.includes('Waiting for linked'));
+  await page.evaluate(()=>{__startup.ready=true;});await page.evaluate(()=>__startup.pending);
+  assert.equal(await page.evaluate(()=>__startup.requests),1,'A ready model consumes the first source response without another request');
+  assert(await page.evaluate(()=>Boolean(__startup.controller.status().projection)));
+  await page.evaluate(()=>{__startup.controller.destroy();__startup.host.remove();});
+  // A newer correction observed by another controller during the wait must
+  // invalidate this still-pending positive observation before it can forecast.
+  await page.evaluate(async raw=>{
+   const host=document.createElement('section');host.hidden=true;document.body.append(host);
+   window.__startup={ready:false,active:true,requests:0,host};
+   __startup.controller=TexasNeedleView.create(host,{
+    fetchJSON:async path=>(await fetch('./'+path)).json(),fetchSource:async()=>{__startup.requests++;return raw;},
+    readPrior:()=>__startup.ready?CompetitiveNeedlePrior.read(jointPulseBaseline,'TX-SEN'):null,isActive:()=>__startup.active
+   });__startup.pending=__startup.controller.tick(true);
+  },packet(.6,blueStamp));
+  await page.waitForFunction(()=>__startup.controller.status().phase.includes('Waiting for linked'));
+  await page.evaluate(async raw=>{
+   const ref=await(await fetch('./data/texas_county_fips_reference.json')).json();
+   CompetitiveSourceRevision.create('TX-SEN').accept(TexasCivicCountySource.parse(raw,ref));__startup.ready=true;
+  },packet(.6,'2026-11-04T03:08:15Z',false,0));
+  await page.evaluate(()=>__startup.pending);
+  assert.equal(await page.evaluate(()=>__startup.controller.status().projection),null);
+  assert.match(await page.evaluate(()=>__startup.controller.status().phase),/requires a newer/);
+  await page.evaluate(()=>{__startup.controller.destroy();__startup.host.remove();});
+  assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),national);
   // A missing protection asset withholds this estimate without taking down
   // the independent national model or core election-night page.
   await page.route('**/scripts/competitive_source_revision.js*',route=>route.abort());
