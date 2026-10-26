@@ -1,5 +1,27 @@
 # Election Night production-readiness assignment
 
+## October26 21:41Z — bounded pivotal AZ01 source discovery
+
+- No existing NC2026district reaggregation implementation found; preserve NC01
+  changed-boundary blocker and move to uploaded rank7AZ01, whose current Census
+  bridge says unchanged. Do not use whole-Maricopa totals for this district.
+- Actual official county page links2026general results text (filenameZero forweb).
+  Ordinary download and old statewide landing return403; no bypass attempted.
+  Search discovers enhancedvoting Arizona2026general app, ordinary GET200.
+- Read actual app base/main scripts: declared /results/public/api and getElection
+  route. Exact public2026general metadata API GET200,CORS*,max-age60, production
+  true/nonprimary/dateNov3, staleOct16 and ballotItemCount1. These are metadata,
+  not proof that the sole ballot item is AZ01 or that results are live.
+- Pinned data/arizona_house_01_source_assessment.json; JSON/election/no-enable
+  assertions pass. Actual source HTML/API/bundles saved locally under
+  artifacts/readiness/arizona-source-research. Official sponsorship link chain,
+  exactAZ01contest/candidates, precinct/district-part baseline and reporting/
+  remaining-ballot semantics still required. No additional national input enabled.
+- Next: inspect ordinary app network/declared ballot API once and verify official
+  linkage; ifAZ01notpublished record exact blocker, do not guess contest IDs or
+  repeatedly retry403. Main deployed checks remain successful; no active newPR.
+
+
 ## October26 21:26Z — pivotal NC01 official archive inspected; geography blocker isolated
 
 - Reused existing official catalog/download discovery, inspected queued211 before
