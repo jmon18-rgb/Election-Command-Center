@@ -1,5 +1,28 @@
 # Readiness progress
 
+## October26 21:56Z — exact official AZ01 text obtained and audited
+
+- Normal public Edge page GET200 exposes literal county results link. Normal
+  browser request GET200 obtains31,328,879bytes, SHAe19723f24e1f7818853a7d13200c751727d9d6dd0a18c377e17c631393c0d7ce,
+  LastModifiedOct24. Python ordinary requests403 remains; no security bypass.
+  Earlier24MBinspection cap rejected the first body; reviewed128MBcap completed
+  normal-browser observation. This is not proof of a headless production collector.
+- Actual county file exactUSRepDistCD-1 has1477rows:7candidate identities times
+ 210precincts PLUS7blank-precinct summary rows. All counts ZERO. Never count
+  blank summary as a211thprecinct or sum it twice. Votes reconcile across four
+  stated methods. New offline inspector rejects duplicates, identity drift,
+  missing matrix/summary, invalid counts and mode/summary disagreement; tests and
+  full actual-file inspection PASS. Inspector never admits live evidence.
+- Statewide enhanced app normal browser/API confirms its sole item is GOVERNOR,
+  notAZ01; no guessed contest IDs or governor-to-House wiring. County candidate
+  names includeShahDEM/FeelyREP/AlponteLBT pluswriteins; independent ballot and
+  precinct/baseline contracts still required, not approved fromzero template alone.
+- Source assessment updated; actual file/browserAPI saved locally. Next meaningful
+  step: county2024same-district precinct export plus exact210precinct geography
+  reconciliation and source-clock/live semantics. No new national input or live
+  calibration claim. No repeated403/source probe necessary.
+
+
 ## October26 21:41Z — bounded pivotal AZ01 source discovery
 
 - No existing NC2026district reaggregation implementation found; preserve NC01
