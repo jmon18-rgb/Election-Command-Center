@@ -3,10 +3,12 @@
 const assert=require('node:assert/strict');
 const transport=require('./election_night_transport.js');
 const backoff=require('./election_night_source_backoff.js');
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 
 assert.throws(()=>transport.createPool(5),/bounded/);
 assert.throws(()=>transport.createPool(0),/bounded/);
 assert.throws(()=>transport.createPool(4,65),/bounded/);
+assert.throws(()=>transport.createPool(4,64,{priorityReserve:3}),/bounded/);
 
 (async()=>{
  const pool=transport.createPool(4,64);
@@ -28,6 +30,44 @@ assert.throws(()=>transport.createPool(4,65),/bounded/);
  assert.equal(pool.status().failed,0);
  assert.equal(pool.status().queued,0);
  assert.equal(pool.status().active,0);
+
+ const ordered=transport.createPool(1,4,{priorityReserve:2}),starts=[];
+ let open;
+ const gate=ordered.run(()=>new Promise(resolve=>{open=resolve;}));
+ await Promise.resolve();
+ const jobs=[ordered.run(()=>starts.push('bulk1')),ordered.run(()=>starts.push('bulk2')),
+  ordered.run(()=>starts.push('Iowa'),{priority:true}),ordered.run(()=>starts.push('Kansas'),{priority:true})];
+ open();await Promise.all([gate,...jobs]);
+ assert.deepEqual(starts,['Iowa','Kansas','bulk1','bulk2'],
+  'Competitive needle requests must run before queued bulk work without interrupting active requests');
+
+ // Exercise the actual page's factory options and request routing under a
+ // full bulk queue, rather than merely testing an isolated priority flag.
+ const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
+ const declaration=html.match(/^const enCivicRequestPool=.*;$/m)?.[0];
+ const fetcher=html.match(/async function enCivicFetchJson\(url,timeoutMs=12000\)\{[\s\S]*?\n\}/)?.[0];
+ assert(declaration&&fetcher,'Actual dashboard transport wiring is available');
+ const launched=[];
+ const subject=vm.runInNewContext(declaration+'\n'+fetcher+'\n({pool:enCivicRequestPool,fetch:enCivicFetchJson})',{
+  window:{ElectionNightTransport:transport},enCivicFetchUnpooled:async url=>{launched.push(url);return url;}
+ });
+ const releases=[],gates=Array.from({length:4},()=>subject.pool.run(()=>new Promise(resolve=>releases.push(resolve))));
+ await Promise.resolve();assert.equal(releases.length,4);
+ const bulk=Array.from({length:62},(_,i)=>subject.pool.run(()=>launched.push('bulk'+i)));
+ await assert.rejects(subject.pool.run(()=>null),/saturated/,
+  'Bulk work cannot occupy the two reserved needle positions');
+ await assert.rejects(subject.fetch('https://civicapi.org/api/v2/race/87151?light='),/saturated/,
+  'Only the exact full county route receives needle priority');
+ const needleUrls=['https://civicapi.org/api/v2/race/87151','https://civicapi.org/api/v2/race/87162'];
+ const needles=needleUrls.map(url=>subject.fetch(url));
+ assert.equal(subject.pool.status().queued,64);assert.equal(subject.pool.status().priority_queued,2);
+ await assert.rejects(subject.pool.run(()=>null,{priority:true}),/saturated/,
+  'Priority cannot expand the total queue');
+ releases[0]();await Promise.all(needles);
+ assert.deepEqual(launched.slice(0,2),needleUrls,'Both actual needle URLs start ahead of62 queued background requests');
+ releases.slice(1).forEach(release=>release());await Promise.all([...gates,...bulk]);
+ assert.equal(subject.pool.status().peak,4);assert.equal(subject.pool.status().completed,68);
+ assert.equal(subject.pool.status().active,0);assert.equal(subject.pool.status().queued,0);
 
  let now=Date.parse('2026-11-03T23:30:00Z');
  const b=backoff.create(()=>now);
@@ -66,5 +106,5 @@ assert.throws(()=>transport.createPool(4,65),/bounded/);
   b.success();
  }
  assert.equal(pool.status().active,0);
- console.log('Shared four-request transport, 64-deep bounded queue, discarded 503-era replies and verified cooldown recovery PASS');
+ console.log('Shared four-request/64-queued cap, two reserved competitive needle positions, exact URL priority, outage epochs and cooldown recovery PASS');
 })().catch(e=>{console.error(e);process.exitCode=1});

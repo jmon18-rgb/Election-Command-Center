@@ -1,5 +1,38 @@
 # Readiness progress
 
+## October26 05:43Z - verified evidence deployment and complete queue checks
+
+- Main270ce878 is published: actual Pages comparison at05:43:09Z matches all43
+ checked files. This deploys443 evidence/catalog changes, not the queued archive
+ or request-priority fixes.
+-445 also requires Kansas browser CI on index/shared-transport changes; those
+ paths previously did not trigger its workflow despite affecting source delivery.
+ Existing local Kansas browser tests pass, and all unchanged production guards
+ remain required. Current-head full checks are pending before any runtime merge.
+
+
+## October26 05:40Z - competitive county refreshes take bounded queue priority
+
+- Reproduce FIFO queue behavior: two waiting bulk tasks start before Iowa/Kansas
+  requests. A busy all-race sweep can therefore delay the core live needles.
+- Reserve2 of the existing64 waiting positions for priority requests, and give
+  priority only to exact full county URLs87151/87162. Running tasks are never
+  interrupted; four-active/64-total-queued caps, provider cooldowns and existing
+  source identity/freshness guards stay intact. No extra polling or endpoints.
+- Actual page factory/fetch wiring under4 held tasks plus62 queued bulk tasks
+  admits both needles and starts them first, then drains all bulk work. Light
+  routes get no priority; further tasks reject at the existing total cap. Default
+  pools retain their original behavior. Node assertions and Iowa/Kansas1366/390
+  browser fixtures pass; the virtual12-hour/506-race soak remains explicitly
+  synthetic and passes. Include the priority check in the readiness report.
+-444 CI exposed the browser scenario at an exact5s force-refresh boundary.
+  Preserve the production cooldown; widen the simulated gap to10s. Failure log
+ 40274913044 points to the same test wait as local reproduction. Updated local
+ browser checks pass; no failed revision is merged.
+- Next: merge only passing current main revisions, verify their actual Pages
+ assets/source behavior, then continue real remaining-vote/method evidence.
+
+
 ## October26 05:33Z - close-election evidence merged; archive fix in main CI
 
 -443 merged270ce878 after all5 applicable workflows pass on exact head
