@@ -39,4 +39,10 @@ assert.equal(records.length,0,'An already-uncalled race does not repeatedly anno
 context.enProcessCivicAlert(item,previous,{...next,called:'Second candidate'});
 assert.equal(records[0][2],'call','A corrected named winner remains a new provider call');
 assert.match(records[0][3],/Second candidate/);
+records.length=0;context.enAlertSubscribed=()=>false;
+context.enFishPending=[call()];context.enFishCurrent=call('ME');
+context.enProcessCivicAlert(item,previous,next);
+assert.equal(context.enFishPending.length,0,'Unpinning cannot preserve a superseded queued call');
+assert.equal(context.enFishCurrent.event.race,'ME','Another active race must not be interrupted');
+assert.equal(records.length,0,'Unsubscribed races do not emit new bulletins');
 console.log('Actual provider-call withdrawal: explicit correction, queued/active call removal, unrelated alerts and corrected winners PASS');

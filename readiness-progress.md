@@ -16,6 +16,8 @@ an evidence task, not a reason to fabricate predictive updates.
 - Add an explicit provider-call-withdrawn event and revoke only the matching
   civicAPI race's active/queued call. Preserve other races, sources and non-call
   bulletins. A corrected named winner still emits its new source-attributed call.
+  Unpinning a race suppresses new bulletins while still revoking its obsolete
+  queued call; another race's active bulletin is preserved.
   This changes source correction handling, not celebration artwork or music.
 - All 15 core checks and actual Edge desktop/mobile drills pass: the withdrawal
   replaces the old headline, says the outcome is uncalled, removes the queued

@@ -5266,12 +5266,15 @@ function enCivicTopCandidate(data){
   ranks[0].name+'|'+ranks[0].party:null;
 }
 function enProcessCivicAlert(item,previous,next){
- if(!previous||!next||!enAlertSubscribed(item.office,item.key))return;
+ if(!previous||!next)return;
+ const callChanged=previous.called&&previous.called!==next.called;
+ // Unpinning suppresses new alerts, but cannot keep an obsolete queued call.
+ if(callChanged)enFishRevokeCall(item);
+ if(!enAlertSubscribed(item.office,item.key))return;
  const votesStamp=next.last_updated||String(next.total);
- if(previous.called&&previous.called!==next.called){
+ if(callChanged){
   // A corrected winner must not leave the superseded call playing or queued.
   // Keep unrelated source/race bulletins and announce an explicit withdrawal.
-  enFishRevokeCall(item);
   if(!next.called){
    enAlertRecord(item,'civicAPI','retraction',
     'civicAPI withdrew its call for '+previous.called+
