@@ -1,5 +1,51 @@
 # Readiness progress
 
+## October 26 13:01Z - Competitive House counts connected to the national candidate
+
+- Tested implementation69ab59b0 adds WI-01 directly to the ONE national joint
+  needle, with no additional race panel or race-posterior input. The actual linked
+  browser model at12:38 source snapshot has WI-01 D52.57%, modeled margin+0.765,
+  polled with0.6 poll weight. This is a competitive, polled House contest, not a
+  safe-seat integration or raw statewide Senate extrapolation.
+- Retrieve the actual official WEC2024 US Congress county canvass PDF21914bytes,
+  SHA3542962d2986d7ae6149c7d7de5a7708ba8e301e6f18fb51bdfb004f8982d375.
+  Reproduce exactly five WI-01 district/county PARTS, join all identifiers against
+  the pinned original Census nationwide county file and verify unchanged2026
+  congressional geography. District totals172402D/212515R/8576other reconcile
+  both the printed official totals and independent MIT House staging. Whole
+  Milwaukee/Rock/Walworth county votes must never replace these district parts.
+- Strict full Civic87483 identity/major-candidate/count/test/time contract plus
+  durable revisions feed counts directly to the bounded joint likelihood. The
+  national capture supports these four explicit races only. Four reserved queue
+  positions preserve the same total4active/64queued cap. No numerical starting
+  model or owner outcome threshold changes.
+- Local Edge1366/390 proves WI-01 ALONE changes national House-control odds before
+  calls, followed by coherent four-source updates, corrections, withdrawals,
+  outage/stale/test exclusion and rehearsal isolation. The three existing race
+  browser suites and27 core checks pass. Full dashboard/CI remain required.
+- Expose modeled remaining D/R votes and turnout scenario ranges on national
+  source drivers, including unreported county parts; these are conditional
+  historical-turnout assumptions, not official ballots outstanding/calibration.
+- Repair a direct national-path monitor mismatch: the previous actual probe
+  would flag legitimate national movement as leakage once non-test counts
+  arrive. Now independently match each admitted source/count/publication to the
+  actual parsed response. Test/unmatched evidence still fails. A House forecast
+  is read from admitted joint draws, not a separate race posterior.
+- Premerge actual-source checks serve the candidate locally with real upstream
+  responses; scheduled/manual checks still target the published site. Both keep
+  fixtures and virtual clocks forbidden and explicitly label their target.
+  This avoids pretending an unmerged House controller is already deployed.
+- Separate actual clean69ab59b0 candidate probe at12:59:24Z reaches all four full
+  routes HTTP200, independently matched99/105/254/5county identities, ALL TEST
+  DATA excluded: accepted votes0, all projections null, national unchanged,
+  no browser errors, no raw test data archived. Status LIVE_DELIVERY_UNPROVEN,
+  not published acceptance or genuine post-close forecasting.
+- Next: finish current-head CI, repair genuine failures, merge only after all
+  applicable checks and verify published national/House behavior. One House
+  district and three Senate states remain thin national coverage. Independent
+  chronological probability calibration and real post-close delivery remain
+  unproven. Additional panels, celebrations and generic polish stay paused.
+
 ## October 26 12:40Z - NATIONAL results-informed needle deployed and exercised
 
 - PR454 merged259f41e2 after all31 applicable current-head workflows pass at
