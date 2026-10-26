@@ -1,5 +1,37 @@
 # Readiness progress
 
+## October26 23:11Z — owner approved narrower predictive scope and national co-movement assumption
+
+- Latest HUMAN instruction supersedes broader expansion: custom predictive work
+  only close Senate and uploaded Silver House power-flip races. Safe seats retain
+  broad providers; no custom prediction work, new panels or polish. Owner accepts
+  using pivotal performance as evidence of broader direction, with uncertainty.
+  This is an assumed shared national component, not newly demonstrated calibration;
+  preserve existing correlated model/bounded likelihood rather than average odds
+  or uniformly transfer a single candidate's Senate surprise to allHouse.
+- Captured actual deployed linked503race model once (no syntheticreturns). Internal
+  data/predictive_development_scope.json sets a bounded work queue: primary Senate
+  IA/KS/AK/ME/TX in35-65band; near-boundaryMI/NE/OH/SC review if25-75andpollmargin<=5.
+  House limited first10existing uploaded screenshot seed rows if25-75:PA10/NC01/
+  AZ06/NY17/VA02/PA07/AZ01/PA08/WI03/MI07. Seed order is NOT Silver probabilities.
+  Bands bound engineering effort, not race calls; near-boundary review avoids
+  declaring a seat safe from a onepoint threshold. Existing9inputs preserved.
+- Local queue assertions exclude safeNC-SEN/governors/customsafe-seatwork and
+  capHouse10; source snapshot/hashes and captured model timestamps retained.
+  Missing primarySenateME/AK now precedes further optionalAZ01geography work.
+- BoundedME feasibility lead: officialSOS Sept4process update says election-night
+  returns come from municipalities, clerks have2days to submit toSOS; federal
+  Senate usesRCV. Officialresults landing currently lists primary results, not
+  a verified fastgeneralfeed. Firstchoice totals cannot be finalRCVresults.
+  https://www3.maine.gov/sos/news/general-election-two-months-away-secretary-states-office-provides-update-maine-election-1
+  https://www.maine.gov/sos/elections-voting/election-results-data
+  Next verify exactofficialballot/candidate identity and a permittedmunicipal/
+  broadprovider path before adapter work; no claimMEsourceisready.
+- AZ01originalhistoricaltotals resolved as recorded22:56; precinctequivalency remains
+  blocked. Do not spend runs perfecting geography ahead of primary Senate gaps.
+  MainPages/CIhealthy/openPRsunchanged. No newliveinput/calibration claim.
+
+
 ## October26 22:56Z — AZ01 historical vote-total blocker resolved from original export
 
 - Actual OpenElections SOURCES repository2024/general lists original county-format

@@ -1,0 +1,160 @@
+{
+  "schema": "bounded-predictive-development-scope-v1",
+  "captured_at": "2026-10-26T23:13:00.310Z",
+  "status": "INTERNAL_DEVELOPMENT_PRIORITY_NOT_FORECAST_OR_RESULTS",
+  "owner_direction": "Focus close Senate and owner-uploaded Silver power-flip House races; allow bounded national co-movement assumption; safe seats use broad providers.",
+  "snapshot_sha256": "464067bd540aa9c64ccb2cd29e996f5a06d277dd7dca4869bd0aefc533cd5687",
+  "linked_model_source": "Actual deployed linked national model baseline, not Silver probabilities",
+  "primary_senate": [
+    {
+      "code": "IA-SEN",
+      "linked_dem_beats_rep_pct": 50.07,
+      "poll_margin_points": 0.32,
+      "existing_national_input": true
+    },
+    {
+      "code": "KS-SEN",
+      "linked_dem_beats_rep_pct": 50.4,
+      "poll_margin_points": 1.64,
+      "existing_national_input": true
+    },
+    {
+      "code": "AK-SEN",
+      "linked_dem_beats_rep_pct": 63.8,
+      "poll_margin_points": 3.41,
+      "existing_national_input": false
+    },
+    {
+      "code": "ME-SEN",
+      "linked_dem_beats_rep_pct": 64.07,
+      "poll_margin_points": 1.64,
+      "existing_national_input": false
+    },
+    {
+      "code": "TX-SEN",
+      "linked_dem_beats_rep_pct": 64.7,
+      "poll_margin_points": 2.08,
+      "existing_national_input": true
+    }
+  ],
+  "near_boundary_senate_review": [
+    {
+      "code": "MI-SEN",
+      "linked_dem_beats_rep_pct": 73.57,
+      "poll_margin_points": 2.61,
+      "existing_national_input": false
+    },
+    {
+      "code": "NE-SEN",
+      "linked_dem_beats_rep_pct": 32.8,
+      "poll_margin_points": -0.09,
+      "existing_national_input": false
+    },
+    {
+      "code": "OH-SEN",
+      "linked_dem_beats_rep_pct": 66.3,
+      "poll_margin_points": 4.12,
+      "existing_national_input": false
+    },
+    {
+      "code": "SC-SEN",
+      "linked_dem_beats_rep_pct": 34.23,
+      "poll_margin_points": -0.78,
+      "existing_national_input": false
+    }
+  ],
+  "pivotal_house": [
+    {
+      "code": "PA-10",
+      "linked_dem_beats_rep_pct": 60.27,
+      "poll_margin_points": null,
+      "existing_national_input": true,
+      "uploaded_screenshot_seed_order": 1
+    },
+    {
+      "code": "NC-01",
+      "linked_dem_beats_rep_pct": 62.57,
+      "poll_margin_points": null,
+      "existing_national_input": false,
+      "uploaded_screenshot_seed_order": 2
+    },
+    {
+      "code": "AZ-06",
+      "linked_dem_beats_rep_pct": 65.17,
+      "poll_margin_points": null,
+      "existing_national_input": false,
+      "uploaded_screenshot_seed_order": 3
+    },
+    {
+      "code": "NY-17",
+      "linked_dem_beats_rep_pct": 64.33,
+      "poll_margin_points": null,
+      "existing_national_input": true,
+      "uploaded_screenshot_seed_order": 4
+    },
+    {
+      "code": "VA-02",
+      "linked_dem_beats_rep_pct": 66.93,
+      "poll_margin_points": null,
+      "existing_national_input": false,
+      "uploaded_screenshot_seed_order": 5
+    },
+    {
+      "code": "PA-07",
+      "linked_dem_beats_rep_pct": 70.5,
+      "poll_margin_points": null,
+      "existing_national_input": false,
+      "uploaded_screenshot_seed_order": 6
+    },
+    {
+      "code": "AZ-01",
+      "linked_dem_beats_rep_pct": 60.23,
+      "poll_margin_points": null,
+      "existing_national_input": false,
+      "uploaded_screenshot_seed_order": 7
+    },
+    {
+      "code": "PA-08",
+      "linked_dem_beats_rep_pct": 68.17,
+      "poll_margin_points": null,
+      "existing_national_input": false,
+      "uploaded_screenshot_seed_order": 8
+    },
+    {
+      "code": "WI-03",
+      "linked_dem_beats_rep_pct": 61.67,
+      "poll_margin_points": null,
+      "existing_national_input": true,
+      "uploaded_screenshot_seed_order": 9
+    },
+    {
+      "code": "MI-07",
+      "linked_dem_beats_rep_pct": 72.77,
+      "poll_margin_points": null,
+      "existing_national_input": false,
+      "uploaded_screenshot_seed_order": 10
+    }
+  ],
+  "policy": {
+    "primary_senate_probability_band": [
+      35,
+      65
+    ],
+    "secondary_senate_probability_band": [
+      25,
+      75
+    ],
+    "secondary_max_abs_poll_margin": 5,
+    "house_max_screenshot_seed_rows": 10,
+    "house_probability_band": [
+      25,
+      75
+    ],
+    "thresholds_purpose": "Bound development work, never race calls or forecasts; near-boundary review avoids brittle safe-seat classification.",
+    "safe_seat_custom_prediction_work": false,
+    "new_race_panels": false,
+    "existing_nine_inputs_preserved": true
+  },
+  "national_transfer": "Use performance against model expectations through existing declared correlated-error model; multiple coherent pivotal races strengthen evidence. This is an owner-approved assumption, not empirically calibrated covariance. No uniform Senate-to-House shift, probability averaging, or double-counting priors.",
+  "next_task": "Prioritize missing primary Senate ME/AK source feasibility before further optional House geography work; preserve IA/KS/TX and existing House inputs. No blanket source expansion."
+}
