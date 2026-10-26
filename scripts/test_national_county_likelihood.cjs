@@ -64,3 +64,8 @@ assert.deepEqual(bridge.condition(model,basis,blue,{...opts,now}).result,up.resu
 console.log(JSON.stringify({status:'NATIONAL_COUNTY_BRIDGE_SYNTHETIC_TESTS_PASS_NOT_CALIBRATION',
  baseline:ordinary.probabilities,blue:up.result.probabilities,red:down.result.probabilities,
  effective_samples:up.diagnostics.effective_sample_size,likelihood_power:up.diagnostics.likelihood_power}));
+
+const demo=blue.map(e=>({...e,rehearsal:true}));
+assert.equal(bridge.condition(model,basis,demo,{...opts,now}).diagnostics.used.length,0);
+assert.equal(bridge.condition(model,basis,demo,{...opts,now,rehearsal:true}).diagnostics.status,"SIMULATED_NATIONAL_REHEARSAL");
+assert.equal(bridge.condition(model,basis,blue,{...opts,now,rehearsal:true}).diagnostics.used.length,0);

@@ -14,7 +14,8 @@
  const clamp=x=>Math.max(.001,Math.min(.999,x));
  const cdf=x=>{const s=Math.sign(x),a=Math.abs(x)/Math.SQRT2,t=1/(1+.3275911*a);
   return (1+s*(1-(((((1.061405429*t-1.453152027)*t+1.421413741)*t-.284496736)*t+.254829592)*t)*Math.exp(-a*a)))/2;};
- function compile(envelope,{now=Date.now()}={}){
+ function compile(envelope,{now=Date.now(),rehearsal=false}={}){
+  if(Boolean(envelope?.rehearsal)!==rehearsal)throw Error("Rehearsal evidence cannot enter the live national model");
   if(!envelope||['forecast','posteriorMargin','posteriorSigma','dem_win_probability','prior_margin_points'].some(k=>k in envelope))
    throw Error('National evidence must contain counts, never a poll-informed race posterior');
   const x=envelope.snapshot,code=x?.race_code,scope=Object.hasOwn(scopes,code)?scopes[code]:null;
@@ -86,15 +87,16 @@
  function condition(model,basis,envelopes,options={}){
   if(!Array.isArray(envelopes)||envelopes.length>3)throw Error('Bounded national county evidence required');
   if(options.captureCountyDraws||options.replayCountySeeds)throw Error('Nested/replayed national evidence is not a prior');
-  const {now=Date.now(),...args}=options,compiled=[],excluded=[],codes=new Set();
+  const {now=Date.now(),rehearsal=false,...args}=options,compiled=[],excluded=[],codes=new Set();
   for(const envelope of envelopes){
    const code=envelope?.snapshot?.race_code;
    if(codes.has(code))throw Error('Duplicate race evidence would count the same returns twice');
    codes.add(code);
-   try{compiled.push(compile(envelope,{now}));}catch(error){excluded.push({code:code||null,reason:error.message});}
+   try{compiled.push(compile(envelope,{now,rehearsal}));}catch(error){excluded.push({code:code||null,reason:error.message});}
   }
   if(!compiled.length){const baseline=model.simulate(basis,args);return {baseline,result:baseline,
    diagnostics:{status:'NO_ELIGIBLE_COUNTY_RETURNS',used:[],excluded,interval_calibrated:false}};}
+  if(rehearsal&&Object.keys(args.live||{}).length)throw Error("Rehearsal cannot use live calls");
   const prior=model.simulate(basis,{...args,captureCountyDraws:compiled.map(c=>c.code)});
   const {county_draws:draws,...baseline}=prior,n=prior.samples;
   const logs=compiled.map(c=>Array.from(draws.margins[c.code],m=>c.logLikelihood(m)));
@@ -120,7 +122,7 @@
    seeds[i]=draws.seeds[index];
   }
   const result=model.simulate(basis,{...args,replayCountySeeds:seeds});
-  const diagnostics={status:'EXPERIMENTAL_RESULTS_INFORMED_NATIONAL_OUTLOOK',
+  const diagnostics={status:rehearsal?'SIMULATED_NATIONAL_REHEARSAL':'EXPERIMENTAL_RESULTS_INFORMED_NATIONAL_OUTLOOK',
    used:compiled.map(({logLikelihood,...row})=>row),excluded,effective_sample_size:weighted.ess,
    particle_count:n,likelihood_power:power,policy,house_vote_sources:0,
    house_transfer:'Existing declared shared national-error covariance only; no observed House votes in this county path',
