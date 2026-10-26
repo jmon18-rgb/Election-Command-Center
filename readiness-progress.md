@@ -1,5 +1,23 @@
 # Readiness progress
 
+## October26 05:16Z - separate frozen Kansas close-election evaluation
+
+- Resolve the one missing2018 baseline county from its own published official
+  report: https://wycovoteskck.gov/2018-general-election-results . Use actual
+  county aggregate D28285/R10526, never reconstructed precinct cells. Original
+  state workbooks plus this excerpt reconcile all105 counties to state PDFs.
+- Commitc2dbb6d9 freezes the sources, model41ec65dd7f17 and evaluation plan
+  before the first forecast run. No runtime or numerical parameter changes.
+-2018-to-2022 Kansas governor (D+2.277): mean margin error1.839 versus neutral
+  prior2.277/raw27.981; Brier0.216 versus0.25, log-loss0.621 versus0.693.
+  Margin-band coverage16/16, remaining-vote range14/16. All misses retained.
+  Freeze the full initial report and require exact reproduction for that blob.
+- One same-candidate governor election, assumed baseline-only release orders,
+  combined counts and no timestamps: useful close-race evidence, not Senate
+  calibration or real live delivery. Broader independent close-race evidence
+  remains needed.440/442 still await current-head full DOM checks before merge.
+
+
 ## October26 04:51Z - actual provider and deployed integrity evidence
 
 - Published main9490bd6c at04:49:51Z: all41 checked files match, zero differences.

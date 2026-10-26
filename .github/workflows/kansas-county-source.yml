@@ -22,13 +22,23 @@ jobs:
         with:
           node-version: '22'
       - name: Reproduce official county sums from exact original workbook bytes
-        run: python3 scripts/build_kansas_senate_county_facts.py --check
+        run: |
+          python3 scripts/build_kansas_senate_county_facts.py --check
+          python3 scripts/build_kansas_governor_close_cohort.py --check
       - name: Validate Kansas input contract and exclude test votes
         run: node scripts/test_kansas_civic_county_source.cjs
       - name: Validate experimental Kansas source-to-forecast behavior
         run: node scripts/test_kansas_county_needle.cjs
       - name: Evaluate official historical returns against prior-only and raw baselines
-        run: node scripts/evaluate_kansas_county_needle.cjs
+        run: |
+          node scripts/evaluate_kansas_county_needle.cjs
+          node scripts/evaluate_kansas_governor_close_cohort.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kansas-historical-forecast-evidence-not-calibration
+          path: artifacts/readiness/kansas/*evaluation.json
+          if-no-files-found: error
   browser:
     runs-on: ubuntu-24.04
     timeout-minutes: 12

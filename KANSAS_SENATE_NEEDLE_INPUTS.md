@@ -73,3 +73,27 @@ shared transport and renders the race probability and remaining-vote range.
 Desktop/mobile fixtures verify source-driven probability movement, test-data and
 publication-clock exclusion, outage removal and national isolation. Kansas
 close-election evidence and actual post-close delivery remain unfinished.
+
+## Separate frozen close-election check
+
+A newly located official Wyandotte County2018 report supplies the actual county
+aggregate missing from the state workbook. No precinct cell is inferred. Together
+with the original2018/2022 governor workbooks, all105 county D/R sums reconcile
+to official state totals (2018:506,509/453,030;2022:499,849/477,591).
+The source excerpt identifies normalized facts, not original HTML bytes: direct
+retrieval returned403, while the public web reader displayed the official report.
+
+The runtime model blob41ec65dd7f17 and release-order plan were committed before
+the first evaluation. Baseline-only county size/share determines four assumed
+orders at four stages, not hidden outcome values. Neutral-prior stress results:
+margin MAE1.84 versus prior2.28 and raw27.98; Brier0.216 versus0.25; log-loss0.621
+versus0.693. Margin-band coverage16/16; remaining-vote-range coverage14/16.
+Retain both misses. No numerical model parameters changed. The original full
+report is frozen and must reproduce exactly with those model bytes. Future
+source changes are conservatively marked reused development evidence.
+
+This is one close governor election (D+2.28 two-party), same Democratic candidate
+over four years, no method breakdown and no historical release clock. It improves
+the evidence beyond a safe Senate outcome, but cannot calibrate a2026 Senate
+probability. Reproduce with `python scripts/build_kansas_governor_close_cohort.py
+--check` and `node scripts/evaluate_kansas_governor_close_cohort.cjs`.
