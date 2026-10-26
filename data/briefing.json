@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-26T10:44:10.773534Z",
+  "updated_at": "2026-10-26T10:50:46.968955Z",
   "updates": [
     {
       "title": "FLIPR 2026 midterm election forecast - Silver Bulletin",
@@ -13,6 +13,13 @@
       "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5VWE96aXR0S3I2YjZPYWRXb21UM1lCZXoxbFdDenBTUzdjMmJHUjljRTdFc3hHQm9DTlBiSXIzRGg1c1U4N05MbHk0OFhtSVNpc2RNcWZhMzdpRldLWE5jYzd0cEZQRV8zR1d1VUtWWWlYQQ?oc=5",
       "source": "NBC News",
       "published_at": "2026-10-26T09:00:21Z",
+      "status": "reported_not_independently_verified"
+    },
+    {
+      "title": "South Carolina Midterm Elections 2026: Key Races, Candidates and Past Results - NBC News",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9lLXptdXd6bFlTYXl3eU1OV29WUTZ4RW5mREdNVXJCQ3lkVXNRRklTbmdtdUN1ZC1pV0tGaUNVa21rT2steXc3TkxEQ0czTG5OTEZhZWwtTjF3cFJwRXlIUGV4QkhwVGZNYU1pMXUtb0QyZlJRWDl6czVB?oc=5",
+      "source": "NBC News",
+      "published_at": "2026-10-26T08:30:21Z",
       "status": "reported_not_independently_verified"
     },
     {
@@ -34,13 +41,6 @@
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5CNDhGdFFLbHU0dnFMZGZ5T2Z4LVNzYk5Mb0lHNXZhQW56U09sX1RmWmRLZmlvRnQtOHNHUlZlS3NZckF2WHF0LXVZOHROTTBCMnQzbkM2X1JCYkY5RGpwamRubEc4M3lPaFE?oc=5",
       "source": "NBC News",
       "published_at": "2026-10-26T07:00:21Z",
-      "status": "reported_not_independently_verified"
-    },
-    {
-      "title": "South Carolina Midterm Elections 2026: Key Races, Candidates and Past Results - NBC News",
-      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9lLXptdXd6bFlTYXl3eU1OV29WUTZ4RW5mREdNVXJCQ3lkVXNRRklTbmdtdUN1ZC1pV0tGaUNVa21rT2steXc3TkxEQ0czTG5OTEZhZWwtTjF3cFJwRXlIUGV4QkhwVGZNYU1pMXUtb0QyZlJRWDl6czVB?oc=5",
-      "source": "NBC News",
-      "published_at": "2026-10-26T05:00:21Z",
       "status": "reported_not_independently_verified"
     },
     {
@@ -124,7 +124,7 @@
     }
   ],
   "pipeline": {
-    "last_attempt_at": "2026-10-26T10:44:10.773534Z",
+    "last_attempt_at": "2026-10-26T10:50:46.968955Z",
     "successful_queries": 6,
     "total_queries": 6,
     "kind": "automated_news_headlines_not_verified_facts",
