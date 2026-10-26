@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-26T15:36:20.039605Z",
+  "updated_at": "2026-10-26T15:42:46.757892Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -7,8 +7,8 @@
     "total_leads": 250,
     "awaiting_primary_source": 246,
     "primary_source_checked": 4,
-    "advisory_related_headline_buckets": 22,
-    "advisory_related_headlines": 49
+    "advisory_related_headline_buckets": 23,
+    "advisory_related_headlines": 51
   },
   "advisory_related_headlines": [
     {
@@ -308,6 +308,23 @@
       "publisher": "WNEP",
       "published_at": "2026-10-26T13:56:00Z",
       "detected_at": "2026-10-26T14:58:29.082164Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "51df45d861cdda4c0e0c",
+      "title": "Thousands of observers expected to monitor polling sites nationwide on Election Day - wtsp.com",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQV2szR01lM29KQjF1QWVMOXBCdVlxbjZSdzdPc3F6SGZHd3FFSElORkR1SWVDakJGR2JwNUFndHkwVnJkUlBKbmZGc1J1OXdnSHpyZW1LZjBjdzN0M2NsWi02b3RtR2NWYzZ2ZVB1ZUtoMU11NHU0ZHJVdVo2NzJrNGJIZXZRYkZTalhyNUt0X2p2Q0FheUdVUzRaTWxDc2tYNEZuUjZyb0IwcE9RM054azZEWmNOZkN1THhfV1FvY1NTWmZHeW1vM040RlFldUtsOE5zMA?oc=5",
+      "publisher": "wtsp.com",
+      "published_at": "2026-10-26T13:56:00Z",
+      "detected_at": "2026-10-26T15:42:46.757892Z",
       "state_hints": [],
       "topic_hints": [
         "election_admin"
@@ -4948,25 +4965,6 @@
       "state_hints": [],
       "topic_hints": [
         "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "7434deebaa9fc39d4f90",
-      "title": "If you care about data centers, ICE raids or inflation, watch these Texas races - Houston Chronicle",
-      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE0zY1o2dmI2VVpneW45VElJT3BXb0RCaUZEa2Y5UHRFbVRJWnYxUDVQRmRSOW1xRG40RWNJTzY1THM1UVJoVnVHR1JmNkxJNXNwMUF4QVdXdWZjczIwanZVNDlFLWRYNDA0bEhpSzRSTmw2QVVvNU5vbENB?oc=5",
-      "publisher": "Houston Chronicle",
-      "published_at": "2026-10-14T09:00:00Z",
-      "detected_at": "2026-10-14T11:09:17.083238Z",
-      "state_hints": [
-        "TX"
-      ],
-      "topic_hints": [
-        "security"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
