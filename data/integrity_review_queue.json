@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-26T15:42:46.757892Z",
+  "updated_at": "2026-10-26T16:26:45.593324Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -8,14 +8,14 @@
     "awaiting_primary_source": 246,
     "primary_source_checked": 4,
     "advisory_related_headline_buckets": 23,
-    "advisory_related_headlines": 51
+    "advisory_related_headlines": 52
   },
   "advisory_related_headlines": [
     {
-      "lead_id": "6dbf45936645e0181be8",
-      "headline": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - ABC News - Breaking News, Latest News and Videos",
-      "possibly_related_articles": 4,
-      "distinct_publishers": 4,
+      "lead_id": "8eac970c233573625d18",
+      "headline": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - Los Angeles Times",
+      "possibly_related_articles": 5,
+      "distinct_publishers": 5,
       "state_hints": [],
       "topic_hints": [
         "ballot_access",
@@ -276,6 +276,24 @@
       "topic_hints": [
         "registration",
         "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "8eac970c233573625d18",
+      "title": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - Los Angeles Times",
+      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQaFQ1UElORFQxclVKZW5ZZ3c2TUVTYjhBZ1MzSTN1MlVsZzg5dER0WnJ5akpVM2tNWF9qSjBNVE5WdGFVX2k4QlBXSUN2Yl9sTlgzakdBWXNJOUd6SHBPQWQ4SW9kbmhaNU9XNkJCWGNKWVIyMDk1YmtOYmxyTkNoblc0QkQ0eFZKc2JpYjZjaG0tWU50dFVfb2JGRzlTR1k3SGVGd1NTdW9kQWJDd3BnZHRGRk9vSUQxTGtLQ0E3cnhUUHgxcjI2OUlyWnpIVTZ2MzZ4MmdSSHBFbFN1ODdwLXpPU2E?oc=5",
+      "publisher": "Los Angeles Times",
+      "published_at": "2026-10-26T14:40:51Z",
+      "detected_at": "2026-10-26T16:26:45.593324Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
         "election_admin"
       ],
       "headline_numbers_unverified": [],
@@ -4950,23 +4968,6 @@
       "headline_numbers_unverified": [
         "500,000 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "70fc401b2ce1d3afb821",
-      "title": "Civil rights advocates plan to send thousands of observers to midterm polling places - NPR",
-      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNc29ldEZ0UERzZXZ2bF9WNDFfZ0RFbUZSM2hWTW16YmVGcXkwbGVIRDZDZjlDdkJHTGZYNVRRWVFTaHdtTDd5WEFQOEV0WmNiT0twUGJyWWhURFYtQTBWcmlmZXZyQnZqSFhua0l4NUZfckdJVk9pX19wUUN0UVlCbkpmcw?oc=5",
-      "publisher": "NPR",
-      "published_at": "2026-10-14T09:00:00Z",
-      "detected_at": "2026-10-14T11:09:17.083238Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
