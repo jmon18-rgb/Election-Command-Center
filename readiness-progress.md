@@ -1,5 +1,80 @@
 # Readiness progress
 
+## October 26 - grounded fallback repair clears the local merge blocker
+
+- At04:14:17Z an ordinary in-app browser loads the public DDHQ directory after
+  backoff. Read all52 actual California House link targets from its Nov3 page;
+  separately open CA32..39 and verify exact 2026 headers plus selected Results
+  tabs. No account, county unlocking, private API or access-control bypass.
+- Add these grounded references to the existing human-only catalog. Preserve
+  older reviewed entries; distinguish directory-only evidence from the eight
+  individually opened Results pages. The existing official statewide guidance
+  applies to all52 California districts. No live votes, calls or source pins are
+  added. Evidence: data/california_manual_reference_directory_evidence.json.
+- All existing five fallback checks now pass locally without changing any check.
+  This repair is included with #439 to unblock the queued source/needle changes;
+  full current-head CI still must pass before merge. Do not equate reference
+  coverage or pre-close zero placeholders with a working live results provider.
+
+## October 25/26 overnight - queued forecasting work and exact merge blocker
+
+- PR #440 implements the separate close-election cohort and explicit remaining
+  two-party vote range, tested at a279487a (18 core checks and real desktop/mobile
+  browser fixtures pass). It is stacked on #438, not main; retarget after #438
+  lands and run all applicable current-main checks before merge.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/440
+- #439's actual-source exclusion fix and canary evidence are tested at4f9692e3;
+  current-head GitHub checks remain pending. The canary's real MS/HI/OK read
+  confirms test data excluded, not production readiness.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/439
+- No new changes in this continuation have deployed. Required fallback-catalog
+  assertions still need grounded CA-32..39 media references. Ordinary DDHQ
+  retrieval returned429; direct requests stopped, and cached public search gave
+  no exact evidence. Keep all affected reviews unmerged. Recheck once after
+  backoff, not repeatedly; do not invent verification or relax the failing check.
+- Next: resolve the actual catalog/source-access blocker, merge only passing
+  current revisions, verify Pages, then continue close-race source-to-forecast
+  evaluation. Kansas county sources and reconciled official historical facts
+  remain preserved in local artifacts/readiness/kansas for the next source task.
+
+## October 25 - reject the actual civicAPI test_data envelope everywhere
+
+- The newly triggered real-provider canary also failed because MS has positive
+  pre-close TEST DATA. Its production reader must reject that; the canary now
+  records TEST_DATA_EXCLUDED_NOT_LIVE with adapter compatibility false, accepted
+  live votes0 and forecast/call authorization false. Wrong identity and unmarked
+  positive pre-close sources still fail. This verifies exclusion, not readiness.
+- Actual metadata-only run at03:57:47Z confirms MS/HI/OK are all explicit test
+  sources and all three contribute zero accepted votes. Six canary regressions
+  and nine statewide-advisory tests pass. The separate fallback-catalog failure
+  is not suppressed and still blocks merging #438/#439.
+
+- Reproduced a critical post-close acceptance defect: the older House/statewide/NH
+  adapters recognize is_test/mock flags but not the provider's actual test_data
+  field. A new test_data=true fixture passed the old House search gate. Actual
+  Iowa full AND light responses use this field; the Iowa pilot already rejects it.
+- Reject explicit test_data=true at search, envelope, detail, pinned House and
+  reconciliation/cache entry points. Apply the same exclusion to House discovery.
+  No identity/time/vote/call checks are removed and non-test sources remain usable.
+- All four adapter suites, 31 discovery tests, reconciliation and all 18 core
+  checks pass. Actual Edge desktop/mobile post-close fixture excludes a test-data
+  House response while the independent Senate response stays usable. This proves
+  the flag guard, not real live source delivery.
+- PR #438 is NOT merged: broad validation run 40264064417 failed its existing
+  fallback-catalog checks after the scheduled source scan added CA-32 through
+  CA-39 to unresolved gaps. No predictive-model assertion failed; the browser job
+  passed. Preserve the required checks. Existing California official guidance
+  applies statewide, but eight exact media references are not yet reviewed.
+  DDHQ returned HTTP429 at the ordinary public route; stop requests and respect
+  backoff rather than invent verification or bypass the failing check.
+- Independent work: official 2010/2018 Iowa governor cohort reconciles all 99
+  county D/R totals and 2018 method totals. The close 2018 outcome is R+2.80.
+  A county-only-history prototype with unchanged forecast parameters has 3.25-point
+  partial-snapshot MAE versus raw13.63 over 16 assumed-order scenarios, envelope
+  16/16. Eight-year baseline and different office from Senate limit transfer;
+  not reporting-clock replay or calibrated probabilities. Historical ballot
+  column arithmetic discrepancies are excluded, never repaired with invented data.
+
 ## October 25 - Iowa pilot deployed; correct the measured forecasting weakness
 
 - PR #437 passed all 27 applicable workflows at 4284378f and merged as baea1b2b.

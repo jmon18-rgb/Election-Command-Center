@@ -56,5 +56,5 @@ jobs:
         run: |
           echo '### Three pinned statewide race source checks' >> "$GITHUB_STEP_SUMMARY"
           echo 'MS Senate; HI Governor; OK Governor. Independent exact IDs and candidate-schema checks, via browser-CORS-enabled civicAPI.' >> "$GITHUB_STEP_SUMMARY"
-          echo 'May fetch verified vote counts after polls close, but the source alone supplies no guaranteed live votes, national provider fallback, or professional race calls.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'A successful test-data exclusion check is NOT production coverage. Explicit provider test_data=true supplies zero accepted votes or calls. Non-test counts still require all source/time/arithmetic gates.' >> "$GITHUB_STEP_SUMMARY"
           echo 'Massachusetts Senate remains NOT_INDEXED in this provider.' >> "$GITHUB_STEP_SUMMARY"

@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 import json
 import math
 
-from probe_missing_statewide_sources_2026 import exact, detail_rejection, CLOSE_UTC
+from probe_missing_statewide_sources_2026 import exact, detail_rejection, detail_identity_rejection, CLOSE_UTC
 from test_civicapi_live_source import source
 
 EXPECTED = (
@@ -47,6 +47,19 @@ def audit(fetch=source, now=None):
             raise ValueError("Pinned race ID/name changed: " + state)
         race_ids.add(wanted)
         detail = fetch("/race/" + str(wanted), {"light": ""})
+        if isinstance(detail, dict) and (search.get('test_data') is True or detail.get('test_data') is True):
+            # A successful check can prove that real provider test data is
+            # excluded. It cannot certify a usable production result source.
+            identity = detail_identity_rejection(spec, row, detail)
+            if identity is not None:
+                raise ValueError('Test detail metadata mismatch: ' + state + ' ' + identity)
+            records.append({'race': office + '|' + state, 'source_race_id': wanted,
+                            'exact_2026_identity': True, 'source_test_data': True,
+                            'source_status': 'TEST_DATA_EXCLUDED_NOT_LIVE',
+                            'adapter_shape_compatible': False,
+                            'accepted_live_votes': 0, 'positive_vote_feed_verified': False,
+                            'may_update_forecast': False, 'professional_winner_calls_verified': False})
+            continue
         reason = detail_rejection(spec, row, detail, now=now)
         if reason is not None:
             raise ValueError("Source search/detail contract mismatch: " + state + " " + reason)
@@ -93,6 +106,7 @@ def audit(fetch=source, now=None):
                         "professional_winner_calls_verified": False})
     return {"schema": "new-pinned-statewide-source-2026-audit-v1",
             "checked_at": now.isoformat(), "races_checked": 3, "races": records,
+            "test_data_sources_excluded": sum(r.get('source_test_data') is True for r in records),
             "actual_live_vote_coverage_guaranteed": False,
             "source_approval_is_not_certified_race_call": True}
 

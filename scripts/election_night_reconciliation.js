@@ -78,7 +78,7 @@
   if(snapshot.stale===true)return {state:'stale',usable:false};
   // Explicit TEST/MOCK or disabled reporting flags override a superficially
   // live and fresh office response, including valid-looking candidate totals.
-  if(snapshot.is_test===true||snapshot.test===true||
+  if(snapshot.test_data===true||snapshot.is_test===true||snapshot.test===true||
      snapshot.mock===true||snapshot.is_mock===true||
      snapshot.active===false)
    return {state:'invalid',usable:false};
@@ -222,7 +222,7 @@
      // Even a direct civicAPI result with a valid 2026 race ID and fresh
      // timestamp cannot supply votes or winner hints if its envelope
      // explicitly says TEST, MOCK, inactive or not live.
-     secondary.is_test!==true&&secondary.test!==true&&
+     secondary.test_data!==true&&secondary.is_test!==true&&secondary.test!==true&&
      secondary.mock!==true&&secondary.is_mock!==true&&
      secondary.live!==false&&secondary.active!==false&&
      !errors[id]&&!restore.has(id));

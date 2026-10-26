@@ -66,7 +66,7 @@ assert.equal(api.validate(item,search,premature,now),null,
 assert.equal(api.validate(item,search,detail,close-1000),null,
  'Viewer clock cannot accept House votes while district polls remain open');
 for(const flag of [
- {is_test:true},{test:true},{mock:true},{is_mock:true},
+ {test_data:true},{is_test:true},{test:true},{mock:true},{is_mock:true},
  {active:false},{live:false}
 ]){
  assert.equal(api.match(item,{...search,...flag}),false);

@@ -165,7 +165,7 @@ class GapProbeTests(unittest.TestCase):
         one=SPECS[0]
         original=self.rows["MA"]
         valid=detail(original)
-        for flag in ("is_test","test","mock","is_mock"):
+        for flag in ("test_data","is_test","test","mock","is_mock"):
             with self.subTest(flag=flag):
                 self.assertFalse(exact(one,{**original,flag:True}))
                 self.assertEqual(detail_rejection(one,original,

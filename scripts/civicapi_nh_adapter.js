@@ -6,7 +6,7 @@
   const BASE='https://civicapi.org/api/v2';
   const DAY='2026-11-03';
   const COUNTING_START=Date.parse('2026-11-03T05:00:00Z');
-  const disabled=x=>Boolean(x&&(x.is_test===true||x.test===true||
+  const disabled=x=>Boolean(x&&(x.test_data===true||x.is_test===true||x.test===true||
     x.mock===true||x.is_mock===true||x.active===false||x.live===false));
   function pollGate(){
     return typeof module!=='undefined'&&module.exports?
