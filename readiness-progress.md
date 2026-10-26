@@ -10,6 +10,13 @@ an evidence task, not a reason to fabricate predictive updates.
 
 ## October 25 — source drawer and keyboard continuity
 
+- Follow-up readiness report now includes the actual source-audit timestamp/age,
+  row-derived unresolved identities by office and bounded rejection-reason counts.
+  It explicitly separates identity discovery from live delivery/rights/calls.
+  Missing, incomplete, duplicate, unknown-status or future-clock audit data fails
+  the report instead of silently presenting zero gaps. All 13 consolidated checks
+  pass locally, including the new reporting safeguards. Review/CI still required.
+
 - Reproduced a laptop usability failure in the actual browser: opening the Senate
   source drawer and refreshing source state closed it immediately. Keyboard focus
   was also lost because the source panel replaces its rows on every redraw.
