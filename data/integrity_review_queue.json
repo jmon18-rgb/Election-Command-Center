@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-26T13:57:15.684737Z",
+  "updated_at": "2026-10-26T14:58:29.082164Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
@@ -264,6 +264,40 @@
   ],
   "items": [
     {
+      "id": "a1f06cf6efcfd409e7d2",
+      "title": "Native vote observers mobilize to protect S.D. ballot access - Northern Plains News",
+      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQZ3Bock9kWXgyb3phUnhfZ01IS0JBUjkzTDd4YmpZajJNOWM5TFpHMzZSb3hTdjBpcW5fT2xYQjR4bmxnWndndEczM3hxd3k3VEQ1eVV4cXJWZDFxQ0tzUnYyc2I1MWdnR09hNVdjeDAzb0dwengzX3ZRZTRzQ1lScw?oc=5",
+      "publisher": "Northern Plains News",
+      "published_at": "2026-10-26T14:06:58Z",
+      "detected_at": "2026-10-26T14:58:29.082164Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "e41cd87f2b577228601d",
+      "title": "Thousands of observers expected to monitor polling sites nationwide on Election Day - WNEP",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQSUN6Zkt1UlVTVmJtTm1wUWlFUFNxUDRKRW43REhWVVdoSW1DYTF0LUhJMGdXR2VZd05NUkEzSDd6OXR4VEZZc1VQUHZrZ1ZxeFZYbkFhTXA5MnBSU0xwbXl0QkJJU0ZERlcyenJpOGswaDBCaUl2MG1OVDBNMkw4bVlFcWQ0MlpJMmxRUEhQUm5KMk5pNVJnaTUtWlBrQ0w3OXluUXFsdU1DdVZqRVc0RGFucllCWDFxQUdjRWd6c1lOdmFoYV9MV0h4QWhFRDRjdWNSUA?oc=5",
+      "publisher": "WNEP",
+      "published_at": "2026-10-26T13:56:00Z",
+      "detected_at": "2026-10-26T14:58:29.082164Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "6dbf45936645e0181be8",
       "title": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - ABC News - Breaking News, Latest News and Videos",
       "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQN0I2djZmWW9IazRodWZRZi1DRUpMV1VZanA4bEhkRG1NSlVsUEFGZG5MU3VRd2Y0Q1FfdFM2M292ZU5GMXllS2ZIMkdtMW1ydENad2JiYVZQeWJiQ2tOR3NLcmJuYTh2dVdoRUNHeGR0R0lrd01PYnk4Y2psbVEycjllNWVXUmRJanJLQjh1c1U1OHJuNHZETkRneW43STZsQnBQMTltTGZHYlXSAbABQVVfeXFMTy1SV0tILVBBbFY5TmJZUnp2MVN5UTVLTFFlM3lZS0dVUFYxVmFkRGM3TEhoSFZSVU5xVkZuRDBaaUd3M1l0cHRVTl9RUG1TVmE2elBMLVpKWi00aXhzVjVZSWFUSUtZa25UcHh3MU9WNVdzU0pfZEN2SXcxR3VXVUFDbnhvcGVaSjlvX3FWcEtVWVUxX0hBaTVfWGxBalRrWFhmMFdYWF9fNkNVWFZoWGE?oc=5",
@@ -349,6 +383,23 @@
         "ballot_access",
         "security",
         "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "8bc5c9afdc6615cf48b6",
+      "title": "DHS Used AI and Consumer Data To Target Voters, Court Documents Show, Raising Concerns Over Mistaken Profiles - www.techtimes.co.uk",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQN3hIWUpCRjlKLVVLSUVDWE1VQlJ2NmRFNTZVUDB3eWpNeS1nbk81MFZOMjVhaTJvUm52MXpsTUY4MGV3Vko2RVhRSy1LSkFKaTVxNzJsNUF5UzExYWRZZ05SbWVUeGF5ejVSeksxOGh3eFNnRWJ6dFktSzhiLWdaeV8yWFNmd1E5dEFaNU04ZEZZQkdWM2c?oc=5",
+      "publisher": "www.techtimes.co.uk",
+      "published_at": "2026-10-26T09:49:24Z",
+      "detected_at": "2026-10-26T14:58:29.082164Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -4912,56 +4963,6 @@
       "state_hints": [],
       "topic_hints": [
         "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "1a75dced411de87ea2ab",
-      "title": "Asaduddin Owaisi Moves Supreme Court Seeking Review Of Bihar SIR Verdict, Says New Material Raises... - Live Law",
-      "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPOEZPZ1V6SUFzUWdQRHlkNUsyb3MxYnp5aFZ6d0pobkI5dzNuMHI0bllfbFBCQ3ZyUGhET0xsTEdodlV3bXJUdmVoaTA0NFRzRHU0VVE0UG9RY3B5ZFFHMTZ5MUxpbXV5bGVBT2lOc252Z2pXN25BZXFNYVN0SFhXamtoZmc3eF9jTFJkc0pobnM4ektPNkRNXzlseFg2Nm1FU0VjeGQxMVhfdnBKNFhHOW8xU2JTWVdLeS1qYUI2LV9TbXpkVXVLbnpnVFdDMGVRcGJNY05GSzdSRmhITGdOU0c2RlNkSWpSMjZob2hmbFg2azl5RkllRXJOSGZEX3JpTmtv0gGDAkFVX3lxTE84Rk9nVXpJQXNRZ1BEeWQ1SzJvczFienloVnp3SmhuQjl3M24wcjRuWV9sUEJDdnJQaERPTGxMR2h2VXdtclR2ZWhpMDQ0VHNEdTRVUTRQb1FjcHlkUUcxNnkxTGltdXlsZUFPaU5zbnZnalc3bkFlcU1hU3RIWFdqa2hmZzd4X2NMUmRzSmhuczh6S082RE1fOWx4WDY2bUVTRWN4ZDExWF92cEo0WEc5bzFTYlNZV0t5LWphQjYtX1NtemRVdUtuemdUV0MwZVFwYk1jTkZLN1JGaEhMZ05TRzZGU2RJalIyNmhvaGZsWDZrOXlGSWVFck5IZkRfcmlOa28?oc=5",
-      "publisher": "Live Law",
-      "published_at": "2026-10-14T08:09:06Z",
-      "detected_at": "2026-10-14T08:52:37.076493Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "6f0331ff60eedcf4890b",
-      "title": "'Going to be practical': Sen. Markwayne Mullin speaks out after being named Noem's replacement at DHS - ABC News - Breaking News, Latest News and Videos",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQRGFPSVpoVFZTUlFjaDZRakItV05kaVlGVlluM1pMRGRvTkpaS2RFNlY2ZElwbFFOUEwtQVhSTzVVZlRmSmVBb1JFZDBaaVRqR05kNnZydDNBcFVOak5ENzZvRmdaOFdLTk9sUk9Kc3hSdnB4a3VEcGl6NDJ0M2RNTG9mMjFSUkd0MlNUYnl2QTNjeDI3aWt1UHM3WVBXaGhTOVY0VXBR0gGrAUFVX3lxTE1JN1FWZ1RwMHQ4aEpyckdLR2RxTnhucVUwZ21uVWZscnBKU3MxZFBQX3RaTXlBZE45YnBXLUo0OW4tSWRWdDRRVnFtTHhxbVdzMTJuLTNYQXdQUlB2M0hobldMT05hN2xscnlXLXVjT2VaX2I5WXlzWWdiY0lWNHIzZ0dDMnBDTFN5bUx1bXpQRkduNzdjcF9nS2ZqbTZZMm5YQmRaOTlPVjdNYw?oc=5",
-      "publisher": "ABC News - Breaking News, Latest News and Videos",
-      "published_at": "2026-10-14T07:52:15Z",
-      "detected_at": "2026-10-14T12:04:20.212894Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "9fb6b44b769757b16a2f",
-      "title": "The Fight to Protect the National Voter Registration Act at the U.S. Supreme Court - Campaign Legal Center",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNZThSVXRjNVZYZ0tYa0FTNmwtRVR0dFZHMFB0ZjhrYVBxSFMyNk1kakNrNFltSzZsZzFsMTZZdnJaSEFRbEZLQzIwWmxjb1dZU21QN3BiTi02X2tSMExndGVsclRydEVEUTZzWWVjOXl6bHhKTGtsalBnVGFFLXRERjNWX1dRNUhMVmFSYWRyNkNjUmdCb0pINThQYw?oc=5",
-      "publisher": "Campaign Legal Center",
-      "published_at": "2026-10-14T04:26:22Z",
-      "detected_at": "2026-10-14T08:52:37.076493Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration",
-        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
