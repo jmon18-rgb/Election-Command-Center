@@ -79,6 +79,7 @@
    return dataPromise;
   }
   async function tick(force=false){
+   if(!force&&root.document?.hidden===true)return false;
    if(preview)return false;
    if(!isActive()){
     projection=null;stamp='';phase='Select 2026 Results to check the live source';render();return false;

@@ -51,6 +51,12 @@ try{
   await page.waitForFunction(()=>jointLastResult?.county_results_update?.used.length===5);
   assert.notEqual(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),baseline,'Automatic polling moves the national outlook before calls');
   assert.deepEqual(await page.evaluate(()=>[enIowaPilotController,enKansasPilotController,enTexasPilotController,enWisconsinHouseController,enWisconsinHouse03Controller].map(c=>c.status().automatic_poll_interval_ms)),[15000,15000,15000,15000,15000]);
+  await page.clock.setSystemTime(new Date('2026-11-04T03:06:00Z'));
+  assert.deepEqual(await page.evaluate(async()=>{
+   Object.defineProperty(document,'hidden',{configurable:true,value:true});
+   try{return await Promise.all([enIowaPilotController,enKansasPilotController,enTexasPilotController,enWisconsinHouseController,enWisconsinHouse03Controller].map(c=>c.tick()));}
+   finally{delete document.hidden;}
+  }),[false,false,false,false,false],'Ambient redraws cannot bypass the hidden-tab automatic pause');
   await update('house-blue','08');
   const houseOnly=await page.evaluate(()=>({used:jointLastResult.county_results_update?.used.map(e=>e.code),p:jointLastResult.probabilities,h:jointLastResult.house_dem_control_pct,old:jointPulseBaseline.house_dem_control_pct}));
   assert.deepEqual(houseOnly.used,['WI-01'],'A real-shaped competitive House input alone reaches the NATIONAL model');

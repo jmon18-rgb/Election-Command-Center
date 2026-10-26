@@ -12,6 +12,7 @@
   const status=()=>({phase,evidence,evidenceKey,busy,automatic_poll_interval_ms:cadence()});
   function publish(){const key=evidence?JSON.stringify(evidence.snapshot):'',changed=key!==evidenceKey;evidenceKey=key;onUpdate(status(),changed);}
   async function tick(force=false){
+   if(!force&&root.document?.hidden===true)return false;
    const generation=sourceGeneration();
    if(evidence&&(Date.now()-Date.parse(evidence.snapshot.snapshot_updated_at)>180*60000||generation!==lastGeneration||!isActive())){
     evidence=null;phase='Source inactive, stale or interrupted';publish();

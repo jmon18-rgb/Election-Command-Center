@@ -40,6 +40,7 @@
    get('stamp').textContent='Provider race snapshot: '+new Date(lastAccepted.time).toISOString();
   }
   async function tick(force=false){
+   if(!force&&root.document?.hidden===true)return false;
    const generation=sourceGeneration();
    if(lastAccepted&&Date.now()-lastAccepted.time>180*60000){projection=null;phase='Texas source snapshot is stale';render();}
    if(lastGeneration!==null&&lastGeneration!==generation){projection=null;phase='Provider outage · recheck required';render();}
