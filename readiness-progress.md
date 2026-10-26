@@ -1,5 +1,25 @@
 # Readiness progress
 
+## October 26 - deployed source exclusion and forecast evidence
+
+- PR439 merged at d917ded7 after all33 current-head workflows passed.
+  Published revision555a92be verified at04:28Z:41 deployed files match, and
+  actual Edge requests exclude the real Iowa test_data response (accepted0).
+- PR438 refreshed at535ad600; current-head checks pending. PR440 refreshed
+  at0b6282cd, still stacked until438 merges. No queued forecast changes are
+  claimed deployed.
+- PR441 adds reproducible Kansas official2020/2022 county facts and strict
+  105-county input contract. Actual provider response is explicitly test data;
+  accepted live votes0. No Kansas needle is activated.
+- Added prior-only margin and probability scoring to all three Iowa evaluations.
+  Close2018 governor margin MAE3.25 is worse than neutral-prior2.80, although
+  probability Brier0.108 improves on0.25. Correlated assumed snapshots of one
+  election are not calibration. Runtime forecasts unchanged by diagnostics.
+- Next: merge passing438, retarget/test440 against main and verify Pages, then
+  implement Kansas forecast inputs using the shared estimator with explicit
+  unknown-method uncertainty. Actual post-close delivery remains unproven.
+
+
 ## October 26 - grounded fallback repair clears the local merge blocker
 
 - At04:14:17Z an ordinary in-app browser loads the public DDHQ directory after

@@ -186,3 +186,13 @@ current payload remains test data. Real post-close source delivery has not been
 demonstrated. The bridge and visible needle are implemented for review, not yet
 verified as deployed. Independent historical evaluation, updated turnout evidence
 and calibration remain open. Kansas Senate is the next competitive source target.
+
+### Prior-only comparison
+
+Evaluation reports also compare against retaining the neutral starting forecast,
+with Brier and log-loss diagnostics for the race probability. In the close 2018
+governor cohort, projected margin MAE is about 3.25 points versus 2.80 for leaving
+the prior unchanged (and 13.63 for raw returns). Thus this cohort does not show
+improved margin accuracy over the prior. The sixteen correlated snapshots are
+not sixteen independent elections and cannot establish calibration. No parameters
+were changed after this comparison.

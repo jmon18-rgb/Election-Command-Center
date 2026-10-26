@@ -43,6 +43,18 @@ const report={status:blob===firstModel?'SEPARATE_FIRST_USE_CLOSE_ELECTION_CHECK_
  scenario_band_contains_truth:snapshots.filter(r=>r.scenario_band[0]<=truth&&r.scenario_band[1]>=truth).length,snapshots};
 report.remaining_vote_band_contains_truth=snapshots.filter(r=>r.remaining_vote_scenario_band[0]<=r.actual_remaining_two_party_votes&&
  r.remaining_vote_scenario_band[1]>=r.actual_remaining_two_party_votes).length;
+// Compare with keeping the starting forecast; raw returns alone are a weak baseline.
+const observedWinner=Number(truth>0);
+const mean=values=>values.reduce((a,b)=>a+b,0)/values.length;
+Object.assign(report,{
+ prior_only_margin_mae:Math.abs(truth),
+ prior_only_dem_win_probability:0.5,
+ prior_only_brier_score:0.25,
+ prior_only_log_loss:Math.log(2),
+ model_brier_score:mean(snapshots.map(r=>(r.dem_win_probability-observedWinner)**2)),
+ model_log_loss:mean(snapshots.map(r=>-Math.log(Math.max(1e-15,observedWinner?r.dem_win_probability:1-r.dem_win_probability)))),
+ scoring_limit:'Correlated snapshots of one election; diagnostic scores, not independent calibration'
+});
 const dir=path.join(__dirname,'../artifacts/readiness/iowa');fs.mkdirSync(dir,{recursive:true});
 fs.writeFileSync(path.join(dir,'governor-close-cohort-evaluation.json'),JSON.stringify(report,null,2));
 console.log(JSON.stringify({...report,snapshots:undefined}));
