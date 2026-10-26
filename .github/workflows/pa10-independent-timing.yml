@@ -30,7 +30,9 @@ jobs:
         with:
           node-version: '22'
       - name: Verify synthetic matching and historical exclusion
-        run: python scripts/test_pa10_results_timeliness.py
+        run: |
+          python scripts/test_pa10_results_timeliness.py
+          node scripts/test_pennsylvania_house_10_county_source.cjs
       - name: Discover only legitimately published November county link
         if: github.event_name == 'pull_request'
         run: python scripts/pa10_results_timeliness.py

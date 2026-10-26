@@ -204,7 +204,8 @@ def watch(output):
     folder = output.parent / 'validated'
     with ThreadPoolExecutor(max_workers=2) as executor:
         for round_number in range(56):
-            if time.monotonic() >= deadline or datetime.now(timezone.utc) >= END:
+            # Leave room for the12s parallel fetch and10s parser subprocess.
+            if time.monotonic() + 22 >= deadline or datetime.now(timezone.utc) >= END:
                 break
             started = time.monotonic()
             futures = {source: executor.submit(fetch, url) for source, url in
