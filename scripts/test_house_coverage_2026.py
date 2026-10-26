@@ -563,7 +563,7 @@ class HouseCoverageTests(unittest.TestCase):
         ):
             with self.subTest(date=stamp):
                 self.assertFalse(matches("NH-01",dict(self.row,election_date=stamp)))
-        for flag in ("is_test","test","mock","is_mock"):
+        for flag in ("test_data","is_test","test","mock","is_mock"):
             with self.subTest(flag=flag):
                 self.assertFalse(matches("NH-01",dict(self.row,**{flag:True})))
                 self.assertFalse(detail_matches(self.row,

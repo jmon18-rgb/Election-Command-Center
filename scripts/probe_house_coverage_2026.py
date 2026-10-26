@@ -242,7 +242,7 @@ def exact_2026_general_date(value):
 def explicitly_mock(doc):
     return (not isinstance(doc, dict) or
             any(doc.get(flag) is True for flag in
-                ("is_test", "test", "mock", "is_mock")) or
+                ("test_data", "is_test", "test", "mock", "is_mock")) or
             doc.get("active") is False)
 
 

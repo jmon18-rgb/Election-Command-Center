@@ -60,7 +60,7 @@ for(const count of [0,2,-1,1.5,'1',true,NaN]){
  assert.equal(adapter.select(item,{races:[row],count}),null,
   'Truncated, inconsistent or malformed provider search count is not unique-race proof');
 }
-for(const marker of [{is_test:true},{test:true},{mock:true},{is_mock:true},
+for(const marker of [{test_data:true},{is_test:true},{test:true},{mock:true},{is_mock:true},
  {active:false},{live:false}]){
  assert.equal(adapter.match(item,{...row,...marker}),false,
   'Explicitly nonproduction source race must be rejected');
