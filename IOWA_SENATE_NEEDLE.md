@@ -105,6 +105,19 @@ This weaker combined-input result must not be replaced with the earlier
 completed-method model's 4.56-point result. Run
 `node scripts/evaluate_iowa_county_needle.cjs` to reproduce it.
 
+A subsequent frozen-model test uses newly obtained official 2014 baseline and
+2016 outcome tables, with all 99 counties and candidate/method/state totals
+reconciled. Model blob `c097eafd3c12` was unchanged before seeing this outcome.
+With the same neutral stress prior, margin MAE is **14.62 points**, worse than
+raw counted share's 12.12. Its envelope includes the final margin in only 6/16
+partial scenarios. This is a real failed stress test, not evidence of readiness.
+It crosses Senate classes and midterm-to-presidential turnout and uses a badly
+wrong prior; these limits do not erase the failure. The predictor under-adjusts
+to large unexpected swings and uncertain turnout. Run the evaluator with
+`--independent` to reproduce. Do not describe this experimental predictor as
+validated for live election-night use. Its transport/UI implementation is ready
+for review while forecasting acceptance remains open.
+
 ## Remaining production evidence
 
 The existing Open America contract supplies Iowa statewide race totals, not the

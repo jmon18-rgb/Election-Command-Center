@@ -2,6 +2,17 @@
 
 ## October 25 - combined Iowa county returns now drive a visible race needle
 
+- Review: https://github.com/jmon18-rgb/Election-Command-Center/pull/437.
+  First CI exposed one LF/CRLF script fingerprint mismatch; corrected in 72b1c710.
+  All 27 current-head workflows except the still-running broad validation passed
+  at that revision. Do not merge until checks pass for the final revision.
+- New unseen-election stress test: official 2014 -> 2016 county/method totals
+  reconcile independently. Frozen combined-model blob c097eafd3c12 has 14.62-point
+  margin MAE versus raw counted share 12.12; envelope covers only 6/16 snapshots.
+  This wrong-neutral-prior/midterm-to-presidential stress case FAILED. No model
+  changes were made after seeing the result. Forecasting acceptance remains open;
+  do not equate the working source-to-gauge plumbing with predictive readiness.
+
 - PR #436 foundation merged as 22bf5cd6 after all four applicable workflows passed.
   https://github.com/jmon18-rgb/Election-Command-Center/pull/436
 - Implemented full-source -> validated combined county counts -> remaining-vote

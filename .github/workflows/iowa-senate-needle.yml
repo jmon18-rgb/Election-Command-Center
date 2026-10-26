@@ -23,7 +23,9 @@ jobs:
         with:
           node-version: '22'
       - name: Reproduce actual official county and voting-method totals
-        run: python3 scripts/build_iowa_senate_county_modes.py --check
+        run: |
+          python3 scripts/build_iowa_senate_county_modes.py --check
+          python3 scripts/build_iowa_senate_county_modes.py --independent --check
       - name: Forecast remaining vote and evaluate explicit release-order scenarios
         run: |
           node scripts/test_iowa_senate_partial_forecast.cjs
@@ -31,6 +33,7 @@ jobs:
           node scripts/test_iowa_county_needle.cjs
           node scripts/evaluate_iowa_senate_partial_forecast.cjs
           node scripts/evaluate_iowa_county_needle.cjs
+          node scripts/evaluate_iowa_county_needle.cjs --independent
       - uses: actions/upload-artifact@v4
         if: always()
         with:
