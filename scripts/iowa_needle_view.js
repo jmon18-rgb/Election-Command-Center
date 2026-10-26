@@ -3,7 +3,7 @@
  if(root)root.IowaNeedleView=api;
 })(typeof window!=='undefined'?window:null,function(root){
  'use strict';
- function create(host,{fetchJSON,fetchSource,readPrior,isActive=()=>true,sourceGeneration=()=>0,onValidated=()=>{}}){
+ function create(host,{fetchJSON,fetchSource,readPrior,isActive=()=>true,sourceGeneration=()=>0,onValidated=()=>{},onUpdate=()=>{}}){
   const source=root.IowaCivicCountySource,model=root.IowaCountyNeedle;
   if(!host||!source||!model)throw Error('Iowa needle modules unavailable');
   const revision=root.CompetitiveSourceRevision?.create('IA-SEN')||null;
@@ -24,12 +24,16 @@
    <div><p data-iowa="margin"></p><p data-iowa="votes"></p><p data-iowa="remaining"></p>
    <p data-iowa="band"></p><small data-iowa="stamp"></small></div></div>
    <p data-iowa="scope"></p><small>Experimental model, not independently calibrated or a race call.
-   Unseen voting-method mix and remaining ballots are modeled. Iowa pilot totals are separate from the national tally and control odds.
+   Unseen voting-method mix and remaining ballots are modeled. Validated county counts also inform the experimental national outlook; this race posterior is never reused as national evidence.
    Source: <a data-iowa="source-link" href="https://civicapi.org" target="_blank" rel="noopener noreferrer">civicAPI</a>.</small>`;
   const get=k=>host.querySelector('[data-iowa="'+k+'"]');
   const number=n=>Math.round(n).toLocaleString('en-US');
   const margin=n=>Math.abs(n)<.05?'Even':(n>0?'D +':'R +')+Math.abs(n).toFixed(1);
+  let evidence=null,candidateEvidence=null,evidenceKey="";
   function render(){
+   evidence=projection&&!preview?candidateEvidence:null;
+   const nextKey=evidence?JSON.stringify(evidence.snapshot):"";
+   if(nextKey!==evidenceKey){evidenceKey=nextKey;onUpdate();}
    get('title').textContent=preview?'Iowa Senate · 2022 historical scenario':'Iowa Senate · 2026';
    get('state').textContent=phase;get('next').hidden=!preview;
    get('preview').textContent=preview?'Return to live':'Historical scenario';
@@ -118,6 +122,7 @@
      if(!prior||!Number.isFinite(prior.margin)||!Number.isFinite(prior.sigma))throw Error('Current Iowa linked-model prior unavailable');
      projection=model.forecast({baseline:history.years['2022'],observations:parsed.counties,
       prior_margin_points:prior.margin,prior_sigma_points:prior.sigma});
+    candidateEvidence={baseline:history.years['2022'],reference,baseline_year:2022,snapshot:parsed};
      phase='2026 source-validated returns · experimental forecast';onValidated();
     }
     return true;
@@ -158,7 +163,7 @@
   });
   get('next').addEventListener('click',()=>{step++;showPreview();});
   const timer=setInterval(()=>tick(),60000);render();
-  return Object.freeze({tick,status:()=>({preview,phase,projection,busy}),destroy:()=>clearInterval(timer)});
+  return Object.freeze({tick,status:()=>({preview,phase,projection,busy,evidence,evidenceKey}),destroy:()=>clearInterval(timer)});
  }
  return Object.freeze({create});
 });

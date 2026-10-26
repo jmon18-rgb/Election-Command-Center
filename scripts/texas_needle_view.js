@@ -1,6 +1,6 @@
 (function(root){
  'use strict';
- function create(host,{fetchJSON,fetchSource,readPrior,isActive=()=>true,sourceGeneration=()=>0,onValidated=()=>{}}){
+ function create(host,{fetchJSON,fetchSource,readPrior,isActive=()=>true,sourceGeneration=()=>0,onValidated=()=>{},onUpdate=()=>{}}){
   const source=root.TexasCivicCountySource,model=root.IowaCountyNeedle;
   if(!host||!source||!model)throw Error('Texas forecast modules unavailable');
   const revision=root.CompetitiveSourceRevision?.create('TX-SEN')||null;
@@ -16,11 +16,15 @@
    <strong data-tx="chance">—</strong><span> Democratic win chance</span></div>
    <div><p data-tx="margin"></p><p data-tx="votes"></p><p data-tx="remaining"></p><small data-tx="stamp"></small></div></div>
    <small>Experimental race forecast, not calibrated or a race call. The 2024 Senate baseline has no voting-method split; 2026 turnout is uncertain.
-   Remaining votes and ranges are modeled, not official ballots outstanding. Separate from national counts and control odds.
+   Remaining votes and ranges are modeled, not official ballots outstanding. Counts also support the experimental national outlook; this race posterior is never reused as national evidence.
    Source: <a href="https://civicapi.org" target="_blank" rel="noopener noreferrer">civicAPI</a>.</small>`;
   const get=k=>host.querySelector('[data-tx="'+k+'"]'),number=n=>Math.round(n).toLocaleString('en-US');
   const margin=n=>(n>=0?'D +':'R +')+Math.abs(n).toFixed(1);
+  let evidence=null,candidateEvidence=null,evidenceKey="";
   function render(){
+   evidence=projection?candidateEvidence:null;
+   const nextKey=evidence?JSON.stringify(evidence.snapshot):"";
+   if(nextKey!==evidenceKey){evidenceKey=nextKey;onUpdate();}
    get('state').textContent=phase;get('refresh').disabled=busy;get('pointer').style.visibility=projection?'visible':'hidden';
    if(!projection){get('chance').textContent='—';for(const k of ['margin','votes','remaining','stamp'])get(k).textContent='';return;}
    const p=projection.dem_win_probability,angle=Math.PI*(1-p);
@@ -69,12 +73,13 @@
     if(!prior||!Number.isFinite(prior.margin)||!Number.isFinite(prior.sigma))throw Error('Current Texas linked-model prior unavailable');
     projection=model.forecast({baseline:inputs.baseline,observations:parsed.counties,expected_county_count:254,
      prior_margin_points:prior.margin,prior_sigma_points:prior.sigma});
+    candidateEvidence={baseline:inputs.baseline,reference:inputs.reference,baseline_year:2024,snapshot:parsed};
     phase='2026 source-validated returns · experimental Texas forecast';onValidated();return true;
    }catch(error){projection=null;phase='Texas source unavailable · '+error.message;return false;}
    finally{busy=false;render();}
   }
   get('refresh').addEventListener('click',()=>tick(true));const timer=setInterval(()=>tick(),60000);render();
-  return Object.freeze({tick,status:()=>({projection,phase,busy}),destroy:()=>clearInterval(timer)});
+  return Object.freeze({tick,status:()=>({projection,phase,busy,evidence,evidenceKey}),destroy:()=>clearInterval(timer)});
  }
  root.TexasNeedleView=Object.freeze({create});
 })(window);

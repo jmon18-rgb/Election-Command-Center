@@ -88,6 +88,7 @@
   if(!Array.isArray(envelopes)||envelopes.length>3)throw Error('Bounded national county evidence required');
   if(options.captureCountyDraws||options.replayCountySeeds)throw Error('Nested/replayed national evidence is not a prior');
   const {now=Date.now(),rehearsal=false,...args}=options,compiled=[],excluded=[],codes=new Set();
+  if(rehearsal&&Object.keys(args.live||{}).length)throw Error("Rehearsal cannot use live calls");
   for(const envelope of envelopes){
    const code=envelope?.snapshot?.race_code;
    if(codes.has(code))throw Error('Duplicate race evidence would count the same returns twice');
@@ -96,7 +97,6 @@
   }
   if(!compiled.length){const baseline=model.simulate(basis,args);return {baseline,result:baseline,
    diagnostics:{status:'NO_ELIGIBLE_COUNTY_RETURNS',used:[],excluded,interval_calibrated:false}};}
-  if(rehearsal&&Object.keys(args.live||{}).length)throw Error("Rehearsal cannot use live calls");
   const prior=model.simulate(basis,{...args,captureCountyDraws:compiled.map(c=>c.code)});
   const {county_draws:draws,...baseline}=prior,n=prior.samples;
   const logs=compiled.map(c=>Array.from(draws.margins[c.code],m=>c.logLikelihood(m)));

@@ -63,7 +63,7 @@
   const oldRows=new Map((baseline.race_probabilities||[]).map(x=>[x.race_code,x]));
   const earlySet=new Set(earlyCodes);
   const drivers=obs.filter(e=>e&&typeof e.race_code==='string'&&
-     number(e.reporting)&&number(Date.parse(e.asOf))&&
+     (number(e.reporting)||e.evidence_kind==='county_likelihood'&&Number.isInteger(e.reporting_counties)&&e.reporting_counties>0)&&number(Date.parse(e.asOf))&&
      currentRows.has(e.race_code)&&oldRows.has(e.race_code))
    .map(e=>{
     const next=currentRows.get(e.race_code)?.dem_beats_rep_pct,

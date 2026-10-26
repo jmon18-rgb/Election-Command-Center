@@ -1,0 +1,38 @@
+name: National county results to Four Endings needle
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'scripts/chamber_control_model.js'
+      - 'scripts/national_*.js'
+      - 'scripts/test_national_*.cjs'
+      - 'scripts/test_national_*.mjs'
+      - 'scripts/*_needle_view.js'
+      - 'scripts/*_civic_county_source.js'
+      - 'scripts/competitive_*.js'
+      - 'scripts/election_night_signals.js'
+      - 'data/*county*.json'
+      - '.github/workflows/national-results-needle.yml'
+permissions:
+  contents: read
+jobs:
+  national-results:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check coherent correlated draws and counts-only likelihood
+        run: |
+          node scripts/test_chamber_control_model.cjs
+          node scripts/test_national_county_likelihood.cjs
+      - name: Install pinned browser
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Test the primary national needle before calls and isolated rehearsal
+        run: node scripts/test_national_results_needle_browser.mjs
