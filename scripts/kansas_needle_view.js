@@ -1,6 +1,6 @@
 (function(root){
  'use strict';
- function create(host,{fetchJSON,fetchSource,readPrior,isActive=()=>true,sourceGeneration=()=>0}){
+ function create(host,{fetchJSON,fetchSource,readPrior,isActive=()=>true,sourceGeneration=()=>0,onValidated=()=>{}}){
   const source=root.KansasCivicCountySource,model=root.IowaCountyNeedle;
   if(!host||!source||!model)throw Error('Kansas forecast modules unavailable');
   let inputs=null,busy=false,lastAttempt=-Infinity,lastAccepted=null,lastGeneration=null,projection=null;
@@ -56,7 +56,7 @@
     const prior=readPrior();if(!prior||!Number.isFinite(prior.margin)||!Number.isFinite(prior.sigma))throw Error('Current Kansas polling prior unavailable');
     projection=model.forecast({baseline:inputs.baseline,observations:parsed.counties,expected_county_count:105,
      prior_margin_points:prior.margin,prior_sigma_points:prior.sigma});
-    lastAccepted={time,signature};phase='2026 source-validated returns · experimental Kansas forecast';return true;
+    lastAccepted={time,signature};phase='2026 source-validated returns · experimental Kansas forecast';onValidated();return true;
    }catch(error){projection=null;phase='Kansas source unavailable · '+error.message;return false;}
    finally{busy=false;render();}
   }

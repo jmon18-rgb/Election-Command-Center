@@ -1415,7 +1415,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/iowa_county_needle.js?v=41ec65dd7f17"></script>
 <script src="./scripts/iowa_needle_view.js?v=c7cec189c539"></script>
 <script src="./scripts/kansas_civic_county_source.js?v=ef4809fc9108"></script>
-<script src="./scripts/kansas_needle_view.js?v=aac1729a1313"></script>
+<script src="./scripts/kansas_needle_view.js?v=cde9917593c9"></script>
 <script>
 const $=s=>document.querySelector(s);
 // Shared polling snapshot is read by the early Briefing renderer.
@@ -3666,7 +3666,8 @@ function enRenderAmbientDesk(){
     if(!row||!Number.isFinite(sum)||sum<=0)return null;
     return {margin:100*(row.dem_pct-row.rep_pct)/sum,sigma:Math.max(6,5.633*100/sum)};},
    isActive:()=>enModeYear===2026&&enIsVisible(),
-   sourceGeneration:()=>window.ElectionNightTransport.generation(enCivicBreaker)
+   sourceGeneration:()=>window.ElectionNightTransport.generation(enCivicBreaker),
+   onValidated:()=>enCivicBreaker?.success()
   });
   window.enKansasPilotController.tick();
  }

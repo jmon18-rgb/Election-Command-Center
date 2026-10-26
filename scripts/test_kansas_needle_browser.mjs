@@ -63,6 +63,14 @@ try{
   await host.locator('[data-ks="refresh"]').click();
   await page.waitForFunction(()=>document.querySelector('[data-ks="state"]')?.textContent.includes('unavailable'));
   assert.equal(await host.locator('[data-ks="chance"]').textContent(),'—');
+  scenario='blue';await page.clock.setSystemTime(new Date('2026-11-04T03:11:00Z'));
+  await host.locator('[data-ks="refresh"]').click();
+  await page.waitForFunction(()=>Boolean(window.enKansasPilotController?.status().projection));
+  assert.equal(await page.evaluate(()=>enCivicBreaker.status().consecutive),0,
+   'Validated Kansas recovery resets the shared provider failure count');
+  await page.locator('#enMode2024').click();
+  await page.waitForFunction(()=>!window.enKansasPilotController?.status().projection);
+  assert.equal(await host.locator('[data-ks="chance"]').textContent(),'—','Archive mode removes the live probability');
   assert.deepEqual(errors,[]);console.log(`${width}px Kansas: validated source changes race probability, test/clock/outage gates and national isolation PASS`);
   await context.close();
  }
