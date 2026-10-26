@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-10-26T20:52:30.700882+00:00",
+  "updated_at": "2026-10-26T21:45:31.356847+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 821,
+      "available_in_source": 822,
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1262,
+      "available_in_source": 1263,
       "records_examined": 300
     },
     "governor": {
@@ -21,6 +21,54 @@
   "newly_injected_into_model": 0,
   "injected_poll_ids": [],
   "observations": [
+    {
+      "race_code": "NC-SEN",
+      "race_type": "senate",
+      "state": "NC",
+      "poll_id": "e8fc52e0-346a-4e42-9092-b1a5bd07dfe4",
+      "question_id": "996a17a5-402b-4715-83be-833439e68a21",
+      "pollster": "Quantus Insights",
+      "dem_name": "Roy Cooper",
+      "rep_name": "Michael Whatley",
+      "dem": 51.7,
+      "rep": 42.9,
+      "margin": 8.8,
+      "field_end": "2026-10-25",
+      "field_start": "2026-10-24",
+      "posted_date": "2026-10-26",
+      "posted_source_datetime": "2026-10-26T17:17:00",
+      "posted_source_time": "10/26/26 17:17",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://quantusinsights.org/f/north-carolina-senate-cooper-holds-a-9-point-lead-over-whatley",
+      "sample_population": "lv",
+      "sample_size": 722,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "NC-SEN",
+      "race_type": "senate",
+      "state": "NC",
+      "poll_id": "e8fc52e0-346a-4e42-9092-b1a5bd07dfe4",
+      "question_id": "b67ca8ad-8617-461a-bf6b-a886d8d32022",
+      "pollster": "Quantus Insights",
+      "dem_name": "Roy Cooper",
+      "rep_name": "Michael Whatley",
+      "dem": 52.4,
+      "rep": 43.4,
+      "margin": 9.0,
+      "field_end": "2026-10-25",
+      "field_start": "2026-10-24",
+      "posted_date": "2026-10-26",
+      "posted_source_datetime": "2026-10-26T17:17:00",
+      "posted_source_time": "10/26/26 17:17",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://quantusinsights.org/f/north-carolina-senate-cooper-holds-a-9-point-lead-over-whatley",
+      "sample_population": "lv",
+      "sample_size": 722,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "MI-SEN",
       "race_type": "senate",
