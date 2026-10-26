@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-26T13:13:52.472224Z",
+  "updated_at": "2026-10-26T13:31:25.671572Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -8,7 +8,7 @@
     "awaiting_primary_source": 246,
     "primary_source_checked": 4,
     "advisory_related_headline_buckets": 22,
-    "advisory_related_headlines": 47
+    "advisory_related_headlines": 48
   },
   "advisory_related_headlines": [
     {
@@ -48,6 +48,18 @@
       ],
       "topic_hints": [
         "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "6dbf45936645e0181be8",
+      "headline": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - ABC News - Breaking News, Latest News and Videos",
+      "possibly_related_articles": 3,
+      "distinct_publishers": 3,
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -248,21 +260,27 @@
         "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "9b2aa16305e598a043b3",
-      "headline": "Join our election livestream; Jersey\u2019s on guard for Trump voting interference | Mikie\u2019s World - NJ.com",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin",
-        "security"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "6dbf45936645e0181be8",
+      "title": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQN0I2djZmWW9IazRodWZRZi1DRUpMV1VZanA4bEhkRG1NSlVsUEFGZG5MU3VRd2Y0Q1FfdFM2M292ZU5GMXllS2ZIMkdtMW1ydENad2JiYVZQeWJiQ2tOR3NLcmJuYTh2dVdoRUNHeGR0R0lrd01PYnk4Y2psbVEycjllNWVXUmRJanJLQjh1c1U1OHJuNHZETkRneW43STZsQnBQMTltTGZHYlXSAbABQVVfeXFMTy1SV0tILVBBbFY5TmJZUnp2MVN5UTVLTFFlM3lZS0dVUFYxVmFkRGM3TEhoSFZSVU5xVkZuRDBaaUd3M1l0cHRVTl9RUG1TVmE2elBMLVpKWi00aXhzVjVZSWFUSUtZa25UcHh3MU9WNVdzU0pfZEN2SXcxR3VXVUFDbnhvcGVaSjlvX3FWcEtVWVUxX0hBaTVfWGxBalRrWFhmMFdYWF9fNkNVWFZoWGE?oc=5",
+      "publisher": "ABC News - Breaking News, Latest News and Videos",
+      "published_at": "2026-10-26T12:15:18Z",
+      "detected_at": "2026-10-26T13:31:25.671572Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "660246149afb58ef1bb2",
       "title": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - Bozeman Daily Chronicle",
@@ -4945,21 +4963,6 @@
       "headline_numbers_unverified": [
         "2026 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "775bbb669e37da87b3d8",
-      "title": "Anxiety is growing Trump may try to disrupt the midterm elec... - Park Hills Daily Journal",
-      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNLU5fLVNBd0dIOGNrNlJ5ckVsRUJxWTE5VGxlNFZaNDVicEhYS0N2WlE2dDBQWUZPSHY1NWVWR08tUlVrakkwOW5KTi1LSktkRTBUZG02RDRZLUtVdTFIR0JQTHpwXzgxeE1ISW4waUUzX0x0SzBGalRKRjNPM09FZWNqeGdHRGFJeWQzMFVjWkRUTFhrR3RGd09TVjlhRVpuZmE5aGx2UnBYUVoyNG1wd2VVczM4ay1veVRPZ2Q2blFoSWdCRVBfUXlGMGI4N2NZNEFVdF9YLU5fR1Nv?oc=5",
-      "publisher": "Park Hills Daily Journal",
-      "published_at": "2026-10-14T03:59:50Z",
-      "detected_at": "2026-10-14T08:52:37.076493Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
