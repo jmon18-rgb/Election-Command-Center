@@ -71,7 +71,8 @@ if(!inWindow(Date.now())){
      if(!raw)throw Error('No actual provider JSON response');
      const response=await fetch(new URL(race.reference,location.href),{cache:'no-store',credentials:'omit'});
      if(!response.ok)throw Error('Independent county reference HTTP '+response.status);
-     parsed=window[race.parser].parse(raw,await response.json(),{source_url:race.url,now:Date.now()});
+     const parser=race.parser_scope?window[race.parser].forRace(race.parser_scope):window[race.parser];
+     parsed=parser.parse(raw,await response.json(),{source_url:race.url,now:Date.now()});
     }catch(error){parse_error=error.message;}
     const jointEvidence=jointLastResult?.county_results_update?.used.find(e=>e.code===race.code);
     const jointRace=jointLastResult?.race_probabilities.find(e=>e.race_code===race.code);

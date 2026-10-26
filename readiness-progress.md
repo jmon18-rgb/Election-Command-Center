@@ -1,5 +1,95 @@
 # Readiness progress
 
+## October 26 13:40Z - Second competitive House input and fixed regional budget
+
+- Reproduce WI-03's19 congressional district/county PARTS from the same original
+  official WEC2024 PDF, not whole-county returns. All200808D/212064R/309other
+  votes reconcile to printed district totals and independent MIT House history;
+  Census identifiers and unchanged2026 boundaries agree. Existing WI-01 outputs
+  reproduce unchanged. No new archive hunt or individual race panel.
+- The actual linked model at12:38 source snapshot identified WI-03 D61.67%,
+  unpolled with wide12.186-point sigma; this remains competitive and uncertain,
+  not an immediately callable safe seat. Exact full source87485 has19 matching
+  county parts and current Cooke/Van Orden candidate identities. Only identity
+  metadata retained; provider test votes excluded.
+- Core implementatione01fbdc3 supports five explicit sources and feeds both House
+  districts directly to the SAME national draws. Five priority queue positions
+  preserve the total4active/64queued cap. No race-posterior reuse/averaging, no
+  new professional calls, no changes to owner thresholds or polling-only draws.
+- Two Wisconsin districts must not count as two independent national regions.
+  Declare a fixed per-state log-likelihood budget: each Wisconsin district gets
+  half the bounded counts-only factor. Combined Wisconsin ratio remains<=20:1;
+  missing/retracted/test sources do NOT reallocate their share to a survivor.
+  Single-source Senate states keep their weight. This is a conservative stated
+  assumption, not fitted calibration; it can reduce WI-01-only influence versus
+  the earlier experimental version. Effective sample size remains>=half draws.
+- Local Edge1366/390 proves WI-01 and WI-03 each independently reach national
+  House-control probabilities before calls, coherent five-source movement and
+  correction/withdrawal/outage/expiry/test safeguards. A targeted WI-03 withdrawal
+  retains WI-01's fixed half share rather than amplifying it. Pure tests also
+  bound the measured Wisconsin factor and preserve exact threshold coherence.
+  All28 core checks pass. Full dashboard/current-head CI still required.
+- Rehearsal revisioneaa2e515 extends the existing isolated national preview to
+  both House inputs. Published-state objects/storage stay unchanged; production
+  rejects all rehearsal markers. The existing five stages remain clearly
+  fictional counts, not historical publication clocks or calibration.
+- Separate actual clean e01fbdc3 candidate probe at13:33:54Z reaches all FIVE full
+  endpoints HTTP200 with99/105/254/5/19 independent county identities, all TEST
+  DATA excluded: accepted0, projections null, national unchanged, no page errors
+  or raw test archives. Status LIVE_DELIVERY_UNPROVEN. This is actual candidate
+  upstream access, NOT published-site acceptance or real post-close forecasting.
+- Next: finish current-head checks, merge only when all applicable checks pass,
+  verify actual Pages and deployed national behavior. Two House districts in one
+  state remain thin national coverage. Continue geographically broader close
+  House sources with independently verified district parts; MI-04 state export
+  access remains403, already reported. Avoid repeatedly retrying that archive.
+  Independent chronological calibration and actual post-close delivery remain
+  unproven. Today's daily report was already issued; keep routine progress quiet.
+
+## October 26 13:18Z - Competitive HOUSE input deployed; daily readiness report
+
+- PR455 merged338e5d34 after all33 applicable current-head workflows pass at
+  f5d87aac76ccdec1b5990833e2e4f012ef373dbd. Official PDF/Census/MIT reproduction,
+  national four-source browser checks, actual upstream candidate probe and full
+  dashboard validation all pass. Full local dashboard DOM also passes. No required
+  check bypassed. https://github.com/jmon18-rgb/Election-Command-Center/pull/455
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40327185569
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40327185534
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40327185486
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40327185665
+- The briefing bot supersedes the first Pages build. Replacement40328807817
+  succeeds for main8028af00. Actual served HTML, all48 loaded scripts, pinned
+  county data and original House PDF match all63 checked assets at13:16:55Z.
+  Served-site verification also succeeds; no cancelled build counted as a pass.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40328807817
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40328753380
+- PUBLISHED Edge1366/390 with explicitly synthetic source responses proves WI-01
+  alone changes the national House-control outlook before calls, then coherent
+  four-source changes, correction, withdrawal, outage/expiry/test exclusion,
+  polling-prior isolation and separate rehearsal. Active-count mobile screenshot
+  also inspected: county PARTS, counts, modeled remaining ranges and limited
+  coverage disclosure fit the viewport. This is functional, not live acceptance.
+- Separate clean8028af00 actual PUBLISHED probe at13:17:02Z uses real clocks and
+  responses: all4 full endpoints HTTP200,99/105/254/5 independent county identities,
+  all TEST DATA excluded, accepted votes0, no probabilities from these sources,
+  no national change, no browser errors or raw test archives. Remains
+  LIVE_DELIVERY_UNPROVEN, not actual post-close forecasting/calibration.
+- Daily report: the national bridge is deployed; a genuinely competitive, polled
+  House district now joins the three Senate inputs directly in the same national
+  model, with remaining-vote scenarios and correction recovery. No extra race
+  panel or posterior averaging. Actual post-close delivery, independent
+  chronological calibration and broad House coverage remain unproven. Continue
+  those critical evidence tasks; optional artwork/layout/celebrations stay paused.
+- Next House priorities checked against the actual linked default model at12:38:
+  MI04 D57.37% (polled), WI03 D61.67% (unpolled), VA01 D60.10% (polled). MI04 exact
+  source87204 is HTTP200 TEST DATA with6 county parts. Its official historical
+  MVIC export returns403 in both web reader and one independent named-UA HTTP
+  request; no district-part baseline admitted. Do not repeat the blocked URL hunt.
+  WI03 exact87485 is HTTP200 TEST DATA with19 county parts and matching names;
+  the original WEC2024 PDF already has these district-part rows. Verify Census,
+  MIT and unchanged2026 map before any next integration. Only metadata retained,
+  no source auto-pinned. Details: artifacts/readiness/next-house-evidence-review.txt.
+
 ## October 26 13:01Z - Competitive House counts connected to the national candidate
 
 - Tested implementation69ab59b0 adds WI-01 directly to the ONE national joint
@@ -1014,7 +1104,7 @@ usable chronological data, without claiming a descriptive map is predictive.
 4. Keep competitive source gaps, genuine chronological replay, source rights,
    live November 3 delivery and calibration explicitly open until proved.
 
-Last daily report date: 2026-10-25 (evening continuation report).
+Last daily report date: 2026-10-26 (morning national/House deployment report).
 
 ## October 25 — core source-recovery correction
 

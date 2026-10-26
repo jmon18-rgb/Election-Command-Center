@@ -1,0 +1,194 @@
+{
+  "status": "OFFICIAL_2024_DISTRICT_PART_BASELINE_NOT_LIVE_OR_CALIBRATION",
+  "race_code": "WI-03",
+  "office": "U.S. House",
+  "election_date": "2024-11-05",
+  "county_count": 19,
+  "counties": [
+    {
+      "county": "Adams",
+      "county_fips": "55001",
+      "dem_votes": 4922,
+      "rep_votes": 7711,
+      "other_votes": 23,
+      "total_votes": 12656,
+      "geography_scope": "WI-03 district part, not whole county"
+    },
+    {
+      "county": "Buffalo",
+      "county_fips": "55011",
+      "dem_votes": 3095,
+      "rep_votes": 4820,
+      "other_votes": 9,
+      "total_votes": 7924,
+      "geography_scope": "WI-03 district part, not whole county"
+    },
+    {
+      "county": "Chippewa",
+      "county_fips": "55017",
+      "dem_votes": 9509,
+      "rep_votes": 10574,
+      "other_votes": 18,
+      "total_votes": 20101,
+      "geography_scope": "WI-03 district part, not whole county"
+    },
+    {
+      "county": "Crawford",
+      "county_fips": "55023",
+      "dem_votes": 4115,
+      "rep_votes": 4842,
+      "other_votes": 1,
+      "total_votes": 8958,
+      "geography_scope": "WI-03 district part, not whole county"
+    },
+    {
+      "county": "Dunn",
+      "county_fips": "55033",
+      "dem_votes": 11264,
+      "rep_votes": 13761,
+      "other_votes": 0,
+      "total_votes": 25025,
+      "geography_scope": "WI-03 district part, not whole county"
+    },
+    {
+      "county": "Eau Claire",
+      "county_fips": "55035",
+      "dem_votes": 35422,
+      "rep_votes": 26274,
+      "other_votes": 95,
+      "total_votes": 61791,
+      "geography_scope": "WI-03 district part, not whole county"
+    },
+    {
+      "county": "Grant",
+      "county_fips": "55043",
+      "dem_votes": 11374,
+      "rep_votes": 15016,
+      "other_votes": 16,
+      "total_votes": 26406,
+      "geography_scope": "WI-03 district part, not whole county"
+    },
+    {
+      "county": "Jackson",
+      "county_fips": "55053",
+      "dem_votes": 4150,
+      "rep_votes": 4948,
+      "other_votes": 0,
+      "total_votes": 9098,
+      "geography_scope": "WI-03 district part, not whole county"
+    },
+    {
+      "county": "Juneau",
+      "county_fips": "55057",
+      "dem_votes": 4070,
+      "rep_votes": 6426,
+      "other_votes": 13,
+      "total_votes": 10509,
+      "geography_scope": "WI-03 district part, not whole county"
+    },
+    {
+      "county": "La Crosse",
+      "county_fips": "55063",
+      "dem_votes": 40255,
+      "rep_votes": 31054,
+      "other_votes": 0,
+      "total_votes": 71309,
+      "geography_scope": "WI-03 district part, not whole county"
+    },
+    {
+      "county": "Monroe",
+      "county_fips": "55081",
+      "dem_votes": 8116,
+      "rep_votes": 12063,
+      "other_votes": 21,
+      "total_votes": 20200,
+      "geography_scope": "WI-03 district part, not whole county"
+    },
+    {
+      "county": "Pepin",
+      "county_fips": "55091",
+      "dem_votes": 1662,
+      "rep_votes": 2651,
+      "other_votes": 0,
+      "total_votes": 4313,
+      "geography_scope": "WI-03 district part, not whole county"
+    },
+    {
+      "county": "Pierce",
+      "county_fips": "55093",
+      "dem_votes": 10613,
+      "rep_votes": 14214,
+      "other_votes": 22,
+      "total_votes": 24849,
+      "geography_scope": "WI-03 district part, not whole county"
+    },
+    {
+      "county": "Portage",
+      "county_fips": "55097",
+      "dem_votes": 22301,
+      "rep_votes": 20238,
+      "other_votes": 36,
+      "total_votes": 42575,
+      "geography_scope": "WI-03 district part, not whole county"
+    },
+    {
+      "county": "Richland",
+      "county_fips": "55103",
+      "dem_votes": 4184,
+      "rep_votes": 4865,
+      "other_votes": 9,
+      "total_votes": 9058,
+      "geography_scope": "WI-03 district part, not whole county"
+    },
+    {
+      "county": "Sauk",
+      "county_fips": "55111",
+      "dem_votes": 817,
+      "rep_votes": 1284,
+      "other_votes": 0,
+      "total_votes": 2101,
+      "geography_scope": "WI-03 district part, not whole county"
+    },
+    {
+      "county": "Trempealeau",
+      "county_fips": "55121",
+      "dem_votes": 6747,
+      "rep_votes": 8999,
+      "other_votes": 16,
+      "total_votes": 15762,
+      "geography_scope": "WI-03 district part, not whole county"
+    },
+    {
+      "county": "Vernon",
+      "county_fips": "55123",
+      "dem_votes": 7963,
+      "rep_votes": 8348,
+      "other_votes": 14,
+      "total_votes": 16325,
+      "geography_scope": "WI-03 district part, not whole county"
+    },
+    {
+      "county": "Wood",
+      "county_fips": "55141",
+      "dem_votes": 10229,
+      "rep_votes": 13976,
+      "other_votes": 16,
+      "total_votes": 24221,
+      "geography_scope": "WI-03 district part, not whole county"
+    }
+  ],
+  "district_totals": {
+    "dem_votes": 200808,
+    "rep_votes": 212064,
+    "other_votes": 309,
+    "total_votes": 413181
+  },
+  "source_url": "https://elections.wi.gov/sites/default/files/documents/County%20by%20County%20Report_US%20Congress_0.pdf",
+  "source_sha256": "3542962d2986d7ae6149c7d7de5a7708ba8e301e6f18fb51bdfb004f8982d375",
+  "method_split_reported": false,
+  "historical_release_times": false,
+  "interval_calibrated": false,
+  "map_comparability": "boundaries_unchanged_per_2026_census",
+  "map_source": "https://www.census.gov/programs-surveys/decennial-census/about/rdo/congressional-districts.html",
+  "independent_district_reconciliation": "MIT House 2024 staged candidate totals match all three party categories"
+}

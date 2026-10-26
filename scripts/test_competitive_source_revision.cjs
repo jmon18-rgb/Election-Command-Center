@@ -2,9 +2,9 @@
 const assert=require('node:assert/strict'),{create}=require('./competitive_source_revision.js');
 const clock=()=>Date.parse('2026-11-04T03:10:00Z');
 const store=()=>{const rows=new Map();return {getItem:k=>rows.get(k)||null,setItem:(k,v)=>rows.set(k,v),rows};};
-const ids={'IA-SEN':87151,'KS-SEN':87162,'TX-SEN':87438,'WI-01':87483};
+const ids={'IA-SEN':87151,'KS-SEN':87162,'TX-SEN':87438,'WI-01':87483,'WI-03':87485};
 function input(code,stamp='2026-11-04T03:00:00Z',votes=10){
- const reference=require('../data/'+({'IA-SEN':'iowa','KS-SEN':'kansas','TX-SEN':'texas','WI-01':'wisconsin_house_01'})[code]+'_county_fips_reference.json');
+ const reference=require('../data/'+({'IA-SEN':'iowa','KS-SEN':'kansas','TX-SEN':'texas','WI-01':'wisconsin_house_01','WI-03':'wisconsin_house_03'})[code]+'_county_fips_reference.json');
  return {status:votes?'VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED':'NO_REPORTED_VOTES',
   source_url:'https://civicapi.org/api/v2/race/'+ids[code],race_code:code,snapshot_updated_at:stamp,
   county_identities_matched:reference.counties.length,live_votes_accepted:votes>0,

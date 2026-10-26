@@ -86,3 +86,22 @@ assert.throws(()=>bridge.compile({...wi,baseline:{...wi.baseline,geography_scope
 const four=bridge.condition(model,basis,[...blue,wi],{...opts,now});assert.equal(four.diagnostics.used.length,4);
 assert.equal(Object.values(four.result.counts).reduce((a,b)=>a+b,0),opts.samples);
 console.log('WI-01 district-part counts -> coherent NATIONAL House/control changes before calls; not calibration');
+
+const wi3Facts=load('wisconsin_house_03_2024_county_baseline_official'),wi3Ref=load('wisconsin_house_03_county_fips_reference');
+function wi3Envelope(margin){
+ const n=wi3Facts.district_totals.dem_votes+wi3Facts.district_totals.rep_votes,shift=(margin-100*(2*wi3Facts.district_totals.dem_votes/n-1))/200;
+ const counties=wi3Facts.counties.map(c=>{const n=Math.floor((c.dem_votes+c.rep_votes)*.65),d=Math.floor(n*Math.max(.001,Math.min(.999,c.dem_votes/(c.dem_votes+c.rep_votes)+shift)));return {county:c.county,county_fips:c.county_fips,dem_votes:d,rep_votes:n-d,other_votes:0};});
+ return {baseline_year:2024,reference:wi3Ref,baseline:{race_code:'WI-03',geography_scope:'district_parts',counties:wi3Facts.counties.map(c=>({county:c.county,records:{total:c}}))},snapshot:{race_code:'WI-03',source_url:'https://civicapi.org/api/v2/race/87485',status:'VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED',live_votes_accepted:true,county_identities_matched:19,snapshot_updated_at:'2026-11-04T03:05:00Z',counties}};
+}
+const wi3=wi3Envelope(8),five=bridge.condition(model,basis,[...blue,wi,wi3],{...opts,now});
+assert.equal(five.diagnostics.used.length,5);assert.equal(five.diagnostics.house_vote_sources,2);
+assert.deepEqual(five.diagnostics.state_likelihood_sources,{IA:1,KS:1,TX:1,WI:2});
+assert(five.diagnostics.state_likelihood_max_ratio.WI<=20+1e-8,'Adding districts must not multiply one state observation-error budget to400:1');
+assert(five.diagnostics.effective_sample_size>=opts.samples*.5-1e-6);
+assert.equal(Object.values(five.result.counts).reduce((a,b)=>a+b,0),opts.samples);
+assert.deepEqual(bridge.condition(model,basis,[...blue,wi,wi3],{...opts,now}).result,five.result,'Repeated multi-district snapshots cannot accumulate confidence');
+const withdrawnDistrict=bridge.condition(model,basis,[...blue,wi],{...opts,now});assert.deepEqual(withdrawnDistrict.result,four.result,'Withdrawing one House source recomputes the state budget from current evidence');
+console.log('Two district inputs share one bounded STATE likelihood budget; five-source national probabilities remain coherent, not calibration');
+
+assert.equal(four.diagnostics.state_likelihood_budget_members.WI,2);
+assert(four.diagnostics.state_likelihood_max_ratio.WI<=Math.sqrt(20)+1e-8,'Missing/retracted second district cannot hand its fixed likelihood budget to the surviving district');

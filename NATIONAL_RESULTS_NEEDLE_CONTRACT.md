@@ -1,9 +1,9 @@
 # Experimental national results-to-outlook contract
 
 The primary product is one national Four Endings outlook. Iowa, Kansas and
-Texas Senate race panels are supporting diagnostics. WI-01 House supplies
+Texas Senate race panels are supporting diagnostics. WI-01 and WI-03 House supply
 county/district-part counts directly to this same national model with no extra
-race panel. Its official 2024 WEC canvass reconciles to MIT district totals,
+race panel. Their official 2024 WEC canvass reconciles to MIT district totals,
 Census county identifiers and the existing unchanged-2026-boundary gate. Their polling-informed
 posterior probabilities never become inputs to the national likelihood.
 
@@ -29,12 +29,15 @@ The likelihood contains no polling prior. Candidate-specific and state residuals
 remain in each existing complete national draw, alongside the declared shared
 national errors. A candidate-specific Senate surprise is therefore not copied
 uniformly into House races. House changes occur only through the existing model's
-shared-error covariance; this path supports **one House district**, not national House coverage. Three
+shared-error covariance; this path supports **two House districts in one state**, not national House coverage. Three
 Senate states and one House district remain limited national evidence and cannot
 establish a measured nationwide House swing.
 
-Each race's relative likelihood is mixed with a 5% contamination floor, bounding
-its ratio at 20:1. Combined evidence is tempered when necessary to preserve at
+Each race's relative likelihood starts with a 5% contamination floor, bounding
+its unallocated ratio at20:1. Fixed predeclared state allocations prevent multiple
+districts from multiplying one regional evidence budget; absent sources do not
+reallocate their shares (details below). Each STATE factor remains at most20:1.
+Combined evidence is tempered when necessary to preserve at
 least half the original particles' effective sample size. Deterministic systematic
 resampling selects whole original correlated election draws. Exact RNG-state
 replay uses the existing summarizer for every race, chamber, interval and ending.
@@ -62,7 +65,7 @@ not historical publication-clock replay or probability calibration.
 
 ## Evidence limits
 
-Actual Civic endpoints 87151/87162/87438 currently publish TEST DATA. HTTP success
+Actual Civic endpoints87151/87162/87438/87483/87485 currently publish TEST DATA. HTTP success
 and synthetic tests do not prove actual post-close delivery. Independent
 chronological competitive-race calibration remains unavailable. Texas's 2024
 reference is a different Senate matchup/class and a presidential turnout cycle;
@@ -87,3 +90,28 @@ independently parsed actual response and source publication time. Legitimate
 national conditioning is expected. Test/unmatched inputs changing the national
 outlook still fail. Merely requiring unchanged national odds after real results
 would incorrectly reject the feature the owner requested.
+
+## Two Wisconsin House districts share a fixed state evidence budget
+
+WI-03 adds19 verified congressional district/county parts from the SAME original
+WEC2024 canvass, independently joined to Census and reconciled to MIT House totals
+and unchanged2026 boundaries. Its exact current full source is Civic87485. The
+linked model identifies it as competitive but unpolled; it is not a safe-seat
+custom integration. It supplies counts directly, with no additional race panel.
+
+Two Wisconsin districts are one regional sample, not two independent national
+signals. The declared state budget allocates half of each House district's
+bounded COUNTS-ONLY log likelihood to the Wisconsin factor. Its combined relative
+likelihood ratio remains at most20:1. The predeclared allocation stays fixed when
+one district is absent, withdrawn or in test mode; that missing share cannot be
+handed to the surviving source. Single-source Senate states retain their prior
+weight. This conservative assumption is explicit, not fitted calibration and not
+an average of race posterior probabilities. Effective sample size still stays
+at least half of the original correlated elections. All five signals condition
+whole original draws and the same four-ending/chamber/race summarizer.
+
+Coverage now supports two House districts in ONE state and three Senate states.
+That remains limited national evidence, especially for national House inference.
+Actual post-close delivery and independent chronological calibration remain
+unproven. Keep experimental labeling, remaining-turnout uncertainty and source
+withdrawal behavior visible.
