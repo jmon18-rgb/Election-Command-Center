@@ -6,6 +6,25 @@ acceptance testing and recovery only. Stop unattended changes November 4 at noon
 
 ## Work order
 
+NY17 source preparation (October26 after17:01Z): uploaded tipping rank4,
+unchanged district boundaries, four county parts. New official historical
+contest CSV is accessible through the state-linked Civera download. Preserve
+candidate-specific fusion: Lawler Republican180924+Conservative16921=197845;
+Jones Democratic173899; Frascone Working Families7530 is a DIFFERENT candidate.
+Keep generic write-ins234/blank13917/void535 separate. Existing global staging
+records Republican line only and includes the other line/blank/void in other;
+do not silently claim it is candidate-total reconciliation or overwrite PR59.
+The new NY17 importer/reference are historical preparation only, not yet a
+national controller. Documented civicAPI87319 route has correct four identities
+and Conley/Lawler roster, but actual reply is stale October22 with zero counts.
+Independent nyenr.elections.ny.gov ordinary client AND normal Edge get403/
+Just a moment; no bypass, no usable fallback or comparative speed claim.
+Next: review/merge the original-source preparation after exact-head checks,
+then wire supported NY17 counts into the shared national path using full
+candidate totals and explicit source limits. NC01 needs new-boundary historical
+reaggregation; AZ01 needs a defensible subcounty geography rather than relaxing
+the national minimum3 reporting-unit coverage merely to fit one county.
+
 Independent PA10 timing implementation (October26 16:43Z):
 scripts/pa10_results_timeliness.py now contains published-link discovery and a
 bounded post-close server-side paired recorder; pa10_timing_provider.cjs reuses

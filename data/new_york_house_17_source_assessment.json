@@ -1,0 +1,62 @@
+{
+  "status": "SOURCE_ASSESSMENT_NOT_AN_ENABLED_NATIONAL_INPUT",
+  "race_code": "NY-17",
+  "uploaded_tipping_rank": 4,
+  "observed_at": "2026-10-26T17:06:36.664479+00:00",
+  "source_url": "https://civicapi.org/api/v2/race/87319",
+  "source_body_sha256": "34b5444b7fc4dba7596ec875da4aa0e2b7be2dba64d9e382d0bacb2f4cecead2",
+  "source_test_data": false,
+  "source_stamp": "2026-10-22T22:23:38.766Z",
+  "candidate_roster": [
+    {
+      "name": "Cait Conley",
+      "party": "Democratic"
+    },
+    {
+      "name": "Mike Lawler",
+      "party": "Republican"
+    }
+  ],
+  "regions": [
+    {
+      "name": "Dutchess",
+      "fips": "36027"
+    },
+    {
+      "name": "Putnam",
+      "fips": "36079"
+    },
+    {
+      "name": "Rockland",
+      "fips": "36087"
+    },
+    {
+      "name": "Westchester",
+      "fips": "36119"
+    }
+  ],
+  "observed_positive_candidate_counts": false,
+  "accepted_live_vote_rows": 0,
+  "independent_official_source": {
+    "url": "https://nyenr.elections.ny.gov/",
+    "ordinary_client_http": 403,
+    "normal_edge_http": 403,
+    "normal_edge_title": "Just a moment...",
+    "usable_feed": false,
+    "no_challenge_bypass_attempted": true
+  },
+  "historical_source": {
+    "official_contest_url": "https://results.elections.ny.gov/contest/5615",
+    "download_url": "https://ny.elstats.civera.com/api/download_contest/5615_table.csv?split_party=true",
+    "observed_download_redirect": "https://ny.elstats3.civera.com/api/download_contest/5615_table.csv?split_party=true",
+    "source_sha256": "be103b259252234331fd99c0f4f9d6b098d456f9a6242a4cb60e240384ce7a0f"
+  },
+  "national_controller_enabled": false,
+  "comparative_publication_lag": "UNPROVEN",
+  "limitations": [
+    "civicAPI actual response is stale with zero counts; no post-close delivery evidence",
+    "Independent official election-night page access challenge prevents claiming a usable fallback",
+    "Official historical export fixes same-candidate fusion for this baseline only; global staging and queued PR59 preserved",
+    "No new national source, forecast or calibration enabled"
+  ]
+}

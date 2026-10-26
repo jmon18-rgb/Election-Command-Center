@@ -1,5 +1,39 @@
 # Readiness progress
 
+## October26 after17:01Z - NY17 official county input and fusion discrepancy
+
+- No overlap: inspected open PRs (only paused celebration426 and older queued
+  branches, including fusion-history59); verified latest main Pages success.
+  Work is on readiness/new-york-independent-source, preserving queued work.
+- Prioritization uses uploaded tipping rank4/NY17 and the previously captured
+  linked polling competitiveness. Project geography bridge marks NC01 redrawn,
+  so its old county totals cannot be reused without reaggregation. NY17 has
+  unchanged boundaries and four independently matched Census county parts.
+- Actual official historical contest CSV download succeeds via the explicitly
+  state-linked Civera endpoint (observed redirect to ny.elstats3.civera.com),
+  446 original bytes/SHA256be103b259252234331fd99c0f4f9d6b098d456f9a6242a4cb60e240384ce7a0f.
+  https://results.elections.ny.gov/contest/5615
+  https://ny.elstats.civera.com/api/download_contest/5615_table.csv?split_party=true
+- Important full-candidate correction in the NEW county baseline: Lawler's
+  Republican180924 plus Conservative16921 equals197845. Jones Democratic173899;
+  Working Families7530 is Anthony Frascone, not Jones. Generic write-ins234,
+  blanks13917 and voids535 are separate. Each of8 source columns reconciles
+  across4 county parts to the district row. Complete Census62/map checks pass.
+  Existing MIT staging Republican180924/other39137 is fully explained by party
+  lines plus blank/void fields; no global staging/prior changes or PR59 overwrite.
+- Source readiness assessment preserves metadata only: documented actual full
+  civicAPI87319 has NY17/General/Conley-Lawler/4 exact county identities,
+  test_data=false, October22 source stamp and ZERO counts. Not live evidence.
+  Independent official nyenr.elections.ny.gov returns403 in both the ordinary
+  identified client and a normal Edge browser (Just a moment). Search-indexed
+  official page text is not usable production access. No challenge bypass.
+- Six local original-source/parser/fusion tests and exact offline reproduction
+  pass. New baseline/importer/reference/assessment are preparation only; no new
+  national controller, forecasting coverage, timely delivery or calibration is
+  claimed. Next: exact-head CI, tested merge and published-byte verification,
+  then shared national integration with full candidate totals. Independent
+  source access and real matched batch timing remain separate unsolved gaps.
+
 ## October26 16:59Z - independent PA10 timing recorder merged and published
 
 - PR460 exact final head f09db811e283936a87dfa8846c49f2264ad09468 passes
