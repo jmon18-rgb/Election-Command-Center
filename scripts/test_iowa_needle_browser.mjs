@@ -92,7 +92,7 @@ try{
   assert.equal(await page.evaluate(()=>Boolean(window.enIowaPilotController.status().projection)),false,
    'Late2026 response cannot publish a live probability into the2024 archive');
   await page.locator('#enMode2026').click();scenario='live-d';
-  await page.clock.setSystemTime(new Date('2026-11-04T03:07:55Z'));
+  await page.clock.setSystemTime(new Date('2026-11-04T03:07:50Z'));
   await host.locator('[data-iowa="refresh"]').click();
   await page.waitForFunction(()=>Boolean(window.enIowaPilotController.status().projection));
   const beforePreview=await page.locator('#enCoverageReconciliation').textContent();
