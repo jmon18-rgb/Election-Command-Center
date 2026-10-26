@@ -30,6 +30,9 @@ rejects(d=>d.election.isPrimary=true,/election/);
 rejects(d=>d.election.isTest=true,/test data/);
 rejects(d=>d.election.electionDate='2024-11-05',/election/);
 rejects(d=>d.election.asOf='2026-11-04T01:00:00Z',/stale|pre-close/);
+rejects(d=>{d.election.asOf='2026-11-04T03:59:00Z';d.election.publishDate='2026-11-04T03:59:01Z';},/pre-close/);
+assert.throws(()=>api.parse(fixture,ref,{now:Date.parse('2026-11-04T03:59:00Z')}),/pre-close/,
+ 'A near-future source timestamp cannot admit votes before Washington polls close');
 rejects(d=>d.election.asOf='2026-11-05T04:00:00Z',/future/);
 rejects(d=>d.election.publishDate='2026-11-04T04:00:00Z',/precedes/);
 rejects(d=>d.ballotItemWithBreakdown.id='wrong-office',/contest/);
