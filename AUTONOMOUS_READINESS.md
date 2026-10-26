@@ -18,6 +18,14 @@ comparisons and usable independent fallbacks alongside national breadth. More
 races on the same provider alone do not establish timely delivery. Preserve
 source admission, shared concurrency/backoff and experimental model safeguards.
 
+PR457 now deploys the scoped deadline scheduler (15s active post-close target,
+10min pre-close, existing minute fallback) and records HTTP request/body timing.
+Actual published synthetic-browser tests exercise automatic national updating;
+actual five-source TEST responses remain excluded. This does not settle provider
+freshness or comparative publication lag. See the latest readiness-progress.md
+for current revision, independent fallback limits and the new original Kalamazoo
+2024 county sample corroborating the processed MI-04 historical candidate.
+
 
 LATEST HUMAN CLARIFICATION (October 26): the primary deliverable is the
 NATIONAL NYT-style results-informed Blue Wave / Blue Tsunami outlook. Individual
