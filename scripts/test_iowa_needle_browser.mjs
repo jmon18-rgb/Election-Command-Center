@@ -63,6 +63,7 @@ try{
   const first=await page.evaluate(()=>window.enIowaPilotController.status().projection.dem_win_probability);
   assert.match(await host.locator('[data-iowa="state"]').textContent(),/source-validated returns/);
   assert.match(await host.locator('[data-iowa="votes"]').textContent(),/99\/99 counties/);
+  assert.match(await host.locator('[data-iowa="remaining"]').textContent(),/turnout scenario range/);
   scenario='same-clock';await page.clock.setSystemTime(new Date('2026-11-04T03:06:30Z'));
   await host.locator('[data-iowa="refresh"]').click();
   await page.waitForFunction(()=>document.querySelector('#enIowaRaceNeedle [data-iowa="state"]')?.textContent.includes('requires a newer'));

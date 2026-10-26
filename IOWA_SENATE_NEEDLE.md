@@ -144,6 +144,20 @@ the 2026 Senate pilot. The evaluator binds the first-use label to that exact blo
 Reproduce with `python scripts/build_iowa_governor_close_cohort.py --check` and
 `node scripts/evaluate_iowa_governor_close_cohort.cjs`.
 
+The remaining-vote output now includes a conditional-turnout scenario range,
+displayed beside the point estimate. Its low/high scenarios use a shared statewide
+turnout rank, so 99 counties cannot manufacture falsely independent precision.
+County turnout is conditioned on counted votes as a lower bound. Exceeding the
+historical expectation still leaves a positive modeled remainder; it cannot
+certify completion. These 5th/95th scenarios are declared, not calibrated bands.
+
+The actual remaining two-party count falls inside this range in 14/16 reused
+2022 Senate scenarios, 16/16 reused 2016 Senate scenarios and 16/16 separate 2018
+governor scenarios. No turnout parameter changed after those results. Adding the
+range leaves all 16 previously frozen close-election probabilities and projected
+margins exactly unchanged. The evaluator conservatively marks the changed source
+as having seen the outcome rather than inheriting its old first-use designation.
+
 The follow-up robust-swing correction uses a declared 85%/10%/5% Gaussian prior
 mixture with one/two/four times the polling sigma. Marginal evidence updates both
 the swing component and unseen method-order weights. This permits coherent large

@@ -2,6 +2,16 @@
 
 ## October 25 - separate close-election forecasting check
 
+- Follow-up explicitly estimates remaining two-party vote uncertainty, not only
+  a point count: conditional historical-turnout low/high scenarios with shared
+  statewide rank. Show the range beside the live/preview point estimate. Counts
+  above historical turnout cannot imply zero outstanding ballots or completion.
+- Remaining-vote range contains the true remainder14/16 in 2022,16/16 in 2016
+  and16/16 in the separate close 2018 cohort. These are correlated assumed-order
+  experiments, not calibration. All16 frozen close-election probabilities and
+  margin predictions remain exactly unchanged by adding the range. Current
+  predictor source blob576d23318dfb; no parameter tuning followed these results.
+
 - Reproduced official 2010/2018 Iowa governor data, all 99 county D/R totals and
   2018 county/method/state arithmetic. The close outcome is R+2.80. Historical
   2010 ballot-total discrepancies in Dallas/Henry are excluded rather than
