@@ -1,0 +1,18 @@
+{
+  "schema": "official-wa03-collection-v1",
+  "source_url": "https://results.votewa.gov/results/public/api/elections/washington/20261103/data/ballot-item/54c40000-9064-bbec-4779-08df15c0a82a",
+  "fetched_at": "2026-10-26T20:52:33.900Z",
+  "status": "SOURCE_UNAVAILABLE",
+  "payload": null,
+  "may_move_national_needle": false,
+  "timing_scope": "request-to-body only, not source availability or comparative publication lag",
+  "http_status": 200,
+  "cache_control": "public, max-age=60",
+  "request_to_body_ms": 640,
+  "original_response_sha256": "e0b44622bde8b57a870b81440f7527d0fb6685075d8ef07514e4b4d1011da2c5",
+  "observed_source_stamp": "2026-10-22T15:55:34.6947355Z",
+  "source_test_data": false,
+  "observed_positive_candidate_counts": false,
+  "error": "Pre-election transport health check; no votes admitted",
+  "revision_watermark": null
+}
