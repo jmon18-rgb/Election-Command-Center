@@ -21,6 +21,8 @@
   const get=k=>host.querySelector('[data-tx="'+k+'"]'),number=n=>Math.round(n).toLocaleString('en-US');
   const margin=n=>(n>=0?'D +':'R +')+Math.abs(n).toFixed(1);
   let evidence=null,candidateEvidence=null,evidenceKey="";
+  let ticker=null,fallbackTimer=null;
+  const cadence=()=>root.CompetitiveSourceCadence?.intervalMs?.('TX-SEN')??(Date.now()<Date.parse('2026-11-03T05:00:00Z')?600000:60000);
   function render(){
    evidence=projection?candidateEvidence:null;
    const nextKey=evidence?JSON.stringify(evidence.snapshot):"";
@@ -42,7 +44,7 @@
    if(lastAccepted&&Date.now()-lastAccepted.time>180*60000){projection=null;phase='Texas source snapshot is stale';render();}
    if(lastGeneration!==null&&lastGeneration!==generation){projection=null;phase='Provider outage · recheck required';render();}
    if(!isActive()){projection=null;phase='Select 2026 Results to check Texas';render();return false;}
-   if(busy||Date.now()-lastAttempt<(force?5000:Date.now()<Date.parse('2026-11-03T05:00:00Z')?600000:60000))return false;
+   if(busy||Date.now()-lastAttempt<(force?5000:cadence()))return false;
    busy=true;lastAttempt=Date.now();phase='Checking Texas county source';render();
    try{
     if(!inputs){
@@ -76,10 +78,11 @@
     candidateEvidence={baseline:inputs.baseline,reference:inputs.reference,baseline_year:2024,snapshot:parsed};
     phase='2026 source-validated returns · experimental Texas forecast';onValidated();return true;
    }catch(error){projection=null;phase='Texas source unavailable · '+error.message;return false;}
-   finally{busy=false;render();}
+   finally{busy=false;render();ticker?.reschedule();}
   }
-  get('refresh').addEventListener('click',()=>tick(true));const timer=setInterval(()=>tick(),60000);render();
-  return Object.freeze({tick,status:()=>({projection,phase,busy,evidence,evidenceKey}),destroy:()=>clearInterval(timer)});
+  get('refresh').addEventListener('click',()=>tick(true));ticker=root.CompetitiveSourceCadence?.createTicker?.({code:'TX-SEN',tick,lastAttempt:()=>lastAttempt,isActive:()=>isActive()&&!busy&&root.document?.hidden!==true});
+  if(!ticker)fallbackTimer=setInterval(()=>tick(),60000);render();
+  return Object.freeze({tick,status:()=>({projection,phase,busy,evidence,evidenceKey,automatic_poll_interval_ms:cadence()}),destroy:()=>{ticker?.destroy();if(fallbackTimer!==null)clearInterval(fallbackTimer);}});
  }
  root.TexasNeedleView=Object.freeze({create});
 })(window);

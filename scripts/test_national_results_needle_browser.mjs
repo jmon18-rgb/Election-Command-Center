@@ -44,6 +44,13 @@ try{
   const baseline=await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities));
   async function update(next,minute){mode=next;stamp='2026-11-04T03:'+minute+':00Z';await page.clock.setSystemTime(new Date(stamp));
    await page.evaluate(async()=>{await Promise.all([enIowaPilotController.tick(true),enKansasPilotController.tick(true),enTexasPilotController.tick(true),enWisconsinHouseController.tick(true),enWisconsinHouse03Controller.tick(true)]);jointRender(true);});}
+  // No controller.tick(), manual refresh, or jointRender(): the actual page's
+  // automatic source scheduler must carry changed returns into the national UI.
+  mode='blue';stamp='2026-11-04T03:05:15Z';
+  await page.clock.runFor(16000);
+  await page.waitForFunction(()=>jointLastResult?.county_results_update?.used.length===5);
+  assert.notEqual(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),baseline,'Automatic polling moves the national outlook before calls');
+  assert.deepEqual(await page.evaluate(()=>[enIowaPilotController,enKansasPilotController,enTexasPilotController,enWisconsinHouseController,enWisconsinHouse03Controller].map(c=>c.status().automatic_poll_interval_ms)),[15000,15000,15000,15000,15000]);
   await update('house-blue','08');
   const houseOnly=await page.evaluate(()=>({used:jointLastResult.county_results_update?.used.map(e=>e.code),p:jointLastResult.probabilities,h:jointLastResult.house_dem_control_pct,old:jointPulseBaseline.house_dem_control_pct}));
   assert.deepEqual(houseOnly.used,['WI-01'],'A real-shaped competitive House input alone reaches the NATIONAL model');
@@ -93,4 +100,22 @@ try{
   console.log(width+'px NATIONAL: before-call movement, correction, withdrawal, outage, test exclusion, prior isolation and isolated rehearsal PASS');
   await context.close();
  }
+ // Optional cadence asset outage must retain the existing source path.
+ const fallback=await browser.newContext(),fallbackPage=await fallback.newPage(),fallbackErrors=[];
+ fallbackPage.on('pageerror',e=>fallbackErrors.push(e.message));
+ await fallbackPage.clock.install({time:new Date('2026-11-04T03:05:00Z')});
+ await fallbackPage.route('**/*',route=>{
+  const url=new URL(route.request().url());
+  if(url.pathname.endsWith('/competitive_source_cadence.js'))return route.abort();
+  if(url.hostname==='127.0.0.1')return route.continue();
+  const id=+url.pathname.split('/').pop();
+  if(!roster[id]||url.origin!=='https://civicapi.org')return route.abort();
+  return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(packet(id,8,'2026-11-04T03:05:00Z',true))});
+ });
+ await fallbackPage.goto(`http://127.0.0.1:${server.address().port}/`,{waitUntil:'domcontentloaded'});
+ await fallbackPage.locator('[data-page="electionNight"]').click();await fallbackPage.locator('#enMode2026').click();
+ await fallbackPage.waitForFunction(()=>[enIowaPilotController,enKansasPilotController,enTexasPilotController,enWisconsinHouseController,enWisconsinHouse03Controller].every(c=>c.status().phase.includes('TEST DATA'))&&jointLastResult?.probabilities);
+ assert.deepEqual(await fallbackPage.evaluate(()=>[enIowaPilotController,enKansasPilotController,enTexasPilotController,enWisconsinHouseController,enWisconsinHouse03Controller].map(c=>c.status().automatic_poll_interval_ms)),[60000,60000,60000,60000,60000]);
+ assert.deepEqual(fallbackErrors,[]);await fallback.close();
+ console.log('Missing cadence helper: five-source safety and national baseline remain functional with 60s fallback PASS');
 }finally{await browser?.close();await new Promise(ok=>server.close(ok));}

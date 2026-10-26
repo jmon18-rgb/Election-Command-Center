@@ -1,5 +1,33 @@
 # Readiness progress
 
+## October 26 - competitive-source timeliness implementation under review
+
+- Directly address owner concern about publication lag: implement deadline-based
+  automatic15s polling for the five national county inputs after their local
+  earliest poll close through November4 noon ET. Pre-close10min, afterward60s;
+  inactive/hidden/preview/busy sources pause. Shared four-request concurrency,
+  queue reserves, breaker and manual5s spacing unchanged. Not deployed yet.
+- Deterministic scheduler tests pass: close boundary,20 regular automatic starts
+  per minute across five sources, inactive pause/resume without catch-up bursts,
+  manual spacing and destroy. Actual Edge1366/390 synthetic browser test passes
+  automatic15s source-to-national movement WITHOUT manual tick/jointRender, plus
+  existing correction/retraction/expiry/rehearsal cases. Not real live evidence.
+- Actual probe now records HTTP request-start-to-body duration and nominal
+  controller polling policy; comparative publication lag explicitly UNPROVEN.
+  All five last published actual feeds still TEST; no independent matched real
+  batch benchmark or proven independent fallback. These are remaining gaps.
+- Actual fixture-free local-candidate probe14:32:08Z receives all five HTTP200
+  with exact99/105/254/5/19 identities, all TEST excluded, no page errors or raw
+  archives; national unchanged. Request-to-body milliseconds recorded separately
+  from still-unproven publication lag. Initial restricted-network attempt was
+  unavailable; authorized actual-network rerun succeeded.
+- Source-priority audit against uploaded1Ixth.csv: House tipping rank WI03=9,
+  MI04=19, WI01=42. Existing IA/KS/TX Senate in supplied watch material. Provider
+  FAQ5-10s claim does not establish observed freshness/SLA/publication parity.
+- Open PRs inspected; celebration426 and older queued branches preserved. Main
+  Pages40335182073 success confirmed. Continue current-head CI and actual-source
+  candidate checks before merge; never call this cadence work deployed early.
+
 ## October 26 14:07Z - WI-03 national input deployed; fixed state budget verified
 
 - PR456 merged72323c37 after all33 applicable current-head workflows pass at

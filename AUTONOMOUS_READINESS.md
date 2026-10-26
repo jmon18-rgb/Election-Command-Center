@@ -6,6 +6,19 @@ acceptance testing and recovery only. Stop unattended changes November 4 at noon
 
 ## Work order
 
+LATEST HUMAN CONCERN (October 26): competitive source selection must be checked
+against the uploaded Silver material, and source speed must be demonstrated.
+The uploaded House tipping-point order places WI-03 ninth, MI-04 nineteenth and
+WI-01 forty-second; pilot feasibility is not equivalent to top-ranked importance.
+The civicAPI FAQ's 5-10 second active-election claim is a provider statement, not
+an independently measured advantage over publications or a verified SLA. All five
+currently connected full feeds remain TEST DATA. Prioritize reducing our own
+polling delay, measuring actual request timing, independently matched real batch
+comparisons and usable independent fallbacks alongside national breadth. More
+races on the same provider alone do not establish timely delivery. Preserve
+source admission, shared concurrency/backoff and experimental model safeguards.
+
+
 LATEST HUMAN CLARIFICATION (October 26): the primary deliverable is the
 NATIONAL NYT-style results-informed Blue Wave / Blue Tsunami outlook. Individual
 Iowa/Kansas/Texas race needles are supporting inputs and diagnostics. Their

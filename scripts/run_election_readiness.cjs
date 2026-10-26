@@ -11,6 +11,7 @@ const checks = [
   ['Second competitive House district-part source contract', 'test_wisconsin_house_03_county_source.cjs'],
   ['Competitive House district-part source contract', 'test_wisconsin_house_county_source.cjs'],
   ['Actual source/national-update report safeguards', 'test_competitive_live_source_report.cjs'],
+  ['Competitive source polling deadlines and active-tab budget', 'test_competitive_source_cadence.cjs'],
   ['National county-return likelihood and coherent joint updates', 'test_national_county_likelihood.cjs'],
   ['Iowa competitive-race remaining-vote model', 'test_iowa_senate_partial_forecast.cjs'],
   ['Iowa full county-source input adapter', 'test_iowa_civic_county_source.cjs'],
