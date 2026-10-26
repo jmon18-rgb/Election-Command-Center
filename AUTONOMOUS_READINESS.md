@@ -11,7 +11,10 @@ scripts/pa10_results_timeliness.py now contains published-link discovery and a
 bounded post-close server-side paired recorder; pa10_timing_provider.cjs reuses
 the production PA10 source validator. Seven synthetic tests pass locally.
 The real county menu still has no2026 general link (HTTP200, Age1951), so the
-watch must remain gated; never guess a future election key. CI/merge pending.
+watch must remain gated; never guess a future election key. PR460 final f09db811
+passes all4 applicable workflows/6 check jobs (one additional nonapplicable
+deployment skip), merged a940cea9. Pages40364154987 succeeds; actual80 existing
+files plus3 recorder files match published bytes. Workflow397307200 is active.
 Initial/recurrent/unmatched D/R vectors cannot prove freshness. Receipt windows
 include caching/sampling/transport; never present as publisher-origin latency or
 AP/NYT parity. This capture-only path must not duplicate national likelihoods.

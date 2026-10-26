@@ -1,5 +1,37 @@
 # Readiness progress
 
+## October26 16:59Z - independent PA10 timing recorder merged and published
+
+- PR460 exact final head f09db811e283936a87dfa8846c49f2264ad09468 passes
+  all4 applicable workflows. All7 exact-head check jobs inspected:6success,
+  one expected nonapplicable deployment skip; no external statuses. PR head
+  matched, mergeable clean, no bypass. Merge a940cea970d6b89ef5c3e10fbb183478c1146316.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/460
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40362630410
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40362630568
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40362630213
+- Pages40364154987 succeeds. Actual16:59:40Z comparison matches all80 existing
+  published files against merged origin/main; separate actual GETs match all3
+  new recorder/parser/test files exactly. GitHub workflow registration checked
+  via ordinary public API: workflow397307200 active, exact expected path.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40364154987
+- Real pre-close --watch16:47:16Z returns the same county-menu hash as16:43,
+  HTTP200/Age2180, INDEPENDENT_GENERAL_NOT_PUBLISHED, zero observations/matches.
+  No provider vote requests or live archives. Seven synthetic tests and all31
+  existing core readiness checks pass locally; CI source/core/browser checks pass.
+- Recorder is ready, comparative moving-vote timing is still UNPROVEN. It is
+  capture-only, not an independent forecasting fallback or additional national
+  coverage. County publisher clock uses an explicit Pennsylvania Nov3/4 UTC-05
+  profile; the page does not declare UTC. Comparison brackets are observations,
+  not bounds on origin availability, and not AP/NYT publication parity.
+- Next: inspect discovery reports when a legitimate2026 general link appears,
+  validate actual schema before post-close activation, and obtain matched moving
+  D/R batches. Continue pivotal House source/remaining-vote coverage (uploaded
+  priorities NC01/NY17/AZ01) where permitted real data can feed the national
+  path; do not circle blocked archives or add unrelated generic monitoring.
+  Existing national coverage remains7 inputs/4 House districts/3 House states,
+  limited and experimental; no real post-close predictive calibration claimed.
+
 ## October26 16:43Z - independent PA10 timing recorder implemented, not yet deployed
 
 - Branch readiness/independent-timing adds ordinary public county-menu discovery,
