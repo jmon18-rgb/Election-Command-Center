@@ -1,5 +1,41 @@
 # Readiness progress
 
+## October 25 - first Iowa remaining-vote forecasting implementation
+
+- SOURCE BREAKTHROUGH at 02:11:50Z: full civicAPI Iowa race 87151 returns all
+  99 county candidate records with FIPS. The existing light response omits them.
+  Actual Edge cross-origin transport from the deployed site's origin succeeds;
+  all 99 identities independently match the Census 2024 county Gazetteer.
+- Implemented the full-source parser with exact race/candidate/time identity and
+  county/state vote reconciliation. Real current payload is test_data=true and
+  the adapter rejects every value as live input (zero county vote rows accepted).
+  Evidence: data/iowa_civic_county_source_evidence.json. This is a source discovery
+  and input-contract milestone, not proof of post-close delivery or calibration.
+- The feed combines voting methods. Next concrete code task: combined-county
+  observation bridge with explicit remaining-method-mix uncertainty, followed by
+  the updating visible race needle. Do not fabricate a method split or treat
+  precinct reporting percentages as ballot completion.
+
+- Added real official 2020 and 2022 Senate county/method data: 99 counties and
+  198 Election Day/Absentee cells per year. Every county/method sum reconciles
+  to the published statewide canvass. No historical or absentee-return figures
+  become 2026 counted votes. Reproducible excerpts/build script are committed.
+- Implemented the first actual remaining-vote estimator: fixed observed votes,
+  county/method patterns, polling prior, completed-unit swing learning, adaptive
+  method turnout and correlated uncertainty, producing a race win probability.
+  Incomplete turnout overruns withhold probability; national updates stay disabled.
+- Real 2022 votes under four explicitly assumed release orders produce 4.56-point
+  partial margin MAE versus 19.89 for raw counted share. Nominal 90% intervals cover
+  only 13/16 partial cases: NOT calibrated, not a true reporting-order replay, and
+  not production activation. Independent evaluation/uncertainty work remains.
+- Actual blocker: Iowa's official live-results portal returned CloudFront HTTP
+  403 from ordinary Edge on October 26. Open America exposes statewide totals,
+  not county/method inputs. The 2026 general count export is not linked yet.
+  No challenge bypass or invented endpoint. See IOWA_SENATE_NEEDLE.md.
+- Reproduction plus all 15 current-branch core checks pass. Next: permitted county
+  input transport/adapter, independent historical evaluation, then visible race
+  needle integration. No more safe-seat catalog, alert or layout expansion.
+
 ## Current owner steering — core reliability first
 
 SUPERSEDED by latest owner steering: close-race LIVE DATA -> predictive needle

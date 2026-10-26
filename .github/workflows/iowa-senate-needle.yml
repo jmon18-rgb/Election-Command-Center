@@ -1,0 +1,34 @@
+name: Iowa Senate partial-return forecasting prototype
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'data/iowa_*'
+      - 'scripts/*iowa_senate*'
+      - 'scripts/*iowa_civic*'
+      - '.github/workflows/iowa-senate-needle.yml'
+permissions:
+  contents: read
+jobs:
+  historical-model:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce actual official county and voting-method totals
+        run: python3 scripts/build_iowa_senate_county_modes.py --check
+      - name: Forecast remaining vote and evaluate explicit release-order scenarios
+        run: |
+          node scripts/test_iowa_senate_partial_forecast.cjs
+          node scripts/test_iowa_civic_county_source.cjs
+          node scripts/evaluate_iowa_senate_partial_forecast.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: iowa-historical-vote-scenarios-not-live-calibration
+          path: artifacts/readiness/iowa/historical-scenario-evaluation.json
+          if-no-files-found: error
