@@ -1,5 +1,28 @@
 # Readiness progress
 
+## October26 23:26Z — actual close-Senate feasibility separates MEmunicipal from AKstate-only
+
+- Existing approved civic routesME87188/AK86916 inspected in ordinary deployed-site
+  browser CORS, both200/non-test/stalezero/round1. Python403 is not browserfailure.
+  Saved originalresponses and hashes, no fixtures or actualpositiveforecast claim.
+- ME has municipalTownship rows (not16counties), Collins220470/Jackson220471.
+  Exact independently verified ballot and same-round municipalhistorical baseline
+  required. OfficialSOS RCV/sample-ballot page403 in ordinaryEdge too; don't retry
+  unchanged or silently replace with searchsnippet candidates. RCVround1 not final.
+- AK exposes only1State row and6candidates including multipleRepublicans and two
+  distinctSullivans; insufficientregionalremaining-vote evidence and no independent
+  finalballot/transfer contract. Do NOT sum allRepublican primary-looking names or
+  treat state totals as a geographical partial-return forecast. NoAKcustomadapter
+  work until source supplies supportedresolution/identity.
+- data/close_senate_source_assessment.json records exactrows/types/IDs/blockers;
+  actualzero/noenable assertionspass. Existing statewide results adapters remain
+  intact; no additional nationalinput or customracepanel enabled.
+- NEXT: ME official sample ballot via an independently linked municipalgovernment
+  posting, then permitted municipalhistory/same-round baseline. Existing broad
+  provider remains fallback. Do not divert back into optionalAZgeography while
+  primarySenatecontract remains unresolved. Allcurrentmaincheckshealthy.
+
+
 ## October26 23:11Z — owner approved narrower predictive scope and national co-movement assumption
 
 - Latest HUMAN instruction supersedes broader expansion: custom predictive work
