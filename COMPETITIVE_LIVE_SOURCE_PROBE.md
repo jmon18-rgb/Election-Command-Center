@@ -1,6 +1,6 @@
 # Actual competitive-source probe
 
-This separate workflow checks the Iowa, Kansas, Texas Senate and WI-01/WI-03 House source-to-national-needle
+This separate workflow checks the Iowa, Kansas, Texas Senate and WI-01/WI-03/MI-04 House source-to-national-needle
 paths with actual public provider responses. It never fulfills those requests
 with fixtures and never changes the browser clock. Unrelated provider requests
 are blocked, so this is an isolated county-path check, not a full nationwide load
@@ -20,7 +20,7 @@ Report states:
 - `LIVE_DELIVERY_UNPROVEN`: expected test mode, missing/unavailable source, no
   genuine post-close counts or another unmet delivery requirement. A passing
   safety check in this state is **not** live-source or calibration acceptance.
-- `LIVE_INPUT_FORECAST_OBSERVED_NOT_CALIBRATED`: all five real feeds produced
+- `LIVE_INPUT_FORECAST_OBSERVED_NOT_CALIBRATED`: all six real feeds produced
   validated positive post-close inputs and corresponding race forecasts. This
   proves the observed input path, not forecasting accuracy or calibrated odds.
 - `SOURCE_AVAILABILITY_REVIEW_REQUIRED`: a feed still lacks usable current input
@@ -55,11 +55,11 @@ its synthetic inputs never become actual-source reports.
 
 ## Timeliness acceptance
 
-The dashboard targets 15-second automatic full-route intervals for these five
+The dashboard targets 15-second automatic full-route intervals for these six
 sources after each race's earliest poll close through November 4 noon Eastern.
 Before close it uses ten minutes; afterward it returns to one minute. Hidden or
 inactive tabs pause automatic requests; preview and busy controllers cannot
-launch overlapping requests. Five sources imply at most twenty regular automatic
+launch overlapping requests. Six sources imply at most twenty-four regular automatic
 starts per minute under this policy, apart from explicit manual refreshes.
 Shared concurrency, request queue, breaker and backoff still apply. Browser sleep,
 network time, queueing and source availability can all increase observed delay.
@@ -73,8 +73,16 @@ may advance without votes changing. Neither a fast request nor source timestamp
 age measures lag behind another publication. Comparative publication lag remains
 UNPROVEN_REQUIRES_INDEPENDENT_MATCHED_REAL_BATCHES until independently observed
 identical real county/candidate/count batches can be paired with receipt clocks.
-No such comparative capture currently exists. All five latest real responses are
-TEST DATA, so real post-close timeliness and independent fallback delivery remain
+No such comparative capture currently exists. Earlier five-source responses were TEST DATA; the15:14Z six-source candidate
+responses have test mode cleared but stale October timestamps and remain rejected, so real post-close timeliness and independent fallback delivery remain
 open acceptance gaps. civicAPI's FAQ describes 5-10 second active updates; this is
 a provider claim, not a measured latency promise. A candidate probe uses a local
 page with actual upstream requests; it is explicitly not deployed acceptance.
+
+
+The six-source probe also records response Age, Cache-Control, Date and ETag
+without treating them as batch timestamps. At15:14Z all six HTTP200 responses
+advertise public,max-age15,stale-while-revalidate30; Age/ETag are absent. This
+policy is neither proof that a stale response was served nor a measured maximum
+lag behind publications. Actual-source flags and timestamps can change between
+runs: report the current observation, not a permanently pinned TEST state.

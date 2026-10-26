@@ -115,3 +115,24 @@ That remains limited national evidence, especially for national House inference.
 Actual post-close delivery and independent chronological calibration remain
 unproven. Keep experimental labeling, remaining-turnout uncertainty and source
 withdrawal behavior visible.
+
+
+## Michigan04 and limited House breadth
+
+MI-04 adds six congressional district/county parts through the SAME counts-only
+likelihood and correlated election replay, not a race posterior or a new panel.
+The historical baseline is explicitly PROCESSED OpenElections2024 data, with exact
+D/R/named-other district reconciliation, independent Census identifiers, unchanged
+2026 map, and an original official Kalamazoo county sample. Only Kalamazoo is
+independently county-sample-corroborated; do not label all six original government
+bytes. Generic write-ins and metadata ballot/under/over-vote rows are excluded
+from named candidate totals and never become inferred remaining ballots.
+
+The supported path now has three House districts in TWO states (WI and MI), plus
+IA/KS/TX Senate. Wisconsin's predeclared two-district budget stays fixed; MI has
+its own single state budget. Every state remains bounded20:1, followed by the
+existing half-sample ESS floor. Cross-state independence/transfer is an explicit
+experimental model assumption, not learned national calibration. Withdrawing MI
+returns exactly the old five-source result. Plain polling-only simulations keep
+the same numerical path and owner outcome thresholds. Tests/rehearsal show
+national movement before calls, not real2026 delivery or publication timeliness.

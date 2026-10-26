@@ -1,0 +1,97 @@
+{
+  "status": "PROCESSED_2024_DISTRICT_PART_BASELINE_NOT_LIVE_OR_CALIBRATION",
+  "race_code": "MI-04",
+  "office": "U.S. House",
+  "election_date": "2024-11-05",
+  "county_count": 6,
+  "counties": [
+    {
+      "county": "Allegan",
+      "county_fips": "26005",
+      "dem_votes": 23046,
+      "rep_votes": 46652,
+      "named_other_votes": 1104,
+      "generic_write_in_votes": 95,
+      "geography_scope": "MI-04 district part, not whole county"
+    },
+    {
+      "county": "Berrien",
+      "county_fips": "26021",
+      "dem_votes": 15436,
+      "rep_votes": 14726,
+      "named_other_votes": 497,
+      "generic_write_in_votes": 75,
+      "geography_scope": "MI-04 district part, not whole county"
+    },
+    {
+      "county": "Calhoun",
+      "county_fips": "26025",
+      "dem_votes": 18158,
+      "rep_votes": 21865,
+      "named_other_votes": 927,
+      "generic_write_in_votes": 96,
+      "geography_scope": "MI-04 district part, not whole county"
+    },
+    {
+      "county": "Kalamazoo",
+      "county_fips": "26077",
+      "dem_votes": 74956,
+      "rep_votes": 54628,
+      "named_other_votes": 2103,
+      "generic_write_in_votes": 262,
+      "geography_scope": "MI-04 district part, not whole county"
+    },
+    {
+      "county": "Ottawa",
+      "county_fips": "26139",
+      "dem_votes": 37295,
+      "rep_votes": 72859,
+      "named_other_votes": 1278,
+      "generic_write_in_votes": 0,
+      "geography_scope": "MI-04 district part, not whole county"
+    },
+    {
+      "county": "Van Buren",
+      "county_fips": "26159",
+      "dem_votes": 15750,
+      "rep_votes": 23759,
+      "named_other_votes": 778,
+      "generic_write_in_votes": 69,
+      "geography_scope": "MI-04 district part, not whole county"
+    }
+  ],
+  "district_totals": {
+    "dem_votes": 184641,
+    "rep_votes": 234489,
+    "named_other_votes": 6687,
+    "generic_write_in_votes": 597
+  },
+  "source_type": "OpenElections preprocessed public precinct data; not original government bytes",
+  "source_url": "https://raw.githubusercontent.com/openelections/openelections-data-mi/master/2024/20241105__mi__general__precinct.csv",
+  "source_sha256": "654a7dbf7a86a96c52cb182ba4472565b62d5aa76533238228fc3065c7d447fb",
+  "source_git_blob": "f0a1eab82fab6107e28fedda0167309ba65ab44a",
+  "publisher_use_statement": "https://openelections.net/about/",
+  "publisher_use_scope": "Publisher says data remains free to anyone and is intended for web applications; no named state-repository license, no CC0 claim",
+  "method_split_reported": false,
+  "historical_release_times": false,
+  "interval_calibrated": false,
+  "map_comparability": "boundaries_unchanged_per_2026_census",
+  "map_source": "https://www.census.gov/programs-surveys/decennial-census/about/rdo/congressional-districts.html",
+  "independent_district_reconciliation": "MIT House2024 D/R/named-other totals exactly match; generic write-ins kept separately",
+  "independent_official_sample": {
+    "county": "Kalamazoo",
+    "county_fips": "26077",
+    "district_part_units": 97,
+    "county_precincts": 105,
+    "source_url": "https://app.enhancedvoting.com/results/public/api/elections/kalamazoo-county-mi/November52024General/data",
+    "source_sha256": "d2ffbe9c96364a3967b1d7e514e76dd20cd94b87eea29d0c8063afc4093cc946",
+    "coverage": "ONE of six county parts; all named candidates, generic write-ins and method sums corroborated"
+  },
+  "excluded_metadata_rows": 613,
+  "limitations": [
+    "Final precinct rows are not chronological snapshots",
+    "Presidential-year turnout and different D nominee do not establish2026 calibration",
+    "Partial/overlapping processed method columns are not used; combined D/R only",
+    "Named-other and generic write-ins are separate; no ballot-total inference"
+  ]
+}

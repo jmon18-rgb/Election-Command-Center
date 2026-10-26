@@ -1,9 +1,9 @@
-// Headless WI-01 county input for the ONE national needle; no extra race panel.
+// Shared headless House county inputs (legacy Wisconsin entry point) for the ONE national needle; no extra race panel.
 (function(root){
  'use strict';
  function create({code='WI-01',fetchJSON,fetchSource,isActive=()=>true,sourceGeneration=()=>0,onUpdate=()=>{},onValidated=()=>{}}){
-  const sizes={'WI-01':5,'WI-03':19},size=sizes[code];if(!size)throw Error('Unsupported House evidence scope');
-  const source=root.WisconsinHouseCountySource?.forRace(code),revision=root.CompetitiveSourceRevision?.create(code),prefix='data/wisconsin_house_'+code.slice(3)+'_';
+  const sizes={'WI-01':5,'WI-03':19,'MI-04':6},size=sizes[code];if(!size)throw Error('Unsupported House evidence scope');
+  const source=root.WisconsinHouseCountySource?.forRace(code),revision=root.CompetitiveSourceRevision?.create(code),prefix='data/'+(code==='MI-04'?'michigan':'wisconsin')+'_house_'+code.slice(3)+'_',baselineSuffix=code==='MI-04'?'2024_county_baseline_processed.json':'2024_county_baseline_official.json';
   if(!source||!revision)throw Error('WI-01 source/revision contract unavailable');
   let inputs=null,evidence=null,busy=false,lastAttempt=-Infinity,lastGeneration=null,evidenceKey='';
   let phase='Waiting for '+code+' county source';
@@ -21,7 +21,7 @@
    busy=true;lastAttempt=Date.now();phase='Checking '+code+' county source';publish();
    try{
     if(!inputs){
-     const [history,reference]=await Promise.all([fetchJSON(prefix+'2024_county_baseline_official.json'),fetchJSON(prefix+'county_fips_reference.json')]);
+     const [history,reference]=await Promise.all([fetchJSON(prefix+baselineSuffix),fetchJSON(prefix+'county_fips_reference.json')]);
      const names=new Map(reference?.counties?.map(c=>[c.fips,c.county]));
      if(history.race_code!==code||history.map_comparability!=='boundaries_unchanged_per_2026_census'||history.counties?.length!==size||names.size!==size||history.counties.some(c=>names.get(c.county_fips)!==c.county))throw Error('Independent WI-01 district-part geography unavailable');
      inputs={reference,baseline_year:2024,baseline:{race_code:code,geography_scope:'district_parts',counties:history.counties.map(c=>({county:c.county,records:{total:{dem_votes:c.dem_votes,rep_votes:c.rep_votes}}}))}};

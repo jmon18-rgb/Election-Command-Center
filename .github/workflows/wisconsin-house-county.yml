@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - 'scripts/*wisconsin*'
+      - 'scripts/*michigan*'
+      - 'data/michigan*'
+      - 'data/michigan_historical_sources/**'
       - 'data/wisconsin*'
       - 'data/wisconsin_historical_sources/**'
       - 'data/texas_historical_sources/2024-census-counties.zip'
@@ -24,7 +27,9 @@ jobs:
           python-version: '3.12'
       - run: pip install pypdf==6.10.0
       - name: Reproduce district-part counts, Census joins and independent House totals
-        run: python scripts/build_wisconsin_house_county_baseline.py --check
+        run: |
+          python scripts/build_wisconsin_house_county_baseline.py --check
+          python scripts/build_michigan_house_county_baseline.py --check
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -32,3 +37,4 @@ jobs:
         run: |
           node scripts/test_wisconsin_house_county_source.cjs
           node scripts/test_wisconsin_house_03_county_source.cjs
+          node scripts/test_michigan_house_04_county_source.cjs

@@ -1,0 +1,32 @@
+{
+  "source_url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_counties_national.zip",
+  "source_sha256": "3c337402b5c6e8d5aa26b4278ccf4edc8989f2683765b3ffbf22296cdb2df3a0",
+  "scope": "MI-04 district county PARTS mapped to independent Census county identifiers; not whole-county votes",
+  "district_county_scope_source": "https://raw.githubusercontent.com/openelections/openelections-data-mi/master/2024/20241105__mi__general__precinct.csv",
+  "counties": [
+    {
+      "county": "Allegan",
+      "fips": "26005"
+    },
+    {
+      "county": "Berrien",
+      "fips": "26021"
+    },
+    {
+      "county": "Calhoun",
+      "fips": "26025"
+    },
+    {
+      "county": "Kalamazoo",
+      "fips": "26077"
+    },
+    {
+      "county": "Ottawa",
+      "fips": "26139"
+    },
+    {
+      "county": "Van Buren",
+      "fips": "26159"
+    }
+  ]
+}

@@ -1,5 +1,111 @@
 # Readiness progress
 
+## October26 - Michigan House national input candidate; real delivery still unproven
+
+- Reproduce6 MI04 congressional county PARTS from preserved compressed original
+  OpenElections processed CSV bytes, publisher Git blob and SHA256; Census83/6,
+  independent MIT totals184641D/234489R/6687named-other,597 separate write-ins,
+  unchanged2026 map and original official Kalamazoo sample all reconcile. No
+  chronological snapshots/calibration invented. Full processed source and sample
+  bytes are pinned; the original sample independently corroborates ONE county.
+- Extend existing shared House parser/evidence controller to exact87204 Michigan
+  identity, six26xxx county IDs, McCann/Huizenga/Barnett D/R/Green roster. Reuse
+  same national counts-only likelihood/correlated replay; no extra race panel.
+  Six inputs, three House districts across TWO states, bounded state influence;
+  WI retains its fixed2-district allocation, MI one. MI withdrawal restores the
+  previous5-source national result exactly. Ordinary polling path unchanged.
+- Pure counts/model/source/revision/transport/cadence tests pass. Edge1366/390
+  synthetic automatic polling plus MI-only movement, combined6-source movement,
+  correction/withdrawal/test/expiry/rehearsal and optional-helper outage pass.
+  Budget24 regular automatic requests/min after close; global4active/64queued
+  unchanged,6 priority reservations/58 bulk. Full DOM and current-head CI pending.
+- Actual real-clock fixture-free candidate probe15:14:43Z: all6 HTTP200, test
+  flags now FALSE but October16/18/23 source timestamps STALE. No source evidence
+  admitted, no projections/national movement/page errors/raw archives. This
+  supersedes the15:01 all-five-TEST observation; do not mistake a cleared flag
+  for live delivery. MI named-agent observation has zero counts; actual browser
+  and CI observations are separate. Guards were preserved, not relaxed.
+- Actual cache metadata: all6 responses advertise public,max-age15,stale-while-
+  revalidate30; no Age/ETag in that observation. Request-to-body and cache policy
+  are now explicit report fields. Neither establishes real batch publication
+  cadence, cache bypass, an end-to-end freshness guarantee or relative lag.
+  Independent official2026 county endpoint remains unpublished; old historical
+  republish timestamps and inaccessible statewide URLs are not substitutes.
+- Next: finish checks/review, merge only current-head green, verify actual Pages
+  bytes and runtime. Then prioritize independently matched real input timing and
+  consequential competitive coverage, not generic polish. Daily report already
+  delivered; routine development remains quiet.
+
+## October 26 15:01Z - faster national-input cadence deployed; upstream speed unproven
+
+- PR457 merged9d82c48f after all32 applicable PR workflows pass at exact head
+  a315d6d5b5d30f16411c0da754baef386108ad66. Inspect all42 current-head check runs:
+  39success,3 declared nonapplicable deployment skips, no pending/failing checks
+  or external statuses. Two runs exhausted their time during browser setup/probe startup and are retried on that SAME
+  head and succeed; no protection/check bypass. Full dashboard DOM passes locally
+  before the final small hidden-tab guard; current-head CI full DOM passes too.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/457
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40341821971
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40341822020
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40341821384
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40341821978
+- Replacement Pages40344742740 succeeds for briefing-bot main9f5bbaf649ee5933cf627150bf810f2970edf63e;
+  initial merge build is cancelled/superseded, never counted as success. Actual
+  served audit40344679894 succeeds. At15:00:38Z all67 checked files match main,
+  including HTML and all49 loaded scripts. Actual published Edge1366/390 with
+  explicitly SYNTHETIC sources passes automatic15s source-to-national movement
+  without manual tick/render, hidden-tab ambient-call rejection, correction,
+  withdrawal, outage/expiry/test exclusion, rehearsal and missing-helper fallback.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40344742740
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40344679894
+- Separate fixture-free, real-clock PUBLISHED probe15:01:03Z on clean9f5bbaf6:
+  all5 HTTP200, exact99/105/254/5/19 county identities, all TEST DATA excluded,
+  accepted votes0, projections null, national unchanged, no page errors or raw
+  test archives. Request/body clocks and HTTP duration now recorded; pre-close
+  nominal interval600000ms is correct. Post-close15000ms is browser-fixture
+  evidence, NOT actual election-night delivery. Comparative publication lag is
+  still UNPROVEN_REQUIRES_INDEPENDENT_MATCHED_REAL_BATCHES. Existing four-active
+  transport/queue/backoff remain; no claim of15s end-to-end freshness or calibration.
+- Actual published default linked model competitiveness rechecked: D chances
+  IA50.07%, KS50.40%, TX64.70%, WI01 52.57%, WI03 61.67%, next MI04 57.37%.
+  IA/KS/TX/WI01/MI04 are polled; WI03 is currently unpolled. These are MODEL
+  outputs, not new polling or actual results. All are competitive by this model;
+  uploaded House tipping ranks remain WI03=9, MI04=19, WI01=42.
+- Independent fallback investigation is bounded and records real limits:
+  Kansas government homepage links https://ent.sos.ks.gov/kssos_ent.html, but
+  both named-agent HTTP and normal Edge receive403. Iowa official homepage403.
+  Texas normal browser can read results.texas-election.com and its observed
+  Version/ElectionConstants404 metadata, but it contains2019-2024 ONLY, current
+  election49664/2024 general; no2026 endpoint invented. Those responses lack a
+  browser cross-origin header; plain named-agent HTTP403. These are not admitted
+  2026 fallback sources or comparative timing evidence. Review artifact
+  artifacts/readiness/independent-source-timeliness-review.json and tx-official-*
+  rather than repeatedly circling the same denied/old endpoints.
+- NEW useful MI04 provenance resolved independently of the denied statewide
+  archive: official county page https://www.kalcounty.gov/454/2024-Election-Results
+  links the normal Enhanced Voting historical app. Its actual public /data API
+  yields561936 bytes, SHA256 d2ffbe9c96364a3967b1d7e514e76dd20cd94b87eea29d0c8063afc4093cc946.
+  Official2024-MI04 Kalamazoo totals74956D/54628R/2103named-other match the processed
+  OpenElections candidate exactly;262 generic write-ins remain separate. Vote
+  methods independently sum to each named candidate.97 district-part reporting
+  units versus105 whole-county precincts confirms why whole-county totals cannot
+  be substituted. See artifacts/readiness/next-mi04-official-sample-corroboration.json
+  and kalamazoo-official-2024-data.json; this corroborates ONE county, not all6.
+- That API is historical2024 with lastUpdated2024-11-25 but asOf/publishDate in
+  February2026: concrete evidence why publication timestamps alone are not new
+  vote batches. It permits cross-origin reading (*) and reports public,max-age60
+  for this HISTORICAL response; do not infer current2026 caching or latency.
+  https://www.kalcounty.gov/1466/2026-Election-Results has no linked November
+  results yet. Do not invent its future election ID or call it a working fallback.
+- Next: turn the pinned OpenElections MI04 candidate plus original county sample,
+  existing complete Census/map/MIT reconciliations into a reproducible baseline
+  with candid processed-source labels, then one additional STATE's House evidence
+  in the national model. Alongside that, inspect real response cache/age headers
+  and prepare independently matched batch capture once an actual2026 county
+  source is published. No new race-panel, celebration, generic polish or broad
+  same-provider source-count work. Today's daily report already delivered.
+
+
 ## October 26 - competitive-source timeliness implementation under review
 
 - Directly address owner concern about publication lag: implement deadline-based

@@ -44,7 +44,7 @@ if(!inWindow(Date.now())){
   page.on('response',response=>{
    if(approved.has(response.url())){
     const body=response.body().then(bytes=>({bytes,raw:JSON.parse(bytes.toString('utf8')),received_at:new Date().toISOString()})).catch(error=>({error:error.message}));
-    observed.set(response.url(),{url:response.url(),http:response.status(),request_started_at:requestStarts.get(response.request())||null,body,headers_received_at:new Date().toISOString()});
+    observed.set(response.url(),{url:response.url(),http:response.status(),request_started_at:requestStarts.get(response.request())||null,body,response_cache:{age:response.headers()['age']??null,cache_control:response.headers()['cache-control']??null,date:response.headers()['date']??null,etag:response.headers()['etag']??null},headers_received_at:new Date().toISOString()});
    }
   });
   await page.route('**/*',route=>{
@@ -98,10 +98,11 @@ if(!inWindow(Date.now())){
      national_unchanged:JSON.stringify(jointLastResult.probabilities)===nationalBefore};
    },{race,raw:raw||null,nationalBefore});
    rows.push({code:race.code,source_url:network?.url||race.url,http:network?.http||null,
-    request_started_at:network?.request_started_at||null,
+    response_cache:network?.response_cache||null,request_started_at:network?.request_started_at||null,
     http_request_to_body_ms:body?.received_at&&network?.request_started_at?Date.parse(body.received_at)-Date.parse(network.request_started_at):null,
     captured_at:body?.received_at||null,headers_received_at:network?.headers_received_at||null,
     source_stamp:raw?.last_updated||null,source_test_data:raw?.test_data??null,
+    raw_positive_candidate_counts_present:raw?.test_data===false&&Array.isArray(raw?.candidates)?raw.candidates.some(c=>Number.isSafeInteger(c?.votes)&&c.votes>0):null,
     transport_error:requestErrors.get(race.url)||body?.error||(!network?'No provider response':null),...ui});
    if(body?.bytes)rawBodies.set(race.code,body.bytes);
   }
