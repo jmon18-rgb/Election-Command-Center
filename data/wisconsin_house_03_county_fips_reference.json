@@ -1,0 +1,84 @@
+{
+  "source_url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_counties_national.zip",
+  "source_sha256": "3c337402b5c6e8d5aa26b4278ccf4edc8989f2683765b3ffbf22296cdb2df3a0",
+  "scope": "WI-03 county PARTS from official district canvass, mapped to Census county identifiers; not whole-county votes",
+  "district_county_scope_source": "https://elections.wi.gov/sites/default/files/documents/County%20by%20County%20Report_US%20Congress_0.pdf",
+  "counties": [
+    {
+      "county": "Adams",
+      "fips": "55001"
+    },
+    {
+      "county": "Buffalo",
+      "fips": "55011"
+    },
+    {
+      "county": "Chippewa",
+      "fips": "55017"
+    },
+    {
+      "county": "Crawford",
+      "fips": "55023"
+    },
+    {
+      "county": "Dunn",
+      "fips": "55033"
+    },
+    {
+      "county": "Eau Claire",
+      "fips": "55035"
+    },
+    {
+      "county": "Grant",
+      "fips": "55043"
+    },
+    {
+      "county": "Jackson",
+      "fips": "55053"
+    },
+    {
+      "county": "Juneau",
+      "fips": "55057"
+    },
+    {
+      "county": "La Crosse",
+      "fips": "55063"
+    },
+    {
+      "county": "Monroe",
+      "fips": "55081"
+    },
+    {
+      "county": "Pepin",
+      "fips": "55091"
+    },
+    {
+      "county": "Pierce",
+      "fips": "55093"
+    },
+    {
+      "county": "Portage",
+      "fips": "55097"
+    },
+    {
+      "county": "Richland",
+      "fips": "55103"
+    },
+    {
+      "county": "Sauk",
+      "fips": "55111"
+    },
+    {
+      "county": "Trempealeau",
+      "fips": "55121"
+    },
+    {
+      "county": "Vernon",
+      "fips": "55123"
+    },
+    {
+      "county": "Wood",
+      "fips": "55141"
+    }
+  ]
+}

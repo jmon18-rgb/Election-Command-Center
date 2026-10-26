@@ -1,0 +1,124 @@
+{
+  "observed_at": "2026-10-26T13:25:44.533600+00:00",
+  "source_url": "https://civicapi.org/api/v2/race/87485",
+  "source_sha256": "5fe8501e4d57e9329c6d5582562acbd4023bef9b2953495c9019f11371ec0f7a",
+  "country": "US",
+  "province": "WI",
+  "district": "WI-03",
+  "election_date": "2026-11-03T05:00:00.000Z",
+  "election_type": "House of Representatives",
+  "election_name": "Wisconsin US House 3",
+  "source_test_data": true,
+  "region_count": 19,
+  "regions": [
+    {
+      "name": "Adams",
+      "fips": "55001",
+      "type": "County"
+    },
+    {
+      "name": "Buffalo",
+      "fips": "55011",
+      "type": "County"
+    },
+    {
+      "name": "Chippewa",
+      "fips": "55017",
+      "type": "County"
+    },
+    {
+      "name": "Crawford",
+      "fips": "55023",
+      "type": "County"
+    },
+    {
+      "name": "Dunn",
+      "fips": "55033",
+      "type": "County"
+    },
+    {
+      "name": "Eau Claire",
+      "fips": "55035",
+      "type": "County"
+    },
+    {
+      "name": "Grant",
+      "fips": "55043",
+      "type": "County"
+    },
+    {
+      "name": "Jackson",
+      "fips": "55053",
+      "type": "County"
+    },
+    {
+      "name": "Juneau",
+      "fips": "55057",
+      "type": "County"
+    },
+    {
+      "name": "La Crosse",
+      "fips": "55063",
+      "type": "County"
+    },
+    {
+      "name": "Monroe",
+      "fips": "55081",
+      "type": "County"
+    },
+    {
+      "name": "Pepin",
+      "fips": "55091",
+      "type": "County"
+    },
+    {
+      "name": "Pierce",
+      "fips": "55093",
+      "type": "County"
+    },
+    {
+      "name": "Portage",
+      "fips": "55097",
+      "type": "County"
+    },
+    {
+      "name": "Richland",
+      "fips": "55103",
+      "type": "County"
+    },
+    {
+      "name": "Sauk",
+      "fips": "55111",
+      "type": "County"
+    },
+    {
+      "name": "Trempealeau",
+      "fips": "55121",
+      "type": "County"
+    },
+    {
+      "name": "Vernon",
+      "fips": "55123",
+      "type": "County"
+    },
+    {
+      "name": "Wood",
+      "fips": "55141",
+      "type": "County"
+    }
+  ],
+  "candidate_roster": [
+    {
+      "name": "Rebecca Cooke",
+      "party": "Democratic"
+    },
+    {
+      "name": "Derrick Van Orden",
+      "party": "Republican"
+    }
+  ],
+  "accepted_live_vote_rows": 0,
+  "adapter_status": "TEST_DATA_NOT_LIVE",
+  "rights_reference": "https://civicapi.org/api-documentation",
+  "scope": "Metadata only; no provider test vote payload retained; no actual post-close delivery/calibration claim"
+}
