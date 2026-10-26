@@ -2805,6 +2805,17 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  assert.match(get('#enWatchItems').textContent,/300 counted/,
   'Independent Senate counts must remain available during House outage');
  assert.equal(get('#enRaces').textContent,'0','House may not borrow Senate votes');
+ // Wait for the independently scheduled office requests from the outage
+ // fixture to finish before replacing fetch with the coalescing fixture.
+ // Rendering Senate counts alone does not prove the whole background sweep
+ // (including Governor) has settled on a loaded runner.
+ const coalescingDrainStart=Date.now();
+ while(Date.now()-coalescingDrainStart<15500&&w.eval(
+  '__testOpenAmericaPending()>0||__testWatchedOfficePending()>0')){
+  await new Promise(resolve=>setTimeout(resolve,35));
+ }
+ assert.equal(w.eval('__testOpenAmericaPending()'),0,'Outage fixture transport must settle before the coalescing fixture');
+ assert.equal(w.eval('__testWatchedOfficePending()'),0,'Outage fixture watched offices must settle before swapping fetch');
  // Same-office out-of-order HTTP responses: a late old request may not
  // overwrite the newer snapshot or trigger a false rollback.
  const rehearsalHouseOld={
@@ -2848,7 +2859,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  rehearsalReleaseOld();
  await Promise.all([rehearsalOldLoad,rehearsalCoalescedLoad]);
  assert.match(get('#enRaceList').textContent,/AZ-01/,
-  'A coalesced House response still reaches the latest requested view');
+  'A coalesced House response still reaches the latest requested view; status='+get('#enStatus').textContent+'; state='+w.eval('JSON.stringify({office:enOffice,year:enModeYear,serial:enRequestSerial,error:enFetchError})'));
  assert.equal(get('#enRaces').textContent,'1');
  assert.equal(get('#enDLeads').textContent,'1');
  // Once the shared request settles, an explicit refresh must independently
