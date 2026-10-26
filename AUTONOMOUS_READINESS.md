@@ -1,5 +1,29 @@
 # Election Night production-readiness assignment
 
+## October26 usage/readiness decision checkpoint
+
+- Owner asks whether completion is achievable with85%usage remaining and whether
+  to narrow scope. No estimate of available task-hours follows from that percentage;
+  missing data cannot be resolved by promising more compute. No new scope change
+  was approved. Preserve ONE national results-informed needle as the authorized
+  primary deliverable; the assistant's proposed fallback is a recommendation,
+  not owner acceptance of replacing it with a descriptive results dashboard.
+- Keep the already-authorized October27 source/calibration decision bounded:
+  review existing chronological evidence and estimator evaluation once, identify
+  exact missing inputs, and separate implementation readiness from validation.
+  Do not repeatedly run unchanged probes, broaden safe-seat coverage, add panels,
+  or use test/commit counts as evidence of predictive readiness.
+- Evidence inventory: national bridge and independent official transport deployed;
+  synthetic national movement/retraction tests pass. All9actual routes have no
+  accepted positive returns. Iowa historical evaluation uses ASSUMED release order
+  and neutral prior; it is not chronological or probability calibration. Thurston
+  chronology covers only1of7county parts; it cannot validate a statewide/national
+  forecast. A validated national predictive acceptance criterion remains unmet.
+- Next useful work is that evidence-based go/no-go assessment and an exact list
+  of pivotal-race missing data, using existing artifacts first. Optional feature
+  expansion stays paused. No further unchanged live-source polling in this run.
+
+
 ## October26 20:54Z — independent official WA03-to-NATIONAL path verified deployed
 
 - PR465 tested head a4485e09ca77e234b3c80f8182afd892d08e85b1: ALL35 workflows
