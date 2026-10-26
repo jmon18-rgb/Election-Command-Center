@@ -7,6 +7,8 @@ on:
       - 'data/kansas_historical_sources/**'
       - 'scripts/*kansas*'
       - 'scripts/iowa_county_needle.js'
+      - 'scripts/election_night_transport.js'
+      - 'index.html'
       - 'scripts/read_official_xlsx_rows.py'
       - '.github/workflows/kansas-county-source.yml'
   workflow_dispatch:

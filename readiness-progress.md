@@ -1,5 +1,16 @@
 # Readiness progress
 
+## October26 05:43Z - verified evidence deployment and complete queue checks
+
+- Main270ce878 is published: actual Pages comparison at05:43:09Z matches all43
+ checked files. This deploys443 evidence/catalog changes, not the queued archive
+ or request-priority fixes.
+-445 also requires Kansas browser CI on index/shared-transport changes; those
+ paths previously did not trigger its workflow despite affecting source delivery.
+ Existing local Kansas browser tests pass, and all unchanged production guards
+ remain required. Current-head full checks are pending before any runtime merge.
+
+
 ## October26 05:40Z - competitive county refreshes take bounded queue priority
 
 - Reproduce FIFO queue behavior: two waiting bulk tasks start before Iowa/Kansas
