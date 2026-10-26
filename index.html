@@ -1135,6 +1135,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  </div>
  <p id="enNationalHouseSource" class="joint-note" role="status">WI-01 national input: waiting for verified district-part county counts.</p>
  <p id="enNationalNewYorkHouseSource" class="joint-note" role="status">NY-17 national input: waiting for verified district-part county counts.</p>
+<p class="methodline" id="enNationalWashingtonHouseSource">WA-03 official county source · owned cache may add collection/scheduling delay; speed unproven.</p>
  <p id="enNationalPennsylvaniaHouseSource" class="joint-note" role="status">PA-10 national input: waiting for verified district-part county counts.</p>
  <p id="enNationalMichiganHouseSource" class="joint-note" role="status">MI-04 national input: waiting for verified district-part county counts.</p>
  <p id="enNationalHouse03Source" class="joint-note" role="status">WI-03 national input: waiting for verified district-part county counts.</p>
@@ -1425,14 +1426,17 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/competitive_source_cadence.js?v=10199a39b629"></script>
 <script src="./scripts/wisconsin_house_county_source.js?v=114ed95cdb21"></script>
 <script src="./scripts/wisconsin_house_evidence.js?v=74eb656ba330"></script>
-<script src="./scripts/national_county_likelihood.js?v=1968360998b2"></script>
+<script src="./scripts/washington_official_house_source.js?v=468847f8a559"></script>
+<script src="./scripts/washington_official_cache.js?v=e4676fae8f02"></script>
+<script src="./scripts/washington_house_evidence.js?v=d2b12e21f8d8"></script>
+<script src="./scripts/national_county_likelihood.js?v=a3f49cc938b5"></script>
 <script src="./scripts/national_needle_rehearsal.js?v=d12ab0eaad3d"></script>
-<script src="./scripts/chamber_control_model.js?v=3d5cd637ff19"></script>
+<script src="./scripts/chamber_control_model.js?v=9c1dca6f428b"></script>
 <script src="./scripts/electorate_what_if_2026.js?v=1a5fe3701694"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
 <script src="./scripts/chamber_poll_error_audit.js?v=9e73e0e9f9fe"></script>
 <script src="./scripts/senate_calibration_audit.js?v=2aab89368b2d"></script>
-<script src="./scripts/competitive_source_revision.js?v=82a56d3a4554"></script>
+<script src="./scripts/competitive_source_revision.js?v=7cff792969cf"></script>
 <script src="./scripts/iowa_civic_county_source.js?v=6e755e60e8de"></script>
 <script src="./scripts/iowa_county_needle.js?v=2031f40c8e46"></script>
 <script src="./scripts/competitive_needle_prior.js?v=cc228fbcf6ce"></script>
@@ -3069,6 +3073,7 @@ function renderEnForecastStrip(){
 /* Election Night: public state-derived feed, no unofficial winner calls. */
 // Election-specific CORS support now documented by Open America (Oct. 2026).
 // Use direct client-to-provider requests, not a republished proxy.
+let enModeGeneration=0;
 let enModeYear=Date.now()<Date.parse('2026-11-03T05:00:00Z')?2024:2026;
 let enOffice='House',enData=null,enSelected=null,enTimer=null,enRequestSerial=0,enVisibleLimit=120;
 let enFetchError=null,enLastFetchAt=null,enMovements=[],enFailures=0,enArchiveSource='medsl';
@@ -3696,6 +3701,15 @@ function enRenderAmbientDesk(){
    void window[cfg.controller].tick();
   }
  }
+ if(window.WashingtonHouseEvidence&&window.WashingtonOfficialHouseSource&&window.WashingtonOfficialCache&&window.ElectionNightPollClosings2026&&window.CompetitiveSourceRevision){
+  if(!window.enWashingtonHouse03Controller)window.enWashingtonHouse03Controller=window.WashingtonHouseEvidence.create({
+   fetchJSON:async path=>{const r=await fetch('./'+path,{credentials:'omit'});if(!r.ok)throw Error('Official input HTTP '+r.status);return r.json();},
+   fetchSource:url=>enCivicRequestPool.run(async()=>{const r=await fetch(url,{credentials:'omit',cache:'no-store',signal:AbortSignal.timeout(12000)});if(!r.ok)throw Error('Owned official cache HTTP '+r.status);const text=await r.text();if(text.length>256000)throw Error('Owned cache body too large');return JSON.parse(text);},{priority:true}),
+   isActive:()=>enModeYear===2026&&enIsVisible(),sourceGeneration:()=>enModeGeneration,
+   onUpdate:(state,changed)=>{const note=$('#enNationalWashingtonHouseSource');if(note)note.textContent='WA-03 official national input · '+state.phase+' · '+state.transport_delay;if(changed)jointQueueRefresh();}
+  });
+  void window.enWashingtonHouse03Controller.tick();
+ }
  const rehearsal=$('#enNationalRehearsal');if(rehearsal){rehearsal.hidden=enModeYear!==2026;if(enModeYear!==2026)rehearsal.open=false;}
  const texasHost=$('#enTexasRaceNeedle');
  if(texasHost&&window.TexasNeedleView&&window.IowaCountyNeedle&&window.TexasCivicCountySource){
@@ -4190,7 +4204,7 @@ function jointRenderNeedles(result,config={}){
  const baseline=config.baseline||jointPulseBaseline,rows=config.evidence||jointPulseRows;
  const rehearsal=config.rehearsal===true;
  const countyCount=rows.filter(e=>e.evidence_kind==='county_likelihood').length;
- const houseCount=rows.filter(e=>e.evidence_kind==='county_likelihood'&&/^(?:WI-(?:01|03)|MI-04|PA-10|NY-17)$/.test(e.race_code)).length;
+ const houseCount=rows.filter(e=>e.evidence_kind==='county_likelihood'&&/^(?:WI-(?:01|03)|MI-04|PA-10|NY-17|WA-03)$/.test(e.race_code)).length;
  const movement=window.ElectionNightSignals?.explainNeedle(result,baseline,rows);
  const keys=['red_dawn','shrug','blue_wave','blue_tsunami'];
  const labels=['RED DAWN','SHRUG','BLUE WAVE','BLUE TSUNAMI'];
@@ -4304,11 +4318,11 @@ function jointRenderNeedles(result,config={}){
     (d.early?' · EARLY SIGNAL':'')+
     ' · D win '+d.from.toFixed(1)+' → '+d.to.toFixed(1)+'% ('+
     (d.delta>=0?'+':'')+d.delta.toFixed(1)+' pp) · '+
-    d.provider+' · '+(d.evidence_kind==='county_likelihood'?d.reporting_counties+(/^(?:WI-(?:01|03)|MI-04|PA-10|NY-17)$/.test(d.race_code)?' district/county parts':' counties')+' · '+d.counted_two_party_votes.toLocaleString('en-US')+' D/R votes'+(Number.isFinite(d.modeled_remaining_two_party_votes)?' · modeled remaining '+d.modeled_remaining_two_party_votes.toLocaleString('en-US')+' (turnout scenario '+d.modeled_remaining_two_party_votes_band.map(n=>n.toLocaleString('en-US')).join('–')+')':''):d.reporting.toFixed(0)+'% precincts');
+    d.provider+' · '+(d.evidence_kind==='county_likelihood'?d.reporting_counties+(/^(?:WI-(?:01|03)|MI-04|PA-10|NY-17|WA-03)$/.test(d.race_code)?' district/county parts':' counties')+' · '+d.counted_two_party_votes.toLocaleString('en-US')+' D/R votes'+(Number.isFinite(d.modeled_remaining_two_party_votes)?' · modeled remaining '+d.modeled_remaining_two_party_votes.toLocaleString('en-US')+' (turnout scenario '+d.modeled_remaining_two_party_votes_band.map(n=>n.toLocaleString('en-US')).join('–')+')':''):d.reporting.toFixed(0)+'% precincts');
    list.append(row);
   }
   context.append(list,elt('p','four-needle-disclosure',
-   (rehearsal?'SIMULATED COUNTS. ':'')+(countyCount?'Experimental counts-only update across '+countyCount+' contests; '+(houseCount?houseCount+' House district'+(houseCount===1?'':'s')+((result.county_results_update?.house_vote_states||[]).length>1?' across '+result.county_results_update.house_vote_states.length+' states':(result.county_results_update?.house_vote_states||[]).includes('NY')?' in New York':(result.county_results_update?.house_vote_states||[]).includes('MI')?' in Michigan':(result.county_results_update?.house_vote_states||[]).includes('PA')?' in Pennsylvania':' in Wisconsin')+', not national House coverage':'no House vote sources')+'. Other-race movement uses existing shared-error assumptions. Remaining turnout and batch mix are uncertain. Not independently calibrated. ':'')+'Race changes are not a causal decomposition of chamber control. No race call is inferred.'));
+   (rehearsal?'SIMULATED COUNTS. ':'')+(countyCount?'Experimental counts-only update across '+countyCount+' contests; '+(houseCount?houseCount+' House district'+(houseCount===1?'':'s')+((result.county_results_update?.house_vote_states||[]).length>1?' across '+result.county_results_update.house_vote_states.length+' states':(result.county_results_update?.house_vote_states||[]).includes('NY')?' in New York':(result.county_results_update?.house_vote_states||[]).includes('MI')?' in Michigan':(result.county_results_update?.house_vote_states||[]).includes('PA')?' in Pennsylvania':(result.county_results_update?.house_vote_states||[]).includes('WA')?' in Washington':' in Wisconsin')+', not national House coverage':'no House vote sources')+'. Other-race movement uses existing shared-error assumptions. Remaining turnout and batch mix are uncertain. Not independently calibrated. ':'')+'Race changes are not a causal decomposition of chamber control. No race call is inferred.'));
  }
 }
 function jointRenderCards(result){
@@ -4465,7 +4479,7 @@ function jointForecastResult(){return jointLastResult}
 function jointBaselineForecastResult(){return jointPublicResult}
 function jointCountyEvidence(){
  if(enModeYear!==2026)return [];
- return [window.enIowaPilotController,window.enKansasPilotController,window.enTexasPilotController,window.enWisconsinHouseController,window.enWisconsinHouse03Controller,window.enMichiganHouse04Controller,window.enPennsylvaniaHouse10Controller,window.enNewYorkHouse17Controller]
+ return [window.enIowaPilotController,window.enKansasPilotController,window.enTexasPilotController,window.enWisconsinHouseController,window.enWisconsinHouse03Controller,window.enMichiganHouse04Controller,window.enPennsylvaniaHouse10Controller,window.enNewYorkHouse17Controller,window.enWashingtonHouse03Controller]
   .map(c=>c?.status().evidence).filter(Boolean);
 }
 function jointCurrentSignature(){
@@ -4496,7 +4510,7 @@ function jointRender(force=false){
   if(envelopes.length&&!conditioned)countyUpdateWithheld=true;
   const result=conditioned?.result||window.ChamberControlModel.simulate(jointBasis,args);
   const countyRows=(conditioned?.diagnostics.used||[]).map(e=>({race_code:e.code,asOf:e.as_of,
-   provider:'civicAPI',evidence_kind:'county_likelihood',reporting_counties:e.reporting_counties,
+   provider:e.code==='WA-03'?'Washington official · collected copy':'civicAPI',evidence_kind:'county_likelihood',reporting_counties:e.reporting_counties,
    counted_two_party_votes:e.counted_two_party_votes,modeled_remaining_two_party_votes:e.modeled_remaining_two_party_votes,modeled_remaining_two_party_votes_band:e.modeled_remaining_two_party_votes_band}));
   jointPulseRows=[...jointPulseRows.filter(e=>!countyRows.some(c=>c.race_code===e.race_code)),...countyRows];
   jointPulseBaseline=Object.keys(updates).length||countyRows.length?
@@ -7392,6 +7406,7 @@ async function enLoad(manual=false){
 }
 function enSwitch(year,office,preferredKey=null){
  if(year===2024&&office==='Governor')enArchiveSource='state';
+ if(enModeYear!==year)enModeGeneration++;
  enModeYear=year;enOffice=office;
  enData=year===2026?(enOfficeSnapshots[office]||null):null;
  enFetchError=null;enFailures=0;enSelected=preferredKey;enVisibleLimit=120;$('#enSearch').value='';enRender();enRenderMilestones();renderSmartRaceDesks();enLoad(true);

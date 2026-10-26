@@ -10,7 +10,7 @@ const response=d=>new Response(JSON.stringify(d),{headers:{'content-type':'appli
  const actualSample=await collect({fetchImpl,reference,now:Date.parse('2026-10-26T19:00:00Z')});
  assert.equal(actualSample.status,'SOURCE_UNAVAILABLE');assert.equal(actualSample.payload,null);assert.match(actualSample.error,/stale/);assert.equal(requests,1);
  const healthyZero=await collect({fetchImpl:async()=>response(zero),reference,now:Date.parse(zero.election.publishDate)});
- assert.equal(healthyZero.status,'NO_REPORTED_VOTES');assert.equal(healthyZero.payload,null);
+ assert.equal(healthyZero.status,'NO_REPORTED_VOTES');assert(healthyZero.payload);assert.equal(healthyZero.payload.ballotItemWithBreakdown.voteTotal,0);
  const fixture=structuredClone(zero),b=fixture.ballotItemWithBreakdown;
  fixture.election.asOf='2026-11-04T04:01:00Z';fixture.election.publishDate='2026-11-04T04:01:01Z';
  for(const c of b.breakdownResults){for(const x of c.ballotOptions)x.voteCount=x.isWriteIn?1:2000;c.voteTotal=4001;}

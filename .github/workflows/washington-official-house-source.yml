@@ -26,4 +26,18 @@ jobs:
           node scripts/test_washington_official_house_source.cjs
           node --check scripts/collect_washington_official_results.cjs
           node scripts/test_collect_washington_official_results.cjs
+          node scripts/test_washington_official_cache.cjs
+          node scripts/test_washington_national_bridge.cjs
           git diff --exit-code
+  national-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chromium --only-shell
+      - run: node scripts/test_washington_national_browser.mjs

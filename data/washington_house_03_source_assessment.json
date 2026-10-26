@@ -1,6 +1,6 @@
 {
   "checked_at": "2026-10-26T19:23:44.196678+00:00",
-  "status": "OFFICIAL_WA03_SOURCE_AND_BASELINE_PREPARED_NOT_CONNECTED",
+  "status": "EXPERIMENTAL_OFFICIAL_COLLECTION_TO_NATIONAL_PATH_IMPLEMENTED_NOT_LIVE_VERIFIED",
   "discovery": "Official SOS results link redirects to public Washington app. Public election list explicitly lists20261103; app scripts identify the read-only API and contest-specific data route. No election-ID guessing.",
   "official_landing": "https://results.votewa.gov/results/public/washington",
   "election_list_url": "https://results.votewa.gov/results/public/api/jurisdictions/washington",
@@ -101,7 +101,7 @@
   "limits": [
     "No positive2026returns or independent speed comparison.",
     "No source/candidate counts have entered national model.",
-    "Next required: server-side collection/publication with honest age/latency and reviewed national evidence wiring. The source parser and pinned baseline are implemented and tested; no pipeline is enabled.",
+    "Collector, data-only owned-cache publication, controller and counts-only national wiring are implemented. Real deployment, publication mechanics and actual post-close return delivery remain separate evidence requirements; no arbitrary proxy or source-access bypass.",
     "Precincts reported are not ballots remaining; preserve mail-vote/reporting-order uncertainty."
   ],
   "original_preclose_sample_sha256": "e0b44622bde8b57a870b81440f7527d0fb6685075d8ef07514e4b4d1011da2c5",
@@ -109,5 +109,19 @@
   "source_collection_authorization_scope": "Ordinary anonymous read-only GET used by the officially linked public results app; attribution retained. No authentication, challenge bypass or private API used. No additional vendor license or guaranteed update speed claimed.",
   "source_parser_implemented": true,
   "historical_baseline_reproduced": true,
-  "national_input_enabled": false
+  "national_input_enabled": true,
+  "actual_live_input_verified": false,
+  "server_side_collection_configured": true,
+  "owned_transport_url": "https://raw.githubusercontent.com/jmon18-rgb/Election-Command-Center/official-results-cache/data/washington_house_03_official_latest.json",
+  "collection_policy": {
+    "post_close_source_requests_per_job_max": 4,
+    "source_request_start_spacing_min_ms": 60000,
+    "first_night_schedule_minutes": 5,
+    "after_first_night_requests_per_job": 1,
+    "collection_end_utc": "2026-11-25T08:00:00Z",
+    "client_cache_requests_per_minute_max": 1,
+    "source_cache_max_age_seconds_observed": 60,
+    "owned_cache_max_age_seconds_observed": 300,
+    "scheduling_or_cache_delay_guaranteed": false
+  }
 }

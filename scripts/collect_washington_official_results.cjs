@@ -21,11 +21,16 @@ async function collect({fetchImpl=global.fetch,now=Date.now(),reference}={}){
  try{
   const r=await fetchImpl(api.URL,{signal:AbortSignal.timeout(20000),headers:{Accept:'application/json'}});
   out.http_status=r.status;out.cache_control=r.headers.get('cache-control');
-  if(r.status!==200||!r.headers.get('content-type')?.toLowerCase().includes('application/json'))throw Error('Official HTTP/content type unavailable');
+  if(r.status!==200||!r.headers.get('content-type')?.toLowerCase().includes('application/json')){
+   await r.body?.cancel().catch(()=>{});throw Error('Official HTTP/content type unavailable');
+  }
   const raw=await body(r);out.request_to_body_ms=Math.round(performance.now()-started);out.original_response_sha256=hash(raw);
-  const original=JSON.parse(raw.toString('utf8')),parsed=api.parse(original,reference,{now});
+  const original=JSON.parse(raw.toString('utf8'));
+  out.observed_source_stamp=original?.election?.asOf||null;
+  out.source_test_data=original?.election?.isProduction!==true;
+  out.observed_positive_candidate_counts=original?.ballotItemWithBreakdown?.summaryResults?.ballotOptions?.some(c=>Number.isSafeInteger(c.voteCount)&&c.voteCount>0)??null;
+  const parsed=api.parse(original,reference,{now});
   out.status=parsed.status;out.snapshot_updated_at=parsed.snapshot_updated_at;out.source_published_at=parsed.source_published_at;
-  if(!parsed.live_votes_accepted)return out;
   // Select original objects; never alter candidate votes, IDs or source clocks.
   const e=original.election;
   const payload={jurisdiction:{shortName:original.jurisdiction.shortName},
