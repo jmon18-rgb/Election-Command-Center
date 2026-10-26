@@ -1,5 +1,32 @@
 # Readiness progress
 
+## October 25 - Iowa pilot deployed; correct the measured forecasting weakness
+
+- PR #437 passed all 27 applicable workflows at 4284378f and merged as baea1b2b.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/437
+  At 03:23:27Z, HTML, all 38 loaded scripts and both catalogs match that revision
+  on Pages (41 files, zero differences). At 03:23:30Z actual published Edge gets
+  HTTP200 from the real full Iowa endpoint, rejects its TEST DATA and displays no
+  live probability. Explicit historical preview works. No provider interception
+  or fabricated source values were used in that deployed-source check.
+- Follow-up implements a robust swing prior with explicit 85/10/5 mixture weights
+  and 1x/2x/4x polling sigma; marginal evidence updates these assumptions. Strong
+  coherent surprises can overcome the polling prior instead of remaining anchored.
+  Uncertainty bands use conditional mixture quantiles, not empirical calibration.
+- Reused 2016 stress-case MAE improves 14.62 -> 9.86; envelope coverage 6/16 ->
+  12/16. The 2022 development MAE improves 9.20 -> 8.42, coverage 16/16. Both
+  outcomes are now development data for the revised model. Independent close-race
+  evaluation and turnout evidence remain actual acceptance gaps.
+- Kansas source discovery at 03:07:55Z: actual deployed-origin Edge fetch returns
+  all 105 county rows, independently matched against Census FIPS/names. Provider
+  TEST DATA stays excluded. Official 2020/2022 Senate precinct workbooks retrieved,
+  exact original file hashes recorded, all 105 county D/R/L totals reconciled to
+  official statewide totals. No voting-method split supplied; redacted/blank
+  precinct cells are not invented as zeros. These facts remain in ignored local
+  artifacts/readiness/kansas pending a separate reviewable source-data change.
+- Next: test/review this focused forecasting correction, then a genuinely separate
+  close-race evaluation cohort. Do not claim the experimental live needle is ready.
+
 ## October 25 - combined Iowa county returns now drive a visible race needle
 
 - Review: https://github.com/jmon18-rgb/Election-Command-Center/pull/437.

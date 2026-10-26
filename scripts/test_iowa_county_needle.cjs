@@ -36,4 +36,16 @@ assert.equal(JSON.stringify(baseline),before,'Model never overwrites historical/
 for(const observations of [[a[0],a[0]],[{...a[0],county:'Unknown'}],[{...a[0],dem_votes:-1}]])
  assert.throws(()=>forecast({...config,observations}));
 assert.throws(()=>forecast({...config,baseline:{counties:baseline.counties.slice(1)}}));
+assert.throws(()=>forecast({...config,prior_sigma_points:null}));
+const surprise=forecast({...config,observations:make(.8,.2)});
+const neutralPrior=prior.assumptions.prior_components,updated=surprise.assumptions.prior_components;
+assert(Math.abs(neutralPrior.reduce((s,r)=>s+r.posterior_weight,0)-1)<1e-10);
+assert.deepEqual(neutralPrior.map(r=>r.posterior_weight),[.85,.1,.05],
+ 'No observed returns cannot manufacture evidence for a wider prior');
+assert(updated[2].posterior_weight>neutralPrior[2].posterior_weight,
+ 'Coherent surprising returns must increase support for a large swing rather than permanently anchoring to polls');
+assert(surprise.projected_margin_points<first.projected_margin_points);
+assert(surprise.dem_win_probability<first.dem_win_probability);
+assert.equal(surprise.counted_dem_votes,make(.8,.2).reduce((s,r)=>s+r.dem_votes,0));
+assert.equal(surprise.interval_calibrated,false);
 console.log('Iowa combined-county needle: actual counts fixed, remaining vote inferred, county/method uncertainty, weighted scenarios and national isolation PASS');

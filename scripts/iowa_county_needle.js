@@ -9,7 +9,7 @@
  const erf=x=>{const s=Math.sign(x),a=Math.abs(x),t=1/(1+.3275911*a);
   return s*(1-(((((1.061405429*t-1.453152027)*t+1.421413741)*t-.284496736)*t+.254829592)*t)*Math.exp(-a*a));};
  const cdf=x=>(1+erf(x/Math.SQRT2))/2;
- function forecast({baseline,observations=[],prior_margin_points,prior_sigma_points=6,
+ function componentForecast({baseline,observations=[],prior_margin_points,prior_sigma_points=6,
   turnout_scale=1,turnout_sigma_fraction=.25,county_sigma_points=6,structural_sigma_points=5,batch_bias_sigma_points=8}){
   if(!baseline?.counties||baseline.counties.length!==99||!Array.isArray(observations)||
    ![prior_margin_points,prior_sigma_points,turnout_scale,turnout_sigma_fraction,county_sigma_points,structural_sigma_points,batch_bias_sigma_points].every(Number.isFinite)||
@@ -85,7 +85,7 @@
     (remaining*structural_sigma_points/100)**2+turnoutWeight**2;
    const sigmaVotes=Math.sqrt(variance),margin=100*marginVotes/total,sigma=100*sigmaVotes/total;
    const probability=Math.max(.000001,Math.min(.999999,cdf(marginVotes/sigmaVotes)));
-   scenarios.push({order,log_likelihood:logLikelihood,projected_margin_points:margin,dem_win_probability:probability,
+   scenarios.push({order,log_likelihood:logLikelihood,projected_margin_points:margin,projected_sigma_points:sigma,dem_win_probability:probability,
     modeled_remaining_two_party_votes:remaining,band:[Math.max(-100,margin-1.644853627*sigma),Math.min(100,margin+1.644853627*sigma)],
     posterior_swing_margin_points:200*shift});
   }
@@ -93,7 +93,7 @@
   const evidence=scenarios.map(s=>Math.exp(s.log_likelihood-maxLog)),normalizer=evidence.reduce((a,b)=>a+b,0);
   scenarios.forEach((s,i)=>s.weight=evidence[i]/normalizer);
   const mean=key=>scenarios.reduce((s,r)=>s+r[key]*r.weight,0);
-  return {status:'EXPERIMENTAL_COMBINED_COUNTY_FORECAST_NOT_CALIBRATED',
+  return {log_evidence:maxLog+Math.log(normalizer)-Math.log(scenarios.length),status:'EXPERIMENTAL_COMBINED_COUNTY_FORECAST_NOT_CALIBRATED',
    counted_dem_votes:observations.reduce((s,r)=>s+r.dem_votes,0),counted_rep_votes:observations.reduce((s,r)=>s+r.rep_votes,0),
    reporting_counties:observations.filter(r=>r.dem_votes+r.rep_votes>0).length,
    projected_margin_points:mean('projected_margin_points'),dem_win_probability:mean('dem_win_probability'),
@@ -103,6 +103,46 @@
    observed_method_votes_inferred:false,interval_calibrated:false,may_move_national_needle:false,
    assumptions:{prior_margin_points,prior_sigma_points,turnout_scale,turnout_sigma_fraction,county_sigma_points,structural_sigma_points,batch_bias_sigma_points,
     method_scenario_weighting:'Gaussian marginal evidence under declared model assumptions'},scenarios};
+ }
+ function forecast(config){
+  // A small prior tail lets coherent, surprising returns overcome the polling
+  // center. A single Gaussian permanently confounds a large swing with batch
+  // selection bias. These mixture weights are declared assumptions, not fitted
+  // frequencies or evidence of calibrated election probabilities.
+  const sigma=config?.prior_sigma_points===undefined?6:config.prior_sigma_points;
+  const components=[{scale:1,prior:.85},{scale:2,prior:.10},{scale:4,prior:.05}]
+   .map(c=>({...c,result:componentForecast({...config,prior_sigma_points:sigma*c.scale})}));
+  const maxLog=Math.max(...components.map(c=>c.result.log_evidence));
+  let normalizer=0;
+  for(const c of components){c.weight=c.prior*Math.exp(c.result.log_evidence-maxLog);normalizer+=c.weight;}
+  for(const c of components)c.weight/=normalizer;
+  const scenarios=components.flatMap(c=>c.result.scenarios.map(s=>({...s,
+   prior_sigma_points:sigma*c.scale,weight:c.weight*s.weight})));
+  const mean=key=>scenarios.reduce((total,s)=>total+s.weight*s[key],0);
+  function quantile(rows,q){
+   const weight=rows.reduce((total,s)=>total+s.weight,0);let lo=-100,hi=100;
+   for(let i=0;i<64;i++){
+    const middle=(lo+hi)/2;
+    const probability=rows.reduce((total,s)=>total+s.weight*cdf((middle-s.projected_margin_points)/s.projected_sigma_points),0)/weight;
+    if(probability<q)lo=middle;else hi=middle;
+   }
+   return (lo+hi)/2;
+  }
+  const orders=['absentee_first','election_day_first','proportional_mix'].map(order=>{
+   const rows=scenarios.filter(s=>s.order===order),weight=rows.reduce((total,s)=>total+s.weight,0);
+   // Numerically negligible orders remain in the raw diagnostic inventory, but
+   // cannot define a conditional band when their evidence underflows to zero.
+   if(weight===0)return null;
+   return {order,weight,probability:rows.reduce((total,s)=>total+s.weight*s.dem_win_probability,0)/weight,
+    band:[quantile(rows,.05),quantile(rows,.95)]};
+  }).filter(Boolean);
+  const {log_evidence,...base}=components[0].result;
+  return {...base,projected_margin_points:mean('projected_margin_points'),
+   dem_win_probability:mean('dem_win_probability'),modeled_remaining_two_party_votes:mean('modeled_remaining_two_party_votes'),
+   method_mix_probability_range:[Math.min(...orders.map(s=>s.probability)),Math.max(...orders.map(s=>s.probability))],
+   scenario_margin_band:[Math.min(...orders.map(s=>s.band[0])),Math.max(...orders.map(s=>s.band[1]))],
+   assumptions:{...base.assumptions,robust_swing_prior:'Declared Gaussian scale mixture, not empirical calibration',
+    prior_components:components.map(c=>({sigma_points:sigma*c.scale,prior_weight:c.prior,posterior_weight:c.weight}))},scenarios};
  }
  return Object.freeze({forecast});
 });

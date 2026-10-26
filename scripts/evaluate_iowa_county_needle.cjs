@@ -30,7 +30,8 @@ for(const [order,sort] of Object.entries(orders))for(const fraction of [.1,.25,.
 const bytes=fs.readFileSync(path.join(__dirname,'iowa_county_needle.js'));
 const modelBlob=require('node:crypto').createHash('sha1').update(Buffer.from('blob '+bytes.length+'\0')).update(bytes).digest('hex');
 const firstUnseenModel='c097eafd3c125caf3937c8c9ceefb2d7e49af9fd';
-const result={status:independent?'UNSEEN_ELECTION_STRESS_TEST_NOT_CALIBRATION':'DEVELOPMENT_SCENARIOS_NOT_INDEPENDENT_CALIBRATION',
+const result={status:independent?(modelBlob===firstUnseenModel?'UNSEEN_ELECTION_STRESS_TEST_NOT_CALIBRATION':
+ 'REUSED_OUTCOME_DEVELOPMENT_STRESS_TEST_NOT_CALIBRATION'):'DEVELOPMENT_SCENARIOS_NOT_INDEPENDENT_CALIBRATION',
  model_blob_sha1:modelBlob,baseline_year:Number(baseYear),outcome_year:Number(outcomeYear),
  actual_release_times:false,model_tuned_using_this_election:!independent||modelBlob!==firstUnseenModel,
  first_unseen_model_blob_sha1:independent?firstUnseenModel:null,prior:'Neutral stress test, not reconstructed polls',

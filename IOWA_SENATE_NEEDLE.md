@@ -120,6 +120,21 @@ for review while forecasting acceptance remains open.
 
 ## Remaining production evidence
 
+The follow-up robust-swing correction uses a declared 85%/10%/5% Gaussian prior
+mixture with one/two/four times the polling sigma. Marginal evidence updates both
+the swing component and unseen method-order weights. This permits coherent large
+surprises to overcome the polling center while retaining batch-bias uncertainty.
+Scenario bands now use numerical mixture quantiles within each method order;
+they remain uncalibrated. These assumptions are not fitted tail frequencies.
+
+On the now-reused 2016 stress case, error falls from 14.62 to **9.86 points** and
+the scenario envelope covers 12/16 rather than 6/16. The 2022 development error
+falls from 9.20 to **8.42 points**, envelope 16/16. The revised model has seen both
+outcomes through development: neither is independent evidence for this revision.
+The evaluator binds the original unseen designation to its exact old model blob,
+so later models cannot quietly inherit that label. Forecasting acceptance stays
+open; this is an implemented response to a measured failure, not calibration.
+
 The existing Open America contract supplies Iowa statewide race totals, not the
 county/method inputs this estimator needs. Its precinct reporting percentage is
 not a remaining-ballot denominator. On October 26 an ordinary Edge request to
