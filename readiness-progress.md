@@ -1,5 +1,19 @@
 # Readiness progress
 
+## October26 04:51Z - actual provider and deployed integrity evidence
+
+- Published main9490bd6c at04:49:51Z: all41 checked files match, zero differences.
+  Actual published Edge at04:50:25Z receives HTTP200 from full Iowa endpoint
+  without substituting a response; TEST DATA excluded, live probability null,
+  accepted live votes0. Historical preview works and is explicitly separate.
+- Local queued442 Kansas view at04:51:28Z receives actual full87162 HTTP200
+  without substituting a response; TEST DATA excluded, live probability null,
+  accepted live votes0. No Kansas deployment or live delivery is claimed.
+-442 now targets main alongside440 so all applicable current-head checks can
+  run. Merge440 first; no missing/skipped main-target checks count as passing.
+  Next is passing merges/deployment verification and close-race forecast evidence.
+
+
 ## October26 - passing merges and Kansas visible needle path
 
 -438 merged3ef40a7a after27 successful current-head workflows;441 merged
