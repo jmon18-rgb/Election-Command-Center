@@ -1,5 +1,36 @@
 # Readiness progress
 
+## October 26 07:05Z - genuine-feed capture merged; zero-count correction repair
+
+- PR447 merged552b27c5 after all four applicable current-head workflows passed
+  at83cb2a4b. Actual Pages integrity at07:04:15Z matches all44 loaded assets.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/447
+- The actual CI browser probe at06:44:30Z receives timeouts on both full Civic
+  routes. No provider JSON, accepted votes or forecasts; status remains
+  LIVE_DELIVERY_UNPROVEN. This differs from the actual owner-browser HTTP200
+  test-data observation and does not establish CI capture availability.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40281510553
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40281510553/artifacts/12631309633
+- Reproduce a concrete source-to-needle correction defect in BOTH deployed-code
+  controllers: valid newer all-zero county totals hide the probability, but the
+  publication watermark is not advanced, so replaying older positive counts
+  restores the withdrawn roughly99% forecast. New Edge regressions fail against
+  the old Iowa and Kansas code on exactly that restoration.
+- Repair both controllers to retain publication time/signature for every fully
+  validated non-test snapshot, including zero counts. Older or same-clock changed
+  counts cannot undo that withdrawal. Test payloads still cannot set a watermark.
+  A genuinely newer positive snapshot restores the forecast. National odds and
+  the forecast engine are unchanged. Refresh cooldowns remain unchanged; test
+  clock steps leave10-second margins rather than racing the5-second boundary.
+- Actual Edge1366/390 correction/recovery and existing source/archive/preview/
+  outage tests pass for both races; all22 core checks pass. These use explicit
+  source fixtures and virtual clocks, not genuine live or calibration evidence.
+  Current-head CI and merge of the correction repair remain pending.
+- Next: complete current-head checks, merge only if passing, verify deployed
+  correction behavior. Real post-close non-test delivery and independent
+  chronological calibration remain acceptance gaps. Do not substitute canary
+  success, raw final totals or assumed-order tests for those requirements.
+
 ## October 26 06:42Z - aligned starting inputs deployed; actual-feed evidence probe
 
 - PR446 merged abd1e0b2 after all 28 current-head workflows passed at

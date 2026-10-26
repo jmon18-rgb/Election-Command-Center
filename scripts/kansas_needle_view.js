@@ -50,13 +50,16 @@
     const raw=await fetchSource(source.URL);
     if(!isActive()||generation!==sourceGeneration())throw Error('Source reply invalidated by mode change or outage');
     const parsed=source.parse(raw,inputs.reference);projection=null;lastGeneration=generation;
-    if(!parsed.live_votes_accepted){phase=parsed.status==='TEST_DATA_NOT_LIVE'?'Provider TEST DATA · excluded from the Kansas needle':'No genuine post-close Kansas votes reported yet';return true;}
+    if(parsed.status==='TEST_DATA_NOT_LIVE'){phase='Provider TEST DATA · excluded from the Kansas needle';return true;}
     const time=Date.parse(parsed.snapshot_updated_at),signature=JSON.stringify([...parsed.counties].sort((a,b)=>a.county.localeCompare(b.county)).map(c=>[c.county,c.dem_votes,c.rep_votes,c.other_votes]));
     if(lastAccepted&&(time<lastAccepted.time||time===lastAccepted.time&&signature!==lastAccepted.signature))throw Error('County revision requires a newer publication time');
+    // Do not let cached positive counts undo a newer validated withdrawal.
+    lastAccepted={time,signature};
+    if(!parsed.live_votes_accepted){phase='No genuine post-close Kansas votes reported yet';return true;}
     const prior=readPrior();if(!prior||!Number.isFinite(prior.margin)||!Number.isFinite(prior.sigma))throw Error('Current Kansas linked-model prior unavailable');
     projection=model.forecast({baseline:inputs.baseline,observations:parsed.counties,expected_county_count:105,
      prior_margin_points:prior.margin,prior_sigma_points:prior.sigma});
-    lastAccepted={time,signature};phase='2026 source-validated returns · experimental Kansas forecast';onValidated();return true;
+    phase='2026 source-validated returns · experimental Kansas forecast';onValidated();return true;
    }catch(error){projection=null;phase='Kansas source unavailable · '+error.message;return false;}
    finally{busy=false;render();}
   }

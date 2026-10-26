@@ -95,18 +95,19 @@
     const parsed=source.parse(raw,reference);
     lastGeneration=generation;projection=null;stamp=raw.last_updated?'Provider snapshot: '+raw.last_updated:'';
     if(parsed.status==='TEST_DATA_NOT_LIVE'){phase='Provider TEST DATA · excluded from the live needle';}
-    else if(!parsed.live_votes_accepted){phase='No genuine post-close votes reported yet';}
     else{
      const time=Date.parse(parsed.snapshot_updated_at);
      const signature=JSON.stringify([...parsed.counties].sort((a,b)=>a.county.localeCompare(b.county))
       .map(r=>[r.county,r.dem_votes,r.rep_votes,r.other_votes]));
      if(lastAccepted&&(time<lastAccepted.time||(time===lastAccepted.time&&signature!==lastAccepted.signature)))
       throw Error('County vote revision requires a newer provider publication time');
+     // A validated zero-count withdrawal is also a publication watermark.
+     lastSourceTime=time;lastAccepted={time,signature};
+     if(!parsed.live_votes_accepted){phase='No genuine post-close votes reported yet';return true;}
      const prior=readPrior();
      if(!prior||!Number.isFinite(prior.margin)||!Number.isFinite(prior.sigma))throw Error('Current Iowa linked-model prior unavailable');
      projection=model.forecast({baseline:history.years['2022'],observations:parsed.counties,
       prior_margin_points:prior.margin,prior_sigma_points:prior.sigma});
-     lastSourceTime=time;lastAccepted={time,signature};
      phase='2026 source-validated returns · experimental forecast';onValidated();
     }
     return true;
