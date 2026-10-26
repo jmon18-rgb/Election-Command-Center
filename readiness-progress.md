@@ -1,5 +1,32 @@
 # Readiness progress
 
+## October26 16:43Z - independent PA10 timing recorder implemented, not yet deployed
+
+- Branch readiness/independent-timing adds ordinary public county-menu discovery,
+  exact current general-election/table/candidate/total/date validation, and a
+  capture-only adapter reusing the production full PA10 civicAPI parser. No
+  frontend likelihood or duplicate county evidence is introduced.
+- Real-clock identified-client discovery16:43:26Z: county HTTP200, no published
+  2026 general-election menu link. Body SHA256
+  ce8bd8a5d955e6b16582dea873b3072ffc5223908aa8a456a394dddc5d7e0061;
+  response Age1951. This is menu/cache evidence, NOT comparative vote latency.
+  No guessed election key, primary archive, or November delivery claim.
+- Bounded server-side watch is implemented for Nov4 01:00Z through17:00Z:
+  one discovery plus at most56 two-source rounds,15s spacing,2 concurrent GETs,
+  12s request timeouts,14-minute session ceiling. A source rejection ends the
+  session; later runs restart initial-state exclusion. Only validated positive
+  post-close current-scope bodies may be retained. Initial/repeated/unmatched
+  vectors do not establish update timing; recurrent corrected vectors excluded.
+  Exact matched D/R receipt differences include sampling/cache/transport and
+  carry bounds from prior different observations. Not AP/NYT publication parity.
+- Seven local synthetic/parser/accounting tests pass, including pinned original
+  historical exclusion, explicit synthetic current-format transformation,
+  ambiguous/off-origin keys, unmatched/corrected/recurrent vectors and rollback.
+  Existing production PA10 source contract tests pass. CI/merge still pending;
+  no deployed observer claimed. Next: inspect exact-head CI, merge only green,
+  verify scheduled workflow availability. Actual matched moving November batches
+  remain the acceptance gap; the recorder is not itself evidence of speed.
+
 ## October26 16:29Z - top-ranked PA10 national input deployed; independent timing next
 
 - PR459 mergesafe0470c25a804a276d498421224e9b4b5c6c254 after exact head

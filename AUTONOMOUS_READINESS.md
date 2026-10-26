@@ -6,6 +6,16 @@ acceptance testing and recovery only. Stop unattended changes November 4 at noon
 
 ## Work order
 
+Independent PA10 timing implementation (October26 16:43Z):
+scripts/pa10_results_timeliness.py now contains published-link discovery and a
+bounded post-close server-side paired recorder; pa10_timing_provider.cjs reuses
+the production PA10 source validator. Seven synthetic tests pass locally.
+The real county menu still has no2026 general link (HTTP200, Age1951), so the
+watch must remain gated; never guess a future election key. CI/merge pending.
+Initial/recurrent/unmatched D/R vectors cannot prove freshness. Receipt windows
+include caching/sampling/transport; never present as publisher-origin latency or
+AP/NYT parity. This capture-only path must not duplicate national likelihoods.
+
 PR459 DEPLOYED (October26 16:29Z): PA-10 uploaded tipping rank1, current polled linked D60.27%, original
 state2024 precinct extract now reproducible (340 precincts/three district parts;
 Census67, unchanged map and exact MIT reconciliation). Extend the same national
