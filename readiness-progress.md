@@ -21,11 +21,18 @@ an evidence task, not a reason to fabricate predictive updates.
 - Actual Edge checks pass at 1440px/390px for repeated redraws, multiple drawers,
   closed drawers, source fallback links, unrelated control focus and a native-DOM
   duplicate-URL fixture. All 12 core checks, source-triage rules and script asset
-  fingerprints pass. Full local DOM rerun is pending in session 68469; current
-  revision CI must pass before merging this UI fix.
+  fingerprints pass. Local DOM session 68469's final output was unavailable after
+  continuation; do not claim it passed. Current-revision CI must pass before merge.
 - Source diagnostics PR #429 passed all three applicable workflows and merged
   as ab7fbb99. Its bounded codes do not admit pre-close positive values. The next
-  scheduled probe will determine what newly published diagnostic evidence exists.
+  scheduled audit at 00:16:59Z now records PRE_POLL_CLOSE_POSITIVE_VOTES for AL-07,
+  CA-26 through CA-31 and NJ-07. These remain rejected; no counts are accepted.
+- PR #430's first CI revision passed 26 workflows, but broad validation correctly
+  failed because the newly published seven gaps lacked human fallback references.
+  Opened all seven exact DDHQ race headers plus New Jersey's official 2026 page,
+  added references with forecast/not-yet-published limits, and kept all 21 machine
+  gaps unresolved. Existing fallback tests pass without relaxing their assertions.
+  Full current-head CI is required again after this data repair.
 - Recovery #427 and manual fallback #428 are both deployed. At 23:56:11Z the
   actual published page rendered the CA-13 manual DDHQ link under an isolated
   503 test, with zero House results/calls; published HTML matched main a6176ab9.

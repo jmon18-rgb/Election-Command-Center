@@ -31,3 +31,12 @@ actual result claims. The [official California 2026 results guidance](https://vo
 was also inspected. It describes the planned post-close public portal and is
 linked as human guidance only, with a not-yet-published warning. All five
 automated-source gaps remain unresolved in the ledger.
+
+The 00:16Z October 26 audit (October 25 Eastern) rejected additional pre-close
+positive values for CA-26 through CA-31 and NJ-07. Their seven exact DDHQ
+November 3 race headers were opened and verified; the current landings display
+forecasts, which are not calls. California's existing official guidance applies
+to these districts. The [New Jersey 2026 election information page](https://www.nj.gov/state/elections/election-information-2026.shtml)
+has general-election candidates and earlier primary/special results, with no
+November general-election returns verified. It is labeled not yet published.
+All seven automated gaps remain unresolved; no rejected values enter results.
