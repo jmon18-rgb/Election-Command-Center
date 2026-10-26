@@ -12,9 +12,9 @@ const server=createServer((req,res)=>{const p=decodeURIComponent(new URL(req.url
  if(!f.startsWith(root+sep)||!existsSync(f)||!statSync(f).isFile()){res.writeHead(404).end();return;}
  res.writeHead(200,{'content-type':types[extname(f)]||'application/octet-stream'}).end(readFileSync(f));});
 await new Promise(ok=>server.listen(0,'127.0.0.1',ok));
-function packet(share,stamp,test=false){
+function packet(share,stamp,test=false,fraction=.65){
  const totals=[0,0],region_results=Object.fromEntries(history.years['2020'].counties.map(c=>{
-  const n=Math.floor((c.dem_votes+c.rep_votes)*.65),d=Math.floor(n*share),r=n-d;totals[0]+=d;totals[1]+=r;
+  const n=Math.floor((c.dem_votes+c.rep_votes)*fraction),d=Math.floor(n*share),r=n-d;totals[0]+=d;totals[1]+=r;
   return [c.county_fips,{name:c.county,type:'County',fips:c.county_fips,percent_reporting:100,candidates:[
    {name:'Adam Hamilton',party:'Democratic',votes:d},{name:'Roger Marshall',party:'Republican',votes:r},
    {name:'David C Graham',party:'Libertarian',votes:0}]}];
@@ -29,14 +29,14 @@ try{
  browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
  for(const width of [1366,390]){
   const context=await browser.newContext({viewport:{width,height:width===1366?768:844},reducedMotion:'reduce'});
-  const page=await context.newPage(),errors=[];let scenario='test';page.on('pageerror',e=>errors.push(e.message));
+  const page=await context.newPage(),errors=[];let scenario='test',blueStamp='2026-11-04T03:07:00Z';page.on('pageerror',e=>errors.push(e.message));
   await page.clock.install({time:new Date('2026-11-04T03:05:00Z')});
   await page.route('**/*',route=>{
    const url=new URL(route.request().url());if(url.hostname==='127.0.0.1')return route.continue();
    if(url.href!=='https://civicapi.org/api/v2/race/87162')return route.abort();
    if(scenario==='outage')return route.fulfill({status:503,body:'unavailable'});
    return route.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':'*'},
-    body:JSON.stringify(packet(scenario==='red'?.3:.6,scenario==='blue'?'2026-11-04T03:07:00Z':'2026-11-04T03:06:00Z',scenario==='test'))});
+    body:JSON.stringify(packet(scenario==='red'?.3:.6,scenario==='withdrawn'?'2026-11-04T03:07:10Z':scenario==='blue'?blueStamp:'2026-11-04T03:06:00Z',scenario==='test',scenario==='withdrawn'?0:.65))});
   });
   await page.goto(`http://127.0.0.1:${server.address().port}/`,{waitUntil:'domcontentloaded'});
   await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();
@@ -61,6 +61,18 @@ try{
   await host.locator('[data-ks="refresh"]').click();
   await page.waitForFunction(first=>window.enKansasPilotController?.status().projection?.dem_win_probability>first+.3,first);
   assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),national);
+  scenario='withdrawn';await page.clock.setSystemTime(new Date('2026-11-04T03:07:15Z'));
+  await host.locator('[data-ks="refresh"]').click();
+  await page.waitForFunction(()=>document.querySelector('[data-ks="state"]')?.textContent.includes('No genuine'));
+  assert.equal(await host.locator('[data-ks="chance"]').textContent(),'—');
+  scenario='blue';await page.clock.setSystemTime(new Date('2026-11-04T03:07:25Z'));
+  await host.locator('[data-ks="refresh"]').click();
+  await page.waitForFunction(()=>!enKansasPilotController.status().busy&&!enKansasPilotController.status().phase.includes('No genuine'));
+  assert.equal(await host.locator('[data-ks="chance"]').textContent(),'—','Older positive counts cannot resurrect a withdrawn Kansas forecast');
+  assert.match(await host.locator('[data-ks="state"]').textContent(),/requires a newer/);
+  blueStamp='2026-11-04T03:07:35Z';await page.clock.setSystemTime(new Date(blueStamp));
+  await host.locator('[data-ks="refresh"]').click();
+  await page.waitForFunction(()=>Boolean(enKansasPilotController.status().projection));
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2));
   scenario='outage';await page.clock.setSystemTime(new Date('2026-11-04T03:09:00Z'));
   await host.locator('[data-ks="refresh"]').click();

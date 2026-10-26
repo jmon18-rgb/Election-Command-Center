@@ -12,21 +12,22 @@ const server=createServer((req,res)=>{const p=decodeURIComponent(new URL(req.url
  if(!f.startsWith(root+sep)||!existsSync(f)||!statSync(f).isFile()){res.writeHead(404).end();return;}
  res.writeHead(200,{'content-type':types[extname(f)]||'application/octet-stream'}).end(readFileSync(f));});
 await new Promise(ok=>server.listen(0,'127.0.0.1',ok));
+let liveStamp='2026-11-04T03:07:00Z';
 function packet(scenario){
  const blue=scenario==='live-d'||scenario==='same-clock';
- const fraction=blue?.5:.1,share=blue?.6:.4;
+ const fraction=scenario==='withdrawn'?0:blue?.5:.1,share=blue?.6:.4;
  const totals=[0,0,0];
  const region_results=Object.fromEntries(reference.counties.map(c=>{
   const b=history.years['2022'].counties.find(r=>r.county===c.county).records.total;
   const n=Math.floor((b.dem_votes+b.rep_votes)*fraction),d=Math.floor(n*share),r=n-d;
-  totals[0]+=r;totals[1]+=d;totals[2]++;
+  totals[0]+=r;totals[1]+=d;totals[2]+=scenario==='withdrawn'?0:1;
   return [c.fips,{name:c.county,type:'County',fips:c.fips,percent_reporting:100,candidates:[
    {name:'Ashley Hinson',party:'Republican',votes:r},{name:'Josh Turek',party:'Democratic',votes:d},
-   {name:'Thomas Laehn',party:'Libertarian',votes:1}]}];
+   {name:'Thomas Laehn',party:'Libertarian',votes:scenario==='withdrawn'?0:1}]}];
  }));
  return {country:'US',province:'IA',district:null,municipality:null,election_name:'Iowa US Senate',
   election_type:'US Senate',election_scope:'General',election_date:'2026-11-03T05:00:00.000Z',
-  last_updated:scenario==='live-d'?'2026-11-04T03:07:00Z':'2026-11-04T03:06:00Z',test_data:scenario==='test',candidates:[
+  last_updated:scenario==='withdrawn'?'2026-11-04T03:07:10Z':scenario==='live-d'?liveStamp:'2026-11-04T03:06:00Z',test_data:scenario==='test',candidates:[
    {name:'Ashley Hinson',party:'Republican',votes:totals[0]},
    {name:'Josh Turek',party:'Democratic',votes:totals[1]},
    {name:'Thomas Laehn',party:'Libertarian',votes:totals[2]}],region_results};
@@ -35,6 +36,7 @@ let browser;
 try{
  browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
  for(const width of [1366,390]){
+  liveStamp='2026-11-04T03:07:00Z';
   const context=await browser.newContext({viewport:{width,height:width===1366?768:844},reducedMotion:'reduce'});
   const page=await context.newPage(),errors=[];let scenario='test',requests=0,release=null;
   page.on('pageerror',e=>errors.push(e.message));
@@ -77,15 +79,27 @@ try{
   assert.notEqual(await host.locator('[data-iowa="chance"]').textContent(),'—');
   assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),national,
    'Iowa partial-return probabilities cannot change national control odds');
+  scenario='withdrawn';await page.clock.setSystemTime(new Date('2026-11-04T03:07:15Z'));
+  await host.locator('[data-iowa="refresh"]').click();
+  await page.waitForFunction(()=>document.querySelector('[data-iowa="state"]')?.textContent.includes('No genuine'));
+  assert.equal(await host.locator('[data-iowa="chance"]').textContent(),'—','A validated zero-count withdrawal removes the live forecast');
+  scenario='live-d';await page.clock.setSystemTime(new Date('2026-11-04T03:07:25Z'));
+  await host.locator('[data-iowa="refresh"]').click();
+  await page.waitForFunction(()=>!enIowaPilotController.status().busy&&!enIowaPilotController.status().phase.includes('No genuine'));
+  assert.equal(await host.locator('[data-iowa="chance"]').textContent(),'—','Older positive counts cannot resurrect a withdrawn forecast');
+  assert.match(await host.locator('[data-iowa="state"]').textContent(),/requires a newer/);
+  liveStamp='2026-11-04T03:07:35Z';await page.clock.setSystemTime(new Date(liveStamp));
+  await host.locator('[data-iowa="refresh"]').click();
+  await page.waitForFunction(()=>Boolean(enIowaPilotController.status().projection));
   await page.locator('#enMode2024').click();
   await page.evaluate(()=>window.enIowaPilotController.tick());
   assert.equal(await page.evaluate(()=>Boolean(window.enIowaPilotController.status().projection)),false,
    'A live2026 Iowa forecast must disappear from the2024 archive');
   await page.locator('#enMode2026').click();
-  await page.clock.setSystemTime(new Date('2026-11-04T03:07:30Z'));
+  await page.clock.setSystemTime(new Date('2026-11-04T03:08:00Z'));
   await host.locator('[data-iowa="refresh"]').click();
   await page.waitForFunction(()=>Boolean(window.enIowaPilotController.status().projection));
-  scenario='delayed';release=null;await page.clock.setSystemTime(new Date('2026-11-04T03:07:40Z'));
+  scenario='delayed';release=null;await page.clock.setSystemTime(new Date('2026-11-04T03:08:10Z'));
   await host.locator('[data-iowa="refresh"]').click();
   await page.waitForFunction(()=>window.enIowaPilotController.status().busy);
   await page.locator('#enMode2024').click();
@@ -95,11 +109,11 @@ try{
   assert.equal(await page.evaluate(()=>Boolean(window.enIowaPilotController.status().projection)),false,
    'Late2026 response cannot publish a live probability into the2024 archive');
   await page.locator('#enMode2026').click();scenario='live-d';
-  await page.clock.setSystemTime(new Date('2026-11-04T03:07:50Z'));
+  await page.clock.setSystemTime(new Date('2026-11-04T03:08:20Z'));
   await host.locator('[data-iowa="refresh"]').click();
   await page.waitForFunction(()=>Boolean(window.enIowaPilotController.status().projection));
   const beforePreview=await page.locator('#enCoverageReconciliation').textContent();
-  scenario='delayed';await page.clock.setSystemTime(new Date('2026-11-04T03:08:00Z'));
+  scenario='delayed';await page.clock.setSystemTime(new Date('2026-11-04T03:08:30Z'));
   await host.locator('[data-iowa="refresh"]').click();
   await page.waitForFunction(()=>window.enIowaPilotController?.status().busy);
   await host.locator('[data-iowa="preview"]').click();
