@@ -116,5 +116,77 @@
     "historical_names_or_ids_do_not_prove_boundary_equivalence": true,
     "baseline_approved": false,
     "next_required": "Original county export/canvass reconciliation plus independently verified 2024to2026precinct equivalency; never allocate old precinct votes to new ones by guess."
+  },
+  "archived_original_history": {
+    "url": "https://raw.githubusercontent.com/openelections/openelections-sources-az/main/2024/general/2024%20Maricopa%20County%2C%20AZ%20precinct-level%20results.txt",
+    "provenance": "Original county-format export archived by OpenElections; archive identity established by actual2024/general directory, direct county historical retrieval still unavailable",
+    "sha256": "49e9bb23f7cdd510802a04edf7798c45f6753a7c0e82478843e60fe49e1f7a54",
+    "bytes": 34877349,
+    "exact_contest": "US Rep Dist CD-1",
+    "dem_votes": 208966,
+    "rep_votes": 225538,
+    "write_in_votes": 786,
+    "independent_district_major_party_totals_match": true,
+    "historical_precincts": 209,
+    "nonvoting_precincts_with_zero_registration_and_votes": [
+      "0565 NVP 19",
+      "0566 NVP 2"
+    ],
+    "blank_precinct_summary_votes": 0,
+    "summary_note": "Historical blank summary rows are zero; never mix them into unique precinct totals or assume current-template summary semantics apply.",
+    "processed_errors": [
+      {
+        "precinct": "0014",
+        "party": "DEM",
+        "original_votes": 1,
+        "processed_votes": 0,
+        "name": "0014 ALMA"
+      },
+      {
+        "precinct": "0014",
+        "party": "REP",
+        "original_votes": 3,
+        "processed_votes": 0,
+        "name": "0014 ALMA"
+      },
+      {
+        "precinct": "0410",
+        "party": "DEM",
+        "original_votes": 4,
+        "processed_votes": 0,
+        "name": "0410 JUNE"
+      },
+      {
+        "precinct": "0410",
+        "party": "REP",
+        "original_votes": 6,
+        "processed_votes": 0,
+        "name": "0410 JUNE"
+      },
+      {
+        "precinct": "0808",
+        "party": "REP",
+        "original_votes": 5,
+        "processed_votes": 0,
+        "name": "0808 SUNFLOWER"
+      },
+      {
+        "precinct": "0842",
+        "party": "REP",
+        "original_votes": 7,
+        "processed_votes": 0,
+        "name": "0842 TORTILLA FLAT"
+      },
+      {
+        "precinct": "0848",
+        "party": "REP",
+        "original_votes": 4,
+        "processed_votes": 0,
+        "name": "0848 TRES"
+      }
+    ],
+    "processed_error_explanation": "Seven candidate/precinct cells with1to7actualvotes were0inprocessedCSV; original resolves exact5D/25Rdiscrepancy without fabrication.",
+    "baseline_approved": false,
+    "remaining_blocker": "Original2024counts are now reconciled, but current210precinct geography including0944/0948/0953 is not. Zero oldNVPcounts do not establish origin of the three newprecincts. Need independent equivalency and changes within commonIDs."
   }
 }

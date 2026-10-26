@@ -1,5 +1,25 @@
 # Election Night production-readiness assignment
 
+## October26 22:56Z — AZ01 historical vote-total blocker resolved from original export
+
+- Actual OpenElections SOURCES repository2024/general lists original county-format
+  MaricopaTXT34,877,349bytes, SHA49e9bb23f7cdd510802a04edf7798c45f6753a7c0e82478843e60fe49e1f7a54.
+  Downloaded original, exactCD1unique-precinct totals208966D/225538R/786writeins,
+  matching independent existing major-party reference exactly. No invented fixes.
+- ProcessedCSV discrepancy localized to7specificcandidate/precinct cells: original
+  counts1to7became0inprocessedCSV, totaling5D/25R. Original also restores correct
+  Shah/Schweikert spellings. Use original, not processedCSV, for future baseline.
+- Old0565NVP19/0566NVP2 have0registered/0votes; blanksummaryrows also0. This
+  narrows geography issue but does NOT prove where new0944COSMOS/0948HEATHERBRAE/
+ 0953MAYA came from or that207commonprecinct IDs retain identical boundaries.
+  Full209historicalprecincts still not mapped to210current; no baseline approval.
+- Recorded exact original source/cells in assessment, local assertionspass,
+  originalTXT/selectedrows/celldiff saved. No deniedcountyarchive retry. NEXT
+  independently verify official2024/2026precinct shapes/equivalency and partition
+  history without guessing; source-clock/live semantics still outstanding.
+  Nationalinputscopeunchanged; no calibration or postclose delivery claim.
+
+
 ## October26 22:41Z — alternative AZ01 history found; exact reconciliation gaps measured
 
 - Used primary OpenElections repository contents API (not guessedfile) to find actual
