@@ -242,12 +242,28 @@
  }
  function render(host,pulse,doc,officialBackstops=[],editorialChecks=null){
   if(!host||!doc)return false;
+  const drawers=Array.from(host.querySelectorAll?.('details[data-source-drawer]')||[]);
+  const opened=new Set(drawers.filter(el=>el.open).map(el=>el.getAttribute('data-source-drawer')));
+  const active=doc.activeElement;
+  const owned=Boolean(active&&host.contains?.(active));
+  const focusedSummary=owned&&active.tagName==='SUMMARY'?
+   active.parentElement?.getAttribute('data-source-drawer'):null;
+  const focusedLink=owned&&active.tagName==='A'?{
+   href:active.getAttribute('href'),
+   race:active.closest('[data-source-race]')?.getAttribute('data-source-race')||null,
+   drawer:active.closest('details[data-source-drawer]')?.getAttribute('data-source-drawer')||null
+  }:null;
   host.replaceChildren();
   const elt=(tag,text,parent,cls)=>{
    const el=doc.createElement(tag);
    if(cls)el.className=cls;
    if(text!==undefined)el.textContent=text;
    if(parent)parent.appendChild(el);
+   return el;
+  };
+  const drawer=(key,parent)=>{
+   const el=elt('details',undefined,parent);
+   el.setAttribute?.('data-source-drawer',key);el.open=opened.has(key);
    return el;
   };
   if(!pulse){
@@ -316,6 +332,7 @@
      race.mode==='ODDS_UNVERIFIED'?'ODDS UNVERIFIED':'HIGH-CONFIDENCE · OUTCOME UNVERIFIED';
     const line=elt('p',race.id.replace('|',' ')+' — '+priority+' · '+
      LABELS[race.sourceStatus],parent,'en-coverage-line');
+    line.setAttribute?.('data-source-race',race.id);
     const link=Array.isArray(officialBackstops)?officialBackstops.find(x=>
      x&&Array.isArray(x.race_ids)&&x.race_ids.includes(race.id)&&
      typeof x.url==='string'&&/^https:\/\//.test(x.url)):null;
@@ -333,7 +350,7 @@
    };
    recovery.races.slice(0,4).forEach(r=>display(r,panel));
    if(recovery.races.length>4){
-    const more=elt('details',undefined,panel);
+    const more=drawer('operational-more',panel);
     elt('summary','All affected source feeds · '+recovery.races.length,more);
     recovery.races.slice(4).forEach(r=>display(r,more));
    }
@@ -355,6 +372,7 @@
      'REVIEW ODDS · no verified current D/R probability';
     const line=elt('p',race.id.replace('|',' ')+' — '+description,
      triage,'en-coverage-line');
+    line.setAttribute?.('data-source-race',race.id);
     const link=Array.isArray(officialBackstops)?officialBackstops.find(x=>
      x&&Array.isArray(x.race_ids)&&x.race_ids.includes(race.id)&&
      typeof x.url==='string'&&/^https:\/\//.test(x.url)):null;
@@ -391,13 +409,14 @@
    post_election_results_landing:' · may publish only after reporting',
    results_landing_timing_unconfirmed:' · Election Night timing unconfirmed'
   };
-  const details=elt('details',undefined,host);
+  const details=drawer('senate',host);
   elt('summary','Senate source gaps · '+pulse.senateMissing+
       ' awaiting verified reported votes · all 35 races',details);
   const list=elt('div',undefined,details,'en-coverage-senate-gaps');
   for(const row of pulse.senate){
    const line=elt('p',row.id.replace('Senate|','')+' — '+LABELS[row.status]+
        (row.provider?' ('+row.provider+')':''),list,'en-coverage-line');
+   line.setAttribute?.('data-source-race',row.id);
    // Provide an explicit operator-only fallback for every gap with an
    // independently curated official election-office link. An official
    // landing page is not a verified live vote feed or a winner call.
@@ -432,13 +451,14 @@
   const otherGaps=(pulse.unverifiedMachineIds||[]).filter(x=>
    x.office==='House'||x.office==='Governor');
   if(otherGaps.length){
-   const others=elt('details',undefined,host);
+   const others=drawer('identity-gaps',host);
    elt('summary','Unpinned House / governor source IDs · '+otherGaps.length+
     ' · official manual references only',others);
    const rows=elt('div',undefined,others,'en-coverage-other-gaps');
    for(const race of otherGaps){
     const line=elt('p',race.id.replace('|',' ')+' — No verified automated source ID',
      rows,'en-coverage-line');
+    line.setAttribute?.('data-source-race',race.id);
     const link=Array.isArray(officialBackstops)?officialBackstops.find(x=>
      x&&Array.isArray(x.race_ids)&&x.race_ids.includes(race.id)&&
      typeof x.url==='string'&&/^https:\/\//.test(x.url)):null;
@@ -469,6 +489,25 @@
    }
   }
   elt('small','This source audit does not calculate chamber control, race calls, ballots remaining, or live win probabilities.',host);
+  // Live source updates replace rows. Keep the operator's drawer and keyboard
+  // position instead of collapsing their investigation on every feed response.
+  // Never take focus from controls outside this source desk.
+  if(focusedSummary){
+   const target=Array.from(host.querySelectorAll?.('details[data-source-drawer]')||[])
+    .find(el=>el.getAttribute('data-source-drawer')===focusedSummary);
+   target?.querySelector('summary')?.focus({preventScroll:true});
+  }else if(focusedLink?.href){
+   const matches=Array.from(host.querySelectorAll?.('a[href]')||[]).filter(el=>
+    el.getAttribute('href')===focusedLink.href&&
+    (el.closest('[data-source-race]')?.getAttribute('data-source-race')||null)===focusedLink.race);
+   const target=matches.find(el=>(el.closest('details[data-source-drawer]')
+    ?.getAttribute('data-source-drawer')||null)===focusedLink.drawer)||matches[0];
+   if(target){
+    for(let parent=target.parentElement;parent&&parent!==host;parent=parent.parentElement)
+     if(parent.tagName==='DETAILS')parent.open=true;
+    target.focus({preventScroll:true});
+   }
+  }
   return true;
  }
  return Object.freeze({build,render,priorityGaps,supplementalState,LABELS});
