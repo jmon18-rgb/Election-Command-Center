@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-26T06:16:43.918390Z",
+  "updated_at": "2026-10-26T07:03:11.120284Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
@@ -260,6 +260,27 @@
     }
   ],
   "items": [
+    {
+      "id": "bb433647d5ba3c9c7ed1",
+      "title": "9th Circuit panel questions basis for feds\u2019 request to block 20,000 California ballots - Los Angeles Times",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQZ1NhQkx6YjU1Z0Z6WTZWU1pYeERybThxZHJJelU2dWs5bGJfdHRIem1wQlhLeDlZbmtBNGVrdFRYVHFzWDdPWUwyS1djWXNEWGlOdzNReGY3QWNnSmk1Z0o2MDlCMnNnZ1hkRjJwWmVwaGI0UEdncklFTjdFWGRqb1ZPZDVtcHZmU1RnanlWYzBzeHY0eUZ2azJlMnFaSkVIOU5rTWZsWWNNTkZuWHc?oc=5",
+      "publisher": "Los Angeles Times",
+      "published_at": "2026-10-25T22:54:04Z",
+      "detected_at": "2026-10-26T07:03:11.120284Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "17e44cbc4f80df55a463",
       "title": "US appeals court appears skeptical of Trump DOJ's lawsuit over California voter rolls - Reuters",
@@ -4935,23 +4956,6 @@
       "headline_numbers_unverified": [
         "92 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "4f83488fe8eb4be0e48b",
-      "title": "NCSBE To Send Letter To Potential Non-Citizens on Voter Rolls - WHKY",
-      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQSFU4ejJXQzFLYnZyTlpJdTFuMXNKVk90MXMtNW13Zi1ZbmJXZkVxRHJyY3JPQmlCMm9nVzhaeHlBaUxWRmRJRkJ2RkNDTUM0dlBva016U0VPcHF6S3NkaUlIV005SDExV0ZWSjJDb01YLXBsWmxzUGJkMk9KdU5aVXllQ3drUQ?oc=5",
-      "publisher": "WHKY",
-      "published_at": "2026-10-13T23:44:10Z",
-      "detected_at": "2026-10-13T23:51:12.636833Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
