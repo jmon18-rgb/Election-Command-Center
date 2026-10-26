@@ -8,7 +8,7 @@ const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 assert.throws(()=>transport.createPool(5),/bounded/);
 assert.throws(()=>transport.createPool(0),/bounded/);
 assert.throws(()=>transport.createPool(4,65),/bounded/);
-assert.throws(()=>transport.createPool(4,64,{priorityReserve:4}),/bounded/);
+assert.throws(()=>transport.createPool(4,64,{priorityReserve:5}),/bounded/);
 
 (async()=>{
  const pool=transport.createPool(4,64);
@@ -53,18 +53,18 @@ assert.throws(()=>transport.createPool(4,64,{priorityReserve:4}),/bounded/);
  });
  const releases=[],gates=Array.from({length:4},()=>subject.pool.run(()=>new Promise(resolve=>releases.push(resolve))));
  await Promise.resolve();assert.equal(releases.length,4);
- const bulk=Array.from({length:61},(_,i)=>subject.pool.run(()=>launched.push('bulk'+i)));
+ const bulk=Array.from({length:60},(_,i)=>subject.pool.run(()=>launched.push('bulk'+i)));
  await assert.rejects(subject.pool.run(()=>null),/saturated/,
-  'Bulk work cannot occupy the three reserved needle positions');
+  'Bulk work cannot occupy the four reserved needle positions');
  await assert.rejects(subject.fetch('https://civicapi.org/api/v2/race/87151?light='),/saturated/,
   'Only the exact full county route receives needle priority');
- const needleUrls=['https://civicapi.org/api/v2/race/87151','https://civicapi.org/api/v2/race/87162','https://civicapi.org/api/v2/race/87438'];
+ const needleUrls=['https://civicapi.org/api/v2/race/87151','https://civicapi.org/api/v2/race/87162','https://civicapi.org/api/v2/race/87438','https://civicapi.org/api/v2/race/87483'];
  const needles=needleUrls.map(url=>subject.fetch(url));
- assert.equal(subject.pool.status().queued,64);assert.equal(subject.pool.status().priority_queued,3);
+ assert.equal(subject.pool.status().queued,64);assert.equal(subject.pool.status().priority_queued,4);
  await assert.rejects(subject.pool.run(()=>null,{priority:true}),/saturated/,
   'Priority cannot expand the total queue');
  releases[0]();await Promise.all(needles);
- assert.deepEqual(launched.slice(0,3),needleUrls,'All three actual needle URLs start ahead of61 queued background requests');
+ assert.deepEqual(launched.slice(0,4),needleUrls,'All four actual needle URLs start ahead of60 queued background requests');
  releases.slice(1).forEach(release=>release());await Promise.all([...gates,...bulk]);
  assert.equal(subject.pool.status().peak,4);assert.equal(subject.pool.status().completed,68);
  assert.equal(subject.pool.status().active,0);assert.equal(subject.pool.status().queued,0);
@@ -106,5 +106,5 @@ assert.throws(()=>transport.createPool(4,64,{priorityReserve:4}),/bounded/);
   b.success();
  }
  assert.equal(pool.status().active,0);
- console.log('Shared four-request/64-queued cap, three reserved competitive needle positions, exact URL priority, outage epochs and cooldown recovery PASS');
+ console.log('Shared four-request/64-queued cap, four reserved competitive needle positions, exact URL priority, outage epochs and cooldown recovery PASS');
 })().catch(e=>{console.error(e);process.exitCode=1});

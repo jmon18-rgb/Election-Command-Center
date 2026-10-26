@@ -1133,6 +1133,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   <div class="four-needle-footer"><span>Waiting for a coherent joint forecast…</span><span>Source pending</span></div>
   <div class="four-needle-distribution" aria-hidden="true"></div>
  </div>
+ <p id="enNationalHouseSource" class="joint-note" role="status">WI-01 national input: waiting for verified district-part county counts.</p>
  <details id="enNationalRehearsal" class="joint-audit">
   <summary>Preview the national needle with simulated results</summary>
   <p><strong>SIMULATED · FICTIONAL COUNTS · NOT LIVE</strong> — five stages show rural-first returns, a blue surprise, a correction and source withdrawal. This preview never changes the live outlook or vote totals.</p>
@@ -1407,7 +1408,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/ohio_official_county_startup.js?v=d545da9c5eef"></script>
 <script src="./scripts/nc_county_results_desk_startup.js?v=e34a7f75a72d"></script>
 <script src="./scripts/election_night_openamerica_transport.js?v=17218440f2e8"></script>
-<script src="./scripts/election_night_transport.js?v=f3058e6c0311"></script>
+<script src="./scripts/election_night_transport.js?v=799de17f06de"></script>
 <script src="./scripts/election_night_fast_lane.js?v=f2a0d35d0a8a"></script>
 <script src="./scripts/election_night_nowcast.js?v=c2396a2d8e7a"></script>
 <script src="./scripts/election_night_early_signals.js?v=36958b325016"></script>
@@ -1417,14 +1418,16 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_reconciliation.js?v=395ee89c6934"></script>
 <script src="./scripts/election_night_506_live_gap_desk.js?v=b3d6fc8c94e4"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
-<script src="./scripts/national_county_likelihood.js?v=4847131b735d"></script>
+<script src="./scripts/wisconsin_house_county_source.js?v=41e742d818b7"></script>
+<script src="./scripts/wisconsin_house_evidence.js?v=60f1a09e5f1a"></script>
+<script src="./scripts/national_county_likelihood.js?v=654e43545c0f"></script>
 <script src="./scripts/national_needle_rehearsal.js?v=864b41e04ccb"></script>
-<script src="./scripts/chamber_control_model.js?v=faf44c64fdcd"></script>
+<script src="./scripts/chamber_control_model.js?v=a6c554debcbc"></script>
 <script src="./scripts/electorate_what_if_2026.js?v=1a5fe3701694"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
 <script src="./scripts/chamber_poll_error_audit.js?v=9e73e0e9f9fe"></script>
 <script src="./scripts/senate_calibration_audit.js?v=2aab89368b2d"></script>
-<script src="./scripts/competitive_source_revision.js?v=ae1992a5f3c6"></script>
+<script src="./scripts/competitive_source_revision.js?v=f6074bbee6cc"></script>
 <script src="./scripts/iowa_civic_county_source.js?v=6e755e60e8de"></script>
 <script src="./scripts/iowa_county_needle.js?v=2031f40c8e46"></script>
 <script src="./scripts/competitive_needle_prior.js?v=cc228fbcf6ce"></script>
@@ -3672,6 +3675,16 @@ void enRefreshSourceReadiness();
 setInterval(()=>{if(!document.hidden)void enRefreshSourceReadiness()},300000);
 
 function enRenderAmbientDesk(){
+ const houseNote=$('#enNationalHouseSource');if(houseNote)houseNote.hidden=enModeYear!==2026;
+ if(window.WisconsinHouseEvidence&&window.WisconsinHouseCountySource&&window.CompetitiveSourceRevision){
+  if(!window.enWisconsinHouseController)window.enWisconsinHouseController=window.WisconsinHouseEvidence.create({
+   fetchJSON:async path=>{const r=await fetch('./'+path,{credentials:'omit'});if(!r.ok)throw Error('Input HTTP '+r.status);return r.json();},
+   fetchSource:url=>enCivicFetchJson(url),isActive:()=>enModeYear===2026&&enIsVisible(),
+   sourceGeneration:()=>window.ElectionNightTransport.generation(enCivicBreaker),onValidated:()=>enCivicBreaker?.success(),
+   onUpdate:(state,changed)=>{if(houseNote)houseNote.textContent='WI-01 national input · '+state.phase;if(changed)jointQueueRefresh();}
+  });
+  void window.enWisconsinHouseController.tick();
+ }
  const rehearsal=$('#enNationalRehearsal');if(rehearsal){rehearsal.hidden=enModeYear!==2026;if(enModeYear!==2026)rehearsal.open=false;}
  const texasHost=$('#enTexasRaceNeedle');
  if(texasHost&&window.TexasNeedleView&&window.IowaCountyNeedle&&window.TexasCivicCountySource){
@@ -4166,6 +4179,7 @@ function jointRenderNeedles(result,config={}){
  const baseline=config.baseline||jointPulseBaseline,rows=config.evidence||jointPulseRows;
  const rehearsal=config.rehearsal===true;
  const countyCount=rows.filter(e=>e.evidence_kind==='county_likelihood').length;
+ const houseCount=rows.filter(e=>e.evidence_kind==='county_likelihood'&&e.race_code==='WI-01').length;
  const movement=window.ElectionNightSignals?.explainNeedle(result,baseline,rows);
  const keys=['red_dawn','shrug','blue_wave','blue_tsunami'];
  const labels=['RED DAWN','SHRUG','BLUE WAVE','BLUE TSUNAMI'];
@@ -4191,7 +4205,7 @@ function jointRenderNeedles(result,config={}){
   const liveCount=rows.length;
   const rawCount=rehearsal?0:jointDescriptiveReturns.length;
   const startOfCounting=Date.parse('2026-11-03T05:00:00Z');
-  const sourceMode=rehearsal?'SIMULATED REHEARSAL · FICTIONAL COUNTS':countyCount?'EXPERIMENTAL COUNTY RESULTS · '+countyCount+' SENATE RACES':Date.now()<startOfCounting?'POLLING-ONLY · NO LIVE RETURNS':
+  const sourceMode=rehearsal?'SIMULATED REHEARSAL · FICTIONAL COUNTS':countyCount?'EXPERIMENTAL COUNTY RESULTS · '+countyCount+' RACES ('+houseCount+' HOUSE)':Date.now()<startOfCounting?'POLLING-ONLY · NO LIVE RETURNS':
    liveCount?'RESULTS-INFORMED · '+liveCount+' SOURCE-VALIDATED RACES':
    rawCount?'UNADJUSTED RETURNS OBSERVED · NO GEOGRAPHIC NOWCAST':
    'AWAITING LIVE RETURNS · POLLING PRIORS';
@@ -4279,11 +4293,11 @@ function jointRenderNeedles(result,config={}){
     (d.early?' · EARLY SIGNAL':'')+
     ' · D win '+d.from.toFixed(1)+' → '+d.to.toFixed(1)+'% ('+
     (d.delta>=0?'+':'')+d.delta.toFixed(1)+' pp) · '+
-    d.provider+' · '+(d.evidence_kind==='county_likelihood'?d.reporting_counties+' counties · '+d.counted_two_party_votes.toLocaleString('en-US')+' D/R votes':d.reporting.toFixed(0)+'% precincts');
+    d.provider+' · '+(d.evidence_kind==='county_likelihood'?d.reporting_counties+(d.race_code==='WI-01'?' district/county parts':' counties')+' · '+d.counted_two_party_votes.toLocaleString('en-US')+' D/R votes'+(Number.isFinite(d.modeled_remaining_two_party_votes)?' · modeled remaining '+d.modeled_remaining_two_party_votes.toLocaleString('en-US')+' (turnout scenario '+d.modeled_remaining_two_party_votes_band.map(n=>n.toLocaleString('en-US')).join('–')+')':''):d.reporting.toFixed(0)+'% precincts');
    list.append(row);
   }
   context.append(list,elt('p','four-needle-disclosure',
-   (rehearsal?'SIMULATED COUNTS. ':'')+(countyCount?'Experimental counts-only update across '+countyCount+' Senate contests; no House vote sources. House movement uses the existing shared-error assumptions. Remaining turnout and batch mix are uncertain. Not independently calibrated. ':'')+'Race changes are not a causal decomposition of chamber control. No race call is inferred.'));
+   (rehearsal?'SIMULATED COUNTS. ':'')+(countyCount?'Experimental counts-only update across '+countyCount+' contests; '+(houseCount?'one House district, not national House coverage':'no House vote sources')+'. Other-race movement uses existing shared-error assumptions. Remaining turnout and batch mix are uncertain. Not independently calibrated. ':'')+'Race changes are not a causal decomposition of chamber control. No race call is inferred.'));
  }
 }
 function jointRenderCards(result){
@@ -4440,7 +4454,7 @@ function jointForecastResult(){return jointLastResult}
 function jointBaselineForecastResult(){return jointPublicResult}
 function jointCountyEvidence(){
  if(enModeYear!==2026)return [];
- return [window.enIowaPilotController,window.enKansasPilotController,window.enTexasPilotController]
+ return [window.enIowaPilotController,window.enKansasPilotController,window.enTexasPilotController,window.enWisconsinHouseController]
   .map(c=>c?.status().evidence).filter(Boolean);
 }
 function jointCurrentSignature(){
@@ -4472,7 +4486,7 @@ function jointRender(force=false){
   const result=conditioned?.result||window.ChamberControlModel.simulate(jointBasis,args);
   const countyRows=(conditioned?.diagnostics.used||[]).map(e=>({race_code:e.code,asOf:e.as_of,
    provider:'civicAPI',evidence_kind:'county_likelihood',reporting_counties:e.reporting_counties,
-   counted_two_party_votes:e.counted_two_party_votes}));
+   counted_two_party_votes:e.counted_two_party_votes,modeled_remaining_two_party_votes:e.modeled_remaining_two_party_votes,modeled_remaining_two_party_votes_band:e.modeled_remaining_two_party_votes_band}));
   jointPulseRows=[...jointPulseRows.filter(e=>!countyRows.some(c=>c.race_code===e.race_code)),...countyRows];
   jointPulseBaseline=Object.keys(updates).length||countyRows.length?
    window.ChamberControlModel.simulate(jointBasis,{...args,live:{}}):result;
@@ -4519,7 +4533,7 @@ function jointRender(force=false){
   const note=$('#jointRunStatus');
   if(note)note.textContent=(jointUsesPrivateContext()?(jointPrivateSource==='repository'?'REPOSITORY SENATE/HOUSE FUNDAMENTALS · ':'LOCAL CSV CONTEXT · '):'')+
    (countyUpdateWithheld?'County update unavailable · polling/call model retained · ':'')+
-   (countyRows.length?'EXPERIMENTAL · '+countyRows.length+' Senate county sources · no House vote sources · ':'')+
+   (countyRows.length?'EXPERIMENTAL · '+countyRows.length+' county race sources · '+(conditioned?.diagnostics.house_vote_sources||0)+' House district sources · ':'')+
    Object.keys(updates).length+
    ' source-validated races ('+
    Object.values(updates).filter(x=>x.mode==='source_called').length+
@@ -5512,7 +5526,7 @@ function enWatchToggle(item){
  * official certification. Keep identifier verification and source isolation. */
 const enCivicBase='https://civicapi.org/api/v2';
 const enCivicBreaker=window.ElectionNightSourceBackoff?.create()||null;
-const enCivicRequestPool=window.ElectionNightTransport?.createPool(4,64,{priorityReserve:3})||null;
+const enCivicRequestPool=window.ElectionNightTransport?.createPool(4,64,{priorityReserve:4})||null;
 const enCivicValidatedGenerations=Object.create(null);
 // A past successful fetch does not remain eligible evidence after any
 // unresolved upstream 429/502/503/504, including after the cooldown expires.
@@ -5948,7 +5962,7 @@ function enCivicURL(item){return enCivicByWatch[enWatchId(item)]?.source_url||'h
 // Abort where supported, and reject on time even if a fetch ignores abort.
 async function enCivicFetchJson(url,timeoutMs=12000){
  if(!enCivicRequestPool)throw Error('Election Night bounded transport not loaded');
- const priority=['https://civicapi.org/api/v2/race/87151','https://civicapi.org/api/v2/race/87162','https://civicapi.org/api/v2/race/87438'].includes(url);
+ const priority=['https://civicapi.org/api/v2/race/87151','https://civicapi.org/api/v2/race/87162','https://civicapi.org/api/v2/race/87438','https://civicapi.org/api/v2/race/87483'].includes(url);
  return enCivicRequestPool.run(()=>enCivicFetchUnpooled(url,timeoutMs),{priority});
 }
 async function enCivicFetchUnpooled(url,timeoutMs=12000){
@@ -5956,7 +5970,7 @@ async function enCivicFetchUnpooled(url,timeoutMs=12000){
  // Other full routes remain blocked; retain search/light routing safeguards.
  if(typeof url!=='string'||
     (!/^https:\/\/civicapi\.org\/api\/v2\/race\/(?:search\?[^#]+|[1-9]\d*\?light=)$/.test(url)&&
-     !['https://civicapi.org/api/v2/race/87151','https://civicapi.org/api/v2/race/87162','https://civicapi.org/api/v2/race/87438'].includes(url)))
+     !['https://civicapi.org/api/v2/race/87151','https://civicapi.org/api/v2/race/87162','https://civicapi.org/api/v2/race/87438','https://civicapi.org/api/v2/race/87483'].includes(url)))
   throw Error('Unapproved civicAPI 2026 result source URL');
  const cool=enCivicBreaker?.status();
  const requestGeneration=window.ElectionNightTransport.generation(enCivicBreaker);

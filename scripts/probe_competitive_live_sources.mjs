@@ -1,18 +1,27 @@
 // Real deployed-page probe. Approved provider routes are continued, NEVER
 // fulfilled with fixtures. No virtual clock and no test vote payload archival.
-import {mkdirSync,writeFileSync,appendFileSync} from 'node:fs';
-import {resolve} from 'node:path';
+import {mkdirSync,writeFileSync,appendFileSync,readFileSync,existsSync,statSync} from 'node:fs';
+import {resolve,extname,sep} from 'node:path';
+import {createServer} from 'node:http';
 import {createHash} from 'node:crypto';
 import {createRequire} from 'node:module';
 import {execFileSync} from 'node:child_process';
 const require=createRequire(import.meta.url);
-const {races,inWindow,summarize}=require('./competitive_live_source_report.cjs');
+const {races,inWindow,summarize,nationalProof}=require('./competitive_live_source_report.cjs');
 const out=resolve('artifacts/readiness/competitive-live');mkdirSync(out,{recursive:true});
-const target='https://jmon18-rgb.github.io/Election-Command-Center/';
+let target='https://jmon18-rgb.github.io/Election-Command-Center/',candidateServer=null;
+const candidate=process.argv.includes('--candidate');
 if(!inWindow(Date.now())){
  const report={generated_at:new Date().toISOString(),status:'OUTSIDE_2026_ELECTION_WINDOW_NO_SOURCE_REQUESTS',interval_calibrated:false};
  writeFileSync(resolve(out,'report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));
 }else{
+ if(candidate){
+  const root=resolve(import.meta.dirname,'..'),types={'.html':'text/html','.js':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.mp3':'audio/mpeg'};
+  candidateServer=createServer((req,res)=>{const name=decodeURIComponent(new URL(req.url,'http://localhost').pathname),path=resolve(root,'.'+(name==='/'?'/index.html':name));
+   if(!path.startsWith(root+sep)||!existsSync(path)||!statSync(path).isFile()){res.writeHead(404).end();return;}
+   res.writeHead(200,{'content-type':types[extname(path)]||'application/octet-stream'}).end(readFileSync(path));});
+  await new Promise(ok=>candidateServer.listen(0,'127.0.0.1',ok));target='http://127.0.0.1:'+candidateServer.address().port+'/';
+ }
  const {chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright');
  let browser,report,pageFingerprint=null;
  const probeEnvironment=process.env.GITHUB_ACTIONS==='true'?'github_actions_browser':'local_browser';
@@ -50,6 +59,8 @@ if(!inWindow(Date.now())){
   await page.waitForFunction(names=>names.every(name=>window[name]&&!window[name].status().busy&&
    !/Waiting|Select|Checking/.test(window[name].status().phase)),controllers,{timeout:25000});
   await page.evaluate(async names=>{await Promise.all(names.map(name=>window[name].tick()));},controllers);
+  await page.evaluate(()=>jointRender(true));
+  const admitted=await page.evaluate(()=>jointLastResult?.county_results_update?.used||[]);
   const rows=[],rawBodies=new Map();
   for(const race of races){
    const network=observed.get(race.url),body=network?await bounded(network.body).catch(e=>({error:e.message})):null;
@@ -62,7 +73,13 @@ if(!inWindow(Date.now())){
      if(!response.ok)throw Error('Independent county reference HTTP '+response.status);
      parsed=window[race.parser].parse(raw,await response.json(),{source_url:race.url,now:Date.now()});
     }catch(error){parse_error=error.message;}
-    const projection=state.projection?{
+    const jointEvidence=jointLastResult?.county_results_update?.used.find(e=>e.code===race.code);
+    const jointRace=jointLastResult?.race_probabilities.find(e=>e.race_code===race.code);
+    const projection=race.forecast_scope==='national_joint_draws'&&jointEvidence&&jointRace?{
+     status:'EXPERIMENTAL_NATIONAL_JOINT_DRAW_PROBABILITY',dem_win_probability:jointRace.dem_beats_rep_pct/100,
+     counted_dem_votes:parsed.counties.reduce((n,c)=>n+c.dem_votes,0),counted_rep_votes:parsed.counties.reduce((n,c)=>n+c.rep_votes,0),
+     modeled_remaining_two_party_votes:jointEvidence.modeled_remaining_two_party_votes,modeled_remaining_two_party_votes_band:jointEvidence.modeled_remaining_two_party_votes_band,
+     interval_calibrated:false,may_move_national_needle:true}:state.projection?{
      status:state.projection.status,dem_win_probability:state.projection.dem_win_probability,
      counted_dem_votes:state.projection.counted_dem_votes,counted_rep_votes:state.projection.counted_rep_votes,
      modeled_remaining_two_party_votes:state.projection.modeled_remaining_two_party_votes,
@@ -83,7 +100,9 @@ if(!inWindow(Date.now())){
     transport_error:requestErrors.get(race.url)||body?.error||(!network?'No provider response':null),...ui});
    if(body?.bytes)rawBodies.set(race.code,body.bytes);
   }
-  report={...summarize(rows),site:target,probe_environment:probeEnvironment,probe_revision:probeRevision,probe_working_tree_dirty:probeDirty,
+  const proof=nationalProof(rows,admitted);
+  for(const row of rows){row.national_evidence_validated=proof.validated_codes.includes(row.code);row.national_contract_validated=proof.contract_validated;}
+  report={...summarize(rows),national_admitted_sources:admitted,site:target,site_scope:candidate?'LOCAL_CANDIDATE_NOT_PUBLISHED':'ACTUAL_PUBLISHED_SITE',scope:candidate?'Actual candidate browser with real provider responses; not published-site acceptance, no fixtures or virtual clock':'Actual published browser with real provider responses; no fixtures or virtual clock',probe_environment:probeEnvironment,probe_revision:probeRevision,probe_working_tree_dirty:probeDirty,
    site_index_decoded_body_sha256:pageFingerprint,fixture_free:true,virtual_clock:false,
    other_providers:'Blocked, not replaced; this isolates the competitive county paths',page_errors:pageErrors,
    loaded_scripts:await page.locator('script[src]').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('src'))),raw_archives:[]};
@@ -106,10 +125,10 @@ if(!inWindow(Date.now())){
   report={generated_at:new Date().toISOString(),status:'ACTION_REQUIRED',site:target,
    probe_environment:probeEnvironment,probe_revision:probeRevision,probe_working_tree_dirty:probeDirty,site_index_decoded_body_sha256:pageFingerprint,
    fixture_free:true,virtual_clock:false,interval_calibrated:false,error:error.message,raw_archives:[]};
- }finally{await browser?.close();}
+ }finally{await browser?.close();if(candidateServer)await new Promise(ok=>candidateServer.close(ok));}
  writeFileSync(resolve(out,'report.json'),JSON.stringify(report,null,2)+'\n');
  const summary=['# Actual competitive-source probe','',`Status: **${report.status}**`,
-  '', 'Real provider responses; no fixtures or virtual clock. Test mode never proves live delivery. No calibration claim.',
+  '',`Target scope: ${report.site_scope||'no page observed'}`, '', 'Real provider responses; no fixtures or virtual clock. Test mode never proves live delivery. No calibration claim.',
   '', '| Race | HTTP | Actual source status | Accepted live two-party votes | Forecast observed |', '| --- | --- | --- | ---: | --- |',
   ...(report.sources||[]).map(r=>`| ${r.code} | ${r.http??'unavailable'} | ${r.status} | ${r.counted_dem_votes+r.counted_rep_votes} | ${r.actual_live_input_forecast_observed} |`),
   '', 'Source: civicAPI (https://civicapi.org), permitted public API with attribution. Raw test payloads are never archived.',

@@ -1,7 +1,10 @@
 # Experimental national results-to-outlook contract
 
 The primary product is one national Four Endings outlook. Iowa, Kansas and
-Texas Senate race panels are supporting diagnostics. Their polling-informed
+Texas Senate race panels are supporting diagnostics. WI-01 House supplies
+county/district-part counts directly to this same national model with no extra
+race panel. Its official 2024 WEC canvass reconciles to MIT district totals,
+Census county identifiers and the existing unchanged-2026-boundary gate. Their polling-informed
 posterior probabilities never become inputs to the national likelihood.
 
 ## What changes the outlook
@@ -26,9 +29,9 @@ The likelihood contains no polling prior. Candidate-specific and state residuals
 remain in each existing complete national draw, alongside the declared shared
 national errors. A candidate-specific Senate surprise is therefore not copied
 uniformly into House races. House changes occur only through the existing model's
-shared-error covariance; this path has **zero observed House vote sources**.
-Three Senate states are limited national coverage and cannot establish a measured
-nationwide House swing.
+shared-error covariance; this path supports **one House district**, not national House coverage. Three
+Senate states and one House district remain limited national evidence and cannot
+establish a measured nationwide House swing.
 
 Each race's relative likelihood is mixed with a 5% contamination floor, bounding
 its ratio at 20:1. Combined evidence is tempered when necessary to preserve at
@@ -65,3 +68,22 @@ chronological competitive-race calibration remains unavailable. Texas's 2024
 reference is a different Senate matchup/class and a presidential turnout cycle;
 Iowa and Kansas reference years also need turnout and candidate-context caution.
 The UI must retain experimental labeling while these gaps remain.
+
+## First competitive House input
+
+WI-01 uses the exact full Civic87483 route, five independently matched county
+PARTS within the congressional district and pinned current major candidates.
+A whole-county historical total cannot substitute for those district-part counts.
+At least three counties and10,000 D/R votes are required for national eligibility.
+Its probability comes from the conditioned joint draws, not a new race posterior.
+
+The national source drivers expose modeled remaining D/R votes and a conditional
+historical-turnout scenario range, including unreported county parts. These are
+not official ballots outstanding or calibrated intervals. The declared25% turnout
+scale and source/method uncertainty remain explicit assumptions.
+
+The actual-source probe now matches every admitted national evidence row to the
+independently parsed actual response and source publication time. Legitimate
+national conditioning is expected. Test/unmatched inputs changing the national
+outlook still fail. Merely requiring unchanged national odds after real results
+would incorrectly reject the feature the owner requested.
