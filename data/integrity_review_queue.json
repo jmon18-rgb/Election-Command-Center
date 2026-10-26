@@ -1,21 +1,21 @@
 {
-  "updated_at": "2026-10-26T17:49:16.100750Z",
+  "updated_at": "2026-10-26T19:00:46.378327Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 4,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
     "primary_source_checked": 4,
     "advisory_related_headline_buckets": 23,
-    "advisory_related_headlines": 53
+    "advisory_related_headlines": 54
   },
   "advisory_related_headlines": [
     {
       "lead_id": "8eac970c233573625d18",
       "headline": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - Los Angeles Times",
-      "possibly_related_articles": 6,
-      "distinct_publishers": 6,
+      "possibly_related_articles": 7,
+      "distinct_publishers": 7,
       "state_hints": [],
       "topic_hints": [
         "ballot_access",
@@ -264,6 +264,42 @@
   ],
   "items": [
     {
+      "id": "58970fe8e83f393111e0",
+      "title": "Who will win the 2026 midterm elections? Polls and predictions - The Times",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNUnpCV1NDNnk4SXdjQkEzNjhGZUIwTWJhVDlQZS1NZGRnNzdDamRHR0Q3M0w4djlsT1BvZWIxaWpVakVYbk5rUHJfZkJlQ18wNlBjZmM3cEp2ekhPNG1jd09CWFJUQWVORVhxRjh2UjBuQVkydGxLd05UR3JCVEYzVXltcEpSRWVXQlVoZEdsNmJaVFM1ZTZFcERta19lVWtZZGs0dlhEMlUybGItRGwtN0xXVQ?oc=5",
+      "publisher": "The Times",
+      "published_at": "2026-10-26T17:09:11Z",
+      "detected_at": "2026-10-26T19:00:46.378327Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "af1a5f88e593002150f0",
+      "title": "Amid mail-in voting anxiety, more Mecklenburg voters are casting their ballots in person - WFAE",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQZ1ZLVi1tYU1Qd0gxb3J3Mzlpc0pYT3hyZlA1TUF6OXVkSnQ2UVJCMDRON2xILWpLdVNnYjBDSTRSek1ZUWlzUkU4OUd4MzQ3MDEwdkNDTVUyYVhIM08ycGZCX25mLUdLYmNCNEU0MHdYdU9zWEZUWnAzaVAxZGRMaEdNbmpOSUwyOUZZQ3F2STNNaHJMMmxTc284OElmOHFUQjFPSzYxNTl1Tk9MTWJIN3ZMZWhUaUpueVNfSmotYkpNMklGZVd2amxORloybE1qbmVjaw?oc=5",
+      "publisher": "WFAE",
+      "published_at": "2026-10-26T16:59:00Z",
+      "detected_at": "2026-10-26T19:00:46.378327Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "baa075c26cb40f0ae67e",
       "title": "Bob Ferguson Trashed ICE All Year. Now He Wants Troops at Drop Boxes. - Seattle Red",
       "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxONDBSMnVNZm93RHdHSGhfQmtwdnNvT0JMZlNKNTV0SjBMMWp2MFNTU3lrb0dPb0V3TUlBVUZfOUd2WkltTGpPaTZBQ0ZUS3FUcG56czY0ZE9BNW40S0dScktzaU01ZjR4S1FuTkl2QjJtb0I5V28tcHh3TmpqV0NhSUdaU3lvcW16cV9ZNG5sZl9yZzUtYXZVNDhZcE80X1ZSVTBubXZUci1PNjBvdEtDbzVyLW11WVhiaTUwZFJySGFrdkdFZkI2bjVsNVlndw?oc=5",
@@ -273,6 +309,23 @@
       "state_hints": [],
       "topic_hints": [
         "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "2fbfe31f82d3f9794026",
+      "title": "Thousands of Ineligible Voters Flagged\u2014Why So Few Prosecutions? - AMAC \u2014 The Association of Mature American Citizens",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOVERQbTBoQXdqelMtLTYtcEFGM29fRzNrTTFHZWhqNHpkZG9KRHVHaUtlRjFBTjlBeGs0QTFpcDhjNXkwMVBTMEU0S3UzN0FWemlELUIxbXRjQnBEQldyTnpzUWFCaGZabXFxakpjM1lkNTNIU1BpcVdSRWJCZUQtamhSd2c0bHY4cERTa2t4N0VQUy1QQTE3OXo4WU5xZDIzUkJBMGhn?oc=5",
+      "publisher": "AMAC \u2014 The Association of Mature American Citizens",
+      "published_at": "2026-10-26T15:25:04Z",
+      "detected_at": "2026-10-26T19:00:46.378327Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -326,6 +379,24 @@
       "publisher": "PBS",
       "published_at": "2026-10-26T14:29:25Z",
       "detected_at": "2026-10-26T17:47:40.963885Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "c4e770e7adc8976ebc84",
+      "title": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - NBC News",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOb0w1YnZwUkd2Q1JTa3A2NTFFaktxaXhxZW1ZQlEybnRoQ2RqTVFOclU3eFAtN1I4UXRUSzhRV3YzN0VsWk56QldfT2N3SGd0ZHRJSlRORE4tRDQ1MzRwa0NlbWpkVG5nXzlqUlQ2eXRQWUtNd1NoNjFFV0lQSFdNemRWdWZaY29lRnQ3S1hYMV9PNmhMRlRvaWpESmc1ZHJEV2F6b0dSZWRSVWIyc2lNOW1UYzFtNUdCbFE2NUd5Nmt4LTZHWDFN?oc=5",
+      "publisher": "NBC News",
+      "published_at": "2026-10-26T14:16:25Z",
+      "detected_at": "2026-10-26T19:00:46.378327Z",
       "state_hints": [],
       "topic_hints": [
         "ballot_access",
@@ -4895,73 +4966,6 @@
       "publisher": "TimesLIVE",
       "published_at": "2026-10-14T12:10:08Z",
       "detected_at": "2026-10-14T14:26:26.792039Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "25d2145a8cc39f195dcd",
-      "title": "'Terrorized' battlegrounds turn into 'ghost towns' as ICE swarms early voting - Raw Story",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9zNEM3RUpUOU5abUkxN2ZGRlBqbDhiMUJkNWlBY2xKem1HSGRqOXNjcmNIOXQ5YnZzaGR5eWNhYWVhSEh1a1BpaDF3Um56OUFPbXg1ZXR5dUJxMTBZMFl1bk5RNHZzSTRC0gFkQVVfeXFMTXZuWHlJUFlqandLQ29PRlVOZDk0VnZCekhJSUdUS1drenc0d0pDRE9UcUlrNDFPUDkyQ2tBVXRpZTYxODVRVzhDV1c4X0xvdG1WSjlTSC0zUTZKdlZSZjZKcGpJZQ?oc=5",
-      "publisher": "Raw Story",
-      "published_at": "2026-10-14T11:45:00Z",
-      "detected_at": "2026-10-14T13:00:50.754853Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "9564f5dfc3c40acb7d57",
-      "title": "Rutledge Says Maryland\u2019s Attorney General Should Back Police and Stop Suing Washington Over Policy - Howl.link",
-      "url": "https://news.google.com/rss/articles/CBMiO0FVX3lxTE40U1BGR09MaXZDc0FJMl9uRHFHaTc4eXJ0MURHTDludnRNZjFvVXdlRmNHM2xYeGFxbmlJ?oc=5",
-      "publisher": "Howl.link",
-      "published_at": "2026-10-14T11:17:24Z",
-      "detected_at": "2026-10-14T12:04:20.212894Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "fd32f8a05e0cc18ec620",
-      "title": "Immigration, climate, guns: key Trump policies to be tested at supreme court - The Guardian",
-      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOd0VJSTdMbWYtX3JkclozUHUxT3Q3Z19PbC1UdkpMWGhVbmpQV2tLdDRrYTNXZS04WjN0WWJYYXM2SXBiVVFBZ3V2dnhMcW1Ja1ZYVnRiQk90ZlZIYWUyQ2lrejBTckRRQWF0MUwySEctdjAzMkh2RVhIWW5iOGhhRFNwVQ?oc=5",
-      "publisher": "The Guardian",
-      "published_at": "2026-10-14T11:02:00Z",
-      "detected_at": "2026-10-14T11:09:17.083238Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "bdb14e21cd5966548f05",
-      "title": "Trump pressed states for info on millions of voters in the midterms. It\u2019s mostly failed. - Kiowa County Press",
-      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNbWRock9WcF9VanJkWnhMNzdibTNYeWdVVnEtaHpsMkh4WHl0aHdtVmlib1c3TFpQNEE0VUkzcEhnR1V2NEk5eDZjelV5TmU2ZlhGQ0tzaUlPZUMtWlZ4U3lXXzJ2WFJQZEJXdWNTUHJlQ1JDWUlWZzRfM1BTODh1UkJ3eTNzdlJWbUJqUkUwVWNKMUZmal83WnpHVHBrLWlNOHBLWDZBd1c?oc=5",
-      "publisher": "Kiowa County Press",
-      "published_at": "2026-10-14T11:00:00Z",
-      "detected_at": "2026-10-14T11:16:48.181856Z",
       "state_hints": [],
       "topic_hints": [],
       "headline_numbers_unverified": [],
