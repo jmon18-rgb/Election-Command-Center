@@ -1,5 +1,49 @@
 # Readiness progress
 
+## October 26 12:40Z - NATIONAL results-informed needle deployed and exercised
+
+- PR454 merged259f41e2 after all31 applicable current-head workflows pass at
+  482806348f3306e4d3b4edba3243dd1c28697bea. Rerun the one cancelled Kansas
+  browser-install job successfully; no required check bypassed. Review also
+  closed the legacy race-posterior override entry point and tested expiry
+  withdrawal directly in the national view. Full local dashboard DOM passes.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/454
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40321993243
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40321993177
+- The first Pages build was superseded by the briefing bot, not treated as a
+  deployment failure or success. Replacement Pages run40324046301 succeeds for
+  main4736bcbf. Actual served HTML, all loaded scripts and pinned county assets
+  match57 checked files at12:40:13Z. Served-site verification also passes.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40324046301
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40324002181
+- Actual PUBLISHED Edge1366/390 with explicitly synthetic source responses passes
+  NATIONAL movement before any calls, correction, withdrawal, outage, expiry,
+  test exclusion, unconditioned-prior isolation and isolated rehearsal. The
+  national preview shows all four probabilities and restores its exact baseline
+  after source withdrawal without modifying the real model/storage. This is
+  functional evidence, not actual non-test delivery or chronological calibration.
+- Separate fixture-free, real-clock published probe at12:40:17Z, clean4736bcbf,
+  receives all three full routes HTTP200 and99/105/254 matching county identities.
+  All providers still TEST DATA: accepted votes0, projections null, national
+  unchanged, no browser errors and no raw test payloads archived. Status remains
+  LIVE_DELIVERY_UNPROVEN. Test-data availability is not actual live forecasting.
+- Owner-visible milestone: Election Night -> Preview the national needle with
+  simulated results. The main national outlook is now wired to validated partial
+  county counts; individual race posteriors remain diagnostics, never independent
+  evidence. The four owner thresholds and coherent joint probabilities remain.
+- Next critical evidence gap is broader competitive coverage, especially actual
+  HOUSE county/district-part evidence. Rank again using the current linked model;
+  do not spend custom effort on safe seats or add more individual race panels.
+  Bounded review found existing advisory full WI01/OH10 feeds have county rows,
+  but both remain TEST DATA. Independent complete district-part geography and
+  historical baselines are still required before national admission; district
+  number alone cannot establish map comparability. Notes are preserved under
+  artifacts/readiness/next-house-evidence-review.txt. No new source auto-pinned.
+- Independent chronological probability calibration remains unavailable. Three
+  Senate states and zero House vote sources are limited national evidence;
+  House movement uses declared shared-error assumptions. Do not remove the
+  experimental label or equate this milestone with election-night acceptance.
+
 ## October 26 12:15Z - National county-results bridge implemented for review
 
 - Latest human clarification: ONE national NYT-style Blue Wave/Tsunami outlook
