@@ -1,0 +1,22 @@
+{
+  "frozen_model_blob": "41ec65dd7f1762b05b3886733ea4119194129b63",
+  "baseline_year": 2018,
+  "outcome_year": 2022,
+  "prior_margin_points": 0,
+  "prior_sigma_points": 6,
+  "county_fractions": [
+    0.1,
+    0.25,
+    0.5,
+    0.75
+  ],
+  "orders": [
+    "baseline_small_counties_first",
+    "baseline_large_counties_first",
+    "baseline_democratic_counties_first",
+    "baseline_republican_counties_first"
+  ],
+  "order_inputs": "Baseline counts and shares only; outcome values are not used to choose release order",
+  "scope": "First evaluation of this separate close-election cohort; different office, assumed times and one election do not establish calibration",
+  "numeric_parameters_may_be_tuned_after_evaluation": false
+}

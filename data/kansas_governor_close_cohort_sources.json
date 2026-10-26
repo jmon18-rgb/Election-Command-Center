@@ -1,0 +1,33 @@
+{
+  "source_index": "https://sos.ks.gov/elections/election-results.html",
+  "sources": {
+    "2018": {
+      "path": "data/kansas_historical_sources/2018-governor.xlsx",
+      "sha256": "8ce82507d607b05fb63224c8ff534d9bbdecc137f5b116481f8d48c1a78506a7",
+      "expected_statewide": {
+        "D": 506509,
+        "R": 453030
+      },
+      "url": "https://sos.ks.gov/elections/18elec/2018_General_Election_Governor_Lt_Governor_Precinct_Level_Results.xlsx",
+      "statewide_check_url": "https://sos.ks.gov/elections/18elec/2018_General_Election_Official_Votes_Cast.pdf"
+    },
+    "2022": {
+      "path": "data/kansas_historical_sources/2022-governor.xlsx",
+      "sha256": "d9d84852ca5f7a29f366e77bd6c26d0899f1d5f09d5c7de445182f6419b759e7",
+      "expected_statewide": {
+        "D": 499849,
+        "R": 477591
+      },
+      "url": "https://sos.ks.gov/elections/22elec/2022-General-Election-Governor-Results-By-Precinct.xlsx",
+      "statewide_check_url": "https://sos.ks.gov/elections/22elec/2022-General-Official-Vote-Totals.pdf"
+    }
+  },
+  "wyandotte_2018": {
+    "url": "https://wycovoteskck.gov/2018-general-election-results",
+    "path": "data/kansas_historical_sources/wyandotte-2018-governor-official-excerpt.txt",
+    "normalized_excerpt_sha256": "3af7e2e69d333942dd47faca7dc20f8d84e24ea3e9b45092cd7491895090813d",
+    "D": 28285,
+    "R": 10526,
+    "scope": "Actual published official county aggregate, not inferred from state totals; no precinct reconstruction"
+  }
+}
