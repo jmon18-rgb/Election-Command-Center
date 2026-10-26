@@ -172,6 +172,26 @@ try{
    textContent?.includes('House 2/435 · Senate 1/35 · Governors 0/36'),{timeout:30000});
   assert.equal(await page.evaluate(()=>enOfficeSnapshots.House.races['TX-03'].total),50,
    device+': A fresh timestamp allows the additive source update to recover');
+  await page.evaluate(()=>{
+   enWatched=[{office:'Senate',key:'NH'}];enFishDismiss();
+   const event={kind:'call',source:'civicAPI',office:'Senate',race:'NH',
+    title:'Superseded test call',details:'Fixture Democrat'};
+   enFishShow(event);enFishShow({...event,title:'Queued superseded test call'});
+   enFishShow({kind:'flip',source:'civicAPI',office:'Senate',race:'ME',
+    title:'Independent Maine bulletin',details:'This is not a race call'});
+   const previous={race_id:123,called:'Fixture Democrat',total:100,
+    last_updated:'2026-11-04T01:47:00Z',candidates:[
+     {name:'Fixture Democrat',party:'D',votes:60},{name:'Fixture Republican',party:'R',votes:40}]};
+   enProcessCivicAlert(enWatched[0],previous,{...previous,called:null,
+    last_updated:'2026-11-04T01:48:00Z'});
+  });
+  assert.match(await page.locator('#enFishMode').textContent(),/PROVIDER CALL WITHDRAWN/);
+  assert.match(await page.locator('#enFishHeadline').textContent(),/outcome is uncalled/);
+  assert.equal(await page.evaluate(()=>enFishQueueState().pending),1,
+   device+': Withdrawal removes superseded active/queued calls, preserving unrelated bulletins');
+  await page.evaluate(()=>enFishNextBulletin());
+  assert.match(await page.locator('#enFishHeadline').textContent(),/Independent Maine bulletin/);
+  await page.evaluate(()=>enFishDismiss());
   await page.locator('#enMode2024').click();
   await page.waitForFunction(()=>document.querySelector('#enLiveCoverageTriage')?.
     textContent?.includes('2024 historical archive'),{timeout:30000});

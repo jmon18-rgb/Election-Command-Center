@@ -5029,7 +5029,7 @@ function enAlertLoad(){
   const data=JSON.parse(localStorage.getItem(enAlertKey)||'[]');
   if(!Array.isArray(data))return [];
   return data.filter(x=>x&&typeof x.id==='string'&&x.id.length<500&&
-    ['first','flip','call','revision','withdrawn'].includes(x.kind)&&
+    ['first','flip','call','revision','withdrawn','retraction'].includes(x.kind)&&
     ['House','Senate','Governor'].includes(x.office)&&
     typeof x.race==='string'&&typeof x.title==='string'&&typeof x.details==='string'&&
     typeof x.seen==='string').slice(0,35);
@@ -5101,6 +5101,20 @@ function enFishDismiss(){
  if(enFishReturnFocus?.isConnected)enFishReturnFocus.focus();
  enFishReturnFocus=null;
 }
+function enFishRevokeCall(item){
+ const matches=entry=>entry&&!entry.demo&&entry.event?.kind==='call'&&
+  entry.event.source==='civicAPI'&&entry.event.office===item.office&&
+  entry.event.race===item.key;
+ for(let n=enFishPending.length-1;n>=0;n--)
+  if(matches(enFishPending[n]))enFishPending.splice(n,1);
+ if(matches(enFishCurrent)){
+  if(enFishTimeout){clearTimeout(enFishTimeout);enFishTimeout=null;}
+  enFishCurrent=null;enFishAudioStop();
+  const toast=$('#enFishToast');if(toast)toast.hidden=true;
+  if(enFishReturnFocus?.isConnected)enFishReturnFocus.focus();
+  enFishReturnFocus=null;
+ }
+}
 function enFishQueueState(){
  return {active:Boolean(enFishCurrent),pending:enFishPending.length,
          kind:enFishCurrent?.event.kind||null};
@@ -5122,6 +5136,7 @@ function enFishPresent(event,demo){
  $('#enFishDismiss').focus();
  $('#enFishMode').textContent=demo?'REHEARSAL · NOT A REAL RACE CALL':
   event.kind==='call'?'PROVIDER-REPORTED CALL · NOT CERTIFICATION':
+  event.kind==='retraction'?'PROVIDER CALL WITHDRAWN · OUTCOME UNCALLED':
   event.kind==='flip'?'VOTE LEADER CHANGE · NOT A CALL':
   event.kind==='first'?'FIRST VOTES REPORTED · NOT A CALL':
   event.kind==='withdrawn'?'SOURCE COVERAGE CHANGED · UNVERIFIED':
@@ -5138,7 +5153,7 @@ function enFishPresent(event,demo){
 }
 function enFishShow(event,demo=false){
  // Same provenance and no-pre-election safeguards as the saved alerts.
- if(!demo&&(!['first','flip','call','revision','withdrawn'].includes(event?.kind)||
+ if(!demo&&(!['first','flip','call','revision','withdrawn','retraction'].includes(event?.kind)||
     !['civicAPI','Open America'].includes(event?.source)||
     enModeYear!==2026||!enIsVisible()||
     Date.now()<Date.parse('2026-11-03T05:00:00Z')))return false;
@@ -5200,6 +5215,7 @@ function enAlertRecord(item,source,kind,details,signature){
   title:label+' · '+(kind==='first'?'First votes reporting':
    kind==='flip'?'Vote leader changed':
    kind==='call'?'Provider race call':
+   kind==='retraction'?'Provider call withdrawn':
    kind==='withdrawn'?'Race dropped from feed':'Candidate totals revised'),
   details,seen:new Date().toISOString()
  };
@@ -5250,8 +5266,23 @@ function enCivicTopCandidate(data){
   ranks[0].name+'|'+ranks[0].party:null;
 }
 function enProcessCivicAlert(item,previous,next){
- if(!previous||!next||!enAlertSubscribed(item.office,item.key))return;
+ if(!previous||!next)return;
+ const callChanged=previous.called&&previous.called!==next.called;
+ // Unpinning suppresses new alerts, but cannot keep an obsolete queued call.
+ if(callChanged)enFishRevokeCall(item);
+ if(!enAlertSubscribed(item.office,item.key))return;
  const votesStamp=next.last_updated||String(next.total);
+ if(callChanged){
+  // A corrected winner must not leave the superseded call playing or queued.
+  // Keep unrelated source/race bulletins and announce an explicit withdrawal.
+  if(!next.called){
+   enAlertRecord(item,'civicAPI','retraction',
+    'civicAPI withdrew its call for '+previous.called+
+     '; outcome is uncalled. This is a provider correction, not certification.',
+    next.race_id+'-withdrawn-'+previous.called+'-'+votesStamp);
+   return;
+  }
+ }
  if(next.called&&previous.called!==next.called){
   enAlertRecord(item,'civicAPI','call',
     'civicAPI reports a call for '+next.called+'; provider call, not official certification.',

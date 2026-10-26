@@ -2,11 +2,48 @@
 
 ## Current owner steering — core reliability first
 
+SUPERSEDED by latest owner steering: close-race LIVE DATA -> predictive needle
+is now the main assignment. Custom safe-seat coverage, UI/alert polish and generic
+reliability work are secondary unless they unblock that path. Automation updated
+to carry this instruction on every continuation; preserve queued PRs/checks.
+
+At 01:39:36Z the actual active linked model put Iowa/Kansas Senate closest to
+even. Polling inputs corroborate close margins: IA D+0.32 from 14 contributing
+firms / 8 independent firms (latest October 22), KS D+1.64 from 7 / 3 (latest
+October 14). FL-09, CO-05 and TX-23 are additional close targets with thinner
+polling. Local evidence: artifacts/readiness/competitive-needle-priorities.json.
+First source-to-forecast pilot: Iowa Senate. Determine usable county/method
+returns, then estimate remaining vote and implement an updating race forecast.
+These are delivery priorities, not evidence that a predictive needle already works.
+
 Pause further celebration art, music and expansion. Preserve deployed player
 and open PR #426; do not merge that review while its checks are failing.
 Prioritize competitive sources/fallbacks, correct calls/control accounting,
 outage/retraction recovery and the laptop dashboard. The scoped needle remains
 an evidence task, not a reason to fabricate predictive updates.
+
+## October 25 - explicit provider-call withdrawal recovery
+
+- Reproduced an alert gap: a fresh call withdrawal with unchanged vote leader
+  emitted no correction bulletin, and superseded active/queued call announcements
+  remained. The actual alert-processor test failed before the fix.
+- Add an explicit provider-call-withdrawn event and revoke only the matching
+  civicAPI race's active/queued call. Preserve other races, sources and non-call
+  bulletins. A corrected named winner still emits its new source-attributed call.
+  Unpinning a race suppresses new bulletins while still revoking its obsolete
+  queued call; another race's active bulletin is preserved.
+  This changes source correction handling, not celebration artwork or music.
+- All 15 core checks and actual Edge desktop/mobile drills pass: the withdrawal
+  replaces the old headline, says the outcome is uncalled, removes the queued
+  superseded call and retains an unrelated Maine bulletin. Existing source/vote
+  gates and the underlying chamber accounting remain unchanged.
+- Full local DOM run is pending in session 74368, with durable output at
+  artifacts/readiness/call-retraction-dom.log. Current-head CI remains required.
+- PR #434's validation job passed, but its DOM browser job hit the existing
+  12-minute limit without an assertion result (run 40253096366). It has NOT
+  merged. Reran failed jobs once at the same head; retain all required checks.
+  Next: inspect that rerun and local timing, repair a repeatable test/runtime
+  problem if needed, then merge #434 before this retraction follow-up.
 
 ## October 25 - unchanged-publication-clock source revisions
 

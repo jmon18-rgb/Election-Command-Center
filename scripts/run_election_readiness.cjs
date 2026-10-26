@@ -13,6 +13,7 @@ const checks = [
   ['Published bundle and forecast consistency', 'test_published_dashboard.cjs', '--local'],
   ['Race and source reconciliation', 'test_election_night_reconciliation.cjs'],
   ['Source publication identity during corrections', 'test_election_night_snapshot_revision.cjs'],
+  ['Provider call withdrawal and bulletin queue', 'test_election_night_call_retraction.cjs'],
   ['Poll closing safeguards', 'test_election_night_poll_closings_2026.cjs'],
   ['Six simulated hours of reporting and recovery', 'test_election_night_six_hour_stress.cjs'],
   ['Provider backoff and recovery', 'test_election_night_source_backoff.cjs'],
