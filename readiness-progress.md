@@ -1,5 +1,20 @@
 # Readiness progress
 
+## October26 05:33Z - close-election evidence merged; archive fix in main CI
+
+-443 merged270ce878 after all5 applicable workflows pass on exact head
+ a4c268c0, including full DOM and frozen close-election reproduction.
+ https://github.com/jmon18-rgb/Election-Command-Center/pull/443
+-444 is retargeted to main with the source-scope fix. Current-head checks
+ must pass before merge; the already passing local desktop/mobile tests prove
+ fixture behavior, not actual live vote delivery. Preserve required checks.
+- Read-only source follow-up confirms CO05 has only one county in civicAPI and
+ no independently verified finer2026 reporting input. Its official county results
+ page currently lists only a general-election logic/accuracy notice; primary
+ reports must not substitute for November votes. CO05 polling remains thin:
+ two contributing firms, no independent firms. IA/KS remain the stronger pilots.
+
+
 ## October26 05:27Z - fix live Iowa forecast leakage into the archive
 
 - Reproduce with a post-close source fixture: switch from a valid2026 Iowa
