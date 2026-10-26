@@ -3,6 +3,7 @@
  function create(host,{fetchJSON,fetchSource,readPrior,isActive=()=>true,sourceGeneration=()=>0,onValidated=()=>{}}){
   const source=root.KansasCivicCountySource,model=root.IowaCountyNeedle;
   if(!host||!source||!model)throw Error('Kansas forecast modules unavailable');
+  const revision=root.CompetitiveSourceRevision?.create('KS-SEN')||null;
   let inputs=null,busy=false,lastAttempt=-Infinity,lastAccepted=null,lastGeneration=null,projection=null;
   let phase='Waiting for genuine Kansas county returns';
   host.innerHTML=`<div class="iowa-needle-head"><div><span class="label">COMPETITIVE RACE · EXPERIMENTAL</span>
@@ -51,6 +52,8 @@
     if(!isActive()||generation!==sourceGeneration())throw Error('Source reply invalidated by mode change or outage');
     const parsed=source.parse(raw,inputs.reference);projection=null;lastGeneration=generation;
     if(parsed.status==='TEST_DATA_NOT_LIVE'){phase='Provider TEST DATA · excluded from the Kansas needle';return true;}
+    if(!revision)throw Error('County source revision guard unavailable');
+    revision.accept(parsed);
     const time=Date.parse(parsed.snapshot_updated_at),signature=JSON.stringify([...parsed.counties].sort((a,b)=>a.county.localeCompare(b.county)).map(c=>[c.county,c.dem_votes,c.rep_votes,c.other_votes]));
     if(lastAccepted&&(time<lastAccepted.time||time===lastAccepted.time&&signature!==lastAccepted.signature))throw Error('County revision requires a newer publication time');
     // Do not let cached positive counts undo a newer validated withdrawal.

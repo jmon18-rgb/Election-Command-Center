@@ -43,6 +43,7 @@ try{
   const host=page.locator('#enTexasRaceNeedle');
   await page.waitForFunction(()=>document.querySelector('[data-tx="state"]')?.textContent.includes('TEST DATA'));
   assert.equal(await host.locator('[data-tx="chance"]').textContent(),'—');
+  assert.equal(await page.evaluate(key=>localStorage.getItem(key),'ecc:county-source-revision:2026:TX-SEN:v1'),null,'Provider test votes never persist a source revision');
   const national=await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities));
   scenario='red';await page.clock.setSystemTime(new Date('2026-11-04T03:06:00Z'));
   await host.locator('[data-tx="refresh"]').click();
@@ -73,16 +74,23 @@ try{
   await host.locator('[data-tx="refresh"]').click();
   await page.waitForFunction(first=>window.enTexasPilotController?.status().projection?.dem_win_probability>first+.3,first);
   assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),national);
+  assert.equal(await page.evaluate(key=>localStorage.getItem(key),'ecc:county-source-revision:2026:TX-SEN:v1')!==null,true,'Validated positive inputs persist ordering metadata');
   scenario='withdrawn';await page.clock.setSystemTime(new Date('2026-11-04T03:07:15Z'));
   await host.locator('[data-tx="refresh"]').click();
   await page.waitForFunction(()=>document.querySelector('[data-tx="state"]')?.textContent.includes('No genuine'));
   assert.equal(await host.locator('[data-tx="chance"]').textContent(),'—');
   scenario='blue';await page.clock.setSystemTime(new Date('2026-11-04T03:07:25Z'));
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.waitForFunction(()=>typeof jointPulseBaseline!=='undefined'&&jointPulseBaseline?.race_probabilities?.some(r=>r.race_code==='TX-SEN'));
+  await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();
+  await page.waitForFunction(()=>window.enTexasPilotController&&!enTexasPilotController.status().busy&&!/Waiting|Select|Checking/.test(enTexasPilotController.status().phase));
+  await page.waitForFunction(()=>Boolean(CompetitiveNeedlePrior.read(jointPulseBaseline,'TX-SEN')));
+  await page.clock.setSystemTime(new Date('2026-11-04T03:07:35Z'));
   await host.locator('[data-tx="refresh"]').click();
   await page.waitForFunction(()=>!enTexasPilotController.status().busy&&!enTexasPilotController.status().phase.includes('No genuine'));
-  assert.equal(await host.locator('[data-tx="chance"]').textContent(),'—','Older positive counts cannot resurrect a withdrawn Texas forecast');
+  assert.equal(await host.locator('[data-tx="chance"]').textContent(),'—','Reload must not resurrect older positive counts after a newer zero-count withdrawal');
   assert.match(await host.locator('[data-tx="state"]').textContent(),/requires a newer/);
-  blueStamp='2026-11-04T03:07:35Z';await page.clock.setSystemTime(new Date(blueStamp));
+  blueStamp='2026-11-04T03:07:45Z';await page.clock.setSystemTime(new Date(blueStamp));
   await host.locator('[data-tx="refresh"]').click();
   await page.waitForFunction(()=>Boolean(enTexasPilotController.status().projection));
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2));
@@ -101,6 +109,14 @@ try{
   await page.waitForFunction(()=>!window.enTexasPilotController?.status().projection);
   assert.equal(await host.locator('[data-tx="chance"]').textContent(),'—','Archive mode removes the live probability');
   assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),national,'Corrections and recovery cannot write national odds');
+  // A missing protection asset withholds this estimate without taking down
+  // the independent national model or core election-night page.
+  await page.route('**/scripts/competitive_source_revision.js*',route=>route.abort());
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();
+  await page.waitForFunction(()=>enTexasPilotController?.status().phase.includes('revision guard unavailable'));
+  assert.equal(await host.locator('[data-tx="chance"]').textContent(),'—');
+  await page.waitForFunction(()=>Boolean(jointLastResult?.probabilities));
   assert.deepEqual(errors,[]);console.log(`${width}px Texas: validated source changes race probability, test/clock/outage gates and national isolation PASS`);
   await context.close();
  }

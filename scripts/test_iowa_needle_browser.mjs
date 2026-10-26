@@ -58,6 +58,7 @@ try{
   const host=page.locator('#enIowaRaceNeedle');
   await page.waitForFunction(()=>document.querySelector('#enIowaRaceNeedle [data-iowa="state"]')?.textContent.includes('TEST DATA'));
   assert.equal(await host.locator('[data-iowa="chance"]').textContent(),'—','Real provider test flag excludes even positive fixture votes');
+  assert.equal(await page.evaluate(key=>localStorage.getItem(key),'ecc:county-source-revision:2026:IA-SEN:v1'),null,'Provider test votes never persist a source revision');
   const national=await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities));
   scenario='live-r';await page.clock.setSystemTime(new Date('2026-11-04T03:06:00Z'));
   await host.locator('[data-iowa="refresh"]').click();
@@ -79,6 +80,7 @@ try{
   assert.notEqual(await host.locator('[data-iowa="chance"]').textContent(),'—');
   assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),national,
    'Iowa partial-return probabilities cannot change national control odds');
+  assert.equal(await page.evaluate(key=>localStorage.getItem(key),'ecc:county-source-revision:2026:IA-SEN:v1')!==null,true,'Validated positive inputs persist ordering metadata');
   scenario='withdrawn';await page.clock.setSystemTime(new Date('2026-11-04T03:07:15Z'));
   await host.locator('[data-iowa="refresh"]').click();
   await page.waitForFunction(()=>document.querySelector('[data-iowa="state"]')?.textContent.includes('No genuine'));

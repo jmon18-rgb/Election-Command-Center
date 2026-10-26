@@ -10,6 +10,8 @@ on:
       - 'scripts/election_night_transport.js'
       - 'index.html'
       - 'scripts/competitive_needle_prior.js'
+      - 'scripts/competitive_source_revision.js'
+      - 'scripts/test_competitive_source_revision.cjs'
       - 'scripts/test_competitive_needle_prior.cjs'
       - 'scripts/read_official_xlsx_rows.py'
       - '.github/workflows/kansas-county-source.yml'

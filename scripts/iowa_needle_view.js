@@ -6,6 +6,7 @@
  function create(host,{fetchJSON,fetchSource,readPrior,isActive=()=>true,sourceGeneration=()=>0,onValidated=()=>{}}){
   const source=root.IowaCivicCountySource,model=root.IowaCountyNeedle;
   if(!host||!source||!model)throw Error('Iowa needle modules unavailable');
+  const revision=root.CompetitiveSourceRevision?.create('IA-SEN')||null;
   let data=null,dataPromise=null,busy=false,lastAttempt=-Infinity,lastGeneration=null;
   let preview=false,step=0,projection=null,phase='Waiting for live results',stamp='',modeVersion=0,lastSourceTime=0,lastAccepted=null;
   host.innerHTML=`<div class="iowa-needle-head"><div><span class="label">COMPETITIVE RACE · EXPERIMENTAL</span>
@@ -96,6 +97,8 @@
     lastGeneration=generation;projection=null;stamp=raw.last_updated?'Provider snapshot: '+raw.last_updated:'';
     if(parsed.status==='TEST_DATA_NOT_LIVE'){phase='Provider TEST DATA · excluded from the live needle';}
     else{
+     if(!revision)throw Error('County source revision guard unavailable');
+     revision.accept(parsed);
      const time=Date.parse(parsed.snapshot_updated_at);
      const signature=JSON.stringify([...parsed.counties].sort((a,b)=>a.county.localeCompare(b.county))
       .map(r=>[r.county,r.dem_votes,r.rep_votes,r.other_votes]));
