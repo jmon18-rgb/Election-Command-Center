@@ -1,0 +1,3607 @@
+{
+  "schema": "iowa-governor-separate-close-election-cohort-v1",
+  "scope": "Certified historical same-office county counts; eight-year baseline gap and assumed release orders, not actual reporting timestamps",
+  "source_index": "https://sos.iowa.gov/iowans/election-results-statistics",
+  "source_format": "PDF web-reader excerpts, not original PDF byte checksums; direct download returned 403",
+  "baseline_year": 2010,
+  "outcome_year": 2018,
+  "baseline_method_split_reported": false,
+  "ballot_columns_excluded": [
+    {
+      "line": 68,
+      "county": "Dallas",
+      "reason": "Ballots column does not reconcile; excluded, not repaired"
+    },
+    {
+      "line": 87,
+      "county": "Henry",
+      "reason": "Ballots column does not reconcile; excluded, not repaired"
+    }
+  ],
+  "years": {
+    "2010": {
+      "counties": [
+        {
+          "county": "Adair",
+          "records": {
+            "total": {
+              "dem_votes": 1147,
+              "rep_votes": 1799,
+              "source_line": 22
+            }
+          }
+        },
+        {
+          "county": "Adams",
+          "records": {
+            "total": {
+              "dem_votes": 571,
+              "rep_votes": 1077,
+              "source_line": 23
+            }
+          }
+        },
+        {
+          "county": "Allamakee",
+          "records": {
+            "total": {
+              "dem_votes": 2212,
+              "rep_votes": 2966,
+              "source_line": 24
+            }
+          }
+        },
+        {
+          "county": "Appanoose",
+          "records": {
+            "total": {
+              "dem_votes": 1553,
+              "rep_votes": 2809,
+              "source_line": 25
+            }
+          }
+        },
+        {
+          "county": "Audubon",
+          "records": {
+            "total": {
+              "dem_votes": 1064,
+              "rep_votes": 1592,
+              "source_line": 26
+            }
+          }
+        },
+        {
+          "county": "Benton",
+          "records": {
+            "total": {
+              "dem_votes": 4100,
+              "rep_votes": 5534,
+              "source_line": 27
+            }
+          }
+        },
+        {
+          "county": "Black Hawk",
+          "records": {
+            "total": {
+              "dem_votes": 22720,
+              "rep_votes": 21355,
+              "source_line": 28
+            }
+          }
+        },
+        {
+          "county": "Boone",
+          "records": {
+            "total": {
+              "dem_votes": 4718,
+              "rep_votes": 5537,
+              "source_line": 29
+            }
+          }
+        },
+        {
+          "county": "Bremer",
+          "records": {
+            "total": {
+              "dem_votes": 4088,
+              "rep_votes": 5525,
+              "source_line": 30
+            }
+          }
+        },
+        {
+          "county": "Buchanan",
+          "records": {
+            "total": {
+              "dem_votes": 3788,
+              "rep_votes": 3889,
+              "source_line": 31
+            }
+          }
+        },
+        {
+          "county": "Buena Vista",
+          "records": {
+            "total": {
+              "dem_votes": 1741,
+              "rep_votes": 3633,
+              "source_line": 32
+            }
+          }
+        },
+        {
+          "county": "Butler",
+          "records": {
+            "total": {
+              "dem_votes": 1969,
+              "rep_votes": 3485,
+              "source_line": 33
+            }
+          }
+        },
+        {
+          "county": "Calhoun",
+          "records": {
+            "total": {
+              "dem_votes": 1432,
+              "rep_votes": 2366,
+              "source_line": 34
+            }
+          }
+        },
+        {
+          "county": "Carroll",
+          "records": {
+            "total": {
+              "dem_votes": 3410,
+              "rep_votes": 4642,
+              "source_line": 35
+            }
+          }
+        },
+        {
+          "county": "Cass",
+          "records": {
+            "total": {
+              "dem_votes": 1616,
+              "rep_votes": 3424,
+              "source_line": 36
+            }
+          }
+        },
+        {
+          "county": "Cedar",
+          "records": {
+            "total": {
+              "dem_votes": 3005,
+              "rep_votes": 3870,
+              "source_line": 37
+            }
+          }
+        },
+        {
+          "county": "Cerro Gordo",
+          "records": {
+            "total": {
+              "dem_votes": 8369,
+              "rep_votes": 8470,
+              "source_line": 38
+            }
+          }
+        },
+        {
+          "county": "Cherokee",
+          "records": {
+            "total": {
+              "dem_votes": 1575,
+              "rep_votes": 3003,
+              "source_line": 39
+            }
+          }
+        },
+        {
+          "county": "Chickasaw",
+          "records": {
+            "total": {
+              "dem_votes": 2230,
+              "rep_votes": 2555,
+              "source_line": 40
+            }
+          }
+        },
+        {
+          "county": "Clarke",
+          "records": {
+            "total": {
+              "dem_votes": 1318,
+              "rep_votes": 2195,
+              "source_line": 41
+            }
+          }
+        },
+        {
+          "county": "Clay",
+          "records": {
+            "total": {
+              "dem_votes": 1796,
+              "rep_votes": 3831,
+              "source_line": 42
+            }
+          }
+        },
+        {
+          "county": "Clayton",
+          "records": {
+            "total": {
+              "dem_votes": 3096,
+              "rep_votes": 3662,
+              "source_line": 43
+            }
+          }
+        },
+        {
+          "county": "Clinton",
+          "records": {
+            "total": {
+              "dem_votes": 8204,
+              "rep_votes": 8524,
+              "source_line": 44
+            }
+          }
+        },
+        {
+          "county": "Crawford",
+          "records": {
+            "total": {
+              "dem_votes": 1669,
+              "rep_votes": 3309,
+              "source_line": 45
+            }
+          }
+        },
+        {
+          "county": "Dallas",
+          "records": {
+            "total": {
+              "dem_votes": 9242,
+              "rep_votes": 15103,
+              "source_line": 68
+            }
+          }
+        },
+        {
+          "county": "Davis",
+          "records": {
+            "total": {
+              "dem_votes": 1185,
+              "rep_votes": 1698,
+              "source_line": 69
+            }
+          }
+        },
+        {
+          "county": "Decatur",
+          "records": {
+            "total": {
+              "dem_votes": 1074,
+              "rep_votes": 1685,
+              "source_line": 70
+            }
+          }
+        },
+        {
+          "county": "Delaware",
+          "records": {
+            "total": {
+              "dem_votes": 2881,
+              "rep_votes": 3905,
+              "source_line": 71
+            }
+          }
+        },
+        {
+          "county": "Des Moines",
+          "records": {
+            "total": {
+              "dem_votes": 7276,
+              "rep_votes": 7219,
+              "source_line": 72
+            }
+          }
+        },
+        {
+          "county": "Dickinson",
+          "records": {
+            "total": {
+              "dem_votes": 2521,
+              "rep_votes": 4600,
+              "source_line": 73
+            }
+          }
+        },
+        {
+          "county": "Dubuque",
+          "records": {
+            "total": {
+              "dem_votes": 16990,
+              "rep_votes": 16237,
+              "source_line": 74
+            }
+          }
+        },
+        {
+          "county": "Emmet",
+          "records": {
+            "total": {
+              "dem_votes": 1342,
+              "rep_votes": 2113,
+              "source_line": 75
+            }
+          }
+        },
+        {
+          "county": "Fayette",
+          "records": {
+            "total": {
+              "dem_votes": 3546,
+              "rep_votes": 4136,
+              "source_line": 76
+            }
+          }
+        },
+        {
+          "county": "Floyd",
+          "records": {
+            "total": {
+              "dem_votes": 2963,
+              "rep_votes": 2900,
+              "source_line": 77
+            }
+          }
+        },
+        {
+          "county": "Franklin",
+          "records": {
+            "total": {
+              "dem_votes": 1329,
+              "rep_votes": 2297,
+              "source_line": 78
+            }
+          }
+        },
+        {
+          "county": "Fremont",
+          "records": {
+            "total": {
+              "dem_votes": 939,
+              "rep_votes": 1646,
+              "source_line": 79
+            }
+          }
+        },
+        {
+          "county": "Greene",
+          "records": {
+            "total": {
+              "dem_votes": 1532,
+              "rep_votes": 2088,
+              "source_line": 80
+            }
+          }
+        },
+        {
+          "county": "Grundy",
+          "records": {
+            "total": {
+              "dem_votes": 1568,
+              "rep_votes": 3446,
+              "source_line": 81
+            }
+          }
+        },
+        {
+          "county": "Guthrie",
+          "records": {
+            "total": {
+              "dem_votes": 1688,
+              "rep_votes": 2591,
+              "source_line": 82
+            }
+          }
+        },
+        {
+          "county": "Hamilton",
+          "records": {
+            "total": {
+              "dem_votes": 2480,
+              "rep_votes": 3450,
+              "source_line": 83
+            }
+          }
+        },
+        {
+          "county": "Hancock",
+          "records": {
+            "total": {
+              "dem_votes": 1521,
+              "rep_votes": 2960,
+              "source_line": 84
+            }
+          }
+        },
+        {
+          "county": "Hardin",
+          "records": {
+            "total": {
+              "dem_votes": 2436,
+              "rep_votes": 3842,
+              "source_line": 85
+            }
+          }
+        },
+        {
+          "county": "Harrison",
+          "records": {
+            "total": {
+              "dem_votes": 1770,
+              "rep_votes": 3370,
+              "source_line": 86
+            }
+          }
+        },
+        {
+          "county": "Henry",
+          "records": {
+            "total": {
+              "dem_votes": 2396,
+              "rep_votes": 4209,
+              "source_line": 87
+            }
+          }
+        },
+        {
+          "county": "Howard",
+          "records": {
+            "total": {
+              "dem_votes": 1636,
+              "rep_votes": 1693,
+              "source_line": 88
+            }
+          }
+        },
+        {
+          "county": "Humboldt",
+          "records": {
+            "total": {
+              "dem_votes": 1397,
+              "rep_votes": 2373,
+              "source_line": 89
+            }
+          }
+        },
+        {
+          "county": "Ida",
+          "records": {
+            "total": {
+              "dem_votes": 742,
+              "rep_votes": 1852,
+              "source_line": 90
+            }
+          }
+        },
+        {
+          "county": "Iowa",
+          "records": {
+            "total": {
+              "dem_votes": 2516,
+              "rep_votes": 3693,
+              "source_line": 91
+            }
+          }
+        },
+        {
+          "county": "Jackson",
+          "records": {
+            "total": {
+              "dem_votes": 3451,
+              "rep_votes": 3770,
+              "source_line": 92
+            }
+          }
+        },
+        {
+          "county": "Jasper",
+          "records": {
+            "total": {
+              "dem_votes": 6351,
+              "rep_votes": 7727,
+              "source_line": 115
+            }
+          }
+        },
+        {
+          "county": "Jefferson",
+          "records": {
+            "total": {
+              "dem_votes": 3412,
+              "rep_votes": 2949,
+              "source_line": 116
+            }
+          }
+        },
+        {
+          "county": "Johnson",
+          "records": {
+            "total": {
+              "dem_votes": 31862,
+              "rep_votes": 17967,
+              "source_line": 117
+            }
+          }
+        },
+        {
+          "county": "Jones",
+          "records": {
+            "total": {
+              "dem_votes": 3471,
+              "rep_votes": 3971,
+              "source_line": 118
+            }
+          }
+        },
+        {
+          "county": "Keokuk",
+          "records": {
+            "total": {
+              "dem_votes": 1276,
+              "rep_votes": 2387,
+              "source_line": 119
+            }
+          }
+        },
+        {
+          "county": "Kossuth",
+          "records": {
+            "total": {
+              "dem_votes": 2470,
+              "rep_votes": 4057,
+              "source_line": 120
+            }
+          }
+        },
+        {
+          "county": "Lee",
+          "records": {
+            "total": {
+              "dem_votes": 5781,
+              "rep_votes": 5600,
+              "source_line": 121
+            }
+          }
+        },
+        {
+          "county": "Linn",
+          "records": {
+            "total": {
+              "dem_votes": 40739,
+              "rep_votes": 37222,
+              "source_line": 122
+            }
+          }
+        },
+        {
+          "county": "Louisa",
+          "records": {
+            "total": {
+              "dem_votes": 1246,
+              "rep_votes": 2013,
+              "source_line": 123
+            }
+          }
+        },
+        {
+          "county": "Lucas",
+          "records": {
+            "total": {
+              "dem_votes": 1295,
+              "rep_votes": 2063,
+              "source_line": 124
+            }
+          }
+        },
+        {
+          "county": "Lyon",
+          "records": {
+            "total": {
+              "dem_votes": 889,
+              "rep_votes": 4054,
+              "source_line": 125
+            }
+          }
+        },
+        {
+          "county": "Madison",
+          "records": {
+            "total": {
+              "dem_votes": 2444,
+              "rep_votes": 3894,
+              "source_line": 126
+            }
+          }
+        },
+        {
+          "county": "Mahaska",
+          "records": {
+            "total": {
+              "dem_votes": 2449,
+              "rep_votes": 5430,
+              "source_line": 127
+            }
+          }
+        },
+        {
+          "county": "Marion",
+          "records": {
+            "total": {
+              "dem_votes": 4278,
+              "rep_votes": 7946,
+              "source_line": 128
+            }
+          }
+        },
+        {
+          "county": "Marshall",
+          "records": {
+            "total": {
+              "dem_votes": 6344,
+              "rep_votes": 7116,
+              "source_line": 129
+            }
+          }
+        },
+        {
+          "county": "Mills",
+          "records": {
+            "total": {
+              "dem_votes": 1621,
+              "rep_votes": 3111,
+              "source_line": 130
+            }
+          }
+        },
+        {
+          "county": "Mitchell",
+          "records": {
+            "total": {
+              "dem_votes": 1783,
+              "rep_votes": 2622,
+              "source_line": 131
+            }
+          }
+        },
+        {
+          "county": "Monona",
+          "records": {
+            "total": {
+              "dem_votes": 1245,
+              "rep_votes": 2208,
+              "source_line": 132
+            }
+          }
+        },
+        {
+          "county": "Monroe",
+          "records": {
+            "total": {
+              "dem_votes": 1125,
+              "rep_votes": 1650,
+              "source_line": 133
+            }
+          }
+        },
+        {
+          "county": "Montgomery",
+          "records": {
+            "total": {
+              "dem_votes": 1018,
+              "rep_votes": 2565,
+              "source_line": 134
+            }
+          }
+        },
+        {
+          "county": "Muscatine",
+          "records": {
+            "total": {
+              "dem_votes": 5817,
+              "rep_votes": 7057,
+              "source_line": 135
+            }
+          }
+        },
+        {
+          "county": "O'Brien",
+          "records": {
+            "total": {
+              "dem_votes": 1214,
+              "rep_votes": 4143,
+              "source_line": 136
+            }
+          }
+        },
+        {
+          "county": "Osceola",
+          "records": {
+            "total": {
+              "dem_votes": 509,
+              "rep_votes": 1873,
+              "source_line": 137
+            }
+          }
+        },
+        {
+          "county": "Page",
+          "records": {
+            "total": {
+              "dem_votes": 1191,
+              "rep_votes": 3526,
+              "source_line": 138
+            }
+          }
+        },
+        {
+          "county": "Palo Alto",
+          "records": {
+            "total": {
+              "dem_votes": 1455,
+              "rep_votes": 2270,
+              "source_line": 139
+            }
+          }
+        },
+        {
+          "county": "Plymouth",
+          "records": {
+            "total": {
+              "dem_votes": 2139,
+              "rep_votes": 6452,
+              "source_line": 162
+            }
+          }
+        },
+        {
+          "county": "Pocahontas",
+          "records": {
+            "total": {
+              "dem_votes": 1008,
+              "rep_votes": 1874,
+              "source_line": 163
+            }
+          }
+        },
+        {
+          "county": "Polk",
+          "records": {
+            "total": {
+              "dem_votes": 76234,
+              "rep_votes": 76772,
+              "source_line": 164
+            }
+          }
+        },
+        {
+          "county": "Pottawattamie",
+          "records": {
+            "total": {
+              "dem_votes": 9743,
+              "rep_votes": 15963,
+              "source_line": 165
+            }
+          }
+        },
+        {
+          "county": "Poweshiek",
+          "records": {
+            "total": {
+              "dem_votes": 3395,
+              "rep_votes": 3715,
+              "source_line": 166
+            }
+          }
+        },
+        {
+          "county": "Ringgold",
+          "records": {
+            "total": {
+              "dem_votes": 790,
+              "rep_votes": 1271,
+              "source_line": 167
+            }
+          }
+        },
+        {
+          "county": "Sac",
+          "records": {
+            "total": {
+              "dem_votes": 1292,
+              "rep_votes": 2471,
+              "source_line": 168
+            }
+          }
+        },
+        {
+          "county": "Scott",
+          "records": {
+            "total": {
+              "dem_votes": 26078,
+              "rep_votes": 29061,
+              "source_line": 169
+            }
+          }
+        },
+        {
+          "county": "Shelby",
+          "records": {
+            "total": {
+              "dem_votes": 1127,
+              "rep_votes": 2913,
+              "source_line": 170
+            }
+          }
+        },
+        {
+          "county": "Sioux",
+          "records": {
+            "total": {
+              "dem_votes": 1385,
+              "rep_votes": 11238,
+              "source_line": 171
+            }
+          }
+        },
+        {
+          "county": "Story",
+          "records": {
+            "total": {
+              "dem_votes": 15795,
+              "rep_votes": 14729,
+              "source_line": 172
+            }
+          }
+        },
+        {
+          "county": "Tama",
+          "records": {
+            "total": {
+              "dem_votes": 2804,
+              "rep_votes": 3324,
+              "source_line": 173
+            }
+          }
+        },
+        {
+          "county": "Taylor",
+          "records": {
+            "total": {
+              "dem_votes": 834,
+              "rep_votes": 1607,
+              "source_line": 174
+            }
+          }
+        },
+        {
+          "county": "Union",
+          "records": {
+            "total": {
+              "dem_votes": 1800,
+              "rep_votes": 2790,
+              "source_line": 175
+            }
+          }
+        },
+        {
+          "county": "Van Buren",
+          "records": {
+            "total": {
+              "dem_votes": 1065,
+              "rep_votes": 1628,
+              "source_line": 176
+            }
+          }
+        },
+        {
+          "county": "Wapello",
+          "records": {
+            "total": {
+              "dem_votes": 5501,
+              "rep_votes": 5611,
+              "source_line": 177
+            }
+          }
+        },
+        {
+          "county": "Warren",
+          "records": {
+            "total": {
+              "dem_votes": 8431,
+              "rep_votes": 10653,
+              "source_line": 178
+            }
+          }
+        },
+        {
+          "county": "Washington",
+          "records": {
+            "total": {
+              "dem_votes": 3391,
+              "rep_votes": 4935,
+              "source_line": 179
+            }
+          }
+        },
+        {
+          "county": "Wayne",
+          "records": {
+            "total": {
+              "dem_votes": 756,
+              "rep_votes": 1461,
+              "source_line": 180
+            }
+          }
+        },
+        {
+          "county": "Webster",
+          "records": {
+            "total": {
+              "dem_votes": 5596,
+              "rep_votes": 7010,
+              "source_line": 181
+            }
+          }
+        },
+        {
+          "county": "Winnebago",
+          "records": {
+            "total": {
+              "dem_votes": 1527,
+              "rep_votes": 2802,
+              "source_line": 182
+            }
+          }
+        },
+        {
+          "county": "Winneshiek",
+          "records": {
+            "total": {
+              "dem_votes": 3723,
+              "rep_votes": 4271,
+              "source_line": 183
+            }
+          }
+        },
+        {
+          "county": "Woodbury",
+          "records": {
+            "total": {
+              "dem_votes": 12079,
+              "rep_votes": 17990,
+              "source_line": 184
+            }
+          }
+        },
+        {
+          "county": "Worth",
+          "records": {
+            "total": {
+              "dem_votes": 1452,
+              "rep_votes": 1659,
+              "source_line": 185
+            }
+          }
+        },
+        {
+          "county": "Wright",
+          "records": {
+            "total": {
+              "dem_votes": 1756,
+              "rep_votes": 2945,
+              "source_line": 186
+            }
+          }
+        }
+      ],
+      "source_url": "https://sos.iowa.gov/elections/pdf/2010/govorr.pdf",
+      "excerpt_sha256": "49ec066e32a2b59fd607cfaf1458a1418544f6c88e02464a612c310611485fed",
+      "statewide": {
+        "dem_votes": 484798,
+        "rep_votes": 592494
+      }
+    },
+    "2018": {
+      "counties": [
+        {
+          "county": "Adair",
+          "records": {
+            "election_day": {
+              "dem_votes": 631,
+              "rep_votes": 1381,
+              "other_votes": 42,
+              "ballots": 2061,
+              "source_line": 21
+            },
+            "absentee": {
+              "dem_votes": 536,
+              "rep_votes": 832,
+              "other_votes": 22,
+              "ballots": 1402,
+              "source_line": 22
+            },
+            "total": {
+              "dem_votes": 1167,
+              "rep_votes": 2213,
+              "other_votes": 64,
+              "ballots": 3463,
+              "source_line": 23
+            }
+          }
+        },
+        {
+          "county": "Adams",
+          "records": {
+            "election_day": {
+              "dem_votes": 283,
+              "rep_votes": 588,
+              "other_votes": 22,
+              "ballots": 906,
+              "source_line": 25
+            },
+            "absentee": {
+              "dem_votes": 266,
+              "rep_votes": 572,
+              "other_votes": 16,
+              "ballots": 866,
+              "source_line": 26
+            },
+            "total": {
+              "dem_votes": 549,
+              "rep_votes": 1160,
+              "other_votes": 38,
+              "ballots": 1772,
+              "source_line": 27
+            }
+          }
+        },
+        {
+          "county": "Allamakee",
+          "records": {
+            "election_day": {
+              "dem_votes": 1045,
+              "rep_votes": 2038,
+              "other_votes": 125,
+              "ballots": 3222,
+              "source_line": 29
+            },
+            "absentee": {
+              "dem_votes": 1120,
+              "rep_votes": 1288,
+              "other_votes": 64,
+              "ballots": 2501,
+              "source_line": 30
+            },
+            "total": {
+              "dem_votes": 2165,
+              "rep_votes": 3326,
+              "other_votes": 189,
+              "ballots": 5723,
+              "source_line": 31
+            }
+          }
+        },
+        {
+          "county": "Appanoose",
+          "records": {
+            "election_day": {
+              "dem_votes": 968,
+              "rep_votes": 2059,
+              "other_votes": 70,
+              "ballots": 3110,
+              "source_line": 33
+            },
+            "absentee": {
+              "dem_votes": 866,
+              "rep_votes": 1042,
+              "other_votes": 44,
+              "ballots": 1968,
+              "source_line": 34
+            },
+            "total": {
+              "dem_votes": 1834,
+              "rep_votes": 3101,
+              "other_votes": 114,
+              "ballots": 5078,
+              "source_line": 35
+            }
+          }
+        },
+        {
+          "county": "Audubon",
+          "records": {
+            "election_day": {
+              "dem_votes": 562,
+              "rep_votes": 955,
+              "other_votes": 32,
+              "ballots": 1569,
+              "source_line": 37
+            },
+            "absentee": {
+              "dem_votes": 428,
+              "rep_votes": 703,
+              "other_votes": 14,
+              "ballots": 1157,
+              "source_line": 38
+            },
+            "total": {
+              "dem_votes": 990,
+              "rep_votes": 1658,
+              "other_votes": 46,
+              "ballots": 2726,
+              "source_line": 39
+            }
+          }
+        },
+        {
+          "county": "Benton",
+          "records": {
+            "election_day": {
+              "dem_votes": 3068,
+              "rep_votes": 5002,
+              "other_votes": 245,
+              "ballots": 8359,
+              "source_line": 41
+            },
+            "absentee": {
+              "dem_votes": 1414,
+              "rep_votes": 1843,
+              "other_votes": 57,
+              "ballots": 3332,
+              "source_line": 42
+            },
+            "total": {
+              "dem_votes": 4482,
+              "rep_votes": 6845,
+              "other_votes": 302,
+              "ballots": 11691,
+              "source_line": 43
+            }
+          }
+        },
+        {
+          "county": "Black Hawk",
+          "records": {
+            "election_day": {
+              "dem_votes": 16779,
+              "rep_votes": 15135,
+              "other_votes": 834,
+              "ballots": 32845,
+              "source_line": 45
+            },
+            "absentee": {
+              "dem_votes": 12480,
+              "rep_votes": 7651,
+              "other_votes": 379,
+              "ballots": 20625,
+              "source_line": 62
+            },
+            "total": {
+              "dem_votes": 29259,
+              "rep_votes": 22786,
+              "other_votes": 1213,
+              "ballots": 53470,
+              "source_line": 63
+            }
+          }
+        },
+        {
+          "county": "Boone",
+          "records": {
+            "election_day": {
+              "dem_votes": 2921,
+              "rep_votes": 3560,
+              "other_votes": 184,
+              "ballots": 6681,
+              "source_line": 65
+            },
+            "absentee": {
+              "dem_votes": 2889,
+              "rep_votes": 2547,
+              "other_votes": 100,
+              "ballots": 5563,
+              "source_line": 66
+            },
+            "total": {
+              "dem_votes": 5810,
+              "rep_votes": 6107,
+              "other_votes": 284,
+              "ballots": 12244,
+              "source_line": 67
+            }
+          }
+        },
+        {
+          "county": "Bremer",
+          "records": {
+            "election_day": {
+              "dem_votes": 2914,
+              "rep_votes": 4205,
+              "other_votes": 163,
+              "ballots": 7300,
+              "source_line": 69
+            },
+            "absentee": {
+              "dem_votes": 2085,
+              "rep_votes": 2015,
+              "other_votes": 68,
+              "ballots": 4183,
+              "source_line": 70
+            },
+            "total": {
+              "dem_votes": 4999,
+              "rep_votes": 6220,
+              "other_votes": 231,
+              "ballots": 11483,
+              "source_line": 71
+            }
+          }
+        },
+        {
+          "county": "Buchanan",
+          "records": {
+            "election_day": {
+              "dem_votes": 2301,
+              "rep_votes": 2959,
+              "other_votes": 164,
+              "ballots": 5444,
+              "source_line": 73
+            },
+            "absentee": {
+              "dem_votes": 1564,
+              "rep_votes": 1441,
+              "other_votes": 64,
+              "ballots": 3090,
+              "source_line": 74
+            },
+            "total": {
+              "dem_votes": 3865,
+              "rep_votes": 4400,
+              "other_votes": 228,
+              "ballots": 8534,
+              "source_line": 75
+            }
+          }
+        },
+        {
+          "county": "Buena Vista",
+          "records": {
+            "election_day": {
+              "dem_votes": 1587,
+              "rep_votes": 2552,
+              "other_votes": 104,
+              "ballots": 4285,
+              "source_line": 77
+            },
+            "absentee": {
+              "dem_votes": 1062,
+              "rep_votes": 1219,
+              "other_votes": 41,
+              "ballots": 2360,
+              "source_line": 78
+            },
+            "total": {
+              "dem_votes": 2649,
+              "rep_votes": 3771,
+              "other_votes": 145,
+              "ballots": 6645,
+              "source_line": 79
+            }
+          }
+        },
+        {
+          "county": "Butler",
+          "records": {
+            "election_day": {
+              "dem_votes": 1393,
+              "rep_votes": 2668,
+              "other_votes": 104,
+              "ballots": 4174,
+              "source_line": 81
+            },
+            "absentee": {
+              "dem_votes": 671,
+              "rep_votes": 1284,
+              "other_votes": 36,
+              "ballots": 2003,
+              "source_line": 82
+            },
+            "total": {
+              "dem_votes": 2064,
+              "rep_votes": 3952,
+              "other_votes": 140,
+              "ballots": 6177,
+              "source_line": 83
+            }
+          }
+        },
+        {
+          "county": "Calhoun",
+          "records": {
+            "election_day": {
+              "dem_votes": 939,
+              "rep_votes": 1834,
+              "other_votes": 87,
+              "ballots": 2880,
+              "source_line": 85
+            },
+            "absentee": {
+              "dem_votes": 525,
+              "rep_votes": 876,
+              "other_votes": 49,
+              "ballots": 1471,
+              "source_line": 86
+            },
+            "total": {
+              "dem_votes": 1464,
+              "rep_votes": 2710,
+              "other_votes": 136,
+              "ballots": 4351,
+              "source_line": 87
+            }
+          }
+        },
+        {
+          "county": "Carroll",
+          "records": {
+            "election_day": {
+              "dem_votes": 1682,
+              "rep_votes": 3690,
+              "other_votes": 89,
+              "ballots": 5502,
+              "source_line": 89
+            },
+            "absentee": {
+              "dem_votes": 1504,
+              "rep_votes": 1986,
+              "other_votes": 76,
+              "ballots": 3618,
+              "source_line": 90
+            },
+            "total": {
+              "dem_votes": 3186,
+              "rep_votes": 5676,
+              "other_votes": 165,
+              "ballots": 9120,
+              "source_line": 91
+            }
+          }
+        },
+        {
+          "county": "Cass",
+          "records": {
+            "election_day": {
+              "dem_votes": 1133,
+              "rep_votes": 2395,
+              "other_votes": 85,
+              "ballots": 3638,
+              "source_line": 93
+            },
+            "absentee": {
+              "dem_votes": 753,
+              "rep_votes": 1418,
+              "other_votes": 31,
+              "ballots": 2235,
+              "source_line": 94
+            },
+            "total": {
+              "dem_votes": 1886,
+              "rep_votes": 3813,
+              "other_votes": 116,
+              "ballots": 5873,
+              "source_line": 111
+            }
+          }
+        },
+        {
+          "county": "Cedar",
+          "records": {
+            "election_day": {
+              "dem_votes": 2090,
+              "rep_votes": 2911,
+              "other_votes": 138,
+              "ballots": 5150,
+              "source_line": 113
+            },
+            "absentee": {
+              "dem_votes": 1428,
+              "rep_votes": 1498,
+              "other_votes": 53,
+              "ballots": 3005,
+              "source_line": 114
+            },
+            "total": {
+              "dem_votes": 3518,
+              "rep_votes": 4409,
+              "other_votes": 191,
+              "ballots": 8155,
+              "source_line": 115
+            }
+          }
+        },
+        {
+          "county": "Cerro Gordo",
+          "records": {
+            "election_day": {
+              "dem_votes": 4895,
+              "rep_votes": 6183,
+              "other_votes": 243,
+              "ballots": 11390,
+              "source_line": 117
+            },
+            "absentee": {
+              "dem_votes": 4116,
+              "rep_votes": 3468,
+              "other_votes": 135,
+              "ballots": 7789,
+              "source_line": 118
+            },
+            "total": {
+              "dem_votes": 9011,
+              "rep_votes": 9651,
+              "other_votes": 378,
+              "ballots": 19179,
+              "source_line": 119
+            }
+          }
+        },
+        {
+          "county": "Cherokee",
+          "records": {
+            "election_day": {
+              "dem_votes": 875,
+              "rep_votes": 1994,
+              "other_votes": 72,
+              "ballots": 2965,
+              "source_line": 121
+            },
+            "absentee": {
+              "dem_votes": 840,
+              "rep_votes": 1333,
+              "other_votes": 42,
+              "ballots": 2225,
+              "source_line": 122
+            },
+            "total": {
+              "dem_votes": 1715,
+              "rep_votes": 3327,
+              "other_votes": 114,
+              "ballots": 5190,
+              "source_line": 123
+            }
+          }
+        },
+        {
+          "county": "Chickasaw",
+          "records": {
+            "election_day": {
+              "dem_votes": 926,
+              "rep_votes": 1718,
+              "other_votes": 72,
+              "ballots": 2729,
+              "source_line": 125
+            },
+            "absentee": {
+              "dem_votes": 1177,
+              "rep_votes": 1303,
+              "other_votes": 53,
+              "ballots": 2569,
+              "source_line": 126
+            },
+            "total": {
+              "dem_votes": 2103,
+              "rep_votes": 3021,
+              "other_votes": 125,
+              "ballots": 5298,
+              "source_line": 127
+            }
+          }
+        },
+        {
+          "county": "Clarke",
+          "records": {
+            "election_day": {
+              "dem_votes": 709,
+              "rep_votes": 1558,
+              "other_votes": 57,
+              "ballots": 2331,
+              "source_line": 129
+            },
+            "absentee": {
+              "dem_votes": 571,
+              "rep_votes": 783,
+              "other_votes": 28,
+              "ballots": 1394,
+              "source_line": 130
+            },
+            "total": {
+              "dem_votes": 1280,
+              "rep_votes": 2341,
+              "other_votes": 85,
+              "ballots": 3725,
+              "source_line": 131
+            }
+          }
+        },
+        {
+          "county": "Clay",
+          "records": {
+            "election_day": {
+              "dem_votes": 1149,
+              "rep_votes": 2582,
+              "other_votes": 101,
+              "ballots": 3851,
+              "source_line": 133
+            },
+            "absentee": {
+              "dem_votes": 1268,
+              "rep_votes": 1782,
+              "other_votes": 33,
+              "ballots": 3104,
+              "source_line": 134
+            },
+            "total": {
+              "dem_votes": 2417,
+              "rep_votes": 4364,
+              "other_votes": 134,
+              "ballots": 6955,
+              "source_line": 135
+            }
+          }
+        },
+        {
+          "county": "Clayton",
+          "records": {
+            "election_day": {
+              "dem_votes": 1825,
+              "rep_votes": 2991,
+              "other_votes": 284,
+              "ballots": 5121,
+              "source_line": 137
+            },
+            "absentee": {
+              "dem_votes": 1153,
+              "rep_votes": 1521,
+              "other_votes": 148,
+              "ballots": 2838,
+              "source_line": 138
+            },
+            "total": {
+              "dem_votes": 2978,
+              "rep_votes": 4512,
+              "other_votes": 432,
+              "ballots": 7959,
+              "source_line": 139
+            }
+          }
+        },
+        {
+          "county": "Clinton",
+          "records": {
+            "election_day": {
+              "dem_votes": 4429,
+              "rep_votes": 5460,
+              "other_votes": 205,
+              "ballots": 10132,
+              "source_line": 141
+            },
+            "absentee": {
+              "dem_votes": 4618,
+              "rep_votes": 3387,
+              "other_votes": 125,
+              "ballots": 8247,
+              "source_line": 142
+            },
+            "total": {
+              "dem_votes": 9047,
+              "rep_votes": 8847,
+              "other_votes": 330,
+              "ballots": 18379,
+              "source_line": 143
+            }
+          }
+        },
+        {
+          "county": "Crawford",
+          "records": {
+            "election_day": {
+              "dem_votes": 1003,
+              "rep_votes": 2166,
+              "other_votes": 60,
+              "ballots": 3278,
+              "source_line": 161
+            },
+            "absentee": {
+              "dem_votes": 732,
+              "rep_votes": 1413,
+              "other_votes": 48,
+              "ballots": 2244,
+              "source_line": 162
+            },
+            "total": {
+              "dem_votes": 1735,
+              "rep_votes": 3579,
+              "other_votes": 108,
+              "ballots": 5522,
+              "source_line": 163
+            }
+          }
+        },
+        {
+          "county": "Dallas",
+          "records": {
+            "election_day": {
+              "dem_votes": 11156,
+              "rep_votes": 13271,
+              "other_votes": 540,
+              "ballots": 25016,
+              "source_line": 165
+            },
+            "absentee": {
+              "dem_votes": 8648,
+              "rep_votes": 7918,
+              "other_votes": 211,
+              "ballots": 16837,
+              "source_line": 166
+            },
+            "total": {
+              "dem_votes": 19804,
+              "rep_votes": 21189,
+              "other_votes": 751,
+              "ballots": 41853,
+              "source_line": 167
+            }
+          }
+        },
+        {
+          "county": "Davis",
+          "records": {
+            "election_day": {
+              "dem_votes": 564,
+              "rep_votes": 1345,
+              "other_votes": 52,
+              "ballots": 1978,
+              "source_line": 169
+            },
+            "absentee": {
+              "dem_votes": 438,
+              "rep_votes": 725,
+              "other_votes": 17,
+              "ballots": 1189,
+              "source_line": 170
+            },
+            "total": {
+              "dem_votes": 1002,
+              "rep_votes": 2070,
+              "other_votes": 69,
+              "ballots": 3167,
+              "source_line": 171
+            }
+          }
+        },
+        {
+          "county": "Decatur",
+          "records": {
+            "election_day": {
+              "dem_votes": 658,
+              "rep_votes": 1353,
+              "other_votes": 59,
+              "ballots": 2075,
+              "source_line": 173
+            },
+            "absentee": {
+              "dem_votes": 350,
+              "rep_votes": 519,
+              "other_votes": 17,
+              "ballots": 893,
+              "source_line": 174
+            },
+            "total": {
+              "dem_votes": 1008,
+              "rep_votes": 1872,
+              "other_votes": 76,
+              "ballots": 2968,
+              "source_line": 175
+            }
+          }
+        },
+        {
+          "county": "Delaware",
+          "records": {
+            "election_day": {
+              "dem_votes": 1595,
+              "rep_votes": 3130,
+              "other_votes": 160,
+              "ballots": 4895,
+              "source_line": 177
+            },
+            "absentee": {
+              "dem_votes": 1072,
+              "rep_votes": 1649,
+              "other_votes": 67,
+              "ballots": 2800,
+              "source_line": 178
+            },
+            "total": {
+              "dem_votes": 2667,
+              "rep_votes": 4779,
+              "other_votes": 227,
+              "ballots": 7695,
+              "source_line": 179
+            }
+          }
+        },
+        {
+          "county": "Des Moines",
+          "records": {
+            "election_day": {
+              "dem_votes": 4034,
+              "rep_votes": 4130,
+              "other_votes": 188,
+              "ballots": 8394,
+              "source_line": 181
+            },
+            "absentee": {
+              "dem_votes": 4004,
+              "rep_votes": 2697,
+              "other_votes": 99,
+              "ballots": 6857,
+              "source_line": 182
+            },
+            "total": {
+              "dem_votes": 8038,
+              "rep_votes": 6827,
+              "other_votes": 287,
+              "ballots": 15251,
+              "source_line": 183
+            }
+          }
+        },
+        {
+          "county": "Dickinson",
+          "records": {
+            "election_day": {
+              "dem_votes": 1422,
+              "rep_votes": 2911,
+              "other_votes": 87,
+              "ballots": 4440,
+              "source_line": 185
+            },
+            "absentee": {
+              "dem_votes": 1712,
+              "rep_votes": 2653,
+              "other_votes": 58,
+              "ballots": 4446,
+              "source_line": 186
+            },
+            "total": {
+              "dem_votes": 3134,
+              "rep_votes": 5564,
+              "other_votes": 145,
+              "ballots": 8886,
+              "source_line": 187
+            }
+          }
+        },
+        {
+          "county": "Dubuque",
+          "records": {
+            "election_day": {
+              "dem_votes": 9732,
+              "rep_votes": 12300,
+              "other_votes": 666,
+              "ballots": 22830,
+              "source_line": 189
+            },
+            "absentee": {
+              "dem_votes": 11376,
+              "rep_votes": 8232,
+              "other_votes": 454,
+              "ballots": 20239,
+              "source_line": 190
+            },
+            "total": {
+              "dem_votes": 21108,
+              "rep_votes": 20532,
+              "other_votes": 1120,
+              "ballots": 43069,
+              "source_line": 191
+            }
+          }
+        },
+        {
+          "county": "Emmet",
+          "records": {
+            "election_day": {
+              "dem_votes": 833,
+              "rep_votes": 1646,
+              "other_votes": 53,
+              "ballots": 2554,
+              "source_line": 192
+            },
+            "absentee": {
+              "dem_votes": 550,
+              "rep_votes": 652,
+              "other_votes": 35,
+              "ballots": 1251,
+              "source_line": 210
+            },
+            "total": {
+              "dem_votes": 1383,
+              "rep_votes": 2298,
+              "other_votes": 88,
+              "ballots": 3805,
+              "source_line": 211
+            }
+          }
+        },
+        {
+          "county": "Fayette",
+          "records": {
+            "election_day": {
+              "dem_votes": 2016,
+              "rep_votes": 2993,
+              "other_votes": 171,
+              "ballots": 5202,
+              "source_line": 213
+            },
+            "absentee": {
+              "dem_votes": 1430,
+              "rep_votes": 1535,
+              "other_votes": 86,
+              "ballots": 3071,
+              "source_line": 214
+            },
+            "total": {
+              "dem_votes": 3446,
+              "rep_votes": 4528,
+              "other_votes": 257,
+              "ballots": 8273,
+              "source_line": 215
+            }
+          }
+        },
+        {
+          "county": "Floyd",
+          "records": {
+            "election_day": {
+              "dem_votes": 1569,
+              "rep_votes": 2116,
+              "other_votes": 89,
+              "ballots": 3792,
+              "source_line": 217
+            },
+            "absentee": {
+              "dem_votes": 1243,
+              "rep_votes": 1250,
+              "other_votes": 51,
+              "ballots": 2566,
+              "source_line": 218
+            },
+            "total": {
+              "dem_votes": 2812,
+              "rep_votes": 3366,
+              "other_votes": 140,
+              "ballots": 6358,
+              "source_line": 219
+            }
+          }
+        },
+        {
+          "county": "Franklin",
+          "records": {
+            "election_day": {
+              "dem_votes": 870,
+              "rep_votes": 1814,
+              "other_votes": 62,
+              "ballots": 2755,
+              "source_line": 221
+            },
+            "absentee": {
+              "dem_votes": 509,
+              "rep_votes": 833,
+              "other_votes": 21,
+              "ballots": 1377,
+              "source_line": 222
+            },
+            "total": {
+              "dem_votes": 1379,
+              "rep_votes": 2647,
+              "other_votes": 83,
+              "ballots": 4132,
+              "source_line": 223
+            }
+          }
+        },
+        {
+          "county": "Fremont",
+          "records": {
+            "election_day": {
+              "dem_votes": 600,
+              "rep_votes": 1249,
+              "other_votes": 46,
+              "ballots": 1917,
+              "source_line": 225
+            },
+            "absentee": {
+              "dem_votes": 392,
+              "rep_votes": 707,
+              "other_votes": 18,
+              "ballots": 1149,
+              "source_line": 226
+            },
+            "total": {
+              "dem_votes": 992,
+              "rep_votes": 1956,
+              "other_votes": 64,
+              "ballots": 3066,
+              "source_line": 227
+            }
+          }
+        },
+        {
+          "county": "Greene",
+          "records": {
+            "election_day": {
+              "dem_votes": 858,
+              "rep_votes": 1413,
+              "other_votes": 62,
+              "ballots": 2348,
+              "source_line": 229
+            },
+            "absentee": {
+              "dem_votes": 817,
+              "rep_votes": 913,
+              "other_votes": 35,
+              "ballots": 1785,
+              "source_line": 230
+            },
+            "total": {
+              "dem_votes": 1675,
+              "rep_votes": 2326,
+              "other_votes": 97,
+              "ballots": 4133,
+              "source_line": 231
+            }
+          }
+        },
+        {
+          "county": "Grundy",
+          "records": {
+            "election_day": {
+              "dem_votes": 1279,
+              "rep_votes": 2651,
+              "other_votes": 87,
+              "ballots": 4027,
+              "source_line": 233
+            },
+            "absentee": {
+              "dem_votes": 596,
+              "rep_votes": 1134,
+              "other_votes": 17,
+              "ballots": 1756,
+              "source_line": 234
+            },
+            "total": {
+              "dem_votes": 1875,
+              "rep_votes": 3785,
+              "other_votes": 104,
+              "ballots": 5783,
+              "source_line": 235
+            }
+          }
+        },
+        {
+          "county": "Guthrie",
+          "records": {
+            "election_day": {
+              "dem_votes": 1012,
+              "rep_votes": 2125,
+              "other_votes": 82,
+              "ballots": 3233,
+              "source_line": 237
+            },
+            "absentee": {
+              "dem_votes": 726,
+              "rep_votes": 1044,
+              "other_votes": 48,
+              "ballots": 1824,
+              "source_line": 238
+            },
+            "total": {
+              "dem_votes": 1738,
+              "rep_votes": 3169,
+              "other_votes": 130,
+              "ballots": 5057,
+              "source_line": 239
+            }
+          }
+        },
+        {
+          "county": "Hamilton",
+          "records": {
+            "election_day": {
+              "dem_votes": 1314,
+              "rep_votes": 2383,
+              "other_votes": 86,
+              "ballots": 3805,
+              "source_line": 241
+            },
+            "absentee": {
+              "dem_votes": 1246,
+              "rep_votes": 1320,
+              "other_votes": 37,
+              "ballots": 2631,
+              "source_line": 258
+            },
+            "total": {
+              "dem_votes": 2560,
+              "rep_votes": 3703,
+              "other_votes": 123,
+              "ballots": 6436,
+              "source_line": 259
+            }
+          }
+        },
+        {
+          "county": "Hancock",
+          "records": {
+            "election_day": {
+              "dem_votes": 929,
+              "rep_votes": 2324,
+              "other_votes": 76,
+              "ballots": 3351,
+              "source_line": 261
+            },
+            "absentee": {
+              "dem_votes": 535,
+              "rep_votes": 933,
+              "other_votes": 26,
+              "ballots": 1507,
+              "source_line": 262
+            },
+            "total": {
+              "dem_votes": 1464,
+              "rep_votes": 3257,
+              "other_votes": 102,
+              "ballots": 4858,
+              "source_line": 263
+            }
+          }
+        },
+        {
+          "county": "Hardin",
+          "records": {
+            "election_day": {
+              "dem_votes": 1474,
+              "rep_votes": 2621,
+              "other_votes": 96,
+              "ballots": 4202,
+              "source_line": 265
+            },
+            "absentee": {
+              "dem_votes": 1215,
+              "rep_votes": 1786,
+              "other_votes": 58,
+              "ballots": 3073,
+              "source_line": 266
+            },
+            "total": {
+              "dem_votes": 2689,
+              "rep_votes": 4407,
+              "other_votes": 154,
+              "ballots": 7275,
+              "source_line": 267
+            }
+          }
+        },
+        {
+          "county": "Harrison",
+          "records": {
+            "election_day": {
+              "dem_votes": 1320,
+              "rep_votes": 2802,
+              "other_votes": 121,
+              "ballots": 4277,
+              "source_line": 269
+            },
+            "absentee": {
+              "dem_votes": 592,
+              "rep_votes": 1129,
+              "other_votes": 36,
+              "ballots": 1777,
+              "source_line": 270
+            },
+            "total": {
+              "dem_votes": 1912,
+              "rep_votes": 3931,
+              "other_votes": 157,
+              "ballots": 6054,
+              "source_line": 271
+            }
+          }
+        },
+        {
+          "county": "Henry",
+          "records": {
+            "election_day": {
+              "dem_votes": 1502,
+              "rep_votes": 2385,
+              "other_votes": 99,
+              "ballots": 4014,
+              "source_line": 273
+            },
+            "absentee": {
+              "dem_votes": 1494,
+              "rep_votes": 1899,
+              "other_votes": 67,
+              "ballots": 3500,
+              "source_line": 274
+            },
+            "total": {
+              "dem_votes": 2996,
+              "rep_votes": 4284,
+              "other_votes": 166,
+              "ballots": 7514,
+              "source_line": 275
+            }
+          }
+        },
+        {
+          "county": "Howard",
+          "records": {
+            "election_day": {
+              "dem_votes": 862,
+              "rep_votes": 1439,
+              "other_votes": 96,
+              "ballots": 2428,
+              "source_line": 277
+            },
+            "absentee": {
+              "dem_votes": 560,
+              "rep_votes": 611,
+              "other_votes": 54,
+              "ballots": 1243,
+              "source_line": 278
+            },
+            "total": {
+              "dem_votes": 1422,
+              "rep_votes": 2050,
+              "other_votes": 150,
+              "ballots": 3671,
+              "source_line": 279
+            }
+          }
+        },
+        {
+          "county": "Humboldt",
+          "records": {
+            "election_day": {
+              "dem_votes": 650,
+              "rep_votes": 1816,
+              "other_votes": 64,
+              "ballots": 2546,
+              "source_line": 281
+            },
+            "absentee": {
+              "dem_votes": 550,
+              "rep_votes": 981,
+              "other_votes": 25,
+              "ballots": 1564,
+              "source_line": 282
+            },
+            "total": {
+              "dem_votes": 1200,
+              "rep_votes": 2797,
+              "other_votes": 89,
+              "ballots": 4110,
+              "source_line": 283
+            }
+          }
+        },
+        {
+          "county": "Ida",
+          "records": {
+            "election_day": {
+              "dem_votes": 494,
+              "rep_votes": 1612,
+              "other_votes": 33,
+              "ballots": 2143,
+              "source_line": 285
+            },
+            "absentee": {
+              "dem_votes": 219,
+              "rep_votes": 584,
+              "other_votes": 6,
+              "ballots": 818,
+              "source_line": 286
+            },
+            "total": {
+              "dem_votes": 713,
+              "rep_votes": 2196,
+              "other_votes": 39,
+              "ballots": 2961,
+              "source_line": 287
+            }
+          }
+        },
+        {
+          "county": "Iowa",
+          "records": {
+            "election_day": {
+              "dem_votes": 1854,
+              "rep_votes": 3155,
+              "other_votes": 126,
+              "ballots": 5151,
+              "source_line": 289
+            },
+            "absentee": {
+              "dem_votes": 1112,
+              "rep_votes": 1344,
+              "other_votes": 57,
+              "ballots": 2537,
+              "source_line": 290
+            },
+            "total": {
+              "dem_votes": 2966,
+              "rep_votes": 4499,
+              "other_votes": 183,
+              "ballots": 7688,
+              "source_line": 307
+            }
+          }
+        },
+        {
+          "county": "Jackson",
+          "records": {
+            "election_day": {
+              "dem_votes": 1818,
+              "rep_votes": 2934,
+              "other_votes": 157,
+              "ballots": 4973,
+              "source_line": 309
+            },
+            "absentee": {
+              "dem_votes": 1764,
+              "rep_votes": 1810,
+              "other_votes": 106,
+              "ballots": 3758,
+              "source_line": 310
+            },
+            "total": {
+              "dem_votes": 3582,
+              "rep_votes": 4744,
+              "other_votes": 263,
+              "ballots": 8731,
+              "source_line": 311
+            }
+          }
+        },
+        {
+          "county": "Jasper",
+          "records": {
+            "election_day": {
+              "dem_votes": 3889,
+              "rep_votes": 5505,
+              "other_votes": 223,
+              "ballots": 9637,
+              "source_line": 313
+            },
+            "absentee": {
+              "dem_votes": 3345,
+              "rep_votes": 2872,
+              "other_votes": 101,
+              "ballots": 6383,
+              "source_line": 314
+            },
+            "total": {
+              "dem_votes": 7234,
+              "rep_votes": 8377,
+              "other_votes": 324,
+              "ballots": 16020,
+              "source_line": 315
+            }
+          }
+        },
+        {
+          "county": "Jefferson",
+          "records": {
+            "election_day": {
+              "dem_votes": 1088,
+              "rep_votes": 1899,
+              "other_votes": 90,
+              "ballots": 3100,
+              "source_line": 317
+            },
+            "absentee": {
+              "dem_votes": 2662,
+              "rep_votes": 1247,
+              "other_votes": 90,
+              "ballots": 4050,
+              "source_line": 318
+            },
+            "total": {
+              "dem_votes": 3750,
+              "rep_votes": 3146,
+              "other_votes": 180,
+              "ballots": 7150,
+              "source_line": 319
+            }
+          }
+        },
+        {
+          "county": "Johnson",
+          "records": {
+            "election_day": {
+              "dem_votes": 21828,
+              "rep_votes": 11436,
+              "other_votes": 811,
+              "ballots": 34143,
+              "source_line": 321
+            },
+            "absentee": {
+              "dem_votes": 26930,
+              "rep_votes": 6683,
+              "other_votes": 419,
+              "ballots": 34119,
+              "source_line": 322
+            },
+            "total": {
+              "dem_votes": 48758,
+              "rep_votes": 18119,
+              "other_votes": 1230,
+              "ballots": 68262,
+              "source_line": 323
+            }
+          }
+        },
+        {
+          "county": "Jones",
+          "records": {
+            "election_day": {
+              "dem_votes": 2177,
+              "rep_votes": 3106,
+              "other_votes": 135,
+              "ballots": 5433,
+              "source_line": 325
+            },
+            "absentee": {
+              "dem_votes": 1473,
+              "rep_votes": 1646,
+              "other_votes": 66,
+              "ballots": 3198,
+              "source_line": 326
+            },
+            "total": {
+              "dem_votes": 3650,
+              "rep_votes": 4752,
+              "other_votes": 201,
+              "ballots": 8631,
+              "source_line": 327
+            }
+          }
+        },
+        {
+          "county": "Keokuk",
+          "records": {
+            "election_day": {
+              "dem_votes": 864,
+              "rep_votes": 2003,
+              "other_votes": 60,
+              "ballots": 2952,
+              "source_line": 329
+            },
+            "absentee": {
+              "dem_votes": 430,
+              "rep_votes": 713,
+              "other_votes": 15,
+              "ballots": 1167,
+              "source_line": 330
+            },
+            "total": {
+              "dem_votes": 1294,
+              "rep_votes": 2716,
+              "other_votes": 75,
+              "ballots": 4119,
+              "source_line": 331
+            }
+          }
+        },
+        {
+          "county": "Kossuth",
+          "records": {
+            "election_day": {
+              "dem_votes": 1341,
+              "rep_votes": 2967,
+              "other_votes": 92,
+              "ballots": 4426,
+              "source_line": 333
+            },
+            "absentee": {
+              "dem_votes": 1247,
+              "rep_votes": 1675,
+              "other_votes": 43,
+              "ballots": 2983,
+              "source_line": 334
+            },
+            "total": {
+              "dem_votes": 2588,
+              "rep_votes": 4642,
+              "other_votes": 135,
+              "ballots": 7409,
+              "source_line": 335
+            }
+          }
+        },
+        {
+          "county": "Lee",
+          "records": {
+            "election_day": {
+              "dem_votes": 3084,
+              "rep_votes": 3489,
+              "other_votes": 177,
+              "ballots": 6772,
+              "source_line": 337
+            },
+            "absentee": {
+              "dem_votes": 3303,
+              "rep_votes": 2484,
+              "other_votes": 101,
+              "ballots": 5917,
+              "source_line": 338
+            },
+            "total": {
+              "dem_votes": 6387,
+              "rep_votes": 5973,
+              "other_votes": 278,
+              "ballots": 12689,
+              "source_line": 339
+            }
+          }
+        },
+        {
+          "county": "Linn",
+          "records": {
+            "election_day": {
+              "dem_votes": 33337,
+              "rep_votes": 29419,
+              "other_votes": 1982,
+              "ballots": 64877,
+              "source_line": 357
+            },
+            "absentee": {
+              "dem_votes": 23430,
+              "rep_votes": 13030,
+              "other_votes": 904,
+              "ballots": 37571,
+              "source_line": 358
+            },
+            "total": {
+              "dem_votes": 56767,
+              "rep_votes": 42449,
+              "other_votes": 2886,
+              "ballots": 102448,
+              "source_line": 359
+            }
+          }
+        },
+        {
+          "county": "Louisa",
+          "records": {
+            "election_day": {
+              "dem_votes": 915,
+              "rep_votes": 1544,
+              "other_votes": 48,
+              "ballots": 2521,
+              "source_line": 361
+            },
+            "absentee": {
+              "dem_votes": 554,
+              "rep_votes": 744,
+              "other_votes": 23,
+              "ballots": 1333,
+              "source_line": 362
+            },
+            "total": {
+              "dem_votes": 1469,
+              "rep_votes": 2288,
+              "other_votes": 71,
+              "ballots": 3854,
+              "source_line": 363
+            }
+          }
+        },
+        {
+          "county": "Lucas",
+          "records": {
+            "election_day": {
+              "dem_votes": 667,
+              "rep_votes": 1388,
+              "other_votes": 48,
+              "ballots": 2109,
+              "source_line": 365
+            },
+            "absentee": {
+              "dem_votes": 505,
+              "rep_votes": 947,
+              "other_votes": 27,
+              "ballots": 1490,
+              "source_line": 366
+            },
+            "total": {
+              "dem_votes": 1172,
+              "rep_votes": 2335,
+              "other_votes": 75,
+              "ballots": 3599,
+              "source_line": 367
+            }
+          }
+        },
+        {
+          "county": "Lyon",
+          "records": {
+            "election_day": {
+              "dem_votes": 599,
+              "rep_votes": 2948,
+              "other_votes": 40,
+              "ballots": 3623,
+              "source_line": 369
+            },
+            "absentee": {
+              "dem_votes": 254,
+              "rep_votes": 1333,
+              "other_votes": 13,
+              "ballots": 1624,
+              "source_line": 370
+            },
+            "total": {
+              "dem_votes": 853,
+              "rep_votes": 4281,
+              "other_votes": 53,
+              "ballots": 5247,
+              "source_line": 371
+            }
+          }
+        },
+        {
+          "county": "Madison",
+          "records": {
+            "election_day": {
+              "dem_votes": 1365,
+              "rep_votes": 2941,
+              "other_votes": 101,
+              "ballots": 4424,
+              "source_line": 373
+            },
+            "absentee": {
+              "dem_votes": 1374,
+              "rep_votes": 1813,
+              "other_votes": 64,
+              "ballots": 3262,
+              "source_line": 374
+            },
+            "total": {
+              "dem_votes": 2739,
+              "rep_votes": 4754,
+              "other_votes": 165,
+              "ballots": 7686,
+              "source_line": 375
+            }
+          }
+        },
+        {
+          "county": "Mahaska",
+          "records": {
+            "election_day": {
+              "dem_votes": 1176,
+              "rep_votes": 3369,
+              "other_votes": 114,
+              "ballots": 4684,
+              "source_line": 377
+            },
+            "absentee": {
+              "dem_votes": 1233,
+              "rep_votes": 2638,
+              "other_votes": 66,
+              "ballots": 3970,
+              "source_line": 378
+            },
+            "total": {
+              "dem_votes": 2409,
+              "rep_votes": 6007,
+              "other_votes": 180,
+              "ballots": 8654,
+              "source_line": 379
+            }
+          }
+        },
+        {
+          "county": "Marion",
+          "records": {
+            "election_day": {
+              "dem_votes": 2746,
+              "rep_votes": 5785,
+              "other_votes": 228,
+              "ballots": 8774,
+              "source_line": 381
+            },
+            "absentee": {
+              "dem_votes": 2503,
+              "rep_votes": 3694,
+              "other_votes": 95,
+              "ballots": 6310,
+              "source_line": 382
+            },
+            "total": {
+              "dem_votes": 5249,
+              "rep_votes": 9479,
+              "other_votes": 323,
+              "ballots": 15084,
+              "source_line": 383
+            }
+          }
+        },
+        {
+          "county": "Marshall",
+          "records": {
+            "election_day": {
+              "dem_votes": 3653,
+              "rep_votes": 4404,
+              "other_votes": 195,
+              "ballots": 8290,
+              "source_line": 385
+            },
+            "absentee": {
+              "dem_votes": 3442,
+              "rep_votes": 2839,
+              "other_votes": 119,
+              "ballots": 6436,
+              "source_line": 386
+            },
+            "total": {
+              "dem_votes": 7095,
+              "rep_votes": 7243,
+              "other_votes": 314,
+              "ballots": 14726,
+              "source_line": 387
+            }
+          }
+        },
+        {
+          "county": "Mills",
+          "records": {
+            "election_day": {
+              "dem_votes": 1101,
+              "rep_votes": 2185,
+              "other_votes": 121,
+              "ballots": 3427,
+              "source_line": 388
+            },
+            "absentee": {
+              "dem_votes": 1090,
+              "rep_votes": 1760,
+              "other_votes": 68,
+              "ballots": 2940,
+              "source_line": 406
+            },
+            "total": {
+              "dem_votes": 2191,
+              "rep_votes": 3945,
+              "other_votes": 189,
+              "ballots": 6367,
+              "source_line": 407
+            }
+          }
+        },
+        {
+          "county": "Mitchell",
+          "records": {
+            "election_day": {
+              "dem_votes": 937,
+              "rep_votes": 1792,
+              "other_votes": 71,
+              "ballots": 2820,
+              "source_line": 409
+            },
+            "absentee": {
+              "dem_votes": 767,
+              "rep_votes": 919,
+              "other_votes": 41,
+              "ballots": 1747,
+              "source_line": 410
+            },
+            "total": {
+              "dem_votes": 1704,
+              "rep_votes": 2711,
+              "other_votes": 112,
+              "ballots": 4567,
+              "source_line": 411
+            }
+          }
+        },
+        {
+          "county": "Monona",
+          "records": {
+            "election_day": {
+              "dem_votes": 678,
+              "rep_votes": 1675,
+              "other_votes": 52,
+              "ballots": 2429,
+              "source_line": 413
+            },
+            "absentee": {
+              "dem_votes": 493,
+              "rep_votes": 881,
+              "other_votes": 18,
+              "ballots": 1418,
+              "source_line": 414
+            },
+            "total": {
+              "dem_votes": 1171,
+              "rep_votes": 2556,
+              "other_votes": 70,
+              "ballots": 3847,
+              "source_line": 415
+            }
+          }
+        },
+        {
+          "county": "Monroe",
+          "records": {
+            "election_day": {
+              "dem_votes": 561,
+              "rep_votes": 1282,
+              "other_votes": 31,
+              "ballots": 1887,
+              "source_line": 417
+            },
+            "absentee": {
+              "dem_votes": 500,
+              "rep_votes": 771,
+              "other_votes": 16,
+              "ballots": 1302,
+              "source_line": 418
+            },
+            "total": {
+              "dem_votes": 1061,
+              "rep_votes": 2053,
+              "other_votes": 47,
+              "ballots": 3189,
+              "source_line": 419
+            }
+          }
+        },
+        {
+          "county": "Montgomery",
+          "records": {
+            "election_day": {
+              "dem_votes": 696,
+              "rep_votes": 1673,
+              "other_votes": 63,
+              "ballots": 2450,
+              "source_line": 421
+            },
+            "absentee": {
+              "dem_votes": 524,
+              "rep_votes": 975,
+              "other_votes": 35,
+              "ballots": 1548,
+              "source_line": 422
+            },
+            "total": {
+              "dem_votes": 1220,
+              "rep_votes": 2648,
+              "other_votes": 98,
+              "ballots": 3998,
+              "source_line": 423
+            }
+          }
+        },
+        {
+          "county": "Muscatine",
+          "records": {
+            "election_day": {
+              "dem_votes": 3776,
+              "rep_votes": 4495,
+              "other_votes": 242,
+              "ballots": 8568,
+              "source_line": 425
+            },
+            "absentee": {
+              "dem_votes": 3305,
+              "rep_votes": 3040,
+              "other_votes": 123,
+              "ballots": 6543,
+              "source_line": 426
+            },
+            "total": {
+              "dem_votes": 7081,
+              "rep_votes": 7535,
+              "other_votes": 365,
+              "ballots": 15111,
+              "source_line": 427
+            }
+          }
+        },
+        {
+          "county": "O'Brien",
+          "records": {
+            "election_day": {
+              "dem_votes": 934,
+              "rep_votes": 3204,
+              "other_votes": 62,
+              "ballots": 4219,
+              "source_line": 429
+            },
+            "absentee": {
+              "dem_votes": 362,
+              "rep_votes": 1268,
+              "other_votes": 21,
+              "ballots": 1659,
+              "source_line": 430
+            },
+            "total": {
+              "dem_votes": 1296,
+              "rep_votes": 4472,
+              "other_votes": 83,
+              "ballots": 5878,
+              "source_line": 431
+            }
+          }
+        },
+        {
+          "county": "Osceola",
+          "records": {
+            "election_day": {
+              "dem_votes": 337,
+              "rep_votes": 1404,
+              "other_votes": 23,
+              "ballots": 1783,
+              "source_line": 433
+            },
+            "absentee": {
+              "dem_votes": 144,
+              "rep_votes": 518,
+              "other_votes": 5,
+              "ballots": 685,
+              "source_line": 434
+            },
+            "total": {
+              "dem_votes": 481,
+              "rep_votes": 1922,
+              "other_votes": 28,
+              "ballots": 2468,
+              "source_line": 435
+            }
+          }
+        },
+        {
+          "county": "Page",
+          "records": {
+            "election_day": {
+              "dem_votes": 1076,
+              "rep_votes": 2343,
+              "other_votes": 62,
+              "ballots": 3492,
+              "source_line": 437
+            },
+            "absentee": {
+              "dem_votes": 763,
+              "rep_votes": 1359,
+              "other_votes": 32,
+              "ballots": 2173,
+              "source_line": 454
+            },
+            "total": {
+              "dem_votes": 1839,
+              "rep_votes": 3702,
+              "other_votes": 94,
+              "ballots": 5665,
+              "source_line": 455
+            }
+          }
+        },
+        {
+          "county": "Palo Alto",
+          "records": {
+            "election_day": {
+              "dem_votes": 767,
+              "rep_votes": 1333,
+              "other_votes": 46,
+              "ballots": 2161,
+              "source_line": 457
+            },
+            "absentee": {
+              "dem_votes": 631,
+              "rep_votes": 987,
+              "other_votes": 24,
+              "ballots": 1655,
+              "source_line": 458
+            },
+            "total": {
+              "dem_votes": 1398,
+              "rep_votes": 2320,
+              "other_votes": 70,
+              "ballots": 3816,
+              "source_line": 459
+            }
+          }
+        },
+        {
+          "county": "Plymouth",
+          "records": {
+            "election_day": {
+              "dem_votes": 1503,
+              "rep_votes": 4833,
+              "other_votes": 108,
+              "ballots": 6467,
+              "source_line": 461
+            },
+            "absentee": {
+              "dem_votes": 1214,
+              "rep_votes": 3108,
+              "other_votes": 63,
+              "ballots": 4409,
+              "source_line": 462
+            },
+            "total": {
+              "dem_votes": 2717,
+              "rep_votes": 7941,
+              "other_votes": 171,
+              "ballots": 10876,
+              "source_line": 463
+            }
+          }
+        },
+        {
+          "county": "Pocahontas",
+          "records": {
+            "election_day": {
+              "dem_votes": 586,
+              "rep_votes": 1426,
+              "other_votes": 51,
+              "ballots": 2081,
+              "source_line": 465
+            },
+            "absentee": {
+              "dem_votes": 376,
+              "rep_votes": 665,
+              "other_votes": 21,
+              "ballots": 1077,
+              "source_line": 466
+            },
+            "total": {
+              "dem_votes": 962,
+              "rep_votes": 2091,
+              "other_votes": 72,
+              "ballots": 3158,
+              "source_line": 467
+            }
+          }
+        },
+        {
+          "county": "Polk",
+          "records": {
+            "election_day": {
+              "dem_votes": 63787,
+              "rep_votes": 53798,
+              "other_votes": 2669,
+              "ballots": 120436,
+              "source_line": 469
+            },
+            "absentee": {
+              "dem_votes": 56470,
+              "rep_votes": 28675,
+              "other_votes": 1482,
+              "ballots": 86987,
+              "source_line": 470
+            },
+            "total": {
+              "dem_votes": 120257,
+              "rep_votes": 82473,
+              "other_votes": 4151,
+              "ballots": 207423,
+              "source_line": 471
+            }
+          }
+        },
+        {
+          "county": "Pottawattamie",
+          "records": {
+            "election_day": {
+              "dem_votes": 7896,
+              "rep_votes": 11728,
+              "other_votes": 567,
+              "ballots": 20265,
+              "source_line": 473
+            },
+            "absentee": {
+              "dem_votes": 6338,
+              "rep_votes": 7308,
+              "other_votes": 292,
+              "ballots": 14067,
+              "source_line": 474
+            },
+            "total": {
+              "dem_votes": 14234,
+              "rep_votes": 19036,
+              "other_votes": 859,
+              "ballots": 34332,
+              "source_line": 475
+            }
+          }
+        },
+        {
+          "county": "Poweshiek",
+          "records": {
+            "election_day": {
+              "dem_votes": 1744,
+              "rep_votes": 2615,
+              "other_votes": 102,
+              "ballots": 4483,
+              "source_line": 477
+            },
+            "absentee": {
+              "dem_votes": 2254,
+              "rep_votes": 1545,
+              "other_votes": 55,
+              "ballots": 3875,
+              "source_line": 478
+            },
+            "total": {
+              "dem_votes": 3998,
+              "rep_votes": 4160,
+              "other_votes": 157,
+              "ballots": 8358,
+              "source_line": 479
+            }
+          }
+        },
+        {
+          "county": "Ringgold",
+          "records": {
+            "election_day": {
+              "dem_votes": 440,
+              "rep_votes": 995,
+              "other_votes": 30,
+              "ballots": 1474,
+              "source_line": 481
+            },
+            "absentee": {
+              "dem_votes": 364,
+              "rep_votes": 481,
+              "other_votes": 6,
+              "ballots": 860,
+              "source_line": 482
+            },
+            "total": {
+              "dem_votes": 804,
+              "rep_votes": 1476,
+              "other_votes": 36,
+              "ballots": 2334,
+              "source_line": 483
+            }
+          }
+        },
+        {
+          "county": "Sac",
+          "records": {
+            "election_day": {
+              "dem_votes": 885,
+              "rep_votes": 2171,
+              "other_votes": 72,
+              "ballots": 3151,
+              "source_line": 485
+            },
+            "absentee": {
+              "dem_votes": 368,
+              "rep_votes": 794,
+              "other_votes": 20,
+              "ballots": 1195,
+              "source_line": 486
+            },
+            "total": {
+              "dem_votes": 1253,
+              "rep_votes": 2965,
+              "other_votes": 92,
+              "ballots": 4346,
+              "source_line": 503
+            }
+          }
+        },
+        {
+          "county": "Scott",
+          "records": {
+            "election_day": {
+              "dem_votes": 16998,
+              "rep_votes": 19825,
+              "other_votes": 931,
+              "ballots": 37825,
+              "source_line": 505
+            },
+            "absentee": {
+              "dem_votes": 18149,
+              "rep_votes": 12925,
+              "other_votes": 427,
+              "ballots": 31718,
+              "source_line": 506
+            },
+            "total": {
+              "dem_votes": 35147,
+              "rep_votes": 32750,
+              "other_votes": 1358,
+              "ballots": 69543,
+              "source_line": 507
+            }
+          }
+        },
+        {
+          "county": "Shelby",
+          "records": {
+            "election_day": {
+              "dem_votes": 773,
+              "rep_votes": 2000,
+              "other_votes": 50,
+              "ballots": 2842,
+              "source_line": 509
+            },
+            "absentee": {
+              "dem_votes": 677,
+              "rep_votes": 1537,
+              "other_votes": 32,
+              "ballots": 2279,
+              "source_line": 510
+            },
+            "total": {
+              "dem_votes": 1450,
+              "rep_votes": 3537,
+              "other_votes": 82,
+              "ballots": 5121,
+              "source_line": 511
+            }
+          }
+        },
+        {
+          "county": "Sioux",
+          "records": {
+            "election_day": {
+              "dem_votes": 1277,
+              "rep_votes": 8953,
+              "other_votes": 102,
+              "ballots": 10359,
+              "source_line": 513
+            },
+            "absentee": {
+              "dem_votes": 678,
+              "rep_votes": 3887,
+              "other_votes": 45,
+              "ballots": 4643,
+              "source_line": 514
+            },
+            "total": {
+              "dem_votes": 1955,
+              "rep_votes": 12840,
+              "other_votes": 147,
+              "ballots": 15002,
+              "source_line": 515
+            }
+          }
+        },
+        {
+          "county": "Story",
+          "records": {
+            "election_day": {
+              "dem_votes": 14161,
+              "rep_votes": 11287,
+              "other_votes": 831,
+              "ballots": 26354,
+              "source_line": 517
+            },
+            "absentee": {
+              "dem_votes": 10994,
+              "rep_votes": 5248,
+              "other_votes": 303,
+              "ballots": 16612,
+              "source_line": 518
+            },
+            "total": {
+              "dem_votes": 25155,
+              "rep_votes": 16535,
+              "other_votes": 1134,
+              "ballots": 42966,
+              "source_line": 519
+            }
+          }
+        },
+        {
+          "county": "Tama",
+          "records": {
+            "election_day": {
+              "dem_votes": 2250,
+              "rep_votes": 2877,
+              "other_votes": 124,
+              "ballots": 5273,
+              "source_line": 521
+            },
+            "absentee": {
+              "dem_votes": 988,
+              "rep_votes": 1054,
+              "other_votes": 35,
+              "ballots": 2092,
+              "source_line": 522
+            },
+            "total": {
+              "dem_votes": 3238,
+              "rep_votes": 3931,
+              "other_votes": 159,
+              "ballots": 7365,
+              "source_line": 523
+            }
+          }
+        },
+        {
+          "county": "Taylor",
+          "records": {
+            "election_day": {
+              "dem_votes": 515,
+              "rep_votes": 1109,
+              "other_votes": 42,
+              "ballots": 1678,
+              "source_line": 525
+            },
+            "absentee": {
+              "dem_votes": 244,
+              "rep_votes": 523,
+              "other_votes": 12,
+              "ballots": 785,
+              "source_line": 526
+            },
+            "total": {
+              "dem_votes": 759,
+              "rep_votes": 1632,
+              "other_votes": 54,
+              "ballots": 2463,
+              "source_line": 527
+            }
+          }
+        },
+        {
+          "county": "Union",
+          "records": {
+            "election_day": {
+              "dem_votes": 889,
+              "rep_votes": 1665,
+              "other_votes": 63,
+              "ballots": 2630,
+              "source_line": 529
+            },
+            "absentee": {
+              "dem_votes": 946,
+              "rep_votes": 1284,
+              "other_votes": 49,
+              "ballots": 2293,
+              "source_line": 530
+            },
+            "total": {
+              "dem_votes": 1835,
+              "rep_votes": 2949,
+              "other_votes": 112,
+              "ballots": 4923,
+              "source_line": 531
+            }
+          }
+        },
+        {
+          "county": "Van Buren",
+          "records": {
+            "election_day": {
+              "dem_votes": 569,
+              "rep_votes": 1509,
+              "other_votes": 45,
+              "ballots": 2137,
+              "source_line": 533
+            },
+            "absentee": {
+              "dem_votes": 270,
+              "rep_votes": 517,
+              "other_votes": 12,
+              "ballots": 808,
+              "source_line": 534
+            },
+            "total": {
+              "dem_votes": 839,
+              "rep_votes": 2026,
+              "other_votes": 57,
+              "ballots": 2945,
+              "source_line": 535
+            }
+          }
+        },
+        {
+          "county": "Wapello",
+          "records": {
+            "election_day": {
+              "dem_votes": 2833,
+              "rep_votes": 4102,
+              "other_votes": 163,
+              "ballots": 7147,
+              "source_line": 553
+            },
+            "absentee": {
+              "dem_votes": 2647,
+              "rep_votes": 2211,
+              "other_votes": 102,
+              "ballots": 5027,
+              "source_line": 554
+            },
+            "total": {
+              "dem_votes": 5480,
+              "rep_votes": 6313,
+              "other_votes": 265,
+              "ballots": 12174,
+              "source_line": 555
+            }
+          }
+        },
+        {
+          "county": "Warren",
+          "records": {
+            "election_day": {
+              "dem_votes": 5497,
+              "rep_votes": 7662,
+              "other_votes": 374,
+              "ballots": 13557,
+              "source_line": 557
+            },
+            "absentee": {
+              "dem_votes": 5445,
+              "rep_votes": 5139,
+              "other_votes": 144,
+              "ballots": 10772,
+              "source_line": 558
+            },
+            "total": {
+              "dem_votes": 10942,
+              "rep_votes": 12801,
+              "other_votes": 518,
+              "ballots": 24329,
+              "source_line": 559
+            }
+          }
+        },
+        {
+          "county": "Washington",
+          "records": {
+            "election_day": {
+              "dem_votes": 2004,
+              "rep_votes": 3209,
+              "other_votes": 147,
+              "ballots": 5375,
+              "source_line": 561
+            },
+            "absentee": {
+              "dem_votes": 1742,
+              "rep_votes": 1980,
+              "other_votes": 80,
+              "ballots": 3837,
+              "source_line": 562
+            },
+            "total": {
+              "dem_votes": 3746,
+              "rep_votes": 5189,
+              "other_votes": 227,
+              "ballots": 9212,
+              "source_line": 563
+            }
+          }
+        },
+        {
+          "county": "Wayne",
+          "records": {
+            "election_day": {
+              "dem_votes": 448,
+              "rep_votes": 1087,
+              "other_votes": 41,
+              "ballots": 1585,
+              "source_line": 565
+            },
+            "absentee": {
+              "dem_votes": 274,
+              "rep_votes": 537,
+              "other_votes": 18,
+              "ballots": 842,
+              "source_line": 566
+            },
+            "total": {
+              "dem_votes": 722,
+              "rep_votes": 1624,
+              "other_votes": 59,
+              "ballots": 2427,
+              "source_line": 567
+            }
+          }
+        },
+        {
+          "county": "Webster",
+          "records": {
+            "election_day": {
+              "dem_votes": 3450,
+              "rep_votes": 5212,
+              "other_votes": 188,
+              "ballots": 8896,
+              "source_line": 569
+            },
+            "absentee": {
+              "dem_votes": 2682,
+              "rep_votes": 2515,
+              "other_votes": 102,
+              "ballots": 5337,
+              "source_line": 570
+            },
+            "total": {
+              "dem_votes": 6132,
+              "rep_votes": 7727,
+              "other_votes": 290,
+              "ballots": 14233,
+              "source_line": 571
+            }
+          }
+        },
+        {
+          "county": "Winnebago",
+          "records": {
+            "election_day": {
+              "dem_votes": 1132,
+              "rep_votes": 1986,
+              "other_votes": 84,
+              "ballots": 3211,
+              "source_line": 573
+            },
+            "absentee": {
+              "dem_votes": 656,
+              "rep_votes": 740,
+              "other_votes": 34,
+              "ballots": 1436,
+              "source_line": 574
+            },
+            "total": {
+              "dem_votes": 1788,
+              "rep_votes": 2726,
+              "other_votes": 118,
+              "ballots": 4647,
+              "source_line": 575
+            }
+          }
+        },
+        {
+          "county": "Winneshiek",
+          "records": {
+            "election_day": {
+              "dem_votes": 1718,
+              "rep_votes": 2518,
+              "other_votes": 127,
+              "ballots": 4399,
+              "source_line": 577
+            },
+            "absentee": {
+              "dem_votes": 3067,
+              "rep_votes": 2323,
+              "other_votes": 120,
+              "ballots": 5551,
+              "source_line": 578
+            },
+            "total": {
+              "dem_votes": 4785,
+              "rep_votes": 4841,
+              "other_votes": 247,
+              "ballots": 9950,
+              "source_line": 579
+            }
+          }
+        },
+        {
+          "county": "Woodbury",
+          "records": {
+            "election_day": {
+              "dem_votes": 7574,
+              "rep_votes": 11284,
+              "other_votes": 477,
+              "ballots": 19427,
+              "source_line": 581
+            },
+            "absentee": {
+              "dem_votes": 7450,
+              "rep_votes": 8346,
+              "other_votes": 299,
+              "ballots": 16208,
+              "source_line": 582
+            },
+            "total": {
+              "dem_votes": 15024,
+              "rep_votes": 19630,
+              "other_votes": 776,
+              "ballots": 35635,
+              "source_line": 583
+            }
+          }
+        },
+        {
+          "county": "Worth",
+          "records": {
+            "election_day": {
+              "dem_votes": 934,
+              "rep_votes": 1566,
+              "other_votes": 90,
+              "ballots": 2608,
+              "source_line": 584
+            },
+            "absentee": {
+              "dem_votes": 448,
+              "rep_votes": 477,
+              "other_votes": 18,
+              "ballots": 953,
+              "source_line": 602
+            },
+            "total": {
+              "dem_votes": 1382,
+              "rep_votes": 2043,
+              "other_votes": 108,
+              "ballots": 3561,
+              "source_line": 603
+            }
+          }
+        },
+        {
+          "county": "Wright",
+          "records": {
+            "election_day": {
+              "dem_votes": 1089,
+              "rep_votes": 1961,
+              "other_votes": 84,
+              "ballots": 3144,
+              "source_line": 605
+            },
+            "absentee": {
+              "dem_votes": 699,
+              "rep_votes": 1088,
+              "other_votes": 26,
+              "ballots": 1822,
+              "source_line": 606
+            },
+            "total": {
+              "dem_votes": 1788,
+              "rep_votes": 3049,
+              "other_votes": 110,
+              "ballots": 4966,
+              "source_line": 607
+            }
+          }
+        }
+      ],
+      "source_url": "https://sos.iowa.gov/elections/pdf/2018/general/govcanvsummary.pdf",
+      "excerpt_sha256": "935e2191e94f2c115fa4366d3d2193ccdf8414d0b64e1eb568051f895886d933",
+      "statewide": {
+        "dem_votes": 630986,
+        "rep_votes": 667275
+      }
+    }
+  }
+}

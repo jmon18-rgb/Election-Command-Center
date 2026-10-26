@@ -1136,6 +1136,9 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <section id="enIowaRaceNeedle" class="iowa-race-needle" aria-label="Iowa Senate experimental live-return needle">
   <h2>Iowa Senate experimental needle</h2><p>Preparing county results and remaining-vote model…</p>
  </section>
+ <section id="enKansasRaceNeedle" class="iowa-race-needle" aria-label="Kansas Senate experimental live-return needle">
+  <h2>Kansas Senate experimental needle</h2><p>Preparing county results and remaining-vote model…</p>
+ </section>
  <div id="jointNightCards" class="joint-grid"><p class="joint-note">Loading seat-level priors…</p></div>
  <details class="joint-audit"><summary>House fundamentals alternatives (research only)</summary><p id="jointNightShadow" class="joint-note">Checking historically comparable House districts…</p></details>
  <details class="joint-audit" id="jointNightCorrelationDetails"><summary>Senate race correlation · impact on control odds (research)</summary><div id="jointNightCorrelation" class="joint-note">Open to inspect shared-error sensitivity without changing published odds.</div></details>
@@ -1409,8 +1412,10 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/chamber_poll_error_audit.js?v=9e73e0e9f9fe"></script>
 <script src="./scripts/senate_calibration_audit.js?v=2aab89368b2d"></script>
 <script src="./scripts/iowa_civic_county_source.js?v=6e755e60e8de"></script>
-<script src="./scripts/iowa_county_needle.js?v=35d20488a2d6"></script>
-<script src="./scripts/iowa_needle_view.js?v=e67aaa25ccfe"></script>
+<script src="./scripts/iowa_county_needle.js?v=41ec65dd7f17"></script>
+<script src="./scripts/iowa_needle_view.js?v=c7cec189c539"></script>
+<script src="./scripts/kansas_civic_county_source.js?v=ef4809fc9108"></script>
+<script src="./scripts/kansas_needle_view.js?v=cde9917593c9"></script>
 <script>
 const $=s=>document.querySelector(s);
 // Shared polling snapshot is read by the early Briefing renderer.
@@ -3650,6 +3655,22 @@ void enRefreshSourceReadiness();
 setInterval(()=>{if(!document.hidden)void enRefreshSourceReadiness()},300000);
 
 function enRenderAmbientDesk(){
+ const kansasHost=$('#enKansasRaceNeedle');
+ if(kansasHost&&window.KansasNeedleView&&window.IowaCountyNeedle&&window.KansasCivicCountySource){
+  if(!window.enKansasPilotController)window.enKansasPilotController=window.KansasNeedleView.create(kansasHost,{
+   fetchJSON:async path=>{const response=await fetch('./'+path,{cache:'no-store',credentials:'omit'});
+    if(!response.ok)throw Error('Input HTTP '+response.status);return response.json();},
+   fetchSource:url=>enCivicFetchJson(url),
+   readPrior:()=>{const row=latestSenateEstimates?.senate_all?.find(r=>r.race_code==='KS-SEN');
+    const sum=Number(row?.dem_pct)+Number(row?.rep_pct);
+    if(!row||!Number.isFinite(sum)||sum<=0)return null;
+    return {margin:100*(row.dem_pct-row.rep_pct)/sum,sigma:Math.max(6,5.633*100/sum)};},
+   isActive:()=>enModeYear===2026&&enIsVisible(),
+   sourceGeneration:()=>window.ElectionNightTransport.generation(enCivicBreaker),
+   onValidated:()=>enCivicBreaker?.success()
+  });
+  window.enKansasPilotController.tick();
+ }
  const iowaHost=$('#enIowaRaceNeedle');
  if(iowaHost&&window.IowaNeedleView&&window.IowaCountyNeedle&&window.IowaCivicCountySource){
   if(!window.enIowaPilotController)window.enIowaPilotController=window.IowaNeedleView.create(iowaHost,{
@@ -5854,11 +5875,11 @@ async function enCivicFetchJson(url,timeoutMs=12000){
  return enCivicRequestPool.run(()=>enCivicFetchUnpooled(url,timeoutMs));
 }
 async function enCivicFetchUnpooled(url,timeoutMs=12000){
- // The independently inspected Iowa full response supplies all 99 counties.
+ // Independently inspected Iowa/Kansas full responses supply all99/105 counties.
  // Other full routes remain blocked; retain search/light routing safeguards.
  if(typeof url!=='string'||
     (!/^https:\/\/civicapi\.org\/api\/v2\/race\/(?:search\?[^#]+|[1-9]\d*\?light=)$/.test(url)&&
-     url!=='https://civicapi.org/api/v2/race/87151'))
+     !['https://civicapi.org/api/v2/race/87151','https://civicapi.org/api/v2/race/87162'].includes(url)))
   throw Error('Unapproved civicAPI 2026 result source URL');
  const cool=enCivicBreaker?.status();
  const requestGeneration=window.ElectionNightTransport.generation(enCivicBreaker);

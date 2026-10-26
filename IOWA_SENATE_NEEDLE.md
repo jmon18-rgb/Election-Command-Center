@@ -120,6 +120,44 @@ for review while forecasting acceptance remains open.
 
 ## Remaining production evidence
 
+## Separate close-election check
+
+The frozen county-only-history implementation was first evaluated on the separate
+2018 Iowa governor race, R+2.80 two-party points, using the same office's official
+2010 county baseline. No 2010 voting-method split is supplied or invented. A
+single combined-history scenario retains shared batch-selection uncertainty.
+Mixed or partial historical method coverage is rejected instead of guessed.
+
+All 99 baseline D/R totals reconcile to the official state footer. All 99 outcome
+county/method sums reconcile to the 2018 canvass. The 2010 Dallas and Henry
+ballot-total columns fail arithmetic and are excluded, not silently repaired;
+the D/R candidate counts reconcile independently and are the only baseline votes
+used. Original web-reader excerpts and a dependency-free builder are committed.
+
+At first evaluation, model blob `b4d96dec2e62` has **3.25-point margin MAE** versus
+raw counted share 13.63 across 16 partial scenarios. Its scenario envelope includes
+the final margin in 16/16. This is one close governor election with an eight-year
+baseline, a neutral stress prior and assumed release ordering. It is not a
+chronological replay, calibrated probability evidence, or validated transfer to
+the 2026 Senate pilot. The evaluator binds the first-use label to that exact blob.
+
+Reproduce with `python scripts/build_iowa_governor_close_cohort.py --check` and
+`node scripts/evaluate_iowa_governor_close_cohort.cjs`.
+
+The remaining-vote output now includes a conditional-turnout scenario range,
+displayed beside the point estimate. Its low/high scenarios use a shared statewide
+turnout rank, so 99 counties cannot manufacture falsely independent precision.
+County turnout is conditioned on counted votes as a lower bound. Exceeding the
+historical expectation still leaves a positive modeled remainder; it cannot
+certify completion. These 5th/95th scenarios are declared, not calibrated bands.
+
+The actual remaining two-party count falls inside this range in 14/16 reused
+2022 Senate scenarios, 16/16 reused 2016 Senate scenarios and 16/16 separate 2018
+governor scenarios. No turnout parameter changed after those results. Adding the
+range leaves all 16 previously frozen close-election probabilities and projected
+margins exactly unchanged. The evaluator conservatively marks the changed source
+as having seen the outcome rather than inheriting its old first-use designation.
+
 The follow-up robust-swing correction uses a declared 85%/10%/5% Gaussian prior
 mixture with one/two/four times the polling sigma. Marginal evidence updates both
 the swing component and unseen method-order weights. This permits coherent large
@@ -148,3 +186,13 @@ current payload remains test data. Real post-close source delivery has not been
 demonstrated. The bridge and visible needle are implemented for review, not yet
 verified as deployed. Independent historical evaluation, updated turnout evidence
 and calibration remain open. Kansas Senate is the next competitive source target.
+
+### Prior-only comparison
+
+Evaluation reports also compare against retaining the neutral starting forecast,
+with Brier and log-loss diagnostics for the race probability. In the close 2018
+governor cohort, projected margin MAE is about 3.25 points versus 2.80 for leaving
+the prior unchanged (and 13.63 for raw returns). Thus this cohort does not show
+improved margin accuracy over the prior. The sixteen correlated snapshots are
+not sixteen independent elections and cannot establish calibration. No parameters
+were changed after this comparison.

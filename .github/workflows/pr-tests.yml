@@ -410,7 +410,9 @@ jobs:
     # Full Senate + broad House DOM checks now exercise a larger live roster.
     # Preserve the complete Monte Carlo acceptance gate, with headroom for CI
     # runner variance; real Chromium responsiveness is separately tested.
-    timeout-minutes: 12
+    # Run40270935932 completed every DOM assertion at12m22s, then exceeded
+    # the old12m job budget. Keep all assertions and Monte Carlo draws intact.
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
       - name: Rebuild coherent polling and forecast bundle under current firm policy

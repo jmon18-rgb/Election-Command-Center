@@ -11,6 +11,8 @@ const checks = [
   ['Iowa competitive-race remaining-vote model', 'test_iowa_senate_partial_forecast.cjs'],
   ['Iowa full county-source input adapter', 'test_iowa_civic_county_source.cjs'],
   ['Iowa combined county predictive needle', 'test_iowa_county_needle.cjs'],
+  ['Kansas strict county-source contract', 'test_kansas_civic_county_source.cjs'],
+  ['Kansas experimental source-to-forecast path', 'test_kansas_county_needle.cjs'],
   ['Source audit reporting safeguards', 'test_election_readiness_source_snapshot.cjs'],
   ['Celebration playback and revoked-call queue', 'test_election_night_celebration_player.cjs'],
   ['Published bundle and forecast consistency', 'test_published_dashboard.cjs', '--local'],

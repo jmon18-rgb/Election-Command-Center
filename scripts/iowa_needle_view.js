@@ -54,8 +54,10 @@
    get('margin').textContent=(certified?'Certified historical margin: ':'Modeled final margin: ')+margin(projection.projected_margin_points);
    get('votes').textContent=number(projection.counted_dem_votes+projection.counted_rep_votes)+
     ' two-party votes counted · '+projection.reporting_counties+'/99 counties reporting votes';
+   const remainingBand=projection.modeled_remaining_two_party_votes_band;
    get('remaining').textContent=certified?'Certified final count · no modeled votes remaining':
-    'Estimated two-party votes remaining: '+number(projection.modeled_remaining_two_party_votes);
+    'Estimated two-party votes remaining: '+number(projection.modeled_remaining_two_party_votes)+
+    (Array.isArray(remainingBand)?' · turnout scenario range '+remainingBand.map(number).join('–'):'');
    get('band').textContent='Scenario uncertainty band: '+projection.scenario_margin_band.map(margin).join(' to ');
   }
   async function inputs(){
@@ -125,6 +127,7 @@
      const finalMargin=100*(d-r)/(d+r);
      projection={...projection,status:'CERTIFIED_HISTORICAL_OUTCOME',counted_dem_votes:d,counted_rep_votes:r,
       dem_win_probability:d>r?1:0,projected_margin_points:finalMargin,modeled_remaining_two_party_votes:0,
+      modeled_remaining_two_party_votes_band:[0,0],
       scenario_margin_band:[finalMargin,finalMargin]};
      phase='HISTORICAL CERTIFIED RESULT · not a live forecast';stamp='Official 2022 Iowa Senate canvass';
     }

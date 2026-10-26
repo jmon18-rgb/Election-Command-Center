@@ -1,5 +1,85 @@
 # Readiness progress
 
+## October26 04:51Z - actual provider and deployed integrity evidence
+
+- Published main9490bd6c at04:49:51Z: all41 checked files match, zero differences.
+  Actual published Edge at04:50:25Z receives HTTP200 from full Iowa endpoint
+  without substituting a response; TEST DATA excluded, live probability null,
+  accepted live votes0. Historical preview works and is explicitly separate.
+- Local queued442 Kansas view at04:51:28Z receives actual full87162 HTTP200
+  without substituting a response; TEST DATA excluded, live probability null,
+  accepted live votes0. No Kansas deployment or live delivery is claimed.
+-442 now targets main alongside440 so all applicable current-head checks can
+  run. Merge440 first; no missing/skipped main-target checks count as passing.
+  Next is passing merges/deployment verification and close-race forecast evidence.
+
+
+## October26 - passing merges and Kansas visible needle path
+
+-438 merged3ef40a7a after27 successful current-head workflows;441 merged
+ 9490bd6c after5 successful current-head workflows. Pages initially still
+ served older files at04:48Z; deployment verification is pending, not passed.
+-440 retargeted to main and refreshed at06b25369; full current-head checks
+ must pass before merge.
+-442 now includes the visible Kansas race needle using the exact inspected full
+ 87162 route through the bounded transport. Desktop1366 and mobile390 source
+ fixtures move its probability; TEST DATA, same-clock corrections and outages
+ remove the estimate. National odds remain unchanged. Iowa browser regressions
+ and all core checks pass. This is queued and not claimed deployed.
+- Next: verify438 deployment, merge passing440, retarget/test442 on main, verify
+ its deployment and actual test-source exclusion. Close-race calibration and
+ actual post-close vote delivery remain unproven.
+
+
+## October26 - Kansas input now drives an experimental forecast
+
+- New queued wrapper validates105 county identities, candidate/state sums, exact
+  source/time and test flags before using the shared estimator. Synthetic source
+  changes move race probability; winner flags cannot. Test data yields no forecast.
+- Official2020-to-2022 stress evaluation: margin MAE10.10 versus prior23.66 and
+  raw30.66; margin coverage15/16, remaining-vote range coverage11/16. Retain
+  misses: different class/turnout, one noncompetitive election, assumed orders.
+  No claim of calibrated2026 probabilities or actual post-close delivery.
+- All18 core checks pass; Iowa close-cohort numerical results are unchanged by
+  explicit105-county support. Kansas browser integration remains next work.
+-438 was held by two new HI gaps, not forecast tests. Exact publisher directory
+  links repair those without new vote feeds or weakened checks; refreshed438
+  at33a0de86 and441 ate4bf1772 are running full required checks.
+## October26 05:01Z - required full DOM check exhausted job budget
+
+-440 at06b25369 passes26 workflows; broad validation assertions pass, but
+ its full DOM job is cancelled at the12-minute budget. The log reports
+ all DOM integration assertions passed at05:00:58Z,12m22s after the step
+ began. This is NOT a successful workflow and does not permit merge.
+- Increase that job budget to18min, preserving every assertion and Monte Carlo
+ draw. This directly unblocks queued source-to-needle deployment. Rerun all
+ current-head checks; never bypass the cancelled gate.
+- Competitive House normal-browser inspection at05:00:45Z reads full sources
+ FL09/87048(7county rows),CO05/87014(1),TX23/87428(27). All explicit test_data
+ true; accepted live votes0. Direct urllib returned403, normal browser access
+ works. No county/district membership or current-map historical baseline is
+ independently verified, so these are not forecast-ready sources.
+
+
+## October 26 - deployed source exclusion and forecast evidence
+
+- PR439 merged at d917ded7 after all33 current-head workflows passed.
+  Published revision555a92be verified at04:28Z:41 deployed files match, and
+  actual Edge requests exclude the real Iowa test_data response (accepted0).
+- PR438 refreshed at535ad600; current-head checks pending. PR440 refreshed
+  at0b6282cd, still stacked until438 merges. No queued forecast changes are
+  claimed deployed.
+- PR441 adds reproducible Kansas official2020/2022 county facts and strict
+  105-county input contract. Actual provider response is explicitly test data;
+  accepted live votes0. No Kansas needle is activated.
+- Added prior-only margin and probability scoring to all three Iowa evaluations.
+  Close2018 governor margin MAE3.25 is worse than neutral-prior2.80, although
+  probability Brier0.108 improves on0.25. Correlated assumed snapshots of one
+  election are not calibration. Runtime forecasts unchanged by diagnostics.
+- Next: merge passing438, retarget/test440 against main and verify Pages, then
+  implement Kansas forecast inputs using the shared estimator with explicit
+  unknown-method uncertainty. Actual post-close delivery remains unproven.
+
 ## October 26 - source-safety repair deployed; Kansas input contract ready
 
 - #439 passed all33 applicable workflows at06a40514 and merged as d917ded7.
@@ -96,6 +176,34 @@
   16/16. Eight-year baseline and different office from Senate limit transfer;
   not reporting-clock replay or calibrated probabilities. Historical ballot
   column arithmetic discrepancies are excluded, never repaired with invented data.
+
+## October 25 - separate close-election forecasting check
+
+- Follow-up explicitly estimates remaining two-party vote uncertainty, not only
+  a point count: conditional historical-turnout low/high scenarios with shared
+  statewide rank. Show the range beside the live/preview point estimate. Counts
+  above historical turnout cannot imply zero outstanding ballots or completion.
+- Remaining-vote range contains the true remainder14/16 in 2022,16/16 in 2016
+  and16/16 in the separate close 2018 cohort. These are correlated assumed-order
+  experiments, not calibration. All16 frozen close-election probabilities and
+  margin predictions remain exactly unchanged by adding the range. Current
+  predictor source blob576d23318dfb; no parameter tuning followed these results.
+
+- Reproduced official 2010/2018 Iowa governor data, all 99 county D/R totals and
+  2018 county/method/state arithmetic. The close outcome is R+2.80. Historical
+  2010 ballot-total discrepancies in Dallas/Henry are excluded rather than
+  repaired; baseline D/R totals separately reconcile to the source footer.
+- Implement county-only historical baselines without fabricating absentee or
+  Election Day shares. Unknown historical methods produce one explicitly unknown
+  scenario; mixed/partial method inventories fail closed. Existing 2022-method
+  baseline and current Iowa live-source path retain their existing behavior.
+- First frozen blob b4d96dec2e62: 3.25-point partial-margin MAE versus raw13.63,
+  scenario band contains truth16/16. All forecast parameters were unchanged after
+  this result. One different-office close election, an eight-year baseline and
+  assumed orders do not establish calibration or real historical reporting times.
+- PR #438 remains blocked by its actual fallback-catalog CI failure. Critical
+  test_data flag repair is separate PR #439; do not overwrite or bypass either
+  review's checks. DDHQ rate-limit backoff is pending while this work proceeds.
 
 ## October 25 - Iowa pilot deployed; correct the measured forecasting weakness
 

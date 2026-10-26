@@ -9,20 +9,46 @@
  const erf=x=>{const s=Math.sign(x),a=Math.abs(x),t=1/(1+.3275911*a);
   return s*(1-(((((1.061405429*t-1.453152027)*t+1.421413741)*t-.284496736)*t+.254829592)*t)*Math.exp(-a*a));};
  const cdf=x=>(1+erf(x/Math.SQRT2))/2;
- function componentForecast({baseline,observations=[],prior_margin_points,prior_sigma_points=6,
+ function logSurvival(z){
+  const x=Math.abs(z)/Math.SQRT2,t=1/(1+.3275911*x);
+  const polynomial=(((((1.061405429*t-1.453152027)*t+1.421413741)*t-.284496736)*t+.254829592)*t);
+  const positive=Math.log(polynomial/2)-z*z/2;
+  return z>=0?positive:Math.log1p(-Math.exp(positive));
+ }
+ function remainingQuantile(mu,sd,counted,q){
+  const z=(counted-mu)/sd;
+  // In the far normal tail, use its stable exponential-excess limit rather
+  // than subtracting two enormous, almost equal final-turnout numbers.
+  if(z>1e6)return -Math.log1p(-q)*sd/z;
+  const target=logSurvival(z)+Math.log1p(-q);
+  let lo=z,hi=Math.max(z,0)+12;
+  for(let i=0;i<64;i++){
+   const middle=(lo+hi)/2;
+   if(logSurvival(middle)>target)lo=middle;else hi=middle;
+  }
+  return Math.max(0,((lo+hi)/2-z)*sd);
+ }
+ function componentForecast({baseline,observations=[],prior_margin_points,prior_sigma_points=6,expected_county_count=99,
   turnout_scale=1,turnout_sigma_fraction=.25,county_sigma_points=6,structural_sigma_points=5,batch_bias_sigma_points=8}){
-  if(!baseline?.counties||baseline.counties.length!==99||!Array.isArray(observations)||
+  if(!baseline?.counties||![99,105].includes(expected_county_count)||baseline.counties.length!==expected_county_count||!Array.isArray(observations)||
    ![prior_margin_points,prior_sigma_points,turnout_scale,turnout_sigma_fraction,county_sigma_points,structural_sigma_points,batch_bias_sigma_points].every(Number.isFinite)||
    Math.abs(prior_margin_points)>=100||prior_sigma_points<=0||turnout_scale<=0||turnout_sigma_fraction<=0||
    county_sigma_points<=0||structural_sigma_points<=0||batch_bias_sigma_points<=0)throw Error('Invalid county forecast inputs');
   const old=new Map(),seen=new Map();let baseD=0,baseN=0;
+  const historyMethods=baseline.counties.map(c=>Boolean(c.records?.absentee&&c.records?.election_day));
+  if(historyMethods.some(Boolean)&&!historyMethods.every(Boolean))throw Error('Inconsistent historical method coverage');
+  const knownMethods=historyMethods.every(Boolean);
   for(const c of baseline.counties){
    if(!c.county||old.has(c.county))throw Error('Duplicate/missing historical county');
-   const a=c.records?.absentee,e=c.records?.election_day;
-   for(const r of [a,e])if(!r||![r.dem_votes,r.rep_votes].every(n=>Number.isSafeInteger(n)&&n>=0)||
+   let a=c.records?.absentee,e=c.records?.election_day;
+   if(Boolean(a)!==Boolean(e))throw Error('Partial historical method split');
+   // With county-only history, the first internal group holds the combined
+   // total. It is not labeled or represented as observed absentee votes.
+   if(!knownMethods){a=c.records?.total;e={dem_votes:0,rep_votes:0};}
+   for(const r of (knownMethods?[a,e]:[a]))if(!r||![r.dem_votes,r.rep_votes].every(n=>Number.isSafeInteger(n)&&n>=0)||
     !Number.isSafeInteger(r.dem_votes+r.rep_votes)||r.dem_votes+r.rep_votes<=0)throw Error('Invalid historical method count');
    old.set(c.county,{county:c.county,aN:a.dem_votes+a.rep_votes,eN:e.dem_votes+e.rep_votes,
-    aShare:a.dem_votes/(a.dem_votes+a.rep_votes),eShare:e.dem_votes/(e.dem_votes+e.rep_votes)});
+    aShare:a.dem_votes/(a.dem_votes+a.rep_votes),eShare:knownMethods?e.dem_votes/(e.dem_votes+e.rep_votes):a.dem_votes/(a.dem_votes+a.rep_votes)});
    baseD+=a.dem_votes+e.dem_votes;baseN+=a.dem_votes+a.rep_votes+e.dem_votes+e.rep_votes;
   }
   for(const r of observations){
@@ -33,11 +59,15 @@
   const centered=(prior_margin_points/100-(2*baseD/baseN-1))/2;
   const priorVar=(prior_sigma_points/200)**2,countyVar=(county_sigma_points/200)**2;
   const scenarios=[];
-  for(const order of ['absentee_first','election_day_first','proportional_mix']){
-   const units=[];let precision=0,weighted=0,squared=0,logVariance=0;
+  for(const order of (knownMethods?['absentee_first','election_day_first','proportional_mix']:['combined_history_unknown_methods'])){
+   const units=[];let precision=0,weighted=0,squared=0,logVariance=0,remainingLow=0,remainingHigh=0;
    for(const [name,b] of old){
     const r=seen.get(name)||{dem_votes:0,rep_votes:0},n=r.dem_votes+r.rep_votes;
     const mu=(b.aN+b.eN)*turnout_scale,sd=mu*turnout_sigma_fraction;
+    // Coherent statewide low/high turnout ranks retain correlated uncertainty;
+    // do not manufacture a narrow total by treating counties as independent.
+    remainingLow+=remainingQuantile(mu,sd,n,.05);
+    remainingHigh+=remainingQuantile(mu,sd,n,.95);
     // Current counted ballots are a lower bound on final turnout. Condition
     // the turnout distribution on that bound rather than declaring a county
     // complete merely because it exceeded its historical expectation.
@@ -84,9 +114,11 @@
    const variance=4*(remaining*remaining*shiftVariance+independent)+
     (remaining*structural_sigma_points/100)**2+turnoutWeight**2;
    const sigmaVotes=Math.sqrt(variance),margin=100*marginVotes/total,sigma=100*sigmaVotes/total;
+   if(!Number.isFinite(sigma)||sigma<=0)throw Error('Forecast uncertainty degenerated; input exceeds numerical model scope');
    const probability=Math.max(.000001,Math.min(.999999,cdf(marginVotes/sigmaVotes)));
    scenarios.push({order,log_likelihood:logLikelihood,projected_margin_points:margin,projected_sigma_points:sigma,dem_win_probability:probability,
     modeled_remaining_two_party_votes:remaining,band:[Math.max(-100,margin-1.644853627*sigma),Math.min(100,margin+1.644853627*sigma)],
+    modeled_remaining_two_party_votes_band:[remainingLow,remainingHigh],
     posterior_swing_margin_points:200*shift});
   }
   const maxLog=Math.max(...scenarios.map(s=>s.log_likelihood));
@@ -98,10 +130,13 @@
    reporting_counties:observations.filter(r=>r.dem_votes+r.rep_votes>0).length,
    projected_margin_points:mean('projected_margin_points'),dem_win_probability:mean('dem_win_probability'),
    modeled_remaining_two_party_votes:mean('modeled_remaining_two_party_votes'),
+   modeled_remaining_two_party_votes_band:[Math.min(...scenarios.map(s=>s.modeled_remaining_two_party_votes_band[0])),
+    Math.max(...scenarios.map(s=>s.modeled_remaining_two_party_votes_band[1]))],
    method_mix_probability_range:[Math.min(...scenarios.map(s=>s.dem_win_probability)),Math.max(...scenarios.map(s=>s.dem_win_probability))],
    scenario_margin_band:[Math.min(...scenarios.map(s=>s.band[0])),Math.max(...scenarios.map(s=>s.band[1]))],
-   observed_method_votes_inferred:false,interval_calibrated:false,may_move_national_needle:false,
+   observed_method_votes_inferred:false,historical_method_split_reported:knownMethods,interval_calibrated:false,may_move_national_needle:false,
    assumptions:{prior_margin_points,prior_sigma_points,turnout_scale,turnout_sigma_fraction,county_sigma_points,structural_sigma_points,batch_bias_sigma_points,
+    remaining_vote_band:'Conditional historical-turnout 5th/95th scenarios with shared statewide rank; not calibrated or verified ballots outstanding',
     method_scenario_weighting:'Gaussian marginal evidence under declared model assumptions'},scenarios};
  }
  function forecast(config){
@@ -128,7 +163,7 @@
    }
    return (lo+hi)/2;
   }
-  const orders=['absentee_first','election_day_first','proportional_mix'].map(order=>{
+  const orders=[...new Set(scenarios.map(s=>s.order))].map(order=>{
    const rows=scenarios.filter(s=>s.order===order),weight=rows.reduce((total,s)=>total+s.weight,0);
    // Numerically negligible orders remain in the raw diagnostic inventory, but
    // cannot define a conditional band when their evidence underflows to zero.

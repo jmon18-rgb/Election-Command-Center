@@ -6,6 +6,7 @@ on:
       - 'data/kansas*'
       - 'data/kansas_historical_sources/**'
       - 'scripts/*kansas*'
+      - 'scripts/iowa_county_needle.js'
       - 'scripts/read_official_xlsx_rows.py'
       - '.github/workflows/kansas-county-source.yml'
   workflow_dispatch:
@@ -24,3 +25,21 @@ jobs:
         run: python3 scripts/build_kansas_senate_county_facts.py --check
       - name: Validate Kansas input contract and exclude test votes
         run: node scripts/test_kansas_civic_county_source.cjs
+      - name: Validate experimental Kansas source-to-forecast behavior
+        run: node scripts/test_kansas_county_needle.cjs
+      - name: Evaluate official historical returns against prior-only and raw baselines
+        run: node scripts/evaluate_kansas_county_needle.cjs
+  browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned Chromium runtime
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Exercise validated Kansas source to visible race needle on laptop and mobile
+        run: node scripts/test_kansas_needle_browser.mjs

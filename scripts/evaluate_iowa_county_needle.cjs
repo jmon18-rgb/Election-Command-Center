@@ -26,6 +26,10 @@ for(const [order,sort] of Object.entries(orders))for(const fraction of [.1,.25,.
   projected_margin:f.projected_margin_points,error_points:f.projected_margin_points-truth,
   naive_error_points:naive-truth,dem_win_probability:f.dem_win_probability,
   modeled_remaining_two_party_votes:f.modeled_remaining_two_party_votes,scenario_band:f.scenario_margin_band});
+ const row=snapshots.at(-1);
+ row.remaining_vote_scenario_band=f.modeled_remaining_two_party_votes_band;
+ row.actual_remaining_two_party_votes=years[outcomeYear].statewide.dem_votes+years[outcomeYear].statewide.rep_votes-
+  f.counted_dem_votes-f.counted_rep_votes;
 }
 const bytes=fs.readFileSync(path.join(__dirname,'iowa_county_needle.js'));
 const modelBlob=require('node:crypto').createHash('sha1').update(Buffer.from('blob '+bytes.length+'\0')).update(bytes).digest('hex');
@@ -41,7 +45,21 @@ const result={status:independent?(modelBlob===firstUnseenModel?'UNSEEN_ELECTION_
  model_margin_mae:snapshots.reduce((s,r)=>s+Math.abs(r.error_points),0)/snapshots.length,
  naive_margin_mae:snapshots.reduce((s,r)=>s+Math.abs(r.naive_error_points),0)/snapshots.length,
  scenario_band_contains_truth:snapshots.filter(r=>r.scenario_band[0]<=truth&&r.scenario_band[1]>=truth).length,
+ remaining_vote_band_contains_truth:snapshots.filter(r=>r.remaining_vote_scenario_band[0]<=r.actual_remaining_two_party_votes&&
+  r.remaining_vote_scenario_band[1]>=r.actual_remaining_two_party_votes).length,
  snapshots};
+// Compare with keeping the starting forecast; raw returns alone are a weak baseline.
+const observedWinner=Number(truth>0);
+const mean=values=>values.reduce((a,b)=>a+b,0)/values.length;
+Object.assign(result,{
+ prior_only_margin_mae:Math.abs(truth),
+ prior_only_dem_win_probability:0.5,
+ prior_only_brier_score:0.25,
+ prior_only_log_loss:Math.log(2),
+ model_brier_score:mean(snapshots.map(r=>(r.dem_win_probability-observedWinner)**2)),
+ model_log_loss:mean(snapshots.map(r=>-Math.log(Math.max(1e-15,observedWinner?r.dem_win_probability:1-r.dem_win_probability)))),
+ scoring_limit:'Correlated snapshots of one election; diagnostic scores, not independent calibration'
+});
 const dir=path.join(__dirname,'../artifacts/readiness/iowa');fs.mkdirSync(dir,{recursive:true});
 fs.writeFileSync(path.join(dir,independent?'combined-county-unseen-election-evaluation.json':'combined-county-development-evaluation.json'),JSON.stringify(result,null,2));
 console.log(JSON.stringify({...result,snapshots:undefined}));

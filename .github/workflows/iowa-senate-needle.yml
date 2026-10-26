@@ -9,6 +9,7 @@ on:
       - 'scripts/*iowa_civic*'
       - 'scripts/*iowa_county*'
       - 'scripts/*iowa_needle*'
+      - 'scripts/*iowa_governor*'
       - 'index.html'
       - '.github/workflows/iowa-senate-needle.yml'
 permissions:
@@ -26,6 +27,7 @@ jobs:
         run: |
           python3 scripts/build_iowa_senate_county_modes.py --check
           python3 scripts/build_iowa_senate_county_modes.py --independent --check
+          python3 scripts/build_iowa_governor_close_cohort.py --check
       - name: Forecast remaining vote and evaluate explicit release-order scenarios
         run: |
           node scripts/test_iowa_senate_partial_forecast.cjs
@@ -34,6 +36,7 @@ jobs:
           node scripts/evaluate_iowa_senate_partial_forecast.cjs
           node scripts/evaluate_iowa_county_needle.cjs
           node scripts/evaluate_iowa_county_needle.cjs --independent
+          node scripts/evaluate_iowa_governor_close_cohort.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
