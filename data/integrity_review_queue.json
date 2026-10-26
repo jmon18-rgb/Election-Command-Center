@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-26T14:58:29.082164Z",
+  "updated_at": "2026-10-26T15:36:20.039605Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
@@ -263,6 +263,27 @@
     }
   ],
   "items": [
+    {
+      "id": "7d30a85da1d8e4ea4057",
+      "title": "California election controversy explained: Why the Department of Justice and state are squaring off over voter rolls - Livemint",
+      "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxNN0hZTzdGZGhzekJMaTBVZXVGNVFDNmF1THBaSXNOeU1oRUtnQ01NSzZaVGFZMFZiSzBob1kwNVctenNjVkJRcmk5d0NjeGxITmpnQzVCYTl2VjZaTEZSazVmb0ZWUV9OSE1tdHhvQXdnNndmLVZZOXJRd0h4bFNWcVNsN2dwOWoySktwQllscnBhUThseHIzNzhvRGxEc2JQZE1YMV9jM1RGdi1nX3RaNzdRRm5GZFJyMnpHY2RsMVpqS1pUX0kySkMySmVYZXgySzVyU0NmYkY1aTg5M0VleEVkbXVHeGJfR2g1NWE4TnRsSHEtQTlPZlctQUhLVE41TGVF0gGIAkFVX3lxTE5MQUVvWjZEbmtxS0Q3QkNxUXptOXc5UmlVZnF2b3I4N1FXUFVfT3ZPQXRpYll0b3A4aW84SXBWblRIOW9tU2x5Y0JYSms2NHpQeG5XSXBPNHA2cl9mSXpPamNNVlVsTXdFSFZrRWhYc3djTXhBX3ljRTk0WmdoT0JrY2FOM21jbnpYX0xmckJQN280WV9DWUcyekZoZEJVVnUwc28xVTQ5bWE5RDVrWHY0eEdyb05lX016WEh4aXMycE10aWgteXV0RUctVExaUGQ1dml5SkEwRnFLT19oQXY5VGNHc2VoRFVZTHVWOV9qRDl5UFIwaVVBWVZrcVFIbXQ4bTYyaXIyYQ?oc=5",
+      "publisher": "Livemint",
+      "published_at": "2026-10-26T14:59:12Z",
+      "detected_at": "2026-10-26T15:36:20.039605Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "registration",
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "a1f06cf6efcfd409e7d2",
       "title": "Native vote observers mobilize to protect S.D. ballot access - Northern Plains News",
@@ -4946,23 +4967,6 @@
       ],
       "topic_hints": [
         "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "f631fb2e68b0e98836a5",
-      "title": "What is the Trump-backed SAVE America Act requiring voter ID, proof of citizenship to register? - ABC News - Breaking News, Latest News and Videos",
-      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPakp6cUZqckpHYXRSRmZ3S1NIVHE3TnR5ek9qN1M2YmVKUV96bjJaUWhGNFZyTFFFSVRoZnNFODZjNWRYT3E5R2lKUDIxTm9UQzlmTVllRS16cmZ1d1hqQ3pYNzNvUnRrR29aUUQyQ043NjhJSXFjV0g2TnY5TmJUYzNOMi1tQnJnUDRWVHl5ZGhGcUI3QkIxWHl5UzhfVm1qYUJ30gGoAUFVX3lxTE1vdmwzR2RvYmZoVzRZNFpoNmxyRE82czE3UlVtWHNqRkFyY2JEWXFjQmZtaUtqQVFpaWZWOGFDdUhMYXctejlGZDV2dWNtanUyVktUakJTZmtTWlFqYzJoU2FEODZjOWJUMmpGNTVya184d1d5SDU1eGcxdzJXc2Vqc1VaUWpjazBRRlRQTVZJVG82enZCTmY0THE1eVo2Rk9mb3I0RFdLRg?oc=5",
-      "publisher": "ABC News - Breaking News, Latest News and Videos",
-      "published_at": "2026-10-14T08:43:08Z",
-      "detected_at": "2026-10-14T11:09:17.083238Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
