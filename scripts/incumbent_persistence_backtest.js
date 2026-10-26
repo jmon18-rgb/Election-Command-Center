@@ -23,7 +23,7 @@
   return result;
  };
  function build(s){
-  if(!match||s.twoCycle?.coverage?.districts_with_two_historical_major_party_shares!==191||
+  if(!match||s.twoCycle?.coverage?.districts_with_two_historical_major_party_shares!==197||
     s.house22?.records?.length!==435||s.house24?.records?.length!==435||
     s.candidates22?.records?.length!==435||s.candidates24?.records?.length!==435||
     s.pres20?.records?.length!==435||s.pres24?.records?.length!==435)

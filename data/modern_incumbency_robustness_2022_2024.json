@@ -9,41 +9,41 @@
   "excluded_older_house_elections": "All House outcome elections before 2022 are deliberately excluded",
   "cohort_scores": {
     "all_modern_2022_2024": {
-      "sample": 148,
+      "sample": 149,
       "zero": {
-        "rmse": 5.522,
-        "mae": 4.411
+        "rmse": 5.509,
+        "mae": 4.389
       },
       "modern_heldout_cv": {
-        "rmse": 4.732,
-        "mae": 3.713
+        "rmse": 4.719,
+        "mae": 3.684
       },
       "full_carryover": {
-        "rmse": 5.072,
-        "mae": 4.07
+        "rmse": 5.061,
+        "mae": 4.047
       },
       "cv_rmse_gain_over_zero": 0.79,
-      "cv_mae_gain_over_zero": 0.698,
+      "cv_mae_gain_over_zero": 0.705,
       "cv_improves_zero": true,
-      "n_states": 34,
+      "n_states": 35,
       "uncertainty": "Exploratory subgroup in one recent cycle; not separately calibrated"
     },
     "presidential_lean_within_10_points": {
       "sample": 32,
       "zero": {
-        "rmse": 5.978,
-        "mae": 5.295
+        "rmse": 5.993,
+        "mae": 5.317
       },
       "modern_heldout_cv": {
-        "rmse": 4.641,
-        "mae": 3.979
+        "rmse": 4.657,
+        "mae": 3.996
       },
       "full_carryover": {
-        "rmse": 4.141,
-        "mae": 3.417
+        "rmse": 4.143,
+        "mae": 3.394
       },
-      "cv_rmse_gain_over_zero": 1.337,
-      "cv_mae_gain_over_zero": 1.316,
+      "cv_rmse_gain_over_zero": 1.336,
+      "cv_mae_gain_over_zero": 1.321,
       "cv_improves_zero": true,
       "n_states": 21,
       "uncertainty": "Exploratory subgroup in one recent cycle; not separately calibrated"
@@ -51,145 +51,145 @@
     "presidential_lean_within_20_points": {
       "sample": 63,
       "zero": {
-        "rmse": 5.782,
-        "mae": 4.941
+        "rmse": 5.798,
+        "mae": 4.95
       },
       "modern_heldout_cv": {
-        "rmse": 4.767,
-        "mae": 3.863
+        "rmse": 4.786,
+        "mae": 3.866
       },
       "full_carryover": {
-        "rmse": 4.98,
-        "mae": 3.87
+        "rmse": 4.995,
+        "mae": 3.863
       },
-      "cv_rmse_gain_over_zero": 1.015,
-      "cv_mae_gain_over_zero": 1.078,
+      "cv_rmse_gain_over_zero": 1.012,
+      "cv_mae_gain_over_zero": 1.084,
       "cv_improves_zero": true,
       "n_states": 29,
       "uncertainty": "Exploratory subgroup in one recent cycle; not separately calibrated"
     },
     "presidential_lean_over_20_points": {
-      "sample": 85,
+      "sample": 86,
       "zero": {
-        "rmse": 5.321,
-        "mae": 4.018
+        "rmse": 5.286,
+        "mae": 3.979
       },
       "modern_heldout_cv": {
-        "rmse": 4.706,
-        "mae": 3.602
+        "rmse": 4.669,
+        "mae": 3.551
       },
       "full_carryover": {
-        "rmse": 5.139,
-        "mae": 4.217
+        "rmse": 5.109,
+        "mae": 4.181
       },
-      "cv_rmse_gain_over_zero": 0.615,
-      "cv_mae_gain_over_zero": 0.416,
+      "cv_rmse_gain_over_zero": 0.617,
+      "cv_mae_gain_over_zero": 0.428,
       "cv_improves_zero": true,
-      "n_states": 29,
+      "n_states": 30,
       "uncertainty": "Exploratory subgroup in one recent cycle; not separately calibrated"
     },
     "previous_house_margin_within_10_points": {
       "sample": 31,
       "zero": {
-        "rmse": 6.017,
-        "mae": 5.266
+        "rmse": 6.045,
+        "mae": 5.299
       },
       "modern_heldout_cv": {
-        "rmse": 5.069,
-        "mae": 4.285
+        "rmse": 5.103,
+        "mae": 4.319
       },
       "full_carryover": {
-        "rmse": 5.014,
-        "mae": 3.794
+        "rmse": 5.044,
+        "mae": 3.798
       },
-      "cv_rmse_gain_over_zero": 0.948,
-      "cv_mae_gain_over_zero": 0.981,
+      "cv_rmse_gain_over_zero": 0.942,
+      "cv_mae_gain_over_zero": 0.98,
       "cv_improves_zero": true,
       "n_states": 19,
       "uncertainty": "Exploratory subgroup in one recent cycle; not separately calibrated"
     },
     "not_incumbent_on_2022_ballot": {
-      "sample": 33,
+      "sample": 34,
       "zero": {
-        "rmse": 5.041,
-        "mae": 4.032
+        "rmse": 4.992,
+        "mae": 3.982
       },
       "modern_heldout_cv": {
-        "rmse": 4.695,
-        "mae": 3.509
+        "rmse": 4.632,
+        "mae": 3.411
       },
       "full_carryover": {
-        "rmse": 5.564,
-        "mae": 3.955
+        "rmse": 5.497,
+        "mae": 3.902
       },
-      "cv_rmse_gain_over_zero": 0.346,
-      "cv_mae_gain_over_zero": 0.523,
+      "cv_rmse_gain_over_zero": 0.36,
+      "cv_mae_gain_over_zero": 0.571,
       "cv_improves_zero": true,
-      "n_states": 21,
+      "n_states": 22,
       "uncertainty": "Exploratory subgroup in one recent cycle; not separately calibrated"
     },
     "incumbent_on_2022_ballot": {
       "sample": 115,
       "zero": {
         "rmse": 5.652,
-        "mae": 4.519
+        "mae": 4.51
       },
       "modern_heldout_cv": {
-        "rmse": 4.742,
-        "mae": 3.772
+        "rmse": 4.744,
+        "mae": 3.765
       },
       "full_carryover": {
-        "rmse": 4.922,
-        "mae": 4.102
+        "rmse": 4.925,
+        "mae": 4.09
       },
-      "cv_rmse_gain_over_zero": 0.91,
-      "cv_mae_gain_over_zero": 0.747,
+      "cv_rmse_gain_over_zero": 0.908,
+      "cv_mae_gain_over_zero": 0.745,
       "cv_improves_zero": true,
       "n_states": 31,
       "uncertainty": "Exploratory subgroup in one recent cycle; not separately calibrated"
     },
     "democratic_2022_winners": {
-      "sample": 83,
+      "sample": 84,
       "zero": {
-        "rmse": 5.875,
-        "mae": 4.372
+        "rmse": 5.9,
+        "mae": 4.4
       },
       "modern_heldout_cv": {
-        "rmse": 5.14,
-        "mae": 3.869
+        "rmse": 5.159,
+        "mae": 3.872
       },
       "full_carryover": {
-        "rmse": 5.496,
-        "mae": 4.364
+        "rmse": 5.491,
+        "mae": 4.348
       },
-      "cv_rmse_gain_over_zero": 0.735,
-      "cv_mae_gain_over_zero": 0.503,
+      "cv_rmse_gain_over_zero": 0.741,
+      "cv_mae_gain_over_zero": 0.528,
       "cv_improves_zero": true,
-      "n_states": 26,
+      "n_states": 27,
       "uncertainty": "Exploratory subgroup in one recent cycle; not separately calibrated"
     },
     "republican_2022_winners": {
       "sample": 65,
       "zero": {
-        "rmse": 5.035,
-        "mae": 4.46
+        "rmse": 4.956,
+        "mae": 4.375
       },
       "modern_heldout_cv": {
-        "rmse": 4.152,
-        "mae": 3.514
+        "rmse": 4.081,
+        "mae": 3.442
       },
       "full_carryover": {
-        "rmse": 4.472,
-        "mae": 3.694
+        "rmse": 4.445,
+        "mae": 3.658
       },
-      "cv_rmse_gain_over_zero": 0.883,
-      "cv_mae_gain_over_zero": 0.946,
+      "cv_rmse_gain_over_zero": 0.875,
+      "cv_mae_gain_over_zero": 0.933,
       "cv_improves_zero": true,
       "n_states": 23,
       "uncertainty": "Exploratory subgroup in one recent cycle; not separately calibrated"
     }
   },
-  "baseline_loso_coefficient": 0.345,
+  "baseline_loso_coefficient": 0.344,
   "per_state_heldout_coefficient_spread": {
     "min": 0.31,
     "median": 0.346,
@@ -199,16 +199,16 @@
     "unit": "state_cluster",
     "resamples": 1200,
     "seed": 20261103,
-    "shrink_coefficient_p05": 0.265,
+    "shrink_coefficient_p05": 0.26,
     "shrink_coefficient_median": 0.345,
-    "shrink_coefficient_p95": 0.429,
-    "heldout_rmse_gain_p05": 0.523,
-    "heldout_rmse_gain_median": 0.786,
-    "heldout_rmse_gain_p95": 1.075,
+    "shrink_coefficient_p95": 0.428,
+    "heldout_rmse_gain_p05": 0.504,
+    "heldout_rmse_gain_median": 0.796,
+    "heldout_rmse_gain_p95": 1.079,
     "state_cluster_fraction_with_positive_gain": 1,
     "interpretation": "Diagnostic cluster resampling, not validated 2026 prediction interval"
   },
-  "candidate_selection_warning": "Only 2022 winners seeking reelection in 2024. 144 wins and 4 losses; low failure-rate makes binary winner calibration impossible.",
+  "candidate_selection_warning": "Only 2022 winners seeking reelection in 2024. 145 wins and 4 losses; low failure-rate makes binary winner calibration impossible.",
   "observed_cycle_warning": "A single 2022-midterm to 2024-presidential period cannot independently validate the reverse 2024-presidential to 2026-midterm setting.",
   "next_step": "Add current 2026 polls, recent district partisanship and cross-race covariance; keep conservative generic uncertainty rather than fitting extra subgroup coefficients on small cells.",
   "conclusion": "Use 2022-2024 as main retrospective evidence; stratified modern cohorts and cluster bootstrap stress-test but do not justify live candidate-strength promotion."

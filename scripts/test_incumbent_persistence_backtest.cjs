@@ -13,13 +13,13 @@ const source={house22:load('house_history_2022_staging'),
 const result=persist.build(source);
 assert.deepEqual(result,load('incumbent_persistence_2022_2024'),
  'Historical holdout artifact must be exactly reproducible from staged sources');
-assert.equal(result.held_out_previous_winner_sample,148);
-assert.equal(result.held_out_states,34);
+assert.equal(result.held_out_previous_winner_sample,149);
+assert.equal(result.held_out_states,35);
 assert.equal(result.eligibility.previous_winners_lost,4,
  'Do not remove re-running 2022 winners just because they lost in 2024');
-assert.equal(result.eligibility.previous_winners_re_elected,144);
-assert.equal(result.office_year_context.house2022_vs_presidential2020_gap,-3.21);
-assert.equal(result.fitting.full_sample_coefficient,.345);
+assert.equal(result.eligibility.previous_winners_re_elected,145);
+assert.equal(result.office_year_context.house2022_vs_presidential2020_gap,-3.217);
+assert.equal(result.fitting.full_sample_coefficient,.344);
 assert(result.scores_2024_evaluation.state_holdout_trained_candidate_carryover.rmse<
  result.scores_2024_evaluation.no_candidate_carryover.rmse,
  'Held-out candidate persistence should improve a zero-relative-strength benchmark');
@@ -50,4 +50,4 @@ assert.throws(()=>persist.build(changed2022),/Noncomparable/);
 const duplicate=structuredClone(source);
 duplicate.candidates22.records[0].race_code=duplicate.candidates22.records[1].race_code;
 assert.throws(()=>persist.build(duplicate),/Duplicate historical reference/);
-console.log('2022-to-2024 true out-of-state candidate-strength persistence study: 148 prior winners, 34 states, 4 subsequent losses retained. Train/benchmark state leakage check PASS.');
+console.log('2022-to-2024 true out-of-state candidate-strength persistence study: 149 prior winners, 35 states, 4 subsequent losses retained. Train/benchmark state leakage check PASS.');
