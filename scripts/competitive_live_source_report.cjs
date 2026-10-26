@@ -7,7 +7,7 @@ const races=Object.freeze([
   reference:'data/kansas_county_fips_reference.json',parser:'KansasCivicCountySource',controller:'enKansasPilotController'},
  {code:'TX-SEN',state:'TX',counties:254,url:'https://civicapi.org/api/v2/race/87438',
   reference:'data/texas_county_fips_reference.json',parser:'TexasCivicCountySource',controller:'enTexasPilotController'},
- {code:'WI-01',state:'WI',office:'House',key:'WI-01',forecast_scope:'national_joint_draws',counties:5,url:'https://civicapi.org/api/v2/race/87483',reference:'data/wisconsin_house_01_county_fips_reference.json',parser:'WisconsinHouseCountySource',controller:'enWisconsinHouseController'}]);
+ {code:'WI-01',state:'WI',office:'House',key:'WI-01',forecast_scope:'national_joint_draws',counties:5,url:'https://civicapi.org/api/v2/race/87483',reference:'data/wisconsin_house_01_county_fips_reference.json',parser:'WisconsinHouseCountySource',controller:'enWisconsinHouseController'}, {code:'WI-03',state:'WI',office:'House',key:'WI-03',forecast_scope:'national_joint_draws',counties:19,url:'https://civicapi.org/api/v2/race/87485',reference:'data/wisconsin_house_03_county_fips_reference.json',parser:'WisconsinHouseCountySource',parser_scope:'WI-03',controller:'enWisconsinHouse03Controller'}]);
 const inWindow=now=>Number.isFinite(now)&&now>=Date.parse('2026-10-26T00:00:00Z')&&now<=Date.parse('2026-11-04T17:00:00Z');
 function assess(row,now=Date.now()){
  const expected=races.find(r=>r.code===row?.code);if(!expected)throw Error('Unknown competitive source scope');
@@ -61,7 +61,7 @@ function nationalProof(rows,admitted){
  return {contract_validated:entries.length>0&&validated.length===entries.length,validated_codes:validated};
 }
 function summarize(rows,now=Date.now()){
- if(!Array.isArray(rows)||rows.length!==races.length||new Set(rows.map(r=>r.code)).size!==races.length)throw Error('All four competitive sources required');
+ if(!Array.isArray(rows)||rows.length!==races.length||new Set(rows.map(r=>r.code)).size!==races.length)throw Error('All five competitive sources required');
  const sources=rows.map(r=>assess(r,now));
  const failure=sources.some(r=>r.violations.length);
  return {generated_at:new Date(now).toISOString(),status:failure?'ACTION_REQUIRED':

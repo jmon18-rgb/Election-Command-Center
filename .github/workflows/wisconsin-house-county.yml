@@ -29,4 +29,6 @@ jobs:
         with:
           node-version: '22'
       - name: Strict exact-source contract and test exclusion
-        run: node scripts/test_wisconsin_house_county_source.cjs
+        run: |
+          node scripts/test_wisconsin_house_county_source.cjs
+          node scripts/test_wisconsin_house_03_county_source.cjs
