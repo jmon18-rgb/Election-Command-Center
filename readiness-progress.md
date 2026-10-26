@@ -1,5 +1,25 @@
 # Readiness progress
 
+## October26 06:04Z - archive isolation and competitive-source priority deployed
+
+-444 merged7d6d07ef after all27 current-head workflows passed atbd103529.
+ 445 mergedf06f4135 after all28 passed at990450ba. Actual Pages comparison
+ at06:03:15Z matches all43 loaded scripts/catalog files to f06f4135.
+ https://github.com/jmon18-rgb/Election-Command-Center/pull/444
+ https://github.com/jmon18-rgb/Election-Command-Center/pull/445
+- Published Pages with explicitly intercepted post-close fixtures passes Edge
+ 1366/390 source-to-probability, immediate archive clearing, late-response
+ archive exclusion, historical preview and outage recovery. These are deployed
+ behavior tests using synthetic returns, not evidence of real vote delivery.
+- Separately, actual published Kansas at06:03:35Z receives real full87162 HTTP200
+ without source substitution. Provider TEST DATA remains excluded; live P null,
+ accepted votes0. This does not establish calibration or post-close availability.
+-446 starting-prior alignment is queued. Its reader matches real model exporter
+ parameters across supported research settings (rounding tolerance0.001 sigma),
+ and the core engine/frozen evaluations remain unchanged. All current-head
+ checks must pass before merge; do not claim this change deployed.
+
+
 ## October26 05:55Z - consistent linked-model starting inputs
 
 - A clean local build shows Kansas linked mean about even, while the older
