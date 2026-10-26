@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-26T10:53:01.208470Z",
+  "updated_at": "2026-10-26T12:06:28.054554Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
     "primary_source_checked": 4,
-    "advisory_related_headline_buckets": 21,
-    "advisory_related_headlines": 45
+    "advisory_related_headline_buckets": 22,
+    "advisory_related_headlines": 47
   },
   "advisory_related_headlines": [
     {
@@ -261,6 +261,24 @@
   ],
   "items": [
     {
+      "id": "75b34bff28f9a56bb3d7",
+      "title": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - WSLS",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOcEtRWGlrOFpNeXlfNWxVOFNNMzR6aDFjVTRmSGNQZVBva0p3azhraDZDWko1QnBkR2FVaVNEUlJPLXRQZWxuT2ZyZXh1ckZQc2xhSVRGcUUzeHRSTXNCYkZMQXk5TThWUG12V3FEN2RiSDR0bVlKeFU3WTZHTVVzR3p5dUF4eGlMN0haVERBNEpWYnJ4N1VxSVNwVVRESzI0N0pLV1R2cU14bTEzYzBFNERmY0ZuNDQyMmkwOUVCWThtbURVNzJkT0JLdTF3dHBjdU5JMzVvSzJDMlBuOV95Nw?oc=5",
+      "publisher": "WSLS",
+      "published_at": "2026-10-26T11:08:38Z",
+      "detected_at": "2026-10-26T12:06:28.054554Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "48de42af4a19c7c06a19",
       "title": "Election officials say ICE is unlikely to visit Colorado polling places but they\u2019re preparing nonetheless - The Colorado Sun",
       "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQc29ocURySG1LMEU4QU5taWhvNi1ESHg5dXlwZGZ4UEdwX0s0c1pyUGJiZWQydnl1VmYtNTVLbWVRUmZiNGNBdkVHV21lVUlEREZrd2JweFlkR1pvM3ppWWhXZmFhbWpqelRwS0xqMlFZMXJ1SW4wNXkyNmhCREo2U1hCb0l1dw?oc=5",
@@ -327,6 +345,26 @@
       "state_hints": [],
       "topic_hints": [
         "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "b0681272106aa9eb73ad",
+      "title": "U.S. appeals court appears skeptical of Trump DOJ\u2019s lawsuit over California voter rolls - NBC News",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNLUtWclJCTVJSa0xjel83TTFSNVFxai1hQTlET0labDhZUnRzSWx0VUVsQlFIdFM5cVQ1QkVXUGJaeXFpdEtxY3hWS0VNajRGNHIyTkpESUpGcVF3UHV1OUlpQnNXb1lJZ2lVWGpKWmJHTzlmSjRxOExhelpQdXlHbC1pUGltSTcwWkJLQm0wWFFIMzVFNEkxZXFLVGlfRTZ0WW0zOXh2WDNSenU2T3V4NlJWZnRxUUdhTDlLOGZWLVpmQzFORVo0?oc=5",
+      "publisher": "NBC News",
+      "published_at": "2026-10-26T01:09:00Z",
+      "detected_at": "2026-10-26T12:06:28.054554Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "registration",
+        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -4916,44 +4954,6 @@
       "state_hints": [],
       "topic_hints": [],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "7709d435e688496e1e72",
-      "title": "Nearly 1,400 registered North Carolina voters may not be US citizens, board of elections says - WCNC",
-      "url": "https://news.google.com/rss/articles/CBMikwJBVV95cUxQQXU0SEVxNDAybzNCajRrcEJPTnRJUmFPWmR2T3NGQV9GZ0RDeWRtRWo0UHNQVVBGcGNPbnJ3X0tQRXFUT3JGeGk2N2FQZmN4ZDN5RFVFdE43NUVSckVEbWgtblN2UHFVVW81TEtfWUt5eVJmeExVUjRCRlp3THNDREhTaTBPNjNOSG9XVDZPWS1QS1c0Ni1EYlhYeHdLNkRmRm9nU2pLaEpRRWNTd0ItV3hDVndVYzN4YkJxeEZtckJ5T3BqT0FmenZPNVJ2UlNHVjlKRFFBeUdob2I4MmdrZUhpeVZOZ0ROdk9CbzJpSFI5SnJjd052QWNKNFY4bnpaTjAtb3ZldUJWR0NtYnh6WWYwaw?oc=5",
-      "publisher": "WCNC",
-      "published_at": "2026-10-14T02:29:00Z",
-      "detected_at": "2026-10-14T04:51:11.877550Z",
-      "state_hints": [
-        "NC"
-      ],
-      "topic_hints": [],
-      "headline_numbers_unverified": [
-        "1,400 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "1b0e221bc9dd8cb0ff46",
-      "title": "South Dakota\u2019s federal-only voter list grows to nearly 6,000, surprising some who are on it - South Dakota Searchlight",
-      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPQzJpMlhKeDlhR2dzWlI2dTk3ekJpMDIwaXV4X3ctZG9lS2JnMk02QVd4bWVyUnpYZk03Vk1vWUp2cGJuSnc1SzFFYXR5LXZhQkhvOGNkVzdtNWRfbkNzMHk5TVhBcE04eFVVcHZEdDE3SXZDbmt0WngwMEJlek9mcHloZ29mSHBUXzFnQktENmtKZl96Q2NOUFpnM3FNNzFhdEY0X25VamEtYnZwQTQxVUxkUU1PZG4zcGJfdml2b2ZYY3l6UUpFSW5tX3hsaTFs?oc=5",
-      "publisher": "South Dakota Searchlight",
-      "published_at": "2026-10-14T01:28:12Z",
-      "detected_at": "2026-10-14T04:51:11.877550Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [
-        "6,000, "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
