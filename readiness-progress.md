@@ -8,6 +8,36 @@ Prioritize competitive sources/fallbacks, correct calls/control accounting,
 outage/retraction recovery and the laptop dashboard. The scoped needle remains
 an evidence task, not a reason to fabricate predictive updates.
 
+## October 25 — source drawer and keyboard continuity
+
+- Reproduced a laptop usability failure in the actual browser: opening the Senate
+  source drawer and refreshing source state closed it immediately. Keyboard focus
+  was also lost because the source panel replaces its rows on every redraw.
+- Added stable drawer/race keys and preservation of open/closed state, summary
+  focus and exact-race fallback-link focus. Repeated redraws keep each drawer's
+  independent state. A refresh never takes focus from controls outside the desk.
+  Shared government URLs are resolved by race identity as well as URL, preventing
+  a CA-25 operator from being silently moved to the CA-20 link.
+- Actual Edge checks pass at 1440px/390px for repeated redraws, multiple drawers,
+  closed drawers, source fallback links, unrelated control focus and a native-DOM
+  duplicate-URL fixture. All 12 core checks, source-triage rules and script asset
+  fingerprints pass. Local DOM session 68469's final output was unavailable after
+  continuation; do not claim it passed. Current-revision CI must pass before merge.
+- Source diagnostics PR #429 passed all three applicable workflows and merged
+  as ab7fbb99. Its bounded codes do not admit pre-close positive values. The next
+  scheduled audit at 00:16:59Z now records PRE_POLL_CLOSE_POSITIVE_VOTES for AL-07,
+  CA-26 through CA-31 and NJ-07. These remain rejected; no counts are accepted.
+- PR #430's first CI revision passed 26 workflows, but broad validation correctly
+  failed because the newly published seven gaps lacked human fallback references.
+  Opened all seven exact DDHQ race headers plus New Jersey's official 2026 page,
+  added references with forecast/not-yet-published limits, and kept all 21 machine
+  gaps unresolved. Existing fallback tests pass without relaxing their assertions.
+  Full current-head CI is required again after this data repair.
+- Recovery #427 and manual fallback #428 are both deployed. At 23:56:11Z the
+  actual published page rendered the CA-13 manual DDHQ link under an isolated
+  503 test, with zero House results/calls; published HTML matched main a6176ab9.
+  This verifies runtime behavior, not November 3 live source delivery.
+
 ## October 25, 2026 — initial autonomous handoff
 
 - Baseline examined: main revision 3a0c21ed.

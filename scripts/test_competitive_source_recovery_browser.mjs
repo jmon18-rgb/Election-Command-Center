@@ -44,6 +44,32 @@ try{
    'Known-ID feed outage has its independently checked human newsroom fallback');
   assert.match(await page.locator('#enCoverageReconciliation').innerText(),/House 0\/435 reporting/);
   assert.match(await page.locator('#enCoverageReconciliation').innerText(),/0 civicAPI calls/);
+  const senateDrawer=page.locator('#enLiveCoverageTriage details').filter({
+   has:page.locator('summary').filter({hasText:/^Senate source gaps/})});
+  await senateDrawer.locator('summary').click();
+  await page.evaluate(()=>enRenderAmbientDesk());
+  assert.equal(await senateDrawer.evaluate(el=>el.open),true,
+   'Source refresh must preserve an operator-opened Senate drawer');
+  assert.equal(await senateDrawer.locator('summary').evaluate(el=>el===document.activeElement),true,
+   'Source refresh must preserve the focused drawer summary');
+  const moreDrawer=page.locator('#enLiveCoverageTriage details[data-source-drawer="operational-more"]');
+  await moreDrawer.locator('summary').click();
+  await page.evaluate(()=>{for(let n=0;n<3;n++)enRenderAmbientDesk()});
+  assert.equal(await moreDrawer.evaluate(el=>el.open),true);
+  assert.equal(await senateDrawer.evaluate(el=>el.open),true,'Independent drawer states survive repeated source updates');
+  assert.equal(await moreDrawer.locator('summary').evaluate(el=>el===document.activeElement),true);
+  await moreDrawer.locator('summary').click();
+  await page.evaluate(()=>enRenderAmbientDesk());
+  assert.equal(await moreDrawer.evaluate(el=>el.open),false,'Closed drawers must also stay closed');
+  const caFallback=panel.locator('a[href="https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-13-general-election/results"]');
+  await caFallback.focus();
+  await page.evaluate(()=>enRenderAmbientDesk());
+  assert.equal(await caFallback.evaluate(el=>el===document.activeElement),true,
+   'Keyboard users keep the same race fallback link through redraw');
+  await page.locator('#enMode2026').focus();
+  await page.evaluate(()=>enRenderAmbientDesk());
+  assert.equal(await page.locator('#enMode2026').evaluate(el=>el===document.activeElement),true,
+   'Background source refresh cannot steal focus from another control');
   await page.clock.setSystemTime(new Date('2026-11-04T03:11:00Z'));
   await page.evaluate(()=>enRenderAmbientDesk());
   assert.match(await panel.textContent(),/House CA-13 — COMPETITIVE · Supplemental source request FAILED/,
@@ -61,8 +87,25 @@ try{
   assert(!(await page.locator('#enLiveCoverageTriage').textContent()).includes('House CA-13 — COMPETITIVE'),
    'Cleared source failure leaves recovery worklist');
   assert.match(await page.locator('#enCoverageReconciliation').innerText(),/House 0\/435 reporting/);
+  // A native-DOM fixture uses two distinct races sharing one government URL.
+  // Restoring by URL alone would silently focus the wrong race after redraw.
+  const preciseFocus=await page.evaluate(()=>{
+   const host=document.createElement('section');document.body.append(host);
+   const pulse={totals:{House:{reported:0,missing:435},Senate:{reported:0,missing:35},Governor:{reported:0,missing:36}},
+    senate:[],senateMissing:35,unverifiedMachineIds:[{id:'House|CA-20',office:'House'},{id:'House|CA-25',office:'House'}]};
+   const links=[{race_ids:['House|CA-20','House|CA-25'],url:'https://voterguide.sos.ca.gov/voter-info/election-results.htm',
+    mode:'november_2026_results_not_yet_published'}];
+   const render=()=>ElectionNightCoverageTriage.render(host,pulse,document,links);
+   render();host.querySelector('details[data-source-drawer="identity-gaps"]').open=true;
+   host.querySelector('[data-source-race="House|CA-25"] a').focus();
+   render();
+   const result={race:document.activeElement.closest('[data-source-race]')?.dataset.sourceRace,
+    open:host.querySelector('details[data-source-drawer="identity-gaps"]').open};
+   host.remove();return result;
+  });
+  assert.deepEqual(preciseFocus,{race:'House|CA-25',open:true});
   assert.deepEqual(errors,[]);
-  console.log(`${width}px: known House ID + previous attempt + outage, cooldown quarantine and recovery without votes PASS`);
+  console.log(`${width}px: outage/cooldown/recovery plus open drawers and exact-race keyboard focus across redraws PASS`);
   await context.close();
  }
 }finally{await browser?.close();await new Promise(ok=>server.close(ok));}

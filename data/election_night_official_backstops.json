@@ -18,7 +18,13 @@
         "House|CA-21",
         "House|CA-23",
         "House|CA-24",
-        "House|CA-25"
+        "House|CA-25",
+        "House|CA-26",
+        "House|CA-27",
+        "House|CA-28",
+        "House|CA-29",
+        "House|CA-30",
+        "House|CA-31"
       ]
     },
     {
@@ -201,6 +207,17 @@
       "race_ids": [
         "Senate|MN"
       ]
+    },
+    {
+      "state": "NJ",
+      "name": "New Jersey official 2026 election information",
+      "url": "https://www.nj.gov/state/elections/election-information-2026.shtml",
+      "mode": "november_2026_results_not_yet_published",
+      "verified_at": "2026-10-25",
+      "scope_note": "2026 general-election candidate information and earlier primary/special results only at verification; no November general-election returns published or live feed verified.",
+      "race_ids": [
+        "House|NJ-07"
+      ]
     }
   ],
   "limitations": "Links are human-check references, not verified live feeds, reported votes, or professional race calls. Massachusetts expressly does not publish unofficial statewide election-night results. Mississippi's Secretary of State stated in its 2024 election-day guidance that its office only announces and posts certified results; do not rely on that office as an unofficial live feed without a newly verified 2026 source. Alabama's current unofficial election-night results landing page does not yet show a 2026 general-election result, and the DDHQ AL-07 results view had 0 votes before Nov 3. A browser page is not an automated source.",
@@ -294,6 +311,48 @@
         "url": "https://votes.decisiondeskhq.com/races/2026-11-03/iowa-us-senate-general-election/results",
         "verified_at": "2026-10-25",
         "verification": "Correct Nov 3 2026 Senate header and results tab inspected; pre-election zero placeholders, no winner call verified"
+      },
+      {
+        "id": "House|CA-26",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-26-general-election",
+        "verified_at": "2026-10-25",
+        "verification": "Exact Nov 3 2026 House 26 header and forecast landing inspected; no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-27",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-27-general-election",
+        "verified_at": "2026-10-25",
+        "verification": "Exact Nov 3 2026 House 27 header and forecast landing inspected; no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-28",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-28-general-election",
+        "verified_at": "2026-10-25",
+        "verification": "Exact Nov 3 2026 House 28 header and forecast landing inspected; no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-29",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-29-general-election",
+        "verified_at": "2026-10-25",
+        "verification": "Exact Nov 3 2026 House 29 header and forecast landing inspected; no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-30",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-30-general-election",
+        "verified_at": "2026-10-25",
+        "verification": "Exact Nov 3 2026 House 30 header and forecast landing inspected; no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-31",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-31-general-election",
+        "verified_at": "2026-10-25",
+        "verification": "Exact Nov 3 2026 House 31 header and forecast landing inspected; no actual result or winner call verified"
+      },
+      {
+        "id": "House|NJ-07",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/new-jersey-us-house-7-general-election",
+        "verified_at": "2026-10-25",
+        "verification": "Exact Nov 3 2026 House 7 header and forecast landing inspected; no actual result or winner call verified"
       }
     ]
   }
