@@ -5,8 +5,15 @@ on:
     branches: [main]
     paths:
       - 'scripts/audit_texas_senate_baseline.py'
+      - 'scripts/build_texas_senate_county_baseline.py'
+      - 'scripts/texas_civic_county_source.js'
+      - 'scripts/test_texas_civic_county_source.cjs'
       - 'scripts/read_official_xlsx_rows.py'
       - 'data/texas_senate_baseline_candidate_audit.json'
+      - 'data/texas_senate_2024_county_baseline_official.json'
+      - 'data/texas_historical_sources/**'
+      - 'data/texas_county_fips_reference.json'
+      - 'data/texas_civic_county_source_evidence.json'
       - '.github/workflows/texas-senate-baseline-audit.yml'
 permissions:
   contents: read
@@ -19,6 +26,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Reproduce the original official county canvass and Census joins
+        run: python scripts/build_texas_senate_county_baseline.py --check
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify the Texas input contract without accepting provider test votes
+        run: node scripts/test_texas_civic_county_source.cjs
       - name: Retrieve the two pinned public government originals
         run: |
           mkdir -p artifacts/readiness/texas

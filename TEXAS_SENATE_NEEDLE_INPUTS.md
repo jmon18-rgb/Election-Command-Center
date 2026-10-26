@@ -1,9 +1,56 @@
-# Texas Senate candidate baseline audit
+# Texas Senate county inputs
 
 Texas is a competitive expansion candidate: the repository's October 26 polling
 snapshot has a D+2.08 margin, 19 contributing firms and 13 independent firms,
 latest poll October 20. This supports investigating its source path; it does
 not prove a calibrated forecast or supersede the existing Iowa/Kansas pilots.
+
+## Official county baseline obtained
+
+The original [Texas results site](https://results.texas-election.com/races) loads
+in the in-app browser even though the web reader returns403. Select Reports,
+COUNTY BY COUNTY CANVASS REPORT, EXCEL, Generate Report. The actual downloaded
+[2024 official county workbook](https://results.texas-election.com/static/data/Reports/49664/CountybyCountyCanvassReport.xlsx)
+contains all254 counties and all five Senate candidates. Its sums match the
+independently observed statewide OFFICIAL RESULTS page exactly:
+
+| Candidate | Reconciled county sum / statewide total |
+| --- | ---: |
+| Ted Cruz | 5,990,741 |
+| Colin Allred | 5,031,249 |
+| Ted Brown | 267,039 |
+| Tracy Andrus | 919 |
+| Analisa Roche | 1,906 |
+
+The race total is11,291,854. All254 county names join independently to the
+Census2024 Gazetteer. Original workbook and Census ZIP bytes are committed with
+pinned hashes. `python scripts/build_texas_senate_county_baseline.py --check`
+reproduces both the baseline and independent county reference. This is a combined
+2024 Senate historical baseline, not current turnout or ballots outstanding.
+No voting-method split, actual release clock or calibrated forecast follows.
+
+## Exact 2026 county source contract
+
+The public Civic search finds exactly one2026 Texas Senate race:87438. An actual
+full HTTPS response is HTTP200 with254 unique county FIPS/name identities matching
+the independent Census reference, pinned James Talarico/ Ken Paxton major
+candidates and Ted Brown in the roster. It is explicitly `test_data:true`.
+Actual provider metadata is in `data/texas_civic_county_source_evidence.json`;
+provider test vote values are not retained. Local Python HTTP access and a `*`
+CORS header do not establish an actual browser's cross-origin forecast update.
+
+The strict `texas_civic_county_source.js` adapter rejects test data, light URLs,
+wrong election/candidate/geographic identity, unreconciled totals and invalid
+publication clocks. Synthetic post-close adapter tests pass and the actual
+provider response returns TEST_DATA_NOT_LIVE with zero accepted rows. This module
+is not yet loaded by the site: no Texas needle or live vote delivery is claimed.
+
+Next implementation: connect these accepted historical facts and strict inputs
+to a scoped254-county estimator and visible race needle, using the linked Texas
+prior while keeping national odds separate. Evaluate the extended estimator
+honestly; current source test flags must not be cleared to manufacture acceptance.
+
+## Earlier rejected candidate dataset (preserved)
 
 The official [Texas Legislative Council dataset](https://data.capitol.texas.gov/dataset/comprehensive-election-datasets-compressed-format)
 provides 2020 Senate results on 2020 general-election Voting Tabulation Districts.
@@ -47,8 +94,7 @@ Its successful check means the **blocked audit reproduces**, not that the baseli
 is accepted. The PR/manual workflow downloads the originals and runs that check;
 it does not schedule repeated downloads or source monitoring.
 
-Next useful work is locating a complete official county canvass that reconciles
-to certified totals, or identifying exactly why the Council figures differ using
-county-level evidence. Do not repeatedly download this unchanged archive or infer
+The official2024 county workbook above supplies the usable baseline. The older
+Council audit remains blocked; no differences are allocated to its counties. Do not repeatedly download this unchanged archive or infer
 the missing counts. A House district baseline would additionally require verified
 current district boundaries; statewide county aggregation does not solve that.
