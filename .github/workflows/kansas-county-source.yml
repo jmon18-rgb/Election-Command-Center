@@ -1,0 +1,26 @@
+name: Kansas competitive county input contract
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'data/kansas*'
+      - 'data/kansas_historical_sources/**'
+      - 'scripts/*kansas*'
+      - 'scripts/read_official_xlsx_rows.py'
+      - '.github/workflows/kansas-county-source.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  historical-facts-and-input:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce official county sums from exact original workbook bytes
+        run: python3 scripts/build_kansas_senate_county_facts.py --check
+      - name: Validate Kansas input contract and exclude test votes
+        run: node scripts/test_kansas_civic_county_source.cjs
