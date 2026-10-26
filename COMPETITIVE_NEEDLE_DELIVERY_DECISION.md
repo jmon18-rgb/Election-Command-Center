@@ -57,3 +57,16 @@ same test flags or expanding safe-seat/manual-link coverage to inflate progress.
 - [Kansas implementation and frozen close-cohort evidence](KANSAS_SENATE_NEEDLE_INPUTS.md)
 - [Actual-source probe contract](COMPETITIVE_LIVE_SOURCE_PROBE.md)
 - [Dated deployment and test evidence](readiness-progress.md)
+
+## October 26 deployment addendum
+
+Texas Senate now also has a deployed experimental county-input race needle,
+using the original2024 official county canvass reconciled across254 independent
+Census joins. Actual Pages bytes and published desktop/mobile source-fixture
+behavior are verified after PR451. A separate fixture-free published check at
+10:52Z reaches Iowa/Kansas/Texas HTTP200; all three responses are TEST DATA and
+correctly leave live probabilities null. This extends the implemented race scope,
+without changing the no-calibration/no-proven-live-delivery decision. Texas's
+2024 Senate class, matchup and presidential turnout differ from2026; their
+transfer is not independently validated. See TEXAS_SENATE_NEEDLE_INPUTS.md and
+the dated readiness progress for exact revisions and evidence.
