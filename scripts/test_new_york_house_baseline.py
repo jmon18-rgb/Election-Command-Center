@@ -51,8 +51,9 @@ class NewYorkBaselineTests(unittest.TestCase):
         baseline, reference = build()
         self.assertEqual({c['fips'] for c in reference['counties']}, set(CENSUS.values()))
         self.assertFalse(baseline['interval_calibrated'])
-        self.assertEqual(baseline['existing_staging_discrepancy']['omitted_same_candidate_conservative_votes'], 16921)
-        self.assertFalse(baseline['existing_staging_discrepancy']['global_staging_changed'])
+        self.assertEqual(baseline['existing_staging_discrepancy']['omitted_same_candidate_conservative_votes'], 0)
+        self.assertEqual(baseline['existing_staging_discrepancy']['historical_repair_added_conservative_votes'], 16921)
+        self.assertTrue(baseline['existing_staging_discrepancy']['global_staging_changed'])
 
     def test_actual_source_assessment_does_not_enable_a_live_forecast(self):
         evidence = json.loads((ROOT / 'data/new_york_house_17_source_assessment.json').read_text(encoding='utf-8'))

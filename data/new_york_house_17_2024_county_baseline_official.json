@@ -95,10 +95,12 @@
   "map_source": "https://www.census.gov/programs-surveys/decennial-census/about/rdo/congressional-districts.html",
   "fusion_contract": "Mike Lawler Republican+Conservative; Mondaire L. Jones Democratic only; Anthony Frascone Working Families is a separate candidate",
   "existing_staging_discrepancy": {
-    "staging_rep_votes": 180924,
-    "omitted_same_candidate_conservative_votes": 16921,
+    "staging_rep_votes": 197845,
+    "omitted_same_candidate_conservative_votes": 0,
+    "historical_repair_added_conservative_votes": 16921,
+    "resolved": true,
     "staging_other_includes_blank_void": true,
-    "global_staging_changed": false
+    "global_staging_changed": true
   },
   "method_split_reported": false,
   "historical_release_times": false,

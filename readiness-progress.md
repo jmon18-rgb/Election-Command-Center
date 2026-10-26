@@ -1,5 +1,131 @@
 # Readiness progress
 
+
+October26 continuation: PR463 exact head eae422d4ae28c8474d424c1eb0019bc70aac9838
+remains unmerged pending complete current-head CI. Previous44e84375 validation
+caught a dependent historical persistence study still using the old191-district
+universe. Corrected and deterministically rebuilt BOTH historical persistence
+and modern-cohort diagnostics:153 previous winners/35states,149 subsequent
+wins/4losses; exploratory fitted coefficient .345->.343. This is a source-driven
+reproduction of an existing research study, NOT promotion of a new production
+coefficient or evidence of calibrated2026 odds. Added both studies to default
+read-only atomic bundle verification and workflow path triggers. Leakage,
+reproducibility, modern-cohort and all33 core checks pass locally; full local
+DOM and desktop/mobile eight-source synthetic browser tests previously passed.
+Follow-up also refreshes2022 independent agreement flags (399->427 matches),
+without changing candidate names/votes. Both years now have exact per-record
+agreement checks. A new current-head CI cycle is required for this correction. Do not infer deployment or merge from local test success.
+https://github.com/jmon18-rgb/Election-Command-Center/pull/463
+
+Next: finish exact-head CI, merge only all-green, verify Pages and actual
+published files/runtime (integrity helper extended from109 to128 files).
+Do not reapply PR59 afterward. Independent Iowa source reconnaissance: official
+SOS results archive's2026General result entries are not yet linked; its linked
+electionresults.iowa.gov root returns a JavaScript robot-verification page to
+ordinary web retrieval. No feed or access bypass invented; this is not a usable
+independent live fallback. Existing8-source actual post-close delivery and
+comparative publication latency remain unproven.
+
+## October26 after17:56Z - coherent House source classification migration implemented
+
+- Isolated readiness/house-history-atomic branch; open PRs/CI inspected, paused
+  celebration426 and queued fusion59 preserved. Pin the original4,156,562-byte
+  MIT-mirror CSV (SHA25676eec42483ee9f0fc5cf6e377442c783d1ae6eefa929729fd6561a69bab47f2a),
+  exact pre-repair published Git blobs and original Minnesota3 government HTML.
+  Minnesota official-site totals240209/170427/504 corroborate DFL attribution;
+  existing official NY17 source corroborates same-candidate Conservative votes.
+- Parser uses explicit major-party aliases and same-race exact candidate name
+  plus publisher fusion_ticket=true. Genuine minor candidates, ambiguous major
+  identities, write-ins, blank/void rows and cross-district names do not transfer.
+  Wrong office/method and fractional truncation are rejected. Ten parser tests,
+  three original-source/conservation/lineage tests and Node provenance guards pass.
+  All870 district totals stay unchanged; the exact pinned raw source also
+  reproduces the pre-fix published classifier in both years before correction.
+- Rebuild2022/24 history, geography, two-cycle context, independent candidate
+  agreement flags, historical relative margins, explicitly derived candidate
+  enrichment, NY17 reconciliation and bottom-up environment diagnostic together.
+  Independent names/votes/roster/fundraising facts are preserved. House derived
+  fields can refresh only when their old provenance reproduces; Senate/governor
+  context changes are refused. Default bundle command is read-only. The old
+  staging-only auto-push workflow now verifies the complete chain with read-only
+  permissions and requires a coherent reviewed commit for changes.
+- Actual resulting source coverage:2024 corrected30 district classifications,
+ 35 fusion rows/515687 fusion votes attributed; missing major-party districts
+ 44->37. Independent candidate vote agreement403->433; AK01/AZ02 remain explicit
+  disagreements. Historical incumbent House matches149->169; Senate12 unchanged.
+  Comparable2024 House districts238->245; paired2022/24 districts191->197;
+ 173 redrawn2026 districts still require reaggregation. No geography gate relaxed.
+- Same-poll SAME-SEED public current-2026 baseline audit (poll snapshot17:49:19Z,
+ 3000 draws): House control91.57->90.87%, Blue Tsunami48.47->47.83%, Senate
+ control63.70% unchanged. Senate/governor prepared assumptions deep-equal.
+  This isolates source classification; it is not new polling, live results,
+  an independent historical holdout or a calibration claim. No target fitted.
+- Local33 core readiness checks, current shadow/geography/seat-vote audits,
+  reproducible historical candidate tests, model tests and NY official baseline
+  tests pass. Actual local Edge1366/390 synthetic national rehearsal passes
+  eight-source before-call movement, correction/retraction/outage/test/stale
+  exclusion and fallback. Full DOM is running; exact-head CI, tested merge and
+  actual deployment verification remain required. No production migration claimed.
+
+## October26 17:51Z - NY17 reaches the NATIONAL needle on the active site
+
+- Parent PR461 exact head815fa1662955c05c550afda4c40205e92bdff634 passes all6
+  workflows; all9 check jobs inspected:8success/1 nonapplicable deployment skip.
+  Merge6738f5970832617bdd9696886ec33ff7739e7caa; Pages40368231572 succeeds.
+  Six new published original/baseline/reference/assessment/importer/test files
+  independently match the merged source bytes.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/461
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40366385525
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40368231572
+- PR462 final0128d43720db85f30a16014f543a7c33b68f173f passes all34 applicable
+  PR workflows plus one same-head push workflow. All44 current check runs
+  inspected:41success/3 nonapplicable deployment skips; no external statuses.
+  Final PR head matches/mergeable clean. National and NC browser jobs pass on
+  same-head attempt2 after canceled first attempts; no checks waived or timeout
+  weakened. Mergeae89ab29cec0a934d014abc95f9b58752f6974c2.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/462
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40367786243
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40367786249
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40367786075
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40367786291
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40367786127
+- Final briefing-bot main7ad3d4d41182ef5019fa63e1d00e82a38d251a2e Pages
+  40372214783 succeeds (earlier ffb7410a deployment also succeeded). Actual
+  17:51:53Z109-file comparison matches all49 loaded scripts, full NY originals/
+  prepared inputs and refreshed critical polling/model snapshots. Separate
+  actual remote production smoke passes source/publication lineage, joint
+  race/chamber/Four Endings coherence and current source chronology.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40372214783
+- Actual PUBLISHED Edge1366/390 with explicit SYNTHETIC source fixtures passes
+  NY-only before-call national movement, automatic combined8 update, correction/
+  withdrawal/outage/stale/test gates, fixed WI shares, isolated rehearsal and
+  missing-cadence60s fallback. Mobile active-eight screenshot visually inspected:
+  limited5 House districts/4 states and experimental/not-calibrated labels are
+  present/readable. This screenshot is synthetic, NOT actual2026 returns.
+  Local32 core checks/full DOM/NY source/fusion import tests also pass. A local
+  Edge copy of unchanged NC browser assertions passes desktop/mobile outages.
+- Separate REAL-CLOCK fixture-free ACTUAL PUBLISHED probe17:50:15Z (local clean
+  code revision0128d437) sees all8HTTP200/test_data=false with no positive counts,
+  old October16/18/22/23 stamps, no admitted national sources/projections/page
+  errors/raw archives. NY Oct22 stamp remains rejected. Fast HTTP/cache metadata
+  is not publication-lag proof. Real post-close delivery remains UNPROVEN.
+- Delivered source/model scope: IA/KS/TX Senate plus WI01/WI03/MI04/PA10/NY17
+  House,5 House districts across4 states,32 regular automatic starts/minute,
+  fixed4 active/64 queued with8 reserved/56 bulk. Full NY candidate fusion
+  baseline is corrected locally; global historical staging is NOT repaired.
+- NEXT: atomic integration of the queued PR59 House party/fusion repair, verified
+  against original returns, before adding another source. Read-only review
+  confirms default House preparation consumes staged D/R district/state/national
+  totals while stage-house-history.yml currently publishes only two staging
+  files. Rebuild both years plus geography/two-cycle/candidate/fundamental/model
+  descendants together, update NY17 staging reconciliation, and guard the bot
+  from partial publication. Preserve existing thresholds, Senate invariants,
+  national counts gates and required checks; never cherry-pick the old parser
+  alone or tune to desired probabilities. Ignored review manifest records the
+  dependency chain. Source access/timeliness and independent chronological
+  calibration remain separate acceptance gaps; NY official403 and unpublished
+  Dauphin general link are not resolved by this additional civicAPI source.
+
 ## October26 17:17Z - NY17 national path implemented separately from source-prep PR461
 
 - On separate readiness/ny17-national-input branch, reuse shared source parser,

@@ -80,10 +80,10 @@ def build():
     if not geo['geography_comparable_2024'] or geo['map_relation_2024_to_2026'] != 'boundaries_unchanged_per_2026_census':
         raise ValueError('Current district geography is not comparable')
     staged = next(r for r in json.loads((ROOT / 'data/house_history_2024_staging.json').read_text(encoding='utf-8'))['records'] if r['2024_race_code'] == 'NY-17')
-    expected_staging = {'recorded_dem_votes': summary['democratic_line'], 'recorded_rep_votes': summary['republican_line'],
-                        'recorded_other_votes': sum(summary[k] for k in ['conservative_line', 'working_families_line', 'generic_write_in_votes', 'blank_votes', 'void_votes'])}
+    expected_staging = {'recorded_dem_votes': summary['democratic_line'], 'recorded_rep_votes': summary['rep_votes'],
+                        'recorded_other_votes': sum(summary[k] for k in ['working_families_line', 'generic_write_in_votes', 'blank_votes', 'void_votes'])}
     if any(staged[k] != v for k, v in expected_staging.items()):
-        raise ValueError('Existing staging discrepancy is not fully explained by official source columns')
+        raise ValueError('Corrected staging does not match official full-candidate totals')
     baseline = {'status': 'OFFICIAL_PUBLISHED_2024_DISTRICT_PART_BASELINE_NOT_LIVE_OR_CALIBRATION',
                 'race_code': 'NY-17', 'office': 'U.S. House', 'election_date': '2024-11-05',
                 'county_count': 4, 'counties': counties, 'district_totals': summary,
@@ -92,8 +92,9 @@ def build():
                 'map_comparability': geo['map_relation_2024_to_2026'], 'map_source': geo['source_census'],
                 'fusion_contract': 'Mike Lawler Republican+Conservative; Mondaire L. Jones Democratic only; Anthony Frascone Working Families is a separate candidate',
                 'existing_staging_discrepancy': {'staging_rep_votes': staged['recorded_rep_votes'],
-                    'omitted_same_candidate_conservative_votes': summary['conservative_line'],
-                    'staging_other_includes_blank_void': True, 'global_staging_changed': False},
+                    'omitted_same_candidate_conservative_votes': 0,
+                    'historical_repair_added_conservative_votes': summary['conservative_line'],
+                    'resolved': True, 'staging_other_includes_blank_void': True, 'global_staging_changed': True},
                 'method_split_reported': False, 'historical_release_times': False, 'interval_calibrated': False,
                 'limitations': ['Final certified historical counts are not chronological election-night returns',
                     'County rows are congressional district parts, not whole-county totals',

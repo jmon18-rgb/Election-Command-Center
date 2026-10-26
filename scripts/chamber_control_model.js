@@ -169,7 +169,7 @@ function senatePollingErrorBudget(info){
   if(fundamentalsMode==='two_cycle_shadow'){
    const doc=s.twoCycle;
    if(!doc||doc.status!=='two_cycle_historical_comparison_only'||
-      doc.is_forecast!==false||doc.coverage?.districts_with_two_historical_major_party_shares!==191||
+      doc.is_forecast!==false||doc.coverage?.districts_with_two_historical_major_party_shares!==197||
       !Array.isArray(doc.rows)||doc.rows.length!==435)
     throw Error('Missing validated 2022/2024 House geography context');
    paired=new Map();
@@ -194,7 +194,7 @@ function senatePollingErrorBudget(info){
       margin(row.recorded_dem_share_2022_two_party));
     }
    }
-   if(codes.size!==435||paired.size!==191)
+   if(codes.size!==435||paired.size!==197)
     throw Error('Incomplete paired House historic source');
    changes.sort((a,b)=>a-b);
    pairedNationalChange=changes[(changes.length-1)/2];

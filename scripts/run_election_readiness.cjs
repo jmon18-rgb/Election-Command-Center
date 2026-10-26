@@ -8,6 +8,7 @@ const root = path.resolve(__dirname, '..');
 const out = path.join(root, 'artifacts', 'readiness');
 fs.mkdirSync(out, {recursive: true});
 const checks = [
+  ['Atomic historical source provenance and independent candidate facts', 'test_house_history_migration.cjs'],
   ['New York competitive House county identity, fusion baseline and rejection gates', 'test_new_york_house_17_county_source.cjs'],
   ['Second competitive House district-part source contract', 'test_wisconsin_house_03_county_source.cjs'],
   ['Competitive House district-part source contract', 'test_wisconsin_house_county_source.cjs'],

@@ -16,7 +16,7 @@ assert.equal(geo.summary.voting_house_districts,435);
 assert.equal(geo.summary.states_redrawn,9);
 assert.equal(geo.summary.redrawn_districts,173);
 assert.equal(geo.summary.same_boundary_districts,262);
-assert.equal(geo.summary.comparable_2024_recorded_two_party_districts,238);
+assert.equal(geo.summary.comparable_2024_recorded_two_party_districts,245);
 const byCode=new Map(geo.districts.map(x=>[x.race_code_2026,x]));
 assert.equal(byCode.size,435,'No duplicate district geometry identities');
 const changed=new Set(geo.changed_states);
@@ -58,7 +58,7 @@ for(const [code,g] of byCode){
 }
 assert.equal(oldHouseDistrictLeak,0);
 assert.equal(redrawnPolling+exchangeable,173);
-assert.equal(unchangedWithIncompleteHistoric,24);
+assert.equal(unchangedWithIncompleteHistoric,17);
 const claimed=source.presidential;
 assert.equal(claimed.records.length,435);
 assert.equal(claimed.status,'historical_presidential_votes_from_external_model_source_not_forecast');
@@ -66,8 +66,8 @@ assert.notEqual(claimed.external_source_url,null);
 const report={status:'GEOGRAPHY_GUARD_VERIFIED_PRECINCT_REAGGREGATION_STILL_MISSING',
   house_seats:435,redrawn_states:changed.size,redrawn_seats:173,
   redrawn_polled_seats:redrawnPolling,redrawn_exchangeable_without_poll:exchangeable,
-  unchanged_seats:262,unchanged_with_complete_two_party_evidence:238,
-  unchanged_with_incomplete_major_party_history:24,redrawn_old_district_leaks:0,
+  unchanged_seats:262,unchanged_with_complete_two_party_evidence:245,
+  unchanged_with_incomplete_major_party_history:17,redrawn_old_district_leaks:0,
   third_party_presidential_overlay_verified_as_official_precinct_reaggregation:false,
   can_claim_precise_2026_redrawn_district_fundamentals:false};
 if(process.argv.includes('--json'))process.stdout.write(JSON.stringify(report,null,2)+'\n');

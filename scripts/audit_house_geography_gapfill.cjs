@@ -48,7 +48,7 @@ for(let i=0;i<435;i++){
    former_margin_points:b.mean,geo_gap_fill_margin_points:g.mean,
    full_presidential_shadow_margin_points:f.mean});
 }
-assert.deepEqual(counts,{unchanged_complete:238,unchanged_unusable:24,redrawn:173});
+assert.deepEqual(counts,{unchanged_complete:245,unchanged_unusable:17,redrawn:173});
 assert.equal(gap.fundamentals_mode,'presidential_2024_gap_fill');
 const samples=6000,seed=20261103;
 const options={samples,seed,explainControl:true};

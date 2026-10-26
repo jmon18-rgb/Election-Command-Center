@@ -266,5 +266,25 @@
     status:'MATCHED_RETROSPECTIVE_NONCAUSAL_NOT_AUTOMATIC_PROBABILITIES'
    }};
  }
- return Object.freeze({build,namesMatch,clean,offset,enrichCandidateContext});
+ function refreshHouseCandidateContext(ctx,previous,next){
+  // Refresh only fields whose old derived provenance reproduces exactly.
+  // Independent roster, Senate/governor evidence and manual facts survive.
+  if(JSON.stringify(enrichCandidateContext(ctx,previous))!==JSON.stringify(ctx))
+   throw Error('Previous candidate enrichment does not reproduce; refusing migration');
+  const old=new Map(previous.records.filter(r=>r.office==='house'&&r.status==='matched_historic_winner_2024').map(r=>[r.race_code,r]));
+  const reset={...ctx,records:ctx.records.map(original=>{
+   const r=old.get(original.race_code);if(!r)return original;
+   const side=r.incumbent_party==='DEM'?'dem':'rep';
+   const candidate={...original[side],elected_vs_appointed:'unverified',first_term:'unknown',
+    incumbent_last_race_overperformance_points:null,verified_old_new_district_overlap_fraction:null};
+   delete candidate.historical_overperformance_provenance;
+   return {...original,[side]:candidate};
+  })};
+  const result=enrichCandidateContext(reset,next);
+  for(let i=0;i<ctx.records.length;i++)if(ctx.records[i].office!=='house'&&
+    JSON.stringify(ctx.records[i])!==JSON.stringify(result.records[i]))
+   throw Error('House migration changed independent Senate/governor context');
+  return result;
+ }
+ return Object.freeze({build,namesMatch,clean,offset,enrichCandidateContext,refreshHouseCandidateContext});
 });

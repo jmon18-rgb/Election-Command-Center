@@ -1,24 +1,93 @@
 # Election Night production-readiness assignment
 
+
+October26 continuation: PR463 exact head eae422d4ae28c8474d424c1eb0019bc70aac9838
+remains unmerged pending complete current-head CI. Previous44e84375 validation
+caught a dependent historical persistence study still using the old191-district
+universe. Corrected and deterministically rebuilt BOTH historical persistence
+and modern-cohort diagnostics:153 previous winners/35states,149 subsequent
+wins/4losses; exploratory fitted coefficient .345->.343. This is a source-driven
+reproduction of an existing research study, NOT promotion of a new production
+coefficient or evidence of calibrated2026 odds. Added both studies to default
+read-only atomic bundle verification and workflow path triggers. Leakage,
+reproducibility, modern-cohort and all33 core checks pass locally; full local
+DOM and desktop/mobile eight-source synthetic browser tests previously passed.
+Follow-up also refreshes2022 independent agreement flags (399->427 matches),
+without changing candidate names/votes. Both years now have exact per-record
+agreement checks. A new current-head CI cycle is required for this correction. Do not infer deployment or merge from local test success.
+https://github.com/jmon18-rgb/Election-Command-Center/pull/463
+
+Next: finish exact-head CI, merge only all-green, verify Pages and actual
+published files/runtime (integrity helper extended from109 to128 files).
+Do not reapply PR59 afterward. Independent Iowa source reconnaissance: official
+SOS results archive's2026General result entries are not yet linked; its linked
+electionresults.iowa.gov root returns a JavaScript robot-verification page to
+ordinary web retrieval. No feed or access bypass invented; this is not a usable
+independent live fallback. Existing8-source actual post-close delivery and
+comparative publication latency remain unproven.
+
 Owner-authorized October 25, 2026. Target: dependable November 3 laptop operation.
 Feature freeze: October 31, America/New_York. November 1 onward: defects,
 acceptance testing and recovery only. Stop unattended changes November 4 at noon Eastern.
 
 ## Work order
 
-NY17 NATIONAL INTEGRATION IN REVIEW (October26 after17:12Z): separate branch
-readiness/ny17-national-input extends the existing headless shared House source,
+HOUSE HISTORICAL SOURCE MIGRATION IN PROGRESS (October26 after17:56Z): branch
+readiness/house-history-atomic ports the factual repair from queued PR59 into
+the current data/model chain, preserving that branch. Pinned original mirror
+CSV SHA25676eec42483ee9f0fc5cf6e377442c783d1ae6eefa929729fd6561a69bab47f2a;
+official Minnesota3 page and existing official NY17 export corroborate the
+DFL/fusion fixes. Exactly matching names AND publisher-marked fusion tickets
+are required for endorsed minor lines; separate candidates/write-ins never
+transfer. No probabilities or partisan coefficients fitted. All870 district
+source totals are conserved, and the same raw CSV reproduces old published
+classification before applying the repair.2024 independent candidate agreement
+improves403->433, with AK01/AZ02 still blocked; historical matched House
+incumbents149->169, comparable2024 districts238->245, paired2022/24 districts
+191->197. Senate/governor assumptions and same-seed Senate control stay unchanged.
+The controlled public-baseline diagnostic uses the SAME17:49 polling snapshot:
+House control91.57->90.87%, Blue Tsunami48.47->47.83%; not calibration/live results.
+The staging-only publishing bot is replaced by read-only coherent-bundle checks;
+do not promote incomplete descendants. Original-source, provenance, geography,
+candidate-history,32 existing core plus one new safety check pass locally;
+desktop/mobile eight-source national fixtures pass. Full DOM/CI/deploy pending.
+
+NY17 NATIONAL INTEGRATION DEPLOYED (October26 17:51Z): PR462 extends the existing headless shared House source,
 revision/cadence/correlated-draw likelihood/rehearsal/canary path to NY17. No
 separate needle panel. Use the full official Lawler fusion baseline197845,
 not the180924 Republican line alone. Eight inputs now imply5 House districts
 across4 states, still limited/experimental; client budget32 regular automatic
 starts/minute,8 reserved queue positions/56 bulk, existing4active/64total cap.
-Local desktop/mobile synthetic tests prove NY-only and combined8 national
+Published desktop/mobile synthetic tests prove NY-only and combined8 national
 movement before calls, corrections, retractions, test/outage/stale exclusion,
-fixed Wisconsin budget and baseline isolation. Candidate real-clock17:17:37Z
+fixed Wisconsin budget and baseline isolation. Actual PUBLISHED real-clock17:50:15Z
 probe sees all8 HTTP200/non-test but stale zero counts; no admitted evidence,
 projection, page errors or raw archives. This is NOT live delivery/calibration.
-Parent original-source PR461 must merge green before the integration PR.
+Parent PR461 merged6738f597 after all6 workflows pass. PR462 final0128d437
+passes all34 applicable PR workflows plus one same-head push workflow; all44
+check jobs inspected:41success,3 nonapplicable deployment skips, no external
+statuses. Mergeae89ab29; final briefing-bot main7ad3d4d4 Pages40372214783 succeeds.
+Actual109-file comparison includes all49 loaded scripts and refreshed model/
+poll inputs; remote forecast-bundle coherence and published synthetic runtime
+pass. Independent official NY source access remains403, not a usable fallback.
+
+NEXT PRIORITY: finish source/model correctness before further source expansion.
+The NY17 official fusion audit confirms the broader queued PR59 historical
+party/fusion importer repair needs atomic integration. Read the existing patch
+and verify facts against original sources; do not merge the old branch wholesale
+or publish only changed staging files. Current default House preparation uses
+recorded D/R history for district/state/national baselines. Rebuild2022/2024
+staging, geography, paired House context, candidate history/fundamentals and
+derived model snapshots together, updating NY17's explicit staging reconciliation.
+Fix the staging-only publication workflow in the same tested migration so it
+cannot leave downstream snapshots stale. Preserve Senate behavior where a
+House-only correction should be invariant, all owner thresholds, existing
+national likelihood/source gates, paused work and required checks. Explain
+source-driven probability changes; never fit a desired partisan outcome.
+The ignored artifacts/readiness/house-fusion-migration-review.json records
+read-only code/dependency findings, not applied changes. Keep independent
+source/timing acceptance separate: actual post-close delivery and held-out
+chronological calibration remain UNPROVEN; do not circle blocked archives.
 
 NY17 source preparation (October26 after17:01Z): uploaded tipping rank4,
 unchanged district boundaries, four county parts. New official historical
@@ -28,14 +97,13 @@ Jones Democratic173899; Frascone Working Families7530 is a DIFFERENT candidate.
 Keep generic write-ins234/blank13917/void535 separate. Existing global staging
 records Republican line only and includes the other line/blank/void in other;
 do not silently claim it is candidate-total reconciliation or overwrite PR59.
-The new NY17 importer/reference are historical preparation only, not yet a
+The NY17 importer/reference are historical inputs for the now-deployed shared
 national controller. Documented civicAPI87319 route has correct four identities
 and Conley/Lawler roster, but actual reply is stale October22 with zero counts.
 Independent nyenr.elections.ny.gov ordinary client AND normal Edge get403/
 Just a moment; no bypass, no usable fallback or comparative speed claim.
-Next: review/merge the original-source preparation after exact-head checks,
-then wire supported NY17 counts into the shared national path using full
-candidate totals and explicit source limits. NC01 needs new-boundary historical
+Source preparation and national integration are complete within their declared
+scope; real live delivery is not proven. NC01 needs new-boundary historical
 reaggregation; AZ01 needs a defensible subcounty geography rather than relaxing
 the national minimum3 reporting-unit coverage merely to fit one county.
 
@@ -66,13 +134,10 @@ PR459 tested head3bd56234 passes all33 applicable PR workflows/39 check jobs
 published briefing-bot maina5acae18. Actual80-file integrity, published synthetic
 Edge1366/390 national path and real-clock seven-source rejection checks pass.
 Independent timing/fallback is NOT solved by this additional civicAPI route.
-NEXT PRIORITY: build the independent PA10/Dauphin matched D/R-snapshot timing
-observer BEFORE October31 rather than adding another same-provider race. Use
-actual linked menu discovery and the now-pinned official2024 county table as
-format evidence; activate real2026 collection ONLY after a verified published
-2026 general link exists. Do not guess future keys, weaken eligibility, or wait
-until election night to program the collector. The ignored implementation
-contract artifacts/readiness/next-dauphin-independent-timing-contract.json and
+Completed by PR460: independent PA10/Dauphin matched D/R-snapshot recorder.
+Activate real2026 collection ONLY after a verified published general link exists.
+Do not guess future keys or weaken eligibility. The implementation contract
+artifacts/readiness/next-dauphin-independent-timing-contract.json and
 readiness-progress.md contain concrete scope/data/receipt-clock requirements.
 Cumberland currently links only May2026 primary results; Dauphin's accessible
 public application currently lists2026 primary plus its2024 archive, not a
