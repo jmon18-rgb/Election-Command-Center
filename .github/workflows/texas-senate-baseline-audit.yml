@@ -1,0 +1,28 @@
+name: Reproduce Texas Senate candidate baseline audit
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/audit_texas_senate_baseline.py'
+      - 'scripts/read_official_xlsx_rows.py'
+      - 'data/texas_senate_baseline_candidate_audit.json'
+      - '.github/workflows/texas-senate-baseline-audit.yml'
+permissions:
+  contents: read
+jobs:
+  original-source-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Retrieve the two pinned public government originals
+        run: |
+          mkdir -p artifacts/readiness/texas
+          curl --fail --location --max-time 120 'https://data.capitol.texas.gov/dataset/35b16aee-0bb0-4866-b1ec-859f1f044241/resource/5af9f5e2-ca14-4e5d-880e-3c3cd891d3ed/download/2020-general-vtd-election-data-2020.zip' -o artifacts/readiness/texas/2020-official.zip
+          curl --fail --location --max-time 60 'https://www.fec.gov/documents/4228/federalelections2020.xlsx' -o artifacts/readiness/texas/fec-2020.xlsx
+      - name: Reproduce the blocked audit without allocating missing votes
+        run: python scripts/audit_texas_senate_baseline.py --archive artifacts/readiness/texas/2020-official.zip --fec artifacts/readiness/texas/fec-2020.xlsx --check

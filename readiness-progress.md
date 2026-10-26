@@ -1,5 +1,30 @@
 # Readiness progress
 
+## October 26 07:53Z - scoped decision merged; Texas baseline reconciliation blocker
+
+- PR449 merged70cc813d after all three current-head workflows passed at5e0fadf2.
+  Pages integrity at07:45:44Z matches all44 loaded assets/catalogs. This records
+  the scoped experimental-delivery decision; no forecast parameters changed.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/449
+- Investigate another genuinely competitive Senate race, Texas: current stored
+  polling D+2.08,19 contributing/13 independent firms, latestOctober20. Retrieve
+  the actual official Texas Legislative Council2020 VTD archive (54,629,265 bytes,
+  SHA2564ad668ba...) and independent FEC certified2020 workbook (5073b6d2...).
+- Strict original-byte audit finds254 county codes,9,157 VTDs,36,628 candidate cells,
+  but Council sums are short of FEC certified totals: Cornyn1,340; Hegar1,455;
+  McKennon99; Collins140. Certified678 write-ins are absent from the Council
+  roster. README explicitly describes redistricting VTDs rather than exact
+  precincts. The county-level cause is not established; no counts are allocated.
+- Preserve actual county aggregates/hashes in a production-ineligible research
+  audit, with a stdlib reproducible importer/check against both original files.
+  Local generation and independent --check reproduce the blocked result exactly.
+  PR/manual CI retrieves the originals; no recurring large download is added.
+  No Texas source, geography, calibrated model or extra live race is claimed.
+- Next Texas step: obtain a complete official county canvass that reconciles or
+  identify the differences with county-level evidence. Do not rescale counties
+  or repeatedly fetch the unchanged archive. Iowa/Kansas runtime is unchanged;
+  actual non-test delivery and independent chronological calibration remain open.
+
 ## October 26 07:31Z - correction repair deployed and scoped delivery decision
 
 - PR448 merged b88fa72a after all28 applicable current-head workflows passed

@@ -1,0 +1,2603 @@
+{
+  "status": "BLOCKED_CERTIFIED_TOTAL_MISMATCH",
+  "production_eligible": false,
+  "race": "2020 Texas U.S. Senate",
+  "county_count": 254,
+  "candidate_vtd_cells": 36628,
+  "vtd_count": 9157,
+  "source_archive": {
+    "url": "https://data.capitol.texas.gov/dataset/35b16aee-0bb0-4866-b1ec-859f1f044241/resource/5af9f5e2-ca14-4e5d-880e-3c3cd891d3ed/download/2020-general-vtd-election-data-2020.zip",
+    "sha256": "4ad668baa6ac0e05ffc0893201279ef5a0656411693bd751c96d8b06deba3d1f",
+    "bytes": 54629265,
+    "license": "Creative Commons Attribution, per official dataset page",
+    "dataset_page": "https://data.capitol.texas.gov/dataset/comprehensive-election-datasets-compressed-format",
+    "member": "2020_General_Election_Returns.csv",
+    "member_sha256": "aac95feded1c9fed496f34095d9fce14bdd638d9a7d42fa7685911a8112fe73d",
+    "readme_sha256": "93ccd11d8d0c810001a1d28ea8ba76fc6f022f95d677f18b00cf67a582343dc0"
+  },
+  "certified_source": {
+    "url": "https://www.fec.gov/documents/4228/federalelections2020.xlsx",
+    "sha256": "5073b6d2c76c86c941508dfb1a11cc497e8529b0068c5132aceb0f385c19352e",
+    "worksheet": "12. US Senate Results by State"
+  },
+  "comparisons": [
+    {
+      "candidate": "Cornyn",
+      "party": "R",
+      "tlc_vtd_sum": 5961643,
+      "fec_certified": 5962983,
+      "difference": -1340
+    },
+    {
+      "candidate": "Hegar",
+      "party": "D",
+      "tlc_vtd_sum": 4887309,
+      "fec_certified": 4888764,
+      "difference": -1455
+    },
+    {
+      "candidate": "McKennon",
+      "party": "L",
+      "tlc_vtd_sum": 209623,
+      "fec_certified": 209722,
+      "difference": -99
+    },
+    {
+      "candidate": "Collins",
+      "party": "G",
+      "tlc_vtd_sum": 81753,
+      "fec_certified": 81893,
+      "difference": -140
+    }
+  ],
+  "certified_write_in_votes_not_present_in_tlc_candidate_roster": 678,
+  "limitations": [
+    "TLC redistricting VTDs differ from actual election precincts",
+    "County names/codes have not yet been joined to independent Census reference",
+    "No vote-method split or historical publication clock",
+    "No statewide scaling, county allocation or missing-vote repair is permitted",
+    "This audit neither accepts 2026 live counts nor calibrates a forecast"
+  ],
+  "counties": [
+    {
+      "county_fips": "48001",
+      "county": "Anderson",
+      "candidate_votes": {
+        "Cornyn": 14943,
+        "Hegar": 3792,
+        "McKennon": 249,
+        "Collins": 88
+      }
+    },
+    {
+      "county_fips": "48003",
+      "county": "Andrews",
+      "candidate_votes": {
+        "Cornyn": 4888,
+        "Hegar": 779,
+        "McKennon": 107,
+        "Collins": 20
+      }
+    },
+    {
+      "county_fips": "48005",
+      "county": "Angelina",
+      "candidate_votes": {
+        "Cornyn": 24962,
+        "Hegar": 8771,
+        "McKennon": 461,
+        "Collins": 161
+      }
+    },
+    {
+      "county_fips": "48007",
+      "county": "Aransas",
+      "candidate_votes": {
+        "Cornyn": 9189,
+        "Hegar": 2729,
+        "McKennon": 178,
+        "Collins": 68
+      }
+    },
+    {
+      "county_fips": "48009",
+      "county": "Archer",
+      "candidate_votes": {
+        "Cornyn": 4178,
+        "Hegar": 467,
+        "McKennon": 65,
+        "Collins": 14
+      }
+    },
+    {
+      "county_fips": "48011",
+      "county": "Armstrong",
+      "candidate_votes": {
+        "Cornyn": 1025,
+        "Hegar": 64,
+        "McKennon": 12,
+        "Collins": 5
+      }
+    },
+    {
+      "county_fips": "48013",
+      "county": "Atascosa",
+      "candidate_votes": {
+        "Cornyn": 11906,
+        "Hegar": 5588,
+        "McKennon": 258,
+        "Collins": 142
+      }
+    },
+    {
+      "county_fips": "48015",
+      "county": "Austin",
+      "candidate_votes": {
+        "Cornyn": 11454,
+        "Hegar": 2752,
+        "McKennon": 215,
+        "Collins": 57
+      }
+    },
+    {
+      "county_fips": "48017",
+      "county": "Bailey",
+      "candidate_votes": {
+        "Cornyn": 1400,
+        "Hegar": 383,
+        "McKennon": 28,
+        "Collins": 11
+      }
+    },
+    {
+      "county_fips": "48019",
+      "county": "Bandera",
+      "candidate_votes": {
+        "Cornyn": 9957,
+        "Hegar": 2291,
+        "McKennon": 234,
+        "Collins": 55
+      }
+    },
+    {
+      "county_fips": "48021",
+      "county": "Bastrop",
+      "candidate_votes": {
+        "Cornyn": 20468,
+        "Hegar": 15071,
+        "McKennon": 757,
+        "Collins": 208
+      }
+    },
+    {
+      "county_fips": "48023",
+      "county": "Baylor",
+      "candidate_votes": {
+        "Cornyn": 1462,
+        "Hegar": 177,
+        "McKennon": 30,
+        "Collins": 9
+      }
+    },
+    {
+      "county_fips": "48025",
+      "county": "Bee",
+      "candidate_votes": {
+        "Cornyn": 5713,
+        "Hegar": 3102,
+        "McKennon": 171,
+        "Collins": 58
+      }
+    },
+    {
+      "county_fips": "48027",
+      "county": "Bell",
+      "candidate_votes": {
+        "Cornyn": 68934,
+        "Hegar": 54413,
+        "McKennon": 2725,
+        "Collins": 727
+      }
+    },
+    {
+      "county_fips": "48029",
+      "county": "Bexar",
+      "candidate_votes": {
+        "Cornyn": 320095,
+        "Hegar": 411328,
+        "McKennon": 15205,
+        "Collins": 6307
+      }
+    },
+    {
+      "county_fips": "48031",
+      "county": "Blanco",
+      "candidate_votes": {
+        "Cornyn": 5457,
+        "Hegar": 1816,
+        "McKennon": 105,
+        "Collins": 30
+      }
+    },
+    {
+      "county_fips": "48033",
+      "county": "Borden",
+      "candidate_votes": {
+        "Cornyn": 390,
+        "Hegar": 18,
+        "McKennon": 1,
+        "Collins": 2
+      }
+    },
+    {
+      "county_fips": "48035",
+      "county": "Bosque",
+      "candidate_votes": {
+        "Cornyn": 7367,
+        "Hegar": 1490,
+        "McKennon": 121,
+        "Collins": 60
+      }
+    },
+    {
+      "county_fips": "48037",
+      "county": "Bowie",
+      "candidate_votes": {
+        "Cornyn": 26848,
+        "Hegar": 10344,
+        "McKennon": 471,
+        "Collins": 142
+      }
+    },
+    {
+      "county_fips": "48039",
+      "county": "Brazoria",
+      "candidate_votes": {
+        "Cornyn": 90705,
+        "Hegar": 58759,
+        "McKennon": 3019,
+        "Collins": 879
+      }
+    },
+    {
+      "county_fips": "48041",
+      "county": "Brazos",
+      "candidate_votes": {
+        "Cornyn": 49342,
+        "Hegar": 32098,
+        "McKennon": 2243,
+        "Collins": 462
+      }
+    },
+    {
+      "county_fips": "48043",
+      "county": "Brewster",
+      "candidate_votes": {
+        "Cornyn": 2453,
+        "Hegar": 2167,
+        "McKennon": 113,
+        "Collins": 35
+      }
+    },
+    {
+      "county_fips": "48045",
+      "county": "Briscoe",
+      "candidate_votes": {
+        "Cornyn": 625,
+        "Hegar": 79,
+        "McKennon": 6,
+        "Collins": 5
+      }
+    },
+    {
+      "county_fips": "48047",
+      "county": "Brooks",
+      "candidate_votes": {
+        "Cornyn": 859,
+        "Hegar": 1425,
+        "McKennon": 39,
+        "Collins": 33
+      }
+    },
+    {
+      "county_fips": "48049",
+      "county": "Brown",
+      "candidate_votes": {
+        "Cornyn": 13482,
+        "Hegar": 1965,
+        "McKennon": 250,
+        "Collins": 58
+      }
+    },
+    {
+      "county_fips": "48051",
+      "county": "Burleson",
+      "candidate_votes": {
+        "Cornyn": 6596,
+        "Hegar": 1709,
+        "McKennon": 142,
+        "Collins": 42
+      }
+    },
+    {
+      "county_fips": "48053",
+      "county": "Burnet",
+      "candidate_votes": {
+        "Cornyn": 18687,
+        "Hegar": 5323,
+        "McKennon": 438,
+        "Collins": 92
+      }
+    },
+    {
+      "county_fips": "48055",
+      "county": "Caldwell",
+      "candidate_votes": {
+        "Cornyn": 8044,
+        "Hegar": 6449,
+        "McKennon": 272,
+        "Collins": 103
+      }
+    },
+    {
+      "county_fips": "48057",
+      "county": "Calhoun",
+      "candidate_votes": {
+        "Cornyn": 5531,
+        "Hegar": 2092,
+        "McKennon": 100,
+        "Collins": 22
+      }
+    },
+    {
+      "county_fips": "48059",
+      "county": "Callahan",
+      "candidate_votes": {
+        "Cornyn": 5892,
+        "Hegar": 680,
+        "McKennon": 106,
+        "Collins": 41
+      }
+    },
+    {
+      "county_fips": "48061",
+      "county": "Cameron",
+      "candidate_votes": {
+        "Cornyn": 46482,
+        "Hegar": 61508,
+        "McKennon": 1797,
+        "Collins": 1433
+      }
+    },
+    {
+      "county_fips": "48063",
+      "county": "Camp",
+      "candidate_votes": {
+        "Cornyn": 3597,
+        "Hegar": 1359,
+        "McKennon": 57,
+        "Collins": 22
+      }
+    },
+    {
+      "county_fips": "48065",
+      "county": "Carson",
+      "candidate_votes": {
+        "Cornyn": 2756,
+        "Hegar": 286,
+        "McKennon": 63,
+        "Collins": 5
+      }
+    },
+    {
+      "county_fips": "48067",
+      "county": "Cass",
+      "candidate_votes": {
+        "Cornyn": 10796,
+        "Hegar": 2672,
+        "McKennon": 153,
+        "Collins": 52
+      }
+    },
+    {
+      "county_fips": "48069",
+      "county": "Castro",
+      "candidate_votes": {
+        "Cornyn": 1572,
+        "Hegar": 432,
+        "McKennon": 24,
+        "Collins": 13
+      }
+    },
+    {
+      "county_fips": "48071",
+      "county": "Chambers",
+      "candidate_votes": {
+        "Cornyn": 17037,
+        "Hegar": 3779,
+        "McKennon": 419,
+        "Collins": 110
+      }
+    },
+    {
+      "county_fips": "48073",
+      "county": "Cherokee",
+      "candidate_votes": {
+        "Cornyn": 14945,
+        "Hegar": 4058,
+        "McKennon": 269,
+        "Collins": 59
+      }
+    },
+    {
+      "county_fips": "48075",
+      "county": "Childress",
+      "candidate_votes": {
+        "Cornyn": 1936,
+        "Hegar": 283,
+        "McKennon": 29,
+        "Collins": 11
+      }
+    },
+    {
+      "county_fips": "48077",
+      "county": "Clay",
+      "candidate_votes": {
+        "Cornyn": 4958,
+        "Hegar": 632,
+        "McKennon": 69,
+        "Collins": 27
+      }
+    },
+    {
+      "county_fips": "48079",
+      "county": "Cochran",
+      "candidate_votes": {
+        "Cornyn": 765,
+        "Hegar": 183,
+        "McKennon": 22,
+        "Collins": 8
+      }
+    },
+    {
+      "county_fips": "48081",
+      "county": "Coke",
+      "candidate_votes": {
+        "Cornyn": 1557,
+        "Hegar": 171,
+        "McKennon": 23,
+        "Collins": 3
+      }
+    },
+    {
+      "county_fips": "48083",
+      "county": "Coleman",
+      "candidate_votes": {
+        "Cornyn": 3586,
+        "Hegar": 426,
+        "McKennon": 37,
+        "Collins": 16
+      }
+    },
+    {
+      "county_fips": "48085",
+      "county": "Collin",
+      "candidate_votes": {
+        "Cornyn": 263074,
+        "Hegar": 207005,
+        "McKennon": 8495,
+        "Collins": 2721
+      }
+    },
+    {
+      "county_fips": "48087",
+      "county": "Collingsworth",
+      "candidate_votes": {
+        "Cornyn": 1032,
+        "Hegar": 145,
+        "McKennon": 10,
+        "Collins": 4
+      }
+    },
+    {
+      "county_fips": "48089",
+      "county": "Colorado",
+      "candidate_votes": {
+        "Cornyn": 7367,
+        "Hegar": 2362,
+        "McKennon": 116,
+        "Collins": 43
+      }
+    },
+    {
+      "county_fips": "48091",
+      "county": "Comal",
+      "candidate_votes": {
+        "Cornyn": 63545,
+        "Hegar": 22552,
+        "McKennon": 1753,
+        "Collins": 418
+      }
+    },
+    {
+      "county_fips": "48093",
+      "county": "Comanche",
+      "candidate_votes": {
+        "Cornyn": 5053,
+        "Hegar": 831,
+        "McKennon": 90,
+        "Collins": 30
+      }
+    },
+    {
+      "county_fips": "48095",
+      "county": "Concho",
+      "candidate_votes": {
+        "Cornyn": 1029,
+        "Hegar": 193,
+        "McKennon": 20,
+        "Collins": 5
+      }
+    },
+    {
+      "county_fips": "48097",
+      "county": "Cooke",
+      "candidate_votes": {
+        "Cornyn": 15516,
+        "Hegar": 2999,
+        "McKennon": 277,
+        "Collins": 85
+      }
+    },
+    {
+      "county_fips": "48099",
+      "county": "Coryell",
+      "candidate_votes": {
+        "Cornyn": 15303,
+        "Hegar": 7096,
+        "McKennon": 601,
+        "Collins": 146
+      }
+    },
+    {
+      "county_fips": "48101",
+      "county": "Cottle",
+      "candidate_votes": {
+        "Cornyn": 534,
+        "Hegar": 110,
+        "McKennon": 7,
+        "Collins": 5
+      }
+    },
+    {
+      "county_fips": "48103",
+      "county": "Crane",
+      "candidate_votes": {
+        "Cornyn": 1213,
+        "Hegar": 229,
+        "McKennon": 24,
+        "Collins": 13
+      }
+    },
+    {
+      "county_fips": "48105",
+      "county": "Crockett",
+      "candidate_votes": {
+        "Cornyn": 1146,
+        "Hegar": 314,
+        "McKennon": 21,
+        "Collins": 12
+      }
+    },
+    {
+      "county_fips": "48107",
+      "county": "Crosby",
+      "candidate_votes": {
+        "Cornyn": 1356,
+        "Hegar": 486,
+        "McKennon": 25,
+        "Collins": 14
+      }
+    },
+    {
+      "county_fips": "48109",
+      "county": "Culberson",
+      "candidate_votes": {
+        "Cornyn": 367,
+        "Hegar": 385,
+        "McKennon": 19,
+        "Collins": 6
+      }
+    },
+    {
+      "county_fips": "48111",
+      "county": "Dallam",
+      "candidate_votes": {
+        "Cornyn": 1369,
+        "Hegar": 200,
+        "McKennon": 21,
+        "Collins": 5
+      }
+    },
+    {
+      "county_fips": "48113",
+      "county": "Dallas",
+      "candidate_votes": {
+        "Cornyn": 330851,
+        "Hegar": 560603,
+        "McKennon": 15905,
+        "Collins": 8282
+      }
+    },
+    {
+      "county_fips": "48115",
+      "county": "Dawson",
+      "candidate_votes": {
+        "Cornyn": 2811,
+        "Hegar": 732,
+        "McKennon": 59,
+        "Collins": 14
+      }
+    },
+    {
+      "county_fips": "48117",
+      "county": "Deaf Smith",
+      "candidate_votes": {
+        "Cornyn": 3272,
+        "Hegar": 1150,
+        "McKennon": 73,
+        "Collins": 36
+      }
+    },
+    {
+      "county_fips": "48119",
+      "county": "Delta",
+      "candidate_votes": {
+        "Cornyn": 2111,
+        "Hegar": 370,
+        "McKennon": 31,
+        "Collins": 22
+      }
+    },
+    {
+      "county_fips": "48121",
+      "county": "Denton",
+      "candidate_votes": {
+        "Cornyn": 231025,
+        "Hegar": 170984,
+        "McKennon": 8553,
+        "Collins": 2627
+      }
+    },
+    {
+      "county_fips": "48123",
+      "county": "De Witt",
+      "candidate_votes": {
+        "Cornyn": 6399,
+        "Hegar": 1384,
+        "McKennon": 84,
+        "Collins": 20
+      }
+    },
+    {
+      "county_fips": "48125",
+      "county": "Dickens",
+      "candidate_votes": {
+        "Cornyn": 808,
+        "Hegar": 133,
+        "McKennon": 13,
+        "Collins": 4
+      }
+    },
+    {
+      "county_fips": "48127",
+      "county": "Dimmit",
+      "candidate_votes": {
+        "Cornyn": 1274,
+        "Hegar": 2122,
+        "McKennon": 39,
+        "Collins": 30
+      }
+    },
+    {
+      "county_fips": "48129",
+      "county": "Donley",
+      "candidate_votes": {
+        "Cornyn": 1418,
+        "Hegar": 181,
+        "McKennon": 22,
+        "Collins": 4
+      }
+    },
+    {
+      "county_fips": "48131",
+      "county": "Duval",
+      "candidate_votes": {
+        "Cornyn": 1787,
+        "Hegar": 2458,
+        "McKennon": 97,
+        "Collins": 77
+      }
+    },
+    {
+      "county_fips": "48133",
+      "county": "Eastland",
+      "candidate_votes": {
+        "Cornyn": 7015,
+        "Hegar": 910,
+        "McKennon": 131,
+        "Collins": 31
+      }
+    },
+    {
+      "county_fips": "48135",
+      "county": "Ector",
+      "candidate_votes": {
+        "Cornyn": 31711,
+        "Hegar": 10682,
+        "McKennon": 902,
+        "Collins": 277
+      }
+    },
+    {
+      "county_fips": "48137",
+      "county": "Edwards",
+      "candidate_votes": {
+        "Cornyn": 824,
+        "Hegar": 144,
+        "McKennon": 14,
+        "Collins": 3
+      }
+    },
+    {
+      "county_fips": "48139",
+      "county": "Ellis",
+      "candidate_votes": {
+        "Cornyn": 57078,
+        "Hegar": 25780,
+        "McKennon": 1589,
+        "Collins": 585
+      }
+    },
+    {
+      "county_fips": "48141",
+      "county": "El Paso",
+      "candidate_votes": {
+        "Cornyn": 80021,
+        "Hegar": 164931,
+        "McKennon": 8248,
+        "Collins": 6036
+      }
+    },
+    {
+      "county_fips": "48143",
+      "county": "Erath",
+      "candidate_votes": {
+        "Cornyn": 13564,
+        "Hegar": 2707,
+        "McKennon": 335,
+        "Collins": 102
+      }
+    },
+    {
+      "county_fips": "48145",
+      "county": "Falls",
+      "candidate_votes": {
+        "Cornyn": 4157,
+        "Hegar": 1787,
+        "McKennon": 76,
+        "Collins": 19
+      }
+    },
+    {
+      "county_fips": "48147",
+      "county": "Fannin",
+      "candidate_votes": {
+        "Cornyn": 11836,
+        "Hegar": 2559,
+        "McKennon": 273,
+        "Collins": 80
+      }
+    },
+    {
+      "county_fips": "48149",
+      "county": "Fayette",
+      "candidate_votes": {
+        "Cornyn": 10047,
+        "Hegar": 2623,
+        "McKennon": 129,
+        "Collins": 45
+      }
+    },
+    {
+      "county_fips": "48151",
+      "county": "Fisher",
+      "candidate_votes": {
+        "Cornyn": 1418,
+        "Hegar": 351,
+        "McKennon": 28,
+        "Collins": 7
+      }
+    },
+    {
+      "county_fips": "48153",
+      "county": "Floyd",
+      "candidate_votes": {
+        "Cornyn": 1554,
+        "Hegar": 397,
+        "McKennon": 29,
+        "Collins": 10
+      }
+    },
+    {
+      "county_fips": "48155",
+      "county": "Foard",
+      "candidate_votes": {
+        "Cornyn": 404,
+        "Hegar": 107,
+        "McKennon": 7,
+        "Collins": 1
+      }
+    },
+    {
+      "county_fips": "48157",
+      "county": "Fort Bend",
+      "candidate_votes": {
+        "Cornyn": 160977,
+        "Hegar": 178984,
+        "McKennon": 5359,
+        "Collins": 2112
+      }
+    },
+    {
+      "county_fips": "48159",
+      "county": "Franklin",
+      "candidate_votes": {
+        "Cornyn": 4114,
+        "Hegar": 753,
+        "McKennon": 63,
+        "Collins": 12
+      }
+    },
+    {
+      "county_fips": "48161",
+      "county": "Freestone",
+      "candidate_votes": {
+        "Cornyn": 6838,
+        "Hegar": 1553,
+        "McKennon": 116,
+        "Collins": 50
+      }
+    },
+    {
+      "county_fips": "48163",
+      "county": "Frio",
+      "candidate_votes": {
+        "Cornyn": 2489,
+        "Hegar": 2283,
+        "McKennon": 71,
+        "Collins": 78
+      }
+    },
+    {
+      "county_fips": "48165",
+      "county": "Gaines",
+      "candidate_votes": {
+        "Cornyn": 5118,
+        "Hegar": 548,
+        "McKennon": 76,
+        "Collins": 18
+      }
+    },
+    {
+      "county_fips": "48167",
+      "county": "Galveston",
+      "candidate_votes": {
+        "Cornyn": 94317,
+        "Hegar": 55094,
+        "McKennon": 3003,
+        "Collins": 969
+      }
+    },
+    {
+      "county_fips": "48169",
+      "county": "Garza",
+      "candidate_votes": {
+        "Cornyn": 1374,
+        "Hegar": 225,
+        "McKennon": 11,
+        "Collins": 7
+      }
+    },
+    {
+      "county_fips": "48171",
+      "county": "Gillespie",
+      "candidate_votes": {
+        "Cornyn": 12544,
+        "Hegar": 2996,
+        "McKennon": 200,
+        "Collins": 39
+      }
+    },
+    {
+      "county_fips": "48173",
+      "county": "Glasscock",
+      "candidate_votes": {
+        "Cornyn": 603,
+        "Hegar": 35,
+        "McKennon": 5,
+        "Collins": 3
+      }
+    },
+    {
+      "county_fips": "48175",
+      "county": "Goliad",
+      "candidate_votes": {
+        "Cornyn": 3000,
+        "Hegar": 840,
+        "McKennon": 43,
+        "Collins": 14
+      }
+    },
+    {
+      "county_fips": "48177",
+      "county": "Gonzales",
+      "candidate_votes": {
+        "Cornyn": 5617,
+        "Hegar": 1782,
+        "McKennon": 89,
+        "Collins": 42
+      }
+    },
+    {
+      "county_fips": "48179",
+      "county": "Gray",
+      "candidate_votes": {
+        "Cornyn": 6705,
+        "Hegar": 774,
+        "McKennon": 167,
+        "Collins": 42
+      }
+    },
+    {
+      "county_fips": "48181",
+      "county": "Grayson",
+      "candidate_votes": {
+        "Cornyn": 43735,
+        "Hegar": 13938,
+        "McKennon": 1008,
+        "Collins": 293
+      }
+    },
+    {
+      "county_fips": "48183",
+      "county": "Gregg",
+      "candidate_votes": {
+        "Cornyn": 32467,
+        "Hegar": 14025,
+        "McKennon": 787,
+        "Collins": 204
+      }
+    },
+    {
+      "county_fips": "48185",
+      "county": "Grimes",
+      "candidate_votes": {
+        "Cornyn": 9338,
+        "Hegar": 2678,
+        "McKennon": 199,
+        "Collins": 60
+      }
+    },
+    {
+      "county_fips": "48187",
+      "county": "Guadalupe",
+      "candidate_votes": {
+        "Cornyn": 48308,
+        "Hegar": 26697,
+        "McKennon": 1545,
+        "Collins": 428
+      }
+    },
+    {
+      "county_fips": "48189",
+      "county": "Hale",
+      "candidate_votes": {
+        "Cornyn": 6999,
+        "Hegar": 2155,
+        "McKennon": 155,
+        "Collins": 67
+      }
+    },
+    {
+      "county_fips": "48191",
+      "county": "Hall",
+      "candidate_votes": {
+        "Cornyn": 967,
+        "Hegar": 156,
+        "McKennon": 7,
+        "Collins": 10
+      }
+    },
+    {
+      "county_fips": "48193",
+      "county": "Hamilton",
+      "candidate_votes": {
+        "Cornyn": 3570,
+        "Hegar": 590,
+        "McKennon": 63,
+        "Collins": 43
+      }
+    },
+    {
+      "county_fips": "48195",
+      "county": "Hansford",
+      "candidate_votes": {
+        "Cornyn": 1838,
+        "Hegar": 158,
+        "McKennon": 21,
+        "Collins": 5
+      }
+    },
+    {
+      "county_fips": "48197",
+      "county": "Hardeman",
+      "candidate_votes": {
+        "Cornyn": 1313,
+        "Hegar": 232,
+        "McKennon": 9,
+        "Collins": 1
+      }
+    },
+    {
+      "county_fips": "48199",
+      "county": "Hardin",
+      "candidate_votes": {
+        "Cornyn": 23516,
+        "Hegar": 3388,
+        "McKennon": 393,
+        "Collins": 87
+      }
+    },
+    {
+      "county_fips": "48201",
+      "county": "Harris",
+      "candidate_votes": {
+        "Cornyn": 718228,
+        "Hegar": 854158,
+        "McKennon": 29217,
+        "Collins": 12889
+      }
+    },
+    {
+      "county_fips": "48203",
+      "county": "Harrison",
+      "candidate_votes": {
+        "Cornyn": 21221,
+        "Hegar": 7605,
+        "McKennon": 440,
+        "Collins": 100
+      }
+    },
+    {
+      "county_fips": "48205",
+      "county": "Hartley",
+      "candidate_votes": {
+        "Cornyn": 1859,
+        "Hegar": 176,
+        "McKennon": 27,
+        "Collins": 10
+      }
+    },
+    {
+      "county_fips": "48207",
+      "county": "Haskell",
+      "candidate_votes": {
+        "Cornyn": 1808,
+        "Hegar": 347,
+        "McKennon": 15,
+        "Collins": 13
+      }
+    },
+    {
+      "county_fips": "48209",
+      "county": "Hays",
+      "candidate_votes": {
+        "Cornyn": 49539,
+        "Hegar": 55597,
+        "McKennon": 2595,
+        "Collins": 814
+      }
+    },
+    {
+      "county_fips": "48211",
+      "county": "Hemphill",
+      "candidate_votes": {
+        "Cornyn": 1465,
+        "Hegar": 197,
+        "McKennon": 22,
+        "Collins": 9
+      }
+    },
+    {
+      "county_fips": "48213",
+      "county": "Henderson",
+      "candidate_votes": {
+        "Cornyn": 28717,
+        "Hegar": 6672,
+        "McKennon": 526,
+        "Collins": 180
+      }
+    },
+    {
+      "county_fips": "48215",
+      "county": "Hidalgo",
+      "candidate_votes": {
+        "Cornyn": 84284,
+        "Hegar": 116962,
+        "McKennon": 5072,
+        "Collins": 3119
+      }
+    },
+    {
+      "county_fips": "48217",
+      "county": "Hill",
+      "candidate_votes": {
+        "Cornyn": 11845,
+        "Hegar": 2688,
+        "McKennon": 196,
+        "Collins": 98
+      }
+    },
+    {
+      "county_fips": "48219",
+      "county": "Hockley",
+      "candidate_votes": {
+        "Cornyn": 6449,
+        "Hegar": 1384,
+        "McKennon": 124,
+        "Collins": 28
+      }
+    },
+    {
+      "county_fips": "48221",
+      "county": "Hood",
+      "candidate_votes": {
+        "Cornyn": 26425,
+        "Hegar": 5282,
+        "McKennon": 511,
+        "Collins": 189
+      }
+    },
+    {
+      "county_fips": "48223",
+      "county": "Hopkins",
+      "candidate_votes": {
+        "Cornyn": 12497,
+        "Hegar": 2833,
+        "McKennon": 236,
+        "Collins": 81
+      }
+    },
+    {
+      "county_fips": "48225",
+      "county": "Houston",
+      "candidate_votes": {
+        "Cornyn": 6984,
+        "Hegar": 2230,
+        "McKennon": 92,
+        "Collins": 28
+      }
+    },
+    {
+      "county_fips": "48227",
+      "county": "Howard",
+      "candidate_votes": {
+        "Cornyn": 7840,
+        "Hegar": 1954,
+        "McKennon": 193,
+        "Collins": 44
+      }
+    },
+    {
+      "county_fips": "48229",
+      "county": "Hudspeth",
+      "candidate_votes": {
+        "Cornyn": 673,
+        "Hegar": 373,
+        "McKennon": 21,
+        "Collins": 15
+      }
+    },
+    {
+      "county_fips": "48231",
+      "county": "Hunt",
+      "candidate_votes": {
+        "Cornyn": 28888,
+        "Hegar": 8319,
+        "McKennon": 628,
+        "Collins": 223
+      }
+    },
+    {
+      "county_fips": "48233",
+      "county": "Hutchinson",
+      "candidate_votes": {
+        "Cornyn": 7575,
+        "Hegar": 900,
+        "McKennon": 178,
+        "Collins": 36
+      }
+    },
+    {
+      "county_fips": "48235",
+      "county": "Irion",
+      "candidate_votes": {
+        "Cornyn": 763,
+        "Hegar": 111,
+        "McKennon": 10,
+        "Collins": 0
+      }
+    },
+    {
+      "county_fips": "48237",
+      "county": "Jack",
+      "candidate_votes": {
+        "Cornyn": 3322,
+        "Hegar": 319,
+        "McKennon": 41,
+        "Collins": 17
+      }
+    },
+    {
+      "county_fips": "48239",
+      "county": "Jackson",
+      "candidate_votes": {
+        "Cornyn": 5167,
+        "Hegar": 1021,
+        "McKennon": 81,
+        "Collins": 26
+      }
+    },
+    {
+      "county_fips": "48241",
+      "county": "Jasper",
+      "candidate_votes": {
+        "Cornyn": 12312,
+        "Hegar": 2851,
+        "McKennon": 180,
+        "Collins": 42
+      }
+    },
+    {
+      "county_fips": "48243",
+      "county": "Jeff Davis",
+      "candidate_votes": {
+        "Cornyn": 767,
+        "Hegar": 483,
+        "McKennon": 30,
+        "Collins": 6
+      }
+    },
+    {
+      "county_fips": "48245",
+      "county": "Jefferson",
+      "candidate_votes": {
+        "Cornyn": 46928,
+        "Hegar": 44112,
+        "McKennon": 1418,
+        "Collins": 464
+      }
+    },
+    {
+      "county_fips": "48247",
+      "county": "Jim Hogg",
+      "candidate_votes": {
+        "Cornyn": 652,
+        "Hegar": 1136,
+        "McKennon": 30,
+        "Collins": 26
+      }
+    },
+    {
+      "county_fips": "48249",
+      "county": "Jim Wells",
+      "candidate_votes": {
+        "Cornyn": 6957,
+        "Hegar": 6025,
+        "McKennon": 170,
+        "Collins": 108
+      }
+    },
+    {
+      "county_fips": "48251",
+      "county": "Johnson",
+      "candidate_votes": {
+        "Cornyn": 54403,
+        "Hegar": 15474,
+        "McKennon": 1217,
+        "Collins": 369
+      }
+    },
+    {
+      "county_fips": "48253",
+      "county": "Jones",
+      "candidate_votes": {
+        "Cornyn": 5546,
+        "Hegar": 967,
+        "McKennon": 81,
+        "Collins": 27
+      }
+    },
+    {
+      "county_fips": "48255",
+      "county": "Karnes",
+      "candidate_votes": {
+        "Cornyn": 3833,
+        "Hegar": 1178,
+        "McKennon": 58,
+        "Collins": 20
+      }
+    },
+    {
+      "county_fips": "48257",
+      "county": "Kaufman",
+      "candidate_votes": {
+        "Cornyn": 37649,
+        "Hegar": 17507,
+        "McKennon": 961,
+        "Collins": 352
+      }
+    },
+    {
+      "county_fips": "48259",
+      "county": "Kendall",
+      "candidate_votes": {
+        "Cornyn": 20584,
+        "Hegar": 5335,
+        "McKennon": 374,
+        "Collins": 99
+      }
+    },
+    {
+      "county_fips": "48261",
+      "county": "Kenedy",
+      "candidate_votes": {
+        "Cornyn": 107,
+        "Hegar": 57,
+        "McKennon": 4,
+        "Collins": 1
+      }
+    },
+    {
+      "county_fips": "48263",
+      "county": "Kent",
+      "candidate_votes": {
+        "Cornyn": 386,
+        "Hegar": 53,
+        "McKennon": 4,
+        "Collins": 2
+      }
+    },
+    {
+      "county_fips": "48265",
+      "county": "Kerr",
+      "candidate_votes": {
+        "Cornyn": 21022,
+        "Hegar": 5946,
+        "McKennon": 446,
+        "Collins": 128
+      }
+    },
+    {
+      "county_fips": "48267",
+      "county": "Kimble",
+      "candidate_votes": {
+        "Cornyn": 1962,
+        "Hegar": 254,
+        "McKennon": 28,
+        "Collins": 9
+      }
+    },
+    {
+      "county_fips": "48269",
+      "county": "King",
+      "candidate_votes": {
+        "Cornyn": 149,
+        "Hegar": 5,
+        "McKennon": 0,
+        "Collins": 0
+      }
+    },
+    {
+      "county_fips": "48271",
+      "county": "Kinney",
+      "candidate_votes": {
+        "Cornyn": 1070,
+        "Hegar": 395,
+        "McKennon": 25,
+        "Collins": 13
+      }
+    },
+    {
+      "county_fips": "48273",
+      "county": "Kleberg",
+      "candidate_votes": {
+        "Cornyn": 5438,
+        "Hegar": 5129,
+        "McKennon": 187,
+        "Collins": 84
+      }
+    },
+    {
+      "county_fips": "48275",
+      "county": "Knox",
+      "candidate_votes": {
+        "Cornyn": 1147,
+        "Hegar": 263,
+        "McKennon": 15,
+        "Collins": 5
+      }
+    },
+    {
+      "county_fips": "48277",
+      "county": "Lamar",
+      "candidate_votes": {
+        "Cornyn": 16417,
+        "Hegar": 4264,
+        "McKennon": 276,
+        "Collins": 99
+      }
+    },
+    {
+      "county_fips": "48279",
+      "county": "Lamb",
+      "candidate_votes": {
+        "Cornyn": 3469,
+        "Hegar": 802,
+        "McKennon": 75,
+        "Collins": 22
+      }
+    },
+    {
+      "county_fips": "48281",
+      "county": "Lampasas",
+      "candidate_votes": {
+        "Cornyn": 8102,
+        "Hegar": 1978,
+        "McKennon": 189,
+        "Collins": 61
+      }
+    },
+    {
+      "county_fips": "48283",
+      "county": "La Salle",
+      "candidate_votes": {
+        "Cornyn": 1082,
+        "Hegar": 1005,
+        "McKennon": 30,
+        "Collins": 29
+      }
+    },
+    {
+      "county_fips": "48285",
+      "county": "Lavaca",
+      "candidate_votes": {
+        "Cornyn": 8599,
+        "Hegar": 1305,
+        "McKennon": 109,
+        "Collins": 23
+      }
+    },
+    {
+      "county_fips": "48287",
+      "county": "Lee",
+      "candidate_votes": {
+        "Cornyn": 6211,
+        "Hegar": 1689,
+        "McKennon": 96,
+        "Collins": 36
+      }
+    },
+    {
+      "county_fips": "48289",
+      "county": "Leon",
+      "candidate_votes": {
+        "Cornyn": 7421,
+        "Hegar": 1028,
+        "McKennon": 102,
+        "Collins": 41
+      }
+    },
+    {
+      "county_fips": "48291",
+      "county": "Liberty",
+      "candidate_votes": {
+        "Cornyn": 22743,
+        "Hegar": 5662,
+        "McKennon": 477,
+        "Collins": 127
+      }
+    },
+    {
+      "county_fips": "48293",
+      "county": "Limestone",
+      "candidate_votes": {
+        "Cornyn": 6656,
+        "Hegar": 2112,
+        "McKennon": 122,
+        "Collins": 77
+      }
+    },
+    {
+      "county_fips": "48295",
+      "county": "Lipscomb",
+      "candidate_votes": {
+        "Cornyn": 1181,
+        "Hegar": 117,
+        "McKennon": 25,
+        "Collins": 1
+      }
+    },
+    {
+      "county_fips": "48297",
+      "county": "Live Oak",
+      "candidate_votes": {
+        "Cornyn": 4125,
+        "Hegar": 790,
+        "McKennon": 55,
+        "Collins": 14
+      }
+    },
+    {
+      "county_fips": "48299",
+      "county": "Llano",
+      "candidate_votes": {
+        "Cornyn": 10047,
+        "Hegar": 2331,
+        "McKennon": 171,
+        "Collins": 47
+      }
+    },
+    {
+      "county_fips": "48301",
+      "county": "Loving",
+      "candidate_votes": {
+        "Cornyn": 58,
+        "Hegar": 5,
+        "McKennon": 2,
+        "Collins": 0
+      }
+    },
+    {
+      "county_fips": "48303",
+      "county": "Lubbock",
+      "candidate_votes": {
+        "Cornyn": 79459,
+        "Hegar": 36319,
+        "McKennon": 3018,
+        "Collins": 702
+      }
+    },
+    {
+      "county_fips": "48305",
+      "county": "Lynn",
+      "candidate_votes": {
+        "Cornyn": 1817,
+        "Hegar": 412,
+        "McKennon": 25,
+        "Collins": 10
+      }
+    },
+    {
+      "county_fips": "48307",
+      "county": "McCulloch",
+      "candidate_votes": {
+        "Cornyn": 2843,
+        "Hegar": 460,
+        "McKennon": 63,
+        "Collins": 19
+      }
+    },
+    {
+      "county_fips": "48309",
+      "county": "McLennan",
+      "candidate_votes": {
+        "Cornyn": 60036,
+        "Hegar": 33439,
+        "McKennon": 2015,
+        "Collins": 636
+      }
+    },
+    {
+      "county_fips": "48311",
+      "county": "McMullen",
+      "candidate_votes": {
+        "Cornyn": 454,
+        "Hegar": 43,
+        "McKennon": 2,
+        "Collins": 1
+      }
+    },
+    {
+      "county_fips": "48313",
+      "county": "Madison",
+      "candidate_votes": {
+        "Cornyn": 4118,
+        "Hegar": 1030,
+        "McKennon": 61,
+        "Collins": 14
+      }
+    },
+    {
+      "county_fips": "48315",
+      "county": "Marion",
+      "candidate_votes": {
+        "Cornyn": 3380,
+        "Hegar": 1276,
+        "McKennon": 85,
+        "Collins": 17
+      }
+    },
+    {
+      "county_fips": "48317",
+      "county": "Martin",
+      "candidate_votes": {
+        "Cornyn": 1811,
+        "Hegar": 263,
+        "McKennon": 27,
+        "Collins": 11
+      }
+    },
+    {
+      "county_fips": "48319",
+      "county": "Mason",
+      "candidate_votes": {
+        "Cornyn": 1980,
+        "Hegar": 443,
+        "McKennon": 25,
+        "Collins": 7
+      }
+    },
+    {
+      "county_fips": "48321",
+      "county": "Matagorda",
+      "candidate_votes": {
+        "Cornyn": 9647,
+        "Hegar": 3551,
+        "McKennon": 222,
+        "Collins": 62
+      }
+    },
+    {
+      "county_fips": "48323",
+      "county": "Maverick",
+      "candidate_votes": {
+        "Cornyn": 5708,
+        "Hegar": 7950,
+        "McKennon": 269,
+        "Collins": 349
+      }
+    },
+    {
+      "county_fips": "48325",
+      "county": "Medina",
+      "candidate_votes": {
+        "Cornyn": 15594,
+        "Hegar": 6207,
+        "McKennon": 313,
+        "Collins": 96
+      }
+    },
+    {
+      "county_fips": "48327",
+      "county": "Menard",
+      "candidate_votes": {
+        "Cornyn": 797,
+        "Hegar": 189,
+        "McKennon": 10,
+        "Collins": 4
+      }
+    },
+    {
+      "county_fips": "48329",
+      "county": "Midland",
+      "candidate_votes": {
+        "Cornyn": 45733,
+        "Hegar": 11417,
+        "McKennon": 1162,
+        "Collins": 216
+      }
+    },
+    {
+      "county_fips": "48331",
+      "county": "Milam",
+      "candidate_votes": {
+        "Cornyn": 7759,
+        "Hegar": 2382,
+        "McKennon": 136,
+        "Collins": 54
+      }
+    },
+    {
+      "county_fips": "48333",
+      "county": "Mills",
+      "candidate_votes": {
+        "Cornyn": 2196,
+        "Hegar": 252,
+        "McKennon": 30,
+        "Collins": 9
+      }
+    },
+    {
+      "county_fips": "48335",
+      "county": "Mitchell",
+      "candidate_votes": {
+        "Cornyn": 2129,
+        "Hegar": 359,
+        "McKennon": 40,
+        "Collins": 12
+      }
+    },
+    {
+      "county_fips": "48337",
+      "county": "Montague",
+      "candidate_votes": {
+        "Cornyn": 8526,
+        "Hegar": 1051,
+        "McKennon": 135,
+        "Collins": 47
+      }
+    },
+    {
+      "county_fips": "48339",
+      "county": "Montgomery",
+      "candidate_votes": {
+        "Cornyn": 194528,
+        "Hegar": 68254,
+        "McKennon": 4844,
+        "Collins": 1208
+      }
+    },
+    {
+      "county_fips": "48341",
+      "county": "Moore",
+      "candidate_votes": {
+        "Cornyn": 4314,
+        "Hegar": 999,
+        "McKennon": 102,
+        "Collins": 32
+      }
+    },
+    {
+      "county_fips": "48343",
+      "county": "Morris",
+      "candidate_votes": {
+        "Cornyn": 3727,
+        "Hegar": 1634,
+        "McKennon": 66,
+        "Collins": 21
+      }
+    },
+    {
+      "county_fips": "48345",
+      "county": "Motley",
+      "candidate_votes": {
+        "Cornyn": 591,
+        "Hegar": 44,
+        "McKennon": 3,
+        "Collins": 0
+      }
+    },
+    {
+      "county_fips": "48347",
+      "county": "Nacogdoches",
+      "candidate_votes": {
+        "Cornyn": 17370,
+        "Hegar": 8487,
+        "McKennon": 476,
+        "Collins": 163
+      }
+    },
+    {
+      "county_fips": "48349",
+      "county": "Navarro",
+      "candidate_votes": {
+        "Cornyn": 13701,
+        "Hegar": 4821,
+        "McKennon": 315,
+        "Collins": 125
+      }
+    },
+    {
+      "county_fips": "48351",
+      "county": "Newton",
+      "candidate_votes": {
+        "Cornyn": 4784,
+        "Hegar": 1163,
+        "McKennon": 47,
+        "Collins": 23
+      }
+    },
+    {
+      "county_fips": "48353",
+      "county": "Nolan",
+      "candidate_votes": {
+        "Cornyn": 4102,
+        "Hegar": 1077,
+        "McKennon": 84,
+        "Collins": 18
+      }
+    },
+    {
+      "county_fips": "48355",
+      "county": "Nueces",
+      "candidate_votes": {
+        "Cornyn": 64558,
+        "Hegar": 57180,
+        "McKennon": 2564,
+        "Collins": 997
+      }
+    },
+    {
+      "county_fips": "48357",
+      "county": "Ochiltree",
+      "candidate_votes": {
+        "Cornyn": 2783,
+        "Hegar": 278,
+        "McKennon": 36,
+        "Collins": 8
+      }
+    },
+    {
+      "county_fips": "48359",
+      "county": "Oldham",
+      "candidate_votes": {
+        "Cornyn": 908,
+        "Hegar": 74,
+        "McKennon": 9,
+        "Collins": 5
+      }
+    },
+    {
+      "county_fips": "48361",
+      "county": "Orange",
+      "candidate_votes": {
+        "Cornyn": 28720,
+        "Hegar": 6249,
+        "McKennon": 572,
+        "Collins": 140
+      }
+    },
+    {
+      "county_fips": "48363",
+      "county": "Palo Pinto",
+      "candidate_votes": {
+        "Cornyn": 9999,
+        "Hegar": 2028,
+        "McKennon": 231,
+        "Collins": 70
+      }
+    },
+    {
+      "county_fips": "48365",
+      "county": "Panola",
+      "candidate_votes": {
+        "Cornyn": 9145,
+        "Hegar": 2015,
+        "McKennon": 109,
+        "Collins": 30
+      }
+    },
+    {
+      "county_fips": "48367",
+      "county": "Parker",
+      "candidate_votes": {
+        "Cornyn": 61705,
+        "Hegar": 11919,
+        "McKennon": 1568,
+        "Collins": 325
+      }
+    },
+    {
+      "county_fips": "48369",
+      "county": "Parmer",
+      "candidate_votes": {
+        "Cornyn": 2132,
+        "Hegar": 454,
+        "McKennon": 28,
+        "Collins": 13
+      }
+    },
+    {
+      "county_fips": "48371",
+      "county": "Pecos",
+      "candidate_votes": {
+        "Cornyn": 3081,
+        "Hegar": 1376,
+        "McKennon": 79,
+        "Collins": 32
+      }
+    },
+    {
+      "county_fips": "48373",
+      "county": "Polk",
+      "candidate_votes": {
+        "Cornyn": 17735,
+        "Hegar": 5237,
+        "McKennon": 426,
+        "Collins": 133
+      }
+    },
+    {
+      "county_fips": "48375",
+      "county": "Potter",
+      "candidate_votes": {
+        "Cornyn": 22683,
+        "Hegar": 9168,
+        "McKennon": 738,
+        "Collins": 247
+      }
+    },
+    {
+      "county_fips": "48377",
+      "county": "Presidio",
+      "candidate_votes": {
+        "Cornyn": 651,
+        "Hegar": 1374,
+        "McKennon": 29,
+        "Collins": 37
+      }
+    },
+    {
+      "county_fips": "48379",
+      "county": "Rains",
+      "candidate_votes": {
+        "Cornyn": 5060,
+        "Hegar": 789,
+        "McKennon": 81,
+        "Collins": 26
+      }
+    },
+    {
+      "county_fips": "48381",
+      "county": "Randall",
+      "candidate_votes": {
+        "Cornyn": 51116,
+        "Hegar": 11618,
+        "McKennon": 1348,
+        "Collins": 234
+      }
+    },
+    {
+      "county_fips": "48383",
+      "county": "Reagan",
+      "candidate_votes": {
+        "Cornyn": 893,
+        "Hegar": 154,
+        "McKennon": 13,
+        "Collins": 9
+      }
+    },
+    {
+      "county_fips": "48385",
+      "county": "Real",
+      "candidate_votes": {
+        "Cornyn": 1626,
+        "Hegar": 286,
+        "McKennon": 19,
+        "Collins": 8
+      }
+    },
+    {
+      "county_fips": "48387",
+      "county": "Red River",
+      "candidate_votes": {
+        "Cornyn": 4452,
+        "Hegar": 1191,
+        "McKennon": 58,
+        "Collins": 31
+      }
+    },
+    {
+      "county_fips": "48389",
+      "county": "Reeves",
+      "candidate_votes": {
+        "Cornyn": 1978,
+        "Hegar": 1337,
+        "McKennon": 72,
+        "Collins": 43
+      }
+    },
+    {
+      "county_fips": "48391",
+      "county": "Refugio",
+      "candidate_votes": {
+        "Cornyn": 2073,
+        "Hegar": 1023,
+        "McKennon": 52,
+        "Collins": 24
+      }
+    },
+    {
+      "county_fips": "48393",
+      "county": "Roberts",
+      "candidate_votes": {
+        "Cornyn": 526,
+        "Hegar": 15,
+        "McKennon": 4,
+        "Collins": 0
+      }
+    },
+    {
+      "county_fips": "48395",
+      "county": "Robertson",
+      "candidate_votes": {
+        "Cornyn": 5590,
+        "Hegar": 2244,
+        "McKennon": 118,
+        "Collins": 36
+      }
+    },
+    {
+      "county_fips": "48397",
+      "county": "Rockwall",
+      "candidate_votes": {
+        "Cornyn": 37584,
+        "Hegar": 15023,
+        "McKennon": 895,
+        "Collins": 299
+      }
+    },
+    {
+      "county_fips": "48399",
+      "county": "Runnels",
+      "candidate_votes": {
+        "Cornyn": 3722,
+        "Hegar": 515,
+        "McKennon": 66,
+        "Collins": 25
+      }
+    },
+    {
+      "county_fips": "48401",
+      "county": "Rusk",
+      "candidate_votes": {
+        "Cornyn": 16367,
+        "Hegar": 4455,
+        "McKennon": 277,
+        "Collins": 78
+      }
+    },
+    {
+      "county_fips": "48403",
+      "county": "Sabine",
+      "candidate_votes": {
+        "Cornyn": 4678,
+        "Hegar": 688,
+        "McKennon": 46,
+        "Collins": 23
+      }
+    },
+    {
+      "county_fips": "48405",
+      "county": "San Augustine",
+      "candidate_votes": {
+        "Cornyn": 2898,
+        "Hegar": 928,
+        "McKennon": 39,
+        "Collins": 12
+      }
+    },
+    {
+      "county_fips": "48407",
+      "county": "San Jacinto",
+      "candidate_votes": {
+        "Cornyn": 9808,
+        "Hegar": 2268,
+        "McKennon": 224,
+        "Collins": 63
+      }
+    },
+    {
+      "county_fips": "48409",
+      "county": "San Patricio",
+      "candidate_votes": {
+        "Cornyn": 16174,
+        "Hegar": 8494,
+        "McKennon": 487,
+        "Collins": 161
+      }
+    },
+    {
+      "county_fips": "48411",
+      "county": "San Saba",
+      "candidate_votes": {
+        "Cornyn": 2218,
+        "Hegar": 270,
+        "McKennon": 9,
+        "Collins": 3
+      }
+    },
+    {
+      "county_fips": "48413",
+      "county": "Schleicher",
+      "candidate_votes": {
+        "Cornyn": 927,
+        "Hegar": 191,
+        "McKennon": 10,
+        "Collins": 4
+      }
+    },
+    {
+      "county_fips": "48415",
+      "county": "Scurry",
+      "candidate_votes": {
+        "Cornyn": 4870,
+        "Hegar": 805,
+        "McKennon": 89,
+        "Collins": 32
+      }
+    },
+    {
+      "county_fips": "48417",
+      "county": "Shackelford",
+      "candidate_votes": {
+        "Cornyn": 1475,
+        "Hegar": 115,
+        "McKennon": 14,
+        "Collins": 3
+      }
+    },
+    {
+      "county_fips": "48419",
+      "county": "Shelby",
+      "candidate_votes": {
+        "Cornyn": 7868,
+        "Hegar": 2022,
+        "McKennon": 75,
+        "Collins": 27
+      }
+    },
+    {
+      "county_fips": "48421",
+      "county": "Sherman",
+      "candidate_votes": {
+        "Cornyn": 888,
+        "Hegar": 88,
+        "McKennon": 7,
+        "Collins": 2
+      }
+    },
+    {
+      "county_fips": "48423",
+      "county": "Smith",
+      "candidate_votes": {
+        "Cornyn": 69574,
+        "Hegar": 28385,
+        "McKennon": 1484,
+        "Collins": 443
+      }
+    },
+    {
+      "county_fips": "48425",
+      "county": "Somervell",
+      "candidate_votes": {
+        "Cornyn": 4103,
+        "Hegar": 712,
+        "McKennon": 78,
+        "Collins": 27
+      }
+    },
+    {
+      "county_fips": "48427",
+      "county": "Starr",
+      "candidate_votes": {
+        "Cornyn": 5825,
+        "Hegar": 8139,
+        "McKennon": 356,
+        "Collins": 385
+      }
+    },
+    {
+      "county_fips": "48429",
+      "county": "Stephens",
+      "candidate_votes": {
+        "Cornyn": 3312,
+        "Hegar": 374,
+        "McKennon": 32,
+        "Collins": 17
+      }
+    },
+    {
+      "county_fips": "48431",
+      "county": "Sterling",
+      "candidate_votes": {
+        "Cornyn": 567,
+        "Hegar": 47,
+        "McKennon": 2,
+        "Collins": 5
+      }
+    },
+    {
+      "county_fips": "48433",
+      "county": "Stonewall",
+      "candidate_votes": {
+        "Cornyn": 586,
+        "Hegar": 122,
+        "McKennon": 3,
+        "Collins": 3
+      }
+    },
+    {
+      "county_fips": "48435",
+      "county": "Sutton",
+      "candidate_votes": {
+        "Cornyn": 1204,
+        "Hegar": 305,
+        "McKennon": 10,
+        "Collins": 10
+      }
+    },
+    {
+      "county_fips": "48437",
+      "county": "Swisher",
+      "candidate_votes": {
+        "Cornyn": 1795,
+        "Hegar": 464,
+        "McKennon": 44,
+        "Collins": 15
+      }
+    },
+    {
+      "county_fips": "48439",
+      "county": "Tarrant",
+      "candidate_votes": {
+        "Cornyn": 423117,
+        "Hegar": 382408,
+        "McKennon": 16443,
+        "Collins": 6130
+      }
+    },
+    {
+      "county_fips": "48441",
+      "county": "Taylor",
+      "candidate_votes": {
+        "Cornyn": 39887,
+        "Hegar": 13074,
+        "McKennon": 1209,
+        "Collins": 309
+      }
+    },
+    {
+      "county_fips": "48443",
+      "county": "Terrell",
+      "candidate_votes": {
+        "Cornyn": 324,
+        "Hegar": 116,
+        "McKennon": 5,
+        "Collins": 3
+      }
+    },
+    {
+      "county_fips": "48445",
+      "county": "Terry",
+      "candidate_votes": {
+        "Cornyn": 2731,
+        "Hegar": 714,
+        "McKennon": 63,
+        "Collins": 16
+      }
+    },
+    {
+      "county_fips": "48447",
+      "county": "Throckmorton",
+      "candidate_votes": {
+        "Cornyn": 788,
+        "Hegar": 76,
+        "McKennon": 7,
+        "Collins": 3
+      }
+    },
+    {
+      "county_fips": "48449",
+      "county": "Titus",
+      "candidate_votes": {
+        "Cornyn": 7426,
+        "Hegar": 2748,
+        "McKennon": 152,
+        "Collins": 50
+      }
+    },
+    {
+      "county_fips": "48451",
+      "county": "Tom Green",
+      "candidate_votes": {
+        "Cornyn": 32274,
+        "Hegar": 11329,
+        "McKennon": 876,
+        "Collins": 233
+      }
+    },
+    {
+      "county_fips": "48453",
+      "county": "Travis",
+      "candidate_votes": {
+        "Cornyn": 175860,
+        "Hegar": 408528,
+        "McKennon": 12006,
+        "Collins": 4191
+      }
+    },
+    {
+      "county_fips": "48455",
+      "county": "Trinity",
+      "candidate_votes": {
+        "Cornyn": 5445,
+        "Hegar": 1258,
+        "McKennon": 79,
+        "Collins": 29
+      }
+    },
+    {
+      "county_fips": "48457",
+      "county": "Tyler",
+      "candidate_votes": {
+        "Cornyn": 7916,
+        "Hegar": 1400,
+        "McKennon": 154,
+        "Collins": 53
+      }
+    },
+    {
+      "county_fips": "48459",
+      "county": "Upshur",
+      "candidate_votes": {
+        "Cornyn": 15470,
+        "Hegar": 2804,
+        "McKennon": 320,
+        "Collins": 55
+      }
+    },
+    {
+      "county_fips": "48461",
+      "county": "Upton",
+      "candidate_votes": {
+        "Cornyn": 1139,
+        "Hegar": 159,
+        "McKennon": 18,
+        "Collins": 11
+      }
+    },
+    {
+      "county_fips": "48463",
+      "county": "Uvalde",
+      "candidate_votes": {
+        "Cornyn": 5968,
+        "Hegar": 3821,
+        "McKennon": 192,
+        "Collins": 99
+      }
+    },
+    {
+      "county_fips": "48465",
+      "county": "Val Verde",
+      "candidate_votes": {
+        "Cornyn": 8102,
+        "Hegar": 6430,
+        "McKennon": 252,
+        "Collins": 170
+      }
+    },
+    {
+      "county_fips": "48467",
+      "county": "Van Zandt",
+      "candidate_votes": {
+        "Cornyn": 22010,
+        "Hegar": 3374,
+        "McKennon": 282,
+        "Collins": 107
+      }
+    },
+    {
+      "county_fips": "48469",
+      "county": "Victoria",
+      "candidate_votes": {
+        "Cornyn": 23144,
+        "Hegar": 9834,
+        "McKennon": 524,
+        "Collins": 172
+      }
+    },
+    {
+      "county_fips": "48471",
+      "county": "Walker",
+      "candidate_votes": {
+        "Cornyn": 15480,
+        "Hegar": 7414,
+        "McKennon": 449,
+        "Collins": 133
+      }
+    },
+    {
+      "county_fips": "48473",
+      "county": "Waller",
+      "candidate_votes": {
+        "Cornyn": 14189,
+        "Hegar": 7701,
+        "McKennon": 394,
+        "Collins": 120
+      }
+    },
+    {
+      "county_fips": "48475",
+      "county": "Ward",
+      "candidate_votes": {
+        "Cornyn": 3138,
+        "Hegar": 725,
+        "McKennon": 61,
+        "Collins": 16
+      }
+    },
+    {
+      "county_fips": "48477",
+      "county": "Washington",
+      "candidate_votes": {
+        "Cornyn": 12988,
+        "Hegar": 4017,
+        "McKennon": 223,
+        "Collins": 51
+      }
+    },
+    {
+      "county_fips": "48479",
+      "county": "Webb",
+      "candidate_votes": {
+        "Cornyn": 23159,
+        "Hegar": 40845,
+        "McKennon": 1247,
+        "Collins": 1103
+      }
+    },
+    {
+      "county_fips": "48481",
+      "county": "Wharton",
+      "candidate_votes": {
+        "Cornyn": 11832,
+        "Hegar": 4513,
+        "McKennon": 204,
+        "Collins": 70
+      }
+    },
+    {
+      "county_fips": "48483",
+      "county": "Wheeler",
+      "candidate_votes": {
+        "Cornyn": 2079,
+        "Hegar": 165,
+        "McKennon": 26,
+        "Collins": 11
+      }
+    },
+    {
+      "county_fips": "48485",
+      "county": "Wichita",
+      "candidate_votes": {
+        "Cornyn": 31626,
+        "Hegar": 12399,
+        "McKennon": 997,
+        "Collins": 259
+      }
+    },
+    {
+      "county_fips": "48487",
+      "county": "Wilbarger",
+      "candidate_votes": {
+        "Cornyn": 3473,
+        "Hegar": 874,
+        "McKennon": 54,
+        "Collins": 18
+      }
+    },
+    {
+      "county_fips": "48489",
+      "county": "Willacy",
+      "candidate_votes": {
+        "Cornyn": 2183,
+        "Hegar": 2968,
+        "McKennon": 87,
+        "Collins": 48
+      }
+    },
+    {
+      "county_fips": "48491",
+      "county": "Williamson",
+      "candidate_votes": {
+        "Cornyn": 141224,
+        "Hegar": 132441,
+        "McKennon": 6062,
+        "Collins": 1470
+      }
+    },
+    {
+      "county_fips": "48493",
+      "county": "Wilson",
+      "candidate_votes": {
+        "Cornyn": 18327,
+        "Hegar": 5943,
+        "McKennon": 309,
+        "Collins": 118
+      }
+    },
+    {
+      "county_fips": "48495",
+      "county": "Winkler",
+      "candidate_votes": {
+        "Cornyn": 1714,
+        "Hegar": 338,
+        "McKennon": 30,
+        "Collins": 12
+      }
+    },
+    {
+      "county_fips": "48497",
+      "county": "Wise",
+      "candidate_votes": {
+        "Cornyn": 26630,
+        "Hegar": 4644,
+        "McKennon": 563,
+        "Collins": 162
+      }
+    },
+    {
+      "county_fips": "48499",
+      "county": "Wood",
+      "candidate_votes": {
+        "Cornyn": 18757,
+        "Hegar": 3318,
+        "McKennon": 306,
+        "Collins": 87
+      }
+    },
+    {
+      "county_fips": "48501",
+      "county": "Yoakum",
+      "candidate_votes": {
+        "Cornyn": 2153,
+        "Hegar": 387,
+        "McKennon": 38,
+        "Collins": 21
+      }
+    },
+    {
+      "county_fips": "48503",
+      "county": "Young",
+      "candidate_votes": {
+        "Cornyn": 6996,
+        "Hegar": 967,
+        "McKennon": 120,
+        "Collins": 26
+      }
+    },
+    {
+      "county_fips": "48505",
+      "county": "Zapata",
+      "candidate_votes": {
+        "Cornyn": 1454,
+        "Hegar": 1821,
+        "McKennon": 52,
+        "Collins": 50
+      }
+    },
+    {
+      "county_fips": "48507",
+      "county": "Zavala",
+      "candidate_votes": {
+        "Cornyn": 1232,
+        "Hegar": 2633,
+        "McKennon": 72,
+        "Collins": 57
+      }
+    }
+  ]
+}
