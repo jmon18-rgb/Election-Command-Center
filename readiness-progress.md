@@ -1,5 +1,42 @@
 # Readiness progress
 
+## October 26 12:15Z - National county-results bridge implemented for review
+
+- Latest human clarification: ONE national NYT-style Blue Wave/Tsunami outlook
+  is the primary deliverable. Separate race needles are supporting diagnostics.
+  AUTONOMOUS_READINESS.md now captures this; no additional race panels, artwork
+  or generic reliability work is planned ahead of the national connection.
+- Implementation revision7edb1b09 connects strict Iowa/Kansas/Texas county-count
+  envelopes to a counts-only likelihood on the existing correlated national
+  election draws. No race posterior or extra poll prior is reused. Whole-draw
+  bounded weighting/resampling and exact replay preserve coherent chamber/race
+  probabilities and the owner's four exclusive thresholds. Default polling-only
+  model numeric outputs are unchanged. Source calls retain their existing gate.
+- Primary home/Election Night needle now renders the experimental national
+  update, pre-count marker, county/vote coverage and explicit zero House-source
+  disclosure. House changes use the existing shared-error assumptions, not an
+  observed national House swing. Three Senate states remain limited coverage.
+- Isolated five-stage NATIONAL rehearsal uses fictional counts over official
+  geography: baseline, rural-first, broader blue surprise, correction, withdrawal.
+  Production rejects rehearsal-marked envelopes; preview changes neither live
+  model nor stored revisions. This is not chronological replay or calibration.
+- Local 1366/390 Edge fixtures demonstrate the national outlook changing BEFORE
+  calls, corrected results changing it back, withdrawals/outages/test data restoring
+  baseline, unchanged polling priors and preview isolation. All25 core checks pass;
+  all three existing race browser suites pass with the polling-prior isolation
+  assertions updated to reflect the newly authorized national counts path.
+  Current-revision full dashboard/CI checks are still required before merge.
+- Critical queued PR453 mergedf4b8cdc3 after all29 current-head workflows pass
+  at08323c7a, including rerunning one cancelled browser-install job. Actual Pages
+  at12:10:08Z matches all55 checked files to the merged revision. No protection
+  bypass. https://github.com/jmon18-rgb/Election-Command-Center/pull/453
+- Exact remaining limits: actual full Civic endpoints still TEST DATA; genuine
+  non-test post-close delivery unproven. Independent chronological competitive
+  calibration unavailable. Remaining-turnout/batch uncertainty parameters are
+  declared assumptions, not fitted calibration. The national bridge is local/
+  review work, NOT deployed yet. Next: finish current-head review checks, repair
+  any failures, merge only when green and verify published national behavior.
+
 ## October 26 11:27Z - three-race capture merged; reload and startup repair
 
 - PR452 merged717652b4 after all4 current-head workflows passed atb8ee4bb4.
