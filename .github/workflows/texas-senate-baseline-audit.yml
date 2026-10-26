@@ -12,6 +12,8 @@ on:
       - 'scripts/test_texas_needle_browser.mjs'
       - 'scripts/iowa_county_needle.js'
       - 'scripts/competitive_needle_prior.js'
+      - 'scripts/competitive_source_revision.js'
+      - 'scripts/test_competitive_source_revision.cjs'
       - 'scripts/election_night_transport.js'
       - 'index.html'
       - 'scripts/read_official_xlsx_rows.py'

@@ -70,3 +70,20 @@ without changing the no-calibration/no-proven-live-delivery decision. Texas's
 2024 Senate class, matchup and presidential turnout differ from2026; their
 transfer is not independently validated. See TEXAS_SENATE_NEEDLE_INPUTS.md and
 the dated readiness progress for exact revisions and evidence.
+
+## Reload/startup correction follow-up (review pending)
+
+A validated source revision is retained on this browser for each supported2026
+race, including zero-count withdrawals. Only a newly fetched, fully validated
+source response can produce a probability; cached signatures never supply
+forecast votes. Other tabs consult the latest retained revision on their next
+observation. If browser storage is blocked, protection remains in-session only;
+clearing it loses the cross-reload ordering history. Invalid cached metadata is
+ignored rather than treated as source authority. Provider test data never writes
+this record. No calibration or true live-delivery claim follows.
+
+A brief bounded linked-model startup wait can consume the first source response
+without fetching it again. The source revision/mode/outage checks run again after
+the wait. A missing protection asset withholds the race estimate and leaves the
+independent national model available. These behaviors are tested with explicit
+synthetic inputs; this follow-up remains pending CI and deployment.

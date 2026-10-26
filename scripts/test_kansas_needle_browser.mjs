@@ -43,6 +43,7 @@ try{
   const host=page.locator('#enKansasRaceNeedle');
   await page.waitForFunction(()=>document.querySelector('[data-ks="state"]')?.textContent.includes('TEST DATA'));
   assert.equal(await host.locator('[data-ks="chance"]').textContent(),'—');
+  assert.equal(await page.evaluate(key=>localStorage.getItem(key),'ecc:county-source-revision:2026:KS-SEN:v1'),null,'Provider test votes never persist a source revision');
   const national=await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities));
   scenario='red';await page.clock.setSystemTime(new Date('2026-11-04T03:06:00Z'));
   await host.locator('[data-ks="refresh"]').click();
@@ -61,6 +62,7 @@ try{
   await host.locator('[data-ks="refresh"]').click();
   await page.waitForFunction(first=>window.enKansasPilotController?.status().projection?.dem_win_probability>first+.3,first);
   assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),national);
+  assert.equal(await page.evaluate(key=>localStorage.getItem(key),'ecc:county-source-revision:2026:KS-SEN:v1')!==null,true,'Validated positive inputs persist ordering metadata');
   scenario='withdrawn';await page.clock.setSystemTime(new Date('2026-11-04T03:07:15Z'));
   await host.locator('[data-ks="refresh"]').click();
   await page.waitForFunction(()=>document.querySelector('[data-ks="state"]')?.textContent.includes('No genuine'));
