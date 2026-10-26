@@ -10,10 +10,19 @@
   official schema, source URLs/SHA256 and full Census source. Reproduce268768
   statewide rows ->680 selected candidate rows/340 precincts/three district county
   parts, with USC/candidateDistrict10/currentCongressDistrict10 agreement.
-  D200434/R205567/other0 exactly match MIT and current map is unchanged.
+  D200434/R205567/named-other0 exactly match MIT and current map is unchanged.
   Original schema CRLF preservation explicitly tested against staged Git bytes;
   do not normalize the government-byte hash. Pure schema/office/FIPS/count/
   duplicate/incomplete-pair tests pass. No historical release clocks invented.
+- Independent original Dauphin county Congress page now captured and pinned:
+  https://elections.dauphincounty.gov/?key=38&race=REPRESENTATIVE%20IN%20CONGRESS
+  HTTP200,46228bytes,SHA25627ab8368b840932a76c9530f64a0583adb708f7e1870ff345d0b503f94f15e4a.
+  Exact2024 general/current Congress table verifies80272D/66986R, plus391 generic
+  write-ins. The state extract omits generic write-ins: rename its zero category
+  named_other_votes and explicitly avoid an all-ballot total. Count model remains
+  D/R only, so numerical likelihood unchanged. Strict original HTML/header/table/
+  candidate/total tests preserve this distinction. This is ONE historical county
+  sample, not a verified November2026 endpoint or actual timing comparison.
 - Reuse shared strict House parser/controller for exact87385 StelsonD/PerryR and
   three42xxx county identities. National counts-only likelihood/replay now admits
   seven scopes, four House districts across THREE states. PA-only before-call

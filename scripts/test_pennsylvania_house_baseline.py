@@ -1,6 +1,6 @@
 """Guard original-schema joins and office selection; no forecasting calibration."""
-import copy,unittest
-from build_pennsylvania_house_county_baseline import aggregate
+import copy,gzip,unittest
+from build_pennsylvania_house_county_baseline import aggregate,parse_official_sample,FOLDER,build
 CENSUS={'Cumberland':'42041','Dauphin':'42043','York':'42133'}
 def fixtures():
  rows=[]
@@ -26,4 +26,14 @@ class ScopeTests(unittest.TestCase):
  def test_missing_candidate_or_county(self):
   for rows in [fixtures()[1:],fixtures()[2:]]:
    with self.assertRaises(ValueError):aggregate(rows,CENSUS)
+ def test_original_county_sample_and_writein_separation(self):
+  raw=gzip.decompress((FOLDER/'2024-dauphin-congress-official.html.gz').read_bytes())
+  votes=parse_official_sample(raw)
+  self.assertEqual(votes,{('DEM','JANELLE STELSON'):80272,('REP','SCOTT PERRY'):66986,('NONPARTISAN','WRITE-IN'):391})
+  baseline,_=build()
+  self.assertEqual(baseline['district_totals']['named_other_votes'],0)
+  self.assertFalse(baseline['generic_write_ins_reported_by_state_extract'])
+  self.assertEqual(baseline['independent_official_sample']['generic_write_in_votes'],391)
+  for changed in [raw.replace(b'2024 Presidential General Election Results',b'2026 Primary Election Results'),raw.replace(b'SCOTT PERRY',b'OTHER CANDIDATE'),raw.replace(b'391',b'392')]:
+   with self.assertRaises(ValueError):parse_official_sample(changed)
 if __name__=='__main__':unittest.main()

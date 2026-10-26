@@ -145,7 +145,7 @@ original state-published2024 precinct extract. Strict office USC plus candidate
 district10 plus current row congressional district10 avoids mixing state races
 or whole counties. Election county codes21/22/67 are not FIPS: independently
 matched Census IDs are42041/42043/42133, including normalization of41 versus041.
-680 candidate rows form340 complete D/R precinct pairs;200434D/205567R/0other
+680 candidate rows form340 complete D/R precinct pairs;200434D/205567R/0named-other
 match independent MIT district totals. Original schema and return bytes remain
 pinned, and the schema's original CRLFs are preserved across operating systems.
 
@@ -165,3 +165,12 @@ HTTP duration, cache policy and source timestamp age are not matched real batch
 receipt comparisons or independent calibration. The seven-source policy targets
 28 regular automatic post-close requests/min with unchanged4active/64queued;
 priority reservations7/bulk57 do not enlarge the total transport budget.
+
+
+Independent original Dauphin2024 Congress HTML confirms80272D/66986R and391
+separate generic write-ins. Those write-ins are absent from the state extract;
+its named-other zero is not evidence of zero write-ins or a complete ballot total.
+Only D/R feed the likelihood, unchanged by this labeling correction. Original
+HTML bytes and strict election/table/candidate/total corroboration are pinned.
+This is historical format evidence for ONE county, not a current independent
+November feed or comparative timing observation.

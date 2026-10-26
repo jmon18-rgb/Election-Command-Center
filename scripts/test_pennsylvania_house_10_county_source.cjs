@@ -15,7 +15,7 @@ const candidates=[{name:'Janelle Stelson',party:'Democratic',votes:0},
  {name:'Scott Perry',party:'Republican',votes:0}];
 // Temporary synthetic post-close fixture. None of these are actual 2026 votes.
 const region_results=Object.fromEntries(historic.map(c=>{
- const values=[Math.floor(c.dem_votes/100),Math.floor(c.rep_votes/100),Math.floor(c.other_votes/100)];
+ const values=[Math.floor(c.dem_votes/100),Math.floor(c.rep_votes/100),Math.floor(c.named_other_votes/100)];
  const rows=candidates.map((person,i)=>({...person,votes:values[i]}));
  values.slice(0,2).forEach((n,i)=>candidates[i].votes+=n);
  return [c.county_fips,{name:c.county,type:'County',fips:c.county_fips,percent_reporting:100,candidates:rows}];
