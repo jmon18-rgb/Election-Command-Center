@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-26T16:56:40.343761Z",
+  "updated_at": "2026-10-26T17:47:40.963885Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
@@ -264,6 +264,23 @@
   ],
   "items": [
     {
+      "id": "baa075c26cb40f0ae67e",
+      "title": "Bob Ferguson Trashed ICE All Year. Now He Wants Troops at Drop Boxes. - Seattle Red",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxONDBSMnVNZm93RHdHSGhfQmtwdnNvT0JMZlNKNTV0SjBMMWp2MFNTU3lrb0dPb0V3TUlBVUZfOUd2WkltTGpPaTZBQ0ZUS3FUcG56czY0ZE9BNW40S0dScktzaU01ZjR4S1FuTkl2QjJtb0I5V28tcHh3TmpqV0NhSUdaU3lvcW16cV9ZNG5sZl9yZzUtYXZVNDhZcE80X1ZSVTBubXZUci1PNjBvdEtDbzVyLW11WVhiaTUwZFJySGFrdkdFZkI2bjVsNVlndw?oc=5",
+      "publisher": "Seattle Red",
+      "published_at": "2026-10-26T16:35:00Z",
+      "detected_at": "2026-10-26T17:47:40.963885Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "7d30a85da1d8e4ea4057",
       "title": "California election controversy explained: Why the Department of Justice and state are squaring off over voter rolls - Livemint",
       "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxNN0hZTzdGZGhzekJMaTBVZXVGNVFDNmF1THBaSXNOeU1oRUtnQ01NSzZaVGFZMFZiSzBob1kwNVctenNjVkJRcmk5d0NjeGxITmpnQzVCYTl2VjZaTEZSazVmb0ZWUV9OSE1tdHhvQXdnNndmLVZZOXJRd0h4bFNWcVNsN2dwOWoySktwQllscnBhUThseHIzNzhvRGxEc2JQZE1YMV9jM1RGdi1nX3RaNzdRRm5GZFJyMnpHY2RsMVpqS1pUX0kySkMySmVYZXgySzVyU0NmYkY1aTg5M0VleEVkbXVHeGJfR2g1NWE4TnRsSHEtQTlPZlctQUhLVE41TGVF0gGIAkFVX3lxTE5MQUVvWjZEbmtxS0Q3QkNxUXptOXc5UmlVZnF2b3I4N1FXUFVfT3ZPQXRpYll0b3A4aW84SXBWblRIOW9tU2x5Y0JYSms2NHpQeG5XSXBPNHA2cl9mSXpPamNNVlVsTXdFSFZrRWhYc3djTXhBX3ljRTk0WmdoT0JrY2FOM21jbnpYX0xmckJQN280WV9DWUcyekZoZEJVVnUwc28xVTQ5bWE5RDVrWHY0eEdyb05lX016WEh4aXMycE10aWgteXV0RUctVExaUGQ1dml5SkEwRnFLT19oQXY5VGNHc2VoRFVZTHVWOV9qRDl5UFIwaVVBWVZrcVFIbXQ4bTYyaXIyYQ?oc=5",
@@ -291,6 +308,24 @@
       "publisher": "Los Angeles Times",
       "published_at": "2026-10-26T14:40:51Z",
       "detected_at": "2026-10-26T16:26:45.593324Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "7853e44c87a2b51cded5",
+      "title": "Thousands of observers from the right and left will descend on polling places to monitor the vote on Election Day - PBS",
+      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQZEs1R1ZLenRaM21UX21NWmlBX3l3Rkc2QnV5ZmZpUVFZby1PbGtyTG00eTdvMGZWeUtYOXVZeUVTZ3M0VEFfOHVkNFk4Vkl1czdteVI1YnFGazY2Q0hxNTMyWkhKOURBYWNtWS1vc2pMaFlKYXNPV201RlZnOXRsS01xbjJsQlVOZ3gyUlFNTUZsMVo4UExUdWdlcTNJMlpyYjh2bDdYcVF1U1JWcTlJam5JWmNKeXU1cnNPQTBXUHM2QkRDZmhTTDlYejBobmNwMW5kdXFuWUYxSnQyRGUxWHVINmhKQQ?oc=5",
+      "publisher": "PBS",
+      "published_at": "2026-10-26T14:29:25Z",
+      "detected_at": "2026-10-26T17:47:40.963885Z",
       "state_hints": [],
       "topic_hints": [
         "ballot_access",
@@ -4928,45 +4963,6 @@
       "topic_hints": [],
       "headline_numbers_unverified": [
         "3 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "4676a3bc71d4a896feab",
-      "title": "Federal Judges Rules DOJ Lacks Authority to Check Voter Lists Against Immigration Database - The Presidential Prayer Team",
-      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQb2xEaHl5bUlleGhnbHlkWFJuLUxsZDgtQlNyMHF0UlZ5YVF5R1psNlZzRDlZM3gxY0pzaFpXMmVCNUdGa0JzX2EwREIxZDRHRTdGQVA4VUZ1WnhLcHluWUloOTliUlVXaGswSy0xNDJOM0VhNk43RzBubkd3LUM1Tm5sTzV4Z3hoRlBnSl9qY1hUS0dQOUxQVkdib0NqMWNPV3ItcVdEdy12VjVvVDliTGM2Ym5zZTBUcVdDamZ2cHF3TEl5U0NfRm5PNGwyNE9VamowNjc5MTk?oc=5",
-      "publisher": "The Presidential Prayer Team",
-      "published_at": "2026-10-14T10:00:00Z",
-      "detected_at": "2026-10-14T11:09:17.083238Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "f0d048dd0aeff453dd71",
-      "title": "Texas sued for failing to process more than 500,000 voter registrations - The Texas Tribune",
-      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPdjlNSkd6Qnh0dnpOUkltQnBBTzl0MXlKZ0xaV1pUMjZGZGg4M3lIZ2lGa2d1eTJZYXBLbU1tbTB1d1NCdWYwX3ZKdGlQckRoTGxFNkUzaWZ1TnVWU0NKbWo3aEtmeEJRcDctVThOYXVoeUNIeU9vTTFLdzJYYXRSNGFBbjA4WW96cUdyQmcyN1RzaU0zTTNxdXJB?oc=5",
-      "publisher": "The Texas Tribune",
-      "published_at": "2026-10-14T09:00:00Z",
-      "detected_at": "2026-10-14T11:09:17.083238Z",
-      "state_hints": [
-        "TX"
-      ],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [
-        "500,000 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
