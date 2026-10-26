@@ -1,0 +1,61 @@
+{
+  "schema": "competitive-official-source-preparation-v1",
+  "race_code": "AZ-01",
+  "observed_at": "2026-10-26T21:43:46.263067+00:00",
+  "status": "OFFICIAL_COUNTY_AZ01_ZERO_TEMPLATE_OBSERVED_NOT_LIVE_APPROVED",
+  "priority_reference": "saved owner-uploaded tipping-order rank7; linked-model competitiveness audit15:20UTC",
+  "official_landing": "https://results.arizona.vote/default.html",
+  "official_county_landing": "https://elections.maricopa.gov/results-and-data/election-results.html",
+  "official_county_text_link": "https://elections.maricopa.gov/asset/jcr%3Abd0ce4f7-2378-408e-a205-800cd7cf6983/Zero%20for%20web%20-%20updated%20cut%20date%20totals.txt",
+  "ordinary_http_observations": {
+    "state_landing": 403,
+    "county_text": 403,
+    "public_app": 200,
+    "public_election_api": 200,
+    "county_normal_browser": 200,
+    "county_literal_text_link_browser": 200
+  },
+  "public_app_discovery": "Search-indexed enhancedvoting Arizona2026general page; direct official sponsorship/link chain not yet verified",
+  "api_url": "https://app.enhancedvoting.com/results/public/api/elections/Arizona/110326GeneralElection",
+  "api_discovery": "Read actual main app bundle api.endpoint and getElection route; not brute-force endpoint enumeration",
+  "api_sha256": "bc1166f3e16eac5ac86e4481b9958c55f1cdcc52f4989468ea885077db5cf4e7",
+  "api_headers": {
+    "access-control-allow-origin": "*",
+    "cache-control": "public, max-age=60"
+  },
+  "election_metadata": {
+    "id": "01000000-3e48-04ed-11b1-08df1107098b",
+    "electionDate": "2026-11-03",
+    "isProduction": true,
+    "isPrimary": false,
+    "asOf": "2026-10-16T19:44:26.755075Z",
+    "lastUpdated": "2026-10-16T19:25:32.295913Z",
+    "publishDate": "2026-10-16T19:46:05.6060211Z",
+    "ballotItemCount": 1
+  },
+  "az01_contest_verified": false,
+  "native_candidate_contract_verified": false,
+  "geography_reference": "Existing repository Census bridge flags AZ01 unchanged2024to2026; need district-part/precinct crosswalk, not whole Maricopa counts",
+  "remaining_ballots_verified": false,
+  "live_votes_accepted": false,
+  "may_move_national_needle": false,
+  "production_enabled": false,
+  "next_step": "Use actual county text and separately verify candidate/210precinct district contract plus matched2024same-boundary precinct baseline. Missing source-clock/live semantics remain; do not wire governor metadata to AZ01.",
+  "county_observation": {
+    "at": "2026-10-26T21:57:44.940Z",
+    "url": "https://elections.maricopa.gov/asset/jcr:bd0ce4f7-2378-408e-a205-800cd7cf6983/Zero%20for%20web%20-%20updated%20cut%20date%20totals.txt",
+    "http": 200,
+    "bytes": 31328879,
+    "sha256": "e19723f24e1f7818853a7d13200c751727d9d6dd0a18c377e17c631393c0d7ce",
+    "last_modified": "Sat, 24 Oct 2026 01:44:52 GMT",
+    "contest_name": "US Rep Dist CD-1",
+    "contest_id": "1",
+    "selected_rows": 1477,
+    "candidates_per_precinct": 7,
+    "district_precincts": 210,
+    "blank_precinct_summary_rows": 7,
+    "all_observed_votes_zero": true,
+    "warning": "Blank precinct rows are summary rows, not a 211th precinct; do not double count. Status1 on summary with zero votes is not ballots complete."
+  },
+  "public_app_contest_observed": "Governor and Lieutenant Governor only; not AZ01. Exact native API data response and visible browser page confirm."
+}

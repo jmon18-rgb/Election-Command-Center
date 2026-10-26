@@ -1,5 +1,160 @@
 # Readiness progress
 
+## October26 21:56Z — exact official AZ01 text obtained and audited
+
+- Normal public Edge page GET200 exposes literal county results link. Normal
+  browser request GET200 obtains31,328,879bytes, SHAe19723f24e1f7818853a7d13200c751727d9d6dd0a18c377e17c631393c0d7ce,
+  LastModifiedOct24. Python ordinary requests403 remains; no security bypass.
+  Earlier24MBinspection cap rejected the first body; reviewed128MBcap completed
+  normal-browser observation. This is not proof of a headless production collector.
+- Actual county file exactUSRepDistCD-1 has1477rows:7candidate identities times
+ 210precincts PLUS7blank-precinct summary rows. All counts ZERO. Never count
+  blank summary as a211thprecinct or sum it twice. Votes reconcile across four
+  stated methods. New offline inspector rejects duplicates, identity drift,
+  missing matrix/summary, invalid counts and mode/summary disagreement; tests and
+  full actual-file inspection PASS. Inspector never admits live evidence.
+- Statewide enhanced app normal browser/API confirms its sole item is GOVERNOR,
+  notAZ01; no guessed contest IDs or governor-to-House wiring. County candidate
+  names includeShahDEM/FeelyREP/AlponteLBT pluswriteins; independent ballot and
+  precinct/baseline contracts still required, not approved fromzero template alone.
+- Source assessment updated; actual file/browserAPI saved locally. Next meaningful
+  step: county2024same-district precinct export plus exact210precinct geography
+  reconciliation and source-clock/live semantics. No new national input or live
+  calibration claim. No repeated403/source probe necessary.
+
+
+## October26 21:41Z — bounded pivotal AZ01 source discovery
+
+- No existing NC2026district reaggregation implementation found; preserve NC01
+  changed-boundary blocker and move to uploaded rank7AZ01, whose current Census
+  bridge says unchanged. Do not use whole-Maricopa totals for this district.
+- Actual official county page links2026general results text (filenameZero forweb).
+  Ordinary download and old statewide landing return403; no bypass attempted.
+  Search discovers enhancedvoting Arizona2026general app, ordinary GET200.
+- Read actual app base/main scripts: declared /results/public/api and getElection
+  route. Exact public2026general metadata API GET200,CORS*,max-age60, production
+  true/nonprimary/dateNov3, staleOct16 and ballotItemCount1. These are metadata,
+  not proof that the sole ballot item is AZ01 or that results are live.
+- Pinned data/arizona_house_01_source_assessment.json; JSON/election/no-enable
+  assertions pass. Actual source HTML/API/bundles saved locally under
+  artifacts/readiness/arizona-source-research. Official sponsorship link chain,
+  exactAZ01contest/candidates, precinct/district-part baseline and reporting/
+  remaining-ballot semantics still required. No additional national input enabled.
+- Next: inspect ordinary app network/declared ballot API once and verify official
+  linkage; ifAZ01notpublished record exact blocker, do not guess contest IDs or
+  repeatedly retry403. Main deployed checks remain successful; no active newPR.
+
+
+## October26 21:26Z — pivotal NC01 official archive inspected; geography blocker isolated
+
+- Reused existing official catalog/download discovery, inspected queued211 before
+  acting. Real official catalog lists11/03/2026, download flag1. Actual HTTPS
+  official S3 ZIP is accessible, SHA a0a046b2878157904343e9053f747094c7230a8d5c0e2e80359e264071ac73fe;
+  Last-ModifiedOct5. Full141466rows share2026election date, CRC checked.
+- Exact US HOUSE OF REPRESENTATIVES DISTRICT01: DonDavisDEM, LaurieBuckhoutREP,
+  TomBaileyLIB; each350precinct rows across25county/district parts, ALL ZERO.
+  No embedded reporting clock; not live approval, test/live semantics unverified.
+  data/north_carolina_house_01_source_assessment.json records actual source and
+  exact blockers, no activation. Local metadata assertions passed.
+- Current geography bridge NC01 explicitly changed_requires_reaggregation and
+  historical_comparison_available=false. Existing statewide NC Senate/presidential
+  baselines cannot substitute for2026district-part history. This makes matched
+  new-line historical precinct aggregation the decisive NC01 forecasting blocker,
+  rather than continuing to claim the ZIP is missing. Need independent ballot/
+  precinct/FIPS contract, reporting semantics and remaining-vote evidence as well.
+- No source panel/model promotion, no repeated blanket probe. ZIP and full audit
+  saved locally under artifacts/readiness/nc*. Next bounded work: assess existing
+  new-line historical aggregation resources; if unavailable move to uploaded
+  priority AZ01 with unchanged-boundary check. Keep source claims distinct from
+  usable predictive inputs. No change to national9route live acceptance status.
+
+
+## October26 21:11Z — bounded predictive acceptance assessment completed
+
+- NATIONAL_NEEDLE_ACCEPTANCE.md reviews implementation, independent transport,
+  actual-input availability, historical skill/chronology, uncertainty calibration,
+  comparative lag and national coverage against actual saved evidence.
+- Decision: deployed experimental implementation passes; calibrated national
+  predictive acceptance does not. Iowa6.63point assumed-order MAE is not a held-out
+  chronological calibration result; Thurston1of7parts does not supply that gap.
+- No new claim of data availability, approved model promotion or owner-approved
+  fallback. Next bounded source work: pivotal missing NC01/AZ01 or independent
+  PA10/NY17 fallback, and chronological remaining-vote evidence; inspect queued
+  NC PRs before duplicating. No repeated unchanged vote probes or new race panels.
+- Inspected current open PRs: no new active source PR;465merged,426paused,59
+  superseded. Current final Pages and official collector remain successful;
+  routine source preflight in progress is non-actionable. Last daily report
+  remains2026-10-26; no repeat milestone notification.
+
+
+## October26 usage/readiness decision checkpoint
+
+- Owner asks whether completion is achievable with85%usage remaining and whether
+  to narrow scope. No estimate of available task-hours follows from that percentage;
+  missing data cannot be resolved by promising more compute. No new scope change
+  was approved. Preserve ONE national results-informed needle as the authorized
+  primary deliverable; the assistant's proposed fallback is a recommendation,
+  not owner acceptance of replacing it with a descriptive results dashboard.
+- Keep the already-authorized October27 source/calibration decision bounded:
+  review existing chronological evidence and estimator evaluation once, identify
+  exact missing inputs, and separate implementation readiness from validation.
+  Do not repeatedly run unchanged probes, broaden safe-seat coverage, add panels,
+  or use test/commit counts as evidence of predictive readiness.
+- Evidence inventory: national bridge and independent official transport deployed;
+  synthetic national movement/retraction tests pass. All9actual routes have no
+  accepted positive returns. Iowa historical evaluation uses ASSUMED release order
+  and neutral prior; it is not chronological or probability calibration. Thurston
+  chronology covers only1of7county parts; it cannot validate a statewide/national
+  forecast. A validated national predictive acceptance criterion remains unmet.
+- Next useful work is that evidence-based go/no-go assessment and an exact list
+  of pivotal-race missing data, using existing artifacts first. Optional feature
+  expansion stays paused. No further unchanged live-source polling in this run.
+
+
+## October26 20:54Z — independent official WA03-to-NATIONAL path verified deployed
+
+- PR465 tested head a4485e09ca77e234b3c80f8182afd892d08e85b1: ALL35 workflows
+  success;46 latest checks42success/4nonapplicable skips; no external statuses;
+  exact head/mergeable clean verified before authorized merge.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/465
+- Merge e9d3e81a4b2d20b7368ced994f3cb1e73e0f5529; final briefing-bot main
+  1061a2602ba0837e9369750f816f1c35a0887329. Pages40399515539 SUCCESS;
+  original merge build canceled/superseded. At20:53:53Z ALL146 expected published
+  files match final main; actual remote dashboard coherence smoke passes.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40399515539
+- REAL backend bootstrap40399466905 SUCCESS, original official GET200 at20:52:33Z,
+ 640ms request-to-body, unchanged original source hash/staleOct22zero. Publishes
+  HEALTH ONLY payload=null. Owned data branch a1eed28b5384ca994a29aaffef1181ba9ed08be3;
+  public raw GET200/CORS*/byte-for-byte equality verified20:53:11Z; max-age300.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40399466905
+  https://raw.githubusercontent.com/jmon18-rgb/Election-Command-Center/official-results-cache/data/washington_house_03_official_latest.json
+- Official WA03 is now the ninth implemented NATIONAL input, independent of civicAPI.
+  No separate race panel added. Its original seven district/county parts feed the
+  existing remaining-vote estimator and bounded correlated national likelihood.
+  Published1366/390 SYNTHETIC tests pass automatic before-call national movement,
+  correction/retraction/zero-old-reply replay exclusion, outage/integrity withdrawal,
+  minute request floor, hidden-tab pause, archive isolation and missing-helper safety.
+  Synthetic screenshots/tests are NOT genuine election delivery or calibration.
+- Separate ACTUAL published nine-route real-clock/fixture-free probe20:54:04Z:
+  eight civic routes200/non-test/stale zero; official owned route200/health-only;
+  ZERO admitted inputs, projections, raw archives or page errors. Status remains
+  LIVE_DELIVERY_UNPROVEN. Local probe revision a4485e09/dirty reports the local
+  runner checkout, not deployed revision; separate146-file comparison pins live1061a260.
+  Evidence: artifacts/readiness/competitive-live/report.json,
+  published-main-integrity.json, washington-owned-publication-verification.json.
+- Post-close official collector scheduling is deployed, NOT yet exercised in a real
+  election. Collection/Actions scheduling/raw cache/client may add MINUTES; no
+  independently matched publication batches, speed parity, interval calibration or
+  national coverage claim. Up to6House districts/5states remains limited evidence.
+  Pre-election health receipt will expire safely; normal vote collection starts
+  Nov4 04:00Z, bounded schedule throughNov25; code-stopNov4 noon is unchanged.
+- NEXT: prioritize actual uploaded pivotal-race gaps and independent real-batch
+  chronology/remaining-vote evaluation. Four genuine Thurston2024 partial reports
+  cover only1of7WA03parts and59%-97%of final two-party votes; ZERO approved
+  calibration inputs. Do not expand panels, celebration polish or generic refactors.
+  Last daily report remains2026-10-26; this is a completed deployment milestone.
+
+
 
 ## October26 after19:58Z — official WA03 collection-to-NATIONAL path implemented, review pending
 
