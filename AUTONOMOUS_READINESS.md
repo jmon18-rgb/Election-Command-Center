@@ -6,11 +6,19 @@ acceptance testing and recovery only. Stop unattended changes November 4 at noon
 
 ## Work order
 
-Current candidate: MI-04 (uploaded tipping rank19, default linked D57.37%, polled)
+PR458 DEPLOYED (October26 15:39Z): MI-04 (uploaded tipping rank19, default linked D57.37%, polled)
 adds one House STATE to the national counts path, with processed OpenElections
 2024 county PARTS, complete Census/map/MIT reconciliation and independent original
 Kalamazoo sample. Three House districts across TWO states remain limited coverage.
 This addition is national evidence, not a new race panel or a timeliness solution.
+PR458 exact tested head617fbce6 passed all33 PR workflows and40 applicable check
+jobs (3 additional deployment skips); merge23222679, published bot949a8184. Actual
+published synthetic-browser national tests and73-file integrity verification
+pass. Real-clock15:39Z six-source probe still rejects all stale zero-count inputs.
+Next source candidate is PA-10: uploaded rank1, current polled linked D60.27%;
+original official2024 precinct file and exact87385 source geography reconcile.
+See readiness-progress.md for full evidence, independent live-access gap and
+remaining checks; adding another civicAPI route alone never settles latency.
 The six-input cadence budget is24 regular automatic requests/minute after close;
 shared concurrency4/queue64 stay fixed, with6 priority positions/58 bulk positions.
 At15:14Z actual candidate responses have test_data=false but old October16-23
@@ -27,8 +35,9 @@ against the uploaded Silver material, and source speed must be demonstrated.
 The uploaded House tipping-point order places WI-03 ninth, MI-04 nineteenth and
 WI-01 forty-second; pilot feasibility is not equivalent to top-ranked importance.
 The civicAPI FAQ's 5-10 second active-election claim is a provider statement, not
-an independently measured advantage over publications or a verified SLA. All five
-currently connected full feeds remain TEST DATA. Prioritize reducing our own
+an independently measured advantage over publications or a verified SLA. At that initial morning review, all five
+connected full feeds returned TEST DATA; later observations below supersede that
+state. Always inspect the current actual probe rather than pinning a test flag. Prioritize reducing our own
 polling delay, measuring actual request timing, independently matched real batch
 comparisons and usable independent fallbacks alongside national breadth. More
 races on the same provider alone do not establish timely delivery. Preserve

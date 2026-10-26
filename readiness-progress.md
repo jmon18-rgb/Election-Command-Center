@@ -1,5 +1,90 @@
 # Readiness progress
 
+## October26 15:39Z - Michigan House input deployed and nationally exercised
+
+- PR458 merges23222679c23d022b21132d73e995b0f43bc416b8 after exact current head
+  617fbce6b39613cf3a2d016fad96733d0da13453 passes all33 applicable PR workflows.
+  All43 latest check jobs inspected:40success,3 expected nonapplicable deployment
+  skips, no external statuses/pending/failures. Actual-source and Kansas browser
+  setup timeouts rerun on SAME head and pass. No checks/protections bypassed.
+  Original/processed source reproduction, shared default model, six-source
+  national/retraction, real candidate canary and full DOM all pass. Local full
+  DOM and30 core readiness checks also pass.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/458
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40348150784
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40348150948
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40348151026
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40348150810
+- Replacement Pages40350989420 succeeds for briefing-bot main949a8184970b32499cb46097d7d16bd17c623991.
+  Served audit40350925193 also succeeds. Actual15:38:47Z byte comparison matches
+  all73 files: HTML,49 loaded scripts, Michigan baseline/reference/evidence, both
+  original compressed source archives and reproducible importer included.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40350989420
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40350925193
+- Actual PUBLISHED Edge1366/390 with explicitly SYNTHETIC sources passes MI-only
+  national movement before calls, automatic15s updates, all6 coherent inputs,
+  WI fixed state-share retention, correction/withdrawal/outage/expiry/test
+  exclusion, isolated6-source rehearsal and missing-helper fallback. Active
+  six-source screenshots at both widths inspected. MI appears in the shared
+  national driver list;3 House districts across TWO states is prominently
+  disclosed as limited coverage. No extra race panel or calibration claim.
+- Separate real-clock fixture-free ACTUAL PUBLISHED probe15:39:13Z on clean
+  949a8184: all6 HTTP200, test_data=false, raw_positive_candidate_counts_present
+  false, source timestamps October16/18/23 (stale), no eligible county evidence,
+  no projections/national movement/page errors/raw archives. Cache-Control still
+  public,max-age15,stale-while-revalidate30, Age/ETag absent. This is usable
+  safety/transport evidence, NOT actual post-close delivery or comparative lag.
+  The six feeds are now NOT accurately described as all TEST DATA: latest stale
+  zero observation supersedes earlier test mode. Keep all freshness gates.
+- Meaningful next task was prepared during checks, based on actual importance:
+  active published default linked-model rows joined to uploaded1Ixth.csv tipping
+  ranks. PA10 is rank1, polled D60.27%; NC01 rank2 D62.57%; NY17 rank4 D64.33%;
+  AZ01 rank7 D60.23%; WA03 rank13 D60.23%; CO08 rank14 D53.63%. These are MODEL
+  outputs plus supplied importance ranks, not new polls/Silver probabilities.
+  Full local planning artifact competitive-house-next-source-priority.json is
+  ignored, not a newly published paid export. MI04 rank19 D57.37 was completed.
+- PA10 ORIGINAL official state precinct file obtained successfully from the
+  linked pa.gov historical bulk-data page, not the blocked election-night app:
+  42907408 bytes, SHA256 34339122238fe82272c52717a4065dbd3949e00eeb98320332797853c96f3b6c.
+  Saved artifacts/readiness/next-pa-2024-official-precinct.txt; do not redownload.
+  URL https://www.pa.gov/content/dam/copapwp-pagov/en/dos/resources/voting-and-elections/bulk-data/2024-general-election/er/erstat_2024_g_268768_20250129.txt
+  Exact filter CandidateOfficeCode USC AND CandidateDistrict10, with every
+  current row CongressionalDistrict10, yields680 unique precinct/candidate rows.
+  No duplicate normalized keys.200434D/205567R/0other exactly match MIT. Three
+  county PARTS: Cumberland64891D/70036R, Dauphin80272D/66986R,
+  York55271D/68545R. Independent complete Census67 gives42041/42043/42133;
+  raw FIPS41 vs041 normalized to three digits, never county election-code21.
+  Current2026 map unchanged. No chronological release times/calibration inferred.
+- Original README schema was located through the same government page:
+  https://www.pa.gov/content/dam/copapwp-pagov/en/dos/resources/voting-and-elections/bulk-data/2024-general-election/er/erstat_2024_g_readme.txt
+  It names the field order/office codes and January2025 extraction. Preserve it
+  alongside bytes in the future reproducible import; no invented column header.
+- Documented civicAPI search returns unique exact PA10 full87385: current nominees
+  Janelle StelsonD/Scott PerryR; House of Representatives/General/November3,2026.
+  Actual full route has matching three County identities42041/42043/42133,
+  test_data=false but stale October23 stamp and zero positive counts. Metadata
+  saved artifacts/readiness/next-pa10-current-source-evidence.json. It is an
+  ADVISORY next source, not admitted, not a latency solution. Historical audit
+  next-pa10-official-baseline-audit.json records all checks/remaining work.
+- Independent PA LIVE operational gap is exact: electionreturns.pa.gov returns
+  HTTP200 but only an Incapsula unsuccessful-request iframe, not election data.
+  A normal-browser bounded render check confirms this; no bypass or further
+  repeat attempts. The publicly published pa.gov historical bulk file is a
+  separate legitimate source and worked. Need a permitted exact live state or
+  county source for independent timing/fallback; final historical rows do not
+  fulfill that. Do not publish the ignored gate page containing incident/network
+  metadata. Government guidance says returns begin after Nov3 polls close, but
+  does not provide a verified comparison SLA.
+- Next: build and test PA10's stable original-source import, pursue independent
+  current county/state delivery, then broaden the national path only with exact
+  validated geography/nominees. Prepare matched-batch timing capture where a
+  verified live independent endpoint exists; do not substitute request duration,
+  cache policy, timestamp-only changes or source count for comparative evidence.
+  Maintain experimental probabilities and fixed state budgets. Optional art,
+  celebrations, extra race panels and generic polish remain paused. Today's
+  daily report already delivered; this entry is a deployment milestone record.
+
+
 ## October26 - Michigan House national input candidate; real delivery still unproven
 
 - Reproduce6 MI04 congressional county PARTS from preserved compressed original
