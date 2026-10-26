@@ -136,3 +136,32 @@ experimental model assumption, not learned national calibration. Withdrawing MI
 returns exactly the old five-source result. Plain polling-only simulations keep
 the same numerical path and owner outcome thresholds. Tests/rehearsal show
 national movement before calls, not real2026 delivery or publication timeliness.
+
+
+## Top-ranked PA-10 House input
+
+PA-10 adds Cumberland, Dauphin and York congressional district PARTS from the
+original state-published2024 precinct extract. Strict office USC plus candidate
+district10 plus current row congressional district10 avoids mixing state races
+or whole counties. Election county codes21/22/67 are not FIPS: independently
+matched Census IDs are42041/42043/42133, including normalization of41 versus041.
+680 candidate rows form340 complete D/R precinct pairs;200434D/205567R/0other
+match independent MIT district totals. Original schema and return bytes remain
+pinned, and the schema's original CRLFs are preserved across operating systems.
+
+The exact current87385 source pins StelsonD/PerryR and the three county parts.
+Existing min10000 D/R votes, min3 qualifying reporting counties, county/batch/
+turnout uncertainty, fixed state likelihood budget and half-sample ESS floor
+stay unchanged. PA therefore needs qualifying counts in ALL3 county parts;
+partial coverage does not silently relax an evidence requirement. One PA input
+has one state budget; Wisconsin retains its two declared half shares. Withdrawn
+PA evidence restores exactly the previous six-source result. Four House districts
+across THREE states plus three Senate pilots remain limited coverage, not a
+calibrated nationwide sample. No posterior averaging or extra race panel.
+
+A new same-provider input is not independent latency evidence. Official county
+publication is being investigated separately. Final historical precinct totals,
+HTTP duration, cache policy and source timestamp age are not matched real batch
+receipt comparisons or independent calibration. The seven-source policy targets
+28 regular automatic post-close requests/min with unchanged4active/64queued;
+priority reservations7/bulk57 do not enlarge the total transport budget.

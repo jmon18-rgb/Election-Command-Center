@@ -6,6 +6,10 @@ on:
     paths:
       - 'scripts/*wisconsin*'
       - 'scripts/*michigan*'
+      - 'scripts/*pennsylvania*'
+      - 'data/pennsylvania*'
+      - 'data/pennsylvania_historical_sources/**'
+      - '.gitattributes'
       - 'data/michigan*'
       - 'data/michigan_historical_sources/**'
       - 'data/wisconsin*'
@@ -30,6 +34,8 @@ jobs:
         run: |
           python scripts/build_wisconsin_house_county_baseline.py --check
           python scripts/build_michigan_house_county_baseline.py --check
+          python scripts/build_pennsylvania_house_county_baseline.py --check
+          python scripts/test_pennsylvania_house_baseline.py
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -38,3 +44,4 @@ jobs:
           node scripts/test_wisconsin_house_county_source.cjs
           node scripts/test_wisconsin_house_03_county_source.cjs
           node scripts/test_michigan_house_04_county_source.cjs
+          node scripts/test_pennsylvania_house_10_county_source.cjs

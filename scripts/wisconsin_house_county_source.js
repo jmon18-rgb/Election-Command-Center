@@ -5,7 +5,7 @@
  if(root)root.WisconsinHouseCountySource=api;
 })(typeof window!=='undefined'?window:null,function(closes){
 'use strict';
-const scopes={'WI-01':{id:87483,n:5,district:1,dem:'Mitchell Berman',rep:'Bryan Steil'},'WI-03':{id:87485,n:19,district:3,dem:'Rebecca Cooke',rep:'Derrick Van Orden'},'MI-04':{id:87204,n:6,district:4,state:'MI',stateName:'Michigan',prefix:'26',dem:'Sean McCann',rep:'Bill Huizenga',green:'Shafina Che Barnett'}};
+const scopes={'WI-01':{id:87483,n:5,district:1,dem:'Mitchell Berman',rep:'Bryan Steil'},'WI-03':{id:87485,n:19,district:3,dem:'Rebecca Cooke',rep:'Derrick Van Orden'},'MI-04':{id:87204,n:6,district:4,state:'MI',stateName:'Michigan',prefix:'26',dem:'Sean McCann',rep:'Bill Huizenga',green:'Shafina Che Barnett'},'PA-10':{id:87385,n:3,district:10,state:'PA',stateName:'Pennsylvania',prefix:'42',dem:'Janelle Stelson',rep:'Scott Perry',majorOnly:true}};
 function forRace(code){
  const cfg=Object.hasOwn(scopes,code)?scopes[code]:null;if(!cfg)throw Error('Unsupported House county source scope');
  const URL='https://civicapi.org/api/v2/race/'+cfg.id,state=cfg.state||'WI',stateName=cfg.stateName||'Wisconsin',prefix=cfg.prefix||'55';
@@ -46,6 +46,7 @@ function parse(detail,reference,{source_url=URL,now=Date.now()}={}){
   roster.get(normalize(cfg.dem))?.party!=='D'||roster.get(normalize(cfg.rep))?.party!=='R')
   throw Error('Pinned House county major-candidate identity changed');
  if(cfg.green&&(roster.size!==3||roster.get(normalize(cfg.green))?.party!=='G'))throw Error('Pinned Michigan third-candidate identity changed');
+ if(cfg.majorOnly&&roster.size!==2)throw Error('Pinned Pennsylvania candidate roster changed');
  const counties=rows.map(({raw,county,county_fips})=>{
   const present=new Set();let d=0,r=0,o=0;
   if(!Array.isArray(raw.candidates))throw Error('Missing House county candidates');

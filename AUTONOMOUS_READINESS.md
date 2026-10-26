@@ -6,6 +6,23 @@ acceptance testing and recovery only. Stop unattended changes November 4 at noon
 
 ## Work order
 
+PA-10 CANDIDATE: uploaded tipping rank1, current polled linked D60.27%, original
+state2024 precinct extract now reproducible (340 precincts/three district parts;
+Census67, unchanged map and exact MIT reconciliation). Extend the same national
+counts path, not a new race panel. This yields four House districts across THREE
+states plus three Senate pilots, still limited/experimental national evidence.
+Keep the existing minimum3 reporting counties: PA10 needs all3 county parts with
+qualifying counts; a single appealing county batch cannot move the national odds.
+Seven-source post-close target budget28 regular automatic requests/min, with
+shared4active/64queued unchanged and7 reserved priority positions/57 bulk.
+Independent timing/fallback is NOT solved by this additional civicAPI route.
+Cumberland currently links only May2026 primary results; Dauphin's accessible
+public application currently lists2026 primary plus its2024 archive, not a
+verified November2026 feed. Investigate that distinct official county format
+rather than revisiting the blocked state Incapsula page. Preserve actual-source
+cache/freshness gates and do not invent future election IDs or publication lag.
+
+
 PR458 DEPLOYED (October26 15:39Z): MI-04 (uploaded tipping rank19, default linked D57.37%, polled)
 adds one House STATE to the national counts path, with processed OpenElections
 2024 county PARTS, complete Census/map/MIT reconciliation and independent original

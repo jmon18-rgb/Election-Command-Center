@@ -126,3 +126,26 @@ assert(six.diagnostics.effective_sample_size>=opts.samples*.5-1e-6);
 assert.deepEqual(bridge.condition(model,basis,[...blue,wi,wi3],{...opts,now}).result,five.result,'Withdrawing MI restores exactly the previous five-source model; Wisconsin shares never change');
 assert.equal(Object.values(six.result.counts).reduce((a,b)=>a+b,0),opts.samples);
 console.log('MI-04 plus Wisconsin: three House districts across TWO states reach coherent national outcomes; not national coverage or calibration');
+
+const paFacts=load('pennsylvania_house_10_2024_county_baseline_official'),paRef=load('pennsylvania_house_10_county_fips_reference');
+function paEnvelope(margin){
+ const n=paFacts.district_totals.dem_votes+paFacts.district_totals.rep_votes,shift=(margin-100*(2*paFacts.district_totals.dem_votes/n-1))/200;
+ const counties=paFacts.counties.map(c=>{const n=Math.floor((c.dem_votes+c.rep_votes)*.65),d=Math.floor(n*Math.max(.001,Math.min(.999,c.dem_votes/(c.dem_votes+c.rep_votes)+shift)));return {county:c.county,county_fips:c.county_fips,dem_votes:d,rep_votes:n-d,other_votes:0};});
+ return {baseline_year:2024,reference:paRef,baseline:{race_code:'PA-10',geography_scope:'district_parts',counties:paFacts.counties.map(c=>({county:c.county,records:{total:c}}))},snapshot:{race_code:'PA-10',source_url:'https://civicapi.org/api/v2/race/87385',status:'VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED',live_votes_accepted:true,county_identities_matched:3,snapshot_updated_at:'2026-11-04T03:05:00Z',counties}};
+}
+const pa=paEnvelope(8),paUp=bridge.condition(model,basis,[pa],{...opts,now}),paDown=bridge.condition(model,basis,[paEnvelope(-8)],{...opts,now});
+assert.deepEqual(paUp.diagnostics.house_vote_states,['PA']);assert.equal(paUp.diagnostics.house_vote_sources,1);
+assert(paUp.result.house_dem_control_pct>paDown.result.house_dem_control_pct,'PA10 counts independently influence the NATIONAL outlook before calls');
+assert(bridge.compile(pa,{now}).modeled_remaining_two_party_votes>0);
+assert.throws(()=>bridge.compile({...pa,baseline:{...pa.baseline,geography_scope:'whole_county'}},{now}),/district-part/);
+const thin=structuredClone(pa);thin.snapshot.counties[0].dem_votes=0;thin.snapshot.counties[0].rep_votes=0;
+assert.throws(()=>bridge.compile(thin,{now}),'Existing minimum-three-reporting-counties policy remains; PA needs3/3 parts, not one attractive early batch');
+assert.deepEqual(bridge.condition(model,basis,[thin],{...opts,now}).result,ordinary);
+const seven=bridge.condition(model,basis,[...blue,wi,wi3,mi,pa],{...opts,now});
+assert.equal(seven.diagnostics.used.length,7);assert.equal(seven.diagnostics.house_vote_sources,4);
+assert.deepEqual(seven.diagnostics.house_vote_states,['MI','PA','WI']);
+assert.equal(seven.diagnostics.state_likelihood_budget_members.PA,1);assert.equal(seven.diagnostics.state_likelihood_budget_members.WI,2);
+assert(seven.diagnostics.state_likelihood_max_ratio.PA<=20+1e-8);assert(seven.diagnostics.effective_sample_size>=opts.samples*.5-1e-6);
+assert.deepEqual(bridge.condition(model,basis,[...blue,wi,wi3,mi],{...opts,now}).result,six.result,'Withdrawing PA restores the exact previous six-source model');
+assert.equal(Object.values(seven.result.counts).reduce((a,b)=>a+b,0),opts.samples);
+console.log('PA-10 top-ranked competitive House input reaches the same NATIONAL model; seven sources/four House districts/three states; NOT calibration');

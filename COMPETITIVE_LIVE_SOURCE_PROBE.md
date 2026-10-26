@@ -1,6 +1,6 @@
 # Actual competitive-source probe
 
-This separate workflow checks the Iowa, Kansas, Texas Senate and WI-01/WI-03/MI-04 House source-to-national-needle
+This separate workflow checks the Iowa, Kansas, Texas Senate and WI-01/WI-03/MI-04/PA-10 House source-to-national-needle
 paths with actual public provider responses. It never fulfills those requests
 with fixtures and never changes the browser clock. Unrelated provider requests
 are blocked, so this is an isolated county-path check, not a full nationwide load
@@ -20,7 +20,7 @@ Report states:
 - `LIVE_DELIVERY_UNPROVEN`: expected test mode, missing/unavailable source, no
   genuine post-close counts or another unmet delivery requirement. A passing
   safety check in this state is **not** live-source or calibration acceptance.
-- `LIVE_INPUT_FORECAST_OBSERVED_NOT_CALIBRATED`: all six real feeds produced
+- `LIVE_INPUT_FORECAST_OBSERVED_NOT_CALIBRATED`: all seven real feeds produced
   validated positive post-close inputs and corresponding race forecasts. This
   proves the observed input path, not forecasting accuracy or calibrated odds.
 - `SOURCE_AVAILABILITY_REVIEW_REQUIRED`: a feed still lacks usable current input
@@ -55,11 +55,11 @@ its synthetic inputs never become actual-source reports.
 
 ## Timeliness acceptance
 
-The dashboard targets 15-second automatic full-route intervals for these six
+The dashboard targets 15-second automatic full-route intervals for these seven
 sources after each race's earliest poll close through November 4 noon Eastern.
 Before close it uses ten minutes; afterward it returns to one minute. Hidden or
 inactive tabs pause automatic requests; preview and busy controllers cannot
-launch overlapping requests. Six sources imply at most twenty-four regular automatic
+launch overlapping requests. Seven sources imply at most twenty-eight regular automatic
 starts per minute under this policy, apart from explicit manual refreshes.
 Shared concurrency, request queue, breaker and backoff still apply. Browser sleep,
 network time, queueing and source availability can all increase observed delay.
@@ -80,9 +80,19 @@ a provider claim, not a measured latency promise. A candidate probe uses a local
 page with actual upstream requests; it is explicitly not deployed acceptance.
 
 
-The six-source probe also records response Age, Cache-Control, Date and ETag
+The seven-source probe also records response Age, Cache-Control, Date and ETag
 without treating them as batch timestamps. At15:14Z all six HTTP200 responses
 advertise public,max-age15,stale-while-revalidate30; Age/ETag are absent. This
 policy is neither proof that a stale response was served nor a measured maximum
 lag behind publications. Actual-source flags and timestamps can change between
 runs: report the current observation, not a permanently pinned TEST state.
+
+
+PA-10 joins the actual-source registry only after its original state precinct
+baseline, current three-county geography and nominee roster are reconciled.
+A published-site probe must contain all seven deployed controllers; a PR uses
+candidate mode until deployment. Its old October23 zero snapshot is rejected,
+not called live because test_data is false. PA requires all three county parts
+to pass the existing minimum-reporting-counties eligibility gate. Independent
+Cumberland/Dauphin official pages currently provide primary/historical data;
+no verified November source or relative-publication timing proof is claimed.

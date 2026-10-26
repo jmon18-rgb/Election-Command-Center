@@ -1,5 +1,51 @@
 # Readiness progress
 
+## October26 - PA10 national input candidate; independent timing work remains open
+
+- Start from clean follow-up branch and inspect open PRs/main CI; preserve426
+  celebrations and older queued work. Merge current briefing refresh from main
+  before changes. No overlap with active PRs. Highest-priority next House target
+  is uploaded tipping rank1 PA10, current linked-model polled D60.27%.
+- Pin original42907408-byte state precinct file (gzip2974254), original4437-byte
+  official schema, source URLs/SHA256 and full Census source. Reproduce268768
+  statewide rows ->680 selected candidate rows/340 precincts/three district county
+  parts, with USC/candidateDistrict10/currentCongressDistrict10 agreement.
+  D200434/R205567/other0 exactly match MIT and current map is unchanged.
+  Original schema CRLF preservation explicitly tested against staged Git bytes;
+  do not normalize the government-byte hash. Pure schema/office/FIPS/count/
+  duplicate/incomplete-pair tests pass. No historical release clocks invented.
+- Reuse shared strict House parser/controller for exact87385 StelsonD/PerryR and
+  three42xxx county identities. National counts-only likelihood/replay now admits
+  seven scopes, four House districts across THREE states. PA-only before-call
+  movement and exact withdrawal back to prior six-source result pass. Existing
+  minimum3 reporting counties deliberately retained: PA needs qualifying votes
+  in3/3 parts. No new race panel or posterior/national-prior double counting.
+- Four-active/64-queued cap remains fixed; seven priority reservations/57 bulk.
+  Post-close28 regular requests/min target, hidden/preview/inactive pauses,
+  manual5s spacing, breaker/outage/retraction and source revisions remain tested.
+- Source/count/model/revision/transport/cadence tests and31 core checks pass.
+  Actual Edge1366/390 synthetic automatic national movement, PA-only/MI-only,
+  combined7-source/retraction/expiry/test/outage/rehearsal and missing-helper
+  fallback pass. Full DOM/current-head CI/deployment verification still pending.
+- Actual PA source metadata refreshed: HTTP200, same exact scope/candidates,
+  test_data=false, zero positive counts, stale October23 timestamp; no raw vote
+  payload archived or live delivery claimed. Actual seven-source candidate probe
+  is next before merge. Request/cache clocks are not comparative batch proof.
+- Independent source progress is bounded: Cumberland official results page
+  currently offers May19,2026 primary reports and archives, no November live link.
+  https://cumberlandcountypa.gov/3135/Election-Results
+  Dauphin's distinct PUBLIC application works with the named review client:
+  https://elections.dauphincounty.gov/ currently2026 primary, accessible linked
+  2024 archive /?key=38; HTML37344bytes retained locally. Congress link observed
+  /?key=38&race=REPRESENTATIVE%20IN%20CONGRESS. No future key guessed. This is a
+  concrete independent county-format candidate, not a verified November feed.
+  Do not return to the state site's Incapsula denial or call a primary result
+  current general-election evidence. Next independent work: inspect the linked
+  county Congress structure and prepare a strict matched-batch observer once
+  the official2026 general link is published. Same-provider count expansion alone
+  never settles timeliness. Optional art/layout/race-panel work remains paused.
+
+
 ## October26 15:39Z - Michigan House input deployed and nationally exercised
 
 - PR458 merges23222679c23d022b21132d73e995b0f43bc416b8 after exact current head
