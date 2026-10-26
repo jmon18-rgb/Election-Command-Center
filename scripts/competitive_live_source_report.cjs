@@ -1,0 +1,57 @@
+'use strict';
+const closes=require('./election_night_poll_closings_2026.js');
+const races=Object.freeze([
+ {code:'IA-SEN',state:'IA',counties:99,url:'https://civicapi.org/api/v2/race/87151',
+  reference:'data/iowa_county_fips_reference.json',parser:'IowaCivicCountySource',controller:'enIowaPilotController'},
+ {code:'KS-SEN',state:'KS',counties:105,url:'https://civicapi.org/api/v2/race/87162',
+  reference:'data/kansas_county_fips_reference.json',parser:'KansasCivicCountySource',controller:'enKansasPilotController'}]);
+const inWindow=now=>Number.isFinite(now)&&now>=Date.parse('2026-10-26T00:00:00Z')&&now<=Date.parse('2026-11-04T17:00:00Z');
+function assess(row,now=Date.now()){
+ const expected=races.find(r=>r.code===row?.code);if(!expected)throw Error('Unknown competitive source scope');
+ const p=row.projection,hasProjection=p!==null&&p!==undefined,violations=[];
+ const total=row.counted_dem_votes+row.counted_rep_votes,stamp=Date.parse(row.source_stamp||'');
+ const liveInput=row.http===200&&row.source_url===expected.url&&row.source_test_data===false&&
+  row.source_identity_validated===true&&row.live_votes_accepted===true&&row.parsed_counties===expected.counties&&
+  [row.counted_dem_votes,row.counted_rep_votes,total].every(n=>Number.isSafeInteger(n)&&n>=0)&&total>0&&
+  Number.isFinite(stamp)&&/(?:Z|[+-]\d\d:\d\d)$/.test(row.source_stamp||'')&&
+  now-stamp<=180*60000&&closes.allowed(expected.code,total,row.source_stamp,now);
+ if(hasProjection){
+  if(!liveInput)violations.push('Forecast shown without genuine validated non-test input');
+  if(row.preview===true)violations.push('Historical preview is not a live forecast');
+  if(!Number.isFinite(p.dem_win_probability)||p.dem_win_probability<0||p.dem_win_probability>1||
+   p.counted_dem_votes!==row.counted_dem_votes||p.counted_rep_votes!==row.counted_rep_votes)
+   violations.push('Displayed forecast disagrees with accepted source counts');
+  if(p.interval_calibrated!==false||p.may_move_national_needle!==false)
+   violations.push('Unsupported calibration or national-update claim');
+  if(!Number.isFinite(p.modeled_remaining_two_party_votes)||p.modeled_remaining_two_party_votes<0||
+   !Array.isArray(p.modeled_remaining_two_party_votes_band)||p.modeled_remaining_two_party_votes_band.length!==2||
+   !p.modeled_remaining_two_party_votes_band.every(n=>Number.isFinite(n)&&n>=0)||
+   p.modeled_remaining_two_party_votes_band[0]>p.modeled_remaining_two_party_votes_band[1])
+   violations.push('Invalid modeled remaining-vote range');
+ }
+ if(row.national_unchanged===false)violations.push('Isolated county probe changed national probabilities');
+ if(hasProjection&&row.national_unchanged!==true)violations.push('No evidence of national-state isolation');
+ if(liveInput&&!hasProjection)violations.push('Validated live votes did not produce the race forecast');
+ const status=violations.length?'SAFETY_OR_FORECAST_FAILURE':
+  liveInput&&hasProjection?'ACTUAL_LIVE_INPUT_FORECAST_OBSERVED_NOT_CALIBRATED':
+  row.source_test_data===true?'TEST_DATA_EXCLUDED_NOT_LIVE':
+  row.http!==200?'TRANSPORT_UNAVAILABLE':row.parse_error?'SOURCE_CONTRACT_REJECTED':'NO_GENUINE_POST_CLOSE_VOTES';
+ // An operational alert threshold, not a provider SLA or a reason to accept
+ // unverified counts. Use final statewide poll closure, not the early zone.
+ const close=closes.winnerFloorFor('Senate',expected.state);
+ const deliveryOverdue=inWindow(now)&&Number.isFinite(close)&&now>=close+90*60000&&!liveInput;
+ return {...row,status,violations,live_input_validated:liveInput,actual_live_input_forecast_observed:liveInput&&hasProjection&&!violations.length,
+  prolonged_delivery_gap:deliveryOverdue,delivery_alert_grace_minutes:90,interval_calibrated:false};
+}
+function summarize(rows,now=Date.now()){
+ if(!Array.isArray(rows)||rows.length!==2||new Set(rows.map(r=>r.code)).size!==2)throw Error('Both competitive sources required');
+ const sources=rows.map(r=>assess(r,now));
+ const failure=sources.some(r=>r.violations.length);
+ return {generated_at:new Date(now).toISOString(),status:failure?'ACTION_REQUIRED':
+  sources.some(r=>r.prolonged_delivery_gap)?'SOURCE_AVAILABILITY_REVIEW_REQUIRED':
+  sources.every(r=>r.actual_live_input_forecast_observed)?'LIVE_INPUT_FORECAST_OBSERVED_NOT_CALIBRATED':'LIVE_DELIVERY_UNPROVEN',
+  scope:'Actual deployed browser and real provider responses only; no source fixtures or virtual election clock',
+  attribution:'Public election counts via civicAPI (https://civicapi.org); use permitted with attribution at https://civicapi.org/api-documentation',
+  interval_calibrated:false,sources};
+}
+module.exports=Object.freeze({races,inWindow,assess,summarize});

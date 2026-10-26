@@ -1,0 +1,49 @@
+name: Actual competitive-source to needle probe
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/probe_competitive_live_sources.mjs'
+      - 'scripts/competitive_live_source_report.cjs'
+      - 'scripts/test_competitive_live_source_report.cjs'
+      - '.github/workflows/competitive-live-source-canary.yml'
+  schedule:
+    - cron: '17 * 26-31 10 *'
+    - cron: '17 * 1,2 11 *'
+    - cron: '*/15 * 3,4 11 *'
+permissions:
+  contents: read
+concurrency:
+  group: competitive-live-source-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+jobs:
+  real-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test classification without claiming actual source delivery
+        run: node scripts/test_competitive_live_source_report.cjs
+      - name: Bound actual requests to the 2026 election window
+        id: window
+        run: |
+          node -e "require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'enabled='+require('./scripts/competitive_live_source_report.cjs').inWindow(Date.now())+'\n')"
+      - name: Install the pinned browser only during the campaign window
+        if: steps.window.outputs.enabled == 'true'
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Check actual deployed county feeds and isolate real forecast evidence
+        run: node scripts/probe_competitive_live_sources.mjs
+      - name: Retain actual report and only validated non-test source captures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: actual-competitive-source-evidence
+          path: artifacts/readiness/competitive-live/
+          retention-days: 90
+          if-no-files-found: warn

@@ -1,5 +1,31 @@
 # Readiness progress
 
+## October 26 06:42Z - aligned starting inputs deployed; actual-feed evidence probe
+
+- PR446 merged abd1e0b2 after all 28 current-head workflows passed at
+  8c639724. At 06:41:13Z actual Pages bytes match all 44 loaded assets/catalogs.
+  Published Edge 1366/390 checks for Iowa and Kansas pass linked starting-margin
+  assertions, source-driven forecast changes and existing exclusion/isolation
+  guards. These use explicitly synthetic post-close votes, not live delivery.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/446
+- A separate fixture-free actual deployed-source probe at 06:41:41Z, clean
+  revision 774bc990, observes both full Civic routes HTTP200 and independent
+  county identities (Iowa99/Kansas105). Both actual responses are TEST DATA;
+  accepted votes0, race projections null, national odds unchanged, no page errors.
+  Status LIVE_DELIVERY_UNPROVEN. No test payload is archived or called live.
+- New reviewable probe/workflow retains actual HTTP/source/capture clocks,
+  deployed script versions and index fingerprint. Only genuinely validated
+  non-test counts are archived, with body and county-vote-vector hashes;
+  repeats are not independent calibration observations. Hourly pre-election,
+  15-minute Election Day cadence, 90-day artifacts and November4 noonET stop.
+  CI-runner access remains a separate observation from owner-browser access.
+  See COMPETITIVE_LIVE_SOURCE_PROBE.md. Workflow CI/merge still pending.
+- Next: inspect actual CI environment evidence and required current-head checks,
+  then merge the source probe if passing. Preserve the narrow IA/KS programmed
+  path. Actual post-close delivery and independent chronological calibration
+  remain unproven; neither source test mode nor assumed-order evaluations clears
+  these acceptance gaps. Do not expand unrelated features or safe-seat feeds.
+
 ## October26 06:04Z - archive isolation and competitive-source priority deployed
 
 -444 merged7d6d07ef after all27 current-head workflows passed atbd103529.
