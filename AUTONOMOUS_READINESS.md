@@ -6,6 +6,33 @@ acceptance testing and recovery only. Stop unattended changes November 4 at noon
 
 ## Work order
 
+LATEST OWNER PRIORITY (October 25, after the source-progress review): deliver
+LIVE RETURNS THAT INFORM A PROGRAMMED PREDICTIVE NEEDLE, primarily CLOSE RACES.
+This supersedes the older task ordering below. Do not use source-gap counts,
+manual links, maps, passing regression totals or provider winner flags as proxies
+for this deliverable. Pause further UI, alert, celebration and generic reliability
+expansion unless it directly unblocks the source-to-needle path or fixes a critical
+production defect. Preserve queued work and required checks.
+
+Start with Iowa Senate: the current linked model is approximately even and its
+polling input has 14 contributing firms / 8 independent firms as of October 22.
+Kansas Senate is the next Senate target. FL-09, CO-05 and TX-23 are close House
+targets, with thinner polling. Re-rank using current linked odds AND actual
+polling evidence; a missing-data/uncertain safe seat is not automatically a tossup.
+Do not spend custom source-integration time on overwhelming favorites or races
+expected to be called immediately after polls close; reuse existing broad feeds.
+
+The next implementation milestone is one competitive race end to end: permitted
+real source -> exact race/geography/method counts -> modeled remaining ballots
+with uncertainty -> partial-return forecast -> visible updating race needle.
+Program and evaluate the estimator; descriptive comparisons do not fulfill it.
+Keep modeled outstanding votes distinct from counted votes and historical replay
+distinct from live delivery. Use historical evaluation to assess uncertainty,
+and label an unevaluated prototype honestly. Do not falsely claim calibration.
+Keep any national correlated update disabled until its transfer is justified.
+Report exact source/data/access blockers promptly and continue independent
+estimator work; do not repeatedly monitor a blocked archive or build more polish.
+
 Latest owner steering (October 25 evening): pause further celebration artwork,
 music and expansion. Preserve deployed work and open reviews. Prioritize
 competitive-race source gaps/fallbacks, verified calls/control accounting,

@@ -2,6 +2,20 @@
 
 ## Current owner steering — core reliability first
 
+SUPERSEDED by latest owner steering: close-race LIVE DATA -> predictive needle
+is now the main assignment. Custom safe-seat coverage, UI/alert polish and generic
+reliability work are secondary unless they unblock that path. Automation updated
+to carry this instruction on every continuation; preserve queued PRs/checks.
+
+At 01:39:36Z the actual active linked model put Iowa/Kansas Senate closest to
+even. Polling inputs corroborate close margins: IA D+0.32 from 14 contributing
+firms / 8 independent firms (latest October 22), KS D+1.64 from 7 / 3 (latest
+October 14). FL-09, CO-05 and TX-23 are additional close targets with thinner
+polling. Local evidence: artifacts/readiness/competitive-needle-priorities.json.
+First source-to-forecast pilot: Iowa Senate. Determine usable county/method
+returns, then estimate remaining vote and implement an updating race forecast.
+These are delivery priorities, not evidence that a predictive needle already works.
+
 Pause further celebration art, music and expansion. Preserve deployed player
 and open PR #426; do not merge that review while its checks are failing.
 Prioritize competitive sources/fallbacks, correct calls/control accounting,
