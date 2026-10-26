@@ -120,6 +120,30 @@ for review while forecasting acceptance remains open.
 
 ## Remaining production evidence
 
+## Separate close-election check
+
+The frozen county-only-history implementation was first evaluated on the separate
+2018 Iowa governor race, R+2.80 two-party points, using the same office's official
+2010 county baseline. No 2010 voting-method split is supplied or invented. A
+single combined-history scenario retains shared batch-selection uncertainty.
+Mixed or partial historical method coverage is rejected instead of guessed.
+
+All 99 baseline D/R totals reconcile to the official state footer. All 99 outcome
+county/method sums reconcile to the 2018 canvass. The 2010 Dallas and Henry
+ballot-total columns fail arithmetic and are excluded, not silently repaired;
+the D/R candidate counts reconcile independently and are the only baseline votes
+used. Original web-reader excerpts and a dependency-free builder are committed.
+
+At first evaluation, model blob `b4d96dec2e62` has **3.25-point margin MAE** versus
+raw counted share 13.63 across 16 partial scenarios. Its scenario envelope includes
+the final margin in 16/16. This is one close governor election with an eight-year
+baseline, a neutral stress prior and assumed release ordering. It is not a
+chronological replay, calibrated probability evidence, or validated transfer to
+the 2026 Senate pilot. The evaluator binds the first-use label to that exact blob.
+
+Reproduce with `python scripts/build_iowa_governor_close_cohort.py --check` and
+`node scripts/evaluate_iowa_governor_close_cohort.cjs`.
+
 The follow-up robust-swing correction uses a declared 85%/10%/5% Gaussian prior
 mixture with one/two/four times the polling sigma. Marginal evidence updates both
 the swing component and unseen method-order weights. This permits coherent large

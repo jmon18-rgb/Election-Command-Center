@@ -48,4 +48,18 @@ assert(surprise.projected_margin_points<first.projected_margin_points);
 assert(surprise.dem_win_probability<first.dem_win_probability);
 assert.equal(surprise.counted_dem_votes,make(.8,.2).reduce((s,r)=>s+r.dem_votes,0));
 assert.equal(surprise.interval_calibrated,false);
+const countyOnly={counties:baseline.counties.map(c=>({county:c.county,records:{total:{...c.records.total}}}))};
+const combinedHistory=forecast({...config,baseline:countyOnly,observations:a});
+assert.equal(combinedHistory.historical_method_split_reported,false);
+assert.equal(combinedHistory.observed_method_votes_inferred,false);
+assert(combinedHistory.scenarios.every(s=>s.order==='combined_history_unknown_methods'),
+ 'Missing historical method data must not become invented absentee/Election Day patterns');
+assert.equal(combinedHistory.counted_dem_votes,first.counted_dem_votes);
+assert.equal(combinedHistory.counted_rep_votes,first.counted_rep_votes);
+assert.equal(combinedHistory.interval_calibrated,false);
+assert.equal(first.historical_method_split_reported,true);
+const mixed=structuredClone(baseline);mixed.counties[0]=countyOnly.counties[0];
+assert.throws(()=>forecast({...config,baseline:mixed}),/Inconsistent historical method/);
+const partial=structuredClone(countyOnly);partial.counties[0].records.absentee=baseline.counties[0].records.absentee;
+assert.throws(()=>forecast({...config,baseline:partial}),/Partial historical method/);
 console.log('Iowa combined-county needle: actual counts fixed, remaining vote inferred, county/method uncertainty, weighted scenarios and national isolation PASS');

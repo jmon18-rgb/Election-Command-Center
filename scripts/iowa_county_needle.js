@@ -16,13 +16,20 @@
    Math.abs(prior_margin_points)>=100||prior_sigma_points<=0||turnout_scale<=0||turnout_sigma_fraction<=0||
    county_sigma_points<=0||structural_sigma_points<=0||batch_bias_sigma_points<=0)throw Error('Invalid county forecast inputs');
   const old=new Map(),seen=new Map();let baseD=0,baseN=0;
+  const historyMethods=baseline.counties.map(c=>Boolean(c.records?.absentee&&c.records?.election_day));
+  if(historyMethods.some(Boolean)&&!historyMethods.every(Boolean))throw Error('Inconsistent historical method coverage');
+  const knownMethods=historyMethods.every(Boolean);
   for(const c of baseline.counties){
    if(!c.county||old.has(c.county))throw Error('Duplicate/missing historical county');
-   const a=c.records?.absentee,e=c.records?.election_day;
-   for(const r of [a,e])if(!r||![r.dem_votes,r.rep_votes].every(n=>Number.isSafeInteger(n)&&n>=0)||
+   let a=c.records?.absentee,e=c.records?.election_day;
+   if(Boolean(a)!==Boolean(e))throw Error('Partial historical method split');
+   // With county-only history, the first internal group holds the combined
+   // total. It is not labeled or represented as observed absentee votes.
+   if(!knownMethods){a=c.records?.total;e={dem_votes:0,rep_votes:0};}
+   for(const r of (knownMethods?[a,e]:[a]))if(!r||![r.dem_votes,r.rep_votes].every(n=>Number.isSafeInteger(n)&&n>=0)||
     !Number.isSafeInteger(r.dem_votes+r.rep_votes)||r.dem_votes+r.rep_votes<=0)throw Error('Invalid historical method count');
    old.set(c.county,{county:c.county,aN:a.dem_votes+a.rep_votes,eN:e.dem_votes+e.rep_votes,
-    aShare:a.dem_votes/(a.dem_votes+a.rep_votes),eShare:e.dem_votes/(e.dem_votes+e.rep_votes)});
+    aShare:a.dem_votes/(a.dem_votes+a.rep_votes),eShare:knownMethods?e.dem_votes/(e.dem_votes+e.rep_votes):a.dem_votes/(a.dem_votes+a.rep_votes)});
    baseD+=a.dem_votes+e.dem_votes;baseN+=a.dem_votes+a.rep_votes+e.dem_votes+e.rep_votes;
   }
   for(const r of observations){
@@ -33,7 +40,7 @@
   const centered=(prior_margin_points/100-(2*baseD/baseN-1))/2;
   const priorVar=(prior_sigma_points/200)**2,countyVar=(county_sigma_points/200)**2;
   const scenarios=[];
-  for(const order of ['absentee_first','election_day_first','proportional_mix']){
+  for(const order of (knownMethods?['absentee_first','election_day_first','proportional_mix']:['combined_history_unknown_methods'])){
    const units=[];let precision=0,weighted=0,squared=0,logVariance=0;
    for(const [name,b] of old){
     const r=seen.get(name)||{dem_votes:0,rep_votes:0},n=r.dem_votes+r.rep_votes;
@@ -100,7 +107,7 @@
    modeled_remaining_two_party_votes:mean('modeled_remaining_two_party_votes'),
    method_mix_probability_range:[Math.min(...scenarios.map(s=>s.dem_win_probability)),Math.max(...scenarios.map(s=>s.dem_win_probability))],
    scenario_margin_band:[Math.min(...scenarios.map(s=>s.band[0])),Math.max(...scenarios.map(s=>s.band[1]))],
-   observed_method_votes_inferred:false,interval_calibrated:false,may_move_national_needle:false,
+   observed_method_votes_inferred:false,historical_method_split_reported:knownMethods,interval_calibrated:false,may_move_national_needle:false,
    assumptions:{prior_margin_points,prior_sigma_points,turnout_scale,turnout_sigma_fraction,county_sigma_points,structural_sigma_points,batch_bias_sigma_points,
     method_scenario_weighting:'Gaussian marginal evidence under declared model assumptions'},scenarios};
  }
@@ -128,7 +135,7 @@
    }
    return (lo+hi)/2;
   }
-  const orders=['absentee_first','election_day_first','proportional_mix'].map(order=>{
+  const orders=[...new Set(scenarios.map(s=>s.order))].map(order=>{
    const rows=scenarios.filter(s=>s.order===order),weight=rows.reduce((total,s)=>total+s.weight,0);
    // Numerically negligible orders remain in the raw diagnostic inventory, but
    // cannot define a conditional band when their evidence underflows to zero.

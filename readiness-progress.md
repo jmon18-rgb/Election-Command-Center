@@ -1,5 +1,23 @@
 # Readiness progress
 
+## October 25 - separate close-election forecasting check
+
+- Reproduced official 2010/2018 Iowa governor data, all 99 county D/R totals and
+  2018 county/method/state arithmetic. The close outcome is R+2.80. Historical
+  2010 ballot-total discrepancies in Dallas/Henry are excluded rather than
+  repaired; baseline D/R totals separately reconcile to the source footer.
+- Implement county-only historical baselines without fabricating absentee or
+  Election Day shares. Unknown historical methods produce one explicitly unknown
+  scenario; mixed/partial method inventories fail closed. Existing 2022-method
+  baseline and current Iowa live-source path retain their existing behavior.
+- First frozen blob b4d96dec2e62: 3.25-point partial-margin MAE versus raw13.63,
+  scenario band contains truth16/16. All forecast parameters were unchanged after
+  this result. One different-office close election, an eight-year baseline and
+  assumed orders do not establish calibration or real historical reporting times.
+- PR #438 remains blocked by its actual fallback-catalog CI failure. Critical
+  test_data flag repair is separate PR #439; do not overwrite or bypass either
+  review's checks. DDHQ rate-limit backoff is pending while this work proceeds.
+
 ## October 25 - Iowa pilot deployed; correct the measured forecasting weakness
 
 - PR #437 passed all 27 applicable workflows at 4284378f and merged as baea1b2b.
