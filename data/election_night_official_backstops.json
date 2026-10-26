@@ -190,7 +190,9 @@
       "url": "https://elections.hawaii.gov/election-results/",
       "mode": "official_results_landing",
       "race_ids": [
-        "Governor|HI"
+        "Governor|HI",
+        "House|HI-01",
+        "House|HI-02"
       ]
     },
     {
@@ -689,6 +691,18 @@
         "verified_at": "2026-10-26",
         "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
         "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|HI-01",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/hawaii-us-house-1-general-election",
+        "verified_at": "2026-10-26",
+        "verification": "Exact race link read from the public November 3 Hawaii directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
+      },
+      {
+        "id": "House|HI-02",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/hawaii-us-house-2-general-election",
+        "verified_at": "2026-10-26",
+        "verification": "Exact race link read from the public November 3 Hawaii directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
       }
     ]
   }
