@@ -149,3 +149,24 @@ assert(seven.diagnostics.state_likelihood_max_ratio.PA<=20+1e-8);assert(seven.di
 assert.deepEqual(bridge.condition(model,basis,[...blue,wi,wi3,mi],{...opts,now}).result,six.result,'Withdrawing PA restores the exact previous six-source model');
 assert.equal(Object.values(seven.result.counts).reduce((a,b)=>a+b,0),opts.samples);
 console.log('PA-10 top-ranked competitive House input reaches the same NATIONAL model; seven sources/four House districts/three states; NOT calibration');
+
+const nyFacts=load('new_york_house_17_2024_county_baseline_official'),nyRef=load('new_york_house_17_county_fips_reference');
+function nyEnvelope(margin){
+ const n=nyFacts.district_totals.dem_votes+nyFacts.district_totals.rep_votes,shift=(margin-100*(2*nyFacts.district_totals.dem_votes/n-1))/200;
+ const counties=nyFacts.counties.map(c=>{const n=Math.floor((c.dem_votes+c.rep_votes)*.65),d=Math.floor(n*Math.max(.001,Math.min(.999,c.dem_votes/(c.dem_votes+c.rep_votes)+shift)));return {county:c.county,county_fips:c.county_fips,dem_votes:d,rep_votes:n-d,other_votes:0};});
+ return {baseline_year:2024,reference:nyRef,baseline:{race_code:'NY-17',geography_scope:'district_parts',counties:nyFacts.counties.map(c=>({county:c.county,records:{total:c}}))},snapshot:{race_code:'NY-17',source_url:'https://civicapi.org/api/v2/race/87319',status:'VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED',live_votes_accepted:true,county_identities_matched:4,snapshot_updated_at:'2026-11-04T03:05:00Z',counties}};
+}
+const ny=nyEnvelope(8),nyUp=bridge.condition(model,basis,[ny],{...opts,now}),nyDown=bridge.condition(model,basis,[nyEnvelope(-8)],{...opts,now});
+assert(nyUp.result.house_dem_control_pct>nyDown.result.house_dem_control_pct,'NY17 real-shaped counts independently move NATIONAL House odds before calls');
+assert.deepEqual(nyUp.diagnostics.house_vote_states,['NY']);
+assert(bridge.compile(ny,{now}).modeled_remaining_two_party_votes>0);
+const nyThin=structuredClone(ny);nyThin.snapshot.counties.slice(0,2).forEach(c=>{c.dem_votes=0;c.rep_votes=0;});
+assert.throws(()=>bridge.compile(nyThin,{now}),'No relaxation of reporting-unit breadth to add NY17');
+const eight=bridge.condition(model,basis,[...blue,wi,wi3,mi,pa,ny],{...opts,now});
+assert.equal(eight.diagnostics.used.length,8);assert.equal(eight.diagnostics.house_vote_sources,5);
+assert.deepEqual(eight.diagnostics.house_vote_states,['MI','NY','PA','WI']);
+assert.equal(eight.diagnostics.state_likelihood_budget_members.WI,2);assert.equal(eight.diagnostics.state_likelihood_budget_members.NY,1);
+assert(eight.diagnostics.state_likelihood_max_ratio.NY<=20+1e-8);
+assert(eight.diagnostics.effective_sample_size>=opts.samples*.5-1e-6);
+assert.deepEqual(bridge.condition(model,basis,[...blue,wi,wi3,mi,pa],{...opts,now}).result,seven.result,'Withdrawing NY restores exactly the prior seven-source national model');
+console.log('NY17 full candidate fusion baseline reaches NATIONAL model; eight sources/five House districts/four states, not national coverage/calibration');

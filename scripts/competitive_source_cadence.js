@@ -4,7 +4,7 @@
  if(root)root.CompetitiveSourceCadence=api;
 })(typeof window!=='undefined'?window:null,function(closes){
  'use strict';
- const CODES=Object.freeze(['IA-SEN','KS-SEN','TX-SEN','WI-01','WI-03','MI-04','PA-10']);
+ const CODES=Object.freeze(['IA-SEN','KS-SEN','TX-SEN','WI-01','WI-03','MI-04','PA-10','NY-17']);
  const PRE_CLOSE_MS=600000,FAST_MS=15000,NORMAL_MS=60000,FAST_END=Date.parse('2026-11-04T17:00:00Z');
  function floor(code,now){if(!CODES.includes(code)||!Number.isFinite(now))throw Error('Unsupported competitive cadence scope/clock');return closes.floorFor(code);}
  function intervalMs(code,now=Date.now()){

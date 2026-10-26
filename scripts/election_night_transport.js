@@ -11,7 +11,7 @@
  function createPool(maxActive=4,maxQueued=64,{priorityReserve=0}={}){
   if(!Number.isInteger(maxActive)||maxActive<1||maxActive>4||
      !Number.isInteger(maxQueued)||maxQueued<0||maxQueued>64||
-     !Number.isInteger(priorityReserve)||priorityReserve<0||priorityReserve>Math.min(7,maxQueued))
+     !Number.isInteger(priorityReserve)||priorityReserve<0||priorityReserve>Math.min(8,maxQueued))
    throw Error('Election Night transport must remain bounded');
   let active=0,peak=0,completed=0,failed=0;
   const queue=[];

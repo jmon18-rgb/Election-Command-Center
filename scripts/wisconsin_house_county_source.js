@@ -5,7 +5,7 @@
  if(root)root.WisconsinHouseCountySource=api;
 })(typeof window!=='undefined'?window:null,function(closes){
 'use strict';
-const scopes={'WI-01':{id:87483,n:5,district:1,dem:'Mitchell Berman',rep:'Bryan Steil'},'WI-03':{id:87485,n:19,district:3,dem:'Rebecca Cooke',rep:'Derrick Van Orden'},'MI-04':{id:87204,n:6,district:4,state:'MI',stateName:'Michigan',prefix:'26',dem:'Sean McCann',rep:'Bill Huizenga',green:'Shafina Che Barnett'},'PA-10':{id:87385,n:3,district:10,state:'PA',stateName:'Pennsylvania',prefix:'42',dem:'Janelle Stelson',rep:'Scott Perry',majorOnly:true}};
+const scopes={'WI-01':{id:87483,n:5,district:1,dem:'Mitchell Berman',rep:'Bryan Steil'},'WI-03':{id:87485,n:19,district:3,dem:'Rebecca Cooke',rep:'Derrick Van Orden'},'MI-04':{id:87204,n:6,district:4,state:'MI',stateName:'Michigan',prefix:'26',dem:'Sean McCann',rep:'Bill Huizenga',green:'Shafina Che Barnett'},'PA-10':{id:87385,n:3,district:10,state:'PA',stateName:'Pennsylvania',prefix:'42',dem:'Janelle Stelson',rep:'Scott Perry',majorOnly:true},'NY-17':{id:87319,n:4,district:17,state:'NY',stateName:'New York',prefix:'36',dem:'Cait Conley',rep:'Mike Lawler',majorOnly:true}};
 function forRace(code){
  const cfg=Object.hasOwn(scopes,code)?scopes[code]:null;if(!cfg)throw Error('Unsupported House county source scope');
  const URL='https://civicapi.org/api/v2/race/'+cfg.id,state=cfg.state||'WI',stateName=cfg.stateName||'Wisconsin',prefix=cfg.prefix||'55';

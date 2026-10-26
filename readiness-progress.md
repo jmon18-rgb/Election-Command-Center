@@ -1,5 +1,35 @@
 # Readiness progress
 
+## October26 17:17Z - NY17 national path implemented separately from source-prep PR461
+
+- On separate readiness/ny17-national-input branch, reuse shared source parser,
+  headless controller, durable revisions,15s post-close cadence, existing
+  correlated national likelihood and isolated rehearsal for NY17. Source87319
+  requires exact Conley/Lawler, NY17 General, four Census county parts, complete
+  candidate/count reconciliation and real post-close fresh non-test counts.
+  Historical likelihood uses full Lawler197845, not Republican-line180924.
+- No new individual needle panel, changed thresholds, poll-prior duplication or
+  averaging of race probabilities. Same minimum3 reporting county parts remains.
+  NY has its own bounded state likelihood; Wisconsin retains fixed two shares.
+  Eight inputs cover5 House districts across4 states, NOT national House coverage.
+- Explicit budget32 regular automatic starts/minute;8 reserved positions/56 bulk;
+  existing shared4 active/64 total queued cap stays fixed. Deadline/inactive/
+  backoff/revision tests pass.32 core readiness checks pass after fingerprint fix.
+- Actual local Edge synthetic fixtures1366/390 pass NY-only national movement
+  before calls, combined8 four-ending coherence, correction/retraction, test/
+  outage/stale exclusion, baseline isolation, Wisconsin missing-share bound,
+  eight-input isolated rehearsal and missing-cadence60s fallback. Not real votes
+  or historical calibration. Full DOM and exact-head CI remain pending.
+- Separate fixture-free REAL-CLOCK candidate probe17:17:37Z: all8HTTP200,
+  test_data=false, zero positive candidate counts, October16/18/22/23 source
+  stamps rejected; zero admitted national evidence/projections/page errors/raw
+  archives. NY source timestamp2026-10-22T22:23:38.766Z. Comparative lag UNPROVEN.
+- Independent official NY page access remains403 in ordinary client and normal
+  Edge; no bypass or independent live fallback claimed. First merge parent
+  PR461 after all6 applicable workflows pass; then review integration and merge
+  only after its exact-current-head checks, actual Pages and published runtime
+  verification. No deployed NY national input claimed yet.
+
 ## October26 after17:01Z - NY17 official county input and fusion discrepancy
 
 - No overlap: inspected open PRs (only paused celebration426 and older queued

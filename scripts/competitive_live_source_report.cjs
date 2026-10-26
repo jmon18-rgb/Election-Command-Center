@@ -9,7 +9,8 @@ const races=Object.freeze([
   reference:'data/texas_county_fips_reference.json',parser:'TexasCivicCountySource',controller:'enTexasPilotController'},
  {code:'WI-01',state:'WI',office:'House',key:'WI-01',forecast_scope:'national_joint_draws',counties:5,url:'https://civicapi.org/api/v2/race/87483',reference:'data/wisconsin_house_01_county_fips_reference.json',parser:'WisconsinHouseCountySource',controller:'enWisconsinHouseController'}, {code:'WI-03',state:'WI',office:'House',key:'WI-03',forecast_scope:'national_joint_draws',counties:19,url:'https://civicapi.org/api/v2/race/87485',reference:'data/wisconsin_house_03_county_fips_reference.json',parser:'WisconsinHouseCountySource',parser_scope:'WI-03',controller:'enWisconsinHouse03Controller'},
  {code:'MI-04',state:'MI',office:'House',key:'MI-04',forecast_scope:'national_joint_draws',counties:6,url:'https://civicapi.org/api/v2/race/87204',reference:'data/michigan_house_04_county_fips_reference.json',parser:'WisconsinHouseCountySource',parser_scope:'MI-04',controller:'enMichiganHouse04Controller'},
- {code:'PA-10',state:'PA',office:'House',key:'PA-10',forecast_scope:'national_joint_draws',counties:3,url:'https://civicapi.org/api/v2/race/87385',reference:'data/pennsylvania_house_10_county_fips_reference.json',parser:'WisconsinHouseCountySource',parser_scope:'PA-10',controller:'enPennsylvaniaHouse10Controller'}]);
+ {code:'PA-10',state:'PA',office:'House',key:'PA-10',forecast_scope:'national_joint_draws',counties:3,url:'https://civicapi.org/api/v2/race/87385',reference:'data/pennsylvania_house_10_county_fips_reference.json',parser:'WisconsinHouseCountySource',parser_scope:'PA-10',controller:'enPennsylvaniaHouse10Controller'},
+ {code:'NY-17',state:'NY',office:'House',key:'NY-17',forecast_scope:'national_joint_draws',counties:4,url:'https://civicapi.org/api/v2/race/87319',reference:'data/new_york_house_17_county_fips_reference.json',parser:'WisconsinHouseCountySource',parser_scope:'NY-17',controller:'enNewYorkHouse17Controller'}]);
 const inWindow=now=>Number.isFinite(now)&&now>=Date.parse('2026-10-26T00:00:00Z')&&now<=Date.parse('2026-11-04T17:00:00Z');
 function assess(row,now=Date.now()){
  const expected=races.find(r=>r.code===row?.code);if(!expected)throw Error('Unknown competitive source scope');
@@ -63,7 +64,7 @@ function nationalProof(rows,admitted){
  return {contract_validated:entries.length>0&&validated.length===entries.length,validated_codes:validated};
 }
 function summarize(rows,now=Date.now()){
- if(!Array.isArray(rows)||rows.length!==races.length||new Set(rows.map(r=>r.code)).size!==races.length)throw Error('All seven competitive sources required');
+ if(!Array.isArray(rows)||rows.length!==races.length||new Set(rows.map(r=>r.code)).size!==races.length)throw Error('All declared competitive sources required');
  const sources=rows.map(r=>assess(r,now));
  const failure=sources.some(r=>r.violations.length);
  return {generated_at:new Date(now).toISOString(),status:failure?'ACTION_REQUIRED':

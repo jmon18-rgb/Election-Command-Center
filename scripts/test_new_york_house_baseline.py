@@ -60,7 +60,7 @@ class NewYorkBaselineTests(unittest.TestCase):
         self.assertEqual({r['name'] for r in evidence['regions']}, set(CENSUS))
         self.assertEqual(evidence['candidate_roster'], [{'name': 'Cait Conley', 'party': 'Democratic'}, {'name': 'Mike Lawler', 'party': 'Republican'}])
         self.assertEqual(evidence['accepted_live_vote_rows'], 0)
-        self.assertFalse(evidence['national_controller_enabled'])
+        self.assertTrue(evidence['national_controller_enabled'])
         self.assertFalse(evidence['independent_official_source']['usable_feed'])
 
 
