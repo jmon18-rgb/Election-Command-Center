@@ -16,9 +16,10 @@ At the October 26 clarification, the correlated House/Senate Four Endings model
 accepted verified calls but lacked the county-return connection. PR454 now
 implements and deploys the scoped experimental connection; see
 NATIONAL_RESULTS_NEEDLE_CONTRACT.md and readiness-progress.md for tested evidence
-and remaining limits. PR455 also deploys WI-01 district-part county counts directly
-to the same national model. One House district plus three Senate states remains
-limited coverage, not national House assurance or independent calibration. Continue testing that explicit partial-return contract
+and remaining limits. PR455 deploys WI-01 district-part county counts; PR456
+adds WI-03 within a fixed shared Wisconsin evidence budget and extends the
+isolated national rehearsal. Two House districts in ONE state plus three Senate
+states remain limited coverage, not national House assurance or calibration. Continue testing that explicit partial-return contract
 within the same national model. Do not average race probabilities or count a
 poll-informed race posterior as independent evidence against the same poll prior.
 Distinguish local/candidate effects from shared national effects; three Senate
