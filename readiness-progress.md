@@ -1,5 +1,25 @@
 # Readiness progress
 
+## October26 22:41Z — alternative AZ01 history found; exact reconciliation gaps measured
+
+- Used primary OpenElections repository contents API (not guessedfile) to find actual
+ 2024GeneralMaricopa precinctCSV8,236,560bytes, SHAd338c70e939df068e85c80fe7800732462a2673b09fbc128755c8bca6c486a8a.
+  ExactofficeU.S.House/districtCD-1: DEM208961/REP225513. Must exclude
+  TotalVotes/UnderVote/OverVote rows; raw processed candidate spellings have errors.
+- Existing independently pinned district reference DEM208966/REP225538 differs
+  by5D/25R. No baseline approved or silent total adjustment. Processed source has
+ 209precincts, current official2026template210:207IDscommon; historicalonly0565/0566,
+  currentonly0944/0948/0953. Unchangeddistrictboundary does NOT mean precincts
+  unchanged. Do not apportion the two old precincts over three new ones by guess.
+- Source assessment records exact totals, omitted noncandidate rows and explicit
+  fail-closed baseline decision; local assertions pass. ActualCSV/joinreport saved.
+  No deniedcountyarchive retry, no calibration/predictiveinput claim.
+- NEXT: inspect processed source's original provenance/county export and official
+  precinct equivalency for five changed IDs. Need both total reconciliation and
+  geography agreement; until then maintain existing9routes. MainCIhealthy/openPRs
+  unchanged. This is actionable engineering evidence, not a production milestone.
+
+
 ## October26 22:26Z — AZ01 archive investigation bounded and stopped
 
 - Actual archive-page declared scripts inspected once. File-list application is

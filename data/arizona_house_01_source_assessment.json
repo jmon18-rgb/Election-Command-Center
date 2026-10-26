@@ -68,5 +68,53 @@
     "ordinary_browser_request_script_http": 403,
     "interpretation": "The declared archive application script was denied on the ordinary request; selector failure does not prove historical files do not exist. No access-control bypass or guessed asset IDs. Stop repeating this route until access or evidence changes.",
     "independent_official_export_located": false
+  },
+  "processed_historical_candidate": {
+    "url": "https://raw.githubusercontent.com/openelections/openelections-data-az/master/2024/General/20241105__az__general__maricopa__precinct.csv",
+    "sha256": "d338c70e939df068e85c80fe7800732462a2673b09fbc128755c8bca6c486a8a",
+    "bytes": 8236560,
+    "provenance": "OpenElections processed data; README labels pre-processed, original county source and reuse terms not independently reconciled here",
+    "exact_selection": {
+      "office": "U.S. House",
+      "district": "CD-1",
+      "major_party_rows": [
+        "DEM",
+        "REP"
+      ]
+    },
+    "dem_votes": 208961,
+    "rep_votes": 225513,
+    "independent_existing_district_totals": {
+      "DEM": 208966,
+      "REP": 225538
+    },
+    "differences_from_existing_reference": {
+      "DEM": -5,
+      "REP": -25
+    },
+    "raw_candidate_spellings": [
+      "Amish SHAW",
+      "David SCHWEKERT"
+    ],
+    "noncandidate_rows_excluded": [
+      "Total Votes",
+      "Under Vote",
+      "Over Vote"
+    ],
+    "historical_precincts": 209,
+    "current_precincts": 210,
+    "historical_only": [
+      "0565",
+      "0566"
+    ],
+    "current_only": [
+      "0944",
+      "0948",
+      "0953"
+    ],
+    "matching_id_count": 207,
+    "historical_names_or_ids_do_not_prove_boundary_equivalence": true,
+    "baseline_approved": false,
+    "next_required": "Original county export/canvass reconciliation plus independently verified 2024to2026precinct equivalency; never allocate old precinct votes to new ones by guess."
   }
 }
