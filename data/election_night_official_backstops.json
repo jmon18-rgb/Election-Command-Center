@@ -276,6 +276,33 @@
         "Senate|TX",
         "Governor|TX"
       ]
+    },
+    {
+      "state": "IL",
+      "name": "Illinois State Board of Elections results directory",
+      "url": "https://www.elections.il.gov/electionoperations/ElectionVoteTotals.aspx",
+      "mode": "november_2026_results_not_yet_published",
+      "verified_at": "2026-10-26",
+      "scope_note": "Official election selector currently shows2026 GENERAL PRIMARY, not November general-election votes. Human reference only; no automated totals or calls.",
+      "race_ids": [
+        "House|IL-01",
+        "House|IL-02",
+        "House|IL-03",
+        "House|IL-04",
+        "House|IL-05",
+        "House|IL-06",
+        "House|IL-07",
+        "House|IL-08",
+        "House|IL-09",
+        "House|IL-10",
+        "House|IL-11",
+        "House|IL-12",
+        "House|IL-13",
+        "House|IL-14",
+        "House|IL-15",
+        "House|IL-16",
+        "House|IL-17"
+      ]
     }
   ],
   "limitations": "Links are human-check references, not verified live feeds, reported votes, or professional race calls. Massachusetts expressly does not publish unofficial statewide election-night results. Mississippi's Secretary of State stated in its 2024 election-day guidance that its office only announces and posts certified results; do not rely on that office as an unofficial live feed without a newly verified 2026 source. Alabama's current unofficial election-night results landing page does not yet show a 2026 general-election result, and the DDHQ AL-07 results view had 0 votes before Nov 3. A browser page is not an automated source.",
@@ -703,6 +730,108 @@
         "url": "https://votes.decisiondeskhq.com/races/2026-11-03/hawaii-us-house-2-general-election",
         "verified_at": "2026-10-26",
         "verification": "Exact race link read from the public November 3 Hawaii directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
+      },
+      {
+        "id": "House|IL-01",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/illinois-us-house-1-general-election",
+        "verified_at": "2026-10-26",
+        "verification": "Exact link read from the public November3 Illinois directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
+      },
+      {
+        "id": "House|IL-02",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/illinois-us-house-2-general-election",
+        "verified_at": "2026-10-26",
+        "verification": "Exact link read from the public November3 Illinois directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
+      },
+      {
+        "id": "House|IL-03",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/illinois-us-house-3-general-election",
+        "verified_at": "2026-10-26",
+        "verification": "Exact link read from the public November3 Illinois directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
+      },
+      {
+        "id": "House|IL-04",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/illinois-us-house-4-general-election",
+        "verified_at": "2026-10-26",
+        "verification": "Exact link read from the public November3 Illinois directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
+      },
+      {
+        "id": "House|IL-05",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/illinois-us-house-5-general-election",
+        "verified_at": "2026-10-26",
+        "verification": "Exact link read from the public November3 Illinois directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
+      },
+      {
+        "id": "House|IL-06",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/illinois-us-house-6-general-election",
+        "verified_at": "2026-10-26",
+        "verification": "Exact link read from the public November3 Illinois directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
+      },
+      {
+        "id": "House|IL-07",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/illinois-us-house-7-general-election",
+        "verified_at": "2026-10-26",
+        "verification": "Exact link read from the public November3 Illinois directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
+      },
+      {
+        "id": "House|IL-08",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/illinois-us-house-8-general-election",
+        "verified_at": "2026-10-26",
+        "verification": "Exact link read from the public November3 Illinois directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
+      },
+      {
+        "id": "House|IL-09",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/illinois-us-house-9-general-election",
+        "verified_at": "2026-10-26",
+        "verification": "Exact link read from the public November3 Illinois directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
+      },
+      {
+        "id": "House|IL-10",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/illinois-us-house-10-general-election",
+        "verified_at": "2026-10-26",
+        "verification": "Exact link read from the public November3 Illinois directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
+      },
+      {
+        "id": "House|IL-11",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/illinois-us-house-11-general-election",
+        "verified_at": "2026-10-26",
+        "verification": "Exact link read from the public November3 Illinois directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
+      },
+      {
+        "id": "House|IL-12",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/illinois-us-house-12-general-election",
+        "verified_at": "2026-10-26",
+        "verification": "Exact link read from the public November3 Illinois directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
+      },
+      {
+        "id": "House|IL-13",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/illinois-us-house-13-general-election",
+        "verified_at": "2026-10-26",
+        "verification": "Exact link read from the public November3 Illinois directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
+      },
+      {
+        "id": "House|IL-14",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/illinois-us-house-14-general-election",
+        "verified_at": "2026-10-26",
+        "verification": "Exact link read from the public November3 Illinois directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
+      },
+      {
+        "id": "House|IL-15",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/illinois-us-house-15-general-election",
+        "verified_at": "2026-10-26",
+        "verification": "Exact link read from the public November3 Illinois directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
+      },
+      {
+        "id": "House|IL-16",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/illinois-us-house-16-general-election",
+        "verified_at": "2026-10-26",
+        "verification": "Exact link read from the public November3 Illinois directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
+      },
+      {
+        "id": "House|IL-17",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/illinois-us-house-17-general-election",
+        "verified_at": "2026-10-26",
+        "verification": "Exact link read from the public November3 Illinois directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
       }
     ]
   }
