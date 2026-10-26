@@ -1,0 +1,27 @@
+name: Verify official Washington competitive House source contract
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/*washington*'
+      - 'data/washington_*'
+      - 'data/washington_historical_sources/**'
+      - '.github/workflows/washington-official-house-source.yml'
+permissions:
+  contents: read
+jobs:
+  original-and-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          python3 scripts/build_washington_house_county_baseline.py --check
+          python3 scripts/test_washington_house_baseline.py
+          node --check scripts/washington_official_house_source.js
+          node scripts/test_washington_official_house_source.cjs
+          git diff --exit-code

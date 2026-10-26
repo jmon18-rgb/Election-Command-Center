@@ -1,0 +1,113 @@
+{
+  "checked_at": "2026-10-26T19:23:44.196678+00:00",
+  "status": "OFFICIAL_WA03_SOURCE_AND_BASELINE_PREPARED_NOT_CONNECTED",
+  "discovery": "Official SOS results link redirects to public Washington app. Public election list explicitly lists20261103; app scripts identify the read-only API and contest-specific data route. No election-ID guessing.",
+  "official_landing": "https://results.votewa.gov/results/public/washington",
+  "election_list_url": "https://results.votewa.gov/results/public/api/jurisdictions/washington",
+  "source_url": "https://results.votewa.gov/results/public/api/elections/washington/20261103/data/ballot-item/54c40000-9064-bbec-4779-08df15c0a82a",
+  "race_name": [
+    {
+      "languageId": "en",
+      "text": "Congressional District 3 - U.S. Representative"
+    }
+  ],
+  "is_production": true,
+  "election_date": "2026-11-03",
+  "as_of": "2026-10-22T15:55:34.6947355Z",
+  "publish_date": "2026-10-22T15:55:35.1274554Z",
+  "county_parts": [
+    [
+      {
+        "languageId": "en",
+        "text": "Clark County"
+      }
+    ],
+    [
+      {
+        "languageId": "en",
+        "text": "Cowlitz County"
+      }
+    ],
+    [
+      {
+        "languageId": "en",
+        "text": "Lewis County"
+      }
+    ],
+    [
+      {
+        "languageId": "en",
+        "text": "Pacific County"
+      }
+    ],
+    [
+      {
+        "languageId": "en",
+        "text": "Skamania County"
+      }
+    ],
+    [
+      {
+        "languageId": "en",
+        "text": "Thurston County"
+      }
+    ],
+    [
+      {
+        "languageId": "en",
+        "text": "Wahkiakum County"
+      }
+    ]
+  ],
+  "votes": 0,
+  "candidate_native_ids": [
+    {
+      "nativeId": "1601893",
+      "name": [
+        {
+          "languageId": "en",
+          "text": "John Braun"
+        }
+      ],
+      "voteCount": 0
+    },
+    {
+      "nativeId": "1601892",
+      "name": [
+        {
+          "languageId": "en",
+          "text": "Marie Gluesenkamp Perez"
+        }
+      ],
+      "voteCount": 0
+    },
+    {
+      "nativeId": "9910",
+      "name": [
+        {
+          "languageId": "en",
+          "text": "Write-in"
+        }
+      ],
+      "voteCount": 0
+    }
+  ],
+  "source_http": 200,
+  "cache_control": "public,max-age=60",
+  "cross_origin_direct_browser_access": false,
+  "cors_evidence": "Ordinary GET with Origin https://jmon18-rgb.github.io returns200 but no Access-Control-Allow-Origin. Server-side collector needed; no browser-security bypass.",
+  "baseline_original_url": "https://results.vote.wa.gov/results/20241105/export/20241105_AllCounties.csv",
+  "baseline_sha256": "58b301850875691a104a76c3c4e58555ec476e19c511f3fbb9c80e4110fc2c6a",
+  "limits": [
+    "No positive2026returns or independent speed comparison.",
+    "No source/candidate counts have entered national model.",
+    "Next required: server-side collection/publication with honest age/latency and reviewed national evidence wiring. The source parser and pinned baseline are implemented and tested; no pipeline is enabled.",
+    "Precincts reported are not ballots remaining; preserve mail-vote/reporting-order uncertainty."
+  ],
+  "original_preclose_sample_sha256": "e0b44622bde8b57a870b81440f7527d0fb6685075d8ef07514e4b4d1011da2c5",
+  "original_preclose_sample_path": "data/washington_historical_sources/2026-official-wa03-preclose-sample.json.gz",
+  "source_collection_authorization_scope": "Ordinary anonymous read-only GET used by the officially linked public results app; attribution retained. No authentication, challenge bypass or private API used. No additional vendor license or guaranteed update speed claimed.",
+  "source_parser_implemented": true,
+  "historical_baseline_reproduced": true,
+  "national_input_enabled": false
+}

@@ -1,0 +1,84 @@
+{
+  "race_code": "WA-03",
+  "year": 2024,
+  "source_url": "https://results.vote.wa.gov/results/20241105/export/20241105_AllCounties.csv",
+  "source_sha256": "58b301850875691a104a76c3c4e58555ec476e19c511f3fbb9c80e4110fc2c6a",
+  "status": "OFFICIAL_HISTORICAL_CONTEST_COUNTS_NOT_LIVE_OR_CALIBRATION",
+  "map_comparability": "boundaries_unchanged_per_2026_census",
+  "counties": [
+    {
+      "county": "Clark",
+      "county_fips": "53011",
+      "geography_scope": "WA-03 district part, not whole county",
+      "dem_votes": 152388,
+      "rep_votes": 117380,
+      "other_votes": 1203,
+      "total_votes": 270971
+    },
+    {
+      "county": "Cowlitz",
+      "county_fips": "53015",
+      "geography_scope": "WA-03 district part, not whole county",
+      "dem_votes": 25982,
+      "rep_votes": 31996,
+      "other_votes": 233,
+      "total_votes": 58211
+    },
+    {
+      "county": "Lewis",
+      "county_fips": "53041",
+      "geography_scope": "WA-03 district part, not whole county",
+      "dem_votes": 17430,
+      "rep_votes": 27046,
+      "other_votes": 123,
+      "total_votes": 44599
+    },
+    {
+      "county": "Pacific",
+      "county_fips": "53049",
+      "geography_scope": "WA-03 district part, not whole county",
+      "dem_votes": 7466,
+      "rep_votes": 6469,
+      "other_votes": 31,
+      "total_votes": 13966
+    },
+    {
+      "county": "Skamania",
+      "county_fips": "53059",
+      "geography_scope": "WA-03 district part, not whole county",
+      "dem_votes": 3501,
+      "rep_votes": 3693,
+      "other_votes": 19,
+      "total_votes": 7213
+    },
+    {
+      "county": "Thurston",
+      "county_fips": "53067",
+      "geography_scope": "WA-03 district part, not whole county",
+      "dem_votes": 6995,
+      "rep_votes": 10872,
+      "other_votes": 54,
+      "total_votes": 17921
+    },
+    {
+      "county": "Wahkiakum",
+      "county_fips": "53069",
+      "geography_scope": "WA-03 district part, not whole county",
+      "dem_votes": 1415,
+      "rep_votes": 1598,
+      "other_votes": 10,
+      "total_votes": 3023
+    }
+  ],
+  "totals": {
+    "dem_votes": 215177,
+    "rep_votes": 199054,
+    "other_votes": 1673,
+    "total_votes": 415904
+  },
+  "limits": [
+    "District parts, not whole-county totals.",
+    "Contest votes do not measure ballots outstanding.",
+    "2024 presidential-year turnout and mail-return composition may differ from2026."
+  ]
+}

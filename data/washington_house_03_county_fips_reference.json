@@ -1,0 +1,35 @@
+{
+  "source_url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_counties_national.zip",
+  "source_sha256": "3c337402b5c6e8d5aa26b4278ccf4edc8989f2683765b3ffbf22296cdb2df3a0",
+  "scope": "WA-03 county district parts from original official export",
+  "counties": [
+    {
+      "county": "Clark",
+      "fips": "53011"
+    },
+    {
+      "county": "Cowlitz",
+      "fips": "53015"
+    },
+    {
+      "county": "Lewis",
+      "fips": "53041"
+    },
+    {
+      "county": "Pacific",
+      "fips": "53049"
+    },
+    {
+      "county": "Skamania",
+      "fips": "53059"
+    },
+    {
+      "county": "Thurston",
+      "fips": "53067"
+    },
+    {
+      "county": "Wahkiakum",
+      "fips": "53069"
+    }
+  ]
+}

@@ -1,6 +1,54 @@
 # Readiness progress
 
 
+## October26 19:29Z — historical vote correction deployed; independent WA03 path prepared
+
+- PR463 final cc8b60fac5146b43b95e545aad7b6946f87e5661 passes all34 applicable
+  workflows. Latest43 check jobs:40success/3nonapplicable deployment skips;
+  no external statuses; exact head/mergeable clean verified before merge.
+  Canceled browser installs and a validation source-probe timeout/HTTP503
+  were retried on the SAME head, with no checks waived. Full DOM and all
+  current-head validation/browser jobs finish successfully.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/463
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40383902731
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40383902367
+- Merge6bf06b26445c3a811dfb39344345ae900ebe1d79; final briefing-bot main
+  e8f290ff0747b391a8aa821767296bee266b9b29 Pages40386829421 succeeds.
+  Actual19:28:30Z comparison matches ALL128 published expected files.
+  Separate actual-site smoke passes forecast lineage and coherent four endings.
+  Actual published1366/390 synthetic national tests pass eight-source movement,
+  correction/withdrawal/outage/test/stale exclusion and missing-helper fallback.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40386829421
+- Historical party/fusion repair and BOTH years' independent agreement flags
+  are now deployed.2022 agreement399->427;2024 agreement403->433. Existing
+  exploratory persistence diagnostics now153prior winners/35states,149later
+  wins/4losses, coefficient .343, still UNPROMOTED. Do not merge old PR59 again.
+- Separate actual published fixture-free19:28:57Z probe: all8 civicAPI routes
+  HTTP200/non-test, stale zero counts, NO admitted evidence/projections/raw
+  accepted archives/page errors. Live delivery, calibration and comparative
+  publication latency remain UNPROVEN. No source-driven needle movement claimed.
+- Useful next-source work: owner's uploaded tipping priority audit identifies
+  WA03 rank13; current polling remains genuinely competitive. Official Washington
+  SOS results link now redirects to results.votewa.gov/results/public/washington.
+  Its PUBLIC election list actually lists20261103 (not a guessed future ID).
+  Public app-linked API returns the exact WA03 general-election contest, verified
+  John Braun/Marie Gluesenkamp Perez identities and ALL7county district parts.
+  Actual200/isProduction=true, asOfOctober22, ZERO counts. Cache max-age60.
+  Pinned original2024 official county CSV reproduces215177D/199054R/1673write-ins,
+  matching independent historical staging and unchanged2026 Census boundaries.
+- Isolated readiness/washington-official-source now contains a strict tested
+  official adapter, pinned pre-close sample, original-source baseline importer,
+  independent Census crosswalk and verification workflow. No new national input
+  or browser controller enabled. Exact transport blocker: ordinary GET with the
+  dashboard Origin receives NO Access-Control-Allow-Origin. Need permitted
+  server-side collection/publication, with its additional delay disclosed;
+  do not use an arbitrary CORS proxy or promise a direct fast browser feed.
+  Next: review/merge this source preparation with checks, then implement the
+  actual collection-to-national path with correction/retraction and single-race
+  deduplication. Do not equate this prepared source with live delivery.
+
+
+
 October26 continuation: PR463 exact head eae422d4ae28c8474d424c1eb0019bc70aac9838
 remains unmerged pending complete current-head CI. Previous44e84375 validation
 caught a dependent historical persistence study still using the old191-district
