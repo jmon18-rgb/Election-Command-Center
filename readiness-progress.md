@@ -8,6 +8,27 @@ Prioritize competitive sources/fallbacks, correct calls/control accounting,
 outage/retraction recovery and the laptop dashboard. The scoped needle remains
 an evidence task, not a reason to fabricate predictive updates.
 
+## October 25 - explicit provider-call withdrawal recovery
+
+- Reproduced an alert gap: a fresh call withdrawal with unchanged vote leader
+  emitted no correction bulletin, and superseded active/queued call announcements
+  remained. The actual alert-processor test failed before the fix.
+- Add an explicit provider-call-withdrawn event and revoke only the matching
+  civicAPI race's active/queued call. Preserve other races, sources and non-call
+  bulletins. A corrected named winner still emits its new source-attributed call.
+  This changes source correction handling, not celebration artwork or music.
+- All 15 core checks and actual Edge desktop/mobile drills pass: the withdrawal
+  replaces the old headline, says the outcome is uncalled, removes the queued
+  superseded call and retains an unrelated Maine bulletin. Existing source/vote
+  gates and the underlying chamber accounting remain unchanged.
+- Full local DOM run is pending in session 74368, with durable output at
+  artifacts/readiness/call-retraction-dom.log. Current-head CI remains required.
+- PR #434's validation job passed, but its DOM browser job hit the existing
+  12-minute limit without an assertion result (run 40253096366). It has NOT
+  merged. Reran failed jobs once at the same head; retain all required checks.
+  Next: inspect that rerun and local timing, repair a repeatable test/runtime
+  problem if needed, then merge #434 before this retraction follow-up.
+
 ## October 25 - unchanged-publication-clock source revisions
 
 - Reproduced a real acceptance gap in the actual primary snapshot function:

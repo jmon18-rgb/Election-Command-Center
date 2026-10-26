@@ -2966,6 +2966,24 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  w.eval('enProcessCivicAlert('+JSON.stringify(nhSenateItem)+','+
    JSON.stringify(civicCall)+','+JSON.stringify(civicCall)+')');
  assert.equal(alertRows().length,civicCount,'Repeated provider call must not create duplicate');
+ w.eval(`enFishDismiss();
+  enFishShow({kind:'call',source:'civicAPI',office:'Senate',race:'NH',
+   title:'Superseded NH call',details:'First candidate'});
+  enFishShow({kind:'call',source:'civicAPI',office:'Senate',race:'NH',
+   title:'Queued superseded NH call',details:'First candidate'});
+  enFishShow({kind:'flip',source:'civicAPI',office:'Senate',race:'ME',
+   title:'Unrelated Maine bulletin',details:'Not a race call'});`);
+ const withdrawnCall={...rawCivic,called:null,last_updated:'2026-11-04T03:01:00Z'};
+ w.eval('enProcessCivicAlert('+JSON.stringify(nhSenateItem)+','+
+   JSON.stringify(civicCall)+','+JSON.stringify(withdrawnCall)+')');
+ assert.match(get('#enAlertItems').textContent,/Provider call withdrawn/);
+ assert.match(get('#enFishMode').textContent,/PROVIDER CALL WITHDRAWN/);
+ assert.match(get('#enFishHeadline').textContent,/outcome is uncalled/);
+ assert.equal(w.eval('enFishQueueState().pending'),1,
+  'Retraction removes the queued obsolete call while preserving the unrelated bulletin');
+ w.eval('enFishNextBulletin()');
+ assert.match(get('#enFishHeadline').textContent,/Unrelated Maine bulletin/);
+ w.eval('enFishDismiss()');
  const desktopNotifications=[];
  class FakeDesktopNotification{
   static permission='default';
