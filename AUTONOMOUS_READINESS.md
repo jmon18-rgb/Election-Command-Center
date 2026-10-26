@@ -1,5 +1,29 @@
 # Election Night production-readiness assignment
 
+## October26 21:26Z — pivotal NC01 official archive inspected; geography blocker isolated
+
+- Reused existing official catalog/download discovery, inspected queued211 before
+  acting. Real official catalog lists11/03/2026, download flag1. Actual HTTPS
+  official S3 ZIP is accessible, SHA a0a046b2878157904343e9053f747094c7230a8d5c0e2e80359e264071ac73fe;
+  Last-ModifiedOct5. Full141466rows share2026election date, CRC checked.
+- Exact US HOUSE OF REPRESENTATIVES DISTRICT01: DonDavisDEM, LaurieBuckhoutREP,
+  TomBaileyLIB; each350precinct rows across25county/district parts, ALL ZERO.
+  No embedded reporting clock; not live approval, test/live semantics unverified.
+  data/north_carolina_house_01_source_assessment.json records actual source and
+  exact blockers, no activation. Local metadata assertions passed.
+- Current geography bridge NC01 explicitly changed_requires_reaggregation and
+  historical_comparison_available=false. Existing statewide NC Senate/presidential
+  baselines cannot substitute for2026district-part history. This makes matched
+  new-line historical precinct aggregation the decisive NC01 forecasting blocker,
+  rather than continuing to claim the ZIP is missing. Need independent ballot/
+  precinct/FIPS contract, reporting semantics and remaining-vote evidence as well.
+- No source panel/model promotion, no repeated blanket probe. ZIP and full audit
+  saved locally under artifacts/readiness/nc*. Next bounded work: assess existing
+  new-line historical aggregation resources; if unavailable move to uploaded
+  priority AZ01 with unchanged-boundary check. Keep source claims distinct from
+  usable predictive inputs. No change to national9route live acceptance status.
+
+
 ## October26 21:11Z — bounded predictive acceptance assessment completed
 
 - NATIONAL_NEEDLE_ACCEPTANCE.md reviews implementation, independent transport,
