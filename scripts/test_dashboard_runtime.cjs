@@ -2859,7 +2859,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  rehearsalReleaseOld();
  await Promise.all([rehearsalOldLoad,rehearsalCoalescedLoad]);
  assert.match(get('#enRaceList').textContent,/AZ-01/,
-  'A coalesced House response still reaches the latest requested view; status='+get('#enStatus').textContent+'; state='+w.eval('JSON.stringify({office:enOffice,year:enModeYear,serial:enRequestSerial,error:enFetchError})'));
+  'A coalesced House response still reaches the latest requested view; status='+get('#enStatus').textContent+'; races='+get('#enRaceList').textContent.slice(0,300));
  assert.equal(get('#enRaces').textContent,'1');
  assert.equal(get('#enDLeads').textContent,'1');
  // Once the shared request settles, an explicit refresh must independently
