@@ -1,5 +1,29 @@
 # Readiness progress
 
+## October 25 - combined Iowa county returns now drive a visible race needle
+
+- PR #436 foundation merged as 22bf5cd6 after all four applicable workflows passed.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/436
+- Implemented full-source -> validated combined county counts -> remaining-vote
+  estimator -> visible Iowa Senate probability/margin/uncertainty. Current polling
+  supplies the two-party prior. No invented observed method split, precinct-based
+  completion, provider-call shortcut or national model update.
+- Source test data, stale responses, old publication clocks and same-clock changed
+  counts cannot produce a current probability. Historical preview uses official
+  2022 votes under assumed ordering, isolated from 2026 counts; final certified
+  outcome is labeled as history rather than a prediction.
+- All 18 core readiness checks pass. Actual local Edge 1366x768 and 390px checks
+  pass for changing source-input probabilities, test exclusion, publication-clock
+  conflict rejection, late-response preview isolation, outages and recovery.
+  Synthetic live fixtures prove plumbing, not actual 2026 source delivery.
+- Combined-input development evaluation: 9.20-point average margin error versus
+  raw counted share 19.89 across 16 partial 2022 scenarios; envelope contains truth
+  15/16. This election was used for model development. NOT independent evaluation,
+  calibration, actual historical reporting timestamps or production readiness.
+- Current provider still marks data TEST; zero actual live county votes accepted.
+  Next: current-head CI/review and deployed verification, then independent forecast
+  evaluation and competitive Kansas source discovery. No safe-seat/UI/art expansion.
+
 ## October 25 - first Iowa remaining-vote forecasting implementation
 
 - SOURCE BREAKTHROUGH at 02:11:50Z: full civicAPI Iowa race 87151 returns all
