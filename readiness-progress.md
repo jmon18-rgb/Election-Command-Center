@@ -24,6 +24,16 @@ an evidence task, not a reason to fabricate predictive updates.
   1366x768 and 390px checks pass. Broader current-head CI remains required.
 - PR #432 passed all 27 workflows at ef6e30ce and merged as 40f83711. Verify
   its published compact layout before claiming deployment complete.
+- Deployment now verified at 00:58:06Z against main 23c66bf5: HTML, all 35
+  loaded scripts and both source catalogs match (38 files, zero differences).
+  At 00:58:09Z actual Edge at 1366x768 shows exactly four immediate priority
+  rows with the complete gap inventory in the collapsed remainder drawer;
+  source-drawer focus and all seven manual references still pass. Local evidence:
+  artifacts/readiness/published-main-integrity.json and
+  artifacts/readiness/live-core-recovery-verification.json.
+- Next: PR #433 government references/scope warnings must pass current-head CI,
+  then verify actual publication. Preserve the separate source identity, live
+  delivery, rights and calibration acceptance gaps; these human links clear none.
 
 ## October 25 - verified release and next laptop task
 
