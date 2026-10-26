@@ -1,5 +1,23 @@
 # Readiness progress
 
+## October26 05:27Z - fix live Iowa forecast leakage into the archive
+
+- Reproduce with a post-close source fixture: switch from a valid2026 Iowa
+  forecast to the2024 archive; the old view retains its live probability. New
+  desktop/mobile assertions fail against the deployed controller. This is a
+  display/source-scope defect, not new forecast calibration evidence.
+- Clear the live projection and source stamp immediately when the live desk is
+  inactive, including during a request. Recheck desk activity after the source
+  returns so a late response cannot reintroduce live counts into archive mode.
+- Real Edge1366/390 fixtures now pass both immediate archive clearing and a
+  delayed response crossing the archive switch; returning to2026 restores a
+  newly validated estimate. Existing historical preview/correction/outage tests,
+  Kansas desktop/mobile and all20 core checks pass. Model parameters unchanged.
+- This fix is queued on the current evidence review; require current-main CI
+  and verify Pages after merge.443 still awaits its full DOM check; do not count
+  local browser fixtures as actual live votes.
+
+
 ## October26 05:22Z - two visible race needles deployed and verified
 
 - Merge442 at6caa7786 after all28 applicable workflows pass on exact head
