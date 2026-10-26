@@ -6,6 +6,7 @@ on:
     paths:
       - 'data/iowa_*'
       - 'scripts/*iowa_senate*'
+      - 'scripts/*iowa_civic*'
       - '.github/workflows/iowa-senate-needle.yml'
 permissions:
   contents: read
@@ -23,6 +24,7 @@ jobs:
       - name: Forecast remaining vote and evaluate explicit release-order scenarios
         run: |
           node scripts/test_iowa_senate_partial_forecast.cjs
+          node scripts/test_iowa_civic_county_source.cjs
           node scripts/evaluate_iowa_senate_partial_forecast.cjs
       - uses: actions/upload-artifact@v4
         if: always()

@@ -48,7 +48,31 @@ correlated scenario checks from one election, **not calibration**. The estimator
 still needs improved uncertainty and independent historical evaluation. All
 complete returns recover the actual result with no modeled votes remaining.
 
-## Live input blocker and next implementation
+## Real county source found and verified
+
+The full public civicAPI response at
+[Iowa Senate race 87151](https://civicapi.org/api/v2/race/87151) contains all 99
+county result records with candidate votes and county FIPS. The `?light=` version
+used by existing source polling **omits** `region_results`; this explains why the
+previous lightweight probes did not find this data. The service's
+[API documentation](https://civicapi.org/api-documentation) permits public use
+with attribution. Its calls remain unofficial; this adapter uses counts only.
+
+At 02:11:50Z on October 26, an actual Edge fetch from the deployed GitHub Pages
+origin succeeded. Every county name/FIPS joined to the independent
+[Census 2024 county Gazetteer](https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_counties_national.zip).
+The provider currently sets **`test_data: true`**. The new full-source adapter
+rejects all those values as live input; accepted county count is zero. Recorded
+evidence contains transport/identity metadata only, not the test vote totals.
+
+`iowa_civic_county_source.cjs` checks exact race/date/scope, explicit non-test
+status, fresh post-close timestamps, pinned major-candidate identities, all 99
+independent county joins, candidate arithmetic and county-to-state reconciliation.
+It preserves the fact that these are **combined county counts with no voting
+method split or verified ballot-completion flag**. A race snapshot timestamp
+does not become an independently observed update time for each county.
+
+## Remaining input-to-estimator bridge
 
 The existing Open America contract supplies Iowa statewide race totals, not the
 county/method inputs this estimator needs. Its precinct reporting percentage is
@@ -58,11 +82,11 @@ result API calls exposed. No verification challenge was bypassed. The official
 2026 index has absentee-return statistics but no general-election count export
 published yet. Returned absentee ballots are not counted candidate votes.
 
-Next: obtain a permitted Iowa county/method result transport or independently
-published county feed and implement its parser, identity/timestamp reconciliation
-and normalized input bridge. Inspect actual source completion semantics; do not
-infer completion from 100% precincts. In parallel, extend independent historical
-evaluation and turnout scenarios, then attach this race estimator to the visible
-needle with explicit experimental uncertainty. It is not yet live-connected or
-loaded into the production dashboard. Kansas Senate is the next competitive
-source candidate if the Iowa transport remains inaccessible.
+The public full civicAPI endpoint provides a usable transport alternative to that
+blocked official portal. Next: adapt the estimator to **combined county counts**
+with explicit uncertainty over the unseen absentee/Election Day mix. Do not split
+observed votes into invented method counts, infer completion from 100% precincts,
+or activate current provider test data. Extend independent historical evaluation
+and turnout scenarios, then attach the source-to-model bridge and visible race
+needle. The model is not yet connected to accepted live counts or loaded into the
+production dashboard. Kansas Senate remains the next competitive source target.

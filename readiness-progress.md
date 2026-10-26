@@ -2,6 +2,20 @@
 
 ## October 25 - first Iowa remaining-vote forecasting implementation
 
+- SOURCE BREAKTHROUGH at 02:11:50Z: full civicAPI Iowa race 87151 returns all
+  99 county candidate records with FIPS. The existing light response omits them.
+  Actual Edge cross-origin transport from the deployed site's origin succeeds;
+  all 99 identities independently match the Census 2024 county Gazetteer.
+- Implemented the full-source parser with exact race/candidate/time identity and
+  county/state vote reconciliation. Real current payload is test_data=true and
+  the adapter rejects every value as live input (zero county vote rows accepted).
+  Evidence: data/iowa_civic_county_source_evidence.json. This is a source discovery
+  and input-contract milestone, not proof of post-close delivery or calibration.
+- The feed combines voting methods. Next concrete code task: combined-county
+  observation bridge with explicit remaining-method-mix uncertainty, followed by
+  the updating visible race needle. Do not fabricate a method split or treat
+  precinct reporting percentages as ballot completion.
+
 - Added real official 2020 and 2022 Senate county/method data: 99 counties and
   198 Election Day/Absentee cells per year. Every county/method sum reconciles
   to the published statewide canvass. No historical or absentee-return figures
