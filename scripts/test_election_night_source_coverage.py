@@ -312,6 +312,22 @@ class CoverageLedgerTests(unittest.TestCase):
         self.assertEqual(indexed["unresolved_source_gaps"], 218)
         self.assertEqual(sum(indexed["unresolved_breakdown"].values()), 218)
 
+    def test_invalid_detail_reason_survives_without_approving_identity_or_votes(self):
+        packet=self.probe("INVALID_DETAIL",key="CA-20")
+        packet["results"][0]["reason"]="PRE_POLL_CLOSE_POSITIVE_VOTES"
+        report=self.ledger(probe=packet)
+        row=self.rows(report)["House|CA-20"]
+        self.assertEqual(row["last_probe"]["reason"],"PRE_POLL_CLOSE_POSITIVE_VOTES")
+        self.assertIsNone(row["last_probe"]["race_id"])
+        self.assertEqual(row["gap_status"],"UNRESOLVED_SOURCE_GAP")
+        self.assertFalse(row["verified_identity_hint_usable"])
+        self.assertFalse(row["live_votes_verified_by_audit"])
+        self.assertFalse(row["professional_winner_call_verified_by_audit"])
+        for unknown in ("untrusted arbitrary provider text", {"votes":123}, ["bad"]):
+            packet["results"][0]["reason"]=unknown
+            self.assertIsNone(self.rows(self.ledger(probe=packet))["House|CA-20"]
+                              ["last_probe"]["reason"],"Only bounded diagnostic codes are retained")
+
     def test_skipped_probe_does_not_erase_prior_exact_id(self):
         before = self.ledger(probe=self.probe())
         stopped = self.probe("NOT_CHECKED_UPSTREAM_PAUSED")

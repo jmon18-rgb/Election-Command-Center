@@ -278,6 +278,8 @@ def matches(district: str, row: dict) -> bool:
 
 
 def detail_matches(row: dict, detail: dict) -> bool:
+    if not isinstance(row, dict) or not isinstance(detail, dict):
+        return False
     if explicitly_mock(row) or explicitly_mock(detail) or (
         type(detail.get("id", row["id"])) is not int or
         detail.get("id", row["id"]) != row["id"]
@@ -394,11 +396,13 @@ def probe(district: str, request=fetch, *,
             # Batch search is merely a lookup optimization. Every accepted
             # identity is independently checked against its detailed record.
             if not matches(district, indexed_candidate):
-                return {"district": district, "status": "INVALID_DETAIL"}
+                return {"district": district, "status": "INVALID_DETAIL",
+                        "reason": "INDEX_CANDIDATE_IDENTITY_REJECTED"}
             race = indexed_candidate
         detail = request(f"/race/{race['id']}", {"light": ""})
         if not detail_matches(race, detail):
-            return {"district": district, "status": "INVALID_DETAIL"}
+            return {"district": district, "status": "INVALID_DETAIL",
+                    "reason": "DETAIL_CONTRACT_REJECTED"}
         # A positive pre-close count is most likely mock/test or a source
         # integrity error. An index ID must not be approved on that basis.
         received_at = now or datetime.now(timezone.utc)
@@ -408,7 +412,8 @@ def probe(district: str, request=fetch, *,
         reported = sum(c["votes"] for c in detail["candidates"])
         if reported and (close is None or
                          received_at.astimezone(timezone.utc) < close):
-            return {"district": district, "status": "INVALID_DETAIL"}
+            return {"district": district, "status": "INVALID_DETAIL",
+                    "reason": "PRE_POLL_CLOSE_POSITIVE_VOTES"}
         return {
             "district": district, "status": "INDEXED_EXACT_RACE",
             "race_id": race["id"],
@@ -597,9 +602,9 @@ def main():
                     f"upstream paused: {report['upstream_paused']}; "
                     f"skipped: {report['not_checked_upstream_paused']}. "
                     "Never classify skipped races as unindexed.\n\n")
-            f.write("| District | Result | Exact race ID |\n|---|---|---|\n")
+            f.write("| District | Result | Exact race ID | Rejection reason |\n|---|---|---|---|\n")
             for item in results:
-                f.write(f"| {item['district']} | {item['status']} | {item.get('race_id', '—')} |\n")
+                f.write(f"| {item['district']} | {item['status']} | {item.get('race_id', '—')} | {item.get('reason', '—')} |\n")
             f.write("\nA missing listing or provider outage is **unknown**, not zero votes, "
                     "not an inferred winner, and not proof of national reach. "
                     "Rotating coverage assumes scheduled runs complete.\n")

@@ -97,6 +97,33 @@ Last daily report date: 2026-10-25 (evening continuation report).
 - Publication remains gated on new current-head CI. Follow-up #428 needs these
   source-reference additions merged from #427 before its own final validation.
 
+## October 25 — published recovery fix and bounded rejection diagnostics
+
+- All 27 checks for recovery PR #427 passed; merged as 6d0575f2. Production
+  smoke passed with published HTML matching the recovery checkout, actual
+  versioned JS bytes and fresh source/model consistency (23:48:24Z snapshot).
+- At 23:53:20Z actual Edge loaded the deployed page in an isolated context,
+  blocked external providers and injected a 503. The new classifier and visible
+  CA-13 failed-source state were verified with zero reported House votes/calls;
+  screenshot captured. This is a deployed-runtime simulation, not proof of actual
+  November 3 source delivery. One initial element screenshot detached during a
+  normal redraw; viewport capture completed without browser application errors.
+- All 27 checks for manual-backstop PR #428 also passed before merge was
+  requested. Verify its published catalog/links before calling that follow-up live.
+- Added diagnostic reason codes to the existing strict House probe: rejected
+  index identity, rejected detail contract, and positive values before local poll
+  closure. The ledger retains only these bounded codes for invalid details.
+  Invalid records still receive no accepted race ID, vote payload or call.
+- One bounded real CA-20 check returned INVALID_DETAIL with
+  PRE_POLL_CLOSE_POSITIVE_VOTES. No rejected count values were printed or stored.
+  This identifies the CA-20 rejection; it does not establish the other four
+  California records have the same cause. No validation gate was relaxed.
+- 31 House-probe and 20 ledger tests pass, including malformed non-object details,
+  pre-close rejection, persistence of reason codes and rejection of arbitrary
+  diagnostic payloads. Current-head CI remains required for this follow-up.
+- Next laptop usability task: preserve source drawer expansion/focus across live
+  redraws so an operator can keep inspecting an affected race during updates.
+
 ## October 25 — first continuation: shared celebration player
 
 - PR #424 merged as 44bd3731 after all three workflows passed, including broad
