@@ -24,4 +24,6 @@ jobs:
           python3 scripts/test_washington_house_baseline.py
           node --check scripts/washington_official_house_source.js
           node scripts/test_washington_official_house_source.cjs
+          node --check scripts/collect_washington_official_results.cjs
+          node scripts/test_collect_washington_official_results.cjs
           git diff --exit-code

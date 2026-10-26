@@ -1,6 +1,54 @@
 # Readiness progress
 
 
+## October26 19:55Z — official Washington source preparation verified deployed
+
+- PR464 final a42c6b9cc7b10097b4761d1e90a94893467b2c5a passes ALL5 workflows;
+  all8 latest checks inspected:7success/1nonapplicable deployment skip,
+  no external statuses; exact head/mergeable clean before merge.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/464
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40388645861
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40388645845
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40388645859
+- Merge/final main a28b460efa3958bc5f5217558813ecb6fa388039; final Pages40390656671
+  succeeds (earlier briefing-bot5e40f725 build canceled/superseded). Actual
+  19:54:42Z ALL137 expected files match; remote dashboard coherence smoke passes.
+  Nine new published Washington preparation files independently verified.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40390656671
+- This is source/baseline/adapter PREPARATION, NOT a ninth national input.
+  Existing national runtime remains8sources. Last actual fixture-free eight-source
+  observation19:28:57Z remains stale zero/non-test with no admitted evidence.
+  Source404/zero/stale cases must never be reported as verified live delivery.
+- NEXT ACTIVE BRANCH: readiness/washington-official-transport, based on the
+  verified merged main. Bounded collector and tests promoted to
+  scripts/collect_washington_official_results.cjs and
+  scripts/test_collect_washington_official_results.cjs; local tests pass:
+  one fixed official GET,20s timeout,2MiB body cap, zero/stale rejection,
+  original-object-only selection/reparse,503 and oversize rejection. Actual
+  prototype observation19:43:54Z HTTP200, same pinned original source SHA,
+  stale snapshot rejected, payload=null. No publisher/schedule/controller yet.
+  Finish a coherent reviewed collector/publication + national wiring change;
+  don't just add another race panel or claim this local collector is deployed.
+- Own repository raw transport feasibility GET returns Access-Control-Allow-Origin
+  *, but max-age300. This is a possible owned cache channel, NOT freshness or
+  publication-speed proof. Main protections must remain intact; do not use an
+  arbitrary proxy, bypass browser security, or hide collection/cache/schedule lag.
+- Useful historical-source lead VERIFIED locally while CI ran: four actual
+  original Thurston2024 dated partial reports (Nov5,6,7,15) downloaded HTTP200,
+  hashes recorded, page4 counts/report-generation footers visually checked via
+  the PDF skill; Nov5 statistics page1 also visually checked. Research saved:
+  artifacts/readiness/washington-source-research/verified-thurston-partial-sequence-research.json
+  Original count progression is real, not scaled final totals; earliest contains
+  59.09% and last97.08% of eventual CD3-part two-party votes. Still only ONE of
+  SEVEN parts, no under25% sequence, inferred Pacific report-generation clocks
+  rather than independent capture/publication clocks, and zero approved model
+  calibration inputs. Do not relabel2024 Perez/Kent as2026 Perez/Braun.
+  The old historical landing alias redirects to2026; original linked PDFs remain
+  accessible and are saved locally, so don't repeatedly probe that redirected page.
+  Existing one-county/early-coverage and national calibration limits remain real.
+
+
+
 ## October26 19:29Z — historical vote correction deployed; independent WA03 path prepared
 
 - PR463 final cc8b60fac5146b43b95e545aad7b6946f87e5661 passes all34 applicable
