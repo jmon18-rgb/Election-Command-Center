@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-26T19:00:46.378327Z",
+  "updated_at": "2026-10-26T19:26:45.175971Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 4,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
     "primary_source_checked": 4,
-    "advisory_related_headline_buckets": 23,
-    "advisory_related_headlines": 54
+    "advisory_related_headline_buckets": 22,
+    "advisory_related_headlines": 52
   },
   "advisory_related_headlines": [
     {
@@ -61,15 +61,6 @@
       "topic_hints": [
         "security"
       ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "0aea8ac6ea26338271e0",
-      "headline": "SPECIAL REPORT | Nine ways the Trump administration could interfere with the US midterms - Business Day",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [],
-      "topic_hints": [],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
@@ -260,6 +251,18 @@
         "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "9b2aa16305e598a043b3",
+      "headline": "Join our election livestream; Jersey\u2019s on guard for Trump voting interference | Mikie\u2019s World - NJ.com",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin",
+        "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
@@ -420,6 +423,25 @@
         "ballot_access"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "6b50051065e586dcec9b",
+      "title": "The Trump administration has filed 31 lawsuits seeking states' voter data. Here's where they stand. - CBS News",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNN2xZSGY5OFhRT3JfWEdtTGZJZldMTlE1a05pTExhbEI3TlFxUVlFT1VibFIwRkd6cDFndHR5WF9KRUhqMlB5Vy1nR0ZDcEt0RnZydWw4WmJFX1JyMm5TcFRHZzhEb2pTUkxzR3ZiVGhOeGd5OU1xcVN6dXB6Tm9OZC1YRXZ3YU9u?oc=5",
+      "publisher": "CBS News",
+      "published_at": "2026-10-26T13:57:23Z",
+      "detected_at": "2026-10-26T19:26:45.175971Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "31 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -4951,21 +4973,6 @@
       "publisher": "Business Day",
       "published_at": "2026-10-14T12:10:08Z",
       "detected_at": "2026-10-14T13:00:50.754853Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "423234d81ea6b5807cd1",
-      "title": "SPECIAL REPORT | Nine ways the Trump administration could interfere with the US midterms - TimesLIVE",
-      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQdTJRaDNWeEtrTlk5VkxNU1RYUjhVQmw3ZGd4VG1xTGlpczAteEhTR1pvTE44MHUzd3BfVUlpdDh6WWtueEFxM3VMLTVfcDl1Um1FaFBYTVRGV3Y5WklQZUFCbG9yQ3hGVllseWdLRmFSNVYtQ242eTBqQXlLT2dXbDc3VDlqNElpOFJZaU1fZW1rYi1kbElpa1RnZmMyZjJURmxTb0J6VXJjZ3dSekwwbnNjMTZMdzZSb2JDOHlPZW5mT1dtY1B2VnlkQWYtem9XLVpr?oc=5",
-      "publisher": "TimesLIVE",
-      "published_at": "2026-10-14T12:10:08Z",
-      "detected_at": "2026-10-14T14:26:26.792039Z",
       "state_hints": [],
       "topic_hints": [],
       "headline_numbers_unverified": [],
