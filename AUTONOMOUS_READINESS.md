@@ -1,5 +1,30 @@
 # Election Night production-readiness assignment
 
+
+October26 continuation: PR463 exact head afe74aba23f26ebd026e0f3fdf0334e99fefd017
+remains unmerged pending complete current-head CI. Previous44e84375 validation
+caught a dependent historical persistence study still using the old191-district
+universe. Corrected and deterministically rebuilt BOTH historical persistence
+and modern-cohort diagnostics:149 previous winners/35states,145 subsequent
+wins/4losses; exploratory fitted coefficient .345->.344. This is a source-driven
+reproduction of an existing research study, NOT promotion of a new production
+coefficient or evidence of calibrated2026 odds. Added both studies to default
+read-only atomic bundle verification and workflow path triggers. Leakage,
+reproducibility, modern-cohort and all33 core checks pass locally; full local
+DOM and desktop/mobile eight-source synthetic browser tests previously passed.
+Latest CI snapshot31/34 workflows successful,3still running, no current-head
+failures. Do not infer deployment or merge from local test success.
+https://github.com/jmon18-rgb/Election-Command-Center/pull/463
+
+Next: finish exact-head CI, merge only all-green, verify Pages and actual
+published files/runtime (integrity helper extended from109 to127 files).
+Do not reapply PR59 afterward. Independent Iowa source reconnaissance: official
+SOS results archive's2026General result entries are not yet linked; its linked
+electionresults.iowa.gov root returns a JavaScript robot-verification page to
+ordinary web retrieval. No feed or access bypass invented; this is not a usable
+independent live fallback. Existing8-source actual post-close delivery and
+comparative publication latency remain unproven.
+
 Owner-authorized October 25, 2026. Target: dependable November 3 laptop operation.
 Feature freeze: October 31, America/New_York. November 1 onward: defects,
 acceptance testing and recovery only. Stop unattended changes November 4 at noon Eastern.
