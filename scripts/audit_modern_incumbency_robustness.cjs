@@ -16,14 +16,14 @@ const rounded=n=>Math.round(n*1000)/1000;
 function inputCheck(){
  if(study.schema_version!=='incumbent-strength-persistence-2022-2024-v1'||
     study.status!=='HISTORICAL_PERSISTENCE_HOLDOUT_NOT_PROVEN_2026_FORECAST'||
-    study.held_out_previous_winner_sample!==149||
+    study.held_out_previous_winner_sample!==153||
     names.year!==2022||names.records.length!==435||
     history.records.length!==435||
     presidential.coverage?.districts!==435||
     study.records.some(r=>!Number.isFinite(r.prior_2022)||!Number.isFinite(r.realized_2024)))
   throw Error('Invalid modern-incumbent source universe');
  const codes=new Set(study.records.map(x=>x.race_code));
- if(codes.size!==149)throw Error('Duplicate current-era candidate record');
+ if(codes.size!==153)throw Error('Duplicate current-era candidate record');
  const refs=[study.source_provenance.house_2022,study.source_provenance.house_2024,
   study.source_provenance.presidential_2020,study.source_provenance.presidential_2024];
  if(refs.some(x=>typeof x!=='string'||!x))throw Error('Source history missing');
@@ -123,7 +123,7 @@ function analyze(){
   baseline_loso_coefficient:study.fitting.full_sample_coefficient,
   per_state_heldout_coefficient_spread:coefficientSpread,
   state_cluster_bootstrap:bootstrap,
-  candidate_selection_warning:'Only 2022 winners seeking reelection in 2024. 145 wins and 4 losses; low failure-rate makes binary winner calibration impossible.',
+  candidate_selection_warning:'Only 2022 winners seeking reelection in 2024. 149 wins and 4 losses; low failure-rate makes binary winner calibration impossible.',
   observed_cycle_warning:'A single 2022-midterm to 2024-presidential period cannot independently validate the reverse 2024-presidential to 2026-midterm setting.',
   next_step:'Add current 2026 polls, recent district partisanship and cross-race covariance; keep conservative generic uncertainty rather than fitting extra subgroup coefficients on small cells.',
   conclusion:'Use 2022-2024 as main retrospective evidence; stratified modern cohorts and cluster bootstrap stress-test but do not justify live candidate-strength promotion.'};
@@ -133,7 +133,7 @@ if(process.argv.includes('--check')){
  const expected=read('modern_incumbency_robustness_2022_2024');
  if(JSON.stringify(result)!==JSON.stringify(expected))
   throw Error('Modern incumbency audit artifact is out of date');
- if(result.cohort_scores.all_modern_2022_2024.sample!==149||
+ if(result.cohort_scores.all_modern_2022_2024.sample!==153||
     result.allowed_model_fit_election_years.join(',')!=='2022,2024'||
     result.cohort_scores.not_incumbent_on_2022_ballot.sample===0)
   throw Error('Modern incumbent audit failed its core checks');

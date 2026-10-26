@@ -16,6 +16,7 @@ on:
       - 'data/house_geography_bridge.json'
       - 'data/house_two_cycle_context.json'
       - 'data/house_2024_candidate_results_staging.json'
+      - 'data/house_2022_candidate_results_staging.json'
       - 'data/historical_candidate_overperformance_2026.json'
       - 'data/candidate_fundamentals_staging.json'
       - '.github/workflows/stage-house-history.yml'

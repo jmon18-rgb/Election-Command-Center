@@ -11,14 +11,14 @@ assert.equal(data.status,'MODERN_ERA_DIAGNOSTIC_NO_HEADLINE_FORECAST_PROMOTION')
 assert.deepEqual(data.allowed_model_fit_election_years,[2022,2024]);
 assert.equal(data.prior_presidential_geography_context_year,2020);
 assert.match(data.excluded_older_house_elections,/before 2022 are deliberately excluded/);
-assert.equal(data.cohort_scores.all_modern_2022_2024.sample,149);
+assert.equal(data.cohort_scores.all_modern_2022_2024.sample,153);
 assert.equal(data.cohort_scores.not_incumbent_on_2022_ballot.sample,34);
-assert.equal(data.cohort_scores.incumbent_on_2022_ballot.sample,115);
+assert.equal(data.cohort_scores.incumbent_on_2022_ballot.sample,119);
 assert.equal(data.cohort_scores.democratic_2022_winners.sample,84);
-assert.equal(data.cohort_scores.republican_2022_winners.sample,65);
-assert.equal(data.cohort_scores.presidential_lean_within_10_points.sample,32);
-assert.equal(data.cohort_scores.presidential_lean_within_20_points.sample,63);
-assert.equal(data.cohort_scores.presidential_lean_over_20_points.sample,86);
+assert.equal(data.cohort_scores.republican_2022_winners.sample,69);
+assert.equal(data.cohort_scores.presidential_lean_within_10_points.sample,33);
+assert.equal(data.cohort_scores.presidential_lean_within_20_points.sample,66);
+assert.equal(data.cohort_scores.presidential_lean_over_20_points.sample,87);
 assert.equal(data.cohort_scores.previous_house_margin_within_10_points.sample,31);
 for(const group of Object.values(data.cohort_scores)){
  assert(group.sample>0&&group.n_states>=4);
@@ -40,7 +40,7 @@ assert(b.heldout_rmse_gain_p05<=b.heldout_rmse_gain_median);
 assert(b.heldout_rmse_gain_median<=b.heldout_rmse_gain_p95);
 assert(b.state_cluster_fraction_with_positive_gain>=0&&
  b.state_cluster_fraction_with_positive_gain<=1);
-assert.equal(data.baseline_loso_coefficient,.344);
+assert.equal(data.baseline_loso_coefficient,.343);
 assert(data.cohort_scores.presidential_lean_within_10_points
  .cv_rmse_gain_over_zero>0);
 assert(data.cohort_scores.not_incumbent_on_2022_ballot

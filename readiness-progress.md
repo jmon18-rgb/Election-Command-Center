@@ -5,15 +5,16 @@ October26 continuation: PR463 exact head afe74aba23f26ebd026e0f3fdf0334e99fefd01
 remains unmerged pending complete current-head CI. Previous44e84375 validation
 caught a dependent historical persistence study still using the old191-district
 universe. Corrected and deterministically rebuilt BOTH historical persistence
-and modern-cohort diagnostics:149 previous winners/35states,145 subsequent
-wins/4losses; exploratory fitted coefficient .345->.344. This is a source-driven
+and modern-cohort diagnostics:153 previous winners/35states,149 subsequent
+wins/4losses; exploratory fitted coefficient .345->.343. This is a source-driven
 reproduction of an existing research study, NOT promotion of a new production
 coefficient or evidence of calibrated2026 odds. Added both studies to default
 read-only atomic bundle verification and workflow path triggers. Leakage,
 reproducibility, modern-cohort and all33 core checks pass locally; full local
 DOM and desktop/mobile eight-source synthetic browser tests previously passed.
-Latest CI snapshot31/34 workflows successful,3still running, no current-head
-failures. Do not infer deployment or merge from local test success.
+Follow-up also refreshes2022 independent agreement flags (399->427 matches),
+without changing candidate names/votes. Both years now have exact per-record
+agreement checks. A new current-head CI cycle is required for this correction. Do not infer deployment or merge from local test success.
 https://github.com/jmon18-rgb/Election-Command-Center/pull/463
 
 Next: finish exact-head CI, merge only all-green, verify Pages and actual

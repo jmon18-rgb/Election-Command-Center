@@ -344,7 +344,7 @@ jobs:
           node --check scripts/incumbent_persistence_backtest.js
           node scripts/test_incumbent_persistence_backtest.cjs
           node scripts/audit_historical_strength_shadow.cjs --json > /tmp/historic-strength-shadow.json
-          node -e "const x=require('/tmp/historic-strength-shadow.json');if(x.training_sample!==149 || x.house2024_baseline_prior_changes!==0 || x.senate_prior_changes!==0 || x.presidential_house_shadow_prior_changes<55)process.exit(1)"
+          node -e "const x=require('/tmp/historic-strength-shadow.json');if(x.training_sample!==153 || x.house2024_baseline_prior_changes!==0 || x.senate_prior_changes!==0 || x.presidential_house_shadow_prior_changes<55)process.exit(1)"
           node -e "const d=require('/tmp/incumbent-relative-margin.json'); if(d.eligible_house_incumbents!==169 || d.eligible_senate_incumbents!==12 || d.independent_election_year_validation!==false) process.exit(1)"
       - name: Enforce modern-only incumbency robustness and era cutoff
         run: |
@@ -352,7 +352,7 @@ jobs:
           node --check scripts/test_modern_incumbency_robustness.cjs
           node scripts/audit_modern_incumbency_robustness.cjs --check --json > /tmp/modern-incumbency-robustness.json
           node scripts/test_modern_incumbency_robustness.cjs
-          node -e "const x=require('/tmp/modern-incumbency-robustness.json'); if(x.status!=='MODERN_ERA_DIAGNOSTIC_NO_HEADLINE_FORECAST_PROMOTION' || x.allowed_model_fit_election_years.join(',')!=='2022,2024' || x.cohort_scores.all_modern_2022_2024.sample!==149 || x.cohort_scores.presidential_lean_within_10_points.sample!==32) process.exit(1)"
+          node -e "const x=require('/tmp/modern-incumbency-robustness.json'); if(x.status!=='MODERN_ERA_DIAGNOSTIC_NO_HEADLINE_FORECAST_PROMOTION' || x.allowed_model_fit_election_years.join(',')!=='2022,2024' || x.cohort_scores.all_modern_2022_2024.sample!==153 || x.cohort_scores.presidential_lean_within_10_points.sample!==33) process.exit(1)"
       - name: Validate candidate incumbency and governor-approval context
         run: |
           node --check scripts/incumbency_features.js

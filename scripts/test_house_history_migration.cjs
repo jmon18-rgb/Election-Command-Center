@@ -21,4 +21,11 @@ const rejected=reconcile(names,bad,geo).records.find(r=>r.race_code==='NY-17');
 assert.equal(rejected.source_votes_match_mit_staging,false,'A source mismatch stays blocked; independent candidate counts are never overwritten');
 assert.equal(rejected.rep_votes,197845);assert.deepEqual(names,original);
 assert.equal(names.coverage.vote_disagreements,2,'Residual independent-source discrepancies remain explicit');
+for(const year of [2022,2024]){
+ const n=read('house_'+year+'_candidate_results_staging'),h=read('house_history_'+year+'_staging');
+ const by=new Map(h.records.map(r=>[r[year+'_race_code'],r]));
+ for(const r of n.records){const v=by.get(r.race_code);
+  assert.equal(r.source_votes_match_mit_staging,r.dem_votes===v.recorded_dem_votes&&r.rep_votes===v.recorded_rep_votes,
+   year+' agreement flag must reflect the independently retained candidate counts: '+r.race_code);}
+}
 console.log('Atomic House migration: original provenance, immutable independent facts, Senate isolation, idempotence and source-disagreement gates PASS');

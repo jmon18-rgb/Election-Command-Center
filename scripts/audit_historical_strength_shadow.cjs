@@ -6,7 +6,7 @@ const features=require('./incumbency_features.js');
 const read=n=>JSON.parse(fs.readFileSync('data/'+n+'.json','utf8'));
 const stage=read('candidate_fundamentals_staging'),study=read('incumbent_persistence_2022_2024');
 if(study.status!=='HISTORICAL_PERSISTENCE_HOLDOUT_NOT_PROVEN_2026_FORECAST'||
- study.held_out_previous_winner_sample!==149)
+ study.held_out_previous_winner_sample!==153)
  throw Error('Invalid historic coefficient study');
 const sources={
  seats:read('seat_universe'),history:read('house_history_2024_staging'),
