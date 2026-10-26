@@ -4,7 +4,9 @@ const races=Object.freeze([
  {code:'IA-SEN',state:'IA',counties:99,url:'https://civicapi.org/api/v2/race/87151',
   reference:'data/iowa_county_fips_reference.json',parser:'IowaCivicCountySource',controller:'enIowaPilotController'},
  {code:'KS-SEN',state:'KS',counties:105,url:'https://civicapi.org/api/v2/race/87162',
-  reference:'data/kansas_county_fips_reference.json',parser:'KansasCivicCountySource',controller:'enKansasPilotController'}]);
+  reference:'data/kansas_county_fips_reference.json',parser:'KansasCivicCountySource',controller:'enKansasPilotController'},
+ {code:'TX-SEN',state:'TX',counties:254,url:'https://civicapi.org/api/v2/race/87438',
+  reference:'data/texas_county_fips_reference.json',parser:'TexasCivicCountySource',controller:'enTexasPilotController'}]);
 const inWindow=now=>Number.isFinite(now)&&now>=Date.parse('2026-10-26T00:00:00Z')&&now<=Date.parse('2026-11-04T17:00:00Z');
 function assess(row,now=Date.now()){
  const expected=races.find(r=>r.code===row?.code);if(!expected)throw Error('Unknown competitive source scope');
@@ -44,7 +46,7 @@ function assess(row,now=Date.now()){
   prolonged_delivery_gap:deliveryOverdue,delivery_alert_grace_minutes:90,interval_calibrated:false};
 }
 function summarize(rows,now=Date.now()){
- if(!Array.isArray(rows)||rows.length!==2||new Set(rows.map(r=>r.code)).size!==2)throw Error('Both competitive sources required');
+ if(!Array.isArray(rows)||rows.length!==races.length||new Set(rows.map(r=>r.code)).size!==races.length)throw Error('All three competitive sources required');
  const sources=rows.map(r=>assess(r,now));
  const failure=sources.some(r=>r.violations.length);
  return {generated_at:new Date(now).toISOString(),status:failure?'ACTION_REQUIRED':

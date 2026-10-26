@@ -1,6 +1,6 @@
 # Actual competitive-source probe
 
-This separate workflow checks the deployed Iowa and Kansas source-to-needle
+This separate workflow checks the deployed Iowa, Kansas and Texas source-to-needle
 paths with actual public provider responses. It never fulfills those requests
 with fixtures and never changes the browser clock. Unrelated provider requests
 are blocked, so this is an isolated county-path check, not a full nationwide load
@@ -20,7 +20,7 @@ Report states:
 - `LIVE_DELIVERY_UNPROVEN`: expected test mode, missing/unavailable source, no
   genuine post-close counts or another unmet delivery requirement. A passing
   safety check in this state is **not** live-source or calibration acceptance.
-- `LIVE_INPUT_FORECAST_OBSERVED_NOT_CALIBRATED`: both real feeds produced
+- `LIVE_INPUT_FORECAST_OBSERVED_NOT_CALIBRATED`: all three real feeds produced
   validated positive post-close inputs and corresponding race forecasts. This
   proves the observed input path, not forecasting accuracy or calibrated odds.
 - `SOURCE_AVAILABILITY_REVIEW_REQUIRED`: a feed still lacks usable current input
