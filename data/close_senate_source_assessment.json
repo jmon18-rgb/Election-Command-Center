@@ -33,7 +33,7 @@
       "may_move_national_needle": false,
       "blockers": [
         "Official sample-ballot link page returns403 in both web and ordinary Edge; exact independent candidate contract missing.",
-        "Geography is municipal township rows, not16counties. Need independent municipal crosswalk and same-round historical baseline.",
+        "Mixed geography contains518Township and16County rows. Independently match16county aggregates and historical first-choice county counts; never sum counties plus nested towns.",
         "round1 observations cannot be assumed final RCV outcomes; RCV semantics and remaining-vote uncertainty need explicit handling."
       ]
     },

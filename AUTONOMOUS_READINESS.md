@@ -5,8 +5,8 @@
 - Existing approved civic routesME87188/AK86916 inspected in ordinary deployed-site
   browser CORS, both200/non-test/stalezero/round1. Python403 is not browserfailure.
   Saved originalresponses and hashes, no fixtures or actualpositiveforecast claim.
-- ME has municipalTownship rows (not16counties), Collins220470/Jackson220471.
-  Exact independently verified ballot and same-round municipalhistorical baseline
+- ME has534mixed rows:518Township PLUS16County aggregates, Collins220470/Jackson220471.
+  Exact independently verified ballot and same-round COUNTYhistorical baseline
   required. OfficialSOS RCV/sample-ballot page403 in ordinaryEdge too; don't retry
   unchanged or silently replace with searchsnippet candidates. RCVround1 not final.
 - AK exposes only1State row and6candidates including multipleRepublicans and two
@@ -18,7 +18,8 @@
   actualzero/noenable assertionspass. Existing statewide results adapters remain
   intact; no additional nationalinput or customracepanel enabled.
 - NEXT: ME official sample ballot via an independently linked municipalgovernment
-  posting, then permitted municipalhistory/same-round baseline. Existing broad
+  posting, then independently match16county aggregates and first-choice countyhistory. Never
+  sum counties plus towns. Existing broad
   provider remains fallback. Do not divert back into optionalAZgeography while
   primarySenatecontract remains unresolved. Allcurrentmaincheckshealthy.
 
