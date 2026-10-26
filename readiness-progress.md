@@ -1,5 +1,38 @@
 # Readiness progress
 
+## October 26 10:53Z - Texas needle deployed; three-race actual-source capture
+
+- PR450 merged91dc4dc6 after all6 applicable current-head workflows passed at
+  4521bb4b; PR451 mergedccd128c1 after all29 passed atc8330c8a. No required
+  check bypassed. Actual Pages at10:51:58Z matches51 checked loaded files plus
+  Texas baseline/reference/evidence/original bytes to main42d0a8e8.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/450
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/451
+- Published Edge1366/390 Iowa, Kansas and Texas source-fixture suites all pass,
+  including changing probability, linked priors, test/clock/correction/outage/
+  archive safeguards and national isolation. These are deliberately synthetic
+  post-close provider responses, not real vote delivery or probability calibration.
+- Separate actual published-site probe at10:52:41Z (clean43b9467f) receives all
+  three exact full routes HTTP200, independent99/105/254 county identities, all
+  TEST DATA excluded; accepted votes0, all probabilities null, national odds
+  unchanged, no page errors and no raw test payloads archived. No fixtures or
+  virtual clock. Status LIVE_DELIVERY_UNPROVEN, not election acceptance.
+- The earlier CI access gap also has new evidence: scheduled actual-source run
+  at09:53:31Z reaches Iowa/Kansas HTTP200 with test flags excluded. Earlier06:44
+  timeouts remain real observations, but access is not persistently unavailable.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40302974061
+- Extend source reporting/capture to all three deployed controllers. Missing
+  Texas coverage cannot pass as complete; Texas test mode cannot enter the raw
+  archive or count as live forecasting. Classifier/syntax checks pass locally.
+  The actual three-race published probe is verified; workflow integration still
+  needs current-head checks before merge. No runtime forecast parameters change.
+- Next: merge the three-race source probe only after required checks, inspect
+  its actual runner observation separately, and pursue usable independent
+  timestamped competitive-race evidence or a real source gap. Do not repeatedly
+  report unchanged pre-election test data or broaden into safe seats, artwork,
+  generic UI/reliability work. All three needles remain experimental and not
+  independently calibrated; actual non-test post-close delivery is unproven.
+
 ## October 26 10:36Z - Texas source-to-visible-needle implementation
 
 - Implement a254-county Texas race view from the verified2024 official baseline

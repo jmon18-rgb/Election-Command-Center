@@ -42,11 +42,11 @@ CORS header do not establish an actual browser's cross-origin forecast update.
 The strict `texas_civic_county_source.js` adapter rejects test data, light URLs,
 wrong election/candidate/geographic identity, unreconciled totals and invalid
 publication clocks. Synthetic post-close adapter tests pass and the actual
-provider response returns TEST_DATA_NOT_LIVE with zero accepted rows. The adapter and visible race view are now wired in the review implementation;
-publication remains pending current-head checks. No genuine live vote delivery
+provider response returns TEST_DATA_NOT_LIVE with zero accepted rows. The adapter and visible race view are deployed after current-head checks and
+actual Pages verification (see the dated readiness progress). No genuine live vote delivery
 is claimed.
 
-## Programmed source-to-needle path (review pending)
+## Programmed source-to-needle path (deployed)
 
 The shared estimator now accepts the explicit254-county scope. No numerical
 forecast parameters change. The view consumes the complete2024 official baseline,
@@ -71,10 +71,10 @@ not actual post-close forecasting.
 
 All three exact full county routes receive queue priority. Three positions are
 reserved within the same64-queued/four-active cap; bulk work can occupy61 waiting
-positions. Light/search routes do not acquire that priority. Current-head checks
-and actual Pages deployment verification remain mandatory before acceptance.
-The scheduled published-source probe currently covers Iowa/Kansas only; extend
-it to Texas after the view is actually deployed, not before it exists on Pages.
+positions. Light/search routes do not acquire that priority. Current-head checks and actual Pages deployment verification passed for the
+implementation. The separate three-race published-source probe observes all
+three real responses HTTP200 TEST DATA, accepted votes0/Pnull. Its scheduled
+workflow extension remains under review; no live-delivery acceptance follows.
 
 ## Earlier rejected candidate dataset (preserved)
 
