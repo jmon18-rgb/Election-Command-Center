@@ -105,3 +105,24 @@ console.log('Two district inputs share one bounded STATE likelihood budget; five
 
 assert.equal(four.diagnostics.state_likelihood_budget_members.WI,2);
 assert(four.diagnostics.state_likelihood_max_ratio.WI<=Math.sqrt(20)+1e-8,'Missing/retracted second district cannot hand its fixed likelihood budget to the surviving district');
+
+const miFacts=load('michigan_house_04_2024_county_baseline_processed'),miRef=load('michigan_house_04_county_fips_reference');
+function miEnvelope(margin){
+ const n=miFacts.district_totals.dem_votes+miFacts.district_totals.rep_votes,shift=(margin-100*(2*miFacts.district_totals.dem_votes/n-1))/200;
+ const counties=miFacts.counties.map(c=>{const n=Math.floor((c.dem_votes+c.rep_votes)*.65),d=Math.floor(n*Math.max(.001,Math.min(.999,c.dem_votes/(c.dem_votes+c.rep_votes)+shift)));return {county:c.county,county_fips:c.county_fips,dem_votes:d,rep_votes:n-d,other_votes:0};});
+ return {baseline_year:2024,reference:miRef,baseline:{race_code:'MI-04',geography_scope:'district_parts',counties:miFacts.counties.map(c=>({county:c.county,records:{total:c}}))},snapshot:{race_code:'MI-04',source_url:'https://civicapi.org/api/v2/race/87204',status:'VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED',live_votes_accepted:true,county_identities_matched:6,snapshot_updated_at:'2026-11-04T03:05:00Z',counties}};
+}
+const mi=miEnvelope(8),miUp=bridge.condition(model,basis,[mi],{...opts,now}),miDown=bridge.condition(model,basis,[miEnvelope(-8)],{...opts,now});
+assert.deepEqual(miUp.diagnostics.house_vote_states,['MI']);assert.equal(miUp.diagnostics.house_vote_sources,1);
+assert(miUp.result.house_dem_control_pct>miDown.result.house_dem_control_pct,'A second House STATE contributes counts through the existing national covariance');
+assert.throws(()=>bridge.compile({...mi,baseline:{...mi.baseline,geography_scope:'whole_county'}},{now}),/district-part/);
+assert.throws(()=>bridge.compile({...mi,baseline:{...mi.baseline,race_code:'MI-03'}},{now}),/district-part/);
+const six=bridge.condition(model,basis,[...blue,wi,wi3,mi],{...opts,now});
+assert.equal(six.diagnostics.used.length,6);assert.equal(six.diagnostics.house_vote_sources,3);
+assert.deepEqual(six.diagnostics.house_vote_states,['MI','WI']);
+assert.deepEqual(six.diagnostics.state_likelihood_budget_members,{IA:1,KS:1,TX:1,WI:2,MI:1});
+assert(six.diagnostics.state_likelihood_max_ratio.WI<=20+1e-8);assert(six.diagnostics.state_likelihood_max_ratio.MI<=20+1e-8);
+assert(six.diagnostics.effective_sample_size>=opts.samples*.5-1e-6);
+assert.deepEqual(bridge.condition(model,basis,[...blue,wi,wi3],{...opts,now}).result,five.result,'Withdrawing MI restores exactly the previous five-source model; Wisconsin shares never change');
+assert.equal(Object.values(six.result.counts).reduce((a,b)=>a+b,0),opts.samples);
+console.log('MI-04 plus Wisconsin: three House districts across TWO states reach coherent national outcomes; not national coverage or calibration');

@@ -6,7 +6,7 @@
  if(root)root.NationalCountyLikelihood=api;
 })(typeof window!=='undefined'?window:null,function(closes){
  'use strict';
- const scopes={'IA-SEN':{n:99,id:87151,year:2022,prefix:'19'},'KS-SEN':{n:105,id:87162,year:2020,prefix:'20'},'TX-SEN':{n:254,id:87438,year:2024,prefix:'48'},'WI-01':{n:5,id:87483,year:2024,prefix:'55'},'WI-03':{n:19,id:87485,year:2024,prefix:'55'}};
+ const scopes={'IA-SEN':{n:99,id:87151,year:2022,prefix:'19'},'KS-SEN':{n:105,id:87162,year:2020,prefix:'20'},'TX-SEN':{n:254,id:87438,year:2024,prefix:'48'},'WI-01':{n:5,id:87483,year:2024,prefix:'55',house:true},'WI-03':{n:19,id:87485,year:2024,prefix:'55',house:true},'MI-04':{n:6,id:87204,year:2024,prefix:'26',house:true}};
  const policy=Object.freeze({minimum_votes:10000,minimum_reference_fraction:.005,minimum_counties:3,
   county_margin_sigma:6,batch_margin_sigma:8,turnout_sigma_fraction:.25,selection_share_sigma:.12,
   contamination_floor:.05,minimum_effective_sample_fraction:.5,state_likelihood_pooling:'FIXED_PREDECLARED_STATE_LOG_LIKELIHOOD_BUDGET'});
@@ -25,8 +25,8 @@
     !Array.isArray(envelope.reference?.counties)||envelope.reference.counties.length!==scope.n||
     !Array.isArray(envelope.baseline?.counties)||envelope.baseline.counties.length!==scope.n)
    throw Error('Unverified competitive county evidence scope');
-  if(code.startsWith('WI-')&&(envelope.baseline.race_code!==code||envelope.baseline.geography_scope!=='district_parts'))
-   throw Error('Wisconsin House requires matched district-part historical counts, never whole-county votes');
+  if(scope.house&&(envelope.baseline.race_code!==code||envelope.baseline.geography_scope!=='district_parts'))
+   throw Error('House requires matched district-part historical counts, never whole-county votes');
   const time=Date.parse(x.snapshot_updated_at||'');
   if(!Number.isFinite(now)||!Number.isFinite(time)||!/(?:Z|[+-]\d\d:\d\d)$/.test(x.snapshot_updated_at||'')||
     time>now+15*60000||now-time>180*60000)throw Error('Stale/future county evidence');
@@ -98,7 +98,7 @@
    independence:'COUNTS_ONLY_NO_POLL_PRIOR_OR_RACE_POSTERIOR',logLikelihood});
  }
  function condition(model,basis,envelopes,options={}){
-  if(!Array.isArray(envelopes)||envelopes.length>5)throw Error('Bounded national county evidence required');
+  if(!Array.isArray(envelopes)||envelopes.length>6)throw Error('Bounded national county evidence required');
   if(options.captureCountyDraws||options.replayCountySeeds)throw Error('Nested/replayed national evidence is not a prior');
   const {now=Date.now(),rehearsal=false,...args}=options,compiled=[],excluded=[],codes=new Set();
   if(Object.values(args.live||{}).some(row=>row?.mode!=='source_called'||!['D','R'].includes(row.winnerParty)))
@@ -145,8 +145,9 @@
   const result=model.simulate(basis,{...args,replayCountySeeds:seeds});
   const diagnostics={status:rehearsal?'SIMULATED_NATIONAL_REHEARSAL':'EXPERIMENTAL_RESULTS_INFORMED_NATIONAL_OUTLOOK',
    used:compiled.map(({logLikelihood,...row})=>row),excluded,effective_sample_size:weighted.ess,
-   particle_count:n,likelihood_power:power,policy,state_likelihood_sources:stateCounts,state_likelihood_budget_members:stateBudgets,state_likelihood_max_ratio:Object.fromEntries(Object.entries(stateWeights).map(([s,v])=>[s,Math.exp(Math.max(...v)-Math.min(...v))])),house_vote_sources:compiled.filter(c=>c.code.startsWith('WI-')).length,
-   house_transfer:compiled.some(c=>c.code.startsWith('WI-'))?'Observed House district parts in one state; other House movement uses existing shared-error covariance, not national House coverage':'Existing declared shared national-error covariance only; no observed House votes in this county path',
+   particle_count:n,likelihood_power:power,policy,state_likelihood_sources:stateCounts,state_likelihood_budget_members:stateBudgets,state_likelihood_max_ratio:Object.fromEntries(Object.entries(stateWeights).map(([s,v])=>[s,Math.exp(Math.max(...v)-Math.min(...v))])),house_vote_sources:compiled.filter(c=>scopes[c.code].house).length,
+   house_vote_states:[...new Set(compiled.filter(c=>scopes[c.code].house).map(c=>c.code.slice(0,2)))].sort(),
+   house_transfer:compiled.some(c=>scopes[c.code].house)?'Observed limited House district parts; other House movement uses existing shared-error covariance, not national House coverage':'Existing declared shared national-error covariance only; no observed House votes in this county path',
    interval_calibrated:false,independent_historical_calibration:false,
    delta_percentage_points:Object.fromEntries(Object.keys(result.probabilities).map(k=>[k,+(result.probabilities[k]-baseline.probabilities[k]).toFixed(2)]))};
   result.county_results_update=diagnostics;

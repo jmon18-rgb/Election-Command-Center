@@ -1,0 +1,70 @@
+{
+  "observed_at": "2026-10-26T15:09:39.766363+00:00",
+  "source_url": "https://civicapi.org/api/v2/race/87204",
+  "source_sha256": "a2754c10594b966b03ea76b34b6f1bd9c626b734e39ebc4d76ff60e26f2f5b98",
+  "country": "US",
+  "province": "MI",
+  "district": "MI-04",
+  "election_date": "2026-11-03T05:00:00.000Z",
+  "election_type": "House of Representatives",
+  "election_name": "Michigan US House 4",
+  "source_test_data": false,
+  "source_last_updated": "2026-10-18T20:28:59.012Z",
+  "positive_candidate_counts_present": false,
+  "region_count": 6,
+  "regions": [
+    {
+      "name": "Allegan",
+      "fips": "26005",
+      "type": "County"
+    },
+    {
+      "name": "Berrien",
+      "fips": "26021",
+      "type": "County"
+    },
+    {
+      "name": "Calhoun",
+      "fips": "26025",
+      "type": "County"
+    },
+    {
+      "name": "Kalamazoo",
+      "fips": "26077",
+      "type": "County"
+    },
+    {
+      "name": "Ottawa",
+      "fips": "26139",
+      "type": "County"
+    },
+    {
+      "name": "Van Buren",
+      "fips": "26159",
+      "type": "County"
+    }
+  ],
+  "candidate_roster": [
+    {
+      "name": "Sean McCann",
+      "party": "Democratic"
+    },
+    {
+      "name": "Bill Huizenga",
+      "party": "Republican"
+    },
+    {
+      "name": "Shafina Che Barnett",
+      "party": "Green"
+    }
+  ],
+  "adapter_status": "REJECTED_STALE_ZERO_NOT_LIVE",
+  "accepted_live_vote_rows": 0,
+  "raw_test_votes_archived": false,
+  "actual_post_close_delivery": "UNPROVEN",
+  "comparative_publication_lag": "UNPROVEN_REQUIRES_INDEPENDENT_MATCHED_REAL_BATCHES",
+  "attribution": "Public election counts via civicAPI (https://civicapi.org); public API documentation permits use with attribution",
+  "historical_baseline": "OpenElections processed2024 district parts; official Kalamazoo sample corroboration; not chronological calibration",
+  "parse_error": "Missing/future/stale House county publication time",
+  "observation_client": "Named source-review HTTP client; browser/CI observations are separate"
+}

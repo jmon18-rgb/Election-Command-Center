@@ -6,6 +6,22 @@ acceptance testing and recovery only. Stop unattended changes November 4 at noon
 
 ## Work order
 
+Current candidate: MI-04 (uploaded tipping rank19, default linked D57.37%, polled)
+adds one House STATE to the national counts path, with processed OpenElections
+2024 county PARTS, complete Census/map/MIT reconciliation and independent original
+Kalamazoo sample. Three House districts across TWO states remain limited coverage.
+This addition is national evidence, not a new race panel or a timeliness solution.
+The six-input cadence budget is24 regular automatic requests/minute after close;
+shared concurrency4/queue64 stay fixed, with6 priority positions/58 bulk positions.
+At15:14Z actual candidate responses have test_data=false but old October16-23
+publication timestamps; strict freshness rejects them. This supersedes the old
+all-five-TEST observation, not the requirement to prove real post-close delivery.
+Actual Cache-Control advertises max-age15/stale-while-revalidate30, with no Age
+header in that observation. Do not turn that policy into measured stale delivery
+or a guaranteed bound, or bypass verified URLs to claim cache busting. Request
+and cache metadata are not independently matched real vote batch comparisons.
+
+
 LATEST HUMAN CONCERN (October 26): competitive source selection must be checked
 against the uploaded Silver material, and source speed must be demonstrated.
 The uploaded House tipping-point order places WI-03 ninth, MI-04 nineteenth and

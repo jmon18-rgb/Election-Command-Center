@@ -1,5 +1,41 @@
 # Readiness progress
 
+## October26 - Michigan House national input candidate; real delivery still unproven
+
+- Reproduce6 MI04 congressional county PARTS from preserved compressed original
+  OpenElections processed CSV bytes, publisher Git blob and SHA256; Census83/6,
+  independent MIT totals184641D/234489R/6687named-other,597 separate write-ins,
+  unchanged2026 map and original official Kalamazoo sample all reconcile. No
+  chronological snapshots/calibration invented. Full processed source and sample
+  bytes are pinned; the original sample independently corroborates ONE county.
+- Extend existing shared House parser/evidence controller to exact87204 Michigan
+  identity, six26xxx county IDs, McCann/Huizenga/Barnett D/R/Green roster. Reuse
+  same national counts-only likelihood/correlated replay; no extra race panel.
+  Six inputs, three House districts across TWO states, bounded state influence;
+  WI retains its fixed2-district allocation, MI one. MI withdrawal restores the
+  previous5-source national result exactly. Ordinary polling path unchanged.
+- Pure counts/model/source/revision/transport/cadence tests pass. Edge1366/390
+  synthetic automatic polling plus MI-only movement, combined6-source movement,
+  correction/withdrawal/test/expiry/rehearsal and optional-helper outage pass.
+  Budget24 regular automatic requests/min after close; global4active/64queued
+  unchanged,6 priority reservations/58 bulk. Full DOM and current-head CI pending.
+- Actual real-clock fixture-free candidate probe15:14:43Z: all6 HTTP200, test
+  flags now FALSE but October16/18/23 source timestamps STALE. No source evidence
+  admitted, no projections/national movement/page errors/raw archives. This
+  supersedes the15:01 all-five-TEST observation; do not mistake a cleared flag
+  for live delivery. MI named-agent observation has zero counts; actual browser
+  and CI observations are separate. Guards were preserved, not relaxed.
+- Actual cache metadata: all6 responses advertise public,max-age15,stale-while-
+  revalidate30; no Age/ETag in that observation. Request-to-body and cache policy
+  are now explicit report fields. Neither establishes real batch publication
+  cadence, cache bypass, an end-to-end freshness guarantee or relative lag.
+  Independent official2026 county endpoint remains unpublished; old historical
+  republish timestamps and inaccessible statewide URLs are not substitutes.
+- Next: finish checks/review, merge only current-head green, verify actual Pages
+  bytes and runtime. Then prioritize independently matched real input timing and
+  consequential competitive coverage, not generic polish. Daily report already
+  delivered; routine development remains quiet.
+
 ## October 26 15:01Z - faster national-input cadence deployed; upstream speed unproven
 
 - PR457 merged9d82c48f after all32 applicable PR workflows pass at exact head
