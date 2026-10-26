@@ -1,7 +1,7 @@
 # Election Night production-readiness assignment
 
 
-October26 continuation: PR463 exact head afe74aba23f26ebd026e0f3fdf0334e99fefd017
+October26 continuation: PR463 exact head eae422d4ae28c8474d424c1eb0019bc70aac9838
 remains unmerged pending complete current-head CI. Previous44e84375 validation
 caught a dependent historical persistence study still using the old191-district
 universe. Corrected and deterministically rebuilt BOTH historical persistence
@@ -18,7 +18,7 @@ agreement checks. A new current-head CI cycle is required for this correction. D
 https://github.com/jmon18-rgb/Election-Command-Center/pull/463
 
 Next: finish exact-head CI, merge only all-green, verify Pages and actual
-published files/runtime (integrity helper extended from109 to127 files).
+published files/runtime (integrity helper extended from109 to128 files).
 Do not reapply PR59 afterward. Independent Iowa source reconnaissance: official
 SOS results archive's2026General result entries are not yet linked; its linked
 electionresults.iowa.gov root returns a JavaScript robot-verification page to
