@@ -1,0 +1,28 @@
+{
+  "source_url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_counties_national.zip",
+  "source_sha256": "3c337402b5c6e8d5aa26b4278ccf4edc8989f2683765b3ffbf22296cdb2df3a0",
+  "scope": "WI-01 county PARTS from official district canvass, mapped to Census county identifiers; not whole-county votes",
+  "district_county_scope_source": "https://elections.wi.gov/sites/default/files/documents/County%20by%20County%20Report_US%20Congress_0.pdf",
+  "counties": [
+    {
+      "county": "Kenosha",
+      "fips": "55059"
+    },
+    {
+      "county": "Milwaukee",
+      "fips": "55079"
+    },
+    {
+      "county": "Racine",
+      "fips": "55101"
+    },
+    {
+      "county": "Rock",
+      "fips": "55105"
+    },
+    {
+      "county": "Walworth",
+      "fips": "55127"
+    }
+  ]
+}
