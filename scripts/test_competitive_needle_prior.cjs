@@ -27,4 +27,19 @@ for(const change of [x=>x.schema_version='wrong',x=>x.race_probability_method='r
 }
 assert.equal(read(null,'KS-SEN'),null);assert.equal(read(fixture,'TX-SEN'),null);
 assert.equal(read(fixture,'IA-SEN'),null);
+// Verify the contract against the actual linked-model exporter, including its
+// rounded sigma under real supported research settings. These small draws test
+// parameter plumbing only; their win percentages are never scored/published.
+const fs=require('node:fs'),path=require('node:path'),model=require('./chamber_control_model.js');
+const load=name=>JSON.parse(fs.readFileSync(path.join(__dirname,'../data/'+name+'.json'),'utf8'));
+const basis=model.prepare({seats:load('seat_universe'),history:load('house_history_2024_staging'),
+ geography:load('house_geography_bridge'),senateHistory:load('senate_history_2020_2022_2024'),
+ odds:load('race_probabilities'),polls:load('polling_estimates')});
+const baseline=model.simulate(basis,{samples:300,seed:20261103});
+const sensitivity=model.simulate(basis,{samples:300,seed:20261103,nationalShift:4,errorMultiplier:1.5});
+for(const code of ['IA-SEN','KS-SEN']){
+ const a=read(baseline,code),b=read(sensitivity,code);assert(a&&b);
+ assert.equal(a.margin,b.margin,'Actual exporter keeps the latent mean separate from research national shifts');
+ assert(Math.abs(a.sigma-b.sigma)<=.001,'Base uncertainty survives exporter rounding and research error scaling');
+}
 console.log('Competitive needle starting margins use strict unconditioned linked-model inputs; research controls, winner flags and national mutation excluded PASS');
