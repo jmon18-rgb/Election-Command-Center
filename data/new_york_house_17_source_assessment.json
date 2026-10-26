@@ -1,5 +1,5 @@
 {
-  "status": "SOURCE_ASSESSMENT_NOT_AN_ENABLED_NATIONAL_INPUT",
+  "status": "INTEGRATED_EXPERIMENTAL_NATIONAL_INPUT_REAL_DELIVERY_UNPROVEN",
   "race_code": "NY-17",
   "uploaded_tipping_rank": 4,
   "observed_at": "2026-10-26T17:06:36.664479+00:00",
@@ -51,12 +51,12 @@
     "observed_download_redirect": "https://ny.elstats3.civera.com/api/download_contest/5615_table.csv?split_party=true",
     "source_sha256": "be103b259252234331fd99c0f4f9d6b098d456f9a6242a4cb60e240384ce7a0f"
   },
-  "national_controller_enabled": false,
+  "national_controller_enabled": true,
   "comparative_publication_lag": "UNPROVEN",
   "limitations": [
     "civicAPI actual response is stale with zero counts; no post-close delivery evidence",
     "Independent official election-night page access challenge prevents claiming a usable fallback",
     "Official historical export fixes same-candidate fusion for this baseline only; global staging and queued PR59 preserved",
-    "No new national source, forecast or calibration enabled"
+    "National input is programmed but current stale/zero source cannot move it; real post-close delivery and calibration remain unproven"
   ]
 }

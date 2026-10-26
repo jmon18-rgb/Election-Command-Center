@@ -1,11 +1,11 @@
 /* Fictional rehearsal counts over verified historical geography. Never live inputs. */
 (function(root){
  'use strict';
- const specs=[['IA-SEN','iowa',87151,2022],['KS-SEN','kansas',87162,2020],['TX-SEN','texas',87438,2024],['WI-01','wisconsin_house_01',87483,2024],['WI-03','wisconsin_house_03',87485,2024],['MI-04','michigan_house_04',87204,2024],['PA-10','pennsylvania_house_10',87385,2024]];
+ const specs=[['IA-SEN','iowa',87151,2022],['KS-SEN','kansas',87162,2020],['TX-SEN','texas',87438,2024],['WI-01','wisconsin_house_01',87483,2024],['WI-03','wisconsin_house_03',87485,2024],['MI-04','michigan_house_04',87204,2024],['PA-10','pennsylvania_house_10',87385,2024],['NY-17','new_york_house_17',87319,2024]];
  async function load(fetchJSON){return Promise.all(specs.map(async([code,state,id,year])=>{
   const [history,reference]=await Promise.all([fetchJSON('data/'+(state==='iowa'?'iowa_senate_county_modes_official':state==='kansas'?'kansas_senate_county_facts_official':state==='texas'?'texas_senate_2024_county_baseline_official':state+(state==='michigan_house_04'?'_2024_county_baseline_processed':'_2024_county_baseline_official'))+'.json'),fetchJSON('data/'+state+'_county_fips_reference.json')]);
   const rows=state==='iowa'?history.years['2022'].counties:state==='kansas'?history.years['2020'].counties:history.counties;
-  const baseline=state==='iowa'?history.years['2022']:{...(/^(?:WI-|MI-04$|PA-10$)/.test(code)?{race_code:code,geography_scope:'district_parts'}:{}),counties:rows.map(c=>({county:c.county,records:{total:{dem_votes:c.dem_votes,rep_votes:c.rep_votes}}}))};
+  const baseline=state==='iowa'?history.years['2022']:{...(/^(?:WI-|MI-04$|PA-10$|NY-17$)/.test(code)?{race_code:code,geography_scope:'district_parts'}:{}),counties:rows.map(c=>({county:c.county,records:{total:{dem_votes:c.dem_votes,rep_votes:c.rep_votes}}}))};
   return {code,id,baseline,reference,baseline_year:year};
  }));}
  const total=c=>c.records.total||{dem_votes:c.records.absentee.dem_votes+c.records.election_day.dem_votes,rep_votes:c.records.absentee.rep_votes+c.records.election_day.rep_votes};

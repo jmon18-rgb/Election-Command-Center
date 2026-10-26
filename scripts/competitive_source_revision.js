@@ -6,7 +6,7 @@
  if(root)root.CompetitiveSourceRevision=api;
 })(typeof window!=='undefined'?window:globalThis,function(root,closes){
  'use strict';
- const scopes={'IA-SEN':{n:99,prefix:'19',id:87151},'KS-SEN':{n:105,prefix:'20',id:87162},'TX-SEN':{n:254,prefix:'48',id:87438},'WI-01':{n:5,prefix:'55',id:87483},'WI-03':{n:19,prefix:'55',id:87485},'MI-04':{n:6,prefix:'26',id:87204},'PA-10':{n:3,prefix:'42',id:87385}};
+ const scopes={'IA-SEN':{n:99,prefix:'19',id:87151},'KS-SEN':{n:105,prefix:'20',id:87162},'TX-SEN':{n:254,prefix:'48',id:87438},'WI-01':{n:5,prefix:'55',id:87483},'WI-03':{n:19,prefix:'55',id:87485},'MI-04':{n:6,prefix:'26',id:87204},'PA-10':{n:3,prefix:'42',id:87385},'NY-17':{n:4,prefix:'36',id:87319}};
  const schema='competitive-county-source-revision-2026-v1';
  function create(code,{storage,now=()=>Date.now()}={}){
   const scope=Object.hasOwn(scopes,code)?scopes[code]:null;if(!scope)throw Error('Unsupported competitive revision scope');

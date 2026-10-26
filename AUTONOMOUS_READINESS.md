@@ -6,6 +6,20 @@ acceptance testing and recovery only. Stop unattended changes November 4 at noon
 
 ## Work order
 
+NY17 NATIONAL INTEGRATION IN REVIEW (October26 after17:12Z): separate branch
+readiness/ny17-national-input extends the existing headless shared House source,
+revision/cadence/correlated-draw likelihood/rehearsal/canary path to NY17. No
+separate needle panel. Use the full official Lawler fusion baseline197845,
+not the180924 Republican line alone. Eight inputs now imply5 House districts
+across4 states, still limited/experimental; client budget32 regular automatic
+starts/minute,8 reserved queue positions/56 bulk, existing4active/64total cap.
+Local desktop/mobile synthetic tests prove NY-only and combined8 national
+movement before calls, corrections, retractions, test/outage/stale exclusion,
+fixed Wisconsin budget and baseline isolation. Candidate real-clock17:17:37Z
+probe sees all8 HTTP200/non-test but stale zero counts; no admitted evidence,
+projection, page errors or raw archives. This is NOT live delivery/calibration.
+Parent original-source PR461 must merge green before the integration PR.
+
 NY17 source preparation (October26 after17:01Z): uploaded tipping rank4,
 unchanged district boundaries, four county parts. New official historical
 contest CSV is accessible through the state-linked Civera download. Preserve
