@@ -58,6 +58,11 @@ try{
   await update('withdrawn','20');assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),baseline);
   await update('blue','25');await update('outage','30');assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),baseline);
   await update('test','35');assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),baseline);
+  await update('blue','40');
+  await page.clock.setSystemTime(new Date('2026-11-04T07:00:00Z'));
+  await page.evaluate(()=>jointRender(true));
+  assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),baseline,'Expired source evidence cannot move national odds even before a controller refresh');
+  await page.evaluate(async()=>{await Promise.all([enIowaPilotController.tick(true),enKansasPilotController.tick(true),enTexasPilotController.tick(true)]);jointRender(true);});
   const preserved=await page.evaluate(()=>({model:JSON.stringify(jointLastResult),storage:JSON.stringify({...localStorage})}));
   await page.locator('#enNationalRehearsal summary').click();
   await page.waitForFunction(()=>document.querySelector('#enNationalStage').textContent.includes('1/5'));

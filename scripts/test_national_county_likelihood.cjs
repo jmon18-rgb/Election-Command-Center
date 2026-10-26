@@ -69,3 +69,6 @@ const demo=blue.map(e=>({...e,rehearsal:true}));
 assert.equal(bridge.condition(model,basis,demo,{...opts,now}).diagnostics.used.length,0);
 assert.equal(bridge.condition(model,basis,demo,{...opts,now,rehearsal:true}).diagnostics.status,"SIMULATED_NATIONAL_REHEARSAL");
 assert.equal(bridge.condition(model,basis,blue,{...opts,now,rehearsal:true}).diagnostics.used.length,0);
+
+assert.throws(()=>bridge.condition(model,basis,blue,{...opts,now,live:{'TX-SEN':{mode:'live_informed',posteriorMargin:10,posteriorSigma:1}}}),/never a race posterior/);
+assert.throws(()=>bridge.condition(model,basis,[],{...opts,now,rehearsal:true,live:{'TX-SEN':{mode:'source_called',winnerParty:'D'}}}),/cannot use live calls/);

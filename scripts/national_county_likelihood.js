@@ -88,6 +88,8 @@
   if(!Array.isArray(envelopes)||envelopes.length>3)throw Error('Bounded national county evidence required');
   if(options.captureCountyDraws||options.replayCountySeeds)throw Error('Nested/replayed national evidence is not a prior');
   const {now=Date.now(),rehearsal=false,...args}=options,compiled=[],excluded=[],codes=new Set();
+  if(Object.values(args.live||{}).some(row=>row?.mode!=='source_called'||!['D','R'].includes(row.winnerParty)))
+   throw Error('National county conditioning accepts verified-call overrides only, never a race posterior');
   if(rehearsal&&Object.keys(args.live||{}).length)throw Error("Rehearsal cannot use live calls");
   for(const envelope of envelopes){
    const code=envelope?.snapshot?.race_code;
