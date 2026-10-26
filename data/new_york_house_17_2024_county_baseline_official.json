@@ -1,0 +1,113 @@
+{
+  "status": "OFFICIAL_PUBLISHED_2024_DISTRICT_PART_BASELINE_NOT_LIVE_OR_CALIBRATION",
+  "race_code": "NY-17",
+  "office": "U.S. House",
+  "election_date": "2024-11-05",
+  "county_count": 4,
+  "counties": [
+    {
+      "county": "Dutchess",
+      "county_fips": "36027",
+      "dem_votes": 8289,
+      "rep_votes": 14255,
+      "named_other_votes": 635,
+      "generic_write_in_votes": 12,
+      "blank_votes": 729,
+      "void_votes": 54,
+      "reported_total": 23974,
+      "party_line_votes": {
+        "Republican": 12863,
+        "Conservative": 1392,
+        "Democratic": 8289,
+        "Working Families": 635
+      }
+    },
+    {
+      "county": "Putnam",
+      "county_fips": "36079",
+      "dem_votes": 21339,
+      "rep_votes": 31821,
+      "named_other_votes": 1393,
+      "generic_write_in_votes": 26,
+      "blank_votes": 1804,
+      "void_votes": 38,
+      "reported_total": 56421,
+      "party_line_votes": {
+        "Republican": 28822,
+        "Conservative": 2999,
+        "Democratic": 21339,
+        "Working Families": 1393
+      }
+    },
+    {
+      "county": "Rockland",
+      "county_fips": "36087",
+      "dem_votes": 59054,
+      "rep_votes": 84925,
+      "named_other_votes": 2237,
+      "generic_write_in_votes": 133,
+      "blank_votes": 5457,
+      "void_votes": 443,
+      "reported_total": 152249,
+      "party_line_votes": {
+        "Republican": 77775,
+        "Conservative": 7150,
+        "Democratic": 59054,
+        "Working Families": 2237
+      }
+    },
+    {
+      "county": "Westchester",
+      "county_fips": "36119",
+      "dem_votes": 85217,
+      "rep_votes": 66844,
+      "named_other_votes": 3265,
+      "generic_write_in_votes": 63,
+      "blank_votes": 5927,
+      "void_votes": 0,
+      "reported_total": 161316,
+      "party_line_votes": {
+        "Republican": 61464,
+        "Conservative": 5380,
+        "Democratic": 85217,
+        "Working Families": 3265
+      }
+    }
+  ],
+  "district_totals": {
+    "republican_line": 180924,
+    "conservative_line": 16921,
+    "democratic_line": 173899,
+    "working_families_line": 7530,
+    "generic_write_in_votes": 234,
+    "blank_votes": 13917,
+    "void_votes": 535,
+    "reported_total": 393960,
+    "dem_votes": 173899,
+    "rep_votes": 197845,
+    "named_other_votes": 7530
+  },
+  "source_url": "https://ny.elstats.civera.com/api/download_contest/5615_table.csv?split_party=true",
+  "official_contest_url": "https://results.elections.ny.gov/contest/5615",
+  "source_sha256": "be103b259252234331fd99c0f4f9d6b098d456f9a6242a4cb60e240384ce7a0f",
+  "source_type": "New York State Board of Elections official historical contest CSV export",
+  "map_comparability": "boundaries_unchanged_per_2026_census",
+  "map_source": "https://www.census.gov/programs-surveys/decennial-census/about/rdo/congressional-districts.html",
+  "fusion_contract": "Mike Lawler Republican+Conservative; Mondaire L. Jones Democratic only; Anthony Frascone Working Families is a separate candidate",
+  "existing_staging_discrepancy": {
+    "staging_rep_votes": 180924,
+    "omitted_same_candidate_conservative_votes": 16921,
+    "staging_other_includes_blank_void": true,
+    "global_staging_changed": false
+  },
+  "method_split_reported": false,
+  "historical_release_times": false,
+  "interval_calibrated": false,
+  "limitations": [
+    "Final certified historical counts are not chronological election-night returns",
+    "County rows are congressional district parts, not whole-county totals",
+    "Generic write-ins, blanks and voids remain separate from named-candidate votes",
+    "2024 turnout is not an official2026 remaining-ballot count or calibrated interval",
+    "No production live source or national controller is enabled by this import"
+  ]
+}

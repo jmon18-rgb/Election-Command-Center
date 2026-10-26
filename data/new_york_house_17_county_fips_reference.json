@@ -1,0 +1,24 @@
+{
+  "source_url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_counties_national.zip",
+  "source_sha256": "3c337402b5c6e8d5aa26b4278ccf4edc8989f2683765b3ffbf22296cdb2df3a0",
+  "scope": "NY17 congressional district county parts, not whole-county returns",
+  "district_county_scope_source": "https://results.elections.ny.gov/contest/5615",
+  "counties": [
+    {
+      "county": "Dutchess",
+      "fips": "36027"
+    },
+    {
+      "county": "Putnam",
+      "fips": "36079"
+    },
+    {
+      "county": "Rockland",
+      "fips": "36087"
+    },
+    {
+      "county": "Westchester",
+      "fips": "36119"
+    }
+  ]
+}

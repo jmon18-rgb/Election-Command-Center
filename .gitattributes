@@ -9,3 +9,5 @@ data/kansas_historical_sources/*-excerpt.txt text eol=lf
 
 # Preserve original state schema bytes (including its published CRLFs).
 data/pennsylvania_historical_sources/2024-official-precinct-schema.txt -text
+# Preserve the official New York CSV export byte-for-byte.
+data/new_york_historical_sources/2024-official-ny17-contest.csv -text

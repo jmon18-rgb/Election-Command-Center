@@ -6,12 +6,34 @@ acceptance testing and recovery only. Stop unattended changes November 4 at noon
 
 ## Work order
 
+NY17 source preparation (October26 after17:01Z): uploaded tipping rank4,
+unchanged district boundaries, four county parts. New official historical
+contest CSV is accessible through the state-linked Civera download. Preserve
+candidate-specific fusion: Lawler Republican180924+Conservative16921=197845;
+Jones Democratic173899; Frascone Working Families7530 is a DIFFERENT candidate.
+Keep generic write-ins234/blank13917/void535 separate. Existing global staging
+records Republican line only and includes the other line/blank/void in other;
+do not silently claim it is candidate-total reconciliation or overwrite PR59.
+The new NY17 importer/reference are historical preparation only, not yet a
+national controller. Documented civicAPI87319 route has correct four identities
+and Conley/Lawler roster, but actual reply is stale October22 with zero counts.
+Independent nyenr.elections.ny.gov ordinary client AND normal Edge get403/
+Just a moment; no bypass, no usable fallback or comparative speed claim.
+Next: review/merge the original-source preparation after exact-head checks,
+then wire supported NY17 counts into the shared national path using full
+candidate totals and explicit source limits. NC01 needs new-boundary historical
+reaggregation; AZ01 needs a defensible subcounty geography rather than relaxing
+the national minimum3 reporting-unit coverage merely to fit one county.
+
 Independent PA10 timing implementation (October26 16:43Z):
 scripts/pa10_results_timeliness.py now contains published-link discovery and a
 bounded post-close server-side paired recorder; pa10_timing_provider.cjs reuses
 the production PA10 source validator. Seven synthetic tests pass locally.
 The real county menu still has no2026 general link (HTTP200, Age1951), so the
-watch must remain gated; never guess a future election key. CI/merge pending.
+watch must remain gated; never guess a future election key. PR460 final f09db811
+passes all4 applicable workflows/6 check jobs (one additional nonapplicable
+deployment skip), merged a940cea9. Pages40364154987 succeeds; actual80 existing
+files plus3 recorder files match published bytes. Workflow397307200 is active.
 Initial/recurrent/unmatched D/R vectors cannot prove freshness. Receipt windows
 include caching/sampling/transport; never present as publisher-origin latency or
 AP/NYT parity. This capture-only path must not duplicate national likelihoods.

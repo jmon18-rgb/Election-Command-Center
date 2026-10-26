@@ -1,5 +1,71 @@
 # Readiness progress
 
+## October26 after17:01Z - NY17 official county input and fusion discrepancy
+
+- No overlap: inspected open PRs (only paused celebration426 and older queued
+  branches, including fusion-history59); verified latest main Pages success.
+  Work is on readiness/new-york-independent-source, preserving queued work.
+- Prioritization uses uploaded tipping rank4/NY17 and the previously captured
+  linked polling competitiveness. Project geography bridge marks NC01 redrawn,
+  so its old county totals cannot be reused without reaggregation. NY17 has
+  unchanged boundaries and four independently matched Census county parts.
+- Actual official historical contest CSV download succeeds via the explicitly
+  state-linked Civera endpoint (observed redirect to ny.elstats3.civera.com),
+  446 original bytes/SHA256be103b259252234331fd99c0f4f9d6b098d456f9a6242a4cb60e240384ce7a0f.
+  https://results.elections.ny.gov/contest/5615
+  https://ny.elstats.civera.com/api/download_contest/5615_table.csv?split_party=true
+- Important full-candidate correction in the NEW county baseline: Lawler's
+  Republican180924 plus Conservative16921 equals197845. Jones Democratic173899;
+  Working Families7530 is Anthony Frascone, not Jones. Generic write-ins234,
+  blanks13917 and voids535 are separate. Each of8 source columns reconciles
+  across4 county parts to the district row. Complete Census62/map checks pass.
+  Existing MIT staging Republican180924/other39137 is fully explained by party
+  lines plus blank/void fields; no global staging/prior changes or PR59 overwrite.
+- Source readiness assessment preserves metadata only: documented actual full
+  civicAPI87319 has NY17/General/Conley-Lawler/4 exact county identities,
+  test_data=false, October22 source stamp and ZERO counts. Not live evidence.
+  Independent official nyenr.elections.ny.gov returns403 in both the ordinary
+  identified client and a normal Edge browser (Just a moment). Search-indexed
+  official page text is not usable production access. No challenge bypass.
+- Six local original-source/parser/fusion tests and exact offline reproduction
+  pass. New baseline/importer/reference/assessment are preparation only; no new
+  national controller, forecasting coverage, timely delivery or calibration is
+  claimed. Next: exact-head CI, tested merge and published-byte verification,
+  then shared national integration with full candidate totals. Independent
+  source access and real matched batch timing remain separate unsolved gaps.
+
+## October26 16:59Z - independent PA10 timing recorder merged and published
+
+- PR460 exact final head f09db811e283936a87dfa8846c49f2264ad09468 passes
+  all4 applicable workflows. All7 exact-head check jobs inspected:6success,
+  one expected nonapplicable deployment skip; no external statuses. PR head
+  matched, mergeable clean, no bypass. Merge a940cea970d6b89ef5c3e10fbb183478c1146316.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/460
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40362630410
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40362630568
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40362630213
+- Pages40364154987 succeeds. Actual16:59:40Z comparison matches all80 existing
+  published files against merged origin/main; separate actual GETs match all3
+  new recorder/parser/test files exactly. GitHub workflow registration checked
+  via ordinary public API: workflow397307200 active, exact expected path.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40364154987
+- Real pre-close --watch16:47:16Z returns the same county-menu hash as16:43,
+  HTTP200/Age2180, INDEPENDENT_GENERAL_NOT_PUBLISHED, zero observations/matches.
+  No provider vote requests or live archives. Seven synthetic tests and all31
+  existing core readiness checks pass locally; CI source/core/browser checks pass.
+- Recorder is ready, comparative moving-vote timing is still UNPROVEN. It is
+  capture-only, not an independent forecasting fallback or additional national
+  coverage. County publisher clock uses an explicit Pennsylvania Nov3/4 UTC-05
+  profile; the page does not declare UTC. Comparison brackets are observations,
+  not bounds on origin availability, and not AP/NYT publication parity.
+- Next: inspect discovery reports when a legitimate2026 general link appears,
+  validate actual schema before post-close activation, and obtain matched moving
+  D/R batches. Continue pivotal House source/remaining-vote coverage (uploaded
+  priorities NC01/NY17/AZ01) where permitted real data can feed the national
+  path; do not circle blocked archives or add unrelated generic monitoring.
+  Existing national coverage remains7 inputs/4 House districts/3 House states,
+  limited and experimental; no real post-close predictive calibration claimed.
+
 ## October26 16:43Z - independent PA10 timing recorder implemented, not yet deployed
 
 - Branch readiness/independent-timing adds ordinary public county-menu discovery,

@@ -1,0 +1,34 @@
+name: NY17 official county baseline and fusion votes
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.gitattributes'
+      - 'data/new_york_historical_sources/**'
+      - 'data/new_york_house_17_*'
+      - 'data/house_history_2024_staging.json'
+      - 'data/house_geography_bridge.json'
+      - 'scripts/build_new_york_house_county_baseline.py'
+      - 'scripts/test_new_york_house_baseline.py'
+      - '.github/workflows/new-york-house-baseline.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/new_york_historical_sources/**'
+      - 'data/new_york_house_17_*'
+      - 'data/house_history_2024_staging.json'
+      - 'scripts/build_new_york_house_county_baseline.py'
+jobs:
+  original-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/test_new_york_house_baseline.py
+      - run: python scripts/build_new_york_house_county_baseline.py --check
