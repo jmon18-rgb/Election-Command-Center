@@ -1,5 +1,26 @@
 # Readiness progress
 
+## October 25/26 overnight - queued forecasting work and exact merge blocker
+
+- PR #440 implements the separate close-election cohort and explicit remaining
+  two-party vote range, tested at a279487a (18 core checks and real desktop/mobile
+  browser fixtures pass). It is stacked on #438, not main; retarget after #438
+  lands and run all applicable current-main checks before merge.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/440
+- #439's actual-source exclusion fix and canary evidence are tested at4f9692e3;
+  current-head GitHub checks remain pending. The canary's real MS/HI/OK read
+  confirms test data excluded, not production readiness.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/439
+- No new changes in this continuation have deployed. Required fallback-catalog
+  assertions still need grounded CA-32..39 media references. Ordinary DDHQ
+  retrieval returned429; direct requests stopped, and cached public search gave
+  no exact evidence. Keep all affected reviews unmerged. Recheck once after
+  backoff, not repeatedly; do not invent verification or relax the failing check.
+- Next: resolve the actual catalog/source-access blocker, merge only passing
+  current revisions, verify Pages, then continue close-race source-to-forecast
+  evaluation. Kansas county sources and reconciled official historical facts
+  remain preserved in local artifacts/readiness/kansas for the next source task.
+
 ## October 25 - reject the actual civicAPI test_data envelope everywhere
 
 - The newly triggered real-provider canary also failed because MS has positive
