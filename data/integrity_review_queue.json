@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-26T22:47:32.280958Z",
+  "updated_at": "2026-10-26T23:43:15.951692Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
@@ -266,6 +266,45 @@
     }
   ],
   "items": [
+    {
+      "id": "f33bf9746535f1bed9f9",
+      "title": "Federal election monitors swarm California to face off with Democrat watchers as voting war turns toxic - New York Post",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQOHowbkx4U1MzQzI1SzBzdWFER2FEZ1lZZmNrNjVfYW5YVU14TThMdk8tZWV2ODZnbjcxeWU3VVU5Q1VBUUExTGFwa2pQMTdROFdhSUc5QUVRQ1hOam1ZV3VPN3B0Sk5BRDN4S2lkR2NtYjF5WXlIUnItMkROY0VlTDZEOGp6X1oyMjVrZ0pLcEpvMEt3d1A1cXM4aDY1SDEtcGQ4Uy1HNmh4cGduSnpLMnVDTkF6bXctdHFMZkhPLXVvdHpYTTJjU1cyd1MtSkQ2ellRUEZFSTNBUQ?oc=5",
+      "publisher": "New York Post",
+      "published_at": "2026-10-26T22:26:51Z",
+      "detected_at": "2026-10-26T23:43:15.951692Z",
+      "state_hints": [
+        "CA",
+        "NY"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "028bc11dea8020376278",
+      "title": "Federal attorneys allege hundreds of non-citizens are voting in Washington elections - KUOW",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPcGFCbzRrNmNkRnUzZ1FpODZMWmQ2Zm1HdEs3R0ttUzB6N1pnRkI4UE5GMDJRUzRncmxTWjBLTGlKbEphQ1FaM2tVNWVCNjVVMWJYa0dvQnFYTUFEblFQUmVXMWFxUVh2UmxDQ0VMUTMzSW81azZJMm9DZzJhb0ZxRkpRY29MQThLdmtialdZczJxRFpHbGE1QXF5MEpoemNTQ3Q1TnZhdmVsS3ZEUUEtV0k0VjFSa1prTzRZaVdnMjctX0hD?oc=5",
+      "publisher": "KUOW",
+      "published_at": "2026-10-26T22:09:00Z",
+      "detected_at": "2026-10-26T23:43:15.951692Z",
+      "state_hints": [
+        "WA"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "58970fe8e83f393111e0",
       "title": "Who will win the 2026 midterm elections? Polls and predictions - The Times",
@@ -4944,38 +4983,6 @@
       "headline_numbers_unverified": [
         "1,392 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "15cc164d76649110c67d",
-      "title": "Trump And The US Midterms 2026: Nine Concerns Over Election Administration - Outlook India",
-      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxONFV0cXEzVTRhRnBybUxneWlJckhxTUNYRnN2Z19rVjlSeGs5VmN1V0F2MlRtWHdvdkVMZjlmbjA4UHpHTnhZdGVEOVNVenVKU2pyXzRBb2dxRTVROGk2eDNrMkNfbnk5QXJ4MGJpdVcwTVRTYzcyUldQQzFCNFNCekJ1QXdzOHAxbE02X3FqV0NzZFBidDRZSXcyTzhOM2IxYkNPX2lJNF80VFc3cXJhWEhVTzc2MGvSAcQBQVVfeXFMTUFEOXg1aU1CQ0N5S0o2OVZ6TWRzUWk4QUI1eVBJSllINW5TUkdHTmNVQm1Yb0dwSlNIWDMtWjhvY0t0WFBiN05xX2RBc3MzMTBGY0pFbjVIdkVvNFRkczFiYWw1MUROQjBsUHQ1T2xBdUxZdDhtLVFmT3drZm04a3pCMkROSUlkNm1oWFZDWnNTNTM1TEsyblpfbmVtTkdQOHdlc1l5QjJvWTE3OHQ2V0gzQXhSVXNKMk9wYXRJZlViclRoYg?oc=5",
-      "publisher": "Outlook India",
-      "published_at": "2026-10-14T12:45:55Z",
-      "detected_at": "2026-10-14T13:46:29.235407Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [
-        "2026"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "0aea8ac6ea26338271e0",
-      "title": "SPECIAL REPORT | Nine ways the Trump administration could interfere with the US midterms - Business Day",
-      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPTkQ4NzdxYW9Gc1FEZERfblE4dHhvQTF2UV9vVmo0ZjhTQ09lXy1CQ0NXSEc2X2oyN1EtOHV4d0RZSGtFWXA5aFd6cjRsTGtXSlRES2EzdG5scTlYSGtoVzE0Nmx2amNiTEhBMDRXZlRQd1F4TDYxUXRIT01NUkd2R19aeWJvYTJOMEtSWjhKenhocGpqcTZkNzNZakpyVEZTR3AxVWtUOXBzSkFSaUpSNlFHRHEyMkFJTno1UWVmUXpITThyam1vUER1dC00eW9m?oc=5",
-      "publisher": "Business Day",
-      "published_at": "2026-10-14T12:10:08Z",
-      "detected_at": "2026-10-14T13:00:50.754853Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
