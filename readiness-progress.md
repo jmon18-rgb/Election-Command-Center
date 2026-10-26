@@ -1,5 +1,23 @@
 # Readiness progress
 
+## October26 05:55Z - consistent linked-model starting inputs
+
+- A clean local build shows Kansas linked mean about even, while the older
+  live reader uses poll-only D+1.8. That changes the starting center when votes
+  first arrive independently of their information.
+- Use a strict shared reader for unconditioned linked-race mean/base sigma,
+  IA-SEN/KS-SEN only. Ignore winner flags and conditional win percentages,
+  remove research error scaling and exclude research national shifts. Invalid
+  inputs withhold probability; national state is read-only.
+- Actual Edge1366/390 fixtures assert both live needles use their linked starting
+  margins, still respond to county updates and preserve national odds. Existing
+  test-data/clock/outage/archive tests pass. Pure-reader cases cover wrong
+  schema/scope, missing/duplicate rows, malformed values and research controls.
+  Core engine41ec65dd7f17 and frozen historical evaluations remain unchanged.
+-444 merged7d6d07ef after all27 current-head checks passed atbd103529. Its
+  deployment verification is pending.445 request priority and446 starting-input
+  alignment remain queued; neither is a calibrated-performance claim.
+
 ## October26 05:43Z - verified evidence deployment and complete queue checks
 
 - Main270ce878 is published: actual Pages comparison at05:43:09Z matches all43

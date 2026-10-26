@@ -84,8 +84,10 @@ It never interprets precinct reporting percentages as ballot completion.
 
 `iowa_needle_view.js` connects the exact approved full Iowa endpoint to this model
 and a visible race probability, projected margin, estimated two-party votes
-remaining and scenario uncertainty band. It uses the current Iowa polling input
-normalized to a two-party margin, with a minimum six-point prior uncertainty.
+remaining and scenario uncertainty band. Live starting margin and uncertainty
+come from the linked race model's unconditioned marginal parameters, not a
+separate poll-only center. Additional county/method/turnout uncertainty remains
+part of the experimental partial-return estimator.
 Unavailable, stale, test or same-clock conflicting source updates hide the
 probability. Fresh corrections may update it. National odds and counted totals
 remain separate. No provider winner flag drives a predictive estimate.

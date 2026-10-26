@@ -11,6 +11,8 @@ on:
       - 'scripts/*iowa_needle*'
       - 'scripts/*iowa_governor*'
       - 'index.html'
+      - 'scripts/competitive_needle_prior.js'
+      - 'scripts/test_competitive_needle_prior.cjs'
       - '.github/workflows/iowa-senate-needle.yml'
 permissions:
   contents: read

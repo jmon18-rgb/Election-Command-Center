@@ -1,5 +1,18 @@
 # Kansas Senate competitive-race county inputs
 
+## Consistent starting inputs (queued)
+
+Live forecasts read the linked model's unconditioned race margin and base
+marginal uncertainty through a strict shared reader. Provider winner flags and
+simulated conditional win percentages never set those inputs. Research national
+swing/error controls do not change the live starting inputs. Missing/mismatched
+linked inputs withhold the probability. Reading a prior never writes national
+model state; county results remain isolated to the race needle.
+
+This aligns starting margins, not exact displayed probabilities: the county model
+still adds future-count/method/turnout uncertainty. No estimator coefficients or
+frozen historical evaluation inputs change, and calibration remains unproven.
+
 Kansas is the next Senate source target after Iowa from the linked model's
 competitive shortlist. The current polling record at 04:28Z has D+1.64 from seven
 contributing firms / three independent firms, latest field end October 14.
