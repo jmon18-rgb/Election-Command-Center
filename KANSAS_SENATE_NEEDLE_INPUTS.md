@@ -1,6 +1,6 @@
 # Kansas Senate competitive-race county inputs
 
-## Consistent starting inputs (queued)
+## Consistent starting inputs (deployed)
 
 Live forecasts read the linked model's unconditioned race margin and base
 marginal uncertainty through a strict shared reader. Provider winner flags and

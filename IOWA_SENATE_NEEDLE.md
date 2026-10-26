@@ -185,9 +185,11 @@ published yet. Returned absentee ballots are not counted candidate votes.
 
 The public full civicAPI endpoint supplies an alternative transport, but its actual
 current payload remains test data. Real post-close source delivery has not been
-demonstrated. The bridge and visible needle are implemented for review, not yet
-verified as deployed. Independent historical evaluation, updated turnout evidence
-and calibration remain open. Kansas Senate is the next competitive source target.
+demonstrated. The bridge and visible needle are deployed; see the dated verification in
+readiness-progress.md. Synthetic deployed-browser tests verify behavior, not
+genuine post-close delivery. Independent historical evaluation, updated turnout evidence
+and calibration remain open. Kansas Senate now has a separate deployed county-input needle. Neither path
+has demonstrated genuine post-close delivery.
 
 ### Prior-only comparison
 
