@@ -57,5 +57,16 @@
     "all_observed_votes_zero": true,
     "warning": "Blank precinct rows are summary rows, not a 211th precinct; do not double count. Status1 on summary with zero votes is not ballots complete."
   },
-  "public_app_contest_observed": "Governor and Lieutenant Governor only; not AZ01. Exact native API data response and visible browser page confirm."
+  "public_app_contest_observed": "Governor and Lieutenant Governor only; not AZ01. Exact native API data response and visible browser page confirm.",
+  "historical_archive_followup": {
+    "observed_at": "2026-10-26T22:27:24.849855+00:00",
+    "landing": "https://elections.maricopa.gov/results-and-data/historic-results.html",
+    "normal_browser_landing_http": 200,
+    "selected_year": "2024",
+    "historical_export_links_rendered": false,
+    "declared_app_script": "https://elections.maricopa.gov/.resources/elections/webresources/js/projectMES/mes-app-bundle~2026-09-17-18-21-26-696~cache.js",
+    "ordinary_browser_request_script_http": 403,
+    "interpretation": "The declared archive application script was denied on the ordinary request; selector failure does not prove historical files do not exist. No access-control bypass or guessed asset IDs. Stop repeating this route until access or evidence changes.",
+    "independent_official_export_located": false
+  }
 }

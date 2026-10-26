@@ -1,5 +1,21 @@
 # Readiness progress
 
+## October26 22:26Z — AZ01 archive investigation bounded and stopped
+
+- Actual archive-page declared scripts inspected once. File-list application is
+  mes-app-bundle~2026-09-17-18-21-26-696~cache.js; ordinary browser request403.
+  This explains an inaccessible script dependency, not proof no2024export exists.
+  A bounded independent primary-source search did not locate a replacement export.
+- Source assessment records exact script URL/status and no-retry boundary. No
+  guessedassetIDs, access bypass, invented precinct allocation or baseline promotion.
+  Current actual2026county template remains saved; no reason to redownload31MB.
+- NEXT source work must use a new independently linked2024precinct export or an
+  existing licensed/processed source with original provenance and reconciliation,
+  rather than revisit this unchanged archive route. Keep AZ01activation blocked
+  pending210precinct crosswalk/baseline and reporting semantics. No national scope
+  change or user action required. Current openPRs unchanged; mainPageshealthy.
+
+
 ## October26 22:14Z — PR466 source-audit review deployed; live-input scope unchanged
 
 - ALL3 exact-head workflows success at6ab9cf4fbdf29611738bb247d8ef87cabed96c3d;
