@@ -61,6 +61,9 @@ try{
   await host.locator('[data-iowa="refresh"]').click();
   await page.waitForFunction(()=>Boolean(window.enIowaPilotController?.status().projection));
   const first=await page.evaluate(()=>window.enIowaPilotController.status().projection.dem_win_probability);
+  const starting=await page.evaluate(()=>({used:enIowaPilotController.status().projection.assumptions.prior_margin_points,
+   linked:jointPulseBaseline.race_probabilities.find(r=>r.race_code==='IA-SEN').model_dem_margin_points}));
+  assert.equal(starting.used,starting.linked,'The race needle starts at the linked model margin, not a different poll-only center');
   assert.match(await host.locator('[data-iowa="state"]').textContent(),/source-validated returns/);
   assert.match(await host.locator('[data-iowa="votes"]').textContent(),/99\/99 counties/);
   assert.match(await host.locator('[data-iowa="remaining"]').textContent(),/turnout scenario range/);

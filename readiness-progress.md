@@ -1,5 +1,43 @@
 # Readiness progress
 
+## October26 06:04Z - archive isolation and competitive-source priority deployed
+
+-444 merged7d6d07ef after all27 current-head workflows passed atbd103529.
+ 445 mergedf06f4135 after all28 passed at990450ba. Actual Pages comparison
+ at06:03:15Z matches all43 loaded scripts/catalog files to f06f4135.
+ https://github.com/jmon18-rgb/Election-Command-Center/pull/444
+ https://github.com/jmon18-rgb/Election-Command-Center/pull/445
+- Published Pages with explicitly intercepted post-close fixtures passes Edge
+ 1366/390 source-to-probability, immediate archive clearing, late-response
+ archive exclusion, historical preview and outage recovery. These are deployed
+ behavior tests using synthetic returns, not evidence of real vote delivery.
+- Separately, actual published Kansas at06:03:35Z receives real full87162 HTTP200
+ without source substitution. Provider TEST DATA remains excluded; live P null,
+ accepted votes0. This does not establish calibration or post-close availability.
+-446 starting-prior alignment is queued. Its reader matches real model exporter
+ parameters across supported research settings (rounding tolerance0.001 sigma),
+ and the core engine/frozen evaluations remain unchanged. All current-head
+ checks must pass before merge; do not claim this change deployed.
+
+
+## October26 05:55Z - consistent linked-model starting inputs
+
+- A clean local build shows Kansas linked mean about even, while the older
+  live reader uses poll-only D+1.8. That changes the starting center when votes
+  first arrive independently of their information.
+- Use a strict shared reader for unconditioned linked-race mean/base sigma,
+  IA-SEN/KS-SEN only. Ignore winner flags and conditional win percentages,
+  remove research error scaling and exclude research national shifts. Invalid
+  inputs withhold probability; national state is read-only.
+- Actual Edge1366/390 fixtures assert both live needles use their linked starting
+  margins, still respond to county updates and preserve national odds. Existing
+  test-data/clock/outage/archive tests pass. Pure-reader cases cover wrong
+  schema/scope, missing/duplicate rows, malformed values and research controls.
+  Core engine41ec65dd7f17 and frozen historical evaluations remain unchanged.
+-444 merged7d6d07ef after all27 current-head checks passed atbd103529. Its
+  deployment verification is pending.445 request priority and446 starting-input
+  alignment remain queued; neither is a calibrated-performance claim.
+
 ## October26 05:43Z - verified evidence deployment and complete queue checks
 
 - Main270ce878 is published: actual Pages comparison at05:43:09Z matches all43

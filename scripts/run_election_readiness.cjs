@@ -14,6 +14,7 @@ const checks = [
   ['Kansas strict county-source contract', 'test_kansas_civic_county_source.cjs'],
   ['Kansas experimental source-to-forecast path', 'test_kansas_county_needle.cjs'],
   ['Competitive race source request priority', 'test_election_night_transport.cjs'],
+  ['Linked competitive-race starting priors', 'test_competitive_needle_prior.cjs'],
   ['Source audit reporting safeguards', 'test_election_readiness_source_snapshot.cjs'],
   ['Celebration playback and revoked-call queue', 'test_election_night_celebration_player.cjs'],
   ['Published bundle and forecast consistency', 'test_published_dashboard.cjs', '--local'],

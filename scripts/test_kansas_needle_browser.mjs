@@ -48,6 +48,9 @@ try{
   await host.locator('[data-ks="refresh"]').click();
   await page.waitForFunction(()=>Boolean(window.enKansasPilotController?.status().projection));
   const first=await page.evaluate(()=>enKansasPilotController.status().projection.dem_win_probability);
+  const starting=await page.evaluate(()=>({used:enKansasPilotController.status().projection.assumptions.prior_margin_points,
+   linked:jointPulseBaseline.race_probabilities.find(r=>r.race_code==='KS-SEN').model_dem_margin_points}));
+  assert.equal(starting.used,starting.linked,'Kansas uses the same underlying starting margin as its linked race model');
   assert.match(await host.locator('[data-ks="votes"]').textContent(),/105\/105/);
   assert.match(await host.locator('[data-ks="remaining"]').textContent(),/turnout scenario range/);
   scenario='conflict';await page.clock.setSystemTime(new Date('2026-11-04T03:06:30Z'));
