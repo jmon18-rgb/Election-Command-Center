@@ -42,13 +42,39 @@ CORS header do not establish an actual browser's cross-origin forecast update.
 The strict `texas_civic_county_source.js` adapter rejects test data, light URLs,
 wrong election/candidate/geographic identity, unreconciled totals and invalid
 publication clocks. Synthetic post-close adapter tests pass and the actual
-provider response returns TEST_DATA_NOT_LIVE with zero accepted rows. This module
-is not yet loaded by the site: no Texas needle or live vote delivery is claimed.
+provider response returns TEST_DATA_NOT_LIVE with zero accepted rows. The adapter and visible race view are now wired in the review implementation;
+publication remains pending current-head checks. No genuine live vote delivery
+is claimed.
 
-Next implementation: connect these accepted historical facts and strict inputs
-to a scoped254-county estimator and visible race needle, using the linked Texas
-prior while keeping national odds separate. Evaluate the extended estimator
-honestly; current source test flags must not be cleared to manufacture acceptance.
+## Programmed source-to-needle path (review pending)
+
+The shared estimator now accepts the explicit254-county scope. No numerical
+forecast parameters change. The view consumes the complete2024 official baseline,
+validated county counts and the linked Texas model's unconditioned starting margin
+and base uncertainty. It renders a changing race probability, projected margin
+and conditional remaining-two-party-vote range. These are modeled scenarios,
+not official outstanding ballots. County updates do not alter national odds.
+
+The2024 baseline is a different Senate class and candidate matchup, and a
+presidential turnout cycle. Its transfer to2026 has not been independently
+validated. The Iowa/Kansas historical checks remain numerically unchanged;
+changing the source blob to accept254 counties conservatively marks their reused
+reports as development evidence. None supplies Texas probability calibration.
+
+Desktop/mobile source fixtures verify linked starting inputs, updates, test
+exclusion, same-clock conflicts, newer zero-count withdrawal, cached positive
+replay rejection, genuinely newer recovery, outage removal and archive exclusion.
+A separate real Edge request against the local view receives HTTP200 TEST DATA
+and leaves probability null, accepted votes0; no source fixture or virtual clock
+is used for that observation. This proves observed transport/test exclusion,
+not actual post-close forecasting.
+
+All three exact full county routes receive queue priority. Three positions are
+reserved within the same64-queued/four-active cap; bulk work can occupy61 waiting
+positions. Light/search routes do not acquire that priority. Current-head checks
+and actual Pages deployment verification remain mandatory before acceptance.
+The scheduled published-source probe currently covers Iowa/Kansas only; extend
+it to Texas after the view is actually deployed, not before it exists on Pages.
 
 ## Earlier rejected candidate dataset (preserved)
 

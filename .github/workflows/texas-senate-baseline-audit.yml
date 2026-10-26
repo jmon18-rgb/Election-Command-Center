@@ -8,6 +8,12 @@ on:
       - 'scripts/build_texas_senate_county_baseline.py'
       - 'scripts/texas_civic_county_source.js'
       - 'scripts/test_texas_civic_county_source.cjs'
+      - 'scripts/texas_needle_view.js'
+      - 'scripts/test_texas_needle_browser.mjs'
+      - 'scripts/iowa_county_needle.js'
+      - 'scripts/competitive_needle_prior.js'
+      - 'scripts/election_night_transport.js'
+      - 'index.html'
       - 'scripts/read_official_xlsx_rows.py'
       - 'data/texas_senate_baseline_candidate_audit.json'
       - 'data/texas_senate_2024_county_baseline_official.json'
@@ -40,3 +46,17 @@ jobs:
           curl --fail --location --max-time 60 'https://www.fec.gov/documents/4228/federalelections2020.xlsx' -o artifacts/readiness/texas/fec-2020.xlsx
       - name: Reproduce the blocked audit without allocating missing votes
         run: python scripts/audit_texas_senate_baseline.py --archive artifacts/readiness/texas/2020-official.zip --fec artifacts/readiness/texas/fec-2020.xlsx --check
+  browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned Chromium runtime
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Exercise Texas source to visible race needle with explicit fixtures
+        run: node scripts/test_texas_needle_browser.mjs

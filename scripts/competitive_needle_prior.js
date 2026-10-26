@@ -4,7 +4,7 @@
 })(typeof window!=='undefined'?window:null,function(){
  'use strict';
  function read(result,code){
-  if(!['IA-SEN','KS-SEN'].includes(code)||result?.schema_version!=='joint-control-beta-v1'||
+  if(!['IA-SEN','KS-SEN','TX-SEN'].includes(code)||result?.schema_version!=='joint-control-beta-v1'||
    result.race_probability_method!=='SAME_CORRELATED_DRAWS_AS_CHAMBER_CONTROL'||
    !Array.isArray(result.race_probabilities)||!Number.isFinite(result.error_multiplier)||result.error_multiplier<=0)return null;
   const rows=result.race_probabilities.filter(r=>r?.race_code===code);

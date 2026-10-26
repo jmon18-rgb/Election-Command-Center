@@ -1,5 +1,38 @@
 # Readiness progress
 
+## October 26 10:36Z - Texas source-to-visible-needle implementation
+
+- Implement a254-county Texas race view from the verified2024 official baseline
+  and strict87438 source contract. Read the linked model's unconditioned Texas
+  starting margin/base sigma, model remaining two-party votes with an explicit
+  uncertainty range and render the changing probability. No national updates.
+- The shared engine adds254 to its explicit supported-county guard only; no
+  numerical parameter changes. The sixteen frozen Kansas governor snapshots
+  reproduce exactly numerically. Current-source reports conservatively mark
+  reused outcomes as development, not a fresh independent holdout/calibration.
+  Texas2024 is a different Senate class/matchup and presidential turnout cycle;
+  no independent Texas probability calibration or live delivery is claimed.
+- Actual Edge1366/390 synthetic post-close tests pass source-driven probability
+  movement, linked prior, method/remaining-vote labels, test/same-clock gates,
+  newer zero withdrawal, older-positive rejection, genuinely newer recovery,
+  outage removal and archive exclusion. National odds remain unchanged. Mobile
+  screenshot inspected; no horizontal overflow. Iowa/Kansas browser checks pass.
+- Separate fixture-free local-view Edge request at10:32:02Z reaches actual
+  Civic87438 HTTP200 and shows TEST DATA excluded; live P null, accepted votes0.
+  No provider response substitution or virtual election clock was used for that
+  observation. This is transport/test-exclusion evidence, not election delivery.
+- All three exact full county URLs receive priority, with3 reserved positions
+  inside the unchanged64-queued/four-active cap. Actual index wiring under61
+  queued background jobs admits all three needles first; total cap still rejects
+  excess work. Default pools and existing outage/cooldown limits stay intact.
+- Core checks pass including the Texas source contract. Add Texas browser CI on
+  shared model/prior/index/transport paths. Current-head checks remain pending.
+  Source-input PR450 must merge first; its final House-coalescing diagnostic
+  repair removes an unexposed harness variable without weakening assertions.
+- Next: pass all current-head checks, merge450 then this dependent implementation,
+  verify actual Pages bytes and published fixture behavior, then add Texas to the
+  actual deployed-source probe. No deployed Texas needle is claimed before that.
+
 ## October 26 10:27Z - Texas official baseline and exact county source obtained
 
 - The newer Council archive repeats the same blocked2020 totals; its2024 VTD

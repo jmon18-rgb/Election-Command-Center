@@ -30,7 +30,7 @@
  }
  function componentForecast({baseline,observations=[],prior_margin_points,prior_sigma_points=6,expected_county_count=99,
   turnout_scale=1,turnout_sigma_fraction=.25,county_sigma_points=6,structural_sigma_points=5,batch_bias_sigma_points=8}){
-  if(!baseline?.counties||![99,105].includes(expected_county_count)||baseline.counties.length!==expected_county_count||!Array.isArray(observations)||
+  if(!baseline?.counties||![99,105,254].includes(expected_county_count)||baseline.counties.length!==expected_county_count||!Array.isArray(observations)||
    ![prior_margin_points,prior_sigma_points,turnout_scale,turnout_sigma_fraction,county_sigma_points,structural_sigma_points,batch_bias_sigma_points].every(Number.isFinite)||
    Math.abs(prior_margin_points)>=100||prior_sigma_points<=0||turnout_scale<=0||turnout_sigma_fraction<=0||
    county_sigma_points<=0||structural_sigma_points<=0||batch_bias_sigma_points<=0)throw Error('Invalid county forecast inputs');
