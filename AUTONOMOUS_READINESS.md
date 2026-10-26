@@ -6,7 +6,17 @@ acceptance testing and recovery only. Stop unattended changes November 4 at noon
 
 ## Work order
 
-PA-10 CANDIDATE: uploaded tipping rank1, current polled linked D60.27%, original
+Independent PA10 timing implementation (October26 16:43Z):
+scripts/pa10_results_timeliness.py now contains published-link discovery and a
+bounded post-close server-side paired recorder; pa10_timing_provider.cjs reuses
+the production PA10 source validator. Seven synthetic tests pass locally.
+The real county menu still has no2026 general link (HTTP200, Age1951), so the
+watch must remain gated; never guess a future election key. CI/merge pending.
+Initial/recurrent/unmatched D/R vectors cannot prove freshness. Receipt windows
+include caching/sampling/transport; never present as publisher-origin latency or
+AP/NYT parity. This capture-only path must not duplicate national likelihoods.
+
+PR459 DEPLOYED (October26 16:29Z): PA-10 uploaded tipping rank1, current polled linked D60.27%, original
 state2024 precinct extract now reproducible (340 precincts/three district parts;
 Census67, unchanged map and exact MIT reconciliation). Extend the same national
 counts path, not a new race panel. This yields four House districts across THREE
@@ -15,7 +25,19 @@ Keep the existing minimum3 reporting counties: PA10 needs all3 county parts with
 qualifying counts; a single appealing county batch cannot move the national odds.
 Seven-source post-close target budget28 regular automatic requests/min, with
 shared4active/64queued unchanged and7 reserved priority positions/57 bulk.
+PR459 tested head3bd56234 passes all33 applicable PR workflows/39 check jobs
+(three other check jobs are nonapplicable deployment skips). Mergeafe0470c;
+published briefing-bot maina5acae18. Actual80-file integrity, published synthetic
+Edge1366/390 national path and real-clock seven-source rejection checks pass.
 Independent timing/fallback is NOT solved by this additional civicAPI route.
+NEXT PRIORITY: build the independent PA10/Dauphin matched D/R-snapshot timing
+observer BEFORE October31 rather than adding another same-provider race. Use
+actual linked menu discovery and the now-pinned official2024 county table as
+format evidence; activate real2026 collection ONLY after a verified published
+2026 general link exists. Do not guess future keys, weaken eligibility, or wait
+until election night to program the collector. The ignored implementation
+contract artifacts/readiness/next-dauphin-independent-timing-contract.json and
+readiness-progress.md contain concrete scope/data/receipt-clock requirements.
 Cumberland currently links only May2026 primary results; Dauphin's accessible
 public application currently lists2026 primary plus its2024 archive, not a
 verified November2026 feed. Investigate that distinct official county format

@@ -1,0 +1,47 @@
+name: PA10 independent timing discovery
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/pa10_results_timeliness.py'
+      - 'scripts/test_pa10_results_timeliness.py'
+      - 'scripts/pa10_timing_provider.cjs'
+      - '.github/workflows/pa10-independent-timing.yml'
+  schedule:
+    - cron: '43 * 26-31 10 *'
+    - cron: '43 * 1,2 11 *'
+    - cron: '*/15 * 3,4 11 *'
+permissions:
+  contents: read
+concurrency:
+  group: pa10-independent-discovery-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+jobs:
+  discovery:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify synthetic matching and historical exclusion
+        run: |
+          python scripts/test_pa10_results_timeliness.py
+          node scripts/test_pennsylvania_house_10_county_source.cjs
+      - name: Discover only legitimately published November county link
+        if: github.event_name == 'pull_request'
+        run: python scripts/pa10_results_timeliness.py
+      - name: Bound actual capture to post-close and published scope
+        if: github.event_name != 'pull_request'
+        run: python scripts/pa10_results_timeliness.py --watch
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pa10-independent-discovery
+          path: artifacts/readiness/pa10-independent-timing/
+          retention-days: 90
