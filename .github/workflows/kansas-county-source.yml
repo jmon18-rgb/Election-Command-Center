@@ -29,3 +29,17 @@ jobs:
         run: node scripts/test_kansas_county_needle.cjs
       - name: Evaluate official historical returns against prior-only and raw baselines
         run: node scripts/evaluate_kansas_county_needle.cjs
+  browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned Chromium runtime
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Exercise validated Kansas source to visible race needle on laptop and mobile
+        run: node scripts/test_kansas_needle_browser.mjs

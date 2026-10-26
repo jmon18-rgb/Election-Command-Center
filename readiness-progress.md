@@ -1,5 +1,22 @@
 # Readiness progress
 
+## October26 - passing merges and Kansas visible needle path
+
+-438 merged3ef40a7a after27 successful current-head workflows;441 merged
+ 9490bd6c after5 successful current-head workflows. Pages initially still
+ served older files at04:48Z; deployment verification is pending, not passed.
+-440 retargeted to main and refreshed at06b25369; full current-head checks
+ must pass before merge.
+-442 now includes the visible Kansas race needle using the exact inspected full
+ 87162 route through the bounded transport. Desktop1366 and mobile390 source
+ fixtures move its probability; TEST DATA, same-clock corrections and outages
+ remove the estimate. National odds remain unchanged. Iowa browser regressions
+ and all core checks pass. This is queued and not claimed deployed.
+- Next: verify438 deployment, merge passing440, retarget/test442 on main, verify
+ its deployment and actual test-source exclusion. Close-race calibration and
+ actual post-close vote delivery remain unproven.
+
+
 ## October26 - Kansas input now drives an experimental forecast
 
 - New queued wrapper validates105 county identities, candidate/state sums, exact

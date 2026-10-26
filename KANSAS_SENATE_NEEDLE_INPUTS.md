@@ -51,7 +51,7 @@ Next: integrate the validated 105-county inputs into a separately scoped forecas
 after the Iowa model changes are reviewed, retaining unknown-method uncertainty
 and keeping national control odds separate.
 
-## Experimental estimator (queued, no browser activation)
+## Experimental estimator (queued browser integration)
 
 The Kansas wrapper validates the full real-source contract before invoking the
 shared estimator for exactly105 independently matched counties. Default history
@@ -68,5 +68,8 @@ Margin ranges contain the result in15/16 assumed snapshots; remaining-vote range
 in11/16. These misses are retained. This is one noncompetitive historical
 election, different Senate class and turnout cycle, with assumed county orders;
 it does not calibrate the competitive2026 race. No parameters were tuned to
-these outcomes. Browser integration and Kansas close-election evidence remain
-unfinished.
+these outcomes. The queued Kansas view now consumes the exact full source through the bounded
+shared transport and renders the race probability and remaining-vote range.
+Desktop/mobile fixtures verify source-driven probability movement, test-data and
+publication-clock exclusion, outage removal and national isolation. Kansas
+close-election evidence and actual post-close delivery remain unfinished.
