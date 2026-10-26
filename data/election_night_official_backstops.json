@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "event": "2026-11-03",
-  "last_verified": "2026-10-25",
+  "last_verified": "2026-10-26",
   "status": "OFFICIAL_HUMAN_FALLBACK_LINKS_NOT_AUTOMATED_RESULTS",
   "links": [
     {
@@ -13,9 +13,28 @@
       "source_reference": "https://www.sos.ca.gov/elections/upcoming-elections/general-election-november-3-2026",
       "scope_note": "Official November 3 voter guide identifies the public results portal and post-close reporting plan; guide is not itself a live race feed. Public results portal currently redirects to prior elections.",
       "race_ids": [
+        "House|CA-01",
+        "House|CA-02",
+        "House|CA-03",
+        "House|CA-04",
+        "House|CA-05",
+        "House|CA-06",
+        "House|CA-07",
+        "House|CA-08",
+        "House|CA-09",
+        "House|CA-10",
+        "House|CA-11",
+        "House|CA-12",
         "House|CA-13",
+        "House|CA-14",
+        "House|CA-15",
+        "House|CA-16",
+        "House|CA-17",
+        "House|CA-18",
+        "House|CA-19",
         "House|CA-20",
         "House|CA-21",
+        "House|CA-22",
         "House|CA-23",
         "House|CA-24",
         "House|CA-25",
@@ -24,7 +43,28 @@
         "House|CA-28",
         "House|CA-29",
         "House|CA-30",
-        "House|CA-31"
+        "House|CA-31",
+        "House|CA-32",
+        "House|CA-33",
+        "House|CA-34",
+        "House|CA-35",
+        "House|CA-36",
+        "House|CA-37",
+        "House|CA-38",
+        "House|CA-39",
+        "House|CA-40",
+        "House|CA-41",
+        "House|CA-42",
+        "House|CA-43",
+        "House|CA-44",
+        "House|CA-45",
+        "House|CA-46",
+        "House|CA-47",
+        "House|CA-48",
+        "House|CA-49",
+        "House|CA-50",
+        "House|CA-51",
+        "House|CA-52"
       ]
     },
     {
@@ -369,6 +409,286 @@
         "url": "https://votes.decisiondeskhq.com/races/2026-11-03/new-jersey-us-house-7-general-election",
         "verified_at": "2026-10-25",
         "verification": "Exact Nov 3 2026 House 7 header and forecast landing inspected; no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-01",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-1-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-02",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-2-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-03",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-3-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-04",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-4-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-05",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-5-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-06",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-6-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-07",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-7-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-08",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-8-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-09",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-9-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-10",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-10-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-11",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-11-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-12",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-12-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-14",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-14-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-15",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-15-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-16",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-16-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-17",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-17-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-18",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-18-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-19",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-19-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-22",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-22-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-32",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-32-general-election/results",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House header and Results tab opened in ordinary browser; pre-close placeholders, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-33",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-33-general-election/results",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House header and Results tab opened in ordinary browser; pre-close placeholders, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-34",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-34-general-election/results",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House header and Results tab opened in ordinary browser; pre-close placeholders, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-35",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-35-general-election/results",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House header and Results tab opened in ordinary browser; pre-close placeholders, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-36",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-36-general-election/results",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House header and Results tab opened in ordinary browser; pre-close placeholders, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-37",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-37-general-election/results",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House header and Results tab opened in ordinary browser; pre-close placeholders, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-38",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-38-general-election/results",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House header and Results tab opened in ordinary browser; pre-close placeholders, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-39",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-39-general-election/results",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House header and Results tab opened in ordinary browser; pre-close placeholders, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-40",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-40-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-41",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-41-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-42",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-42-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-43",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-43-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-44",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-44-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-45",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-45-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-46",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-46-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-47",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-47-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-48",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-48-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-49",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-49-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-50",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-50-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-51",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-51-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
+      },
+      {
+        "id": "House|CA-52",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/california-us-house-52-general-election",
+        "verified_at": "2026-10-26",
+        "source_reference": "https://votes.decisiondeskhq.com/elections/2026-11-03/california",
+        "verification": "Exact Nov 3 2026 House district label and link inspected in publisher directory; landing/results page not individually checked, no actual result or winner call verified"
       }
     ]
   }

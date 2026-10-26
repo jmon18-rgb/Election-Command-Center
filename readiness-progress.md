@@ -1,5 +1,21 @@
 # Readiness progress
 
+## October 26 - grounded fallback repair clears the local merge blocker
+
+- At04:14:17Z an ordinary in-app browser loads the public DDHQ directory after
+  backoff. Read all52 actual California House link targets from its Nov3 page;
+  separately open CA32..39 and verify exact 2026 headers plus selected Results
+  tabs. No account, county unlocking, private API or access-control bypass.
+- Add these grounded references to the existing human-only catalog. Preserve
+  older reviewed entries; distinguish directory-only evidence from the eight
+  individually opened Results pages. The existing official statewide guidance
+  applies to all52 California districts. No live votes, calls or source pins are
+  added. Evidence: data/california_manual_reference_directory_evidence.json.
+- All existing five fallback checks now pass locally without changing any check.
+  This repair is included with #439 to unblock the queued source/needle changes;
+  full current-head CI still must pass before merge. Do not equate reference
+  coverage or pre-close zero placeholders with a working live results provider.
+
 ## October 25/26 overnight - queued forecasting work and exact merge blocker
 
 - PR #440 implements the separate close-election cohort and explicit remaining
