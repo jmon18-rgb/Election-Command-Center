@@ -1,5 +1,21 @@
 # Readiness progress
 
+## October26 - Kansas input now drives an experimental forecast
+
+- New queued wrapper validates105 county identities, candidate/state sums, exact
+  source/time and test flags before using the shared estimator. Synthetic source
+  changes move race probability; winner flags cannot. Test data yields no forecast.
+- Official2020-to-2022 stress evaluation: margin MAE10.10 versus prior23.66 and
+  raw30.66; margin coverage15/16, remaining-vote range coverage11/16. Retain
+  misses: different class/turnout, one noncompetitive election, assumed orders.
+  No claim of calibrated2026 probabilities or actual post-close delivery.
+- All18 core checks pass; Iowa close-cohort numerical results are unchanged by
+  explicit105-county support. Kansas browser integration remains next work.
+-438 was held by two new HI gaps, not forecast tests. Exact publisher directory
+  links repair those without new vote feeds or weakened checks; refreshed438
+  at33a0de86 and441 ate4bf1772 are running full required checks.
+
+
 ## October 26 - deployed source exclusion and forecast evidence
 
 - PR439 merged at d917ded7 after all33 current-head workflows passed.

@@ -28,9 +28,9 @@
   }
   return Math.max(0,((lo+hi)/2-z)*sd);
  }
- function componentForecast({baseline,observations=[],prior_margin_points,prior_sigma_points=6,
+ function componentForecast({baseline,observations=[],prior_margin_points,prior_sigma_points=6,expected_county_count=99,
   turnout_scale=1,turnout_sigma_fraction=.25,county_sigma_points=6,structural_sigma_points=5,batch_bias_sigma_points=8}){
-  if(!baseline?.counties||baseline.counties.length!==99||!Array.isArray(observations)||
+  if(!baseline?.counties||![99,105].includes(expected_county_count)||baseline.counties.length!==expected_county_count||!Array.isArray(observations)||
    ![prior_margin_points,prior_sigma_points,turnout_scale,turnout_sigma_fraction,county_sigma_points,structural_sigma_points,batch_bias_sigma_points].every(Number.isFinite)||
    Math.abs(prior_margin_points)>=100||prior_sigma_points<=0||turnout_scale<=0||turnout_sigma_fraction<=0||
    county_sigma_points<=0||structural_sigma_points<=0||batch_bias_sigma_points<=0)throw Error('Invalid county forecast inputs');
@@ -65,7 +65,7 @@
     const r=seen.get(name)||{dem_votes:0,rep_votes:0},n=r.dem_votes+r.rep_votes;
     const mu=(b.aN+b.eN)*turnout_scale,sd=mu*turnout_sigma_fraction;
     // Coherent statewide low/high turnout ranks retain correlated uncertainty;
-    // do not manufacture a narrow total by treating 99 counties as independent.
+    // do not manufacture a narrow total by treating counties as independent.
     remainingLow+=remainingQuantile(mu,sd,n,.05);
     remainingHigh+=remainingQuantile(mu,sd,n,.95);
     // Current counted ballots are a lower bound on final turnout. Condition

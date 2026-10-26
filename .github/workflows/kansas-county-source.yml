@@ -6,6 +6,7 @@ on:
       - 'data/kansas*'
       - 'data/kansas_historical_sources/**'
       - 'scripts/*kansas*'
+      - 'scripts/iowa_county_needle.js'
       - 'scripts/read_official_xlsx_rows.py'
       - '.github/workflows/kansas-county-source.yml'
   workflow_dispatch:
@@ -24,3 +25,7 @@ jobs:
         run: python3 scripts/build_kansas_senate_county_facts.py --check
       - name: Validate Kansas input contract and exclude test votes
         run: node scripts/test_kansas_civic_county_source.cjs
+      - name: Validate experimental Kansas source-to-forecast behavior
+        run: node scripts/test_kansas_county_needle.cjs
+      - name: Evaluate official historical returns against prior-only and raw baselines
+        run: node scripts/evaluate_kansas_county_needle.cjs
