@@ -1,5 +1,49 @@
 # Readiness progress
 
+## October26 20:54Z — independent official WA03-to-NATIONAL path verified deployed
+
+- PR465 tested head a4485e09ca77e234b3c80f8182afd892d08e85b1: ALL35 workflows
+  success;46 latest checks42success/4nonapplicable skips; no external statuses;
+  exact head/mergeable clean verified before authorized merge.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/465
+- Merge e9d3e81a4b2d20b7368ced994f3cb1e73e0f5529; final briefing-bot main
+  1061a2602ba0837e9369750f816f1c35a0887329. Pages40399515539 SUCCESS;
+  original merge build canceled/superseded. At20:53:53Z ALL146 expected published
+  files match final main; actual remote dashboard coherence smoke passes.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40399515539
+- REAL backend bootstrap40399466905 SUCCESS, original official GET200 at20:52:33Z,
+ 640ms request-to-body, unchanged original source hash/staleOct22zero. Publishes
+  HEALTH ONLY payload=null. Owned data branch a1eed28b5384ca994a29aaffef1181ba9ed08be3;
+  public raw GET200/CORS*/byte-for-byte equality verified20:53:11Z; max-age300.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40399466905
+  https://raw.githubusercontent.com/jmon18-rgb/Election-Command-Center/official-results-cache/data/washington_house_03_official_latest.json
+- Official WA03 is now the ninth implemented NATIONAL input, independent of civicAPI.
+  No separate race panel added. Its original seven district/county parts feed the
+  existing remaining-vote estimator and bounded correlated national likelihood.
+  Published1366/390 SYNTHETIC tests pass automatic before-call national movement,
+  correction/retraction/zero-old-reply replay exclusion, outage/integrity withdrawal,
+  minute request floor, hidden-tab pause, archive isolation and missing-helper safety.
+  Synthetic screenshots/tests are NOT genuine election delivery or calibration.
+- Separate ACTUAL published nine-route real-clock/fixture-free probe20:54:04Z:
+  eight civic routes200/non-test/stale zero; official owned route200/health-only;
+  ZERO admitted inputs, projections, raw archives or page errors. Status remains
+  LIVE_DELIVERY_UNPROVEN. Local probe revision a4485e09/dirty reports the local
+  runner checkout, not deployed revision; separate146-file comparison pins live1061a260.
+  Evidence: artifacts/readiness/competitive-live/report.json,
+  published-main-integrity.json, washington-owned-publication-verification.json.
+- Post-close official collector scheduling is deployed, NOT yet exercised in a real
+  election. Collection/Actions scheduling/raw cache/client may add MINUTES; no
+  independently matched publication batches, speed parity, interval calibration or
+  national coverage claim. Up to6House districts/5states remains limited evidence.
+  Pre-election health receipt will expire safely; normal vote collection starts
+  Nov4 04:00Z, bounded schedule throughNov25; code-stopNov4 noon is unchanged.
+- NEXT: prioritize actual uploaded pivotal-race gaps and independent real-batch
+  chronology/remaining-vote evaluation. Four genuine Thurston2024 partial reports
+  cover only1of7WA03parts and59%-97%of final two-party votes; ZERO approved
+  calibration inputs. Do not expand panels, celebration polish or generic refactors.
+  Last daily report remains2026-10-26; this is a completed deployment milestone.
+
+
 
 ## October26 after19:58Z — official WA03 collection-to-NATIONAL path implemented, review pending
 
