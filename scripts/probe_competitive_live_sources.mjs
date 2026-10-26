@@ -46,11 +46,10 @@ if(!inWindow(Date.now())){
   await page.waitForFunction(()=>typeof jointLastResult!=='undefined'&&jointLastResult?.probabilities,{},{timeout:25000});
   const nationalBefore=await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities));
   await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();
-  await page.waitForFunction(()=>window.enIowaPilotController&&window.enKansasPilotController&&
-   !window.enIowaPilotController.status().busy&&!window.enKansasPilotController.status().busy&&
-   !/Waiting|Select|Checking/.test(window.enIowaPilotController.status().phase)&&
-   !/Waiting|Select|Checking/.test(window.enKansasPilotController.status().phase),{},{timeout:25000});
-  await page.evaluate(async()=>{await Promise.all([window.enIowaPilotController.tick(),window.enKansasPilotController.tick()]);});
+  const controllers=races.map(r=>r.controller);
+  await page.waitForFunction(names=>names.every(name=>window[name]&&!window[name].status().busy&&
+   !/Waiting|Select|Checking/.test(window[name].status().phase)),controllers,{timeout:25000});
+  await page.evaluate(async names=>{await Promise.all(names.map(name=>window[name].tick()));},controllers);
   const rows=[],rawBodies=new Map();
   for(const race of races){
    const network=observed.get(race.url),body=network?await bounded(network.body).catch(e=>({error:e.message})):null;

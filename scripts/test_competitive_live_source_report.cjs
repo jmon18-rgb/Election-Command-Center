@@ -14,7 +14,7 @@ const test=()=>({...row('IA-SEN'),source_test_data:true,live_votes_accepted:fals
  counted_dem_votes:0,counted_rep_votes:0,projection:null});
 assert.equal(assess(test(),now).status,'TEST_DATA_EXCLUDED_NOT_LIVE');
 assert.equal(assess(test(),now).live_input_validated,false,'Test payloads cannot pass the raw-archive gate');
-assert.equal(summarize([test(),row('KS-SEN')],now).status,'LIVE_DELIVERY_UNPROVEN');
+assert.equal(summarize([test(),row('KS-SEN'),row('TX-SEN')],now).status,'LIVE_DELIVERY_UNPROVEN');
 assert.equal(assess({...test(),projection:row('IA-SEN').projection},now).status,'SAFETY_OR_FORECAST_FAILURE');
 for(const mutate of [r=>r.source_url+='?light=',r=>r.http=403,r=>r.source_test_data=undefined,
  r=>r.source_stamp='2026-11-03T22:00:00Z',r=>r.source_stamp='2026-11-04T05:00:00Z',
@@ -30,6 +30,10 @@ const absent={...row('KS-SEN'),http:403,projection:null,live_votes_accepted:fals
 assert(!assess(absent,Date.parse('2026-11-04T03:20:00Z')).prolonged_delivery_gap,
  'Use final statewide closure for the declared90-minute operational alert');
 assert(assess(absent,Date.parse('2026-11-04T03:31:00Z')).prolonged_delivery_gap);
-assert.equal(summarize([test(),absent],Date.parse('2026-11-04T03:31:00Z')).status,'SOURCE_AVAILABILITY_REVIEW_REQUIRED');
-assert.throws(()=>summarize([test(),test()],now));
+assert.equal(summarize([test(),absent,row('TX-SEN')],Date.parse('2026-11-04T03:31:00Z')).status,'SOURCE_AVAILABILITY_REVIEW_REQUIRED');
+assert.throws(()=>summarize([test(),test(),row('TX-SEN')],now));
+assert.throws(()=>summarize([row('IA-SEN'),row('KS-SEN')],now),'Missing Texas cannot silently pass as full coverage');
+const texas=row('TX-SEN');texas.source_test_data=true;texas.live_votes_accepted=false;texas.projection=null;texas.counted_dem_votes=0;texas.counted_rep_votes=0;
+assert.equal(summarize([row('IA-SEN'),row('KS-SEN'),texas],now).status,'LIVE_DELIVERY_UNPROVEN');
+assert.equal(assess(texas,now).live_input_validated,false);
 console.log('Synthetic canary-classifier checks PASS: test data cannot prove live delivery; pre-close/stale/mismatched forecasts fail; timed source gaps remain explicit');
