@@ -1,5 +1,64 @@
 # Readiness progress
 
+## October26 17:51Z - NY17 reaches the NATIONAL needle on the active site
+
+- Parent PR461 exact head815fa1662955c05c550afda4c40205e92bdff634 passes all6
+  workflows; all9 check jobs inspected:8success/1 nonapplicable deployment skip.
+  Merge6738f5970832617bdd9696886ec33ff7739e7caa; Pages40368231572 succeeds.
+  Six new published original/baseline/reference/assessment/importer/test files
+  independently match the merged source bytes.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/461
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40366385525
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40368231572
+- PR462 final0128d43720db85f30a16014f543a7c33b68f173f passes all34 applicable
+  PR workflows plus one same-head push workflow. All44 current check runs
+  inspected:41success/3 nonapplicable deployment skips; no external statuses.
+  Final PR head matches/mergeable clean. National and NC browser jobs pass on
+  same-head attempt2 after canceled first attempts; no checks waived or timeout
+  weakened. Mergeae89ab29cec0a934d014abc95f9b58752f6974c2.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/462
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40367786243
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40367786249
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40367786075
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40367786291
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40367786127
+- Final briefing-bot main7ad3d4d41182ef5019fa63e1d00e82a38d251a2e Pages
+  40372214783 succeeds (earlier ffb7410a deployment also succeeded). Actual
+  17:51:53Z109-file comparison matches all49 loaded scripts, full NY originals/
+  prepared inputs and refreshed critical polling/model snapshots. Separate
+  actual remote production smoke passes source/publication lineage, joint
+  race/chamber/Four Endings coherence and current source chronology.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40372214783
+- Actual PUBLISHED Edge1366/390 with explicit SYNTHETIC source fixtures passes
+  NY-only before-call national movement, automatic combined8 update, correction/
+  withdrawal/outage/stale/test gates, fixed WI shares, isolated rehearsal and
+  missing-cadence60s fallback. Mobile active-eight screenshot visually inspected:
+  limited5 House districts/4 states and experimental/not-calibrated labels are
+  present/readable. This screenshot is synthetic, NOT actual2026 returns.
+  Local32 core checks/full DOM/NY source/fusion import tests also pass. A local
+  Edge copy of unchanged NC browser assertions passes desktop/mobile outages.
+- Separate REAL-CLOCK fixture-free ACTUAL PUBLISHED probe17:50:15Z (local clean
+  code revision0128d437) sees all8HTTP200/test_data=false with no positive counts,
+  old October16/18/22/23 stamps, no admitted national sources/projections/page
+  errors/raw archives. NY Oct22 stamp remains rejected. Fast HTTP/cache metadata
+  is not publication-lag proof. Real post-close delivery remains UNPROVEN.
+- Delivered source/model scope: IA/KS/TX Senate plus WI01/WI03/MI04/PA10/NY17
+  House,5 House districts across4 states,32 regular automatic starts/minute,
+  fixed4 active/64 queued with8 reserved/56 bulk. Full NY candidate fusion
+  baseline is corrected locally; global historical staging is NOT repaired.
+- NEXT: atomic integration of the queued PR59 House party/fusion repair, verified
+  against original returns, before adding another source. Read-only review
+  confirms default House preparation consumes staged D/R district/state/national
+  totals while stage-house-history.yml currently publishes only two staging
+  files. Rebuild both years plus geography/two-cycle/candidate/fundamental/model
+  descendants together, update NY17 staging reconciliation, and guard the bot
+  from partial publication. Preserve existing thresholds, Senate invariants,
+  national counts gates and required checks; never cherry-pick the old parser
+  alone or tune to desired probabilities. Ignored review manifest records the
+  dependency chain. Source access/timeliness and independent chronological
+  calibration remain separate acceptance gaps; NY official403 and unpublished
+  Dauphin general link are not resolved by this additional civicAPI source.
+
 ## October26 17:17Z - NY17 national path implemented separately from source-prep PR461
 
 - On separate readiness/ny17-national-input branch, reuse shared source parser,
