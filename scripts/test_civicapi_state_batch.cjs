@@ -119,7 +119,7 @@ for(const {item,search} of fixtureRaces){
  // A pinned 2026 exact race and plausible candidate votes are still not
  // live evidence when its search response, detail or search envelope says TEST.
  for(const flag of [
-  {is_test:true},{test:true},{mock:true},{is_mock:true},
+  {test_data:true},{is_test:true},{test:true},{mock:true},{is_mock:true},
   {active:false},{live:false}
  ]){
   assert.equal(adapter.match(item,{...search,...flag}),false,

@@ -80,6 +80,7 @@ try{
     if(!Object.prototype.hasOwnProperty.call(SAMPLE,office))
      return route.abort('blockedbyclient');
     const body=packet(office);
+    if(office==='House'&&scenario==='test-data')body.test_data=true;
     if(office==='House'&&['same-clock-race','fresh-race'].includes(scenario)){
      body.races={...body.races,'TX-03':vote(20,30)};
      body.counts={races:Object.keys(body.races).length};
@@ -172,6 +173,12 @@ try{
    textContent?.includes('House 2/435 · Senate 1/35 · Governors 0/36'),{timeout:30000});
   assert.equal(await page.evaluate(()=>enOfficeSnapshots.House.races['TX-03'].total),50,
    device+': A fresh timestamp allows the additive source update to recover');
+  scenario='test-data';
+  await page.evaluate(()=>enRefreshWatchedOffices(''));
+  await page.waitForFunction(()=>Boolean(enOfficeErrors.House),{timeout:30000});
+  assert.match(await page.locator('#enLiveCoverageTriage').textContent(),
+   /House 0\/435 · Senate 1\/35 · Governors 0\/36/,
+   device+': Explicit provider test_data cannot count as real reporting after polls close');
   await page.evaluate(()=>{
    enWatched=[{office:'Senate',key:'NH'}];enFishDismiss();
    const event={kind:'call',source:'civicAPI',office:'Senate',race:'NH',

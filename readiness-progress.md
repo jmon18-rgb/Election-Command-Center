@@ -1,5 +1,33 @@
 # Readiness progress
 
+## October 25 - reject the actual civicAPI test_data envelope everywhere
+
+- Reproduced a critical post-close acceptance defect: the older House/statewide/NH
+  adapters recognize is_test/mock flags but not the provider's actual test_data
+  field. A new test_data=true fixture passed the old House search gate. Actual
+  Iowa full AND light responses use this field; the Iowa pilot already rejects it.
+- Reject explicit test_data=true at search, envelope, detail, pinned House and
+  reconciliation/cache entry points. Apply the same exclusion to House discovery.
+  No identity/time/vote/call checks are removed and non-test sources remain usable.
+- All four adapter suites, 31 discovery tests, reconciliation and all 18 core
+  checks pass. Actual Edge desktop/mobile post-close fixture excludes a test-data
+  House response while the independent Senate response stays usable. This proves
+  the flag guard, not real live source delivery.
+- PR #438 is NOT merged: broad validation run 40264064417 failed its existing
+  fallback-catalog checks after the scheduled source scan added CA-32 through
+  CA-39 to unresolved gaps. No predictive-model assertion failed; the browser job
+  passed. Preserve the required checks. Existing California official guidance
+  applies statewide, but eight exact media references are not yet reviewed.
+  DDHQ returned HTTP429 at the ordinary public route; stop requests and respect
+  backoff rather than invent verification or bypass the failing check.
+- Independent work: official 2010/2018 Iowa governor cohort reconciles all 99
+  county D/R totals and 2018 method totals. The close 2018 outcome is R+2.80.
+  A county-only-history prototype with unchanged forecast parameters has 3.25-point
+  partial-snapshot MAE versus raw13.63 over 16 assumed-order scenarios, envelope
+  16/16. Eight-year baseline and different office from Senate limit transfer;
+  not reporting-clock replay or calibrated probabilities. Historical ballot
+  column arithmetic discrepancies are excluded, never repaired with invented data.
+
 ## October 25 - combined Iowa county returns now drive a visible race needle
 
 - Review: https://github.com/jmon18-rgb/Election-Command-Center/pull/437.

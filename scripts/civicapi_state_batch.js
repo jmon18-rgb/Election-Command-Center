@@ -65,7 +65,7 @@
   }
   // Source-supplied nonproduction markers must be honored before the
   // search/detail adapter creates a provider-attributed vote record.
-  const disabled=x=>Boolean(x&&(x.is_test===true||x.test===true||
+  const disabled=x=>Boolean(x&&(x.test_data===true||x.is_test===true||x.test===true||
     x.mock===true||x.is_mock===true||x.active===false||x.live===false));
   function match(item,row){
     const cfg=configuration(item);

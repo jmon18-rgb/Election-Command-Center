@@ -58,7 +58,7 @@
    '(?:\\s+At[ -]Large)?\\b(?!\\s+(?:District\\s+)?[0-9])';
   return new RegExp('\\b'+office+suffix,'i').test(name);
  }
- const disabled=x=>Boolean(x&&(x.is_test===true||x.test===true||
+ const disabled=x=>Boolean(x&&(x.test_data===true||x.is_test===true||x.test===true||
   x.mock===true||x.is_mock===true||x.active===false||x.live===false));
  function match(item,row){
   if(!supports(item)||!row||disabled(row)||row.country!=='US'||
