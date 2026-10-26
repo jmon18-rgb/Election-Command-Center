@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-26T12:37:58.400531+00:00",
+  "updated_at": "2026-10-26T13:13:53.074086+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,18 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 311,
-  "newly_injected_into_model": 2,
-  "injected_poll_ids": [
-    {
-      "race_code": "NE-GOV",
-      "poll_id": "2ecb9952-292c-4d6d-9c7c-c5a75219c5b3"
-    },
-    {
-      "race_code": "NV-GOV",
-      "poll_id": "deb0f415-0a91-407a-b27f-2b91ab07c581"
-    }
-  ],
+  "matched_primary_observations": 313,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "NV-GOV",

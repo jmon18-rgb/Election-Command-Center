@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-26T12:37:57.590997Z",
+  "updated_at": "2026-10-26T13:13:52.472224Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
@@ -49,15 +49,6 @@
       "topic_hints": [
         "security"
       ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "bdb14e21cd5966548f05",
-      "headline": "Trump pressed states for info on millions of voters in the midterms. It\u2019s mostly failed. - Kiowa County Press",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [],
-      "topic_hints": [],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
@@ -257,9 +248,39 @@
         "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "9b2aa16305e598a043b3",
+      "headline": "Join our election livestream; Jersey\u2019s on guard for Trump voting interference | Mikie\u2019s World - NJ.com",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin",
+        "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "660246149afb58ef1bb2",
+      "title": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - Bozeman Daily Chronicle",
+      "url": "https://news.google.com/rss/articles/CBMimAJBVV95cUxNcWlOVEt6UXEzejVOMDQzYXB2WGdjeTktLUlhWlVWdkUwLXFrX2NZMU9Td3kzRzg3dEZ3YmpJbmxZTkxnTWdUVGpIeklKNnBWZlkyYmw5Q043WHFPRm56eHZsVktOTHlUdXZWa3JDaXd5N3pGRno4UXVWZ1JTUFI5QnZLUWY0YmVMTk5yaUJJdTZyQmowMmd5a3pxRTliem1sLVF3UGZaSmxGR2pWemtwU0JaZEFxNTdvSkYxTG9zWXlvbmF5YXVnbDNTekJjN1lzcVRvd3BhM2k0RHhseTRjZGozNXdwYlRiQWlCN2ljRktUZ3B1RmZIT2QxYlNhVTZxLWNSako2Ulp1ejhGOHdkb3NNVE1WUjhv?oc=5",
+      "publisher": "Bozeman Daily Chronicle",
+      "published_at": "2026-10-26T11:08:39Z",
+      "detected_at": "2026-10-26T13:13:52.472224Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "75b34bff28f9a56bb3d7",
       "title": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - WSLS",
@@ -4936,21 +4957,6 @@
       "publisher": "Park Hills Daily Journal",
       "published_at": "2026-10-14T03:59:50Z",
       "detected_at": "2026-10-14T08:52:37.076493Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ca130c1464b04aa06f44",
-      "title": "Trump pressed states for info on millions of voters in the midterms. It\u2019s mostly failed. - Perryville Republic Monitor",
-      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOU1hnVjJnQS0ycFlRLV9FcmRIM3RHNG1KaG9OSEhXUEFHaUVMdzlQU2dzZ3lwZ2laQ3NKWWRtY2pxa2hreTZKT0sxQWU3RlVSQWZiR09MeUljcXdfOXotb2F5a04wODVicFY2S0lNVFVtbjE4ZnozMzNjNFFzbUtnd1ZxTlU0NUNzcWF1c1Q0OEl5Z2JsR0NQQnVZcG50aFpxbEdldEIyRlhNbFE3VnZjcWhra2pqaERZY0VsS0w0WEhoSy1UQ19F?oc=5",
-      "publisher": "Perryville Republic Monitor",
-      "published_at": "2026-10-14T03:01:03Z",
-      "detected_at": "2026-10-14T04:51:11.877550Z",
       "state_hints": [],
       "topic_hints": [],
       "headline_numbers_unverified": [],
