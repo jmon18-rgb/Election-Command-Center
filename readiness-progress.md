@@ -2,6 +2,16 @@
 
 ## October 25 - reject the actual civicAPI test_data envelope everywhere
 
+- The newly triggered real-provider canary also failed because MS has positive
+  pre-close TEST DATA. Its production reader must reject that; the canary now
+  records TEST_DATA_EXCLUDED_NOT_LIVE with adapter compatibility false, accepted
+  live votes0 and forecast/call authorization false. Wrong identity and unmarked
+  positive pre-close sources still fail. This verifies exclusion, not readiness.
+- Actual metadata-only run at03:57:47Z confirms MS/HI/OK are all explicit test
+  sources and all three contribute zero accepted votes. Six canary regressions
+  and nine statewide-advisory tests pass. The separate fallback-catalog failure
+  is not suppressed and still blocks merging #438/#439.
+
 - Reproduced a critical post-close acceptance defect: the older House/statewide/NH
   adapters recognize is_test/mock flags but not the provider's actual test_data
   field. A new test_data=true fixture passed the old House search gate. Actual

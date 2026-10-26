@@ -29,7 +29,7 @@ CLOSE_UTC = {
     "OK": datetime(2026, 11, 4, 1, 0, tzinfo=timezone.utc),
 }
 DATE = re.compile(r"^2026-11-03(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2}))?$")
-MOCK_FLAGS = ("is_test", "test", "mock", "is_mock")
+MOCK_FLAGS = ("test_data", "is_test", "test", "mock", "is_mock")
 MAX_SAFE_VOTES = 2**53 - 1
 
 
@@ -74,14 +74,12 @@ def exact(spec, row):
         re.search(r"\bGovernor\b", name, re.I))
 
 
-def detail_rejection(spec, row, detail, *, now=None):
-    """Reason-only diagnostic. Never return candidate votes or raw source data."""
+def detail_identity_rejection(spec, row, detail):
+    """Metadata only, never production/vote approval, including for test details."""
     if not exact(spec, row):
         return "UNVERIFIED_SEARCH_IDENTITY"
     if not isinstance(detail, dict):
         return "DETAIL_NOT_OBJECT"
-    if explicitly_mock(detail):
-        return "MOCK_OR_INACTIVE_DETAIL"
     # civicAPI detail URLs identify the exact requested search ID. Some
     # valid detail responses omit a duplicate id property. Explicitly
     # conflicting IDs remain fatal. This matches the existing Senate
@@ -94,6 +92,16 @@ def detail_rejection(spec, row, detail, *, now=None):
             return "DETAIL_" + field.upper() + "_MISMATCH"
     if detail.get("election_type") != row["type"]:
         return "DETAIL_OFFICE_CLASS_MISMATCH"
+    return None
+
+
+def detail_rejection(spec, row, detail, *, now=None):
+    """Reason-only diagnostic. Never return candidate votes or raw source data."""
+    identity = detail_identity_rejection(spec, row, detail)
+    if identity is not None:
+        return identity
+    if explicitly_mock(detail):
+        return "MOCK_OR_INACTIVE_DETAIL"
     candidates = detail.get("candidates")
     if not isinstance(candidates, list) or not 2 <= len(candidates) <= 60:
         return "INVALID_CANDIDATE_SET"
