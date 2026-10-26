@@ -74,6 +74,27 @@ try{
   assert.notEqual(await host.locator('[data-iowa="chance"]').textContent(),'—');
   assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),national,
    'Iowa partial-return probabilities cannot change national control odds');
+  await page.locator('#enMode2024').click();
+  await page.evaluate(()=>window.enIowaPilotController.tick());
+  assert.equal(await page.evaluate(()=>Boolean(window.enIowaPilotController.status().projection)),false,
+   'A live2026 Iowa forecast must disappear from the2024 archive');
+  await page.locator('#enMode2026').click();
+  await page.clock.setSystemTime(new Date('2026-11-04T03:07:30Z'));
+  await host.locator('[data-iowa="refresh"]').click();
+  await page.waitForFunction(()=>Boolean(window.enIowaPilotController.status().projection));
+  scenario='delayed';release=null;await page.clock.setSystemTime(new Date('2026-11-04T03:07:40Z'));
+  await host.locator('[data-iowa="refresh"]').click();
+  await page.waitForFunction(()=>window.enIowaPilotController.status().busy);
+  await page.locator('#enMode2024').click();
+  await page.evaluate(()=>window.enIowaPilotController.tick());
+  assert(release,'A delayed live response is pending during the archive switch');await release();
+  await page.waitForFunction(()=>!window.enIowaPilotController.status().busy);
+  assert.equal(await page.evaluate(()=>Boolean(window.enIowaPilotController.status().projection)),false,
+   'Late2026 response cannot publish a live probability into the2024 archive');
+  await page.locator('#enMode2026').click();scenario='live-d';
+  await page.clock.setSystemTime(new Date('2026-11-04T03:07:50Z'));
+  await host.locator('[data-iowa="refresh"]').click();
+  await page.waitForFunction(()=>Boolean(window.enIowaPilotController.status().projection));
   const beforePreview=await page.locator('#enCoverageReconciliation').textContent();
   scenario='delayed';await page.clock.setSystemTime(new Date('2026-11-04T03:08:00Z'));
   await host.locator('[data-iowa="refresh"]').click();
@@ -106,7 +127,7 @@ try{
   await page.waitForFunction(()=>Boolean(window.enIowaPilotController.status().projection));
   assert.equal(await page.evaluate(()=>enCivicRequestPool.status().concurrency_limit),4);
   assert.deepEqual(errors,[]);assert(requests>=6);
-  console.log(`${width}px: full county response -> changing race probability, test exclusion, historical isolation, outage and unchanged national odds PASS`);
+  console.log(`${width}px: full county response -> changing race probability, test exclusion, archive/late-response isolation, historical preview, outage and unchanged national odds PASS`);
   await context.close();
  }
 }finally{await browser?.close();await new Promise(ok=>server.close(ok));}

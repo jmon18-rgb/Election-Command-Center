@@ -72,11 +72,14 @@
    return dataPromise;
   }
   async function tick(force=false){
-   if(preview||busy)return false;
+   if(preview)return false;
+   if(!isActive()){
+    projection=null;stamp='';phase='Select 2026 Results to check the live source';render();return false;
+   }
+   if(busy)return false;
    const generation=sourceGeneration();
    if(projection&&lastSourceTime&&Date.now()-lastSourceTime>180*60000){projection=null;phase='Source snapshot is stale';render();}
    if(lastGeneration!==null&&generation!==lastGeneration){projection=null;phase='Provider outage · source recheck required';render();}
-   if(!isActive()){if(!projection){phase='Select 2026 Results to check the live source';render();}return false;}
    const interval=Date.now()<Date.parse('2026-11-03T05:00:00Z')?600000:60000;
    if(Date.now()-lastAttempt<(force?5000:interval))return false;
    const version=modeVersion;
@@ -85,6 +88,9 @@
     const {history,reference}=await inputs();
     const raw=await fetchSource(source.URL);
     if(version!==modeVersion||preview)return false;
+    if(!isActive()){
+     projection=null;stamp='';phase='Select 2026 Results to check the live source';return false;
+    }
     if(generation!==sourceGeneration())throw Error('Provider reply invalidated by source outage');
     const parsed=source.parse(raw,reference);
     lastGeneration=generation;projection=null;stamp=raw.last_updated?'Provider snapshot: '+raw.last_updated:'';

@@ -1,5 +1,38 @@
 # Readiness progress
 
+## October26 05:33Z - close-election evidence merged; archive fix in main CI
+
+-443 merged270ce878 after all5 applicable workflows pass on exact head
+ a4c268c0, including full DOM and frozen close-election reproduction.
+ https://github.com/jmon18-rgb/Election-Command-Center/pull/443
+-444 is retargeted to main with the source-scope fix. Current-head checks
+ must pass before merge; the already passing local desktop/mobile tests prove
+ fixture behavior, not actual live vote delivery. Preserve required checks.
+- Read-only source follow-up confirms CO05 has only one county in civicAPI and
+ no independently verified finer2026 reporting input. Its official county results
+ page currently lists only a general-election logic/accuracy notice; primary
+ reports must not substitute for November votes. CO05 polling remains thin:
+ two contributing firms, no independent firms. IA/KS remain the stronger pilots.
+
+
+## October26 05:27Z - fix live Iowa forecast leakage into the archive
+
+- Reproduce with a post-close source fixture: switch from a valid2026 Iowa
+  forecast to the2024 archive; the old view retains its live probability. New
+  desktop/mobile assertions fail against the deployed controller. This is a
+  display/source-scope defect, not new forecast calibration evidence.
+- Clear the live projection and source stamp immediately when the live desk is
+  inactive, including during a request. Recheck desk activity after the source
+  returns so a late response cannot reintroduce live counts into archive mode.
+- Real Edge1366/390 fixtures now pass both immediate archive clearing and a
+  delayed response crossing the archive switch; returning to2026 restores a
+  newly validated estimate. Existing historical preview/correction/outage tests,
+  Kansas desktop/mobile and all20 core checks pass. Model parameters unchanged.
+- This fix is queued on the current evidence review; require current-main CI
+  and verify Pages after merge.443 still awaits its full DOM check; do not count
+  local browser fixtures as actual live votes.
+
+
 ## October26 05:22Z - two visible race needles deployed and verified
 
 - Merge442 at6caa7786 after all28 applicable workflows pass on exact head
