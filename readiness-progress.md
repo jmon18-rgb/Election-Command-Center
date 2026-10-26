@@ -1,5 +1,89 @@
 # Readiness progress
 
+## October 26 - competitive-source timeliness implementation under review
+
+- Directly address owner concern about publication lag: implement deadline-based
+  automatic15s polling for the five national county inputs after their local
+  earliest poll close through November4 noon ET. Pre-close10min, afterward60s;
+  inactive/hidden/preview/busy sources pause. Shared four-request concurrency,
+  queue reserves, breaker and manual5s spacing unchanged. Not deployed yet.
+- Deterministic scheduler tests pass: close boundary,20 regular automatic starts
+  per minute across five sources, inactive pause/resume without catch-up bursts,
+  manual spacing and destroy. Actual Edge1366/390 synthetic browser test passes
+  automatic15s source-to-national movement WITHOUT manual tick/jointRender, plus
+  existing correction/retraction/expiry/rehearsal cases. Not real live evidence.
+- Actual probe now records HTTP request-start-to-body duration and nominal
+  controller polling policy; comparative publication lag explicitly UNPROVEN.
+  All five last published actual feeds still TEST; no independent matched real
+  batch benchmark or proven independent fallback. These are remaining gaps.
+- Actual fixture-free local-candidate probe14:32:08Z receives all five HTTP200
+  with exact99/105/254/5/19 identities, all TEST excluded, no page errors or raw
+  archives; national unchanged. Request-to-body milliseconds recorded separately
+  from still-unproven publication lag. Initial restricted-network attempt was
+  unavailable; authorized actual-network rerun succeeded.
+- Source-priority audit against uploaded1Ixth.csv: House tipping rank WI03=9,
+  MI04=19, WI01=42. Existing IA/KS/TX Senate in supplied watch material. Provider
+  FAQ5-10s claim does not establish observed freshness/SLA/publication parity.
+- Open PRs inspected; celebration426 and older queued branches preserved. Main
+  Pages40335182073 success confirmed. Continue current-head CI and actual-source
+  candidate checks before merge; never call this cadence work deployed early.
+
+## October 26 14:07Z - WI-03 national input deployed; fixed state budget verified
+
+- PR456 merged72323c37 after all33 applicable current-head workflows pass at
+  59ea0e741eeacb3451ec9949960896e4bed5a52d. No check bypassed. Official19-part
+  reproduction, national paired-district/retraction tests, actual upstream
+  candidate probe and full dashboard validation pass. Local full dashboard DOM
+  passes. https://github.com/jmon18-rgb/Election-Command-Center/pull/456
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40332789603
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40332789647
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40332789908
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40332789888
+- Replacement Pages build40335182073 succeeds for mainbfae31bd after the briefing
+  bot supersedes the first build. Actual HTML, all48 loaded scripts, both House
+  baselines/references/evidence and original assets match66 checked files at
+  14:01:36Z. The initial served-audit attempt truthfully failed at13:57-13:59:52
+  while the OLD transport asset was still served. After publication, the exact
+  audit passes locally and the failed job is rerun successfully (attempt2);
+  no checks weakened and no cancelled build counted as a pass.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40335182073
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40335121392
+- PUBLISHED Edge1366/390 with explicitly synthetic sources passes each House
+  input independently reaching national House-control odds, five-source changes,
+  correction/withdrawal/outage/expiry/test exclusion and isolated rehearsal.
+  WI-03 withdrawal retains WI-01's predeclared half share, never reallocating
+  missing evidence. Both House sources appear in the existing national preview.
+  Active five-source mobile screenshot also inspected; no horizontal overflow.
+- Separate real-clock, fixture-free actual PUBLISHED probe at14:01:46Z, clean
+  bfae31bd, receives all5 full routes HTTP200 and99/105/254/5/19 independently
+  matched county identities. All still TEST DATA, accepted votes0, projections
+  null, national unchanged, no page errors or raw test archives. Status remains
+  LIVE_DELIVERY_UNPROVEN. No real post-close forecasting/calibration claim.
+- Coverage remains two House districts in ONE state plus three Senate states.
+  The fixed regional allocation is an explicit conservative assumption, not
+  learned calibration. Existing polling-only outcomes and owner thresholds stay
+  unchanged. Today's daily report was already delivered; routine expansion stays
+  quiet. Celebrations, extra race panels and generic polish remain paused.
+- Next critical path: MI-04, a polled competitive race and a different House
+  state. The official MVIC portal remains403, but a NEW alternate historical
+  candidate has been located instead of repeating that blocked URL: OpenElections
+  2024 precinct CSV,14724755bytes, SHA256
+  654a7dbf7a86a96c52cb182ba4472565b62d5aa76533238228fc3065c7d447fb,
+  Git blobf0a1eab82fab6107e28fedda0167309ba65ab44a. Exact U.S.House/district4
+  filtering, explicit candidate aliases and exclusion of metadata ballot/over/
+  undervote rows yield184641D/234489R/6687named-other, matching independent MIT
+  district totals exactly. All6 Census county parts match the actual87204 source
+  and unchanged2026 geography. This is OpenElections-PREPROCESSED data, not
+  original government bytes, and is NOT admitted to production yet.
+- Preserve/review artifacts/readiness/next-mi-04-derived-baseline-audit.json and
+  next-mi-2024-openelections-precinct.csv. The publisher about page explicitly
+  says data remains free to anyone and is intended for web applications; the
+  state repo has no named LICENSE. Do not invent CC0. Original-county provenance/
+  sample corroboration still needs review; the attempted results-repo2024 path
+  returned404. Do not mix Ballots Cast, over/undervotes or generic write-ins into
+  named candidate totals, or assume method columns are disjoint. A source's final
+  historical precinct rows are not chronological election-night snapshots.
+
 ## October 26 13:40Z - Second competitive House input and fixed regional budget
 
 - Reproduce WI-03's19 congressional district/county PARTS from the same original

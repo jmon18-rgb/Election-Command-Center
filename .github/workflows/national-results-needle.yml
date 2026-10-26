@@ -29,6 +29,7 @@ jobs:
           node-version: '22'
       - name: Check coherent correlated draws and counts-only likelihood
         run: |
+          node scripts/test_competitive_source_cadence.cjs
           node scripts/test_chamber_control_model.cjs
           node scripts/test_national_county_likelihood.cjs
       - name: Install pinned browser

@@ -6,6 +6,19 @@ acceptance testing and recovery only. Stop unattended changes November 4 at noon
 
 ## Work order
 
+LATEST HUMAN CONCERN (October 26): competitive source selection must be checked
+against the uploaded Silver material, and source speed must be demonstrated.
+The uploaded House tipping-point order places WI-03 ninth, MI-04 nineteenth and
+WI-01 forty-second; pilot feasibility is not equivalent to top-ranked importance.
+The civicAPI FAQ's 5-10 second active-election claim is a provider statement, not
+an independently measured advantage over publications or a verified SLA. All five
+currently connected full feeds remain TEST DATA. Prioritize reducing our own
+polling delay, measuring actual request timing, independently matched real batch
+comparisons and usable independent fallbacks alongside national breadth. More
+races on the same provider alone do not establish timely delivery. Preserve
+source admission, shared concurrency/backoff and experimental model safeguards.
+
+
 LATEST HUMAN CLARIFICATION (October 26): the primary deliverable is the
 NATIONAL NYT-style results-informed Blue Wave / Blue Tsunami outlook. Individual
 Iowa/Kansas/Texas race needles are supporting inputs and diagnostics. Their
@@ -16,9 +29,10 @@ At the October 26 clarification, the correlated House/Senate Four Endings model
 accepted verified calls but lacked the county-return connection. PR454 now
 implements and deploys the scoped experimental connection; see
 NATIONAL_RESULTS_NEEDLE_CONTRACT.md and readiness-progress.md for tested evidence
-and remaining limits. PR455 also deploys WI-01 district-part county counts directly
-to the same national model. One House district plus three Senate states remains
-limited coverage, not national House assurance or independent calibration. Continue testing that explicit partial-return contract
+and remaining limits. PR455 deploys WI-01 district-part county counts; PR456
+adds WI-03 within a fixed shared Wisconsin evidence budget and extends the
+isolated national rehearsal. Two House districts in ONE state plus three Senate
+states remain limited coverage, not national House assurance or calibration. Continue testing that explicit partial-return contract
 within the same national model. Do not average race probabilities or count a
 poll-informed race posterior as independent evidence against the same poll prior.
 Distinguish local/candidate effects from shared national effects; three Senate

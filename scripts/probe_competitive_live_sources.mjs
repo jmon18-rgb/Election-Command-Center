@@ -39,10 +39,12 @@ if(!inWindow(Date.now())){
   const approved=new Set(races.map(r=>r.url)),siteOrigin=new URL(target).origin;
   page.on('pageerror',e=>pageErrors.push(e.message));
   page.on('requestfailed',request=>{if(approved.has(request.url()))requestErrors.set(request.url(),request.failure()?.errorText||'Request failed');});
+  const requestStarts=new WeakMap();
+  page.on('request',request=>{if(approved.has(request.url()))requestStarts.set(request,new Date().toISOString());});
   page.on('response',response=>{
    if(approved.has(response.url())){
     const body=response.body().then(bytes=>({bytes,raw:JSON.parse(bytes.toString('utf8')),received_at:new Date().toISOString()})).catch(error=>({error:error.message}));
-    observed.set(response.url(),{url:response.url(),http:response.status(),body,headers_received_at:new Date().toISOString()});
+    observed.set(response.url(),{url:response.url(),http:response.status(),request_started_at:requestStarts.get(response.request())||null,body,headers_received_at:new Date().toISOString()});
    }
   });
   await page.route('**/*',route=>{
@@ -92,10 +94,12 @@ if(!inWindow(Date.now())){
      live_votes_accepted:parsed?.live_votes_accepted===true,
      counted_dem_votes:parsed?.live_votes_accepted?parsed.counties.reduce((n,c)=>n+c.dem_votes,0):0,
      counted_rep_votes:parsed?.live_votes_accepted?parsed.counties.reduce((n,c)=>n+c.rep_votes,0):0,
-     projection,preview:state.preview===true,phase:state.phase,
+     projection,preview:state.preview===true,phase:state.phase,automatic_poll_interval_ms:state.automatic_poll_interval_ms??null,
      national_unchanged:JSON.stringify(jointLastResult.probabilities)===nationalBefore};
    },{race,raw:raw||null,nationalBefore});
    rows.push({code:race.code,source_url:network?.url||race.url,http:network?.http||null,
+    request_started_at:network?.request_started_at||null,
+    http_request_to_body_ms:body?.received_at&&network?.request_started_at?Date.parse(body.received_at)-Date.parse(network.request_started_at):null,
     captured_at:body?.received_at||null,headers_received_at:network?.headers_received_at||null,
     source_stamp:raw?.last_updated||null,source_test_data:raw?.test_data??null,
     transport_error:requestErrors.get(race.url)||body?.error||(!network?'No provider response':null),...ui});
@@ -104,6 +108,8 @@ if(!inWindow(Date.now())){
   const proof=nationalProof(rows,admitted);
   for(const row of rows){row.national_evidence_validated=proof.validated_codes.includes(row.code);row.national_contract_validated=proof.contract_validated;}
   report={...summarize(rows),national_admitted_sources:admitted,site:target,site_scope:candidate?'LOCAL_CANDIDATE_NOT_PUBLISHED':'ACTUAL_PUBLISHED_SITE',scope:candidate?'Actual candidate browser with real provider responses; not published-site acceptance, no fixtures or virtual clock':'Actual published browser with real provider responses; no fixtures or virtual clock',probe_environment:probeEnvironment,probe_revision:probeRevision,probe_working_tree_dirty:probeDirty,
+   comparative_publication_lag:'UNPROVEN_REQUIRES_INDEPENDENT_MATCHED_REAL_BATCHES',
+   timing_scope:'HTTP request-to-decoded-body duration only; neither provider vote availability nor comparative publication lag',
    site_index_decoded_body_sha256:pageFingerprint,fixture_free:true,virtual_clock:false,
    other_providers:'Blocked, not replaced; this isolates the competitive county paths',page_errors:pageErrors,
    loaded_scripts:await page.locator('script[src]').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('src'))),raw_archives:[]};
@@ -124,7 +130,9 @@ if(!inWindow(Date.now())){
   }
  }catch(error){
   report={generated_at:new Date().toISOString(),status:'ACTION_REQUIRED',site:target,
-   probe_environment:probeEnvironment,probe_revision:probeRevision,probe_working_tree_dirty:probeDirty,site_index_decoded_body_sha256:pageFingerprint,
+   probe_environment:probeEnvironment,probe_revision:probeRevision,probe_working_tree_dirty:probeDirty,comparative_publication_lag:'UNPROVEN_REQUIRES_INDEPENDENT_MATCHED_REAL_BATCHES',
+   timing_scope:'HTTP request-to-decoded-body duration only; neither provider vote availability nor comparative publication lag',
+   site_index_decoded_body_sha256:pageFingerprint,
    fixture_free:true,virtual_clock:false,interval_calibrated:false,error:error.message,raw_archives:[]};
  }finally{await browser?.close();if(candidateServer)await new Promise(ok=>candidateServer.close(ok));}
  writeFileSync(resolve(out,'report.json'),JSON.stringify(report,null,2)+'\n');

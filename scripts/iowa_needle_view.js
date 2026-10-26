@@ -30,6 +30,8 @@
   const number=n=>Math.round(n).toLocaleString('en-US');
   const margin=n=>Math.abs(n)<.05?'Even':(n>0?'D +':'R +')+Math.abs(n).toFixed(1);
   let evidence=null,candidateEvidence=null,evidenceKey="";
+  let ticker=null,fallbackTimer=null;
+  const cadence=()=>root.CompetitiveSourceCadence?.intervalMs?.('IA-SEN')??(Date.now()<Date.parse('2026-11-03T05:00:00Z')?600000:60000);
   function render(){
    evidence=projection&&!preview?candidateEvidence:null;
    const nextKey=evidence?JSON.stringify(evidence.snapshot):"";
@@ -77,6 +79,7 @@
    return dataPromise;
   }
   async function tick(force=false){
+   if(!force&&root.document?.hidden===true)return false;
    if(preview)return false;
    if(!isActive()){
     projection=null;stamp='';phase='Select 2026 Results to check the live source';render();return false;
@@ -85,7 +88,7 @@
    const generation=sourceGeneration();
    if(projection&&lastSourceTime&&Date.now()-lastSourceTime>180*60000){projection=null;phase='Source snapshot is stale';render();}
    if(lastGeneration!==null&&generation!==lastGeneration){projection=null;phase='Provider outage · source recheck required';render();}
-   const interval=Date.now()<Date.parse('2026-11-03T05:00:00Z')?600000:60000;
+   const interval=cadence();
    if(Date.now()-lastAttempt<(force?5000:interval))return false;
    const version=modeVersion;
    lastAttempt=Date.now();busy=true;phase='Checking Iowa county source';render();
@@ -127,7 +130,7 @@
     }
     return true;
    }catch(error){if(version===modeVersion&&!preview){projection=null;phase='Source unavailable · '+error.message;stamp='No current live estimate';}return false;}
-   finally{busy=false;render();if(version!==modeVersion&&!preview)queueMicrotask(()=>tick(true));}
+   finally{busy=false;render();ticker?.reschedule();if(version!==modeVersion&&!preview)queueMicrotask(()=>tick(true));}
   }
   async function showPreview(){
    const version=++modeVersion;preview=true;projection=null;phase='Loading historical scenario';render();
@@ -162,8 +165,9 @@
    else{step=0;showPreview();}
   });
   get('next').addEventListener('click',()=>{step++;showPreview();});
-  const timer=setInterval(()=>tick(),60000);render();
-  return Object.freeze({tick,status:()=>({preview,phase,projection,busy,evidence,evidenceKey}),destroy:()=>clearInterval(timer)});
+  ticker=root.CompetitiveSourceCadence?.createTicker?.({code:'IA-SEN',tick,lastAttempt:()=>lastAttempt,isActive:()=>isActive()&&!busy&&!preview&&root.document?.hidden!==true});
+  if(!ticker)fallbackTimer=setInterval(()=>tick(),60000);render();
+  return Object.freeze({tick,status:()=>({preview,phase,projection,busy,evidence,evidenceKey,automatic_poll_interval_ms:cadence()}),destroy:()=>{ticker?.destroy();if(fallbackTimer!==null)clearInterval(fallbackTimer);}});
  }
  return Object.freeze({create});
 });

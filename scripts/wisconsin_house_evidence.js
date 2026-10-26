@@ -7,14 +7,17 @@
   if(!source||!revision)throw Error('WI-01 source/revision contract unavailable');
   let inputs=null,evidence=null,busy=false,lastAttempt=-Infinity,lastGeneration=null,evidenceKey='';
   let phase='Waiting for '+code+' county source';
-  const status=()=>({phase,evidence,evidenceKey,busy});
+  let ticker=null,fallbackTimer=null;
+  const cadence=()=>root.CompetitiveSourceCadence?.intervalMs?.(code)??(Date.now()<Date.parse('2026-11-03T05:00:00Z')?600000:60000);
+  const status=()=>({phase,evidence,evidenceKey,busy,automatic_poll_interval_ms:cadence()});
   function publish(){const key=evidence?JSON.stringify(evidence.snapshot):'',changed=key!==evidenceKey;evidenceKey=key;onUpdate(status(),changed);}
   async function tick(force=false){
+   if(!force&&root.document?.hidden===true)return false;
    const generation=sourceGeneration();
    if(evidence&&(Date.now()-Date.parse(evidence.snapshot.snapshot_updated_at)>180*60000||generation!==lastGeneration||!isActive())){
     evidence=null;phase='Source inactive, stale or interrupted';publish();
    }
-   if(!isActive()||busy||Date.now()-lastAttempt<(force?5000:Date.now()<Date.parse('2026-11-03T05:00:00Z')?600000:60000))return false;
+   if(!isActive()||busy||Date.now()-lastAttempt<(force?5000:cadence()))return false;
    busy=true;lastAttempt=Date.now();phase='Checking '+code+' county source';publish();
    try{
     if(!inputs){
@@ -31,9 +34,11 @@
     if(!parsed.live_votes_accepted){phase='No genuine post-close '+code+' counts reported';return true;}
     evidence={...inputs,snapshot:parsed};phase=code+' validated district-part counts · experimental national input';onValidated();return true;
    }catch(error){evidence=null;phase=code+' source unavailable · '+error.message;return false;}
-   finally{busy=false;publish();}
+   finally{busy=false;publish();ticker?.reschedule();}
   }
-  const timer=setInterval(()=>tick(),60000);return Object.freeze({tick,status,destroy:()=>clearInterval(timer)});
+  ticker=root.CompetitiveSourceCadence?.createTicker?.({code,tick,lastAttempt:()=>lastAttempt,isActive:()=>isActive()&&!busy&&root.document?.hidden!==true});
+  if(!ticker)fallbackTimer=setInterval(()=>tick(),60000);
+  return Object.freeze({tick,status,destroy:()=>{ticker?.destroy();if(fallbackTimer!==null)clearInterval(fallbackTimer);}});
  }
  root.WisconsinHouseEvidence=Object.freeze({create});
 })(window);
