@@ -143,7 +143,7 @@ assert.equal(inactiveRes.senate.reported,1,
  'Only separately validated civicAPI Maine may report while primary is inactive');
 // A test-labeled national office is never verified live vote coverage.
 for(const flag of [
- {is_test:true},{test:true},{mock:true},{is_mock:true},{active:false}
+ {test_data:true},{is_test:true},{test:true},{mock:true},{is_mock:true},{active:false}
 ]){
  const badPrimary={...input.snapshots.Senate,...flag};
  assert.equal(health(badPrimary).usable,false);
@@ -309,7 +309,7 @@ assert.equal(api.reconcile({...input,civic:{
 // timestamps while explicitly marking its 2026 response as TEST/MOCK or
 // inactive. Such records must not count or publish winner flags.
 for(const flagged of [
- {is_test:true},{test:true},{mock:true},{is_mock:true},
+ {test_data:true},{is_test:true},{test:true},{mock:true},{is_mock:true},
  {live:false},{active:false}
 ]){
  const excluded=api.reconcile({...input,civic:{
