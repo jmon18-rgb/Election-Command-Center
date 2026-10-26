@@ -47,7 +47,7 @@ def parse_current_county(raw, now):
         raise ValueError('County total mismatch')
     # Public page clock has no UTC designation. Explicit Pennsylvania election
     # night UTC-05 profile; no inferred publisher clock before/after this scope.
-    stamps = re.findall(r'\b(11/[34]/2026 \d{1,2}:\d{2}:\d{2} [AP]M)\b', raw.decode('utf-8-sig'))
+    stamps = re.findall(r'\b(11/0?[34]/2026 \d{1,2}:\d{2}:\d{2} [AP]M)\b', raw.decode('utf-8-sig'))
     stamps = set(stamps)
     if len(stamps) != 1:
         raise ValueError('Missing/ambiguous current local county clock')
@@ -149,7 +149,7 @@ class MatchedUpdates:
                            'sampling_window_seconds': [
                                (civic['previous_seen'] - county['first_seen']).total_seconds(),
                                (civic['first_seen'] - county['previous_seen']).total_seconds()],
-                           'interpretation': 'Matched served D/R update; includes sampling/cache/transport, not origin publication latency'})
+                           'interpretation': 'Matched D/R observation bracket; includes sampling/cache/transport, not a bound on origin availability or publication latency'})
         return result
 
 
@@ -179,6 +179,8 @@ def preflight(now=None):
     report = {'captured_at': now.isoformat(), 'fixture_free': True, 'virtual_clock': False,
               'comparative_lag': 'UNPROVEN', 'source_url': ROOT_URL,
               'limitation': 'Discovery only; no live vote capture, no comparative timing acceptance'}
+    report['capture_revision'] = subprocess.run(['git', 'rev-parse', 'HEAD'], capture_output=True, text=True, check=True).stdout.strip()
+    report['working_tree_dirty'] = bool(subprocess.run(['git', 'status', '--porcelain', '--untracked-files=no'], capture_output=True, text=True, check=True).stdout.strip())
     if not START <= now < END:
         return dict(report, status='OUTSIDE_CAMPAIGN_WINDOW')
     raw, _, metadata = fetch(ROOT_URL)
