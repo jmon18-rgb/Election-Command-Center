@@ -1,0 +1,49 @@
+{
+  "observed_at": "2026-10-26T15:56:08.853470+00:00",
+  "source_url": "https://civicapi.org/api/v2/race/87385",
+  "source_sha256": "cab145a959c62c21b29454a328ed6a8866543b62c7b0fb879da0b9ccf5739e9b",
+  "country": "US",
+  "province": "PA",
+  "district": "PA-10",
+  "election_date": "2026-11-03T05:00:00.000Z",
+  "election_type": "House of Representatives",
+  "election_name": "Pennsylvania US House 10",
+  "source_test_data": false,
+  "source_last_updated": "2026-10-23T02:05:37.515Z",
+  "positive_candidate_counts_present": false,
+  "region_count": 3,
+  "regions": [
+    {
+      "name": "Cumberland",
+      "fips": "42041",
+      "type": "County"
+    },
+    {
+      "name": "Dauphin",
+      "fips": "42043",
+      "type": "County"
+    },
+    {
+      "name": "York",
+      "fips": "42133",
+      "type": "County"
+    }
+  ],
+  "candidate_roster": [
+    {
+      "name": "Janelle Stelson",
+      "party": "Democratic"
+    },
+    {
+      "name": "Scott Perry",
+      "party": "Republican"
+    }
+  ],
+  "adapter_status": "REJECTED_STALE_ZERO_NOT_LIVE",
+  "accepted_live_vote_rows": 0,
+  "raw_votes_archived": false,
+  "actual_post_close_delivery": "UNPROVEN",
+  "comparative_publication_lag": "UNPROVEN_REQUIRES_INDEPENDENT_MATCHED_REAL_BATCHES",
+  "attribution": "Public election counts via civicAPI (https://civicapi.org); public API documentation permits use with attribution",
+  "historical_baseline": "Original Pennsylvania state-published2024 precinct returns, exact congressional district parts; not chronological calibration"
+}

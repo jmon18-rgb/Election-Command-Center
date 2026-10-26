@@ -1,0 +1,71 @@
+{
+  "status": "OFFICIAL_STATE_PUBLISHED_2024_DISTRICT_PART_BASELINE_NOT_LIVE_OR_CALIBRATION",
+  "race_code": "PA-10",
+  "office": "U.S. House",
+  "election_date": "2024-11-05",
+  "county_count": 3,
+  "counties": [
+    {
+      "county": "Cumberland",
+      "county_fips": "42041",
+      "dem_votes": 64891,
+      "rep_votes": 70036,
+      "named_other_votes": 0,
+      "geography_scope": "PA-10 congressional district part, not whole county"
+    },
+    {
+      "county": "Dauphin",
+      "county_fips": "42043",
+      "dem_votes": 80272,
+      "rep_votes": 66986,
+      "named_other_votes": 0,
+      "geography_scope": "PA-10 congressional district part, not whole county"
+    },
+    {
+      "county": "York",
+      "county_fips": "42133",
+      "dem_votes": 55271,
+      "rep_votes": 68545,
+      "named_other_votes": 0,
+      "geography_scope": "PA-10 congressional district part, not whole county"
+    }
+  ],
+  "district_totals": {
+    "dem_votes": 200434,
+    "rep_votes": 205567,
+    "named_other_votes": 0
+  },
+  "source_url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dos/resources/voting-and-elections/bulk-data/2024-general-election/er/erstat_2024_g_268768_20250129.txt",
+  "source_sha256": "34339122238fe82272c52717a4065dbd3949e00eeb98320332797853c96f3b6c",
+  "source_type": "Original Pennsylvania Department of State precinct return extract",
+  "source_schema_url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dos/resources/voting-and-elections/bulk-data/2024-general-election/er/erstat_2024_g_readme.txt",
+  "source_schema_sha256": "b0d9e221deab9acd982982d187e4f16e7fae43d59b360b867cd89fad559eb632",
+  "source_record_count": 268768,
+  "selected_precinct_candidate_rows": 680,
+  "selected_precincts": 340,
+  "selection_contract": "CandidateOfficeCode USC AND CandidateDistrict10 AND current row US CongressionalDistrict10; not all offices in geographic district10",
+  "county_code_contract": "County election codes21/22/67 are NOT FIPS; independently join zero-padded raw FIPS to Census42041/42043/42133",
+  "map_comparability": "boundaries_unchanged_per_2026_census",
+  "map_source": "https://www.census.gov/programs-surveys/decennial-census/about/rdo/congressional-districts.html",
+  "independent_district_reconciliation": "MIT House2024 D/R/named-other totals match exactly; generic write-ins not supplied by the state extract",
+  "generic_write_ins_reported_by_state_extract": false,
+  "independent_official_sample": {
+    "county": "Dauphin",
+    "county_fips": "42043",
+    "source_url": "https://elections.dauphincounty.gov/?key=38&race=REPRESENTATIVE%20IN%20CONGRESS",
+    "source_sha256": "27ab8368b840932a76c9530f64a0583adb708f7e1870ff345d0b503f94f15e4a",
+    "dem_votes": 80272,
+    "rep_votes": 66986,
+    "generic_write_in_votes": 391,
+    "scope": "One official county sample; write-ins are separate and not added to named candidate totals"
+  },
+  "method_split_reported": false,
+  "historical_release_times": false,
+  "interval_calibrated": false,
+  "limitations": [
+    "Final certified-era extract is not a chronological election-night snapshot",
+    "Presidential-year turnout does not establish2026 remaining ballots or calibration",
+    "Combined candidate counts do not provide ballot-method completion or vote release order",
+    "Generic write-ins omitted by the state extract: named-other zero is not zero write-ins or an all-ballot total"
+  ]
+}

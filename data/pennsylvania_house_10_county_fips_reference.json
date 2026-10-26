@@ -1,0 +1,20 @@
+{
+  "source_url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_counties_national.zip",
+  "source_sha256": "3c337402b5c6e8d5aa26b4278ccf4edc8989f2683765b3ffbf22296cdb2df3a0",
+  "scope": "PA-10 district county PARTS from official precinct returns, mapped to Census identifiers; not whole-county votes",
+  "district_county_scope_source": "https://www.pa.gov/content/dam/copapwp-pagov/en/dos/resources/voting-and-elections/bulk-data/2024-general-election/er/erstat_2024_g_268768_20250129.txt",
+  "counties": [
+    {
+      "county": "Cumberland",
+      "fips": "42041"
+    },
+    {
+      "county": "Dauphin",
+      "fips": "42043"
+    },
+    {
+      "county": "York",
+      "fips": "42133"
+    }
+  ]
+}

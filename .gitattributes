@@ -6,3 +6,6 @@
 
 # Preserve normalized official-source excerpt fingerprints across platforms.
 data/kansas_historical_sources/*-excerpt.txt text eol=lf
+
+# Preserve original state schema bytes (including its published CRLFs).
+data/pennsylvania_historical_sources/2024-official-precinct-schema.txt -text

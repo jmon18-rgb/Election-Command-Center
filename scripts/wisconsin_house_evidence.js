@@ -2,8 +2,8 @@
 (function(root){
  'use strict';
  function create({code='WI-01',fetchJSON,fetchSource,isActive=()=>true,sourceGeneration=()=>0,onUpdate=()=>{},onValidated=()=>{}}){
-  const sizes={'WI-01':5,'WI-03':19,'MI-04':6},size=sizes[code];if(!size)throw Error('Unsupported House evidence scope');
-  const source=root.WisconsinHouseCountySource?.forRace(code),revision=root.CompetitiveSourceRevision?.create(code),prefix='data/'+(code==='MI-04'?'michigan':'wisconsin')+'_house_'+code.slice(3)+'_',baselineSuffix=code==='MI-04'?'2024_county_baseline_processed.json':'2024_county_baseline_official.json';
+  const sizes={'WI-01':5,'WI-03':19,'MI-04':6,'PA-10':3},size=sizes[code];if(!size)throw Error('Unsupported House evidence scope');
+  const source=root.WisconsinHouseCountySource?.forRace(code),revision=root.CompetitiveSourceRevision?.create(code),prefix='data/'+(code==='MI-04'?'michigan':code==='PA-10'?'pennsylvania':'wisconsin')+'_house_'+code.slice(3)+'_',baselineSuffix=code==='MI-04'?'2024_county_baseline_processed.json':'2024_county_baseline_official.json';
   if(!source||!revision)throw Error('WI-01 source/revision contract unavailable');
   let inputs=null,evidence=null,busy=false,lastAttempt=-Infinity,lastGeneration=null,evidenceKey='';
   let phase='Waiting for '+code+' county source';
