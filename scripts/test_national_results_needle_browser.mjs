@@ -84,7 +84,7 @@ try{
   for(let step=2;step<=5;step++){
    await page.locator('#enNationalNext').click();await page.waitForFunction(step=>document.querySelector('#enNationalStage').textContent.includes(step+'/5'),step);
    assert.match(await page.locator('#enNationalPreviewNeedle').getAttribute('aria-label'),/SIMULATED/);
-   if(step===3)assert.notEqual(await page.locator('#enNationalPreviewChances').textContent(),first);
+   if(step===3){assert.notEqual(await page.locator('#enNationalPreviewChances').textContent(),first);assert.match(await page.locator('#enNationalPreviewNeedle').textContent(),/2 House districts in Wisconsin, not national House coverage/);}
   }
   assert.equal(await page.locator('#enNationalPreviewChances').textContent(),first,'Withdrawal returns rehearsal to its exact baseline');
   assert.deepEqual(await page.evaluate(()=>({model:JSON.stringify(jointLastResult),storage:JSON.stringify({...localStorage})})),preserved,'National rehearsal never changes live model or storage');
