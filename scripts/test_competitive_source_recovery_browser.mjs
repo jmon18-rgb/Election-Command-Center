@@ -16,8 +16,8 @@ await new Promise(ok=>server.listen(0,'127.0.0.1',ok));
 let browser;
 try{
  browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
- for(const width of [1440,390]){
-  const context=await browser.newContext({viewport:{width,height:1000},reducedMotion:'reduce'});
+ for(const width of [1440,1366,390]){
+  const context=await browser.newContext({viewport:{width,height:width===1366?768:1000},reducedMotion:'reduce'});
   const page=await context.newPage(),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
   await page.clock.install({time:new Date('2026-11-04T03:00:00Z')});
@@ -37,6 +37,25 @@ try{
    enCivicBreaker.fail(503);enRenderAmbientDesk();
   });
   const panel=page.locator('.en-coverage-recovery');
+  assert(await page.locator('.en-coverage-priority > p[data-source-race]').count() <= 4,
+   'A growing identity-gap inventory must not expand every manual task on the main desk');
+  const expectedGapIds=await page.evaluate(()=>enPublishedCoverageLedger.races
+   .filter(r=>r.gap_status==='UNRESOLVED_SOURCE_GAP').map(r=>r.id).sort());
+  const displayedGapIds=await page.locator('.en-coverage-priority [data-source-race]')
+   .evaluateAll(rows=>rows.map(r=>r.dataset.sourceRace).sort());
+  assert.deepEqual(displayedGapIds,expectedGapIds,
+   'Collapsing lower priority work must preserve every unresolved race exactly once');
+  const priorityMore=page.locator('details[data-source-drawer="priority-more"]');
+  assert.equal(await priorityMore.evaluate(el=>el.open),false,'Lower priority work starts collapsed');
+  await priorityMore.locator('summary').click();
+  const lastFallback=priorityMore.locator('a').last();
+  const focusedRace=await lastFallback.evaluate(el=>el.closest('[data-source-race]').dataset.sourceRace);
+  await lastFallback.focus();
+  await page.evaluate(()=>enRenderAmbientDesk());
+  assert.equal(await priorityMore.evaluate(el=>el.open),true);
+  assert.equal(await page.evaluate(()=>document.activeElement.closest('[data-source-race]')?.dataset.sourceRace),focusedRace,
+   'Collapsed priority work retains exact-race keyboard focus when opened');
+  await priorityMore.locator('summary').click();
   const text=await panel.textContent();
   assert.match(text,/House CA-13 — COMPETITIVE · Supplemental source request FAILED/);
   assert.match(text,/Senate ME — COMPETITIVE/);
@@ -78,6 +97,8 @@ try{
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),'No horizontal overflow');
   mkdirSync(resolve(root,'artifacts/readiness'),{recursive:true});
   await panel.screenshot({path:resolve(root,`artifacts/readiness/source-recovery-${width}.png`)});
+  await page.locator('.en-coverage-priority').screenshot({
+   path:resolve(root,`artifacts/readiness/source-recovery-priorities-${width}.png`)});
   await page.evaluate(()=>{
    // Fixture-only fresh transport recovery; no vote payload or call is added.
    enCivicBreaker.success();delete enCivicErrors['House|CA-13'];

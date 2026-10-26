@@ -8,7 +8,33 @@ Prioritize competitive sources/fallbacks, correct calls/control accounting,
 outage/retraction recovery and the laptop dashboard. The scoped needle remains
 an evidence task, not a reason to fabricate predictive updates.
 
+## October 25 - verified release and next laptop task
+
+- PR #430 passed all 27 workflows at 771303e8 before merging as 7aae8c39.
+  Evidence: https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40249872325
+- PR #431 passed all 27 workflows at 04ae0e9d before merging as e8752c48.
+  Evidence: https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40250103481
+  Automatic merge review initially rejected truncated check evidence. A complete,
+  compact current-head inventory resolved that review without bypassing it.
+- Deployment verified at 2026-10-26T00:44:19Z: published HTML exactly matches
+  main e8752c48. Actual Edge preserves Senate drawer expansion/focus through
+  redraws and renders all seven new manual references plus the CA-13 fallback.
+  House reported counts/civicAPI calls remain zero under an isolated 503 fixture.
+  Local evidence: artifacts/readiness/live-core-recovery-verification.json.
+  The initial check preceded publication and timed out; the post-deploy rerun
+  passed. This is runtime evidence, not genuine live-provider acceptance.
+- Next: complete PR #432 compact priorities after fresh CI, verify its deployed
+  laptop rendering, then investigate consequential remaining source gaps. The 21
+  machine gaps, live delivery, source rights and geographic calibration stay open.
+
 ## October 25 — source drawer and keyboard continuity
+
+- A separate laptop follow-up reproduced another layout problem: all 21 source
+  identity tasks expanded on every redraw. Keep the four highest-priority rows
+  visible, with the complete remainder in a labeled drawer; all totals and every
+  human fallback remain available. Actual Edge checks pass at 1440px, standard
+  1366×768 laptop size and 390px, including exact inventory preservation and focus
+  inside the added drawer. All 12 core checks pass; review/current-head CI pending.
 
 - Follow-up readiness report now includes the actual source-audit timestamp/age,
   row-derived unresolved identities by office and bounded rejection-reason counts.
@@ -68,16 +94,10 @@ an evidence task, not a reason to fabricate predictive updates.
 
 ## Next concrete work
 
-Owner priority update: needle and celebrations are high importance alongside
-reliability. Follow AUTONOMOUS_READINESS.md delivery targets; do not defer them
-behind unrelated research. Target a scoped needle data/calibration decision by
-October 27 and the complete celebration preview roster by October 29, followed
-by correction/retraction, mobile and endurance checks before feature freeze.
-
-Celebration creative direction is recorded in CELEBRATION_CREATIVE_BRIEF.md:
-Talarico/blue horns, Abbott concession parade, Graham theatrical nightclub
-farewell, Nebraska football-coach satire, Mississippi retired-mascot removal,
-and Kansas John Brown. Fish Head announcement precedes animation/music.
+Latest owner steering pauses celebration expansion. Complete core source/call,
+recovery and laptop operation work first. Preserve PR #426 without merging its
+failed checks. Keep the October 27 needle evidence decision scoped to actual
+usable chronological data, without claiming a descriptive map is predictive.
 
 1. Inspect PR CI, including desktop/mobile and 506-race recovery drills; fix failures.
 2. Review the single-screen competitive-race desk against operator acceptance;
