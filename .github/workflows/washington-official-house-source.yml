@@ -30,7 +30,7 @@ jobs:
           node scripts/test_washington_national_bridge.cjs
           git diff --exit-code
   national-browser:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
