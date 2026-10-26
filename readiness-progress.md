@@ -1,5 +1,81 @@
 # Readiness progress
 
+## October26 16:29Z - top-ranked PA10 national input deployed; independent timing next
+
+- PR459 mergesafe0470c25a804a276d498421224e9b4b5c6c254 after exact head
+  3bd562340e1c3bd321307c81b7c9847a46be4fde passes all33 applicable PR workflows.
+  All42 current-head check runs inspected:39success,3 expected nonapplicable
+  deployment skips, no pending/failing/external statuses. No bypass. Final-head
+  workflow inventory verified, not an earlier superseded revision. Local full
+  DOM passes; original-schema/county-sample tests5,31 core tests, and model/
+  source/revision/transport/cadence tests pass. Current-head CI full DOM passes.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/459
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40356597927
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40356598038
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40356598150
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40356598162
+- Replacement Pages40359216389 succeeds for briefing-bot main
+  a5acae18aa7110da241d66a7f4b3f889426b9577; served audit40359152536 succeeds.
+  Actual16:29:28Z byte comparison matches all80 files, including HTML/all49
+  loaded scripts, Pennsylvania baseline/reference/evidence, original returns/
+  schema/county-sample bytes and importer. Original schema4437-byte CRLF hash
+  reproduces; do not accidentally normalize that source file.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40359216389
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40359152536
+- Actual PUBLISHED Edge1366/390 with explicit SYNTHETIC source fixtures passes
+  automatic15s national updating; PA-only, MI-only, both Wisconsin inputs,
+  combined7-source four-ending coherence; correction/withdrawal/expiry/outage/
+  test exclusion; fixed WI budget; isolated7-source rehearsal and missing-helper
+  fallback. Active seven-source mobile screenshot visually inspected: PA10 is
+  in shared national drivers;4 House districts across3 states clearly remains
+  limited/experimental coverage. No additional race panel or calibration claim.
+- Separate REAL-CLOCK fixture-free ACTUAL PUBLISHED probe16:29:51Z on clean
+  a5acae18: seven HTTP200, test_data=false, no positive candidate counts,
+  old October16/18/23 timestamps, no admitted county evidence, no projections/
+  national change/page errors/raw archives. Cache policy still max-age15 and
+  stale-while-revalidate30, Age/ETag absent. Actual post-close delivery and
+  comparative publication lag remain UNPROVEN; no inference from fast HTTP.
+- Independent county format is NOW concretely pinned and tested, not another
+  blocked archive hunt. Official Dauphin /?key=38&race=REPRESENTATIVE%20IN%20CONGRESS
+  returned HTTP200/46228bytes with exact2024 general heading, one tblRace table,
+  Stelson80272D/Perry66986R and391 generic write-ins; total147649 reconciles.
+  State/MIT extract named-other0 does not include those write-ins; PA baseline
+  now explicitly labels named_other_votes and missing generic-write-in coverage.
+  D/R likelihood unchanged. Original SHA27ab8368b840932a76c9530f64a0583adb708f7e1870ff345d0b503f94f15e4a,
+  gzip6148bytes. Wrong election/candidate/count-total cases rejected in tests.
+- Header-only follow-up on the exact historical county page succeeds HTTP200
+  but no cross-origin/cache/Age header. Direct browser fetch is not established;
+  use a bounded server-side capture rather than inventing a browser CORS bypass.
+  Public observed /js/master.js has no timers in that file; this is NOT evidence
+  of upstream publication cadence. Headers captured in ignored
+  artifacts/readiness/dauphin-independent-header-review.json. Current root still
+  advertises2026 PRIMARY and2024 archive, not a verified2026 general link.
+- NEXT IMPLEMENTATION before feature freeze: scoped independent county timing
+  observer/capture, ahead of another civicAPI source expansion. Concrete ignored
+  contract artifacts/readiness/next-dauphin-independent-timing-contract.json:
+  discover actual same-origin menu key for explicit2026 general, never guess ID;
+  reject primary/wrong-year/mock/duplicate tables/candidates/invalid totals;
+  pin current Stelson/Perry/42043 identity and post-close eligibility; compare
+  only common exact D/R snapshots (NOT all-ballot totals/write-ins/percentages).
+  Existing historical parse_official_sample is format evidence, NOT a working
+  November feed. Build the collector now; activate only when published/verified.
+- Matching must retain first observed distinct D/R transitions, actual UTC
+  receipt clocks and source/HTTP/cache provenance; timestamp-only refreshes and
+  repeated unchanged snapshots are not new vote batches. Do not manufacture
+  latency from matching an initial snapshot already present at capture start.
+  Recurrent/corrected vectors need ordered handling/ambiguity disclosure, not
+  monotonic-count assumptions or update summation. Report observation/sampling
+  limits, never exact origin-publication delay or NYT/AP parity. The same race
+  from two sources must never become two independent national likelihoods.
+- Genuine external gap: no verified November2026 county endpoint is published
+  in the observed menu yet. This is not a reason to defer programming the strict
+  discovery/recorder beforeOct31. Keep the existing source-to-national system
+  working and all freshness protections. Need permitted current independent
+  endpoint and independently matched actual batches before a timeliness claim.
+  Optional art/celebrations/layout/race panels remain paused. Today's daily
+  report already delivered; this records a completed deployment milestone.
+
+
 ## October26 - PA10 national input candidate; independent timing work remains open
 
 - Start from clean follow-up branch and inspect open PRs/main CI; preserve426
