@@ -3,3 +3,6 @@
 *.cjs text eol=lf
 *.mjs text eol=lf
 *.html text eol=lf
+
+# Preserve normalized official-source excerpt fingerprints across platforms.
+data/kansas_historical_sources/*-excerpt.txt text eol=lf

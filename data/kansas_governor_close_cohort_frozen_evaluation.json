@@ -1,0 +1,337 @@
+{
+  "status": "FROZEN_FIRST_USE_CLOSE_COHORT_NOT_CALIBRATION",
+  "model_blob": "41ec65dd7f1762b05b3886733ea4119194129b63",
+  "original_frozen_model_blob": "41ec65dd7f1762b05b3886733ea4119194129b63",
+  "outcome_seen_before_this_model_source": false,
+  "baseline_year": 2018,
+  "outcome_year": 2022,
+  "office": "Governor, not Senate",
+  "truth_margin": 2.2771730234080865,
+  "prior": "Neutral six-point stress prior, not historical polls",
+  "prior_only_margin_mae": 2.2771730234080865,
+  "prior_only_dem_win_probability": 0.5,
+  "prior_only_brier_score": 0.25,
+  "prior_only_log_loss": 0.6931471805599453,
+  "model_margin_mae": 1.8385561456047903,
+  "naive_margin_mae": 27.980613087553632,
+  "model_brier_score": 0.2156318899263351,
+  "model_log_loss": 0.6212688603656998,
+  "scenario_band_contains_truth": 16,
+  "remaining_vote_band_contains_truth": 14,
+  "partial_scenarios": 16,
+  "interval_calibrated": false,
+  "actual_release_times": false,
+  "limitations": [
+    "One close governor election, not validated Senate transfer",
+    "Four-year same-office baseline includes the same Democratic candidate",
+    "Combined county history lacks methods and verified completion",
+    "Assumed orders are chosen from baseline only; not recorded publication times",
+    "Correlated snapshots are not independent elections; no parameter changes after evaluation"
+  ],
+  "snapshots": [
+    {
+      "order": "baseline_small_counties_first",
+      "fraction_of_baseline_counties_revealed": 0.1,
+      "counted_two_party_votes": 7405,
+      "projected_margin": 1.4313161697489833,
+      "dem_win_probability": 0.5757233154589017,
+      "model_error": -0.8458568536591031,
+      "naive_error": -54.12052211186184,
+      "scenario_band": [
+        -10.685238120390643,
+        13.636510465760317
+      ],
+      "modeled_remaining_two_party_votes": 953773.6451037687,
+      "remaining_vote_scenario_band": [
+        560932.8228687829,
+        1347381.8960469663
+      ],
+      "actual_remaining_two_party_votes": 970035
+    },
+    {
+      "order": "baseline_small_counties_first",
+      "fraction_of_baseline_counties_revealed": 0.25,
+      "counted_two_party_votes": 24578,
+      "projected_margin": 0.03732833004854337,
+      "dem_win_probability": 0.5017978347665414,
+      "model_error": -2.2398446933595433,
+      "naive_error": -52.42771415775588,
+      "scenario_band": [
+        -11.799715030032537,
+        11.890288998899177
+      ],
+      "modeled_remaining_two_party_votes": 940422.5973565173,
+      "remaining_vote_scenario_band": [
+        551536.8548309905,
+        1331815.6548996964
+      ],
+      "actual_remaining_two_party_votes": 952862
+    },
+    {
+      "order": "baseline_small_counties_first",
+      "fraction_of_baseline_counties_revealed": 0.5,
+      "counted_two_party_votes": 71095,
+      "projected_margin": -0.182419511789342,
+      "dem_win_probability": 0.4888658062329585,
+      "model_error": -2.4595925351974284,
+      "naive_error": -46.20571933468174,
+      "scenario_band": [
+        -11.453821120540006,
+        11.115314528719775
+      ],
+      "modeled_remaining_two_party_votes": 904373.1239839526,
+      "remaining_vote_scenario_band": [
+        526214.716199855,
+        1289726.5177481887
+      ],
+      "actual_remaining_two_party_votes": 906345
+    },
+    {
+      "order": "baseline_small_counties_first",
+      "fraction_of_baseline_counties_revealed": 0.75,
+      "counted_two_party_votes": 173498,
+      "projected_margin": -1.1333564836372667,
+      "dem_win_probability": 0.42656508371325735,
+      "model_error": -3.410529507045353,
+      "naive_error": -35.75997974164115,
+      "scenario_band": [
+        -11.257445310920467,
+        8.997362743940926
+      ],
+      "modeled_remaining_two_party_votes": 824758.0816401531,
+      "remaining_vote_scenario_band": [
+        470081.5289610142,
+        1196956.8797108876
+      ],
+      "actual_remaining_two_party_votes": 803942
+    },
+    {
+      "order": "baseline_large_counties_first",
+      "fraction_of_baseline_counties_revealed": 0.1,
+      "counted_two_party_votes": 668569,
+      "projected_margin": 2.221316267810128,
+      "dem_win_probability": 0.7196080845139761,
+      "model_error": -0.05585675559795833,
+      "naive_error": 13.533461331460298,
+      "scenario_band": [
+        -4.056437595240091,
+        8.50292473407763
+      ],
+      "modeled_remaining_two_party_votes": 426687.4822661734,
+      "remaining_vote_scenario_band": [
+        184190.03302003595,
+        739824.8791848053
+      ],
+      "actual_remaining_two_party_votes": 308871
+    },
+    {
+      "order": "baseline_large_counties_first",
+      "fraction_of_baseline_counties_revealed": 0.25,
+      "counted_two_party_votes": 810609,
+      "projected_margin": 1.1707423198899924,
+      "dem_win_probability": 0.6297332565379177,
+      "model_error": -1.106430703518094,
+      "naive_error": 7.408261014457271,
+      "scenario_band": [
+        -4.6495564761157855,
+        6.988308128560664
+      ],
+      "modeled_remaining_two_party_votes": 315853.21513032616,
+      "remaining_vote_scenario_band": [
+        105946.23461250507,
+        610852.5278115207
+      ],
+      "actual_remaining_two_party_votes": 166831
+    },
+    {
+      "order": "baseline_large_counties_first",
+      "fraction_of_baseline_counties_revealed": 0.5,
+      "counted_two_party_votes": 908929,
+      "projected_margin": 0.21836571325504944,
+      "dem_win_probability": 0.524636760792421,
+      "model_error": -2.058807310153037,
+      "naive_error": 3.5183291555299823,
+      "scenario_band": [
+        -5.600860514515226,
+        6.037015992573867
+      ],
+      "modeled_remaining_two_party_votes": 239327.5564865509,
+      "remaining_vote_scenario_band": [
+        51952.872316771376,
+        521728.5670710838
+      ],
+      "actual_remaining_two_party_votes": 68511
+    },
+    {
+      "order": "baseline_large_counties_first",
+      "fraction_of_baseline_counties_revealed": 0.75,
+      "counted_two_party_votes": 954060,
+      "projected_margin": 0.06132288677495993,
+      "dem_win_probability": 0.5076039511420578,
+      "model_error": -2.2158501366331267,
+      "naive_error": 1.2938812079819728,
+      "scenario_band": [
+        -5.257346838492644,
+        5.378953076076325
+      ],
+      "modeled_remaining_two_party_votes": 204319.235768668,
+      "remaining_vote_scenario_band": [
+        27349.138023716318,
+        480871.81505512656
+      ],
+      "actual_remaining_two_party_votes": 23380
+    },
+    {
+      "order": "baseline_democratic_counties_first",
+      "fraction_of_baseline_counties_revealed": 0.1,
+      "counted_two_party_votes": 626973,
+      "projected_margin": 2.3676302733399752,
+      "dem_win_probability": 0.7264892814701335,
+      "model_error": 0.09045724993188875,
+      "naive_error": 15.976085091375168,
+      "scenario_band": [
+        -4.088471195617812,
+        8.836499954892517
+      ],
+      "modeled_remaining_two_party_votes": 458016.2258070878,
+      "remaining_vote_scenario_band": [
+        205761.88900344336,
+        776909.2593492405
+      ],
+      "actual_remaining_two_party_votes": 350467
+    },
+    {
+      "order": "baseline_democratic_counties_first",
+      "fraction_of_baseline_counties_revealed": 0.25,
+      "counted_two_party_votes": 762076,
+      "projected_margin": 1.1101333245938767,
+      "dem_win_probability": 0.6133594963670123,
+      "model_error": -1.1670396988142098,
+      "naive_error": 10.353063330971267,
+      "scenario_band": [
+        -5.236700057557284,
+        7.455681329400228
+      ],
+      "modeled_remaining_two_party_votes": 353551.002486173,
+      "remaining_vote_scenario_band": [
+        132471.09788550215,
+        654822.2512914453
+      ],
+      "actual_remaining_two_party_votes": 215364
+    },
+    {
+      "order": "baseline_democratic_counties_first",
+      "fraction_of_baseline_counties_revealed": 0.5,
+      "counted_two_party_votes": 891931,
+      "projected_margin": 0.38539413995337035,
+      "dem_win_probability": 0.5426280550770536,
+      "model_error": -1.891778883454716,
+      "naive_error": 4.643878044443575,
+      "scenario_band": [
+        -5.54119663677009,
+        6.311363648502496
+      ],
+      "modeled_remaining_two_party_votes": 252736.85477390434,
+      "remaining_vote_scenario_band": [
+        61464.75126780913,
+        537265.1470094495
+      ],
+      "actual_remaining_two_party_votes": 85509
+    },
+    {
+      "order": "baseline_democratic_counties_first",
+      "fraction_of_baseline_counties_revealed": 0.75,
+      "counted_two_party_votes": 947344,
+      "projected_margin": -0.012954765887462713,
+      "dem_win_probability": 0.4984741105062064,
+      "model_error": -2.2901277892955494,
+      "naive_error": 1.7771092647575637,
+      "scenario_band": [
+        -5.591830822871765,
+        5.565976785268578
+      ],
+      "modeled_remaining_two_party_votes": 209459.6889918198,
+      "remaining_vote_scenario_band": [
+        30926.982203646203,
+        486910.48733445955
+      ],
+      "actual_remaining_two_party_votes": 30096
+    },
+    {
+      "order": "baseline_republican_counties_first",
+      "fraction_of_baseline_counties_revealed": 0.1,
+      "counted_two_party_votes": 11869,
+      "projected_margin": 0.9346951960029712,
+      "dem_win_probability": 0.5498877287866268,
+      "model_error": -1.3424778274051152,
+      "naive_error": -60.45393601944819,
+      "scenario_band": [
+        -11.109330906576904,
+        13.039434843473035
+      ],
+      "modeled_remaining_two_party_votes": 950282.8172667773,
+      "remaining_vote_scenario_band": [
+        558472.1731538641,
+        1343320.0708541113
+      ],
+      "actual_remaining_two_party_votes": 965571
+    },
+    {
+      "order": "baseline_republican_counties_first",
+      "fraction_of_baseline_counties_revealed": 0.25,
+      "counted_two_party_votes": 30747,
+      "projected_margin": 0.44616148536340083,
+      "dem_win_probability": 0.5242040396138765,
+      "model_error": -1.8310115380446856,
+      "naive_error": -55.853131653518346,
+      "scenario_band": [
+        -11.314316670272305,
+        12.248907062929035
+      ],
+      "modeled_remaining_two_party_votes": 935693.7433526056,
+      "remaining_vote_scenario_band": [
+        548243.133391123,
+        1326263.9232468707
+      ],
+      "actual_remaining_two_party_votes": 946693
+    },
+    {
+      "order": "baseline_republican_counties_first",
+      "fraction_of_baseline_counties_revealed": 0.5,
+      "counted_two_party_votes": 86751,
+      "projected_margin": -0.43502959198050073,
+      "dem_win_probability": 0.4737837590437592,
+      "model_error": -2.712202615388587,
+      "naive_error": -48.311224504082666,
+      "scenario_band": [
+        -11.528131926857924,
+        10.68069091977663
+      ],
+      "modeled_remaining_two_party_votes": 891964.6117277596,
+      "remaining_vote_scenario_band": [
+        517390.59658167756,
+        1275378.2842443269
+      ],
+      "actual_remaining_two_party_votes": 890689
+    },
+    {
+      "order": "baseline_republican_counties_first",
+      "fraction_of_baseline_counties_revealed": 0.75,
+      "counted_two_party_votes": 226031,
+      "projected_margin": -1.421861208770163,
+      "dem_win_probability": 0.4027023250712716,
+      "model_error": -3.6990342321782492,
+      "naive_error": -36.053513436891194,
+      "scenario_band": [
+        -10.971750965712253,
+        8.14144321789226
+      ],
+      "modeled_remaining_two_party_votes": 783744.5521966929,
+      "remaining_vote_scenario_band": [
+        441145.75334158837,
+        1149224.0907958278
+      ],
+      "actual_remaining_two_party_votes": 751409
+    }
+  ]
+}

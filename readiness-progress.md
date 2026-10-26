@@ -1,5 +1,50 @@
 # Readiness progress
 
+## October26 05:22Z - two visible race needles deployed and verified
+
+- Merge442 at6caa7786 after all28 applicable workflows pass on exact head
+  da4850af. It contains every440 commit, so440 is implemented/closed through
+  the tested combined revision. No cancelled/older workflow is counted as pass.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/442
+- Actual Pages deployment40273527621 succeeds at mainbc8d4360. At05:21:36Z all43
+  checked published files match, including both new Kansas browser modules and
+  Iowa remaining-vote ranges. At05:21:39Z actual published Edge fetches Kansas
+  full87162 HTTP200 without substituting data. Test data excluded, live P null,
+  accepted live votes0. This verifies deployed integration/exclusion, not delivery.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40273527621
+- Separate close Kansas governor evidence is in443, retargeted to main. Runtime
+  numerical parameters remain unchanged. Current-main checks must pass before
+  this evidence review merges.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/443
+- Scheduled preflight added IL01-06 source gaps and again triggers the unchanged
+  fallback assertions. Ground their exact links in the publisher's public Illinois
+  directory and official election selector (currently PRIMARY, not Nov general).
+  Catalog repair only, no new results adapters, votes or calls. All5 existing
+  fallback tests pass; directory-only evidence never claims individual pages/live
+  votes verified. This directly unblocks the forecast-evidence review.
+- Remaining acceptance: representative independent close-race probability
+  evidence, method/remaining-ballot inputs where available and actual post-close
+  delivery. Prioritize these over UI/celebrations and safe-race source expansion.
+
+
+## October26 05:16Z - separate frozen Kansas close-election evaluation
+
+- Resolve the one missing2018 baseline county from its own published official
+  report: https://wycovoteskck.gov/2018-general-election-results . Use actual
+  county aggregate D28285/R10526, never reconstructed precinct cells. Original
+  state workbooks plus this excerpt reconcile all105 counties to state PDFs.
+- Commitc2dbb6d9 freezes the sources, model41ec65dd7f17 and evaluation plan
+  before the first forecast run. No runtime or numerical parameter changes.
+-2018-to-2022 Kansas governor (D+2.277): mean margin error1.839 versus neutral
+  prior2.277/raw27.981; Brier0.216 versus0.25, log-loss0.621 versus0.693.
+  Margin-band coverage16/16, remaining-vote range14/16. All misses retained.
+  Freeze the full initial report and require exact reproduction for that blob.
+- One same-candidate governor election, assumed baseline-only release orders,
+  combined counts and no timestamps: useful close-race evidence, not Senate
+  calibration or real live delivery. Broader independent close-race evidence
+  remains needed.440/442 still await current-head full DOM checks before merge.
+
+
 ## October26 04:51Z - actual provider and deployed integrity evidence
 
 - Published main9490bd6c at04:49:51Z: all41 checked files match, zero differences.
