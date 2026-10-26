@@ -6,6 +6,7 @@
  function create(host,{fetchJSON,fetchSource,readPrior,isActive=()=>true,sourceGeneration=()=>0,onValidated=()=>{}}){
   const source=root.IowaCivicCountySource,model=root.IowaCountyNeedle;
   if(!host||!source||!model)throw Error('Iowa needle modules unavailable');
+  const revision=root.CompetitiveSourceRevision?.create('IA-SEN')||null;
   let data=null,dataPromise=null,busy=false,lastAttempt=-Infinity,lastGeneration=null;
   let preview=false,step=0,projection=null,phase='Waiting for live results',stamp='',modeVersion=0,lastSourceTime=0,lastAccepted=null;
   host.innerHTML=`<div class="iowa-needle-head"><div><span class="label">COMPETITIVE RACE · EXPERIMENTAL</span>
@@ -96,6 +97,8 @@
     lastGeneration=generation;projection=null;stamp=raw.last_updated?'Provider snapshot: '+raw.last_updated:'';
     if(parsed.status==='TEST_DATA_NOT_LIVE'){phase='Provider TEST DATA · excluded from the live needle';}
     else{
+     if(!revision)throw Error('County source revision guard unavailable');
+     revision.accept(parsed);
      const time=Date.parse(parsed.snapshot_updated_at);
      const signature=JSON.stringify([...parsed.counties].sort((a,b)=>a.county.localeCompare(b.county))
       .map(r=>[r.county,r.dem_votes,r.rep_votes,r.other_votes]));
@@ -104,7 +107,14 @@
      // A validated zero-count withdrawal is also a publication watermark.
      lastSourceTime=time;lastAccepted={time,signature};
      if(!parsed.live_votes_accepted){phase='No genuine post-close votes reported yet';return true;}
-     const prior=readPrior();
+     let prior=readPrior();
+     if(!prior){
+      phase='Waiting for linked race model';render();
+      prior=await root.CompetitiveNeedlePrior?.waitFor(readPrior,{isCurrent:()=>version===modeVersion&&!preview&&isActive()&&generation===sourceGeneration()});
+      if(version!==modeVersion||preview)return false;
+      if(!isActive()||generation!==sourceGeneration())throw Error('Source reply invalidated while waiting for the model');
+      revision.accept(parsed);
+     }
      if(!prior||!Number.isFinite(prior.margin)||!Number.isFinite(prior.sigma))throw Error('Current Iowa linked-model prior unavailable');
      projection=model.forecast({baseline:history.years['2022'],observations:parsed.counties,
       prior_margin_points:prior.margin,prior_sigma_points:prior.sigma});

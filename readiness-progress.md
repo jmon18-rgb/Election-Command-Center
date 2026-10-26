@@ -1,5 +1,41 @@
 # Readiness progress
 
+## October 26 11:27Z - three-race capture merged; reload and startup repair
+
+- PR452 merged717652b4 after all4 current-head workflows passed atb8ee4bb4.
+  Actual Pages comparison at11:25:55Z matches54 checked loaded/source-probe/
+  Texas-input files to717652b4. Its actual GitHub browser observation at10:55:19Z
+  reaches all three full Civic routes HTTP200, test data excluded, accepted0,
+  Pnull and national odds unchanged. No genuine post-close delivery claimed.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/452
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40311038340
+- Reproduce a concrete remaining prediction defect: newer zero-count withdrawal
+  -> reload -> older cached positive returns restores99% in the old Texas view.
+  In-memory ordering does not survive a reload. The regression fails before the
+  fix, after explicitly waiting for a valid linked prior so startup cannot mask it.
+- Add a small source-revision guard for all three scopes. Only fully validated
+  non-test inputs can retain publication time and normalized count signature in
+  browser storage; cached values never supply votes or forecasts. New views and
+  other tabs compare against the newest retained revision. A viewer clock
+  rollback does not erase it. Test flags, wrong scope, malformed vectors and
+  ambiguous same-clock changes cannot update it. Corrupt records are ignored;
+  blocked/quota-limited storage preserves only in-session protection. Clearing
+  browser storage also loses across-reload history; no broader guarantee made.
+- Source responses can arrive before linked-model initialization completes.
+  Wait briefly with bounded checks, then use the original validated response
+  without another provider request. Recheck source revision, freshness, mode and
+  outage generation after waiting, so a newer withdrawal in another controller
+  cannot revive a pending old positive forecast. No numerical model changes.
+- Actual-page synthetic Edge1366/390 tests pass reload rejection, genuinely newer
+  recovery, delayed-prior first-response use with exactly1 source request, and
+  a newer zero correction during that wait. Missing protection script withholds
+  the race probability while the independent national model remains available.
+  Iowa/Kansas suites and all24 core checks pass locally. Pure unit cases cover
+  all three reload scopes, other tabs, denied storage and clock rollback.
+- Next: current-head CI, review/merge and actual Pages verification of this
+  correction repair. Current production still has in-memory-only ordering until
+  it deploys. All three source feeds remain TEST DATA and calibration is open.
+
 ## October 26 10:53Z - Texas needle deployed; three-race actual-source capture
 
 - PR450 merged91dc4dc6 after all6 applicable current-head workflows passed at

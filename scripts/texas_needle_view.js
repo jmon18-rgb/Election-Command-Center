@@ -3,6 +3,7 @@
  function create(host,{fetchJSON,fetchSource,readPrior,isActive=()=>true,sourceGeneration=()=>0,onValidated=()=>{}}){
   const source=root.TexasCivicCountySource,model=root.IowaCountyNeedle;
   if(!host||!source||!model)throw Error('Texas forecast modules unavailable');
+  const revision=root.CompetitiveSourceRevision?.create('TX-SEN')||null;
   let inputs=null,busy=false,lastAttempt=-Infinity,lastAccepted=null,lastGeneration=null,projection=null;
   let phase='Waiting for genuine Texas county returns';
   host.innerHTML=`<div class="iowa-needle-head"><div><span class="label">COMPETITIVE RACE · EXPERIMENTAL</span>
@@ -51,12 +52,21 @@
     if(!isActive()||generation!==sourceGeneration())throw Error('Source reply invalidated by mode change or outage');
     const parsed=source.parse(raw,inputs.reference);projection=null;lastGeneration=generation;
     if(parsed.status==='TEST_DATA_NOT_LIVE'){phase='Provider TEST DATA · excluded from the Texas needle';return true;}
+    if(!revision)throw Error('County source revision guard unavailable');
+    revision.accept(parsed);
     const time=Date.parse(parsed.snapshot_updated_at),signature=JSON.stringify([...parsed.counties].sort((a,b)=>a.county.localeCompare(b.county)).map(c=>[c.county,c.dem_votes,c.rep_votes,c.other_votes]));
     if(lastAccepted&&(time<lastAccepted.time||time===lastAccepted.time&&signature!==lastAccepted.signature))throw Error('County revision requires a newer publication time');
     // Do not let cached positive counts undo a newer validated withdrawal.
     lastAccepted={time,signature};
     if(!parsed.live_votes_accepted){phase='No genuine post-close Texas votes reported yet';return true;}
-    const prior=readPrior();if(!prior||!Number.isFinite(prior.margin)||!Number.isFinite(prior.sigma))throw Error('Current Texas linked-model prior unavailable');
+    let prior=readPrior();
+    if(!prior){
+     phase='Waiting for linked race model';render();
+     prior=await root.CompetitiveNeedlePrior?.waitFor(readPrior,{isCurrent:()=>isActive()&&generation===sourceGeneration()});
+     if(!isActive()||generation!==sourceGeneration())throw Error('Source reply invalidated while waiting for the model');
+     revision.accept(parsed);
+    }
+    if(!prior||!Number.isFinite(prior.margin)||!Number.isFinite(prior.sigma))throw Error('Current Texas linked-model prior unavailable');
     projection=model.forecast({baseline:inputs.baseline,observations:parsed.counties,expected_county_count:254,
      prior_margin_points:prior.margin,prior_sigma_points:prior.sigma});
     phase='2026 source-validated returns · experimental Texas forecast';onValidated();return true;
