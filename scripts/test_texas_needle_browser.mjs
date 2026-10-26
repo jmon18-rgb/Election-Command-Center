@@ -44,7 +44,7 @@ try{
   await page.waitForFunction(()=>document.querySelector('[data-tx="state"]')?.textContent.includes('TEST DATA'));
   assert.equal(await host.locator('[data-tx="chance"]').textContent(),'—');
   assert.equal(await page.evaluate(key=>localStorage.getItem(key),'ecc:county-source-revision:2026:TX-SEN:v1'),null,'Provider test votes never persist a source revision');
-  const national=await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities));
+  const national=await page.evaluate(()=>JSON.stringify(jointPulseBaseline.probabilities));
   scenario='red';await page.clock.setSystemTime(new Date('2026-11-04T03:06:00Z'));
   await host.locator('[data-tx="refresh"]').click();
   await page.waitForFunction(()=>Boolean(window.enTexasPilotController?.status().projection));
@@ -73,7 +73,7 @@ try{
   scenario='blue';await page.clock.setSystemTime(new Date('2026-11-04T03:07:00Z'));
   await host.locator('[data-tx="refresh"]').click();
   await page.waitForFunction(first=>window.enTexasPilotController?.status().projection?.dem_win_probability>first+.3,first);
-  assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),national);
+  assert.equal(await page.evaluate(()=>JSON.stringify(jointPulseBaseline.probabilities)),national);
   assert.equal(await page.evaluate(key=>localStorage.getItem(key),'ecc:county-source-revision:2026:TX-SEN:v1')!==null,true,'Validated positive inputs persist ordering metadata');
   scenario='withdrawn';await page.clock.setSystemTime(new Date('2026-11-04T03:07:15Z'));
   await host.locator('[data-tx="refresh"]').click();
@@ -108,7 +108,7 @@ try{
   await page.locator('#enMode2024').click();
   await page.waitForFunction(()=>!window.enTexasPilotController?.status().projection);
   assert.equal(await host.locator('[data-tx="chance"]').textContent(),'—','Archive mode removes the live probability');
-  assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),national,'Corrections and recovery cannot write national odds');
+  assert.equal(await page.evaluate(()=>JSON.stringify(jointPulseBaseline.probabilities)),national,'Corrections and recovery cannot overwrite the polling prior');
   // Exercise the actual view with a delayed linked-prior callback. Source
   // data is synthetic, but neither the shared model nor national odds is edited.
   await page.waitForFunction(()=>Boolean(CompetitiveNeedlePrior.read(jointPulseBaseline,'TX-SEN')));
@@ -147,7 +147,7 @@ try{
   assert.equal(await page.evaluate(()=>__startup.controller.status().projection),null);
   assert.match(await page.evaluate(()=>__startup.controller.status().phase),/requires a newer/);
   await page.evaluate(()=>{__startup.controller.destroy();__startup.host.remove();});
-  assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),national);
+  assert.equal(await page.evaluate(()=>JSON.stringify(jointPulseBaseline.probabilities)),national);
   // A missing protection asset withholds this estimate without taking down
   // the independent national model or core election-night page.
   await page.route('**/scripts/competitive_source_revision.js*',route=>route.abort());
@@ -156,7 +156,7 @@ try{
   await page.waitForFunction(()=>enTexasPilotController?.status().phase.includes('revision guard unavailable'));
   assert.equal(await host.locator('[data-tx="chance"]').textContent(),'—');
   await page.waitForFunction(()=>Boolean(jointLastResult?.probabilities));
-  assert.deepEqual(errors,[]);console.log(`${width}px Texas: validated source changes race probability, test/clock/outage gates and national isolation PASS`);
+  assert.deepEqual(errors,[]);console.log(`${width}px Texas: validated source changes race probability, test/clock/outage gates and polling-prior isolation PASS`);
   await context.close();
  }
 }finally{await browser?.close();await new Promise(ok=>server.close(ok));}

@@ -75,7 +75,7 @@ async function main(){
   assert(html.includes('function refreshLivePollSnapshots()'));
   assert(html.includes('renderMississippiSenateWatch()'));
   for(const marker of ['id="jointHomeNeedle"','id="jointNightNeedle"',
-     'id="enArchiveOutcome"','function jointRenderNeedles(result)']){
+     'id="enArchiveOutcome"','function jointRenderNeedles(result,config={})']){
    assert(html.includes(marker),'Missing 2026 needle or 2024 archive capability '+marker);
   }
   assert(html.includes("nightPanel.classList.toggle('en-archive-mode',archive)"),

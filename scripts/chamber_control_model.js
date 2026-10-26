@@ -121,10 +121,16 @@ function senatePollingErrorBudget(info){
  }
  function seeded(seed){
   let state=(seed>>>0)||0x12345678;
-  return ()=>{
+  const next=()=>{
    state^=state<<13;state^=state>>>17;state^=state<<5;
    return (state>>>0)/4294967296;
   };
+  next.state=()=>state>>>0;
+  next.restore=value=>{
+   if(!Number.isInteger(value)||value<=0||value>4294967295)throw Error('Invalid replay random state');
+   state=value|0;
+  };
+  return next;
  }
  function validateInputs(s){
   if(!s||!s.seats||!s.history||!s.geography||!s.senateHistory||
@@ -610,6 +616,18 @@ function senatePollingErrorBudget(info){
   const samples=options.samples??4000,seed=options.seed??20261103;
   if(!Number.isInteger(samples)||samples<300||samples>30000)
    throw Error('Unacceptable simulation size');
+  const capture=options.captureCountyDraws??null,replay=options.replayCountySeeds??null;
+  if(capture!==null&&(!Array.isArray(capture)||capture.length<1||capture.length>3||
+     new Set(capture).size!==capture.length||capture.some(c=>!['IA-SEN','KS-SEN','TX-SEN'].includes(c))))
+   throw Error('Unsupported county-evidence capture scope');
+  if(replay!==null&&(!(Array.isArray(replay)||Object.prototype.toString.call(replay)==='[object Uint32Array]')||
+     replay.length!==samples||!replay.every(n=>Number.isInteger(n)&&n>0&&n<=4294967295)))
+   throw Error('Invalid county-evidence replay states');
+  if(capture&&replay)throw Error('Cannot capture and replay county draws in the same pass');
+  const captured=capture?{codes:capture.slice(),seeds:new Uint32Array(samples),
+   margins:Object.fromEntries(capture.map(c=>[c,new Float64Array(samples)])),
+   house:new Uint16Array(samples),senate:new Uint8Array(samples)}:null;
+  const captureSet=new Set(capture||[]);
   const holdovers=options.senateDemHoldovers??basis.assumptions.senate_dem_holdovers;
   const independentCredit=options.independentSenateCredit??'dem_proxy';
   if(!['dem_proxy','no_credit'].includes(independentCredit))
@@ -683,6 +701,8 @@ function senatePollingErrorBudget(info){
   const houseSeatDraws=[],senateSeatDraws=[];
   const raceDemWins=new Uint32Array(polls.length);
   for(let k=0;k<samples;k++){
+   if(replay)rands.restore(replay[k]);
+   if(captured)captured.seeds[k]=rands.state();
    const national=nationalShift+normal(rands)*a.common_national_sigma*errorMultiplier,
     houseShock=normal(rands)*a.house_chamber_sigma*errorMultiplier,
     senateShock=normal(rands)*a.senate_chamber_sigma*errorMultiplier,
@@ -736,6 +756,7 @@ function senatePollingErrorBudget(info){
       Math.sqrt(sigma*sigma+senateNationalLocalVar+senateChamberLocalVar):sigma;
     const finalMargin=mean+effectiveNational+officeShock+stateShock+
       normal(rands)*effectiveSigma*errorMultiplier;
+    if(captured&&captureSet.has(item.code))captured.margins[item.code][k]=finalMargin;
     // Only the independently validated source winner flag can lock a 2026
     // race. A count lead is never a call; corrections restore uncertain draws.
     const sourceCalled=scenario?.mode==='source_called'&&
@@ -756,6 +777,7 @@ function senatePollingErrorBudget(info){
      !(isSenate&&independentCredit==='no_credit'&&
        item.nonrep_independent_proxy))winBattleground++;
    }
+   if(captured){captured.house[k]=dHouse;captured.senate[k]=dSenate;}
    const houseDem=dHouse>=a.house_control_dem_seats;
    if(voteSeatEnabled){
     const weightedMargin=voteSeatWeightedMarginNumerator/weightTotal;
@@ -922,6 +944,8 @@ function senatePollingErrorBudget(info){
    note:'Mechanical pivotal counts are one-seat reversals. House and Senate bellwether covariance ranks observed race outcomes informative about chamber control. Neither measures causal voter influence, elasticity, or campaign impact.'
   }:null;
   return {schema_version:VERSION,status:'EXPERIMENTAL_UNCALIBRATED',
+   ...(captured?{county_draws:captured}:{}),
+   ...(replay?{simulation_draw_method:'IMPORTANCE_RESAMPLED_CORRELATED_PARTICLES_NOT_INDEPENDENT_NEW_ELECTIONS'}:{}),
    samples,seed,senate_dem_holdovers:holdovers,national_shift_points:nationalShift,error_multiplier:errorMultiplier,
    ...(corr?{senate_correlation_research:{
     model:'VARIANCE_CONSERVING_SCENARIO_NOT_BACKTESTED_PARAMETER',

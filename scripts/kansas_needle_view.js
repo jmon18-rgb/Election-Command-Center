@@ -1,6 +1,6 @@
 (function(root){
  'use strict';
- function create(host,{fetchJSON,fetchSource,readPrior,isActive=()=>true,sourceGeneration=()=>0,onValidated=()=>{}}){
+ function create(host,{fetchJSON,fetchSource,readPrior,isActive=()=>true,sourceGeneration=()=>0,onValidated=()=>{},onUpdate=()=>{}}){
   const source=root.KansasCivicCountySource,model=root.IowaCountyNeedle;
   if(!host||!source||!model)throw Error('Kansas forecast modules unavailable');
   const revision=root.CompetitiveSourceRevision?.create('KS-SEN')||null;
@@ -16,11 +16,15 @@
    <strong data-ks="chance">—</strong><span> Democratic win chance</span></div>
    <div><p data-ks="margin"></p><p data-ks="votes"></p><p data-ks="remaining"></p><small data-ks="stamp"></small></div></div>
    <small>Experimental race forecast, not calibrated or a race call. Combined county history has no voting-method split.
-   Remaining votes and ranges are modeled, not official ballots outstanding. Separate from national counts and control odds.
+   Remaining votes and ranges are modeled, not official ballots outstanding. Counts also support the experimental national outlook; this race posterior is never reused as national evidence.
    Source: <a href="https://civicapi.org" target="_blank" rel="noopener noreferrer">civicAPI</a>.</small>`;
   const get=k=>host.querySelector('[data-ks="'+k+'"]'),number=n=>Math.round(n).toLocaleString('en-US');
   const margin=n=>(n>=0?'D +':'R +')+Math.abs(n).toFixed(1);
+  let evidence=null,candidateEvidence=null,evidenceKey="";
   function render(){
+   evidence=projection?candidateEvidence:null;
+   const nextKey=evidence?JSON.stringify(evidence.snapshot):"";
+   if(nextKey!==evidenceKey){evidenceKey=nextKey;onUpdate();}
    get('state').textContent=phase;get('refresh').disabled=busy;get('pointer').style.visibility=projection?'visible':'hidden';
    if(!projection){get('chance').textContent='—';for(const k of ['margin','votes','remaining','stamp'])get(k).textContent='';return;}
    const p=projection.dem_win_probability,angle=Math.PI*(1-p);
@@ -69,12 +73,13 @@
     if(!prior||!Number.isFinite(prior.margin)||!Number.isFinite(prior.sigma))throw Error('Current Kansas linked-model prior unavailable');
     projection=model.forecast({baseline:inputs.baseline,observations:parsed.counties,expected_county_count:105,
      prior_margin_points:prior.margin,prior_sigma_points:prior.sigma});
+    candidateEvidence={baseline:inputs.baseline,reference:inputs.reference,baseline_year:2020,snapshot:parsed};
     phase='2026 source-validated returns · experimental Kansas forecast';onValidated();return true;
    }catch(error){projection=null;phase='Kansas source unavailable · '+error.message;return false;}
    finally{busy=false;render();}
   }
   get('refresh').addEventListener('click',()=>tick(true));const timer=setInterval(()=>tick(),60000);render();
-  return Object.freeze({tick,status:()=>({projection,phase,busy}),destroy:()=>clearInterval(timer)});
+  return Object.freeze({tick,status:()=>({projection,phase,busy,evidence,evidenceKey}),destroy:()=>clearInterval(timer)});
  }
  root.KansasNeedleView=Object.freeze({create});
 })(window);

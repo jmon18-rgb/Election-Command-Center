@@ -6,6 +6,34 @@ acceptance testing and recovery only. Stop unattended changes November 4 at noon
 
 ## Work order
 
+LATEST HUMAN CLARIFICATION (October 26): the primary deliverable is the
+NATIONAL NYT-style results-informed Blue Wave / Blue Tsunami outlook. Individual
+Iowa/Kansas/Texas race needles are supporting inputs and diagnostics. Their
+completion does not complete the requested national needle. Reuse them; do not
+expand race-panel production or generic hardening ahead of the missing bridge.
+
+The existing correlated House/Senate Four Endings model accepts verified calls,
+but partial county returns are not connected to its national probabilities.
+Prioritize implementing and testing an explicit partial-return evidence contract
+into that same national model. Do not average race probabilities or count a
+poll-informed race posterior as independent evidence against the same poll prior.
+Distinguish local/candidate effects from shared national effects; three Senate
+states provide limited national evidence and especially limited House evidence.
+Preserve source/remaining-vote uncertainty, bounded influence, correction and
+retraction behavior, and baseline-versus-results attribution. Keep the owner's
+existing four outcome thresholds and coherent joint probabilities.
+
+Build a scoped experimental national updating path for review and evaluation;
+NYT-grade calibration is not a prerequisite for implementing it and must not be
+claimed without evidence. Do not silently promote raw precinct percentages,
+statewide margins or unsupported cross-race extrapolation. Provide an isolated,
+clearly labeled national rehearsal so the owner can inspect results-driven
+movement while real providers remain in test mode; fixtures never enter live
+counts. Tests must demonstrate the NATIONAL outlook moving before race calls,
+not merely individual race panels changing. Finish already queued critical
+fixes with required checks, then concentrate subsequent work on this bridge.
+This clarification supersedes older race-first task ordering below.
+
 LATEST OWNER PRIORITY (October 25, after the source-progress review): deliver
 LIVE RETURNS THAT INFORM A PROGRAMMED PREDICTIVE NEEDLE, primarily CLOSE RACES.
 This supersedes the older task ordering below. Do not use source-gap counts,
