@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-26T07:28:56.170740Z",
+  "updated_at": "2026-10-26T10:50:50.150216Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 0,
@@ -260,6 +260,80 @@
     }
   ],
   "items": [
+    {
+      "id": "48de42af4a19c7c06a19",
+      "title": "Election officials say ICE is unlikely to visit Colorado polling places but they\u2019re preparing nonetheless - The Colorado Sun",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQc29ocURySG1LMEU4QU5taWhvNi1ESHg5dXlwZGZ4UEdwX0s0c1pyUGJiZWQydnl1VmYtNTVLbWVRUmZiNGNBdkVHV21lVUlEREZrd2JweFlkR1pvM3ppWWhXZmFhbWpqelRwS0xqMlFZMXJ1SW4wNXkyNmhCREo2U1hCb0l1dw?oc=5",
+      "publisher": "The Colorado Sun",
+      "published_at": "2026-10-26T10:00:00Z",
+      "detected_at": "2026-10-26T10:44:14.347950Z",
+      "state_hints": [
+        "CO"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "fa7391d9b81927805e1d",
+      "title": "Election officials in NH say they\u2019re ready for a big day at the polls, with little drama - New Hampshire Public Radio",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQZlpPV2d1ZGptUFdCbUg1X05hS01QYmkycXJsZUNHWkoyOHEtb3pOYmEwSW5rTFFfYUpDeGdwVUJMLTNTUEZkeVJySnRSWm1YU3dhXzNGNWNNRnVUN3E2TGJvSmUyOF9lUW9oeC1ZRjJLT2JZem1sZ3pRNVczaUVxN2RrVDd5TnFxbzRVUzdqbWhjM1pCM3ZiMnZGMVAyY0xrQUdaQXMzV2JJdw?oc=5",
+      "publisher": "New Hampshire Public Radio",
+      "published_at": "2026-10-26T09:05:00Z",
+      "detected_at": "2026-10-26T09:57:15.618253Z",
+      "state_hints": [
+        "NH"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "96d33c831e670c650d7c",
+      "title": "What are the US midterm elections and why do they matter? - The Guardian",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBrR2VhSFJnMzE0b29vT1ZabkFfNE1MekNuM1o4Zm5nSTByVXZLVHNNZmZ4OGpLWDVPQW5NdkJYNVc4NDh1NnRLYmo1Vm90dU52ZUhrcXZOc1F5V0toSHNMd25Td0JwaTY0VFNyNmRuTGJCeklERkZQNlgzbGpaSXc?oc=5",
+      "publisher": "The Guardian",
+      "published_at": "2026-10-26T09:00:00Z",
+      "detected_at": "2026-10-26T10:44:14.347950Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "e13a138a9bd60f905ad4",
+      "title": "UP CEO orders reverification of voter roll entries made by computer assistants after \u2018errors\u2019 - Maktoob",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQb2tzRmxWY05icGhRMnR6TFZTaTU4YnNVNG1NaUthbl9QZXFIdWpDdnFQQ3luZVluclNHbGJjTzZPRzhZT183cnhKQk5JY1dZQjZPNThGZmpBSTJsU3hmNEZCd3J4M1ZpRU1MS2piNEE1dld5Mzl1WExRVjgwcURVb3pSLW5vWnZuRXJkY3RxUHJxUDFiX3dsTlVzS0ZSUVN0M09BN2ZDZEpmQ0Z2bnI3cEF6aE9aQ2t4aVFuek1IcHJUZmlGQ19xMVhIZFN3VDN0TkhGWGlQT2JaQQ?oc=5",
+      "publisher": "Maktoob",
+      "published_at": "2026-10-26T06:05:55Z",
+      "detected_at": "2026-10-26T10:44:14.347950Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "bb433647d5ba3c9c7ed1",
       "title": "9th Circuit panel questions basis for feds\u2019 request to block 20,000 California ballots - Los Angeles Times",
@@ -4879,82 +4953,6 @@
       ],
       "headline_numbers_unverified": [
         "6,000, "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "059a707c6c63ebb24129",
-      "title": "Montgomery court dismisses residency lawsuit against John Wahl - WSFA",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOaDNTcmRzSm1iWFNkQ1BmRVdoODUzTTlrcHpHWksxX2pzeXF1UDZNYWFYeDFaQkRpeWp6eTYzaXF0VE84aTFfSmc0QWJ6VlNBUWhaamtoeFpkSExTeERCZFMxbGRGdTdtVHJrOFB0Y3B5c0xfNS1GbEQzdS1TS0dCTU9XU0NfRWhDMmJxVU5jY1AwNVNoSjZrUFNZNA?oc=5",
-      "publisher": "WSFA",
-      "published_at": "2026-10-14T01:11:00Z",
-      "detected_at": "2026-10-14T04:51:11.877550Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ed2ec2a0b00c57954a62",
-      "title": "North Carolina sends vague letter to voters flagged by citizenship database - Democracy Docket",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQVzVOLVpMdWxDTkZNRDBoVUpUTWRhZThqSEZTc0FSRmdBODBfZTVYbmxneUNPMWJDQzR3Z0xEZlNva3hCdVQ0ZDNDTmIzR2RjMUZVdXZhYXpNMjh6UDhVREVMelFrRWw4YUhHbWxKMWFCdDZrUkpuczZBZjVrYWJkdDBnRzdaMVZETTdkUHV1c1FmZkFtYjdGamF1TmM3WnBGVl92dTQ2dFU1VnNtQzdvdTRna0Z0N20waTZCUw?oc=5",
-      "publisher": "Democracy Docket",
-      "published_at": "2026-10-14T00:22:04Z",
-      "detected_at": "2026-10-14T04:51:11.877550Z",
-      "state_hints": [
-        "NC"
-      ],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "def7c73fe19174c59f4a",
-      "title": "Georgia voters kick off early voting with over 185,000 ballots cast - Georgia Recorder",
-      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPR20tTWxfM25nODFuWGlQOWFSeXNNNTZiSlBJYjVhVHdwVUFKVHpjMmd6NFUyVlV3WTZ0cnRpM0ZMR0hGYTZQRTN6MXI0VVVVYzVrS2p6anhaQkNMWUxmMXdtNkllOUJRMUp3SkZMaVR1SVlGUlhIY2FGanNrcnRoNTNCWnNiVzJaQkYzcmlTRDJPMFZrbnJTVWhfcUJ0ZE4yTGdYcTA5a2JEQQ?oc=5",
-      "publisher": "Georgia Recorder",
-      "published_at": "2026-10-14T00:15:14Z",
-      "detected_at": "2026-10-14T04:51:11.877550Z",
-      "state_hints": [
-        "GA"
-      ],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [
-        "185,000 ballots"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "e10c3d3bbdb416e1ee79",
-      "title": "Fort Worth judge denies request to reinstate 92 polling sites for Tarrant County midterms - www.kera.org",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPSk1GYUFIdGN2RjJQNUQ3NGNYSkNEY0MwLVZWWTBDeVB2RHFsdjFJMjlMU0w4WU5scWlyMWlEc2xDUWltQnJqZ1IyVG9QM2JCR0ltVTg3NW11MmFydTZhYkhPQjFVeE54MWx4VmpYcHZrRWRBVVh3QkNxSDd4UU16TGJGajBjNW1yNWpCZVpPNjQ3c3lGSDVMc3EzcU1BZG5RYUJTZ2l3TXJZMlA3WV9rYjYta25DSGNSc18zVzFXYw?oc=5",
-      "publisher": "www.kera.org",
-      "published_at": "2026-10-13T23:46:29Z",
-      "detected_at": "2026-10-13T23:51:12.636833Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [
-        "92 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
