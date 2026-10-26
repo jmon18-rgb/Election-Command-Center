@@ -10,6 +10,13 @@ an evidence task, not a reason to fabricate predictive updates.
 
 ## October 25 — source drawer and keyboard continuity
 
+- A separate laptop follow-up reproduced another layout problem: all 21 source
+  identity tasks expanded on every redraw. Keep the four highest-priority rows
+  visible, with the complete remainder in a labeled drawer; all totals and every
+  human fallback remain available. Actual Edge checks pass at 1440px, standard
+  1366×768 laptop size and 390px, including exact inventory preservation and focus
+  inside the added drawer. All 12 core checks pass; review/current-head CI pending.
+
 - Reproduced a laptop usability failure in the actual browser: opening the Senate
   source drawer and refreshing source state closed it immediately. Keyboard focus
   was also lost because the source panel replaces its rows on every redraw.

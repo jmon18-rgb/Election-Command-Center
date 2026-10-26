@@ -364,14 +364,14 @@
     ' · '+attention.cutoff_pct+'% linked-model threshold (either side).',
     triage,'en-coverage-line');
    const manual=new Set(['LIGHT_MANUAL_CHECK']);
-   for(const race of attention.races){
+   const renderGap=(race,parent)=>{
     const description=race.mode==='ACTIVE_LIVE_SOURCE'?
      'LIVE SOURCE PRIORITY · model below 90% for both sides':
      race.mode==='LIGHT_MANUAL_CHECK'?
      'LIGHT CHECK · model ≥90% for one side':
      'REVIEW ODDS · no verified current D/R probability';
     const line=elt('p',race.id.replace('|',' ')+' — '+description,
-     triage,'en-coverage-line');
+     parent,'en-coverage-line');
     line.setAttribute?.('data-source-race',race.id);
     const link=Array.isArray(officialBackstops)?officialBackstops.find(x=>
      x&&Array.isArray(x.race_ids)&&x.race_ids.includes(race.id)&&
@@ -387,6 +387,13 @@
     }
     if(manual.has(race.mode))
      elt('span',' · forecast only; no verified votes or race call',line);
+   };
+   attention.races.slice(0,4).forEach(race=>renderGap(race,triage));
+   if(attention.races.length>4){
+    const more=drawer('priority-more',triage);
+    elt('summary','Remaining source-gap priorities · '+(attention.races.length-4)+
+     ' · '+attention.races.length+' total',more);
+    attention.races.slice(4).forEach(race=>renderGap(race,more));
    }
    const social=editorialChecks?.newsroom_social;
    if(editorialChecks?.status===
