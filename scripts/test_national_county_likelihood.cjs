@@ -72,3 +72,17 @@ assert.equal(bridge.condition(model,basis,blue,{...opts,now,rehearsal:true}).dia
 
 assert.throws(()=>bridge.condition(model,basis,blue,{...opts,now,live:{'TX-SEN':{mode:'live_informed',posteriorMargin:10,posteriorSigma:1}}}),/never a race posterior/);
 assert.throws(()=>bridge.condition(model,basis,[],{...opts,now,rehearsal:true,live:{'TX-SEN':{mode:'source_called',winnerParty:'D'}}}),/cannot use live calls/);
+
+const wiFacts=load('wisconsin_house_01_2024_county_baseline_official'),wiRef=load('wisconsin_house_01_county_fips_reference');
+function wiEnvelope(margin){
+ const n=wiFacts.district_totals.dem_votes+wiFacts.district_totals.rep_votes,shift=(margin-100*(2*wiFacts.district_totals.dem_votes/n-1))/200;
+ const counties=wiFacts.counties.map(c=>{const n=Math.floor((c.dem_votes+c.rep_votes)*.65),d=Math.floor(n*Math.max(.001,Math.min(.999,c.dem_votes/(c.dem_votes+c.rep_votes)+shift)));return {county:c.county,county_fips:c.county_fips,dem_votes:d,rep_votes:n-d,other_votes:0};});
+ return {baseline_year:2024,reference:wiRef,baseline:{race_code:'WI-01',geography_scope:'district_parts',counties:wiFacts.counties.map(c=>({county:c.county,records:{total:c}}))},snapshot:{race_code:'WI-01',source_url:'https://civicapi.org/api/v2/race/87483',status:'VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED',live_votes_accepted:true,county_identities_matched:5,snapshot_updated_at:'2026-11-04T03:05:00Z',counties}};
+}
+const wi=wiEnvelope(8),wiUp=bridge.condition(model,basis,[wi],{...opts,now}),wiDown=bridge.condition(model,basis,[wiEnvelope(-8)],{...opts,now});
+assert.equal(wiUp.diagnostics.house_vote_sources,1);assert(wiUp.result.house_dem_control_pct>wiDown.result.house_dem_control_pct);
+assert(bridge.compile(wi,{now}).modeled_remaining_two_party_votes>0);
+assert.throws(()=>bridge.compile({...wi,baseline:{...wi.baseline,geography_scope:'whole_county'}},{now}),/district-part/);
+const four=bridge.condition(model,basis,[...blue,wi],{...opts,now});assert.equal(four.diagnostics.used.length,4);
+assert.equal(Object.values(four.result.counts).reduce((a,b)=>a+b,0),opts.samples);
+console.log('WI-01 district-part counts -> coherent NATIONAL House/control changes before calls; not calibration');

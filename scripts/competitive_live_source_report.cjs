@@ -6,11 +6,12 @@ const races=Object.freeze([
  {code:'KS-SEN',state:'KS',counties:105,url:'https://civicapi.org/api/v2/race/87162',
   reference:'data/kansas_county_fips_reference.json',parser:'KansasCivicCountySource',controller:'enKansasPilotController'},
  {code:'TX-SEN',state:'TX',counties:254,url:'https://civicapi.org/api/v2/race/87438',
-  reference:'data/texas_county_fips_reference.json',parser:'TexasCivicCountySource',controller:'enTexasPilotController'}]);
+  reference:'data/texas_county_fips_reference.json',parser:'TexasCivicCountySource',controller:'enTexasPilotController'},
+ {code:'WI-01',state:'WI',office:'House',key:'WI-01',forecast_scope:'national_joint_draws',counties:5,url:'https://civicapi.org/api/v2/race/87483',reference:'data/wisconsin_house_01_county_fips_reference.json',parser:'WisconsinHouseCountySource',controller:'enWisconsinHouseController'}]);
 const inWindow=now=>Number.isFinite(now)&&now>=Date.parse('2026-10-26T00:00:00Z')&&now<=Date.parse('2026-11-04T17:00:00Z');
 function assess(row,now=Date.now()){
  const expected=races.find(r=>r.code===row?.code);if(!expected)throw Error('Unknown competitive source scope');
- const p=row.projection,hasProjection=p!==null&&p!==undefined,violations=[];
+ const nationalOnly=expected.forecast_scope==='national_joint_draws',p=row.projection,hasProjection=p!==null&&p!==undefined,violations=[];
  const total=row.counted_dem_votes+row.counted_rep_votes,stamp=Date.parse(row.source_stamp||'');
  const liveInput=row.http===200&&row.source_url===expected.url&&row.source_test_data===false&&
   row.source_identity_validated===true&&row.live_votes_accepted===true&&row.parsed_counties===expected.counties&&
@@ -23,7 +24,7 @@ function assess(row,now=Date.now()){
   if(!Number.isFinite(p.dem_win_probability)||p.dem_win_probability<0||p.dem_win_probability>1||
    p.counted_dem_votes!==row.counted_dem_votes||p.counted_rep_votes!==row.counted_rep_votes)
    violations.push('Displayed forecast disagrees with accepted source counts');
-  if(p.interval_calibrated!==false||p.may_move_national_needle!==false)
+  if(p.interval_calibrated!==false||p.may_move_national_needle!==nationalOnly)
    violations.push('Unsupported calibration or national-update claim');
   if(!Number.isFinite(p.modeled_remaining_two_party_votes)||p.modeled_remaining_two_party_votes<0||
    !Array.isArray(p.modeled_remaining_two_party_votes_band)||p.modeled_remaining_two_party_votes_band.length!==2||
@@ -31,22 +32,36 @@ function assess(row,now=Date.now()){
    p.modeled_remaining_two_party_votes_band[0]>p.modeled_remaining_two_party_votes_band[1])
    violations.push('Invalid modeled remaining-vote range');
  }
- if(row.national_unchanged===false)violations.push('Isolated county probe changed national probabilities');
- if(hasProjection&&row.national_unchanged!==true)violations.push('No evidence of national-state isolation');
- if(liveInput&&!hasProjection)violations.push('Validated live votes did not produce the race forecast');
+ if(typeof row.national_unchanged!=='boolean')violations.push('National-state observation missing');
+ if(row.national_evidence_validated===true&&!liveInput)violations.push('Test/invalid counts admitted as national evidence');
+ if(row.national_unchanged===false&&row.national_contract_validated!==true)violations.push('National change lacks independently matched current source evidence');
+ if(nationalOnly&&hasProjection&&row.national_evidence_validated!==true)violations.push('Joint House probability lacks admitted source evidence');
+ if(liveInput&&!hasProjection&&!nationalOnly)violations.push('Validated live votes did not produce the race forecast');
  const status=violations.length?'SAFETY_OR_FORECAST_FAILURE':
   liveInput&&hasProjection?'ACTUAL_LIVE_INPUT_FORECAST_OBSERVED_NOT_CALIBRATED':
   row.source_test_data===true?'TEST_DATA_EXCLUDED_NOT_LIVE':
-  row.http!==200?'TRANSPORT_UNAVAILABLE':row.parse_error?'SOURCE_CONTRACT_REJECTED':'NO_GENUINE_POST_CLOSE_VOTES';
+  liveInput&&nationalOnly&&!hasProjection?'VALIDATED_COUNTS_AWAITING_NATIONAL_ELIGIBILITY':row.http!==200?'TRANSPORT_UNAVAILABLE':row.parse_error?'SOURCE_CONTRACT_REJECTED':'NO_GENUINE_POST_CLOSE_VOTES';
  // An operational alert threshold, not a provider SLA or a reason to accept
  // unverified counts. Use final statewide poll closure, not the early zone.
- const close=closes.winnerFloorFor('Senate',expected.state);
+ const close=closes.winnerFloorFor(expected.office||'Senate',expected.key||expected.state);
  const deliveryOverdue=inWindow(now)&&Number.isFinite(close)&&now>=close+90*60000&&!liveInput;
  return {...row,status,violations,live_input_validated:liveInput,actual_live_input_forecast_observed:liveInput&&hasProjection&&!violations.length,
+  actual_live_input_national_update_observed:liveInput&&row.national_evidence_validated===true&&!violations.length,
   prolonged_delivery_gap:deliveryOverdue,delivery_alert_grace_minutes:90,interval_calibrated:false};
 }
+function nationalProof(rows,admitted){
+ const entries=Array.isArray(admitted)?admitted:[],validated=[];
+ if(entries.length>races.length||new Set(entries.map(e=>e.code)).size!==entries.length)return {contract_validated:false,validated_codes:[]};
+ for(const e of entries){
+  const row=rows.find(r=>r.code===e.code),expected=races.find(r=>r.code===e.code);
+  if(row&&expected&&row.http===200&&row.source_test_data===false&&row.source_identity_validated===true&&row.live_votes_accepted===true&&
+   row.source_url===expected.url&&row.source_url===e.source_url&&row.source_stamp===e.as_of&&row.parsed_counties===expected.counties&&
+   Number.isSafeInteger(e.counted_two_party_votes)&&e.counted_two_party_votes>0&&row.counted_dem_votes+row.counted_rep_votes===e.counted_two_party_votes)validated.push(e.code);
+ }
+ return {contract_validated:entries.length>0&&validated.length===entries.length,validated_codes:validated};
+}
 function summarize(rows,now=Date.now()){
- if(!Array.isArray(rows)||rows.length!==races.length||new Set(rows.map(r=>r.code)).size!==races.length)throw Error('All three competitive sources required');
+ if(!Array.isArray(rows)||rows.length!==races.length||new Set(rows.map(r=>r.code)).size!==races.length)throw Error('All four competitive sources required');
  const sources=rows.map(r=>assess(r,now));
  const failure=sources.some(r=>r.violations.length);
  return {generated_at:new Date(now).toISOString(),status:failure?'ACTION_REQUIRED':
@@ -56,4 +71,4 @@ function summarize(rows,now=Date.now()){
   attribution:'Public election counts via civicAPI (https://civicapi.org); use permitted with attribution at https://civicapi.org/api-documentation',
   interval_calibrated:false,sources};
 }
-module.exports=Object.freeze({races,inWindow,assess,summarize});
+module.exports=Object.freeze({races,inWindow,assess,summarize,nationalProof});

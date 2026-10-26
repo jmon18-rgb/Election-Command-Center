@@ -1,0 +1,32 @@
+name: Competitive House district-part county evidence
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/*wisconsin*'
+      - 'data/wisconsin*'
+      - 'data/wisconsin_historical_sources/**'
+      - 'data/texas_historical_sources/2024-census-counties.zip'
+      - 'data/house_geography_bridge.json'
+      - 'data/house_history_2024_staging.json'
+      - '.github/workflows/wisconsin-house-county.yml'
+permissions:
+  contents: read
+jobs:
+  official-house-inputs:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pypdf==6.10.0
+      - name: Reproduce district-part counts, Census joins and independent House totals
+        run: python scripts/build_wisconsin_house_county_baseline.py --check
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Strict exact-source contract and test exclusion
+        run: node scripts/test_wisconsin_house_county_source.cjs

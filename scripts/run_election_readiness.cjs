@@ -8,6 +8,8 @@ const root = path.resolve(__dirname, '..');
 const out = path.join(root, 'artifacts', 'readiness');
 fs.mkdirSync(out, {recursive: true});
 const checks = [
+  ['Competitive House district-part source contract', 'test_wisconsin_house_county_source.cjs'],
+  ['Actual source/national-update report safeguards', 'test_competitive_live_source_report.cjs'],
   ['National county-return likelihood and coherent joint updates', 'test_national_county_likelihood.cjs'],
   ['Iowa competitive-race remaining-vote model', 'test_iowa_senate_partial_forecast.cjs'],
   ['Iowa full county-source input adapter', 'test_iowa_civic_county_source.cjs'],

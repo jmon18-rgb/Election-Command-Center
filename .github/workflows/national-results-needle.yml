@@ -13,6 +13,7 @@ on:
       - 'scripts/*_civic_county_source.js'
       - 'scripts/competitive_*.js'
       - 'scripts/election_night_signals.js'
+      - 'scripts/wisconsin_house*.js'
       - 'data/*county*.json'
       - '.github/workflows/national-results-needle.yml'
 permissions:

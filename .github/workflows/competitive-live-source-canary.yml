@@ -37,7 +37,11 @@ jobs:
         run: |
           npm install --no-save --no-package-lock playwright@1.57.0
           npx playwright install --with-deps chromium
+      - name: Check candidate county feeds with real upstream responses before deployment
+        if: github.event_name == 'pull_request'
+        run: node scripts/probe_competitive_live_sources.mjs --candidate
       - name: Check actual deployed county feeds and isolate real forecast evidence
+        if: github.event_name != 'pull_request'
         run: node scripts/probe_competitive_live_sources.mjs
       - name: Retain actual report and only validated non-test source captures
         if: always()

@@ -1,0 +1,68 @@
+{
+  "status": "OFFICIAL_2024_DISTRICT_PART_BASELINE_NOT_LIVE_OR_CALIBRATION",
+  "race_code": "WI-01",
+  "office": "U.S. House",
+  "election_date": "2024-11-05",
+  "county_count": 5,
+  "counties": [
+    {
+      "county": "Kenosha",
+      "county_fips": "55059",
+      "dem_votes": 39813,
+      "rep_votes": 47584,
+      "other_votes": 1747,
+      "total_votes": 89144,
+      "geography_scope": "WI-01 district part, not whole county"
+    },
+    {
+      "county": "Milwaukee",
+      "county_fips": "55079",
+      "dem_votes": 37790,
+      "rep_votes": 43503,
+      "other_votes": 2002,
+      "total_votes": 83295,
+      "geography_scope": "WI-01 district part, not whole county"
+    },
+    {
+      "county": "Racine",
+      "county_fips": "55101",
+      "dem_votes": 44208,
+      "rep_votes": 57632,
+      "other_votes": 2368,
+      "total_votes": 104208,
+      "geography_scope": "WI-01 district part, not whole county"
+    },
+    {
+      "county": "Rock",
+      "county_fips": "55105",
+      "dem_votes": 32018,
+      "rep_votes": 30294,
+      "other_votes": 1451,
+      "total_votes": 63763,
+      "geography_scope": "WI-01 district part, not whole county"
+    },
+    {
+      "county": "Walworth",
+      "county_fips": "55127",
+      "dem_votes": 18573,
+      "rep_votes": 33502,
+      "other_votes": 1008,
+      "total_votes": 53083,
+      "geography_scope": "WI-01 district part, not whole county"
+    }
+  ],
+  "district_totals": {
+    "dem_votes": 172402,
+    "rep_votes": 212515,
+    "other_votes": 8576,
+    "total_votes": 393493
+  },
+  "source_url": "https://elections.wi.gov/sites/default/files/documents/County%20by%20County%20Report_US%20Congress_0.pdf",
+  "source_sha256": "3542962d2986d7ae6149c7d7de5a7708ba8e301e6f18fb51bdfb004f8982d375",
+  "method_split_reported": false,
+  "historical_release_times": false,
+  "interval_calibrated": false,
+  "map_comparability": "boundaries_unchanged_per_2026_census",
+  "map_source": "https://www.census.gov/programs-surveys/decennial-census/about/rdo/congressional-districts.html",
+  "independent_district_reconciliation": "MIT House 2024 staged candidate totals match all three party categories"
+}

@@ -1,0 +1,54 @@
+{
+  "observed_at": "2026-10-26T12:47:59.747995+00:00",
+  "source_url": "https://civicapi.org/api/v2/race/87483",
+  "source_sha256": "6434c2574a62b68a498c5e611949ed64453898f3c86465ee292c1ad55baf7c9a",
+  "country": "US",
+  "province": "WI",
+  "district": "WI-01",
+  "election_date": "2026-11-03T05:00:00.000Z",
+  "election_type": "House of Representatives",
+  "election_name": "Wisconsin US House 1",
+  "source_test_data": true,
+  "region_count": 5,
+  "regions": [
+    {
+      "name": "Kenosha",
+      "fips": "55059",
+      "type": "County"
+    },
+    {
+      "name": "Milwaukee",
+      "fips": "55079",
+      "type": "County"
+    },
+    {
+      "name": "Racine",
+      "fips": "55101",
+      "type": "County"
+    },
+    {
+      "name": "Rock",
+      "fips": "55105",
+      "type": "County"
+    },
+    {
+      "name": "Walworth",
+      "fips": "55127",
+      "type": "County"
+    }
+  ],
+  "candidate_roster": [
+    {
+      "name": "Bryan Steil",
+      "party": "Republican"
+    },
+    {
+      "name": "Mitchell Berman",
+      "party": "Democratic"
+    }
+  ],
+  "accepted_live_vote_rows": 0,
+  "adapter_status": "TEST_DATA_NOT_LIVE",
+  "rights_reference": "https://civicapi.org/api-documentation",
+  "scope": "Metadata only; no provider test vote payload retained; no actual post-close delivery/calibration claim"
+}
