@@ -6719,6 +6719,11 @@ function enSnapshotCompatible(previous,next){
   if(counted.length){
    if(!Number.isFinite(oldTime)||!Number.isFinite(newTime)||
       newTime<oldTime)return false;
+   // Added positive races change the source evidence too. Checking only the
+   // previously counted keys would let a cached publication time introduce
+   // new ballots without an auditable source revision.
+   if(newTime===oldTime&&Object.entries(next.races||{}).some(([key,row])=>
+      row?.total>0&&!(previous.races[key]?.total>0)))return false;
    for(const [key,old] of counted){
     const current=next.races?.[key];
     if(!current||current.total<old.total)return false;
@@ -6738,6 +6743,7 @@ function enSnapshotCompatible(previous,next){
     // time has not established a fresh, auditable result revision.
     if(newTime===oldTime&&
        (current.total!==old.total||
+        (current.cands||[]).length!==(old.cands||[]).length||
         (old.cands||[]).some(c=>{
          const later=byName.get(c.n.trim().toLocaleLowerCase('en-US'));
          return !later||later.v!==c.v||later.p!==c.p;

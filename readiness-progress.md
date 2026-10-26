@@ -8,6 +8,30 @@ Prioritize competitive sources/fallbacks, correct calls/control accounting,
 outage/retraction recovery and the laptop dashboard. The scoped needle remains
 an evidence task, not a reason to fabricate predictive updates.
 
+## October 25 - unchanged-publication-clock source revisions
+
+- Reproduced a real acceptance gap in the actual primary snapshot function:
+  adding a counted candidate while keeping the total/old candidates unchanged,
+  or adding a new positive race, was accepted without advancing publication time.
+  The guard compared only candidates/races that were already counted.
+- Close those two paths for an already-counted snapshot. Fresh additive evidence
+  still recovers; candidate ordering alone is unchanged evidence, and revoking a
+  winner flag without changing votes remains allowed. Downward revisions retain
+  the existing independent-review requirement; no safety rule was relaxed.
+- All 14 core checks pass. Actual Edge desktop/mobile HTTP-intercepted drills
+  reject the same-clock extra House race, retain the previous accepted snapshot,
+  keep independent Senate results usable, and recover House counts after a fresh
+  publication time. Synthetic counts remain isolated to temporary browser memory.
+  Current-head CI is required before merging this correction-safety fix.
+- PR #433 passed all 27 workflows at 3a4dbc6a and merged as 156d121a.
+  Broad evidence: https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40251936204
+  At 01:12:08Z all 38 published files match main e5e97907; actual Edge at
+  01:12:10Z confirms the Texas reference/not-yet-published warning and NJ county-only
+  warning, alongside preserved drawers/focus and zero reported House counts/calls
+  under an isolated outage fixture. This does not resolve real live-source gaps.
+- Next: current-head CI and published regression verification for the snapshot
+  fix, then review correction/retraction recovery for other actual acceptance gaps.
+
 ## October 25 - competitive government references and scope warnings
 
 - Opened the exact Texas November 2026 page and verified TX-23, TX-33, Senate
