@@ -13,6 +13,7 @@ const checks = [
   ['Iowa combined county predictive needle', 'test_iowa_county_needle.cjs'],
   ['Kansas strict county-source contract', 'test_kansas_civic_county_source.cjs'],
   ['Kansas experimental source-to-forecast path', 'test_kansas_county_needle.cjs'],
+  ['Texas strict county-source contract', 'test_texas_civic_county_source.cjs'],
   ['Competitive race source request priority', 'test_election_night_transport.cjs'],
   ['Linked competitive-race starting priors', 'test_competitive_needle_prior.cjs'],
   ['Source audit reporting safeguards', 'test_election_readiness_source_snapshot.cjs'],

@@ -37,7 +37,7 @@ const basis=model.prepare({seats:load('seat_universe'),history:load('house_histo
  odds:load('race_probabilities'),polls:load('polling_estimates')});
 const baseline=model.simulate(basis,{samples:300,seed:20261103});
 const sensitivity=model.simulate(basis,{samples:300,seed:20261103,nationalShift:4,errorMultiplier:1.5});
-for(const code of ['IA-SEN','KS-SEN']){
+for(const code of ['IA-SEN','KS-SEN','TX-SEN']){
  const a=read(baseline,code),b=read(sensitivity,code);assert(a&&b);
  assert.equal(a.margin,b.margin,'Actual exporter keeps the latent mean separate from research national shifts');
  assert(Math.abs(a.sigma-b.sigma)<=.001,'Base uncertainty survives exporter rounding and research error scaling');
