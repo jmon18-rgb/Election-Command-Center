@@ -67,6 +67,27 @@ assert.deepEqual(replayed,ordinary,'Exact RNG-state replay preserves entire corr
 assert.throws(()=>model.simulate(basis,{...opts,captureCountyDraws:['CA-SEN']}),/scope/);
 assert.throws(()=>model.simulate(basis,{...opts,replayCountySeeds:[1]}),/replay/);
 const blue=specs.map(s=>fixture(s,8)),red=specs.map(s=>fixture(s,-8));
+const sharedOne=bridge.condition(model,basis,[blue[0]],{...opts,now});
+const sharedThree=bridge.condition(model,basis,blue,{...opts,now});
+assert(sharedThree.result.blue_both_including_tsunami>sharedOne.result.blue_both_including_tsunami,
+ 'Consistent performance across states must still provide more evidence than one candidate-specific surprise');
+const reporting=sharedThree.diagnostics.reporting_error;
+assert.equal(reporting.scope,'SHARED_ACROSS_ADMITTED_RACES');
+assert.equal(reporting.calibrated,false);
+assert(Math.abs(reporting.shared_margin_sigma**2+reporting.race_specific_margin_sigma**2-8**2)<1e-10,
+ 'Sharing reporting error must allocate the existing variance, not add a second error budget');
+assert.equal(reporting.quadrature_nodes,5);
+const commonNodes=[[-2.8569700138728056,.0112574113277207],[-1.355626179974266,.2220759220056126],[0,.5333333333333333],[1.355626179974266,.2220759220056126],[2.8569700138728056,.0112574113277207]];
+assert(Math.abs(commonNodes.reduce((s,[z,w])=>s+w*z*z,0)-1)<1e-12);
+// Two synthetic same-direction batch errors are not independent confirmation.
+// Use real compiled county likelihoods to distinguish integrating one shared
+// nuisance AFTER the product from multiplying two separately integrated sources.
+const a=bridge.compile(blue[1],{now}),b=bridge.compile(blue[2],{now});
+const likelihoodAt=(c,m,z)=>Math.exp(c.logLikelihood(m,{sharedReportingOffset:z*reporting.shared_margin_sigma})-c.logLikelihood(8,{sharedReportingOffset:0}));
+const sharedProduct=commonNodes.reduce((s,[z,w])=>s+w*likelihoodAt(a,0,z)*likelihoodAt(b,0,z),0);
+const independentProduct=commonNodes.reduce((s,[z,w])=>s+w*likelihoodAt(a,0,z),0)*commonNodes.reduce((s,[z,w])=>s+w*likelihoodAt(b,0,z),0);
+assert(sharedProduct>independentProduct,
+ 'A common batch bias must remain a plausible explanation for correlated surprises, not independent evidence twice');
 const before=JSON.stringify(ordinary),up=bridge.condition(model,basis,blue,{...opts,now}),down=bridge.condition(model,basis,red,{...opts,now});
 assert.equal(JSON.stringify(ordinary),before,'Conditioning cannot mutate the original baseline');
 assert(up.result.blue_both_including_tsunami>down.result.blue_both_including_tsunami+1,

@@ -1,5 +1,43 @@
 # National needle acceptance decision — October 27, 2026
 
+## October 27 methodology reassessment after owner rehearsal review
+
+The owner requested better expectation-based forecasting, not cosmetic smoothing.
+The rehearsal previously imposed arbitrary race margins (0, D+8, D+2). PR487
+replaces those with historical county composition adjusted to current race means,
+then an explicitly declared three-point margin surprise. These are hypothetical
+county expectations, not county polls. Expected reporting can narrow uncertainty;
+the raw arrival of Democratic counties is not evidence of a Democratic wave.
+
+Published methodological evidence supports local benchmarks, caution about
+incomplete voting-method batches, and shared observation errors:
+
+- [NYT graphics editor Wilson Andrews interview, Reuters Institute, Oct28 2024](https://reutersinstitute.politics.ox.ac.uk/news/moving-needle-how-new-york-times-aims-guide-readers-through-americas-most-uncertain-election): describes local pre-election expectations and learning about similar places from deviations. This interview establishes the broad approach, not NYT source code or parameters. Direct retrieval of the original NYT explainer was unavailable; no paywall bypass or proprietary reconstruction.
+- [DDHQ authors, Harvard Data Science Review, Oct18 2024](https://doi.org/10.1162/99608f92.ccb395f0): published primary-election method uses geography/demographics and nearly complete reporting units, and cautions about early/late mail-vote differences. It is not a validated parameter prescription for our general-election House/Senate model. Their completeness thresholds must not be substituted for our unknown vote completion.
+- [Andrew Gelman, Nov8 2016](https://statmodeling.stat.columbia.edu/2016/11/08/election-forecasting-updating-error-ignored-correlations-data-thus-producing-illusory-precision-inferences/): identifies correlated errors in early-vote estimates as a source of false national certainty.
+
+Concrete candidate improvement: retain the existing eight-margin-point batch
+error standard deviation but allocate half its variance to one shared reporting
+error across admitted races and half to race-specific error. Integrate the same
+shared nuisance after combining county likelihoods, using five-node normal
+quadrature, before ESS tempering and same-draw replay. This distinguishes a
+common early-batch artifact from independent confirmation in several states.
+Fixed state likelihood budgets, the contamination floor, original correlated
+prior draws and Four Endings thresholds remain unchanged. No visual moving
+average, hysteresis or update delay is introduced; valid corrections still
+change the estimate immediately.
+
+The one-half variance allocation is an explicit, unfitted engineering assumption,
+not a NYT/DDHQ parameter or empirically optimal value. This addresses a structural
+independence weakness; it does not demonstrate improved accuracy. A common error
+can resemble genuine national movement, so coherent multi-race performance must
+still move the outlook and independent held-out chronological evaluation remains
+the acceptance gate. Shared errors may not cover every regional/method-specific
+bias; county demographics and verified method-level observations remain future
+evidence requirements, never guessed inputs. No new source or polling posterior
+is counted as result evidence. Candidate changes must pass all applicable checks
+and publication verification before being described as deployed.
+
 Decision: implementation is ready for experimental use; predictive validation is
 not sufficient for a calibrated national forecasting claim. This is the bounded
 October 27 source/calibration decision, prepared from existing evidence. It does

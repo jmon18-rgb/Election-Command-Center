@@ -1,5 +1,12 @@
 # Readiness progress
 
+## October27 - Research-backed shared reporting-error candidate / PR487
+
+- Owner requested better needle methodology. Published NYT-editor interview describes local expectations; DDHQ authors warn about incomplete/method-biased units; Gelman identifies correlated early-return errors as false national certainty. Sources and distinctions saved in NATIONAL_NEEDLE_ACCEPTANCE.md. NYT original explainer unavailable, no proprietary-code or parameter claim.
+- Concrete structural weakness: existing batch error was race-specific even across similar early returns in different states. Candidate retains total8margin-point batch sigma, allocates half variance to one common nuisance/half race-specific and integrates common nuisance AFTER combining likelihoods with5normal quadrature nodes. No extra polling prior; same state budgets/ESS/draws/thresholds/corrections. One-half allocation explicit ASSUMED/unfitted, not calibrated or empirically optimal. No animation smoothing.
+- Actual-generator blue/red expectation checks, shared-error vs independent-product check, unchanged variance budget and consistent-multiple-races-more-than-one PASS. Full national likelihood plus ME/OH/VA/WA/PA08/MI07 bridges PASS, including mixed16-input outage/remaining/correction/withdrawal/recovery. New exact-head CI still required; no deployment claim. Revised owner ROADMAP restored from3129dd8a so it survives branch handoff. Next finish exact-head release gates and published behavior, then R1/R2 priorities. Real delivery/calibration remain UNMET.
+
+
 ## October27 - Owner-reported national rehearsal expectation defect / PR487
 
 - Demo forced every sample race toward arbitrary0/+8/+2 margins; labels wrongly suggested reporting composition alone. Live likelihood already compares county shares against historical composition plus each correlated draw's race shift. Generator now matches current race mean at each county and adds only explicit3margin-point surprise in stage2; corrected stage removes it. No live numerical model change or county-poll claim.
