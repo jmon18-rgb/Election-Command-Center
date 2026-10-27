@@ -1,0 +1,677 @@
+{
+  "schema": "michigan-senate-historical-preparation-assessment-v1",
+  "status": "OPEN_DEPENDENCIES_NOT_BASELINE_OR_RUNTIME_ADMISSION",
+  "eligible_for_national_needle": false,
+  "current_source_admitted": false,
+  "runtime_inputs_unchanged": 17,
+  "source_hashes": {
+    "processed": "654a7dbf7a86a96c52cb182ba4472565b62d5aa76533238228fc3065c7d447fb",
+    "cass": "4d802aa7b56b5a866dfb1add1992a02b9348d7d46982a04f8e709cf9822faffd",
+    "leelanau": "82b457dc6ae2089c92f2671a6b38cdb0cd6b027b271593fad84dab6cb2511f04",
+    "census": "3c337402b5c6e8d5aa26b4278ccf4edc8989f2683765b3ffbf22296cdb2df3a0"
+  },
+  "historical_year": 2024,
+  "same_senate_class_as_2026": false,
+  "processed_senate_rows": 41551,
+  "processed_counties": 83,
+  "county_reference_matches": 82,
+  "unmatched_processed_county_labels": [
+    "St. Joseph's"
+  ],
+  "unmatched_independent_counties": [
+    "St. Joseph"
+  ],
+  "explicit_Cass_alias_rows": [
+    {
+      "county": "Cass",
+      "precinct": "Jefferson Township, Precinct 1",
+      "original_name": "Elissa Stotkin",
+      "votes": 136
+    },
+    {
+      "county": "Cass",
+      "precinct": "LaGrange Township, Precinct 1",
+      "original_name": "Elissa Stotkin",
+      "votes": 204
+    }
+  ],
+  "Cass_official_counts": {
+    "D": 8584,
+    "R": 18127,
+    "L": 272,
+    "U": 205,
+    "G": 121,
+    "N": 106
+  },
+  "Leelanau_county_published_counts": {
+    "Elissa Slotkin": 9164,
+    "Mike Rogers": 8102,
+    "Joseph Solis-Mullen": 119,
+    "Dave Stein": 54,
+    "Douglas P. Marsh": 87,
+    "Doug Dern": 29,
+    "Write-in": 10,
+    "James Chapman": 0,
+    "Marcus A. Irvine": 0,
+    "Valerie Lee Willis": 0
+  },
+  "Leelanau_source_label": "UNOFFICIAL RESULTS; retrospective Jan2025 export, not independent2024capture or certification",
+  "Leelanau_blank_regular_counts_supplied_from_independent_combined_rows": [
+    {
+      "county": "Leelanau",
+      "precinct": "Bingham Township, Precinct 1",
+      "candidate": "Elissa Slotkin",
+      "native_combined_votes": 916
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Bingham Township, Precinct 1",
+      "candidate": "Mike Rogers",
+      "native_combined_votes": 1067
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Cleveland Township, Precinct 1",
+      "candidate": "Doug Dern",
+      "native_combined_votes": 0
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Elmwood Township, Precinct 2",
+      "candidate": "Doug Dern",
+      "native_combined_votes": 2
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Empire Township, Precinct 1",
+      "candidate": "Doug Dern",
+      "native_combined_votes": 2
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Glen Arbor Township, Precinct 1",
+      "candidate": "Dave Stein",
+      "native_combined_votes": 0
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Kasson Township, Precinct 1",
+      "candidate": "Doug Dern",
+      "native_combined_votes": 0
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Suttons Bay Township, Precinct 1",
+      "candidate": "Elissa Slotkin",
+      "native_combined_votes": 1158
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Suttons Bay Township, Precinct 1",
+      "candidate": "Mike Rogers",
+      "native_combined_votes": 862
+    }
+  ],
+  "regular_processed_totals_after_documented_corroboration": {
+    "D": 2712675,
+    "R": 2693676,
+    "L": 55822,
+    "U": 41363,
+    "G": 53978,
+    "N": 18779
+  },
+  "independent_reference": "Previously imported MIT/MEDSL CC0 statewide Senate snapshot, not a new original state canvass",
+  "independent_MIT_totals": {
+    "D": 2712686,
+    "R": 2693680,
+    "L": 56697,
+    "U": 41363,
+    "G": 53978,
+    "N": 18779
+  },
+  "MIT_minus_processed_residual_not_assigned_to_any_county": {
+    "D": 11,
+    "R": 4,
+    "L": 875,
+    "U": 0,
+    "G": 0,
+    "N": 0
+  },
+  "unclassified_row_label_totals_not_assumed_additive": [
+    {
+      "candidate": "Ballots Cast",
+      "party": "",
+      "votes": 956384
+    },
+    {
+      "candidate": "Blank (W)",
+      "party": "",
+      "votes": 0
+    },
+    {
+      "candidate": "James Chapman",
+      "party": "",
+      "votes": 0
+    },
+    {
+      "candidate": "James Chapman",
+      "party": "No Party Affiliation",
+      "votes": 0
+    },
+    {
+      "candidate": "James Chapman",
+      "party": "Write-In",
+      "votes": 1
+    },
+    {
+      "candidate": "James Chapman",
+      "party": "Write-in",
+      "votes": 0
+    },
+    {
+      "candidate": "James Chapman (W)",
+      "party": "",
+      "votes": 0
+    },
+    {
+      "candidate": "James Chapman Qualified Write-In",
+      "party": "",
+      "votes": 0
+    },
+    {
+      "candidate": "James Chapmano - Write-In",
+      "party": "",
+      "votes": 0
+    },
+    {
+      "candidate": "Marcus A Irvine",
+      "party": "",
+      "votes": 0
+    },
+    {
+      "candidate": "Marcus A. Irvine",
+      "party": "",
+      "votes": 0
+    },
+    {
+      "candidate": "Marcus A. Irvine",
+      "party": "No Party Affiliation",
+      "votes": 1
+    },
+    {
+      "candidate": "Marcus A. Irvine",
+      "party": "Write-In",
+      "votes": 0
+    },
+    {
+      "candidate": "Marcus A. Irvine",
+      "party": "Write-in",
+      "votes": 0
+    },
+    {
+      "candidate": "Marcus A. Irvine (W)",
+      "party": "",
+      "votes": 0
+    },
+    {
+      "candidate": "Marcus A. Irvine - Write-In",
+      "party": "",
+      "votes": 0
+    },
+    {
+      "candidate": "Marcus A. Irvine Qualified Write-In",
+      "party": "",
+      "votes": 0
+    },
+    {
+      "candidate": "Not Assigned",
+      "party": "",
+      "votes": 17
+    },
+    {
+      "candidate": "Over Vote Count",
+      "party": "",
+      "votes": 481
+    },
+    {
+      "candidate": "Over Votes",
+      "party": "",
+      "votes": 835
+    },
+    {
+      "candidate": "Overvotes",
+      "party": "",
+      "votes": 24
+    },
+    {
+      "candidate": "Rejected write-in votes:",
+      "party": "",
+      "votes": 31
+    },
+    {
+      "candidate": "Rejected write-ins",
+      "party": "",
+      "votes": 965
+    },
+    {
+      "candidate": "Unassigned write-ins",
+      "party": "",
+      "votes": 0
+    },
+    {
+      "candidate": "Under Vote Count",
+      "party": "",
+      "votes": 20145
+    },
+    {
+      "candidate": "Under Votes",
+      "party": "",
+      "votes": 31353
+    },
+    {
+      "candidate": "Undervotes",
+      "party": "",
+      "votes": 636
+    },
+    {
+      "candidate": "Unresolved Write-In",
+      "party": "",
+      "votes": 36
+    },
+    {
+      "candidate": "Unresolved write-in votes:",
+      "party": "",
+      "votes": 0
+    },
+    {
+      "candidate": "Valeria Lee Willis",
+      "party": "",
+      "votes": 0
+    },
+    {
+      "candidate": "Valerie Lee Willis",
+      "party": "",
+      "votes": 0
+    },
+    {
+      "candidate": "Valerie Lee Willis",
+      "party": "No Party Affiliation",
+      "votes": 0
+    },
+    {
+      "candidate": "Valerie Lee Willis",
+      "party": "Write-In",
+      "votes": 0
+    },
+    {
+      "candidate": "Valerie Lee Willis",
+      "party": "Write-in",
+      "votes": 0
+    },
+    {
+      "candidate": "Valerie Lee Willis (W)",
+      "party": "",
+      "votes": 0
+    },
+    {
+      "candidate": "Valerie Lee Willis - Write-In",
+      "party": "",
+      "votes": 0
+    },
+    {
+      "candidate": "Valerie Lee Willis Qualified Write-In",
+      "party": "",
+      "votes": 0
+    },
+    {
+      "candidate": "Valerie Willis",
+      "party": "",
+      "votes": 1
+    },
+    {
+      "candidate": "Write-In Totals",
+      "party": "",
+      "votes": 17
+    },
+    {
+      "candidate": "Write-Ins",
+      "party": "",
+      "votes": 162
+    },
+    {
+      "candidate": "Write-in",
+      "party": "",
+      "votes": 1869
+    },
+    {
+      "candidate": "Write-in",
+      "party": "NON",
+      "votes": 1066
+    },
+    {
+      "candidate": "Write-ins",
+      "party": "",
+      "votes": 4303
+    }
+  ],
+  "blank_unclassified_rows_not_zeroed": [
+    {
+      "county": "Leelanau",
+      "precinct": "Bingham Township, Precinct 1",
+      "candidate": "James Chapman",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Bingham Township, Precinct 1",
+      "candidate": "Marcus A. Irvine",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Bingham Township, Precinct 1",
+      "candidate": "Valerie Lee Willis",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Bingham Township, Precinct 1",
+      "candidate": "Write-ins",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Centerville Township, Precinct 1",
+      "candidate": "James Chapman",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Centerville Township, Precinct 1",
+      "candidate": "Marcus A. Irvine",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Centerville Township, Precinct 1",
+      "candidate": "Valerie Lee Willis",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Cleveland Township, Precinct 1",
+      "candidate": "James Chapman",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Cleveland Township, Precinct 1",
+      "candidate": "Marcus A. Irvine",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Cleveland Township, Precinct 1",
+      "candidate": "Valerie Lee Willis",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Cleveland Township, Precinct 1",
+      "candidate": "Write-ins",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Elmwood Township, Precinct 1",
+      "candidate": "James Chapman",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Elmwood Township, Precinct 1",
+      "candidate": "Marcus A. Irvine",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Elmwood Township, Precinct 1",
+      "candidate": "Valerie Lee Willis",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Elmwood Township, Precinct 1",
+      "candidate": "Write-ins",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Elmwood Township, Precinct 2",
+      "candidate": "James Chapman",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Elmwood Township, Precinct 2",
+      "candidate": "Marcus A. Irvine",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Elmwood Township, Precinct 2",
+      "candidate": "Valerie Lee Willis",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Empire Township, Precinct 1",
+      "candidate": "James Chapman",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Empire Township, Precinct 1",
+      "candidate": "Marcus A. Irvine",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Empire Township, Precinct 1",
+      "candidate": "Valerie Lee Willis",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Glen Arbor Township, Precinct 1",
+      "candidate": "James Chapman",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Glen Arbor Township, Precinct 1",
+      "candidate": "Marcus A. Irvine",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Glen Arbor Township, Precinct 1",
+      "candidate": "Valerie Lee Willis",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Glen Arbor Township, Precinct 1",
+      "candidate": "Write-ins",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Kasson Township, Precinct 1",
+      "candidate": "James Chapman",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Kasson Township, Precinct 1",
+      "candidate": "Marcus A. Irvine",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Kasson Township, Precinct 1",
+      "candidate": "Valerie Lee Willis",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Leelanau Township, Precinct 1",
+      "candidate": "James Chapman",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Leelanau Township, Precinct 1",
+      "candidate": "Marcus A. Irvine",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Leelanau Township, Precinct 1",
+      "candidate": "Valerie Lee Willis",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Leelanau Township, Precinct 1",
+      "candidate": "Write-ins",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Leland Township, Precinct 1",
+      "candidate": "James Chapman",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Leland Township, Precinct 1",
+      "candidate": "Marcus A. Irvine",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Leland Township, Precinct 1",
+      "candidate": "Valerie Lee Willis",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Leland Township, Precinct 1",
+      "candidate": "Write-ins",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Solon Township, Precinct 1",
+      "candidate": "James Chapman",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Solon Township, Precinct 1",
+      "candidate": "Marcus A. Irvine",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Solon Township, Precinct 1",
+      "candidate": "Valerie Lee Willis",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Solon Township, Precinct 1",
+      "candidate": "Write-ins",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Suttons Bay Township, Precinct 1",
+      "candidate": "James Chapman",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Suttons Bay Township, Precinct 1",
+      "candidate": "Marcus A. Irvine",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "Suttons Bay Township, Precinct 1",
+      "candidate": "Valerie Lee Willis",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "City of Traverse City, Precinct 4",
+      "candidate": "James Chapman",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "City of Traverse City, Precinct 4",
+      "candidate": "Marcus A. Irvine",
+      "votes": null
+    },
+    {
+      "county": "Leelanau",
+      "precinct": "City of Traverse City, Precinct 4",
+      "candidate": "Valerie Lee Willis",
+      "votes": null
+    }
+  ],
+  "current_contract_status": "One directed2026MIsearch returnedHTTP403; stopped, no currentID/detail/county contract admitted",
+  "open_dependencies": [
+    "Unreconciled statewide D11/R4/L875 reference differences; never allocate residuals to guessed counties",
+    "Processed St. Joseph's versus independent St. Joseph name requires explicit independently grounded join before admission",
+    "Historical2024different-class scenario needs explicit review; this is not the missing official2020same-seat baseline",
+    "Current2026 exact6candidate/provider/geography/clock contract unavailable; directed search403 stopped",
+    "MI already has2predeclared House members: preserve their fixed shares and the state20likelihood budget before any18th route; cap-only expansion forbidden"
+  ],
+  "actual_positive_2026_delivery_verified": false,
+  "independent_chronological_calibration": false,
+  "source_receipts": {
+    "Cass": {
+      "url": "https://casscountymi.org/DocumentCenter/View/4501/StatementOfVotesCastRPT-1",
+      "at": "2026-10-27T21:51:28.334155+00:00",
+      "purpose": "Distinct county original for Cass2024Senate candidate-name/count corroboration; declared public search-result URL, no guessedID",
+      "requests": 1,
+      "http": 200,
+      "final_url": "https://casscountymi.org/DocumentCenter/View/4501/StatementOfVotesCastRPT-1",
+      "content_type": "application/pdf",
+      "bytes": 1120082,
+      "sha256": "4d802aa7b56b5a866dfb1add1992a02b9348d7d46982a04f8e709cf9822faffd"
+    },
+    "Leelanau": {
+      "url": "https://app.enhancedvoting.com/cdn/results/leelanau-county-mi/export-November2024General.json",
+      "at": "2026-10-27T21:57:21.154698+00:00",
+      "purpose": "Leelanau2024Senate combined-count corroboration; declared Media Export link observed in normal public viewer, not protected API/denied-PDF retry",
+      "requests": 1,
+      "http": 200,
+      "final_url": "https://app.enhancedvoting.com/cdn/results/leelanau-county-mi/export-November2024General.json",
+      "content_type": "application/octet-stream",
+      "bytes": 734355,
+      "sha256": "82b457dc6ae2089c92f2671a6b38cdb0cd6b027b271593fad84dab6cb2511f04"
+    },
+    "current_search": {
+      "url": "https://civicapi.org/api/v2/race/search?country=US&province=MI&startDate=2026-11-03&endDate=2026-11-03&query=US+Senate&limit=20",
+      "at": "2026-10-27T22:02:36.778553+00:00",
+      "purpose": "One directed documented search for owner-requested MI2026General Senate current candidate/county source contract; not a blanket route probe",
+      "requests": 1,
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    }
+  },
+  "receipt_clock_scope": "at is the recorded request-start clock; decoded-body completion clocks were not recorded. Jan2025 export creation is not an independent2024capture."
+}
