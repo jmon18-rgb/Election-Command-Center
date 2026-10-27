@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-27T20:13:23.859003Z",
+  "updated_at": "2026-10-27T20:48:21.090536Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
@@ -267,6 +267,25 @@
     }
   ],
   "items": [
+    {
+      "id": "b271418e9786deeaf360",
+      "title": "Despite Trump admin request, Nevada won't use voter citizenship system amid fear of errors - The Nevada Independent",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNYTlOMm9IWTBTLU1ZOXBwejBiaW9VV0tGclRSMEVrMVA2STFUT3pVVU5OTnJMVzMyNDRtbHY0LUxtV29PajZmV3FhampzT0c2Nm5sRGVudy1MZFh0Mi1Db0VEUjBxMXhabWk5dXpKU3l6ZVo3UE1rbE51MG9KTHg2aWxvS2g5ZEhUbmhnMGxhWHJpcV9KdWY0SDRxcXhYYXlXZDdUbGdLMU5pSTR0TlViUkV2cHRPMURYZGNDUzgwbEExc0oxOFR0eA?oc=5",
+      "publisher": "The Nevada Independent",
+      "published_at": "2026-10-27T20:16:26Z",
+      "detected_at": "2026-10-27T20:48:21.090536Z",
+      "state_hints": [
+        "NV"
+      ],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "4449128350f822d98760",
       "title": "Judge to consider whether California should count 20,000 ballots disputed by Trump administration - KXAN Austin",
@@ -5009,23 +5028,6 @@
       "headline_numbers_unverified": [
         "31 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "9fb0397b787a2220cb07",
-      "title": "U.S. House Representative - Alaska Beacon",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5ndEFNbUYxVV9GUWROSEpzR210aTlUZXYzekduQ2VCeHRGcXl2TFJQalFLVjJ6RlhOMkUzNzI2LU04MXdyaEhickVHMVdHallXaWRlTnItM0hqSnJON0xYcmFGNFVLSk82WU9uUDk5Zw?oc=5",
-      "publisher": "Alaska Beacon",
-      "published_at": "2026-10-15T04:48:13Z",
-      "detected_at": "2026-10-15T06:58:43.504899Z",
-      "state_hints": [
-        "AK"
-      ],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,

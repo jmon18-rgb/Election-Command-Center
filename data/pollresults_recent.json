@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-27T20:13:24.441117+00:00",
+  "updated_at": "2026-10-27T20:48:21.720864+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,7 +9,7 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1270,
+      "available_in_source": 1271,
       "records_examined": 300
     },
     "governor": {
@@ -18,9 +18,38 @@
     }
   },
   "matched_primary_observations": 336,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "VA-01",
+      "poll_id": "e19f48ac-ff0c-4991-b355-e4e80fb22aa3"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "VA-01",
+      "race_type": "house",
+      "state": "VA",
+      "poll_id": "e19f48ac-ff0c-4991-b355-e4e80fb22aa3",
+      "question_id": "256db771-c443-4eb2-952a-df6149668aae",
+      "pollster": "DCCC Targeting Team",
+      "dem_name": "Shannon Taylor",
+      "rep_name": "Robert Wittman",
+      "dem": 48.0,
+      "rep": 47.0,
+      "margin": 1.0,
+      "field_end": "2026-10-25",
+      "field_start": "2026-10-24",
+      "posted_date": "2026-10-27",
+      "posted_source_datetime": "2026-10-27T16:28:00",
+      "posted_source_time": "10/27/26 16:28",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.virginiascope.com/latest-internal-poll-from-democrats-shows-a-1-point-race-in-va-01/",
+      "sample_population": "lv",
+      "sample_size": 478,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "FL-25",
       "race_type": "house",
