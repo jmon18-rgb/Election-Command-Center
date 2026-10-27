@@ -1,5 +1,187 @@
 # Election Night production-readiness assignment
 
+## October26 23:56Z — Maine real same-office baseline and strict county adapter implemented
+
+- Followed actual official previous-election/2020page links to ussenator1120.xlsx,
+  downloaded44,469bytes,SHA0880031fa74d62dbbaf2e6a40380b7a3801033e66fcf8634b2e6f4b3e3fb96ce.
+  Exactofficialsheet/headers/partyrows verified. Reproducible importer joins16county
+  codes to existing independently pinnedCensusGazetteer23xxxIDs, verifies everytown
+  andsubtotal/state. Officialcounty sums plus SEPARATE statewideUOCAVA reconcile
+  exactly347223D/417645R. UOCAVA4068D/1089R staysunallocated; no fakecountyassignment.
+- New pinnedoriginalworkbook,16countybaseline/reference, importer/tests. Blankballots
+  excludedfromcontestvotes but preserved, thirdpartyvotes retained. Finalfirstchoice
+  history is NOT reportingchronology, calibration or2026ballotsoutstanding.
+- New strict Maine source adapter: select ONLY16Countyaggregates outofmixedCounty/
+  Township payload, exactindependentFIPS/names andballotverifiedcandidateIDs; never
+  doublecounttowns. Explicitround1only, stale/test/preclose/candidate/totalguards;
+  reject additionalcandidate/writein orround2 untilreviewed. Providerstate totals
+  mustexactlyreconcilecounty totals; anyunallocatedpositive2026componentcurrently
+  excludes source rather than inventingitsgeography. No winnerflagforecastinput.
+- LocaltestsPASS originalbaseline/UOCAVA/subtotals and meaningfulsyntheticpositive
+  source cases: nestedtown999999999counts ignored; duplicate/missingcounty, round2,
+  alteredcandidateID, totalsdisagreement/stalereply rejected. Newread-onlyCIworkflow
+  runs bothcontracts. NoUI/controller/nationalactivation yet: this is implemented
+  preparation for a TENTH nationalinput, not actualpositiveMaineforecasting.
+- NEXT: finishreviewchecks, then connectMaine to existingnationalcontroller/likelihood
+  with explicitfirstchoice/unallocateduncertainty and sameexistingcadencebudget;
+  testnationalmovement/corrections beforedeployment. No newracepanel. Keep all
+  existing9inputs operational and source/calibration limits visible.
+
+
+## October26 23:41Z — Maine independent ballot contract verified
+
+- OfficialWestbrookElections&Voting page actually links sampleballot6376. Original
+  PDF downloaded200,SHA668442884edfa5d196d0013dc3a185028d7a668874eac630bbc7f27cdbaa33dc.
+  ReadonlyPDFskill render/visualQA bothpages confirmsNov3,2026/style287/WestbrookW1.
+  Senatepage2:Collins,SusanM.Republican/Jackson,TroyD.Democratic pluswrite-in,
+  three rankcolumns. This independently matches currentprovider namedcandidateIDs
+ 220470/220471; no reliance on conflicting searchsnippets or primarycandidate lists.
+- data/close_senate_source_assessment.json now pins exactofficiallink/hash/page/
+  aliases. OriginalPDF and renderedpages saved maine-source-research. Candidate
+  identity blocker resolved; ranked-choice/write-in semantics remain explicit.
+- NEXT implement16countyfirstchoice baseline/strictmixedgeography adapter using
+  independentCensuscountyIDs and actualofficial2020Senatecountyexport. Official
+  previous-election landing indexed countyXLS exports; retrieve actualpublished
+  link via independently linked state/municipalarchive, no inventedURL. Firstchoice
+  remaining-vote likelihood can inform experimentalnationaloutlook under owner's
+  assumption; never declare finalRCVwinner from initialround alone.
+- MainCI/openPRshealthy/unchanged; no additional nationalinput enabled yet.
+
+
+## October26 23:26Z — actual close-Senate feasibility separates MEmunicipal from AKstate-only
+
+- Existing approved civic routesME87188/AK86916 inspected in ordinary deployed-site
+  browser CORS, both200/non-test/stalezero/round1. Python403 is not browserfailure.
+  Saved originalresponses and hashes, no fixtures or actualpositiveforecast claim.
+- ME has534mixed rows:518Township PLUS16County aggregates, Collins220470/Jackson220471.
+  Exact independently verified ballot and same-round COUNTYhistorical baseline
+  required. OfficialSOS RCV/sample-ballot page403 in ordinaryEdge too; don't retry
+  unchanged or silently replace with searchsnippet candidates. RCVround1 not final.
+- AK exposes only1State row and6candidates including multipleRepublicans and two
+  distinctSullivans; insufficientregionalremaining-vote evidence and no independent
+  finalballot/transfer contract. Do NOT sum allRepublican primary-looking names or
+  treat state totals as a geographical partial-return forecast. NoAKcustomadapter
+  work until source supplies supportedresolution/identity.
+- data/close_senate_source_assessment.json records exactrows/types/IDs/blockers;
+  actualzero/noenable assertionspass. Existing statewide results adapters remain
+  intact; no additional nationalinput or customracepanel enabled.
+- NEXT: ME official sample ballot via an independently linked municipalgovernment
+  posting, then independently match16county aggregates and first-choice countyhistory. Never
+  sum counties plus towns. Existing broad
+  provider remains fallback. Do not divert back into optionalAZgeography while
+  primarySenatecontract remains unresolved. Allcurrentmaincheckshealthy.
+
+
+## October26 23:11Z — owner approved narrower predictive scope and national co-movement assumption
+
+- Latest HUMAN instruction supersedes broader expansion: custom predictive work
+  only close Senate and uploaded Silver House power-flip races. Safe seats retain
+  broad providers; no custom prediction work, new panels or polish. Owner accepts
+  using pivotal performance as evidence of broader direction, with uncertainty.
+  This is an assumed shared national component, not newly demonstrated calibration;
+  preserve existing correlated model/bounded likelihood rather than average odds
+  or uniformly transfer a single candidate's Senate surprise to allHouse.
+- Captured actual deployed linked503race model once (no syntheticreturns). Internal
+  data/predictive_development_scope.json sets a bounded work queue: primary Senate
+  IA/KS/AK/ME/TX in35-65band; near-boundaryMI/NE/OH/SC review if25-75andpollmargin<=5.
+  House limited first10existing uploaded screenshot seed rows if25-75:PA10/NC01/
+  AZ06/NY17/VA02/PA07/AZ01/PA08/WI03/MI07. Seed order is NOT Silver probabilities.
+  Bands bound engineering effort, not race calls; near-boundary review avoids
+  declaring a seat safe from a onepoint threshold. Existing9inputs preserved.
+- Local queue assertions exclude safeNC-SEN/governors/customsafe-seatwork and
+  capHouse10; source snapshot/hashes and captured model timestamps retained.
+  Missing primarySenateME/AK now precedes further optionalAZ01geography work.
+- BoundedME feasibility lead: officialSOS Sept4process update says election-night
+  returns come from municipalities, clerks have2days to submit toSOS; federal
+  Senate usesRCV. Officialresults landing currently lists primary results, not
+  a verified fastgeneralfeed. Firstchoice totals cannot be finalRCVresults.
+  https://www3.maine.gov/sos/news/general-election-two-months-away-secretary-states-office-provides-update-maine-election-1
+  https://www.maine.gov/sos/elections-voting/election-results-data
+  Next verify exactofficialballot/candidate identity and a permittedmunicipal/
+  broadprovider path before adapter work; no claimMEsourceisready.
+- AZ01originalhistoricaltotals resolved as recorded22:56; precinctequivalency remains
+  blocked. Do not spend runs perfecting geography ahead of primary Senate gaps.
+  MainPages/CIhealthy/openPRsunchanged. No newliveinput/calibration claim.
+
+
+## October26 22:56Z — AZ01 historical vote-total blocker resolved from original export
+
+- Actual OpenElections SOURCES repository2024/general lists original county-format
+  MaricopaTXT34,877,349bytes, SHA49e9bb23f7cdd510802a04edf7798c45f6753a7c0e82478843e60fe49e1f7a54.
+  Downloaded original, exactCD1unique-precinct totals208966D/225538R/786writeins,
+  matching independent existing major-party reference exactly. No invented fixes.
+- ProcessedCSV discrepancy localized to7specificcandidate/precinct cells: original
+  counts1to7became0inprocessedCSV, totaling5D/25R. Original also restores correct
+  Shah/Schweikert spellings. Use original, not processedCSV, for future baseline.
+- Old0565NVP19/0566NVP2 have0registered/0votes; blanksummaryrows also0. This
+  narrows geography issue but does NOT prove where new0944COSMOS/0948HEATHERBRAE/
+ 0953MAYA came from or that207commonprecinct IDs retain identical boundaries.
+  Full209historicalprecincts still not mapped to210current; no baseline approval.
+- Recorded exact original source/cells in assessment, local assertionspass,
+  originalTXT/selectedrows/celldiff saved. No deniedcountyarchive retry. NEXT
+  independently verify official2024/2026precinct shapes/equivalency and partition
+  history without guessing; source-clock/live semantics still outstanding.
+  Nationalinputscopeunchanged; no calibration or postclose delivery claim.
+
+
+## October26 22:41Z — alternative AZ01 history found; exact reconciliation gaps measured
+
+- Used primary OpenElections repository contents API (not guessedfile) to find actual
+ 2024GeneralMaricopa precinctCSV8,236,560bytes, SHAd338c70e939df068e85c80fe7800732462a2673b09fbc128755c8bca6c486a8a.
+  ExactofficeU.S.House/districtCD-1: DEM208961/REP225513. Must exclude
+  TotalVotes/UnderVote/OverVote rows; raw processed candidate spellings have errors.
+- Existing independently pinned district reference DEM208966/REP225538 differs
+  by5D/25R. No baseline approved or silent total adjustment. Processed source has
+ 209precincts, current official2026template210:207IDscommon; historicalonly0565/0566,
+  currentonly0944/0948/0953. Unchangeddistrictboundary does NOT mean precincts
+  unchanged. Do not apportion the two old precincts over three new ones by guess.
+- Source assessment records exact totals, omitted noncandidate rows and explicit
+  fail-closed baseline decision; local assertions pass. ActualCSV/joinreport saved.
+  No deniedcountyarchive retry, no calibration/predictiveinput claim.
+- NEXT: inspect processed source's original provenance/county export and official
+  precinct equivalency for five changed IDs. Need both total reconciliation and
+  geography agreement; until then maintain existing9routes. MainCIhealthy/openPRs
+  unchanged. This is actionable engineering evidence, not a production milestone.
+
+
+## October26 22:26Z — AZ01 archive investigation bounded and stopped
+
+- Actual archive-page declared scripts inspected once. File-list application is
+  mes-app-bundle~2026-09-17-18-21-26-696~cache.js; ordinary browser request403.
+  This explains an inaccessible script dependency, not proof no2024export exists.
+  A bounded independent primary-source search did not locate a replacement export.
+- Source assessment records exact script URL/status and no-retry boundary. No
+  guessedassetIDs, access bypass, invented precinct allocation or baseline promotion.
+  Current actual2026county template remains saved; no reason to redownload31MB.
+- NEXT source work must use a new independently linked2024precinct export or an
+  existing licensed/processed source with original provenance and reconciliation,
+  rather than revisit this unchanged archive route. Keep AZ01activation blocked
+  pending210precinct crosswalk/baseline and reporting semantics. No national scope
+  change or user action required. Current openPRs unchanged; mainPageshealthy.
+
+
+## October26 22:14Z — PR466 source-audit review deployed; live-input scope unchanged
+
+- ALL3 exact-head workflows success at6ab9cf4fbdf29611738bb247d8ef87cabed96c3d;
+ 6latestchecks5success/1nonapplicable deployedskip, no external statuses,
+  exacthead/mergeableclean verified. Authorized merge56f97c35d42570650532c14fdb3b7e791c68ca37.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/466
+- Pages40410619987 SUCCESS; ALL151 expected published files match at22:14:42Z.
+  Initial pre-completion read saw5new-file404s; after completed deployment all
+  match. No source/model/runtime activation was part of this audit-only release.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40410619987
+- Used waiting time for bounded original2024countyarchive discovery: normal
+  browser GET200/yearselector2024exists, but no election-file rows rendered even
+  after explicit wait. Saved actual page/network state, not an archive baseline.
+  Do not guess asset IDs, substitute district totals for210precincts, or claim
+  missing files globally from this selector failure. Source-clock semantics and
+  an independent matching historical precinct export remain exact AZ01blockers.
+- Next: inspect archive's declared file-list source/selector implementation once,
+  or independently published official2024precinct export. National9route system
+  remains experimental; zero accepted actual returns/calibration limits unchanged.
+  Deployment465 already notified; this source-audit completion needs no repeat.
+
+
 ## October26 21:56Z — exact official AZ01 text obtained and audited
 
 - Normal public Edge page GET200 exposes literal county results link. Normal
