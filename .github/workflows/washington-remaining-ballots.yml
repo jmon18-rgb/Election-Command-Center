@@ -29,3 +29,4 @@ jobs:
           node scripts/test_washington_remaining_ballots.cjs
           node scripts/test_washington_remaining_scenarios.cjs
           node scripts/test_washington_remaining_integration.cjs
+          node scripts/test_washington_remaining_collection_loop.cjs

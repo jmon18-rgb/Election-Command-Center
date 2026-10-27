@@ -49,7 +49,7 @@ async function collectRemaining({fetchImpl=global.fetch,now=Date.now(),countsSta
  const out={schema:'official-wa-remaining-collection-v1',source_url:remaining.URL,fetched_at:new Date(now).toISOString(),status:'SOURCE_UNAVAILABLE',payload:null,timing_scope:'Request-to-body only; not publication availability or comparative lag'};
  const started=performance.now();
  try{
-  const r=await fetchImpl(remaining.URL,{signal:AbortSignal.timeout(20000),headers:{Accept:'application/json'}});out.http_status=r.status;out.cache_control=r.headers.get('cache-control');
+  const r=await fetchImpl(remaining.URL,{redirect:'error',signal:AbortSignal.timeout(20000),headers:{Accept:'application/json'}});out.http_status=r.status;out.cache_control=r.headers.get('cache-control');
   if(r.status!==200||!r.headers.get('content-type')?.toLowerCase().includes('application/json')){await r.body?.cancel().catch(()=>{});throw Error('Remaining HTTP/content type unavailable');}
   const raw=await body(r,1000000);out.request_to_body_ms=Math.round(performance.now()-started);out.original_response_sha256=hash(raw);out.payload=JSON.parse(raw.toString('utf8'));out.status='COLLECTED_OFFICIAL_ESTIMATES';
   remaining.parse(out,{now,counts_stamp:countsStamp});if(JSON.stringify(out.payload).length>48000)throw Error('Remaining selected body cap');out.selected_payload_sha256=hash(JSON.stringify(out.payload));
