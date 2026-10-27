@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-27T07:56:37.760074Z",
+  "updated_at": "2026-10-27T08:54:40.825647Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
@@ -268,6 +268,27 @@
   ],
   "items": [
     {
+      "id": "3688896fa9e80a30da64",
+      "title": "In 3-way secretary of state race, one candidate wants to take over elections - Wisconsin Examiner",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOelhoQVBTZUFVSmJVeGpkb3ctVDdpMXBMcFBXVXBaMjJsckI1akJEeUsyYzhvcWw0azMwUXVLZWFfUVZrSnozcC1IWTk3S0RtUVEzdk5yVlhTZnZpdmdUUjBlSnlnc0tfSlRYUkpuVF9KUWhDbHBKd1hvX2h3LVc2YmtEdTBIT1M5UVlXOG85LW5UM2M5ci1zcl9TZzJQaWxWUzRELVhXUTJ5U0pFMmN1d290RlVlUmFm?oc=5",
+      "publisher": "Wisconsin Examiner",
+      "published_at": "2026-10-27T08:38:31Z",
+      "detected_at": "2026-10-27T08:54:40.825647Z",
+      "state_hints": [
+        "WI"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "3"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "7c995b36913c532a0097",
       "title": "Court Rejects Trump Bid to Challenge California Voter Rolls - JDJournal.com",
       "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNZlRUME1VS1BoRC1TcmhKa2hkVW1qQmgtcURzU2xQWmI5QzBOYjQ2U09IcVBwdDV4WlltZWNwQjlCSm1UM3h6aE5oNHBvQm1BcFhlTElqN0RPRUxnOUZad2N2VUlxbVBVWTNEVFJMYVBrRkQ5cVo5U3M1a2FXZEtfRw?oc=5",
@@ -317,6 +338,24 @@
         "CA",
         "NY"
       ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "6474b26f000785eaa89a",
+      "title": "Federal appeals court rejects Trump effort to block 20K LA County ballots - NBC Los Angeles",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOT1hFRXJYYkQ3eU1rTEwwa00wRE1YREhWbzVTT3ZMSEdxYjJaRXVmOVozalMyaFVtaHBOLTUzcXlrRnUzRnQ2MzYtcks2dFdRVVkyZFRxSVVDMGI5akpocS0zQ3k2X1BSeUhablo3cEhvYW05RFZsd3FFenZYQ05sbkYyZzc2SF9QN2Q3a3dYUXp0TU1BZlHSAZ4BQVVfeXFMUHp5WVhTWUNsTlVudVVET3FieVRqXzZERlNfWFVrempuVUxuOHEtU2RUQWJ2bU1QY1B6b0NDZFRzSUFTQ1ZPWFNoNTFjQlBqeW40MXZiMkM0Y1ZlT2tjN0ZBUnMzMXRIYmw4VS1yWlFYZXM2MnkyajFWcllvRU5LallQS0I5dUtpMzMyZUVLRXh0dmFrbWt3LThZbGw2Z2c?oc=5",
+      "publisher": "NBC Los Angeles",
+      "published_at": "2026-10-26T23:59:28Z",
+      "detected_at": "2026-10-27T08:54:40.825647Z",
+      "state_hints": [],
       "topic_hints": [
         "ballot_access",
         "litigation"
@@ -4963,36 +5002,6 @@
       "topic_hints": [
         "ballot_access"
       ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "105509c6a80d89101ddb",
-      "title": "Could a Public Wildfire Insurance Plan Work in California? - KQED",
-      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQNzZQNjdNVTBLemsya3ZsVjFlX0FDUF9GYkRsZlRyUGRySnJJX3A0ZmhWUTlicHdMM1Y2eEdMelRSMWxWT05KRmpiSVB4Sm81V2tzNTJPUkttYk5HX2ptVV9QRU14VDZyLXI5RWRVV3FtZVRYN1dIMzc4UUtBUmk1TEpDLXRpVUJyNi16NjA3eTlXbHJQV1Y4?oc=5",
-      "publisher": "KQED",
-      "published_at": "2026-10-14T19:34:16Z",
-      "detected_at": "2026-10-14T20:53:15.333028Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "3cdeb202edbfd1b38243",
-      "title": "Cheryl Leeds: I never feared Election Day, until now - cnhinews.com",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPYXduaEZyNzZsU05oQ29wb0NSbl96c3VuMHZzSTh4UDJLaUVPVGFPX0ZwckF4dnpZbWwyV0c0elg5LUYtUUFVTmxBZ0ZqREJyanZVWXhXSEpwczh6YVpVQTI1SjZ1alZxdUpnN2VWOTFpUERvc0ZSS0xrck1wUW1odDVFYUZHcTVJTk8xNWM1VjNFQQ?oc=5",
-      "publisher": "cnhinews.com",
-      "published_at": "2026-10-14T19:15:00Z",
-      "detected_at": "2026-10-14T22:39:50.703688Z",
-      "state_hints": [],
-      "topic_hints": [],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
