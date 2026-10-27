@@ -235,3 +235,17 @@ The actual pinned statistic remains 39 zeros/null clocks, so none is usable.
 No actual positive post-close estimate delivery, error calibration, chronological
 skill or speed comparison is demonstrated. Receipt-provenance follow-up preserves the original retrieval time when stale
 statistics are rejected, without a new source request. The October27 calibrated-acceptance decision remains unmet.
+
+## October27 matched-area explanation candidate
+
+The shared personal cards expose the same likelihood's matched reporting-area
+expectation at the PRE-RESULTS race mean plus the declared national shift. Weight
+historical local shares by the actually counted D/R votes in those same areas,
+using existing absentee/election-day/combined scenarios. Show observed margin,
+expected margin scenarios and their difference, separate from probability-point
+changes. These are assumed benchmarks, not county polls. Method-order endpoints
+are not confidence intervals: selection bias, turnout and source error remain.
+Largest6 reporting counties/district parts are inspectable; missing/retracted
+admission removes the explanation. This diagnostic does not change any simulated
+forecast or feed a posterior back into the national likelihood. Five-stage exact
+output/ESS/power comparison to1c0b11ba passes; no empirical calibration is claimed.

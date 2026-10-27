@@ -6,6 +6,8 @@
  const CONNECTED=new Set(['IA-SEN','KS-SEN','ME-SEN','OH-SEN',...HOUSE]);
  const finite=x=>typeof x==='number'&&Number.isFinite(x),chance=x=>finite(x)&&x>=0&&x<=100;
  const time=x=>Number.isFinite(x)?new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit'}).format(x)+' ET':'Time unverified';
+ const margin=x=>Math.abs(x)<.05?'Even':(x>0?'D+':'R+')+Math.abs(x).toFixed(1);
+ const range=x=>Math.abs(x[1]-x[0])<.05?margin((x[0]+x[1])/2):margin(x[0])+' to '+margin(x[1]);
  function rows(result,baseline,{year=2026,now=Date.now(),closes,evidence=[],simulated=false}={}){
   if(year!==2026)return [];
   const current=new Map((result?.race_probabilities||[]).map(x=>[x.race_code,x]));
@@ -27,6 +29,7 @@
    const window=Number.isFinite(first)?time(first)+(Number.isFinite(last)&&last!==first?(state==='KS'?' · conservative call gate ':'–')+time(last):''):'Time unverified';
    return {...spec,state,order,left,pct,delta,status,sourceAt,ownCounts,called,simulated:simulated||result?.county_results_update?.status==='SIMULATED_NATIONAL_REHEARSAL',
     count:direct&&finite(direct.counted_two_party_votes)?direct.counted_two_party_votes:null,
+    performance:direct?.matched_performance||null,
     first,last,window,started:Number.isFinite(first)&&now>=first,
     note:state==='ME'?'First-choice evidence; final RCV transfers separate':state==='NE'?'Independent; no assumed Democratic caucus':state==='AK'?'Lowest first-night priority; final RCV timing separate':!ownCounts&&(used.size||called)?'Forecast may reflect other admitted races':'',
     rank:state==='AK'?4:ownCounts||called?0:Number.isFinite(first)&&now>=first?1:2};
@@ -56,6 +59,15 @@
     card.append(el('p','',(row.simulated?'SIMULATED · ':'')+row.status));
     if(row.count!==null)card.append(el('small','',row.count.toLocaleString('en-US')+' named-candidate '+row.left+'/R votes in admitted county evidence'));
     if(row.sourceAt)card.append(el('small','',(row.ownCounts?'Count':'Call')+' source time · '+time(Date.parse(row.sourceAt))));
+    const p=row.performance;
+    if(p&&finite(p.observed_margin_points)&&[p.expected_margin_scenarios,p.difference_margin_scenarios].every(x=>Array.isArray(x)&&x.length===2&&x.every(finite))){
+     card.append(el('p','personal-focus-performance','Matched-area performance · '+range(p.difference_margin_scenarios)+' margin points vs expected'));
+     const detail=el('details','');detail.append(el('summary','','What was expected here?'),el('p','','Observed '+margin(p.observed_margin_points)+'; expected '+range(p.expected_margin_scenarios)+' in the same reporting areas. Historical '+p.baseline_year+' local shares adjusted to the pre-results race expectation.'));
+     detail.append(el('p','',p.scope));
+     for(const u of p.largest_reporting_units||[])detail.append(el('small','',(u.county||'FIPS '+u.county_fips)+(row.office==='House'?' district part':'')+' · '+u.counted_two_party_votes.toLocaleString('en-US')+' D/R votes · observed '+margin(u.observed_margin_points)+'; expected '+range(u.expected_margin_scenarios)));
+     detail.append(el('small','','Largest '+(p.largest_reporting_units||[]).length+' of '+p.reporting_units+' reporting areas shown. This does not extrapolate the raw margin statewide or call the race.'));
+     card.append(detail);
+    }
     if(row.note)card.append(el('small','',row.note));grid.append(card);
    }
    group.append(grid);host.append(group);

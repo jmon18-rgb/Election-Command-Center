@@ -29,6 +29,15 @@ try{
   await page.waitForFunction(()=>document.querySelectorAll('#enPersonalFocusPreview article').length===18);
   assert.match(await page.locator('#enPersonalFocusPreview').innerText(),/SIMULATED.*FICTIONAL COUNTS/s);
   await page.locator('#enNationalNext').click();await page.waitForFunction(()=>document.querySelector('#enNationalStage').textContent.includes('2/5'));
+  const ksPreview=page.locator('#enPersonalFocusPreview [data-race="KS-SEN"]');
+  assert.match(await ksPreview.locator('.personal-focus-performance').innerText(),/Even margin points vs expected/,'Expected blue counties show no added performance surprise');
+  await ksPreview.locator('details > summary').click();assert.match(await ksPreview.innerText(),/not county polls|not confidence intervals/);
+  await page.locator('#enNationalNext').click();await page.waitForFunction(()=>document.querySelector('#enNationalStage').textContent.includes('3/5'));
+  assert.match(await ksPreview.locator('.personal-focus-performance').innerText(),/D\+3\.0 margin points vs expected/);
+  await ksPreview.locator('details > summary').click();
+  assert.match(await ksPreview.innerText(),/Largest 6 of/);
+  mkdirSync(resolve(root,'artifacts/readiness'),{recursive:true});await ksPreview.screenshot({path:resolve(root,'artifacts/readiness/matched-performance-'+width+'.png')});
+  assert.equal(await page.locator('#enPersonalFocus .personal-focus-performance').count(),0,'Simulated performance cannot leak into live cards');
   assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),liveBefore,'Preview must not change the live joint model');
   assert.doesNotMatch(await page.locator('#enPersonalFocus').innerText(),/SIMULATED/);
   await page.locator('#enNationalRehearsal > summary').click();

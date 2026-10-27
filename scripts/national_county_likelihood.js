@@ -76,7 +76,7 @@
    if(!h||seen.has(c.county_fips)||reference.get(c.county_fips)!==key||
       ![c.dem_votes,c.rep_votes,c.other_votes].every(n=>Number.isSafeInteger(n)&&n>=0))throw Error('Unmatched/invalid observed county');
    seen.add(c.county_fips);const n=c.dem_votes+c.rep_votes;counted+=n;allVotes+=n+c.other_votes;
-   if(n>0)observed.push({...h,county_fips:c.county_fips,n,d:c.dem_votes});
+   if(n>0)observed.push({...h,county:c.county,county_fips:c.county_fips,n,d:c.dem_votes});
   }
   if(!Number.isSafeInteger(allVotes)||!closes?.allowed(code,allVotes,x.snapshot_updated_at,now))throw Error('Pre-close county evidence');
   if(counted<policy.minimum_votes||counted/baseN<policy.minimum_reference_fraction||observed.filter(c=>c.n>=100).length<policy.minimum_counties)
@@ -119,6 +119,28 @@
    roundVariance=(5/200)**2+((u.dem_votes+u.rep_votes)/referenceN/2)**2;
   }
   const baseMargin=100*(2*referenceD/referenceN-1);
+  // Display-only diagnostic at the declared PRE-RESULTS race expectation.
+  // Weight the exact reporting areas by their counted votes, not whole-state
+  // history. Method-order endpoints are scenarios, never confidence limits.
+  function describePerformance(expectedMargin){
+   if(!Number.isFinite(expectedMargin))throw Error('Missing pre-results expectation');
+   const shift=(expectedMargin-baseMargin)/200;
+   const units=observed.map(c=>{
+    const margins=scenarios.map(rows=>{const row=rows.find(r=>r.county_fips===c.county_fips);
+     return 100*(2*(row.aDone*clamp(row.aShare+shift)+row.eDone*clamp(row.eShare+shift))/row.n-1);});
+    const observedMargin=100*(2*c.d/c.n-1),low=Math.min(...margins),high=Math.max(...margins);
+    return {county:c.county,county_fips:c.county_fips,counted_two_party_votes:c.n,observed_margin_points:observedMargin,
+     expected_margin_scenarios:[low,high],difference_margin_scenarios:[observedMargin-high,observedMargin-low]};
+   });
+   const expected=scenarios.map(rows=>rows.reduce((sum,c)=>sum+c.aDone*clamp(c.aShare+shift)+c.eDone*clamp(c.eShare+shift),0));
+   const margins=expected.map(d=>100*(2*d/counted-1)),observedMargin=100*(2*observed.reduce((s,c)=>s+c.d,0)/counted-1);
+   return {expectation_scope:'PRE_RESULTS_RACE_MEAN_PLUS_DECLARED_SHIFT',expectation_margin_points:expectedMargin,
+    observed_margin_points:observedMargin,expected_margin_scenarios:[Math.min(...margins),Math.max(...margins)],
+    difference_margin_scenarios:[observedMargin-Math.max(...margins),observedMargin-Math.min(...margins)],
+    baseline_year:envelope.baseline_year,reporting_units:units.length,
+    largest_reporting_units:units.sort((a,b)=>b.counted_two_party_votes-a.counted_two_party_votes||a.county_fips.localeCompare(b.county_fips)).slice(0,6),
+    scope:'Matched reporting areas only; historical local shares shifted to the pre-results race expectation, not county polls. Method-mix scenarios are not confidence intervals; partial-batch selection, turnout and source error remain unresolved.',calibrated:false};
+  }
   function logLikelihood(margin,{sharedReportingOffset=null}={}){
    if(!Number.isFinite(margin))throw Error('Missing correlated-draw race margin');
    const conditional=sharedReportingOffset!==null;
@@ -157,7 +179,7 @@
    modeled_remaining_two_party_votes:Math.round(remaining),modeled_remaining_two_party_votes_band:[Math.floor(remainingLow),Math.ceil(remainingHigh)],
    ...(remainingMetadata?{official_remaining_sensitivity:remainingMetadata}:{}),...(remainingExclusion?{official_remaining_excluded:remainingExclusion}:{}),
    remaining_scope:remainingMetadata?'Historical/official whole-county estimate sensitivity; Thurston historical only; not exact outstanding ballots or calibrated intervals':scope.firstChoice?'County named-candidate turnout scenario only; excludes statewide unallocated UOCAVA and unreported write-ins; not official ballots outstanding':"Conditional historical-turnout scenario, including unreported district/county parts; not official ballots outstanding",reference_turnout_fraction:counted/baseN,
-   independence:'COUNTS_ONLY_NO_POLL_PRIOR_OR_RACE_POSTERIOR',logLikelihood});
+   independence:'COUNTS_ONLY_NO_POLL_PRIOR_OR_RACE_POSTERIOR',logLikelihood,describePerformance});
  }
  function condition(model,basis,envelopes,options={}){
   if(!Array.isArray(envelopes)||envelopes.length>16)throw Error('Bounded national county evidence required');
@@ -222,7 +244,10 @@
   }
   const result=model.simulate(basis,{...args,replayCountySeeds:seeds});
   const diagnostics={status:rehearsal?'SIMULATED_NATIONAL_REHEARSAL':'EXPERIMENTAL_RESULTS_INFORMED_NATIONAL_OUTLOOK',
-   used:compiled.map(({logLikelihood,...row})=>row),excluded,effective_sample_size:weighted.ess,
+   used:compiled.map(({logLikelihood,describePerformance,...row})=>{
+    const seat=basis.house.concat(basis.senate).find(r=>r.code===row.code);
+    return {...row,matched_performance:describePerformance(seat.mean+(args.nationalShift||0))};
+   }),excluded,effective_sample_size:weighted.ess,
    particle_count:n,likelihood_power:power,policy,state_likelihood_sources:stateCounts,state_likelihood_budget_members:stateBudgets,state_likelihood_max_ratio:stateRatios,house_vote_sources:compiled.filter(c=>scopes[c.code].house).length,
    reporting_error:{scope:'SHARED_ACROSS_ADMITTED_RACES',total_batch_margin_sigma:policy.batch_margin_sigma,
     shared_margin_sigma:sharedSigma,race_specific_margin_sigma:policy.batch_margin_sigma*Math.sqrt(1-policy.shared_reporting_error_variance_fraction),

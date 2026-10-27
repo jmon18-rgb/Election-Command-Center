@@ -30,11 +30,18 @@ const rehearsalCheck=demoWindow.NationalNeedleRehearsal.load(async p=>JSON.parse
   // Combined-mode KS/TX make a clean composition-only check without a method-mix assumption.
   if(!['KS-SEN','TX-SEN'].includes(seat.code))continue;
   const blueLikelihood=bridge.compile(envelope,{now:demoWindow.NationalNeedleRehearsal.now,rehearsal:true});
+  const performance=blueLikelihood.describePerformance(seat.mean);
+  assert(Math.abs(performance.difference_margin_scenarios[0])<.01,'Expected blue counties must show zero matched-area surprise');
+  assert(Math.abs(performance.observed_margin_points-performance.expected_margin_scenarios[0])<.01);
+  const outperformed=bridge.compile(surprise.find(e=>e.snapshot.race_code===seat.code),{now:demoWindow.NationalNeedleRehearsal.now,rehearsal:true}).describePerformance(seat.mean);
+  assert(Math.abs(outperformed.difference_margin_scenarios[0]-3)<.01,'Declared three-point surprise is a margin difference, not a probability change');
+  assert.equal(outperformed.calibrated,false);assert(outperformed.largest_reporting_units.length<=6);
   assert(blueLikelihood.logLikelihood(seat.mean)>blueLikelihood.logLikelihood(seat.mean+6),'Expected blue counties cannot imply six-point blue outperformance');
   assert(blueLikelihood.logLikelihood(seat.mean)>blueLikelihood.logLikelihood(seat.mean-6));
   const red=structuredClone(envelope),selected=new Set([...rows].sort((a,b)=>a.dem_votes/(a.dem_votes+a.rep_votes)-b.dem_votes/(b.dem_votes+b.rep_votes)).slice(0,Math.ceil(rows.length*.35)).map(c=>c.county));
   red.snapshot.counties=red.snapshot.counties.map(c=>{const h=rows.find(h=>h.county===c.county),n=selected.has(c.county)?Math.floor((h.dem_votes+h.rep_votes)*.3):0,d=Math.round(n*Math.max(.001,Math.min(.999,h.dem_votes/(h.dem_votes+h.rep_votes)+shift)));return {...c,dem_votes:d,rep_votes:n-d};});
   const redLikelihood=bridge.compile(red,{now:demoWindow.NationalNeedleRehearsal.now,rehearsal:true});
+  assert(Math.abs(redLikelihood.describePerformance(seat.mean).difference_margin_scenarios[0])<=100*redLikelihood.reporting_counties/redLikelihood.counted_two_party_votes+1e-9,'Expected red counties differ only by integer-vote rounding, never by their raw partisan margin');
   assert(redLikelihood.logLikelihood(seat.mean)>redLikelihood.logLikelihood(seat.mean-6),'Expected red counties cannot imply six-point red outperformance');
   assert(redLikelihood.logLikelihood(seat.mean)>redLikelihood.logLikelihood(seat.mean+6));
  }
