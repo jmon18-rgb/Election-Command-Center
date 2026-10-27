@@ -6,6 +6,41 @@ const basis=model.prepare({seats:load('seat_universe'),history:load('house_histo
  geography:load('house_geography_bridge'),senateHistory:load('senate_history_2020_2022_2024'),
  odds:load('race_probabilities'),polls:load('polling_estimates')});
 const opts={samples:900,seed:20261103},now=Date.parse('2026-11-04T03:10:00Z');
+// Regression: reporting composition alone is not performance. Use the actual
+// user rehearsal generator, and verify its expectations against the likelihood.
+const vm=require('node:vm'),demoWindow={};
+vm.runInNewContext(fs.readFileSync('scripts/national_needle_rehearsal.js','utf8'),{window:demoWindow});
+const rehearsalCheck=demoWindow.NationalNeedleRehearsal.load(async p=>JSON.parse(fs.readFileSync(p,'utf8'))).then(inputs=>{
+ const expected=demoWindow.NationalNeedleRehearsal.stage(inputs,1,basis);
+ const surprise=demoWindow.NationalNeedleRehearsal.stage(inputs,2,basis);
+ const corrected=demoWindow.NationalNeedleRehearsal.stage(inputs,3,basis);
+ for(const envelope of expected){
+  const seat=basis.house.concat(basis.senate).find(r=>r.code===envelope.snapshot.race_code);
+  const totals=c=>c.records.total||{dem_votes:c.records.absentee.dem_votes+c.records.election_day.dem_votes,rep_votes:c.records.absentee.rep_votes+c.records.election_day.rep_votes};
+  const rows=envelope.baseline.counties.map(c=>({county:c.county,...totals(c)}));
+  const baseD=rows.reduce((s,c)=>s+c.dem_votes,0),baseN=rows.reduce((s,c)=>s+c.dem_votes+c.rep_votes,0);
+  const shift=(seat.mean-100*(2*baseD/baseN-1))/200;
+  for(const e of [envelope,corrected.find(e=>e.snapshot.race_code===seat.code),surprise.find(e=>e.snapshot.race_code===seat.code)]){
+   const extra=e===surprise.find(e=>e.snapshot.race_code===seat.code)?.015:0;
+   for(const c of e.snapshot.counties){const n=c.dem_votes+c.rep_votes;if(!n)continue;
+    const h=rows.find(h=>h.county===c.county),share=Math.max(.001,Math.min(.999,h.dem_votes/(h.dem_votes+h.rep_votes)+shift+extra));
+    assert(Math.abs(c.dem_votes-n*share)<=.500001,'Fictional returns must match county expectation plus only the declared surprise');
+   }
+  }
+  // Combined-mode KS/TX make a clean composition-only check without a method-mix assumption.
+  if(!['KS-SEN','TX-SEN'].includes(seat.code))continue;
+  const blueLikelihood=bridge.compile(envelope,{now:demoWindow.NationalNeedleRehearsal.now,rehearsal:true});
+  assert(blueLikelihood.logLikelihood(seat.mean)>blueLikelihood.logLikelihood(seat.mean+6),'Expected blue counties cannot imply six-point blue outperformance');
+  assert(blueLikelihood.logLikelihood(seat.mean)>blueLikelihood.logLikelihood(seat.mean-6));
+  const red=structuredClone(envelope),selected=new Set([...rows].sort((a,b)=>a.dem_votes/(a.dem_votes+a.rep_votes)-b.dem_votes/(b.dem_votes+b.rep_votes)).slice(0,Math.ceil(rows.length*.35)).map(c=>c.county));
+  red.snapshot.counties=red.snapshot.counties.map(c=>{const h=rows.find(h=>h.county===c.county),n=selected.has(c.county)?Math.floor((h.dem_votes+h.rep_votes)*.3):0,d=Math.round(n*Math.max(.001,Math.min(.999,h.dem_votes/(h.dem_votes+h.rep_votes)+shift)));return {...c,dem_votes:d,rep_votes:n-d};});
+  const redLikelihood=bridge.compile(red,{now:demoWindow.NationalNeedleRehearsal.now,rehearsal:true});
+  assert(redLikelihood.logLikelihood(seat.mean)>redLikelihood.logLikelihood(seat.mean-6),'Expected red counties cannot imply six-point red outperformance');
+  assert(redLikelihood.logLikelihood(seat.mean)>redLikelihood.logLikelihood(seat.mean+6));
+ }
+ assert.throws(()=>demoWindow.NationalNeedleRehearsal.stage(inputs,1,{}),/Missing current race expectation/);
+ console.log('Expected blue/red county composition and declared rehearsal surprise PASS (synthetic, not calibration)');
+}).catch(error=>{console.error(error);process.exitCode=1;});
 const specs=[['IA-SEN','iowa',87151,2022],['KS-SEN','kansas',87162,2020],['TX-SEN','texas',87438,2024]];
 function fixture(spec,margin=8){
  const [code,state,id,year]=spec,reference=load(state+'_county_fips_reference');
