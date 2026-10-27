@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-27T01:01:40.104109Z",
+  "updated_at": "2026-10-27T01:53:06.061064Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
@@ -266,6 +266,27 @@
     }
   ],
   "items": [
+    {
+      "id": "4ee3359b8af72067bbed",
+      "title": "Appeals Court Declines to Intervene in California Ballot Lawsuit - The New York Times",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQY2g5Z2oyY0xWbGJqLWFSM3NUaW43QTZsWFFGM3N5WTdiVHlrdGE0d1pGLVpYM0t5VkM2bkRidkVSS0dxM3lWYjlzQ1RjTVdmUVcxQ255MzkwZ2tJSGExcXg5N3BUYXF4UGVHdlhLUzdxQ0MzMUVHNGVKTzk5MWxaMEozeTdSSzhORHNDWFdQZnBxZw?oc=5",
+      "publisher": "The New York Times",
+      "published_at": "2026-10-27T00:04:44Z",
+      "detected_at": "2026-10-27T01:53:06.061064Z",
+      "state_hints": [
+        "CA",
+        "NY"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "ae6a4fa5fca4d621254b",
       "title": "Protecting voter privacy and the integrity of U.S. elections - Protect Democracy",
@@ -4964,23 +4985,6 @@
       "headline_numbers_unverified": [
         "30 ",
         "2022"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ff3d4bf127edc4333024",
-      "title": "NC to notify 1,392 voters flagged as potential noncitizens - Carolina Journal",
-      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPRkMtRm9HUmtaamI3WXp6bWJpWkVEaE5zNUpOdnVweks1ck0wTDNHd2c2N244ZVdYdGp0bWxIX2s1RU40ZnZWUEdrWGU0N3hYbTZsQ0k1QjlCeGs0NTNTY0ExVjdLSV9BTjk3eXM1TWhoT2tZcmg1eHhrR1FRYnNHTHc0VjJpU1lSNVdrYll1blBremtZ?oc=5",
-      "publisher": "Carolina Journal",
-      "published_at": "2026-10-14T13:07:17Z",
-      "detected_at": "2026-10-14T13:14:27.007100Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [
-        "1,392 voters"
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
