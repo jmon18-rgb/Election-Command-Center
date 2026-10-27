@@ -24,7 +24,7 @@
    const status=ownCounts?'Own county returns used nationally':called?'Validated source call used':pending;
    const candidateStamp=direct?.as_of||(called?evidence.find(x=>x.race_code===spec.code&&x.calledParty===entry.provider_called_party)?.asOf:null);
    const sourceAt=Number.isFinite(Date.parse(candidateStamp||''))?candidateStamp:null;
-   const window=Number.isFinite(first)?time(first)+(Number.isFinite(last)&&last!==first?'–'+time(last):''):'Time unverified';
+   const window=Number.isFinite(first)?time(first)+(Number.isFinite(last)&&last!==first?(state==='KS'?' · conservative call gate ':'–')+time(last):''):'Time unverified';
    return {...spec,state,order,left,pct,delta,status,sourceAt,ownCounts,called,simulated:simulated||result?.county_results_update?.status==='SIMULATED_NATIONAL_REHEARSAL',
     count:direct&&finite(direct.counted_two_party_votes)?direct.counted_two_party_votes:null,
     first,last,window,started:Number.isFinite(first)&&now>=first,
@@ -45,7 +45,7 @@
    for(const row of data.filter(x=>x.office===office)){
     const card=el('article','personal-focus-card');card.dataset.race=row.code;
     card.append(el('h4','',row.code==='OH-SEN'?'Ohio · special Senate':row.code));
-    card.append(el('small','',row.state==='AK'?'Late night · '+row.window:'Poll-close window · '+row.window));
+    card.append(el('small','',row.state==='AK'?'Late night · '+row.window:row.state==='KS'?'Counts eligible from · '+row.window:'Poll-close window · '+row.window));
     if(row.pct!==null){
      const svg=doc.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 200 105');svg.setAttribute('role','img');svg.setAttribute('aria-label',row.code+' '+row.left+' model win chance '+row.pct.toFixed(1)+' percent');
      const node=(tag,attrs)=>{const n=doc.createElementNS(svg.namespaceURI,tag);for(const [k,v]of Object.entries(attrs))n.setAttribute(k,String(v));return n;};

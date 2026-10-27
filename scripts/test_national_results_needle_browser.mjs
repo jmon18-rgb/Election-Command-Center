@@ -106,7 +106,7 @@ try{
   assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),baseline,'Expired source evidence cannot move national odds even before a controller refresh');
   await page.evaluate(async()=>{await Promise.all([enIowaPilotController.tick(true),enKansasPilotController.tick(true),enTexasPilotController.tick(true),enWisconsinHouseController.tick(true),enWisconsinHouse03Controller.tick(true),enMichiganHouse04Controller.tick(true),enPennsylvaniaHouse10Controller.tick(true),enNewYorkHouse17Controller.tick(true)]);jointRender(true);});
   const preserved=await page.evaluate(()=>({model:JSON.stringify(jointLastResult),storage:JSON.stringify({...localStorage})}));
-  await page.locator('#enNationalRehearsal summary').click();
+  await page.locator('#enNationalRehearsal > summary').click();
   await page.waitForFunction(()=>document.querySelector('#enNationalStage').textContent.includes('1/5'));
   const first=await page.locator('#enNationalPreviewChances').textContent();
   for(let step=2;step<=5;step++){

@@ -13,6 +13,7 @@ const mi=rows.find(x=>x.code==='MI-SEN');assert.equal(mi.ownCounts,false);assert
 assert.equal(rows.find(x=>x.code==='NE-SEN').left,'Osborn');assert.match(rows.find(x=>x.code==='NE-SEN').note,/no assumed Democratic caucus/);
 assert.equal(rows.find(x=>x.code==='AK-SEN').pct,null);assert.equal(rows.find(x=>x.code==='AK-SEN').delta,null);
 assert.equal(mi.first,Date.parse('2026-11-04T01:00:00Z'));assert.equal(mi.last,Date.parse('2026-11-04T02:00:00Z'));
+assert.match(rows.find(x=>x.code==='KS-SEN').window,/conservative call gate/,'Do not present the conservative Kansas call gate as verified county closing hours');
 assert.equal(focus.rows(result,baseline,{...options,year:2024}).length,0);
 const cleared=focus.rows(baseline,baseline,options).find(x=>x.code==='IA-SEN');assert.equal(cleared.pct,45);assert.equal(cleared.delta,0);assert.equal(cleared.ownCounts,false);
 const corrected=structuredClone(result);corrected.race_probabilities.find(x=>x.race_code==='IA-SEN').dem_beats_rep_pct=39;

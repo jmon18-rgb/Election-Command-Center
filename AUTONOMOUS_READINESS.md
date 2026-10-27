@@ -1,5 +1,12 @@
 # Election Night production-readiness assignment
 
+## October 27, 19:21 UTC — Personal rehearsal integration repair
+
+- PR491 initial head `2b31ff62` passed31 workflow parents; the national browser job failed because its old `#enNationalRehearsal summary` selector now matches the new nested race-preview disclosure too. Replaced it with the direct-child outer summary selector; all existing assertions remain. Actual installed Edge1366/390 national arrival/correction/withdrawal/outage/rehearsal and missing-cadence fallback checks pass after repair. The personal-view desktop/mobile suite already passed, including the nested simulated cards and live isolation.
+- Kansas's card now distinguishes counts eligible from the existing conservative call gate instead of presenting the latter as independently verified county closing hours. Unit checks/fingerprint69 pass. AK's old-head browser job cancelled during Azure dependency download before tests; do not retry that superseded head after this real repair push. All applicable new-head checks remain required.
+- Parent PR490 merged `6cb2cccf` after all34 exact-head parents/45latest jobs42success3nonapplicable skips/0external/clean; its one cancelled TX install retry succeeded. Finalmain `62e3e773231d551b241a1fdecaf3304af5b452e4`, Pages40567346485SUCCESS, all303 checked files match19:18:00Z; public coherence passes. Published index differs from the local personal-view candidate as expected; it is not a personal-view release claim.
+- Bounded MI Senate historical-source review followed the original SOS-declared archive route to the new Archives of Michigan landing, without reopening known MVIC403s. Those landing pages did not supply matched2020 county votes. Receipt `artifacts/readiness/michigan-source-research/senate-archive-route-20261027.json` records next untried catalog/finding-aid route. No source admitted and no blanket/native probe.
+
 ## October 27, 19:11 UTC — Owner expands scope to personal Senate/House needles
 
 - Direct owner scope overrides the former national-only/no-individual-panels restriction: IA/KS/ME/OH/MI/NE/SC/MN/MS/AK individual Senate needles plus selected pivotal House races, all connected coherently to one national outlook. Alaska is lowest first-night priority. Owner cares about information arrival versus expectations, poll-close windows and what early evidence implies for later races. Detailed contract and phased targets: `OWNER_ELECTION_NIGHT_SCOPE.md`; R7 and R1 priorities updated in ROADMAP.
