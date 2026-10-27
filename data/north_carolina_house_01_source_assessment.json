@@ -135,5 +135,15 @@
     "No district-part FIPS/precinct crosswalk independently reconciled yet; candidate rows in a zero template are not an independently verified ballot contract.",
     "No remaining-ballot or chronological calibration evidence; no comparative delivery-lag proof."
   ],
-  "next_decision": "Assess the 2026-boundary historical crosswalk before spending on an NC01 forecast adapter; reuse existing discovery instead of merging stale investigation PRs."
+  "next_decision": "NC01 adapter deferred until independently matched historical votes for all 25 current district parts plus current reporting/identity semantics are available. Geometry is pinned; do not repeat archive/ZIP or enacted-plan discovery.",
+  "new_line_assessment": "data/north_carolina_house_01_new_line_assessment.json",
+  "independent_current_county_geometry": {
+    "status": "25 county identities match official enacted-plan report; 23 whole and 2 split counties",
+    "split_counties": [
+      "GRANVILLE",
+      "ONSLOW"
+    ],
+    "not_precinct_equivalency": true,
+    "not_vote_allocation": true
+  }
 }
