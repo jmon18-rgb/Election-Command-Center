@@ -6,7 +6,7 @@
  if(root)root.NationalCountyLikelihood=api;
 })(typeof window!=='undefined'?window:null,function(closes){
  'use strict';
- const scopes={'IA-SEN':{n:99,id:87151,year:2022,prefix:'19'},'KS-SEN':{n:105,id:87162,year:2020,prefix:'20'},'TX-SEN':{n:254,id:87438,year:2024,prefix:'48'},'WI-01':{n:5,id:87483,year:2024,prefix:'55',house:true},'WI-03':{n:19,id:87485,year:2024,prefix:'55',house:true},'MI-04':{n:6,id:87204,year:2024,prefix:'26',house:true},'PA-10':{n:3,id:87385,year:2024,prefix:'42',house:true},'NY-17':{n:4,id:87319,year:2024,prefix:'36',house:true},'WA-03':{n:7,url:'https://results.votewa.gov/results/public/api/elections/washington/20261103/data/ballot-item/54c40000-9064-bbec-4779-08df15c0a82a',year:2024,prefix:'53',house:true}};
+ const scopes={'ME-SEN':{n:16,id:87188,year:2020,prefix:'23',firstChoice:true},'IA-SEN':{n:99,id:87151,year:2022,prefix:'19'},'KS-SEN':{n:105,id:87162,year:2020,prefix:'20'},'TX-SEN':{n:254,id:87438,year:2024,prefix:'48'},'WI-01':{n:5,id:87483,year:2024,prefix:'55',house:true},'WI-03':{n:19,id:87485,year:2024,prefix:'55',house:true},'MI-04':{n:6,id:87204,year:2024,prefix:'26',house:true},'PA-10':{n:3,id:87385,year:2024,prefix:'42',house:true},'NY-17':{n:4,id:87319,year:2024,prefix:'36',house:true},'WA-03':{n:7,url:'https://results.votewa.gov/results/public/api/elections/washington/20261103/data/ballot-item/54c40000-9064-bbec-4779-08df15c0a82a',year:2024,prefix:'53',house:true}};
  const policy=Object.freeze({minimum_votes:10000,minimum_reference_fraction:.005,minimum_counties:3,
   county_margin_sigma:6,batch_margin_sigma:8,turnout_sigma_fraction:.25,selection_share_sigma:.12,
   contamination_floor:.05,minimum_effective_sample_fraction:.5,state_likelihood_pooling:'FIXED_PREDECLARED_STATE_LOG_LIKELIHOOD_BUDGET'});
@@ -65,7 +65,17 @@
    const variance=(policy.county_margin_sigma/200)**2+(policy.selection_share_sigma*(1-c.n/finalN))**2+.25/c.n;
    return {...c,aDone,eDone:c.n-aDone,variance};
   }));
-  const baseMargin=100*(2*baseD/baseN-1),bias=(policy.batch_margin_sigma/200)**2;
+  let referenceD=baseD,referenceN=baseN,roundVariance=0;
+  if(scope.firstChoice){
+   const u=envelope.baseline.state_unallocated_uocava,t=envelope.baseline.statewide;
+   if(x.round!==1||x.ranked_choice_scope!=='FIRST_CHOICE_ONLY_NOT_FINAL_RCV_OUTCOME'||
+    t?.dem_votes!==347223||t?.rep_votes!==417645||u?.dem_votes!==4068||u?.rep_votes!==1089||
+    baseD+u.dem_votes!==t.dem_votes||baseN+u.dem_votes+u.rep_votes!==t.dem_votes+t.rep_votes)throw Error('Unverified Maine first-choice/unallocated baseline');
+   referenceD=t.dem_votes;referenceN=t.dem_votes+t.rep_votes;
+   // Explicit uncalibrated 5-point round/transfer nuisance, not invented votes.
+   roundVariance=(5/200)**2+((u.dem_votes+u.rep_votes)/referenceN/2)**2;
+  }
+  const baseMargin=100*(2*referenceD/referenceN-1),bias=(policy.batch_margin_sigma/200)**2+roundVariance;
   function logLikelihood(margin){
    if(!Number.isFinite(margin))throw Error('Missing correlated-draw race margin');
    const shift=(margin-baseMargin)/200;
@@ -94,11 +104,11 @@
   return Object.freeze({schema:'national-county-likelihood-v1' ,code,source_url:x.source_url,as_of:x.snapshot_updated_at,
    counted_two_party_votes:counted,reporting_counties:observed.length,
    modeled_remaining_two_party_votes:Math.round(remaining),modeled_remaining_two_party_votes_band:[Math.floor(remainingLow),Math.ceil(remainingHigh)],
-   remaining_scope:"Conditional historical-turnout scenario, including unreported district/county parts; not official ballots outstanding",reference_turnout_fraction:counted/baseN,
+   remaining_scope:scope.firstChoice?'County named-candidate turnout scenario only; excludes statewide unallocated UOCAVA and unreported write-ins; not official ballots outstanding':"Conditional historical-turnout scenario, including unreported district/county parts; not official ballots outstanding",reference_turnout_fraction:counted/baseN,
    independence:'COUNTS_ONLY_NO_POLL_PRIOR_OR_RACE_POSTERIOR',logLikelihood});
  }
  function condition(model,basis,envelopes,options={}){
-  if(!Array.isArray(envelopes)||envelopes.length>9)throw Error('Bounded national county evidence required');
+  if(!Array.isArray(envelopes)||envelopes.length>10)throw Error('Bounded national county evidence required');
   if(options.captureCountyDraws||options.replayCountySeeds)throw Error('Nested/replayed national evidence is not a prior');
   const {now=Date.now(),rehearsal=false,...args}=options,compiled=[],excluded=[],codes=new Set();
   if(Object.values(args.live||{}).some(row=>row?.mode!=='source_called'||!['D','R'].includes(row.winnerParty)))

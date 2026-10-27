@@ -1,6 +1,7 @@
 'use strict';
 const closes=require('./election_night_poll_closings_2026.js');
 const races=Object.freeze([
+ {code:'ME-SEN',state:'ME',office:'Senate',key:'ME',forecast_scope:'national_joint_draws',counties:16,url:'https://civicapi.org/api/v2/race/87188',reference:'data/maine_county_fips_reference.json',parser:'MaineCivicCountySource',controller:'enMaineSenateController'},
  {code:'IA-SEN',state:'IA',counties:99,url:'https://civicapi.org/api/v2/race/87151',
   reference:'data/iowa_county_fips_reference.json',parser:'IowaCivicCountySource',controller:'enIowaPilotController'},
  {code:'KS-SEN',state:'KS',counties:105,url:'https://civicapi.org/api/v2/race/87162',

@@ -70,7 +70,7 @@ function parse(detail,reference,{source_url=URL,now=Date.now()}={}){
  return {status:total?'VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED':'NO_REPORTED_VOTES',
   source_url:URL,race_code:'ME-SEN',snapshot_updated_at:detail.last_updated,
   timestamp_scope:'provider_race_snapshot_not_independent_county_update_times',
-  round:1,ranked_choice_scope:'FIRST_CHOICE_ONLY_NOT_FINAL_RCV_OUTCOME',
+  other_votes_scope:'UNREPORTED_WRITE_INS_NOT_ASSUMED_ZERO',round:1,ranked_choice_scope:'FIRST_CHOICE_ONLY_NOT_FINAL_RCV_OUTCOME',
   county_identities_matched:16,counties,live_votes_accepted:total>0,
   method_split_reported:false,completion_verified:false,may_move_national_needle:false};
 }
