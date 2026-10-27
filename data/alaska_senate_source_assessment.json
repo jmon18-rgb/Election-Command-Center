@@ -1,9 +1,9 @@
 {
   "schema": "bounded-close-senate-source-assessment-v1",
   "race": "AK-SEN",
-  "assessed_at": "2026-10-27T00:45:09.797Z",
+  "assessed_at": "2026-10-27T06:48:55.828871+00:00",
   "national_input_enabled": false,
-  "status": "NO_2026_GENERAL_RESULTS_LINK_OBSERVED",
+  "status": "GENERAL_BALLOT_VERIFIED_SOURCE_PARTY_CONFLICT_STATE_ONLY_RCV_UNVERIFIED",
   "official_url": "https://www.elections.alaska.gov/election-results/",
   "http": 200,
   "observed_2026_rows": [
@@ -36,9 +36,11 @@
     }
   ],
   "limitations": [
-    "Only primary, REAA and recall rows observed; general availability not established.",
-    "Approved civic route 86916 has only a STATE row and unresolved six-candidate/RCV identity contract.",
-    "Do not guess general asset IDs, sum parties, or treat first choices as final ranked-choice outcomes."
+    "Official final general roster/printed ballot now verified; not missing.",
+    "Current source native219761 Daniel J. Jr. Sullivan says Republican; official roster says Undeclared and printed ballot gives no party. No silent reassignment/party summing.",
+    "Current full source remains one State row/stale zero/round1, not a geographic remaining-vote model or final RCV call contract.",
+    "Prior results landing still only primary/REAA/recall observed; not rechecked."
   ],
-  "next": "Record once; move to consequential near-boundary Senate or owner-listed House gap until independently linked general results become available."
+  "next": "Keep AK outside national results likelihood. Wait for corrected native affiliation plus permitted geographic/remaining-vote evidence and independently reviewed final-RCV semantics; no unchanged probes or guessed IDs.",
+  "independent_ballot_contract": "data/alaska_senate_ballot_contract.json"
 }

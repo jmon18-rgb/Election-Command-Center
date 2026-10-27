@@ -6,6 +6,25 @@
   const BASE='https://civicapi.org/api/v2';
   const ELECTION='2026-11-03';
   const START=Date.parse('2026-11-03T05:00:00Z');
+  // Original Nov3 general ballot + official certified roster are preserved in
+  // data/alaska_senate_ballot_contract.json. The second Sullivan is Undeclared,
+  // not another Republican nominee. Two of these six names are write-ins.
+  const AK_SENATE=Object.freeze({
+    219758:['geraldlheikes','Republican'],219759:['marypeltola','Democratic'],
+    219760:['dansullivan','Republican'],219761:['danieljjrsullivan','Undeclared'],
+    219762:['heathermcelwain','Libertarian'],219763:['sidneysidhill','Undeclared']
+  });
+  function alaskaSenateCandidates(candidates){
+    if(!Array.isArray(candidates)||candidates.length!==6)return false;
+    const seen=new Set();
+    for(const c of candidates){
+      const pin=AK_SENATE[c?.candidate_id];
+      if(!pin||!Number.isSafeInteger(c.candidate_id)||seen.has(c.candidate_id)||typeof c.name!=='string'||
+        c.name.normalize('NFKC').toLowerCase().replace(/[^a-z]/g,'')!==pin[0]||c.party!==pin[1])return false;
+      seen.add(c.candidate_id);
+    }
+    return seen.size===6;
+  }
   const RACES=Object.freeze({
     'Senate|AK':{state:'AK',name:'Alaska US Senate',office:'Senate',id:86916},
     'Governor|AK':{state:'AK',name:'Alaska Governor',office:'Governor',id:148898},
@@ -75,7 +94,8 @@
       row.type===(cfg.office==='Senate'?'US Senate':'Governor')&&
       row.election_type===(cfg.office==='Senate'?'General':'Statewide')&&
       typeof row.election_name==='string'&&row.election_name.trim()===cfg.name&&
-      Array.isArray(row.candidates)&&row.candidates.length<=60);
+      Array.isArray(row.candidates)&&row.candidates.length<=60&&
+      (!(cfg.office==='Senate'&&cfg.state==='AK')||alaskaSenateCandidates(row.candidates)));
   }
   function select(item,doc){
     if(!configuration(item)||!doc||disabled(doc)||!Array.isArray(doc.races)||
@@ -119,6 +139,8 @@
        detail.percent_reporting<0||detail.percent_reporting>100||
        !Array.isArray(detail.candidates)||detail.candidates.length<2||
        detail.candidates.length>60)return null;
+    const alaska=cfg.office==='Senate'&&cfg.state==='AK';
+    if(alaska&&(detail.round!==1||detail.test_data!==false||!alaskaSenateCandidates(detail.candidates)))return null;
     let total=0,called=null,calls=0;
     const candidates=[],seen=new Set();
     for(const c of detail.candidates){
@@ -153,7 +175,10 @@
       total,candidates,
       // Keep validated partial totals, but never show a source-declared
       // winner before the latest applicable 2026 state poll close.
-      called:called&&localWinnerFlagAllowed(item,total,updated,now)?called:null,
+      // Poll closure does not verify ranked-choice elimination/transfer or
+      // winner-flag semantics. No reviewed final AK Senate call contract yet.
+      called:!alaska&&called&&localWinnerFlagAllowed(item,total,updated,now)?called:null,
+      ...(alaska?{count_round:1,final_rcv_verified:false,party_aggregation_allowed:false}:{}),
       source_url:BASE+'/race/'+row.id};
   }
   const adapter=Object.freeze({supports,match,select,query,validate});

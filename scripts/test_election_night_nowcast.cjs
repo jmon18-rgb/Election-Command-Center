@@ -240,3 +240,5 @@ assert.equal(model.estimate({...calledPriors,
  az,validSource,civicAZ,now).mode,'live_informed',
  'Non-D/R independent candidates must not be forced into D/R outcome probabilities');
 console.log('Election Night odds: source provenance, prior/posterior, conservative early returns and uncertainty tests passed');
+
+const akSenateItem={office:'Senate',key:'AK'};const akSenateSource={...validSource,races:{AK:validSource.races.AZ}};assert.equal(model.observed(akSenateItem,akSenateSource,null),null,'State-only AK first choices cannot enter an aggregate-party diagnostic');

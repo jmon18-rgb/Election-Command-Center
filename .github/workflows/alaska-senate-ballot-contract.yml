@@ -1,0 +1,34 @@
+name: Verify Alaska Senate original ballot and unsupported-call exclusion
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'scripts/*alaska_senate*'
+      - 'data/alaska_senate*'
+      - 'data/alaska_senate_sources/**'
+      - 'scripts/civicapi_state_batch.js'
+      - 'scripts/election_night_signals.js'
+      - 'scripts/election_night_nowcast.js'
+      - '.github/workflows/alaska-senate-ballot-contract.yml'
+permissions:
+  contents: read
+jobs:
+  ballot-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pypdf==6.10.0
+      - run: python scripts/test_alaska_senate_ballot_contract.py
+      - run: git diff --exit-code -- data/alaska_senate_ballot_contract.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/test_alaska_senate_ballot_guard.cjs
+      - run: npm install --no-save --no-package-lock playwright@1.57.0
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/test_alaska_senate_ballot_browser.mjs
