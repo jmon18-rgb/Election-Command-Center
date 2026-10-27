@@ -1,6 +1,7 @@
 'use strict';
 const closes=require('./election_night_poll_closings_2026.js');
 const races=Object.freeze([
+ {code:'PA-07',state:'PA',office:'House',key:'PA-07',forecast_scope:'national_joint_draws',counties:4,url:'https://civicapi.org/api/v2/race/87382',reference:'data/pennsylvania_house_07_county_fips_reference.json',parser:'WisconsinHouseCountySource',parser_scope:'PA-07',controller:'enPennsylvaniaHouse07Controller'},
  {code:'OH-SEN',state:'OH',office:'Senate',key:'OH-special',forecast_scope:'national_joint_draws',counties:88,url:'https://civicapi.org/api/v2/race/87527',reference:'data/ohio_county_fips_reference.json',parser:'OhioCivicCountySource',controller:'enOhioSenateController'},
  {code:'ME-SEN',state:'ME',office:'Senate',key:'ME',forecast_scope:'national_joint_draws',counties:16,url:'https://civicapi.org/api/v2/race/87188',reference:'data/maine_county_fips_reference.json',parser:'MaineCivicCountySource',controller:'enMaineSenateController'},
  {code:'IA-SEN',state:'IA',counties:99,url:'https://civicapi.org/api/v2/race/87151',

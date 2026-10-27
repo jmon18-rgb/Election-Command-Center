@@ -1,0 +1,45 @@
+{
+  "schema": "bounded-pivotal-source-fallback-assessment-v1",
+  "race": "PA-10",
+  "assessed_at": "2026-10-27T02:10:34.977601+00:00",
+  "status": "FULL_INDEPENDENT_CURRENT_RACE_FALLBACK_NOT_ESTABLISHED",
+  "existing_civic_national_input_preserved": true,
+  "state_source": {
+    "official_linking_page": "https://www.pa.gov/agencies/vote/elections/election-results",
+    "declared_results_url": "https://www.electionreturns.pa.gov/",
+    "last_saved_browser_capture_at": "2026-10-26T15:24:02.826Z",
+    "last_saved_browser_http": 200,
+    "saved_body_result": "Request unsuccessful / Incapsula access-block page; not usable results",
+    "saved_body_sha256": "903377fda7613d6da43f0a05a421bfe4e66ff8f0d18a05f03cf1293bcd559306",
+    "blocked_request_not_repeated_or_bypassed": true
+  },
+  "dauphin_current_discovery": {
+    "captured_at": "2026-10-27T02:10:34.977601+00:00",
+    "fixture_free": true,
+    "virtual_clock": false,
+    "comparative_lag": "UNPROVEN",
+    "source_url": "https://elections.dauphincounty.gov/",
+    "limitation": "Discovery only; no live vote capture, no comparative timing acceptance",
+    "capture_revision": "6a937e586ba6a0cf609a593b72f9e9e6f66a0b10",
+    "working_tree_dirty": false,
+    "http_status": 200,
+    "requested_at": "2026-10-27T02:10:35.038637+00:00",
+    "received_at": "2026-10-27T02:10:35.348588+00:00",
+    "body_sha256": "ce8bd8a5d955e6b16582dea873b3072ffc5223908aa8a456a394dddc5d7e0061",
+    "cache": {
+      "Age": "2808",
+      "Cache-Control": null,
+      "Date": "Tue, 27 Oct 2026 02:10:35 GMT",
+      "ETag": null
+    },
+    "status": "INDEPENDENT_GENERAL_NOT_PUBLISHED",
+    "discovered_url": null
+  },
+  "limits": [
+    "Observed cached menu has no current general link; this does not prove all independent publication paths are unavailable.",
+    "Dauphin alone is one of three PA10 county parts, not a full independent race source.",
+    "Official stated post-close availability is not a comparative freshness guarantee.",
+    "Source clock/HTTP duration/cache Age are not AP/NYT or provider-lag evidence."
+  ],
+  "next": "Retain existing bounded discovery/matched-batch collector for a genuinely published current general link. Do not guess election keys or re-probe the same cached menu each run. Work on next owner-listed pivotal coverage gap meanwhile."
+}

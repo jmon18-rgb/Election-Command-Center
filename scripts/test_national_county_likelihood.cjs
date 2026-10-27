@@ -144,7 +144,8 @@ assert.deepEqual(bridge.condition(model,basis,[thin],{...opts,now}).result,ordin
 const seven=bridge.condition(model,basis,[...blue,wi,wi3,mi,pa],{...opts,now});
 assert.equal(seven.diagnostics.used.length,7);assert.equal(seven.diagnostics.house_vote_sources,4);
 assert.deepEqual(seven.diagnostics.house_vote_states,['MI','PA','WI']);
-assert.equal(seven.diagnostics.state_likelihood_budget_members.PA,1);assert.equal(seven.diagnostics.state_likelihood_budget_members.WI,2);
+assert.equal(seven.diagnostics.state_likelihood_budget_members.PA,2);assert.equal(seven.diagnostics.state_likelihood_budget_members.WI,2);
+assert(seven.diagnostics.state_likelihood_max_ratio.PA<=Math.sqrt(20)+1e-8,'PA10 alone receives half the fixed Pennsylvania log-likelihood budget once PA07 is predeclared');
 assert(seven.diagnostics.state_likelihood_max_ratio.PA<=20+1e-8);assert(seven.diagnostics.effective_sample_size>=opts.samples*.5-1e-6);
 assert.deepEqual(bridge.condition(model,basis,[...blue,wi,wi3,mi],{...opts,now}).result,six.result,'Withdrawing PA restores the exact previous six-source model');
 assert.equal(Object.values(seven.result.counts).reduce((a,b)=>a+b,0),opts.samples);

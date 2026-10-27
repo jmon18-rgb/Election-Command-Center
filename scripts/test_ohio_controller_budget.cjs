@@ -16,7 +16,9 @@ const reference=require('../data/ohio_county_fips_reference.json');
  const first=c.tick();await new Promise(setImmediate);assert.equal(calls,1);
  // Model a 90-second shared-pool queue followed by five seconds of transport.
  now+=95000;release({});await first;
- assert.equal(await c.tick(true),false,'Completion cannot immediately restart a queued request');
+ const early=c.tick(true);await new Promise(setImmediate);
+ assert.equal(calls,1,'Completion cannot immediately restart a queued request');
+ assert.equal(await early,false);
  now+=59000;assert.equal(await c.tick(true),false);assert.equal(calls,1);
  now+=1000;const second=c.tick(true);await new Promise(setImmediate);assert.equal(calls,2);
  release({});await second;c.destroy();

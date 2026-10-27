@@ -1,0 +1,53 @@
+{
+  "observed_at": "2026-10-27T02:11:38.631000+00:00",
+  "source_url": "https://civicapi.org/api/v2/race/87382",
+  "source_response_sha256": "b9264d3117d889b4b1f04c6da059f1b0013d3df4935fbc1415fb2a735c885eb8",
+  "region_count": 4,
+  "source_test_data": false,
+  "accepted_live_vote_rows": 0,
+  "source_stamp": "2026-10-23T02:05:37.232Z",
+  "regions": [
+    {
+      "fips": "42025",
+      "name": "Carbon",
+      "type": "County"
+    },
+    {
+      "fips": "42077",
+      "name": "Lehigh",
+      "type": "County"
+    },
+    {
+      "fips": "42089",
+      "name": "Monroe",
+      "type": "County"
+    },
+    {
+      "fips": "42095",
+      "name": "Northampton",
+      "type": "County"
+    }
+  ],
+  "candidate_roster": [
+    {
+      "name": "Bob Brooks",
+      "party": "Democratic",
+      "candidate_id": 221027
+    },
+    {
+      "name": "Ryan Mackenzie",
+      "party": "Republican",
+      "candidate_id": 221028
+    }
+  ],
+  "adapter_status": "REJECTED_STALE_ZERO_NOT_LIVE",
+  "candidate_proclamation_url": "https://www.monroecountypa.gov/getmedia/8952bea5-32f4-4763-a61f-49d917063997/Nov26_CandidateProclamation.pdf",
+  "candidate_proclamation_sha256": "bb36b5b463fb748f59dff82d4daae604cd1be69411475b64d8faa20963c987a3",
+  "candidate_proclamation_visually_verified_page": 1,
+  "limitations": [
+    "Same provider as PA10; additional coverage does not resolve comparative-lag risk.",
+    "All observed source counts are zero; no actual positive delivery or calibration.",
+    "Monroe is a district part; never replace with whole-county totals."
+  ],
+  "timestamp_scope": "Local response-save clock, not publisher availability or independent vote chronology"
+}

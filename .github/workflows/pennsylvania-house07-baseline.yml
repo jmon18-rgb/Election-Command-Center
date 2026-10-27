@@ -1,0 +1,28 @@
+name: Verify pivotal PA07 original district-part baseline
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/*pennsylvania*07*'
+      - 'data/pennsylvania_house_07*'
+      - 'data/pennsylvania_source_documents/**'
+      - 'data/pennsylvania_historical_sources/**'
+      - '.github/workflows/pennsylvania-house07-baseline.yml'
+permissions:
+  contents: read
+jobs:
+  source-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pypdf==6.10.0
+      - run: python scripts/test_pennsylvania_house_07_baseline.py
+      - run: git diff --exit-code -- data/pennsylvania_house_07_2024_county_baseline_official.json data/pennsylvania_house_07_county_fips_reference.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/test_pennsylvania_house_07_county_source.cjs

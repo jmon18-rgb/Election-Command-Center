@@ -1,5 +1,98 @@
 # Election Night production-readiness assignment
 
+## October 27 02:33Z — PA10 fallback bounded; pivotal PA07 national path local
+
+- Inspected existing PA10 timing/official assessments first. Saved state-site
+  browser capture (Oct26 15:24Z) was an Incapsula request-unsuccessful page despite
+  HTTP200; not retried/bypassed. Official pa.gov still links that same service.
+  One fresh Dauphin menu GET at02:10:35Z returned the same source hash as16:47Z,
+  no 2026 general link, cache Age2808s. This is cached-menu discovery, not proof
+  that every independent source is absent or that a publication is slow. Recorded
+  data/pennsylvania_house_10_independent_fallback_assessment.json; no guessed keys.
+- Moved to PA07, uploaded power-flip seed position6 (not Silver odds), captured
+  linked-model70.5% engineering band. Reused the pinned official 2024 statewide
+  precinct extract: exact USC/CandidateDistrict7 yields738 candidate rows /369
+  precincts /4 county parts; 199626D/203688R independently match MIT district totals.
+  Census/map bridge confirms comparable boundaries. Monroe is ONLY its district
+  part; no whole-county allocation or new precinct-equivalence claim.
+- Independently linked official Monroe Nov3 general proclamation HTTP200,
+  133602bytes SHA bb36b5b463fb748f59dff82d4daae604cd1be69411475b64d8faa20963c987a3;
+  page1 visually confirms Bob Brooks DEM / Ryan Mackenzie REP and Monroe's named
+  PA07 precincts. Original saved. Four importer/corruption tests PASS.
+- Provider search uniquely discovered87382; actual full response HTTP200/non-test/
+  round1, four Census-matched county parts, exact two native candidate IDs, all
+  ZERO and stale Oct23. This is NOT positive delivery, calibration or independent
+  provider diversification. Existing PA10 independent-fallback gap remains.
+- Implemented PA07 as TWELFTH headless county-to-NATIONAL path, not a race panel.
+  Exact native IDs/round/roster/district/county gates, independent baseline, durable
+  zero/correction/retraction metadata and active-tab/breaker generation gates.
+  Additional PA07<=1 full request/min AFTERcompletion; pre-close automatic10min.
+  Existing8fast32/min +ME1 +OH1 +PA071 +WAowned1, shared4/64/8 pool. PA07+PA10
+  share the existing fixed Pennsylvania state log-likelihood budget; do not double
+  it. Updated old one-member assertion to TWO predeclared members and strengthened
+  PA10-alone bound to sqrt20; combined PA remains<=20. Baseline draws unchanged.
+- Queue regression reproduced the same enqueue-floor bug in existing Maine:
+  immediate second request after90sec queue+5sec transport. One-line completion
+  floor fixes it. Maine/Ohio/PA07 regressions now assert request count BEFORE
+  awaiting a potentially pending call, so regression cannot silently exit.
+- All43 local core regressions PASS. Numerical PA07 national movement, red/blue,
+  ESS/baseline isolation and twelve-source coexistence PASS. ActualEdge1366/390
+  PA07 and Maine SYNTHETIC movement/correction/zero-oldreply/round/outage-recovery/
+  hidden/archive/manual and automatic minute-floor tests PASS. Not live evidence.
+- CURRENT CODE IS LOCAL/REVIEW ONLY until exact-head checks and final Pages/bytes/
+  published synthetic behavior plus separate actual-source canary are verified.
+  Do not repeat PA07 original/roster/baseline hunting. Last daily report2026-10-26;
+  Ohio milestone already notified; pending/routine work stays quiet.
+
+
+## October 27 02:04Z — close Ohio results-to-NATIONAL connection VERIFIED DEPLOYED
+
+- #470 https://github.com/jmon18-rgb/Election-Command-Center/pull/470 merged
+  after ALL 36 exact-head workflows succeeded; 47 latest jobs, 43 success and
+  4 nonapplicable skips; no external statuses; clean exact-head mergeability.
+  Tested head e5eeb67069d6710994d5f1122b4abf15aeddec63, merge
+  a57b753db001939a065bcfa83bd3c53a5e6d1d17. Required Texas runtime job was
+  marked cancelled after its assertions passed; attempt 2 succeeded on the SAME
+  head. No checks waived, protections bypassed or timeout changed.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40434472506
+- Final briefing main ed4381f3874e51e1ba05225a88d25128e0a62a00; final Pages
+  40435919243 SUCCESS (earlier merge Pages was superseded, not final acceptance).
+  ALL 181 expected published files matched at 02:03:48Z, all 56 loaded script
+  fingerprints valid; actual remote forecast/dashboard coherence passed.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40435919243
+- Actual PUBLISHED 1366/390 SYNTHETIC tests PASS Ohio-only automatic national
+  movement before calls, red/blue correction, zero withdrawal, old-reply rejection,
+  unexpected-round exclusion, outage/recovery, hidden/archive isolation and
+  automatic/manual minute floor. Mobile screenshot visually checked; primary
+  driver identifies OH-SEN and modeled turnout, experimental shared-error transfer,
+  no observed House votes and no independently calibrated interval. No race panel.
+- Separate ACTUAL PUBLISHED fixture-free/real-clock probe 02:04:10Z: all eleven
+  HTTP 200; ten civic non-test ZERO counts, WA expired pre-election health-only.
+  ZERO admitted inputs/projections/raw archives/page errors. LIVE_DELIVERY_UNPROVEN.
+  No actual positive 2026 delivery, independent reporting chronology, calibrated
+  probabilities/remaining intervals or comparative publication-speed proof.
+- Five Senate states IA/KS/TX/ME/OH plus six House districts across five states
+  now support the ONE national needle. Eleven routes are limited evidence, not a
+  representative national sample; existing owner thresholds/baseline/state budgets
+  and ESS floor preserved. Ohio uses the standard two-party turnout scenario from
+  the different 2024 regular seat, not official outstanding ballots or Maine RCV.
+  Native seven-candidate roster and 88 counties matched; no party summing.
+- Additional Ohio floor restarts AFTER completion, including long queue waits.
+  Dedicated 90-second-queue + five-second-transport regression and all 39 local
+  core checks PASS. Existing eight fast routes 32/min, Maine1/min, Ohio<=1/min,
+  WA owned<=1/min; shared 4-active/64-queue/8-reserve pool, generations/breaker and
+  correction/retraction guards unchanged. No additional full-route race panel.
+- NEXT bounded task: inspect existing PA10 timeliness/source assessments and the
+  independently linked official current results/network for a permitted independent
+  fallback to this top uploaded House power-flip race. Reuse its verified district-
+  part baseline; do not invent IDs, whole-county allocations, source permissions,
+  comparative speed or positive delivery. If already blocked, record the exact
+  remaining contract once and choose the next consequential scoped gap. No more
+  Ohio/Maine preparation, unchanged blanket probes or safe-seat expansion.
+- Last daily report remains 2026-10-26 Eastern. Notify this verified Ohio national
+  milestone once on this run, then keep unchanged monitoring quiet.
+
+
 ## October 27 01:44Z — Ohio queued-transport minute floor tightened before release
 
 - Pre-merge review found that measuring the request floor from enqueue time can

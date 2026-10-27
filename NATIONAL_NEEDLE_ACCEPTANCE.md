@@ -1,4 +1,4 @@
-# National needle acceptance decision — October 26, 2026
+# National needle acceptance decision — October 27, 2026
 
 Decision: implementation is ready for experimental use; predictive validation is
 not sufficient for a calibrated national forecasting claim. This is the bounded
@@ -7,14 +7,14 @@ not change the owner's primary national-needle requirement or silently disable i
 
 | Acceptance question | Evidence | Decision |
 | --- | --- | --- |
-| Do incoming competitive returns change one coherent Four Endings forecast? | PR465 deployed; synthetic laptop/mobile WA-only national movement before calls, corrections and withdrawals | Implemented; synthetic evidence only |
+| Do incoming competitive returns change one coherent Four Endings forecast? | PR465/468/470 deployed; synthetic laptop/mobile WA-only, Maine-only and Ohio-only national movement before calls, corrections and withdrawals | Implemented; synthetic evidence only |
 | Is an independent official path usable? | WA03 official GET200; owned publication/CORS/readback verified; seven district parts matched | Transport verified; no positive post-close delivery yet |
-| Are live competitive inputs available now? | Actual nine-route probe 2026-10-26T20:54:04Z: eight stale-zero civic routes and one official health-only record | No accepted positive inputs |
+| Are live competitive inputs available now? | Actual eleven-route published probe 2026-10-27T02:04:10Z: ten zero-count civic routes (most stale) and one expired official health-only record | No accepted positive inputs |
 | Does historical evaluation establish partial-return skill? | Iowa assumed-order experiment: partial margin MAE6.63points vs naive19.89; neutral prior, different Senate class | Useful stress experiment; not chronological validation or national calibration |
 | Is genuine historical chronology complete? | Four verified Thurston2024 partial reports, one of seven WA03 county parts, approximately59%-97%of final two-party votes | Incomplete, especially early count; no statewide replay/calibration approval |
 | Are probabilities/remaining-vote intervals calibrated? | No approved chronological multi-race calibration inputs; predeclared uncertainty and bounded influence are design choices | Unproven |
 | Will results arrive as fast as major publications? | Request timings and source clocks exist, but no independently matched real vote batches | Unproven; official collection/cache may add minutes |
-| Does coverage represent national House behavior? | Six supported House districts across five states, plus three Senate states | Limited evidence; not a representative national sample |
+| Does coverage represent national House behavior? | Six supported House districts across five states, plus five Senate states (IA/KS/TX/ME/OH) | Limited evidence; not a representative national sample |
 
 ## Exact outstanding evidence
 
@@ -52,8 +52,18 @@ A dependable results dashboard as the primary fallback was recommended to the
 owner, but has NOT been approved as a replacement for the national needle.
 No assertion is made that85%remaining usage guarantees finishing or validation.
 
+## Latest implementation evidence
+
+PR470 passed every applicable exact-head check, merged and deployed. Final main
+ed4381f3874e51e1ba05225a88d25128e0a62a00; Pages40435919243 succeeded; all181
+expected files matched. Published Ohio-only synthetic movement/recovery passed
+at laptop/mobile widths. The separate actual probe admitted zero inputs. The
+calibration and real-delivery decision above therefore remains unchanged.
+
 ## Evidence references
 
+- https://github.com/jmon18-rgb/Election-Command-Center/pull/470
+- https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40435919243
 - https://github.com/jmon18-rgb/Election-Command-Center/pull/465
 - https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40399515539
 - https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40399466905

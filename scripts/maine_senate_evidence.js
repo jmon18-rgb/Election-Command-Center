@@ -42,7 +42,7 @@
     if(!parsed.live_votes_accepted){phase='No genuine post-close civicAPI ME-SEN counts';return true;}
     evidence={...inputs,snapshot:parsed};onValidated();phase='ME-SEN civicAPI first-choice counts · source '+new Date(parsed.snapshot_updated_at).toLocaleTimeString()+' · first choices; not final RCV'+' · experimental';return true;
    }catch(error){evidence=null;failures=Math.min(3,failures+1);phase='civicAPI ME-SEN unavailable · '+error.message;return false;}
-   finally{busy=false;publish();schedule();}
+   finally{lastAttempt=Date.now();busy=false;publish();schedule();}
   }
   schedule();return Object.freeze({tick,status,destroy(){stopped=true;if(timer!==null)clearTimeout(timer);}});
  }
