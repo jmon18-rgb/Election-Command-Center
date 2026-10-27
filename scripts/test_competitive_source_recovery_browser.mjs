@@ -39,6 +39,7 @@ try{
    enCivicBreaker.fail(503);enRenderAmbientDesk();
   });
   const panel=page.locator('.en-coverage-recovery');
+  await page.locator('#enSourceDesk > summary').click();
   const texas=panel.locator('[data-source-race="House|TX-23"]');
   assert.equal(await texas.locator('a[href="https://electionresults.sos.state.tx.us/results.html"]').count(),1);
   assert.match(await texas.textContent(),/2026 returns NOT YET published/);

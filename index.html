@@ -126,6 +126,11 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-activity-item .en-revision{color:#f5c58a}
 .en-message{font-size:11px;line-height:1.6;color:#abc2d9;margin:10px 0}
 .en-status.stale{border-color:#91683d;background:#332719;color:#ffdbb2}
+.en-input-health{border-left:3px solid #6da6c9;padding:10px 14px;margin:16px 0;background:#102538;font-size:12px;line-height:1.5}
+.en-input-health p{margin:6px 0;color:#bfd7e8}
+.en-input-health a{display:inline-block;margin-top:6px}
+#enSourceDesk>summary{cursor:pointer;font-size:13px;font-weight:700;line-height:1.5}
+#enSourceDesk[open]>summary{margin-bottom:14px}
 .en-ambient-overview{margin:10px 0 16px;padding:14px;border-radius:12px;border:1px solid #325c78;background:#0d2032}
 .en-ambient-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-size:11px}
 .en-ambient-top strong{letter-spacing:.08em;color:#daeeff}
@@ -191,7 +196,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 #electionNight .en-fish-settings summary{cursor:pointer;padding:7px 4px}
 #electionNight .en-fish-settings button{padding:7px 10px;border:1px solid #6b98b0;border-radius:8px;background:#244e66;color:#f3f8fa;cursor:pointer}
 #electionNight .en-fish-settings p{max-width:240px;font-size:.75rem;line-height:1.4;margin:5px 0 0}
-#electionNight #jointNightPanel.en-archive-mode>:not(.joint-title):not(#enArchiveOutcome){display:none!important}
+#electionNight #jointNightPanel.en-archive-mode>:not(.joint-title):not(#enArchiveOutcome):not(.en-input-health){display:none!important}
 #electionNight #enAdvancedLab[hidden]{display:none!important}
 #electionNight .en-archive-outcome{padding:15px 20px;background:linear-gradient(120deg,#351e2a,#1c2032);border-radius:12px;border:1px solid #7e5963}
 #electionNight .en-archive-outcome[hidden]{display:none}
@@ -1152,6 +1157,29 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   <div class="four-needle-footer"><span>Waiting for a coherent joint forecast…</span><span>Source pending</span></div>
   <div class="four-needle-distribution" aria-hidden="true"></div>
  </div>
+ <section class="en-national-map-panel" aria-label="2026 nationwide election needle cartogram">
+ <div class="en-nc-map-head"><div><span class="tiny">ELECTION NIGHT · LINKED FORECAST</span><h3>Where the needle is moving</h3></div><span class="en-nc-map-mark">50-STATE RACE MAP</span></div>
+ <p class="en-nmap-intro">Explore 2026 Senate contests or the most competitive House district in each state. Colors show model win probabilities, <em>not current vote leaders</em>. Explicit source-reported calls are marked separately. Select a state for details.</p>
+ <div id="enNationalNeedleMap" aria-live="polite"><p>Loading linked nationwide forecast map…</p></div>
+</section>
+ <details id="enNationalRehearsal" class="joint-audit">
+  <summary>Preview the national needle with simulated results</summary>
+  <p><strong>SIMULATED · FICTIONAL COUNTS · NOT LIVE</strong> — five stages show blue counties reporting as expected, then a 3-point margin outperformance against each race's expectation, a correction and source withdrawal. County expectations use historical geography shifted to the current race model, not county polls. Expected arrivals can narrow uncertainty; a blue raw margin alone is not a blue-wave signal. This preview never changes the live outlook or vote totals.</p>
+  <button type="button" id="enNationalNext">Next simulated update</button>
+  <p id="enNationalStage" role="status">Open to load the national rehearsal.</p>
+  <div id="enNationalPreviewNeedle"></div>
+  <p id="enNationalPreviewChances"></p>
+  <details><summary>See your race needles for this simulated update</summary><div id="enPersonalFocusPreview" aria-label="Simulated personal race needles"></div></details>
+ </details>
+ <section id="enPersonalFocus" class="iowa-race-needle" aria-label="Your Senate and pivotal House race needles" hidden></section>
+ <aside class="en-input-health" aria-label="Results freshness and coverage">
+  <strong>Results coverage &amp; freshness</strong>
+  <p id="enAllOfficeSummary" role="status">2024 archived rehearsal · real 2026 vote counts begin November 3</p>
+  <p class="en-coverage-line" id="enCoverageReconciliation" role="status">Verifying national race inventory…</p>
+  <a id="enInspectSources" href="#enSourceDesk">Inspect data &amp; sources</a>
+ </aside>
+ <details id="enNationalInputDetails" class="joint-audit">
+  <summary>National model inputs · source-by-source status</summary>
  <p id="enNationalHouseSource" class="joint-note" role="status">WI-01 national input: waiting for verified district-part county counts.</p>
  <p id="enNationalNewYorkHouseSource" class="joint-note" role="status">NY-17 national input: waiting for verified district-part county counts.</p>
 <p class="methodline" id="enNationalVirginiaHouse02Source">VA-02 official district-part national input · experimental.</p>
@@ -1166,16 +1194,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <p id="enNationalPennsylvaniaHouseSource" class="joint-note" role="status">PA-10 national input: waiting for verified district-part county counts.</p>
  <p id="enNationalMichiganHouseSource" class="joint-note" role="status">MI-04 national input: waiting for verified district-part county counts.</p>
  <p id="enNationalHouse03Source" class="joint-note" role="status">WI-03 national input: waiting for verified district-part county counts.</p>
- <details id="enNationalRehearsal" class="joint-audit">
-  <summary>Preview the national needle with simulated results</summary>
-  <p><strong>SIMULATED · FICTIONAL COUNTS · NOT LIVE</strong> — five stages show blue counties reporting as expected, then a 3-point margin outperformance against each race's expectation, a correction and source withdrawal. County expectations use historical geography shifted to the current race model, not county polls. Expected arrivals can narrow uncertainty; a blue raw margin alone is not a blue-wave signal. This preview never changes the live outlook or vote totals.</p>
-  <button type="button" id="enNationalNext">Next simulated update</button>
-  <p id="enNationalStage" role="status">Open to load the national rehearsal.</p>
-  <div id="enNationalPreviewNeedle"></div>
-  <p id="enNationalPreviewChances"></p>
-  <details><summary>See your race needles for this simulated update</summary><div id="enPersonalFocusPreview" aria-label="Simulated personal race needles"></div></details>
  </details>
- <section id="enPersonalFocus" class="iowa-race-needle" aria-label="Your Senate and pivotal House race needles" hidden></section>
  <section id="enIowaRaceNeedle" class="iowa-race-needle" aria-label="Iowa Senate experimental live-return needle">
   <h2>Iowa Senate experimental needle</h2><p>Preparing county results and remaining-vote model…</p>
  </section>
@@ -1212,20 +1231,15 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <details class="smart-selection-method"><summary>Source notes</summary><p class="smart-desk-note" id="smartNightNote">Unofficial source-reported votes; a leader is not necessarily a projected winner. No inferred national swing from early precincts.</p></details></section>
 <div class="en-status" id="enStatus" role="status">Election Day is November 3. The 2024 archive is available for rehearsal before 2026 results begin.</div>
 <section class="en-ambient-overview" aria-label="All-office election-night source status">
- <div class="en-ambient-top"><strong>THE WHOLE ELECTION · SOURCE DESK</strong><span id="enAllOfficeSummary" role="status">2024 archived rehearsal · real 2026 vote counts begin November 3</span></div>
+ <details id="enSourceDesk"><summary>Data &amp; sources · coverage, gaps and recovery</summary>
  <div class="en-ambient-offices">
   <button id="enJumpHouse" type="button"><strong>HOUSE</strong><span>Open race drilldown</span></button>
   <button id="enJumpSenate" type="button"><strong>SENATE</strong><span>Open race drilldown</span></button>
   <button id="enJumpGovernor" type="button"><strong>GOVERNORS</strong><span>Open race drilldown</span></button>
  </div>
- <p class="en-coverage-line" id="enCoverageReconciliation" role="status">Verifying national race inventory…</p>
  <div id="enLiveCoverageTriage" class="en-race-drawer" role="region" aria-label="Actual 2026 reported race coverage and Senate source gaps"><p class="en-coverage-line">Awaiting exact-race source reconciliation; provider identities are not results.</p></div>
  <p class="en-coverage-line" id="enSourceReadiness" role="status">Checking verified election-night source identities…</p>
- <section class="en-national-map-panel" aria-label="2026 nationwide election needle cartogram">
- <div class="en-nc-map-head"><div><span class="tiny">ELECTION NIGHT · LINKED FORECAST</span><h3>Where the needle is moving</h3></div><span class="en-nc-map-mark">50-STATE RACE MAP</span></div>
- <p class="en-nmap-intro">Explore 2026 Senate contests or the most competitive House district in each state. Colors show model win probabilities, <em>not current vote leaders</em>. Explicit source-reported calls are marked separately. Select a state for details.</p>
- <div id="enNationalNeedleMap" aria-live="polite"><p>Loading linked nationwide forecast map…</p></div>
-</section>
+
 <section class="en-nc-map-panel" aria-label="North Carolina county election results map">
   <div class="en-nc-map-head"><div><span class="tiny">GEOGRAPHIC NEEDLE LAB · NORTH CAROLINA</span><h3>County-by-county Senate map</h3></div><span class="en-nc-map-mark">100 COUNTIES · 2022 BASELINE</span></div>
   <p class="en-nc-map-lead">Verified 2022 Senate results on real county boundaries. Switch to observed 2026 county counts only after an approved official ZIP snapshot exists. No inferred winner, turnout or national needle movement.</p>
@@ -1235,6 +1249,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <details id="enOhioOfficialCountyDesk" class="en-race-drawer" hidden><summary>Ohio · official candidate returns (source-reviewed only)</summary><div id="enOhioOfficialCountyResults" aria-live="polite"><p>Ohio election-night source currently disabled: mock results are not live votes.</p></div></details>
  <details id="enOfficialBackstops" class="en-race-drawer"><summary>Official election-office pages for automated source gaps</summary><div id="enOfficialBackstopsList"><p class="en-coverage-line">Checking current gap list…</p></div></details>
  <p class="en-coverage-line" id="enDistrictPulse" role="status">Early district performance pending verified votes.</p>
+ </details>
 </section>
 <div class="en-archive-intro" id="enArchiveIntro">2024 House rehearsal uses MIT/MEDSL's historical recorded party-level votes across all 435 districts. It is <strong>not a minute-by-minute replay</strong> and does not identify individual candidates, certified winners, or precinct progress. A 2024 district number must not be treated as the same geographic seat in 2026 after redistricting.</div>
 
@@ -1438,7 +1453,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/nc_official_candidate_votes.js?v=ecdb01c17298"></script>
 <script src="./scripts/nc_historical_county_comparison.js?v=4932049c0026"></script>
 <script src="./scripts/nc_same_office_senate_comparison.js?v=ec183b5491cb"></script>
-<script src="./scripts/national_needle_cartogram.js?v=04878e0304a6"></script>
+<script src="./scripts/national_needle_cartogram.js?v=dc589eb9942a"></script>
 <script src="./scripts/nc_senate_county_map.js?v=0c7818aba055"></script>
 <script src="./scripts/nc_senate_county_map_startup.js?v=84d83fd63392"></script>
 <script src="./scripts/ohio_official_candidate_votes.js?v=ed88660a3b59"></script>
@@ -7705,6 +7720,10 @@ window.addEventListener('focus',()=>enReconnectAfterInterruption());
 // when the operating system does not dispatch an online/focus event.
 setInterval(()=>{enReconnectAfterInterruption()},60000);
 
+$('#enInspectSources').addEventListener('click',()=>{
+ const desk=$('#enSourceDesk');desk.open=true;
+ desk.querySelector('summary').focus({preventScroll:true});
+});
 $('#enMode2026').addEventListener('click',()=>enSwitch(2026,enOffice));
 $('#enMode2024').addEventListener('click',()=>{
  enElectionNightManualArchive=true;
