@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-27T21:17:19.640237Z",
+  "updated_at": "2026-10-27T21:47:38.437897Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
     "primary_source_checked": 4,
-    "advisory_related_headline_buckets": 24,
-    "advisory_related_headlines": 56
+    "advisory_related_headline_buckets": 25,
+    "advisory_related_headlines": 58
   },
   "advisory_related_headlines": [
     {
@@ -268,6 +268,28 @@
   ],
   "items": [
     {
+      "id": "6cb0425b28329abedc85",
+      "title": "Wyoming Green Card Holder Pleads Guilty To Casting Illegal Ballot In 2024 Election - Cowboy State Daily",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOSlNWb0o3VHhwVGZLc2Z1eW9WX1RJVW9xYkpodFVzZWJpRnJUY3pDaXpNeWZ4bmVuSXBZQzhyb09Hem85TVZVLUw1WE16MzNldHQxeVNpWW4zLU12QXhraUhUWXVtSC1FTzRKYnNMWUU0UHhpNWRqd3MwdGpRU055Z0syUDJVdVRnbmR3SFF4bVdxd3M3LU1tMGYwcXBDdUY5TUIxOWJobVJNSGJ1OG13Rm85SFRLZ0hQMzRxSzdn?oc=5",
+      "publisher": "Cowboy State Daily",
+      "published_at": "2026-10-27T21:39:00Z",
+      "detected_at": "2026-10-27T21:47:38.437897Z",
+      "state_hints": [
+        "WY"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2024 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "b271418e9786deeaf360",
       "title": "Despite Trump admin request, Nevada won't use voter citizenship system amid fear of errors - The Nevada Independent",
       "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNYTlOMm9IWTBTLU1ZOXBwejBiaW9VV0tGclRSMEVrMVA2STFUT3pVVU5OTnJMVzMyNDRtbHY0LUxtV29PajZmV3FhampzT0c2Nm5sRGVudy1MZFh0Mi1Db0VEUjBxMXhabWk5dXpKU3l6ZVo3UE1rbE51MG9KTHg2aWxvS2g5ZEhUbmhnMGxhWHJpcV9KdWY0SDRxcXhYYXlXZDdUbGdLMU5pSTR0TlViUkV2cHRPMURYZGNDUzgwbEExc0oxOFR0eA?oc=5",
@@ -281,6 +303,27 @@
         "registration"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "dc125fccc439892b7db2",
+      "title": "Voters will determine 15 election policy ballot measures on Nov. 3 - Ballotpedia News",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOMEpsTEI5TEVmYmdGeG95SHdXRl9LNGduNGhOUTJxOEVEX0ZwUTIzdDdid3RoTHZtVHR2akdqdnc1YUJnNkh2TTNpZG5OcHV3bnJuOGtQdHJkNzBLQ3V1T1NZSkFSN0phVnA5V1NEX2k3Sy1UTmptUU5kMlV4bVZJZ1IycDJITmFqbVZfYjNXODJGUkVoQTBrdWhubHM0a18xckJIX3BMUzJ4QQ?oc=5",
+      "publisher": "Ballotpedia News",
+      "published_at": "2026-10-27T20:00:00Z",
+      "detected_at": "2026-10-27T21:42:04.922028Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "15 ",
+        "3"
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -391,12 +434,50 @@
       "promoted_to_incident_id": null
     },
     {
+      "id": "96d2dfa3bad205f6fa5a",
+      "title": "Behind the ballot box, New Mexico election workers prepare for threats - New Mexico In Depth",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOWGloSHpaWVFTQlBtUzhUeDR3dHZUM2tHRlVuSFBVenVuQjdrcEZOQlZFN0dZQjlrWWxsUlBiR1lyUXRORmF6WGZ0X0RsUHVOYTVSdDJVOTZYWFdLRlFtemcyRWt5ZzUwNkxGS1ZkOFNIWUtBTlkxSGJXQUdRbDVPZXctYmJLZjB5ZTNrNEl0Zi00aGkzTmpYS2E5VEpwZw?oc=5",
+      "publisher": "New Mexico In Depth",
+      "published_at": "2026-10-27T14:19:39Z",
+      "detected_at": "2026-10-27T21:42:04.922028Z",
+      "state_hints": [
+        "NM"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "8bbb654bbd9b1dfd5c44",
       "title": "The Phantom Voter Intimidation Threat - National Review",
       "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQLWF6QjJJR3RYblFzYWswQ090UG0yQWpSVTR1S1c3MjRWRkpZdEszenF0ZThUazR1SWxtaTJMeGRQTjA3U256TlpISnVNOVJHbHBzSGpMa244NWF3cFQ2TGhvb2hXaUttV0ZtYnBaRzIzc1ZxNzhMVFM0Z3dwYUdvaFYzUDhwak82Vm83RzIyONIBlAFBVV95cUxNQVotQmpqZDUzUlpWN2NvSWNpNkl0TGJ5SGltVUhJb0JVWWl1WTZBYXlRUm5SWnU0cWtkRmdaeVNCeldiTVlBNVJWblU0R290QjRsdXdOeXpoaUQyS1FSMHRSWlgwbFhRYVZJVEhvWE1BN25pbGZoeGx0bmFMQzdJR2h5VXUwUmNNOWlQa3FCdkhicHY5?oc=5",
       "publisher": "National Review",
       "published_at": "2026-10-27T14:15:03Z",
       "detected_at": "2026-10-27T14:59:45.294416Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "10204fa6c21e048433b5",
+      "title": "The Phantom Voter-Intimidation Threat - National Review",
+      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQLWF6QjJJR3RYblFzYWswQ090UG0yQWpSVTR1S1c3MjRWRkpZdEszenF0ZThUazR1SWxtaTJMeGRQTjA3U256TlpISnVNOVJHbHBzSGpMa244NWF3cFQ2TGhvb2hXaUttV0ZtYnBaRzIzc1ZxNzhMVFM0Z3dwYUdvaFYzUDhwak82Vm83RzIyONIBlAFBVV95cUxNQVotQmpqZDUzUlpWN2NvSWNpNkl0TGJ5SGltVUhJb0JVWWl1WTZBYXlRUm5SWnU0cWtkRmdaeVNCeldiTVlBNVJWblU0R290QjRsdXdOeXpoaUQyS1FSMHRSWlgwbFhRYVZJVEhvWE1BN25pbGZoeGx0bmFMQzdJR2h5VXUwUmNNOWlQa3FCdkhicHY5?oc=5",
+      "publisher": "National Review",
+      "published_at": "2026-10-27T14:15:03Z",
+      "detected_at": "2026-10-27T21:42:04.922028Z",
       "state_hints": [],
       "topic_hints": [
         "security"
@@ -4954,80 +5035,6 @@
         "ballot_access"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "43064419b2b9c1246647",
-      "title": "North Carolina early voting begins, with students targeted by suppression schemes - Democracy Docket",
-      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOV19MWjRJcFl6NnBjMlF4NE1JeUFhUUJtMF9LZ0JjeHVtVUxtanQtVkN6Q0xtS0V6UF9CMXY1bi1DQmRNUVRBcE1iZnNfakxuTHI2SDI2Y1paaTlQOS1ENHA3Y2VWZ1BlTm9YTXBRcEdOV1htS3VDb0JCaG1uTG9FVHF3eC1tbnI3NnJiZEQ3LUc0dFFvWVEzLU9tUDA3V2F5emRPWURleWFrMG1CR3g2Y1ZRaDlPQXgwQkl3cVRNNmVEdms?oc=5",
-      "publisher": "Democracy Docket",
-      "published_at": "2026-10-15T10:10:11Z",
-      "detected_at": "2026-10-15T10:47:37.150457Z",
-      "state_hints": [
-        "NC"
-      ],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "b7485de6aba16fb16fea",
-      "title": "Battle over Fulton County election board reaches Georgia Supreme Court - The Atlanta Journal-Constitution",
-      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPLUg3Y2hFa2ZmNnZUY3NVWEdUZU9VVVJPNGR5NnVFSXZsdE02b3RfeWZKQzZPcVhGM1dVbEF3Q3NQTWFGWUUyZ2ZlTVRaSXBwbVoyVGN3Z2NweHhncTZXQlE5RWlpN29NUUJ2a3p0Nkl6TFdlcXNvb3J6dktEdE00VUJYTFRWd0xHSk9zVmZBcXlKLTJKLTVKa1c1RzZSbnVxcTRiem9rdkNBczFj?oc=5",
-      "publisher": "The Atlanta Journal-Constitution",
-      "published_at": "2026-10-15T09:58:06Z",
-      "detected_at": "2026-10-15T12:18:56.631749Z",
-      "state_hints": [
-        "GA"
-      ],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "34754dfceb6fd5bddc3d",
-      "title": "Three weeks ahead of midterms, New Hampshire ban on using student IDs to obtain a ballot is in limbo - The Dartmouth",
-      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNMGs5VVd5V0ZuVjZxR1pjak8zYlgzYnRtd1MzdC1VeXFkV01jQTQ0bUpTeXhtWDBxUEhfMXROSkVNbFlRWU5ER3dBWUNlYjQ4VWdJYWNpUlBGV25XZ1RxdmxVbFRMcUNEMngxaXZIT295RFRCMWtvX0hub0pHWVFpVElpTG1yOGVLSmprRjdHblY2WDVZckFaNjFfVkVhNXNac2E2c25rQmlnX3ZyTUZ3LW1JYW1Bdm1Md2FEOFN3U0lFenB0a1ctUnNOam94REl1ODZGT2I2MGl2bFJiZ1NIZTJEeS1oQQ?oc=5",
-      "publisher": "The Dartmouth",
-      "published_at": "2026-10-15T09:06:28Z",
-      "detected_at": "2026-10-15T09:47:06.495098Z",
-      "state_hints": [
-        "NH"
-      ],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "f449a895430dff608c1b",
-      "title": "31 election experts weigh in on whether Trump will interfere in the midterms - Votebeat",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQUjNxQjFDc0xJOHBLMkVRN1ppOVk2elpMNjBYa0ZQOXJ0OXBnZERyazd0OGRic0ZTdjl2eGJxbmI4bzlTYUNVQXdMYnVlY29MRjRiYThBc3RsRmdvSVJ0cXgtRVVNR0U4ejd3TmtVZ1kxWlBKcklsVWhrUXFUSVFZa1dXTldjY0ludk05NUxvRF9sVEpSVUxwNlF0SzRJbVN1bjVDMTk1MkpDVi1pb2JfWDlvZk02dUFRSXc?oc=5",
-      "publisher": "Votebeat",
-      "published_at": "2026-10-15T09:00:00Z",
-      "detected_at": "2026-10-15T09:47:06.495098Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [
-        "31 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
