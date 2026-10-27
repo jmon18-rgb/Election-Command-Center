@@ -47,8 +47,10 @@ try{
   assert(visibleEndings.every(x=>x.value===x.expected),'Every visible ending uses the unchanged joint-model probability');
   for(const key of ['red_dawn','shrug','blue_wave','blue_tsunami'])assert(await page.locator('#jointNightNeedle [data-outcome="'+key+'"]').isVisible());
   const positions=await page.locator('#jointNightNeedle .four-needle-outcome').evaluateAll(es=>es.map(e=>e.getBoundingClientRect().top));
-  if(width===390){assert.equal(positions[0],positions[1]);assert(positions[2]>positions[0]);assert.equal(positions[2],positions[3]);}
-  else assert(positions.every(y=>y===positions[0]));
+  // The integrated map/outlook uses two readable columns at both viewports.
+  assert.equal(positions[0],positions[1]);assert(positions[2]>positions[0]);assert.equal(positions[2],positions[3]);
+  const cells=await page.locator('#jointNightNeedle .four-needle-outcome').evaluateAll(es=>es.map(e=>({left:e.getBoundingClientRect().left,width:e.getBoundingClientRect().width,scroll:e.scrollWidth,client:e.clientWidth})));
+  assert(cells[1].left>cells[0].left&&cells[3].left>cells[2].left);assert(cells.every(c=>c.width>100&&c.scroll<=c.client+1),'All four chances remain readable without clipping beside the map');
   await page.evaluate(()=>jointRenderNeedles(null,{hostIds:['jointNightNeedle']}));
   assert.deepEqual(await page.locator('#jointNightNeedle .four-needle-outcome strong').allTextContents(),['—','—','—','—'],'Unavailable data clears previous chances rather than inventing zeroes');
   await page.evaluate(()=>jointRenderNeedles(jointLastResult,{hostIds:['jointNightNeedle']}));
