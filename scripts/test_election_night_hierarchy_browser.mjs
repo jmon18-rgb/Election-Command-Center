@@ -43,6 +43,9 @@ try{
   assert.match(page.url(),/#model\/senate\/IA-SEN$/);
   await page.locator('[data-page="electionNight"]').click();
   await page.locator('#enInspectSources').click();assert.equal(await page.locator('#enLiveCoverageTriage').isVisible(),true);
+  assert.equal(await page.evaluate(()=>document.activeElement===document.querySelector('#enSourceDesk > summary')),true,'Opening source inspection retains heading focus after native click navigation');
+  const headingPosition=await page.evaluate(()=>({heading:document.querySelector('#enSourceDesk > summary').getBoundingClientRect().top,toolbarBottom:document.querySelector('#electionNight .en-toolbar').getBoundingClientRect().bottom}));
+  assert(headingPosition.heading>=headingPosition.toolbarBottom-2,'Source heading stays below the sticky toolbar');
   await page.locator('#enSourceDesk > summary').focus();await page.evaluate(()=>enRenderAmbientDesk());
   assert.equal(await page.locator('#enSourceDesk').evaluate(e=>e.open),true);
   assert.equal(await page.evaluate(()=>document.activeElement===document.querySelector('#enSourceDesk > summary')),true);
