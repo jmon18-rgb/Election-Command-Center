@@ -632,6 +632,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 /* Illustrated local milestone posters are standalone original vector assets. */
 .en-milestone-poster{display:block;width:min(100%,720px);height:auto;aspect-ratio:980/620;object-fit:contain;border:1px solid #659fca;border-radius:13px;margin:12px auto;box-shadow:0 12px 36px #020d1e77}
 .en-milestone-poster.historic-john-brown{aspect-ratio:auto;width:auto;max-width:min(100%,430px);max-height:min(57vh,520px);background:#122b47;padding:5px;border:2px solid #90bfd9;filter:contrast(1.08)}
+.en-milestone-poster.owner-celebration-art{aspect-ratio:auto;width:auto;max-width:min(100%,880px);max-height:52vh;object-fit:contain}
 .en-milestone-photo-credit{font-size:11px;color:#9bbfd6;display:inline-block;margin:9px 0 0}
 .en-brown-poster-title{margin:8px auto 0;max-width:550px;padding:14px 12px 4px;font-size:clamp(17px,4vw,33px);line-height:1.05;letter-spacing:.08em;text-align:center;font-weight:900;color:#d4eaf8;text-shadow:0 2px 2px #10283c}
 .en-brown-poster-title span{display:block;font-size:.52em;letter-spacing:.17em;color:#7ac9e9;margin:7px 0}
@@ -5725,17 +5726,19 @@ function enCivicUsable(item){
 
 const enJohnBrownPortraitUrl='https://cdn.loc.gov/service/pnp/ppmsca/23700/23764v.jpg';
 const enMilestonePosters=Object.freeze({
- graham:{file:'graham',revision:'7ec8cd5c791f',alt:'Graham cracker splitting over South Carolina under the words LOL, Graham’s Seat'},
+ graham:{file:'graham',asset:'celebration-owner-graham.jpg',revision:'90f3e5c8fdee',fallbackRevision:'7ec8cd5c791f',alt:'Owner-supplied fictional nightclub farewell artwork with a blonde-wig character, disco ball and rainbow flags; not a documentary photograph'},
  blexas:{file:'blexas',alt:'Blue outline of Texas with two stars labelled Senate and Governor'},
  blue_corn:{file:'blue-corn',alt:'A large ear of corn with blue kernels: one blue kernel of truth'},
- blansas:{file:'blansas',alt:'John Brown himself in an authentic 1859 historical portrait, Library of Congress; Kansas blue-victory achievement.',historicalPortrait:true},
+ blansas:{file:'blansas',asset:'celebration-owner-kansas.jpg',revision:'26f7df1f64f4',alt:'Owner-supplied fictional Kansas painting: John Brown versus a Confederate soldier with stylized blue splashes'},
  maine:{file:'maine',alt:'Original cartoon witch with a hat labelled Collins beside a broom'},
  nebraska:{file:'nebraska',alt:'Blue tractor across Nebraska cornfields: Osborn independent corn-fed rebellion'},
  ohio:{file:'ohio',alt:'A buckeye nut cracked by a vivid blue lightning bolt: Sherrod Brown comeback'},
  talarico:{file:'talarico',alt:'Electric-blue horns hand gesture and a Texas Senate victory star for James Talarico'},
  abbott:{file:'abbott',alt:'An empty concession podium behind an extravagant blue Texas victory parade'},
- mississippi:{file:'mississippi',alt:'A blue wave sends a retired Confederate-style mascot prop off a pedestal into a storage crate'}
+ mississippi:{file:'mississippi',asset:'celebration-owner-mississippi.jpg',revision:'30d9b3abf611',alt:'Owner-supplied fictional retired-mascot character swept into a dramatic wave; celebration artwork, not a real incident'}
 });
+function enMilestonePosterUrl(art){return art.asset?'./assets/'+art.asset+'?v='+art.revision:art.historicalPortrait?enJohnBrownPortraitUrl:'./assets/milestone-'+art.file+'.svg'+(art.revision?'?v='+art.revision:'');}
+function enMilestonePosterFallback(art){return './assets/milestone-'+art.file+'.svg'+(art.fallbackRevision?'?v='+art.fallbackRevision:'');}
 const enMilestoneSeenKey='bluewaves_milestones_seen_2026_v1';
 let enMilestoneShown=new Set();
 try{
@@ -5766,11 +5769,16 @@ function enMilestoneRender(item,demo=false){
  $('#enJohnBrownPosterTitle').hidden=!realBrown;
  posterNode.hidden=!poster;
  posterNode.classList.toggle('historic-john-brown',realBrown);
+ posterNode.classList.toggle('owner-celebration-art',Boolean(poster?.asset));
  const missingPoster=()=>{
   posterNode.onerror=null;posterNode.hidden=true;
   $('#enMilestoneArt').hidden=false;$('#enMilestoneArt').textContent=item.icon||'🎉';
  };
  posterNode.onerror=poster?missingPoster:null;
+ if(poster?.asset)posterNode.onerror=()=>{
+  posterNode.onerror=missingPoster;posterNode.classList.remove('owner-celebration-art');
+  posterNode.src=enMilestonePosterFallback(poster);posterNode.alt='Local illustrated fallback for '+item.title+'; owner artwork temporarily unavailable';
+ };
  if(realBrown)posterNode.onerror=()=>{
   // If the archive thumbnail is unreachable, keep the existing local art.
   posterNode.onerror=missingPoster;
@@ -5778,7 +5786,7 @@ function enMilestoneRender(item,demo=false){
   posterNode.src='./assets/milestone-blansas.svg';
   posterNode.alt='Historical portrait temporarily unavailable; local Kansas achievement illustration';
  };
- posterNode.src=poster?(realBrown?enJohnBrownPortraitUrl:'./assets/milestone-'+poster.file+'.svg'+(poster.revision?'?v='+poster.revision:'')):'';
+ posterNode.src=poster?enMilestonePosterUrl(poster):'';
  posterNode.alt=poster?.alt||'';
  $('#enMilestoneArt').hidden=Boolean(tsunami||poster);
  $('#enMilestoneArt').textContent=tsunami?'🌊 🌊 🌊':item.icon||'🎉';
@@ -5803,6 +5811,7 @@ function enMilestoneRender(item,demo=false){
   credit.target='_blank';credit.rel='noopener noreferrer';
   sourceLine.append(credit);
  }
+ if(poster?.asset)sourceLine.append(elt('span','en-milestone-photo-credit','Owner-supplied fictional artwork · not a documentary photograph.'));
  $('#enMilestoneSpotlight').hidden=false;
  return true;
 }
@@ -5935,8 +5944,8 @@ function enRenderMilestones(){
   const art=enMilestonePosters[item.id];
   if(art){
    const thumbnail=elt('img','en-milestone-thumb');
-   thumbnail.src=art.historicalPortrait?enJohnBrownPortraitUrl:
-    './assets/milestone-'+art.file+'.svg'+(art.revision?'?v='+art.revision:'');
+   thumbnail.src=enMilestonePosterUrl(art);
+   if(art.asset)thumbnail.onerror=()=>{thumbnail.onerror=null;thumbnail.src=enMilestonePosterFallback(art);};
    if(art.historicalPortrait)thumbnail.onerror=()=>{
     thumbnail.onerror=null;
     thumbnail.src='./assets/milestone-blansas.svg';

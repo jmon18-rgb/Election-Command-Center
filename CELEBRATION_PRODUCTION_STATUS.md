@@ -4,6 +4,10 @@ Review basis: `CELEBRATION_CREATIVE_BRIEF.md`, current player/index/assets and R
 
 **Status meanings:** COMPLETE = the specified engineering function is implemented/tested, subject to its recorded release status. PARTIAL = a poster/three text beats/generic cue exists, but the requested distinct production does not. MISSING = the requested visual action, genre-specific music or optional upgrade is absent. Preview/synthetic safety tests never prove actual winner calls.
 
+## October27 owner-art integration candidate
+
+Three owner-supplied images are wired into the existing Kansas, Mississippi and Graham previews/earned presentation, with content-addressed local JPEGs, full-image mobile containment and explicit fictional-art attribution. Original bytes are preserved; missing JPEGs fall back to existing SVGs, then readable icon/text if both fail. These are poster improvements, not finished bespoke animation/music. Abbott retains the existing electoral-defeat scene. Exact triggers, source-call freshness, retraction/dedup, mute/skip/replay/reduced-motion and audio remain unchanged. Local1440/390 actual-browser and deterministic player checks pass; new exact-head CI/protected release/publication are still required.
+
 ## Shared foundation
 
 | Item | Status | Evidence / remaining work |
@@ -19,7 +23,7 @@ Review basis: `CELEBRATION_CREATIVE_BRIEF.md`, current player/index/assets and R
 
 | Event | Current visual / trigger | Requested production still missing | Audio status |
 | --- | --- | --- | --- |
-| Talarico / Texas Senate | R6 exact named-winner requirement; original static blue-horns/star poster and three text/emoji beats | CANDIDATE: original animated horns, five spreading stars across illustrative Texas and a staged Senate victory card. Actual Edge1440/390 checks pass; exact-head CI and publication remain required | Generic original cue only. Original stadium-band fanfare missing; requested commercial/fight-song recording not cleared. |
+| Talarico / Texas Senate | R6 exact named-winner requirement; original static blue-horns/star poster and three text/emoji beats | RELEASED in PR490: original animated horns, five stars across illustrative Texas and a staged Senate victory card; recorded exact-head CI and publication evidence in readiness-progress.md | Generic original cue only. Original stadium-band fanfare missing; requested commercial/fight-song recording not cleared. |
 | Texas governor / Abbott | R6 Democratic governor winner plus Greg Abbott opponent; separate from Senate; static concession-podium/parade poster | PARTIAL: podium character/silhouette, blue parade crossing and concession backdrop roll-up | Generic cue only; original parade/departure arrangement missing. No cleared Walk This Way recording. Satire must target election loss, never disability. |
 | BLEXAS bonus | Existing two-office Democratic-call bonus; static two-star Texas poster and three beats | PARTIAL: distinct two-star/combined-win bonus finale; must not substitute for either separate event | Generic cue; optional distinct bonus fanfare missing. |
 | Graham / South Carolina | Existing Darline opponent guard; R6 surname-only player/alt/poster correction | PARTIAL: fictional neon-nightclub caricature/spotlight, collapsing VIP sign and theatrical lighting. Current cracker poster/icon bounce does not deliver it | Original disco/club farewell cue missing. No sexuality/private-conduct/real-venue assertions. |
