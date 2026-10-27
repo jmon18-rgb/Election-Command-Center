@@ -32,6 +32,7 @@ const basis=model.prepare({seats:load('seat_universe'),history:load('house_histo
  const corrupt=structuredClone(record);corrupt.official_remaining=remaining();corrupt.official_remaining.selected_payload_sha256='bad';const guarded=await cache.parse(corrupt,reference,{now});assert(guarded.live_votes_accepted);assert(!guarded.official_remaining);
  const markedTest=remaining();markedTest.payload.test_data=true;
  const testGuard=await cache.parse({...record,official_remaining:seal(markedTest)},reference,{now});assert(testGuard.live_votes_accepted&&!testGuard.official_remaining);
+ const wrongShape=remaining();wrongShape.payload.data={0:wrongShape.payload.data[0],length:1};assert.throws(()=>source.parse(wrongShape,{now,counts_stamp:stamp}),/identity/);
  const badClock=remaining();for(const r of badClock.payload.data[0].groups[0].children)r.lastUpdated=null;
  const excluded=await cache.parse({...record,official_remaining:seal(badClock)},reference,{now});assert(!excluded.official_remaining);assert.equal(kernel.compile(envelope(excluded),{now}).logLikelihood(5),kernel.compile(ordinary,{now}).logLikelihood(5));
  assert.equal(excluded.remaining_revision.status,'NO_USABLE_REMAINING_ESTIMATES');

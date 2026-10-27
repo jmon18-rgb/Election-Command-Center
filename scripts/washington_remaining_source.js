@@ -18,7 +18,7 @@
   if(record.status!=='COLLECTED_OFFICIAL_ESTIMATES'||record.http_status!==200||!record.payload||JSON.stringify(record.payload).length>1000000)throw Error('Unbounded/unverified remaining payload');
   const d=record.payload,s=d.data?.[0],g=s?.groups?.[0];
   if([d,s].some(x=>x&&(('isProduction'in x&&x.isProduction!==true)||('test_data'in x&&x.test_data!==false))))throw Error('Explicit test/unverified remaining source');
-  if(d.data?.length!==1||s.id!==statId||english(s.name)!=="Estimated Ballots Left to Count - The following is an estimation of how many ballots are left to count by county."||s.viewBy!==1||s.groups?.length!==1||g.id!==groupId||english(g.name)!=="Estimated Ballots Left to Count"||g.children?.length!==39)throw Error('Remaining statistic identity drift');
+  if(!Array.isArray(d.data)||d.data.length!==1||s.id!==statId||english(s.name)!=="Estimated Ballots Left to Count - The following is an estimation of how many ballots are left to count by county."||s.viewBy!==1||!Array.isArray(s.groups)||s.groups.length!==1||g.id!==groupId||english(g.name)!=="Estimated Ballots Left to Count"||!Array.isArray(g.children)||g.children.length!==39)throw Error('Remaining statistic identity drift');
   const seen=new Set(),counties=[],excluded=[];
   for(const x of g.children){const pin=identities.find(c=>c.id===x.id);
    if(!pin||seen.has(x.id)||english(x.name)!==pin.name||x.children!==null||!Number.isSafeInteger(x.value)||x.value<0||x.value>10000000)throw Error('Remaining county matrix/value drift');
