@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-26T23:43:15.951692Z",
+  "updated_at": "2026-10-27T01:01:40.104109Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 0,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
     "primary_source_checked": 4,
-    "advisory_related_headline_buckets": 22,
-    "advisory_related_headlines": 52
+    "advisory_related_headline_buckets": 23,
+    "advisory_related_headlines": 54
   },
   "advisory_related_headlines": [
     {
@@ -267,6 +267,23 @@
   ],
   "items": [
     {
+      "id": "ae6a4fa5fca4d621254b",
+      "title": "Protecting voter privacy and the integrity of U.S. elections - Protect Democracy",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOc29wZW9Na080eUZlSkZqT05lMFVOTVFsWlZHM0Y1VEp5V1NxZTBvSHBPbTcyWHVKVWpiQVFUY2QxS0lWTzl4VktVQkZtb1RqZFZ1WHlCcFZsa3ljcmRuQ1pFYW1CMjVieDZoY21kU0hUUVFjWjUyQWoySjV2dlU3WDB5aktSNG5NRGJjMEVGcmhkVWJJV05oTXNB?oc=5",
+      "publisher": "Protect Democracy",
+      "published_at": "2026-10-26T23:15:58Z",
+      "detected_at": "2026-10-27T00:39:51.491263Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "f33bf9746535f1bed9f9",
       "title": "Federal election monitors swarm California to face off with Democrat watchers as voting war turns toxic - New York Post",
       "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQOHowbkx4U1MzQzI1SzBzdWFER2FEZ1lZZmNrNjVfYW5YVU14TThMdk8tZWV2ODZnbjcxeWU3VVU5Q1VBUUExTGFwa2pQMTdROFdhSUc5QUVRQ1hOam1ZV3VPN3B0Sk5BRDN4S2lkR2NtYjF5WXlIUnItMkROY0VlTDZEOGp6X1oyMjVrZ0pLcEpvMEt3d1A1cXM4aDY1SDEtcGQ4Uy1HNmh4cGduSnpLMnVDTkF6bXctdHFMZkhPLXVvdHpYTTJjU1cyd1MtSkQ2ellRUEZFSTNBUQ?oc=5",
@@ -421,6 +438,24 @@
       "publisher": "PBS",
       "published_at": "2026-10-26T14:29:25Z",
       "detected_at": "2026-10-26T17:47:40.963885Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "1198d3cae288882d330a",
+      "title": "Thousands of observers from the right and left will descend on polling places to monitor the vote on Election Day - PBS",
+      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQZEs1R1ZLenRaM21UX21NWmlBX3l3Rkc2QnV5ZmZpUVFZby1PbGtyTG00eTdvMGZWeUtYOXVZeUVTZ3M0VEFfOHVkNFk4Vkl1czdteVI1YnFGazY2Q0hxNTMyWkhKOURBYWNtWS1vc2pMaFlKYXNPV201RlZnOXRsS01xbjJsQlVOZ3gyUlFNTUZsMVo4UExUdWdlcTNJMlpyYjh2bDdYcVF1U1JWcTlJam5JWmNKeXU1cnNPQTBXUHM2QkRDZmhTTDlYejBobmNwMW5kdXFuWUYxSnQyRGUxWHVINmhKQdIB6wFBVV95cUxNd1dhWHFURjJfd25ITHZIcUlhTTdoOFpmTW1yMnBtc3NRMWFBN0Fqc0Zjbm0zZDduOXRWckUyYWVGNjdHWXRUbFBrdW9VSnNaZ0NzZ3lONTh6V1hvU002R3d2bC1QU0xxMUFQMl8yeU5lZWpXdWtkVWxtdTluc1NsdTRqeHFCei1FNzNHMlNwM256OXpFSHlZeFBLamZhREsyTmdTY1pub252eE9rbGtHLU12WWJjcGdlZEFHSGhmR2FxVVJnYk9FeTJSOTc1b1kzM3MwSHJ0ak94WjFBR1dGM0R5M2liS1dHdWpJ?oc=5",
+      "publisher": "PBS",
+      "published_at": "2026-10-26T14:29:25Z",
+      "detected_at": "2026-10-27T00:39:51.491263Z",
       "state_hints": [],
       "topic_hints": [
         "ballot_access",
@@ -4946,42 +4981,6 @@
       "topic_hints": [],
       "headline_numbers_unverified": [
         "1,392 voters"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "80696c5ead48d64268d4",
-      "title": "Presidents Cannot Distort Laws To Justify Deploying Federal Forces To \u2018Repel Armed Enemies\u2019 in Elections - Center for American Progress",
-      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxORHptNGlwRndjblh6aWdOU2gxNlo0ZWxXLTNwMWxnM1BDaUdhX2pORG82WGVHS1RGWGtxZDFWakkybksxNTRTX0dWSVhGVmY2dG1RNE1ZX3hMeWItYmhDR1RfSmR0SkNZZ1Q3b01QZGxmWVFfRXJjd2xPR0F3aDU2TTNwYTUtd2g3Q2x0cEQ0TVNFTTA3aFE4OEUycFYwdFBRV0hqTExfaFpURTdXczc5YXhxZGxmZWxWSm5adUl4ZTFSVE1qMGNEb1Bqc09vNzJyX0Q2a055TUl0d3lo?oc=5",
-      "publisher": "Center for American Progress",
-      "published_at": "2026-10-14T13:02:20Z",
-      "detected_at": "2026-10-14T13:14:27.007100Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "90b7f4c50d53891a8670",
-      "title": "'You must be a U.S. citizen to vote': North Carolina will send letters to 1,392 registrants flagged as potential noncitizens by a Homeland Security database before early voting - Knewz",
-      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQNFozOUJxc0wwYU5SdDB4VWw4RHZZRVhxeXRNbnJYdHNyMkVjU0tEQXV3VThSWGNDdlZKRE94T1Z3VVJpMWFvdFFDOG9SZmJqUFptN1haQ2JCamhmc0lpejBCVkVQTU5qSTc5anRPSjR6LVBaVWdKOE5Pb3hmYlEyempLYkprOXZfVTdqeGFiNTVrVkhuUDFTS1QzWENpNVFBOHZROE1HMEJ6a3JodXRNN0l5VFhXQXozbFNSRTM2Q0NCdkE5QnkxRWlGcDcwSmZSY3ZFdmhCR0dGTURLaGc?oc=5",
-      "publisher": "Knewz",
-      "published_at": "2026-10-14T13:00:00Z",
-      "detected_at": "2026-10-14T13:14:27.007100Z",
-      "state_hints": [
-        "NC"
-      ],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [
-        "1,392 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
