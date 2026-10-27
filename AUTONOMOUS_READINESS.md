@@ -1,5 +1,12 @@
 # Election Night production-readiness assignment
 
+## 2026-10-27 19:29:41 UTC — Interactive personal-dashboard handoff
+
+- Current PR491 source head is `7911d4aa10a939056a4ef6f1ce133a5b12c09d71`, open/attached; latest check33/34 workflow parents succeeded, one full-DOM parent still running, zero failed new-head parents and zero external statuses. Do not merge until every applicable exact-head parent/job/status finishes green. Old2b31 selector failure and dependency cancellation are superseded, not current failures.
+- A frozen, loopback-only local test is open at `http://127.0.0.1:8876/#electionNight` (IABtab15, marked deliverable), underlying app/JS at7911. Server process6208 uses ignored `artifacts/readiness/personal_preview_server.py`; only allowlisted committed site files are served through Git. CSP blocks external/live source requests. A visible LOCAL OFFLINE TEST ribbon explains expected source-retrying states. It contains the ten Senate/eight House cards and the nested simulated personal needles; no actual election-result delivery is claimed. Branch switches cannot silently change this frozen preview.
+- Ordinary UI verified2026 mode, owner roster and pending Alaska; screenshot `artifacts/readiness/personal-focus-local-open-20261027.png`. Preserve this user-facing tab/server; do not start duplicates or reload the user's active local test unnecessarily. Do not expose untracked/private files or remove the network block to manufacture live evidence.
+- This is an unpublished local progress checkpoint only; do not push it solely to retrigger CI. Next finish PR491 release; then matched-performance diagnostics plus actual observation history and the MI/SC source contracts. Six direct county connections remain unfinished; Alaska is last. No subagents, additional native source probes, invented votes or calibration claims in this turn.
+
 ## October 27, 19:21 UTC — Personal rehearsal integration repair
 
 - PR491 initial head `2b31ff62` passed31 workflow parents; the national browser job failed because its old `#enNationalRehearsal summary` selector now matches the new nested race-preview disclosure too. Replaced it with the direct-child outer summary selector; all existing assertions remain. Actual installed Edge1366/390 national arrival/correction/withdrawal/outage/rehearsal and missing-cadence fallback checks pass after repair. The personal-view desktop/mobile suite already passed, including the nested simulated cards and live isolation.
