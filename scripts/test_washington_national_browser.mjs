@@ -84,4 +84,17 @@ try{
  await safePage.waitForFunction(()=>jointLastResult?.probabilities&&window.enNewYorkHouse17Controller&&window.enTexasPilotController);
  assert.equal(await safePage.evaluate(()=>window.enWashingtonHouse03Controller),undefined);assert.deepEqual(fallbackErrors,[]);
  await fallback.close();console.log('Missing optional official cache helper preserves the national baseline and existing county controllers PASS');
+ for(const missing of ['washington_remaining_source.js','washington_remaining_scenarios.js']){
+  const context=await browser.newContext(),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.clock.install({time:new Date('2026-11-04T04:05:05Z')});
+  await page.route('**/*',async route=>{const u=new URL(route.request().url());
+   if(u.hostname==='127.0.0.1')return u.pathname.endsWith('/'+missing)?route.abort():route.continue();
+   if(u.origin+u.pathname!==cache.URL)return route.abort();
+   const record=await fixture();record.official_remaining=remainingFixture();return route.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify(record)});
+  });
+  await page.goto('http://127.0.0.1:'+server.address().port+'/',{waitUntil:'domcontentloaded'});await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();
+  await page.waitForFunction(()=>jointLastResult?.county_results_update?.used.some(e=>e.code==='WA-03'));
+  assert.equal(await page.evaluate(()=>jointLastResult.county_results_update.used[0].official_remaining_sensitivity),undefined);assert.deepEqual(errors,[]);
+  await context.close();console.log('Missing '+missing+' retains validated counts-only national path PASS');
+ }
 }finally{if(browser)await browser.close();await new Promise(ok=>server.close(ok));}
