@@ -8,6 +8,10 @@ personal Senate/House needle dashboard around poll-close windows. Finish ready
 celebration slices, but do not let optional music or remaining custom scenes
 displace that forecast/dashboard work. See OWNER_ELECTION_NIGHT_SCOPE.md.
 
+## Owner-supplied artwork, October27
+
+Use the supplied John Brown/Confederate painting for Kansas, the fictional retired-mascot/wave scene for Mississippi, and the fictional nightclub scene for Graham. Preserve the supplied image bytes and show the complete art on mobile. Graham artwork is fictional satire, not a documentary image or a claim about sexuality/private conduct. Existing local illustrations remain fallback assets. The Abbott tree/wheelchair injury image is not used; retain electoral-defeat/parade satire. These poster additions do not complete animation/music production or alter any call gate.
+
 ## Shared presentation
 
 Fish Head announcement first, then a short themed animation and musical cue.

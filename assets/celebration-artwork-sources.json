@@ -1,6 +1,6 @@
 {
   "reviewed_on": "2026-10-27",
-  "scope": "Original repository celebration posters and Talarico SVG scene layers; no new third-party image or audio imports",
+  "scope": "Original repository SVG scenes and three owner-supplied fictional celebration images; no new music or eligibility change",
   "artworks": [
     {
       "path": "assets/milestone-talarico.svg",
@@ -26,6 +26,36 @@
       "source": "Original code-authored SVG stadium lights, stars and Senate victory card; reuses local milestone-talarico.svg horns and milestone-blexas.svg illustrative Texas geometry as artwork, never reporting geography",
       "sha256": "25c1d1801f0747be59bf2a01e34b7ae6b6919ca81575cf4ae69c586bd1d8ee23",
       "audio": "Existing original generic synthesized cue unchanged; distinct stadium-band arrangement remains partial"
+    },
+    {
+      "event": "blansas",
+      "path": "assets/celebration-owner-kansas.jpg",
+      "source": "Owner-supplied fictional celebration artwork, October27; original bytes preserved",
+      "source_filename": "3-Use-AI-Image-Oct-27-2026-15_40_28.png.jpeg",
+      "sha256": "7fad6e8c0157fcfffcc97f36d40e43b740aac20da60c6fe00472db45b3865c35",
+      "revision": "26f7df1f64f4",
+      "bytes": 260002,
+      "rights_scope": "Supplied by owner for use in these celebrations; no public-domain or third-party license representation"
+    },
+    {
+      "event": "mississippi",
+      "path": "assets/celebration-owner-mississippi.jpg",
+      "source": "Owner-supplied fictional celebration artwork, October27; original bytes preserved",
+      "source_filename": "2-Use-AI-Image-Oct-27-2026-15_49_30.png.jpeg",
+      "sha256": "50c1329ed49660ef4692ce799b7e596ac20478f11525333ee6508f7b52106405",
+      "revision": "30d9b3abf611",
+      "bytes": 252912,
+      "rights_scope": "Supplied by owner for use in these celebrations; no public-domain or third-party license representation"
+    },
+    {
+      "event": "graham",
+      "path": "assets/celebration-owner-graham.jpg",
+      "source": "Owner-supplied fictional celebration artwork, October27; original bytes preserved",
+      "source_filename": "4-Photo-4.jpg",
+      "sha256": "da364cf6272344f4f5f0b31b474127b866009521f28a9f444a9f3fd96c01ea57",
+      "revision": "90f3e5c8fdee",
+      "bytes": 275526,
+      "rights_scope": "Supplied by owner for use in these celebrations; no public-domain or third-party license representation"
     }
   ],
   "identity_reference": "https://vote.charlestoncounty.gov/?r=816",
