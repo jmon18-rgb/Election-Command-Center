@@ -1,6 +1,7 @@
 'use strict';
 const closes=require('./election_night_poll_closings_2026.js');
 const races=Object.freeze([
+ {code:'VA-02',state:'VA',office:'House',key:'VA-02',forecast_scope:'national_joint_draws',counties:8,url:'https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General/data/ballot-item/01000000-f030-c43d-fd71-08df1fee52e7',transport_url:'https://raw.githubusercontent.com/jmon18-rgb/Election-Command-Center/official-virginia-results-cache/data/virginia_house_02_official_latest.json',reference:'data/virginia_house_02_county_fips_reference.json',parser:'VirginiaOfficialCache',controller:'enVirginiaHouse02Controller'},
  {code:'AZ-06',state:'AZ',office:'House',key:'AZ-06',forecast_scope:'national_joint_draws',counties:5,url:'https://civicapi.org/api/v2/race/86922',reference:'data/arizona_house_06_county_fips_reference.json',parser:'WisconsinHouseCountySource',parser_scope:'AZ-06',controller:'enArizonaHouse06Controller'},
  {code:'PA-07',state:'PA',office:'House',key:'PA-07',forecast_scope:'national_joint_draws',counties:4,url:'https://civicapi.org/api/v2/race/87382',reference:'data/pennsylvania_house_07_county_fips_reference.json',parser:'WisconsinHouseCountySource',parser_scope:'PA-07',controller:'enPennsylvaniaHouse07Controller'},
  {code:'OH-SEN',state:'OH',office:'Senate',key:'OH-special',forecast_scope:'national_joint_draws',counties:88,url:'https://civicapi.org/api/v2/race/87527',reference:'data/ohio_county_fips_reference.json',parser:'OhioCivicCountySource',controller:'enOhioSenateController'},
@@ -76,7 +77,7 @@ function summarize(rows,now=Date.now()){
   sources.some(r=>r.prolonged_delivery_gap)?'SOURCE_AVAILABILITY_REVIEW_REQUIRED':
   sources.every(r=>r.actual_live_input_forecast_observed)?'LIVE_INPUT_FORECAST_OBSERVED_NOT_CALIBRATED':'LIVE_DELIVERY_UNPROVEN',
   scope:'Actual deployed browser and real provider responses only; no source fixtures or virtual election clock',
-  attribution:'Public election counts via attributed civicAPI (https://civicapi.org/api-documentation) and Washington Secretary of State (https://results.votewa.gov), the latter via an owned cache with additional delay; no publication-speed guarantee',
+  attribution:'Public election counts via attributed civicAPI (https://civicapi.org/api-documentation) plus independent official Virginia results (https://www.elections.virginia.gov/results/) and Washington Secretary of State (https://results.votewa.gov), both official feeds via separate owned caches with additional delay; no publication-speed guarantee',
   interval_calibrated:false,sources};
 }
 module.exports=Object.freeze({races,inWindow,assess,summarize,nationalProof});

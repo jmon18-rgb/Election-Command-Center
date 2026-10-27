@@ -1,0 +1,78 @@
+{
+  "race_code": "VA-02",
+  "election_date": "2024-11-05",
+  "geography_scope": "district_parts",
+  "map_comparability": "boundaries_unchanged_per_2026_census",
+  "source_sha256": "1f30103c8676d784e611885791b134c29abd05f69d8cbfdf3ee2179982b651cc",
+  "counties": [
+    {
+      "county": "Accomack County",
+      "county_fips": "51001",
+      "dem_votes": 7044,
+      "rep_votes": 9795,
+      "independent_votes": 283,
+      "writein_votes": 29
+    },
+    {
+      "county": "Chesapeake city",
+      "county_fips": "51550",
+      "dem_votes": 30174,
+      "rep_votes": 40426,
+      "independent_votes": 1553,
+      "writein_votes": 78
+    },
+    {
+      "county": "Franklin city",
+      "county_fips": "51620",
+      "dem_votes": 2181,
+      "rep_votes": 1525,
+      "independent_votes": 99,
+      "writein_votes": 6
+    },
+    {
+      "county": "Isle of Wight County",
+      "county_fips": "51093",
+      "dem_votes": 9099,
+      "rep_votes": 14781,
+      "independent_votes": 511,
+      "writein_votes": 24
+    },
+    {
+      "county": "Northampton County",
+      "county_fips": "51131",
+      "dem_votes": 3386,
+      "rep_votes": 3333,
+      "independent_votes": 86,
+      "writein_votes": 5
+    },
+    {
+      "county": "Southampton County",
+      "county_fips": "51175",
+      "dem_votes": 1928,
+      "rep_votes": 3905,
+      "independent_votes": 119,
+      "writein_votes": 5
+    },
+    {
+      "county": "Suffolk city",
+      "county_fips": "51800",
+      "dem_votes": 28918,
+      "rep_votes": 22310,
+      "independent_votes": 1393,
+      "writein_votes": 74
+    },
+    {
+      "county": "Virginia Beach city",
+      "county_fips": "51810",
+      "dem_votes": 108936,
+      "rep_votes": 111293,
+      "independent_votes": 5153,
+      "writein_votes": 250
+    }
+  ],
+  "district_totals": {
+    "dem_votes": 191666,
+    "rep_votes": 207368
+  },
+  "method_scope": "Combined locality totals; source live methods are retained but not separately modeled. No chronological calibration."
+}

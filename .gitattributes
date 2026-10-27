@@ -14,3 +14,6 @@ data/new_york_historical_sources/2024-official-ny17-contest.csv -text
 
 # Keep the audited, reformatted AZ06 response receipt stable on Windows and Linux.
 data/arizona_house_06_sources/2026-civic-zero-snapshot.json text eol=lf
+
+# Preserve the official VA02 historical CSV export byte-for-byte.
+data/virginia_house_02_sources/2024-official-va02-localities.csv -text

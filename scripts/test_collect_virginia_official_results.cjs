@@ -1,0 +1,23 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),zlib=require('node:zlib');
+const {collect}=require('./collect_virginia_official_results.cjs');
+const api=require('./virginia_official_house_source.js');
+const reference=JSON.parse(fs.readFileSync('data/virginia_house_02_county_fips_reference.json','utf8'));
+const zero=JSON.parse(zlib.gunzipSync(fs.readFileSync('data/virginia_house_02_sources/2026-official-zero-response.json.gz')));
+const response=d=>{const r=new Response(JSON.stringify(d),{headers:{'content-type':'application/json','cache-control':'public,max-age=60'}});Object.defineProperty(r,'url',{value:api.URL});return r;};
+(async()=>{
+ let requests=0;const fetchImpl=async url=>{requests++;assert.equal(url,api.URL);return response(zero);};
+ const actualSample=await collect({fetchImpl,reference,now:Date.parse('2026-10-27T04:00:00Z')});
+ assert.equal(actualSample.status,'SOURCE_UNAVAILABLE');assert.equal(actualSample.payload,null);assert.match(actualSample.error,/stale/);assert.equal(requests,1);
+ const healthyZero=await collect({fetchImpl:async()=>response(zero),reference,now:Date.parse(zero.election.publishDate)});
+ assert.equal(healthyZero.status,'NO_REPORTED_VOTES');assert(healthyZero.payload);assert.equal(healthyZero.payload.ballotItemWithBreakdown.voteTotal,0);
+ const fixture=require('./virginia_house_02_test_fixture.cjs').fixture({stamp:'2026-11-04T04:01:00Z'}),b=fixture.ballotItemWithBreakdown;
+ const out=await collect({fetchImpl:async()=>response(fixture),reference,now:Date.parse('2026-11-04T04:02:00Z')});
+ assert.equal(out.status,'VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED');assert.equal(out.may_move_national_needle,false);
+ assert.equal(out.payload.ballotItems.length,1);assert.deepEqual(out.payload.ballotItemWithBreakdown,b);assert(out.selected_payload_sha256);
+ const failure=await collect({fetchImpl:async()=>new Response('upstream unavailable',{status:503}),reference});
+ assert.equal(failure.status,'SOURCE_UNAVAILABLE');assert.equal(failure.payload,null);
+ const huge=await collect({fetchImpl:async()=>(()=>{const r=new Response('x'.repeat(2500001),{headers:{'content-type':'application/json'}});Object.defineProperty(r,'url',{value:api.URL});return r;})(),reference});
+ assert.equal(huge.payload,null);assert.match(huge.error,/bounded/);
+ console.log('Bounded official collector: one bounded request, zero/stale exclusion, unchanged source selection/reparse, failures and body bounds PASS. Synthetic positive fixture only; no publisher enabled.');
+})().catch(e=>{console.error(e);process.exitCode=1;});
