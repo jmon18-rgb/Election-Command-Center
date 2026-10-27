@@ -7720,8 +7720,12 @@ window.addEventListener('focus',()=>enReconnectAfterInterruption());
 // when the operating system does not dispatch an online/focus event.
 setInterval(()=>{enReconnectAfterInterruption()},60000);
 
-$('#enInspectSources').addEventListener('click',()=>{
+$('#enInspectSources').addEventListener('click',event=>{
+ event.preventDefault();
  const desk=$('#enSourceDesk');desk.open=true;
+ const toolbar=$('#electionNight .en-toolbar');
+ desk.style.scrollMarginTop=((toolbar?.getBoundingClientRect().height||0)+12)+'px';
+ desk.scrollIntoView({block:'start',behavior:'auto'});
  desk.querySelector('summary').focus({preventScroll:true});
 });
 $('#enMode2026').addEventListener('click',()=>enSwitch(2026,enOffice));

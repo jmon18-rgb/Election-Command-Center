@@ -100,6 +100,8 @@ try{
   await page.locator('#enInspectSources').click();
   assert.equal(await page.locator('#enSourceDesk').evaluate(el=>el.open),true,
     name+': Visible coverage link reveals source investigation and drilldown controls');
+  assert.equal(await page.evaluate(()=>document.activeElement===document.querySelector('#enSourceDesk > summary')),true,
+    name+': Link opens source inspection with retained keyboard focus');
   for(const office of ['Senate','House','Governor']){
    await page.locator('#enJump'+office).click();
    assert.equal(await page.locator('#enRaceDeskDetails').evaluate(el=>el.open),true,
