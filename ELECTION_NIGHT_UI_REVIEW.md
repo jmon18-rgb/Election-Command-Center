@@ -1,5 +1,18 @@
 # Election-night usability and visual review
 
+October27 hierarchy slice RELEASED in PR499/500: finalmain2a81f443,
+Pages40599401034SUCCESS,334published files matched23:05:00.522Z. The national
+map now follows the outlook/all4percentages and precedes personal races. Detailed
+model-input/source desks start closed; reconciled compact health remains visible,
+including archive mode. Ordinary publishedIAB27 confirms direct inspection keeps
+SUMMARY focus below the sticky toolbar and Tab continues into House drilldown.
+Map selection/navigation, source recovery and laptop/mobile acceptance passed.
+Evidence: published-source-focus-20261027.json/png and
+published-hierarchy-ready-20261027.png under artifacts/readiness/.
+This completes that engineering slice, not the full October30 owner-task/visual
+review. Personal-card separator mojibake, duplication/spacing, map legibility,
+missing-source impact and complete laptop/mobile task flow remain to review.
+
 Owner requirement, October 27. This is a release acceptance task, not optional
 decoration. Keep the personal race/source implementation moving; complete the
 focused layout review on October 30 and required repairs before the October 31
@@ -61,7 +74,7 @@ The primary audience is the owner following the evening on a laptop, sometimes
 checking a phone. The default view is a decision dashboard, not a source-audit
 console. Full provenance remains accessible and critical failures remain visible.
 
-## Current findings from the source review
+## Initial findings from the source review (repaired items recorded above)
 
 - The needle's model and accessible description contain all four probabilities.
   Its visible footer foregrounds the largest ending, with a thin distribution bar
@@ -120,8 +133,8 @@ race navigation, result-versus-forecast labels and progressive disclosure:
 - [NYT graphics editor interview](https://reutersinstitute.politics.ox.ac.uk/news/moving-needle-how-new-york-times-aims-guide-readers-through-americas-most-uncertain-election): explanatory context for helping readers interpret incomplete returns against expectations, not proprietary model/layout specifications.
 
 CNN's referenced results page denied automated retrieval; do not retry or bypass.
-The reference review so far is a bounded source/text inspection, not a completed
-side-by-side visual evaluation. Do not copy publisher assets or adopt their call,
+The rendered270toWin/ABC reference tasks above advance the source/text inspection;
+a full side-by-side app workflow/visual evaluation remains open. Do not copy publisher assets or adopt their call,
 reporting-percentage or forecast claims without our own evidence.
 
 ## Acceptance drill and evidence

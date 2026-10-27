@@ -1,5 +1,10 @@
 # Readiness progress
 
+## 2026-10-27 23:11 UTC — Minnesota preparation protected review
+
+- PR501 https://github.com/jmon18-rgb/Election-Command-Center/pull/501 OPEN/ATTACHED exact remote1caf8851467306d9670995f1389ac70ac98d2a42, branchreadiness/minnesota-senate-history. Five new workflow parents at23:10:53Z:2success/3running, no failure. Historical preparation is candidate only; no merge/publication/current MN admission. Finish ALLexact-head parents/latest jobs/external/currenthead/clean, then finalCURRENTmainPages/342checked published files and public coherence; no unchanged browser demo/native probe is needed for this non-runtime bundle. Ignored verifier now includes eight newfiles. No doc-checkpoint push to retriggerCI.
+- R8 review doc and local operator draftv.4 now point to the verified500release/current map-source path and remaining full-review tasks. New verified map/source milestone to report once now; dailyOct27/SC/art/history unchanged, do not repeat. Next after protected MNprep release: one named current2026contract field using an untried permitted original route, preserving TEST/clock/identity/access/correction and eighteenth-route budget review. FullR8Oct30/R3Oct29/R2calibration and actualdelivery gates remain open.
+
 ## 2026-10-27 23:08 UTC — R8 focus verified; R1 Minnesota historical preparation candidate
 
 - PR500 MERGED6e5d3608fab98328ead2283c9f84dd6170622000 after ALL34exact-head parents SUCCESS/47latestjobs44success3nonapplicable deployed-onlySKIP/0external/currentae416807c65f633ab7d4fce7096aca177424e86f/clean. No reruns/waivers/timeout changes. Finalmain2a81f44332376220e1bf94eeed9252ff27755b08, Pages40599401034SUCCESS; scheduled briefing superseded/cancelled mergePages40599356412. ALL334publishedfiles match23:05:00.522Z and remote public coherence PASS. Raw-checkout-index mismatch remains onlyCRLF/LF. Receipt published-source-focus-20261027.json/png and published-hierarchy-ready-20261027.png.
