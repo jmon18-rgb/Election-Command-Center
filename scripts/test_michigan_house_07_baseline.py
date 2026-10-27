@@ -22,8 +22,13 @@ class Michigan07Tests(unittest.TestCase):
     def test_metadata_and_other_contests_never_become_named_votes(self):
         totals, _, _ = aggregate(self.rows, self.census)
         self.assertEqual(totals['Clinton']['unresolved'], 44)
+        self.assertEqual(totals['Ingham']['unresolved'], 279)
+        self.assertEqual(totals['Ingham']['writeins'], 0)
         self.assertEqual(totals['Oakland']['rejected'], 24)
         self.assertEqual(totals['Shiawassee']['writeins'], 101)
+        ingham = next(c for c in self.baseline['counties'] if c['county'] == 'Ingham')
+        self.assertEqual(ingham['unresolved_write_in_votes'], 279)
+        self.assertEqual(ingham['reported_write_in_votes_status_unverified'], 0)
         extra = copy.deepcopy(self.rows[:2]); extra[0]['office'] = 'State House'; extra[1]['district'] = '4'
         self.assertEqual(aggregate(self.rows + extra, self.census), aggregate(self.rows, self.census))
 

@@ -10,7 +10,7 @@
       "dem_votes": 20514,
       "rep_votes": 26564,
       "named_other_votes": 1471,
-      "generic_write_in_votes": 0,
+      "reported_write_in_votes_status_unverified": 0,
       "unresolved_write_in_votes": 44,
       "rejected_write_in_votes_excluded": 0
     },
@@ -20,7 +20,7 @@
       "dem_votes": 28195,
       "rep_votes": 30867,
       "named_other_votes": 2066,
-      "generic_write_in_votes": 0,
+      "reported_write_in_votes_status_unverified": 0,
       "unresolved_write_in_votes": 0,
       "rejected_write_in_votes_excluded": 0
     },
@@ -30,7 +30,7 @@
       "dem_votes": 33,
       "rep_votes": 69,
       "named_other_votes": 2,
-      "generic_write_in_votes": 0,
+      "reported_write_in_votes_status_unverified": 0,
       "unresolved_write_in_votes": 0,
       "rejected_write_in_votes_excluded": 0
     },
@@ -40,8 +40,8 @@
       "dem_votes": 90181,
       "rep_votes": 49827,
       "named_other_votes": 4911,
-      "generic_write_in_votes": 279,
-      "unresolved_write_in_votes": 0,
+      "reported_write_in_votes_status_unverified": 0,
+      "unresolved_write_in_votes": 279,
       "rejected_write_in_votes_excluded": 0
     },
     {
@@ -50,7 +50,7 @@
       "dem_votes": 45446,
       "rep_votes": 79356,
       "named_other_votes": 3707,
-      "generic_write_in_votes": 0,
+      "reported_write_in_votes_status_unverified": 0,
       "unresolved_write_in_votes": 0,
       "rejected_write_in_votes_excluded": 0
     },
@@ -60,7 +60,7 @@
       "dem_votes": 11414,
       "rep_votes": 15914,
       "named_other_votes": 723,
-      "generic_write_in_votes": 0,
+      "reported_write_in_votes_status_unverified": 0,
       "unresolved_write_in_votes": 0,
       "rejected_write_in_votes_excluded": 24
     },
@@ -70,7 +70,7 @@
       "dem_votes": 14176,
       "rep_votes": 24125,
       "named_other_votes": 1351,
-      "generic_write_in_votes": 101,
+      "reported_write_in_votes_status_unverified": 101,
       "unresolved_write_in_votes": 0,
       "rejected_write_in_votes_excluded": 0
     }
@@ -117,6 +117,7 @@
     "Processed OpenElections reference, not original statewide returns.",
     "Only Ingham district part independently corroborated with original official methods/totals.",
     "Metadata/rejected write-ins excluded; unresolved write-ins kept separate from named votes.",
+    "Ingham generic processed label is classified unresolved using the original official canvass; other reported write-in statuses remain unverified.",
     "Final totals are not reporting chronology, calibration or official outstanding ballots."
   ]
 }

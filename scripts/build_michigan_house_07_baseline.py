@@ -77,7 +77,10 @@ def aggregate(rows, census):
         seen.add(key); votes = int(r['votes'])
         if name in METADATA:
             if r['party']: raise ValueError('Metadata/write-in party changed')
-            if name in {'Write-in', 'Write-ins', 'Unassigned write-ins'}: totals[county]['writeins'] += votes
+            # The original Ingham canvass explicitly calls these unresolved.
+            # The processed file's generic label must not erase that status.
+            if county == 'Ingham' and name == 'Write-ins': totals[county]['unresolved'] += votes
+            elif name in {'Write-in', 'Write-ins', 'Unassigned write-ins'}: totals[county]['writeins'] += votes
             elif name == 'Unresolved write-in votes:': totals[county]['unresolved'] += votes
             elif name.startswith('Rejected'): totals[county]['rejected'] += votes
             continue
@@ -110,6 +113,10 @@ def build():
         match = re.search(re.escape(name) + r' ' + party + r' ([\d,]+) ([\d,]+) ([\d,]+) ([\d,]+)', text)
         if not match or sum(int(v.replace(',', '')) for v in match.groups()[:3]) != expected or int(match[4].replace(',', '')) != expected:
             raise ValueError('Official sample method/total reconciliation failed')
+    block = text.split('Curtis Hertel DEM', 1)[1].split('Representative in Congress for Congressional District 7', 1)[0]
+    unresolved = re.search(r'Unresolved Write-In ([\d,]+) ([\d,]+) ([\d,]+) ([\d,]+)', block)
+    if not unresolved or tuple(int(v.replace(',', '')) for v in unresolved.groups()) != (206, 16, 57, 279):
+        raise ValueError('Official unresolved write-in method/status contract changed')
     census_raw = checked(ROOT / 'data/texas_historical_sources/2024-census-counties.zip', CENSUS_HASH)
     with zipfile.ZipFile(io.BytesIO(census_raw)) as z:
         census = {r['NAME'].removesuffix(' County'): r['GEOID'] for r in csv.DictReader(io.StringIO(
@@ -119,7 +126,7 @@ def build():
     summary = {k: sum(v[k] for v in totals.values()) for k in ['D', 'R', 'O']}
     if count != 1424 or precincts != 302 or summary != {'D': 209959, 'R': 226722, 'O': 14231}:
         raise ValueError('Exact processed district history changed')
-    if any(totals['Ingham'][k] != v for k, v in {'D': 90181, 'R': 49827, 'O': 4911, 'writeins': 279}.items()):
+    if any(totals['Ingham'][k] != v for k, v in {'D': 90181, 'R': 49827, 'O': 4911, 'writeins': 0, 'unresolved': 279}.items()):
         raise ValueError('Independent original Ingham district-part sample disagrees')
     mit = next(r for r in json.loads((ROOT / 'data/house_history_2024_staging.json').read_text(encoding='utf-8'))['records'] if r['2024_race_code'] == 'MI-07')
     if tuple(mit['recorded_' + k + '_votes'] for k in ['dem', 'rep', 'other']) != tuple(summary.values()):
@@ -128,7 +135,7 @@ def build():
     if not geo['geography_comparable_2024'] or geo['map_relation_2024_to_2026'] != 'boundaries_unchanged_per_2026_census':
         raise ValueError('Current district geography incomparable')
     counties = [{'county': c, 'county_fips': census[c], 'dem_votes': totals[c]['D'], 'rep_votes': totals[c]['R'],
-                 'named_other_votes': totals[c]['O'], 'generic_write_in_votes': totals[c]['writeins'],
+                 'named_other_votes': totals[c]['O'], 'reported_write_in_votes_status_unverified': totals[c]['writeins'],
                  'unresolved_write_in_votes': totals[c]['unresolved'], 'rejected_write_in_votes_excluded': totals[c]['rejected']}
                 for c in sorted(COUNTIES, key=lambda c: census[c])]
     baseline = {'status': 'PROCESSED_DISTRICT_PART_HISTORY_WITH_ONE_OFFICIAL_SAMPLE_NOT_CALIBRATION',
@@ -141,6 +148,7 @@ def build():
                 'official_roster': roster, 'limitations': ['Processed OpenElections reference, not original statewide returns.',
                 'Only Ingham district part independently corroborated with original official methods/totals.',
                 'Metadata/rejected write-ins excluded; unresolved write-ins kept separate from named votes.',
+                'Ingham generic processed label is classified unresolved using the original official canvass; other reported write-in statuses remain unverified.',
                 'Final totals are not reporting chronology, calibration or official outstanding ballots.']}
     reference = {'source_sha256': CENSUS_HASH, 'scope': 'MI-07 district parts; independent Census FIPS',
                  'counties': [{'county': c['county'], 'fips': c['county_fips']} for c in counties]}
