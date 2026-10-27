@@ -11,3 +11,6 @@ data/kansas_historical_sources/*-excerpt.txt text eol=lf
 data/pennsylvania_historical_sources/2024-official-precinct-schema.txt -text
 # Preserve the official New York CSV export byte-for-byte.
 data/new_york_historical_sources/2024-official-ny17-contest.csv -text
+
+# Keep the audited, reformatted AZ06 response receipt stable on Windows and Linux.
+data/arizona_house_06_sources/2026-civic-zero-snapshot.json text eol=lf
