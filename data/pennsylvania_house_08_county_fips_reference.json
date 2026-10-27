@@ -1,0 +1,26 @@
+{
+  "source_sha256": "3c337402b5c6e8d5aa26b4278ccf4edc8989f2683765b3ffbf22296cdb2df3a0",
+  "scope": "PA-08 district parts; independent Census FIPS",
+  "counties": [
+    {
+      "county": "Lackawanna",
+      "fips": "42069"
+    },
+    {
+      "county": "Luzerne",
+      "fips": "42079"
+    },
+    {
+      "county": "Monroe",
+      "fips": "42089"
+    },
+    {
+      "county": "Pike",
+      "fips": "42103"
+    },
+    {
+      "county": "Wayne",
+      "fips": "42127"
+    }
+  ]
+}

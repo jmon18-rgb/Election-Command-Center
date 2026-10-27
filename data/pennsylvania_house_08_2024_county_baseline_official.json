@@ -1,0 +1,63 @@
+{
+  "status": "OFFICIAL_DISTRICT_PART_HISTORY_NOT_LIVE_OR_CALIBRATION",
+  "race_code": "PA-08",
+  "election_date": "2024-11-05",
+  "county_count": 5,
+  "geography_scope": "district_parts",
+  "counties": [
+    {
+      "county": "Lackawanna",
+      "county_fips": "42069",
+      "dem_votes": 64779,
+      "rep_votes": 50835,
+      "named_other_votes": 0
+    },
+    {
+      "county": "Luzerne",
+      "county_fips": "42079",
+      "dem_votes": 59830,
+      "rep_votes": 69827,
+      "named_other_votes": 0
+    },
+    {
+      "county": "Monroe",
+      "county_fips": "42089",
+      "dem_votes": 41188,
+      "rep_votes": 35013,
+      "named_other_votes": 0
+    },
+    {
+      "county": "Pike",
+      "county_fips": "42103",
+      "dem_votes": 13773,
+      "rep_votes": 20727,
+      "named_other_votes": 0
+    },
+    {
+      "county": "Wayne",
+      "county_fips": "42127",
+      "dem_votes": 9841,
+      "rep_votes": 19261,
+      "named_other_votes": 0
+    }
+  ],
+  "district_totals": {
+    "dem_votes": 189411,
+    "rep_votes": 195663
+  },
+  "source_url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dos/resources/voting-and-elections/bulk-data/2024-general-election/er/erstat_2024_g_268768_20250129.txt",
+  "source_sha256": "34339122238fe82272c52717a4065dbd3949e00eeb98320332797853c96f3b6c",
+  "source_schema_url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dos/resources/voting-and-elections/bulk-data/2024-general-election/er/erstat_2024_g_readme.txt",
+  "source_schema_sha256": "b0d9e221deab9acd982982d187e4f16e7fae43d59b360b867cd89fad559eb632",
+  "selected_precinct_candidate_rows": 854,
+  "selected_precincts": 427,
+  "map_comparability": "boundaries_unchanged_per_2026_census",
+  "map_source": "https://www.census.gov/programs-surveys/decennial-census/about/rdo/congressional-districts.html",
+  "candidate_proclamation_url": "https://www.monroecountypa.gov/getmedia/8952bea5-32f4-4763-a61f-49d917063997/Nov26_CandidateProclamation.pdf",
+  "candidate_proclamation_sha256": "bb36b5b463fb748f59dff82d4daae604cd1be69411475b64d8faa20963c987a3",
+  "limitations": [
+    "Monroe is a district part, not its whole-county total.",
+    "Final 2024 counts are not reporting chronology or calibrated 2026 remaining ballots.",
+    "Generic write-ins are not supplied by the state extract; named-other zero is not all other ballots."
+  ]
+}
