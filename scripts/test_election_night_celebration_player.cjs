@@ -1,6 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict');
 const {create,STORIES}=require('./election_night_celebration_player.js');
+assert.doesNotMatch(JSON.stringify(STORIES.graham),/lindsey/i,'Graham story must not name the previous seat holder');
 let tasks=new Map(),clock=0,id=0,done,allowed=new Set(['graham','blansas']),events=[],sounds=[];
 const player=create({setTimer:(fn,ms)=>{tasks.set(++id,{fn,at:clock+ms});return id},
  clearTimer:id=>tasks.delete(id),valid:item=>allowed.has(item.id),
@@ -24,7 +25,7 @@ tick();assert.equal(events.at(-1)[2],'scene','Stalled audio has bounded fallback
 tick();tick();tick();assert.equal(player.state().active,null);
 assert.equal(events.at(-1)[2],'complete');
 for(const name of Object.keys(STORIES)){
- player.enqueue({id:name},true);done();player.stop();
+ assert.equal(player.enqueue({id:name},true),true,'Every known story remains previewable');done();player.stop();
  assert.equal(tasks.size,0,'Stop must cancel every queued phase');
 }
 console.log('Celebration ordering, media failure, queue, preview isolation and call revocation PASS');

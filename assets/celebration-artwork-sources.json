@@ -1,0 +1,14 @@
+{
+  "reviewed_on": "2026-10-27",
+  "scope": "Three original repository SVG stories and one existing SVG wording correction; no new third-party image or audio imports",
+  "artworks": [
+    {"path":"assets/milestone-talarico.svg","source":"Original repository SVG in PR426, b09766e9d1e572254c11b15beeec95edfa9badca","sha256":"72c6d6403bf5fa3febe920bfc6af6e6c031454ca42af5720314d18feadb6d829"},
+    {"path":"assets/milestone-abbott.svg","source":"Original repository SVG in PR426, b09766e9d1e572254c11b15beeec95edfa9badca","sha256":"7927674811f8d46f10b5509b7cab408e1a8373daf8731b612a7f364669e44d5d"},
+    {"path":"assets/milestone-mississippi.svg","source":"Original repository SVG in PR426, b09766e9d1e572254c11b15beeec95edfa9badca","sha256":"fccff60e4f9d4e45d8b9c69a9d04f0c337039ac17c13e3c328b8974a0d13bb7e"},
+    {"path":"assets/milestone-graham.svg","source":"Existing repository SVG; surname-only wording correction, no new external illustration"}
+  ],
+  "identity_reference": "https://vote.charlestoncounty.gov/?r=816",
+  "identity_reference_scope": "Official county November 3, 2026 ballot guidance, not a statewide certified roster export or live race call",
+  "preserved_media": "Existing historical John Brown portrait attribution and owner-supplied announcement recording remain unchanged",
+  "preview_limit": "All previews are fictional achievements, never proof of votes or winner calls"
+}

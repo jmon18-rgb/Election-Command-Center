@@ -27,16 +27,36 @@ try{
   await page.locator('#enMilestoneGrid .en-milestone-card').first().waitFor();
   // Keep media pending so the test can explicitly exercise ended/error/rejection.
   await page.evaluate(()=>{document.querySelector('#enCelebrationAnnouncement').play=()=>Promise.resolve();});
-  for(const id of ['graham','blexas','blue_corn','blansas','maine','nebraska','ohio','tsunami']){
-   await page.evaluate(id=>enMilestoneShow({id,title:id,tag:id,description:'Synthetic preview'},true),id);
+  const titles=await page.evaluate(()=>Object.fromEntries(window.ElectionNightSignals.MILESTONES.map(x=>[x.id,x.title])));
+  // Exercise the first poster request, before it can be in the decoded-image cache.
+  await page.route('**/assets/milestone-mississippi.svg',route=>route.abort());
+  await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles.mississippi}).click();
+  await page.locator('#enMilestonePoster').waitFor({state:'hidden'});
+  assert.equal(await page.locator('#enMilestoneArt').isVisible(),true);
+  assert.equal(await page.locator('#enMilestoneTitle').isVisible(),true,'A missing poster preserves the readable story and controls');
+  await page.locator('#enMilestoneClose').click();
+  await page.unroute('**/assets/milestone-mississippi.svg');
+  for(const id of ['graham','blexas','blue_corn','blansas','maine','nebraska','ohio','talarico','abbott','mississippi','tsunami']){
+   if(id==='tsunami')await page.locator('#enTsunamiPreview').click();
+   else await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles[id]}).click();
    assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'announcement');
    assert.equal(await page.locator('#enCelebrationFish').isHidden(),false);
    await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
    assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'scene');
+   if(id==='graham')assert.doesNotMatch(await page.locator('#enCelebrationStage').innerText(),/lindsey/i);
    await page.clock.runFor(7300);
    assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'complete');
    assert.equal(await page.evaluate(()=>enCelebrationPlayer.state().active),null);
    assert.match(await page.locator('#enMilestoneKicker').innerText(),/PREVIEW/);
+   if(['graham','talarico','abbott','mississippi'].includes(id)){
+    const src=await page.locator('#enMilestonePoster').getAttribute('src');
+    assert.equal(new URL(src,'http://localhost').pathname,'/assets/milestone-'+id+'.svg');
+    if(id==='graham')assert.match(src,/\?v=[a-f0-9]{12}$/,'Changed incumbent artwork must not reuse an old cached image');
+    if(id==='graham')assert.doesNotMatch(await page.locator('#enMilestonePoster').getAttribute('alt'),/lindsey/i);
+    await page.locator('#enMilestonePoster').evaluate(img=>img.decode());
+    mkdirSync(resolve(root,'artifacts/readiness'),{recursive:true});
+    await page.locator('#enMilestonePoster').screenshot({path:resolve(root,`artifacts/readiness/celebration-${id}-${width}.png`)});
+   }
   }
   await page.evaluate(()=>{document.querySelector('#enCelebrationAnnouncement').play=()=>Promise.reject(new Error('Synthetic autoplay rejection'));enMilestoneShow({id:'blansas',title:'Kansas'},true)});
   await page.waitForFunction(()=>document.querySelector('#enCelebrationStage').dataset.phase==='scene');
