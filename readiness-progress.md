@@ -1,5 +1,13 @@
 # Readiness progress
 
+## October27 03:48Z — AZ06 runtime merged; coverage-caption repair required before acceptance
+
+- RuntimePR473 merged after ALL37 exact-head workflows SUCCESS;48latestjobs44success/4nonapplicable skips,noexternalstatuses, testedhead1b70c163fca3deb73bf95483341671bda461ca38/clean. Merge7c5261f445ae4ac1885fdc2b238d9c13f77a0dbf; final briefingmainb06d9d7a9b113c51dc8f89191558f0943e352723, Pages40446018035SUCCESS. ALL210expectedpublishedfilesmatch03:47:56Z,58fingerprintsvalid; remoteforecastcoherencePASS.
+- Published1366/390 SYNTHETIC AZ06 automaticnationalmovement/corrections/withdrawal/outage/archive/floor testsPASS. VISUALmobilecheck found coveragecaption incorrectly defaulted to Wisconsin despite correct AZ06 driver/fiveparts. This is a source-attribution defect; full delivery acceptance withheld pending focused fix/review/deploy. Fix adds Arizona branch and browser assertion requiring Arizona and excluding Wisconsin. No numerical estimator/probability changes.
+- Separate ACTUALPUBLISHED fixture-free/real-clock03:48:11.918Z all13HTTP200, twelve civic non-test ZERO/stale, WA expired pre-electionhealth-only; ZERO admittedinputs/projections/rawarchives/pageerrors. LIVE_DELIVERY_UNPROVEN; no positive2026delivery/calibration/speedparity. Probe revisionb06d clean.
+- NEXT finish caption repair all exact-head checks, merge only green, verify finalPages/allbytes/publishedArizona caption plus nationalbehavior, then one final separate actual published canary. Do not redo source/ballot/history work or notify completedAZ06milestone before caption repair is verified. Thirteen implemented routes remain experimental; fiveSenatestates/eightHousedistricts/sixHousestates LIMITED evidence. After completion, next owner-uploaded gap VA02 before optional geography perfection.
+
+
 ## October27 AZ06 national connection IMPLEMENTED LOCALLY — review/deployment pending
 
 - AZ06 preparationPR472 merged after all7 exact-head workflows SUCCESS,10latest jobs9success/1nonapplicable skip, no external statuses, head31970e8e155c0d48f96e4f1d15da034c9339b12b/clean. Merge2f6d175c52b12972d2e588183ff38e8a5938fa15. Original CI failure was a reformatted JSON Windows/Linux line-ending hash mismatch, repaired with a scoped LF attribute; no evidence guard/check waived. Preparation Pages still to verify.
