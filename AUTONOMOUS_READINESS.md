@@ -1,5 +1,9 @@
 # Election Night production-readiness assignment
 
+## October 27, 18:34 UTC — Active roadmap continuation
+
+R0/PR487 is released and verified. R6/PR488 is open at `2af0a7dbae24ab87deccfdec46ce41c82196a325`; finish all current-head CI before merge and publication verification. R4 is now applied on the separate `readiness/official-admission-evidence` branch, dependent on PR488: actual model admission/export with bounded local history, verified selected hashes, explicit collector-only original hash, current decision lineage and independent correction flags through recovery. Focused/controller and actual Edge WA/VA desktop/mobile fixture checks pass; full local DOM cannot start without `jsdom`, so CI remains required. Do not reapply the old ignored preparation patches. Full collector-body retention remains a separate ready R4 slice. Detailed evidence, exact dependencies and next actions are in the latest readiness-progress entry. R1 bounded NC01/AZ01 decisions and R2 zero-admitted-data inventory do not establish coverage, delivery or calibration.
+
 ## 2026-10-27T18:15:00Z - Needle release verified; celebration slice ready for review
 
 - PR487 MERGED afterALL35 exact-head workflowsSUCCESS/46latestjobs43SUCCESS3nonapplicableSKIP/0external/currenthead8c23a55d66184db524c9daa96fed02dd64a3f130/clean. Merge1187b732; its Pages40556807152 was superseded/cancelled by routine briefing push, not a build failure. Finalmaine2a9e88991a2f332bc2ca125df64d4857421e215/Pages40556871187SUCCESS; ALL292publishedfilesmatch18:08:40.060Z/failures[]. Publicremote dashboard/coherencePASS/indexmatch. Additional localEdge1366/390 nationalbrowserPASS, publishedordinaryUI5stages/expectedcountycopy/withdrawexactbaseline/liveisolationPASS at18:09:47Z; existinglocalresearchvariant preserved, public model checked separately. Receipt published-national-rehearsal-20261027.json/png. R0engineeringreleaseverified, empiricalcalibration/actualpositive2026deliveryUNMET.

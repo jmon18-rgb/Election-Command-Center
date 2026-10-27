@@ -45,17 +45,19 @@
      }
      continue; // Missing logging metadata is not a model/source withdrawal.
     }
-    if(!current){if(old?.active){append({...old,rows:undefined,active:undefined,kind:active?'WITHDRAWN':'INACTIVE',observed_at:stamp(),before:old.total,after:null,reason:active?reason:'LEFT_LIVE_MODE'});states[code]={...old,active:false};}continue;}
+    if(!current){if(old?.active){append({...old,rows:undefined,active:undefined,kind:active?'WITHDRAWN':'INACTIVE',observed_at:stamp(),before:old.total,after:null,
+     model_revision:modelRevision,model_version:modelVersion||null,polling_at:iso(pollingAt)?pollingAt:null,kernel_revision:kernelRevision||null,
+     model_context:modelContext==='PUBLIC'?'PUBLIC':'LOCAL_RESEARCH_VARIANT',reason:active?reason:'LEFT_LIVE_MODE'});states[code]={...old,active:false};}continue;}
     const signature=x=>[x.selected_hash,x.remaining_hash,x.model_revision,x.model_context].join('|');
     if(old?.active&&!old.audit_missing&&signature(old)===signature(current))continue; // Refreshes do not invent new batches.
     const correction=old&&current.rows.some(c=>{const p=old.rows.find(p=>p.fips===c.fips);return p&&(c.d<p.d||c.r<p.r);});
     const kind=!old?'ADMITTED':!old.active?'RECOVERED':old.audit_missing?'AUDIT_METADATA_RECOVERED':correction?'CORRECTION':old.selected_hash!==current.selected_hash?'REVISION':old.remaining_hash!==current.remaining_hash?'SUPPLEMENT_CHANGE':'MODEL_REEVALUATION';
-    append({...current,rows:undefined,kind,observed_at:stamp(),before:old?.active?old.total:null,after:current.total,reason:'USED_BY_LIVE_NATIONAL_MODEL'});
+    append({...current,rows:undefined,kind,candidate_votes_revised:Boolean(correction),observed_at:stamp(),before:old?.active?old.total:null,after:current.total,reason:'USED_BY_LIVE_NATIONAL_MODEL'});
     states[code]={...current,active:true};
    }
    return true;
   }
-  function csvRows(){prune();return events.map(e=>[e.code==='WA-03'?'Washington official national input':'Virginia official national input',2026,'House',e.code,e.observed_at,e.kind,e.before??'',e.after??'',e.after===null||e.before===null?'':e.after-e.before,'',e.kind==='CORRECTION'?'YES':'',
+  function csvRows(){prune();return events.map(e=>[e.code==='WA-03'?'Washington official national input':'Virginia official national input',2026,'House',e.code,e.observed_at,e.kind,e.before??'',e.after??'',e.after===null||e.before===null?'':e.after-e.before,'',e.candidate_votes_revised||e.kind==='CORRECTION'?'YES':'',
    'Browser-observed model decision; provenance '+e.provenance_status+'; original hash is collector claim only; '+e.reason,e.source_at||'',e.published_at||'',e.receipt_at||'',e.selected_hash||'',e.original_hash||'','NO',e.model_revision,e.remaining_hash||'',e.remaining_receipt_at||'',e.model_context,e.source_url||'',e.transport_url||'',e.model_version||'',e.polling_at||'',e.kernel_revision||'',e.provenance_status]);}
   return Object.freeze({observe,csvRows,events:()=>{prune();return events.map(e=>({...e}));}});
  }

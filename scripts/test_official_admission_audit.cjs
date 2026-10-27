@@ -17,6 +17,16 @@ const missing=structuredClone(envelope);delete missing.snapshot.collection_selec
 audit.observe({...args,envelopes:[missing]});assert.equal(audit.events()[0].kind,'AUDIT_METADATA_UNAVAILABLE');assert.equal(audit.events()[0].reason,'MODEL_STILL_ADMITTED_PROVENANCE_UNAVAILABLE');assert.equal(audit.events()[0].provenance_status,'PREVIOUS_ADMISSION_ONLY');
 audit.observe({...args,envelopes:[missing]});assert.equal(audit.events().filter(e=>e.kind==='AUDIT_METADATA_UNAVAILABLE').length,1);
 audit.observe(args);assert.equal(audit.events()[0].kind,'AUDIT_METADATA_RECOVERED');
+for(const gap of ['metadata','source']){
+ const a=api.create({now:()=>clock});a.observe(args);
+ a.observe({...args,envelopes:gap==='metadata'?[missing]:[],used:gap==='metadata'?args.used:[]});
+ const revised=structuredClone(envelope);revised.snapshot.collection_selected_payload_sha256='e'.repeat(64);
+ revised.snapshot.counties[0].dem_votes=9000;revised.snapshot.counties[0].rep_votes=11000;
+ a.observe({...args,envelopes:[revised]});
+ assert.equal(a.events()[0].kind,gap==='metadata'?'AUDIT_METADATA_RECOVERED':'RECOVERED');
+ assert.equal(a.events()[0].candidate_votes_revised,true,'Recovery must retain a candidate correction even when the combined total is unchanged');
+ assert.equal(a.csvRows()[0][10],'YES');assert.equal(a.events()[0].after,20000);
+}
 const correction=structuredClone(envelope);correction.snapshot.collection_selected_payload_sha256='c'.repeat(64);correction.snapshot.counties[0].dem_votes=9000;
 audit.observe({...args,envelopes:[correction]});assert.equal(audit.events()[0].kind,'CORRECTION');assert.equal(audit.events()[0].after,19000);
 audit.observe({...args,envelopes:[],used:[]});const withdrawn=audit.events()[0];assert.equal(withdrawn.kind,'WITHDRAWN');assert.equal(withdrawn.receipt_at,envelope.snapshot.collection_fetched_at,'Withdrawal preserves the earlier real receipt rather than inventing a GET');
@@ -25,6 +35,14 @@ const withRemaining=structuredClone(correction);withRemaining.snapshot.official_
 audit.observe({...args,envelopes:[withRemaining],used:[{code:'WA-03',official_remaining_sensitivity:{whole_counties:1}}]});assert.equal(audit.events()[0].kind,'SUPPLEMENT_CHANGE');
 audit.observe({...args,envelopes:[withRemaining]});assert.equal(audit.events()[0].kind,'SUPPLEMENT_CHANGE');assert.equal(audit.events()[0].remaining_hash,null,'Rejected/unadmitted supplement does not appear as evidence');
 audit.observe({...args,active:false});assert.equal(audit.events()[0].kind,'INACTIVE');
+// A removal belongs to the current model decision while retaining the last actual source receipt.
+const changedLineage={modelRevision:'current-model',modelVersion:'current-version',pollingAt:'2026-11-03T13:00:00Z',kernelRevision:'./scripts/national_county_likelihood.js?v=123456abcdef',modelContext:'LOCAL_RESEARCH_VARIANT'};
+for(const active of [true,false]){
+ const a=api.create({now:()=>clock});a.observe(args);a.observe({...args,...changedLineage,active,used:[],envelopes:[]});const e=a.events()[0];
+ assert.equal(e.kind,active?'WITHDRAWN':'INACTIVE');assert.equal(e.model_revision,changedLineage.modelRevision);assert.equal(e.model_version,changedLineage.modelVersion);
+ assert.equal(e.polling_at,changedLineage.pollingAt);assert.equal(e.kernel_revision,changedLineage.kernelRevision);assert.equal(e.model_context,changedLineage.modelContext);
+ assert.equal(e.selected_hash,h);assert.equal(e.receipt_at,envelope.snapshot.collection_fetched_at);
+}
 assert.equal(audit.csvRows()[0].length,12+api.headers.length);assert.equal(audit.csvRows()[0][17],'NO','Original full-body hash is never called recomputed');
 const restored=api.create({storage,now:()=>clock});assert(restored.events().length>0);restored.observe({...args,used:[],envelopes:[]});assert.equal(restored.events()[0].kind,'INACTIVE','Restoring history never restores active admissions');
 for(let i=0;i<150;i++){clock+=1000;audit.observe({...args,modelRevision:'model'+i});}assert(audit.events().length<=api.MAX_EVENTS);assert(saved.length<=api.MAX_BYTES);
