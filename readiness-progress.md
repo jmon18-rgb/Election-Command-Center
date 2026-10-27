@@ -1,5 +1,36 @@
 # Readiness progress
 
+## October 27 00:52Z — bounded Alaska blocker; Ohio county source matched
+
+- Alaska official results landing returned HTTP 200 in ordinary Edge. Its 2026
+  table lists primary, REAA and recall only; no independently linked general
+  results route was observed. Saved original table/network evidence locally and
+  data/alaska_senate_source_assessment.json. Do not guess general IDs or keep
+  probing the same table. Civic 86916 remains state-only with unresolved RCV roster.
+- Moved to consequential near-boundary Ohio special Senate (uploaded Senate
+  importance 11), within the owner's close-race scope. Actual approved civic 87527
+  returned HTTP 200, non-test, round 1, stale Oct 19 ZERO counts. Its 88 County
+  FIPS/names match the independently pinned Census gazetteer exactly; all seven
+  candidate columns are complete and county sums reconcile with statewide zeros.
+  Original response saved locally; data/ohio_senate_source_assessment.json pins hash.
+- This is source preparation only: no eleventh national input, ballot estimate,
+  positive live delivery, calibration, comparative-speed claim or deployment.
+  Existing ten deployed inputs and all admission/official NIST gates stay intact.
+- The official Dec 2, 2024 certification release's historical-results link now
+  redirects to the data portal. Its declared past-results app explicitly blocks
+  ordinary browser access. An indexed accessible 2026 sample ballot also returns
+  403 in ordinary Edge. Stop retries/no bypass. Search snippets are discovery leads,
+  not verified original ballot or complete write-in certification evidence.
+- NEXT: obtain a separately published official historical statewide county export
+  or provenance-preserved original (not 88 bespoke county integrations), then exact
+  ballot/roster verification. If unavailable within a bounded attempt, move to
+  another consequential near-boundary Senate/owner-listed House source gap rather
+  than spending runs on blocked portals. No safe-seat/panel/celebration expansion.
+- Git open PRs unchanged; no active new implementation PR. Final main b10dbbc7
+  checks/deployment remain successful. Last daily report 2026-10-26; this bounded
+  research is not another delivery milestone and does not require owner action.
+
+
 ## October27 00:42Z — close MAINE results-to-NATIONAL connection VERIFIED DEPLOYED
 
 - PR468 finalhead dda82b04f83dccb4f786174d1bf6f3f7cf4426b2: ALL36workflowruns

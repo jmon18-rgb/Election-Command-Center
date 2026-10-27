@@ -1,0 +1,92 @@
+{
+  "schema": "bounded-close-senate-source-assessment-v1",
+  "assessed_at": "2026-10-27T00:52:00Z",
+  "race": "OH-SEN-SPECIAL",
+  "national_input_enabled": false,
+  "status": "REAL_ZERO_COUNTY_TEMPLATE_OBSERVED_BASELINE_AND_BALLOT_REVIEW_REQUIRED",
+  "priority": "Near-boundary Senate within owner scope; uploaded Senate importance 11; engineering queue, not forecast acceptance.",
+  "provider": {
+    "url": "https://civicapi.org/api/v2/race/87527",
+    "http": 200,
+    "saved_response_sha256": "9ae8f233423db927e703f98901cb7b27b5c7508fe4f5efb6fdccaaed8951a6a7",
+    "election_name": "Ohio US Senate Special General",
+    "source_stamp": "2026-10-19T22:51:08.970Z",
+    "test_data": false,
+    "round": 1,
+    "county_rows": 88,
+    "candidate_rows_per_county": 7,
+    "all_counts_zero": true,
+    "state_county_totals_reconcile": true,
+    "candidate_contract": [
+      {
+        "name": "Sherrod Brown",
+        "party": "Democratic",
+        "native_id": 221403
+      },
+      {
+        "name": "Stephen Faris",
+        "party": "Write-In",
+        "native_id": 221404
+      },
+      {
+        "name": "Anthony Holliman",
+        "party": "Write-In",
+        "native_id": 221405
+      },
+      {
+        "name": "Jon Husted",
+        "party": "Republican",
+        "native_id": 221406
+      },
+      {
+        "name": "Greg Levy",
+        "party": "Other Party",
+        "native_id": 221407
+      },
+      {
+        "name": "William B. Redpath",
+        "party": "Libertarian",
+        "native_id": 221408
+      },
+      {
+        "name": "Timothy Telymonde",
+        "party": "Write-In",
+        "native_id": 221409
+      }
+    ]
+  },
+  "geography": {
+    "independent_reference": "US Census 2024 national county gazetteer",
+    "reference_sha256": "3c337402b5c6e8d5aa26b4278ccf4edc8989f2683765b3ffbf22296cdb2df3a0",
+    "exact_88_fips_name_matches": true,
+    "no_guessed_allocation": true
+  },
+  "official_history_attempt": {
+    "linked_from": "https://www.ohiosos.gov/office/media-center/categories/press-releases/2024-12-02",
+    "original_link": "https://www.ohiosos.gov/elections/election-results-and-data/2024-official-election-results/",
+    "redirect": "https://www.ohiosos.gov/data",
+    "declared_past_results": "https://data.ohiosos.gov/portal/past-election-results",
+    "ordinary_browser_result": "Explicit security-service blocked page; stop retries, no bypass.",
+    "historical_baseline_acquired": false
+  },
+  "ballot_review": {
+    "search_index_url": "https://www.boe.ohio.gov/abmt/oh12/20261103/X015___2_CITY_15.html",
+    "search_index_senate_names": [
+      "Greg Levy",
+      "William B. Redpath",
+      "Sherrod Brown",
+      "Jon Husted",
+      "Write-in"
+    ],
+    "ordinary_browser_http": 403,
+    "independent_original_verified": false,
+    "note": "Search excerpt is a discovery lead, not a downloaded verified original or complete certified write-in roster."
+  },
+  "limits": [
+    "Zero template is not positive 2026 delivery or calibration.",
+    "No source-stamp age or HTTP timing proves comparative freshness.",
+    "No remaining-ballot or national likelihood is enabled without a matched historical baseline and reviewed candidate contract.",
+    "Existing Ohio official NIST approval gates remain intact; current mock counts cannot be admitted."
+  ],
+  "next": "Use a separately published official statewide historical county export or archived original with provenance; avoid repeating blocked portal/ballot requests."
+}

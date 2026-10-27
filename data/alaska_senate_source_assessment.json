@@ -1,0 +1,44 @@
+{
+  "schema": "bounded-close-senate-source-assessment-v1",
+  "race": "AK-SEN",
+  "assessed_at": "2026-10-27T00:45:09.797Z",
+  "national_input_enabled": false,
+  "status": "NO_2026_GENERAL_RESULTS_LINK_OBSERVED",
+  "official_url": "https://www.elections.alaska.gov/election-results/",
+  "http": 200,
+  "observed_2026_rows": [
+    {
+      "text": "2026 Primary ElectionAugust 18, 2026All Details",
+      "links": [
+        {
+          "label": "All Details",
+          "url": "https://www.elections.alaska.gov/election-results/e/?id=26prim"
+        }
+      ]
+    },
+    {
+      "text": "2026 REAA ElectionOctober 6, 2026All Details",
+      "links": [
+        {
+          "label": "All Details",
+          "url": "https://www.elections.alaska.gov/election-results/e/?id=26reaa"
+        }
+      ]
+    },
+    {
+      "text": "2026 Alaska Gateway School District Recall ElectionJune 30, 2026All Details",
+      "links": [
+        {
+          "label": "All Details",
+          "url": "https://www.elections.alaska.gov/election-results/e/?id=26reaa-16rc"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Only primary, REAA and recall rows observed; general availability not established.",
+    "Approved civic route 86916 has only a STATE row and unresolved six-candidate/RCV identity contract.",
+    "Do not guess general asset IDs, sum parties, or treat first choices as final ranked-choice outcomes."
+  ],
+  "next": "Record once; move to consequential near-boundary Senate or owner-listed House gap until independently linked general results become available."
+}
