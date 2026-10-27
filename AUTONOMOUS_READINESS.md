@@ -1,5 +1,54 @@
 # Election Night production-readiness assignment
 
+## October27 00:26Z — required browser CI fixture repaired before Maine merge
+
+- PR468head2a04f4b7 blocked by readinessbrowser scenario expectingNJ07to remain
+  an unresolvedidentitygap. CurrentgeneratedledgernowmarksNJ07recentexactprobe;
+  selectorcorrectlyabsent, so30sassertiontimedout. NoMainefeedfailure orlivevotes.
+- Test now explicitly simulatesNJ07unresolvedgap in its existing syntheticoutage
+  scenario beforecheckingcounty-onlyfallback. Preserves allfallbackwording,
+  expectedcompletegapset, drawerlimit/openstate, keyboardfocus and recoverychecks.
+  ActualEdge1440/1366/390browserPASS. No productionguard/testskip/timeoutraise.
+- PushnewheadandrequireALLapplicablechecksagain; do notmergeoldgreenruns.
+  Maine implementation remainslocal/reviewonly untiltestedmerge+Pagesverified.
+
+
+## October27 00:11Z — close Maine Senate connected to NATIONAL locally; review pending
+
+- PR467 ALL5exactheadworkflowsSUCCESS,8latestjobs7success/1nonapplicable skip,
+  noexternal, head0900ef29/clean checked beforemerge. Merge/finalmainef5a55fa;
+  Pages40424821850SUCCESS. ALL160publishedexpectedfilesmatch00:15:39Z. This
+  deployedPREPARATIONonly. https://github.com/jmon18-rgb/Election-Command-Center/pull/467
+- ACTIVEreadiness/maine-national-input implementsTENTHcounts-onlynationalinput.
+  Headlesscontroller, no newracepanel; existingpool4active/64queue/8reserve,
+  sourcebreaker, exactfullroute87188allowlist. Newroute<=1start/min(activepostclose),
+  preclose10min; existing8fastcivicroutes32/minUNCHANGED +Maine1/min +WAowned1/min.
+  Manualrefreshcannotbypassminute; hiddenpause/backoff, mode+breakergeneration,
+  stale/zero/retraction/oldsourcegates. Existing9inputs preserved.
+- NationalMEscope requires16Censuscounties/exactround1/pinned2020stateandUOCAVA
+  identity. HistoricalstatebaseMarginincludesUOCAVA; countyhistorydoesnotallocateit.
+  Remainingvotes are COUNTYnamed-candidate turnoutscenarios only, notofficialballots
+  orstatewideUOCAVAforecast. Sourcecurrentlyrejectsanycounty-vs-state disagreement.
+  Unreportedwriteins labeledexplicitly. Adds REVIEWABLE ASSUMED5pointfirstchoice/
+  transfer nuisance plushistoricalunallocatedfraction uncertainty; uncalibrated,
+  notinventedvotes. ExistingESSfloor/state20:1budget/fourendingthresholdsunchanged.
+- LocalnumericaltestsPASSMaine-onlynationalmovement,bothdirections,baselinedraw
+  isolation,round2/unknownUOCAVA/duplicatesrejection,existing9+Mainecoexist(10),
+  same6Housedistricts/5states. ActualEdge1366/390SYNTHETICbrowserPASSautomatic
+  beforecallnationalmovement,red/bluecorrection,zerowithdrawal/olderreplayblock,
+  RCVlaterroundexclusion,outage/archiveisolation,manualfloor. Fixedmissingstrict
+  routeallowlist(foundbybrowser) ratherthanbypassingit. Preservednewerstampguard;
+  initialsyntheticchangedcountssamestampcorrectlyrejected,fixturecorrected.
+- Existing36corechecksPASSafterrepairingbrittleAL07testassertion: enforcefallback
+  whenAL07isactuallyincurrentgeneratedgapledger,notafterledgerresolvesit. Dynamic
+  exactfallbacksetassertionsremain; no checkswaived. TargetedCIaddsMEkernel/browser.
+- ActualCANDIDATEfixture-free00:21:13Ztenroutes:ME200/non-test/staleOct16zero,
+  othercivicstalezero,WApre-electionhealthreceiptexpiredsafely; ZEROacceptedinput,
+  projections,rawarchives/pageerrors. NOTpublishedacceptanceorpostclosedelivery.
+- NEXT review/CI/mergeONLYallgreen andverifyPages,actualpublished10routes,
+  publishedsyntheticMainebehavior. No morearchivehuntingornewracepanels first.
+
+
 ## October26 23:56Z — Maine real same-office baseline and strict county adapter implemented
 
 - Followed actual official previous-election/2020page links to ussenator1120.xlsx,

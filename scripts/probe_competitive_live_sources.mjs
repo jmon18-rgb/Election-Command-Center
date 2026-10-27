@@ -125,7 +125,7 @@ if(!inWindow(Date.now())){
    const raw=JSON.parse(bytes.toString('utf8'));
    const reference=JSON.parse(readFileSync(resolve(import.meta.dirname,'../data/washington_house_03_county_fips_reference.json'),'utf8'));
    const waNames=new Map(reference.counties.map(c=>[c.county+' County',c.fips]));
-   const vector=row.code==='WA-03'?raw.payload.ballotItemWithBreakdown.breakdownResults.map(c=>[waNames.get(c.locality.name[0].text),...['1601892','1601893','9910'].map(id=>c.ballotOptions.find(o=>o.nativeId===id).voteCount)]).sort((a,b)=>a[0].localeCompare(b[0])):Object.values(raw.region_results).sort((a,b)=>a.fips.localeCompare(b.fips)).map(c=>[
+   const vector=row.code==='WA-03'?raw.payload.ballotItemWithBreakdown.breakdownResults.map(c=>[waNames.get(c.locality.name[0].text),...['1601892','1601893','9910'].map(id=>c.ballotOptions.find(o=>o.nativeId===id).voteCount)]).sort((a,b)=>a[0].localeCompare(b[0])):Object.values(raw.region_results).filter(c=>row.code!=='ME-SEN'||c.type==='County').sort((a,b)=>a.fips.localeCompare(b.fips)).map(c=>[
     c.fips,...['Democratic','Republican','Libertarian'].map(p=>c.candidates.filter(v=>v.party===p).reduce((n,v)=>n+v.votes,0))]);
    const file=row.code+'-'+new Date().toISOString().replace(/[:.]/g,'-')+'.json';
    const dir=resolve(out,'raw');mkdirSync(dir,{recursive:true});writeFileSync(resolve(dir,file),bytes);

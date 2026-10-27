@@ -1,0 +1,13 @@
+const assert=require('assert/strict'),{load,fixture}=require('./maine_test_fixture.cjs'),source=require('./maine_civic_county_source.js'),kernel=require('./national_county_likelihood.js'),model=require('./chamber_control_model.js');
+const now=Date.parse('2026-11-04T03:06:00Z'),h=load('maine_senate_2020_county_baseline_official'),reference=load('maine_county_fips_reference');
+const envelope=swing=>({reference,baseline_year:2020,baseline:{counties:h.counties,statewide:h.statewide,state_unallocated_uocava:h.state_unallocated_uocava},snapshot:source.parse(fixture({swing}),reference,{now})});
+const basis=model.prepare({seats:load('seat_universe'),history:load('house_history_2024_staging'),geography:load('house_geography_bridge'),senateHistory:load('senate_history_2020_2022_2024'),odds:load('race_probabilities'),polls:load('polling_estimates')});
+const opts={samples:900,seed:20261103,now},blue=kernel.condition(model,basis,[envelope(12)],opts),red=kernel.condition(model,basis,[envelope(-12)],opts);
+assert.notDeepEqual(blue.result.probabilities,blue.baseline.probabilities);assert.notDeepEqual(blue.result.probabilities,red.result.probabilities);
+assert.deepEqual(blue.baseline.probabilities,red.baseline.probabilities);assert.equal(blue.diagnostics.used[0].code,'ME-SEN');assert.equal(blue.diagnostics.house_vote_sources,0);assert.equal(blue.diagnostics.independent_historical_calibration,false);
+assert(blue.diagnostics.effective_sample_size>=450-1e-6);
+const broken=envelope(12);broken.snapshot.round=2;assert.throws(()=>kernel.compile(broken,{now}),/first-choice/);
+const unknown=envelope(12);delete unknown.baseline.state_unallocated_uocava;assert.throws(()=>kernel.compile(unknown,{now}));
+assert.throws(()=>kernel.condition(model,basis,[envelope(12),envelope(12)],opts),/same returns twice/);
+assert.deepEqual(model.simulate(basis,{samples:900,seed:20261103}).probabilities,blue.baseline.probabilities);
+console.log('Maine first-choice -> national updates, baseline isolation, duplicate/round/unallocated rejection and bounded influence PASS (SYNTHETIC; uncalibrated transfer assumption)');

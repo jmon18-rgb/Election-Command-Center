@@ -29,5 +29,8 @@ const cache=require('./washington_official_cache.js'),kernel=require('./national
  const narrow=structuredClone(wa);for(const c of narrow.snapshot.counties.slice(1))c.dem_votes=c.rep_votes=c.other_votes=0;
  assert.throws(()=>kernel.compile(narrow,{now}),/breadth/,'One county cannot stand in for the full race');
  assert.equal(all.result.county_results_update.interval_calibrated,false);
- console.log('Official WA03 -> national joint draws, nine-source coexistence, fixed state budgets, duplicate exclusion, baseline isolation and one-county rejection PASS; SYNTHETIC, not calibration');
+ const mh=load('maine_senate_2020_county_baseline_official'),mr=load('maine_county_fips_reference');
+ const me={reference:mr,baseline_year:2020,baseline:{counties:mh.counties,statewide:mh.statewide,state_unallocated_uocava:mh.state_unallocated_uocava},snapshot:require('./maine_civic_county_source.js').parse(require('./maine_test_fixture.cjs').fixture(),mr,{now})};
+ const ten=kernel.condition(model,basis,[...nine,me],opts);assert.equal(ten.diagnostics.used.length,10);assert.equal(ten.diagnostics.house_vote_sources,6);assert(ten.diagnostics.effective_sample_size>=450-1e-6);
+ console.log('Official WA03 -> national joint draws, nine/ten-source coexistence, fixed state budgets, duplicate exclusion, baseline isolation and one-county rejection PASS; SYNTHETIC, not calibration');
 })().catch(e=>{console.error(e);process.exitCode=1;});
