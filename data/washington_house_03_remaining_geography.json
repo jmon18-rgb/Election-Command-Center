@@ -1,0 +1,37 @@
+{
+  "status": "ORIGINAL_MAP_VISUALLY_REVIEWED_NOT_REMAINING_BALLOT_CALIBRATION",
+  "source_url": "https://www2.census.gov/geo/maps/cong_dist/cd119/cd_based/ST53/CD119_WA03.pdf",
+  "source_sha256": "66e3271909cd93daa17143b207642bab6a0460d0552f4765f12fbdf9e741ecbf",
+  "bytes": 7622024,
+  "congress": 119,
+  "map_effective": "January2025-2027; other legal boundaries asof2020",
+  "official_county_scope_corroboration": "https://www.sos.wa.gov/2022-offices-open-election",
+  "official_legend": "Asterisk indicates partial county; District3 lists Thurston only with asterisk.",
+  "whole_counties": [
+    "Clark",
+    "Cowlitz",
+    "Lewis",
+    "Pacific",
+    "Skamania",
+    "Wahkiakum"
+  ],
+  "split_county": "Thurston",
+  "limits": [
+    "Must retain previously verified2026unchangeddistrictbridge; this is119thmap, not a new2026line assignment.",
+    "Six whole-county geographic matches do not calibrate remaining estimate error or verify future reporting clocks.",
+    "No use of Thurston wholecounty estimate as a districtpart point allocation.",
+    "No runtime/model/collector/polling change."
+  ],
+  "local_original": "data/washington_historical_sources/119th-census-wa03-map.pdf",
+  "local_render": "artifacts/readiness/washington-source-research/CD119_WA03.png",
+  "whole_county_fips": [
+    "53011",
+    "53015",
+    "53041",
+    "53049",
+    "53059",
+    "53069"
+  ],
+  "split_county_fips": "53067",
+  "requires_2026_bridge_status": "boundaries_unchanged"
+}
