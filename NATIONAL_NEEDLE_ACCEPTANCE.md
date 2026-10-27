@@ -7,14 +7,14 @@ not change the owner's primary national-needle requirement or silently disable i
 
 | Acceptance question | Evidence | Decision |
 | --- | --- | --- |
-| Do incoming competitive returns change one coherent Four Endings forecast? | PR465/468/470/471/473/475 plus474caption repair deployed; synthetic laptop/mobile WA-only, Maine-only, Ohio-only, PA07-only, AZ06-only and VA02-only national movement before calls, corrections and withdrawals | Implemented; synthetic evidence only |
+| Do incoming competitive returns change one coherent Four Endings forecast? | PR465/468/470/471/473/475/476 plus474caption repair deployed; synthetic laptop/mobile WA-only, Maine-only, Ohio-only, PA07-only, AZ06-only VA02-only and PA08-only national movement before calls, corrections and withdrawals | Implemented; synthetic evidence only |
 | Is an independent official path usable? | WA03 and VA02 official GET200; separate owned publications/CORS/readback verified; seven WA and eight VA district parts matched | Transport verified; no positive post-close delivery yet |
-| Are live competitive inputs available now? | Actual fourteen-route published probe 2026-10-27T05:06:59.035Z: twelve zero-count civic routes (most stale), one expired WA official health-only record and one fresh VA health-only record | No accepted positive inputs |
+| Are live competitive inputs available now? | Actual fifteen-route published probe 2026-10-27T05:37:09.358Z: thirteen zero-count civic routes (most stale) and two expired pre-election official health-only copies | No accepted positive inputs |
 | Does historical evaluation establish partial-return skill? | Iowa assumed-order experiment: partial margin MAE6.63points vs naive19.89; neutral prior, different Senate class | Useful stress experiment; not chronological validation or national calibration |
 | Is genuine historical chronology complete? | Four verified Thurston2024 partial reports, one of seven WA03 county parts, approximately59%-97%of final two-party votes | Incomplete, especially early count; no statewide replay/calibration approval |
 | Are probabilities/remaining-vote intervals calibrated? | No approved chronological multi-race calibration inputs; predeclared uncertainty and bounded influence are design choices | Unproven |
 | Will results arrive as fast as major publications? | Request timings and source clocks exist, but no independently matched real vote batches | Unproven; official collection/cache may add minutes |
-| Does coverage represent national House behavior? | Seven supported House districts across five states, plus five Senate states (IA/KS/TX/ME/OH) | Limited evidence; not a representative national sample |
+| Does coverage represent national House behavior? | Ten supported House districts across seven states, plus five Senate states (IA/KS/TX/ME/OH) | Limited evidence; not a representative national sample |
 
 ## Exact outstanding evidence
 
@@ -97,3 +97,7 @@ source clocks are not independently captured chronological calibration inputs.
 - artifacts/readiness/competitive-live/report.json (local actual-source evidence)
 - artifacts/readiness/competitive-house-next-source-priority.json (local audit)
 - artifacts/readiness/washington-source-research/verified-thurston-partial-sequence-research.json (local research; zero approved calibration inputs)
+
+## PA08 release evidence — 2026-10-27T05:38:15Z
+
+PR476 exact-head36workflows/48jobs44success4nonapplicable skips passed; final Pages40456104805 and all244publishedfiles verified. PA08-only synthetic automatic national updating/correction/withdrawal passed at1366/390, with three predeclared Pennsylvania inputs sharing unchanged state budget20. Actual published15route check admitted zero inputs, projections or archives. This increases implementation coverage; it does not close delivery, chronology, comparative freshness or calibrated national predictive acceptance.
