@@ -7,9 +7,9 @@ not change the owner's primary national-needle requirement or silently disable i
 
 | Acceptance question | Evidence | Decision |
 | --- | --- | --- |
-| Do incoming competitive returns change one coherent Four Endings forecast? | PR465/468/470/471/473 plus474caption repair deployed; synthetic laptop/mobile WA-only, Maine-only, Ohio-only, PA07-only and AZ06-only national movement before calls, corrections and withdrawals | Implemented; synthetic evidence only |
-| Is an independent official path usable? | WA03 official GET200; owned publication/CORS/readback verified; seven district parts matched | Transport verified; no positive post-close delivery yet |
-| Are live competitive inputs available now? | Actual thirteen-route published probe 2026-10-27T04:02:59.450Z: twelve zero-count civic routes (most stale) and one expired official health-only record | No accepted positive inputs |
+| Do incoming competitive returns change one coherent Four Endings forecast? | PR465/468/470/471/473/475 plus474caption repair deployed; synthetic laptop/mobile WA-only, Maine-only, Ohio-only, PA07-only, AZ06-only and VA02-only national movement before calls, corrections and withdrawals | Implemented; synthetic evidence only |
+| Is an independent official path usable? | WA03 and VA02 official GET200; separate owned publications/CORS/readback verified; seven WA and eight VA district parts matched | Transport verified; no positive post-close delivery yet |
+| Are live competitive inputs available now? | Actual fourteen-route published probe 2026-10-27T05:06:59.035Z: twelve zero-count civic routes (most stale), one expired WA official health-only record and one fresh VA health-only record | No accepted positive inputs |
 | Does historical evaluation establish partial-return skill? | Iowa assumed-order experiment: partial margin MAE6.63points vs naive19.89; neutral prior, different Senate class | Useful stress experiment; not chronological validation or national calibration |
 | Is genuine historical chronology complete? | Four verified Thurston2024 partial reports, one of seven WA03 county parts, approximately59%-97%of final two-party votes | Incomplete, especially early count; no statewide replay/calibration approval |
 | Are probabilities/remaining-vote intervals calibrated? | No approved chronological multi-race calibration inputs; predeclared uncertainty and bounded influence are design choices | Unproven |
@@ -54,22 +54,30 @@ No assertion is made that85%remaining usage guarantees finishing or validation.
 
 ## Latest implementation evidence
 
-PR473 passed all37 exact-head workflows and deployed the AZ06 national path.
-Published visual QA caught an incorrect Wisconsin coverage caption; focused PR474
-passed all32 exact-head workflows and fixed it, adding laptop/mobile assertions.
-Final main ed6941e49835922ec0818f425e2db34ee1d3551a; Pages40447245079 succeeded;
-all210 expected files matched04:02:41Z. Published AZ06-only synthetic movement,
-correction/withdrawal/outage behavior passed at both widths; mobile visually
-confirmed Arizona and the limited-coverage/uncalibrated labels. The separate
-actual thirteen-route real-clock probe admitted zero inputs, projections or raw
-archives and had no page errors. Calibration and real-delivery acceptance remain unmet.
+PR475 passed all38 exact-head workflows and deployed the independent official
+VA02 national path. Tested head dee048c5051cbaf28fd965e6f8a72240aa1d34fc;
+final main878604d53e8a38dfcb073b1ea5903e8a2f5144b0; Pages40452988470 SUCCESS.
+All232 expected published files matched05:05:08Z. Published laptop/mobile synthetic
+VA02-only national movement during civicAPI503, correction/withdrawal/recovery,
+request bounds and Virginia attribution passed. Real backend bootstrap40452957460
+made one official GET200 and published health-only/null payload on the separate
+data-only branch; raw readback/CORS/byte identity verified. Native source still
+contains stale zeros; the separate actual14-route probe admitted no inputs,
+projections or archives and produced no page errors. Calibrated predictive
+acceptance and positive post-close delivery remain unmet.
 
-Independent official VA02 direct cross-origin access was observed04:00:48Z
-(HTTP200/CORS*, source max-age60, allzero); it is not yet a production input.
-Matched historical totals and current official roster are preparation evidence,
-not post-close delivery, independent batch chronology or calibration.
+VA direct cross-origin access succeeded04:00:48Z, then later real reads failed
+missing CORS headers. The deployed path therefore uses a reviewed bounded owned
+copy with additional scheduling/cache delay, not a direct-access or speed-parity
+claim. Source reports five methods; the estimator retains combined historical
+locality totals and method-mix uncertainty. Final historical totals and observed
+source clocks are not independently captured chronological calibration inputs.
 
 ## Evidence references
+
+- https://github.com/jmon18-rgb/Election-Command-Center/pull/475
+- https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40452988470
+- https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40452957460
 
 - https://github.com/jmon18-rgb/Election-Command-Center/pull/473
 - https://github.com/jmon18-rgb/Election-Command-Center/pull/474
