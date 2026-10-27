@@ -10,7 +10,7 @@ displace that forecast/dashboard work. See OWNER_ELECTION_NIGHT_SCOPE.md.
 
 ## Owner-supplied artwork, October27
 
-Use the supplied John Brown/Confederate painting for Kansas, the fictional retired-mascot/wave scene for Mississippi, and the fictional nightclub scene for Graham. Preserve the supplied image bytes and show the complete art on mobile. Graham artwork is fictional satire, not a documentary image or a claim about sexuality/private conduct. Existing local illustrations remain fallback assets. The Abbott tree/wheelchair injury image is not used; retain electoral-defeat/parade satire. These poster additions do not complete animation/music production or alter any call gate.
+Use the supplied John Brown/Confederate painting for Kansas, the fictional retired-mascot/wave scene for Mississippi, and the fictional nightclub scene for Graham. Preserve the supplied image bytes and show the complete art on mobile. Graham artwork is fictional satire, not a documentary image or a claim about sexuality/private conduct. Existing local illustrations remain fallback assets. The Abbott tree/wheelchair injury image is not used; use an original campaign-sign tree gag for electoral defeat; no person/injury depiction. These poster additions do not complete animation/music production or alter any call gate.
 
 ## Shared presentation
 
@@ -31,7 +31,7 @@ Playback must proceed safely if sound is blocked or a media file fails.
 | Event | Visual story | Music direction |
 | --- | --- | --- |
 | Talarico wins Texas Senate | Electric-blue Hook 'em Horns hand/gesture, blue stars spreading across Texas, triumphant victory card | Owner preference: The Eyes of Texas; verify composition, arrangement and recording rights before use, otherwise original Texas stadium-band cue |
-| Abbott loses Texas governor | Dejected Abbott at an election-night podium; blue victory parade crosses the scene and rolls up the concession backdrop | Owner reiterates Walk This Way or a walking-related cue; use only a cleared recording, otherwise an original walking/parade/departure cue without copying the song |
+| Abbott loses Texas governor | A tree topples onto an Abbott campaign sign, then a Texas-governor victory card; no person is struck | Owner reiterates Walk This Way or a walking-related cue; use only a cleared recording, otherwise an original walking/parade/departure cue without copying the song |
 | Graham loses South Carolina Senate | Exaggerated blonde-wig Graham caricature at a fictional neon nightclub farewell, dramatic spotlight, collapsing VIP sign and theatrical red/underworld lighting. No claim about sexuality, private conduct or a real venue | Original disco/club farewell cue; no sexuality-based captions or gay-club humiliation |
 | Nebraska Democratic candidate or Dan Osborn wins the applicable race | Sad former football coach Tom Osborne on a losing sideline, blue confetti and absurd scoreboard; label the coach distinctly from candidate Dan Osborn | Owner preference: trap-style Nebraska fight-song treatment; clear the underlying composition/arrangement and recording or use an original football-band/trap instrumental |
 | Democrat wins Mississippi Senate | Retired Colonel Reb mascot portrayed as an outdated monument/prop: blue wave washes it off its pedestal into a cartoon storage crate; no injury to people | Original brass-band/blues victory sting |

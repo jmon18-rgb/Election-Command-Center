@@ -56,6 +56,7 @@ const checks = [
   ['Linked competitive-race starting priors', 'test_competitive_needle_prior.cjs'],
   ['Source audit reporting safeguards', 'test_election_readiness_source_snapshot.cjs'],
   ['Celebration playback and revoked-call queue', 'test_election_night_celebration_player.cjs'],
+  ['Original celebration music, bounded mix and cancellation', 'test_celebration_music.cjs'],
   ['Published bundle and forecast consistency', 'test_published_dashboard.cjs', '--local'],
   ['Race and source reconciliation', 'test_election_night_reconciliation.cjs'],
   ['Source publication identity during corrections', 'test_election_night_snapshot_revision.cjs'],

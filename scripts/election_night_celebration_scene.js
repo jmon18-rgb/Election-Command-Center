@@ -21,6 +21,7 @@
  }
  function render(host,{id,phase,beat=0,preview=true}={}){
   clear(host);
+  if(host&&id==='abbott'&&['scene','complete'].includes(phase))return renderAbbott(host,{phase,beat,preview});
   if(!host||id!=='talarico'||!['scene','complete'].includes(phase))return false;
   const index=phase==='complete'?2:beat;
   if(!Number.isInteger(index)||index<0||index>2)return false;
@@ -55,7 +56,11 @@
    animated.push({node:card,frames:[{transform:'translateY(26px) scale(.9)',opacity:0},{transform:'translateY(0) scale(1)',opacity:1}],duration:850});
   }
   svg.append(text(preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL',490,518,17,'#b9d9ed'));
-  host.append(svg);host.hidden=false;host.dataset.celebrationScene='talarico';host.dataset.beat=String(index);
+  return finish(host,svg,animated,'talarico',index,phase);
+ }
+ function finish(host,svg,animated,id,index,phase){
+  host.append(svg);host.hidden=false;host.dataset.celebrationScene=id;host.dataset.beat=String(index);
+  const doc=host.ownerDocument;
   const media=doc.defaultView?.matchMedia?.('(prefers-reduced-motion: reduce)'),state={animations:[],media,onMotionChange:null};
   state.onMotionChange=e=>{if(e.matches){for(const animation of state.animations)try{animation.cancel()}catch{}state.animations=[];}};
   media?.addEventListener?.('change',state.onMotionChange);states.set(host,state);
@@ -63,6 +68,32 @@
    if(typeof a.node.animate==='function')state.animations.push(a.node.animate(a.frames,{duration:a.duration,delay:a.delay||0,easing:'ease-out',fill:'both'}));
   }}
   return true;
+ }
+ function renderAbbott(host,{phase,beat,preview}){
+  const index=phase==='complete'?2:beat;if(!Number.isInteger(index)||index<0||index>2)return false;
+  const doc=host.ownerDocument,el=(tag,attrs={},label)=>{const n=doc.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,String(v));if(label!==undefined)n.textContent=label;return n;};
+  const text=(label,x,y,size=28,color='#e9f8ff')=>el('text',{x,y,'text-anchor':'middle','font-family':'Arial,sans-serif','font-size':size,'font-weight':800,fill:color},label);
+  const svg=el('svg',{viewBox:'0 0 980 540',role:'img','aria-label':'Fictional Texas governor campaign sign crushed by a falling tree','data-scene':'abbott','data-beat':index}),animated=[];
+  svg.append(el('rect',{width:980,height:540,rx:24,fill:'#071d32'}),text('TEXAS · GOVERNOR',490,43,23,'#9bdcff'));
+  if(index<2){
+   svg.append(el('path',{d:'M0 470Q230 410 490 460T980 440V540H0Z',fill:'#12405a'}));
+   const sign=el('g',{'data-layer':'campaign-sign',style:'transform-box:fill-box;transform-origin:center bottom;'+(index===1?'transform:rotate(13deg)':'')});
+   sign.append(el('path',{d:'M580 330V470M770 330V470',stroke:'#9cb1ba','stroke-width':10}),el('rect',{x:515,y:260,width:320,height:120,rx:10,fill:'#8a344a',stroke:'#d0a1aa','stroke-width':5}),text('ABBOTT',675,310,40),text('CAMPAIGN',675,347,22));svg.append(sign);
+   const position=el('g',{transform:'translate(250 470)'}),tree=el('g',{'data-layer':'falling-tree',style:'transform-box:fill-box;transform-origin:center bottom;transform:rotate('+(index===1?68:0)+'deg)'});
+   tree.append(el('path',{d:'M-16 0L-12-220 12-220 20 0Z',fill:'#8a674b'}),el('path',{d:'M0-200L-55-258M0-218L54-278',stroke:'#8a674b','stroke-width':15}),el('ellipse',{cx:0,cy:-265,rx:110,ry:83,fill:'#208c85'}),el('ellipse',{cx:-55,cy:-234,rx:70,ry:55,fill:'#34a6a2'}));position.append(tree);svg.append(position);
+   if(index===0){svg.append(text('THE CAMPAIGN HAS A PROBLEM',490,110,31));animated.push({node:tree,frames:[{transform:'rotate(-3deg)'},{transform:'rotate(4deg)'},{transform:'rotate(0deg)'}],duration:1400});}
+   else{
+    animated.push({node:tree,frames:[{transform:'rotate(0deg)'},{transform:'rotate(68deg)'}],duration:1050});
+    const stamp=el('g',{'data-layer':'voted-out-stamp',style:'transform-box:fill-box;transform-origin:center'});stamp.append(el('rect',{x:520,y:180,width:320,height:64,rx:8,fill:'#087ccb'}),text('VOTED OUT',680,225,36));svg.append(stamp);
+    animated.push({node:stamp,frames:[{opacity:0,transform:'scale(1.5)'},{opacity:1,transform:'scale(1)'}],duration:450,delay:950});
+   }
+  }else{
+   const card=el('g',{'data-layer':'governor-victory-card',style:'transform-box:fill-box;transform-origin:center'});
+   card.append(el('rect',{x:110,y:130,width:760,height:280,rx:25,fill:'#087ccb',stroke:'#96e5ff','stroke-width':6}),text('TIMBER, INCUMBENT.',490,225,45),text('TEXAS GOVERNOR',490,292,34,'#b3ecff'),text('A NEW CHAPTER',490,350,32));svg.append(card);
+   animated.push({node:card,frames:[{opacity:0,transform:'translateY(25px)'},{opacity:1,transform:'translateY(0)'}],duration:650});
+  }
+  svg.append(text('A VERY BAD NIGHT FOR LAWN SIGNS.',490,487,21,'#a8d7e9'),text(preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL',490,520,17,'#b9d9ed'));
+  return finish(host,svg,animated,'abbott',index,phase);
  }
  return Object.freeze({render,clear});
 });

@@ -1,5 +1,19 @@
 # Celebration production inventory - October 27, 2026
 
+## October27 late owner request — music and Abbott scene candidate
+
+Eleven distinct original synthesized arrangements and an original campaign-sign
+tree scene for Abbott's electoral defeat are implemented/tested locally. This
+replaces the generic cue baseline; it does not supply the requested commercial
+recordings or establish rights to them. Original7.2sWAV previews are under
+artifacts/readiness/music-previews; numeric level/stop tests are not a subjective
+listening review. New protected release/publication checks remain required.
+Abbott's attached injury image is not integrated; the original replacement shows
+only a campaign sign taking the fall. Existing exact-call/mute/retraction gates
+remain. Roster entries below describe the earlier baseline where not superseded
+by this candidate; bespoke finishing of other scenes remains partial.
+
+
 Review basis: `CELEBRATION_CREATIVE_BRIEF.md`, current player/index/assets and R6 PR488 head `2af0a7dbae24ab87deccfdec46ce41c82196a325`. Checkout during review: `c5666256ee2f519325958b7054b1030ae63a5539` (also includes separate R4 work). Parent subsequently verified R6 release on final main `7492ae1b`, Pages40562141170, all299 published files matched18:42:42Z and ordinary-browser new-three previews. This inventory distinguishes the released foundation/posters from the still-incomplete bespoke productions.
 
 **Status meanings:** COMPLETE = the specified engineering function is implemented/tested, subject to its recorded release status. PARTIAL = a poster/three text beats/generic cue exists, but the requested distinct production does not. MISSING = the requested visual action, genre-specific music or optional upgrade is absent. Preview/synthetic safety tests never prove actual winner calls.
