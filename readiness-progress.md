@@ -1,5 +1,10 @@
 # Readiness progress
 
+## 2026-10-27 21:15 UTC — Owner artwork PR496 exact-head validation
+
+- Current protected candidate is d4f1f551a4eb8ff01c609d990174f194394476ec, not initial297d94e0. The initial full DOM check correctly exposed an obsolete test expecting Kansas to load the prior archival portrait. Updated only that contract to require the supplied painting, its content-addressed revision and fictional caption, while rejecting the old documentary attribution. Node syntax/diff checks pass; no dashboard behavior or source/call rules changed in this repair.
+- All33 other exact-head workflow parents are successful; full DOM parent40584125426 remains running. No merge, deployment claim, successful-job rerun or waiver. Publication verifier now includes all3uploaded JPEG files (314expected checked files after release). Finish this release before the ready saved SC adapter work; no additional native requests are needed.
+
 ## 2026-10-27 21:03 UTC — Owner-supplied celebration artwork candidate
 
 - Direct owner upload authorizes artwork integration. Preserved original image bytes as assets/celebration-owner-kansas.jpg (sha7fad6e8c...), -mississippi.jpg (sha50c1329e...) and -graham.jpg (shada364cf6...). Full hashes/source filenames/revisions in assets/celebration-artwork-sources.json; no public-domain/third-party license claim. JohnBrown painting -> Kansas; fictional mascot/wave -> Mississippi; fictional nightclub -> Graham. Abbott tree/wheelchair-injury image is not used; electoral-defeat/parade scene retained. No new image generation, recording/music, vote/candidate/source/controller/forecast/call changes.
