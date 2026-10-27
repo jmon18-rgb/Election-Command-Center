@@ -1,5 +1,13 @@
 # Election Night production-readiness assignment
 
+## 2026-10-27 19:34:57 UTC — Owner adds final UI/usability acceptance gate
+
+- Added R8 to ROADMAP and `ELECTION_NIGHT_UI_REVIEW.md`: all four ending probabilities must be clearly visible before the Oct29 owner rehearsal; full layout/visual workflow review Oct30 with required repairs before Oct31 freeze. This explicitly overrides the old blanket layout-polish deferral for the election-night dashboard, without authorizing unrelated redesigns.
+- Bounded source inspection confirms the model/accessibility description already has all four endings, while the visible footer foregrounds the largest ending. The national map is nested inside the large all-office source desk; move it out before collapsing diagnostics. Proposed primary path: national outlook/all4chances, prominent geographic context, personal priorities/closing windows/meaningful changes, compact health summary, expandable evidence/research.
+- Primary references inspected: ABC Senate page,270toWin results hub, AP public shell and NYT graphics-editor interview. Benchmark notes distinguish accessible text inspection from a still-required rendered visual comparison; CNN automated retrieval was denied and not retried. No publisher assets/votes imported and no new election-source requests.
+- Acceptance uses laptop/mobile glance tasks, map-to-race navigation, visible freshness impact, one-disclosure source evidence, correction/outage/recovery and unchanged model/transport/call invariants. Before/after screenshots alone do not complete it. Functional usability is required; optional decorative work can be deferred.
+- No runtime/layout change in this checkpoint; PR491 exact source head remains7911d4aa with its existing checks/release gates. Frozen offline preview8876 remains unchanged. R8 implementation is queued in the15-minute continuation prompt; do not push a doc-only checkpoint just to retrigger CI.
+
 ## 2026-10-27 19:29:41 UTC — Interactive personal-dashboard handoff
 
 - Current PR491 source head is `7911d4aa10a939056a4ef6f1ce133a5b12c09d71`, open/attached; latest check33/34 workflow parents succeeded, one full-DOM parent still running, zero failed new-head parents and zero external statuses. Do not merge until every applicable exact-head parent/job/status finishes green. Old2b31 selector failure and dependency cancellation are superseded, not current failures.

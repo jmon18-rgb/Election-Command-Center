@@ -72,6 +72,10 @@ schedule. No native source or blocked results-page retry is authorized by this r
 2. Oct28–29: MI/SC first among new early county connections; then MN/MS/NE according to contract readiness and owner importance. Give each a concrete admission or a named missing-artifact decision. AK last.
 3. Oct29: versioned owner rehearsal, with arrivals versus expectation, correction, withdrawal, source outage/recovery and the later-race outlook. Clearly identify which direct result connections remain unavailable.
 4. Oct30: remaining essential source fixes and celebration scenes/audio. Forecast usability takes priority over optional music or visual finishing.
+   Complete the owner-requested R8 visual/usability review: compact source desk,
+   prominent map, readable four-outcome probabilities and a task-based laptop/mobile
+   drill. Show all four percentages before the Oct29 rehearsal rather than waiting
+   for decorative finishing. See ELECTION_NIGHT_UI_REVIEW.md.
 5. Oct31 freeze; Nov1 onward defects/testing/recovery. Stop code Nov4 noon Eastern/17Z. Real positive delivery and calibrated accuracy cannot be guaranteed by these dates.
 
 ## Celebration direction retained
