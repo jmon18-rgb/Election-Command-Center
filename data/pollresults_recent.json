@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-27T13:00:11.946098+00:00",
+  "updated_at": "2026-10-27T14:01:24.776891+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,39 +9,103 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1264,
+      "available_in_source": 1266,
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 927,
+      "available_in_source": 930,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 312,
-  "newly_injected_into_model": 5,
+  "matched_primary_observations": 317,
+  "newly_injected_into_model": 3,
   "injected_poll_ids": [
     {
-      "race_code": "MI-SEN",
-      "poll_id": "ee2e05a0-c2e8-441b-b729-80775d5ee24c"
+      "race_code": "CA-GOV",
+      "poll_id": "dace5ed7-00ad-4589-aab8-3f3a9350d3c5"
     },
     {
-      "race_code": "SC-GOV",
-      "poll_id": "3e68a4bb-c6e6-4e11-b1f3-108da5969af6"
+      "race_code": "NV-GOV",
+      "poll_id": "ddffbacb-9b7f-43b2-a68a-b2faa8e0884d"
     },
     {
-      "race_code": "SC-SEN",
-      "poll_id": "3e68a4bb-c6e6-4e11-b1f3-108da5969af6"
-    },
-    {
-      "race_code": "TX-GOV",
-      "poll_id": "7a0a36a6-3db5-45a1-87cf-de2fcf9e7d2c"
-    },
-    {
-      "race_code": "TX-SEN",
-      "poll_id": "7a0a36a6-3db5-45a1-87cf-de2fcf9e7d2c"
+      "race_code": "VT-GOV",
+      "poll_id": "e0ed7271-b846-48d0-8aff-8cee9f96db47"
     }
   ],
   "observations": [
+    {
+      "race_code": "VT-GOV",
+      "race_type": "governor",
+      "state": "VT",
+      "poll_id": "e0ed7271-b846-48d0-8aff-8cee9f96db47",
+      "question_id": "46e92298-85dc-4255-a6c2-71a576951014",
+      "pollster": "State Navigate",
+      "dem_name": "Amanda Janoo",
+      "rep_name": "Phil Scott",
+      "dem": 46.0,
+      "rep": 49.0,
+      "margin": -3.0,
+      "field_end": "2026-10-25",
+      "field_start": "2026-10-23",
+      "posted_date": "2026-10-27",
+      "posted_source_datetime": "2026-10-27T09:42:00",
+      "posted_source_time": "10/27/26 09:42",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://articles.statenavigate.com/vt/final-vermont-governor-poll-has-phil-scott-holding-a-3-point-lead/",
+      "sample_population": "lv",
+      "sample_size": 1752,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "CA-GOV",
+      "race_type": "governor",
+      "state": "CA",
+      "poll_id": "dace5ed7-00ad-4589-aab8-3f3a9350d3c5",
+      "question_id": "b62f1252-bfb3-40e4-ba2e-66614b4edaa0",
+      "pollster": "SurveyUSA",
+      "dem_name": "Xavier Becerra",
+      "rep_name": "Steve Hilton",
+      "dem": 54.0,
+      "rep": 32.0,
+      "margin": 22.0,
+      "field_end": "2026-10-24",
+      "field_start": "2026-10-19",
+      "posted_date": "2026-10-27",
+      "posted_source_datetime": "2026-10-27T09:28:00",
+      "posted_source_time": "10/27/26 09:28",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://results.surveyusa.com/client/PollReport.aspx?g=b118a915-559d-4669-b870-8a3eae933903",
+      "sample_population": "lv",
+      "sample_size": 799,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "NV-GOV",
+      "race_type": "governor",
+      "state": "NV",
+      "poll_id": "ddffbacb-9b7f-43b2-a68a-b2faa8e0884d",
+      "question_id": "e4367644-5281-41ef-bf0a-d106cf02f3d1",
+      "pollster": "Hart Research Associates/Public Opinion Strategies",
+      "dem_name": "Aaron Ford",
+      "rep_name": "Joe Lombardo",
+      "dem": 49.0,
+      "rep": 45.0,
+      "margin": 4.0,
+      "field_end": "2026-10-25",
+      "field_start": "2026-10-20",
+      "posted_date": "2026-10-27",
+      "posted_source_datetime": "2026-10-27T09:12:00",
+      "posted_source_time": "10/27/26 09:12",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://hub.nationaljournal.com/wednesday-morning-quarterbacking",
+      "sample_population": "lv",
+      "sample_size": 950,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "SC-SEN",
       "race_type": "senate",

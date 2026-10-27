@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-27T13:00:11.145896Z",
+  "updated_at": "2026-10-27T14:01:23.756319Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
@@ -267,6 +267,25 @@
     }
   ],
   "items": [
+    {
+      "id": "ff64e7eefe0f11c08ff5",
+      "title": "Judge Orders Trump to Clarify ICE Plans at Polls Ahead of Elections - MundoNOW",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQS2g4Sk9RUGprU3VTR3N1Ym9fT281WWc1MlRxMGdjWTVycE80OEdxT2F1dGFQTWU0R05JNkRhVVZNSENoRU02TUN2RjU3T2xzbUx4bUt5cjBLMFJrZUdLUl92Vy1mN3pRZWt2RXNBRjFJXzhoNHZnUkVxUEdnQmxCY1lMVGU3bG1zV3J4SUJ0QWN0Q0UwVzZybA?oc=5",
+      "publisher": "MundoNOW",
+      "published_at": "2026-10-27T13:23:57Z",
+      "detected_at": "2026-10-27T14:01:23.756319Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation",
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "4092dae5076113ac40af",
       "title": "ICE Does Not Belong at the Polls - Time Magazine",
@@ -4985,24 +5004,6 @@
       "state_hints": [],
       "topic_hints": [
         "registration",
-        "ballot_access",
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "e68198dd445291d43e52",
-      "title": "With midterms underway, Justice Department presses California to withhold flagged voters\u2019 ballots - Los Angeles Times",
-      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQNm9EM3BaMC1UOFNjdHVDeGVibUttdGt6T1JwYmw3d0M0dGNmejFFUUFHMnNjTnAycnF6YkxEUkJDSWpUb1IzakJMSEtnVjZoM3c3ZUtyTmcwNFdnU1haZURTWWtuQkV1Njh3UU00THNxMXZlVlBfYjRXZ3l0R2lRa2x4VDAtY2psamtYMlRfbTYxbHBabGp6YnVZdk14SnZkbEFaTDVqaVYxeU81aGNMc3piX200SDRKOWV1Z1lSM1ZIZEtWbkJkQUtfWWpmSVA5cmJlb093?oc=5",
-      "publisher": "Los Angeles Times",
-      "published_at": "2026-10-14T20:16:00Z",
-      "detected_at": "2026-10-14T23:48:05.917055Z",
-      "state_hints": [],
-      "topic_hints": [
         "ballot_access",
         "security"
       ],
