@@ -4330,7 +4330,7 @@ function jointRenderNeedles(result,config={}){
     (d.early?' · EARLY SIGNAL':'')+
     ' · D win '+d.from.toFixed(1)+' → '+d.to.toFixed(1)+'% ('+
     (d.delta>=0?'+':'')+d.delta.toFixed(1)+' pp) · '+
-    d.provider+' · '+(d.evidence_kind==='county_likelihood'?d.reporting_counties+(/^(?:WI-(?:01|03)|MI-04|PA-10|NY-17|WA-03)$/.test(d.race_code)?' district/county parts':' counties')+' · '+d.counted_two_party_votes.toLocaleString('en-US')+' D/R votes'+(Number.isFinite(d.modeled_remaining_two_party_votes)?' · modeled remaining '+d.modeled_remaining_two_party_votes.toLocaleString('en-US')+' (turnout scenario '+d.modeled_remaining_two_party_votes_band.map(n=>n.toLocaleString('en-US')).join('–')+')':''):d.reporting.toFixed(0)+'% precincts');
+    d.provider+' · '+(d.evidence_kind==='county_likelihood'?d.reporting_counties+(/^(?:WI-(?:01|03)|MI-04|PA-10|NY-17|WA-03)$/.test(d.race_code)?' district/county parts':' counties')+' · '+d.counted_two_party_votes.toLocaleString('en-US')+' D/R votes'+(Number.isFinite(d.modeled_remaining_two_party_votes)?(d.race_code==='ME-SEN'?' · modeled county named-candidate remaining ':' · modeled remaining ')+d.modeled_remaining_two_party_votes.toLocaleString('en-US')+' (turnout scenario '+d.modeled_remaining_two_party_votes_band.map(n=>n.toLocaleString('en-US')).join('–')+')':''):d.reporting.toFixed(0)+'% precincts');
    list.append(row);
   }
   context.append(list,elt('p','four-needle-disclosure',
@@ -4522,7 +4522,7 @@ function jointRender(force=false){
   if(envelopes.length&&!conditioned)countyUpdateWithheld=true;
   const result=conditioned?.result||window.ChamberControlModel.simulate(jointBasis,args);
   const countyRows=(conditioned?.diagnostics.used||[]).map(e=>({race_code:e.code,asOf:e.as_of,
-   provider:e.code==='WA-03'?'Washington official · collected copy':'civicAPI',evidence_kind:'county_likelihood',reporting_counties:e.reporting_counties,
+   provider:e.code==='WA-03'?'Washington official · collected copy':e.code==='ME-SEN'?'civicAPI · first choices (not final RCV)':'civicAPI',evidence_kind:'county_likelihood',reporting_counties:e.reporting_counties,
    counted_two_party_votes:e.counted_two_party_votes,modeled_remaining_two_party_votes:e.modeled_remaining_two_party_votes,modeled_remaining_two_party_votes_band:e.modeled_remaining_two_party_votes_band}));
   jointPulseRows=[...jointPulseRows.filter(e=>!countyRows.some(c=>c.race_code===e.race_code)),...countyRows];
   jointPulseBaseline=Object.keys(updates).length||countyRows.length?
