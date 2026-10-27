@@ -68,5 +68,8 @@ const basis=model.prepare({seats:load('seat_universe'),history:load('house_histo
  try{process.argv=['node','publisher','--publish','--bootstrap'];Date.now=()=>Date.parse('2026-10-27T08:00:00Z');global.fetch=async()=>{forbiddenRequests++;throw Error('No pre-election native request allowed');};await publisher.main();}
  finally{process.argv=savedArgv;Date.now=savedNow;global.fetch=savedFetch;}
  assert.equal(forbiddenRequests,0);
+ previous=null;const healthAt=Date.parse('2026-10-27T08:00:00Z');
+ await publisher.publish({request,reference,now:healthAt,healthOnly:true,record:{...record,fetched_at:new Date(healthAt).toISOString(),status:'SOURCE_UNAVAILABLE',payload:null,official_remaining:remaining()}});
+ const healthRecord=JSON.parse(Buffer.from(writes.at(-1).content,'base64'));assert.equal(healthRecord.payload,null);assert.equal(healthRecord.official_remaining,undefined);
  console.log('Synthetic official remaining -> SAME national likelihood, baseline/ESS/state budgets, corruption/null clocks, no Thurston allocation PASS');
 })().catch(e=>{console.error(e);process.exitCode=1;});

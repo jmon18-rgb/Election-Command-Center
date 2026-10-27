@@ -11,6 +11,7 @@ async function publish({request,record,reference,now=Date.now(),healthOnly=false
  const parsed=await cache.parse(record,reference,{now});
  if(healthOnly&&inWindow(now))throw Error('Health-only publication cannot interrupt the election stream');
  if(!inWindow(now)&&(!healthOnly||!healthWindow(now)||parsed.live_votes_accepted||record.payload!==null))throw Error('Outside fixed WA publication window; health-only null payload required');
+ if(healthOnly){record={...record};delete record.official_remaining;}
  const repo=await request('GET','');
  if(repo.full_name!==REPO||!repo.default_branch||repo.default_branch===cache.BRANCH)throw Error('Default-branch publication forbidden');
  try{await request('GET','/git/ref/heads/'+cache.BRANCH);}catch(e){
@@ -22,8 +23,8 @@ async function publish({request,record,reference,now=Date.now(),healthOnly=false
  try{previous=await request('GET','/contents/'+cache.PATH+'?ref='+cache.BRANCH);}catch(e){if(e.status!==404)throw e;}
  if(previous?.content){
   let old;try{old=JSON.parse(Buffer.from(previous.content,'base64').toString());}catch{}
-  remainingWatermark=old?.remaining_revision_watermark||{};
-  if(record.official_remaining===undefined&&old?.official_remaining)record={...record,official_remaining:old.official_remaining};
+  remainingWatermark=healthOnly?{}:old?.remaining_revision_watermark||{};
+  if(!healthOnly&&record.official_remaining===undefined&&old?.official_remaining)record={...record,official_remaining:old.official_remaining};
   if(record.official_remaining&&old?.official_remaining&&Date.parse(record.official_remaining.fetched_at)<Date.parse(old.official_remaining.fetched_at))record={...record,official_remaining:{schema:'official-wa-remaining-collection-v1',source_url:remaining.URL,fetched_at:new Date(now).toISOString(),status:'SOURCE_UNAVAILABLE',payload:null,error:'Older remaining receipt rejected'}};
   if(old&&Date.parse(old.fetched_at)>Date.parse(record.fetched_at))throw Error('Late collector cannot overwrite newer receipt');
   if(old?.schema===record.schema&&old.source_url===record.source_url){
