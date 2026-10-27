@@ -26,7 +26,7 @@
    return {raw,ref};
   });
   if(detail.test_data===true)return {status:'TEST_DATA_NOT_LIVE',county_identities_matched:46,counties:[],source_url:URL,live_votes_accepted:false,may_move_national_needle:false};
-  if(detail.test_data!==false||['test','is_test','mock','is_mock','is_disputed'].some(k=>detail[k]===true)||detail.active===false||detail.live===false)throw Error('Unverified/test/disputed SC data');
+  if(detail.test_data!==false||['test','is_test','mock','is_mock','is_disputed'].some(k=>Object.hasOwn(detail,k)&&detail[k]!==false)||['active','live'].some(k=>Object.hasOwn(detail,k)&&detail[k]!==true))throw Error('Unverified/test/disputed SC data');
   const stamp=Date.parse(detail.last_updated);
   if(!Number.isFinite(stamp)||!/(?:Z|[+-]\d\d:\d\d)$/.test(detail.last_updated||'')||stamp>now+15*60000||now-stamp>180*60000)throw Error('Missing/future/stale SC publication time');
   if(detail.round!==1)throw Error('Unreviewed SC count round');

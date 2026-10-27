@@ -15,7 +15,7 @@ assert(parsed.counties.every(c=>c.completion_verified===false));assert.equal(par
 assert.equal(source.parse(fixture({zero:true}),reference,options).status,'NO_REPORTED_VOTES');
 for(const mutate of [
  d=>d.country='CA',d=>d.province='NC',d=>d.district='01',d=>d.municipality='',d=>d.election_type='Governor',d=>d.election_scope='Primary',d=>d.election_name='SC US Senate',d=>d.election_date='2024-11-05T05:00:00.000Z',d=>d.round=2,
- d=>delete d.test_data,d=>d.mock=true,d=>d.is_test=true,d=>d.test=true,d=>d.is_mock=true,d=>d.is_disputed=true,d=>d.active=false,d=>d.live=false,
+ d=>delete d.test_data,d=>d.mock=true,d=>d.mock='true',d=>d.is_test='false',d=>d.is_test=true,d=>d.test=true,d=>d.is_mock=true,d=>d.is_disputed=true,d=>d.is_disputed=null,d=>d.active=false,d=>d.active='true',d=>d.live=false,
  d=>d.last_updated=null,d=>d.last_updated='2026-11-04T03:05:00',d=>d.last_updated='2026-11-04T03:22:00Z',d=>d.last_updated='2026-11-03T23:59:00Z',d=>d.last_updated='2026-10-27T13:56:28.271Z',
  d=>d.candidates[0].candidate_id++,d=>d.candidates[0].party='Democratic',d=>d.candidates[0].name='Lindsey Graham',d=>d.candidates.pop(),d=>d.candidates.push({name:'Write In',votes:1}),d=>d.candidates[0].votes++,
  d=>delete d.region_results.abbeville,d=>d.region_results.extra=d.region_results.abbeville,d=>{d.region_results.wrong=d.region_results.abbeville;delete d.region_results.abbeville;},
