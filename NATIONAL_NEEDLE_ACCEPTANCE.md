@@ -56,6 +56,42 @@ not change the owner's primary national-needle requirement or silently disable i
 
 ## Exact outstanding evidence
 
+### R2 admission and scoring specification (October 27 roadmap review)
+
+The saved corpus contains **zero admitted chronological calibration datasets**.
+Thurston has genuine partial reports but only one of seven WA03 parts, starts at
+59.1% of eventual two-party votes and lacks independent publication/capture
+clocks and a contemporaneous forecast. Iowa/Kansas assumed-order historical
+experiments remain development stress tests. Reused close-governor outcomes are
+not fresh holdouts. The AP archive still lacks established reuse rights and
+independent capture provenance; Ohio registration/absentee administration is
+not an admitted candidate-return sequence. No blocked-source retry is justified
+by this inventory.
+
+Before admitting an evaluation dataset, retain a manifest with exact race/year,
+candidates and complete matched reporting geography; original bytes/hash and
+source clock; independently established availability/capture time and correction
+chain; final truth and permitted reuse. Freeze genuinely contemporaneous
+pre-election expectations without using final outcomes to construct the prior.
+Replay real early/middle/late snapshots. Retrospective final count fractions can
+classify evaluation bins but cannot enter predictions as known completion.
+
+Hold out entire races/elections, not snapshots from the same tuned case. Report
+margin MAE/bias, interval coverage and width, Brier/log loss and remaining-vote
+interval coverage against both polling-only and naive-count baselines. Stratify
+by reporting order/method and check correction/retraction recovery. Keep the
+independent-race sample count separate from the number of correlated snapshots.
+National covariance transfer requires a separate held-out chamber/Four Endings
+evaluation using contemporaneous inputs across races; race-level skill alone
+cannot clear that gate.
+
+The next useful evidence task is a prospective retention audit of existing WA/VA
+collectors and client admission. Their data-only Git branches preserve selected
+publication versions, but the original-body and client-admission chains must be
+checked before claiming that future batches will support replay. Retention
+repairs may not add native requests or change collection cadence. Future data
+collection is preparation, not historical validation already achieved.
+
 1. A chronological sequence spanning the supported race's county/district parts,
    with stable candidate/geography joins and early, middle and late counts. Final
    totals split into invented batches cannot substitute. Thurston alone cannot

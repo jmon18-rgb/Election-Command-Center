@@ -1,5 +1,14 @@
 # Readiness progress
 
+## October27 - R1/R2 decisions and next ready slices
+
+- R1 NC01 saved/queued review complete:211/210 are superseded selector discovery;201/200 county FIPS only;202 presidential baseline explicitly not same-office. No saved evidence supplies historical House D/R votes for all25currentparts including Granville/Onslow splits or independent2024precinct-to-currentparts equivalency. Current archive zero/null reportclock cannot establish live semantics. Do not reopen oldZIP/Census/selector loops. Exact next dependency: official precinct/split-vote equivalency and matched historical House returns; block assignment alone cannot allocate votes.
+- R1 AZ01 archived original resolves208966D225538R786writeins and processed5D/25R discrepancy; admission still lacks209old/210current equivalency (0565/0566 historicalzero vs0944/0948/0953current,207shared IDs not boundary proof). Bounded review of already-declared Maricopa reprecincting/redistricting page is being attempted; no oldlargeoriginal redownload/guessedscriptkeys.
+- R2 zero admitted chronological datasets. Manifest/holdout/scoring specification added locally to NATIONAL_NEEDLE_ACCEPTANCE.md. Thurston1of7/59.1%first/generationclocks; Iowa/Kansas assumedorders/neutralpriors; AP rights+capture provenance unresolved. No retrospective holdout claim. R4 audit distinguishes recoverable selected Git history from missing original-body retention and durable browser admission/hash chain. Prepare minimal client-admission/export slice without new requests; full-body archival remains separate.
+- R6 safe next slice selected from426: three missing TXSenate/TXgovernor/MS stories+originalSVGs using currentplayer, BLEXAS remains2callbonus. Talarico winner must match; governor requiresAbbottopponent, MS existing invalid detail remains excluded. No liveidentity/call proof from modelnames or previews. Unapplied patch preparation only until R0 release.
+- R0 newexacthead8c87d8765cd1583745d6427b8c25815e3cb93487 fixes repeatedPA08Azurefontdownload cancellation by primarysignedUbuntu mirror, SAME5minbudget/dependencies/assertions. Oldb46had34/35parentsSUCCESS; PA08bothattemptscancelledBEFOREtests. NewfullCIrequired, no waiver/deploymentclaim. Pendingnotes/patches must not retriggerCI solely for status.
+
+
 ## October27 - Owner activates needle adjustments and celebrations
 
 - ROADMAP now explicitly lists R0 needle methodology/release and R6 celebration productions. Owner's direct instruction supersedes the old celebration pause; no extra approval is needed for this authorized scope. R0/PR487 remains current release task, followed by bounded R1/R2 work and ready R3/R6 tasks rather than waiting for Nov3 data.
