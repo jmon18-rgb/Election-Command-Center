@@ -1,5 +1,13 @@
 # Readiness progress
 
+## 2026-10-27T06:06:58Z — MI07 runtime deployed; write-in provenance follow-up pending
+
+- PR477 merged after ALL37 exact-head workflows SUCCESS,50latestjobs46success/4nonapplicable skips,noexternalstatuses, head13bbfddc2a25ae2b466bd8b89e062b1f7fc2ff12/clean. Initial genericvalidation failed HarvardDataverse TLSconnectionreset; attempt2passed on SAMEhead, no code/check/timeout changes. Merge77292d323c2ca760306a9eb92eabc6cc1efc3cd2, finalbriefingmain3c02b9137fe0ed70c7ab71cfa0c06a3d03bb92bf; finalPages40458800869SUCCESS. All258publishedfilesmatch06:04:58Z,64fingerprintsvalid; remote dashboardcoherence PASS. Published1366/390 SYNTHETIC MI07 automaticnationalmovement/corrections/withdrawals/round/outage/hidden/archive/floor PASS, mobile visually correctMichigan/sevenparts/experimental labels.
+- Separate ACTUALpublished fixture-free real-clock06:04:54.082Z all16HTTP200, fourteen civic non-testZERO/stale plus two expiredofficialhealthcopies; ZEROadmittedinputs/projections/rawarchives/pageerrors, clean3c02b913. LIVE_DELIVERY_UNPROVEN; no positive2026delivery/comparativefreshness/calibration proof.
+- Final provenance review found Ingham originalPDF explicitly calls279 write-ins UNRESOLVED while processedCSV says Write-ins. Follow-up reclassifies those279 as unresolved and labels other processed write-ins status-unverified. Original method206/16/57=279 pinned/tested. All countyD/R/named-other/districttotals confirmed UNCHANGED; national likelihood/controller code unchanged. Python4 + numericalMI07 nationaltests PASS. No source vote is reassigned to D/R or official outstanding ballots. Do not close milestone until follow-up all exact-head checks/publishedbytes are verified.
+- NEXT finish focused provenance follow-up review/merge/deployment, preserving all checks. Then bounded primaryAK original2026 ballot/roster contract (distinct from unchanged results table), only independently linked documents; no guessedIDs/party sums/finalRCV/state-onlyregional forecast. Keep NC01newboundaries/AZ01crosswalk blocked, optional expansion deferred. Lastdailyreport2026-10-26; pending workquiet.
+
+
 ## 2026-10-27T05:47:48Z — MI07 pivotal national path implemented locally; review pending
 
 - Read saved actual87207source and processed2024precinctgzip; no redownload/reprobe. Independent original2026 Michigan BOE general list ordinaryEdge200/1063373bytes/SHAe3551674a96aebc1d295336d857a9b626ab38177823ed5357214a40b038b1938 confirms LawrenceDEM/BarrettREP/DedrickGreen; separate ThibodeauWorkingClass DISQ is explicitly excluded and status drift rejected. PythonTLSissuer failure was client-specific; normalEdge succeeded with normal certificate checks, no bypass. Saved originalgzip.
