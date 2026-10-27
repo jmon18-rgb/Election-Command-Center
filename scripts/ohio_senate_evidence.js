@@ -33,11 +33,11 @@
      inputs={reference,baseline_year:2024,baseline:{counties:history.counties.map(c=>({county:c.county,records:{total:{dem_votes:c.dem_votes,rep_votes:c.rep_votes}}}))}};
     }
     const raw=await fetchSource(cache.URL);
-    if(!isActive()||root.document?.hidden||generation!==sourceGeneration())throw Error('Official response interrupted by archive mode');
+    if(!isActive()||root.document?.hidden||generation!==sourceGeneration())throw Error('Provider response interrupted by archive mode');
     const parsed=await cache.parse(raw,inputs.reference);evidence=null;failures=0;
-    if(!isActive()||root.document?.hidden||generation!==sourceGeneration())throw Error('Official verification interrupted by archive mode');
+    if(!isActive()||root.document?.hidden||generation!==sourceGeneration())throw Error('Provider verification interrupted by archive mode');
     lastGeneration=generation;
-    if(parsed.status==='TEST_DATA_NOT_LIVE'){phase='civicAPI OH-SEN unavailable · '+parsed.reason;return true;}
+    if(parsed.status==='TEST_DATA_NOT_LIVE'){phase='civicAPI OH-SEN unavailable · provider test data excluded';return true;}
     revision.accept(parsed);
     if(!parsed.live_votes_accepted){phase='No genuine post-close civicAPI OH-SEN counts';return true;}
     evidence={...inputs,snapshot:parsed};onValidated();phase='OH-SEN civicAPI special-Senate county counts · source '+new Date(parsed.snapshot_updated_at).toLocaleTimeString()+' · experimental';return true;
