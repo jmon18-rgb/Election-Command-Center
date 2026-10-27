@@ -7,9 +7,9 @@ not change the owner's primary national-needle requirement or silently disable i
 
 | Acceptance question | Evidence | Decision |
 | --- | --- | --- |
-| Do incoming competitive returns change one coherent Four Endings forecast? | PR465/468/470/471 deployed; synthetic laptop/mobile WA-only, Maine-only Ohio-only and PA07-only national movement before calls, corrections and withdrawals | Implemented; synthetic evidence only |
+| Do incoming competitive returns change one coherent Four Endings forecast? | PR465/468/470/471/473 plus474caption repair deployed; synthetic laptop/mobile WA-only, Maine-only, Ohio-only, PA07-only and AZ06-only national movement before calls, corrections and withdrawals | Implemented; synthetic evidence only |
 | Is an independent official path usable? | WA03 official GET200; owned publication/CORS/readback verified; seven district parts matched | Transport verified; no positive post-close delivery yet |
-| Are live competitive inputs available now? | Actual twelve-route published probe 2026-10-27T02:56:58Z: eleven zero-count civic routes (most stale) and one expired official health-only record | No accepted positive inputs |
+| Are live competitive inputs available now? | Actual thirteen-route published probe 2026-10-27T04:02:59.450Z: twelve zero-count civic routes (most stale) and one expired official health-only record | No accepted positive inputs |
 | Does historical evaluation establish partial-return skill? | Iowa assumed-order experiment: partial margin MAE6.63points vs naive19.89; neutral prior, different Senate class | Useful stress experiment; not chronological validation or national calibration |
 | Is genuine historical chronology complete? | Four verified Thurston2024 partial reports, one of seven WA03 county parts, approximately59%-97%of final two-party votes | Incomplete, especially early count; no statewide replay/calibration approval |
 | Are probabilities/remaining-vote intervals calibrated? | No approved chronological multi-race calibration inputs; predeclared uncertainty and bounded influence are design choices | Unproven |
@@ -54,13 +54,26 @@ No assertion is made that85%remaining usage guarantees finishing or validation.
 
 ## Latest implementation evidence
 
-PR471 passed every applicable exact-head check, merged and deployed. Final main
-1004a159257793c9b3dc40a68b924ce2d60e07e4; Pages40441068110 succeeded; all195
-expected files matched. Published PA07-only and Maine synthetic movement/recovery passed
-at laptop/mobile widths. The separate actual probe admitted zero inputs. The
-calibration and real-delivery decision above therefore remains unchanged.
+PR473 passed all37 exact-head workflows and deployed the AZ06 national path.
+Published visual QA caught an incorrect Wisconsin coverage caption; focused PR474
+passed all32 exact-head workflows and fixed it, adding laptop/mobile assertions.
+Final main ed6941e49835922ec0818f425e2db34ee1d3551a; Pages40447245079 succeeded;
+all210 expected files matched04:02:41Z. Published AZ06-only synthetic movement,
+correction/withdrawal/outage behavior passed at both widths; mobile visually
+confirmed Arizona and the limited-coverage/uncalibrated labels. The separate
+actual thirteen-route real-clock probe admitted zero inputs, projections or raw
+archives and had no page errors. Calibration and real-delivery acceptance remain unmet.
+
+Independent official VA02 direct cross-origin access was observed04:00:48Z
+(HTTP200/CORS*, source max-age60, allzero); it is not yet a production input.
+Matched historical totals and current official roster are preparation evidence,
+not post-close delivery, independent batch chronology or calibration.
 
 ## Evidence references
+
+- https://github.com/jmon18-rgb/Election-Command-Center/pull/473
+- https://github.com/jmon18-rgb/Election-Command-Center/pull/474
+- https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40447245079
 
 - https://github.com/jmon18-rgb/Election-Command-Center/pull/471
 - https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40441068110
