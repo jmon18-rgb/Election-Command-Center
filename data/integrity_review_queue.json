@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-27T01:53:06.061064Z",
+  "updated_at": "2026-10-27T02:00:32.711215Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 4,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
     "primary_source_checked": 4,
-    "advisory_related_headline_buckets": 23,
-    "advisory_related_headlines": 54
+    "advisory_related_headline_buckets": 22,
+    "advisory_related_headlines": 52
   },
   "advisory_related_headlines": [
     {
@@ -60,19 +60,6 @@
       ],
       "topic_hints": [
         "security"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "8c0d1786b5b782bf194d",
-      "headline": "Texas is sued over backlog of nearly 600,000 voter registrations - The Washington Post",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "TX"
-      ],
-      "topic_hints": [
-        "registration"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -263,9 +250,42 @@
         "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "b0681272106aa9eb73ad",
+      "headline": "U.S. appeals court appears skeptical of Trump DOJ\u2019s lawsuit over California voter rolls - NBC News",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "litigation",
+        "registration"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "d3a394a1312563a89b01",
+      "title": "Arizona political groups ramp up efforts to remove sitting judges with voter guides - KJZZ",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPTE5PRVlic2xXZkxVenBWZXdGMi1UMWctc0Y3RW9aem5XUWh4cGd2YmdZQm1oREE3WGZTTnBFS256X0NJQkZEQ1REbDBjN3ZER25INjVqQkN4TWpGc2dRV09Oc3lRRUZfcndBMjlOM2hKVFV4Nll0SDNyX1ZDS0loYjdLR2lWejctZFRQbFJfTDZtbUw2QmZfNzV6cEtjb3V6QzlRLVZBVUJMVnJkYjNCeFE2MTdHM1VLTVFHYWliU2ZyakE?oc=5",
+      "publisher": "KJZZ",
+      "published_at": "2026-10-27T00:18:00Z",
+      "detected_at": "2026-10-27T02:00:32.711215Z",
+      "state_hints": [
+        "AZ"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "4ee3359b8af72067bbed",
       "title": "Appeals Court Declines to Intervene in California Ballot Lawsuit - The New York Times",
@@ -288,6 +308,23 @@
       "promoted_to_incident_id": null
     },
     {
+      "id": "ef07ffe3a3f6173e5ca3",
+      "title": "Judge Says He Will Rule Immediately Tuesday in Voting Case TRO - MyNewsLA.com",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNV3Boa0x4b0w4R0lDUHBzVjJHc19BcmVQcnZGVXh4ZGstZ3kyRlVkS3lUS25qSkx3aUhaSDY5LWZEOXdVZ0VjRmUtZ09XcHB5UmlXd2xzRG9RZV9rWXNIY3ZCbTZaZUt1aXRKbDFvMUJ2N2RNbXNYSUFqNTU4U3JQd1dVZ283THFnOFpianJWT0V2bVI1b1NiMDdNUko0bDQxNlFpRkVmNVZaX2pfM2N4Vg?oc=5",
+      "publisher": "MyNewsLA.com",
+      "published_at": "2026-10-26T23:42:31Z",
+      "detected_at": "2026-10-27T02:00:32.711215Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "ae6a4fa5fca4d621254b",
       "title": "Protecting voter privacy and the integrity of U.S. elections - Protect Democracy",
       "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOc29wZW9Na080eUZlSkZqT05lMFVOTVFsWlZHM0Y1VEp5V1NxZTBvSHBPbTcyWHVKVWpiQVFUY2QxS0lWTzl4VktVQkZtb1RqZFZ1WHlCcFZsa3ljcmRuQ1pFYW1CMjVieDZoY21kU0hUUVFjWjUyQWoySjV2dlU3WDB5aktSNG5NRGJjMEVGcmhkVWJJV05oTXNB?oc=5",
@@ -297,6 +334,46 @@
       "state_hints": [],
       "topic_hints": [
         "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "9ff18b3af72e771bc25f",
+      "title": "Court blocks bid by Trump DoJ to stop California from counting mail-in ballots - The Guardian",
+      "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE9JdUF1WVZlekR2cHVvYmxlNFVqMG56WS02bHd1VVdYQk0zbTdMZ0pPbUpIVTBIRjg4TEZhcHYyX3JjTFljQy1vaDJiLWRxUG5IVzdDM3k2NVFCZHhmbllWYVFLek1NWER3dG55cUFCb2FnV0VJeVNJS2FoZkk?oc=5",
+      "publisher": "The Guardian",
+      "published_at": "2026-10-26T22:44:00Z",
+      "detected_at": "2026-10-27T02:00:32.711215Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "5c6441e8542b5a6ebe51",
+      "title": "Appeals court dismisses DOJ's request to force California to set aside ballots - CBS News",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOeWN1MmpKQlpFR3Rnd29YRHRydHMzSFRhN0RMQ1ZnMncwZXlMSml2UGJYRmplVmxVM0NsVFFkTzZfNUhWcnJwZEE3MkdxdUpoNmY1c1hwVUJpWW83ME1sb0h0R1lsUEtVWjdhaGFZUF9ESGU5aVE0ZlZJY2xHTUMtWHJmV3R6dTF4MUE?oc=5",
+      "publisher": "CBS News",
+      "published_at": "2026-10-26T22:44:00Z",
+      "detected_at": "2026-10-27T02:00:32.711215Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -4914,77 +4991,6 @@
       "topic_hints": [],
       "headline_numbers_unverified": [
         "1,400 voters"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "6dfc0a530137cac05c53",
-      "title": "Texas Sued Over Nearly 600K Delayed Voter Registrations - Yahoo",
-      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxONVp5NlpSNUt5elg2aUcta3B1cEh1ejRxLUU5dUx6c0tVSTRyODVnc2FLWlhNaGR3OUM2elVTc3hmNjhhRnlzRFlneG1WaUplU3cxSE1ncmFxNkdWZ2FIQ3JudFM5ajRGbUlfZ3M0Z0lCMFFYUzFwTms2Z19zUFY4RndSZnNLWUNrMzRaWVlicW0?oc=5",
-      "publisher": "Yahoo",
-      "published_at": "2026-10-14T18:14:40Z",
-      "detected_at": "2026-10-14T20:53:15.333028Z",
-      "state_hints": [
-        "TX"
-      ],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "21340fceee78f2b05d82",
-      "title": "Report Warns Federal Voter Checks Could Disenfranchise Americans - The Seattle Medium",
-      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNa08zV1pjVThJT04xbldSLWtDYUNTenJjZXBGUGRGM1J1dUtLZ3JTUnBLSDByWFVFQjVPTkI4MzVwTWxPdS1TbVZYUm5UWlg2NUJHc2J5UXhleGhzYkZiYklKSkh5NEJBS0tjR0ZJenNIT2cwTEVmR0R1ZEdzcWVJR0NkbVBJbTZVdkZ3V1FJWldFM2c2ZGc?oc=5",
-      "publisher": "The Seattle Medium",
-      "published_at": "2026-10-14T14:00:00Z",
-      "detected_at": "2026-10-14T14:26:26.792039Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ac05dfcde54bfbd11a5c",
-      "title": "Nonprofits train legions of volunteers to protect voters - Chronicle of Philanthropy",
-      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOYkFSRWFxNzluaWdELXFBOU93T0VlM3AwazFrNDN5WE1mVHMzRGhRZE5nMFNwVlJnN2sxdl9LSC1EMFJuYVp3SEhkNVhJX2RBWGxvMDJ5THJvbmszb21wVnVQSl8xc3VycFJVQjdFSXhFbGwwYm83U3U2ZVNPaTVpNzJvd3hiX28wQkd4YWxEWlNsbWcxbkE?oc=5",
-      "publisher": "Chronicle of Philanthropy",
-      "published_at": "2026-10-14T13:53:33Z",
-      "detected_at": "2026-10-14T15:41:28.510052Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "62ba06bc38b18d571ee1",
-      "title": "Absentee ballots mailed to Wisconsin clerks down roughly 30 percent compared to 2022 - WPR",
-      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE8zRFRUUnFwczJGUWhmNlJ3dVRIeHVpeUFQNDJQN0x0NkdyWGQwdW5GUkpfSmZBcUxXQXlaVlJiRDZCSjFjQ0FxQ2E4bWVmeElTTFVETnB6RjA4R1BRWks1cGZGZV9ZWUdMeEk2VlNfVGhOU2p1Mi1fM1B2Z0JJdw?oc=5",
-      "publisher": "WPR",
-      "published_at": "2026-10-14T13:25:39Z",
-      "detected_at": "2026-10-14T14:26:26.792039Z",
-      "state_hints": [
-        "WI"
-      ],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [
-        "30 ",
-        "2022"
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
