@@ -49,7 +49,7 @@
     if(!parsed.live_votes_accepted){phase='No genuine post-close official WA-03 counts';return true;}
     evidence={...inputs,snapshot:parsed};phase='WA-03 official counts · source '+new Date(parsed.snapshot_updated_at).toLocaleTimeString()+' · collected '+new Date(parsed.collection_fetched_at).toLocaleTimeString()+' · experimental';return true;
    }catch(error){evidence=null;failures=Math.min(3,failures+1);phase='Official WA-03 unavailable · '+error.message;return false;}
-   finally{busy=false;publish();schedule();}
+   finally{lastAttempt=Date.now();busy=false;publish();schedule();}
   }
   schedule();return Object.freeze({tick,status,destroy(){stopped=true;if(timer!==null)clearTimeout(timer);}});
  }

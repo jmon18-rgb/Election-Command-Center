@@ -73,6 +73,8 @@ values at the same reporting clock, including replay after a newer zero.
 Valid no-estimate receipts withdraw the supplement without inventing a reporting
 clock; a later verified fresh source can recover. Hidden-tab, archive, queue,
 manual-refresh and existing count-correction gates remain in place.
+The owned-cache refresh floor restarts after response completion, including
+time spent queued; a long queued response cannot permit an immediate second read.
 
 Automatic pre-election push bootstrap makes no native request. Explicit health
 checks remain available but are not required for this release.
