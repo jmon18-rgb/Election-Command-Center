@@ -1,6 +1,6 @@
 # Election Night production-readiness assignment
 
-## 2026-10-27T10:12:00Z - Late-count acceptance decision: preserve counts cadence
+## 2026-10-27T10:09:00Z - Late-count acceptance decision: preserve counts cadence
 
 - Reviewed existing one-native-GET/job post-first-night contract. Replacing counts with stats creates nominal10minute count gaps plus scheduling/cache delay; addingstats exceeds reviewedbudget. Retain FIRSTNIGHTONLY estimate conditioning and continuedsinglecounts jobs; no productioncollector/model/cadence change. Late-estimateconditioning explicitlyDEFERRED, not a claim officialestimates disappear. WASHINGTON_REMAINING_ESTIMATE_CONTRACT.md records decision.
 - Extended actualpublisher-loop SYNTHETIC regression to exactNov4 17Z boundary andNov5, successful/failedfirstreads and consecutivejobs: onecountsrequest/job, no stats, >=60secondfloor. Existingfirstnight4request/positivecounts gating cases retained; focusedtestPASS. No nativeGET/health/blanketprobe and no newruntime milestone. CI/PRreview pending.
