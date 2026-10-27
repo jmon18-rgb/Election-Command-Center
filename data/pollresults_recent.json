@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-27T16:57:41.178784+00:00",
+  "updated_at": "2026-10-27T17:55:09.683584+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 831,
+      "available_in_source": 834,
       "records_examined": 300
     },
     "house": {
@@ -13,47 +13,127 @@
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 935,
+      "available_in_source": 937,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 323,
-  "newly_injected_into_model": 8,
+  "matched_primary_observations": 331,
+  "newly_injected_into_model": 4,
   "injected_poll_ids": [
     {
-      "race_code": "FL-GOV",
-      "poll_id": "ab99ade2-cb4e-40de-81c4-6a0df198c1e8"
+      "race_code": "AZ-GOV",
+      "poll_id": "78aa22ad-a1c0-421b-a776-cbe0d134f975"
     },
     {
-      "race_code": "GA-GOV",
-      "poll_id": "a89d1cfa-b381-4239-b77c-ac34182fe6d0"
+      "race_code": "IA-GOV",
+      "poll_id": "5fed9be9-1c44-4040-a61b-00465f70db64"
     },
     {
-      "race_code": "GA-SEN",
-      "poll_id": "a89d1cfa-b381-4239-b77c-ac34182fe6d0"
+      "race_code": "IA-SEN",
+      "poll_id": "5fed9be9-1c44-4040-a61b-00465f70db64"
     },
     {
-      "race_code": "ME-GOV",
-      "poll_id": "8d34f2d5-7511-416a-a60c-d917478e9979"
-    },
-    {
-      "race_code": "ME-SEN",
-      "poll_id": "8d34f2d5-7511-416a-a60c-d917478e9979"
-    },
-    {
-      "race_code": "NE-GOV",
-      "poll_id": "fb010920-9374-48f4-8c80-c2ca49ce24d7"
-    },
-    {
-      "race_code": "OH-GOV",
-      "poll_id": "0c92af41-2b09-484c-bb4c-a0232bdc729f"
-    },
-    {
-      "race_code": "OH-SEN",
-      "poll_id": "0c92af41-2b09-484c-bb4c-a0232bdc729f"
+      "race_code": "TX-SEN",
+      "poll_id": "b6037ae7-e4a6-46a2-a8e9-83eb3cc01ae4"
     }
   ],
   "observations": [
+    {
+      "race_code": "TX-SEN",
+      "race_type": "senate",
+      "state": "TX",
+      "poll_id": "b6037ae7-e4a6-46a2-a8e9-83eb3cc01ae4",
+      "question_id": "0a38926a-9a08-4300-a29f-0c4ba739ed1c",
+      "pollster": "Cor Strategies",
+      "dem_name": "James Talarico",
+      "rep_name": "Ken Paxton",
+      "dem": 44.0,
+      "rep": 40.0,
+      "margin": 4.0,
+      "field_end": "2026-10-15",
+      "field_start": "2026-10-10",
+      "posted_date": "2026-10-27",
+      "posted_source_datetime": "2026-10-27T13:25:00",
+      "posted_source_time": "10/27/26 13:25",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.dailysignal.com/2026/10/23/texas-poll-election-integrity-proof-citizenship-support/",
+      "sample_population": "lv",
+      "sample_size": 1409,
+      "partisan_lean": "R",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "IA-SEN",
+      "race_type": "senate",
+      "state": "IA",
+      "poll_id": "5fed9be9-1c44-4040-a61b-00465f70db64",
+      "question_id": "b8d0a704-ecbe-420c-b927-2bcce5bcc78e",
+      "pollster": "Echelon Insights",
+      "dem_name": "Josh Turek",
+      "rep_name": "Ashley Hinson",
+      "dem": 45.0,
+      "rep": 43.0,
+      "margin": 2.0,
+      "field_end": "2026-10-23",
+      "field_start": "2026-10-16",
+      "posted_date": "2026-10-27",
+      "posted_source_datetime": "2026-10-27T13:14:00",
+      "posted_source_time": "10/27/26 13:14",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://netchoice.org/netchoice-echelon-insights-poll-voters-rank-ai-regulation-far-behind-cost-of-living-want-one-national-ai-standard/",
+      "sample_population": "lv",
+      "sample_size": 403,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "IA-GOV",
+      "race_type": "governor",
+      "state": "IA",
+      "poll_id": "5fed9be9-1c44-4040-a61b-00465f70db64",
+      "question_id": "d3c55c78-5af6-4f36-80ea-ba2d890801f7",
+      "pollster": "Echelon Insights",
+      "dem_name": "Rob Sand",
+      "rep_name": "Zach Lahn",
+      "dem": 50.0,
+      "rep": 46.0,
+      "margin": 4.0,
+      "field_end": "2026-10-23",
+      "field_start": "2026-10-16",
+      "posted_date": "2026-10-27",
+      "posted_source_datetime": "2026-10-27T13:14:00",
+      "posted_source_time": "10/27/26 13:14",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://netchoice.org/netchoice-echelon-insights-poll-voters-rank-ai-regulation-far-behind-cost-of-living-want-one-national-ai-standard/",
+      "sample_population": "lv",
+      "sample_size": 403,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "AZ-GOV",
+      "race_type": "governor",
+      "state": "AZ",
+      "poll_id": "78aa22ad-a1c0-421b-a776-cbe0d134f975",
+      "question_id": "8d979fcf-a1bb-4cd2-9b68-17eb6042cd06",
+      "pollster": "HighGround",
+      "dem_name": "Katie Hobbs",
+      "rep_name": "Andy Biggs",
+      "dem": 51.5,
+      "rep": 39.3,
+      "margin": 12.2,
+      "field_end": "2026-10-25",
+      "field_start": "2026-10-21",
+      "posted_date": "2026-10-27",
+      "posted_source_datetime": "2026-10-27T13:01:00",
+      "posted_source_time": "10/27/26 13:01",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.12news.com/article/news/politics/elections/poll-arizona-democrats-lead-statewide-races-hobbs-ahead-12-points-arizona-election/75-c9151a02-b7da-437e-a547-a89d8deb16dc",
+      "sample_population": "lv",
+      "sample_size": 400,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "FL-SEN",
       "race_type": "senate",
