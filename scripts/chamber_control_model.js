@@ -617,8 +617,8 @@ function senatePollingErrorBudget(info){
   if(!Number.isInteger(samples)||samples<300||samples>30000)
    throw Error('Unacceptable simulation size');
   const capture=options.captureCountyDraws??null,replay=options.replayCountySeeds??null;
-  if(capture!==null&&(!Array.isArray(capture)||capture.length<1||capture.length>15||
-     new Set(capture).size!==capture.length||capture.some(c=>!['PA-08','VA-02','AZ-06','PA-07','OH-SEN','ME-SEN','IA-SEN','KS-SEN','TX-SEN','WI-01','WI-03','MI-04','PA-10','NY-17','WA-03'].includes(c))))
+  if(capture!==null&&(!Array.isArray(capture)||capture.length<1||capture.length>16||
+     new Set(capture).size!==capture.length||capture.some(c=>!['MI-07','PA-08','VA-02','AZ-06','PA-07','OH-SEN','ME-SEN','IA-SEN','KS-SEN','TX-SEN','WI-01','WI-03','MI-04','PA-10','NY-17','WA-03'].includes(c))))
    throw Error('Unsupported county-evidence capture scope');
   if(replay!==null&&(!(Array.isArray(replay)||Object.prototype.toString.call(replay)==='[object Uint32Array]')||
      replay.length!==samples||!replay.every(n=>Number.isInteger(n)&&n>0&&n<=4294967295)))

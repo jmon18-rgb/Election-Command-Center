@@ -1,0 +1,122 @@
+{
+  "status": "PROCESSED_DISTRICT_PART_HISTORY_WITH_ONE_OFFICIAL_SAMPLE_NOT_CALIBRATION",
+  "race_code": "MI-07",
+  "election_date": "2024-11-05",
+  "county_count": 7,
+  "counties": [
+    {
+      "county": "Clinton",
+      "county_fips": "26037",
+      "dem_votes": 20514,
+      "rep_votes": 26564,
+      "named_other_votes": 1471,
+      "generic_write_in_votes": 0,
+      "unresolved_write_in_votes": 44,
+      "rejected_write_in_votes_excluded": 0
+    },
+    {
+      "county": "Eaton",
+      "county_fips": "26045",
+      "dem_votes": 28195,
+      "rep_votes": 30867,
+      "named_other_votes": 2066,
+      "generic_write_in_votes": 0,
+      "unresolved_write_in_votes": 0,
+      "rejected_write_in_votes_excluded": 0
+    },
+    {
+      "county": "Genesee",
+      "county_fips": "26049",
+      "dem_votes": 33,
+      "rep_votes": 69,
+      "named_other_votes": 2,
+      "generic_write_in_votes": 0,
+      "unresolved_write_in_votes": 0,
+      "rejected_write_in_votes_excluded": 0
+    },
+    {
+      "county": "Ingham",
+      "county_fips": "26065",
+      "dem_votes": 90181,
+      "rep_votes": 49827,
+      "named_other_votes": 4911,
+      "generic_write_in_votes": 279,
+      "unresolved_write_in_votes": 0,
+      "rejected_write_in_votes_excluded": 0
+    },
+    {
+      "county": "Livingston",
+      "county_fips": "26093",
+      "dem_votes": 45446,
+      "rep_votes": 79356,
+      "named_other_votes": 3707,
+      "generic_write_in_votes": 0,
+      "unresolved_write_in_votes": 0,
+      "rejected_write_in_votes_excluded": 0
+    },
+    {
+      "county": "Oakland",
+      "county_fips": "26125",
+      "dem_votes": 11414,
+      "rep_votes": 15914,
+      "named_other_votes": 723,
+      "generic_write_in_votes": 0,
+      "unresolved_write_in_votes": 0,
+      "rejected_write_in_votes_excluded": 24
+    },
+    {
+      "county": "Shiawassee",
+      "county_fips": "26155",
+      "dem_votes": 14176,
+      "rep_votes": 24125,
+      "named_other_votes": 1351,
+      "generic_write_in_votes": 101,
+      "unresolved_write_in_votes": 0,
+      "rejected_write_in_votes_excluded": 0
+    }
+  ],
+  "geography_scope": "district_parts",
+  "source_url": "https://raw.githubusercontent.com/openelections/openelections-data-mi/master/2024/20241105__mi__general__precinct.csv",
+  "source_sha256": "654a7dbf7a86a96c52cb182ba4472565b62d5aa76533238228fc3065c7d447fb",
+  "publisher_git_blob": "f0a1eab82fab6107e28fedda0167309ba65ab44a",
+  "selected_rows": 1424,
+  "selected_precincts": 302,
+  "district_totals": {
+    "dem_votes": 209959,
+    "rep_votes": 226722,
+    "named_other_votes": 14231
+  },
+  "map_comparability": "boundaries_unchanged_per_2026_census",
+  "official_sample_url": "https://docs.ingham.org/Department/County%20Clerk/Elections/Election%20Results/OfficialInghamNovember2024ElectionSummaryReportRPT.pdf",
+  "official_sample_sha256": "d89815319b9430aea31b26b38fc75cea5208067321d60684a75fb2df7078bd08",
+  "official_roster_url": "https://mi-boe.entellitrak.com/etk-mi-boe-prod/page.request.do?electionType=GEN&electionYear=2026&page=page.miboePublicReport",
+  "official_roster_sha256": "e3551674a96aebc1d295336d857a9b626ab38177823ed5357214a40b038b1938",
+  "official_roster": [
+    [
+      "",
+      "Democratic Party",
+      "Lawrence, William"
+    ],
+    [
+      "",
+      "Republican Party",
+      "Barrett, Tom"
+    ],
+    [
+      "",
+      "Green Party",
+      "Dedrick, Shane"
+    ],
+    [
+      "DISQ",
+      "Working Class Party",
+      "Thibodeau, Felix"
+    ]
+  ],
+  "limitations": [
+    "Processed OpenElections reference, not original statewide returns.",
+    "Only Ingham district part independently corroborated with original official methods/totals.",
+    "Metadata/rejected write-ins excluded; unresolved write-ins kept separate from named votes.",
+    "Final totals are not reporting chronology, calibration or official outstanding ballots."
+  ]
+}
