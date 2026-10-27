@@ -2,13 +2,14 @@
 // Bounded server-side source collection. No publisher, schedule or national input is enabled by this module.
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const api=require('./washington_official_house_source.js');
+const remaining=require('./washington_remaining_source.js');
 const hash=x=>crypto.createHash('sha256').update(x).digest('hex');
 const MAX_BODY=2*1024*1024;
-async function body(response){
+async function body(response,limit=MAX_BODY){
  if(!response.body)throw Error('Missing official response body');
  const reader=response.body.getReader(),chunks=[];let size=0;
  try{while(true){const next=await reader.read();if(next.done)break;size+=next.value.byteLength;
-  if(size>MAX_BODY)throw Error('Official response exceeds bounded body limit');chunks.push(Buffer.from(next.value));}}
+  if(size>limit)throw Error('Official response exceeds bounded body limit');chunks.push(Buffer.from(next.value));}}
  finally{await reader.cancel().catch(()=>{});reader.releaseLock();}
  return Buffer.concat(chunks);
 }
@@ -44,7 +45,18 @@ async function collect({fetchImpl=global.fetch,now=Date.now(),reference}={}){
   return out;
  }catch(error){out.status='SOURCE_UNAVAILABLE';out.payload=null;out.error=String(error.message).slice(0,240);return out;}
 }
-module.exports={collect,MAX_BODY};
+async function collectRemaining({fetchImpl=global.fetch,now=Date.now(),countsStamp}={}){
+ const out={schema:'official-wa-remaining-collection-v1',source_url:remaining.URL,fetched_at:new Date(now).toISOString(),status:'SOURCE_UNAVAILABLE',payload:null,timing_scope:'Request-to-body only; not publication availability or comparative lag'};
+ const started=performance.now();
+ try{
+  const r=await fetchImpl(remaining.URL,{redirect:'error',signal:AbortSignal.timeout(20000),headers:{Accept:'application/json'}});out.http_status=r.status;out.cache_control=r.headers.get('cache-control');
+  if(r.status!==200||!r.headers.get('content-type')?.toLowerCase().includes('application/json')){await r.body?.cancel().catch(()=>{});throw Error('Remaining HTTP/content type unavailable');}
+  const raw=await body(r,1000000);out.request_to_body_ms=Math.round(performance.now()-started);out.original_response_sha256=hash(raw);out.payload=JSON.parse(raw.toString('utf8'));out.status='COLLECTED_OFFICIAL_ESTIMATES';
+  remaining.parse(out,{now,counts_stamp:countsStamp});if(JSON.stringify(out.payload).length>48000)throw Error('Remaining selected body cap');out.selected_payload_sha256=hash(JSON.stringify(out.payload));
+ }catch(error){out.status='SOURCE_UNAVAILABLE';out.payload=null;out.error=String(error.message).slice(0,240);}
+ return out;
+}
+module.exports={collect,collectRemaining,MAX_BODY};
 if(require.main===module){
  const reference=JSON.parse(fs.readFileSync('data/washington_house_03_county_fips_reference.json','utf8'));
  collect({reference}).then(out=>{fs.writeFileSync('artifacts/readiness/washington-official-collection.json',JSON.stringify(out,null,2)+'\n');

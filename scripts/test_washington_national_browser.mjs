@@ -2,6 +2,7 @@
 import assert from 'node:assert/strict';import {createServer} from 'node:http';
 import {readFileSync,existsSync,statSync,mkdirSync} from 'node:fs';import {resolve,extname,sep} from 'node:path';import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url),{fixture}=require('./washington_test_fixture.cjs'),cache=require('./washington_official_cache.js');
+const {fixture:remainingFixture}=require('./washington_remaining_test_fixture.cjs');
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright');
 const root=resolve(import.meta.dirname,'..'),types={'.html':'text/html','.js':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.mp3':'audio/mpeg'};
 const server=createServer((req,res)=>{const f=resolve(root,'.'+(new URL(req.url,'http://localhost').pathname==='/'?'/index.html':new URL(req.url,'http://localhost').pathname));
@@ -11,7 +12,7 @@ try{
  browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
  for(const width of [1366,390]){
   const context=await browser.newContext({viewport:{width,height:width===1366?768:844}}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
-  let stamp='2026-11-04T04:05:00Z',mode='health',requests=0;
+  let stamp='2026-11-04T04:05:00Z',statsStamp=stamp,mode='health',requests=0;
   await page.clock.install({time:new Date('2026-11-04T04:05:05Z')});
   await page.route('**/*',async route=>{const u=new URL(route.request().url());if(u.hostname==='127.0.0.1')return route.continue();
    if(u.origin+u.pathname!==cache.URL)return route.abort();requests++;
@@ -19,6 +20,7 @@ try{
    let record=await fixture({stamp,margin:mode==='red'?-12:12,zero:mode==='zero',correction:mode==='correction'?200:0});
    if(mode==='health'){record.status='SOURCE_UNAVAILABLE';record.payload=null;record.error='Official source not yet reporting';}
    if(mode==='corrupt')record.payload.ballotItemWithBreakdown.voteTotal++;
+   if(mode.startsWith('remaining_')){record.official_remaining=remainingFixture({stamp:statsStamp,estimate:mode==='remaining_large'?500000:100});if(mode==='remaining_bad_hash')record.official_remaining.selected_payload_sha256='bad';}
    return route.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify(record)});
   });
   await page.goto('http://127.0.0.1:'+server.address().port+'/',{waitUntil:'domcontentloaded'});
@@ -37,7 +39,7 @@ try{
   await page.screenshot({path:resolve(root,'artifacts/readiness/synthetic-washington-national-'+width+'.png'),fullPage:false});
   assert.equal(await page.evaluate(()=>enWashingtonHouse03Controller.status().automatic_poll_interval_ms),60000);
   const before=requests;await page.evaluate(()=>enWashingtonHouse03Controller.tick(true));assert.equal(requests,before,'Manual refresh cannot bypass the one-minute owned-cache floor');
-  async function update(next,minute,sourceMinute=minute){mode=next;stamp='2026-11-04T04:'+sourceMinute+':00Z';await page.clock.setSystemTime(new Date('2026-11-04T04:'+minute+':05Z'));
+  async function update(next,minute,sourceMinute=minute){mode=next;stamp='2026-11-04T04:'+sourceMinute+':00Z';statsStamp='2026-11-04T04:'+minute+':00Z';await page.clock.setSystemTime(new Date('2026-11-04T04:'+minute+':05Z'));
    await page.evaluate(async()=>{await enWashingtonHouse03Controller.tick(true);jointRender(true);});}
   await update('correction','08');const corrected=await page.evaluate(()=>jointLastResult.county_results_update.used[0].counted_two_party_votes);
   assert.equal(corrected,blue.used[0].counted_two_party_votes-200);
@@ -50,9 +52,28 @@ try{
   await page.evaluate(()=>Object.defineProperty(document,'hidden',{configurable:true,value:true}));await page.clock.setSystemTime(new Date('2026-11-04T04:24:05Z'));
   const paused=requests;await page.evaluate(()=>enWashingtonHouse03Controller.tick(true));assert.equal(requests,paused);
   await page.evaluate(()=>Object.defineProperty(document,'hidden',{configurable:true,value:false}));
-  await update('blue','26');await page.locator('#enMode2024').click();await page.evaluate(()=>enWashingtonHouse03Controller.tick());
+  await update('blue','26');
+  const beforeRemaining=await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities));
+  await update('remaining_small','28','26');
+  const small=await page.evaluate(()=>({p:jointLastResult.probabilities,used:jointLastResult.county_results_update.used[0]}));
+  assert.equal(small.used.official_remaining_sensitivity.whole_counties,6);assert(!small.used.official_remaining_sensitivity.county_fips.includes('53067'));
+  assert.equal(small.used.as_of,'2026-11-04T04:26:00Z');
+  assert.equal(small.used.official_remaining_sensitivity.as_of,'2026-11-04T04:28:00.000Z');
+  assert.equal(await page.evaluate(()=>jointPulseRows.find(r=>r.race_code==='WA-03').asOf),'2026-11-04T04:28:00.000Z');
+  assert.match(await page.locator('#jointNightNeedle').textContent(),/historical\/official estimate sensitivity/);
+  assert.match(await page.locator('#jointNightNeedle').textContent(),/Thurston historical; not exact ballots/);
+  await page.locator('#jointNightNeedle').scrollIntoViewIfNeeded();await page.screenshot({path:resolve(root,'artifacts/readiness/synthetic-washington-remaining-'+width+'.png'),fullPage:false});
+  await update('remaining_large','30','26');
+  assert.notDeepEqual(await page.evaluate(()=>jointLastResult.probabilities),small.p,'Updated estimates change national outlook even when counted votes/stamp stay identical');
+  assert.equal(await page.evaluate(()=>JSON.stringify(jointPulseBaseline.probabilities)),baseline);
+  await update('remaining_bad_hash','32','26');assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),beforeRemaining,'Supplement integrity failure falls back to valid counts-only forecast');
+  await update('remaining_small','34','26');assert.equal(await page.evaluate(()=>jointLastResult.county_results_update.used[0].official_remaining_sensitivity.whole_counties),6);
+  // An old cached supplement cannot resurrect after a newer accepted estimate.
+  statsStamp='2026-11-04T04:28:00Z';await page.clock.setSystemTime(new Date('2026-11-04T04:36:05Z'));await page.evaluate(async()=>{await enWashingtonHouse03Controller.tick(true);jointRender(true);});
+  assert.equal(await page.evaluate(()=>jointLastResult.county_results_update.used[0].official_remaining_sensitivity),undefined);
+  await page.locator('#enMode2024').click();await page.evaluate(()=>enWashingtonHouse03Controller.tick());
   assert.equal(await page.evaluate(()=>enWashingtonHouse03Controller.status().evidence),null);assert.deepEqual(errors,[]);
-  console.log(width+'px official WA03 NATIONAL: independent of civic outage; automatic before-call movement, corrections, rollback/zero replay, outage/integrity exclusion, hidden-tab pause and archive isolation PASS (SYNTHETIC)');
+  console.log(width+'px official WA03 NATIONAL: counts and paired whole-county remaining sensitivity, same-count estimate updates, correction/old-reply/integrity recovery, hidden/archive/manual gates PASS (SYNTHETIC)');
   await context.close();
  }
  const fallback=await browser.newContext(),safePage=await fallback.newPage(),fallbackErrors=[];safePage.on('pageerror',e=>fallbackErrors.push(e.message));
@@ -63,4 +84,17 @@ try{
  await safePage.waitForFunction(()=>jointLastResult?.probabilities&&window.enNewYorkHouse17Controller&&window.enTexasPilotController);
  assert.equal(await safePage.evaluate(()=>window.enWashingtonHouse03Controller),undefined);assert.deepEqual(fallbackErrors,[]);
  await fallback.close();console.log('Missing optional official cache helper preserves the national baseline and existing county controllers PASS');
+ for(const missing of ['washington_remaining_source.js','washington_remaining_scenarios.js']){
+  const context=await browser.newContext(),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.clock.install({time:new Date('2026-11-04T04:05:05Z')});
+  await page.route('**/*',async route=>{const u=new URL(route.request().url());
+   if(u.hostname==='127.0.0.1')return u.pathname.endsWith('/'+missing)?route.abort():route.continue();
+   if(u.origin+u.pathname!==cache.URL)return route.abort();
+   const record=await fixture();record.official_remaining=remainingFixture();return route.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':'*'},body:JSON.stringify(record)});
+  });
+  await page.goto('http://127.0.0.1:'+server.address().port+'/',{waitUntil:'domcontentloaded'});await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();
+  await page.waitForFunction(()=>jointLastResult?.county_results_update?.used.some(e=>e.code==='WA-03'));
+  assert.equal(await page.evaluate(()=>jointLastResult.county_results_update.used[0].official_remaining_sensitivity),undefined);assert.deepEqual(errors,[]);
+  await context.close();console.log('Missing '+missing+' retains validated counts-only national path PASS');
+ }
 }finally{if(browser)await browser.close();await new Promise(ok=>server.close(ok));}

@@ -1,10 +1,10 @@
 /* Experimental counts-only likelihood for the existing correlated national
  * simulation. Race posterior probabilities are deliberately not inputs. */
-(function(root,factory){const api=factory(typeof module!=='undefined'&&module.exports?
- require('./election_night_poll_closings_2026.js'):root?.ElectionNightPollClosings2026);
+(function(root,factory){const node=typeof module!=='undefined'&&module.exports;const api=factory(node?
+ require('./election_night_poll_closings_2026.js'):root?.ElectionNightPollClosings2026,node?require('./washington_remaining_source.js'):root?.WashingtonRemainingSource,node?require('./washington_remaining_scenarios.js'):root?.WashingtonRemainingScenarios);
  if(typeof module!=='undefined'&&module.exports)module.exports=api;
  if(root)root.NationalCountyLikelihood=api;
-})(typeof window!=='undefined'?window:null,function(closes){
+})(typeof window!=='undefined'?window:null,function(closes,remainingSource,remainingScenarios){
  'use strict';
  const scopes={'MI-07':{n:7,id:87207,year:2024,prefix:'26',house:true},'PA-08':{n:5,id:87383,year:2024,prefix:'42',house:true},'VA-02':{n:8,year:2024,prefix:'51',house:true,url:'https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General/data/ballot-item/01000000-f030-c43d-fd71-08df1fee52e7'},'AZ-06':{n:5,id:86922,year:2024,prefix:'04',house:true},'PA-07':{n:4,id:87382,year:2024,prefix:'42',house:true},'OH-SEN':{n:88,id:87527,year:2024,prefix:'39'},'ME-SEN':{n:16,id:87188,year:2020,prefix:'23',firstChoice:true},'IA-SEN':{n:99,id:87151,year:2022,prefix:'19'},'KS-SEN':{n:105,id:87162,year:2020,prefix:'20'},'TX-SEN':{n:254,id:87438,year:2024,prefix:'48'},'WI-01':{n:5,id:87483,year:2024,prefix:'55',house:true},'WI-03':{n:19,id:87485,year:2024,prefix:'55',house:true},'MI-04':{n:6,id:87204,year:2024,prefix:'26',house:true},'PA-10':{n:3,id:87385,year:2024,prefix:'42',house:true},'NY-17':{n:4,id:87319,year:2024,prefix:'36',house:true},'WA-03':{n:7,url:'https://results.votewa.gov/results/public/api/elections/washington/20261103/data/ballot-item/54c40000-9064-bbec-4779-08df15c0a82a',year:2024,prefix:'53',house:true}};
  const policy=Object.freeze({minimum_votes:10000,minimum_reference_fraction:.005,minimum_counties:3,
@@ -50,13 +50,13 @@
    if(!h||seen.has(c.county_fips)||reference.get(c.county_fips)!==key||
       ![c.dem_votes,c.rep_votes,c.other_votes].every(n=>Number.isSafeInteger(n)&&n>=0))throw Error('Unmatched/invalid observed county');
    seen.add(c.county_fips);const n=c.dem_votes+c.rep_votes;counted+=n;allVotes+=n+c.other_votes;
-   if(n>0)observed.push({...h,n,d:c.dem_votes});
+   if(n>0)observed.push({...h,county_fips:c.county_fips,n,d:c.dem_votes});
   }
   if(!Number.isSafeInteger(allVotes)||!closes?.allowed(code,allVotes,x.snapshot_updated_at,now))throw Error('Pre-close county evidence');
   if(counted<policy.minimum_votes||counted/baseN<policy.minimum_reference_fraction||observed.filter(c=>c.n>=100).length<policy.minimum_counties)
    throw Error('Insufficient counted volume or county breadth for national updating');
   const modes=observed[0].modes,orders=modes?['absentee_first','election_day_first','proportional_mix']:['combined'];
-  const scenarios=orders.map(order=>observed.map(c=>{
+  let scenarios=orders.map(order=>observed.map(c=>{
    const mu=c.aN+c.eN,sd=mu*policy.turnout_sigma_fraction,z=(c.n-mu)/sd;
    const tail=1-cdf(z),density=Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);
    const mills=tail>1e-10?density/tail:Math.max(0,z)+1/Math.max(1,z);
@@ -65,6 +65,23 @@
    const variance=(policy.county_margin_sigma/200)**2+(policy.selection_share_sigma*(1-c.n/finalN))**2+.25/c.n;
    return {...c,aDone,eDone:c.n-aDone,variance};
   }));
+  let remainingRows=[],remainingVariants=null,remainingMetadata=null,remainingExclusion=null;
+  if(code==='WA-03'&&x.official_remaining){try{
+   if(!remainingSource||!remainingScenarios)throw Error('Optional remaining helpers unavailable');
+   const geometry=envelope.remaining_geography;
+   if(geometry?.source_sha256!=='66e3271909cd93daa17143b207642bab6a0460d0552f4765f12fbdf9e741ecbf'||geometry.geography_comparable_2024!==true||geometry.congressional_geography_reference!=='120th_Congress_2026'||geometry.map_relation_2024_to_2026!=='boundaries_unchanged_per_2026_census'||JSON.stringify(geometry.whole_county_fips)!==JSON.stringify(remainingSource.whole)||geometry.split_county_fips!=='53067')throw Error('Whole-county geometry/2026 bridge unverified');
+   const reviewed=remainingSource.parse(x.official_remaining,{now,counts_stamp:x.snapshot_updated_at});
+   remainingRows=reviewed.counties.filter(row=>observed.some(c=>c.county_fips===row.county_fips));
+   if(remainingRows.length){
+    remainingVariants=remainingScenarios.variants(remainingRows);const historical=scenarios[0];
+    scenarios=remainingVariants.map(v=>historical.map(c=>{
+     const left=v.remaining(c.county_fips,c.aN+c.eN);if(left===null)return c;
+     const finalN=c.n+left,variance=(policy.county_margin_sigma/200)**2+(policy.selection_share_sigma*(1-c.n/finalN))**2+.25/c.n;
+     return {...c,variance};
+    }));
+    remainingMetadata={whole_counties:remainingRows.length,county_fips:remainingRows.map(c=>c.county_fips),as_of:new Date(Math.max(...remainingRows.map(c=>Date.parse(c.reported_at)))).toISOString(),source_url:remainingSource.URL,assumptions:remainingScenarios.assumptions,scope:'Whole-county official estimate sensitivity; Thurston retains historical scenario; not exact outstanding ballots or calibrated intervals'};
+   }
+  }catch(error){remainingExclusion=error.message;}}
   let referenceD=baseD,referenceN=baseN,roundVariance=0;
   if(scope.firstChoice){
    const u=envelope.baseline.state_unallocated_uocava,t=envelope.baseline.statewide;
@@ -90,7 +107,7 @@
     const denominator=1+bias*precision;
     return -.5*(logVariance+Math.log(denominator)+squared-bias*weighted*weighted/denominator);
    });
-   const max=Math.max(...logs);return max+Math.log(logs.reduce((s,v)=>s+Math.exp(v-max),0)/logs.length);
+   const max=Math.max(...logs);return max+Math.log(remainingVariants?logs.reduce((s,v,i)=>s+remainingVariants[i].weight*Math.exp(v-max),0):logs.reduce((s,v)=>s+Math.exp(v-max),0)/logs.length);
   }
   let remaining=0,remainingLow=0,remainingHigh=0;
   const countedByName=new Map(x.counties.map(c=>[norm(c.county),c.dem_votes+c.rep_votes]));
@@ -99,12 +116,18 @@
    const tail=1-cdf(z),density=Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);
    const mills=tail>1e-10?density/tail:Math.max(0,z)+1/Math.max(1,z);
    const mean=Math.max(n,mu+sd*mills),spread=z>6?sd/z:sd*Math.sqrt(Math.max(0,1+z*mills-mills*mills));
-   remaining+=mean-n;remainingLow+=Math.max(0,mean-1.64*spread-n);remainingHigh+=Math.max(0,mean+1.64*spread-n);
+   let left=mean-n,low=Math.max(0,mean-1.64*spread-n),high=Math.max(0,mean+1.64*spread-n);
+   if(remainingVariants){const fips=[...reference].find(([,key])=>key===name)?.[0];
+    const estimates=remainingVariants.map(v=>({left:v.remaining(fips,mu),weight:v.weight})).filter(v=>v.left!==null);
+    if(estimates.length){left=.5*left+estimates.reduce((sum,v)=>sum+v.weight*v.left,0);low=Math.min(low,...estimates.map(v=>v.left));high=Math.max(high,...estimates.map(v=>v.left));}
+   }
+   remaining+=left;remainingLow+=low;remainingHigh+=high;
   }
   return Object.freeze({schema:'national-county-likelihood-v1' ,code,source_url:x.source_url,as_of:x.snapshot_updated_at,
    counted_two_party_votes:counted,reporting_counties:observed.length,
    modeled_remaining_two_party_votes:Math.round(remaining),modeled_remaining_two_party_votes_band:[Math.floor(remainingLow),Math.ceil(remainingHigh)],
-   remaining_scope:scope.firstChoice?'County named-candidate turnout scenario only; excludes statewide unallocated UOCAVA and unreported write-ins; not official ballots outstanding':"Conditional historical-turnout scenario, including unreported district/county parts; not official ballots outstanding",reference_turnout_fraction:counted/baseN,
+   ...(remainingMetadata?{official_remaining_sensitivity:remainingMetadata}:{}),...(remainingExclusion?{official_remaining_excluded:remainingExclusion}:{}),
+   remaining_scope:remainingMetadata?'Historical/official whole-county estimate sensitivity; Thurston historical only; not exact outstanding ballots or calibrated intervals':scope.firstChoice?'County named-candidate turnout scenario only; excludes statewide unallocated UOCAVA and unreported write-ins; not official ballots outstanding':"Conditional historical-turnout scenario, including unreported district/county parts; not official ballots outstanding",reference_turnout_fraction:counted/baseN,
    independence:'COUNTS_ONLY_NO_POLL_PRIOR_OR_RACE_POSTERIOR',logLikelihood});
  }
  function condition(model,basis,envelopes,options={}){

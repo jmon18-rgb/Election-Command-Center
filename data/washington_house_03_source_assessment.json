@@ -123,5 +123,24 @@
     "source_cache_max_age_seconds_observed": 60,
     "owned_cache_max_age_seconds_observed": 300,
     "scheduling_or_cache_delay_guaranteed": false
+  },
+  "remaining_estimate_extension": {
+    "status": "CONDITIONAL_RUNTIME_IMPLEMENTED_CURRENT_STATISTIC_UNUSABLE",
+    "contract": "WASHINGTON_REMAINING_ESTIMATE_CONTRACT.md",
+    "source_url": "https://results.votewa.gov/results/public/api/elections/washington/20261103/stats",
+    "whole_county_fips": [
+      "53011",
+      "53015",
+      "53041",
+      "53049",
+      "53059",
+      "53069"
+    ],
+    "split_thurston_excluded": true,
+    "first_night_existing_four_slots": "three counts + one estimates read only after validated positive counts; otherwise four counts reads",
+    "later_jobs": "unchanged single counts request; remaining supplement expires",
+    "current_observation_admitted": false,
+    "post_close_delivery_verified": false,
+    "source_error_calibrated": false
   }
 }
