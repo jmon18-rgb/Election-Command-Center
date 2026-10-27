@@ -1,5 +1,12 @@
 # Readiness progress
 
+## 2026-10-27T18:15:00Z - Needle release verified; celebration slice ready for review
+
+- PR487 MERGED afterALL35 exact-head workflowsSUCCESS/46latestjobs43SUCCESS3nonapplicableSKIP/0external/currenthead8c23a55d66184db524c9daa96fed02dd64a3f130/clean. Merge1187b732; its Pages40556807152 was superseded/cancelled by routine briefing push, not a build failure. Finalmaine2a9e88991a2f332bc2ca125df64d4857421e215/Pages40556871187SUCCESS; ALL292publishedfilesmatch18:08:40.060Z/failures[]. Publicremote dashboard/coherencePASS/indexmatch. Additional localEdge1366/390 nationalbrowserPASS, publishedordinaryUI5stages/expectedcountycopy/withdrawexactbaseline/liveisolationPASS at18:09:47Z; existinglocalresearchvariant preserved, public model checked separately. Receipt published-national-rehearsal-20261027.json/png. R0engineeringreleaseverified, empiricalcalibration/actualpositive2026deliveryUNMET.
+- R6 appliedonlynarrow426story/poster/guard deltas on separatecelebrationbranch: Talarico exactwinner, TXgovernor Dwinner+Abbottopponent, genericMS withexistinginvalidsourceexcluded, BLEXAS2callbonus unchanged. Three originalSVGs/sourceprovenancemanifest; GrahamstaleLindseycopy correctedtosurname-only inplayer/alt/SVG withDarlineguard unchanged, originalofficialcountyballotguide reviewed. ChangedGrahamart getscontentrevision; missingart retainsreadable story/icon/controls without alteringcalls.
+- Focusedsignals/player testsPASS; installedEdge1440/390 actualall11previewcardsPASS includingthreeimage decode/visualchecks,announcementordering/autoplayfailure/mute/skip/reducedmotion/nooverflow/missingposter/scriptfallback. Firstmissing-image test was corrected to exerciseuncachedfirstrequest withlocatorwait underfakeclock. No newaudiosource/controller/needlechanges. Thisis syntheticpreview/call-safetyQA, not realwinnerproof. FullnewexactheadCI and publicationrequired beforeR6releaseclaim. R4unappliedauditpatch remainsseparate underignoredartifacts.
+
+
 ## October27 - Independent numerical review corrected shared-error integration
 
 - Initial5-node common-error quadrature rejected BEFORErelease: multiplying several likelihoods concentrates the integral between its nodes. Independent closed-form5%contamination-product check found relative error11%/29%/56.2% for3/5/8factors. No deployed claim; oldremote8c superseded by forthcoming correctedhead.

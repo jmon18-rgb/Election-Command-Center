@@ -1400,7 +1400,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 </details>
 </section>
 <footer class="footer"><span>2026 ELECTION COMMAND CENTER · CLARITY OVER NOISE</span><span><a href="https://github.com/jmon18-rgb/Election-Command-Center">Source code ↗</a> · <span id="updated">Briefing pending</span></span></footer></main>
-<script src="./scripts/election_night_celebration_player.js?v=69018f4c64f9"></script>
+<script src="./scripts/election_night_celebration_player.js?v=493a49006118"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=6eaa0d8f80cf"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=165fc37d665a"></script>
 <script src="./scripts/civicapi_state_batch.js?v=99e987c72cb8"></script>
@@ -1425,7 +1425,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_nowcast.js?v=b8cd63572ea1"></script>
 <script src="./scripts/election_night_early_signals.js?v=36958b325016"></script>
 <script src="./scripts/election_night_priority.js?v=67317c95ade2"></script>
-<script src="./scripts/election_night_signals.js?v=30d97597fb85"></script>
+<script src="./scripts/election_night_signals.js?v=3e09fc4d7af6"></script>
 <script src="./scripts/election_night_poll_closings_2026.js?v=39c725fe013b"></script>
 <script src="./scripts/election_night_reconciliation.js?v=395ee89c6934"></script>
 <script src="./scripts/election_night_506_live_gap_desk.js?v=b3d6fc8c94e4"></script>
@@ -5665,13 +5665,16 @@ function enCivicUsable(item){
 
 const enJohnBrownPortraitUrl='https://cdn.loc.gov/service/pnp/ppmsca/23700/23764v.jpg';
 const enMilestonePosters=Object.freeze({
- graham:{file:'graham',alt:'Graham cracker splitting over South Carolina under the words LOL, Lindsey’s Seat'},
+ graham:{file:'graham',revision:'7ec8cd5c791f',alt:'Graham cracker splitting over South Carolina under the words LOL, Graham’s Seat'},
  blexas:{file:'blexas',alt:'Blue outline of Texas with two stars labelled Senate and Governor'},
  blue_corn:{file:'blue-corn',alt:'A large ear of corn with blue kernels: one blue kernel of truth'},
  blansas:{file:'blansas',alt:'John Brown himself in an authentic 1859 historical portrait, Library of Congress; Kansas blue-victory achievement.',historicalPortrait:true},
  maine:{file:'maine',alt:'Original cartoon witch with a hat labelled Collins beside a broom'},
  nebraska:{file:'nebraska',alt:'Blue tractor across Nebraska cornfields: Osborn independent corn-fed rebellion'},
- ohio:{file:'ohio',alt:'A buckeye nut cracked by a vivid blue lightning bolt: Sherrod Brown comeback'}
+ ohio:{file:'ohio',alt:'A buckeye nut cracked by a vivid blue lightning bolt: Sherrod Brown comeback'},
+ talarico:{file:'talarico',alt:'Electric-blue horns hand gesture and a Texas Senate victory star for James Talarico'},
+ abbott:{file:'abbott',alt:'An empty concession podium behind an extravagant blue Texas victory parade'},
+ mississippi:{file:'mississippi',alt:'A blue wave sends a retired Confederate-style mascot prop off a pedestal into a storage crate'}
 });
 const enMilestoneSeenKey='bluewaves_milestones_seen_2026_v1';
 let enMilestoneShown=new Set();
@@ -5703,15 +5706,19 @@ function enMilestoneRender(item,demo=false){
  $('#enJohnBrownPosterTitle').hidden=!realBrown;
  posterNode.hidden=!poster;
  posterNode.classList.toggle('historic-john-brown',realBrown);
- posterNode.onerror=null;
+ const missingPoster=()=>{
+  posterNode.onerror=null;posterNode.hidden=true;
+  $('#enMilestoneArt').hidden=false;$('#enMilestoneArt').textContent=item.icon||'🎉';
+ };
+ posterNode.onerror=poster?missingPoster:null;
  if(realBrown)posterNode.onerror=()=>{
   // If the archive thumbnail is unreachable, keep the existing local art.
-  posterNode.onerror=null;
+  posterNode.onerror=missingPoster;
   posterNode.classList.remove('historic-john-brown');
   posterNode.src='./assets/milestone-blansas.svg';
   posterNode.alt='Historical portrait temporarily unavailable; local Kansas achievement illustration';
  };
- posterNode.src=poster?(realBrown?enJohnBrownPortraitUrl:'./assets/milestone-'+poster.file+'.svg'):'';
+ posterNode.src=poster?(realBrown?enJohnBrownPortraitUrl:'./assets/milestone-'+poster.file+'.svg'+(poster.revision?'?v='+poster.revision:'')):'';
  posterNode.alt=poster?.alt||'';
  $('#enMilestoneArt').hidden=Boolean(tsunami||poster);
  $('#enMilestoneArt').textContent=tsunami?'🌊 🌊 🌊':item.icon||'🎉';

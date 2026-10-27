@@ -6,13 +6,16 @@
 })(typeof window!=='undefined'?window:null,function(){
  'use strict';
  const STORIES=Object.freeze({
-  graham:[['🪩','LAST CALL, LINDSEY','The farewell tour has one final stop.'],['💃','THE VIP LIST HAS CHANGED','South Carolina takes the spotlight.'],['🫖','LOL, GRAHAM','Please collect your tea on the way out.']],
+  graham:[['🪩','LAST CALL, GRAHAM','The farewell tour has one final stop.'],['💃','THE VIP LIST HAS CHANGED','South Carolina takes the spotlight.'],['🫖','LOL, GRAHAM','Please collect your tea on the way out.']],
   blexas:[['🤘','HOOK ’EM BLUE','One enormous state.'],['⭐ ⭐','TWO BLUE STARS','Two separate statewide calls.'],['💙','BLEXAS','Texas has entered the group chat.']],
   blue_corn:[['🌽','SOMETHING IN THE CORN','The field has a new color.'],['🔵','BLUE KERNELS EVERYWHERE','Please remain corny.'],['🌽','BLUE CORN','An entirely normal harvest.']],
   blansas:[['📜','JOHN BROWN HAS ENTERED','Kansas history takes the stage.'],['🌊','THE INK IS BLUE','A blue wave crosses the prairie.'],['💙','BLANSAS','1859 meets election night.']],
   maine:[['🧹','A BROOM WITH A VIEW','Maine prepares a sendoff.'],['🌬️','CHANGE IN THE AIR','Please secure all pointy hats.'],['💙','DING-DONG IN MAINE','The next chapter starts here.']],
   nebraska:[['🏈','UPSET ON THE PRAIRIE','The scoreboard needs a moment.'],['🌽','CORN-FED REBELLION','The establishment calls a timeout.'],['🎉','OSBORN WINS','Independent winner. No assumed caucus.']],
   ohio:[['🌰','A BUCKEYE UNDER PRESSURE','Something is about to crack.'],['⚡','BLUE-SHOCK','The comeback gets a thunderclap.'],['💙','OH! THAT HAPPENED','Ohio takes its victory lap.']],
+  talarico:[['🤘','HOOK ’EM BLUE','Raise the blue horns, Texas.'],['⭐','TALARICO TAKES THE STAGE','One Senate call. One enormous victory lap.'],['💙','TEXAS SENATE: TALARICO','The governor race has its own story.']],
+  abbott:[['🎺','MAKE WAY FOR THE PARADE','The concession podium looks unusually quiet.'],['💙','THE BACKDROP IS LEAVING','Blue confetti has the right of way.'],['🎉','TEXAS GOVERNOR FLIPS','An election defeat. A new chapter.']],
+  mississippi:[['🌊','A CHANGE IN THE CURRENT','Mississippi turns the page.'],['📦','STRAIGHT INTO STORAGE','The retired mascot gets a very blue sendoff.'],['💙','MISSISSIPPI SENATE FLIPS','Leave the old symbols behind.']],
   tsunami:[['🌊','A VERY LARGE WAVE','Preview the grand finale.'],['🌊 🌊','PLEASE SECURE YOUR LAWN SIGNS','The tide has theatrical ambitions.'],['💙','BLUE TSUNAMI','Preview only until national conditions can be verified.']]
  });
  function create({render=()=>{},announce=done=>done(),music=()=>{},valid=()=>true,
