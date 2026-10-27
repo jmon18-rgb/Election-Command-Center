@@ -7,6 +7,9 @@ const before=JSON.stringify({result,baseline}),options={closes,now:Date.parse('2
 const rows=focus.rows(result,baseline,options),ia=rows.find(x=>x.code==='IA-SEN');
 assert.equal(rows.length,18);assert.deepEqual([...focus.SENATE],['IA','KS','ME','OH','MI','NE','SC','MN','MS','AK']);
 assert.equal(ia.pct,58);assert.equal(ia.delta,13);assert.equal(ia.ownCounts,true);assert.equal(ia.count,20000);
+assert.equal(ia.performance,null,'Probability movement alone must not invent local outperformance');
+const withPerformance=structuredClone(result);withPerformance.county_results_update.used[0].matched_performance={difference_margin_scenarios:[-1,3]};
+assert.deepEqual(focus.rows(withPerformance,baseline,options).find(x=>x.code==='IA-SEN').performance.difference_margin_scenarios,[-1,3]);
 assert.equal(rows[0].code,'IA-SEN','Admitted evidence precedes clock-only priority');
 assert.equal(rows.at(-1).code,'AK-SEN','Alaska remains lowest first-night priority');
 const mi=rows.find(x=>x.code==='MI-SEN');assert.equal(mi.ownCounts,false);assert.match(mi.status,/pending/);assert.match(mi.note,/other admitted races/);
@@ -18,6 +21,7 @@ assert.equal(focus.rows(result,baseline,{...options,year:2024}).length,0);
 const cleared=focus.rows(baseline,baseline,options).find(x=>x.code==='IA-SEN');assert.equal(cleared.pct,45);assert.equal(cleared.delta,0);assert.equal(cleared.ownCounts,false);
 const corrected=structuredClone(result);corrected.race_probabilities.find(x=>x.race_code==='IA-SEN').dem_beats_rep_pct=39;
 assert.equal(focus.rows(corrected,baseline,options).find(x=>x.code==='IA-SEN').delta,-6);
+assert.equal(focus.rows(baseline,baseline,options).find(x=>x.code==='IA-SEN').performance,null,'Withdrawal must remove local performance as well as count admission');
 const missing=structuredClone(result);missing.race_probabilities.find(x=>x.race_code==='IA-SEN').dem_beats_rep_pct=null;
 assert.equal(focus.rows(missing,baseline,options).find(x=>x.code==='IA-SEN').pct,null,'Missing odds never become zero');
 const early=focus.rows(baseline,baseline,{closes,now:Date.parse('2026-11-03T22:00:00Z')});assert.equal(early[0].code,'SC-SEN');assert.equal(early[1].code,'VA-02');
