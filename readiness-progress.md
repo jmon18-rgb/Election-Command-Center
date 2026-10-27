@@ -1,5 +1,10 @@
 # Readiness progress
 
+## 2026-10-27 22:33 UTC — R8 review continuation checkpoint
+
+- Active PR499 https://github.com/jmon18-rgb/Election-Command-Center/pull/499 exact remote47879cf1bf7bca1acc38f98417d968dfa5492bf8 OPEN/ATTACHED. Latest34workflow parents17success/17pending or running, no failed current-head parent at22:32:44Z. No merge/deployment claim. Earlier080/733heads superseded; no successful-job rerun/waiver. Actual Edge full desktop/mobile smoke PASS after archive health correction. Source tree pushed/clean before this unpublished progress checkpoint.
+- Publication verifier prepared for334expected checked files after499 (new hierarchy and existing smoke test added). Run ONLY after finalcurrentmainPagesSUCCESS, then appropriate ordinary published map/source/keyboard UI verification; no source probe/replayed demo needed. All before/after/reference receipts are saved. Automation updated with precise478head/repair/current MI403 gate, deadlines and quiet policy. Next finish this protected release, then continue ready R3/R1 work; fullR8Oct30/R2calibration/Nov3-4delivery remain open. Do not push this documentation checkpoint merely to restart CI.
+
 ## 2026-10-27 22:32 UTC — R8 exact-head acceptance repair
 
 - Local execution then exposed a real archive-layout regression: the old archive CSS hid every newly moved compact health child of the national panel, including its source link. Retained the compact health aside in archive mode (archive labels still replace live statuses); actual full real-browser smoke now PASS on desktop/mobile with every original assertion. Initial733999c2 is superseded, never merge that head. No model/source/transport/call change, no bypass. This correction is a concrete archive/source-disclosure defect, not a successful-check retrigger.
