@@ -48,6 +48,8 @@ jobs:
           node scripts/test_arizona_house_06_county_source.cjs
           node scripts/test_arizona_house_06_national_bridge.cjs
           node scripts/test_arizona_house_06_controller_budget.cjs
+          node scripts/test_michigan_house_07_national_bridge.cjs
+          node scripts/test_michigan_house_07_controller_budget.cjs
           node scripts/test_pennsylvania_house_08_national_bridge.cjs
           node scripts/test_pennsylvania_house_08_controller_budget.cjs
           node scripts/test_pennsylvania_house_07_national_bridge.cjs

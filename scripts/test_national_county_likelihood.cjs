@@ -120,8 +120,8 @@ assert.throws(()=>bridge.compile({...mi,baseline:{...mi.baseline,race_code:'MI-0
 const six=bridge.condition(model,basis,[...blue,wi,wi3,mi],{...opts,now});
 assert.equal(six.diagnostics.used.length,6);assert.equal(six.diagnostics.house_vote_sources,3);
 assert.deepEqual(six.diagnostics.house_vote_states,['MI','WI']);
-assert.deepEqual(six.diagnostics.state_likelihood_budget_members,{IA:1,KS:1,TX:1,WI:2,MI:1});
-assert(six.diagnostics.state_likelihood_max_ratio.WI<=20+1e-8);assert(six.diagnostics.state_likelihood_max_ratio.MI<=20+1e-8);
+assert.deepEqual(six.diagnostics.state_likelihood_budget_members,{IA:1,KS:1,TX:1,WI:2,MI:2});
+assert(six.diagnostics.state_likelihood_max_ratio.WI<=20+1e-8);assert(six.diagnostics.state_likelihood_max_ratio.MI<=Math.sqrt(20)+1e-8);
 assert(six.diagnostics.effective_sample_size>=opts.samples*.5-1e-6);
 assert.deepEqual(bridge.condition(model,basis,[...blue,wi,wi3],{...opts,now}).result,five.result,'Withdrawing MI restores exactly the previous five-source model; Wisconsin shares never change');
 assert.equal(Object.values(six.result.counts).reduce((a,b)=>a+b,0),opts.samples);

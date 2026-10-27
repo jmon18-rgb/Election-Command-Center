@@ -1,0 +1,78 @@
+{
+  "observed_at": "2026-10-27T05:25:09.695583+00:00",
+  "source_url": "https://civicapi.org/api/v2/race/87207",
+  "source_response_sha256": "24643e57e49f89df563d14c1299d88e84ee34a75ce25df62daddbac7dbf16e6e",
+  "region_count": 7,
+  "source_test_data": false,
+  "accepted_live_vote_rows": 0,
+  "source_stamp": "2026-10-18T20:28:59.145Z",
+  "regions": [
+    {
+      "fips": "26037",
+      "name": "Clinton",
+      "type": "County"
+    },
+    {
+      "fips": "26045",
+      "name": "Eaton",
+      "type": "County"
+    },
+    {
+      "fips": "26049",
+      "name": "Genesee",
+      "type": "County"
+    },
+    {
+      "fips": "26065",
+      "name": "Ingham",
+      "type": "County"
+    },
+    {
+      "fips": "26093",
+      "name": "Livingston",
+      "type": "County"
+    },
+    {
+      "fips": "26125",
+      "name": "Oakland",
+      "type": "County"
+    },
+    {
+      "fips": "26155",
+      "name": "Shiawassee",
+      "type": "County"
+    }
+  ],
+  "candidate_roster": [
+    {
+      "name": "William Lawrence",
+      "party": "Democratic",
+      "candidate_id": 220530
+    },
+    {
+      "name": "Tom Barrett",
+      "party": "Republican",
+      "candidate_id": 220531
+    },
+    {
+      "name": "Shane Dedrick",
+      "party": "Green",
+      "candidate_id": 220532
+    }
+  ],
+  "adapter_status": "REJECTED_STALE_ZERO_NOT_LIVE",
+  "candidate_proclamation_url": "https://mi-boe.entellitrak.com/etk-mi-boe-prod/page.request.do?electionType=GEN&electionYear=2026&page=page.miboePublicReport",
+  "candidate_proclamation_sha256": "e3551674a96aebc1d295336d857a9b626ab38177823ed5357214a40b038b1938",
+  "candidate_proclamation_visually_verified_page": null,
+  "limitations": [
+    "Same civic provider; not independent comparative freshness.",
+    "Actual saved response is stale zero; no positive delivery/calibration.",
+    "Processed historical reference; only Ingham independently corroborated with original official sample."
+  ],
+  "timestamp_scope": "Local response-save clock, not publisher availability or independent vote chronology",
+  "official_disqualified_excluded": {
+    "name": "Felix Thibodeau",
+    "party": "Working Class Party",
+    "status": "DISQ"
+  }
+}

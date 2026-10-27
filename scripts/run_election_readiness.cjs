@@ -18,6 +18,9 @@ const checks = [
   ['AZ-06 full district-part source contract', 'test_arizona_house_06_county_source.cjs'],
   ['AZ-06 national movement and baseline isolation', 'test_arizona_house_06_national_bridge.cjs'],
   ['AZ-06 queued transport and manual floor', 'test_arizona_house_06_controller_budget.cjs'],
+  ['MI-07 full district-part source contract', 'test_michigan_house_07_county_source.cjs'],
+  ['MI-07 national movement and baseline isolation', 'test_michigan_house_07_national_bridge.cjs'],
+  ['MI-07 queued transport and manual floor', 'test_michigan_house_07_controller_budget.cjs'],
   ['PA-08 full district-part source contract', 'test_pennsylvania_house_08_county_source.cjs'],
   ['PA-08 national movement and baseline isolation', 'test_pennsylvania_house_08_national_bridge.cjs'],
   ['PA-08 queued transport and manual floor', 'test_pennsylvania_house_08_controller_budget.cjs'],
@@ -101,7 +104,7 @@ const markdown = ['# Election readiness report', '', `Revision: ${report.revisio
     `Audited: ${report.source_audit.audited_at} (${report.source_audit.age_minutes} minutes before this report)`,
     report.source_audit.interpretation,
     ...Object.entries(report.source_audit.unresolved_by_office).map(([office, ids]) =>
-      `- ${office}: ${ids.length} unresolved source identities${ids.length ? ' — ' + ids.join(', ') : ''}`),
+      `- ${office}: ${ids.length} unresolved source identities${ids.length ? ' â€” ' + ids.join(', ') : ''}`),
     ...Object.entries(report.source_audit.rejected_detail_reasons).map(([reason, count]) =>
       `- Rejected details: ${reason} (${count})`)]),
   '', 'Acceptance still open:', ...report.unproven_gates.map(x => `- ${x}`),
