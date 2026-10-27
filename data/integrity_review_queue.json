@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-27T21:47:38.437897Z",
+  "updated_at": "2026-10-27T22:45:13.389371Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
-    "awaiting_primary_source": 246,
-    "primary_source_checked": 4,
+    "awaiting_primary_source": 247,
+    "primary_source_checked": 3,
     "advisory_related_headline_buckets": 25,
-    "advisory_related_headlines": 58
+    "advisory_related_headlines": 59
   },
   "advisory_related_headlines": [
     {
@@ -60,6 +60,20 @@
       ],
       "topic_hints": [
         "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "6de0d7f925d150890de9",
+      "headline": "Judge hears arguments whether California should count 20,000 ballots disputed by US government - WDIO.com",
+      "possibly_related_articles": 3,
+      "distinct_publishers": 3,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -250,23 +264,69 @@
         "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
-    },
+    }
+  ],
+  "items": [
     {
-      "lead_id": "b0681272106aa9eb73ad",
-      "headline": "U.S. appeals court appears skeptical of Trump DOJ\u2019s lawsuit over California voter rolls - NBC News",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
+      "id": "6de0d7f925d150890de9",
+      "title": "Judge hears arguments whether California should count 20,000 ballots disputed by US government - WDIO.com",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNMTVXSlhROF9JYUJjRkN4ZWRYbHd5S05wQnFnQzN0RHRWS24zMEtfUFJjMm5wRWg3OEpnXzZ5cHZnaEg1TjZxSG9yZ0t6SWI4S2kwNE9zNy1Iai1tT0xGY2NYaG8xZXNLa0pkMTBLWU9GdnJwQmhENUMxQkNKTnVZU04yc0c2SmotY1R5a1psTjJyN0NaZUxRbktldlluR1dHdzRFMkhaVmY2TWpDTjJISFdGTjRYZW1wVXE4UDlMczM3SkxUTXc?oc=5",
+      "publisher": "WDIO.com",
+      "published_at": "2026-10-27T22:24:35Z",
+      "detected_at": "2026-10-27T22:45:13.389371Z",
       "state_hints": [
         "CA"
       ],
       "topic_hints": [
-        "litigation",
-        "registration"
+        "ballot_access",
+        "litigation"
       ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    }
-  ],
-  "items": [
+      "headline_numbers_unverified": [
+        "20,000 ballots"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "7998eec96f6dadd688d3",
+      "title": "Judge hears Justice Dept suit claiming noncitizens on California voter rolls - Reuters",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQcXE1Y3lpa2g5MTJjOG81SW14THVFR1REYVdCcFVvTU5razhsTkpnVE84d2F4eTBxYlZ1enBTdzhGMjhocEV2ejRhcWFuZFVvTFhoQUEtOVM3bzd6aHZ5MEwweTBva3NUS083cGJOUnBxNE5NOWthVF93TXBUZEFsZnV4OUt6RUI3MXlzNlpnX2tpV0dUSzM4dVJ5UnZNdmloVmx2eWNvdElqNExkSmNvZzIxYm1fMDYybEdydEctdlFXNXNYU1MwWDNURUxJdw?oc=5",
+      "publisher": "Reuters",
+      "published_at": "2026-10-27T22:01:43Z",
+      "detected_at": "2026-10-27T22:45:13.389371Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "registration",
+        "litigation",
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "ea23f6a6a92a0d4a059e",
+      "title": "Trump says US voter fraud is 'rampant' - evidence suggests it is extremely rare - BBC",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1fZzNkajl1OG4ycW5STjlVckk2YVllejcySGlkNkxTQVdsdEE3dXJLNGN3ZzJaODJkNnRhNnBmTk52QTZ1dDREUHNZWWtnQ2g5d0lfYm5RRGV1X1pjZGc?oc=5",
+      "publisher": "BBC",
+      "published_at": "2026-10-27T21:46:43Z",
+      "detected_at": "2026-10-27T22:45:13.389371Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "6cb0425b28329abedc85",
       "title": "Wyoming Green Card Holder Pleads Guilty To Casting Illegal Ballot In 2024 Election - Cowboy State Daily",
@@ -4972,69 +5032,6 @@
         "0 ",
         "26"
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "a9e26005c0837c2ce7b8",
-      "title": "DOJ gives California 48 hours to review list of possible noncitizens on voter rolls - AOL.com",
-      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBXV0UtbzVQM1hKRGlnYWRSNndlLWctSFVwODBKeDZBWjFFbEFzYV9uVHFzWVJ5bGJTYUE3MXY2VmE2TWdBVklXblpweEdOQTBHdXRESUFVOFFaNldpNlFlaVFWWHVxcjU5UGZEd2dUb1p3SWlDSDQ0eDctdmVlQQ?oc=5",
-      "publisher": "AOL.com",
-      "published_at": "2026-10-15T12:53:54Z",
-      "detected_at": "2026-10-15T15:26:21.639485Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [
-        "48 "
-      ],
-      "review_status": "primary_source_checked",
-      "primary_sources": [
-        {
-          "publisher": "California Secretary of State PR26-127",
-          "url": "https://www.sos.ca.gov/administration/news-releases-and-advisories/2026-news-releases-and-advisories/california-secretary-state-shirley-n-weber-phd-issues-statement-response-us-department-justice-letter",
-          "published_at": "2026-10-14"
-        }
-      ],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": "ca-doj-voter-letter-review-demand-20261013",
-      "reviewed_at": "2026-10-15",
-      "review_note": "California Secretary of State confirms DOJ 48-hour demand issued Oct 13, but says her office did not receive the alleged list; Los Angeles election office received a protected USB device. The underlying alleged ineligibility counts, Oct 15 lawsuit filings and any disenfranchisement are NOT verified by this review."
-    },
-    {
-      "id": "8c5955b280488b9c7572",
-      "title": "Election 2026: In Pa. 187th, longtime incumbent faces challenger calling for new voice - The Morning Call",
-      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNdlliRGpOVHRJbDVGVnBEQS1jT0NzSjRaX3RJQ2FwaDI5NG5td2VIZ214U280Y29zQk5rY1F3UjM3NkRFMGZuMW5tb1I1aWNET3YyVG4xcEc1VFUwblJETzBjcE85OE9qUm9QdlNtRVQ2LWlkXzFZSjlGV25sNVJNNndzX1Zjb1dMWFFPNnFobkJkeGRGb0lBdzhkTTFXS1h2UFpwUXVPUnpLVHdFVXBBOFY4MXRCZmxobWU4UTBZci1ja2NhdTJv?oc=5",
-      "publisher": "The Morning Call",
-      "published_at": "2026-10-15T11:02:42Z",
-      "detected_at": "2026-10-15T11:46:14.130714Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [
-        "2026"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "db558071030830fc2173",
-      "title": "No Kings movement calls marches to polling places this weekend to boost early voting - EL PA\u00cdS English",
-      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOV0E3WXJ1UWw1bDlWZlNjNFVlcllhUWt0T0RQdFRfdmlvdjg2cWFkTTdiOXk1OFc5QnlVOU0yM2dwS0tJTi1MQ2dnWVBpUmNfZ1B6ZEFlZVJ3UnVRTkZhaXBTUVRoUFJ5alNiODFKcVlnRnM3Rmt5c0VrWjFHa1ctSFlLYWhTWGFrcjE4TUVWMzVEVWZCWmZfeG5ha01pVkowYlZJX2VyUU1GQWhtbUxBOFZ4TGxvRFBzVGJkYU5Na1ZLRUhGZDlvYmt4RdIB3wFBVV95cUxPSlRoLWxGYmZXRldBU2dyZ3ItUm1sU1gycjBSVlFZTTdybTVzaUhoMXRQVFAtWlF2Q3Z1Wjh3bW1sZF81LTNyMlM2dFBMWE4xVTdoVTNHTWVpV0pheEVTZDB3bFZ3eXl1aDdoWDVvcWFRaHN1Y0VvTFVKR2h5anRwWHI0RVFNeEVxQVJCRTJkN3FYRElDd2JNR1U5b1JOaHpDOGo5d0o0UEVuazJKVEloYXZlR0Flb29VUmJ6a21POFBVdFJEUC1wYTFXV3htczRnUUx0NWR5VVBNazNIOGpV?oc=5",
-      "publisher": "EL PA\u00cdS English",
-      "published_at": "2026-10-15T11:00:58Z",
-      "detected_at": "2026-10-15T13:12:52.364584Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
