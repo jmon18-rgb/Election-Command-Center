@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-27T23:03:21.665030Z",
+  "updated_at": "2026-10-27T23:43:07.257828Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
     "advisory_related_headline_buckets": 25,
-    "advisory_related_headlines": 59
+    "advisory_related_headlines": 60
   },
   "advisory_related_headlines": [
     {
@@ -20,6 +20,20 @@
       "topic_hints": [
         "ballot_access",
         "election_admin"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "6de0d7f925d150890de9",
+      "headline": "Judge hears arguments whether California should count 20,000 ballots disputed by US government - WDIO.com",
+      "possibly_related_articles": 4,
+      "distinct_publishers": 3,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -60,20 +74,6 @@
       ],
       "topic_hints": [
         "security"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "6de0d7f925d150890de9",
-      "headline": "Judge hears arguments whether California should count 20,000 ballots disputed by US government - WDIO.com",
-      "possibly_related_articles": 3,
-      "distinct_publishers": 3,
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -343,6 +343,28 @@
       ],
       "headline_numbers_unverified": [
         "2024 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "8bbbbc6591b80f74e6e0",
+      "title": "Judge to consider whether California should count 20,000 ballots disputed by Trump administration - WDIO.com",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNeEpRR2F2eUZETTdXMm5tcUpfRUVUUlpic25KTzh6X3FWaE9iZlNFXzF4WHE1blVGajRuT01fRHRla3ViaDBwcUh5QVVFVG14M1M3dk81OHRiSlA1R2plVmRNS0tDbzJlbWg5ZHppTFIwbHFnWFhNM2x4YkVHeUV2a3BpdFc1UjVVYVlPajFFSy1BbHFQYklzX0NVU0hVd1dlakp2QmY4WWJhTW9GSEJ4WTRqODRvOEEtVkxhYlJ5RVB6b2hVTFhVMGxR?oc=5",
+      "publisher": "WDIO.com",
+      "published_at": "2026-10-27T21:24:25Z",
+      "detected_at": "2026-10-27T23:43:07.257828Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 ballots"
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
@@ -5014,24 +5036,6 @@
         "registration"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "147ed8c3c0e88e4ae07d",
-      "title": "0 for 26: The Trump Administration\u2019s Astonishing Losing Record - The Atlantic",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNTlRMdW50aHpTRnMwWHpqVVVQbjBCVXdKaE9pQmZRTG5lY0VmSHZiWGdJOF9wbF9ObWZkT0wtWGY3b3hScEtLYV9zekZyWXQ5eFdabGEtSWdVOUg0Y09RaXVwdmFseW1kS1pmTTlkcVNVV0JWX0M4SFdvaDByRXdEU21JdE5KR05P?oc=5",
-      "publisher": "The Atlantic",
-      "published_at": "2026-10-15T13:25:59Z",
-      "detected_at": "2026-10-15T15:07:27.637939Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [
-        "0 ",
-        "26"
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
