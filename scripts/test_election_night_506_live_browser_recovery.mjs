@@ -102,6 +102,7 @@ try{
      textContent?.includes('House 1/435 · Senate 1/35 · Governors 0/36'),
      {timeout:30000});
   let rendered=await page.locator('#enLiveCoverageTriage').textContent();
+  await page.locator('#enSourceDesk > summary').click();
   assert.match(rendered,/House 1\/435 · Senate 1\/35 · Governors 0\/36/);
   assert.match(rendered,/No source evidence for 433 House, 34 Senate and 35 governor contests/);
   assert.match(rendered,/Provider-reported zero is tracked separately/);

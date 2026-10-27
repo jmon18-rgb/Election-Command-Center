@@ -85,10 +85,14 @@
   let mode=host.__needleMode==='house'?'house':'senate';
   let selected=ALL.has(host.__needleSelected)?host.__needleSelected:null;
   const draw=()=>{
+   const focused=host.contains?.(doc.activeElement)?doc.activeElement:null;
+   const focusState=focused?.getAttribute('data-map-state');
+   const focusMode=focused?.getAttribute('data-map-mode');
    host.replaceChildren();
    const controls=d('div','en-nmap-controls');
    for(const [value,label] of [['senate','Senate map'],['house','House tipping districts']]){
     const b=d('button','en-nmap-mode',label);b.type='button';
+    b.setAttribute('data-map-mode',value);
     b.setAttribute('aria-pressed',String(mode===value));
     b.addEventListener('click',()=>{mode=value;host.__needleMode=mode;selected=null;draw()});
     controls.append(b);
@@ -106,6 +110,7 @@
    const grid=d('div','en-nmap-grid');
    for(const t of count.tiles){
     const b=d('button','en-nmap-state '+t.band,t.state);
+    b.setAttribute('data-map-state',t.state);
     b.type='button';b.style.gridColumn=String(t.col+1);
     b.style.gridRow=String(t.row+1);
     if(t.race){
@@ -149,7 +154,7 @@
     foot.append(label);
     foot.append(d('p','',active.race.provider_called_party?
      'Source-reported '+active.race.provider_called_party+' winner flag is included in the linked model; unofficial and retractable.':
-     'MODEL FORECAST — not a projected or source-confirmed winner. Raw partial vote leads do not move this probability.'));
+     'MODEL FORECAST — not a projected or source-confirmed winner. Raw vote leads alone are not performance against expectation.'));
     if(mode==='house'&&active.contests.length>1)
      foot.append(d('p','en-nmap-more',
       'Next closest districts: '+active.contests.slice(1,4).map(x=>
@@ -161,6 +166,13 @@
     }
    }
    host.append(foot);
+   // A source refresh or keyboard selection must not discard map-button focus.
+   if(focusState||focusMode){
+    const replacement=Array.from(host.querySelectorAll('button')).find(b=>
+     focusState?b.getAttribute('data-map-state')===focusState:
+      b.getAttribute('data-map-mode')===focusMode);
+    if(replacement)replacement.focus({preventScroll:true});
+   }
    host.append(d('p','en-nmap-method',
     '50-state tile cartogram (approximate geography; not district boundaries). '+
     (mode==='house'?'House colors describe one selected district per state, never statewide House control. ':
@@ -168,7 +180,7 @@
     'Probabilities come only from the linked correlated JackStradamus model'+
     (modelAsOf?' · source snapshot '+modelAsOf:'')+
     '. ✓ means an explicitly source-reported call, not certification. '+
-    'County/precinct counts remain descriptive until geography is calibrated.'));
+    'Only reviewed, matched county evidence can condition the experimental model; predictive calibration remains unproven.'));
   };
   draw();return true;
  }

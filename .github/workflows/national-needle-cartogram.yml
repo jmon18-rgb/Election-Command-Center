@@ -4,12 +4,14 @@ on:
     paths:
       - 'scripts/national_needle_cartogram.js'
       - 'scripts/test_national_needle_cartogram.cjs'
+      - 'scripts/test_election_night_hierarchy_browser.mjs'
       - 'index.html'
       - '.github/workflows/national-needle-cartogram.yml'
   pull_request:
     paths:
       - 'scripts/national_needle_cartogram.js'
       - 'scripts/test_national_needle_cartogram.cjs'
+      - 'scripts/test_election_night_hierarchy_browser.mjs'
       - 'index.html'
       - '.github/workflows/national-needle-cartogram.yml'
   workflow_dispatch:
@@ -27,3 +29,20 @@ jobs:
       - name: Ensure main dashboard mounts the guarded map
         run: |
           node -e "const fs=require('fs');const s=fs.readFileSync('index.html','utf8');for(const x of ['id=\"enNationalNeedleMap\"','national_needle_cartogram.js','function enRenderNeedleCartogram()','enRenderNeedleCartogram();'])if(!s.includes(x))throw Error('Missing map wiring: '+x)"
+  operator-tasks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save --no-package-lock playwright@1.57.0
+      - run: npx playwright install --with-deps chromium
+      - name: Laptop and mobile map, source disclosure and focus tasks
+        run: node scripts/test_election_night_hierarchy_browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: election-night-hierarchy-tasks
+          path: artifacts/readiness/ui-review/hierarchy-*
