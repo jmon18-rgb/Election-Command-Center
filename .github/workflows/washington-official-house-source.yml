@@ -37,7 +37,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: |
+      - name: Install complete browser dependencies from the primary Ubuntu archive
+        run: |
+          # The runner's Azure mirror timed out twice before browser assertions.
+          # Keep signed packages, all dependencies, tests and the same job budget.
+          if [ -f /etc/apt/apt-mirrors.txt ]; then
+            sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/apt-mirrors.txt
+          fi
           npm install --no-save --no-package-lock playwright@1.57.0
           npx playwright install --with-deps chromium --only-shell
       - run: node scripts/test_washington_national_browser.mjs

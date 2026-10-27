@@ -1,5 +1,11 @@
 # Readiness progress
 
+## 2026-10-27T10:29:00Z - Repair blocked browser dependency installation without weakening checks
+
+- PR484 exactheadab922e41 browser attempts1/2 canceled during repeatedslow Azure Ubuntu dependency downloads BEFOREbrowser assertions (runs40486302081; jobs122128816354/122133047935). Bothlogs retained original8minutejobbudget. Otherapplicableworkflows pass. No application/test failure claimed.
+- Narrow workflow repair switches the runner's declared Azure Ubuntu archive URL to the primary HTTPS Ubuntu archive in apt-mirrors.txt ifpresent. Signed-package validation, completePlaywrightdependencies, allbrowserassertions andtimeout unchanged. No productionruntime/source change. NewexactheadCI required beforemerge; no checkwaived.
+
+
 ## 2026-10-27T10:09:00Z - Late-count acceptance decision: preserve counts cadence
 
 - Reviewed existing one-native-GET/job post-first-night contract. Replacing counts with stats creates nominal10minute count gaps plus scheduling/cache delay; addingstats exceeds reviewedbudget. Retain FIRSTNIGHTONLY estimate conditioning and continuedsinglecounts jobs; no productioncollector/model/cadence change. Late-estimateconditioning explicitlyDEFERRED, not a claim officialestimates disappear. WASHINGTON_REMAINING_ESTIMATE_CONTRACT.md records decision.
