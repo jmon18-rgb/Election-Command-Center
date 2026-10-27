@@ -1,9 +1,9 @@
 // Owned-repository transport for the official source, not an independent second
 // vote observation. Reparse the original selected objects before accepting counts.
-(function(root,factory){const api=factory(typeof module!=='undefined'&&module.exports?require('./washington_official_house_source.js'):root?.WashingtonOfficialHouseSource);
+(function(root,factory){const node=typeof module!=='undefined'&&module.exports;const api=factory(node?require('./washington_official_house_source.js'):root?.WashingtonOfficialHouseSource,node?require('./washington_remaining_source.js'):root?.WashingtonRemainingSource);
  if(typeof module!=='undefined'&&module.exports)module.exports=api;
  if(root)root.WashingtonOfficialCache=api;
-})(typeof window!=='undefined'?window:null,function(source){
+})(typeof window!=='undefined'?window:null,function(source,remaining){
  'use strict';
  const BRANCH='official-results-cache',PATH='data/washington_house_03_official_latest.json';
  const URL='https://raw.githubusercontent.com/jmon18-rgb/Election-Command-Center/'+BRANCH+'/'+PATH;
@@ -32,7 +32,17 @@
   const parsed=source.parse(record.payload,reference,{now});
   if(parsed.status!==record.status||parsed.snapshot_updated_at!==record.snapshot_updated_at||parsed.source_published_at!==record.source_published_at)
    throw Error('Official cache/source clocks or status disagree');
-  return {...parsed,collection_fetched_at:record.fetched_at,transport_url:URL,
+  let supplement=null,remainingStatus='NO_REMAINING_SOURCE',remainingRevision=null;
+  if(record.official_remaining&&remaining&&parsed.live_votes_accepted){try{
+   const r=record.official_remaining;
+   if(r.payload){const text=JSON.stringify(r.payload);if(text.length>48000)throw Error('Remaining body cap');
+    const bytes=await subtle.digest('SHA-256',new TextEncoder().encode(text));const digest=Array.from(new Uint8Array(bytes),b=>b.toString(16).padStart(2,'0')).join('');
+    if(digest!==r.selected_payload_sha256)throw Error('Remaining integrity mismatch');}
+   const result=remaining.parse(r,{now,counts_stamp:parsed.snapshot_updated_at});remainingStatus=result.status;
+   remainingRevision={source_url:remaining.URL,fetched_at:r.fetched_at,status:result.status,counties:result.counties};
+   if(result.counties.length)supplement=r;
+  }catch(error){remainingStatus='REMAINING_EXCLUDED: '+error.message;}}
+  return {...parsed,...(supplement?{official_remaining:supplement}:{}),...(remainingRevision?{remaining_revision:remainingRevision}:{}),remaining_status:remainingStatus,collection_fetched_at:record.fetched_at,transport_url:URL,
    transport_note:'Official source via owned repository cache; collection, scheduling and cache delay possible; publication speed unproven'};
  }
  return Object.freeze({URL,BRANCH,PATH,fetchURL,parse});

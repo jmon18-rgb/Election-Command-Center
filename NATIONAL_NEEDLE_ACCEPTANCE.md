@@ -109,3 +109,19 @@ Runtime477 and provenance478 passed all applicable exact-head checks. Final Page
 ## Alaska contract safeguard — 2026-10-27T07:10:58Z
 
 Original2026 general ballot/roster independently verified: four printed Senate candidates, two certified named write-ins, five rank columns. Actual provider219761Republican conflicts with officialUndeclared. PR479 exacthead37workflows/51jobs46success5nonapplicable skips passed; finalPage40465033302/all274publishedfiles and laptop/mobile guard behavior verified. Actual focused07:07:21Z singleAK request still stalezero/State-only/round1 and was rejected by publishedadapter. Alaska first-choice flags and older cached calls cannot award a Senate seat or create aggregate-party/national predictions. Sixteen predictive inputs unchanged; Alaska remains excluded pending source/geographic/remaining-vote/finalRCV contracts. This is not positive delivery, calibration or speed proof.
+
+## Candidate official remaining-estimate extension
+
+A conditional WA03 extension is implemented for review. It preserves half the
+original historical-turnout likelihood and evaluates a wide, shared estimate-error
+sensitivity mixture for six independently verified whole counties. Thurston is
+never allocated from a whole-county estimate. Same-count estimate changes can
+change the national outlook in synthetic laptop/mobile tests, with unchanged
+baseline draws, state budgets and ESS floor. See
+WASHINGTON_REMAINING_ESTIMATE_CONTRACT.md for the unfitted numerical assumptions.
+
+The actual pinned statistic remains 39 zeros/null clocks, so none is usable.
+No actual positive post-close estimate delivery, error calibration, chronological
+skill or speed comparison is demonstrated. Required exact-head checks and final
+publication verification remain release requirements; this paragraph does not
+claim deployment. The October27 calibrated-acceptance decision remains unmet.

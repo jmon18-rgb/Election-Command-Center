@@ -219,9 +219,7 @@
     "file": "data/texas_historical_sources/2024-census-counties.zip",
     "sha256": "3c337402b5c6e8d5aa26b4278ccf4edc8989f2683765b3ffbf22296cdb2df3a0"
   },
-  "status": "PRE_CLOSE_ZERO_NULL_CLOCK_TEMPLATE_ONLY",
-  "production_enabled": false,
-  "may_move_national_needle": false,
+  "status": "EXPERIMENTAL_CONDITIONAL_RUNTIME_PATH_CURRENT_TEMPLATE_UNUSABLE",
   "scope": "WHOLE_COUNTY_ESTIMATES_NOT_WA03_DISTRICT_PARTS",
   "limits": [
     "All39 observed zero with null lastUpdated; zeros are not evidence of no ballots left.",
@@ -229,6 +227,11 @@
     "Official estimate is not a hard bound or exact outstanding ballots. No reviewed error model exists.",
     "No population/historical-share allocation or direct point estimate for split district parts.",
     "Parent group value is not documented as the sum of children; no inferred aggregate invariant.",
-    "Offline inspector only; no new collector, client polling, model conditioning or race call."
-  ]
+    "Experimental runtime uses fresh, paired positive production counts and whole-county estimates only; zero/null-clock current source cannot enter. No calls or calibrated claims."
+  ],
+  "runtime_path_enabled": true,
+  "current_observation_usable": false,
+  "current_observation_may_move_national_needle": false,
+  "runtime_contract": "WASHINGTON_REMAINING_ESTIMATE_CONTRACT.md",
+  "whole_county_geometry": "data/washington_house_03_remaining_geography.json"
 }

@@ -4,6 +4,12 @@ on:
     branches: [main]
     paths:
       - 'scripts/*washington_remaining_ballots.cjs'
+      - 'scripts/washington_remaining*'
+      - 'scripts/test_washington_remaining*'
+      - 'scripts/national_county_likelihood.js'
+      - 'scripts/chamber_control_model.js'
+      - 'data/washington_house_03_remaining_geography.json'
+      - 'data/washington_historical_sources/119th-census-wa03-map.pdf'
       - 'data/washington_county_remaining_source_contract.json'
       - 'data/washington_historical_sources/2026-official-county-remaining-preclose.json'
       - '.github/workflows/washington-remaining-ballots.yml'
@@ -19,4 +25,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node scripts/test_washington_remaining_ballots.cjs
+      - run: |
+          node scripts/test_washington_remaining_ballots.cjs
+          node scripts/test_washington_remaining_scenarios.cjs
+          node scripts/test_washington_remaining_integration.cjs
