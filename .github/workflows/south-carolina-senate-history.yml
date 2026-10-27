@@ -1,0 +1,29 @@
+name: Verify South Carolina Senate historical county preparation
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/build_south_carolina_senate_county_baseline.py'
+      - 'scripts/test_build_south_carolina_senate_county_baseline.py'
+      - 'data/south_carolina_senate_2020_county_baseline_official.json'
+      - 'data/south_carolina_historical_sources/**'
+      - 'data/texas_historical_sources/2024-census-counties.zip'
+      - '.github/workflows/south-carolina-senate-history.yml'
+permissions:
+  contents: read
+jobs:
+  historical-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify original pins and reject changed geography/count totals
+        run: python scripts/test_build_south_carolina_senate_county_baseline.py
+      - name: Reproduce historical preparation without network or runtime integration
+        run: |
+          python scripts/build_south_carolina_senate_county_baseline.py
+          git diff --exit-code -- data/south_carolina_senate_2020_county_baseline_official.json

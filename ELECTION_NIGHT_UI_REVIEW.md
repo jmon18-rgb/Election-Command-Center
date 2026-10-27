@@ -6,11 +6,11 @@ focused layout review on October 30 and required repairs before the October 31
 feature freeze. Make all four outcome percentages clearly visible before the
 October 29 owner rehearsal.
 
-October 27 implementation slice: a candidate reuses the needle's existing four
+October 27 released slice (PR492, main9128ba98/Pages40573641201,306checked files matched and ordinary published UI verified): the display reuses the needle's existing four
 labels as readable probability cells (four across on desktop, two by two on
 mobile). Exact joint-model values and simulated-scenario values are unchanged;
 unavailable values clear to dashes. Actual Edge1366/390 acceptance passes. This
-candidate still requires protected CI/merge/publication checks. It does not
+release does not
 complete the map/source hierarchy review or the October 30 task-based review.
 
 ## The evening's main questions
