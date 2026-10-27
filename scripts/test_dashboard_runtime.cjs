@@ -152,6 +152,8 @@ async function settle(){
  assert(w.ElectionNightRehearsal,'Synthetic rehearsal library must load before app');
  w.eval(read('scripts/chamber_control_model.js'));
  assert(w.ChamberControlModel,'Joint Senate/House model must load before app');
+ w.eval(read('scripts/official_admission_audit.js'));
+ assert(w.OfficialAdmissionAudit?.create,'Official model admission evidence must load before app');
  w.eval(read('scripts/electorate_what_if_2026.js'));
  assert(w.ElectorateWhatIf2026,'What-if electorate scenario module must load before app');
  w.eval(read('scripts/chamber_poll_error_audit.js'));
@@ -3146,6 +3148,11 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  assert.match(eventCsv,/CANDIDATE VOTES REVISED/);
  assert.doesNotMatch(eventCsv,/InvalidProvider/);
  assert.equal(eventCsv.trim().split('\r\n').length,4);
+ const evidenceLines=eventCsv.trim().split('\r\n');
+ const evidenceCells=line=>line.match(/(?:^|,)(?:"(?:[^"]|"")*"|[^,]*)/g).length;
+ assert.match(evidenceLines[0],/selected_payload_sha256/);
+ assert(evidenceLines.every(line=>evidenceCells(line)===evidenceCells(evidenceLines[0])),
+  'Existing activity rows remain aligned when official admission provenance columns are added');
  const malicious=w.eval('enCsvCell('+JSON.stringify('=HYPERLINK("https://malicious.example")')+')');
  assert(malicious.startsWith('"\'=HYPERLINK'),
    'Formula-like external candidate text must never execute as a spreadsheet formula');

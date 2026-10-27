@@ -43,6 +43,9 @@
    if(result.counties.length)supplement=r;
   }catch(error){remainingStatus='REMAINING_EXCLUDED: '+error.message;}}
   return {...parsed,...(supplement?{official_remaining:supplement}:{}),...(remainingRevision?{remaining_revision:remainingRevision}:{}),remaining_status:remainingStatus,collection_fetched_at:record.fetched_at,transport_url:URL,
+   collection_selected_payload_sha256:digest,collection_payload_integrity_verified:true,
+   collection_original_response_sha256:/^[a-f0-9]{64}$/.test(record.original_response_sha256||'')?record.original_response_sha256:null,
+   collection_original_response_hash_recomputed:false,
    transport_note:'Official source via owned repository cache; collection, scheduling and cache delay possible; publication speed unproven'};
  }
  return Object.freeze({URL,BRANCH,PATH,fetchURL,parse});

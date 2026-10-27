@@ -33,6 +33,9 @@
   if(parsed.status!==record.status||parsed.snapshot_updated_at!==record.snapshot_updated_at||parsed.source_published_at!==record.source_published_at)
    throw Error('Official cache/source clocks or status disagree');
   return {...parsed,collection_fetched_at:record.fetched_at,transport_url:URL,
+   collection_selected_payload_sha256:digest,collection_payload_integrity_verified:true,
+   collection_original_response_sha256:/^[a-f0-9]{64}$/.test(record.original_response_sha256||'')?record.original_response_sha256:null,
+   collection_original_response_hash_recomputed:false,
    transport_note:'Official source via owned repository cache; collection, scheduling and cache delay possible; publication speed unproven'};
  }
  return Object.freeze({URL,BRANCH,PATH,fetchURL,parse});

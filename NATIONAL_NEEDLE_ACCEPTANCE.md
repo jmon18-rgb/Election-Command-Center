@@ -101,6 +101,30 @@ checked before claiming that future batches will support replay. Retention
 repairs may not add native requests or change collection cadence. Future data
 collection is preparation, not historical validation already achieved.
 
+### R4 browser admission evidence candidate (October 27)
+
+The candidate records only WA03/VA02 inputs actually listed in the national
+model's `diagnostics.used`. Availability in a controller alone is not admission.
+The existing activity CSV can export browser observation time, the original
+source and collection clocks, the verified selected-payload hash, model/kernel
+revision, polling lineage and public versus local research context. Original
+full-response hashes are retained as collector claims; the browser does not
+recompute a body it never received.
+
+Corrections, withdrawals, recovery, model changes and admitted remaining-estimate
+changes have separate events. Removing an input retains the last real source
+receipt while recording the current decision's model lineage. Missing audit
+metadata is explicitly distinct from model/source withdrawal. The optional audit
+cannot modify the model, restore live inputs or add network requests.
+
+This is a browser-local, bounded record: at most 120 events and 150,000 serialized
+characters, retained for 72 hours. Export it while available. It is not a central
+archive, an independent source publication clock or a complete record from
+unopened/background clients. Simulations and pre-election observations are not
+logged as real admissions. Full original HTTP-body retention in the scheduled
+collectors is still a separate missing link; neither this candidate nor selected
+Git history establishes chronological calibration or real positive delivery.
+
 1. A chronological sequence spanning the supported race's county/district parts,
    with stable candidate/geography joins and early, middle and late counts. Final
    totals split into invented batches cannot substitute. Thurston alone cannot
