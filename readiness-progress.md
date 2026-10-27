@@ -1,5 +1,10 @@
 # Readiness progress
 
+## October27 - Owner-reported national rehearsal expectation defect / PR487
+
+- Demo forced every sample race toward arbitrary0/+8/+2 margins; labels wrongly suggested reporting composition alone. Live likelihood already compares county shares against historical composition plus each correlated draw's race shift. Generator now matches current race mean at each county and adds only explicit3margin-point surprise in stage2; corrected stage removes it. No live numerical model change or county-poll claim.
+- Actual-generator expected blue/red county composition regression and all national likelihood tests PASS. Synthetic3000draw sequence43.03/44.07/54.47/42.70/43.03 tsunami percentages, not actual odds/calibration. Local browser binary unavailable; requiredCI pending. PR487 attached/head4bcbbab4a048711b34766ab11f1f107b2612ef14. Next finish all exact-head checks before protected merge and publication/browser verification. Revised roadmap preserved in local3129dd8a on previous branch; resume R1 after release.
+
 ## 2026-10-27T14:32:54Z - Critical Pages encoding repair and seven new grounded references
 
 - PR484 MERGED normally after ALL7 exact-head workflowsSUCCESS/12latestjobs10SUCCESS2nonapplicableSKIP/0external/clean, head76ff6478f0d069a75878dacac6eda39936c784a6. Collectorparent40515500124 resolved14:16:37Z attempt1WITHOUT anyrerun. Initialmergeautoreview usedstale pendingstate/rejected; freshauthoritative completedSUCCESSproof allowed normalmerge8cb9f24cd43f92d95b026ecbd825d35a7f0939d2. Earlierone-rerunapprovalquestion withdrawn/unnecessary; no workaround/checkwaiver.
