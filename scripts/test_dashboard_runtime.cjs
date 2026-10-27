@@ -137,7 +137,9 @@ async function settle(){
  assert(w.AutomaticRaceDesk?.SEED.length>75,'Automatic Silver-reference race registry must load');
  w.eval(read('scripts/election_night_signals.js'));
  w.eval(read('scripts/election_night_celebration_player.js'));
- assert.equal(w.ElectionNightSignals?.MILESTONES.length,7);
+ assert.deepEqual(Array.from(w.ElectionNightSignals?.MILESTONES||[],x=>x.id),
+  ['graham','blexas','blue_corn','blansas','maine','nebraska','ohio','talarico','abbott','mississippi'],
+  'The dashboard must load the exact ten separately guarded celebration events');
  w.eval(read('scripts/election_night_poll_closings_2026.js'));
  assert(w.ElectionNightPollClosings2026?.allowed,
   'Actual 50-state poll-close contract must load before source reconciliation');
@@ -650,11 +652,11 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  get('#enAlertClear').click();
  fishAudioPlays=beforeSourceCallFishPlays;
  assert.equal(get('#enMilestoneDesk').hidden,false,'2026 mode reveals achievements');
- assert.equal(get('#enMilestoneGrid').querySelectorAll('.en-milestone-card').length,7);
+ assert.equal(get('#enMilestoneGrid').querySelectorAll('.en-milestone-card').length,10);
  assert.equal(get('#jointNightSensitivity').open,false,
   'Keep optional probability-model switches off the ambient election-night screen');
  const posterCards=[...get('#enMilestoneGrid').querySelectorAll('.en-milestone-card')];
- assert.equal(posterCards.filter(el=>el.querySelector('img.en-milestone-thumb')).length,7,
+ assert.equal(posterCards.filter(el=>el.querySelector('img.en-milestone-thumb')).length,10,
   'Every milestone gets its own original illustrated thumbnail');
  assert(posterCards[3].querySelector('img.en-milestone-thumb').getAttribute('src')
   .includes('cdn.loc.gov/service/pnp/ppmsca/23700/23764v.jpg'),
