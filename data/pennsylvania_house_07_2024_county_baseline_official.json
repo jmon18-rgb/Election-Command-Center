@@ -1,0 +1,56 @@
+{
+  "status": "OFFICIAL_DISTRICT_PART_HISTORY_NOT_LIVE_OR_CALIBRATION",
+  "race_code": "PA-07",
+  "election_date": "2024-11-05",
+  "county_count": 4,
+  "geography_scope": "district_parts",
+  "counties": [
+    {
+      "county": "Carbon",
+      "county_fips": "42025",
+      "dem_votes": 11614,
+      "rep_votes": 22813,
+      "named_other_votes": 0
+    },
+    {
+      "county": "Lehigh",
+      "county_fips": "42077",
+      "dem_votes": 98017,
+      "rep_votes": 89350,
+      "named_other_votes": 0
+    },
+    {
+      "county": "Monroe",
+      "county_fips": "42089",
+      "dem_votes": 2406,
+      "rep_votes": 5015,
+      "named_other_votes": 0
+    },
+    {
+      "county": "Northampton",
+      "county_fips": "42095",
+      "dem_votes": 87589,
+      "rep_votes": 86510,
+      "named_other_votes": 0
+    }
+  ],
+  "district_totals": {
+    "dem_votes": 199626,
+    "rep_votes": 203688
+  },
+  "source_url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dos/resources/voting-and-elections/bulk-data/2024-general-election/er/erstat_2024_g_268768_20250129.txt",
+  "source_sha256": "34339122238fe82272c52717a4065dbd3949e00eeb98320332797853c96f3b6c",
+  "source_schema_url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dos/resources/voting-and-elections/bulk-data/2024-general-election/er/erstat_2024_g_readme.txt",
+  "source_schema_sha256": "b0d9e221deab9acd982982d187e4f16e7fae43d59b360b867cd89fad559eb632",
+  "selected_precinct_candidate_rows": 738,
+  "selected_precincts": 369,
+  "map_comparability": "boundaries_unchanged_per_2026_census",
+  "map_source": "https://www.census.gov/programs-surveys/decennial-census/about/rdo/congressional-districts.html",
+  "candidate_proclamation_url": "https://www.monroecountypa.gov/getmedia/8952bea5-32f4-4763-a61f-49d917063997/Nov26_CandidateProclamation.pdf",
+  "candidate_proclamation_sha256": "bb36b5b463fb748f59dff82d4daae604cd1be69411475b64d8faa20963c987a3",
+  "limitations": [
+    "Monroe is a district part, not its whole-county total.",
+    "Final 2024 counts are not reporting chronology or calibrated 2026 remaining ballots.",
+    "Generic write-ins are not supplied by the state extract; named-other zero is not all other ballots."
+  ]
+}
