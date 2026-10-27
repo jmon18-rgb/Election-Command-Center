@@ -15,10 +15,14 @@ A green polling refresh, historical replay with static final totals, successful 
 
 ## Before polls close — laptop drill
 
-### National needle rehearsal handoff (R3; October 27 candidate PR487)
+### National needle rehearsal handoff (R3; October 27 verified release)
 
-Use this walkthrough after the candidate's exact release and publication checks
-are recorded. It is a functional rehearsal, not a historical backtest or a test
+PR487 is released and verified: final `e2a9e889` / Pages run40556871187,
+292 checked files matched at18:08:40 UTC; published five-stage baseline recovery
+and live isolation passed at18:09:47 UTC. Actual Edge fixture checks passed at
+1366px and390px. Later PR488/489 releases preserve this behavior; final
+`2079dfcf` / Pages40563194668 matched302 checked files at18:49:03 UTC.
+It is a functional rehearsal, not a historical backtest or a test
 of actual 2026 result delivery. The original Iowa historical scenario is separate.
 
 1. Open [Election Night](https://jmon18-rgb.github.io/Election-Command-Center/#electionNight), select **2026 · Results**, and find **Preview the national needle with simulated results** above the Iowa race diagnostic. The page may remember **2024 · Archive**; the national preview is hidden there.

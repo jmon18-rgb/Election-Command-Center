@@ -595,6 +595,9 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-celebration-stage{margin:16px auto;padding:22px 12px;min-height:170px;border-radius:12px;background:radial-gradient(ellipse at center,#195e99,#081b35);overflow:hidden}
 .en-coverage-recovery{margin:12px 0;padding:12px;border-left:3px solid #e3b45a;background:#392e182e;border-radius:5px}
 .en-celebration-stage[hidden]{display:none}
+.en-celebration-visual{width:min(100%,720px);margin:0 auto 14px;line-height:0}
+.en-celebration-visual[hidden]{display:none}
+.en-celebration-visual svg{display:block;width:100%;height:auto;max-height:390px}
 .en-celebration-icon{font-size:clamp(48px,11vw,94px);line-height:1.2;color:#60c9ff}
 .en-celebration-line{font-weight:950;font-size:clamp(22px,5vw,40px);margin:10px 0;overflow-wrap:anywhere}
 .en-celebration-caption{font-size:13px;color:#cae5ff}
@@ -1308,6 +1311,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   <div class="en-milestone-source" id="enMilestoneSource"></div>
   <div class="en-celebration-stage" id="enCelebrationStage" hidden>
    <img class="en-celebration-fish" id="enCelebrationFish" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Realistic_Fish_Head.jpg" alt="Fish Head announcing the celebration; image credited in the breaking-news panel" hidden>
+   <div class="en-celebration-visual" id="enCelebrationVisual" aria-hidden="true" hidden></div>
    <div class="en-celebration-icon" id="enCelebrationIcon" aria-hidden="true"></div>
    <div class="en-celebration-line" id="enCelebrationLine"></div>
    <div class="en-celebration-caption" id="enCelebrationCaption"></div>
@@ -1401,6 +1405,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 </section>
 <footer class="footer"><span>2026 ELECTION COMMAND CENTER · CLARITY OVER NOISE</span><span><a href="https://github.com/jmon18-rgb/Election-Command-Center">Source code ↗</a> · <span id="updated">Briefing pending</span></span></footer></main>
 <script src="./scripts/election_night_celebration_player.js?v=493a49006118"></script>
+<script src="./scripts/election_night_celebration_scene.js?v=fe0bb1ea4181"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=6eaa0d8f80cf"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=165fc37d665a"></script>
 <script src="./scripts/civicapi_state_batch.js?v=99e987c72cb8"></script>
@@ -5797,6 +5802,26 @@ function enCelebrationEligible(item){
  return enModeYear===2026&&window.ElectionNightSignals.evaluateMilestones(
   enMilestoneEvidence(),{year:enModeYear,now:Date.now()}).some(x=>x.id===item.id&&x.state==='earned');
 }
+// Optional original SVG visuals consume the existing player phase; eligibility,
+// queue, timings and audio stay with their existing owners.
+function enCelebrationClearVisual(){
+ const host=$('#enCelebrationVisual');
+ try{window.ElectionNightCelebrationScene?.clear(host)}catch{}
+ if(host){host.replaceChildren();host.hidden=true;}
+ $('#enCelebrationIcon').hidden=false;
+}
+function enCelebrationRenderVisual(item,demo,phase,scene){
+ enCelebrationClearVisual();
+ const host=$('#enCelebrationVisual');
+ let shown=false;
+ try{
+  const beat=window.ElectionNightCelebrationPlayer?.STORIES[item.id]?.indexOf(scene);
+  shown=Boolean(window.ElectionNightCelebrationScene?.render(host,{id:item.id,phase,beat,preview:demo}));
+ }catch{enCelebrationClearVisual()}
+ $('#enCelebrationIcon').hidden=shown;
+ if(shown){$('#enMilestonePoster').hidden=true;$('#enMilestoneArt').hidden=true;}
+ return shown;
+}
 const enCelebrationPlayer=window.ElectionNightCelebrationPlayer?.create({
  valid:enCelebrationEligible,
  announce:done=>{
@@ -5810,7 +5835,7 @@ const enCelebrationPlayer=window.ElectionNightCelebrationPlayer?.create({
  },
  music:enCelebrationMusic,
  render:(item,demo,phase,scene)=>{
-  if(phase==='revoked'){$('#enMilestoneSpotlight').hidden=true;return;}
+  if(phase==='revoked'){enCelebrationClearVisual();$('#enMilestoneSpotlight').hidden=true;return;}
   if(phase==='announcement')enMilestoneRender(item,demo);
   const stage=$('#enCelebrationStage');stage.hidden=false;stage.dataset.phase=phase;
   $('#enCelebrationFish').hidden=phase!=='announcement';
@@ -5818,7 +5843,8 @@ const enCelebrationPlayer=window.ElectionNightCelebrationPlayer?.create({
   $('#enCelebrationLine').textContent=scene?.[1]||'BREAKING NEWS';
   $('#enCelebrationCaption').textContent=scene?.[2]||
    (enFishSoundEnabled?'Fish Head announcement · animation follows':'Sound off · animation follows');
-  if(phase==='scene'&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const customVisual=enCelebrationRenderVisual(item,demo,phase,scene);
+  if(!customVisual&&phase==='scene'&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
    const icon=$('#enCelebrationIcon');
    for(const animation of icon.getAnimations?.()||[])animation.cancel();
    icon.animate?.([{transform:'translateY(30px) scale(.7)',opacity:0},
@@ -5851,7 +5877,7 @@ function enRenderMilestones(){
  const api=window.ElectionNightSignals,desk=$('#enMilestoneDesk'),host=$('#enMilestoneGrid');
  if(!api||!desk||!host)return;
  desk.hidden=enModeYear!==2026;
- if(desk.hidden){enCelebrationPlayer.stop();$('#enMilestoneSpotlight').hidden=true;return}
+ if(desk.hidden){enCelebrationPlayer.stop();enCelebrationClearVisual();$('#enMilestoneSpotlight').hidden=true;return}
  const records=api.evaluateMilestones(enMilestoneEvidence(),{year:enModeYear,now:Date.now()});
  host.replaceChildren();
  for(const item of records){
@@ -5864,7 +5890,7 @@ function enRenderMilestones(){
   if(art){
    const thumbnail=elt('img','en-milestone-thumb');
    thumbnail.src=art.historicalPortrait?enJohnBrownPortraitUrl:
-    './assets/milestone-'+art.file+'.svg';
+    './assets/milestone-'+art.file+'.svg'+(art.revision?'?v='+art.revision:'');
    if(art.historicalPortrait)thumbnail.onerror=()=>{
     thumbnail.onerror=null;
     thumbnail.src='./assets/milestone-blansas.svg';
@@ -5897,7 +5923,7 @@ function enRenderMilestones(){
   }else if(item.state!=='earned'&&enMilestoneShown.has(item.id)&&hasCompleteSource(item.id)){
    enCelebrationPlayer.revoke(item.id);
    enMilestoneShown.delete(item.id);changed=true;
-   $('#enMilestoneSpotlight').hidden=true;
+   enCelebrationClearVisual();$('#enMilestoneSpotlight').hidden=true;
   }
  }
  if(changed)enMilestonePersist();
@@ -5905,7 +5931,7 @@ function enRenderMilestones(){
 $('#enTsunamiPreview').addEventListener('click',()=>enMilestoneShow({
  id:'tsunami',icon:'🌊',tag:'FOUR ENDINGS · BLUE TSUNAMI'},true));
 $('#enMilestoneClose').addEventListener('click',()=>{
- enCelebrationPlayer.stop();
+ enCelebrationPlayer.stop();enCelebrationClearVisual();
  if(enFishPending.length&&!enFishCurrent)enFishNextBulletin();
  $('#enMilestoneSpotlight').hidden=true;
  $('#enTsunamiPreview').focus();
