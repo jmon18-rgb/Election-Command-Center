@@ -1,0 +1,25 @@
+name: Verify close Maine Senate county and first-choice contract
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/*maine*'
+      - 'data/maine*'
+      - '.github/workflows/maine-competitive-source.yml'
+permissions:
+  contents: read
+jobs:
+  source-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install openpyxl==3.1.5
+      - run: python scripts/test_build_maine_senate_county_baseline.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/test_maine_civic_county_source.cjs

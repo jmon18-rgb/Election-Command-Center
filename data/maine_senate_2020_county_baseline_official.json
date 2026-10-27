@@ -1,0 +1,242 @@
+{
+  "schema": "same-office-first-choice-county-history-v1",
+  "race_code": "ME-SEN",
+  "baseline_year": 2020,
+  "round": 1,
+  "status": "HISTORICAL_REFERENCE_NOT_2026_FORECAST",
+  "counties": [
+    {
+      "county": "Androscoggin",
+      "county_fips": "23001",
+      "records": {
+        "total": {
+          "dem_votes": 22181,
+          "rep_votes": 32979,
+          "other_votes": 3530,
+          "blank_ballots": 671,
+          "total_contest_votes": 58690
+        }
+      }
+    },
+    {
+      "county": "Aroostook",
+      "county_fips": "23003",
+      "records": {
+        "total": {
+          "dem_votes": 9750,
+          "rep_votes": 24033,
+          "other_votes": 1818,
+          "blank_ballots": 609,
+          "total_contest_votes": 35601
+        }
+      }
+    },
+    {
+      "county": "Cumberland",
+      "county_fips": "23005",
+      "records": {
+        "total": {
+          "dem_votes": 105308,
+          "rep_votes": 74592,
+          "other_votes": 14084,
+          "blank_ballots": 1930,
+          "total_contest_votes": 193984
+        }
+      }
+    },
+    {
+      "county": "Franklin",
+      "county_fips": "23007",
+      "records": {
+        "total": {
+          "dem_votes": 6276,
+          "rep_votes": 9817,
+          "other_votes": 1291,
+          "blank_ballots": 215,
+          "total_contest_votes": 17384
+        }
+      }
+    },
+    {
+      "county": "Hancock",
+      "county_fips": "23009",
+      "records": {
+        "total": {
+          "dem_votes": 15379,
+          "rep_votes": 17371,
+          "other_votes": 2565,
+          "blank_ballots": 361,
+          "total_contest_votes": 35315
+        }
+      }
+    },
+    {
+      "county": "Kennebec",
+      "county_fips": "23011",
+      "records": {
+        "total": {
+          "dem_votes": 27664,
+          "rep_votes": 39481,
+          "other_votes": 4741,
+          "blank_ballots": 729,
+          "total_contest_votes": 71886
+        }
+      }
+    },
+    {
+      "county": "Knox",
+      "county_fips": "23013",
+      "records": {
+        "total": {
+          "dem_votes": 12190,
+          "rep_votes": 11705,
+          "other_votes": 1863,
+          "blank_ballots": 274,
+          "total_contest_votes": 25758
+        }
+      }
+    },
+    {
+      "county": "Lincoln",
+      "county_fips": "23015",
+      "records": {
+        "total": {
+          "dem_votes": 10102,
+          "rep_votes": 12075,
+          "other_votes": 1463,
+          "blank_ballots": 217,
+          "total_contest_votes": 23640
+        }
+      }
+    },
+    {
+      "county": "Oxford",
+      "county_fips": "23017",
+      "records": {
+        "total": {
+          "dem_votes": 11705,
+          "rep_votes": 19567,
+          "other_votes": 2150,
+          "blank_ballots": 388,
+          "total_contest_votes": 33422
+        }
+      }
+    },
+    {
+      "county": "Penobscot",
+      "county_fips": "23019",
+      "records": {
+        "total": {
+          "dem_votes": 28958,
+          "rep_votes": 51088,
+          "other_votes": 5161,
+          "blank_ballots": 926,
+          "total_contest_votes": 85207
+        }
+      }
+    },
+    {
+      "county": "Piscataquis",
+      "county_fips": "23021",
+      "records": {
+        "total": {
+          "dem_votes": 2655,
+          "rep_votes": 6603,
+          "other_votes": 604,
+          "blank_ballots": 134,
+          "total_contest_votes": 9862
+        }
+      }
+    },
+    {
+      "county": "Sagadahoc",
+      "county_fips": "23023",
+      "records": {
+        "total": {
+          "dem_votes": 10787,
+          "rep_votes": 11558,
+          "other_votes": 1694,
+          "blank_ballots": 241,
+          "total_contest_votes": 24039
+        }
+      }
+    },
+    {
+      "county": "Somerset",
+      "county_fips": "23025",
+      "records": {
+        "total": {
+          "dem_votes": 7355,
+          "rep_votes": 17861,
+          "other_votes": 2298,
+          "blank_ballots": 359,
+          "total_contest_votes": 27514
+        }
+      }
+    },
+    {
+      "county": "Waldo",
+      "county_fips": "23027",
+      "records": {
+        "total": {
+          "dem_votes": 9768,
+          "rep_votes": 12538,
+          "other_votes": 2007,
+          "blank_ballots": 253,
+          "total_contest_votes": 24313
+        }
+      }
+    },
+    {
+      "county": "Washington",
+      "county_fips": "23029",
+      "records": {
+        "total": {
+          "dem_votes": 5251,
+          "rep_votes": 11196,
+          "other_votes": 895,
+          "blank_ballots": 228,
+          "total_contest_votes": 17342
+        }
+      }
+    },
+    {
+      "county": "York",
+      "county_fips": "23031",
+      "records": {
+        "total": {
+          "dem_votes": 57826,
+          "rep_votes": 64092,
+          "other_votes": 7660,
+          "blank_ballots": 1464,
+          "total_contest_votes": 129578
+        }
+      }
+    }
+  ],
+  "statewide": {
+    "dem_votes": 347223,
+    "rep_votes": 417645,
+    "other_votes": 54315,
+    "blank_ballots": 9122,
+    "total_contest_votes": 819183
+  },
+  "state_unallocated_uocava": {
+    "dem_votes": 4068,
+    "rep_votes": 1089,
+    "other_votes": 491,
+    "blank_ballots": 123,
+    "total_contest_votes": 5648
+  },
+  "uocava_policy": "Retained separately; never assigned to counties or discarded.",
+  "live_votes_accepted": false,
+  "may_move_national_needle": false,
+  "limitations": [
+    "Final first-choice history, not reporting chronology or calibration.",
+    "Contest votes are not an estimate of outstanding 2026 ballots.",
+    "Round-one counts must not be relabeled final RCV outcomes."
+  ],
+  "source_url": "https://mobile.maine.gov/sos/sites/maine.gov.sos/files/content/assets/ussenator1120.xlsx",
+  "source_sha256": "0880031fa74d62dbbaf2e6a40380b7a3801033e66fcf8634b2e6f4b3e3fb96ce",
+  "county_reference_sha256": "3c337402b5c6e8d5aa26b4278ccf4edc8989f2683765b3ffbf22296cdb2df3a0"
+}

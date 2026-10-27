@@ -1,5 +1,33 @@
 # Election Night production-readiness assignment
 
+## October26 23:56Z — Maine real same-office baseline and strict county adapter implemented
+
+- Followed actual official previous-election/2020page links to ussenator1120.xlsx,
+  downloaded44,469bytes,SHA0880031fa74d62dbbaf2e6a40380b7a3801033e66fcf8634b2e6f4b3e3fb96ce.
+  Exactofficialsheet/headers/partyrows verified. Reproducible importer joins16county
+  codes to existing independently pinnedCensusGazetteer23xxxIDs, verifies everytown
+  andsubtotal/state. Officialcounty sums plus SEPARATE statewideUOCAVA reconcile
+  exactly347223D/417645R. UOCAVA4068D/1089R staysunallocated; no fakecountyassignment.
+- New pinnedoriginalworkbook,16countybaseline/reference, importer/tests. Blankballots
+  excludedfromcontestvotes but preserved, thirdpartyvotes retained. Finalfirstchoice
+  history is NOT reportingchronology, calibration or2026ballotsoutstanding.
+- New strict Maine source adapter: select ONLY16Countyaggregates outofmixedCounty/
+  Township payload, exactindependentFIPS/names andballotverifiedcandidateIDs; never
+  doublecounttowns. Explicitround1only, stale/test/preclose/candidate/totalguards;
+  reject additionalcandidate/writein orround2 untilreviewed. Providerstate totals
+  mustexactlyreconcilecounty totals; anyunallocatedpositive2026componentcurrently
+  excludes source rather than inventingitsgeography. No winnerflagforecastinput.
+- LocaltestsPASS originalbaseline/UOCAVA/subtotals and meaningfulsyntheticpositive
+  source cases: nestedtown999999999counts ignored; duplicate/missingcounty, round2,
+  alteredcandidateID, totalsdisagreement/stalereply rejected. Newread-onlyCIworkflow
+  runs bothcontracts. NoUI/controller/nationalactivation yet: this is implemented
+  preparation for a TENTH nationalinput, not actualpositiveMaineforecasting.
+- NEXT: finishreviewchecks, then connectMaine to existingnationalcontroller/likelihood
+  with explicitfirstchoice/unallocateduncertainty and sameexistingcadencebudget;
+  testnationalmovement/corrections beforedeployment. No newracepanel. Keep all
+  existing9inputs operational and source/calibration limits visible.
+
+
 ## October26 23:41Z — Maine independent ballot contract verified
 
 - OfficialWestbrookElections&Voting page actually links sampleballot6376. Original
