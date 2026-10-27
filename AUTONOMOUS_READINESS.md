@@ -1,5 +1,53 @@
 # Election Night production-readiness assignment
 
+## October 27 02:04Z — close Ohio results-to-NATIONAL connection VERIFIED DEPLOYED
+
+- #470 https://github.com/jmon18-rgb/Election-Command-Center/pull/470 merged
+  after ALL 36 exact-head workflows succeeded; 47 latest jobs, 43 success and
+  4 nonapplicable skips; no external statuses; clean exact-head mergeability.
+  Tested head e5eeb67069d6710994d5f1122b4abf15aeddec63, merge
+  a57b753db001939a065bcfa83bd3c53a5e6d1d17. Required Texas runtime job was
+  marked cancelled after its assertions passed; attempt 2 succeeded on the SAME
+  head. No checks waived, protections bypassed or timeout changed.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40434472506
+- Final briefing main ed4381f3874e51e1ba05225a88d25128e0a62a00; final Pages
+  40435919243 SUCCESS (earlier merge Pages was superseded, not final acceptance).
+  ALL 181 expected published files matched at 02:03:48Z, all 56 loaded script
+  fingerprints valid; actual remote forecast/dashboard coherence passed.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40435919243
+- Actual PUBLISHED 1366/390 SYNTHETIC tests PASS Ohio-only automatic national
+  movement before calls, red/blue correction, zero withdrawal, old-reply rejection,
+  unexpected-round exclusion, outage/recovery, hidden/archive isolation and
+  automatic/manual minute floor. Mobile screenshot visually checked; primary
+  driver identifies OH-SEN and modeled turnout, experimental shared-error transfer,
+  no observed House votes and no independently calibrated interval. No race panel.
+- Separate ACTUAL PUBLISHED fixture-free/real-clock probe 02:04:10Z: all eleven
+  HTTP 200; ten civic non-test ZERO counts, WA expired pre-election health-only.
+  ZERO admitted inputs/projections/raw archives/page errors. LIVE_DELIVERY_UNPROVEN.
+  No actual positive 2026 delivery, independent reporting chronology, calibrated
+  probabilities/remaining intervals or comparative publication-speed proof.
+- Five Senate states IA/KS/TX/ME/OH plus six House districts across five states
+  now support the ONE national needle. Eleven routes are limited evidence, not a
+  representative national sample; existing owner thresholds/baseline/state budgets
+  and ESS floor preserved. Ohio uses the standard two-party turnout scenario from
+  the different 2024 regular seat, not official outstanding ballots or Maine RCV.
+  Native seven-candidate roster and 88 counties matched; no party summing.
+- Additional Ohio floor restarts AFTER completion, including long queue waits.
+  Dedicated 90-second-queue + five-second-transport regression and all 39 local
+  core checks PASS. Existing eight fast routes 32/min, Maine1/min, Ohio<=1/min,
+  WA owned<=1/min; shared 4-active/64-queue/8-reserve pool, generations/breaker and
+  correction/retraction guards unchanged. No additional full-route race panel.
+- NEXT bounded task: inspect existing PA10 timeliness/source assessments and the
+  independently linked official current results/network for a permitted independent
+  fallback to this top uploaded House power-flip race. Reuse its verified district-
+  part baseline; do not invent IDs, whole-county allocations, source permissions,
+  comparative speed or positive delivery. If already blocked, record the exact
+  remaining contract once and choose the next consequential scoped gap. No more
+  Ohio/Maine preparation, unchanged blanket probes or safe-seat expansion.
+- Last daily report remains 2026-10-26 Eastern. Notify this verified Ohio national
+  milestone once on this run, then keep unchanged monitoring quiet.
+
+
 ## October 27 01:44Z — Ohio queued-transport minute floor tightened before release
 
 - Pre-merge review found that measuring the request floor from enqueue time can

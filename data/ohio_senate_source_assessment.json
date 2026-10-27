@@ -2,8 +2,8 @@
   "schema": "bounded-close-senate-source-assessment-v1",
   "assessed_at": "2026-10-27T00:52:00Z",
   "race": "OH-SEN-SPECIAL",
-  "national_input_enabled": false,
-  "status": "SOURCE_ROSTER_AND_HISTORICAL_BASELINE_VERIFIED_NATIONAL_WIRING_PENDING",
+  "national_input_enabled": true,
+  "status": "NATIONAL_INPUT_PATH_DEPLOYED_LIVE_DELIVERY_UNPROVEN",
   "priority": "Near-boundary Senate within owner scope; uploaded Senate importance 11; engineering queue, not forecast acceptance.",
   "provider": {
     "url": "https://civicapi.org/api/v2/race/87527",
@@ -96,7 +96,7 @@
     "No remaining-ballot or national likelihood is enabled without a matched historical baseline and reviewed candidate contract.",
     "Existing Ohio official NIST approval gates remain intact; current mock counts cannot be admitted."
   ],
-  "next": "Implement reviewed Ohio county-to-national kernel/controller path using this exact roster and historical reference. No separate panel; maintain freshness/mock/correction/retraction/budget guards. Actual post-close delivery and calibration remain unproven.",
+  "next": "Monitor for genuine post-close batches within existing bounds; original ballot/history and national wiring are complete. Calibration and comparative freshness remain unproven.",
   "historical_baseline": {
     "file": "data/ohio_senate_2024_county_baseline_official.json",
     "original_file": "data/ohio_historical_sources/2024-official-statewide-race-summary.xlsx",
@@ -113,5 +113,8 @@
     "rep_votes": 2857383,
     "other_votes": 196288,
     "limitation": "Final 2024 regular-seat counts, not 2026 special-seat candidate expectation or release-order calibration."
-  }
+  },
+  "runtime_verified_at": "2026-10-27T02:04:10.985Z",
+  "deployed_main": "ed4381f3874e51e1ba05225a88d25128e0a62a00",
+  "live_votes_admitted_at_latest_real_probe": false
 }
