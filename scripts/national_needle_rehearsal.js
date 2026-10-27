@@ -9,16 +9,21 @@
   return {code,id,baseline,reference,baseline_year:year};
  }));}
  const total=c=>c.records.total||{dem_votes:c.records.absentee.dem_votes+c.records.election_day.dem_votes,rep_votes:c.records.absentee.rep_votes+c.records.election_day.rep_votes};
- function stage(inputs,step){
+ function stage(inputs,step,basis){
   if(step===0||step===4)return [];
   return inputs.map(({code,id,baseline,reference,baseline_year})=>{
    const all=baseline.counties.map(c=>({...c,...total(c)}));
    const baseN=all.reduce((s,c)=>s+c.dem_votes+c.rep_votes,0),baseD=all.reduce((s,c)=>s+c.dem_votes,0);
-   const target=step===1?0:step===2?8:2,shift=(target-100*(2*baseD/baseN-1))/200;
-   const rural=new Set([...all].sort((a,b)=>a.dem_votes/(a.dem_votes+a.rep_votes)-b.dem_votes/(b.dem_votes+b.rep_votes)).slice(0,Math.ceil(all.length*.35)).map(c=>c.county));
+   const expected=basis?.house?.concat(basis?.senate||[]).find(r=>r.code===code)?.mean;
+   if(!Number.isFinite(expected))throw Error('Missing current race expectation for rehearsal '+code);
+   // Match the live likelihood's historical-county + current-race swing assumption.
+   // A blue county arriving is expected; only step 2 adds an explicit D+3-point
+   // performance surprise. These are fictional margins, never county polling.
+   const target=expected+(step===2?3:0),shift=(target-100*(2*baseD/baseN-1))/200;
+   const blueFirst=new Set([...all].sort((a,b)=>b.dem_votes/(b.dem_votes+b.rep_votes)-a.dem_votes/(a.dem_votes+a.rep_votes)).slice(0,Math.ceil(all.length*.35)).map(c=>c.county));
    const fips=new Map(reference.counties.map(c=>[c.county,c.fips]));
-   const counties=all.map(c=>{const n=step===1&&!rural.has(c.county)?0:Math.floor((c.dem_votes+c.rep_votes)*(step===1?.3:.65));
-    const d=Math.floor(n*Math.max(.001,Math.min(.999,c.dem_votes/(c.dem_votes+c.rep_votes)+shift)));
+   const counties=all.map(c=>{const n=step===1&&!blueFirst.has(c.county)?0:Math.floor((c.dem_votes+c.rep_votes)*(step===1?.3:.65));
+    const d=Math.round(n*Math.max(.001,Math.min(.999,c.dem_votes/(c.dem_votes+c.rep_votes)+shift)));
     return {county:c.county,county_fips:fips.get(c.county),dem_votes:d,rep_votes:n-d,other_votes:0};});
    return {rehearsal:true,baseline,reference,baseline_year,snapshot:{race_code:code,source_url:'https://civicapi.org/api/v2/race/'+id,
     status:'VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED',live_votes_accepted:true,county_identities_matched:counties.length,
@@ -26,6 +31,8 @@
   });
  }
  root.NationalNeedleRehearsal=Object.freeze({load,stage,now:Date.parse('2026-11-04T04:00:00Z'),labels:[
-  'Before counting · polling baseline','Rural counties arrive first · fictional counts','Broader returns favor Democrats · fictional counts',
-  'Corrected returns reduce the blue signal · fictional counts','Sources withdrawn · return to the polling baseline']});
+  'Before counting · polling baseline','Blue counties arrive as expected · no added performance surprise',
+  'Broader returns outperform each race expectation by 3 margin points · fictional counts',
+  'Correction removes the added surprise · back to expected county performance',
+  'Sources withdrawn · return to the polling baseline']});
 })(window);

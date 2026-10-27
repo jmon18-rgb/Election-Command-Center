@@ -15,6 +15,31 @@ A green polling refresh, historical replay with static final totals, successful 
 
 ## Before polls close — laptop drill
 
+### National needle rehearsal handoff (R3; October 27 candidate PR487)
+
+Use this walkthrough after the candidate's exact release and publication checks
+are recorded. It is a functional rehearsal, not a historical backtest or a test
+of actual 2026 result delivery. The original Iowa historical scenario is separate.
+
+1. Open [Election Night](https://jmon18-rgb.github.io/Election-Command-Center/#electionNight), select **2026 · Results**, and find **Preview the national needle with simulated results** above the Iowa race diagnostic. The page may remember **2024 · Archive**; the national preview is hidden there.
+2. Expand the preview. Confirm **SIMULATED / FICTIONAL COUNTS / NOT LIVE** and stage **1/5**. Note the four baseline probabilities. Do not interpret these as certified results or earned celebration triggers.
+3. Press **Next simulated update**. Stage **2/5** reports blue counties at their modeled expectation. Historical county shares are adjusted to each current race's expectation; these are not county polling observations. The direction of the raw counted margin is not the national signal. Some probability movement can result from reduced uncertainty.
+4. Continue to **3/5**: fictional returns outperform each race expectation by three margin points. This deliberately stronger performance may move the national forecast. Continue to **4/5**: a correction removes that added surprise. Continue to **5/5**: sources withdraw and the preview must return to the same baseline. The next click cycles to **1/5**.
+5. Confirm the live outlook and live vote totals did not change during preview. Close the preview to return to normal monitoring. No refresh, storage clear, permission prompt or notification subscription is required to exit simulation.
+
+If controls are missing, first check the selected year and expanded section. If
+the model is still loading, allow loading to finish; an unavailable preview is
+not zero probability. If a source is unavailable or stale, preserve the visible
+polling-only/unknown state. Do not clear safeguards or manually invent data to
+make the needle move. Record the displayed stage, revision and error before
+recovery. Browser acceptance must separately test outage/recovery and source
+isolation; the five user stages do not simulate a real network outage.
+
+Handoff evidence must record the final published revision, UTC check time,
+laptop/mobile viewport or device, baseline restoration, isolation from live mode,
+and known source/calibration limits. Source and remaining-ballot uncertainty,
+shared-error assumptions and limited race coverage remain experimental.
+
 1. On the same laptop/browser intended for Election Night, load https://jmon18-rgb.github.io/Election-Command-Center/ and verify Election Night opens from a new tab and from a long-running tab. Verify published revision parity on `main`, current refresh timestamps, no JavaScript errors, and no phantom 2026 vote totals.
 2. Check GitHub Actions: *Refresh election briefing*, *pages build and deployment*, *Production deployment health*, source-preflight/coverage workflows, and the scheduled real-browser endurance workflow. Record each run's actual conclusion and timestamps. A scheduled future run is not evidence of a past pass.
 3. Inspect `data/election_night_source_coverage.json` and the on-page 506-race desk. Identify each *not-indexed*, *unprobed*, *provider-outage*, *invalid source*, *stale* and *manually linked only* contest. Escalate NH-01, NH-02, remaining seven outside-primary House exceptions and Massachusetts Senate first; do not count Boston municipal returns as statewide Massachusetts returns.

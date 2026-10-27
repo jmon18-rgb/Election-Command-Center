@@ -6,6 +6,41 @@ const basis=model.prepare({seats:load('seat_universe'),history:load('house_histo
  geography:load('house_geography_bridge'),senateHistory:load('senate_history_2020_2022_2024'),
  odds:load('race_probabilities'),polls:load('polling_estimates')});
 const opts={samples:900,seed:20261103},now=Date.parse('2026-11-04T03:10:00Z');
+// Regression: reporting composition alone is not performance. Use the actual
+// user rehearsal generator, and verify its expectations against the likelihood.
+const vm=require('node:vm'),demoWindow={};
+vm.runInNewContext(fs.readFileSync('scripts/national_needle_rehearsal.js','utf8'),{window:demoWindow});
+const rehearsalCheck=demoWindow.NationalNeedleRehearsal.load(async p=>JSON.parse(fs.readFileSync(p,'utf8'))).then(inputs=>{
+ const expected=demoWindow.NationalNeedleRehearsal.stage(inputs,1,basis);
+ const surprise=demoWindow.NationalNeedleRehearsal.stage(inputs,2,basis);
+ const corrected=demoWindow.NationalNeedleRehearsal.stage(inputs,3,basis);
+ for(const envelope of expected){
+  const seat=basis.house.concat(basis.senate).find(r=>r.code===envelope.snapshot.race_code);
+  const totals=c=>c.records.total||{dem_votes:c.records.absentee.dem_votes+c.records.election_day.dem_votes,rep_votes:c.records.absentee.rep_votes+c.records.election_day.rep_votes};
+  const rows=envelope.baseline.counties.map(c=>({county:c.county,...totals(c)}));
+  const baseD=rows.reduce((s,c)=>s+c.dem_votes,0),baseN=rows.reduce((s,c)=>s+c.dem_votes+c.rep_votes,0);
+  const shift=(seat.mean-100*(2*baseD/baseN-1))/200;
+  for(const e of [envelope,corrected.find(e=>e.snapshot.race_code===seat.code),surprise.find(e=>e.snapshot.race_code===seat.code)]){
+   const extra=e===surprise.find(e=>e.snapshot.race_code===seat.code)?.015:0;
+   for(const c of e.snapshot.counties){const n=c.dem_votes+c.rep_votes;if(!n)continue;
+    const h=rows.find(h=>h.county===c.county),share=Math.max(.001,Math.min(.999,h.dem_votes/(h.dem_votes+h.rep_votes)+shift+extra));
+    assert(Math.abs(c.dem_votes-n*share)<=.500001,'Fictional returns must match county expectation plus only the declared surprise');
+   }
+  }
+  // Combined-mode KS/TX make a clean composition-only check without a method-mix assumption.
+  if(!['KS-SEN','TX-SEN'].includes(seat.code))continue;
+  const blueLikelihood=bridge.compile(envelope,{now:demoWindow.NationalNeedleRehearsal.now,rehearsal:true});
+  assert(blueLikelihood.logLikelihood(seat.mean)>blueLikelihood.logLikelihood(seat.mean+6),'Expected blue counties cannot imply six-point blue outperformance');
+  assert(blueLikelihood.logLikelihood(seat.mean)>blueLikelihood.logLikelihood(seat.mean-6));
+  const red=structuredClone(envelope),selected=new Set([...rows].sort((a,b)=>a.dem_votes/(a.dem_votes+a.rep_votes)-b.dem_votes/(b.dem_votes+b.rep_votes)).slice(0,Math.ceil(rows.length*.35)).map(c=>c.county));
+  red.snapshot.counties=red.snapshot.counties.map(c=>{const h=rows.find(h=>h.county===c.county),n=selected.has(c.county)?Math.floor((h.dem_votes+h.rep_votes)*.3):0,d=Math.round(n*Math.max(.001,Math.min(.999,h.dem_votes/(h.dem_votes+h.rep_votes)+shift)));return {...c,dem_votes:d,rep_votes:n-d};});
+  const redLikelihood=bridge.compile(red,{now:demoWindow.NationalNeedleRehearsal.now,rehearsal:true});
+  assert(redLikelihood.logLikelihood(seat.mean)>redLikelihood.logLikelihood(seat.mean-6),'Expected red counties cannot imply six-point red outperformance');
+  assert(redLikelihood.logLikelihood(seat.mean)>redLikelihood.logLikelihood(seat.mean+6));
+ }
+ assert.throws(()=>demoWindow.NationalNeedleRehearsal.stage(inputs,1,{}),/Missing current race expectation/);
+ console.log('Expected blue/red county composition and declared rehearsal surprise PASS (synthetic, not calibration)');
+}).catch(error=>{console.error(error);process.exitCode=1;});
 const specs=[['IA-SEN','iowa',87151,2022],['KS-SEN','kansas',87162,2020],['TX-SEN','texas',87438,2024]];
 function fixture(spec,margin=8){
  const [code,state,id,year]=spec,reference=load(state+'_county_fips_reference');
@@ -32,6 +67,39 @@ assert.deepEqual(replayed,ordinary,'Exact RNG-state replay preserves entire corr
 assert.throws(()=>model.simulate(basis,{...opts,captureCountyDraws:['CA-SEN']}),/scope/);
 assert.throws(()=>model.simulate(basis,{...opts,replayCountySeeds:[1]}),/replay/);
 const blue=specs.map(s=>fixture(s,8)),red=specs.map(s=>fixture(s,-8));
+const sharedOne=bridge.condition(model,basis,[blue[0]],{...opts,now});
+const sharedThree=bridge.condition(model,basis,blue,{...opts,now});
+assert(sharedThree.result.blue_both_including_tsunami>sharedOne.result.blue_both_including_tsunami,
+ 'Consistent performance across states must still provide more evidence than one candidate-specific surprise');
+const reporting=sharedThree.diagnostics.reporting_error;
+assert.equal(reporting.scope,'SHARED_ACROSS_ADMITTED_RACES');
+assert.equal(reporting.calibrated,false);
+assert(Math.abs(reporting.shared_margin_sigma**2+reporting.race_specific_margin_sigma**2-8**2)<1e-10,
+ 'Sharing reporting error must allocate the existing variance, not add a second error budget');
+assert.equal(reporting.quadrature_nodes,61);
+const commonNodes=bridge.normalQuadrature().map(r=>[r.z,r.weight]);
+assert(Math.abs(commonNodes.reduce((s,[z,w])=>s+w*z*z,0)-1)<1e-6);
+for(const k of [1,3,5,8,12,16]){
+ let exact=0,choose=1;for(let j=0;j<=k;j++){
+  exact+=choose*.05**(k-j)*.95**j/Math.sqrt(1+j);choose=choose*(k-j)/(j+1);
+ }
+ const integrate=nodes=>nodes.reduce((s,{z,weight})=>s+weight*(.05+.95*Math.exp(-z*z/2))**k,0);
+ assert(Math.abs(integrate(bridge.normalQuadrature())/exact-1)<1e-6,'Joint robust likelihood integral must match its closed-form reference');
+ assert(Math.abs(integrate(bridge.normalQuadrature())-integrate(bridge.normalQuadrature(.1)))<1e-7,'Joint integral converges on a finer normal grid');
+}
+// Two synthetic same-direction batch errors are not independent confirmation.
+// Use real compiled county likelihoods to distinguish integrating one shared
+// nuisance AFTER the product from multiplying two separately integrated sources.
+const a=bridge.compile(blue[1],{now}),b=bridge.compile(blue[2],{now});
+const curve=bridge.conditionalCurve(a,[-10,10]);
+for(let m=-40;m<40;m+=.371){
+ assert(Math.abs(curve(m)-a.logLikelihood(m,{sharedReportingOffset:0}))<.001,'Conditional curve interpolation must track the direct county likelihood');
+}
+const likelihoodAt=(c,m,z)=>Math.exp(c.logLikelihood(m,{sharedReportingOffset:z*reporting.shared_margin_sigma})-c.logLikelihood(8,{sharedReportingOffset:0}));
+const sharedProduct=commonNodes.reduce((s,[z,w])=>s+w*likelihoodAt(a,0,z)*likelihoodAt(b,0,z),0);
+const independentProduct=commonNodes.reduce((s,[z,w])=>s+w*likelihoodAt(a,0,z),0)*commonNodes.reduce((s,[z,w])=>s+w*likelihoodAt(b,0,z),0);
+assert(sharedProduct>independentProduct,
+ 'A common batch bias must remain a plausible explanation for correlated surprises, not independent evidence twice');
 const before=JSON.stringify(ordinary),up=bridge.condition(model,basis,blue,{...opts,now}),down=bridge.condition(model,basis,red,{...opts,now});
 assert.equal(JSON.stringify(ordinary),before,'Conditioning cannot mutate the original baseline');
 assert(up.result.blue_both_including_tsunami>down.result.blue_both_including_tsunami+1,

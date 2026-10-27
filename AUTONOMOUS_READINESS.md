@@ -1,5 +1,25 @@
 # Election Night production-readiness assignment
 
+## October27 - Independent numerical review corrected shared-error integration
+
+- Initial5-node common-error quadrature rejected BEFORErelease: multiplying several likelihoods concentrates the integral between its nodes. Independent closed-form5%contamination-product check found relative error11%/29%/56.2% for3/5/8factors. No deployed claim; oldremote8c superseded by forthcoming correctedhead.
+- Replacement: normalized61-node normal grid +/-6sigma/step.2 and conditional scalar log-likelihood lookup at.125margin points (explicitoffset0 preserveshalfvariance). Normal-grid closed-form/finer-grid checks and directcurve checks PASS. Independent actualrehearsal3000draw61vs121maxheadline0/0/.04pp, weightTV~6e-6;900drawdirect61vslookupweightTV6.03e-6, headlinediff.11pp(one draw), runtime24.24s direct vs.90s lookup. These are numerical/synthetic results, not calibration. Full national and16-inputWA/remaining/recovery testsPASS. Exactfingerprint andallnewCIrequired.
+- R6 prepared patch/provenance files underignoredartifacts/readiness/celebration-next.*; R4official-admission-next.patch underreview for72hpruning/CSVshape/end-to-endmetadata. No tracked source/celebration changes applied. R1newordinaryofficialMaricopa route confirms2026map/Oct1,2025adoption and3newnames, but providesno voteequivalency; receipt reprecincting-route-20261027.json. No repeatblockedsource or fakeallocation.
+
+
+## October27 - Owner activates needle adjustments and celebrations
+
+- ROADMAP now explicitly lists R0 needle methodology/release and R6 celebration productions. Owner's direct instruction supersedes the old celebration pause; no extra approval is needed for this authorized scope. R0/PR487 remains current release task, followed by bounded R1/R2 work and ready R3/R6 tasks rather than waiting for Nov3 data.
+- R6 begins with review of426 against current deployed identity/call contracts, not blind merge. Priorities: separate TX Senate/governor, two-call BLEXAS, Mississippi, then requested remaining roster/Tsunami. Targets: Oct28 needle candidate, Oct29 stable national handoff, Oct30 celebration rehearsal, Oct31 freeze; working targets subject to checks/evidence. Preview/replay/skip/sound-off/reduced-motion, permitted audio/art rights, exact post-close calls/correction revocation/duplicate suppression remain required. No forecast-triggered wins or assumed independent caucus flips.
+
+
+## October27 - Research-backed shared reporting-error candidate / PR487
+
+- Owner requested better needle methodology. Published NYT-editor interview describes local expectations; DDHQ authors warn about incomplete/method-biased units; Gelman identifies correlated early-return errors as false national certainty. Sources and distinctions saved in NATIONAL_NEEDLE_ACCEPTANCE.md. NYT original explainer unavailable, no proprietary-code or parameter claim.
+- Concrete structural weakness: existing batch error was race-specific even across similar early returns in different states. Candidate retains total8margin-point batch sigma, allocates half variance to one common nuisance/half race-specific and integrates common nuisance AFTER combining likelihoods with5normal quadrature nodes. No extra polling prior; same state budgets/ESS/draws/thresholds/corrections. One-half allocation explicit ASSUMED/unfitted, not calibrated or empirically optimal. No animation smoothing.
+- Actual-generator blue/red expectation checks, shared-error vs independent-product check, unchanged variance budget and consistent-multiple-races-more-than-one PASS. Full national likelihood plus ME/OH/VA/WA/PA08/MI07 bridges PASS, including mixed16-input outage/remaining/correction/withdrawal/recovery. New exact-head CI still required; no deployment claim. Revised owner ROADMAP restored from3129dd8a so it survives branch handoff. Next finish exact-head release gates and published behavior, then R1/R2 priorities. Real delivery/calibration remain UNMET.
+
+
 ## 2026-10-27T14:32:54Z - Critical Pages encoding repair and seven new grounded references
 
 - PR484 MERGED normally after ALL7 exact-head workflowsSUCCESS/12latestjobs10SUCCESS2nonapplicableSKIP/0external/clean, head76ff6478f0d069a75878dacac6eda39936c784a6. Collectorparent40515500124 resolved14:16:37Z attempt1WITHOUT anyrerun. Initialmergeautoreview usedstale pendingstate/rejected; freshauthoritative completedSUCCESSproof allowed normalmerge8cb9f24cd43f92d95b026ecbd825d35a7f0939d2. Earlierone-rerunapprovalquestion withdrawn/unnecessary; no workaround/checkwaiver.

@@ -1,5 +1,52 @@
 # National needle acceptance decision — October 27, 2026
 
+## October 27 methodology reassessment after owner rehearsal review
+
+The owner requested better expectation-based forecasting, not cosmetic smoothing.
+The rehearsal previously imposed arbitrary race margins (0, D+8, D+2). PR487
+replaces those with historical county composition adjusted to current race means,
+then an explicitly declared three-point margin surprise. These are hypothetical
+county expectations, not county polls. Expected reporting can narrow uncertainty;
+the raw arrival of Democratic counties is not evidence of a Democratic wave.
+
+Published methodological evidence supports local benchmarks, caution about
+incomplete voting-method batches, and shared observation errors:
+
+- [NYT graphics editor Wilson Andrews interview, Reuters Institute, Oct28 2024](https://reutersinstitute.politics.ox.ac.uk/news/moving-needle-how-new-york-times-aims-guide-readers-through-americas-most-uncertain-election): describes local pre-election expectations and learning about similar places from deviations. This interview establishes the broad approach, not NYT source code or parameters. Direct retrieval of the original NYT explainer was unavailable; no paywall bypass or proprietary reconstruction.
+- [DDHQ authors, Harvard Data Science Review, Oct18 2024](https://doi.org/10.1162/99608f92.ccb395f0): published primary-election method uses geography/demographics and nearly complete reporting units, and cautions about early/late mail-vote differences. It is not a validated parameter prescription for our general-election House/Senate model. Their completeness thresholds must not be substituted for our unknown vote completion.
+- [Andrew Gelman, Nov8 2016](https://statmodeling.stat.columbia.edu/2016/11/08/election-forecasting-updating-error-ignored-correlations-data-thus-producing-illusory-precision-inferences/): identifies correlated errors in early-vote estimates as a source of false national certainty.
+
+Concrete candidate improvement: retain the existing eight-margin-point batch
+error standard deviation but allocate half its variance to one shared reporting
+error across admitted races and half to race-specific error. Integrate the same
+shared nuisance after combining county likelihoods, using a normalized 61-node
+normal-density grid over +/-6 standard deviations, before ESS tempering and same-draw replay. This distinguishes a
+common early-batch artifact from independent confirmation in several states.
+Fixed state likelihood budgets, the contamination floor, original correlated
+prior draws and Four Endings thresholds remain unchanged. No visual moving
+average, hysteresis or update delay is introduced; valid corrections still
+change the estimate immediately.
+
+Independent numerical review rejected the initial five-node integration as too
+coarse for multiplied likelihoods. The replacement matches a closed-form
+robust-likelihood integral through 16 factors (relative error below 1e-6), and
+agrees with a finer 121-node reference on actual rehearsal inputs. A conditional
+scalar log-likelihood lookup at 0.125-margin-point spacing avoids repeating all
+county calculations at every node. Direct-versus-lookup and finer-grid checks
+must allow one-draw headline rounding while assessing posterior-weight error;
+the saved numerical review is not a historical forecast-accuracy evaluation.
+
+The one-half variance allocation is an explicit, unfitted engineering assumption,
+not a NYT/DDHQ parameter or empirically optimal value. This addresses a structural
+independence weakness; it does not demonstrate improved accuracy. A common error
+can resemble genuine national movement, so coherent multi-race performance must
+still move the outlook and independent held-out chronological evaluation remains
+the acceptance gate. Shared errors may not cover every regional/method-specific
+bias; county demographics and verified method-level observations remain future
+evidence requirements, never guessed inputs. No new source or polling posterior
+is counted as result evidence. Candidate changes must pass all applicable checks
+and publication verification before being described as deployed.
+
 Decision: implementation is ready for experimental use; predictive validation is
 not sufficient for a calibrated national forecasting claim. This is the bounded
 October 27 source/calibration decision, prepared from existing evidence. It does
@@ -17,6 +64,42 @@ not change the owner's primary national-needle requirement or silently disable i
 | Does coverage represent national House behavior? | Eleven supported House districts across seven states, plus five Senate states (IA/KS/TX/ME/OH) | Limited evidence; not a representative national sample |
 
 ## Exact outstanding evidence
+
+### R2 admission and scoring specification (October 27 roadmap review)
+
+The saved corpus contains **zero admitted chronological calibration datasets**.
+Thurston has genuine partial reports but only one of seven WA03 parts, starts at
+59.1% of eventual two-party votes and lacks independent publication/capture
+clocks and a contemporaneous forecast. Iowa/Kansas assumed-order historical
+experiments remain development stress tests. Reused close-governor outcomes are
+not fresh holdouts. The AP archive still lacks established reuse rights and
+independent capture provenance; Ohio registration/absentee administration is
+not an admitted candidate-return sequence. No blocked-source retry is justified
+by this inventory.
+
+Before admitting an evaluation dataset, retain a manifest with exact race/year,
+candidates and complete matched reporting geography; original bytes/hash and
+source clock; independently established availability/capture time and correction
+chain; final truth and permitted reuse. Freeze genuinely contemporaneous
+pre-election expectations without using final outcomes to construct the prior.
+Replay real early/middle/late snapshots. Retrospective final count fractions can
+classify evaluation bins but cannot enter predictions as known completion.
+
+Hold out entire races/elections, not snapshots from the same tuned case. Report
+margin MAE/bias, interval coverage and width, Brier/log loss and remaining-vote
+interval coverage against both polling-only and naive-count baselines. Stratify
+by reporting order/method and check correction/retraction recovery. Keep the
+independent-race sample count separate from the number of correlated snapshots.
+National covariance transfer requires a separate held-out chamber/Four Endings
+evaluation using contemporaneous inputs across races; race-level skill alone
+cannot clear that gate.
+
+The next useful evidence task is a prospective retention audit of existing WA/VA
+collectors and client admission. Their data-only Git branches preserve selected
+publication versions, but the original-body and client-admission chains must be
+checked before claiming that future batches will support replay. Retention
+repairs may not add native requests or change collection cadence. Future data
+collection is preparation, not historical validation already achieved.
 
 1. A chronological sequence spanning the supported race's county/district parts,
    with stable candidate/geography joins and early, middle and late counts. Final

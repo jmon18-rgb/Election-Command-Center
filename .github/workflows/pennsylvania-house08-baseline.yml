@@ -42,6 +42,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Use Ubuntu primary mirror for signed browser dependencies
+        run: |
+          # Two same-head attempts expired in Azure font downloads before tests.
+          # Preserve package verification, all dependencies and the 5-minute budget.
+          if [ -f /etc/apt/apt-mirrors.txt ]; then
+            sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/apt-mirrors.txt
+          fi
       - run: npm install --no-save --no-package-lock playwright@1.57.0
       - run: npx playwright install --with-deps chromium
       - run: node scripts/test_pennsylvania_house_08_national_browser.mjs
