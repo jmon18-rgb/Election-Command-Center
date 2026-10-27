@@ -205,7 +205,8 @@
         "House|OK-01",
         "House|OK-02",
         "House|OK-03",
-        "House|OK-05"
+        "House|OK-05",
+        "House|OK-04"
       ],
       "directory_mapping_reviewed_at": "2026-10-27"
     },
@@ -366,7 +367,8 @@
         "House|TN-06",
         "House|TN-07",
         "House|TN-08",
-        "House|TN-09"
+        "House|TN-09",
+        "House|TN-03"
       ]
     },
     {
@@ -380,7 +382,8 @@
         "House|WI-02",
         "House|WI-04",
         "House|WI-05",
-        "House|WI-06"
+        "House|WI-06",
+        "House|WI-08"
       ]
     },
     {
@@ -1203,6 +1206,27 @@
       {
         "id": "House|WI-06",
         "url": "https://votes.decisiondeskhq.com/races/2026-11-03/wisconsin-us-house-6-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Original publisher directory declares this exact general-election race link; human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/wisconsin"
+      },
+      {
+        "id": "House|OK-04",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/oklahoma-us-house-4-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Original publisher directory declares this exact general-election race link; human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/oklahoma"
+      },
+      {
+        "id": "House|TN-03",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/tennessee-us-house-3-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Original publisher directory declares this exact general-election race link; human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/tennessee"
+      },
+      {
+        "id": "House|WI-08",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/wisconsin-us-house-8-general-election",
         "verified_at": "2026-10-27",
         "verification": "Original publisher directory declares this exact general-election race link; human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
         "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/wisconsin"
