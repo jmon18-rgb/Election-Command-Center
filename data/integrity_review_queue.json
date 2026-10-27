@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-27T14:01:23.756319Z",
+  "updated_at": "2026-10-27T14:59:45.294416Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
@@ -268,6 +268,23 @@
   ],
   "items": [
     {
+      "id": "8bbb654bbd9b1dfd5c44",
+      "title": "The Phantom Voter Intimidation Threat - National Review",
+      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQLWF6QjJJR3RYblFzYWswQ090UG0yQWpSVTR1S1c3MjRWRkpZdEszenF0ZThUazR1SWxtaTJMeGRQTjA3U256TlpISnVNOVJHbHBzSGpMa244NWF3cFQ2TGhvb2hXaUttV0ZtYnBaRzIzc1ZxNzhMVFM0Z3dwYUdvaFYzUDhwak82Vm83RzIyONIBlAFBVV95cUxNQVotQmpqZDUzUlpWN2NvSWNpNkl0TGJ5SGltVUhJb0JVWWl1WTZBYXlRUm5SWnU0cWtkRmdaeVNCeldiTVlBNVJWblU0R290QjRsdXdOeXpoaUQyS1FSMHRSWlgwbFhRYVZJVEhvWE1BN25pbGZoeGx0bmFMQzdJR2h5VXUwUmNNOWlQa3FCdkhicHY5?oc=5",
+      "publisher": "National Review",
+      "published_at": "2026-10-27T14:15:03Z",
+      "detected_at": "2026-10-27T14:59:45.294416Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "ff64e7eefe0f11c08ff5",
       "title": "Judge Orders Trump to Clarify ICE Plans at Polls Ahead of Elections - MundoNOW",
       "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQS2g4Sk9RUGprU3VTR3N1Ym9fT281WWc1MlRxMGdjWTVycE80OEdxT2F1dGFQTWU0R05JNkRhVVZNSENoRU02TUN2RjU3T2xzbUx4bUt5cjBLMFJrZUdLUl92Vy1mN3pRZWt2RXNBRjFJXzhoNHZnUkVxUEdnQmxCY1lMVGU3bG1zV3J4SUJ0QWN0Q0UwVzZybA?oc=5",
@@ -296,6 +313,26 @@
       "state_hints": [],
       "topic_hints": [
         "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "5a5dc1440fb251b0382b",
+      "title": "The New Worst-Case Scenario for Election Officials: Federal Interference - The New York Times",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPYldXcDdqQ2JqeWI4UklEeDh3elVuTzBYOFFVU3FVNzVTOW1JcktPSXdiNmU3S1Jsa09kLTVmYU8zLUQyczE1WXlSb1MxcHNrQ3dISHFMYmU1ckdDOWhCN1U3bjVGcGJNbDg1a2FXWGJRMjNTUURETGlVcFAzR3UwcEd3X1ZTZw?oc=5",
+      "publisher": "The New York Times",
+      "published_at": "2026-10-27T09:03:57Z",
+      "detected_at": "2026-10-27T14:59:45.294416Z",
+      "state_hints": [
+        "NY"
+      ],
+      "topic_hints": [
+        "security",
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -4971,43 +5008,6 @@
         "9 ",
         "2026"
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "802b8ce5702e53afa2aa",
-      "title": "Interactive: 9 ways Trump could interfere with US midterm elections 2026 - The Indian Express",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQMEVqalNrZzhPNjhqT3JvS1F0STVmMEpYa0dFMERMUGpobmJBaXJ3bnB5M19zMDRkeWJWREItQkFHdVk3NHhGM29JN2ZKZVpNQWRyQzZhYUp2bDlOUF8ycHpXYkh6bVFlemZfOTZ6TTZjZ2pOTzZudVl1N1NSYTdXTkYtQzJmMGwyd2Q0V3VCMFFWeUpBcGstM0JpLTRmYVo0WXZZQ3JON0lzWjBua3h5dDluamlPUTA2R01fSk9lRdIBxgFBVV95cUxOcmZCbkZRaEQ5OGdMNml2Q0o3bGpZQ3NFOWhqNU11Mzlpb3BnUUY1bzdjUFZzanVpdDRqYkdWcFRCQVc4RE84QnlDTkJlUEh0cHVocHA5NWFFMS1kbHRpaU9pRUZWbGoxRGZJTVpaWFlzZlI2dGJpQjNRU3F4Mmc3cnBVcWJKZS0tcXlJZW9xUmdCWU9WSGt1bXBHV2JzVDhlNjJ0ekdBVFlfamlWSnZfeG1vQ3lITVFBdm5zVkVxTTVIRkZrNHc?oc=5",
-      "publisher": "The Indian Express",
-      "published_at": "2026-10-14T20:35:20Z",
-      "detected_at": "2026-10-15T00:02:33.834331Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [
-        "9 ",
-        "2026"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "a1ad9c50e56d0d575f14",
-      "title": "Justice Dept. demands California prove citizenship for lists of voters or withhold ballots - Los Angeles Times",
-      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQNm9EM3BaMC1UOFNjdHVDeGVibUttdGt6T1JwYmw3d0M0dGNmejFFUUFHMnNjTnAycnF6YkxEUkJDSWpUb1IzakJMSEtnVjZoM3c3ZUtyTmcwNFdnU1haZURTWWtuQkV1Njh3UU00THNxMXZlVlBfYjRXZ3l0R2lRa2x4VDAtY2psamtYMlRfbTYxbHBabGp6YnVZdk14SnZkbEFaTDVqaVYxeU81aGNMc3piX200SDRKOWV1Z1lSM1ZIZEtWbkJkQUtfWWpmSVA5cmJlb093?oc=5",
-      "publisher": "Los Angeles Times",
-      "published_at": "2026-10-14T20:16:00Z",
-      "detected_at": "2026-10-14T20:53:15.333028Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration",
-        "ballot_access",
-        "security"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,

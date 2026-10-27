@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-27T14:01:24.776891+00:00",
+  "updated_at": "2026-10-27T14:59:45.909078+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,7 +9,7 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1266,
+      "available_in_source": 1268,
       "records_examined": 300
     },
     "governor": {
@@ -17,23 +17,39 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 317,
-  "newly_injected_into_model": 3,
+  "matched_primary_observations": 320,
+  "newly_injected_into_model": 1,
   "injected_poll_ids": [
     {
-      "race_code": "CA-GOV",
-      "poll_id": "dace5ed7-00ad-4589-aab8-3f3a9350d3c5"
-    },
-    {
-      "race_code": "NV-GOV",
-      "poll_id": "ddffbacb-9b7f-43b2-a68a-b2faa8e0884d"
-    },
-    {
-      "race_code": "VT-GOV",
-      "poll_id": "e0ed7271-b846-48d0-8aff-8cee9f96db47"
+      "race_code": "IN-05",
+      "poll_id": "a295315c-1215-45c2-9ed2-ef50d10fcd5b"
     }
   ],
   "observations": [
+    {
+      "race_code": "IN-05",
+      "race_type": "house",
+      "state": "IN",
+      "poll_id": "a295315c-1215-45c2-9ed2-ef50d10fcd5b",
+      "question_id": "d22327c8-831e-44d7-bfad-90bbb081f0cf",
+      "pollster": "Quantus Insights",
+      "dem_name": "J.D. Ford",
+      "rep_name": "Victoria Spartz",
+      "dem": 44.6,
+      "rep": 47.4,
+      "margin": -2.8,
+      "field_end": "2026-10-22",
+      "field_start": "2026-10-21",
+      "posted_date": "2026-10-27",
+      "posted_source_datetime": "2026-10-27T10:20:00",
+      "posted_source_time": "10/27/26 10:20",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.indystar.com/story/news/politics/elections/2026/10/27/new-poll-spartz-in-close-race-with-democratic-challenger-in-indianas-5th/92441978007/",
+      "sample_population": "lv",
+      "sample_size": 634,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "VT-GOV",
       "race_type": "governor",
