@@ -2,6 +2,8 @@
 
 ## 2026-10-27 22:32 UTC — R8 exact-head acceptance repair
 
+- Local execution then exposed a real archive-layout regression: the old archive CSS hid every newly moved compact health child of the national panel, including its source link. Retained the compact health aside in archive mode (archive labels still replace live statuses); actual full real-browser smoke now PASS on desktop/mobile with every original assertion. Initial733999c2 is superseded, never merge that head. No model/source/transport/call change, no bypass. This correction is a concrete archive/source-disclosure defect, not a successful-check retrigger.
+
 - PR499 initial080ab7af had two failed workflow parents, both the SAME existing real-browser smoke trying to click enJumpSenate inside the newly closed source disclosure. Logs122508841240/122508842002 confirm an invisible-control timeout, not a native outage or model defect. Updated that smoke to assert the desk starts closed, open it through the visible Inspect data & sources link, then retain ALL original office/drilldown/archive/coverage/keyboard/overflow assertions. Added only the existing bundled-runtime/Edge override for local verification; CI still uses its pinned Chromium. No UI/model/source change, no rerun/waiver/timeout increase. ALLnew exact-head CI remains required.
 - Exact prior-release baseline screenshots captured1366/390 from allowlisted Gitdc716files with externals blocked; receipt hierarchy-before-receipt.json proves map nested inside source desk and source paragraphs before personal. Candidate operator tasks/after screenshots already passed. R3 walkthrough draftv.3 now distinguishes verified332file MIprep release from PENDING499layout and includes map/source/focus tasks; final Oct29owner handoff not complete.
 
