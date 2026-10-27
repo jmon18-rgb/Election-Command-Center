@@ -13,6 +13,40 @@ unavailable values clear to dashes. Actual Edge1366/390 acceptance passes. This
 release does not
 complete the map/source hierarchy review or the October 30 task-based review.
 
+## October 27 rendered reference tasks — partial comparison, not acceptance
+
+At about22:15UTC, reviewed ordinary rendered 2024 historical Senate pages at
+[270toWin](https://www.270towin.com/2024-election-results-live/senate/) and
+[ABC News](https://abcnews.com/Elections/2024-us-senate-election-results-live-map/),
+each at1265x720 CSS pixels. No publisher vote data, imagery or forecast rules were
+imported into this app. CNN's previously denied retrieval was not retried.
+
+- 270toWin: the election hub exposes office choices; one U.S.Senate click opens
+  a chamber view with an explicit Forecast/Live Results distinction and map
+  before the long candidate table. Selecting the visible MI tile opens Michigan
+  candidate context in place. Large advertising/intro regions push the map below
+  the first fold; that spacing does not serve this owner's task. Pointer selection
+  was tested; keyboard behavior was not evaluated there.
+- ABC: office choice, historical year/update/projection context precede the
+  chamber bar and geographic map; recent projections and tables follow. Actual
+  keyboard task: ArrowRight on the focusable map announced Idaho, another
+  ArrowRight announced Wyoming, Enter opened Wyoming's state map/candidate
+  table, and Escape closed it while retaining Wyoming map focus/context. Idaho's
+  lack of a Senate contest did not open a state view. Visible arrow-key guidance
+  and in-place return are useful patterns to test in our existing map. ABC's
+  expected-vote reporting and winner labels are publisher-specific, not adopted.
+
+Screenshots and the task receipt are under artifacts/readiness/ui-review/:
+270-hub-20261027.png,270-senate-20261027.png,
+270-map-michigan-20261027.png,abc-senate-20261027.png,
+abc-keyboard-state-20261027.png,publisher-rendered-tasks-20261027.json.
+This advances the formerly text-only comparison. It does not complete mobile
+comparison, this app's laptop/mobile task acceptance, or the October30 review.
+Next implementation: extract the national forecast map from the source desk,
+preserve a compact consequential freshness/coverage notice, and place detailed
+source investigation behind a named disclosure. Preserve callbacks, source IDs,
+all four probabilities and forecast-versus-counted-result distinctions.
+
 ## The evening's main questions
 
 The page should answer, in order:
