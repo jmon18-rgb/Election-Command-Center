@@ -7,7 +7,30 @@ const {chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright');
 const root=resolve(import.meta.dirname,'..'),types={'.html':'text/html','.js':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.mp3':'audio/mpeg'};
 const server=createServer((req,res)=>{const f=resolve(root,'.'+(new URL(req.url,'http://localhost').pathname==='/'?'/index.html':new URL(req.url,'http://localhost').pathname));
  if(!f.startsWith(root+sep)||!existsSync(f)||!statSync(f).isFile()){res.writeHead(404).end();return;}res.writeHead(200,{'content-type':types[extname(f)]||'application/octet-stream'}).end(readFileSync(f));});
-await new Promise(ok=>server.listen(0,'127.0.0.1',ok));let browser;
+await new Promise(ok=>server.listen(0,'127.0.0.1',ok));async function assertOfficialAdmissionPath(page,code){
+ const observed=await page.evaluate(code=>{
+  const controller=code==='WA-03'?enWashingtonHouse03Controller:enVirginiaHouse02Controller;
+  const snapshot=controller.status().evidence?.snapshot;
+  const event=enOfficialAdmissionAudit.events().find(e=>e.code===code&&e.kind==='ADMITTED');
+  return {snapshot,event,version:ChamberControlModel.VERSION,pollingAt:jointBasis.generated_from_sources.model_polling_at,
+   kernel:document.querySelector('script[src*="/national_county_likelihood.js?"]').getAttribute('src'),exportEnabled:!document.querySelector('#enExportChanges').disabled};
+ },code);
+ assert(observed.event,'Actual parser/controller/national-model path must create an admission receipt');
+ assert.equal(observed.snapshot.collection_payload_integrity_verified,true);
+ assert.match(observed.event.selected_hash,/^[a-f0-9]{64}$/);
+ assert.equal(observed.event.selected_hash,observed.snapshot.collection_selected_payload_sha256,'Parser metadata survives the controller evidence envelope');
+ assert.equal(observed.event.original_hash,observed.snapshot.collection_original_response_sha256);
+ assert.equal(observed.event.original_hash_recomputed,false);
+ assert.equal(observed.event.receipt_at,observed.snapshot.collection_fetched_at);
+ assert.equal(observed.event.source_at,observed.snapshot.snapshot_updated_at);
+ assert.equal(observed.event.model_version,observed.version);
+ assert.equal(observed.event.polling_at,observed.pollingAt);
+ assert.equal(observed.event.kernel_revision,observed.kernel);
+ assert(observed.event.model_revision.includes(observed.version)&&observed.event.model_revision.includes(observed.pollingAt));
+ assert.equal(observed.event.provenance_status,'VERIFIED_SELECTED_PAYLOAD');
+ assert.equal(observed.exportEnabled,true);
+}
+let browser;
 try{
  browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
  for(const width of [1366,390]){
@@ -28,7 +51,7 @@ try{
   await page.waitForFunction(()=>window.enWashingtonHouse03Controller&&!enWashingtonHouse03Controller.status().busy&&jointLastResult?.probabilities&&!/Waiting|Checking/.test(enWashingtonHouse03Controller.status().phase));
   const baseline=await page.evaluate(()=>JSON.stringify(jointPulseBaseline.probabilities));
   mode='blue';await page.clock.runFor(61000);
-  await page.waitForFunction(()=>jointLastResult?.county_results_update?.used.some(e=>e.code==='WA-03'));
+  await page.waitForFunction(()=>jointLastResult?.county_results_update?.used.some(e=>e.code==='WA-03'));await assertOfficialAdmissionPath(page,'WA-03');
   const blue=await page.evaluate(()=>({p:jointLastResult.probabilities,base:JSON.stringify(jointPulseBaseline.probabilities),used:jointLastResult.county_results_update.used,calls:jointLastResult.race_probabilities.filter(r=>r.provider_called_party).length}));
   assert.notEqual(JSON.stringify(blue.p),baseline);assert.equal(blue.base,baseline);assert.equal(blue.calls,0);assert.equal(blue.used.length,1);
   assert.match(await page.locator('#enNationalWashingtonHouseSource').textContent(),/several minutes/);
@@ -41,11 +64,11 @@ try{
   const before=requests;await page.evaluate(()=>enWashingtonHouse03Controller.tick(true));assert.equal(requests,before,'Manual refresh cannot bypass the one-minute owned-cache floor');
   async function update(next,minute,sourceMinute=minute){mode=next;stamp='2026-11-04T04:'+sourceMinute+':00Z';statsStamp='2026-11-04T04:'+minute+':00Z';await page.clock.setSystemTime(new Date('2026-11-04T04:'+minute+':05Z'));
    await page.evaluate(async()=>{await enWashingtonHouse03Controller.tick(true);jointRender(true);});}
-  await update('correction','08');const corrected=await page.evaluate(()=>jointLastResult.county_results_update.used[0].counted_two_party_votes);
+  await update('correction','08');assert.equal(await page.evaluate(()=>enOfficialAdmissionAudit.events().find(e=>e.code==='WA-03').kind),'CORRECTION');const corrected=await page.evaluate(()=>jointLastResult.county_results_update.used[0].counted_two_party_votes);
   assert.equal(corrected,blue.used[0].counted_two_party_votes-200);
   await update('red','10');assert.notDeepEqual(await page.evaluate(()=>jointLastResult.probabilities),blue.p);
   await update('blue','12','05');assert.equal(await page.evaluate(()=>enWashingtonHouse03Controller.status().evidence),null,'Older source cannot resurrect after a newer correction');
-  await update('zero','14');assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),baseline);
+  await update('zero','14');assert.equal(await page.evaluate(()=>enOfficialAdmissionAudit.events().find(e=>e.code==='WA-03').kind),'WITHDRAWN');assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),baseline);
   await update('red','16','10');assert.equal(await page.evaluate(()=>enWashingtonHouse03Controller.status().evidence),null,'Durable zero revision blocks replay of old positive counts');
   await update('blue','18');await update('outage','20');assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),baseline);
   await update('corrupt','22');assert.equal(await page.evaluate(()=>enWashingtonHouse03Controller.status().evidence),null);

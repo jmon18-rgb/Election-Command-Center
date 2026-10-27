@@ -9,6 +9,10 @@ const now=Date.parse('2026-11-04T04:02:00Z');
 (async()=>{
  const record=await collect({now,reference:ref,fetchImpl:async()=>{const r=new Response(JSON.stringify(raw),{headers:{'content-type':'application/json'}});Object.defineProperty(r,'url',{value:require('./virginia_official_house_source.js').URL});return r;}});
  const parsed=await cache.parse(record,ref,{now});assert.equal(parsed.live_votes_accepted,true);assert.equal(parsed.counties.length,8);
+ assert.equal(parsed.collection_selected_payload_sha256,record.selected_payload_sha256);
+ assert.equal(parsed.collection_payload_integrity_verified,true);
+ assert.equal(parsed.collection_original_response_sha256,record.original_response_sha256);
+ assert.equal(parsed.collection_original_response_hash_recomputed,false);
  const corrupt=structuredClone(record);corrupt.payload.ballotItemWithBreakdown.summaryResults.ballotOptions[0].voteCount++;
  await assert.rejects(cache.parse(corrupt,ref,{now}),/integrity/);
  await assert.rejects(cache.parse(record,ref,{now:now+16*60000}),/stale/);
