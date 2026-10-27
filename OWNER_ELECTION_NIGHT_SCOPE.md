@@ -26,14 +26,15 @@ initial shared display does not pretend those are already implemented.
 | --- | --- | --- |
 | IA, KS | Implemented national inputs and existing standalone diagnostics | Reconcile the personal display to the same joint model and preserve correction/outage behavior. |
 | ME, OH | Implemented national county inputs | Shared individual needles; ME first choices remain separate from final ranked-choice outcomes. |
-| MI, SC, MN, MS | No admitted national county adapter yet | Exact 2026 candidate/source and matched historical geography contracts, then bounded count-likelihood integration. Existing statewide providers are not proof of county readiness. Current MS invalid detail stays excluded. |
+| SC | Released PR497:46 independently matched counties, strict four-candidate counts contract, one fixed state likelihood member | Actual positive2026delivery still pending; current provider TESTDATA excluded. Same joint marginal and correction/withdrawal recovery. |
+| MI, MN, MS | No admitted national county adapter yet | Exact 2026 candidate/source and matched historical geography contracts, then bounded count-likelihood integration. Existing statewide providers are not proof of county readiness. Current MS invalid detail stays excluded. |
 | NE | No admitted national county adapter yet | Osborn-specific independent-versus-Republican axis, matched historical candidate geography and other-candidate accounting. No relabeling Independent as Democrat or assumed caucus/control credit. |
 | AK | Ballot identity conflict, State-only geography and final RCV contract unresolved | Lowest priority. Preserve exclusion and a visible pending needle until justified. First-choice evidence is not a final ranked-choice projection. |
 
-Thus **four of the requested ten** currently have programmed county-to-national
-paths. Pre-election zeros do not demonstrate actual delivery. The six missing
+Thus **five of the requested ten** currently have programmed county-to-national
+paths. Pre-election zeros do not demonstrate actual delivery. The five missing
 connections remain implementation work, not tasks completed by drawing cards.
-Any expansion beyond sixteen inputs requires reviewed exact contracts, explicit
+SC is the reviewed seventeenth input. Any further expansion requires reviewed exact contracts, explicit
 bounded input limits and fixed state budgets; never just raise the cap.
 
 ## Follow the evening, not just a static favorites list
@@ -69,7 +70,7 @@ schedule. No native source or blocked results-page retry is authorized by this r
 ## Sequence and acceptance targets
 
 1. Oct28: shared personal needles and timeline/status view on laptop/mobile; preserve the national model and existing sources. Finish the already-open celebration release separately.
-2. Oct28–29: MI/SC first among new early county connections; then MN/MS/NE according to contract readiness and owner importance. Give each a concrete admission or a named missing-artifact decision. AK last.
+2. Oct28–29: MI first after released SC among new early county connections; then MN/MS/NE according to contract readiness and owner importance. Give each a concrete admission or a named missing-artifact decision. AK last.
 3. Oct29: versioned owner rehearsal, with arrivals versus expectation, correction, withdrawal, source outage/recovery and the later-race outlook. Clearly identify which direct result connections remain unavailable.
 4. Oct30: remaining essential source fixes and celebration scenes/audio. Forecast usability takes priority over optional music or visual finishing.
    Complete the owner-requested R8 visual/usability review: compact source desk,
