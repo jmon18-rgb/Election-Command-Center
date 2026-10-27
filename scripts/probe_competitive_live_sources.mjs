@@ -132,8 +132,8 @@ if(!inWindow(Date.now())){
    report.raw_archives.push({race:row.code,path:'raw/'+file,source_url:row.source_url,captured_at:row.captured_at,
     provider_snapshot_at:row.source_stamp,decoded_http_body_sha256:createHash('sha256').update(bytes).digest('hex'),
     county_vote_vector_sha256:createHash('sha256').update(JSON.stringify(vector)).digest('hex'),
-    transport_kind:row.code==='WA-03'?'OWNED_CACHE_OF_ORIGINAL_OFFICIAL_CONTEST_OBJECTS':'DIRECT_PROVIDER_RESPONSE',
-    upstream_body_digest_reported_by_collector:row.code==='WA-03'?raw.original_response_sha256:null,county_update_times_independently_observed:false,authoritative_race_call:false});
+    transport_kind:['WA-03','VA-02'].includes(row.code)?'OWNED_CACHE_OF_ORIGINAL_OFFICIAL_CONTEST_OBJECTS':'DIRECT_PROVIDER_RESPONSE',
+    upstream_body_digest_reported_by_collector:['WA-03','VA-02'].includes(row.code)?raw.original_response_sha256:null,county_update_times_independently_observed:false,authoritative_race_call:false});
   }
  }catch(error){
   report={generated_at:new Date().toISOString(),status:'ACTION_REQUIRED',site:target,
@@ -147,7 +147,7 @@ if(!inWindow(Date.now())){
   '',`Target scope: ${report.site_scope||'no page observed'}`, '', 'Real provider responses; no fixtures or virtual clock. Test mode never proves live delivery. No calibration claim.',
   '', '| Race | HTTP | Actual source status | Accepted live two-party votes | Forecast observed |', '| --- | --- | --- | ---: | --- |',
   ...(report.sources||[]).map(r=>`| ${r.code} | ${r.http??'unavailable'} | ${r.status} | ${r.counted_dem_votes+r.counted_rep_votes} | ${r.actual_live_input_forecast_observed} |`),
-  '', 'Sources: attributed civicAPI and Washington Secretary of State through an owned cache. Raw test payloads are never archived; cached transport captures are labeled separately.',
+  '', 'Sources: attributed civicAPI and independent official Virginia results, plus Washington Secretary of State through an owned cache. Raw test payloads are never archived; cached transport captures are labeled separately.',
   ...(report.error?['',report.error]:[])].join('\n')+'\n';
  writeFileSync(resolve(out,'report.md'),summary);
  if(process.env.GITHUB_STEP_SUMMARY)appendFileSync(process.env.GITHUB_STEP_SUMMARY,summary);

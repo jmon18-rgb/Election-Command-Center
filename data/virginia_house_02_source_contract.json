@@ -1,0 +1,215 @@
+{
+  "race_code": "VA-02",
+  "url": "https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General/data/ballot-item/01000000-f030-c43d-fd71-08df1fee52e7",
+  "contest_id": "01000000-f030-c43d-fd71-08df1fee52e7",
+  "election_id": "01000000-ebdd-00dc-0143-08df1fee4ade",
+  "jurisdiction_id": "d2c804ee-4ec2-46bb-91d7-5b41526eab03",
+  "candidates": [
+    {
+      "nativeId": "cs268",
+      "id": "01000000-f030-c43d-fdbd-08df1fee52e7",
+      "name": "Elaine G. Luria",
+      "party": "D",
+      "isWriteIn": false,
+      "key": "dem_votes"
+    },
+    {
+      "nativeId": "cs269",
+      "id": "01000000-f030-c43d-fdea-08df1fee52e7",
+      "name": "Jen A. Kiggans",
+      "party": "R",
+      "isWriteIn": false,
+      "key": "rep_votes"
+    },
+    {
+      "nativeId": "cs270",
+      "id": "01000000-f030-c43d-fdfc-08df1fee52e7",
+      "name": "Geral D. \"Bishop\" Staten",
+      "party": "I",
+      "isWriteIn": false,
+      "key": "other_votes"
+    },
+    {
+      "nativeId": "cs271",
+      "id": "01000000-f030-c43d-fe0d-08df1fee52e7",
+      "name": "J. Matt Baker",
+      "party": "I",
+      "isWriteIn": false,
+      "key": "other_votes"
+    },
+    {
+      "nativeId": "wi-cc134",
+      "id": "01000000-f030-c43d-fe27-08df1fee52e7",
+      "name": "Write-In",
+      "party": null,
+      "isWriteIn": true,
+      "key": "other_votes"
+    }
+  ],
+  "methods": {
+    "01000000-7e9f-e426-690e-08df1ff2f08c": "Early Voting",
+    "01000000-ebdd-00dc-4756-08df1ff2fa9f": "Election Day",
+    "01000000-ebdd-00dc-b411-08df1ff307f8": "Mailed Absentee",
+    "01000000-7e9f-e426-c574-08df1ff3147a": "Provisional",
+    "01000000-7e9f-e426-e846-08df1ff31b09": "Post-Election"
+  },
+  "localities": [
+    {
+      "id": "6eb727a2-6f16-4571-be8a-23ef6cf88072",
+      "name": "ACCOMACK COUNTY",
+      "shortName": "accomack-county",
+      "mapFeatureId": "001",
+      "parentBallotItemId": "01000000-f030-c43d-9f22-08df1fee4fe4"
+    },
+    {
+      "id": "43e4f3d9-a3fe-4b3d-af24-4a5d94ff819c",
+      "name": "CHESAPEAKE CITY",
+      "shortName": "chesapeake-city",
+      "mapFeatureId": "550",
+      "parentBallotItemId": "01000000-f030-c43d-f5b6-08df1fee5143"
+    },
+    {
+      "id": "e6f3b03d-2353-414d-86c8-322bafb186af",
+      "name": "FRANKLIN CITY",
+      "shortName": "franklin-city",
+      "mapFeatureId": "620",
+      "parentBallotItemId": "01000000-f030-c43d-1c38-08df1fee50c6"
+    },
+    {
+      "id": "f64f237f-7a20-475a-a9db-778ca8c9510f",
+      "name": "ISLE OF WIGHT COUNTY",
+      "shortName": "isle-of-wight-county",
+      "mapFeatureId": "093",
+      "parentBallotItemId": "01000000-f030-c43d-3fe2-08df1fee515e"
+    },
+    {
+      "id": "c01e1a57-9ead-4806-a5aa-ccdf30105b3c",
+      "name": "NORTHAMPTON COUNTY",
+      "shortName": "northampton-county",
+      "mapFeatureId": "131",
+      "parentBallotItemId": "01000000-f030-c43d-a726-08df1fee512f"
+    },
+    {
+      "id": "d71d41d3-92a1-471b-85eb-1d95b17695a0",
+      "name": "SOUTHAMPTON COUNTY",
+      "shortName": "southampton-county",
+      "mapFeatureId": "175",
+      "parentBallotItemId": "01000000-f030-c43d-ea55-08df1fee50c9"
+    },
+    {
+      "id": "45d6077a-75e8-4ff0-9dc8-3ba3280d84ea",
+      "name": "SUFFOLK CITY",
+      "shortName": "suffolk-city",
+      "mapFeatureId": "800",
+      "parentBallotItemId": "01000000-f030-c43d-0c4b-08df1fee4fa7"
+    },
+    {
+      "id": "f3edd419-1070-4351-aa2d-fd7cce002e6a",
+      "name": "VIRGINIA BEACH CITY",
+      "shortName": "virginia-beach-city",
+      "mapFeatureId": "810",
+      "parentBallotItemId": "01000000-f030-c43d-538f-08df1fee4fea"
+    }
+  ],
+  "original_response_sha256": "20cc06d2a32eda44b0792391992c8bf0bebc1557035bbd5728a6821b14d5a4a6",
+  "original_historical_csv_sha256": "1f30103c8676d784e611885791b134c29abd05f69d8cbfdf3ee2179982b651cc",
+  "original_candidate_html_sha256": "0fd2ca4913f0eba111e695025e50ea20a41da2a3390d623450ef6b503877f967",
+  "provenance": {
+    "official_landing": "https://www.elections.virginia.gov/results/",
+    "current_declared_page": "https://enr.elections.virginia.gov/results/public/virginia/elections/2026-November-General",
+    "historical_landing": "https://historical.elections.virginia.gov/contest/161258",
+    "historical_csv": "https://va2.elstats.civera.com/api/download_contest/161258_table.csv?split_party=false",
+    "candidate_html": "https://www.elections.virginia.gov/casting-a-ballot/candidate-list/november-3-2026-gen-elect-federal-offices/"
+  },
+  "actual_cross_origin_receipt": {
+    "at": "2026-10-27T04:00:48.237Z",
+    "origin": "https://jmon18-rgb.github.io",
+    "target": "https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General/data/ballot-item/01000000-f030-c43d-fd71-08df1fee52e7",
+    "actual_response": {
+      "http": 200,
+      "headers": {
+        "access-control-allow-origin": "*",
+        "alt-svc": "h3=\":443\"; ma=93600",
+        "cache-control": "public, max-age=60",
+        "content-encoding": "gzip",
+        "content-security-policy": "frame-ancestors 'self' https://mvp.sos.ga.gov; default-src * 'unsafe-eval' 'unsafe-inline' data: filesystem: about: blob: ws: wss:",
+        "content-type": "application/json; charset=utf-8",
+        "cross-origin-embedder-policy": "unsafe-none",
+        "cross-origin-opener-policy": "same-origin",
+        "cross-origin-resource-policy": "same-origin",
+        "date": "Tue, 27 Oct 2026 04:00:47 GMT",
+        "permissions-policy": "microphone=(), geolocation=()",
+        "referrer-policy": "no-referrer",
+        "server-timing": "cdn-cache; desc=REVALIDATE, edge; dur=122, origin; dur=406, ak_p; desc=\"1793073647329_399605549_1078345460_52784_9143_16_35_219\";dur=1",
+        "strict-transport-security": "max-age=31536000 ; includeSubDomains ; preload",
+        "vary": "Accept-Encoding",
+        "x-azure-ref": "20261027T040047Z-15cb68c6c555th64hC1CHIhn1c000000082g0000000010sg",
+        "x-content-type-options": "nosniff",
+        "x-envoy-upstream-service-time": "47",
+        "x-ev-fd": "1",
+        "x-fd-int-roxy-purgeid": "54510361"
+      }
+    },
+    "result": {
+      "readable": true,
+      "http": 200,
+      "body_bytes": 1642393
+    },
+    "scope": "One actual cross-origin fetch; civic routes aborted to avoid unrelated live probes. Not a positive vote or timing-parity test."
+  },
+  "limits": [
+    "Zero pre-election response; not positive2026 delivery or calibration.",
+    "Source reports five methods; current estimator uses combined historical locality totals and retains method-mix uncertainty.",
+    "Final historical totals are not chronological return batches.",
+    "Direct browser CORS is currently unreliable despite earlier real success; owned publication remains subject to review and actual post-merge verification."
+  ],
+  "transport_assessment": {
+    "status": "DIRECT_CORS_OBSERVED_SUCCESS_THEN_FAILURE_USE_BOUNDED_OWNED_COPY",
+    "initial_success": "Actual published-origin read04:00:48Z succeededHTTP200/CORS*. This observation remains valid.",
+    "later_failures": [
+      {
+        "at": "2026-10-27T04:21:26.865Z",
+        "origin": "https://jmon18-rgb.github.io",
+        "result": {
+          "error": "Failed to fetch"
+        }
+      },
+      {
+        "at": "2026-10-27T04:22:27.905Z",
+        "origin": "https://jmon18-rgb.github.io",
+        "result": {
+          "error": "Failed to fetch"
+        }
+      },
+      {
+        "at": "2026-10-27T04:24:23.815Z",
+        "origin": "https://jmon18-rgb.github.io",
+        "result": {
+          "error": "Failed to fetch"
+        }
+      }
+    ],
+    "failure_scope": "Actual fresh published-origin reads subsequently failed; native-browser console reported missing Access-Control-Allow-Origin. Cache/Accept option changes did not resolve it. No more CORS retries or cache-busting of official URL.",
+    "backend_observation": {
+      "schema": "official-va02-collection-v1",
+      "source_url": "https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General/data/ballot-item/01000000-f030-c43d-fd71-08df1fee52e7",
+      "fetched_at": "2026-10-27T04:29:06.972Z",
+      "status": "SOURCE_UNAVAILABLE",
+      "payload": null,
+      "may_move_national_needle": false,
+      "timing_scope": "request-to-body only, not source availability or comparative publication lag",
+      "http_status": 200,
+      "cache_control": "public, max-age=12",
+      "request_to_body_ms": 424,
+      "original_response_sha256": "20cc06d2a32eda44b0792391992c8bf0bebc1557035bbd5728a6821b14d5a4a6",
+      "observed_source_stamp": "2026-10-26T22:53:33.7465541Z",
+      "source_test_data": false,
+      "observed_positive_candidate_counts": false,
+      "error": "Missing/future/stale official VA publication time"
+    },
+    "backend_scope": "One actual anonymous bounded server GET200, unchanged original hash, stalezero => payloadnull. Not live2026 delivery/calibration or speed parity.",
+    "owned_branch": "official-virginia-results-cache",
+    "owned_path": "data/virginia_house_02_official_latest.json",
+    "limits": "One fixed native request/job on5min schedule Nov4 00Z-Nov25 08Z, exact2026guard; separate fixed data-only branch, no main/code writes. Existing WA collection and civic cadences untouched; client>=1min after completion, hidden pause/backoff/sharedpool. Actions/raw/client can add minutes."
+  }
+}
