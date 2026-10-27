@@ -1,0 +1,275 @@
+{
+  "schema_version": 1,
+  "race": "NC-01",
+  "status": "geography_partially_resolved_historical_baseline_blocked",
+  "assessed_at": "2026-10-27T07:20:46.781Z",
+  "official_plan": "SL 2025-95",
+  "election_year": 2026,
+  "source": {
+    "url": "https://webservices.ncleg.gov/ViewBillDocument/2025/7665/0/SL%202025-95%20-%20StatPack%20Report",
+    "declared_by": "https://house.ncleg.gov/Redistricting",
+    "file": "data/north_carolina_house_01_sources/2025-95-statpack.pdf",
+    "sha256": "7caaccef2a0de997163d243c2c2fd7f45f97deacd8db8f2b59481180daf82eb7",
+    "bytes": 3282664,
+    "pages": 96,
+    "district_county_page_1_based": 35,
+    "visually_reviewed": true,
+    "data_kind": "2020 Census population and district-level historical statewide-office election summaries; not historical House district-part votes"
+  },
+  "county_parts": [
+    {
+      "county": "Beaufort",
+      "county_fips": "37013",
+      "county_population_2020": 44652,
+      "district_part_population_2020": 44652,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Bertie",
+      "county_fips": "37015",
+      "county_population_2020": 17934,
+      "district_part_population_2020": 17934,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Camden",
+      "county_fips": "37029",
+      "county_population_2020": 10355,
+      "district_part_population_2020": 10355,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Carteret",
+      "county_fips": "37031",
+      "county_population_2020": 67686,
+      "district_part_population_2020": 67686,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Chowan",
+      "county_fips": "37041",
+      "county_population_2020": 13708,
+      "district_part_population_2020": 13708,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Craven",
+      "county_fips": "37049",
+      "county_population_2020": 100720,
+      "district_part_population_2020": 100720,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Currituck",
+      "county_fips": "37053",
+      "county_population_2020": 28100,
+      "district_part_population_2020": 28100,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Dare",
+      "county_fips": "37055",
+      "county_population_2020": 36915,
+      "district_part_population_2020": 36915,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Edgecombe",
+      "county_fips": "37065",
+      "county_population_2020": 48900,
+      "district_part_population_2020": 48900,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Gates",
+      "county_fips": "37073",
+      "county_population_2020": 10478,
+      "district_part_population_2020": 10478,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Granville",
+      "county_fips": "37077",
+      "county_population_2020": 60992,
+      "district_part_population_2020": 10818,
+      "whole_county": false,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Halifax",
+      "county_fips": "37083",
+      "county_population_2020": 48622,
+      "district_part_population_2020": 48622,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Hertford",
+      "county_fips": "37091",
+      "county_population_2020": 21552,
+      "district_part_population_2020": 21552,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Hyde",
+      "county_fips": "37095",
+      "county_population_2020": 4589,
+      "district_part_population_2020": 4589,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Martin",
+      "county_fips": "37117",
+      "county_population_2020": 22031,
+      "district_part_population_2020": 22031,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Nash",
+      "county_fips": "37127",
+      "county_population_2020": 94970,
+      "district_part_population_2020": 94970,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Northampton",
+      "county_fips": "37131",
+      "county_population_2020": 17471,
+      "district_part_population_2020": 17471,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Onslow",
+      "county_fips": "37133",
+      "county_population_2020": 204576,
+      "district_part_population_2020": 4853,
+      "whole_county": false,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Pamlico",
+      "county_fips": "37137",
+      "county_population_2020": 12276,
+      "district_part_population_2020": 12276,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Pasquotank",
+      "county_fips": "37139",
+      "county_population_2020": 40568,
+      "district_part_population_2020": 40568,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Perquimans",
+      "county_fips": "37143",
+      "county_population_2020": 13005,
+      "district_part_population_2020": 13005,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Tyrrell",
+      "county_fips": "37177",
+      "county_population_2020": 3245,
+      "district_part_population_2020": 3245,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Vance",
+      "county_fips": "37181",
+      "county_population_2020": 42578,
+      "district_part_population_2020": 42578,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Warren",
+      "county_fips": "37185",
+      "county_population_2020": 18642,
+      "district_part_population_2020": 18642,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    },
+    {
+      "county": "Washington",
+      "county_fips": "37187",
+      "county_population_2020": 11003,
+      "district_part_population_2020": 11003,
+      "whole_county": true,
+      "population_must_not_allocate_votes": true
+    }
+  ],
+  "district_population_2020": 745671,
+  "whole_counties": 23,
+  "split_counties": [
+    "Granville",
+    "Onslow"
+  ],
+  "historical_election_summary_scope": {
+    "geography": "14 district totals per contest, no county-part historical vote breakdown",
+    "offices": [
+      "2024 Election Contest Report - US President",
+      "2024 Election Contest Report - NC Governor",
+      "2024 Election Contest Report - NC Lieutenant Governor",
+      "2024 Election Contest Report - NC Attorney General",
+      "2024 Election Contest Report - NC Auditor",
+      "2024 Election Contest Report - NC Commissioner of Agriculture",
+      "2024 Election Contest Report - NC Commissioner of Insurance",
+      "2024 Election Contest Report - NC Commissioner of Labor",
+      "2024 Election Contest Report - NC Secretary of State",
+      "2024 Election Contest Report - NC Superindendent of Public Instruction",
+      "2024 Election Contest Report - NC Treasurer",
+      "2024 Election Contest Report - NC Supreme Court Associate Justice Seat 06",
+      "2022 Election Contest Report - US Senate",
+      "2022 Election Contest Report - NC Supreme Court Associate Justice Seat 03",
+      "2022 Election Contest Report - NC Supreme Court Associate Justice Seat 05",
+      "2020 Election Contest Report - US President",
+      "2020 Election Contest Report - US Senate",
+      "2020 Election Contest Report - NC Governor",
+      "2020 Election Contest Report - NC Lieutenant Governor",
+      "2020 Election Contest Report - NC Attorney General",
+      "2020 Election Contest Report - NC Auditor",
+      "2020 Election Contest Report - NC Commissioner of Agriculture",
+      "2020 Election Contest Report - NC Commissioner of Insurance",
+      "2020 Election Contest Report - NC Commissioner of Labor",
+      "2020 Election Contest Report - NC Secretary of State",
+      "2020 Election Contest Report - NC Superindendent of Public Instruction",
+      "2020 Election Contest Report - NC Treasurer",
+      "2020 Election Contest Report - NC Supreme Court Chief Justice",
+      "2020 Election Contest Report - NC Supreme Court Associate Justice Seat 02",
+      "2020 Election Contest Report - NC Supreme Court Associate Justice Seat 04"
+    ],
+    "administrative_precincts": "Report explicitly excludes administrative precincts from election summaries",
+    "may_use_as_county_baseline": false
+  },
+  "declared_block_assignment_url": "https://webservices.ncleg.gov/ViewBillDocument/2025/7669/0/SL%202025-95%20-%20Block%20Assignment%20File",
+  "block_assignment_limit": "Census blocks assign geography, not votes; 2020 VTDs are not a verified 2024/2026 election precinct crosswalk. No population-weighted allocation is permitted.",
+  "remaining_contracts": [
+    "Independently matched historical votes for all 25 current district parts, including exact Granville and Onslow portions; no statewide-office or old district substitute.",
+    "Independent 2024/2026 election-precinct equivalency and handling of administrative, absentee and split precincts.",
+    "Current official ballot identity, source reporting clock and live-versus-test assurance remain separate requirements.",
+    "Independent chronological partial-return and remaining-vote evidence; final totals are not calibration."
+  ],
+  "production_enabled": false,
+  "may_move_national_needle": false,
+  "decision": "Defer NC01 predictive adapter until matched historical district-part data and current-source semantics are independently verified. Reuse this pinned geometry; do not repeat ZIP or archive discovery."
+}
