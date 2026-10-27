@@ -4,7 +4,7 @@
 
 This section supersedes older priority lists below for autonomous readiness work. The owner requires one national Four Endings predictive needle. Implementation is experimental and testable; the project is NOT complete and calibrated predictive acceptance remains UNMET. A quiet notification policy does not mean there is no work left.
 
-Owner scope update: needle adjustments and the celebration production backlog are explicitly active. This supersedes the earlier celebration pause. Complete the current needle release first; then advance sourcing/validation and celebration production in bounded tasks. Do not wait for election-dependent evidence before doing ready celebration work.
+Owner scope update: needle adjustments and the celebration production backlog are explicitly active. This supersedes the earlier celebration pause. PR487 needle adjustments and PR488 celebration previews are released; continue sourcing/validation and distinct celebration production in bounded tasks. Do not wait for election-dependent evidence before doing ready celebration work. See [CELEBRATION_PRODUCTION_STATUS.md](CELEBRATION_PRODUCTION_STATUS.md) for the complete/partial roster.
 
 | ID / priority | Unfinished deliverable | Next action | Completion evidence / target |
 | --- | --- | --- | --- |

@@ -37,16 +37,55 @@ try{
   await page.locator('#enMilestoneClose').click();
   await page.unroute('**/assets/milestone-mississippi.svg');
   for(const id of ['graham','blexas','blue_corn','blansas','maine','nebraska','ohio','talarico','abbott','mississippi','tsunami']){
+   await page.emulateMedia({reducedMotion:id==='talarico'?'no-preference':'reduce'});
    if(id==='tsunami')await page.locator('#enTsunamiPreview').click();
    else await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles[id]}).click();
    assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'announcement');
    assert.equal(await page.locator('#enCelebrationFish').isHidden(),false);
    await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
    assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'scene');
-   if(id==='graham')assert.doesNotMatch(await page.locator('#enCelebrationStage').innerText(),/lindsey/i);
-   await page.clock.runFor(7300);
+   if(id==='graham'){
+    assert.doesNotMatch(await page.locator('#enCelebrationStage').innerText(),/lindsey/i);
+    const thumbnail=page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles.graham}).locator('img');
+    assert.match(await thumbnail.getAttribute('src'),/milestone-graham\.svg\?v=7ec8cd5c791f$/,'Thumbnail must share the corrected story art revision');
+   }
+   if(id==='talarico'){
+    const visual=page.locator('#enCelebrationVisual');
+    assert.equal(await visual.isVisible(),true);
+    assert.equal(await visual.getAttribute('data-beat'),'0');
+    assert.equal(await visual.locator('[data-layer="blue-horns"]').count(),1);
+    assert.equal(await page.locator('#enCelebrationIcon').isHidden(),true);
+    assert.equal(await page.locator('#enMilestonePoster').isHidden(),true);
+    assert.equal(await visual.evaluate(host=>host.getAnimations({subtree:true}).length>0),true);
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await page.waitForFunction(()=>document.querySelector('#enCelebrationVisual').getAnimations({subtree:true}).length===0);
+    mkdirSync(resolve(root,'artifacts/readiness'),{recursive:true});
+    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-talarico-beat0-${width}.png`)});
+    await page.clock.runFor(2400);
+    assert.equal(await visual.getAttribute('data-beat'),'1');
+    assert.equal(await visual.locator('[data-layer="texas-silhouette"]').count(),1);
+    assert.equal(await visual.locator('[data-layer="blue-star"]').count(),5);
+    assert.equal(await visual.evaluate(host=>host.getAnimations({subtree:true}).length),0);
+    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-talarico-beat1-${width}.png`)});
+    await page.clock.runFor(2400);
+    assert.equal(await visual.getAttribute('data-beat'),'2');
+    assert.equal(await visual.locator('[data-layer="senate-victory-card"]').count(),1);
+    assert.match(await visual.innerText(),/SIMULATED PREVIEW/);
+    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-talarico-beat2-${width}.png`)});
+    await page.clock.runFor(2500);
+   }else{
+    assert.equal(await page.locator('#enCelebrationVisual').isHidden(),true,'Other stories retain their existing presentation');
+    await page.clock.runFor(7300);
+   }
    assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'complete');
    assert.equal(await page.evaluate(()=>enCelebrationPlayer.state().active),null);
+   if(id==='talarico'){
+    assert.equal(await page.locator('#enCelebrationVisual').isVisible(),true,'Completion/music(null) keeps the final visual card');
+    assert.equal(await page.locator('#enCelebrationVisual').getAttribute('data-beat'),'2');
+    assert.equal(await page.locator('#enCelebrationVisual [data-layer="senate-victory-card"]').count(),1);
+    assert.equal(await page.locator('#enMilestonePoster').isHidden(),true);
+    assert.equal(await page.locator('#enMilestoneClose').isVisible(),true);
+   }
    assert.match(await page.locator('#enMilestoneKicker').innerText(),/PREVIEW/);
    if(['graham','talarico','abbott','mississippi'].includes(id)){
     const src=await page.locator('#enMilestonePoster').getAttribute('src');
@@ -55,9 +94,28 @@ try{
     if(id==='graham')assert.doesNotMatch(await page.locator('#enMilestonePoster').getAttribute('alt'),/lindsey/i);
     await page.locator('#enMilestonePoster').evaluate(img=>img.decode());
     mkdirSync(resolve(root,'artifacts/readiness'),{recursive:true});
-    await page.locator('#enMilestonePoster').screenshot({path:resolve(root,`artifacts/readiness/celebration-${id}-${width}.png`)});
+    await page.locator(id==='talarico'?'#enCelebrationVisual':'#enMilestonePoster').screenshot({path:resolve(root,`artifacts/readiness/celebration-${id}-${width}.png`)});
    }
   }
+  // Skip an actual running visual, then replace it and leave 2026 mode.
+  await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles.talarico}).click();
+  await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
+  assert.equal(await page.locator('#enCelebrationVisual').isVisible(),true);
+  await page.locator('#enMilestoneClose').click();
+  assert.equal(await page.locator('#enCelebrationVisual').isHidden(),true);
+  assert.equal(await page.locator('#enCelebrationVisual svg').count(),0);
+  await page.clock.runFor(20000);
+  assert.equal(await page.locator('#enMilestoneSpotlight').isHidden(),true);
+  await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles.talarico}).click();
+  await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
+  await page.evaluate(()=>enMilestoneShow({id:'blansas',title:'Kansas'},true));
+  assert.equal(await page.locator('#enCelebrationVisual').isHidden(),true,'Replacement clears prior SVG');
+  await page.locator('#enMilestoneClose').click();
+  await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles.talarico}).click();
+  await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
+  await page.locator('#enMode2024').click();
+  assert.equal(await page.locator('#enCelebrationVisual').isHidden(),true,'Archive mode clears prior SVG');
+  await page.locator('#enMode2026').click();
   await page.evaluate(()=>{document.querySelector('#enCelebrationAnnouncement').play=()=>Promise.reject(new Error('Synthetic autoplay rejection'));enMilestoneShow({id:'blansas',title:'Kansas'},true)});
   await page.waitForFunction(()=>document.querySelector('#enCelebrationStage').dataset.phase==='scene');
   await page.locator('#enCelebrationSound').click();
@@ -72,6 +130,18 @@ try{
   assert.equal(await page.locator('#enMilestoneSpotlight').isHidden(),true);
   await page.clock.runFor(20000);
   assert.equal(await page.locator('#enMilestoneSpotlight').isHidden(),true,'Skipped timer cannot reopen playback');
+  // Optional scene-script failure retains the original poster/text player.
+  await page.route('**/election_night_celebration_scene.js*',route=>route.abort());
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('[data-page="electionNight"]').click();
+  await page.locator('#enMode2026').click();
+  await page.evaluate(()=>{document.querySelector('#enCelebrationAnnouncement').play=()=>Promise.resolve()});
+  await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles.talarico}).click();
+  await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
+  assert.equal(await page.locator('#enCelebrationVisual').isHidden(),true);
+  assert.equal(await page.locator('#enCelebrationIcon').isVisible(),true);
+  assert.equal(await page.locator('#enMilestonePoster').isVisible(),true);
+  await page.locator('#enMilestoneClose').click();
   await page.route('**/election_night_celebration_player.js*',route=>route.abort());
   await page.reload({waitUntil:'domcontentloaded'});
   await page.locator('[data-page="electionNight"]').click();
