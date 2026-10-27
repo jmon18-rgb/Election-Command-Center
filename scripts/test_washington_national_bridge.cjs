@@ -66,6 +66,37 @@ const cache=require('./washington_official_cache.js'),kernel=require('./national
  assert.deepEqual(allWithdrawn.result,ordinary,'Full outage restores the exact unconditioned national model');
  assert.deepEqual(kernel.condition(model,basis,sources,opts).result,sixteen.result,'Recovery after corrections/retractions/outages restores the exact same-draw result');
  assert.deepEqual(sources,originalSources,'Lifecycle cannot mutate source evidence or preserve a corrected cached lock');
+ // Remaining-estimate failure must not withdraw valid counts amid other inputs.
+ const geography={...load('washington_house_03_remaining_geography'),...load('house_geography_bridge').districts.find(r=>r.race_code_2026==='WA-03')};
+ const remainingFixture=require('./washington_remaining_test_fixture.cjs');
+ const countsRecord=await fixture();
+ async function estimatedSources(estimate,{badHash=false,nullClocks=false}={}){
+  const supplement=remainingFixture.fixture({estimate});
+  if(nullClocks){for(const c of supplement.payload.data[0].groups[0].children)c.lastUpdated=null;remainingFixture.seal(supplement);}
+  if(badHash)supplement.selected_payload_sha256='invalid';
+  const snapshot=await cache.parse({...countsRecord,official_remaining:supplement},reference,{now});
+  assert(snapshot.live_votes_accepted,'Optional supplement cannot remove valid official counts');
+  assert.equal(snapshot.snapshot_updated_at,wa.snapshot.snapshot_updated_at);
+  assert.deepEqual(snapshot.counties,wa.snapshot.counties,'Estimate changes never alter counted votes');
+  return sources.map(e=>e.snapshot.race_code==='WA-03'?{...wa,snapshot,remaining_geography:geography}:e);
+ }
+ const fewRemaining=await estimatedSources(100),manyRemaining=await estimatedSources(500000);
+ const fewResult=kernel.condition(model,basis,fewRemaining,opts),manyResult=kernel.condition(model,basis,manyRemaining,opts);
+ assert.notDeepEqual(fewResult.result.probabilities,manyResult.result.probabilities,'Estimate-only changes can affect the national outlook alongside all other fifteen inputs');
+ for(const r of [fewResult,manyResult]){
+  assert.equal(r.diagnostics.used.length,16,'Supplement is not a seventeenth independent input');
+  assert.deepEqual(r.baseline,sixteen.baseline);
+  assert(r.diagnostics.effective_sample_size>=opts.samples*.5-1e-6);
+  assert(r.diagnostics.state_likelihood_max_ratio.WA<=20+1e-8);
+ }
+ for(const invalid of [{badHash:true},{nullClocks:true}]){
+  const fallback=kernel.condition(model,basis,await estimatedSources(100,invalid),opts);
+  assert.deepEqual(fallback.result,sixteen.result,'Only the unusable supplement withdraws; all sixteen counts inputs remain exactly represented');
+ }
+ const independent=fewRemaining.filter(e=>!new URL(e.snapshot.source_url).hostname.endsWith('civicapi.org'));
+ assert.equal(kernel.condition(model,basis,independent,opts).diagnostics.used.length,2);
+ assert.deepEqual(kernel.condition(model,basis,fewRemaining,opts).result,fewResult.result,'Supplement recovers without a stale cached numerical lock');
+ console.log('Remaining-estimate national sensitivity amid all sixteen sources: unchanged votes/clocks, invalid-supplement-only fallback, two official inputs during civic outage and recovery PASS; SYNTHETIC only');
  console.log('Sixteen-input mixed civic/official lifecycle: outage, opposing correction, partial/full withdrawal, fixed member budgets and exact recovery PASS; SYNTHETIC only');
  console.log('Official WA03 -> national joint draws, nine/ten/eleven/twelve/thirteen/fourteen/fifteen/sixteen-source coexistence, fixed state budgets, duplicate exclusion, baseline isolation and one-county rejection PASS; SYNTHETIC, not calibration');
 })().catch(e=>{console.error(e);process.exitCode=1;});

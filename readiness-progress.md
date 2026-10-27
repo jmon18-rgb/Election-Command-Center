@@ -1,5 +1,11 @@
 # Readiness progress
 
+## 2026-10-27T10:58:50Z - Remaining-estimate mixed-source acceptance closed locally
+
+- Reviewed remaining-sensitivity code against existing16-input lifecycle; concrete missingcombination was optional-estimate withdrawal with other15sources stillactive. Addedactualkernel acceptance: identicalWAcountedvotes/countstamp withsmall/largeestimates changesnationaloutlook alongside15otherinputs; badhash/nullclock withdrawsONLYsupplement andrestores exact16-countmodel; civicoutage retainsbothindependentofficialinputs; estimate recovery exactsame-drawresult. Sourcecount remains16, baseline/ESS/fixedWA20budget unchanged. LocaltestPASS(900draws/seed20261103), SYNTHETIConly, NOT livepositive2026/chronology/errorcalibration/speedproof. Existing16inputcorrection/withdrawal/recovery/9-16coexistencecases retained. No productioncode/cadence/model change.
+- Priorhead dca36fda ALLbrowser/core/sourcechecksPASS; requiredvalidation stillsame2gap-referencefailures. PR484 staysOPEN/unmerged; thisnewtestrequiresnewexactheadCI. No repeatedsecuritypage/provider/statistics/health/16routeprobes. No newmilestonenotification.
+- Bounded implementationacceptance now adequatelycovers scopedremainingplusmixedsources; doNOT keepaddingfixturecases absent anactualdefect. Remainingcriticalacceptance is realpostclose delivery, independentreportchronology andsource-error/calibrationevidence, plusknownrequiredgap-referenceblocker. Preservedeferrals/currentcollectors. Next inspectnewsourcehealth/originalevidence onlyifchanged; otherwisequietmonitoring anddailyreportfirstafter9amEastern. Lastdailyreport2026-10-26; freeze/code-stop/protections unchanged.
+
 ## 2026-10-27T10:43:59Z - Sixteen-input national recovery acceptance implemented locally
 
 - Inspected current096e383d ledger once: all8newgaps are INVALID_DETAIL/DETAIL_CONTRACT_REJECTED with no usableidentityhint; no evidence permits restoringpins. Required484validation remainsblocked; no blockedpage/provider/statistics probes repeated.
