@@ -1,5 +1,9 @@
 # Readiness progress
 
+## October27 - PR487 exact-head CI continuation
+
+- Current headb46e118cb7c6cb07869e79dcc235d4c66d01bbb4:35workflowparents31SUCCESS/4pending. PA08national-browser122350682217 cancelled during Ubuntu font download before tests; targeted cancelled-job same-head retry issued, attempt2queued. No timeout raise/waived checks/successful-job rerun. TX/validation/fullDOM pending. No deployment claim; finish all workflow parents/latest jobs/external/currenthead/mergeability before merge. Sources/method limits recorded below; preserve revised roadmap.
+
 ## October27 - Research-backed shared reporting-error candidate / PR487
 
 - Owner requested better needle methodology. Published NYT-editor interview describes local expectations; DDHQ authors warn about incomplete/method-biased units; Gelman identifies correlated early-return errors as false national certainty. Sources and distinctions saved in NATIONAL_NEEDLE_ACCEPTANCE.md. NYT original explainer unavailable, no proprietary-code or parameter claim.
