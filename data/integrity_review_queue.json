@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-27T19:36:53.717495Z",
+  "updated_at": "2026-10-27T19:51:09.814411Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
@@ -268,6 +268,28 @@
   ],
   "items": [
     {
+      "id": "4449128350f822d98760",
+      "title": "Judge to consider whether California should count 20,000 ballots disputed by Trump administration - KXAN Austin",
+      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNOGNVZzBmTTU5ZWxtVTl3QkxOTHhTQ2swaXRiSG5pSlhxMkRpenlvNlFGYU9wSVAyVlp1cW5GeldSVmJYR2w2aEtrRjVCVl9mYWpJX2NONzdGeno0dVV1cU1hbThOTXVsUEIwaXRuVmV4Ni1jRzYyWTZoejFwclQ5b2tvRm4yaGk4WkhsWk9va3VqeVhHRTlWUlZ0TkhUdlBIcGJuVDliY1hvS3F1dnh4U3lvQUZaZnV0MVVSY0VJSHdiNGdLLXBUbVNVQTZPemFiTzBmVlh5NNIB3AFBVV95cUxQXzN1RUFmNFJFSWdXREkyQUR6U1BxSzhiQ1AtUkJOY0tULW9mdXd5dXRkcENHZHJSXzMzcFpSUDNwcXVqMjFLTGs5bWFjVGEzdjZXNlNxV2hhRWRHM1FlZEVfeXFXY1hBN19hbXpZdngtWWJOQTUyNGc4enprb0lMTHlra1ZCaVJ2bzEzcmV4R25ZVE9ETFdGOHVybC1jWl92X2ZMaUpzalNNRV9Gd3BhX3JnSTcweUZYTVoyS29WWDhiZ1hNcFRyYnhzUzdLYU1UbEJxZGRlQllFTnd2?oc=5",
+      "publisher": "KXAN Austin",
+      "published_at": "2026-10-27T19:37:46Z",
+      "detected_at": "2026-10-27T19:51:09.814411Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 ballots"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "e16a78441dc2d4ee17f8",
       "title": "Minnesota is preparing for all possibilities this election \u2014 including potential federal interference - The Globe | Worthington, Minnesota",
       "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQZXBKdmV4dGtKOUZMclEwMXhfSU1ESmdoam8zRXdSMHVrRU9Sd3d1N1lvXzc0V0FyRjhERVlJRENxcmxzVGRmTkFNa0pqXzRZRlZza21PWjlJQzd5SkJyTl9DWHk5cWdwemh3cGlFR2FMd0NIbWJKZzFKM0NjVEZhUEwyNzhHcjB3QnBZWmxKZ0tsS1MzQzUtbU9XX2JLejNLUGhyRHpSUEdpUFoyM1k1Q20weFkzbllaeXdCQ0dUSUxlSy1rUTZreUNick5mTkx3Zm9n?oc=5",
@@ -340,6 +362,23 @@
       "headline_numbers_unverified": [
         "2026 "
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "db00f1d28f1971ea1e07",
+      "title": "The Trump administration\u2019s attempt to prevent noncitizen voting and the role of the Supreme Court - SCOTUSblog",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPdHRVamhHanVIOGItdDFreVExei1kSWhXWE9zeDF2YVFRSWJEZk03dzJqMndoTndoSWthTHpqYUR0OUpqQVlic2k5UlF3S3F6OG9rendNck8ySnhCUjJ0VE9nSHZDYUFFbXRaNlVPMVFZMno4Z0JhOHlUNGNBbzc2R2t5eGY4aUx2aGNsVGJpSDkzc3A4QTZqRmo0LTFEUlAwbDdQVlJKbG5BNTZSOWZQd0RDeS1OcTF4MFNaNjZhWlNyWUNHUExF?oc=5",
+      "publisher": "SCOTUSblog",
+      "published_at": "2026-10-27T14:02:05Z",
+      "detected_at": "2026-10-27T19:51:09.814411Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -4976,42 +5015,6 @@
       "topic_hints": [],
       "headline_numbers_unverified": [
         "17 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "255860be69baf3465e3f",
-      "title": "US DOJ Gives California 48-Hours to Review/Address List of Noncitizens Who Received Ballots - California Globe",
-      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQd3h6LTJpdXlaRE1mbU9aUmRPNDhac1F3Q284VWlveTBJb0RqRHZ1b29IVEJyNEROc1BmNjE1cDFnakxpLVNuVkR1OUxZcXdkdFhHUlR1Y0NRcGdxdHpNSGJ0OXNIeUZTeDA3LTJhZF9SN2M0VE5BNHNQVmlIbUozYjNxUDVZVEUySjNFOTE4TzZYa2dENE5jOUU1dmk4UGdRNjlOajMzY1hqMGVXU29PWFZXSW1pYTRXVFhFYXNxVTU?oc=5",
-      "publisher": "California Globe",
-      "published_at": "2026-10-15T03:02:33Z",
-      "detected_at": "2026-10-15T05:44:57.649661Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [
-        "48"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "edda9daed4a11a9c75b4",
-      "title": "Frequently asked questions about the 2026 midterm elections - Protect Democracy",
-      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNaGc2YzZlb2ZjZmFHdmFUZ2o2eGtYX0phYl9lWUcxaHVFV2N2NlIzbjFsejdlMUJLdnZoclpkakw0d2U1VjlTODBETDVXNW9iWmZGMU93R2lRRy1iYW50eXZmQnduUmhlZWRZbWlPNlRkQ1IzTmdTTjM2T21kTnhZdHlhYlVROEFVY1NGN3ZDRVZGVENsTTVzYk9n?oc=5",
-      "publisher": "Protect Democracy",
-      "published_at": "2026-10-15T02:25:55Z",
-      "detected_at": "2026-10-15T03:46:43.244708Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [
-        "2026 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
