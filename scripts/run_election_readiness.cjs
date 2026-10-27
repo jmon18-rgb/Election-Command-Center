@@ -104,7 +104,7 @@ const markdown = ['# Election readiness report', '', `Revision: ${report.revisio
     `Audited: ${report.source_audit.audited_at} (${report.source_audit.age_minutes} minutes before this report)`,
     report.source_audit.interpretation,
     ...Object.entries(report.source_audit.unresolved_by_office).map(([office, ids]) =>
-      `- ${office}: ${ids.length} unresolved source identities${ids.length ? ' â€” ' + ids.join(', ') : ''}`),
+      `- ${office}: ${ids.length} unresolved source identities${ids.length ? ' — ' + ids.join(', ') : ''}`),
     ...Object.entries(report.source_audit.rejected_detail_reasons).map(([reason, count]) =>
       `- Rejected details: ${reason} (${count})`)]),
   '', 'Acceptance still open:', ...report.unproven_gates.map(x => `- ${x}`),
