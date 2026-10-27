@@ -1,5 +1,12 @@
 # Election Night production-readiness assignment
 
+## October27 - Independent numerical review corrected shared-error integration
+
+- Initial5-node common-error quadrature rejected BEFORErelease: multiplying several likelihoods concentrates the integral between its nodes. Independent closed-form5%contamination-product check found relative error11%/29%/56.2% for3/5/8factors. No deployed claim; oldremote8c superseded by forthcoming correctedhead.
+- Replacement: normalized61-node normal grid +/-6sigma/step.2 and conditional scalar log-likelihood lookup at.125margin points (explicitoffset0 preserveshalfvariance). Normal-grid closed-form/finer-grid checks and directcurve checks PASS. Independent actualrehearsal3000draw61vs121maxheadline0/0/.04pp, weightTV~6e-6;900drawdirect61vslookupweightTV6.03e-6, headlinediff.11pp(one draw), runtime24.24s direct vs.90s lookup. These are numerical/synthetic results, not calibration. Full national and16-inputWA/remaining/recovery testsPASS. Exactfingerprint andallnewCIrequired.
+- R6 prepared patch/provenance files underignoredartifacts/readiness/celebration-next.*; R4official-admission-next.patch underreview for72hpruning/CSVshape/end-to-endmetadata. No tracked source/celebration changes applied. R1newordinaryofficialMaricopa route confirms2026map/Oct1,2025adoption and3newnames, but providesno voteequivalency; receipt reprecincting-route-20261027.json. No repeatblockedsource or fakeallocation.
+
+
 ## October27 - Owner activates needle adjustments and celebrations
 
 - ROADMAP now explicitly lists R0 needle methodology/release and R6 celebration productions. Owner's direct instruction supersedes the old celebration pause; no extra approval is needed for this authorized scope. R0/PR487 remains current release task, followed by bounded R1/R2 work and ready R3/R6 tasks rather than waiting for Nov3 data.

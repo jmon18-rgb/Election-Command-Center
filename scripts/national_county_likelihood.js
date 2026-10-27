@@ -10,15 +10,32 @@
  const policy=Object.freeze({minimum_votes:10000,minimum_reference_fraction:.005,minimum_counties:3,
   county_margin_sigma:6,batch_margin_sigma:8,turnout_sigma_fraction:.25,selection_share_sigma:.12,
   contamination_floor:.05,minimum_effective_sample_fraction:.5,state_likelihood_pooling:'FIXED_PREDECLARED_STATE_LOG_LIKELIHOOD_BUDGET',
-  shared_reporting_error_variance_fraction:.5,shared_reporting_error_status:'ASSUMED_NOT_FITTED_OR_CALIBRATED'});
- // Five-node standard-normal quadrature. Half the EXISTING batch-error variance
+  shared_reporting_error_variance_fraction:.5,shared_reporting_error_status:'ASSUMED_NOT_FITTED_OR_CALIBRATED',
+  reporting_grid_step:.2,reporting_curve_step_margin_points:.125});
+ // Normal-density quadrature over +/-6 sigma. Half the EXISTING batch-error variance
  // is shared across races; half remains race-specific. This is observation error,
  // not an extra national voting swing or a second polling prior.
- const reportingNodes=Object.freeze([
-  {z:-2.8569700138728056,weight:.0112574113277207},{z:-1.355626179974266,weight:.2220759220056126},
-  {z:0,weight:.5333333333333333},
-  {z:1.355626179974266,weight:.2220759220056126},{z:2.8569700138728056,weight:.0112574113277207}]);
+ function normalQuadrature(step=policy.reporting_grid_step){
+  if(!Number.isFinite(step)||step<.05||step>1||Math.abs(12/step-Math.round(12/step))>1e-8)throw Error('Invalid reporting integration step');
+  const count=Math.round(12/step),rows=Array.from({length:count+1},(_,i)=>{
+   const z=-6+i*step;return {z,weight:Math.exp(-z*z/2)*(i===0||i===count?.5:1)};
+  }),sum=rows.reduce((s,r)=>s+r.weight,0);
+  return Object.freeze(rows.map(r=>Object.freeze({z:r.z,weight:r.weight/sum})));
+ }
+ const reportingNodes=normalQuadrature();
  const logMixture=values=>{const max=Math.max(...values);return max+Math.log(values.reduce((sum,v,i)=>sum+reportingNodes[i].weight*Math.exp(v-max),0));};
+ function conditionalCurve(compiled,margins){
+  const step=policy.reporting_curve_step_margin_points,support=6*policy.batch_margin_sigma*Math.sqrt(policy.shared_reporting_error_variance_fraction);
+  const low=Math.floor((Math.min(...margins)-support)/step)*step,high=Math.max(...margins)+support;
+  const size=Math.ceil((high-low)/step)+2;
+  if(!Number.isFinite(low)||!Number.isSafeInteger(size)||size<2||size>10000)throw Error('Unbounded reporting likelihood curve');
+  const values=Float64Array.from({length:size},(_,i)=>compiled.logLikelihood(low+i*step,{sharedReportingOffset:0}));
+  return margin=>{
+   const x=(margin-low)/step,i=Math.floor(x);
+   if(!Number.isFinite(x)||i<0||i>=size-1)throw Error('Reporting likelihood outside captured draw support');
+   return values[i]+(values[i+1]-values[i])*(x-i);
+  };
+ }
  const norm=s=>String(s).toLowerCase().replace(/[^a-z]/g,'');
  const clamp=x=>Math.max(.001,Math.min(.999,x));
  const cdf=x=>{const s=Math.sign(x),a=Math.abs(x)/Math.SQRT2,t=1/(1+.3275911*a);
@@ -160,8 +177,11 @@
   const prior=model.simulate(basis,{...args,captureCountyDraws:compiled.map(c=>c.code)});
   const {county_draws:draws,...baseline}=prior,n=prior.samples;
   const sharedSigma=policy.batch_margin_sigma*Math.sqrt(policy.shared_reporting_error_variance_fraction);
-  const logs=compiled.map(c=>reportingNodes.map(node=>Array.from(draws.margins[c.code],m=>
-   c.logLikelihood(m,{sharedReportingOffset:node.z*sharedSigma}))));
+  // The conditional likelihood depends only on margin+offset. Tabulate that
+  // scalar curve once per race instead of repeating county loops at every node.
+  const logs=compiled.map(c=>{const curve=conditionalCurve(c,draws.margins[c.code]);
+   return reportingNodes.map(node=>Array.from(draws.margins[c.code],m=>curve(m+node.z*sharedSigma)));
+  });
   const totals=new Float64Array(n);
   const stateCounts={};for(const c of compiled)stateCounts[c.code.slice(0,2)]=(stateCounts[c.code.slice(0,2)]||0)+1;
   const stateBudgets=Object.fromEntries(Object.keys(stateCounts).map(state=>[state,Object.keys(scopes).filter(code=>code.startsWith(state+'-')).length]));
@@ -206,7 +226,7 @@
    particle_count:n,likelihood_power:power,policy,state_likelihood_sources:stateCounts,state_likelihood_budget_members:stateBudgets,state_likelihood_max_ratio:stateRatios,house_vote_sources:compiled.filter(c=>scopes[c.code].house).length,
    reporting_error:{scope:'SHARED_ACROSS_ADMITTED_RACES',total_batch_margin_sigma:policy.batch_margin_sigma,
     shared_margin_sigma:sharedSigma,race_specific_margin_sigma:policy.batch_margin_sigma*Math.sqrt(1-policy.shared_reporting_error_variance_fraction),
-    quadrature_nodes:reportingNodes.length,calibrated:false},
+    quadrature_nodes:reportingNodes.length,curve_step_margin_points:policy.reporting_curve_step_margin_points,calibrated:false},
    house_vote_states:[...new Set(compiled.filter(c=>scopes[c.code].house).map(c=>c.code.slice(0,2)))].sort(),
    house_transfer:compiled.some(c=>scopes[c.code].house)?'Observed limited House district parts; other House movement uses existing shared-error covariance, not national House coverage':'Existing declared shared national-error covariance only; no observed House votes in this county path',
    interval_calibrated:false,independent_historical_calibration:false,
@@ -214,5 +234,5 @@
   result.county_results_update=diagnostics;
   return {baseline,result,diagnostics};
  }
- return Object.freeze({compile,condition,policy});
+ return Object.freeze({compile,condition,policy,normalQuadrature,conditionalCurve});
 });

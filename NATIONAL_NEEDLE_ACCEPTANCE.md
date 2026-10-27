@@ -19,13 +19,22 @@ incomplete voting-method batches, and shared observation errors:
 Concrete candidate improvement: retain the existing eight-margin-point batch
 error standard deviation but allocate half its variance to one shared reporting
 error across admitted races and half to race-specific error. Integrate the same
-shared nuisance after combining county likelihoods, using five-node normal
-quadrature, before ESS tempering and same-draw replay. This distinguishes a
+shared nuisance after combining county likelihoods, using a normalized 61-node
+normal-density grid over +/-6 standard deviations, before ESS tempering and same-draw replay. This distinguishes a
 common early-batch artifact from independent confirmation in several states.
 Fixed state likelihood budgets, the contamination floor, original correlated
 prior draws and Four Endings thresholds remain unchanged. No visual moving
 average, hysteresis or update delay is introduced; valid corrections still
 change the estimate immediately.
+
+Independent numerical review rejected the initial five-node integration as too
+coarse for multiplied likelihoods. The replacement matches a closed-form
+robust-likelihood integral through 16 factors (relative error below 1e-6), and
+agrees with a finer 121-node reference on actual rehearsal inputs. A conditional
+scalar log-likelihood lookup at 0.125-margin-point spacing avoids repeating all
+county calculations at every node. Direct-versus-lookup and finer-grid checks
+must allow one-draw headline rounding while assessing posterior-weight error;
+the saved numerical review is not a historical forecast-accuracy evaluation.
 
 The one-half variance allocation is an explicit, unfitted engineering assumption,
 not a NYT/DDHQ parameter or empirically optimal value. This addresses a structural

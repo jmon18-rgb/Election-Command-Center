@@ -76,13 +76,25 @@ assert.equal(reporting.scope,'SHARED_ACROSS_ADMITTED_RACES');
 assert.equal(reporting.calibrated,false);
 assert(Math.abs(reporting.shared_margin_sigma**2+reporting.race_specific_margin_sigma**2-8**2)<1e-10,
  'Sharing reporting error must allocate the existing variance, not add a second error budget');
-assert.equal(reporting.quadrature_nodes,5);
-const commonNodes=[[-2.8569700138728056,.0112574113277207],[-1.355626179974266,.2220759220056126],[0,.5333333333333333],[1.355626179974266,.2220759220056126],[2.8569700138728056,.0112574113277207]];
-assert(Math.abs(commonNodes.reduce((s,[z,w])=>s+w*z*z,0)-1)<1e-12);
+assert.equal(reporting.quadrature_nodes,61);
+const commonNodes=bridge.normalQuadrature().map(r=>[r.z,r.weight]);
+assert(Math.abs(commonNodes.reduce((s,[z,w])=>s+w*z*z,0)-1)<1e-6);
+for(const k of [1,3,5,8,12,16]){
+ let exact=0,choose=1;for(let j=0;j<=k;j++){
+  exact+=choose*.05**(k-j)*.95**j/Math.sqrt(1+j);choose=choose*(k-j)/(j+1);
+ }
+ const integrate=nodes=>nodes.reduce((s,{z,weight})=>s+weight*(.05+.95*Math.exp(-z*z/2))**k,0);
+ assert(Math.abs(integrate(bridge.normalQuadrature())/exact-1)<1e-6,'Joint robust likelihood integral must match its closed-form reference');
+ assert(Math.abs(integrate(bridge.normalQuadrature())-integrate(bridge.normalQuadrature(.1)))<1e-7,'Joint integral converges on a finer normal grid');
+}
 // Two synthetic same-direction batch errors are not independent confirmation.
 // Use real compiled county likelihoods to distinguish integrating one shared
 // nuisance AFTER the product from multiplying two separately integrated sources.
 const a=bridge.compile(blue[1],{now}),b=bridge.compile(blue[2],{now});
+const curve=bridge.conditionalCurve(a,[-10,10]);
+for(let m=-40;m<40;m+=.371){
+ assert(Math.abs(curve(m)-a.logLikelihood(m,{sharedReportingOffset:0}))<.001,'Conditional curve interpolation must track the direct county likelihood');
+}
 const likelihoodAt=(c,m,z)=>Math.exp(c.logLikelihood(m,{sharedReportingOffset:z*reporting.shared_margin_sigma})-c.logLikelihood(8,{sharedReportingOffset:0}));
 const sharedProduct=commonNodes.reduce((s,[z,w])=>s+w*likelihoodAt(a,0,z)*likelihoodAt(b,0,z),0);
 const independentProduct=commonNodes.reduce((s,[z,w])=>s+w*likelihoodAt(a,0,z),0)*commonNodes.reduce((s,[z,w])=>s+w*likelihoodAt(b,0,z),0);
