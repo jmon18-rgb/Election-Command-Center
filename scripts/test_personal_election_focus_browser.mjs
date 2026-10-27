@@ -1,0 +1,49 @@
+// Isolated synthetic/fixture UI checks, never an actual-results or calibration claim.
+import assert from 'node:assert/strict';
+import {createServer} from 'node:http';
+import {readFileSync,existsSync,statSync,mkdirSync} from 'node:fs';
+import {resolve,extname,sep} from 'node:path';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright');
+const root=resolve(import.meta.dirname,'..'),types={'.html':'text/html','.js':'application/javascript','.json':'application/json','.svg':'image/svg+xml'};
+const server=createServer((req,res)=>{const file=resolve(root,'.'+(new URL(req.url,'http://localhost').pathname==='/'?'/index.html':decodeURIComponent(new URL(req.url,'http://localhost').pathname)));
+ if(!file.startsWith(root+sep)||!existsSync(file)||!statSync(file).isFile()){res.writeHead(404).end();return;}res.writeHead(200,{'content-type':types[extname(file)]||'application/octet-stream'});res.end(readFileSync(file));});
+await new Promise(ok=>server.listen(0,'127.0.0.1',ok));let browser;
+try{
+ browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
+ for(const width of [1366,390]){
+  const context=await browser.newContext({viewport:{width,height:900}}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.clock.install({time:new Date('2026-10-27T19:00:00Z')});
+  await page.route('**/*',route=>new URL(route.request().url()).hostname==='127.0.0.1'?route.continue():route.abort());
+  await page.goto('http://127.0.0.1:'+server.address().port+'/',{waitUntil:'domcontentloaded'});
+  await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();
+  await page.waitForFunction(()=>document.querySelectorAll('#enPersonalFocus article svg').length===17);
+  assert.equal(await page.locator('#enPersonalFocus article').count(),18);
+  assert.match(await page.locator('#enPersonalFocus [data-race="AK-SEN"]').innerText(),/Needle pending/);
+  assert.match(await page.locator('#enPersonalFocus [data-race="NE-SEN"]').innerText(),/Osborn.*model win chance/s);
+  assert.doesNotMatch(await page.locator('#enPersonalFocus [data-race="MI-SEN"]').innerText(),/Own county returns used/);
+  const same=await page.evaluate(()=>Array.from(document.querySelectorAll('#enPersonalFocus article')).filter(e=>e.dataset.race!=='AK-SEN').every(e=>{
+   const r=jointLastResult.race_probabilities.find(x=>x.race_code===e.dataset.race);return e.querySelector('svg').getAttribute('aria-label').includes(r.dem_beats_rep_pct.toFixed(1)+' percent');}));assert(same);
+  const liveBefore=await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities));
+  await page.locator('#enNationalRehearsal > summary').click();
+  await page.locator('#enNationalRehearsal details > summary').click();
+  await page.waitForFunction(()=>document.querySelectorAll('#enPersonalFocusPreview article').length===18);
+  assert.match(await page.locator('#enPersonalFocusPreview').innerText(),/SIMULATED.*FICTIONAL COUNTS/s);
+  await page.locator('#enNationalNext').click();await page.waitForFunction(()=>document.querySelector('#enNationalStage').textContent.includes('2/5'));
+  assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),liveBefore,'Preview must not change the live joint model');
+  assert.doesNotMatch(await page.locator('#enPersonalFocus').innerText(),/SIMULATED/);
+  await page.locator('#enNationalRehearsal > summary').click();
+  const restored=await page.evaluate(async()=>{
+   const inputs=await NationalNeedleRehearsal.load(p=>fetch('./'+p).then(r=>r.json())),args={samples:900,seed:20261103,rehearsal:true,now:NationalNeedleRehearsal.now};
+   const sample=NationalCountyLikelihood.condition(ChamberControlModel,jointBasis,NationalNeedleRehearsal.stage(inputs,2,jointBasis),args);
+   jointLastResult=sample.result;jointPulseBaseline=sample.baseline;renderPersonalElectionFocus();
+   const admitted=document.querySelector('#enPersonalFocus [data-race="IA-SEN"]').textContent.includes('Own county returns used nationally');
+   const empty=NationalCountyLikelihood.condition(ChamberControlModel,jointBasis,[],args);jointLastResult=empty.result;jointPulseBaseline=empty.baseline;renderPersonalElectionFocus();
+   return {admitted,withdrawn:!document.querySelector('#enPersonalFocus [data-race="IA-SEN"]').textContent.includes('Own county returns used nationally'),same:JSON.stringify(empty.result.probabilities)===JSON.stringify(sample.baseline.probabilities)};
+  });assert.deepEqual(restored,{admitted:true,withdrawn:true,same:true});
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true);
+  mkdirSync(resolve(root,'artifacts/readiness'),{recursive:true});await page.locator('#enPersonalFocus').screenshot({path:resolve(root,'artifacts/readiness/personal-focus-'+width+'.png')});
+  await page.locator('#enMode2024').click();assert.equal(await page.locator('#enPersonalFocus').isHidden(),true);assert.deepEqual(errors,[]);
+  await page.route('**/personal_election_focus.js*',route=>route.abort());await page.reload({waitUntil:'domcontentloaded'});await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();await page.waitForFunction(()=>jointLastResult?.probabilities);assert.deepEqual(errors,[]);
+  await context.close();console.log(width+'px owner Senate/House same-model needles, disclosure, synthetic admission/withdrawal, archive and optional-script fallback PASS');
+ }
+}finally{await browser?.close();await new Promise(ok=>server.close(ok));}
