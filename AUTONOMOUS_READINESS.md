@@ -1,5 +1,35 @@
 # Election Night production-readiness assignment
 
+## October 27 01:29Z — Ohio county-to-NATIONAL path implemented locally
+
+- Ohio special-Senate 87527 now feeds the existing correlated national model via
+  a headless controller; no individual race panel. Exact 88-county/7-candidate
+  parser, verified 2024 regular-seat historical composition and independent Census
+  reference; other candidates stay outside Democratic/Republican counts.
+- Adds OH-SEN to durable revisions, counts-only likelihood and same-draw capture.
+  Bounded cap is eleven sources, retaining existing thresholds, ESS minimum,
+  fixed state likelihood budgets and isolated baseline draws. No averaging race
+  posteriors or changing the Four Endings definitions; no Maine RCV nuisance.
+- Additional Ohio full route <=1/min post-close, automatic ten-minute pre-close,
+  existing shared 4-active/64-queue/8-reserve pool + civic breaker. Existing eight
+  fast routes 32/min + Maine1/min + Ohio1/min + owned WA1/min; no unlimited refresh.
+  Hidden pause, generation/backoff/manual floor, correction/retraction/zero and
+  stale/old-source gates retained. Source note explicitly discloses historical
+  regular/special-seat scenario and non-official remaining ballots.
+- Local numerical Ohio movement, red/blue divergence, baseline isolation, ESS
+  bound and eleven-source coexistence PASS. Actual Edge 1366/390 SYNTHETIC
+  automatic national movement before calls, red/blue corrections, zero withdrawal,
+  old-source replay rejection, later-round exclusion, outage/recovery, hidden/
+  archive isolation, exact one extra full-route request/minute and manual floor
+  PASS. All 38 core regressions PASS; importer original/88-county checks PASS.
+- IMPLEMENTATION IS LOCAL/UNDER REVIEW until required exact-head CI, merge and
+  final Pages verification. Synthetic tests are not positive live 2026 delivery,
+  calibration, independent release chronology or comparative-speed evidence.
+  NEXT: publish attached review, finish exact-head checks, normal deployment and
+  published synthetic Ohio behavior plus separate fixture-free real-clock canary.
+- Last daily report remains 2026-10-26 Eastern; keep pending/routine work quiet.
+
+
 ## October 27 01:22Z — Ohio preparation merged and published; national wiring next
 
 - #469 https://github.com/jmon18-rgb/Election-Command-Center/pull/469 merged

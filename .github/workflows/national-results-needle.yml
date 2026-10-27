@@ -11,6 +11,7 @@ on:
       - 'scripts/test_national_*.mjs'
       - 'scripts/*_needle_view.js'
       - 'scripts/*_civic_county_source.js'
+      - 'scripts/*ohio*'
       - 'scripts/competitive_*.js'
       - 'scripts/election_night_signals.js'
       - 'scripts/wisconsin_house*.js'
@@ -33,6 +34,7 @@ jobs:
           node scripts/test_chamber_control_model.cjs
           node scripts/test_national_county_likelihood.cjs
           node scripts/test_maine_national_bridge.cjs
+          node scripts/test_ohio_national_bridge.cjs
           node scripts/test_washington_national_bridge.cjs
       - name: Install pinned browser
         run: |
@@ -42,3 +44,4 @@ jobs:
         run: |
           node scripts/test_national_results_needle_browser.mjs
           node scripts/test_maine_national_browser.mjs
+          node scripts/test_ohio_national_browser.mjs
