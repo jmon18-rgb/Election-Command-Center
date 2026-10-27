@@ -4,7 +4,9 @@ Review basis: `CELEBRATION_CREATIVE_BRIEF.md`, current player/index/assets and R
 
 **Status meanings:** COMPLETE = the specified engineering function is implemented/tested, subject to its recorded release status. PARTIAL = a poster/three text beats/generic cue exists, but the requested distinct production does not. MISSING = the requested visual action, genre-specific music or optional upgrade is absent. Preview/synthetic safety tests never prove actual winner calls.
 
-## October27 owner-art integration candidate
+## October27 owner-art integration released
+
+PR496 released at finalmain95c1116d/Pages40585515817SUCCESS; all314checked files match21:18:59.727Z and ordinary published previews passed. Exact-head33parents/44jobs41success3nonapplicableSKIP/0external passed. The candidate details below describe the released poster implementation; new protected release/publication requirements mentioned there were satisfied. Bespoke animation/music remains incomplete.
 
 Three owner-supplied images are wired into the existing Kansas, Mississippi and Graham previews/earned presentation, with content-addressed local JPEGs, full-image mobile containment and explicit fictional-art attribution. Original bytes are preserved; missing JPEGs fall back to existing SVGs, then readable icon/text if both fail. These are poster improvements, not finished bespoke animation/music. Abbott retains the existing electoral-defeat scene. Exact triggers, source-call freshness, retraction/dedup, mute/skip/replay/reduced-motion and audio remain unchanged. Local1440/390 actual-browser and deterministic player checks pass; new exact-head CI/protected release/publication are still required.
 

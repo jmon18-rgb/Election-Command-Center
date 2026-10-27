@@ -12,6 +12,8 @@ on:
       - 'scripts/*_needle_view.js'
       - 'scripts/*_civic_county_source.js'
       - 'scripts/*ohio*'
+      - 'scripts/*south_carolina*'
+      - 'data/south_carolina_senate_sources/**'
       - 'scripts/*virginia*'
       - 'scripts/*pennsylvania*07*'
       - 'scripts/competitive_*.js'
@@ -43,6 +45,8 @@ jobs:
           node scripts/test_maine_national_bridge.cjs
           node scripts/test_ohio_national_bridge.cjs
           node scripts/test_ohio_controller_budget.cjs
+          node scripts/test_south_carolina_county_source.cjs
+          node scripts/test_south_carolina_controller_budget.cjs
           node scripts/test_maine_controller_budget.cjs
           node scripts/test_collect_virginia_official_results.cjs
           node scripts/test_virginia_official_cache.cjs
@@ -70,6 +74,7 @@ jobs:
           node scripts/test_personal_election_focus_browser.mjs
           node scripts/test_maine_national_browser.mjs
           node scripts/test_ohio_national_browser.mjs
+          node scripts/test_south_carolina_national_browser.mjs
           node scripts/test_virginia_house_02_national_browser.mjs
           node scripts/test_arizona_house_06_national_browser.mjs
           node scripts/test_pennsylvania_house_07_national_browser.mjs

@@ -1,0 +1,52 @@
+{
+  "source_url": "https://civicapi.org/api/v2/race/87409",
+  "body_sha256": "e49d0f32f2b82623c15a87dab1213dee870a8307f860a15869a3f037bbe518fd",
+  "independent_census_sha256": "3c337402b5c6e8d5aa26b4278ccf4edc8989f2683765b3ffbf22296cdb2df3a0",
+  "historical_votes_sha256": "58df7eaff97162cf27be2bb4d526b363888c09e0f662231a3ca09cff9c9f3f99",
+  "candidates": [
+    {
+      "provider_id": 221091,
+      "name": "Darline Graham",
+      "party": "Republican"
+    },
+    {
+      "provider_id": 221090,
+      "name": "Annie Andrews",
+      "party": "Democratic"
+    },
+    {
+      "provider_id": 221092,
+      "name": "Mark Hackett",
+      "party": "Constitution"
+    },
+    {
+      "provider_id": 221093,
+      "name": "Kasie Whitener",
+      "party": "Libertarian"
+    }
+  ],
+  "geography_identity_review": {
+    "decision": "EXPLICIT_INDEPENDENT_NAME_KEY_BRIDGE_REVIEWED_FOR_IMPLEMENTATION",
+    "missing_native_fips_only": [
+      "mccormick"
+    ],
+    "basis": "Top-level exactSCGeneralSenate identity + unique nativeCountykey/nameMccormick + independently pinned CensusMcCormick45065 + official2020countyname. No spatial allocation or generatednumericFIPS.",
+    "required_fail_closed_cases": [
+      "OthermissingFIPS",
+      "Unknown/duplicatekey/name",
+      "Any suppliedconflictingFIPS includingMcCormick",
+      "Wrongstate/office/year/type",
+      "Missing/extra county or candidate"
+    ]
+  },
+  "schema": "reviewed-sc-senate-counts-contract-v1",
+  "race_code": "SC-SEN",
+  "official_roster_url": "https://vrems.scvotes.sc.gov/Candidate/CandidateSearch?electionId=22596",
+  "official_election_event": 22596,
+  "current_original_test_data": true,
+  "actual_positive_delivery_verified": false,
+  "calibrated": false,
+  "county_count": 46,
+  "baseline_year": 2020,
+  "scope": "Counts only; source winner flags never become verified calls"
+}

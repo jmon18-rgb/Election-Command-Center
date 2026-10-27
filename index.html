@@ -1159,6 +1159,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <p class="methodline" id="enNationalPennsylvaniaHouse07Source">PA-07 district-part national input · experimental.</p>
 <p class="methodline" id="enNationalPennsylvaniaHouse08Source">PA-08 district-part national input · experimental.</p>
 <p class="methodline" id="enNationalMichiganHouse07Source">MI-07 district-part national input · experimental.</p>
+<p class="methodline" id="enNationalSouthCarolinaSource">South Carolina Senate national input · experimental.</p>
 <p class="methodline" id="enNationalOhioSource">Ohio special-Senate national input · experimental.</p>
 <p class="methodline" id="enNationalMaineSource">Maine first-choice national input · experimental; not a final ranked-choice outcome.</p>
 <p class="methodline" id="enNationalWashingtonHouseSource">WA-03 official county source · owned cache may add collection/scheduling delay; speed unproven.</p>
@@ -1424,7 +1425,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <footer class="footer"><span>2026 ELECTION COMMAND CENTER · CLARITY OVER NOISE</span><span><a href="https://github.com/jmon18-rgb/Election-Command-Center">Source code ↗</a> · <span id="updated">Briefing pending</span></span></footer></main>
 <script src="./scripts/election_night_celebration_player.js?v=493a49006118"></script>
 <script src="./scripts/election_night_celebration_scene.js?v=fe0bb1ea4181"></script>
-<script src="./scripts/personal_election_focus.js?v=d72a0509b200"></script>
+<script src="./scripts/personal_election_focus.js?v=cd02fb5de4ed"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=6eaa0d8f80cf"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=165fc37d665a"></script>
 <script src="./scripts/civicapi_state_batch.js?v=99e987c72cb8"></script>
@@ -1463,6 +1464,8 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/washington_official_cache.js?v=9e70e19d2ffe"></script>
 <script src="./scripts/maine_civic_county_source.js?v=467a4cfdd030"></script>
 <script src="./scripts/maine_senate_evidence.js?v=9b1ed4738e4b"></script>
+<script src="./scripts/south_carolina_civic_county_source.js?v=b8206b7c3836"></script>
+<script src="./scripts/south_carolina_senate_evidence.js?v=67ed6f853d33"></script>
 <script src="./scripts/ohio_civic_county_source.js?v=6a499abd6030"></script>
 <script src="./scripts/ohio_senate_evidence.js?v=3525b126d247"></script>
 <script src="./scripts/virginia_official_house_source.js?v=cfe9adfd37e0"></script>
@@ -1474,15 +1477,15 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/pennsylvania_house_08_evidence.js?v=db68953539bb"></script>
 <script src="./scripts/michigan_house_07_evidence.js?v=f10ed8920077"></script>
 <script src="./scripts/washington_house_evidence.js?v=4a2cc5972349"></script>
-<script src="./scripts/national_county_likelihood.js?v=dd742d72ab19"></script>
+<script src="./scripts/national_county_likelihood.js?v=22511c113dbc"></script>
 <script src="./scripts/official_admission_audit.js?v=c2720f504058"></script>
 <script src="./scripts/national_needle_rehearsal.js?v=b683a29fa107"></script>
-<script src="./scripts/chamber_control_model.js?v=1af775eca463"></script>
+<script src="./scripts/chamber_control_model.js?v=f359f5efaa87"></script>
 <script src="./scripts/electorate_what_if_2026.js?v=1a5fe3701694"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
 <script src="./scripts/chamber_poll_error_audit.js?v=9e73e0e9f9fe"></script>
 <script src="./scripts/senate_calibration_audit.js?v=2aab89368b2d"></script>
-<script src="./scripts/competitive_source_revision.js?v=1b86ce1b58cb"></script>
+<script src="./scripts/competitive_source_revision.js?v=340ebf3aa8ca"></script>
 <script src="./scripts/iowa_civic_county_source.js?v=6e755e60e8de"></script>
 <script src="./scripts/iowa_county_needle.js?v=2031f40c8e46"></script>
 <script src="./scripts/competitive_needle_prior.js?v=cc228fbcf6ce"></script>
@@ -3756,6 +3759,15 @@ function enRenderAmbientDesk(){
   });
   void window.enMaineSenateController.tick();
  }
+ if(window.SouthCarolinaSenateEvidence&&window.SouthCarolinaCivicCountySource&&window.CompetitiveSourceRevision){
+  if(!window.enSouthCarolinaSenateController)window.enSouthCarolinaSenateController=window.SouthCarolinaSenateEvidence.create({
+   fetchJSON:async path=>{const r=await fetch('./'+path,{credentials:'omit'});if(!r.ok)throw Error('SouthCarolina input HTTP '+r.status);return r.json();},
+   fetchSource:url=>enCivicFetchJson(url),isActive:()=>enModeYear===2026&&enIsVisible(),
+   sourceGeneration:()=>enModeGeneration+':'+window.ElectionNightTransport.generation(enCivicBreaker),onValidated:()=>enCivicBreaker?.success(),
+   onUpdate:(state,changed)=>{const note=$('#enNationalSouthCarolinaSource');if(note)note.textContent='SC-SEN national input · '+state.phase+' · '+state.transport_delay;if(changed)jointQueueRefresh();}
+  });
+  void window.enSouthCarolinaSenateController.tick();
+ }
  if(window.OhioSenateEvidence&&window.OhioCivicCountySource&&window.CompetitiveSourceRevision){
   if(!window.enOhioSenateController)window.enOhioSenateController=window.OhioSenateEvidence.create({
    fetchJSON:async path=>{const r=await fetch('./'+path,{credentials:'omit'});if(!r.ok)throw Error('Ohio input HTTP '+r.status);return r.json();},
@@ -4599,7 +4611,7 @@ function jointForecastResult(){return jointLastResult}
 function jointBaselineForecastResult(){return jointPublicResult}
 function jointCountyEvidence(){
  if(enModeYear!==2026)return [];
- return [window.enMichiganHouse07Controller,window.enPennsylvaniaHouse08Controller,window.enVirginiaHouse02Controller,window.enArizonaHouse06Controller,window.enPennsylvaniaHouse07Controller,window.enOhioSenateController,window.enMaineSenateController,window.enIowaPilotController,window.enKansasPilotController,window.enTexasPilotController,window.enWisconsinHouseController,window.enWisconsinHouse03Controller,window.enMichiganHouse04Controller,window.enPennsylvaniaHouse10Controller,window.enNewYorkHouse17Controller,window.enWashingtonHouse03Controller]
+ return [window.enSouthCarolinaSenateController,window.enMichiganHouse07Controller,window.enPennsylvaniaHouse08Controller,window.enVirginiaHouse02Controller,window.enArizonaHouse06Controller,window.enPennsylvaniaHouse07Controller,window.enOhioSenateController,window.enMaineSenateController,window.enIowaPilotController,window.enKansasPilotController,window.enTexasPilotController,window.enWisconsinHouseController,window.enWisconsinHouse03Controller,window.enMichiganHouse04Controller,window.enPennsylvaniaHouse10Controller,window.enNewYorkHouse17Controller,window.enWashingtonHouse03Controller]
   .map(c=>c?.status().evidence).filter(Boolean);
 }
 function jointCurrentSignature(){
@@ -6169,7 +6181,7 @@ function enCivicURL(item){return enCivicByWatch[enWatchId(item)]?.source_url||'h
 // Abort where supported, and reject on time even if a fetch ignores abort.
 async function enCivicFetchJson(url,timeoutMs=12000){
  if(!enCivicRequestPool)throw Error('Election Night bounded transport not loaded');
- const priority=['https://civicapi.org/api/v2/race/87151','https://civicapi.org/api/v2/race/87162','https://civicapi.org/api/v2/race/87438','https://civicapi.org/api/v2/race/87483','https://civicapi.org/api/v2/race/87485','https://civicapi.org/api/v2/race/87204','https://civicapi.org/api/v2/race/87385','https://civicapi.org/api/v2/race/87319','https://civicapi.org/api/v2/race/87188','https://civicapi.org/api/v2/race/87527','https://civicapi.org/api/v2/race/87382','https://civicapi.org/api/v2/race/87383','https://civicapi.org/api/v2/race/87207','https://civicapi.org/api/v2/race/86922'].includes(url);
+ const priority=['https://civicapi.org/api/v2/race/87151','https://civicapi.org/api/v2/race/87162','https://civicapi.org/api/v2/race/87438','https://civicapi.org/api/v2/race/87483','https://civicapi.org/api/v2/race/87485','https://civicapi.org/api/v2/race/87204','https://civicapi.org/api/v2/race/87385','https://civicapi.org/api/v2/race/87319','https://civicapi.org/api/v2/race/87188','https://civicapi.org/api/v2/race/87527','https://civicapi.org/api/v2/race/87409','https://civicapi.org/api/v2/race/87382','https://civicapi.org/api/v2/race/87383','https://civicapi.org/api/v2/race/87207','https://civicapi.org/api/v2/race/86922'].includes(url);
  return enCivicRequestPool.run(()=>enCivicFetchUnpooled(url,timeoutMs),{priority});
 }
 async function enCivicFetchUnpooled(url,timeoutMs=12000){
@@ -6177,7 +6189,7 @@ async function enCivicFetchUnpooled(url,timeoutMs=12000){
  // Other full routes remain blocked; retain search/light routing safeguards.
  if(typeof url!=='string'||
     (!/^https:\/\/civicapi\.org\/api\/v2\/race\/(?:search\?[^#]+|[1-9]\d*\?light=)$/.test(url)&&
-     !['https://civicapi.org/api/v2/race/87151','https://civicapi.org/api/v2/race/87162','https://civicapi.org/api/v2/race/87438','https://civicapi.org/api/v2/race/87483','https://civicapi.org/api/v2/race/87485','https://civicapi.org/api/v2/race/87204','https://civicapi.org/api/v2/race/87385','https://civicapi.org/api/v2/race/87319','https://civicapi.org/api/v2/race/87188','https://civicapi.org/api/v2/race/87527','https://civicapi.org/api/v2/race/87382','https://civicapi.org/api/v2/race/87383','https://civicapi.org/api/v2/race/87207','https://civicapi.org/api/v2/race/86922'].includes(url)))
+     !['https://civicapi.org/api/v2/race/87151','https://civicapi.org/api/v2/race/87162','https://civicapi.org/api/v2/race/87438','https://civicapi.org/api/v2/race/87483','https://civicapi.org/api/v2/race/87485','https://civicapi.org/api/v2/race/87204','https://civicapi.org/api/v2/race/87385','https://civicapi.org/api/v2/race/87319','https://civicapi.org/api/v2/race/87188','https://civicapi.org/api/v2/race/87527','https://civicapi.org/api/v2/race/87409','https://civicapi.org/api/v2/race/87382','https://civicapi.org/api/v2/race/87383','https://civicapi.org/api/v2/race/87207','https://civicapi.org/api/v2/race/86922'].includes(url)))
   throw Error('Unapproved civicAPI 2026 result source URL');
  const cool=enCivicBreaker?.status();
  const requestGeneration=window.ElectionNightTransport.generation(enCivicBreaker);

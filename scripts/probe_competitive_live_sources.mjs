@@ -125,8 +125,10 @@ if(!inWindow(Date.now())){
    const raw=JSON.parse(bytes.toString('utf8'));
    const reference=JSON.parse(readFileSync(resolve(import.meta.dirname,'../data/washington_house_03_county_fips_reference.json'),'utf8'));
    const waNames=new Map(reference.counties.map(c=>[c.county+' County',c.fips]));
-   const vector=row.code==='WA-03'?raw.payload.ballotItemWithBreakdown.breakdownResults.map(c=>[waNames.get(c.locality.name[0].text),...['1601892','1601893','9910'].map(id=>c.ballotOptions.find(o=>o.nativeId===id).voteCount)]).sort((a,b)=>a[0].localeCompare(b[0])):Object.values(raw.region_results).filter(c=>row.code!=='ME-SEN'||c.type==='County').sort((a,b)=>a.fips.localeCompare(b.fips)).map(c=>[
-    c.fips,...['Democratic','Republican','Libertarian'].map(p=>c.candidates.filter(v=>v.party===p).reduce((n,v)=>n+v.votes,0))]);
+   const scReference=row.code==='SC-SEN'?JSON.parse(readFileSync(resolve(import.meta.dirname,'../data/south_carolina_county_fips_reference.json'),'utf8')):null;
+   const scVector=scReference?require('./south_carolina_civic_county_source.js').parse(raw,scReference,{now:Date.parse(row.captured_at)}).counties.map(c=>[c.county_fips,c.dem_votes,c.rep_votes,c.other_votes]).sort((a,b)=>a[0].localeCompare(b[0])):null;
+   const vector=scVector|| (row.code==='WA-03'?raw.payload.ballotItemWithBreakdown.breakdownResults.map(c=>[waNames.get(c.locality.name[0].text),...['1601892','1601893','9910'].map(id=>c.ballotOptions.find(o=>o.nativeId===id).voteCount)]).sort((a,b)=>a[0].localeCompare(b[0])):Object.values(raw.region_results).filter(c=>row.code!=='ME-SEN'||c.type==='County').sort((a,b)=>String(a.fips||a.name).localeCompare(String(b.fips||b.name))).map(c=>[
+    c.fips,...['Democratic','Republican','Libertarian'].map(p=>c.candidates.filter(v=>v.party===p).reduce((n,v)=>n+v.votes,0))]));
    const file=row.code+'-'+new Date().toISOString().replace(/[:.]/g,'-')+'.json';
    const dir=resolve(out,'raw');mkdirSync(dir,{recursive:true});writeFileSync(resolve(dir,file),bytes);
    report.raw_archives.push({race:row.code,path:'raw/'+file,source_url:row.source_url,captured_at:row.captured_at,

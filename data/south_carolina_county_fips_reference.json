@@ -1,0 +1,330 @@
+{
+  "schema": "independent-sc-county-native-crosswalk-v1",
+  "state": "SC",
+  "source_sha256": "3c337402b5c6e8d5aa26b4278ccf4edc8989f2683765b3ffbf22296cdb2df3a0",
+  "source": "2024 Census national county reference; original already pinned under texas_historical_sources",
+  "counties": [
+    {
+      "county": "Abbeville",
+      "fips": "45001",
+      "native_key": "abbeville",
+      "native_name": "Abbeville",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Aiken",
+      "fips": "45003",
+      "native_key": "aiken",
+      "native_name": "Aiken",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Allendale",
+      "fips": "45005",
+      "native_key": "allendale",
+      "native_name": "Allendale",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Anderson",
+      "fips": "45007",
+      "native_key": "anderson",
+      "native_name": "Anderson",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Bamberg",
+      "fips": "45009",
+      "native_key": "bamberg",
+      "native_name": "Bamberg",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Barnwell",
+      "fips": "45011",
+      "native_key": "barnwell",
+      "native_name": "Barnwell",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Beaufort",
+      "fips": "45013",
+      "native_key": "beaufort",
+      "native_name": "Beaufort",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Berkeley",
+      "fips": "45015",
+      "native_key": "berkeley",
+      "native_name": "Berkeley",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Calhoun",
+      "fips": "45017",
+      "native_key": "calhoun",
+      "native_name": "Calhoun",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Charleston",
+      "fips": "45019",
+      "native_key": "charleston",
+      "native_name": "Charleston",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Cherokee",
+      "fips": "45021",
+      "native_key": "cherokee",
+      "native_name": "Cherokee",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Chester",
+      "fips": "45023",
+      "native_key": "chester",
+      "native_name": "Chester",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Chesterfield",
+      "fips": "45025",
+      "native_key": "chesterfield",
+      "native_name": "Chesterfield",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Clarendon",
+      "fips": "45027",
+      "native_key": "clarendon",
+      "native_name": "Clarendon",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Colleton",
+      "fips": "45029",
+      "native_key": "colleton",
+      "native_name": "Colleton",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Darlington",
+      "fips": "45031",
+      "native_key": "darlington",
+      "native_name": "Darlington",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Dillon",
+      "fips": "45033",
+      "native_key": "dillon",
+      "native_name": "Dillon",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Dorchester",
+      "fips": "45035",
+      "native_key": "dorchester",
+      "native_name": "Dorchester",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Edgefield",
+      "fips": "45037",
+      "native_key": "edgefield",
+      "native_name": "Edgefield",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Fairfield",
+      "fips": "45039",
+      "native_key": "fairfield",
+      "native_name": "Fairfield",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Florence",
+      "fips": "45041",
+      "native_key": "florence",
+      "native_name": "Florence",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Georgetown",
+      "fips": "45043",
+      "native_key": "georgetown",
+      "native_name": "Georgetown",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Greenville",
+      "fips": "45045",
+      "native_key": "greenville",
+      "native_name": "Greenville",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Greenwood",
+      "fips": "45047",
+      "native_key": "greenwood",
+      "native_name": "Greenwood",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Hampton",
+      "fips": "45049",
+      "native_key": "hampton",
+      "native_name": "Hampton",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Horry",
+      "fips": "45051",
+      "native_key": "horry",
+      "native_name": "Horry",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Jasper",
+      "fips": "45053",
+      "native_key": "jasper",
+      "native_name": "Jasper",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Kershaw",
+      "fips": "45055",
+      "native_key": "kershaw",
+      "native_name": "Kershaw",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Lancaster",
+      "fips": "45057",
+      "native_key": "lancaster",
+      "native_name": "Lancaster",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Laurens",
+      "fips": "45059",
+      "native_key": "laurens",
+      "native_name": "Laurens",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Lee",
+      "fips": "45061",
+      "native_key": "lee",
+      "native_name": "Lee",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Lexington",
+      "fips": "45063",
+      "native_key": "lexington",
+      "native_name": "Lexington",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Marion",
+      "fips": "45067",
+      "native_key": "marion",
+      "native_name": "Marion",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Marlboro",
+      "fips": "45069",
+      "native_key": "marlboro",
+      "native_name": "Marlboro",
+      "native_fips_optional": false
+    },
+    {
+      "county": "McCormick",
+      "fips": "45065",
+      "native_key": "mccormick",
+      "native_name": "Mccormick",
+      "native_fips_optional": true
+    },
+    {
+      "county": "Newberry",
+      "fips": "45071",
+      "native_key": "newberry",
+      "native_name": "Newberry",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Oconee",
+      "fips": "45073",
+      "native_key": "oconee",
+      "native_name": "Oconee",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Orangeburg",
+      "fips": "45075",
+      "native_key": "orangeburg",
+      "native_name": "Orangeburg",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Pickens",
+      "fips": "45077",
+      "native_key": "pickens",
+      "native_name": "Pickens",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Richland",
+      "fips": "45079",
+      "native_key": "richland",
+      "native_name": "Richland",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Saluda",
+      "fips": "45081",
+      "native_key": "saluda",
+      "native_name": "Saluda",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Spartanburg",
+      "fips": "45083",
+      "native_key": "spartanburg",
+      "native_name": "Spartanburg",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Sumter",
+      "fips": "45085",
+      "native_key": "sumter",
+      "native_name": "Sumter",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Union",
+      "fips": "45087",
+      "native_key": "union",
+      "native_name": "Union",
+      "native_fips_optional": false
+    },
+    {
+      "county": "Williamsburg",
+      "fips": "45089",
+      "native_key": "williamsburg",
+      "native_name": "Williamsburg",
+      "native_fips_optional": false
+    },
+    {
+      "county": "York",
+      "fips": "45091",
+      "native_key": "york",
+      "native_name": "York",
+      "native_fips_optional": false
+    }
+  ]
+}
