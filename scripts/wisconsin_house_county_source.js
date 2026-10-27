@@ -5,7 +5,7 @@
  if(root)root.WisconsinHouseCountySource=api;
 })(typeof window!=='undefined'?window:null,function(closes){
 'use strict';
-const scopes={'WI-01':{id:87483,n:5,district:1,dem:'Mitchell Berman',rep:'Bryan Steil'},'WI-03':{id:87485,n:19,district:3,dem:'Rebecca Cooke',rep:'Derrick Van Orden'},'MI-04':{id:87204,n:6,district:4,state:'MI',stateName:'Michigan',prefix:'26',dem:'Sean McCann',rep:'Bill Huizenga',green:'Shafina Che Barnett'},'PA-10':{id:87385,n:3,district:10,state:'PA',stateName:'Pennsylvania',prefix:'42',dem:'Janelle Stelson',rep:'Scott Perry',majorOnly:true},'NY-17':{id:87319,n:4,district:17,state:'NY',stateName:'New York',prefix:'36',dem:'Cait Conley',rep:'Mike Lawler',majorOnly:true}};
+const scopes={'PA-07':{id:87382,n:4,district:7,state:'PA',stateName:'Pennsylvania',prefix:'42',dem:'Bob Brooks',rep:'Ryan Mackenzie',majorOnly:true,nativeIds:{bobbrooks:221027,ryanmackenzie:221028},roundOne:true},'WI-01':{id:87483,n:5,district:1,dem:'Mitchell Berman',rep:'Bryan Steil'},'WI-03':{id:87485,n:19,district:3,dem:'Rebecca Cooke',rep:'Derrick Van Orden'},'MI-04':{id:87204,n:6,district:4,state:'MI',stateName:'Michigan',prefix:'26',dem:'Sean McCann',rep:'Bill Huizenga',green:'Shafina Che Barnett'},'PA-10':{id:87385,n:3,district:10,state:'PA',stateName:'Pennsylvania',prefix:'42',dem:'Janelle Stelson',rep:'Scott Perry',majorOnly:true},'NY-17':{id:87319,n:4,district:17,state:'NY',stateName:'New York',prefix:'36',dem:'Cait Conley',rep:'Mike Lawler',majorOnly:true}};
 function forRace(code){
  const cfg=Object.hasOwn(scopes,code)?scopes[code]:null;if(!cfg)throw Error('Unsupported House county source scope');
  const URL='https://civicapi.org/api/v2/race/'+cfg.id,state=cfg.state||'WI',stateName=cfg.stateName||'Wisconsin',prefix=cfg.prefix||'55';
@@ -35,10 +35,12 @@ function parse(detail,reference,{source_url=URL,now=Date.now()}={}){
  const stamp=Date.parse(detail.last_updated);
  if(!Number.isFinite(stamp)||!/(?:Z|[+-]\d\d:\d\d)$/.test(detail.last_updated||'')||
   stamp>now+15*60000||now-stamp>180*60000)throw Error('Missing/future/stale House county publication time');
+ if(cfg.roundOne&&detail.round!==1)throw Error('Unreviewed PA-07 count round');
  const roster=new Map();
  if(!Array.isArray(detail.candidates)||detail.candidates.length>60)throw Error('Missing candidate roster');
  for(const c of detail.candidates){
   const id=normalize(c.name),p=party(c.party);
+  if(cfg.nativeIds&&cfg.nativeIds[id]!==c.candidate_id)throw Error('Pinned PA-07 native candidate identity changed');
   if(!id||!p||roster.has(id)||!Number.isSafeInteger(c.votes)||c.votes<0)throw Error('Invalid House county candidate');
   roster.set(id,{party:p,votes:c.votes,sum:0});
  }

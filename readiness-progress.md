@@ -1,5 +1,50 @@
 # Readiness progress
 
+## October 27 02:33Z — PA10 fallback bounded; pivotal PA07 national path local
+
+- Inspected existing PA10 timing/official assessments first. Saved state-site
+  browser capture (Oct26 15:24Z) was an Incapsula request-unsuccessful page despite
+  HTTP200; not retried/bypassed. Official pa.gov still links that same service.
+  One fresh Dauphin menu GET at02:10:35Z returned the same source hash as16:47Z,
+  no 2026 general link, cache Age2808s. This is cached-menu discovery, not proof
+  that every independent source is absent or that a publication is slow. Recorded
+  data/pennsylvania_house_10_independent_fallback_assessment.json; no guessed keys.
+- Moved to PA07, uploaded power-flip seed position6 (not Silver odds), captured
+  linked-model70.5% engineering band. Reused the pinned official 2024 statewide
+  precinct extract: exact USC/CandidateDistrict7 yields738 candidate rows /369
+  precincts /4 county parts; 199626D/203688R independently match MIT district totals.
+  Census/map bridge confirms comparable boundaries. Monroe is ONLY its district
+  part; no whole-county allocation or new precinct-equivalence claim.
+- Independently linked official Monroe Nov3 general proclamation HTTP200,
+  133602bytes SHA bb36b5b463fb748f59dff82d4daae604cd1be69411475b64d8faa20963c987a3;
+  page1 visually confirms Bob Brooks DEM / Ryan Mackenzie REP and Monroe's named
+  PA07 precincts. Original saved. Four importer/corruption tests PASS.
+- Provider search uniquely discovered87382; actual full response HTTP200/non-test/
+  round1, four Census-matched county parts, exact two native candidate IDs, all
+  ZERO and stale Oct23. This is NOT positive delivery, calibration or independent
+  provider diversification. Existing PA10 independent-fallback gap remains.
+- Implemented PA07 as TWELFTH headless county-to-NATIONAL path, not a race panel.
+  Exact native IDs/round/roster/district/county gates, independent baseline, durable
+  zero/correction/retraction metadata and active-tab/breaker generation gates.
+  Additional PA07<=1 full request/min AFTERcompletion; pre-close automatic10min.
+  Existing8fast32/min +ME1 +OH1 +PA071 +WAowned1, shared4/64/8 pool. PA07+PA10
+  share the existing fixed Pennsylvania state log-likelihood budget; do not double
+  it. Updated old one-member assertion to TWO predeclared members and strengthened
+  PA10-alone bound to sqrt20; combined PA remains<=20. Baseline draws unchanged.
+- Queue regression reproduced the same enqueue-floor bug in existing Maine:
+  immediate second request after90sec queue+5sec transport. One-line completion
+  floor fixes it. Maine/Ohio/PA07 regressions now assert request count BEFORE
+  awaiting a potentially pending call, so regression cannot silently exit.
+- All43 local core regressions PASS. Numerical PA07 national movement, red/blue,
+  ESS/baseline isolation and twelve-source coexistence PASS. ActualEdge1366/390
+  PA07 and Maine SYNTHETIC movement/correction/zero-oldreply/round/outage-recovery/
+  hidden/archive/manual and automatic minute-floor tests PASS. Not live evidence.
+- CURRENT CODE IS LOCAL/REVIEW ONLY until exact-head checks and final Pages/bytes/
+  published synthetic behavior plus separate actual-source canary are verified.
+  Do not repeat PA07 original/roster/baseline hunting. Last daily report2026-10-26;
+  Ohio milestone already notified; pending/routine work stays quiet.
+
+
 ## October 27 02:04Z — close Ohio results-to-NATIONAL connection VERIFIED DEPLOYED
 
 - #470 https://github.com/jmon18-rgb/Election-Command-Center/pull/470 merged

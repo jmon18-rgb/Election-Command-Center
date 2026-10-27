@@ -22,3 +22,7 @@ jobs:
       - run: pip install pypdf==6.10.0
       - run: python scripts/test_pennsylvania_house_07_baseline.py
       - run: git diff --exit-code -- data/pennsylvania_house_07_2024_county_baseline_official.json data/pennsylvania_house_07_county_fips_reference.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/test_pennsylvania_house_07_county_source.cjs
