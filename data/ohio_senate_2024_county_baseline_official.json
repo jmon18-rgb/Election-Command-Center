@@ -1,0 +1,907 @@
+{
+  "schema": "official-ohio-senate-county-baseline-v1",
+  "year": 2024,
+  "state": "OH",
+  "office": "US Senate",
+  "counties": [
+    {
+      "fips": "39001",
+      "county": "Adams",
+      "dem_votes": 2447,
+      "rep_votes": 9325,
+      "other_votes": 401,
+      "contest_votes": 12173,
+      "ballots_counted": 12537,
+      "registered_voters": 17674
+    },
+    {
+      "fips": "39003",
+      "county": "Allen",
+      "dem_votes": 14120,
+      "rep_votes": 30208,
+      "other_votes": 1660,
+      "contest_votes": 45988,
+      "ballots_counted": 46845,
+      "registered_voters": 66199
+    },
+    {
+      "fips": "39005",
+      "county": "Ashland",
+      "dem_votes": 7280,
+      "rep_votes": 17894,
+      "other_votes": 1019,
+      "contest_votes": 26193,
+      "ballots_counted": 27045,
+      "registered_voters": 34756
+    },
+    {
+      "fips": "39007",
+      "county": "Ashtabula",
+      "dem_votes": 16785,
+      "rep_votes": 24117,
+      "other_votes": 1780,
+      "contest_votes": 42682,
+      "ballots_counted": 43884,
+      "registered_voters": 61356
+    },
+    {
+      "fips": "39009",
+      "county": "Athens",
+      "dem_votes": 14696,
+      "rep_votes": 10013,
+      "other_votes": 928,
+      "contest_votes": 25637,
+      "ballots_counted": 26242,
+      "registered_voters": 38592
+    },
+    {
+      "fips": "39011",
+      "county": "Auglaize",
+      "dem_votes": 5248,
+      "rep_votes": 19363,
+      "other_votes": 861,
+      "contest_votes": 25472,
+      "ballots_counted": 25880,
+      "registered_voters": 32887
+    },
+    {
+      "fips": "39013",
+      "county": "Belmont",
+      "dem_votes": 9476,
+      "rep_votes": 20146,
+      "other_votes": 1129,
+      "contest_votes": 30751,
+      "ballots_counted": 31402,
+      "registered_voters": 44627
+    },
+    {
+      "fips": "39015",
+      "county": "Brown",
+      "dem_votes": 4610,
+      "rep_votes": 15622,
+      "other_votes": 748,
+      "contest_votes": 20980,
+      "ballots_counted": 21661,
+      "registered_voters": 29541
+    },
+    {
+      "fips": "39017",
+      "county": "Butler",
+      "dem_votes": 69734,
+      "rep_votes": 104952,
+      "other_votes": 6557,
+      "contest_votes": 181243,
+      "ballots_counted": 185804,
+      "registered_voters": 255519
+    },
+    {
+      "fips": "39019",
+      "county": "Carroll",
+      "dem_votes": 3545,
+      "rep_votes": 9543,
+      "other_votes": 571,
+      "contest_votes": 13659,
+      "ballots_counted": 13932,
+      "registered_voters": 18326
+    },
+    {
+      "fips": "39021",
+      "county": "Champaign",
+      "dem_votes": 5547,
+      "rep_votes": 13917,
+      "other_votes": 801,
+      "contest_votes": 20265,
+      "ballots_counted": 20716,
+      "registered_voters": 27056
+    },
+    {
+      "fips": "39023",
+      "county": "Clark",
+      "dem_votes": 23630,
+      "rep_votes": 36611,
+      "other_votes": 2393,
+      "contest_votes": 62634,
+      "ballots_counted": 63695,
+      "registered_voters": 87958
+    },
+    {
+      "fips": "39025",
+      "county": "Clermont",
+      "dem_votes": 37825,
+      "rep_votes": 70592,
+      "other_votes": 4649,
+      "contest_votes": 113066,
+      "ballots_counted": 115426,
+      "registered_voters": 151042
+    },
+    {
+      "fips": "39027",
+      "county": "Clinton",
+      "dem_votes": 5154,
+      "rep_votes": 14513,
+      "other_votes": 887,
+      "contest_votes": 20554,
+      "ballots_counted": 20980,
+      "registered_voters": 27898
+    },
+    {
+      "fips": "39029",
+      "county": "Columbiana",
+      "dem_votes": 13902,
+      "rep_votes": 31757,
+      "other_votes": 1935,
+      "contest_votes": 47594,
+      "ballots_counted": 48588,
+      "registered_voters": 65979
+    },
+    {
+      "fips": "39031",
+      "county": "Coshocton",
+      "dem_votes": 4457,
+      "rep_votes": 11011,
+      "other_votes": 717,
+      "contest_votes": 16185,
+      "ballots_counted": 16571,
+      "registered_voters": 22494
+    },
+    {
+      "fips": "39033",
+      "county": "Crawford",
+      "dem_votes": 5400,
+      "rep_votes": 13938,
+      "other_votes": 793,
+      "contest_votes": 20131,
+      "ballots_counted": 20499,
+      "registered_voters": 28061
+    },
+    {
+      "fips": "39035",
+      "county": "Cuyahoga",
+      "dem_votes": 384042,
+      "rep_votes": 170671,
+      "other_votes": 14352,
+      "contest_votes": 569065,
+      "ballots_counted": 587282,
+      "registered_voters": 893801
+    },
+    {
+      "fips": "39037",
+      "county": "Darke",
+      "dem_votes": 5359,
+      "rep_votes": 20615,
+      "other_votes": 886,
+      "contest_votes": 26860,
+      "ballots_counted": 27299,
+      "registered_voters": 35030
+    },
+    {
+      "fips": "39039",
+      "county": "Defiance",
+      "dem_votes": 5880,
+      "rep_votes": 12028,
+      "other_votes": 822,
+      "contest_votes": 18730,
+      "ballots_counted": 19401,
+      "registered_voters": 26818
+    },
+    {
+      "fips": "39041",
+      "county": "Delaware",
+      "dem_votes": 63697,
+      "rep_votes": 65715,
+      "other_votes": 3582,
+      "contest_votes": 132994,
+      "ballots_counted": 135473,
+      "registered_voters": 165356
+    },
+    {
+      "fips": "39043",
+      "county": "Erie",
+      "dem_votes": 18117,
+      "rep_votes": 19654,
+      "other_votes": 1536,
+      "contest_votes": 39307,
+      "ballots_counted": 40282,
+      "registered_voters": 54260
+    },
+    {
+      "fips": "39045",
+      "county": "Fairfield",
+      "dem_votes": 33697,
+      "rep_votes": 47342,
+      "other_votes": 2819,
+      "contest_votes": 83858,
+      "ballots_counted": 85675,
+      "registered_voters": 112005
+    },
+    {
+      "fips": "39047",
+      "county": "Fayette",
+      "dem_votes": 3207,
+      "rep_votes": 8712,
+      "other_votes": 474,
+      "contest_votes": 12393,
+      "ballots_counted": 12682,
+      "registered_voters": 17450
+    },
+    {
+      "fips": "39049",
+      "county": "Franklin",
+      "dem_votes": 385850,
+      "rep_votes": 186441,
+      "other_votes": 16790,
+      "contest_votes": 589081,
+      "ballots_counted": 608855,
+      "registered_voters": 903493
+    },
+    {
+      "fips": "39051",
+      "county": "Fulton",
+      "dem_votes": 6764,
+      "rep_votes": 14450,
+      "other_votes": 868,
+      "contest_votes": 22082,
+      "ballots_counted": 22728,
+      "registered_voters": 29566
+    },
+    {
+      "fips": "39053",
+      "county": "Gallia",
+      "dem_votes": 2912,
+      "rep_votes": 9316,
+      "other_votes": 496,
+      "contest_votes": 12724,
+      "ballots_counted": 13109,
+      "registered_voters": 18910
+    },
+    {
+      "fips": "39055",
+      "county": "Geauga",
+      "dem_votes": 22315,
+      "rep_votes": 30987,
+      "other_votes": 1330,
+      "contest_votes": 54632,
+      "ballots_counted": 55624,
+      "registered_voters": 69043
+    },
+    {
+      "fips": "39057",
+      "county": "Greene",
+      "dem_votes": 37327,
+      "rep_votes": 49477,
+      "other_votes": 3052,
+      "contest_votes": 89856,
+      "ballots_counted": 91543,
+      "registered_voters": 122193
+    },
+    {
+      "fips": "39059",
+      "county": "Guernsey",
+      "dem_votes": 4839,
+      "rep_votes": 11836,
+      "other_votes": 712,
+      "contest_votes": 17387,
+      "ballots_counted": 17784,
+      "registered_voters": 24501
+    },
+    {
+      "fips": "39061",
+      "county": "Hamilton",
+      "dem_votes": 235825,
+      "rep_votes": 158523,
+      "other_votes": 13394,
+      "contest_votes": 407742,
+      "ballots_counted": 416548,
+      "registered_voters": 604178
+    },
+    {
+      "fips": "39063",
+      "county": "Hancock",
+      "dem_votes": 12170,
+      "rep_votes": 23803,
+      "other_votes": 1547,
+      "contest_votes": 37520,
+      "ballots_counted": 38440,
+      "registered_voters": 51927
+    },
+    {
+      "fips": "39065",
+      "county": "Hardin",
+      "dem_votes": 3367,
+      "rep_votes": 8839,
+      "other_votes": 585,
+      "contest_votes": 12791,
+      "ballots_counted": 13036,
+      "registered_voters": 17922
+    },
+    {
+      "fips": "39067",
+      "county": "Harrison",
+      "dem_votes": 1857,
+      "rep_votes": 4891,
+      "other_votes": 320,
+      "contest_votes": 7068,
+      "ballots_counted": 7200,
+      "registered_voters": 9890
+    },
+    {
+      "fips": "39069",
+      "county": "Henry",
+      "dem_votes": 4356,
+      "rep_votes": 9685,
+      "other_votes": 562,
+      "contest_votes": 14603,
+      "ballots_counted": 15109,
+      "registered_voters": 19429
+    },
+    {
+      "fips": "39071",
+      "county": "Highland",
+      "dem_votes": 4152,
+      "rep_votes": 14884,
+      "other_votes": 692,
+      "contest_votes": 19728,
+      "ballots_counted": 20171,
+      "registered_voters": 27601
+    },
+    {
+      "fips": "39073",
+      "county": "Hocking",
+      "dem_votes": 4125,
+      "rep_votes": 8599,
+      "other_votes": 572,
+      "contest_votes": 13296,
+      "ballots_counted": 13616,
+      "registered_voters": 18430
+    },
+    {
+      "fips": "39075",
+      "county": "Holmes",
+      "dem_votes": 2117,
+      "rep_votes": 9699,
+      "other_votes": 381,
+      "contest_votes": 12197,
+      "ballots_counted": 12629,
+      "registered_voters": 18087
+    },
+    {
+      "fips": "39077",
+      "county": "Huron",
+      "dem_votes": 8452,
+      "rep_votes": 17090,
+      "other_votes": 1289,
+      "contest_votes": 26831,
+      "ballots_counted": 27487,
+      "registered_voters": 36965
+    },
+    {
+      "fips": "39079",
+      "county": "Jackson",
+      "dem_votes": 3346,
+      "rep_votes": 10299,
+      "other_votes": 472,
+      "contest_votes": 14117,
+      "ballots_counted": 14432,
+      "registered_voters": 20695
+    },
+    {
+      "fips": "39081",
+      "county": "Jefferson",
+      "dem_votes": 9819,
+      "rep_votes": 19795,
+      "other_votes": 1196,
+      "contest_votes": 30810,
+      "ballots_counted": 31659,
+      "registered_voters": 45726
+    },
+    {
+      "fips": "39083",
+      "county": "Knox",
+      "dem_votes": 9537,
+      "rep_votes": 21363,
+      "other_votes": 1061,
+      "contest_votes": 31961,
+      "ballots_counted": 32493,
+      "registered_voters": 43785
+    },
+    {
+      "fips": "39085",
+      "county": "Lake",
+      "dem_votes": 58125,
+      "rep_votes": 64089,
+      "other_votes": 4045,
+      "contest_votes": 126259,
+      "ballots_counted": 130116,
+      "registered_voters": 165600
+    },
+    {
+      "fips": "39087",
+      "county": "Lawrence",
+      "dem_votes": 7192,
+      "rep_votes": 18077,
+      "other_votes": 1060,
+      "contest_votes": 26329,
+      "ballots_counted": 27069,
+      "registered_voters": 43020
+    },
+    {
+      "fips": "39089",
+      "county": "Licking",
+      "dem_votes": 35373,
+      "rep_votes": 55320,
+      "other_votes": 3616,
+      "contest_votes": 94309,
+      "ballots_counted": 96382,
+      "registered_voters": 128660
+    },
+    {
+      "fips": "39091",
+      "county": "Logan",
+      "dem_votes": 5614,
+      "rep_votes": 16763,
+      "other_votes": 981,
+      "contest_votes": 23358,
+      "ballots_counted": 23796,
+      "registered_voters": 32332
+    },
+    {
+      "fips": "39093",
+      "county": "Lorain",
+      "dem_votes": 79307,
+      "rep_votes": 71759,
+      "other_votes": 5115,
+      "contest_votes": 156181,
+      "ballots_counted": 161185,
+      "registered_voters": 221647
+    },
+    {
+      "fips": "39095",
+      "county": "Lucas",
+      "dem_votes": 107783,
+      "rep_votes": 72544,
+      "other_votes": 8703,
+      "contest_votes": 189030,
+      "ballots_counted": 193872,
+      "registered_voters": 304907
+    },
+    {
+      "fips": "39097",
+      "county": "Madison",
+      "dem_votes": 6322,
+      "rep_votes": 13347,
+      "other_votes": 789,
+      "contest_votes": 20458,
+      "ballots_counted": 20937,
+      "registered_voters": 27190
+    },
+    {
+      "fips": "39099",
+      "county": "Mahoning",
+      "dem_votes": 53847,
+      "rep_votes": 54067,
+      "other_votes": 3585,
+      "contest_votes": 111499,
+      "ballots_counted": 114222,
+      "registered_voters": 163093
+    },
+    {
+      "fips": "39101",
+      "county": "Marion",
+      "dem_votes": 8824,
+      "rep_votes": 16763,
+      "other_votes": 1195,
+      "contest_votes": 26782,
+      "ballots_counted": 27642,
+      "registered_voters": 39577
+    },
+    {
+      "fips": "39103",
+      "county": "Medina",
+      "dem_votes": 43173,
+      "rep_votes": 58915,
+      "other_votes": 3262,
+      "contest_votes": 105350,
+      "ballots_counted": 108313,
+      "registered_voters": 134574
+    },
+    {
+      "fips": "39105",
+      "county": "Meigs",
+      "dem_votes": 2456,
+      "rep_votes": 7385,
+      "other_votes": 374,
+      "contest_votes": 10215,
+      "ballots_counted": 10542,
+      "registered_voters": 14916
+    },
+    {
+      "fips": "39107",
+      "county": "Mercer",
+      "dem_votes": 4337,
+      "rep_votes": 18432,
+      "other_votes": 700,
+      "contest_votes": 23469,
+      "ballots_counted": 23978,
+      "registered_voters": 29692
+    },
+    {
+      "fips": "39109",
+      "county": "Miami",
+      "dem_votes": 17525,
+      "rep_votes": 39225,
+      "other_votes": 2039,
+      "contest_votes": 58789,
+      "ballots_counted": 59830,
+      "registered_voters": 78732
+    },
+    {
+      "fips": "39111",
+      "county": "Monroe",
+      "dem_votes": 1725,
+      "rep_votes": 4715,
+      "other_votes": 211,
+      "contest_votes": 6651,
+      "ballots_counted": 6903,
+      "registered_voters": 9326
+    },
+    {
+      "fips": "39113",
+      "county": "Montgomery",
+      "dem_votes": 130464,
+      "rep_votes": 112324,
+      "other_votes": 9146,
+      "contest_votes": 251934,
+      "ballots_counted": 258566,
+      "registered_voters": 373582
+    },
+    {
+      "fips": "39115",
+      "county": "Morgan",
+      "dem_votes": 1802,
+      "rep_votes": 4587,
+      "other_votes": 252,
+      "contest_votes": 6641,
+      "ballots_counted": 6899,
+      "registered_voters": 9185
+    },
+    {
+      "fips": "39117",
+      "county": "Morrow",
+      "dem_votes": 4610,
+      "rep_votes": 13197,
+      "other_votes": 727,
+      "contest_votes": 18534,
+      "ballots_counted": 19074,
+      "registered_voters": 24668
+    },
+    {
+      "fips": "39119",
+      "county": "Muskingum",
+      "dem_votes": 11852,
+      "rep_votes": 25408,
+      "other_votes": 1680,
+      "contest_votes": 38940,
+      "ballots_counted": 39845,
+      "registered_voters": 54637
+    },
+    {
+      "fips": "39121",
+      "county": "Noble",
+      "dem_votes": 1316,
+      "rep_votes": 4555,
+      "other_votes": 202,
+      "contest_votes": 6073,
+      "ballots_counted": 6249,
+      "registered_voters": 8081
+    },
+    {
+      "fips": "39123",
+      "county": "Ottawa",
+      "dem_votes": 9460,
+      "rep_votes": 13317,
+      "other_votes": 921,
+      "contest_votes": 23698,
+      "ballots_counted": 24215,
+      "registered_voters": 30694
+    },
+    {
+      "fips": "39125",
+      "county": "Paulding",
+      "dem_votes": 2056,
+      "rep_votes": 6678,
+      "other_votes": 456,
+      "contest_votes": 9190,
+      "ballots_counted": 9415,
+      "registered_voters": 12685
+    },
+    {
+      "fips": "39127",
+      "county": "Perry",
+      "dem_votes": 4492,
+      "rep_votes": 11626,
+      "other_votes": 654,
+      "contest_votes": 16772,
+      "ballots_counted": 17215,
+      "registered_voters": 22901
+    },
+    {
+      "fips": "39129",
+      "county": "Pickaway",
+      "dem_votes": 8452,
+      "rep_votes": 19613,
+      "other_votes": 986,
+      "contest_votes": 29051,
+      "ballots_counted": 29607,
+      "registered_voters": 38574
+    },
+    {
+      "fips": "39131",
+      "county": "Pike",
+      "dem_votes": 3364,
+      "rep_votes": 8264,
+      "other_votes": 415,
+      "contest_votes": 12043,
+      "ballots_counted": 12347,
+      "registered_voters": 18010
+    },
+    {
+      "fips": "39133",
+      "county": "Portage",
+      "dem_votes": 37082,
+      "rep_votes": 42163,
+      "other_votes": 3000,
+      "contest_votes": 82245,
+      "ballots_counted": 84211,
+      "registered_voters": 111132
+    },
+    {
+      "fips": "39135",
+      "county": "Preble",
+      "dem_votes": 4940,
+      "rep_votes": 15806,
+      "other_votes": 785,
+      "contest_votes": 21531,
+      "ballots_counted": 21901,
+      "registered_voters": 28920
+    },
+    {
+      "fips": "39137",
+      "county": "Putnam",
+      "dem_votes": 3573,
+      "rep_votes": 15582,
+      "other_votes": 549,
+      "contest_votes": 19704,
+      "ballots_counted": 19972,
+      "registered_voters": 24016
+    },
+    {
+      "fips": "39139",
+      "county": "Richland",
+      "dem_votes": 18488,
+      "rep_votes": 37368,
+      "other_votes": 1891,
+      "contest_votes": 57747,
+      "ballots_counted": 59092,
+      "registered_voters": 80649
+    },
+    {
+      "fips": "39141",
+      "county": "Ross",
+      "dem_votes": 11125,
+      "rep_votes": 20402,
+      "other_votes": 1160,
+      "contest_votes": 32687,
+      "ballots_counted": 33296,
+      "registered_voters": 46386
+    },
+    {
+      "fips": "39143",
+      "county": "Sandusky",
+      "dem_votes": 10782,
+      "rep_votes": 16951,
+      "other_votes": 1522,
+      "contest_votes": 29255,
+      "ballots_counted": 30053,
+      "registered_voters": 40500
+    },
+    {
+      "fips": "39145",
+      "county": "Scioto",
+      "dem_votes": 8935,
+      "rep_votes": 20509,
+      "other_votes": 1075,
+      "contest_votes": 30519,
+      "ballots_counted": 31496,
+      "registered_voters": 45434
+    },
+    {
+      "fips": "39147",
+      "county": "Seneca",
+      "dem_votes": 8509,
+      "rep_votes": 15420,
+      "other_votes": 1163,
+      "contest_votes": 25092,
+      "ballots_counted": 25651,
+      "registered_voters": 35068
+    },
+    {
+      "fips": "39149",
+      "county": "Shelby",
+      "dem_votes": 4927,
+      "rep_votes": 19275,
+      "other_votes": 868,
+      "contest_votes": 25070,
+      "ballots_counted": 25495,
+      "registered_voters": 32947
+    },
+    {
+      "fips": "39151",
+      "county": "Stark",
+      "dem_votes": 75434,
+      "rep_votes": 99365,
+      "other_votes": 6941,
+      "contest_votes": 181740,
+      "ballots_counted": 186211,
+      "registered_voters": 253471
+    },
+    {
+      "fips": "39153",
+      "county": "Summit",
+      "dem_votes": 150517,
+      "rep_votes": 111573,
+      "other_votes": 9174,
+      "contest_votes": 271264,
+      "ballots_counted": 277772,
+      "registered_voters": 382519
+    },
+    {
+      "fips": "39155",
+      "county": "Trumbull",
+      "dem_votes": 43178,
+      "rep_votes": 48755,
+      "other_votes": 3722,
+      "contest_votes": 95655,
+      "ballots_counted": 98118,
+      "registered_voters": 137686
+    },
+    {
+      "fips": "39157",
+      "county": "Tuscarawas",
+      "dem_votes": 13501,
+      "rep_votes": 27395,
+      "other_votes": 1740,
+      "contest_votes": 42636,
+      "ballots_counted": 43628,
+      "registered_voters": 58854
+    },
+    {
+      "fips": "39159",
+      "county": "Union",
+      "dem_votes": 13719,
+      "rep_votes": 21926,
+      "other_votes": 1315,
+      "contest_votes": 36960,
+      "ballots_counted": 37901,
+      "registered_voters": 47354
+    },
+    {
+      "fips": "39161",
+      "county": "Van Wert",
+      "dem_votes": 3204,
+      "rep_votes": 10826,
+      "other_votes": 577,
+      "contest_votes": 14607,
+      "ballots_counted": 14899,
+      "registered_voters": 20489
+    },
+    {
+      "fips": "39163",
+      "county": "Vinton",
+      "dem_votes": 1360,
+      "rep_votes": 4018,
+      "other_votes": 221,
+      "contest_votes": 5599,
+      "ballots_counted": 5832,
+      "registered_voters": 8476
+    },
+    {
+      "fips": "39165",
+      "county": "Warren",
+      "dem_votes": 49350,
+      "rep_votes": 84796,
+      "other_votes": 4726,
+      "contest_votes": 138872,
+      "ballots_counted": 141616,
+      "registered_voters": 178612
+    },
+    {
+      "fips": "39167",
+      "county": "Washington",
+      "dem_votes": 9275,
+      "rep_votes": 19865,
+      "other_votes": 1061,
+      "contest_votes": 30201,
+      "ballots_counted": 31376,
+      "registered_voters": 42814
+    },
+    {
+      "fips": "39169",
+      "county": "Wayne",
+      "dem_votes": 17313,
+      "rep_votes": 33532,
+      "other_votes": 1900,
+      "contest_votes": 52745,
+      "ballots_counted": 53865,
+      "registered_voters": 70625
+    },
+    {
+      "fips": "39171",
+      "county": "Williams",
+      "dem_votes": 5043,
+      "rep_votes": 12036,
+      "other_votes": 940,
+      "contest_votes": 18019,
+      "ballots_counted": 18527,
+      "registered_voters": 25187
+    },
+    {
+      "fips": "39173",
+      "county": "Wood",
+      "dem_votes": 31242,
+      "rep_votes": 32801,
+      "other_votes": 2758,
+      "contest_votes": 66801,
+      "ballots_counted": 68446,
+      "registered_voters": 90669
+    },
+    {
+      "fips": "39175",
+      "county": "Wyandot",
+      "dem_votes": 2996,
+      "rep_votes": 7813,
+      "other_votes": 467,
+      "contest_votes": 11276,
+      "ballots_counted": 11546,
+      "registered_voters": 14829
+    }
+  ],
+  "state_totals": {
+    "dem_votes": 2650949,
+    "rep_votes": 2857383,
+    "other_votes": 196288,
+    "contest_votes": 5704620,
+    "ballots_counted": 5851387
+  },
+  "source_url": "https://www.ohiosos.gov/globalassets/elections/2024/gen/official/statewide-race-summary.xlsx",
+  "retrieved_archive_url": "https://web.archive.org/web/20241207004035if_/https://www.ohiosos.gov/globalassets/elections/2024/gen/official/statewide-race-summary.xlsx",
+  "source_sha256": "ef2f8050e1779a905d602ce34facad510394ac5500ae76ce374f7f73420115e8",
+  "county_reference_sha256": "3c337402b5c6e8d5aa26b4278ccf4edc8989f2683765b3ffbf22296cdb2df3a0",
+  "national_input_enabled": false,
+  "calibration_inputs_approved": 0,
+  "limitations": [
+    "Final certified county totals, not reporting chronology.",
+    "2024 regular Senate and 2026 special Senate are different seats.",
+    "Historical ballots counted are not 2026 outstanding ballots.",
+    "No 2026 source or national likelihood enabled by this importer."
+  ]
+}

@@ -1,5 +1,34 @@
 # Election Night production-readiness assignment
 
+## October 27 01:04Z — Ohio original historical baseline recovered and implemented
+
+- The separate bounded archive attempt succeeded: declared Internet Archive
+  Dec 7, 2024 capture returned HTTP 200 with the original 259,601-byte official
+  Ohio statewide canvass workbook. SHA256 ef2f8050e1779a905d602ce34facad510394ac5500ae76ce374f7f73420115e8
+  exactly matches the discovered preserved mirror. Direct original URL is 403;
+  no blocked portal/ballot security was bypassed. Original bytes now preserved.
+- Implemented strict offline Senate importer and five corruption/identity tests:
+  all 88 independently matched Census counties, all seven candidate columns,
+  registration/ballots and statewide 2,650,949 Brown / 2,857,383 Moreno / 196,288
+  others reconcile. Reject wrong office/party, duplicate/missing county, appended
+  totals, negative/fractional/bool counts and aggregate drift. Local tests PASS.
+  Separate CI workflow rebuilds and requires exact generated-file reproducibility.
+- This removes the Ohio historical-data blocker. It does not admit live counts:
+  2024 regular Senate is a different seat from 2026 special Senate; final totals
+  provide no release chronology, calibration or official remaining ballots.
+  2026 original ballot/complete roster verification remains required. Ten deployed
+  national inputs remain unchanged; no new panel or custom safe-seat work.
+- The intervening Michigan bounded official-source check found both independently
+  linked 2024 and 2026 MVIC county-results pages return 403 in ordinary Edge.
+  Stop reprobing those pages. Saved exact local evidence. Nebraska approved87254
+  was inspected once: 93 county rows, non-test/stale zero, independent Osborn plus
+  four other candidates. No party summing or unsupported independent-to-D transfer.
+- NEXT: finish review/checks for Ohio baseline preparation, then verify 2026 original
+  ballot/roster and implement the standard county-to-national path only if it
+  matches. Primary Alaska blocker remains recorded; do not repeat blank table.
+- Last daily report 2026-10-26; research/preparation is not positive live delivery.
+
+
 ## October 27 00:52Z — bounded Alaska blocker; Ohio county source matched
 
 - Alaska official results landing returned HTTP 200 in ordinary Edge. Its 2026

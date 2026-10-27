@@ -3,7 +3,7 @@
   "assessed_at": "2026-10-27T00:52:00Z",
   "race": "OH-SEN-SPECIAL",
   "national_input_enabled": false,
-  "status": "REAL_ZERO_COUNTY_TEMPLATE_OBSERVED_BASELINE_AND_BALLOT_REVIEW_REQUIRED",
+  "status": "REAL_ZERO_TEMPLATE_AND_ARCHIVED_OFFICIAL_HISTORY_MATCHED_2026_ROSTER_REVIEW_REQUIRED",
   "priority": "Near-boundary Senate within owner scope; uploaded Senate importance 11; engineering queue, not forecast acceptance.",
   "provider": {
     "url": "https://civicapi.org/api/v2/race/87527",
@@ -67,7 +67,7 @@
     "redirect": "https://www.ohiosos.gov/data",
     "declared_past_results": "https://data.ohiosos.gov/portal/past-election-results",
     "ordinary_browser_result": "Explicit security-service blocked page; stop retries, no bypass.",
-    "historical_baseline_acquired": false
+    "historical_baseline_acquired": true
   },
   "ballot_review": {
     "search_index_url": "https://www.boe.ohio.gov/abmt/oh12/20261103/X015___2_CITY_15.html",
@@ -88,5 +88,22 @@
     "No remaining-ballot or national likelihood is enabled without a matched historical baseline and reviewed candidate contract.",
     "Existing Ohio official NIST approval gates remain intact; current mock counts cannot be admitted."
   ],
-  "next": "Use a separately published official statewide historical county export or archived original with provenance; avoid repeating blocked portal/ballot requests."
+  "next": "Verify independently published original 2026 ballot/complete candidate roster before source-to-national integration. Do not repeat blocked Ohio portal, Clark sample-ballot, or Michigan MVIC pages.",
+  "historical_baseline": {
+    "file": "data/ohio_senate_2024_county_baseline_official.json",
+    "original_file": "data/ohio_historical_sources/2024-official-statewide-race-summary.xlsx",
+    "original_url": "https://www.ohiosos.gov/globalassets/elections/2024/gen/official/statewide-race-summary.xlsx",
+    "archive_url": "https://web.archive.org/web/20241207004035if_/https://www.ohiosos.gov/globalassets/elections/2024/gen/official/statewide-race-summary.xlsx",
+    "archive_http": 200,
+    "bytes": 259601,
+    "sha256": "ef2f8050e1779a905d602ce34facad510394ac5500ae76ce374f7f73420115e8",
+    "discovery_mirror": "https://raw.githubusercontent.com/Camreyn/civicresultmaps/main/data/oh-2024-statewide-race-summary.xlsx",
+    "mirror_archive_bytes_equal": true,
+    "direct_original_http": 403,
+    "county_fips_name_matches": 88,
+    "dem_votes": 2650949,
+    "rep_votes": 2857383,
+    "other_votes": 196288,
+    "limitation": "Final 2024 regular-seat counts, not 2026 special-seat candidate expectation or release-order calibration."
+  }
 }
