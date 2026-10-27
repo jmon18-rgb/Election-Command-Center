@@ -61,6 +61,9 @@ plus one estimate read. Without positive returns it retains four counts reads.
 Later jobs retain the existing single counts request; supplementary estimates
 expire and the model falls back to historical turnout. No native request budget
 or client polling lane is added. Scheduling and cache delay can still add minutes.
+Serialized publisher jobs wait one minute before their first native request,
+including queued jobs after a failed predecessor. This protects the cross-job
+request floor and adds one minute of scheduling latency; no timeout is raised.
 
 Both objects travel in the same fixed data-only branch/file. Separate hashes,
 strict reparsing and a supplementary body cap protect the existing counts path.

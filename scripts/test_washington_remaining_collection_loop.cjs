@@ -6,7 +6,7 @@ const publisher=require('./publish_washington_official_cache.cjs'),cache=require
 (async()=>{
  const sample=await fixture(),saved={argv:process.argv,now:Date.now,fetch:global.fetch,timer:global.setTimeout,token:process.env.GITHUB_TOKEN};
  try{for(const failFirst of [false,true]){
-  let clock=Date.parse('2026-11-04T04:05:00Z'),stored=null;const starts=[];
+  let clock=Date.parse('2026-11-04T04:05:00Z'),stored=null;const starts=[],jobStart=clock;
   Date.now=()=>clock;process.argv=['node','publisher','--publish','--loop'];process.env.GITHUB_TOKEN='synthetic-offline-token';
   global.setTimeout=(fn,ms,...args)=>ms===60000?(clock+=ms,queueMicrotask(()=>fn(...args)),0):saved.timer(fn,ms,...args);
   global.fetch=async(url,opts={})=>{
@@ -23,8 +23,11 @@ const publisher=require('./publish_washington_official_cache.cjs'),cache=require
    throw Error('Unexpected repository operation');
   };
   await publisher.main();assert.equal(starts.length,4);for(let i=1;i<4;i++)assert(starts[i].at-starts[i-1].at>=60000);
+  assert(starts[0].at-jobStart>=60000);
   assert.deepEqual(starts.map(x=>x.url),failFirst?[source.URL,source.URL,source.URL,source.URL]:[source.URL,remaining.URL,source.URL,source.URL]);
   const published=JSON.parse(Buffer.from(stored.content,'base64'));assert.equal(Boolean(published.official_remaining),!failFirst);
+  const ended=clock;await publisher.main();assert.equal(starts.length,8);assert(starts[4].at-ended>=60000,'Back-to-back serialized jobs also retain the native floor');
+  for(let i=1;i<8;i++)assert(starts[i].at-starts[i-1].at>=60000);
  }}finally{process.argv=saved.argv;Date.now=saved.now;global.fetch=saved.fetch;global.setTimeout=saved.timer;if(saved.token===undefined)delete process.env.GITHUB_TOKEN;else process.env.GITHUB_TOKEN=saved.token;}
  console.log('PASS: actual first-night loop uses four native starts >=60s apart, three counts+one estimate only after positive counts, data-only writes; SYNTHETIC');
 })().catch(e=>{console.error(e);process.exitCode=1;});

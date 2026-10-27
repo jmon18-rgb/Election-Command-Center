@@ -58,8 +58,11 @@ async function main(){
  if(process.argv.includes('--bootstrap')&&healthWindow(Date.now())){console.log('Pre-election source contracts pinned; automatic bootstrap makes no native request');return;}
  const publishing=process.argv.includes('--publish'),healthOnly=process.argv.includes('--health-only')||(process.argv.includes('--bootstrap')&&healthWindow(Date.now()));
  if(healthOnly&&!healthWindow(Date.now()))throw Error('Outside fixed pre-election health-check window');
- const count=process.argv.includes('--loop')&&Date.now()<FAST_END?4:1;
  if(!publishing&&!process.argv.includes('--observe'))throw Error('Choose explicit --observe or --publish');
+ // The Actions concurrency group serializes publishers. Waiting at job entry
+ // preserves the native floor even after a queued/failed predecessor ends.
+ if(publishing&&(inWindow(Date.now())||healthOnly))await new Promise(resolve=>setTimeout(resolve,60000));
+ const count=process.argv.includes('--loop')&&Date.now()<FAST_END?4:1;
  if(count>1&&(!publishing||healthOnly))throw Error('Loop restricted to scheduled post-close publication');
  const reference=JSON.parse(fs.readFileSync('data/washington_house_03_county_fips_reference.json','utf8'));
  const request=async(method,suffix,data)=>{
@@ -70,6 +73,7 @@ async function main(){
  let lastRecord=null;
  for(let i=0;i<count;i++){
   const now=Date.now();if(!inWindow(now)&&!healthOnly){console.log('Outside2026WA post-close collection window; no source request');return;}
+  if(healthOnly&&!healthWindow(now)){console.log('Health window ended during cooldown; no source request');return;}
   // Replace ONE of the existing four first-night requests, never add a fifth.
   // There is still a >=60s completion floor between every native request.
   const stats=sourceKindForSlot(i,count,lastRecord)==='remaining';
