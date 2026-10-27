@@ -22,7 +22,7 @@ wi.projection=null;assert.equal(assess(wi,now).status,'VALIDATED_COUNTS_AWAITING
 const blocked=test('KS-SEN');blocked.http=403;assert(!assess(blocked,Date.parse('2026-11-04T03:20:00Z')).prolonged_delivery_gap);assert(assess(blocked,Date.parse('2026-11-04T03:31:00Z')).prolonged_delivery_gap);
 assert.throws(()=>summarize(all().slice(0,3),now),'Missing House source cannot pass complete coverage');
 assert.throws(()=>summarize([row('IA-SEN'),row('IA-SEN'),row('TX-SEN'),row('WI-01'),row('WI-03')],now));
-console.log('Fourteen-source synthetic classifier: legitimate national conditioning accepted; test/unmatched changes rejected; House posterior must come from admitted joint draws; no live-delivery claim');
+console.log('Fifteen-source synthetic classifier: legitimate national conditioning accepted; test/unmatched changes rejected; House posterior must come from admitted joint draws; no live-delivery claim');
 
 assert.equal(assess({...test('IA-SEN'),national_unchanged:false,national_contract_validated:false},now).status,'SAFETY_OR_FORECAST_FAILURE','Changed national model without any matched real source evidence is rejected');
 

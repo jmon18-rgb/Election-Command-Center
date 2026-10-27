@@ -1,0 +1,40 @@
+name: Verify pivotal PA08 original district-part baseline
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/*pennsylvania*07*'
+      - 'data/pennsylvania_house_08*'
+      - 'data/pennsylvania_source_documents/**'
+      - 'data/pennsylvania_historical_sources/**'
+      - '.github/workflows/pennsylvania-house08-baseline.yml'
+permissions:
+  contents: read
+jobs:
+  source-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pypdf==6.10.0
+      - run: python scripts/test_pennsylvania_house_08_baseline.py
+      - run: git diff --exit-code -- data/pennsylvania_house_08_2024_county_baseline_official.json data/pennsylvania_house_08_county_fips_reference.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/test_pennsylvania_house_08_county_source.cjs
+
+  national-browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save --no-package-lock playwright@1.57.0
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/test_pennsylvania_house_08_national_browser.mjs
