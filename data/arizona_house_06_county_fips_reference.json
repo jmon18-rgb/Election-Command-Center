@@ -1,0 +1,27 @@
+{
+  "race_code": "AZ-06",
+  "source_sha256": "3c337402b5c6e8d5aa26b4278ccf4edc8989f2683765b3ffbf22296cdb2df3a0",
+  "source": "Independent2024Census county gazetteer; county identifiers only, not vote allocation.",
+  "counties": [
+    {
+      "fips": "04003",
+      "county": "Cochise"
+    },
+    {
+      "fips": "04009",
+      "county": "Graham"
+    },
+    {
+      "fips": "04011",
+      "county": "Greenlee"
+    },
+    {
+      "fips": "04019",
+      "county": "Pima"
+    },
+    {
+      "fips": "04021",
+      "county": "Pinal"
+    }
+  ]
+}

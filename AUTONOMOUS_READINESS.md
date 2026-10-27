@@ -1,5 +1,15 @@
 # Election Night production-readiness assignment
 
+## October27 AZ06 national connection IMPLEMENTED LOCALLY — review/deployment pending
+
+- AZ06 preparationPR472 merged after all7 exact-head workflows SUCCESS,10latest jobs9success/1nonapplicable skip, no external statuses, head31970e8e155c0d48f96e4f1d15da034c9339b12b/clean. Merge2f6d175c52b12972d2e588183ff38e8a5938fa15. Original CI failure was a reformatted JSON Windows/Linux line-ending hash mismatch, repaired with a scoped LF attribute; no evidence guard/check waived. Preparation Pages still to verify.
+- Implemented strict AZ06 counts-to-national controller locally, no race panel. Exact86922/five native candidates incl independent certified write-in, round1, five Census district parts; no party summing. Reuses verified204774D/215596R2024district-part baseline; combined D/R turnout scenario, never official outstanding ballots. Added source revision and same-draw capture scopes, bounded cap13, existing fixed state budgets/ESS/thresholds unchanged. AZ has one predeclared House input, not national representation.
+- Shared4active/64queue/8reserve+breaker/modegeneration/hidden/backoff preserved. Extra AZ fullroute<=1/min AFTER completion including manual retries; automaticpreclose10min. Existing8fast32starts/min+ME1+OH1+PA071+WAowned1 unchanged, AZ adds1. No latency-independence or speed-parity claim.
+- Local46core checks PASS, exact-source/independent-writein/roster/matrix/clock tests PASS; SYNTHETIC13-source coexistence/samebaseline/ESS/budget tests PASS. Actual ordinaryEdge1366/390 SYNTHETIC automatic AZ06-only national movement before calls, redbluecorrections, zero-oldsource/laterround withdrawal, outage recovery, hidden/archive/manualfloor PASS. These are programmed estimator behavior proofs, not actual positive2026 delivery/calibration.
+- Separate actual CANDIDATE fixture-free real-clock probe03:27:13Z: all13HTTP200, twelve civic non-test ZERO/stale, WA expired pre-election health-only; ZERO admitted inputs/raw archives/page errors. LIVE_DELIVERY_UNPROVEN. Candidate probe is not published acceptance.
+- NEXT finish runtime PR all exact-head checks, merge only green, verify finalPages/allbytes/publishedsynthetic AZ06 behavior and separate fixture-free actual13route canary. Twelve deployed inputs remain current until verified runtime release. Do not repeat AZ06 original baseline/roster hunting or AZ01 large downloads.
+
+
 ## October 27 AZ06 bounded source preparation — not a deployed national input
 
 - Exact approved civic search discovered AZ06 route86922 (not guessed), five district-part county rows and five named candidates. Actual response is non-test, round1, allZERO, source stamp October22 21:58:37.854Z. Offline strict inspector passed this actual saved response; synthetic mutations reject contest/roster/native-ID/count/matrix/reconciliation drift. No positive delivery or calibration established.
