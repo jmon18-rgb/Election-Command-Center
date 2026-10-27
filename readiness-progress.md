@@ -1,5 +1,11 @@
 # Readiness progress
 
+## 2026-10-27T10:43:59Z - Sixteen-input national recovery acceptance implemented locally
+
+- Inspected current096e383d ledger once: all8newgaps are INVALID_DETAIL/DETAIL_CONTRACT_REJECTED with no usableidentityhint; no evidence permits restoringpins. Required484validation remainsblocked; no blockedpage/provider/statistics probes repeated.
+- Extended existing Washington nationalbridge acceptance to the full16-input lifecycle: civicoutage retainsbothWA03/VA02officialinputs; opposingPA08correction changesnationaloutlook withidenticalbaseline; PA07/MI07withdrawals preserve fixed3/2member budgets andcannotlend influence; allwithdrawn restores exactbaseline; recovery restores exactsame-drawresult. Allphases preserveESSfloor/coherent endingcounts/sourceimmutability. Focusedactualkernel testPASS with900draws/seed20261103. SYNTHETICevidence only, no sourcechronology/calibration/live-delivery claim. Existing9-through16coexistence checks retained.
+- Reviewable484 will include this bounded nationalacceptance addition pluslate-countdecision/CI mirrorrepair; NO productionnumerical/controller/source change. NewexactheadCI required; current-gap-referencechecks mustremainblockinguntilgroundedevidenceexists. No repeatedblockernotification; lastdailyreport2026-10-26, nextafter9amEastern.
+
 ## 2026-10-27T10:40:00Z - PR484 held: current source-health gaps fail required reference checks
 
 - Open/attached PR484 https://github.com/jmon18-rgb/Election-Command-Center/pull/484 currentheadfc19e7a06b6c6c87fe40bec19606b959e625b60b. Primary Ubuntu mirror repair succeeded: national-browser job122137427501/run40488856573 SUCCESS within unchanged8minute budget; full dashboardDOM browser122137428269 SUCCESS. Required validation122137428666/run40488856733 FAILS two existing official/manual fallback coverage assertions. NO merge/deployment claimed, no checkswaived.
