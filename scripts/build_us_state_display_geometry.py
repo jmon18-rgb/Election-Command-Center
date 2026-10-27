@@ -41,6 +41,6 @@ for code in sorted(codes):
  if code in callouts:states[code]['leader']=[round(cx,2),round(cy,2)]
 data={'schema':'census-state-display-geometry-v1','viewBox':'0 0 1000 640','source_sha256':hashlib.sha256(raw).hexdigest(),'states':states,'scope':'Display navigation only, not district or vote-allocation boundaries','adjustments':['Spherical Albers CONUS','Alaska/Hawaii insets are not at the same scale','Hawaii distant islands west of162W omitted for display','Small northeastern state labels use callouts']}
 
-(ROOT/'scripts/us_state_display_geometry.js').write_text('(function(root){root.USStateDisplayGeometry='+json.dumps(data,separators=(',',':'))+';})(typeof window!=="undefined"?window:globalThis);\n',encoding='utf-8')
+(ROOT/'scripts/us_state_display_geometry.js').write_text('(function(root){root.USStateDisplayGeometry='+json.dumps(data,separators=(',',':'))+';})(typeof window!=="undefined"?window:globalThis);\n',encoding='utf-8',newline='\n')
 print('50 Census-matched state outlines generated; display-only; bytes',len(json.dumps(data)))
 
