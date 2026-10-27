@@ -1,14 +1,14 @@
 {
   "schema_version": "bottom-up-2026-poll-environment-shadow-v1",
   "status": "SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE",
-  "polling_generated_at": "2026-10-27T11:48:42.990838Z",
+  "polling_generated_at": "2026-10-27T13:00:14.258258Z",
   "presidential_geography_year": 2026,
   "presidential_2024_national_two_party_margin_points": -1.705,
   "generic_ballot_2026_d_minus_r_points": 9.2,
   "generic_implied_vs_2024_presidential_swing_points": 10.905,
-  "independent_polling_estimated_presidential_to_race_swing_points": 9.277,
-  "bottom_up_implied_national_margin_points": 7.572,
-  "bottom_up_minus_generic_environment_points": -1.628,
+  "independent_polling_estimated_presidential_to_race_swing_points": 9.326,
+  "bottom_up_implied_national_margin_points": 7.62,
+  "bottom_up_minus_generic_environment_points": -1.58,
   "candidate_specific_effects_removed": false,
   "candidate_quality_calibration_available": false,
   "total_qualifying_races": 17,
@@ -39,14 +39,14 @@
       "swing_points": 0.968
     },
     {
-      "state": "MI",
-      "number_qualifying_races": 1,
-      "swing_points": 4.039
-    },
-    {
       "state": "NH",
       "number_qualifying_races": 1,
       "swing_points": 4.139
+    },
+    {
+      "state": "MI",
+      "number_qualifying_races": 1,
+      "swing_points": 4.409
     },
     {
       "state": "PA",
@@ -81,7 +81,7 @@
     {
       "state": "TX",
       "number_qualifying_races": 2,
-      "swing_points": 14.747
+      "swing_points": 15.003
     },
     {
       "state": "OH",
@@ -131,13 +131,13 @@
       "race_code": "TX-SEN",
       "state": "TX",
       "presidential_2024_margin": -13.878,
-      "poll_margin": 2.08,
-      "raw_swing_points": 15.958,
-      "capped_swing_points": 15.958,
+      "poll_margin": 2.39,
+      "raw_swing_points": 16.268,
+      "capped_swing_points": 16.268,
       "capped_local_outlier": false,
-      "weight": 0.8444444444444444,
+      "weight": 0.8666666666666667,
       "independent_firms": 13,
-      "latest_age_days": 7
+      "latest_age_days": 6
     }
   ],
   "notes": [
