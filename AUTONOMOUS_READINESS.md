@@ -1,5 +1,83 @@
 # Election Night production-readiness assignment
 
+## October 27 01:44Z — Ohio queued-transport minute floor tightened before release
+
+- Pre-merge review found that measuring the request floor from enqueue time can
+  allow a delayed shared-pool response to be followed too quickly by another
+  request. Ohio now restarts its floor at completion. Thus even a long queue plus
+  slow transport preserves >=60 seconds before the next manual/automatic attempt.
+  Other controllers/cadences are unchanged; no generic refactor or limit bypass.
+- Dedicated delayed-queue regression models 90 seconds queued plus 5 seconds
+  transport and rejects immediate/59-second manual retries. PASS. Actual Edge
+  1366/390 synthetic national movement/recovery/budget tests PASS again; all 39
+  core regressions PASS. No actual positive results or calibration claimed.
+- Push the corrected #470 head and require ALL applicable checks on that head;
+  earlier green checks do not authorize merging the superseded revision. Final
+  Pages/byte verification and published synthetic/real-clock probes remain next.
+
+
+## October 27 01:29Z — Ohio county-to-NATIONAL path implemented locally
+
+- Ohio special-Senate 87527 now feeds the existing correlated national model via
+  a headless controller; no individual race panel. Exact 88-county/7-candidate
+  parser, verified 2024 regular-seat historical composition and independent Census
+  reference; other candidates stay outside Democratic/Republican counts.
+- Adds OH-SEN to durable revisions, counts-only likelihood and same-draw capture.
+  Bounded cap is eleven sources, retaining existing thresholds, ESS minimum,
+  fixed state likelihood budgets and isolated baseline draws. No averaging race
+  posteriors or changing the Four Endings definitions; no Maine RCV nuisance.
+- Additional Ohio full route <=1/min post-close, automatic ten-minute pre-close,
+  existing shared 4-active/64-queue/8-reserve pool + civic breaker. Existing eight
+  fast routes 32/min + Maine1/min + Ohio1/min + owned WA1/min; no unlimited refresh.
+  Hidden pause, generation/backoff/manual floor, correction/retraction/zero and
+  stale/old-source gates retained. Source note explicitly discloses historical
+  regular/special-seat scenario and non-official remaining ballots.
+- Local numerical Ohio movement, red/blue divergence, baseline isolation, ESS
+  bound and eleven-source coexistence PASS. Actual Edge 1366/390 SYNTHETIC
+  automatic national movement before calls, red/blue corrections, zero withdrawal,
+  old-source replay rejection, later-round exclusion, outage/recovery, hidden/
+  archive isolation, exact one extra full-route request/minute and manual floor
+  PASS. All 38 core regressions PASS; importer original/88-county checks PASS.
+- IMPLEMENTATION IS LOCAL/UNDER REVIEW until required exact-head CI, merge and
+  final Pages verification. Synthetic tests are not positive live 2026 delivery,
+  calibration, independent release chronology or comparative-speed evidence.
+  NEXT: publish attached review, finish exact-head checks, normal deployment and
+  published synthetic Ohio behavior plus separate fixture-free real-clock canary.
+- Last daily report remains 2026-10-26 Eastern; keep pending/routine work quiet.
+
+
+## October 27 01:22Z — Ohio preparation merged and published; national wiring next
+
+- #469 https://github.com/jmon18-rgb/Election-Command-Center/pull/469 merged
+  after ALL 5 exact-head workflows succeeded; 8 latest jobs, 7 success and
+  1 nonapplicable deployed-test skip, no external statuses. Exact tested head
+  0fa1bd93005fd43e8ee0b04426055427aa9bf6a3 and clean mergeability checked.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40430787443
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40430787505
+- Merge/final main 36101bea483981b2382f769bdd7eccc0bb143169; final Pages
+  40432003728 SUCCESS. ALL 173 expected published files matched at 01:22:33Z,
+  including Ohio original workbook/PDF, generated county history and parser.
+  Active-site dashboard coherence smoke passed. No new national input activated.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40432003728
+- Ohio is now ready for scoped implementation, not more source preparation:
+  complete independently verified special-Senate roster, original 2024 county
+  history and strict tested source parser are published. All historical/source
+  limitations remain. Existing ten routes still have no proven positive 2026
+  delivery or calibration; no unchanged blanket probe was repeated this run.
+- NEXT active local branch readiness/ohio-national-input: implement the Ohio
+  county-to-NATIONAL connection. Reuse the headless Maine controller structure
+  with a standard combined two-party county baseline (no Maine RCV assumption),
+  one extra full route per minute post-close / ten minutes pre-close, existing
+  shared pool/breaker, exact route allowlists and revision/correction/zero gates.
+  Add OH-SEN to correlated-draw capture/likelihood scopes and raise the bounded
+  source cap from ten to eleven only alongside coexistence/baseline-isolation
+  tests. Prove automatic national movement before calls and withdrawal/recovery
+  in synthetic browser tests, then separately report actual source delivery.
+  No controller/kernel edits yet; preparation is complete, no open Ohio PR now.
+- Last daily report remains 2026-10-26 Eastern. This preparation publication is
+  not an additional national-needle delivery milestone; keep routine work quiet.
+
+
 ## October 27 01:10Z — Ohio exact seven-candidate contract independently verified
 
 - Ordinary Edge retrieved the original Cuyahoga Board of Elections general

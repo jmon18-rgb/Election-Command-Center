@@ -81,6 +81,11 @@ def build():
         workbook.close()
     (ROOT / 'data/ohio_senate_2024_county_baseline_official.json').write_text(
         json.dumps(result, indent=2) + '\n', encoding='utf-8', newline='\n')
+    (ROOT / 'data/ohio_county_fips_reference.json').write_text(json.dumps({
+        'source': 'US Census 2024 national county gazetteer',
+        'source_sha256': CENSUS_HASH,
+        'counties': [{'fips': fips, 'county': name} for name, fips in reference.items()]
+    }, indent=2) + '\n', encoding='utf-8', newline='\n')
     return result
 
 
