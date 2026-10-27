@@ -1,5 +1,11 @@
 # Readiness progress
 
+## 2026-10-27T13:49:08Z - Required reference blocker repaired from original public directories
+
+- Acted on owner's concern aboutstatus-onlyruns. ReusedexistingIL/CAdirectory-evidence precedent: ordinary in-appbrowser openedpublisher publicOH/NY/OK/OR/TN/WIdirectories and read actualdeclaredhrefs, no individualblockedpage retries, CAPTCHA/signin/protectedAPI/bypass. Currentmainrefresh grewmissingfallbacks8to32; all32nowgrounded. WI02 absentfromdirectory resolvedbyordinarypublicFindarace/Pocan search: exactG2026WIHouse2 -> observed295137 -> canonical2026generalpage/declaredResultslink. No guessednativeIDs, no automatedvotes/calls/newpredictionintegration.
+- OriginalNYofficialgeneralpage/guidance opened normally; ORupcomingNov3guidance/TNhistoricalpage/WIofficialresults guidance verified. WIexplicitly hasNOcentralstatewideunofficialfeed; TNhistorynotNov3live; ORguidancenotcounts. ExistingOHmock/OKofficialreferences reused. data/current_gap_manual_reference_directory_evidence.json pinsactualhrefs/discoverychain/limits; catalogmapsONLYcurrent32missingraces, no safe-seatcustomforecasting. Existingrejectedproviderpins untouched.
+- All6officialbackstoptestsPASS includingunchangedcompletecurrentgapcoverage/manualexactpagechecks andnewdirectory-grounding/no-live-claim guard. 484newexactheadCI stillrequired; no merge/deploymentclaim. Dailyalreadyreported2026-10-27. Owner targetOct29stableuserrehearsal/Oct31freeze preserved; willfinishreleasechecks beforeclaimingblockerresolvedinproduction.
+
 ## 2026-10-27T13:13:03Z - Daily readiness report 2026-10-27
 
 - Last daily report: 2026-10-27 (first run after09:00America/New_York). NationalFourEndings runtime is deployed with16programmedroutes(5Senate/11House); conditionalexperimentalremainingestimates cover6wholeWA03counties/firstnightonly, Thurstonhistorical. Published482/483proof remains746fccd4/Pages40485623475/289matchingfiles; milestonesalreadyreported.
