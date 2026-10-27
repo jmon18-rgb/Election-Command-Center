@@ -67,7 +67,9 @@ request floor and adds one minute of scheduling latency; no timeout is raised.
 
 Both objects travel in the same fixed data-only branch/file. Separate hashes,
 strict reparsing and a supplementary body cap protect the existing counts path.
-An invalid estimate cannot remove otherwise valid counts. Publisher and durable
+An invalid estimate cannot remove otherwise valid counts. Publisher rejection
+retains the original retrieval time (or an unknown value) and records validation
+rejection time separately; rejection never creates a new source receipt. Publisher and durable
 browser metadata reject older receipts, older county publications and changed
 values at the same reporting clock, including replay after a newer zero.
 Valid no-estimate receipts withdraw the supplement without inventing a reporting
