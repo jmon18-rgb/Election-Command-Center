@@ -1,5 +1,37 @@
 # Election Night production-readiness assignment
 
+## October 27 01:22Z — Ohio preparation merged and published; national wiring next
+
+- #469 https://github.com/jmon18-rgb/Election-Command-Center/pull/469 merged
+  after ALL 5 exact-head workflows succeeded; 8 latest jobs, 7 success and
+  1 nonapplicable deployed-test skip, no external statuses. Exact tested head
+  0fa1bd93005fd43e8ee0b04426055427aa9bf6a3 and clean mergeability checked.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40430787443
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40430787505
+- Merge/final main 36101bea483981b2382f769bdd7eccc0bb143169; final Pages
+  40432003728 SUCCESS. ALL 173 expected published files matched at 01:22:33Z,
+  including Ohio original workbook/PDF, generated county history and parser.
+  Active-site dashboard coherence smoke passed. No new national input activated.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40432003728
+- Ohio is now ready for scoped implementation, not more source preparation:
+  complete independently verified special-Senate roster, original 2024 county
+  history and strict tested source parser are published. All historical/source
+  limitations remain. Existing ten routes still have no proven positive 2026
+  delivery or calibration; no unchanged blanket probe was repeated this run.
+- NEXT active local branch readiness/ohio-national-input: implement the Ohio
+  county-to-NATIONAL connection. Reuse the headless Maine controller structure
+  with a standard combined two-party county baseline (no Maine RCV assumption),
+  one extra full route per minute post-close / ten minutes pre-close, existing
+  shared pool/breaker, exact route allowlists and revision/correction/zero gates.
+  Add OH-SEN to correlated-draw capture/likelihood scopes and raise the bounded
+  source cap from ten to eleven only alongside coexistence/baseline-isolation
+  tests. Prove automatic national movement before calls and withdrawal/recovery
+  in synthetic browser tests, then separately report actual source delivery.
+  No controller/kernel edits yet; preparation is complete, no open Ohio PR now.
+- Last daily report remains 2026-10-26 Eastern. This preparation publication is
+  not an additional national-needle delivery milestone; keep routine work quiet.
+
+
 ## October 27 01:10Z — Ohio exact seven-candidate contract independently verified
 
 - Ordinary Edge retrieved the original Cuyahoga Board of Elections general
