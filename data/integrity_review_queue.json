@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-27T15:56:51.229021Z",
+  "updated_at": "2026-10-27T16:57:40.504144Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
@@ -268,6 +268,26 @@
   ],
   "items": [
     {
+      "id": "e16a78441dc2d4ee17f8",
+      "title": "Minnesota is preparing for all possibilities this election \u2014 including potential federal interference - The Globe | Worthington, Minnesota",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQZXBKdmV4dGtKOUZMclEwMXhfSU1ESmdoam8zRXdSMHVrRU9Sd3d1N1lvXzc0V0FyRjhERVlJRENxcmxzVGRmTkFNa0pqXzRZRlZza21PWjlJQzd5SkJyTl9DWHk5cWdwemh3cGlFR2FMd0NIbWJKZzFKM0NjVEZhUEwyNzhHcjB3QnBZWmxKZ0tsS1MzQzUtbU9XX2JLejNLUGhyRHpSUEdpUFoyM1k1Q20weFkzbllaeXdCQ0dUSUxlSy1rUTZreUNick5mTkx3Zm9n?oc=5",
+      "publisher": "The Globe | Worthington, Minnesota",
+      "published_at": "2026-10-27T15:20:29Z",
+      "detected_at": "2026-10-27T16:57:40.504144Z",
+      "state_hints": [
+        "MN"
+      ],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "ebf82f01f1b57ceafa3c",
       "title": "Election Officials Fear Trump Administration\u2019s Interference in Midterms Voting - The New York Times",
       "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPYldXcDdqQ2JqeWI4UklEeDh3elVuTzBYOFFVU3FVNzVTOW1JcktPSXdiNmU3S1Jsa09kLTVmYU8zLUQyczE1WXlSb1MxcHNrQ3dISHFMYmU1ckdDOWhCN1U3bjVGcGJNbDg1a2FXWGJRMjNTUURETGlVcFAzR3UwcEd3X1ZTZw?oc=5",
@@ -305,6 +325,27 @@
       "promoted_to_incident_id": null
     },
     {
+      "id": "5e220652dbe0765618d2",
+      "title": "U.S. House Representative | Voter Guide: 2026 General Election - Alaska Beacon",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5ndEFNbUYxVV9GUWROSEpzR210aTlUZXYzekduQ2VCeHRGcXl2TFJQalFLVjJ6RlhOMkUzNzI2LU04MXdyaEhickVHMVdHallXaWRlTnItM0hqSnJON0xYcmFGNFVLSk82WU9uUDk5Zw?oc=5",
+      "publisher": "Alaska Beacon",
+      "published_at": "2026-10-27T14:14:27Z",
+      "detected_at": "2026-10-27T16:57:40.504144Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "ff64e7eefe0f11c08ff5",
       "title": "Judge Orders Trump to Clarify ICE Plans at Polls Ahead of Elections - MundoNOW",
       "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQS2g4Sk9RUGprU3VTR3N1Ym9fT281WWc1MlRxMGdjWTVycE80OEdxT2F1dGFQTWU0R05JNkRhVVZNSENoRU02TUN2RjU3T2xzbUx4bUt5cjBLMFJrZUdLUl92Vy1mN3pRZWt2RXNBRjFJXzhoNHZnUkVxUEdnQmxCY1lMVGU3bG1zV3J4SUJ0QWN0Q0UwVzZybA?oc=5",
@@ -316,6 +357,23 @@
         "litigation",
         "security",
         "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "f631fb2e68b0e98836a5",
+      "title": "What is the Trump-backed SAVE America Act requiring voter ID, proof of citizenship to register? - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPakp6cUZqckpHYXRSRmZ3S1NIVHE3TnR5ek9qN1M2YmVKUV96bjJaUWhGNFZyTFFFSVRoZnNFODZjNWRYT3E5R2lKUDIxTm9UQzlmTVllRS16cmZ1d1hqQ3pYNzNvUnRrR29aUUQyQ043NjhJSXFjV0g2TnY5TmJUYzNOMi1tQnJnUDRWVHl5ZGhGcUI3QkIxWHl5UzhfVm1qYUJ30gGoAUFVX3lxTE1vdmwzR2RvYmZoVzRZNFpoNmxyRE82czE3UlVtWHNqRkFyY2JEWXFjQmZtaUtqQVFpaWZWOGFDdUhMYXctejlGZDV2dWNtanUyVktUakJTZmtTWlFqYzJoU2FEODZjOWJUMmpGNTVya184d1d5SDU1eGcxdzJXc2Vqc1VaUWpjazBRRlRQTVZJVG82enZCTmY0THE1eVo2Rk9mb3I0RFdLRg?oc=5",
+      "publisher": "ABC News - Breaking News, Latest News and Videos",
+      "published_at": "2026-10-27T13:06:49Z",
+      "detected_at": "2026-10-27T16:57:40.504144Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -4955,61 +5013,6 @@
       "headline_numbers_unverified": [
         "2026 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "3e142dc117d065768262",
-      "title": "Absentee Ballots for the 2026 State General Election Available for New Hampshire Voters - InDepthNH.org",
-      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQSUFFZEZXSlo0RmRwTm5hUUhvbTB4LWlfNEJkV0dpaHNhS0EtM2Iwc2N1dFU2MndTQ0phcUU1NlFZMURjSXNpb0FJYWNfUEpCc1NSNTBsTTdaTXdlLXVXRmp0MTJhT3Z6MHEySzV4WFpXbzU3M1hLZmNBN0c5eFY5Z1lrb2stWG1WMDBTdjZ4S1d5X3hwM1FvRUIyZ2tqY2c0Y1BabE5mZlBpQjVjUFlkdU1GZWR3SXo4NTNpbEZn?oc=5",
-      "publisher": "InDepthNH.org",
-      "published_at": "2026-10-15T00:04:35Z",
-      "detected_at": "2026-10-15T01:43:52.159541Z",
-      "state_hints": [
-        "NH"
-      ],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [
-        "2026 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "7d1609c93b3e7647a9d9",
-      "title": "Voting Rights Groups Say Texas Failed to Process Voter Registrations - notus.org",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1CNkNxemgxWWZMcndybUM3Qi1Uei1ha0F4ZWl0UHE0cUp1LTFEdEg4SGJ3Zi10Yi1JZDZubXhBcW81UEpBa0VSQUxlTkdMTkJJLXk3VHZHUVplUUMySUxyY3prN0RRTmRyMElIMQ?oc=5",
-      "publisher": "notus.org",
-      "published_at": "2026-10-14T22:33:32Z",
-      "detected_at": "2026-10-14T22:39:50.703688Z",
-      "state_hints": [
-        "TX"
-      ],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "f46b575379a4195acb17",
-      "title": "The SAVE tool, explained - Protect Democracy",
-      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBiOGNFbnpvZUlMeTBsOUFpMGxSWl80blBXNlVPZnJMVGRMN0ttYjFIQmRYYjB2cGI5dkdNeHU2WWp4bEt5ZVlfSWdDV1dVSmhnbGI3dXAtOEQzNjhsRzNZRzZrM1U?oc=5",
-      "publisher": "Protect Democracy",
-      "published_at": "2026-10-14T22:25:45Z",
-      "detected_at": "2026-10-15T00:02:33.834331Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
