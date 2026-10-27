@@ -1,6 +1,6 @@
 {
   "observed_at": "2026-10-27T13:48:22Z",
-  "scope": "Required current-gap human-reference catalog repair only; no vote transport, prediction coverage, winner calls or calibration",
+  "scope": "Required current-gap human-reference catalog repair only; no vote transport, prediction coverage, winner calls or calibration; seven later source-health gaps repaired from new KS/MT and existing OH/WI directory evidence",
   "method": "Ordinary in-app browser public directory DOM links; no account, CAPTCHA, protected API or individual blocked-page retry",
   "directories": [
     {
@@ -81,6 +81,26 @@
         "https://votes.decisiondeskhq.com/races/2026-11-03/wisconsin-us-house-7-general-election",
         "https://votes.decisiondeskhq.com/races/2026-11-03/wisconsin-us-house-8-general-election"
       ]
+    },
+    {
+      "state": "KS",
+      "source": "https://votes.decisiondeskhq.com/elections/2026-11-03/kansas",
+      "observed_at": "2026-10-27T14:31:49Z",
+      "declared_race_links": [
+        "https://votes.decisiondeskhq.com/races/2026-11-03/kansas-us-house-1-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/kansas-us-house-2-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/kansas-us-house-3-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/kansas-us-house-4-general-election"
+      ]
+    },
+    {
+      "state": "MT",
+      "source": "https://votes.decisiondeskhq.com/elections/2026-11-03/montana",
+      "observed_at": "2026-10-27T14:31:49Z",
+      "declared_race_links": [
+        "https://votes.decisiondeskhq.com/races/2026-11-03/montana-us-house-1-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/montana-us-house-2-general-election"
+      ]
     }
   ],
   "special_search": {
@@ -113,6 +133,16 @@
       "state": "WI",
       "url": "https://elections.wi.gov/elections/election-results",
       "scope": "WEC states there is no central statewide unofficial Election Night feed; county clerks publish results. This guidance and official historical reports are not a live race feed."
+    },
+    {
+      "state": "KS",
+      "url": "https://sos.ks.gov/elections/election-results.html",
+      "scope": "Existing original historical baseline source_index reused from kansas_senate_county_facts_official.json. No new Kansas blocked-site retry; current November2026 availability/timing unverified. Human reference only, not a live feed."
+    },
+    {
+      "state": "MT",
+      "url": "https://sosmt.gov/Elections/Results",
+      "scope": "Official page currently announces availability after8:00 on November3,2026. This is future reporting guidance, not observed counted votes or an automated race feed."
     }
   ],
   "no_actual_results_verified": true,
@@ -148,6 +178,14 @@
     "House|TN-07",
     "House|TN-08",
     "House|TN-09",
-    "House|WI-02"
-  ]
+    "House|WI-02",
+    "House|KS-02",
+    "House|MT-01",
+    "House|OH-09",
+    "House|OH-13",
+    "House|WI-04",
+    "House|WI-05",
+    "House|WI-06"
+  ],
+  "followup_observed_at": "2026-10-27T14:31:49Z"
 }
