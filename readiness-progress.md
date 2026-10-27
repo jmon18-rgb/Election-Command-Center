@@ -1,5 +1,11 @@
 # Readiness progress
 
+## 2026-10-27T13:13:03Z - Daily readiness report 2026-10-27
+
+- Last daily report: 2026-10-27 (first run after09:00America/New_York). NationalFourEndings runtime is deployed with16programmedroutes(5Senate/11House); conditionalexperimentalremainingestimates cover6wholeWA03counties/firstnightonly, Thurstonhistorical. Published482/483proof remains746fccd4/Pages40485623475/289matchingfiles; milestonesalreadyreported.
+- CurrentPR484head82a4fc66: browser/core/source/mixed16inputcorrection/outage/remainingfallbackacceptancepasses; requiredvalidationstillfails2manualgapcoveragechecks. Open/unmerged; no bypass. Currentledger12:12:06Zretains8gapsNY26/OH02-08; no changedgroundedrepairevidence. ScopedmixedtestsareSYNTHETIC, no actualpositive2026delivery/independentchronology/calibration/comparativespeedproof. AK/NC01/AZ01deferrals remain.
+- Dailyownerreport: corepathbuilt; remainingacceptance depends onrealresults/sourceevidence andrequiredgaprepair. Nooptionalpanels/celebrations/fixtureexpansion; preserveOct31freeze/Nov4noonEasterncodestop, existingcollectors/budgets/protections. No repeatedblockedsource/health/statisticsprobes. Quietmonitoringuntilchangedactionableevidence.
+
 ## 2026-10-27T11:12:55Z - Exact-head review finished; no changed source evidence
 
 - PR484 head82a4fc668210871543a6a76c8f3f8de2429268aa all11latestjobs complete:8SUCCESS/2nonapplicableSKIP/1validationFAIL. Both browserjobs andnational-browser/source/core/contracts pass. Validation retains known2gap-referenceassertion failures; no merge/deployment. CI confirms scopedsyntheticacceptance only, not actualdelivery/calibration.
