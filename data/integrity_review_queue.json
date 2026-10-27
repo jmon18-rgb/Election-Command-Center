@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-27T21:42:04.922028Z",
+  "updated_at": "2026-10-27T21:47:38.437897Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
@@ -267,6 +267,28 @@
     }
   ],
   "items": [
+    {
+      "id": "6cb0425b28329abedc85",
+      "title": "Wyoming Green Card Holder Pleads Guilty To Casting Illegal Ballot In 2024 Election - Cowboy State Daily",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOSlNWb0o3VHhwVGZLc2Z1eW9WX1RJVW9xYkpodFVzZWJpRnJUY3pDaXpNeWZ4bmVuSXBZQzhyb09Hem85TVZVLUw1WE16MzNldHQxeVNpWW4zLU12QXhraUhUWXVtSC1FTzRKYnNMWUU0UHhpNWRqd3MwdGpRU055Z0syUDJVdVRnbmR3SFF4bVdxd3M3LU1tMGYwcXBDdUY5TUIxOWJobVJNSGJ1OG13Rm85SFRLZ0hQMzRxSzdn?oc=5",
+      "publisher": "Cowboy State Daily",
+      "published_at": "2026-10-27T21:39:00Z",
+      "detected_at": "2026-10-27T21:47:38.437897Z",
+      "state_hints": [
+        "WY"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2024 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "b271418e9786deeaf360",
       "title": "Despite Trump admin request, Nevada won't use voter citizenship system amid fear of errors - The Nevada Independent",
@@ -5009,25 +5031,6 @@
       "published_at": "2026-10-15T11:00:58Z",
       "detected_at": "2026-10-15T13:12:52.364584Z",
       "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "43064419b2b9c1246647",
-      "title": "North Carolina early voting begins, with students targeted by suppression schemes - Democracy Docket",
-      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOV19MWjRJcFl6NnBjMlF4NE1JeUFhUUJtMF9LZ0JjeHVtVUxtanQtVkN6Q0xtS0V6UF9CMXY1bi1DQmRNUVRBcE1iZnNfakxuTHI2SDI2Y1paaTlQOS1ENHA3Y2VWZ1BlTm9YTXBRcEdOV1htS3VDb0JCaG1uTG9FVHF3eC1tbnI3NnJiZEQ3LUc0dFFvWVEzLU9tUDA3V2F5emRPWURleWFrMG1CR3g2Y1ZRaDlPQXgwQkl3cVRNNmVEdms?oc=5",
-      "publisher": "Democracy Docket",
-      "published_at": "2026-10-15T10:10:11Z",
-      "detected_at": "2026-10-15T10:47:37.150457Z",
-      "state_hints": [
-        "NC"
-      ],
       "topic_hints": [
         "ballot_access"
       ],
