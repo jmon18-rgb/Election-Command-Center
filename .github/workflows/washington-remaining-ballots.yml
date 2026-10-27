@@ -1,0 +1,22 @@
+name: Review Washington remaining-ballot source contract
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/*washington_remaining_ballots.cjs'
+      - 'data/washington_county_remaining_source_contract.json'
+      - 'data/washington_historical_sources/2026-official-county-remaining-preclose.json'
+      - '.github/workflows/washington-remaining-ballots.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/test_washington_remaining_ballots.cjs

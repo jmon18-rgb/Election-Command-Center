@@ -1,0 +1,234 @@
+{
+  "schema": "official-wa-whole-county-remaining-research-v1",
+  "source_url": "https://results.votewa.gov/results/public/api/elections/washington/20261103/stats",
+  "observed_at": "2026-10-27T07:55:03.977Z",
+  "original_file": "data/washington_historical_sources/2026-official-county-remaining-preclose.json",
+  "original_sha256": "250b33802d2abdb2c658dbc9e389666de5305a3545f40cfe8b762cd157d8fd72",
+  "discovered_from": "Official application getStatistics(a,p) uses /elections/${a}/${p}/stats; independently verified Washington/20261103 election identifiers reused. No guessed route/contest IDs.",
+  "stat_id": "01000000-e026-b29a-7f5d-08df1f358b6d",
+  "stat_name": "Estimated Ballots Left to Count - The following is an estimation of how many ballots are left to count by county.",
+  "group_id": "01000000-e026-b29a-0caf-08df1f358f97",
+  "group_name": "Estimated Ballots Left to Count",
+  "counties": [
+    {
+      "id": "01000000-f977-1a83-b33e-08ddd6a09ca6",
+      "name": "Adams County",
+      "county_fips": "53001"
+    },
+    {
+      "id": "01000000-f977-1a83-8b66-08ddd6a09ca8",
+      "name": "Asotin County",
+      "county_fips": "53003"
+    },
+    {
+      "id": "01000000-f977-1a83-4559-08ddd6a09ca9",
+      "name": "Benton County",
+      "county_fips": "53005"
+    },
+    {
+      "id": "01000000-f977-1a83-f99e-08ddd6a09ca9",
+      "name": "Chelan County",
+      "county_fips": "53007"
+    },
+    {
+      "id": "01000000-f977-1a83-ad30-08ddd6a09caa",
+      "name": "Clallam County",
+      "county_fips": "53009"
+    },
+    {
+      "id": "01000000-f977-1a83-56b4-08ddd6a09cab",
+      "name": "Clark County",
+      "county_fips": "53011"
+    },
+    {
+      "id": "01000000-f977-1a83-0277-08ddd6a09cac",
+      "name": "Columbia County",
+      "county_fips": "53013"
+    },
+    {
+      "id": "01000000-f977-1a83-ac95-08ddd6a09cac",
+      "name": "Cowlitz County",
+      "county_fips": "53015"
+    },
+    {
+      "id": "01000000-f977-1a83-5bf7-08ddd6a09cad",
+      "name": "Douglas County",
+      "county_fips": "53017"
+    },
+    {
+      "id": "01000000-f977-1a83-0502-08ddd6a09cae",
+      "name": "Ferry County",
+      "county_fips": "53019"
+    },
+    {
+      "id": "01000000-f977-1a83-b165-08ddd6a09cae",
+      "name": "Franklin County",
+      "county_fips": "53021"
+    },
+    {
+      "id": "01000000-f977-1a83-5b77-08ddd6a09caf",
+      "name": "Garfield County",
+      "county_fips": "53023"
+    },
+    {
+      "id": "01000000-f977-1a83-0a73-08ddd6a09cb0",
+      "name": "Grant County",
+      "county_fips": "53025"
+    },
+    {
+      "id": "01000000-f977-1a83-b7d1-08ddd6a09cb0",
+      "name": "Grays Harbor County",
+      "county_fips": "53027"
+    },
+    {
+      "id": "01000000-f977-1a83-6425-08ddd6a09cb1",
+      "name": "Island County",
+      "county_fips": "53029"
+    },
+    {
+      "id": "01000000-f977-1a83-1d0e-08ddd6a09cb2",
+      "name": "Jefferson County",
+      "county_fips": "53031"
+    },
+    {
+      "id": "01000000-f977-1a83-d40f-08ddd6a09cb2",
+      "name": "King County",
+      "county_fips": "53033"
+    },
+    {
+      "id": "01000000-f977-1a83-8682-08ddd6a09cb3",
+      "name": "Kitsap County",
+      "county_fips": "53035"
+    },
+    {
+      "id": "01000000-f977-1a83-38ad-08ddd6a09cb4",
+      "name": "Kittitas County",
+      "county_fips": "53037"
+    },
+    {
+      "id": "01000000-f977-1a83-eddf-08ddd6a09cb4",
+      "name": "Klickitat County",
+      "county_fips": "53039"
+    },
+    {
+      "id": "01000000-f977-1a83-a581-08ddd6a09cb5",
+      "name": "Lewis County",
+      "county_fips": "53041"
+    },
+    {
+      "id": "01000000-f977-1a83-5c13-08ddd6a09cb6",
+      "name": "Lincoln County",
+      "county_fips": "53043"
+    },
+    {
+      "id": "01000000-f977-1a83-420f-08ddd6a09cb7",
+      "name": "Mason County",
+      "county_fips": "53045"
+    },
+    {
+      "id": "01000000-f977-1a83-6c66-08ddd6a09cb8",
+      "name": "Okanogan County",
+      "county_fips": "53047"
+    },
+    {
+      "id": "01000000-f977-1a83-37cd-08ddd6a09cb9",
+      "name": "Pacific County",
+      "county_fips": "53049"
+    },
+    {
+      "id": "01000000-f977-1a83-0a9a-08ddd6a09cba",
+      "name": "Pend Oreille County",
+      "county_fips": "53051"
+    },
+    {
+      "id": "01000000-f977-1a83-f161-08ddd6a09cba",
+      "name": "Pierce County",
+      "county_fips": "53053"
+    },
+    {
+      "id": "01000000-f977-1a83-b520-08ddd6a09cbb",
+      "name": "San Juan County",
+      "county_fips": "53055"
+    },
+    {
+      "id": "01000000-f977-1a83-8590-08ddd6a09cbc",
+      "name": "Skagit County",
+      "county_fips": "53057"
+    },
+    {
+      "id": "01000000-f977-1a83-6920-08ddd6a09cbd",
+      "name": "Skamania County",
+      "county_fips": "53059"
+    },
+    {
+      "id": "01000000-f977-1a83-262f-08ddd6a09cbe",
+      "name": "Snohomish County",
+      "county_fips": "53061"
+    },
+    {
+      "id": "01000000-f977-1a83-f298-08ddd6a09cbe",
+      "name": "Spokane County",
+      "county_fips": "53063"
+    },
+    {
+      "id": "01000000-f977-1a83-ae0a-08ddd6a09cbf",
+      "name": "Stevens County",
+      "county_fips": "53065"
+    },
+    {
+      "id": "01000000-f977-1a83-605b-08ddd6a09cc0",
+      "name": "Thurston County",
+      "county_fips": "53067"
+    },
+    {
+      "id": "01000000-f977-1a83-0cbd-08ddd6a09cc1",
+      "name": "Wahkiakum County",
+      "county_fips": "53069"
+    },
+    {
+      "id": "01000000-f977-1a83-b406-08ddd6a09cc1",
+      "name": "Walla Walla County",
+      "county_fips": "53071"
+    },
+    {
+      "id": "01000000-f977-1a83-5d8a-08ddd6a09cc2",
+      "name": "Whatcom County",
+      "county_fips": "53073"
+    },
+    {
+      "id": "01000000-f977-1a83-0a29-08ddd6a09cc3",
+      "name": "Whitman County",
+      "county_fips": "53075"
+    },
+    {
+      "id": "01000000-f977-1a83-f3fc-08ddd6a09cc3",
+      "name": "Yakima County",
+      "county_fips": "53077"
+    }
+  ],
+  "wa03_county_fips": [
+    "53011",
+    "53015",
+    "53041",
+    "53049",
+    "53059",
+    "53067",
+    "53069"
+  ],
+  "census_reference": {
+    "file": "data/texas_historical_sources/2024-census-counties.zip",
+    "sha256": "3c337402b5c6e8d5aa26b4278ccf4edc8989f2683765b3ffbf22296cdb2df3a0"
+  },
+  "status": "PRE_CLOSE_ZERO_NULL_CLOCK_TEMPLATE_ONLY",
+  "production_enabled": false,
+  "may_move_national_needle": false,
+  "scope": "WHOLE_COUNTY_ESTIMATES_NOT_WA03_DISTRICT_PARTS",
+  "limits": [
+    "All39 observed zero with null lastUpdated; zeros are not evidence of no ballots left.",
+    "Per-county reporting clocks must be valid, post-close and fresh; retrieval time is not a reporting clock.",
+    "Official estimate is not a hard bound or exact outstanding ballots. No reviewed error model exists.",
+    "No population/historical-share allocation or direct point estimate for split district parts.",
+    "Parent group value is not documented as the sum of children; no inferred aggregate invariant.",
+    "Offline inspector only; no new collector, client polling, model conditioning or race call."
+  ]
+}
