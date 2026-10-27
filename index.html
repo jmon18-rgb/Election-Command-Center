@@ -1349,6 +1349,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
    <div class="en-celebration-icon" id="enCelebrationIcon" aria-hidden="true"></div>
    <div class="en-celebration-line" id="enCelebrationLine"></div>
    <div class="en-celebration-caption" id="enCelebrationCaption"></div>
+   <p class="tiny" id="enCelebrationMusicLabel"></p>
   </div>
   <audio id="enCelebrationAnnouncement" preload="none" src="./assets/audio/breaking-news-in-the-2026-midterm-elections.mp3"></audio>
   <button class="en-milestone-close" id="enCelebrationSound" type="button" aria-pressed="true">Sound: on</button>
@@ -1438,8 +1439,9 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 </details>
 </section>
 <footer class="footer"><span>2026 ELECTION COMMAND CENTER · CLARITY OVER NOISE</span><span><a href="https://github.com/jmon18-rgb/Election-Command-Center">Source code ↗</a> · <span id="updated">Briefing pending</span></span></footer></main>
-<script src="./scripts/election_night_celebration_player.js?v=493a49006118"></script>
-<script src="./scripts/election_night_celebration_scene.js?v=fe0bb1ea4181"></script>
+<script src="./scripts/election_night_celebration_player.js?v=8f7fb37d2ca2"></script>
+<script src="./scripts/election_night_celebration_music.js?v=6a479f8a84b1"></script>
+<script src="./scripts/election_night_celebration_scene.js?v=b39770975f16"></script>
 <script src="./scripts/personal_election_focus.js?v=cd02fb5de4ed"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=6eaa0d8f80cf"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=165fc37d665a"></script>
@@ -5761,7 +5763,7 @@ const enMilestonePosters=Object.freeze({
  nebraska:{file:'nebraska',alt:'Blue tractor across Nebraska cornfields: Osborn independent corn-fed rebellion'},
  ohio:{file:'ohio',alt:'A buckeye nut cracked by a vivid blue lightning bolt: Sherrod Brown comeback'},
  talarico:{file:'talarico',alt:'Electric-blue horns hand gesture and a Texas Senate victory star for James Talarico'},
- abbott:{file:'abbott',alt:'An empty concession podium behind an extravagant blue Texas victory parade'},
+ abbott:{file:'abbott',revision:'a04d13ffa0ca',alt:'Original fictional campaign-sign tree gag for an Abbott election defeat; no people depicted'},
  mississippi:{file:'mississippi',asset:'celebration-owner-mississippi.jpg',revision:'30d9b3abf611',alt:'Owner-supplied fictional retired-mascot character swept into a dramatic wave; celebration artwork, not a real incident'}
 });
 function enMilestonePosterUrl(art){return art.asset?'./assets/'+art.asset+'?v='+art.revision:art.historicalPortrait?enJohnBrownPortraitUrl:'./assets/milestone-'+art.file+'.svg'+(art.revision?'?v='+art.revision:'');}
@@ -5857,6 +5859,8 @@ function enCelebrationRenderSound(){
 }
 function enCelebrationMusic(id){
  enCelebrationStopMedia();
+ const label=$('#enCelebrationMusicLabel'),theme=window.ElectionNightCelebrationMusic?.THEMES[id];
+ if(label)label.textContent=id?'Original score · '+(theme?.title||'synthesized victory cue'):'';
  if(!id||!enFishSoundEnabled)return;
  // Original short synthesized cue; no commercial song/recording is bundled.
  try{
@@ -5865,6 +5869,11 @@ function enCelebrationMusic(id){
   enCelebrationAudioContext??=new Context();
   const ctx=enCelebrationAudioContext;
   if(ctx.state==='suspended')ctx.resume().catch(()=>{});
+  if(window.ElectionNightCelebrationMusic){
+   const handle=window.ElectionNightCelebrationMusic.play(ctx,id);
+   if(handle)enCelebrationNotes.push(handle);
+   return;
+  }
   const offset=Object.keys(window.ElectionNightCelebrationPlayer.STORIES).indexOf(id);
   const notes=offset%2?[0,7,12,10,7,3,7,12]:[0,4,7,12,7,9,11,12];
   [...notes,...notes,...notes].forEach((step,i)=>{

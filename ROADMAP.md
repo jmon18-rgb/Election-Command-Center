@@ -2,6 +2,13 @@
 
 ## Active national-needle roadmap - reassessed October 27, 2026
 
+Latest direct owner priority, October27 late: move beyond the initial map/source
+reordering into substantive visual/UX upgrades, and deliver distinct celebration
+music. R6 original11-score/Abbott campaign-sign scene is the current tested
+candidate; R8 integrated map-led dashboard/clearer personal cards and reduced
+prototype clutter is active next, with full Oct30acceptance. R1/R2/data limits and
+Oct31freeze remain. Do not substitute another status-only run for these changes.
+
 October27 R1 SC connection RELEASED in PR497: finalmainf4034d2b/Pages40588979543SUCCESS,324checked files matched21:43:55.671Z, public coherence and isolated published laptop/mobile behavior passed. FixedSC1member/17source/history bounds are active; actual TESTDATA remains excluded. Five owner Senate connections are programmed; MI/MN/MS/NE/AK remain. PR498 historical prep now corroborates Cass and nine Leelanau combined fields, but unallocated residuals/St.Joseph label/different-seat scenario/current403 contract remain; no MI admission. R8 hierarchy and direct-source focus are released in499/500 (final2a81f443/Pages40599401034/334files matched23:05:00.522Z). MN87county historical preparation is now a strict tested candidate, not a current-results connection. Calibration and actual positive-delivery gates remain unmet.
 
 This section supersedes older priority lists below for autonomous readiness work. The owner now requires individual Senate needles for IA/KS/ME/OH/MI/NE/SC/MN/MS/AK, selected pivotal House needles and one national Four Endings needle, with poll-close-aware evening priorities. This explicitly supersedes the former national-only/no-individual-panels restriction. Use one shared display and existing validated evidence, not ten separate model projects. Alaska is last priority. See [OWNER_ELECTION_NIGHT_SCOPE.md](OWNER_ELECTION_NIGHT_SCOPE.md). Implementation is experimental and testable; the project is NOT complete and calibrated predictive acceptance remains UNMET.

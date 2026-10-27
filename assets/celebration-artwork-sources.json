@@ -1,6 +1,6 @@
 {
   "reviewed_on": "2026-10-27",
-  "scope": "Original repository SVG scenes and three owner-supplied fictional celebration images; no new music or eligibility change",
+  "scope": "Original repository scenes/music and three owner-supplied fictional images; no eligibility change",
   "artworks": [
     {
       "path": "assets/milestone-talarico.svg",
@@ -9,8 +9,9 @@
     },
     {
       "path": "assets/milestone-abbott.svg",
-      "source": "Original repository SVG in PR426, b09766e9d1e572254c11b15beeec95edfa9badca",
-      "sha256": "7927674811f8d46f10b5509b7cab408e1a8373daf8731b612a7f364669e44d5d"
+      "source": "Original repository SVG campaign-sign tree gag, October27; no person or injury depicted",
+      "sha256": "a04d13ffa0caadeab9a4d9b7af3007a26a5c3b377f8d693406c77607455ecbc0",
+      "revision": "a04d13ffa0ca"
     },
     {
       "path": "assets/milestone-mississippi.svg",
@@ -23,9 +24,9 @@
     },
     {
       "path": "scripts/election_night_celebration_scene.js",
-      "source": "Original code-authored SVG stadium lights, stars and Senate victory card; reuses local milestone-talarico.svg horns and milestone-blexas.svg illustrative Texas geometry as artwork, never reporting geography",
-      "sha256": "25c1d1801f0747be59bf2a01e34b7ae6b6919ca81575cf4ae69c586bd1d8ee23",
-      "audio": "Existing original generic synthesized cue unchanged; distinct stadium-band arrangement remains partial"
+      "source": "Original repository Talarico stadium scene and Abbott campaign-sign tree scene",
+      "sha256": "56b2dace73ccdb503d05a24e1ba532f98a8dc4511c31cfb359a3a007543ec235",
+      "audio": "Original event-specific scores in election_night_celebration_music.js"
     },
     {
       "event": "blansas",
@@ -61,5 +62,12 @@
   "identity_reference": "https://vote.charlestoncounty.gov/?r=816",
   "identity_reference_scope": "Official county November 3, 2026 ballot guidance, not a statewide certified roster export or live race call",
   "preserved_media": "Existing historical John Brown portrait attribution and owner-supplied announcement recording remain unchanged",
-  "preview_limit": "All previews are fictional achievements, never proof of votes or winner calls"
+  "preview_limit": "All previews are fictional achievements, never proof of votes or winner calls",
+  "music": {
+    "path": "scripts/election_night_celebration_music.js",
+    "source": "Eleven new original procedural instrumental compositions and arrangements",
+    "third_party_recordings": false,
+    "requested_commercial_or_fight_song_recordings": "Not bundled; usage rights not established",
+    "preview_outputs": "Local artifacts/readiness/music-previews/*.wav rendered from the same production scores"
+  }
 }
