@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-27T09:52:12.037118Z",
+  "updated_at": "2026-10-27T13:00:11.145896Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 0,
@@ -268,6 +268,23 @@
   ],
   "items": [
     {
+      "id": "4092dae5076113ac40af",
+      "title": "ICE Does Not Belong at the Polls - Time Magazine",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5qYjM1RGt1S2dwZ2VoY0hJRFl3WlZGVWhLWlJXdU1PdDI0VWpmSk5nbDcwdl9oWjNWNmZMU3hENUhVcFBUMnQ5WXFyRU9vUG1fR3FnWmtoak5ZUWlyX1p3dU5kYmxzdGI2RlNLdFAtdHo0ZVNnYnd3RA?oc=5",
+      "publisher": "Time Magazine",
+      "published_at": "2026-10-27T10:30:02Z",
+      "detected_at": "2026-10-27T10:50:52.929050Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "3688896fa9e80a30da64",
       "title": "In 3-way secretary of state race, one candidate wants to take over elections - Wisconsin Examiner",
       "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOelhoQVBTZUFVSmJVeGpkb3ctVDdpMXBMcFBXVXBaMjJsckI1akJEeUsyYzhvcWw0azMwUXVLZWFfUVZrSnozcC1IWTk3S0RtUVEzdk5yVlhTZnZpdmdUUjBlSnlnc0tfSlRYUkpuVF9KUWhDbHBKd1hvX2h3LVc2YmtEdTBIT1M5UVlXOG85LW5UM2M5ci1zcl9TZzJQaWxWUzRELVhXUTJ5U0pFMmN1d290RlVlUmFm?oc=5",
@@ -318,6 +335,23 @@
       "topic_hints": [
         "registration",
         "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "a2eae36a45304ad44f0a",
+      "title": "The Latest: Israelis vote in a tense election seen as a referendum on Netanyahu - KSAT",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOdy1KbDJCNDJWeThwMFYwZ2kxZnVqOXNXYlNaTWZITDJicHowcGV2YkJlNEQySTkyTEs5REI3YzRFbjVPajFlbFMyeE1VZ2pWS05XSnpmb1FLLVNyWm50VURMRmg2Zll2MHV2MzBVekdlWlZKMi1wQnVxRlVCbTNHOGxuNUkxN3hleGVwUmdhM096ZDdTV1BnWUMzVXNxdDNCcUxzcGpxUmpsLWV2dHRjamtEWFp4MUU2WVVzaEVXbmhHVGdEbUhwU3ZqYw?oc=5",
+      "publisher": "KSAT",
+      "published_at": "2026-10-27T05:04:31Z",
+      "detected_at": "2026-10-27T10:50:52.929050Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -4972,36 +5006,6 @@
         "ballot_access",
         "security"
       ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "6f9d066e5e2b9a1c53c5",
-      "title": "Florida voting advocates debate: What could go wrong, and right, in November? - Florida Politics",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOWDk4QUl4SS1iaTJYcG1sck40RGlQRlRraGV2dWI2bzhYeE9oaGNEYWZuWjJlVGFRd3lnMk83WTFmRTA3aXhrbkZpUG5OU05MWGF6VmZSSFFRdGdEb3FQVnpGcjJpazVxX0IwNEpxMDlMQ1M0SDMzVFNUekRpeEZUSzFiS1BuUlJOUGdydlJQeDhjVVdHSVVKX3FNOXBkMG5PVFJkYWxNRlZseU1ub0xocGhPS0VJdFNXa0E?oc=5",
-      "publisher": "Florida Politics",
-      "published_at": "2026-10-14T20:15:55Z",
-      "detected_at": "2026-10-14T20:53:15.333028Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "fc1092e2527c9b752831",
-      "title": "Lancaster County officials confident in Election Day security plans - LancasterOnline",
-      "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNZE5ab0xnUjhSYUtHR1dMcGF1QXdvRDhxQjVxdzZ0VlVVcF8xa0VLNTBBV0xwZXhvQ3BGZU1qWXRaamhQNnR2WHE2WlktcXppaHFrYm9uSmhUY0tNS2JXeTFvbXE4dm1WREhHalRtTHBMYXRhN0JkOGMxemI2N2hyVUR1Z0xXdjIzUjZkN0JOR3VfUUFaSzhiZDBNOUIzN1NUd1kxa2pUVUlrSnN6eVpBeFZsR3pQWVgxMVRZNFNxQmZWbjFHQVBhZzVKYXloRGZaNFBiUkFsQzlMOF9IMEFyVXV2MjFGQS0zNVNMbQ?oc=5",
-      "publisher": "LancasterOnline",
-      "published_at": "2026-10-14T20:00:00Z",
-      "detected_at": "2026-10-14T20:53:15.333028Z",
-      "state_hints": [],
-      "topic_hints": [],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
