@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-27T23:43:07.257828Z",
+  "updated_at": "2026-10-27T23:46:50.321066Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -267,6 +267,28 @@
     }
   ],
   "items": [
+    {
+      "id": "9a571dc4f7d0ba776e3e",
+      "title": "Judge weighs whether California can count up to 20,000 ballots disputed by US government - Sun Sentinel",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOSWNicjNKdW9pU3dFOTYyRmtlekY3RTFicU5FeE8wV2lMRzJQYnA3UmpPRDFPNmNnV0drZk54a0xyMWktT2ota1hVdlJHVjlxdmZXRkpfU2stNlBJWldVdHVpVWlxOTlLUUhOSDBuOFNVb3phVkNoekxodFdScGd4TTJGc0FGcmFVbUZUTU16SUhDdlZQcGc?oc=5",
+      "publisher": "Sun Sentinel",
+      "published_at": "2026-10-27T23:45:04Z",
+      "detected_at": "2026-10-27T23:46:50.321066Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 ballots"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "6de0d7f925d150890de9",
       "title": "Judge hears arguments whether California should count 20,000 ballots disputed by US government - WDIO.com",
@@ -5019,23 +5041,6 @@
       "headline_numbers_unverified": [
         "39 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "b79e276d27addf4422a7",
-      "title": "The Trump Administration\u2019s Astonishing Losing Record on Voter Rolls - The Atlantic",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNTlRMdW50aHpTRnMwWHpqVVVQbjBCVXdKaE9pQmZRTG5lY0VmSHZiWGdJOF9wbF9ObWZkT0wtWGY3b3hScEtLYV9zekZyWXQ5eFdabGEtSWdVOUg0Y09RaXVwdmFseW1kS1pmTTlkcVNVV0JWX0M4SFdvaDByRXdEU21JdE5KR05P?oc=5",
-      "publisher": "The Atlantic",
-      "published_at": "2026-10-15T13:25:59Z",
-      "detected_at": "2026-10-15T13:34:47.243661Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
