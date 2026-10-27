@@ -1,0 +1,21 @@
+name: Verify pivotal AZ06 original source preparation
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/*arizona_house_06*'
+      - 'data/arizona_house_06*'
+      - 'data/arizona_house_06_sources/**'
+      - '.github/workflows/arizona-house06-preparation.yml'
+permissions:
+  contents: read
+jobs:
+  source-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/test_arizona_house_06_preparation.py

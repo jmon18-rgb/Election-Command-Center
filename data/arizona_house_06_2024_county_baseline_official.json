@@ -1,0 +1,71 @@
+{
+  "schema": "verified-district-part-baseline-v1",
+  "race_code": "AZ-06",
+  "geography_scope": "district_parts",
+  "historical_election": "2024-11-05",
+  "map_relation": "boundaries_unchanged_per_2026_census",
+  "extraction": "Manual transcription visually checked against original scanned official canvass page 6; no estimated allocation.",
+  "original_publisher": "Arizona Secretary of State",
+  "official_landing": "https://azsos.gov/elections/election-information/2024-election-info",
+  "official_link": "https://apps.azsos.gov/election/2024/ge/canvass/20241105_GeneralCanvass_Signed.pdf",
+  "preserved_original_url": "https://www.presidency.ucsb.edu/sites/default/files/election-maps/2024/2024_az.pdf",
+  "original_sha256": "2c08341131d940e5efbb92631a23d24d2c3d0b3007145ad0ad3da7547d84c53c",
+  "direct_official_copy_hash_match": false,
+  "provenance_limit": "Original official document preserved by UCSB; direct official binary returned403, so byte identity to that endpoint is not claimed.",
+  "source_page": 6,
+  "historical_dem_candidate": "Kirsten Engel",
+  "historical_rep_candidate": "Juan Ciscomani",
+  "counties": [
+    {
+      "county": "Cochise",
+      "county_fips": "04003",
+      "dem_votes": 14983,
+      "rep_votes": 30620,
+      "green_votes": 1479,
+      "ind_writein_votes": 25
+    },
+    {
+      "county": "Graham",
+      "county_fips": "04009",
+      "dem_votes": 2871,
+      "rep_votes": 10534,
+      "green_votes": 336,
+      "ind_writein_votes": 0
+    },
+    {
+      "county": "Greenlee",
+      "county_fips": "04011",
+      "dem_votes": 992,
+      "rep_votes": 2110,
+      "green_votes": 106,
+      "ind_writein_votes": 0
+    },
+    {
+      "county": "Pima",
+      "county_fips": "04019",
+      "dem_votes": 169358,
+      "rep_votes": 150660,
+      "green_votes": 7959,
+      "ind_writein_votes": 61
+    },
+    {
+      "county": "Pinal",
+      "county_fips": "04021",
+      "dem_votes": 16570,
+      "rep_votes": 21672,
+      "green_votes": 879,
+      "ind_writein_votes": 5
+    }
+  ],
+  "district_totals": {
+    "dem_votes": 204774,
+    "rep_votes": 215596,
+    "green_votes": 10759,
+    "ind_writein_votes": 91
+  },
+  "limits": [
+    "Final historical totals are not chronological return batches or calibration.",
+    "County rows are AZ06 district portions, never whole-county totals.",
+    "No independent outstanding-ballot count or actual2026 positive delivery verified."
+  ]
+}
