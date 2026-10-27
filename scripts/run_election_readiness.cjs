@@ -9,6 +9,9 @@ const out = path.join(root, 'artifacts', 'readiness');
 fs.mkdirSync(out, {recursive: true});
 const checks = [
   ['Maine queued-response minute floor', 'test_maine_controller_budget.cjs'],
+  ['AZ-06 full district-part source contract', 'test_arizona_house_06_county_source.cjs'],
+  ['AZ-06 national movement and baseline isolation', 'test_arizona_house_06_national_bridge.cjs'],
+  ['AZ-06 queued transport and manual floor', 'test_arizona_house_06_controller_budget.cjs'],
   ['PA-07 full district-part source contract', 'test_pennsylvania_house_07_county_source.cjs'],
   ['PA-07 national movement and baseline isolation', 'test_pennsylvania_house_07_national_bridge.cjs'],
   ['PA-07 queued transport and manual floor', 'test_pennsylvania_house_07_controller_budget.cjs'],
