@@ -1,5 +1,10 @@
 # Election Night production-readiness assignment
 
+## 2026-10-27T11:12:55Z - Exact-head review finished; no changed source evidence
+
+- PR484 head82a4fc668210871543a6a76c8f3f8de2429268aa all11latestjobs complete:8SUCCESS/2nonapplicableSKIP/1validationFAIL. Both browserjobs andnational-browser/source/core/contracts pass. Validation retains known2gap-referenceassertion failures; no merge/deployment. CI confirms scopedsyntheticacceptance only, not actualdelivery/calibration.
+- Newmain25edae574e9975a5543ba8ce125395898f3a3b0b changesbriefing/poll-deriveddata only; sourceledger remains096e383d10:16:21Z unchanged. No newgroundedidentity/humanreference evidence; no blockedpage/native/statistics/health/blanketprobe, tests rerun orfixtureexpansion. Preserveopen484/currentchecks. Quietmonitoring untilchangedsourceevidence/actualdefect; dailyreportfirstafter9amEastern(last2026-10-26).
+
 ## 2026-10-27T10:58:50Z - Remaining-estimate mixed-source acceptance closed locally
 
 - Reviewed remaining-sensitivity code against existing16-input lifecycle; concrete missingcombination was optional-estimate withdrawal with other15sources stillactive. Addedactualkernel acceptance: identicalWAcountedvotes/countstamp withsmall/largeestimates changesnationaloutlook alongside15otherinputs; badhash/nullclock withdrawsONLYsupplement andrestores exact16-countmodel; civicoutage retainsbothindependentofficialinputs; estimate recovery exactsame-drawresult. Sourcecount remains16, baseline/ESS/fixedWA20budget unchanged. LocaltestPASS(900draws/seed20261103), SYNTHETIConly, NOT livepositive2026/chronology/errorcalibration/speedproof. Existing16inputcorrection/withdrawal/recovery/9-16coexistencecases retained. No productioncode/cadence/model change.
