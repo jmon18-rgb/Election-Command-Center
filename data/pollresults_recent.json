@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-27T14:59:45.909078+00:00",
+  "updated_at": "2026-10-27T15:56:52.077361+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,14 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 320,
-  "newly_injected_into_model": 1,
-  "injected_poll_ids": [
-    {
-      "race_code": "IN-05",
-      "poll_id": "a295315c-1215-45c2-9ed2-ef50d10fcd5b"
-    }
-  ],
+  "matched_primary_observations": 323,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "IN-05",

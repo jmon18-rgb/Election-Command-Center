@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-27T14:59:45.294416Z",
+  "updated_at": "2026-10-27T15:56:51.229021Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
@@ -267,6 +267,26 @@
     }
   ],
   "items": [
+    {
+      "id": "ebf82f01f1b57ceafa3c",
+      "title": "Election Officials Fear Trump Administration\u2019s Interference in Midterms Voting - The New York Times",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPYldXcDdqQ2JqeWI4UklEeDh3elVuTzBYOFFVU3FVNzVTOW1JcktPSXdiNmU3S1Jsa09kLTVmYU8zLUQyczE1WXlSb1MxcHNrQ3dISHFMYmU1ckdDOWhCN1U3bjVGcGJNbDg1a2FXWGJRMjNTUURETGlVcFAzR3UwcEd3X1ZTZw?oc=5",
+      "publisher": "The New York Times",
+      "published_at": "2026-10-27T14:38:02Z",
+      "detected_at": "2026-10-27T15:56:51.229021Z",
+      "state_hints": [
+        "NY"
+      ],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "8bbb654bbd9b1dfd5c44",
       "title": "The Phantom Voter Intimidation Threat - National Review",
@@ -4990,24 +5010,6 @@
       "state_hints": [],
       "topic_hints": [],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "79da3e0c945fa956c215",
-      "title": "Interactive: 9 ways Trump could interfere with US midterms 2026 - The Indian Express",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQMEVqalNrZzhPNjhqT3JvS1F0STVmMEpYa0dFMERMUGpobmJBaXJ3bnB5M19zMDRkeWJWREItQkFHdVk3NHhGM29JN2ZKZVpNQWRyQzZhYUp2bDlOUF8ycHpXYkh6bVFlemZfOTZ6TTZjZ2pOTzZudVl1N1NSYTdXTkYtQzJmMGwyd2Q0V3VCMFFWeUpBcGstM0JpLTRmYVo0WXZZQ3JON0lzWjBua3h5dDluamlPUTA2R01fSk9lRdIBxgFBVV95cUxOcmZCbkZRaEQ5OGdMNml2Q0o3bGpZQ3NFOWhqNU11Mzlpb3BnUUY1bzdjUFZzanVpdDRqYkdWcFRCQVc4RE84QnlDTkJlUEh0cHVocHA5NWFFMS1kbHRpaU9pRUZWbGoxRGZJTVpaWFlzZlI2dGJpQjNRU3F4Mmc3cnBVcWJKZS0tcXlJZW9xUmdCWU9WSGt1bXBHV2JzVDhlNjJ0ekdBVFlfamlWSnZfeG1vQ3lITVFBdm5zVkVxTTVIRkZrNHc?oc=5",
-      "publisher": "The Indian Express",
-      "published_at": "2026-10-14T20:35:20Z",
-      "detected_at": "2026-10-14T21:28:19.216208Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [
-        "9 ",
-        "2026"
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
