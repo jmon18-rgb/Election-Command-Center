@@ -10,6 +10,7 @@ fs.mkdirSync(out, {recursive: true});
 const checks = [
   ['Ohio special-Senate exact county source and full candidate roster', 'test_ohio_civic_county_source.cjs'],
   ['Ohio counts-only national updating and baseline isolation', 'test_ohio_national_bridge.cjs'],
+  ['Ohio queued-response and manual request spacing', 'test_ohio_controller_budget.cjs'],
   ['Official Washington exact source and county counts', 'test_washington_official_house_source.cjs'],
   ['Owned official source integrity and publication isolation', 'test_washington_official_cache.cjs'],
   ['Official Washington national counts-only updating', 'test_washington_national_bridge.cjs'],

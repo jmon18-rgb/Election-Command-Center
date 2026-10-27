@@ -1,5 +1,21 @@
 # Election Night production-readiness assignment
 
+## October 27 01:44Z — Ohio queued-transport minute floor tightened before release
+
+- Pre-merge review found that measuring the request floor from enqueue time can
+  allow a delayed shared-pool response to be followed too quickly by another
+  request. Ohio now restarts its floor at completion. Thus even a long queue plus
+  slow transport preserves >=60 seconds before the next manual/automatic attempt.
+  Other controllers/cadences are unchanged; no generic refactor or limit bypass.
+- Dedicated delayed-queue regression models 90 seconds queued plus 5 seconds
+  transport and rejects immediate/59-second manual retries. PASS. Actual Edge
+  1366/390 synthetic national movement/recovery/budget tests PASS again; all 39
+  core regressions PASS. No actual positive results or calibration claimed.
+- Push the corrected #470 head and require ALL applicable checks on that head;
+  earlier green checks do not authorize merging the superseded revision. Final
+  Pages/byte verification and published synthetic/real-clock probes remain next.
+
+
 ## October 27 01:29Z — Ohio county-to-NATIONAL path implemented locally
 
 - Ohio special-Senate 87527 now feeds the existing correlated national model via

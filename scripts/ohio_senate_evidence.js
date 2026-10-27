@@ -42,7 +42,9 @@
     if(!parsed.live_votes_accepted){phase='No genuine post-close civicAPI OH-SEN counts';return true;}
     evidence={...inputs,snapshot:parsed};onValidated();phase='OH-SEN civicAPI special-Senate county counts · source '+new Date(parsed.snapshot_updated_at).toLocaleTimeString()+' · experimental';return true;
    }catch(error){evidence=null;failures=Math.min(3,failures+1);phase='civicAPI OH-SEN unavailable · '+error.message;return false;}
-   finally{busy=false;publish();schedule();}
+   // Queue wait is not transport spacing. Start the floor after completion so
+   // a delayed shared-pool request cannot be followed by an immediate retry.
+   finally{lastAttempt=Date.now();busy=false;publish();schedule();}
   }
   schedule();return Object.freeze({tick,status,destroy(){stopped=true;if(timer!==null)clearTimeout(timer);}});
  }

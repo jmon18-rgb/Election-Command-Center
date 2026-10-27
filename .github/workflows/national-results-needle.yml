@@ -35,6 +35,7 @@ jobs:
           node scripts/test_national_county_likelihood.cjs
           node scripts/test_maine_national_bridge.cjs
           node scripts/test_ohio_national_bridge.cjs
+          node scripts/test_ohio_controller_budget.cjs
           node scripts/test_washington_national_bridge.cjs
       - name: Install pinned browser
         run: |
