@@ -1,5 +1,123 @@
 # Election Night production-readiness assignment
 
+## October 27 01:10Z — Ohio exact seven-candidate contract independently verified
+
+- Ordinary Edge retrieved the original Cuyahoga Board of Elections general
+  candidate PDF HTTP 200 (119,549 bytes, 25 pages); page 5 visually checked.
+  SHA256 18910e2d7e4e939ead11e0459dcc0a721c2ad10c473986e4102d087396185b4d.
+  Exact special-Senate office ending 1/3/29 and all seven provider names match,
+  including all three certified write-ins. Original preserved in source documents.
+  Greg Levy's official nonpartisan label maps only to his pinned provider Other
+  Party identity; never sum other candidates into Brown's Democratic votes.
+- Implemented strict standalone Ohio county parser with exact native IDs, seven
+  candidates in every county, 88 independent Census matches, state/counties
+  reconciliation, explicit round 1, mock/stale/pre-close/zero guards. Synthetic
+  positive/zero and identity/correction-corruption tests PASS. No live controller,
+  panel or national input is enabled by this preparation parser.
+- Both Ohio preparation blockers are now resolved: archived original 2024 county
+  history and independently published original 2026 complete roster. Do not hunt
+  these again. NEXT: complete #469 exact-head review/checks and normal deployment,
+  then connect Ohio within existing national model/controller and bounded budget.
+  Final historical totals are not release chronology or calibration; actual
+  positive 2026 delivery and comparative freshness remain unproven.
+
+
+## October 27 01:04Z — Ohio original historical baseline recovered and implemented
+
+- The separate bounded archive attempt succeeded: declared Internet Archive
+  Dec 7, 2024 capture returned HTTP 200 with the original 259,601-byte official
+  Ohio statewide canvass workbook. SHA256 ef2f8050e1779a905d602ce34facad510394ac5500ae76ce374f7f73420115e8
+  exactly matches the discovered preserved mirror. Direct original URL is 403;
+  no blocked portal/ballot security was bypassed. Original bytes now preserved.
+- Implemented strict offline Senate importer and five corruption/identity tests:
+  all 88 independently matched Census counties, all seven candidate columns,
+  registration/ballots and statewide 2,650,949 Brown / 2,857,383 Moreno / 196,288
+  others reconcile. Reject wrong office/party, duplicate/missing county, appended
+  totals, negative/fractional/bool counts and aggregate drift. Local tests PASS.
+  Separate CI workflow rebuilds and requires exact generated-file reproducibility.
+- This removes the Ohio historical-data blocker. It does not admit live counts:
+  2024 regular Senate is a different seat from 2026 special Senate; final totals
+  provide no release chronology, calibration or official remaining ballots.
+  2026 original ballot/complete roster verification remains required. Ten deployed
+  national inputs remain unchanged; no new panel or custom safe-seat work.
+- The intervening Michigan bounded official-source check found both independently
+  linked 2024 and 2026 MVIC county-results pages return 403 in ordinary Edge.
+  Stop reprobing those pages. Saved exact local evidence. Nebraska approved87254
+  was inspected once: 93 county rows, non-test/stale zero, independent Osborn plus
+  four other candidates. No party summing or unsupported independent-to-D transfer.
+- NEXT: finish review/checks for Ohio baseline preparation, then verify 2026 original
+  ballot/roster and implement the standard county-to-national path only if it
+  matches. Primary Alaska blocker remains recorded; do not repeat blank table.
+- Last daily report 2026-10-26; research/preparation is not positive live delivery.
+
+
+## October 27 00:52Z — bounded Alaska blocker; Ohio county source matched
+
+- Alaska official results landing returned HTTP 200 in ordinary Edge. Its 2026
+  table lists primary, REAA and recall only; no independently linked general
+  results route was observed. Saved original table/network evidence locally and
+  data/alaska_senate_source_assessment.json. Do not guess general IDs or keep
+  probing the same table. Civic 86916 remains state-only with unresolved RCV roster.
+- Moved to consequential near-boundary Ohio special Senate (uploaded Senate
+  importance 11), within the owner's close-race scope. Actual approved civic 87527
+  returned HTTP 200, non-test, round 1, stale Oct 19 ZERO counts. Its 88 County
+  FIPS/names match the independently pinned Census gazetteer exactly; all seven
+  candidate columns are complete and county sums reconcile with statewide zeros.
+  Original response saved locally; data/ohio_senate_source_assessment.json pins hash.
+- This is source preparation only: no eleventh national input, ballot estimate,
+  positive live delivery, calibration, comparative-speed claim or deployment.
+  Existing ten deployed inputs and all admission/official NIST gates stay intact.
+- The official Dec 2, 2024 certification release's historical-results link now
+  redirects to the data portal. Its declared past-results app explicitly blocks
+  ordinary browser access. An indexed accessible 2026 sample ballot also returns
+  403 in ordinary Edge. Stop retries/no bypass. Search snippets are discovery leads,
+  not verified original ballot or complete write-in certification evidence.
+- NEXT: obtain a separately published official historical statewide county export
+  or provenance-preserved original (not 88 bespoke county integrations), then exact
+  ballot/roster verification. If unavailable within a bounded attempt, move to
+  another consequential near-boundary Senate/owner-listed House source gap rather
+  than spending runs on blocked portals. No safe-seat/panel/celebration expansion.
+- Git open PRs unchanged; no active new implementation PR. Final main b10dbbc7
+  checks/deployment remain successful. Last daily report 2026-10-26; this bounded
+  research is not another delivery milestone and does not require owner action.
+
+
+## October27 00:42Z — close MAINE results-to-NATIONAL connection VERIFIED DEPLOYED
+
+- PR468 finalhead dda82b04f83dccb4f786174d1bf6f3f7cf4426b2: ALL36workflowruns
+  SUCCESS;47latestjobs43success/4nonapplicable skips; noexternalstatuses;
+  exacthead/mergeableclean verified before authorizedmergec9a6b243ea6bfcf86ba396b54f97d0c2fbe28682.
+  https://github.com/jmon18-rgb/Election-Command-Center/pull/468
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40426748586
+- Finalbriefingbotmain b10dbbc75b559082f514240a17d73c71f85194ef; finalPages
+ 40427842805SUCCESS. ALL164expectedpublishedfilesmatch00:41:40Z, actualremote
+  dashboardcoherencesmokepasses;54loadedscriptfingerprintsvalid.
+  https://github.com/jmon18-rgb/Election-Command-Center/actions/runs/40427842805
+- ActualPUBLISHED1366/390SYNTHETICtestsPASSMaine-onlyautomaticnationalmovement
+  beforecalls, red/bluecorrections,zero/oldreplywithdrawal,laterRCVroundexclusion,
+  outage/archiveisolation/manualminute-floor. MobilevisualQAconfirmsfirst-choice/
+  notfinalRCVandcounty-named-candidate remaininglabels directlybesideneedledriver.
+  Screenshots areSYNTHETIC, notactualreturns; no racepaneladded.
+- SEPARATEactualpublishedten-route fixture-free/real-clock00:42:12Z: all10HTTP200,
+ 9civicnon-testZEROs(includingMaine),WApre-electionhealthreceiptstale/zero;
+  ZEROadmittedinputs/projections/rawarchives/pageerrors. StatusLIVE_DELIVERY_UNPROVEN.
+  Oldpositive/syntheticmustneverbeclaimedactual2026deliveryorcalibration.
+- FourSenatestatesIA/KS/TX/ME nowconnected toonenationalneedle, plus6Housedistricts
+  across5states. This islimitedpivotalcoverage, notnationalrepresentation. Maine
+  remainsfirst-choiceonlywithEXPLICITASSUMEDuncalibrated5pointtransfernuisance;
+  county/stateUOCAVAdisagreement orlaterroundexcludesitpendingreview, notfinalcalls.
+- RequiredCIrepairwasaspecifictestfixture: NJ07realidentitygapnowresolved; synthetic
+  outageexplicitlyrecreatesgaptoexercisecounty-onlyfallback. Fullfallbackset,
+  keyboardfocus/drawers/recoverychecksretained. No guardsbypassed or testswaived.
+- To reduce repeatedusage, savedheartbeatprompt condensed20,468to9,821characters
+  whilepreservinglatestownerconstraints/schedule/quietpolicy. No schedulechange.
+- NEXTboundedprimarySenategap: independentlylinkedofficialAlaskaresults page/network
+  toseeifusablegeographicreturns exist beyondapprovedcivicstate-onlyroute. Do not
+  sumsixcandidatepartyvotes orguessfinalRCVwinner. Ifblocked,recordonceandchoose
+  nextnear-boundarySenate/pivotalHousegap; no safe-seat/panel/celebrationexpansion.
+  Lastdailyreportremains2026-10-26(Eastern); notifythiscompletedneedle milestone.
+
+
 ## October27 00:26Z — required browser CI fixture repaired before Maine merge
 
 - PR468head2a04f4b7 blocked by readinessbrowser scenario expectingNJ07to remain

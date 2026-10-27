@@ -1,0 +1,117 @@
+{
+  "schema": "bounded-close-senate-source-assessment-v1",
+  "assessed_at": "2026-10-27T00:52:00Z",
+  "race": "OH-SEN-SPECIAL",
+  "national_input_enabled": false,
+  "status": "SOURCE_ROSTER_AND_HISTORICAL_BASELINE_VERIFIED_NATIONAL_WIRING_PENDING",
+  "priority": "Near-boundary Senate within owner scope; uploaded Senate importance 11; engineering queue, not forecast acceptance.",
+  "provider": {
+    "url": "https://civicapi.org/api/v2/race/87527",
+    "http": 200,
+    "saved_response_sha256": "9ae8f233423db927e703f98901cb7b27b5c7508fe4f5efb6fdccaaed8951a6a7",
+    "election_name": "Ohio US Senate Special General",
+    "source_stamp": "2026-10-19T22:51:08.970Z",
+    "test_data": false,
+    "round": 1,
+    "county_rows": 88,
+    "candidate_rows_per_county": 7,
+    "all_counts_zero": true,
+    "state_county_totals_reconcile": true,
+    "candidate_contract": [
+      {
+        "name": "Sherrod Brown",
+        "party": "Democratic",
+        "native_id": 221403
+      },
+      {
+        "name": "Stephen Faris",
+        "party": "Write-In",
+        "native_id": 221404
+      },
+      {
+        "name": "Anthony Holliman",
+        "party": "Write-In",
+        "native_id": 221405
+      },
+      {
+        "name": "Jon Husted",
+        "party": "Republican",
+        "native_id": 221406
+      },
+      {
+        "name": "Greg Levy",
+        "party": "Other Party",
+        "native_id": 221407
+      },
+      {
+        "name": "William B. Redpath",
+        "party": "Libertarian",
+        "native_id": 221408
+      },
+      {
+        "name": "Timothy Telymonde",
+        "party": "Write-In",
+        "native_id": 221409
+      }
+    ]
+  },
+  "geography": {
+    "independent_reference": "US Census 2024 national county gazetteer",
+    "reference_sha256": "3c337402b5c6e8d5aa26b4278ccf4edc8989f2683765b3ffbf22296cdb2df3a0",
+    "exact_88_fips_name_matches": true,
+    "no_guessed_allocation": true
+  },
+  "official_history_attempt": {
+    "linked_from": "https://www.ohiosos.gov/office/media-center/categories/press-releases/2024-12-02",
+    "original_link": "https://www.ohiosos.gov/elections/election-results-and-data/2024-official-election-results/",
+    "redirect": "https://www.ohiosos.gov/data",
+    "declared_past_results": "https://data.ohiosos.gov/portal/past-election-results",
+    "ordinary_browser_result": "Explicit security-service blocked page; stop retries, no bypass.",
+    "historical_baseline_acquired": true
+  },
+  "ballot_review": {
+    "original_url": "https://boe.cuyahogacounty.gov/docs/default-source/boe/candidates-page/candidate-list.pdf?sfvrsn=4b1792c0_450",
+    "original_file": "data/ohio_source_documents/2026-general-certified-candidates.pdf",
+    "ordinary_browser_http": 200,
+    "bytes": 119549,
+    "sha256": "18910e2d7e4e939ead11e0459dcc0a721c2ad10c473986e4102d087396185b4d",
+    "pages": 25,
+    "senate_page": 5,
+    "original_visually_verified": true,
+    "office": "United States Senator, unexpired term ending 1/3/29",
+    "candidates_verified": [
+      "Sherrod Brown",
+      "Jon Husted",
+      "William B. Redpath",
+      "Stephen Faris (write-in)",
+      "Anthony Holliman (write-in)",
+      "Greg Levy (nonpartisan)",
+      "Timothy Telymonde (write-in)"
+    ],
+    "source_party_mapping": "Greg Levy official nonpartisan corresponds only to pinned provider Other Party identity; all non-major candidates remain other_votes, never added to Democrats."
+  },
+  "limits": [
+    "Zero template is not positive 2026 delivery or calibration.",
+    "No source-stamp age or HTTP timing proves comparative freshness.",
+    "No remaining-ballot or national likelihood is enabled without a matched historical baseline and reviewed candidate contract.",
+    "Existing Ohio official NIST approval gates remain intact; current mock counts cannot be admitted."
+  ],
+  "next": "Implement reviewed Ohio county-to-national kernel/controller path using this exact roster and historical reference. No separate panel; maintain freshness/mock/correction/retraction/budget guards. Actual post-close delivery and calibration remain unproven.",
+  "historical_baseline": {
+    "file": "data/ohio_senate_2024_county_baseline_official.json",
+    "original_file": "data/ohio_historical_sources/2024-official-statewide-race-summary.xlsx",
+    "original_url": "https://www.ohiosos.gov/globalassets/elections/2024/gen/official/statewide-race-summary.xlsx",
+    "archive_url": "https://web.archive.org/web/20241207004035if_/https://www.ohiosos.gov/globalassets/elections/2024/gen/official/statewide-race-summary.xlsx",
+    "archive_http": 200,
+    "bytes": 259601,
+    "sha256": "ef2f8050e1779a905d602ce34facad510394ac5500ae76ce374f7f73420115e8",
+    "discovery_mirror": "https://raw.githubusercontent.com/Camreyn/civicresultmaps/main/data/oh-2024-statewide-race-summary.xlsx",
+    "mirror_archive_bytes_equal": true,
+    "direct_original_http": 403,
+    "county_fips_name_matches": 88,
+    "dem_votes": 2650949,
+    "rep_votes": 2857383,
+    "other_votes": 196288,
+    "limitation": "Final 2024 regular-seat counts, not 2026 special-seat candidate expectation or release-order calibration."
+  }
+}
