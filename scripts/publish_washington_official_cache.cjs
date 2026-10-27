@@ -7,6 +7,9 @@ const remaining=require('./washington_remaining_source.js'),crypto=require('node
 const REPO='jmon18-rgb/Election-Command-Center',START=Date.parse('2026-11-04T04:00:00Z'),FAST_END=Date.parse('2026-11-04T17:00:00Z'),END=Date.parse('2026-11-25T08:00:00Z');
 const inWindow=now=>Number.isFinite(now)&&now>=START&&now<END;
 const healthWindow=now=>Number.isFinite(now)&&now>=Date.parse('2026-10-26T00:00:00Z')&&now<START;
+function rejectRemaining(record,error,now){return {schema:'official-wa-remaining-collection-v1',source_url:remaining.URL,
+ fetched_at:record?.source_url===remaining.URL&&Number.isFinite(remaining.time(record.fetched_at))?record.fetched_at:null,
+ rejected_at:new Date(now).toISOString(),receipt_kind:'PUBLISHER_VALIDATION_REJECTION',status:'SOURCE_UNAVAILABLE',payload:null,error:String(error).slice(0,240)};}
 async function publish({request,record,reference,now=Date.now(),healthOnly=false}){
  const parsed=await cache.parse(record,reference,{now});
  if(healthOnly&&inWindow(now))throw Error('Health-only publication cannot interrupt the election stream');
@@ -25,7 +28,7 @@ async function publish({request,record,reference,now=Date.now(),healthOnly=false
   let old;try{old=JSON.parse(Buffer.from(previous.content,'base64').toString());}catch{}
   remainingWatermark=healthOnly?{}:old?.remaining_revision_watermark||{};
   if(!healthOnly&&record.official_remaining===undefined&&old?.official_remaining)record={...record,official_remaining:old.official_remaining};
-  if(record.official_remaining&&old?.official_remaining&&Date.parse(record.official_remaining.fetched_at)<Date.parse(old.official_remaining.fetched_at))record={...record,official_remaining:{schema:'official-wa-remaining-collection-v1',source_url:remaining.URL,fetched_at:new Date(now).toISOString(),status:'SOURCE_UNAVAILABLE',payload:null,error:'Older remaining receipt rejected'}};
+  if(record.official_remaining&&old?.official_remaining&&Date.parse(record.official_remaining.fetched_at)<Date.parse(old.official_remaining.fetched_at))record={...record,official_remaining:rejectRemaining(record.official_remaining,'Older remaining receipt rejected',now)};
   if(old&&Date.parse(old.fetched_at)>Date.parse(record.fetched_at))throw Error('Late collector cannot overwrite newer receipt');
   if(old?.schema===record.schema&&old.source_url===record.source_url){
    watermark=old.revision_watermark||(old.payload?{as_of:old.snapshot_updated_at,published_at:old.source_published_at}:null);
@@ -46,10 +49,10 @@ async function publish({request,record,reference,now=Date.now(),healthOnly=false
    next[c.county_fips]={reported_at:c.reported_at,estimated_ballots_left:c.estimated_ballots_left};
   }
   remainingWatermark=next;
- }catch(error){record={...record,official_remaining:{schema:'official-wa-remaining-collection-v1',source_url:remaining.URL,fetched_at:new Date(now).toISOString(),status:'SOURCE_UNAVAILABLE',payload:null,error:String(error.message).slice(0,240)}};}}
+ }catch(error){record={...record,official_remaining:rejectRemaining(record.official_remaining,error.message,now)};}}
  if(record.payload)watermark={as_of:record.snapshot_updated_at,published_at:record.source_published_at};
  record={...record,revision_watermark:watermark,remaining_revision_watermark:remainingWatermark};
- if(JSON.stringify(record,null,2).length>256000&&record.official_remaining)record={...record,official_remaining:{schema:'official-wa-remaining-collection-v1',source_url:remaining.URL,fetched_at:new Date(now).toISOString(),status:'SOURCE_UNAVAILABLE',payload:null,error:'Supplement excluded to preserve existing cache body bound'}};
+ if(JSON.stringify(record,null,2).length>256000&&record.official_remaining)record={...record,official_remaining:rejectRemaining(record.official_remaining,'Supplement excluded to preserve existing cache body bound',now)};
  const content=Buffer.from(JSON.stringify(record,null,2)+'\n').toString('base64');
  const result=await request('PUT','/contents/'+cache.PATH,{message:'Refresh official WA-03 source cache',branch:cache.BRANCH,content,...(previous?.sha?{sha:previous.sha}:{})});
  return {changed:true,branch:cache.BRANCH,commit:result.commit.sha};

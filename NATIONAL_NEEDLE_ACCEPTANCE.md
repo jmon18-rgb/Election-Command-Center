@@ -110,9 +110,13 @@ Runtime477 and provenance478 passed all applicable exact-head checks. Final Page
 
 Original2026 general ballot/roster independently verified: four printed Senate candidates, two certified named write-ins, five rank columns. Actual provider219761Republican conflicts with officialUndeclared. PR479 exacthead37workflows/51jobs46success5nonapplicable skips passed; finalPage40465033302/all274publishedfiles and laptop/mobile guard behavior verified. Actual focused07:07:21Z singleAK request still stalezero/State-only/round1 and was rejected by publishedadapter. Alaska first-choice flags and older cached calls cannot award a Senate seat or create aggregate-party/national predictions. Sixteen predictive inputs unchanged; Alaska remains excluded pending source/geographic/remaining-vote/finalRCV contracts. This is not positive delivery, calibration or speed proof.
 
-## Candidate official remaining-estimate extension
+## Verified first-night official remaining-estimate extension
 
-A conditional WA03 extension is implemented for review. It preserves half the
+PR482 deployed the conditional WA03 extension after all37 exact-head workflows
+passed on ac7f684c. Final main6b254e22/Pages40482275587 succeeded; all289
+expected published files matched09:44:29.858Z. Published synthetic laptop/mobile
+behavior passed with matching index and separate count/estimate clocks.
+The extension It preserves half the
 original historical-turnout likelihood and evaluates a wide, shared estimate-error
 sensitivity mixture for six independently verified whole counties. Thurston is
 never allocated from a whole-county estimate. Same-count estimate changes can
@@ -122,6 +126,5 @@ WASHINGTON_REMAINING_ESTIMATE_CONTRACT.md for the unfitted numerical assumptions
 
 The actual pinned statistic remains 39 zeros/null clocks, so none is usable.
 No actual positive post-close estimate delivery, error calibration, chronological
-skill or speed comparison is demonstrated. Required exact-head checks and final
-publication verification remain release requirements; this paragraph does not
-claim deployment. The October27 calibrated-acceptance decision remains unmet.
+skill or speed comparison is demonstrated. Receipt-provenance follow-up preserves the original retrieval time when stale
+statistics are rejected, without a new source request. The October27 calibrated-acceptance decision remains unmet.

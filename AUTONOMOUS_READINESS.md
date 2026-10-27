@@ -1,5 +1,11 @@
 # Election Night production-readiness assignment
 
+## 2026-10-27T09:48:00Z — Candidate receipt provenance correction after verified482 deployment
+
+- Corrected publisher rejection paths (older receipt, stale/integrity/schema/body rejection): retain originalsource fetched_at ifknown/valid, elseNULL; add rejected_at and receipt_kind=PUBLISHER_VALIDATION_REJECTION. Validation mustnotinvent a newnativeGET receipt. PayloadremainsNULL; originalreportclock/votes/modelmath unchanged. Alreadydeployed482fullpath/budgets/clockgates preserved.
+- New regressions prove oldnative11minute receipt stays11whenrejectedat14; stalefetched12 stays12whenvalidatedat50. Staleoptionalreceipt cannotproducefreshremaining_revision whilepositiveprimarycounts remainaccepted. Focusedintegration andexistingcache/publisher testsPASS, no realnative/health/blanketprobes. Requiredcurrent-headCI/normalmerge/Pages/staticverification stillpendingforthissmallfollow-up.
+- 482milestone remainsnotyetnotifiedpendingthisreceiptfix; preserveall37exacthead/50job/289byte/publishedbrowser proofabove, no repeatimplementationororiginalstats/geography discovery. Lastdailyreport2026-10-26; normalquietpolicy/deadlines unchanged.
+
 ## 2026-10-27T09:45:00Z — 482 remaining-estimate NATIONAL path verified deployed; receipt-provenance follow-up next
 
 - PR482 https://github.com/jmon18-rgb/Election-Command-Center/pull/482 MERGED after ALL37 exact-head workflows SUCCESS,50latestjobs46success/4nonapplicable skips,noexternalstatuses, headac7f684cdd8459ee6060efbb421f604e211d6986/clean. MI07/PA08 attempt1 browser jobs canceled duringUbuntu package downloads BEFOREtests; attempt2 SUCCESS on SAMEhead. Initial851sharedfingerprintfailure corrected againstactualnormalizedGitblobs;66fingerprints match. No checkswaived/timeoutsraised.

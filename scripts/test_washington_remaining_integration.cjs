@@ -63,6 +63,11 @@ const basis=model.prepare({seats:load('seat_universe'),history:load('house_histo
  await publishAt('12',remaining({stamp:'2026-11-04T04:12:00Z'}));
  const older=remaining({stamp:'2026-11-04T04:12:00Z'});older.fetched_at='2026-11-04T04:11:00Z';
  const oldReceipt=await publishAt('14',older);assert(oldReceipt.official_remaining.payload===null);assert.match(oldReceipt.official_remaining.error,/Older remaining receipt/);
+ assert.equal(oldReceipt.official_remaining.fetched_at,'2026-11-04T04:11:00Z');assert.equal(oldReceipt.official_remaining.rejected_at,'2026-11-04T04:14:01.000Z');
+ const stale=await publishAt('50',remaining({stamp:'2026-11-04T04:12:00Z'}));
+ assert.equal(stale.official_remaining.fetched_at,'2026-11-04T04:12:00Z','Rejection is not a new source request');assert.equal(stale.official_remaining.rejected_at,'2026-11-04T04:50:01.000Z');
+ assert.equal(stale.official_remaining.receipt_kind,'PUBLISHER_VALIDATION_REJECTION');assert(stale.official_remaining.payload===null);
+ const staleParsed=await cache.parse(stale,reference,{now:Date.parse('2026-11-04T04:50:02Z')});assert(staleParsed.live_votes_accepted&&!staleParsed.official_remaining&&!staleParsed.remaining_revision);
  const plans=[0,1,2,3].map(i=>publisher.sourceKindForSlot(i,4,record));assert.deepEqual(plans,['counts','remaining','counts','counts']);
  assert.equal(publisher.sourceKindForSlot(0,1,record),'counts');assert.equal(publisher.sourceKindForSlot(1,4,{status:'SOURCE_UNAVAILABLE'}),'counts');
  const savedArgv=process.argv,savedNow=Date.now,savedFetch=global.fetch;let forbiddenRequests=0;
