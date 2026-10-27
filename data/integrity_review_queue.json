@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-27T02:46:32.945893Z",
+  "updated_at": "2026-10-27T02:53:36.865653Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
@@ -468,6 +468,26 @@
         "security"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "871d9f2e0372c847b00d",
+      "title": "Trump admin asks WA to set aside 400 ballots from suspected noncitizens - FOX 13 Seattle",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE54aUFRTWNDVUJhUDBnR2xtZHIzVHNodV8xVXFNMGh4VnlpcUtCWUF1VnlNdGVvUU5vdHdiM3FUVnB5c1dnV0I3ekVwV0xRNHc1QmtuTHlZNFBxaEJDNWR5N3QtQnQ5T0toc3NGUDVhYXNlVjF1a21qVVUyU01HU3PSAYQBQVVfeXFMUHY2TVM1TVJGWEZDck1yYnY1SFExakdvVWpHOXBVMTk1ZF9WQUFTVmNlX19vZ0J2Q09oMEtRM2d0S0Vxb2c0YjRiakJRMHVzaTFOXzByX3ROU1RqeHJDZXIxcjljVHFuaTJpQ0pJVFptbURSWmZnTERuX0pqcEp4OXZleXUz?oc=5",
+      "publisher": "FOX 13 Seattle",
+      "published_at": "2026-10-26T15:52:11Z",
+      "detected_at": "2026-10-27T02:53:36.865653Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [
+        "400 ballots",
+        "13 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -4974,23 +4994,6 @@
       ],
       "headline_numbers_unverified": [
         "48"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "17d877a4f60101790084",
-      "title": "NC sends letters to nearly 1,400 voters flagged as potential noncitizens - WFAE",
-      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNOHdpejFrMFQtNmhVaXl2ZVRvblRLeW1iTjhzM01TdmI4eFJqVDdlVlNwZmNhVk4wODM5bGhxbG1GRVZSX0Fval9EWDVQbmNTcGxLY05fU0tfckVkUjZFcDNMRUQ4U3BBMDRjQXc2R2JobkNUamRWVzdyb0c0dEQ1aUt2c3pGMTVNdFRiaVM0NFNqaVBFYmNSaTN3V2QxT0hfdk1NcmkyZUZJQmp1b3V0aTJDOWp3clVTeng3Mjh4eWZmYTQ2?oc=5",
-      "publisher": "WFAE",
-      "published_at": "2026-10-14T18:40:00Z",
-      "detected_at": "2026-10-14T20:53:15.333028Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [
-        "1,400 voters"
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
