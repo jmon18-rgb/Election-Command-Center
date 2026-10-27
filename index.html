@@ -808,6 +808,15 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-nmap-open{margin-top:6px}
 .en-nmap-method{font-size:.72rem;line-height:1.6;color:#9eb8ca;margin:10px 0 0}
 @media(max-width:600px){.en-national-map-panel{padding:12px}.en-nmap-count{flex-basis:100%;margin-left:0}.en-nmap-grid{margin-left:5px;margin-right:5px}}
+.four-needle-labels{gap:8px;margin:4px 0 12px}
+.four-needle-outcome{display:flex;flex-direction:column;gap:5px;padding:9px 5px;border:1px solid #466078;border-radius:8px;background:#0b2136;min-width:0}
+.four-needle-outcome small{font-size:10px;letter-spacing:.02em;line-height:1.3;color:#dbe9f5}
+.four-needle-outcome strong{font-size:clamp(18px,2.1vw,25px);font-variant-numeric:tabular-nums;line-height:1.1;color:#f1f6fc}
+.four-needle-outcome[data-outcome="red_dawn"]{border-top:3px solid #ce8592}
+.four-needle-outcome[data-outcome="shrug"]{border-top:3px solid #b2a3c1}
+.four-needle-outcome[data-outcome="blue_wave"]{border-top:3px solid #61adf6}
+.four-needle-outcome[data-outcome="blue_tsunami"]{border-top:3px solid #438aff}
+@media(max-width:560px){.four-needle-labels{grid-template-columns:repeat(2,minmax(0,1fr))}.four-needle-outcome small{font-size:11px}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -4311,16 +4320,27 @@ function jointRenderNeedles(result,config={}){
   const marker=host.querySelector('.four-needle-arrow');
   const foot=host.querySelector('.four-needle-footer');
   const bar=host.querySelector('.four-needle-distribution');
+  const outcomeLabels=host.querySelector('.four-needle-labels');
+  const showOutcomes=values=>{
+   outcomeLabels.replaceChildren();
+   for(let i=0;i<keys.length;i++){
+    const cell=elt('span','four-needle-outcome');cell.dataset.outcome=keys[i];
+    cell.append(elt('small','',labels[i]),elt('strong','',values?values[i].toFixed(1)+'%':'—'));
+    outcomeLabels.append(cell);
+   }
+  };
   if(!result?.probabilities||keys.some(k=>!Number.isFinite(result.probabilities[k]))){
    host.setAttribute('aria-label','Four Endings forecast is unavailable, no result inferred');
    foot.firstElementChild.textContent='Awaiting validated probabilities';
    foot.lastElementChild.textContent='No source forecast';
    marker.style.left='50%';bar.replaceChildren();
+   showOutcomes(null);
    continue;
   }
   const v=keys.map(k=>Math.max(0,result.probabilities[k]));
   const total=v.reduce((a,b)=>a+b,0);
   if(Math.abs(total-100)>.15)throw Error('Needle distribution does not sum to 100%');
+  showOutcomes(v);
   // Four threshold outcomes ordered from neither gate to the larger two-seat gate.
   // This expectation tracks the center of gravity, NOT a probability of a call.
   const position=(v[1]+2*v[2]+3*v[3])/(3*total)*100;

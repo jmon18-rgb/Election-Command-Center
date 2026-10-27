@@ -42,6 +42,17 @@ try{
   await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();
   await page.waitForFunction(()=>[enIowaPilotController,enKansasPilotController,enTexasPilotController,enWisconsinHouseController,enWisconsinHouse03Controller,enMichiganHouse04Controller,enPennsylvaniaHouse10Controller,enNewYorkHouse17Controller].every(c=>c.status().phase.includes('TEST DATA'))&&jointLastResult?.probabilities).catch(async e=>{console.log(JSON.stringify({errors,state:await page.evaluate(()=>({phases:[window.enIowaPilotController,window.enKansasPilotController,window.enTexasPilotController].map(c=>c?.status().phase),modelError:jointErrorMessage,hasBasis:!!jointBasis}))}));throw e;});
   const baseline=await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities));
+  const visibleEndings=await page.evaluate(()=>Array.from(document.querySelectorAll('#jointNightNeedle .four-needle-outcome')).map(e=>({key:e.dataset.outcome,label:e.querySelector('small').textContent,value:e.querySelector('strong').textContent,expected:jointLastResult.probabilities[e.dataset.outcome].toFixed(1)+'%'})));
+  assert.deepEqual(visibleEndings.map(x=>x.key),['red_dawn','shrug','blue_wave','blue_tsunami']);
+  assert(visibleEndings.every(x=>x.value===x.expected),'Every visible ending uses the unchanged joint-model probability');
+  for(const key of ['red_dawn','shrug','blue_wave','blue_tsunami'])assert(await page.locator('#jointNightNeedle [data-outcome="'+key+'"]').isVisible());
+  const positions=await page.locator('#jointNightNeedle .four-needle-outcome').evaluateAll(es=>es.map(e=>e.getBoundingClientRect().top));
+  if(width===390){assert.equal(positions[0],positions[1]);assert(positions[2]>positions[0]);assert.equal(positions[2],positions[3]);}
+  else assert(positions.every(y=>y===positions[0]));
+  await page.evaluate(()=>jointRenderNeedles(null,{hostIds:['jointNightNeedle']}));
+  assert.deepEqual(await page.locator('#jointNightNeedle .four-needle-outcome strong').allTextContents(),['—','—','—','—'],'Unavailable data clears previous chances rather than inventing zeroes');
+  await page.evaluate(()=>jointRenderNeedles(jointLastResult,{hostIds:['jointNightNeedle']}));
+  mkdirSync(resolve(root,'artifacts/readiness'),{recursive:true});await page.locator('#jointNightNeedle').screenshot({path:resolve(root,'artifacts/readiness/four-outcome-probabilities-'+width+'.png')});
   async function update(next,minute){mode=next;stamp='2026-11-04T03:'+minute+':00Z';await page.clock.setSystemTime(new Date(stamp));
    await page.evaluate(async()=>{await Promise.all([enIowaPilotController.tick(true),enKansasPilotController.tick(true),enTexasPilotController.tick(true),enWisconsinHouseController.tick(true),enWisconsinHouse03Controller.tick(true),enMichiganHouse04Controller.tick(true),enPennsylvaniaHouse10Controller.tick(true),enNewYorkHouse17Controller.tick(true)]);jointRender(true);});}
   // No controller.tick(), manual refresh, or jointRender(): the actual page's
@@ -112,6 +123,8 @@ try{
   for(let step=2;step<=5;step++){
    await page.locator('#enNationalNext').click();await page.waitForFunction(step=>document.querySelector('#enNationalStage').textContent.includes(step+'/5'),step);
    assert.match(await page.locator('#enNationalPreviewNeedle').getAttribute('aria-label'),/SIMULATED/);
+   assert.equal(await page.locator('#enNationalPreviewNeedle .four-needle-outcome').count(),4);
+   assert(await page.evaluate(()=>{const host=document.querySelector('#enNationalPreviewNeedle'),aria=host.getAttribute('aria-label');return Array.from(host.querySelectorAll('.four-needle-outcome')).every(e=>aria.includes(e.querySelector('small').textContent+' '+e.querySelector('strong').textContent.replace('%','')+' percent'));}),'Simulated visible probabilities must match their own scenario, not live odds');
    if(step===3){assert.notEqual(await page.locator('#enNationalPreviewChances').textContent(),first);assert.match(await page.locator('#enNationalPreviewNeedle').textContent(),/5 House districts across 4 states, not national House coverage/);}
   }
   assert.equal(await page.locator('#enNationalPreviewChances').textContent(),first,'Withdrawal returns rehearsal to its exact baseline');
