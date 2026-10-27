@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-27T17:55:09.683584+00:00",
+  "updated_at": "2026-10-27T18:06:30.035649+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,26 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 331,
-  "newly_injected_into_model": 4,
-  "injected_poll_ids": [
-    {
-      "race_code": "AZ-GOV",
-      "poll_id": "78aa22ad-a1c0-421b-a776-cbe0d134f975"
-    },
-    {
-      "race_code": "IA-GOV",
-      "poll_id": "5fed9be9-1c44-4040-a61b-00465f70db64"
-    },
-    {
-      "race_code": "IA-SEN",
-      "poll_id": "5fed9be9-1c44-4040-a61b-00465f70db64"
-    },
-    {
-      "race_code": "TX-SEN",
-      "poll_id": "b6037ae7-e4a6-46a2-a8e9-83eb3cc01ae4"
-    }
-  ],
+  "matched_primary_observations": 335,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "TX-SEN",
