@@ -1,6 +1,7 @@
 'use strict';
 const closes=require('./election_night_poll_closings_2026.js');
 const races=Object.freeze([
+ {code:'SC-SEN',state:'SC',office:'Senate',key:'SC',forecast_scope:'national_joint_draws',counties:46,url:'https://civicapi.org/api/v2/race/87409',reference:'data/south_carolina_county_fips_reference.json',parser:'SouthCarolinaCivicCountySource',controller:'enSouthCarolinaSenateController'},
  {code:'VA-02',state:'VA',office:'House',key:'VA-02',forecast_scope:'national_joint_draws',counties:8,url:'https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General/data/ballot-item/01000000-f030-c43d-fd71-08df1fee52e7',transport_url:'https://raw.githubusercontent.com/jmon18-rgb/Election-Command-Center/official-virginia-results-cache/data/virginia_house_02_official_latest.json',reference:'data/virginia_house_02_county_fips_reference.json',parser:'VirginiaOfficialCache',controller:'enVirginiaHouse02Controller'},
  {code:'AZ-06',state:'AZ',office:'House',key:'AZ-06',forecast_scope:'national_joint_draws',counties:5,url:'https://civicapi.org/api/v2/race/86922',reference:'data/arizona_house_06_county_fips_reference.json',parser:'WisconsinHouseCountySource',parser_scope:'AZ-06',controller:'enArizonaHouse06Controller'},
  {code:'PA-07',state:'PA',office:'House',key:'PA-07',forecast_scope:'national_joint_draws',counties:4,url:'https://civicapi.org/api/v2/race/87382',reference:'data/pennsylvania_house_07_county_fips_reference.json',parser:'WisconsinHouseCountySource',parser_scope:'PA-07',controller:'enPennsylvaniaHouse07Controller'},

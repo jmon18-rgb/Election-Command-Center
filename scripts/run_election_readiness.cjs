@@ -28,6 +28,8 @@ const checks = [
   ['PA-07 full district-part source contract', 'test_pennsylvania_house_07_county_source.cjs'],
   ['PA-07 national movement and baseline isolation', 'test_pennsylvania_house_07_national_bridge.cjs'],
   ['PA-07 queued transport and manual floor', 'test_pennsylvania_house_07_controller_budget.cjs'],
+  ['SC exact county source and all-other candidate contract', 'test_south_carolina_county_source.cjs'],
+  ['SC queued-response transport floor', 'test_south_carolina_controller_budget.cjs'],
   ['Ohio special-Senate exact county source and full candidate roster', 'test_ohio_civic_county_source.cjs'],
   ['Ohio counts-only national updating and baseline isolation', 'test_ohio_national_bridge.cjs'],
   ['Ohio queued-response and manual request spacing', 'test_ohio_controller_budget.cjs'],
