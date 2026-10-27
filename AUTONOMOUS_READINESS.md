@@ -1,5 +1,27 @@
 # Election Night production-readiness assignment
 
+## October 27 01:10Z — Ohio exact seven-candidate contract independently verified
+
+- Ordinary Edge retrieved the original Cuyahoga Board of Elections general
+  candidate PDF HTTP 200 (119,549 bytes, 25 pages); page 5 visually checked.
+  SHA256 18910e2d7e4e939ead11e0459dcc0a721c2ad10c473986e4102d087396185b4d.
+  Exact special-Senate office ending 1/3/29 and all seven provider names match,
+  including all three certified write-ins. Original preserved in source documents.
+  Greg Levy's official nonpartisan label maps only to his pinned provider Other
+  Party identity; never sum other candidates into Brown's Democratic votes.
+- Implemented strict standalone Ohio county parser with exact native IDs, seven
+  candidates in every county, 88 independent Census matches, state/counties
+  reconciliation, explicit round 1, mock/stale/pre-close/zero guards. Synthetic
+  positive/zero and identity/correction-corruption tests PASS. No live controller,
+  panel or national input is enabled by this preparation parser.
+- Both Ohio preparation blockers are now resolved: archived original 2024 county
+  history and independently published original 2026 complete roster. Do not hunt
+  these again. NEXT: complete #469 exact-head review/checks and normal deployment,
+  then connect Ohio within existing national model/controller and bounded budget.
+  Final historical totals are not release chronology or calibration; actual
+  positive 2026 delivery and comparative freshness remain unproven.
+
+
 ## October 27 01:04Z — Ohio original historical baseline recovered and implemented
 
 - The separate bounded archive attempt succeeded: declared Internet Archive

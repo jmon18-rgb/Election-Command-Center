@@ -4,7 +4,9 @@ on:
     branches: [main]
     paths:
       - 'scripts/*ohio*senate*baseline*'
+      - 'scripts/*ohio*civic*'
       - 'data/ohio_historical_sources/**'
+      - 'data/ohio_source_documents/**'
       - 'data/ohio_senate_2024_county_baseline_official.json'
       - 'data/texas_historical_sources/2024-census-counties.zip'
       - '.github/workflows/ohio-senate-baseline.yml'
@@ -22,3 +24,7 @@ jobs:
       - run: python -m pip install openpyxl==3.1.5
       - run: python scripts/test_build_ohio_senate_county_baseline.py
       - run: git diff --exit-code -- data/ohio_senate_2024_county_baseline_official.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/test_ohio_civic_county_source.cjs

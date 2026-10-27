@@ -3,7 +3,7 @@
   "assessed_at": "2026-10-27T00:52:00Z",
   "race": "OH-SEN-SPECIAL",
   "national_input_enabled": false,
-  "status": "REAL_ZERO_TEMPLATE_AND_ARCHIVED_OFFICIAL_HISTORY_MATCHED_2026_ROSTER_REVIEW_REQUIRED",
+  "status": "SOURCE_ROSTER_AND_HISTORICAL_BASELINE_VERIFIED_NATIONAL_WIRING_PENDING",
   "priority": "Near-boundary Senate within owner scope; uploaded Senate importance 11; engineering queue, not forecast acceptance.",
   "provider": {
     "url": "https://civicapi.org/api/v2/race/87527",
@@ -70,17 +70,25 @@
     "historical_baseline_acquired": true
   },
   "ballot_review": {
-    "search_index_url": "https://www.boe.ohio.gov/abmt/oh12/20261103/X015___2_CITY_15.html",
-    "search_index_senate_names": [
-      "Greg Levy",
-      "William B. Redpath",
+    "original_url": "https://boe.cuyahogacounty.gov/docs/default-source/boe/candidates-page/candidate-list.pdf?sfvrsn=4b1792c0_450",
+    "original_file": "data/ohio_source_documents/2026-general-certified-candidates.pdf",
+    "ordinary_browser_http": 200,
+    "bytes": 119549,
+    "sha256": "18910e2d7e4e939ead11e0459dcc0a721c2ad10c473986e4102d087396185b4d",
+    "pages": 25,
+    "senate_page": 5,
+    "original_visually_verified": true,
+    "office": "United States Senator, unexpired term ending 1/3/29",
+    "candidates_verified": [
       "Sherrod Brown",
       "Jon Husted",
-      "Write-in"
+      "William B. Redpath",
+      "Stephen Faris (write-in)",
+      "Anthony Holliman (write-in)",
+      "Greg Levy (nonpartisan)",
+      "Timothy Telymonde (write-in)"
     ],
-    "ordinary_browser_http": 403,
-    "independent_original_verified": false,
-    "note": "Search excerpt is a discovery lead, not a downloaded verified original or complete certified write-in roster."
+    "source_party_mapping": "Greg Levy official nonpartisan corresponds only to pinned provider Other Party identity; all non-major candidates remain other_votes, never added to Democrats."
   },
   "limits": [
     "Zero template is not positive 2026 delivery or calibration.",
@@ -88,7 +96,7 @@
     "No remaining-ballot or national likelihood is enabled without a matched historical baseline and reviewed candidate contract.",
     "Existing Ohio official NIST approval gates remain intact; current mock counts cannot be admitted."
   ],
-  "next": "Verify independently published original 2026 ballot/complete candidate roster before source-to-national integration. Do not repeat blocked Ohio portal, Clark sample-ballot, or Michigan MVIC pages.",
+  "next": "Implement reviewed Ohio county-to-national kernel/controller path using this exact roster and historical reference. No separate panel; maintain freshness/mock/correction/retraction/budget guards. Actual post-close delivery and calibration remain unproven.",
   "historical_baseline": {
     "file": "data/ohio_senate_2024_county_baseline_official.json",
     "original_file": "data/ohio_historical_sources/2024-official-statewide-race-summary.xlsx",
