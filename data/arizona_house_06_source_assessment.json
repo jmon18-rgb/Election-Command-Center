@@ -1,0 +1,72 @@
+{
+  "schema": "competitive-source-preparation-v1",
+  "race_code": "AZ-06",
+  "priority": "Owner uploaded Silver power-flip seed3; captured linked65.17 is not fresh odds or Silver probability.",
+  "observed_at": "2026-10-27T03:08:24.854152+00:00",
+  "status": "SOURCE_AND_DISTRICT_PART_BASELINE_PREPARED_NOT_PRODUCTION",
+  "source_url": "https://civicapi.org/api/v2/race/86922",
+  "source_sha256": "64867f03125dbfc6dea4ec9b724b852eed9831ef2e9c07f6a3cc5ec78b07415f",
+  "source_hash_scope": "Saved parsed/reformatted response, not original wire bytes.",
+  "source_clock": "2026-10-22T21:58:37.854Z",
+  "test_data": false,
+  "round": 1,
+  "county_fips": [
+    "04003",
+    "04009",
+    "04011",
+    "04019",
+    "04021"
+  ],
+  "native_roster": [
+    {
+      "name": "JoAnna Mendoza",
+      "party": "Democratic",
+      "candidate_id": 219782
+    },
+    {
+      "name": "Juan Ciscomani",
+      "party": "Republican",
+      "candidate_id": 219783
+    },
+    {
+      "name": "Gary Swing",
+      "party": "Green",
+      "candidate_id": 219784
+    },
+    {
+      "name": "Jereme Peters",
+      "party": "Libertarian",
+      "candidate_id": 219785
+    },
+    {
+      "name": "Michael Dorland",
+      "party": "Independent",
+      "candidate_id": 219786
+    }
+  ],
+  "all_observed_counts_zero": true,
+  "official_2026_documents": [
+    {
+      "url": "https://content.civicplus.com/api/assets/az-pimacounty/d2c310c3-ade7-484e-a6f0-1ddaebec0799",
+      "path": "data/arizona_house_06_sources/2026-pima-candidates.pdf",
+      "sha256": "ed48de5bbf563ce81b84701eeec100486f7efa1d7824e492f0f48332359fa397",
+      "visually_verified_page": 1
+    },
+    {
+      "url": "https://content.civicplus.com/api/assets/az-pimacounty/b54c9e42-8520-4201-be8d-10b859da80df",
+      "path": "data/arizona_house_06_sources/2026-pima-writeins.pdf",
+      "sha256": "43b0f8ccbf82eb15ab4b1aba3c97f20628bc117547fbb22cbd1b55f2bed8ff00",
+      "visually_verified_page": 1
+    }
+  ],
+  "candidate_alias_contract": "Provider Jereme Peters is official Jereme Lance Peters; exact native219785 Libertarian only. Michael Dorland independent is separately certified write-in; never Democratic.",
+  "discovery": "Existing approved race/search query US House6 AZ Nov3 yielded exactly one US House AZ06, plus unrelated State House results excluded.",
+  "independent_geography_url": "https://azsos.gov/elections/about-elections/elections-procedures/pre-election-procedures/irc",
+  "access_observations": "Official2024 PDF direct Python and ordinary Edge request403; preserved official original UCSB200. Original Pima assets Python403 but ordinary Edge200, no bypass. Official2026candidate app web reader403, not categorical denial.",
+  "next": "Implement strict five-candidate/five district-part source parser and bounded headless national controller, source<=1/min after completion; preserve existing state budgets/baseline/ESS/guards.",
+  "limits": [
+    "Not an independent provider fallback; latency independence unresolved.",
+    "No positive2026 delivery or independently captured historical chronology/calibration.",
+    "No new production input/UI enabled by this preparation."
+  ]
+}

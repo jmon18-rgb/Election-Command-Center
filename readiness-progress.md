@@ -1,5 +1,14 @@
 # Readiness progress
 
+## October 27 AZ06 bounded source preparation — not a deployed national input
+
+- Exact approved civic search discovered AZ06 route86922 (not guessed), five district-part county rows and five named candidates. Actual response is non-test, round1, allZERO, source stamp October22 21:58:37.854Z. Offline strict inspector passed this actual saved response; synthetic mutations reject contest/roster/native-ID/count/matrix/reconciliation drift. No positive delivery or calibration established.
+- Original official2024 statewide canvass preserved by UCSB (8,385,830 bytes, SHA2c08341131d940e5efbb92631a23d24d2c3d0b3007145ad0ad3da7547d84c53c), page6 VISUALLY checked: five AZ06 district parts reconcile204774D/215596R/10759Green/91independent write-in. Direct official endpoint Python/ordinaryEdge403; no byte-identity claim to that endpoint. Original preserved in data/arizona_house_06_sources. No whole-county allocation and no AZ01 precinct equivalency assumed.
+- Original Pima2026 candidate list and separate write-in list ordinaryEdge200, page1 VISUALLY verified: MendozaDEM/CiscomaniREP/PetersLBT/SwingGRN plus certified independent write-in MichaelDorland. Provider abbreviated JeremePeters native219785 matches official JeremeLancePeters; never sum independent intoDEM. Files/hash receipts saved in assessment.
+- Tests: python scripts/test_arizona_house_06_preparation.py PASS4; actual offline inspection PASSfiveparts/zero. No new runtime/controller/UI/input. Twelve deployed national inputs unchanged; no fresh blanket source probes.
+- NEXT implement strict AZ06 county-to-NATIONAL path with the verified five-part baseline/roster, bounded extra fullroute<=1/min after completion and existing shared pool/breaker/hidden/mode/correction/retraction/clock guards. Preserve correlated model/state budgets/ESS/baseline isolation. Preparation is not delivery, and another civic route does not solve independent-latency risk. No more original ballot/baseline hunting needed.
+
+
 ## October 27 02:58Z — pivotal PA07 results-to-NATIONAL connection VERIFIED DEPLOYED
 
 - #471 https://github.com/jmon18-rgb/Election-Command-Center/pull/471 merged
