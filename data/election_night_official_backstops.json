@@ -240,7 +240,9 @@
         "House|OH-12",
         "House|OH-14",
         "House|OH-15",
-        "Senate|OH-special"
+        "Senate|OH-special",
+        "House|OH-09",
+        "House|OH-13"
       ],
       "state": "OH",
       "directory_mapping_reviewed_at": "2026-10-27"
@@ -375,7 +377,32 @@
       "verified_at": "2026-10-27",
       "scope_note": "WEC states there is no central statewide unofficial Election Night feed; county clerks publish results. This guidance and official historical reports are not a live race feed.",
       "race_ids": [
-        "House|WI-02"
+        "House|WI-02",
+        "House|WI-04",
+        "House|WI-05",
+        "House|WI-06"
+      ]
+    },
+    {
+      "state": "KS",
+      "name": "Kansas official historical results index",
+      "url": "https://sos.ks.gov/elections/election-results.html",
+      "mode": "november_2026_results_not_yet_published",
+      "verified_at": "2026-10-27",
+      "scope_note": "Existing original historical baseline source_index reused from kansas_senate_county_facts_official.json. No new Kansas blocked-site retry; current November2026 availability/timing unverified. Human reference only, not a live feed.",
+      "race_ids": [
+        "House|KS-02"
+      ]
+    },
+    {
+      "state": "MT",
+      "name": "Montana official results guidance",
+      "url": "https://sosmt.gov/Elections/Results",
+      "mode": "november_2026_results_not_yet_published",
+      "verified_at": "2026-10-27",
+      "scope_note": "Official page currently announces availability after8:00 on November3,2026. This is future reporting guidance, not observed counted votes or an automated race feed.",
+      "race_ids": [
+        "House|MT-01"
       ]
     }
   ],
@@ -1129,6 +1156,55 @@
         "url": "https://votes.decisiondeskhq.com/races/2026-11-03/wisconsin-us-house-2-general-election",
         "verified_at": "2026-10-27",
         "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/wisconsin"
+      },
+      {
+        "id": "House|KS-02",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/kansas-us-house-2-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Original publisher directory declares this exact general-election race link; human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/kansas"
+      },
+      {
+        "id": "House|MT-01",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/montana-us-house-1-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Original publisher directory declares this exact general-election race link; human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/montana"
+      },
+      {
+        "id": "House|OH-09",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-9-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Original publisher directory declares this exact general-election race link; human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/ohio"
+      },
+      {
+        "id": "House|OH-13",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-13-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Original publisher directory declares this exact general-election race link; human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/ohio"
+      },
+      {
+        "id": "House|WI-04",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/wisconsin-us-house-4-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Original publisher directory declares this exact general-election race link; human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/wisconsin"
+      },
+      {
+        "id": "House|WI-05",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/wisconsin-us-house-5-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Original publisher directory declares this exact general-election race link; human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/wisconsin"
+      },
+      {
+        "id": "House|WI-06",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/wisconsin-us-house-6-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Original publisher directory declares this exact general-election race link; human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
         "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/wisconsin"
       }
     ]
