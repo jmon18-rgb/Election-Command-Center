@@ -1,6 +1,6 @@
 {
   "observed_at": "2026-10-27T13:48:22Z",
-  "scope": "Required current-gap human-reference catalog repair only; no vote transport, prediction coverage, winner calls or calibration; seven later source-health gaps repaired from new KS/MT and existing OH/WI directory evidence",
+  "scope": "Required current-gap human-reference catalog repair only; no vote transport, prediction coverage, winner calls or calibration; seven later source-health gaps repaired from new KS/MT and existing OH/WI directory evidence; three later gaps mapped from already-saved exact OK/TN/WI directory links without new requests",
   "method": "Ordinary in-app browser public directory DOM links; no account, CAPTCHA, protected API or individual blocked-page retry",
   "directories": [
     {
@@ -185,7 +185,11 @@
     "House|OH-13",
     "House|WI-04",
     "House|WI-05",
-    "House|WI-06"
+    "House|WI-06",
+    "House|OK-04",
+    "House|TN-03",
+    "House|WI-08"
   ],
-  "followup_observed_at": "2026-10-27T14:31:49Z"
+  "followup_observed_at": "2026-10-27T14:31:49Z",
+  "followup_catalog_mapping_at": "2026-10-27T15:30:00Z"
 }
