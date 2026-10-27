@@ -599,6 +599,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .personal-focus-card{background:#12273c;border:1px solid #37506b;border-radius:10px;padding:12px;min-width:0}
 .personal-focus-card h4{margin:0 0 5px}.personal-focus-card svg{display:block;width:140px;max-width:100%;margin:8px auto}
 .personal-focus-card strong,.personal-focus-card small{display:block}.personal-focus-card small{color:#bdd0e4;font-size:12px;margin:5px 0}
+.personal-focus-history{overflow-wrap:anywhere}.personal-focus-history-entry{padding:10px 0;border-top:1px solid #ffffff20}.personal-focus-history-entry small{display:block;color:#bdd0e4;margin:5px 0}
 .personal-focus-card p{font-size:13px;margin:8px 0}.personal-focus-next{font-weight:700;color:#bde4ff}
 .en-celebration-visual{width:min(100%,720px);margin:0 auto 14px;line-height:0}
 .en-celebration-visual[hidden]{display:none}
@@ -1422,7 +1423,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <footer class="footer"><span>2026 ELECTION COMMAND CENTER · CLARITY OVER NOISE</span><span><a href="https://github.com/jmon18-rgb/Election-Command-Center">Source code ↗</a> · <span id="updated">Briefing pending</span></span></footer></main>
 <script src="./scripts/election_night_celebration_player.js?v=493a49006118"></script>
 <script src="./scripts/election_night_celebration_scene.js?v=fe0bb1ea4181"></script>
-<script src="./scripts/personal_election_focus.js?v=d435aaac2019"></script>
+<script src="./scripts/personal_election_focus.js?v=d72a0509b200"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=6eaa0d8f80cf"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=165fc37d665a"></script>
 <script src="./scripts/civicapi_state_batch.js?v=99e987c72cb8"></script>
@@ -4613,9 +4614,14 @@ function jointCurrentSignature(){
   ':'+enModeYear+':'+(Date.now()>=Date.parse('2026-11-03T05:00:00Z'));
 }
 const enOfficialAdmissionAudit=(()=>{try{return window.OfficialAdmissionAudit?.create({storage:localStorage})}catch{return window.OfficialAdmissionAudit?.create()}})();
+const enOutlookHistory=(()=>{try{return window.PersonalElectionFocus?.createHistory({storage:localStorage})}catch{return window.PersonalElectionFocus?.createHistory()}})();
+function jointHistoryRevision(preview=false){return [preview?'SIMULATED':'LIVE',window.ChamberControlModel.VERSION,
+ document.querySelector('script[src*="/chamber_control_model.js?"]')?.getAttribute('src')||'',
+ document.querySelector('script[src*="/national_county_likelihood.js?"]')?.getAttribute('src')||'',jointBasis?.generated_from_sources?.model_polling_at||'',preview?0:jointNationalShift,preview?1:jointErrorMultiplier,
+ jointUsesPrivateContext()?jointPrivateSource:'PUBLIC',jointUsesPrivateContext()?jointPrivateImportedAt||'':'',jointUsesPrivateContext()?jointPrivateHouse:false].join('|');}
 function renderPersonalElectionFocus(){
  try{window.PersonalElectionFocus?.render($('#enPersonalFocus'),jointLastResult,jointPulseBaseline,
-  {year:enModeYear,now:Date.now(),closes:window.ElectionNightPollClosings2026,evidence:jointPulseRows});}
+  {year:enModeYear,now:Date.now(),closes:window.ElectionNightPollClosings2026,evidence:jointPulseRows,history:enOutlookHistory,context:jointUsesPrivateContext()?'LOCAL_RESEARCH_VARIANT':'PUBLIC'});}
  catch{const host=$('#enPersonalFocus');if(host){host.hidden=enModeYear!==2026;host.textContent='Personal race needles unavailable · national forecast remains separate.';}}
 }
 function jointRender(force=false){
@@ -4640,6 +4646,9 @@ function jointRender(force=false){
   jointPulseBaseline=Object.keys(updates).length||countyRows.length?
    window.ChamberControlModel.simulate(jointBasis,{...args,live:{}}):result;
   jointLastResult=result;
+  try{enOutlookHistory?.observe({active:enModeYear===2026,result,envelopes,live:updates,evidence:jointPulseRows,
+   revision:jointHistoryRevision(),pollingAt:jointBasis.generated_from_sources?.model_polling_at,
+   context:jointUsesPrivateContext()?'LOCAL_RESEARCH_VARIANT':'PUBLIC'});}catch{} // History never feeds or blocks the forecast.
   try{enOfficialAdmissionAudit?.observe({active:enModeYear===2026,simulated:conditioned?.diagnostics?.status==='SIMULATED_NATIONAL_REHEARSAL',
    envelopes,used:conditioned?.diagnostics?.used||[],reason:countyUpdateWithheld?'MODEL_UPDATE_WITHHELD':'NO_LONGER_ADMITTED',
    modelRevision:[window.ChamberControlModel.VERSION,document.querySelector('script[src*="/national_county_likelihood.js?"]')?.getAttribute('src')||'',jointBasis.generated_from_sources?.model_polling_at||'',jointNationalShift,jointErrorMultiplier].join('|'),
@@ -4707,7 +4716,7 @@ function jointRender(force=false){
   renderEnForecastStrip();
  }
 }
-let nationalPreviewInputs=null,nationalPreviewStep=0,nationalPreviewVersion=0;
+let nationalPreviewInputs=null,nationalPreviewStep=0,nationalPreviewVersion=0,nationalPreviewHistory=null;
 async function jointNationalPreview(){
  const version=++nationalPreviewVersion,details=$('#enNationalRehearsal'),status=$('#enNationalStage');
  if(!details.open||enModeYear!==2026)return;
@@ -4728,13 +4737,14 @@ async function jointNationalPreview(){
   status.textContent='SIMULATED · '+(nationalPreviewStep+1)+'/5 · '+window.NationalNeedleRehearsal.labels[nationalPreviewStep];
   $('#enNationalPreviewChances').textContent='SIMULATED — '+Object.entries(update.result.probabilities)
    .map(([k,v])=>k.replaceAll('_',' ')+' '+v.toFixed(1)+'%').join(' · ');
+  nationalPreviewHistory?.observe({result:update.result,envelopes,revision:jointHistoryRevision(true),pollingAt:jointBasis.generated_from_sources?.model_polling_at,simulated:true});
   window.PersonalElectionFocus?.render($('#enPersonalFocusPreview'),update.result,update.baseline,
-   {year:2026,now:window.NationalNeedleRehearsal.now,closes:window.ElectionNightPollClosings2026,simulated:true});
+   {year:2026,now:window.NationalNeedleRehearsal.now,closes:window.ElectionNightPollClosings2026,simulated:true,history:nationalPreviewHistory});
  }catch(error){if(version===nationalPreviewVersion)status.textContent='Preview unavailable · '+error.message;}
 }
 $('#enNationalRehearsal')?.addEventListener('toggle',()=>{
  if(!$('#enNationalRehearsal').open){nationalPreviewVersion++;return;}
- nationalPreviewStep=0;void jointNationalPreview();
+ nationalPreviewStep=0;nationalPreviewHistory=window.PersonalElectionFocus?.createHistory({simulated:true});void jointNationalPreview();
 });
 $('#enNationalNext')?.addEventListener('click',()=>{nationalPreviewStep=(nationalPreviewStep+1)%5;void jointNationalPreview();});
 function jointQueueRefresh(){
