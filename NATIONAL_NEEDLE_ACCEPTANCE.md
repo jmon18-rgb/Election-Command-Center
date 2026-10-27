@@ -249,3 +249,17 @@ Largest6 reporting counties/district parts are inspectable; missing/retracted
 admission removes the explanation. This diagnostic does not change any simulated
 forecast or feed a posterior back into the national likelihood. Five-stage exact
 output/ESS/power comparison to1c0b11ba passes; no empirical calibration is claimed.
+
+## October27 bounded outlook observation history candidate
+
+History consumes the existing joint result and its actual admitted-source/call
+decisions. It never feeds prior observations back into a forecast. Browser clocks,
+source clocks, collection receipts and polling lineage are separate. Four outcome
+percentages and existing matched-performance scenarios are copied, never averaged
+or refitted. Ordinary updates group within five-minute observation windows;
+corrections, withdrawal/retraction, recovery and baseline changes remain separate.
+Public/research contexts and ephemeral rehearsal history are isolated. Reloads
+restore only bounded local observations, never active evidence or forecast state.
+The record is neither an exhaustive source archive nor independent publisher
+capture chronology; it cannot turn the zero-admitted-calibration decision into a
+pass. Actual2026 delivery and calibration still require their original evidence.
