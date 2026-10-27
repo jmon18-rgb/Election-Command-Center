@@ -1,5 +1,18 @@
 # Election Night production-readiness assignment
 
+## October27 00:26Z — required browser CI fixture repaired before Maine merge
+
+- PR468head2a04f4b7 blocked by readinessbrowser scenario expectingNJ07to remain
+  an unresolvedidentitygap. CurrentgeneratedledgernowmarksNJ07recentexactprobe;
+  selectorcorrectlyabsent, so30sassertiontimedout. NoMainefeedfailure orlivevotes.
+- Test now explicitly simulatesNJ07unresolvedgap in its existing syntheticoutage
+  scenario beforecheckingcounty-onlyfallback. Preserves allfallbackwording,
+  expectedcompletegapset, drawerlimit/openstate, keyboardfocus and recoverychecks.
+  ActualEdge1440/1366/390browserPASS. No productionguard/testskip/timeoutraise.
+- PushnewheadandrequireALLapplicablechecksagain; do notmergeoldgreenruns.
+  Maine implementation remainslocal/reviewonly untiltestedmerge+Pagesverified.
+
+
 ## October27 00:11Z — close Maine Senate connected to NATIONAL locally; review pending
 
 - PR467 ALL5exactheadworkflowsSUCCESS,8latestjobs7success/1nonapplicable skip,

@@ -27,6 +27,8 @@ try{
   await page.waitForFunction(()=>Boolean(enPublishedCoverageLedger&&jointLastResult&&jointBasis&&latestSenateEstimates&&
    enEditorialCallChecks?.race_pages?.some(r=>r.id==='House|CA-13')));
   await page.evaluate(()=>{
+   // Keep the county-only fallback scenario reproducible as the real ledger improves.
+   enPublishedCoverageLedger={...enPublishedCoverageLedger,races:enPublishedCoverageLedger.races.map(r=>r.id==='House|NJ-07'?{...r,gap_status:'UNRESOLVED_SOURCE_GAP'}:r)};
    const existing=jointLastResult.race_probabilities.filter(r=>!['CA-13','ME-SEN'].includes(r.race_code));
    jointLastResult={...jointLastResult,race_probabilities:[...existing,
     {office:'house',race_code:'CA-13',dem_beats_rep_pct:50,rep_beats_dem_pct:50},
