@@ -1,0 +1,91 @@
+[
+  {
+    "url": "https://electionresults.sos.mn.gov/Select/MediaFiles/Index?ersElectionId=136",
+    "request_started_at": "2026-10-27T22:36:06.912654+00:00",
+    "declared_by": "https://electionresults.sos.mn.gov/Select/MediaFiles/Index?ersElectionId=136",
+    "scope": "2020 historical public aggregate results, not current2026 or chronology",
+    "http": 200,
+    "bytes": 45155,
+    "sha256": "30efc4b129697cef505e8ab9dfbf6be008d6cb7083061ffe384e2b11e8accdb8",
+    "final_url": "https://electionresults.sos.mn.gov/Select/MediaFiles/Index?ersElectionId=136",
+    "response_headers": {
+      "Content-Type": "text/html; charset=utf-8",
+      "Date": "Tue, 27 Oct 2026 22:36:06 GMT"
+    },
+    "original_local_capture_file": "artifacts\\readiness\\minnesota-source-research\\2020-media-index.html.gz",
+    "repository_file": "data/minnesota_historical_sources/2020-media-index.html.gz"
+  },
+  {
+    "url": "https://electionresults.sos.mn.gov/Results/MediaFileLayout/Index?erselectionId=136",
+    "request_started_at": "2026-10-27T22:36:07.449604+00:00",
+    "declared_by": "https://electionresults.sos.mn.gov/Select/MediaFiles/Index?ersElectionId=136",
+    "scope": "2020 historical public aggregate results, not current2026 or chronology",
+    "http": 200,
+    "error": "ValueError",
+    "stopped_without_retry": true,
+    "redirect_origin": "https://validate.perfdrive.com",
+    "blocked_security_validation": true,
+    "response_headers": {
+      "Content-Type": "text/html; charset=UTF-8",
+      "Content-Length": "15094",
+      "date": "Tue, 27 Oct 2026 22:36:07 GMT"
+    }
+  },
+  {
+    "url": "https://electionresultsfiles.sos.mn.gov/20201103/ussenatecty.txt",
+    "request_started_at": "2026-10-27T22:36:36.483985+00:00",
+    "declared_by": "https://electionresults.sos.mn.gov/Select/MediaFiles/Index?ersElectionId=136",
+    "scope": "2020 historical public aggregate results, not current2026 or chronology",
+    "http": 200,
+    "bytes": 31159,
+    "sha256": "02e353f991be29a0621971d0e1bdfe59a29c0534b3343966692e655c3da4a557",
+    "final_url": "https://electionresultsfiles.sos.mn.gov/20201103/ussenatecty.txt",
+    "response_headers": {
+      "Content-Type": "text/plain",
+      "Last-Modified": "Fri, 11 Dec 2020 20:57:44 GMT",
+      "ETag": "\"d72fe4450d0d61:0\"",
+      "Date": "Tue, 27 Oct 2026 22:36:36 GMT",
+      "Content-Length": "31159"
+    },
+    "original_local_capture_file": "artifacts\\readiness\\minnesota-source-research\\2020-senate-county.txt.gz",
+    "repository_file": "data/minnesota_historical_sources/2020-senate-county.txt.gz"
+  },
+  {
+    "url": "https://electionresultsfiles.sos.mn.gov/20201103/ussenate.txt",
+    "request_started_at": "2026-10-27T22:36:36.856979+00:00",
+    "declared_by": "https://electionresults.sos.mn.gov/Select/MediaFiles/Index?ersElectionId=136",
+    "scope": "2020 historical public aggregate results, not current2026 or chronology",
+    "http": 200,
+    "bytes": 392,
+    "sha256": "44b13763766bb263af9c9b9944adc9aa6e6865ab1da34f1323d469dc6df94c4f",
+    "final_url": "https://electionresultsfiles.sos.mn.gov/20201103/ussenate.txt",
+    "response_headers": {
+      "Content-Type": "text/plain",
+      "Last-Modified": "Fri, 11 Dec 2020 20:57:44 GMT",
+      "ETag": "\"3dbace450d0d61:0\"",
+      "Date": "Tue, 27 Oct 2026 22:36:36 GMT",
+      "Content-Length": "392"
+    },
+    "original_local_capture_file": "artifacts\\readiness\\minnesota-source-research\\2020-senate-statewide.txt.gz",
+    "repository_file": "data/minnesota_historical_sources/2020-senate-statewide.txt.gz"
+  },
+  {
+    "url": "https://electionresultsfiles.sos.mn.gov/20201103/Cntytbl.txt",
+    "request_started_at": "2026-10-27T22:36:37.038578+00:00",
+    "declared_by": "https://electionresults.sos.mn.gov/Select/MediaFiles/Index?ersElectionId=136",
+    "scope": "2020 historical public aggregate results, not current2026 or chronology",
+    "http": 200,
+    "bytes": 1318,
+    "sha256": "4bb20423e417bd3139bdb99eaec2d41453e3ad40d549275771c57ed7f8fcc773",
+    "final_url": "https://electionresultsfiles.sos.mn.gov/20201103/Cntytbl.txt",
+    "response_headers": {
+      "Content-Type": "text/plain",
+      "Last-Modified": "Tue, 03 Nov 2020 16:04:21 GMT",
+      "ETag": "\"407c2efefab1d61:0\"",
+      "Date": "Tue, 27 Oct 2026 22:36:36 GMT",
+      "Content-Length": "1318"
+    },
+    "original_local_capture_file": "artifacts\\readiness\\minnesota-source-research\\2020-county-table.txt.gz",
+    "repository_file": "data/minnesota_historical_sources/2020-county-table.txt.gz"
+  }
+]

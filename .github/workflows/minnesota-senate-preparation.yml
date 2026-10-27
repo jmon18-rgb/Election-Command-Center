@@ -1,0 +1,32 @@
+name: Verify Minnesota Senate historical preparation
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/*minnesota_senate_county_baseline.py'
+      - 'data/minnesota_historical_sources/**'
+      - 'data/minnesota_senate_2020_county_baseline_publisher.json'
+      - 'data/mn_2026_official_county_fips_crosswalk.json'
+      - 'data/texas_historical_sources/2024-census-counties.zip'
+      - 'data/senate_history_2020_2022_2024.json'
+      - '.github/workflows/minnesota-senate-preparation.yml'
+permissions:
+  contents: read
+jobs:
+  historical-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reject changed identities, incomplete all-candidate accounting and source-pin conflicts
+        run: |
+          python scripts/test_build_minnesota_senate_county_baseline.py
+          python -O scripts/test_build_minnesota_senate_county_baseline.py
+      - name: Reproduce the historical preparation without network or model admission
+        run: |
+          python scripts/build_minnesota_senate_county_baseline.py
+          git diff --exit-code -- data/minnesota_senate_2020_county_baseline_publisher.json
