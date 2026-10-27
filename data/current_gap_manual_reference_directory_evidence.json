@@ -1,0 +1,153 @@
+{
+  "observed_at": "2026-10-27T13:48:22Z",
+  "scope": "Required current-gap human-reference catalog repair only; no vote transport, prediction coverage, winner calls or calibration",
+  "method": "Ordinary in-app browser public directory DOM links; no account, CAPTCHA, protected API or individual blocked-page retry",
+  "directories": [
+    {
+      "state": "OH",
+      "source": "https://votes.decisiondeskhq.com/elections/2026-11-03/ohio",
+      "declared_race_links": [
+        "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-1-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-2-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-3-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-4-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-5-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-6-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-7-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-8-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-9-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-10-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-11-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-12-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-13-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-14-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-15-general-election"
+      ]
+    },
+    {
+      "state": "NY",
+      "source": "https://votes.decisiondeskhq.com/elections/2026-11-03/new-york",
+      "declared_race_links": [
+        "https://votes.decisiondeskhq.com/races/2026-11-03/new-york-us-house-26-general-election"
+      ]
+    },
+    {
+      "state": "OK",
+      "source": "https://votes.decisiondeskhq.com/elections/2026-11-03/oklahoma",
+      "declared_race_links": [
+        "https://votes.decisiondeskhq.com/races/2026-11-03/oklahoma-us-house-1-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/oklahoma-us-house-2-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/oklahoma-us-house-3-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/oklahoma-us-house-4-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/oklahoma-us-house-5-general-election"
+      ]
+    },
+    {
+      "state": "OR",
+      "source": "https://votes.decisiondeskhq.com/elections/2026-11-03/oregon",
+      "declared_race_links": [
+        "https://votes.decisiondeskhq.com/races/2026-11-03/oregon-us-house-1-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/oregon-us-house-2-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/oregon-us-house-3-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/oregon-us-house-4-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/oregon-us-house-5-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/oregon-us-house-6-general-election"
+      ]
+    },
+    {
+      "state": "TN",
+      "source": "https://votes.decisiondeskhq.com/elections/2026-11-03/tennessee",
+      "declared_race_links": [
+        "https://votes.decisiondeskhq.com/races/2026-11-03/tennessee-us-house-1-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/tennessee-us-house-2-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/tennessee-us-house-3-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/tennessee-us-house-4-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/tennessee-us-house-5-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/tennessee-us-house-6-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/tennessee-us-house-7-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/tennessee-us-house-8-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/tennessee-us-house-9-general-election"
+      ]
+    },
+    {
+      "state": "WI",
+      "source": "https://votes.decisiondeskhq.com/elections/2026-11-03/wisconsin",
+      "declared_race_links": [
+        "https://votes.decisiondeskhq.com/races/2026-11-03/wisconsin-us-house-1-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/wisconsin-us-house-3-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/wisconsin-us-house-4-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/wisconsin-us-house-5-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/wisconsin-us-house-6-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/wisconsin-us-house-7-general-election",
+        "https://votes.decisiondeskhq.com/races/2026-11-03/wisconsin-us-house-8-general-election"
+      ]
+    }
+  ],
+  "special_search": {
+    "state": "WI",
+    "district": 2,
+    "reason": "Absent from directory; ordinary public Find a race search for Pocan returned G 2026 WI US House 2 Mark Pocan",
+    "observed_search_target": "https://votes.decisiondeskhq.com/races/295137",
+    "resolved_url": "https://votes.decisiondeskhq.com/races/2026-11-03/wisconsin-us-house-2-general-election",
+    "heading": "2026 Wisconsin US House 2",
+    "declared_results_url": "https://votes.decisiondeskhq.com/races/2026-11-03/wisconsin-us-house-2-general-election/results"
+  },
+  "individually_opened_other_results_pages": [],
+  "official_references": [
+    {
+      "state": "NY",
+      "url": "https://nyenr.elections.ny.gov/",
+      "scope": "General Election page observed with October23 source clock and zero governor returns; not a verified NY26 live result or automated feed. County recanvass/corrections remain required."
+    },
+    {
+      "state": "OR",
+      "url": "https://sos.oregon.gov/elections/Pages/current-election.aspx",
+      "scope": "Official November3 upcoming-election guidance; this is not a live results feed, counted votes or a professional call."
+    },
+    {
+      "state": "TN",
+      "url": "https://sos.tn.gov/elections/results",
+      "scope": "Historical results page currently lists August2026/older elections, not November2026 live returns. Timing of future publication is unverified."
+    },
+    {
+      "state": "WI",
+      "url": "https://elections.wi.gov/elections/election-results",
+      "scope": "WEC states there is no central statewide unofficial Election Night feed; county clerks publish results. This guidance and official historical reports are not a live race feed."
+    }
+  ],
+  "no_actual_results_verified": true,
+  "repaired_gap_ids": [
+    "House|NY-26",
+    "House|OH-01",
+    "House|OH-02",
+    "House|OH-03",
+    "House|OH-04",
+    "House|OH-05",
+    "House|OH-06",
+    "House|OH-07",
+    "House|OH-08",
+    "House|OH-10",
+    "House|OH-11",
+    "House|OH-12",
+    "House|OH-14",
+    "House|OH-15",
+    "House|OK-01",
+    "House|OK-02",
+    "House|OK-03",
+    "House|OK-05",
+    "House|OR-01",
+    "House|OR-02",
+    "House|OR-03",
+    "House|OR-04",
+    "House|OR-06",
+    "House|TN-01",
+    "House|TN-02",
+    "House|TN-04",
+    "House|TN-05",
+    "House|TN-06",
+    "House|TN-07",
+    "House|TN-08",
+    "House|TN-09",
+    "House|WI-02"
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "event": "2026-11-03",
-  "last_verified": "2026-10-26",
+  "last_verified": "2026-10-27",
   "status": "OFFICIAL_HUMAN_FALLBACK_LINKS_NOT_AUTOMATED_RESULTS",
   "links": [
     {
@@ -201,8 +201,13 @@
       "url": "https://oklahoma.gov/elections/elections-results/election-results/2026-election-results.html",
       "mode": "2026_results_landing",
       "race_ids": [
-        "Governor|OK"
-      ]
+        "Governor|OK",
+        "House|OK-01",
+        "House|OK-02",
+        "House|OK-03",
+        "House|OK-05"
+      ],
+      "directory_mapping_reviewed_at": "2026-10-27"
     },
     {
       "name": "Maine",
@@ -221,10 +226,24 @@
       "url": "https://liveresults.ohiosos.gov/Home/Index",
       "mode": "pre_election_mock_results_only",
       "race_ids": [
-        "Senate|OH-special",
-        "Governor|OH"
+        "Governor|OH",
+        "House|OH-01",
+        "House|OH-02",
+        "House|OH-03",
+        "House|OH-04",
+        "House|OH-05",
+        "House|OH-06",
+        "House|OH-07",
+        "House|OH-08",
+        "House|OH-10",
+        "House|OH-11",
+        "House|OH-12",
+        "House|OH-14",
+        "House|OH-15",
+        "Senate|OH-special"
       ],
-      "state": "OH"
+      "state": "OH",
+      "directory_mapping_reviewed_at": "2026-10-27"
     },
     {
       "name": "Nebraska",
@@ -302,6 +321,61 @@
         "House|IL-15",
         "House|IL-16",
         "House|IL-17"
+      ]
+    },
+    {
+      "state": "NY",
+      "name": "New York official election reporting page",
+      "url": "https://nyenr.elections.ny.gov/",
+      "mode": "2026_results_landing",
+      "verified_at": "2026-10-27",
+      "scope_note": "General Election page observed with October23 source clock and zero governor returns; not a verified NY26 live result or automated feed. County recanvass/corrections remain required.",
+      "race_ids": [
+        "House|NY-26"
+      ]
+    },
+    {
+      "state": "OR",
+      "name": "Oregon official general-election guidance",
+      "url": "https://sos.oregon.gov/elections/Pages/current-election.aspx",
+      "mode": "november_2026_results_not_yet_published",
+      "verified_at": "2026-10-27",
+      "scope_note": "Official November3 upcoming-election guidance; this is not a live results feed, counted votes or a professional call.",
+      "race_ids": [
+        "House|OR-01",
+        "House|OR-02",
+        "House|OR-03",
+        "House|OR-04",
+        "House|OR-06"
+      ]
+    },
+    {
+      "state": "TN",
+      "name": "Tennessee official historical results",
+      "url": "https://sos.tn.gov/elections/results",
+      "mode": "november_2026_results_not_yet_published",
+      "verified_at": "2026-10-27",
+      "scope_note": "Historical results page currently lists August2026/older elections, not November2026 live returns. Timing of future publication is unverified.",
+      "race_ids": [
+        "House|TN-01",
+        "House|TN-02",
+        "House|TN-04",
+        "House|TN-05",
+        "House|TN-06",
+        "House|TN-07",
+        "House|TN-08",
+        "House|TN-09"
+      ]
+    },
+    {
+      "state": "WI",
+      "name": "Wisconsin official results guidance",
+      "url": "https://elections.wi.gov/elections/election-results",
+      "mode": "county_results_directory_only",
+      "verified_at": "2026-10-27",
+      "scope_note": "WEC states there is no central statewide unofficial Election Night feed; county clerks publish results. This guidance and official historical reports are not a live race feed.",
+      "race_ids": [
+        "House|WI-02"
       ]
     }
   ],
@@ -832,6 +906,230 @@
         "url": "https://votes.decisiondeskhq.com/races/2026-11-03/illinois-us-house-17-general-election",
         "verified_at": "2026-10-26",
         "verification": "Exact link read from the public November3 Illinois directory in an ordinary browser. Directory membership only; individual Results tab not opened; no actual result or winner call verified."
+      },
+      {
+        "id": "House|NY-26",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/new-york-us-house-26-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/new-york"
+      },
+      {
+        "id": "House|OH-01",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-1-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/ohio"
+      },
+      {
+        "id": "House|OH-02",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-2-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/ohio"
+      },
+      {
+        "id": "House|OH-03",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-3-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/ohio"
+      },
+      {
+        "id": "House|OH-04",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-4-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/ohio"
+      },
+      {
+        "id": "House|OH-05",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-5-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/ohio"
+      },
+      {
+        "id": "House|OH-06",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-6-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/ohio"
+      },
+      {
+        "id": "House|OH-07",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-7-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/ohio"
+      },
+      {
+        "id": "House|OH-08",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-8-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/ohio"
+      },
+      {
+        "id": "House|OH-10",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-10-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/ohio"
+      },
+      {
+        "id": "House|OH-11",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-11-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/ohio"
+      },
+      {
+        "id": "House|OH-12",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-12-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/ohio"
+      },
+      {
+        "id": "House|OH-14",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-14-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/ohio"
+      },
+      {
+        "id": "House|OH-15",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/ohio-us-house-15-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/ohio"
+      },
+      {
+        "id": "House|OK-01",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/oklahoma-us-house-1-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/oklahoma"
+      },
+      {
+        "id": "House|OK-02",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/oklahoma-us-house-2-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/oklahoma"
+      },
+      {
+        "id": "House|OK-03",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/oklahoma-us-house-3-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/oklahoma"
+      },
+      {
+        "id": "House|OK-05",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/oklahoma-us-house-5-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/oklahoma"
+      },
+      {
+        "id": "House|OR-01",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/oregon-us-house-1-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/oregon"
+      },
+      {
+        "id": "House|OR-02",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/oregon-us-house-2-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/oregon"
+      },
+      {
+        "id": "House|OR-03",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/oregon-us-house-3-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/oregon"
+      },
+      {
+        "id": "House|OR-04",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/oregon-us-house-4-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/oregon"
+      },
+      {
+        "id": "House|OR-06",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/oregon-us-house-6-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/oregon"
+      },
+      {
+        "id": "House|TN-01",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/tennessee-us-house-1-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/tennessee"
+      },
+      {
+        "id": "House|TN-02",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/tennessee-us-house-2-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/tennessee"
+      },
+      {
+        "id": "House|TN-04",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/tennessee-us-house-4-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/tennessee"
+      },
+      {
+        "id": "House|TN-05",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/tennessee-us-house-5-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/tennessee"
+      },
+      {
+        "id": "House|TN-06",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/tennessee-us-house-6-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/tennessee"
+      },
+      {
+        "id": "House|TN-07",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/tennessee-us-house-7-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/tennessee"
+      },
+      {
+        "id": "House|TN-08",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/tennessee-us-house-8-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/tennessee"
+      },
+      {
+        "id": "House|TN-09",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/tennessee-us-house-9-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/tennessee"
+      },
+      {
+        "id": "House|WI-02",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/wisconsin-us-house-2-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/wisconsin"
       }
     ]
   }

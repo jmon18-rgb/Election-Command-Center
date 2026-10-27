@@ -65,6 +65,28 @@ class OfficialBackstopsTests(unittest.TestCase):
         self.assertIn("FORECASTS",newsroom["information"])
         self.assertIn("not",newsroom["information"].lower())
 
+    def test_current_gap_repair_uses_observed_directory_links_without_live_claims(self):
+        evidence=json.loads((ROOT/"data/current_gap_manual_reference_directory_evidence.json").read_text())
+        self.assertTrue(evidence["no_actual_results_verified"])
+        observed={url for row in evidence["directories"] for url in row["declared_race_links"]}
+        search=evidence["special_search"]
+        self.assertEqual(search["heading"],"2026 Wisconsin US House 2")
+        self.assertEqual(search["resolved_url"],
+            "https://votes.decisiondeskhq.com/races/2026-11-03/wisconsin-us-house-2-general-election")
+        observed.add(search["resolved_url"])
+        pages={r["id"]:r for r in self.links["public_editorial_calls"]["race_pages"]}
+        for ident in evidence["repaired_gap_ids"]:
+            row=pages[ident]
+            self.assertIn(row["url"],observed,ident)
+            self.assertIn("no actual result or winner call verified",row["verification"])
+            self.assertFalse(any(k in row for k in ("reported_votes","winner","winner_call","forecast_probability")))
+        wi=next(r for r in self.links["links"] if r["state"]=="WI")
+        self.assertEqual(wi["mode"],"county_results_directory_only")
+        self.assertIn("no central statewide unofficial",wi["scope_note"])
+        for state in ("OR","TN"):
+            row=next(r for r in self.links["links"] if r["state"]==state)
+            self.assertEqual(row["mode"],"november_2026_results_not_yet_published")
+
     def test_texas_roster_and_new_jersey_county_directory_are_not_live_feeds(self):
         tx=next(x for x in self.links["links"] if x["state"]=="TX")
         self.assertEqual(tx["url"],"https://electionresults.sos.state.tx.us/results.html")

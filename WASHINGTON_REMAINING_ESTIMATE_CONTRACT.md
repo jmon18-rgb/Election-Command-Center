@@ -88,3 +88,24 @@ national movement, identical baseline draws, fixed state/ESS limits, correction,
 withdrawal and recovery. The pinned actual null-clock source is excluded.
 This does not establish positive 2026 delivery, estimate-error calibration,
 chronological predictive skill or speed relative to major publications.
+
+## Late-count acceptance decision (October 27)
+
+Retain the first-night scope. After November 4 at 17:00 UTC, every scheduled
+job keeps its one counts request. Replacing a counts read with statistics would
+create a nominal ten-minute gap between counts reads (longer with scheduling
+delay); adding a statistics read would exceed the reviewed one-request budget.
+Neither tradeoff is adopted. This is an engineering scope decision, not evidence
+that official estimates cease to exist or that late returns are unimportant.
+
+The optional estimate expires under the existing receipt/report-clock gates and
+the national input returns to historical turnout uncertainty while fresh counts
+continue. No stale estimate is held until certification or presented as current.
+The production-loop regression exercises the exact 17:00 UTC boundary and the
+following day, including a failed first count read and consecutive jobs. It
+asserts one native counts request per job and the completion/startup floor.
+These are simulated clocks and responses, not actual delivery evidence.
+
+Late-count official-estimate conditioning remains deferred unless a separately
+reviewed budget/cadence change is justified. Current live-delivery and calibration
+acceptance remain unmet.
