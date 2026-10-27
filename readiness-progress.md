@@ -1,5 +1,11 @@
 # Readiness progress
 
+## 2026-10-27T10:12:00Z - Late-count acceptance decision: preserve counts cadence
+
+- Reviewed existing one-native-GET/job post-first-night contract. Replacing counts with stats creates nominal10minute count gaps plus scheduling/cache delay; addingstats exceeds reviewedbudget. Retain FIRSTNIGHTONLY estimate conditioning and continuedsinglecounts jobs; no productioncollector/model/cadence change. Late-estimateconditioning explicitlyDEFERRED, not a claim officialestimates disappear. WASHINGTON_REMAINING_ESTIMATE_CONTRACT.md records decision.
+- Extended actualpublisher-loop SYNTHETIC regression to exactNov4 17Z boundary andNov5, successful/failedfirstreads and consecutivejobs: onecountsrequest/job, no stats, >=60secondfloor. Existingfirstnight4request/positivecounts gating cases retained; focusedtestPASS. No nativeGET/health/blanketprobe and no newruntime milestone. CI/PRreview pending.
+- Next acceptance gap: independent historicalchronology and source-error validation remainsunmet; preserve saved source/rights/403 deferrals. Avoid repeating unchanged probes or optionalcoverage. Beforefreeze, prioritize a bounded national mixed-source outage/correction/retraction acceptance review using existingfixtures, clearly distinct from live calibration. Lastdailyreport2026-10-26; no newnotification due.
+
 ## 2026-10-27T10:06:00Z — Remaining-to-NATIONAL extension and receipt correction verified deployed
 
 - PR482 remaining-estimate national sensitivity and PR483 receipt correction are MERGED. 483 ALL6 exact-head workflows SUCCESS,11latestjobs9success/2nonapplicable skips,0external statuses, head16407789203d672687f9c366a7a2bf6afbce089f/clean. Merge/finalmain746fccd473bdb8dc9bb73a3e7c37b54495ef7e1b; Pages40485623475SUCCESS. ALL289expectedpublishedfilesmatch10:05:57.376Z; remote dashboard/forecastcoherencePASS/indexmatchescheckout. Initial local network-restricted attempt failed before reads; normal authorized-network verification passed all files, no weakened checks. No native source/health/blanket probe.
