@@ -9,7 +9,7 @@ import assert from 'node:assert/strict';
 import {createServer} from 'node:http';
 import {createReadStream,existsSync,statSync} from 'node:fs';
 import {resolve,extname,sep} from 'node:path';
-import {chromium} from 'playwright';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright');
 
 const ROOT=resolve(import.meta.dirname,'..');
 const types={'.html':'text/html; charset=utf-8','.js':'text/javascript','.json':'application/json',
@@ -30,7 +30,7 @@ await new Promise((ok,fail)=>{server.once('error',fail);server.listen(0,'127.0.0
 const port=server.address().port;
 let browser;
 try{
- browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+ browser=await chromium.launch({headless:true,args:['--no-sandbox'],...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
  for(const [name,viewport] of [['desktop',{width:1440,height:900}],['mobile',{width:390,height:844}]]){
   const context=await browser.newContext({viewport,reducedMotion:'reduce',serviceWorkers:'block'});
   const page=await context.newPage();
@@ -95,6 +95,11 @@ try{
   await firstSummary.focus();await page.keyboard.press('Enter');
   assert.equal(await page.locator('#enWatchDrawer').evaluate(el=>el.open),false,
     name+': Keyboard must close pinned race controls');
+  assert.equal(await page.locator('#enSourceDesk').evaluate(el=>el.open),false,
+    name+': Detailed source desk starts collapsed');
+  await page.locator('#enInspectSources').click();
+  assert.equal(await page.locator('#enSourceDesk').evaluate(el=>el.open),true,
+    name+': Visible coverage link reveals source investigation and drilldown controls');
   for(const office of ['Senate','House','Governor']){
    await page.locator('#enJump'+office).click();
    assert.equal(await page.locator('#enRaceDeskDetails').evaluate(el=>el.open),true,
