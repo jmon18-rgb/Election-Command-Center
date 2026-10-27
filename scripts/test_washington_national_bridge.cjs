@@ -69,8 +69,11 @@ const cache=require('./washington_official_cache.js'),kernel=require('./national
  assert.deepEqual(kernel.condition(model,basis,[...sources],opts).result,sixteen.result,'Withdrawal restores exact sixteen-source outputs');
  assert.deepEqual(kernel.condition(model,basis,[...sources,sc],opts).result,seventeen.result,'Same SC recovery deterministic');
  assert.throws(()=>kernel.condition(model,basis,[...sources,sc,sc],opts),/Bounded/);
- const {execFileSync}=require('node:child_process'),vm=require('node:vm'),oldModule={exports:{}};
- vm.runInNewContext(execFileSync('git',['show','95c1116da0f261848b25b2da17c77100c5547cdd:scripts/national_county_likelihood.js'],{encoding:'utf8'}),{module:oldModule,require:require('node:module').createRequire(require.resolve('./national_county_likelihood.js'))});
+ const vm=require('node:vm'),oldModule={exports:{}};
+ // Pin the actual released kernel so a shallow CI checkout needs no historical Git fetch.
+ const oldBytes=require('node:zlib').gunzipSync(require('node:fs').readFileSync('data/south_carolina_senate_sources/pre-sc-national-likelihood.js.gz'));
+ assert.equal(require('node:crypto').createHash('sha256').update(oldBytes).digest('hex'),'7106cf117f8ec6b323998840b30ab811e07155ac627cd265df994c4eb74559da');
+ vm.runInNewContext(oldBytes.toString('utf8'),{module:oldModule,require:require('node:module').createRequire(require.resolve('./national_county_likelihood.js'))});
  assert.deepEqual(numerical(oldModule.exports.condition(model,basis,sources,opts).result),numerical(sixteen.result),'Published pre-SC kernel and candidate have identical original sixteen-source numerical outputs');
  const focus=require('./personal_election_focus.js'),log=focus.createHistory({now:()=>now});
  assert(log.observe({active:true,result:seventeen.result,envelopes:[...sources,sc],revision:'SC17',pollingAt:'2026-11-03T12:00:00Z'}));
