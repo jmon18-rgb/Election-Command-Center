@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-27T19:51:10.575876+00:00",
+  "updated_at": "2026-10-27T19:56:40.635678+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,7 +9,7 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1269,
+      "available_in_source": 1270,
       "records_examined": 300
     },
     "governor": {
@@ -18,9 +18,38 @@
     }
   },
   "matched_primary_observations": 335,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "FL-25",
+      "poll_id": "7575b63f-8d82-41b4-b45c-76a3d8b1216d"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "FL-25",
+      "race_type": "house",
+      "state": "FL",
+      "poll_id": "7575b63f-8d82-41b4-b45c-76a3d8b1216d",
+      "question_id": "f85444d9-7267-48c1-8805-74982f39b0ff",
+      "pollster": "Public Policy Polling",
+      "dem_name": "Jared Moskowitz",
+      "rep_name": "Scott Singer",
+      "dem": 47.0,
+      "rep": 41.0,
+      "margin": 6.0,
+      "field_end": "2026-10-27",
+      "field_start": "2026-10-26",
+      "posted_date": "2026-10-27",
+      "posted_source_datetime": "2026-10-27T15:43:00",
+      "posted_source_time": "10/27/26 15:43",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://x.com/cjwarnke/status/2115165777342972342",
+      "sample_population": "lv",
+      "sample_size": 523,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "TX-SEN",
       "race_type": "senate",
