@@ -2,6 +2,7 @@
 'use strict';
 const assert=require('node:assert/strict');
 const adapter=require('./civicapi_state_batch.js');
+const ak=require('./alaska_senate_test_fixture.cjs');
 const election=Date.parse('2026-11-04T06:15:00Z');
 const pre=Date.parse('2026-10-13T19:00:00Z');
 const cases=[
@@ -28,10 +29,13 @@ function row(state,office,name,id){
   id,election_date:'2026-11-03T05:00:00.000Z',
   election_name:name,type:office==='Senate'?'US Senate':'Governor',
   election_type:office==='Senate'?'General':'Statewide',
-  candidates:[{name:'Candidate A',party:'Democratic',votes:0,percent:0,winner:false},
+  candidates:state==='AK'&&office==='Senate'?ak.candidates():[{name:'Candidate A',party:'Democratic',votes:0,percent:0,winner:false},
     {name:'Candidate B',party:'Republican',votes:0,percent:0,winner:false}]};
 }
 function detail(search,counted=false){
+ if(search.id===86916)return {...search,election_type:search.type,round:1,test_data:false,
+  percent_reporting:counted?40:0,last_updated:counted?'2026-11-04T05:45:00Z':null,
+  candidates:ak.candidates(counted?510:0,counted?490:0)};
  return {...search,election_type:search.type,percent_reporting:counted?40:0,
   last_updated:counted?'2026-11-04T05:45:00Z':null,
   candidates:[
@@ -95,10 +99,10 @@ for(const {item,search} of fixtureRaces){
  assert.equal(good.provider,'civicAPI');
  assert.equal(good.called,null);
  assert.equal(good.source_url,'https://civicapi.org/api/v2/race/'+search.id);
- const called={...counted,candidates:[{...counted.candidates[0],winner:true},counted.candidates[1]]};
+ const called={...counted,candidates:counted.candidates.map((c,i)=>({...c,winner:i===0}))};
  const winnerGate=require('./election_night_poll_closings_2026.js');
  assert.equal(adapter.validate(item,search,called,election).called,
-  winnerGate.winnerAllowed(item.office,item.key,1000,called.last_updated,election)?
+  !(item.office==='Senate'&&item.key==='AK')&&winnerGate.winnerAllowed(item.office,item.key,1000,called.last_updated,election)?
    'Candidate A':null,
   'A real partial count must not automatically authorize a winner flag');
  if(item.office==='Senate'&&item.key==='AK'){
@@ -107,8 +111,8 @@ for(const {item,search} of fixtureRaces){
   assert.equal(adapter.validate(item,search,called,election).called,null,
    'Alaska statewide winner call may not precede 06:00Z final poll close');
   const later={...called,last_updated:'2026-11-04T06:05:00Z'};
-  assert.equal(adapter.validate(item,search,later,election).called,'Candidate A',
-   'After 06:00Z source and viewer clocks, exact Alaska call metadata is eligible');
+  assert.equal(adapter.validate(item,search,later,election).called,null,
+   'After poll closure, first choices still lack a reviewed final RCV call contract');
   const preFinalClock=adapter.validate(item,search,later,
    Date.parse('2026-11-04T05:59:59Z'));
   assert.equal(preFinalClock?.called,null,

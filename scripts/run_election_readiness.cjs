@@ -8,6 +8,7 @@ const root = path.resolve(__dirname, '..');
 const out = path.join(root, 'artifacts', 'readiness');
 fs.mkdirSync(out, {recursive: true});
 const checks = [
+  ['AK official ballot identity and unsupported-call exclusion', 'test_alaska_senate_ballot_guard.cjs'],
   ['Maine queued-response minute floor', 'test_maine_controller_budget.cjs'],
   ['VA02 bounded native collection', 'test_collect_virginia_official_results.cjs'],
   ['VA02 owned publication and integrity', 'test_virginia_official_cache.cjs'],

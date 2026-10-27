@@ -1,0 +1,94 @@
+{
+  "status": "VERIFIED_OFFICIAL_BALLOT_SOURCE_PARTY_CONFLICT_NOT_PREDICTIVE_ACTIVATION",
+  "race_code": "AK-SEN",
+  "election_date": "2026-11-03",
+  "source_url": "https://civicapi.org/api/v2/race/86916",
+  "official_roster_url": "https://www.elections.alaska.gov/candidates/?election=26GENR",
+  "official_ballot_url": "https://www.elections.alaska.gov/election/2026/General/SampleBallots/HD1-JD1.pdf",
+  "official_roster_sha256": "2bca91c84a41a46e445b244e14bad1a349487bc5a4a24f8d99a9df7fc00b4d02",
+  "official_ballot_sha256": "188710841f5b8d7c15cebbd6d2371ce9325465965891f5493b5bbf7726d4fa84",
+  "ballot_page_visually_verified": 1,
+  "rank_columns": 5,
+  "generic_write_in_slot": true,
+  "people": [
+    {
+      "source_candidate_id": 219758,
+      "source_name": "Gerald L. Heikes",
+      "official_name": "Heikes, Gerald L.",
+      "official_registered_affiliation": "Registered Republican",
+      "expected_source_party": "Republican",
+      "certified_write_in": false,
+      "printed_on_sample_ballot": true,
+      "incumbent": false
+    },
+    {
+      "source_candidate_id": 219759,
+      "source_name": "Mary Peltola",
+      "official_name": "Peltola, Mary",
+      "official_registered_affiliation": "Registered Democrat",
+      "expected_source_party": "Democratic",
+      "certified_write_in": false,
+      "printed_on_sample_ballot": true,
+      "incumbent": false
+    },
+    {
+      "source_candidate_id": 219760,
+      "source_name": "Dan Sullivan",
+      "official_name": "Sullivan, Dan S.",
+      "official_registered_affiliation": "Registered Republican",
+      "expected_source_party": "Republican",
+      "certified_write_in": false,
+      "printed_on_sample_ballot": true,
+      "incumbent": true
+    },
+    {
+      "source_candidate_id": 219761,
+      "source_name": "Daniel J. Jr. Sullivan",
+      "official_name": "Sullivan, Daniel J. Jr.",
+      "official_registered_affiliation": "Undeclared",
+      "expected_source_party": "Undeclared",
+      "certified_write_in": false,
+      "printed_on_sample_ballot": true,
+      "incumbent": false
+    },
+    {
+      "source_candidate_id": 219762,
+      "source_name": "Heather McElwain",
+      "official_name": "McElwain, Heather",
+      "official_registered_affiliation": "Registered Libertarian",
+      "expected_source_party": "Libertarian",
+      "certified_write_in": true,
+      "printed_on_sample_ballot": false,
+      "incumbent": false
+    },
+    {
+      "source_candidate_id": 219763,
+      "source_name": "Sidney “Sid” Hill",
+      "official_name": "Hill, Sidney “Sid”",
+      "official_registered_affiliation": "Undeclared",
+      "expected_source_party": "Undeclared",
+      "certified_write_in": true,
+      "printed_on_sample_ballot": false,
+      "incumbent": false
+    }
+  ],
+  "observed_at": "2026-10-27T06:39:44.273Z",
+  "observed_source_stamp": "2026-10-23T20:19:31.824Z",
+  "observed_source_sha256": "d6bf36fffd9dee482ebdb4f4e8dd5189e89819b3bb4e4ec7e0f679f331857253",
+  "party_conflicts": [
+    {
+      "id": 219761,
+      "source_name": "Daniel J. Jr. Sullivan",
+      "observed_source_party": "Republican",
+      "expected_party": "Undeclared"
+    }
+  ],
+  "national_input_enabled": false,
+  "final_rcv_contract_verified": false,
+  "limitations": [
+    "Observed source is stale zero and only one State row; no regional/precinct remaining-vote evidence.",
+    "Four printed candidates plus two separately certified named write-ins are not six printed nominees.",
+    "Never sum same-party candidates or treat first choices/provider flags as final RCV outcomes.",
+    "No actual positive delivery, prediction, calibration or comparative-speed claim."
+  ]
+}

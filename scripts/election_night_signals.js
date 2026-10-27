@@ -97,6 +97,9 @@
  // the experimental joint model, validate the precise office, ballot seat,
  // race identity, timestamp, candidate roster and arithmetical totals.
  function validatedCall(row,now=Date.now()){
+  // Also excludes cached records created before the independent AK ballot
+  // audit. A first-choice provider flag is not a reviewed final RCV call.
+  if(row?.office==='Senate'&&row?.key==='AK')return null;
   if(!row||row.provider!=='civicAPI'||!number(now)||now<START||
     row.stale===true||row.sourceStale===true||
     !Number.isSafeInteger(row.race_id)||row.race_id<=0||

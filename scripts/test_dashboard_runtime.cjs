@@ -2254,6 +2254,11 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
     {name:spec.state+' Republican',party:'Republican',votes:390,percent:39,winner:false}
    ]
   };
+  if(spec.state==='AK'&&spec.office==='Senate'){
+   // SYNTHETIC provider-corrected party contract, not the actual conflicting source.
+   const ak=require('./alaska_senate_test_fixture.cjs');row.candidates=ak.candidates();
+   detail.round=1;detail.test_data=false;detail.candidates=ak.candidates(610,390);
+  }
   batchRecords.set(spec.state+'|'+spec.office,{row,detail});
   assert(w.StateBatchCivicAdapter.supports({key:spec.state,office:spec.office}));
  }

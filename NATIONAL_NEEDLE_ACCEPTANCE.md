@@ -7,14 +7,14 @@ not change the owner's primary national-needle requirement or silently disable i
 
 | Acceptance question | Evidence | Decision |
 | --- | --- | --- |
-| Do incoming competitive returns change one coherent Four Endings forecast? | PR465/468/470/471/473/475/476 plus474caption repair deployed; synthetic laptop/mobile WA-only, Maine-only, Ohio-only, PA07-only, AZ06-only VA02-only and PA08-only national movement before calls, corrections and withdrawals | Implemented; synthetic evidence only |
+| Do incoming competitive returns change one coherent Four Endings forecast? | PR465/468/470/471/473/475/476/477 plus474caption/478provenance repair deployed; synthetic laptop/mobile WA-only, Maine-only, Ohio-only, PA07-only, AZ06-only VA02-only, PA08-only and MI07-only national movement before calls, corrections and withdrawals | Implemented; synthetic evidence only |
 | Is an independent official path usable? | WA03 and VA02 official GET200; separate owned publications/CORS/readback verified; seven WA and eight VA district parts matched | Transport verified; no positive post-close delivery yet |
-| Are live competitive inputs available now? | Actual fifteen-route published probe 2026-10-27T05:37:09.358Z: thirteen zero-count civic routes (most stale) and two expired pre-election official health-only copies | No accepted positive inputs |
+| Are live competitive inputs available now? | Actual sixteen-route published probe 2026-10-27T06:04:54.082Z on runtime3c02b913: fourteen zero-count civic routes (most stale) and two expired pre-election official health-only copies; final metadata-only47e correction does not change named counts/runtime | No accepted positive inputs |
 | Does historical evaluation establish partial-return skill? | Iowa assumed-order experiment: partial margin MAE6.63points vs naive19.89; neutral prior, different Senate class | Useful stress experiment; not chronological validation or national calibration |
 | Is genuine historical chronology complete? | Four verified Thurston2024 partial reports, one of seven WA03 county parts, approximately59%-97%of final two-party votes | Incomplete, especially early count; no statewide replay/calibration approval |
 | Are probabilities/remaining-vote intervals calibrated? | No approved chronological multi-race calibration inputs; predeclared uncertainty and bounded influence are design choices | Unproven |
 | Will results arrive as fast as major publications? | Request timings and source clocks exist, but no independently matched real vote batches | Unproven; official collection/cache may add minutes |
-| Does coverage represent national House behavior? | Ten supported House districts across seven states, plus five Senate states (IA/KS/TX/ME/OH) | Limited evidence; not a representative national sample |
+| Does coverage represent national House behavior? | Eleven supported House districts across seven states, plus five Senate states (IA/KS/TX/ME/OH) | Limited evidence; not a representative national sample |
 
 ## Exact outstanding evidence
 
@@ -101,3 +101,7 @@ source clocks are not independently captured chronological calibration inputs.
 ## PA08 release evidence — 2026-10-27T05:38:15Z
 
 PR476 exact-head36workflows/48jobs44success4nonapplicable skips passed; final Pages40456104805 and all244publishedfiles verified. PA08-only synthetic automatic national updating/correction/withdrawal passed at1366/390, with three predeclared Pennsylvania inputs sharing unchanged state budget20. Actual published15route check admitted zero inputs, projections or archives. This increases implementation coverage; it does not close delivery, chronology, comparative freshness or calibrated national predictive acceptance.
+
+## MI07 final release evidence — 2026-10-27T06:25:04Z
+
+Runtime477 and provenance478 passed all applicable exact-head checks. Final Pages40460536536/all259publishedfiles and published1366/390synthetic MI07national behavior verified. Ingham279write-ins remain explicitly unresolved; no named count/model changes. MI04/MI07 share fixedMI budget20; sixteen sources remain limited, experimental evidence. Eight selectedHouse seeds/four primarycloseSenate paths programmed, not actual live delivery or calibrated acceptance. Latest real sixteen-route receipt06:04:54Z predates metadata-only correction and admitted zero inputs; not repeated without a new source reason.

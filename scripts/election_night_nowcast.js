@@ -117,6 +117,9 @@
   return true;
  };
  function observed(item,primary,secondary){
+  // AK has multiple same-party printed candidates, named write-ins and only
+  // statewide first choices. Do not sum parties into a matchup or prediction.
+  if(item?.office==='Senate'&&item?.key==='AK')return null;
   const source=primary&&primary.office===item.office&&primary.year===2026?
    primary.races?.[item.key]:null;
   let d,r,total,reporting,asOf,provider,sourceStale=false;

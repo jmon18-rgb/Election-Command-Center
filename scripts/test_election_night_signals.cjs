@@ -70,7 +70,7 @@ for(const [office,key,pre,closed] of [
  assert.equal(signals.validatedCall(row,Date.parse(pre)),null,
   key+' preclose source call must fail');
  row.last_updated=closed;
- assert.equal(signals.validatedCall(row,Date.parse(closed))?.party,'D',
+ assert.equal(signals.validatedCall(row,Date.parse(closed))?.party,key==='AK'?undefined:'D',
   key+' valid postclose source can recover');
 }
 // Legitimate early source totals can precede the LAST polling closure,
@@ -157,3 +157,5 @@ assert.equal(pulse.earlyCount,1);
 assert.equal(pulse.drivers[0].early,true);
 assert.equal(signals.explainNeedle(next,prior,[]).liveCount,0);
 console.log('Election-night needle movement and source-called milestone rules PASS');
+
+const oldAK=mk('Senate','AK','Daniel J. Jr. Sullivan','R');oldAK.last_updated='2026-11-04T06:10:00Z';assert.equal(signals.validatedCall(oldAK,Date.parse('2026-11-04T06:15:00Z')),null,'A cached older Alaska source cannot award a Republican chamber seat from the wrong Sullivan/RCV contract');
