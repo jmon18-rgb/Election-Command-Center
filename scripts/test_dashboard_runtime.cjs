@@ -659,23 +659,24 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
   'Keep optional probability-model switches off the ambient election-night screen');
  const posterCards=[...get('#enMilestoneGrid').querySelectorAll('.en-milestone-card')];
  assert.equal(posterCards.filter(el=>el.querySelector('img.en-milestone-thumb')).length,10,
-  'Every milestone gets its own original illustrated thumbnail');
+  'Every milestone gets its own original or owner-supplied illustrated thumbnail');
  assert(posterCards[3].querySelector('img.en-milestone-thumb').getAttribute('src')
-  .includes('cdn.loc.gov/service/pnp/ppmsca/23700/23764v.jpg'),
-  'Kansas thumbnail should be the actual John Brown rather than a generic ghost');
+  .includes('celebration-owner-kansas.jpg?v=26f7df1f64f4'),
+  'Kansas thumbnail must use the exact owner-supplied painting revision');
  assert(posterCards.every(el=>el.dataset.state==='waiting'),
   'Posters may be previewed before results, but must not claim earned status');
  posterCards[3].click(); // Kansas · John Brown-inspired art
  assert.match(get('#enMilestoneKicker').textContent,/PREVIEW/,
   'A locked milestone is an explicit preview, not a called victory');
  assert.equal(get('#enMilestonePoster').hidden,false);
- assert(get('#enMilestonePoster').getAttribute('src').includes('cdn.loc.gov/service/pnp/ppmsca/23700/23764v.jpg'),
-  'Kansas achievement should feature an actual authenticated 1859 John Brown portrait');
- assert(get('#enMilestonePoster').classList.contains('historic-john-brown'));
- assert.equal(get('#enJohnBrownPosterTitle').hidden,false);
- assert.match(get('#enJohnBrownPosterTitle').textContent,/BLEEDING KANSAS/);
- assert.match(get('#enMilestoneSource').textContent,/Library of Congress/,
-  'Verify the archival photographic source in the preview');
+ assert(get('#enMilestonePoster').getAttribute('src').includes('celebration-owner-kansas.jpg?v=26f7df1f64f4'),
+  'Kansas achievement must feature the owner-supplied fictional painting');
+ assert(get('#enMilestonePoster').classList.contains('owner-celebration-art'));
+ assert(!get('#enMilestonePoster').classList.contains('historic-john-brown'));
+ assert.equal(get('#enJohnBrownPosterTitle').hidden,true);
+ assert.match(get('#enMilestoneSource').textContent,/Owner-supplied fictional artwork/);
+ assert.doesNotMatch(get('#enMilestoneSource').textContent,/Library of Congress|authentic 1859/,
+  'Never attribute the supplied fictional painting as an authenticated archival photograph');
  assert.match(get('#enMilestonePoster').alt,/John Brown/i);
  assert.equal(get('#enTsunamiMeme').hidden,true);
  get('#enMilestoneClose').click();
