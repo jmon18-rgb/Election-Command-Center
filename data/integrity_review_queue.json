@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-27T19:56:40.073263Z",
+  "updated_at": "2026-10-27T20:13:23.859003Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 246,
     "primary_source_checked": 4,
-    "advisory_related_headline_buckets": 22,
-    "advisory_related_headlines": 52
+    "advisory_related_headline_buckets": 24,
+    "advisory_related_headlines": 56
   },
   "advisory_related_headlines": [
     {
@@ -290,12 +290,54 @@
       "promoted_to_incident_id": null
     },
     {
+      "id": "c758adfc037ef2397e21",
+      "title": "Judge to consider whether California should count 20,000 ballots disputed by Trump administration - cecildaily.com",
+      "url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxQVmFsZ0QyN0ZOUlB0ZnNTMWZNZE8ySDdMTjRMQXJMXzZiemRWYjZDRjVQNWlWMy1LN1JETzQtajNvaTJGb1BfR3gzZnFIeGRCVjV3RDFRWGFJcGg0dUk5aWdpaHFtT09INGxheUtrb3lSMVBYUXo0akhnalF1MXN3U0Y2QXNENW1OWjllTTJmb3dXR2FBVWdZWk52NzUwN0NFMU05Y0R3M25YdWxLbC1USFNoMHdhSHMtZklCX2hOX0tNOFVYRWNjSWtKRExLc2FTUmhvejFxelloZXFhMzFDMXpCZDdlczIzSkxOano3YXFNZF85ekFQMHJXNEZpNlN0VndsbjFuZThEbGc1OW5XcQ?oc=5",
+      "publisher": "cecildaily.com",
+      "published_at": "2026-10-27T19:37:46Z",
+      "detected_at": "2026-10-27T20:13:23.859003Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 ballots"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "e16a78441dc2d4ee17f8",
       "title": "Minnesota is preparing for all possibilities this election \u2014 including potential federal interference - The Globe | Worthington, Minnesota",
       "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQZXBKdmV4dGtKOUZMclEwMXhfSU1ESmdoam8zRXdSMHVrRU9Sd3d1N1lvXzc0V0FyRjhERVlJRENxcmxzVGRmTkFNa0pqXzRZRlZza21PWjlJQzd5SkJyTl9DWHk5cWdwemh3cGlFR2FMd0NIbWJKZzFKM0NjVEZhUEwyNzhHcjB3QnBZWmxKZ0tsS1MzQzUtbU9XX2JLejNLUGhyRHpSUEdpUFoyM1k1Q20weFkzbllaeXdCQ0dUSUxlSy1rUTZreUNick5mTkx3Zm9n?oc=5",
       "publisher": "The Globe | Worthington, Minnesota",
       "published_at": "2026-10-27T15:20:29Z",
       "detected_at": "2026-10-27T16:57:40.504144Z",
+      "state_hints": [
+        "MN"
+      ],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "a9fa2b622f8b54653d10",
+      "title": "Minnesota is preparing for all possibilities this election \u2014 including potential federal interference - Detroit Lakes Tribune",
+      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQLTd3M2NSemdmZ3MtTFNmMjFDQ1pMUnFzSTQwNGR4enFtU0otd1hJLWJ3TG92azhKY0s2cE5COUN4NmNUVmd4VnJDTE1HODljbGRJbVUyaTM4dVlKY0RzSldsSFozdUFkUTZ4WkpGQkoxenhNVmtHWHlnaVB3TlBzSGd6VkxXUUdVR0NJRTdpcG5DblZCbE80aHBiaE1Xc0c2b1pYeWtDLTJqVE1rZXBmUnJDampWbTNMRkJWbnVzRlBmRExiU3ZzeDRhNUIzZXo2dlFPU20yWQ?oc=5",
+      "publisher": "Detroit Lakes Tribune",
+      "published_at": "2026-10-27T15:19:50Z",
+      "detected_at": "2026-10-27T20:13:23.859003Z",
       "state_hints": [
         "MN"
       ],
@@ -4984,38 +5026,6 @@
       ],
       "topic_hints": [],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "53c2ed21752bd367c1be",
-      "title": "In run-up to midterms, Trump steps up drive to rig the elections - World Socialist Web Site",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE11RlB0LWEzWnhpR2FxOS1nVU8zQThVS2wtemRWZzMzcTZodFVORlV2NG44N2xXY3BjN25ibU1PRFN2MnZFN0ZTdVBPXzFTa1l4bk10RXdLeFg1cDVWalBwVW4waDgtZnZW?oc=5",
-      "publisher": "World Socialist Web Site",
-      "published_at": "2026-10-15T03:42:56Z",
-      "detected_at": "2026-10-15T03:46:43.244708Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "80f978b747b5d60c5e2c",
-      "title": "Tracking the NY-17 Congressional Race - Nyack News & Views",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNUmgxOHg4azVCNFBmNnZtRndHb0lwUWFwV09BQUxhSkxpcWZYOXpnUndyZFZqdjQzWEQ5R0hOQU1HT1FSR1owZGZRcVRnM2Rya0tEUmw5d2VFQkU2U2F1UEZkbWloSVNMZkdoS3djanBGZVhPUkdrMjVHdjZuUjg3ZUwzUGpqNExR0gGOAUFVX3lxTFBGT1UxbzRUQXVhYWJGMzcxUktDTU5zcHVFeWl3dUZGR1hTNDNIRHVtc0tMZTNKUzRfT3AzbUNfdFdldEQ0Q19nV0NSUG0xZjFGal93VHdTMV9ZaVRoaXRQQmJ1LWp4ZnE1WkphWFVFVEVfNkdTYl9HMjBMem9lMmxQSjh3UjJEd0p5NGZjN2c?oc=5",
-      "publisher": "Nyack News & Views",
-      "published_at": "2026-10-15T03:35:14Z",
-      "detected_at": "2026-10-15T04:45:10.274184Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [
-        "17 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
