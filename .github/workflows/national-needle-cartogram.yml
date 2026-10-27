@@ -3,6 +3,11 @@ on:
   push:
     paths:
       - 'scripts/national_needle_cartogram.js'
+      - 'scripts/us_state_display_geometry.js'
+      - 'scripts/build_us_state_display_geometry.py'
+      - 'scripts/test_us_state_display_geometry.cjs'
+      - 'data/display_geometry_sources/**'
+      - 'data/us_state_display_geometry_source.json'
       - 'scripts/test_national_needle_cartogram.cjs'
       - 'scripts/test_election_night_hierarchy_browser.mjs'
       - 'index.html'
@@ -10,6 +15,11 @@ on:
   pull_request:
     paths:
       - 'scripts/national_needle_cartogram.js'
+      - 'scripts/us_state_display_geometry.js'
+      - 'scripts/build_us_state_display_geometry.py'
+      - 'scripts/test_us_state_display_geometry.cjs'
+      - 'data/display_geometry_sources/**'
+      - 'data/us_state_display_geometry_source.json'
       - 'scripts/test_national_needle_cartogram.cjs'
       - 'scripts/test_election_night_hierarchy_browser.mjs'
       - 'index.html'
@@ -26,6 +36,9 @@ jobs:
           node --check scripts/national_needle_cartogram.js
           node --check scripts/test_national_needle_cartogram.cjs
           node scripts/test_national_needle_cartogram.cjs
+          node scripts/test_us_state_display_geometry.cjs
+          python scripts/build_us_state_display_geometry.py
+          git diff --exit-code -- scripts/us_state_display_geometry.js
       - name: Ensure main dashboard mounts the guarded map
         run: |
           node -e "const fs=require('fs');const s=fs.readFileSync('index.html','utf8');for(const x of ['id=\"enNationalNeedleMap\"','national_needle_cartogram.js','function enRenderNeedleCartogram()','enRenderNeedleCartogram();'])if(!s.includes(x))throw Error('Missing map wiring: '+x)"

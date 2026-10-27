@@ -824,6 +824,48 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .four-needle-outcome[data-outcome="blue_wave"]{border-top:3px solid #61adf6}
 .four-needle-outcome[data-outcome="blue_tsunami"]{border-top:3px solid #438aff}
 @media(max-width:560px){.four-needle-labels{grid-template-columns:repeat(2,minmax(0,1fr))}.four-needle-outcome small{font-size:11px}}
+
+/* Election-night visual pass: integrated outlook, geographic navigation and scanable watch cards. */
+.en-outlook-map-grid{display:grid;grid-template-columns:minmax(300px,.8fr) minmax(0,1.2fr);gap:20px;align-items:start;margin:18px 0 24px}
+.en-outlook-map-grid>.four-needle,.en-outlook-map-grid>.en-national-map-panel{margin:0;min-width:0;box-sizing:border-box}
+.en-outlook-map-grid .four-needle-labels{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.en-outlook-map-grid .four-needle-arc{max-height:250px}
+.en-outlook-map-grid .four-needle-top{align-items:start;gap:7px;flex-wrap:wrap}
+.en-outlook-map-grid .four-needle-footer{flex-wrap:wrap;gap:8px;line-height:1.5}
+.en-national-map-panel{box-shadow:0 10px 28px #0002}
+.en-nmap-intro{line-height:1.5;margin:8px 0;font-size:13px}
+.en-geographic-frame{overflow:hidden;padding:8px 3px;background:radial-gradient(ellipse at center,#173c54,#0b2136)}
+.en-geographic-map{display:block;width:100%;height:auto;aspect-ratio:1000/640;overflow:visible}
+.en-nmap-shape{display:initial;padding:0;border:0;box-shadow:none;outline:none!important;cursor:pointer}
+.en-nmap-shape>path:first-child{transition:filter .12s,stroke .12s}
+.en-nmap-shape:hover>path:first-child{filter:brightness(1.25);stroke:#e0f3ff;stroke-width:2.2}
+.en-nmap-shape[aria-pressed=true]>path:first-child,.en-nmap-shape:focus-visible>path:first-child{stroke:#ffe393;stroke-width:4;paint-order:stroke fill;filter:brightness(1.15)}
+.en-nmap-shape:focus-visible text{fill:#ffe393}
+.en-map-inset-label{fill:#b0c7d7;font:700 13px system-ui;letter-spacing:1.5px}
+.en-nmap-picker{display:flex;align-items:center;gap:6px;width:100%;font-size:12px;color:#c9dce9}
+.en-nmap-picker select{width:100%;min-width:0;background:#102b40;border:1px solid #64849b;border-radius:7px;color:#f0f7ff;padding:8px;font:inherit}
+.en-nmap-picker select:focus-visible{outline:3px solid #ffe393;outline-offset:2px}
+.en-nmap-detail{border-left:3px solid #78bde9;padding:10px 12px;min-height:52px}
+.en-nmap-method{font-size:11px;line-height:1.5}
+.en-map-method{margin-top:10px;font-size:11px;color:#a9c7dc}.en-map-method>summary{cursor:pointer;padding:5px 0}
+.en-nmap-dot.strong-r{background:#b63b50}.en-nmap-dot.lean-r{background:#d28e99}.en-nmap-dot.toss-up{background:#8f80ab}.en-nmap-dot.lean-d{background:#559ac8}.en-nmap-dot.strong-d{background:#126ac4}.en-nmap-dot.missing{background:#253b4e}
+#enPersonalFocus{background:transparent;border:0;padding:8px 0 20px}
+#enPersonalFocus>h2{font-size:clamp(24px,3vw,32px);letter-spacing:-.035em;margin:12px 0}
+.personal-focus-next{padding:13px 16px;background:#14354d;border:1px solid #38637f;border-left:4px solid #79c8f4;border-radius:8px;font-size:14px;line-height:1.7}
+.personal-focus-grid{grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:14px}
+.personal-focus-card{position:relative;border:1px solid #36556f;border-top:3px solid #579cc6;background:linear-gradient(145deg,#18344b,#102235);border-radius:12px;padding:15px;box-shadow:0 7px 20px #0002;overflow-wrap:anywhere}
+.personal-focus-card h4{font-size:19px;letter-spacing:-.02em;color:#f4f9ff}
+.personal-focus-card svg{width:112px;float:right;margin:8px -4px 6px 10px}
+.personal-focus-card>strong{font-size:19px;line-height:1.4;color:#f3f7ff;margin:12px 0 5px;font-variant-numeric:tabular-nums}
+.personal-focus-odds>span{display:block;font-size:24px;line-height:1.2;white-space:nowrap}.personal-focus-odds>small{font-size:12px;font-weight:500;margin:5px 0}
+.personal-focus-card>p{clear:both;line-height:1.55;color:#d6e5f0;border-top:1px solid #ffffff16;padding-top:10px}
+.personal-focus-card>small{line-height:1.5}
+.personal-focus-card .personal-focus-performance{color:#bfe9ff;font-weight:750;background:#22465b;padding:9px;border-radius:6px}
+.personal-focus-card details{clear:both;font-size:12px;line-height:1.55}
+.personal-focus-card details summary{cursor:pointer;color:#bce4ff;padding:5px 0}
+@media(max-width:900px){.en-outlook-map-grid{grid-template-columns:1fr}.en-outlook-map-grid>.four-needle{max-width:none}.en-outlook-map-grid .four-needle-arc{max-height:270px}.en-geographic-map{max-height:440px}.personal-focus-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.en-outlook-map-grid{gap:14px;margin-top:14px}.personal-focus-grid{grid-template-columns:1fr}.personal-focus-card svg{width:124px}.en-national-map-panel{padding:12px}.en-nmap-method{font-size:11px}.en-nmap-legend{gap:7px 10px;font-size:11px}.en-nmap-count{margin-left:0}}
+
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -1139,6 +1181,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   <small>Sources: <a href="https://www.thegreenpapers.com/G24/HouseVoteByParty.phtml" target="_blank" rel="noopener noreferrer">2024 House elected winners</a> · <a href="https://www.senate.gov/history/partydiv.htm" target="_blank" rel="noopener noreferrer">Senate party division, 119th Congress</a>.</small>
  </div>
  <p id="jointNightHeadline" class="joint-headline">Checking live outlook…</p><details class="forecast-details"><summary>Full forecast methodology</summary><p id="jointNightSummary" class="joint-summary">Preparing House and Senate probabilities…</p></details>
+ <div class="en-outlook-map-grid">
  <div class="four-needle" id="jointNightNeedle" role="img" aria-label="Four Endings needle awaiting 2026 forecast">
   <div class="four-needle-top"><strong>🌊 THE TIDE-O-METER</strong><span>2026 correlated model · not an official alert</span></div>
   <svg class="four-needle-arc" viewBox="0 0 460 260" aria-hidden="true">
@@ -1157,11 +1200,12 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   <div class="four-needle-footer"><span>Waiting for a coherent joint forecast…</span><span>Source pending</span></div>
   <div class="four-needle-distribution" aria-hidden="true"></div>
  </div>
- <section class="en-national-map-panel" aria-label="2026 nationwide election needle cartogram">
- <div class="en-nc-map-head"><div><span class="tiny">ELECTION NIGHT · LINKED FORECAST</span><h3>Where the needle is moving</h3></div><span class="en-nc-map-mark">50-STATE RACE MAP</span></div>
- <p class="en-nmap-intro">Explore 2026 Senate contests or the most competitive House district in each state. Colors show model win probabilities, <em>not current vote leaders</em>. Explicit source-reported calls are marked separately. Select a state for details.</p>
- <div id="enNationalNeedleMap" aria-live="polite"><p>Loading linked nationwide forecast map…</p></div>
+ <section class="en-national-map-panel" aria-label="2026 nationwide forecast map">
+ <div class="en-nc-map-head"><div><span class="tiny">ELECTION NIGHT · LINKED FORECAST</span><h3>The national race map</h3></div><span class="en-nc-map-mark">50-STATE RACE MAP</span></div>
+ <p class="en-nmap-intro">Senate contests or one competitive House district per state. Colors show <strong>model win chances</strong>, not counted vote leaders. Select a state to explore its race.</p>
+ <div id="enNationalNeedleMap"><p>Loading linked nationwide forecast map…</p></div>
 </section>
+ </div>
  <details id="enNationalRehearsal" class="joint-audit">
   <summary>Preview the national needle with simulated results</summary>
   <p><strong>SIMULATED · FICTIONAL COUNTS · NOT LIVE</strong> — five stages show blue counties reporting as expected, then a 3-point margin outperformance against each race's expectation, a correction and source withdrawal. County expectations use historical geography shifted to the current race model, not county polls. Expected arrivals can narrow uncertainty; a blue raw margin alone is not a blue-wave signal. This preview never changes the live outlook or vote totals.</p>
@@ -1442,7 +1486,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_celebration_player.js?v=8f7fb37d2ca2"></script>
 <script src="./scripts/election_night_celebration_music.js?v=6a479f8a84b1"></script>
 <script src="./scripts/election_night_celebration_scene.js?v=b39770975f16"></script>
-<script src="./scripts/personal_election_focus.js?v=cd02fb5de4ed"></script>
+<script src="./scripts/personal_election_focus.js?v=46ba1197ef25"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=6eaa0d8f80cf"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=165fc37d665a"></script>
 <script src="./scripts/civicapi_state_batch.js?v=99e987c72cb8"></script>
@@ -1455,7 +1499,8 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/nc_official_candidate_votes.js?v=ecdb01c17298"></script>
 <script src="./scripts/nc_historical_county_comparison.js?v=4932049c0026"></script>
 <script src="./scripts/nc_same_office_senate_comparison.js?v=ec183b5491cb"></script>
-<script src="./scripts/national_needle_cartogram.js?v=dc589eb9942a"></script>
+<script src="./scripts/us_state_display_geometry.js?v=44c7c64d27d9"></script>
+<script src="./scripts/national_needle_cartogram.js?v=e0f7c555e817"></script>
 <script src="./scripts/nc_senate_county_map.js?v=0c7818aba055"></script>
 <script src="./scripts/nc_senate_county_map_startup.js?v=84d83fd63392"></script>
 <script src="./scripts/ohio_official_candidate_votes.js?v=ed88660a3b59"></script>
