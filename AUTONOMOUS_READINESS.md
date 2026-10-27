@@ -1,5 +1,11 @@
 # Election Night production-readiness assignment
 
+## October27 - Owner activates needle adjustments and celebrations
+
+- ROADMAP now explicitly lists R0 needle methodology/release and R6 celebration productions. Owner's direct instruction supersedes the old celebration pause; no extra approval is needed for this authorized scope. R0/PR487 remains current release task, followed by bounded R1/R2 work and ready R3/R6 tasks rather than waiting for Nov3 data.
+- R6 begins with review of426 against current deployed identity/call contracts, not blind merge. Priorities: separate TX Senate/governor, two-call BLEXAS, Mississippi, then requested remaining roster/Tsunami. Targets: Oct28 needle candidate, Oct29 stable national handoff, Oct30 celebration rehearsal, Oct31 freeze; working targets subject to checks/evidence. Preview/replay/skip/sound-off/reduced-motion, permitted audio/art rights, exact post-close calls/correction revocation/duplicate suppression remain required. No forecast-triggered wins or assumed independent caucus flips.
+
+
 ## October27 - Research-backed shared reporting-error candidate / PR487
 
 - Owner requested better needle methodology. Published NYT-editor interview describes local expectations; DDHQ authors warn about incomplete/method-biased units; Gelman identifies correlated early-return errors as false national certainty. Sources and distinctions saved in NATIONAL_NEEDLE_ACCEPTANCE.md. NYT original explainer unavailable, no proprietary-code or parameter claim.
