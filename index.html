@@ -4327,6 +4327,9 @@ function jointPrivateActivate({deferRender=false}={}){
 // Keep the legacy proxy available to explicit offline research, never implicit
 // in the public, private-context, sensitivity or rehearsal calculation paths.
 const jointIndependentControlOptions=Object.freeze({independentSenateCredit:'no_credit'});
+function jointSimulate(basis,options){
+ return window.ChamberControlModel.simulate(basis,{...options,...jointIndependentControlOptions});
+}
 const jointLabels=[
  ['blue_tsunami','BLUE TSUNAMI','D ≥235 House · ≥52 Senate','d-tide'],
  ['blue_wave','BLUE WAVE','D controls House + Senate','d-wave'],
@@ -5167,8 +5170,8 @@ function labRender(){
  ]};
  status.textContent='Running matched-draw state sensitivity…';
  const result=window.ElectorateWhatIf2026.evaluate(
-  jointBasis,assumptions,window.ChamberControlModel.simulate,
-  {...jointIndependentControlOptions,samples:2000,seed:20261103});
+  jointBasis,assumptions,jointSimulate,
+  {samples:2000,seed:20261103});
  host.replaceChildren();
  if(!result.ok){
   status.textContent='Scenario not run · '+result.reason;
