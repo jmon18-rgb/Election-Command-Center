@@ -1,6 +1,7 @@
 'use strict';
 // Data-only writer. Never writes or merges the default/code branch.
 const fs=require('node:fs');
+const nativeArchive=require('./official_native_archive.cjs');
 const {collect}=require('./collect_virginia_official_results.cjs');
 const cache=require('./virginia_official_cache.js');
 const REPO='jmon18-rgb/Election-Command-Center',START=Date.parse('2026-11-04T00:00:00Z'),FAST_END=Date.parse('2026-11-04T17:00:00Z'),END=Date.parse('2026-11-25T08:00:00Z');
@@ -38,6 +39,9 @@ async function publish({request,record,reference,now=Date.now(),healthOnly=false
  return {changed:true,branch:cache.BRANCH,commit:result.commit.sha};
 }
 async function main(){
+ if(process.argv.includes('--bootstrap')&&healthWindow(Date.now())){console.log('Pre-election source contracts pinned; automatic bootstrap makes no native request');return;}
+ const archive=nativeArchive.createForWorkflow({source:'va02'});
+ console.log('Original-body archive: '+(archive.enabled?'first-night capture eligible':archive.reason));
  const publishing=process.argv.includes('--publish'),healthOnly=process.argv.includes('--health-only')||(process.argv.includes('--bootstrap')&&healthWindow(Date.now()));
  if(healthOnly&&!healthWindow(Date.now()))throw Error('Outside fixed pre-election health-check window');
  if(process.argv.includes('--loop'))throw Error('VA02 collector allows one fixed request per job');
@@ -52,12 +56,13 @@ async function main(){
  };
  for(let i=0;i<count;i++){
   const now=Date.now();if(!inWindow(now)&&!healthOnly){console.log('Outside2026VA post-close collection window; no source request');return;}
-  const record=await collect({reference,now});
+  const record=await collect({reference,now,evidenceSink:archive.enabled?archive.record:undefined});
   if(healthOnly){record.status='SOURCE_UNAVAILABLE';record.payload=null;record.error='Pre-election transport health check; no votes admitted';delete record.selected_payload_sha256;}
-  const result=publishing?await publish({request,record,reference,now:Date.now(),healthOnly}):{observe_only:true};
+  let result;try{result=publishing?await publish({request,record,reference,now:Date.now(),healthOnly}):{observe_only:true};archive.publication(result);}
+  catch(error){archive.publication({error:error.message});throw error;}
   console.log(JSON.stringify({status:record.status,fetched_at:record.fetched_at,source_stamp:record.observed_source_stamp||record.snapshot_updated_at||null,...result,live_delivery:'UNPROVEN_UNTIL_ACTUAL_VALIDATED_POST_CLOSE_COUNTS'}));
   if(i+1<count)await new Promise(resolve=>setTimeout(resolve,60000));
  }
 }
-module.exports={publish,inWindow,healthWindow,REPO};
+module.exports={publish,inWindow,healthWindow,REPO,main};
 if(require.main===module)main().catch(e=>{console.error(e.message);process.exitCode=1;});

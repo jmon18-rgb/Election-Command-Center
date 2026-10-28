@@ -8,6 +8,8 @@ const root = path.resolve(__dirname, '..');
 const out = path.join(root, 'artifacts', 'readiness');
 fs.mkdirSync(out, {recursive: true});
 const checks = [
+  ['Encrypted first-night originals and free-capacity activation guards', 'test_official_native_archive.cjs'],
+  ['VA exact-original sink in the actual publisher and zero-GET bootstrap', 'test_virginia_native_archive_wiring.cjs'],
   ['AK official ballot identity and unsupported-call exclusion', 'test_alaska_senate_ballot_guard.cjs'],
   ['Maine queued-response minute floor', 'test_maine_controller_budget.cjs'],
   ['VA02 bounded native collection', 'test_collect_virginia_official_results.cjs'],

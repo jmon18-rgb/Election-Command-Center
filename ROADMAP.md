@@ -1,5 +1,11 @@
 # JackStradamus · development plan
 
+## Active owner priorities — October28 Texas and early House indicators
+
+Add Texas Senate to shared personal needles while retaining existing Texas Senate/governor integrations. Build the supplied21House early-watch reference from exact Cook/FLIPR rows, with unspecified publisher-as-of made explicit. Verified calls and already admitted matched returns affect the same joint model once; the watch summarizes named reference surprises and multiple consistent outcomes, never averages marginals, adds duplicated likelihood or infers outperformance from raw partial district margins. Preserve eight pivotal House cards, exact county/source stops and calibration no-go. Proceed independently of archive billing access.
+
+R4 first-night originals/30days/no paid storage is now explicitly approved. Encrypted capture/recovery and publisher wiring are tested candidates; defaults remain inactive pending actual free-capacity/spending-protection verification and protected release. Local39GB free does not prove GitHub allowance. Source account access remains unavailable; no paid storage, activation flags or new native GETs enabled. See OFFICIAL_NATIVE_ARCHIVE.md and existing finite-window proposal. This supersedes the older pending retention-choice wording below.
+
 ## R8 queued bulletin reading return VERIFIED PUBLISHED521 — October28
 
 The named combined journey found and repaired celebration -> queued bulletin -> background redraw -> Back leaving focus on a hidden button. Shared ephemeral reading identity persists through sequences, expiry/revocation and reverse hand-off. Correctedd7f46764 all34parents/45applicablejobs PASS; merge4e8dc131/finalCURRENTmain4c3e0e65/Pages40715028630/383matchingfiles15:22:34Z/publiccoherence PASS. Actual published1366/390 tasks pass; ordinary native-control focus proof has an explicit zero-viewport geometry limit. Model/source/call/queue-timing/music scope unchanged. Remaining combined own/context/surprise/correction/clock/history/return-live engineering slice reviewed once without additional material defect; human/fullR8/assistive/listening still open. No unchanged replay/status-only CI.

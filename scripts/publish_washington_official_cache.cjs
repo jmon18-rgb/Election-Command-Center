@@ -1,6 +1,7 @@
 'use strict';
 // Data-only writer. Never writes or merges the default/code branch.
 const fs=require('node:fs');
+const nativeArchive=require('./official_native_archive.cjs');
 const {collect,collectRemaining}=require('./collect_washington_official_results.cjs');
 const cache=require('./washington_official_cache.js');
 const remaining=require('./washington_remaining_source.js'),crypto=require('node:crypto');
@@ -59,6 +60,8 @@ async function publish({request,record,reference,now=Date.now(),healthOnly=false
 }
 async function main(){
  if(process.argv.includes('--bootstrap')&&healthWindow(Date.now())){console.log('Pre-election source contracts pinned; automatic bootstrap makes no native request');return;}
+ const archive=nativeArchive.createForWorkflow({source:'wa03'});
+ console.log('Original-body archive: '+(archive.enabled?'first-night capture eligible':archive.reason));
  const publishing=process.argv.includes('--publish'),healthOnly=process.argv.includes('--health-only')||(process.argv.includes('--bootstrap')&&healthWindow(Date.now()));
  if(healthOnly&&!healthWindow(Date.now()))throw Error('Outside fixed pre-election health-check window');
  if(!publishing&&!process.argv.includes('--observe'))throw Error('Choose explicit --observe or --publish');
@@ -80,10 +83,11 @@ async function main(){
   // Replace ONE of the existing four first-night requests, never add a fifth.
   // There is still a >=60s completion floor between every native request.
   const stats=sourceKindForSlot(i,count,lastRecord)==='remaining';
-  const record=stats?{...lastRecord,official_remaining:await collectRemaining({now,countsStamp:lastRecord.snapshot_updated_at})}:await collect({reference,now});
+  const record=stats?{...lastRecord,official_remaining:await collectRemaining({now,countsStamp:lastRecord.snapshot_updated_at,evidenceSink:archive.enabled?archive.record:undefined})}:await collect({reference,now,evidenceSink:archive.enabled?archive.record:undefined});
   lastRecord=record;
   if(healthOnly){record.status='SOURCE_UNAVAILABLE';record.payload=null;record.error='Pre-election transport health check; no votes admitted';delete record.selected_payload_sha256;}
-  const result=publishing?await publish({request,record,reference,now:Date.now(),healthOnly}):{observe_only:true};
+  let result;try{result=publishing?await publish({request,record,reference,now:Date.now(),healthOnly}):{observe_only:true};archive.publication(result);}
+  catch(error){archive.publication({error:error.message});throw error;}
   console.log(JSON.stringify({status:record.status,fetched_at:record.fetched_at,source_stamp:record.observed_source_stamp||record.snapshot_updated_at||null,...result,live_delivery:'UNPROVEN_UNTIL_ACTUAL_VALIDATED_POST_CLOSE_COUNTS'}));
   if(i+1<count)await new Promise(resolve=>setTimeout(resolve,60000));
  }
