@@ -38,7 +38,7 @@ class Contract(unittest.TestCase):
         self.assertEqual(result['computed_two_party_margin_points'], -20)
         self.assertEqual(result['published_all_candidate_margin_points'], -19.74)
         self.assertEqual(result['other_votes'], 200)
-        self.assertFalse(result['later_year_columns_used'])
+        self.assertFalse(result['other_election_columns_used'])
         report = tool.compare(result, staging())
         self.assertTrue(report['cached_counts_equal'])
         self.assertFalse(report['runtime_admitted'])

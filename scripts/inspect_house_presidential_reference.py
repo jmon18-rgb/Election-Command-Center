@@ -129,7 +129,7 @@ def inspect_html(body):
             "all_candidate_votes": total, "other_votes": total - dem - rep,
             "published_all_candidate_margin_points": printed_margin,
             "computed_two_party_margin_points": 100 * (dem - rep) / (dem + rep),
-            "later_year_columns_used": False}
+            "other_election_columns_used": False}
 
 
 def inspect_capture(body, receipt):
