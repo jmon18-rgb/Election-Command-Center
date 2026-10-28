@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-28T12:22:48.241196Z",
+  "updated_at": "2026-10-28T13:09:19.886892Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -7,8 +7,8 @@
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
-    "advisory_related_headline_buckets": 24,
-    "advisory_related_headlines": 62
+    "advisory_related_headline_buckets": 25,
+    "advisory_related_headlines": 63
   },
   "advisory_related_headlines": [
     {
@@ -34,19 +34,6 @@
       "topic_hints": [
         "ballot_access",
         "litigation"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "444a238fe9159b1ce81d",
-      "headline": "Could California lose ballots over DOJ non-citizen voter claims? - The Desert Sun",
-      "possibly_related_articles": 3,
-      "distinct_publishers": 3,
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -88,6 +75,19 @@
       "topic_hints": [
         "ballot_access",
         "litigation"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "444a238fe9159b1ce81d",
+      "headline": "Could California lose ballots over DOJ non-citizen voter claims? - The Desert Sun",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -273,6 +273,23 @@
       "publisher": "Punch Newspapers",
       "published_at": "2026-10-28T12:11:15Z",
       "detected_at": "2026-10-28T12:22:48.241196Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "7f2534ce4828dab3090e",
+      "title": "Court dismisses Emeka Ike\u2019s N10bn suit against Wike\u2019s aide - Punch Newspapers",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQcEJkQS1nVUhqbkpPZzBzam9YRWYycUxYbUFVU2RhVXI1dGRJUWRRRHllaHFkSW1sOWozQlBSOTU3cW1odU9zV3RuOGY0eGw5U1lKNF9iRDU0cWRNdXMzVzQ2Z3BNZmNxNjc1cnRSSTZtQUZKTHlfUkFDVWZEdXF5Yks2VTBORHlu?oc=5",
+      "publisher": "Punch Newspapers",
+      "published_at": "2026-10-28T12:00:15Z",
+      "detected_at": "2026-10-28T13:09:19.886892Z",
       "state_hints": [],
       "topic_hints": [
         "litigation"
@@ -5030,25 +5047,6 @@
       "publisher": "Victorville Daily Press",
       "published_at": "2026-10-15T20:45:00Z",
       "detected_at": "2026-10-15T21:45:44.524382Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "673a87ab1950c7c7c7db",
-      "title": "Could California lose ballots over DOJ non-citizen voter claims? - Salinas Californian",
-      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPbThicmg0b3hpcGR4SnptUVp2Q1FSRmVpZU5hTWY3NzM3cGNTbkpya09aU0xfU055eVF3X1daVnB2REJ1cm5ROTZsTUZUQnRLX0l5ZEVHVFVxYXBwWVJKN2tnRHFSem5zell6eFZyTUx4Q3ZBSF84aUFrZlNTUlU4OWpZY3hKN2pSYzFQaUhFb2F0cS1yODhYVXBQeHlrdTBpdGpSWDRBZFZta3A4OGpSZnE2ZUVSZFBWYzlDU3gzZG1scDBuMW1wNUlTQ3JkWlJadkZaWU5fazhYbEoxRjFmcXdfSGF1UHot?oc=5",
-      "publisher": "Salinas Californian",
-      "published_at": "2026-10-15T20:45:00Z",
-      "detected_at": "2026-10-15T21:56:08.678818Z",
       "state_hints": [
         "CA"
       ],
