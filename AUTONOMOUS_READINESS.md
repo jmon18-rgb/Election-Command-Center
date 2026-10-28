@@ -1,5 +1,12 @@
 # Election Night production-readiness assignment
 
+## 2026-10-28 — R6 Iowa Blue Corn candidate (NOT deployed)
+
+- Named ready task: original shared SVG first-blue-kernel reveal, staggered21-kernel blue transformation, BlueCorn statewide finale. Reuses original milestone-blue-corn.svg vocabulary, original poster/fallback and released Electric harvest two-step. Existing any-of Iowa Senate OR governor Democratic-call guard retained; scene does not mislabel as Senate-only or require both. Explicit preview/no-real-victory, no geography/counts claim. No source/model/cadence/budget/callreader/eligibility/media/dependency changes.
+- ActualEdge1440/390 all11stories PASS including Iowa3beats/real compositor color transition/reducedmotion allblue endpoint/completefinale/skip-replay/archive/missingrenderer. Screenshots celebration-iowa-beat0/1/2-{1440,390}.png visually inspected. New exact color assertion initially used fixture timer, which does not advance WAAPI compositor; corrected to observe actual computed color with normal browser wait before fixture timer advancement, retaining exact blue assertion. Existing signals/queue/retraction/11scores PASS.75fingerprints/UTF8 final checks and all new exact-head CI required, then finalCURRENTmainPages/actualbytes/ordinarypreview before release claim.
+- Prior8cdfNebraska proof incorporated in coherent branch. R3humanOct29/fullR8Oct30/R2recordedno-go/18routes/sixownerSenatepaths/fourmissing unchanged. No nativeprobe/securityretry or unchanged demos. Optional finishing mustnot outrank critical forecast/UI repairs/handoff/freeze. Remaining Maine/Ohio/BLEXAS/Tsunami partial. Next protected review; dailyOct28 after09Eastern/13Z, notify only newverified milestone.
+
+
 ## 2026-10-28 05:42 UTC — R6 Nebraska sideline VERIFIED PUBLISHED
 
 - PR512 merged27874b5193e51bc2ad635c46889ad9b01a651301 after ALL35 exact-head parents SUCCESS /50latestjobs47success3nonapplicable deployed-only skips /0external /currentc76ea1ebd48d11ea14cd15d421949cb3b74636f8 clean/mergeable. Readiness40638519994/national40638520029/fullDOM40638519979 SUCCESS. No CI failure/rerun/waiver/timeout increase. Initial local multiline assertion corrected to retain all required labels; no product assertion removed. Prior e5a59Graham checkpoint incorporated coherently.

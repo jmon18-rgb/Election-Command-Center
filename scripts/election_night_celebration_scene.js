@@ -26,6 +26,7 @@
   if(host&&id==='blansas'&&['scene','complete'].includes(phase))return renderKansas(host,{phase,beat,preview});
   if(host&&id==='graham'&&['scene','complete'].includes(phase))return renderGraham(host,{phase,beat,preview});
   if(host&&id==='nebraska'&&['scene','complete'].includes(phase))return renderNebraska(host,{phase,beat,preview});
+  if(host&&id==='blue_corn'&&['scene','complete'].includes(phase))return renderIowa(host,{phase,beat,preview});
   if(!host||id!=='talarico'||!['scene','complete'].includes(phase))return false;
   const index=phase==='complete'?2:beat;
   if(!Number.isInteger(index)||index<0||index>2)return false;
@@ -204,6 +205,29 @@
   }
   svg.append(text('FOOTBALL SATIRE · COACH OSBORNE ≠ CANDIDATE OSBORN',490,480,20,'#c8d3c3'),text(preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL',490,520,17,'#bfdbe1'));
   return finish(host,svg,animated,'nebraska',index,phase);
+ }
+ function renderIowa(host,{phase,beat,preview}){
+  const index=phase==='complete'?2:beat;if(!Number.isInteger(index)||index<0||index>2)return false;
+  const doc=host.ownerDocument,el=(tag,attrs={},label)=>{const n=doc.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,String(v));if(label!==undefined)n.textContent=label;return n;};
+  const text=(label,x,y,size=28,color='#f0faff')=>el('text',{x,y,'text-anchor':'middle','font-family':'Arial,sans-serif','font-size':size,'font-weight':800,fill:color},label);
+  const svg=el('svg',{viewBox:'0 0 980 540',role:'img','aria-label':'Iowa Blue Corn cartoon transformation; Senate or governor event, not a reporting map; '+(preview?'simulated preview':'source-reported unofficial call'),'data-scene':'blue_corn','data-beat':index}),animated=[];
+  svg.append(el('rect',{width:980,height:540,rx:24,fill:'#123c45'}),text('IOWA · STATEWIDE',490,43,23,'#b6e6e7'));
+  if(index<2){
+   svg.append(text(index===0?'SOMETHING IN THE CORN':'BLUE KERNELS EVERYWHERE',490,100,34));
+   const ear=el('g',{'data-layer':'iowa-corn-ear',transform:'translate(490 300) scale(.8)'});
+   ear.append(el('path',{d:'M-50 178C-171 110-171 25-109-105Q-104 18-24 30',fill:'#77c6a2'}),el('path',{d:'M48 173C171 91 171-6 118-112Q94 14 17 33',fill:'#55c994'}),el('rect',{x:-63,y:-152,width:126,height:293,rx:63,fill:index===0?'#b99b43':'#2b77db',stroke:'#a8dce5','stroke-width':7}));
+   for(let row=0;row<7;row++)for(let col=0;col<3;col++){
+    const seed=row===3&&col===1,blue=index===1||seed,kernel=el('ellipse',{cx:-33+col*33+(row%2?11:0),cy:-119+row*39,rx:16,ry:21,fill:blue?'#80d8ff':'#edc965','data-layer':seed?'first-blue-kernel':'corn-kernel'});ear.append(kernel);
+    if(index===1)animated.push({node:kernel,frames:[{fill:'#edc965'},{fill:'#80d8ff'}],duration:850,delay:row*90+col*40});
+    else if(seed)animated.push({node:kernel,frames:[{fill:'#edc965'},{fill:'#80d8ff'}],duration:1200});
+   }
+   svg.append(ear,text(index===0?'ONE BLUE KERNEL OF TRUTH':'PLEASE REMAIN CORNY',490,465,27,'#cbe9c1'));
+  }else{
+   const card=el('g',{'data-layer':'iowa-blue-corn-finale',style:'transform-box:fill-box;transform-origin:center'});card.append(el('rect',{x:110,y:130,width:760,height:285,rx:24,fill:'#106fab',stroke:'#a8e8ff','stroke-width':6}),text('BLUE CORN',490,220,62),text('AN ENTIRELY NORMAL HARVEST',490,292,31,'#cfedc7'),text('IOWA SENATE OR GOVERNOR',490,365,27));svg.append(card);
+   animated.push({node:card,frames:[{opacity:0,transform:'scale(.9)'},{opacity:1,transform:'scale(1)'}],duration:750});
+  }
+  svg.append(text(preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL',490,520,17,'#bfdfe9'));
+  return finish(host,svg,animated,'blue_corn',index,phase);
  }
  return Object.freeze({render,clear});
 });
