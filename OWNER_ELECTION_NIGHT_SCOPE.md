@@ -1,5 +1,10 @@
 # Personal election-night dashboard — owner scope, October 27
 
+## October28 owner expansion — Texas and21House early watch
+
+Texas Senate explicitly joins the personal needles using its existing joint-model and county path; retain Texas governor coverage. Current personal display is eleven Senate plus eight pivotal House, separate from the unchanged18county-input budget. Additional21district House watch: FL25/14/22/13/27/09/07/16/04/08/12,GA07,NC11/01/03/13/09,SC01,VA02/01/05. Exact owner-supplied Cook/FLIPR reference labels/probabilities/projected margins are separate from our current shared-model estimates; publisher date/version not supplied and no independent verification claimed. Multiple distinct current validated R calls in Lean D or D calls in Likely/Solid R form reference-surprise signals, clearing on retraction. No duplicated national likelihood, forecasts averaged back, raw-margin outperformance claim or new native routes. VA02's existing matched evidence stays available; NC01 geography remains excluded. Older ten-race/count snapshots below are historical.
+
+
 Nebraska PR507 VERIFIED PUBLISHED on final7e4b163d/Pages40625644392/368matchingfiles. Named Osborn/Ricketts paired evidence and labels, no Democratic ballot/caucus conversion. Historical2024 different-seat support transfer is experimental/unfitted, anchored to current race expectation. See NEBRASKA_SENATE_COUNTY_CONTRACT.md.18inputs/six owner Senate paths programmed; MI/MN/MS/AK remain. No positive2026 delivery/chronology/calibration acceptance.
 
 The owner explicitly expands the former national-only presentation scope: individual

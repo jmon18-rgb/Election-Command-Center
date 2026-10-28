@@ -1,9 +1,9 @@
 /* Personal race display, not another forecasting or source-ingestion model. */
-(function(root,factory){const api=factory();if(typeof module!=='undefined'&&module.exports)module.exports=api;if(root)root.PersonalElectionFocus=api;})(typeof window!=='undefined'?window:null,function(){
+(function(root,factory){const api=factory(typeof module!=='undefined'&&module.exports?require('./house_early_watch_reference.js'):root?.HouseEarlyWatchReference);if(typeof module!=='undefined'&&module.exports)module.exports=api;if(root)root.PersonalElectionFocus=api;})(typeof window!=='undefined'?window:null,function(WATCH){
  'use strict';
- const SENATE=Object.freeze(['IA','KS','ME','OH','MI','NE','SC','MN','MS','AK']);
+ const SENATE=Object.freeze(['IA','KS','ME','OH','MI','NE','SC','MN','MS','TX','AK']);
  const HOUSE=Object.freeze(['VA-02','PA-10','PA-07','PA-08','MI-07','NY-17','WI-03','AZ-06']);
- const CONNECTED=new Set(['IA-SEN','KS-SEN','ME-SEN','OH-SEN','SC-SEN','NE-SEN',...HOUSE]);
+ const CONNECTED=new Set(['IA-SEN','KS-SEN','ME-SEN','OH-SEN','SC-SEN','NE-SEN','TX-SEN',...HOUSE]);
  const finite=x=>typeof x==='number'&&Number.isFinite(x),chance=x=>finite(x)&&x>=0&&x<=100;
  const time=x=>Number.isFinite(x)?new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit'}).format(x)+' ET':'Time unverified';
  const margin=(x,positive='D',negative='R')=>Math.abs(x)<.05?'Even':(x>0?positive+'+':negative+'+')+Math.abs(x).toFixed(1);
@@ -110,12 +110,13 @@
   details.append(el('small','Shows latest 8 of up to '+HISTORY_LIMIT+' records retained for 72 hours within '+HISTORY_BYTES+' characters. This is a bounded local trend, not a complete raw source archive.'));
   return details;
  }
- function rows(result,baseline,{year=2026,now=Date.now(),closes,evidence=[],simulated=false}={}){
+ function rows(result,baseline,{year=2026,now=Date.now(),closes,evidence=[],simulated=false,watch=false}={}){
   if(year!==2026)return [];
   const current=new Map((result?.race_probabilities||[]).map(x=>[x.race_code,x]));
   const prior=new Map((baseline?.race_probabilities||[]).map(x=>[x.race_code,x]));
   const used=new Map((result?.county_results_update?.used||[]).map(x=>[x.code,x]));
-  return [...SENATE.map(state=>({code:state+'-SEN',office:'Senate',key:state==='OH'?'OH-special':state})),...HOUSE.map(code=>({code,office:'House',key:code}))].map((spec,order)=>{
+  const specs=watch?(WATCH?.districts||[]).map(x=>({code:x.code,office:'House',key:x.code})): [...SENATE.map(state=>({code:state+'-SEN',office:'Senate',key:state==='OH'?'OH-special':state})),...HOUSE.map(code=>({code,office:'House',key:code}))];
+  return specs.map((spec,order)=>{
    const state=spec.code.slice(0,2),entry=current.get(spec.code),base=prior.get(spec.code);
    const first=closes?.floorFor(spec.key),last=closes?.winnerFloorFor(spec.office,spec.key);
    const direct=state==='AK'?null:used.get(spec.code),ownCounts=Boolean(direct),called=state!=='AK'&&['D','R'].includes(entry?.provider_called_party)&&!(state==='NE'&&entry?.provider_called_party==='D');
@@ -131,7 +132,7 @@
    const window=Number.isFinite(first)?time(first)+(Number.isFinite(last)&&last!==first?(state==='KS'?' · conservative call gate ':'–')+time(last):''):'Time unverified';
    const displayRating=rating(pct,{positive:left,negative:state==='NE'?'Ricketts':'R',calledParty:called?entry.provider_called_party:null});
    if(state==='NE'&&displayRating.state==='forecast')displayRating.label='Paired · '+displayRating.label;
-   return {...spec,state,order,left,pct,delta,status,sourceAt,ownCounts,called,rating:displayRating,simulated:simulated||result?.county_results_update?.status==='SIMULATED_NATIONAL_REHEARSAL',
+   return {...spec,state,order,left,pct,delta,status,sourceAt,ownCounts,called,calledParty:called?entry.provider_called_party:null,rating:displayRating,simulated:simulated||result?.county_results_update?.status==='SIMULATED_NATIONAL_REHEARSAL',
     count:direct&&finite(direct.counted_two_party_votes)?direct.counted_two_party_votes:null,
     performance:direct?.matched_performance||null,
     first,last,window,started:Number.isFinite(first)&&now>=first,
@@ -143,6 +144,8 @@
  // separate from the temporary DOM node and from all model/source evidence.
  function captureFocus(host,target=host?.ownerDocument.activeElement){
   if(!host||!target||!host.contains(target))return null;
+  const watch=target.closest('.early-watch');if(watch)return {kind:'watch',race:target.closest('[data-watch-race]')?.dataset.watchRace||null};
+  if(target.dataset.personalJump)return {kind:'jump',race:target.dataset.personalJump};
   const card=target.closest('.personal-focus-card');
   if(card)return {kind:'race',race:card.dataset.race,disclosure:target.closest('summary')?.parentElement.dataset.disclosure||null};
   const history=target.closest('.personal-focus-history');
@@ -152,6 +155,8 @@
  }
  function focusTarget(host,bookmark){
   if(!host||!bookmark)return null;
+  if(bookmark.kind==='watch')return Array.from(host.querySelectorAll('[data-watch-race]')).find(x=>x.dataset.watchRace===bookmark.race)?.querySelector('summary')||host.querySelector('.early-watch > details > summary');
+  if(bookmark.kind==='jump')return Array.from(host.querySelectorAll('[data-personal-jump]')).find(x=>x.dataset.personalJump===bookmark.race);
   if(bookmark.kind==='ratings')return host.querySelector('.personal-focus-rating-key > summary');
   if(bookmark.kind==='history'){
    const history=host.querySelector('.personal-focus-history');
@@ -165,8 +170,38 @@
   }
   return null;
  }
+
+ function watchSummary(data){
+  const groups=[['Lean D','R','R wins in Lean D'],['Likely R','D','D wins in Likely R'],['Solid R','D','D wins in Solid R']];
+  return groups.map(([cook,party,label])=>{const eligible=new Set((WATCH?.districts||[]).filter(x=>x.cook===cook).map(x=>x.code));const calls=data.filter(x=>eligible.has(x.code)&&x.calledParty===party).map(x=>x.code);return {label,party,total:eligible.size,calls,multiple:calls.length>=2};});
+ }
+ function renderWatch(doc,result,baseline,options,previous,el){
+  const section=el('section','early-watch'),data=rows(result,baseline,{...options,watch:true}),simulated=data.some(x=>x.simulated);
+  section.append(el('h3','',(simulated?'SIMULATED · ':'')+'Early House indicators'),el('p','methodline','Your 21-district watch · compare results with the reference expectations. A pattern across distinct races is more informative than one upset; it does not guarantee a national outcome.'));
+  if(!WATCH){section.append(el('p','','Owner reference unavailable; the shared model remains separate.'));return section;}
+  const signals=el('div','early-watch-signals');
+  for(const g of watchSummary(data)){const box=el('div','early-watch-signal');box.dataset.multiple=String(g.multiple);box.append(el('strong','',g.calls.length+' / '+g.total+' · '+g.label),el('small','',g.calls.length?g.calls.join(', ')+' · validated '+g.party+' calls':'Awaiting validated '+g.party+' calls'));signals.append(box);}
+  section.append(signals,el('p','methodline','Uncalled leads do not count as wins. These signals follow current validated calls and clear on retraction. Admitted returns and calls already affect the shared model once; the watch adds no second adjustment.'));
+  const details=el('details','early-watch-list');details.open=Boolean(previous?.open);details.append(el('summary','','Inspect all 21 districts · current needles and reference expectations'));
+  details.append(el('p','methodline',WATCH.source+'. Publisher date / version not supplied; not independently verified. Cook and FLIPR labels are their quoted reference bands, separate from our model bands. Selection does not promise fast returns; partial raw margins are not matched outperformance.'));
+  const priorOpen=new Set(previous?.races||[]),refs=new Map(WATCH.districts.map(x=>[x.code,x]));
+  for(const row of data){
+   const ref=refs.get(row.code),item=el('details','early-watch-race');item.dataset.watchRace=row.code;item.open=priorOpen.has(row.code);
+   const summary=el('summary','');summary.append(el('strong','',row.code),el('span','early-watch-rating',(simulated?'SIMULATED · ':'')+row.rating.label),el('span','',row.pct===null?'Model pending':'D '+row.pct.toFixed(1)+'% model chance'));item.append(summary);
+   item.append(el('p','early-watch-reference','Owner reference · Cook '+ref.cook+' | FLIPR '+ref.flipr+' · R win '+ref.rep_win_pct.toFixed(1)+'% · projected '+ref.margin_side+'+'+ref.margin_points.toFixed(1)));
+   const gauge=el('div','early-watch-gauge');gauge.setAttribute('role','img');gauge.setAttribute('aria-label',row.code+' '+row.rating.label+'; '+(row.pct===null?'model chance unavailable':'D model chance '+row.pct.toFixed(1)+' percent')+'; forecast unless validated call');if(row.pct!==null){const marker=el('span','');marker.style.left=row.pct+'%';gauge.append(marker);}item.append(gauge);
+   item.append(el('p','',(simulated?'SIMULATED · ':'')+row.status+(row.sourceAt?' · '+(row.ownCounts?'Count':'Call')+' source time '+time(Date.parse(row.sourceAt)):'')),el('small','','Poll-close window · '+row.window+' · eligibility, not an arrival promise'));
+   if(row.note)item.append(el('small','',row.note));
+   if(row.performance&&Array.isArray(row.performance.difference_margin_scenarios)&&row.performance.difference_margin_scenarios.length===2&&row.performance.difference_margin_scenarios.every(finite))item.append(el('p','','Matched-area performance · '+range(row.performance.difference_margin_scenarios)+' margin points vs expected. Inspect the shared race card for areas and assumptions.'));
+   if(row.code!=='VA-02')item.append(el('small','','No additional county route is admitted for this watch. Statewide or partial district returns alone do not establish matched district performance.'));
+   details.append(item);
+  }
+  section.append(details);return section;
+ }
+
  function render(host,result,baseline,options={}){
   if(!host)return;const data=rows(result,baseline,options);host.hidden=!data.length;
+  const watchOld=host.querySelector('.early-watch-list'),watchState={open:watchOld?.open,races:Array.from(watchOld?.querySelectorAll('[data-watch-race][open]')||[]).map(x=>x.dataset.watchRace)},watchFocus=captureFocus(host);
   const oldHistory=host.querySelector('.personal-focus-history'),active=host.ownerDocument.activeElement;
   const oldRatingKey=host.querySelector('.personal-focus-rating-key'),ratingKeyOpen=Boolean(oldRatingKey?.open),ratingKeyFocused=Boolean(oldRatingKey?.contains(active));
   const historyOpen=Boolean(oldHistory?.open),historyFocused=Boolean(oldHistory?.contains(active));
@@ -180,7 +215,7 @@
   host.replaceChildren();if(!data.length)return;
   const doc=host.ownerDocument,el=(tag,cls,text)=>{const n=doc.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;};
   const simulated=data.some(x=>x.simulated);
-  host.append(el('h2','',(simulated?'SIMULATED · ':'')+'Your election-night needles'),el('p','methodline',simulated?'FICTIONAL COUNTS · NOT LIVE. These race needles share this simulated national update; the live dashboard is unchanged.':'Same race forecasts as the national model. Own validated returns enter once; race probabilities are never averaged back into it. Order follows admitted evidence and poll-close windows, not a promise of when votes will arrive.'));
+  host.append(el('h2','',(simulated?'SIMULATED · ':'')+'Your election-night needles'),el('p','methodline',simulated?'FICTIONAL COUNTS · NOT LIVE. These race needles share this simulated national update; the live dashboard is unchanged.':'Experimental, uncalibrated forecasts from the same national model. Own validated returns enter once; race probabilities are never averaged back into it. Order follows admitted evidence and poll-close windows, not a promise of when votes will arrive.'));
   host.append(el('p','personal-focus-next','Focus now / next: '+data.filter(x=>x.state!=='AK').slice(0,3).map(x=>x.code+' · '+x.window).join(' | ')));
   const ratingKey=el('details','personal-focus-rating-key');ratingKey.open=ratingKeyOpen;ratingKey.append(el('summary','','How to read the ratings'),el('p','','Forecast bands use this same model chance: Safe 95%+, Likely 80%+, Leaning 60%+, otherwise Toss-up. A victory label requires a validated source call; a high chance or vote lead is not a call. Nebraska is a paired Osborn-versus-Ricketts forecast, not five-way win odds.'));host.append(ratingKey);if(ratingKeyFocused)ratingKey.querySelector('summary').focus({preventScroll:true});
   if(options.history){
@@ -192,8 +227,11 @@
    }
    if(historyFocused)historyTarget?.focus({preventScroll:true});
   }
+  host.append(renderWatch(doc,result,baseline,options,watchState,el));
+  const nav=el('nav','personal-focus-jumps');nav.setAttribute('aria-label','Jump to your watch');
+  for(const [key,label]of [['watch','Early House watch'],['TX-SEN','Texas Senate needle']]){const button=el('button','',label);button.type='button';button.dataset.personalJump=key;button.addEventListener('click',()=>{const target=key==='watch'?host.querySelector('.early-watch > h3'):host.querySelector('[data-race="TX-SEN"] h4');if(target){target.tabIndex=-1;target.focus({preventScroll:true});target.scrollIntoView({block:'start'});}});nav.append(button);}host.insertBefore(nav,host.querySelector('.personal-focus-next'));
   for(const office of ['Senate','House']){
-   const group=el('section','');group.append(el('h3','',office==='Senate'?'Your ten Senate races':'House power-flip watch'));
+   const group=el('section','');group.append(el('h3','',office==='Senate'?'Your eleven Senate races':'House power-flip watch'));
    const grid=el('div','personal-focus-grid');
    for(const row of data.filter(x=>x.office===office)){
     const card=el('article','personal-focus-card');card.dataset.race=row.code;
@@ -233,7 +271,8 @@
    group.append(grid);host.append(group);
   }
   host.append(el('p','methodline','Probability changes are not vote-margin outperformance. Matched county performance remains the model evidence. NC01/AZ01 boundary contracts are still pending; existing TX and WA03 integrations remain available. KS uses the existing conservative final-call gate pending county-hours review. Experimental and uncalibrated; a forecast is not a result.'));
+  if(['watch','jump'].includes(watchFocus?.kind))focusTarget(host,watchFocus)?.focus({preventScroll:true});
   if(focusedRace){const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(c=>c.dataset.race===focusedRace),target=Array.from(card?.querySelectorAll('details')||[]).find(d=>d.dataset.disclosure===focusedDisclosure);(target?.querySelector('summary')||card?.querySelector('details > summary')||card?.querySelector('h4'))?.focus({preventScroll:true});}
  }
- return Object.freeze({SENATE,HOUSE,rows,render,rating,captureFocus,focusTarget,createHistory,HISTORY_KEY,HISTORY_LIMIT,HISTORY_BYTES});
+ return Object.freeze({SENATE,HOUSE,rows,render,rating,watchSummary,WATCH,captureFocus,focusTarget,createHistory,HISTORY_KEY,HISTORY_LIMIT,HISTORY_BYTES});
 });

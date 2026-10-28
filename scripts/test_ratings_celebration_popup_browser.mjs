@@ -21,9 +21,9 @@ try{
    return route.abort();
   });
   await page.goto(`http://127.0.0.1:${server.address().port}/#electionNight`,{waitUntil:'domcontentloaded'});await page.locator('#enMode2026').click();
-  await page.waitForFunction(()=>document.querySelectorAll('#enPersonalFocus article').length===18);
+  await page.waitForFunction(()=>document.querySelectorAll('#enPersonalFocus article').length===19);
   const numbers=await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities));
-  assert.equal(await page.locator('#enPersonalFocus .personal-focus-rating').count(),18);
+  assert.equal(await page.locator('#enPersonalFocus .personal-focus-rating').count(),19);
   assert.equal(await page.locator('#enPersonalFocus [data-race="AK-SEN"] .personal-focus-rating').innerText(),'Rating pending');
   const key=page.locator('#enPersonalFocus .personal-focus-rating-key > summary');await key.click();
   await page.evaluate(()=>renderPersonalElectionFocus());assert.equal(await page.locator('#enPersonalFocus .personal-focus-rating-key').evaluate(e=>e.open),true);

@@ -17,8 +17,8 @@ try{
   await page.route('**/*',route=>new URL(route.request().url()).hostname==='127.0.0.1'?route.continue():route.abort());
   await page.goto('http://127.0.0.1:'+server.address().port+'/',{waitUntil:'domcontentloaded'});
   await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();
-  await page.waitForFunction(()=>document.querySelectorAll('#enPersonalFocus article svg').length===17);
-  assert.equal(await page.locator('#enPersonalFocus article').count(),18);
+  await page.waitForFunction(()=>document.querySelectorAll('#enPersonalFocus article svg').length===18);
+  assert.equal(await page.locator('#enPersonalFocus article').count(),19);
   assert.match(await page.locator('#enPersonalFocus [data-race="AK-SEN"]').innerText(),/Needle pending/);
   assert.match(await page.locator('#enPersonalFocus [data-race="NE-SEN"]').innerText(),/Osborn.*model chance vs Ricketts.*Independent; no assumed Democratic caucus/s);
   assert.doesNotMatch(await page.locator('#enPersonalFocus [data-race="MI-SEN"]').innerText(),/Own county returns used/);
@@ -27,7 +27,7 @@ try{
   const liveBefore=await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities));
   await page.locator('#enNationalRehearsal > summary').click();
   await page.locator('#enNationalRehearsal > details > summary').click();
-  await page.waitForFunction(()=>document.querySelectorAll('#enPersonalFocusPreview article').length===18);
+  await page.waitForFunction(()=>document.querySelectorAll('#enPersonalFocusPreview article').length===19);
   assert.match(await page.locator('#enPersonalFocusPreview').innerText(),/SIMULATED.*FICTIONAL COUNTS/s);
   await page.locator('#enNationalNext').click();await page.waitForFunction(()=>document.querySelector('#enNationalStage').textContent.includes('2/5'));
   const ksPreview=page.locator('#enPersonalFocusPreview [data-race="KS-SEN"]');
