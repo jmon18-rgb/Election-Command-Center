@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-28T10:57:19.435156+00:00",
+  "updated_at": "2026-10-28T11:55:19.417339+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -13,27 +13,71 @@
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 944,
+      "available_in_source": 946,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 318,
-  "newly_injected_into_model": 3,
+  "matched_primary_observations": 321,
+  "newly_injected_into_model": 2,
   "injected_poll_ids": [
     {
+      "race_code": "GA-GOV",
+      "poll_id": "74059c54-74ed-4314-b9a3-c95d31ad73ca"
+    },
+    {
       "race_code": "NY-GOV",
-      "poll_id": "0203080e-3810-4fbc-81dd-865ee8135c27"
-    },
-    {
-      "race_code": "OH-GOV",
-      "poll_id": "ef2061ce-8aa7-4866-8db0-835e849dd546"
-    },
-    {
-      "race_code": "OH-SEN",
-      "poll_id": "ef2061ce-8aa7-4866-8db0-835e849dd546"
+      "poll_id": "1d724491-06cd-4d75-a60d-d2c9b03636a6"
     }
   ],
   "observations": [
+    {
+      "race_code": "GA-GOV",
+      "race_type": "governor",
+      "state": "GA",
+      "poll_id": "74059c54-74ed-4314-b9a3-c95d31ad73ca",
+      "question_id": "a651caa2-45d8-4411-81a8-9b2b9e098d65",
+      "pollster": "State Navigate",
+      "dem_name": "Keisha Lance Bottoms",
+      "rep_name": "Rick Jackson",
+      "dem": 50.0,
+      "rep": 47.0,
+      "margin": 3.0,
+      "field_end": "2026-10-27",
+      "field_start": "2026-10-23",
+      "posted_date": "2026-10-28",
+      "posted_source_datetime": "2026-10-28T07:13:00",
+      "posted_source_time": "10/28/26 07:13",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://articles.statenavigate.com/ga/keisha-lance-bottoms-holds-narrow-lead-in-georgia-governor-race/",
+      "sample_population": "lv",
+      "sample_size": 741,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "NY-GOV",
+      "race_type": "governor",
+      "state": "NY",
+      "poll_id": "1d724491-06cd-4d75-a60d-d2c9b03636a6",
+      "question_id": "a7d0c2d9-34f7-4db9-a815-984f37db37fa",
+      "pollster": "Siena University",
+      "dem_name": "Kathy Hochul",
+      "rep_name": "Bruce Blakeman",
+      "dem": 54.0,
+      "rep": 40.0,
+      "margin": 14.0,
+      "field_end": "2026-10-22",
+      "field_start": "2026-10-19",
+      "posted_date": "2026-10-28",
+      "posted_source_datetime": "2026-10-28T07:04:00",
+      "posted_source_time": "10/28/26 07:04",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://sri.siena.edu/2026/10/28/siena-poll-of-likely-new-york-state-voters/",
+      "sample_population": "lv",
+      "sample_size": 807,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "OH-SEN",
       "race_type": "senate",

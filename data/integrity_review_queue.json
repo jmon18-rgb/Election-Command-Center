@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-28T10:57:18.767183Z",
+  "updated_at": "2026-10-28T11:55:18.720607Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 5,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
-    "advisory_related_headline_buckets": 25,
-    "advisory_related_headlines": 64
+    "advisory_related_headline_buckets": 24,
+    "advisory_related_headlines": 62
   },
   "advisory_related_headlines": [
     {
@@ -88,32 +88,6 @@
       "topic_hints": [
         "ballot_access",
         "litigation"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "b91c1685054abb4fde2b",
-      "headline": "Trump administration sues California over noncitizens on voter rolls - Al Jazeera",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "registration"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "7d2c6bc7a1afc4ae6892",
-      "headline": "US Justice Dept sues California to block votes from alleged noncitizens - WTVB",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -264,9 +238,105 @@
         "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "b0681272106aa9eb73ad",
+      "headline": "U.S. appeals court appears skeptical of Trump DOJ\u2019s lawsuit over California voter rolls - NBC News",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "litigation",
+        "registration"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "e41cd87f2b577228601d",
+      "headline": "Thousands of observers expected to monitor polling sites nationwide on Election Day - WNEP",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "ca7c3c5ace461b9c1e6f",
+      "title": "Ballots in the hallway: How California can restore lagging faith in our elections - The Hill",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPSE10NF95UTZBQjRLOURQWFhmMnlEYzhPNWZPbE85X0FLX19Pb1ZaVGdiM2l3TzBNR1YxUTJ1ZXYwVlQwamJsTDVINy15dXZwYVRkTG9xTk1nV1pZZXRESHRGNTJjR1d2RGNXLWZDZEVMcFhqVWY0R1U3MHp1VThIWjZxczZnMFNpTmJGMTEzT1o0YzFLS3Z3ZmxKb3Zjd192M0g4ejRlVkpMQm5UX2xxVjFpVGhXcTMtQ3hSYVNIM0s4UHNH0gHKAUFVX3lxTE1fQVNsVzZHYVk5dFFwM291eVlVMHU0ZDJmVEx4VHVXOTdWdkdJTjdXREc5SlItNmJoUEV6SThUSElYREJ3SU5yaXRNdWU3NEJyQkl1S2NKeXFmYjNCeWZKTUs0UWNKY0lCT1Y2VjNjOTV4d0dydWlvYVh5SWhlbUJPTUtzdzVKb2txRGszN2tJbW1rdjRfMVczRTdpaDgteXVMRGp0OE5lR1hjR3FTV1N3MjJEdjNzdDJSUmZMeUkzeVNkZ2F0ZHJsdmc?oc=5",
+      "publisher": "The Hill",
+      "published_at": "2026-10-28T11:48:42Z",
+      "detected_at": "2026-10-28T11:55:18.720607Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "2667834ccb39f857104f",
+      "title": "AICC Observer Umedaram Beniwal calls for protection of every eligible vote, questions Electoral Roll transparency__ - Babushahi.com",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9VcUd2RnlaRWtjVFR1UGx1MndWS3R5RXh0aWR4X1k0OU5mOFBRcGdHUDdiaFRMLUJHbjJoT3BBelM1Rm8wblBMSW40cXRzZ3VmMEVXdnNhOHZna05jSVE?oc=5",
+      "publisher": "Babushahi.com",
+      "published_at": "2026-10-28T11:32:00Z",
+      "detected_at": "2026-10-28T11:55:18.720607Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "7118a47a2e7e5904afed",
+      "title": "Liberman's Yisrael Beytenu projected to win seven seats in next Knesset, election data predicts - The Jerusalem Post",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBpZ19GcmpBQXpOYXBMRFhGMy1PY003SUZ1M2dqZDQweHp4WXFJODFtcVFmSEhiMUVWY0tESEVyNkMxM2wySXhuek83Z1dGYmU0VWRkbFp3YjlYSEJVSlhWb0traDNOdEdu?oc=5",
+      "publisher": "The Jerusalem Post",
+      "published_at": "2026-10-28T11:07:56Z",
+      "detected_at": "2026-10-28T11:55:18.720607Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "294abe880d4def5a6c06",
+      "title": "If you see federal agents near a polling place, what are your rights? - Houston Chronicle",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNRHZXWEp1WC1DbzMwam4zck9Yb3R6aEN1dTVBektkTmc5dURNZWd5ZjZQM0ZvVW1RZnFYcTV5dGdVWU4yOHh0aEVQRzdtUXBtRlo2X2tvVzZwV05JSmk1V2tqQ1NTcWNteWJmVV8xTVY1OG5mWGpvaU03ZEk5VThPLVNjNkxZTGpXMHlqS3VLWk9leVFTZ3FUcUxVWE96Nm92MU1mTVNkMlZfNGc3dnUwdWdR?oc=5",
+      "publisher": "Houston Chronicle",
+      "published_at": "2026-10-28T11:04:18Z",
+      "detected_at": "2026-10-28T11:55:18.720607Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "ac15969e32a3e5919c03",
       "title": "Liberman's Yisrael Beytenu projected to win eight seats in next Knesset, election data predicts - The Jerusalem Post",
@@ -294,6 +364,23 @@
       "state_hints": [],
       "topic_hints": [
         "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "32c23a877e920319a463",
+      "title": "Britain's Charles Caribbean tour acknowledging 'injustices of the past' - Saudi Gazette",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNU0YtM2hSTnpTMC0xSThLR3pqX2V2OWFkZVFaajFGcFE0cm9YbS0wV1hVSWRBUUVMa1VzekxxVjNPRU1tR210MTl1MTZ2cmtZeWJDU3pObVpkMUdUX3BuSEJZR3pHOEdGdm1Dd1lpcllNaWVUTUpvSDFVcFN2ejEwbjZkLXBBUzNtc3BCd2ItQ2pUenMyXzNkVUFwcE1ZNUk3VmxKUVA0OGxpWDlpNWpOQzM3NzV2RDVB?oc=5",
+      "publisher": "Saudi Gazette",
+      "published_at": "2026-10-28T06:48:00Z",
+      "detected_at": "2026-10-28T11:55:18.720607Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -4972,98 +5059,6 @@
         "litigation"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "1db37435260b8ef5a514",
-      "title": "Trump administration sues California to block counting of alleged noncitizen mail ballots - PBS",
-      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPc1NPdm1TZE1LeUh4X0lZd01tM0FwWWpBbDNtNDR3YnVmWE9PblJoX2RnMXdGQXV0VHpxbGFyRldITHZvUlNnZUFucmdqamZlbnVyUWpISFljc0g5M0dWQVFQaTZld1YwNDVmRHhtbE9OdVZpeFFlYU5IbTV1bzJMRFFFeGFiZUlIeVQ1aXdlMksyT1FJemFBT3hFaVc5QlVKemllN2t0dkg2QldMRDlmMHU5cGx4bzVLR0dlQ1M0dUVlV0tOc0E?oc=5",
-      "publisher": "PBS",
-      "published_at": "2026-10-15T19:54:41Z",
-      "detected_at": "2026-10-15T21:56:08.678818Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "3a2c86e14fd5b47ca36e",
-      "title": "Feds File Lawsuit Seeking Citizenship Proof for Select LA, CA Voters - MyNewsLA.com",
-      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOUkpfaURpSEtCNEtLVjRpUzNpcGFQbFhYR1JKWnVWY0t3MHBZM1M2dGZYa1E2ZXlTTXE3RGJkVUFjYXlmR0tyb04zZFA2OTFGdXllU0NNa0ZkU293U2tpUXY3bGI4NXh4djhpRUlJTkNSTkRTemFIdWtLcEhTMmluSVlSUjV2XzBlNldhVUtVcmFvbGM5bzJnZldKT2ZybS00aHo0a3ZKM0JlZw?oc=5",
-      "publisher": "MyNewsLA.com",
-      "published_at": "2026-10-15T19:42:42Z",
-      "detected_at": "2026-10-15T20:06:27.954981Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "40d1e8df1839c9193396",
-      "title": "US Justice Dept sues California to block votes from alleged noncitizens - Reuters",
-      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOa2l3Nl9uOTQ5Qm16OWFRT09Ta19PQW9JYVBZRmQxLTJGdTRiOEdrZERrX3JfS1hMODhGbEdaaU9DelJ3dEw1LUJGSXpFeDJvVmgwT18yOE01VTNpQjhIa1k5WFJ4S0oxbEtvQ2hSX3pyT0VwWENuaGc1MG9yZkFkc3hVeHM4R0xKdEVmd3ppRjB4aWt4S3FzMHRhSmpnUQ?oc=5",
-      "publisher": "Reuters",
-      "published_at": "2026-10-15T19:38:32Z",
-      "detected_at": "2026-10-15T20:45:55.882865Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "a2759ee841aa5a32bb26",
-      "title": "Trump Administration Sues California Over Voter Rolls - The New York Times",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQVXBxUzMxZUkyY0piNV9WUXpZbm9NTjZUVVhrd2hhNjc5a0ZoMmc4VjB1N2g3cFlGcE5uT0Y1bEdiQzc0dGVXUERaWDBJd2N2ZHhpY21ELUQza0FlbXdZN2ItRHQ4aEh0TW9tZkpYZXpGN242cWpuc0U3ekNHVmFUTmVhLXJuNEhzTDNkVW1CaTdkaDE3NGtaNmlydw?oc=5",
-      "publisher": "The New York Times",
-      "published_at": "2026-10-15T19:21:11Z",
-      "detected_at": "2026-10-15T20:06:27.954981Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "0c4a15611ebc68df7640",
-      "title": "Justice Dept. sues California, asks court to force state to stop counting 20,000 ballots - Los Angeles Times",
-      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQMzlSWUJLNUJqMDViVnh3b3YwOGxxX3UteU5NaWNXbTNMRzBINjZBTWVla25oWFpwUGtLdEtFbmh5TzZpZ3Npb3VETjFFbThvUGc0NXdhQVUzb0JpcU5rcU1fRDFWeVc0b0h4R1hNUHBsczNwSjN1Z1p1Q19tcDRsRE1la280YWdkSDFpaWROdWE4OXFOdmRBX1VTWWFwYWJZaFJPSUhJcTJfb2NHVE5ybjl0UU9TVDVJMDk1ME5zWEFEQlBSYlg0cl9UenVRSjZHcFE?oc=5",
-      "publisher": "Los Angeles Times",
-      "published_at": "2026-10-15T19:04:44Z",
-      "detected_at": "2026-10-15T19:29:47.698789Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "litigation",
-        "security"
-      ],
-      "headline_numbers_unverified": [
-        "20,000 ballots"
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
