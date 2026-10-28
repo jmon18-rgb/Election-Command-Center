@@ -1,5 +1,16 @@
 # JackStradamus · development plan
 
+## October28 — owner requests concrete storage cleanup; candidate pending release
+
+Fifty pinned obsolete uploads (324,536,415reportedbytes) selected after full
+public metadata inventory and bounded source/proof protection review. Newtool/
+tests/scopedworkflow give readonlyPRpreflight and oneoffprotected-main application;
+no deletes or billing/paid/archive activation yet. Next finish this concrete
+review/cleanup and verify actual results, then preserve currentrelease. Existing
+source archives/recovery/guide/ownerdata/current and pinned proofs remain intact.
+The owner did not supply accountquota values; do not repeat that question or
+assume cleanup proves freecapacity. See ACTIONS_STORAGE_CLEANUP.md.
+
 ## October28 — PR525 VERIFIED PUBLISHED; owner-authorized parallel finishing
 
 Shared watch/evidence returns, truthful complete baseline spread, model-row and

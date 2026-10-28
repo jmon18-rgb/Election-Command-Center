@@ -1,5 +1,35 @@
 # Readiness progress
 
+## October28 — owner-authorized obsolete Actions artifact cleanup candidate
+
+Owner does not know account billing values and instead explicitly requested
+deleting old unneeded storage without spending. The prior capacity-values
+question is answered with this direction, not with quota evidence; do not repeat
+it or enable paid/archive storage. Inventory via public repository metadata
+(connector lacks repository-artifact list/delete) found2,110listeduploads/
+1,573,573,410bytes, including1,129,071,018bytes of Pagespackages. No binary
+artifact/source payloads downloaded and no billing/account settings read/changed.
+
+Concrete reviewed candidate manifest pins50largest eligibleuploads totaling
+324,536,415bytes:8successful obsolete routine-briefing Pagespackages and42
+duplicate syntheticbrowseroutputs. Oldmerge/releasepackages, all source/native/
+research/unknown artifacts, current/previous/baseline copies,35artifactIDs,
+306runIDs/63heads and active reviews remain protected. Pagesmin6h +trusted
+workflow/deploysuccess/routinecommit; exactsyntheticcategoriesmin24h +newer
+sameworkflow successfulkeeper. The72h policy had0candidates, so actualstorage
+classification justified these narrower percategory rules. Plan50 cap and
+largest-first order bound ephemeral-token RESTuse; modeledmixed50requestcount481.
+
+New stricttool/test/scopedworkflow uses PRread-only livepreflight then first
+protected-main-push apply only; exactpins/digests/freshcandidate+keeper+run/
+deploy/currentreview checks, recentrerunexclusion,500ms pacing, no mutationretry,
+boundedpartialreceipts, no schedule/extraartifactupload. Offline tests and actual
+manifest schema PASS. Independent review caught keeper/protection race gaps,
+now repaired; finalreview/CI/livepreflight/protectedmerge/actualDELETE outcomes
+still pending. Deletion requests0; selectedbytes are not reclaimedbytes yet.
+See ACTIONS_STORAGE_CLEANUP.md and local storage-cleanup/v3reviews/inventory.
+No app/model/source/call/guide/frozenpreview change; approvedarchive remainsOFF.
+
 ## 2026-10-28 — PR525 VERIFIED PUBLISHED; parallel quality pass complete
 
 - Corrected tested dc9b5ef97213dc2046d3ef9c975517d5b78cdcb5 passed ALL37 current-head workflow parents,52latestjobs49SUCCESS/3nonapplicable deployed-onlySKIP,0external/currentclean. FullDOM40759726253/job123068067133 and national40759726113 SUCCESS. Merge1039cc14d37b8520939c330bdd5e7d8f4c71d5ff; finalCURRENTmaincbcf2af27a02fa8fbe2a03ed6c8f910bc8e0d323/Pages40761231025/served40761325033 SUCCESS. All27changedpublicfile/index checks match20:14:24.822Z usingorigin/mainblobs, inheriting398selected prior scope without another full scan. Publiccoherence/currentindex/no_credit PASS. Gate/integrity/coherence proofs use pr525 filenames. Merge-head Pages were automatically superseded/cancelled by the final briefing deployment; finalcurrent deployments pass, no manualcancel/waiver/rerun/timeoutraise.

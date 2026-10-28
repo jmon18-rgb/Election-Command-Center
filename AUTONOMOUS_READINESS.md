@@ -1,5 +1,24 @@
 # Election Night production-readiness assignment
 
+## October28 current task — reviewed old Actions storage cleanup, not yet applied
+
+Owner answered that billing values are unknown and authorized deleting old
+unneeded stuff/no spending. Do not repeat the old capacity-values question.
+Current coherent sourcecandidate adds strictcleanup/test/workflow and50-ID
+manifest324,536,415bytes (8oldroutinePages/42syntheticbrowserduplicates).
+Inventory/protection/v3review are under artifacts/readiness/storage-cleanup/.
+No deletions/billing settings/archive activation yet. Offline/destructive-boundary
+and actualmanifestchecks PASS; finish independentreview, PRread-only livepreflight,
+all exactheadCI/protectedmerge, actualfirst-main-push deletionreceipt and final
+Pages/changedbytes. Do not stop at inventory or policy alone.
+
+Keeper/currentreview races are guarded freshly perDELETE; oldest/current/previous/
+release/native/source/unknown/ownerfiles are preserved. No schedule, newnativeGET,
+sourceadmission, runtime/app/UI/model/guide changes or paidrunner/storage settings.
+Max50/largestfirst/500ms pacing respects the repository-token request limit.
+Deletedartifact metadata sums never imply actual account allowance/no-paidguard;
+the separately approved first-nightarchive remainsOFF pending realverification.
+
 ## PR525 VERIFIED PUBLISHED — October28 parallel quality pass
 
 Finaltesteddc9b5ef9 ALL37parents/52jobs49SUCCESS3nonapplicabledeployedSKIP/0external/clean. Merge1039cc14/finalCURRENTmaincbcf2af2/Pages40761231025/served40761325033SUCCESS;27changedpublicfiles/index match20:14:24.822Z/originmain/coherence/no_creditPASS, prior398scope inherited without full rescan. ActualpublishedEdge1366/390 watch/evidence/announcement/completebaseline spread/modelrowfocus/phoneheading/Tab/backgroundscroll/nooverflow/exactmodelisolation PASS. OrdinaryIAB27 semantic control/privatecontext/final2026return PASS with explicit0viewport/no geometry claim. Guide1.0/elevenhuman tasks/hash/results unchanged; scoped525addendum/proof appended with bytecopy/receipt. Reuse pr525 gate/integrity/coherence/ordinary and ui-review/pr525-published-*; do not repeat completed passes.

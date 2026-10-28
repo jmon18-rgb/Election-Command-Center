@@ -1,0 +1,68 @@
+name: Reviewed one-shot Actions artifact cleanup
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/cleanup_superseded_test_artifacts.cjs'
+      - 'scripts/test_cleanup_superseded_test_artifacts.cjs'
+      - 'data/test_artifact_cleanup_manifest_20261028.json'
+      - '.github/workflows/cleanup-superseded-test-artifacts.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/cleanup_superseded_test_artifacts.cjs'
+      - 'data/test_artifact_cleanup_manifest_20261028.json'
+      - '.github/workflows/cleanup-superseded-test-artifacts.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: reviewed-old-artifact-cleanup
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Offline destructive-boundary tests
+        run: node scripts/test_cleanup_superseded_test_artifacts.cjs
+      - name: Validate the exact reviewed manifest without requests or deletion
+        run: node scripts/cleanup_superseded_test_artifacts.cjs --validate-manifest --manifest data/test_artifact_cleanup_manifest_20261028.json
+  inspect:
+    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+    needs: validate
+    permissions:
+      contents: read
+      actions: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Read-only live preflight; no deletion
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/cleanup_superseded_test_artifacts.cjs --dry-run --manifest data/test_artifact_cleanup_manifest_20261028.json
+  cleanup:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: validate
+    permissions:
+      contents: read
+      actions: write
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Delete only pinned obsolete uploads after a protected main merge
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/cleanup_superseded_test_artifacts.cjs --apply --manifest data/test_artifact_cleanup_manifest_20261028.json
