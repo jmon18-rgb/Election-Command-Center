@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-28T06:33:22.520792Z",
+  "updated_at": "2026-10-28T10:57:18.767183Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
-    "advisory_related_headline_buckets": 26,
-    "advisory_related_headlines": 63
+    "advisory_related_headline_buckets": 25,
+    "advisory_related_headlines": 64
   },
   "advisory_related_headlines": [
     {
@@ -26,8 +26,8 @@
     {
       "lead_id": "6de0d7f925d150890de9",
       "headline": "Judge hears arguments whether California should count 20,000 ballots disputed by US government - WDIO.com",
-      "possibly_related_articles": 5,
-      "distinct_publishers": 4,
+      "possibly_related_articles": 7,
+      "distinct_publishers": 6,
       "state_hints": [
         "CA"
       ],
@@ -78,6 +78,20 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
+      "lead_id": "9a571dc4f7d0ba776e3e",
+      "headline": "Judge weighs whether California can count up to 20,000 ballots disputed by US government - Sun Sentinel",
+      "possibly_related_articles": 3,
+      "distinct_publishers": 3,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
       "lead_id": "b91c1685054abb4fde2b",
       "headline": "Trump administration sues California over noncitizens on voter rolls - Al Jazeera",
       "possibly_related_articles": 2,
@@ -97,20 +111,6 @@
       "distinct_publishers": 2,
       "state_hints": [
         "CA"
-      ],
-      "topic_hints": [
-        "security"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "2cb2a2423163d909d270",
-      "headline": "Justice Dept. sues California officials over 20K alleged noncitizen voters - The Washington Post",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "CA",
-        "WA"
       ],
       "topic_hints": [
         "security"
@@ -268,6 +268,40 @@
   ],
   "items": [
     {
+      "id": "ac15969e32a3e5919c03",
+      "title": "Liberman's Yisrael Beytenu projected to win eight seats in next Knesset, election data predicts - The Jerusalem Post",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBpZ19GcmpBQXpOYXBMRFhGMy1PY003SUZ1M2dqZDQweHp4WXFJODFtcVFmSEhiMUVWY0tESEVyNkMxM2wySXhuek83Z1dGYmU0VWRkbFp3YjlYSEJVSlhWb0traDNOdEdu?oc=5",
+      "publisher": "The Jerusalem Post",
+      "published_at": "2026-10-28T09:51:44Z",
+      "detected_at": "2026-10-28T09:59:26.302976Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "2f9dbb2153af42ed2e7a",
+      "title": "Trump claims 'rampant' US voter fraud, but studies find too little evidence - Saudi Gazette",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOUlFZaDVRVWNiRVI5czM3TDVqeWF5d0RsMVdsQnFkSFNCelhQREpneTFoZmhnR3N3RVA2TW4wOTdlUFhoQmVxRkQ3VDRUaEdzNTRkMHZkVC1Ud19aN2MwZzVJamtsb1hCQTZuNU54ZkZPdkRHaGtzd05fb1Z5VGdPWkNDVEhBZlFGa2VVVkdmNTctQjUzQU5nY1NXN3AxRklCR2NsQ1Jra3VxT1ByN0U0b0c1bEpYajZNU0VZ?oc=5",
+      "publisher": "Saudi Gazette",
+      "published_at": "2026-10-28T07:16:00Z",
+      "detected_at": "2026-10-28T08:09:34.303698Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "be3e0b12b2ec6ae58a66",
       "title": "California judge to rule Wednesday on DOJ bid to set aside 20,000 ballots - ABC7 Los Angeles",
       "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQc0o0Wmx0MTlWNGpTQ3p2cHlZbEIyRzZ6VXhGVXFhWFFIUHQ1Yk9OcDhKYU5qcl9xSlJHTlNzb2JLNkhzZWpxZVNTbjlJMVN6SHVkakMzX2FndnNiWmtQX2pGV0lKVDBBMHJNWHpPTVB4eDJ1WG5ZekZqdVUzSUlxcXE3NWFVQzk5OXlfcjh1d1RfdTk4b3NkMHBHZ9IBoAFBVV95cUxQTW1FNkVTRmJqZVc5ak03YmtsMUdBV29RSHNySDZlWWVXa2lIVWJDQk5CSnJyRGl6SjhTODQybDZsUkVXSS1ialZJRWJ3dGR0Y1NJQ3oydmdrLWlELUM0SGZUWVJBSGpSMGFoYTk4NEFEZUJVR0YwVlJReGFMTGhEMXdsVlJNMWNSNm5OdzlOWlZrRHVlYUt0QmU5MXdMbk13?oc=5",
@@ -290,12 +324,54 @@
       "promoted_to_incident_id": null
     },
     {
+      "id": "6b822827a90bde2cf53c",
+      "title": "A Record Election-Watching Operation Is Descending on U.S. Polling Places for the 2026 Midterms: What To Know - Latin Times",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOa25oUFAyLWhrMzR0SW1TWWluaUlwWG93SU5ocGVlenJlTkhMdmtHWnZhcFRORE95MG9mVEZUVDdwUTdOaWZSQjBSRDB1ZnVZeTdwbXZoSEVQQldTdnkybVNIY0R5NEJNRHE5VWZsUjZDRmNIQzJFSGNfaGppdHFzMVpBYlFOY3NxN3lCcW5nYTNydw?oc=5",
+      "publisher": "Latin Times",
+      "published_at": "2026-10-28T02:00:13Z",
+      "detected_at": "2026-10-28T07:10:52.837419Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "9a571dc4f7d0ba776e3e",
       "title": "Judge weighs whether California can count up to 20,000 ballots disputed by US government - Sun Sentinel",
       "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOSWNicjNKdW9pU3dFOTYyRmtlekY3RTFicU5FeE8wV2lMRzJQYnA3UmpPRDFPNmNnV0drZk54a0xyMWktT2ota1hVdlJHVjlxdmZXRkpfU2stNlBJWldVdHVpVWlxOTlLUUhOSDBuOFNVb3phVkNoekxodFdScGd4TTJGc0FGcmFVbUZUTU16SUhDdlZQcGc?oc=5",
       "publisher": "Sun Sentinel",
       "published_at": "2026-10-27T23:45:04Z",
       "detected_at": "2026-10-27T23:46:50.321066Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 ballots"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "4d14e2c3a0fc736a8b66",
+      "title": "Judge weighs whether California can count up to 20,000 ballots disputed by US government - Hartford Courant",
+      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOZnZiLWpFeWdZbUp1cS05QzZ3TC1iQ1dTQ3BnUFIzOWZsSjVOS0NHNnZiOUNMSEUxRVFQZWRqZ0FYYUFjVFh2SWJIempwOEpRLXFVUGROS1VPRC1jRm94bkN1Zy14bG5udDNvQU5rT2EtVVp0aWR6N2EtZjBYVlZVeHh0Y0dKY2QzU3V4Mm9pUQ?oc=5",
+      "publisher": "Hartford Courant",
+      "published_at": "2026-10-27T23:45:02Z",
+      "detected_at": "2026-10-28T10:57:18.767183Z",
       "state_hints": [
         "CA"
       ],
@@ -422,6 +498,50 @@
       "publisher": "WDIO.com",
       "published_at": "2026-10-27T21:24:25Z",
       "detected_at": "2026-10-27T23:43:07.257828Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 ballots"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "c467594cf6457dac85ae",
+      "title": "Judge hears arguments whether California should count 20,000 ballots disputed by feds - KSL",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNTmxtX2kwTWVPY2FDQmdwc1BXLW9pTjJYVXVYbnFKRWtZOG9fWjgxRzJRUHJNdFhVQnBtSVVOMmhZY0gtbTZoZkhQYmwyQUxESE9NSE95T2s4VjZiWjlkXzU2VGtLWEZNSzhvYzdhOEIzbzZUXzVscDRqeUladzQ2cURJbndCNktzYm85bGEwcjh3c3F2bWZJU2E4SGVrTjlfRFVuTW83dFVDdVY4ZmNTbUhCbUNrNGpzQ0tnQXFR?oc=5",
+      "publisher": "KSL",
+      "published_at": "2026-10-27T20:53:42Z",
+      "detected_at": "2026-10-28T07:10:52.837419Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 ballots"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "9dbaf2a5c4647a52c3dd",
+      "title": "Judge hears arguments whether California should count 20,000 ballots disputed by feds - KSL News",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNTmxtX2kwTWVPY2FDQmdwc1BXLW9pTjJYVXVYbnFKRWtZOG9fWjgxRzJRUHJNdFhVQnBtSVVOMmhZY0gtbTZoZkhQYmwyQUxESE9NSE95T2s4VjZiWjlkXzU2VGtLWEZNSzhvYzdhOEIzbzZUXzVscDRqeUladzQ2cURJbndCNktzYm85bGEwcjh3c3F2bWZJU2E4SGVrTjlfRFVuTW83dFVDdVY4ZmNTbUhCbUNrNGpzQ0tnQXFR?oc=5",
+      "publisher": "KSL News",
+      "published_at": "2026-10-27T20:53:42Z",
+      "detected_at": "2026-10-28T07:17:34.878720Z",
       "state_hints": [
         "CA"
       ],
@@ -4944,117 +5064,6 @@
       "headline_numbers_unverified": [
         "20,000 ballots"
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "898fb30d44aa3b84dac3",
-      "title": "Justice Dept. sues California, seeks to stop state from counting 20,000 ballots - Los Angeles Times",
-      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQMzlSWUJLNUJqMDViVnh3b3YwOGxxX3UteU5NaWNXbTNMRzBINjZBTWVla25oWFpwUGtLdEtFbmh5TzZpZ3Npb3VETjFFbThvUGc0NXdhQVUzb0JpcU5rcU1fRDFWeVc0b0h4R1hNUHBsczNwSjN1Z1p1Q19tcDRsRE1la280YWdkSDFpaWROdWE4OXFOdmRBX1VTWWFwYWJZaFJPSUhJcTJfb2NHVE5ybjl0UU9TVDVJMDk1ME5zWEFEQlBSYlg0cl9UenVRSjZHcFE?oc=5",
-      "publisher": "Los Angeles Times",
-      "published_at": "2026-10-15T19:04:44Z",
-      "detected_at": "2026-10-15T20:45:55.882865Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "security"
-      ],
-      "headline_numbers_unverified": [
-        "20,000 ballots"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "180f40be335b1edf86d3",
-      "title": "NC officials express confidence in election integrity as early voting begins - NC Newsline",
-      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQdjFRbnBSSUpsWVVGTjQ4V3lHdFg4Nk9hb2FCLW5uZTBlRDRXcGtoQ2tnZWRVcjh6M2d0VF8zXzYza0lwc3hSNjk3TmZOYXNKX0NwUVNnU2hDSlJsT1RBcndqaEw2b1Z1X01PWEhGel90YWl6cG5MNVhQbEs4alQzRGplaS0xSGhoeXZTNXp3R0Z4UC1SNkRFQ3BsM3ZxeEtDblZHbUowSlBGa0Utam4wag?oc=5",
-      "publisher": "NC Newsline",
-      "published_at": "2026-10-15T19:03:59Z",
-      "detected_at": "2026-10-15T19:29:47.698789Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "539d8e312da2aaf7472b",
-      "title": "US justice department sues California over alleged noncitizen voting - The Guardian",
-      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOQUZuM19HYzlFSDg4dTF2bjhaeDlJdnM1YlJfMFd6UllqSWs1TGJRZ1otRC1hLXVKak9UZDZod2pfQmNaYVB5M1I3cUhaaHZrS0VPdWRta19fdUl2QUZtRi00Y1lwOUFIRUQ1TFE1dXFaWVpsV21qdm9adU9SRmNoQVVmY1NDYTI5aWdRMG1QNV9DR2ZGY0E?oc=5",
-      "publisher": "The Guardian",
-      "published_at": "2026-10-15T18:31:00Z",
-      "detected_at": "2026-10-15T18:53:47.845079Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "b922f73a16eec359d53f",
-      "title": "Wisconsin offers new guidance to local officials on emerging election threats - Democracy Docket",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPc0RTdWpTRXNKa3N1SDM1TENpQkdVNm9hUlRBdUJ3LTZoUE1rLXdGb2k4OERwRlNLLTFySlpnOFE5Z0t6X2R3Zkk3eGRyMGlINnA1MjVvMlBqZUgxemc4R1d5ZmsxMEtqSGdNemtLVW1sMWtvUUNfdEI4NUw3QW55M0tCZW5wSDh2WGw0QTR4eEFmVjJVSFVuRGhaMjZqX0ViSThqbzJJeWNsaTlWNHZsSGoxckFyd3NiUDN6bTVhMA?oc=5",
-      "publisher": "Democracy Docket",
-      "published_at": "2026-10-15T18:15:30Z",
-      "detected_at": "2026-10-15T18:53:47.845079Z",
-      "state_hints": [
-        "WI"
-      ],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "29e368b3ae2649483ed6",
-      "title": "Federal Judge Finally Invalidates DOJ\u2019s Nationwide Voter Roll Crusade Just Weeks Out From the Midterms - Talking Points Memo",
-      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOV2FtMmg1VnJqZmFDZjVRSkVsVjR3X3pybW83MVQwTEl4TTNhLXBqSXlyT01VSjh0TDQxbWl3R2ZiZ1pSOHh4TVJKUG43bjZLck1NTmloZVEtcU9HVE1YTl9CYnVDdENJYTBKbEJqNjJoZ0M3RlduWTBVV0czZkJSSW1LbFNLZXJxT2RSbDZFZ3ExZHFrTURvTjUwZ2JWcTgydGk5YjBRZlhycm5nQjY5UWlJM1hSV1BTR3lJbkNfNVZ2djJnTHhyVkx6ekpmbUR2eGJGZndmMjNTLVVqSWc?oc=5",
-      "publisher": "Talking Points Memo",
-      "published_at": "2026-10-15T18:05:00Z",
-      "detected_at": "2026-10-15T19:29:47.698789Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "d68aad227814f70c8c4f",
-      "title": "\u2018Ballotship\u2019 exercises prepare Arizona officials for mounting election-threat scenarios - Phoenix New Times",
-      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxORjNfeGpaTkpPZWN4R1JjMTZjUS15VEdNSEE5RnF2NWp3RmJ3b0pBaFRCVUZ4M2Fma1FKYVlWWHFoaWl0TDNGYnRZdzdpeV9aTHdqR0ZMQzZDNHlnMVdFQndJTHBXLUFwejlBeFVJNW9iMWJiUEUxTHZsY094VnpOLU41ZXRlcC1UckRaU1RVNGlPeEh6N1FkR0lscGJJT21xaHoyUTdkcG5Xc3NSc1FNTDB3?oc=5",
-      "publisher": "Phoenix New Times",
-      "published_at": "2026-10-15T17:59:15Z",
-      "detected_at": "2026-10-15T18:02:04.478495Z",
-      "state_hints": [
-        "AZ"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "security"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
