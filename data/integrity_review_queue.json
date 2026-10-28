@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-28T20:54:35.743220Z",
+  "updated_at": "2026-10-28T21:52:08.253412Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
@@ -508,6 +508,23 @@
       "publisher": "The Jerusalem Post",
       "published_at": "2026-10-28T09:51:44Z",
       "detected_at": "2026-10-28T09:59:26.302976Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "2b9486cfb6a943081509",
+      "title": "Here's how Democrats in Congress are preparing for election fraud claims - NPR",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOZFlveTJaVGlyczVUbEphNkMzLUZjblI3UkZ4cnZaeHNYcFZsT0F6czBIRGJ5a0pfbC1DRFE0T1ZjZ003emNNTHZxazZCRXhPRVpLSDRpeVhqY0Q1ckNWM3Z3Mzc3RFFYaW5aaEtxYkxTdWJmS1JTcUxpVVJ1NTZ4WFY4QmgxR2c4VlE?oc=5",
+      "publisher": "NPR",
+      "published_at": "2026-10-28T09:00:00Z",
+      "detected_at": "2026-10-28T21:52:08.253412Z",
       "state_hints": [],
       "topic_hints": [
         "election_admin"
@@ -5033,27 +5050,6 @@
       ],
       "headline_numbers_unverified": [
         "2026 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "90ef797b2bc1e39f457f",
-      "title": "Noncitizens in North Carolina charged with voting in 2024 election, US Attorney confirms - ABC11 News",
-      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPTlRxdFQ3dmF4V2dIaHBnT0xVS3VUZXRYYVVxaktNbHNNMGdKUEwtbVpVcm4tb0FzWHBZZ2p6aG0tWGdVVmxJOHJkZzk1R0hsZFQ1c21LOXgyYWQ4Y2hFdVJHUGV6aDNaellxdnJJanZWYTE0Ymp4YnJvbldiUmd3bXhrcjM3LTA5cnFXMkpIdHI5bWZ3SFo2R3JsM2U2X0szQ2NHbDlidDdiX1dTZVHSAbMBQVVfeXFMT0lhbUxxSkpBSnl6YnYyUEs3VThBeHB4WUIwWWQ5Y0NJU21kV1JEZUhhNmRocW5FVC14My1rN1VKM3JFZ1hzRmhOdnR0cFZyd05rT1dOdWF6X3hQbFNQXzE3SW1sOUR4RW1NVnJDMlJuTTlQQzNuc2ViaHBXQ2hqc3dFUFkxeDVza1lZNDFWMlZjNkVLYzNsMXFqY21JS1IwWVNaUjI3VmlxMTlvZ2N0OWtaUXM?oc=5",
-      "publisher": "ABC11 News",
-      "published_at": "2026-10-15T23:10:39Z",
-      "detected_at": "2026-10-15T23:35:21.670966Z",
-      "state_hints": [
-        "NC"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2024 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],

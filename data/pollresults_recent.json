@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-28T20:54:36.452870+00:00",
+  "updated_at": "2026-10-28T21:52:08.820241+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 845,
+      "available_in_source": 846,
       "records_examined": 300
     },
     "house": {
@@ -18,9 +18,38 @@
     }
   },
   "matched_primary_observations": 332,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "MI-SEN",
+      "poll_id": "b8ae6e54-601a-409d-aa76-8fcaf9a3636c"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "MI-SEN",
+      "race_type": "senate",
+      "state": "MI",
+      "poll_id": "b8ae6e54-601a-409d-aa76-8fcaf9a3636c",
+      "question_id": "f7998992-e6f5-4932-acbb-a358221f4f9b",
+      "pollster": "Mitchell Research & Communications",
+      "dem_name": "Abdul El-Sayed",
+      "rep_name": "Mike Rogers",
+      "dem": 51.0,
+      "rep": 44.0,
+      "margin": 7.0,
+      "field_end": "2026-10-27",
+      "field_start": "2026-10-26",
+      "posted_date": "2026-10-28",
+      "posted_source_datetime": "2026-10-28T17:10:00",
+      "posted_source_time": "10/28/26 17:10",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.cbsnews.com/detroit/news/el-sayed-widens-lead-rogers-michigan-senate-poll/",
+      "sample_population": "lv",
+      "sample_size": 636,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "OH-SEN",
       "race_type": "senate",
