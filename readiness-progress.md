@@ -1,5 +1,43 @@
 # Readiness progress
 
+## October28 — owner-authorized obsolete Actions artifact cleanup candidate
+
+Owner does not know account billing values and instead explicitly requested
+deleting old unneeded storage without spending. The prior capacity-values
+question is answered with this direction, not with quota evidence; do not repeat
+it or enable paid/archive storage. Inventory via public repository metadata
+(connector lacks repository-artifact list/delete) found2,110listeduploads/
+1,573,573,410bytes, including1,129,071,018bytes of Pagespackages. No binary
+artifact/source payloads downloaded and no billing/account settings read/changed.
+
+Concrete reviewed candidate manifest pins50largest eligibleuploads totaling
+324,536,415bytes:8successful obsolete routine-briefing Pagespackages and42
+duplicate syntheticbrowseroutputs. Oldmerge/releasepackages, all source/native/
+research/unknown artifacts, current/previous/baseline copies,35artifactIDs,
+306runIDs/63heads and active reviews remain protected. Pagesmin6h +trusted
+workflow/deploysuccess/routinecommit; exactsyntheticcategoriesmin24h +newer
+sameworkflow successfulkeeper. The72h policy had0candidates, so actualstorage
+classification justified these narrower percategory rules. Plan50 cap and
+largest-first order bound ephemeral-token RESTuse; modeledmixed50requestcount481.
+
+New stricttool/test/scopedworkflow uses PRread-only livepreflight then first
+protected-main-push apply only; exactpins/digests/freshcandidate+keeper+run/
+deploy/currentreview checks, recentrerunexclusion,500ms pacing, no mutationretry,
+boundedpartialreceipts, no schedule/extraartifactupload. Offline tests and actual
+manifest schema PASS. Independent review caught keeper/protection race gaps,
+now repaired; finalreview/CI/livepreflight/protectedmerge/actualDELETE outcomes
+still pending. Deletion requests0; selectedbytes are not reclaimedbytes yet.
+See ACTIONS_STORAGE_CLEANUP.md and local storage-cleanup/v3reviews/inventory.
+No app/model/source/call/guide/frozenpreview change; approvedarchive remainsOFF.
+
+## 2026-10-28 — PR525 VERIFIED PUBLISHED; parallel quality pass complete
+
+- Corrected tested dc9b5ef97213dc2046d3ef9c975517d5b78cdcb5 passed ALL37 current-head workflow parents,52latestjobs49SUCCESS/3nonapplicable deployed-onlySKIP,0external/currentclean. FullDOM40759726253/job123068067133 and national40759726113 SUCCESS. Merge1039cc14d37b8520939c330bdd5e7d8f4c71d5ff; finalCURRENTmaincbcf2af27a02fa8fbe2a03ed6c8f910bc8e0d323/Pages40761231025/served40761325033 SUCCESS. All27changedpublicfile/index checks match20:14:24.822Z usingorigin/mainblobs, inheriting398selected prior scope without another full scan. Publiccoherence/currentindex/no_credit PASS. Gate/integrity/coherence proofs use pr525 filenames. Merge-head Pages were automatically superseded/cancelled by the final briefing deployment; finalcurrent deployments pass, no manualcancel/waiver/rerun/timeoutraise.
+- Shared watch-to-existing-card/expectation and same-row return/Texas return are released, including announcement/redraw semantic identity. Complete baseline Gaussian/geography-mixture spread is truthful; legacy sigma/live consumers/all fixed-seed outputs unchanged. Model-row desktop focus/phone heading focus and reduced motion are repaired, with exact wheel-away position preserved during background redraws. Actual published isolatedEdge1366/390 watch, shared personal/queued reading and uncertainty/focus/scroll tasks PASS; electionprovidersBLOCKED/not a health or actual-vote-delivery claim. ui-review/pr525-published-watch, pr525-published-reading and pr525-published-spread retain JSON/screenshots. Independent reviews/source hashes are in race-evidence-navigation-review/.
+- OrdinaryIAB27 known-public-URL semantic actions verify21rows, VA02heading/evidence return to same expanded summary, complete spread copy/modelDetailTitle focus and normal2026/enMode2026 return. Final normal return retains all4current outlook texts; private status/preferences preserved. Across-reload outlook equality is not claimed. Hidden0viewport/CDPmouse/staleAX limitations are recorded, no ordinarygeometryclaim; isolatedEdge supplies it. pr525-published-ordinary-20261028.json. All7delivered previews preserved/frozen15 untouched.
+- Guide1.0/elevenhuman taskscopes/hashes/NOT_RUN/null retained; scoped525addendum and one componentproof appended with immutable pre525bytecopy/receipt. Updated ledgerSHA bd9ca45fcfd780253f7b46cc5edb9c6ada54623a22fa6029c431f033a104bdda. No guide rebuild/retest. NativeChrome capacity attempt identified minimized/local-file context; after read-only restore, native policy stopped input because URL could not be verified. No billing data/settings/quota inference/activation; archive staysOFF. Receipt archive-capacity-native-policy-stop-20261028.json; do not retry unchanged access or bypass policy. Chrome's local file view cannot fetch site data; use the published HTTPS site, without discarding its context.
+- NEXT exact dependency: actual GitHub allowance/used/free storage plus zero-paid protection via supported known-URL evidence or owner-provided values, fresh near activation. Approved30day policy is settled; do not ask it again. R1 bounded Florida map/precinct/right/independence and four currentSenate contracts, R2 empirical acceptance, actualNov3-4positive delivery and realowner/assistive/listening remain open. Reuse completed UI/model/source proofs; new material owner/task findings resume independent engineering immediately. No invented polish/tests or status-onlyCIpush. Projectunfinished; preserve this proof checkpoint with the next coherent implementation.
+
 ## October28 — owner-authorized parallel completion, source candidate
 
 Owner explicitly authorized extensive subagents/usage. Separate model and

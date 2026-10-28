@@ -1,5 +1,30 @@
 # JackStradamus · development plan
 
+## October28 — owner requests concrete storage cleanup; candidate pending release
+
+Fifty pinned obsolete uploads (324,536,415reportedbytes) selected after full
+public metadata inventory and bounded source/proof protection review. Newtool/
+tests/scopedworkflow give readonlyPRpreflight and oneoffprotected-main application;
+no deletes or billing/paid/archive activation yet. Next finish this concrete
+review/cleanup and verify actual results, then preserve currentrelease. Existing
+source archives/recovery/guide/ownerdata/current and pinned proofs remain intact.
+The owner did not supply accountquota values; do not repeat that question or
+assume cleanup proves freecapacity. See ACTIONS_STORAGE_CLEANUP.md.
+
+## October28 — PR525 VERIFIED PUBLISHED; owner-authorized parallel finishing
+
+Shared watch/evidence returns, truthful complete baseline spread, model-row and
+phone-heading focus, and background scroll retention are released on finalmain
+cbcf2af2/Pages40761231025/served40761325033. Exactdc9b5ef9 passed all37parents;
+27changedpublicfile/index checks and actualpublished1366/390 tasks pass. Scoped
+guide addendum only; human/calibration/positive2026 gates remain open. ActiveR0/
+R8 rows below now reflect the release. Archive policy approved/implementation522
+released/defaultOFF: next missing field is actual GitHub free quota and zero-paid
+protection, not another policy choice. Native URL-verification stop prevents
+account reading; no settings changed. Bounded Florida county follow-up is
+recorded locally with stopped/oversized-source limits; do not repeat it. New
+material task feedback/admissible evidence resumes independent work immediately.
+
 ## 2026-10-28 19:32 UTC — PR524 research-only FL04 checker VERIFIED PUBLISHED
 
 - Tested7ed0c269c983ed0abf426c5e8622495a5dc88e1d: ALL4applicableworkflowparentsSUCCESS/7latestjobs6SUCCESS1nonapplicabledeployed-onlySKIP/0external/currentclean. FullDOM40752946246/job123044174839 and offline reference40752946383 SUCCESS. Merge/finalCURRENTmain6fddc109b58db6b2bbd914a4cad52cff47096b64/Pages40754880646SUCCESS.20publicfilechecks(includingindex) match19:32:11.276Z usingorigin/mainblobs; inherited395-file523baseline and3newresearchfiles establish398selectedscope, no repeatedfullscan. Current publiccoherence/index/no_creditPASS. pr524-exacthead-gate.json/pr524-published-integrity.json/pr524-published-coherence-origin-main.txt. No failed-head merge/waiver/rerun/timeout increase. Prior523proof checkpoint incorporated.
@@ -91,9 +116,9 @@ Owner scope update: needle adjustments and the celebration production backlog ar
 
 | ID / priority | Unfinished deliverable | Next action | Completion evidence / target |
 | --- | --- | --- | --- |
-| R8 / new evidence-navigation fix in review; human acceptance open | Full owner interpretation and visual acceptance | Parallel owner-journey review found a missing watch-to-existing-card link and contextual return. Add shared controls, preserve open row and redraw/announcement focus, and verify actual desktop/phone tasks. Prior517/520/521 repairs stay intact. | Before proof ui-review/final-owner-journey; candidate requires protected review/publication. Human interpretation/assistive acceptance remains NOT_RUN; Oct30 is a target, not a start gate. |
+| R8 / navigation/model focus repair525 verified; human acceptance open | Full owner interpretation and visual acceptance | Watch-to-existing-card/expectation and same-row/Texas returns, semantic announcement/redraw identity, desktop row/phone heading and offscreen reading-position retention released. Reuse actual1366/390 and ordinary semantic proofs; real task feedback reopens engineering immediately. | Exactdc9b5ef9/all37parents; finalmaincbcf2af2/Pages40761231025/served40761325033/27changedfiles verified. Ordinary0viewport/no geometry claim; human interpretation/assistive NOT_RUN, Oct30 target not start gate. |
 | R7 / Texas and21-house watch released523; source coverage unfinished | Personal race needles and evening trend | Eleven Senate/eight pivotal House cards, exact owner references, distinct verified-call surprise patterns and bounded history are released. Current watch/card navigation is being repaired under R8. No extra county admission or likelihood from display scope. | PR523 exactc8cd1e15/final20246439/Pages40748317487/395files verified; carried by524. Four original Senate county connections MI/MN/MS/AK remain missing, AK last. |
-| R0 / additive spread accounting in review | Needle methodology and truthful assumptions | Model review found Gaussian-only uncertainty mislabeled as complete spread for redrawn House rows. Add analytic geography-mixture/total baseline spread metadata and truthful copy; retain every legacy draw/odds/consumer field. No empirical probability sharpening. | Fixed-fictional same-seed legacy invariance and population-variance checks required. Source/method/correction/ESS/budgets preserved; calibration remains R2. |
+| R0 / additive spread accounting525 verified | Needle methodology and truthful assumptions | Complete analytic baseline Gaussian/geography-mixture spread metadata and truthful old/inconsistent-snapshot copy released. Legacy sigma/live consumers and every fixed-fictional output remain unchanged. No empirical probability sharpening or input promotion. | Four same-seed wholelegacy-output hashes/populationvariance/multiplier/live/call and fullDOM/exactheadCI PASS. Actual published detail/focus/nooverflow verified; source/ESS/budgets preserved, calibration remains R2. |
 | R1 / research tooling519 released; admission gates open | Four missing requested Senate connections | MS246rows/82counties/three candidates, documented alias and importer resolved. New metadata-only lineage ties exact saved blob to publisher commitc7e31f42 dated2021-01-18. Reuse-policy inventory did not establish rights. Next distinct explicit source-file rights/native-certification/current2026 package; no solved-route repeats. MI/MN403 STOP; AK last. | Six public fictional/reference and eight local-original tests PASS; no raw/derived table published. SourceSHA c6fe2553…; processed-file-lineage/receipt saved locally. No native certification/election chronology/current2026/runtime/calibration admission;81004invalid. |
 | R2 / decision recorded; evidence gate open | Predictive validation evidence and evaluation | Formal Oct28 decision snapshot recorded: NO-GO for calibrated national acceptance on zero independent chronological datasets/held-outs; metrics not estimable. Reopen only for a genuinely admissible new package. Use the saved specification for the smallest admissible held-out evaluation using contemporaneous expectations, real early/middle/late captures, correct geography and source-error uncertainty. Pursue a bounded new source route only if it can satisfy a named missing field. Reuse evaluation tools; add only missing necessary evaluation capability. | Reproducible margin error, interval coverage, probability scores and baseline comparison on admitted data; national transfer assessed separately. Oct28 no-go/missing-data decision delivered locally and recorded in acceptance; predictive validation itself remains unmet. Synthetic stress evidence stays separate; never fit and evaluate on the same cases. No guaranteed calibrated acceptance. |
 | R3 / pack ready; human acceptance open | Stable owner rehearsal handoff | Local operator pack v1.0: two-page PDF and responsive HTML at output/pdf/election-night-operator-guide-7e4b163d.*, plus owner-handoff-acceptance-ledger-20261028.json. Eleven task rows map saved evidence and retain human NOT_RUN/resultNULL. Print rendering and local1366/390 guide semantics/keyboard/no-overflow/hash checks pass. Use this concise pack for the real operator session; detailed draftv.9 remains reference. | Oct29 human laptop/phone tasks and actual assistive acceptance still open; exact revision/context/results/defects required. Existing engineering and published rehearsal proof does not complete human handoff or fullOct30review. |

@@ -1,5 +1,23 @@
 # Election-night usability and visual review
 
+## PR525 VERIFIED PUBLISHED — October28 owner-journey/focus pass
+
+Shared VA02watch->existingneedle/expectation->sameexpandedrow and Texas local
+watchreturn, semanticannouncement/redraw bookmarks, modelrow desktopfocus/phone
+detailheading and backgroundscroll retention are released. Complete baseline
+Gaussian/geography-mixture spread copy now matches existing simulation risk;
+legacy/inconsistent metadata falls back explicitly. No odds/draw/source/call or
+manualprivateCSV change. Actual publishedEdge1366x900/390x844 normalcontrols,
+keyboard/Tab/tap44px/visibleparagraph/scroll/nooverflow/modelisolation PASS with
+electionprovidersblocked. Proof ui-review/pr525-published-watch,-reading,-spread.
+OrdinaryIAB27 semantic evidence/return/modelheading/normal2026focus/privateprefs
+pass; hidden0viewport/CDPmouse/staleAX limits are explicit, no ordinarygeometry
+claim. All4current outlook texts retained during finalnormalreturn only; no
+across-reload equality claim. Tested dc9b5ef9/all37parents; finalmaincbcf2af2/
+Pages40761231025/served40761325033/27changedfiles/coherence PASS. Original11human
+tasks/results NOT_RUN/null retained with scoped525addendum. Human interpretation,
+assistive and listening/fullR8 acceptance remain open; no automatic closure.
+
 ## October28 owner-authorized parallel finishing — candidate
 
 New released-source Texas ->21House watch ->evidence/history ->live review found
