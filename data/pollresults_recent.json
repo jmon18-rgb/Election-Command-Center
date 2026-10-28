@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-28T11:55:19.417339+00:00",
+  "updated_at": "2026-10-28T12:22:49.007996+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,18 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 321,
-  "newly_injected_into_model": 2,
-  "injected_poll_ids": [
-    {
-      "race_code": "GA-GOV",
-      "poll_id": "74059c54-74ed-4314-b9a3-c95d31ad73ca"
-    },
-    {
-      "race_code": "NY-GOV",
-      "poll_id": "1d724491-06cd-4d75-a60d-d2c9b03636a6"
-    }
-  ],
+  "matched_primary_observations": 322,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "GA-GOV",
@@ -50,7 +41,7 @@
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
       "source_url": "https://articles.statenavigate.com/ga/keisha-lance-bottoms-holds-narrow-lead-in-georgia-governor-race/",
       "sample_population": "lv",
-      "sample_size": 741,
+      "sample_size": 679,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
@@ -87,16 +78,16 @@
       "pollster": "Suffolk University",
       "dem_name": "Sherrod Brown",
       "rep_name": "Jon Husted",
-      "dem": 47.0,
-      "rep": 44.0,
-      "margin": 3.0,
+      "dem": 46.6,
+      "rep": 43.8,
+      "margin": 2.8,
       "field_end": "2026-10-26",
       "field_start": "2026-10-21",
       "posted_date": "2026-10-28",
       "posted_source_datetime": "2026-10-28T06:46:00",
       "posted_source_time": "10/28/26 06:46",
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
-      "source_url": "https://www.dispatch.com/videos/news/politics/elections/2026/10/28/new-poll-shows-amy-acton-and-vivek-ramaswamy-in-tight-race-for-governor/92466303007/",
+      "source_url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/other-states#collapse-October-28-2026-Ohio-Governor-and-US-Senate-with-USA-TODAY-Network-Ohio",
       "sample_population": "lv",
       "sample_size": 500,
       "partisan_lean": "",
@@ -120,7 +111,7 @@
       "posted_source_datetime": "2026-10-28T06:46:00",
       "posted_source_time": "10/28/26 06:46",
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
-      "source_url": "https://www.dispatch.com/videos/news/politics/elections/2026/10/28/new-poll-shows-amy-acton-and-vivek-ramaswamy-in-tight-race-for-governor/92466303007/",
+      "source_url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/other-states#collapse-October-28-2026-Ohio-Governor-and-US-Senate-with-USA-TODAY-Network-Ohio",
       "sample_population": "lv",
       "sample_size": 500,
       "partisan_lean": "",
