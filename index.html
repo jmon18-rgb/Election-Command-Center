@@ -1557,7 +1557,7 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/election_night_celebration_online.js?v=669b56b2d0a3"></script>
 <script src="./scripts/election_night_celebration_music.js?v=6a479f8a84b1"></script>
 <script src="./scripts/election_night_celebration_scene.js?v=f1943c3e36ba"></script>
-<script src="./scripts/personal_election_focus.js?v=55a7e6246803"></script>
+<script src="./scripts/personal_election_focus.js?v=2e34abf4bd17"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=6eaa0d8f80cf"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=165fc37d665a"></script>
 <script src="./scripts/civicapi_state_batch.js?v=99e987c72cb8"></script>
@@ -5999,7 +5999,7 @@ function enMilestoneRender(item,demo=false){
  enCelebrationOpen();
  return true;
 }
-let enCelebrationAudioContext=null,enCelebrationNotes=[],enCelebrationCurrent=null,enCelebrationReturnFocus=null,enCelebrationBodyOverflow='',enCelebrationModalActive=false;
+let enCelebrationAudioContext=null,enCelebrationNotes=[],enCelebrationCurrent=null,enCelebrationReturnFocus=null,enCelebrationReturnAnchor=null,enCelebrationBodyOverflow='',enCelebrationModalActive=false;
 const enCelebrationOnline=window.ElectionNightCelebrationOnline;
 const enCelebrationStorage=(()=>{try{return localStorage}catch{return null}})();
 const enCelebrationMusicSettings=enCelebrationOnline?.read(enCelebrationStorage,Object.keys(window.ElectionNightCelebrationPlayer?.STORIES||enMilestonePosters))||{mode:'original',videos:{}};
@@ -6007,6 +6007,10 @@ function enCelebrationOpen(){
  const dialog=$('#enMilestoneSpotlight');
  if(!dialog.open){
   enCelebrationReturnFocus=document.activeElement;
+  const host=enCelebrationReturnFocus?.closest?.('#enPersonalFocus,#enPersonalFocusPreview');
+  const bookmark=host&&window.PersonalElectionFocus?.captureFocus(host,enCelebrationReturnFocus);
+  const milestone=enCelebrationReturnFocus?.closest?.('#enMilestoneGrid .en-milestone-card');
+  enCelebrationReturnAnchor=bookmark?{hostId:host.id,bookmark}:milestone?.dataset.milestone?{milestone:milestone.dataset.milestone}:enCelebrationReturnFocus?.id?{elementId:enCelebrationReturnFocus.id}:null;
   enCelebrationBodyOverflow=document.body.style.overflow;
   enCelebrationModalActive=true;
   document.body.style.overflow='hidden';dialog.hidden=false;
@@ -6022,10 +6026,20 @@ function enCelebrationHide(restore=true){
  if(wasOpen){
   document.body.style.overflow=enCelebrationBodyOverflow;
   if(restore){
-   const target=enCelebrationReturnFocus;
-   if(target?.isConnected&&target.getClientRects().length)target.focus({preventScroll:true});
-   else $('#enCelebrationsOpen')?.focus({preventScroll:true});
+   let target=enCelebrationReturnFocus;
+   const visible=node=>node?.isConnected&&(node.checkVisibility?node.checkVisibility():node.getClientRects().length);
+   if(!visible(target)){
+    const anchor=enCelebrationReturnAnchor;
+    target=anchor?.hostId?window.PersonalElectionFocus?.focusTarget(document.getElementById(anchor.hostId),anchor.bookmark):anchor?.milestone?Array.from(document.querySelectorAll('#enMilestoneGrid .en-milestone-card')).find(card=>card.dataset.milestone===anchor.milestone):anchor?.elementId?document.getElementById(anchor.elementId):null;
+   }
+   if(!visible(target))target=$('#enCelebrationsOpen');
+   target?.focus({preventScroll:true});
+   if(visible(target)){
+    const box=target.getBoundingClientRect(),toolbar=$('#electionNight .en-toolbar')?.getBoundingClientRect();
+    if(box.top<(toolbar?.bottom||0)+8||box.bottom>innerHeight-8)target.scrollIntoView({block:'center'});
+   }
   }
+  enCelebrationReturnFocus=null;enCelebrationReturnAnchor=null;
  }
 }
 function enCelebrationDismiss(restore=true){
@@ -6227,7 +6241,7 @@ function enRenderMilestones(){
  for(const item of records){
   if(item.state!=='earned')enCelebrationPlayer.revoke(item.id);
   const card=elt('button','en-milestone-card');
-  card.type='button';card.dataset.state=item.state;
+  card.type='button';card.dataset.state=item.state;card.dataset.milestone=item.id;
   card.setAttribute('aria-label',item.title+' · '+item.state+
    ' · '+item.completed+'/'+item.required+' confirmed conditions; play celebration');
   const art=enMilestonePosters[item.id];
