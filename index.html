@@ -884,11 +884,11 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-display-options>summary:focus-visible,.en-secondary-panel>summary:focus-visible{outline:3px solid #ffe393;outline-offset:3px}
 .en-nmap-dot.independent,.en-nmap-state.independent{background:#9774c9}
 /* Election Night keeps the site identity compact so the outlook is reachable. */
-body[data-page="electionNight"] .hero-waves{min-height:0;margin:12px 0;padding:12px 18px;background-image:none;justify-content:flex-start}
-body[data-page="electionNight"] .hero-copy{width:100%;max-width:none;display:flex;align-items:center;flex-wrap:wrap;gap:8px 22px}
-body[data-page="electionNight"] .hero-copy h1{font-size:26px;line-height:1.1;margin:0}
-body[data-page="electionNight"] .hero-actions{display:none}
-@media(max-width:560px){body[data-page="electionNight"] .hero-waves{padding:10px 12px}body[data-page="electionNight"] .hero-copy h1{font-size:23px}}
+body[data-active-page="electionNight"] .hero-waves{min-height:0;margin:12px 0;padding:12px 18px;background-image:none;justify-content:flex-start}
+body[data-active-page="electionNight"] .hero-copy{width:100%;max-width:none;display:flex;align-items:center;flex-wrap:wrap;gap:8px 22px}
+body[data-active-page="electionNight"] .hero-copy h1{font-size:26px;line-height:1.1;margin:0}
+body[data-active-page="electionNight"] .hero-actions{display:none}
+@media(max-width:560px){body[data-active-page="electionNight"] .hero-waves{padding:10px 12px}body[data-active-page="electionNight"] .hero-copy h1{font-size:23px}}
 @media(max-width:560px){#electionNight .en-toolbar{gap:8px;padding-top:7px;padding-bottom:7px}#electionNight .en-toolbar>.en-connection{font-size:10px}.en-display-options{max-width:100%;box-sizing:border-box}.en-quick-actions{align-items:flex-start}}
 
 </style></head><body>
@@ -1601,7 +1601,7 @@ function activatePage(tab,updateUrl){
 if(!tab)return;
 document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',String(x===tab)));
 document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===tab.dataset.page));
-document.body.dataset.page=tab.dataset.page;
+document.body.dataset.activePage=tab.dataset.page;
 if(tab.dataset.page==='electionNight'){
  const controls=document.querySelector('#electionNight .en-toolbar');
  controls?.scrollIntoView({block:'start'});

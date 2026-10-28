@@ -1,5 +1,11 @@
 # Readiness progress
 
+## 2026-10-28 — R8 review namespace repair, superseding initial head
+
+- Initial PR516 head d2d48a96 CI caught a real DOM attribute collision: body data-page=electionNight duplicated the existing tab selector [data-page=electionNight] on repeated visits (Texas browser40647187210/job122678633367 logs). No check waived/rerun or timeout changed. Source now uses separate body data-active-page /dataset.activePage; all existing tab selectors and assertions retained. Initial head must not merge.
+- Corrected actualEdge1366/390 Texas source/lifecycle/repeated navigation, hierarchy viewport/normal+freshdirect entry/home-art/keyboard/AX/coherence, Nebraska correction/withdrawal/rollback/outage/archive (synthetic), and all11celebration browser checks PASS. No source/model/call/transport changes. All new exact-head CI still required before merge, then finalPages/published bytes/ordinary navigation proof. No successful job reruns or status-only push: this is a concrete source correction.
+
+
 ## 2026-10-28 — R8 first-glance/source-impact repair candidate (NOT deployed)
 
 - Named task advanced from saved glance-workflow contract: actual1366x900/390x844 normal-navigation measurements found giant global masthead pushing all4chances below entry viewport, and consequential freshness/source link below all18personal cards. Once outlook-aligned, all4 already fit. No newforecast/source research was needed. Baseline artifacts ui-review/glance-baseline-20261028.json and glance-{initial,aligned}-{1366,390}.png preserve1b3421 source behavior. Review mode uses aria-pressed, not checkbox.checked (these controls are buttons).
