@@ -417,5 +417,6 @@ assert.equal(model.simulate(basis,{samples:900,seed:20261103,
  'An independent-party field must never silently become a D/R source call');
 
 require('./test_chamber_uncertainty_accounting.cjs');
+require('./test_chamber_margin_distribution.cjs');
 console.log('Joint congressional beta: all 470 contested seats, 6 gov battlegrounds, 4 exhaustive outcomes, geographically cautious assumptions, reproducible seeded draws');
 console.log('Model probabilities (diagnostic only):',JSON.stringify(first.probabilities));

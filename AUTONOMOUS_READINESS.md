@@ -1,5 +1,21 @@
 # Election Night production-readiness assignment
 
+## October28 owner reopened model sophistication — active implementation
+
+Branch readiness/needle-distributions-youtube implements same-joint selected
+race margin distributions and a visible median/middle50/90 strip, with truthful
+scope/call/NE/AK handling and no changed legacy probabilities/random draws.
+Fresh preferences select known requested YouTube tracks; explicit saved offline
+choice remains, with prominent mode control and visible playback guidance.
+Actual affected1366x900/390x844 tasks and focused/core/national invariance pass;
+finish fullDOM, independent review, attached protected PR and verified deployment.
+Do not stop at another plan or revert to the earlier externally-blocked freeze.
+Abbott/tree exact original path/link is pending one owner answer; independent
+model/music work continues. Keep original guide/human acceptance unchanged.
+Then advance the genuinely identified shared-factor call-conditioning math task
+from its separate numerical prototype; prove rare-event/ESS/count-overlap logic
+before runtime integration. No invented accuracy, source admission or paid use.
+
 ## October28 22:00 UTC — PR526 cleanup COMPLETE; archive still OFF
 
 Owner-requested old storage cleanup is executed:49confirmed obsoleteuploads /

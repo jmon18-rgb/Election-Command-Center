@@ -1,5 +1,17 @@
 # Celebration production inventory - October 27, 2026
 
+## October28 direct owner preference upgrade — candidate, not yet published
+
+Fresh settings now prefer the existing requested visible YouTube tracks (Eyes
+of Texas/Longhorn Band and Walk This Way/Aerosmith); an explicit saved Original
+choice remains respected. A prominent popup music control and visible guidance
+make the choice available without opening advanced settings. No connection from
+merely reading settings; unknown-track events keep original cues. Changed actual
+desktop/phone default/offline/visible-player/teardown tests pass using synthetic
+iframes, not a new human listening claim. Protected publication remains next.
+The exact Abbott/tree photo is not in the saved project assets; one path/link
+request is pending. Do not claim its campaign-sign replacement is that photo.
+
 PR521 verifies reading return across queued bulletins and celebration preemption
 after background redraws. Finalmain4c3e0e65/Pages40715028630/383files and actual
 published1366/390 tests pass; source/call/music/timing/production roster unchanged.

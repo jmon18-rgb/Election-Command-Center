@@ -90,3 +90,4 @@ const bounded=focus.createHistory({storage,now:()=>clock});for(let i=0;i<focus.H
 assert.equal(bounded.events().length,focus.HISTORY_LIMIT);assert(memory.get(focus.HISTORY_KEY).length<=focus.HISTORY_BYTES);
 clock+=73*3600000;assert.equal(bounded.events().length,0);assert.equal(JSON.parse(memory.get(focus.HISTORY_KEY)).events.length,0,'Expired records removed from persisted history');
 console.log('Bounded outlook history: source/model clocks, grouped returns, correction/withdrawal/recovery/calls, baseline/context/reload/simulation isolation and storage bounds PASS');
+require('./test_personal_margin_distribution.cjs');

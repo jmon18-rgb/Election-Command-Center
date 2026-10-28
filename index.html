@@ -603,6 +603,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-celebration-actions button,.en-celebration-music-settings button{min-height:44px}.en-celebration-actions button:focus-visible,.en-celebration-actions select:focus-visible{outline:3px solid #ffe393;outline-offset:2px}
 .en-celebration-music-settings{text-align:left;background:#0d2438;border:1px solid #365a78;border-radius:8px;padding:10px;margin:12px 0;font-size:12px}.en-celebration-music-settings summary{cursor:pointer;padding:5px}.en-celebration-music-settings label{display:block;margin:10px 0}.en-celebration-music-settings input{display:block;width:100%;margin-top:5px}.en-celebration-music-settings a{display:inline-block;color:#a4d7ff;padding:8px}
 .en-celebration-online-player{margin:12px auto;max-width:480px;min-width:200px}.en-celebration-online-player iframe{display:block;width:100%;height:270px;min-width:200px;min-height:200px;border:0}
+.en-celebration-online-status{font-size:12px;line-height:1.5;color:#c3def0;margin:10px auto;max-width:520px}
 @media(max-width:600px){.en-celebration-online-player iframe{height:200px}.en-celebration-actions{gap:4px}.en-celebration-actions label{width:100%}.en-celebration-actions select{max-width:75%}}
 .en-celebration-stage{margin:16px auto;padding:22px 12px;min-height:170px;border-radius:12px;background:radial-gradient(ellipse at center,#195e99,#081b35);overflow:hidden}
 .en-coverage-recovery{margin:12px 0;padding:12px;border-left:3px solid #e3b45a;background:#392e182e;border-radius:5px}
@@ -870,6 +871,19 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .personal-focus-card[data-race="NE-SEN"][data-rating-side="positive"]{border-top-color:#d2acff}
 .personal-focus-card[data-race="NE-SEN"][data-rating-side="positive"] .personal-focus-rating{background:#3b2854;border-color:#d2acff;color:#f0e2ff}
 .personal-focus-card[data-rating-kind="called"] .personal-focus-rating{border-width:2px}
+.personal-focus-margin{--margin-color:#85c8ff;margin:12px 0 9px;padding:10px 11px;border:1px solid #50718c;border-radius:9px;background:#071b2a80}
+.personal-focus-card[data-race="NE-SEN"] .personal-focus-margin{--margin-color:#d2acff}
+.personal-focus-card .personal-focus-margin-title{font-size:12px;font-weight:750;margin:0;color:#edf7ff}
+.personal-focus-margin-strip{position:relative;height:30px;margin:5px 0 0;isolation:isolate}
+.personal-focus-margin-strip span{position:absolute;display:block;box-sizing:border-box}
+.personal-focus-margin-base{left:0;right:0;top:14px;height:2px;background:linear-gradient(90deg,#e591a7,#8796aa 50%,#70bcf4);opacity:.65}
+.personal-focus-margin-zero{left:50%;top:1px;height:28px;border-left:1px dashed #d9e6f0;z-index:1}
+.personal-focus-margin-range90{left:var(--range90-left);width:var(--range90-width);top:11px;height:8px;border-radius:5px;background:var(--margin-color);opacity:.45}
+.personal-focus-margin-range50{left:var(--range50-left);width:var(--range50-width);top:8px;height:14px;border-radius:5px;background:var(--margin-color);border:1px solid #ffffff55}
+.personal-focus-margin-median{left:var(--median-left);top:4px;width:4px;height:22px;transform:translateX(-50%);border-radius:3px;background:#fff;box-shadow:0 0 0 1px #071b2a;z-index:2}
+.personal-focus-margin-axis{display:flex;justify-content:space-between;gap:5px;font-size:10px;color:#bbcfdf;font-variant-numeric:tabular-nums}
+.personal-focus-card .personal-focus-margin-caption{font-size:11px;color:#d3e5f3;margin:7px 0 0;line-height:1.45}
+.personal-focus-margin-detail{font-size:11px;line-height:1.6;margin-top:5px;color:#bcd1e2}.personal-focus-margin-detail summary{min-height:44px;display:flex;align-items:center;cursor:pointer}.personal-focus-margin-detail summary:focus-visible{outline:3px solid #ffe393;outline-offset:2px}
 .personal-focus-rating-key{font-size:12px;margin:10px 0 16px;color:#b9cedf}.personal-focus-rating-key summary{cursor:pointer;min-height:32px;padding:6px 0}
 .personal-focus-rating-key summary:focus-visible{outline:3px solid #ffe393;outline-offset:3px}
 .personal-focus-card svg{width:112px;float:right;margin:8px -4px 6px 10px}
@@ -1444,6 +1458,7 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
   <div class="en-milestone-kicker" id="enMilestoneKicker">SOURCE-REPORTED CALL</div>
   <div class="en-celebration-actions">
    <label>Preview another <select id="enCelebrationPreviewChoice" aria-label="Choose a celebration preview"></select></label>
+   <button class="en-milestone-close" id="enCelebrationMusicQuick" type="button" aria-pressed="true">Music: YouTube</button>
    <button class="en-milestone-close" id="enCelebrationSound" type="button" aria-pressed="true">Sound: on</button>
    <button class="en-milestone-close" id="enMilestoneClose" type="button" autofocus>Back to results · Esc</button>
   </div>
@@ -1458,6 +1473,7 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
    <p class="tiny" id="enCelebrationMusicLabel"></p>
   </div>
   <div id="enCelebrationOnlinePlayer" class="en-celebration-online-player" hidden></div>
+  <p class="en-celebration-online-status" id="enCelebrationOnlineStatus" role="status">Requested YouTube tracks play when available. Your browser may ask you to press Play.</p>
   <details class="en-celebration-music-settings">
    <summary>Music &amp; YouTube choices</summary>
    <label>Playback <select id="enCelebrationMusicMode"><option value="original">Original offline cue</option><option value="youtube">YouTube track</option></select></label>
@@ -1465,7 +1481,6 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
    <button id="enCelebrationVideoSave" type="button">Use this version</button>
    <button id="enCelebrationOriginal" type="button">Play original cue instead</button>
    <a id="enCelebrationVideoLink" target="_blank" rel="noopener" hidden>Open track on YouTube ↗</a>
-   <p id="enCelebrationOnlineStatus" role="status">Original music works offline. YouTube needs internet and may ask you to press Play.</p>
   </details>
   <div class="en-milestone-art" id="enMilestoneArt" aria-hidden="true">🌊</div>
   <div id="enJohnBrownPosterTitle" class="en-brown-poster-title" hidden>BLEEDING KANSAS.<span>1859 MEETS 2026</span>ONLY THIS TIME, BLUE.</div>
@@ -1562,11 +1577,11 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 </section>
 <footer class="footer"><span>2026 ELECTION COMMAND CENTER · CLARITY OVER NOISE</span><span><a href="https://github.com/jmon18-rgb/Election-Command-Center">Source code ↗</a> · <span id="updated">Briefing pending</span></span></footer></main>
 <script src="./scripts/election_night_celebration_player.js?v=93ed1d49eda5"></script>
-<script src="./scripts/election_night_celebration_online.js?v=669b56b2d0a3"></script>
+<script src="./scripts/election_night_celebration_online.js?v=78d1172d0939"></script>
 <script src="./scripts/election_night_celebration_music.js?v=6a479f8a84b1"></script>
 <script src="./scripts/election_night_celebration_scene.js?v=f1943c3e36ba"></script>
 <script src="./scripts/house_early_watch_reference.js?v=e1b9bc598b36"></script>
-<script src="./scripts/personal_election_focus.js?v=79b253c386a4"></script>
+<script src="./scripts/personal_election_focus.js?v=b23f37418d88"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=6eaa0d8f80cf"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=165fc37d665a"></script>
 <script src="./scripts/civicapi_state_batch.js?v=99e987c72cb8"></script>
@@ -1624,7 +1639,7 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/national_county_likelihood.js?v=e1ceb7b0bfd1"></script>
 <script src="./scripts/official_admission_audit.js?v=c2720f504058"></script>
 <script src="./scripts/national_needle_rehearsal.js?v=02f20194577c"></script>
-<script src="./scripts/chamber_control_model.js?v=76e60458f85d"></script>
+<script src="./scripts/chamber_control_model.js?v=ec6c4f60ccdb"></script>
 <script src="./scripts/electorate_what_if_2026.js?v=1a5fe3701694"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
 <script src="./scripts/chamber_poll_error_audit.js?v=9e73e0e9f9fe"></script>
@@ -4836,6 +4851,10 @@ function jointCurrentSignature(){
 }
 const enOfficialAdmissionAudit=(()=>{try{return window.OfficialAdmissionAudit?.create({storage:localStorage})}catch{return window.OfficialAdmissionAudit?.create()}})();
 const enOutlookHistory=(()=>{try{return window.PersonalElectionFocus?.createHistory({storage:localStorage})}catch{return window.PersonalElectionFocus?.createHistory()}})();
+function jointMarginSummaryCodes(){
+ const focus=window.PersonalElectionFocus;
+ return focus?[...new Set([...focus.SENATE.map(state=>state+'-SEN'),...focus.HOUSE,...(focus.WATCH?.districts||[]).map(row=>row.code)])]:undefined;
+}
 function jointHistoryRevision(preview=false){return [preview?'SIMULATED':'LIVE',window.ChamberControlModel.VERSION,jointIndependentControlOptions.independentSenateCredit,
  document.querySelector('script[src*="/chamber_control_model.js?"]')?.getAttribute('src')||'',
  document.querySelector('script[src*="/national_county_likelihood.js?"]')?.getAttribute('src')||'',jointBasis?.generated_from_sources?.model_polling_at||'',preview?0:jointNationalShift,preview?1:jointErrorMultiplier,
@@ -4852,7 +4871,7 @@ function jointRender(force=false){
  jointCacheKey=key;
  const updates=jointLiveObservations();
  try{
-  const args={...jointIndependentControlOptions,samples:3000,seed:20261103,
+  const args={...jointIndependentControlOptions,marginSummaryCodes:jointMarginSummaryCodes(),samples:3000,seed:20261103,
    nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,live:updates};
   const envelopes=jointCountyEvidence();
   let conditioned=null,countyUpdateWithheld=false;
@@ -4949,7 +4968,7 @@ async function jointNationalPreview(){
   if(version!==nationalPreviewVersion||!details.open||enModeYear!==2026)return;
   const envelopes=window.NationalNeedleRehearsal.stage(nationalPreviewInputs,nationalPreviewStep,jointBasis);
   const update=window.NationalCountyLikelihood.condition(window.ChamberControlModel,jointBasis,envelopes,
-   {...jointIndependentControlOptions,samples:3000,seed:20261103,live:{},rehearsal:true,now:window.NationalNeedleRehearsal.now});
+   {...jointIndependentControlOptions,marginSummaryCodes:jointMarginSummaryCodes(),samples:3000,seed:20261103,live:{},rehearsal:true,now:window.NationalNeedleRehearsal.now});
   const host=$('#enNationalPreviewNeedle');host.className=$('#jointNightNeedle').className;
   host.innerHTML=$('#jointNightNeedle').innerHTML;
   host.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));
@@ -6093,10 +6112,13 @@ function enCelebrationDismiss(restore=true){
 function enCelebrationSyncMusic(){
  const track=enCelebrationOnline?.track(enCelebrationCurrent,enCelebrationMusicSettings);
  $('#enCelebrationMusicMode').value=enCelebrationMusicSettings.mode;
+ const quick=$('#enCelebrationMusicQuick'),online=enCelebrationMusicSettings.mode==='youtube';
+ quick.textContent=online?'Music: YouTube':'Music: original';quick.setAttribute('aria-pressed',String(online));
+ quick.setAttribute('aria-label',online?'Music: YouTube preferred. Switch to original offline cues.':'Music: original offline cues. Switch to requested YouTube tracks.');
  $('#enCelebrationVideoInput').value=track?'https://www.youtube.com/watch?v='+track.id:'';
  const link=$('#enCelebrationVideoLink');link.hidden=!track;
  if(track){link.href='https://www.youtube.com/watch?v='+track.id;link.textContent='Open '+track.title+' on YouTube ↗';}
- $('#enCelebrationOnlineStatus').textContent=track?track.title+'. YouTube needs internet and may ask you to press Play. The original cue is always available.':'No YouTube track selected for this celebration. The original cue will play.';
+ $('#enCelebrationOnlineStatus').textContent=track?track.title+'. '+(online?'YouTube selected; press Play if your browser asks.':'Original offline cue selected.')+' The original cue is always available.':'No YouTube track selected for this celebration. The original cue will play.';
 }
 function enCelebrationMaybeReplayMusic(){
  // Keep the announcement first, even when the owner changes music settings.
@@ -6112,6 +6134,10 @@ $('#enCelebrationPreviewChoice').addEventListener('change',event=>{
 $('#enCelebrationsOpen').addEventListener('click',()=>enMilestoneShow(window.ElectionNightSignals?.MILESTONES.find(x=>x.id==='talarico')||{id:'tsunami',title:'Blue Tsunami'},true));
 $('#enCelebrationMusicMode').addEventListener('change',event=>{
  enCelebrationMusicSettings.mode=event.target.value==='youtube'?'youtube':'original';
+ enCelebrationOnline?.save(enCelebrationStorage,enCelebrationMusicSettings);enCelebrationSyncMusic();enCelebrationMaybeReplayMusic();
+});
+$('#enCelebrationMusicQuick').addEventListener('click',()=>{
+ enCelebrationMusicSettings.mode=enCelebrationMusicSettings.mode==='youtube'?'original':'youtube';
  enCelebrationOnline?.save(enCelebrationStorage,enCelebrationMusicSettings);enCelebrationSyncMusic();enCelebrationMaybeReplayMusic();
 });
 $('#enCelebrationVideoSave').addEventListener('click',()=>{

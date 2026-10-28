@@ -1,5 +1,18 @@
 # JackStradamus · development plan
 
+## October28 — owner reopens substantive sophistication and media work
+
+Active R0/R7 candidate: selected-race empirical median/middle50/90 ranges from
+the same conditioned joint draws; no extra RNG or changed existing outputs.
+Actual1366/390 UI and focused invariance tests pass; finish protected publication.
+R6 candidate: requested YouTube preference for fresh profiles, prominent music
+control and visible playback guidance, preserving explicit offline choice and
+all media/call guards. Exact Abbott/tree original path/link pending one answer.
+Next model-math task: condition shared latent factors on validated calls without
+double-counting county evidence; separate exact numerical prototype underway.
+Dates/human acceptance are not engineering wait gates. No probability sharpening
+or calibration claim; see RACE_MARGIN_DISTRIBUTIONS.md.
+
 ## October28 22:00 UTC — PR526 cleanup executed; no paid features enabled
 
 49obsoleteuploads/286,991,021reportedbytes deleted by reviewed main-push

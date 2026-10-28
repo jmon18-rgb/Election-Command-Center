@@ -1,4 +1,5 @@
-/* Optional visible YouTube embeds. No remote request until the owner opts in. */
+/* Requested YouTube songs use visible official players. Reading preferences
+   never connects; mounting happens only for a selected, audible celebration. */
 (function(root,factory){
  const api=factory();
  if(typeof module!=='undefined'&&module.exports)module.exports=api;
@@ -25,10 +26,13 @@
   }catch{return null;}
  }
  function read(storage,ids){
-  const settings={mode:'original',videos:{}};
+  // The owner requested these recordings as the preferred soundtrack. Keep
+  // any explicit saved offline choice; a fresh profile prefers the requested
+  // YouTube track where one exists and otherwise uses the original score.
+  const settings={mode:'youtube',videos:{}};
   try{
    const saved=JSON.parse(storage.getItem(KEY)||'null');
-   if(saved?.mode==='youtube')settings.mode='youtube';
+   if(saved?.mode==='original')settings.mode='original';
    for(const id of ids)if(validId(saved?.videos?.[id]))settings.videos[id]=saved.videos[id];
   }catch{}
   return settings;

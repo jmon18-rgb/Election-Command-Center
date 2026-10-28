@@ -1,5 +1,33 @@
 # Readiness progress
 
+## October28 — direct owner sophistication request; distributions and YouTube candidate
+
+Owner reopens substantive roadmap work now. Implemented selected-race empirical
+margin distributions from the SAME conditioned joint draws, including mixture
+quantiles/repeated-particle provenance; no extra RNG or change to old outputs.
+Personal cards show median/middle50/90 with explicit scale, NE paired axis,
+call/AK suppression and uncalibrated scenario scope. Actual Edge1366x900 and
+390x844 range/help/keyboard/redraw/call-removal/rehearsal/isolation/nooverflow
+tasks PASS. Optional-display-code failure retains the national model; independent
+review caught/fixed the empty-scope fallback. See RACE_MARGIN_DISTRIBUTIONS.md.
+
+Fresh music preferences now select the requested known YouTube tracks, explicit
+saved Original stays respected. A prominent popup control changes preference;
+visible playback guidance and original fallback remain. Actual changed popup/
+default/offline/visible-player/mute/close/withdrawal tasks PASS at1366/390, with
+synthetic iframe and all election providers blocked. Existing exact two official
+links retained; no recording download. FullDOM/protected review/publication next.
+Scoped screenshots: ui-review/needle-distributions-youtube. Original guide/human
+results unchanged. Exact Abbott/tree original is not in saved assets; one async
+path/link request is pending, not silently substituted or marked integrated.
+
+Next real model-math task identified: validated calls currently overlay binary
+race outcomes without conditioning shared latent factors. A separate exact
+truncated-normal/proposal-weight prototype is being assessed for rare calls,
+overlapping county evidence, ESS and retraction; no runtime math change yet.
+This replaces the blanket no-ready-work assessment. No calibration claim, new
+source route/GET, private-data publication or paid/archive activation.
+
 ## 2026-10-28 22:00 UTC — PR526 obsolete-storage cleanup executed and published
 
 - Tested1bd71f9ad8ccf98002bc67b734d9e41dbf1e8163 passed all4 applicable workflow parents/9latestjobs7SUCCESS2nonapplicableSKIP/0external/currentclean. FullDOM40773748012/job123117511193 and readiness40773747729 SUCCESS. Read-only preflight40773747954/job123117636993 found50eligible/324,536,415bytes with0mutationrequests. Merge/finalCURRENTmain769a2fe3a6f3277972f84e870cfc20466d6b35f1; Pages40775607865 SUCCESS. All22changedpublicfile/currentindex checks match21:58:56.793Z usingorigin/mainblobs; productioncoherence/currentindex/no_creditPASS. Main rechecked unchanged22:00:09Z. No waived/rerun/timeout-increased checks.

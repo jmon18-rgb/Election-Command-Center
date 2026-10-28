@@ -658,6 +658,21 @@ function senatePollingErrorBudget(info){
   const senateChamberLocalVar=basis.assumptions.senate_chamber_sigma**2*
     (1-chamberScale**2);
   const polls=basis.house.concat(basis.senate,basis.governors);
+  // Optional summaries observe existing complete-election margins; they never
+  // add draws, change weights, narrow a prior, or turn a call into a margin.
+  // Bound the requested scope instead of retaining all races at every draw.
+  const marginSummaryCodes=options.marginSummaryCodes??null;
+  if(marginSummaryCodes!==null&&(!Array.isArray(marginSummaryCodes)||
+     marginSummaryCodes.length<1||marginSummaryCodes.length>64||
+     new Set(marginSummaryCodes).size!==marginSummaryCodes.length||
+     marginSummaryCodes.some(code=>typeof code!=='string'||
+      !polls.some(item=>item.code===code))))
+   throw Error('Invalid bounded race margin-summary scope');
+  const marginSummarySet=new Set(marginSummaryCodes||[]);
+  const marginSamples=marginSummaryCodes?polls.map(item=>
+   marginSummarySet.has(item.code)?new Float64Array(samples):null):null;
+  const marginUniqueParticles=marginSummaryCodes?
+   replay?new Set(replay).size:samples:null;
   // Optional attribution consumes the EXACT SAME joint draws and never
   // changes headline probabilities unless explicitly requested.
   const explainControl=options.explainControl===true;
@@ -757,6 +772,7 @@ function senatePollingErrorBudget(info){
     const finalMargin=mean+effectiveNational+officeShock+stateShock+
       normal(rands)*effectiveSigma*errorMultiplier;
     if(captured&&captureSet.has(item.code))captured.margins[item.code][k]=finalMargin;
+    if(marginSamples?.[j])marginSamples[j][k]=finalMargin;
     // Only the independently validated source winner flag can lock a 2026
     // race. A count lead is never a call; corrections restore uncertain draws.
     const sourceCalled=scenario?.mode==='source_called'&&
@@ -877,6 +893,42 @@ function senatePollingErrorBudget(info){
    // or the conditional spread of a live-informed/called result.
    const totalLatentSigma=Math.hypot(totalSigma,redrawnPermutationSigma);
    const wins=raceDemWins[index],demPct=pct(wins);
+   const scenario=live[item.code];
+   const calledParty=scenario?.mode==='source_called'&&
+    ['D','R'].includes(scenario.winnerParty)?scenario.winnerParty:null;
+   const liveInformed=scenario?.mode==='live_informed'&&
+    finite(scenario.posteriorMargin)&&finite(scenario.posteriorSigma)&&
+    scenario.posteriorSigma>=0;
+   const selectedMargins=marginSamples?.[index];
+   let marginDistribution=null;
+   if(selectedMargins&&!calledParty){
+    // Summarize the ACTUAL draw mixture, including shared shocks, geography
+    // permutation and any whole-election importance resampling. A Gaussian
+    // mean +/- sigma approximation would lose asymmetry/multimodality here.
+    let count=0,mean=0,m2=0;
+    for(const value of selectedMargins){
+     if(!finite(value))throw Error('Nonfinite simulated race margin');
+     const delta=value-mean;mean+=delta/++count;m2+=delta*(value-mean);
+    }
+    selectedMargins.sort();
+    const rounded=value=>Math.round(value*1000)/1000;
+    marginDistribution={schema_version:'same-joint-margin-summary-v1',
+     p05:rounded(quantile(selectedMargins,.05)),
+     p25:rounded(quantile(selectedMargins,.25)),
+     p50:rounded(quantile(selectedMargins,.5)),
+     p75:rounded(quantile(selectedMargins,.75)),
+     p95:rounded(quantile(selectedMargins,.95)),
+     mean:rounded(mean),sd:rounded(Math.sqrt(Math.max(0,m2/count))),
+     sample_count:samples,unique_election_particles:marginUniqueParticles,
+     axis:item.nonrep_independent_proxy?
+      item.code==='NE-SEN'?'osborn_minus_ricketts':'nonrepublican_proxy_minus_rep':
+      'dem_minus_rep',
+     conditioning:replay?'COUNTY_IMPORTANCE_RESAMPLED':
+      liveInformed?'LIVE_INFORMED_SCENARIO':'POLLING_BASELINE',
+     interval_calibrated:false,
+     distribution_scope:'UNBOUNDED_LATENT_MARGIN_PROXY_NOT_FINAL_VOTE_INTERVAL',
+     quantile_method:'SORTED_DRAW_LOWER_INDEX_FLOOR_N_MINUS_ONE_P'};
+   }
    return {race_code:item.code,office,model_dem_margin_points:item.mean,
     polled:item.polled,poll_weight:item.poll_weight??null,
     polling_error_tier:item.polling_error_tier??null,
@@ -886,9 +938,10 @@ function senatePollingErrorBudget(info){
     redrawn_permutation_sigma_points:Math.round(redrawnPermutationSigma*1000)/1000,
     total_latent_sigma_points:Math.round(totalLatentSigma*1000)/1000,
     uncertainty_method:'EXPERIMENTAL_BASELINE_LATENT_SPREAD_NOT_CALIBRATED_INTERVAL',
-    provider_called_party:live[item.code]?.mode==='source_called'&&
-      ['D','R'].includes(live[item.code].winnerParty)?
-      live[item.code].winnerParty:null,
+    provider_called_party:calledParty,
+    ...(selectedMargins?{margin_distribution:marginDistribution,
+     margin_distribution_status:calledParty?'SOURCE_CALL_HAS_NO_MARGIN_ESTIMATE':
+      'EXPERIMENTAL_SAME_JOINT_DRAW_SUMMARY'}:{}),
     dem_beats_rep_pct:demPct,rep_beats_dem_pct:pct(samples-wins),
     simulated_dem_wins:wins,
     simulation_samples:samples};
