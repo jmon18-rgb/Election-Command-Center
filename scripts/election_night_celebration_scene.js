@@ -24,6 +24,7 @@
   if(host&&id==='abbott'&&['scene','complete'].includes(phase))return renderAbbott(host,{phase,beat,preview});
   if(host&&id==='mississippi'&&['scene','complete'].includes(phase))return renderMississippi(host,{phase,beat,preview});
   if(host&&id==='blansas'&&['scene','complete'].includes(phase))return renderKansas(host,{phase,beat,preview});
+  if(host&&id==='graham'&&['scene','complete'].includes(phase))return renderGraham(host,{phase,beat,preview});
   if(!host||id!=='talarico'||!['scene','complete'].includes(phase))return false;
   const index=phase==='complete'?2:beat;
   if(!Number.isInteger(index)||index<0||index>2)return false;
@@ -150,6 +151,33 @@
   }
   svg.append(text(preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL',490,520,17,'#b9d9ed'));
   return finish(host,svg,animated,'blansas',index,phase);
+ }
+ // Original fictional stage props; no real venue, conduct or private identity.
+ function renderGraham(host,{phase,beat,preview}){
+  const index=phase==='complete'?2:beat;if(!Number.isInteger(index)||index<0||index>2)return false;
+  const doc=host.ownerDocument,el=(tag,attrs={},label)=>{const n=doc.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,String(v));if(label!==undefined)n.textContent=label;return n;};
+  const text=(label,x,y,size=28,color='#f5efff')=>el('text',{x,y,'text-anchor':'middle','font-family':'Arial,sans-serif','font-size':size,'font-weight':800,fill:color},label);
+  const svg=el('svg',{viewBox:'0 0 980 540',role:'img','aria-label':'Fictional Graham election-stage farewell, not a real venue or conduct; '+(preview?'simulated preview':'source-reported unofficial call'),'data-scene':'graham','data-beat':index}),animated=[];
+  svg.append(el('rect',{width:980,height:540,rx:24,fill:'#1c1735'}),text('SOUTH CAROLINA · U.S. SENATE',490,43,23,'#cbb3ff'));
+  const lights=el('g',{'data-layer':'theatrical-spotlights',style:'transform-box:fill-box;transform-origin:center top'});lights.append(el('path',{d:'M80 80L410 455H130Z',fill:'#ca72e5',opacity:.2}),el('path',{d:'M900 80L570 455H850Z',fill:'#63bdff',opacity:.2}));svg.append(lights);
+  if(index<2){
+   animated.push({node:lights,frames:[{transform:'rotate(-4deg)'},{transform:'rotate(4deg)'},{transform:'rotate(0deg)'}],duration:1700});
+   if(index===0){
+    const ball=el('g',{'data-layer':'farewell-disco-ball',style:'transform-box:fill-box;transform-origin:center'});ball.append(el('path',{d:'M490 65V108',stroke:'#b6a6cd','stroke-width':6}),el('circle',{cx:490,cy:180,r:70,fill:'#a1a6c1',stroke:'#e2deff','stroke-width':4}),el('path',{d:'M430 150H550M422 180H558M430 210H550M465 115Q445 180 465 245M490 110V250M515 115Q535 180 515 245',stroke:'#525e88','stroke-width':4}));svg.append(ball);
+    animated.push({node:ball,frames:[{transform:'rotate(-6deg)'},{transform:'rotate(6deg)'},{transform:'rotate(0deg)'}],duration:1600});
+    const marquee=el('g',{'data-layer':'graham-neon-marquee'});marquee.append(el('rect',{x:130,y:300,width:720,height:105,rx:18,fill:'#312345',stroke:'#e4a5f3','stroke-width':6}),text('LAST CALL, GRAHAM',490,367,46));svg.append(marquee);
+   }else{
+    svg.append(el('rect',{x:110,y:145,width:760,height:100,rx:18,fill:'#32224e',stroke:'#bc8ce6','stroke-width':5}),text('THE VIP LIST HAS CHANGED',490,208,38));
+    const pass=el('g',{'data-layer':'incumbent-stage-pass',style:'transform-box:fill-box;transform-origin:center;transform:translateX(400px) rotate(12deg) scale(.65);opacity:.5'});pass.append(el('rect',{x:160,y:280,width:320,height:100,rx:13,fill:'#704166',stroke:'#dbabd0','stroke-width':4}),text('INCUMBENT PASS',320,340,28));svg.append(pass);
+    animated.push({node:pass,frames:[{transform:'translateX(0) rotate(0deg) scale(1)',opacity:1},{transform:'translateX(400px) rotate(12deg) scale(.65)',opacity:.5}],duration:1300});
+    const exit=el('g',{'data-layer':'stage-exit'});exit.append(el('rect',{x:790,y:275,width:110,height:115,rx:9,fill:'#075984',stroke:'#8bd7ff','stroke-width':4}),text('EXIT',845,344,29));svg.append(exit,text('SOUTH CAROLINA TAKES THE SPOTLIGHT',490,435,25,'#cbb3ff'));
+   }
+  }else{
+   const card=el('g',{'data-layer':'graham-finale',style:'transform-box:fill-box;transform-origin:center'});card.append(el('rect',{x:100,y:140,width:780,height:270,rx:25,fill:'#245689',stroke:'#c49bf4','stroke-width':6}),text('SOUTH CAROLINA',490,221,48),text('A NEW HEADLINER',490,290,37,'#d9d4ff'),text('LOL, GRAHAM',490,355,38));svg.append(card);
+   animated.push({node:card,frames:[{opacity:0,transform:'translateY(24px)'},{opacity:1,transform:'translateY(0)'}],duration:750});
+  }
+  svg.append(text('FICTIONAL STAGE · NOT A REAL VENUE',490,480,22,'#c1b2db'),text(preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL',490,520,17,'#c5d1ed'));
+  return finish(host,svg,animated,'graham',index,phase);
  }
  return Object.freeze({render,clear});
 });
