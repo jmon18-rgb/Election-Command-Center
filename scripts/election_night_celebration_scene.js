@@ -28,6 +28,7 @@
   if(host&&id==='nebraska'&&['scene','complete'].includes(phase))return renderNebraska(host,{phase,beat,preview});
   if(host&&id==='blue_corn'&&['scene','complete'].includes(phase))return renderIowa(host,{phase,beat,preview});
   if(host&&id==='maine'&&['scene','complete'].includes(phase))return renderMaine(host,{phase,beat,preview});
+  if(host&&['ohio','blexas','tsunami'].includes(id)&&['scene','complete'].includes(phase))return renderFinalRoster(host,{id,phase,beat,preview});
   if(!host||id!=='talarico'||!['scene','complete'].includes(phase))return false;
   const index=phase==='complete'?2:beat;
   if(!Number.isInteger(index)||index<0||index>2)return false;
@@ -251,6 +252,40 @@
   }
   svg.append(text('THEATRICAL SENDOFF · ORIGINAL PARODY',490,480,21,'#bdd5de'),text(preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL',490,520,17,'#bfdfe9'));
   return finish(host,svg,animated,'maine',index,phase);
+ }
+ function renderFinalRoster(host,{id,phase,beat,preview}){
+  const index=phase==='complete'?2:beat;if(!Number.isInteger(index)||index<0||index>2)return false;
+  const doc=host.ownerDocument,el=(tag,attrs={},label)=>{const n=doc.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,String(v));if(label!==undefined)n.textContent=label;return n;};
+  const text=(label,x,y,size=28,color='#effaff')=>el('text',{x,y,'text-anchor':'middle','font-family':'Arial,sans-serif','font-size':size,'font-weight':800,fill:color},label);
+  const label={ohio:'OHIO · SPECIAL SENATE',blexas:'TEXAS · SENATE + GOVERNOR',tsunami:'BLUE TSUNAMI · THEATRICAL PREVIEW'}[id];
+  const svg=el('svg',{viewBox:'0 0 980 540',role:'img','aria-label':label+'; '+(id==='tsunami'?'preview only, no national call':preview?'simulated preview':'source-reported unofficial calls'),'data-scene':id,'data-beat':index}),animated=[];
+  svg.append(el('rect',{width:980,height:540,rx:24,fill:'#092b45'}),text(label,490,43,23,'#acdff1'));
+  const card=(layer,title,subtitle,third)=>{const g=el('g',{'data-layer':layer,style:'transform-box:fill-box;transform-origin:center'});g.append(el('rect',{x:100,y:130,width:780,height:285,rx:24,fill:'#11679e',stroke:'#b6e9ff','stroke-width':6}),text(title,490,220,44),text(subtitle,490,292,30,'#c9edff'),text(third,490,365,25));svg.append(g);animated.push({node:g,frames:[{opacity:0,transform:'scale(.92)'},{opacity:1,transform:'scale(1)'}],duration:750});};
+  if(id==='ohio'){
+   if(index===0){
+    svg.append(text('A BUCKEYE UNDER PRESSURE',490,106,32));
+    const nut=el('g',{'data-layer':'ohio-buckeye',style:'transform-box:fill-box;transform-origin:center'});nut.append(el('ellipse',{cx:490,cy:285,rx:145,ry:130,fill:'#573b2c',stroke:'#d6b98c','stroke-width':12}),el('ellipse',{cx:490,cy:267,rx:92,ry:84,fill:'#d9b482'}),el('path',{d:'M498 155L475 240 505 270 480 335 506 410',fill:'none',stroke:'#163d61','stroke-width':8}));svg.append(nut);animated.push({node:nut,frames:[{transform:'scaleX(1)'},{transform:'scaleX(.9)'},{transform:'scaleX(1)'}],duration:1500});
+   }else if(index===1){
+    svg.append(text('BLUE-SHOCK',490,106,40));
+    for(const side of [-1,1]){const half=el('path',{d:side===-1?'M485 160C300 150 300 410 485 410L460 330 485 270 465 230Z':'M495 160C680 150 680 410 495 410L520 330 495 270 515 230Z',fill:'#573b2c',stroke:'#d6b98c','stroke-width':8,'data-layer':'ohio-cracked-shell',style:`transform:translateX(${side*60}px)`});svg.append(half);animated.push({node:half,frames:[{transform:'translateX(0)'},{transform:`translateX(${side*60}px)`}],duration:1100});}
+    const bolt=el('path',{d:'M492 145L445 275H490L460 421 570 250H517L552 145Z',fill:'#268dde',stroke:'#c6f2ff','stroke-width':7,'data-layer':'ohio-blue-lightning'});svg.append(bolt);animated.push({node:bolt,frames:[{opacity:0},{opacity:1}],duration:900});
+   }else card('ohio-special-finale','BUCKEYE BLUE-SHOCK','OH! THAT HAPPENED','OHIO · SPECIAL SENATE');
+  }else if(id==='blexas'){
+   if(index<2){
+    const state=el('path',{d:texas,fill:'#056fcb',stroke:'#bdeeff','stroke-width':9,'data-layer':'blexas-illustrative-texas',style:'transform-box:fill-box;transform-origin:center'});svg.append(state);animated.push({node:state,frames:[{opacity:.4},{opacity:1}],duration:900});
+    if(index===0)svg.append(text('ONE ENORMOUS STATE',490,465,32));
+    else {for(const [i,x]of [425,565].entries()){const badge=el('g',{'data-layer':'blexas-office-star',style:'transform-box:fill-box;transform-origin:center'});badge.append(el('path',{d:star,transform:`translate(${x} 235) scale(2)`,fill:'#e1f7ff'}),text(i===0?'SENATE':'GOVERNOR',x,320,22));svg.append(badge);animated.push({node:badge,frames:[{opacity:0,transform:'scale(.5)'},{opacity:1,transform:'scale(1)'}],duration:850,delay:i*300});}svg.append(text('TWO SEPARATE STATEWIDE CALLS',490,465,28));}
+   }else card('blexas-two-call-finale','BLEXAS','TWO BLUE STARS','SENATE + GOVERNOR · BOTH CALLS REQUIRED');
+  }else{
+   const wave=el('g',{'data-layer':'tsunami-theatrical-wave',style:'transform-box:fill-box;transform-origin:center bottom'});wave.append(el('path',{d:'M0 468C93 394 163 438 244 410c77-26 110-82 169-165 37-54 102-79 156-70 82 14 126 102 126 175-13-40-48-65-93-65-55 0-100 44-119 89 66-36 148-2 189 47 74 89 167 59 308-3v202H0Z',transform:'translate(0 -65) scale(1 .9)',fill:'#168bdf'}),el('path',{d:'M393 279c73-120 194-133 275-32-46-39-125-34-162-14-39 22-67 51-113 91',transform:'translate(0 -65) scale(1 .9)',fill:'#c9f8ff'}));svg.append(wave);
+   animated.push({node:wave,frames:[{transform:'translateY(85px) scaleY(.6)'},{transform:'translateY(0) scaleY(1)'}],duration:1500});
+   if(index===0)svg.append(text('A VERY LARGE WAVE',490,100,38));
+   else if(index===1){svg.append(text('PLEASE SECURE YOUR LAWN SIGNS',490,100,31));const sign=el('g',{'data-layer':'tsunami-lawn-sign',style:'transform-box:fill-box;transform-origin:center bottom;transform:rotate(18deg) translateX(40px)'});sign.append(el('path',{d:'M800 310V440',stroke:'#ccd9e2','stroke-width':8}),el('rect',{x:730,y:255,width:140,height:70,rx:8,fill:'#cc687e'}),text('RED WAVE?',800,299,19));svg.append(sign);animated.push({node:sign,frames:[{transform:'rotate(0) translateX(0)'},{transform:'rotate(18deg) translateX(40px)'}],duration:1300});}
+   else card('tsunami-preview-finale','BLUE TSUNAMI','THE TIDE HAS THEATRICAL AMBITIONS','PREVIEW ONLY · NO NATIONAL CALL');
+  }
+  if(id==='blexas')svg.append(text('ILLUSTRATIVE TEXAS · NOT A RESULTS MAP',490,485,18,'#bddfe9'));
+  svg.append(text(id==='tsunami'?'PREVIEW ONLY · NOT A FORECAST TRIGGER OR VERIFIED OUTCOME':preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL',490,520,id==='tsunami'?16:17,'#bfdfe9'));
+  return finish(host,svg,animated,id,index,phase);
  }
  return Object.freeze({render,clear});
 });
