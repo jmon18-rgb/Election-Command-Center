@@ -1,6 +1,6 @@
 # JackStradamus · development plan
 
-> Active correction: remove implicit new Independent Democratic caucus credit from every app calculation; retain fixed seat thresholds and show unresolved coalition limits. Candidate tested locally, protected release pending. MN exact search403/MS historical directory403 STOP; NE five-name official roster and93county official2024history now saved, different-seat scenario/current clock still unreviewed. No18th route or new baseline admitted. Detailed evidence in latest progress.
+> Released505: explicit no-credit policy removes automatic Independent D caucus credit across app paths; final49ccfc37/Pages40614335003/351publishedfiles verified. NEXT small R8 accessibility repair: role=img hides the coalition caveat from AX; include it in accessible name/description and test before Oct29. Then R1 NE typed-axis/different-seat scenario review from saved originals. MN/MS/MI403 remain STOP; no new route/baseline admitted. R3/R8/calibration acceptance remains open.
 
 ## Active national-needle roadmap - reassessed October 27, 2026
 
