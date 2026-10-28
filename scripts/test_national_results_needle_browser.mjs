@@ -126,6 +126,11 @@ try{
   for(let step=2;step<=5;step++){
    await page.locator('#enNationalNext').click();await page.waitForFunction(step=>document.querySelector('#enNationalStage').textContent.includes(step+'/5'),step);
    assert.match(await page.locator('#enNationalPreviewNeedle').getAttribute('aria-label'),/SIMULATED/);
+   const previewName=await page.locator('#enNationalPreviewNeedle').getAttribute('aria-label');
+   assert(previewName.includes(await page.locator('#enNationalPreviewNeedle .four-needle-coalition-note').innerText()),'Each rehearsal update exposes the coalition caveat');
+   const axSession=await context.newCDPSession(page),axTree=await axSession.send('Accessibility.getFullAXTree');
+   assert(axTree.nodes.some(n=>!n.ignored&&n.role?.value==='image'&&n.name?.value===previewName),'Rehearsal accessible output includes its own values, simulation label and coalition caveat');
+   await axSession.detach();
    assert.equal(await page.locator('#enNationalPreviewNeedle .four-needle-outcome').count(),4);
    assert(await page.evaluate(()=>{const host=document.querySelector('#enNationalPreviewNeedle'),aria=host.getAttribute('aria-label');return Array.from(host.querySelectorAll('.four-needle-outcome')).every(e=>aria.includes(e.querySelector('small').textContent+' '+e.querySelector('strong').textContent.replace('%','')+' percent'));}),'Simulated visible probabilities must match their own scenario, not live odds');
    if(step===3){assert.notEqual(await page.locator('#enNationalPreviewChances').textContent(),first);assert.match(await page.locator('#enNationalPreviewNeedle').textContent(),/5 House districts across 4 states, not national House coverage/);}

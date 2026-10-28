@@ -4422,6 +4422,9 @@ function jointRenderNeedles(result,config={}){
  const labels=['RED DAWN','SHRUG','BLUE WAVE','BLUE TSUNAMI'];
  for(const id of config.hostIds||['jointHomeNeedle','jointNightNeedle']){
   const host=$('#'+id);if(!host)continue;
+  // The rehearsal host is created dynamically; aria-label alone does not
+  // give a generic div a supported accessible name.
+  host.setAttribute('role','img');
   const marker=host.querySelector('.four-needle-arrow');
   const foot=host.querySelector('.four-needle-footer');
   const bar=host.querySelector('.four-needle-distribution');
@@ -4438,7 +4441,7 @@ function jointRenderNeedles(result,config={}){
    }
   };
   if(!result?.probabilities||keys.some(k=>!Number.isFinite(result.probabilities[k]))){
-   host.setAttribute('aria-label','Four Endings forecast is unavailable, no result inferred');
+   host.setAttribute('aria-label','Four Endings forecast is unavailable, no result inferred. '+coalitionNote.textContent);
    foot.firstElementChild.textContent='Awaiting validated probabilities';
    foot.lastElementChild.textContent='No source forecast';
    marker.style.left='50%';bar.replaceChildren();
@@ -4479,7 +4482,7 @@ function jointRenderNeedles(result,config={}){
   host.setAttribute('aria-label','2026 correlated Four Endings forecast. '+
    keys.map((k,i)=>labels[i]+' '+v[i].toFixed(1)+' percent').join(', ')+
    '. Expected scenario pointer '+position.toFixed(1)+' percent along spectrum. '+
-   sourceMode+'. Not a certified election result.');
+   sourceMode+'. Not a certified election result. '+coalitionNote.textContent);
   const oceanName=['RED SKIES','CHOPPY SEAS','BLUE WAVE WATCH','TSUNAMI WATCH'];
   foot.firstElementChild.textContent=oceanName[likely]+
    ' · '+v[likely].toFixed(1)+'% most likely ending';

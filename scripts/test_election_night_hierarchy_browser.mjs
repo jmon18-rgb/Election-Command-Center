@@ -43,6 +43,17 @@ try{
   assert(coalition.labPolicy,'What-if baseline and hypothetical share the explicit coalition policy even when helper reconstructs options');
   assert(coalition.revision.includes('no_credit'),'History revisions distinguish changed control accounting');
   assert.match(await page.locator('#jointNightNeedle .four-needle-coalition-note').innerText(),/does not establish a Republican majority/);
+  const axSession=await context.newCDPSession(page);
+  async function checkNeedleAccessible(id){
+   const label=await page.locator('#'+id).getAttribute('aria-label');
+   const caveat=await page.locator('#'+id+' .four-needle-coalition-note').innerText();
+   assert(label.includes(caveat),'Visible coalition caveat must reach the image accessible name');
+   const tree=await axSession.send('Accessibility.getFullAXTree');
+   assert(tree.nodes.some(n=>!n.ignored&&n.role?.value==='image'&&n.name?.value===label),'Actual browser accessibility tree must expose the complete needle name');
+  }
+  await checkNeedleAccessible('jointNightNeedle');
+  await page.locator('[data-page="brief"]').click();await checkNeedleAccessible('jointHomeNeedle');
+  await page.locator('[data-page="electionNight"]').click();await checkNeedleAccessible('jointNightNeedle');
   await page.locator('#jointNightNeedle').screenshot({path:resolve(out,'independent-control-'+width+'.png')});
   assert.equal(await page.locator('#enRaceDiagnosticDetails').evaluate(e=>e.open),false);
   assert.equal(await page.locator('#enIowaRaceNeedle').isVisible(),false,'Duplicate prototypes start behind a named disclosure');
