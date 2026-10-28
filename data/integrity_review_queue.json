@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-28T02:04:38.153264Z",
+  "updated_at": "2026-10-28T02:57:05.644316Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
@@ -490,6 +490,23 @@
       "topic_hints": [
         "litigation",
         "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "fd499619b1ddc2c0bab5",
+      "title": "States Flag Thousands Of Ineligible Voters, But Only A Few Cases Are Prosecuted - tippinsights",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQRVBPWGhLOVpfZkoyN1JPVms1SF81em5zUE0xVGgtOTU1VjdPTWhJb2p5cm1DdkdJTkUzckdiMzlkM0xyTWNQS05UM2w1MGwzSGhfY3UwcUQtdFdsYmJiVlNoUUhDT2xEMlU2aVNGWW5LSUNJQ0N1dHVEVXJMd3B5U2dFd2c3U3ZkSVFkWVUwTWdnZDlWdGY1Z2dMaW53UTlxR2kxRkd3QQ?oc=5",
+      "publisher": "tippinsights",
+      "published_at": "2026-10-27T18:38:37Z",
+      "detected_at": "2026-10-28T02:57:05.644316Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -5023,25 +5040,6 @@
       "state_hints": [],
       "topic_hints": [
         "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "8043a89d5299d72d5c7d",
-      "title": "Federal appeals court won\u2019t fully block student IDs for voting in New Hampshire - Democracy Docket",
-      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOUXNVMXhSQmhvUjQtRmJSZGJEOXExSUZxR3V4VEJLdUluY2todkIwWVFJX3pQamNOVllRSzVpNEZRdjA5WTdneDB1VGlBLTMzX0hoeWg0b3h0ZVBEaVl2U0U5bjlYWkt1eXZFZXpSODcxYzVNNTV2MDBSYXJOcks2aEVkd0ZibXZqLUdWOFo4aEFQR3ZhdnJIenZ5cFFQVmEwa0IwV0lLbFg1bnVZck1wY1BVMjNBM2tJemJfWXBIeVA?oc=5",
-      "publisher": "Democracy Docket",
-      "published_at": "2026-10-15T15:06:15Z",
-      "detected_at": "2026-10-15T15:07:27.637939Z",
-      "state_hints": [
-        "NH"
-      ],
-      "topic_hints": [
-        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
