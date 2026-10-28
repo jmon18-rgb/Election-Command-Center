@@ -21,6 +21,15 @@ concrete finding requires a new protected head aftere45c9183; that earlier head
 is not merged or rerun/waived merely because its checks finish. Final DOM and
 all new-head parents/jobs/statuses remain mandatory.
 
+Independent review caught background scroll theft in that first focus repair:
+visibility restoration must depend on the old reader being onscreen. Actual
+wheel-away/redraw tests now retain both offscreen reader identity and exact
+scroll at1366/390. The DOM harness also now passes its existing actual polling
+fixture to the board function rather than reading an unavailable lexical name
+through a separate eval; all original assertions remain. Final source head
+supersedes4f9e834f; no failed/superseded head merge, rerun, waiver or timeout
+increase. Final exact-head CI/publication remains required.
+
 FL04 bounded official county field is grounded from cached packet text with
 explicit inference/limits; original-byte capture403 and landing429 are STOP.
 Actual authoritative block-assignment link77 exceeded the web reader's4MiB

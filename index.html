@@ -1965,7 +1965,9 @@ function renderModelEvidenceWatch(data){
 }
 function renderModelOverview(data){
  const board=$('#modelBoard');if(!board)return;
- const focusedRace=board.contains(document.activeElement)?document.activeElement.closest('.model-race-row')?.dataset.modelRace:null;
+ const focusedReader=board.contains(document.activeElement)?document.activeElement.closest('.model-race-row'):null;
+ const focusedRace=focusedReader?.dataset.modelRace,previousBox=focusedReader?.getBoundingClientRect();
+ const readerWasVisible=previousBox&&previousBox.top>=0&&previousBox.bottom<=innerHeight;
  const rows=modelRows(data);board.replaceChildren();
  renderModelEvidenceWatch(data);
  $('#modelRaceTotal').textContent=rows.length;
@@ -2043,7 +2045,7 @@ function renderModelOverview(data){
  renderModelRaceDetail();
  if(focusedRace){
   const target=Array.from(board.querySelectorAll('.model-race-row')).find(row=>row.dataset.modelRace===focusedRace);
-  if(target){target.focus({preventScroll:true});const box=target.getBoundingClientRect();if(box.top<0||box.bottom>innerHeight)target.scrollIntoView({block:'nearest'});}
+  if(target){target.focus({preventScroll:true});const box=target.getBoundingClientRect();if(readerWasVisible&&(box.top<0||box.bottom>innerHeight))target.scrollIntoView({block:'nearest'});}
  }
 }
 // Source poll IDs may have two questions with different voter populations.

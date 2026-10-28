@@ -964,7 +964,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  redrawButton.focus();redrawButton.click();
  assert.equal(w.document.activeElement.dataset.modelRace,redrawOdds.race_code,'Selecting a race restores the regenerated row identity rather than losing keyboard focus to BODY');
  assert.notEqual(w.document.activeElement,redrawButton,'The test exercises an actual replacement of the focused control');
- w.eval('renderModelOverview(latestSenateEstimates)');
+ w.renderModelOverview(model);
  assert.equal(w.document.activeElement.dataset.modelRace,redrawOdds.race_code,'A normal board redraw preserves the same reader identity');
  const originalMatchMedia=w.matchMedia;w.matchMedia=query=>({matches:query.includes('max-width')||query.includes('prefers-reduced-motion'),addListener(){},removeListener(){}});
  w.document.activeElement.click();assert.equal(w.document.activeElement,get('#modelDetailTitle'),'The mobile detail jump moves focus to the selected race heading');w.matchMedia=originalMatchMedia;
