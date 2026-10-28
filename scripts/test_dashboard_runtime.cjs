@@ -55,6 +55,14 @@ virtualConsole.on('jsdomError',(err)=>errors.push(String(err)));
 const dom=new JSDOM(html,{url:'https://election-command-center.local/',runScripts:'outside-only',
   pretendToBeVisual:true,virtualConsole});
 const w=dom.window;
+// jsdom26 exposes <dialog>.open but has no native dialog methods. Model only
+// that API boundary here; actual modality, viewport and focus are exercised by
+// test_ratings_celebration_popup_browser.mjs in desktop/mobile Chromium.
+// https://github.com/jsdom/jsdom/blob/v26.1.0/lib/jsdom/living/nodes/HTMLDialogElement.webidl
+if(!w.HTMLDialogElement.prototype.showModal){
+ w.HTMLDialogElement.prototype.showModal=function(){this.open=true;};
+ w.HTMLDialogElement.prototype.close=function(){if(!this.open)return;this.open=false;w.queueMicrotask(()=>this.dispatchEvent(new w.Event('close')));};
+}
 let fishAudioPlays=0,fishAudioPauses=0;
 w.HTMLMediaElement.prototype.play=function(){fishAudioPlays++;return Promise.resolve()};
 w.HTMLMediaElement.prototype.pause=function(){fishAudioPauses++};
@@ -666,6 +674,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  assert(posterCards.every(el=>el.dataset.state==='waiting'),
   'Posters may be previewed before results, but must not claim earned status');
  posterCards[3].click(); // Kansas · John Brown-inspired art
+ assert.equal(get('#enMilestoneSpotlight').open,true,'Preview must invoke the dialog API');
  assert.match(get('#enMilestoneKicker').textContent,/PREVIEW/,
   'A locked milestone is an explicit preview, not a called victory');
  assert.equal(get('#enMilestonePoster').hidden,false);
@@ -692,6 +701,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  assert.equal(get('#enMilestoneArt').hidden,true);
  get('#enMilestoneClose').click();
  assert.equal(get('#enMilestoneSpotlight').hidden,true);
+ assert.equal(get('#enMilestoneSpotlight').open,false,'Dismiss must close the dialog API as well as hide it');
  const firstUpdate={kind:'first',source:'Open America',title:'VA-02 first votes',
   details:'Source reports the first ballots; no candidate called'};
  const nextUpdate={kind:'flip',source:'civicAPI',title:'NC-SEN leader changed',
