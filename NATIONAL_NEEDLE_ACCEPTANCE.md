@@ -4,6 +4,27 @@ Nebraska PR507 VERIFIED PUBLISHED on final7e4b163d/Pages40625644392/368matchingf
 
 PR505, verified published on final main49ccfc37, explicitly withholds Democratic caucus credit from uncommitted Independent winners, while retaining established holdovers and the existing seat thresholds. These are Democratic-majority threshold scenarios, not a resolved forecast of future coalition negotiations: neither D threshold does not establish a Republican majority. Individual race draws and likelihood inputs are unchanged. Exact-head33workflowparents and finalPages/351published-file verification passed. PR506 subsequently verified the caveat in actual home/night/rehearsal browser accessibility names; full human operator/assistive acceptance remains open.
 
+## October 28 R2 decision snapshot
+
+**NO-GO for calibrated national predictive acceptance on the current corpus.**
+Zero independent chronological datasets and zero task-specific held-out races/
+elections are admitted. Margin error, interval coverage, Brier/log loss, baseline
+skill and national-transfer skill are **not estimable**, not zero or favorable.
+The experimental predictive implementation remains available; a descriptive
+dashboard is not an approved replacement and engineering readiness is separate.
+
+Reopen only for an admissible original package with complete matched geography,
+independent capture/publication clocks and correction chain, reuse rights, frozen
+contemporaneous expectations and genuinely held-out races/elections. Score national
+multi-race/chamber transfer separately. Prospective Nov3-4 receipts cannot
+retroactively establish pre-election calibration; complete original retention is
+not yet proven. No blocked-source retry or assumed final-total ordering supplies
+the missing fields. The full saved decision is local
+`artifacts/readiness/national-validation-decision-20261028.txt`; the specification
+below remains the admission contract. Reassess if genuinely new permitted evidence
+arrives. Oct29 usable handoff and Oct31 engineering freeze are separate targets,
+not promises of calibrated accuracy.
+
 ## October 27 methodology reassessment after owner rehearsal review
 
 The owner requested better expectation-based forecasting, not cosmetic smoothing.
@@ -58,14 +79,14 @@ not change the owner's primary national-needle requirement or silently disable i
 
 | Acceptance question | Evidence | Decision |
 | --- | --- | --- |
-| Do incoming competitive returns change one coherent Four Endings forecast? | PR465/468/470/471/473/475/476/477 plus474caption/478provenance repair deployed; synthetic laptop/mobile WA-only, Maine-only, Ohio-only, PA07-only, AZ06-only VA02-only, PA08-only and MI07-only national movement before calls, corrections and withdrawals | Implemented; synthetic evidence only |
+| Do incoming competitive returns change one coherent Four Endings forecast? | PR465/468/470/471/473/475/476/477 plus474caption/478provenance repair, SC497 and typed NE507 deployed; synthetic laptop/mobile WA-only, Maine-only, Ohio-only, PA07-only, AZ06-only VA02-only, PA08-only and MI07-only national movement before calls, corrections and withdrawals | Implemented; synthetic evidence only |
 | Is an independent official path usable? | WA03 and VA02 official GET200; separate owned publications/CORS/readback verified; seven WA and eight VA district parts matched | Transport verified; no positive post-close delivery yet |
-| Are live competitive inputs available now? | Actual sixteen-route published probe 2026-10-27T06:04:54.082Z on runtime3c02b913: fourteen zero-count civic routes (most stale) and two expired pre-election official health-only copies; final metadata-only47e correction does not change named counts/runtime | No accepted positive inputs |
-| Does historical evaluation establish partial-return skill? | Iowa assumed-order experiment: partial margin MAE6.63points vs naive19.89; neutral prior, different Senate class | Useful stress experiment; not chronological validation or national calibration |
+| Are live competitive inputs available now? | Actual sixteen-route published probe 2026-10-27T06:04:54.082Z on runtime3c02b913: fourteen zero-count civic routes (most stale) and two expired pre-election official health-only copies; final metadata-only47e correction does not change named counts/runtime. Later SC TEST data and NE stale zero schema copies remain excluded; eighteen programmed routes are not a new actual-delivery proof | No accepted positive inputs |
+| Does historical evaluation establish partial-return skill? | Iowa/Kansas assumed-order and final-total experiments; no independent chronological held-out partial-return dataset | Useful stress experiment; not chronological validation or national calibration |
 | Is genuine historical chronology complete? | Four verified Thurston2024 partial reports, one of seven WA03 county parts, approximately59%-97%of final two-party votes | Incomplete, especially early count; no statewide replay/calibration approval |
 | Are probabilities/remaining-vote intervals calibrated? | No approved chronological multi-race calibration inputs; predeclared uncertainty and bounded influence are design choices | Unproven |
 | Will results arrive as fast as major publications? | Request timings and source clocks exist, but no independently matched real vote batches | Unproven; official collection/cache may add minutes |
-| Does coverage represent national House behavior? | Eleven supported House districts across seven states, plus five Senate states (IA/KS/TX/ME/OH) | Limited evidence; not a representative national sample |
+| Does coverage represent national House behavior? | Eleven supported House districts across seven states, plus seven Senate states (IA/KS/TX/ME/OH/SC/NE); eighteen programmed routes | Limited evidence; not a representative national sample |
 
 ## Exact outstanding evidence
 
