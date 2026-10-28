@@ -20,6 +20,14 @@ and explicit older-snapshot fallback repair the explanation; existing odds and
 legacy live-consumer sigma remain unchanged. This is mathematical accounting,
 not evidence of calibrated accuracy.
 
+Actual-browser verification of that display found a further keyboard defect:
+selecting a model race replaced its focused row and left focus on BODY. The
+board now restores the regenerated row identity on desktop; the existing phone
+detail jump focuses the selected heading and respects reduced motion. Normal
+Tab continues into the next control without a trap. Actual1366/390 display,
+focus, paragraph visibility, model isolation and no-overflow proofs pass in
+final-owner-journey/uncertainty-display/. Final expanded DOM/CI still required.
+
 ## PR521 queued bulletin reading return — October28 VERIFIED PUBLISHED
 
 Shared ephemeral reading identity now survives celebration->queued bulletins->normal dismissal/expiry/revocation and reverse bulletin->celebration preemption, including background component replacement. Exactd7f46764 all34parents/45applicablejobs PASS; merge4e8dc131/finalmain4c3e0e65/Pages40715028630/383matchingfiles15:22:34Z/publiccoherence PASS. Actual published Edge1366/390 normal-control/keyboard/focus/scroll/history/withdrawal/isolation/nooverflow tasks PASS with external election providers blocked. Ordinary ownerIAB27 native preview/Back focus/2026/outlook retention verified; hidden panel0viewport prevents ordinary geometric/screenshot proof. CDP mouse issue is a tool limitation, not inferred product failure; isolated actual published Edge proves viewport behavior. Returned normal entryfocusenMode2026; private context/frozen/all delivered previews preserved. Proof pr521-exacthead-gate.json, ui-review/published-queued-reading/combined-reading-return.json/pngs and published-queued-reading-ordinary-20261028.json.

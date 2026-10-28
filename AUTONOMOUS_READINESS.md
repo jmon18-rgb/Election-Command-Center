@@ -18,6 +18,12 @@ bytes; landing429/PDF403 stops and oversized actual block-link attempt are
 recorded. Do not repeat captures or promote staged presidential inputs.
 Source-specific limits do not freeze independent engineering.
 
+Actual-browser display verification found a third concrete defect after the
+first candidate: model-row selection lost focus during replacement. Desktop
+row identity and phone detail-heading focus are repaired; reduced motion and
+normal Tab/no-trap/model isolation pass at1366/390. Finish the corrected PR525
+head and final full DOM; do not merge or rerun obsoletee45c9183 as a substitute.
+
 ## 2026-10-28 19:32 UTC — PR524 research-only FL04 checker VERIFIED PUBLISHED
 
 - Tested7ed0c269c983ed0abf426c5e8622495a5dc88e1d: ALL4applicableworkflowparentsSUCCESS/7latestjobs6SUCCESS1nonapplicabledeployed-onlySKIP/0external/currentclean. FullDOM40752946246/job123044174839 and offline reference40752946383 SUCCESS. Merge/finalCURRENTmain6fddc109b58db6b2bbd914a4cad52cff47096b64/Pages40754880646SUCCESS.20publicfilechecks(includingindex) match19:32:11.276Z usingorigin/mainblobs; inherited395-file523baseline and3newresearchfiles establish398selectedscope, no repeatedfullscan. Current publiccoherence/index/no_creditPASS. pr524-exacthead-gate.json/pr524-published-integrity.json/pr524-published-coherence-origin-main.txt. No failed-head merge/waiver/rerun/timeout increase. Prior523proof checkpoint incorporated.

@@ -13,6 +13,14 @@ and verified publication are next. No source/model admission, odds sharpening,
 new route or calibration claim. Human results remain NOT_RUN. Evidence:
 model-coupling-review/ and ui-review/final-owner-journey/.
 
+The actual-browser uncertainty task additionally reproduced model-row selection
+losing focus to BODY. Desktop replacement now retains the selected row; phone
+detail navigation focuses its heading with reduced motion respected and normal
+Tab sequencing. Actual1366/390 passes/nooverflow/exact model unchanged. This
+concrete finding requires a new protected head aftere45c9183; that earlier head
+is not merged or rerun/waived merely because its checks finish. Final DOM and
+all new-head parents/jobs/statuses remain mandatory.
+
 FL04 bounded official county field is grounded from cached packet text with
 explicit inference/limits; original-byte capture403 and landing429 are STOP.
 Actual authoritative block-assignment link77 exceeded the web reader's4MiB

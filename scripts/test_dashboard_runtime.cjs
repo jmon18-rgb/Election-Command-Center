@@ -960,6 +960,14 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  const redrawOdds=oddsData.records.find(r=>r.office==='house'&&
   r.redrawn_permutation_sigma_points>0);
  assert(redrawOdds,'Exercise a real redrawn House record with a discrete geography component');
+ const redrawButton=Array.from(get('#modelBoard').querySelectorAll('.model-race-row')).find(row=>row.dataset.modelRace===redrawOdds.race_code);
+ redrawButton.focus();redrawButton.click();
+ assert.equal(w.document.activeElement.dataset.modelRace,redrawOdds.race_code,'Selecting a race restores the regenerated row identity rather than losing keyboard focus to BODY');
+ assert.notEqual(w.document.activeElement,redrawButton,'The test exercises an actual replacement of the focused control');
+ w.eval('renderModelOverview(latestSenateEstimates)');
+ assert.equal(w.document.activeElement.dataset.modelRace,redrawOdds.race_code,'A normal board redraw preserves the same reader identity');
+ const originalMatchMedia=w.matchMedia;w.matchMedia=query=>({matches:query.includes('max-width')||query.includes('prefers-reduced-motion'),addListener(){},removeListener(){}});
+ w.document.activeElement.click();assert.equal(w.document.activeElement,get('#modelDetailTitle'),'The mobile detail jump moves focus to the selected race heading');w.matchMedia=originalMatchMedia;
  w.eval('navigateInsightToModel('+JSON.stringify({office:'house',race:{race_code:redrawOdds.race_code}})+')');
  assert.match(get('#modelOddsContext').textContent,
   /assumed baseline spread σ [\d.]+ pts \(Gaussian σ [\d.]+; geography-mixture σ [\d.]+; combined by variance\)/);
