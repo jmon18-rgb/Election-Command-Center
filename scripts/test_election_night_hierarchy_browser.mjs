@@ -25,6 +25,25 @@ try{
   const layout=await page.evaluate(()=>{const n=document.querySelector('#jointNightNeedle').getBoundingClientRect(),m=document.querySelector('.en-national-map-panel').getBoundingClientRect();return {needleLeft:n.left,mapLeft:m.left,needleTop:n.top,mapTop:m.top};});
   if(width>900){assert(layout.mapLeft>layout.needleLeft+250);assert(Math.abs(layout.mapTop-layout.needleTop)<3,'Outlook and map share the laptop glance view');}else assert(layout.mapTop>layout.needleTop,'Phone outlook precedes map');
   const probabilities=await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities));
+  const coalition=await page.evaluate(()=>{
+   const opts={samples:3000,seed:20261103,nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,live:{}};
+   const legacy=ChamberControlModel.simulate(jointBasis,{...opts,independentSenateCredit:'dem_proxy'});
+   const strict=ChamberControlModel.simulate(jointBasis,{...opts,...jointIndependentControlOptions});
+   // The what-if helper intentionally reconstructs its simulator options. The
+   // policy must therefore travel in the supplied simulator, not a dropped flag.
+   const smallOpts={samples:300,seed:20261103};
+   const small=jointSimulate(jointBasis,smallOpts);
+   const lab=ElectorateWhatIf2026.evaluate(jointBasis,{state:'MI',groups:[{share_pct:10,margin_change_points:1},{share_pct:5,margin_change_points:-1}]},jointSimulate,smallOpts);
+   return {mode:jointLastResult.senate_independent_credit_mode,sameStrict:JSON.stringify(strict.probabilities)===JSON.stringify(jointLastResult.probabilities),
+    sameMarginals:JSON.stringify(strict.race_probabilities)===JSON.stringify(legacy.race_probabilities),sameHouse:strict.house_dem_control_pct===legacy.house_dem_control_pct,
+    noExtraCredit:strict.senate_dem_control_pct<=legacy.senate_dem_control_pct,revision:jointHistoryRevision(),
+    labPolicy:lab.ok&&small.senate_independent_credit_mode==='no_credit'&&lab.baseline.senate_control===small.senate_dem_control_pct&&lab.baseline.both_control===small.actual_dem_both_control_pct};
+  });
+  assert.equal(coalition.mode,'no_credit');assert(coalition.sameStrict);assert(coalition.sameMarginals);assert(coalition.sameHouse);assert(coalition.noExtraCredit);
+  assert(coalition.labPolicy,'What-if baseline and hypothetical share the explicit coalition policy even when helper reconstructs options');
+  assert(coalition.revision.includes('no_credit'),'History revisions distinguish changed control accounting');
+  assert.match(await page.locator('#jointNightNeedle .four-needle-coalition-note').innerText(),/does not establish a Republican majority/);
+  await page.locator('#jointNightNeedle').screenshot({path:resolve(out,'independent-control-'+width+'.png')});
   assert.equal(await page.locator('#enRaceDiagnosticDetails').evaluate(e=>e.open),false);
   assert.equal(await page.locator('#enIowaRaceNeedle').isVisible(),false,'Duplicate prototypes start behind a named disclosure');
   assert.equal(await page.locator('#smartNightDesk').evaluate(e=>e.open),false,'Broader roster is secondary');

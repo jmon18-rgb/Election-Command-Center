@@ -928,7 +928,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <details class="joint-audit" id="jointHomeCorrelationDetails"><summary>How much do Senate races move together? · probability sensitivity</summary><div id="jointHomeCorrelation" class="joint-note">Open to compare a conservative historical covariance sensitivity without changing the forecast.</div></details>
  <details class="joint-audit"><summary>Historical polling-error check · how reliable is this?</summary><p id="jointHomeAudit" class="joint-note">Reading existing historical Senate poll backtest…</p></details>
  <details class="forecast-details brief-model-key"><summary>What do the four endings mean?</summary></details>
- <p class="joint-note">Blue Wave: D wins BOTH chambers (≥218 House, ≥51 Democratic-aligned Senate). Blue Tsunami: ≥235 House and ≥52 Senate. Shrug: split control. Red Dawn: Republicans hold both. These categories are exclusive; stronger Tsunami draws are excluded from Wave.</p></details>
+ <p class="joint-note">Blue Wave: both Democratic majority thresholds (≥218 House, ≥51 Senate seats with established Democratic alignment). Blue Tsunami: ≥235 House and ≥52 Senate. Shrug: one threshold. Red Dawn: neither threshold. Uncommitted Independent winners are not assigned to either caucus; these categories do not resolve future coalition agreements. These categories are exclusive; stronger Tsunami draws are excluded from Wave.</p></details>
 </div>
 
 <details class="joint-audit electorate-lab" id="electorateLabDetails">
@@ -4323,11 +4323,18 @@ function jointPrivateActivate({deferRender=false}={}){
   if(!deferRender)jointRender(true);
  }
 }
+// An Independent ballot win is not evidence of a future caucus agreement.
+// Keep the legacy proxy available to explicit offline research, never implicit
+// in the public, private-context, sensitivity or rehearsal calculation paths.
+const jointIndependentControlOptions=Object.freeze({independentSenateCredit:'no_credit'});
+function jointSimulate(basis,options){
+ return window.ChamberControlModel.simulate(basis,{...options,...jointIndependentControlOptions});
+}
 const jointLabels=[
  ['blue_tsunami','BLUE TSUNAMI','D ≥235 House · ≥52 Senate','d-tide'],
  ['blue_wave','BLUE WAVE','D controls House + Senate','d-wave'],
- ['shrug','SHRUG','Democrats control one chamber','d-split'],
- ['red_dawn','RED DAWN','Republicans control both','r-dawn']
+ ['shrug','SHRUG','One Democratic majority threshold','d-split'],
+ ['red_dawn','RED DAWN','Neither Democratic majority threshold','r-dawn']
 ];
 function jointSourceItem(item){
  const key=item.code,itemOffice=key.endsWith('-SEN')?'Senate':'House';
@@ -4419,6 +4426,9 @@ function jointRenderNeedles(result,config={}){
   const foot=host.querySelector('.four-needle-footer');
   const bar=host.querySelector('.four-needle-distribution');
   const outcomeLabels=host.querySelector('.four-needle-labels');
+  let coalitionNote=host.querySelector('.four-needle-coalition-note');
+  if(!coalitionNote){coalitionNote=elt('p','joint-note four-needle-coalition-note');host.append(coalitionNote);}
+  coalitionNote.textContent='Independent winners receive no assumed Democratic caucus credit. Red Dawn means neither Democratic majority threshold; it does not establish a Republican majority. Future coalition agreements remain unresolved.';
   const showOutcomes=values=>{
    outcomeLabels.replaceChildren();
    for(let i=0;i<keys.length;i++){
@@ -4643,7 +4653,7 @@ function jointRenderSenateCorrelationResearch(reference,updates){
  }else try{
   const controls=formats.map(x=>{
    const out=x.id==='production'?reference:window.ChamberControlModel.simulate(
-    jointBasis,{samples:3000,seed:20261103,
+    jointBasis,{...jointIndependentControlOptions,samples:3000,seed:20261103,
      nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,
      senateCorrelationResearch:{nationalScale:x.nat,chamberScale:x.sen}});
    return {...x,out,shared:Math.hypot(
@@ -4712,7 +4722,7 @@ function jointCurrentSignature(){
 }
 const enOfficialAdmissionAudit=(()=>{try{return window.OfficialAdmissionAudit?.create({storage:localStorage})}catch{return window.OfficialAdmissionAudit?.create()}})();
 const enOutlookHistory=(()=>{try{return window.PersonalElectionFocus?.createHistory({storage:localStorage})}catch{return window.PersonalElectionFocus?.createHistory()}})();
-function jointHistoryRevision(preview=false){return [preview?'SIMULATED':'LIVE',window.ChamberControlModel.VERSION,
+function jointHistoryRevision(preview=false){return [preview?'SIMULATED':'LIVE',window.ChamberControlModel.VERSION,jointIndependentControlOptions.independentSenateCredit,
  document.querySelector('script[src*="/chamber_control_model.js?"]')?.getAttribute('src')||'',
  document.querySelector('script[src*="/national_county_likelihood.js?"]')?.getAttribute('src')||'',jointBasis?.generated_from_sources?.model_polling_at||'',preview?0:jointNationalShift,preview?1:jointErrorMultiplier,
  jointUsesPrivateContext()?jointPrivateSource:'PUBLIC',jointUsesPrivateContext()?jointPrivateImportedAt||'':'',jointUsesPrivateContext()?jointPrivateHouse:false].join('|');}
@@ -4728,7 +4738,7 @@ function jointRender(force=false){
  jointCacheKey=key;
  const updates=jointLiveObservations();
  try{
-  const args={samples:3000,seed:20261103,
+  const args={...jointIndependentControlOptions,samples:3000,seed:20261103,
    nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,live:updates};
   const envelopes=jointCountyEvidence();
   let conditioned=null,countyUpdateWithheld=false;
@@ -4781,7 +4791,7 @@ function jointRender(force=false){
   setModelRaceOddsData(jointBuildRaceOddsSnapshot(result,jointBasis));
   let shadow=null,presidentialShadow=null;
   if(jointShadowExpanded()&&!jointUsesPrivateContext()){
-   const args={samples:3000,seed:20261103,
+   const args={...jointIndependentControlOptions,samples:3000,seed:20261103,
     nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,live:updates};
    if(jointBasisShadow){
     try{shadow=window.ChamberControlModel.simulate(jointBasisShadow,args)}
@@ -4804,7 +4814,7 @@ function jointRender(force=false){
    (jointNationalShift>=0?'+':'')+jointNationalShift.toFixed(1)+
    ' pts · '+(jointErrorMultiplier===1?'baseline error':
    jointErrorMultiplier>1?'wider error':'narrower error')+
-   ' · 34 D-caucus Senate holdovers assumed.';
+   ' · 34 established D-caucus Senate holdovers · no assumed new Independent caucus credit.';
  }catch(e){
   jointErrorMessage='Model calculation unavailable: '+String(e.message||e);
   jointLastResult=null;jointPulseBaseline=null;jointPulseRows=[];setModelRaceOddsData(null);
@@ -4825,7 +4835,7 @@ async function jointNationalPreview(){
   if(version!==nationalPreviewVersion||!details.open||enModeYear!==2026)return;
   const envelopes=window.NationalNeedleRehearsal.stage(nationalPreviewInputs,nationalPreviewStep,jointBasis);
   const update=window.NationalCountyLikelihood.condition(window.ChamberControlModel,jointBasis,envelopes,
-   {samples:3000,seed:20261103,live:{},rehearsal:true,now:window.NationalNeedleRehearsal.now});
+   {...jointIndependentControlOptions,samples:3000,seed:20261103,live:{},rehearsal:true,now:window.NationalNeedleRehearsal.now});
   const host=$('#enNationalPreviewNeedle');host.className=$('#jointNightNeedle').className;
   host.innerHTML=$('#jointNightNeedle').innerHTML;
   host.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));
@@ -5160,7 +5170,7 @@ function labRender(){
  ]};
  status.textContent='Running matched-draw state sensitivity…';
  const result=window.ElectorateWhatIf2026.evaluate(
-  jointBasis,assumptions,window.ChamberControlModel.simulate,
+  jointBasis,assumptions,jointSimulate,
   {samples:2000,seed:20261103});
  host.replaceChildren();
  if(!result.ok){

@@ -1,6 +1,19 @@
 # Election-night usability and visual review
 
 
+Declutter/mobile slice504 RELEASED: finalmaine3920020/Pages40608755366SUCCESS/
+350published files match00:29:24.487Z. All34exactheadparents/44applicablejobs
+passed,3deployed-only skips/noexternalstatuses. OrdinaryIAB27 confirms real
+disclosure/manual access/full-name search/display options/AKpending/NEIndependent
+and source-summary focus below the stickytoolbar. Compare pinned503before162px
+phonebar to78px candidate; laptop62unchanged. Evidence: published-disclosures-
+20261028.json/png, published-disclosure-integrity-20261028.json, ui-review/
+disclosure-comparison-20261028.json plus actual1366/390operator tasks.
+Saved remaining-UX implementation contract is now implemented; do not reapply.
+FullR8Oct30glance/source-impact/expectation/correction/withdrawal/outage task
+acceptance and Oct29 final owner handoff remain OPEN. Versioned walkthroughv.6
+has current instructions and explicitly preserves those uncompleted tasks.
+
 Next R8 slice is now a tested candidate: duplicate prototype/outcome diagnostics
 and the broader roster start behind named disclosures. Existing manual/scenario,
 search/filter/navigation and archive gates remain. Display options moves wake-lock

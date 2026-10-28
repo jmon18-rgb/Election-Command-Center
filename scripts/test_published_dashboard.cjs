@@ -261,7 +261,12 @@ async function main(){
  // forecast. A 1,200-draw smoke forecast can otherwise differ by ~1 pp
  // purely from sampling and make a correct production number look stale.
  const sampleCount=3000;
- const result=engine.simulate(prepared,{samples:sampleCount,seed:20261103});
+ // Reproduce the app's explicit control accounting, not the engine's legacy
+ // Independent-as-D research default. Race marginals alone cannot expose this.
+ assert(html.includes("Object.freeze({independentSenateCredit:'no_credit'})"),
+  'Published app must explicitly withhold uncommitted Independent caucus credit');
+ const result=engine.simulate(prepared,{samples:sampleCount,seed:20261103,independentSenateCredit:'no_credit'});
+ assert.equal(result.senate_independent_credit_mode,'no_credit');
  check('live same-draw race, chamber and Four Endings coherence',()=>{
   assert.equal(result.samples,sampleCount);
   assert.equal(result.race_probability_method,'SAME_CORRELATED_DRAWS_AS_CHAMBER_CONTROL');
@@ -332,7 +337,7 @@ async function main(){
   deployed_index_matches_checkout:deployedIndexMatchesCurrentMain,
   checks,source_at:polling.generated_at,primary_races:primary.races.length,
   modeled_poll_races:byEstimate.size,simulated_total:result.race_probabilities.length,
-  four_endings:result.probabilities,iowa_forecast_lineage:iaTrace,
+  four_endings:result.probabilities,independent_senate_credit:result.senate_independent_credit_mode,iowa_forecast_lineage:iaTrace,
   news_at:briefing.updated_at,news_stories:briefing.updates.length,
   integrity_news_stories:briefing.security.length,
   security_leads_at:queue.updated_at,security_leads:queue.items.length,
