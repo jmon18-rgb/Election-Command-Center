@@ -1,5 +1,11 @@
 # Election Night production-readiness assignment
 
+## Owner-directed roadmap and automation restart - October28, 2026
+
+- Owner identified renewed stall. Assessment:07:34 matrix prompt incorrectly turned human/date/source gates into a blanket engineering wait, and required a known defect before allowing review that could discover one. Repeated local timestamp/tab-preservation wakes added no product progress. This instruction supersedes that waiting policy; no source/model invariant weakened.
+- Existing automation election-night-readiness-development updated ACTIVE on its unchanged15minute schedule: first concrete task is remaining R8 owner-journey/content-density engineering review NOW, starting long explanations/grid gaps and change -> source/clocks -> history -> return-live at1366/390. Then one R4 saved-body/hash/clock/correction/consumer trace; then genuinely ready R1 named-field/offline work. Human acceptance stays NOT_RUN independently; Oct29/30 are delivery targets, not start dates. No requirement to invent defects/commits; a clean bounded review advances the next ready row in the same run.
+- No app source changed by this prompt correction. ROADMAP active R8 and execution priority updated. Existing371-file publication/source18/six owner connections/four missing/calibrated no-go remain. Preserve original guide/matrix/evidence; no newcreative scope/blocked native retry/status-onlyCI. Next wake must execute the named R8 task rather than only inspect timestamps or preserve tabs. Exact prompt saved locally in artifacts/readiness/owner-progress-restart-prompt-20261028.txt.
+
 ## 2026-10-28 07:34 UTC — R3/R8 technical evidence matrix v1.0; human gates remain OPEN
 
 - Completed once-only reconciliation: artifacts/readiness/technical-review-matrix-20261028-v1.json and technical-review-decision-20261028.txt. Eleven owner tasks: ten have bounded engineering support; assistive operation has partial AX/keyboard exposure only. None is relabeled human acceptance. Original operator guide1.0/revision7e4b163d/hashes unchanged; all human laptop/phone NOT_RUN/results null retained. Later component evidence retains its original scope/revision.

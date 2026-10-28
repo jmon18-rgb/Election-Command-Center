@@ -1,5 +1,7 @@
 # Election-night usability and visual review
 
+Owner October28 restart: remaining engineering review starts NOW; Oct30 is its target completion date. Begin long-card/grid-row density and integrated change/source/clocks/history/return-live tasks at1366/390; discover and repair material defects through task review. Existing component evidence does not close this journey review. Human/assistive sign-off remains separate. See ROADMAP owner-directed restart; older date-based waiting instructions are superseded.
+
 R8 first-glance/source-impact516 VERIFIED PUBLISHED: final3c01f738/Pages40649267003/371files07:20:31Z. All35 corrected-head parents/47applicablejobs pass; initial body/tab attribute collision was source-fixed with existing assertions retained, no rerun/waiver. Actual published1366x900/390x844 all4chances fit together, source focus and nextwindows pass; ordinaryIAB1280x720 direct/repeatentry/sourceSUMMARY focus/nooverflow verified. Fullhomehero preserved, warning before18cardroster. Proof ui-review/published-glance-browser-20261028.json, published-glance-ordinary-20261028.json/png, pr516-exacthead-gate.json and scoped before/after/comparison. This bounded engineering task is complete; humanOct29/assistive/fullOct30 review remains OPEN. Next reconcile existing task evidence once to identify genuinely untested workflow gaps, not more decorative churn.
 
 
