@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-28T03:56:07.345732Z",
+  "updated_at": "2026-10-28T04:03:52.064703Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
     "advisory_related_headline_buckets": 25,
-    "advisory_related_headlines": 60
+    "advisory_related_headlines": 61
   },
   "advisory_related_headlines": [
     {
@@ -26,8 +26,8 @@
     {
       "lead_id": "6de0d7f925d150890de9",
       "headline": "Judge hears arguments whether California should count 20,000 ballots disputed by US government - WDIO.com",
-      "possibly_related_articles": 4,
-      "distinct_publishers": 3,
+      "possibly_related_articles": 5,
+      "distinct_publishers": 4,
       "state_hints": [
         "CA"
       ],
@@ -462,6 +462,28 @@
       "publisher": "cecildaily.com",
       "published_at": "2026-10-27T19:37:46Z",
       "detected_at": "2026-10-27T20:13:23.859003Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 ballots"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "19f73eefd45a728f0923",
+      "title": "Judge to consider whether California should count 20,000 ballots disputed by Trump administration - FOX40",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNZDdtamkxX2JIcmZ0TlBMSWRVMjNJa0dBeTRRYnR2SWkxSHZ6eXRDQi0tbHJVQ3pTUWd5T2hHeFIxTWtZRHZQdzgxaGRFRGRXX3lxd1gwZjFRNHJNN09venIzSjc3M0kxb2lsQjRYTDhGTVdSdFZGd1VEalZVUkxmM0dXSXVjWVVGMlpWTng3Y1YtNjRzYl9zQ1dyWE5pb1VVWmx3UEZvNUZuc25BSy0waXB1YUVvVmF6V09LeFYxVEhtaWtjRjdTVkpFQkR6bmNRZVplQkFoRE1CbnfSAeABQVVfeXFMUDMzTE82YzlQb2NrOWw5Z1RqOGY3U01Kd1FMdFc2VzRWS3kteVc3MFNJbjl4blNNR3VRQ2pDZm83YW8tZGM5SEYwQ01vNTZRZEJRaFBBR1N0R0p6cndpYlBxXzlRRk1QWVItYjBweTlnaFVpRnFUOEFkVGN6S2paSXMzWWd6WE5rNHZvY1ZnZmxsNExibFFmRUJvWnB0VFlyM1FGYWI0SVZUVHJ6cEZUdnNaMDROMEt2TkUzVnUxOGUwbXg4VEI2RlhWVk1yUGsweG9oWHBraDZkV1lJeUhGLVM?oc=5",
+      "publisher": "FOX40",
+      "published_at": "2026-10-27T19:37:46Z",
+      "detected_at": "2026-10-28T04:03:52.064703Z",
       "state_hints": [
         "CA"
       ],
@@ -5024,25 +5046,6 @@
       "headline_numbers_unverified": [
         "600,000 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "b19b9344bb8f2ef0684b",
-      "title": "North Carolina residents who received vague letter questioning eligibility can still vote, officials confirm - Democracy Docket",
-      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOZFdBRExDM1h4cU9uNnhINWNRMkVBRjI1NkUzVFBuYUltUVJ2eG9ybTdnSVVvclNKRXVhODZfVTBZa1RhbEdlUTY3NWJYN3RwbzVYUDZUdGdyYjVLcG9RUi0wVklTZlBRRHVhaHZlYk5aZV9JblF0N2FUUjVYaDJBVGhRZzJkX3drTEI4cV8xU3I5RHN2Zk1DX0lNZl8yQ3cxcXJ1NW1jVlBQOXdwb2N4REZ5eVE2NzJqSnlvalVSY0dydWZJamRvYTg1NGV5XzNKcFhpTE9CQnZqUm1ybTRxX0ZZaEhOUVk?oc=5",
-      "publisher": "Democracy Docket",
-      "published_at": "2026-10-15T16:44:52Z",
-      "detected_at": "2026-10-15T16:47:04.178184Z",
-      "state_hints": [
-        "NC"
-      ],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
