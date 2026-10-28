@@ -25,6 +25,7 @@
   if(host&&id==='mississippi'&&['scene','complete'].includes(phase))return renderMississippi(host,{phase,beat,preview});
   if(host&&id==='blansas'&&['scene','complete'].includes(phase))return renderKansas(host,{phase,beat,preview});
   if(host&&id==='graham'&&['scene','complete'].includes(phase))return renderGraham(host,{phase,beat,preview});
+  if(host&&id==='nebraska'&&['scene','complete'].includes(phase))return renderNebraska(host,{phase,beat,preview});
   if(!host||id!=='talarico'||!['scene','complete'].includes(phase))return false;
   const index=phase==='complete'?2:beat;
   if(!Number.isInteger(index)||index<0||index>2)return false;
@@ -178,6 +179,31 @@
   }
   svg.append(text('FICTIONAL STAGE · NOT A REAL VENUE',490,480,22,'#c1b2db'),text(preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL',490,520,17,'#c5d1ed'));
   return finish(host,svg,animated,'graham',index,phase);
+ }
+ // Football satire: coach Tom Osborne is distinct from candidate Dan Osborn.
+ function renderNebraska(host,{phase,beat,preview}){
+  const index=phase==='complete'?2:beat;if(!Number.isInteger(index)||index<0||index>2)return false;
+  const doc=host.ownerDocument,el=(tag,attrs={},label)=>{const n=doc.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,String(v));if(label!==undefined)n.textContent=label;return n;};
+  const text=(label,x,y,size=28,color='#f5f5e4')=>el('text',{x,y,'text-anchor':'middle','font-family':'Arial,sans-serif','font-size':size,'font-weight':800,fill:color},label);
+  const svg=el('svg',{viewBox:'0 0 980 540',role:'img','aria-label':'Nebraska football satire; fictional reaction of coach Tom Osborne, distinct from candidate Dan Osborn; '+(preview?'simulated preview':'source-reported unofficial call'),'data-scene':'nebraska','data-beat':index}),animated=[];
+  svg.append(el('rect',{width:980,height:540,rx:24,fill:'#152f34'}),text('NEBRASKA · INDEPENDENT SENATE',490,43,23,'#b7e1e4'),el('path',{d:'M25 400Q250 370 490 400T955 400V465H25Z',fill:'#8f7b37'}));
+  const corn=el('g',{'data-layer':'cornfield',stroke:'#c9b35c','stroke-width':7,fill:'none'});for(const x of [65,125,185,795,855,915])corn.append(el('path',{d:`M${x} 450V275M${x} 330q-35-35-35-10M${x} 360q35-35 35-10`}));svg.append(corn);
+  if(index===0){
+   const coach=el('g',{'data-layer':'coach-tom-osborne',style:'transform-box:fill-box;transform-origin:center bottom'});
+   coach.append(el('path',{d:'M365 403L380 300Q490 260 600 300L615 403Z',fill:'#ad3e45',stroke:'#e9c3ad','stroke-width':4}),el('ellipse',{cx:490,cy:215,rx:68,ry:76,fill:'#dfb595'}),el('path',{d:'M420 190Q422 120 490 120Q558 120 558 190Z',fill:'#ad3e45'}),el('rect',{x:415,y:177,width:175,height:18,rx:8,fill:'#d7b99b'}),el('path',{d:'M450 215h25m30 0h25m-60 54q20-25 40 0',stroke:'#4d3f3e','stroke-width':6,fill:'none','stroke-linecap':'round'}));svg.append(coach);
+   animated.push({node:coach,frames:[{transform:'rotate(0deg)'},{transform:'rotate(-4deg)'},{transform:'rotate(-2deg)'}],duration:1400});
+   svg.append(text('COACH TOM OSBORNE',490,350,29),text('FICTIONAL SIDELINE REACTION',490,435,23,'#d5dcbd'));
+  }else if(index===1){
+   const board=el('g',{'data-layer':'absurd-scoreboard',style:'transform-box:fill-box;transform-origin:center'});board.append(el('rect',{x:205,y:120,width:570,height:260,rx:16,fill:'#061f2d',stroke:'#75c9e4','stroke-width':5}),text('UPSET ON THE PRAIRIE',490,173,32),text('ESTABLISHMENT    0',490,248,35,'#d0dce2'),text('CORN                    1',490,314,35,'#f0d77c'));svg.append(board,text('COMEDY SCOREBOARD · NOT VOTE TOTALS',490,430,22,'#d5dcbd'));
+   animated.push({node:board,frames:[{transform:'translateY(-40px)',opacity:0},{transform:'translateY(0)',opacity:1}],duration:900});
+   const confetti=el('g',{'data-layer':'blue-confetti',style:'transform-box:fill-box;transform-origin:center'});for(let i=0;i<16;i++)confetti.append(el('rect',{x:70+i*55,y:85+(i%4)*66,width:10,height:19,rx:2,fill:i%2?'#68ceff':'#b9e9ff',transform:`rotate(${i*17} ${70+i*55} ${85+(i%4)*66})`}));svg.append(confetti);
+   animated.push({node:confetti,frames:[{transform:'translateY(-70px)',opacity:0},{transform:'translateY(0)',opacity:1}],duration:1400});
+  }else{
+   const card=el('g',{'data-layer':'nebraska-independent-finale',style:'transform-box:fill-box;transform-origin:center'});card.append(el('rect',{x:105,y:120,width:770,height:290,rx:23,fill:'#225c75',stroke:'#d2bd68','stroke-width':6}),text('CORN-FED REBELLION',490,194,43),text('DAN OSBORN',490,265,50),text('INDEPENDENT WINNER',490,325,31,'#cdefff'),text('NO ASSUMED CAUCUS',490,375,24,'#dbe5c4'));svg.append(card);
+   animated.push({node:card,frames:[{opacity:0,transform:'scale(.92)'},{opacity:1,transform:'scale(1)'}],duration:750});
+  }
+  svg.append(text('FOOTBALL SATIRE · COACH OSBORNE ≠ CANDIDATE OSBORN',490,480,20,'#c8d3c3'),text(preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL',490,520,17,'#bfdbe1'));
+  return finish(host,svg,animated,'nebraska',index,phase);
  }
  return Object.freeze({render,clear});
 });

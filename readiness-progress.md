@@ -1,5 +1,12 @@
 # Readiness progress
 
+## 2026-10-28 — R6 Nebraska sideline candidate (NOT deployed)
+
+- Named ready task: original shared SVG three-beat production for nebraska: fictional sad coach Tom Osborne sideline, absurd establishment-versus-corn scoreboard/blue confetti, Dan Osborn Independent finale/no assumed caucus. Explicit coach/candidate distinction, fictional reaction, comedy scoreboard/not votes and preview/no-real-victory captions. Reuses original repository cornfield vocabulary and released Sideline brass and halftime bass. Original tractor poster/fallback unchanged. No new media/dependency/source/model/cadence/callreader/eligibility change; exact existing DanOsborn Independent guard remains authoritative.
+- Actual Edge1440/390 all11stories PASS with three Nebraska beats/active motion/reduced static endpoint/complete finale/skip-replay/archive/missingrenderer; screenshots celebration-nebraska-beat0/1/2-{1440,390}.png visually inspected. Signals/queue/retraction/11score tests PASS. Initial new local finale assertion failed only because dot did not span separate text lines; multiline-aware expression retains all exact required labels and passes. No product assertion removed. Immutable75script/UTF8 final checks and all new exact-head protected CI still required, then finalCURRENTmainPages/actualbytes/ordinarypreview.
+- Prior e5a59 Graham proof incorporated in coherent branch, not independently pushed to restart CI. R3humanOct29/fullR8Oct30/R2recordedno-go/18routes/six owner Senate paths/fourmissing unchanged. No native probe/security retries. Optional production does not outrank critical forecast/UI repairs/handoff/freeze. Remaining bespoke Iowa/Maine/Ohio/Tsunami/BLEXAS still partial. Oct28daily after09Eastern/13Z; notify only a new verified milestone.
+
+
 ## 2026-10-28 05:28 UTC — R6 Graham farewell VERIFIED PUBLISHED
 
 - PR511 merged d2c3f1711937be4870a3da5cb841278272a993b3 after all35 exact-head parents SUCCESS /50latest jobs47success3nonapplicable deployed-only skips /0external statuses /current cf268a474fc8ab2dcd37690db10af556738d3937 clean/mergeable. National40637113673 and fullDOM40637113755 succeeded. No failed test/rerun/waiver/timeout increase. Prior4f5 Kansas proof incorporated in coherent511 history.
