@@ -61,9 +61,12 @@ try{
   await page.locator('#enCelebrationVideoInput').fill('https://youtu.be/gkWCLjxQqjU?si=discard');await page.locator('#enCelebrationVideoSave').click();
   await page.waitForFunction(()=>document.querySelector('#enCelebrationOnlinePlayer iframe')?.src.includes('gkWCLjxQqjU'));
   assert.doesNotMatch(await page.locator('#enCelebrationVideoLink').getAttribute('href'),/si=/);
+  await page.clock.runFor(7300);assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'complete');
+  assert.equal(await page.locator('#enCelebrationOnlinePlayer iframe').count(),1,'Online recording can continue beyond the short animation until dismissed');
   await page.keyboard.press('Escape');assert.equal(await popup.isHidden(),true);assert.equal(await launch.evaluate(e=>e===document.activeElement),true);
   assert.equal(await page.locator('#enCelebrationOnlinePlayer iframe').count(),0);await page.clock.runFor(20000);assert.equal(await popup.isHidden(),true);
   await launch.click();await page.locator('#enCelebrationPreviewChoice').selectOption('abbott');assert.match(await page.locator('#enMilestoneKicker').innerText(),/PREVIEW/);
+  assert.equal(await page.locator('#enCelebrationOnlinePlayer iframe').count(),0,'New story removes the prior finale player before its announcement');
   // A preview selection never populates earned/dedup state.
   assert.equal(await page.evaluate(()=>enMilestoneShown.size),0);await page.keyboard.press('Escape');
   // Existing validated provider-call ingress, with no real provider request.

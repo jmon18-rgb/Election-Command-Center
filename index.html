@@ -1553,7 +1553,7 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 </details>
 </section>
 <footer class="footer"><span>2026 ELECTION COMMAND CENTER · CLARITY OVER NOISE</span><span><a href="https://github.com/jmon18-rgb/Election-Command-Center">Source code ↗</a> · <span id="updated">Briefing pending</span></span></footer></main>
-<script src="./scripts/election_night_celebration_player.js?v=8f7fb37d2ca2"></script>
+<script src="./scripts/election_night_celebration_player.js?v=93ed1d49eda5"></script>
 <script src="./scripts/election_night_celebration_online.js?v=0c7653092880"></script>
 <script src="./scripts/election_night_celebration_music.js?v=6a479f8a84b1"></script>
 <script src="./scripts/election_night_celebration_scene.js?v=f1943c3e36ba"></script>
@@ -5941,6 +5941,7 @@ function enMilestoneEvidence(){
 }
 function enMilestoneRender(item,demo=false){
  if(enModeYear!==2026||!item)return false;
+ enCelebrationStopMedia();
  const tsunami=item.id==='tsunami';
  $('#enMilestoneKicker').textContent=demo?'PREVIEW · FICTIONAL ACHIEVEMENT':
   'SOURCE-REPORTED CALL · UNOFFICIAL';
@@ -6014,6 +6015,7 @@ function enCelebrationOpen(){
  dialog.scrollTop=0;
 }
 function enCelebrationHide(restore=true){
+ enCelebrationStopMedia();
  const dialog=$('#enMilestoneSpotlight'),wasOpen=enCelebrationModalActive;
  enCelebrationModalActive=false;
  if(dialog.open)dialog.close();dialog.hidden=true;
@@ -6089,7 +6091,13 @@ function enCelebrationRenderSound(){
  button.textContent='Sound: '+(enFishSoundEnabled?'on':'off');
  button.setAttribute('aria-pressed',String(enFishSoundEnabled));
 }
-function enCelebrationMusic(id){
+function enCelebrationMusic(id,reason){
+ // A selected online recording can outlast the short animation. All other
+ // queue/stop/retraction paths still remove its player immediately.
+ if(!id&&reason==='finale'&&enFishSoundEnabled&&$('#enMilestoneSpotlight').open&&$('#enCelebrationOnlinePlayer iframe')){
+  $('#enCelebrationOnlineStatus').textContent='YouTube may keep playing on the finale. Close or mute to stop; use the original cue if the video is unavailable.';
+  return;
+ }
  enCelebrationStopMedia();
  const label=$('#enCelebrationMusicLabel'),theme=window.ElectionNightCelebrationMusic?.THEMES[id];
  if(label)label.textContent=id?'Original score · '+(theme?.title||'synthesized victory cue'):'';

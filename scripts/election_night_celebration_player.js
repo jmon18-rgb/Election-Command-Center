@@ -23,8 +23,8 @@
   let active=null,queue=[],timer=null,token=0;
   function clear(){if(timer!==null)clearTimer(timer);timer=null;}
   function state(){return {active:active?.item.id||null,preview:active?.demo||false,pending:queue.length};}
-  function next(){
-   clear();music(null);token++;
+  function next(reason='next'){
+   clear();music(null,reason==='complete'&&!queue.length?'finale':'next');token++;
    active=null;
    while(queue.length){
     const entry=queue.shift();
@@ -39,7 +39,7 @@
     if(current!==token||active!==entry)return;
     if(!entry.demo&&!valid(entry.item)){render(entry.item,false,'revoked',null);next();return;}
     const frames=STORIES[entry.item.id];
-    if(index>=frames.length){render(entry.item,entry.demo,'complete',frames.at(-1));next();return;}
+    if(index>=frames.length){render(entry.item,entry.demo,'complete',frames.at(-1));next('complete');return;}
     render(entry.item,entry.demo,'scene',frames[index]);
     timer=setTimer(()=>scene(index+1),2400);
    }
@@ -60,7 +60,7 @@
    if(queue.length>=16)return false;
    queue.push({item,demo});if(!active)next();return true;
   }
-  function stop(){clear();token++;queue=[];active=null;music(null);}
+  function stop(){clear();token++;queue=[];active=null;music(null,'stop');}
   function revoke(id){
    queue=queue.filter(x=>x.demo||x.item.id!==id);
    if(active&&!active.demo&&active.item.id===id){render(active.item,false,'revoked',null);next();}
