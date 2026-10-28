@@ -1,0 +1,24 @@
+name: Verify Mississippi research-only historical importer
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/*mississippi_senate_preparation.py'
+      - 'MISSISSIPPI_SENATE_PREPARATION.md'
+      - 'data/texas_historical_sources/2024-census-counties.zip'
+      - 'data/senate_history_2020_2022_2024.json'
+      - '.github/workflows/mississippi-senate-preparation.yml'
+permissions:
+  contents: read
+jobs:
+  research-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify fictional contract fixtures and existing public references without fetching originals
+        run: python scripts/test_mississippi_senate_preparation.py
