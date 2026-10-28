@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-28T18:46:52.037713Z",
+  "updated_at": "2026-10-28T19:01:40.304400Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 2,
@@ -280,6 +280,42 @@
       "headline_numbers_unverified": [
         "2,900 "
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "30679fff002111929baf",
+      "title": "Washington Times\u2019 review of hundreds of cases shows how noncitizens end up on voter rolls - Washington Times",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOQW1PLUtYSklhQjlPM2lCRkNfUjNtMUZtblREWGVUY2FJXzlTcWpuMmV2VGNWUll6SXhWWUZGUG5BbFVzMWNvUWoyUUhpcEhBd0dDR2F6bUZLM090UC1Da1gwZmFmcFBOeVpBdlRTdU1scnNiQlYtTkVQTnFKVGl0UkVNM1Nwd3d2c0lnaWJtT1RORTJ6SzRNY1ViTk5pV1hCX0QwVUhTZ0ZrN1FmaGRZNXRqWXQ1Ykk?oc=5",
+      "publisher": "Washington Times",
+      "published_at": "2026-10-28T15:29:53Z",
+      "detected_at": "2026-10-28T19:01:40.304400Z",
+      "state_hints": [
+        "WA"
+      ],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "2196fa5b9fd51fa18bf6",
+      "title": "Congress faces defeat under both ballot and EVM systems, says Bihar CM - The Hindu",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQXzEtdnFIMVZjVXBEVmkxSzhqVjlBRm5qNzVGQlg1bEpyRi1BTVJzTlB6R19JdFQxcVVIOHZCbC1wY2FwSVVLem5VZWxCa2Z4T0pTUVBxbHZyb0R2d2xfcHdpTDJVamhaN0VGVEVjVWtoMXowLVphbXA4Qnh1NzVpTFE2UlZNd21oZUczOE84VS16cEswQmVvZkhNX1gyb0RWY014cDZFXzBlWHIzUWhZbmpFT0R1dUgxZUZpbUR2VWRmT3prcDdNRUZPLUFpaUNOc2NVd0ln0gHWAUFVX3lxTFBfMS12cUgxVmNVcERWaTFLOGpWOUFGbmo3NUZCWDVsSnJGLUFNUnNOUHpHX0l0VDFxVUg4dkJsLXBjYXBJVUt6blVlbEJrZnhPSlNRUHFsdnJvRHZ3bF9wd2lMMlVqaFo3RUZURWNVa2gxejAtWmFtcDhCeHU3NWlMUTZSVk13bWhlRzM4TzhVLXpwSzBCZW9mSE1fWDJvRFZjTXhwNkVfMGVYcjNRaFluakVPRHV1SDFlRmltRHZVZGZPemtwN01FRk8tQWlpQ05zY1V3SWc?oc=5",
+      "publisher": "The Hindu",
+      "published_at": "2026-10-28T14:19:14Z",
+      "detected_at": "2026-10-28T19:01:40.304400Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5019,42 +5055,6 @@
       ],
       "topic_hints": [
         "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "b91c1685054abb4fde2b",
-      "title": "Trump administration sues California over noncitizens on voter rolls - Al Jazeera",
-      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNTHlna081Y1lhRjRKam9fM0cwekdINzFGSHdlTThtMkxTOWJTRkN3b0gtbjl1TTFvYWs3dGtaUXVxaHRMWFpYaXY3d1Q1NHBra19UOG1MRG9Gazc2SS1RVTNtaWVmNWtwS3VmSm9Vbnprck5TdGxxLUhkYXlIY0ExNUM2VGxRTFZvbGVUbXV2UDVsMUotQm1XTjRLdWVhbk03RDdSbmk0N0tPWk54TjJB0gG0AUFVX3lxTE5mSS1FN3J1TEVKY3B6MWZBUms1dndEV0hNQVhuVXRmazFkRGg0MlpQMWREYW9lWmxXeFRMYmY1cjJxUzJucWs1bG5hcXV2d0VMbnM5ZWF5dGdsTmRVaHN4NUpFWmhxT1NRel95RDFzTjRaMkpOTTFxd1FmMEtrQlpMb25vS2hXZ1FJaVJjRmw0bERfNjRIMlNvVl9tZTVCSUtCaTNOVENuVzVZbWt2ZEFydFJ3Yw?oc=5",
-      "publisher": "Al Jazeera",
-      "published_at": "2026-10-15T21:56:15Z",
-      "detected_at": "2026-10-15T22:08:05.403643Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "44e7848e63c870e84766",
-      "title": "Lawsuit alleges DHS effort to collect detailed state voter data violates federal law - Orlando Sentinel",
-      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQNUZfRGVmaHlGQlRXUkUya2FJenVWeWtreVozNnRIXzh6b21XTW1Ha3FpLWY1SHowS1FtU2I3UXpMbS1wdXRpWjZwamFYUVUzTXRVdEpwc1NWbkNnU2JFUzM4TEZHczZwTGdxWktCVEdiUlJ2bktwcnBPVDdpbmpNMk9B?oc=5",
-      "publisher": "Orlando Sentinel",
-      "published_at": "2026-10-15T21:52:19Z",
-      "detected_at": "2026-10-15T22:08:05.403643Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
