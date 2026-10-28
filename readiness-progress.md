@@ -1,5 +1,12 @@
 # Readiness progress
 
+## 2026-10-28 — R6 Graham fictional farewell candidate (NOT deployed)
+
+- Named ready task: original shared SVG production now adds a neon Last Call marquee/disco ball, an incumbent stage-pass exit and South Carolina finale. Explicit fictional-stage/no-real-venue and simulated/no-real-victory captions; surname-only labels/current Darline opponent guard retained. Supplied fictional poster90f3e5c8fdee stays unchanged in announcement/thumbnail/JPEG-SVG-text fallback. Existing original Last-call disco reused. No new bitmap/audio/dependency/request, private-conduct or sexuality assertion.
+- Actual Edge1440/390 all11stories PASS including Graham3beats/realmotion/reduced-static exit endpoint/completefinale/single attribution/containedposter/skip-replay/archive/optionalrendererfailure; screenshots celebration-graham-beat0/1/2-{1440,390}.png visually inspected. Signals/player queue-retraction/11score tests PASS. Shared phase/timing/eligibility/call readers/source/model/cadence/budgets unchanged. Preview never earns a win. All new exact-head protected CI and final CURRENTmain Pages/actualbytes/ordinary preview required before release claim.
+- Prior4f5Kansas proof incorporated in this coherent implementation; no status-only push. R3humanOct29/fullR8Oct30/R2recorded no-go/18routes/six owner Senate paths/fourmissing remain. No native sourceprobe or blocked-page retry. Optional production does not outrank critical forecast/UI repairs or handoff/freeze. Next after release: remaining bespoke Nebraska scene under existing independent winner guard; read brief/current code first, preserve coach/candidate distinction. DailyOct28 after09Eastern/13Z; notify only a new verified milestone.
+
+
 ## 2026-10-28 05:08 UTC — R6 Kansas scene VERIFIED PUBLISHED
 
 - PR510 MERGEDc1f42b1b8909b88c52c9c13f97a1786870939330 afterALL35exactheadworkflowparentsSUCCESS/50latestjobs47success3nonapplicable deployed-onlySKIP/0external/current261a8f41afed748702de6d6af2a2254c45d5280a/clean. Readiness40634647129 browser122638683884/core122638684191SUCCESS; national40634647037/fullDOM40634647004SUCCESS. No failedtest/waiver/rerun/timeout increase. Prior3fcbreleaseproof checkpoint incorporated, not separately unpublished.
