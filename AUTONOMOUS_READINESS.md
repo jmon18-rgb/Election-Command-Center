@@ -2,6 +2,8 @@
 
 ## October28 — R8 queued bulletin reading-return defect confirmed; shared repair ready for review
 
+PR521 initial01587eb8 readiness core40712415736/job122900912008 failed because its extracted revocation unit did not load the new shared helper. Harness repaired to load the actual helper and model its visible control/rectangle, retaining every original withdrawal/queue/unrelated-race/corrected-winner assertion; affected unit PASS locally. No source behavior/timeouts/assertion weakening. Failed head will not merge/rerun/waive; corrected current-head CI required.
+
 Next named task found a concrete remaining combined defect on actual Edge1366x900/390x844: a legitimate synthetic TX celebration completes into a queued correction bulletin; the ordinary personal component redraw replaces the reader; normal Back leaves keyboard focus on the now-hidden bulletin button. Rating disclosure remains open and on screen, but focus is lost. Baseline checkout0ce0a79a (app520), ui-review/queued-reading-baseline/assessment.json and before/after PNGs; all external sources blocked. This is separate from completed520 direct-popup return.
 
 Candidate shares the existing ephemeral semantic reader capture/restore between bulletin and celebration. Bulletin sequences retain the original reader through redraws; Back/Escape/natural expiry/call-bulletin revocation resolve it again. A celebration preempting a bulletin inherits its original reader instead of its soon-hidden button, and releases the transferred bulletin bookmark. No persistence/source/model/call/queue ordering/timer/music/eligibility change. Existing source labels/caveats/independent accounting remain. Human acceptance stays NOT_RUN.

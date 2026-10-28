@@ -18,11 +18,15 @@ assert.equal(records.at(-1)?.[2],'retraction','A fresh withdrawal needs an expli
 const call=(race='NH',source='civicAPI')=>({event:{office:'Senate',race,source,kind:'call'},demo:false});
 let stopped=0,cleared=0,returned=0;
 const toast={hidden:false};
+const reader={isConnected:true,checkVisibility:()=>true,focus:()=>returned++,
+ getBoundingClientRect:()=>({top:100,bottom:130})};
 Object.assign(context,{enFishPending:[call(),call('ME'),call('NH','Open America'),
  {event:{office:'Senate',race:'NH',source:'civicAPI',kind:'first'},demo:false}],
  enFishCurrent:call(),enFishTimeout:123,enFishAudioStop:()=>stopped++,
- clearTimeout:()=>cleared++,enFishReturnFocus:{isConnected:true,focus:()=>returned++},
- $:()=>toast});
+ clearTimeout:()=>cleared++,enFishReturnFocus:reader,enFishReturnAnchor:null,innerHeight:900,
+ $:selector=>selector==='#electionNight .en-toolbar'?{getBoundingClientRect:()=>({bottom:62})}:toast});
+// The extracted revocation path now uses the actual shared reader-return helper.
+vm.runInContext(segment('enReadingReturnAnchor','enFishRenderVoice'),context);
 vm.runInContext(segment('enFishRevokeCall','enFishQueueState'),context);
 records.length=0;
 context.enProcessCivicAlert(item,previous,next);

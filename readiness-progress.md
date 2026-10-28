@@ -2,6 +2,7 @@
 
 ## October28 — R8 queued bulletin return candidate
 
+- Initial PR521 head01587eb8 readiness core40712415736/job122900912008 correctly failed: extracted revocation unit loaded its caller without the newly shared reader-return helper. Harness now loads the ACTUAL helper and supplies a visible-control rectangle; all original withdrawal/queue/unrelated-race/corrected-winner assertions remain unchanged and pass locally. Production behavior and timeouts unchanged; failed head must not merge/rerun/waive. Corrected exact-head protected CI required.
 - Actual1366/390 remaining journey reproduced: celebration completes into queued bulletin; personal redraw detaches reading control; Back leaves focus on hidden enFishDismiss. Baseline0ce0a79a/app520 and ui-review/queued-reading-baseline/assessment.json/pngs retained. No external election requests or human acceptance.
 - Shared ephemeral reading return now covers bulletin Back/Escape/expiry/revocation and celebration preemption. Two-bulletin sequence/normal keyboard/NE nested reader/history/withdrawal/pure rehearsal isolation and existing popup/personal/player/mobile regressions PASS. No model/source/eligibility/music/queue-timing change. Original520 assertions retained; new keyboard wrap uses actual last visible attribution link. Proof ui-review/queued-reading-source/. Next fullDOM/protected exact-head gate, then finalCURRENTmain Pages/bytes/ordinary browser. Human/fullR8/calibration/actualpositive/four missing contracts remain open; no status-only CI push.
 
