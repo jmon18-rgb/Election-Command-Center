@@ -51,7 +51,7 @@ Three owner-supplied images are wired into the existing Kansas, Mississippi and 
 | --- | --- | --- |
 | Announcement before scenes, queue, mute, skip/replay, media-error fallback | COMPLETE foundation | Existing player and owner-supplied recording; existing deterministic/browser tests. Recording is generic, not newly recorded candidate-specific speech. |
 | Exact-office/race, candidate constraints where named, final-close/freshness guards; retraction revocation | COMPLETE foundation | Existing `ElectionNightSignals` plus strict runtime source adapters; new R6 named TX requirements tested. Actual election delivery/calls remain unproven. |
-| Desktop/mobile cards and 11 playable preview stories | COMPLETE foundation; PARTIAL production | Seven existing earned-event cards plus preview-only Tsunami; R6 adds three cards, totaling ten earned-event definitions and eleven stories. Actual Edge previews and parent final release verification passed; bespoke productions remain incomplete. |
+| Desktop/mobile cards and 11 playable preview stories | Dedicated engineering roster RELEASED; human playback open | Seven existing earned-event cards plus preview-only Tsunami; R6 adds three cards, totaling ten earned-event definitions and eleven stories. Actual Edge previews and parent final release verification passed; all11 dedicated engineering productions now have release evidence; human playback/music-quality acceptance remains open. |
 | Reduced motion | COMPLETE foundation | Current shared beat animation is suppressed; retain this for all new scene layers. |
 | Original event-specific music | RELEASED502 engineering foundation | Eleven distinct original synthesized scores with bounded render/stop tests. Not commercial recordings or subjective listening-quality acceptance. |
 | Fish Head jaw movement | MISSING optional | No synchronized jaw animation found. Lower priority than distinct main scenes; do not imply lip-sync. |
@@ -62,17 +62,17 @@ Three owner-supplied images are wired into the existing Kansas, Mississippi and 
 | --- | --- | --- | --- |
 | Talarico / Texas Senate | R6 exact named-winner requirement; original static blue-horns/star poster and three text/emoji beats | RELEASED in PR490: original animated horns, five stars across illustrative Texas and a staged Senate victory card; recorded exact-head CI and publication evidence in readiness-progress.md | RELEASED502 original Blue stadium fanfare; no cleared commercial/fight-song recording. |
 | Texas governor / Abbott | R6 Democratic governor winner plus Greg Abbott opponent; separate from Senate; static concession-podium/parade poster | RELEASED502 original campaign-sign tree production. Optional additional parade finishing remains secondary. | RELEASED502 original campaign-sign exit march; no Walk This Way recording. |
-| BLEXAS bonus | Existing two-office Democratic-call bonus; static two-star Texas poster and three beats | CANDIDATE: distinct illustrativeTexas/two-office-star/combined bonus finale; protected review/publication pending; never substitutes for either separate event | RELEASED502 original Two-star victory fanfare. |
+| BLEXAS bonus | Existing two-office Democratic-call bonus; static two-star Texas poster and three beats | RELEASED515: illustrativeTexas/two-office-star/combined bonus finale; never substitutes for either separate event | RELEASED502 original Two-star victory fanfare. |
 | Graham / South Carolina | Existing Darline opponent guard; supplied fictional nightclub poster. | RELEASED511: three-beat original neon/spotlight/pass-exit/finale, exact-head protected CI and published ordinary preview verified. No private-sexuality, real-venue or conduct assertions. | RELEASED502 original Last-call disco; no private-sexuality/conduct assertions. |
 | BLANSAS / Kansas | Existing Democratic Senate trigger; owner-supplied fictional John Brown/Confederate-symbol painting and fallback. | RELEASED510: original satirical ghost/old-emblem ink wash/illustrative Kansas poster/finale; three-beat, protected and published proof recorded | RELEASED502 original Prairie fife and drum; no historical recording or realistic gore. |
 | Nebraska / Osborn | Existing independent Dan Osborn trigger; static tractor/cornfield art plus generic football/corn beats; no assumed caucus | RELEASED512: original fictional coach Tom Osborne/absurd scoreboard-confetti/Dan Osborn Independent finale. Coach/candidate explicitly distinct; all35 exact-head parents and final published proof pass | RELEASED502 original Sideline brass and halftime bass; no fight-song recording rights assumed. |
 | Mississippi Senate | R6 generic Democratic exact-race trigger; static retired-mascot/crate/wave poster and three beats; current invalid source stays excluded | RELEASED509: original prop/pedestal/wave/storage/finale via shared renderer, three beats and original502score; exact-head/browser/publication verified. | RELEASED502 original Blue-river brass shuffle, unchanged by this visual candidate. |
 | BLUE CORN / Iowa | Existing any-of Senate/governor Democratic call; corn poster and three beats | RELEASED513: original first-blue-kernel/21-kernel transformation/statewide finale; exact-head CI and ordinary publication verified | RELEASED502 original Electric harvest two-step. |
 | Maine | Existing Democratic call against Susan Collins; witch/broom poster and three beats | RELEASED514: original hat-broom entrance/breezy exit/next-chapter finale; exact-head protected CI and ordinary published preview verified | RELEASED502 original Broom-and-bells sendoff. |
-| BUCKEYE BLUE-SHOCK / Ohio | Existing Ohio-special Democratic trigger; cracked-nut/lightning poster and three beats | CANDIDATE: actual pressure/cracked-shell/lightning/special-Senate finale; protected review/publication pending, retained direction | RELEASED502 original Buckeye blue-shock riff. |
-| Blue Tsunami | Existing preview-only finale; no automatic forecast-based earning | CANDIDATE: wave/lawnsign/explicit preview-only finale; protected review/publication pending, no earned odds/lead trigger | RELEASED502 original Rising tide finale; preview-only eligibility unchanged. |
+| BUCKEYE BLUE-SHOCK / Ohio | Existing Ohio-special Democratic trigger; cracked-nut/lightning poster and three beats | RELEASED515: pressure/cracked-shell/lightning/special-Senate finale, retained direction | RELEASED502 original Buckeye blue-shock riff. |
+| Blue Tsunami | Existing preview-only finale; no automatic forecast-based earning | RELEASED515: wave/lawnsign/explicit preview-only finale, no earned odds/lead trigger | RELEASED502 original Rising tide finale; preview-only eligibility unchanged. |
 
-Static posters and bouncing emoji do not complete bespoke productions. Talarico490 and Abbott502 have dedicated SVG actions; all eleven original score cues are released502. Other visuals remain partial until separately implemented and verified.
+All11 retained stories now have dedicated shared SVG productions (490/502/509-515) and original score cues (502). Protected CI, published bytes and ordinary previews are engineering evidence; human playback, subjective musical quality and full workflow acceptance remain OPEN.
 
 ## Historical first-scene plan: Talarico (visual490/music502 released)
 
@@ -94,7 +94,7 @@ This is first in both the current Texas-first R6 priority and the brief's produc
 - Record original-code artwork/audio provenance and immutable script/changed-art revisions; pass exact-head workflows, published-byte checks and published behavior before a completed-release claim.
 - Completion of this slice means Talarico's distinct production is ready; it does not mark the entire celebration roster complete or establish a real election result.
 
-Following slices: Ohio/BLEXAS/Tsunami remaining roster under the latest roadmap. Talarico/Abbott/Mississippi/Kansas/Graham/Nebraska/Iowa/Maine now have verified dedicated visuals. Commercial-song upgrades stay optional and rights-dependent.
+Next: owner playback and full usability review. All11 retained visuals have engineering release proof. Commercial-song upgrades remain optional and rights-dependent; no new creative scope is required.
 
 ## Graham fictional stage farewell RELEASED in PR511
 
@@ -112,6 +112,6 @@ Three shared SVG beats, original Electric harvest two-step and corn poster/fallb
 
 Three original shared SVG beats, existing poster/fallback and Broom-and-bells sendoff. Exact Susan Collins opponent guard retained; no new source/model/call/eligibility changes. Actual laptop/mobile full-roster playback/motion/reduced endpoint/cleanup/fallback and all35 exact-head parents pass. Final583a574e/Pages40642515003/371files06:14:34Z and ordinaryIAB21 preview verified.
 
-## Current candidate: Ohio/BLEXAS/Tsunami remaining roster
+## Ohio/BLEXAS/Tsunami remaining roster RELEASED in PR515
 
-Nine original shared SVG beats with existing posters/fallbacks/three scores. Exact Ohio special/BLEXAS two-call/Tsunami preview-only gates unchanged. Actual Edge1440/390 full11story/motion/reduced/cleanup/fallback tests pass; all new exact-head CI and final publication required. Human playback/music-quality/fullUI acceptance remain separate.
+Nine original shared SVG beats with existing posters/fallbacks/three scores. Exact Ohio special/BLEXAS two-call/Tsunami preview-only gates unchanged. Actual Edge1440/390 full11story/motion/reduced/cleanup/fallback tests pass; all35 exact-head parents and final1b3421d8/Pages40644581697/371publishedfiles06:35:48Z plus three ordinaryIAB21 previews verified. Human playback/music-quality/fullUI acceptance remain separate.
