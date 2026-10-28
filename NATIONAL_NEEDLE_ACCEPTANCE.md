@@ -1,6 +1,6 @@
 # National needle acceptance decision — October 27, 2026
 
-PR505, verified published on final main49ccfc37, explicitly withholds Democratic caucus credit from uncommitted Independent winners, while retaining established holdovers and the existing seat thresholds. These are Democratic-majority threshold scenarios, not a resolved forecast of future coalition negotiations: neither D threshold does not establish a Republican majority. Individual race draws and likelihood inputs are unchanged. Exact-head33workflowparents and finalPages/351published-file verification passed. Accessible disclosure and full operator acceptance remain open.
+PR505, verified published on final main49ccfc37, explicitly withholds Democratic caucus credit from uncommitted Independent winners, while retaining established holdovers and the existing seat thresholds. These are Democratic-majority threshold scenarios, not a resolved forecast of future coalition negotiations: neither D threshold does not establish a Republican majority. Individual race draws and likelihood inputs are unchanged. Exact-head33workflowparents and finalPages/351published-file verification passed. PR506 subsequently verified the caveat in actual home/night/rehearsal browser accessibility names; full human operator/assistive acceptance remains open.
 
 ## October 27 methodology reassessment after owner rehearsal review
 

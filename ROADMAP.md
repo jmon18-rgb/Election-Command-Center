@@ -1,6 +1,6 @@
 # JackStradamus · development plan
 
-> Released505: explicit no-credit policy removes automatic Independent D caucus credit across app paths; final49ccfc37/Pages40614335003/351publishedfiles verified. NEXT small R8 accessibility repair: role=img hides the coalition caveat from AX; include it in accessible name/description and test before Oct29. Then R1 NE typed-axis/different-seat scenario review from saved originals. MN/MS/MI403 remain STOP; no new route/baseline admitted. R3/R8/calibration acceptance remains open.
+> Released506: coalition caveat now exposed in actual home/night/rehearsal browser accessibility output; final5ace3b6e/Pages40617065853/351publishedfiles verified. NEXT R1 NE factual93county preparation promotion and typed Osborn-v-Ricketts adapter from saved originals/review. No I-to-D relabeling or caucus credit; different-seat transfer remains explicit experimental. Review fixed NE budget/all18route bounds/old17 invariance together. MN/MS/MI403 STOP. R3human handoff/fullR8/calibration acceptance remain open.
 
 ## Active national-needle roadmap - reassessed October 27, 2026
 
