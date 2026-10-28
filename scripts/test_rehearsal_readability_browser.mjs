@@ -33,11 +33,12 @@ try{browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL
   const retained=await page.evaluate(()=>{const c=document.querySelector('#enPersonalFocusPreview [data-race="NE-SEN"]');return {open:c.querySelector('details').open,focus:document.activeElement===c.querySelector('summary')};});
   const scrollDelta=(await page.evaluate(()=>scrollY))-scrollBefore;
   if(!before){
+   assert.equal(await page.locator('#enNationalRehearsal').evaluate(e=>getComputedStyle(e).overflowAnchor),'none','Rebuilt preview is excluded from automatic scroll anchoring');
    assert(button.height>=44,'Next control has at least a44px target');assert(button.background.match(/\d+/g).slice(0,3).map(Number).reduce((s,n)=>s+n,0)<600,'Themed dark control rather than native white');
    const contrast=await page.locator('#enNationalNext').evaluate(e=>{const rgb=x=>x.match(/[\d.]+/g).slice(0,3).map(Number).map(n=>{const s=n/255;return s<=.04045?s/12.92:((s+.055)/1.055)**2.4;});const lum=x=>{const a=rgb(x);return .2126*a[0]+.7152*a[1]+.0722*a[2];};const c=getComputedStyle(e),a=lum(c.color),b=lum(c.backgroundColor);return (Math.max(a,b)+.05)/(Math.min(a,b)+.05);});assert(contrast>=4.5,'Control text contrast');
    assert.equal(geometry.align,'start');if(geometry.peerHeight!==null)assert(geometry.openHeight>geometry.peerHeight+40,'Opening one card does not stretch its neighbors');
    assert.deepEqual(retained,{open:true,focus:true},'Immediate redraw preserves disclosure/focus by race identity');
-   assert(Math.abs(scrollDelta)<=2,'Unchanged redraw does not reset the operator scroll position');
+   assert(Math.abs(scrollDelta)<=2,'Unchanged redraw does not reset the operator scroll position; delta='+scrollDelta);
    await page.keyboard.press('Tab');await page.locator('#enNationalNext').focus();
    const focusStyle=await page.locator('#enNationalNext').evaluate(e=>({width:getComputedStyle(e).outlineWidth,style:getComputedStyle(e).outlineStyle}));assert.equal(focusStyle.width,'3px');assert.equal(focusStyle.style,'solid');
    await page.locator('#enNationalNext').press('Enter');await page.waitForFunction(()=>document.querySelector('#enNationalStage').textContent.includes('4/5'));
