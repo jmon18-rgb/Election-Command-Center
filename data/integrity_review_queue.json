@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-28T19:57:15.320489Z",
+  "updated_at": "2026-10-28T20:12:30.968233Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -7,8 +7,8 @@
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
-    "advisory_related_headline_buckets": 24,
-    "advisory_related_headlines": 63
+    "advisory_related_headline_buckets": 25,
+    "advisory_related_headlines": 65
   },
   "advisory_related_headlines": [
     {
@@ -329,6 +329,23 @@
       "publisher": "The Hindu",
       "published_at": "2026-10-28T14:19:14Z",
       "detected_at": "2026-10-28T19:01:40.304400Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "bb4c8cd5d770333b1aee",
+      "title": "Congress faces defeat under both ballot and EVM systems, says Bihar CM - The Hindu",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPVmNSOGlVSXl4WXpXUm1hS2JKekRUblhmdUlBZDFTYmU4Y1lESE1uZ3VtWXRTalFZc0N4a1RRc0xERk1HWFoycXh3VlpDdDZUempESGlsMjNqUDRCUzhRaDJKMDNsRTZWT3E2WmVhcXc5RHM4TGRGZm5nWXZQSjJHMm1SZnd1YkRWSThWeFMyUUxUUkV4Zjl5MXV0SVVXVWl0am9qNFhHblNrcERjcXA0ZllwampObERzNjMzM2JjNUxlNTlMMjB1SE4tZjk0N2fSAdYBQVVfeXFMUF8xLXZxSDFWY1VwRFZpMUs4alY5QUZuajc1RkJYNWxKckYtQU1Sc05QekdfSXRUMXFVSDh2QmwtcGNhcElVS3puVWVsQmtmeE9KU1FQcWx2cm9EdndsX3B3aUwyVWpoWjdFRlRFY1VraDF6MC1aYW1wOEJ4dTc1aUxRNlJWTXdtaGVHMzhPOFUtenBLMEJlb2ZITV9YMm9EVmNNeHA2RV8wZVhyM1FoWW5qRU9EdXVIMWVGaW1EdlVkZk96a3A3TUVGTy1BaWlDTnNjVXdJZw?oc=5",
+      "publisher": "The Hindu",
+      "published_at": "2026-10-28T14:19:14Z",
+      "detected_at": "2026-10-28T20:12:30.968233Z",
       "state_hints": [],
       "topic_hints": [
         "ballot_access"
@@ -5038,24 +5055,6 @@
       "headline_numbers_unverified": [
         "2024 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "16c1574de1800bea34e3",
-      "title": "Feds Demand Voters to Prove Citizenship in Lawsuit Against CA, LACo - MyNewsLA.com",
-      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQUy1lNjdid2Y0dUNUS1N2d19iMG5LWHVtb2g0SnpOOTRWWS0yN1piSWwtb3ZjVzNmeWItTlFSZExQY2xSTFIwbGNSVG94V19UYTdFMXhaTktERXRfOTVRZWJPWTlnWWF3UmR0b3lIV2VOUjdha1VRTjc2QUxHVERBZjdDbHYxZjhXQy1GaEhMOU9YOFJWUWcwRDkwWWJHRHhpTWZrVTJBSDV2MUwyZEM4WTl2UQ?oc=5",
-      "publisher": "MyNewsLA.com",
-      "published_at": "2026-10-15T22:40:00Z",
-      "detected_at": "2026-10-15T23:52:41.458806Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,

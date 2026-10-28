@@ -1,31 +1,107 @@
 {
-  "updated_at": "2026-10-28T19:57:15.950570+00:00",
+  "updated_at": "2026-10-28T20:12:31.642112+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 843,
+      "available_in_source": 845,
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1275,
+      "available_in_source": 1276,
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 950,
+      "available_in_source": 951,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 329,
-  "newly_injected_into_model": 1,
+  "matched_primary_observations": 330,
+  "newly_injected_into_model": 2,
   "injected_poll_ids": [
     {
-      "race_code": "NC-SEN",
-      "poll_id": "41c3566b-9863-48a7-ae10-148260fd80a0"
+      "race_code": "OH-GOV",
+      "poll_id": "dcf6267c-62b2-4941-9e1a-2facc483e35b"
+    },
+    {
+      "race_code": "OH-SEN",
+      "poll_id": "dcf6267c-62b2-4941-9e1a-2facc483e35b"
     }
   ],
   "observations": [
+    {
+      "race_code": "OH-SEN",
+      "race_type": "senate",
+      "state": "OH",
+      "poll_id": "dcf6267c-62b2-4941-9e1a-2facc483e35b",
+      "question_id": "f4af9b0a-37ff-4cce-ba99-07b4452ee702",
+      "pollster": "Concord Public Opinion Partners",
+      "dem_name": "Sherrod Brown",
+      "rep_name": "Jon Husted",
+      "dem": 50.0,
+      "rep": 40.0,
+      "margin": 10.0,
+      "field_end": "2026-08-31",
+      "field_start": "2026-08-29",
+      "posted_date": "2026-10-28",
+      "posted_source_datetime": "2026-10-28T15:51:00",
+      "posted_source_time": "10/28/26 15:51",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://concordpublicopinionpartners.org/polls/ohio-ge-2026",
+      "sample_population": "lv",
+      "sample_size": 504,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "OH-GOV",
+      "race_type": "governor",
+      "state": "OH",
+      "poll_id": "dcf6267c-62b2-4941-9e1a-2facc483e35b",
+      "question_id": "b84c7c4e-a41b-486b-9b86-7fdeb74743e3",
+      "pollster": "Concord Public Opinion Partners",
+      "dem_name": "Amy Acton",
+      "rep_name": "Vivek Ramaswamy",
+      "dem": 49.0,
+      "rep": 37.0,
+      "margin": 12.0,
+      "field_end": "2026-08-31",
+      "field_start": "2026-08-29",
+      "posted_date": "2026-10-28",
+      "posted_source_datetime": "2026-10-28T15:51:00",
+      "posted_source_time": "10/28/26 15:51",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://concordpublicopinionpartners.org/polls/ohio-ge-2026",
+      "sample_population": "lv",
+      "sample_size": 504,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "MT-SEN",
+      "race_type": "senate",
+      "state": "MT",
+      "poll_id": "9c1f8d43-d445-4bc4-aae8-976b327e3347",
+      "question_id": "fc99673a-2575-46dd-9920-8361f1ca6690",
+      "pollster": "Concord Public Opinion Partners",
+      "dem_name": "Alani Bankhead",
+      "rep_name": "Kurt Alme",
+      "dem": 10.0,
+      "rep": 38.0,
+      "margin": -28.0,
+      "field_end": "2026-10-23",
+      "field_start": "2026-10-22",
+      "posted_date": "2026-10-28",
+      "posted_source_datetime": "2026-10-28T15:50:00",
+      "posted_source_time": "10/28/26 15:50",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://dfer.org/policy-polling-memos/montana/montana-general-election-poll-findings/",
+      "sample_population": "lv",
+      "sample_size": 410,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "NC-SEN",
       "race_type": "senate",
