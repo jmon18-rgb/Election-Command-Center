@@ -131,6 +131,10 @@
  function render(host,result,baseline,options={}){
   if(!host)return;const data=rows(result,baseline,options);host.hidden=!data.length;
   const historyOpen=Boolean(host.querySelector('.personal-focus-history')?.open),historyFocused=Boolean(host.querySelector('.personal-focus-history')?.contains(host.ownerDocument.activeElement));
+  // Keep operator disclosure state by race identity, never by changing row order.
+  const openPerformance=new Set(Array.from(host.querySelectorAll('.personal-focus-card')).filter(c=>c.querySelector('details')?.open).map(c=>c.dataset.race));
+  const activeCard=host.ownerDocument.activeElement?.closest?.('.personal-focus-card');
+  const focusedRace=activeCard&&host.contains(activeCard)?activeCard.dataset.race:null;
   host.replaceChildren();if(!data.length)return;
   const doc=host.ownerDocument,el=(tag,cls,text)=>{const n=doc.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;};
   const simulated=data.some(x=>x.simulated);
@@ -142,7 +146,7 @@
    const grid=el('div','personal-focus-grid');
    for(const row of data.filter(x=>x.office===office)){
     const card=el('article','personal-focus-card');card.dataset.race=row.code;
-    card.append(el('h4','',row.code==='OH-SEN'?'Ohio · special Senate':row.code));
+    const heading=el('h4','',row.code==='OH-SEN'?'Ohio · special Senate':row.code);heading.tabIndex=-1;card.append(heading);
     card.append(el('small','',row.state==='AK'?'Late night · '+row.window:row.state==='KS'?'Counts eligible from · '+row.window:'Poll-close window · '+row.window));
     if(row.pct!==null){
      const chanceLabel=row.state==='NE'?'model chance vs Ricketts':'model win chance';
@@ -160,6 +164,7 @@
     if(p&&finite(p.observed_margin_points)&&[p.expected_margin_scenarios,p.difference_margin_scenarios].every(x=>Array.isArray(x)&&x.length===2&&x.every(finite))){
      card.append(el('p','personal-focus-performance','Matched-area performance · '+range(p.difference_margin_scenarios,positive,negative)+' margin points vs expected'));
      const detail=el('details','');detail.append(el('summary','','What was expected here?'),el('p','','Observed '+margin(p.observed_margin_points,positive,negative)+'; expected '+range(p.expected_margin_scenarios,positive,negative)+' in the same reporting areas. Historical '+p.baseline_year+' local shares adjusted to the pre-results race expectation.'));
+     detail.open=openPerformance.has(row.code);
      detail.append(el('p','',p.scope));if(p.historical_transfer)detail.append(el('p','',p.historical_transfer+'; experimental and uncalibrated.'));
      if(p.directional_transfer_assumption)detail.append(el('p','',p.directional_transfer_assumption));
      for(const u of p.largest_reporting_units||[])detail.append(el('small','',(u.county||'FIPS '+u.county_fips)+(row.office==='House'?' district part':'')+' · '+u.counted_two_party_votes.toLocaleString('en-US')+' '+positive+'/'+negative+' votes · observed '+margin(u.observed_margin_points,positive,negative)+'; expected '+range(u.expected_margin_scenarios,positive,negative)));
@@ -171,6 +176,7 @@
    group.append(grid);host.append(group);
   }
   host.append(el('p','methodline','Probability changes are not vote-margin outperformance. Matched county performance remains the model evidence. NC01/AZ01 boundary contracts are still pending; existing TX and WA03 integrations remain available. KS uses the existing conservative final-call gate pending county-hours review. Experimental and uncalibrated; a forecast is not a result.'));
+  if(focusedRace){const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(c=>c.dataset.race===focusedRace);(card?.querySelector('details > summary')||card?.querySelector('h4'))?.focus({preventScroll:true});}
  }
  return Object.freeze({SENATE,HOUSE,rows,render,createHistory,HISTORY_KEY,HISTORY_LIMIT,HISTORY_BYTES});
 });

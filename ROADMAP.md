@@ -1,6 +1,6 @@
 # JackStradamus · development plan
 
-> CURRENT: PR507 Nebraska verified on main7e4b163d/Pages40625644392/368files. Six owner Senate paths IA/KS/ME/OH/SC/NE programmed; MI/MN/MS/AK missing. R3 operator pack v1.0 is ready locally (output/pdf/election-night-operator-guide-7e4b163d.pdf and semantic HTML); human laptop/phone/assistive acceptance remains open. Next bounded R8 control/card refinement, fullOct30review and R2 precise no-go. No actualpositive2026/calibrated acceptance.
+> CURRENT: PR507 Nebraska verified on main7e4b163d/Pages40625644392/368files. Six owner Senate paths IA/KS/ME/OH/SC/NE programmed; MI/MN/MS/AK missing. R3 operator pack v1.0 is ready locally (output/pdf/election-night-operator-guide-7e4b163d.pdf and semantic HTML); human laptop/phone/assistive acceptance remains open. ACTIVE R8 control/card candidate (not deployed):44px themed Next, natural peer heights and race-keyed disclosure/focus retention. Finish protected release, then fullOct30review and R2 precise no-go. No actualpositive2026/calibrated acceptance.
 
 ## Active national-needle roadmap - reassessed October 27, 2026
 

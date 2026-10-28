@@ -20,6 +20,7 @@ on:
       - 'scripts/election_night_signals.js'
       - 'scripts/personal_election_focus.js'
       - 'scripts/test_personal_election_focus*'
+      - 'scripts/test_rehearsal_readability_browser.mjs'
       - 'scripts/wisconsin_house*.js'
       - 'data/*county*.json'
       - '.github/workflows/national-results-needle.yml'
@@ -72,6 +73,7 @@ jobs:
         run: |
           node scripts/test_national_results_needle_browser.mjs
           node scripts/test_personal_election_focus_browser.mjs
+          node scripts/test_rehearsal_readability_browser.mjs
           node scripts/test_maine_national_browser.mjs
           node scripts/test_ohio_national_browser.mjs
           node scripts/test_south_carolina_national_browser.mjs
