@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-28T13:09:19.886892Z",
+  "updated_at": "2026-10-28T13:37:44.104117Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
-    "advisory_related_headline_buckets": 25,
-    "advisory_related_headlines": 63
+    "advisory_related_headline_buckets": 24,
+    "advisory_related_headlines": 62
   },
   "advisory_related_headlines": [
     {
@@ -79,15 +79,13 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "444a238fe9159b1ce81d",
-      "headline": "Could California lose ballots over DOJ non-citizen voter claims? - The Desert Sun",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "CA"
-      ],
+      "lead_id": "943ca4486e33563f77e7",
+      "headline": "Court dismisses Emeka Ike\u2019s N10bn suit against Wike\u2019s aide - Punch Newspapers",
+      "possibly_related_articles": 3,
+      "distinct_publishers": 1,
+      "state_hints": [],
       "topic_hints": [
-        "ballot_access"
+        "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -273,6 +271,23 @@
       "publisher": "Punch Newspapers",
       "published_at": "2026-10-28T12:11:15Z",
       "detected_at": "2026-10-28T12:22:48.241196Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "45237c51fb65c6cd7a51",
+      "title": "Court dismisses Emeka Ike\u2019s N10bn suit against Wike\u2019s aide - Punch Newspapers",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPRWxodjlPdE8yd1BjSW5kaDRvNm1qZTlpNk8wZlVYOGpkanVRN2R4YlQzYnVNbHp4VmwwMERVcEZUdzBuTGNJSEVxWHJhSEhTVEJfVThtUlJTcHY4VWhjZVZXMFhENDQ0cnA1cUIwaFl5TjJYakxjN0s1cnpIUlZHbzlqWQ?oc=5",
+      "publisher": "Punch Newspapers",
+      "published_at": "2026-10-28T12:05:51Z",
+      "detected_at": "2026-10-28T13:37:44.104117Z",
       "state_hints": [],
       "topic_hints": [
         "litigation"
@@ -524,6 +539,25 @@
       ],
       "headline_numbers_unverified": [
         "20,000 ballots"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "b9dd53186676020b517d",
+      "title": "The 2026 Election Fraud Narratives Are Already Taking Shape \u2013 Here\u2019s the Truth - Global Project Against Hate and Extremism",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPbFQyWW80ZFZzeTFxV3VWd0ZaMk5NaW1xSHJRaTJlZ1pVWnl4YUJiX2tUUHMwUUk3WFN0RFhPNDZKcjBKMjdxUm5pdTJDM3ZoS3hlVHlXUWZiTEZ0Z2ZVeEZTZ29OX2tTcmVHYkQ5UWVOdzJCdmNGV0N6bnVHWkMzWVF4VmVDTUdQeW01dmhDLXZuYmFMX2s3aQ?oc=5",
+      "publisher": "Global Project Against Hate and Extremism",
+      "published_at": "2026-10-27T22:26:43Z",
+      "detected_at": "2026-10-28T13:37:44.104117Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
@@ -5014,44 +5048,6 @@
       ],
       "topic_hints": [
         "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "444a238fe9159b1ce81d",
-      "title": "Could California lose ballots over DOJ non-citizen voter claims? - The Desert Sun",
-      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPaHRNNmtOVE1vRE9aNHhDQ25oVzVwT1c4eF9jMFhOSlZ1Z1N3RGktM1N5Z1J1eENDcEgtaUlWZGtVWTF2cXlLS2JzajhCelhiSUdVSDNtVmJoOVAzZGJIa3BfMTRSeVlROGxSRERGRE41Q2tXRm0zVmVDN2RaM3k1elV3bmhpd0E3RGVQdVdoUlJYMEh4S0NxVVFiamZORkY0bkdEalV0YXc3dDd2MGNTSHc5b2pCWjgxX1pMNU9XV3JjbVlDU1J0anpWc2hHWEY2QTQxLXdWVlhLbHJXeTh2Mk93?oc=5",
-      "publisher": "The Desert Sun",
-      "published_at": "2026-10-15T20:45:00Z",
-      "detected_at": "2026-10-15T21:08:58.023147Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "c35097f1e1604b09a1c8",
-      "title": "Could California lose ballots over DOJ non-citizen voter claims? - Victorville Daily Press",
-      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOMm9nb25tMlVFcER3YU1VeUJxUXdfYmRnWUR5elpxalpRNkkxY3NEVlN2SlhsNm5WcDg2SUFwdUQxc3h0VGZNSS1ZYUQ1WUM3V2hycVdqbERzaXJPVjBwODFBZDFPMnFONDhOTV82U0pVOFkydmVrZnNZVmQ4cVIzVmF1NThGbzd1ZWpSazA2NnBQY1h2TV9YZVh4TFF1VGQ2NmZpWlM4MEM3YVF2clF3YVE2N0I1Vkh6Z2JNVF9LVGdHNjdHMzdvMUFNcl9qbVBIREtEMWI1SFBSdjVzS0lVemJ6Skpndw?oc=5",
-      "publisher": "Victorville Daily Press",
-      "published_at": "2026-10-15T20:45:00Z",
-      "detected_at": "2026-10-15T21:45:44.524382Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",

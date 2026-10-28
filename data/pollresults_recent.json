@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-28T13:09:20.561104+00:00",
+  "updated_at": "2026-10-28T13:37:44.892100+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,14 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 322,
-  "newly_injected_into_model": 1,
-  "injected_poll_ids": [
-    {
-      "race_code": "FL-GOV",
-      "poll_id": "50db879b-b0ff-49d4-809b-1b56e23071d9"
-    }
-  ],
+  "matched_primary_observations": 323,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "FL-SEN",
