@@ -1,5 +1,7 @@
 # Election-night usability and visual review
 
+R8 rehearsal/card candidate:44px themed Next/keyboard outline, natural neighbor card heights, and shared race-keyed disclosure/focus preservation on redraw/correction/withdrawal. Before2b234365 lost open/focus and stretched1366peers1231px; candidate peers433px while open explanation stays1231px. IsolatedEdge1366/390task receipts/screenshots under ui-review/rehearsal-readability-{before,after}.json. Live model/source behavior unchanged. Candidate NOTyetdeployed; fullOct30workflow/human assistive review remains OPEN.
+
 Coalition accessibility repair506 RELEASED: final5ace3b6e/Pages40617065853/351publishedfiles verified. Actual browser AX output now includes the visible caveat in home/night/rehearsal names, including dynamic rehearsal role=img; normal1366/390 CDP-tree regressions pass. Human assistive/operator acceptance/fullOct30 review remain open. Add the native white Next simulated update button to the visual refinement checklist, using published-coalition-accessibility-20261028.png; do not reopen completed hierarchy/map work.
 
 Declutter/mobile slice504 RELEASED: finalmaine3920020/Pages40608755366SUCCESS/

@@ -852,7 +852,8 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 #enPersonalFocus{background:transparent;border:0;padding:8px 0 20px}
 #enPersonalFocus>h2{font-size:clamp(24px,3vw,32px);letter-spacing:-.035em;margin:12px 0}
 .personal-focus-next{padding:13px 16px;background:#14354d;border:1px solid #38637f;border-left:4px solid #79c8f4;border-radius:8px;font-size:14px;line-height:1.7}
-.personal-focus-grid{grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:14px}
+.personal-focus-grid{grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:14px;align-items:start}
+#enPersonalFocus,#enNationalRehearsal{overflow-anchor:none}
 .personal-focus-card{position:relative;border:1px solid #36556f;border-top:3px solid #579cc6;background:linear-gradient(145deg,#18344b,#102235);border-radius:12px;padding:15px;box-shadow:0 7px 20px #0002;overflow-wrap:anywhere}
 .personal-focus-card h4{font-size:19px;letter-spacing:-.02em;color:#f4f9ff}
 .personal-focus-card svg{width:112px;float:right;margin:8px -4px 6px 10px}
@@ -863,6 +864,10 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .personal-focus-card .personal-focus-performance{color:#bfe9ff;font-weight:750;background:#22465b;padding:9px;border-radius:6px}
 .personal-focus-card details{clear:both;font-size:12px;line-height:1.55}
 .personal-focus-card details summary{cursor:pointer;color:#bce4ff;padding:5px 0}
+.personal-focus-card details summary:focus-visible{outline:3px solid #ffe393;outline-offset:3px;border-radius:3px}
+#enNationalNext{min-height:44px;padding:10px 16px;border:1px solid #78bde9;border-radius:8px;background:#174a69;color:#f4faff;font:700 14px/1.4 system-ui,sans-serif;cursor:pointer}
+#enNationalNext:hover{background:#205d80}
+#enNationalNext:focus-visible{outline:3px solid #ffe393;outline-offset:3px}
 @media(max-width:900px){.en-outlook-map-grid{grid-template-columns:1fr}.en-outlook-map-grid>.four-needle{max-width:none}.en-outlook-map-grid .four-needle-arc{max-height:270px}.en-geographic-map{max-height:440px}.personal-focus-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.en-outlook-map-grid{gap:14px;margin-top:14px}.personal-focus-grid{grid-template-columns:1fr}.personal-focus-card svg{width:124px}.en-national-map-panel{padding:12px}.en-nmap-method{font-size:11px}.en-nmap-legend{gap:7px 10px;font-size:11px}.en-nmap-count{margin-left:0}}
 
@@ -1508,7 +1513,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <script src="./scripts/election_night_celebration_player.js?v=8f7fb37d2ca2"></script>
 <script src="./scripts/election_night_celebration_music.js?v=6a479f8a84b1"></script>
 <script src="./scripts/election_night_celebration_scene.js?v=b39770975f16"></script>
-<script src="./scripts/personal_election_focus.js?v=8efda3106f74"></script>
+<script src="./scripts/personal_election_focus.js?v=5f87ab857c30"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=6eaa0d8f80cf"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=165fc37d665a"></script>
 <script src="./scripts/civicapi_state_batch.js?v=99e987c72cb8"></script>
