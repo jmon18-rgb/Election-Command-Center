@@ -1,0 +1,23 @@
+name: Verify research-only House presidential reference comparison
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/*house_presidential_reference.py'
+      - 'HOUSE_PRESIDENTIAL_REFERENCE_CHECK.md'
+      - 'data/presidential_2024_by_2026_district_staging.json'
+      - '.github/workflows/house-presidential-reference.yml'
+permissions:
+  contents: read
+jobs:
+  offline-reference:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check fictional contracts without fetching or uploading publisher originals
+        run: python scripts/test_house_presidential_reference.py
