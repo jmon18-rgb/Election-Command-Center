@@ -57,6 +57,7 @@ const checks = [
   ['Source audit reporting safeguards', 'test_election_readiness_source_snapshot.cjs'],
   ['Celebration playback and revoked-call queue', 'test_election_night_celebration_player.cjs'],
   ['Original celebration music, bounded mix and cancellation', 'test_celebration_music.cjs'],
+  ['Optional visible YouTube identity and local preferences', 'test_celebration_online.cjs'],
   ['Published bundle and forecast consistency', 'test_published_dashboard.cjs', '--local'],
   ['Race and source reconciliation', 'test_election_night_reconciliation.cjs'],
   ['Source publication identity during corrections', 'test_election_night_snapshot_revision.cjs'],

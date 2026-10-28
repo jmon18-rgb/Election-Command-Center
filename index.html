@@ -595,8 +595,15 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-milestone-card b{font-size:12px;letter-spacing:.03em}
 .en-milestone-card small{display:block;color:#a8c0d7;font-size:10px;line-height:1.4;margin-top:4px}
 .en-milestone-icon{font-size:24px}
-.en-milestone-spotlight{margin-top:14px;border:2px solid #8ec8f1;border-radius:12px;background:radial-gradient(ellipse at top,#1c72bb,#10263e 75%);padding:15px;text-align:center}
+.en-milestone-spotlight{position:fixed;inset:0;z-index:100000;width:min(860px,calc(100vw - 24px));max-height:calc(100dvh - 24px);margin:auto;overflow:auto;overscroll-behavior:contain;color:#eff7ff;box-shadow:0 24px 100px #000b;border:2px solid #8ec8f1;border-radius:12px;background:radial-gradient(ellipse at top,#1c72bb,#10263e 75%);padding:15px;text-align:center}
 .en-milestone-spotlight[hidden]{display:none}
+.en-milestone-spotlight::backdrop{background:#020914d9;backdrop-filter:blur(5px)}
+.en-celebration-actions{position:sticky;top:-15px;z-index:3;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;padding:10px 0;background:#10263ef5;border-bottom:1px solid #52799a}
+.en-celebration-actions label{font-size:11px}.en-celebration-actions select,.en-celebration-music-settings select,.en-celebration-music-settings input{color:#f3f8ff;background:#112f49;border:1px solid #527a99;border-radius:6px;padding:9px;max-width:100%}
+.en-celebration-actions button,.en-celebration-music-settings button{min-height:44px}.en-celebration-actions button:focus-visible,.en-celebration-actions select:focus-visible{outline:3px solid #ffe393;outline-offset:2px}
+.en-celebration-music-settings{text-align:left;background:#0d2438;border:1px solid #365a78;border-radius:8px;padding:10px;margin:12px 0;font-size:12px}.en-celebration-music-settings summary{cursor:pointer;padding:5px}.en-celebration-music-settings label{display:block;margin:10px 0}.en-celebration-music-settings input{display:block;width:100%;margin-top:5px}.en-celebration-music-settings a{display:inline-block;color:#a4d7ff;padding:8px}
+.en-celebration-online-player{margin:12px auto;max-width:480px;min-width:200px}.en-celebration-online-player iframe{display:block;width:100%;height:270px;min-width:200px;min-height:200px;border:0}
+@media(max-width:600px){.en-celebration-online-player iframe{height:200px}.en-celebration-actions{gap:4px}.en-celebration-actions label{width:100%}.en-celebration-actions select{max-width:75%}}
 .en-celebration-stage{margin:16px auto;padding:22px 12px;min-height:170px;border-radius:12px;background:radial-gradient(ellipse at center,#195e99,#081b35);overflow:hidden}
 .en-coverage-recovery{margin:12px 0;padding:12px;border-left:3px solid #e3b45a;background:#392e182e;border-radius:5px}
 .en-celebration-stage[hidden]{display:none}
@@ -608,7 +615,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .personal-focus-card p{font-size:13px;margin:8px 0}.personal-focus-next{font-weight:700;color:#bde4ff}
 .en-celebration-visual{width:min(100%,720px);margin:0 auto 14px;line-height:0}
 .en-celebration-visual[hidden]{display:none}
-.en-celebration-visual svg{display:block;width:100%;height:auto;max-height:390px}
+.en-celebration-visual svg{display:block;width:100%;height:auto;max-height:min(390px,32dvh)}
 .en-celebration-icon{font-size:clamp(48px,11vw,94px);line-height:1.2;color:#60c9ff}
 .en-celebration-line{font-weight:950;font-size:clamp(22px,5vw,40px);margin:10px 0;overflow-wrap:anywhere}
 .en-celebration-caption{font-size:13px;color:#cae5ff}
@@ -857,6 +864,14 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 #enPersonalFocus,#enNationalRehearsal{overflow-anchor:none}
 .personal-focus-card{position:relative;border:1px solid #36556f;border-top:3px solid #579cc6;background:linear-gradient(145deg,#18344b,#102235);border-radius:12px;padding:15px;box-shadow:0 7px 20px #0002;overflow-wrap:anywhere}
 .personal-focus-card h4{font-size:19px;letter-spacing:-.02em;color:#f4f9ff}
+.personal-focus-rating{display:inline-flex;align-items:center;max-width:100%;padding:6px 10px;margin:4px 0 8px;border:1px solid #71839a;border-radius:999px;background:#24384d;color:#f0f6ff;font-size:13px;font-weight:850;line-height:1.3}
+.personal-focus-card[data-rating-side="positive"]{border-top-color:#69baff}.personal-focus-card[data-rating-side="negative"]{border-top-color:#f08d98}
+.personal-focus-card[data-rating-side="positive"] .personal-focus-rating{background:#163f63;border-color:#69baff;color:#d8efff}.personal-focus-card[data-rating-side="negative"] .personal-focus-rating{background:#482a3a;border-color:#e58c9b;color:#ffe5eb}
+.personal-focus-card[data-race="NE-SEN"][data-rating-side="positive"]{border-top-color:#d2acff}
+.personal-focus-card[data-race="NE-SEN"][data-rating-side="positive"] .personal-focus-rating{background:#3b2854;border-color:#d2acff;color:#f0e2ff}
+.personal-focus-card[data-rating-kind="called"] .personal-focus-rating{border-width:2px}
+.personal-focus-rating-key{font-size:12px;margin:10px 0 16px;color:#b9cedf}.personal-focus-rating-key summary{cursor:pointer;min-height:32px;padding:6px 0}
+.personal-focus-rating-key summary:focus-visible{outline:3px solid #ffe393;outline-offset:3px}
 .personal-focus-card svg{width:112px;float:right;margin:8px -4px 6px 10px}
 .personal-focus-card>strong{font-size:19px;line-height:1.4;color:#f3f7ff;margin:12px 0 5px;font-variant-numeric:tabular-nums}
 .personal-focus-odds>span{display:block;font-size:24px;line-height:1.2;white-space:nowrap}.personal-focus-odds>small{font-size:12px;font-weight:500;margin:5px 0}
@@ -1241,6 +1256,7 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
   <p id="enAllOfficeSummary" role="status">2024 archived rehearsal · real 2026 vote counts begin November 3</p>
   <p class="en-coverage-line" id="enCoverageReconciliation" role="status">Verifying national race inventory…</p>
   <a id="enInspectSources" href="#enSourceDesk">Inspect data &amp; sources</a>
+  <button id="enCelebrationsOpen" type="button" class="textlink">Preview celebrations &amp; music ↗</button>
  </aside>
  <details id="enNationalRehearsal" class="joint-audit">
   <summary>Preview the national needle with simulated results</summary>
@@ -1414,16 +1430,17 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
   <button type="button" id="enTsunamiPreview">Preview Blue Tsunami celebration ↗</button>
  </div>
  <div class="en-milestone-grid" id="enMilestoneGrid"></div>
- <div class="en-milestone-spotlight" id="enMilestoneSpotlight" hidden aria-live="polite">
+
+</section>
+<dialog class="en-milestone-spotlight" id="enMilestoneSpotlight" hidden aria-labelledby="enMilestoneTitle" aria-describedby="enMilestoneKicker">
   <div class="en-milestone-kicker" id="enMilestoneKicker">SOURCE-REPORTED CALL</div>
-  <div class="en-milestone-art" id="enMilestoneArt" aria-hidden="true">🌊</div>
-  <div id="enJohnBrownPosterTitle" class="en-brown-poster-title" hidden>BLEEDING KANSAS.<span>1859 MEETS 2026</span>ONLY THIS TIME, BLUE.</div>
-  <img id="enMilestonePoster" class="en-milestone-poster" alt="" hidden loading="lazy">
-  <img id="enTsunamiMeme" class="en-tsunami-meme" src="./assets/blue-tsunami-meme.svg" alt="Original electric-blue wave meme poster: OMG, you're gonna make me… BLUE WAVE!" hidden loading="lazy">
+  <div class="en-celebration-actions">
+   <label>Preview another <select id="enCelebrationPreviewChoice" aria-label="Choose a celebration preview"></select></label>
+   <button class="en-milestone-close" id="enCelebrationSound" type="button" aria-pressed="true">Sound: on</button>
+   <button class="en-milestone-close" id="enMilestoneClose" type="button" autofocus>Back to results · Esc</button>
+  </div>
+
   <h3 id="enMilestoneTitle"></h3>
-  <div class="en-milestone-giant" id="enMilestonePunch"></div>
-  <p id="enMilestoneDescription"></p>
-  <div class="en-milestone-source" id="enMilestoneSource"></div>
   <div class="en-celebration-stage" id="enCelebrationStage" hidden>
    <img class="en-celebration-fish" id="enCelebrationFish" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Realistic_Fish_Head.jpg" alt="Fish Head announcing the celebration; image credited in the breaking-news panel" hidden>
    <div class="en-celebration-visual" id="enCelebrationVisual" aria-hidden="true" hidden></div>
@@ -1432,11 +1449,27 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
    <div class="en-celebration-caption" id="enCelebrationCaption"></div>
    <p class="tiny" id="enCelebrationMusicLabel"></p>
   </div>
+  <div id="enCelebrationOnlinePlayer" class="en-celebration-online-player" hidden></div>
+  <details class="en-celebration-music-settings">
+   <summary>Music &amp; YouTube choices</summary>
+   <label>Playback <select id="enCelebrationMusicMode"><option value="original">Original offline cue</option><option value="youtube">YouTube track</option></select></label>
+   <label>YouTube link for this celebration <input id="enCelebrationVideoInput" type="url" placeholder="https://www.youtube.com/watch?v=…"></label>
+   <button id="enCelebrationVideoSave" type="button">Use this version</button>
+   <button id="enCelebrationOriginal" type="button">Play original cue instead</button>
+   <a id="enCelebrationVideoLink" target="_blank" rel="noopener" hidden>Open track on YouTube ↗</a>
+   <p id="enCelebrationOnlineStatus" role="status">Original music works offline. YouTube needs internet and may ask you to press Play.</p>
+  </details>
+  <div class="en-milestone-art" id="enMilestoneArt" aria-hidden="true">🌊</div>
+  <div id="enJohnBrownPosterTitle" class="en-brown-poster-title" hidden>BLEEDING KANSAS.<span>1859 MEETS 2026</span>ONLY THIS TIME, BLUE.</div>
+  <img id="enMilestonePoster" class="en-milestone-poster" alt="" hidden loading="lazy">
+  <img id="enTsunamiMeme" class="en-tsunami-meme" src="./assets/blue-tsunami-meme.svg" alt="Original electric-blue wave meme poster: OMG, you're gonna make me… BLUE WAVE!" hidden loading="lazy">
+
+  <div class="en-milestone-giant" id="enMilestonePunch"></div>
+  <p id="enMilestoneDescription"></p>
+  <div class="en-milestone-source" id="enMilestoneSource"></div>
   <audio id="enCelebrationAnnouncement" preload="none" src="./assets/audio/breaking-news-in-the-2026-midterm-elections.mp3"></audio>
-  <button class="en-milestone-close" id="enCelebrationSound" type="button" aria-pressed="true">Sound: on</button>
-  <button class="en-milestone-close" id="enMilestoneClose" type="button">Back to results</button>
- </div>
-</section>
+
+</dialog>
 <section id="enNationalSenate" class="en-national-senate" aria-label="Nationwide 2026 Senate vote monitor" hidden>
  <div class="en-national-header">
   <div><span class="label">SENATE · 35 CONTESTS · TWO INDEPENDENT SOURCES</span>
@@ -1521,9 +1554,10 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 </section>
 <footer class="footer"><span>2026 ELECTION COMMAND CENTER · CLARITY OVER NOISE</span><span><a href="https://github.com/jmon18-rgb/Election-Command-Center">Source code ↗</a> · <span id="updated">Briefing pending</span></span></footer></main>
 <script src="./scripts/election_night_celebration_player.js?v=8f7fb37d2ca2"></script>
+<script src="./scripts/election_night_celebration_online.js?v=0c7653092880"></script>
 <script src="./scripts/election_night_celebration_music.js?v=6a479f8a84b1"></script>
 <script src="./scripts/election_night_celebration_scene.js?v=f1943c3e36ba"></script>
-<script src="./scripts/personal_election_focus.js?v=b0acc147df78"></script>
+<script src="./scripts/personal_election_focus.js?v=55a7e6246803"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=6eaa0d8f80cf"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=165fc37d665a"></script>
 <script src="./scripts/civicapi_state_batch.js?v=99e987c72cb8"></script>
@@ -1604,6 +1638,7 @@ if(!tab)return;
 document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',String(x===tab)));
 document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===tab.dataset.page));
 document.body.dataset.activePage=tab.dataset.page;
+if(tab.dataset.page!=='electionNight'&&document.querySelector('#enMilestoneSpotlight')?.open)enCelebrationDismiss(false);
 if(tab.dataset.page==='electionNight'){
  const controls=document.querySelector('#electionNight .en-toolbar');
  controls?.scrollIntoView({block:'start'});
@@ -5958,11 +5993,91 @@ function enMilestoneRender(item,demo=false){
   sourceLine.append(credit);
  }
  if(poster?.asset)sourceLine.append(elt('span','en-milestone-photo-credit','Owner-supplied fictional artwork · not a documentary photograph.'));
- $('#enMilestoneSpotlight').hidden=false;
+ enCelebrationCurrent=item.id;enCelebrationSyncMusic();
+ $('#enCelebrationPreviewChoice').value=item.id;
+ enCelebrationOpen();
  return true;
 }
-let enCelebrationAudioContext=null,enCelebrationNotes=[];
+let enCelebrationAudioContext=null,enCelebrationNotes=[],enCelebrationCurrent=null,enCelebrationReturnFocus=null,enCelebrationBodyOverflow='',enCelebrationModalActive=false;
+const enCelebrationOnline=window.ElectionNightCelebrationOnline;
+const enCelebrationStorage=(()=>{try{return localStorage}catch{return null}})();
+const enCelebrationMusicSettings=enCelebrationOnline?.read(enCelebrationStorage,Object.keys(window.ElectionNightCelebrationPlayer?.STORIES||enMilestonePosters))||{mode:'original',videos:{}};
+function enCelebrationOpen(){
+ const dialog=$('#enMilestoneSpotlight');
+ if(!dialog.open){
+  enCelebrationReturnFocus=document.activeElement;
+  enCelebrationBodyOverflow=document.body.style.overflow;
+  enCelebrationModalActive=true;
+  document.body.style.overflow='hidden';dialog.hidden=false;
+  dialog.showModal();$('#enMilestoneClose').focus({preventScroll:true});
+ }
+ dialog.scrollTop=0;
+}
+function enCelebrationHide(restore=true){
+ const dialog=$('#enMilestoneSpotlight'),wasOpen=enCelebrationModalActive;
+ enCelebrationModalActive=false;
+ if(dialog.open)dialog.close();dialog.hidden=true;
+ if(wasOpen){
+  document.body.style.overflow=enCelebrationBodyOverflow;
+  if(restore){
+   const target=enCelebrationReturnFocus;
+   if(target?.isConnected&&target.getClientRects().length)target.focus({preventScroll:true});
+   else $('#enCelebrationsOpen')?.focus({preventScroll:true});
+  }
+ }
+}
+function enCelebrationDismiss(restore=true){
+ enCelebrationPlayer.stop();enCelebrationClearVisual();enCelebrationHide(restore);
+ if(enFishPending.length&&!enFishCurrent)enFishNextBulletin();
+}
+function enCelebrationSyncMusic(){
+ const track=enCelebrationOnline?.track(enCelebrationCurrent,enCelebrationMusicSettings);
+ $('#enCelebrationMusicMode').value=enCelebrationMusicSettings.mode;
+ $('#enCelebrationVideoInput').value=track?'https://www.youtube.com/watch?v='+track.id:'';
+ const link=$('#enCelebrationVideoLink');link.hidden=!track;
+ if(track){link.href='https://www.youtube.com/watch?v='+track.id;link.textContent='Open '+track.title+' on YouTube ↗';}
+ $('#enCelebrationOnlineStatus').textContent=track?track.title+'. YouTube needs internet and may ask you to press Play. The original cue is always available.':'No YouTube track selected for this celebration. The original cue will play.';
+}
+function enCelebrationMaybeReplayMusic(){
+ // Keep the announcement first, even when the owner changes music settings.
+ if($('#enCelebrationStage').dataset.phase!=='announcement')enCelebrationMusic(enCelebrationCurrent);
+}
+for(const item of [...(window.ElectionNightSignals?.MILESTONES||[]),{id:'tsunami',title:'Blue Tsunami · preview only'}]){
+ const option=document.createElement('option');option.value=item.id;option.textContent=item.title;$('#enCelebrationPreviewChoice').append(option);
+}
+$('#enCelebrationPreviewChoice').addEventListener('change',event=>{
+ const item=window.ElectionNightSignals?.MILESTONES.find(x=>x.id===event.target.value)||{id:'tsunami',title:'Blue Tsunami',icon:'🌊'};
+ enMilestoneShow(item,true);
+});
+$('#enCelebrationsOpen').addEventListener('click',()=>enMilestoneShow(window.ElectionNightSignals?.MILESTONES.find(x=>x.id==='talarico')||{id:'tsunami',title:'Blue Tsunami'},true));
+$('#enCelebrationMusicMode').addEventListener('change',event=>{
+ enCelebrationMusicSettings.mode=event.target.value==='youtube'?'youtube':'original';
+ enCelebrationOnline?.save(enCelebrationStorage,enCelebrationMusicSettings);enCelebrationSyncMusic();enCelebrationMaybeReplayMusic();
+});
+$('#enCelebrationVideoSave').addEventListener('click',()=>{
+ const id=enCelebrationOnline?.videoId($('#enCelebrationVideoInput').value.trim());
+ if(!id){$('#enCelebrationOnlineStatus').textContent='Use an HTTPS YouTube watch, Shorts, embed or youtu.be video link.';return;}
+ enCelebrationMusicSettings.videos[enCelebrationCurrent]=id;enCelebrationMusicSettings.mode='youtube';
+ enCelebrationOnline.save(enCelebrationStorage,enCelebrationMusicSettings);enCelebrationSyncMusic();enCelebrationMaybeReplayMusic();
+});
+$('#enCelebrationOriginal').addEventListener('click',()=>{
+ enCelebrationMusicSettings.mode='original';enCelebrationOnline?.save(enCelebrationStorage,enCelebrationMusicSettings);
+ enCelebrationSyncMusic();enCelebrationMaybeReplayMusic();
+});
+$('#enMilestoneSpotlight').addEventListener('cancel',event=>{event.preventDefault();enCelebrationDismiss();});
+$('#enMilestoneSpotlight').addEventListener('keydown',event=>{
+ if(event.key!=='Tab')return;
+ const controls=[...$('#enMilestoneSpotlight').querySelectorAll('button,select,input,a[href],summary,iframe')].filter(e=>!e.disabled&&e.checkVisibility());
+ const first=controls[0],last=controls.at(-1);
+ if(event.shiftKey&&document.activeElement===first){event.preventDefault();last?.focus();}
+ else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first?.focus();}
+});
+$('#enMilestoneSpotlight').addEventListener('close',()=>{
+ // Native close events are queued; a replacement may already be open.
+ if(!$('#enMilestoneSpotlight').open&&!$('#enMilestoneSpotlight').hidden)enCelebrationDismiss();
+});
 function enCelebrationStopMedia(){
+ enCelebrationOnline?.clear($('#enCelebrationOnlinePlayer'));
  const audio=$('#enCelebrationAnnouncement');
  audio.onended=null;audio.onerror=null;
  try{if(!audio.paused)audio.pause();if(audio.currentTime)audio.currentTime=0}catch{}
@@ -5979,6 +6094,14 @@ function enCelebrationMusic(id){
  const label=$('#enCelebrationMusicLabel'),theme=window.ElectionNightCelebrationMusic?.THEMES[id];
  if(label)label.textContent=id?'Original score · '+(theme?.title||'synthesized victory cue'):'';
  if(!id||!enFishSoundEnabled)return;
+ const track=enCelebrationOnline?.track(id,enCelebrationMusicSettings);
+ if(enCelebrationMusicSettings.mode==='youtube'&&track){
+  if(enCelebrationOnline.mount($('#enCelebrationOnlinePlayer'),track)){
+   label.textContent='YouTube · '+track.title;
+   $('#enCelebrationOnlineStatus').textContent='YouTube player below. Press Play if autoplay is blocked, or choose the original cue if this video is unavailable.';
+   return;
+  }
+ }
  // Original short synthesized cue; no commercial song/recording is bundled.
  try{
   const Context=window.AudioContext||window.webkitAudioContext;
@@ -6046,7 +6169,7 @@ const enCelebrationPlayer=window.ElectionNightCelebrationPlayer?.create({
  },
  music:enCelebrationMusic,
  render:(item,demo,phase,scene)=>{
-  if(phase==='revoked'){enCelebrationClearVisual();$('#enMilestoneSpotlight').hidden=true;return;}
+  if(phase==='revoked'){enCelebrationClearVisual();enCelebrationHide();return;}
   if(phase==='announcement')enMilestoneRender(item,demo);
   const stage=$('#enCelebrationStage');stage.hidden=false;stage.dataset.phase=phase;
   $('#enCelebrationFish').hidden=phase!=='announcement';
@@ -6063,7 +6186,7 @@ const enCelebrationPlayer=window.ElectionNightCelebrationPlayer?.create({
     {duration:2000,easing:'ease-out',fill:'both'});
   }
  },
- onIdle:()=>{if(enFishPending.length&&!enFishCurrent)enFishNextBulletin()}
+ onIdle:()=>{if(enFishPending.length&&!enFishCurrent){enCelebrationHide();enFishNextBulletin()}}
 })||Object.freeze({
  enqueue:(item,demo)=>Boolean(item&&(demo||enCelebrationEligible(item))&&enMilestoneRender(item,demo)),
  stop:enCelebrationStopMedia,revoke:()=>{},state:()=>({active:null,pending:0})
@@ -6082,13 +6205,15 @@ $('#enCelebrationSound').addEventListener('click',()=>{
  enFishSoundEnabled=!enFishSoundEnabled;
  try{localStorage.setItem(enFishSoundKey,enFishSoundEnabled?'on':'off')}catch{}
  if(!enFishSoundEnabled){enFishAudioStop();enCelebrationStopMedia()}
+ else enCelebrationMaybeReplayMusic();
  enFishRenderVoice();enCelebrationRenderSound();
 });
 function enRenderMilestones(){
  const api=window.ElectionNightSignals,desk=$('#enMilestoneDesk'),host=$('#enMilestoneGrid');
  if(!api||!desk||!host)return;
  desk.hidden=enModeYear!==2026;
- if(desk.hidden){enCelebrationPlayer.stop();enCelebrationClearVisual();$('#enMilestoneSpotlight').hidden=true;return}
+ $('#enCelebrationsOpen').hidden=desk.hidden;
+ if(desk.hidden){enCelebrationPlayer.stop();enCelebrationClearVisual();enCelebrationHide(false);return}
  const records=api.evaluateMilestones(enMilestoneEvidence(),{year:enModeYear,now:Date.now()});
  host.replaceChildren();
  for(const item of records){
@@ -6134,20 +6259,14 @@ function enRenderMilestones(){
   }else if(item.state!=='earned'&&enMilestoneShown.has(item.id)&&hasCompleteSource(item.id)){
    enCelebrationPlayer.revoke(item.id);
    enMilestoneShown.delete(item.id);changed=true;
-   enCelebrationClearVisual();$('#enMilestoneSpotlight').hidden=true;
+   if(enCelebrationCurrent===item.id){enCelebrationStopMedia();enCelebrationClearVisual();enCelebrationHide();}
   }
  }
  if(changed)enMilestonePersist();
 }
 $('#enTsunamiPreview').addEventListener('click',()=>enMilestoneShow({
  id:'tsunami',icon:'🌊',tag:'FOUR ENDINGS · BLUE TSUNAMI'},true));
-$('#enMilestoneClose').addEventListener('click',()=>{
- enCelebrationPlayer.stop();enCelebrationClearVisual();
- if(enFishPending.length&&!enFishCurrent)enFishNextBulletin();
- $('#enMilestoneSpotlight').hidden=true;
- $('#enTsunamiPreview').focus();
-});
-
+$('#enMilestoneClose').addEventListener('click',()=>enCelebrationDismiss());
 let enCivicByWatch=Object.create(null),enCivicRaceIds=Object.create(null),
  enCivicErrors=Object.create(null),enCivicPending=new Set(),enCivicLastSweep=0,
  enCivicSweepCursors={senate:0,house:0,other:0},
