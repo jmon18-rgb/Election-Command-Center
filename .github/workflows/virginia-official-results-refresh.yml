@@ -3,6 +3,8 @@ on:
   push:
     branches: [main]
     paths:
+      - 'scripts/official_native_archive.cjs'
+      - 'scripts/official_native_archive_crypto.cjs'
       - 'scripts/publish_virginia_official_cache.cjs'
       - '.github/workflows/virginia-official-results-refresh.yml'
   workflow_dispatch:
@@ -21,6 +23,9 @@ on:
     branches: [main]
     paths:
       - 'scripts/*virginia*'
+      - 'scripts/official_native_archive.cjs'
+      - 'scripts/official_native_archive_crypto.cjs'
+      - 'scripts/test_official_native_archive.cjs'
       - 'data/virginia_*'
       - '.github/workflows/virginia-official-results-refresh.yml'
 permissions:
@@ -57,6 +62,10 @@ jobs:
       - name: Bounded official collection; never writes the code branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OFFICIAL_NATIVE_ARCHIVE_APPROVED: ${{ vars.OFFICIAL_NATIVE_ARCHIVE_APPROVED }}
+          OFFICIAL_NATIVE_ARCHIVE_NO_PAID_STORAGE: ${{ vars.OFFICIAL_NATIVE_ARCHIVE_NO_PAID_STORAGE }}
+          OFFICIAL_NATIVE_ARCHIVE_FREE_BYTES: ${{ vars.OFFICIAL_NATIVE_ARCHIVE_FREE_BYTES }}
+          OFFICIAL_NATIVE_ARCHIVE_CAPACITY_AT: ${{ vars.OFFICIAL_NATIVE_ARCHIVE_CAPACITY_AT }}
           HEALTH_ONLY: ${{ github.event_name == 'workflow_dispatch' && inputs.health_only && 'true' || 'false' }}
           EVENT_KIND: ${{ github.event_name }}
         shell: bash
@@ -68,3 +77,14 @@ jobs:
           else
             node scripts/publish_virginia_official_cache.cjs --publish
           fi
+      - name: Retain encrypted first-night originals only with verified free capacity
+        if: ${{ always() && github.event_name == 'schedule' && github.run_attempt == 1 && vars.OFFICIAL_NATIVE_ARCHIVE_APPROVED == 'true' && vars.OFFICIAL_NATIVE_ARCHIVE_NO_PAID_STORAGE == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-native-va02-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/readiness/official-native-va02/
+          retention-days: 30
+          compression-level: 6
+          include-hidden-files: false
+          overwrite: false
+          if-no-files-found: warn
