@@ -22,6 +22,7 @@
  function render(host,{id,phase,beat=0,preview=true}={}){
   clear(host);
   if(host&&id==='abbott'&&['scene','complete'].includes(phase))return renderAbbott(host,{phase,beat,preview});
+  if(host&&id==='mississippi'&&['scene','complete'].includes(phase))return renderMississippi(host,{phase,beat,preview});
   if(!host||id!=='talarico'||!['scene','complete'].includes(phase))return false;
   const index=phase==='complete'?2:beat;
   if(!Number.isInteger(index)||index<0||index>2)return false;
@@ -94,6 +95,34 @@
   }
   svg.append(text('A VERY BAD NIGHT FOR LAWN SIGNS.',490,487,21,'#a8d7e9'),text(preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL',490,520,17,'#b9d9ed'));
   return finish(host,svg,animated,'abbott',index,phase);
+ }
+ // Original prop/wave shapes adapted from assets/milestone-mississippi.svg.
+ // No people, new media requests, eligibility or call interpretation here.
+ function renderMississippi(host,{phase,beat,preview}){
+  const index=phase==='complete'?2:beat;if(!Number.isInteger(index)||index<0||index>2)return false;
+  const doc=host.ownerDocument,el=(tag,attrs={},label)=>{const n=doc.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,String(v));if(label!==undefined)n.textContent=label;return n;};
+  const text=(label,x,y,size=28,color='#e9f8ff')=>el('text',{x,y,'text-anchor':'middle','font-family':'Arial,sans-serif','font-size':size,'font-weight':800,fill:color},label);
+  const svg=el('svg',{viewBox:'0 0 980 540',role:'img','aria-label':'Fictional Mississippi Senate celebration: a retired mascot prop swept into storage; '+(preview?'simulated preview':'source-reported unofficial call'),'data-scene':'mississippi','data-beat':index}),animated=[];
+  svg.append(el('rect',{width:980,height:540,rx:24,fill:'#071d32'}),text('MISSISSIPPI · U.S. SENATE',490,43,23,'#9bdcff'));
+  if(index<2){
+   svg.append(text(index===0?'A CHANGE IN THE CURRENT':'STRAIGHT INTO STORAGE',490,105,35),el('path',{d:'M0 440Q230 410 490 445T980 430V540H0Z',fill:'#123d55'}));
+   const pedestal=el('g',{'data-layer':'empty-pedestal'});pedestal.append(el('rect',{x:160,y:340,width:170,height:90,fill:'#63788b'}),el('rect',{x:143,y:327,width:204,height:22,fill:'#9db1c2'}),text('PAST ITS TIME',245,389,18));svg.append(pedestal);
+   const prop=el('g',{'data-layer':'retired-mascot-prop',style:'transform-origin:0 0;transform:'+(index===0?'translate(245px,168px)':'translate(700px,250px) rotate(24deg) scale(.65)')});
+   prop.append(el('path',{d:'M-56 0H56L39-57H-39Z',fill:'#bd6b64'}),el('path',{d:'M-76 0H76V15H-76Z',fill:'#904c4a'}),el('circle',{cy:48,r:34,fill:'#d8c5ac'}),el('path',{d:'M-28 51Q0 124 28 51L18 97H-18Z',fill:'#e4e8e8'}),el('path',{d:'M-32 90L-56 157H56L32 90',fill:'#a35553'}));svg.append(prop);
+   const wave=el('g',{'data-layer':'blue-storage-wave'});wave.append(el('path',{d:'M-160 430Q40 270 210 355Q290 263 380 320Q340 365 390 409Q520 448 980 415V462H-160Z',fill:'#168de4',stroke:'#73d7ff','stroke-width':5}));svg.append(wave);
+   if(index===0)animated.push({node:wave,frames:[{transform:'translateX(-30px)'},{transform:'translateX(0)'}],duration:1400});
+   else{
+    animated.push({node:prop,frames:[{transform:'translate(245px,168px)'},{transform:'translate(470px,140px) rotate(12deg) scale(.85)'},{transform:'translate(700px,250px) rotate(24deg) scale(.65)'}],duration:1450});
+    animated.push({node:wave,frames:[{transform:'translateX(-430px)'},{transform:'translateX(0)'}],duration:1200});
+   }
+   const crate=el('g',{'data-layer':'mascot-storage-crate'});crate.append(el('rect',{x:555,y:333,width:280,height:118,rx:5,fill:'#866546',stroke:'#c39a64','stroke-width':6}),el('path',{d:'M555 355H835M555 430H835',stroke:'#543c2a','stroke-width':5}),text('RETIRED MASCOT',695,391,22,'#fff0c9'),text('STORAGE',695,420,22,'#fff0c9'));svg.append(crate,text('A CARTOON PROP. A ONE-WAY TICKET.',490,485,22,'#a8d7e9'));
+  }else{
+   const card=el('g',{'data-layer':'mississippi-victory-card',style:'transform-box:fill-box;transform-origin:center'});
+   card.append(el('rect',{x:100,y:135,width:780,height:275,rx:25,fill:'#087ccb',stroke:'#96e5ff','stroke-width':6}),text('MISSISSIPPI',490,220,54),text('SENATE FLIPS BLUE',490,291,39,'#c4efff'),text('TURN THE PAGE',490,353,33));svg.append(card,text('OUTDATED SYMBOLS BELONG IN STORAGE.',490,478,24,'#a8d7e9'));
+   animated.push({node:card,frames:[{opacity:0,transform:'translateY(24px) scale(.95)'},{opacity:1,transform:'translateY(0) scale(1)'}],duration:750});
+  }
+  svg.append(text(preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL',490,520,17,'#b9d9ed'));
+  return finish(host,svg,animated,'mississippi',index,phase);
  }
  return Object.freeze({render,clear});
 });

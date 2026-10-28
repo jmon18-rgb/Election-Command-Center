@@ -1,5 +1,9 @@
 # Celebration production inventory - October 27, 2026
 
+## Current candidate: Mississippi storage sendoff
+
+Three presentation-only SVG beats reuse the original local prop/wave/crate art and released Blue-river brass shuffle. Supplied JPEG remains unchanged for announcement, thumbnail and fallback. Actual1440/390 preview/lifecycle/reduced-motion/fallback checks pass locally; protected review and publication proof are still required. No call/eligibility/source changes; all other unfinished bespoke scenes remain partial.
+
 
 ## Original event music and Abbott campaign-sign scene RELEASED in PR502
 
@@ -13,7 +17,7 @@ laptop/mobile eleven-story tests pass. These are synthesized original cues, not
 the named commercial/fight-song recordings. Other bespoke visual productions
 remain partial; this does not claim the complete R6 backlog is finished.
 
-## October27 late owner request — music and Abbott scene candidate
+## Historical implementation notes — music and Abbott (released502)
 
 Eleven distinct original synthesized arrangements and an original campaign-sign
 tree scene for Abbott's electoral defeat are implemented/tested locally. This
@@ -45,28 +49,28 @@ Three owner-supplied images are wired into the existing Kansas, Mississippi and 
 | Exact-office/race, candidate constraints where named, final-close/freshness guards; retraction revocation | COMPLETE foundation | Existing `ElectionNightSignals` plus strict runtime source adapters; new R6 named TX requirements tested. Actual election delivery/calls remain unproven. |
 | Desktop/mobile cards and 11 playable preview stories | COMPLETE foundation; PARTIAL production | Seven existing earned-event cards plus preview-only Tsunami; R6 adds three cards, totaling ten earned-event definitions and eleven stories. Actual Edge previews and parent final release verification passed; bespoke productions remain incomplete. |
 | Reduced motion | COMPLETE foundation | Current shared beat animation is suppressed; retain this for all new scene layers. |
-| Original musical cue | PARTIAL | Current WebAudio uses two repeated eight-note arpeggio patterns, transposed by roster position; Nebraska uses a triangle oscillator, others sine. This is a working original cue, not distinct stadium/disco/trap/blues/period productions. |
+| Original event-specific music | RELEASED502 engineering foundation | Eleven distinct original synthesized scores with bounded render/stop tests. Not commercial recordings or subjective listening-quality acceptance. |
 | Fish Head jaw movement | MISSING optional | No synchronized jaw animation found. Lower priority than distinct main scenes; do not imply lip-sync. |
 
 ## Event matrix
 
 | Event | Current visual / trigger | Requested production still missing | Audio status |
 | --- | --- | --- | --- |
-| Talarico / Texas Senate | R6 exact named-winner requirement; original static blue-horns/star poster and three text/emoji beats | RELEASED in PR490: original animated horns, five stars across illustrative Texas and a staged Senate victory card; recorded exact-head CI and publication evidence in readiness-progress.md | Generic original cue only. Original stadium-band fanfare missing; requested commercial/fight-song recording not cleared. |
-| Texas governor / Abbott | R6 Democratic governor winner plus Greg Abbott opponent; separate from Senate; static concession-podium/parade poster | PARTIAL: podium character/silhouette, blue parade crossing and concession backdrop roll-up | Generic cue only; original parade/departure arrangement missing. No cleared Walk This Way recording. Satire must target election loss, never disability. |
-| BLEXAS bonus | Existing two-office Democratic-call bonus; static two-star Texas poster and three beats | PARTIAL: distinct two-star/combined-win bonus finale; must not substitute for either separate event | Generic cue; optional distinct bonus fanfare missing. |
-| Graham / South Carolina | Existing Darline opponent guard; R6 surname-only player/alt/poster correction | PARTIAL: fictional neon-nightclub caricature/spotlight, collapsing VIP sign and theatrical lighting. Current cracker poster/icon bounce does not deliver it | Original disco/club farewell cue missing. No sexuality/private-conduct/real-venue assertions. |
-| BLANSAS / Kansas | Existing Democratic Senate trigger, historical John Brown portrait/local fallback and three text beats | PARTIAL: stylized John Brown/Confederate-symbol action, blue cartoon splashes, Kansas transformation and finale | Original period-inspired instrumental missing; no cleared historical recording supplied. No realistic gore. |
-| Nebraska / Osborn | Existing independent Dan Osborn trigger; static tractor/cornfield art plus generic football/corn beats; no assumed caucus | PARTIAL: sad fictional sideline/coach Tom Osborne character, absurd scoreboard and blue confetti. Must clearly distinguish coach Osborne from candidate Osborn | Triangle-oscillator generic cue only; original football-band/trap treatment missing; fight-song rights not established. |
-| Mississippi Senate | R6 generic Democratic exact-race trigger; static retired-mascot/crate/wave poster and three beats; current invalid source stays excluded | PARTIAL: wave actually washes mascot prop from pedestal into storage; no injury to people | Original brass/blues sting missing. |
-| BLUE CORN / Iowa | Existing any-of Senate/governor Democratic call; corn poster and three beats | PARTIAL: blue-kernel/cornfield transformation remains largely static | Generic cue; distinct corn-themed production finishing remains. |
-| Maine | Existing Democratic call against Susan Collins; witch/broom poster and three beats | PARTIAL: staged broom/sendoff action remains static | Generic cue; distinct finishing remains. |
-| BUCKEYE BLUE-SHOCK / Ohio | Existing Ohio-special Democratic trigger; cracked-nut/lightning poster and three beats | PARTIAL: actual crack/lightning/victory action missing. Brief says retain existing direction until a replacement is selected | Generic cue; specific new storyboard/music not supplied. |
-| Blue Tsunami | Existing preview-only finale; no automatic forecast-based earning | PARTIAL: full wave finale/production still missing. Do not add an earned trigger from odds or partial leads | Generic cue; distinct finale missing. Any future earned condition needs reviewed national call/control accounting. |
+| Talarico / Texas Senate | R6 exact named-winner requirement; original static blue-horns/star poster and three text/emoji beats | RELEASED in PR490: original animated horns, five stars across illustrative Texas and a staged Senate victory card; recorded exact-head CI and publication evidence in readiness-progress.md | RELEASED502 original Blue stadium fanfare; no cleared commercial/fight-song recording. |
+| Texas governor / Abbott | R6 Democratic governor winner plus Greg Abbott opponent; separate from Senate; static concession-podium/parade poster | RELEASED502 original campaign-sign tree production. Optional additional parade finishing remains secondary. | RELEASED502 original campaign-sign exit march; no Walk This Way recording. |
+| BLEXAS bonus | Existing two-office Democratic-call bonus; static two-star Texas poster and three beats | PARTIAL: distinct two-star/combined-win bonus finale; must not substitute for either separate event | RELEASED502 original Two-star victory fanfare. |
+| Graham / South Carolina | Existing Darline opponent guard; supplied fictional nightclub poster. | PARTIAL: dedicated neon/spotlight/VIP-sign actions remain. No private-sexuality, real-venue or conduct assertions. | RELEASED502 original Last-call disco; no private-sexuality/conduct assertions. |
+| BLANSAS / Kansas | Existing Democratic Senate trigger; owner-supplied fictional John Brown/Confederate-symbol painting and fallback. | PARTIAL: stylized John Brown/Confederate-symbol action, blue cartoon splashes, Kansas transformation and finale | RELEASED502 original Prairie fife and drum; no historical recording or realistic gore. |
+| Nebraska / Osborn | Existing independent Dan Osborn trigger; static tractor/cornfield art plus generic football/corn beats; no assumed caucus | PARTIAL: sad fictional sideline/coach Tom Osborne character, absurd scoreboard and blue confetti. Must clearly distinguish coach Osborne from candidate Osborn | RELEASED502 original Sideline brass and halftime bass; no fight-song recording rights assumed. |
+| Mississippi Senate | R6 generic Democratic exact-race trigger; static retired-mascot/crate/wave poster and three beats; current invalid source stays excluded | CANDIDATE: original animated prop/pedestal/wave/storage/finale through shared renderer; all three beats locally tested, protected release pending. | RELEASED502 original Blue-river brass shuffle, unchanged by this visual candidate. |
+| BLUE CORN / Iowa | Existing any-of Senate/governor Democratic call; corn poster and three beats | PARTIAL: blue-kernel/cornfield transformation remains largely static | RELEASED502 original Electric harvest two-step. |
+| Maine | Existing Democratic call against Susan Collins; witch/broom poster and three beats | PARTIAL: staged broom/sendoff action remains static | RELEASED502 original Broom-and-bells sendoff. |
+| BUCKEYE BLUE-SHOCK / Ohio | Existing Ohio-special Democratic trigger; cracked-nut/lightning poster and three beats | PARTIAL: actual crack/lightning/victory action missing. Brief says retain existing direction until a replacement is selected | RELEASED502 original Buckeye blue-shock riff. |
+| Blue Tsunami | Existing preview-only finale; no automatic forecast-based earning | PARTIAL: full wave finale/production still missing. Do not add an earned trigger from odds or partial leads | RELEASED502 original Rising tide finale; preview-only eligibility unchanged. |
 
-Static posters and bouncing emoji do not complete bespoke productions. The Talarico candidate adds distinct SVG actions; its music remains the existing generic original cue.
+Static posters and bouncing emoji do not complete bespoke productions. Talarico490 and Abbott502 have dedicated SVG actions; all eleven original score cues are released502. Other visuals remain partial until separately implemented and verified.
 
-## Current candidate: Talarico original SVG stadium scene
+## Historical first-scene plan: Talarico (visual490/music502 released)
 
 This is first in both the current Texas-first R6 priority and the brief's production order. Its exact named-winner guard and original horns/star artwork already exist, so it can deliver a visible improvement without new sourcing or media dependencies.
 

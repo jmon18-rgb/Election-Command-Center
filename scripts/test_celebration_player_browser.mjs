@@ -44,11 +44,16 @@ try{
   await page.locator('#enMilestoneClose').click();
   await page.unroute('**/assets/celebration-owner-mississippi.jpg*');
   for(const id of ['graham','blexas','blue_corn','blansas','maine','nebraska','ohio','talarico','abbott','mississippi','tsunami']){
-   await page.emulateMedia({reducedMotion:['talarico','abbott'].includes(id)?'no-preference':'reduce'});
+   await page.emulateMedia({reducedMotion:['talarico','abbott','mississippi'].includes(id)?'no-preference':'reduce'});
    if(id==='tsunami')await page.locator('#enTsunamiPreview').click();
    else await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles[id]}).click();
    assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'announcement');
    assert.equal(await page.locator('#enCelebrationFish').isHidden(),false);
+   if(id==='mississippi'){
+    await page.locator('#enMilestonePoster').evaluate(img=>img.decode());
+    const posterBox=await page.locator('#enMilestonePoster').boundingBox();
+    assert(posterBox.width<=width&&posterBox.height<=900*.52+2,'Supplied Mississippi poster remains contained during announcement');
+   }
    await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
    assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'scene');
    if(id==='graham'){
@@ -94,12 +99,32 @@ try{
     await page.clock.runFor(2400);assert.equal(await visual.locator('[data-layer="governor-victory-card"]').count(),1);
     await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-abbott-beat2-${width}.png`)});
     await page.clock.runFor(2500);
+   }else if(id==='mississippi'){
+    const visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
+    assert.equal(await visual.locator('[data-layer="retired-mascot-prop"]').count(),1);
+    assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
+    assert.match(await visual.innerText(),/SIMULATED PREVIEW/);
+    assert.match(await page.locator('#enCelebrationMusicLabel').innerText(),/Blue-river brass shuffle/);
+    assert.match(await page.locator('#enMilestoneSource').innerText(),/Original animated scene/);
+    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-mississippi-beat0-${width}.png`)});
+    await page.clock.runFor(2400);
+    assert.equal(await visual.getAttribute('data-beat'),'1');
+    assert.equal(await visual.locator('[data-layer="mascot-storage-crate"]').count(),1);
+    assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await page.waitForFunction(()=>document.querySelector('#enCelebrationVisual').getAnimations({subtree:true}).length===0);
+    assert.match(await visual.locator('[data-layer="retired-mascot-prop"]').getAttribute('style'),/translate\(700px,250px\)/,'Static reduced-motion frame retains the prop in storage');
+    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-mississippi-beat1-${width}.png`)});
+    await page.clock.runFor(2400);assert.equal(await visual.locator('[data-layer="mississippi-victory-card"]').count(),1);
+    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-mississippi-beat2-${width}.png`)});
+    await page.clock.runFor(2500);
    }else{
     assert.equal(await page.locator('#enCelebrationVisual').isHidden(),true,'Other stories retain their existing presentation');
     await page.clock.runFor(7300);
    }
    assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'complete');
    assert.equal(await page.evaluate(()=>enCelebrationPlayer.state().active),null);
+   if(id==='mississippi')assert.equal(await page.locator('#enMilestoneSource .en-scene-credit').count(),1,'Scene attribution does not accumulate across beats');
    if(id==='talarico'){
     assert.equal(await page.locator('#enCelebrationVisual').isVisible(),true,'Completion/music(null) keeps the final visual card');
     assert.equal(await page.locator('#enCelebrationVisual').getAttribute('data-beat'),'2');
@@ -115,15 +140,28 @@ try{
     if(ownerArt){
      assert.match(await page.locator('#enMilestoneSource').innerText(),/Owner-supplied fictional artwork/);
      assert.match(src,/\?v=[a-f0-9]{12}$/);
-     const box=await page.locator('#enMilestonePoster').boundingBox();assert(box.width<=width&&box.height<=900*.52+2,'Uploaded art is contained without cropping or mobile overflow');
+     if(await page.locator('#enMilestonePoster').isVisible()){const box=await page.locator('#enMilestonePoster').boundingBox();assert(box.width<=width&&box.height<=900*.52+2,'Uploaded art is contained without cropping or mobile overflow');}
+     else assert.equal(await page.locator('#enCelebrationVisual').isVisible(),true,'A hidden uploaded poster is replaced by its dedicated scene');
     }
     if(id==='graham')assert.match(src,/\?v=[a-f0-9]{12}$/,'Changed incumbent artwork must not reuse an old cached image');
     if(id==='graham')assert.doesNotMatch(await page.locator('#enMilestonePoster').getAttribute('alt'),/lindsey/i);
     await page.locator('#enMilestonePoster').evaluate(img=>img.decode());
     mkdirSync(resolve(root,'artifacts/readiness'),{recursive:true});
-    await page.locator(['talarico','abbott'].includes(id)?'#enCelebrationVisual':'#enMilestonePoster').screenshot({path:resolve(root,`artifacts/readiness/celebration-${id}-${width}.png`)});
+    await page.locator(['talarico','abbott','mississippi'].includes(id)?'#enCelebrationVisual':'#enMilestonePoster').screenshot({path:resolve(root,`artifacts/readiness/celebration-${id}-${width}.png`)});
    }
   }
+  // The new Mississippi production uses the same cancellation/archive lifecycle.
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles.mississippi}).click();
+  await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
+  assert.equal(await page.locator('#enCelebrationVisual').evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
+  await page.locator('#enMilestoneClose').click();
+  assert.equal(await page.locator('#enCelebrationVisual svg').count(),0);await page.clock.runFor(20000);
+  assert.equal(await page.locator('#enMilestoneSpotlight').isHidden(),true,'Skipped Mississippi timers cannot reopen the story');
+  await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles.mississippi}).click();
+  await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
+  await page.locator('#enMode2024').click();assert.equal(await page.locator('#enCelebrationVisual svg').count(),0);
+  await page.locator('#enMode2026').click();
   // Skip an actual running visual, then replace it and leave 2026 mode.
   await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles.talarico}).click();
   await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
@@ -169,6 +207,12 @@ try{
   assert.equal(await page.locator('#enCelebrationVisual').isHidden(),true);
   assert.equal(await page.locator('#enCelebrationIcon').isVisible(),true);
   assert.equal(await page.locator('#enMilestonePoster').isVisible(),true);
+  await page.locator('#enMilestoneClose').click();
+  await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles.mississippi}).click();
+  await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
+  assert.equal(await page.locator('#enCelebrationVisual').isHidden(),true);
+  assert.equal(await page.locator('#enMilestonePoster').isVisible(),true,'Missing optional renderer retains the supplied Mississippi poster');
+  assert.match(await page.locator('#enMilestonePoster').getAttribute('src'),/celebration-owner-mississippi\.jpg/);
   await page.locator('#enMilestoneClose').click();
   await page.route('**/election_night_celebration_player.js*',route=>route.abort());
   await page.reload({waitUntil:'domcontentloaded'});
