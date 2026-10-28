@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-28T04:03:52.879071+00:00",
+  "updated_at": "2026-10-28T04:38:15.633680+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -13,14 +13,43 @@
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 938,
+      "available_in_source": 939,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 312,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "CA-GOV",
+      "poll_id": "3668313a-ddf1-41af-9f49-0469beb64c83"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "CA-GOV",
+      "race_type": "governor",
+      "state": "CA",
+      "poll_id": "3668313a-ddf1-41af-9f49-0469beb64c83",
+      "question_id": "90a9f19b-2376-472f-99b2-c13fa2393ad1",
+      "pollster": "Public Policy Institute of California",
+      "dem_name": "Xavier Becerra",
+      "rep_name": "Steve Hilton",
+      "dem": 61.0,
+      "rep": 37.0,
+      "margin": 24.0,
+      "field_end": "2026-10-22",
+      "field_start": "2026-10-16",
+      "posted_date": "2026-10-28",
+      "posted_source_datetime": "2026-10-28T00:01:00",
+      "posted_source_time": "10/28/26 00:01",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.ppic.org/publication/ppic-statewide-survey-californians-and-their-government-october-2026/",
+      "sample_population": "lv",
+      "sample_size": 1086,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "SC-SEN",
       "race_type": "senate",
