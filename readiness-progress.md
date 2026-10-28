@@ -1,5 +1,43 @@
 # Readiness progress
 
+## October28 latest direct steering — ad-free soundtrack and supplied Abbott image
+
+Owner reports YouTube ads spoil the mood; this supersedes the fresh-YouTube
+default candidate. Browser-local per-event audio/IndexedDB/native controls and
+ad-free original fallback are implemented, with no file upload/recording copy.
+Fresh settings are ad-free; explicit YouTube remains optional. File size/type/
+exactevent/storecommit/blockedstorage/late-read-and-play/URLcleanup tests PASS;
+root actual browser integration/persistence/teardown tasks next.
+
+Actual Edge1366x900/390x844 now PASS: synthetic native WAV decodes/starts,
+exact192044selectedbytes persist through reload, announcementfirst, nativePlay,
+mute/close/replacement/withdrawal/removal/overflow and fullAbbottimage+AIlabel.
+No YouTube/nativeprovider requests. Independent review caught stale save/remove/
+info UI completions across SAME-event reopen; modal/settings/info generations
+fix it. Eight realIndexedDB deferred-return cases pass and removing the guards
+in memory reproduces the old failure. Missing-image retries are cached only
+for currentplayback, so later beats immediately retain originalSVG; new
+announcement retries. Old eleven-story1440/390 fallback/score assertions pass
+unchanged. Scopedproofs: ui-review/ad-free-local-art-guarded,
+local-audio-async-races-final, ad-free-roster-fallback-final and
+local-audio-independent-review-20261028.json. Final new protected head next.
+
+Owner supplied exact Abbott/tree artwork:371979bytes/SHAe9d6360032b79c75156b490aaf62bd9250479d54e4444225c5d6bc313dc29c3d, unchanged local asset. Scene/finale use full contained AI-fiction-labelled image; same-beat original SVG fallback/staleimage/ARIA tests PASS. No more photo-location question. No call/eligibility/model odds or recording-rights claim.
+
+The intermediateca5ef385 Nebraska CI screenshot detached during normal redraw;
+the isolated fixture now freezes elapsed wall time after startup, retaining every
+original61sadvance, correction/rollback/outage/request-floor/hidden/archive
+assertion. Actual1366/390 PASS. This and the latest owner media changes require
+a new source head/all protected gates; neither superseded head merges/reruns/
+waivers nor raised timeouts are permitted. All prior failures/proofs retained.
+
+Real model-math work continues in ignored full-factor call-conditioning
+prototypes. National-only proposals failed the unchanged ESS floor for mixed/
+rare cases. Relevant full-factor/tiny-mixture proposal passes six declared
+fictional cases against300k original-election reference, with exact no-call path,
+fixed count target and independent review. Real-size geography-bag/options/replay
+work remains an internal engineering task, not an external-data/date blocker.
+
 ## October28 — direct owner sophistication request; distributions and YouTube candidate
 
 Owner reopens substantive roadmap work now. Implemented selected-race empirical

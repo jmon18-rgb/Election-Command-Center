@@ -47,8 +47,8 @@ try{
   const popup=page.locator('#enMilestoneSpotlight');assert.equal(await popup.evaluate(e=>e.matches(':modal')),true);
   assert.equal(await page.locator('#enMilestoneClose').evaluate(e=>e===document.activeElement),true);
   assert.match(await page.locator('#enMilestoneKicker').innerText(),/PREVIEW/);
-  assert.equal(await page.locator('#enCelebrationMusicMode').inputValue(),'youtube','Fresh profiles prefer requested YouTube tracks');
-  assert.match(await page.locator('#enCelebrationMusicQuick').innerText(),/YouTube/);
+  assert.equal(await page.locator('#enCelebrationMusicMode').inputValue(),'original','Fresh profiles prefer ad-free local audio or original scores');
+  assert.match(await page.locator('#enCelebrationMusicQuick').innerText(),/Ad-free/);
   assert.equal(youtube.length,0,'Reading a preference and announcement do not connect a player');
   await page.locator('#enCelebrationMusicQuick').click();
   assert.equal(await page.locator('#enCelebrationMusicMode').inputValue(),'original','Prominent control selects offline music');
@@ -60,14 +60,16 @@ try{
   assert(scene.y>=0&&scene.y+scene.height<=height,'The animation itself is on screen without scrolling');
   await page.screenshot({path:resolve(out,`celebration-popup-${width}.png`)});
   for(let i=0;i<9;i++){await page.keyboard.press('Tab');assert.equal(await popup.evaluate(e=>e.contains(document.activeElement)),true,'Native modal keeps keyboard focus inside');}
-  await page.locator('#enCelebrationMusicQuick').click();await page.locator('#enCelebrationOnlinePlayer iframe').waitFor();
-  assert.equal(await page.locator('#enCelebrationMusicMode').inputValue(),'youtube','Prominent control restores requested tracks');
+  const settings=page.locator('.en-celebration-music-settings');await settings.locator('summary').click();
+  await page.locator('#enCelebrationMusicMode').selectOption('youtube');await page.locator('#enCelebrationOnlinePlayer iframe').waitFor();
+  assert.equal(await page.locator('#enCelebrationMusicMode').inputValue(),'youtube','YouTube requires an explicit optional selection');
+  await page.locator('#enCelebrationMusicQuick').click();assert.equal(await page.locator('#enCelebrationOnlinePlayer iframe').count(),0,'Ad-free control removes the optional ad-supported player');
+  await page.locator('#enCelebrationMusicMode').selectOption('youtube');await page.locator('#enCelebrationOnlinePlayer iframe').waitFor();
   const frame=await page.locator('#enCelebrationOnlinePlayer iframe').boundingBox();assert(frame.width>=200&&frame.height>=200);
   assert(frame.y>=0&&frame.y+frame.height<=height,'Opted-in playback keeps the official player on screen');
   assert.match(youtube.at(-1),/v087M-InmIM/);assert.match(await page.locator('#enCelebrationOnlineStatus').innerText(),/Press Play.*unavailable/);
   await page.locator('#enCelebrationSound').click();assert.equal(await page.locator('#enCelebrationOnlinePlayer iframe').count(),0,'Mute removes the online player');
   await page.locator('#enCelebrationSound').click();
-  const settings=page.locator('.en-celebration-music-settings');await settings.locator('summary').click();
   await page.locator('#enCelebrationVideoInput').fill('https://youtube.com.evil.example/watch?v=gkWCLjxQqjU');await page.locator('#enCelebrationVideoSave').click();
   assert.match(await page.locator('#enCelebrationOnlineStatus').innerText(),/Use an HTTPS YouTube/);
   await page.locator('#enCelebrationVideoInput').fill('https://youtu.be/gkWCLjxQqjU?si=discard');await page.locator('#enCelebrationVideoSave').click();

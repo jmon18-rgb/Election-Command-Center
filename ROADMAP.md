@@ -1,5 +1,17 @@
 # JackStradamus · development plan
 
+## October28 latest owner update — ad-free playback and actual supplied artwork
+
+Owner rejects YouTube ads: PR527 now prefers private browser-local audio files,
+with original scores as ad-free fallback and YouTube only optional. Exact Abbott
+AI artwork has been supplied and integrated unchanged with fiction label and
+same-beat SVG fallback. Complete actual browser persistence/teardown/image tests,
+then new exact-head protected release; oldca5ef385 is superseded.
+Same-joint race margin ranges remain in this coherent release. Next substantive
+R0 math task is full-factor source-call posterior conditioning: six bounded
+full-factor cases pass, real-size redraw bags/options/replay remain internal
+implementation work. No date-based freeze or unsupported accuracy claim.
+
 ## October28 — owner reopens substantive sophistication and media work
 
 Active R0/R7 candidate: selected-race empirical median/middle50/90 ranges from
@@ -143,7 +155,7 @@ Owner scope update: needle adjustments and the celebration production backlog ar
 | ID / priority | Unfinished deliverable | Next action | Completion evidence / target |
 | --- | --- | --- | --- |
 | R8 / navigation/model focus repair525 verified; human acceptance open | Full owner interpretation and visual acceptance | Watch-to-existing-card/expectation and same-row/Texas returns, semantic announcement/redraw identity, desktop row/phone heading and offscreen reading-position retention released. Reuse actual1366/390 and ordinary semantic proofs; real task feedback reopens engineering immediately. | Exactdc9b5ef9/all37parents; finalmaincbcf2af2/Pages40761231025/served40761325033/27changedfiles verified. Ordinary0viewport/no geometry claim; human interpretation/assistive NOT_RUN, Oct30 target not start gate. |
-| R7 / Texas and21-house watch released523; source coverage unfinished | Personal race needles and evening trend | Eleven Senate/eight pivotal House cards, exact owner references, distinct verified-call surprise patterns and bounded history are released. Current watch/card navigation is being repaired under R8. No extra county admission or likelihood from display scope. | PR523 exactc8cd1e15/final20246439/Pages40748317487/395files verified; carried by524. Four original Senate county connections MI/MN/MS/AK remain missing, AK last. |
+| R7 / Texas and21-house watch released523; distributions527 in review | Personal race needles and evening trend | Eleven Senate/eight pivotal House cards, exact owner references, distinct verified-call surprise patterns and bounded history are released; contextual navigation fixed525. Current527 adds median/middle50/90 from the same conditioned draws, with no probability/source change. | Actual new1366/390 range/disclosure/isolation tasks pass; final527protected publication pending. Four original Senate county connections MI/MN/MS/AK remain missing, AK last. |
 | R0 / additive spread accounting525 verified | Needle methodology and truthful assumptions | Complete analytic baseline Gaussian/geography-mixture spread metadata and truthful old/inconsistent-snapshot copy released. Legacy sigma/live consumers and every fixed-fictional output remain unchanged. No empirical probability sharpening or input promotion. | Four same-seed wholelegacy-output hashes/populationvariance/multiplier/live/call and fullDOM/exactheadCI PASS. Actual published detail/focus/nooverflow verified; source/ESS/budgets preserved, calibration remains R2. |
 | R1 / research tooling519 released; admission gates open | Four missing requested Senate connections | MS246rows/82counties/three candidates, documented alias and importer resolved. New metadata-only lineage ties exact saved blob to publisher commitc7e31f42 dated2021-01-18. Reuse-policy inventory did not establish rights. Next distinct explicit source-file rights/native-certification/current2026 package; no solved-route repeats. MI/MN403 STOP; AK last. | Six public fictional/reference and eight local-original tests PASS; no raw/derived table published. SourceSHA c6fe2553…; processed-file-lineage/receipt saved locally. No native certification/election chronology/current2026/runtime/calibration admission;81004invalid. |
 | R2 / decision recorded; evidence gate open | Predictive validation evidence and evaluation | Formal Oct28 decision snapshot recorded: NO-GO for calibrated national acceptance on zero independent chronological datasets/held-outs; metrics not estimable. Reopen only for a genuinely admissible new package. Use the saved specification for the smallest admissible held-out evaluation using contemporaneous expectations, real early/middle/late captures, correct geography and source-error uncertainty. Pursue a bounded new source route only if it can satisfy a named missing field. Reuse evaluation tools; add only missing necessary evaluation capability. | Reproducible margin error, interval coverage, probability scores and baseline comparison on admitted data; national transfer assessed separately. Oct28 no-go/missing-data decision delivered locally and recorded in acceptance; predictive validation itself remains unmet. Synthetic stress evidence stays separate; never fit and evaluate on the same cases. No guaranteed calibrated acceptance. |

@@ -1,5 +1,5 @@
-/* Requested YouTube songs use visible official players. Reading preferences
-   never connects; mounting happens only for a selected, audible celebration. */
+/* Optional visible official YouTube players. The ad-free original/local-file
+   path is the default; reading preferences never connects a player. */
 (function(root,factory){
  const api=factory();
  if(typeof module!=='undefined'&&module.exports)module.exports=api;
@@ -26,13 +26,12 @@
   }catch{return null;}
  }
  function read(storage,ids){
-  // The owner requested these recordings as the preferred soundtrack. Keep
-  // any explicit saved offline choice; a fresh profile prefers the requested
-  // YouTube track where one exists and otherwise uses the original score.
-  const settings={mode:'youtube',videos:{}};
+  // YouTube ads interrupt the requested soundtrack. Fresh profiles use the
+  // ad-free local/original path; an explicit saved YouTube choice remains valid.
+  const settings={mode:'original',videos:{}};
   try{
    const saved=JSON.parse(storage.getItem(KEY)||'null');
-   if(saved?.mode==='original')settings.mode='original';
+   if(saved?.mode==='youtube')settings.mode='youtube';
    for(const id of ids)if(validId(saved?.videos?.[id]))settings.videos[id]=saved.videos[id];
   }catch{}
   return settings;

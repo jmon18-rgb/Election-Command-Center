@@ -41,7 +41,7 @@
   {id:'talarico',title:'HOOK ’EM BLUE',tag:'Texas Senate takes a blue victory lap.',
    icon:'🤘',type:'all',needs:[{office:'Senate',key:'TX',party:'D',winner:/\bjames\s+talarico\b/i}],
    description:'A source-reported Texas Senate call for James Talarico. No governor result is required.'},
-  {id:'abbott',title:'THE BLUE TEXAS PARADE',tag:'The governor’s concession backdrop has wheels.',
+  {id:'abbott',title:'THE BLUE TEXAS PARADE',tag:'A new chapter in the governor’s office.',
    icon:'🎺',type:'all',needs:[{office:'Governor',key:'TX',party:'D',opponent:/\bgreg\s+abbott\b/i}],
    description:'A Democratic Texas governor call against Greg Abbott. No Senate result is required.'},
   {id:'mississippi',title:'MISSISSIPPI TURNS THE PAGE',tag:'An outdated mascot meets the retirement crate.',

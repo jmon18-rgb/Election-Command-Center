@@ -1,5 +1,20 @@
 # Election Night production-readiness assignment
 
+## October28 current owner steering — ad-free files, exact Abbott image, models
+
+PR527's latest update supersedesca5ef385: restore fresh ad-free mode,
+add private browser-local per-event audio files/native controls and unchanged
+supplied Abbott AI artwork in scene/finale. YouTube stays optional because owner
+reports ads spoil playback. Helper/art/async-race tests pass; finish actual native
+file/persistence/teardown/image tasks, all corrected-head CI and publication.
+No repeat photo-location question: exact asset and SHA are in progress/manifest.
+Intermediate Nebraska screenshot-detachment fixture now freezes elapsed clock
+afterstartup, all original timing/request/correction guards retained and actual
+1366/390 pass; no failed/supersededhead merge/rerun/waiver/timeout increase.
+Full-factor source-call conditioning prototype now has six bounded numerical
+cases passing after national-only proposal failures; realistic bags/options/replay
+and production integration remain real next internal model engineering tasks.
+
 ## October28 owner reopened model sophistication — active implementation
 
 Branch readiness/needle-distributions-youtube implements same-joint selected

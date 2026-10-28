@@ -10,7 +10,18 @@ displace that forecast/dashboard work. See OWNER_ELECTION_NIGHT_SCOPE.md.
 
 ## Owner-supplied artwork, October27
 
-Use the supplied John Brown/Confederate painting for Kansas, the fictional retired-mascot/wave scene for Mississippi, and the fictional nightclub scene for Graham. Preserve the supplied image bytes and show the complete art on mobile. Graham artwork is fictional satire, not a documentary image or a claim about sexuality/private conduct. Existing local illustrations remain fallback assets. The Abbott tree/wheelchair injury image is not used; use an original campaign-sign tree gag for electoral defeat; no person/injury depiction. These poster additions do not complete animation/music production or alter any call gate.
+October28 update: the owner supplied the exact Abbott/tree AI artwork again.
+Use its unchanged bytes as clearly labelled fictional political satire in the
+Abbott scene/finale, with the campaign-sign illustration as missing-image
+fallback. Do not present it as a real photograph or add injury/disability
+captions. This supersedes the earlier replacement-only choice below.
+
+The owner also reports that YouTube ads spoil playback. Prefer ad-free native
+audio: a per-celebration file selected by the owner and saved privately in this
+browser, otherwise the original score. YouTube remains an explicit optional
+choice with its existing visible player. Never rip or bundle its recordings.
+
+Use the supplied John Brown/Confederate painting for Kansas, the fictional retired-mascot/wave scene for Mississippi, the fictional nightclub scene for Graham and the October28 resupplied Abbott/tree artwork. Preserve supplied image bytes and show complete art on mobile. Graham artwork is fictional satire, not a documentary image or a claim about sexuality/private conduct. Abbott's image is also AI-generated political satire, not a real event. Existing local illustrations remain fallback assets. These additions do not alter any call gate.
 
 ## Shared presentation
 

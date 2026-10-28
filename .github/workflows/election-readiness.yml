@@ -65,6 +65,12 @@ jobs:
       - name: Individual ratings and automatic celebration popup journey
         if: ${{ !cancelled() }}
         run: node scripts/test_ratings_celebration_popup_browser.mjs
+      - name: Private ad-free audio persistence and supplied Abbott artwork
+        if: ${{ !cancelled() }}
+        run: node scripts/test_celebration_local_browser.mjs
+      - name: Late audio storage completions cannot restart a new celebration
+        if: ${{ !cancelled() }}
+        run: node scripts/test_celebration_local_races_browser.mjs
       - name: Texas shared needle and early House watch keyboard and retraction journey
         if: ${{ !cancelled() }}
         run: node scripts/test_house_early_watch_browser.mjs

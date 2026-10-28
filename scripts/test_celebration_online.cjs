@@ -2,8 +2,8 @@
 const assert=require('node:assert/strict'),online=require('./election_night_celebration_online.js');
 for(const url of ['https://www.youtube.com/watch?v=gkWCLjxQqjU&t=14','https://youtu.be/gkWCLjxQqjU?si=discard','https://m.youtube.com/shorts/gkWCLjxQqjU','https://youtube.com/embed/gkWCLjxQqjU'])assert.equal(online.videoId(url),'gkWCLjxQqjU');
 for(const url of ['http://youtube.com/watch?v=gkWCLjxQqjU','https://youtube.com.evil.example/watch?v=gkWCLjxQqjU','https://user@youtube.com/watch?v=gkWCLjxQqjU','https://youtube.com:999/watch?v=gkWCLjxQqjU','javascript:alert(1)','https://youtu.be/bad','https://youtube.com/results?search_query=music'])assert.equal(online.videoId(url),null);
-assert.deepEqual(online.read(null,['talarico']),{mode:'youtube',videos:{}},'Fresh preferences use the owner-requested recordings');
-assert.deepEqual(online.read({getItem:()=>'{invalid'},['talarico']),{mode:'youtube',videos:{}},'Unavailable or malformed storage preserves the requested default');
+assert.deepEqual(online.read(null,['talarico']),{mode:'original',videos:{}},'Fresh preferences use the ad-free local/original soundtrack');
+assert.deepEqual(online.read({getItem:()=>'{invalid'},['talarico']),{mode:'original',videos:{}},'Unavailable or malformed storage preserves the ad-free default');
 assert.deepEqual(online.read({getItem:()=>JSON.stringify({mode:'original',videos:{abbott:'gkWCLjxQqjU'}})},['abbott']),{mode:'original',videos:{abbott:'gkWCLjxQqjU'}},'An explicitly saved offline choice and its per-event links remain intact');
 const storage={getItem:()=>JSON.stringify({mode:'youtube',videos:{talarico:'gkWCLjxQqjU',abbott:'<iframe>',unknown:'gkWCLjxQqjU'}})};
 const settings=online.read(storage,['talarico','abbott']);assert.deepEqual(settings,{mode:'youtube',videos:{talarico:'gkWCLjxQqjU'}});
@@ -21,4 +21,4 @@ for(const [key,value] of [['autoplay','1'],['playsinline','1'],['controls','1']]
 assert.match(frame.allow,/autoplay/);assert.equal(frame.referrerPolicy,'strict-origin-when-cross-origin');assert.match(frame.title,/The Eyes of Texas/);
 online.clear(host);assert.equal(host.hidden,true);assert.equal(host.children.length,0,'Mute/close/retraction teardown removes the official player');
 const created=elements.length;assert.equal(online.mount(host,{id:'<iframe>',title:'bad'}),false);assert.equal(elements.length,created);assert.equal(host.hidden,true,'No valid selected track leaves the original-score path available');
-console.log('Requested YouTube: fresh preference, explicit offline choice, exact video identity, visible official player and teardown PASS');
+console.log('Optional YouTube: ad-free default, explicit saved choice, exact video identity, visible official player and teardown PASS');

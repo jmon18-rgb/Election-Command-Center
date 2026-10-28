@@ -1,4 +1,5 @@
-/* Original repository SVG scene layers; presentation only, never call eligibility.
+/* Original repository SVG scene layers and optional owner-supplied artwork;
+ * presentation only, never call eligibility.
  * Horns path: assets/milestone-talarico.svg. Illustrative Texas outline:
  * assets/milestone-blexas.svg. No external image/audio or reporting geography. */
 (function(root,factory){
@@ -7,7 +8,7 @@
  if(root)root.ElectionNightCelebrationScene=api;
 })(typeof window!=='undefined'?window:null,function(){
  'use strict';
- const NS='http://www.w3.org/2000/svg',states=new WeakMap();let serial=0;
+ const NS='http://www.w3.org/2000/svg',states=new WeakMap(),failedArtwork=new WeakMap();let serial=0;
  const horns='M375 383L357 175Q355 143 376 142Q397 141 401 169L421 273 430 257Q446 240 462 258L473 278 478 263Q493 244 513 259L528 277 550 155Q555 130 575 136Q595 141 591 167L579 341Q578 410 531 431L443 431Q397 416 375 383Z';
  const texas='M311 115L650 117 650 220 731 221 692 284 639 281 606 352 549 425 466 396 419 346 329 346 329 257 311 257Z';
  const star='M0-20L6-7 21-6 10 3 13 18 0 10-13 18-10 3-21-6-6-7Z';
@@ -15,13 +16,21 @@
   if(!host)return;
   const state=states.get(host);
   if(state){for(const animation of state.animations)try{animation.cancel()}catch{}
-   state.media?.removeEventListener?.('change',state.onMotionChange);states.delete(host);}
+   state.media?.removeEventListener?.('change',state.onMotionChange);state.dispose?.();
+   if(state.restoreAria){if(state.restoreAria.present)host.setAttribute('aria-hidden',state.restoreAria.value);else host.removeAttribute('aria-hidden');}
+   states.delete(host);}
   host.replaceChildren();host.hidden=true;
   host.removeAttribute('data-celebration-scene');host.removeAttribute('data-beat');
  }
- function render(host,{id,phase,beat=0,preview=true}={}){
+ function render(host,{id,phase,beat=0,preview=true,ownerArtwork=null}={}){
+  // A new playback may retry its artwork. Per-beat clears must retain known
+  // failures so later beats use their SVG immediately instead of flickering.
+  if(host&&phase==='announcement')failedArtwork.delete(host);
   clear(host);
-  if(host&&id==='abbott'&&['scene','complete'].includes(phase))return renderAbbott(host,{phase,beat,preview});
+  if(host&&id==='abbott'&&['scene','complete'].includes(phase)){
+   if(ownerArtwork&&typeof ownerArtwork.url==='string'&&/^(?:\.\/)?assets\/celebration-owner-abbott\.jpg(?:\?v=[a-f0-9]{8,64})?$/.test(ownerArtwork.url)&&typeof ownerArtwork.alt==='string'&&ownerArtwork.alt.trim()&&ownerArtwork.alt.length<=500&&!failedArtwork.get(host)?.has(ownerArtwork.url))return renderAbbottOwnerArtwork(host,{phase,beat,preview,ownerArtwork});
+   return renderAbbott(host,{phase,beat,preview});
+  }
   if(host&&id==='mississippi'&&['scene','complete'].includes(phase))return renderMississippi(host,{phase,beat,preview});
   if(host&&id==='blansas'&&['scene','complete'].includes(phase))return renderKansas(host,{phase,beat,preview});
   if(host&&id==='graham'&&['scene','complete'].includes(phase))return renderGraham(host,{phase,beat,preview});
@@ -75,6 +84,26 @@
    if(typeof a.node.animate==='function')state.animations.push(a.node.animate(a.frames,{duration:a.duration,delay:a.delay||0,easing:'ease-out',fill:'both'}));
   }}
   return true;
+ }
+ function renderAbbottOwnerArtwork(host,{phase,beat,preview,ownerArtwork}){
+  const index=phase==='complete'?2:beat;if(!Number.isInteger(index)||index<0||index>2)return false;
+  const doc=host.ownerDocument,figure=doc.createElement('figure'),image=doc.createElement('img'),caption=doc.createElement('figcaption');
+  figure.className='en-celebration-owner-art';figure.setAttribute('data-layer','owner-abbott-artwork');
+  image.className='en-celebration-owner-image';image.setAttribute('alt',ownerArtwork.alt);image.setAttribute('decoding','async');
+  caption.className='en-celebration-owner-label';caption.textContent='AI-GENERATED · FICTIONAL POLITICAL SATIRE · '+(preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL');
+  figure.append(image,caption);
+  const restoreAria={present:host.hasAttribute('aria-hidden'),value:host.getAttribute('aria-hidden')};
+  host.setAttribute('aria-hidden','false');finish(host,figure,[],'abbott',index,phase);
+  const state=states.get(host);state.restoreAria=restoreAria;
+  const fail=()=>{
+   // A delayed error from an earlier beat/story must not repaint a cleared or
+   // replaced host. Failure retains the original scene at this exact beat.
+   if(states.get(host)!==state||!host.contains(image))return;
+   if(!failedArtwork.has(host))failedArtwork.set(host,new Set());failedArtwork.get(host).add(ownerArtwork.url);
+   clear(host);renderAbbott(host,{phase,beat,preview});
+  };
+  state.dispose=()=>image.removeEventListener('error',fail);image.addEventListener('error',fail);
+  image.setAttribute('src',ownerArtwork.url);return true;
  }
  function renderAbbott(host,{phase,beat,preview}){
   const index=phase==='complete'?2:beat;if(!Number.isInteger(index)||index<0||index>2)return false;

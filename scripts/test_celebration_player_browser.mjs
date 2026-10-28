@@ -22,6 +22,10 @@ try{
   page.on('pageerror',e=>errors.push(e.message));
   await page.clock.install();
   await page.route('**/*',route=>new URL(route.request().url()).hostname==='127.0.0.1'?route.continue():route.abort());
+  // This retained eleven-scene drill exercises the original Abbott animation
+  // as the supported missing-photo fallback. The supplied-art drill covers the
+  // preferred image, its containment, attribution and default presentation.
+  await page.route('**/assets/celebration-owner-abbott.jpg*',route=>route.abort());
   await page.goto(`http://127.0.0.1:${server.address().port}/`,{waitUntil:'domcontentloaded'});
   await page.locator('[data-page="electionNight"]').click();
   await page.locator('#enMode2026').click();
