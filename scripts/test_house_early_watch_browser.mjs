@@ -20,6 +20,7 @@ try{browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL
  await page.locator('#enPersonalFocus [data-personal-jump="watch"]').click();const watch=page.locator('#enPersonalFocus .early-watch');
  await watch.locator(':scope > details > summary').click();assert.equal(await watch.locator('[data-watch-race]').count(),21);
  const fl=watch.locator('[data-watch-race="FL-04"]');await fl.locator(':scope > summary').click();
+ const proxy=await page.evaluate(()=>jointLastResult.race_probabilities.find(x=>x.race_code==='FL-04').source_method.includes('redrawn_state_distribution_proxy'));if(proxy)assert.match(await fl.innerText(),/Broad state prior for redrawn geography.*no district-specific historical baseline/s);
  assert.match(await fl.innerText(),/Cook Solid R.*FLIPR Likely R.*R win 92.7%.*R\+10.2/s);assert.match(await watch.innerText(),/Publisher date \/ version not supplied; not independently verified/);
  await page.evaluate(()=>renderPersonalElectionFocus());assert.equal(await fl.evaluate(e=>e.open),true);assert.equal(await fl.locator('summary').evaluate(e=>e===document.activeElement),true,'Watch disclosure and semantic focus survive normal redraw');
  const bookmark=await page.evaluate(()=>{const host=document.querySelector('#enPersonalFocus');return PersonalElectionFocus.captureFocus(host);});assert.deepEqual(bookmark,{kind:'watch',race:'FL-04'});

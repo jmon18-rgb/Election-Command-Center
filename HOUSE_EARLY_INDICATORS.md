@@ -40,6 +40,13 @@ national-transfer skill are not estimable. Actual positive 2026 delivery and
 human operator/assistive acceptance remain open. The experimental forecast is
 still available with these limits.
 
+The watch also identifies estimates using the model's existing broad state
+distribution for redrawn districts. Those do not have district-specific
+historical baselines and can differ greatly from the quoted Cook/FLIPR
+references. Existing district polling, when present, is identified separately.
+The display exposes this evidence limit; it does not silently replace priors
+with an unverified external forecast or claim a calibration improvement.
+
 Verification uses all 21 independently transcribed expectations, the shared
 Texas row, distinct normalized synthetic calls and withdrawals, exact live-model
 non-mutation, and actual desktop/mobile keyboard/disclosure/overflow tasks.

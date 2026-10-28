@@ -132,7 +132,7 @@
    const window=Number.isFinite(first)?time(first)+(Number.isFinite(last)&&last!==first?(state==='KS'?' · conservative call gate ':'–')+time(last):''):'Time unverified';
    const displayRating=rating(pct,{positive:left,negative:state==='NE'?'Ricketts':'R',calledParty:called?entry.provider_called_party:null});
    if(state==='NE'&&displayRating.state==='forecast')displayRating.label='Paired · '+displayRating.label;
-   return {...spec,state,order,left,pct,delta,status,sourceAt,ownCounts,called,calledParty:called?entry.provider_called_party:null,rating:displayRating,simulated:simulated||result?.county_results_update?.status==='SIMULATED_NATIONAL_REHEARSAL',
+   return {...spec,state,order,left,pct,delta,status,sourceAt,ownCounts,called,calledParty:called?entry.provider_called_party:null,broadStateProxy:typeof entry?.source_method==='string'&&entry.source_method.includes('redrawn_state_distribution_proxy'),polled:entry?.polled===true,rating:displayRating,simulated:simulated||result?.county_results_update?.status==='SIMULATED_NATIONAL_REHEARSAL',
     count:direct&&finite(direct.counted_two_party_votes)?direct.counted_two_party_votes:null,
     performance:direct?.matched_performance||null,
     first,last,window,started:Number.isFinite(first)&&now>=first,
@@ -179,6 +179,7 @@
   const section=el('section','early-watch'),data=rows(result,baseline,{...options,watch:true}),simulated=data.some(x=>x.simulated);
   section.append(el('h3','',(simulated?'SIMULATED · ':'')+'Early House indicators'),el('p','methodline','Your 21-district watch · compare results with the reference expectations. A pattern across distinct races is more informative than one upset; it does not guarantee a national outcome.'));
   if(!WATCH){section.append(el('p','','Owner reference unavailable; the shared model remains separate.'));return section;}
+  const broad=data.filter(x=>x.broadStateProxy&&!x.called);if(broad.length)section.append(el('p','early-watch-prior-warning',broad.length+' of 21 uncalled estimates use broad state priors for redrawn seats. These are not district-specific historical baselines; treat individual odds cautiously. District polling, where available, is separate.'));
   const signals=el('div','early-watch-signals');
   for(const g of watchSummary(data)){const box=el('div','early-watch-signal');box.dataset.multiple=String(g.multiple);box.append(el('strong','',g.calls.length+' / '+g.total+' · '+g.label),el('small','',g.calls.length?g.calls.join(', ')+' · validated '+g.party+' calls':'Awaiting validated '+g.party+' calls'));signals.append(box);}
   section.append(signals,el('p','methodline','Uncalled leads do not count as wins. These signals follow current validated calls and clear on retraction. Admitted returns and calls already affect the shared model once; the watch adds no second adjustment.'));
@@ -189,6 +190,7 @@
    const ref=refs.get(row.code),item=el('details','early-watch-race');item.dataset.watchRace=row.code;item.open=priorOpen.has(row.code);
    const summary=el('summary','');summary.append(el('strong','',row.code),el('span','early-watch-rating',(simulated?'SIMULATED · ':'')+row.rating.label),el('span','',row.pct===null?'Model pending':'D '+row.pct.toFixed(1)+'% model chance'));item.append(summary);
    item.append(el('p','early-watch-reference','Owner reference · Cook '+ref.cook+' | FLIPR '+ref.flipr+' · R win '+ref.rep_win_pct.toFixed(1)+'% · projected '+ref.margin_side+'+'+ref.margin_points.toFixed(1)));
+   if(row.broadStateProxy)item.append(el('p','early-watch-prior-warning','Broad state prior for redrawn geography · no district-specific historical baseline'+(row.polled?' · district polling also used.':'; no district poll in this estimate.')));
    const gauge=el('div','early-watch-gauge');gauge.setAttribute('role','img');gauge.setAttribute('aria-label',row.code+' '+row.rating.label+'; '+(row.pct===null?'model chance unavailable':'D model chance '+row.pct.toFixed(1)+' percent')+'; forecast unless validated call');if(row.pct!==null){const marker=el('span','');marker.style.left=row.pct+'%';gauge.append(marker);}item.append(gauge);
    item.append(el('p','',(simulated?'SIMULATED · ':'')+row.status+(row.sourceAt?' · '+(row.ownCounts?'Count':'Call')+' source time '+time(Date.parse(row.sourceAt)):'')),el('small','','Poll-close window · '+row.window+' · eligibility, not an arrival promise'));
    if(row.note)item.append(el('small','',row.note));
