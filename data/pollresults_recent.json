@@ -1,26 +1,83 @@
 {
-  "updated_at": "2026-10-28T16:01:52.242563+00:00",
+  "updated_at": "2026-10-28T17:01:42.726024+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 840,
+      "available_in_source": 841,
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1273,
+      "available_in_source": 1274,
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 947,
+      "available_in_source": 948,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 323,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 2,
+  "injected_poll_ids": [
+    {
+      "race_code": "MN-GOV",
+      "poll_id": "d547a305-d76b-4006-9d51-c268fb8ecf02"
+    },
+    {
+      "race_code": "MN-SEN",
+      "poll_id": "d547a305-d76b-4006-9d51-c268fb8ecf02"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "MN-SEN",
+      "race_type": "senate",
+      "state": "MN",
+      "poll_id": "d547a305-d76b-4006-9d51-c268fb8ecf02",
+      "question_id": "e580a5af-7e4c-4a0b-afba-6eab5bae2267",
+      "pollster": "Victory Insights",
+      "dem_name": "Peggy Flanagan",
+      "rep_name": "Michele Tafoya",
+      "dem": 47.8,
+      "rep": 44.4,
+      "margin": 3.4,
+      "field_end": "2026-10-22",
+      "field_start": "2026-10-21",
+      "posted_date": "2026-10-28",
+      "posted_source_datetime": "2026-10-28T12:12:00",
+      "posted_source_time": "10/28/26 12:12",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://irp.cdn-website.com/07e08705/files/uploaded/PollReport_MN-GE-26_10-28-26.pdf",
+      "sample_population": "lv",
+      "sample_size": 1194,
+      "partisan_lean": "R",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "MN-GOV",
+      "race_type": "governor",
+      "state": "MN",
+      "poll_id": "d547a305-d76b-4006-9d51-c268fb8ecf02",
+      "question_id": "f07d623c-3261-406a-a58c-41f80eaa633d",
+      "pollster": "Victory Insights",
+      "dem_name": "Amy Klobuchar",
+      "rep_name": "Lisa Demuth",
+      "dem": 50.1,
+      "rep": 43.1,
+      "margin": 7.0,
+      "field_end": "2026-10-22",
+      "field_start": "2026-10-21",
+      "posted_date": "2026-10-28",
+      "posted_source_datetime": "2026-10-28T12:12:00",
+      "posted_source_time": "10/28/26 12:12",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://irp.cdn-website.com/07e08705/files/uploaded/PollReport_MN-GE-26_10-28-26.pdf",
+      "sample_population": "lv",
+      "sample_size": 1194,
+      "partisan_lean": "R",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "FL-SEN",
       "race_type": "senate",
