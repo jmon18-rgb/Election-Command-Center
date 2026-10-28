@@ -46,7 +46,10 @@
   frame.src='https://www.youtube-nocookie.com/embed/'+track.id+'?autoplay=1&playsinline=1&controls=1';
   frame.allow='autoplay; encrypted-media; picture-in-picture';
   frame.referrerPolicy='strict-origin-when-cross-origin';
-  frame.allowFullscreen=true;host.append(frame);host.hidden=false;return true;
+  frame.allowFullscreen=true;host.append(frame);host.hidden=false;
+  // Keep the official player visible when opted-in playback starts, including
+  // when opening the music disclosure moved it above the current scroll.
+  host.scrollIntoView({block:'nearest'});return true;
  }
  return Object.freeze({DEFAULTS,KEY,videoId,read,save,track,clear,mount});
 });

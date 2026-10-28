@@ -53,6 +53,7 @@ try{
   const settings=page.locator('.en-celebration-music-settings');await settings.locator('summary').click();
   await page.locator('#enCelebrationMusicMode').selectOption('youtube');await page.locator('#enCelebrationOnlinePlayer iframe').waitFor();
   const frame=await page.locator('#enCelebrationOnlinePlayer iframe').boundingBox();assert(frame.width>=200&&frame.height>=200);
+  assert(frame.y>=0&&frame.y+frame.height<=height,'Opted-in playback keeps the official player on screen');
   assert.match(youtube.at(-1),/v087M-InmIM/);assert.match(await page.locator('#enCelebrationOnlineStatus').innerText(),/Press Play.*unavailable/);
   await page.locator('#enCelebrationSound').click();assert.equal(await page.locator('#enCelebrationOnlinePlayer iframe').count(),0,'Mute removes the online player');
   await page.locator('#enCelebrationSound').click();
