@@ -1,5 +1,21 @@
 # Election Night production-readiness assignment
 
+## PR525 VERIFIED PUBLISHED — October28 parallel quality pass
+
+Finaltesteddc9b5ef9 ALL37parents/52jobs49SUCCESS3nonapplicabledeployedSKIP/0external/clean. Merge1039cc14/finalCURRENTmaincbcf2af2/Pages40761231025/served40761325033SUCCESS;27changedpublicfiles/index match20:14:24.822Z/originmain/coherence/no_creditPASS, prior398scope inherited without full rescan. ActualpublishedEdge1366/390 watch/evidence/announcement/completebaseline spread/modelrowfocus/phoneheading/Tab/backgroundscroll/nooverflow/exactmodelisolation PASS. OrdinaryIAB27 semantic control/privatecontext/final2026return PASS with explicit0viewport/no geometry claim. Guide1.0/elevenhuman tasks/hash/results unchanged; scoped525addendum/proof appended with bytecopy/receipt. Reuse pr525 gate/integrity/coherence/ordinary and ui-review/pr525-published-*; do not repeat completed passes.
+
+Owner authorizes extensive coordinated subagents and sustained work. This pass
+found and fixed real defects; it does not establish calibration/human acceptance
+or realpositive2026 delivery. No odds/input/source/call change. Next genuine
+dependency is approved archive activation's exact actual GitHub free capacity
+and zero-paid guard. Native input stopped under URL-verification policy after
+read-only Chrome restore; no quota/settings/data obtained, no activation.
+Do not retry unchanged native access/bypass policy. Ask only for these missing
+account values through supported known-URL access/owner response, not the already
+approved30day/no-paid policy. R1/R2 admissible originals and human feedback stay
+separate. No date freeze for independent ready engineering; no fabricated task
+or repeated source/guide/demo/status-only loop. Project remains unfinished.
+
 ## October28 — parallel source candidate; continue through protected publication
 
 Owner now explicitly authorizes coordinated subagents and sustained usage.
