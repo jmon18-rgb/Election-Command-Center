@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-28T05:39:20.706634Z",
+  "updated_at": "2026-10-28T05:55:21.309760Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 0,
@@ -450,6 +450,25 @@
       ],
       "headline_numbers_unverified": [
         "7",
+        "8 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "eb0c7ed68f60fcf9c195",
+      "title": "Liberman's Yisrael Beytenu projected to win 8 seats in next Knesset, election polling data predict - The Jerusalem Post",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBpZ19GcmpBQXpOYXBMRFhGMy1PY003SUZ1M2dqZDQweHp4WXFJODFtcVFmSEhiMUVWY0tESEVyNkMxM2wySXhuek83Z1dGYmU0VWRkbFp3YjlYSEJVSlhWb0traDNOdEdu?oc=5",
+      "publisher": "The Jerusalem Post",
+      "published_at": "2026-10-27T20:19:51Z",
+      "detected_at": "2026-10-28T05:54:34.989612Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
         "8 "
       ],
       "review_status": "needs_primary_source",
@@ -5034,23 +5053,6 @@
       "topic_hints": [
         "ballot_access",
         "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "11161a7fd9325189784b",
-      "title": "Legal Battle Over Use of Student IDs to Vote in NH Heads to U.S. Supreme Court - InDepthNH.org",
-      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPcmtRdW9kaGx3cTJsTkY2REE3U3ZUNk9qc0RPYW4zakF6QV9XamEzZGtnWkw4NEF0YW5vQmZjbjNoT2l5ZGhIS0RDMlZmMF91ME9VOU4tQlBKMlhOZ3RJa0V5U0R3UkdnaGl5bnc2b1BrSTUta3NaQVZaZ2xJalRPYlBMOEc3ajJ2b25oc2pqbnpMek1XNENQbWdNaXZJSkp2c2c4Y2Q5LTlWcGotVnpMaA?oc=5",
-      "publisher": "InDepthNH.org",
-      "published_at": "2026-10-15T17:51:59Z",
-      "detected_at": "2026-10-15T18:02:04.478495Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
