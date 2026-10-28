@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-28T17:56:30.092625+00:00",
+  "updated_at": "2026-10-28T18:46:52.602579+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,7 +9,7 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1274,
+      "available_in_source": 1275,
       "records_examined": 300
     },
     "governor": {
@@ -18,13 +18,8 @@
     }
   },
   "matched_primary_observations": 329,
-  "newly_injected_into_model": 1,
-  "injected_poll_ids": [
-    {
-      "race_code": "WI-GOV",
-      "poll_id": "cab98ee4-565d-4c17-8d25-b996592f3ee2"
-    }
-  ],
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "WI-GOV",
@@ -32,11 +27,11 @@
       "state": "WI",
       "poll_id": "cab98ee4-565d-4c17-8d25-b996592f3ee2",
       "question_id": "076bf221-6ac6-4a84-bbd8-4ddf3e9f0604",
-      "pollster": "Marquette Law School",
+      "pollster": "Marquette University Law School",
       "dem_name": "David Crowley",
       "rep_name": "Tom Tiffany",
-      "dem": 47.0,
-      "rep": 44.0,
+      "dem": 49.0,
+      "rep": 46.0,
       "margin": 3.0,
       "field_end": "2026-10-22",
       "field_start": "2026-10-14",
@@ -44,7 +39,7 @@
       "posted_source_datetime": "2026-10-28T13:45:00",
       "posted_source_time": "10/28/26 13:45",
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
-      "source_url": "https://x.com/MULawPoll/status/2115494053663875557",
+      "source_url": "https://law.marquette.edu/poll/2026/10/28/mlsp92-press-release/",
       "sample_population": "rv",
       "sample_size": 818,
       "partisan_lean": "",
@@ -56,11 +51,11 @@
       "state": "WI",
       "poll_id": "cab98ee4-565d-4c17-8d25-b996592f3ee2",
       "question_id": "ae78fc43-5f3b-4f1b-ab79-4d782e934476",
-      "pollster": "Marquette Law School",
+      "pollster": "Marquette University Law School",
       "dem_name": "David Crowley",
       "rep_name": "Tom Tiffany",
-      "dem": 51.0,
-      "rep": 44.0,
+      "dem": 53.0,
+      "rep": 46.0,
       "margin": 7.0,
       "field_end": "2026-10-22",
       "field_start": "2026-10-14",
@@ -68,7 +63,7 @@
       "posted_source_datetime": "2026-10-28T13:45:00",
       "posted_source_time": "10/28/26 13:45",
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
-      "source_url": "https://x.com/MULawPoll/status/2115494053663875557",
+      "source_url": "https://law.marquette.edu/poll/2026/10/28/mlsp92-press-release/",
       "sample_population": "lv",
       "sample_size": 668,
       "partisan_lean": "",

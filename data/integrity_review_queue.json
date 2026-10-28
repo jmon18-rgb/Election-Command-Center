@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-28T17:56:29.389090Z",
+  "updated_at": "2026-10-28T18:46:52.037713Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
@@ -265,6 +265,27 @@
   ],
   "items": [
     {
+      "id": "0c68cd69623453ea50b2",
+      "title": "Could 2,900 Georgia voters miss the election? - Rolling Out",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE42a1NzTFdJMGswZW8wTEpEOFRKbkFSN1JQWXBJcHJDVXE4SGZ0LUxrUGt5RkVuNEVFT01Mb0NPbmk4U3JVVnRNS1Z2UHdnSWF4YlpscXcyXzVpcEdORVdCV0tCQnlWOTZud0pZcEkxcHBCR1E2QjRLd3lVUnpmUQ?oc=5",
+      "publisher": "Rolling Out",
+      "published_at": "2026-10-28T18:12:56Z",
+      "detected_at": "2026-10-28T18:46:52.037713Z",
+      "state_hints": [
+        "GA"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2,900 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "943ca4486e33563f77e7",
       "title": "Court dismisses Emeka Ike\u2019s N10bn suit against Wike\u2019s aide - Punch Newspapers",
       "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOTTY1U2ctbkd3dmNNQlNxaFB2TmtrMWNhRXd1WVYxNDNfQnJrQXJoOGViRDZQNFRIdS1fNTJjaTJLeUMybWhKMnBpRGNCaUNxTGFCaVM2VEFGT0JGWGdEdXRoMUhtWDZXVkNHVDV4NTlVWGhVdlBmQ3B0MnM3NkdvVmt3?oc=5",
@@ -381,6 +402,29 @@
         "ballot_access"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "a599a3eb537da29d3af4",
+      "title": "Appeals court lets California keep counting ballots tied to 20,000 voters the Justice Department flagged - NationofChange",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPbW9RWGg0Wmdlc1pXQXM5NGNXWGxEVVFHSk1xV09sVElvSGtiMzU0cnhzc2Z4MnJRNDZ6eG4tNmJEMVNyajFvVGVfNFlQRkw4Mi1CWWZjYjlnZUlScDZydjdYQVpoenhBNnRYS3hVUFpDYjRHSF9SS3RkMGttRmwxcC1NajQ3eWRwS0tDOHlwMUJlZkFHMDlFOV8waTEwSzczay1mTTZKNmxyOWZldERYZ1M2akVfVnlJQVlWYUh5QmdJSEJvOFhmdkk4TWRVVElmbmF0dl9UdVk3UHpTd2xn?oc=5",
+      "publisher": "NationofChange",
+      "published_at": "2026-10-28T10:37:34Z",
+      "detected_at": "2026-10-28T18:46:52.037713Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation",
+        "security"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 voters"
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5013,46 +5057,6 @@
         "litigation"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "3271c62cc97585ee41f3",
-      "title": "Trump admin files \u2018long shot\u2019 lawsuit after California wouldn\u2019t open a thumb drive of alleged non-citizens - CNN",
-      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPemIwY3Flc3VVYkdOU3Bod1JPcW5OY2hGSy1PU3poR0RNWlF4MjVwalhvaGpHZEZTZ3ctUGdKUnEwTGlhUFBxVDZrUUNoWEVYdFRuM3FKWG5HamlpeEdjNk9qZGI2eXcteWgwRFQ0ZkI2aXVnbnRacjIwcnFULTF2c000UVVMRjMzWTZnakdR?oc=5",
-      "publisher": "CNN",
-      "published_at": "2026-10-15T21:20:12Z",
-      "detected_at": "2026-10-16T00:54:21.289589Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "3a248eaa8bf51e46c190",
-      "title": "Trump sues California to prevent counting 20,000 voters' ballots - Axios",
-      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNWGNhY25NcDRWSDBLSHBaMVBjczhISW5aQmZwWnBja0VhS2dMdkhwSkRmYlNLSmk5X0M4a3JwelFwV1A1eUNQSUVxOWYwVmRQMnhERW1jMExqVlBab3dIbWUyVU1iRHZLS0E0TUtlWnJLMl9LbGp6VXFaT0JxaXFwZkV3?oc=5",
-      "publisher": "Axios",
-      "published_at": "2026-10-15T21:06:33Z",
-      "detected_at": "2026-10-15T22:08:05.403643Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [
-        "20,000 voters"
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
