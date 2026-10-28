@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-27T23:46:50.528964Z",
+  "updated_at": "2026-10-28T00:03:47.780817Z",
   "generic_ballot": {
     "summary": {
       "dem": 50.9,
@@ -845,7 +845,7 @@
         "rep_name": "Susan Collins",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-27T23:46:50.528964Z",
+        "first_seen_at": "2026-10-28T00:03:47.780817Z",
         "release_date": null,
         "question_id": "affd988a-3dbb-42da-8b36-6409a6910f4e",
         "sample_population": "lv",
@@ -869,7 +869,7 @@
           "rep_name": "Susan Collins",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-27T23:46:50.528964Z",
+          "first_seen_at": "2026-10-28T00:03:47.780817Z",
           "release_date": null,
           "question_id": "affd988a-3dbb-42da-8b36-6409a6910f4e",
           "sample_population": "lv",
@@ -935,7 +935,7 @@
           "rep_name": "Susan Collins",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-27T23:46:50.528964Z",
+          "first_seen_at": "2026-10-28T00:03:47.780817Z",
           "release_date": null,
           "question_id": "c3f69e5a-d0fc-4e59-8b8d-47e08e73ca3f",
           "sample_population": "lv",
@@ -1022,12 +1022,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://maristpoll.marist.edu/polls/midterm-elections-in-maine-october-2026/",
-          "sample_population": "rv",
-          "question_id": "4c6d07ef-7f9b-4992-8a53-5ca36485f320",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "fc373698-f6f7-4370-84e1-641b97ec8fea",
@@ -1647,7 +1642,7 @@
         "rep_name": "Bobby Charles",
         "other": 7.0,
         "other_name": "Rick Bennett",
-        "first_seen_at": "2026-10-27T23:46:50.528964Z",
+        "first_seen_at": "2026-10-28T00:03:47.780817Z",
         "release_date": null,
         "question_id": "828023d7-a89e-4734-8909-e03a9fac7e0c",
         "sample_population": "lv",
@@ -1671,7 +1666,7 @@
           "rep_name": "Bobby Charles",
           "other": 7.0,
           "other_name": "Rick Bennett",
-          "first_seen_at": "2026-10-27T23:46:50.528964Z",
+          "first_seen_at": "2026-10-28T00:03:47.780817Z",
           "release_date": null,
           "question_id": "828023d7-a89e-4734-8909-e03a9fac7e0c",
           "sample_population": "lv",
@@ -1718,11 +1713,13 @@
           "other_name": "Rick Bennett",
           "first_seen_at": "2026-10-23T00:57:50.492444+00:00",
           "release_date": null,
-          "upstream_posted_date": null,
-          "source_poll_url": "https://www.foxnews.com/politics/fox-news-poll-nail-biter-maine-senate-race",
-          "sample_population": "lv",
           "question_id": "0323398c-c289-44ef-9237-6a32d93b3b1f",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "sample_population": "lv",
+          "upstream_posted_date": "2026-10-22",
+          "source_poll_url": "https://www.foxnews.com/politics/fox-news-poll-nail-biter-maine-senate-race",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback",
+          "lv_selected_over_rv": true
         },
         {
           "poll_id": "b2cf5601-98ad-4a7f-acd3-1be546e39bc3",
@@ -1780,12 +1777,7 @@
           "other": 6.0,
           "other_name": "Rick Bennett",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://maristpoll.marist.edu/polls/midterm-elections-in-maine-october-2026/",
-          "sample_population": "rv",
-          "question_id": "a33380e9-7e43-4907-aefd-74c1a35c3b48",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "bfa1f56c-0587-479f-b529-5d9e30f438d4",
@@ -2199,12 +2191,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://x.com/The_Real_ASR/status/2107851752464884167",
-          "sample_population": "lv",
-          "question_id": "c7340ffc-0e35-43ef-8728-d0233b55fa85",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "1dd26268-04c3-441e-9f93-2ff27d322d77",
@@ -2342,12 +2329,7 @@
           "other": 7.0,
           "other_name": "Danielle Ford",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://www.noblepredictiveinsights.com/post/lombardo-tries-to-escape-trump-s-orbit-up-2-over-ford",
-          "sample_population": "lv",
-          "question_id": "3ba36cb9-20bb-4f3b-ad41-c904cc641383",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "127b941e-e71f-491b-97ee-71bea823f84b",
@@ -2653,7 +2635,7 @@
           "rep_name": "Steve Hilton",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-27T23:46:50.528964Z",
+          "first_seen_at": "2026-10-28T00:03:47.780817Z",
           "release_date": null,
           "question_id": "bd11cead-5447-4b9c-aba5-55eb077a2ef4",
           "sample_population": "lv",
@@ -2978,12 +2960,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_mi_20260921_lv.pdf",
-          "sample_population": "lv",
-          "question_id": "6ef7b8c6-41c1-457b-89a2-fe1ed343f795",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "ab83cf47-b0a2-422e-a221-5c9e87c8ef63",
@@ -3856,25 +3833,9 @@
           "other_name": null,
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "bfa1e330-e1e0-4fb7-9be9-1ee513cb362e",
-          "field_end": "2026-08-23",
-          "pollster": "Suffolk University",
-          "dem": 40.8,
-          "rep": 45.4,
-          "margin": -4.6,
-          "sample_size": 500,
-          "partisan_lean": "",
-          "dem_name": "Josh Turek",
-          "rep_name": "Ashley Hinson",
-          "other": 4.0,
-          "other_name": "Thomas Laehn",
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 25,
+      "recent_poll_count": 24,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -4004,7 +3965,7 @@
           "rep_name": "Jon Husted",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-27T23:46:50.528964Z",
+          "first_seen_at": "2026-10-28T00:03:47.780817Z",
           "release_date": null,
           "question_id": "a101b63d-1983-4681-9db7-fa3a2dd3fc0a",
           "sample_population": "lv",
@@ -4149,12 +4110,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_oh_20260921_lv.pdf",
-          "sample_population": "lv",
-          "question_id": "076973f0-aa63-4d73-9330-ed394204e8d9",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "ee4a1986-796f-4f9a-bc2c-eeabdc1eea57",
@@ -4416,12 +4372,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_mi_20260921_lv.pdf",
-          "sample_population": "lv",
-          "question_id": "f6077a4b-63bf-4979-b4b1-bfd7ef08672b",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "ab83cf47-b0a2-422e-a221-5c9e87c8ef63",
@@ -5075,7 +5026,7 @@
         "rep_name": "Brian Fitzpatrick",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-27T23:46:50.528964Z",
+        "first_seen_at": "2026-10-28T00:03:47.780817Z",
         "release_date": null,
         "question_id": "647d6f76-0bba-4caf-9086-af309c58f784",
         "sample_population": "lv",
@@ -5099,7 +5050,7 @@
           "rep_name": "Brian Fitzpatrick",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-27T23:46:50.528964Z",
+          "first_seen_at": "2026-10-28T00:03:47.780817Z",
           "release_date": null,
           "question_id": "647d6f76-0bba-4caf-9086-af309c58f784",
           "sample_population": "lv",
@@ -5145,25 +5096,9 @@
           "other_name": null,
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "98ff4d86-156e-43d7-b109-bfe74d4d8f63",
-          "field_end": "2026-08-23",
-          "pollster": "GQR",
-          "dem": 48.0,
-          "rep": 49.0,
-          "margin": -1.0,
-          "sample_size": 400,
-          "partisan_lean": "D",
-          "dem_name": "Bob Harvie",
-          "rep_name": "Brian Fitzpatrick",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 4,
+      "recent_poll_count": 3,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -5185,7 +5120,7 @@
         "rep_name": "Scott Perry",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-27T23:46:50.528964Z",
+        "first_seen_at": "2026-10-28T00:03:47.780817Z",
         "release_date": null,
         "question_id": "840ae67f-bfb6-423e-81ea-a4b12e61dde7",
         "sample_population": "lv",
@@ -5209,7 +5144,7 @@
           "rep_name": "Scott Perry",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-27T23:46:50.528964Z",
+          "first_seen_at": "2026-10-28T00:03:47.780817Z",
           "release_date": null,
           "question_id": "840ae67f-bfb6-423e-81ea-a4b12e61dde7",
           "sample_population": "lv",
@@ -5717,7 +5652,7 @@
         "rep_name": "Ryan E. Mackenzie",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-27T23:46:50.528964Z",
+        "first_seen_at": "2026-10-28T00:03:47.780817Z",
         "release_date": null,
         "question_id": "96cf897e-1fae-4ca2-89d6-94973d7d04f3",
         "sample_population": "lv",
@@ -5741,7 +5676,7 @@
           "rep_name": "Ryan E. Mackenzie",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-27T23:46:50.528964Z",
+          "first_seen_at": "2026-10-28T00:03:47.780817Z",
           "release_date": null,
           "question_id": "96cf897e-1fae-4ca2-89d6-94973d7d04f3",
           "sample_population": "lv",
@@ -5790,7 +5725,7 @@
         "rep_name": "Rob Bresnahan Jr.",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-27T23:46:50.528964Z",
+        "first_seen_at": "2026-10-28T00:03:47.780817Z",
         "release_date": null,
         "question_id": "9a4f7766-8cd4-4f69-9c2a-9b5f7937815b",
         "sample_population": "lv",
@@ -5814,7 +5749,7 @@
           "rep_name": "Rob Bresnahan Jr.",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-27T23:46:50.528964Z",
+          "first_seen_at": "2026-10-28T00:03:47.780817Z",
           "release_date": null,
           "question_id": "9a4f7766-8cd4-4f69-9c2a-9b5f7937815b",
           "sample_population": "lv",
@@ -6107,7 +6042,7 @@
           "rep_name": "Ken Paxton",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-27T23:46:50.528964Z",
+          "first_seen_at": "2026-10-28T00:03:47.780817Z",
           "release_date": null,
           "question_id": "3614ff38-afab-41f9-b54f-179c6f7aec16",
           "sample_population": "lv",
@@ -6363,12 +6298,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_tx_20260921_lv.pdf",
-          "sample_population": "lv",
-          "question_id": "7382c84a-9f84-4c4e-8a56-46b0e8ea8ea4",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "54fd4696-1366-495e-9fa3-5d1726ee0027",
@@ -6757,7 +6687,7 @@
           "rep_name": "Greg Abbott",
           "other": 0.9,
           "other_name": "Pat Dixon",
-          "first_seen_at": "2026-10-27T23:46:50.528964Z",
+          "first_seen_at": "2026-10-28T00:03:47.780817Z",
           "release_date": null,
           "question_id": "d1c17272-a2aa-47a0-b3dc-9562ce074fff",
           "sample_population": "lv",
@@ -6796,7 +6726,7 @@
           "rep_name": "Greg Abbott",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-27T23:46:50.528964Z",
+          "first_seen_at": "2026-10-28T00:03:47.780817Z",
           "release_date": null,
           "question_id": "4c5ec262-3c41-4a96-a86e-7d2f16c5b5b0",
           "sample_population": "lv",
@@ -6988,12 +6918,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_tx_20260921_lv.pdf",
-          "sample_population": "lv",
-          "question_id": "b11aa93d-50d6-4750-90c4-10ba75f0c9b2",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "3ff82616-3e01-4877-adb4-e524bde844aa",
@@ -7497,12 +7422,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ks_20260921_lv.pdf",
-          "sample_population": "lv",
-          "question_id": "43d39b99-87e0-48de-a294-23601c20deb8",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "0f4d264a-5dc3-4a3c-b3ec-1dc55df13c4b",
@@ -8170,12 +8090,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_fl_20260921_lv.pdf",
-          "sample_population": "lv",
-          "question_id": "80f64752-7af1-45e6-b2ea-307a751a477d",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "d4838e04-358f-42db-a0ce-bb4e52d31c89",
@@ -8476,12 +8391,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_fl_20260921_lv.pdf",
-          "sample_population": "lv",
-          "question_id": "e2bb179d-b3d5-4522-8562-d62b71b61989",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "d4838e04-358f-42db-a0ce-bb4e52d31c89",
@@ -8709,12 +8619,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_nh_20260921_lv.pdf",
-          "sample_population": "lv",
-          "question_id": "583112e3-bbf9-4342-a6a3-44a46eeaf71c",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "16fd8632-e35b-4456-ae81-53c7b9b050a3",
@@ -8730,12 +8635,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://www.aarp.org/pri/topics/voter-research/politics/2026-midterm-election-poll-new-hampshire/",
-          "sample_population": "lv",
-          "question_id": "903844c3-8b83-4446-8e68-03aa4da0c847",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "b793fcb5-4f42-4c49-94aa-37bff6ae998e",
@@ -8949,7 +8849,7 @@
           "rep_name": "Vivek Ramaswamy",
           "other": 2.1,
           "other_name": "Donald Kissick",
-          "first_seen_at": "2026-10-27T23:46:50.528964Z",
+          "first_seen_at": "2026-10-28T00:03:47.780817Z",
           "release_date": null,
           "question_id": "33054139-a1b1-46a2-b9a6-5eb6eaa06757",
           "sample_population": "lv",
@@ -8972,7 +8872,7 @@
           "rep_name": "Vivek Ramaswamy",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-27T23:46:50.528964Z",
+          "first_seen_at": "2026-10-28T00:03:47.780817Z",
           "release_date": null,
           "question_id": "723e97d1-6029-4b0d-95dc-7f8ee78290ae",
           "sample_population": "lv",
@@ -9117,12 +9017,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_oh_20260921_lv.pdf",
-          "sample_population": "lv",
-          "question_id": "2dfd484f-8dd0-4baf-8d7a-8ae367f8b011",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "8736e40d-10b1-47e8-98dc-3e77af028d79",
@@ -9276,12 +9171,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_nh_20260921_lv.pdf",
-          "sample_population": "lv",
-          "question_id": "8303f239-0eb6-4afb-ace9-28c13b40eebf",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "16fd8632-e35b-4456-ae81-53c7b9b050a3",
@@ -9297,12 +9187,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://www.aarp.org/pri/topics/voter-research/politics/2026-midterm-election-poll-new-hampshire/",
-          "sample_population": "lv",
-          "question_id": "b2955fa9-075d-4d2b-92e6-258b7565f581",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "33141d42-b1c6-4e08-8ed0-5a81e91ddfa6",
@@ -9370,154 +9255,6 @@
         }
       ],
       "recent_poll_count": 8,
-      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-    },
-    {
-      "race_code": "KY-06",
-      "race_type": "house",
-      "state": "KY",
-      "district": "06",
-      "latest_field_end": "2026-10-20",
-      "latest": {
-        "poll_id": "3a935783-1c6a-42e6-bb80-140996b33a96",
-        "field_end": "2026-10-20",
-        "pollster": "Public Policy Polling",
-        "dem": 47.0,
-        "rep": 41.0,
-        "margin": 6.0,
-        "sample_size": null,
-        "partisan_lean": "D",
-        "dem_name": "Zach Dembo",
-        "rep_name": "Ralph Alvarado",
-        "other": null,
-        "other_name": null,
-        "first_seen_at": "2026-10-23T00:57:50.234271Z",
-        "release_date": null,
-        "upstream_posted_date": "2026-10-21",
-        "source_poll_url": "https://x.com/cjwarnke/status/2112877284684341727?s=46",
-        "sample_population": "lv",
-        "question_id": "39dda4df-34d4-4aee-81db-ae6201ad9a41",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
-      },
-      "polls": [
-        {
-          "poll_id": "3a935783-1c6a-42e6-bb80-140996b33a96",
-          "field_end": "2026-10-20",
-          "pollster": "Public Policy Polling",
-          "dem": 47.0,
-          "rep": 41.0,
-          "margin": 6.0,
-          "sample_size": null,
-          "partisan_lean": "D",
-          "dem_name": "Zach Dembo",
-          "rep_name": "Ralph Alvarado",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": "2026-10-23T00:57:50.234271Z",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-21",
-          "source_poll_url": "https://x.com/cjwarnke/status/2112877284684341727?s=46",
-          "sample_population": "lv",
-          "question_id": "39dda4df-34d4-4aee-81db-ae6201ad9a41",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
-        },
-        {
-          "poll_id": "f75e9a78-ee1a-4538-a69d-89a50df372dd",
-          "field_end": "2026-10-05",
-          "pollster": "Change Research",
-          "dem": 47.0,
-          "rep": 38.0,
-          "margin": 9.0,
-          "sample_size": 524,
-          "partisan_lean": "D",
-          "dem_name": "Zach Dembo",
-          "rep_name": "Ralph Alvarado",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-08",
-          "source_poll_url": "https://fox56news.com/news/kentucky/new-poll-shows-democrats-with-9-point-lead-in-kentucky-6th-congressional-district-race/",
-          "sample_population": "lv",
-          "question_id": "2f1a62c8-7c13-4d2d-ab84-6a5bd0a15f9e",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
-        },
-        {
-          "poll_id": "ac27424c-cc80-4f99-bfbe-4fb762913fca",
-          "field_end": "2026-10-05",
-          "pollster": "DCCC Targeting Team",
-          "dem": 46.0,
-          "rep": 40.0,
-          "margin": 6.0,
-          "sample_size": 606,
-          "partisan_lean": "D",
-          "dem_name": "Zach Dembo",
-          "rep_name": "Ralph Alvarado",
-          "other": 5.0,
-          "other_name": "Jay Bowman",
-          "first_seen_at": "2026-10-14T20:53:15.383008Z",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-14",
-          "source_poll_url": "https://dccc.org/dccc-polling-memo-zach-dembo-continues-to-lead-in-ky-06/",
-          "sample_population": "lv",
-          "question_id": "6e02adae-6e35-4a73-aa8a-a51f0ece5f7d",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
-        },
-        {
-          "poll_id": "53a7fa13-c413-40b9-ac25-7d545f89204d",
-          "field_end": "2026-10-04",
-          "pollster": "Lake Research Partners",
-          "dem": 46.0,
-          "rep": 40.0,
-          "margin": 6.0,
-          "sample_size": 400,
-          "partisan_lean": "D",
-          "dem_name": "Zach Dembo",
-          "rep_name": "Ralph Alvarado",
-          "other": 3.0,
-          "other_name": "Jay Bowman",
-          "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-08",
-          "source_poll_url": "https://x.com/cjwarnke/status/2108282466733818029",
-          "sample_population": "lv",
-          "question_id": "9fe15e98-1732-4d6d-8e27-6852aec6ba1f",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
-        },
-        {
-          "poll_id": "f449ae8e-89ab-4a30-a329-3d6f26a436f4",
-          "field_end": "2026-09-30",
-          "pollster": "GQR",
-          "dem": 42.0,
-          "rep": 37.0,
-          "margin": 5.0,
-          "sample_size": 401,
-          "partisan_lean": "D",
-          "dem_name": "Zach Dembo",
-          "rep_name": "Ralph Alvarado",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
-        },
-        {
-          "poll_id": "e1baee06-61cd-4602-8782-9ba5750f3b23",
-          "field_end": "2026-08-23",
-          "pollster": "Lake Research Partners",
-          "dem": 45.0,
-          "rep": 44.0,
-          "margin": 1.0,
-          "sample_size": null,
-          "partisan_lean": "D",
-          "dem_name": "Zach Dembo",
-          "rep_name": "Ralph Alvarado",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
-        }
-      ],
-      "recent_poll_count": 6,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -9678,6 +9415,138 @@
         }
       ],
       "recent_poll_count": 6,
+      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
+    },
+    {
+      "race_code": "KY-06",
+      "race_type": "house",
+      "state": "KY",
+      "district": "06",
+      "latest_field_end": "2026-10-20",
+      "latest": {
+        "poll_id": "3a935783-1c6a-42e6-bb80-140996b33a96",
+        "field_end": "2026-10-20",
+        "pollster": "Public Policy Polling",
+        "dem": 47.0,
+        "rep": 41.0,
+        "margin": 6.0,
+        "sample_size": null,
+        "partisan_lean": "D",
+        "dem_name": "Zach Dembo",
+        "rep_name": "Ralph Alvarado",
+        "other": null,
+        "other_name": null,
+        "first_seen_at": "2026-10-23T00:57:50.234271Z",
+        "release_date": null,
+        "upstream_posted_date": "2026-10-21",
+        "source_poll_url": "https://x.com/cjwarnke/status/2112877284684341727?s=46",
+        "sample_population": "lv",
+        "question_id": "39dda4df-34d4-4aee-81db-ae6201ad9a41",
+        "date_provenance": "PollResults ingestion date, NOT public release date"
+      },
+      "polls": [
+        {
+          "poll_id": "3a935783-1c6a-42e6-bb80-140996b33a96",
+          "field_end": "2026-10-20",
+          "pollster": "Public Policy Polling",
+          "dem": 47.0,
+          "rep": 41.0,
+          "margin": 6.0,
+          "sample_size": null,
+          "partisan_lean": "D",
+          "dem_name": "Zach Dembo",
+          "rep_name": "Ralph Alvarado",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-23T00:57:50.234271Z",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-21",
+          "source_poll_url": "https://x.com/cjwarnke/status/2112877284684341727?s=46",
+          "sample_population": "lv",
+          "question_id": "39dda4df-34d4-4aee-81db-ae6201ad9a41",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
+        },
+        {
+          "poll_id": "f75e9a78-ee1a-4538-a69d-89a50df372dd",
+          "field_end": "2026-10-05",
+          "pollster": "Change Research",
+          "dem": 47.0,
+          "rep": 38.0,
+          "margin": 9.0,
+          "sample_size": 524,
+          "partisan_lean": "D",
+          "dem_name": "Zach Dembo",
+          "rep_name": "Ralph Alvarado",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": null,
+          "release_date": null,
+          "upstream_posted_date": "2026-10-08",
+          "source_poll_url": "https://fox56news.com/news/kentucky/new-poll-shows-democrats-with-9-point-lead-in-kentucky-6th-congressional-district-race/",
+          "sample_population": "lv",
+          "question_id": "2f1a62c8-7c13-4d2d-ab84-6a5bd0a15f9e",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
+        },
+        {
+          "poll_id": "ac27424c-cc80-4f99-bfbe-4fb762913fca",
+          "field_end": "2026-10-05",
+          "pollster": "DCCC Targeting Team",
+          "dem": 46.0,
+          "rep": 40.0,
+          "margin": 6.0,
+          "sample_size": 606,
+          "partisan_lean": "D",
+          "dem_name": "Zach Dembo",
+          "rep_name": "Ralph Alvarado",
+          "other": 5.0,
+          "other_name": "Jay Bowman",
+          "first_seen_at": "2026-10-14T20:53:15.383008Z",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-14",
+          "source_poll_url": "https://dccc.org/dccc-polling-memo-zach-dembo-continues-to-lead-in-ky-06/",
+          "sample_population": "lv",
+          "question_id": "6e02adae-6e35-4a73-aa8a-a51f0ece5f7d",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
+        },
+        {
+          "poll_id": "53a7fa13-c413-40b9-ac25-7d545f89204d",
+          "field_end": "2026-10-04",
+          "pollster": "Lake Research Partners",
+          "dem": 46.0,
+          "rep": 40.0,
+          "margin": 6.0,
+          "sample_size": 400,
+          "partisan_lean": "D",
+          "dem_name": "Zach Dembo",
+          "rep_name": "Ralph Alvarado",
+          "other": 3.0,
+          "other_name": "Jay Bowman",
+          "first_seen_at": null,
+          "release_date": null,
+          "upstream_posted_date": "2026-10-08",
+          "source_poll_url": "https://x.com/cjwarnke/status/2108282466733818029",
+          "sample_population": "lv",
+          "question_id": "9fe15e98-1732-4d6d-8e27-6852aec6ba1f",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
+        },
+        {
+          "poll_id": "f449ae8e-89ab-4a30-a329-3d6f26a436f4",
+          "field_end": "2026-09-30",
+          "pollster": "GQR",
+          "dem": 42.0,
+          "rep": 37.0,
+          "margin": 5.0,
+          "sample_size": 401,
+          "partisan_lean": "D",
+          "dem_name": "Zach Dembo",
+          "rep_name": "Ralph Alvarado",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": null,
+          "release_date": null
+        }
+      ],
+      "recent_poll_count": 5,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -10630,25 +10499,9 @@
           "other_name": null,
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "bfa1e330-e1e0-4fb7-9be9-1ee513cb362e",
-          "field_end": "2026-08-23",
-          "pollster": "Suffolk University",
-          "dem": 47.8,
-          "rep": 43.6,
-          "margin": 4.2,
-          "sample_size": 500,
-          "partisan_lean": "",
-          "dem_name": "Rob Sand",
-          "rep_name": "Zach Lahn",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 17,
+      "recent_poll_count": 16,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -10793,12 +10646,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://nypost.com/2026/10/05/us-news/more-than-half-of-new-york-voters-concerned-about-rise-of-socialism-poll/",
-          "sample_population": "lv",
-          "question_id": "b13c0962-885d-4ff9-96f3-8e0a515de433",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "487f16f8-4e73-4ad9-b10f-56a751061549",
@@ -11217,7 +11065,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-27T23:46:50.528964Z",
+          "first_seen_at": "2026-10-28T00:03:47.780817Z",
           "release_date": null,
           "question_id": "fc90c944-300b-4341-9404-68a53bd6ce5d",
           "sample_population": "lv",
@@ -11262,12 +11110,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ne_20260921_lv.pdf",
-          "sample_population": "lv",
-          "question_id": "15d717ab-c9e6-49ba-b2a8-f8a088fca546",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "c15969eb-0f9d-4487-8425-7fca11a9da78",
@@ -11671,25 +11514,9 @@
           "other_name": null,
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "35528aa3-b4dc-4133-b23d-8bb941fa5a53",
-          "field_end": "2026-08-23",
-          "pollster": "Franklin & Marshall College",
-          "dem": 50.0,
-          "rep": 25.0,
-          "margin": 25.0,
-          "sample_size": 501,
-          "partisan_lean": "",
-          "dem_name": "Josh Shapiro",
-          "rep_name": "Stacy Garrity",
-          "other": 2.0,
-          "other_name": "Tony Dastra",
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 8,
+      "recent_poll_count": 7,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -12603,12 +12430,7 @@
           "other": 5.0,
           "other_name": "Dan J. Sullivan",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://x.com/The_Real_ASR/status/2107851752464884167",
-          "sample_population": "lv",
-          "question_id": "2b14c8bc-39c4-41fb-9758-e6671b0a04b7",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "c115983e-1ed7-42e1-bd8c-92692471a053",
@@ -12705,25 +12527,9 @@
           "other_name": "Dan J. Sullivan",
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "5644eb93-7595-4afd-bacf-2fd24589ef3b",
-          "field_end": "2026-08-23",
-          "pollster": "Alaska Survey Research",
-          "dem": 50.6,
-          "rep": 49.4,
-          "margin": 1.2,
-          "sample_size": 1495,
-          "partisan_lean": "",
-          "dem_name": "Mary Peltola",
-          "rep_name": "Dan Sullivan",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 10,
+      "recent_poll_count": 9,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -12745,7 +12551,7 @@
         "rep_name": "Nick Begich",
         "other": 42.0,
         "other_name": "Bill Hill",
-        "first_seen_at": "2026-10-27T23:46:50.528964Z",
+        "first_seen_at": "2026-10-28T00:03:47.780817Z",
         "release_date": null,
         "question_id": "843ff988-f9ae-4553-8aa9-3b87af20e024",
         "sample_population": "lv",
@@ -12769,7 +12575,7 @@
           "rep_name": "Nick Begich",
           "other": 42.0,
           "other_name": "Bill Hill",
-          "first_seen_at": "2026-10-27T23:46:50.528964Z",
+          "first_seen_at": "2026-10-28T00:03:47.780817Z",
           "release_date": null,
           "question_id": "843ff988-f9ae-4553-8aa9-3b87af20e024",
           "sample_population": "lv",
@@ -12793,12 +12599,7 @@
           "other": 39.9,
           "other_name": "Bill Hill",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://x.com/The_Real_ASR/status/2107851752464884167",
-          "sample_population": "lv",
-          "question_id": "c3d540b9-4726-49d3-8de0-608fa29b16ad",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "c115983e-1ed7-42e1-bd8c-92692471a053",
@@ -12847,25 +12648,9 @@
           "other_name": "Bill Hill",
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "5644eb93-7595-4afd-bacf-2fd24589ef3b",
-          "field_end": "2026-08-23",
-          "pollster": "Alaska Survey Research",
-          "dem": 5.7,
-          "rep": 50.6,
-          "margin": -44.9,
-          "sample_size": 1872,
-          "partisan_lean": "",
-          "dem_name": "John Williams",
-          "rep_name": "Nick Begich",
-          "other": 39.1,
-          "other_name": "Bill Hill",
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 6,
+      "recent_poll_count": 5,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -13525,12 +13310,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ks_20260921_lv.pdf",
-          "sample_population": "lv",
-          "question_id": "8bde19c1-0c6a-406d-b961-f44c53d4a2da",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "83a74e52-1bb7-4aa4-8d8c-6c58999faa29",
@@ -16924,12 +16704,7 @@
         "other": null,
         "other_name": null,
         "first_seen_at": null,
-        "release_date": null,
-        "upstream_posted_date": "2026-10-06",
-        "source_poll_url": "https://georgekruse.substack.com/p/informed-voters-trend-toward-kirschner",
-        "sample_population": "rv",
-        "question_id": "ee1218a1-7b77-4ce1-be9e-6d0b82d5ce03",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -16946,12 +16721,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://georgekruse.substack.com/p/informed-voters-trend-toward-kirschner",
-          "sample_population": "rv",
-          "question_id": "ee1218a1-7b77-4ce1-be9e-6d0b82d5ce03",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "09a5223e-3e82-438e-9d6f-cb48d132fb83",
@@ -17137,12 +16907,7 @@
         "other": null,
         "other_name": null,
         "first_seen_at": null,
-        "release_date": null,
-        "upstream_posted_date": "2026-10-06",
-        "source_poll_url": "https://s3.documentcloud.org/documents/28722214/shahfeeley-poll-release.pdf",
-        "sample_population": "rv",
-        "question_id": "b3503a2d-cbfc-4c66-946b-1867ad9b4798",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -17159,12 +16924,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://s3.documentcloud.org/documents/28722214/shahfeeley-poll-release.pdf",
-          "sample_population": "rv",
-          "question_id": "b3503a2d-cbfc-4c66-946b-1867ad9b4798",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 1,
@@ -17243,12 +17003,7 @@
         "other": 6.0,
         "other_name": "Collin Corbett",
         "first_seen_at": null,
-        "release_date": null,
-        "upstream_posted_date": "2026-10-06",
-        "source_poll_url": "https://www.cnwmedia.com/article/cnw-poll-pritzker-leads-bailey-by-20-points-democrats-ahead-in-four-other-statewide-races",
-        "sample_population": "rv",
-        "question_id": "344f5130-415b-493d-aad8-90a3752adf49",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -17265,12 +17020,7 @@
           "other": 6.0,
           "other_name": "Collin Corbett",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://www.cnwmedia.com/article/cnw-poll-pritzker-leads-bailey-by-20-points-democrats-ahead-in-four-other-statewide-races",
-          "sample_population": "rv",
-          "question_id": "344f5130-415b-493d-aad8-90a3752adf49",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 1,
@@ -17296,12 +17046,7 @@
         "other": null,
         "other_name": null,
         "first_seen_at": null,
-        "release_date": null,
-        "upstream_posted_date": "2026-10-06",
-        "source_poll_url": "https://www.cnwmedia.com/article/cnw-poll-pritzker-leads-bailey-by-20-points-democrats-ahead-in-four-other-statewide-races",
-        "sample_population": "rv",
-        "question_id": "81acd091-4a0d-411a-a596-67e5c5a6aa86",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -17318,12 +17063,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://www.cnwmedia.com/article/cnw-poll-pritzker-leads-bailey-by-20-points-democrats-ahead-in-four-other-statewide-races",
-          "sample_population": "rv",
-          "question_id": "81acd091-4a0d-411a-a596-67e5c5a6aa86",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 1,
@@ -17600,12 +17340,7 @@
         "other": 3.0,
         "other_name": "Cathy White",
         "first_seen_at": null,
-        "release_date": null,
-        "upstream_posted_date": "2026-10-06",
-        "source_poll_url": "https://marylandmatters.org/wp-content/uploads/2026/10/UMBC-Poll-Tuesday-Oct-6.pdf",
-        "sample_population": "lv",
-        "question_id": "f21fc47d-1f0a-4e09-94dd-c796958b8c8a",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -17622,12 +17357,7 @@
           "other": 3.0,
           "other_name": "Cathy White",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-06",
-          "source_poll_url": "https://marylandmatters.org/wp-content/uploads/2026/10/UMBC-Poll-Tuesday-Oct-6.pdf",
-          "sample_population": "lv",
-          "question_id": "f21fc47d-1f0a-4e09-94dd-c796958b8c8a",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 1,
@@ -18868,7 +18598,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-27T23:46:50.528964Z",
+    "last_attempt_at": "2026-10-28T00:03:47.780817Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -18880,8 +18610,8 @@
     "new_polls": [],
     "new_poll_count": 0,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-27T23:46:50.528964Z",
-    "previous_snapshot_at": "2026-10-27T23:43:07.550852Z",
+    "comparison_at": "2026-10-28T00:03:47.780817Z",
+    "previous_snapshot_at": "2026-10-27T23:46:50.528964Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -18982,13 +18712,20 @@
       "dem": 50.9,
       "rep": 41.9,
       "pollsters": 9
+    },
+    {
+      "date": "2026-10-28",
+      "margin": 9.1,
+      "dem": 50.9,
+      "rep": 41.9,
+      "pollsters": 9
     }
   ],
   "newly_detected_count": 16,
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 337,
+    "matched_observations": 310,
     "newly_injected_into_model": 0,
     "newly_injected_by_race": {},
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
