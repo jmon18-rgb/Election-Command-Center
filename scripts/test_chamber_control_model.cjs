@@ -340,6 +340,12 @@ for(const race of first.race_probabilities){
   100*race.simulated_dem_wins/first.samples)<.011);
  assert.equal(Math.round((race.dem_beats_rep_pct+race.rep_beats_dem_pct)*100)/100,100);
  assert(race.sigma_points>=3);
+ assert.equal(race.gaussian_sigma_points,race.sigma_points,
+  'The legacy live-heuristic sigma must remain the Gaussian baseline');
+ assert(race.total_latent_sigma_points>=race.sigma_points);
+ assert(race.redrawn_permutation_sigma_points>=0);
+ assert.equal(race.uncertainty_method,
+  'EXPERIMENTAL_BASELINE_LATENT_SPREAD_NOT_CALIBRATED_INTERVAL');
 }
 const expectedSeatWins=first.race_probabilities.filter(x=>x.office==='house')
  .reduce((n,x)=>n+x.simulated_dem_wins,0)/first.samples;
@@ -410,5 +416,6 @@ assert.equal(model.simulate(basis,{samples:900,seed:20261103,
  .race_probabilities.find(x=>x.race_code==='NC-SEN').provider_called_party,null,
  'An independent-party field must never silently become a D/R source call');
 
+require('./test_chamber_uncertainty_accounting.cjs');
 console.log('Joint congressional beta: all 470 contested seats, 6 gov battlegrounds, 4 exhaustive outcomes, geographically cautious assumptions, reproducible seeded draws');
 console.log('Model probabilities (diagnostic only):',JSON.stringify(first.probabilities));

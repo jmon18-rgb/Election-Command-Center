@@ -836,6 +836,7 @@ function senatePollingErrorBudget(info){
   const quantile=(vals,f)=>vals[Math.floor((vals.length-1)*f)];
   const pct=x=>Math.round(10000*x/samples)/100;
   const probs=Object.fromEntries(Object.entries(outcomes).map(([k,v])=>[k,pct(v)]));
+  const redrawnPopulationVariances=new Map();
   const race_probabilities=polls.map((item,index)=>{
    const isHouse=index<435,isSenate=index>=435&&index<470;
    const office=isHouse?'house':isSenate?'senate':'governor';
@@ -855,12 +856,36 @@ function senatePollingErrorBudget(info){
     officeShared*chamberScale:officeShared;
    const totalSigma=Math.hypot(reportedLocalSigma,reportedNationalSigma,
     reportedOfficeSigma,localShared)*errorMultiplier;
+   // Legacy sigma_points remains the Gaussian baseline used by existing
+   // live heuristics. The actual baseline draws also include the discrete
+   // old-state margin permutation. Each seat receives a uniform bag element,
+   // so its added marginal variance uses the population (N) denominator.
+   // This metadata is computed AFTER all draws and consumes no random values.
+   let redrawnPermutationSigma=0;
+   if(isHouse&&item.redrawn_mix_weight>0){
+    if(!redrawnPopulationVariances.has(item.state)){
+     const values=redraws[item.state];
+     const center=values.reduce((sum,value)=>sum+value,0)/values.length;
+     redrawnPopulationVariances.set(item.state,values.reduce((sum,value)=>
+      sum+(value-center)**2,0)/values.length);
+    }
+    redrawnPermutationSigma=item.redrawn_mix_weight*
+     Math.sqrt(redrawnPopulationVariances.get(item.state));
+   }
+   // The permutation is outside errorMultiplier in the unchanged simulator.
+   // This is an unconditioned latent mixture SD, never a calibrated interval
+   // or the conditional spread of a live-informed/called result.
+   const totalLatentSigma=Math.hypot(totalSigma,redrawnPermutationSigma);
    const wins=raceDemWins[index],demPct=pct(wins);
    return {race_code:item.code,office,model_dem_margin_points:item.mean,
     polled:item.polled,poll_weight:item.poll_weight??null,
     polling_error_tier:item.polling_error_tier??null,
     polling_error_floor_points:item.polling_error_floor_points??null,
     source_method:item.method,sigma_points:Math.round(totalSigma*1000)/1000,
+    gaussian_sigma_points:Math.round(totalSigma*1000)/1000,
+    redrawn_permutation_sigma_points:Math.round(redrawnPermutationSigma*1000)/1000,
+    total_latent_sigma_points:Math.round(totalLatentSigma*1000)/1000,
+    uncertainty_method:'EXPERIMENTAL_BASELINE_LATENT_SPREAD_NOT_CALIBRATED_INTERVAL',
     provider_called_party:live[item.code]?.mode==='source_called'&&
       ['D','R'].includes(live[item.code].winnerParty)?
       live[item.code].winnerParty:null,

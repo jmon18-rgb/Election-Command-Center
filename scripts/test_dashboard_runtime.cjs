@@ -948,12 +948,52 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
   senateRows.length,'Every polled Senate row must expose source-matched two-party model odds');
  assert.match(senateRows[0].querySelector('.model-race-win-probabilities').textContent,/D .*%R .*%/);
  assert.match(senateRows[0].querySelector('.model-race-edge').textContent,/Poll [DR] [+-]/);
+ assert.match(senateRows[0].querySelector('.model-race-edge').textContent,
+  /baseline assumed spread σ [\d.]+ pts · experimental/,
+  'Compact race rows must identify baseline spread rather than an error interval');
  get('[data-model-scope="house"]').click();
  assert.match(get('#modelProbabilityCoverage').textContent,/current polled house races/);
  assert.match(get('#modelProbabilityCoverage').textContent,/173 seats in nine redrawn states/,
   'Model must disclose redrawn map geometry rather than suggest precise old-district voting trends');
  assert.equal(get('#modelBoard').querySelectorAll('.model-race-win-probabilities').length,
   oddsData.records.filter(r=>r.office==='house').length);
+ const redrawOdds=oddsData.records.find(r=>r.office==='house'&&
+  r.redrawn_permutation_sigma_points>0);
+ assert(redrawOdds,'Exercise a real redrawn House record with a discrete geography component');
+ const redrawButton=Array.from(get('#modelBoard').querySelectorAll('.model-race-row')).find(row=>row.dataset.modelRace===redrawOdds.race_code);
+ redrawButton.focus();redrawButton.click();
+ assert.equal(w.document.activeElement.dataset.modelRace,redrawOdds.race_code,'Selecting a race restores the regenerated row identity rather than losing keyboard focus to BODY');
+ assert.notEqual(w.document.activeElement,redrawButton,'The test exercises an actual replacement of the focused control');
+ w.renderModelOverview(model);
+ assert.equal(w.document.activeElement.dataset.modelRace,redrawOdds.race_code,'A normal board redraw preserves the same reader identity');
+ const originalMatchMedia=w.matchMedia;w.matchMedia=query=>({matches:query.includes('max-width')||query.includes('prefers-reduced-motion'),addListener(){},removeListener(){}});
+ w.document.activeElement.click();assert.equal(w.document.activeElement,get('#modelDetailTitle'),'The mobile detail jump moves focus to the selected race heading');w.matchMedia=originalMatchMedia;
+ w.eval('navigateInsightToModel('+JSON.stringify({office:'house',race:{race_code:redrawOdds.race_code}})+')');
+ assert.match(get('#modelOddsContext').textContent,
+  /assumed baseline spread σ [\d.]+ pts \(Gaussian σ [\d.]+; geography-mixture σ [\d.]+; combined by variance\)/);
+ assert.match(get('#modelOddsContext').textContent,
+  /not a live posterior or calibrated interval/);
+ const legacyUncertainty=structuredClone(oddsData);
+ for(const row of legacyUncertainty.records)
+  for(const key of ['gaussian_sigma_points','redrawn_permutation_sigma_points',
+   'total_latent_sigma_points','uncertainty_method'])delete row[key];
+ w.eval('setModelRaceOddsData('+JSON.stringify(legacyUncertainty)+')');
+ w.eval('navigateInsightToModel('+JSON.stringify({office:'house',race:{race_code:redrawOdds.race_code}})+')');
+ assert.match(get('#modelBoard').textContent,
+  /baseline Gaussian-only spread σ [\d.]+ pts · additional geography spread unavailable/,
+  'An older snapshot must explicitly identify its incomplete spread metadata');
+ assert.match(get('#modelOddsContext').textContent,
+  /Gaussian-only.*additional geography spread unavailable/);
+ assert.doesNotMatch(get('#modelOddsContext').textContent,/total modeled race uncertainty/);
+ const malformedSpread=structuredClone(oddsData);
+ malformedSpread.records.find(r=>r.race_code===redrawOdds.race_code)
+  .total_latent_sigma_points+=10;
+ w.eval('setModelRaceOddsData('+JSON.stringify(malformedSpread)+')');
+ w.eval('navigateInsightToModel('+JSON.stringify({office:'house',race:{race_code:redrawOdds.race_code}})+')');
+ assert.match(get('#modelOddsContext').textContent,
+  /Gaussian-only.*additional geography spread unavailable/,
+  'Inconsistent optional total-spread metadata must not masquerade as a complete uncertainty estimate');
+ w.eval('setModelRaceOddsData('+JSON.stringify(oddsData)+')');
  get('[data-model-scope="governor"]').click();
  assert.equal(get('#modelBoard').querySelectorAll('.model-race-win-probabilities').length,
   oddsData.records.filter(r=>r.office==='governor').length);

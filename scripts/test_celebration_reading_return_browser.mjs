@@ -60,6 +60,15 @@ const inView=async locator=>{const r=await locator.evaluate(e=>{const b=e.getBou
   await page.evaluate(()=>{renderPersonalElectionFocus();enFishRevokeCall({office:'Senate',key:'TX'});});
   assert.equal(await rating.evaluate(e=>e===document.activeElement),true,'Revoking an active call bulletin restores the replaced reader');
   assert.equal(await page.locator('#enFishToast').isHidden(),true);
+// New watch/evidence controls use the same announcement bookmarks as existing readers.
+  const watchList=page.locator('#enPersonalFocus .early-watch-list'),watchRow=watchList.locator('[data-watch-race="VA-02"]');
+  await watchList.locator(':scope > summary').click();await watchRow.locator(':scope > summary').click();
+  const evidenceLink=watchRow.locator('[data-personal-card-link="VA-02"]'),watchBack=page.locator('#enPersonalFocus [data-personal-watch-return="VA-02"]');
+  await evidenceLink.focus();await bulletin('watch evidence reader');await page.evaluate(()=>renderPersonalElectionFocus());await page.locator('#enFishDismiss').click();
+  assert.equal(await evidenceLink.evaluate(e=>e===document.activeElement),true,'Announcement returns to the replaced watch evidence control');await inView(evidenceLink);
+  await evidenceLink.click();await watchBack.focus();await bulletin('watch return reader');await page.evaluate(()=>renderPersonalElectionFocus());await page.locator('#enFishDismiss').click();
+  assert.equal(await watchBack.evaluate(e=>e===document.activeElement),true,'Announcement returns to the replaced card-to-watch control');await inView(watchBack);
+  await watchBack.click();assert.equal(await watchRow.locator(':scope > summary').evaluate(e=>e===document.activeElement),true);assert.equal(await watchRow.evaluate(e=>e.open&&e.parentElement.open),true);
 await page.locator('#enNationalRehearsal > summary').click();
   await page.locator('#enNationalRehearsal > details > summary').click();
   await page.locator('#enNationalNext').click();

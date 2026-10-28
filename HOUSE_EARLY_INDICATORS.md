@@ -51,3 +51,10 @@ Verification uses all 21 independently transcribed expectations, the shared
 Texas row, distinct normalized synthetic calls and withdrawals, exact live-model
 non-mutation, and actual desktop/mobile keyboard/disclosure/overflow tasks.
 These prove the tested implementation, not real results or human comprehension.
+
+For a watched district that already has a personal card, its reference row offers
+an explicit needle/evidence control. It opens the existing matched-area
+explanation when available, or focuses the same race heading while evidence is
+unavailable. The card returns to the same open watch row; Texas has a local watch
+return as well. Background redraws and announcements retain these semantic
+destinations. These controls add no source route or likelihood.
