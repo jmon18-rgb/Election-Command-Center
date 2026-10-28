@@ -22,6 +22,10 @@ try{
   });
   await page.goto(`http://127.0.0.1:${server.address().port}/#electionNight`,{waitUntil:'domcontentloaded'});await page.locator('#enMode2026').click();
   await page.waitForFunction(()=>document.querySelectorAll('#enPersonalFocus article').length===19);
+  // Keep the mechanical media fixture independent of elapsed wall time and
+  // unrelated scheduled provider retries. Explicit runFor calls still exercise
+  // every original announcement/scene/finale timeout below.
+  await page.clock.pauseAt(new Date(await page.evaluate(()=>Date.now()+1000)));
   const numbers=await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities));
   assert.equal(await page.locator('#enPersonalFocus .personal-focus-rating').count(),19);
   assert.equal(await page.locator('#enPersonalFocus [data-race="AK-SEN"] .personal-focus-rating').innerText(),'Rating pending');
@@ -79,7 +83,8 @@ try{
   });
   assert.equal(await popup.evaluate(e=>e.matches(':modal')),true,'An earned call opens over the results automatically, without visiting the milestone desk');
   assert.match(await page.locator('#enMilestoneKicker').innerText(),/SOURCE-REPORTED CALL/);
-  await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));await page.locator('#enCelebrationOnlinePlayer iframe').waitFor();
+  await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
+  try{await page.locator('#enCelebrationOnlinePlayer iframe').waitFor();}catch(error){console.error('Earned fixture playback state',await page.evaluate(()=>({phase:document.querySelector('#enCelebrationStage').dataset.phase,modal:document.querySelector('#enMilestoneSpotlight').open,mode:document.querySelector('#enCelebrationMusicMode').value,sound:document.querySelector('#enCelebrationSound').getAttribute('aria-pressed'),player:enCelebrationPlayer.state(),status:document.querySelector('#enCelebrationOnlineStatus').textContent})));throw error;}
   await page.evaluate(()=>{enCivicByWatch['Senate|TX'].called=null;enRenderMilestones();});assert.equal(await popup.isHidden(),true);assert.equal(await page.locator('#enCelebrationOnlinePlayer iframe').count(),0,'Call withdrawal stops the online track');
   assert.equal(await page.locator('#enMode2026').evaluate(e=>e===document.activeElement),true,'Automatic popup restores the prior control');
   assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),numbers,'Presentation and fixture milestones cannot alter the live model');
