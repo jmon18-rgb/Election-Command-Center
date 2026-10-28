@@ -7,6 +7,7 @@
 })(typeof window!=='undefined'?window:null,function(closes,remainingSource,remainingScenarios){
  'use strict';
  const scopes={'SC-SEN':{n:46,id:87409,year:2020,prefix:'45'},'MI-07':{n:7,id:87207,year:2024,prefix:'26',house:true},'PA-08':{n:5,id:87383,year:2024,prefix:'42',house:true},'VA-02':{n:8,year:2024,prefix:'51',house:true,url:'https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General/data/ballot-item/01000000-f030-c43d-fd71-08df1fee52e7'},'AZ-06':{n:5,id:86922,year:2024,prefix:'04',house:true},'PA-07':{n:4,id:87382,year:2024,prefix:'42',house:true},'OH-SEN':{n:88,id:87527,year:2024,prefix:'39'},'ME-SEN':{n:16,id:87188,year:2020,prefix:'23',firstChoice:true},'IA-SEN':{n:99,id:87151,year:2022,prefix:'19'},'KS-SEN':{n:105,id:87162,year:2020,prefix:'20'},'TX-SEN':{n:254,id:87438,year:2024,prefix:'48'},'WI-01':{n:5,id:87483,year:2024,prefix:'55',house:true},'WI-03':{n:19,id:87485,year:2024,prefix:'55',house:true},'MI-04':{n:6,id:87204,year:2024,prefix:'26',house:true},'PA-10':{n:3,id:87385,year:2024,prefix:'42',house:true},'NY-17':{n:4,id:87319,year:2024,prefix:'36',house:true},'WA-03':{n:7,url:'https://results.votewa.gov/results/public/api/elections/washington/20261103/data/ballot-item/54c40000-9064-bbec-4779-08df15c0a82a',year:2024,prefix:'53',house:true}};
+ scopes['NE-SEN']={n:93,id:87254,year:2024,prefix:'31',independent:true};
  const policy=Object.freeze({minimum_votes:10000,minimum_reference_fraction:.005,minimum_counties:3,
   county_margin_sigma:6,batch_margin_sigma:8,turnout_sigma_fraction:.25,selection_share_sigma:.12,
   contamination_floor:.05,minimum_effective_sample_fraction:.5,state_likelihood_pooling:'FIXED_PREDECLARED_STATE_LOG_LIKELIHOOD_BUDGET',
@@ -53,30 +54,37 @@
    throw Error('Unverified competitive county evidence scope');
   if(scope.house&&(envelope.baseline.race_code!==code||envelope.baseline.geography_scope!=='district_parts'))
    throw Error('House requires matched district-part historical counts, never whole-county votes');
+  const independent=scope.independent===true,positive=independent?'osborn_votes':'dem_votes',negative=independent?'ricketts_votes':'rep_votes';
+  if(independent&&(x.candidate_contrast!=='NE_OSBORN_RICKETTS_V1'||x.contrast_supported!==true||x.caucus_credit_assumed!==false||envelope.baseline_scenario!=='EXPERIMENTAL_OSBORN_2024_TO_2026_DIFFERENT_SEAT'||envelope.baseline.schema!=='nebraska-2024-six-year-senate-historical-preparation-v1'||envelope.baseline.source_decoded_sha256!=='4887fb1caab820ab737adaaff9b73ee601e37a707fb0002d8901fd674e8efbe9'||envelope.baseline.same_Senate_seat_as_2026!==false))throw Error('Unreviewed Independent candidate-transfer contrast');
   const time=Date.parse(x.snapshot_updated_at||'');
   if(!Number.isFinite(now)||!Number.isFinite(time)||!/(?:Z|[+-]\d\d:\d\d)$/.test(x.snapshot_updated_at||'')||
     time>now+15*60000||now-time>180*60000)throw Error('Stale/future county evidence');
   const reference=new Map(envelope.reference.counties.map(c=>[c.fips,norm(c.county)]));
   if(reference.size!==scope.n||new Set(reference.values()).size!==scope.n||[...reference].some(([f,n])=>!new RegExp('^'+scope.prefix+'\\d{3}$').test(f)||!n))throw Error('Duplicate independent county identities');
+  // Legacy algebraic names baseD/referenceD/d denote the positive contrast.
+  // NE reads Osborn fields directly; these are never Democratic party totals.
   const history=new Map();let baseD=0,baseN=0;
   for(const c of envelope.baseline.counties){
-   const key=norm(c.county),a=c.records?.absentee,e=c.records?.election_day,t=c.records?.total;
+   const key=norm(c.county),a=independent?null:c.records?.absentee,e=independent?null:c.records?.election_day,t=independent?c:c.records?.total;
+   const historicalPositive=independent?'dan_osborn':'dem_votes',historicalNegative=independent?'deb_fischer':'rep_votes';
+   if(independent&&reference.get(c.fips)!==key)throw Error('Independent historical county identity mismatch');
    if(history.has(key)||Boolean(a)!==Boolean(e))throw Error('Duplicate/partial historical county modes');
    const parts=a?[a,e]:[t];
-   if(parts.some(r=>!r||![r.dem_votes,r.rep_votes].every(n=>Number.isSafeInteger(n)&&n>=0)||r.dem_votes+r.rep_votes<=0))
+   if(parts.some(r=>!r||![r[historicalPositive],r[historicalNegative]].every(n=>Number.isSafeInteger(n)&&n>=0)||r[historicalPositive]+r[historicalNegative]<=0))
     throw Error('Invalid historical county counts');
-   const aN=parts[0].dem_votes+parts[0].rep_votes,eN=a?e.dem_votes+e.rep_votes:0;
-   history.set(key,{aN,eN,aShare:parts[0].dem_votes/aN,eShare:a?e.dem_votes/eN:parts[0].dem_votes/aN,modes:Boolean(a)});
-   baseD+=parts.reduce((sum,r)=>sum+r.dem_votes,0);baseN+=aN+eN;
+   const aN=parts[0][historicalPositive]+parts[0][historicalNegative],eN=a?e[historicalPositive]+e[historicalNegative]:0;
+   history.set(key,{aN,eN,aShare:parts[0][historicalPositive]/aN,eShare:a?e[historicalPositive]/eN:parts[0][historicalPositive]/aN,modes:Boolean(a)});
+   baseD+=parts.reduce((sum,r)=>sum+r[historicalPositive],0);baseN+=aN+eN;
   }
   if(new Set([...history.values()].map(c=>c.modes)).size!==1||!Number.isSafeInteger(baseN))throw Error('Inconsistent county history');
   const seen=new Set(),observed=[];let counted=0,allVotes=0;
   for(const c of x.counties){
+   if(independent&&(Object.hasOwn(c,'dem_votes')||Object.hasOwn(c,'rep_votes')||!Array.isArray(c.other_candidates)||c.other_candidates.length!==3||new Set(c.other_candidates.map(p=>p.provider_id)).size!==3||c.other_candidates.some(p=>![220703,220704,220705].includes(p.provider_id)||!Number.isSafeInteger(p.votes)||p.votes<0)||c.other_candidates.reduce((n,p)=>n+p.votes,0)!==c.other_votes))throw Error('Independent counts require named all-other accounting, not Democratic aliases');
    const key=norm(c.county),h=history.get(key);
    if(!h||seen.has(c.county_fips)||reference.get(c.county_fips)!==key||
-      ![c.dem_votes,c.rep_votes,c.other_votes].every(n=>Number.isSafeInteger(n)&&n>=0))throw Error('Unmatched/invalid observed county');
-   seen.add(c.county_fips);const n=c.dem_votes+c.rep_votes;counted+=n;allVotes+=n+c.other_votes;
-   if(n>0)observed.push({...h,county:c.county,county_fips:c.county_fips,n,d:c.dem_votes});
+      ![c[positive],c[negative],c.other_votes].every(n=>Number.isSafeInteger(n)&&n>=0))throw Error('Unmatched/invalid observed county');
+   seen.add(c.county_fips);const n=c[positive]+c[negative];counted+=n;allVotes+=n+c.other_votes;
+   if(n>0)observed.push({...h,county:c.county,county_fips:c.county_fips,n,d:c[positive]});
   }
   if(!Number.isSafeInteger(allVotes)||!closes?.allowed(code,allVotes,x.snapshot_updated_at,now))throw Error('Pre-close county evidence');
   if(counted<policy.minimum_votes||counted/baseN<policy.minimum_reference_fraction||observed.filter(c=>c.n>=100).length<policy.minimum_counties)
@@ -137,7 +145,7 @@
    return {expectation_scope:'PRE_RESULTS_RACE_MEAN_PLUS_DECLARED_SHIFT',expectation_margin_points:expectedMargin,
     observed_margin_points:observedMargin,expected_margin_scenarios:[Math.min(...margins),Math.max(...margins)],
     difference_margin_scenarios:[observedMargin-Math.max(...margins),observedMargin-Math.min(...margins)],
-    baseline_year:envelope.baseline_year,reporting_units:units.length,
+    baseline_year:envelope.baseline_year,reporting_units:units.length,...(independent?{candidate_contrast:'NE_OSBORN_RICKETTS_V1',positive_candidate:'Osborn',negative_candidate:'Ricketts',historical_transfer:'2024 Osborn/Fischer county support transferred to a different 2026 opponent and Senate seat; assumed, not fitted',directional_transfer_assumption:'Osborn performance informs broader direction through existing shared covariance under an experimental assumption; these are not Democratic votes or caucus credit.'}:{}),
     largest_reporting_units:units.sort((a,b)=>b.counted_two_party_votes-a.counted_two_party_votes||a.county_fips.localeCompare(b.county_fips)).slice(0,6),
     scope:'Matched reporting areas only; historical local shares shifted to the pre-results race expectation, not county polls. Method-mix scenarios are not confidence intervals; partial-batch selection, turnout and source error remain unresolved.',calibrated:false};
   }
@@ -161,7 +169,7 @@
    const max=Math.max(...logs);return max+Math.log(remainingVariants?logs.reduce((s,v,i)=>s+remainingVariants[i].weight*Math.exp(v-max),0):logs.reduce((s,v)=>s+Math.exp(v-max),0)/logs.length);
   }
   let remaining=0,remainingLow=0,remainingHigh=0;
-  const countedByName=new Map(x.counties.map(c=>[norm(c.county),c.dem_votes+c.rep_votes]));
+  const countedByName=new Map(x.counties.map(c=>[norm(c.county),c[positive]+c[negative]]));
   for(const [name,c] of history){
    const mu=c.aN+c.eN,sd=mu*policy.turnout_sigma_fraction,n=countedByName.get(name)||0,z=(n-mu)/sd;
    const tail=1-cdf(z),density=Math.exp(-z*z/2)/Math.sqrt(2*Math.PI);
@@ -175,14 +183,14 @@
    remaining+=left;remainingLow+=low;remainingHigh+=high;
   }
   return Object.freeze({schema:'national-county-likelihood-v1' ,code,source_url:x.source_url,as_of:x.snapshot_updated_at,
-   counted_two_party_votes:counted,reporting_counties:observed.length,
+   counted_two_party_votes:counted,reporting_counties:observed.length,...(independent?{candidate_contrast:'NE_OSBORN_RICKETTS_V1',counted_named_candidate_votes:counted}:{}),
    modeled_remaining_two_party_votes:Math.round(remaining),modeled_remaining_two_party_votes_band:[Math.floor(remainingLow),Math.ceil(remainingHigh)],
    ...(remainingMetadata?{official_remaining_sensitivity:remainingMetadata}:{}),...(remainingExclusion?{official_remaining_excluded:remainingExclusion}:{}),
    remaining_scope:remainingMetadata?'Historical/official whole-county estimate sensitivity; Thurston historical only; not exact outstanding ballots or calibrated intervals':scope.firstChoice?'County named-candidate turnout scenario only; excludes statewide unallocated UOCAVA and unreported write-ins; not official ballots outstanding':"Conditional historical-turnout scenario, including unreported district/county parts; not official ballots outstanding",reference_turnout_fraction:counted/baseN,
    independence:'COUNTS_ONLY_NO_POLL_PRIOR_OR_RACE_POSTERIOR',logLikelihood,describePerformance});
  }
  function condition(model,basis,envelopes,options={}){
-  if(!Array.isArray(envelopes)||envelopes.length>17)throw Error('Bounded national county evidence required');
+  if(!Array.isArray(envelopes)||envelopes.length>18)throw Error('Bounded national county evidence required');
   if(options.captureCountyDraws||options.replayCountySeeds)throw Error('Nested/replayed national evidence is not a prior');
   const {now=Date.now(),rehearsal=false,...args}=options,compiled=[],excluded=[],codes=new Set();
   if(Object.values(args.live||{}).some(row=>row?.mode!=='source_called'||!['D','R'].includes(row.winnerParty)))
@@ -192,7 +200,7 @@
    const code=envelope?.snapshot?.race_code;
    if(codes.has(code))throw Error('Duplicate race evidence would count the same returns twice');
    codes.add(code);
-   try{compiled.push(compile(envelope,{now,rehearsal}));}catch(error){excluded.push({code:code||null,reason:error.message});}
+   try{if(code==='NE-SEN'&&(args.independentSenateCredit!=='no_credit'||basis.senate.find(r=>r.code===code)?.nonrep_independent_proxy!==true))throw Error('Independent evidence requires exact Osborn matchup and no assumed caucus credit');compiled.push(compile(envelope,{now,rehearsal}));}catch(error){excluded.push({code:code||null,reason:error.message});}
   }
   if(!compiled.length){const baseline=model.simulate(basis,args);return {baseline,result:baseline,
    diagnostics:{status:'NO_ELIGIBLE_COUNTY_RETURNS',used:[],excluded,interval_calibrated:false}};}

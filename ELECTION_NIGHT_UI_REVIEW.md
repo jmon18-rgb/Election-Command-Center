@@ -1,6 +1,6 @@
 # Election-night usability and visual review
 
-Required small follow-up after505: ordinary IAB27 AX output exposes the needle as role=img with an aggregate aria-label, while the visible coalition caveat is a descendant omitted from that name. Include the caveat in aria-label/aria-describedby or move it outside the image role, with a real accessible-output regression and desktop/mobile check. Do not claim assistive access from locator.isVisible. Counts/visible disclosure are verified released; fullOct30 review remains open.
+Coalition accessibility repair506 RELEASED: final5ace3b6e/Pages40617065853/351publishedfiles verified. Actual browser AX output now includes the visible caveat in home/night/rehearsal names, including dynamic rehearsal role=img; normal1366/390 CDP-tree regressions pass. Human assistive/operator acceptance/fullOct30 review remain open. Add the native white Next simulated update button to the visual refinement checklist, using published-coalition-accessibility-20261028.png; do not reopen completed hierarchy/map work.
 
 Declutter/mobile slice504 RELEASED: finalmaine3920020/Pages40608755366SUCCESS/
 350published files match00:29:24.487Z. All34exactheadparents/44applicablejobs

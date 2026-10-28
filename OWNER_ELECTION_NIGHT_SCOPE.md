@@ -1,5 +1,7 @@
 # Personal election-night dashboard — owner scope, October 27
 
+Nebraska candidate: named Osborn/Ricketts paired evidence and labels, no Democratic ballot/caucus conversion. Historical2024 different-seat support transfer is experimental/unfitted, anchored to current race expectation. See NEBRASKA_SENATE_COUNTY_CONTRACT.md. No positive2026 delivery/calibration acceptance; protected release still pending.
+
 The owner explicitly expands the former national-only presentation scope: individual
 needles are required for **IA, KS, ME, OH, MI, NE, SC, MN, MS and AK Senate**, alongside
 one national Four Endings needle and selected House power-flip races. Alaska is the
