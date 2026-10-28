@@ -1,5 +1,7 @@
 # National needle acceptance decision — October 27, 2026
 
+The pending Independent-control correction explicitly withholds Democratic caucus credit from uncommitted Independent winners, while retaining established holdovers and the existing seat thresholds. These are Democratic-majority threshold scenarios, not a resolved forecast of future coalition negotiations: neither D threshold does not establish a Republican majority. Individual race draws and likelihood inputs are unchanged. Protected release verification is still required.
+
 ## October 27 methodology reassessment after owner rehearsal review
 
 The owner requested better expectation-based forecasting, not cosmetic smoothing.

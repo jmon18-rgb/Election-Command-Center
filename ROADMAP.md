@@ -1,5 +1,7 @@
 # JackStradamus · development plan
 
+> Active correction: remove implicit new Independent Democratic caucus credit from every app calculation; retain fixed seat thresholds and show unresolved coalition limits. Candidate tested locally, protected release pending. MN exact search403/MS historical directory403 STOP; NE five-name official roster and93county official2024history now saved, different-seat scenario/current clock still unreviewed. No18th route or new baseline admitted. Detailed evidence in latest progress.
+
 ## Active national-needle roadmap - reassessed October 27, 2026
 
 Latest direct owner priority, October27 late: move beyond the initial map/source

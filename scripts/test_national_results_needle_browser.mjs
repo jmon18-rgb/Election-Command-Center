@@ -62,6 +62,7 @@ try{
   mode='blue';stamp='2026-11-04T03:05:15Z';
   await page.clock.runFor(16000);
   await page.waitForFunction(()=>jointLastResult?.county_results_update?.used.length===8);
+  assert.equal(await page.evaluate(()=>jointLastResult.senate_independent_credit_mode),'no_credit','County conditioning retains explicit Independent control policy');
   assert.notEqual(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),baseline,'Automatic polling moves the national outlook before calls');
   assert.deepEqual(await page.evaluate(()=>[enIowaPilotController,enKansasPilotController,enTexasPilotController,enWisconsinHouseController,enWisconsinHouse03Controller,enMichiganHouse04Controller,enPennsylvaniaHouse10Controller,enNewYorkHouse17Controller].map(c=>c.status().automatic_poll_interval_ms)),[15000,15000,15000,15000,15000,15000,15000,15000]);
   await page.clock.setSystemTime(new Date('2026-11-04T03:06:00Z'));
