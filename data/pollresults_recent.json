@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-28T19:01:40.952827+00:00",
+  "updated_at": "2026-10-28T19:57:15.950570+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 842,
+      "available_in_source": 843,
       "records_examined": 300
     },
     "house": {
@@ -18,9 +18,38 @@
     }
   },
   "matched_primary_observations": 329,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "NC-SEN",
+      "poll_id": "41c3566b-9863-48a7-ae10-148260fd80a0"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "NC-SEN",
+      "race_type": "senate",
+      "state": "NC",
+      "poll_id": "41c3566b-9863-48a7-ae10-148260fd80a0",
+      "question_id": "7faeed65-472b-4f0d-8a15-d6ebd68e636e",
+      "pollster": "High Point University",
+      "dem_name": "Roy Cooper",
+      "rep_name": "Michael Whatley",
+      "dem": 54.0,
+      "rep": 40.0,
+      "margin": 14.0,
+      "field_end": "2026-10-20",
+      "field_start": "2026-10-01",
+      "posted_date": "2026-10-28",
+      "posted_source_datetime": "2026-10-28T15:06:00",
+      "posted_source_time": "10/28/26 15:06",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.highpoint.edu/blog/2026/10/hpu-yougov-poll-north-carolina-likely-voters-weigh-in-on-u-s-senate-race-and-more/",
+      "sample_population": "lv",
+      "sample_size": 620,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "WI-GOV",
       "race_type": "governor",
