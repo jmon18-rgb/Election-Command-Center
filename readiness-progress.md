@@ -1,5 +1,87 @@
 # Readiness progress
 
+## October28 latest direct steering — ad-free soundtrack and supplied Abbott image
+
+Owner reports YouTube ads spoil the mood; this supersedes the fresh-YouTube
+default candidate. Browser-local per-event audio/IndexedDB/native controls and
+ad-free original fallback are implemented, with no file upload/recording copy.
+Fresh settings are ad-free; explicit YouTube remains optional. File size/type/
+exactevent/storecommit/blockedstorage/late-read-and-play/URLcleanup tests PASS;
+root actual browser integration/persistence/teardown tasks next.
+
+Actual Edge1366x900/390x844 now PASS: synthetic native WAV decodes/starts,
+exact192044selectedbytes persist through reload, announcementfirst, nativePlay,
+mute/close/replacement/withdrawal/removal/overflow and fullAbbottimage+AIlabel.
+No YouTube/nativeprovider requests. Independent review caught stale save/remove/
+info UI completions across SAME-event reopen; modal/settings/info generations
+fix it. Eight realIndexedDB deferred-return cases pass and removing the guards
+in memory reproduces the old failure. Missing-image retries are cached only
+for currentplayback, so later beats immediately retain originalSVG; new
+announcement retries. Old eleven-story1440/390 fallback/score assertions pass
+unchanged. Scopedproofs: ui-review/ad-free-local-art-guarded,
+local-audio-async-races-final, ad-free-roster-fallback-final and
+local-audio-independent-review-20261028.json. Final new protected head next.
+
+Owner supplied exact Abbott/tree artwork:371979bytes/SHAe9d6360032b79c75156b490aaf62bd9250479d54e4444225c5d6bc313dc29c3d, unchanged local asset. Scene/finale use full contained AI-fiction-labelled image; same-beat original SVG fallback/staleimage/ARIA tests PASS. No more photo-location question. No call/eligibility/model odds or recording-rights claim.
+
+The intermediateca5ef385 Nebraska CI screenshot detached during normal redraw;
+the isolated fixture now freezes elapsed wall time after startup, retaining every
+original61sadvance, correction/rollback/outage/request-floor/hidden/archive
+assertion. Actual1366/390 PASS. This and the latest owner media changes require
+a new source head/all protected gates; neither superseded head merges/reruns/
+waivers nor raised timeouts are permitted. All prior failures/proofs retained.
+
+Real model-math work continues in ignored full-factor call-conditioning
+prototypes. National-only proposals failed the unchanged ESS floor for mixed/
+rare cases. Relevant full-factor/tiny-mixture proposal passes six declared
+fictional cases against300k original-election reference, with exact no-call path,
+fixed count target and independent review. Real-size geography-bag/options/replay
+work remains an internal engineering task, not an external-data/date blocker.
+
+## October28 — direct owner sophistication request; distributions and YouTube candidate
+
+Owner reopens substantive roadmap work now. Implemented selected-race empirical
+margin distributions from the SAME conditioned joint draws, including mixture
+quantiles/repeated-particle provenance; no extra RNG or change to old outputs.
+Personal cards show median/middle50/90 with explicit scale, NE paired axis,
+call/AK suppression and uncalibrated scenario scope. Actual Edge1366x900 and
+390x844 range/help/keyboard/redraw/call-removal/rehearsal/isolation/nooverflow
+tasks PASS. Optional-display-code failure retains the national model; independent
+review caught/fixed the empty-scope fallback. See RACE_MARGIN_DISTRIBUTIONS.md.
+
+Fresh music preferences now select the requested known YouTube tracks, explicit
+saved Original stays respected. A prominent popup control changes preference;
+visible playback guidance and original fallback remain. Actual changed popup/
+default/offline/visible-player/mute/close/withdrawal tasks PASS at1366/390, with
+synthetic iframe and all election providers blocked. Existing exact two official
+links retained; no recording download. FullDOM/protected review/publication next.
+Scoped screenshots: ui-review/needle-distributions-youtube. Original guide/human
+results unchanged. Exact Abbott/tree original is not in saved assets; one async
+path/link request is pending, not silently substituted or marked integrated.
+
+Next real model-math task identified: validated calls currently overlay binary
+race outcomes without conditioning shared latent factors. A separate exact
+truncated-normal/proposal-weight prototype is being assessed for rare calls,
+overlapping county evidence, ESS and retraction; no runtime math change yet.
+This replaces the blanket no-ready-work assessment. No calibration claim, new
+source route/GET, private-data publication or paid/archive activation.
+
+Initial PR527 head038a1569 exposed a real full-row disclosure geometry regression
+in the unchanged readability gate. Shared explicit-summary activation now toggles
+and aligns only that activated reader; background/restored state never scrolls.
+Range help follows the existing expectation disclosure to preserve its semantic
+order. All original1366/390 readability/keyboard/scroll assertions pass. The old
+original-score fixture now explicitly chooses Original through the visible control;
+all original score/story assertions retained and actual1440/390 PASS. Failed head
+not merged/rerun/waived; no timeout increase; corrected exact-head gate required.
+
+## 2026-10-28 22:00 UTC — PR526 obsolete-storage cleanup executed and published
+
+- Tested1bd71f9ad8ccf98002bc67b734d9e41dbf1e8163 passed all4 applicable workflow parents/9latestjobs7SUCCESS2nonapplicableSKIP/0external/currentclean. FullDOM40773748012/job123117511193 and readiness40773747729 SUCCESS. Read-only preflight40773747954/job123117636993 found50eligible/324,536,415bytes with0mutationrequests. Merge/finalCURRENTmain769a2fe3a6f3277972f84e870cfc20466d6b35f1; Pages40775607865 SUCCESS. All22changedpublicfile/currentindex checks match21:58:56.793Z usingorigin/mainblobs; productioncoherence/currentindex/no_creditPASS. Main rechecked unchanged22:00:09Z. No waived/rerun/timeout-increased checks.
+- Actual main-push cleanup40775609365/job123124083723 SUCCESS/APPLY_COMPLETE:49confirmed DELETEs/286,991,021reportedbytes/49mutationrequests (7obsolete routine Pagespackages263,024,784bytes;42duplicate browser-test uploads23,966,237bytes). The remaining planned Pages12801101411/37,545,394bytes was already missing before deletion and is not counted as reclaimed by this cleanup. Final receipt/all99attempt-confirmation events are saved in storage-cleanup/pr526-apply-receipt-20261028.json. No deletion retries or additional targets.
+- Fresh affected-category metadata confirms all50plannedIDs absent and all3required retained pins present with exact digest/size. One protected nonplanned older Pages baseline12799490688 (PR516 final3c01/Pages40649267003) was absent; exact public metadata GET returned404 at22:00:14Z. Its baseline expiry was later, so expiry is not established;23Pages entries fit one page, so pagination is not the explanation. No DELETE was sent for it; cause unknown. Preserve failed postcheck and independent storage-cleanup/pr526-missing-protected-baseline-sidecar-20261028.json rather than relabeling all nonplanned items retained. Source Git revision and local original proof remain, but do not claim byte-identical artifact recovery. Current/source/recovery/guide/ownerfiles and runtime app/model/source/call code are outside the cleanup. Published runtime is unchanged, so no unchanged UI replay/guide rebuild. All7delivered previews and signed-out billing handoff preserved; frozen15 untouched.
+- Owner's cleanup instruction replaces the unanswered billing-values request; do not ask it again. Repository artifact sizes do not prove actual free account allowance or a zero-paid-usage block. No billing setting/paid service/archive activation changed; approved30day first-night originals remainOFF. This bounded cleanup is complete; preserve immutable receipts and do not rerun the same plan or push this proof alone to restartCI. Next activation requires genuine fresh capacity/no-paid evidence nearNov3; independent concrete app/source findings remain actionable. Human acceptance/calibration/actualpositive delivery remain open.
+
 ## October28 — owner-authorized obsolete Actions artifact cleanup candidate
 
 Owner does not know account billing values and instead explicitly requested

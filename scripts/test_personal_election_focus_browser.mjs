@@ -12,7 +12,7 @@ await new Promise(ok=>server.listen(0,'127.0.0.1',ok));let browser;
 try{
  browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
  for(const width of [1366,390]){
-  const context=await browser.newContext({viewport:{width,height:900}}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+  const context=await browser.newContext({viewport:{width,height:width===390?844:900}}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.clock.install({time:new Date('2026-10-27T19:00:00Z')});
   await page.route('**/*',route=>new URL(route.request().url()).hostname==='127.0.0.1'?route.continue():route.abort());
   await page.goto('http://127.0.0.1:'+server.address().port+'/',{waitUntil:'domcontentloaded'});
@@ -25,9 +25,30 @@ try{
   const same=await page.evaluate(()=>Array.from(document.querySelectorAll('#enPersonalFocus article')).filter(e=>e.dataset.race!=='AK-SEN').every(e=>{
    const r=jointLastResult.race_probabilities.find(x=>x.race_code===e.dataset.race);return e.querySelector('svg').getAttribute('aria-label').includes(r.dem_beats_rep_pct.toFixed(1)+' percent');}));assert(same);
   const liveBefore=await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities));
+  const ia=page.locator('#enPersonalFocus [data-race="IA-SEN"]'),distribution=ia.locator('.personal-focus-margin');
+  assert.equal(await distribution.count(),1,'Current shared simulation supplies a selected race range');
+  assert.equal(await page.locator('#enPersonalFocus [data-race="AK-SEN"] .personal-focus-margin').count(),0);
+  const sameRange=await ia.evaluate(card=>{const d=jointLastResult.race_probabilities.find(r=>r.race_code==='IA-SEN').margin_distribution;return {text:card.querySelector('.personal-focus-margin').textContent,median:d.p50,conditioning:d.conditioning};});
+  assert.equal(sameRange.conditioning,'POLLING_BASELINE');assert.match(sameRange.text,/Middle 90%/);
+  const help=distribution.locator('summary');await help.click();
+  assert.match(await distribution.innerText(),/not a calibrated final-vote interval/);
+  await page.evaluate(()=>renderPersonalElectionFocus());
+  assert.equal(await help.evaluate(e=>e===document.activeElement),true,'Range explanation keeps keyboard focus after redraw');
+  assert.equal(await distribution.locator('details').evaluate(e=>e.open),true);
+  await page.keyboard.press('Space');assert.equal(await distribution.locator('details').evaluate(e=>e.open),false);
+  const geometry=await distribution.locator('.personal-focus-margin-strip').evaluate(e=>{const r=e.getBoundingClientRect();return {width:r.width,children:[...e.children].map(c=>{const b=c.getBoundingClientRect();return {left:b.left-r.left,right:b.right-r.left,height:b.height};})};});
+  assert(geometry.width>150);assert(geometry.children.every(r=>r.left>=-3&&r.right<=geometry.width+3&&r.height>0),'Margin marks render within their explicitly labelled scale');
+  await ia.screenshot({path:resolve(out,'margin-range-'+width+'.png')});
+  await help.click();
+  await page.evaluate(()=>{const called=structuredClone(jointLastResult);called.race_probabilities.find(r=>r.race_code==='IA-SEN').provider_called_party='D';PersonalElectionFocus.render(document.querySelector('#enPersonalFocus'),called,jointPulseBaseline,{closes:ElectionNightPollClosings2026});});
+  assert.equal(await distribution.count(),0,'A source call must not fabricate a final margin');
+  assert.equal(await ia.locator('h4').evaluate(e=>e===document.activeElement),true,'Removed range returns its reader to the same race heading');
+  await page.evaluate(()=>renderPersonalElectionFocus());assert.equal(await distribution.count(),1);
+  assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),liveBefore,'Range interactions and synthetic display calls leave the live model unchanged');
   await page.locator('#enNationalRehearsal > summary').click();
   await page.locator('#enNationalRehearsal > details > summary').click();
   await page.waitForFunction(()=>document.querySelectorAll('#enPersonalFocusPreview article').length===19);
+  assert(await page.locator('#enPersonalFocusPreview .personal-focus-margin').count()>0,'Rehearsal receives its own same-draw summaries');
   assert.match(await page.locator('#enPersonalFocusPreview').innerText(),/SIMULATED.*FICTIONAL COUNTS/s);
   await page.locator('#enNationalNext').click();await page.waitForFunction(()=>document.querySelector('#enNationalStage').textContent.includes('2/5'));
   const ksPreview=page.locator('#enPersonalFocusPreview [data-race="KS-SEN"]');

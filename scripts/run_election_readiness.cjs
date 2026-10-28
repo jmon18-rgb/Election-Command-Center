@@ -61,6 +61,8 @@ const checks = [
   ['Celebration playback and revoked-call queue', 'test_election_night_celebration_player.cjs'],
   ['Original celebration music, bounded mix and cancellation', 'test_celebration_music.cjs'],
   ['Optional visible YouTube identity and local preferences', 'test_celebration_online.cjs'],
+  ['Private ad-free audio persistence and asynchronous teardown', 'test_celebration_local.cjs'],
+  ['Supplied Abbott artwork, exact bytes and safe scene fallback', 'test_celebration_owner_artwork.cjs'],
   ['Published bundle and forecast consistency', 'test_published_dashboard.cjs', '--local'],
   ['Race and source reconciliation', 'test_election_night_reconciliation.cjs'],
   ['Source publication identity during corrections', 'test_election_night_snapshot_revision.cjs'],

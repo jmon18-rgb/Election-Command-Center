@@ -22,6 +22,10 @@ try{
   page.on('pageerror',e=>errors.push(e.message));
   await page.clock.install();
   await page.route('**/*',route=>new URL(route.request().url()).hostname==='127.0.0.1'?route.continue():route.abort());
+  // This retained eleven-scene drill exercises the original Abbott animation
+  // as the supported missing-photo fallback. The supplied-art drill covers the
+  // preferred image, its containment, attribution and default presentation.
+  await page.route('**/assets/celebration-owner-abbott.jpg*',route=>route.abort());
   await page.goto(`http://127.0.0.1:${server.address().port}/`,{waitUntil:'domcontentloaded'});
   await page.locator('[data-page="electionNight"]').click();
   await page.locator('#enMode2026').click();
@@ -33,6 +37,11 @@ try{
   await page.route('**/assets/celebration-owner-mississippi.jpg*',route=>route.abort());
   await page.route('**/assets/milestone-mississippi.svg',route=>route.abort());
   await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles.mississippi}).click();
+  // This retained drill validates every original score and its fallback art.
+  // Select that supported preference explicitly now that fresh profiles prefer
+  // the owner's requested YouTube tracks. The separate popup drill covers them.
+  await page.locator('#enCelebrationMusicQuick').click();
+  assert.equal(await page.locator('#enCelebrationMusicMode').inputValue(),'original');
   await page.locator('#enMilestonePoster').waitFor({state:'hidden'});
   assert.equal(await page.locator('#enMilestoneArt').isVisible(),true);
   assert.equal(await page.locator('#enMilestoneTitle').isVisible(),true,'A missing poster preserves the readable story and controls');

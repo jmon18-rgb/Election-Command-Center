@@ -1,5 +1,62 @@
 # Election Night production-readiness assignment
 
+## October28 current owner steering — ad-free files, exact Abbott image, models
+
+PR527's latest update supersedesca5ef385: restore fresh ad-free mode,
+add private browser-local per-event audio files/native controls and unchanged
+supplied Abbott AI artwork in scene/finale. YouTube stays optional because owner
+reports ads spoil playback. Helper/art/async-race tests pass; finish actual native
+file/persistence/teardown/image tasks, all corrected-head CI and publication.
+No repeat photo-location question: exact asset and SHA are in progress/manifest.
+Intermediate Nebraska screenshot-detachment fixture now freezes elapsed clock
+afterstartup, all original timing/request/correction guards retained and actual
+1366/390 pass; no failed/supersededhead merge/rerun/waiver/timeout increase.
+Full-factor source-call conditioning prototype now has six bounded numerical
+cases passing after national-only proposal failures; realistic bags/options/replay
+and production integration remain real next internal model engineering tasks.
+
+## October28 owner reopened model sophistication — active implementation
+
+Branch readiness/needle-distributions-youtube implements same-joint selected
+race margin distributions and a visible median/middle50/90 strip, with truthful
+scope/call/NE/AK handling and no changed legacy probabilities/random draws.
+Fresh preferences select known requested YouTube tracks; explicit saved offline
+choice remains, with prominent mode control and visible playback guidance.
+Actual affected1366x900/390x844 tasks and focused/core/national invariance pass;
+finish fullDOM, independent review, attached protected PR and verified deployment.
+Do not stop at another plan or revert to the earlier externally-blocked freeze.
+Abbott/tree exact original path/link is pending one owner answer; independent
+model/music work continues. Keep original guide/human acceptance unchanged.
+Then advance the genuinely identified shared-factor call-conditioning math task
+from its separate numerical prototype; prove rare-event/ESS/count-overlap logic
+before runtime integration. No invented accuracy, source admission or paid use.
+
+## October28 22:00 UTC — PR526 cleanup COMPLETE; archive still OFF
+
+Owner-requested old storage cleanup is executed:49confirmed obsoleteuploads /
+286,991,021reportedbytes, including7routine Pagespackages and42duplicate
+synthetic-browser files. One other planned package was already missing and is
+not counted. Main-push40775609365/job123124083723 APPLY_COMPLETE/SUCCESS;
+receipt+99events under storage-cleanup/pr526-apply-receipt-20261028.json.
+All50plannedIDs absent in fresh affected-category metadata,3required keepers
+exact. Initial postcheck recorded one protected missing older Pages12799490688;
+exactGET40422:00:14Z confirms absent, cause unknown (not established expiry or
+pagination). No DELETE for it. Preserve failed check/scoped independent sidecar;
+do not claim every nonplanned item retained or byte-identical artifact recovery.
+The sidecar is pr526-missing-protected-baseline-sidecar-20261028.json.
+
+Exact1bd71f9a passed4parents/9jobs7SUCCESS2nonapplicableSKIP/0external/clean;
+merge/finalCURRENTmain769a2fe3/Pages40775607865SUCCESS. All22changedpublicfiles/
+currentindex match21:58:56.793Z/originmain; coherence/no_creditPASS; mainunchanged
+22:00:09Z. Runtime code/model/source/calls/guide unchanged, no UI replay needed.
+No paid features, accountsettings, newnativeGETs or archive activation. The owner
+does not know billing values; do not repeat that question or the settled30day
+policy. Cleanup is not capacity/no-paid evidence. ArchiveOFF until real fresh
+capacity/protection proof; preserve key and originals. No repeated cleanup,
+inventory, successful rerun or docs-onlyCIpush. Carry this release-proof record
+with the next coherent implementation. Project/human/calibration/positive2026
+acceptance remains unfinished; genuine new findings reopen engineering.
+
 ## October28 current task — reviewed old Actions storage cleanup, not yet applied
 
 Owner answered that billing values are unknown and authorized deleting old

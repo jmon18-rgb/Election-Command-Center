@@ -1,6 +1,6 @@
 {
-  "reviewed_on": "2026-10-27",
-  "scope": "Original repository scenes/music and three owner-supplied fictional images; no eligibility change",
+  "reviewed_on": "2026-10-28",
+  "scope": "Original repository scenes/music and four owner-supplied fictional images; no eligibility change",
   "artworks": [
     {
       "path": "assets/milestone-talarico.svg",
@@ -24,9 +24,20 @@
     },
     {
       "path": "scripts/election_night_celebration_scene.js",
-      "source": "Original repository Talarico stadium scene and Abbott campaign-sign tree scene",
-      "sha256": "56b2dace73ccdb503d05a24e1ba532f98a8dc4511c31cfb359a3a007543ec235",
+      "source": "Original repository scene layers plus optional labeled owner-supplied Abbott artwork; exact-beat original SVG fallback retained",
+      "sha256": "4f275d06634de42d8e9776eaa5bda6c2ef3fa48629a077360ba9da62f9a85608",
       "audio": "Original event-specific scores in election_night_celebration_music.js"
+    },
+    {
+      "event": "abbott",
+      "path": "assets/celebration-owner-abbott.jpg",
+      "source": "Owner-supplied AI-generated fictional political satire, October28; exact original bytes preserved without image edits",
+      "source_filename": "1-Use-AI-Image-Oct-27-2026-15_45_22.png.jpeg",
+      "sha256": "e9d6360032b79c75156b490aaf62bd9250479d54e4444225c5d6bc313dc29c3d",
+      "revision": "ce0df48ef6a4",
+      "bytes": 371979,
+      "presentation": "Full-contained supplied artwork with visible AI-generated/fictional political-satire label; no graphic injury or added disability-mocking caption; original SVG fallback",
+      "rights_scope": "Supplied by owner for use in these celebrations; no public-domain or third-party license representation"
     },
     {
       "event": "blansas",

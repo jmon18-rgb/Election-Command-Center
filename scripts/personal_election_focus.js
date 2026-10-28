@@ -21,6 +21,39 @@
   const support=pct>=50,confidence=support?pct:100-pct;
   return {label:confidence<60?'Toss-up':(confidence>=95?'Safe ':confidence>=80?'Likely ':'Leaning ')+(support?positive:negative),state:'forecast',side:confidence<60?'neutral':support?'positive':'negative'};
  }
+ // Quantiles describe this model's existing margin proxy, not empirical coverage.
+ // Older snapshots and unsupported/called axes must not acquire an inferred range.
+ function marginSummary(entry,{raceCode,called=false,pending=false}={}){
+  const d=entry?.margin_distribution,keys=['p05','p25','p50','p75','p95'];
+  if(called||pending||!d||d.schema_version!=='same-joint-margin-summary-v1'||
+   d.interval_calibrated!==false||d.distribution_scope!=='UNBOUNDED_LATENT_MARGIN_PROXY_NOT_FINAL_VOTE_INTERVAL'||
+   d.quantile_method!=='SORTED_DRAW_LOWER_INDEX_FLOOR_N_MINUS_ONE_P'||
+   d.axis!==(raceCode==='NE-SEN'?'osborn_minus_ricketts':'dem_minus_rep')||
+   !['POLLING_BASELINE','COUNTY_IMPORTANCE_RESAMPLED','LIVE_INFORMED_SCENARIO'].includes(d.conditioning)||
+   !Number.isInteger(d.sample_count)||d.sample_count<300||d.sample_count>30000||
+   !Number.isInteger(d.unique_election_particles)||d.unique_election_particles<1||d.unique_election_particles>d.sample_count||
+   !finite(d.mean)||!finite(d.sd)||d.sd<0||keys.some(k=>!finite(d[k])||Math.abs(d[k])>100)||
+   keys.some((k,i)=>i>0&&d[k]<d[keys[i-1]]))return null;
+  return Object.fromEntries([...keys,'mean','sd','sample_count','unique_election_particles','axis','conditioning'].map(k=>[k,d[k]]));
+ }
+ function renderMarginSummary(doc,row,el,open=false){
+  const d=row.marginDistribution;if(!d)return null;
+  const positive=row.state==='NE'?'Osborn':'D',negative=row.state==='NE'?'Ricketts':'R';
+  const scale=Math.max(10,Math.ceil(Math.max(Math.abs(d.p05),Math.abs(d.p95))/5)*5),position=x=>50+50*x/scale;
+  const section=el('section','personal-focus-margin');section.setAttribute('aria-label',row.code+' model margin range');
+  section.append(el('p','personal-focus-margin-title','Model margin · median '+margin(d.p50,positive,negative)));
+  const strip=el('div','personal-focus-margin-strip');strip.setAttribute('role','img');
+  strip.setAttribute('aria-label',row.code+' model margin: median '+margin(d.p50,positive,negative)+'; middle 50 percent '+range([d.p25,d.p75],positive,negative)+'; middle 90 percent '+range([d.p05,d.p95],positive,negative)+'. Scale '+negative+'+'+scale+' to '+positive+'+'+scale+'. Model scenarios, not a calibrated final-vote interval.');
+  for(const [name,value]of Object.entries({'range90-left':position(d.p05),'range90-width':position(d.p95)-position(d.p05),'range50-left':position(d.p25),'range50-width':position(d.p75)-position(d.p25),'median-left':position(d.p50)}))strip.style.setProperty('--'+name,value+'%');
+  for(const cls of ['base','zero','range90','range50','median']){const part=el('span','personal-focus-margin-'+cls);part.setAttribute('aria-hidden','true');strip.append(part);}section.append(strip);
+  const axis=el('div','personal-focus-margin-axis');axis.setAttribute('aria-hidden','true');
+  axis.append(el('span','',negative+'+'+scale),el('span','','Even'),el('span','',positive+'+'+scale));section.append(axis);
+  section.append(el('small','personal-focus-margin-caption','Middle 90% · '+range([d.p05,d.p95],positive,negative)));
+  const detail=el('details','personal-focus-margin-detail');detail.dataset.disclosure='margin';detail.open=open;
+  detail.append(el('summary','','What does this range mean?'),el('p','','The dot is the median model margin. The thick segment contains the middle 50% of model scenarios; the thin segment contains the middle 90%. Each strip labels its own scale. These are the same shared model draws as this needle, not an additional forecast or evidence input.'),el('p','','These experimental scenarios are not a calibrated final-vote interval or a count of ballots remaining. The model uses an unbounded margin approximation; no range is shown when its central scenarios exceed possible vote-margin bounds. A source call establishes a winner, not a winning margin.'));
+  detail.append(el('small','',d.conditioning==='COUNTY_IMPORTANCE_RESAMPLED'?'Range includes admitted evidence through the shared model. The status below distinguishes own counts from broader context.':d.conditioning==='LIVE_INFORMED_SCENARIO'?'Range reflects a model scenario, not an independently validated final-vote projection.':'Polling-based model / scenario range; own county returns are not inferred.'));
+  section.append(detail);return section;
+ }
  const historyTime=x=>iso(x)?new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(Date.parse(x))+' ET':'Time unavailable';
  // Browser observations only. Never restore evidence/model state from storage.
  function createHistory({storage,now=()=>Date.now(),simulated=false}={}){
@@ -132,7 +165,7 @@
    const window=Number.isFinite(first)?time(first)+(Number.isFinite(last)&&last!==first?(state==='KS'?' · conservative call gate ':'–')+time(last):''):'Time unverified';
    const displayRating=rating(pct,{positive:left,negative:state==='NE'?'Ricketts':'R',calledParty:called?entry.provider_called_party:null});
    if(state==='NE'&&displayRating.state==='forecast')displayRating.label='Paired · '+displayRating.label;
-   return {...spec,state,order,left,pct,delta,status,sourceAt,ownCounts,called,calledParty:called?entry.provider_called_party:null,broadStateProxy:typeof entry?.source_method==='string'&&entry.source_method.includes('redrawn_state_distribution_proxy'),polled:entry?.polled===true,rating:displayRating,simulated:simulated||result?.county_results_update?.status==='SIMULATED_NATIONAL_REHEARSAL',
+   return {...spec,state,order,left,pct,delta,status,sourceAt,ownCounts,called,calledParty:called?entry.provider_called_party:null,marginDistribution:marginSummary(entry,{raceCode:spec.code,called,pending:pct===null}),broadStateProxy:typeof entry?.source_method==='string'&&entry.source_method.includes('redrawn_state_distribution_proxy'),polled:entry?.polled===true,rating:displayRating,simulated:simulated||result?.county_results_update?.status==='SIMULATED_NATIONAL_REHEARSAL',
     count:direct&&finite(direct.counted_two_party_votes)?direct.counted_two_party_votes:null,
     performance:direct?.matched_performance||null,
     first,last,window,started:Number.isFinite(first)&&now>=first,
@@ -181,6 +214,17 @@
   const toolbar=host.ownerDocument.querySelector('.en-toolbar'),top=(toolbar?.getBoundingClientRect().bottom||0)+8;
   const offset=target.getBoundingClientRect().top-top;
   if(offset<0)host.ownerDocument.defaultView.scrollBy(0,offset);
+ }
+ function activatePersonalDisclosure(host,summary,event){
+  if(event.defaultPrevented)return;
+  const detail=summary.parentElement;if(detail?.tagName!=='DETAILS')return;
+  // An explicit activation can expand a card into a full grid row. Toggle
+  // synchronously so its new geometry, not the old compact row, controls
+  // alignment. Programmatic open-state restoration never enters this path.
+  event.preventDefault();detail.open=!detail.open;summary.focus({preventScroll:true});
+  const view=host.ownerDocument.defaultView,rect=summary.getBoundingClientRect();
+  const top=Math.max(0,host.ownerDocument.querySelector('.en-toolbar')?.getBoundingClientRect().bottom||0)+8;
+  if(rect.top<top||rect.bottom>view.innerHeight-8)view.scrollBy(0,rect.top-top);
  }
  function openRaceEvidence(host,code){
   const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(x=>x.dataset.race===code);
@@ -296,6 +340,7 @@
      detail.append(el('small','','Largest '+(p.largest_reporting_units||[]).length+' of '+p.reporting_units+' reporting areas shown. This does not extrapolate the raw margin statewide or call the race.'));
      card.append(detail);
     }
+    if(row.marginDistribution)card.append(renderMarginSummary(doc,row,el,openPerformance.get(row.code)?.has('margin')||false));
     if(row.note)card.append(el('small','',row.note));
     if(row.code==='TX-SEN'||WATCH?.districts.some(x=>x.code===row.code)){
      const nav=el('nav','personal-focus-jumps'),button=el('button','',row.code==='TX-SEN'?'Early House watch':'Back to '+row.code+' in early House watch');nav.setAttribute('aria-label',row.code+' watch navigation');button.type='button';button.dataset.personalWatchReturn=row.code;
@@ -306,8 +351,9 @@
    group.append(grid);host.append(group);
   }
   host.append(el('p','methodline','Probability changes are not vote-margin outperformance. Matched county performance remains the model evidence. NC01/AZ01 boundary contracts are still pending; existing TX and WA03 integrations remain available. KS uses the existing conservative final-call gate pending county-hours review. Experimental and uncalibrated; a forecast is not a result.'));
+  for(const summary of host.querySelectorAll('.personal-focus-card summary'))summary.addEventListener('click',event=>activatePersonalDisclosure(host,summary,event));
   if(['watch','jump','card-link','watch-return'].includes(watchFocus?.kind))focusTarget(host,watchFocus)?.focus({preventScroll:true});
-  if(focusedRace){const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(c=>c.dataset.race===focusedRace),target=Array.from(card?.querySelectorAll('details')||[]).find(d=>d.dataset.disclosure===focusedDisclosure);(target?.querySelector('summary')||card?.querySelector('details > summary')||card?.querySelector('h4'))?.focus({preventScroll:true});}
+  if(focusedRace){const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(c=>c.dataset.race===focusedRace),target=Array.from(card?.querySelectorAll('details')||[]).find(d=>d.dataset.disclosure===focusedDisclosure);(target?.querySelector('summary')||(focusedDisclosure?card?.querySelector('h4'):card?.querySelector('details > summary'))||card?.querySelector('h4'))?.focus({preventScroll:true});}
  }
- return Object.freeze({SENATE,HOUSE,rows,render,rating,watchSummary,WATCH,captureFocus,focusTarget,createHistory,HISTORY_KEY,HISTORY_LIMIT,HISTORY_BYTES});
+ return Object.freeze({SENATE,HOUSE,rows,render,rating,marginSummary,watchSummary,WATCH,captureFocus,focusTarget,createHistory,HISTORY_KEY,HISTORY_LIMIT,HISTORY_BYTES});
 });

@@ -47,14 +47,23 @@ try{
   const popup=page.locator('#enMilestoneSpotlight');assert.equal(await popup.evaluate(e=>e.matches(':modal')),true);
   assert.equal(await page.locator('#enMilestoneClose').evaluate(e=>e===document.activeElement),true);
   assert.match(await page.locator('#enMilestoneKicker').innerText(),/PREVIEW/);
+  assert.equal(await page.locator('#enCelebrationMusicMode').inputValue(),'original','Fresh profiles prefer ad-free local audio or original scores');
+  assert.match(await page.locator('#enCelebrationMusicQuick').innerText(),/Ad-free/);
+  assert.equal(youtube.length,0,'Reading a preference and announcement do not connect a player');
+  await page.locator('#enCelebrationMusicQuick').click();
+  assert.equal(await page.locator('#enCelebrationMusicMode').inputValue(),'original','Prominent control selects offline music');
   assert.equal(youtube.length,0,'Original mode makes no YouTube request');
   await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
+  assert.equal(youtube.length,0,'Explicit offline music stays offline through the scene');
   const bounds=await popup.boundingBox(),scene=await page.locator('#enCelebrationVisual').boundingBox();
   assert(bounds.x>=0&&bounds.y>=0&&bounds.x+bounds.width<=width+1&&bounds.y+bounds.height<=height+1);
   assert(scene.y>=0&&scene.y+scene.height<=height,'The animation itself is on screen without scrolling');
   await page.screenshot({path:resolve(out,`celebration-popup-${width}.png`)});
   for(let i=0;i<9;i++){await page.keyboard.press('Tab');assert.equal(await popup.evaluate(e=>e.contains(document.activeElement)),true,'Native modal keeps keyboard focus inside');}
   const settings=page.locator('.en-celebration-music-settings');await settings.locator('summary').click();
+  await page.locator('#enCelebrationMusicMode').selectOption('youtube');await page.locator('#enCelebrationOnlinePlayer iframe').waitFor();
+  assert.equal(await page.locator('#enCelebrationMusicMode').inputValue(),'youtube','YouTube requires an explicit optional selection');
+  await page.locator('#enCelebrationMusicQuick').click();assert.equal(await page.locator('#enCelebrationOnlinePlayer iframe').count(),0,'Ad-free control removes the optional ad-supported player');
   await page.locator('#enCelebrationMusicMode').selectOption('youtube');await page.locator('#enCelebrationOnlinePlayer iframe').waitFor();
   const frame=await page.locator('#enCelebrationOnlinePlayer iframe').boundingBox();assert(frame.width>=200&&frame.height>=200);
   assert(frame.y>=0&&frame.y+frame.height<=height,'Opted-in playback keeps the official player on screen');

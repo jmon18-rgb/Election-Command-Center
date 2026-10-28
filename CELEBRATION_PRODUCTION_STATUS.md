@@ -1,5 +1,35 @@
 # Celebration production inventory - October 27, 2026
 
+## October28 latest owner steering — ad-free files and exact Abbott art candidate
+
+YouTube ads prompted a new direction: fresh settings use ad-free playback, not
+YouTube. A browser-local per-event file may replace the original score; its Blob
+bytes stay in IndexedDB here and are never uploaded. Native controls allow Play
+after autoplay rejection. Exact11IDs/16MiB cap, committed storage, cancellation
+epochs, source withdrawal/mute/close/replacement and object-URL cleanup are tested.
+YouTube remains optional with explicit selection; no commercial recording is
+downloaded or bundled. Browser-native file/persistence/media tests are in progress.
+
+Exact owner-supplied Abbott artwork is now371979bytes/SHA256
+e9d6360032b79c75156b490aaf62bd9250479d54e4444225c5d6bc313dc29c3d,
+preserved at assets/celebration-owner-abbott.jpg. Scene/finale show the whole image
+with a visible AI-fiction label. Image failure restores the original campaign-
+sign SVG at the same beat; stale errors cannot repaint a replaced scene. Unit
+tests/provenance pass. Protected publication remains required. This supersedes
+the fresh-YouTube-default and missing-photo candidate text immediately below.
+
+## October28 direct owner preference upgrade — candidate, not yet published
+
+Fresh settings now prefer the existing requested visible YouTube tracks (Eyes
+of Texas/Longhorn Band and Walk This Way/Aerosmith); an explicit saved Original
+choice remains respected. A prominent popup music control and visible guidance
+make the choice available without opening advanced settings. No connection from
+merely reading settings; unknown-track events keep original cues. Changed actual
+desktop/phone default/offline/visible-player/teardown tests pass using synthetic
+iframes, not a new human listening claim. Protected publication remains next.
+The exact Abbott/tree photo is not in the saved project assets; one path/link
+request is pending. Do not claim its campaign-sign replacement is that photo.
+
 PR521 verifies reading return across queued bulletins and celebration preemption
 after background redraws. Finalmain4c3e0e65/Pages40715028630/383files and actual
 published1366/390 tests pass; source/call/music/timing/production roster unchanged.

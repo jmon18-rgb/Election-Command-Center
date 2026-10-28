@@ -1,5 +1,43 @@
 # JackStradamus · development plan
 
+## October28 latest owner update — ad-free playback and actual supplied artwork
+
+Owner rejects YouTube ads: PR527 now prefers private browser-local audio files,
+with original scores as ad-free fallback and YouTube only optional. Exact Abbott
+AI artwork has been supplied and integrated unchanged with fiction label and
+same-beat SVG fallback. Complete actual browser persistence/teardown/image tests,
+then new exact-head protected release; oldca5ef385 is superseded.
+Same-joint race margin ranges remain in this coherent release. Next substantive
+R0 math task is full-factor source-call posterior conditioning: six bounded
+full-factor cases pass, real-size redraw bags/options/replay remain internal
+implementation work. No date-based freeze or unsupported accuracy claim.
+
+## October28 — owner reopens substantive sophistication and media work
+
+Active R0/R7 candidate: selected-race empirical median/middle50/90 ranges from
+the same conditioned joint draws; no extra RNG or changed existing outputs.
+Actual1366/390 UI and focused invariance tests pass; finish protected publication.
+R6 candidate: requested YouTube preference for fresh profiles, prominent music
+control and visible playback guidance, preserving explicit offline choice and
+all media/call guards. Exact Abbott/tree original path/link pending one answer.
+Next model-math task: condition shared latent factors on validated calls without
+double-counting county evidence; separate exact numerical prototype underway.
+Dates/human acceptance are not engineering wait gates. No probability sharpening
+or calibration claim; see RACE_MARGIN_DISTRIBUTIONS.md.
+
+## October28 22:00 UTC — PR526 cleanup executed; no paid features enabled
+
+49obsoleteuploads/286,991,021reportedbytes deleted by reviewed main-push
+40775609365/job123124083723; one planned package already missing, not counted.
+All50plannedIDs absent/3required keepers exact; initial postcheck's one additional
+protected nonplanned Pages disappearance has exactGET404/causeunknown/noDELETE receipt,
+not silently waived. Exact1bd71f9a all4parents pass; merge/finalmain769a2fe3/Pages40775607865
+SUCCESS;22changedpublicfile/index checks/coherence/no_creditPASS, mainrechecked
+22:00:09Z. No app/model/source/call/guide changes or new paid service. The old
+billing-values question is answered by cleanup direction; do not ask again.
+Approved30day originals remainOFF until genuine capacity/no-paid proof, and
+human/calibration/positive-production gates stay open. Do not repeat this plan.
+
 ## October28 — owner requests concrete storage cleanup; candidate pending release
 
 Fifty pinned obsolete uploads (324,536,415reportedbytes) selected after full
@@ -117,12 +155,12 @@ Owner scope update: needle adjustments and the celebration production backlog ar
 | ID / priority | Unfinished deliverable | Next action | Completion evidence / target |
 | --- | --- | --- | --- |
 | R8 / navigation/model focus repair525 verified; human acceptance open | Full owner interpretation and visual acceptance | Watch-to-existing-card/expectation and same-row/Texas returns, semantic announcement/redraw identity, desktop row/phone heading and offscreen reading-position retention released. Reuse actual1366/390 and ordinary semantic proofs; real task feedback reopens engineering immediately. | Exactdc9b5ef9/all37parents; finalmaincbcf2af2/Pages40761231025/served40761325033/27changedfiles verified. Ordinary0viewport/no geometry claim; human interpretation/assistive NOT_RUN, Oct30 target not start gate. |
-| R7 / Texas and21-house watch released523; source coverage unfinished | Personal race needles and evening trend | Eleven Senate/eight pivotal House cards, exact owner references, distinct verified-call surprise patterns and bounded history are released. Current watch/card navigation is being repaired under R8. No extra county admission or likelihood from display scope. | PR523 exactc8cd1e15/final20246439/Pages40748317487/395files verified; carried by524. Four original Senate county connections MI/MN/MS/AK remain missing, AK last. |
+| R7 / Texas and21-house watch released523; distributions527 in review | Personal race needles and evening trend | Eleven Senate/eight pivotal House cards, exact owner references, distinct verified-call surprise patterns and bounded history are released; contextual navigation fixed525. Current527 adds median/middle50/90 from the same conditioned draws, with no probability/source change. | Actual new1366/390 range/disclosure/isolation tasks pass; final527protected publication pending. Four original Senate county connections MI/MN/MS/AK remain missing, AK last. |
 | R0 / additive spread accounting525 verified | Needle methodology and truthful assumptions | Complete analytic baseline Gaussian/geography-mixture spread metadata and truthful old/inconsistent-snapshot copy released. Legacy sigma/live consumers and every fixed-fictional output remain unchanged. No empirical probability sharpening or input promotion. | Four same-seed wholelegacy-output hashes/populationvariance/multiplier/live/call and fullDOM/exactheadCI PASS. Actual published detail/focus/nooverflow verified; source/ESS/budgets preserved, calibration remains R2. |
 | R1 / research tooling519 released; admission gates open | Four missing requested Senate connections | MS246rows/82counties/three candidates, documented alias and importer resolved. New metadata-only lineage ties exact saved blob to publisher commitc7e31f42 dated2021-01-18. Reuse-policy inventory did not establish rights. Next distinct explicit source-file rights/native-certification/current2026 package; no solved-route repeats. MI/MN403 STOP; AK last. | Six public fictional/reference and eight local-original tests PASS; no raw/derived table published. SourceSHA c6fe2553…; processed-file-lineage/receipt saved locally. No native certification/election chronology/current2026/runtime/calibration admission;81004invalid. |
 | R2 / decision recorded; evidence gate open | Predictive validation evidence and evaluation | Formal Oct28 decision snapshot recorded: NO-GO for calibrated national acceptance on zero independent chronological datasets/held-outs; metrics not estimable. Reopen only for a genuinely admissible new package. Use the saved specification for the smallest admissible held-out evaluation using contemporaneous expectations, real early/middle/late captures, correct geography and source-error uncertainty. Pursue a bounded new source route only if it can satisfy a named missing field. Reuse evaluation tools; add only missing necessary evaluation capability. | Reproducible margin error, interval coverage, probability scores and baseline comparison on admitted data; national transfer assessed separately. Oct28 no-go/missing-data decision delivered locally and recorded in acceptance; predictive validation itself remains unmet. Synthetic stress evidence stays separate; never fit and evaluate on the same cases. No guaranteed calibrated acceptance. |
 | R3 / pack ready; human acceptance open | Stable owner rehearsal handoff | Local operator pack v1.0: two-page PDF and responsive HTML at output/pdf/election-night-operator-guide-7e4b163d.*, plus owner-handoff-acceptance-ledger-20261028.json. Eleven task rows map saved evidence and retain human NOT_RUN/resultNULL. Print rendering and local1366/390 guide semantics/keyboard/no-overflow/hash checks pass. Use this concise pack for the real operator session; detailed draftv.9 remains reference. | Oct29 human laptop/phone tasks and actual assistive acceptance still open; exact revision/context/results/defects required. Existing engineering and published rehearsal proof does not complete human handoff or fullOct30review. |
-| R4 / approved encrypted archive released522; capacity and real delivery open | Exact-original retention and positive production delivery | Owner approved first-night originals for30days/no paid storage. Exact already-received WA/VA bodies and request manifests are implemented; capture/upload defaults OFF. Activation still requires actual free GitHub storage >=1835400064bytes, zero-paid protection and a fresh24h receipt; local disk is not cloud allowance. Do not repeat the policy question or completed VA trace. | PR522/Pages40742560756 verified. Signed-in billing allowance/spending block remains unreadable through available access. No activation setting changed; no new native GET/cadence/budget or speculative29GB project. Actual positive/correction/recovery requires Nov3-4 publication. |
+| R4 / archive522 and storage cleanup526 released; capacity and real delivery open | Exact-original retention and positive production delivery | Approved first-night originals/30days/no paid storage; exact already-received WA/VA bodies/manifests implemented, defaults OFF. Owner-requested cleanup removed49obsoleteuploads/286,991,021reportedbytes; this is not account capacity. Activation still requires actual free GitHub storage >=1835400064bytes, zero-paid protection and a fresh24h receipt nearNov3. Owner does not know billing values; do not repeat that question, settled policy or completed VA trace. | PR526/main769a2fe3/Pages40775607865 verified; actual cleanup40775609365/job123124083723 and metadata receipts retained. No billing/activation/nativeGET/cadence/budget change or speculative29GB project. Actual positive/correction/recovery requires Nov3-4 publication; human/calibration gates separate. |
 | R6 / eleven productions and popup/music upgrade released; human acceptance open | Owner listening and combined celebration workflow | All11 retained visuals/original scores through515; owner-requested518 modal/optional YouTube and520/521 reading-return repairs released. Reuse proofs; actual owner listening/sound/mute/skip/replay/reduced-motion tasks stay separate. No new creative quota. | PR518 both official players loaded after Skip, ads observed; availability/autoplay external. PR521 final4c3e0e65/Pages40715028630/383files and published combined return tasks PASS. Human listening/assistive/full interpretation remains open; exact calls/retraction/preview-only guards unchanged. |
 | R5 / before freeze | Final engineering release acceptance | Close actual defects found by R1-R4, run relevant acceptance, release only through exact-head green checks, verify Pages/published bytes and appropriate browser behavior. Classify remaining gates individually. | Oct31 engineering freeze; Nov1 onward defects/testing/recovery only. Stop code Nov4 noon Eastern /17Z. Never label the whole project done while predictive/data gates remain unmet. |
 

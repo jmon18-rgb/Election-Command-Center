@@ -1,0 +1,74 @@
+// Actual isolated rendering and browser-local persistence. Fictional WAV/calls
+// only: no commercial recording, election-provider request or human listening claim.
+import assert from 'node:assert/strict';
+import {createServer} from 'node:http';
+import {readFileSync,existsSync,statSync,mkdirSync,writeFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {resolve,extname,sep} from 'node:path';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright');
+const root=resolve(import.meta.dirname,'..'),out=resolve(root,process.env.UI_REVIEW_OUTPUT_DIR||'artifacts/readiness/ui-review/ad-free-local-art');mkdirSync(out,{recursive:true});
+const types={'.html':'text/html','.js':'application/javascript','.json':'application/json','.svg':'image/svg+xml','.mp3':'audio/mpeg','.jpg':'image/jpeg'},sources=['index.html','scripts/election_night_celebration_local.js','scripts/election_night_celebration_online.js','scripts/election_night_celebration_scene.js','scripts/election_night_celebration_player.js','scripts/test_celebration_local_browser.mjs','assets/celebration-owner-abbott.jpg'];
+const hash=bytes=>createHash('sha256').update(bytes).digest('hex'),sourceHashes=()=>Object.fromEntries(sources.map(file=>[file,hash(readFileSync(resolve(root,file)))])),before=sourceHashes();
+function syntheticWav(){
+ const rate=8000,seconds=12,samples=rate*seconds,buffer=Buffer.alloc(44+samples*2);
+ buffer.write('RIFF',0);buffer.writeUInt32LE(buffer.length-8,4);buffer.write('WAVEfmt ',8);buffer.writeUInt32LE(16,16);buffer.writeUInt16LE(1,20);buffer.writeUInt16LE(1,22);buffer.writeUInt32LE(rate,24);buffer.writeUInt32LE(rate*2,28);buffer.writeUInt16LE(2,32);buffer.writeUInt16LE(16,34);buffer.write('data',36);buffer.writeUInt32LE(samples*2,40);
+ for(let i=0;i<samples;i++)buffer.writeInt16LE(Math.round(Math.sin(i/rate*2*Math.PI*220)*1200),44+i*2);
+ return buffer;
+}
+const wav=syntheticWav(),file={name:'fictional-ad-free-test.wav',mimeType:'audio/wav',buffer:wav};
+const server=createServer((req,res)=>{const file=resolve(root,'.'+(new URL(req.url,'http://localhost').pathname==='/'?'/index.html':decodeURIComponent(new URL(req.url,'http://localhost').pathname)));
+ if(!file.startsWith(root+sep)||!existsSync(file)||!statSync(file).isFile()){res.writeHead(404).end();return;}res.writeHead(200,{'content-type':types[extname(file)]||'application/octet-stream'});res.end(readFileSync(file));});
+await new Promise(ok=>server.listen(0,'127.0.0.1',ok));const base='http://127.0.0.1:'+server.address().port+'/',origin=new URL(base).origin,proof=[];let browser;
+try{
+ browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
+ for(const [width,height]of [[1366,900],[390,844]]){
+  const context=await browser.newContext({viewport:{width,height},reducedMotion:'reduce',serviceWorkers:'block'}),page=await context.newPage(),errors=[],external=[],youtube=[];
+  page.on('pageerror',error=>errors.push(error.message));await page.clock.install({time:new Date('2026-10-28T13:00:00Z')});
+  await page.route('**/*',route=>{const url=new URL(route.request().url());if(url.origin===origin&&(url.protocol==='http:'||url.protocol==='blob:'))return route.continue();external.push(url.hostname);if(/youtube/.test(url.hostname))youtube.push(url.hostname);return route.abort();});
+  const bootstrap=async()=>{await page.goto(base+'#electionNight',{waitUntil:'domcontentloaded'});await page.locator('#enMode2026').click();await page.waitForFunction(()=>document.querySelectorAll('#enPersonalFocus article').length===19);await page.clock.pauseAt(new Date(await page.evaluate(()=>Date.now()+1000)));await page.evaluate(()=>{document.querySelector('#enCelebrationAnnouncement').play=()=>Promise.resolve();});};
+  await bootstrap();
+  const launch=page.locator('#enCelebrationsOpen'),popup=page.locator('#enMilestoneSpotlight'),audio=page.locator('#enCelebrationLocalAudio');
+  const liveBefore=await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities));
+  const upload=async()=>{const chooser=page.waitForEvent('filechooser');await page.locator('#enCelebrationLocalChoose').click();await (await chooser).setFiles(file);await page.waitForFunction(()=>document.querySelector('#enCelebrationLocalName').textContent.includes('fictional-ad-free-test.wav')&&!document.querySelector('#enCelebrationLocalRemove').disabled);};
+  const ended=async()=>{await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));};
+  const mounted=async()=>{await audio.waitFor({state:'visible'});await page.waitForFunction(()=>document.querySelector('#enCelebrationLocalAudio').readyState>=2||Boolean(document.querySelector('#enCelebrationLocalAudio').error));const state=await audio.evaluate(a=>({src:a.getAttribute('src'),controls:a.controls,error:a.error?.code||null,paused:a.paused}));assert.match(state.src,/^blob:/);assert.equal(state.controls,true);assert.equal(state.error,null,'Synthetic PCM must decode in the real browser');return state;};
+  const silent=async()=>{assert.equal(await audio.isHidden(),true);assert.equal(await audio.getAttribute('src'),null);assert.equal(await audio.evaluate(a=>a.paused),true);};
+  await launch.click();assert.equal(await popup.evaluate(e=>e.matches(':modal')),true);assert.equal(await page.locator('#enCelebrationMusicMode').inputValue(),'original','Fresh profile starts ad-free');assert.match(await page.locator('#enCelebrationMusicQuick').innerText(),/Ad-free/);assert.equal(youtube.length,0);
+  await upload();assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'announcement');await silent();assert.equal(youtube.length,0,'Choosing a local file does not contact YouTube or start over the announcement');
+  const storedHash=await page.evaluate(async()=>{const record=await new Promise((ok,fail)=>{const open=indexedDB.open('bluewaves_celebration_audio_v1',1);open.onerror=()=>fail(Error('fixture database unavailable'));open.onsuccess=()=>{const database=open.result,tx=database.transaction('tracks','readonly'),get=tx.objectStore('tracks').get('talarico');get.onsuccess=()=>{database.close();ok(get.result);};get.onerror=()=>{database.close();fail(Error('fixture file unavailable'));};};});return [...new Uint8Array(await crypto.subtle.digest('SHA-256',await record.blob.arrayBuffer()))].map(x=>x.toString(16).padStart(2,'0')).join('');});
+  assert.equal(storedHash,hash(wav),'Actual IndexedDB stores the unchanged selected fictional bytes');
+  await ended();const initialAudio=await mounted();assert.match(await page.locator('#enCelebrationMusicLabel').innerText(),/Your audio.*fictional-ad-free-test.wav/);assert.equal(await page.evaluate(()=>enCelebrationNotes.length),0,'Local playback does not overlap a procedural score');
+  await audio.scrollIntoViewIfNeeded();await page.screenshot({path:resolve(out,`local-audio-${width}.png`)});
+  await page.locator('#enCelebrationSound').click();await silent();await page.clock.runFor(100);await silent();
+  await page.locator('#enCelebrationSound').click();const restartedAudio=await mounted();assert.notEqual(restartedAudio.src,initialAudio.src,'Unmuting mounts a fresh local URL');
+  await page.keyboard.press('Escape');assert.equal(await popup.isHidden(),true);await silent();await page.clock.runFor(6000);await silent();assert.equal(await popup.isHidden(),true,'Closed playback cannot start later');
+  assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),liveBefore,'Local import/playback controls cannot change the race model');
+  // This is the same isolated browser context: its committed file must survive
+  // a genuine page reload. The frozen owner preview is never used by this test.
+  await bootstrap();await launch.click();await page.waitForFunction(()=>document.querySelector('#enCelebrationLocalName').textContent.includes('fictional-ad-free-test.wav'));await silent();await ended();await mounted();
+  await page.locator('#enCelebrationPreviewChoice').selectOption('abbott');assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'announcement');await silent();await page.waitForFunction(()=>document.querySelector('#enCelebrationLocalRemove').disabled);
+  await ended();const image=page.locator('#enCelebrationVisual img.en-celebration-owner-image'),label=page.locator('#enCelebrationVisual .en-celebration-owner-label');await image.waitFor();await page.waitForFunction(()=>{const image=document.querySelector('#enCelebrationVisual img');return image?.complete&&image.naturalWidth>0;});
+  await page.waitForFunction(()=>document.querySelector('#enCelebrationOnlineStatus').textContent.includes('Ad-free original score'));
+  await silent();assert.match(await page.locator('#enCelebrationMusicLabel').innerText(),/Original score/,'Another event does not borrow the saved Talarico file');assert.match(await label.innerText(),/AI-GENERATED.*FICTIONAL POLITICAL SATIRE.*SIMULATED PREVIEW/);assert.equal(await page.locator('#enCelebrationVisual').getAttribute('aria-hidden'),'false');
+  assert.match(await page.locator('#enCelebrationCaption').innerText(),/Fictional election-night artwork/);assert.doesNotMatch(await page.locator('#enCelebrationCaption').innerText(),/campaign sign/i,'Preferred artwork must not describe an absent fallback prop');
+  await image.locator('..').scrollIntoViewIfNeeded();
+  const art=await image.evaluate(image=>{const r=image.getBoundingClientRect(),figure=image.parentElement.getBoundingClientRect(),label=image.parentElement.querySelector('figcaption').getBoundingClientRect();return {src:image.getAttribute('src'),naturalWidth:image.naturalWidth,naturalHeight:image.naturalHeight,fit:getComputedStyle(image).objectFit,x:r.x,y:r.y,width:r.width,height:r.height,figureWidth:figure.width,labelY:label.y,labelBottom:label.bottom,animations:image.getAnimations().length};});
+  assert.match(art.src,/assets\/celebration-owner-abbott\.jpg\?v=[a-f0-9]+$/);assert.equal(art.fit,'contain');assert(art.width<=art.figureWidth+1&&art.height<=height*.4+2,'Full owner artwork is contained in a bounded image viewport');assert(art.x>=0&&art.x+art.width<=width+1&&art.y>=0&&art.y+art.height<=height+1&&art.labelBottom<=height+1,'Artwork and explicit AI label are actually on screen');assert.equal(art.animations,0);assert.equal(await page.evaluate(()=>matchMedia('(prefers-reduced-motion:reduce)').matches),true);
+  await page.screenshot({path:resolve(out,`abbott-owner-art-${width}.png`)});
+  await page.clock.runFor(2400);assert.equal(await image.getAttribute('src'),art.src,'Every beat uses the exact owner-supplied image');await page.clock.runFor(4800);assert.equal(await image.getAttribute('src'),art.src,'Finale retains the same complete owner image');assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'complete');
+  await page.keyboard.press('Escape');assert.equal(await popup.isHidden(),true);await silent();assert.equal(await launch.evaluate(e=>e===document.activeElement),true);
+  await launch.click();await page.waitForFunction(()=>!document.querySelector('#enCelebrationLocalRemove').disabled);await page.locator('#enCelebrationLocalRemove').click();await page.waitForFunction(()=>document.querySelector('#enCelebrationLocalRemove').disabled);assert.doesNotMatch(await page.locator('#enCelebrationLocalName').innerText(),/Saved for this celebration/);await ended();await page.waitForFunction(()=>document.querySelector('#enCelebrationOnlineStatus').textContent.includes('Ad-free original score'));await silent();assert.match(await page.locator('#enCelebrationMusicLabel').innerText(),/Original score/,'Removing the saved file restores the original cue');await page.keyboard.press('Escape');
+  // Save again through normal controls, then exercise the real controller's
+  // normalized fictional call ingress and withdrawal with this local soundtrack.
+  await launch.click();await upload();await page.keyboard.press('Escape');await silent();
+  await page.clock.setSystemTime(new Date('2026-11-04T03:00:00Z'));await page.locator('#enMode2026').focus();await page.evaluate(()=>window.scrollTo(0,0));
+  await page.evaluate(()=>{enCivicByWatch['Senate|TX']={provider:'civicAPI',office:'Senate',key:'TX',race_id:87438,total:98001,last_updated:'2026-11-04T02:00:00Z',called:'James Talarico',candidates:[{name:'James Talarico',party:'D',votes:65000},{name:'Ken Paxton',party:'R',votes:33001}]};delete enCivicErrors['Senate|TX'];enCivicValidatedGenerations['Senate|TX']=enCivicBreaker?.status().generation??0;enRenderMilestones();});
+  assert.equal(await popup.evaluate(e=>e.matches(':modal')),true);assert.match(await page.locator('#enMilestoneKicker').innerText(),/SOURCE-REPORTED CALL/);await silent();await ended();await mounted();
+  await page.evaluate(()=>{enCivicByWatch['Senate|TX'].called=null;enRenderMilestones();});assert.equal(await popup.isHidden(),true);await silent();await page.clock.runFor(6000);await silent();assert.equal(await popup.isHidden(),true,'Call withdrawal cannot leave or restart the local track');assert.equal(await page.locator('#enMode2026').evaluate(e=>e===document.activeElement),true);
+  assert.equal(youtube.length,0,'The complete ad-free journey sends no YouTube request');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);assert.deepEqual(errors,[]);
+  proof.push({width,height,actual_browser:process.env.BROWSER_CHANNEL||'chromium',synthetic_file:{name:file.name,bytes:wav.length,sha256:hash(wav),browser_stored_sha256:storedHash},initial_audio:initialAudio,artwork:art,private_browser_persistence:true,announcement_first:true,mute_close_replacement_retraction_cleanup:true,remove_restores_original:true,youtube_requests:youtube.length,blocked_external_request_count:external.length,actual_native_provider_gets:0,human_listening:'NOT_RUN',recording_rights:'NO_CLAIM_FICTIONAL_PCM_ONLY'});
+  await context.close();console.log(`${width}x${height}: ad-free local-file controls/persistence/cancellation, full Abbott owner artwork and reduced-motion/Escape PASS`);
+ }
+ assert.deepEqual(sourceHashes(),before,'Relevant source/asset bytes must stay fixed during the actual-browser review');
+ writeFileSync(resolve(out,'ad-free-local-art-browser.json'),JSON.stringify({at:new Date().toISOString(),scope:'Actual isolated browser rendering and IndexedDB; synthetic PCM/calls only; all external election providers and YouTube blocked',source_hashes:before,proof,human_acceptance:'NOT_RUN'},null,2)+'\n');
+}finally{await browser?.close();await new Promise(ok=>server.close(ok));}

@@ -14,7 +14,7 @@
   nebraska:[['🏈','UPSET ON THE PRAIRIE','The scoreboard needs a moment.'],['🌽','CORN-FED REBELLION','The establishment calls a timeout.'],['🎉','OSBORN WINS','Independent winner. No assumed caucus.']],
   ohio:[['🌰','A BUCKEYE UNDER PRESSURE','Something is about to crack.'],['⚡','BLUE-SHOCK','The comeback gets a thunderclap.'],['💙','OH! THAT HAPPENED','Ohio takes its victory lap.']],
   talarico:[['🤘','HOOK ’EM BLUE','Raise the blue horns, Texas.'],['⭐','TALARICO TAKES THE STAGE','One Senate call. One enormous victory lap.'],['💙','TEXAS SENATE: TALARICO','The governor race has its own story.']],
-  abbott:[['🌳','THE CAMPAIGN HAS A PROBLEM','A fictional campaign sign is in the wrong place.'],['💙','TIMBER, INCUMBENT','The campaign sign takes the fall.'],['🎉','TEXAS GOVERNOR FLIPS','An election defeat. A new chapter.']],
+  abbott:[['🌳','THE CAMPAIGN HAS A PROBLEM','Fictional election-night artwork. Not a real event.'],['💙','TIMBER, INCUMBENT','A theatrical send-off for an era of Texas politics.'],['🎉','TEXAS GOVERNOR FLIPS','An election defeat. A new chapter.']],
   mississippi:[['🌊','A CHANGE IN THE CURRENT','Mississippi turns the page.'],['📦','STRAIGHT INTO STORAGE','The retired mascot gets a very blue sendoff.'],['💙','MISSISSIPPI SENATE FLIPS','Leave the old symbols behind.']],
   tsunami:[['🌊','A VERY LARGE WAVE','Preview the grand finale.'],['🌊 🌊','PLEASE SECURE YOUR LAWN SIGNS','The tide has theatrical ambitions.'],['💙','BLUE TSUNAMI','Preview only until national conditions can be verified.']]
  });

@@ -603,6 +603,10 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-celebration-actions button,.en-celebration-music-settings button{min-height:44px}.en-celebration-actions button:focus-visible,.en-celebration-actions select:focus-visible{outline:3px solid #ffe393;outline-offset:2px}
 .en-celebration-music-settings{text-align:left;background:#0d2438;border:1px solid #365a78;border-radius:8px;padding:10px;margin:12px 0;font-size:12px}.en-celebration-music-settings summary{cursor:pointer;padding:5px}.en-celebration-music-settings label{display:block;margin:10px 0}.en-celebration-music-settings input{display:block;width:100%;margin-top:5px}.en-celebration-music-settings a{display:inline-block;color:#a4d7ff;padding:8px}
 .en-celebration-online-player{margin:12px auto;max-width:480px;min-width:200px}.en-celebration-online-player iframe{display:block;width:100%;height:270px;min-width:200px;min-height:200px;border:0}
+.en-celebration-online-status{font-size:12px;line-height:1.5;color:#c3def0;margin:10px auto;max-width:520px}
+.en-celebration-local-audio{display:block;width:min(100%,520px);margin:12px auto}.en-celebration-local-audio[hidden]{display:none}
+.en-celebration-local-settings{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;padding:10px;border:1px solid #41627d;border-radius:8px;background:#0a2035;font-size:12px}.en-celebration-local-settings span{width:100%;overflow-wrap:anywhere;color:#c6ddeb}.en-celebration-local-settings button{min-height:44px;padding:8px 11px;color:#e9f6ff;background:#1c4a6a;border:1px solid #6d9dbb;border-radius:7px}.en-celebration-local-settings button:disabled{opacity:.5}.en-celebration-local-settings button:focus-visible{outline:3px solid #ffe393;outline-offset:2px}
+.en-celebration-owner-art{margin:0}.en-celebration-owner-image{display:block;width:100%;height:auto;max-height:40dvh;object-fit:contain;border-radius:8px}.en-celebration-owner-label{font:700 11px/1.5 system-ui,sans-serif;letter-spacing:.035em;color:#d8edff;padding:8px 5px 0}
 @media(max-width:600px){.en-celebration-online-player iframe{height:200px}.en-celebration-actions{gap:4px}.en-celebration-actions label{width:100%}.en-celebration-actions select{max-width:75%}}
 .en-celebration-stage{margin:16px auto;padding:22px 12px;min-height:170px;border-radius:12px;background:radial-gradient(ellipse at center,#195e99,#081b35);overflow:hidden}
 .en-coverage-recovery{margin:12px 0;padding:12px;border-left:3px solid #e3b45a;background:#392e182e;border-radius:5px}
@@ -870,6 +874,19 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .personal-focus-card[data-race="NE-SEN"][data-rating-side="positive"]{border-top-color:#d2acff}
 .personal-focus-card[data-race="NE-SEN"][data-rating-side="positive"] .personal-focus-rating{background:#3b2854;border-color:#d2acff;color:#f0e2ff}
 .personal-focus-card[data-rating-kind="called"] .personal-focus-rating{border-width:2px}
+.personal-focus-margin{--margin-color:#85c8ff;margin:12px 0 9px;padding:10px 11px;border:1px solid #50718c;border-radius:9px;background:#071b2a80}
+.personal-focus-card[data-race="NE-SEN"] .personal-focus-margin{--margin-color:#d2acff}
+.personal-focus-card .personal-focus-margin-title{font-size:12px;font-weight:750;margin:0;color:#edf7ff}
+.personal-focus-margin-strip{position:relative;height:30px;margin:5px 0 0;isolation:isolate}
+.personal-focus-margin-strip span{position:absolute;display:block;box-sizing:border-box}
+.personal-focus-margin-base{left:0;right:0;top:14px;height:2px;background:linear-gradient(90deg,#e591a7,#8796aa 50%,#70bcf4);opacity:.65}
+.personal-focus-margin-zero{left:50%;top:1px;height:28px;border-left:1px dashed #d9e6f0;z-index:1}
+.personal-focus-margin-range90{left:var(--range90-left);width:var(--range90-width);top:11px;height:8px;border-radius:5px;background:var(--margin-color);opacity:.45}
+.personal-focus-margin-range50{left:var(--range50-left);width:var(--range50-width);top:8px;height:14px;border-radius:5px;background:var(--margin-color);border:1px solid #ffffff55}
+.personal-focus-margin-median{left:var(--median-left);top:4px;width:4px;height:22px;transform:translateX(-50%);border-radius:3px;background:#fff;box-shadow:0 0 0 1px #071b2a;z-index:2}
+.personal-focus-margin-axis{display:flex;justify-content:space-between;gap:5px;font-size:10px;color:#bbcfdf;font-variant-numeric:tabular-nums}
+.personal-focus-card .personal-focus-margin-caption{font-size:11px;color:#d3e5f3;margin:7px 0 0;line-height:1.45}
+.personal-focus-margin-detail{font-size:11px;line-height:1.6;margin-top:5px;color:#bcd1e2}.personal-focus-margin-detail summary{min-height:44px;display:flex;align-items:center;cursor:pointer}.personal-focus-margin-detail summary:focus-visible{outline:3px solid #ffe393;outline-offset:2px}
 .personal-focus-rating-key{font-size:12px;margin:10px 0 16px;color:#b9cedf}.personal-focus-rating-key summary{cursor:pointer;min-height:32px;padding:6px 0}
 .personal-focus-rating-key summary:focus-visible{outline:3px solid #ffe393;outline-offset:3px}
 .personal-focus-card svg{width:112px;float:right;margin:8px -4px 6px 10px}
@@ -1444,6 +1461,7 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
   <div class="en-milestone-kicker" id="enMilestoneKicker">SOURCE-REPORTED CALL</div>
   <div class="en-celebration-actions">
    <label>Preview another <select id="enCelebrationPreviewChoice" aria-label="Choose a celebration preview"></select></label>
+   <button class="en-milestone-close" id="enCelebrationMusicQuick" type="button" aria-pressed="true">Ad-free music</button>
    <button class="en-milestone-close" id="enCelebrationSound" type="button" aria-pressed="true">Sound: on</button>
    <button class="en-milestone-close" id="enMilestoneClose" type="button" autofocus>Back to results · Esc</button>
   </div>
@@ -1458,14 +1476,21 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
    <p class="tiny" id="enCelebrationMusicLabel"></p>
   </div>
   <div id="enCelebrationOnlinePlayer" class="en-celebration-online-player" hidden></div>
+  <audio id="enCelebrationLocalAudio" class="en-celebration-local-audio" controls preload="none" aria-label="Your ad-free celebration audio" hidden></audio>
+  <p class="en-celebration-online-status" id="enCelebrationOnlineStatus" role="status">Ad-free music uses your saved audio file or the original score.</p>
+  <div class="en-celebration-local-settings">
+   <span id="enCelebrationLocalName">Audio files stay in this browser; they are never uploaded.</span>
+   <button id="enCelebrationLocalChoose" type="button">Choose an audio file</button>
+   <button id="enCelebrationLocalRemove" type="button" disabled>Remove saved audio</button>
+   <input id="enCelebrationLocalFile" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg,.flac" hidden>
+  </div>
   <details class="en-celebration-music-settings">
-   <summary>Music &amp; YouTube choices</summary>
-   <label>Playback <select id="enCelebrationMusicMode"><option value="original">Original offline cue</option><option value="youtube">YouTube track</option></select></label>
+   <summary>Other versions &amp; optional YouTube</summary>
+   <label>Playback <select id="enCelebrationMusicMode"><option value="original">Ad-free · your audio or original score</option><option value="youtube">YouTube · may include ads</option></select></label>
    <label>YouTube link for this celebration <input id="enCelebrationVideoInput" type="url" placeholder="https://www.youtube.com/watch?v=…"></label>
    <button id="enCelebrationVideoSave" type="button">Use this version</button>
-   <button id="enCelebrationOriginal" type="button">Play original cue instead</button>
+   <button id="enCelebrationOriginal" type="button">Use ad-free music instead</button>
    <a id="enCelebrationVideoLink" target="_blank" rel="noopener" hidden>Open track on YouTube ↗</a>
-   <p id="enCelebrationOnlineStatus" role="status">Original music works offline. YouTube needs internet and may ask you to press Play.</p>
   </details>
   <div class="en-milestone-art" id="enMilestoneArt" aria-hidden="true">🌊</div>
   <div id="enJohnBrownPosterTitle" class="en-brown-poster-title" hidden>BLEEDING KANSAS.<span>1859 MEETS 2026</span>ONLY THIS TIME, BLUE.</div>
@@ -1561,12 +1586,13 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 </details>
 </section>
 <footer class="footer"><span>2026 ELECTION COMMAND CENTER · CLARITY OVER NOISE</span><span><a href="https://github.com/jmon18-rgb/Election-Command-Center">Source code ↗</a> · <span id="updated">Briefing pending</span></span></footer></main>
-<script src="./scripts/election_night_celebration_player.js?v=93ed1d49eda5"></script>
-<script src="./scripts/election_night_celebration_online.js?v=669b56b2d0a3"></script>
+<script src="./scripts/election_night_celebration_player.js?v=47af1bdac3fe"></script>
+<script src="./scripts/election_night_celebration_online.js?v=b0163b7f8211"></script>
+<script src="./scripts/election_night_celebration_local.js?v=cb2655f0b013"></script>
 <script src="./scripts/election_night_celebration_music.js?v=6a479f8a84b1"></script>
-<script src="./scripts/election_night_celebration_scene.js?v=f1943c3e36ba"></script>
+<script src="./scripts/election_night_celebration_scene.js?v=21828156bbd1"></script>
 <script src="./scripts/house_early_watch_reference.js?v=e1b9bc598b36"></script>
-<script src="./scripts/personal_election_focus.js?v=79b253c386a4"></script>
+<script src="./scripts/personal_election_focus.js?v=5dab214de038"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=6eaa0d8f80cf"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=165fc37d665a"></script>
 <script src="./scripts/civicapi_state_batch.js?v=99e987c72cb8"></script>
@@ -1592,7 +1618,7 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/election_night_nowcast.js?v=b8cd63572ea1"></script>
 <script src="./scripts/election_night_early_signals.js?v=36958b325016"></script>
 <script src="./scripts/election_night_priority.js?v=67317c95ade2"></script>
-<script src="./scripts/election_night_signals.js?v=3e09fc4d7af6"></script>
+<script src="./scripts/election_night_signals.js?v=de465c6b3fd3"></script>
 <script src="./scripts/election_night_poll_closings_2026.js?v=39c725fe013b"></script>
 <script src="./scripts/election_night_reconciliation.js?v=395ee89c6934"></script>
 <script src="./scripts/election_night_506_live_gap_desk.js?v=b3d6fc8c94e4"></script>
@@ -1624,7 +1650,7 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/national_county_likelihood.js?v=e1ceb7b0bfd1"></script>
 <script src="./scripts/official_admission_audit.js?v=c2720f504058"></script>
 <script src="./scripts/national_needle_rehearsal.js?v=02f20194577c"></script>
-<script src="./scripts/chamber_control_model.js?v=76e60458f85d"></script>
+<script src="./scripts/chamber_control_model.js?v=ec6c4f60ccdb"></script>
 <script src="./scripts/electorate_what_if_2026.js?v=1a5fe3701694"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
 <script src="./scripts/chamber_poll_error_audit.js?v=9e73e0e9f9fe"></script>
@@ -4836,6 +4862,10 @@ function jointCurrentSignature(){
 }
 const enOfficialAdmissionAudit=(()=>{try{return window.OfficialAdmissionAudit?.create({storage:localStorage})}catch{return window.OfficialAdmissionAudit?.create()}})();
 const enOutlookHistory=(()=>{try{return window.PersonalElectionFocus?.createHistory({storage:localStorage})}catch{return window.PersonalElectionFocus?.createHistory()}})();
+function jointMarginSummaryCodes(){
+ const focus=window.PersonalElectionFocus;
+ return focus?[...new Set([...focus.SENATE.map(state=>state+'-SEN'),...focus.HOUSE,...(focus.WATCH?.districts||[]).map(row=>row.code)])]:undefined;
+}
 function jointHistoryRevision(preview=false){return [preview?'SIMULATED':'LIVE',window.ChamberControlModel.VERSION,jointIndependentControlOptions.independentSenateCredit,
  document.querySelector('script[src*="/chamber_control_model.js?"]')?.getAttribute('src')||'',
  document.querySelector('script[src*="/national_county_likelihood.js?"]')?.getAttribute('src')||'',jointBasis?.generated_from_sources?.model_polling_at||'',preview?0:jointNationalShift,preview?1:jointErrorMultiplier,
@@ -4852,7 +4882,7 @@ function jointRender(force=false){
  jointCacheKey=key;
  const updates=jointLiveObservations();
  try{
-  const args={...jointIndependentControlOptions,samples:3000,seed:20261103,
+  const args={...jointIndependentControlOptions,marginSummaryCodes:jointMarginSummaryCodes(),samples:3000,seed:20261103,
    nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,live:updates};
   const envelopes=jointCountyEvidence();
   let conditioned=null,countyUpdateWithheld=false;
@@ -4949,7 +4979,7 @@ async function jointNationalPreview(){
   if(version!==nationalPreviewVersion||!details.open||enModeYear!==2026)return;
   const envelopes=window.NationalNeedleRehearsal.stage(nationalPreviewInputs,nationalPreviewStep,jointBasis);
   const update=window.NationalCountyLikelihood.condition(window.ChamberControlModel,jointBasis,envelopes,
-   {...jointIndependentControlOptions,samples:3000,seed:20261103,live:{},rehearsal:true,now:window.NationalNeedleRehearsal.now});
+   {...jointIndependentControlOptions,marginSummaryCodes:jointMarginSummaryCodes(),samples:3000,seed:20261103,live:{},rehearsal:true,now:window.NationalNeedleRehearsal.now});
   const host=$('#enNationalPreviewNeedle');host.className=$('#jointNightNeedle').className;
   host.innerHTML=$('#jointNightNeedle').innerHTML;
   host.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));
@@ -5971,7 +6001,7 @@ const enMilestonePosters=Object.freeze({
  nebraska:{file:'nebraska',alt:'Blue tractor across Nebraska cornfields: Osborn independent corn-fed rebellion'},
  ohio:{file:'ohio',alt:'A buckeye nut cracked by a vivid blue lightning bolt: Sherrod Brown comeback'},
  talarico:{file:'talarico',alt:'Electric-blue horns hand gesture and a Texas Senate victory star for James Talarico'},
- abbott:{file:'abbott',revision:'a04d13ffa0ca',alt:'Original fictional campaign-sign tree gag for an Abbott election defeat; no people depicted'},
+ abbott:{file:'abbott',asset:'celebration-owner-abbott.jpg',revision:'ce0df48ef6a4',fallbackRevision:'a04d13ffa0ca',alt:'Owner-supplied AI-generated political satire of Greg Abbott beside a fallen tree and a woman riding a branch; fictional artwork, not a real event'},
  mississippi:{file:'mississippi',asset:'celebration-owner-mississippi.jpg',revision:'30d9b3abf611',alt:'Owner-supplied fictional retired-mascot character swept into a dramatic wave; celebration artwork, not a real incident'}
 });
 function enMilestonePosterUrl(art){return art.asset?'./assets/'+art.asset+'?v='+art.revision:art.historicalPortrait?enJohnBrownPortraitUrl:'./assets/milestone-'+art.file+'.svg'+(art.revision?'?v='+art.revision:'');}
@@ -5997,6 +6027,7 @@ function enMilestoneEvidence(){
 }
 function enMilestoneRender(item,demo=false){
  if(enModeYear!==2026||!item)return false;
+ ++enCelebrationModalEpoch;
  enCelebrationStopMedia();
  const tsunami=item.id==='tsunami';
  $('#enMilestoneKicker').textContent=demo?'PREVIEW · FICTIONAL ACHIEVEMENT':
@@ -6056,7 +6087,10 @@ function enMilestoneRender(item,demo=false){
  return true;
 }
 let enCelebrationAudioContext=null,enCelebrationNotes=[],enCelebrationCurrent=null,enCelebrationReturnFocus=null,enCelebrationReturnAnchor=null,enCelebrationBodyOverflow='',enCelebrationModalActive=false;
+let enCelebrationMusicEpoch=0;
+let enCelebrationModalEpoch=0,enCelebrationSettingsEpoch=0,enCelebrationInfoEpoch=0;
 const enCelebrationOnline=window.ElectionNightCelebrationOnline;
+const enCelebrationLocal=window.ElectionNightCelebrationLocal?.create({audio:$('#enCelebrationLocalAudio'),onStatus:enCelebrationLocalStatus});
 const enCelebrationStorage=(()=>{try{return localStorage}catch{return null}})();
 const enCelebrationMusicSettings=enCelebrationOnline?.read(enCelebrationStorage,Object.keys(window.ElectionNightCelebrationPlayer?.STORIES||enMilestonePosters))||{mode:'original',videos:{}};
 function enCelebrationOpen(){
@@ -6074,6 +6108,7 @@ function enCelebrationOpen(){
  dialog.scrollTop=0;
 }
 function enCelebrationHide(restore=true){
+ ++enCelebrationModalEpoch;
  enCelebrationStopMedia();
  const dialog=$('#enMilestoneSpotlight'),wasOpen=enCelebrationModalActive;
  enCelebrationModalActive=false;
@@ -6091,12 +6126,29 @@ function enCelebrationDismiss(restore=true){
  if(enFishPending.length&&!enFishCurrent)enFishNextBulletin();
 }
 function enCelebrationSyncMusic(){
+ ++enCelebrationSettingsEpoch;
  const track=enCelebrationOnline?.track(enCelebrationCurrent,enCelebrationMusicSettings);
  $('#enCelebrationMusicMode').value=enCelebrationMusicSettings.mode;
+ const quick=$('#enCelebrationMusicQuick'),online=enCelebrationMusicSettings.mode==='youtube';
+ quick.textContent=online?'Use ad-free music':'Ad-free music';quick.setAttribute('aria-pressed',String(!online));
+ quick.setAttribute('aria-label',online?'Use ad-free music instead of YouTube.':'Ad-free music selected. Choose your audio below or use the original score.');
  $('#enCelebrationVideoInput').value=track?'https://www.youtube.com/watch?v='+track.id:'';
  const link=$('#enCelebrationVideoLink');link.hidden=!track;
  if(track){link.href='https://www.youtube.com/watch?v='+track.id;link.textContent='Open '+track.title+' on YouTube ↗';}
- $('#enCelebrationOnlineStatus').textContent=track?track.title+'. YouTube needs internet and may ask you to press Play. The original cue is always available.':'No YouTube track selected for this celebration. The original cue will play.';
+ $('#enCelebrationOnlineStatus').textContent=online?(track?track.title+'. YouTube may include ads; press Play if your browser asks.':'No YouTube track selected; the original score will play.'):'Ad-free music selected. Your saved audio plays first; otherwise the original score.';
+ enCelebrationSyncLocal();
+}
+function enCelebrationLocalStatus(state){
+ if(state.id!==enCelebrationCurrent||!$('#enMilestoneSpotlight').open||enCelebrationMusicSettings.mode!=='original')return;
+ const messages={LOADING:'Loading your saved audio…',PLAYING:'Your audio is playing here, without ads.',PRESS_PLAY:'Press Play on the audio controls to start your saved track.',PAUSED:'Your audio is paused. Press Play to resume.',ENDED:'Your audio finished. Use the audio controls to replay it.',FILE_PLAYBACK_ERROR:'This file could not play. Choose another file or remove it to use the original score.'};
+ if(messages[state.status])$('#enCelebrationOnlineStatus').textContent=messages[state.status];
+ if(state.metadata)$('#enCelebrationMusicLabel').textContent='Your audio · '+state.metadata.name;
+}
+async function enCelebrationSyncLocal(){
+ const id=enCelebrationCurrent,modalEpoch=enCelebrationModalEpoch,settingsEpoch=enCelebrationSettingsEpoch,request=++enCelebrationInfoEpoch,info=await enCelebrationLocal?.info(id);
+ if(id!==enCelebrationCurrent||modalEpoch!==enCelebrationModalEpoch||settingsEpoch!==enCelebrationSettingsEpoch||request!==enCelebrationInfoEpoch||!$('#enMilestoneSpotlight').open)return;
+ $('#enCelebrationLocalName').textContent=info?.metadata?'Saved for this celebration: '+info.metadata.name:'Audio files stay in this browser; they are never uploaded. Up to 16 MB per celebration.';
+ $('#enCelebrationLocalRemove').disabled=!info?.metadata;
 }
 function enCelebrationMaybeReplayMusic(){
  // Keep the announcement first, even when the owner changes music settings.
@@ -6113,6 +6165,24 @@ $('#enCelebrationsOpen').addEventListener('click',()=>enMilestoneShow(window.Ele
 $('#enCelebrationMusicMode').addEventListener('change',event=>{
  enCelebrationMusicSettings.mode=event.target.value==='youtube'?'youtube':'original';
  enCelebrationOnline?.save(enCelebrationStorage,enCelebrationMusicSettings);enCelebrationSyncMusic();enCelebrationMaybeReplayMusic();
+});
+$('#enCelebrationMusicQuick').addEventListener('click',()=>{
+ enCelebrationMusicSettings.mode='original';
+ enCelebrationOnline?.save(enCelebrationStorage,enCelebrationMusicSettings);enCelebrationSyncMusic();enCelebrationMaybeReplayMusic();
+});
+$('#enCelebrationLocalChoose').addEventListener('click',()=>$('#enCelebrationLocalFile').click());
+$('#enCelebrationLocalFile').addEventListener('change',async event=>{
+ const id=enCelebrationCurrent,modalEpoch=enCelebrationModalEpoch,settingsEpoch=++enCelebrationSettingsEpoch,file=event.target.files?.[0];event.target.value='';if(!file)return;
+ const saved=await enCelebrationLocal?.save(id,file);
+ if(id!==enCelebrationCurrent||modalEpoch!==enCelebrationModalEpoch||settingsEpoch!==enCelebrationSettingsEpoch||!$('#enMilestoneSpotlight').open)return;
+ if(saved?.status!=='SAVED'){$('#enCelebrationOnlineStatus').textContent=saved?.status==='FILE_TOO_LARGE'?'Choose an audio file smaller than 16 MB.':'Could not save that audio file. Try MP3, M4A, WAV or OGG; the original score is still available.';return;}
+ enCelebrationMusicSettings.mode='original';enCelebrationOnline?.save(enCelebrationStorage,enCelebrationMusicSettings);enCelebrationSyncMusic();enCelebrationMaybeReplayMusic();
+});
+$('#enCelebrationLocalRemove').addEventListener('click',async()=>{
+ const id=enCelebrationCurrent,modalEpoch=enCelebrationModalEpoch,settingsEpoch=++enCelebrationSettingsEpoch,removed=await enCelebrationLocal?.remove(id);
+ if(id!==enCelebrationCurrent||modalEpoch!==enCelebrationModalEpoch||settingsEpoch!==enCelebrationSettingsEpoch||!$('#enMilestoneSpotlight').open)return;
+ if(removed?.status!=='REMOVED'){$('#enCelebrationOnlineStatus').textContent='Could not remove saved audio from this browser.';return;}
+ enCelebrationSyncMusic();if(enCelebrationMusicSettings.mode==='original')enCelebrationMaybeReplayMusic();
 });
 $('#enCelebrationVideoSave').addEventListener('click',()=>{
  const id=enCelebrationOnline?.videoId($('#enCelebrationVideoInput').value.trim());
@@ -6137,6 +6207,7 @@ $('#enMilestoneSpotlight').addEventListener('close',()=>{
  if(!$('#enMilestoneSpotlight').open&&!$('#enMilestoneSpotlight').hidden)enCelebrationDismiss();
 });
 function enCelebrationStopMedia(){
+ ++enCelebrationMusicEpoch;enCelebrationLocal?.stop();
  enCelebrationOnline?.clear($('#enCelebrationOnlinePlayer'));
  const audio=$('#enCelebrationAnnouncement');
  audio.onended=null;audio.onerror=null;
@@ -6149,17 +6220,18 @@ function enCelebrationRenderSound(){
  button.textContent='Sound: '+(enFishSoundEnabled?'on':'off');
  button.setAttribute('aria-pressed',String(enFishSoundEnabled));
 }
-function enCelebrationMusic(id,reason){
+async function enCelebrationMusic(id,reason){
  // A selected online recording can outlast the short animation. All other
  // queue/stop/retraction paths still remove its player immediately.
- if(!id&&reason==='finale'&&enFishSoundEnabled&&$('#enMilestoneSpotlight').open&&$('#enCelebrationOnlinePlayer iframe')){
-  $('#enCelebrationOnlineStatus').textContent='YouTube may keep playing on the finale. Close or mute to stop; use the original cue if the video is unavailable.';
+ if(!id&&reason==='finale'&&enFishSoundEnabled&&$('#enMilestoneSpotlight').open&&($('#enCelebrationOnlinePlayer iframe')||!$('#enCelebrationLocalAudio').hidden)){
+  $('#enCelebrationOnlineStatus').textContent='Your track can continue on the finale. Close or mute to stop.';
   return;
  }
  enCelebrationStopMedia();
  const label=$('#enCelebrationMusicLabel'),theme=window.ElectionNightCelebrationMusic?.THEMES[id];
  if(label)label.textContent=id?'Original score · '+(theme?.title||'synthesized victory cue'):'';
  if(!id||!enFishSoundEnabled)return;
+ const epoch=enCelebrationMusicEpoch,valid=()=>epoch===enCelebrationMusicEpoch&&enFishSoundEnabled&&$('#enMilestoneSpotlight').open&&enCelebrationCurrent===id&&['scene','complete'].includes($('#enCelebrationStage').dataset.phase);
  const track=enCelebrationOnline?.track(id,enCelebrationMusicSettings);
  if(enCelebrationMusicSettings.mode==='youtube'&&track){
   if(enCelebrationOnline.mount($('#enCelebrationOnlinePlayer'),track)){
@@ -6167,6 +6239,14 @@ function enCelebrationMusic(id,reason){
    $('#enCelebrationOnlineStatus').textContent='YouTube player below. Press Play if autoplay is blocked, or choose the original cue if this video is unavailable.';
    return;
   }
+ }
+ if(enCelebrationMusicSettings.mode==='original'&&enCelebrationLocal){
+  // The player starts music just before it paints the first scene. Let that
+  // synchronous paint finish before testing this async playback's phase guard.
+  await Promise.resolve();if(!valid())return;
+  const local=await enCelebrationLocal.play(id,{valid});
+  if(!valid()||!local.fallback)return;
+  $('#enCelebrationOnlineStatus').textContent='Ad-free original score. Choose your own audio file to replace it.';
  }
  // Original short synthesized cue; no commercial song/recording is bundled.
  try{
@@ -6214,7 +6294,7 @@ function enCelebrationRenderVisual(item,demo,phase,scene){
  let shown=false;
  try{
   const beat=window.ElectionNightCelebrationPlayer?.STORIES[item.id]?.indexOf(scene);
-  shown=Boolean(window.ElectionNightCelebrationScene?.render(host,{id:item.id,phase,beat,preview:demo}));
+  shown=Boolean(window.ElectionNightCelebrationScene?.render(host,{id:item.id,phase,beat,preview:demo,ownerArtwork:item.id==='abbott'?{url:enMilestonePosterUrl(enMilestonePosters.abbott),alt:enMilestonePosters.abbott.alt}:null}));
  }catch{enCelebrationClearVisual()}
  $('#enCelebrationIcon').hidden=shown;
  if(item.id==='tsunami')$('#enTsunamiMeme').hidden=shown;

@@ -1,4 +1,5 @@
-/* Optional visible YouTube embeds. No remote request until the owner opts in. */
+/* Optional visible official YouTube players. The ad-free original/local-file
+   path is the default; reading preferences never connects a player. */
 (function(root,factory){
  const api=factory();
  if(typeof module!=='undefined'&&module.exports)module.exports=api;
@@ -25,6 +26,8 @@
   }catch{return null;}
  }
  function read(storage,ids){
+  // YouTube ads interrupt the requested soundtrack. Fresh profiles use the
+  // ad-free local/original path; an explicit saved YouTube choice remains valid.
   const settings={mode:'original',videos:{}};
   try{
    const saved=JSON.parse(storage.getItem(KEY)||'null');
