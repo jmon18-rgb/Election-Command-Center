@@ -4,7 +4,7 @@ import {createServer} from 'node:http';
 import {readFileSync,existsSync,statSync,mkdirSync,writeFileSync} from 'node:fs';
 import {resolve,extname,sep} from 'node:path';
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright');
-const root=resolve(import.meta.dirname,'..'),out=resolve(root,'artifacts/readiness/ui-review');
+const root=resolve(import.meta.dirname,'..'),out=resolve(root,process.env.UI_REVIEW_OUTPUT_DIR||'artifacts/readiness/ui-review');
 const server=createServer((req,res)=>{
  const file=resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname).replace(/\/$/,'/index.html'));
  if(!file.startsWith(root+sep)||!existsSync(file)||!statSync(file).isFile())return res.writeHead(404).end();
@@ -21,6 +21,11 @@ try{
   await page.goto('http://127.0.0.1:'+server.address().port+'/',{waitUntil:'domcontentloaded'});
   await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();
   await page.waitForFunction(()=>jointLastResult?.probabilities&&document.querySelectorAll('#enNationalNeedleMap .en-nmap-state').length===50&&document.querySelector('#enPersonalFocus article'));
+  async function readGlance(){return page.evaluate(()=>{const bar=document.querySelector('#electionNight .en-toolbar').getBoundingClientRect(),cells=[...document.querySelectorAll('#jointNightNeedle .four-needle-outcome')].map(e=>{const r=e.getBoundingClientRect();return {text:e.innerText,top:r.top,bottom:r.bottom,left:r.left,right:r.right};});return {mode:document.querySelector('#enMode2026').getAttribute('aria-pressed'),focus:document.activeElement.id,toolbarBottom:bar.bottom,height:innerHeight,width:innerWidth,cells};});}
+  function assertGlance(g){assert.equal(g.mode,'true');assert.equal(g.cells.length,4);assert(g.cells.every(c=>c.top>=g.toolbarBottom-2&&c.bottom<=g.height&&c.left>=0&&c.right<=g.width),'All four chances are actually on screen together below controls, not merely CSS-visible');}
+  const entryGlance=await readGlance();assertGlance(entryGlance);
+  assert.equal(entryGlance.focus,'enMode2026','Entering night controls retains a visible keyboard starting point');
+  assert(await page.locator('#jointNightPanel .en-input-health').evaluate(e=>Boolean(e.compareDocumentPosition(document.querySelector('#enPersonalFocus'))&Node.DOCUMENT_POSITION_FOLLOWING)),'Consequential coverage warning precedes the long personal roster');
   assert.equal(await page.locator('#enNationalNeedleMap svg.en-geographic-map').count(),1,'Pinned Census geometry is rendered, not the tile fallback');
   const layout=await page.evaluate(()=>{const n=document.querySelector('#jointNightNeedle').getBoundingClientRect(),m=document.querySelector('.en-national-map-panel').getBoundingClientRect();return {needleLeft:n.left,mapLeft:m.left,needleTop:n.top,mapTop:m.top};});
   if(width>900){assert(layout.mapLeft>layout.needleLeft+250);assert(Math.abs(layout.mapTop-layout.needleTop)<3,'Outlook and map share the laptop glance view');}else assert(layout.mapTop>layout.needleTop,'Phone outlook precedes map');
@@ -53,6 +58,7 @@ try{
   }
   await checkNeedleAccessible('jointNightNeedle');
   await page.locator('[data-page="brief"]').click();await checkNeedleAccessible('jointHomeNeedle');
+  assert(await page.locator('.hero-waves').evaluate(e=>getComputedStyle(e).backgroundImage.includes('blue-waves-hero.jpg')),'Other pages retain the original full masthead artwork');
   await page.locator('[data-page="electionNight"]').click();await checkNeedleAccessible('jointNightNeedle');
   await page.locator('#jointNightNeedle').screenshot({path:resolve(out,'independent-control-'+width+'.png')});
   assert.equal(await page.locator('#enRaceDiagnosticDetails').evaluate(e=>e.open),false);
@@ -125,9 +131,13 @@ try{
   await page.evaluate(()=>{window.USStateDisplayGeometry=window.__savedGeometry;enRenderNeedleCartogram();});
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true,'Map scrolls internally without page overflow');
   await page.locator('#enRaceDiagnosticDetails').evaluate(e=>{e.style.scrollMarginTop='100px';e.scrollIntoView();});await page.screenshot({path:resolve(out,'disclosures-default-'+width+'.png')});
-  assert.deepEqual(errors,[]);receipt.push({width,toolbarHeight,tasks:'four outcomes/map selection/model navigation/next windows/visible health/source disclosure/focus/no overflow/diagnostic and roster disclosures/full-state search/wake denial/AK pending/NE independent',passed:true,external_sources:'blocked'});
+  assert.deepEqual(errors,[]);receipt.push({width,toolbarHeight,entryGlance,tasks:'four outcomes/map selection/model navigation/next windows/visible health/source disclosure/focus/no overflow/diagnostic and roster disclosures/full-state search/wake denial/AK pending/NE independent',passed:true,external_sources:'blocked'});
   await page.locator('#enMode2024').click();assert.equal(await page.locator('.en-national-map-panel').isHidden(),true);
   assert.equal(await page.locator('#enRaceDiagnosticDetails').isHidden(),true);assert.equal(await page.locator('#smartNightDesk').isHidden(),true);assert.equal(await page.locator('.en-input-health').isVisible(),true);
+  await page.goto('http://127.0.0.1:'+server.address().port+'/?glance=direct#electionNight',{waitUntil:'domcontentloaded'});await page.locator('#enMode2026').click();
+  await page.waitForFunction(()=>document.querySelectorAll('#jointNightNeedle .four-needle-outcome').length===4);
+  const deepLinkGlance=await readGlance();assertGlance(deepLinkGlance);receipt[receipt.length-1].deepLinkGlance=deepLinkGlance;
+  await page.screenshot({path:resolve(out,'glance-direct-'+width+'.png')});
   await context.close();console.log(width+'px hierarchy operator tasks PASS');
  }
  writeFileSync(resolve(out,'hierarchy-browser-tasks.json'),JSON.stringify({at:new Date().toISOString(),receipt,limits:'Isolated pre-election UI task evidence, not actual vote delivery or full Oct30 review'},null,2));

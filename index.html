@@ -883,6 +883,12 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .en-display-options>summary span{font-size:10px}.en-display-options>.chip{margin-top:10px}
 .en-display-options>summary:focus-visible,.en-secondary-panel>summary:focus-visible{outline:3px solid #ffe393;outline-offset:3px}
 .en-nmap-dot.independent,.en-nmap-state.independent{background:#9774c9}
+/* Election Night keeps the site identity compact so the outlook is reachable. */
+body[data-page="electionNight"] .hero-waves{min-height:0;margin:12px 0;padding:12px 18px;background-image:none;justify-content:flex-start}
+body[data-page="electionNight"] .hero-copy{width:100%;max-width:none;display:flex;align-items:center;flex-wrap:wrap;gap:8px 22px}
+body[data-page="electionNight"] .hero-copy h1{font-size:26px;line-height:1.1;margin:0}
+body[data-page="electionNight"] .hero-actions{display:none}
+@media(max-width:560px){body[data-page="electionNight"] .hero-waves{padding:10px 12px}body[data-page="electionNight"] .hero-copy h1{font-size:23px}}
 @media(max-width:560px){#electionNight .en-toolbar{gap:8px;padding-top:7px;padding-bottom:7px}#electionNight .en-toolbar>.en-connection{font-size:10px}.en-display-options{max-width:100%;box-sizing:border-box}.en-quick-actions{align-items:flex-start}}
 
 </style></head><body>
@@ -1228,6 +1234,12 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
  <div id="enNationalNeedleMap"><p>Loading linked nationwide forecast map…</p></div>
 </section>
  </div>
+ <aside class="en-input-health" aria-label="Results freshness and coverage">
+  <strong>Results coverage &amp; freshness</strong>
+  <p id="enAllOfficeSummary" role="status">2024 archived rehearsal · real 2026 vote counts begin November 3</p>
+  <p class="en-coverage-line" id="enCoverageReconciliation" role="status">Verifying national race inventory…</p>
+  <a id="enInspectSources" href="#enSourceDesk">Inspect data &amp; sources</a>
+ </aside>
  <details id="enNationalRehearsal" class="joint-audit">
   <summary>Preview the national needle with simulated results</summary>
   <p><strong>SIMULATED · FICTIONAL COUNTS · NOT LIVE</strong> — five stages show blue counties reporting as expected, then a 3-point margin outperformance against each race's expectation, a correction and source withdrawal. County expectations use historical geography shifted to the current race model, not county polls. Expected arrivals can narrow uncertainty; a blue raw margin alone is not a blue-wave signal. This preview never changes the live outlook or vote totals.</p>
@@ -1238,12 +1250,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
   <details><summary>See your race needles for this simulated update</summary><div id="enPersonalFocusPreview" aria-label="Simulated personal race needles"></div></details>
  </details>
  <section id="enPersonalFocus" class="iowa-race-needle" aria-label="Your Senate and pivotal House race needles" hidden></section>
- <aside class="en-input-health" aria-label="Results freshness and coverage">
-  <strong>Results coverage &amp; freshness</strong>
-  <p id="enAllOfficeSummary" role="status">2024 archived rehearsal · real 2026 vote counts begin November 3</p>
-  <p class="en-coverage-line" id="enCoverageReconciliation" role="status">Verifying national race inventory…</p>
-  <a id="enInspectSources" href="#enSourceDesk">Inspect data &amp; sources</a>
- </aside>
+
  <details id="enNationalInputDetails" class="joint-audit">
   <summary>National model inputs · source-by-source status</summary>
  <p id="enNationalHouseSource" class="joint-note" role="status">WI-01 national input: waiting for verified district-part county counts.</p>
@@ -1594,6 +1601,12 @@ function activatePage(tab,updateUrl){
 if(!tab)return;
 document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',String(x===tab)));
 document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===tab.dataset.page));
+document.body.dataset.page=tab.dataset.page;
+if(tab.dataset.page==='electionNight'){
+ const controls=document.querySelector('#electionNight .en-toolbar');
+ controls?.scrollIntoView({block:'start'});
+ if(updateUrl)controls?.querySelector('.en-toggle [aria-pressed="true"]')?.focus({preventScroll:true});
+}
 if(updateUrl&&window.history?.replaceState)history.replaceState(null,'','#'+tab.dataset.page)
 }
 document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>activatePage(t,true)));
@@ -1606,6 +1619,10 @@ window.addEventListener('hashchange',()=>{
  if(location.hash.startsWith('#model')&&typeof latestSenateEstimates!=='undefined'&&latestSenateEstimates){modelApplyHash();renderModelOverview(latestSenateEstimates)}
 });
 activatePage(tabFromHash(),false);
+// Let the browser finish its initial fragment jump before aligning night controls.
+window.addEventListener('load',()=>requestAnimationFrame(()=>{
+ const tab=tabFromHash();if(tab?.dataset.page==='electionNight')activatePage(tab,false);
+}));
 if(location.hash.startsWith('#races'))$('#raceWorkbench').open=true;
 document.querySelectorAll('.chip[data-race]').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.chip[data-race]').forEach(x=>x.classList.toggle('active',x===t));window.selectedRaceType=t.dataset.race.toLowerCase();renderRaceList()}));
 document.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>{const destination=b.dataset.jump==='races'?'model':b.dataset.jump;
