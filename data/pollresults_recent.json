@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-28T20:12:31.642112+00:00",
+  "updated_at": "2026-10-28T20:54:36.452870+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,18 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 330,
-  "newly_injected_into_model": 2,
-  "injected_poll_ids": [
-    {
-      "race_code": "OH-GOV",
-      "poll_id": "dcf6267c-62b2-4941-9e1a-2facc483e35b"
-    },
-    {
-      "race_code": "OH-SEN",
-      "poll_id": "dcf6267c-62b2-4941-9e1a-2facc483e35b"
-    }
-  ],
+  "matched_primary_observations": 332,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "OH-SEN",
