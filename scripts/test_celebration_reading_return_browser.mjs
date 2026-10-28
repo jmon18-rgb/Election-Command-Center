@@ -1,7 +1,7 @@
-// Combined R8 reader continuity; existing synthetic call and nine-input rehearsal only.
+// Combined R8 reader continuity; existing synthetic call, queued bulletins and nine-input rehearsal only.
 import assert from 'node:assert/strict';import {createServer} from 'node:http';import {readFileSync,existsSync,statSync,mkdirSync,writeFileSync} from 'node:fs';import {resolve,extname,sep} from 'node:path';
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright');
-  const root=resolve(import.meta.dirname,'..'),out=resolve(root,process.env.UI_REVIEW_OUTPUT_DIR||'artifacts/readiness/ui-review/popup-background-focus');mkdirSync(out,{recursive:true});
+  const root=resolve(import.meta.dirname,'..'),out=resolve(root,process.env.UI_REVIEW_OUTPUT_DIR||'artifacts/readiness/ui-review/popup-bulletin-reading-return');mkdirSync(out,{recursive:true});
 const server=createServer((req,res)=>{const url=new URL(req.url,'http://localhost'),p=url.pathname,file=resolve(root,'.'+(p==='/'?'/index.html':decodeURIComponent(p)));if(!file.startsWith(root+sep)||!existsSync(file)||!statSync(file).isFile()){res.writeHead(404).end();return;}res.writeHead(200,{'content-type':({'.html':'text/html','.js':'application/javascript','.json':'application/json','.svg':'image/svg+xml','.jpg':'image/jpeg','.mp3':'audio/mpeg'})[extname(file)]||'application/octet-stream'});res.end(readFileSync(file));});
   await new Promise(ok=>server.listen(0,'127.0.0.1',ok));
   let browser;
@@ -15,6 +15,7 @@ try{browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL
   await page.clock.setSystemTime(new Date('2026-11-04T03:00:00Z'));
   await page.evaluate(()=>{document.querySelector('#enCelebrationAnnouncement').play=()=>Promise.resolve();});
 const call=async(active)=>page.evaluate(active=>{enCivicByWatch['Senate|TX']={provider:'civicAPI',office:'Senate',key:'TX',race_id:87438,total:98001,last_updated:'2026-11-04T02:00:00Z',called:active?'James Talarico':null,candidates:[{name:'James Talarico',party:'D',votes:65000},{name:'Ken Paxton',party:'R',votes:33001}]};delete enCivicErrors['Senate|TX'];enCivicValidatedGenerations['Senate|TX']=enCivicBreaker?.status().generation??0;enRenderMilestones();},active);
+const bulletin=async title=>page.evaluate(title=>enFishShow({kind:'revision',source:'civicAPI',office:'Senate',race:'IA',title:'FICTIONAL '+title,details:'Synthetic queue continuity only; no live source request or result.'}),title);
 const inView=async locator=>{const r=await locator.evaluate(e=>{const b=e.getBoundingClientRect();return{top:b.top,bottom:b.bottom,toolbar:document.querySelector('#electionNight .en-toolbar').getBoundingClientRect().bottom,viewport:innerHeight};});assert(r.top>=r.toolbar&&r.bottom<=r.viewport,'Restored reading control is visible below sticky toolbar');return r;};
 // A real call withdrawal restores a reader whose control was replaced.
   const rating=page.locator('#enPersonalFocus .personal-focus-rating-key > summary');
@@ -26,6 +27,39 @@ const inView=async locator=>{const r=await locator.evaluate(e=>{const b=e.getBou
   assert.equal(await rating.evaluate(e=>e===document.activeElement),true,'Call withdrawal restores the replaced rating-key control');
   assert.equal(await page.locator('#enPersonalFocus .personal-focus-rating-key').evaluate(e=>e.open),true);
   const ratingBox=await inView(rating);
+// A completed celebration hands off queued bulletins without losing the reader.
+  await call(true);await bulletin('first queued correction');await bulletin('second queued correction');
+  assert.equal(await page.evaluate(()=>enFishPending.length),2);
+  await page.locator('#enCelebrationAnnouncement').evaluate(e=>e.dispatchEvent(new Event('ended')));
+  await page.clock.runFor(7300);
+  assert.equal(await page.locator('#enMilestoneSpotlight').evaluate(e=>e.open),false);
+  assert.equal(await page.locator('#enFishToast').isVisible(),true);
+  assert.match(await page.locator('#enFishHeadline').innerText(),/first queued correction/);
+  await page.evaluate(()=>renderPersonalElectionFocus());
+  const lastBulletinControl=page.locator('#enFishToast button:not([disabled]),#enFishToast a[href]').filter({visible:true}).last();
+  await lastBulletinControl.press('Tab');
+  assert.equal(await page.locator('#enFishPlayClip').evaluate(e=>e===document.activeElement),true,'Queued bulletin keyboard wraps through visible controls');
+  await page.locator('#enFishPlayClip').press('Shift+Tab');
+  assert.equal(await lastBulletinControl.evaluate(e=>e===document.activeElement),true);
+  await page.clock.runFor(8500);
+  assert.match(await page.locator('#enFishHeadline').innerText(),/second queued correction/);
+  await page.evaluate(()=>renderPersonalElectionFocus());
+  await page.locator('#enFishDismiss').press('Escape');
+  assert.equal(await page.locator('#enFishToast').isHidden(),true);
+  assert.equal(await rating.evaluate(e=>e===document.activeElement),true,'After queued bulletins and redraws, Escape restores the original reading control');
+  const queuedBox=await inView(rating);
+  assert.equal(await page.evaluate(()=>enFishReturnFocus===null&&enFishReturnAnchor===null&&enFishPending.length===0),true);
+  await page.screenshot({path:resolve(out,`reading-return-queued-${width}.png`)});
+  await call(false);
+  await bulletin('back button');await page.evaluate(()=>renderPersonalElectionFocus());await page.locator('#enFishDismiss').click();
+  assert.equal(await rating.evaluate(e=>e===document.activeElement),true,'The normal Back button restores the replaced reader');
+// Natural expiry and call-bulletin revocation also restore refreshed controls.
+  await bulletin('natural expiry');await page.evaluate(()=>renderPersonalElectionFocus());await page.clock.runFor(8500);
+  assert.equal(await rating.evaluate(e=>e===document.activeElement),true,'Natural bulletin expiry restores the replaced reader');
+  await page.evaluate(()=>enFishShow({kind:'call',source:'civicAPI',office:'Senate',race:'TX',title:'FICTIONAL call bulletin',details:'Synthetic revocation mechanics only.'}));
+  await page.evaluate(()=>{renderPersonalElectionFocus();enFishRevokeCall({office:'Senate',key:'TX'});});
+  assert.equal(await rating.evaluate(e=>e===document.activeElement),true,'Revoking an active call bulletin restores the replaced reader');
+  assert.equal(await page.locator('#enFishToast').isHidden(),true);
 await page.locator('#enNationalRehearsal > summary').click();
   await page.locator('#enNationalRehearsal > details > summary').click();
   await page.locator('#enNationalNext').click();
@@ -38,6 +72,8 @@ await page.locator('#enNationalRehearsal > summary').click();
   assert.match(await card.innerText(),/Osborn\+3\.0 margin points vs expected/);
   assert.match(await card.innerText(),/no assumed Democratic caucus/);
   const preview=await page.locator('#enNationalPreviewChances').innerText();
+  // The reverse hand-off keeps the reader behind an interrupted bulletin.
+  await bulletin('reading interrupted before celebration');
   await call(true);
   await page.evaluate(()=>jointNationalPreview());
   await page.locator('#enMilestoneClose').click();
@@ -45,6 +81,7 @@ await page.locator('#enNationalRehearsal > summary').click();
   assert.equal(await card.locator('.personal-focus-areas').evaluate(e=>e.open),true);
   assert.equal(await page.locator('#enNationalPreviewChances').innerText(),preview);
   const areaBox=await inView(area);
+  assert.equal(await page.evaluate(()=>enFishReturnFocus===null&&enFishReturnAnchor===null),true,'Transferred bulletin bookmarks are released');
   await page.screenshot({path:resolve(out,`reading-return-areas-${width}.png`)});
   await call(false);
 await call(true);
@@ -86,6 +123,6 @@ await page.evaluate(()=>jointRender(true));
   await page.locator('#enNationalRehearsal > summary').click();
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);
   assert.deepEqual(errors,[]);
-proof.push({width,height,ratingBox,areaBox,withdrawnBox,storyBox,scope:'isolated synthetic UI only',human_acceptance:'NOT_RUN',external_providers:'blocked'});
-  await context.close();console.log(`${width}x${height}: interrupted rating/area/history reading, withdrawn detail and regenerated story return focus PASS`);}writeFileSync(resolve(out,'combined-reading-return.json'),JSON.stringify({source:'working tree',proof},null,2)+'\n');}finally{await browser?.close();
+proof.push({width,height,ratingBox,queuedBox,areaBox,withdrawnBox,storyBox,queued_bulletin_and_reverse_handoff:true,natural_expiry_and_revocation:true,scope:'isolated synthetic UI only',human_acceptance:'NOT_RUN',external_providers:'blocked'});
+  await context.close();console.log(`${width}x${height}: queued bulletin/celebration hand-offs, rating/area/history reading, withdrawal and preview return PASS`);}writeFileSync(resolve(out,'combined-reading-return.json'),JSON.stringify({source:'working tree',proof},null,2)+'\n');}finally{await browser?.close();
   await new Promise(ok=>server.close(ok));}
