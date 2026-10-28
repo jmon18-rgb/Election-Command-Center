@@ -1,5 +1,11 @@
 # Readiness progress
 
+## PR517 validation repair - original D+3 regression retained as an explicit fixture
+
+- Exacthead33a31948 national40683980753 and all source/UI parents passed; dashboard validation40683981106/job122802024968 caught a separate stale test assumption after current polling refresh: MN source margin is D+6.66, but test still applied the original D+3 60-to85percent band to it. Reproduced locally on unchanged current model; current86.15percent is not a D+3 input. No production forecast was clamped/tuned or source/model file altered.
+- Regression now constructs an explicitly labeled D+3 Senate-only source fixture and retains the ORIGINAL >60/<85 assertion unchanged; same12000draw options yield71.83percent. All current-source candidate residual, depth/variance, no old-candidate effect,35race and exact House/governor invariance assertions remain. Current-source report stays separate (D+6.66/86.15percent). New exact-head CI required; prior failedhead must not merge/rerun/waive.
+- Independent work while immutable CI ran: saved R4 VA02 collector trace from pinned originalzero SHA20cc06d2... through selected hash/reparse/source-clock/controller/browser-history metadata; zero excluded/no native request. Full raw-body retention and actualpositiveNov3-4 remain open. New permitted independent OpenElections MS2020county CSV saved/hash-blob matched,246rows/82counties/all3candidate sums match cached MIT statewide: Espy578691/HydeSmith709511/Edwards23152. Processed publisher data, NOT reviewed native official certification/runtime/calibration; source403 remains STOP. Assessments artifacts/readiness/va02-collector-evidence-trace-20261028.json and mississippi-source-research/independent-2020-county-assessment-20261028.json. No new dataset published or admission.
+
 ## PR517 corrected visible-disclosure and grouped-history candidate
 
 - Initial exactheadd41bfda9 Nebraska browser40683384700/job122799511701 failed because old details>summary now matched both visible expectation and nested-area controls. Repair test to open the primary summary then Inspect6areas through actual visible controls; ALL original Osborn-label/noD/I-count/correction/zero/rollback/later-round/outage/hidden/archive assertions retained. No timeout/rerun/waiver; oldhead must not merge. ActualEdge1366/390 corrected Nebraska lifecycle PASS.

@@ -129,7 +129,13 @@ const mnOld=baseline.race_probabilities.find(x=>x.race_code==='MN-SEN');
 const mnNow=updated.race_probabilities.find(x=>x.race_code==='MN-SEN');
 assert(mnNow.dem_beats_rep_pct>mnOld.dem_beats_rep_pct+5,
  'Model changes should be material and respond to the repaired current candidate prior');
-assert(mnNow.dem_beats_rep_pct>60&&mnNow.dem_beats_rep_pct<85,
+// Keep the original narrow-matchup regression at an explicit D+3 input. The
+// current published polling is refreshed independently and is no longer D+3.
+const narrowOdds=JSON.parse(JSON.stringify(source.odds));
+narrowOdds.records.find(x=>x.race_code==='MN-SEN'&&x.office==='senate').dem_minus_rep=3;
+const narrow=engine.simulate(engine.prepare({...source,odds:narrowOdds},
+ {senatePriorMode:'current_2026'}),options).race_probabilities.find(x=>x.race_code==='MN-SEN');
+assert(narrow.dem_beats_rep_pct>60&&narrow.dem_beats_rep_pct<85,
  'Avoid spurious near-certainty when candidate polling is only D+3');
 const report={
  status:'CURRENT_SENATE_PROBABILITIES_PUBLISHED_MODEL_VALIDATION',
@@ -139,6 +145,7 @@ const report={
  reused_historical_2020_candidate_effect:false,
  source_house_probs_unchanged:true,
  samples:updated.samples,seed:updated.seed,
+ narrow_matchup_regression:{fixture_polling_margin_D_points:3,model_win_prob_D:narrow.dem_beats_rep_pct,original_bounds:[60,85]},
  minnesota:{
   candidate_matchup:[source.polls.senate_all.find(x=>x.race_code==='MN-SEN').dem_candidate,
    source.polls.senate_all.find(x=>x.race_code==='MN-SEN').rep_candidate],
