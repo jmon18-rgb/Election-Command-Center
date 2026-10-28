@@ -72,7 +72,10 @@ try{
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true);
   await page.locator('#enPersonalFocus').screenshot({path:resolve(out,'personal-focus-'+width+'.png')});
   await page.locator('#enMode2024').click();assert.equal(await page.locator('#enPersonalFocus').isHidden(),true);assert.deepEqual(errors,[]);
-  await page.route('**/personal_election_focus.js*',route=>route.abort());await page.reload({waitUntil:'domcontentloaded'});await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();await page.waitForFunction(()=>jointLastResult?.probabilities);assert.deepEqual(errors,[]);
+  // Start the separate missing-asset bootstrap at the original pre-close clock,
+  // rather than carrying the preceding post-close history drill into startup.
+  await page.clock.setSystemTime(new Date('2026-10-27T19:00:00Z'));
+  await page.route('**/personal_election_focus.js*',route=>route.abort());await page.reload({waitUntil:'domcontentloaded'});await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();await page.waitForFunction(()=>jointLastResult?.probabilities);assert.equal(await page.evaluate(()=>typeof window.PersonalElectionFocus),'undefined');assert.deepEqual(errors,[]);
   await context.close();console.log(width+'px owner Senate/House same-model needles, disclosure, synthetic admission/withdrawal, archive and optional-script fallback PASS');
  }
 }finally{await browser?.close();await new Promise(ok=>server.close(ok));}
