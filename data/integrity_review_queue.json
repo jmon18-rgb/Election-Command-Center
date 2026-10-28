@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-28T09:01:30.028447Z",
+  "updated_at": "2026-10-28T09:59:26.302976Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
@@ -267,6 +267,23 @@
     }
   ],
   "items": [
+    {
+      "id": "ac15969e32a3e5919c03",
+      "title": "Liberman's Yisrael Beytenu projected to win eight seats in next Knesset, election data predicts - The Jerusalem Post",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBpZ19GcmpBQXpOYXBMRFhGMy1PY003SUZ1M2dqZDQweHp4WXFJODFtcVFmSEhiMUVWY0tESEVyNkMxM2wySXhuek83Z1dGYmU0VWRkbFp3YjlYSEJVSlhWb0traDNOdEdu?oc=5",
+      "publisher": "The Jerusalem Post",
+      "published_at": "2026-10-28T09:51:44Z",
+      "detected_at": "2026-10-28T09:59:26.302976Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "2f9dbb2153af42ed2e7a",
       "title": "Trump claims 'rampant' US voter fraud, but studies find too little evidence - Saudi Gazette",
@@ -5045,23 +5062,6 @@
       "headline_numbers_unverified": [
         "20,000 ballots"
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "180f40be335b1edf86d3",
-      "title": "NC officials express confidence in election integrity as early voting begins - NC Newsline",
-      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQdjFRbnBSSUpsWVVGTjQ4V3lHdFg4Nk9hb2FCLW5uZTBlRDRXcGtoQ2tnZWRVcjh6M2d0VF8zXzYza0lwc3hSNjk3TmZOYXNKX0NwUVNnU2hDSlJsT1RBcndqaEw2b1Z1X01PWEhGel90YWl6cG5MNVhQbEs4alQzRGplaS0xSGhoeXZTNXp3R0Z4UC1SNkRFQ3BsM3ZxeEtDblZHbUowSlBGa0Utam4wag?oc=5",
-      "publisher": "NC Newsline",
-      "published_at": "2026-10-15T19:03:59Z",
-      "detected_at": "2026-10-15T19:29:47.698789Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
