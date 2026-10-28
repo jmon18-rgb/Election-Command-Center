@@ -1,8 +1,12 @@
 # JackStradamus · development plan
 
-## Ready model-input tooling — October28 candidate
+## Active R8 material fix — interrupted reading after background redraw
 
-MS research importer/tests are now reviewable repository code with offline CI. Local pinned-original run preserves82unique counties/all246candidate rows and matches the prior local report; public CI exercises explicitly fictional contracts plus existing public references, without raw-source redistribution. Output is summary-only unless an explicit new file inside ignored research artifacts is requested. Protected release pending; rights/native certification/current2026contract/calibration remain open and18runtime routes unchanged. Next independent engineering check: return from an automatic celebration after the inspected card is redrawn in the background; evaluate actual task/focus before claiming a defect.
+Confirmed on laptop/phone: an automatic celebration can outlive a personal-card redraw, discarding the stored DOM reader and returning focus to the launcher instead of the reading control. Local tested candidate now resolves ephemeral race/disclosure/history/rating bookmarks and regenerated preview buttons; withdrawn explanations return to the same race heading. Local combined normal-control/focus/scroll tests and existing popup/ratings/unit checks pass; protected publication pending. Model/source/call/music invariants unchanged. Actual human comprehension/assistive acceptance remains separate.
+
+## Model-input tooling VERIFIED PUBLISHED519 — October28
+
+MS research importer/tests are now reviewable repository code with offline CI. Local pinned-original run preserves82unique counties/all246candidate rows and matches the prior local report; public CI exercises explicitly fictional contracts plus existing public references, without raw-source redistribution. Output is summary-only unless an explicit new file inside ignored research artifacts is requested. PR5194parent/7job exact-head gate and final79147dfa/Pages40704147690/21changed-file+public-coherence verification PASS; rights/native certification/current2026contract/calibration remain open and18runtime routes unchanged. Next independent engineering check: return from an automatic celebration after the inspected card is redrawn in the background; evaluate actual task/focus before claiming a defect.
 
 ## Latest owner delivery VERIFIED PUBLISHED518 — October28 race ratings, popups and music
 

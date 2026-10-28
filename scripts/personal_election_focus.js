@@ -139,6 +139,32 @@
     rank:state==='AK'?4:ownCounts||called?0:Number.isFinite(first)&&now>=first?1:2};
   }).sort((a,b)=>a.rank-b.rank||(a.first||Infinity)-(b.first||Infinity)||a.order-b.order);
  }
+ // A modal may outlive a results redraw. Keep a semantic reading bookmark,
+ // separate from the temporary DOM node and from all model/source evidence.
+ function captureFocus(host,target=host?.ownerDocument.activeElement){
+  if(!host||!target||!host.contains(target))return null;
+  const card=target.closest('.personal-focus-card');
+  if(card)return {kind:'race',race:card.dataset.race,disclosure:target.closest('summary')?.parentElement.dataset.disclosure||null};
+  const history=target.closest('.personal-focus-history');
+  if(history)return {kind:'history',entry:target.closest('.personal-focus-history-entry')?.dataset.historyEntry||null};
+  if(target.closest('.personal-focus-rating-key'))return {kind:'ratings'};
+  return null;
+ }
+ function focusTarget(host,bookmark){
+  if(!host||!bookmark)return null;
+  if(bookmark.kind==='ratings')return host.querySelector('.personal-focus-rating-key > summary');
+  if(bookmark.kind==='history'){
+   const history=host.querySelector('.personal-focus-history');
+   const entry=Array.from(history?.querySelectorAll('.personal-focus-history-entry')||[]).find(e=>e.dataset.historyEntry===bookmark.entry);
+   return entry?.querySelector('details > summary')||history?.querySelector(':scope > summary')||null;
+  }
+  if(bookmark.kind==='race'){
+   const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(c=>c.dataset.race===bookmark.race);
+   const disclosure=Array.from(card?.querySelectorAll('details')||[]).find(d=>d.dataset.disclosure===bookmark.disclosure);
+   return disclosure?.querySelector(':scope > summary')||card?.querySelector('h4')||null;
+  }
+  return null;
+ }
  function render(host,result,baseline,options={}){
   if(!host)return;const data=rows(result,baseline,options);host.hidden=!data.length;
   const oldHistory=host.querySelector('.personal-focus-history'),active=host.ownerDocument.activeElement;
@@ -209,5 +235,5 @@
   host.append(el('p','methodline','Probability changes are not vote-margin outperformance. Matched county performance remains the model evidence. NC01/AZ01 boundary contracts are still pending; existing TX and WA03 integrations remain available. KS uses the existing conservative final-call gate pending county-hours review. Experimental and uncalibrated; a forecast is not a result.'));
   if(focusedRace){const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(c=>c.dataset.race===focusedRace),target=Array.from(card?.querySelectorAll('details')||[]).find(d=>d.dataset.disclosure===focusedDisclosure);(target?.querySelector('summary')||card?.querySelector('details > summary')||card?.querySelector('h4'))?.focus({preventScroll:true});}
  }
- return Object.freeze({SENATE,HOUSE,rows,render,rating,createHistory,HISTORY_KEY,HISTORY_LIMIT,HISTORY_BYTES});
+ return Object.freeze({SENATE,HOUSE,rows,render,rating,captureFocus,focusTarget,createHistory,HISTORY_KEY,HISTORY_LIMIT,HISTORY_BYTES});
 });

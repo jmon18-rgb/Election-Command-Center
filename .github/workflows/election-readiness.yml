@@ -65,6 +65,9 @@ jobs:
       - name: Individual ratings and automatic celebration popup journey
         if: ${{ !cancelled() }}
         run: node scripts/test_ratings_celebration_popup_browser.mjs
+      - name: Reading context survives automatic celebrations and background redraws
+        if: ${{ !cancelled() }}
+        run: node scripts/test_celebration_reading_return_browser.mjs
       - name: Render the original event scores and verify stopped playback is silent
         if: ${{ !cancelled() }}
         run: node scripts/render_celebration_music_previews.mjs

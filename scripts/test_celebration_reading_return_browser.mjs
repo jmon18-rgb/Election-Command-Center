@@ -1,0 +1,91 @@
+// Combined R8 reader continuity; existing synthetic call and nine-input rehearsal only.
+import assert from 'node:assert/strict';import {createServer} from 'node:http';import {readFileSync,existsSync,statSync,mkdirSync,writeFileSync} from 'node:fs';import {resolve,extname,sep} from 'node:path';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright');
+  const root=resolve(import.meta.dirname,'..'),out=resolve(root,process.env.UI_REVIEW_OUTPUT_DIR||'artifacts/readiness/ui-review/popup-background-focus');mkdirSync(out,{recursive:true});
+const server=createServer((req,res)=>{const url=new URL(req.url,'http://localhost'),p=url.pathname,file=resolve(root,'.'+(p==='/'?'/index.html':decodeURIComponent(p)));if(!file.startsWith(root+sep)||!existsSync(file)||!statSync(file).isFile()){res.writeHead(404).end();return;}res.writeHead(200,{'content-type':({'.html':'text/html','.js':'application/javascript','.json':'application/json','.svg':'image/svg+xml','.jpg':'image/jpeg','.mp3':'audio/mpeg'})[extname(file)]||'application/octet-stream'});res.end(readFileSync(file));});
+  await new Promise(ok=>server.listen(0,'127.0.0.1',ok));
+  let browser;
+  const proof=[];
+try{browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});for(const [width,height]of [[1366,900],[390,844]]){const context=await browser.newContext({viewport:{width,height},reducedMotion:'reduce'}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.clock.install({time:new Date('2026-10-28T13:00:00Z')});
+  await page.route('**/*',r=>new URL(r.request().url()).hostname==='127.0.0.1'?r.continue():r.abort());
+  await page.goto(`http://127.0.0.1:${server.address().port}/#electionNight`,{waitUntil:'domcontentloaded'});
+  await page.locator('#enMode2026').click();
+  await page.waitForFunction(()=>document.querySelectorAll('#enPersonalFocus article').length===18);
+  await page.clock.setSystemTime(new Date('2026-11-04T03:00:00Z'));
+  await page.evaluate(()=>{document.querySelector('#enCelebrationAnnouncement').play=()=>Promise.resolve();});
+const call=async(active)=>page.evaluate(active=>{enCivicByWatch['Senate|TX']={provider:'civicAPI',office:'Senate',key:'TX',race_id:87438,total:98001,last_updated:'2026-11-04T02:00:00Z',called:active?'James Talarico':null,candidates:[{name:'James Talarico',party:'D',votes:65000},{name:'Ken Paxton',party:'R',votes:33001}]};delete enCivicErrors['Senate|TX'];enCivicValidatedGenerations['Senate|TX']=enCivicBreaker?.status().generation??0;enRenderMilestones();},active);
+const inView=async locator=>{const r=await locator.evaluate(e=>{const b=e.getBoundingClientRect();return{top:b.top,bottom:b.bottom,toolbar:document.querySelector('#electionNight .en-toolbar').getBoundingClientRect().bottom,viewport:innerHeight};});assert(r.top>=r.toolbar&&r.bottom<=r.viewport,'Restored reading control is visible below sticky toolbar');return r;};
+// A real call withdrawal restores a reader whose control was replaced.
+  const rating=page.locator('#enPersonalFocus .personal-focus-rating-key > summary');
+  await rating.click();
+  await call(true);
+  assert.equal(await page.locator('#enMilestoneSpotlight').evaluate(e=>e.open),true);
+  await page.evaluate(()=>renderPersonalElectionFocus());
+  await call(false);
+  assert.equal(await rating.evaluate(e=>e===document.activeElement),true,'Call withdrawal restores the replaced rating-key control');
+  assert.equal(await page.locator('#enPersonalFocus .personal-focus-rating-key').evaluate(e=>e.open),true);
+  const ratingBox=await inView(rating);
+await page.locator('#enNationalRehearsal > summary').click();
+  await page.locator('#enNationalRehearsal > details > summary').click();
+  await page.locator('#enNationalNext').click();
+  await page.locator('#enNationalNext').click();
+  await page.waitForFunction(()=>document.querySelector('#enNationalStage').textContent.includes('3/5'));
+// The existing nine-input rehearsal supplies the nested explanation and withdrawal.
+  const card=page.locator('#enPersonalFocusPreview [data-race="NE-SEN"]'),expectation=card.locator(':scope > details > summary'),area=card.locator('.personal-focus-areas > summary');
+  await expectation.click();
+  await area.click();
+  assert.match(await card.innerText(),/Osborn\+3\.0 margin points vs expected/);
+  assert.match(await card.innerText(),/no assumed Democratic caucus/);
+  const preview=await page.locator('#enNationalPreviewChances').innerText();
+  await call(true);
+  await page.evaluate(()=>jointNationalPreview());
+  await page.locator('#enMilestoneClose').click();
+  assert.equal(await area.evaluate(e=>e===document.activeElement),true,'Return to the exact nested reporting-area control after replacement');
+  assert.equal(await card.locator('.personal-focus-areas').evaluate(e=>e.open),true);
+  assert.equal(await page.locator('#enNationalPreviewChances').innerText(),preview);
+  const areaBox=await inView(area);
+  await page.screenshot({path:resolve(out,`reading-return-areas-${width}.png`)});
+  await call(false);
+await call(true);
+  await page.evaluate(async()=>{nationalPreviewStep=4;
+  await jointNationalPreview();});
+  await page.locator('#enMilestoneClose').click();
+  assert.equal(await card.locator(':scope > details').count(),0,'Withdrawal removes the unavailable performance disclosure');
+  assert.equal(await card.locator('h4').evaluate(e=>e===document.activeElement),true,'If the disclosure was removed, return to the same race heading');
+  const withdrawnBox=await inView(card.locator('h4'));
+  await call(false);
+// Source-history identity survives another component render while interrupted.
+  const history=page.locator('#enPersonalFocusPreview .personal-focus-history');
+  await history.locator(':scope > summary').click();
+  const sourceSummary=history.locator('.personal-focus-history-entry details > summary').first();
+  await sourceSummary.click();
+  const historyKey=await sourceSummary.evaluate(e=>e.closest('.personal-focus-history-entry').dataset.historyEntry);
+  await call(true);
+  await page.evaluate(()=>jointNationalPreview());
+  await page.locator('#enMilestoneClose').click();
+  assert.equal(await page.evaluate(key=>{const entry=Array.from(document.querySelectorAll('#enPersonalFocusPreview .personal-focus-history-entry')).find(e=>e.dataset.historyEntry===key);return entry?.querySelector('details')?.open&&document.activeElement===entry.querySelector('details > summary');},historyKey),true,'History source identity/open/focus survives the popup and background redraw');
+  await call(false);
+await page.locator('#enNationalRehearsal > summary').click();
+  // A regenerated achievement button returns to the same story, not the launcher.
+  const story=page.locator('#enMilestoneGrid [data-milestone="blue_corn"]');
+  await story.click();
+  await page.evaluate(()=>enRenderMilestones());
+  await page.locator('#enMilestoneClose').click();
+  assert.equal(await story.evaluate(e=>e===document.activeElement),true,'Regenerated preview card retains its story identity');
+  const storyBox=await inView(story);
+  assert.equal(await page.evaluate(()=>enMilestoneShown.size),0,'Previews and retracted fixture calls do not leave earned state');// A valid synthetic provider call may legitimately condition the live model.
+// Compare only the pure rehearsal after those calls have been withdrawn.
+await page.evaluate(()=>jointRender(true));
+  const cleared=await page.evaluate(()=>({probabilities:JSON.stringify(jointLastResult.probabilities),calls:jointLastResult.race_probabilities.filter(r=>r.provider_called_party).length,countyInputs:jointLastResult.county_results_update?.used?.length||0}));
+  assert.equal(cleared.calls,0);
+  assert.equal(cleared.countyInputs,0);
+  await page.locator('#enNationalRehearsal > summary').click();
+  await page.evaluate(()=>jointNationalPreview());
+  assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),cleared.probabilities,'Pure rehearsal redraw after withdrawal never modifies the live forecast');
+  await page.locator('#enNationalRehearsal > summary').click();
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);
+  assert.deepEqual(errors,[]);
+proof.push({width,height,ratingBox,areaBox,withdrawnBox,storyBox,scope:'isolated synthetic UI only',human_acceptance:'NOT_RUN',external_providers:'blocked'});
+  await context.close();console.log(`${width}x${height}: interrupted rating/area/history reading, withdrawn detail and regenerated story return focus PASS`);}writeFileSync(resolve(out,'combined-reading-return.json'),JSON.stringify({source:'working tree',proof},null,2)+'\n');}finally{await browser?.close();
+  await new Promise(ok=>server.close(ok));}
