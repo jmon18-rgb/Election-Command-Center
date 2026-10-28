@@ -29,6 +29,13 @@ const call=structuredClone(baseline);call.race_probabilities.find(x=>x.race_code
 const sourceAt='2026-11-04T01:00:00Z';const callRows=focus.rows(call,baseline,{...options,evidence:[{race_code:'SC-SEN',calledParty:'R',asOf:sourceAt}]});
 assert.equal(callRows[0].code,'SC-SEN');assert.equal(callRows[0].sourceAt,sourceAt);assert.equal(callRows[0].ownCounts,false);assert.equal(callRows[0].called,true);
 assert.equal(JSON.stringify({result,baseline}),before,'Display cannot mutate or recondition model inputs');
+for(const [pct,label]of [[0,'Safe R'],[5,'Safe R'],[5.01,'Likely R'],[20,'Likely R'],[20.01,'Leaning R'],[40,'Leaning R'],[40.01,'Toss-up'],[50,'Toss-up'],[59.99,'Toss-up'],[60,'Leaning D'],[80,'Likely D'],[95,'Safe D'],[100,'Safe D']])assert.equal(focus.rating(pct).label,label);
+for(const pct of [null,undefined,NaN,-1,101,'95'])assert.equal(focus.rating(pct).label,'Rating pending');
+assert.equal(callRows[0].rating.label,'R victory');
+assert.equal(focus.rows(baseline,baseline,options).find(x=>x.code==='SC-SEN').rating.state,'forecast','Call withdrawal restores the forecast rating');
+const independent=structuredClone(baseline);independent.race_probabilities.find(x=>x.race_code==='NE-SEN').provider_called_party='D';
+assert.equal(focus.rows(independent,baseline,options).find(x=>x.code==='NE-SEN').rating.label,'Paired · Toss-up','A D call cannot be silently relabeled an Independent victory');
+assert.equal(rows.find(x=>x.code==='AK-SEN').rating.label,'Rating pending');
 assert(focus.rows(result,baseline,{...options,simulated:true}).every(x=>x.simulated));
 console.log('Personal focus: exact owner roster, same-draw probabilities, own-vs-national evidence, timeline, independent/RCV and correction/withdrawal/missing-state PASS');
 

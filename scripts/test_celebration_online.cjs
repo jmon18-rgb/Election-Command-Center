@@ -1,0 +1,10 @@
+'use strict';
+const assert=require('node:assert/strict'),online=require('./election_night_celebration_online.js');
+for(const url of ['https://www.youtube.com/watch?v=gkWCLjxQqjU&t=14','https://youtu.be/gkWCLjxQqjU?si=discard','https://m.youtube.com/shorts/gkWCLjxQqjU','https://youtube.com/embed/gkWCLjxQqjU'])assert.equal(online.videoId(url),'gkWCLjxQqjU');
+for(const url of ['http://youtube.com/watch?v=gkWCLjxQqjU','https://youtube.com.evil.example/watch?v=gkWCLjxQqjU','https://user@youtube.com/watch?v=gkWCLjxQqjU','https://youtube.com:999/watch?v=gkWCLjxQqjU','javascript:alert(1)','https://youtu.be/bad','https://youtube.com/results?search_query=music'])assert.equal(online.videoId(url),null);
+assert.deepEqual(online.read(null,['talarico']),{mode:'original',videos:{}});
+const storage={getItem:()=>JSON.stringify({mode:'youtube',videos:{talarico:'gkWCLjxQqjU',abbott:'<iframe>',unknown:'gkWCLjxQqjU'}})};
+const settings=online.read(storage,['talarico','abbott']);assert.deepEqual(settings,{mode:'youtube',videos:{talarico:'gkWCLjxQqjU'}});
+assert.equal(online.track('talarico',settings).id,'gkWCLjxQqjU');assert.equal(online.track('abbott',settings).id,online.DEFAULTS.abbott.id);assert.equal(online.track('nebraska',settings),null);
+assert.doesNotThrow(()=>online.save({setItem:()=>{throw Error('quota')}},settings));
+console.log('Optional YouTube: exact host/HTTPS/video identity, local preferences and original fallback PASS');

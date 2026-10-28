@@ -14,6 +14,13 @@
  const code=x=>typeof x==='string'&&/^[A-Z]{2}-(?:SEN|GOV|\d{2})$/.test(x);
  const copy=x=>JSON.parse(JSON.stringify(x));
  const sourceUrl=x=>typeof x==='string'&&x.length<=500&&/^https?:\/\//.test(x)?x:null;
+ // Presentation bands only. Even100% remains a forecast without a validated call.
+ function rating(pct,{positive='D',negative='R',calledParty=null}={}){
+  if(['D','R'].includes(calledParty))return {label:(calledParty==='D'?positive:negative)+' victory',state:'called',side:calledParty==='D'?'positive':'negative'};
+  if(!chance(pct))return {label:'Rating pending',state:'pending',side:'neutral'};
+  const support=pct>=50,confidence=support?pct:100-pct;
+  return {label:confidence<60?'Toss-up':(confidence>=95?'Safe ':confidence>=80?'Likely ':'Leaning ')+(support?positive:negative),state:'forecast',side:confidence<60?'neutral':support?'positive':'negative'};
+ }
  const historyTime=x=>iso(x)?new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(Date.parse(x))+' ET':'Time unavailable';
  // Browser observations only. Never restore evidence/model state from storage.
  function createHistory({storage,now=()=>Date.now(),simulated=false}={}){
@@ -111,7 +118,7 @@
   return [...SENATE.map(state=>({code:state+'-SEN',office:'Senate',key:state==='OH'?'OH-special':state})),...HOUSE.map(code=>({code,office:'House',key:code}))].map((spec,order)=>{
    const state=spec.code.slice(0,2),entry=current.get(spec.code),base=prior.get(spec.code);
    const first=closes?.floorFor(spec.key),last=closes?.winnerFloorFor(spec.office,spec.key);
-   const direct=state==='AK'?null:used.get(spec.code),ownCounts=Boolean(direct),called=state!=='AK'&&['D','R'].includes(entry?.provider_called_party);
+   const direct=state==='AK'?null:used.get(spec.code),ownCounts=Boolean(direct),called=state!=='AK'&&['D','R'].includes(entry?.provider_called_party)&&!(state==='NE'&&entry?.provider_called_party==='D');
    // Existing AK identity/round exclusions apply to this display too. A baseline
    // binary margin must not be presented as an accepted final RCV probability.
    const pct=state==='AK'||!chance(entry?.dem_beats_rep_pct)?null:entry.dem_beats_rep_pct;
@@ -122,7 +129,9 @@
    const candidateStamp=direct?.as_of||(called?evidence.find(x=>x.race_code===spec.code&&x.calledParty===entry.provider_called_party)?.asOf:null);
    const sourceAt=Number.isFinite(Date.parse(candidateStamp||''))?candidateStamp:null;
    const window=Number.isFinite(first)?time(first)+(Number.isFinite(last)&&last!==first?(state==='KS'?' · conservative call gate ':'–')+time(last):''):'Time unverified';
-   return {...spec,state,order,left,pct,delta,status,sourceAt,ownCounts,called,simulated:simulated||result?.county_results_update?.status==='SIMULATED_NATIONAL_REHEARSAL',
+   const displayRating=rating(pct,{positive:left,negative:state==='NE'?'Ricketts':'R',calledParty:called?entry.provider_called_party:null});
+   if(state==='NE'&&displayRating.state==='forecast')displayRating.label='Paired · '+displayRating.label;
+   return {...spec,state,order,left,pct,delta,status,sourceAt,ownCounts,called,rating:displayRating,simulated:simulated||result?.county_results_update?.status==='SIMULATED_NATIONAL_REHEARSAL',
     count:direct&&finite(direct.counted_two_party_votes)?direct.counted_two_party_votes:null,
     performance:direct?.matched_performance||null,
     first,last,window,started:Number.isFinite(first)&&now>=first,
@@ -133,6 +142,7 @@
  function render(host,result,baseline,options={}){
   if(!host)return;const data=rows(result,baseline,options);host.hidden=!data.length;
   const oldHistory=host.querySelector('.personal-focus-history'),active=host.ownerDocument.activeElement;
+  const oldRatingKey=host.querySelector('.personal-focus-rating-key'),ratingKeyOpen=Boolean(oldRatingKey?.open),ratingKeyFocused=Boolean(oldRatingKey?.contains(active));
   const historyOpen=Boolean(oldHistory?.open),historyFocused=Boolean(oldHistory?.contains(active));
   const openHistorySources=new Set(Array.from(oldHistory?.querySelectorAll('.personal-focus-history-entry')||[]).filter(e=>e.querySelector('details')?.open).map(e=>e.dataset.historyEntry));
   const focusedHistoryEntry=historyFocused?active.closest('.personal-focus-history-entry')?.dataset.historyEntry:null;
@@ -146,6 +156,7 @@
   const simulated=data.some(x=>x.simulated);
   host.append(el('h2','',(simulated?'SIMULATED · ':'')+'Your election-night needles'),el('p','methodline',simulated?'FICTIONAL COUNTS · NOT LIVE. These race needles share this simulated national update; the live dashboard is unchanged.':'Same race forecasts as the national model. Own validated returns enter once; race probabilities are never averaged back into it. Order follows admitted evidence and poll-close windows, not a promise of when votes will arrive.'));
   host.append(el('p','personal-focus-next','Focus now / next: '+data.filter(x=>x.state!=='AK').slice(0,3).map(x=>x.code+' · '+x.window).join(' | ')));
+  const ratingKey=el('details','personal-focus-rating-key');ratingKey.open=ratingKeyOpen;ratingKey.append(el('summary','','How to read the ratings'),el('p','','Forecast bands use this same model chance: Safe 95%+, Likely 80%+, Leaning 60%+, otherwise Toss-up. A victory label requires a validated source call; a high chance or vote lead is not a call. Nebraska is a paired Osborn-versus-Ricketts forecast, not five-way win odds.'));host.append(ratingKey);if(ratingKeyFocused)ratingKey.querySelector('summary').focus({preventScroll:true});
   if(options.history){
    const history=renderHistory(doc,options.history,options.context||'PUBLIC',historyOpen);host.append(history);
    let historyTarget=history.querySelector('summary');
@@ -161,10 +172,13 @@
    for(const row of data.filter(x=>x.office===office)){
     const card=el('article','personal-focus-card');card.dataset.race=row.code;
     const heading=el('h4','',row.code==='OH-SEN'?'Ohio · special Senate':row.code);heading.tabIndex=-1;card.append(heading);
+    const badge=el('span','personal-focus-rating',(row.simulated?'SIMULATED · ':'')+row.rating.label);badge.dataset.state=row.rating.state;
+    badge.title=row.rating.state==='called'?'Validated source call · unofficial':row.rating.state==='pending'?'No supported forecast rating':'Model forecast · not called';
+    card.dataset.ratingSide=row.rating.side;card.dataset.ratingKind=row.rating.state;card.append(badge);
     card.append(el('small','',row.state==='AK'?'Late night · '+row.window:row.state==='KS'?'Counts eligible from · '+row.window:'Poll-close window · '+row.window));
     if(row.pct!==null){
      const chanceLabel=row.state==='NE'?'model chance vs Ricketts':'model win chance';
-     const svg=doc.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 200 105');svg.setAttribute('role','img');svg.setAttribute('aria-label',row.code+' '+row.left+' '+chanceLabel+' '+row.pct.toFixed(1)+' percent');
+     const svg=doc.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 200 105');svg.setAttribute('role','img');svg.setAttribute('aria-label',row.code+' '+row.left+' '+chanceLabel+' '+row.pct.toFixed(1)+' percent · '+badge.textContent+' · '+badge.title);
      const node=(tag,attrs)=>{const n=doc.createElementNS(svg.namespaceURI,tag);for(const [k,v]of Object.entries(attrs))n.setAttribute(k,String(v));return n;};
      svg.append(node('path',{d:'M20 90 A80 80 0 0 1 100 10',stroke:'#ce6878',fill:'none','stroke-width':9}),node('path',{d:'M100 10 A80 80 0 0 1 180 90',stroke:row.left==='Osborn'?'#d2acff':'#57b4ff',fill:'none','stroke-width':9}),node('line',{x1:100,y1:90,x2:100,y2:18,stroke:'#fff0a4','stroke-width':4,transform:'rotate('+(-90+1.8*row.pct)+' 100 90)'}));
      const odds=el('strong','personal-focus-odds');odds.append(el('span','',row.left+' '+row.pct.toFixed(1)+'%'),el('small','',' · '+chanceLabel));
@@ -195,5 +209,5 @@
   host.append(el('p','methodline','Probability changes are not vote-margin outperformance. Matched county performance remains the model evidence. NC01/AZ01 boundary contracts are still pending; existing TX and WA03 integrations remain available. KS uses the existing conservative final-call gate pending county-hours review. Experimental and uncalibrated; a forecast is not a result.'));
   if(focusedRace){const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(c=>c.dataset.race===focusedRace),target=Array.from(card?.querySelectorAll('details')||[]).find(d=>d.dataset.disclosure===focusedDisclosure);(target?.querySelector('summary')||card?.querySelector('details > summary')||card?.querySelector('h4'))?.focus({preventScroll:true});}
  }
- return Object.freeze({SENATE,HOUSE,rows,render,createHistory,HISTORY_KEY,HISTORY_LIMIT,HISTORY_BYTES});
+ return Object.freeze({SENATE,HOUSE,rows,render,rating,createHistory,HISTORY_KEY,HISTORY_LIMIT,HISTORY_BYTES});
 });

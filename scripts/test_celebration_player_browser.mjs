@@ -5,6 +5,7 @@ import {readFileSync,existsSync,statSync,mkdirSync} from 'node:fs';
 import {resolve,extname,sep} from 'node:path';
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright');
 const root=resolve(import.meta.dirname,'..');
+const out=resolve(process.env.UI_REVIEW_OUTPUT_DIR||resolve(root,'artifacts/readiness'));mkdirSync(out,{recursive:true});
 const types={'.html':'text/html','.js':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.mp3':'audio/mpeg','.jpg':'image/jpeg'};
 const server=createServer((req,res)=>{
  const file=resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname==='/'?'/index.html':new URL(req.url,'http://localhost').pathname));
@@ -68,7 +69,7 @@ try{
     assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
     assert((await page.locator('#enCelebrationMusicLabel').innerText()).includes(spec.music));
     if(id==='tsunami'){assert.equal(await page.locator('#enTsunamiMeme').isHidden(),true,'Dedicated scene replaces duplicate wave poster');assert.match(await visual.innerText(),/PREVIEW ONLY.*NOT A FORECAST TRIGGER/);}
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-${id}-beat0-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-${id}-beat0-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.getAttribute('data-beat'),'1');
     assert.equal(await visual.locator('[data-layer="'+spec.middle+'"]').count(),id==='blexas'?2:1);
     assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
@@ -77,12 +78,12 @@ try{
     if(id==='ohio'){assert.equal(await visual.locator('[data-layer="ohio-cracked-shell"]').count(),2);assert.match(await visual.locator('[data-layer="ohio-cracked-shell"]').first().getAttribute('style'),/translateX\(-60px\)/);}
     if(id==='blexas')assert.match(await visual.innerText(),/SENATE.*GOVERNOR.*TWO SEPARATE STATEWIDE CALLS/s);
     if(id==='tsunami')assert.match(await visual.locator('[data-layer="tsunami-lawn-sign"]').getAttribute('style'),/rotate\(18deg\)/);
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-${id}-beat1-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-${id}-beat1-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.locator('[data-layer="'+spec.last+'"]').count(),1);
     if(id==='ohio')assert.match(await visual.innerText(),/SPECIAL SENATE/);
     if(id==='blexas')assert.match(await visual.innerText(),/BOTH CALLS REQUIRED/);
     if(id==='tsunami')assert.match(await visual.innerText(),/PREVIEW ONLY.*NO NATIONAL CALL/s);
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-${id}-beat2-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-${id}-beat2-${width}.png`)});
     await page.clock.runFor(2500);
    }else if(id==='maine'){
     const visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
@@ -92,17 +93,17 @@ try{
     assert.match(await visual.innerText(),/SIMULATED PREVIEW/);
     assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
     assert.match(await page.locator('#enCelebrationMusicLabel').innerText(),/Broom-and-bells sendoff/);
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-maine-beat0-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-maine-beat0-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.getAttribute('data-beat'),'1');
     assert.equal(await visual.locator('[data-layer="maine-change-breeze"]').count(),1);
     assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
     await page.emulateMedia({reducedMotion:'reduce'});
     await page.waitForFunction(()=>document.querySelector('#enCelebrationVisual').getAnimations({subtree:true}).length===0);
     assert.match(await visual.locator('[data-layer="maine-broom-hat"]').getAttribute('style'),/translate\(430px,-90px\)/,'Reduced motion retains the exit endpoint');
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-maine-beat1-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-maine-beat1-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.locator('[data-layer="maine-next-chapter"]').count(),1);
     assert.match(await visual.innerText(),/MAINE SENATE/);
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-maine-beat2-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-maine-beat2-${width}.png`)});
     await page.clock.runFor(2500);
    }else if(id==='blue_corn'){
     const visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
@@ -115,17 +116,17 @@ try{
     // WAAPI uses the compositor clock; observe real paint before advancing fixture timers.
     await page.waitForFunction(()=>getComputedStyle(document.querySelector('#enCelebrationVisual [data-layer="first-blue-kernel"]')).fill==='rgb(128, 216, 255)');
     assert.equal(await visual.locator('[data-layer="first-blue-kernel"]').evaluate(n=>getComputedStyle(n).fill),'rgb(128, 216, 255)','First kernel visibly turns blue before the full-ear beat');
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-iowa-beat0-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-iowa-beat0-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.getAttribute('data-beat'),'1');
     assert.match(await visual.innerText(),/BLUE KERNELS EVERYWHERE/);
     assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
     await page.emulateMedia({reducedMotion:'reduce'});
     await page.waitForFunction(()=>document.querySelector('#enCelebrationVisual').getAnimations({subtree:true}).length===0);
     assert.equal(await visual.locator('[data-layer="corn-kernel"]').evaluateAll(nodes=>nodes.every(n=>getComputedStyle(n).fill==='rgb(128, 216, 255)')),true,'Reduced motion retains all blue kernels');
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-iowa-beat1-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-iowa-beat1-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.locator('[data-layer="iowa-blue-corn-finale"]').count(),1);
     assert.match(await visual.innerText(),/IOWA SENATE OR GOVERNOR/);
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-iowa-beat2-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-iowa-beat2-${width}.png`)});
     await page.clock.runFor(2500);
    }else if(id==='nebraska'){
     const visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
@@ -136,7 +137,7 @@ try{
     assert.match(await visual.innerText(),/SIMULATED PREVIEW/);
     assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
     assert.match(await page.locator('#enCelebrationMusicLabel').innerText(),/Sideline brass and halftime bass/);
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-nebraska-beat0-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-nebraska-beat0-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.getAttribute('data-beat'),'1');
     assert.equal(await visual.locator('[data-layer="absurd-scoreboard"]').count(),1);
     assert.equal(await visual.locator('[data-layer="blue-confetti"] rect').count(),16);
@@ -145,10 +146,10 @@ try{
     await page.emulateMedia({reducedMotion:'reduce'});
     await page.waitForFunction(()=>document.querySelector('#enCelebrationVisual').getAnimations({subtree:true}).length===0);
     assert.equal(await visual.locator('[data-layer="absurd-scoreboard"]').isVisible(),true);
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-nebraska-beat1-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-nebraska-beat1-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.locator('[data-layer="nebraska-independent-finale"]').count(),1);
     assert.match(await visual.innerText(),/DAN OSBORN.*INDEPENDENT WINNER.*NO ASSUMED CAUCUS/s);
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-nebraska-beat2-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-nebraska-beat2-${width}.png`)});
     await page.clock.runFor(2500);
    }else if(id==='graham'){
     const visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
@@ -158,7 +159,7 @@ try{
     assert.match(await visual.innerText(),/FICTIONAL STAGE.*NOT A REAL VENUE/);
     assert.match(await visual.innerText(),/SIMULATED PREVIEW/);
     assert.match(await page.locator('#enCelebrationMusicLabel').innerText(),/Last-call disco/);
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-graham-beat0-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-graham-beat0-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.getAttribute('data-beat'),'1');
     assert.equal(await visual.locator('[data-layer="incumbent-stage-pass"]').count(),1);
     assert.equal(await visual.locator('[data-layer="stage-exit"]').count(),1);
@@ -166,9 +167,9 @@ try{
     await page.emulateMedia({reducedMotion:'reduce'});
     await page.waitForFunction(()=>document.querySelector('#enCelebrationVisual').getAnimations({subtree:true}).length===0);
     assert.match(await visual.locator('[data-layer="incumbent-stage-pass"]').getAttribute('style'),/translateX\(400px\)/,'Reduced motion retains the theatrical exit endpoint');
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-graham-beat1-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-graham-beat1-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.locator('[data-layer="graham-finale"]').count(),1);
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-graham-beat2-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-graham-beat2-${width}.png`)});
     await page.clock.runFor(2500);
    }else if(id==='talarico'){
     const visual=page.locator('#enCelebrationVisual');
@@ -181,18 +182,18 @@ try{
     await page.emulateMedia({reducedMotion:'reduce'});
     await page.waitForFunction(()=>document.querySelector('#enCelebrationVisual').getAnimations({subtree:true}).length===0);
     mkdirSync(resolve(root,'artifacts/readiness'),{recursive:true});
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-talarico-beat0-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-talarico-beat0-${width}.png`)});
     await page.clock.runFor(2400);
     assert.equal(await visual.getAttribute('data-beat'),'1');
     assert.equal(await visual.locator('[data-layer="texas-silhouette"]').count(),1);
     assert.equal(await visual.locator('[data-layer="blue-star"]').count(),5);
     assert.equal(await visual.evaluate(host=>host.getAnimations({subtree:true}).length),0);
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-talarico-beat1-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-talarico-beat1-${width}.png`)});
     await page.clock.runFor(2400);
     assert.equal(await visual.getAttribute('data-beat'),'2');
     assert.equal(await visual.locator('[data-layer="senate-victory-card"]').count(),1);
     assert.match(await visual.innerText(),/SIMULATED PREVIEW/);
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-talarico-beat2-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-talarico-beat2-${width}.png`)});
     await page.clock.runFor(2500);
    }else if(id==='abbott'){
     const visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
@@ -202,11 +203,11 @@ try{
     assert.equal(await visual.locator('[data-layer="campaign-sign"]').count(),1);
     assert.equal(await visual.locator('[data-layer="falling-tree"]').count(),1);
     assert.match(await page.locator('#enCelebrationMusicLabel').innerText(),/Original score.*campaign-sign exit march/);
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-abbott-beat0-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-abbott-beat0-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.locator('[data-layer="voted-out-stamp"]').count(),1);
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-abbott-beat1-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-abbott-beat1-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.locator('[data-layer="governor-victory-card"]').count(),1);
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-abbott-beat2-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-abbott-beat2-${width}.png`)});
     await page.clock.runFor(2500);
    }else if(id==='blansas'){
     const visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
@@ -215,7 +216,7 @@ try{
     assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
     assert.match(await visual.innerText(),/SIMULATED PREVIEW/);
     assert.match(await page.locator('#enCelebrationMusicLabel').innerText(),/Prairie fife and drum/);
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-kansas-beat0-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-kansas-beat0-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.getAttribute('data-beat'),'1');
     assert.equal(await visual.locator('[data-layer="kansas-ink-wash"]').count(),1);
     assert.equal(await visual.locator('[data-layer="blue-ink-splash"]').count(),3);
@@ -223,9 +224,9 @@ try{
     await page.emulateMedia({reducedMotion:'reduce'});
     await page.waitForFunction(()=>document.querySelector('#enCelebrationVisual').getAnimations({subtree:true}).length===0);
     assert.match(await visual.innerText(),/KANSAS/);
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-kansas-beat1-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-kansas-beat1-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.locator('[data-layer="kansas-victory-card"]').count(),1);
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-kansas-beat2-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-kansas-beat2-${width}.png`)});
     await page.clock.runFor(2500);
    }else if(id==='mississippi'){
     const visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
@@ -234,7 +235,7 @@ try{
     assert.match(await visual.innerText(),/SIMULATED PREVIEW/);
     assert.match(await page.locator('#enCelebrationMusicLabel').innerText(),/Blue-river brass shuffle/);
     assert.match(await page.locator('#enMilestoneSource').innerText(),/Original animated scene/);
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-mississippi-beat0-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-mississippi-beat0-${width}.png`)});
     await page.clock.runFor(2400);
     assert.equal(await visual.getAttribute('data-beat'),'1');
     assert.equal(await visual.locator('[data-layer="mascot-storage-crate"]').count(),1);
@@ -242,9 +243,9 @@ try{
     await page.emulateMedia({reducedMotion:'reduce'});
     await page.waitForFunction(()=>document.querySelector('#enCelebrationVisual').getAnimations({subtree:true}).length===0);
     assert.match(await visual.locator('[data-layer="retired-mascot-prop"]').getAttribute('style'),/translate\(700px,250px\)/,'Static reduced-motion frame retains the prop in storage');
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-mississippi-beat1-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-mississippi-beat1-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.locator('[data-layer="mississippi-victory-card"]').count(),1);
-    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-mississippi-beat2-${width}.png`)});
+    await visual.screenshot({path:resolve(out,`celebration-mississippi-beat2-${width}.png`)});
     await page.clock.runFor(2500);
    }else{
     assert.equal(await page.locator('#enCelebrationVisual').isHidden(),true,'Other stories retain their existing presentation');
@@ -275,8 +276,9 @@ try{
     if(id==='graham')assert.doesNotMatch(await page.locator('#enMilestonePoster').getAttribute('alt'),/lindsey/i);
     await page.locator('#enMilestonePoster').evaluate(img=>img.decode());
     mkdirSync(resolve(root,'artifacts/readiness'),{recursive:true});
-    await page.locator(['talarico','abbott','mississippi','blansas','graham','nebraska','blue_corn','maine','ohio','blexas','tsunami'].includes(id)?'#enCelebrationVisual':'#enMilestonePoster').screenshot({path:resolve(root,`artifacts/readiness/celebration-${id}-${width}.png`)});
+    await page.locator(['talarico','abbott','mississippi','blansas','graham','nebraska','blue_corn','maine','ohio','blexas','tsunami'].includes(id)?'#enCelebrationVisual':'#enMilestonePoster').screenshot({path:resolve(out,`celebration-${id}-${width}.png`)});
    }
+   await page.locator('#enMilestoneClose').click();
   }
   // Supplied-art productions retain shared cancellation/archive mechanics.
   for(const sceneId of ['mississippi','blansas','graham','nebraska','blue_corn','maine','ohio','blexas','tsunami']){
@@ -291,7 +293,8 @@ try{
   if(sceneId==='tsunami')await page.locator('#enTsunamiPreview').click();
   else await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles[sceneId]}).click();
   await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
-  await page.locator('#enMode2024').click();assert.equal(await page.locator('#enCelebrationVisual svg').count(),0);
+  // A programmatic mode change tests the archive teardown while a native modal is open.
+  await page.evaluate(()=>document.querySelector('#enMode2024').click());assert.equal(await page.locator('#enCelebrationVisual svg').count(),0);
   await page.locator('#enMode2026').click();
   }
   // Skip an actual running visual, then replace it and leave 2026 mode.
@@ -310,7 +313,8 @@ try{
   await page.locator('#enMilestoneClose').click();
   await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles.talarico}).click();
   await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
-  await page.locator('#enMode2024').click();
+  // A programmatic mode change tests the archive teardown while a native modal is open.
+  await page.evaluate(()=>document.querySelector('#enMode2024').click());
   assert.equal(await page.locator('#enCelebrationVisual').isHidden(),true,'Archive mode clears prior SVG');
   await page.locator('#enMode2026').click();
   await page.evaluate(()=>{document.querySelector('#enCelebrationAnnouncement').play=()=>Promise.reject(new Error('Synthetic autoplay rejection'));enMilestoneShow({id:'blansas',title:'Kansas'},true)});
@@ -322,7 +326,7 @@ try{
   await stage.scrollIntoViewIfNeeded();
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true,'No mobile overflow');
   mkdirSync(resolve(root,'artifacts/readiness'),{recursive:true});
-  await stage.screenshot({path:resolve(root,`artifacts/readiness/celebration-${width}.png`)});
+  await stage.screenshot({path:resolve(out,`celebration-${width}.png`)});
   await page.locator('#enMilestoneClose').click();
   assert.equal(await page.evaluate(()=>enCelebrationPlayer.state().active),null);
   assert.equal(await page.locator('#enMilestoneSpotlight').isHidden(),true);

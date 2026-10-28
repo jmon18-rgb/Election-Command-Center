@@ -1,5 +1,9 @@
 # Celebration production inventory - October 27, 2026
 
+## Owner-requested popup and optional YouTube upgrade — October28, release pending
+
+All11 retained productions now share a native popup rather than inline-only playback. Existing earned triggers remain unchanged. Normal preview launcher, story selection, Escape, keyboard wrap, sound/skip, archive/retraction teardown and return-focus tasks pass on isolated desktop/phone. Optional visible YouTube tracks: The Eyes of Texas / University of Texas Longhorn Band and Walk This Way / Aerosmith, with per-event local custom URLs. No recording is copied; original cues remain the default and manual fallback. Ads, internet, embedding and autoplay depend on YouTube/browser policy. Watch-page checks and synthetic iframe mechanics do not establish actual embed playback or human music-quality acceptance. Publication and human listening remain open.
+
 ## Kansas blue-ink transformation RELEASED in PR510
 
 Original shared-renderer SVG beats now give John Brown's satirical ghost an entrance, wash an old rebel emblem in blue ink and reveal the Kansas finale. Supplied painting/attribution/fallback and released Prairie fife and drum stay unchanged. Actual1440/390all11stories/motion/reducedmotion/cleanup/fallback, signals/music and ALL35exactheadparents/47applicablejobs pass. Finalmain97e0e262/Pages40635940805/371publishedfiles05:07:27Z and ordinaryIAB21fictional finale/painting/attribution verified. This is illustrative celebration art, not a results map or a real victory claim.
