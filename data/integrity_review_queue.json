@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-28T21:52:08.253412Z",
+  "updated_at": "2026-10-28T22:50:56.254704Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -562,6 +562,25 @@
       "state_hints": [],
       "topic_hints": [
         "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "796c77c38074a2cc9939",
+      "title": "Judge to appoint special master in California voting case in setback to DOJ's attempt to quickly intervene - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPbU45bDBhZEtnZ3FUdkZFUS1oZGllcUpvZXdCOURNYUk4NWJPQUticG5JSnhlVUhqWGlJdVU1b2paaXVPVG1rMHpRTkFNN0l3QktXRjk4NmZfd2tTZWE4WVpmSnh3UWpQRUZhLTJQNVNhTkdyQV9OTU53QkxsWFRhdkRJeFNuaVNyMXJ1ZjB2SmdlY0JtU1lrS1lrSzZpZ3ZRaVpDV1NzOU10eFXSAbABQVVfeXFMTjFkSE9NRHltb3VkRUVJd1R2a2s4YUs4YnRBanp3NnQ0YjF2NjB1NnBLNWstemN3NEk2RlJzbUxTQ2ZFOUlhbi0tQkt1RVpSTGRzeFAyTmlLOFZ0VHFwQ2pSbGhGZFlBdUZtQmVwWVRWVnlKcXdzeFhKeTFTcmMxTGk5X21wNzc4OW8tZ2NZWWJ5bXNTMTkxeU1sVkczNGhmME9oZmlFMEJ3TVRqYmJYMm8?oc=5",
+      "publisher": "ABC News - Breaking News, Latest News and Videos",
+      "published_at": "2026-10-28T04:10:03Z",
+      "detected_at": "2026-10-28T22:50:56.254704Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -5030,27 +5049,6 @@
         "security"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "6581a62403649ba8ac0a",
-      "title": "How to vote early in New York\u2019s 2026 General Election - NEWS10 ABC",
-      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE8yZm1BeVV1MnIzaGlsSkFYdHk4c21Db2xLdVhMelZHSmNVT1FKLWptQmRZWWVBa1RhSHE5YXktRXdWUDVLaS1JZFdzcTBNTFlaQy1fMTVwYXdWZHBNLWJReHlB0gFnQVVfeXFMTWxROGtiODhwbmFTeENJVUZDSTBWN0FlcWVOYzJESjlSbVgzZ3JRT0dmN20yeWdzNzFFWW85RHlTMWdIdEY5TlVsN2NfbFBKNmJveWlVZEpnaWxOS0NJOWkxWUxHdEZpcw?oc=5",
-      "publisher": "NEWS10 ABC",
-      "published_at": "2026-10-15T23:28:17Z",
-      "detected_at": "2026-10-15T23:39:52.937300Z",
-      "state_hints": [
-        "NY"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
