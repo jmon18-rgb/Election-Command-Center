@@ -87,6 +87,8 @@
   const list=el('ol');details.append(list);
   for(const e of data.slice(0,8)){
    const row=el('li');row.className='personal-focus-history-entry';
+   // Grouped observations keep their window identity as their latest clock changes.
+   row.dataset.historyEntry=JSON.stringify([e.context,e.simulated,e.window_started_at,e.kind]);
    row.append(el('strong',(e.simulated?'SIMULATED · ':'')+historyTime(e.observed_at)+' · '+e.kind.replaceAll('_',' ').toLowerCase()));
    row.append(el('p',ENDINGS.map(k=>k.replaceAll('_',' ')+' '+e.probabilities[k].toFixed(1)+'%').join(' · ')));
    if(e.observations>1)row.append(el('small',e.observations+' model observations since '+historyTime(e.window_started_at)+'; latest outlook shown.'));
@@ -130,17 +132,29 @@
  }
  function render(host,result,baseline,options={}){
   if(!host)return;const data=rows(result,baseline,options);host.hidden=!data.length;
-  const historyOpen=Boolean(host.querySelector('.personal-focus-history')?.open),historyFocused=Boolean(host.querySelector('.personal-focus-history')?.contains(host.ownerDocument.activeElement));
+  const oldHistory=host.querySelector('.personal-focus-history'),active=host.ownerDocument.activeElement;
+  const historyOpen=Boolean(oldHistory?.open),historyFocused=Boolean(oldHistory?.contains(active));
+  const openHistorySources=new Set(Array.from(oldHistory?.querySelectorAll('.personal-focus-history-entry')||[]).filter(e=>e.querySelector('details')?.open).map(e=>e.dataset.historyEntry));
+  const focusedHistoryEntry=historyFocused?active.closest('.personal-focus-history-entry')?.dataset.historyEntry:null;
   // Keep operator disclosure state by race identity, never by changing row order.
-  const openPerformance=new Set(Array.from(host.querySelectorAll('.personal-focus-card')).filter(c=>c.querySelector('details')?.open).map(c=>c.dataset.race));
+  const openPerformance=new Map(Array.from(host.querySelectorAll('.personal-focus-card')).map(c=>[c.dataset.race,new Set(Array.from(c.querySelectorAll('details[open]')).map(d=>d.dataset.disclosure))]));
   const activeCard=host.ownerDocument.activeElement?.closest?.('.personal-focus-card');
   const focusedRace=activeCard&&host.contains(activeCard)?activeCard.dataset.race:null;
+  const focusedDisclosure=focusedRace?active.closest('summary')?.parentElement.dataset.disclosure:null;
   host.replaceChildren();if(!data.length)return;
   const doc=host.ownerDocument,el=(tag,cls,text)=>{const n=doc.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;};
   const simulated=data.some(x=>x.simulated);
   host.append(el('h2','',(simulated?'SIMULATED · ':'')+'Your election-night needles'),el('p','methodline',simulated?'FICTIONAL COUNTS · NOT LIVE. These race needles share this simulated national update; the live dashboard is unchanged.':'Same race forecasts as the national model. Own validated returns enter once; race probabilities are never averaged back into it. Order follows admitted evidence and poll-close windows, not a promise of when votes will arrive.'));
   host.append(el('p','personal-focus-next','Focus now / next: '+data.filter(x=>x.state!=='AK').slice(0,3).map(x=>x.code+' · '+x.window).join(' | ')));
-  if(options.history){const history=renderHistory(doc,options.history,options.context||'PUBLIC',historyOpen);host.append(history);if(historyFocused)history.querySelector('summary')?.focus({preventScroll:true});}
+  if(options.history){
+   const history=renderHistory(doc,options.history,options.context||'PUBLIC',historyOpen);host.append(history);
+   let historyTarget=history.querySelector('summary');
+   for(const entry of history.querySelectorAll('.personal-focus-history-entry')){
+    const source=entry.querySelector('details');source.open=openHistorySources.has(entry.dataset.historyEntry);
+    if(entry.dataset.historyEntry===focusedHistoryEntry)historyTarget=source.querySelector('summary');
+   }
+   if(historyFocused)historyTarget?.focus({preventScroll:true});
+  }
   for(const office of ['Senate','House']){
    const group=el('section','');group.append(el('h3','',office==='Senate'?'Your ten Senate races':'House power-flip watch'));
    const grid=el('div','personal-focus-grid');
@@ -163,11 +177,14 @@
     const p=row.performance,positive=p?.positive_candidate||'D',negative=p?.negative_candidate||'R';
     if(p&&finite(p.observed_margin_points)&&[p.expected_margin_scenarios,p.difference_margin_scenarios].every(x=>Array.isArray(x)&&x.length===2&&x.every(finite))){
      card.append(el('p','personal-focus-performance','Matched-area performance · '+range(p.difference_margin_scenarios,positive,negative)+' margin points vs expected'));
-     const detail=el('details','');detail.append(el('summary','','What was expected here?'),el('p','','Observed '+margin(p.observed_margin_points,positive,negative)+'; expected '+range(p.expected_margin_scenarios,positive,negative)+' in the same reporting areas. Historical '+p.baseline_year+' local shares adjusted to the pre-results race expectation.'));
-     detail.open=openPerformance.has(row.code);
+     const detail=el('details','');detail.dataset.disclosure='expectation';detail.append(el('summary','','What was expected here?'),el('p','','Observed '+margin(p.observed_margin_points,positive,negative)+'; expected '+range(p.expected_margin_scenarios,positive,negative)+' in the same reporting areas. Historical '+p.baseline_year+' local shares adjusted to the pre-results race expectation.'));
+     detail.open=openPerformance.get(row.code)?.has('expectation')||false;
      detail.append(el('p','',p.scope));if(p.historical_transfer)detail.append(el('p','',p.historical_transfer+'; experimental and uncalibrated.'));
      if(p.directional_transfer_assumption)detail.append(el('p','',p.directional_transfer_assumption));
-     for(const u of p.largest_reporting_units||[])detail.append(el('small','',(u.county||'FIPS '+u.county_fips)+(row.office==='House'?' district part':'')+' · '+u.counted_two_party_votes.toLocaleString('en-US')+' '+positive+'/'+negative+' votes · observed '+margin(u.observed_margin_points,positive,negative)+'; expected '+range(u.expected_margin_scenarios,positive,negative)));
+     const areas=el('details','personal-focus-areas');areas.dataset.disclosure='areas';areas.open=openPerformance.get(row.code)?.has('areas')||false;
+     areas.append(el('summary','','Inspect '+(p.largest_reporting_units||[]).length+' reporting areas'));
+     for(const u of p.largest_reporting_units||[])areas.append(el('small','',(u.county||'FIPS '+u.county_fips)+(row.office==='House'?' district part':'')+' · '+u.counted_two_party_votes.toLocaleString('en-US')+' '+positive+'/'+negative+' votes · observed '+margin(u.observed_margin_points,positive,negative)+'; expected '+range(u.expected_margin_scenarios,positive,negative)));
+     detail.append(areas);
      detail.append(el('small','','Largest '+(p.largest_reporting_units||[]).length+' of '+p.reporting_units+' reporting areas shown. This does not extrapolate the raw margin statewide or call the race.'));
      card.append(detail);
     }
@@ -176,7 +193,7 @@
    group.append(grid);host.append(group);
   }
   host.append(el('p','methodline','Probability changes are not vote-margin outperformance. Matched county performance remains the model evidence. NC01/AZ01 boundary contracts are still pending; existing TX and WA03 integrations remain available. KS uses the existing conservative final-call gate pending county-hours review. Experimental and uncalibrated; a forecast is not a result.'));
-  if(focusedRace){const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(c=>c.dataset.race===focusedRace);(card?.querySelector('details > summary')||card?.querySelector('h4'))?.focus({preventScroll:true});}
+  if(focusedRace){const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(c=>c.dataset.race===focusedRace),target=Array.from(card?.querySelectorAll('details')||[]).find(d=>d.dataset.disclosure===focusedDisclosure);(target?.querySelector('summary')||card?.querySelector('details > summary')||card?.querySelector('h4'))?.focus({preventScroll:true});}
  }
  return Object.freeze({SENATE,HOUSE,rows,render,createHistory,HISTORY_KEY,HISTORY_LIMIT,HISTORY_BYTES});
 });

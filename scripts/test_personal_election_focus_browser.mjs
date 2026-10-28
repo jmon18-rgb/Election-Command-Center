@@ -5,6 +5,7 @@ import {readFileSync,existsSync,statSync,mkdirSync} from 'node:fs';
 import {resolve,extname,sep} from 'node:path';
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright');
 const root=resolve(import.meta.dirname,'..'),types={'.html':'text/html','.js':'application/javascript','.json':'application/json','.svg':'image/svg+xml'};
+const out=resolve(root,process.env.UI_REVIEW_OUTPUT_DIR||'artifacts/readiness');mkdirSync(out,{recursive:true});
 const server=createServer((req,res)=>{const file=resolve(root,'.'+(new URL(req.url,'http://localhost').pathname==='/'?'/index.html':decodeURIComponent(new URL(req.url,'http://localhost').pathname)));
  if(!file.startsWith(root+sep)||!existsSync(file)||!statSync(file).isFile()){res.writeHead(404).end();return;}res.writeHead(200,{'content-type':types[extname(file)]||'application/octet-stream'});res.end(readFileSync(file));});
 await new Promise(ok=>server.listen(0,'127.0.0.1',ok));let browser;
@@ -31,7 +32,7 @@ try{
   await page.locator('#enNationalNext').click();await page.waitForFunction(()=>document.querySelector('#enNationalStage').textContent.includes('2/5'));
   const ksPreview=page.locator('#enPersonalFocusPreview [data-race="KS-SEN"]');
   assert.match(await ksPreview.locator('.personal-focus-performance').innerText(),/Even margin points vs expected/,'Expected blue counties show no added performance surprise');
-  await ksPreview.locator('details > summary').click();assert.match(await ksPreview.innerText(),/not county polls|not confidence intervals/);
+  await ksPreview.locator(':scope > details > summary').click();assert.match(await ksPreview.innerText(),/not county polls|not confidence intervals/);
   await page.locator('#enNationalNext').click();await page.waitForFunction(()=>document.querySelector('#enNationalStage').textContent.includes('3/5'));
   assert.match(await ksPreview.locator('.personal-focus-performance').innerText(),/D\+3\.0 margin points vs expected/);
   const previewHistory=page.locator('#enPersonalFocusPreview .personal-focus-history');await previewHistory.locator(':scope > summary').click();
@@ -44,13 +45,13 @@ try{
   assert.match(await previewHistory.innerText(),/withdrawal/);
   assert.equal(await page.evaluate(()=>enOutlookHistory.events('PUBLIC').length+enOutlookHistory.events('LOCAL_RESEARCH_VARIANT').length),0,'Pre-election preview cannot populate either live history context');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true,'Expanded history must wrap model revision strings on mobile');
-  mkdirSync(resolve(root,'artifacts/readiness'),{recursive:true});await previewHistory.screenshot({path:resolve(root,'artifacts/readiness/outlook-history-'+width+'.png')});
+  await previewHistory.screenshot({path:resolve(out,'outlook-history-'+width+'.png')});
   // Return to the surprise frame to retain the existing county disclosure drill.
   await page.locator('#enNationalNext').click();await page.locator('#enNationalNext').click();await page.locator('#enNationalNext').click();
   await page.waitForFunction(()=>document.querySelector('#enNationalStage').textContent.includes('3/5'));
-  await ksPreview.locator('details > summary').click();
+  await ksPreview.locator(':scope > details > summary').click();
   assert.match(await ksPreview.innerText(),/Largest 6 of/);
-  mkdirSync(resolve(root,'artifacts/readiness'),{recursive:true});await ksPreview.screenshot({path:resolve(root,'artifacts/readiness/matched-performance-'+width+'.png')});
+  await ksPreview.screenshot({path:resolve(out,'matched-performance-'+width+'.png')});
   assert.equal(await page.locator('#enPersonalFocus .personal-focus-performance').count(),0,'Simulated performance cannot leak into live cards');
   assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),liveBefore,'Preview must not change the live joint model');
   assert.doesNotMatch(await page.locator('#enPersonalFocus').innerText(),/SIMULATED/);
@@ -69,7 +70,7 @@ try{
    const change=enOutlookHistory.events(context)[0]?.kind||null;jointNationalShift=old;jointRender(true);return{first,same,change};});
   assert.deepEqual(liveHistory,{first:1,same:true,change:'BASELINE_CHANGE'},'Actual controller logs baseline/settings changes, never calls them returns');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true);
-  mkdirSync(resolve(root,'artifacts/readiness'),{recursive:true});await page.locator('#enPersonalFocus').screenshot({path:resolve(root,'artifacts/readiness/personal-focus-'+width+'.png')});
+  await page.locator('#enPersonalFocus').screenshot({path:resolve(out,'personal-focus-'+width+'.png')});
   await page.locator('#enMode2024').click();assert.equal(await page.locator('#enPersonalFocus').isHidden(),true);assert.deepEqual(errors,[]);
   await page.route('**/personal_election_focus.js*',route=>route.abort());await page.reload({waitUntil:'domcontentloaded'});await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();await page.waitForFunction(()=>jointLastResult?.probabilities);assert.deepEqual(errors,[]);
   await context.close();console.log(width+'px owner Senate/House same-model needles, disclosure, synthetic admission/withdrawal, archive and optional-script fallback PASS');
