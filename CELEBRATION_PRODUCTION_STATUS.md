@@ -1,8 +1,8 @@
 # Celebration production inventory - October 27, 2026
 
-## Current candidate: Mississippi storage sendoff
+## Mississippi storage sendoff RELEASED in PR509
 
-Three presentation-only SVG beats reuse the original local prop/wave/crate art and released Blue-river brass shuffle. Supplied JPEG remains unchanged for announcement, thumbnail and fallback. Actual1440/390 preview/lifecycle/reduced-motion/fallback checks pass locally; protected review and publication proof are still required. No call/eligibility/source changes; all other unfinished bespoke scenes remain partial.
+Three presentation-only SVG beats reuse the original local prop/wave/crate art and released Blue-river brass shuffle. Supplied JPEG remains unchanged for announcement, thumbnail and fallback. Actual1440/390 preview/lifecycle/reduced-motion/fallback checks and ALL35exactheadparents/47applicablejobs pass. Finalmaineaa3dd8c/Pages40633454157/371matchingpublishedfiles04:40:30Z and ordinaryIAB21finale/previewlabel/attribution verified. No call/eligibility/source changes; all other unfinished bespoke scenes remain partial.
 
 
 ## Original event music and Abbott campaign-sign scene RELEASED in PR502
@@ -62,7 +62,7 @@ Three owner-supplied images are wired into the existing Kansas, Mississippi and 
 | Graham / South Carolina | Existing Darline opponent guard; supplied fictional nightclub poster. | PARTIAL: dedicated neon/spotlight/VIP-sign actions remain. No private-sexuality, real-venue or conduct assertions. | RELEASED502 original Last-call disco; no private-sexuality/conduct assertions. |
 | BLANSAS / Kansas | Existing Democratic Senate trigger; owner-supplied fictional John Brown/Confederate-symbol painting and fallback. | PARTIAL: stylized John Brown/Confederate-symbol action, blue cartoon splashes, Kansas transformation and finale | RELEASED502 original Prairie fife and drum; no historical recording or realistic gore. |
 | Nebraska / Osborn | Existing independent Dan Osborn trigger; static tractor/cornfield art plus generic football/corn beats; no assumed caucus | PARTIAL: sad fictional sideline/coach Tom Osborne character, absurd scoreboard and blue confetti. Must clearly distinguish coach Osborne from candidate Osborn | RELEASED502 original Sideline brass and halftime bass; no fight-song recording rights assumed. |
-| Mississippi Senate | R6 generic Democratic exact-race trigger; static retired-mascot/crate/wave poster and three beats; current invalid source stays excluded | CANDIDATE: original animated prop/pedestal/wave/storage/finale through shared renderer; all three beats locally tested, protected release pending. | RELEASED502 original Blue-river brass shuffle, unchanged by this visual candidate. |
+| Mississippi Senate | R6 generic Democratic exact-race trigger; static retired-mascot/crate/wave poster and three beats; current invalid source stays excluded | RELEASED509: original prop/pedestal/wave/storage/finale via shared renderer, three beats and original502score; exact-head/browser/publication verified. | RELEASED502 original Blue-river brass shuffle, unchanged by this visual candidate. |
 | BLUE CORN / Iowa | Existing any-of Senate/governor Democratic call; corn poster and three beats | PARTIAL: blue-kernel/cornfield transformation remains largely static | RELEASED502 original Electric harvest two-step. |
 | Maine | Existing Democratic call against Susan Collins; witch/broom poster and three beats | PARTIAL: staged broom/sendoff action remains static | RELEASED502 original Broom-and-bells sendoff. |
 | BUCKEYE BLUE-SHOCK / Ohio | Existing Ohio-special Democratic trigger; cracked-nut/lightning poster and three beats | PARTIAL: actual crack/lightning/victory action missing. Brief says retain existing direction until a replacement is selected | RELEASED502 original Buckeye blue-shock riff. |
@@ -90,4 +90,4 @@ This is first in both the current Texas-first R6 priority and the brief's produc
 - Record original-code artwork/audio provenance and immutable script/changed-art revisions; pass exact-head workflows, published-byte checks and published behavior before a completed-release claim.
 - Completion of this slice means Talarico's distinct production is ready; it does not mark the entire celebration roster complete or establish a real election result.
 
-Following slices: Kansas/Graham requested actions and the separately prioritized governor/Mississippi productions, then Nebraska and remaining retained roster, using the current roadmap's latest priority decisions. Commercial-song upgrades stay optional and rights-dependent.
+Following slices: Kansas/Graham requested actions, Nebraska and the remaining retained roster under the latest roadmap. Talarico/Abbott/Mississippi now have verified dedicated visuals. Commercial-song upgrades stay optional and rights-dependent.
