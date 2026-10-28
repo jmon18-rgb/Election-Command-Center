@@ -1,5 +1,9 @@
 # Election-night usability and visual review
 
+## Queued bulletin reading return — October28 candidate, not yet released
+
+The next combined task reproduced a distinct defect after520: celebration -> queued correction bulletin -> normal personal redraw -> Back leaves focus on hidden bulletin dismissal button. Both1366/390 share the failure; open reader remains visible. Shared ephemeral reader bookmarks now persist across bulletin sequences and transfer when a celebration preempts a bulletin. Back/Escape/expiry/call-bulletin revocation restore the refreshed control below toolbar; NE nested explanation/history/withdrawal/preview return and pure rehearsal isolation remain intact. Actual Edge affected task and existing component regressions pass; protected release/publication pending. Baseline ui-review/queued-reading-baseline/assessment.json/pngs; source ui-review/queued-reading-source/combined-reading-return.json/pngs. External providers blocked; human comprehension/assistive NOT_RUN.
+
 ## PR520 interrupted-reading repair — October28 verified
 
 Released518 combined task reproduced on1366x900/390x844: automatic popup outlives a background personal-card redraw, detaching the inspected control; close/withdrawal returns to launcher while the reading disclosure stays open. Shared ephemeral semantic bookmarks now restore replaced rating/race/disclosure/history controls and regenerated preview buttons; removed explanation returns the same race heading. Restored controls remain onscreen below toolbar, with disclosure state retained. No new persistence or source/model/call/queue/music change.

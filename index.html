@@ -5550,8 +5550,25 @@ const enFishSoundKey='bluewaves_fish_sound_v2';
 let enFishSoundEnabled=(()=>{
  try{return localStorage.getItem(enFishSoundKey)!=='off'}catch{return true}
 })();
-let enFishTimeout=null,enFishReturnFocus=null,enFishCurrent=null;
+let enFishTimeout=null,enFishReturnFocus=null,enFishReturnAnchor=null,enFishCurrent=null;
 const enFishPending=[];
+// Announcements share ephemeral reader identity across ordinary results redraws.
+function enReadingReturnAnchor(target){
+ const host=target?.closest?.('#enPersonalFocus,#enPersonalFocusPreview');
+ const bookmark=host&&window.PersonalElectionFocus?.captureFocus(host,target);
+ const milestone=target?.closest?.('#enMilestoneGrid .en-milestone-card');
+ return bookmark?{hostId:host.id,bookmark}:milestone?.dataset.milestone?{milestone:milestone.dataset.milestone}:target?.id?{elementId:target.id}:null;
+}
+function enRestoreReadingFocus(target,anchor,fallbackId){
+ const visible=node=>node?.isConnected&&(node.checkVisibility?node.checkVisibility():node.getClientRects().length);
+ if(!visible(target))target=anchor?.hostId?window.PersonalElectionFocus?.focusTarget(document.getElementById(anchor.hostId),anchor.bookmark):anchor?.milestone?Array.from(document.querySelectorAll('#enMilestoneGrid .en-milestone-card')).find(card=>card.dataset.milestone===anchor.milestone):anchor?.elementId?document.getElementById(anchor.elementId):null;
+ if(!visible(target))target=document.getElementById(fallbackId);
+ target?.focus({preventScroll:true});
+ if(visible(target)){
+  const box=target.getBoundingClientRect(),toolbar=$('#electionNight .en-toolbar')?.getBoundingClientRect();
+  if(box.top<(toolbar?.bottom||0)+8||box.bottom>innerHeight-8)target.scrollIntoView({block:'center'});
+ }
+}
 function enFishRenderVoice(){
  const button=$('#enFishVoice');
  if(!button)return;
@@ -5591,8 +5608,8 @@ function enFishDismiss(){
  enFishCurrent=null;
  enFishAudioStop();
  $('#enFishToast').hidden=true;
- if(enFishReturnFocus?.isConnected)enFishReturnFocus.focus();
- enFishReturnFocus=null;
+ if(enFishReturnFocus||enFishReturnAnchor)enRestoreReadingFocus(enFishReturnFocus,enFishReturnAnchor,'enMode2026');
+ enFishReturnFocus=null;enFishReturnAnchor=null;
 }
 function enFishRevokeCall(item){
  const matches=entry=>entry&&!entry.demo&&entry.event?.kind==='call'&&
@@ -5604,8 +5621,8 @@ function enFishRevokeCall(item){
   if(enFishTimeout){clearTimeout(enFishTimeout);enFishTimeout=null;}
   enFishCurrent=null;enFishAudioStop();
   const toast=$('#enFishToast');if(toast)toast.hidden=true;
-  if(enFishReturnFocus?.isConnected)enFishReturnFocus.focus();
-  enFishReturnFocus=null;
+  if(enFishReturnFocus||enFishReturnAnchor)enRestoreReadingFocus(enFishReturnFocus,enFishReturnAnchor,'enMode2026');
+  enFishReturnFocus=null;enFishReturnAnchor=null;
  }
 }
 function enFishQueueState(){
@@ -5624,7 +5641,7 @@ function enFishNextBulletin(){
 }
 function enFishPresent(event,demo){
  const toast=$('#enFishToast');
- if(toast.hidden)enFishReturnFocus=document.activeElement;
+ if(toast.hidden){enFishReturnFocus=document.activeElement;enFishReturnAnchor=enReadingReturnAnchor(enFishReturnFocus);}
  toast.hidden=false;enFishCurrent={event,demo};
  $('#enFishDismiss').focus();
  $('#enFishMode').textContent=demo?'REHEARSAL · NOT A REAL RACE CALL':
@@ -6006,11 +6023,10 @@ const enCelebrationMusicSettings=enCelebrationOnline?.read(enCelebrationStorage,
 function enCelebrationOpen(){
  const dialog=$('#enMilestoneSpotlight');
  if(!dialog.open){
-  enCelebrationReturnFocus=document.activeElement;
-  const host=enCelebrationReturnFocus?.closest?.('#enPersonalFocus,#enPersonalFocusPreview');
-  const bookmark=host&&window.PersonalElectionFocus?.captureFocus(host,enCelebrationReturnFocus);
-  const milestone=enCelebrationReturnFocus?.closest?.('#enMilestoneGrid .en-milestone-card');
-  enCelebrationReturnAnchor=bookmark?{hostId:host.id,bookmark}:milestone?.dataset.milestone?{milestone:milestone.dataset.milestone}:enCelebrationReturnFocus?.id?{elementId:enCelebrationReturnFocus.id}:null;
+  // A celebration preempting a bulletin inherits its original reader.
+  const fromBulletin=enFishCurrent&&!$('#enFishToast').hidden;
+  enCelebrationReturnFocus=fromBulletin?enFishReturnFocus:document.activeElement;
+  enCelebrationReturnAnchor=fromBulletin?enFishReturnAnchor:enReadingReturnAnchor(enCelebrationReturnFocus);
   enCelebrationBodyOverflow=document.body.style.overflow;
   enCelebrationModalActive=true;
   document.body.style.overflow='hidden';dialog.hidden=false;
@@ -6026,18 +6042,7 @@ function enCelebrationHide(restore=true){
  if(wasOpen){
   document.body.style.overflow=enCelebrationBodyOverflow;
   if(restore){
-   let target=enCelebrationReturnFocus;
-   const visible=node=>node?.isConnected&&(node.checkVisibility?node.checkVisibility():node.getClientRects().length);
-   if(!visible(target)){
-    const anchor=enCelebrationReturnAnchor;
-    target=anchor?.hostId?window.PersonalElectionFocus?.focusTarget(document.getElementById(anchor.hostId),anchor.bookmark):anchor?.milestone?Array.from(document.querySelectorAll('#enMilestoneGrid .en-milestone-card')).find(card=>card.dataset.milestone===anchor.milestone):anchor?.elementId?document.getElementById(anchor.elementId):null;
-   }
-   if(!visible(target))target=$('#enCelebrationsOpen');
-   target?.focus({preventScroll:true});
-   if(visible(target)){
-    const box=target.getBoundingClientRect(),toolbar=$('#electionNight .en-toolbar')?.getBoundingClientRect();
-    if(box.top<(toolbar?.bottom||0)+8||box.bottom>innerHeight-8)target.scrollIntoView({block:'center'});
-   }
+   enRestoreReadingFocus(enCelebrationReturnFocus,enCelebrationReturnAnchor,'enCelebrationsOpen');
   }
   enCelebrationReturnFocus=null;enCelebrationReturnAnchor=null;
  }
@@ -6183,7 +6188,7 @@ const enCelebrationPlayer=window.ElectionNightCelebrationPlayer?.create({
  announce:done=>{
   enFishAudioStop();enCelebrationRenderSound();
   if(enFishTimeout){clearTimeout(enFishTimeout);enFishTimeout=null;}
-  enFishCurrent=null;$('#enFishToast').hidden=true;
+  enFishCurrent=null;enFishReturnFocus=null;enFishReturnAnchor=null;$('#enFishToast').hidden=true;
   const audio=$('#enCelebrationAnnouncement');
   if(!enFishSoundEnabled){done();return;}
   audio.onended=done;audio.onerror=done;

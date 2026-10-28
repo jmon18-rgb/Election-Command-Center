@@ -1,5 +1,9 @@
 # JackStradamus · development plan
 
+## Active R8 queued bulletin reading-return repair — October28
+
+The named combined journey found a concrete laptop/phone defect: celebration -> queued bulletin -> background redraw -> Back leaves focus on the hidden bulletin button. Candidate shares existing ephemeral reading identity across both announcement types and preserves it through sequences, expiry/revocation and reverse hand-off. Affected1366/390 and existing popup/personal/player/mobile regressions pass; fullDOM/protected exact-head gate/publication next. Model/source/call/queue-timing/music scope unchanged; human/fullR8 acceptance remains open. Reuse completed520/519 proofs, carry local proof checkpoint with this source repair, no native probes or status-only CI.
+
 ## R8 interrupted-reading repair VERIFIED PUBLISHED520 — October28
 
 Actual laptop/phone defect repaired: automatic celebration plus background redraw detached the inspected control and returned to launcher. Shared ephemeral bookmarks now restore rating/race/disclosure/history source or the same race heading after withdrawal, plus regenerated preview cards. Exact1f83d388 all35parents/50jobs47SUCCESS3nonapplicableSKIP/0external; mergec0a15fb3/finalCURRENTmainfccdb8cc/Pages40708614067/382matchingfiles14:44:52.911Z/publiccoherence PASS. Published1366/390 combined tasks and ordinary owner preview/close/onscreen return focus PASS. No source/model/call/music change; human/assistive remains open. NEXT evaluate queued celebration hand-off while reading, then clock/history/return-live continuity, before assuming a defect. Reuse completed component proofs; if clean advance another ready row.

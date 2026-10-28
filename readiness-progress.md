@@ -1,5 +1,10 @@
 # Readiness progress
 
+## October28 — R8 queued bulletin return candidate
+
+- Actual1366/390 remaining journey reproduced: celebration completes into queued bulletin; personal redraw detaches reading control; Back leaves focus on hidden enFishDismiss. Baseline0ce0a79a/app520 and ui-review/queued-reading-baseline/assessment.json/pngs retained. No external election requests or human acceptance.
+- Shared ephemeral reading return now covers bulletin Back/Escape/expiry/revocation and celebration preemption. Two-bulletin sequence/normal keyboard/NE nested reader/history/withdrawal/pure rehearsal isolation and existing popup/personal/player/mobile regressions PASS. No model/source/eligibility/music/queue-timing change. Original520 assertions retained; new keyboard wrap uses actual last visible attribution link. Proof ui-review/queued-reading-source/. Next fullDOM/protected exact-head gate, then finalCURRENTmain Pages/bytes/ordinary browser. Human/fullR8/calibration/actualpositive/four missing contracts remain open; no status-only CI push.
+
 ## 2026-10-28 14:52 UTC — PR520 reading-return fix VERIFIED PUBLISHED; PR519 research tooling complete
 
 - PR520 exact1f83d388: all35parents SUCCESS/50latestjobs47SUCCESS3nonapplicable deployed-onlySKIP/0external/current clean. Mergedc0a15fb3; finalCURRENTmainfccdb8cc51ba9488ddcd35a4753da152f401675f/Pages40708614067SUCCESS. ALL382checked published files match14:44:52.911Z; public coherence/current-index/no_credit PASS; main rechecked unchanged. FullDOM40705612746/job122876779649 and national40705613235 SUCCESS.
