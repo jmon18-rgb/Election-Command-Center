@@ -19,7 +19,7 @@ try{
   await page.waitForFunction(()=>document.querySelectorAll('#enPersonalFocus article svg').length===17);
   assert.equal(await page.locator('#enPersonalFocus article').count(),18);
   assert.match(await page.locator('#enPersonalFocus [data-race="AK-SEN"]').innerText(),/Needle pending/);
-  assert.match(await page.locator('#enPersonalFocus [data-race="NE-SEN"]').innerText(),/Osborn.*model win chance/s);
+  assert.match(await page.locator('#enPersonalFocus [data-race="NE-SEN"]').innerText(),/Osborn.*model chance vs Ricketts.*Independent; no assumed Democratic caucus/s);
   assert.doesNotMatch(await page.locator('#enPersonalFocus [data-race="MI-SEN"]').innerText(),/Own county returns used/);
   const same=await page.evaluate(()=>Array.from(document.querySelectorAll('#enPersonalFocus article')).filter(e=>e.dataset.race!=='AK-SEN').every(e=>{
    const r=jointLastResult.race_probabilities.find(x=>x.race_code===e.dataset.race);return e.querySelector('svg').getAttribute('aria-label').includes(r.dem_beats_rep_pct.toFixed(1)+' percent');}));assert(same);

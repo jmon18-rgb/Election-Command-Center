@@ -80,8 +80,7 @@ if(!inWindow(Date.now())){
     const jointEvidence=jointLastResult?.county_results_update?.used.find(e=>e.code===race.code);
     const jointRace=jointLastResult?.race_probabilities.find(e=>e.race_code===race.code);
     const projection=race.forecast_scope==='national_joint_draws'&&jointEvidence&&jointRace?{
-     status:'EXPERIMENTAL_NATIONAL_JOINT_DRAW_PROBABILITY',dem_win_probability:jointRace.dem_beats_rep_pct/100,
-     counted_dem_votes:parsed.counties.reduce((n,c)=>n+c.dem_votes,0),counted_rep_votes:parsed.counties.reduce((n,c)=>n+c.rep_votes,0),
+     status:'EXPERIMENTAL_NATIONAL_JOINT_DRAW_PROBABILITY',...(race.independent?{osborn_vs_ricketts_probability:jointRace.dem_beats_rep_pct/100,independent_senate_credit:jointLastResult.senate_independent_credit_mode,counted_osborn_votes:parsed.counties.reduce((n,c)=>n+c.osborn_votes,0),counted_ricketts_votes:parsed.counties.reduce((n,c)=>n+c.ricketts_votes,0)}:{dem_win_probability:jointRace.dem_beats_rep_pct/100,counted_dem_votes:parsed.counties.reduce((n,c)=>n+c.dem_votes,0),counted_rep_votes:parsed.counties.reduce((n,c)=>n+c.rep_votes,0)}),
      modeled_remaining_two_party_votes:jointEvidence.modeled_remaining_two_party_votes,modeled_remaining_two_party_votes_band:jointEvidence.modeled_remaining_two_party_votes_band,
      interval_calibrated:false,may_move_national_needle:true}:state.projection?{
      status:state.projection.status,dem_win_probability:state.projection.dem_win_probability,
@@ -93,8 +92,7 @@ if(!inWindow(Date.now())){
      county_identities_matched:parsed?.county_identities_matched||0,
      parsed_counties:parsed?.counties?.length||0,source_status:parsed?.status||null,parse_error,
      live_votes_accepted:parsed?.live_votes_accepted===true,
-     counted_dem_votes:parsed?.live_votes_accepted?parsed.counties.reduce((n,c)=>n+c.dem_votes,0):0,
-     counted_rep_votes:parsed?.live_votes_accepted?parsed.counties.reduce((n,c)=>n+c.rep_votes,0):0,
+     ...(race.independent?{candidate_contrast:parsed?.candidate_contrast||null,caucus_credit_assumed:parsed?.caucus_credit_assumed??null,counted_osborn_votes:parsed?.live_votes_accepted?parsed.counties.reduce((n,c)=>n+c.osborn_votes,0):0,counted_ricketts_votes:parsed?.live_votes_accepted?parsed.counties.reduce((n,c)=>n+c.ricketts_votes,0):0}:{counted_dem_votes:parsed?.live_votes_accepted?parsed.counties.reduce((n,c)=>n+c.dem_votes,0):0,counted_rep_votes:parsed?.live_votes_accepted?parsed.counties.reduce((n,c)=>n+c.rep_votes,0):0}),
      projection,preview:state.preview===true,phase:state.phase,automatic_poll_interval_ms:state.automatic_poll_interval_ms??null,
      national_unchanged:JSON.stringify(jointLastResult.probabilities)===nationalBefore};
    },{race,raw:raw||null,nationalBefore});
@@ -127,7 +125,8 @@ if(!inWindow(Date.now())){
    const waNames=new Map(reference.counties.map(c=>[c.county+' County',c.fips]));
    const scReference=row.code==='SC-SEN'?JSON.parse(readFileSync(resolve(import.meta.dirname,'../data/south_carolina_county_fips_reference.json'),'utf8')):null;
    const scVector=scReference?require('./south_carolina_civic_county_source.js').parse(raw,scReference,{now:Date.parse(row.captured_at)}).counties.map(c=>[c.county_fips,c.dem_votes,c.rep_votes,c.other_votes]).sort((a,b)=>a[0].localeCompare(b[0])):null;
-   const vector=scVector|| (row.code==='WA-03'?raw.payload.ballotItemWithBreakdown.breakdownResults.map(c=>[waNames.get(c.locality.name[0].text),...['1601892','1601893','9910'].map(id=>c.ballotOptions.find(o=>o.nativeId===id).voteCount)]).sort((a,b)=>a[0].localeCompare(b[0])):Object.values(raw.region_results).filter(c=>row.code!=='ME-SEN'||c.type==='County').sort((a,b)=>String(a.fips||a.name).localeCompare(String(b.fips||b.name))).map(c=>[
+   const neVector=row.code==='NE-SEN'?require('./nebraska_civic_county_source.js').parse(raw,JSON.parse(readFileSync(resolve(import.meta.dirname,'../data/nebraska_county_fips_reference.json'),'utf8')),{now:Date.parse(row.captured_at)}).counties.map(c=>[c.county_fips,c.osborn_votes,c.ricketts_votes,c.other_candidates]).sort((a,b)=>a[0].localeCompare(b[0])):null;
+   const vector=neVector||scVector|| (row.code==='WA-03'?raw.payload.ballotItemWithBreakdown.breakdownResults.map(c=>[waNames.get(c.locality.name[0].text),...['1601892','1601893','9910'].map(id=>c.ballotOptions.find(o=>o.nativeId===id).voteCount)]).sort((a,b)=>a[0].localeCompare(b[0])):Object.values(raw.region_results).filter(c=>row.code!=='ME-SEN'||c.type==='County').sort((a,b)=>String(a.fips||a.name).localeCompare(String(b.fips||b.name))).map(c=>[
     c.fips,...['Democratic','Republican','Libertarian'].map(p=>c.candidates.filter(v=>v.party===p).reduce((n,v)=>n+v.votes,0))]));
    const file=row.code+'-'+new Date().toISOString().replace(/[:.]/g,'-')+'.json';
    const dir=resolve(out,'raw');mkdirSync(dir,{recursive:true});writeFileSync(resolve(dir,file),bytes);
@@ -148,7 +147,7 @@ if(!inWindow(Date.now())){
  const summary=['# Actual competitive-source probe','',`Status: **${report.status}**`,
   '',`Target scope: ${report.site_scope||'no page observed'}`, '', 'Real provider responses; no fixtures or virtual clock. Test mode never proves live delivery. No calibration claim.',
   '', '| Race | HTTP | Actual source status | Accepted live two-party votes | Forecast observed |', '| --- | --- | --- | ---: | --- |',
-  ...(report.sources||[]).map(r=>`| ${r.code} | ${r.http??'unavailable'} | ${r.status} | ${r.counted_dem_votes+r.counted_rep_votes} | ${r.actual_live_input_forecast_observed} |`),
+  ...(report.sources||[]).map(r=>`| ${r.code} | ${r.http??'unavailable'} | ${r.status} | ${r.code==='NE-SEN'?r.counted_osborn_votes+r.counted_ricketts_votes:r.counted_dem_votes+r.counted_rep_votes} | ${r.actual_live_input_forecast_observed} |`),
   '', 'Sources: attributed civicAPI and independent official Virginia results, plus Washington Secretary of State through an owned cache. Raw test payloads are never archived; cached transport captures are labeled separately.',
   ...(report.error?['',report.error]:[])].join('\n')+'\n';
  writeFileSync(resolve(out,'report.md'),summary);

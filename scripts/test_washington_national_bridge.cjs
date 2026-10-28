@@ -68,7 +68,8 @@ const cache=require('./washington_official_cache.js'),kernel=require('./national
  assert.equal(rejectedSC.diagnostics.excluded[0].code,'SC-SEN','Rejected source remains explicitly disclosed');
  assert.deepEqual(kernel.condition(model,basis,[...sources],opts).result,sixteen.result,'Withdrawal restores exact sixteen-source outputs');
  assert.deepEqual(kernel.condition(model,basis,[...sources,sc],opts).result,seventeen.result,'Same SC recovery deterministic');
- assert.throws(()=>kernel.condition(model,basis,[...sources,sc,sc],opts),/Bounded/);
+ assert.throws(()=>kernel.condition(model,basis,[...sources,sc,sc],opts),/same returns twice/);
+ assert.throws(()=>kernel.condition(model,basis,[...sources,sc,sc,sc],opts),/Bounded/);
  const vm=require('node:vm'),oldModule={exports:{}};
  // Pin the actual released kernel so a shallow CI checkout needs no historical Git fetch.
  const oldBytes=require('node:zlib').gunzipSync(require('node:fs').readFileSync('data/south_carolina_senate_sources/pre-sc-national-likelihood.js.gz'));
@@ -80,6 +81,30 @@ const cache=require('./washington_official_cache.js'),kernel=require('./national
  assert.equal(log.events()[0].source_count,17,'Released history supports all17 admitted sources');
  assert.equal(focus.rows(seventeen.result,seventeen.baseline,{now,evidence:seventeen.diagnostics.used}).find(r=>r.code==='SC-SEN').ownCounts,true);
  console.log('SC17 all-source coexistence, fixed budgets, original16 invariance, correction/withdrawal/recovery, ESS/coherent counts and observation history PASS; SYNTHETIC only');
+ {
+  const strict={...opts,independentSenateCredit:'no_credit'},old17=[...sources,sc],ne=require('./nebraska_test_fixture.cjs').envelope(12,now),all18=[...old17,ne];
+  const prior17=kernel.condition(model,basis,old17,strict),eighteen=kernel.condition(model,basis,all18,strict);
+  assert.equal(eighteen.diagnostics.used.length,18);assert.equal(eighteen.diagnostics.state_likelihood_budget_members.NE,1);
+  for(const [state,members]of [['MI',2],['PA',3],['WI',2]])assert.equal(eighteen.diagnostics.state_likelihood_budget_members[state],members);
+  assert(eighteen.diagnostics.effective_sample_size>=450-1e-6);assert.equal(eighteen.result.senate_independent_credit_mode,'no_credit');assert.deepEqual(eighteen.baseline,prior17.baseline);
+  const oldNEBytes=require('node:zlib').gunzipSync(require('node:fs').readFileSync('data/nebraska_senate_sources/pre-ne-national-likelihood.js.gz'));
+  assert.equal(require('node:crypto').createHash('sha256').update(oldNEBytes).digest('hex'),load('nebraska_senate_source_contract').pre_ne_kernel_sha256);
+  const previous={exports:{}};vm.runInNewContext(oldNEBytes.toString('utf8'),{module:previous,require:require('node:module').createRequire(require.resolve('./national_county_likelihood.js'))});
+  assert.deepEqual(numerical(previous.exports.condition(model,basis,old17,strict).result),numerical(prior17.result),'All original17 numerical outputs remain exact against pinned released kernel');
+  const bad=structuredClone(ne);bad.snapshot.snapshot_updated_at='2026-10-15T00:00:00Z';
+  assert.deepEqual(numerical(kernel.condition(model,basis,[...old17,bad],strict).result),numerical(prior17.result),'Rejected eighteenth source cannot perturb original17');
+  const correctedNE=require('./nebraska_test_fixture.cjs').envelope(-12,now);assert.notDeepEqual(kernel.condition(model,basis,[...old17,correctedNE],strict).result.probabilities,eighteen.result.probabilities);
+  assert.deepEqual(kernel.condition(model,basis,old17,strict).result,prior17.result,'Withdrawal returns exact old17');assert.deepEqual(kernel.condition(model,basis,all18,strict).result,eighteen.result,'Recovery is deterministic');
+  const observation=focus.createHistory({now:()=>now});assert(observation.observe({active:true,result:eighteen.result,envelopes:all18,revision:'NE18',pollingAt:'2026-11-03T12:00:00Z'}));assert.equal(observation.events()[0].source_count,18);
+  // Numerical convergence of the SAME bounded18-factor shared reporting-error
+  // integral. This is not a fitted reporting model or predictive calibration.
+  const factors=all18.map(e=>kernel.compile(e,strict)),sigma=8*Math.sqrt(.5),fine=kernel.normalQuadrature(.05);
+  const means=factors.map(f=>basis.house.concat(basis.senate).find(r=>r.code===f.code).mean);
+  const maxima=factors.map((f,i)=>Math.max(...fine.map(n=>f.logLikelihood(means[i],{sharedReportingOffset:n.z*sigma}))));
+  const integral=step=>kernel.normalQuadrature(step).reduce((sum,n)=>sum+n.weight*Math.exp(factors.reduce((s,f,i)=>s+Math.log(.05+.95*Math.exp(f.logLikelihood(means[i],{sharedReportingOffset:n.z*sigma})-maxima[i]))/eighteen.diagnostics.state_likelihood_budget_members[f.code.slice(0,2)],0)),0);
+  const coarse=integral(.2),middle=integral(.1),finest=integral(.05);assert(Math.abs(coarse/finest-1)<1e-5);assert(Math.abs(middle/finest-1)<1e-6);
+  console.log('NE18 old17 exact numerical invariance, typed Independent/state budgets/ESS/history/lifecycle/coherence and18-factor quadrature convergence PASS; SYNTHETIC/NUMERICAL, not calibration',Math.abs(coarse/finest-1));
+ }
  // A lifecycle across all programmed inputs, not independent chronology/calibration.
  const originalSources=structuredClone(sources);
  const officialOnly=sources.filter(e=>!new URL(e.snapshot.source_url).hostname.endsWith('civicapi.org'));

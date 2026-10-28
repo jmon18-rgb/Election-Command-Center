@@ -1,0 +1,682 @@
+{
+  "schema": "nebraska-2024-six-year-senate-historical-preparation-v1",
+  "source_decoded_sha256": "4887fb1caab820ab737adaaff9b73ee601e37a707fb0002d8901fd674e8efbe9",
+  "independent_census_sha256": "3c337402b5c6e8d5aa26b4278ccf4edc8989f2683765b3ffbf22296cdb2df3a0",
+  "source_page": 16,
+  "election_date": "2024-11-05",
+  "office": "United States Senate \u2013 Six Year Term",
+  "county_count": 93,
+  "candidate_axis": {
+    "republican": "Deb Fischer",
+    "by_petition": "Dan Osborn",
+    "other": "Write-In Scatterings"
+  },
+  "totals": {
+    "deb_fischer": 499124,
+    "dan_osborn": 436493,
+    "write_in_scatterings": 2719,
+    "two_named_candidates": 935617,
+    "all_reported": 938336
+  },
+  "counties": [
+    {
+      "fips": "31001",
+      "county": "Adams",
+      "deb_fischer": 8869,
+      "dan_osborn": 5336,
+      "write_in_scatterings": 42
+    },
+    {
+      "fips": "31003",
+      "county": "Antelope",
+      "deb_fischer": 2580,
+      "dan_osborn": 829,
+      "write_in_scatterings": 1
+    },
+    {
+      "fips": "31005",
+      "county": "Arthur",
+      "deb_fischer": 234,
+      "dan_osborn": 46,
+      "write_in_scatterings": 0
+    },
+    {
+      "fips": "31007",
+      "county": "Banner",
+      "deb_fischer": 310,
+      "dan_osborn": 74,
+      "write_in_scatterings": 0
+    },
+    {
+      "fips": "31009",
+      "county": "Blaine",
+      "deb_fischer": 227,
+      "dan_osborn": 64,
+      "write_in_scatterings": 1
+    },
+    {
+      "fips": "31011",
+      "county": "Boone",
+      "deb_fischer": 2274,
+      "dan_osborn": 727,
+      "write_in_scatterings": 4
+    },
+    {
+      "fips": "31013",
+      "county": "Box Butte",
+      "deb_fischer": 3198,
+      "dan_osborn": 1642,
+      "write_in_scatterings": 21
+    },
+    {
+      "fips": "31015",
+      "county": "Boyd",
+      "deb_fischer": 948,
+      "dan_osborn": 113,
+      "write_in_scatterings": 0
+    },
+    {
+      "fips": "31017",
+      "county": "Brown",
+      "deb_fischer": 1243,
+      "dan_osborn": 382,
+      "write_in_scatterings": 4
+    },
+    {
+      "fips": "31019",
+      "county": "Buffalo",
+      "deb_fischer": 15147,
+      "dan_osborn": 8423,
+      "write_in_scatterings": 61
+    },
+    {
+      "fips": "31021",
+      "county": "Burt",
+      "deb_fischer": 2185,
+      "dan_osborn": 1410,
+      "write_in_scatterings": 4
+    },
+    {
+      "fips": "31023",
+      "county": "Butler",
+      "deb_fischer": 3222,
+      "dan_osborn": 1297,
+      "write_in_scatterings": 18
+    },
+    {
+      "fips": "31025",
+      "county": "Cass",
+      "deb_fischer": 9051,
+      "dan_osborn": 6457,
+      "write_in_scatterings": 30
+    },
+    {
+      "fips": "31027",
+      "county": "Cedar",
+      "deb_fischer": 3693,
+      "dan_osborn": 1179,
+      "write_in_scatterings": 10
+    },
+    {
+      "fips": "31029",
+      "county": "Chase",
+      "deb_fischer": 1485,
+      "dan_osborn": 364,
+      "write_in_scatterings": 0
+    },
+    {
+      "fips": "31031",
+      "county": "Cherry",
+      "deb_fischer": 2336,
+      "dan_osborn": 641,
+      "write_in_scatterings": 14
+    },
+    {
+      "fips": "31033",
+      "county": "Cheyenne",
+      "deb_fischer": 3176,
+      "dan_osborn": 1280,
+      "write_in_scatterings": 11
+    },
+    {
+      "fips": "31035",
+      "county": "Clay",
+      "deb_fischer": 2397,
+      "dan_osborn": 870,
+      "write_in_scatterings": 8
+    },
+    {
+      "fips": "31037",
+      "county": "Colfax",
+      "deb_fischer": 2296,
+      "dan_osborn": 1161,
+      "write_in_scatterings": 11
+    },
+    {
+      "fips": "31039",
+      "county": "Cuming",
+      "deb_fischer": 3145,
+      "dan_osborn": 1258,
+      "write_in_scatterings": 7
+    },
+    {
+      "fips": "31041",
+      "county": "Custer",
+      "deb_fischer": 4409,
+      "dan_osborn": 1447,
+      "write_in_scatterings": 9
+    },
+    {
+      "fips": "31043",
+      "county": "Dakota",
+      "deb_fischer": 3082,
+      "dan_osborn": 2872,
+      "write_in_scatterings": 23
+    },
+    {
+      "fips": "31045",
+      "county": "Dawes",
+      "deb_fischer": 2501,
+      "dan_osborn": 1333,
+      "write_in_scatterings": 4
+    },
+    {
+      "fips": "31047",
+      "county": "Dawson",
+      "deb_fischer": 5556,
+      "dan_osborn": 2859,
+      "write_in_scatterings": 19
+    },
+    {
+      "fips": "31049",
+      "county": "Deuel",
+      "deb_fischer": 724,
+      "dan_osborn": 276,
+      "write_in_scatterings": 2
+    },
+    {
+      "fips": "31051",
+      "county": "Dixon",
+      "deb_fischer": 1973,
+      "dan_osborn": 872,
+      "write_in_scatterings": 4
+    },
+    {
+      "fips": "31053",
+      "county": "Dodge",
+      "deb_fischer": 9108,
+      "dan_osborn": 7137,
+      "write_in_scatterings": 49
+    },
+    {
+      "fips": "31055",
+      "county": "Douglas",
+      "deb_fischer": 111211,
+      "dan_osborn": 157317,
+      "write_in_scatterings": 1082
+    },
+    {
+      "fips": "31057",
+      "county": "Dundy",
+      "deb_fischer": 722,
+      "dan_osborn": 192,
+      "write_in_scatterings": 0
+    },
+    {
+      "fips": "31059",
+      "county": "Fillmore",
+      "deb_fischer": 2017,
+      "dan_osborn": 985,
+      "write_in_scatterings": 2
+    },
+    {
+      "fips": "31061",
+      "county": "Franklin",
+      "deb_fischer": 1204,
+      "dan_osborn": 381,
+      "write_in_scatterings": 5
+    },
+    {
+      "fips": "31063",
+      "county": "Frontier",
+      "deb_fischer": 1055,
+      "dan_osborn": 336,
+      "write_in_scatterings": 3
+    },
+    {
+      "fips": "31065",
+      "county": "Furnas",
+      "deb_fischer": 1784,
+      "dan_osborn": 619,
+      "write_in_scatterings": 5
+    },
+    {
+      "fips": "31067",
+      "county": "Gage",
+      "deb_fischer": 6262,
+      "dan_osborn": 4601,
+      "write_in_scatterings": 30
+    },
+    {
+      "fips": "31069",
+      "county": "Garden",
+      "deb_fischer": 831,
+      "dan_osborn": 273,
+      "write_in_scatterings": 3
+    },
+    {
+      "fips": "31071",
+      "county": "Garfield",
+      "deb_fischer": 791,
+      "dan_osborn": 204,
+      "write_in_scatterings": 4
+    },
+    {
+      "fips": "31073",
+      "county": "Gosper",
+      "deb_fischer": 854,
+      "dan_osborn": 270,
+      "write_in_scatterings": 1
+    },
+    {
+      "fips": "31075",
+      "county": "Grant",
+      "deb_fischer": 322,
+      "dan_osborn": 37,
+      "write_in_scatterings": 1
+    },
+    {
+      "fips": "31077",
+      "county": "Greeley",
+      "deb_fischer": 909,
+      "dan_osborn": 310,
+      "write_in_scatterings": 3
+    },
+    {
+      "fips": "31079",
+      "county": "Hall",
+      "deb_fischer": 13335,
+      "dan_osborn": 9225,
+      "write_in_scatterings": 61
+    },
+    {
+      "fips": "31081",
+      "county": "Hamilton",
+      "deb_fischer": 4004,
+      "dan_osborn": 1505,
+      "write_in_scatterings": 13
+    },
+    {
+      "fips": "31083",
+      "county": "Harlan",
+      "deb_fischer": 1368,
+      "dan_osborn": 420,
+      "write_in_scatterings": 6
+    },
+    {
+      "fips": "31085",
+      "county": "Hayes",
+      "deb_fischer": 434,
+      "dan_osborn": 57,
+      "write_in_scatterings": 0
+    },
+    {
+      "fips": "31087",
+      "county": "Hitchcock",
+      "deb_fischer": 1069,
+      "dan_osborn": 351,
+      "write_in_scatterings": 2
+    },
+    {
+      "fips": "31089",
+      "county": "Holt",
+      "deb_fischer": 4074,
+      "dan_osborn": 1306,
+      "write_in_scatterings": 17
+    },
+    {
+      "fips": "31091",
+      "county": "Hooker",
+      "deb_fischer": 323,
+      "dan_osborn": 99,
+      "write_in_scatterings": 1
+    },
+    {
+      "fips": "31093",
+      "county": "Howard",
+      "deb_fischer": 2489,
+      "dan_osborn": 1016,
+      "write_in_scatterings": 7
+    },
+    {
+      "fips": "31095",
+      "county": "Jefferson",
+      "deb_fischer": 2252,
+      "dan_osborn": 1365,
+      "write_in_scatterings": 2
+    },
+    {
+      "fips": "31097",
+      "county": "Johnson",
+      "deb_fischer": 1219,
+      "dan_osborn": 912,
+      "write_in_scatterings": 4
+    },
+    {
+      "fips": "31099",
+      "county": "Kearney",
+      "deb_fischer": 2595,
+      "dan_osborn": 1004,
+      "write_in_scatterings": 14
+    },
+    {
+      "fips": "31101",
+      "county": "Keith",
+      "deb_fischer": 2963,
+      "dan_osborn": 1185,
+      "write_in_scatterings": 7
+    },
+    {
+      "fips": "31103",
+      "county": "Keya Paha",
+      "deb_fischer": 450,
+      "dan_osborn": 85,
+      "write_in_scatterings": 5
+    },
+    {
+      "fips": "31105",
+      "county": "Kimball",
+      "deb_fischer": 1206,
+      "dan_osborn": 476,
+      "write_in_scatterings": 5
+    },
+    {
+      "fips": "31107",
+      "county": "Knox",
+      "deb_fischer": 3225,
+      "dan_osborn": 1160,
+      "write_in_scatterings": 8
+    },
+    {
+      "fips": "31109",
+      "county": "Lancaster",
+      "deb_fischer": 65295,
+      "dan_osborn": 91356,
+      "write_in_scatterings": 417
+    },
+    {
+      "fips": "31111",
+      "county": "Lincoln",
+      "deb_fischer": 10646,
+      "dan_osborn": 5658,
+      "write_in_scatterings": 53
+    },
+    {
+      "fips": "31113",
+      "county": "Logan",
+      "deb_fischer": 357,
+      "dan_osborn": 82,
+      "write_in_scatterings": 2
+    },
+    {
+      "fips": "31115",
+      "county": "Loup",
+      "deb_fischer": 339,
+      "dan_osborn": 92,
+      "write_in_scatterings": 0
+    },
+    {
+      "fips": "31117",
+      "county": "McPherson",
+      "deb_fischer": 237,
+      "dan_osborn": 42,
+      "write_in_scatterings": 0
+    },
+    {
+      "fips": "31119",
+      "county": "Madison",
+      "deb_fischer": 10523,
+      "dan_osborn": 4997,
+      "write_in_scatterings": 20
+    },
+    {
+      "fips": "31121",
+      "county": "Merrick",
+      "deb_fischer": 3226,
+      "dan_osborn": 1090,
+      "write_in_scatterings": 20
+    },
+    {
+      "fips": "31123",
+      "county": "Morrill",
+      "deb_fischer": 1730,
+      "dan_osborn": 640,
+      "write_in_scatterings": 5
+    },
+    {
+      "fips": "31125",
+      "county": "Nance",
+      "deb_fischer": 1244,
+      "dan_osborn": 575,
+      "write_in_scatterings": 1
+    },
+    {
+      "fips": "31127",
+      "county": "Nemaha",
+      "deb_fischer": 2014,
+      "dan_osborn": 1361,
+      "write_in_scatterings": 7
+    },
+    {
+      "fips": "31129",
+      "county": "Nuckolls",
+      "deb_fischer": 1566,
+      "dan_osborn": 651,
+      "write_in_scatterings": 8
+    },
+    {
+      "fips": "31131",
+      "county": "Otoe",
+      "deb_fischer": 4720,
+      "dan_osborn": 3398,
+      "write_in_scatterings": 13
+    },
+    {
+      "fips": "31133",
+      "county": "Pawnee",
+      "deb_fischer": 896,
+      "dan_osborn": 472,
+      "write_in_scatterings": 1
+    },
+    {
+      "fips": "31135",
+      "county": "Perkins",
+      "deb_fischer": 1088,
+      "dan_osborn": 338,
+      "write_in_scatterings": 1
+    },
+    {
+      "fips": "31137",
+      "county": "Phelps",
+      "deb_fischer": 3787,
+      "dan_osborn": 1152,
+      "write_in_scatterings": 21
+    },
+    {
+      "fips": "31139",
+      "county": "Pierce",
+      "deb_fischer": 2917,
+      "dan_osborn": 953,
+      "write_in_scatterings": 12
+    },
+    {
+      "fips": "31141",
+      "county": "Platte",
+      "deb_fischer": 10994,
+      "dan_osborn": 4601,
+      "write_in_scatterings": 30
+    },
+    {
+      "fips": "31143",
+      "county": "Polk",
+      "deb_fischer": 2048,
+      "dan_osborn": 779,
+      "write_in_scatterings": 6
+    },
+    {
+      "fips": "31145",
+      "county": "Red Willow",
+      "deb_fischer": 4537,
+      "dan_osborn": 727,
+      "write_in_scatterings": 6
+    },
+    {
+      "fips": "31147",
+      "county": "Richardson",
+      "deb_fischer": 2336,
+      "dan_osborn": 1516,
+      "write_in_scatterings": 13
+    },
+    {
+      "fips": "31149",
+      "county": "Rock",
+      "deb_fischer": 669,
+      "dan_osborn": 156,
+      "write_in_scatterings": 0
+    },
+    {
+      "fips": "31151",
+      "county": "Saline",
+      "deb_fischer": 3020,
+      "dan_osborn": 2593,
+      "write_in_scatterings": 16
+    },
+    {
+      "fips": "31153",
+      "county": "Sarpy",
+      "deb_fischer": 49448,
+      "dan_osborn": 49817,
+      "write_in_scatterings": 241
+    },
+    {
+      "fips": "31155",
+      "county": "Saunders",
+      "deb_fischer": 8499,
+      "dan_osborn": 4941,
+      "write_in_scatterings": 24
+    },
+    {
+      "fips": "31157",
+      "county": "Scotts Bluff",
+      "deb_fischer": 9407,
+      "dan_osborn": 5528,
+      "write_in_scatterings": 41
+    },
+    {
+      "fips": "31159",
+      "county": "Seward",
+      "deb_fischer": 5855,
+      "dan_osborn": 3310,
+      "write_in_scatterings": 21
+    },
+    {
+      "fips": "31161",
+      "county": "Sheridan",
+      "deb_fischer": 1889,
+      "dan_osborn": 567,
+      "write_in_scatterings": 6
+    },
+    {
+      "fips": "31163",
+      "county": "Sherman",
+      "deb_fischer": 1134,
+      "dan_osborn": 526,
+      "write_in_scatterings": 7
+    },
+    {
+      "fips": "31165",
+      "county": "Sioux",
+      "deb_fischer": 531,
+      "dan_osborn": 141,
+      "write_in_scatterings": 0
+    },
+    {
+      "fips": "31167",
+      "county": "Stanton",
+      "deb_fischer": 2235,
+      "dan_osborn": 789,
+      "write_in_scatterings": 3
+    },
+    {
+      "fips": "31169",
+      "county": "Thayer",
+      "deb_fischer": 2013,
+      "dan_osborn": 839,
+      "write_in_scatterings": 6
+    },
+    {
+      "fips": "31171",
+      "county": "Thomas",
+      "deb_fischer": 300,
+      "dan_osborn": 81,
+      "write_in_scatterings": 4
+    },
+    {
+      "fips": "31173",
+      "county": "Thurston",
+      "deb_fischer": 951,
+      "dan_osborn": 1092,
+      "write_in_scatterings": 0
+    },
+    {
+      "fips": "31175",
+      "county": "Valley",
+      "deb_fischer": 1657,
+      "dan_osborn": 620,
+      "write_in_scatterings": 6
+    },
+    {
+      "fips": "31177",
+      "county": "Washington",
+      "deb_fischer": 7815,
+      "dan_osborn": 4621,
+      "write_in_scatterings": 27
+    },
+    {
+      "fips": "31179",
+      "county": "Wayne",
+      "deb_fischer": 2588,
+      "dan_osborn": 1469,
+      "write_in_scatterings": 10
+    },
+    {
+      "fips": "31181",
+      "county": "Webster",
+      "deb_fischer": 1284,
+      "dan_osborn": 448,
+      "write_in_scatterings": 6
+    },
+    {
+      "fips": "31183",
+      "county": "Wheeler",
+      "deb_fischer": 378,
+      "dan_osborn": 96,
+      "write_in_scatterings": 0
+    },
+    {
+      "fips": "31185",
+      "county": "York",
+      "deb_fischer": 4614,
+      "dan_osborn": 2339,
+      "write_in_scatterings": 17
+    }
+  ],
+  "same_named_independent_candidate_as_2026": true,
+  "same_Senate_seat_as_2026": false,
+  "2026_baseline_scenario_reviewed": false,
+  "must_not_combine_with_2024_Ricketts_race": true,
+  "native_2026_all_other_accounting_separate": true,
+  "runtime_eligible": false,
+  "chronological_calibration": false,
+  "runtime_inputs_unchanged": 17
+}

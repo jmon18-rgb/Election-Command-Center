@@ -1,0 +1,51 @@
+{
+  "schema": "reviewed-ne-senate-candidate-contrast-v1",
+  "race_code": "NE-SEN",
+  "source_url": "https://civicapi.org/api/v2/race/87254",
+  "saved_serialized_sha256": "f82a0ccc7061bfc80e9def7004c9cd8f2713aa90d89af52bba21ad803dbe19eb",
+  "original_HTTP_body_hash_available": false,
+  "actual_positive_delivery_verified": false,
+  "county_count": 93,
+  "candidate_contrast": "NE_OSBORN_RICKETTS_V1",
+  "official_roster_url": "https://sos.nebraska.gov/sites/default/files/doc/elections/2026/Final_Statewide_General_Candidate_Filing_List_9.11.26.pdf",
+  "official_roster_sha256": "d27a071715896b8c82b8cce8d48200b4207ba10c44f1778f56f92c4efcd7cf96",
+  "official_qualification": "By Petition",
+  "provider_party": "Independent",
+  "registered_party_inferred": false,
+  "caucus_credit": false,
+  "candidates": [
+    {
+      "name": "Pete Ricketts",
+      "party": "Republican",
+      "provider_id": 220702
+    },
+    {
+      "name": "Mike Marvin",
+      "party": "Legal Marijuana Now",
+      "provider_id": 220703
+    },
+    {
+      "name": "Robin Richards",
+      "party": "Nebraska Working People",
+      "provider_id": 220704
+    },
+    {
+      "name": "Chuck Conboy",
+      "party": "America First",
+      "provider_id": 220705
+    },
+    {
+      "name": "Dan Osborn",
+      "party": "Independent",
+      "provider_id": 220706
+    }
+  ],
+  "historical_sha256": "4887fb1caab820ab737adaaff9b73ee601e37a707fb0002d8901fd674e8efbe9",
+  "historical_scope": "2024 Fischer/Osborn different-seat candidate-transfer scenario, not2026 same-seat votes",
+  "transfer_assumption": "Current whole-race expectation anchors historical Osborn county support shape; experimental/unfitted/uncalibrated",
+  "other_accounting": "All3 other named candidates retained separately; unreported write-ins unknown, not zero or completion",
+  "native_incumbent_metadata": "Nonoperative conflict documented; never fundamentals or calls",
+  "pre_ne_kernel_sha256": "9abe7f8c910503403d06e05d8f38196982dcd17a953757abf74c5bdb6edc1eda",
+  "runtime_inputs_before": 17,
+  "calibrated": false
+}

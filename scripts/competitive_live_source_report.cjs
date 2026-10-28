@@ -1,6 +1,7 @@
 'use strict';
 const closes=require('./election_night_poll_closings_2026.js');
 const races=Object.freeze([
+ {code:'NE-SEN',state:'NE',office:'Senate',key:'NE',independent:true,forecast_scope:'national_joint_draws',counties:93,url:'https://civicapi.org/api/v2/race/87254',reference:'data/nebraska_county_fips_reference.json',parser:'NebraskaCivicCountySource',controller:'enNebraskaSenateController'},
  {code:'SC-SEN',state:'SC',office:'Senate',key:'SC',forecast_scope:'national_joint_draws',counties:46,url:'https://civicapi.org/api/v2/race/87409',reference:'data/south_carolina_county_fips_reference.json',parser:'SouthCarolinaCivicCountySource',controller:'enSouthCarolinaSenateController'},
  {code:'VA-02',state:'VA',office:'House',key:'VA-02',forecast_scope:'national_joint_draws',counties:8,url:'https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General/data/ballot-item/01000000-f030-c43d-fd71-08df1fee52e7',transport_url:'https://raw.githubusercontent.com/jmon18-rgb/Election-Command-Center/official-virginia-results-cache/data/virginia_house_02_official_latest.json',reference:'data/virginia_house_02_county_fips_reference.json',parser:'VirginiaOfficialCache',controller:'enVirginiaHouse02Controller'},
  {code:'AZ-06',state:'AZ',office:'House',key:'AZ-06',forecast_scope:'national_joint_draws',counties:5,url:'https://civicapi.org/api/v2/race/86922',reference:'data/arizona_house_06_county_fips_reference.json',parser:'WisconsinHouseCountySource',parser_scope:'AZ-06',controller:'enArizonaHouse06Controller'},
@@ -24,17 +25,21 @@ const inWindow=now=>Number.isFinite(now)&&now>=Date.parse('2026-10-26T00:00:00Z'
 function assess(row,now=Date.now()){
  const expected=races.find(r=>r.code===row?.code);if(!expected)throw Error('Unknown competitive source scope');
  const nationalOnly=expected.forecast_scope==='national_joint_draws',p=row.projection,hasProjection=p!==null&&p!==undefined,violations=[];
- const total=row.counted_dem_votes+row.counted_rep_votes,stamp=Date.parse(row.source_stamp||'');
+ const positive=expected.independent?row.counted_osborn_votes:row.counted_dem_votes,negative=expected.independent?row.counted_ricketts_votes:row.counted_rep_votes;
+ const total=positive+negative,stamp=Date.parse(row.source_stamp||'');
  const liveInput=row.http===200&&row.source_url===expected.url&&row.source_test_data===false&&
   row.source_identity_validated===true&&row.live_votes_accepted===true&&row.parsed_counties===expected.counties&&
-  [row.counted_dem_votes,row.counted_rep_votes,total].every(n=>Number.isSafeInteger(n)&&n>=0)&&total>0&&
+  (!expected.independent||(row.candidate_contrast==='NE_OSBORN_RICKETTS_V1'&&row.caucus_credit_assumed===false&&!Object.hasOwn(row,'counted_dem_votes')))&&
+  [positive,negative,total].every(n=>Number.isSafeInteger(n)&&n>=0)&&total>0&&
   Number.isFinite(stamp)&&/(?:Z|[+-]\d\d:\d\d)$/.test(row.source_stamp||'')&&
   now-stamp<=180*60000&&closes.allowed(expected.code,total,row.source_stamp,now);
  if(hasProjection){
   if(!liveInput)violations.push('Forecast shown without genuine validated non-test input');
   if(row.preview===true)violations.push('Historical preview is not a live forecast');
-  if(!Number.isFinite(p.dem_win_probability)||p.dem_win_probability<0||p.dem_win_probability>1||
-   p.counted_dem_votes!==row.counted_dem_votes||p.counted_rep_votes!==row.counted_rep_votes)
+  const probability=expected.independent?p.osborn_vs_ricketts_probability:p.dem_win_probability;
+  if(!Number.isFinite(probability)||probability<0||probability>1||
+   (expected.independent?p.counted_osborn_votes:p.counted_dem_votes)!==positive||(expected.independent?p.counted_ricketts_votes:p.counted_rep_votes)!==negative||
+   expected.independent&&(Object.hasOwn(p,'dem_win_probability')||Object.hasOwn(p,'counted_dem_votes')||Object.hasOwn(p,'counted_rep_votes')||p.independent_senate_credit!=='no_credit'))
    violations.push('Displayed forecast disagrees with accepted source counts');
   if(p.interval_calibrated!==false||p.may_move_national_needle!==nationalOnly)
    violations.push('Unsupported calibration or national-update claim');
@@ -68,7 +73,7 @@ function nationalProof(rows,admitted){
   const row=rows.find(r=>r.code===e.code),expected=races.find(r=>r.code===e.code);
   if(row&&expected&&row.http===200&&row.source_test_data===false&&row.source_identity_validated===true&&row.live_votes_accepted===true&&
    row.source_url===expected.url&&row.source_url===e.source_url&&row.source_stamp===e.as_of&&row.parsed_counties===expected.counties&&
-   Number.isSafeInteger(e.counted_two_party_votes)&&e.counted_two_party_votes>0&&row.counted_dem_votes+row.counted_rep_votes===e.counted_two_party_votes)validated.push(e.code);
+   Number.isSafeInteger(e.counted_two_party_votes)&&e.counted_two_party_votes>0&&(expected.independent?row.counted_osborn_votes+row.counted_ricketts_votes:row.counted_dem_votes+row.counted_rep_votes)===e.counted_two_party_votes&&(!expected.independent||(e.candidate_contrast==='NE_OSBORN_RICKETTS_V1'&&row.caucus_credit_assumed===false)))validated.push(e.code);
  }
  return {contract_validated:entries.length>0&&validated.length===entries.length,validated_codes:validated};
 }

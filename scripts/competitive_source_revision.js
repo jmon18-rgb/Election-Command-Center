@@ -7,6 +7,7 @@
 })(typeof window!=='undefined'?window:globalThis,function(root,closes){
  'use strict';
  const scopes={'SC-SEN':{n:46,prefix:'45',id:87409},'MI-07':{n:7,prefix:'26',id:87207},'PA-08':{n:5,prefix:'42',id:87383},'VA-02':{n:8,prefix:'51',url:'https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General/data/ballot-item/01000000-f030-c43d-fd71-08df1fee52e7'},'AZ-06':{n:5,prefix:'04',id:86922},'PA-07':{n:4,prefix:'42',id:87382},'OH-SEN':{n:88,prefix:'39',id:87527},'ME-SEN':{n:16,prefix:'23',id:87188},'IA-SEN':{n:99,prefix:'19',id:87151},'KS-SEN':{n:105,prefix:'20',id:87162},'TX-SEN':{n:254,prefix:'48',id:87438},'WI-01':{n:5,prefix:'55',id:87483},'WI-03':{n:19,prefix:'55',id:87485},'MI-04':{n:6,prefix:'26',id:87204},'PA-10':{n:3,prefix:'42',id:87385},'NY-17':{n:4,prefix:'36',id:87319},'WA-03':{n:7,prefix:'53',url:'https://results.votewa.gov/results/public/api/elections/washington/20261103/data/ballot-item/54c40000-9064-bbec-4779-08df15c0a82a'}};
+ scopes['NE-SEN']={n:93,prefix:'31',id:87254,independent:true};
  const schema='competitive-county-source-revision-2026-v1';
  function create(code,{storage,now=()=>Date.now()}={}){
   const scope=Object.hasOwn(scopes,code)?scopes[code]:null;if(!scope)throw Error('Unsupported competitive revision scope');
@@ -31,12 +32,15 @@
      !['NO_REPORTED_VOTES','VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED'].includes(parsed.status)||
      !Array.isArray(parsed.counties)||parsed.counties.length!==scope.n)
     throw Error('Unvalidated county publication cannot set a source revision');
+   const positive=scope.independent?'osborn_votes':'dem_votes',negative=scope.independent?'ricketts_votes':'rep_votes';
+   if(scope.independent&&(parsed.candidate_contrast!=='NE_OSBORN_RICKETTS_V1'||parsed.caucus_credit_assumed!==false))throw Error('Unreviewed Independent revision axis');
    const seen=new Set();let total=0;
    const vector=parsed.counties.map(c=>{
+    if(scope.independent&&(Object.hasOwn(c,'dem_votes')||!Array.isArray(c.other_candidates)||c.other_candidates.length!==3||new Set(c.other_candidates.map(p=>p.provider_id)).size!==3||c.other_candidates.some(p=>![220703,220704,220705].includes(p.provider_id)||!Number.isSafeInteger(p.votes)||p.votes<0)||c.other_candidates.reduce((s,p)=>s+p.votes,0)!==c.other_votes))throw Error('Invalid named Independent revision vector');
     if(typeof c.county_fips!=='string'||!new RegExp('^'+scope.prefix+'\\d{3}$').test(c.county_fips)||seen.has(c.county_fips)||
-      ![c.dem_votes,c.rep_votes,c.other_votes].every(n=>Number.isSafeInteger(n)&&n>=0))throw Error('Invalid revision county vector');
-    seen.add(c.county_fips);total+=c.dem_votes+c.rep_votes+c.other_votes;
-    return [c.county_fips,c.dem_votes,c.rep_votes,c.other_votes];
+      ![c[positive],c[negative],c.other_votes].every(n=>Number.isSafeInteger(n)&&n>=0))throw Error('Invalid revision county vector');
+    seen.add(c.county_fips);total+=c[positive]+c[negative]+c.other_votes;
+    return [c.county_fips,c[positive],c[negative],c.other_votes,...(scope.independent?[c.other_candidates]:[])];
    }).sort((a,b)=>a[0].localeCompare(b[0]));
    if(!Number.isSafeInteger(total)||(total>0)!==parsed.live_votes_accepted||
       (total===0)!==(parsed.status==='NO_REPORTED_VOTES')||!closes?.allowed(code,total,parsed.snapshot_updated_at,clock))

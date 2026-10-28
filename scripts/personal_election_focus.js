@@ -3,11 +3,11 @@
  'use strict';
  const SENATE=Object.freeze(['IA','KS','ME','OH','MI','NE','SC','MN','MS','AK']);
  const HOUSE=Object.freeze(['VA-02','PA-10','PA-07','PA-08','MI-07','NY-17','WI-03','AZ-06']);
- const CONNECTED=new Set(['IA-SEN','KS-SEN','ME-SEN','OH-SEN','SC-SEN',...HOUSE]);
+ const CONNECTED=new Set(['IA-SEN','KS-SEN','ME-SEN','OH-SEN','SC-SEN','NE-SEN',...HOUSE]);
  const finite=x=>typeof x==='number'&&Number.isFinite(x),chance=x=>finite(x)&&x>=0&&x<=100;
  const time=x=>Number.isFinite(x)?new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit'}).format(x)+' ET':'Time unverified';
- const margin=x=>Math.abs(x)<.05?'Even':(x>0?'D+':'R+')+Math.abs(x).toFixed(1);
- const range=x=>Math.abs(x[1]-x[0])<.05?margin((x[0]+x[1])/2):margin(x[0])+' to '+margin(x[1]);
+ const margin=(x,positive='D',negative='R')=>Math.abs(x)<.05?'Even':(x>0?positive+'+':negative+'+')+Math.abs(x).toFixed(1);
+ const range=(x,positive='D',negative='R')=>Math.abs(x[1]-x[0])<.05?margin((x[0]+x[1])/2,positive,negative):margin(x[0],positive,negative)+' to '+margin(x[1],positive,negative);
  const ENDINGS=['red_dawn','shrug','blue_wave','blue_tsunami'];
  const HISTORY_KEY='bluewaves_outlook_history_v1',HISTORY_LIMIT=192,HISTORY_BYTES=240000,HISTORY_AGE=72*3600000;
  const iso=x=>typeof x==='string'&&Number.isFinite(Date.parse(x))&&/(?:Z|[+-]\d\d:\d\d)$/.test(x);
@@ -32,15 +32,16 @@
   function observe({active=true,result,envelopes=[],live={},evidence=[],revision,pollingAt,context='PUBLIC',simulated:sampleSimulated=false}={}){
    const at=now();if(!active||!Number.isFinite(at)||sampleSimulated!==simulated||!contextOk(context)||!probsOk(result?.probabilities)||
     typeof revision!=='string'||revision.length>600||!iso(pollingAt)||(!simulated&&at<Date.parse('2026-11-03T05:00:00Z'))||
-    !Array.isArray(envelopes)||envelopes.length>17||!Array.isArray(evidence)||evidence.length>523||Object.keys(live).length>506||
+    !Array.isArray(envelopes)||envelopes.length>18||!Array.isArray(evidence)||evidence.length>524||Object.keys(live).length>506||
     envelopes.some(e=>Boolean(e?.rehearsal)!==simulated)||(!simulated&&result?.county_results_update?.status==='SIMULATED_NATIONAL_REHEARSAL'))return false;
    const sources=new Map(),used=result?.county_results_update?.used||[];
-   if(!Array.isArray(used)||used.length>17)return false;
+   if(!Array.isArray(used)||used.length>18)return false;
    for(const u of used){
     const e=envelopes.find(e=>e?.snapshot?.race_code===u.code),s=e?.snapshot;
     if(!code(u.code)||!s||s.live_votes_accepted!==true||!iso(u.as_of)||u.as_of!==s.snapshot_updated_at||!Array.isArray(s.counties)||s.counties.length>254)return false;
-    const rows=s.counties.map(c=>({f:c.county_fips,d:c.dem_votes,r:c.rep_votes,o:c.other_votes})).sort((a,b)=>String(a.f).localeCompare(String(b.f)));
-    if(rows.some(c=>!/^\d{5}$/.test(c.f)||![c.d,c.r,c.o].every(n=>Number.isSafeInteger(n)&&n>=0)))return false;
+    const independent=u.code==='NE-SEN';if(independent&&(s.candidate_contrast!=='NE_OSBORN_RICKETTS_V1'||s.caucus_credit_assumed!==false))return false;
+    const rows=s.counties.map(c=>independent?{f:c.county_fips,support:c.osborn_votes,opponent:c.ricketts_votes,o:c.other_votes,others:c.other_candidates}:{f:c.county_fips,d:c.dem_votes,r:c.rep_votes,o:c.other_votes}).sort((a,b)=>String(a.f).localeCompare(String(b.f)));
+    if(rows.some(c=>!/^\d{5}$/.test(c.f)||![independent?c.support:c.d,independent?c.opponent:c.r,c.o].every(n=>Number.isSafeInteger(n)&&n>=0)))return false;
     const counts=JSON.stringify(rows),supplement=JSON.stringify(u.official_remaining_sensitivity?s.official_remaining:null);
     const source_url=sourceUrl(s.source_url),transport_url=sourceUrl(s.transport_url);
     const difference=u.matched_performance?.difference_margin_scenarios,margin_difference=Array.isArray(difference)&&difference.length===2&&difference.every(finite)?[...difference]:null;
@@ -57,12 +58,12 @@
    const old=states[context],changes=[];
    for(const [k,s]of sources){const before=old?.sources.get(k);
     if(!before||before.counts!==s.counts||before.supplement!==s.supplement||before.identity!==s.identity){
-     const correction=before?.kind==='CALL'&&before.counts!==s.counts||before?.rows&&s.rows?.some(c=>{const p=before.rows.find(p=>p.f===c.f);return p&&(c.d<p.d||c.r<p.r||c.o<p.o);});
+     const correction=before?.kind==='CALL'&&before.counts!==s.counts||before?.rows&&s.rows?.some(c=>{const p=before.rows.find(p=>p.f===c.f);return p&&((s.code==='NE-SEN'?c.support<p.support||c.opponent<p.opponent:c.d<p.d||c.r<p.r)||c.o<p.o||(s.code==='NE-SEN'&&c.others?.some(o=>o.votes<(p.others?.find(v=>v.provider_id===o.provider_id)?.votes??0))));});
      changes.push({code:s.code,kind:correction?'CORRECTION':!before&&old?.seen.has(k)?'RECOVERY':before&&before.identity!==s.identity?'SOURCE_CHANGE':s.kind==='CALL'?'CALL':before?.counts===s.counts?'SUPPLEMENT_CHANGE':'RETURNS',source_at:s.source_at,receipt_at:s.receipt_at,source_url:s.source_url,transport_url:s.transport_url,selected_hash:s.selected_hash,margin_difference:s.margin_difference});
     }
    }
    if(old)for(const [k,s]of old.sources)if(!sources.has(k))changes.push({code:s.code,kind:'WITHDRAWAL',source_at:s.source_at,receipt_at:s.receipt_at,source_url:s.source_url,transport_url:s.transport_url,selected_hash:s.selected_hash,margin_difference:s.margin_difference});
-   const probabilities=Object.fromEntries(ENDINGS.map(k=>[k,result.probabilities[k]])),seen=new Set([...(old?.seen||[]),...sources.keys()].slice(-523));
+   const probabilities=Object.fromEntries(ENDINGS.map(k=>[k,result.probabilities[k]])),seen=new Set([...(old?.seen||[]),...sources.keys()].slice(-524));
    states[context]={sources,seen,revision,probabilities};
    if(old&&old.revision===revision&&!changes.length&&JSON.stringify(old.probabilities)===JSON.stringify(probabilities))return false;
    const kind=!old?'SESSION_START':old.revision!==revision?'BASELINE_CHANGE':['WITHDRAWAL','CORRECTION','RECOVERY','SOURCE_CHANGE','CALL'].find(k=>changes.some(c=>c.kind===k))||(changes.length?'RETURNS':'REEVALUATION');
@@ -92,7 +93,7 @@
    if(e.changes.length)row.append(el('small',e.changes.map(c=>c.code).filter((c,i,a)=>a.indexOf(c)===i).join(' · ')));
    const source=el('details');source.append(el('summary','Source changes, model revision and clocks'));
    for(const c of e.changes){source.append(el('small',c.code+' · '+c.kind.replaceAll('_',' ').toLowerCase()+' · '+(c.kind==='WITHDRAWAL'?'previous source ':'source ')+historyTime(c.source_at)+(c.receipt_at?' · collected '+historyTime(c.receipt_at):'')),el('small','Source URL: '+(c.source_url||'unavailable')+(c.transport_url?' · collected copy: '+c.transport_url:'')+(c.selected_hash?' · existing selected-payload hash: '+c.selected_hash:'')));
-    if(Array.isArray(c.margin_difference)&&c.margin_difference.length===2&&c.margin_difference.every(finite))source.append(el('small',(c.kind==='WITHDRAWAL'?'Previous ':'')+'matched-area difference: '+range(c.margin_difference)+' margin points vs expected; method scenarios, not confidence intervals.'));
+    if(Array.isArray(c.margin_difference)&&c.margin_difference.length===2&&c.margin_difference.every(finite))source.append(el('small',(c.kind==='WITHDRAWAL'?'Previous ':'')+'matched-area difference: '+range(c.margin_difference,c.code==='NE-SEN'?'Osborn':'D',c.code==='NE-SEN'?'Ricketts':'R')+' margin points vs expected; method scenarios, not confidence intervals.'));
    }
    if(e.changes_omitted)source.append(el('small',e.changes_omitted+' additional source changes omitted from this compact record.'));
    source.append(el('p',e.revision),el('p','Polling lineage: '+e.polling_at+' · browser observation: '+e.observed_at+' · '+e.context));row.append(source);list.append(row);
@@ -144,22 +145,24 @@
     card.append(el('h4','',row.code==='OH-SEN'?'Ohio · special Senate':row.code));
     card.append(el('small','',row.state==='AK'?'Late night · '+row.window:row.state==='KS'?'Counts eligible from · '+row.window:'Poll-close window · '+row.window));
     if(row.pct!==null){
-     const svg=doc.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 200 105');svg.setAttribute('role','img');svg.setAttribute('aria-label',row.code+' '+row.left+' model win chance '+row.pct.toFixed(1)+' percent');
+     const chanceLabel=row.state==='NE'?'model chance vs Ricketts':'model win chance';
+     const svg=doc.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 200 105');svg.setAttribute('role','img');svg.setAttribute('aria-label',row.code+' '+row.left+' '+chanceLabel+' '+row.pct.toFixed(1)+' percent');
      const node=(tag,attrs)=>{const n=doc.createElementNS(svg.namespaceURI,tag);for(const [k,v]of Object.entries(attrs))n.setAttribute(k,String(v));return n;};
      svg.append(node('path',{d:'M20 90 A80 80 0 0 1 100 10',stroke:'#ce6878',fill:'none','stroke-width':9}),node('path',{d:'M100 10 A80 80 0 0 1 180 90',stroke:row.left==='Osborn'?'#d2acff':'#57b4ff',fill:'none','stroke-width':9}),node('line',{x1:100,y1:90,x2:100,y2:18,stroke:'#fff0a4','stroke-width':4,transform:'rotate('+(-90+1.8*row.pct)+' 100 90)'}));
-     const odds=el('strong','personal-focus-odds');odds.append(el('span','',row.left+' '+row.pct.toFixed(1)+'%'),el('small','',' · model win chance'));
+     const odds=el('strong','personal-focus-odds');odds.append(el('span','',row.left+' '+row.pct.toFixed(1)+'%'),el('small','',' · '+chanceLabel));
      card.append(svg,odds);
      card.append(el('small','',row.delta===null?'Baseline comparison unavailable':(row.delta>=0?'+':'')+row.delta.toFixed(1)+' probability points vs polling baseline'));
     }else card.append(el('strong','','Needle pending'));
     card.append(el('p','',(row.simulated?'SIMULATED · ':'')+row.status));
     if(row.count!==null)card.append(el('small','',row.count.toLocaleString('en-US')+' named-candidate '+row.left+'/R votes in admitted county evidence'));
     if(row.sourceAt)card.append(el('small','',(row.ownCounts?'Count':'Call')+' source time · '+time(Date.parse(row.sourceAt))));
-    const p=row.performance;
+    const p=row.performance,positive=p?.positive_candidate||'D',negative=p?.negative_candidate||'R';
     if(p&&finite(p.observed_margin_points)&&[p.expected_margin_scenarios,p.difference_margin_scenarios].every(x=>Array.isArray(x)&&x.length===2&&x.every(finite))){
-     card.append(el('p','personal-focus-performance','Matched-area performance · '+range(p.difference_margin_scenarios)+' margin points vs expected'));
-     const detail=el('details','');detail.append(el('summary','','What was expected here?'),el('p','','Observed '+margin(p.observed_margin_points)+'; expected '+range(p.expected_margin_scenarios)+' in the same reporting areas. Historical '+p.baseline_year+' local shares adjusted to the pre-results race expectation.'));
-     detail.append(el('p','',p.scope));
-     for(const u of p.largest_reporting_units||[])detail.append(el('small','',(u.county||'FIPS '+u.county_fips)+(row.office==='House'?' district part':'')+' · '+u.counted_two_party_votes.toLocaleString('en-US')+' D/R votes · observed '+margin(u.observed_margin_points)+'; expected '+range(u.expected_margin_scenarios)));
+     card.append(el('p','personal-focus-performance','Matched-area performance · '+range(p.difference_margin_scenarios,positive,negative)+' margin points vs expected'));
+     const detail=el('details','');detail.append(el('summary','','What was expected here?'),el('p','','Observed '+margin(p.observed_margin_points,positive,negative)+'; expected '+range(p.expected_margin_scenarios,positive,negative)+' in the same reporting areas. Historical '+p.baseline_year+' local shares adjusted to the pre-results race expectation.'));
+     detail.append(el('p','',p.scope));if(p.historical_transfer)detail.append(el('p','',p.historical_transfer+'; experimental and uncalibrated.'));
+     if(p.directional_transfer_assumption)detail.append(el('p','',p.directional_transfer_assumption));
+     for(const u of p.largest_reporting_units||[])detail.append(el('small','',(u.county||'FIPS '+u.county_fips)+(row.office==='House'?' district part':'')+' · '+u.counted_two_party_votes.toLocaleString('en-US')+' '+positive+'/'+negative+' votes · observed '+margin(u.observed_margin_points,positive,negative)+'; expected '+range(u.expected_margin_scenarios,positive,negative)));
      detail.append(el('small','','Largest '+(p.largest_reporting_units||[]).length+' of '+p.reporting_units+' reporting areas shown. This does not extrapolate the raw margin statewide or call the race.'));
      card.append(detail);
     }

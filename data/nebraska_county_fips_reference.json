@@ -1,0 +1,565 @@
+{
+  "schema": "independent-ne-county-native-crosswalk-v1",
+  "state": "NE",
+  "source_sha256": "3c337402b5c6e8d5aa26b4278ccf4edc8989f2683765b3ffbf22296cdb2df3a0",
+  "counties": [
+    {
+      "native_key": "adams",
+      "native_name": "Adams",
+      "county": "Adams",
+      "fips": "31001"
+    },
+    {
+      "native_key": "antelope",
+      "native_name": "Antelope",
+      "county": "Antelope",
+      "fips": "31003"
+    },
+    {
+      "native_key": "arthur",
+      "native_name": "Arthur",
+      "county": "Arthur",
+      "fips": "31005"
+    },
+    {
+      "native_key": "banner",
+      "native_name": "Banner",
+      "county": "Banner",
+      "fips": "31007"
+    },
+    {
+      "native_key": "blaine",
+      "native_name": "Blaine",
+      "county": "Blaine",
+      "fips": "31009"
+    },
+    {
+      "native_key": "boone",
+      "native_name": "Boone",
+      "county": "Boone",
+      "fips": "31011"
+    },
+    {
+      "native_key": "box_butte",
+      "native_name": "Box Butte",
+      "county": "Box Butte",
+      "fips": "31013"
+    },
+    {
+      "native_key": "boyd",
+      "native_name": "Boyd",
+      "county": "Boyd",
+      "fips": "31015"
+    },
+    {
+      "native_key": "brown",
+      "native_name": "Brown",
+      "county": "Brown",
+      "fips": "31017"
+    },
+    {
+      "native_key": "buffalo",
+      "native_name": "Buffalo",
+      "county": "Buffalo",
+      "fips": "31019"
+    },
+    {
+      "native_key": "burt",
+      "native_name": "Burt",
+      "county": "Burt",
+      "fips": "31021"
+    },
+    {
+      "native_key": "butler",
+      "native_name": "Butler",
+      "county": "Butler",
+      "fips": "31023"
+    },
+    {
+      "native_key": "cass",
+      "native_name": "Cass",
+      "county": "Cass",
+      "fips": "31025"
+    },
+    {
+      "native_key": "cedar",
+      "native_name": "Cedar",
+      "county": "Cedar",
+      "fips": "31027"
+    },
+    {
+      "native_key": "chase",
+      "native_name": "Chase",
+      "county": "Chase",
+      "fips": "31029"
+    },
+    {
+      "native_key": "cherry",
+      "native_name": "Cherry",
+      "county": "Cherry",
+      "fips": "31031"
+    },
+    {
+      "native_key": "cheyenne",
+      "native_name": "Cheyenne",
+      "county": "Cheyenne",
+      "fips": "31033"
+    },
+    {
+      "native_key": "clay",
+      "native_name": "Clay",
+      "county": "Clay",
+      "fips": "31035"
+    },
+    {
+      "native_key": "colfax",
+      "native_name": "Colfax",
+      "county": "Colfax",
+      "fips": "31037"
+    },
+    {
+      "native_key": "cuming",
+      "native_name": "Cuming",
+      "county": "Cuming",
+      "fips": "31039"
+    },
+    {
+      "native_key": "custer",
+      "native_name": "Custer",
+      "county": "Custer",
+      "fips": "31041"
+    },
+    {
+      "native_key": "dakota",
+      "native_name": "Dakota",
+      "county": "Dakota",
+      "fips": "31043"
+    },
+    {
+      "native_key": "dawes",
+      "native_name": "Dawes",
+      "county": "Dawes",
+      "fips": "31045"
+    },
+    {
+      "native_key": "dawson",
+      "native_name": "Dawson",
+      "county": "Dawson",
+      "fips": "31047"
+    },
+    {
+      "native_key": "deuel",
+      "native_name": "Deuel",
+      "county": "Deuel",
+      "fips": "31049"
+    },
+    {
+      "native_key": "dixon",
+      "native_name": "Dixon",
+      "county": "Dixon",
+      "fips": "31051"
+    },
+    {
+      "native_key": "dodge",
+      "native_name": "Dodge",
+      "county": "Dodge",
+      "fips": "31053"
+    },
+    {
+      "native_key": "douglas",
+      "native_name": "Douglas",
+      "county": "Douglas",
+      "fips": "31055"
+    },
+    {
+      "native_key": "dundy",
+      "native_name": "Dundy",
+      "county": "Dundy",
+      "fips": "31057"
+    },
+    {
+      "native_key": "fillmore",
+      "native_name": "Fillmore",
+      "county": "Fillmore",
+      "fips": "31059"
+    },
+    {
+      "native_key": "franklin",
+      "native_name": "Franklin",
+      "county": "Franklin",
+      "fips": "31061"
+    },
+    {
+      "native_key": "frontier",
+      "native_name": "Frontier",
+      "county": "Frontier",
+      "fips": "31063"
+    },
+    {
+      "native_key": "furnas",
+      "native_name": "Furnas",
+      "county": "Furnas",
+      "fips": "31065"
+    },
+    {
+      "native_key": "gage",
+      "native_name": "Gage",
+      "county": "Gage",
+      "fips": "31067"
+    },
+    {
+      "native_key": "garden",
+      "native_name": "Garden",
+      "county": "Garden",
+      "fips": "31069"
+    },
+    {
+      "native_key": "garfield",
+      "native_name": "Garfield",
+      "county": "Garfield",
+      "fips": "31071"
+    },
+    {
+      "native_key": "gosper",
+      "native_name": "Gosper",
+      "county": "Gosper",
+      "fips": "31073"
+    },
+    {
+      "native_key": "grant",
+      "native_name": "Grant",
+      "county": "Grant",
+      "fips": "31075"
+    },
+    {
+      "native_key": "greeley",
+      "native_name": "Greeley",
+      "county": "Greeley",
+      "fips": "31077"
+    },
+    {
+      "native_key": "hall",
+      "native_name": "Hall",
+      "county": "Hall",
+      "fips": "31079"
+    },
+    {
+      "native_key": "hamilton",
+      "native_name": "Hamilton",
+      "county": "Hamilton",
+      "fips": "31081"
+    },
+    {
+      "native_key": "harlan",
+      "native_name": "Harlan",
+      "county": "Harlan",
+      "fips": "31083"
+    },
+    {
+      "native_key": "hayes",
+      "native_name": "Hayes",
+      "county": "Hayes",
+      "fips": "31085"
+    },
+    {
+      "native_key": "hitchcock",
+      "native_name": "Hitchcock",
+      "county": "Hitchcock",
+      "fips": "31087"
+    },
+    {
+      "native_key": "holt",
+      "native_name": "Holt",
+      "county": "Holt",
+      "fips": "31089"
+    },
+    {
+      "native_key": "hooker",
+      "native_name": "Hooker",
+      "county": "Hooker",
+      "fips": "31091"
+    },
+    {
+      "native_key": "howard",
+      "native_name": "Howard",
+      "county": "Howard",
+      "fips": "31093"
+    },
+    {
+      "native_key": "jefferson",
+      "native_name": "Jefferson",
+      "county": "Jefferson",
+      "fips": "31095"
+    },
+    {
+      "native_key": "johnson",
+      "native_name": "Johnson",
+      "county": "Johnson",
+      "fips": "31097"
+    },
+    {
+      "native_key": "kearney",
+      "native_name": "Kearney",
+      "county": "Kearney",
+      "fips": "31099"
+    },
+    {
+      "native_key": "keith",
+      "native_name": "Keith",
+      "county": "Keith",
+      "fips": "31101"
+    },
+    {
+      "native_key": "keya_paha",
+      "native_name": "Keya Paha",
+      "county": "Keya Paha",
+      "fips": "31103"
+    },
+    {
+      "native_key": "kimball",
+      "native_name": "Kimball",
+      "county": "Kimball",
+      "fips": "31105"
+    },
+    {
+      "native_key": "knox",
+      "native_name": "Knox",
+      "county": "Knox",
+      "fips": "31107"
+    },
+    {
+      "native_key": "lancaster",
+      "native_name": "Lancaster",
+      "county": "Lancaster",
+      "fips": "31109"
+    },
+    {
+      "native_key": "lincoln",
+      "native_name": "Lincoln",
+      "county": "Lincoln",
+      "fips": "31111"
+    },
+    {
+      "native_key": "logan",
+      "native_name": "Logan",
+      "county": "Logan",
+      "fips": "31113"
+    },
+    {
+      "native_key": "loup",
+      "native_name": "Loup",
+      "county": "Loup",
+      "fips": "31115"
+    },
+    {
+      "native_key": "madison",
+      "native_name": "Madison",
+      "county": "Madison",
+      "fips": "31119"
+    },
+    {
+      "native_key": "mcpherson",
+      "native_name": "McPherson",
+      "county": "McPherson",
+      "fips": "31117"
+    },
+    {
+      "native_key": "merrick",
+      "native_name": "Merrick",
+      "county": "Merrick",
+      "fips": "31121"
+    },
+    {
+      "native_key": "morrill",
+      "native_name": "Morrill",
+      "county": "Morrill",
+      "fips": "31123"
+    },
+    {
+      "native_key": "nance",
+      "native_name": "Nance",
+      "county": "Nance",
+      "fips": "31125"
+    },
+    {
+      "native_key": "nemaha",
+      "native_name": "Nemaha",
+      "county": "Nemaha",
+      "fips": "31127"
+    },
+    {
+      "native_key": "nuckolls",
+      "native_name": "Nuckolls",
+      "county": "Nuckolls",
+      "fips": "31129"
+    },
+    {
+      "native_key": "otoe",
+      "native_name": "Otoe",
+      "county": "Otoe",
+      "fips": "31131"
+    },
+    {
+      "native_key": "pawnee",
+      "native_name": "Pawnee",
+      "county": "Pawnee",
+      "fips": "31133"
+    },
+    {
+      "native_key": "perkins",
+      "native_name": "Perkins",
+      "county": "Perkins",
+      "fips": "31135"
+    },
+    {
+      "native_key": "phelps",
+      "native_name": "Phelps",
+      "county": "Phelps",
+      "fips": "31137"
+    },
+    {
+      "native_key": "pierce",
+      "native_name": "Pierce",
+      "county": "Pierce",
+      "fips": "31139"
+    },
+    {
+      "native_key": "platte",
+      "native_name": "Platte",
+      "county": "Platte",
+      "fips": "31141"
+    },
+    {
+      "native_key": "polk",
+      "native_name": "Polk",
+      "county": "Polk",
+      "fips": "31143"
+    },
+    {
+      "native_key": "red_willow",
+      "native_name": "Red Willow",
+      "county": "Red Willow",
+      "fips": "31145"
+    },
+    {
+      "native_key": "richardson",
+      "native_name": "Richardson",
+      "county": "Richardson",
+      "fips": "31147"
+    },
+    {
+      "native_key": "rock",
+      "native_name": "Rock",
+      "county": "Rock",
+      "fips": "31149"
+    },
+    {
+      "native_key": "saline",
+      "native_name": "Saline",
+      "county": "Saline",
+      "fips": "31151"
+    },
+    {
+      "native_key": "sarpy",
+      "native_name": "Sarpy",
+      "county": "Sarpy",
+      "fips": "31153"
+    },
+    {
+      "native_key": "saunders",
+      "native_name": "Saunders",
+      "county": "Saunders",
+      "fips": "31155"
+    },
+    {
+      "native_key": "scotts_bluff",
+      "native_name": "Scotts Bluff",
+      "county": "Scotts Bluff",
+      "fips": "31157"
+    },
+    {
+      "native_key": "seward",
+      "native_name": "Seward",
+      "county": "Seward",
+      "fips": "31159"
+    },
+    {
+      "native_key": "sheridan",
+      "native_name": "Sheridan",
+      "county": "Sheridan",
+      "fips": "31161"
+    },
+    {
+      "native_key": "sherman",
+      "native_name": "Sherman",
+      "county": "Sherman",
+      "fips": "31163"
+    },
+    {
+      "native_key": "sioux",
+      "native_name": "Sioux",
+      "county": "Sioux",
+      "fips": "31165"
+    },
+    {
+      "native_key": "stanton",
+      "native_name": "Stanton",
+      "county": "Stanton",
+      "fips": "31167"
+    },
+    {
+      "native_key": "thayer",
+      "native_name": "Thayer",
+      "county": "Thayer",
+      "fips": "31169"
+    },
+    {
+      "native_key": "thomas",
+      "native_name": "Thomas",
+      "county": "Thomas",
+      "fips": "31171"
+    },
+    {
+      "native_key": "thurston",
+      "native_name": "Thurston",
+      "county": "Thurston",
+      "fips": "31173"
+    },
+    {
+      "native_key": "valley",
+      "native_name": "Valley",
+      "county": "Valley",
+      "fips": "31175"
+    },
+    {
+      "native_key": "washington",
+      "native_name": "Washington",
+      "county": "Washington",
+      "fips": "31177"
+    },
+    {
+      "native_key": "wayne",
+      "native_name": "Wayne",
+      "county": "Wayne",
+      "fips": "31179"
+    },
+    {
+      "native_key": "webster",
+      "native_name": "Webster",
+      "county": "Webster",
+      "fips": "31181"
+    },
+    {
+      "native_key": "wheeler",
+      "native_name": "Wheeler",
+      "county": "Wheeler",
+      "fips": "31183"
+    },
+    {
+      "native_key": "york",
+      "native_name": "York",
+      "county": "York",
+      "fips": "31185"
+    }
+  ]
+}
