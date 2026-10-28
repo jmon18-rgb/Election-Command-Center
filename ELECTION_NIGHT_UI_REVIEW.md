@@ -1,6 +1,19 @@
 # Election-night usability and visual review
 
 
+Next R8 slice is now a tested candidate: duplicate prototype/outcome diagnostics
+and the broader roster start behind named disclosures. Existing manual/scenario,
+search/filter/navigation and archive gates remain. Display options moves wake-lock
+controls out of the sticky toolbar while its status stays visible in the summary.
+Pinned503before measurement162px ->78px candidate at390px; laptop62px unchanged.
+Before disclosures-before-* and after disclosures-default-*/hierarchy-map-* are
+under artifacts/readiness/ui-review. Actual keyboard/search/denied-wake/focus/
+archive/unchanged-probability tasks pass, not screenshots alone. Full-state-name
+search now works without new lookups. NE uses Independent labeling/purple favored
+color; AK finalRCV stays pending in map and cards, national baseline unchanged.
+New protected review/publication is still required. Full Oct30 task review and
+Oct29 final owner handoff remain open; do not declare R8 completed from this slice.
+
 Geographic visual pass503 RELEASED: finalmainae99e66f / Pages40606318882SUCCESS /
 350published files matched00:05:22.341Z (October28UTC, October27Eastern). National
 outlook/all4 and real50state outlines now share the laptop view; phone stacks

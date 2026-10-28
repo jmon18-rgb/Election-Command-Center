@@ -40,6 +40,8 @@ try{
   });
   await page.goto(`http://127.0.0.1:${server.address().port}/`,{waitUntil:'domcontentloaded'});
   await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();
+  assert.equal(await page.locator('#enRaceDiagnosticDetails').evaluate(e=>e.open),false);
+  await page.locator('#enRaceDiagnosticDetails > summary').click();
   const host=page.locator('#enKansasRaceNeedle');
   await page.waitForFunction(()=>document.querySelector('[data-ks="state"]')?.textContent.includes('TEST DATA'));
   assert.equal(await host.locator('[data-ks="chance"]').textContent(),'—');

@@ -17,7 +17,12 @@ assert.equal(s.races,3);
 assert.equal(by(s,'NC').band,'toss-up');
 assert.equal(by(s,'OH').band,'lean-r');
 assert.equal(by(s,'ME').band,'missing');
-assert.match(map.display(by(s,'NE').race),/Independent\/D-side/);
+assert.match(map.display(by(s,'NE').race),/Osborn \(I\)/);assert.equal(by(s,'NE').band,'independent');
+assert.doesNotMatch(map.display(by(s,'NE').race),/D-side/);
+const guarded=map.build([{office:'senate',race_code:'AK-SEN',dem_beats_rep_pct:70,provider_called_party:'D'},{office:'senate',race_code:'NE-SEN',dem_beats_rep_pct:60,provider_called_party:'D'}]);
+assert.equal(by(guarded,'AK').band,'missing');assert.equal(by(guarded,'AK').race.provider_called_party,null);
+assert.match(map.display(by(guarded,'AK').race),/pending/);assert.doesNotMatch(map.display(by(guarded,'AK').race),/70/);
+assert.equal(by(guarded,'NE').race.provider_called_party,null,'Independent cannot be relabeled as a Democratic call');
 assert.equal(by(s,'OH').race.provider_called_party,'R');
 
 const house=[{office:'house',race_code:'NC-07',dem_beats_rep_pct:61},

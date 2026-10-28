@@ -15,6 +15,7 @@ try{
  browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
  for(const width of [1366,390]){
   const context=await browser.newContext({viewport:{width,height:844},reducedMotion:'reduce'}),page=await context.newPage(),errors=[];
+  await context.addInitScript(()=>Object.defineProperty(navigator,'wakeLock',{configurable:true,value:{request:async()=>{throw Error('Fixture denies wake lock')}}}));
   page.on('pageerror',e=>errors.push(e.message));await page.clock.install({time:new Date('2026-10-27T22:00:00Z')});
   await page.route('**/*',r=>new URL(r.request().url()).hostname==='127.0.0.1'?r.continue():r.abort());
   await page.goto('http://127.0.0.1:'+server.address().port+'/',{waitUntil:'domcontentloaded'});
@@ -24,6 +25,27 @@ try{
   const layout=await page.evaluate(()=>{const n=document.querySelector('#jointNightNeedle').getBoundingClientRect(),m=document.querySelector('.en-national-map-panel').getBoundingClientRect();return {needleLeft:n.left,mapLeft:m.left,needleTop:n.top,mapTop:m.top};});
   if(width>900){assert(layout.mapLeft>layout.needleLeft+250);assert(Math.abs(layout.mapTop-layout.needleTop)<3,'Outlook and map share the laptop glance view');}else assert(layout.mapTop>layout.needleTop,'Phone outlook precedes map');
   const probabilities=await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities));
+  assert.equal(await page.locator('#enRaceDiagnosticDetails').evaluate(e=>e.open),false);
+  assert.equal(await page.locator('#enIowaRaceNeedle').isVisible(),false,'Duplicate prototypes start behind a named disclosure');
+  assert.equal(await page.locator('#smartNightDesk').evaluate(e=>e.open),false,'Broader roster is secondary');
+  await page.locator('#enRaceDiagnosticDetails > summary').focus();await page.keyboard.press('Enter');
+  assert.equal(await page.locator('#enIowaRaceNeedle').isVisible(),true);assert.equal(await page.locator('#enKansasRaceNeedle').isVisible(),true);assert.equal(await page.locator('#enTexasRaceNeedle').isVisible(),true);
+  assert.equal(await page.locator('#jointNightCards').isVisible(),true);
+  await page.locator('#enRaceDiagnosticDetails > summary').press('Enter');
+  await page.locator('#smartNightDesk > summary').focus();await page.keyboard.press('Enter');
+  assert.equal(await page.locator('#smartNightControls').isVisible(),true);
+  await page.evaluate(()=>renderSmartRaceDesks());assert.equal(await page.evaluate(()=>document.activeElement===document.querySelector('#smartNightDesk > summary')),true,'Roster update preserves disclosure heading focus');
+  await page.locator('#smartNightSearch').fill('Iowa');assert(await page.locator('#smartNightGrid a.smart-signal').count()>0,'Secondary roster search remains usable');
+  assert.match(await page.locator('#smartNightGrid').innerText(),/IA/);await page.locator('#smartNightSearch').fill('');
+  await page.locator('#smartNightControls [data-smart-office="Senate"]').click();assert(await page.locator('#smartNightGrid a.smart-signal').count()>0);
+  await page.locator('#smartNightControls [data-smart-office="All"]').click();await page.locator('#smartNightDesk > summary').click();
+  await page.locator('#enDisplayOptions > summary').click();await page.locator('#enScreenAwake').click();
+  await page.waitForFunction(()=>document.querySelector('#enWakeStatus').textContent.includes('denied'));
+  await page.locator('#enDisplayOptions > summary').click();assert.match(await page.locator('#enDisplayOptions > summary').innerText(),/denied/,'Wake denial remains visible with display options closed');
+  await page.locator('#enDisplayOptions > summary').click();await page.locator('#enScreenAwake').click();await page.locator('#enDisplayOptions > summary').click();
+  assert.equal(await page.locator('#enConnection').isVisible(),true);
+  const toolbarHeight=await page.locator('#electionNight .en-toolbar').evaluate(e=>e.getBoundingClientRect().height);
+  if(width===390)assert(toolbarHeight<100,'Phone sticky toolbar leaves more screen height for results');
   const order=await page.evaluate(()=>{
    const before=(a,b)=>Boolean(document.querySelector(a).compareDocumentPosition(document.querySelector(b))&Node.DOCUMENT_POSITION_FOLLOWING);
    return {needleMap:before('#jointNightNeedle','#enNationalNeedleMap'),mapPersonal:before('#enNationalNeedleMap','#enPersonalFocus'),outsideSources:!document.querySelector('#enSourceDesk').contains(document.querySelector('#enNationalNeedleMap'))};
@@ -46,6 +68,9 @@ try{
   const picker=page.locator('#enNationalNeedleMap [data-map-picker="state"]');await picker.focus();await picker.selectOption('RI');
   assert.match(await page.locator('#enNationalNeedleMap .en-nmap-detail').innerText(),/RI-SEN/,'Tiny state is available through a native picker');
   assert.equal(await page.evaluate(()=>document.activeElement.getAttribute('data-map-picker')),'state','Selection redraw preserves picker focus');
+  await picker.selectOption('AK');assert.match(await page.locator('#enNationalNeedleMap .en-nmap-detail').innerText(),/Final ranked-choice needle pending/);
+  assert(!/\d+\.\d+%/.test(await page.locator('#enNationalNeedleMap .en-nmap-detail').innerText()),'Unreviewed AK final RCV chance is not implied by baseline');
+  await picker.selectOption('NE');assert.match(await page.locator('#enNationalNeedleMap .en-nmap-detail').innerText(),/Osborn is Independent.*no assumed Democratic caucus/s);
   await picker.selectOption('IA');
   await page.locator('#enNationalNeedleMap').scrollIntoViewIfNeeded();await page.screenshot({path:resolve(out,'hierarchy-map-'+width+'.png')});
   await page.locator('#enNationalNeedleMap .en-nmap-open').click();assert.equal(await page.locator('#model.page.active').count(),1,'Map opens the actual model race');
@@ -69,8 +94,10 @@ try{
   assert.equal(await page.locator('#enNationalNeedleMap button.en-nmap-state').count(),50,'Optional geometry failure retains all fifty navigable tiles');
   await page.evaluate(()=>{window.USStateDisplayGeometry=window.__savedGeometry;enRenderNeedleCartogram();});
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true,'Map scrolls internally without page overflow');
-  assert.deepEqual(errors,[]);receipt.push({width,tasks:'four outcomes/map selection/model navigation/next windows/visible health/source disclosure/focus/no overflow',passed:true,external_sources:'blocked'});
+  await page.locator('#enRaceDiagnosticDetails').evaluate(e=>{e.style.scrollMarginTop='100px';e.scrollIntoView();});await page.screenshot({path:resolve(out,'disclosures-default-'+width+'.png')});
+  assert.deepEqual(errors,[]);receipt.push({width,toolbarHeight,tasks:'four outcomes/map selection/model navigation/next windows/visible health/source disclosure/focus/no overflow/diagnostic and roster disclosures/full-state search/wake denial/AK pending/NE independent',passed:true,external_sources:'blocked'});
   await page.locator('#enMode2024').click();assert.equal(await page.locator('.en-national-map-panel').isHidden(),true);
+  assert.equal(await page.locator('#enRaceDiagnosticDetails').isHidden(),true);assert.equal(await page.locator('#smartNightDesk').isHidden(),true);assert.equal(await page.locator('.en-input-health').isVisible(),true);
   await context.close();console.log(width+'px hierarchy operator tasks PASS');
  }
  writeFileSync(resolve(out,'hierarchy-browser-tasks.json'),JSON.stringify({at:new Date().toISOString(),receipt,limits:'Isolated pre-election UI task evidence, not actual vote delivery or full Oct30 review'},null,2));
