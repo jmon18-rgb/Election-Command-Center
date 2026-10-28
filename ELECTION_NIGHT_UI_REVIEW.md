@@ -1,5 +1,24 @@
 # Election-night usability and visual review
 
+
+October27 late owner request: deeper visual implementation is ACTIVE now, not
+deferred to Oct30. Current candidate pairs the national outlook/all4 probabilities
+with a real50-state Census-outline map on laptop, stacks them on mobile, and
+redesigns the personal cards with larger odds and clearer mini-needles/time/status.
+Native state picker/arrow navigation and tile fallback preserve access to small
+states. The map remains forecast navigation, not counted results or full House
+district coverage. Source-snapshot details are disclosed rather than repeated.
+Broken personal-card/history separators are repaired.
+
+Actual Edge1366/390 operator tasks, personal same-draw/lifecycle tests and full
+smoke pass. Geometry pins and reproducible builder pass. Evidence is under
+artifacts/readiness/ui-review: hierarchy-browser-tasks.json, hierarchy-outcomes-*,
+hierarchy-map-*, visual-personal-*. This candidate is not yet deployed. The prior
+published500 screenshots/receipt below supply the before state. Full Oct30
+workflow review still must address duplicate prototype/research surfaces, mobile
+toolbar density, missing-source impact, meaningful admitted-change/correction/
+withdrawal/outage tasks and owner handoff. Screenshots alone do not close R8.
+
 October27 hierarchy slice RELEASED in PR499/500: finalmain2a81f443,
 Pages40599401034SUCCESS,334published files matched23:05:00.522Z. The national
 map now follows the outlook/all4percentages and precedes personal races. Detailed

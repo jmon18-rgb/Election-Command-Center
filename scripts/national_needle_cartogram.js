@@ -88,6 +88,7 @@
    const focused=host.contains?.(doc.activeElement)?doc.activeElement:null;
    const focusState=focused?.getAttribute('data-map-state');
    const focusMode=focused?.getAttribute('data-map-mode');
+   const focusPicker=focused?.getAttribute('data-map-picker');
    host.replaceChildren();
    const controls=d('div','en-nmap-controls');
    for(const [value,label] of [['senate','Senate map'],['house','House tipping districts']]){
@@ -103,17 +104,43 @@
      count.races+' modeled House districts · '+count.contested+' states'):
      'Linked model pending'));
    host.append(controls);
+   const geometry=doc.defaultView?.USStateDisplayGeometry;
+   const geographic=geometry?.schema==='census-state-display-geometry-v1'&&
+    COORDS.every(([code])=>typeof geometry.states?.[code]?.path==='string')&&typeof doc.createElementNS==='function';
+   if(geographic){
+    const picker=d('label','en-nmap-picker','State '),select=d('select');select.setAttribute('aria-label','Select a state on the forecast map');select.setAttribute('data-map-picker','state');
+    const blank=d('option','','Choose a state');blank.value='';select.append(blank);
+    for(const t of [...count.tiles].sort((a,b)=>geometry.states[a.state].name.localeCompare(geometry.states[b.state].name))){const option=d('option','',geometry.states[t.state].name+' · '+(t.race?display(t.race):available?'No contest / pending':'Model pending'));option.value=t.state;select.append(option);}
+    select.value=selected||'';select.addEventListener('change',()=>{selected=ALL.has(select.value)?select.value:null;host.__needleSelected=selected;draw()});picker.append(select);controls.append(picker);
+   }
    const frame=d('div','en-nmap-scroll');
    frame.setAttribute('role','region');
-   frame.setAttribute('aria-label','U.S. state tile map; scroll sideways on small screens');
+   frame.setAttribute('aria-label',geographic?'U.S. state forecast map with Alaska and Hawaii insets':'U.S. state tile map; scroll sideways on small screens');
    frame.tabIndex=0;
-   const grid=d('div','en-nmap-grid');
+   const grid=geographic?doc.createElementNS('http://www.w3.org/2000/svg','svg'):d('div','en-nmap-grid');
+   if(geographic){grid.setAttribute('viewBox',geometry.viewBox);grid.setAttribute('class','en-geographic-map');grid.setAttribute('role','group');grid.setAttribute('aria-label','U.S. state forecast navigation. Use arrow keys or the state picker; Enter selects.');frame.classList.add('en-geographic-frame');}
    for(const t of count.tiles){
-    const b=d('button','en-nmap-state '+t.band,t.state);
+    const b=geographic?doc.createElementNS('http://www.w3.org/2000/svg','g'):d('button','en-nmap-state '+t.band,t.state);
+    if(geographic){
+     const shape=geometry.states[t.state],svg=(tag,attrs,label)=>{const n=doc.createElementNS('http://www.w3.org/2000/svg',tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,String(v));if(label!==undefined)n.textContent=label;return n;};
+     const palette={'strong-r':'#b63b50','lean-r':'#d28e99','toss-up':'#8f80ab','lean-d':'#559ac8','strong-d':'#126ac4','missing':'#253b4e'};
+     b.setAttribute('class','en-nmap-state en-nmap-shape '+t.band);b.setAttribute('role','button');b.setAttribute('tabindex',selected===t.state||!selected&&t.state==='IA'?'0':'-1');
+     b.append(svg('path',{d:shape.path,fill:palette[t.band],'fill-rule':'evenodd',stroke:'#102536','stroke-width':1.3}));
+     if(shape.leader)b.append(svg('path',{d:'M'+shape.leader.join(',')+'L'+(shape.label[0]-15)+','+shape.label[1],fill:'none',stroke:'#98b4c5','stroke-width':1.2,'pointer-events':'none'}));
+     if(shape.leader)b.append(svg('rect',{x:shape.label[0]-17,y:shape.label[1]-12,width:34,height:24,rx:4,fill:palette[t.band]}));
+     b.append(svg('text',{x:shape.label[0],y:shape.label[1]+5,'text-anchor':'middle','font-size':17,'font-weight':800,fill:'#f2f7ff',stroke:'#102536','stroke-width':2,'paint-order':'stroke','pointer-events':'none'},t.state));
+     if(t.race?.provider_called_party)b.append(svg('text',{x:shape.label[0]+15,y:shape.label[1]-9,fill:'#ffe19b','font-size':18,'font-weight':900,'pointer-events':'none'},'✓'));
+     b.addEventListener('keydown',event=>{
+      if(event.key==='Enter'||event.key===' '){event.preventDefault();selected=t.state;host.__needleSelected=selected;draw();return;}
+      const vector={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[event.key];if(!vector)return;event.preventDefault();
+      const origin=shape.leader||shape.label,nearest=count.tiles.filter(x=>x.state!==t.state).map(x=>{const p=geometry.states[x.state].leader||geometry.states[x.state].label,dx=p[0]-origin[0],dy=p[1]-origin[1];return{state:x.state,forward:dx*vector[0]+dy*vector[1],distance:dx*dx+dy*dy};}).filter(x=>x.forward>0).sort((a,b)=>a.distance-b.distance)[0];
+      if(nearest){host.querySelector('[data-map-state="'+nearest.state+'"]').focus({preventScroll:true});selected=nearest.state;host.__needleSelected=selected;draw();}
+     });
+    }
     b.setAttribute('data-map-state',t.state);
-    b.type='button';b.style.gridColumn=String(t.col+1);
+    if(!geographic)b.type='button';b.style.gridColumn=String(t.col+1);
     b.style.gridRow=String(t.row+1);
-    if(t.race){
+    if(t.race&&!geographic){
      const sub=d('small','',mode==='house'?t.race.race_code.slice(3):
        Math.round(t.race.dem_beats_rep_pct)+'% D');
      b.append(sub);
@@ -125,12 +152,13 @@
       (t.race.provider_called_party?' · source-reported '+t.race.provider_called_party+
        ' call, unofficial':''):
      mode==='senate'?'No 2026 Senate election in this state':'No eligible district probability';
-    b.title=t.state+' · '+note;
+    b.setAttribute('title',t.state+' · '+note);
     b.setAttribute('aria-label',t.state+', '+note);
     b.addEventListener('click',()=>{selected=t.state;host.__needleSelected=selected;draw()});
     grid.append(b);
    }
    frame.append(grid);host.append(frame);
+   if(geographic){const svgText=(x,y,label)=>{const n=doc.createElementNS('http://www.w3.org/2000/svg','text');n.setAttribute('x',x);n.setAttribute('y',y);n.setAttribute('class','en-map-inset-label');n.textContent=label;return n;};grid.append(svgText(65,625,'ALASKA · INSET'),svgText(335,625,'HAWAII · INSET'));}
    const legend=d('div','en-nmap-legend');
    for(const [cls,label] of [
     ['strong-r','R ≥90%'],['lean-r','R 60–90%'],
@@ -142,6 +170,7 @@
    }
    host.append(legend);
    const foot=d('div','en-nmap-detail');
+   foot.setAttribute('aria-live','polite');
    const active=count.tiles.find(x=>x.state===selected)||null;
    if(!available)foot.append(d('p','','Waiting for current, matching joint forecast. No stale percentages shown.'));
    else if(!active)foot.append(d('p','',
@@ -167,20 +196,21 @@
    }
    host.append(foot);
    // A source refresh or keyboard selection must not discard map-button focus.
-   if(focusState||focusMode){
-    const replacement=Array.from(host.querySelectorAll('button')).find(b=>
+   if(focusState||focusMode||focusPicker){
+    const replacement=Array.from(host.querySelectorAll('button,[data-map-state],[data-map-picker]')).find(b=>
      focusState?b.getAttribute('data-map-state')===focusState:
-      b.getAttribute('data-map-mode')===focusMode);
+      focusMode?b.getAttribute('data-map-mode')===focusMode:b.getAttribute('data-map-picker')===focusPicker);
     if(replacement)replacement.focus({preventScroll:true});
    }
-   host.append(d('p','en-nmap-method',
-    '50-state tile cartogram (approximate geography; not district boundaries). '+
+   const method=d('p','en-nmap-method',
+    (geographic?'Census2024 state outlines · Alaska/Hawaii insets are not at the same scale; distant Hawaiian islands omitted for display. Not district boundaries. ':'50-state tile cartogram (approximate geography; not district boundaries). ')+
     (mode==='house'?'House colors describe one selected district per state, never statewide House control. ':
      'Only states with 2026 Senate elections are colored. ')+
     'Probabilities come only from the linked correlated JackStradamus model'+
     (modelAsOf?' · source snapshot '+modelAsOf:'')+
     '. ✓ means an explicitly source-reported call, not certification. '+
-    'Only reviewed, matched county evidence can condition the experimental model; predictive calibration remains unproven.'));
+    'Only reviewed, matched county evidence can condition the experimental model; predictive calibration remains unproven.');
+   if(geographic){const disclosure=d('details','en-map-method');disclosure.append(d('summary','','Map scope, source snapshot & limitations'),method);host.append(disclosure);}else host.append(method);
   };
   draw();return true;
  }

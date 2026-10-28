@@ -20,6 +20,9 @@ try{
   await page.goto('http://127.0.0.1:'+server.address().port+'/',{waitUntil:'domcontentloaded'});
   await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();
   await page.waitForFunction(()=>jointLastResult?.probabilities&&document.querySelectorAll('#enNationalNeedleMap .en-nmap-state').length===50&&document.querySelector('#enPersonalFocus article'));
+  assert.equal(await page.locator('#enNationalNeedleMap svg.en-geographic-map').count(),1,'Pinned Census geometry is rendered, not the tile fallback');
+  const layout=await page.evaluate(()=>{const n=document.querySelector('#jointNightNeedle').getBoundingClientRect(),m=document.querySelector('.en-national-map-panel').getBoundingClientRect();return {needleLeft:n.left,mapLeft:m.left,needleTop:n.top,mapTop:m.top};});
+  if(width>900){assert(layout.mapLeft>layout.needleLeft+250);assert(Math.abs(layout.mapTop-layout.needleTop)<3,'Outlook and map share the laptop glance view');}else assert(layout.mapTop>layout.needleTop,'Phone outlook precedes map');
   const probabilities=await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities));
   const order=await page.evaluate(()=>{
    const before=(a,b)=>Boolean(document.querySelector(a).compareDocumentPosition(document.querySelector(b))&Node.DOCUMENT_POSITION_FOLLOWING);
@@ -32,12 +35,18 @@ try{
   assert.equal(await page.locator('.en-input-health').isVisible(),true);
   assert.match(await page.locator('.en-input-health').innerText(),/no national|reporting|awaiting/i);
   assert.match(await page.locator('#enPersonalFocus .personal-focus-next').innerText(),/Focus now \/ next: SC-SEN.*7:00 PM ET.*VA-02.*OH-SEN.*7:30 PM ET/);
-  await page.locator('#jointNightNeedle').scrollIntoViewIfNeeded();await page.screenshot({path:resolve(out,'hierarchy-outcomes-'+width+'.png')});
+  await page.evaluate(()=>{const n=document.querySelector('.en-outlook-map-grid');n.style.scrollMarginTop=(document.querySelector('#electionNight .en-toolbar').getBoundingClientRect().height+12)+'px';n.scrollIntoView();});await page.screenshot({path:resolve(out,'hierarchy-outcomes-'+width+'.png')});
   const ia=page.locator('#enNationalNeedleMap [data-map-state="IA"]');await ia.focus();await ia.press('Enter');
   assert.match(await page.locator('#enNationalNeedleMap .en-nmap-detail').innerText(),/IA-SEN.*model chance/s);
   assert.equal(await page.evaluate(()=>document.activeElement.getAttribute('data-map-state')),'IA');
   await page.evaluate(()=>enRenderNeedleCartogram());
   assert.equal(await page.evaluate(()=>document.activeElement.getAttribute('data-map-state')),'IA','Source redraw retains selected map keyboard focus');
+  await page.locator('#enNationalNeedleMap [data-map-state="IA"]').press('ArrowRight');
+  assert.notEqual(await page.evaluate(()=>document.activeElement.getAttribute('data-map-state')),'IA','Arrow key reaches another geographic state');
+  const picker=page.locator('#enNationalNeedleMap [data-map-picker="state"]');await picker.focus();await picker.selectOption('RI');
+  assert.match(await page.locator('#enNationalNeedleMap .en-nmap-detail').innerText(),/RI-SEN/,'Tiny state is available through a native picker');
+  assert.equal(await page.evaluate(()=>document.activeElement.getAttribute('data-map-picker')),'state','Selection redraw preserves picker focus');
+  await picker.selectOption('IA');
   await page.locator('#enNationalNeedleMap').scrollIntoViewIfNeeded();await page.screenshot({path:resolve(out,'hierarchy-map-'+width+'.png')});
   await page.locator('#enNationalNeedleMap .en-nmap-open').click();assert.equal(await page.locator('#model.page.active').count(),1,'Map opens the actual model race');
   assert.match(page.url(),/#model\/senate\/IA-SEN$/);
@@ -54,6 +63,11 @@ try{
   await page.locator('#enNationalInputDetails > summary').click();assert.equal(await page.locator('#enNationalSouthCarolinaSource').isVisible(),true);
   await page.locator('#enNationalInputDetails > summary').click();
   assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),probabilities,'Navigation/disclosure changes cannot change model probabilities');
+  await page.locator('#enPersonalFocus').scrollIntoViewIfNeeded();await page.screenshot({path:resolve(out,'visual-personal-'+width+'.png')});
+  assert(!/Â·|â€“/.test(await page.locator('#enPersonalFocus').innerText()),'Visible race labels contain no broken separators');
+  await page.evaluate(()=>{const saved=window.USStateDisplayGeometry;window.USStateDisplayGeometry=null;enRenderNeedleCartogram();window.__savedGeometry=saved;});
+  assert.equal(await page.locator('#enNationalNeedleMap button.en-nmap-state').count(),50,'Optional geometry failure retains all fifty navigable tiles');
+  await page.evaluate(()=>{window.USStateDisplayGeometry=window.__savedGeometry;enRenderNeedleCartogram();});
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true,'Map scrolls internally without page overflow');
   assert.deepEqual(errors,[]);receipt.push({width,tasks:'four outcomes/map selection/model navigation/next windows/visible health/source disclosure/focus/no overflow',passed:true,external_sources:'blocked'});
   await page.locator('#enMode2024').click();assert.equal(await page.locator('.en-national-map-panel').isHidden(),true);

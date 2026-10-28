@@ -80,22 +80,22 @@
  function renderHistory(doc,history,context,open=false){
   const el=(tag,text)=>{const n=doc.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
   const data=history?.events(context)||[],details=el('details');details.className='personal-focus-history';details.open=open;
-  details.append(el('summary','Recent national outlook updates'+(data.length?' Â· '+data.length+' records':'')));
+  details.append(el('summary','Recent national outlook updates'+(data.length?' · '+data.length+' records':'')));
   details.append(el('p','Browser-observed outlooks, stored only on this device. Regular updates are grouped within five minutes; corrections, withdrawals and recovery remain separate. Times show when this browser observed the model, not when a publisher first released votes. Reload starts a new comparison session. This is not independent election chronology or calibration.'));
   if(!data.length)details.append(el('p','No observed election-night updates in this context yet. Use the simulated preview to rehearse changes; live history starts November 3.'));
   const list=el('ol');details.append(list);
   for(const e of data.slice(0,8)){
    const row=el('li');row.className='personal-focus-history-entry';
-   row.append(el('strong',(e.simulated?'SIMULATED Â· ':'')+historyTime(e.observed_at)+' Â· '+e.kind.replaceAll('_',' ').toLowerCase()));
-   row.append(el('p',ENDINGS.map(k=>k.replaceAll('_',' ')+' '+e.probabilities[k].toFixed(1)+'%').join(' Â· ')));
+   row.append(el('strong',(e.simulated?'SIMULATED · ':'')+historyTime(e.observed_at)+' · '+e.kind.replaceAll('_',' ').toLowerCase()));
+   row.append(el('p',ENDINGS.map(k=>k.replaceAll('_',' ')+' '+e.probabilities[k].toFixed(1)+'%').join(' · ')));
    if(e.observations>1)row.append(el('small',e.observations+' model observations since '+historyTime(e.window_started_at)+'; latest outlook shown.'));
-   if(e.changes.length)row.append(el('small',e.changes.map(c=>c.code).filter((c,i,a)=>a.indexOf(c)===i).join(' Â· ')));
+   if(e.changes.length)row.append(el('small',e.changes.map(c=>c.code).filter((c,i,a)=>a.indexOf(c)===i).join(' · ')));
    const source=el('details');source.append(el('summary','Source changes, model revision and clocks'));
-   for(const c of e.changes){source.append(el('small',c.code+' Â· '+c.kind.replaceAll('_',' ').toLowerCase()+' Â· '+(c.kind==='WITHDRAWAL'?'previous source ':'source ')+historyTime(c.source_at)+(c.receipt_at?' Â· collected '+historyTime(c.receipt_at):'')),el('small','Source URL: '+(c.source_url||'unavailable')+(c.transport_url?' Â· collected copy: '+c.transport_url:'')+(c.selected_hash?' Â· existing selected-payload hash: '+c.selected_hash:'')));
+   for(const c of e.changes){source.append(el('small',c.code+' · '+c.kind.replaceAll('_',' ').toLowerCase()+' · '+(c.kind==='WITHDRAWAL'?'previous source ':'source ')+historyTime(c.source_at)+(c.receipt_at?' · collected '+historyTime(c.receipt_at):'')),el('small','Source URL: '+(c.source_url||'unavailable')+(c.transport_url?' · collected copy: '+c.transport_url:'')+(c.selected_hash?' · existing selected-payload hash: '+c.selected_hash:'')));
     if(Array.isArray(c.margin_difference)&&c.margin_difference.length===2&&c.margin_difference.every(finite))source.append(el('small',(c.kind==='WITHDRAWAL'?'Previous ':'')+'matched-area difference: '+range(c.margin_difference)+' margin points vs expected; method scenarios, not confidence intervals.'));
    }
    if(e.changes_omitted)source.append(el('small',e.changes_omitted+' additional source changes omitted from this compact record.'));
-   source.append(el('p',e.revision),el('p','Polling lineage: '+e.polling_at+' Â· browser observation: '+e.observed_at+' Â· '+e.context));row.append(source);list.append(row);
+   source.append(el('p',e.revision),el('p','Polling lineage: '+e.polling_at+' · browser observation: '+e.observed_at+' · '+e.context));row.append(source);list.append(row);
   }
   details.append(el('small','Shows latest 8 of up to '+HISTORY_LIMIT+' records retained for 72 hours within '+HISTORY_BYTES+' characters. This is a bounded local trend, not a complete raw source archive.'));
   return details;
@@ -118,7 +118,7 @@
    const status=ownCounts?'Own county returns used nationally':called?'Validated source call used':pending;
    const candidateStamp=direct?.as_of||(called?evidence.find(x=>x.race_code===spec.code&&x.calledParty===entry.provider_called_party)?.asOf:null);
    const sourceAt=Number.isFinite(Date.parse(candidateStamp||''))?candidateStamp:null;
-   const window=Number.isFinite(first)?time(first)+(Number.isFinite(last)&&last!==first?(state==='KS'?' Â· conservative call gate ':'â€“')+time(last):''):'Time unverified';
+   const window=Number.isFinite(first)?time(first)+(Number.isFinite(last)&&last!==first?(state==='KS'?' · conservative call gate ':'–')+time(last):''):'Time unverified';
    return {...spec,state,order,left,pct,delta,status,sourceAt,ownCounts,called,simulated:simulated||result?.county_results_update?.status==='SIMULATED_NATIONAL_REHEARSAL',
     count:direct&&finite(direct.counted_two_party_votes)?direct.counted_two_party_votes:null,
     performance:direct?.matched_performance||null,
@@ -133,32 +133,33 @@
   host.replaceChildren();if(!data.length)return;
   const doc=host.ownerDocument,el=(tag,cls,text)=>{const n=doc.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;};
   const simulated=data.some(x=>x.simulated);
-  host.append(el('h2','',(simulated?'SIMULATED Â· ':'')+'Your election-night needles'),el('p','methodline',simulated?'FICTIONAL COUNTS Â· NOT LIVE. These race needles share this simulated national update; the live dashboard is unchanged.':'Same race forecasts as the national model. Own validated returns enter once; race probabilities are never averaged back into it. Order follows admitted evidence and poll-close windows, not a promise of when votes will arrive.'));
-  host.append(el('p','personal-focus-next','Focus now / next: '+data.filter(x=>x.state!=='AK').slice(0,3).map(x=>x.code+' Â· '+x.window).join(' | ')));
+  host.append(el('h2','',(simulated?'SIMULATED · ':'')+'Your election-night needles'),el('p','methodline',simulated?'FICTIONAL COUNTS · NOT LIVE. These race needles share this simulated national update; the live dashboard is unchanged.':'Same race forecasts as the national model. Own validated returns enter once; race probabilities are never averaged back into it. Order follows admitted evidence and poll-close windows, not a promise of when votes will arrive.'));
+  host.append(el('p','personal-focus-next','Focus now / next: '+data.filter(x=>x.state!=='AK').slice(0,3).map(x=>x.code+' · '+x.window).join(' | ')));
   if(options.history){const history=renderHistory(doc,options.history,options.context||'PUBLIC',historyOpen);host.append(history);if(historyFocused)history.querySelector('summary')?.focus({preventScroll:true});}
   for(const office of ['Senate','House']){
    const group=el('section','');group.append(el('h3','',office==='Senate'?'Your ten Senate races':'House power-flip watch'));
    const grid=el('div','personal-focus-grid');
    for(const row of data.filter(x=>x.office===office)){
     const card=el('article','personal-focus-card');card.dataset.race=row.code;
-    card.append(el('h4','',row.code==='OH-SEN'?'Ohio Â· special Senate':row.code));
-    card.append(el('small','',row.state==='AK'?'Late night Â· '+row.window:row.state==='KS'?'Counts eligible from Â· '+row.window:'Poll-close window Â· '+row.window));
+    card.append(el('h4','',row.code==='OH-SEN'?'Ohio · special Senate':row.code));
+    card.append(el('small','',row.state==='AK'?'Late night · '+row.window:row.state==='KS'?'Counts eligible from · '+row.window:'Poll-close window · '+row.window));
     if(row.pct!==null){
      const svg=doc.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 200 105');svg.setAttribute('role','img');svg.setAttribute('aria-label',row.code+' '+row.left+' model win chance '+row.pct.toFixed(1)+' percent');
      const node=(tag,attrs)=>{const n=doc.createElementNS(svg.namespaceURI,tag);for(const [k,v]of Object.entries(attrs))n.setAttribute(k,String(v));return n;};
      svg.append(node('path',{d:'M20 90 A80 80 0 0 1 100 10',stroke:'#ce6878',fill:'none','stroke-width':9}),node('path',{d:'M100 10 A80 80 0 0 1 180 90',stroke:row.left==='Osborn'?'#d2acff':'#57b4ff',fill:'none','stroke-width':9}),node('line',{x1:100,y1:90,x2:100,y2:18,stroke:'#fff0a4','stroke-width':4,transform:'rotate('+(-90+1.8*row.pct)+' 100 90)'}));
-     card.append(svg,el('strong','',row.left+' '+row.pct.toFixed(1)+'% Â· model win chance'));
+     const odds=el('strong','personal-focus-odds');odds.append(el('span','',row.left+' '+row.pct.toFixed(1)+'%'),el('small','',' · model win chance'));
+     card.append(svg,odds);
      card.append(el('small','',row.delta===null?'Baseline comparison unavailable':(row.delta>=0?'+':'')+row.delta.toFixed(1)+' probability points vs polling baseline'));
     }else card.append(el('strong','','Needle pending'));
-    card.append(el('p','',(row.simulated?'SIMULATED Â· ':'')+row.status));
+    card.append(el('p','',(row.simulated?'SIMULATED · ':'')+row.status));
     if(row.count!==null)card.append(el('small','',row.count.toLocaleString('en-US')+' named-candidate '+row.left+'/R votes in admitted county evidence'));
-    if(row.sourceAt)card.append(el('small','',(row.ownCounts?'Count':'Call')+' source time Â· '+time(Date.parse(row.sourceAt))));
+    if(row.sourceAt)card.append(el('small','',(row.ownCounts?'Count':'Call')+' source time · '+time(Date.parse(row.sourceAt))));
     const p=row.performance;
     if(p&&finite(p.observed_margin_points)&&[p.expected_margin_scenarios,p.difference_margin_scenarios].every(x=>Array.isArray(x)&&x.length===2&&x.every(finite))){
-     card.append(el('p','personal-focus-performance','Matched-area performance Â· '+range(p.difference_margin_scenarios)+' margin points vs expected'));
+     card.append(el('p','personal-focus-performance','Matched-area performance · '+range(p.difference_margin_scenarios)+' margin points vs expected'));
      const detail=el('details','');detail.append(el('summary','','What was expected here?'),el('p','','Observed '+margin(p.observed_margin_points)+'; expected '+range(p.expected_margin_scenarios)+' in the same reporting areas. Historical '+p.baseline_year+' local shares adjusted to the pre-results race expectation.'));
      detail.append(el('p','',p.scope));
-     for(const u of p.largest_reporting_units||[])detail.append(el('small','',(u.county||'FIPS '+u.county_fips)+(row.office==='House'?' district part':'')+' Â· '+u.counted_two_party_votes.toLocaleString('en-US')+' D/R votes Â· observed '+margin(u.observed_margin_points)+'; expected '+range(u.expected_margin_scenarios)));
+     for(const u of p.largest_reporting_units||[])detail.append(el('small','',(u.county||'FIPS '+u.county_fips)+(row.office==='House'?' district part':'')+' · '+u.counted_two_party_votes.toLocaleString('en-US')+' D/R votes · observed '+margin(u.observed_margin_points)+'; expected '+range(u.expected_margin_scenarios)));
      detail.append(el('small','','Largest '+(p.largest_reporting_units||[]).length+' of '+p.reporting_units+' reporting areas shown. This does not extrapolate the raw margin statewide or call the race.'));
      card.append(detail);
     }

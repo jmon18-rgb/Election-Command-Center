@@ -1,0 +1,16 @@
+{
+  "url": "https://www2.census.gov/geo/tiger/GENZ2024/kml/cb_2024_us_state_20m.zip",
+  "declared_by": "https://www.census.gov/geographies/mapping-files/2024/geo/carto-boundary-file.html",
+  "request_started_at": "2026-10-27T23:23:32.195667+00:00",
+  "scope": "Static forecast navigation display only; no county/district vote allocation or new model input",
+  "http": 200,
+  "final_url": "https://www2.census.gov/geo/tiger/GENZ2024/kml/cb_2024_us_state_20m.zip",
+  "bytes": 158066,
+  "sha256": "37337db59415f010c594fba96a48aa6e950e633dc0e555cc7b1ce8edd794c673",
+  "display_adjustments": [
+    "Spherical Albers CONUS",
+    "Alaska/Hawaii insets are not at the same scale",
+    "Hawaii distant islands west of162W omitted for display",
+    "Small northeastern state labels use callouts"
+  ]
+}
