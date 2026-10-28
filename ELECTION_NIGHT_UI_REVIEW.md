@@ -1,6 +1,21 @@
 # Election-night usability and visual review
 
 
+Geographic visual pass503 RELEASED: finalmainae99e66f / Pages40606318882SUCCESS /
+350published files matched00:05:22.341Z (October28UTC, October27Eastern). National
+outlook/all4 and real50state outlines now share the laptop view; phone stacks
+them. Larger personal odds/compact needles/clean separators are published.
+OrdinaryIAB27 confirms RI picker, IA model navigation and retained selection,
+source-summary focus below the toolbar,18cards and no overflow. Exact-head33
+parents/42applicablejobs passed,3deployed-only skips/noexternalstatuses. Actual
+Edge1366/390 tasks and national correction/withdrawal/outage/rehearsal passed.
+Proof: published-geographic-integrity-20261028.json and
+published-geographic-visual-pass-20261028.json/png in artifacts/readiness.
+Candidate language below is historical; its release gate is satisfied. FullR8
+review remains OPEN. Next work contract: ui-review/remaining-ux-work-contract.json
+(duplicate prototypes/secondary roster/mobile toolbar), plus review NEIndependent
+and AKbaseline/finalRCV map labeling consistency. No new results admission.
+
 October27 late owner request: deeper visual implementation is ACTIVE now, not
 deferred to Oct30. Current candidate pairs the national outlook/all4 probabilities
 with a real50-state Census-outline map on laptop, stacks them on mobile, and
