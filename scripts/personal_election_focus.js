@@ -88,7 +88,7 @@
   for(const e of data.slice(0,8)){
    const row=el('li');row.className='personal-focus-history-entry';
    // Grouped observations keep their window identity as their latest clock changes.
-   row.dataset.historyEntry=JSON.stringify([e.context,e.simulated,e.window_started_at,e.kind]);
+   row.dataset.historyEntry=JSON.stringify([e.context,e.simulated,e.window_started_at,['RETURNS','CALL','REEVALUATION'].includes(e.kind)?'GROUPED':e.kind,e.revision]);
    row.append(el('strong',(e.simulated?'SIMULATED · ':'')+historyTime(e.observed_at)+' · '+e.kind.replaceAll('_',' ').toLowerCase()));
    row.append(el('p',ENDINGS.map(k=>k.replaceAll('_',' ')+' '+e.probabilities[k].toFixed(1)+'%').join(' · ')));
    if(e.observations>1)row.append(el('small',e.observations+' model observations since '+historyTime(e.window_started_at)+'; latest outlook shown.'));

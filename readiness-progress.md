@@ -1,5 +1,10 @@
 # Readiness progress
 
+## PR517 corrected visible-disclosure and grouped-history candidate
+
+- Initial exactheadd41bfda9 Nebraska browser40683384700/job122799511701 failed because old details>summary now matched both visible expectation and nested-area controls. Repair test to open the primary summary then Inspect6areas through actual visible controls; ALL original Osborn-label/noD/I-count/correction/zero/rollback/later-round/outage/hidden/archive assertions retained. No timeout/rerun/waiver; oldhead must not merge. ActualEdge1366/390 corrected Nebraska lifecycle PASS.
+- Self-review also made grouped-history UI identity stable when ordinary kind changes between reevaluation/call/returns inside the same five-minute window; revision/context/simulation/window distinguish groups. New browser assertion changes latest clock/kind while preserving focused source/open state. Both-size affected journey tests PASS. No history storage/model/evidence schema change. New exact-head CI required before merge; source repair is not deployed yet.
+
 ## October28 R8 personal reading/history continuity candidate - NOT deployed
 
 - Owner-directed remaining journey review found two concrete defects in the released source: expanding NE produced1231px card/433px peer and812px blank below its peer on1366px desktop; on390px phone explanation was1055px. Opening a history record's Source changes/model revision/clocks, then an ordinary redraw, closed that source detail and moved focus to the outer history summary at BOTH sizes. Saved baseline artifacts/readiness/ui-review/journey-density/baseline.json and before PNGs, localbffc3b3a/appsourcec2aa5d22; isolatedEdge/externalproviders blocked.

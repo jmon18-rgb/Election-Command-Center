@@ -72,6 +72,18 @@ try{browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL
    assert.notEqual(retainedSource.newKey,entryKey,'Recovered returns create a distinct source event');
    assert.equal(retainedSource.oldOpen,true,'New records do not erase the previously opened source explanation');assert.equal(retainedSource.newOpen,false,'Disclosure state belongs to the event, not its list position');
    await history.screenshot({path:resolve(out,'journey-history-'+width+'.png')});
+   const grouped=await page.evaluate(()=>{
+    const host=document.createElement('section');document.body.append(host);
+    const event=structuredClone(nationalPreviewHistory.events()[0]);event.kind='REEVALUATION';
+    const options={year:2026,history:{events:()=>[event]}};
+    PersonalElectionFocus.render(host,jointLastResult,jointPulseBaseline,options);
+    host.querySelector('.personal-focus-history').open=true;const source=host.querySelector('.personal-focus-history-entry details');source.open=true;source.querySelector('summary').focus();
+    const key=source.parentElement.dataset.historyEntry;
+    event.kind='RETURNS';event.observations++;event.observed_at=new Date(Date.parse(event.observed_at)+1000).toISOString();
+    PersonalElectionFocus.render(host,jointLastResult,jointPulseBaseline,options);
+    const retained={open:host.querySelector('.personal-focus-history-entry details').open,key:document.activeElement?.closest('.personal-focus-history-entry')?.dataset.historyEntry};host.remove();return {...retained,original:key};
+   });
+   assert(grouped.open&&grouped.key===grouped.original,'Grouped observation keeps its identity when its latest clock and ordinary update kind change');
   }
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true);
   assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),live,'Presentation never changes the live forecast');assert.deepEqual(errors,[]);
