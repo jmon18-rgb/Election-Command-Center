@@ -1,47 +1,135 @@
 {
-  "updated_at": "2026-10-28T09:59:27.076773+00:00",
+  "updated_at": "2026-10-28T10:57:19.435156+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 838,
+      "available_in_source": 839,
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1272,
+      "available_in_source": 1273,
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 942,
+      "available_in_source": 944,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 313,
-  "newly_injected_into_model": 5,
+  "matched_primary_observations": 318,
+  "newly_injected_into_model": 3,
   "injected_poll_ids": [
     {
-      "race_code": "FL-GOV",
-      "poll_id": "e8777b6f-33f5-4438-acec-0ab4d8869a70"
+      "race_code": "NY-GOV",
+      "poll_id": "0203080e-3810-4fbc-81dd-865ee8135c27"
     },
     {
-      "race_code": "MN-GOV",
-      "poll_id": "c2682803-f4b1-44e9-be94-40f7ceb34de3"
+      "race_code": "OH-GOV",
+      "poll_id": "ef2061ce-8aa7-4866-8db0-835e849dd546"
     },
     {
-      "race_code": "MN-SEN",
-      "poll_id": "c2682803-f4b1-44e9-be94-40f7ceb34de3"
-    },
-    {
-      "race_code": "SC-GOV",
-      "poll_id": "f563358e-6428-4c39-b20d-84027b8795a4"
-    },
-    {
-      "race_code": "SC-SEN",
-      "poll_id": "f563358e-6428-4c39-b20d-84027b8795a4"
+      "race_code": "OH-SEN",
+      "poll_id": "ef2061ce-8aa7-4866-8db0-835e849dd546"
     }
   ],
   "observations": [
+    {
+      "race_code": "OH-SEN",
+      "race_type": "senate",
+      "state": "OH",
+      "poll_id": "ef2061ce-8aa7-4866-8db0-835e849dd546",
+      "question_id": "2c97932b-20ea-4c93-8abb-70414417da3c",
+      "pollster": "Suffolk University",
+      "dem_name": "Sherrod Brown",
+      "rep_name": "Jon Husted",
+      "dem": 47.0,
+      "rep": 44.0,
+      "margin": 3.0,
+      "field_end": "2026-10-26",
+      "field_start": "2026-10-21",
+      "posted_date": "2026-10-28",
+      "posted_source_datetime": "2026-10-28T06:46:00",
+      "posted_source_time": "10/28/26 06:46",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.dispatch.com/videos/news/politics/elections/2026/10/28/new-poll-shows-amy-acton-and-vivek-ramaswamy-in-tight-race-for-governor/92466303007/",
+      "sample_population": "lv",
+      "sample_size": 500,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "OH-GOV",
+      "race_type": "governor",
+      "state": "OH",
+      "poll_id": "ef2061ce-8aa7-4866-8db0-835e849dd546",
+      "question_id": "feae5745-ff42-4240-b2e2-5466992dbcf8",
+      "pollster": "Suffolk University",
+      "dem_name": "Amy Acton",
+      "rep_name": "Vivek Ramaswamy",
+      "dem": 48.0,
+      "rep": 44.0,
+      "margin": 4.0,
+      "field_end": "2026-10-26",
+      "field_start": "2026-10-21",
+      "posted_date": "2026-10-28",
+      "posted_source_datetime": "2026-10-28T06:46:00",
+      "posted_source_time": "10/28/26 06:46",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.dispatch.com/videos/news/politics/elections/2026/10/28/new-poll-shows-amy-acton-and-vivek-ramaswamy-in-tight-race-for-governor/92466303007/",
+      "sample_population": "lv",
+      "sample_size": 500,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "NY-GOV",
+      "race_type": "governor",
+      "state": "NY",
+      "poll_id": "0203080e-3810-4fbc-81dd-865ee8135c27",
+      "question_id": "c6837cd0-bed7-4a06-b555-695f1b15af25",
+      "pollster": "Marist University",
+      "dem_name": "Kathy Hochul",
+      "rep_name": "Bruce Blakeman",
+      "dem": 55.0,
+      "rep": 41.0,
+      "margin": 14.0,
+      "field_end": "2026-10-25",
+      "field_start": "2026-10-22",
+      "posted_date": "2026-10-28",
+      "posted_source_datetime": "2026-10-28T06:31:00",
+      "posted_source_time": "10/28/26 06:31",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://maristpoll.marist.edu/polls/the-midterm-elections-in-new-york-october-2026/",
+      "sample_population": "rv",
+      "sample_size": 1448,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "NY-GOV",
+      "race_type": "governor",
+      "state": "NY",
+      "poll_id": "0203080e-3810-4fbc-81dd-865ee8135c27",
+      "question_id": "d9c80bec-c221-4f89-a145-612027d268dc",
+      "pollster": "Marist University",
+      "dem_name": "Kathy Hochul",
+      "rep_name": "Bruce Blakeman",
+      "dem": 53.0,
+      "rep": 42.0,
+      "margin": 11.0,
+      "field_end": "2026-10-25",
+      "field_start": "2026-10-22",
+      "posted_date": "2026-10-28",
+      "posted_source_datetime": "2026-10-28T06:31:00",
+      "posted_source_time": "10/28/26 06:31",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://maristpoll.marist.edu/polls/the-midterm-elections-in-new-york-october-2026/",
+      "sample_population": "lv",
+      "sample_size": 1448,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "SC-SEN",
       "race_type": "senate",
