@@ -41,10 +41,13 @@
    const district=Number(code.slice(3));
    if(!Number.isInteger(district)||district<1||district>SEATS[st])return null;
   }
+  // Match the personal view: AK's final RCV contract is unreviewed, and an
+  // Independent Osborn result must never be labeled as a Democratic call.
+  const call=['D','R'].includes(record.provider_called_party)?record.provider_called_party:null;
+  const displayCall=code==='AK-SEN'||code==='NE-SEN'&&call==='D'?null:call;
   return {office,race_code:code,state:st,
    dem_beats_rep_pct:record.dem_beats_rep_pct,
-   provider_called_party:['D','R'].includes(record.provider_called_party)?
-    record.provider_called_party:null};
+   provider_called_party:displayCall};
  }
  function build(records,mode='senate'){
   const office=mode==='house'?'house':'senate',by=new Map(),seen=new Set();
@@ -59,7 +62,7 @@
     Math.abs(a.dem_beats_rep_pct-50)-Math.abs(b.dem_beats_rep_pct-50)||
     a.race_code.localeCompare(b.race_code));
    const race=contests[0]||null,p=race?.dem_beats_rep_pct;
-   const band=!race?'missing':p>=90?'strong-d':p>=60?'lean-d':
+   const band=!race||race.race_code==='AK-SEN'?'missing':race.race_code==='NE-SEN'&&p>=50?'independent':p>=90?'strong-d':p>=60?'lean-d':
     p>40?'toss-up':p>10?'lean-r':'strong-r';
    return {state,col,row,race,contests,band};
   });
@@ -68,9 +71,10 @@
  }
  const display=(race)=>{
   if(!race)return 'No linked model probability';
+  if(race.race_code==='AK-SEN')return 'Final RCV needle pending · baseline only';
   const p=race.dem_beats_rep_pct,lead=p>=50?'D':'R';
   const chance=lead==='D'?p:100-p;
-  const party=race.race_code==='NE-SEN'&&lead==='D'?'Independent/D-side':lead;
+  const party=race.race_code==='NE-SEN'&&lead==='D'?'Osborn (I)':lead;
   return party+' '+chance.toFixed(1)+'% model chance';
  };
  function render(host,records,doc,{available=false,modelAsOf=null,onOpen=null}={}){
@@ -123,7 +127,7 @@
     const b=geographic?doc.createElementNS('http://www.w3.org/2000/svg','g'):d('button','en-nmap-state '+t.band,t.state);
     if(geographic){
      const shape=geometry.states[t.state],svg=(tag,attrs,label)=>{const n=doc.createElementNS('http://www.w3.org/2000/svg',tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,String(v));if(label!==undefined)n.textContent=label;return n;};
-     const palette={'strong-r':'#b63b50','lean-r':'#d28e99','toss-up':'#8f80ab','lean-d':'#559ac8','strong-d':'#126ac4','missing':'#253b4e'};
+     const palette={'strong-r':'#b63b50','lean-r':'#d28e99','toss-up':'#8f80ab','lean-d':'#559ac8','strong-d':'#126ac4','independent':'#9774c9','missing':'#253b4e'};
      b.setAttribute('class','en-nmap-state en-nmap-shape '+t.band);b.setAttribute('role','button');b.setAttribute('tabindex',selected===t.state||!selected&&t.state==='IA'?'0':'-1');
      b.append(svg('path',{d:shape.path,fill:palette[t.band],'fill-rule':'evenodd',stroke:'#102536','stroke-width':1.3}));
      if(shape.leader)b.append(svg('path',{d:'M'+shape.leader.join(',')+'L'+(shape.label[0]-15)+','+shape.label[1],fill:'none',stroke:'#98b4c5','stroke-width':1.2,'pointer-events':'none'}));
@@ -142,7 +146,7 @@
     b.style.gridRow=String(t.row+1);
     if(t.race&&!geographic){
      const sub=d('small','',mode==='house'?t.race.race_code.slice(3):
-       Math.round(t.race.dem_beats_rep_pct)+'% D');
+       t.race.race_code==='AK-SEN'?'Pending':Math.round(t.race.dem_beats_rep_pct)+(t.race.race_code==='NE-SEN'?'% I':'% D'));
      b.append(sub);
      if(t.race.provider_called_party)b.append(d('i','en-nmap-call','✓'));
     }
@@ -169,6 +173,7 @@
     legend.append(item);
    }
    host.append(legend);
+   if(mode==='senate'){const item=d('span','en-nmap-legend-item');item.append(d('i','en-nmap-dot independent'),d('span','','Osborn (I) ≥50%'));legend.append(item);}
    const foot=d('div','en-nmap-detail');
    foot.setAttribute('aria-live','polite');
    const active=count.tiles.find(x=>x.state===selected)||null;
@@ -178,9 +183,12 @@
     'Each state shows its most uncertain House district, not the party expected to win the state. Select a tile to inspect.'));
    else if(!active.race)foot.append(d('p','',active.state+' · '+(mode==='senate'?
     'No 2026 Senate seat up for election':'No validated linked House probability for this state')));
-   else{
+   else if(active.race.race_code==='AK-SEN'){
+    foot.append(d('strong','','AK-SEN · Final ranked-choice needle pending'),d('p','','The existing national polling baseline is retained, but ballot identity and the final ranked-choice contract are unresolved. No accepted final RCV chance or source call is shown here.'));
+   }else{
     const label=d('strong','',active.race.race_code+' · '+display(active.race));
     foot.append(label);
+    if(active.race.race_code==='NE-SEN')foot.append(d('p','','Osborn is Independent. The displayed axis is Osborn versus Republican, with no assumed Democratic caucus credit.'));
     foot.append(d('p','',active.race.provider_called_party?
      'Source-reported '+active.race.provider_called_party+' winner flag is included in the linked model; unofficial and retractable.':
      'MODEL FORECAST — not a projected or source-confirmed winner. Raw vote leads alone are not performance against expectation.'));

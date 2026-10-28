@@ -40,6 +40,8 @@ try{
   });
   await page.goto(`http://127.0.0.1:${server.address().port}/`,{waitUntil:'domcontentloaded'});
   await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();
+  assert.equal(await page.locator('#enRaceDiagnosticDetails').evaluate(e=>e.open),false);
+  await page.locator('#enRaceDiagnosticDetails > summary').click();
   const host=page.locator('#enTexasRaceNeedle');
   await page.waitForFunction(()=>document.querySelector('[data-tx="state"]')?.textContent.includes('TEST DATA'));
   assert.equal(await host.locator('[data-tx="chance"]').textContent(),'—');
@@ -83,6 +85,7 @@ try{
   await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>typeof jointPulseBaseline!=='undefined'&&jointPulseBaseline?.race_probabilities?.some(r=>r.race_code==='TX-SEN'));
   await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();
+  await page.locator('#enRaceDiagnosticDetails > summary').click();
   await page.waitForFunction(()=>window.enTexasPilotController&&!enTexasPilotController.status().busy&&!/Waiting|Select|Checking/.test(enTexasPilotController.status().phase));
   await page.waitForFunction(()=>Boolean(CompetitiveNeedlePrior.read(jointPulseBaseline,'TX-SEN')));
   await page.clock.setSystemTime(new Date('2026-11-04T03:07:35Z'));

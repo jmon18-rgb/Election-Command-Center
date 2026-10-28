@@ -55,6 +55,8 @@ try{
   });
   await page.goto(`http://127.0.0.1:${server.address().port}/`,{waitUntil:'domcontentloaded'});
   await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();
+  assert.equal(await page.locator('#enRaceDiagnosticDetails').evaluate(e=>e.open),false);
+  await page.locator('#enRaceDiagnosticDetails > summary').click();
   const host=page.locator('#enIowaRaceNeedle');
   await page.waitForFunction(()=>document.querySelector('#enIowaRaceNeedle [data-iowa="state"]')?.textContent.includes('TEST DATA'));
   assert.equal(await host.locator('[data-iowa="chance"]').textContent(),'—','Real provider test flag excludes even positive fixture votes');
