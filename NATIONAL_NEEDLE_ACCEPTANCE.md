@@ -1,6 +1,6 @@
 # National needle acceptance decision — October 27, 2026
 
-Nebraska candidate: named Osborn/Ricketts paired evidence and labels, no Democratic ballot/caucus conversion. Historical2024 different-seat support transfer is experimental/unfitted, anchored to current race expectation. See NEBRASKA_SENATE_COUNTY_CONTRACT.md. No positive2026 delivery/calibration acceptance; protected release still pending.
+Nebraska PR507 VERIFIED PUBLISHED on final7e4b163d/Pages40625644392/368matchingfiles. Named Osborn/Ricketts paired evidence and labels, no Democratic ballot/caucus conversion. Historical2024 different-seat support transfer is experimental/unfitted, anchored to current race expectation. See NEBRASKA_SENATE_COUNTY_CONTRACT.md.18inputs/six owner Senate paths programmed; MI/MN/MS/AK remain. No positive2026 delivery/chronology/calibration acceptance.
 
 PR505, verified published on final main49ccfc37, explicitly withholds Democratic caucus credit from uncommitted Independent winners, while retaining established holdovers and the existing seat thresholds. These are Democratic-majority threshold scenarios, not a resolved forecast of future coalition negotiations: neither D threshold does not establish a Republican majority. Individual race draws and likelihood inputs are unchanged. Exact-head33workflowparents and finalPages/351published-file verification passed. PR506 subsequently verified the caveat in actual home/night/rehearsal browser accessibility names; full human operator/assistive acceptance remains open.
 

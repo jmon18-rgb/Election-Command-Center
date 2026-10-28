@@ -1,5 +1,7 @@
 # JackStradamus · development plan
 
+> VERIFIED PR507 Nebraska: final7e4b163d/Pages40625644392/368publishedfiles03:17:17Z; exact-head40parents/57jobs53success4nonapplicable skips/0external. Typed Osborn-v-Ricketts evidence, experimental different-seat transfer, no D ballot/caucus conversion, NEfixed1/18bounds/old17exact invariance. Six owner Senate paths programmed; MI/MN/MS/AK missing. NEXT R3/R2 handoff/no-go and remaining bounded contracts. FullR8/real delivery/calibration OPEN.
+
 > ACTIVE R1 candidate: typed Nebraska Osborn-v-Ricketts connection, strict93county history, explicit experimental different-seat transfer, NEfixed1/all18 bounds and exact old17 absence/rejection invariance. Candidate is not deployed until protected checks and publication proof. Six owner paths only AFTER release; MI/MN/MS/AK remain. See NEBRASKA_SENATE_COUNTY_CONTRACT.md and latest progress. R3/R8/calibration gates remain open.
 
 > Released506: coalition caveat now exposed in actual home/night/rehearsal browser accessibility output; final5ace3b6e/Pages40617065853/351publishedfiles verified. NEXT R1 NE factual93county preparation promotion and typed Osborn-v-Ricketts adapter from saved originals/review. No I-to-D relabeling or caucus credit; different-seat transfer remains explicit experimental. Review fixed NE budget/all18route bounds/old17 invariance together. MN/MS/MI403 STOP. R3human handoff/fullR8/calibration acceptance remain open.
