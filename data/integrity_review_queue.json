@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-28T07:10:52.837419Z",
+  "updated_at": "2026-10-28T07:17:34.878720Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
     "advisory_related_headline_buckets": 26,
-    "advisory_related_headlines": 64
+    "advisory_related_headlines": 65
   },
   "advisory_related_headlines": [
     {
@@ -26,8 +26,8 @@
     {
       "lead_id": "6de0d7f925d150890de9",
       "headline": "Judge hears arguments whether California should count 20,000 ballots disputed by US government - WDIO.com",
-      "possibly_related_articles": 6,
-      "distinct_publishers": 5,
+      "possibly_related_articles": 7,
+      "distinct_publishers": 6,
       "state_hints": [
         "CA"
       ],
@@ -464,6 +464,28 @@
       "publisher": "KSL",
       "published_at": "2026-10-27T20:53:42Z",
       "detected_at": "2026-10-28T07:10:52.837419Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 ballots"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "9dbaf2a5c4647a52c3dd",
+      "title": "Judge hears arguments whether California should count 20,000 ballots disputed by feds - KSL News",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNTmxtX2kwTWVPY2FDQmdwc1BXLW9pTjJYVXVYbnFKRWtZOG9fWjgxRzJRUHJNdFhVQnBtSVVOMmhZY0gtbTZoZkhQYmwyQUxESE9NSE95T2s4VjZiWjlkXzU2VGtLWEZNSzhvYzdhOEIzbzZUXzVscDRqeUladzQ2cURJbndCNktzYm85bGEwcjh3c3F2bWZJU2E4SGVrTjlfRFVuTW83dFVDdVY4ZmNTbUhCbUNrNGpzQ0tnQXFR?oc=5",
+      "publisher": "KSL News",
+      "published_at": "2026-10-27T20:53:42Z",
+      "detected_at": "2026-10-28T07:17:34.878720Z",
       "state_hints": [
         "CA"
       ],
@@ -5036,25 +5058,6 @@
       "published_at": "2026-10-15T18:31:00Z",
       "detected_at": "2026-10-15T18:53:47.845079Z",
       "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "b922f73a16eec359d53f",
-      "title": "Wisconsin offers new guidance to local officials on emerging election threats - Democracy Docket",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPc0RTdWpTRXNKa3N1SDM1TENpQkdVNm9hUlRBdUJ3LTZoUE1rLXdGb2k4OERwRlNLLTFySlpnOFE5Z0t6X2R3Zkk3eGRyMGlINnA1MjVvMlBqZUgxemc4R1d5ZmsxMEtqSGdNemtLVW1sMWtvUUNfdEI4NUw3QW55M0tCZW5wSDh2WGw0QTR4eEFmVjJVSFVuRGhaMjZqX0ViSThqbzJJeWNsaTlWNHZsSGoxckFyd3NiUDN6bTVhMA?oc=5",
-      "publisher": "Democracy Docket",
-      "published_at": "2026-10-15T18:15:30Z",
-      "detected_at": "2026-10-15T18:53:47.845079Z",
-      "state_hints": [
-        "WI"
-      ],
       "topic_hints": [
         "security"
       ],
