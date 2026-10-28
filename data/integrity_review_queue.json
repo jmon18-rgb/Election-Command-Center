@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-28T04:03:52.064703Z",
+  "updated_at": "2026-10-28T04:38:13.933401Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -7,8 +7,8 @@
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
-    "advisory_related_headline_buckets": 25,
-    "advisory_related_headlines": 61
+    "advisory_related_headline_buckets": 26,
+    "advisory_related_headlines": 63
   },
   "advisory_related_headlines": [
     {
@@ -274,6 +274,28 @@
       "publisher": "Sun Sentinel",
       "published_at": "2026-10-27T23:45:04Z",
       "detected_at": "2026-10-27T23:46:50.321066Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 ballots"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "8ba6d48ae924348e4da5",
+      "title": "Judge weighs whether California can count up to 20,000 ballots disputed by US government - KX News",
+      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQXzQyZUZfcXdKSTBTS0NRdlR4X1YwbDdlTEc4NnFfU3ViSE90N3pVbDEyaUxHZHloSFUyOER1aFdBTXBId01ZdklfUlBfX0N5YjFILU0zZWJpVEJBSlpEZlFyRm9oa1FEdWw5ZTdRZGJIR3JnWDhsYXRrX3RNeWZjcGNWMmEtQVNOeFp0RUFtRVBldVI4SE9XNkFRLUwwdlJ5cFlqVjI0WUFLbUlTcGZwelk0cTJMVjVQenJaX21YQk52YXhJWFQ3Um94cHJBVzRlazMxa29ZRjDSAd4BQVVfeXFMTnJJS0liMUo0eHZzelRVTlNpcG5Ga0JmZ3pUZERVR0dFaXdqUjZqTGxKaFlKQTk0QUR0elYzTWtUZ0J3ZGpoYUFEUFplN1pYdE9qMkdKZnFuZWkxc2hXTUNCVk1tUi0yZURlOU9aQmhwaDF6anhkMkdtRHRSRDk3RkQ5YzFObFBpM3g4MEw5UFFxQ04wMlk4YzlMVlM4ZzVLejN2WEE0dW1zNjdGR0JudDQwSHREdDBUNDZ0UTRJTUdSUjItYWVEU05aSXdfVGVzY1BQeENQd24zLXF6anlR?oc=5",
+      "publisher": "KX News",
+      "published_at": "2026-10-27T22:58:46Z",
+      "detected_at": "2026-10-28T04:38:13.933401Z",
       "state_hints": [
         "CA"
       ],
@@ -5025,27 +5047,6 @@
       "state_hints": [],
       "topic_hints": [],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "8c0d1786b5b782bf194d",
-      "title": "Texas is sued over backlog of nearly 600,000 voter registrations - The Washington Post",
-      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPMmlsMHYxRGxMTEZTeUtINVFzT2hpTlhYVHdYTVBtWjlBNzV1S1JzbjJMMFZVYUJzNms0cjJ6RlJNWDlwRWpfcnlhZUliQ0FkQ1kzci03RmpmS0pBajJfTFlYQXdZYzJabkRZczJWOFdQTEZqTmc0MnBlbmg3aW1aWjdMRl9rRTZQbGNYY2hOVURxRHp6ZWZPalBXWW80aDZzeWktcGo3WDRINVd6aU9nUk5B?oc=5",
-      "publisher": "The Washington Post",
-      "published_at": "2026-10-15T16:55:23Z",
-      "detected_at": "2026-10-15T17:00:58.248168Z",
-      "state_hints": [
-        "TX"
-      ],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [
-        "600,000 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
