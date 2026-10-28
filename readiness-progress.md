@@ -28,6 +28,15 @@ overlapping county evidence, ESS and retraction; no runtime math change yet.
 This replaces the blanket no-ready-work assessment. No calibration claim, new
 source route/GET, private-data publication or paid/archive activation.
 
+Initial PR527 head038a1569 exposed a real full-row disclosure geometry regression
+in the unchanged readability gate. Shared explicit-summary activation now toggles
+and aligns only that activated reader; background/restored state never scrolls.
+Range help follows the existing expectation disclosure to preserve its semantic
+order. All original1366/390 readability/keyboard/scroll assertions pass. The old
+original-score fixture now explicitly chooses Original through the visible control;
+all original score/story assertions retained and actual1440/390 PASS. Failed head
+not merged/rerun/waived; no timeout increase; corrected exact-head gate required.
+
 ## 2026-10-28 22:00 UTC — PR526 obsolete-storage cleanup executed and published
 
 - Tested1bd71f9ad8ccf98002bc67b734d9e41dbf1e8163 passed all4 applicable workflow parents/9latestjobs7SUCCESS2nonapplicableSKIP/0external/currentclean. FullDOM40773748012/job123117511193 and readiness40773747729 SUCCESS. Read-only preflight40773747954/job123117636993 found50eligible/324,536,415bytes with0mutationrequests. Merge/finalCURRENTmain769a2fe3a6f3277972f84e870cfc20466d6b35f1; Pages40775607865 SUCCESS. All22changedpublicfile/currentindex checks match21:58:56.793Z usingorigin/mainblobs; productioncoherence/currentindex/no_creditPASS. Main rechecked unchanged22:00:09Z. No waived/rerun/timeout-increased checks.

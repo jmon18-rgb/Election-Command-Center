@@ -215,6 +215,17 @@
   const offset=target.getBoundingClientRect().top-top;
   if(offset<0)host.ownerDocument.defaultView.scrollBy(0,offset);
  }
+ function activatePersonalDisclosure(host,summary,event){
+  if(event.defaultPrevented)return;
+  const detail=summary.parentElement;if(detail?.tagName!=='DETAILS')return;
+  // An explicit activation can expand a card into a full grid row. Toggle
+  // synchronously so its new geometry, not the old compact row, controls
+  // alignment. Programmatic open-state restoration never enters this path.
+  event.preventDefault();detail.open=!detail.open;summary.focus({preventScroll:true});
+  const view=host.ownerDocument.defaultView,rect=summary.getBoundingClientRect();
+  const top=Math.max(0,host.ownerDocument.querySelector('.en-toolbar')?.getBoundingClientRect().bottom||0)+8;
+  if(rect.top<top||rect.bottom>view.innerHeight-8)view.scrollBy(0,rect.top-top);
+ }
  function openRaceEvidence(host,code){
   const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(x=>x.dataset.race===code);
   const detail=card?.querySelector('[data-disclosure="expectation"]');if(detail)detail.open=true;
@@ -312,7 +323,6 @@
      card.append(svg,odds);
      card.append(el('small','',row.delta===null?'Baseline comparison unavailable':(row.delta>=0?'+':'')+row.delta.toFixed(1)+' probability points vs polling baseline'));
     }else card.append(el('strong','','Needle pending'));
-    if(row.marginDistribution)card.append(renderMarginSummary(doc,row,el,openPerformance.get(row.code)?.has('margin')||false));
     card.append(el('p','',(row.simulated?'SIMULATED · ':'')+row.status));
     if(row.count!==null)card.append(el('small','',row.count.toLocaleString('en-US')+' named-candidate '+row.left+'/R votes in admitted county evidence'));
     if(row.sourceAt)card.append(el('small','',(row.ownCounts?'Count':'Call')+' source time · '+time(Date.parse(row.sourceAt))));
@@ -330,6 +340,7 @@
      detail.append(el('small','','Largest '+(p.largest_reporting_units||[]).length+' of '+p.reporting_units+' reporting areas shown. This does not extrapolate the raw margin statewide or call the race.'));
      card.append(detail);
     }
+    if(row.marginDistribution)card.append(renderMarginSummary(doc,row,el,openPerformance.get(row.code)?.has('margin')||false));
     if(row.note)card.append(el('small','',row.note));
     if(row.code==='TX-SEN'||WATCH?.districts.some(x=>x.code===row.code)){
      const nav=el('nav','personal-focus-jumps'),button=el('button','',row.code==='TX-SEN'?'Early House watch':'Back to '+row.code+' in early House watch');nav.setAttribute('aria-label',row.code+' watch navigation');button.type='button';button.dataset.personalWatchReturn=row.code;
@@ -340,6 +351,7 @@
    group.append(grid);host.append(group);
   }
   host.append(el('p','methodline','Probability changes are not vote-margin outperformance. Matched county performance remains the model evidence. NC01/AZ01 boundary contracts are still pending; existing TX and WA03 integrations remain available. KS uses the existing conservative final-call gate pending county-hours review. Experimental and uncalibrated; a forecast is not a result.'));
+  for(const summary of host.querySelectorAll('.personal-focus-card summary'))summary.addEventListener('click',event=>activatePersonalDisclosure(host,summary,event));
   if(['watch','jump','card-link','watch-return'].includes(watchFocus?.kind))focusTarget(host,watchFocus)?.focus({preventScroll:true});
   if(focusedRace){const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(c=>c.dataset.race===focusedRace),target=Array.from(card?.querySelectorAll('details')||[]).find(d=>d.dataset.disclosure===focusedDisclosure);(target?.querySelector('summary')||(focusedDisclosure?card?.querySelector('h4'):card?.querySelector('details > summary'))||card?.querySelector('h4'))?.focus({preventScroll:true});}
  }

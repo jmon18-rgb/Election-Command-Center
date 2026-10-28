@@ -33,6 +33,11 @@ try{
   await page.route('**/assets/celebration-owner-mississippi.jpg*',route=>route.abort());
   await page.route('**/assets/milestone-mississippi.svg',route=>route.abort());
   await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles.mississippi}).click();
+  // This retained drill validates every original score and its fallback art.
+  // Select that supported preference explicitly now that fresh profiles prefer
+  // the owner's requested YouTube tracks. The separate popup drill covers them.
+  await page.locator('#enCelebrationMusicQuick').click();
+  assert.equal(await page.locator('#enCelebrationMusicMode').inputValue(),'original');
   await page.locator('#enMilestonePoster').waitFor({state:'hidden'});
   assert.equal(await page.locator('#enMilestoneArt').isVisible(),true);
   assert.equal(await page.locator('#enMilestoneTitle').isVisible(),true,'A missing poster preserves the readable story and controls');
