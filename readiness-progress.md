@@ -1,5 +1,12 @@
 # Readiness progress
 
+## 2026-10-28 — R6 Maine broom-sendoff candidate (NOT deployed)
+
+- Named ready task: original shared SVG hat/broom entrance, breezy stage exit, Maine Senate next-chapter finale. Reuses original milestone-maine.svg hat/broom vocabulary, poster/fallback and released Broom-and-bells sendoff; theatrical parody and preview/no-real-victory captions. Exact existing Democratic Maine call against Susan Collins unchanged. No film artwork/new bitmap/audio/dependency/source/model/cadence/budget/callreader/eligibility changes.
+- ActualEdge1440/390 all11stories PASS including Maine3beats/active animation/reduced static exit/finale/skip-replay/archive/optionalrendererfailure; screenshots celebration-maine-beat0/1/2-{1440,390}.png visually inspected. Signals/player/retraction/11scores PASS.75fingerprints/UTF8 final checks and ALL new exact-head CI required, then finalCURRENTmainPages/actualbytes/ordinarypreview before release claim.
+- Prior33652Iowa proof incorporated in coherent branch.18routes/six owner Senate paths/fourmissing/R2no-go/R3humanOct29/fullR8Oct30 unchanged. No nativeprobe/security retry/unchanged demo. Remaining Ohio/BLEXAS/Tsunami productions partial. Critical forecast/UI repairs/handoff/freeze outrankoptionalfinishing. Oct28daily after09Eastern/13Z; notify only newverified milestone, not prior releases. Next protected review and final publication.
+
+
 ## 2026-10-28 05:59 UTC — R6 Iowa Blue Corn VERIFIED PUBLISHED
 
 - PR513 merged546557eca776af29c9348c88df1fa5bff85a1b51 afterALL35exact-head parents SUCCESS/50latestjobs47success3nonapplicable deployed-only skips/0external/current85757f5f00e0e2f9631071f8d3c139e9b301a024 clean/mergeable. Readiness40640073428/national40640073669/fullDOM40640073634 SUCCESS. No CI failure/rerun/waiver/timeout increase. Local exact-paint assertion changed from simulated fixture clock to real compositor observation, retaining exact blue assertion. Prior8cdfNebraska proof incorporated coherently.

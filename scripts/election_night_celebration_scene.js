@@ -27,6 +27,7 @@
   if(host&&id==='graham'&&['scene','complete'].includes(phase))return renderGraham(host,{phase,beat,preview});
   if(host&&id==='nebraska'&&['scene','complete'].includes(phase))return renderNebraska(host,{phase,beat,preview});
   if(host&&id==='blue_corn'&&['scene','complete'].includes(phase))return renderIowa(host,{phase,beat,preview});
+  if(host&&id==='maine'&&['scene','complete'].includes(phase))return renderMaine(host,{phase,beat,preview});
   if(!host||id!=='talarico'||!['scene','complete'].includes(phase))return false;
   const index=phase==='complete'?2:beat;
   if(!Number.isInteger(index)||index<0||index>2)return false;
@@ -228,6 +229,28 @@
   }
   svg.append(text(preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL',490,520,17,'#bfdfe9'));
   return finish(host,svg,animated,'blue_corn',index,phase);
+ }
+ function renderMaine(host,{phase,beat,preview}){
+  const index=phase==='complete'?2:beat;if(!Number.isInteger(index)||index<0||index>2)return false;
+  const doc=host.ownerDocument,el=(tag,attrs={},label)=>{const n=doc.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,String(v));if(label!==undefined)n.textContent=label;return n;};
+  const text=(label,x,y,size=28,color='#edfaff')=>el('text',{x,y,'text-anchor':'middle','font-family':'Arial,sans-serif','font-size':size,'font-weight':800,fill:color},label);
+  const svg=el('svg',{viewBox:'0 0 980 540',role:'img','aria-label':'Original Maine theatrical broom and Collins-hat sendoff parody; '+(preview?'simulated preview':'source-reported unofficial call'),'data-scene':'maine','data-beat':index}),animated=[];
+  svg.append(el('rect',{width:980,height:540,rx:24,fill:'#143843'}),text('MAINE · U.S. SENATE',490,43,23,'#b3dedf'),el('path',{d:'M30 420Q260 370 490 420T950 420V460H30Z',fill:'#0c6975'}));
+  if(index<2){
+   svg.append(text(index===0?'A BROOM WITH A VIEW':'CHANGE IN THE AIR',490,110,36));
+   const props=el('g',{'data-layer':'maine-broom-hat',style:'transform-box:fill-box;transform-origin:center;'+(index===1?'transform:translate(430px,-90px) rotate(-12deg) scale(.65);opacity:.35':'')});
+   props.append(el('path',{d:'M280 340L680 290',stroke:'#bc884d','stroke-width':12,'stroke-linecap':'round'}),el('path',{d:'M300 317L225 304 230 370 310 354Z',fill:'#e4bf77',stroke:'#ba8a4d','stroke-width':4}),el('path',{d:'M370 280L455 145 495 165 565 280Z',fill:'#30234a',stroke:'#c4a7eb','stroke-width':6}),el('path',{d:'M350 280Q465 330 590 280',stroke:'#a082d5','stroke-width':18,fill:'none','stroke-linecap':'round'}),text('COLLINS',465,272,25,'#f2e7ff'));svg.append(props);
+   animated.push({node:props,frames:index===0?[{transform:'translateY(25px) rotate(-4deg)',opacity:0},{transform:'translateY(0) rotate(0)',opacity:1}]:[{transform:'translate(0,0) rotate(0) scale(1)',opacity:1},{transform:'translate(430px,-90px) rotate(-12deg) scale(.65)',opacity:.35}],duration:index===0?1000:1500});
+   if(index===1){
+    const breeze=el('g',{'data-layer':'maine-change-breeze',fill:'none',stroke:'#92e0f1','stroke-width':5});breeze.append(el('path',{d:'M140 245Q230 210 320 245M160 300Q260 265 350 300M190 355Q300 320 410 355'}));svg.append(breeze);
+    svg.append(text('PLEASE SECURE ALL POINTY HATS',490,440,25,'#c4e7e7'));
+   }
+  }else{
+   const card=el('g',{'data-layer':'maine-next-chapter',style:'transform-box:fill-box;transform-origin:center'});card.append(el('rect',{x:95,y:135,width:790,height:280,rx:24,fill:'#126a90',stroke:'#bbd5ee','stroke-width':6}),text('DING-DONG IN MAINE',490,220,47),text('THE NEXT CHAPTER STARTS HERE',490,300,30,'#cfe8f8'),text('MAINE SENATE',490,365,29));svg.append(card);
+   animated.push({node:card,frames:[{opacity:0,transform:'translateY(24px)'},{opacity:1,transform:'translateY(0)'}],duration:750});
+  }
+  svg.append(text('THEATRICAL SENDOFF · ORIGINAL PARODY',490,480,21,'#bdd5de'),text(preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL',490,520,17,'#bfdfe9'));
+  return finish(host,svg,animated,'maine',index,phase);
  }
  return Object.freeze({render,clear});
 });

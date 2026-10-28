@@ -68,7 +68,7 @@ Three owner-supplied images are wired into the existing Kansas, Mississippi and 
 | Nebraska / Osborn | Existing independent Dan Osborn trigger; static tractor/cornfield art plus generic football/corn beats; no assumed caucus | RELEASED512: original fictional coach Tom Osborne/absurd scoreboard-confetti/Dan Osborn Independent finale. Coach/candidate explicitly distinct; all35 exact-head parents and final published proof pass | RELEASED502 original Sideline brass and halftime bass; no fight-song recording rights assumed. |
 | Mississippi Senate | R6 generic Democratic exact-race trigger; static retired-mascot/crate/wave poster and three beats; current invalid source stays excluded | RELEASED509: original prop/pedestal/wave/storage/finale via shared renderer, three beats and original502score; exact-head/browser/publication verified. | RELEASED502 original Blue-river brass shuffle, unchanged by this visual candidate. |
 | BLUE CORN / Iowa | Existing any-of Senate/governor Democratic call; corn poster and three beats | RELEASED513: original first-blue-kernel/21-kernel transformation/statewide finale; exact-head CI and ordinary publication verified | RELEASED502 original Electric harvest two-step. |
-| Maine | Existing Democratic call against Susan Collins; witch/broom poster and three beats | PARTIAL: staged broom/sendoff action remains static | RELEASED502 original Broom-and-bells sendoff. |
+| Maine | Existing Democratic call against Susan Collins; witch/broom poster and three beats | CANDIDATE: original hat-broom entrance/breezy exit/next-chapter finale; laptop/mobile tests pass, protected review/publication pending | RELEASED502 original Broom-and-bells sendoff. |
 | BUCKEYE BLUE-SHOCK / Ohio | Existing Ohio-special Democratic trigger; cracked-nut/lightning poster and three beats | PARTIAL: actual crack/lightning/victory action missing. Brief says retain existing direction until a replacement is selected | RELEASED502 original Buckeye blue-shock riff. |
 | Blue Tsunami | Existing preview-only finale; no automatic forecast-based earning | PARTIAL: full wave finale/production still missing. Do not add an earned trigger from odds or partial leads | RELEASED502 original Rising tide finale; preview-only eligibility unchanged. |
 
@@ -107,3 +107,7 @@ Three original shared SVG beats and released Sideline brass and halftime bass. F
 ## Iowa Blue Corn transformation RELEASED in PR513
 
 Three shared SVG beats, original Electric harvest two-step and corn poster/fallback. Any-of Senate/governor guard and statewide labels retained. Exact visible compositor color transition/reduced static endpoint/full roster laptop-mobile tests pass. All35 exact-head parents pass; final48c78e4a/Pages40640786402/371files05:58:03Z and ordinaryIAB21 preview verified. No source/model/call/eligibility changes.
+
+## Current candidate: Maine theatrical sendoff
+
+Three original shared SVG beats, existing poster/fallback and Broom-and-bells sendoff. Exact Susan Collins opponent guard retained; no new source/model/call/eligibility changes. Actual laptop/mobile full-roster playback/motion/reduced endpoint/cleanup/fallback pass; protected CI/final publication required.
