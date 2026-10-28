@@ -5,7 +5,7 @@ const result=structuredClone(baseline);result.race_probabilities.find(x=>x.race_
 result.county_results_update={used:[{code:'IA-SEN',as_of:'2026-11-04T02:10:00Z',counted_two_party_votes:20000}]};
 const before=JSON.stringify({result,baseline}),options={closes,now:Date.parse('2026-11-04T02:15:00Z')};
 const rows=focus.rows(result,baseline,options),ia=rows.find(x=>x.code==='IA-SEN');
-assert.equal(rows.length,18);assert.deepEqual([...focus.SENATE],['IA','KS','ME','OH','MI','NE','SC','MN','MS','AK']);
+assert.equal(rows.length,19);assert.deepEqual([...focus.SENATE],['IA','KS','ME','OH','MI','NE','SC','MN','MS','TX','AK']);
 assert.equal(ia.pct,58);assert.equal(ia.delta,13);assert.equal(ia.ownCounts,true);assert.equal(ia.count,20000);
 assert.equal(ia.performance,null,'Probability movement alone must not invent local outperformance');
 const withPerformance=structuredClone(result);withPerformance.county_results_update.used[0].matched_performance={difference_margin_scenarios:[-1,3]};

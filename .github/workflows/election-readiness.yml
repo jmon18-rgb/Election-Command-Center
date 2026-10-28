@@ -65,6 +65,9 @@ jobs:
       - name: Individual ratings and automatic celebration popup journey
         if: ${{ !cancelled() }}
         run: node scripts/test_ratings_celebration_popup_browser.mjs
+      - name: Texas shared needle and early House watch keyboard and retraction journey
+        if: ${{ !cancelled() }}
+        run: node scripts/test_house_early_watch_browser.mjs
       - name: Reading context survives celebrations, queued bulletins and background redraws
         if: ${{ !cancelled() }}
         run: node scripts/test_celebration_reading_return_browser.mjs
@@ -81,6 +84,14 @@ jobs:
           name: source-recovery-browser
           path: artifacts/readiness/source-recovery-*.png
           if-no-files-found: warn
+      - name: Upload Texas and early House watch operator evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: texas-house-watch-browser
+          path: artifacts/readiness/ui-review/texas-house-watch/
+          if-no-files-found: warn
+          retention-days: 30
       - name: Upload celebration browser screenshots
         if: always()
         uses: actions/upload-artifact@v4

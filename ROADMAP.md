@@ -1,5 +1,13 @@
 # JackStradamus · development plan
 
+## October28 — Texas and21House early indicators ready for protected review
+
+Texas Senate now shares the personal needle renderer and existing admitted TX path (eleven Senate/eight original House;18runtime county inputs unchanged). Owner's21Cook/FLIPR rows are preserved exactly in a frozen reference with unknown publisher date and no independent-capture claim. A compact visible watch shows distinct verified R wins in Lean D and D wins in Likely/Solid R, per-district shared-model bands/chances, exact quoted references, source/admission/close windows, progressive disclosure and direct Texas/watch controls. Retraction clears signals; raw leads never count as wins; display never reconditions or averages probabilities. Most new watched districts have no admitted matched county route, including unresolved NC01; no guessed source/geometry or likelihood expansion. Calibration remains UNMET.
+
+Actual isolated Edge1366x900/390x844 normal controls/keyboard/source-reference disclosure/redraw focus/distinct synthetic calls/withdrawal/mode/same-live-model/overflow PASS. Existing shared personal/rehearsal and queued-reading regressions PASS; original assertions retained except explicit owner roster now19. Baseline4922031 and scoped before/after screenshots retained in ui-review/texas-house-watch-source; synthetic test labels/human NOT_RUN retained. Next exact-head full protected review, finalCURRENTmainPages/bytes/ordinary published verification, then scoped handoff addendum only.
+
+Archive PR522 merged4922031 after10applicableparentsSUCCESS/16latestjobs13SUCCESS3nonapplicablePRdeploymentSKIP/0external/clean. Pages40742560756SUCCESS, all391selectedpublishedfiles match18:13:56Z. Capture remains OFF: owner30day/no-paidstorage policy is approved but actual GitHub free capacity and spending block remain unverified. Private key ignored/outside upload dirs; preserve locally. Billing access does not block this ready UI task. No new native requests or guide1.0 rebuild.
+
 ## Active owner priorities — October28 Texas and early House indicators
 
 Add Texas Senate to shared personal needles while retaining existing Texas Senate/governor integrations. Build the supplied21House early-watch reference from exact Cook/FLIPR rows, with unspecified publisher-as-of made explicit. Verified calls and already admitted matched returns affect the same joint model once; the watch summarizes named reference surprises and multiple consistent outcomes, never averages marginals, adds duplicated likelihood or infers outperformance from raw partial district margins. Preserve eight pivotal House cards, exact county/source stops and calibration no-go. Proceed independently of archive billing access.

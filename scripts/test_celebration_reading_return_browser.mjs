@@ -11,7 +11,7 @@ try{browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL
   await page.route('**/*',r=>new URL(r.request().url()).hostname==='127.0.0.1'?r.continue():r.abort());
   await page.goto(`http://127.0.0.1:${server.address().port}/#electionNight`,{waitUntil:'domcontentloaded'});
   await page.locator('#enMode2026').click();
-  await page.waitForFunction(()=>document.querySelectorAll('#enPersonalFocus article').length===18);
+  await page.waitForFunction(()=>document.querySelectorAll('#enPersonalFocus article').length===19);
   await page.clock.setSystemTime(new Date('2026-11-04T03:00:00Z'));
   await page.evaluate(()=>{document.querySelector('#enCelebrationAnnouncement').play=()=>Promise.resolve();});
 const call=async(active)=>page.evaluate(active=>{enCivicByWatch['Senate|TX']={provider:'civicAPI',office:'Senate',key:'TX',race_id:87438,total:98001,last_updated:'2026-11-04T02:00:00Z',called:active?'James Talarico':null,candidates:[{name:'James Talarico',party:'D',votes:65000},{name:'Ken Paxton',party:'R',votes:33001}]};delete enCivicErrors['Senate|TX'];enCivicValidatedGenerations['Senate|TX']=enCivicBreaker?.status().generation??0;enRenderMilestones();},active);

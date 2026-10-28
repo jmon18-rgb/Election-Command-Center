@@ -908,6 +908,14 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 @media(max-width:560px){body[data-active-page="electionNight"] .hero-waves{padding:10px 12px}body[data-active-page="electionNight"] .hero-copy h1{font-size:23px}}
 @media(max-width:560px){#electionNight .en-toolbar{gap:8px;padding-top:7px;padding-bottom:7px}#electionNight .en-toolbar>.en-connection{font-size:10px}.en-display-options{max-width:100%;box-sizing:border-box}.en-quick-actions{align-items:flex-start}}
 
+
+.personal-focus-jumps{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.personal-focus-jumps button{min-height:44px;padding:9px 16px;border-radius:24px;background:#152b44;color:#d9eeff;border:1px solid #507c9f}
+.early-watch{margin:18px 0 26px;padding:18px;border:1px solid #426786;border-radius:18px;background:linear-gradient(120deg,#10253b,#151c32)}
+.early-watch h3{margin-top:0;font-size:24px}.early-watch small{display:block;overflow-wrap:anywhere}.early-watch-signals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.early-watch-signal{padding:12px;border:1px solid #4a5b71;border-radius:12px;background:#101e30}.early-watch-signal[data-multiple=true]{border-color:#e6c36f}.early-watch-signal strong{display:block}.early-watch-signal small{margin-top:6px}
+.early-watch summary{min-height:44px;padding:10px 4px;cursor:pointer;box-sizing:border-box;overflow-wrap:anywhere}.early-watch-race{border-top:1px solid #425169;padding:3px 0}.early-watch-race>summary{display:flex;align-items:center;flex-wrap:wrap;gap:8px}.early-watch-race>summary strong{min-width:64px}.early-watch-rating{padding:3px 9px;border-radius:12px;background:#203d58;color:#e3f1ff}.early-watch-reference{color:#c4cedc}.early-watch-gauge{height:10px;background:linear-gradient(90deg,#b74f62,#29334a 50%,#459dda);border-radius:6px;position:relative;margin:14px 10px 18px;max-width:320px}.early-watch-gauge span{position:absolute;top:-5px;width:4px;height:20px;background:#ffde81;transform:translateX(-50%)}
+.early-watch h3,.personal-focus-card h4{scroll-margin-top:82px}.early-watch :focus-visible,.personal-focus-jumps :focus-visible{outline:3px solid #ffdc81;outline-offset:3px}
+@media(max-width:600px){.early-watch{padding:12px}.early-watch-signals{grid-template-columns:1fr}.early-watch-race>summary span:last-child{flex-basis:100%;font-size:13px}}
+
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -1557,7 +1565,8 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/election_night_celebration_online.js?v=669b56b2d0a3"></script>
 <script src="./scripts/election_night_celebration_music.js?v=6a479f8a84b1"></script>
 <script src="./scripts/election_night_celebration_scene.js?v=f1943c3e36ba"></script>
-<script src="./scripts/personal_election_focus.js?v=2e34abf4bd17"></script>
+<script src="./scripts/house_early_watch_reference.js?v=e1b9bc598b36"></script>
+<script src="./scripts/personal_election_focus.js?v=79112f2900bb"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=6eaa0d8f80cf"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=165fc37d665a"></script>
 <script src="./scripts/civicapi_state_batch.js?v=99e987c72cb8"></script>
