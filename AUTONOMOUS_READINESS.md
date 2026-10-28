@@ -1,5 +1,12 @@
 # Election Night production-readiness assignment
 
+## 2026-10-28 — R6 remaining retained roster candidate (NOT deployed)
+
+- Named ready task: one coherent shared-renderer candidate adds Ohio buckeye pressure/split-shell lightning/special-Senate finale; BLEXAS illustrativeTexas/two separately labeled office stars/two-call bonus finale; Tsunami theatrical wave/tilting lawnsign/explicit preview-only finale. Existing local SVG vocabulary/posters/fallbacks/original three scores reused. Tsunami original meme hides only while dedicated renderer succeeds, restoring on optional-renderer failure. No newbitmap/audio/dependency/source/model/cadence/budget/callreader/eligibility change.
+- Exact existing gates retained: OhioSPECIAL Senate, BOTH separateTexasSenate+governor Democratic calls for BLEXAS, Tsunami never earns automatically/explicitpreviewonly/no odds-based trigger. Existing signals and deterministic player exercise those gates/retraction. ActualEdge1440/390 all11stories PASS including nine new beats/active motion/reduced static split-star-sign-wave endpoints/finales/skip-replay/archive/optionalrendererfailure/originalposterfallback, Tsunami duplicate-poster suppression and fallback restoration. Screenshots celebration-{ohio,blexas,tsunami}-beat{0,1,2}-{1440,390}.png visually inspected.11score tests PASS.75fingerprints/UTF8 final checks and ALL new exact-head CI required, then finalCURRENTmainPages/actualbytes/ordinarythreepreview proof before release.
+- Prior406adMaine proof incorporated coherently; no status-only push. This would deliver dedicated engineering visuals for all retained11stories, not human/music-quality/fullR8 acceptance or projectcompletion.18runtime/sixownerSenatepaths/fourmissing/R2no-go/R3humanOct29/fullR8Oct30 remain. No nativeprobe/securityretry. Next protected review/release, then genuinely missing owner-workflow/glance/content-density/sourceimpact tasks; no extra celebration scope. Criticalforecast/UI/handoff/freeze outrankoptionalfinishing. Oct28daily after09Eastern/13Z; notify only a newverified batchmilestone.
+
+
 ## 2026-10-28 06:15 UTC — R6 Maine sendoff VERIFIED PUBLISHED
 
 - PR514 mergedaec97fd56d0471d14616aae698abfb71017b1890 afterALL35exact-head parents SUCCESS/50latestjobs47success3nonapplicable deployed-only skips/0external/currentb8d5cb8e04eab068fec642775207d4f51bf0faef clean/mergeable. Readiness40641463886/national40641463964/fullDOM40641463906 SUCCESS. No CI failure/rerun/waiver/timeout increase. Prior33652Iowa proof incorporated coherently.

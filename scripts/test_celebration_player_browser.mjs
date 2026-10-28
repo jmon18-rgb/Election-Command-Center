@@ -44,7 +44,7 @@ try{
   await page.locator('#enMilestoneClose').click();
   await page.unroute('**/assets/celebration-owner-mississippi.jpg*');
   for(const id of ['graham','blexas','blue_corn','blansas','maine','nebraska','ohio','talarico','abbott','mississippi','tsunami']){
-   await page.emulateMedia({reducedMotion:['talarico','abbott','mississippi','blansas','graham','nebraska','blue_corn','maine'].includes(id)?'no-preference':'reduce'});
+   await page.emulateMedia({reducedMotion:['talarico','abbott','mississippi','blansas','graham','nebraska','blue_corn','maine','ohio','blexas','tsunami'].includes(id)?'no-preference':'reduce'});
    if(id==='tsunami')await page.locator('#enTsunamiPreview').click();
    else await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles[id]}).click();
    assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'announcement');
@@ -61,7 +61,30 @@ try{
     const thumbnail=page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles.graham}).locator('img');
     assert.match(await thumbnail.getAttribute('src'),/celebration-owner-graham\.jpg\?v=90f3e5c8fdee$/,'Thumbnail must share the owner artwork revision');
    }
-   if(id==='maine'){
+   if(['ohio','blexas','tsunami'].includes(id)){
+    const visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
+    const spec={ohio:{first:'ohio-buckeye',middle:'ohio-blue-lightning',last:'ohio-special-finale',music:'Buckeye blue-shock riff'},blexas:{first:'blexas-illustrative-texas',middle:'blexas-office-star',last:'blexas-two-call-finale',music:'Two-star victory fanfare'},tsunami:{first:'tsunami-theatrical-wave',middle:'tsunami-lawn-sign',last:'tsunami-preview-finale',music:'The rising tide finale'}}[id];
+    assert.equal(await visual.locator('[data-layer="'+spec.first+'"]').count(),1);
+    assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
+    assert((await page.locator('#enCelebrationMusicLabel').innerText()).includes(spec.music));
+    if(id==='tsunami'){assert.equal(await page.locator('#enTsunamiMeme').isHidden(),true,'Dedicated scene replaces duplicate wave poster');assert.match(await visual.innerText(),/PREVIEW ONLY.*NOT A FORECAST TRIGGER/);}
+    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-${id}-beat0-${width}.png`)});
+    await page.clock.runFor(2400);assert.equal(await visual.getAttribute('data-beat'),'1');
+    assert.equal(await visual.locator('[data-layer="'+spec.middle+'"]').count(),id==='blexas'?2:1);
+    assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await page.waitForFunction(()=>document.querySelector('#enCelebrationVisual').getAnimations({subtree:true}).length===0);
+    if(id==='ohio'){assert.equal(await visual.locator('[data-layer="ohio-cracked-shell"]').count(),2);assert.match(await visual.locator('[data-layer="ohio-cracked-shell"]').first().getAttribute('style'),/translateX\(-60px\)/);}
+    if(id==='blexas')assert.match(await visual.innerText(),/SENATE.*GOVERNOR.*TWO SEPARATE STATEWIDE CALLS/s);
+    if(id==='tsunami')assert.match(await visual.locator('[data-layer="tsunami-lawn-sign"]').getAttribute('style'),/rotate\(18deg\)/);
+    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-${id}-beat1-${width}.png`)});
+    await page.clock.runFor(2400);assert.equal(await visual.locator('[data-layer="'+spec.last+'"]').count(),1);
+    if(id==='ohio')assert.match(await visual.innerText(),/SPECIAL SENATE/);
+    if(id==='blexas')assert.match(await visual.innerText(),/BOTH CALLS REQUIRED/);
+    if(id==='tsunami')assert.match(await visual.innerText(),/PREVIEW ONLY.*NO NATIONAL CALL/s);
+    await visual.screenshot({path:resolve(root,`artifacts/readiness/celebration-${id}-beat2-${width}.png`)});
+    await page.clock.runFor(2500);
+   }else if(id==='maine'){
     const visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
     assert.equal(await visual.locator('[data-layer="maine-broom-hat"]').count(),1);
     assert.match(await visual.innerText(),/COLLINS/);
@@ -238,7 +261,7 @@ try{
     assert.equal(await page.locator('#enMilestoneClose').isVisible(),true);
    }
    assert.match(await page.locator('#enMilestoneKicker').innerText(),/PREVIEW/);
-   if(['graham','blansas','talarico','abbott','mississippi','nebraska','blue_corn','maine'].includes(id)){
+   if(['graham','blansas','talarico','abbott','mississippi','nebraska','blue_corn','maine','ohio','blexas'].includes(id)){
     const src=await page.locator('#enMilestonePoster').getAttribute('src');
     const ownerArt={graham:'graham',blansas:'kansas',mississippi:'mississippi'}[id];
     assert.equal(new URL(src,'http://localhost').pathname,ownerArt?'/assets/celebration-owner-'+ownerArt+'.jpg':'/assets/milestone-'+({blue_corn:'blue-corn'}[id]||id)+'.svg');
@@ -252,19 +275,21 @@ try{
     if(id==='graham')assert.doesNotMatch(await page.locator('#enMilestonePoster').getAttribute('alt'),/lindsey/i);
     await page.locator('#enMilestonePoster').evaluate(img=>img.decode());
     mkdirSync(resolve(root,'artifacts/readiness'),{recursive:true});
-    await page.locator(['talarico','abbott','mississippi','blansas','graham','nebraska','blue_corn','maine'].includes(id)?'#enCelebrationVisual':'#enMilestonePoster').screenshot({path:resolve(root,`artifacts/readiness/celebration-${id}-${width}.png`)});
+    await page.locator(['talarico','abbott','mississippi','blansas','graham','nebraska','blue_corn','maine','ohio','blexas','tsunami'].includes(id)?'#enCelebrationVisual':'#enMilestonePoster').screenshot({path:resolve(root,`artifacts/readiness/celebration-${id}-${width}.png`)});
    }
   }
   // Supplied-art productions retain shared cancellation/archive mechanics.
-  for(const sceneId of ['mississippi','blansas','graham','nebraska','blue_corn','maine']){
+  for(const sceneId of ['mississippi','blansas','graham','nebraska','blue_corn','maine','ohio','blexas','tsunami']){
   await page.emulateMedia({reducedMotion:'no-preference'});
-  await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles[sceneId]}).click();
+  if(sceneId==='tsunami')await page.locator('#enTsunamiPreview').click();
+  else await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles[sceneId]}).click();
   await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
   assert.equal(await page.locator('#enCelebrationVisual').evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
   await page.locator('#enMilestoneClose').click();
   assert.equal(await page.locator('#enCelebrationVisual svg').count(),0);await page.clock.runFor(20000);
   assert.equal(await page.locator('#enMilestoneSpotlight').isHidden(),true,'Skipped scene timers cannot reopen the story');
-  await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles[sceneId]}).click();
+  if(sceneId==='tsunami')await page.locator('#enTsunamiPreview').click();
+  else await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles[sceneId]}).click();
   await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
   await page.locator('#enMode2024').click();assert.equal(await page.locator('#enCelebrationVisual svg').count(),0);
   await page.locator('#enMode2026').click();
@@ -315,12 +340,19 @@ try{
   assert.equal(await page.locator('#enCelebrationIcon').isVisible(),true);
   assert.equal(await page.locator('#enMilestonePoster').isVisible(),true);
   await page.locator('#enMilestoneClose').click();
-  for(const sceneId of ['mississippi','blansas','graham','nebraska','blue_corn','maine']){
-  await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles[sceneId]}).click();
+  for(const sceneId of ['mississippi','blansas','graham','nebraska','blue_corn','maine','ohio','blexas','tsunami']){
+  if(sceneId==='tsunami')await page.locator('#enTsunamiPreview').click();
+  else await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles[sceneId]}).click();
   await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
   assert.equal(await page.locator('#enCelebrationVisual').isHidden(),true);
-  assert.equal(await page.locator('#enMilestonePoster').isVisible(),true,'Missing optional renderer retains the original poster');
-  assert.match(await page.locator('#enMilestonePoster').getAttribute('src'),sceneId==='maine'?/milestone-maine\.svg/:sceneId==='blue_corn'?/milestone-blue-corn\.svg/:sceneId==='nebraska'?/milestone-nebraska\.svg/:new RegExp('celebration-owner-'+({blansas:'kansas',mississippi:'mississippi',graham:'graham'}[sceneId])+'\\.jpg'));
+  if(sceneId==='tsunami'){
+   assert.equal(await page.locator('#enTsunamiMeme').isVisible(),true,'Missing wave renderer retains original preview poster');
+   assert.match(await page.locator('#enMilestoneKicker').innerText(),/PREVIEW/);
+  }else{
+   assert.equal(await page.locator('#enMilestonePoster').isVisible(),true,'Missing optional renderer retains the original poster');
+   const original={maine:'milestone-maine.svg',blue_corn:'milestone-blue-corn.svg',nebraska:'milestone-nebraska.svg',ohio:'milestone-ohio.svg',blexas:'milestone-blexas.svg',blansas:'celebration-owner-kansas.jpg',mississippi:'celebration-owner-mississippi.jpg',graham:'celebration-owner-graham.jpg'}[sceneId];
+   assert.equal(new URL(await page.locator('#enMilestonePoster').getAttribute('src'),'http://localhost').pathname,'/assets/'+original);
+  }
   await page.locator('#enMilestoneClose').click();
   }
   await page.route('**/election_night_celebration_player.js*',route=>route.abort());

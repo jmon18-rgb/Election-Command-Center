@@ -1513,7 +1513,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 <footer class="footer"><span>2026 ELECTION COMMAND CENTER · CLARITY OVER NOISE</span><span><a href="https://github.com/jmon18-rgb/Election-Command-Center">Source code ↗</a> · <span id="updated">Briefing pending</span></span></footer></main>
 <script src="./scripts/election_night_celebration_player.js?v=8f7fb37d2ca2"></script>
 <script src="./scripts/election_night_celebration_music.js?v=6a479f8a84b1"></script>
-<script src="./scripts/election_night_celebration_scene.js?v=c5895ab0fd70"></script>
+<script src="./scripts/election_night_celebration_scene.js?v=f1943c3e36ba"></script>
 <script src="./scripts/personal_election_focus.js?v=5f87ab857c30"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=6eaa0d8f80cf"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=165fc37d665a"></script>
@@ -6009,6 +6009,7 @@ function enCelebrationRenderVisual(item,demo,phase,scene){
   shown=Boolean(window.ElectionNightCelebrationScene?.render(host,{id:item.id,phase,beat,preview:demo}));
  }catch{enCelebrationClearVisual()}
  $('#enCelebrationIcon').hidden=shown;
+ if(item.id==='tsunami')$('#enTsunamiMeme').hidden=shown;
  if(shown){$('#enMilestonePoster').hidden=true;$('#enMilestoneArt').hidden=true;}
  if(shown&&['mississippi','blansas','graham'].includes(item.id))$('#enMilestoneSource').append(elt('span','en-scene-credit','Original animated scene · owner-supplied poster retained.'));
  return shown;
