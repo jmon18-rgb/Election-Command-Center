@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-28T00:26:08.190038Z",
+  "updated_at": "2026-10-28T01:12:29.070993Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
@@ -472,6 +472,26 @@
       "headline_numbers_unverified": [
         "20,000 ballots"
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "b32dc5a6dc58d7fa34e2",
+      "title": "Does the Alaska election lawsuit have a chance? - Harvard Gazette",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPMW5IUTlOaVVKX2Z5cmYtWUcyc1NsWEYwbmdlc2dCdFlfRTlZTG5Wb0tNc3BYYUtPT3I4U1JET3JXSURjMDZqbHFPSGlwMGNDMmNlcDVfTHRGZk93OUwxOVAyUUxaVEJXRjlJNy1tWUY5eFNOZEtzNW93MVZCV2hHZ1JEYjcycWF6MlFMMTVEQ1JJNXNOZV9oX2Rn?oc=5",
+      "publisher": "Harvard Gazette",
+      "published_at": "2026-10-27T18:48:46Z",
+      "detected_at": "2026-10-28T01:12:29.070993Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5024,23 +5044,6 @@
         "litigation"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "f927f65fe44c181a8ce8",
-      "title": "Latino leaders say Prop 39 is all about politics, not election security - CaloNews.com",
-      "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxQMTFmLVd6NW0yQTV4dHVlaE5pb3VWM3VVUkRPczN6a1Z2UlVXZzFBTU13M05nRkQyTzRIeW80UjZEb3JZM3dNblY5SjNHdmFYOURucU1SUExrMjBVWHNyU2I0cTREY29TclBMOGpXanBpSGFxbDhQOHhYMG9UTVpXODVzVWE5OTdVbEdqdlpINlpGd1ptUDZQWDZ2WjlLdF9ZazBpUkR1RkRIVWdGYWZzWTFfZWU4NjBjLUFibDkxQktiMEJoS3VfM0pNMWV2QjdnbS1OSnNpMlF6WUx2LUM5YlVDSFh0R1lLRU9N?oc=5",
-      "publisher": "CaloNews.com",
-      "published_at": "2026-10-15T15:00:00Z",
-      "detected_at": "2026-10-15T15:07:27.637939Z",
-      "state_hints": [],
-      "topic_hints": [],
-      "headline_numbers_unverified": [
-        "39 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,

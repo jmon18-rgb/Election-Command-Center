@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-28T00:26:08.832524+00:00",
+  "updated_at": "2026-10-28T01:12:29.660825+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 834,
+      "available_in_source": 835,
       "records_examined": 300
     },
     "house": {
@@ -13,14 +13,119 @@
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 937,
+      "available_in_source": 938,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 310,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 2,
+  "injected_poll_ids": [
+    {
+      "race_code": "SC-GOV",
+      "poll_id": "57649163-682d-4897-bea8-5e8679901359"
+    },
+    {
+      "race_code": "SC-SEN",
+      "poll_id": "57649163-682d-4897-bea8-5e8679901359"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "SC-SEN",
+      "race_type": "senate",
+      "state": "SC",
+      "poll_id": "57649163-682d-4897-bea8-5e8679901359",
+      "question_id": "4153e2a4-42ba-4212-8411-527391251ebd",
+      "pollster": "The Citadel School of Humanities and Social Sciences",
+      "dem_name": "Annie Andrews",
+      "rep_name": "Darline Graham",
+      "dem": 40.0,
+      "rep": 34.0,
+      "margin": 6.0,
+      "field_end": "2026-10-25",
+      "field_start": "2026-10-14",
+      "posted_date": "2026-10-27",
+      "posted_source_datetime": "2026-10-27T20:37:00",
+      "posted_source_time": "10/27/26 20:37",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://poll.citadel.edu/2026/10/27/sc-voters-look-to-pass-the-torch-in-the-midterms/",
+      "sample_population": "rv",
+      "sample_size": 1009,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "SC-SEN",
+      "race_type": "senate",
+      "state": "SC",
+      "poll_id": "57649163-682d-4897-bea8-5e8679901359",
+      "question_id": "d2ef23bf-014c-470a-8640-7986e948b9e9",
+      "pollster": "The Citadel School of Humanities and Social Sciences",
+      "dem_name": "Annie Andrews",
+      "rep_name": "Darline Graham",
+      "dem": 39.0,
+      "rep": 42.0,
+      "margin": -3.0,
+      "field_end": "2026-10-25",
+      "field_start": "2026-10-14",
+      "posted_date": "2026-10-27",
+      "posted_source_datetime": "2026-10-27T20:37:00",
+      "posted_source_time": "10/27/26 20:37",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://poll.citadel.edu/2026/10/27/sc-voters-look-to-pass-the-torch-in-the-midterms/",
+      "sample_population": "lv",
+      "sample_size": 890,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "SC-GOV",
+      "race_type": "governor",
+      "state": "SC",
+      "poll_id": "57649163-682d-4897-bea8-5e8679901359",
+      "question_id": "2464f8ec-9eb6-4c27-b8be-505e3926dde8",
+      "pollster": "The Citadel School of Humanities and Social Sciences",
+      "dem_name": "Jermaine Johnson",
+      "rep_name": "Alan Wilson",
+      "dem": 32.0,
+      "rep": 36.0,
+      "margin": -4.0,
+      "field_end": "2026-10-25",
+      "field_start": "2026-10-14",
+      "posted_date": "2026-10-27",
+      "posted_source_datetime": "2026-10-27T20:37:00",
+      "posted_source_time": "10/27/26 20:37",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://poll.citadel.edu/2026/10/27/sc-voters-look-to-pass-the-torch-in-the-midterms/",
+      "sample_population": "rv",
+      "sample_size": 1009,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "SC-GOV",
+      "race_type": "governor",
+      "state": "SC",
+      "poll_id": "57649163-682d-4897-bea8-5e8679901359",
+      "question_id": "b70f8dff-4f6d-4750-a117-cd5922f197d5",
+      "pollster": "The Citadel School of Humanities and Social Sciences",
+      "dem_name": "Jermaine Johnson",
+      "rep_name": "Alan Wilson",
+      "dem": 31.0,
+      "rep": 42.0,
+      "margin": -11.0,
+      "field_end": "2026-10-25",
+      "field_start": "2026-10-14",
+      "posted_date": "2026-10-27",
+      "posted_source_datetime": "2026-10-27T20:37:00",
+      "posted_source_time": "10/27/26 20:37",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://poll.citadel.edu/2026/10/27/sc-voters-look-to-pass-the-torch-in-the-midterms/",
+      "sample_population": "lv",
+      "sample_size": 890,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "VA-01",
       "race_type": "house",
