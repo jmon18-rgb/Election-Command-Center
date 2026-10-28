@@ -68,6 +68,15 @@ and document receipt/clocks. Both modes make zero source requests.
 
 ## Admission remains closed
 
+File-specific repository lineage was checked separately on October28: publisher
+commit `c7e31f42d44eedfc1c792c2025475b6d66527fb8`, dated January18,2021,
+contains the exact saved142502byte blob
+`c7540d5750654ed7a581f8b38519c25bd844d3d6`. Only commit/tree metadata was
+requested; no original CSV or PDF was downloaded again. This establishes a
+processed repository version, not native certification, source-file reuse rights
+or election-night publication/correction chronology. The local metadata receipt
+is a saved connector serialization, not original HTTP response bytes.
+
 Every full report retains `runtime_eligible: false`,
 `current_2026_source_admitted: false`, `chronological_calibration: false`,
 `reuse_rights_established: false` and

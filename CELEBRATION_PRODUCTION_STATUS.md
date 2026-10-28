@@ -1,5 +1,10 @@
 # Celebration production inventory - October 27, 2026
 
+PR521 verifies reading return across queued bulletins and celebration preemption
+after background redraws. Finalmain4c3e0e65/Pages40715028630/383files and actual
+published1366/390 tests pass; source/call/music/timing/production roster unchanged.
+Human listening, assistive and full interpretation acceptance remain open.
+
 ## Owner-requested popup and optional YouTube upgrade — October28 VERIFIED PUBLISHED518
 
 All11 retained productions now share a native popup rather than inline-only playback. Existing earned triggers remain unchanged. Normal preview launcher, story selection, Escape, keyboard wrap, sound/skip, archive/retraction teardown and return-focus tasks pass on isolated desktop/phone. Optional visible YouTube tracks: The Eyes of Texas / University of Texas Longhorn Band and Walk This Way / Aerosmith, with per-event local custom URLs. No recording is copied; original cues remain the default and manual fallback. Ads, internet, embedding and autoplay depend on YouTube/browser policy. Watch-page checks and synthetic iframe mechanics do not establish actual embed playback or human music-quality acceptance. PR518 protected35parent/50job gate and currentmaine8622cbc/Pages40698205303/378published-file verification PASS. Actual published desktop/phone and ordinaryIAB27 popup/return focus verified; BOTH official YouTube tracks showed playback controls after normal Skip, with ads observed. Selected recording can continue on finale until mute/close/replacement/retraction. Human listening/mix/assistive acceptance remains open.
