@@ -1566,7 +1566,7 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/election_night_celebration_music.js?v=6a479f8a84b1"></script>
 <script src="./scripts/election_night_celebration_scene.js?v=f1943c3e36ba"></script>
 <script src="./scripts/house_early_watch_reference.js?v=e1b9bc598b36"></script>
-<script src="./scripts/personal_election_focus.js?v=79112f2900bb"></script>
+<script src="./scripts/personal_election_focus.js?v=79b253c386a4"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=6eaa0d8f80cf"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=165fc37d665a"></script>
 <script src="./scripts/civicapi_state_batch.js?v=99e987c72cb8"></script>
@@ -1624,7 +1624,7 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/national_county_likelihood.js?v=e1ceb7b0bfd1"></script>
 <script src="./scripts/official_admission_audit.js?v=c2720f504058"></script>
 <script src="./scripts/national_needle_rehearsal.js?v=02f20194577c"></script>
-<script src="./scripts/chamber_control_model.js?v=c95edda8e069"></script>
+<script src="./scripts/chamber_control_model.js?v=76e60458f85d"></script>
 <script src="./scripts/electorate_what_if_2026.js?v=1a5fe3701694"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
 <script src="./scripts/chamber_poll_error_audit.js?v=9e73e0e9f9fe"></script>
@@ -2015,8 +2015,8 @@ function renderModelOverview(data){
    odds.append(elt('strong','party-d','D '+nice(d)),
      elt('strong','party-r','R '+nice(100-d)));
    margin.append(odds,elt('small','','Poll '+marginText(race.dem_minus_rep)+
-     ' · assumed error ±'+probability.sigma_points.toFixed(1)+' pts'));
-   row.title='Experimental two-party win probabilities, conditional on assumed polling error. Not an official call.';
+     ' · '+jointBaselineSpreadText(probability)));
+   row.title='Experimental two-party win probabilities. Baseline spread is not a calibrated interval or an official call.';
   }else{
    margin.append(elt('strong',marginColor(race.dem_minus_rep),marginText(race.dem_minus_rep)),
      elt('small','',modelMode==='generic'?'polling average':
@@ -2342,8 +2342,7 @@ function renderModelRaceOdds(estimate){
    marginText(item.dem_minus_rep)+' · modeled margin '+
    marginText(item.model_dem_margin_points)+
    (item.office==='senate'?' · 2026 candidate polling + mapped state fundamentals':'')+
-   ' · total modeled race uncertainty '+
-   item.sigma_points.toFixed(1)+' points (national + chamber + state + local)'+
+   ' · '+jointBaselineSpreadText(item,true)+
    (item.office==='senate'&&item.polling_error_tier?
      (item.polling_error_tier==='recent_multi_firm'?
       ' · recent multi-firm polling: 6.5-point floor':
@@ -2516,6 +2515,26 @@ function updateHealth(){const parts=[];let good=0;for(const [name,item] of Objec
 function elt(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=txt;return e}
 function pct(v){return typeof v==='number'&&Number.isFinite(v)?v.toFixed(1)+'%':'—'}
 function marginText(n){if(typeof n!=='number')return '—';return Math.abs(n)<.05?'Even':(n>0?'D +':'R +')+Math.abs(n).toFixed(1)}
+function jointBaselineSpreadText(row,detail=false){
+ const finiteSpread=value=>typeof value==='number'&&Number.isFinite(value)&&value>=0;
+ const complete=row?.uncertainty_method==='EXPERIMENTAL_BASELINE_LATENT_SPREAD_NOT_CALIBRATED_INTERVAL'&&
+  [row?.gaussian_sigma_points,row?.redrawn_permutation_sigma_points,
+   row?.total_latent_sigma_points,row?.sigma_points].every(finiteSpread)&&
+  Math.abs(row.gaussian_sigma_points-row.sigma_points)<=.002&&
+  Math.abs(row.total_latent_sigma_points-Math.hypot(row.gaussian_sigma_points,
+   row.redrawn_permutation_sigma_points))<=.002;
+ if(!complete){
+  const gaussian=finiteSpread(row?.sigma_points)?row.sigma_points.toFixed(1):'unavailable';
+  return 'baseline Gaussian-only spread σ '+gaussian+' pts · additional geography spread unavailable'+
+   (detail?'. Experimental baseline, not a live posterior or calibrated interval.':'');
+ }
+ const total=row.total_latent_sigma_points.toFixed(1);
+ if(!detail)return 'baseline assumed spread σ '+total+' pts · experimental';
+ return 'assumed baseline spread σ '+total+' pts (Gaussian σ '+
+  row.gaussian_sigma_points.toFixed(1)+'; geography-mixture σ '+
+  row.redrawn_permutation_sigma_points.toFixed(1)+
+  '; combined by variance). Experimental baseline, not a live posterior or calibrated interval.';
+}
 
 
 function raceIdentity(r){
@@ -4291,8 +4310,8 @@ function enRenderLiveDesk(){
     'Fresh exact-race civicAPI provider winner flag; unofficial, not independently certified. '+
     'The call may be revised or withdrawn.'));
   else card.append(elt('small','','Polling D'+(record.dem_minus_rep>=0?'+':'')+
-    record.dem_minus_rep.toFixed(1)+' · modeled total error σ '+
-    record.sigma_points.toFixed(1)+' pts · no eligible partial count'));
+    record.dem_minus_rep.toFixed(1)+' · '+jointBaselineSpreadText(record)+
+    ' · no eligible partial count'));
   host.append(card);
  }
  summary.textContent=selected.slice(0,8).length+' race-level experimental diagnostics · '+
@@ -8337,8 +8356,8 @@ if(odds){
  modelOdds.append(elt('span','senate-card-odds-label','JACKSTRADAMUS · CORRELATED JOINT MODEL'),
   elt('strong','party-d','D '+nice(p)),
   elt('strong','party-r','R '+nice(100-p)));
- modelOdds.append(elt('small','','Linked simulation · total σ '+
-   odds.sigma_points.toFixed(1)+' pts · not a race call'));
+ modelOdds.append(elt('small','','Linked simulation · '+
+   jointBaselineSpreadText(odds)+' · not a race call'));
 }else{
  modelOdds.append(elt('span','senate-card-odds-label',
   'JACKSTRADAMUS · SOURCE-MATCHED ODDS UNAVAILABLE'));

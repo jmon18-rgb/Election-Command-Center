@@ -36,3 +36,26 @@ node scripts/test_dashboard_runtime.cjs
 ```
 
 The tests enforce same-draw inclusion-exclusion identities, probability bounds, seat interval monotonicity and actual browser rendering.
+
+### Race spread accounting
+
+Redrawn House margins already include a weighted, uniformly permuted historical
+state distribution alongside Gaussian national, chamber, state and local errors.
+The detailed race display reports their complete **baseline latent standard
+deviation**, with the Gaussian and geography-mixture components identified.
+This is an assumed mixture spread, not a calibrated confidence interval or the
+conditional spread after live evidence or a provider call.
+
+The added marginal variance is the squared redraw weight times the population
+variance of that state's historical margin bag. It is outside the Gaussian error
+multiplier in the existing simulation. The additive fields are
+`gaussian_sigma_points`, `redrawn_permutation_sigma_points` and
+`total_latent_sigma_points`; `uncertainty_method` identifies the baseline scope.
+Legacy `sigma_points` remains Gaussian-only so existing live consumers retain
+their behavior. Older snapshots without complete metadata are labeled as
+Gaussian-only. No draws, odds, error assumptions or admission rules change.
+
+The fixed fictional same-seed regression covers narrow, baseline and wide errors,
+live conditioning and calls, and verifies every legacy output is unchanged.
+Analytic finite-bag checks use the population denominator, not a sample-variance
+estimate. This mathematical repair does not establish predictive calibration.

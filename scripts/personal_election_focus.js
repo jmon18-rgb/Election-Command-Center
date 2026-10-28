@@ -144,6 +144,8 @@
  // separate from the temporary DOM node and from all model/source evidence.
  function captureFocus(host,target=host?.ownerDocument.activeElement){
   if(!host||!target||!host.contains(target))return null;
+  if(target.dataset.personalCardLink)return {kind:'card-link',race:target.dataset.personalCardLink};
+  if(target.dataset.personalWatchReturn)return {kind:'watch-return',race:target.dataset.personalWatchReturn};
   const watch=target.closest('.early-watch');if(watch)return {kind:'watch',race:target.closest('[data-watch-race]')?.dataset.watchRace||null};
   if(target.dataset.personalJump)return {kind:'jump',race:target.dataset.personalJump};
   const card=target.closest('.personal-focus-card');
@@ -155,6 +157,8 @@
  }
  function focusTarget(host,bookmark){
   if(!host||!bookmark)return null;
+  if(bookmark.kind==='card-link')return Array.from(host.querySelectorAll('[data-personal-card-link]')).find(x=>x.dataset.personalCardLink===bookmark.race);
+  if(bookmark.kind==='watch-return')return Array.from(host.querySelectorAll('[data-personal-watch-return]')).find(x=>x.dataset.personalWatchReturn===bookmark.race);
   if(bookmark.kind==='watch')return Array.from(host.querySelectorAll('[data-watch-race]')).find(x=>x.dataset.watchRace===bookmark.race)?.querySelector('summary')||host.querySelector('.early-watch > details > summary');
   if(bookmark.kind==='jump')return Array.from(host.querySelectorAll('[data-personal-jump]')).find(x=>x.dataset.personalJump===bookmark.race);
   if(bookmark.kind==='ratings')return host.querySelector('.personal-focus-rating-key > summary');
@@ -171,11 +175,31 @@
   return null;
  }
 
+ function focusReadingTarget(host,target){
+  if(!target)return;
+  target.focus({preventScroll:true});target.scrollIntoView({block:'start'});
+  const toolbar=host.ownerDocument.querySelector('.en-toolbar'),top=(toolbar?.getBoundingClientRect().bottom||0)+8;
+  const offset=target.getBoundingClientRect().top-top;
+  if(offset<0)host.ownerDocument.defaultView.scrollBy(0,offset);
+ }
+ function openRaceEvidence(host,code){
+  const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(x=>x.dataset.race===code);
+  const detail=card?.querySelector('[data-disclosure="expectation"]');if(detail)detail.open=true;
+  focusReadingTarget(host,detail?.querySelector(':scope > summary')||card?.querySelector('h4'));
+ }
+ function returnToWatch(host,code){
+  const row=Array.from(host.querySelectorAll('[data-watch-race]')).find(x=>x.dataset.watchRace===code);
+  if(row){host.querySelector('.early-watch-list').open=true;row.open=true;}
+  const target=row?.querySelector(':scope > summary')||host.querySelector('.early-watch > h3');
+  if(target?.tagName==='H3')target.tabIndex=-1;
+  focusReadingTarget(host,target);
+ }
+
  function watchSummary(data){
   const groups=[['Lean D','R','R wins in Lean D'],['Likely R','D','D wins in Likely R'],['Solid R','D','D wins in Solid R']];
   return groups.map(([cook,party,label])=>{const eligible=new Set((WATCH?.districts||[]).filter(x=>x.cook===cook).map(x=>x.code));const calls=data.filter(x=>eligible.has(x.code)&&x.calledParty===party).map(x=>x.code);return {label,party,total:eligible.size,calls,multiple:calls.length>=2};});
  }
- function renderWatch(doc,result,baseline,options,previous,el){
+ function renderWatch(doc,result,baseline,options,previous,el,host,personalCodes){
   const section=el('section','early-watch'),data=rows(result,baseline,{...options,watch:true}),simulated=data.some(x=>x.simulated);
   section.append(el('h3','',(simulated?'SIMULATED · ':'')+'Early House indicators'),el('p','methodline','Your 21-district watch · compare results with the reference expectations. A pattern across distinct races is more informative than one upset; it does not guarantee a national outcome.'));
   if(!WATCH){section.append(el('p','','Owner reference unavailable; the shared model remains separate.'));return section;}
@@ -195,6 +219,10 @@
    item.append(el('p','',(simulated?'SIMULATED · ':'')+row.status+(row.sourceAt?' · '+(row.ownCounts?'Count':'Call')+' source time '+time(Date.parse(row.sourceAt)):'')),el('small','','Poll-close window · '+row.window+' · eligibility, not an arrival promise'));
    if(row.note)item.append(el('small','',row.note));
    if(row.performance&&Array.isArray(row.performance.difference_margin_scenarios)&&row.performance.difference_margin_scenarios.length===2&&row.performance.difference_margin_scenarios.every(finite))item.append(el('p','','Matched-area performance · '+range(row.performance.difference_margin_scenarios)+' margin points vs expected. Inspect the shared race card for areas and assumptions.'));
+   if(personalCodes.has(row.code)){
+    const nav=el('nav','personal-focus-jumps'),button=el('button','','Inspect '+row.code+' needle & evidence');nav.setAttribute('aria-label',row.code+' shared race evidence');button.type='button';button.dataset.personalCardLink=row.code;
+    button.addEventListener('click',()=>openRaceEvidence(host,row.code));nav.append(button);item.append(nav);
+   }
    if(row.code!=='VA-02')item.append(el('small','','No additional county route is admitted for this watch. Statewide or partial district returns alone do not establish matched district performance.'));
    details.append(item);
   }
@@ -212,7 +240,7 @@
   // Keep operator disclosure state by race identity, never by changing row order.
   const openPerformance=new Map(Array.from(host.querySelectorAll('.personal-focus-card')).map(c=>[c.dataset.race,new Set(Array.from(c.querySelectorAll('details[open]')).map(d=>d.dataset.disclosure))]));
   const activeCard=host.ownerDocument.activeElement?.closest?.('.personal-focus-card');
-  const focusedRace=activeCard&&host.contains(activeCard)?activeCard.dataset.race:null;
+  const focusedRace=activeCard&&host.contains(activeCard)&&!active.dataset.personalWatchReturn?activeCard.dataset.race:null;
   const focusedDisclosure=focusedRace?active.closest('summary')?.parentElement.dataset.disclosure:null;
   host.replaceChildren();if(!data.length)return;
   const doc=host.ownerDocument,el=(tag,cls,text)=>{const n=doc.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;};
@@ -229,9 +257,9 @@
    }
    if(historyFocused)historyTarget?.focus({preventScroll:true});
   }
-  host.append(renderWatch(doc,result,baseline,options,watchState,el));
+  host.append(renderWatch(doc,result,baseline,options,watchState,el,host,new Set(data.map(x=>x.code))));
   const nav=el('nav','personal-focus-jumps');nav.setAttribute('aria-label','Jump to your watch');
-  for(const [key,label]of [['watch','Early House watch'],['TX-SEN','Texas Senate needle']]){const button=el('button','',label);button.type='button';button.dataset.personalJump=key;button.addEventListener('click',()=>{const target=key==='watch'?host.querySelector('.early-watch > h3'):host.querySelector('[data-race="TX-SEN"] h4');if(target){target.tabIndex=-1;target.focus({preventScroll:true});target.scrollIntoView({block:'start'});}});nav.append(button);}host.insertBefore(nav,host.querySelector('.personal-focus-next'));
+  for(const [key,label]of [['watch','Early House watch'],['TX-SEN','Texas Senate needle']]){const button=el('button','',label);button.type='button';button.dataset.personalJump=key;button.addEventListener('click',()=>{const target=key==='watch'?host.querySelector('.early-watch > h3'):host.querySelector('[data-race="TX-SEN"] h4');if(target){target.tabIndex=-1;focusReadingTarget(host,target);}});nav.append(button);}host.insertBefore(nav,host.querySelector('.personal-focus-next'));
   for(const office of ['Senate','House']){
    const group=el('section','');group.append(el('h3','',office==='Senate'?'Your eleven Senate races':'House power-flip watch'));
    const grid=el('div','personal-focus-grid');
@@ -268,12 +296,17 @@
      detail.append(el('small','','Largest '+(p.largest_reporting_units||[]).length+' of '+p.reporting_units+' reporting areas shown. This does not extrapolate the raw margin statewide or call the race.'));
      card.append(detail);
     }
-    if(row.note)card.append(el('small','',row.note));grid.append(card);
+    if(row.note)card.append(el('small','',row.note));
+    if(row.code==='TX-SEN'||WATCH?.districts.some(x=>x.code===row.code)){
+     const nav=el('nav','personal-focus-jumps'),button=el('button','',row.code==='TX-SEN'?'Early House watch':'Back to '+row.code+' in early House watch');nav.setAttribute('aria-label',row.code+' watch navigation');button.type='button';button.dataset.personalWatchReturn=row.code;
+     button.addEventListener('click',()=>returnToWatch(host,row.code));nav.append(button);card.append(nav);
+    }
+    grid.append(card);
    }
    group.append(grid);host.append(group);
   }
   host.append(el('p','methodline','Probability changes are not vote-margin outperformance. Matched county performance remains the model evidence. NC01/AZ01 boundary contracts are still pending; existing TX and WA03 integrations remain available. KS uses the existing conservative final-call gate pending county-hours review. Experimental and uncalibrated; a forecast is not a result.'));
-  if(['watch','jump'].includes(watchFocus?.kind))focusTarget(host,watchFocus)?.focus({preventScroll:true});
+  if(['watch','jump','card-link','watch-return'].includes(watchFocus?.kind))focusTarget(host,watchFocus)?.focus({preventScroll:true});
   if(focusedRace){const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(c=>c.dataset.race===focusedRace),target=Array.from(card?.querySelectorAll('details')||[]).find(d=>d.dataset.disclosure===focusedDisclosure);(target?.querySelector('summary')||card?.querySelector('details > summary')||card?.querySelector('h4'))?.focus({preventScroll:true});}
  }
  return Object.freeze({SENATE,HOUSE,rows,render,rating,watchSummary,WATCH,captureFocus,focusTarget,createHistory,HISTORY_KEY,HISTORY_LIMIT,HISTORY_BYTES});

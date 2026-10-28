@@ -1,5 +1,23 @@
 # Election Night production-readiness assignment
 
+## October28 — parallel source candidate; continue through protected publication
+
+Owner now explicitly authorizes coordinated subagents and sustained usage.
+Model review found Gaussian-only spread mislabeled as complete; shared additive
+metadata/copy repairs accounting without changing odds/legacy consumers.
+Owner-journey review found no direct route from VA02's watch explanation to its
+existing evidence card or contextual return; shared controls and semantic focus
+repair it, including Texas watch return. Affected1366/390 watch/personal/queued
+reading and unchanged live-model checks pass. Finish broader DOM/exact-head
+protected review, final current-main Pages/bytes/ordinary behavior; do not stop
+at this record. Human/calibration/positive2026/capacity gates remain separate.
+
+Reuse final-owner-journey/model-coupling-review proofs. FL04 cached packet
+supports Clay/Nassau/partDuval only with explicit inference and no savedPDF
+bytes; landing429/PDF403 stops and oversized actual block-link attempt are
+recorded. Do not repeat captures or promote staged presidential inputs.
+Source-specific limits do not freeze independent engineering.
+
 ## 2026-10-28 19:32 UTC — PR524 research-only FL04 checker VERIFIED PUBLISHED
 
 - Tested7ed0c269c983ed0abf426c5e8622495a5dc88e1d: ALL4applicableworkflowparentsSUCCESS/7latestjobs6SUCCESS1nonapplicabledeployed-onlySKIP/0external/currentclean. FullDOM40752946246/job123044174839 and offline reference40752946383 SUCCESS. Merge/finalCURRENTmain6fddc109b58db6b2bbd914a4cad52cff47096b64/Pages40754880646SUCCESS.20publicfilechecks(includingindex) match19:32:11.276Z usingorigin/mainblobs; inherited395-file523baseline and3newresearchfiles establish398selectedscope, no repeatedfullscan. Current publiccoherence/index/no_creditPASS. pr524-exacthead-gate.json/pr524-published-integrity.json/pr524-published-coherence-origin-main.txt. No failed-head merge/waiver/rerun/timeout increase. Prior523proof checkpoint incorporated.

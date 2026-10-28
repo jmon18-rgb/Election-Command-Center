@@ -1,5 +1,28 @@
 # Readiness progress
 
+## October28 — owner-authorized parallel completion, source candidate
+
+Owner explicitly authorized extensive subagents/usage. Separate model and
+owner-journey reviews identified two material defects: incomplete Gaussian-only
+spread labeled as total for redrawn House races, and missing watch-to-existing
+card/contextual return controls. Additive analytic full-spread metadata/copy
+preserves legacy sigma and all fixed-seed outputs; shared semantic navigation
+preserves row/disclosure/focus across redraws and announcements. Actual1366/390
+affected watch/queued-reading/personal tests pass; broader DOM/protected review
+and verified publication are next. No source/model admission, odds sharpening,
+new route or calibration claim. Human results remain NOT_RUN. Evidence:
+model-coupling-review/ and ui-review/final-owner-journey/.
+
+FL04 bounded official county field is grounded from cached packet text with
+explicit inference/limits; original-byte capture403 and landing429 are STOP.
+Actual authoritative block-assignment link77 exceeded the web reader's4MiB
+limit; no body/hash/retry or full GIS project. County population is not vote
+allocation; map-to-precinct/count-difference/rights/independent validation remain
+unresolved. Saved early-house-geography assessments preserve originals and
+tool-only evidence distinctions. Next executable action is the coherent app
+release, followed by genuinely changed admissible input evidence or actual
+owner feedback; capacity-only archive activation remains closed.
+
 ## 2026-10-28 19:32 UTC — PR524 research-only FL04 checker VERIFIED PUBLISHED
 
 - Tested7ed0c269c983ed0abf426c5e8622495a5dc88e1d: ALL4applicableworkflowparentsSUCCESS/7latestjobs6SUCCESS1nonapplicabledeployed-onlySKIP/0external/currentclean. FullDOM40752946246/job123044174839 and offline reference40752946383 SUCCESS. Merge/finalCURRENTmain6fddc109b58db6b2bbd914a4cad52cff47096b64/Pages40754880646SUCCESS.20publicfilechecks(includingindex) match19:32:11.276Z usingorigin/mainblobs; inherited395-file523baseline and3newresearchfiles establish398selectedscope, no repeatedfullscan. Current publiccoherence/index/no_creditPASS. pr524-exacthead-gate.json/pr524-published-integrity.json/pr524-published-coherence-origin-main.txt. No failed-head merge/waiver/rerun/timeout increase. Prior523proof checkpoint incorporated.

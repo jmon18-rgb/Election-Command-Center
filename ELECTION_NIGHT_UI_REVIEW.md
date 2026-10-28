@@ -1,5 +1,25 @@
 # Election-night usability and visual review
 
+## October28 owner-authorized parallel finishing — candidate
+
+New released-source Texas ->21House watch ->evidence/history ->live review found
+a material navigation gap: VA02's watch explanation pointed to a shared card
+1668px below on desktop and4237px below on phone, without a direct control.
+The shared component now opens that existing card's expectation or its heading
+when evidence is unavailable, returns to the same expanded watch row, and gives
+Texas a local watch return. Semantic bookmarks survive redraws/announcements;
+44px targets and toolbar-safe focus pass at1366x900/390x844. Existing personal,
+queued-reading, model-isolation and fictional call/retraction checks remain.
+Before/after/new-only rehearsal proofs are under
+artifacts/readiness/ui-review/final-owner-journey/. Protected publication remains
+pending. Human interpretation/assistive/listening results remain NOT_RUN.
+
+Independent model review also found incomplete spread labeled as total race
+uncertainty. Additive complete baseline Gaussian/geography-mixture accounting
+and explicit older-snapshot fallback repair the explanation; existing odds and
+legacy live-consumer sigma remain unchanged. This is mathematical accounting,
+not evidence of calibrated accuracy.
+
 ## PR521 queued bulletin reading return — October28 VERIFIED PUBLISHED
 
 Shared ephemeral reading identity now survives celebration->queued bulletins->normal dismissal/expiry/revocation and reverse bulletin->celebration preemption, including background component replacement. Exactd7f46764 all34parents/45applicablejobs PASS; merge4e8dc131/finalmain4c3e0e65/Pages40715028630/383matchingfiles15:22:34Z/publiccoherence PASS. Actual published Edge1366/390 normal-control/keyboard/focus/scroll/history/withdrawal/isolation/nooverflow tasks PASS with external election providers blocked. Ordinary ownerIAB27 native preview/Back focus/2026/outlook retention verified; hidden panel0viewport prevents ordinary geometric/screenshot proof. CDP mouse issue is a tool limitation, not inferred product failure; isolated actual published Edge proves viewport behavior. Returned normal entryfocusenMode2026; private context/frozen/all delivered previews preserved. Proof pr521-exacthead-gate.json, ui-review/published-queued-reading/combined-reading-return.json/pngs and published-queued-reading-ordinary-20261028.json.
