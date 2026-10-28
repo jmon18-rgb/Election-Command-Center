@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-28T15:04:44.496890Z",
+  "updated_at": "2026-10-28T15:20:44.882850Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
@@ -474,6 +474,25 @@
       "headline_numbers_unverified": [
         "2026 "
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "9f97d32c207e642f1a72",
+      "title": "Judge says Trump could disenfranchise voters in purge of noncitizens from election rolls - CalMatters",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE04N2JQbW81RTlHUWhVTjFXa2RvS2hMWTBGUnFpOVB0Z1BiNGRZV1M5aXMxRXMtQmE5M1JvTkhLRUtEVkd5RHpGem9CMTJWcDB1TktGdUFMVnZtbUd4eHRDV3FfNFdTaVJvM0ZjcjdmUXdQdnQyMmItSXVR?oc=5",
+      "publisher": "CalMatters",
+      "published_at": "2026-10-28T00:21:06Z",
+      "detected_at": "2026-10-28T15:20:44.882850Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5034,25 +5053,6 @@
       "headline_numbers_unverified": [
         "20,000 voters"
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ad51ad8299020c39c7df",
-      "title": "Get to know who\u2019s on your Nebraska ballot this November - KETV",
-      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPTWxNbjNzb3lfdDAtVGtqY2FHR1RIN1I1ZGhNRXJxWlV3czBCU2hfRWVka0NSaGFiM054cWRtamtrVkZHMGhITzFqMFhlRDlGNTg0NUlfS21jNjVlSnV3T1FSRjNhZHg1blAxcl9kb29aNENMeHBvNTU3N1ZXOHlnYXQ4bDR5MTg?oc=5",
-      "publisher": "KETV",
-      "published_at": "2026-10-15T20:51:00Z",
-      "detected_at": "2026-10-15T21:08:58.023147Z",
-      "state_hints": [
-        "NE"
-      ],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
