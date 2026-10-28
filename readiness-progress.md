@@ -1,5 +1,12 @@
 # Readiness progress
 
+## 2026-10-28 — R6 Kansas blue-ink scene candidate (NOT yet deployed)
+
+- Named task advanced: blansas now has originalSVG JohnBrown-style satirical ghost entrance, blue-ink wash over an old rebel emblem, Kansas poster transformation and finale. Original ghost vocabulary reused from local milestone-blansas.svg; illustrative celebration board is not reporting geography. Suppliedfictionalpainting26f7df1f64f4 stays unchanged announcement/thumbnail/fallback, with separate original-animation attribution. Existing Prairie fife and drum unchanged. No newbitmap/audio generation/media request/dependency, realisticgore or rights assumption.
+- Same shared scene finish/clear/player queue/timing/mute/skip/replay/archive/reducedmotion; preview never earns. Existing exactyear/race/freshness/finalclose/retraction eligibility, source/call readers andmodel/cadence/budgets untouched. ActualEdge1440/390 all11stories PASS including Kansas3beats/activeanimation/3inkbursts/reducedstaticwash/completefinale, suppliedpostercontainment, onecredit, skip-replay/archive/missingrenderer and existing JPEG-SVG-textfallback. Screenshots celebration-kansas-beat0/1/2-{1440,390}.png visually inspected. Signals/queue/retraction/all11score tests PASS; immutable75scripts/strictUTF8 final checks required before commit.
+- This is one candidate visual slice, not entireR6/fullUI/human acceptance or real2026call proof. Priorlocal3fcb releaseproof incorporated in coherent Kansasbranch, not independently pushed solelyrestartCI.18routes/sixownerSenateconnections/fourmissing/R2no-go/R3Oct29/fullR8Oct30 gates unchanged. NEXT allnewexactheadprotectedCI/currenthead-clean then finalCURRENTmainPages/actualbytes/ordinarypreview before release claim. No blockedsource/zero retries orold426reapplication. Notify only newverifiedKansas milestone afterpublication; dailyOct28 after09Eastern/13Z.
+
+
 ## 2026-10-28 04:44 UTC — R6 Mississippi scene VERIFIED PUBLISHED
 
 - PR509 MERGEDb4a957ca542cc031b0a1a61044b7bbd4ea386a7e afterALL35exactheadworkflowparentsSUCCESS/50latestjobs47success3nonapplicable deployed-onlySKIP/0external/current89d2491e520aa51fc59ef7626bbc7d62d11d0f6a/clean. Readiness40631990731 browser122630259781/core122630260045SUCCESS; national40631990744/fullDOM40631990604SUCCESS.24e1b229 superseded only for final one-line attribution spacing, never merged; oldvalidation canceled on supersession, no failed-test waiver/successfuljob rerun/timeout increase. Priorb784proof/R2decision checkpoint incorporated, not separately unpublished.
