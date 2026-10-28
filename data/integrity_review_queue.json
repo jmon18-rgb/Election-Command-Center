@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-28T22:50:56.254704Z",
+  "updated_at": "2026-10-28T23:48:08.782047Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
@@ -265,6 +265,43 @@
   ],
   "items": [
     {
+      "id": "3d28d6f3bf27bfd3df38",
+      "title": "Civil rights organizations sue Texas secretary of state, DPS director over voter registration delays - Houston Public Media",
+      "url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxPT3dFaUVEa3Y0SERZeDVYTGk1eFpyWm9KNTJSX3N3NzJQWmFpSV91Q0NIanhaeEtadmVGblB6UmNoUDhKdHFjTjM5ejJsdmlBUVhiM0xFeDBtU3RJNHFvNjlESk1WRlVZSVpvbUhvNXpidzU0WXBGMjlNYXJPSUIzZlZaakQxaWJmUDhtcFlUTHBZSmY4OGgtSk5naXcxbUU0aHhQWFZNc3JyRmM1Y0x3RkVtR2JsYkJJUk14UnZER0wtWUJXZTRDOVFkblRUdWw5R1dzcXBENUNlNVdzMzNscFNWYmQ4Z0plb212cUc5a3pfa1VnZVJwSXhGdWZNVHhKRC1oVUxB0gGGAkFVX3lxTE9Pd0VpRURrdjRIRFl4NVhMaTV4WnJab0o1MlJfc3c3MlBaYWlJX3VDQ0hqeFp4S1p2ZUZuUHpSY2hQOEp0cWNOMzl6Mmx2aUFRWGIzTEV4MG1TdEk0cW82OURKTVZGVVlJWm9tSG81emJ3NTRZcEYyOU1hck9JQjNmVlpqRDFpYmZQOG1wWVRMcFlKZjg4aC1KTmdpdzFtRTRoeFBYVk1zcnJGYzVjTHdGRW1HYmxiQklSTXhSdkRHTC1ZQldlNEM5UWRuVFR1bDlHV3NxcEQ1Q2U1V3MzM2xwU1ZiZDhnSmVvbXZxRzlrel9rVWdlUnBJeEZ1Zk1UeEpELWhVTEE?oc=5",
+      "publisher": "Houston Public Media",
+      "published_at": "2026-10-28T20:56:23Z",
+      "detected_at": "2026-10-28T23:48:08.782047Z",
+      "state_hints": [
+        "TX"
+      ],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "9bf2839483bd10916126",
+      "title": "Peter Schweizer: Inside Homeland Security\u2019s Push to Clean Up Voter Rolls Before Election Day - Breitbart News",
+      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPVXc0dF9NcmI1SG9JZ2Fzb0phcXlrM3lUOXNCcGt3M3VieDk5ODFTR0Nlei1UZTkyN09oU1NvaVJsV3ozaTZLeXM1bjJKX01MM193S3VEVzNPenRYNkdIZWJDVUhyR05LVUFITENhcU1kNUxjbE04OEVJd2ZKRWx4Z1UyLUh3ZWVndERINm8tWWpFbnpiYVRzWGR0OEpZcDMyRjEyc01ZWG5EVERBX0xrQlE3a2MwU1hZQUhIWVhnbVJkLXdlX3dqRWtLdFRGOXoxQUNXMEhaM1_SAdgBQVVfeXFMT1V3NHRfTXJiNUhvSWdhc29KYXF5azN5VDlzQnBrdzN1Yng5OTgxU0dDZXotVGU5MjdPaFNTb2lSbFd6M2k2S3lzNW4ySl9NTDNfd0t1RFczT3p0WDZHSGViQ1VIckdOS1VBSExDYXFNZDVMY2xNODhFSXdmSkVseGdVMi1Id2VlZ3RESDZvLVlqRW56YmFUc1hkdDhKWXAzMkYxMnNNWVhuRFREQV9Ma0JRN2tjMFNYWUFISFlYZ21SZC13ZV93akVrS3RURjl6MUFDVzBIWjNf?oc=5",
+      "publisher": "Breitbart News",
+      "published_at": "2026-10-28T19:25:53Z",
+      "detected_at": "2026-10-28T23:48:08.782047Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "007759b0bd4c4bec18bf",
       "title": "Schweizer: Inside DHS's Push to Clean Voter Rolls Before Election Day - RealClearPolitics",
       "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPQTduWGl1Y1l3bG9BdTFQQ0ljWFRPb1d6NGdnbFRFSHY3U05HVUZiNEVaeUN5ZC1IXzdDSlFoQzF3bFlNSFV0dEZLZTJrb0haTVhhX0M2MENCV2RZMEx4OG5qYm02SWtNejlhZHpnaXFtMVhSYnpwdTd0MG1aVUxCNFllLXRSOHhIWXZuNHVDTlhURl84VWZQOTM5T2ZkN1JlM1RVbWRlWTN0X3kzRWRjSHQ4RGE5MDczZWgwYXBtYkU?oc=5",
@@ -297,6 +334,28 @@
       ],
       "headline_numbers_unverified": [
         "2,900 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "6a9e475608c8f040fbdd",
+      "title": "Clerks must temporarily retain electronic pollbook after Nov. 3 election, Court of Claims rules - Michigan Advance",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNY01MR3p3SWxiRkh4S2RIRVpXekNBaUFscnlqZU9OcWVoazNmLWlVRVJISzNTNVQ2bDBkVWJNRnZab1FUSEVLcXMwV01nRVlnNEpidHA3MzNQMHo1Rl9XTU5Ubnh4WjE4bzF3aEN2UjZvbnRKOExTQ1lnMWNOWWdydEZyNlZPdFBFbFgtSTJJeFE3VTlBWlR6M2tmT0ROSVhScHJrNHBoMHZjelNkdU9HNnM1SGU4ZHU0cVhQd0UyMnpKX1lQWlBRU2NMTW54QQ?oc=5",
+      "publisher": "Michigan Advance",
+      "published_at": "2026-10-28T17:26:43Z",
+      "detected_at": "2026-10-28T23:48:08.782047Z",
+      "state_hints": [
+        "MI"
+      ],
+      "topic_hints": [
+        "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "3 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
@@ -4993,60 +5052,6 @@
       "topic_hints": [
         "registration",
         "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "2cb2a2423163d909d270",
-      "title": "Justice Dept. sues California officials over 20K alleged noncitizen voters - The Washington Post",
-      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPNGlWVGtNOVVmb0hpOTNYV2VERnpvWmNQSmhkc1Z2c1hRVktTMXNHVHI4QjE3VGdRcXVqaDMweDVjUzhmVlZPckF1ZjVGaWVJbDZQNlJhQV92RnJ5NXg1T0FRS2t3YU5tbkRKTjhyRjJVd2o4T21vdENyMVlQek80SmV6RlNVWUNqVHpCSVNDOWdEN09Ca051aGctWXFFV0pSbHVaUDJURDhtaFVkRERHT3VhUDJYSUFXR29lVXdYYWt4Mlk?oc=5",
-      "publisher": "The Washington Post",
-      "published_at": "2026-10-16T01:20:11Z",
-      "detected_at": "2026-10-16T01:43:11.361701Z",
-      "state_hints": [
-        "CA",
-        "WA"
-      ],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "d189fa9d626b04afe815",
-      "title": "Becerra urges Latino voters despite ICE threats - CaloNews.com",
-      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQNHdWSmhrR0FuS09MZFZQYjZocVZ3Y01XbllwVXRVZGU3ZFR2SV9mRlVwc0pvMnl4YUZZbXRNS0xUWTBBRUlwQ2dMZWxFeFZNOHpiU1R2dVJsRkdtTzR2MFNZWTZDTkZ5RmtvWUJRRGFZaFMteG42R0pPOVhKZjkzMHZWTldXajF3enRBZGY1bjhvZXJaY2NkMEkzSFdPNVE1LUVvWEJiYmxsRFh4dkVtZ0pwV3RlSUZ5TXpvZHJuSFhuQ19Nc3ZZYU9CUDJHSlk0M1hCeHBjUlBxRFktSjkzZ1dqZUE?oc=5",
-      "publisher": "CaloNews.com",
-      "published_at": "2026-10-15T23:34:00Z",
-      "detected_at": "2026-10-16T05:44:28.890163Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "fa058197b999690de911",
-      "title": "Becerra pushes Latino voters despite ICE threats - CaloNews.com",
-      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQRjdkWmd5cm1OSFF3cFVrd2labEFiQ2ZETVVWQmxqNmloUEZ6V0RBbHY4ZDVNVElYRzBJUHpCTnZjU0JmY05CRmpZaUFZbmJDc2VBMExJNGdpZEhXckM2VzlMTVBvcEp0UGFGOUlieFJEWXoyZ2s5LUZYUU9rTUhkQmNHd0hSX1NSakM5YUJlNmxXbjlidG53bG1uQ3prUU85ODNHaXkwRnFyakU5N1lyVENDZ2NYYnE1U3F4dVIwRUJaSS1jYVJYeDhmQUlRZ2VOOXB5TWJvSU5ULUl4U2F6U195QmhZQQ?oc=5",
-      "publisher": "CaloNews.com",
-      "published_at": "2026-10-15T23:33:44Z",
-      "detected_at": "2026-10-15T23:50:30.797763Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
