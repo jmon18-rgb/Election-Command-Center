@@ -1192,14 +1192,17 @@ function senatePollingErrorBudget(info){
  function proposeSourceCallElections(basis,options={}){
   if(!sourceCalls||!callPlanCache){const error=Error('Call proposal helper unavailable');error.code='CALL_PROPOSAL_HELPER_UNAVAILABLE';throw error;}
   if(options.replayCountySeeds){const error=Error('A proposal must start at the original prior');error.code='RAW_CALL_PROPOSAL_CANNOT_USE_REPLAYED_PRIOR';throw error;}
-  const plan=callPlanCache.prepare(basis,{...options,independentSenateCredit:options.independentSenateCredit??'no_credit'});
-  if(!plan){const error=Error('No active source calls');error.code='NO_ACTIVE_SOURCE_CALLS';throw error;}
   const actualOptions={...options,independentSenateCredit:options.independentSenateCredit??'no_credit',
    live:Object.fromEntries(Object.entries(options.live||{}).map(([code,row])=>[code,{...row}]))};
   if(Array.isArray(options.captureCountyDraws))actualOptions.captureCountyDraws=options.captureCountyDraws.slice();
   if(Array.isArray(options.marginSummaryCodes))actualOptions.marginSummaryCodes=options.marginSummaryCodes.slice();
   if(Array.isArray(options.voteSeatWeights))actualOptions.voteSeatWeights=options.voteSeatWeights.map(row=>({...row}));
   if(options.senateCorrelationResearch)actualOptions.senateCorrelationResearch={...options.senateCorrelationResearch};
+  const countProposalGuide=options.countProposalGuide??null;delete actualOptions.countProposalGuide;
+  const guidedFingerprint=countProposalGuide?JSON.stringify([basis,actualOptions,{...options,countProposalGuide:undefined}]):null;
+  const plan=callPlanCache.prepare(basis,{...actualOptions,...(countProposalGuide?{countProposalGuide}:{})});
+  if(countProposalGuide&&JSON.stringify([basis,actualOptions,{...options,countProposalGuide:undefined}])!==guidedFingerprint){const error=Error('Guided preparation changed model inputs');error.code='CALL_MODEL_INPUT_CHANGED_DURING_GUIDE_PREPARATION';throw error;}
+  if(!plan){const error=Error('No active source calls');error.code='NO_ACTIVE_SOURCE_CALLS';throw error;}
   const cacheBytes=(actualOptions.samples??4000)*(basis.house.length+basis.senate.length+basis.governors.length)*8;
   const reservation=reserveTransport(cacheBytes);
   try{

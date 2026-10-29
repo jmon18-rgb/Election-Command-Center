@@ -1,14 +1,10 @@
 # Background joint-model computation
 
-Candidate update, October 29, 2026: the current branch adds the bounded Virginia
-typed-snapshot path described in [VIRGINIA_TYPED_SNAPSHOTS.md](VIRGINIA_TYPED_SNAPSHOTS.md).
-It preserves individual candidate/method cells and omitted native clocks before
-aggregation, reuses the original current-admission rules, and permits only strict
-monotone count updates to retain a labeled last-completed calculation. Whole
-worker-output RAW metadata guards and frozen compact history/audit lineage are
-part of that candidate. It is **not released** until protected review,
-current-main publication and browser verification finish. The released baseline
-described below still keeps Virginia on hard refreshes.
+Verified PR532 update, October29: bounded Virginia typed snapshots, whole-output
+RAW metadata guards and frozen compact history/audit lineage are published on
+abc62535/Pages40882535269. See VIRGINIA_TYPED_SNAPSHOTS.md and saved PR532 receipts.
+Original numerical sources,3k draws/ESS/30s and source budgets are unchanged.
+New development is paused at the owner’s request to conserve usage.
 
 The page delegates the existing correlated model to a same-origin computation
 worker. `source_call_conditioning.js`, `chamber_control_model.js` and

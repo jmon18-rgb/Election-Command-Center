@@ -93,24 +93,48 @@ try{
   assert.doesNotMatch(await page.locator('#enPersonalFocus .personal-focus-call-status').innerText(),/withheld/i);
   assert.match(await ia.innerText(),/SIMULATED · D victory/);assert.equal(await ia.locator('.personal-focus-margin').count(),0);
   const withheld=await page.evaluate(({basis,envelopes,now})=>{
-   const {args}=callReview,update=NationalCountyLikelihood.condition(ChamberControlModel,basis,envelopes,{...args,samples:3000,seed:20261103,now,live:{'OH-SEN':{mode:'source_called',winnerParty:'D'}}}),result=update.result;
+   // A local adapter tests the real missing-guidance fallback without changing
+   // global functions, served source, original target, draws or finalizer.
+   let guideReceived=false,originalFactorCount=null;
+   const withoutCountGuide={...ChamberControlModel,proposeSourceCallElections(b,o){
+    const {countProposalGuide,...originalOptions}=o;
+    guideReceived=typeof countProposalGuide?.evaluate==='function'&&Object.isFrozen(countProposalGuide);
+    const packet=ChamberControlModel.proposeSourceCallElections(b,originalOptions);originalFactorCount=packet.call_diagnostics.factor_count;return packet;
+   }};
+   const {args}=callReview,update=NationalCountyLikelihood.condition(withoutCountGuide,basis,envelopes,{...args,samples:3000,seed:20261103,now,live:{'OH-SEN':{mode:'source_called',winnerParty:'D'}}}),result=update.result;
    PersonalElectionFocus.render(document.querySelector('#enPersonalFocus'),result,update.baseline,{closes:ElectionNightPollClosings2026,simulated:true});
    const oh=result.race_probabilities.find(row=>row.race_code==='OH-SEN');
    return {status:result.source_call_conditioning.status,reason:result.source_call_conditioning.reason,ess:update.diagnostics.call_support.effective_sample_size,minimum:update.diagnostics.call_support.minimum_effective_sample_size,
     particles:result.samples,valid_winner_preserved:oh.provider_called_party==='D'&&oh.dem_beats_rep_pct===100,called_margin:oh.margin_distribution??null,
-    used_codes:update.diagnostics.used.map(row=>row.code),call_weights_tempered:result.source_call_conditioning.call_weights_tempered};
+    used_codes:update.diagnostics.used.map(row=>row.code),call_weights_tempered:result.source_call_conditioning.call_weights_tempered,
+    guide_received:guideReceived,original_factor_count:originalFactorCount,alpha:update.diagnostics.likelihood_power};
   },{basis:fiction(),envelopes:rareCounts,now:rareNow});
   assert.equal(withheld.particles,3000);assert.equal(withheld.status,'WITHHELD');assert.equal(withheld.reason,'WITHHELD_LOW_EFFECTIVE_SAMPLE_SUPPORT');assert(withheld.ess<withheld.minimum);assert.equal(withheld.valid_winner_preserved,true);assert.equal(withheld.called_margin,null);assert.equal(withheld.call_weights_tempered,false);assert.deepEqual(withheld.used_codes,['OH-SEN','MI-07','NE-SEN']);
+  assert.equal(withheld.guide_received,true);assert.equal(withheld.original_factor_count,3);
   assert.match(await page.locator('#enPersonalFocus .personal-focus-call-status').innerText(),/Broader call update withheld.*Validated race winners remain fixed/);
   const ohio=page.locator('#enPersonalFocus [data-race="OH-SEN"]');assert.match(await ohio.innerText(),/SIMULATED · D victory/);assert.equal(await ohio.locator('.personal-focus-margin').count(),0);assert.doesNotMatch(await me.innerText(),/Broader validated-call context/);
   await page.locator('#enPersonalFocus .personal-focus-call-status').scrollIntoViewIfNeeded();await page.screenshot({path:resolve(out,'withheld-call-context-'+width+'.png')});
+  const guided=await page.evaluate(({basis,envelopes,now})=>{
+   const {args}=callReview,options={...args,samples:3000,seed:20261103,now,live:{'OH-SEN':{mode:'source_called',winnerParty:'D'}}},before=JSON.stringify({basis,envelopes,options});
+   const update=NationalCountyLikelihood.condition(ChamberControlModel,basis,envelopes,options),result=update.result,oh=result.race_probabilities.find(row=>row.race_code==='OH-SEN');
+   PersonalElectionFocus.render(document.querySelector('#enPersonalFocus'),result,update.baseline,{closes:ElectionNightPollClosings2026,simulated:true});
+   return {status:result.source_call_conditioning.status,particles:result.samples,ess:update.diagnostics.call_support.effective_sample_size,minimum:update.diagnostics.call_support.minimum_effective_sample_size,
+    valid_winner_preserved:oh.provider_called_party==='D'&&oh.dem_beats_rep_pct===100,called_margin:oh.margin_distribution??null,used_codes:update.diagnostics.used.map(row=>row.code),
+    alpha:update.diagnostics.likelihood_power,target:update.diagnostics.count_target,call_weights_tempered:result.source_call_conditioning.call_weights_tempered,
+    unchanged_inputs:JSON.stringify({basis,envelopes,options})===before};
+  },{basis:fiction(),envelopes:rareCounts,now:rareNow});
+  assert.equal(guided.particles,3000);assert.equal(guided.status,'CONDITIONED');assert(guided.ess>=guided.minimum);assert.equal(guided.minimum,1500);assert.equal(guided.valid_winner_preserved,true);assert.equal(guided.called_margin,null);
+  assert.equal(guided.call_weights_tempered,false);assert.deepEqual(guided.used_codes,withheld.used_codes);assert.equal(guided.alpha,withheld.alpha);assert.equal(guided.unchanged_inputs,true);assert.equal(guided.target.reference_normalizers_frozen,true);assert.equal(guided.target.county_likelihood_applied_once,true);assert.equal(guided.target.call_likelihood_power,1);
+  assert.match(await page.locator('#enPersonalFocus .personal-focus-call-status').innerText(),/Validated calls inform related races through shared model factors/);
+  assert.doesNotMatch(await page.locator('#enPersonalFocus .personal-focus-call-status').innerText(),/withheld/i);assert.match(await ohio.innerText(),/SIMULATED · D victory/);assert.equal(await ohio.locator('.personal-focus-margin').count(),0);
+  await page.screenshot({path:resolve(out,'count-guided-call-context-'+width+'.png')});
   assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult)),liveBefore,'Fictional display review must leave the live model unchanged');
   await page.evaluate(()=>renderPersonalElectionFocus());
   assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult)),liveBefore);
   assert.doesNotMatch(await page.locator('#enPersonalFocus').innerText(),/SIMULATED|Broader call update withheld/);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true);assert.deepEqual(errors,[]);
   if(dashboard){await Promise.all(servedChecks);assert.deepEqual(servedFailures,[]);assert.deepEqual([...served.keys()].sort(),pinFiles.slice().sort(),'Every published pinned index/helper/engine/kernel/worker/controller response was observed and byte-checked');}
-  proofs.push({width,height,public_basis_3000_particle_browser_cost:performance,multiple_calls_realistic_bag_browser_cost:multipleCalls,late_200_call_conditioning_and_cost:late,fixed_rare_call_count_overlap_withheld:withheld,fictional_call_test:report,retraction_exact:true,unsupported_transfer_withheld:true,live_model_unchanged:true,horizontal_overflow:false,blocked_external_requests:external.length,...(dashboard?{actual_published_script_identities_match:true,actual_served_pinned_sha256:Object.fromEntries(served)}:{})});
+  proofs.push({width,height,public_basis_3000_particle_browser_cost:performance,multiple_calls_realistic_bag_browser_cost:multipleCalls,late_200_call_conditioning_and_cost:late,fixed_rare_call_count_overlap_withheld:withheld,missing_count_guide_original_Q_withheld:true,fixed_rare_call_count_overlap_guided:guided,fictional_call_test:report,retraction_exact:true,unsupported_transfer_withheld:true,live_model_unchanged:true,horizontal_overflow:false,blocked_external_requests:external.length,...(dashboard?{actual_published_script_identities_match:true,actual_served_pinned_sha256:Object.fromEntries(served)}:{})});
   await context.close();console.log(width+'px validated-call same-draw range/context/correction/retraction/withheld/live-isolation PASS;3000 browser particles '+Math.round(performance.wall_elapsed_ms_including_driver)+'ms including driver');
  }
  if(dashboard)assert.equal(execFileSync('git',['rev-parse','origin/main'],{cwd:root,encoding:'utf8'}).trim(),publishedMain,'Final origin/main remains unchanged through the published check');

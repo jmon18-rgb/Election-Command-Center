@@ -1,5 +1,68 @@
 # Readiness progress
 
+## October29 count-aware proposal — local integration, not published
+
+Local independent numerical/privacy review, five original call suites, the new
+portable regression, 43 controller groups, all six complete four-output
+3,000-draw frames under the unchanged 30-second deadline, and both-size source
+call/guard browser tasks now PASS. Asset identities are current (85 checks).
+Protected exact-head review and publication remain pending; no live release is
+claimed. Local proofs: count-aware-call-proposal/tracked-core-first/,
+tracked-six-frame-first/, count-aware-gaussian-q-review/clean-independent-review.json,
+count-aware-gaussian-review/tracked-integration-review.json and ui-review/
+count-aware-source-calls-first/, count-guide-public-guard/.
+
+The owner resumed sustained development. The reviewed proposal now uses admitted
+county evidence to guide shared-factor simulations while preserving the original
+frozen count target, winner constraints, random draws, 3,000 samples and hard
+50% support floor. The first prototype worsened support and was rejected; the
+revised local/redraw marginal guide raises the existing fictional overlap case
+from 1,225.01 to 1,516.20 effective particles. Its 16.20-particle headroom is
+narrow and establishes neither general support nor empirical calibration.
+
+Clean source pins 65040a/7af6/efc6 passed independent density/convolution/target/
+privacy review and one complete private/PUBLIC/two-House worker case. The new
+portable regression and 43 controller groups pass; all original missing-guide
+withholding assertions remain. Explicit serialized-guide output bans protect
+all public paths. Full six-frame timing, browser tasks and protected release
+are still required. PR532 on abc62535 remains the verified published baseline.
+No source GET, eligibility, cadence, budget, call or celebration change; archive
+activation remains OFF. One previous unpublished proof checkpoint is carried
+with this source change; no docs-only CI push.
+
+## Owner resumed — October29 14:06UTC
+
+The owner directly revoked the wrap-up pause after a free usage reset.
+Development automation is ACTIVE again. Next genuine R0 task is an ignored,
+independently reviewed count-aware Gaussian proposal for the EXISTING rareOH-D
+plusOH8/MI-3/NE-2 count overlap, safelyWITHHELD atESS1225.01/3000<1500. Preserve
+the original frozen target, exactp/q/RNG,3k/hardESS/30s and all source boundaries;
+no fittedcoefficients, seedsearch, likelihoodtemper or calibration claim.
+No tracked math is promoted before meaningful support/cost and independent proof.
+Carry localf93ec400 proof checkpoint with next actual source change; no docs-only
+CI push. The pause notes below are historical.
+
+## October29 PR532 VERIFIED PUBLISHED — development paused at owner request
+
+Tested69d935fe: all36applicable workflow parentsSUCCESS;55latestjobs51SUCCESS/
+4declared nonapplicablePRSKIP/0external. Merge13c91763; finalmainabc6253567a982c6edc4cb1ce9df536ddc55c119/Pages40882535269SUCCESS. All38changedpublic/index files match13:34:57.699Z; coherence13/currentindex/no_creditPASS. PublishedEdge1366/390 each5pairedASOF/13hard/3stalledexpiry/20pinsPASS; ordinary27readonlyprefs/status/archive preserved,2024 retained. Main rechecked unchanged13:41:46Z.
+
+Outcome pr532-published-outcome-20261029.json. Initial84af fixture failure is
+retained; actualUMD/structuredClone dependencies repaired with every900draw/hash/
+audit/withdrawal assertion preserved. Correctedhead passed allgates; no waiver,
+rerun or timeout increase. Original guide/human tasks unchanged; ONE532component
+18->19 appended, ledgerSHA2048a7098dff407474375451db2725b27c3dec5774adee02044cc066533f2b8a.
+
+Owner requested wrap-up to conserve usage. Stop new work/subagents and pause the
+development heartbeat until explicit resume. Any count-aware Gaussian proposal
+is ignored research only, unpromoted; current rare low-support case correctly
+withholds. No pending release gate. Preserve source stops, budgets, all7previews/
+frozen15/private context and archiveOFF. Real-positive delivery, independent
+calibration and human/assistive/listening acceptance remain open. Oct29daily was
+delivered13:00UTC; no repeateddaily or oldrelease demonstrations. This local
+proof checkpoint is not pushed alone to restart CI. Earlier candidate text is
+historical and superseded by the verified release above.
+
 ## October29 active candidate — typed Virginia updates and complete recorded lineage
 
 The reviewed VA producer/policy and compact-lineage code is integrated on

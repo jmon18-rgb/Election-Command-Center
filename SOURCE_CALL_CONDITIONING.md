@@ -109,6 +109,31 @@ It retains the globally aligned .125-point curve grid, 10,000-node cap, 61 share
 reporting-error nodes, source-specific shares and all existing input bounds.
 The proposal never refits its own normalizer or a second county tempering power.
 
+When admitted county evidence accompanies calls that do not require a called
+redraw bag, the shared Gaussian proposal can also use a bounded county guide.
+It integrates each robust county factor over the race's original local Gaussian
+law (the sign-truncated law for a called race) and known indexed redraw mixture,
+then combines the existing 61 shared reporting-error nodes. Repeated numeric
+redraw values retain their indexed mass. The guide expands only the shared
+factor coordinates needed by those same admitted races.
+
+This is approximate proposal guidance. Per-row redraw marginalization does not
+claim to integrate cross-row finite-population dependence, and the original
+count-only power remains outside that marginal expectation. Every actual draw
+still receives the original exact Gaussian and allocation density corrections,
+winner normalizers, and the unchanged frozen county target above, once. The
+guide never substitutes its approximation for that final target. Called redraw
+bags, unavailable or unsupported guidance, and numerical guide failures use the
+original call proposal. The no-call path remains unchanged.
+
+The guide is constructed inside the county coordinator after the original
+reference and power are fixed. It stays in RAM, bypasses the prepared-plan
+cache, and is removed from retained proposal options and replay. The prepared
+plan keeps derived Gaussian numbers, not an evaluator or county-input closure.
+Input checks bracket preparation; failed construction or evaluation restores
+the original factor coordinates and proposal. No guide, normalizer array or
+private callback is a public result, recorded lineage or persistent history.
+
 ## Failure and provenance
 
 The raw proposal API returns typed research particles with no headline odds.
@@ -209,3 +234,13 @@ differs from nearly exhausted bags. All three compositions retain the original
 3,000 particles, four complete outputs and 30-second deadline in browser checks.
 Their desktop-host measurements are bounded engineering evidence, not a
 device-speed guarantee.
+
+The county-aware Gaussian guide raises support in one existing fictional rare
+Ohio-call/count-overlap case from 1,225.01 to 1,516.20 effective particles out of
+3,000, against the unchanged 1,500 floor. Its first conditional-mean-only
+prototype worsened support and was rejected. The successful case has only
+16.20 particles of headroom; it does not establish general support or predictive
+accuracy. The same case with guidance unavailable retains the original explicit
+withholding. Remaining local and discrete uncertainty can still limit a proposal
+that changes only shared factors. Independent density, convolution and fixed
+target checks are numerical evidence, not historical calibration.

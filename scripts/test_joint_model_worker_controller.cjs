@@ -206,6 +206,18 @@ async function main(){
    }
    cases++;
   }
+ {
+  const text=readFileSync(resolve(__dirname,'../index.html'),'utf8'),body=text.slice(text.indexOf('function jointFallbackBundleValid('),text.indexOf('function jointPublicBundleValid(')).trim(),inline=vm.runInNewContext('('+body+')');
+  const input=request('RAW_COUNT_GUIDE',{payload:{...request().payload,publicBasis:{fake:true},variants:[{id:'house_shadow',basis:{fake:true}}]}});
+  for(const place of ['result','baseline','diagnostics','publicResult','publicBaseline','publicDiagnostics','variant'])for(const form of ['private_key','schema_alias']){
+   const candidate=bundle(1,true,['house_shadow']),host={result:candidate.result,baseline:candidate.baseline,diagnostics:candidate.diagnostics,publicResult:candidate.publicComparison.result,publicBaseline:candidate.publicComparison.baseline,publicDiagnostics:candidate.publicComparison.diagnostics,variant:candidate.variants.house_shadow.result}[place];
+   const serializedGuide=JSON.parse(JSON.stringify({schema:'PROPOSAL_ONLY_MARGINAL_COUNT_GUIDE_V2',codes:['OH-SEN'],likelihoodPower:.5,evaluate(){}}));
+   host.nested=form==='private_key'?{countProposalGuide:{codes:['OH-SEN'],likelihoodPower:.5}}:{unrelated_alias:serializedGuide};
+   for(const validate of [api.validBundle,inline])assert.equal(validate(candidate,input),false,'Count guide '+form+' cannot escape through '+place);
+  }
+  const valid=bundle(1,true,['house_shadow']);valid.diagnostics.count_target={reference_normalizers_frozen:true,county_likelihood_applied_once:true};
+  for(const validate of [api.validBundle,inline])assert.equal(validate(valid,input),true,'Existing public fixed-target metadata remains allowed');cases++;
+ }
  console.log('Model worker controller PASS: '+cases+' synthetic lifecycle cases; latest-only queue, immutable input snapshot, single active worker, exact identity, stale-result/fallback rejection, correction/context/settings/hidden/archive handling and atomic public/variant results. No speed/calibration claim.');
 }
 main().catch(error=>{console.error(error);process.exitCode=1;});

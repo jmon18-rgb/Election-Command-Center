@@ -12,6 +12,7 @@ const checks = [
   ['Nested worker dependency revisions, fixed order and outer entry identity', 'test_joint_model_worker_assets.cjs'],
   ['Main-safe exact worker runner and missing-helper covariance withholding', 'test_joint_model_worker_main_api.cjs'],
   ['Validated-call numerical proposal, exact allocation and hard support guards', 'test_source_call_conditioning.cjs'],
+  ['County-aware shared proposal density, local marginalization, frozen target and hard support', 'test_count_aware_call_proposal.cjs'],
   ['Resource-guided indexed call proposal preserves the exact original target and workspace bound', 'test_source_call_resource_law.cjs'],
   ['Declared-occupancy guide, successive indexed proposals and per-transport phase isolation', 'test_source_call_occupancy_guide.cjs'],
   ['Strict current-admission count snapshots and correction/context hard invalidation', 'test_joint_count_snapshot_policy.cjs'],
