@@ -1,10 +1,11 @@
 # Virginia typed count snapshots
 
-Status: candidate on `readiness/virginia-typed-snapshot`, October 29, 2026.
-This change is not released until its protected checks, merge, current-main
-deployment, served-byte verification and browser checks are complete.
+Status: verified published October29 on abc62535 / Pages40882535269.
+Protected head69d935fe passed all36workflow parents and all applicable jobs;
+38changed public files, coherence and actual published1366/390 tasks pass.
+Original human/calibration/real-positive gates remain open.
 
-## What the candidate preserves
+## What this preserves
 
 Virginia's existing VA-02 source reports eight district-part localities, five
 named candidates and five vote methods. Its accepted aggregate keeps D/R/other
@@ -13,7 +14,7 @@ clocks. Two individual other candidates can move in opposite directions while
 the aggregate remains identical. That aggregate alone cannot establish that an
 update is safe to coalesce behind a completed calculation.
 
-The candidate retains the already validated native cells and omitted clocks in
+The implementation retains the already validated native cells and omitted clocks in
 a typed, RAM-only projection. It adds no source route, source request, vote
 observation, method weighting, winner authority or numerical likelihood.
 
@@ -115,8 +116,8 @@ integrity. The original source, cache, collector and national-bridge suites pass
 Policy checks retain the original sixty-one civic and thirty-eight Washington
 cases and add sixty-three Virginia whole-frame cases. Focused independent
 counterexamples exposed and closed a diagnostics output leak and a missing-codec
-audit-lineage gap. These are component proofs; page/browser and protected release
-acceptance remain separate gates for this candidate.
+audit-lineage gap. Protected release and actual published page/browser checks passed. These remain
+component proofs; human acceptance and predictive validation are separate gates.
 
 The numerical target, seed, draw budget, hard support floor, source cadence and
 request budgets remain unchanged. This does not establish positive 2026 source
