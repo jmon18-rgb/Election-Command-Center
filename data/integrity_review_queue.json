@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-29T02:58:24.892392Z",
+  "updated_at": "2026-10-29T03:58:05.481807Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -262,6 +262,23 @@
     }
   ],
   "items": [
+    {
+      "id": "f8330d445709a7b54a28",
+      "title": "India: Mass Voter Roll Exclusions Deeply Flawed - Human Rights Watch",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNRnNBU3JBa256ZnpFQzVCcTFiS2kycWlNVVRzSlZPTlBIMnl4Z1JBQ3U1NWY5UW1oSEF0OUQzVDJ6aGM2RjJ6VTROZ3BYM2dFTWVjRFNRSnBiMFdDN2hETE9mbWNHU1lQY1F5MlB0WWRLRDhvUDBXRkJSSTM3cmo2QVBUMXpIaW9yNmc?oc=5",
+      "publisher": "Human Rights Watch",
+      "published_at": "2026-10-29T03:30:00Z",
+      "detected_at": "2026-10-29T03:58:05.481807Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "11cd90159865b8ea8b7f",
       "title": "Judge denies the Justice Department's bid to stop processing California ballots - NPR",
@@ -5031,23 +5048,6 @@
       ],
       "topic_hints": [
         "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "a560d9b3d4c3773d299d",
-      "title": "Ottawa holding Advance Voting Day today. Here\u2019s what you need to know in the municipal election - CTV News",
-      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQSEl4RFhadWZHb3JFLW13WlhNeGYtRmhIN1hZcnBUOVVrN2lXRmFabUVvalNhMi1ibVFkUDBuNEU3NGhzWFVHU3BrS3NXbkRsMEx6a19VVFRIRmpwdUgzV0ExMXRnZU9UVUZrc0hKd2JtS3RycjZ2a25QQWJUMGxQRjdmV1k1cy1Ec1BuRnVwMkV1NEV6ejdQOVVBZG4xNkZrd0NVYWJOV2J3eDU4cGJ2YVdDYkRiUVUwZEJnNlg4bXFPbG90QUtQTlhkaXA?oc=5",
-      "publisher": "CTV News",
-      "published_at": "2026-10-16T09:00:00Z",
-      "detected_at": "2026-10-16T13:24:20.594274Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
