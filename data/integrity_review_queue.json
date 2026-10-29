@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-29T09:03:45.871781Z",
+  "updated_at": "2026-10-29T10:01:25.419149Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
     "advisory_related_headline_buckets": 25,
-    "advisory_related_headlines": 65
+    "advisory_related_headlines": 64
   },
   "advisory_related_headlines": [
     {
@@ -52,20 +52,6 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "cf7c8a069689d1e482b4",
-      "headline": "US midterms 2026: DOJ sues California, claims 20,000 suspected \u2018noncitizen voters\u2019; seeks to block mail b - The Times of India",
-      "possibly_related_articles": 3,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
       "lead_id": "3b6154045883ef155c34",
       "headline": "Justice Department charges more than 2 dozen in California sweep targeting alleged noncitizen voters - Scripps News",
       "possibly_related_articles": 3,
@@ -86,6 +72,20 @@
       "state_hints": [],
       "topic_hints": [
         "litigation"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "cf7c8a069689d1e482b4",
+      "headline": "US midterms 2026: DOJ sues California, claims 20,000 suspected \u2018noncitizen voters\u2019; seeks to block mail b - The Times of India",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -262,6 +262,62 @@
     }
   ],
   "items": [
+    {
+      "id": "c6017153f1a1b55ed150",
+      "title": "Could Trump interfere with Election Day in Mass.? Officials are preparing - MassLive",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNd1ZoQmktb3FvQ0hBSXhnUmZUUEVteHpmX19TTFJSZkdFTVN0a253LWViZFVlNXgtS3ozZWRIR0pyS1o3bk5VTlhuQlgydjB5TWZ4V2FvSDFubi1CUkNUc0E0WXNXUW9uemN2QlU1U3dINEQ4SFJXV3VZa0FNRmFDRjBPUG94cE9zLUYzR2lIYjJBUFpIYkZRNVY2UlVsMk1MZ3l0bEhqNGVwXzlEdW1RTzB5bUNUS3R5dm0tQUk2XzVKdndN?oc=5",
+      "publisher": "MassLive",
+      "published_at": "2026-10-29T09:50:00Z",
+      "detected_at": "2026-10-29T10:01:25.419149Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "51fd6302a04d51706763",
+      "title": "Pa. election 2026: What to know about ICE at the polls, election monitors and more - WHYY",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNNkUtN2JIWkxjZUhnWFQ3NFRvTXh6QllqdUpPTmdsTE9kYk9UTmZTNkdLaENJLXJLSmpCWjROWWN6RnhzRTlmN3hDSEtEekR0S2xFOUJuam1pTEZHZEVMdVc0aEFzUGhBdmplMjNzUjA3Y3l3b3locUtIeWNvTXFwck4yczlnTDA?oc=5",
+      "publisher": "WHYY",
+      "published_at": "2026-10-29T09:33:39Z",
+      "detected_at": "2026-10-29T10:01:25.419149Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "47ece9615056671f67b6",
+      "title": "Will Missouri election results face legal challenges after map mess? KCUR answers more voter Qs - KCUR",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNWXdaUmFIMEgxcDl2bU1jWkdFV3dZcTQ1Z0dBTHJDWndYcDVNSnFLbkZjeEpDSjZvdFhfc0o4TUxRTDExX05XYzRDeFpWX2M3MWpBSmZ0SS1xVGZsNEl2cmpOVC1jdkxfZ1F5d3d1NGFsWlRNMkhsRTAzbEhqTDM4UU50QXp3UFhXYl9LRGoweUtoRnVPUFU1MEExUkxfaUVyUG1zQnlaUkV3aDctdHR3ODloRVRDNU1mUld2TTJpYjZ4T1hVS3UtYktQT195UHZGaVJscXR3?oc=5",
+      "publisher": "KCUR",
+      "published_at": "2026-10-29T09:00:00Z",
+      "detected_at": "2026-10-29T10:01:25.419149Z",
+      "state_hints": [
+        "MO"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "1eb53e88f4f27e907bcd",
       "title": "US midterms: FBI, ICE agents will not serve as election monitors, DOJ says - The Times of India",
@@ -4986,68 +5042,6 @@
         "2026",
         "20,000 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ded1041233c757187ec8",
-      "title": "US midterms 2026: DOJ sues California, claims 20,000 suspected \u2018noncitizen voters\u2019; seeks to block mail b - The Times of India",
-      "url": "https://news.google.com/rss/articles/CBMisAJBVV95cUxPSGRwb0s4VDVsN1JqZVVpbktxUllzaVUxcE9WYUtVb2V4QnVUa1RabXFlZ1liQ3VzWnVJTTltMUFpLTVsUEJtd1FMb1h0a18tWnBQODZuYzgwMl93c05mb2hRUVRSMDc5Mng1R2JRQlZoaEFXN1ktVXhHVy1rY1dWUDhjMmlTWllJNUtDRG1haDBaREt6ZERGVWFxeTBtY01ZS1VXN0RzN2JHY3ZkMGZwLVpQdFZRRlZwRFliUkZqMHN1ck5zdjhkTlNabXlMNEZCNUluT3VkNW8wbm5XRllKZlRPcWtJdm1EVjhHel9hRlo1ckZpQi1xNDFvM1lER2NwaVFSVGtsM1RpQnd6WDBtUENJeUM0VkZpcDJyaFF2WERRRjFtX1VLRDJDVEVwRkRk0gGwAkFVX3lxTE9IZHBvSzhUNWw3UmplVWluS3FSWXNpVTFwT1ZhS1VvZXhCdVRrVFptcWVnWWJDdXNadUlNOW0xQWktNWxQQm13UUxvWHRrXy1acFA4Nm5jODAyX3dzTmZvaFFRVFIwNzkyeDVHYlFCVmhoQVc3WS1VeEdXLWtjV1ZQOGMyaVNaWUk1S0NEbWFoMFpES3pkREZVYXF5MG1jTVlLVVc3RHM3YkdjdmQwZnAtWlB0VlFGVnBEWWJSRmowc3VyTnN2OGROU1pteUw0RkI1SW5PdWQ1bzBubldGWUpmVE9xa0l2bURWOEd6X2FGWjVyRmlCLXE0MW8zWURHY3BpUVJUa2wzVGlCd3pYMG1QQ0l5QzRWRmlwMnJoUXZYRFFGMW1fVUtEMkNURXBGRGQ?oc=5",
-      "publisher": "The Times of India",
-      "published_at": "2026-10-16T14:36:00Z",
-      "detected_at": "2026-10-16T15:54:07.499959Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026",
-        "20,000 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "6806a90e195bf008d71b",
-      "title": "California Ballots: Trump DOJ Targets 20,000 Voters - USA Herald",
-      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE00UF90VS10Yk1JMzN2OXZZLVVQUmotY3JMQm9RSWF5b0ZvakxyZWl0eFozTHpOSGJPS0ZpbUJzalFLa2JWWkVBVWFGM3ZuMHpaYTNaRFdDbWlKSGhJU3RHOXVBem9zLWNxU0pJ?oc=5",
-      "publisher": "USA Herald",
-      "published_at": "2026-10-16T14:27:56Z",
-      "detected_at": "2026-10-16T14:47:56.717861Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [
-        "20,000 Voters"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "d55c906ba8b5cd2b3734",
-      "title": "Tennessee resumes using federal SAVE tool for voter citizenship checks - nbc39.com",
-      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPR2xXaVYzRlZPVkxPbjJaUy0tNnJKS0VFZlhmSmVGbnNjUFAwUVBhcFlfTVNBeFNkWFc2Y0dVVHVEUm9wWHEtT1FYRkNudGhLSVR6M0o5NXY2NmpwejA3eWJmeHM3YS1leDI0Z3BFdnZ1VnhkVm0ybGdXQkZiY3prUXlLdHlNSEh0ZDdRQUl3N3NmY21HbU5rY0ZFV2ZCZS00eFNfSmNra3JIZ1FvLWVieTZqbEtzZXdzNzdnUXRkbkpxd21zdFFCZ2NIcV9iWExqd2I1S1RHaktHdVY4TWFlZQ?oc=5",
-      "publisher": "nbc39.com",
-      "published_at": "2026-10-16T13:12:00Z",
-      "detected_at": "2026-10-16T15:45:32.075276Z",
-      "state_hints": [
-        "TN"
-      ],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
