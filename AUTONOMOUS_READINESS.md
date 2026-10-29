@@ -1,5 +1,12 @@
 # Election Night production-readiness assignment
 
+### Second review fixture repairs — runtime unchanged
+
+Head171e passed the repaired mobile-image and heartbeat guards, but failed two distinct browser prerequisites. Unified lost its execution context during startup before any component assertions; exact cause remains unknown. Its local and published checks now use the same normal #electionNight URL and native initial load, retaining the explicit tab click/all160 original assertions. A161st assertion rejects unexpected post-load document navigation; bounded lifecycle diagnostics were added without retry, sleep or deadline change. Both widths/24pins pass. Root/default-navigation coverage remains in the phase suite.
+
+The phone Personal range-focus assertion also failed; exact CI state was not recorded. One controlled original-static-input delay confirmed that18retained SVGs can coexist with pending/inert ranges and legitimateH4 focus, then the open summary recovers after CURRENT. The fixture now waits genuine startup-input terminal state and exact accepted CURRENT before its component/range checks; it never forces private inputs or focus. All51 original assertions/poses remain literal; both widths pass. Public boolean/focus diagnostics were added. Product indexdb773177/Personal2d51 and model/source/media behavior are unchanged. Independent fixture reviewd0619df9 passes. A new corrected exact-head gate/publication is required; no waiver, successful-job rerun or guide append.
+
+
 ### Initial review failures repaired — corrected protected head required
 
 Initial d30efae1 finished with35parents32SUCCESS/3FAILURE and55jobs49SUCCESS/3declaredSKIP/3FAILURE; no rerun/cancel/waiver. Mobile guard's old remote-image literal and open-tab test's old exact heartbeat string were stale. They now verify the exact localJPEG/attribution and execute the actual60000ms callback; all original geometry/clock/source safeguards and new negative controls pass.

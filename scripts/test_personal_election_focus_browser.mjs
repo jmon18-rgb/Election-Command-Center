@@ -1,23 +1,49 @@
 // Isolated synthetic/fixture UI checks, never an actual-results or calibration claim.
 import assert from 'node:assert/strict';
 import {createServer} from 'node:http';
-import {readFileSync,existsSync,statSync,mkdirSync} from 'node:fs';
+import {readFileSync,existsSync,statSync,mkdirSync,writeFileSync} from 'node:fs';
 import {resolve,extname,sep} from 'node:path';
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright');
 const root=resolve(import.meta.dirname,'..'),types={'.html':'text/html','.js':'application/javascript','.json':'application/json','.svg':'image/svg+xml'};
 const out=resolve(root,process.env.UI_REVIEW_OUTPUT_DIR||'artifacts/readiness');mkdirSync(out,{recursive:true});
+// SVGs deliberately retain their layout while a new calculation is pending.
+// Wait for the original startup producer and its exact accepted frame, rather
+// than treating those retained elements as a completed model.
+const initialInputTerminal=()=>{
+ const status=document.querySelector('#privateContextStatus')?.textContent||'';
+ return (jointPrivateSource==='repository'&&status.startsWith('Repository fundamentals ACTIVE'))||
+  status.startsWith('Repository fundamentals unavailable:')||status.startsWith('Private context not applied:');
+};
+const personalCurrent=()=>{
+ const host=document.querySelector('#enPersonalFocus'),summary=host?.querySelector('[data-race="IA-SEN"] [data-disclosure="margin"] > summary'),rect=summary?.getBoundingClientRect();
+ return Boolean(initialInputTerminal()&&jointCompletedFrame&&jointBasis&&jointLastResult?.samples===3000&&jointPulseBaseline?.samples===3000&&
+  !jointModelPending&&!jointAsOfSnapshot&&!jointActiveKey&&jointRefreshTimer===null&&jointCacheKey===jointCompletedFrame.key&&
+  jointCompletedFrame.key===jointFrameKey(jointValidatedFrameInputs())&&jointCompletedFrame.modelRevision===jointModelCodeRevision()&&
+  host&&!host.hidden&&host.getAttribute('aria-busy')!=='true'&&summary&&!summary.closest('[hidden],[inert]')&&
+  getComputedStyle(summary).visibility!=='hidden'&&rect.width>0&&rect.height>0);
+};
+// The page evaluates a self-contained copy; no app function or input is replaced.
+const currentPredicate=Function('return '+personalCurrent.toString().replace('initialInputTerminal()','('+initialInputTerminal.toString()+')()'))();
+async function waitForPersonalCurrent(page){await page.waitForFunction(initialInputTerminal);await page.evaluate(()=>jointWhenIdle());await page.waitForFunction(currentPredicate);}
+const focusDiagnostics=[],completedWidths=[];let currentWidth=null,currentPhase='START';
+async function recordFocus(page,phase){
+ const state=await page.evaluate(()=>{const host=document.querySelector('#enPersonalFocus'),active=document.activeElement;return {pending:jointModelPending,as_of:Boolean(jointAsOfSnapshot),request_active:Boolean(jointActiveKey),refresh_queued:jointRefreshTimer!==null,frame_present:Boolean(jointCompletedFrame),frame_cache_equal:Boolean(jointCompletedFrame&&jointCompletedFrame.key===jointCacheKey),frame_inputs_equal:Boolean(jointCompletedFrame&&jointCompletedFrame.key===jointFrameKey(jointValidatedFrameInputs())),frame_revision_equal:Boolean(jointCompletedFrame&&jointCompletedFrame.modelRevision===jointModelCodeRevision()),result_samples:jointLastResult?.samples||null,baseline_samples:jointPulseBaseline?.samples||null,aria_busy:host?.getAttribute('aria-busy')||null,focus_tag:active?.tagName||null,focus_id:active?.id||null,focus_race:active?.closest('.personal-focus-card')?.dataset.race||null,focus_disclosure:active?.closest('details')?.dataset.disclosure||null,focus_heading:active?.tagName==='H4'&&Boolean(active?.closest('.personal-focus-card')),summary_inert:Boolean(host?.querySelector('[data-race="IA-SEN"] [data-disclosure="margin"] > summary')?.closest('[inert]'))};});
+ focusDiagnostics.push({width:currentWidth,phase,...state});if(focusDiagnostics.length>12)focusDiagnostics.shift();return state;
+}
 const server=createServer((req,res)=>{const file=resolve(root,'.'+(new URL(req.url,'http://localhost').pathname==='/'?'/index.html':decodeURIComponent(new URL(req.url,'http://localhost').pathname)));
  if(!file.startsWith(root+sep)||!existsSync(file)||!statSync(file).isFile()){res.writeHead(404).end();return;}res.writeHead(200,{'content-type':types[extname(file)]||'application/octet-stream'});res.end(readFileSync(file));});
 await new Promise(ok=>server.listen(0,'127.0.0.1',ok));let browser;
 try{
  browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
  for(const width of [1366,390]){
+  currentWidth=width;currentPhase='INITIAL_CARDS';
   const context=await browser.newContext({viewport:{width,height:width===390?844:900}}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.clock.install({time:new Date('2026-10-27T19:00:00Z')});
   await page.route('**/*',route=>new URL(route.request().url()).hostname==='127.0.0.1'?route.continue():route.abort());
   await page.goto('http://127.0.0.1:'+server.address().port+'/',{waitUntil:'domcontentloaded'});
   await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();
   await page.waitForFunction(()=>document.querySelectorAll('#enPersonalFocus article svg').length===18);
+  await waitForPersonalCurrent(page);
   assert.equal(await page.locator('#enPersonalFocus article').count(),19);
   assert.match(await page.locator('#enPersonalFocus [data-race="AK-SEN"]').innerText(),/Needle pending/);
   assert.match(await page.locator('#enPersonalFocus [data-race="NE-SEN"]').innerText(),/Osborn.*model chance vs Ricketts.*Independent; no assumed Democratic caucus/s);
@@ -28,6 +54,7 @@ try{
   // Normal source-status redraws must retain an actual race heading. A pending
   // heading used as a temporary summary anchor must retain the summary instead.
   // Reuse this already-computed model; these component checks make no new draws.
+  currentPhase='HEADING_COMPONENT';await waitForPersonalCurrent(page);await recordFocus(page,'HEADING_CURRENT');
   const headingRedraw=await page.evaluate(()=>{
    const api=PersonalElectionFocus,host=document.querySelector('#enPersonalFocus'),code='IA-SEN',inputBefore=JSON.stringify({result:jointLastResult,baseline:jointPulseBaseline});
    const card=()=>host.querySelector('[data-race="'+code+'"]'),heading=()=>card().querySelector('h4'),summary=()=>card().querySelector('[data-disclosure="margin"] > summary'),redraw=()=>renderPersonalElectionFocus();
@@ -55,6 +82,7 @@ try{
   assert.equal(headingRedraw.movedOtherRaceRetained,true,'A user who moves to another race heading keeps the new race');
   assert.deepEqual(headingRedraw.unrelatedControl,{bookmark:{kind:'race',race:'IA-SEN',disclosure:null},firstSummary:true},'Unrelated null-disclosure card controls retain their previous restoration behavior');
   assert.equal(headingRedraw.inputsUnchanged,true,'Semantic focus restoration cannot change the accepted model or polling baseline');
+  currentPhase='RANGE_DRILL';await waitForPersonalCurrent(page);await recordFocus(page,'RANGE_CURRENT');
   const ia=page.locator('#enPersonalFocus [data-race="IA-SEN"]'),distribution=ia.locator('.personal-focus-margin');
   assert.equal(await distribution.count(),1,'Current shared simulation supplies a selected race range');
   assert.equal(await page.locator('#enPersonalFocus [data-race="AK-SEN"] .personal-focus-margin').count(),0);
@@ -63,6 +91,7 @@ try{
   const help=distribution.locator('summary');await help.click();
   assert.match(await distribution.innerText(),/not a calibrated final-vote interval/);
   await page.evaluate(()=>renderPersonalElectionFocus());
+  await waitForPersonalCurrent(page);await recordFocus(page,'RANGE_POST_REDRAW_CURRENT');
   assert.equal(await help.evaluate(e=>e===document.activeElement),true,'Range explanation keeps keyboard focus after redraw');
   assert.equal(await distribution.locator('details').evaluate(e=>e.open),true);
   await page.keyboard.press('Space');assert.equal(await distribution.locator('details').evaluate(e=>e.open),false);
@@ -127,6 +156,9 @@ try{
   // rather than carrying the preceding post-close history drill into startup.
   await page.clock.setSystemTime(new Date('2026-10-27T19:00:00Z'));
   await page.route('**/personal_election_focus.js*',route=>route.abort());await page.reload({waitUntil:'domcontentloaded'});await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();await page.waitForFunction(()=>jointLastResult?.probabilities);assert.equal(await page.evaluate(()=>typeof window.PersonalElectionFocus),'undefined');assert.deepEqual(errors,[]);
+  completedWidths.push(width);
   await context.close();console.log(width+'px owner Senate/House same-model needles, disclosure, synthetic admission/withdrawal, archive and optional-script fallback PASS');
  }
-}finally{await browser?.close();await new Promise(ok=>server.close(ok));}
+ writeFileSync(resolve(out,'personal-current-focus-diagnostics.json'),JSON.stringify({status:'PASS',completed_widths:completedWidths,focus_diagnostics:focusDiagnostics,scope:'Bounded public semantic focus/current-frame diagnostics only; no input values, hashes or frame bodies.'},null,2)+'\n');
+}catch(error){writeFileSync(resolve(out,'personal-current-focus-failure.json'),JSON.stringify({status:'FAIL',width:currentWidth,phase:currentPhase,completed_widths:completedWidths,focus_diagnostics:focusDiagnostics,error:error.message,stack:error.stack},null,2)+'\n');throw error;}
+finally{await browser?.close();await new Promise(ok=>server.close(ok));}
