@@ -1,26 +1,111 @@
 {
-  "updated_at": "2026-10-29T19:21:21.285899+00:00",
+  "updated_at": "2026-10-29T19:57:58.090787+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 858,
+      "available_in_source": 861,
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1281,
+      "available_in_source": 1282,
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 963,
+      "available_in_source": 965,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 346,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 3,
+  "injected_poll_ids": [
+    {
+      "race_code": "MI-GOV",
+      "poll_id": "c506a63c-4d38-4a19-9173-98e168424ae5"
+    },
+    {
+      "race_code": "MI-SEN",
+      "poll_id": "4567e642-9d14-4530-9c86-e17199675130"
+    },
+    {
+      "race_code": "MI-SEN",
+      "poll_id": "c506a63c-4d38-4a19-9173-98e168424ae5"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "MI-SEN",
+      "race_type": "senate",
+      "state": "MI",
+      "poll_id": "4567e642-9d14-4530-9c86-e17199675130",
+      "question_id": "4353b805-3580-492a-8724-00b582c6c6d9",
+      "pollster": "Upswing Research",
+      "dem_name": "Abdul El-Sayed",
+      "rep_name": "Mike Rogers",
+      "dem": 50.0,
+      "rep": 45.0,
+      "margin": 5.0,
+      "field_end": "2026-10-25",
+      "field_start": "2026-10-24",
+      "posted_date": "2026-10-29",
+      "posted_source_datetime": "2026-10-29T15:23:00",
+      "posted_source_time": "10/29/26 15:23",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://x.com/joshorton/status/2115883461076545615",
+      "sample_population": "lv",
+      "sample_size": 505,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "MI-SEN",
+      "race_type": "senate",
+      "state": "MI",
+      "poll_id": "c506a63c-4d38-4a19-9173-98e168424ae5",
+      "question_id": "db7880a2-fbb9-42db-be1c-cc6046217752",
+      "pollster": "Michigan State University Office for Survey Research/Verasight",
+      "dem_name": "Abdul El-Sayed",
+      "rep_name": "Mike Rogers",
+      "dem": 51.4,
+      "rep": 42.2,
+      "margin": 9.2,
+      "field_end": "2026-10-23",
+      "field_start": "2026-10-08",
+      "posted_date": "2026-10-29",
+      "posted_source_datetime": "2026-10-29T15:21:00",
+      "posted_source_time": "10/29/26 15:21",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://polisci.msu.edu/news-events/news/smidt-poll102926.html",
+      "sample_population": "lv",
+      "sample_size": 1383,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "MI-GOV",
+      "race_type": "governor",
+      "state": "MI",
+      "poll_id": "c506a63c-4d38-4a19-9173-98e168424ae5",
+      "question_id": "baa624e0-1a30-4bb7-87e1-6cb2a367cc86",
+      "pollster": "Michigan State University Office for Survey Research/Verasight",
+      "dem_name": "Jocelyn Benson",
+      "rep_name": "John James",
+      "dem": 51.4,
+      "rep": 41.2,
+      "margin": 10.2,
+      "field_end": "2026-10-23",
+      "field_start": "2026-10-08",
+      "posted_date": "2026-10-29",
+      "posted_source_datetime": "2026-10-29T15:21:00",
+      "posted_source_time": "10/29/26 15:21",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://polisci.msu.edu/news-events/news/smidt-poll102926.html",
+      "sample_population": "lv",
+      "sample_size": 1383,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "TX-SEN",
       "race_type": "senate",

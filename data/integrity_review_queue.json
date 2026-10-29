@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-29T19:21:20.614878Z",
+  "updated_at": "2026-10-29T19:57:57.237033Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
@@ -347,6 +347,26 @@
       ],
       "topic_hints": [
         "registration",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "ba315eb5731b48eadfe7",
+      "title": "Judge rejects DOJ effort to remove 20K California mail-in ballots - Gephardt Daily",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOYTVOVTRscjh3djZxdDVhRkZ3NkVHdUZBaWRzLUdhTEhlaGotbTluTUVKN0JvV3dveDdqemg0Q0FHSnY0UmE3QnVkQUZwYWl5dmxZVDBBc25ocmV1VE5GRlFuamRZNkRmZ2haenpvUkctUC1vRG9sV0otLS1TT2ZIQ2gtUjlka2l4bXQ2SzRWUnlNOVQyOTRibFlnek5Jc3paZUx6empHdw?oc=5",
+      "publisher": "Gephardt Daily",
+      "published_at": "2026-10-29T13:38:29Z",
+      "detected_at": "2026-10-29T19:57:57.237033Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
         "litigation"
       ],
       "headline_numbers_unverified": [],
@@ -5015,27 +5035,6 @@
       "topic_hints": [
         "ballot_access",
         "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "01bc6569c5d80ec53ab2",
-      "title": "Trump DOJ threatens California election officials with criminal exposure if they count ballots from flagged voters - Democracy Docket",
-      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPSTJPTjJZeHNYaW1ROVNDcmFKUDZ4TFpZVHE4SEk0MXZYUEYwaVJpMmZoZlExb09DaGNnMXNReTlWa0Y5Z2Z6Vkc4ZG1BZi1CQTFfeW1xaWJEanJYRU5ZdmxpY2ZYQnlINGticFZyTW1IejFJSWRoM2hUTmljUjlpVWQ1NjBqZFEzTmp3VzN5S2RCazBFWGRTeXljaGpWd3NwNGcwNGlseURhMTFHT2JqV05NeTBBS1Yy?oc=5",
-      "publisher": "Democracy Docket",
-      "published_at": "2026-10-17T00:28:05Z",
-      "detected_at": "2026-10-17T12:49:33.919911Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "security",
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
