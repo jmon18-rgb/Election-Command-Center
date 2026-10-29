@@ -8984,14 +8984,20 @@ function enPreservePresentationReader(action,force=false){
  return true;
 }
 function enUpdateNightPresentation(now=Date.now(),force=false){
+ // The label and Auto control can wrap the phone header. Render them inside
+ // the same reader-preserving transaction as a layout change.
+ const applyControls=(panel,toggle,automatic,clockAvailable=true)=>{
+  const expanded=panel?.dataset.layout!=='COMPACT';
+  if(toggle){toggle.setAttribute('aria-expanded',String(expanded));toggle.textContent=expanded?'Compact view':'Show meter';toggle.title=clockAvailable?'':'Automatic timing unavailable; manual meter display still works.';}
+  if(automatic)automatic.hidden=!clockAvailable||enEarlyLayoutChoice==='AUTO';
+ };
  const clock=window.ElectionNightPresentationClock;
  if(typeof clock?.evaluate!=='function'){
   // A failed optional clock cannot remove the original meter or strand its
   // manual control. It grants no automatic navigation or timing claim.
   const panel=$('#enEarlyIndicatorPanel'),toggle=$('#enEarlyLayoutToggle'),automatic=$('#enEarlyLayoutAuto');
-  if(panel&&force&&enEarlyLayoutChoice!=='AUTO')enPreservePresentationReader(()=>{panel.dataset.layout=enEarlyLayoutChoice;},true);
-  if(toggle){const expanded=panel?.dataset.layout!=='COMPACT';toggle.setAttribute('aria-expanded',String(expanded));toggle.textContent=expanded?'Compact view':'Show meter';toggle.title='Automatic timing unavailable; manual meter display still works.';}
-  if(automatic)automatic.hidden=true;
+  const controlsApplied=Boolean(panel&&force&&enEarlyLayoutChoice!=='AUTO'&&enPreservePresentationReader(()=>{panel.dataset.layout=enEarlyLayoutChoice;applyControls(panel,toggle,automatic,false);},true));
+  if(!controlsApplied)applyControls(panel,toggle,automatic,false);
   const badge=$('#siteModeLabel');if(badge){badge.textContent='VIEW TIMING UNAVAILABLE';badge.title='Manual views remain available; this is not a results status.';}
   document.body.dataset.nightPhase='UNKNOWN';return false;
  }
@@ -9017,12 +9023,10 @@ function enUpdateNightPresentation(now=Date.now(),force=false){
   if(panel.dataset.layout!==layout){
    const reading=panel.contains(document.activeElement)||$('#enEarlySignalsDetails')?.open||rect.top<0&&rect.bottom>0;
    if(!force&&reading)panel.dataset.layoutDeferred=layout;
-   else{const changed=enPreservePresentationReader(()=>{panel.dataset.layout=layout;delete panel.dataset.layoutDeferred;},force);if(!changed)panel.dataset.layoutDeferred=layout;}
+   else{const changed=enPreservePresentationReader(()=>{panel.dataset.layout=layout;delete panel.dataset.layoutDeferred;applyControls(panel,toggle,automatic);},force);if(!changed)panel.dataset.layoutDeferred=layout;else return state;}
   }
  }
- const expanded=panel.dataset.layout!=='COMPACT';
- if(toggle){toggle.setAttribute('aria-expanded',String(expanded));toggle.textContent=expanded?'Compact view':'Show meter';toggle.title='';}
- if(automatic)automatic.hidden=enEarlyLayoutChoice==='AUTO';
+ applyControls(panel,toggle,automatic);
  return state;
 }
 $('#enEarlyLayoutToggle').addEventListener('click',()=>{enEarlyLayoutChoice=$('#enEarlyIndicatorPanel').dataset.layout==='COMPACT'?'EXPANDED':'COMPACT';enUpdateNightPresentation(Date.now(),true);});

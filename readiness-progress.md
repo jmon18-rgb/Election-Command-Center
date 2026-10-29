@@ -1,5 +1,14 @@
 # Readiness progress
 
+### Timed-layout phone repair — complete control rendering
+
+Head a2912cc8 exposed an actual390px geometry failure: the same focusedH4 moved45px while exactCURRENT/frame/epoch/key/wholebundle and source/worker counters stayed unchanged. All other33 applicable parents passed; the failed head was not merged or rerun. The startup-input wait remains separately justified, but did not repair this layout defect.
+
+Source review found that the dataset layout changed inside reader preservation while the button label and Auto control rendered afterward. An exact-CSS zero-draw361px component exposed51px of post-guard header reflow. The first negative-control attempt was masked by native browser anchoring and is preserved as a failed assertion; an explicit identical no-UA-anchoring control reproduces old-reader51px movement versus0px on the repair. This proves the transaction gap, not the exact Linux45px font identity. All control rendering now occurs inside the existing layout transaction; deferral/manual/archive/rehearsal/auto-landing and missing-clock semantics remain unchanged.
+
+Fixed index3038ae22 is independently reviewed (e753c326/72cff1f4). All99 portable checks pass, and the unchanged86-assert actual-page phase journey passes1366/390 with0px immediate/painted movement, stable focus/wholeframe/bundle/counters and15pins (proof42a291cb). Personal2d51, phasefixturee227,91script stamps,3k/hardESS/30s and every model/source/call/media rule are unchanged. The corrected source head still requires ALL applicable CI, protected merge and final published-byte/browser verification; no guide append or release claim yet.
+
+
 ### Presentation-only checks wait for completed native bootstrap
 
 Head6a522b95 kept focus on the correct race but failed the original timed-collapse <=2px geometry assertion. Its exact viewport/displacement and concurrent state were not recorded, so the CI cause remains unknown. One bounded original-pose Chrome diagnostic passed both widths with0px immediate/painted movement, exactCURRENT and unchanged frame/bundle.
