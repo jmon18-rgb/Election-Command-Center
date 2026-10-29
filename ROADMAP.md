@@ -1,5 +1,12 @@
 # JackStradamus · development plan
 
+## October 29 owner layout correction — integrated early indicators, release pending
+
+The owner requests one integrated early-indicator/Poop Meter panel, Full-blown shit on the LEFT through Clean undies on the RIGHT, original stained-underwear illustrations, and a cleaner graphical top. The new panel precedes19needles; detailed explanations stay in one shared disclosure. Semantic stage indices, currentness and18route/17D-R/32watch contracts are unchanged. EN-only chrome is compact; model/results status remains visible and all5source states reachable. Modes/Refresh/preview/watch controls are44px. Saved-layout review measured phone forecast start722→476px and meter15850→1982px.
+
+Actual delayed-worker testing found real reader shifts after moving the panel: desktop−24px; a meter-only guard fixed desktop but phone retained−42.5px from forecast rendering/headline collapse. The complete unchanged synchronous invalidation is now wrapped in the existing visible-reader guard; all actions/epochs/state/return order verified across10zero-draw cases. Full actual browser now passes1366/390 with heading movement0/−0.5px and unchanged accepted model output. Original failures/phone trace retained. A final additive header/44px/source-disclosure check and all exact-head CI/publication gates remain; no release claim. Numerical/source/call/cadence/budget/music scope unchanged.
+
+
 ## October 29 — PR534 verified published: Poop Meter, county comparisons and celebration finales
 
 PR534 tested cbcf30ec6ab60144485e42fac0f642a33bb16620 passed all 35 applicable workflow parents and 55 latest jobs (52 SUCCESS / 3 declared nonapplicable PR deployment skips), with matching check/job identities, zero external statuses and clean mergeability. Protected merge 7cd60db79a40c830f8909603c19035c8ba78c215; final current main 5322e5e6320000441fb585b5ba7ffb49ac9d14df, Pages 40939361659 SUCCESS. All 57 changed public/index files matched origin/main at 19:24:26Z, no failures/retries; 13 coherence checks/index/no_credit passed. Main was rechecked unchanged after published tasks at 19:29:40Z. No waiver, successful-job rerun, sample/case/assertion cut or deadline increase.
