@@ -1,5 +1,12 @@
 # Readiness progress
 
+### Presentation-only checks wait for completed native bootstrap
+
+Head6a522b95 kept focus on the correct race but failed the original timed-collapse <=2px geometry assertion. Its exact viewport/displacement and concurrent state were not recorded, so the CI cause remains unknown. One bounded original-pose Chrome diagnostic passed both widths with0px immediate/painted movement, exactCURRENT and unchanged frame/bundle.
+
+A separate controlled actual-input proof establishes the old lifecycle insufficiency: baseline -> idle -> networkidle can return while a later native repository-input worker is still pending. The revised phase fixture waits native input terminal state and the producer's exact acceptedCURRENT after networkidle, then reasserts that condition before the original reader pose. All69 original assertions/cases/poses/tolerances remain, with17 additive concurrent-frame/epoch/key/bundle/counter and post-paint checks. Failure logs now include bounded public geometry; no private values or raw keys. Runtime indexdb773177/Personal2d51, all3k samples, source/model/media authority and deadlines are unchanged. The controlled proof does not establish the earlier CI cause. Independent reviews fbd158b0/d1bf0eae pass; corrected exact-head CI and verified publication remain required.
+
+
 ### Second review fixture repairs — runtime unchanged
 
 Head171e passed the repaired mobile-image and heartbeat guards, but failed two distinct browser prerequisites. Unified lost its execution context during startup before any component assertions; exact cause remains unknown. Its local and published checks now use the same normal #electionNight URL and native initial load, retaining the explicit tab click/all160 original assertions. A161st assertion rejects unexpected post-load document navigation; bounded lifecycle diagnostics were added without retry, sleep or deadline change. Both widths/24pins pass. Root/default-navigation coverage remains in the phase suite.
