@@ -1650,15 +1650,15 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/pennsylvania_house_08_evidence.js?v=db68953539bb"></script>
 <script src="./scripts/michigan_house_07_evidence.js?v=f10ed8920077"></script>
 <script src="./scripts/washington_house_evidence.js?v=4a2cc5972349"></script>
-<script src="./scripts/source_call_conditioning.js?v=26c1be0c0e7a"></script>
-<script src="./scripts/national_county_likelihood.js?v=3a42f78b20e5"></script>
+<script src="./scripts/source_call_conditioning.js?v=9180df7432b1"></script>
+<script src="./scripts/national_county_likelihood.js?v=48e16427f122"></script>
 <script src="./scripts/official_admission_audit.js?v=c2720f504058"></script>
 <script src="./scripts/national_needle_rehearsal.js?v=02f20194577c"></script>
-<script src="./scripts/chamber_control_model.js?v=d98ce3f4cdf1"></script>
-<script src="./scripts/joint_model_worker.js?v=9e4befecc71a"></script>
+<script src="./scripts/chamber_control_model.js?v=36064c2a9836"></script>
+<script src="./scripts/joint_model_worker.js?v=c3fe6409588a"></script>
 <script src="./scripts/recorded_asset_lineage.js?v=11a33d968f4c"></script>
 <script src="./scripts/joint_count_snapshot_policy.js?v=e929d5be3a7a"></script>
-<script src="./scripts/joint_model_worker_controller.js?v=d9df5fd007aa"></script>
+<script src="./scripts/joint_model_worker_controller.js?v=bf97f411e662"></script>
 <script src="./scripts/electorate_what_if_2026.js?v=1a5fe3701694"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
 <script src="./scripts/chamber_poll_error_audit.js?v=9e73e0e9f9fe"></script>
@@ -5127,7 +5127,7 @@ function jointFallbackBundleValid(value,request){
   // Self-contained so the page can retain this exact guard when either optional
   // worker asset fails. Private input payloads are intentionally NOT inspected.
   const endingKeys=['blue_tsunami','blue_wave','shrug','red_dawn'];
-  const rawKeys=new Set(['proposal_only','county_draws','call_proposal_draws','call_log_weights','log_weights','seeds','source_indices','weights','fingerprint','basis','publicBasis','localNormals','redrawMargins','redrawUniforms','transport_margins','transportCache','transportCacheChecksum','typed_usage','native_usage']);
+  const rawKeys=new Set(['proposal_only','county_draws','call_proposal_draws','call_log_weights','log_weights','seeds','source_indices','weights','fingerprint','basis','publicBasis','localNormals','redrawMargins','redrawUniforms','transport_margins','transportCache','transportCacheChecksum','typed_usage','native_usage','countProposalGuide']);
   const safeTag=value=>typeof value==='string'&&/^[A-Z0-9_:-]{1,100}$/.test(value);
   function publicFields(item,path){
    if(item===null||item===undefined||typeof item==='string'||typeof item==='boolean')return true;
@@ -5135,7 +5135,7 @@ function jointFallbackBundleValid(value,request){
    if(typeof item!=='object'||ArrayBuffer.isView(item))return false;
    const tag=Object.prototype.toString.call(item);
    if(!['[object Object]','[object Array]'].includes(tag)||path.has(item))return false;
-   if(['validated-va02-native-usage-v1','already-admitted-va02-typed-usage-v2'].includes(item.schema))return false;
+   if(['validated-va02-native-usage-v1','already-admitted-va02-typed-usage-v2','PROPOSAL_ONLY_MARGINAL_COUNT_GUIDE_V2'].includes(item.schema))return false;
    path.add(item);
    try{return Object.entries(item).every(([key,child])=>!rawKeys.has(key)&&publicFields(child,path));}
    finally{path.delete(item);} // Acyclic result/baseline aliases are legitimate.

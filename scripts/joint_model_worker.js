@@ -3,8 +3,8 @@
 (function(){
  'use strict';
  const PROTOCOL='joint-model-worker-v1';
- const IMPORTS=Object.freeze(([{"name":"election_night_poll_closings_2026","stamp":"39c725fe013b"},{"name":"washington_remaining_source","stamp":"a106231b5d51"},{"name":"washington_remaining_scenarios","stamp":"1a313f060a7e"},{"name":"source_call_conditioning","stamp":"26c1be0c0e7a"},{"name":"chamber_control_model","stamp":"d98ce3f4cdf1"},{"name":"national_county_likelihood","stamp":"3a42f78b20e5"}]).map(Object.freeze));
- const MODEL_REVISION="./scripts/source_call_conditioning.js?v=26c1be0c0e7a|./scripts/chamber_control_model.js?v=d98ce3f4cdf1|./scripts/national_county_likelihood.js?v=3a42f78b20e5";
+ const IMPORTS=Object.freeze(([{"name":"election_night_poll_closings_2026","stamp":"39c725fe013b"},{"name":"washington_remaining_source","stamp":"a106231b5d51"},{"name":"washington_remaining_scenarios","stamp":"1a313f060a7e"},{"name":"source_call_conditioning","stamp":"9180df7432b1"},{"name":"chamber_control_model","stamp":"36064c2a9836"},{"name":"national_county_likelihood","stamp":"48e16427f122"}]).map(Object.freeze));
+ const MODEL_REVISION="./scripts/source_call_conditioning.js?v=9180df7432b1|./scripts/chamber_control_model.js?v=36064c2a9836|./scripts/national_county_likelihood.js?v=48e16427f122";
  const ERROR_CODES=Object.freeze(['INVALID_REQUEST','STATIC_MODEL_UNAVAILABLE','MODEL_COMPUTATION_FAILED','INVALID_MODEL_RESULT']);
  const VARIANT_IDS=Object.freeze(['house_shadow','presidential_shadow','correlation_moderate','correlation_lower']);
  const FRAME_KINDS=Object.freeze(['LIVE','POLLING_ARCHIVE_BASELINE','REHEARSAL']);
@@ -59,14 +59,14 @@
   return publicValue(result);
  }
  function publicValue(value){
-  const rawKeys=new Set(['proposal_only','county_draws','call_proposal_draws','call_log_weights','log_weights','seeds','source_indices','weights','fingerprint','basis','publicBasis','localNormals','redrawMargins','redrawUniforms','transport_margins','transportCache','transportCacheChecksum','typed_usage','native_usage']);
+  const rawKeys=new Set(['proposal_only','county_draws','call_proposal_draws','call_log_weights','log_weights','seeds','source_indices','weights','fingerprint','basis','publicBasis','localNormals','redrawMargins','redrawUniforms','transport_margins','transportCache','transportCacheChecksum','typed_usage','native_usage','countProposalGuide']);
   function publicFields(item,path){
    if(item===null||item===undefined||typeof item==='string'||typeof item==='boolean')return true;
    if(typeof item==='number')return Number.isFinite(item);
    if(typeof item!=='object'||ArrayBuffer.isView(item))return false;
    const tag=Object.prototype.toString.call(item);
    if(!['[object Object]','[object Array]'].includes(tag)||path.has(item))return false;
-   if(['validated-va02-native-usage-v1','already-admitted-va02-typed-usage-v2'].includes(item.schema))return false;
+   if(['validated-va02-native-usage-v1','already-admitted-va02-typed-usage-v2','PROPOSAL_ONLY_MARGINAL_COUNT_GUIDE_V2'].includes(item.schema))return false;
    path.add(item);
    try{return Object.entries(item).every(([key,child])=>!rawKeys.has(key)&&publicFields(child,path));}
    finally{path.delete(item);} // Acyclic result/baseline aliases are legitimate.

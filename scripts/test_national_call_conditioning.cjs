@@ -69,11 +69,19 @@ for(const [code,party]of callInputs){
  const serialized=JSON.stringify(result);for(const field of ['call_log_weights','county_draws','context_key','fingerprint'])assert(!serialized.includes('"'+field+'"'),'No raw proposal or private cache key escapes in a headline result');
 }
 assert.equal(JSON.stringify({basis,counts}),original,'Coordinator cannot mutate model/source inputs');
-// Preserve the realistic hard-support outcome too: rare fictional OH D (-18
-// baseline) plus strongly positive OH counts and conflicting MI/NE returns do
-// not acquire a nicer answer by changing alpha or weakening the ESS floor.
+// Preserve the original missing-guide hard-support outcome too: rare fictional
+// OH D (-18 baseline) plus conflicting counts must not gain support by changing
+// alpha or weakening the ESS floor. This local model adapter omits only optional
+// proposal guidance; the actual kernel, original Q and finalizer still run.
+let omittedCountGuides=0;
+const withoutCountGuide={...engine,proposeSourceCallElections(b,o){
+ const {countProposalGuide,...originalOptions}=o;
+ assert.equal(typeof countProposalGuide?.evaluate,'function');assert.equal(Object.isFrozen(countProposalGuide),true);omittedCountGuides++;
+ return engine.proposeSourceCallElections(b,originalOptions);
+}};
 const rareBasis=require('./fictional_call_basis.cjs')(),conflictingCounts=[oh.envelope(8,now),mi.envelope(-3,now),ne.envelope(-2,now)];
-const rare=kernel.condition(engine,rareBasis,conflictingCounts,{...opts,live:live('OH-SEN','D')});
+const rare=kernel.condition(withoutCountGuide,rareBasis,conflictingCounts,{...opts,live:live('OH-SEN','D')});
+assert.equal(omittedCountGuides,1,'The missing-guide control actually omits the new guidance');
 assert.equal(rare.result.source_call_conditioning.status,'WITHHELD');assert.equal(rare.result.source_call_conditioning.reason,'WITHHELD_LOW_EFFECTIVE_SAMPLE_SUPPORT');
 assert.equal(rare.diagnostics.conditioned_call_covariance_applied,false);assert(rare.diagnostics.call_support.effective_sample_size<opts.samples*.5);
 assert.equal(race(rare.result,'OH-SEN').provider_called_party,'D');assert.equal(race(rare.result,'OH-SEN').dem_beats_rep_pct,100);

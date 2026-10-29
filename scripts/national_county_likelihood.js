@@ -273,6 +273,40 @@
  const callFailure=error=>typeof error?.code==='string'&&/^[A-Z0-9_]{1,100}$/.test(error.code)?error.code:'CALL_COUNT_CONDITIONING_FAILED';
  const failCall=code=>{const error=Error(code);error.code=code;throw error;};
  const supportMetadata=support=>Object.fromEntries(Object.entries(support||{}).filter(([key])=>key!=='weights'));
+function createCountProposalGuide({compiled,referenceDraws,alpha,budgets,policy,reportingNodes,conditionalCurve,truncateToCalledSign,normalLogCDF}){
+ const finite=x=>typeof x==='number'&&Number.isFinite(x);
+ if(!Array.isArray(compiled)||!compiled.length||compiled.length>18||!finite(alpha)||alpha<0||alpha>1||typeof truncateToCalledSign!=='function'||typeof normalLogCDF!=='function')throw Error('INVALID_MARGINAL_COUNT_GUIDE');
+ if(alpha===0)return null;
+ const codes=Object.freeze(compiled.map(c=>c.code)),sharedSigma=policy.batch_margin_sigma*Math.sqrt(policy.shared_reporting_error_variance_fraction),normalizers=[],tables=compiled.map(()=>new Map()),step=policy.reporting_curve_step_margin_points;
+ for(const c of compiled){const margins=referenceDraws?.margins?.[c.code];if(!margins||!margins.length)throw Error('COUNT_GUIDE_REFERENCE_REQUIRED');const curve=conditionalCurve(c,margins);let maximum=-Infinity;for(const margin of margins)for(const node of reportingNodes)maximum=Math.max(maximum,curve(margin+node.z*sharedSigma));if(!finite(maximum))throw Error('NONFINITE_COUNT_GUIDE_NORMALIZER');normalizers.push(maximum);}
+ function curve(j,margin){const i=Math.floor(margin/step),fraction=margin/step-i;if(!Number.isSafeInteger(i)||!finite(fraction))throw Error('UNSUPPORTED_GUIDE_GRID');const values=tables[j],at=index=>{if(!values.has(index)){if(values.size>=10000)throw Error('COUNT_GUIDE_GRID_CAP');const value=compiled[j].logLikelihood(index*step,{sharedReportingOffset:0});if(!finite(value))throw Error('NONFINITE_COUNT_GUIDE_RAW');values.set(index,value);}return values.get(index);};const low=at(i);return low+(at(i+1)-low)*fraction;}
+ function evaluate(locations,{derivatives=true,rows}={}){
+  if(!Array.isArray(locations)||locations.length!==codes.length||!locations.every(finite)||!Array.isArray(rows)||rows.length!==codes.length)throw Error('INVALID_COUNT_GUIDE_LOCATIONS');
+  const locals=rows.map((row,j)=>{
+   if(!finite(row.localSD)||row.localSD<=0||![0,-1,1].includes(row.sign)||!Array.isArray(row.offsets)||!row.offsets.length||row.offsets.length>64||!row.offsets.every(finite)||row.sign&&row.offsets.length!==1)throw Error('UNSUPPORTED_COUNT_GUIDE_LOCAL_LAW');
+   const points=[];for(const offset of row.offsets)for(const node of reportingNodes){const mean=locations[j]+offset,margin=row.sign?truncateToCalledSign(mean,row.localSD,row.sign,node.z).margin:mean+row.localSD*node.z;
+    points.push({margin,score:(margin-mean)/(row.localSD*row.localSD),weight:node.weight/row.offsets.length});}
+   const t=row.sign*(locations[j]+row.offsets[0])/row.localSD,mills=row.sign?Math.exp(-.5*t*t-.5*Math.log(2*Math.PI)-normalLogCDF(t)):0;
+   return{points,qFirst:row.sign*mills/row.localSD,qSecond:-t*mills/(row.localSD*row.localSD),inverseVariance:1/(row.localSD*row.localSD)};
+  });
+  const nodes=[],scores=[],seconds=[];
+  for(const node of reportingNodes){let sum=0;const g=[],h=[];
+   for(let j=0;j<codes.length;j++){
+    const members=budgets[codes[j].slice(0,2)];if(!Number.isInteger(members)||members<1)throw Error('INVALID_COUNT_GUIDE_STATE_SHARE');let value=0,first=0,second=0;
+    for(const point of locals[j].points){const raw=curve(j,point.margin+node.z*sharedSigma),robust=policy.contamination_floor+(1-policy.contamination_floor)*Math.exp(Math.min(0,raw-normalizers[j])),weighted=point.weight*Math.pow(robust,1/members);value+=weighted;if(derivatives){first+=weighted*point.score;second+=weighted*(point.score*point.score-locals[j].inverseVariance);}}
+    if(!finite(value)||value<=0||value>1+1e-12)throw Error('INVALID_LOCAL_MARGINAL_GUIDE');
+    const derivative=first-value*locals[j].qFirst,curvature=second-2*locals[j].qFirst*derivative-value*locals[j].qSecond;
+    sum+=Math.log(value);g.push(derivatives?derivative/value:0);h.push(derivatives?curvature/value-(derivative/value)**2:0);
+   }
+   if(!finite(sum)||!g.every(finite)||!h.every(finite))throw Error('INVALID_MARGINAL_GUIDE_NODE');nodes.push(sum);scores.push(g);seconds.push(h);
+  }
+  const maximum=Math.max(...nodes),weights=nodes.map((v,k)=>reportingNodes[k].weight*Math.exp(v-maximum)),total=weights.reduce((a,b)=>a+b,0),value=maximum+Math.log(total);
+  if(!finite(value)||value>1e-12)throw Error('INVALID_MARGINAL_GUIDE_MIXTURE');if(!derivatives)return{value:alpha*value};
+  const probabilities=weights.map(v=>v/total),gradient=Float64Array.from(codes,(_,j)=>probabilities.reduce((sum,w,k)=>sum+w*scores[k][j],0)),hessian=codes.map((_,i)=>Float64Array.from(codes,(_,j)=>probabilities.reduce((sum,w,k)=>sum+w*(scores[k][i]*scores[k][j]+(i===j?seconds[k][i]:0)),0)-gradient[i]*gradient[j]));
+  return{value:alpha*value,gradient:Float64Array.from(gradient,v=>alpha*v),hessian:hessian.map(row=>Float64Array.from(row,v=>alpha*v))};
+ }
+ return Object.freeze({schema:'PROPOSAL_ONLY_MARGINAL_COUNT_GUIDE_V2',codes,likelihoodPower:alpha,evaluate});
+}
  function countCallTarget(compiled,referenceDraws,proposal,budgets){
   const n=proposal.samples,sharedSigma=policy.batch_margin_sigma*Math.sqrt(policy.shared_reporting_error_variance_fraction);
   const normalizers=[],curves=[];
@@ -379,7 +413,10 @@
   let stage='CALL_PROPOSAL',support=null;
   try{
    if(typeof model.proposeSourceCallElections!=='function'||typeof model.finalizeSourceCallElections!=='function')return fallback('CALL_PROPOSAL_API_UNAVAILABLE');
-   const packet=model.proposeSourceCallElections(basis,{...args,...(compiled.length?{captureCountyDraws:referenceCodes}:{})});
+   let countProposalGuide=null;
+   if(compiled.length)try{countProposalGuide=createCountProposalGuide({compiled,referenceDraws:originalDraws,alpha,budgets:reference.diagnostics.state_likelihood_budget_members,policy,reportingNodes,conditionalCurve,truncateToCalledSign:sourceCalls?.truncateToCalledSign,normalLogCDF:sourceCalls?.normalLogCDF});}catch{}
+   const packet=model.proposeSourceCallElections(basis,{...args,...(compiled.length?{captureCountyDraws:referenceCodes}:{}),...(countProposalGuide?{countProposalGuide}:{})});
+   countProposalGuide=null; // The prepared plan retains derived Gaussian numbers only.
    if(!unchangedInputs())failCall('CALL_MODEL_INPUT_CHANGED_DURING_CONDITIONING');
    if(packet?.schema!=='raw-source-call-proposal-v1'||packet.status!=='RAW_PROPOSAL_NOT_A_FORECAST'||packet.proposal_only!==true||packet.has_usable_headline_probabilities!==false||
       packet.samples!==n||packet.seed!==baseline.seed||packet.seeds?.length!==n||packet.call_log_weights?.length!==n||packet.context_key!==(args.contextKey??'UNSPECIFIED')||

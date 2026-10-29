@@ -490,17 +490,63 @@ const recordGuide=()=>{};
     variance=copy.reduce((s,x)=>s+(x-mean)**2,0)/copy.length;
    bags.set(row.state,{values:copy,rows:stateRows,mean,variance});
   }
-  const keys=[...new Set(calls.flatMap(({row})=>Object.keys(row.coefficients).filter(key=>row.coefficients[key]!==0)))].sort();
+  const originalKeys=[...new Set(calls.flatMap(({row})=>Object.keys(row.coefficients).filter(key=>row.coefficients[key]!==0)))].sort();
+  const countGuide=options.countProposalGuide??null;
+  if(countGuide&&(!Object.isFrozen(countGuide)||!Array.isArray(countGuide.codes)||countGuide.codes.length>18||new Set(countGuide.codes).size!==countGuide.codes.length||countGuide.codes.some(code=>!byCode.has(code))||typeof countGuide.evaluate!=='function'))fail('INVALID_COUNT_PROPOSAL_GUIDE');
+  const guideRows=countGuide?countGuide.codes.map(code=>byCode.get(code)):[];
+  for(const row of guideRows)if(row.mix){const values=basis.redrawn_state_distributions?.[row.state];if(!Array.isArray(values)||!values.length||!values.every(finite))fail('INVALID_COUNT_GUIDE_REDRAW_MEAN');row.guideRedrawMean=row.mix*(values.reduce((s,v)=>s+v,0)/values.length-row.center);row.guideRedrawOffsets=values.map(v=>row.mix*(v-row.center));}
+  const keys=countGuide?[...new Set([...originalKeys,...guideRows.flatMap(row=>Object.keys(row.coefficients).filter(key=>row.coefficients[key]!==0))])].sort():originalKeys;
   if(keys.length>MAX_FACTORS)fail('UNSUPPORTED_SHARED_FACTOR_SCOPE');
   const context=options.contextKey??'UNSPECIFIED';
   if(typeof context!=='string'||context.length>128)fail('INVALID_MODEL_CONTEXT_KEY');
   // Private numeric values are used only for an in-memory mutation check/cache
   // identity. This string is never returned, logged, exported or persisted.
   const fingerprint=JSON.stringify([a,rows,Array.from(bags,([state,bag])=>[state,bag.values]),shift,multiplier,corr]);
-  return {rows,calls,signs,bags,keys,context,fingerprint,
+  return {rows,calls,signs,bags,keys,originalKeys,countGuide,context,fingerprint,
    optionKey:JSON.stringify([shift,multiplier,corr,context]),
    callKey:calls.map(({row,sign})=>row.code+':'+(sign>0?'D':'R')).join('|')};
  }
+function countGuidedGaussian(input,base,terms,numerics){
+ const {keys,rows,calls,bags,countGuide}=input,{normalLogCDF,cholesky,solvePrecision}=numerics,finite=x=>typeof x==='number'&&Number.isFinite(x),dot=(a,b)=>a.reduce((sum,x,i)=>sum+x*b[i],0),logPhi=x=>-.5*x*x-.5*Math.log(2*Math.PI);
+ if(!countGuide)return null;
+ // This first real hook targets the saved non-redrawn OH call. Existing resource
+ // guides stay unchanged whenever a called discrete bag would need integration.
+ if(bags.size)return null;
+ const selected=countGuide.codes.map(code=>rows.find(row=>row.code===code));
+ if(selected.some(row=>!row)||!Object.isFrozen(countGuide)||typeof countGuide.evaluate!=='function')return null;
+ const signs=new Map(calls.map(({row,sign})=>[row.code,sign]));let iterations=0;
+ try{
+  const models=Object.freeze(selected.map(row=>Object.freeze({localSD:row.localSD,sign:signs.get(row.code)||0,offsets:Object.freeze((row.guideRedrawOffsets||[0]).slice())})));
+  function projected(z){return selected.map(row=>({value:row.mean+dot(keys.map(key=>row.coefficients[key]||0),z),first:1,second:0,loadings:keys.map(key=>row.coefficients[key]||0)}));}
+  function evaluate(z,derivatives){
+   const p=projected(z),count=countGuide.evaluate(p.map(row=>row.value),{derivatives,rows:models});
+   let value=-.5*dot(z,z);for(const term of terms)value+=normalLogCDF(term.offset+dot(term.loadings,z));value+=count.value;
+   if(!finite(value))throw Error('NONFINITE_COUNT_GUIDE_OBJECTIVE');if(!derivatives)return{value};
+   const gradient=Float64Array.from(z,x=>-x),precision=keys.map((_,i)=>Float64Array.from(keys,(_,j)=>Number(i===j)));
+   for(const term of terms){const t=term.offset+dot(term.loadings,z),ratio=Math.exp(logPhi(t)-normalLogCDF(t)),weight=ratio*(t+ratio);if(!finite(weight)||weight<0)throw Error('INVALID_CALL_GUIDE_PRECISION');for(let i=0;i<keys.length;i++){gradient[i]+=term.loadings[i]*ratio;for(let j=0;j<keys.length;j++)precision[i][j]+=term.loadings[i]*term.loadings[j]*weight;}}
+   for(let r=0;r<p.length;r++)for(let i=0;i<keys.length;i++){
+    gradient[i]+=count.gradient[r]*p[r].first*p[r].loadings[i];
+    for(let j=0;j<keys.length;j++){
+     precision[i][j]-=count.gradient[r]*p[r].second*p[r].loadings[i]*p[r].loadings[j];
+     for(let s=0;s<p.length;s++)precision[i][j]-=count.hessian[r][s]*p[r].first*p[s].first*p[r].loadings[i]*p[s].loadings[j];
+    }
+   }
+   if(!gradient.every(finite)||precision.some(row=>!row.every(finite)))throw Error('NONFINITE_COUNT_GUIDE_DERIVATIVE');return{value,gradient,precision};
+  }
+  let mode=Float64Array.from(base.mode),L=base.L,converged=false;
+  for(;iterations<80;iterations++){
+   const at=evaluate(mode,true);try{L=cholesky(at.precision);}catch{L=base.L;}
+   const step=solvePrecision(L,at.gradient),decrement=dot(step,at.gradient),resolution=64*Number.EPSILON*(1+Math.abs(at.value));
+   if(step.every(x=>Math.abs(x)<1e-11)||(decrement>=0&&decrement<=resolution)){converged=true;break;}
+   let fraction=1,accepted=false;for(let line=0;line<60;line++){const trial=Float64Array.from(mode,(x,i)=>x+fraction*step[i]);if(evaluate(trial,false).value>=at.value){mode=trial;accepted=true;break;}fraction/=2;}
+   if(!accepted)throw Error('COUNT_GUIDE_LINE_SEARCH_FAILED');
+  }
+  if(!converged)throw Error('COUNT_GUIDE_DID_NOT_CONVERGE');
+  const final=evaluate(mode,true);try{L=cholesky(final.precision);}catch{L=base.L;}
+  const result={mode,L,iterations,logDeterminant:2*L.reduce((sum,row,i)=>sum+Math.log(row[i]),0)};
+  return result;
+ }catch{return null;}
+}
  function buildPlan(input){
   const {rows,calls,signs,bags,keys}=input;
   const terms=calls.map(({row,sign})=>{
@@ -508,7 +554,11 @@ const recordGuide=()=>{};
     extraVariance=row.mix&&bag?row.mix**2*bag.variance:0,scale=Math.hypot(row.localSD,Math.sqrt(extraVariance));
    return {offset:sign*(row.mean+redrawMean)/scale,loadings:keys.map(key=>sign*(row.coefficients[key]||0)/scale)};
   });
-  const gaussian=resource.resourceGaussian(input,terms,{normalLogCDF,cholesky,solvePrecision,gaussianProposal},recordGuide),loadings=rows.map(row=>keys.map(key=>row.coefficients[key]||0));
+  const originalGaussian=resource.resourceGaussian(input,terms,{normalLogCDF,cholesky,solvePrecision,gaussianProposal},recordGuide);
+  const countGaussian=input.countGuide?countGuidedGaussian(input,originalGaussian,terms,{normalLogCDF,cholesky,solvePrecision}):null;
+  if(input.countGuide&&!countGaussian)return buildPlan({...input,countGuide:null,keys:input.originalKeys});
+  input={...input,countGuide:null}; // Returned plan retains derived numbers only, never the evaluator.
+  const gaussian=countGaussian||originalGaussian,loadings=rows.map(row=>keys.map(key=>row.coefficients[key]||0));
   const output=new Float64Array(rows.length),factorDelta=new Float64Array(keys.length);
   const readState=(states,state)=>typeof states?.get==='function'?states.get(state):states?.[state];
   const diagnostics=Object.freeze({schema:VERSION,status:'PREPARED_NOT_YET_WEIGHTED',
@@ -586,6 +636,7 @@ const recordGuide=()=>{};
   let entries=[],hits=0,misses=0;
   return Object.freeze({prepare(basis,options={}){
    const input=optionsAndCalls(basis,options);if(!input)return null;
+   if(input.countGuide)return buildPlan(input);
    const index=entries.findIndex(e=>e.basis===basis&&e.callKey===input.callKey&&e.optionKey===input.optionKey&&e.fingerprint===input.fingerprint);
    if(index>=0){const [entry]=entries.splice(index,1);entries.push(entry);hits++;return entry.plan;}
    const plan=buildPlan(input);entries.push({basis,callKey:input.callKey,optionKey:input.optionKey,fingerprint:input.fingerprint,plan});misses++;
