@@ -1,5 +1,16 @@
 # JackStradamus · development plan
 
+## October29 active531 — measured render-cost correction before release
+
+WA scheduling/freshness and phone reading fixes pass the new browser matrices.
+The unchanged18m fullDOM gate exposed repeated ID-selector traversal. The exact
+failed-CI corpus now passes all original assertions/3k settings with119,575 node
+comparisons/zero owned-ID duplicates, and optimized fullDOM371.43s locally.
+Only283 proven static-owned UI IDs use ID lookup; all other selectors retain
+legacy behavior. No math/RNG/input/draw/deadline change. Finish new protected CI
+and final published verification; do not merge either failed old head.
+VA/compact-lineage remain reviewed ignored candidates, not production support.
+
 ## October29 active candidate — bounded WA updates and stalled-source freshness
 
 The independently reviewed WA extension is now integrated: original receipt and

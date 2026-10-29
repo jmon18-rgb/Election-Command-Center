@@ -126,3 +126,12 @@ case without changing its target or hard support floor. Its complete private,
 public and two-House-research worker frame is tested against the unchanged
 30-second deadline. Other concentrated cases still withhold; neither background
 execution nor these synthetic results guarantee full-night conditional learning.
+
+## Interface lookup cost
+
+The interface uses direct ID lookup only for283 fixed, verified-unique global
+anchors in standards-mode HTML. Other selectors preserve the existing CSS query
+path; elements are never cached. Exact failed-CI-corpus DOM validation compares
+every chosen node with the original selector and checks owned-ID uniqueness.
+This reduces repeated traversal without changing model inputs, numerical code,
+random draws or time limits. Local timings do not guarantee device performance.
